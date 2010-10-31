@@ -6,6 +6,7 @@ Name=Dictionary of the Spanish Academy (RAE)
 Name[af]=Woordeboek van die Spaanse Akademie (RAE)
 Name[ar]=قاموس الأكاديمية الأسبانية (RAE)
 Name[as]=Spanish Academy (RAE) ৰ অভিধান
+Name[ast]=Diccionariu de la Real Academia de la Lengua Española (RAE)
 Name[be]=Слоўнік Іспанскай акадэміі (RAE)
 Name[be@latin]=Słoŭnik Hišpanskaj Akademii (RAE)
 Name[bg]=Речник на испанската академия (RAE)
@@ -93,6 +94,7 @@ Query=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO
 Query[af]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[ar]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[as]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ast]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[be]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[be@latin]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[bg]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado

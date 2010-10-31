@@ -4,6 +4,7 @@ Name=Debian Backports Search
 Name[af]=Debian Backports Soektog
 Name[ar]=ابحث في مخازن ديبيان
 Name[as]=Debian Backports Search
+Name[ast]=Gueta nos backports de Debian
 Name[be]=Пошук Debian Backports
 Name[be@latin]=Pošuk „Backports” dla systemy „Debian”
 Name[bg]=Търсене в Debian Backports
@@ -88,6 +89,7 @@ Query=http://www.backports.org/package.php?search=\\{@}
 Query[af]=http://www.backports.org/package.php?search=\\{@}
 Query[ar]=http://www.backports.org/package.php?search=\\{@}
 Query[as]=http://www.backports.org/package.php?search=\\{@}
+Query[ast]=http://www.backports.org/package.php?search=\\{@}
 Query[be]=http://www.backports.org/package.php?search=\\{@}
 Query[be@latin]=http://www.backports.org/package.php?search=\\{@}
 Query[bg]=http://www.backports.org/package.php?search=\\{@}

@@ -4,6 +4,7 @@ Name=Froogle
 Name[af]=Froogle
 Name[ar]=Froogle
 Name[as]=Froogle
+Name[ast]=Froogle
 Name[be]=Froogle
 Name[be@latin]=Froogle
 Name[bg]=Froogle
@@ -93,6 +94,7 @@ Query=http://froogle.google.com/froogle?q=\\{@}
 Query[af]=http://froogle.google.com/froogle?q=\\{@}
 Query[ar]=http://froogle.google.com/froogle?q=\\{@}
 Query[as]=http://froogle.google.com/froogle?q=\\{@}
+Query[ast]=http://froogle.google.com/froogle?q=\\{@}
 Query[be]=http://froogle.google.com/froogle?q=\\{@}
 Query[be@latin]=http://froogle.google.com/froogle?q=\\{@}
 Query[bg]=http://froogle.google.com/froogle?q=\\{@}

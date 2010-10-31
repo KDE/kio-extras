@@ -4,6 +4,7 @@ Name=AltaVista
 Name[af]=Altavista
 Name[ar]=AltaVista
 Name[as]=AltaVista
+Name[ast]=AltaVista
 Name[be]=AltaVista
 Name[be@latin]=AltaVista
 Name[bg]=AltaVista
@@ -94,6 +95,7 @@ Query=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[af]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[ar]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[as]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
+Query[ast]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[be]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[be@latin]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[bg]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}

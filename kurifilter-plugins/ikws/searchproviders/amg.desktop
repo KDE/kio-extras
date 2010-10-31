@@ -5,6 +5,7 @@ Name=All Music Guide
 Name[af]=All Music Guide
 Name[ar]=مرشد لكلّ الموسيقى
 Name[as]=All Music Guide
+Name[ast]=Guía All Music
 Name[be]=All Music Guide
 Name[be@latin]=All Music Guide
 Name[bg]=All Music Guide
@@ -90,6 +91,7 @@ Query=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[af]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[ar]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[as]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
+Query[ast]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[be]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[be@latin]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[bg]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}

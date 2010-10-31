@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=flickrcc,flkrcc,flkcc
 Name=Flickr Creative Commons
+Name[ast]=Flickr Creative Commons
 Name[bg]=Flickr Creative Commons
 Name[ca]=Flickr Creative Commons
 Name[ca@valencia]=Flickr Creative Commons
@@ -53,6 +54,7 @@ Name[zh_CN]=Flickr 公用创作物
 Name[zh_TW]=Flickr Creative Commons
 Query=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
+Query[ast]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[bg]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[bn]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ca]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

@@ -4,6 +4,7 @@ Hidden=false
 Keys=urbandictionary,ud
 Name=Urban Dictionary
 Name[ar]=القاموس المتمدّن
+Name[ast]=Urban Dictionary
 Name[bg]=Urban Dictionary
 Name[bn]=Urban Dictionary
 Name[ca]=Urban Dictionary
@@ -57,6 +58,7 @@ Name[zh_CN]=都市词典
 Name[zh_TW]=Urban Dictionary
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ar]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
+Query[ast]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[bg]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[bn]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ca]=http://www.urbandictionary.com/define.php?term=\\{@}

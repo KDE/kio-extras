@@ -4,6 +4,7 @@ Name=Google (I'm Feeling Lucky)
 Name[af]=Google (Vat 'n kaans)
 Name[ar]=جوجل (أنا محظوظ)
 Name[as]=Google (I'm Feeling Lucky)
+Name[ast]=Google (Voi tener suerte)
 Name[be]=Google (Мне пашанцуе)
 Name[be@latin]=Google („Mnie pašancuje”)
 Name[bg]=Google ("Чувствам се късметлия")
@@ -94,6 +95,7 @@ Query=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=
 Query[af]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[ar]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[as]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
+Query[ast]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[be]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[be@latin]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[bg]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8

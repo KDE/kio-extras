@@ -4,6 +4,7 @@ Name=Google
 Name[af]=Google
 Name[ar]=جوجل
 Name[as]=Google
+Name[ast]=Google
 Name[be]=Google
 Name[be@latin]=Google
 Name[bg]=Google
@@ -96,6 +97,7 @@ Query=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[af]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ar]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[as]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[ast]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[be]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[be@latin]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bg]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8

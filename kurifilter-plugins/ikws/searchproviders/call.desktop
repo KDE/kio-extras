@@ -6,6 +6,7 @@ Name=QRZ.com Callsign Database
 Name[af]=QRZ.com Callsign databasis
 Name[ar]=قاعدة بيانات محطة QRZ.com
 Name[as]=QRZ.com Callsign Database
+Name[ast]=Base de datos QRZ.com
 Name[be]=База дадзеных QRZ.com Callsign
 Name[be@latin]=Baza źviestak „QRZ.com Callsign”
 Name[bg]=QRZ.com Callsign Database
@@ -91,6 +92,7 @@ Query=http://www.qrz.com/database?callsign=\\{@}
 Query[af]=http://www.qrz.com/database?callsign=\\{@}
 Query[ar]=http://www.qrz.com/database?callsign=\\{@}
 Query[as]=http://www.qrz.com/database?callsign=\\{@}
+Query[ast]=http://www.qrz.com/database?callsign=\\{@}
 Query[be]=http://www.qrz.com/database?callsign=\\{@}
 Query[be@latin]=http://www.qrz.com/database?callsign=\\{@}
 Query[bg]=http://www.qrz.com/database?callsign=\\{@}

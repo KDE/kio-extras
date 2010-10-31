@@ -4,6 +4,7 @@ Hidden=false
 Keys=identicanotices,identin,idn
 Name=Identi.ca Notices
 Name[ar]=إشعارات Identi.ca
+Name[ast]=Avisos Identi.ca
 Name[bg]=Бележки в Identi.ca
 Name[ca]=Avisos a Identi.ca
 Name[ca@valencia]=Avisos a Identi.ca
@@ -47,6 +48,7 @@ Name[sr@ijekavian]=Идентика-обавештења
 Name[sr@ijekavianlatin]=identi.ca‑obaveštenja
 Name[sr@latin]=identi.ca‑obaveštenja
 Name[sv]=Identi.ca anslag
+Name[th]=การแจ้ง Identi.ca
 Name[tr]=Identi.ca Bildirimleri
 Name[uk]=Нотатки Identi.ca
 Name[x-test]=xxIdenti.ca Noticesxx
@@ -54,6 +56,7 @@ Name[zh_CN]=Identi.ca 通知
 Name[zh_TW]=Identi.ca Notices
 Query=http://identi.ca/search/notice?q=\\{@}
 Query[ar]=http://info.alexa.com/search?q=\\{@}
+Query[ast]=http://identi.ca/search/notice?q=\\{@}
 Query[bg]=http://identi.ca/search/notice?q=\\{@}
 Query[bn]=http://identi.ca/search/notice?q=\\{@}
 Query[ca]=http://identi.ca/search/notice?q=\\{@}

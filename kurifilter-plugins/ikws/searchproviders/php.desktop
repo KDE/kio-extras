@@ -4,6 +4,7 @@ Name=PHP Search
 Name[af]=PHP Soektog
 Name[ar]=بحث PHP
 Name[as]=PHP Search
+Name[ast]=Gueta PHP
 Name[be]=Пошук PHP
 Name[be@latin]=Pošuk dla PHP
 Name[bg]=Търсене в PHP
@@ -91,6 +92,7 @@ Name[zh_CN]=PHP 搜索
 Name[zh_TW]=PHP 搜尋
 Query=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[ar]=http://www.php.net/search.php?show=\\{mode,"manual"}&pattern=\\{@}
+Query[ast]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[bg]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[bn]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[ca]=http://www.php.net/manual-lookup.php?pattern=\\{@}

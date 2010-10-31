@@ -4,6 +4,7 @@ Name=Google Groups
 Name[af]=Google Groepe
 Name[ar]=مجموعات جوجل
 Name[as]=Google Groups
+Name[ast]=Grupos de Google
 Name[be]=Групы Google
 Name[be@latin]=Hrupy „Google”
 Name[bg]=Групи в Google
@@ -96,6 +97,7 @@ Query=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[af]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[ar]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[as]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ast]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[be]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[be@latin]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[bg]=http://groups.google.com/groups?oi=djq&as_q=\\{@}

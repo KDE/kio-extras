@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Executables
 Name[ar]=ملفات تنفيذية لمايكروسوفت ويندوز
+Name[ast]=Executables de Microsoft Windows
 Name[ca]=Executables de Microsoft Windows
 Name[ca@valencia]=Executables de Microsoft Windows
 Name[cs]=Spustitelné soubory MS Windows

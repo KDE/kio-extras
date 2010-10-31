@@ -4,6 +4,7 @@ Hidden=false
 Keys=kdetechbase,techbase,tb
 Name=KDE TechBase
 Name[ar]=أخبار كدي
+Name[ast]=KDE TechBase
 Name[bn]=KDE টেক-বেস
 Name[ca]=KDE TechBase
 Name[ca@valencia]=KDE TechBase
@@ -58,6 +59,7 @@ Name[zh_CN]=KDE 技术信息库
 Name[zh_TW]=KDE TechBase
 Query=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ast]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bg]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

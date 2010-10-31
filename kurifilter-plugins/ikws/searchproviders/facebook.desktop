@@ -4,6 +4,7 @@ Hidden=false
 Keys=facebook,face,fb
 Name=Facebook
 Name[ar]=فيس بوك
+Name[ast]=Facebook
 Name[bg]=Facebook
 Name[bn]=ফেসবুক
 Name[ca]=Facebook
@@ -59,6 +60,7 @@ Name[zh_CN]=Facebook
 Name[zh_TW]=Facebook
 Query=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
+Query[ast]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bg]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bn]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ca]=http://www.facebook.com/search/?q=\\{@}&init=quick

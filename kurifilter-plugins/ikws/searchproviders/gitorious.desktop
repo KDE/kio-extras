@@ -4,6 +4,7 @@ Hidden=false
 Keys=gitorious,gt
 Name=Gitorious
 Name[ar]=Gitorious
+Name[ast]=Gitorious
 Name[bg]=Gitorious
 Name[bn]=গিটেরিয়াস
 Name[ca]=Gitorious
@@ -59,6 +60,7 @@ Name[zh_CN]=Gitorious
 Name[zh_TW]=Gitorious
 Query=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
+Query[ast]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[bg]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[bn]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ca]=http://gitorious.org/search?q=\\{@}&commit=Search

@@ -4,6 +4,7 @@ Name=Google Image Search
 Name[af]=Google Beeld Soektog
 Name[ar]=بحث صور جوجل
 Name[as]=Google ছবিৰৰ অনুনসন্ধান
+Name[ast]=Gueta d'imáxenes de Google
 Name[be]=Пошук відарысаў Google
 Name[be@latin]=Pošuk vyjavaŭ „Google”
 Name[bg]=Търсене на изображения в Google
@@ -96,6 +97,7 @@ Query=http://images.google.com/images?q=\\{@}
 Query[af]=http://images.google.com/images?q=\\{@}
 Query[ar]=http://images.google.com/images?q=\\{@}
 Query[as]=http://images.google.com/images?q=\\{@}
+Query[ast]=http://images.google.com/images?q=\\{@}
 Query[be]=http://images.google.com/images?q=\\{@}
 Query[be@latin]=http://images.google.com/images?q=\\{@}
 Query[bg]=http://images.google.com/images?q=\\{@}

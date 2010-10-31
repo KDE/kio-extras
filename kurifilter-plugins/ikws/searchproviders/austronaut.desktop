@@ -4,6 +4,7 @@ Name=AustroNaut
 Name[af]=Ruimtevaarder
 Name[ar]=AustroNaut
 Name[as]=AustroNaut
+Name[ast]=AustroNaut
 Name[be]=AustroNaut
 Name[be@latin]=AustroNaut
 Name[bg]=AustroNaut
@@ -94,6 +95,7 @@ Query=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[af]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[ar]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[as]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
+Query[ast]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[be]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[be@latin]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[bg]=http://austronaut.at/page.php?begriff=\\{@}&wo=at

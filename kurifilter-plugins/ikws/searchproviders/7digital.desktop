@@ -4,6 +4,7 @@ Hidden=false
 Keys=7digital,7dg,7d
 Name=7Digital
 Name[ar]=متجر الموسيقى 7Digital
+Name[ast]=7Digital
 Name[bg]=7Digital
 Name[bn]=7Digital
 Name[ca]=7Digital
@@ -51,6 +52,7 @@ Name[sr@ijekavianlatin]=7Digitalo
 Name[sr@latin]=7Digitalo
 Name[sv]=7Digital
 Name[tg]=7Digital
+Name[th]=7Digital
 Name[tr]=7Digital
 Name[uk]=7Digital
 Name[x-test]=xx7Digitalxx
@@ -58,6 +60,7 @@ Name[zh_CN]=7Digital
 Name[zh_TW]=7Digital
 Query=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
+Query[ast]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[bg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[bn]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ca]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

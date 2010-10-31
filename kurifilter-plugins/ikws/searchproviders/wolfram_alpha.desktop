@@ -2,6 +2,7 @@
 Keys=wa,wolfram
 Name=Wolfram Alpha
 Name[ar]=ولفرام ألفا
+Name[ast]=Wolfram Alpha
 Name[bg]=Wolfram Alpha
 Name[ca]=Wolfram Alpha
 Name[ca@valencia]=Wolfram Alpha
@@ -66,6 +67,7 @@ Name[zh_CN]=Wolfram Alpha
 Name[zh_TW]=Wolfram Alpha
 Query=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ar]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
+Query[ast]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[bg]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[bn]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ca]=http://www.wolframalpha.com/input/?i=\\{@}

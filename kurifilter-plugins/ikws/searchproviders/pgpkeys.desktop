@@ -4,6 +4,7 @@ Name=OpenPGP Key Search
 Name[af]=OpenPGP Sleutel Soektog
 Name[ar]=البحث عن مفتاح OpenPGP
 Name[as]=OpenPGP চাবিৰ অনুসন্ধান
+Name[ast]=Gueta de contraseña OpenPGP
 Name[be]=Пошук ключа OpenPGP
 Name[be@latin]=Pošuk klučoŭ „OpenPGP”
 Name[bg]=Търсене на ключ в OpenPGP
@@ -92,6 +93,7 @@ Query=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[af]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ar]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[as]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ast]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[be]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[be@latin]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[bg]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex

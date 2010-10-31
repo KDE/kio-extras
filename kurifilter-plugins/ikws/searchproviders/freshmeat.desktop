@@ -4,6 +4,7 @@ Name=Freshmeat
 Name[af]=Freshmeat
 Name[ar]=مكتبة برامج اللحم الطازج ( Freshmeat)
 Name[as]=Freshmeat
+Name[ast]=Freshmeat
 Name[be]=Freshmeat
 Name[be@latin]=Freshmeat
 Name[bg]=Freshmeat
@@ -94,6 +95,7 @@ Query=http://freshmeat.net/search/?q=\\{@}
 Query[af]=http://freshmeat.net/search/?q=\\{@}
 Query[ar]=http://freshmeat.net/search/?q=\\{@}
 Query[as]=http://freshmeat.net/search/?q=\\{@}
+Query[ast]=http://freshmeat.net/search/?q=\\{@}
 Query[be]=http://freshmeat.net/search/?q=\\{@}
 Query[be@latin]=http://freshmeat.net/search/?q=\\{@}
 Query[bg]=http://freshmeat.net/search/?q=\\{@}

@@ -14,6 +14,7 @@ Icon=folder-remote
 Description=A kioslave for the FISH protocol
 Description[af]='n Kioslave vir die FISH protokol
 Description[ar]=خادم دخل وخرج كدي لبروتوكول فيش (FISH) لنقل الملفات
+Description[ast]=Un kioslave pal protocolu FISH
 Description[be]=Kioslave для пратакола FISH
 Description[be@latin]=Słužba „kioslave” dla pratakoła FISH
 Description[bg]=Kioslave за протокола FISH

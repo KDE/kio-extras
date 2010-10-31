@@ -3,6 +3,7 @@ Type=Service
 Name=Acronym Database
 Name[af]=Akroniem Databasis
 Name[ar]=قاعدة بيانات الاختصارات
+Name[ast]=Base de datos Acronym
 Name[be]=Скарачэнні
 Name[be@latin]=Baza akronimaŭ
 Name[bg]=База от данни със съкращения
@@ -91,6 +92,7 @@ Query=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[af]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[ar]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[as]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ast]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[be]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[be@latin]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[bg]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}

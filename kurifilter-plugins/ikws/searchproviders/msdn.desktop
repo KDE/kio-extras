@@ -4,6 +4,7 @@ Name=Microsoft Developer Network Search
 Name[af]=Microsoft Developer Network Soektog
 Name[ar]=بحث شبكة مايكروسوفت للمطورين
 Name[as]=Microsoft Developer Network Search
+Name[ast]=Rede de gueta del desendolcador de Microsoft
 Name[be]=Пошук у сетцы для распрацоўшчыкаў Microsoft
 Name[be@latin]=Pošuk „Microsoft Developer Network”
 Name[bg]=Търсене в Microsoft Developer Network
@@ -93,6 +94,7 @@ Query=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?hando
 Query[af]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[ar]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[as]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
+Query[ast]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[be]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[be@latin]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO
 Query[bg]=http://msdn.microsoft.com/library/shared/searchtab/searchHandoff.asp?handoffurl=%2Fisapi%2Fgosearch.asp%3FTARGET%3D%2Fus%2Fdev%2Fdefault.asp&stcfg=d%3A%2Fhttp%2Fcnfg.xml&qu=\\{@}&btnSearch=GO

@@ -4,6 +4,7 @@ Name=Wikipedia - The Free Encyclopedia
 Name[af]=Wikipedia - Die gratis ensiklopidie
 Name[ar]=ويكيبيديا الموسوعة الحرّة
 Name[as]=Wikipedia - The Free Encyclopedia
+Name[ast]=Wikipedia - La enciclopedia llibre
 Name[be]=Wikipedia - Свабодная Энцыклапедыя
 Name[be@latin]=Wikipedia: svabodnaja encyklapedyja
 Name[bg]=Уикипедия - свободната енциклопедия
@@ -94,6 +95,7 @@ Query=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[af]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[as]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ast]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be@latin]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=http://bg.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

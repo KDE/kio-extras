@@ -2,6 +2,7 @@
 Type=Service
 Name=Ecosia search engine
 Name[ar]=محرك البحث Ecosia
+Name[ast]=Motor de gueta Ecosia
 Name[bg]=Търсачка Ecosia
 Name[ca]=Motor de cerca Ecosia
 Name[ca@valencia]=Motor de cerca Ecosia
@@ -59,6 +60,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=ec
 Query=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
+Query[ast]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[bg]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[bn]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ca]=http://ecosia.org/search.php?q=\\{@}&meta=normal

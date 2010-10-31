@@ -4,6 +4,7 @@ Hidden=false
 Keys=kdelook,klook,kdel
 Name=KDE Look
 Name[ar]=موقع مظهر كدي
+Name[ast]=KDE Look
 Name[bn]=কে.ডি.ই. লুক
 Name[ca]=KDE Look
 Name[ca@valencia]=KDE Look
@@ -58,6 +59,7 @@ Name[zh_CN]=KDE 美化资源站
 Name[zh_TW]=KDE Look
 Query=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ar]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
+Query[ast]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[bg]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[bn]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ca]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

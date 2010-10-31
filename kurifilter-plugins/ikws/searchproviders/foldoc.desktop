@@ -4,6 +4,7 @@ Name=Free On-Line Dictionary of Computing
 Name[af]=Gratis Aanlyn Woordeboek van Rekenaars
 Name[ar]=القاموس المجاني المتصل للحوسبة
 Name[as]=Free On-Line Dictionary of Computing
+Name[ast]=Diccionariu d'informática en llinia y de baldre
 Name[be]=Свабодны камп'ютэрны слоўнік
 Name[be@latin]=Svabodny sieciŭny kamputarny słoŭnik
 Name[bg]=Free On-Line Dictionary of Computing
@@ -93,6 +94,7 @@ Query=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[af]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[ar]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[as]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ast]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[be]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[be@latin]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[bg]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}

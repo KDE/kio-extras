@@ -4,6 +4,7 @@ Hidden=false
 Keys=vimeo,vm
 Name=Vimeo
 Name[ar]=فيديو Vimeo
+Name[ast]=Vimeo
 Name[bg]=Vimeo
 Name[ca]=Vimeo
 Name[ca@valencia]=Vimeo
@@ -58,6 +59,7 @@ Name[zh_CN]=Vimeo
 Name[zh_TW]=Vimeo
 Query=http://vimeo.com/videos/search:\\{@}
 Query[ar]=http://dict.leo.org/?search=\\{@}
+Query[ast]=http://vimeo.com/videos/search:\\{@}
 Query[bg]=http://vimeo.com/videos/search:\\{@}
 Query[bn]=http://vimeo.com/videos/search:\\{@}
 Query[ca]=http://vimeo.com/videos/search:\\{@}

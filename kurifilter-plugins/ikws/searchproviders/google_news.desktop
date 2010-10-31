@@ -4,6 +4,7 @@ Name=Google News
 Name[af]=Google Nuus
 Name[ar]=أخبار جوجل
 Name[as]=Google News
+Name[ast]=Noticies de Google
 Name[be]=Навіны Google
 Name[be@latin]=Naviny „Google”
 Name[bg]=Новини в Google
@@ -95,6 +96,7 @@ Query=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[af]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ar]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[as]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[ast]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[be]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[be@latin]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bg]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8

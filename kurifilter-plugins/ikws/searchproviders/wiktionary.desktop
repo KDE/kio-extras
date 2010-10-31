@@ -4,6 +4,7 @@ Name=Wiktionary - The Free Dictionary
 Name[af]=Wiktionary - Die gratis woordeboek
 Name[ar]=القاموس المجاني Wiktionary
 Name[as]=Wiktionary - The Free Dictionary
+Name[ast]=Wiktionary - El diccionariu llibre
 Name[be]=Wiktionary - Свабодны Слоўнік
 Name[be@latin]=Wikisłoŭnik: svabodny słoŭnik
 Name[bg]=Уикиречник - свободният речник
@@ -92,6 +93,7 @@ Query=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[af]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ar]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[as]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ast]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[be@latin]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=http://bg.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

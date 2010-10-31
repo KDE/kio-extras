@@ -4,6 +4,7 @@ Name=CTAN - Comprehensive TeX Archive Network
 Name[af]=CTAN - Omvattende Tex Argief Netwerk
 Name[ar]=Cpan -- ارشيف شبكة شاملة TeX
 Name[as]=CTAN - Comprehensive TeX Archive Network
+Name[ast]=CTAN - Comprehensive TeX Archive Network
 Name[be]=CTAN - Comprehensive TeX Archive Network
 Name[be@latin]=CTAN: zbor prahramaŭ u movie „TeX”
 Name[bg]=CTAN - Comprehensive TeX Archive Network
@@ -91,6 +92,7 @@ Name[zh_TW]=CTAN - 全面的 Tex 收集網路
 Query=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[ar]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[as]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[ast]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[be@latin]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[bg]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[bn]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search

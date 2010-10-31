@@ -4,6 +4,7 @@ Name=KataTudo
 Name[af]=KataTudo
 Name[ar]=KataTudo
 Name[as]=KataTudo
+Name[ast]=KataTudo
 Name[be]=KataTudo
 Name[be@latin]=KataTudo
 Name[bg]=KataTudo
@@ -93,6 +94,7 @@ Query=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[af]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[ar]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[as]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
+Query[ast]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[be]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[be@latin]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[bg]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar

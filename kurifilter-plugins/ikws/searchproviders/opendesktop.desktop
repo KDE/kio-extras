@@ -3,6 +3,7 @@ Charset=
 Hidden=false
 Keys=opendesktop,odesk,od
 Name=openDesktop.org
+Name[ast]=openDesktop.org
 Name[ca]=openDesktop.org
 Name[cs]=openDesktop.org
 Name[da]=openDesktop.org
@@ -35,6 +36,7 @@ Name[sr@ijekavianlatin]=Otvorena površ
 Name[sr@latin]=Otvorena površ
 Name[sv]=openDesktop.org
 Name[tg]=openDesktop.org
+Name[th]=openDesktop.org
 Name[tr]=openDesktop.org
 Name[uk]=openDesktop.org
 Name[x-test]=xxopenDesktop.orgxx
@@ -42,6 +44,7 @@ Name[zh_CN]=openDesktop.org
 Name[zh_TW]=openDesktop.org
 Query=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ar]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
+Query[ast]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[bg]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[bn]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ca]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

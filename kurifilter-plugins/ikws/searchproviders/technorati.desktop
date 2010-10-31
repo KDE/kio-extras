@@ -4,6 +4,7 @@ Name=Technorati
 Name[af]=Technorati
 Name[ar]=Technorati
 Name[as]=Technorati
+Name[ast]=Technorati
 Name[be]=Technorati
 Name[be@latin]=Technorati
 Name[bg]=Technorati
@@ -92,6 +93,7 @@ Query=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[af]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[ar]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[as]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
+Query[ast]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[be]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[be@latin]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[bg]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}

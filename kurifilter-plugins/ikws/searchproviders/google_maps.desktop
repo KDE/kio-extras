@@ -2,6 +2,7 @@
 Type=Service
 Name=Google Maps
 Name[ar]=خرائط جوجل
+Name[ast]=Mapes Google
 Name[bg]=Карти в Google
 Name[bn]=গুগল ম্যাপ
 Name[ca]=Google Maps
@@ -59,6 +60,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=googlemaps,ggmaps,ggm
 Query=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ar]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[ast]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[bg]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[bn]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ca]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
