@@ -259,7 +259,7 @@ void FilterOptions::setDefaultEngine(int index)
 
   const QModelIndex modelIndex = proxy->mapFromSource(proxy->sourceModel()->index(index,0));
   m_dlg.cmbDefaultEngine->setCurrentIndex(modelIndex.row());
-  //m_dlg.cmbDefaultEngine->view()->setCurrentIndex(modelIndex);  //TODO remove this when Qt bug is fixed
+  m_dlg.cmbDefaultEngine->view()->setCurrentIndex(modelIndex);  //TODO: remove this when Qt bug is fixed
 }
 
 void FilterOptions::load()
@@ -291,9 +291,9 @@ void FilterOptions::load()
 
   m_dlg.cbEnableShortcuts->setChecked(group.readEntry("EnableWebShortcuts", true));
   m_dlg.cbUseSelectedShortcutsOnly->setChecked(group.readEntry("UseSelectedProvidersOnly", false));
-  
-  QString delimiter = group.readEntry ("KeywordDelimiter", ":");
-  setDelimiter(delimiter[0].toLatin1() );
+
+  const QString delimiter = group.readEntry ("KeywordDelimiter", ":");
+  setDelimiter(delimiter.at(0).toLatin1());
 }
 
 char FilterOptions::delimiter()
@@ -313,11 +313,11 @@ void FilterOptions::save()
 
   KConfigGroup group = config.group("General");
   group.writeEntry("EnableWebShortcuts", m_dlg.cbEnableShortcuts->isChecked());
-  group.writeEntry("KeywordDelimiter", QString(delimiter() ));
+  group.writeEntry("KeywordDelimiter", QString(QLatin1Char(delimiter())));
   group.writeEntry("DefaultSearchEngine", m_dlg.cmbDefaultEngine->view()->currentIndex().data(ProvidersListModel::ShortNameRole));
   group.writeEntry("FavoriteSearchEngines", m_providersModel->favoriteEngines());
   group.writeEntry("UseSelectedProvidersOnly", m_dlg.cbUseSelectedShortcutsOnly->isChecked());
-      
+
   QList<SearchProvider*> providers = m_providersModel->providers();
   QString path = KGlobal::mainComponent().dirs()->saveLocation("services", "searchproviders/");
   int changedProviderCount = 0;
