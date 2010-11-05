@@ -33,6 +33,7 @@ Name[km]=Flickr
 Name[kn]=ಫ್ಲಿಕ್ಕರ್ 
 Name[ko]=Flickr
 Name[lt]=Flickr
+Name[lv]=Flickr
 Name[mai]=Flickr
 Name[ml]=ഫ്ലിക്കര്‍
 Name[nb]=Flickr
@@ -89,6 +90,7 @@ Query[km]=http://www.flickr.com/search/?q=\\{@}
 Query[kn]=http://www.flickr.com/search/?q=\\{@}
 Query[ko]=http://www.flickr.com/search/?q=\\{@}
 Query[lt]=http://www.flickr.com/search/?q=\\{@}
+Query[lv]=http://www.flickr.com/search/?q=\\{@}
 Query[mai]=http://www.flickr.com/search/?q=\\{@}
 Query[ml]=http://www.flickr.com/search/?q=\\{@}
 Query[nb]=http://www.flickr.com/search/?q=\\{@}

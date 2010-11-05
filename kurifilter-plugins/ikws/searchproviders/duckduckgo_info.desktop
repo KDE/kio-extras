@@ -26,6 +26,7 @@ Name[kk]=Duck Duck Go Info
 Name[km]=ព័ត៌មាន​របស់ Duck Duck Go
 Name[ko]=Duck Duck Go 정보
 Name[lt]=Duck Duck Go Info
+Name[lv]=Duck Duck Go informācija
 Name[ml]=ഡക്ക് ഡക്ക് ഗോ വിവരം
 Name[nb]=Duck Duck Go Info
 Name[nds]=Duck Duck Go - Informatschonen
@@ -79,6 +80,7 @@ Query[km]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[kn]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ko]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[lt]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[lv]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[mai]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ml]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[nb]=http://duckduckgo.com/?q=\\{@}&v=r

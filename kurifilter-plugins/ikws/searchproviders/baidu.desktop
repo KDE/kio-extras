@@ -5,6 +5,7 @@ Name[ast]=Baidu
 Name[ca]=Baidu
 Name[cs]=Baidu
 Name[de]=Baidu
+Name[el]=Baidu
 Name[en_GB]=Baidu
 Name[es]=Baidu
 Name[et]=Baidu
@@ -38,6 +39,7 @@ Query[ast]=http://www.baidu.com/s?wd=\\{@}
 Query[ca]=http://www.baidu.com/s?wd=\\{@}
 Query[cs]=http://www.baidu.com/s?wd=\\{@}
 Query[de]=http://www.baidu.com/s?wd=\\{@}
+Query[el]=http://www.baidu.com/s?wd=\\{@}
 Query[en_GB]=http://www.baidu.com/s?wd=\\{@}
 Query[es]=http://www.baidu.com/s?wd=\\{@}
 Query[et]=http://www.baidu.com/s?wd=\\{@}

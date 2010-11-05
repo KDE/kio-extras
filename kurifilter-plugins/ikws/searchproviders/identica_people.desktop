@@ -28,6 +28,7 @@ Name[km]=មនុស្ស Identi.ca
 Name[kn]=identi.ca ಜನರು
 Name[ko]=Identi.ca 사람
 Name[lt]=Identi.ca žmonės
+Name[lv]=Identi.ca cilvēki
 Name[mai]=Identi.ca लोकनिसभ
 Name[ml]=ഐഡന്റിക്കയിലെ ആളുകള്‍
 Name[nb]=Identi.ca folk
@@ -83,6 +84,7 @@ Query[km]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[kn]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ko]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[lt]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[lv]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[mai]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ml]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[nb]=http://identi.ca/search/people?q=\\{@}&search=Search

@@ -31,6 +31,7 @@ Name[km]=វីដេអូ​របស់យ៉ាហ៊ូ
 Name[kn]=ಯಾಹೂ‌ ವೀಡಿಯೊ
 Name[ko]=Yahoo 동영상
 Name[lt]=Yahoo Video
+Name[lv]=Yahoo video
 Name[ml]=യാഹൂ വീഡിയോ
 Name[nb]=Yahoo Video
 Name[nds]=Yahoo - Video
@@ -86,6 +87,7 @@ Query[km]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.Jzb
 Query[kn]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[ko]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[lt]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
+Query[lv]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[ml]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[nb]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
 Query[nds]=http://video.search.yahoo.com/search/video;_ylt=A0WTb_3a6JZLSHwAK7.JzbkF?ei=UTF-8&p=\\{@}&y=0&fr2=tab-img&fr=yfp-t-701
