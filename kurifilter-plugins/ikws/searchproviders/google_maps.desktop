@@ -54,6 +54,7 @@ Name[tg]=Харитаҳои Google
 Name[th]=ดูแผนที่ต่าง ๆ ด้วยกูเกิล
 Name[tr]=Google Maps
 Name[uk]=Карти Google
+Name[wa]=Google Mapes
 Name[x-test]=xxGoogle Mapsxx
 Name[zh_CN]=Google 地图
 Name[zh_TW]=Google 地圖
@@ -113,6 +114,7 @@ Query[tg]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[th]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[tr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[uk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[wa]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[x-test]=xxhttp://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addrxx
 Query[zh_CN]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[zh_TW]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

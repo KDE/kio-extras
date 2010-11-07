@@ -55,6 +55,7 @@ Name[tg]=Намоиши KDE
 Name[th]=KDE Look
 Name[tr]=KDE Look
 Name[uk]=KDE Look
+Name[wa]=KDE Look (Rivnance)
 Name[x-test]=xxKDE Lookxx
 Name[zh_CN]=KDE 美化资源站
 Name[zh_TW]=KDE Look
@@ -111,6 +112,7 @@ Query[tg]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[tr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[wa]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-look.org/content/search.php?search=Search&name=\\{@}xx
 Query[zh_CN]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[zh_TW]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

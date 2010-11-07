@@ -56,6 +56,7 @@ Name[tg]=GitHub
 Name[th]=GitHub
 Name[tr]=GitHub
 Name[uk]=GitHub
+Name[wa]=GitHub
 Name[x-test]=xxGitHubxx
 Name[zh_CN]=GitHub
 Name[zh_TW]=GitHub
@@ -112,6 +113,7 @@ Query[tg]= http://www.alexa.com/search?q=\\{@}
 Query[th]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[tr]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[uk]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[wa]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://github.com/search?q=\\{@}&x=0&y=0xx
 Query[zh_CN]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[zh_TW]=http://github.com/search?q=\\{@}&x=0&y=0

@@ -48,6 +48,7 @@ Name[sv]=Duck Duck Go information
 Name[th]=ข้อมูลของ Duck Duck Go
 Name[tr]=Duck Duck Go Bilgileri
 Name[uk]=Duck Duck Go Info
+Name[wa]=Duck Duck Go Info
 Name[x-test]=xxDuck Duck Go Infoxx
 Name[zh_CN]=Duck Duck Go 信息
 Name[zh_TW]=Duck Duck Go Info
@@ -104,6 +105,7 @@ Query[tg]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[wa]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=rxx
 Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=r

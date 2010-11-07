@@ -50,6 +50,7 @@ Name[sv]=Duck Duck Go shopping
 Name[th]=ช้อปปิ้งของ Duck Duck Go
 Name[tr]=Duck Duck Go Alışveriş
 Name[uk]=Duck Duck Go Shopping
+Name[wa]=Duck Duck Go Botikes
 Name[x-test]=xxDuck Duck Go Shoppingxx
 Name[zh_CN]=Duck Duck Go 购物
 Name[zh_TW]=Duck Duck Go Shopping
@@ -106,6 +107,7 @@ Query[tg]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[wa]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=sxx
 Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=s

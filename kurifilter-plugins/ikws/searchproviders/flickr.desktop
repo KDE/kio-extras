@@ -58,6 +58,7 @@ Name[tg]=Flickr
 Name[th]=Flickr
 Name[tr]=Flickr
 Name[uk]=Flickr
+Name[wa]=Flickr
 Name[x-test]=xxFlickrxx
 Name[zh_CN]=Flickr
 Name[zh_TW]=Flickr
@@ -114,6 +115,7 @@ Query[tg]=http://www.flickr.com/search/?q=\\{@}
 Query[th]=http://www.flickr.com/search/?q=\\{@}
 Query[tr]=http://www.flickr.com/search/?q=\\{@}
 Query[uk]=http://www.flickr.com/search/?q=\\{@}
+Query[wa]=http://www.flickr.com/search/?q=\\{@}
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}xx
 Query[zh_CN]=http://www.flickr.com/search/?q=\\{@}
 Query[zh_TW]=http://www.flickr.com/search/?q=\\{@}

@@ -51,6 +51,7 @@ Name[sv]=Duck Duck Go
 Name[th]=Duck Duck Go
 Name[tr]=Duck Duck Go
 Name[uk]=Duck Duck Go
+Name[wa]=Duck Duck Go
 Name[x-test]=xxDuck Duck Goxx
 Name[zh_CN]=Duck Duck Go
 Name[zh_TW]=Duck Duck Go
@@ -107,6 +108,7 @@ Query[tg]=http://duckduckgo.com/?q=\\{@}&v=
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=
+Query[wa]=http://duckduckgo.com/?q=\\{@}&v=
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=xx
 Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=
 Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=

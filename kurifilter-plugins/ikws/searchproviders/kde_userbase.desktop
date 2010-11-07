@@ -55,6 +55,7 @@ Name[tg]=KDE UserBase
 Name[th]=KDE UserBase
 Name[tr]=KDE UserBase
 Name[uk]=UserBase KDE
+Name[wa]=KDE UserBase (Uzeus)
 Name[x-test]=xxKDE UserBasexx
 Name[zh_CN]=KDE 用户信息库
 Name[zh_TW]=KDE UserBase
@@ -111,6 +112,7 @@ Query[tg]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[th]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[tr]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[wa]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx
 Query[zh_CN]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[zh_TW]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

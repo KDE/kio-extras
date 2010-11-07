@@ -54,6 +54,7 @@ Name[sv]=Slangordlista
 Name[th]=พจนานุกรม Urban
 Name[tr]=Urban Dictionary
 Name[uk]=Urban Dictionary
+Name[wa]=Urban Dictionary
 Name[x-test]=xxUrban Dictionaryxx
 Name[zh_CN]=都市词典
 Name[zh_TW]=Urban Dictionary
@@ -110,6 +111,7 @@ Query[tg]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[th]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[tr]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[wa]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[x-test]=xxhttp://www.urbandictionary.com/define.php?term=\\{@}xx
 Query[zh_CN]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[zh_TW]=http://www.urbandictionary.com/define.php?term=\\{@}

@@ -50,6 +50,7 @@ Name[sr@latin]=Flickr (Creative Commons)
 Name[sv]=Flickr Creative Commons
 Name[tr]=Flickr Creative Commons
 Name[uk]=Flickr Creative Commons
+Name[wa]=Flickr Creative Commons
 Name[x-test]=xxFlickr Creative Commonsxx
 Name[zh_CN]=Flickr 公用创作物
 Name[zh_TW]=Flickr Creative Commons
@@ -106,6 +107,7 @@ Query[tg]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[th]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[tr]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[uk]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[wa]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1xx
 Query[zh_CN]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[zh_TW]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

@@ -56,6 +56,7 @@ Name[tg]=Gitorious
 Name[th]=Gitorious
 Name[tr]=Gitorious
 Name[uk]=Gitorious
+Name[wa]=Gitorious
 Name[x-test]=xxGitoriousxx
 Name[zh_CN]=Gitorious
 Name[zh_TW]=Gitorious
@@ -111,6 +112,7 @@ Query[tg]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[th]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[tr]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[uk]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[wa]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[x-test]=xxhttp://gitorious.org/search?q=\\{@}&commit=Searchxx
 Query[zh_CN]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[zh_TW]=http://gitorious.org/search?q=\\{@}&commit=Search
