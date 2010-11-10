@@ -46,7 +46,7 @@
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <kmimetype.h>
-#include <klibloader.h>
+#include <klibrary.h>
 #include <kdebug.h>
 #include <kservice.h>
 #include <kservicetype.h>
