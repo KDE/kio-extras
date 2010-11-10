@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+Name=JPEG Images (Rotated Automatically)
+X-KDE-ServiceTypes=ThumbCreator
+MimeType=image/jpeg;
+X-KDE-Library=jpegrotatedthumbnail
+CacheThumbnail=true
+ThumbnailerVersion=1

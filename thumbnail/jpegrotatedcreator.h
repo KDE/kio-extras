@@ -17,19 +17,26 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef _JPEGCREATOR_H_
-#define _JPEGCREATOR_H_
+#ifndef _JPEGROTATEDCREATOR_H_
+#define _JPEGROTATEDCREATOR_H_
 
 #include <kio/thumbcreator.h>
 
 class QTransform;
 
-class JpegCreator : public ThumbCreator
+/**
+ * Creates thumbs for JPEG images and automatically rotates
+ * the output corresponding to rotation stored inside EXIF.
+ */
+class JpegRotatedCreator : public ThumbCreator
 {
 public:
-    JpegCreator();
+    JpegRotatedCreator();
     virtual bool create(const QString &path, int, int, QImage &img);
     virtual Flags flags() const;
+
+private:
+    QTransform orientationMatrix(int exivOrientation) const;
 };
 
 #endif

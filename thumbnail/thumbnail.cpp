@@ -688,7 +688,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
         const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
         m_enabledPlugins = globalConfig.readEntry("Plugins", QStringList()
                                                              << "imagethumbnail"
-                                                             << "jpegthumbnail"
+                                                             << "jpegrotatedthumbnail"
                                                              << "videopreview");
     }
 

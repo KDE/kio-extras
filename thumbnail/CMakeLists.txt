@@ -37,19 +37,29 @@ install( FILES directorythumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 
 ########### next target ###############
 
-set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
+set(jpegthumbnail_PART_SRCS jpegcreator.cpp jpegcreatorhelper.cpp)
 
 kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
 
 target_link_libraries(jpegthumbnail ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS})
 
-if (HAVE_EXIV2)
-    set_source_files_properties(jpegcreator.cpp PROPERTIES COMPILE_FLAGS "-DHAVE_EXIV2 ${KDE4_ENABLE_EXCEPTIONS}")
-    include_directories(${EXIV1_INCLUDE_DIR})
-    target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
-endif (HAVE_EXIV2)
-
 install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
+########### next target ###############
+
+if (HAVE_EXIV2)
+    set(jpegrotatedthumbnail_PART_SRCS jpegrotatedcreator.cpp jpegcreatorhelper.cpp)
+
+    kde4_add_plugin(jpegrotatedthumbnail ${jpegrotatedthumbnail_PART_SRCS})
+
+    target_link_libraries(jpegrotatedthumbnail ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS})
+
+    set_source_files_properties(jpegrotatedcreator.cpp PROPERTIES COMPILE_FLAGS "-DHAVE_EXIV2 ${KDE4_ENABLE_EXCEPTIONS}")
+    include_directories(${EXIV1_INCLUDE_DIR})
+    target_link_libraries(jpegrotatedthumbnail ${EXIV2_LIBRARIES})
+
+    install(TARGETS jpegrotatedthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+endif (HAVE_EXIV2)
 
 ########### next target ###############
 
@@ -159,6 +169,7 @@ install(FILES
     svgthumbnail.desktop
     imagethumbnail.desktop
     jpegthumbnail.desktop
+    jpegrotatedthumbnail.desktop
     textthumbnail.desktop
     htmlthumbnail.desktop
     djvuthumbnail.desktop

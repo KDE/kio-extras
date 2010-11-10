@@ -17,19 +17,16 @@
     Boston, MA 02110-1301, USA.
 */
 
-#ifndef _JPEGCREATOR_H_
-#define _JPEGCREATOR_H_
+#ifndef _JPEGCREATORHELPER_H_
+#define _JPEGCREATORHELPER_H_
 
-#include <kio/thumbcreator.h>
+class QString;
+class QImage;
 
-class QTransform;
-
-class JpegCreator : public ThumbCreator
-{
+class JpegCreatorHelper {
 public:
-    JpegCreator();
-    virtual bool create(const QString &path, int, int, QImage &img);
-    virtual Flags flags() const;
+    static bool create(const QString &path, int width, int height, QImage &img);
 };
 
 #endif
+
