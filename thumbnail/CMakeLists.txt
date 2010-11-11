@@ -59,6 +59,7 @@ if (HAVE_EXIV2)
     target_link_libraries(jpegrotatedthumbnail ${EXIV2_LIBRARIES})
 
     install(TARGETS jpegrotatedthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+    install(FILES jpegrotatedthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 endif (HAVE_EXIV2)
 
 ########### next target ###############
@@ -169,7 +170,6 @@ install(FILES
     svgthumbnail.desktop
     imagethumbnail.desktop
     jpegthumbnail.desktop
-    jpegrotatedthumbnail.desktop
     textthumbnail.desktop
     htmlthumbnail.desktop
     djvuthumbnail.desktop
