@@ -34,6 +34,7 @@ Name[tr]=Bing
 Name[uk]=Bing
 Name[wa]=Bing
 Name[x-test]=xxBingxx
+Name[zh_CN]=必应
 Name[zh_TW]=Bing
 X-KDE-ServiceTypes=SearchProvider
 Keys=bing
@@ -71,4 +72,5 @@ Query[tr]=http://www.bing.com/search?q=\\{@}
 Query[uk]=http://www.bing.com/search?q=\\{@}
 Query[wa]=http://www.bing.com/search?q=\\{@}
 Query[x-test]=xxhttp://www.bing.com/search?q=\\{@}xx
+Query[zh_CN]=http://www.bing.com/search?q=\\{@}
 Query[zh_TW]=http://www.bing.com/search?q=\\{@}

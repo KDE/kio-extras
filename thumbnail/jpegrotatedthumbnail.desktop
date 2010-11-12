@@ -1,6 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=JPEG Images (Rotated Automatically)
+Name[ia]=Imagines JPEG (Automaticamente rotate)
+Name[pt]=Imagens JPEG (Rodadas Automaticamente)
+Name[sv]=JPEG-bilder (automatiskt roterade)
+Name[uk]=Зображення JPEG (автоматичний поворот)
+Name[x-test]=xxJPEG Images (Rotated Automatically)xx
+Name[zh_TW]=JPEG 影像（自動旋轉）
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/jpeg;
 X-KDE-Library=jpegrotatedthumbnail

@@ -83,7 +83,7 @@ Name[uk]=Пошук серед додаткових пакетів Debian
 Name[vi]=Tìm kiếm Cổng sau Debian
 Name[wa]=Cweraedje di backports Debian
 Name[x-test]=xxDebian Backports Searchxx
-Name[zh_CN]=Debian 后端搜索
+Name[zh_CN]=Debian 仓库搜索
 Name[zh_TW]=Debian Backports 搜尋
 Query=http://www.backports.org/package.php?search=\\{@}
 Query[af]=http://www.backports.org/package.php?search=\\{@}
