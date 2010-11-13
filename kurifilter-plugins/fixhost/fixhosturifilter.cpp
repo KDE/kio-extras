@@ -31,7 +31,7 @@
 #include <KDE/KPluginFactory>
 
 #define QL1S(x)   QLatin1String(x)
-#define QL1L(x)   QLatin1Literal(x)
+#define QL1C(x)   QLatin1Char(x)
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -44,26 +44,50 @@ FixHostUriFilter::FixHostUriFilter(QObject *parent, const QVariantList & /*args*
 {
 }
 
+static bool isHttpUrl(const QString& scheme)
+{
+    return (scheme.compare(QL1S("http"), Qt::CaseInsensitive) == 0 ||
+            scheme.compare(QL1S("https"), Qt::CaseInsensitive) == 0 ||
+            scheme.compare(QL1S("webdav"), Qt::CaseInsensitive) == 0 ||
+            scheme.compare(QL1S("webdavs"), Qt::CaseInsensitive) == 0);          
+}
+
+static bool hasCandidateHostName(const QString& host)
+{
+    return (host.contains(QL1C('.')) &&
+            !host.startsWith(QL1S("www."), Qt::CaseInsensitive));
+            
+}
+
 bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
 {
     kDebug(7023) << data.typedString();
 
     KUrl url = data.uri();
+    kDebug(7023) << "url:" << url << "type:" << data.uriType();
+    
     const QString protocol = url.protocol();
+    const bool isHttp = isHttpUrl(protocol);
 
-    if (protocol == QL1S("http") || protocol == QL1S("https"))
-    {
+    if (isHttp || protocol == data.defaultUrlScheme()) {
         const QString host = url.host();
-        if (!host.isEmpty() && !host.startsWith(QL1S("www.")) && !exists(url))
-        {
-            url.setHost((QL1L("www.") % host));
-            if (exists(url))
-            {
-                setFilteredUri(data, url);
-                setUriType(data, KUriFilterData::NetProtocol);
-                return true;
+        if (hasCandidateHostName(host) && !exists(url)) {
+            if (isHttp) {
+                url.setHost((QL1S("www.") % host));
+                if (exists(url)) {
+                    setFilteredUri(data, url);
+                    setUriType(data, KUriFilterData::NetProtocol);
+                    return true;
+                }
             }
-            url.setHost(host);
+            // Undo kshorturifilter's deficiency of filtering file names
+            // such as "fixhosturifilter.cpp" as a valid urls. We do it
+            // here because the dns lookup failure tells us it is not a url.
+            if (!data.typedString().startsWith(protocol) && data.uriType() != KUriFilterData::Unknown) {
+                kDebug(7023) << "Reverting previous filtering...";
+                setFilteredUri(data, KUrl());
+                setUriType(data, KUriFilterData::Unknown);
+            }
         }
     }
 
