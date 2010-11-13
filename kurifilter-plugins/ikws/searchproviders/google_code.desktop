@@ -20,6 +20,7 @@ Name[eu]=Google Code
 Name[fi]=Google Code
 Name[fr]=Google Code
 Name[gu]=ગુગલ કોડ
+Name[hi]=गूगल कोड
 Name[hr]=Google Code
 Name[ia]=Google Movies
 Name[id]=Google Code
@@ -77,6 +78,7 @@ Query[eu]=http://code.google.com/query/#q=\\{%2520}
 Query[fi]=http://code.google.com/query/#q=\\{%2520}
 Query[fr]=http://code.google.com/query/#q=\\{%2520}
 Query[gu]=http://code.google.com/query/#q=\\{%2520}
+Query[hi]=http://code.google.com/query/#q=\\{%2520}
 Query[hr]=http://code.google.com/query/#q=\\{%2520}
 Query[ia]=http://code.google.com/query#q=\\{%2520}
 Query[id]=http://code.google.com/query/#q=\\{%2520}

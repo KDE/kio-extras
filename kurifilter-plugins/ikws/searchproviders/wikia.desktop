@@ -20,6 +20,7 @@ Name[eu]=Wikia
 Name[fi]=Wikia
 Name[fr]=Wikia
 Name[gu]=વિકિઆ
+Name[hi]=विकिया
 Name[hr]=Wikia
 Name[ia]=Wikia
 Name[id]=Wikia
@@ -78,6 +79,7 @@ Query[eu]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=S
 Query[fi]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[fr]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[gu]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[hi]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[hr]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[ia]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[id]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search

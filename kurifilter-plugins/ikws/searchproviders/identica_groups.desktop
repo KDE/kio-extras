@@ -20,6 +20,7 @@ Name[eu]=Identi.ca Taldeak
 Name[fi]=Identi.ca Ryhmät
 Name[fr]=Groupes Icenti.ca
 Name[gu]=આઈડેન્ટિ.કા સમૂહો
+Name[hi]=Identi.ca समूह
 Name[hr]=Grupe na Identi.ci
 Name[ia]=Gruppos de Identi.ca
 Name[id]=Identi.ca Groups
@@ -78,6 +79,7 @@ Query[eu]=http://identi.ca/search/group?q=\\{@}
 Query[fi]=http://identi.ca/search/group?q=\\{@}
 Query[fr]=http://identi.ca/search/group?q=\\{@}
 Query[gu]=http://identi.ca/search/group?q=\\{@}
+Query[hi]=http://identi.ca/search/group?q=\\{@}
 Query[hr]=http://identi.ca/search/group?q=\\{@}
 Query[ia]=http://identi.ca/search/group?q=\\{@}
 Query[id]=http://identi.ca/search/group?q=\\{@}

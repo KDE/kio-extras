@@ -20,6 +20,7 @@ Name[eu]=7Digital
 Name[fi]=7Digital
 Name[fr]=7 numérique
 Name[gu]=૭ ડિજીટલ
+Name[hi]=7Digital
 Name[hr]=7Digital
 Name[ia]=7Digital
 Name[id]=7Digital
@@ -78,6 +79,7 @@ Query[eu]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[fi]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[fr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[gu]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[hi]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[hr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ia]=http://us.7digital.com/search/search.php?item=\\{@}&searchtype=global&submit=Search
 Query[id]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

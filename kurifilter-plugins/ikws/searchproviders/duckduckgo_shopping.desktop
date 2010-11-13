@@ -17,6 +17,7 @@ Name[et]=Duck Duck Go Shopping
 Name[eu]=Duck Duck Go Shopping
 Name[fr]=Duck Duck Go Shopping
 Name[gu]=ડક ડક ગો ખરીદી
+Name[hi]=बतख़ जा जा खरीदारी
 Name[hr]=Duck Duck Go Shopping
 Name[ia]=Duck Duck Go Shopping
 Name[id]=Belanja Duck Duck Go
@@ -72,6 +73,7 @@ Query[eu]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[fi]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[hi]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[hr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[id]=http://duckduckgo.com/?q=\\{@}&v=s

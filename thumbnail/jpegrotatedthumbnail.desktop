@@ -3,6 +3,7 @@ Type=Service
 Name=JPEG Images (Rotated Automatically)
 Name[ia]=Imagines JPEG (Automaticamente rotate)
 Name[pt]=Imagens JPEG (Rodadas Automaticamente)
+Name[pt_BR]=Imagens JPEG (Giradas automaticamente)
 Name[sv]=JPEG-bilder (automatiskt roterade)
 Name[uk]=Зображення JPEG (автоматичний поворот)
 Name[x-test]=xxJPEG Images (Rotated Automatically)xx

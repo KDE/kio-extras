@@ -18,6 +18,7 @@ Name[fi]=Ecosia-hakukone
 Name[fr]=Moteur de recherche Ecosia
 Name[gu]=ઈકોસિયા શોધ એન્જિન
 Name[he]=מנוע חיפוש Ecosia
+Name[hi]=इकोसिया खोज इंजिन
 Name[hr]=Tražilica Ecosia
 Name[ia]=motore de cerca Ecosia
 Name[id]=Mesin pencari Ecosia
@@ -79,6 +80,7 @@ Query[fi]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[fr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[gu]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[he]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[hi]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[hr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ia]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[id]=http://ecosia.org/search.php?q=\\{@}&meta=normal

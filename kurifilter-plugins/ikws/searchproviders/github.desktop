@@ -20,6 +20,7 @@ Name[eu]=GitHub
 Name[fi]=GitHub
 Name[fr]=GitHub
 Name[gu]=ગીટહબ
+Name[hi]=गिटहब
 Name[hr]=GitHub
 Name[ia]=GitHub
 Name[id]=GitHub
@@ -78,6 +79,7 @@ Query[eu]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[fi]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[fr]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[gu]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[hi]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[hr]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ia]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[id]=http://github.com/search?q=\\{@}&x=0&y=0
