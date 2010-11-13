@@ -107,7 +107,6 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
 {
   kDebug(7023) << data.typedString();
 
-  KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
   KUriFilterData::SearchFilterOptions option = data.searchFilteringOptions();
 
   // Handle the flag to retrieve only preferred providers, no filtering...
@@ -126,7 +125,7 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
     }
     else
     {
-      setSearchProvider(data, QString(), data.typedString(), QL1C(filter->keywordDelimiter()));
+      setSearchProvider(data, QString(), data.typedString(), QL1C(KURISearchFilterEngine::self()->keywordDelimiter()));
       setSearchProviders(data, searchProviders);
       return true;
     }
@@ -143,13 +142,14 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
       return false;
     }
 
-    setSearchProvider(data, QString(), data.typedString(), QL1C(filter->keywordDelimiter()));
+    setSearchProvider(data, QString(), data.typedString(), QL1C(KURISearchFilterEngine::self()->keywordDelimiter()));
     setSearchProviders(data, searchProviders);
     return true;
   }
 
   if ( data.uriType() == KUriFilterData::Unknown && data.uri().pass().isEmpty() )
   {
+    KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
     SearchProvider *provider = filter->autoWebSearchQuery( data.typedString(), data.alternateDefaultSearchProvider() );
     if( provider )
     {
