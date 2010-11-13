@@ -59,18 +59,10 @@ void BookmarksProtocol::echoImage( const QString &type, const QString &string, c
       pix = QPixmap(size, size);
       pix.fill(Qt::transparent);
 
-      QPixmap overlay = icon.pixmap(size, size);
-
-      // Make overlay semi-transparent (faster than setOpacity)
-      QPainter overlayPainter;
-      overlayPainter.begin(&overlay);
-      overlayPainter.setCompositionMode(QPainter::CompositionMode_DestinationIn);
-      overlayPainter.fillRect(overlay.rect(), QColor(0, 0, 0, 0.3));
-      overlayPainter.end();
-
       QPainter painter(&pix);
+      painter.setOpacity(0.3);
       QRectF rect(0, 0, size, size);
-      painter.drawPixmap(pix.rect(), overlay, overlay.rect());
+      painter.drawPixmap(pix.rect(), icon.pixmap(size, size), pix.rect());
     }
 
     image = pix.toImage();
