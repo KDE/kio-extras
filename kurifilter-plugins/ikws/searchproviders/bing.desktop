@@ -12,6 +12,7 @@ Name[et]=Bing
 Name[eu]=Bing
 Name[gu]=બિંગ
 Name[hr]=Bing
+Name[hu]=Bing
 Name[ia]=Bing
 Name[is]=Bing
 Name[ja]=Bing
@@ -50,6 +51,7 @@ Query[et]=http://www.bing.com/search?q=\\{@}
 Query[eu]=http://www.bing.com/search?q=\\{@}
 Query[gu]=http://www.bing.com/search?q=\\{@}
 Query[hr]=http://www.bing.com/search?q=\\{@}
+Query[hu]=http://www.bing.com/search?q=\\{@}
 Query[ia]=http://www.bing.com/search?q=\\{@}
 Query[is]=http://www.bing.com/search?q=\\{@}
 Query[ja]=http://www.bing.com/search?q=\\{@}

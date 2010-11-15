@@ -23,6 +23,7 @@ Name[ga]=Flickr
 Name[gu]=ફ્લિકર
 Name[hi]=फ़्लिकर
 Name[hr]=Flickr
+Name[hu]=Flickr
 Name[ia]=Flickr
 Name[id]=Flickr
 Name[is]=Flickr
@@ -83,6 +84,7 @@ Query[fr]=http://www.flickr.com/search/?q=\\{@}
 Query[gu]=http://www.flickr.com/search/?q=\\{@}
 Query[hi]=http://www.flickr.com/search/?q=\\{@}
 Query[hr]=http://www.flickr.com/search/?q=\\{@}
+Query[hu]=http://www.flickr.com/search/?q=\\{@}
 Query[ia]=http://www.flickr.com/search?q=\\{@}
 Query[id]=http://www.flickr.com/search/?q=\\{@}
 Query[is]=http://www.flickr.com/search/?q=\\{@}

@@ -12,6 +12,7 @@ Name[et]=Baidu
 Name[eu]=Baidu
 Name[gu]=બૈડુ
 Name[hr]=Baidu
+Name[hu]=Baidu
 Name[ia]=Baidu
 Name[is]=Baidu
 Name[ja]=百度
@@ -49,6 +50,7 @@ Query[et]=http://www.baidu.com/s?wd=\\{@}
 Query[eu]=http://www.baidu.com/s?wd=\\{@}
 Query[gu]=http://www.baidu.com/s?wd=\\{@}
 Query[hr]=http://www.baidu.com/s?wd=\\{@}
+Query[hu]=http://www.baidu.com/s?wd=\\{@}
 Query[ia]=http://www.baidu.com/s?wd=\\{@}
 Query[is]=http://www.baidu.com/s?wd=\\{@}
 Query[ja]=http://www.baidu.com/s?wd=\\{@}

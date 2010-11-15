@@ -20,6 +20,7 @@ Name[gu]=ઈકોસિયા શોધ એન્જિન
 Name[he]=מנוע חיפוש Ecosia
 Name[hi]=इकोसिया खोज इंजिन
 Name[hr]=Tražilica Ecosia
+Name[hu]=Ecosia keresőmotor
 Name[ia]=motore de cerca Ecosia
 Name[id]=Mesin pencari Ecosia
 Name[is]=Ecosia leitarvélin
@@ -82,6 +83,7 @@ Query[gu]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[he]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[hi]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[hr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[hu]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ia]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[id]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[is]=http://ecosia.org/search.php?q=\\{@}&meta=normal
