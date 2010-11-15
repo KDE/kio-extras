@@ -83,7 +83,8 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
             // Undo kshorturifilter's deficiency of filtering file names
             // such as "fixhosturifilter.cpp" as a valid urls. We do it
             // here because the dns lookup failure tells us it is not a url.
-            if (!data.typedString().startsWith(protocol) && data.uriType() != KUriFilterData::Unknown) {
+            if (url.port() == -1 && !data.typedString().startsWith(protocol) &&
+                data.uriType() != KUriFilterData::Unknown) {
                 kDebug(7023) << "Reverting previous filtering...";
                 setFilteredUri(data, KUrl());
                 setUriType(data, KUriFilterData::Unknown);
