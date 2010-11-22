@@ -37,7 +37,6 @@ void SearchProvider::setName(const QString &name)
         return;
 
     KUriFilterSearchProvider::setName(name);
-    m_dirty = true;
 }
 
 void SearchProvider::setQuery(const QString &query)
@@ -46,7 +45,6 @@ void SearchProvider::setQuery(const QString &query)
         return;
 
     m_query = query;
-    m_dirty = true;
 }
 
 void SearchProvider::setKeys(const QStringList &keys)
@@ -55,7 +53,6 @@ void SearchProvider::setKeys(const QStringList &keys)
         return;
 
     KUriFilterSearchProvider::setKeys(keys);
-    m_dirty = true;
 }
 
 void SearchProvider::setCharset(const QString &charset)
@@ -64,7 +61,6 @@ void SearchProvider::setCharset(const QString &charset)
         return;
 
     m_charset = charset;
-    m_dirty = true;
 }
 
 void SearchProvider::setIconName(const QString& iconName)
@@ -73,7 +69,11 @@ void SearchProvider::setIconName(const QString& iconName)
         return;
 
     KUriFilterSearchProvider::setIconName(iconName);
-    m_dirty = true;
+}
+
+void SearchProvider::setDirty(bool dirty)
+{
+    m_dirty = dirty;
 }
 
 SearchProvider *SearchProvider::findByDesktopName(const QString &name)

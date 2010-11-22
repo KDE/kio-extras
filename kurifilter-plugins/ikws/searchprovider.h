@@ -38,6 +38,7 @@ public:
     void setKeys(const QStringList&);
     void setCharset(const QString&);
     void setIconName(const QString&);
+    void setDirty(bool dirty);
 
     static SearchProvider *findByDesktopName(const QString &);
     static SearchProvider *findByKey(const QString &);

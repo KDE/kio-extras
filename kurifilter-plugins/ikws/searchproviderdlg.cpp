@@ -133,10 +133,19 @@ void SearchProviderDialog::slotButtonClicked(int button) {
 
         if (!m_provider)
             m_provider = new SearchProvider;
-        m_provider->setName(m_dlg.leName->text().trimmed());
-        m_provider->setQuery(m_dlg.leQuery->text().trimmed());
-        m_provider->setKeys(m_dlg.leShortcut->text().trimmed().toLower().split(',', QString::SkipEmptyParts).toSet().toList()); // #169801. Converting to Set and List again to silently remove duplicates.
-        m_provider->setCharset(m_dlg.cbCharset->currentIndex() ? m_dlg.cbCharset->currentText() : QString());
+
+        const QString name = m_dlg.leName->text().trimmed();
+        const QString query = m_dlg.leQuery->text().trimmed();
+        QStringList keys = m_dlg.leShortcut->text().trimmed().toLower().split(',', QString::SkipEmptyParts);
+        keys.removeDuplicates();// #169801. Remove duplicates...
+        const QString charset = (m_dlg.cbCharset->currentIndex() ? m_dlg.cbCharset->currentText().trimmed() : QString());
+        
+        m_provider->setDirty((name != m_provider->name() || query != m_provider->query() ||
+                              keys != m_provider->keys() || charset != m_provider->charset()));        
+        m_provider->setName(name);
+        m_provider->setQuery(query);
+        m_provider->setKeys(keys); 
+        m_provider->setCharset(charset);
         KDialog::accept();
     } else {
         KDialog::slotButtonClicked(button);
