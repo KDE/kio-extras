@@ -78,6 +78,9 @@ void KAutoWebSearch::populateProvidersList(QList<KUriFilterSearchProvider*>& sea
 
     // Get rid of duplicates...
     favEngines.removeDuplicates();
+    
+    // Sort the items...
+    qStableSort(favEngines);
 
     // Add the search engine set as the default provider...
     const QString defaultEngine = filter->defaultSearchEngine();
@@ -95,7 +98,7 @@ void KAutoWebSearch::populateProvidersList(QList<KUriFilterSearchProvider*>& sea
     }
   }
 
-  for (int i = 0; i < providers.count(); ++i)
+  for (int i = 0, count = providers.count(); i < count; ++i)
   {
       SearchProvider* provider = providers[i];
       provider->setIconName(iconNameFor(provider->query(), KUriFilterData::NetProtocol));
