@@ -264,7 +264,7 @@ void FilterOptions::setDefaultEngine(int index)
 
 void FilterOptions::load()
 {
-  KConfig config(KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals );
+  KConfig config(KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals);
   KConfigGroup group = config.group("General");
 
   const QString defaultSearchEngine = group.readEntry("DefaultSearchEngine");
