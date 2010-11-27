@@ -2,6 +2,8 @@
 Type=Service
 Name=JPEG Images (Rotated Automatically)
 Name[cs]=Obázky JPEG (automaticky rotované)
+Name[da]=JPEG-billeder (automatisk roteret)
+Name[de]=JPEG-Bilder (automatisch gedreht)
 Name[et]=JPEG pildid (automaatselt pööratud)
 Name[hu]=JPEG-képek (automatikus elforgatás)
 Name[ia]=Imagines JPEG (Automaticamente rotate)
@@ -13,6 +15,7 @@ Name[nds]=JPEG-Biller (automaatsch dreiht)
 Name[nl]=JPEG-afbeeldingen (automatisch gedraaid)
 Name[pt]=Imagens JPEG (Rodadas Automaticamente)
 Name[pt_BR]=Imagens JPEG (Giradas automaticamente)
+Name[ru]=Изображения JPEG (автоматически повёрнутые)
 Name[sv]=JPEG-bilder (automatiskt roterade)
 Name[uk]=Зображення JPEG (автоматичний поворот)
 Name[x-test]=xxJPEG Images (Rotated Automatically)xx
