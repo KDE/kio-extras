@@ -40,24 +40,36 @@
  * ../tests/kurifiltertest
  */
 
-class KURISearchFilterEnginePrivate
-{
-public:
-  KURISearchFilterEngine instance;
-};
-
-K_GLOBAL_STATIC(KURISearchFilterEnginePrivate, kURISearchFilterEngine)
-
 KURISearchFilterEngine::KURISearchFilterEngine()
 {
   loadConfig();
+}
+
+KURISearchFilterEngine::KURISearchFilterEngine(const KURISearchFilterEngine& other)
+                       :m_defaultSearchEngine(other.m_defaultSearchEngine),
+                        m_favoriteEngines(other.m_favoriteEngines),
+                        m_bWebShortcutsEnabled(other.m_bWebShortcutsEnabled),
+                        m_bUseOnlySelectedShortcuts(other.m_bUseOnlySelectedShortcuts),
+                        m_cKeywordDelimiter(other.m_cKeywordDelimiter)
+{
+  loadConfig();
+}
+
+KURISearchFilterEngine& KURISearchFilterEngine::operator=(const KURISearchFilterEngine& other)
+{
+  m_defaultSearchEngine = other.m_defaultSearchEngine;
+  m_favoriteEngines = other.m_favoriteEngines;
+  m_bWebShortcutsEnabled = other.m_bWebShortcutsEnabled;
+  m_bUseOnlySelectedShortcuts = other.m_bUseOnlySelectedShortcuts;
+  m_cKeywordDelimiter = other.m_cKeywordDelimiter;
+  return *this;
 }
 
 KURISearchFilterEngine::~KURISearchFilterEngine()
 {
 }
 
-SearchProvider* KURISearchFilterEngine::webShortcutQuery( const QString& typedString, QString &searchTerm ) const
+SearchProvider* KURISearchFilterEngine::webShortcutQuery(const QString& typedString, QString &searchTerm) const
 {
   SearchProvider *provider = 0;
 
@@ -91,7 +103,7 @@ SearchProvider* KURISearchFilterEngine::webShortcutQuery( const QString& typedSt
 }
 
 
-SearchProvider* KURISearchFilterEngine::autoWebSearchQuery( const QString& typedString, const QString &defaultEngine ) const
+SearchProvider* KURISearchFilterEngine::autoWebSearchQuery(const QString& typedString, const QString &defaultEngine) const
 {
   SearchProvider *provider = 0;
   const QString defaultSearchProvider = (m_defaultSearchEngine.isEmpty() ? defaultEngine : m_defaultSearchEngine);
@@ -130,7 +142,8 @@ QStringList KURISearchFilterEngine::favoriteEngineList() const
 
 KURISearchFilterEngine* KURISearchFilterEngine::self()
 {
-  return &kURISearchFilterEngine->instance;
+  K_GLOBAL_STATIC(KURISearchFilterEngine, sSelfPtr)
+  return sSelfPtr;
 }
 
 QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,

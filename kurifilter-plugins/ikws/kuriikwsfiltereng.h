@@ -38,7 +38,6 @@ class KURISearchFilterEngine
 public:
   typedef QMap <QString, QString> SubstMap;
 
-  KURISearchFilterEngine();
   ~KURISearchFilterEngine();
 
   QByteArray name() const;
@@ -52,14 +51,17 @@ public:
 
   static KURISearchFilterEngine *self();
   void loadConfig();
-
+  
 protected:
   QString formatResult (const QString& url, const QString& cset1, const QString& cset2,
                         const QString& query, bool isMalformed, SubstMap& map) const;
 
 private:
+  KURISearchFilterEngine();
+  KURISearchFilterEngine(const KURISearchFilterEngine&);
+  KURISearchFilterEngine& operator= (const KURISearchFilterEngine&);
+  
   QStringList modifySubstitutionMap (SubstMap& map, const QString& query) const;
-
   QString substituteQuery (const QString& url, SubstMap &map,
                            const QString& userquery, QTextCodec *codec) const;
 
@@ -68,7 +70,6 @@ private:
   bool m_bWebShortcutsEnabled;
   bool m_bUseOnlySelectedShortcuts;
   char m_cKeywordDelimiter;
-  static KURISearchFilterEngine *s_pSelf;
 };
 
 #endif // KURIIKWSFILTERENG_H
