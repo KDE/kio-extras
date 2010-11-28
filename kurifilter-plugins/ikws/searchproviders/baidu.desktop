@@ -43,6 +43,7 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=baidu
 Query=http://www.baidu.com/s?wd=\\{@}
 Query[ast]=http://www.baidu.com/s?wd=\\{@}
+Query[bg]=http://www.baidu.com/s?wd=\\{@}
 Query[ca]=http://www.baidu.com/s?wd=\\{@}
 Query[cs]=http://www.baidu.com/s?wd=\\{@}
 Query[da]=http://www.baidu.com/s?wd=\\{@}
