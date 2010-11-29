@@ -45,26 +45,6 @@ KURISearchFilterEngine::KURISearchFilterEngine()
   loadConfig();
 }
 
-KURISearchFilterEngine::KURISearchFilterEngine(const KURISearchFilterEngine& other)
-                       :m_defaultSearchEngine(other.m_defaultSearchEngine),
-                        m_favoriteEngines(other.m_favoriteEngines),
-                        m_bWebShortcutsEnabled(other.m_bWebShortcutsEnabled),
-                        m_bUseOnlySelectedShortcuts(other.m_bUseOnlySelectedShortcuts),
-                        m_cKeywordDelimiter(other.m_cKeywordDelimiter)
-{
-  loadConfig();
-}
-
-KURISearchFilterEngine& KURISearchFilterEngine::operator=(const KURISearchFilterEngine& other)
-{
-  m_defaultSearchEngine = other.m_defaultSearchEngine;
-  m_favoriteEngines = other.m_favoriteEngines;
-  m_bWebShortcutsEnabled = other.m_bWebShortcutsEnabled;
-  m_bUseOnlySelectedShortcuts = other.m_bUseOnlySelectedShortcuts;
-  m_cKeywordDelimiter = other.m_cKeywordDelimiter;
-  return *this;
-}
-
 KURISearchFilterEngine::~KURISearchFilterEngine()
 {
 }
