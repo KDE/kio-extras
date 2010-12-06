@@ -18,6 +18,7 @@ Name[et]=KDE Look
 Name[eu]=KDE Look
 Name[fi]=KDE Look
 Name[fr]=KDE Look
+Name[ga]=KDE Look
 Name[gu]=કેડીઈ લૂક
 Name[hi]=केडीई दिखावट
 Name[hr]=KDE Look
@@ -78,6 +79,7 @@ Query[et]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[eu]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[fi]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[fr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[ga]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[gu]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[hi]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[hr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

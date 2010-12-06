@@ -18,6 +18,7 @@ Name[et]=Duck Duck Go
 Name[eu]=Duck Duck Go
 Name[fi]=Duck Duck Go
 Name[fr]=Duck Duck Go
+Name[ga]=Duck Duck Go
 Name[gu]=ડક ડક ગો
 Name[hi]=बतख़ जा जा
 Name[hr]=Duck Duck Go
@@ -74,6 +75,7 @@ Query[et]=http://duckduckgo.com/?q=\\{@}&v=
 Query[eu]=http://duckduckgo.com/?q=\\{@}&v=
 Query[fi]=http://duckduckgo.com/?q=\\{@}&v=
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=
+Query[ga]=http://duckduckgo.com/?q=\\{@}&v=
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=
 Query[hi]=http://duckduckgo.com/?q=\\{@}&v=
 Query[hr]=http://duckduckgo.com/?q=\\{@}&v=

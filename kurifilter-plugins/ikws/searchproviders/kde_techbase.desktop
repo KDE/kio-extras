@@ -18,6 +18,7 @@ Name[et]=KDE TechBase
 Name[eu]=KDE TechBase
 Name[fi]=KDE TechBase
 Name[fr]=Centre technique de KDE
+Name[ga]=KDE TechBase
 Name[gu]=કેડીઈ ટેકબેઝ
 Name[hi]=केडीई टेकभार
 Name[hr]=KDE TechBase
@@ -78,6 +79,7 @@ Query[et]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[eu]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[fi]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[fr]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ga]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[gu]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[hi]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[hr]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

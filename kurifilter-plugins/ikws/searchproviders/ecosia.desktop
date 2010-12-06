@@ -16,6 +16,7 @@ Name[et]=Ecosia otsingumootor
 Name[eu]=Ecosia bilaketa motorea
 Name[fi]=Ecosia-hakukone
 Name[fr]=Moteur de recherche Ecosia
+Name[ga]=Inneall cuardaigh Ecosia
 Name[gu]=ઈકોસિયા શોધ એન્જિન
 Name[he]=מנוע חיפוש Ecosia
 Name[hi]=इकोसिया खोज इंजिन
@@ -79,6 +80,7 @@ Query[et]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[eu]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[fi]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[fr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[ga]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[gu]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[he]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[hi]=http://ecosia.org/search.php?q=\\{@}&meta=normal

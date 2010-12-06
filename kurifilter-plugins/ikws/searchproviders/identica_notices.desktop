@@ -17,6 +17,7 @@ Name[es]=Avisos Identi.ca
 Name[et]=Identi.ca teadaanded
 Name[eu]=Identi.ca Berriak
 Name[fr]=Notices Identi.ca
+Name[ga]=Fógraí Identi.ca
 Name[gu]=આઈડેન્ટિ.કા નોંધો
 Name[hi]=Identi.ca नोटिस
 Name[hr]=Poruke na Identi.ci
@@ -74,6 +75,7 @@ Query[et]=http://identi.ca/search/notice?q=\\{@}
 Query[eu]=http://identi.ca/search/notice?q=\\{@}
 Query[fi]=http://identi.ca/search/notice?q=\\{@}
 Query[fr]=http://identi.ca/search/notice?q=\\{@}
+Query[ga]=http://identi.ca/search/notice?q=\\{@}
 Query[gu]=http://identi.ca/search/notice?q=\\{@}
 Query[hi]=http://identi.ca/search/notice?q=\\{@}
 Query[hr]=http://identi.ca/search/notice?q=\\{@}

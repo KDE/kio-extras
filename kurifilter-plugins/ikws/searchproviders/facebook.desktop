@@ -19,6 +19,7 @@ Name[et]=Facebook
 Name[eu]=Facebook
 Name[fi]=Facebook
 Name[fr]=Facebook
+Name[ga]=Facebook
 Name[gu]=ફેસબુક
 Name[hi]=फेसबुक
 Name[hr]=Facebook
@@ -79,6 +80,7 @@ Query[et]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[eu]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[fi]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[fr]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ga]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[gu]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[hi]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[hr]=http://www.facebook.com/search/?q=\\{@}&init=quick

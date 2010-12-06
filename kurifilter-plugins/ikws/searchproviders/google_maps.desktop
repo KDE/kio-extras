@@ -17,6 +17,7 @@ Name[et]=Google Maps
 Name[eu]=Google Mapak
 Name[fi]=Google Maps (kartat)
 Name[fr]=Google Maps
+Name[ga]=Mapaí Google
 Name[gu]=ગુગલ નકશાઓ
 Name[he]=גוגל מפות
 Name[hi]=गूगल मानचित्र
@@ -79,6 +80,7 @@ Query[et]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[eu]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[fi]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[fr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[ga]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[gu]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[he]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[hi]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
