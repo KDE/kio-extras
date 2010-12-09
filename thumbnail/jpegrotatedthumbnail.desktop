@@ -1,12 +1,15 @@
 [Desktop Entry]
 Type=Service
 Name=JPEG Images (Rotated Automatically)
+Name[bg]=Изображения JPEG (автоматично завъртяни)
 Name[ca]=Imatges JPEG (Girades automàticament)
 Name[cs]=Obázky JPEG (automaticky rotované)
 Name[da]=JPEG-billeder (automatisk roteret)
 Name[de]=JPEG-Bilder (automatisch gedreht)
 Name[en_GB]=JPEG Images (Rotated Automatically)
 Name[et]=JPEG pildid (automaatselt pööratud)
+Name[eu]=JPEG irudiak (Automatikoki biratuta)
+Name[hi]=जेपीजी छवियाँ (स्वतः घूर्णित)
 Name[hu]=JPEG-képek (automatikus elforgatás)
 Name[ia]=Imagines JPEG (Automaticamente rotate)
 Name[kk]=JPEG кескіндері (автобұралған)
@@ -19,6 +22,7 @@ Name[pt]=Imagens JPEG (Rodadas Automaticamente)
 Name[pt_BR]=Imagens JPEG (Giradas automaticamente)
 Name[ru]=Изображения JPEG (автоматически повёрнутые)
 Name[sv]=JPEG-bilder (automatiskt roterade)
+Name[th]=รูปภาพ JPEG (หมุนอัตโนมัติ)
 Name[uk]=Зображення JPEG (автоматичний поворот)
 Name[x-test]=xxJPEG Images (Rotated Automatically)xx
 Name[zh_TW]=JPEG 影像（自動旋轉）
