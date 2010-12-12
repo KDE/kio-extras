@@ -498,7 +498,7 @@ void NFSProtocol::openConnection()
 void NFSProtocol::listDir( const KUrl& _url)
 {
    KUrl url(_url);
-   QString path( QFile::encodeName(url.path()));
+   QString path( url.path());
 
    if (path.isEmpty())
    {
@@ -554,7 +554,7 @@ void NFSProtocol::listDir( const KUrl& _url)
       for (entry *dirEntry=listres.readdirres_u.reply.entries;dirEntry!=0;dirEntry=dirEntry->nextentry)
       {
          if ((QString(".")!=dirEntry->name) && (QString("..")!=dirEntry->name))
-            filesToList.append(dirEntry->name);
+            filesToList.append(QFile::decodeName(dirEntry->name));
       }
    } while (!listres.readdirres_u.reply.eof);
    totalSize( filesToList.count());
@@ -643,7 +643,7 @@ void NFSProtocol::listDir( const KUrl& _url)
 
 void NFSProtocol::stat( const KUrl & url)
 {
-   QString path( QFile::encodeName(url.path()));
+   QString path(url.path());
    stripTrailingSlash(path);
    kDebug(7121)<<"NFS::stat for -"<<path<<"-";
    QString tmpPath=path;
@@ -900,7 +900,7 @@ void NFSProtocol::setHost(const QString& host, quint16 /*port*/, const QString& 
 void NFSProtocol::mkdir( const KUrl& url, int permissions )
 {
    kDebug(7121)<<"mkdir";
-   QString thePath( QFile::encodeName(url.path()));
+   QString thePath( url.path());
    stripTrailingSlash(thePath);
    QString dirName, parentDir;
    getLastPart(thePath, dirName, parentDir);
@@ -1013,7 +1013,7 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
 
 void NFSProtocol::del( const KUrl& url, bool isfile)
 {
-   QString thePath( QFile::encodeName(url.path()));
+   QString thePath( url.path());
    stripTrailingSlash(thePath);
 
    QString fileName, parentDir;
@@ -1073,7 +1073,7 @@ void NFSProtocol::del( const KUrl& url, bool isfile)
 
 void NFSProtocol::chmod( const KUrl& url, int permissions )
 {
-   QString thePath( QFile::encodeName(url.path()));
+   QString thePath(url.path());
    stripTrailingSlash(thePath);
    kDebug( 7121 ) <<  "chmod -"<< thePath << "-";
    if (isRoot(thePath) || isExportedDir(thePath))
@@ -1113,7 +1113,7 @@ void NFSProtocol::chmod( const KUrl& url, int permissions )
 
 void NFSProtocol::get( const KUrl& url )
 {
-   QString thePath( QFile::encodeName(url.path()));
+   QString thePath(url.path());
    kDebug(7121)<<"get() -"<<thePath<<"-";
    NFSFileHandle fh=getFileHandle(thePath);
    if (fh.isInvalid())
@@ -1161,7 +1161,7 @@ void NFSProtocol::get( const KUrl& url )
 //TODO the partial putting thing is not yet implemented
 void NFSProtocol::put( const KUrl& url, int _mode, KIO::JobFlags flags )
 {
-    QString destPath( QFile::encodeName(url.path()));
+    QString destPath( url.path());
     kDebug( 7121 ) << "Put -" << destPath <<"-";
     /*QString dest_part( dest_orig );
     dest_part += ".part";*/
@@ -1287,8 +1287,8 @@ void NFSProtocol::put( const KUrl& url, int _mode, KIO::JobFlags flags )
 
 void NFSProtocol::rename( const KUrl &src, const KUrl &dest, KIO::JobFlags _flags )
 {
-   QString srcPath( QFile::encodeName(src.path()));
-   QString destPath( QFile::encodeName(dest.path()));
+   QString srcPath( src.path());
+   QString destPath( dest.path());
    stripTrailingSlash(srcPath);
    stripTrailingSlash(destPath);
    kDebug(7121)<<"renaming -"<<srcPath<<"- to -"<<destPath<<"-";
@@ -1346,7 +1346,7 @@ void NFSProtocol::rename( const KUrl &src, const KUrl &dest, KIO::JobFlags _flag
 void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, KIO::JobFlags _flags )
 {
    //prepare the source
-   QString thePath( QFile::encodeName(src.path()));
+   QString thePath( src.path());
    stripTrailingSlash(thePath);
    kDebug( 7121 ) << "Copy to -" << thePath <<"-";
    NFSFileHandle fh=getFileHandle(thePath);
@@ -1357,7 +1357,7 @@ void NFSProtocol::copy( const KUrl &src, const KUrl &dest, int _mode, KIO::JobFl
    };
 
    //create the destination
-   QString destPath( QFile::encodeName(dest.path()));
+   QString destPath( dest.path());
    stripTrailingSlash(destPath);
    QString parentDir, fileName;
    getLastPart(destPath,fileName, parentDir);
