@@ -545,9 +545,14 @@ void NFSProtocol::listDir( const KUrl& _url)
    listargs.count=1024*16;
    memcpy(listargs.dir.data,fh,NFS_FHSIZE);
    readdirres listres;
+   entry* lastEntry = 0;
    do
    {
       memset(&listres,'\0',sizeof(listres));
+      // In case that we didn't get all entries we need to set the cookie to the last one we actually received
+      if(lastEntry != 0){
+          memcpy(listargs.cookie, lastEntry->cookie, NFS_COOKIESIZE);
+      }
       int clnt_stat = clnt_call(m_client, NFSPROC_READDIR, (xdrproc_t) xdr_readdirargs, (char*)&listargs,
                                 (xdrproc_t) xdr_readdirres, (char*)&listres,total_timeout);
       if (!checkForError(clnt_stat,listres.status,path)) return;
@@ -555,6 +560,7 @@ void NFSProtocol::listDir( const KUrl& _url)
       {
          if ((QString(".")!=dirEntry->name) && (QString("..")!=dirEntry->name))
             filesToList.append(QFile::decodeName(dirEntry->name));
+         lastEntry = dirEntry;
       }
    } while (!listres.readdirres_u.reply.eof);
    totalSize( filesToList.count());
