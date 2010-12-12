@@ -12,3 +12,5 @@ linking=true
 moving=true
 X-DocPath=kioslave/nfs/index.html
 Icon=folder-remote
+Class=:internet
+
