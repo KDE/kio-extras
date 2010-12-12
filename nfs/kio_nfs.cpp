@@ -455,9 +455,9 @@ void NFSProtocol::openConnection()
          fh=fhStatus.fhstatus_u.fhs_fhandle;
          QString fname;
          if ( exportlist->ex_dir[0] == '/' )
-            fname = KIO::encodeFileName(exportlist->ex_dir + 1);
+            fname = exportlist->ex_dir + 1;
          else
-            fname = KIO::encodeFileName(exportlist->ex_dir);
+            fname = exportlist->ex_dir;
          m_handleCache.insert(QString("/")+fname,fh);
          m_exportedDirs.append(fname);
          // kDebug() <<"appending file -"<<fname<<"- with FH: -"<<fhStatus.fhstatus_u.fhs_fhandle<<"-";
