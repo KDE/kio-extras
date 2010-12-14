@@ -1485,7 +1485,6 @@ void MANProtocol::showIndex(const QString& section)
     os << "</body></html>" << endl;
 
     infoMessage(QString());
-    mimeType("text/html");
     data(array);
     finished();
 }
