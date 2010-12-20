@@ -12,6 +12,7 @@ Name[en_GB]=Bing
 Name[es]=Bing
 Name[et]=Bing
 Name[eu]=Bing
+Name[fr]=Bing
 Name[gu]=બિંગ
 Name[hi]=बिंग
 Name[hr]=Bing
@@ -33,6 +34,10 @@ Name[pa]=ਬਿੰਗ
 Name[pt]=Bing
 Name[pt_BR]=Bing
 Name[ru]=Bing
+Name[sr]=Бинг
+Name[sr@ijekavian]=Бинг
+Name[sr@ijekavianlatin]=Bing
+Name[sr@latin]=Bing
 Name[sv]=Bing
 Name[tg]=Bing
 Name[th]=Bing
@@ -56,6 +61,7 @@ Query[en_GB]=http://www.bing.com/search?q=\\{@}
 Query[es]=http://www.bing.com/search?q=\\{@}
 Query[et]=http://www.bing.com/search?q=\\{@}
 Query[eu]=http://www.bing.com/search?q=\\{@}
+Query[fr]=http://www.bing.com/search?q=\\{@}
 Query[gu]=http://www.bing.com/search?q=\\{@}
 Query[hi]=http://www.bing.com/search?q=\\{@}
 Query[hr]=http://www.bing.com/search?q=\\{@}
@@ -77,6 +83,10 @@ Query[pa]=http://www.bing.com/search?q=\\{@}
 Query[pt]=http://www.bing.com/search?q=\\{@}
 Query[pt_BR]=http://www.bing.com/search?q=\\{@}
 Query[ru]=http://www.bing.com/search?q=\\{@}
+Query[sr]=http://www.bing.com/search?q=\\{@}
+Query[sr@ijekavian]=http://www.bing.com/search?q=\\{@}
+Query[sr@ijekavianlatin]=http://www.bing.com/search?q=\\{@}
+Query[sr@latin]=http://www.bing.com/search?q=\\{@}
 Query[sv]=http://www.bing.com/search?q=\\{@}
 Query[tg]=http://www.bing.com/search?q=\\{@}
 Query[th]=http://www.bing.com/search?q=\\{@}

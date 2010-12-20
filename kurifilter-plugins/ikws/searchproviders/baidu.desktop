@@ -12,6 +12,7 @@ Name[en_GB]=Baidu
 Name[es]=Baidu
 Name[et]=Baidu
 Name[eu]=Baidu
+Name[fr]=Baidu
 Name[gu]=બૈડુ
 Name[hi]=बैदु
 Name[hr]=Baidu
@@ -32,6 +33,10 @@ Name[nn]=Baidu
 Name[pt]=Baidu
 Name[pt_BR]=Baidu
 Name[ru]=Baidu
+Name[sr]=Бајду
+Name[sr@ijekavian]=Бајду
+Name[sr@ijekavianlatin]=Baidu
+Name[sr@latin]=Baidu
 Name[sv]=Baidu
 Name[tg]=Baidu
 Name[th]=Baidu
@@ -55,6 +60,7 @@ Query[en_GB]=http://www.baidu.com/s?wd=\\{@}
 Query[es]=http://www.baidu.com/s?wd=\\{@}
 Query[et]=http://www.baidu.com/s?wd=\\{@}
 Query[eu]=http://www.baidu.com/s?wd=\\{@}
+Query[fr]=http://www.baidu.com/s?wd=\\{@}
 Query[gu]=http://www.baidu.com/s?wd=\\{@}
 Query[hi]=http://www.baidu.com/s?wd=\\{@}
 Query[hr]=http://www.baidu.com/s?wd=\\{@}
@@ -76,6 +82,10 @@ Query[pa]=http://www.baidu.com/s?wd=\\{@}
 Query[pt]=http://www.baidu.com/s?wd=\\{@}
 Query[pt_BR]=http://www.baidu.com/s?wd=\\{@}
 Query[ru]=http://www.baidu.com/s?wd=\\{@}
+Query[sr]=http://www.baidu.com/s?wd=\\{@}
+Query[sr@ijekavian]=http://www.baidu.com/s?wd=\\{@}
+Query[sr@ijekavianlatin]=http://www.baidu.com/s?wd=\\{@}
+Query[sr@latin]=http://www.baidu.com/s?wd=\\{@}
 Query[sv]=http://www.baidu.com/s?wd=\\{@}
 Query[tg]=http://www.baidu.com/s?wd=\\{@}
 Query[th]=http://www.baidu.com/s?wd=\\{@}
