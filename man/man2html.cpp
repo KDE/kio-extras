@@ -406,8 +406,8 @@ static const CSTRDEF standardchar[] = {
     { V('d','e'), 1, "&deg;" },
     { V('d','g'), 1, "&dagger;" },
     { V('d','i'), 1, "&divide;" },
-    { V('e','m'), 1, "&emdash;" },
-    { V('e','n'), 1, "&endash;"},
+    { V('e','m'), 1, "&mdash;" },
+    { V('e','n'), 1, "&ndash;"},
     { V('e','q'), 1, "=" },
     { V('e','s'), 1, "&empty;" },
     { V('f','f'), 1, "&#0xFB00;" }, // ff ligature
