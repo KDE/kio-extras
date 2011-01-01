@@ -1660,7 +1660,7 @@ static QByteArray scan_number_code( char*& c )
 }
 
 // ### TODO known missing escapes from groff(7):
-// ### TODO \& \! \) \: \R
+// ### TODO \R
 
 static char *scan_escape_direct( char *c, QByteArray& cstr )
 {
@@ -1679,6 +1679,9 @@ static char *scan_escape_direct( char *c, QByteArray& cstr )
     case '|': // half-non-breakable-space
     case '^': // quarter-non-breakable-space
         cstr = "&nbsp;"; curpos++; break;
+    case ':': break;  // ignore optional line break
+    case ',': break;  //  left italic correction, always a zero motion
+    case '/': cstr = " "; curpos++; break;  // italic correction, i.e. a small piece of horizontal motion
     case '"': SKIPEOL; c--; break;
     // ### TODO \# like \" but does not ignore the end of line (groff(7))
     case '$':
@@ -1708,8 +1711,9 @@ static char *scan_escape_direct( char *c, QByteArray& cstr )
     case 'r':
     case 'u':
     case '\n':
-    case '&':
-        cstr = ""; break;
+    case '&': // Non-printing, zero width character
+    case ')': // Transparent non-printing zero width character
+        break;
     case '(':
     case '[':
     case 'C':
