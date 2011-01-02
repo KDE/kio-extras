@@ -2531,8 +2531,6 @@ static char *fill_words(char *c, char *words[], int *n, bool newline, char **nex
                 }
         } else if (*sl==escapesym) {
         slash=1;
-                if (sl[1]=='\n')
-                    *sl='\a';
         } else if ((*sl==' ' || *sl=='\t') && !skipspace) {
         if (newline) *sl='\n';
         if (words[*n]!=sl) (*n)++;
