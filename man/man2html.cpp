@@ -729,7 +729,7 @@ static void add_links(char *c)
             if (g!=c) {
 
                 QByteArray dir;
-                QByteArray file(g, h - g + 1);
+                QByteArray file(g, h - g);
                 file = file.trimmed();
                 for (int index = 0; includedirs[index]; index++) {
                     QByteArray str( includedirs[index] );
