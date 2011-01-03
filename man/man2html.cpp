@@ -3383,6 +3383,7 @@ static void request_mixed_fonts(char*& c, int j, const char* font1, const char* 
 #define REQ_while    148 // groff(7) "WHILE loop"
 #define REQ_do       149 // groff(7) "DO command"
 #define REQ_Dx       150 // mdoc(7) "DragonFly" macro
+#define REQ_Ta       151 // mdoc(7) "Ta" inside .It macro
 
 static int get_request(char *req, int len)
 {
@@ -3400,7 +3401,7 @@ static int get_request(char *req, int len)
     "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
     "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
     "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", "tr", "troff", "nroff", "als",
-    "rr", "rnn", "aln", "shift", "while", "do", "Dx", 0
+    "rr", "rnn", "aln", "shift", "while", "do", "Dx", "Ta", 0
   };
   int r = 0;
   while (requests[r] && qstrncmp(req, requests[r], len)) r++;
@@ -3647,7 +3648,6 @@ static char *scan_request(char *c)
           char* result = 0;
           c = scan_troff(c, 1, &result);
           QMap<QByteArray, StringDefinition>::iterator it = s_stringDefinitionMap.find(name);
-              qWarning("XXXX DS: %s -> %s\n", name.constData(), result);
           if (it == s_stringDefinitionMap.end())
           {
             StringDefinition def;
@@ -4724,8 +4724,10 @@ static char *scan_request(char *c)
           char *nl = strchr(c, '\n');
           c = c + j;
           if (dl_set[itemdepth])
+          {
             /* These things can nest. */
             itemdepth++;
+          }
           if (nl)
           {
             /* Parse list options */
@@ -5319,6 +5321,16 @@ static char *scan_request(char *c)
             curpos++;
           else
             curpos = 0;
+          break;
+        }
+        case REQ_Ta:    /* mdoc(7) */
+        {
+          // ### FIXME: this is a simplification
+          // for a list item element in a ".Bl -tag -width indent" type list
+          // man:mdoc says: "indent == Six constant width spaces"
+          out_html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+          c = c + j;
+          if (*c == '\n') c++;
           break;
         }
         // ### FIXME: punctuation is handled badly!
