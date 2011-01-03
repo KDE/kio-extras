@@ -130,7 +130,8 @@
 # include <iostream>
 # include <dirent.h>
 # include <sys/stat.h>
-# define kDebug(x) cerr
+# include <QDebug>
+# define kDebug(x) QDebug(QtDebugMsg)
 # define kWarning(x) cerr << "WARNING "
 # define BYTEARRAY(x) x.constData()
 #else
@@ -3371,16 +3372,17 @@ static void request_mixed_fonts(char*& c, int j, const char* font1, const char* 
 #define REQ_UR       137 // man(7) "URl"
 #define REQ_UE       138 // man(7) "Url End"
 #define REQ_UN       139 // man(7) "Url Name" (a.k.a. anchors)
-#define REQ_troff    140 // groff(7) "TROFF mode"
-#define REQ_nroff    141 // groff(7) "NROFF mode"
-#define REQ_als      142 // groff(7) "ALias String"
-#define REQ_rr       143 // groff(7) "Remove number Register"
-#define REQ_rnn      144 // groff(7) "ReName Number register"
-#define REQ_aln      145 // groff(7) "ALias Number register"
-#define REQ_shift    146 // groff(7) "SHIFT parameter"
-#define REQ_while    147 // groff(7) "WHILE loop"
-#define REQ_do       148 // groff(7) "DO command"
-#define REQ_Dx       149 // mdoc(7) "DragonFly" macro
+#define REQ_tr       140 // translate
+#define REQ_troff    141 // groff(7) "TROFF mode"
+#define REQ_nroff    142 // groff(7) "NROFF mode"
+#define REQ_als      143 // groff(7) "ALias String"
+#define REQ_rr       144 // groff(7) "Remove number Register"
+#define REQ_rnn      145 // groff(7) "ReName Number register"
+#define REQ_aln      146 // groff(7) "ALias Number register"
+#define REQ_shift    147 // groff(7) "SHIFT parameter"
+#define REQ_while    148 // groff(7) "WHILE loop"
+#define REQ_do       149 // groff(7) "DO command"
+#define REQ_Dx       150 // mdoc(7) "DragonFly" macro
 
 static int get_request(char *req, int len)
 {
@@ -3397,7 +3399,7 @@ static int get_request(char *req, int len)
     "Oo", "Oc", "Pq", "Ql", "Sq", "Ar", "Ad", "Em", "Va", "Xc", "Nd", "Nm",
     "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
     "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
-    "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", "troff", "nroff", "als",
+    "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", "tr", "troff", "nroff", "als",
     "rr", "rnn", "aln", "shift", "while", "do", "Dx", 0
   };
   int r = 0;
@@ -3503,7 +3505,6 @@ static char *scan_request(char *c)
       c = skip_till_newline(c); // ### TODO
     }
     else
-
       c = scan_escape(c + 1);
   }
   else
@@ -3646,6 +3647,7 @@ static char *scan_request(char *c)
           char* result = 0;
           c = scan_troff(c, 1, &result);
           QMap<QByteArray, StringDefinition>::iterator it = s_stringDefinitionMap.find(name);
+              qWarning("XXXX DS: %s -> %s\n", name.constData(), result);
           if (it == s_stringDefinitionMap.end())
           {
             StringDefinition def;
@@ -5433,6 +5435,11 @@ static char *scan_request(char *c)
           c = newc;
           break;
         }
+        case REQ_tr:  // translate   TODO
+        {
+          c = skip_till_newline(c);
+          break;
+        }
         case REQ_nroff: // groff(7)  "NROFF mode"
           mode = true;
         case REQ_troff: // groff(7) "TROFF mode"
@@ -5440,6 +5447,7 @@ static char *scan_request(char *c)
           s_nroff = mode;
           c += j;
           c = skip_till_newline(c);
+          break;
         }
         case REQ_als: // groff(7) "ALias String"
         {
