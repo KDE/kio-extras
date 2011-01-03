@@ -1228,9 +1228,20 @@ void MANProtocol::showIndex(const QString& section)
     infoMessage(i18n("Generating Index"));
 
     // search for the man pages
-	QStringList pages = findPages( section, QString() );
+    QStringList pages = findPages( section, QString() );
 
-	QMap<QString, QString> indexmap = buildIndexMap(section);
+    if ( pages.count() == 0 )  // not a single page found
+    {
+      // print footer
+      os << "</div></body></html>" << endl;
+
+      infoMessage(QString());
+      data(array);
+      finished();
+      return;
+    }
+
+    QMap<QString, QString> indexmap = buildIndexMap(section);
 
     // print out the list
     os << "<table>" << endl;
