@@ -630,6 +630,7 @@ static bool still_dd = 0;
 static int tabstops[20] = { 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96 };
 static int maxtstop = 12;
 static int curpos = 0;
+static bool break_the_while_loop = false;
 
 static char *scan_troff(char *c, bool san, char **result);
 static char *scan_troff_mandoc(char *c, bool san, char **result);
@@ -3137,7 +3138,7 @@ static bool s_whileloop = false;
 /// Processing the .while request
 static void request_while(char*& c, int j, bool mdoc)
 {
-  // ### TODO: .break and .continue
+  // ### TODO: .continue
   kDebug(7107) << "Entering .while";
   c += j;
   char* newline = skip_till_newline(c);
@@ -3153,7 +3154,7 @@ static void request_while(char*& c, int j, bool mdoc)
   const bool oldwhileloop = s_whileloop;
   s_whileloop = true;
   int result = true; // It must be an int due to the call to scan_expression
-  while (result)
+  while (result && !break_the_while_loop)
   {
     // Unlike for a normal macro, we have the condition at start, so we do not need to prepend extra bytes
     char* liveloop = qstrdup(macro.data());
@@ -3384,6 +3385,8 @@ static void request_mixed_fonts(char*& c, int j, const char* font1, const char* 
 #define REQ_do       149 // groff(7) "DO command"
 #define REQ_Dx       150 // mdoc(7) "DragonFly" macro
 #define REQ_Ta       151 // mdoc(7) "Ta" inside .It macro
+#define REQ_break    152 // groff(7) "Break out of a while loop"
+#define REQ_nop      153 // groff(7) .nop macro
 
 static int get_request(char *req, int len)
 {
@@ -3401,7 +3404,7 @@ static int get_request(char *req, int len)
     "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
     "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
     "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", "tr", "troff", "nroff", "als",
-    "rr", "rnn", "aln", "shift", "while", "do", "Dx", "Ta", 0
+    "rr", "rnn", "aln", "shift", "while", "do", "Dx", "Ta", "break", "nop", 0
   };
   int r = 0;
   while (requests[r] && qstrncmp(req, requests[r], len)) r++;
@@ -5629,7 +5632,14 @@ static char *scan_request(char *c)
         }
         case REQ_while: // groff(7) "WHILE loop"
         {
+          break_the_while_loop = false;
           request_while(c, j, mandoc_command);
+          break;
+        }
+        case REQ_break: // groff(7) Break out of a while loop.
+        {
+          c += j;
+          break_the_while_loop = true;
           break;
         }
         case REQ_do: // groff(7) "DO command"
@@ -5639,6 +5649,11 @@ static char *scan_request(char *c)
           c++;
           *c = '.';
           // The . will be treated as next character
+          break;
+        }
+        case REQ_nop:  // groff(7) nop
+        {
+          c += j;
           break;
         }
         default:
