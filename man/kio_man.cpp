@@ -29,6 +29,7 @@
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
+#include <QTextDocument>
 #include <QMap>
 #include <QRegExp>
 #include <QTextCodec>
@@ -87,6 +88,7 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
     section.clear();
 
     QString url = _url;
+    url = url.trimmed();
     if (url.isEmpty() || url.at(0) == '/') {
         if (url.isEmpty() || KStandardDirs::exists(url)) {
             // man:/usr/share/man/man1/ls.1.gz is a valid file
@@ -447,19 +449,6 @@ extern void output_real(const char *insert)
 }
 #endif
 
-static QString text2html(const QString& txt)
-{
-    QString reply = txt;
-
-    reply = reply.replace('&', "&amp;");
-    reply = reply.replace('<', "&lt;");
-    reply = reply.replace('>', "&gt;");
-    reply = reply.replace('"', "&dquot;");
-    reply = reply.replace('\'', "&quot;");
-    return reply;
-}
-
-
 void MANProtocol::get(const KUrl& url )
 {
     kDebug(7107) << "GET " << url.url();
@@ -495,7 +484,7 @@ void MANProtocol::get(const KUrl& url )
            "Check that you have typed the name using the correct upper and lower case characters.<br />"
            "If everything looks correct, then you may need to improve the search path "
            "for man pages; either using the environment variable MANPATH or using a matching file "
-           "in the /etc directory.", text2html(title)));
+           "in the /etc directory.", Qt::escape(title)));
        pageFound=false;
     }
     else if (foundPages.count()>1)
