@@ -559,18 +559,23 @@ char *MANProtocol::readManPage(const char *_filename)
     }
     else
     {
-        if (QDir::isRelativePath(filename)) {
+        if (QDir::isRelativePath(filename))
+        {
             kDebug(7107) << "relative " << filename;
             filename = QDir::cleanPath(lastdir + '/' + filename).toUtf8();
-            if (!KStandardDirs::exists(filename)) { // exists perhaps with suffix
-                lastdir = filename.left(filename.lastIndexOf('/'));
-                QDir mandir(lastdir);
-                mandir.setNameFilters(QStringList() << (filename.mid(filename.lastIndexOf('/') + 1) + ".*"));
-                filename = lastdir + '/' + QFile::encodeName(mandir.entryList().first());
-            }
             kDebug(7107) << "resolved to " << filename;
         }
+
         lastdir = filename.left(filename.lastIndexOf('/'));
+
+        if ( !QFile::exists(QFile::decodeName(filename)) )  // if given file does not exist, find with suffix
+        {
+            kDebug(7107) << "not existing " << filename;
+            QDir mandir(lastdir);
+            mandir.setNameFilters(QStringList() << (filename.mid(filename.lastIndexOf('/') + 1) + ".*"));
+            filename = lastdir + '/' + QFile::encodeName(mandir.entryList().first());
+            kDebug(7107) << "resolved to " << filename;
+        }
 
         QIODevice *fd= KFilterDev::deviceForFile(filename);
 
