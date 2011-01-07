@@ -2,7 +2,7 @@ add_subdirectory( tests )
 
 ########### next target ###############
 
-set(kio_man_PART_SRCS man2html.cpp kio_man.cpp )
+set(kio_man_PART_SRCS man2html.cpp kio_man.cpp request_hash.cpp )
 
 
 kde4_add_plugin(kio_man ${kio_man_PART_SRCS})

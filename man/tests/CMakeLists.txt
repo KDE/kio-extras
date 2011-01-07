@@ -7,6 +7,7 @@ include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/.. )
 set(kio_man_test_SRCS 
     kio_man_test.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/../request_hash.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man.cpp )
 
 
@@ -18,7 +19,9 @@ target_link_libraries(kio_man_test ${KDE4_KIO_LIBS})
 
 ########### next target ###############
 
-set(man2html_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp )
+set(man2html_SRCS
+    ${CMAKE_CURRENT_SOURCE_DIR}/../request_hash.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp )
 
 
 

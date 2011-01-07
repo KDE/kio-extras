@@ -1,9 +1,11 @@
 /*
     This file is part of the KDE libraries
 
+    Copyright (C) 2000 Stephan Kulow <coolo@kde.org>
     Copyright (C) 2005 Nicolas GOUTTE <goutte@kde.org>
+    Copyright (C) 2011 Martin Koller <kollix@aon.at>
 
-    ### TODO: who else?
+    ... and others (see SVN history)
 */
 
 // Start of verbatim comment
@@ -109,8 +111,9 @@
 */
 
 #include "man2html.h"
+#include "request_hash.h"
 
-# include <config-runtime.h>
+#include <config-runtime.h>
 
 #include <ctype.h>
 
@@ -132,20 +135,17 @@
 # include <sys/stat.h>
 # include <QDebug>
 # define kDebug(x) QDebug(QtDebugMsg)
-# define kWarning(x) cerr << "WARNING "
+# define kWarning(x) QDebug(QtWarningMsg) << "WARNING "
 # define BYTEARRAY(x) x.constData()
 #else
 # include <QTextCodec>
+# include <QTextDocument>
 # include <kglobal.h>
 # include <klocale.h>
 # include <kdebug.h>
 # include <kdeversion.h>
 # define BYTEARRAY(x) x
 #endif
-
-
-
-using namespace std;
 
 #define NULL_TERMINATED(n) ((n) + 1)
 
@@ -155,14 +155,7 @@ using namespace std;
 #define SMALL_STR_MAX 100
 #define TINY_STR_MAX  10
 
-
-#if 1
-// The output is current too horrible to be called HTML 4.01, so give no
-// DOCTYPE at all.
-#define DOCTYPE ""
-#else
 #define DOCTYPE "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
-#endif
 
 /* mdoc(7) Bl/El lists to HTML list types */
 #define BL_DESC_LIST   1
@@ -175,23 +168,9 @@ using namespace std;
 
 static int s_nroff = 1; // NROFF mode by default
 
-static int mandoc_name_count = 0; /* Don't break on the first Nm */
+static QByteArray mandoc_name;  // Nm can store the first used name
 
-static char *stralloc(int len)
-{
-  /* allocate enough for len + NULL */
-  char *news = new char [len+1];
-#ifdef SIMPLE_MAN2HTML
-  if (!news)
-  {
-    cerr << "man2html: out of memory" << endl;
-    exit(EXIT_FAILURE);
-  }
-#else
-// modern compilers do not return a NULL pointer for a new
-#endif
-  return news;
-}
+static int mandoc_name_count = 0; /* Don't break on the first Nm */
 
 static char *strlimitcpy(char *to, char *from, int n, int limit)
 {                               /* Assumes space for limit plus a null */
@@ -308,6 +287,8 @@ static void InitStringDefinitions(void)
   // man(7)
   s_stringDefinitionMap.insert("Tm", StringDefinition(1, "&trade;"));     // \*(TM
   s_stringDefinitionMap.insert("R", StringDefinition(1, "&reg;"));     // \*R
+  s_stringDefinitionMap.insert("lq", StringDefinition(1, "&ldquo;"));     // Left angled double quote
+  s_stringDefinitionMap.insert("rq", StringDefinition(1, "&rdquo;"));     // Right angled double quote
   // end man(7)
   // Missing characters from man(7):
   // \*S "Change to default font size"
@@ -626,6 +607,7 @@ static bool scaninbuff = false;
 static int itemdepth = 0;
 static int section = 0;
 static int dl_set[20] = { 0 };
+static QStack<QByteArray> listItemStack;
 static bool still_dd = 0;
 static int tabstops[20] = { 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96 };
 static int maxtstop = 12;
@@ -634,8 +616,9 @@ static bool break_the_while_loop = false;
 
 static char *scan_troff(char *c, bool san, char **result);
 static char *scan_troff_mandoc(char *c, bool san, char **result);
+static int getNumberRegisterValue(const QByteArray &name, int sign = 0);
 
-static QList<char*> s_argumentList;
+static QList<QByteArray> s_argumentList;
 
 static QByteArray cssPath, cssFile;
 
@@ -699,6 +682,7 @@ static void add_links(char *c)
   **
   ** /dir/dir/file  -> file:/dir/dir/file
   */
+
   if (ignore_links)
   {
     output_real(c);
@@ -736,7 +720,6 @@ static void add_links(char *c)
 
         if (g != c)
         {
-
           QByteArray dir;
           QByteArray file(g, h - g);
           file = file.trimmed();
@@ -790,9 +773,9 @@ static void add_links(char *c)
         f = idtest[j];
         /* check section */
         g = strchr(f, ')');
-        // The character before f must alphanumeric, the end of a HTML tag or the end of a &nbsp;
+        // The character before f must be alphanumeric, the end of a HTML tag or the end of a &nbsp;
         if (g != NULL && f > c && (g - f) < 12 && (isalnum(f[-1]) || f[-1] == '>' || (f[-1] == ';')) &&
-            isdigit(f[1]) && f[1] != '0' && ((g - f) <= 2 || isalpha(f[2])))
+            (isdigit(f[1]) || (f[1] == 'n')) && f[1] != '0' && ((g - f) <= 2 || isalpha(f[2])))
         {
           ok = true;
           h = f + 2;
@@ -817,6 +800,10 @@ static void add_links(char *c)
           {
             h -= 6;
             kDebug(7107) << "Skip &nbsp;";
+          }
+          else if ( (h > (c + 6)) && (!memcmp(h - 6, "&#8239;", 7)) ) // &#8239;  narrow space
+          {
+            h -= 7;
           }
           else if (*h == ';')
           {
@@ -1040,15 +1027,6 @@ static void out_html(const char *c)
       {
         char *h = new char[buffmax*2];
 
-#ifdef SIMPLE_MAN2HTML
-        if (!h)
-        {
-          cerr << "Memory full, cannot output!" << endl;
-          exit(1);
-        }
-#else
-// modern compiler do not return a NULL for a new
-#endif
         memcpy(h, buffer, buffmax);
         delete [] buffer;
         buffer = h;
@@ -1063,7 +1041,7 @@ static void out_html(const char *c)
       while (*c2)
       {
         outbuffer[obp++] = *c2;
-        if (*c == '\n' || obp >= HUGE_STR_MAX)
+        if (*c2 == '\n' || obp >= HUGE_STR_MAX)
         {
           outbuffer[obp] = '\0';
           add_links(outbuffer);
@@ -1075,11 +1053,25 @@ static void out_html(const char *c)
   delete [] c3;
 }
 
+//---------------------------------------------------------------------
+
+void checkListStack()  // see if we need to end a previously begun list item
+{
+  if ( !listItemStack.isEmpty() && (listItemStack.size() == itemdepth) )
+  {
+    out_html("</");
+    out_html(listItemStack.pop());
+    out_html(">");
+  }
+}
+
+//---------------------------------------------------------------------
+
 static QByteArray set_font(const QByteArray& name)
 {
   // Every font but R (Regular) creates <span> elements
   QByteArray markup;
-  if (current_font != "R" && !current_font.isEmpty())
+  if ( (current_font != "R") && (current_font != "P") && !current_font.isEmpty() )
     markup += "</span>";
   const uint len = name.length();
   bool fontok = true;
@@ -1142,13 +1134,20 @@ static QByteArray set_font(const QByteArray& name)
       markup += "<span style=\"font-family:serif;font-style:italic;font-weight:bold\">";
     else if (name == "HBI")
       markup += "<span style=\"font-family:sans-serif;font-style:italic;font-weight:bold\">";
+    else
+      fontok = false;
   }
+  else
+    fontok = false;
+
   if (fontok)
     current_font = name;
   else
     current_font = "R"; // Still nothing, then it is 'R' (Regular) // krazy:exclude=doublequote_chars
   return markup;
 }
+
+//---------------------------------------------------------------------
 
 static QByteArray change_to_size(int nr)
 {
@@ -1180,29 +1179,23 @@ static QByteArray change_to_size(int nr)
   QByteArray markup;
   markup = set_font("R");
   if (current_size)
-    markup += "</FONT>";
+    markup += "</span>";
   current_size = nr;
   if (nr)
   {
-    markup += "<FONT SIZE=\"";
-    if (nr > 0)
-      markup += '+';
-    else
-    {
-      markup += '-';
-      nr = -nr;
-    }
-    markup += char(nr + '0');
-    markup += "\">";
+    int percent = 100 + nr*1;
+    markup += "<span style=\"font-size:";
+    markup += QByteArray::number(percent);
+    markup += "%\">";
   }
   markup += set_font(font);
   return markup;
 }
 
+//---------------------------------------------------------------------
+
 /* static int asint=0; */
 static int intresult = 0;
-
-#define SKIPEOL while (*c && *c++!='\n') {}
 
 static bool skip_escape = false;
 static bool single_escape = false;
@@ -1299,7 +1292,7 @@ static QByteArray scan_named_character(char*& c)
     }
     c++;
   }
-  // Note: characters with a one character length name doe not exist, as they would collide with other escapes
+  // Note: characters with a one character length name do not exist, as they would collide with other escapes
 
   // Now we have the name, let us find it between the string names
   QMap<QByteArray, StringDefinition>::const_iterator it = s_characterDefinitionMap.constFind(name);
@@ -1315,6 +1308,8 @@ static QByteArray scan_named_character(char*& c)
     return (*it).m_output;
   }
 }
+
+//---------------------------------------------------------------------
 
 static QByteArray scan_named_string(char*& c)
 {
@@ -1381,16 +1376,21 @@ static QByteArray scan_named_string(char*& c)
   QMap<QByteArray, StringDefinition>::const_iterator it = s_stringDefinitionMap.constFind(name);
   if (it == s_stringDefinitionMap.constEnd())
   {
-    kDebug(7107) << "EXCEPTION: cannot find string with name: " << BYTEARRAY(name);
+    // try a number register:
+    return QByteArray::number(getNumberRegisterValue(name));
+
+    //kDebug(7107) << "EXCEPTION: cannot find string with name: " << BYTEARRAY(name);
     // No output, as an undefined string is empty by default
-    return "";
+    //return "";
   }
   else
   {
-    kDebug(7107) << "String with name: \"" << BYTEARRAY(name) << "\" => " << BYTEARRAY((*it).m_output);
+    kDebug(7107) << "String with name: '" << BYTEARRAY(name) << "' => >>>" << BYTEARRAY((*it).m_output) << "<<<";
     return (*it).m_output;
   }
 }
+
+//---------------------------------------------------------------------
 
 static QByteArray scan_dollar_parameter(char*& c)
 {
@@ -1446,7 +1446,7 @@ static QByteArray scan_dollar_parameter(char*& c)
   else if ((*c == '*') || (*c == '@'))
   {
     const bool quote = (*c == '@');
-    QList<char*>::const_iterator it = s_argumentList.constBegin();
+    QList<QByteArray>::const_iterator it = s_argumentList.constBegin();
     QByteArray param;
     bool space = false;
     for (; it != s_argumentList.constEnd(); ++it)
@@ -1484,7 +1484,9 @@ static QByteArray scan_dollar_parameter(char*& c)
   return "";
 }
 
+//---------------------------------------------------------------------
 /// return the value of read-only number registers
+
 static int read_only_number_register(const QByteArray& name)
 {
   // Internal read-only variables
@@ -1517,7 +1519,8 @@ static int read_only_number_register(const QByteArray& name)
   else if (name == ".KDE_VERSION")
     return KDE_VERSION;
 #endif
-  // ### TODO: should .T be set to "html"? But we are not the HTML post-processor. :-(
+  else if ( name == ".T" )
+    return 0;  // Set to 1 in nroff, if -T option used; always 0 in troff.
 
   // ### TODO: groff defines many more read-only number registers
   kDebug(7107) << "EXCEPTION: unknown read-only number register: " << BYTEARRAY(name);
@@ -1526,7 +1529,32 @@ static int read_only_number_register(const QByteArray& name)
 
 }
 
+//---------------------------------------------------------------------
+
+static int getNumberRegisterValue(const QByteArray &name, int sign)
+{
+  if (name[0] == '.')
+  {
+    return read_only_number_register(name);
+  }
+  else
+  {
+    QMap< QByteArray, NumberDefinition >::iterator it = s_numberDefinitionMap.find(name);
+    if (it == s_numberDefinitionMap.end())
+    {
+      return 0; // Undefined variable
+    }
+    else
+    {
+      (*it).m_value += sign * (*it).m_increment;
+      return (*it).m_value;
+    }
+  }
+}
+
+//---------------------------------------------------------------------
 /// get the value of a number register and auto-increment if asked
+
 static int scan_number_register(char*& c)
 {
   int sign = 0; // Sign for auto-increment (if any)
@@ -1592,26 +1620,40 @@ static int scan_number_register(char*& c)
     name += *c;
     c++;
   }
-  if (name[0] == '.')
-  {
-    return read_only_number_register(name);
-  }
-  else
-  {
-    QMap< QByteArray, NumberDefinition >::iterator it = s_numberDefinitionMap.find(name);
-    if (it == s_numberDefinitionMap.end())
-    {
-      return 0; // Undefined variable
-    }
-    else
-    {
-      (*it).m_value += sign * (*it).m_increment;
-      return (*it).m_value;
-    }
-  }
+
+  return getNumberRegisterValue(name, sign);
 }
 
+//---------------------------------------------------------------------
+// scan a name from the following
+// x     ... return x    (one char)
+// (xx   ... return xx   (two chars)
+// [xxx] ... return xxx  (any chars)
+// after scanning, c points to the terminating char (0, \n or ])
+
+static QByteArray scan_name(char *&c)
+{
+  QByteArray name;
+  if ( *c == '(' )
+  {
+    int i = 0;
+    for (c++; *c && (*c != '\n') && (i < 2); c++, i++)
+      name += *c;
+  }
+  else if ( *c == '[' )
+  {
+    for (c++; *c && (*c != ']') && (*c != '\n'); c++)
+      name += *c;
+  }
+  else
+    name += *c;
+
+  return name;
+}
+
+//---------------------------------------------------------------------
 /// get and set font
+
 static QByteArray scan_named_font(char*& c)
 {
   QByteArray name;
@@ -1692,7 +1734,7 @@ static QByteArray scan_named_font(char*& c)
   }
   else if (name.isEmpty())
   {
-    kDebug(7107) << "EXCEPTION: font has no name: " << BYTEARRAY(name);
+    kDebug(7107) << "EXCEPTION: font has no name => using R";
     name = "R"; // Let assume Regular // krazy:exclude=doublequote_chars
   }
   if (!skip_escape)
@@ -1700,6 +1742,8 @@ static QByteArray scan_named_font(char*& c)
   else
     return "";
 }
+
+//---------------------------------------------------------------------
 
 static QByteArray scan_number_code(char*& c)
 {
@@ -1730,6 +1774,7 @@ static QByteArray scan_number_code(char*& c)
   return number;
 }
 
+//---------------------------------------------------------------------
 // ### TODO known missing escapes from groff(7):
 // ### TODO \R
 
@@ -1740,20 +1785,26 @@ static char *scan_escape_direct(char *c, QByteArray& cstr)
   int i, j;
   bool cplusplus = true; // Should the c++ call be executed at the end of the function
 
-  cstr = "";
+  cstr.clear();
   intresult = 0;
   switch (*c)
   {
     case 'e':
-      cstr = "\\";
+      cstr += escapesym;
       curpos++;
-      break; // ### FIXME: it should be the current escape symbol
-    case '0': // ### TODO Where in Unicode? (space of digit width)
+      break;
+    case '0': // space of digit width
+      cstr = "&#8199;";  // Unicode FIGURE SPACE
+      curpos++;
+      break;
     case '~': // non-breakable-space (resizeable!)
     case ' ':
+      cstr = "&nbsp;";
+      curpos++;
+      break;
     case '|': // half-non-breakable-space
     case '^': // quarter-non-breakable-space
-      cstr = "&nbsp;";
+      cstr = "&#8239;";  // Unicode NARROW NO-BREAK SPACE
       curpos++;
       break;
     case ':':
@@ -1761,12 +1812,12 @@ static char *scan_escape_direct(char *c, QByteArray& cstr)
     case ',':
       break;  //  left italic correction, always a zero motion
     case '/':
-      cstr = " ";
+      cstr = "&#8201;";  // Unicode THIN SPACE
       curpos++;
       break;  // italic correction, i.e. a small piece of horizontal motion
-    case '"':
-      SKIPEOL;
-      c--;
+    case '"': // comment. skip rest of line
+      for (c++; *c && (*c != '\n'); c++) ;
+      cplusplus = false;
       break;
       // ### TODO \# like \" but does not ignore the end of line (groff(7))
     case '$':
@@ -1789,8 +1840,14 @@ static char *scan_escape_direct(char *c, QByteArray& cstr)
       break;
     }
     case 'k':
+    {
+      // Store the current horizontal position in the _input_ line in
+      // number register with name POSITION
       c++;
-      if (*c == '(') c += 2; // ### FIXME \k[REG] exists too
+      cstr = scan_name(c);
+      cstr.clear(); // TODO not implemented; discard it
+      break;
+    }
     case '!':
     case '%':
     case 'a':
@@ -1822,6 +1879,34 @@ static char *scan_escape_direct(char *c, QByteArray& cstr)
       c++;
       cstr = scan_named_font(c);
       cplusplus = false;
+      break;
+    }
+    case 'F':  // font family
+    {
+      c++;
+      cstr = scan_name(c);
+
+      if ( cstr == "C" )
+        cstr = set_font("CR");
+      else if ( cstr == "T" )
+        cstr = set_font("TR");
+      else if ( cstr == "H" )
+        cstr = set_font("HR");
+      else
+        cstr = set_font(cstr);
+
+      break;
+    }
+    case 'm': // color
+    {
+      c++;
+      cstr = scan_name(c);
+
+      if ( cstr.isEmpty() )
+        cstr = "</span>";
+      else
+        cstr = "<span style='color:" + cstr + "'>";
+
       break;
     }
     case 's': // ### FIXME: many forms are missing
@@ -1951,17 +2036,17 @@ static char *scan_escape_direct(char *c, QByteArray& cstr)
       curpos++;
       break; // groff(7) ### TODO verify
     case '`':
-      cstr = "`";
+      cstr = "`"; // krazy:exclude=doublequote_chars
       curpos++;
-      break; // groff(7) // krazy:exclude=doublequote_chars
+      break; // groff(7)
     case '-':
-      cstr = "-";
+      cstr = "-"; // krazy:exclude=doublequote_chars
       curpos++;
-      break; // groff(7) // krazy:exclude=doublequote_chars
+      break; // groff(7)
     case '.':
-      cstr = ".";
+      cstr = "."; // krazy:exclude=doublequote_chars
       curpos++;
-      break; // groff(7) // krazy:exclude=doublequote_chars
+      break; // groff(7)
     default:
       cstr = QByteArray(c, 1);
       curpos++;
@@ -2545,7 +2630,7 @@ static char *scan_table(char *c)
     {
       if (currow->at(curfield).align != 'S' && currow->at(curfield).align != '^')
       {
-        out_html("<TD");
+        out_html("<TD style='padding-right:10px; padding-left:10px;'");
         switch (currow->at(curfield).align)
         {
           case 'N':
@@ -2562,17 +2647,13 @@ static char *scan_table(char *c)
           out_html(" VALIGN=center");
         if (currow->at(curfield).colspan > 1)
         {
-          char buf[5];
           out_html(" COLSPAN=");
-          sprintf(buf, "%i", currow->at(curfield).colspan);
-          out_html(buf);
+          out_html(QByteArray::number(currow->at(curfield).colspan));
         }
         if (currow->at(curfield).rowspan > 1)
         {
-          char buf[5];
           out_html(" ROWSPAN=");
-          sprintf(buf, "%i", currow->at(curfield).rowspan);
-          out_html(buf);
+          out_html(QByteArray::number(currow->at(curfield).rowspan));
         }
         j = j + currow->at(curfield).colspan;
         out_html(">");
@@ -2610,14 +2691,18 @@ static char *scan_table(char *c)
   if (box && !border) out_html("</TABLE>");
   out_html("</TABLE>");
   if (box == 2) out_html("</TABLE>");
-  if (center) out_html("</CENTER>\n");
-  else out_html("\n");
+  if (center)
+    out_html("</CENTER>\n");
+  else
+    out_html("\n");
   if (!oldfillout) out_html("<PRE>");
   fillout = oldfillout;
   out_html(change_to_size(oldsize));
   out_html(set_font(oldfont));
   return c;
 }
+
+//---------------------------------------------------------------------
 
 static char *scan_expression(char *c, int *result, const unsigned int numLoop)
 {
@@ -2844,76 +2929,133 @@ static void trans_char(char *c, char s, char t)
   }
 }
 
-// 2004-10-19, patched by Waldo Bastian <bastian@kde.org>:
-// Fix handling of lines like:
-// .TH FIND 1L \" -*- nroff -*-
-// Where \" indicates the start of comment.
-//
-// The problem is the \" handling in fill_words(), the return value
-// indicates the end of the word as well as the end of the line, which makes it
-// basically impossible to express that the end of the last word is not the end of
-// the line.
-//
-// I have corrected that by adding an extra parameter 'next_line' that returns a
-// pointer to the next line, while the function itself returns a pointer to the end
-// of the last word.
-static char *fill_words(char *c, char *words[], int *n, bool newline, char **next_line)
+//---------------------------------------------------------------------
+// parse 1 line (or a line which stretches multiple lines by \(enter) )
+// return all arguments starting at \p c in \p args
+// returns the pointer to the next char where scanning should continue
+// (which is the char after the ending \n)
+// argPointers .. a list of pointers to the startchars of each arg pointing into the string given with c
+
+void getArguments(/* const */ char *&c, QList<QByteArray> &args, QList<char*> *argPointers = 0)
 {
-  char *sl = c;
-  int slash = 0;
-  int skipspace = 0;
-  *n = 0;
-  words[*n] = sl;
-  while (*sl && (*sl != '\n' || slash))
+  args.clear();
+  if ( argPointers )
+    argPointers->clear();
+
+  QByteArray arg;
+  arg.reserve(30);  // reduce num of reallocs
+  bool inString = false;
+  bool inArgument = false;
+
+  for (; *c && (*c != '\n'); c++)
   {
-    if (!slash)
+    if ( *c == '"' )
     {
-      if (*sl == '"')
+      if ( !inString )
       {
-        if (skipspace && (*(sl + 1) == '"'))
-          *sl++ = '\a';
-        else
+        inString = true;  // start of quoted argument
+      }
+      else
+      {
+        // according to http://heirloom.sourceforge.net/doctools/troff.pdf
+        // two consecutive quotes inside a string is one quote char
+        if ( *(c+1) == '"' )
         {
-          *sl = '\a';
-          skipspace = !skipspace;
+          arg += '"';
+          c++;
+        }
+        else  // end of quoted argument
+        {
+          args.append(arg);
+          arg.clear();
+          inString = false;
+          inArgument = false;
         }
       }
-      else if (*sl == escapesym)
-      {
-        slash = 1;
-      }
-      else if ((*sl == ' ' || *sl == '\t') && !skipspace)
-      {
-        if (newline) *sl = '\n';
-        if (words[*n] != sl)(*n)++;
-        words[*n] = sl + 1;
-      }
     }
-    else
+    else if ( *c == ' ' )
     {
-      if (*sl == '"')
+      if ( inString )
       {
-        sl--;
-        if (newline) *sl = '\n';
-        if (words[*n] != sl)(*n)++;
-        if (next_line)
+        arg += *c;
+        if ( !inArgument )  // argument not yet found (leading spaces)
         {
-          char *eow = sl;
-          sl++;
-          while (*sl && *sl != '\n') sl++;
-          *next_line = sl;
-          return eow;
+          inArgument = true;
+
+          if ( argPointers )
+            argPointers->append(c);
         }
-        return sl;
       }
-      slash = 0;
+      else if ( inArgument )
+      {
+        // end of previous argument
+        args.append(arg);
+        arg.clear();
+        inArgument = false;
+      }
     }
-    sl++;
+    else if ( (*c == escapesym) && (*(c+1) == ' ') )
+    {
+      // special handling \<SP> shall be kept as is
+      arg += *c++;
+      arg += *c;
+
+      if ( !inArgument )  // argument not yet found (leading spaces)
+      {
+        inArgument = true;
+
+        if ( argPointers )
+          argPointers->append(c);
+      }
+    }
+    else if ( (*c == escapesym) && (*(c+1) == '\n') )
+    {
+      c++;
+    }
+    else if ( (*c == escapesym) && (*(c+1) == '"') )  // start of comment; skip rest of line
+    {
+      if ( inArgument )
+      {
+        // end of previous argument
+        args.append(arg);
+        arg.clear();
+        inArgument = false;
+      }
+
+      // skip rest of line
+      while ( *c && (*c != '\n') ) c++;
+      break;
+    }
+    else if ( *c != ' ' )
+    {
+      arg += *c;
+      if ( !inArgument )  // argument not yet found (leading spaces)
+      {
+        inArgument = true;
+
+        if ( argPointers )
+          argPointers->append(c);
+      }
+    }
   }
-  if (sl != words[*n])(*n)++;
-  if (next_line) *next_line = sl + 1;
-  return sl;
+
+  if ( inArgument )
+  {
+    // end of previous argument
+    args.append(arg);
+  }
+
+  if ( *c ) c++;
+
+#if 1
+  for (int i = 0; i < args.count(); i++)
+  {
+    qWarning("ARG:%d >>>%s<<<", i, args[i].data());
+  }
+#endif
 }
+
+//---------------------------------------------------------------------
 
 static const char * const abbrev_list[] =
 {
@@ -2962,15 +3104,19 @@ static const char * const abbrev_list[] =
   NULL, NULL
 };
 
-static const char *lookup_abbrev(char *c)
+static const char *lookup_abbrev(const char *c)
 {
   int i = 0;
 
   if (!c) return "";
   while (abbrev_list[i] && qstrcmp(c, abbrev_list[i])) i = i + 2;
-  if (abbrev_list[i]) return abbrev_list[i+1];
-  else return c;
+  if (abbrev_list[i])
+    return abbrev_list[i+1];
+  else
+    return c;
 }
+
+//---------------------------------------------------------------------
 
 static const char * const section_list[] =
 {
@@ -3144,7 +3290,7 @@ static void request_while(char*& c, int j, bool mdoc)
   char* newline = skip_till_newline(c);
   const char oldchar = *newline;
   *newline = 0;
-  // We store the full .while stuff into a QCString as if it would be a macro
+  // We store the full .while stuff into a QByteArray as if it would be a macro
   const QByteArray macro = c ;
   kDebug(7107) << "'Macro' of .while" << BYTEARRAY(macro);
   // Prepare for continuing after .while loop end
@@ -3154,6 +3300,7 @@ static void request_while(char*& c, int j, bool mdoc)
   const bool oldwhileloop = s_whileloop;
   s_whileloop = true;
   int result = true; // It must be an int due to the call to scan_expression
+  break_the_while_loop = false;
   while (result && !break_the_while_loop)
   {
     // Unlike for a normal macro, we have the condition at start, so we do not need to prepend extra bytes
@@ -3182,32 +3329,33 @@ static void request_while(char*& c, int j, bool mdoc)
     }
     delete[] liveloop;
   }
+  break_the_while_loop = false;
 
   //
   s_whileloop = oldwhileloop;
   kDebug(7107) << "Ending .while";
 }
 
-const int max_wordlist = 100;
+//---------------------------------------------------------------------
+// Processing mixed fonts requests like .BI
 
-/// Processing mixed fonts reqiests like .BI
 static void request_mixed_fonts(char*& c, int j, const char* font1, const char* font2, const bool mode, const bool inFMode)
 {
   c += j;
   if (*c == '\n') c++;
-  int words;
-  char *wordlist[max_wordlist];
-  fill_words(c, wordlist, &words, true, &c);
-  for (int i = 0; i < words; i++)
+
+  QList<QByteArray> args;
+  getArguments(c, args);
+
+  for (int i = 0; i < args.count(); i++)
   {
-    if ((mode) || (inFMode))
+    if (mode || inFMode)
     {
       out_html(" ");
       curpos++;
     }
-    wordlist[i][-1] = ' ';
     out_html(set_font((i&1) ? font2 : font1));
-    scan_troff(wordlist[i], 1, NULL);
+    scan_troff(args[i].data(), 1, NULL);
   }
   out_html(set_font("R"));
   if (mode)
@@ -3222,194 +3370,7 @@ static void request_mixed_fonts(char*& c, int j, const char* font1, const char* 
     curpos++;
 }
 
-// Some known missing requests from man(7):
-// - see "safe subset": .tr
-
-// Some known missing requests from mdoc(7):
-// - start or end of quotings
-
-// Some of the requests are from mdoc.
-// On Linux see the man pages mdoc(7), mdoc.samples(7) and groff_mdoc(7)
-// See also the online man pages of FreeBSD: mdoc(7)
-
-#define REQ_UNKNOWN   -1
-#define REQ_ab         0
-#define REQ_di         1
-#define REQ_ds         2
-#define REQ_as         3
-#define REQ_br         4
-#define REQ_c2         5
-#define REQ_cc         6
-#define REQ_ce         7
-#define REQ_ec         8
-#define REQ_eo         9
-#define REQ_ex        10
-#define REQ_fc        11
-#define REQ_fi        12
-#define REQ_ft        13  // groff(7) "FonT"
-#define REQ_el        14
-#define REQ_ie        15
-#define REQ_if        16
-#define REQ_ig        17
-#define REQ_nf        18
-#define REQ_ps        19
-#define REQ_sp        20
-#define REQ_so        21
-#define REQ_ta        22
-#define REQ_ti        23
-#define REQ_tm        24
-#define REQ_B         25
-#define REQ_I         26
-#define REQ_Fd        27
-#define REQ_Fn        28
-#define REQ_Fo        29
-#define REQ_Fc        30
-#define REQ_OP        31
-#define REQ_Ft        32
-#define REQ_Fa        33
-#define REQ_BR        34
-#define REQ_BI        35
-#define REQ_IB        36
-#define REQ_IR        37
-#define REQ_RB        38
-#define REQ_RI        39
-#define REQ_DT        40
-#define REQ_IP        41 // man(7) "Indent Paragraph"
-#define REQ_TP        42
-#define REQ_IX        43
-#define REQ_P         44
-#define REQ_LP        45
-#define REQ_PP        46
-#define REQ_HP        47
-#define REQ_PD        48
-#define REQ_Rs        49
-#define REQ_RS        50
-#define REQ_Re        51
-#define REQ_RE        52
-#define REQ_SB        53
-#define REQ_SM        54
-#define REQ_Ss        55
-#define REQ_SS        56
-#define REQ_Sh        57
-#define REQ_SH        58 // man(7) "Sub Header"
-#define REQ_Sx        59
-#define REQ_TS        60
-#define REQ_Dt        61
-#define REQ_TH        62
-#define REQ_TX        63
-#define REQ_rm        64
-#define REQ_rn        65
-#define REQ_nx        66
-#define REQ_in        67
-#define REQ_nr        68 // groff(7) "Number Register"
-#define REQ_am        69
-#define REQ_de        70
-#define REQ_Bl        71 // mdoc(7) "Begin List"
-#define REQ_El        72 // mdoc(7) "End List"
-#define REQ_It        73 // mdoc(7) "ITem"
-#define REQ_Bk        74
-#define REQ_Ek        75
-#define REQ_Dd        76
-#define REQ_Os        77 // mdoc(7)
-#define REQ_Bt        78
-#define REQ_At        79 // mdoc(7) "AT&t" (not parsable, not callable)
-#define REQ_Fx        80 // mdoc(7) "Freebsd" (not parsable, not callable)
-#define REQ_Nx        81
-#define REQ_Ox        82
-#define REQ_Bx        83 // mdoc(7) "Bsd"
-#define REQ_Ux        84 // mdoc(7) "UniX"
-#define REQ_Dl        85
-#define REQ_Bd        86
-#define REQ_Ed        87
-#define REQ_Be        88
-#define REQ_Xr        89 // mdoc(7) "eXternal Reference"
-#define REQ_Fl        90 // mdoc(7) "FLag"
-#define REQ_Pa        91
-#define REQ_Pf        92
-#define REQ_Pp        93
-#define REQ_Dq        94 // mdoc(7) "Double Quote"
-#define REQ_Op        95
-#define REQ_Oo        96
-#define REQ_Oc        97
-#define REQ_Pq        98 // mdoc(7) "Parenthese Quote"
-#define REQ_Ql        99
-#define REQ_Sq       100 // mdoc(7) "Single Quote"
-#define REQ_Ar       101
-#define REQ_Ad       102
-#define REQ_Em       103 // mdoc(7) "EMphasis"
-#define REQ_Va       104
-#define REQ_Xc       105
-#define REQ_Nd       106
-#define REQ_Nm       107
-#define REQ_Cd       108
-#define REQ_Cm       109
-#define REQ_Ic       110
-#define REQ_Ms       111
-#define REQ_Or       112
-#define REQ_Sy       113
-#define REQ_Dv       114
-#define REQ_Ev       115
-#define REQ_Fr       116
-#define REQ_Li       117
-#define REQ_No       118
-#define REQ_Ns       119
-#define REQ_Tn       120
-#define REQ_nN       121
-#define REQ_perc_A   122
-#define REQ_perc_D   123
-#define REQ_perc_N   124
-#define REQ_perc_O   125
-#define REQ_perc_P   126
-#define REQ_perc_Q   127
-#define REQ_perc_V   128
-#define REQ_perc_B   129
-#define REQ_perc_J   130
-#define REQ_perc_R   131
-#define REQ_perc_T   132
-#define REQ_An       133 // mdoc(7) "Author Name"
-#define REQ_Aq       134 // mdoc(7) "Angle bracket Quote"
-#define REQ_Bq       135 // mdoc(7) "Bracket Quote"
-#define REQ_Qq       136 // mdoc(7)  "straight double Quote"
-#define REQ_UR       137 // man(7) "URl"
-#define REQ_UE       138 // man(7) "Url End"
-#define REQ_UN       139 // man(7) "Url Name" (a.k.a. anchors)
-#define REQ_tr       140 // translate
-#define REQ_troff    141 // groff(7) "TROFF mode"
-#define REQ_nroff    142 // groff(7) "NROFF mode"
-#define REQ_als      143 // groff(7) "ALias String"
-#define REQ_rr       144 // groff(7) "Remove number Register"
-#define REQ_rnn      145 // groff(7) "ReName Number register"
-#define REQ_aln      146 // groff(7) "ALias Number register"
-#define REQ_shift    147 // groff(7) "SHIFT parameter"
-#define REQ_while    148 // groff(7) "WHILE loop"
-#define REQ_do       149 // groff(7) "DO command"
-#define REQ_Dx       150 // mdoc(7) "DragonFly" macro
-#define REQ_Ta       151 // mdoc(7) "Ta" inside .It macro
-#define REQ_break    152 // groff(7) "Break out of a while loop"
-#define REQ_nop      153 // groff(7) .nop macro
-
-static int get_request(char *req, int len)
-{
-  static const char * const requests[] =
-  {
-    "ab", "di", "ds", "as", "br", "c2", "cc", "ce", "ec", "eo", "ex", "fc",
-    "fi", "ft", "el", "ie", "if", "ig", "nf", "ps", "sp", "so", "ta", "ti",
-    "tm", "B", "I", "Fd", "Fn", "Fo", "Fc", "OP", "Ft", "Fa", "BR", "BI",
-    "IB", "IR", "RB", "RI", "DT", "IP", "TP", "IX", "P", "LP", "PP", "HP",
-    "PD", "Rs", "RS", "Re", "RE", "SB", "SM", "Ss", "SS", "Sh", "SH", "Sx",
-    "TS", "Dt", "TH", "TX", "rm", "rn", "nx", "in", "nr", "am", "de", "Bl",
-    "El", "It", "Bk", "Ek", "Dd", "Os", "Bt", "At", "Fx", "Nx", "Ox", "Bx",
-    "Ux", "Dl", "Bd", "Ed", "Be", "Xr", "Fl", "Pa", "Pf", "Pp", "Dq", "Op",
-    "Oo", "Oc", "Pq", "Ql", "Sq", "Ar", "Ad", "Em", "Va", "Xc", "Nd", "Nm",
-    "Cd", "Cm", "Ic", "Ms", "Or", "Sy", "Dv", "Ev", "Fr", "Li", "No", "Ns",
-    "Tn", "nN", "%A", "%D", "%N", "%O", "%P", "%Q", "%V", "%B", "%J", "%R",
-    "%T", "An", "Aq", "Bq", "Qq", "UR", "UE", "UN", "tr", "troff", "nroff", "als",
-    "rr", "rnn", "aln", "shift", "while", "do", "Dx", "Ta", "break", "nop", 0
-  };
-  int r = 0;
-  while (requests[r] && qstrncmp(req, requests[r], len)) r++;
-  return requests[r] ? r : REQ_UNKNOWN;
-}
+//---------------------------------------------------------------------
 
 // &%(#@ c programs !!!
 //static int ifelseval=0;
@@ -3433,9 +3394,11 @@ static char* process_quote(char* c, int j, const char* open, const char* close)
   return c;
 }
 
+//---------------------------------------------------------------------
 /**
  * Is the char \p ch a puntuaction in sence of mdoc(7)
  */
+
 static bool is_mdoc_punctuation(const char ch)
 {
   if ((ch >= '0' &&  ch <= '9') || (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))
@@ -3447,11 +3410,13 @@ static bool is_mdoc_punctuation(const char ch)
     return false;
 }
 
+//---------------------------------------------------------------------
 /**
  * Can the char \p c be part of an identifier
  * \note For groff, an identifier can consist of nearly all ASCII printable non-white-space characters
  * See info:/groff/Identifiers
  */
+
 static bool is_identifier_char(const char c)
 {
   if (c >= '!' && c <= '[')   // Include digits and upper case
@@ -3462,6 +3427,8 @@ static bool is_identifier_char(const char c)
     return false; // ### TODO: it should be treated as escape instead!
   return false;
 }
+
+//---------------------------------------------------------------------
 
 static QByteArray scan_identifier(char*& c)
 {
@@ -3481,6 +3448,8 @@ static QByteArray scan_identifier(char*& c)
   return name;
 }
 
+//---------------------------------------------------------------------
+
 static char *scan_request(char *c)
 {
   // mdoc(7) stuff
@@ -3488,15 +3457,13 @@ static char *scan_request(char *c)
   static bool mandoc_command = false;  /* True if this is mdoc(7) page */
   static int mandoc_bd_options; /* Only copes with non-nested Bd's */
   static int function_argument = 0; // Number of function argument (.Fo, .Fa, .Fc)
-  // man(7) stuff
-  static bool ur_ignore = false; // Has .UR a parameter : (for .UE to know if or not to write </a>)
 
   int i = 0;
   bool mode = false;
   char *h = 0;
-  char *wordlist[max_wordlist];
-  int words;
   char *sl;
+  QList<QByteArray> args;
+
   while (*c == ' ' || *c == '\t') c++; // Spaces or tabs allowed between control character and request
   if (c[0] == '\n') return c + 1;
   if (c[0] == escapesym)
@@ -3509,7 +3476,15 @@ static char *scan_request(char *c)
       c = skip_till_newline(c); // ### TODO
     }
     else
-      c = scan_escape(c + 1);
+    {
+      // the result of the escape expansion must be parsed again
+      c++;
+      QByteArray cstr;
+      c = scan_escape_direct(c, cstr);
+      for (; *c && (*c != '\n'); c++) cstr += *c;
+      if ( cstr.length() )
+        scan_request(cstr.data());
+    }
   }
   else
   {
@@ -3524,25 +3499,31 @@ static char *scan_request(char *c)
     while (c[j] == ' ' || c[j] == '\t') j++;
     /* search macro database of self-defined macros */
     QMap<QByteArray, StringDefinition>::const_iterator it = s_stringDefinitionMap.constFind(macroName);
-    if (it != s_stringDefinitionMap.constEnd())
+
+    // ### HACK: e.g. nmap, smb.conf redefine SH, SS to increase the font, etc. for non-TTY output
+    // Ignore those to make the HTML result look better
+    if ( (macroName != "SH") && (macroName != "SS") &&
+         it != s_stringDefinitionMap.constEnd() )
     {
       kDebug(7107) << "CALLING MACRO: " << BYTEARRAY(macroName);
       const QByteArray oldDollarZero = s_dollarZero; // Previous value of $0
       s_dollarZero = macroName;
-      sl = fill_words(c + j, wordlist, &words, true, &c);
-      *sl = '\0';
-      for (i = 1;i < words; i++) wordlist[i][-1] = '\0';
-      for (i = 0; i < words; i++)
+
+      c += j;
+      getArguments(c, args);
+      for (i = 0; i < args.count(); i++)
       {
-        char *h = NULL;
+        char *h = 0;
+
         if (mandoc_command)
-          scan_troff_mandoc(wordlist[i], 1, &h);
+          scan_troff_mandoc(args[i].data(), 1, &h);
         else
-          scan_troff(wordlist[i], 1, &h);
-        wordlist[i] = qstrdup(h);
+          scan_troff(args[i].data(), 1, &h);
+
+        args[i] = h;
         delete [] h;
       }
-      for (i = words; i < max_wordlist; i++) wordlist[i] = NULL;
+
       if (!(*it).m_output.isEmpty())
       {
         //kDebug(7107) << "Macro content is: "<< BYTEARRAY( (*it).m_output );
@@ -3550,14 +3531,11 @@ static char *scan_request(char *c)
         char* work = new char [length+2];
         work[0] = '\n'; // The macro must start after an end of line to allow a request on first line
         qstrncpy(work + 1, (*it).m_output.data(), length + 1);
-        const QList<char*> oldArgumentList(s_argumentList);
+        const QList<QByteArray> oldArgumentList(s_argumentList);
         s_argumentList.clear();
-        for (i = 0 ; i < max_wordlist; i++)
-        {
-          if (!wordlist[i])
-            break;
-          s_argumentList.push_back(wordlist[i]);
-        }
+        for (i = 0; i < args.count(); i++)
+          s_argumentList.push_back(args[i]);
+
         const int onff = newline_for_fun;
         if (mandoc_command)
           scan_troff_mandoc(work + 1, 0, NULL);
@@ -3567,15 +3545,13 @@ static char *scan_request(char *c)
         newline_for_fun = onff;
         s_argumentList = oldArgumentList;
       }
-      for (i = 0; i < words; i++) delete [] wordlist[i];
-      *sl = '\n';
       s_dollarZero = oldDollarZero;
       kDebug(7107) << "ENDING MACRO: " << BYTEARRAY(macroName);
     }
     else
     {
       kDebug(7107) << "REQUEST: " << BYTEARRAY(macroName);
-      switch (int request = get_request(c, nlen))
+      switch (RequestNum request = RequestHash::getRequest(macroName, macroName.length()))
       {
         case REQ_ab: // groff(7) "ABort"
         {
@@ -3644,8 +3620,10 @@ static char *scan_request(char *c)
           const QByteArray name(scan_identifier(c));
           if (name.isEmpty())
             break;
+          // an initial " is removed to allow leading space
           while (*c && isspace(*c)) c++;
-          if (*c && *c == '"') c++;
+          if (*c == '"') c++;
+
           single_escape = true;
           curpos = 0;
           char* result = 0;
@@ -3824,6 +3802,7 @@ static char *scan_request(char *c)
         }
         case REQ_ie: // groff(7) "If with Else"
           /* .ie c anything : then part of if else */
+          // fallthrough
         case REQ_if: // groff(7) "IF"
         {
           /* .if c anything
@@ -3883,22 +3862,24 @@ static char *scan_request(char *c)
         }
         case REQ_ps: // groff(7) "previous Point Size"
         {
-          c = c + j;
-          if (*c == '\n')
+          c += j;
+          getArguments(c, args);
+          if ( args.count() == 0 )
             out_html(change_to_size('0'));
           else
           {
+            char *h = args[0].data();
             j = 0;
             i = 0;
-            if (*c == '-')
+            if (*h == '-')
             {
               j = -1;
-              c++;
+              h++;
             }
-            else if (*c == '+')
+            else if (*h == '+')
               j = 1;
-            c++;
-            c = scan_expression(c, &i);
+            h++;
+            scan_expression(h, &i);
             if (!j)
             {
               j = 1;
@@ -3906,18 +3887,15 @@ static char *scan_request(char *c)
             }
             out_html(change_to_size(i*j));
           }
-          c = skip_till_newline(c);
           break;
         }
         case REQ_sp: // groff(7) "SKip one line"
         {
-          c = c + j;
+          c += j;
           if (fillout)
             out_html("<br><br>");
           else
-          {
             out_html(NEWLINE);
-          }
           curpos = 0;
           c = skip_till_newline(c);
           break;
@@ -3995,12 +3973,10 @@ static char *scan_request(char *c)
         }
         case REQ_tm: // groff(7) "TerMinal" ### TODO: what are useful uses for it
         {
-          c = c + j;
-          h = c;
-          while (*c != '\n') c++;
-          *c = '\0';
-          kDebug(7107) << ".tm " << (h);
-          *c = '\n';
+          c += j;
+          getArguments(c, args);
+          if ( args.count() )
+            kDebug(7107) << ".tm " << args[0];
           break;
         }
         case REQ_B: // man(7) "Bold"
@@ -4008,41 +3984,49 @@ static char *scan_request(char *c)
         case REQ_I: // man(7) "Italic"
         {
           /* parse one line in a certain font */
+          c += j;
+          getArguments(c, args);
+
           out_html(set_font(mode ? "B" : "I"));
-          fill_words(c, wordlist, &words, false, 0);
-          c = c + j;
-          if (*c == '\n') c++;
-          c = scan_troff(c, 1, NULL);
+
+          for (int i = 0; i < args.count(); i++)
+          {
+            scan_troff(args[i].data(), 1, 0);
+            out_html(" ");
+          }
+
           out_html(set_font("R"));
-          out_html(NEWLINE);
+
           if (fillout)
             curpos++;
           else
+          {
+            out_html(NEWLINE);
             curpos = 0;
+          }
           break;
         }
         case REQ_Fd: // mdoc(7) "Function Definition"
         {
           // Normal text must be printed in bold, punctuation in regular font
           c += j;
-          if (*c == '\n') c++; // ### TODO: verify
-          sl = fill_words(c, wordlist, &words, true, &c);
-          for (i = 0; i < words; i++)
+          if (*c == '\n') c++;
+          getArguments(c, args);
+
+          for (i = 0; i < args.count(); i++)
           {
-            wordlist[i][-1] = ' ';
             // ### FIXME In theory, only a single punctuation character is recognized as punctuation
-            if (is_mdoc_punctuation(*wordlist[i]))
+            if ( is_mdoc_punctuation(args[i][0]) )
               out_html(set_font("R"));
             else
               out_html(set_font("B"));
-            scan_troff(wordlist[i], 1, NULL);
+            scan_troff(args[i].data(), 1, NULL);
             out_html(" ");
           }
           // In the mdoc synopsis, there are automatical line breaks (### TODO: before or after?)
           if (mandoc_synopsis)
-          {
             out_html("<br>");
-          };
+
           out_html(set_font("R"));
           out_html(NEWLINE);
           if (!fillout)
@@ -4056,23 +4040,22 @@ static char *scan_request(char *c)
           // brackets and commas have to be inserted automatically
           c += j;
           if (*c == '\n') c++;
-          sl = fill_words(c, wordlist, &words, true, &c);
-          if (words)
+          getArguments(c, args);
+          if ( args.count() )
           {
-            for (i = 0; i < words; i++)
+            for (i = 0; i < args.count(); i++)
             {
-              wordlist[i][-1] = ' ';
               if (i)
                 out_html(set_font("I"));
               else
                 out_html(set_font("B"));
-              scan_troff(wordlist[i], 1, NULL);
+              scan_troff(args[i].data(), 1, NULL);
               out_html(set_font("R"));
               if (i == 0)
               {
                 out_html(" (");
               }
-              else if (i < words - 1)
+              else if (i < args.count() - 1)
                 out_html(", ");
             }
             out_html(")");
@@ -4096,19 +4079,18 @@ static char *scan_request(char *c)
           char *semicolon = strchr(c, ';');
           if ((semicolon != 0) && (semicolon < eol)) *semicolon = ' ';
 
-          sl = fill_words(c, wordlist, &words, true, &c);
+          getArguments(c, args);
           // Normally a .Fo has only one parameter
-          for (i = 0; i < words; i++)
+          for (i = 0; i < args.count(); i++)
           {
-            wordlist[i][-1] = ' ';
             out_html(set_font(font[i&1]));
-            scan_troff(wordlist[i], 1, NULL);
+            scan_troff(args[i].data(), 1, NULL);
             if (i == 0)
             {
               out_html(" (");
             }
             // ### TODO What should happen if there is more than one argument
-            // else if (i<words-1) out_html(", ");
+            // else if (i<args.count()-1) out_html(", ");
           }
           function_argument = 1; // Must be > 0
           out_html(set_font("R"));
@@ -4143,7 +4125,7 @@ static char *scan_request(char *c)
           char* font[2] = {(char*)"B", (char*)"R" };
           c += j;
           if (*c == '\n') c++;
-          sl = fill_words(c, wordlist, &words, true, &c);
+          getArguments(c, args);
           out_html(set_font(font[i&1]));
           // function_argument==0 means that we had no .Fo  before, e.g. in mdoc.samples(7)
           if (function_argument > 1)
@@ -4157,11 +4139,9 @@ static char *scan_request(char *c)
             // We are only at the first parameter
             function_argument++;
           }
-          for (i = 0; i < words; i++)
-          {
-            wordlist[i][-1] = ' ';
-            scan_troff(wordlist[i], 1, NULL);
-          }
+          for (i = 0; i < args.count(); i++)
+            scan_troff(args[i].data(), 1, NULL);
+
           out_html(set_font("R"));
           if (!fillout)
             curpos = 0;
@@ -4173,13 +4153,11 @@ static char *scan_request(char *c)
         case REQ_OP:  /* groff manpages use this construction */
         {
           /* .OP a b : [ <B>a</B> <I>b</I> ] */
-          mode = true;
           out_html(set_font("R"));
           out_html("[");
           curpos++;
           request_mixed_fonts(c, j, "B", "I", true, false);
           break;
-          // Do not break!
         }
         case REQ_Ft:       //perhaps "Function return type"
         {
@@ -4225,16 +4203,21 @@ static char *scan_request(char *c)
         }
         case REQ_IP: // man(7) "Ident Paragraph"
         {
-          sl = fill_words(c + j, wordlist, &words, true, &c);
+          c += j;
+          getArguments(c, args);
+
           if (!dl_set[itemdepth])
           {
             out_html("<DL>\n");
             dl_set[itemdepth] = 1;
           }
           out_html("<DT>");
-          if (words)
-            scan_troff(wordlist[0], 1, NULL);
-          out_html("<DD>");
+
+          if ( args.count() )
+            scan_troff(args[0].data(), 1, NULL);
+
+          out_html("</DT>\n<DD>");
+          listItemStack.push("DD");
           curpos = 0;
           break;
         }
@@ -4242,9 +4225,10 @@ static char *scan_request(char *c)
         {
           if (!dl_set[itemdepth])
           {
-            out_html("<br><br><DL>\n");
+            out_html("<DL>\n");
             dl_set[itemdepth] = 1;
           }
+          out_html(set_font("R"));
           out_html("<DT>");
           c = skip_till_newline(c);
           /* somewhere a definition ends with '.TP' */
@@ -4260,14 +4244,14 @@ static char *scan_request(char *c)
             }
             c = scan_troff(c, 1, NULL);
             out_html("<DD>");
+            listItemStack.push("DD");
           }
           curpos = 0;
           break;
         }
-        case REQ_IX: // "INdex" ### TODO: where is it defined?
+        case REQ_IX: // Indexing term (printed on standard error)
         {
-          /* general index */
-          c = skip_till_newline(c);
+          c = skip_till_newline(c); // ignore
           break;
         }
         case REQ_P: // man(7) "Paragraph"
@@ -4279,8 +4263,11 @@ static char *scan_request(char *c)
             out_html("</DL>\n");
             dl_set[itemdepth] = 0;
           }
+          else
+            if (fillout) out_html("<br>");
+
           if (fillout)
-            out_html("<br><br>\n");
+            out_html("<br>\n");
           else
           {
             out_html(NEWLINE);
@@ -4310,18 +4297,19 @@ static char *scan_request(char *c)
         case REQ_Rs: // mdoc(7) "Relative margin Start"
         case REQ_RS: // man(7) "Relative margin Start"
         {
-          sl = fill_words(c + j, wordlist, &words, true, 0);
+          c += j;
+          getArguments(c, args);
           j = 1;
-          if (words > 0) scan_expression(wordlist[0], &j);
+          if (args.count() > 0) scan_expression(args[0].data(), &j);
           if (j >= 0)
           {
             itemdepth++;
             dl_set[itemdepth] = 0;
-            out_html("<DL><DT><DD>");
-            c = skip_till_newline(c);
+            out_html("<DL><DT></DT><DD>");
+            listItemStack.push("DD");
             curpos = 0;
-            break;
           }
+          break;
         }
         case REQ_Re: // mdoc(7) "Relative margin End"
         case REQ_RE: // man(7) "Relative margin End"
@@ -4398,8 +4386,8 @@ static char *scan_request(char *c)
             out_html("</H3>\n");
           else
             out_html("</H2>\n");
-          out_html("<div>\n");
 
+          out_html("<div>\n");
           section = 1;
           curpos = 0;
           break;
@@ -4431,91 +4419,81 @@ static char *scan_request(char *c)
         {
           if (!output_possible)
           {
-            sl = fill_words(c + j, wordlist, &words, true, &c);
-            // ### TODO: the page should be displayed even if it is "anonymous" (words==0)
-            if (words >= 1)
-            {
-              for (i = 1; i < words; i++) wordlist[i][-1] = '\0';
-              *sl = '\0';
-              for (i = 0; i < words; i++)
-              {
-                if (wordlist[i][0] == '\007')
-                  wordlist[i]++;
-                if (wordlist[i][qstrlen(wordlist[i]) - 1] == '\007')
-                  wordlist[i][qstrlen(wordlist[i]) - 1] = 0;
-              }
-              output_possible = true;
-              out_html(DOCTYPE"<HTML>\n<HEAD>\n");
+            c += j;
+            getArguments(c, args);
+            output_possible = true;
+            out_html(DOCTYPE"<HTML>\n<HEAD>\n");
 #ifdef SIMPLE_MAN2HTML
-              // Most English man pages are in ISO-8859-1
-              out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
+            // Most English man pages are in ISO-8859-1
+            out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
 #else
-              out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
-              out_html(KGlobal::locale()->encoding());
-              out_html("\">\n");
+            out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
+            out_html(KGlobal::locale()->encoding());
+            out_html("\">\n");
 #endif
-              out_html("<TITLE>");
-              out_html(scan_troff(wordlist[0], 0, NULL));
-              out_html(" Manpage</TITLE>\n");
+            out_html("<TITLE>");
+            if ( args.count() )
+              out_html(scan_troff(args[0].data(), 0, NULL));
+            out_html(" Manpage</TITLE>\n");
 
-              // KDE defaults.
-              out_html("<link rel=\"stylesheet\" href=\"help:/common/kde-default.css\"");
-              out_html(" type=\"text/css\">\n");
+            // KDE defaults.
+            out_html("<link rel=\"stylesheet\" href=\"help:/common/kde-default.css\"");
+            out_html(" type=\"text/css\">\n");
 
-              // Output our custom stylesheet.
-              out_html("<link rel=\"stylesheet\" href=\"");
-              out_html(cssFile);
-              out_html("\" type=\"text/css\">\n");
+            // Output our custom stylesheet.
+            out_html("<link rel=\"stylesheet\" href=\"");
+            out_html(cssFile);
+            out_html("\" type=\"text/css\">\n");
 
-              // Some elements need background images, but this
-              // could not be included in the stylesheet,
-              // include it now.
-              out_html("<style>\n#header_top { "
-                       "background-image: url(\"help:/common/top.jpg\"); }\n\n"
-                       "#header_top div { "
-                       "background-image: url(\"help:/common/top-left.jpg\"); }\n\n"
-                       "#header_top div div { "
-                       "background-image: url(\"help:/common/top-right.jpg\"); }\n\n"
-                       "</style>\n\n"
-                      );
+            // Some elements need background images, but this
+            // could not be included in the stylesheet,
+            // include it now.
+            out_html("<style type=\"text/css\">\n#header_top { "
+                     "background-image: url(\"help:/common/top.jpg\"); }\n\n"
+                     "#header_top div { "
+                     "background-image: url(\"help:/common/top-left.jpg\"); }\n\n"
+                     "#header_top div div { "
+                     "background-image: url(\"help:/common/top-right.jpg\"); }\n\n"
+                     "</style>\n\n"
+                    );
 
-              out_html("<meta name=\"ROFF Type\" content=\"");
-              if (mandoc_command)
-                out_html("mdoc");
+            out_html("<meta name=\"ROFF_Type\" content=\"");
+            if (mandoc_command)
+              out_html("mdoc");
+            else
+              out_html("man");
+            out_html("\">\n");
+
+            out_html("</HEAD>\n\n");
+            out_html("<BODY>\n\n");
+
+            out_html("<div id=\"header\"><div id=\"header_top\">\n");
+            out_html("<div><div>\n");
+            out_html("<img src=\"help:/common/top-kde.jpg\" alt=\"top-kde\"> ");
+            if ( args.count() )
+              out_html(scan_troff(args[0].data(), 0, NULL));
+            out_html(" - KDE Man Page Viewer");
+            out_html("</div></div></div></div>\n");
+
+            out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
+            out_html("<h1>");
+            if ( args.count() )
+              out_html(scan_troff(args[0].data(), 0, NULL));
+            out_html("</h1>\n");
+            if (args.count() > 1)
+            {
+              out_html("Section: ");
+              if ( !mandoc_command && (args.count() > 4) )
+                out_html(scan_troff(args[4].data(), 0, NULL));
               else
-                out_html("man");
-              out_html("\">\n");
-
-              out_html("</HEAD>\n\n");
-              out_html("<BODY>\n\n");
-
-              out_html("<div id=\"header\"><div id=\"header_top\">\n");
-              out_html("<div><div>\n");
-              out_html("<img src=\"help:/common/top-kde.jpg\"> ");
-              out_html(scan_troff(wordlist[0], 0, NULL));
-              out_html(" - KDE Man Page Viewer");
-              out_html("</div></div></div></div>\n");
-
-              out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
-              out_html("<h1>");
-              out_html(scan_troff(wordlist[0], 0, NULL));
-              out_html("</h1>\n");
-              if (words > 1)
-              {
-                out_html("Section: ");
-                if (!mandoc_command && words > 4)
-                  out_html(scan_troff(wordlist[4], 0, NULL));
-                else
-                  out_html(section_name(wordlist[1]));
-                out_html(" (");
-                out_html(scan_troff(wordlist[1], 0, NULL));
-                out_html(")\n");
-              }
-              else
-              {
-                out_html("Section not specified");
-              }
-              *sl = '\n';
+                out_html(section_name(args[1].data()));
+              out_html(" (");
+              out_html(scan_troff(args[1].data(), 0, NULL));
+              out_html(")\n");
+            }
+            else
+            {
+              out_html("Section not specified");
             }
           }
           else
@@ -4528,17 +4506,15 @@ static char *scan_request(char *c)
         }
         case REQ_TX: // mdoc(7)
         {
-          sl = fill_words(c + j, wordlist, &words, true, &c);
-          *sl = '\0';
+          c += j;
+          getArguments(c, args);
           out_html(set_font("I"));
-          if (words > 1) wordlist[1][-1] = '\0';
-          const char *c2 = lookup_abbrev(wordlist[0]);
+          const char *c2 = lookup_abbrev(args[0]);
           curpos += qstrlen(c2);
           out_html(c2);
           out_html(set_font("R"));
-          if (words > 1)
-            out_html(wordlist[1]);
-          *sl = '\n';
+          if (args.count() > 1)
+            out_html(args[1]);
           break;
         }
         case REQ_rm: // groff(7) "ReMove"
@@ -4650,36 +4626,28 @@ static char *scan_request(char *c)
           /* .am xx yy : append to a macro. */
           /* define or handle as .ig yy */
           mode = true;
+          // fallthrough
         case REQ_de: // groff(7) "DEfine macro"
+        case REQ_de1: // groff(7) "DEfine macro"
+        {
           /* .de xx yy : define or redefine macro xx; end at .yy (..) */
           /* define or handle as .ig yy */
-        {
           kDebug(7107) << "Start .am/.de";
           c += j;
-          char *next_line;
-          sl = fill_words(c, wordlist, &words, true, &next_line);
-          char *nameStart = wordlist[0];
-          c = nameStart;
-          while (*c && (*c != ' ') && (*c != '\n')) c++;
-          *c = '\0';
-          const QByteArray name(nameStart);
+          getArguments(c, args);
+          if ( args.count() == 0 )
+            break;
+
+          const QByteArray name(args[0]);
 
           QByteArray endmacro;
-          if (words == 1)
-          {
+          if (args.count() == 1)
             endmacro = "..";
-          }
           else
-          {
-            endmacro = "."; // krazy:exclude=doublequote_chars
-            c = wordlist[1];
-            while (*c && (*c != ' ') && (*c != '\n'))
-              endmacro += *c++;
-          }
-          c = next_line;
+            endmacro = "." + args[1]; // krazy:exclude=doublequote_chars
+
           sl = c;
-          const int length = qstrlen(endmacro);
-          while (*c && qstrncmp(c, endmacro, length))
+          while (*c && qstrncmp(c, endmacro, endmacro.length()))
             c = skip_till_newline(c);
 
           QByteArray macro;
@@ -4754,18 +4722,13 @@ static char *scan_request(char *c)
             dl_set[itemdepth] = BL_DESC_LIST;
             out_html("<DL>\n");
           }
-          if (fillout)
-            out_html("<br><br>\n");
-          else
-          {
-            out_html(NEWLINE);
-          }
           curpos = 0;
           c = skip_till_newline(c);
           break;
         }
         case REQ_El: // mdoc(7) "End List"
         {
+          checkListStack();
           c = c + j;
           if (dl_set[itemdepth] & BL_DESC_LIST)
             out_html("</DL>\n");
@@ -4775,21 +4738,19 @@ static char *scan_request(char *c)
             out_html("</OL>\n");
           dl_set[itemdepth] = 0;
           if (itemdepth > 0) itemdepth--;
-          if (fillout)
-            out_html("<br><br>\n");
-          else
-          {
+          if ( !fillout )
             out_html(NEWLINE);
-          }
+
           curpos = 0;
           c = skip_till_newline(c);
           break;
         }
         case REQ_It: // mdoc(7) "list ITem"
         {
+          checkListStack();
           c = c + j;
-          if (qstrncmp(c, "Xo", 2) == 0 && isspace(*(c + 2)))
-            c = skip_till_newline(c);
+          //if (qstrncmp(c, "Xo", 2) == 0 && isspace(*(c + 2)))
+            //c = skip_till_newline(c);
           if (dl_set[itemdepth] & BL_DESC_LIST)
           {
             out_html("<DT>");
@@ -4806,12 +4767,15 @@ static char *scan_request(char *c)
               c = scan_troff_mandoc(c, 1, NULL);
             }
             out_html(set_font("R"));
+            out_html("</DT>");
             out_html(NEWLINE);
             out_html("<DD>");
+            listItemStack.push("DD");
           }
           else if (dl_set[itemdepth] & (BL_BULLET_LIST | BL_ENUM_LIST))
           {
             out_html("<LI>");
+            listItemStack.push("LI");
             c = scan_troff_mandoc(c, 1, NULL);
             out_html(NEWLINE);
           }
@@ -4824,23 +4788,14 @@ static char *scan_request(char *c)
         case REQ_Bk:    /* mdoc(7) */
         case REQ_Ek:    /* mdoc(7) */
         case REQ_Dd:    /* mdoc(7) */
-        case REQ_Os: // mdoc(7) "Operating System"
-        {
-          trans_char(c, '"', '\a');
-          c = c + j;
-          if (*c == '\n') c++;
-          c = scan_troff_mandoc(c, 1, NULL);
-          out_html(NEWLINE);
-          if (fillout)
-            curpos++;
-          else
-            curpos = 0;
+        case REQ_Os:    // mdoc(7) "Operating System"
+        case REQ_Sm:    // mdoc(7) space mode
+          c = skip_till_newline(c);  // TODO
           break;
-        }
         case REQ_Bt: // mdoc(7) "Beta Test"
         {
-          trans_char(c, '"', '\a');
-          c = c + j;
+          //trans_char(c, '"', '\a');
+          //c = c + j;
           out_html(" is currently in beta test.");
           if (fillout)
             curpos++;
@@ -5029,30 +4984,36 @@ static char *scan_request(char *c)
         }
         case REQ_Fl:    // mdoc(7) "FLags"
         {
-          trans_char(c, '"', '\a');
+          //trans_char(c, '"', '\a');
           c += j;
-          sl = fill_words(c, wordlist, &words, true, &c);
+          QList<char*> argPointers;
+          getArguments(c, args, &argPointers);
           out_html(set_font("B"));
-          if (!words)
+          out_html("-");
+          if ( args.count() == 0 )
           {
-            out_html("-"); // stdin or stdout
+            /*out_html("-");*/ // stdin or stdout
           }
           else
           {
-            for (i = 0;i < words;++i)
+            if ( argPointers.count() )
+              scan_troff_mandoc(argPointers[0], 1, NULL);
+            /*
+            for (i = 0; i < args.count(); ++i)
             {
-              if (ispunct(wordlist[i][0]) && wordlist[i][0] != '-')
+              if (ispunct(args[i][0]) && args[i][0] != '-')
               {
-                scan_troff_mandoc(wordlist[i], 1, NULL);
+                scan_troff_mandoc(argPointers[i], 1, NULL);
               }
               else
               {
                 if (i > 0)
                   out_html(" "); // Put a space between flags
                 out_html("-");
-                scan_troff_mandoc(wordlist[i], 1, NULL);
+                scan_troff_mandoc(argPointers[i], 1, NULL);
               }
             }
+            */
           }
           out_html(set_font("R"));
           out_html(NEWLINE);
@@ -5186,15 +5147,20 @@ static char *scan_request(char *c)
         {
           /* parse one line in italics */
           out_html(set_font("I"));
-          trans_char(c, '"', '\a');
-          c = c + j;
-          if (*c == '\n')
+          c += j;
+          QList<char*> argPointers;
+          getArguments(c, args, &argPointers);
+          if ( args.count() == 0 )
           {
-            /* An empty Ar means "file ..." */
+            // An empty Ar means "file ..."
             out_html("file ...");
           }
           else
-            c = scan_troff_mandoc(c, 1, NULL);
+          {
+            if ( argPointers.count() )
+              c = scan_troff_mandoc(argPointers[0], 1, NULL);
+          }
+
           out_html(set_font("R"));
           out_html(NEWLINE);
           if (fillout)
@@ -5220,6 +5186,7 @@ static char *scan_request(char *c)
         }
         case REQ_Ad:    /* mdoc(7) */
         case REQ_Va:    /* mdoc(7) */
+        case REQ_Xo:    /* mdoc(7) */
         case REQ_Xc:    /* mdoc(7) */
         {
           /* parse one line in italics */
@@ -5250,12 +5217,33 @@ static char *scan_request(char *c)
             curpos = 0;
           break;
         }
-        case REQ_Nm:    // mdoc(7) "Name Macro" ### FIXME
+        case REQ_Nm:    // mdoc(7) "Name Macro"
         {
-          static char mandoc_name[NULL_TERMINATED(SMALL_STR_MAX)] = ""; // ### TODO Use QByteArray
-          trans_char(c, '"', '\a');
-          c = c + j;
+          c += j;
+          QList<char*> argPointers;
+          getArguments(c, args, &argPointers);
 
+          if ( mandoc_name.isEmpty() && args.count() )
+            mandoc_name = args[0];
+
+          out_html(set_font("B"));
+
+          // only show name if
+          // .Nm (first not-null-length defined name)
+          // .Nm name
+          // do not show
+          // .Nm ""
+          if ( args.count() == 0 )
+            scan_troff(mandoc_name.data(), 0, 0);
+          else
+          {
+            if ( argPointers.count() )
+              c = scan_troff_mandoc(argPointers[0], 1, 0);
+          }
+
+          out_html(set_font("R"));
+
+#if 0
           if (mandoc_synopsis && mandoc_name_count)
           {
             /* Break lines only in the Synopsis.
@@ -5298,6 +5286,7 @@ static char *scan_request(char *c)
             out_html(mandoc_name);
             out_html(set_font("R"));
           }
+#endif
 
           if (fillout)
             curpos++;
@@ -5392,62 +5381,27 @@ static char *scan_request(char *c)
             curpos = 0;
           break;
         }
-        case REQ_UR: // ### FIXME man(7) "URl"
+        case REQ_URL: // man(7) ".URL url link trailer"
         {
+          c += j;
+
+          getArguments(c, args);
           ignore_links = true;
-          c += j;
-          char* newc;
-          h = fill_words(c, wordlist, &words, false, &newc);
-          *h = 0;
-          if (words > 0)
-          {
-            h = wordlist[0];
-            // A parameter : means that we do not want an URL, not here and not until .UE
-            ur_ignore = (!qstrcmp(h, ":"));
-          }
-          else
-          {
-            // We cannot find the URL, assume :
-            ur_ignore = true;
-            h = 0;
-          }
-          if (!ur_ignore && words > 0)
-          {
-            out_html("<a href=\"");
-            out_html(h);
-            out_html("\">");
-          }
-          c = newc; // Go to next line
-          break;
-        }
-        case REQ_UE: // ### FIXME man(7) "Url End"
-        {
-          c += j;
-          c = skip_till_newline(c);
-          if (!ur_ignore)
-          {
-            out_html("</a>");
-          }
-          ur_ignore = false;
+          out_html("<a href=\"");
+
+          if ( args.count() > 0 )
+            scan_troff(args[0].data(), 0, 0);
+
+          out_html("\">");
+          if ( args.count() > 1 )
+            scan_troff(args[1].data(), 0, 0);
+
+          out_html("</a>\n");  // trailing newline important to make ignore_links work
           ignore_links = false;
-          break;
-        }
-        case REQ_UN: // ### FIXME man(7) "Url Named anchor"
-        {
-          c += j;
-          char* newc;
-          h = fill_words(c, wordlist, &words, false, &newc);
-          *h = 0;
-          if (words > 0)
-          {
-            h = wordlist[0];
-            out_html("<a name=\">");
-            out_html(h);
-            out_html("\" id=\"");
-            out_html(h);
-            out_html("\"></a>");
-          }
-          c = newc;
+
+          if ( args.count() > 2 )
+            scan_troff(args[2].data(), 1, NULL);
+
           break;
         }
         case REQ_tr:  // translate   TODO
@@ -5632,7 +5586,6 @@ static char *scan_request(char *c)
         }
         case REQ_while: // groff(7) "WHILE loop"
         {
-          break_the_while_loop = false;
           request_while(c, j, mandoc_command);
           break;
         }
@@ -5694,10 +5647,10 @@ static char *scan_request(char *c)
   return c;
 }
 
+//---------------------------------------------------------------------
+
 static int contained_tab = 0;
-static bool mandoc_line = false;    /* Signals whether to look for embedded mandoc
-                 * commands.
-                 */
+static bool mandoc_line = false; // Signals whether to look for embedded mandoc commands.
 
 static char *scan_troff(char *c, bool san, char **result)
 {   /* san : stop at newline */
@@ -5726,7 +5679,7 @@ static char *scan_troff(char *c, bool san, char **result)
     }
     else
     {
-      buffer = stralloc(LARGE_STR_MAX);
+      buffer = new char[LARGE_STR_MAX + 1];
       buffpos = 0;
       buffmax = LARGE_STR_MAX;
     }
@@ -5735,24 +5688,28 @@ static char *scan_troff(char *c, bool san, char **result)
   h = c; // ### FIXME below are too many tests that may go before the position of c
   /* start scanning */
 
-  // ### VERIFY: a dot must be at first position, we cannot add newlines or it would allow spaces before a dot
-  while (*h == ' ')
+  while (h && *h && (!san || newline_for_fun || (*h != '\n')) && !break_the_while_loop)
   {
-#if 1
-    ++h;
-#else
-    *h++ = '\n';
-#endif
-  }
-
-  while (h && *h && (!san || newline_for_fun || *h != '\n'))
-  {
-
     if (*h == escapesym)
     {
       h++;
       FLUSHIBP;
-      h = scan_escape(h);
+      // ###HACK: I think after escape expansion, the line should be reparsed
+      // (this seems to be what troff does), but it would double-escape
+      // HTML chars, e.g. the first escape produces "<span...", the second
+      // would change that to &lt;span...
+      // Therefore work around some man pages (e.g. nmap, smb.conf),
+      // which have \." at beginning of
+      // line (probably just typos), but troff would skip these
+      if ( (h[-2] == '\n') && (*h == '.') )  // when line starts with \. ignore line
+      {
+        while (*h && (*h != '\n')) h++;
+        continue;  // avoid h++ at the end
+      }
+      else
+      {
+        h = scan_escape(h);
+      }
     }
     else if (*h == controlsym && h[-1] == '\n')
     {
@@ -5770,7 +5727,11 @@ static char *scan_troff(char *c, bool san, char **result)
       // mdoc(7) embedded command eg ".It Fl Ar arg1 Fl Ar arg2"
       FLUSHIBP;
       h = scan_request(h);
-      if (san && h[-1] == '\n') h--;
+      if (san && h[-1] == '\n')
+      {
+        h--;
+        break;
+      }
     }
     else if (*h == nobreaksym && h[-1] == '\n')
     {
@@ -5781,7 +5742,6 @@ static char *scan_troff(char *c, bool san, char **result)
     }
     else
     {
-      /* int mx; */
       if (still_dd && isalnum(*h) && h[-1] == '\n')
       {
         /* sometimes a .HP request is not followed by a .br request */
@@ -5841,6 +5801,7 @@ static char *scan_troff(char *c, bool san, char **result)
           curpos = 0;
           usenbsp = 0;
           intbuff[ibp++] = '\n';
+          FLUSHIBP;
           break;
         case '\t':
         {
@@ -5919,6 +5880,7 @@ static char *scan_troff(char *c, bool san, char **result)
   return h;
 }
 
+//---------------------------------------------------------------------
 
 static char *scan_troff_mandoc(char *c, bool san, char **result)
 {
@@ -5940,8 +5902,10 @@ static char *scan_troff_mandoc(char *c, bool san, char **result)
      */
     *(end - 2) = '\n';
     ret = scan_troff(c, san, result);
-    *(end - 2) = *(end - 1);
-    *(end - 1) = ' ';
+    *end = 0;
+    out_html(end - 1);  // output the punct char
+    *end = '\n';
+    ret = end;
   }
   else
   {
@@ -5951,7 +5915,9 @@ static char *scan_troff_mandoc(char *c, bool san, char **result)
   return ret;
 }
 
+//---------------------------------------------------------------------
 // Entry point
+
 void scan_man_page(const char *man_page)
 {
   if (!man_page)
@@ -5974,10 +5940,12 @@ void scan_man_page(const char *man_page)
   InitNumberDefinitions();
 
   s_argumentList.clear();
+  listItemStack.clear();
 
   section = 0;
 
   s_dollarZero = ""; // No macro called yet!
+  mandoc_name = "";
 
   output_possible = false;
   int strLength = qstrlen(man_page);
@@ -5993,6 +5961,7 @@ void scan_man_page(const char *man_page)
 
   while (itemdepth || dl_set[itemdepth])
   {
+    checkListStack();
     out_html("</DL>\n");
     if (dl_set[itemdepth]) dl_set[itemdepth] = 0;
     else if (itemdepth > 0) itemdepth--;
@@ -6024,7 +5993,8 @@ void scan_man_page(const char *man_page)
 #ifdef SIMPLE_MAN2HTML
     output_real("Generated by kio_man");
 #else
-    output_real("Generated by kio_man, KDE version " KDE_VERSION_STRING);
+    output_real("Generated by kio_man, KDE version ");
+    output_real(Qt::escape(QLatin1String(KDE_VERSION_STRING)).toUtf8());
 #endif
     output_real("</div></div>\n\n");
 
@@ -6063,10 +6033,12 @@ void scan_man_page(const char *man_page)
   mandoc_name_count = 0;
 }
 
+//---------------------------------------------------------------------
+
 #ifdef SIMPLE_MAN2HTML
 void output_real(const char *insert)
 {
-  cout << insert;
+  std::cout << insert;
 }
 
 char *read_man_page(const char *filename)
@@ -6079,16 +6051,16 @@ char *read_man_page(const char *filename)
   size_t buf_size;
   if (stat(filename, &stbuf) == -1)
   {
-    std::cerr << "read_man_page: can not find " << filename << endl;
+    std::cerr << "read_man_page: can not find " << filename << std::endl;
     return NULL;
   }
   if (!S_ISREG(stbuf.st_mode))
   {
-    std::cerr << "read_man_page: no file " << filename << endl;
+    std::cerr << "read_man_page: no file " << filename << std::endl;
     return NULL;
   }
   buf_size = stbuf.st_size;
-  man_buf = stralloc(buf_size + 5);
+  man_buf = new char[buf_size + 5];
   man_pipe = 0;
   man_stream = fopen(filename, "r");
   if (man_stream)
@@ -6132,7 +6104,7 @@ int main(int argc, char **argv)
     struct dirent *ent;
     while ((ent = readdir(dir)) != NULL)
     {
-      cerr << "converting " << ent->d_name << endl;
+      std::cerr << "converting " << ent->d_name << std::endl;
       char *buf = read_man_page(ent->d_name);
       if (buf)
       {
