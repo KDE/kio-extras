@@ -19,8 +19,10 @@ Name[fi]=Identi.ca-ihmiset
 Name[fr]=Personne Identi.ca
 Name[ga]=Daoine Identi.ca
 Name[gu]=આઈડેન્ટિ.કા લોકો
+Name[he]=Identi.ca People
 Name[hi]=Identi.ca लोग
 Name[hr]=Ljudi na Identi.ci
+Name[hu]=Identi.ca felhasználók
 Name[ia]=Gente de Identi.ca
 Name[id]=Identi.ca People
 Name[is]=Identi.ca fólk
@@ -78,6 +80,7 @@ Query[fi]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[fr]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ga]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[gu]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[he]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[hi]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[hr]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[hu]=http://identi.ca/search/people?q=\\{@}&search=Search

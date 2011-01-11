@@ -20,6 +20,7 @@ Name[fi]=Duck Duck Go
 Name[fr]=Duck Duck Go
 Name[ga]=Duck Duck Go
 Name[gu]=ડક ડક ગો
+Name[he]=Duck Duck Go
 Name[hi]=बतख़ जा जा
 Name[hr]=Duck Duck Go
 Name[hu]=Duck Duck Go
@@ -30,6 +31,7 @@ Name[it]=Duck Duck Go
 Name[ja]=Duck Duck Go
 Name[kk]=Duck Duck Go
 Name[km]=Duck Duck Go
+Name[kn]=ಡಕ್ ಡಕ್ ಗೊ
 Name[ko]=Duck Duck Go
 Name[lt]=Duck Duck Go
 Name[lv]=Duck Duck Go
@@ -38,6 +40,7 @@ Name[nb]=Duck Duck Go
 Name[nds]=Duck Duck Go
 Name[nl]=Duck Duck Go
 Name[nn]=Duck Duck Go
+Name[pa]=ਡੱਕ ਡੱਕ ਗੋ
 Name[pl]=Duck Duck Go
 Name[pt]=Duck Duck Go
 Name[pt_BR]=Duck Duck Go
@@ -77,6 +80,7 @@ Query[fi]=http://duckduckgo.com/?q=\\{@}&v=
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ga]=http://duckduckgo.com/?q=\\{@}&v=
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=
+Query[he]=http://duckduckgo.com/?q=\\{@}&v=
 Query[hi]=http://duckduckgo.com/?q=\\{@}&v=
 Query[hr]=http://duckduckgo.com/?q=\\{@}&v=
 Query[hu]=http://duckduckgo.com/?q=\\{@}&v=

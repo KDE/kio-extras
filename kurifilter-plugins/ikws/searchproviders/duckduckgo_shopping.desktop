@@ -20,6 +20,7 @@ Name[fi]=Duck Duck Go -ostokset
 Name[fr]=Duck Duck Go Shopping
 Name[ga]=Siopadóireacht Duck Duck Go
 Name[gu]=ડક ડક ગો ખરીદી
+Name[he]=Duck Duck Go Shopping
 Name[hi]=बतख़ जा जा खरीदारी
 Name[hr]=Duck Duck Go Shopping
 Name[hu]=Duck Duck Go Shopping
@@ -30,6 +31,7 @@ Name[it]=Acquisti di Duck Duck Go
 Name[ja]=Duck Duck Go Shopping
 Name[kk]=Duck Duck Go Shopping
 Name[km]=ការ​ទិញ​ឥវ៉ាន់របស់ Duck Duck Go
+Name[kn]=ಡಕ್ ಡಕ್ ಗೊ ಖರೀದಿ
 Name[ko]=Duck Duck Go 쇼핑
 Name[lt]=Duck Duck Go Shopping
 Name[lv]=Duck Duck Go iepirkšanās
@@ -78,6 +80,7 @@ Query[fi]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ga]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[he]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[hi]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[hr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[hu]=http://duckduckgo.com/?q=\\{@}&v=s

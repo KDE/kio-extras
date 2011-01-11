@@ -103,7 +103,7 @@ Query[bn]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn_IN]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca@valencia]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
-Query[cs]=http://www.google.com/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
+Query[cs]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[csb]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[da]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[de]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8

@@ -20,8 +20,10 @@ Name[fi]=Identi.ca-ilmoitukset
 Name[fr]=Notices Identi.ca
 Name[ga]=Fógraí Identi.ca
 Name[gu]=આઈડેન્ટિ.કા નોંધો
+Name[he]=Identi.ca Notices
 Name[hi]=Identi.ca नोटिस
 Name[hr]=Poruke na Identi.ci
+Name[hu]=Identi.ca üzenetek
 Name[ia]=Novas de Identi.ca
 Name[id]=Identi.ca Notices
 Name[is]=Identi.ca tilkynningar
@@ -43,6 +45,7 @@ Name[pa]=Identi.ca ਨੋਟਿਸ
 Name[pl]=Powiadomienia Identi.ca
 Name[pt]=Avisos do Identi.ca
 Name[pt_BR]=Notícias do Identi.ca
+Name[ro]=Notificări Identi.ca
 Name[ru]=Identi.ca: записи
 Name[si]=Identi.ca දැනුම්දීම්
 Name[sk]=Identi.ca poznámky
@@ -78,6 +81,7 @@ Query[fi]=http://identi.ca/search/notice?q=\\{@}
 Query[fr]=http://identi.ca/search/notice?q=\\{@}
 Query[ga]=http://identi.ca/search/notice?q=\\{@}
 Query[gu]=http://identi.ca/search/notice?q=\\{@}
+Query[he]=http://identi.ca/search/notice?q=\\{@}
 Query[hi]=http://identi.ca/search/notice?q=\\{@}
 Query[hr]=http://identi.ca/search/notice?q=\\{@}
 Query[hu]=http://identi.ca/search/notice?q=\\{@}

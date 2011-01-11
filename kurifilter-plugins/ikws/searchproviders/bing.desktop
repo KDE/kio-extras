@@ -4,6 +4,7 @@ Name=Bing
 Name[ast]=Bing
 Name[bg]=Bing
 Name[ca]=Bing
+Name[ca@valencia]=Bing
 Name[cs]=Bing
 Name[da]=Bing
 Name[de]=Bing
@@ -12,8 +13,10 @@ Name[en_GB]=Bing
 Name[es]=Bing
 Name[et]=Bing
 Name[eu]=Bing
+Name[fi]=Bing
 Name[fr]=Bing
 Name[gu]=બિંગ
+Name[he]=Bing
 Name[hi]=बिंग
 Name[hr]=Bing
 Name[hu]=Bing
@@ -23,6 +26,7 @@ Name[it]=Bing
 Name[ja]=Bing
 Name[kk]=Bing
 Name[km]=Bing
+Name[kn]=ಬಿಂಗ್
 Name[ko]=Bing
 Name[lt]=Bing
 Name[mai]=बिंग
@@ -33,7 +37,10 @@ Name[nn]=Bing
 Name[pa]=ਬਿੰਗ
 Name[pt]=Bing
 Name[pt_BR]=Bing
+Name[ro]=Bing
 Name[ru]=Bing
+Name[sk]=Bing
+Name[sl]=Bing
 Name[sr]=Бинг
 Name[sr@ijekavian]=Бинг
 Name[sr@ijekavianlatin]=Bing
@@ -53,6 +60,7 @@ Query=http://www.bing.com/search?q=\\{@}
 Query[ast]=http://www.bing.com/search?q=\\{@}
 Query[bg]=http://www.bing.com/search?q=\\{@}
 Query[ca]=http://www.bing.com/search?q=\\{@}
+Query[ca@valencia]=http://www.bing.com/search?q=\\{@}
 Query[cs]=http://www.bing.com/search?q=\\{@}
 Query[da]=http://www.bing.com/search?q=\\{@}
 Query[de]=http://www.bing.de/search/?q=\\{@}
@@ -61,8 +69,10 @@ Query[en_GB]=http://www.bing.com/search?q=\\{@}
 Query[es]=http://www.bing.com/search?q=\\{@}
 Query[et]=http://www.bing.com/search?q=\\{@}
 Query[eu]=http://www.bing.com/search?q=\\{@}
+Query[fi]=http://www.bing.com/search?q=\\{@}&cc=fi
 Query[fr]=http://www.bing.com/search?q=\\{@}
 Query[gu]=http://www.bing.com/search?q=\\{@}
+Query[he]=http://www.bing.com/search?q=\\{@}
 Query[hi]=http://www.bing.com/search?q=\\{@}
 Query[hr]=http://www.bing.com/search?q=\\{@}
 Query[hu]=http://www.bing.com/search?q=\\{@}
@@ -83,7 +93,10 @@ Query[nn]=http://www.bing.com/search?q=\\{@}
 Query[pa]=http://www.bing.com/search?q=\\{@}
 Query[pt]=http://www.bing.com/search?q=\\{@}
 Query[pt_BR]=http://www.bing.com/search?q=\\{@}
+Query[ro]=http://www.bing.com/search?q=\\{@}
 Query[ru]=http://www.bing.com/search?q=\\{@}
+Query[sk]=http://www.bing.com/search?q=\\{@}
+Query[sl]=http://www.bing.com/search?q=\\{@}
 Query[sr]=http://www.bing.com/search?q=\\{@}
 Query[sr@ijekavian]=http://www.bing.com/search?q=\\{@}
 Query[sr@ijekavianlatin]=http://www.bing.com/search?q=\\{@}

@@ -103,7 +103,7 @@ Query[bn]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[bn_IN]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[ca]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[ca@valencia]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
-Query[cs]=http://austronaut.at/page.php?begriff=\{@}&wo=at
+Query[cs]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[csb]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[da]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[de]=http://austronaut.at/page.php?begriff=\\{@}&wo=at

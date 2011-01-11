@@ -21,6 +21,7 @@ Name[fi]=Gitorious
 Name[fr]=Gitorious
 Name[ga]=Gitorious
 Name[gu]=ગિટોરીઅસ
+Name[he]=Gitorious
 Name[hi]=गिटोरी
 Name[hr]=Gitorious
 Name[hu]=Gitorious
@@ -82,6 +83,7 @@ Query[fi]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[fr]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ga]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[gu]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[he]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[hi]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[hr]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[hu]=http://gitorious.org/search?q=\\{@}&commit=Search

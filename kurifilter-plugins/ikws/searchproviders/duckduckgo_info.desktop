@@ -19,6 +19,7 @@ Name[eu]=Duck Duck Go Info
 Name[fi]=Duck Duck Go -hakupalvelutiedot
 Name[fr]=Duck Duck Go Info
 Name[ga]=Eolas Duck Duck Go
+Name[he]=Duck Duck Go Info
 Name[hi]=बतख़ जा जा जानकारी
 Name[hr]=Duck Duck Go Info
 Name[hu]=Duck Duck Go Info
@@ -29,6 +30,7 @@ Name[it]=Informazioni di Duck Duck Go
 Name[ja]=Duck Duck Go Info
 Name[kk]=Duck Duck Go Info
 Name[km]=ព័ត៌មាន​របស់ Duck Duck Go
+Name[kn]=ಡಕ್ ಡಕ್ ಗೊ ಮಾಹಿತಿ
 Name[ko]=Duck Duck Go 정보
 Name[lt]=Duck Duck Go Info
 Name[lv]=Duck Duck Go informācija
@@ -37,6 +39,7 @@ Name[nb]=Duck Duck Go Info
 Name[nds]=Duck Duck Go - Informatschonen
 Name[nl]=Duck Duck Go Info
 Name[nn]=Duck Duck Go-informasjon
+Name[pa]=ਡੱਕ ਡੱਕ ਗੋ ਜਾਣਕਾਰੀ
 Name[pl]=Duck Duck Go Info
 Name[pt]=Informação do Duck Duck Go
 Name[pt_BR]=Informações do Duck Duck Go
@@ -76,6 +79,7 @@ Query[fi]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ga]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[he]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[hi]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[hr]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[hu]=http://duckduckgo.com/?q=\\{@}&v=r

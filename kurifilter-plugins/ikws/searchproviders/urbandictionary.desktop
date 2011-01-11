@@ -21,6 +21,7 @@ Name[fi]=Urban Dictionary
 Name[fr]=Dictionnaire Urban
 Name[ga]=Urban Dictionary
 Name[gu]=અર્બન ડિક્શનરી
+Name[he]=Urban Dictionary
 Name[hi]=शहरी शब्दकोश
 Name[hr]=Urbani rječnik
 Name[hu]=Urban Dictionary
@@ -80,6 +81,7 @@ Query[fi]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[fr]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ga]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[gu]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[he]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[hi]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[hr]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[hu]=http://www.urbandictionary.com/define.php?term=\\{@}

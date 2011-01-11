@@ -19,6 +19,7 @@ Name[fi]=YouTube
 Name[fr]=YouTube
 Name[ga]=YouTube
 Name[gu]=યુટ્યુબ
+Name[he]=YouTube
 Name[hi]=यूट्यूब
 Name[hr]=YouTube
 Name[hu]=YouTube
@@ -80,6 +81,7 @@ Query[fi]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[fr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ga]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[gu]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[he]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[hi]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[hr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[hu]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
