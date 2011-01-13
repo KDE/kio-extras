@@ -1708,7 +1708,7 @@ static QByteArray scan_named_font(char*& c)
     }
     c++;
   }
-  else
+  else if ( *c )  // \f alone makes c point at 0-byte
   {
     // \fa Font name with one character or one digit
     // ### HACK do *not* use:  name = *c;  or name would be empty
@@ -2052,10 +2052,12 @@ static char *scan_escape_direct(char *c, QByteArray& cstr)
       curpos++;
       break;
   }
-  if (cplusplus)
+  if (cplusplus && *c)
     c++;
   return c;
 }
+
+//---------------------------------------------------------------------
 
 static char *scan_escape(char *c)
 {
@@ -2065,6 +2067,8 @@ static char *scan_escape(char *c)
     out_html(cstr);
   return result;
 }
+
+//---------------------------------------------------------------------
 
 class TABLEROW;
 
@@ -4433,7 +4437,30 @@ static char *scan_request(char *c)
 #endif
             out_html("<TITLE>");
             if ( args.count() )
-              out_html(scan_troff(args[0].data(), 0, NULL));
+            {
+              // work around the problem that in a title no HTML tags are allowed
+              // but args[0] can have formatting escapes, e.g. to switch a font
+              // which results in a HTML tag added to the output
+              char *result = 0;
+              scan_troff(args[0].data(), 0, &result);
+              char *p = result;
+              QByteArray title;
+              while ( *p )
+              {
+                if ( *p == '<' ) // tag begin -> skip whole tag
+                {
+                  for (p++; *p && (*p != '>'); p++) ;
+                  if ( *p ) p++;
+                }
+                if ( *p )
+                  title += *p++;
+              }
+              ignore_links = true;
+              title += '\n';  // needed so that out_html flushes buffer and ignore_links works
+              out_html(title);
+              ignore_links = false;
+              delete [] result;
+            }
             out_html(" Manpage</TITLE>\n");
 
             // KDE defaults.
@@ -4471,24 +4498,24 @@ static char *scan_request(char *c)
             out_html("<div><div>\n");
             out_html("<img src=\"help:/common/top-kde.jpg\" alt=\"top-kde\"> ");
             if ( args.count() )
-              out_html(scan_troff(args[0].data(), 0, NULL));
+              scan_troff(args[0].data(), 0, NULL);
             out_html(" - KDE Man Page Viewer");
             out_html("</div></div></div></div>\n");
 
             out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
             out_html("<h1>");
             if ( args.count() )
-              out_html(scan_troff(args[0].data(), 0, NULL));
+              scan_troff(args[0].data(), 0, NULL);
             out_html("</h1>\n");
             if (args.count() > 1)
             {
               out_html("Section: ");
               if ( !mandoc_command && (args.count() > 4) )
-                out_html(scan_troff(args[4].data(), 0, NULL));
+                scan_troff(args[4].data(), 0, NULL);
               else
                 out_html(section_name(args[1].data()));
               out_html(" (");
-              out_html(scan_troff(args[1].data(), 0, NULL));
+              scan_troff(args[1].data(), 0, NULL);
               out_html(")\n");
             }
             else
