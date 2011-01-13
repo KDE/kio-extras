@@ -47,6 +47,11 @@ KManPart::KManPart(QWidget * parentWidget, QObject* parent, const QVariantList&)
 
 bool KManPart::openUrl( const KUrl &url )
 {
+   // KHTML would detect text/plain, but we are going to write HTML to it.
+   KParts::OpenUrlArguments args(arguments());
+   args.setMimeType("text/html");
+   setArguments(args);
+
    return KParts::ReadOnlyPart::openUrl(url);
 }
 
