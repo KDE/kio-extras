@@ -21,46 +21,24 @@
 #ifndef KMANPART_H
 #define KMANPART_H
 
-#include <QByteArray>
+class QByteArray;
 
-#include <kparts/factory.h>
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <khtml_part.h>
 #include <kio/job.h>
 #include <kio/jobclasses.h>
 
-class KComponentData;
-class KAboutData;
-
 /**
  * Man Page Viewer
- * \todo: Why is it needed? Why is KHTML alone not possible?
+ * This is needed so that we can open local files using the man: protocol transparently.
+ * Testcase: click on a man page file (e.g. makekdewidgets.1) in konqueror.
  */
-class KManPartFactory: public KParts::Factory
-{
-   Q_OBJECT
-   public:
-      KManPartFactory( QObject * parent = 0 );
-      virtual ~KManPartFactory();
-
-      virtual KParts::Part* createPartObject( QWidget * parentWidget,
-                                QObject* parent, const char * classname,
-                                const QStringList &args);
-
-      static const KComponentData &componentData();
-
-   private:
-      static KComponentData *s_instance;
-      static KAboutData * s_about;
-
-};
-
 class KManPart : public KHTMLPart
 {
    Q_OBJECT
    public:
-      KManPart( QWidget * parent );
+      KManPart( QWidget * parent, QObject*, const QVariantList& );
       KParts::BrowserExtension * extension() {return m_extension;}
 
    public Q_SLOTS:

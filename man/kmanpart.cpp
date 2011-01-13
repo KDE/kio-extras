@@ -19,8 +19,8 @@
 
 #include "kmanpart.h"
 
-
 #include <kcomponentdata.h>
+#include <kpluginfactory.h>
 #include <kglobal.h>
 #include <kdebug.h>
 #include <klocale.h>
@@ -28,53 +28,21 @@
 #include <kaboutdata.h>
 #include <kdeversion.h>
 
-extern "C"
+static KAboutData createAboutData()
 {
-   KDE_EXPORT void* init_libkmanpart()
-   {
-      return new KManPartFactory;
-   }
+   return KAboutData("kmanpart", "kio_man", ki18n("KMan"), KDE_VERSION_STRING);
 }
 
-KComponentData *KManPartFactory::s_instance = 0L;
-KAboutData* KManPartFactory::s_about = 0L;
-
-KManPartFactory::KManPartFactory( QObject* parent )
-   : KParts::Factory( parent )
-{}
-
-KManPartFactory::~KManPartFactory()
-{
-   delete s_instance;
-   s_instance = 0L;
-   delete s_about;
-}
-
-KParts::Part* KManPartFactory::createPartObject( QWidget * parentWidget, QObject *,
-                                 const char* /*className*/,const QStringList & )
-{
-   KManPart* part = new KManPart(parentWidget);
-   return part;
-}
-
-const KComponentData &KManPartFactory::componentData()
-{
-   if( !s_instance )
-   {
-      s_about = new KAboutData( "kmanpart", 0,
-                                ki18n( "KMan" ), KDE_VERSION_STRING );
-      s_instance = new KComponentData(s_about);
-   }
-   return *s_instance;
-}
+K_PLUGIN_FACTORY(KManPartFactory, registerPlugin<KManPart>();)
+K_EXPORT_PLUGIN(KManPartFactory(createAboutData()))
 
 
-KManPart::KManPart( QWidget * parent )
-: KHTMLPart( parent )
+KManPart::KManPart(QWidget * parentWidget, QObject* parent, const QVariantList&)
+: KHTMLPart(parentWidget, parent)
 ,m_job(0)
 {
-   setComponentData(KComponentData("kmanpart"));
-   m_extension=new KParts::BrowserExtension(this);
+   setComponentData(KManPartFactory::componentData());
+   m_extension = new KParts::BrowserExtension(this);
 }
 
 bool KManPart::openUrl( const KUrl &url )
