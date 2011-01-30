@@ -987,9 +987,7 @@ void sftpProtocol::get(const KUrl& url) {
 
   QByteArray path = url.path().toUtf8();
 
-  char buf[MAX_XFER_BUF_SIZE] = {0};
   sftp_file file = NULL;
-  ssize_t bytesread = 0;
   // time_t curtime = 0;
   time_t lasttime = 0;
   time_t starttime = 0;
@@ -1050,43 +1048,50 @@ void sftpProtocol::get(const KUrl& url) {
     }
   }
 
+  sftpProtocol::GetRequest request(file, sb);
+
   if (file != NULL) {
     bool isFirstPacket = true;
+    ssize_t bytesread = 0;
     lasttime = starttime = time(NULL);
 
     for (;;) {
-      bytesread = sftp_read(file, buf, MAX_XFER_BUF_SIZE);
-      kDebug(KIO_SFTP_DB) << "bytesread=" << QString::number(bytesread);
-      if (bytesread == 0) {
-        // All done reading
-        break;
-      } else if (bytesread < 0) {
+      // Enqueue get requests
+      if (!request.enqueueChunks()) {
         error(KIO::ERR_COULD_NOT_READ, url.prettyUrl());
-        sftp_attributes_free(sb);
         return;
       }
 
-      filedata = QByteArray::fromRawData(buf, bytesread);
+      filedata.clear();
+      bytesread = request.readChunks(filedata);
+      // Read pending get requests
+      if (bytesread == -1) {
+        error(KIO::ERR_COULD_NOT_READ, url.prettyUrl());
+        return;
+      } else if (bytesread == 0) {
+        if (file->eof)
+          break;
+        else
+          continue;
+      }
+
       if (isFirstPacket) {
         KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(url.fileName(), filedata);
         mimeType(p_mimeType->name());
         isFirstPacket = false;
       }
-      data(filedata);
-      filedata.clear();
 
+      data(filedata);
       // increment total bytes read
-      totalbytesread += bytesread;
+      totalbytesread += filedata.length();
 
       processedSize(totalbytesread);
     }
 
-    sftp_close(file);
     data(QByteArray());
     processedSize(static_cast<KIO::filesize_t>(sb->size));
   }
 
-  sftp_attributes_free(sb);
   finished();
 }
 
@@ -1703,3 +1708,123 @@ void sftpProtocol::slave_status() {
   slaveStatus((mConnected ? mHost : QString()), mConnected);
 }
 
+sftpProtocol::GetRequest::GetRequest(sftp_file file, sftp_attributes sb, ushort maxPendingRequests)
+    :mFile(file), mSb(sb), mMaxPendingRequests(maxPendingRequests) {
+
+}
+
+bool sftpProtocol::GetRequest::enqueueChunks() {
+  sftpProtocol::GetRequest::Request request;
+
+  kDebug(KIO_SFTP_DB) << "enqueueChunks";
+
+  while (pendingRequests.count() < mMaxPendingRequests) {
+    request.expectedLength = MAX_XFER_BUF_SIZE;
+    request.startOffset = mFile->offset;
+    request.id = sftp_async_read_begin(mFile, request.expectedLength);
+    if (request.id < 0) {
+      if (pendingRequests.isEmpty()) {
+        return false;
+      } else {
+          break;
+      }
+    }
+
+    pendingRequests.enqueue(request);
+
+    if (mFile->offset > mSb->size) {
+      // Do not add any more chunks if the offset is larger than the given file size.
+      // However this is done after adding a request as the remote file size may
+      // have changed in the meantime.
+      break;
+    }
+  }
+
+  kDebug(KIO_SFTP_DB) << "enqueueChunks done" << QString::number(pendingRequests.size());
+
+  return true;
+}
+
+int sftpProtocol::GetRequest::readChunks(QByteArray &data) {
+
+  int totalRead = 0;
+  ssize_t bytesread = 0;
+
+  while (!pendingRequests.isEmpty()) {
+    sftpProtocol::GetRequest::Request &request = pendingRequests.head();
+    int dataSize = data.size() + request.expectedLength;
+
+    data.resize(dataSize);
+    if (data.size() < dataSize) {
+      // Could not allocate enough memory - skip current chunk
+      data.resize(dataSize - request.expectedLength);
+      break;
+    }
+
+    bytesread = sftp_async_read(mFile, data.data() + totalRead, request.expectedLength, request.id);
+
+    // kDebug(KIO_SFTP_DB) << "bytesread=" << QString::number(bytesread);
+
+    if (bytesread == 0 || bytesread == SSH_AGAIN) {
+      if (bytesread == 0) {
+        pendingRequests.dequeue();
+      } else {
+        // Decrease maximum pending requests as we did not receive data fast enough
+        mMaxPendingRequests = qMax(1, mMaxPendingRequests / 2);
+      }
+      // Done reading or timeout
+      data.resize(data.size() - request.expectedLength);
+      break;
+    } else if (bytesread == SSH_ERROR) {
+      return -1;
+    }
+
+    totalRead += bytesread;
+
+    if (bytesread < request.expectedLength) {
+      // If less data is read than expected - requeue the request
+      data.resize(data.size() - (request.expectedLength - bytesread));
+
+      // Save current file offset
+      uint64_t oldOffset = mFile->offset;
+      mFile->offset = request.startOffset + bytesread;
+
+      // Modify current request
+      request.expectedLength = request.expectedLength - bytesread;
+      request.startOffset = mFile->offset;
+      request.id = sftp_async_read_begin(mFile, request.expectedLength);
+
+      // Restore the file offset
+      mFile->offset = oldOffset;
+
+      if (request.id < 0) {
+        // Failed to dispatch rerequest
+        return -1;
+      }
+
+      return totalRead;
+    }
+
+    pendingRequests.dequeue();
+  }
+
+  // Adjust maximum pending requests
+  mMaxPendingRequests = qMin(mMaxPendingRequests * 2, MAX_TRANSFER_SIZE / MAX_XFER_BUF_SIZE);
+
+  return totalRead;
+}
+
+sftpProtocol::GetRequest::~GetRequest() {
+  sftpProtocol::GetRequest::Request request;
+  char buf[MAX_XFER_BUF_SIZE];
+
+  // Remove pending reads to avoid memory leaks
+  while (!pendingRequests.isEmpty()) {
+    request = pendingRequests.dequeue();
+    sftp_async_read(mFile, buf, request.expectedLength, request.id);
+  }
+
+  // Close channel & free attributes
+  sftp_close(mFile);
+  sftp_attributes_free(mSb);
+}

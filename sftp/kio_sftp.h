@@ -31,10 +31,15 @@
 #include <libssh/sftp.h>
 #include <libssh/callbacks.h>
 
+#include <QQueue>
+
 // How big should each data packet be? Definitely not bigger than 64kb or
 // you will overflow the 2 byte size variable in a sftp packet.
-#define MAX_XFER_BUF_SIZE 60 * 1024
+#define MAX_XFER_BUF_SIZE (60 * 1024)
 #define KIO_SFTP_DB 7120
+// Maximum amount of data which can be sent from the KIOSlave in one chunk
+// see TransferJob::slotDataReq (max_size variable) for the value
+#define MAX_TRANSFER_SIZE (14 * 1024 * 1024)
 
 namespace KIO {
   class AuthInfo;
@@ -125,6 +130,56 @@ private: // Private variables
   QByteArray openHandle;
   KUrl openUrl;
   KIO::filesize_t openOffset;
+
+  /**
+   * GetRequest encapsulates several SFTP get requests into a single object.
+   * As SFTP messages are limited to MAX_XFER_BUF_SIZE several requests
+   * should be sent simultaneously in order to increase transfer speeds.
+   */
+  class GetRequest {
+  public:
+    /**
+     * Creates a new GetRequest object.
+     * @param file the sftp_file object which should be transferred.
+     * @param sb the attributes of that sftp_file object.
+     * @param maxPendingRequests the maximum number of parallel requests to start with.
+     *                            The number will be adjusted automatically depending
+     *                            on the connection speed.
+     */
+    GetRequest(sftp_file file, sftp_attributes sb, ushort maxPendingRequests=5);
+    /**
+     * Removes all pending requests and closes the SFTP channel and attributes
+     * in order to avoid memory leaks.
+     */
+    ~GetRequest();
+
+    /**
+     * Starts up to maxPendingRequests file requests. Reading is performed in the
+     * via the readChunks method.
+     */
+    bool enqueueChunks();
+    /**
+     * Attemps to read all pending chunks in the given QByteArray.
+     * @param data the array into which the data should be saved (it should be empty).
+     * @return 0 on EOF or timeout, -1 on error and the number of bytes read otherwise.
+     */
+    int readChunks(QByteArray &data);
+  private:
+    struct Request {
+      /** Identifier as returned by the sftp_async_read_begin call */
+      int id;
+      /** The number of bytes expected to be returned */
+      uint32_t expectedLength;
+      /** The SSH start offset when this request was made */
+      uint64_t startOffset;
+    };
+  private:
+    sftp_file mFile;
+    sftp_attributes mSb;
+    ushort mMaxPendingRequests;
+    QQueue<Request> pendingRequests;
+  };
+
 
 private: // private methods
 
