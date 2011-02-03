@@ -3,6 +3,126 @@ Charset=
 Hidden=false
 Keys=ggc,googlecode,ggcode
 Name=Google Code
+Name[ar]=شفرة جوجل
+Name[ast]=Google Code
+Name[bg]=Код в Google
+Name[bn]=গুগল কোড
+Name[ca]=Google Code
+Name[ca@valencia]=Google Code
+Name[cs]=Google Code
+Name[da]=Google Code
+Name[de]=Google Code
+Name[el]=Google Code
+Name[en_GB]=Google Code
+Name[es]=Google Code
+Name[et]=Google Code
+Name[eu]=Google Code
+Name[fi]=Google Code
+Name[fr]=Google Code
+Name[ga]=Cód Google
+Name[gu]=ગુગલ કોડ
+Name[he]=Google Code
+Name[hi]=गूगल कोड
+Name[hr]=Google Code
+Name[hu]=Google Code
+Name[ia]=Google Movies
+Name[id]=Google Code
+Name[is]=Google kóði
+Name[it]=Codice di Google
+Name[ja]=Google Code
+Name[kk]=Google Code
+Name[km]=កូដ​​​ហ្គូហ្គល
+Name[kn]=ಗೂಗಲ್ ಕೋಡ್
+Name[ko]=Google 코드
+Name[lt]=Google Kodas
+Name[lv]=Google Code
+Name[mai]=गूगल कोड
+Name[nb]=Google Code
+Name[nds]=Google-Kode
+Name[nl]=Google Code
+Name[nn]=Google Code
+Name[pa]=Google ਕੋਡ
+Name[pl]=Google - kod źródłowy
+Name[pt]=Código do Google
+Name[pt_BR]=Google Code
+Name[ro]=Cod Google
+Name[ru]=Google Code
+Name[si]=Google කේතය
+Name[sk]=Google Code
+Name[sl]=Google Code
+Name[sr]=Гугл‑код
+Name[sr@ijekavian]=Гугл‑код
+Name[sr@ijekavianlatin]=Google‑kod
+Name[sr@latin]=Google‑kod
+Name[sv]=Google kod
+Name[tg]=Рамзи Google
+Name[th]=Google Code
+Name[tr]=Google Code
+Name[uk]=Google Code
+Name[wa]=Google Côde
+Name[x-test]=xxGoogle Codexx
+Name[zh_CN]=Google Code
+Name[zh_TW]=Google Code
 Query=http://code.google.com/query/#q=\\{%2520}
+Query[ar]=http://froogle.google.com/froogle?q=\\{@}
+Query[ast]=http://code.google.com/query/#q=\\{%2520}
+Query[bg]=http://code.google.com/query/#q=\\{%2520}
+Query[bn]=http://code.google.com/query/#q=\\{%2520}
+Query[ca]=http://code.google.com/query/#q=\\{%2520}
+Query[ca@valencia]=http://code.google.com/query/#q=\\{%2520}
+Query[cs]=http://code.google.com/query/#q=\\{%2520}
+Query[da]=http://code.google.com/query/#q=\\{%2520}
+Query[de]=http://code.google.com/query/#q=\\{%2520}
+Query[el]=http://code.google.com/query/#q=\\{%2520}
+Query[en_GB]=http://code.google.com/query/#q=\\{%2520}
+Query[es]=http://code.google.com/query/#q=\\{%2520}
+Query[et]=http://code.google.com/query/#q=\\{%2520}
+Query[eu]=http://code.google.com/query/#q=\\{%2520}
+Query[fi]=http://code.google.com/query/#q=\\{%2520}
+Query[fr]=http://code.google.com/query/#q=\\{%2520}
+Query[ga]=http://code.google.com/query/#q=\\{%2520}
+Query[gu]=http://code.google.com/query/#q=\\{%2520}
+Query[he]=http://code.google.com/query/#q=\\{%2520}
+Query[hi]=http://code.google.com/query/#q=\\{%2520}
+Query[hr]=http://code.google.com/query/#q=\\{%2520}
+Query[hu]=http://code.google.com/query/#q=\\{%2520}
+Query[ia]=http://code.google.com/query#q=\\{%2520}
+Query[id]=http://code.google.com/query/#q=\\{%2520}
+Query[is]=http://code.google.com/query/#q=\\{%2520}
+Query[it]=http://code.google.com/query/#q=\\{%2520}
+Query[ja]=http://code.google.com/query/#q=\\{%2520}
+Query[kk]=http://code.google.com/query/#q=\\{%2520}
+Query[km]=http://code.google.com/query/#q=\\{%2520}
+Query[kn]=http://code.google.com/query/#q=\\{%2520}
+Query[ko]=http://code.google.com/query/#q=\\{%2520}
+Query[lt]=http://code.google.com/query/#q=\\{%2520}
+Query[lv]=http://code.google.com/query/#q=\\{%2520}
+Query[mai]=http://code.google.com/query/#q=\\{%2520}
+Query[nb]=http://code.google.com/query/#q=\\{%2520}
+Query[nds]=http://code.google.com/query/#q=\\{%2520}
+Query[nl]=http://code.google.com/query/#q=\\{%2520}
+Query[nn]=http://code.google.com/query/#q=\\{%2520}
+Query[pa]=http://code.google.com/query/#q=\\{%2520}
+Query[pl]=http://code.google.com/query/#q=\\{%2520}
+Query[pt]=http://code.google.com/query/#q=\\{%2520}
+Query[pt_BR]=http://code.google.com/query/#q=\\{%2520}
+Query[ro]=http://code.google.com/query/#q=\\{%2520}
+Query[ru]=http://code.google.com/query/#q=\\{%2520}
+Query[si]=http://code.google.com/query/#q=\\{%2520}
+Query[sk]=http://code.google.com/query/#q=\\{%2520}
+Query[sl]=http://code.google.com/query/#q=\\{%2520}
+Query[sr]=http://code.google.com/query/#q=\\{%2520}
+Query[sr@ijekavian]=http://code.google.com/query/#q=\\{%2520}
+Query[sr@ijekavianlatin]=http://code.google.com/query/#q=\\{%2520}
+Query[sr@latin]=http://code.google.com/query/#q=\\{%2520}
+Query[sv]=http://code.google.com/query/#q=\\{%2520}
+Query[tg]=http://code.google.com/query/#q=\\{%2520}
+Query[th]=http://code.google.com/query/#q=\\{%2520}
+Query[tr]=http://code.google.com/query/#q=\\{%2520}
+Query[uk]=http://code.google.com/query/#q=\\{%2520}
+Query[wa]=http://code.google.com/query/#q=\\{%2520}
+Query[x-test]=xxhttp://code.google.com/query/#q=\\{%2520}xx
+Query[zh_CN]=http://code.google.com/query/#q=\\{%2520}
+Query[zh_TW]=http://code.google.com/query/#q=\\{%2520}
 ServiceTypes=SearchProvider
 Type=Service

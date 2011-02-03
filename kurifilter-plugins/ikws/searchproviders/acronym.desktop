@@ -1,6 +1,177 @@
 [Desktop Entry]
 Type=Service
 Name=Acronym Database
+Name[af]=Akroniem Databasis
+Name[ar]=قاعدة بيانات الاختصارات
+Name[ast]=Base de datos Acronym
+Name[be]=Скарачэнні
+Name[be@latin]=Baza akronimaŭ
+Name[bg]=База от данни със съкращения
+Name[bn]=অ্যাক্রোনিম ডেটাবেস
+Name[ca]=Base de dades d'acrònims
+Name[ca@valencia]=Base de dades d'acrònims
+Name[cs]=Databáze akronymů
+Name[csb]=Baza akronimów
+Name[cy]=Cronfa Llythrenwau
+Name[da]=Akronymdatabase
+Name[de]=Akronym-Datenbank
+Name[el]=Βάση δεδομένων αρκτικόλεξου
+Name[en_GB]=Acronym Database
+Name[eo]=Akronima datumbazo
+Name[es]=Base de datos Acronym
+Name[et]=Akronüümide andmebaas
+Name[eu]=Acronym datu-basea
+Name[fa]=دادگان سرنام
+Name[fi]=Lyhennetietokanta
+Name[fr]=Base de données d'acronymes
+Name[fy]=Acroniemen databank
+Name[ga]=Bunachar Sonraí Acrainmneacha
+Name[gl]=Base de datos de siglas
+Name[gu]=ટૂંકાનામ ડેટાબેઝ
+Name[he]=מאגר ראשי התיבות
+Name[hi]=एक्रोनिम डाटाबेस
+Name[hne]=एक्रोनिम डाटाबेस
+Name[hr]=Baza podataka kratica
+Name[hsb]=Datowa baza akronymow
+Name[hu]=Mozaikszó-adatbázis
+Name[ia]=Base de Datos Acronym
+Name[id]=Basis Data Akronim
+Name[is]=Samheitagrunnur
+Name[it]=Banche dati di acronimi
+Name[ja]=Acronym Database
+Name[ka]=აკრონიმთა ბაზა
+Name[kk]=Қысқартулар дерек қоры
+Name[km]=មូលដ្ឋាន​ទិន្នន័យ​អក្សរ​កាត់
+Name[kn]=ಪ್ರಥಮಾಕ್ಷರಿ ದತ್ತಸಂಚಯ
+Name[ko]=두문자어 정보
+Name[ku]=Bingeha Danê yê Peyvên Wekhevî
+Name[lt]=Akronimų duomenų bazė
+Name[lv]=Akronīmu datubāze
+Name[mai]=एक्रोनिम डाटाबेस
+Name[mk]=База на податоци со акроними
+Name[ml]=അക്രോണിം ഡേറ്റാബെയിസ്
+Name[ms]=Pangkalan Data Akronim
+Name[nb]=Database av forkortelser
+Name[nds]=Akronüm-Datenbank
+Name[ne]=एक्रोनम डेटाबेस
+Name[nl]=Acroniemen database
+Name[nn]=Forkortingsdatabase
+Name[or]=ପୂନରାବର୍ତ୍ତି ତଥ୍ୟାବଳୀ
+Name[pa]=ਅਕਰੋਨਮ ਡਾਟਾਬੇਸ
+Name[pl]=Baza akronimów
+Name[pt]=Base de Dados de Acrónimos
+Name[pt_BR]=Banco de dados de acrônimos
+Name[ro]=Bază de date de acronime
+Name[ru]=База данных акронимов
+Name[se]=Oanádusdiehtovuođđu
+Name[si]=අක්නම් දත්තමූලය
+Name[sk]=Databáza skratiek
+Name[sl]=Zbirka okrajšav
+Name[sr]=База скраћеница
+Name[sr@ijekavian]=База скраћеница
+Name[sr@ijekavianlatin]=Baza skraćenica
+Name[sr@latin]=Baza skraćenica
+Name[sv]=Acronym Database
+Name[ta]=குறுஞ்சொற் தரவுத்தளம்
+Name[te]=ఏక్రోనిమ్ డాటాబేస్
+Name[tg]=Базаи маълумотии акронимҳо
+Name[th]=ฐานข้อมูล Acronym
+Name[tr]=Eş Kelime Veritabanı
+Name[uk]=База даних акронімів
+Name[uz]=Qisqartma maʼlumot bazasi
+Name[uz@cyrillic]=Қисқартма маълумот базаси
+Name[vi]=Cơ sở dữ liệu Viết tắt
+Name[wa]=Båzes di dnêyes d' acourtixheures
+Name[xh]=Isiseko sedata Segama elenziwe ngonoobumba bamanye amagama
+Name[x-test]=xxAcronym Databasexx
+Name[zh_CN]=首字母缩写数据库
+Name[zh_TW]=Acronym 資料庫
 X-KDE-ServiceTypes=SearchProvider
 Keys=ad,acro,acronym
 Query=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[af]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ar]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[as]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ast]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[be]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[be@latin]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[bg]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[bn]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[bn_IN]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[br]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ca]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ca@valencia]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[cs]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[csb]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[da]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[de]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[el]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[en_GB]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[eo]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[es]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[et]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[eu]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[fi]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[fr]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[fy]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ga]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[gl]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[gu]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[he]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[hi]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[hne]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[hr]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[hsb]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[hu]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ia]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[id]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[is]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[it]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ja]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ka]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[kk]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[km]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[kn]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ko]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ku]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[lt]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[lv]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[mai]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ml]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[mr]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ms]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[nb]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[nds]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ne]=http://www.chemie.de/tools/acronym.php3?language=eacronym=\\{@}
+Query[nl]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[nn]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[oc]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[or]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[pa]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[pl]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[pt]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[pt_BR]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ro]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ru]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[se]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[si]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[sk]=http://www.chemie.de/tools/acronym.php3?language=sk&acronym=\\{@}
+Query[sl]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[sr]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[sr@ijekavian]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[sr@ijekavianlatin]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[sr@latin]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[sv]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ta]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[te]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[tg]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[th]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[tr]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[uk]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[uz]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[uz@cyrillic]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[vi]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[wa]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[x-test]=xxhttp://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}xx
+Query[zh_CN]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[zh_TW]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
