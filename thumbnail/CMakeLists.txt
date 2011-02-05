@@ -7,8 +7,9 @@ macro_log_feature(EXIV2_FOUND "Exiv2" "A library to access image metadata" "http
 
 macro_bool_to_01(EXIV2_FOUND HAVE_EXIV2)
 
+include_directories(${JPEG_INCLUDE_DIR})
 if(EXIV2_FOUND)
-    include_directories(${JPEG_INCLUDE_DIR} ${EXIV2_INCLUDE_DIR})
+    include_directories(${JPEG_INCLUDE_DIR})
 endif(EXIV2_FOUND)
 
 ########### next target ###############
