@@ -532,13 +532,26 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     int frameWidth = qRound(folderWidth / 85.);
 
     int iterations = 0;
-    bool hadThumbnail = false;
     QString hadFirstThumbnail;
     int skipped = 0;
 
     const int maxYPos = folderHeight - bottomMargin - segmentHeight;
 
-    while ((skipped <= skipValidItems) && (yPos <= maxYPos) && !hadThumbnail) {
+    // Setup image object for preview with only one tile
+    QImage oneTileImg(folder.size(), QImage::Format_ARGB32);
+    oneTileImg.fill(0);
+
+    QPainter oneTilePainter(&oneTileImg);
+    oneTilePainter.setCompositionMode(QPainter::CompositionMode_Source);
+    oneTilePainter.drawPixmap(0, 0, folder);
+    oneTilePainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+
+    const int oneTileWidth = folderWidth - leftMargin - rightMargin;
+    const int oneTileHeight = folderHeight - topMargin - bottomMargin;
+
+    int validThumbnails = 0;
+
+    while ((skipped <= skipValidItems) && (yPos <= maxYPos) && validThumbnails == 0) {
         QDirIterator dir(localFile, QDir::Files | QDir::Readable);
         if (!dir.hasNext()) {
             break;
@@ -553,7 +566,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
             dir.next();
 
-            if (hadThumbnail && hadFirstThumbnail == dir.filePath()) {
+            if (validThumbnails > 0 && hadFirstThumbnail == dir.filePath()) {
                 break; // Never show the same thumbnail twice
             }
 
@@ -563,9 +576,12 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
                 continue;
             }
 
-            QImage subThumbnail;
-            if (!createSubThumbnail(subThumbnail, dir.filePath(), segmentWidth, segmentHeight)) {
+            if (!drawSubThumbnail(p, dir.filePath(), segmentWidth, segmentHeight, xPos, yPos, frameWidth)) {
                 continue;
+            }
+
+            if (validThumbnails == 0) {
+                drawSubThumbnail(oneTilePainter, dir.filePath(), oneTileWidth, oneTileHeight, xPos, yPos, frameWidth);
             }
 
             if (skipped < skipValidItems) {
@@ -573,28 +589,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
                 continue;
             }
 
-            // Seed the random number generator so that it always returns the same result
-            // for the same directory and sequence-item
-            qsrand(qHash(dir.filePath()));
-
             if (hadFirstThumbnail.isEmpty()) {
                 hadFirstThumbnail = dir.filePath();
             }
 
-            hadThumbnail = true;
-
-            // Apply fake smooth scaling, as seen on several blogs
-            if (subThumbnail.width() > segmentWidth * 4 || subThumbnail.height() > segmentHeight * 4) {
-                subThumbnail = subThumbnail.scaled(segmentWidth*4, segmentHeight*4, Qt::KeepAspectRatio, Qt::FastTransformation);
-            }
-
-            QSize targetSize(subThumbnail.size());
-
-            targetSize.scale(segmentWidth, segmentHeight, Qt::KeepAspectRatio);
-
-            // center the image inside the segment boundaries
-            const QPoint centerPos(xPos + (segmentWidth / 2), yPos + (segmentHeight / 2));
-            drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize);
+            ++validThumbnails;
 
             xPos += segmentWidth + spacing;
             if (xPos > folderWidth - rightMargin - segmentWidth) {
@@ -623,7 +622,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
 
     p.end();
 
-    if (!hadThumbnail) {
+    if (validThumbnails == 0) {
         // Eventually propagate the contained items from a sub-directory
         QDirIterator dir(localFile, QDir::Dirs);
         int max = 50;
@@ -638,6 +637,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
         // If no thumbnail could be found, return an empty image which indicates
         // that no preview for the directory is available.
         img = QImage();
+    }
+
+    // If only for one file a thumbnail could be generated then use image with only one tile
+    if (validThumbnails == 1) {
+        return oneTileImg;
     }
 
     return img;
@@ -764,4 +768,28 @@ void ThumbnailProtocol::scaleDownImage(QImage& img, int maxWidth, int maxHeight)
     }
 }
 
+bool ThumbnailProtocol::drawSubThumbnail(QPainter& p, const QString& filePath, int width, int height, int xPos, int yPos, int frameWidth)
+{
+    QImage subThumbnail;
+    if (!createSubThumbnail(subThumbnail, filePath, width, height)) {
+        return false;
+    }
 
+    // Seed the random number generator so that it always returns the same result
+    // for the same directory and sequence-item
+    qsrand(qHash(filePath));
+
+    // Apply fake smooth scaling, as seen on several blogs
+    if (subThumbnail.width() > width * 4 || subThumbnail.height() > height * 4) {
+        subThumbnail = subThumbnail.scaled(width*4, height*4, Qt::KeepAspectRatio, Qt::FastTransformation);
+    }
+
+    QSize targetSize(subThumbnail.size());
+    targetSize.scale(width, height, Qt::KeepAspectRatio);
+
+    // center the image inside the segment boundaries
+    const QPoint centerPos(xPos + (width/ 2), yPos + (height / 2));
+    drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize);
+
+    return true;
+}
