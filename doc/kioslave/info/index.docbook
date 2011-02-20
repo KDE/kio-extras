@@ -21,7 +21,7 @@
 
 <para>Info is a type of documentation.  The documents are in a file
 format called texinfo, and can be read on the command line with the
-<command>info</command> program.</para>
+<ulink url="info:/info"><command>info</command></ulink> program.</para>
 
 <para>The Info ioslave allows you to read the info pages installed on
 your system, from within &konqueror;.  You can use it very easily:</para>
