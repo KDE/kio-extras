@@ -39,7 +39,7 @@ install( FILES directorythumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 ########### next target ###############
 
 set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
-
+kde4_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings.kcfgc)
 kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
 
 target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS})
@@ -51,6 +51,7 @@ if (HAVE_EXIV2)
     target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
 endif (HAVE_EXIV2)
 
+install(FILES jpegcreatorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR})
 install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############

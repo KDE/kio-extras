@@ -21,9 +21,12 @@
 
 #include <cstdio>
 #include <csetjmp>
+#include "jpegcreatorsettings.h"
+#include <QCheckBox>
 #include <QFile>
 #include <QImage>
 #include <kdemacros.h>
+#include <klocale.h>
 
 #ifdef HAVE_EXIV2
 #include <exiv2/image.hpp>
@@ -249,26 +252,30 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
     }
 
 #ifdef HAVE_EXIV2
-    //Handle exif rotation
-    try {
-        Exiv2::Image::AutoPtr exivImg = Exiv2::ImageFactory::open(name.constData());
-        if (exivImg.get()) {
-            exivImg->readMetadata();
-            Exiv2::ExifData exifData = exivImg->exifData();
-            if (!exifData.empty()) {
-                Exiv2::ExifKey key("Exif.Image.Orientation");
-                Exiv2::ExifData::iterator it = exifData.findKey(key);
-                if (it != exifData.end()) {
-                    int orient = it->toLong();
-                    image = img.transformed(orientationMatrix(orient));
-                    return true;
+    JpegCreatorSettings* settings = JpegCreatorSettings::self();
+    settings->readConfig();
+    if (settings->rotate()) {
+        //Handle exif rotation
+        try {
+            Exiv2::Image::AutoPtr exivImg = Exiv2::ImageFactory::open(name.constData());
+            if (exivImg.get()) {
+                exivImg->readMetadata();
+                Exiv2::ExifData exifData = exivImg->exifData();
+                if (!exifData.empty()) {
+                    Exiv2::ExifKey key("Exif.Image.Orientation");
+                    Exiv2::ExifData::iterator it = exifData.findKey(key);
+                    if (it != exifData.end()) {
+                        int orient = it->toLong();
+                        image = img.transformed(orientationMatrix(orient));
+                        return true;
+                    }
                 }
             }
+        } catch (...) {
+            // Apparently libexiv changed its API at some point, a different exception is thrown
+            // depending on the version. an ifdef could make it work, but since we just ignore the exception
+            // there is no point in doing that
         }
-    } catch (...) {
-        // Apparently libexiv changed its API at some point, a different exception is thrown
-        // depending on the version. an ifdef could make it work, but since we just ignore the exception
-        // there is no point in doing that
     }
 #endif
 
@@ -279,4 +286,21 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
 ThumbCreator::Flags JpegCreator::flags() const
 {
     return None;
+}
+
+QWidget *JpegCreator::createConfigurationWidget()
+{
+    QCheckBox *rotateCheckBox = new QCheckBox(i18nc("@option:check", "Rotate the image automatically"));
+    rotateCheckBox->setChecked(JpegCreatorSettings::rotate());
+    return rotateCheckBox;
+}
+
+void JpegCreator::writeConfiguration(const QWidget *configurationWidget)
+{
+    const QCheckBox *rotateCheckBox = qobject_cast<const QCheckBox*>(configurationWidget);
+    if (rotateCheckBox) {
+        JpegCreatorSettings* settings = JpegCreatorSettings::self();
+        settings->setRotate(rotateCheckBox->isChecked());
+        settings->writeConfig();
+    }
 }
