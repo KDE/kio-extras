@@ -30,6 +30,8 @@ public:
     JpegCreator();
     virtual bool create(const QString &path, int, int, QImage &img);
     virtual Flags flags() const;
+private:
+    QTransform orientationMatrix(int exivOrientation) const;
 };
 
 #endif
