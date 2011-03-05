@@ -1,0 +1,4 @@
+File=jpegcreatorsettings.kcfg
+ClassName=JpegCreatorSettings
+Singleton=true
+Mutators=true
