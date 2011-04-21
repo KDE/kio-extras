@@ -1,7 +1,7 @@
 /*
     This file is part of the Mollet network library, part of the KDE project.
 
-    Copyright 2009-2010 Friedrich W. H. Kossebau <kossebau@kde.org>
+    Copyright 2009-2011 Friedrich W. H. Kossebau <kossebau@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -36,7 +36,6 @@
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusPendingCallWatcher>
-#include <QtCore/QTimer>
 #include <QtCore/QStringList>
 
 #include <KDebug>
@@ -61,7 +60,7 @@ void UpnpNetworkBuilder::registerNetSystemFactory( AbstractNetSystemFactory* net
 
 void UpnpNetworkBuilder::start()
 {
-    QTimer::singleShot(0, this, SLOT(startBrowse()));
+    QMetaObject::invokeMethod( this, "startBrowse", Qt::QueuedConnection );
 }
 
 void UpnpNetworkBuilder::startBrowse()
