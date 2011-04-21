@@ -256,7 +256,6 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<Cagibi::Device>& upnpDev
                 // remove device on last service
                 if( d->serviceList().count() == 0 )
                 {
-                    QList<NetDevice> removedDevices;
                     removedDevices.append( device );
                     // remove only after taking copy from reference into removed list
                     it.remove();
