@@ -68,7 +68,7 @@ void UpnpNetworkBuilder::startBrowse()
     qDBusRegisterMetaType<DeviceTypeMap>();
     qDBusRegisterMetaType<Cagibi::Device>();
 
-    QDBusConnection dbusConnection = QDBusConnection::sessionBus();
+    QDBusConnection dbusConnection = QDBusConnection::systemBus();
 
     const QString cagibiServiceName = QLatin1String( "org.kde.Cagibi" );
     const QString cagibiObjectPath =  QLatin1String( "/org/kde/Cagibi" );
@@ -117,7 +117,7 @@ kDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
         const QString cagibiObjectPath =  QLatin1String( "/org/kde/Cagibi" );
         const QString cagibiInterface =   cagibiServiceName; // by convention the same
 
-        QDBusConnection dbusConnection = QDBusConnection::sessionBus();
+        QDBusConnection dbusConnection = QDBusConnection::systemBus();
         dbusConnection.disconnect( cagibiServiceName,
                                    cagibiObjectPath,
                                    cagibiInterface,
