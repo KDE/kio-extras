@@ -39,8 +39,7 @@
  */
 
 FixHostUriFilter::FixHostUriFilter(QObject *parent, const QVariantList & /*args*/)
-                 :KUriFilterPlugin("fixhosturifilter", parent),
-                  m_hostExists(false)
+                 :KUriFilterPlugin("fixhosturifilter", parent)
 {
 }
 
@@ -49,14 +48,13 @@ static bool isHttpUrl(const QString& scheme)
     return (scheme.compare(QL1S("http"), Qt::CaseInsensitive) == 0 ||
             scheme.compare(QL1S("https"), Qt::CaseInsensitive) == 0 ||
             scheme.compare(QL1S("webdav"), Qt::CaseInsensitive) == 0 ||
-            scheme.compare(QL1S("webdavs"), Qt::CaseInsensitive) == 0);          
+            scheme.compare(QL1S("webdavs"), Qt::CaseInsensitive) == 0);
 }
 
 static bool hasCandidateHostName(const QString& host)
 {
     return (host.contains(QL1C('.')) &&
             !host.startsWith(QL1S("www."), Qt::CaseInsensitive));
-            
 }
 
 bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
@@ -65,16 +63,16 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
 
     KUrl url = data.uri();
     kDebug(7023) << "url:" << url << "type:" << data.uriType();
-    
+
     const QString protocol = url.protocol();
     const bool isHttp = isHttpUrl(protocol);
 
     if (isHttp || protocol == data.defaultUrlScheme()) {
         const QString host = url.host();
-        if (hasCandidateHostName(host) && !exists(url)) {
+        if (hasCandidateHostName(host) && !exists(host)) {
             if (isHttp) {
                 url.setHost((QL1S("www.") % host));
-                if (exists(url)) {
+                if (exists(url.host())) {
                     setFilteredUri(data, url);
                     setUriType(data, KUriFilterData::NetProtocol);
                     return true;
@@ -86,37 +84,10 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
     return false;
 }
 
-void FixHostUriFilter::lookedUp(const QHostInfo &hostInfo)
+bool FixHostUriFilter::exists(const QString& host) const
 {
-    if (hostInfo.lookupId() == m_lookupId) {
-        m_hostExists = (hostInfo.error() == QHostInfo::NoError);
-        if (m_eventLoop)
-            m_eventLoop->exit();
-    }
-}
-
-bool FixHostUriFilter::exists(const KUrl& url) const
-{
-    QEventLoop eventLoop;
-
-    m_hostExists = false;
-    m_eventLoop = &eventLoop;
-
-    FixHostUriFilter *self = const_cast<FixHostUriFilter*>( this );
-    m_lookupId = QHostInfo::lookupHost( url.host(), self, SLOT(lookedUp(QHostInfo)) );
-
-    QTimer t;
-    connect( &t, SIGNAL(timeout()), &eventLoop, SLOT(quit()) );
-    t.start(1000);
-
-    eventLoop.exec();
-    m_eventLoop = 0;
-
-    t.stop();
-
-    QHostInfo::abortHostLookup( m_lookupId );
-
-    return m_hostExists;
+    QHostInfo info = resolveName(host, 1500);
+    return (info.error() == QHostInfo::NoError);
 }
 
 K_PLUGIN_FACTORY(FixHostUriFilterFactory, registerPlugin<FixHostUriFilter>();)
