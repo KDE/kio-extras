@@ -128,7 +128,7 @@ void DNSSDNetworkBuilder::addService( DNSSD::RemoteService::Ptr service )
 
     // device TODO: only search for if we can create the service?
     NetDevicePrivate* d = 0;
-    const NetDevice* deviceOfService;
+    const NetDevice* deviceOfService = 0;
     foreach( const NetDevice& device, deviceList )
     {
         const QString deviceHostName = device.hostName();

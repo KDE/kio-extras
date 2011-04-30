@@ -152,7 +152,7 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
         const QString ipAddress = upnpDevice.ipAddress();
 
         NetDevicePrivate* d = 0;
-        const NetDevice* deviceOfService;
+        const NetDevice* deviceOfService = 0;
         foreach( const NetDevice& device, deviceList )
         {
         const bool isSameAddress = ( device.ipAddress() == ipAddress );
