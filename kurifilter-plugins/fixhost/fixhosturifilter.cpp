@@ -21,9 +21,6 @@
 
 #include "fixhosturifilter.h"
 
-#include <QtCore/QTimer>
-#include <QtCore/QStringBuilder>
-#include <QtCore/QEventLoop>
 #include <QtNetwork/QHostInfo>
 
 #include <KDE/KUrl>
@@ -69,9 +66,9 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
 
     if (isHttp || protocol == data.defaultUrlScheme()) {
         const QString host = url.host();
-        if (hasCandidateHostName(host) && !exists(host)) {
+        if (hasCandidateHostName(host) && !isResolvable(host)) {
             if (isHttp) {
-                url.setHost((QL1S("www.") % host));
+                url.setHost((QL1S("www.") + host));
                 if (exists(url.host())) {
                     setFilteredUri(data, url);
                     setUriType(data, KUriFilterData::NetProtocol);
@@ -82,6 +79,14 @@ bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
     }
 
     return false;
+}
+
+bool FixHostUriFilter::isResolvable(const QString& host) const
+{
+    // Unlike exists, this function returns true if the lookup timeout out.
+    QHostInfo info = resolveName(host, 1500);
+    return (info.error() == QHostInfo::NoError ||
+            info.error() == QHostInfo::UnknownError);
 }
 
 bool FixHostUriFilter::exists(const QString& host) const

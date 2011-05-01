@@ -39,6 +39,7 @@ public:
 
 private:
     bool exists(const QString& host) const;
+    bool isResolvable(const QString& host) const;
 };
 
 #endif
