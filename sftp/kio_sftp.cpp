@@ -794,7 +794,7 @@ void sftpProtocol::closeConnection() {
   mConnected = false;
 }
 
-void sftpProtocol::special(const QByteArray &data) {
+void sftpProtocol::special(const QByteArray &) {
     int rc;
     kDebug(KIO_SFTP_DB) << "special(): polling";
 
@@ -989,8 +989,8 @@ void sftpProtocol::get(const KUrl& url) {
 
   sftp_file file = NULL;
   // time_t curtime = 0;
-  time_t lasttime = 0;
-  time_t starttime = 0;
+  //time_t lasttime = 0;
+  //time_t starttime = 0;
   KIO::filesize_t totalbytesread  = 0;
   QByteArray  filedata;
 
@@ -1053,7 +1053,7 @@ void sftpProtocol::get(const KUrl& url) {
   if (file != NULL) {
     bool isFirstPacket = true;
     ssize_t bytesread = 0;
-    lasttime = starttime = time(NULL);
+    //lasttime = starttime = time(NULL);
 
     for (;;) {
       // Enqueue get requests
