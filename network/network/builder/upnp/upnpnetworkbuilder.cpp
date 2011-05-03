@@ -36,6 +36,7 @@
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusPendingCallWatcher>
+#include <QtDBus/QDBusServiceWatcher>
 #include <QtCore/QStringList>
 
 #include <KDebug>
@@ -93,6 +94,14 @@ void UpnpNetworkBuilder::startBrowse()
                             deviceListInterface,
                             QLatin1String("devicesRemoved"),
                             this, SLOT(onDevicesRemoved(DeviceTypeMap)) );
+
+    QDBusServiceWatcher* cagibiServiceWatcher =
+        new QDBusServiceWatcher( serviceName,
+                                 dbusConnection,
+                                 QDBusServiceWatcher::WatchForOwnerChange,
+                                 this );
+    connect( cagibiServiceWatcher, SIGNAL(serviceOwnerChanged(QString,QString,QString)),
+             SLOT(onCagibiServiceOwnerChanged(QString,QString,QString)) );
 
     QDBusPendingCall allDevicesCall = mDBusCagibiProxy->asyncCall( QLatin1String("allDevices") );
 
@@ -322,6 +331,23 @@ void UpnpNetworkBuilder::onAddedDeviceDetails( const Cagibi::Device& device )
     addUPnPDevices( devices );
 }
 
+void UpnpNetworkBuilder::onCagibiServiceOwnerChanged( const QString& serviceName,
+                                                      const QString& oldOwner,
+                                                      const QString& newOwner )
+{
+    Q_UNUSED(serviceName);
+    Q_UNUSED(newOwner);
+
+    // old service disappeared?
+    if( ! oldOwner.isEmpty() )
+    {
+        // remove all registered UPnP devices
+        QList<Cagibi::Device> upnpDevices = mActiveDevices.values();
+        mActiveDevices.clear();
+
+        removeUPnPDevices( upnpDevices );
+    }
+}
 
 UpnpNetworkBuilder::~UpnpNetworkBuilder()
 {
