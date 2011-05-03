@@ -29,18 +29,18 @@
 
 #include <QtCore/QDebug>
 
-static const QString type = QLatin1String("type" );
+static const QString type = QLatin1String( "deviceType" );
 static const QString friendlyName = QLatin1String( "friendlyName" );
-static const QString manufacturerName = QLatin1String( "manufacturerName" );
+static const QString manufacturerName = QLatin1String( "manufacturer" );
 static const QString modelDescription = QLatin1String( "modelDescription" );
 static const QString modelName = QLatin1String( "modelName" );
 static const QString modelNumber = QLatin1String( "modelNumber" );
 static const QString serialNumber = QLatin1String( "serialNumber" );
-static const QString udn = QLatin1String( "udn" );
-static const QString presentationUrl = QLatin1String( "presentationUrl" );
+static const QString udn = QLatin1String( "UDN" );
+static const QString presentationUrl = QLatin1String( "presentationURL" );
 static const QString ipAddress = QLatin1String( "ipAddress" );
-static const QString portNumber = QLatin1String( "portNumber" );
-static const QString parentDeviceUdn = QLatin1String( "parentDeviceUdn" );
+static const QString portNumber = QLatin1String( "ipPortNumber" );
+static const QString parentDeviceUdn = QLatin1String( "parentDeviceUDN" );
 
 
 QDBusArgument& operator<<( QDBusArgument& argument, const Cagibi::Device& device )
