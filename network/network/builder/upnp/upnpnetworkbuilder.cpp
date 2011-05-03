@@ -42,6 +42,9 @@
 
 namespace Mollet
 {
+static const char cagibiServiceName[] =          "org.kde.Cagibi";
+static const char cagibiDeviceListObjectPath[] = "/org/kde/Cagibi/DeviceList";
+static const char cagibiDeviceListInterface[] =  "org.kde.Cagibi.DeviceList";
 
 UpnpNetworkBuilder::UpnpNetworkBuilder( NetworkPrivate* networkPrivate )
   : AbstractNetworkBuilder()
@@ -70,24 +73,24 @@ void UpnpNetworkBuilder::startBrowse()
 
     QDBusConnection dbusConnection = QDBusConnection::systemBus();
 
-    const QString cagibiServiceName = QLatin1String( "org.kde.Cagibi" );
-    const QString cagibiObjectPath =  QLatin1String( "/org/kde/Cagibi" );
-    const QString cagibiInterface =   cagibiServiceName; // by convention the same
+    const QString serviceName = QLatin1String( cagibiServiceName );
+    const QString deviceListObjectPath =  QLatin1String( cagibiDeviceListObjectPath );
+    const QString deviceListInterface =   QLatin1String( cagibiDeviceListInterface );
 
     mDBusCagibiProxy =
-        new QDBusInterface( cagibiServiceName,
-                            cagibiObjectPath,
-                            cagibiInterface,
+        new QDBusInterface( serviceName,
+                            deviceListObjectPath,
+                            deviceListInterface,
                             dbusConnection, this );
 
-    dbusConnection.connect( cagibiServiceName,
-                            cagibiObjectPath,
-                            cagibiInterface,
+    dbusConnection.connect( serviceName,
+                            deviceListObjectPath,
+                            deviceListInterface,
                             QLatin1String("devicesAdded"),
                             this, SLOT(onDevicesAdded(DeviceTypeMap)) );
-    dbusConnection.connect( cagibiServiceName,
-                            cagibiObjectPath,
-                            cagibiInterface,
+    dbusConnection.connect( serviceName,
+                            deviceListObjectPath,
+                            deviceListInterface,
                             QLatin1String("devicesRemoved"),
                             this, SLOT(onDevicesRemoved(DeviceTypeMap)) );
 
@@ -113,19 +116,19 @@ kDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
     }
     else
     {
-        const QString cagibiServiceName = QLatin1String( "org.kde.Cagibi" );
-        const QString cagibiObjectPath =  QLatin1String( "/org/kde/Cagibi" );
-        const QString cagibiInterface =   cagibiServiceName; // by convention the same
+        const QString serviceName = QLatin1String( cagibiServiceName );
+        const QString deviceListObjectPath =  QLatin1String( cagibiDeviceListObjectPath );
+        const QString deviceListInterface =   QLatin1String( cagibiDeviceListInterface );
 
         QDBusConnection dbusConnection = QDBusConnection::systemBus();
-        dbusConnection.disconnect( cagibiServiceName,
-                                   cagibiObjectPath,
-                                   cagibiInterface,
+        dbusConnection.disconnect( serviceName,
+                                   deviceListObjectPath,
+                                   deviceListInterface,
                                    QLatin1String("devicesAdded"),
                                    this, SLOT(onDevicesAdded(DeviceTypeMap)) );
-        dbusConnection.disconnect( cagibiServiceName,
-                                   cagibiObjectPath,
-                                   cagibiInterface,
+        dbusConnection.disconnect( serviceName,
+                                   deviceListObjectPath,
+                                   deviceListInterface,
                                    QLatin1String("devicesRemoved"),
                                    this, SLOT(onDevicesRemoved(DeviceTypeMap)) );
 
