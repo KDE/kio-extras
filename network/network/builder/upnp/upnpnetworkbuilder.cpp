@@ -106,6 +106,8 @@ void UpnpNetworkBuilder::startBrowse()
         new QDBusPendingCallWatcher( allDevicesCall, this );
     connect( allDevicesCallWatcher, SIGNAL(finished( QDBusPendingCallWatcher* )),
              SLOT(onAllDevicesCallFinished( QDBusPendingCallWatcher* )) );
+
+    emit initDone();
 }
 
 
@@ -126,8 +128,6 @@ kDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
     }
 
     delete allDevicesCallWatcher;
-
-    emit initDone();
 }
 
 void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevices )
