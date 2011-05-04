@@ -80,7 +80,7 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
 
     QHash<QString,Cagibi::Device> mActiveDevices;
 
-    QDBusInterface* mDBusCagibiProxy;
+    QDBusInterface* mCagibiDeviceListDBusProxy;
 };
 
 }
