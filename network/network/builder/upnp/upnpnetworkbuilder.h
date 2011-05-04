@@ -73,6 +73,9 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
 
     void onAllDevicesCallFinished( QDBusPendingCallWatcher* allDevicesCallWatcher );
 
+  private:
+    void queryCurrentDevices();
+
   private: // data
     NetworkPrivate* mNetworkPrivate;
 

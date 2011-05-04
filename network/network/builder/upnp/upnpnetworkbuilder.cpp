@@ -99,6 +99,14 @@ void UpnpNetworkBuilder::startBrowse()
              SLOT(onDevicesRemoved(DeviceTypeMap)) );
 
     // query current devicelist
+    queryCurrentDevices();
+
+    emit initDone();
+}
+
+void UpnpNetworkBuilder::queryCurrentDevices()
+{
+    // query current devicelist
     QDBusPendingCall allDevicesCall =
         mCagibiDeviceListDBusProxy->asyncCall( QLatin1String("allDevices") );
 
@@ -106,10 +114,7 @@ void UpnpNetworkBuilder::startBrowse()
         new QDBusPendingCallWatcher( allDevicesCall, this );
     connect( allDevicesCallWatcher, SIGNAL(finished( QDBusPendingCallWatcher* )),
              SLOT(onAllDevicesCallFinished( QDBusPendingCallWatcher* )) );
-
-    emit initDone();
 }
-
 
 void UpnpNetworkBuilder::onAllDevicesCallFinished( QDBusPendingCallWatcher* allDevicesCallWatcher )
 {
