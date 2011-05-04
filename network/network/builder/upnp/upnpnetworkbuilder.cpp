@@ -128,7 +128,7 @@ kDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
     }
     else
     {
-        kDebug() << "Could not connect to Cagibi, no listing of UPnP devices/services yet.";
+        kDebug() << "Could not connect to Cagibi, no listing of UPnP devices/services.";
         kDebug() << "Error: " << reply.error().name();
     }
 
@@ -335,7 +335,9 @@ kDebug()<<"Cagibi disappeared, removing all UPnP devices";
 
         removeUPnPDevices( upnpDevices );
     }
-    // TODO: query new service about existing devices, might already have some listed
+
+    if( ! newOwner.isEmpty() )
+        queryCurrentDevices();
 }
 
 UpnpNetworkBuilder::~UpnpNetworkBuilder()
