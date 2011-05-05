@@ -1,7 +1,7 @@
 /*
     This file is part of the Mollet network library, part of the KDE project.
 
-    Copyright 2009-2010 Friedrich W. H. Kossebau <kossebau@kde.org>
+    Copyright 2009-2011 Friedrich W. H. Kossebau <kossebau@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -36,7 +36,6 @@
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusPendingCallWatcher>
-#include <QtCore/QTimer>
 #include <QtCore/QStringList>
 
 #include <KDebug>
@@ -61,7 +60,7 @@ void UpnpNetworkBuilder::registerNetSystemFactory( AbstractNetSystemFactory* net
 
 void UpnpNetworkBuilder::start()
 {
-    QTimer::singleShot(0, this, SLOT(startBrowse()));
+    QMetaObject::invokeMethod( this, "startBrowse", Qt::QueuedConnection );
 }
 
 void UpnpNetworkBuilder::startBrowse()
@@ -71,24 +70,28 @@ void UpnpNetworkBuilder::startBrowse()
 
     QDBusConnection dbusConnection = QDBusConnection::sessionBus();
 
+    const QString cagibiServiceName = QLatin1String( "org.kde.Cagibi" );
+    const QString cagibiObjectPath =  QLatin1String( "/org/kde/Cagibi" );
+    const QString cagibiInterface =   cagibiServiceName; // by convention the same
+
     mDBusCagibiProxy =
-        new QDBusInterface("org.kde.Cagibi",
-                           "/org/kde/Cagibi",
-                           "org.kde.Cagibi",
-                           dbusConnection, this);
+        new QDBusInterface( cagibiServiceName,
+                            cagibiObjectPath,
+                            cagibiInterface,
+                            dbusConnection, this );
 
-    dbusConnection.connect("org.kde.Cagibi",
-                           "/org/kde/Cagibi",
-                           "org.kde.Cagibi",
-                           "devicesAdded",
-                           this, SLOT(onDevicesAdded( const DeviceTypeMap& )) );
-    dbusConnection.connect("org.kde.Cagibi",
-                           "/org/kde/Cagibi",
-                           "org.kde.Cagibi",
-                           "devicesRemoved",
-                           this, SLOT(onDevicesRemoved( const DeviceTypeMap& )) );
+    dbusConnection.connect( cagibiServiceName,
+                            cagibiObjectPath,
+                            cagibiInterface,
+                            QLatin1String("devicesAdded"),
+                            this, SLOT(onDevicesAdded(DeviceTypeMap)) );
+    dbusConnection.connect( cagibiServiceName,
+                            cagibiObjectPath,
+                            cagibiInterface,
+                            QLatin1String("devicesRemoved"),
+                            this, SLOT(onDevicesRemoved(DeviceTypeMap)) );
 
-    QDBusPendingCall allDevicesCall = mDBusCagibiProxy->asyncCall( QString::fromLatin1("allDevices") );
+    QDBusPendingCall allDevicesCall = mDBusCagibiProxy->asyncCall( QLatin1String("allDevices") );
 
     QDBusPendingCallWatcher* allDevicesCallWatcher =
         new QDBusPendingCallWatcher( allDevicesCall, this );
@@ -110,17 +113,21 @@ kDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
     }
     else
     {
+        const QString cagibiServiceName = QLatin1String( "org.kde.Cagibi" );
+        const QString cagibiObjectPath =  QLatin1String( "/org/kde/Cagibi" );
+        const QString cagibiInterface =   cagibiServiceName; // by convention the same
+
         QDBusConnection dbusConnection = QDBusConnection::sessionBus();
-        dbusConnection.disconnect("org.kde.Cagibi",
-                            "/org/kde/Cagibi",
-                            "org.kde.Cagibi",
-                            "devicesAdded",
-                            this, SLOT(onDevicesAdded( const DeviceTypeMap& )) );
-        dbusConnection.disconnect("org.kde.Cagibi",
-                            "/org/kde/Cagibi",
-                            "org.kde.Cagibi",
-                            "devicesRemoved",
-                            this, SLOT(onDevicesRemoved( const DeviceTypeMap& )) );
+        dbusConnection.disconnect( cagibiServiceName,
+                                   cagibiObjectPath,
+                                   cagibiInterface,
+                                   QLatin1String("devicesAdded"),
+                                   this, SLOT(onDevicesAdded(DeviceTypeMap)) );
+        dbusConnection.disconnect( cagibiServiceName,
+                                   cagibiObjectPath,
+                                   cagibiInterface,
+                                   QLatin1String("devicesRemoved"),
+                                   this, SLOT(onDevicesRemoved(DeviceTypeMap)) );
 
         kDebug() << "Could not connect to Cagibi, no listing of UPnP devices/services.";
         kDebug() << "Error: " << reply.error().name();
@@ -145,7 +152,7 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
         const QString ipAddress = upnpDevice.ipAddress();
 
         NetDevicePrivate* d = 0;
-        const NetDevice* deviceOfService;
+        const NetDevice* deviceOfService = 0;
         foreach( const NetDevice& device, deviceList )
         {
         const bool isSameAddress = ( device.ipAddress() == ipAddress );
@@ -249,7 +256,6 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<Cagibi::Device>& upnpDev
                 // remove device on last service
                 if( d->serviceList().count() == 0 )
                 {
-                    QList<NetDevice> removedDevices;
                     removedDevices.append( device );
                     // remove only after taking copy from reference into removed list
                     it.remove();
@@ -275,8 +281,8 @@ void UpnpNetworkBuilder::onDevicesAdded( const DeviceTypeMap& deviceTypeMap )
         QList<QVariant> args;
         args << udn;
         mDBusCagibiProxy->callWithCallback(
-            "deviceDetails", args,
-            this, SLOT(onAddedDeviceDetails(const Cagibi::Device&)), 0 );
+            QLatin1String("deviceDetails"), args,
+            this, SLOT(onAddedDeviceDetails(Cagibi::Device)), 0 );
     }
 }
 

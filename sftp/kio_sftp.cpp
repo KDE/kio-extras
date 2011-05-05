@@ -794,7 +794,7 @@ void sftpProtocol::closeConnection() {
   mConnected = false;
 }
 
-void sftpProtocol::special(const QByteArray &data) {
+void sftpProtocol::special(const QByteArray &) {
     int rc;
     kDebug(KIO_SFTP_DB) << "special(): polling";
 
@@ -989,8 +989,8 @@ void sftpProtocol::get(const KUrl& url) {
 
   sftp_file file = NULL;
   // time_t curtime = 0;
-  time_t lasttime = 0;
-  time_t starttime = 0;
+  //time_t lasttime = 0;
+  //time_t starttime = 0;
   KIO::filesize_t totalbytesread  = 0;
   QByteArray  filedata;
 
@@ -1053,7 +1053,7 @@ void sftpProtocol::get(const KUrl& url) {
   if (file != NULL) {
     bool isFirstPacket = true;
     ssize_t bytesread = 0;
-    lasttime = starttime = time(NULL);
+    //lasttime = starttime = time(NULL);
 
     for (;;) {
       // Enqueue get requests
@@ -1586,7 +1586,7 @@ void sftpProtocol::mkdir(const KUrl &url, int permissions) {
 }
 
 void sftpProtocol::rename(const KUrl& src, const KUrl& dest, KIO::JobFlags flags) {
-  kDebug(KIO_SFTP_DB) << "rename " << src << " to " << dest;
+  kDebug(KIO_SFTP_DB) << "rename " << src << " to " << dest << flags;
 
   openConnection();
   if (!mConnected) {
@@ -1608,7 +1608,18 @@ void sftpProtocol::rename(const KUrl& src, const KUrl& dest, KIO::JobFlags flags
       return;
     }
 
-    del(dest, sb->type == SSH_FILEXFER_TYPE_DIRECTORY ? true : false);
+    // Delete the existing destination file/dir...
+    if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
+      if (sftp_rmdir(mSftp, qdest.constData()) < 0) {
+        reportError(dest, sftp_get_error(mSftp));
+        return;
+      }
+    } else {
+      if (sftp_unlink(mSftp, qdest.constData()) < 0) {
+        reportError(dest, sftp_get_error(mSftp));
+        return;
+      }
+    }
   }
   sftp_attributes_free(sb);
 
