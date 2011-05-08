@@ -90,6 +90,7 @@ Query[hu]=http://tools.ietf.org/html/rfc\\{@}
 Query[km]=http://tools.ietf.org/html/rfc\\{@}
 Query[nl]=http://tools.ietf.org/html/rfc\\{@}
 Query[pt]=http://tools.ietf.org/html/rfc\\{@}
+Query[pt_BR]=http://tools.ietf.org/html/rfc\\{@}
 Query[sv]=http://tools.ietf.org/html/rfc\\{@}
 Query[uk]=http://tools.ietf.org/html/rfc\\{@}
 Query[x-test]=xxhttp://tools.ietf.org/html/rfc\\{@}xx
