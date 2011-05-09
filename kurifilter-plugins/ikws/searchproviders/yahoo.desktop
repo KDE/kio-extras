@@ -61,6 +61,7 @@ Name[sv]=Yahoo
 Name[tg]=Yahoo
 Name[th]=Yahoo
 Name[tr]=Yahoo
+Name[ug]=ياخۇ
 Name[uk]=Yahoo
 Name[wa]=Yahoo
 Name[x-test]=xxYahooxx
@@ -121,6 +122,7 @@ Query[sv]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&
 Query[tg]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[th]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[tr]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
+Query[ug]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[uk]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search
 Query[x-test]=xxhttp://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Searchxx
 Query[zh_CN]=http://search.yahoo.com/search?toggle=1&cop=mss&ei=UTF-8&fr=yfp-t-701&p=\\{@}&x=0&y=0&=Web+Search

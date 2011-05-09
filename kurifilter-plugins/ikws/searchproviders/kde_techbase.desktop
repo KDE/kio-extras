@@ -120,6 +120,7 @@ Query[sv]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[tg]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[th]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[tr]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ug]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[wa]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx

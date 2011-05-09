@@ -77,6 +77,7 @@ Name[te]=ఏక్రోనిమ్ డాటాబేస్
 Name[tg]=Базаи маълумотии акронимҳо
 Name[th]=ฐานข้อมูล Acronym
 Name[tr]=Eş Kelime Veritabanı
+Name[ug]=Acronym ساندان
 Name[uk]=База даних акронімів
 Name[uz]=Qisqartma maʼlumot bazasi
 Name[uz@cyrillic]=Қисқартма маълумот базаси
@@ -167,6 +168,7 @@ Query[te]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[tg]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[th]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[tr]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query[ug]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[uk]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[uz]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[uz@cyrillic]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}

@@ -169,6 +169,7 @@ Query[te]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FOR
 Query[tg]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[th]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[tr]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ug]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[uk]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[uz]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[uz@cyrillic]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado

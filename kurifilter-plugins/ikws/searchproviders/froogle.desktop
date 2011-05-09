@@ -80,6 +80,7 @@ Name[te]=ఫ్రూగుల్
 Name[tg]=Froogle
 Name[th]=Froogle - หาสินค้าผ่าน google
 Name[tr]=Froogle
+Name[ug]=Froogle
 Name[uk]=Froogle
 Name[uz]=Froogle
 Name[uz@cyrillic]=Froogle
@@ -169,6 +170,7 @@ Query[te]=http://froogle.google.com/froogle?q=\\{@}
 Query[tg]=http://froogle.google.com/froogle?q=\\{@}
 Query[th]=http://froogle.google.com/froogle?q=\\{@}
 Query[tr]=http://froogle.google.com/froogle?q=\\{@}
+Query[ug]=http://froogle.google.com/froogle?q=\\{@}
 Query[uk]=http://froogle.google.com/froogle?q=\\{@}
 Query[uz]=http://froogle.google.com/froogle?q=\\{@}
 Query[uz@cyrillic]=http://froogle.google.com/froogle?q=\\{@}

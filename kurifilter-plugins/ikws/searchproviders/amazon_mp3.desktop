@@ -60,6 +60,7 @@ Name[sv]=Amazon MP3
 Name[tg]=Amazon MP3
 Name[th]=อเมซอน MP3
 Name[tr]=Amazon MP3
+Name[ug]=ئامازون MP3
 Name[uk]=Amazon MP3
 Name[wa]=Amazon MP3
 Name[x-test]=xxAmazon MP3xx
@@ -122,6 +123,7 @@ Query[sv]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&
 Query[tg]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[th]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[tr]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[ug]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[uk]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[wa]=http://www.amazon.fr/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0xx

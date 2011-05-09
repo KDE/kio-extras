@@ -82,6 +82,7 @@ Name[te]=గూగుల్ బొమ్మల అన్వెషణ
 Name[tg]=Тасвирҳои Google
 Name[th]=ค้นหาภาพด้วยกูเกิล
 Name[tr]=Google Resim Arayıcı
+Name[ug]=Google سۈرەت ئىزدە
 Name[uk]=Пошук зображень на Google
 Name[uz]=Google - Rasm qidirish
 Name[uz@cyrillic]=Google - Расм қидириш
@@ -172,6 +173,7 @@ Query[te]=http://images.google.com/images?q=\\{@}
 Query[tg]=http://images.google.com/images?q=\\{@}
 Query[th]=http://images.google.com/images?q=\\{@}
 Query[tr]=http://images.google.com/images?q=\\{@}
+Query[ug]=http://images.google.com/images?q=\\{@}
 Query[uk]=http://images.google.com/images?q=\\{@}
 Query[uz]=http://images.google.com/images?q=\\{@}
 Query[uz@cyrillic]=http://images.google.com/images?q=\\{@}

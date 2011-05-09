@@ -160,6 +160,7 @@ Query[te]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[tg]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[th]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[tr]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[ug]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[uk]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[uz]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[uz@cyrillic]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search

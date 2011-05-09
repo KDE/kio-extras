@@ -168,6 +168,7 @@ Query[te]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[tg]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[th]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[tr]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ug]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[uk]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[uz]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[uz@cyrillic]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex

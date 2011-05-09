@@ -54,6 +54,7 @@ Name[sv]=Beolingus nätordlista
 Name[tg]=Луғати интернетии Beolingus
 Name[th]=พจนานุกรมออนไลน์ Beolingus
 Name[tr]=Beolingus Çevrimiçi Sözlük
+Name[ug]=Beolingus تور لۇغىتى
 Name[uk]=Мережевий словник Beolingus
 Name[wa]=Motî so fyis Beolingus
 Name[x-test]=xxBeolingus Online Dictionaryxx
@@ -118,6 +119,7 @@ Query[sv]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&
 Query[tg]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[th]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[tr]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
+Query[ug]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[uk]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[wa]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[x-test]=xxhttp://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&emailxx

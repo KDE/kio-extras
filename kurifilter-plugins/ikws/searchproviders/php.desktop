@@ -81,6 +81,7 @@ Name[te]=పి హెచ్ పి అన్వెషణ
 Name[tg]=Ҷустуҷӯи PHP
 Name[th]=ค้นหาเกี่ยวกับ PHP
 Name[tr]=PHP Arayıcı
+Name[ug]=PHP ئىزدە
 Name[uk]=Пошук PHP
 Name[uz]=PHP qidirish
 Name[uz@cyrillic]=PHP қидириш
@@ -146,6 +147,7 @@ Query[sv]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[tg]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[th]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[tr]=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[ug]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[uk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[wa]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[x-test]=xxhttp://www.php.net/manual-lookup.php?pattern=\\{@}xx

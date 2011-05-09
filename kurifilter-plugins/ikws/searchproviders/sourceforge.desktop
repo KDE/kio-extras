@@ -165,6 +165,7 @@ Query[te]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\
 Query[tg]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[th]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[tr]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
+Query[ug]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[uk]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[uz]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[uz@cyrillic]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}

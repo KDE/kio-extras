@@ -166,6 +166,7 @@ Query[te]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[tg]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[th]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[tr]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
+Query[ug]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[uk]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[uz]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}
 Query[uz@cyrillic]=http://www.allmusic.com/cg/amg.dll?p=amg&opt1=1&sql=\\{@}

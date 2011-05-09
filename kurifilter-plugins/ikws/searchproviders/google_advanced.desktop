@@ -82,6 +82,7 @@ Name[te]=గూగుల్ మరింత నిసిస్టమైన అ�
 Name[tg]=Google - Ҷустуҷӯи муфассал
 Name[th]=ค้นหาขั้นสูงด้วยกูเกิล
 Name[tr]=Google Gelişmiş Arayıcı
+Name[ug]=Google ئالىي ئىزدەش
 Name[uk]=Складний пошук у Google
 Name[uz]=Google - Ilgʻor qidirish
 Name[uz@cyrillic]=Google - Илғор қидириш
@@ -167,6 +168,7 @@ Query[te]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Goog
 Query[tg]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[th]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[tr]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
+Query[ug]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[uk]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[uz]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[uz@cyrillic]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8

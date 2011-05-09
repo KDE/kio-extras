@@ -147,6 +147,7 @@ Query[sv]=http://imdb.com/find?s=all&q=\\{@}
 Query[tg]=http://imdb.com/find?s=all&q=\\{@}
 Query[th]=http://imdb.com/find?s=all&q=\\{@}
 Query[tr]=http://imdb.com/find?s=all&q=\\{@}
+Query[ug]=http://imdb.com/find?s=all&q=\\{@}
 Query[uk]=http://imdb.com/find?s=all&q=\\{@}
 Query[wa]=http://imdb.com/find?s=all&q=\\{@}
 Query[x-test]=xxhttp://imdb.com/find?s=all&q=\\{@}xx

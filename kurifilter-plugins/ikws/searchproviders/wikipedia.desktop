@@ -167,6 +167,7 @@ Query[te]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tg]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[th]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tr]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ug]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz@cyrillic]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

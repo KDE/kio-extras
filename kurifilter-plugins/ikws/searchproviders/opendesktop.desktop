@@ -54,6 +54,7 @@ Name[sv]=openDesktop.org
 Name[tg]=openDesktop.org
 Name[th]=openDesktop.org
 Name[tr]=openDesktop.org
+Name[ug]=openDesktop.org
 Name[uk]=openDesktop.org
 Name[wa]=openDesktop.org
 Name[x-test]=xxopenDesktop.orgxx
@@ -114,6 +115,7 @@ Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[tg]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[tr]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[ug]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[wa]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.opendesktop.org/content/search.php?search=Search&name=\\{@}xx

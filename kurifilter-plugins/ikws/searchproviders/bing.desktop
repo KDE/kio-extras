@@ -50,6 +50,7 @@ Name[sv]=Bing
 Name[tg]=Bing
 Name[th]=Bing
 Name[tr]=Bing
+Name[ug]=Bing
 Name[uk]=Bing
 Name[wa]=Bing
 Name[x-test]=xxBingxx
@@ -107,6 +108,7 @@ Query[sv]=http://www.bing.com/search?q=\\{@}
 Query[tg]=http://www.bing.com/search?q=\\{@}
 Query[th]=http://www.bing.com/search?q=\\{@}
 Query[tr]=http://www.bing.com/search?q=\\{@}
+Query[ug]=http://www.bing.com/search?q=\\{@}
 Query[uk]=http://www.bing.com/search?q=\\{@}
 Query[wa]=http://www.bing.com/search?q=\\{@}
 Query[x-test]=xxhttp://www.bing.com/search?q=\\{@}xx

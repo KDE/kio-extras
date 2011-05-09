@@ -80,6 +80,7 @@ Name[te]=ఆల్టావిస్టా
 Name[tg]=AltaVista
 Name[th]=อัลต้าวิสต้า
 Name[tr]=AltaVista
+Name[ug]=AltaVista
 Name[uk]=AltaVista
 Name[uz]=AltaVista
 Name[uz@cyrillic]=AltaVista
@@ -170,6 +171,7 @@ Query[te]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[tg]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[th]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[tr]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
+Query[ug]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[uk]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[uz]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[uz@cyrillic]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
