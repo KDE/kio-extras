@@ -69,6 +69,7 @@ Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ast]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[bg]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[bn]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[bs]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ca]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ca@valencia]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[cs]=http://gitorious.org/search?q=\\{@}&commit=Search

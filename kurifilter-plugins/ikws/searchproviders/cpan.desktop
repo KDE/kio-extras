@@ -100,6 +100,7 @@ Query[bg]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,
 Query[bn]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[bn_IN]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[br]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
+Query[bs]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[ca]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[ca@valencia]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[cs]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}

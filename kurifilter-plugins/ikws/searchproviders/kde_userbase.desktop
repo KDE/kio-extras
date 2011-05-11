@@ -69,6 +69,7 @@ Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ast]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bg]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[bs]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca@valencia]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[cs]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

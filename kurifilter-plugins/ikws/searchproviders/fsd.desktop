@@ -97,6 +97,7 @@ Query[be@latin]=http://directory.fsf.org/search/?query=\\{@}
 Query[bg]=http://directory.fsf.org/search/?query=\\{@}
 Query[bn]=http://directory.fsf.org/search/?query=\\{@}
 Query[bn_IN]=http://directory.fsf.org/search/?query=\\{@}
+Query[bs]=http://directory.fsf.org/search/?query=\\{@}
 Query[ca]=http://directory.fsf.org/search/?query=\\{@}
 Query[ca@valencia]=http://directory.fsf.org/search/?query=\\{@}
 Query[cs]=http://directory.fsf.org/search/?query=\\{@}

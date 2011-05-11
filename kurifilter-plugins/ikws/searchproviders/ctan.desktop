@@ -97,6 +97,7 @@ Query[be@latin]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=
 Query[bg]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[bn]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[bn_IN]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
+Query[bs]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[ca]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[ca@valencia]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search
 Query[cs]=http://ctan.org/cgi-bin/filenameSearch.py?filename=\\{@}&Search=Search

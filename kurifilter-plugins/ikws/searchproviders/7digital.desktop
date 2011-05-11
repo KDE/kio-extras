@@ -69,6 +69,7 @@ Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ast]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[bg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[bn]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[bs]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ca]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ca@valencia]=http://vos.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[cs]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

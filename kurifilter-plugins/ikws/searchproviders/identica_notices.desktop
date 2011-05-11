@@ -67,6 +67,7 @@ Query[ar]=http://info.alexa.com/search?q=\\{@}
 Query[ast]=http://identi.ca/search/notice?q=\\{@}
 Query[bg]=http://identi.ca/search/notice?q=\\{@}
 Query[bn]=http://identi.ca/search/notice?q=\\{@}
+Query[bs]=http://identi.ca/search/notice?q=\\{@}
 Query[ca]=http://identi.ca/search/notice?q=\\{@}
 Query[ca@valencia]=http://identi.ca/search/notice?q=\\{@}
 Query[cs]=http://identi.ca/search/notice?q=\\{@}

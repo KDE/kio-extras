@@ -99,6 +99,7 @@ Query[bg]=http://www.qrz.com/database?callsign=\\{@}
 Query[bn]=http://www.qrz.com/database?callsign=\\{@}
 Query[bn_IN]=http://www.qrz.com/database?callsign=\\{@}
 Query[br]=http://www.qrz.com/database?callsign=\\{@}
+Query[bs]=http://www.qrz.com/database?callsign=\\{@}
 Query[ca]=http://www.qrz.com/database?callsign=\\{@}
 Query[ca@valencia]=http://www.qrz.com/database?callsign=\\{@}
 Query[cs]=http://www.qrz.com/database?callsign=\\{@}

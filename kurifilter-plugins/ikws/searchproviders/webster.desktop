@@ -103,6 +103,7 @@ Query[bg]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[bn]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[bn_IN]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[br]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
+Query[bs]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[ca]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[ca@valencia]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[cs]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}

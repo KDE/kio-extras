@@ -75,6 +75,7 @@ Comment=Keeps track of the network and updates directory listings of the network
 Comment[ar]=يراقب الشبكة و يحدث مسارد مجلدات بروتوكول الشبكة (network:/)
 Comment[ast]=Rexistra la rede y los anovamientos de llistaos de direutorios del protocolu network:/
 Comment[bg]=Наблюдение на мрежата и обновяване на съответните списъци на мрежовия протокол
+Comment[bs]=Prati mrežu i ažurira ispise fascikli protokola network:/
 Comment[ca]=Fa un seguiment de la xarxa i actualitza els llistats de directoris del protocol network:/
 Comment[ca@valencia]=Fa un seguiment de la xarxa i actualitza els llistats de directoris del protocol network:/
 Comment[cs]=Udržuje přehled o síti a aktualizuje výpisy adresářů protokolu network:/

@@ -99,6 +99,7 @@ Query[bg]=http://dx.doi.org/\\{@}
 Query[bn]=http://dx.doi.org/\\{@}
 Query[bn_IN]=http://dx.doi.org/\\{@}
 Query[br]=http://dx.doi.org/\\{@}
+Query[bs]=http://dx.doi.org/\\{@}
 Query[ca]=http://dx.doi.org/\\{@}
 Query[ca@valencia]=http://dx.doi.org/\\{@}
 Query[cs]=http://dx.doi.org/\\{@}

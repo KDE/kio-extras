@@ -96,6 +96,7 @@ Query[ar]=http://imdb.com/Find?\\{@}
 Query[ast]=http://imdb.com/find?s=all&q=\\{@}
 Query[bg]=http://imdb.com/find?s=all&q=\\{@}
 Query[bn]=http://imdb.com/find?s=all&q=\\{@}
+Query[bs]=http://imdb.com/find?s=all&q=\\{@}
 Query[ca]=http://imdb.com/find?s=all&q=\\{@}
 Query[ca@valencia]=http://imdb.com/find?s=all&q=\\{@}
 Query[cs]=http://imdb.com/find?s=all&q=\\{@}

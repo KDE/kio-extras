@@ -61,6 +61,7 @@ Keys=bing
 Query=http://www.bing.com/search?q=\\{@}
 Query[ast]=http://www.bing.com/search?q=\\{@}
 Query[bg]=http://www.bing.com/search?q=\\{@}
+Query[bs]=http://www.bing.com/search?q=\\{@}
 Query[ca]=http://www.bing.com/search?q=\\{@}
 Query[ca@valencia]=http://www.bing.com/search?q=\\{@}
 Query[cs]=http://www.bing.com/search?q=\\{@}

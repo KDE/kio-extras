@@ -98,6 +98,7 @@ Query[be@latin]=http://packages.debian.org/\\{@}
 Query[bg]=http://packages.debian.org/\\{@}
 Query[bn]=http://packages.debian.org/\\{@}
 Query[bn_IN]=http://packages.debian.org/\\{@}
+Query[bs]=http://packages.debian.org/\\{@}
 Query[ca]=http://packages.debian.org/\\{@}
 Query[ca@valencia]=http://packages.debian.org/\\{@}
 Query[cs]=http://packages.debian.org/\\{@}
