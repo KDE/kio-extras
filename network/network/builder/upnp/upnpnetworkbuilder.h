@@ -68,8 +68,13 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
     void onDevicesAdded( const DeviceTypeMap& deviceTypeMap );
     void onDevicesRemoved( const DeviceTypeMap& deviceTypeMap );
     void onAddedDeviceDetails( const Cagibi::Device& device );
+    void onCagibiServiceOwnerChanged( const QString& serviceName,
+                                      const QString& oldOwner, const QString& newOwner );
 
     void onAllDevicesCallFinished( QDBusPendingCallWatcher* allDevicesCallWatcher );
+
+  private:
+    void queryCurrentDevices();
 
   private: // data
     NetworkPrivate* mNetworkPrivate;
@@ -78,7 +83,7 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
 
     QHash<QString,Cagibi::Device> mActiveDevices;
 
-    QDBusInterface* mDBusCagibiProxy;
+    QDBusInterface* mCagibiDeviceListDBusProxy;
 };
 
 }

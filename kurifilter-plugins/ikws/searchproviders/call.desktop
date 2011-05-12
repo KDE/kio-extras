@@ -99,6 +99,7 @@ Query[bg]=http://www.qrz.com/database?callsign=\\{@}
 Query[bn]=http://www.qrz.com/database?callsign=\\{@}
 Query[bn_IN]=http://www.qrz.com/database?callsign=\\{@}
 Query[br]=http://www.qrz.com/database?callsign=\\{@}
+Query[bs]=http://www.qrz.com/database?callsign=\\{@}
 Query[ca]=http://www.qrz.com/database?callsign=\\{@}
 Query[ca@valencia]=http://www.qrz.com/database?callsign=\\{@}
 Query[cs]=http://www.qrz.com/database?callsign=\\{@}
@@ -167,6 +168,7 @@ Query[te]=http://www.qrz.com/database?callsign=\\{@}
 Query[tg]=http://www.qrz.com/database?callsign=\\{@}
 Query[th]=http://www.qrz.com/database?callsign=\\{@}
 Query[tr]=http://www.qrz.com/database?callsign=\\{@}
+Query[ug]=http://www.qrz.com/database?callsign=\\{@}
 Query[uk]=http://www.qrz.com/database?callsign=\\{@}
 Query[uz]=http://www.qrz.com/database?callsign=\\{@}
 Query[uz@cyrillic]=http://www.qrz.com/database?callsign=\\{@}

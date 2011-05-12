@@ -102,6 +102,7 @@ Query[bg]=http://freshmeat.net/search/?q=\\{@}
 Query[bn]=http://freshmeat.net/search/?q=\\{@}
 Query[bn_IN]=http://freshmeat.net/search/?q=\\{@}
 Query[br]=http://freshmeat.net/search/?q=\\{@}
+Query[bs]=http://freshmeat.net/search/?q=\\{@}
 Query[ca]=http://freshmeat.net/search/?q=\\{@}
 Query[ca@valencia]=http://freshmeat.net/search/?q=\\{@}
 Query[cs]=http://freshmeat.net/search/?q=\\{@}
@@ -170,6 +171,7 @@ Query[te]=http://freshmeat.net/search/?q=\\{@}
 Query[tg]=http://freshmeat.net/search/?q=\\{@}
 Query[th]=http://freshmeat.net/search/?q=\\{@}
 Query[tr]=http://freshmeat.net/search/?q=\\{@}
+Query[ug]=http://freshmeat.net/search/?q=\\{@}
 Query[uk]=http://freshmeat.net/search/?q=\\{@}
 Query[uz]=http://freshmeat.net/search/?q=\\{@}
 Query[uz@cyrillic]=http://freshmeat.net/search/?q=\\{@}

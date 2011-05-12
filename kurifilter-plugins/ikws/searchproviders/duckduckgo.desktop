@@ -66,6 +66,7 @@ Query[ar]=http://imdb.com/Find?\\{@}
 Query[ast]=http://duckduckgo.com/?q=\\{@}&v=
 Query[bg]=http://duckduckgo.com/?q=\\{@}&v=
 Query[bn]=http://duckduckgo.com/?q=\\{@}&v=
+Query[bs]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ca]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ca@valencia]=http://duckduckgo.com/?q=\\{@}&v=
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=
@@ -117,6 +118,7 @@ Query[sv]=http://duckduckgo.com/?q=\\{@}&v=
 Query[tg]=http://duckduckgo.com/?q=\\{@}&v=
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=
+Query[ug]=http://duckduckgo.com/?q=\\{@}&v=
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=
 Query[wa]=http://duckduckgo.com/?q=\\{@}&v=
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=xx

@@ -69,6 +69,7 @@ Query[ar]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[ast]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[bg]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[bn]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[bs]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ca]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ca@valencia]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[cs]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
@@ -120,6 +121,7 @@ Query[sv]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[tg]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[tr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[ug]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[wa]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-look.org/content/search.php?search=Search&name=\\{@}xx

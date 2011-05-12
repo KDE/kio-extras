@@ -100,6 +100,7 @@ Query[bg]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[bn]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[bn_IN]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[br]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[bs]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ca]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ca@valencia]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[cs]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
@@ -168,6 +169,7 @@ Query[te]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[tg]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[th]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[tr]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ug]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[uk]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[uz]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[uz@cyrillic]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex

@@ -97,6 +97,7 @@ Query[be@latin]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&
 Query[bg]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[bn]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[bn_IN]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
+Query[bs]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[ca]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[ca@valencia]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[cs]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
@@ -163,6 +164,7 @@ Query[te]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\
 Query[tg]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[th]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[tr]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
+Query[ug]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[uk]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[uz]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[uz@cyrillic]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}

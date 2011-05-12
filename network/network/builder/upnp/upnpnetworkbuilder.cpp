@@ -36,17 +36,21 @@
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusInterface>
 #include <QtDBus/QDBusPendingCallWatcher>
+#include <QtDBus/QDBusServiceWatcher>
 #include <QtCore/QStringList>
 
 #include <KDebug>
 
 namespace Mollet
 {
+static const char cagibiServiceName[] =          "org.kde.Cagibi";
+static const char cagibiDeviceListObjectPath[] = "/org/kde/Cagibi/DeviceList";
+static const char cagibiDeviceListInterface[] =  "org.kde.Cagibi.DeviceList";
 
 UpnpNetworkBuilder::UpnpNetworkBuilder( NetworkPrivate* networkPrivate )
   : AbstractNetworkBuilder()
   , mNetworkPrivate( networkPrivate )
-  , mDBusCagibiProxy( 0 )
+  , mCagibiDeviceListDBusProxy( 0 )
 {
 }
 
@@ -68,38 +72,49 @@ void UpnpNetworkBuilder::startBrowse()
     qDBusRegisterMetaType<DeviceTypeMap>();
     qDBusRegisterMetaType<Cagibi::Device>();
 
-    QDBusConnection dbusConnection = QDBusConnection::sessionBus();
+    QDBusConnection dbusConnection = QDBusConnection::systemBus();
 
-    const QString cagibiServiceName = QLatin1String( "org.kde.Cagibi" );
-    const QString cagibiObjectPath =  QLatin1String( "/org/kde/Cagibi" );
-    const QString cagibiInterface =   cagibiServiceName; // by convention the same
+    const QString serviceName = QLatin1String( cagibiServiceName );
+    const QString deviceListObjectPath =  QLatin1String( cagibiDeviceListObjectPath );
+    const QString deviceListInterface =   QLatin1String( cagibiDeviceListInterface );
 
-    mDBusCagibiProxy =
-        new QDBusInterface( cagibiServiceName,
-                            cagibiObjectPath,
-                            cagibiInterface,
+    // install service watcher
+    QDBusServiceWatcher* cagibiServiceWatcher =
+        new QDBusServiceWatcher( serviceName,
+                                 dbusConnection,
+                                 QDBusServiceWatcher::WatchForOwnerChange,
+                                 this );
+    connect( cagibiServiceWatcher, SIGNAL(serviceOwnerChanged(QString,QString,QString)),
+             SLOT(onCagibiServiceOwnerChanged(QString,QString,QString)) );
+
+    // create devicelist proxy
+    mCagibiDeviceListDBusProxy =
+        new QDBusInterface( serviceName,
+                            deviceListObjectPath,
+                            deviceListInterface,
                             dbusConnection, this );
+    connect( mCagibiDeviceListDBusProxy, SIGNAL(devicesAdded(DeviceTypeMap)),
+             SLOT(onDevicesAdded(DeviceTypeMap)) );
+    connect( mCagibiDeviceListDBusProxy, SIGNAL(devicesRemoved(DeviceTypeMap)),
+             SLOT(onDevicesRemoved(DeviceTypeMap)) );
 
-    dbusConnection.connect( cagibiServiceName,
-                            cagibiObjectPath,
-                            cagibiInterface,
-                            QLatin1String("devicesAdded"),
-                            this, SLOT(onDevicesAdded(DeviceTypeMap)) );
-    dbusConnection.connect( cagibiServiceName,
-                            cagibiObjectPath,
-                            cagibiInterface,
-                            QLatin1String("devicesRemoved"),
-                            this, SLOT(onDevicesRemoved(DeviceTypeMap)) );
+    // query current devicelist
+    queryCurrentDevices();
 
-    QDBusPendingCall allDevicesCall = mDBusCagibiProxy->asyncCall( QLatin1String("allDevices") );
+    emit initDone();
+}
+
+void UpnpNetworkBuilder::queryCurrentDevices()
+{
+    // query current devicelist
+    QDBusPendingCall allDevicesCall =
+        mCagibiDeviceListDBusProxy->asyncCall( QLatin1String("allDevices") );
 
     QDBusPendingCallWatcher* allDevicesCallWatcher =
         new QDBusPendingCallWatcher( allDevicesCall, this );
-
     connect( allDevicesCallWatcher, SIGNAL(finished( QDBusPendingCallWatcher* )),
              SLOT(onAllDevicesCallFinished( QDBusPendingCallWatcher* )) );
 }
-
 
 void UpnpNetworkBuilder::onAllDevicesCallFinished( QDBusPendingCallWatcher* allDevicesCallWatcher )
 {
@@ -113,29 +128,11 @@ kDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
     }
     else
     {
-        const QString cagibiServiceName = QLatin1String( "org.kde.Cagibi" );
-        const QString cagibiObjectPath =  QLatin1String( "/org/kde/Cagibi" );
-        const QString cagibiInterface =   cagibiServiceName; // by convention the same
-
-        QDBusConnection dbusConnection = QDBusConnection::sessionBus();
-        dbusConnection.disconnect( cagibiServiceName,
-                                   cagibiObjectPath,
-                                   cagibiInterface,
-                                   QLatin1String("devicesAdded"),
-                                   this, SLOT(onDevicesAdded(DeviceTypeMap)) );
-        dbusConnection.disconnect( cagibiServiceName,
-                                   cagibiObjectPath,
-                                   cagibiInterface,
-                                   QLatin1String("devicesRemoved"),
-                                   this, SLOT(onDevicesRemoved(DeviceTypeMap)) );
-
         kDebug() << "Could not connect to Cagibi, no listing of UPnP devices/services.";
         kDebug() << "Error: " << reply.error().name();
     }
 
     delete allDevicesCallWatcher;
-
-    emit initDone();
 }
 
 void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevices )
@@ -280,7 +277,7 @@ void UpnpNetworkBuilder::onDevicesAdded( const DeviceTypeMap& deviceTypeMap )
         const QString udn = it.key();
         QList<QVariant> args;
         args << udn;
-        mDBusCagibiProxy->callWithCallback(
+        mCagibiDeviceListDBusProxy->callWithCallback(
             QLatin1String("deviceDetails"), args,
             this, SLOT(onAddedDeviceDetails(Cagibi::Device)), 0 );
     }
@@ -298,6 +295,7 @@ void UpnpNetworkBuilder::onDevicesRemoved( const DeviceTypeMap& deviceTypeMap )
             mActiveDevices.find( it.key() );
         if( adIt != mActiveDevices.end() )
         {
+kDebug()<<"removing UPnP device" << adIt.value().friendlyName();
             upnpDevices.append( adIt.value() );
             mActiveDevices.erase( adIt );
         }
@@ -319,6 +317,28 @@ void UpnpNetworkBuilder::onAddedDeviceDetails( const Cagibi::Device& device )
     addUPnPDevices( devices );
 }
 
+void UpnpNetworkBuilder::onCagibiServiceOwnerChanged( const QString& serviceName,
+                                                      const QString& oldOwner,
+                                                      const QString& newOwner )
+{
+    Q_UNUSED(serviceName);
+    Q_UNUSED(newOwner);
+
+    // old service disappeared?
+    if( ! oldOwner.isEmpty() )
+    {
+kDebug()<<"Cagibi disappeared, removing all UPnP devices";
+
+        // remove all registered UPnP devices
+        QList<Cagibi::Device> upnpDevices = mActiveDevices.values();
+        mActiveDevices.clear();
+
+        removeUPnPDevices( upnpDevices );
+    }
+
+    if( ! newOwner.isEmpty() )
+        queryCurrentDevices();
+}
 
 UpnpNetworkBuilder::~UpnpNetworkBuilder()
 {

@@ -68,6 +68,7 @@ Query[ar]=http://froogle.google.com/froogle?q=\\{@}
 Query[ast]=http://code.google.com/query/#q=\\{%2520}
 Query[bg]=http://code.google.com/query/#q=\\{%2520}
 Query[bn]=http://code.google.com/query/#q=\\{%2520}
+Query[bs]=http://code.google.com/query/#q=\\{%2520}
 Query[ca]=http://code.google.com/query/#q=\\{%2520}
 Query[ca@valencia]=http://code.google.com/query/#q=\\{%2520}
 Query[cs]=http://code.google.com/query/#q=\\{%2520}
@@ -119,6 +120,7 @@ Query[sv]=http://code.google.com/query/#q=\\{%2520}
 Query[tg]=http://code.google.com/query/#q=\\{%2520}
 Query[th]=http://code.google.com/query/#q=\\{%2520}
 Query[tr]=http://code.google.com/query/#q=\\{%2520}
+Query[ug]=http://code.google.com/query/#q=\\{%2520}
 Query[uk]=http://code.google.com/query/#q=\\{%2520}
 Query[wa]=http://code.google.com/query/#q=\\{%2520}
 Query[x-test]=xxhttp://code.google.com/query/#q=\\{%2520}xx

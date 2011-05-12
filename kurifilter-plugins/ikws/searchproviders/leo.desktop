@@ -102,6 +102,7 @@ Query[bg]=http://dict.leo.org/?search=\\{@}
 Query[bn]=http://dict.leo.org/?search=\\{@}
 Query[bn_IN]=http://dict.leo.org/?search=\\{@}
 Query[br]=http://dict.leo.org/?search=\\{@}
+Query[bs]=http://dict.lio.org/?search=\\{@}
 Query[ca]=http://dict.leo.org/?search=\\{@}
 Query[ca@valencia]=http://dict.leo.org/?search=\\{@}
 Query[cs]=http://dict.leo.org/?search=\\{@}
@@ -170,6 +171,7 @@ Query[te]=http://dict.leo.org/?search=\\{@}
 Query[tg]=http://dict.leo.org/?search=\\{@}
 Query[th]=http://dict.leo.org/?search=\\{@}
 Query[tr]=http://dict.leo.org/?search=\\{@}
+Query[ug]=http://dict.leo.org/?search=\\{@}
 Query[uk]=http://dict.leo.org/?search=\\{@}
 Query[uz]=http://dict.leo.org/?search=\\{@}
 Query[uz@cyrillic]=http://dict.leo.org/?search=\\{@}

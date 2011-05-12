@@ -103,6 +103,7 @@ Query[bg]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[bn]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[bn_IN]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[br]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
+Query[bs]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[ca]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[ca@valencia]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[cs]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
@@ -171,6 +172,7 @@ Query[te]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[tg]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[th]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[tr]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
+Query[ug]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[uk]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[uz]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}
 Query[uz@cyrillic]=http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=\\{@}

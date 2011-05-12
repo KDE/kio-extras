@@ -103,6 +103,7 @@ Query[bg]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[bn]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[bn_IN]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[br]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
+Query[bs]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[ca]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[ca@valencia]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[cs]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
@@ -171,6 +172,7 @@ Query[te]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[tg]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[th]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[tr]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
+Query[ug]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[uk]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[uz]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[uz@cyrillic]=http://search.dmoz.org/cgi-bin/search?search=\\{@}

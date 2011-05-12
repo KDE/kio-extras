@@ -80,6 +80,7 @@ Name[te]=నెట్ క్రాఫ్ట్
 Name[tg]=Netcraft
 Name[th]=บริการ Netcraft
 Name[tr]=Netcraft
+Name[ug]=Netcraft
 Name[uk]=Netcraft
 Name[uz]=Netcraft
 Name[uz@cyrillic]=Netcraft
@@ -101,6 +102,7 @@ Query[bg]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[bn]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[bn_IN]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[br]=http://uptime.netcraft.com/up/graph?site=\\{@}
+Query[bs]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[ca]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[ca@valencia]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[cs]=http://uptime.netcraft.com/up/graph?site=\\{@}
@@ -169,6 +171,7 @@ Query[te]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[tg]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[th]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[tr]=http://uptime.netcraft.com/up/graph?site=\\{@}
+Query[ug]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[uk]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[uz]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[uz@cyrillic]=http://uptime.netcraft.com/up/graph?site=\\{@}

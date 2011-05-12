@@ -60,6 +60,7 @@ Keys=baidu
 Query=http://www.baidu.com/s?wd=\\{@}
 Query[ast]=http://www.baidu.com/s?wd=\\{@}
 Query[bg]=http://www.baidu.com/s?wd=\\{@}
+Query[bs]=http://www.baidu.com/s?wd=\\{@}
 Query[ca]=http://www.baidu.com/s?wd=\\{@}
 Query[ca@valencia]=http://www.baidu.com/s?wd=\\{@}
 Query[cs]=http://www.baidu.com/s?wd=\\{@}
@@ -107,6 +108,7 @@ Query[sv]=http://www.baidu.com/s?wd=\\{@}
 Query[tg]=http://www.baidu.com/s?wd=\\{@}
 Query[th]=http://www.baidu.com/s?wd=\\{@}
 Query[tr]=http://www.baidu.com/s?wd=\\{@}
+Query[ug]=http://www.baidu.com/s?wd=\\{@}
 Query[uk]=http://www.baidu.com/s?wd=\\{@}
 Query[wa]=http://www.baidu.com/s?wd=\\{@}
 Query[x-test]=xxhttp://www.baidu.com/s?wd=\\{@}xx

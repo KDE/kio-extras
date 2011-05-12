@@ -102,6 +102,7 @@ Query[be@latin]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[bg]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[bn]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[bn_IN]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
+Query[bs]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[ca]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[ca@valencia]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[cs]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
@@ -168,6 +169,7 @@ Query[te]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[tg]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[th]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[tr]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
+Query[ug]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[uk]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[uz]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*
 Query[uz@cyrillic]=http://www.voila.com/S/geek?an=1&kw=\\{@}&dt=*

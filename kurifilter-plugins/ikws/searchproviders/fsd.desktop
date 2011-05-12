@@ -97,6 +97,7 @@ Query[be@latin]=http://directory.fsf.org/search/?query=\\{@}
 Query[bg]=http://directory.fsf.org/search/?query=\\{@}
 Query[bn]=http://directory.fsf.org/search/?query=\\{@}
 Query[bn_IN]=http://directory.fsf.org/search/?query=\\{@}
+Query[bs]=http://directory.fsf.org/search/?query=\\{@}
 Query[ca]=http://directory.fsf.org/search/?query=\\{@}
 Query[ca@valencia]=http://directory.fsf.org/search/?query=\\{@}
 Query[cs]=http://directory.fsf.org/search/?query=\\{@}
@@ -160,6 +161,7 @@ Query[te]=http://directory.fsf.org/search/?query=\\{@}
 Query[tg]=http://directory.fsf.org/search/?query=\\{@}
 Query[th]=http://directory.fsf.org/search/?query=\\{@}
 Query[tr]=http://directory.fsf.org/search/?query=\\{@}
+Query[ug]=http://directory.fsf.org/search/?query=\\{@}
 Query[uk]=http://directory.fsf.org/search/?query=\\{@}
 Query[uz]=http://directory.fsf.org/search/?query=\\{@}
 Query[uz@cyrillic]=http://directory.fsf.org/search/?query=\\{@}

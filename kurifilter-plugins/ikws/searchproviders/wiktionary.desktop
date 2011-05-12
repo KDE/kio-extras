@@ -99,6 +99,7 @@ Query[be@latin]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=http://bg.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn_IN]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bs]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca@valencia]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[cs]=http://cs.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
@@ -165,6 +166,7 @@ Query[te]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tg]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[th]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tr]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ug]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=http://uk.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz@cyrillic]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

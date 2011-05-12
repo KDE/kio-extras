@@ -66,6 +66,7 @@ Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ast]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[bg]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[bn]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[bs]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ca]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ca@valencia]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[cs]=http://identi.ca/search/people?q=\\{@}&search=Search
@@ -117,6 +118,7 @@ Query[sv]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[tg]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[th]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[tr]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[ug]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[uk]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[wa]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[x-test]=xxhttp://identi.ca/search/people?q=\\{@}&search=Searchxx

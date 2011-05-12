@@ -99,6 +99,7 @@ Query[bg]=http://www.dict.cc/?s=\\{@}
 Query[bn]=http://www.dict.cc/?s=\\{@}
 Query[bn_IN]=http://www.dict.cc/?s=\\{@}
 Query[br]=http://www.dict.cc/?s=\\{@}
+Query[bs]=http://www.dict.cc/?s=\\{@}
 Query[ca]=http://www.dict.cc/?s=\\{@}
 Query[ca@valencia]=http://www.dict.cc/?s=\\{@}
 Query[cs]=http://www.dict.cc/?s=\\{@}
@@ -167,6 +168,7 @@ Query[te]=http://www.dict.cc/?s=\\{@}
 Query[tg]=http://www.dict.cc/?s=\\{@}
 Query[th]=http://www.dict.cc/?s=\\{@}
 Query[tr]=http://www.dict.cc/?s=\\{@}
+Query[ug]=http://www.dict.cc/?s=\\{@}
 Query[uk]=http://www.dict.cc/?s=\\{@}
 Query[uz]=http://www.dict.cc/?s=\\{@}
 Query[uz@cyrillic]=http://www.dict.cc/?s=\\{@}

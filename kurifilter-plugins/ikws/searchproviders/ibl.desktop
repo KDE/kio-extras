@@ -96,6 +96,7 @@ Query[be@latin]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[bg]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[bn]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[bn_IN]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
+Query[bs]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ca]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ca@valencia]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[cs]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
@@ -162,6 +163,7 @@ Query[te]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[tg]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[th]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[tr]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
+Query[ug]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[uk]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[uz]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[uz@cyrillic]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search

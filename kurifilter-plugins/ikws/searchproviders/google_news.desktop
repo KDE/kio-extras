@@ -82,6 +82,7 @@ Name[te]=గూగుల్ వార్తలు
 Name[tg]=Ахбороти Google
 Name[th]=กลุ่มข่าวต่าง ๆ จากกูเกิล
 Name[tr]=Google Haberleri
+Name[ug]=Google خەۋەرلىرى
 Name[uk]=Новини Google
 Name[uz]=Google - Yangiliklar
 Name[uz@cyrillic]=Google - Янгиликлар
@@ -103,6 +104,7 @@ Query[bg]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn_IN]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[br]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[bs]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca@valencia]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[cs]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
@@ -171,6 +173,7 @@ Query[te]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[tg]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[th]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[tr]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[ug]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uk]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uz]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uz@cyrillic]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8

@@ -73,6 +73,7 @@ Query[ar]=http://www.dict.cc/?s=\\{@}
 Query[ast]=http://www.cnrtl.fr/definition/\\{@}
 Query[bg]=http://www.cnrtl.fr/definition/\\{@}
 Query[bn]=http://www.cnrtl.fr/definition/\\{@}
+Query[bs]=http://www.cnrtl.fr/definition/\\{@}
 Query[ca]=http://www.cnrtl.fr/definition/\\{@}
 Query[ca@valencia]=http://www.cnrtl.fr/definition/\\{@}
 Query[cs]=http://www.cnrtl.fr/definition/\\{@}
@@ -129,6 +130,7 @@ Query[sv]=http://www.cnrtl.fr/definition/\\{@}
 Query[tg]=http://www.cnrtl.fr/definition/\\{@}
 Query[th]=http://www.cnrtl.fr/definition/\\{@}
 Query[tr]=http://www.cnrtl.fr/definition/\\{@}
+Query[ug]=http://www.cnrtl.fr/definition/\\{@}
 Query[uk]=http://www.cnrtl.fr/definition/\\{@}
 Query[wa]=http://www.cnrtl.fr/definition/\\{@}
 Query[x-test]=xxhttp://www.cnrtl.fr/definition/\\{@}xx

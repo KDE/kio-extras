@@ -101,6 +101,7 @@ Query[be@latin]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[bg]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[bn]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[bn_IN]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
+Query[bs]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[ca]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[ca@valencia]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[cs]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
@@ -167,6 +168,7 @@ Query[te]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[tg]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[th]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[tr]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
+Query[ug]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[uk]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[uz]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[uz@cyrillic]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}

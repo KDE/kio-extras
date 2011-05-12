@@ -67,6 +67,7 @@ Query[ar]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[ast]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[bg]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[bn]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[bs]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ca]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ca@valencia]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[cs]=http://www.urbandictionary.com/define.php?term=\\{@}
@@ -118,6 +119,7 @@ Query[sv]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[tg]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[th]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[tr]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[ug]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[wa]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[x-test]=xxhttp://www.urbandictionary.com/define.php?term=\\{@}xx

@@ -98,6 +98,7 @@ Query[bg]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[bn]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[bn_IN]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[br]=http://technorati.com/tag/\\{@}?sourceid=kde-search
+Query[bs]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[ca]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[ca@valencia]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[cs]=http://technorati.com/tag/\\{@}?sourceid=kde-search
@@ -164,6 +165,7 @@ Query[te]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[tg]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[th]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[tr]=http://technorati.com/tag/\\{@}?sourceid=kde-search
+Query[ug]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[uk]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[uz]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[uz@cyrillic]=http://technorati.com/tag/\\{@}?sourceid=kde-search

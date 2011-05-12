@@ -100,6 +100,7 @@ Query[be@latin]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[bg]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[bn]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[bn_IN]=http://api.kde.org/classmapper.php?class=\\{@}
+Query[bs]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[ca]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[ca@valencia]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[cs]=http://api.kde.org/classmapper.php?class=\\{@}
@@ -163,6 +164,7 @@ Query[te]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[tg]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[th]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[tr]=http://api.kde.org/classmapper.php?class=\\{@}
+Query[ug]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uk]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uz]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uz@cyrillic]=http://api.kde.org/classmapper.php?class=\\{@}
