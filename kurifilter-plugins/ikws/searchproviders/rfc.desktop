@@ -89,6 +89,7 @@ Name[zh_TW]=IETF RFC 文件
 Query=http://tools.ietf.org/html/rfc\\{@}
 Query[bs]=http://www.ietf.org/rfc/rfc\\{@}.txt
 Query[da]=http://tools.ietf.org/html/rfc\\{@}
+Query[es]=http://tools.ietf.org/html/rfc\\{@}
 Query[hu]=http://tools.ietf.org/html/rfc\\{@}
 Query[ia]=http://tools.ietf.org/html/rfc\\{@}
 Query[km]=http://tools.ietf.org/html/rfc\\{@}
