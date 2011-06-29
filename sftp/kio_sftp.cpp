@@ -205,10 +205,11 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
         }
 
         if (!instruction.isEmpty()) {
-          newPrompt = instruction + "\n\n";
+          newPrompt = instruction + "<br /><br />";
         }
+        newPrompt.append(prompt);
+        infoKbdInt.prompt = newPrompt;
 
-        newPrompt.append(prompt + "\n\n");
         infoKbdInt.readOnly = false;
         infoKbdInt.keepPassword = false;
 
