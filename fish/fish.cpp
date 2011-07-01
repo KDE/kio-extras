@@ -815,6 +815,7 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
         s.prepend(" ");
     commandList.append(s);
     commandCodes.append(cmd);
+    va_end(list);
     return true;
 }
 
