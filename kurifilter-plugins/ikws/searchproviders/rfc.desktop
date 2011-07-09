@@ -90,6 +90,7 @@ Name[zh_TW]=IETF RFC 文件
 Query=http://tools.ietf.org/html/rfc\\{@}
 Query[bs]=http://www.ietf.org/rfc/rfc\\{@}.txt
 Query[ca]=http://tools.ietf.org/html/rfc\\{@}
+Query[ca@valencia]=http://tools.ietf.org/html/rfc\\{@}
 Query[cs]=http://tools.ietf.org/rfc/rfc\\{@}
 Query[da]=http://tools.ietf.org/html/rfc\\{@}
 Query[de]=http://tools.ietf.org/html/rfc\\{@}
