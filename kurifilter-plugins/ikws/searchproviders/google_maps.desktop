@@ -104,7 +104,7 @@ Query[mai]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nb]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nds]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
-Query[nn]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[nn]=http://maps.google.no/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pa]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
