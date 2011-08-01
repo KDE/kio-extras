@@ -170,7 +170,7 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
 
   kDebug(KIO_SFTP_DB) << "Entering keyboard interactive function";
 
-  err = ssh_userauth_kbdint(mSession, mUsername.toUtf8().constData(), NULL);
+  err = ssh_userauth_kbdint(mSession, NULL, NULL);
   while (err == SSH_AUTH_INFO) {
     int n = 0;
     int i = 0;
@@ -244,7 +244,7 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
         }
       }
     }
-    err = ssh_userauth_kbdint(mSession, mUsername.toUtf8().constData(), NULL);
+    err = ssh_userauth_kbdint(mSession, NULL, NULL);
   }
 
   return err;
