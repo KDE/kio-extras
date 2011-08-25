@@ -429,12 +429,11 @@ sftpProtocol::~sftpProtocol() {
 }
 
 void sftpProtocol::setHost(const QString& host, quint16 port, const QString& user, const QString& pass) {
-  kDebug(KIO_SFTP_DB) << "setHost(): " << user << "@" << host << ":" << port;
+  kDebug(KIO_SFTP_DB) << user << "@" << host << ":" << port;
 
   // Close connection if the request is to another server...
-  if (mConnected &&
-      (host != mHost || port != mPort ||
-       user != mUsername || pass != mPassword)) {
+  if (host != mHost || port != mPort ||
+      user != mUsername || pass != mPassword) {
     closeConnection();
   }
 
@@ -451,9 +450,7 @@ void sftpProtocol::setHost(const QString& host, quint16 port, const QString& use
     }
   }
 
-  kDebug(KIO_SFTP_DB) << "setHost(): mPort=" << mPort;
-
-  mUsername = mOrigUsername = user;
+  mUsername = user;
   mPassword = pass;
 }
 
@@ -479,6 +476,7 @@ void sftpProtocol::openConnection() {
   info.url.setPort(mPort);
   info.url.setUser(mUsername);
   info.username = mUsername;
+  const QString origPasswd (mPassword);
 
   // Check for cached authentication info if no password is specified...
   if (mPassword.isEmpty()) {
@@ -497,6 +495,7 @@ void sftpProtocol::openConnection() {
   int rc, state, hlen;
   int timeout_sec = 30, timeout_usec = 0;
 
+login_start:
   mSession = ssh_new();
   if (mSession == NULL) {
     error(KIO::ERR_INTERNAL, i18n("Could not create a new SSH session."));
@@ -722,8 +721,12 @@ void sftpProtocol::openConnection() {
       firstTime = false;
 
       if (!mUsername.isEmpty() && mUsername != info.username) {
-        info.url.setUser(info.username); // update the AuthInfo URL's username
         kDebug(KIO_SFTP_DB) << "Username changed from" << mUsername << "to" << info.username;
+        info.url.setUser(info.username);
+        mUsername = info.username;
+        mPassword = info.password;
+        closeConnection();
+        goto login_start;
       }
     }
 
@@ -770,6 +773,7 @@ void sftpProtocol::openConnection() {
   setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
 
   mConnected = true;
+  mPassword = origPasswd;
   connected();
 
   info.password.fill('x');
@@ -777,13 +781,17 @@ void sftpProtocol::openConnection() {
 }
 
 void sftpProtocol::closeConnection() {
-  kDebug(KIO_SFTP_DB) << "closeConnection()";
+  kDebug(KIO_SFTP_DB);
 
-  sftp_free(mSftp);
-  mSftp = NULL;
+  if (mSftp) {
+    sftp_free(mSftp);
+    mSftp = NULL;
+  }
 
-  ssh_disconnect(mSession);
-  mSession = NULL;
+  if (mSession) {
+    ssh_disconnect(mSession);
+    mSession = NULL;
+  }
 
   mConnected = false;
 }
@@ -1824,28 +1832,28 @@ sftpProtocol::GetRequest::~GetRequest() {
   sftp_attributes_free(mSb);
 }
 
-bool sftpProtocol::requiresUserNameRedirection()
+void sftpProtocol::requiresUserNameRedirection()
 {
-    kDebug(KIO_SFTP_DB) << "Connected ?" << mConnected << "Original:" << mOrigUsername << "Current:" << mUsername;
-    if (!mConnected || mOrigUsername.isEmpty() || mOrigUsername == mUsername)
-        return false;
-
-    KUrl realURL;
-    realURL.setProtocol( QLatin1String("sftp") );
-    realURL.setUser( mUsername );
-    realURL.setPass( mPassword );
-    realURL.setHost( mHost );
-    if ( mPort > 0)
-      realURL.setPort( mPort );
-    kDebug(KIO_SFTP_DB) << "User name changed! Redirecting to" << realURL.prettyUrl();
-    redirection( realURL );
-    finished();
-    mOrigUsername = mUsername;
-    return true;
+    KUrl redirectUrl;
+    redirectUrl.setProtocol( QLatin1String("sftp") );
+    redirectUrl.setUser( mUsername );
+    redirectUrl.setPass( mPassword );
+    redirectUrl.setHost( mHost );
+    if (mPort > 0)
+      redirectUrl.setPort( mPort );
+    kDebug(KIO_SFTP_DB) << "redirecting to" << redirectUrl;
+    redirection( redirectUrl );
 }
 
 bool sftpProtocol::sftpConnect()
 {
+    const QString origUsername = mUsername;
     openConnection();
-    return !requiresUserNameRedirection();
+    kDebug(KIO_SFTP_DB) << "connected ?" << mConnected << "username: old=" << origUsername << "new=" << mUsername;
+    if (!origUsername.isEmpty() && origUsername != mUsername) {
+        requiresUserNameRedirection();
+        finished();
+        return false;
+    }
+    return true;
 }
