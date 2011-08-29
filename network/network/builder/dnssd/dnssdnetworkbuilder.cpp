@@ -124,7 +124,7 @@ void DNSSDNetworkBuilder::addService( DNSSD::RemoteService::Ptr service )
     const QString ipAddress = hostAddress.toString();
     // forget domain name if just ip address
     if( hostName == ipAddress )
-        hostName = QString();
+        hostName.clear();
 
     // device TODO: only search for if we can create the service?
     NetDevicePrivate* d = 0;
