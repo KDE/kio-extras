@@ -147,7 +147,7 @@ kDebug()<<"existing device:"<<deviceHostName<<"at"<<device.ipAddress()<<"vs."<<h
     }
     if( !d )
     {
-        const QString deviceName = hostName.left( hostName.indexOf('.') );
+        const QString deviceName = hostName.left( hostName.indexOf(QLatin1Char('.')) );
         d = new NetDevicePrivate( deviceName );
         d->setHostName( hostName );
         d->setIpAddress( ipAddress );
@@ -197,7 +197,7 @@ kDebug()<<"new device:"<<deviceName<<"at"<<hostName<<"by"<<service->type();
     if( serviceType == QLatin1String("_workstation._tcp") )
     {
         deviceTypeByService = NetDevice::Workstation;
-        deviceName = service->serviceName().left( service->serviceName().lastIndexOf('[') ).trimmed();
+        deviceName = service->serviceName().left( service->serviceName().lastIndexOf(QLatin1Char('[')) ).trimmed();
     }
     else if( serviceType == QLatin1String("_net-assistant._udp") )
     {

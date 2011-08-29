@@ -145,7 +145,7 @@ kDebug();
         return SLP_TRUE;
 
     // optimize by operating on original data as much as possible
-    const QStringList serviceTypeList = QString::fromLatin1( serviceTypes ).split( ',' );
+    const QStringList serviceTypeList = QString::fromLatin1( serviceTypes ).split( QLatin1Char(',') );
 
     foreach( const QString& serviceType, serviceTypeList )
     {

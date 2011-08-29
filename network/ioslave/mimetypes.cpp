@@ -158,7 +158,7 @@ static const int SimpleServiceMimetypeCount = sizeof(SimpleServiceMimetype) / si
 
 QString Mimetypes::mimetypeForServiceType( const QString& serviceTypeName )
 {
-    QString subType = "unknown";
+    QString subType = QLatin1String("unknown");
     for( int i=0; i<SimpleServiceMimetypeCount; ++i )
     {
         if( serviceTypeName == QLatin1String(SimpleServiceMimetype[i]) )
@@ -167,5 +167,5 @@ QString Mimetypes::mimetypeForServiceType( const QString& serviceTypeName )
             break;
         }
     }
-    return "inode/vnd.kde.service." + subType;
+    return QLatin1String("inode/vnd.kde.service.") + subType;
 }

@@ -168,11 +168,11 @@ void DNSSDServiceDatum::feedUrl( KUrl* url, const DNSSD::RemoteService* remoteSe
 
     url->setProtocol( QString::fromLatin1(protocol) );
     if( userField )
-        url->setUser( serviceTextData[QString::fromLatin1(userField)] );
+        url->setUser( QLatin1String(serviceTextData.value(QLatin1String(userField)).constData()) );
     if( passwordField )
-        url->setPass( serviceTextData[QString::fromLatin1(passwordField)] );
+        url->setPass( QLatin1String(serviceTextData.value(QLatin1String(passwordField)).constData()) );
     if( pathField )
-        url->setPath( serviceTextData[QString::fromLatin1(pathField)] );
+        url->setPath( QLatin1String(serviceTextData.value(QLatin1String(pathField)).constData()) );
 
     url->setHost( remoteService->hostName() );
     url->setPort( remoteService->port() );
@@ -215,7 +215,7 @@ NetServicePrivate* SimpleItemFactory::createNetService( const DNSSD::RemoteServi
 
     const bool isUnknown = ( serviceDatum == &UnknownServiceDatum );
     const QString typeName = isUnknown ?
-        dnssdServiceType.mid( 1, dnssdServiceType.lastIndexOf('.')-1 ) :
+        dnssdServiceType.mid( 1, dnssdServiceType.lastIndexOf(QLatin1Char('.'))-1 ) :
         QString::fromLatin1( serviceDatum->typeName );
 
     QString iconName = QString::fromLatin1(serviceDatum->fallbackIconName);
@@ -251,7 +251,7 @@ NetServicePrivate* SimpleItemFactory::createNetService( const Cagibi::Device& up
     }
     result = new NetServicePrivate( upnpDevice.friendlyName(),
         QString::fromLatin1("unknown"),
-        "upnp."+upnpDevice.type(), device, url );
+        QString::fromLatin1("upnp.")+upnpDevice.type(), device, url );
 
     return result;
 }

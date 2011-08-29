@@ -45,7 +45,7 @@ static inline QString idFrom( const NetworkUri& networkUri )
 {
     return networkUri.hostAddress().isEmpty() ?    QString() :
            networkUri.serviceName().isEmpty() ? networkUri.hostAddress() :
-           /*else*/                             networkUri.hostAddress()+'/'+networkUri.serviceName();
+           /*else*/                             networkUri.hostAddress()+QLatin1Char('/')+networkUri.serviceName();
 }
 
 static inline QString dirIdFor( const NetDevice& device )
@@ -65,7 +65,7 @@ static inline QString dirIdFor( const NetService& service )
 
 static inline QString pathFor( const NetService& service )
 {
-    return service.device().hostAddress() + '/' + service.name()+'.'+service.type();
+    return service.device().hostAddress() + QLatin1Char('/') + service.name()+QLatin1Char('.')+service.type();
 }
 
 
@@ -75,9 +75,10 @@ KioSlaveNotifier::KioSlaveNotifier( Network* network, QObject* parent )
     QDBusConnection sessionBus = QDBusConnection::sessionBus();
     const QString allServices;
     const QString allPaths;
-    sessionBus.connect( allServices, allPaths, "org.kde.KDirNotify", "enteredDirectory",
+    const QString interface = QLatin1String( "org.kde.KDirNotify" );
+    sessionBus.connect( allServices, allPaths, interface, QLatin1String("enteredDirectory"),
                         this, SLOT(onDirectoryEntered(QString)) );
-    sessionBus.connect( allServices, allPaths, "org.kde.KDirNotify", "leftDirectory",
+    sessionBus.connect( allServices, allPaths, interface, QLatin1String("leftDirectory"),
                         this, SLOT(onDirectoryLeft(QString)) );
 
     new KioSlaveNotifierAdaptor( this );
@@ -141,7 +142,7 @@ void KioSlaveNotifier::notifyAboutAdded( const QString& dirId )
     QHash<QString, int>::Iterator it = mWatchedDirs.find( dirId );
     if( it != mWatchedDirs.end() )
     {
-        const QString url = "network:/" + dirId;
+        const QString url = QLatin1String("network:/") + dirId;
 kDebug()<<url;
         org::kde::KDirNotify::emitFilesAdded( url );
     }
@@ -153,7 +154,7 @@ void KioSlaveNotifier::notifyAboutRemoved( const QString& dirId, const QString& 
     if( it != mWatchedDirs.end() )
     {
         QStringList itemUrls;
-        itemUrls.append( "network:/" + itemPath );
+        itemUrls.append( QLatin1String("network:/") + itemPath );
 kDebug()<<itemUrls;
         org::kde::KDirNotify::emitFilesRemoved( itemUrls );
     }
