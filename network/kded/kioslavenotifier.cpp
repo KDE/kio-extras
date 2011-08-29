@@ -76,16 +76,16 @@ KioSlaveNotifier::KioSlaveNotifier( Network* network, QObject* parent )
     const QString allServices;
     const QString allPaths;
     sessionBus.connect( allServices, allPaths, "org.kde.KDirNotify", "enteredDirectory",
-                        this, SLOT(onDirectoryEntered( QString )) );
+                        this, SLOT(onDirectoryEntered(QString)) );
     sessionBus.connect( allServices, allPaths, "org.kde.KDirNotify", "leftDirectory",
-                        this, SLOT(onDirectoryLeft( QString )) );
+                        this, SLOT(onDirectoryLeft(QString)) );
 
     new KioSlaveNotifierAdaptor( this );
 
-    connect( network, SIGNAL(devicesAdded( const QList<NetDevice>& )), SLOT(onDevicesAdded( const QList<NetDevice>& )) );
-    connect( network, SIGNAL(devicesRemoved( const QList<NetDevice>& )), SLOT(onDevicesRemoved( const QList<NetDevice>& )) );
-    connect( network, SIGNAL(servicesAdded( const QList<NetService>& )), SLOT(onServicesAdded( const QList<NetService>& )) );
-    connect( network, SIGNAL(servicesRemoved( const QList<NetService>& )), SLOT(onServicesRemoved( const QList<NetService>& )) );
+    connect( network, SIGNAL(devicesAdded(QList<NetDevice>)), SLOT(onDevicesAdded(QList<NetDevice>)) );
+    connect( network, SIGNAL(devicesRemoved(QList<NetDevice>)), SLOT(onDevicesRemoved(QList<NetDevice>)) );
+    connect( network, SIGNAL(servicesAdded(QList<NetService>)), SLOT(onServicesAdded(QList<NetService>)) );
+    connect( network, SIGNAL(servicesRemoved(QList<NetService>)), SLOT(onServicesRemoved(QList<NetService>)) );
 }
 
 QStringList KioSlaveNotifier::watchedDirectories() const

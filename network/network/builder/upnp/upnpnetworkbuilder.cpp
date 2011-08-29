@@ -112,8 +112,8 @@ void UpnpNetworkBuilder::queryCurrentDevices()
 
     QDBusPendingCallWatcher* allDevicesCallWatcher =
         new QDBusPendingCallWatcher( allDevicesCall, this );
-    connect( allDevicesCallWatcher, SIGNAL(finished( QDBusPendingCallWatcher* )),
-             SLOT(onAllDevicesCallFinished( QDBusPendingCallWatcher* )) );
+    connect( allDevicesCallWatcher, SIGNAL(finished(QDBusPendingCallWatcher*)),
+             SLOT(onAllDevicesCallFinished(QDBusPendingCallWatcher*)) );
 }
 
 void UpnpNetworkBuilder::onAllDevicesCallFinished( QDBusPendingCallWatcher* allDevicesCallWatcher )

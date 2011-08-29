@@ -62,10 +62,10 @@ void DNSSDNetworkBuilder::start()
     mNoOfInitServiceTypes = 0;
 
     mServiceTypeBrowser = new DNSSD::ServiceTypeBrowser();
-    connect( mServiceTypeBrowser, SIGNAL(serviceTypeAdded( const QString& )),
-             SLOT(addServiceType( const QString& )) );
-    connect( mServiceTypeBrowser, SIGNAL(serviceTypeRemoved( const QString& )),
-             SLOT(removeServiceType( const QString& )) );
+    connect( mServiceTypeBrowser, SIGNAL(serviceTypeAdded(QString)),
+             SLOT(addServiceType(QString)) );
+    connect( mServiceTypeBrowser, SIGNAL(serviceTypeRemoved(QString)),
+             SLOT(removeServiceType(QString)) );
     connect( mServiceTypeBrowser, SIGNAL(finished()), SLOT(onServiceTypeBrowserFinished()) );
 // TODO: add a signal network initialized to Network, so is cleared when first usable
     mServiceTypeBrowser->startBrowse();
