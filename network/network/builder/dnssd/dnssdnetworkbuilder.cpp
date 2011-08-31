@@ -141,6 +141,12 @@ kDebug()<<"existing device:"<<deviceHostName<<"at"<<device.ipAddress()<<"vs."<<h
         if( isSameAddress )
         {
             d = device.dPtr();
+            // workaround: KDNSSD currently (4.7.0) emits two signals per service
+            // just relying on service->serviceName() is fragile, but matches
+            // current approach in removeService(...)
+            if( d->hasService(service->serviceName()) )
+                return;
+
             deviceOfService = &device;
             break;
         }

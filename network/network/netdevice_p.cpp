@@ -35,6 +35,22 @@ NetDevicePrivate::NetDevicePrivate( const QString& name )
 {
 }
 
+bool NetDevicePrivate::hasService( const QString& serviceName ) const
+{
+    bool result = false;
+
+    foreach( const NetService& service, mServiceList )
+    {
+        if( service.name() == serviceName )
+        {
+            result = true;
+            break;
+        }
+    }
+
+    return result;
+}
+
 NetService NetDevicePrivate::removeService( const QString& serviceName )
 {
     NetService result;
