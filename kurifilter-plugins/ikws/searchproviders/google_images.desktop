@@ -148,7 +148,7 @@ Query[mai]=http://images.google.com/images?q=\\{@}
 Query[ml]=http://images.google.com/images?q=\\{@}
 Query[mr]=http://images.google.com/images?q=\\{@}
 Query[ms]=http://images.google.com/images?q=\\{@}
-Query[nb]=http://images.google.no/images?hl=nn&q=\\{@}
+Query[nb]=http://images.google.no/images?q=\\{@}
 Query[nds]=http://images.google.com/images?q=\\{@}
 Query[ne]=http://images.google.com/images?q=\\{@}
 Query[nl]=http://images.google.nl/images?q=\\{@}
