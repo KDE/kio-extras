@@ -675,6 +675,8 @@ login_start:
       kDebug(KIO_SFTP_DB) << "Trying to authenticate public key";
       rc = ssh_userauth_autopubkey(mSession, NULL);
       if (rc == SSH_AUTH_ERROR) {
+        kDebug(KIO_SFTP_DB) << "Public key authentication failed: " <<
+               QString::fromUtf8(ssh_get_error(mSession));
         closeConnection();
         error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
         return;
@@ -689,6 +691,8 @@ login_start:
       AuthInfo info2 (info);
       rc = authenticateKeyboardInteractive(info2);
       if (rc == SSH_AUTH_ERROR) {
+        kDebug(KIO_SFTP_DB) << "Keyboard interactive authentication failed: " <<
+               QString::fromUtf8(ssh_get_error(mSession));
         closeConnection();
         error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
         return;
@@ -735,6 +739,8 @@ login_start:
       kDebug(KIO_SFTP_DB) << "Trying to authenticate with password";
       rc = ssh_userauth_password(mSession, info.username.toUtf8().constData(), info.password.toUtf8().constData());
       if (rc == SSH_AUTH_ERROR) {
+        kDebug(KIO_SFTP_DB) << "Password authentication failed: " <<
+               QString::fromUtf8(ssh_get_error(mSession));
         closeConnection();
         error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
         return;
