@@ -685,23 +685,6 @@ login_start:
       }
     }
 
-    // Try to authenticate with keyboard interactive
-    if (method & SSH_AUTH_METHOD_INTERACTIVE) {
-      kDebug(KIO_SFTP_DB) << "Trying to authenticate with keyboard interactive";
-      AuthInfo info2 (info);
-      rc = authenticateKeyboardInteractive(info2);
-      if (rc == SSH_AUTH_ERROR) {
-        kDebug(KIO_SFTP_DB) << "Keyboard interactive authentication failed: " <<
-               QString::fromUtf8(ssh_get_error(mSession));
-        closeConnection();
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
-        return;
-      } else if (rc == SSH_AUTH_SUCCESS) {
-        info = info2;
-        break;
-      }
-    }
-
     if (!firstTime || mPassword.isEmpty()) {
 
       info.keepPassword = true; // make the "keep Password" check box visible to the user.
@@ -731,6 +714,23 @@ login_start:
         mPassword = info.password;
         closeConnection();
         goto login_start;
+      }
+    }
+
+    // Try to authenticate with keyboard interactive
+    if (method & SSH_AUTH_METHOD_INTERACTIVE) {
+      kDebug(KIO_SFTP_DB) << "Trying to authenticate with keyboard interactive";
+      AuthInfo info2 (info);
+      rc = authenticateKeyboardInteractive(info2);
+      if (rc == SSH_AUTH_ERROR) {
+        kDebug(KIO_SFTP_DB) << "Keyboard interactive authentication failed: " <<
+               QString::fromUtf8(ssh_get_error(mSession));
+        closeConnection();
+        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+        return;
+      } else if (rc == SSH_AUTH_SUCCESS) {
+        info = info2;
+        break;
       }
     }
 
