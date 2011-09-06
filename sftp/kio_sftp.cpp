@@ -1861,5 +1861,9 @@ bool sftpProtocol::sftpConnect()
         finished();
         return false;
     }
+    if (!mConnected) {
+        return false;
+    }
+
     return true;
 }
