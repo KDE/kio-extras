@@ -715,6 +715,9 @@ login_start:
         closeConnection();
         goto login_start;
       }
+
+      mUsername = info.username;
+      mPassword = info.password;
     }
 
     // Try to authenticate with keyboard interactive
