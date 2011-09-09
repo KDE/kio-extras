@@ -3,6 +3,127 @@ Charset=
 Hidden=false
 Keys=duckduckgoinfo,ddi
 Name=Duck Duck Go Info
+Name[ar]= معلومات Duck Duck Go
+Name[ast]=Duck Duck Go Info
+Name[bg]=Информация в Duck Duck Go
+Name[bs]=Dak dak go (informacije)
+Name[ca]=Duck Duck Go Info
+Name[ca@valencia]=Duck Duck Go Info
+Name[cs]=Duck Duck Go Info
+Name[da]=Duck Duck Go info
+Name[de]=Duck Duck Go Info
+Name[el]=Duck Duck Go Info
+Name[en_GB]=Duck Duck Go Info
+Name[es]=Duck Duck Go Info
+Name[et]=Duck Duck Go Info
+Name[eu]=Duck Duck Go Info
+Name[fi]=Duck Duck Go -hakupalvelutiedot
+Name[fr]=Duck Duck Go Info
+Name[ga]=Eolas Duck Duck Go
+Name[he]=Duck Duck Go Info
+Name[hi]=बतख़ जा जा जानकारी
+Name[hr]=Duck Duck Go Info
+Name[hu]=Duck Duck Go Info
+Name[ia]=Duck Duck Go Info
+Name[id]=Info Duck Duck Go
+Name[is]=Duck Duck Go upplýsingar
+Name[it]=Informazioni di Duck Duck Go
+Name[ja]=Duck Duck Go Info
+Name[kk]=Duck Duck Go Info
+Name[km]=ព័ត៌មាន​របស់ Duck Duck Go
+Name[kn]=ಡಕ್ ಡಕ್ ಗೊ ಮಾಹಿತಿ
+Name[ko]=Duck Duck Go 정보
+Name[lt]=Duck Duck Go Info
+Name[lv]=Duck Duck Go informācija
+Name[ml]=ഡക്ക് ഡക്ക് ഗോ വിവരം
+Name[nb]=Duck Duck Go Info
+Name[nds]=Duck Duck Go - Informatschonen
+Name[nl]=Duck Duck Go Info
+Name[nn]=Duck Duck Go-informasjon
+Name[pa]=ਡੱਕ ਡੱਕ ਗੋ ਜਾਣਕਾਰੀ
+Name[pl]=Duck Duck Go Info
+Name[pt]=Informação do Duck Duck Go
+Name[pt_BR]=Informações do Duck Duck Go
+Name[ro]=Informații Duck Duck Go
+Name[ru]=Поиск Duck Duck Go: информация
+Name[si]=Duck Duck Go තොරතුරු
+Name[sk]=Duck Duck Go Info
+Name[sl]=Duck Duck Go - informacije
+Name[sr]=Дак дак го (информације)
+Name[sr@ijekavian]=Дак дак го (информације)
+Name[sr@ijekavianlatin]=Duck Duck Go (informacije)
+Name[sr@latin]=Duck Duck Go (informacije)
+Name[sv]=Duck Duck Go information
+Name[th]=ข้อมูลของ Duck Duck Go
+Name[tr]=Duck Duck Go Bilgileri
+Name[ug]=Duck Duck Go ئۇچۇرى
+Name[uk]=Duck Duck Go Info
+Name[wa]=Duck Duck Go Info
+Name[x-test]=xxDuck Duck Go Infoxx
+Name[zh_CN]=Duck Duck Go 信息
+Name[zh_TW]=Duck Duck Go Info
 Query=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ar]=http://imdb.com/Find?\\{@}
+Query[ast]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[bg]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[bn]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[bs]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ca]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ca@valencia]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[cs]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[da]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[de]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[el]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[en_GB]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[es]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[et]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[eu]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[fi]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[fr]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ga]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[gu]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[he]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[hi]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[hr]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[hu]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ia]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[id]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[is]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[it]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ja]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[kk]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[km]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[kn]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ko]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[lt]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[lv]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[mai]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ml]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[nb]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[nds]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[nl]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[nn]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[pa]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[pl]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[pt]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ro]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ru]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[sk]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[sl]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[sr]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[sr@ijekavian]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[sr@ijekavianlatin]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[sr@latin]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[sv]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[tg]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[th]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[tr]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ug]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[uk]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[wa]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=rxx
+Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=r
 ServiceTypes=SearchProvider
 Type=Service

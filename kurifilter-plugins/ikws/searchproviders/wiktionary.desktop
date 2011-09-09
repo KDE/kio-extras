@@ -1,7 +1,179 @@
 [Desktop Entry]
 Type=Service
 Name=Wiktionary - The Free Dictionary
+Name[af]=Wiktionary - Die gratis woordeboek
+Name[ar]=القاموس المجاني Wiktionary
+Name[as]=Wiktionary - The Free Dictionary
+Name[ast]=Wiktionary - El diccionariu llibre
+Name[be]=Wiktionary - Свабодны Слоўнік
+Name[be@latin]=Wikisłoŭnik: svabodny słoŭnik
+Name[bg]=Уикиречник - свободният речник
+Name[bn]=ইউক্‌শনারি - মুক্ত অভিধান
+Name[bn_IN]=Wiktionary - মুক্ত অভিধান
+Name[br]=Wiktionary - Ar geriadur frank
+Name[bs]=Vikirečnik — slobodni rječnik
+Name[ca]=Viccionari - El diccionari lliure
+Name[ca@valencia]=Viccionari - El diccionari lliure
+Name[cs]=Wiktionary - volně dostupný slovník
+Name[csb]=Wiktionary - wòlny słowôrz
+Name[da]=Wiktionary - Den frie ordbog
+Name[de]=Wiktionary – Das freie Wörterbuch
+Name[el]=Wiktionary - Το ελεύθερο λεξικό
+Name[en_GB]=Wiktionary - The Free Dictionary
+Name[eo]=Vikivortaro - la libera vortaro
+Name[es]=Wiktionary - El diccionario libre
+Name[et]=Wiktionary - Vaba sõnaraamat
+Name[eu]=Wiktionary - Hiztegi librea
+Name[fa]=Wiktionary - واژه‌نامه آزاد
+Name[fi]=Wiktionary - Vapaa sanakirja
+Name[fr]=Wiktionary - Le dictionnaire libre
+Name[fy]=Wiktionary - It frije wurdboek
+Name[ga]=Vicífhoclóir - An Foclóir Saor
+Name[gl]=Wiktionary, o dicionario libre
+Name[gu]=વીક્ટીઓનેરી - મુક્ત શબ્દકોશ
+Name[he]=ויקימילון - המילון החופשי
+Name[hi]=विकिपेडिया- मुफ्त विश्वकोश
+Name[hne]=विकिपेडिया- फोकट विस्वकोस
+Name[hr]=Wiktionary – besplatna enciklopedija
+Name[hsb]=Wikisłownik - Swobodny słownik
+Name[hu]=Wiktionary
+Name[ia]=Wiktionary - Le Dictionario Libere e Gratuite
+Name[id]=Wiktionary - Kamus Gratis
+Name[is]=Wiktionary - Frjálsa orðabókin
+Name[it]=Wiktionary - Il dizionario libero
+Name[ja]=Wictionary - フリーな辞書
+Name[ka]=Wiktionary - თავისუფალი ლექსიკონი
+Name[kk]=Wiktionary - ашық сөздік
+Name[km]=Wikipedia - វចនានុក្រម​ឥត​គិត​ថ្លៃ
+Name[kn]=ವಿಕ್ಷನರಿ - ಮುಕ್ತ ಶಬ್ದಕೋಶ
+Name[ko]=위키낱말사전
+Name[ku]=Wîkîferheng - Ferhenga Azad
+Name[lt]=Wiktionary – laisvasis žodynas
+Name[lv]=Wiktionary - brīvā vārdnīca
+Name[mai]=विकिपेडिया- मुफ्त विश्वकोश
+Name[mk]=Wiktionary - Слободниот речник
+Name[ml]=വിക്ഷ്ണറി - സ്വതന്ത്ര നിഘണ്ടു
+Name[mr]=विकिपेडिया- मोफत विश्वकोश
+Name[nb]=Wiktionary – den frie ordboka
+Name[nds]=Wiktionary - dat fre'e Wöörbook (engl.)
+Name[ne]=विक्सनरी - नि:शुल्क शब्दकोश
+Name[nl]=Wiktionary - het vrije woordenboek
+Name[nn]=Wikipedia – det frie oppslagsverket
+Name[or]=Wiktionary - ମୁକ୍ତ ଅଭିଧାନ
+Name[pa]=ਵਿੱਕੀਸ਼ਨਰੀ - ਮੁਫਤ ਡਿਕਸ਼ਨਰੀ
+Name[pl]=Wiktionary - Otwarty słownik
+Name[pt]=Wiktionary - O Dicionário Livre
+Name[pt_BR]=Wikcionário - o dicionário livre
+Name[ro]=Wiktionary - Dictionarul liber
+Name[ru]=Свободный словарь Wiktionary
+Name[se]=Wiktinary – fridja sátnegirji
+Name[si]=Wiktionary - නිදහස් ශබ්ද කෝශය
+Name[sk]=Wiktionary - voľne dostupný slovník
+Name[sl]=Wiktionary - Prosti slovar
+Name[sr]=Викиречник — слободни речник
+Name[sr@ijekavian]=Викирјечник — слободни рјечник
+Name[sr@ijekavianlatin]=Wikirečnik — slobodni rječnik
+Name[sr@latin]=Wikirečnik — slobodni rečnik
+Name[sv]=Wiktionary - den fria ordboken
+Name[ta]=விக்சனரி - கட்டற்ற அகராதி
+Name[te]=విక్షనరి - స్వేఛ్ఛా పదకోశము
+Name[tg]=Wiktionary - луғати озод
+Name[th]=วิกิชันนารี - พจนานุุกรมเสรี
+Name[tr]=Wiktionary - Ücretsiz Ansiklopedi
+Name[ug]=Wiktionary - ھەقسىز لۇغەت
+Name[uk]=Вікісловник — вільний словник
+Name[uz]=Wiktionary - Erkin lugʻat
+Name[uz@cyrillic]=Wiktionary - Эркин луғат
+Name[vi]=Wiktionary - Từ điển Tự do
+Name[wa]=L' esplicant motî do walon so Wikipedia
+Name[x-test]=xxWiktionary - The Free Dictionaryxx
+Name[zh_CN]=维基字典 - 免费的字典
+Name[zh_TW]=Wiktionary - 免費的字典
 X-KDE-ServiceTypes=SearchProvider
 Keys=wt,wikt
 Query=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[af]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ar]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[as]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ast]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[be]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[be@latin]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bg]=http://bg.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bn]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bn_IN]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bs]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ca]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ca@valencia]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[cs]=http://cs.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[csb]=http://csb.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[da]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[de]=http://de.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[el]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[en_GB]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[es]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[et]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[eu]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[fi]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[fr]=http://fr.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[fy]=http://fy.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ga]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[gl]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[gu]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[he]=http://he.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hi]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hne]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hr]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hsb]=http://hsb.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hu]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ia]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[id]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[is]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[it]=http://it.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ja]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[kk]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[km]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[kn]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ko]=http://ko.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ku]=http://ku.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[lt]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[lv]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[mai]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ml]=http://ml.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[mr]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nb]=http://no.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nds]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ne]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nl]=http://nl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nn]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[oc]=http://oc.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[or]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pa]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pl]=http://pl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pt]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pt_BR]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ro]=http://ro.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ru]=http://ru.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[se]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[si]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sk]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sl]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr@ijekavian]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr@ijekavianlatin]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sr@latin]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sv]=http://sv.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ta]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[te]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[tg]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[th]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[tr]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ug]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[uk]=http://uk.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[uz]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[uz@cyrillic]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[wa]=http://wa.wikipedia.org/wiki/Motî:\{@}
+Query[x-test]=xxhttp://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Goxx
+Query[zh_CN]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[zh_TW]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Charset=utf8
