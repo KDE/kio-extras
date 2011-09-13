@@ -119,7 +119,7 @@ Query[sr@ijekavian]=http://us.7digital.com/Search?search=\\{@}&searchtype=global
 Query[sr@ijekavianlatin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sr@latin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sv]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
-Query[tg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[tg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Ҷустуҷӯ
 Query[th]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[tr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ug]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
