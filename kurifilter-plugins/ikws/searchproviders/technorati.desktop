@@ -11,6 +11,7 @@ Name[bg]=Technorati
 Name[bn]=টেক্‌নোক্রেটি
 Name[bn_IN]=Technorati
 Name[br]=Technorati
+Name[bs]=Tehnorati
 Name[ca]=Technorati
 Name[ca@valencia]=Technorati
 Name[cs]=Technorati
@@ -79,6 +80,7 @@ Name[te]=Technorati
 Name[tg]=Technorati
 Name[th]=Technorati
 Name[tr]=Technorati
+Name[ug]=Technorati
 Name[uk]=Technorati
 Name[uz]=Technorati
 Name[uz@cyrillic]=Technorati
@@ -100,6 +102,7 @@ Query[bg]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[bn]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[bn_IN]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[br]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
+Query[bs]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[ca]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[ca@valencia]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[cs]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
@@ -168,6 +171,7 @@ Query[te]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[tg]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[th]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[tr]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
+Query[ug]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[uk]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[uz]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[uz@cyrillic]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}

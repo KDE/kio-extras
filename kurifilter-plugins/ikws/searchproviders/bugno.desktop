@@ -9,6 +9,7 @@ Name[be@latin]=Pošuk u bazie viadomych chibaŭ KDE pavodle numara
 Name[bg]=Търсене по номер в базата от данни с бъгове на KDE
 Name[bn]=কে.ডি.ই. বাগ ডেটাবেস-এ বাগ সংখ্যা অনুসন্ধান
 Name[bn_IN]=KDE বাগ ডাটাবেসে অনুসন্ধান - বাগ সংখ্যা প্রয়োগ করে
+Name[bs]=KDE‑ova baza grešaka (po broju)
 Name[ca]=Cercador per número per la base de dades d'errors de KDE
 Name[ca@valencia]=Cercador per número per la base de dades d'errors de KDE
 Name[cs]=Vyhledávání v databázi chyb KDE podle čísla chyby
@@ -24,7 +25,7 @@ Name[et]=Veanumbri otsing KDE vigade andmebaasist
 Name[eu]=Akats zenbakiaren bidezko bilaketa KDEren akats datu-basean
 Name[fa]=جستجوی شماره اشکال دادگان اشکال KDE
 Name[fi]=KDE-vikailmoitustietokannan numerohaku
-Name[fr]=Recherche de bogues de KDE par numéro
+Name[fr]=Recherche dans la base de données de bogues de KDE par numéro
 Name[fy]=KDE Bug Databank  - sykje op breknûmer
 Name[ga]=Cuardach bugs.kde.org de réir uimhir an fhabht
 Name[gl]=Busca numérica na base de datos de erros de KDE
@@ -79,6 +80,7 @@ Name[te]=KDE బగ్ డాటాబేస్ బగ్ సంఖ్యా శ
 Name[tg]=Поиск по номеру в базе ошибок KDE
 Name[th]=ค้นหาหมายเลขบั๊กจากฐานข้อมูลบั๊ก KDE
 Name[tr]=KDE Hata Veritabanı Hata Numarasıyla Arama
+Name[ug]=KDE كەمتۈك سانداننى كەمتۈك نومۇرى بويىچە ئىزدە
 Name[uk]=Пошук у базі даних помилок KDE за номером
 Name[uz]=KDE xato maʼlumot bazasi (xatoning raqamini qidirish)
 Name[uz@cyrillic]=KDE хато маълумот базаси (хатонинг рақамини қидириш)
@@ -93,6 +95,7 @@ Query[ar]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[ast]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[bg]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[bn]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[bs]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[ca]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[ca@valencia]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[cs]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
@@ -149,6 +152,7 @@ Query[sv]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[tg]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[th]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[tr]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[ug]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[uk]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[wa]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[x-test]=xxhttps://bugs.kde.org/show_bug.cgi?id=\\{@}xx

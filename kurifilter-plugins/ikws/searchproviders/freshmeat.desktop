@@ -11,6 +11,7 @@ Name[bg]=Freshmeat
 Name[bn]=ফ্রেশমীট
 Name[bn_IN]=Freshmeat
 Name[br]=Freshmeat
+Name[bs]=Frešmit
 Name[ca]=Freshmeat
 Name[ca@valencia]=Freshmeat
 Name[cs]=Freshmeat
@@ -80,6 +81,7 @@ Name[te]=ఫ్రెష్ మీట్
 Name[tg]=Freshmeat
 Name[th]=Freshmeat - แหล่งรวมซอฟต์แวร์เสรี
 Name[tr]=Freshmeat
+Name[ug]=Freshmeat
 Name[uk]=Freshmeat
 Name[uz]=Freshmeat
 Name[uz@cyrillic]=Freshmeat
@@ -102,6 +104,7 @@ Query[bg]=http://freshmeat.net/search/?q=\\{@}
 Query[bn]=http://freshmeat.net/search/?q=\\{@}
 Query[bn_IN]=http://freshmeat.net/search/?q=\\{@}
 Query[br]=http://freshmeat.net/search/?q=\\{@}
+Query[bs]=http://freshmeat.net/search/?q=\\{@}
 Query[ca]=http://freshmeat.net/search/?q=\\{@}
 Query[ca@valencia]=http://freshmeat.net/search/?q=\\{@}
 Query[cs]=http://freshmeat.net/search/?q=\\{@}
@@ -170,6 +173,7 @@ Query[te]=http://freshmeat.net/search/?q=\\{@}
 Query[tg]=http://freshmeat.net/search/?q=\\{@}
 Query[th]=http://freshmeat.net/search/?q=\\{@}
 Query[tr]=http://freshmeat.net/search/?q=\\{@}
+Query[ug]=http://freshmeat.net/search/?q=\\{@}
 Query[uk]=http://freshmeat.net/search/?q=\\{@}
 Query[uz]=http://freshmeat.net/search/?q=\\{@}
 Query[uz@cyrillic]=http://freshmeat.net/search/?q=\\{@}

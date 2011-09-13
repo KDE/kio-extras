@@ -10,6 +10,7 @@ Name[be@latin]=Pierakład „Multitran”: italjanskaja ➙ rasiejskaja
 Name[bg]=Multitran - превод между италиански и руски
 Name[bn]=মাল্টিট্র্যান - ইতালিয়ান থেকে রুশ বা রুশ থেকে ইতালিয়ান-এ অনুবাদ করুন
 Name[bn_IN]=Multitran - ইটালিয়ান ও রাশিয়ানের মধ্যে অনুবাদ করুন
+Name[bs]=Multitran: sa italijanskog na ruski
 Name[ca]=Multitran - Tradueix entre italià i rus
 Name[ca@valencia]=Multitran - Tradueix entre italià i rus
 Name[cs]=Multitran - překlad mezi italštinou a ruštinou
@@ -73,6 +74,7 @@ Name[te]=Multitran - ఇటాలియన్ మరియు రష్యన్
 Name[tg]=Multitran - тарҷумаҳои итолиёӣ-русӣ
 Name[th]=บริการ Multitran - แปลภาษาระหว่างภาษาอิตาลีและภาษารัสเซีย
 Name[tr]=Multitran - İtalyancadan Rusçaya Çeviri
+Name[ug]=Multitran - ئىتالىيانچە بىلەن رۇسچە ئارىسىدا تەرجىمە
 Name[uk]=Multitran — переклад з італійської російською
 Name[uz]=Multitran - Italyanchadan Ruschaga tarjima
 Name[uz@cyrillic]=Multitran - Италянчадан Русчага таржима
@@ -90,6 +92,7 @@ Query[be@latin]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[bg]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[bn]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[bn_IN]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
+Query[bs]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[ca]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[ca@valencia]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[cs]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
@@ -153,6 +156,7 @@ Query[te]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[tg]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[th]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[tr]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
+Query[ug]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[uk]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[uz]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}
 Query[uz@cyrillic]=http://multitran.ru/c/m.exe?l1=23&s=\\{@}

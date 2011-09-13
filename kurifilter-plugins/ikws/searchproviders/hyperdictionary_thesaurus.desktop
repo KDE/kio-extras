@@ -11,6 +11,7 @@ Name[bg]=Речник на HyperDictionary.com
 Name[bn]=HyperDictionary.com থেসরাস (সমার্থক ও বিপরীত শব্দ)
 Name[bn_IN]=HyperDictionary.com শব্দকোষ
 Name[br]=Tezorus HyperDictionary.com
+Name[bs]=Hiperrečnik (sinonimar)
 Name[ca]=HyperDictionary.com Thesaurus
 Name[ca@valencia]=HyperDictionary.com Thesaurus
 Name[cs]=Tezaurus HyperDictionary.com
@@ -81,6 +82,7 @@ Name[te]=HyperDictionary.com థెసారెస్
 Name[tg]=Тезаурус HyperDictionary.com
 Name[th]=พจนานุกรมคำพ้อง HyperDictionary.com
 Name[tr]=HyperDictionary.com Terimler
+Name[ug]=HyperDictionary.com خەزىنە
 Name[uk]=Словник синонімів HyperDictionary.com
 Name[uz]=HyperDictionary.com lugʻati
 Name[uz@cyrillic]=HyperDictionary.com луғати
@@ -102,6 +104,7 @@ Query[bg]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[bn]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[bn_IN]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[br]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
+Query[bs]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[ca]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[ca@valencia]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[cs]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
@@ -170,6 +173,7 @@ Query[te]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[tg]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[th]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[tr]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
+Query[ug]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[uk]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[uz]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[uz@cyrillic]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}

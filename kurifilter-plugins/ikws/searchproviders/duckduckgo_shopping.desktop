@@ -6,6 +6,7 @@ Name=Duck Duck Go Shopping
 Name[ar]=تسوق Duck Duck Go
 Name[ast]=Duck Duck Go Compres
 Name[bg]=Пазарувдане в Duck Duck Go
+Name[bs]=Dak dak go (kupovina)
 Name[ca]=Duck Duck Go Shopping
 Name[ca@valencia]=Duck Duck Go Shopping
 Name[cs]=Duck Duck Go Shopping
@@ -56,6 +57,7 @@ Name[sr@latin]=Duck Duck Go (kupovina)
 Name[sv]=Duck Duck Go shopping
 Name[th]=ช้อปปิ้งของ Duck Duck Go
 Name[tr]=Duck Duck Go Alışveriş
+Name[ug]=Duck Duck Go ئېلىم-سېتىم
 Name[uk]=Duck Duck Go Shopping
 Name[wa]=Duck Duck Go Botikes
 Name[x-test]=xxDuck Duck Go Shoppingxx
@@ -66,6 +68,7 @@ Query[ar]=http://imdb.com/Find?\\{@}
 Query[ast]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[bg]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[bn]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[bs]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ca]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ca@valencia]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=s
@@ -117,6 +120,7 @@ Query[sv]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[tg]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[ug]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[wa]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=sxx

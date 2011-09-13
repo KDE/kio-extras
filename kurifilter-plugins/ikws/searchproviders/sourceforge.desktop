@@ -11,6 +11,7 @@ Name[bg]=SourceForge
 Name[bn]=সোর্স-ফর্জ
 Name[bn_IN]=SourceForge
 Name[br]=SourceForge
+Name[bs]=Sorsfordž
 Name[ca]=SourceForge
 Name[ca@valencia]=SourceForge
 Name[cs]=SourceForge
@@ -80,6 +81,7 @@ Name[te]=సొర్స్ ఫొర్జ్
 Name[tg]=SourceForge
 Name[th]=SourceForge
 Name[tr]=SourceForge
+Name[ug]=SourceForge
 Name[uk]=SourceForge
 Name[uz]=SourceForge
 Name[uz@cyrillic]=SourceForge
@@ -99,6 +101,7 @@ Query[be@latin]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&ex
 Query[bg]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[bn]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[bn_IN]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
+Query[bs]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[ca]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[ca@valencia]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[cs]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
@@ -165,6 +168,7 @@ Query[te]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\
 Query[tg]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[th]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[tr]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
+Query[ug]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[uk]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[uz]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[uz@cyrillic]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}

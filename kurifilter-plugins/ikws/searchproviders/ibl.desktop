@@ -11,6 +11,7 @@ Name[be@latin]=Internet Book List
 Name[bg]=Internet Book List
 Name[bn]=ইন্টারনেট বই তালিকা
 Name[bn_IN]=ইন্টারনেট বইয়ের তালিকা
+Name[bs]=Internet spisak knjiga
 Name[ca]=Internet Book List
 Name[ca@valencia]=Internet Book List
 Name[cs]=Internetový seznam knih
@@ -78,6 +79,7 @@ Name[te]=ఇంటర్నెట్ పుస్తక జాబిత
 Name[tg]=Рӯйхати китобҳои Интернет
 Name[th]=รายการหนังสือทางอินเทอร์เน็ต
 Name[tr]=Internet Book List
+Name[ug]=ئىنتېرنېت كىتاب تىزىمى
 Name[uk]=Список книг Internet
 Name[vi]=Danh sách cuốn sách Mạng
 Name[wa]=Djivêye des lives sol daegntoele
@@ -96,6 +98,7 @@ Query[be@latin]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[bg]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[bn]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[bn_IN]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
+Query[bs]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ca]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ca@valencia]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[cs]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
@@ -162,6 +165,7 @@ Query[te]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[tg]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[th]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[tr]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
+Query[ug]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[uk]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[uz]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[uz@cyrillic]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search

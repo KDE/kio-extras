@@ -11,6 +11,7 @@ Name[bg]=Филми в Google
 Name[bn]=গুগল্ মুভিস্
 Name[bn_IN]=Google মুভিস
 Name[br]=Filmoù Google
+Name[bs]=Gugl‑filmovi
 Name[ca]=Pel·lícules Google
 Name[ca@valencia]=Pel·lícules Google
 Name[cs]=Google filmy
@@ -25,7 +26,7 @@ Name[et]=Google Movies
 Name[eu]=Google pelikulak
 Name[fa]=فیلمهای Google
 Name[fi]=Googlen elokuvat
-Name[fr]=Google vidéo
+Name[fr]=Google vidéos
 Name[fy]=Google Films
 Name[ga]=Scannáin Google
 Name[gl]=Películas de Google
@@ -81,6 +82,7 @@ Name[te]=గూగుల్ చలనచిత్రాలు
 Name[tg]=Видеои Google
 Name[th]=ค้นหาภาพยนตร์ด้วยกูเกิล
 Name[tr]=Google Filmleri
+Name[ug]=Google كىنولار
 Name[uk]=Фільми на Google
 Name[uz]=Google - Kino
 Name[uz@cyrillic]=Google - Кино
@@ -101,6 +103,7 @@ Query[be@latin]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[bg]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn_IN]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[bs]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca@valencia]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[cs]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
@@ -167,6 +170,7 @@ Query[te]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[tg]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[th]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[tr]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[ug]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[uk]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[uz]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[uz@cyrillic]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8

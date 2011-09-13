@@ -7,6 +7,7 @@ Name[ar]=GitHub
 Name[ast]=GitHub
 Name[bg]=GitHub
 Name[bn]=গিট-হাব
+Name[bs]=Githab
 Name[ca]=GitHub
 Name[ca@valencia]=GitHub
 Name[cs]=GitHub
@@ -59,6 +60,7 @@ Name[sv]=GitHub
 Name[tg]=GitHub
 Name[th]=GitHub
 Name[tr]=GitHub
+Name[ug]=GitHub
 Name[uk]=GitHub
 Name[wa]=GitHub
 Name[x-test]=xxGitHubxx
@@ -69,6 +71,7 @@ Query[ar]=http://info.alexa.com/search?q=\\{@}
 Query[ast]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[bg]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[bn]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[bs]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ca]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ca@valencia]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[cs]=http://github.com/search?q=\\{@}&x=0&y=0
@@ -120,6 +123,7 @@ Query[sv]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[tg]= http://www.alexa.com/search?q=\\{@}
 Query[th]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[tr]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[ug]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[uk]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[wa]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://github.com/search?q=\\{@}&x=0&y=0xx

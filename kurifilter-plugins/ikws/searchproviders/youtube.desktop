@@ -5,6 +5,7 @@ Name[ar]=يوتوب
 Name[ast]=YouTube
 Name[bg]=YouTube
 Name[bn]=ইউ-টিউভ
+Name[bs]=Jutjub
 Name[ca]=YouTube
 Name[ca@valencia]=YouTube
 Name[cs]=YouTube
@@ -57,6 +58,7 @@ Name[sv]=YouTube
 Name[tg]=YouTube
 Name[th]=บริการวีดิโอผ่าน YouTube
 Name[tr]=YouTube
+Name[ug]=YouTube
 Name[uk]=YouTube
 Name[wa]=YouTube
 Name[x-test]=xxYouTubexx
@@ -67,6 +69,7 @@ Query[ar]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ast]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[bg]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[bn]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[bs]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ca]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ca@valencia]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[cs]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
@@ -118,6 +121,7 @@ Query[sv]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[tg]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[th]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[tr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[ug]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[uk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[wa]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[x-test]=xxhttp://www.youtube.com/results?search_query=\\{@}&search_type=&aq=fxx

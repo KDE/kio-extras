@@ -10,6 +10,7 @@ Name[be@latin]=Svabodny sieciŭny kamputarny słoŭnik
 Name[bg]=Free On-Line Dictionary of Computing
 Name[bn]=কমপিউটিং-এর ফ্রী অন-লাইন অভিধান
 Name[bn_IN]=কম্পিউটার সংক্রান্ত অন-লাইন মুক্ত অভিধান
+Name[bs]=Slobodni rječnik računarstva na vezi
 Name[ca]=Diccionari lliure d'informàtica en línia
 Name[ca@valencia]=Diccionari lliure d'informàtica en línia
 Name[cs]=Online slovník výp. techniky
@@ -25,7 +26,7 @@ Name[et]=Vaba arvutialane võrgusõnastik
 Name[eu]=Konputazioari buruzko lineako hiztegi librea
 Name[fa]=واژه‌نامه برخط رایگان محاسبات
 Name[fi]=Vapaa tietokonealan sanasto
-Name[fr]=Dictionnaire de l'informatique gratuit en ligne
+Name[fr]=Dictionnaire gratuit et en ligne de l'informatique
 Name[fy]=Free On-Line Dictionary Of Computing (IT-wurdboek)
 Name[ga]=Free On-Line Dictionary of Computing
 Name[gl]=Dicionario libre en liña da computación
@@ -80,6 +81,7 @@ Name[te]=కంప్యూటింగ్ యొక్క ఉచిత ఆన�
 Name[tg]=Свободный онлайн-словарь по информатике
 Name[th]=พจนานุกรมสำหรับวิทยาการคอมพิวเตอร์แบบออนไลน์
 Name[tr]=Ücretsiz Çevrim içi Bilişim Sözlüğü
+Name[ug]=كومپيۇتېرنىڭ ھەقسىز تور لۇغىتى
 Name[uk]=Вільний словник з інформатики в мережі
 Name[uz]=Kompyuter atamalari boʻyicha Internet lugʻat
 Name[uz@cyrillic]=Компьютер атамалари бўйича Интернет луғат
@@ -101,6 +103,7 @@ Query[bg]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[bn]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[bn_IN]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[br]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[bs]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[ca]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[ca@valencia]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[cs]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
@@ -169,6 +172,7 @@ Query[te]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[tg]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[th]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[tr]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[ug]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[uk]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[uz]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[uz@cyrillic]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}

@@ -62,10 +62,10 @@ void DNSSDNetworkBuilder::start()
     mNoOfInitServiceTypes = 0;
 
     mServiceTypeBrowser = new DNSSD::ServiceTypeBrowser();
-    connect( mServiceTypeBrowser, SIGNAL(serviceTypeAdded( const QString& )),
-             SLOT(addServiceType( const QString& )) );
-    connect( mServiceTypeBrowser, SIGNAL(serviceTypeRemoved( const QString& )),
-             SLOT(removeServiceType( const QString& )) );
+    connect( mServiceTypeBrowser, SIGNAL(serviceTypeAdded(QString)),
+             SLOT(addServiceType(QString)) );
+    connect( mServiceTypeBrowser, SIGNAL(serviceTypeRemoved(QString)),
+             SLOT(removeServiceType(QString)) );
     connect( mServiceTypeBrowser, SIGNAL(finished()), SLOT(onServiceTypeBrowserFinished()) );
 // TODO: add a signal network initialized to Network, so is cleared when first usable
     mServiceTypeBrowser->startBrowse();
@@ -124,11 +124,11 @@ void DNSSDNetworkBuilder::addService( DNSSD::RemoteService::Ptr service )
     const QString ipAddress = hostAddress.toString();
     // forget domain name if just ip address
     if( hostName == ipAddress )
-        hostName = QString();
+        hostName.clear();
 
     // device TODO: only search for if we can create the service?
     NetDevicePrivate* d = 0;
-    const NetDevice* deviceOfService;
+    const NetDevice* deviceOfService = 0;
     foreach( const NetDevice& device, deviceList )
     {
         const QString deviceHostName = device.hostName();
@@ -141,13 +141,19 @@ kDebug()<<"existing device:"<<deviceHostName<<"at"<<device.ipAddress()<<"vs."<<h
         if( isSameAddress )
         {
             d = device.dPtr();
+            // workaround: KDNSSD currently (4.7.0) emits two signals per service
+            // just relying on service->serviceName() is fragile, but matches
+            // current approach in removeService(...)
+            if( d->hasService(service->serviceName()) )
+                return;
+
             deviceOfService = &device;
             break;
         }
     }
     if( !d )
     {
-        const QString deviceName = hostName.left( hostName.indexOf('.') );
+        const QString deviceName = hostName.left( hostName.indexOf(QLatin1Char('.')) );
         d = new NetDevicePrivate( deviceName );
         d->setHostName( hostName );
         d->setIpAddress( ipAddress );
@@ -197,7 +203,7 @@ kDebug()<<"new device:"<<deviceName<<"at"<<hostName<<"by"<<service->type();
     if( serviceType == QLatin1String("_workstation._tcp") )
     {
         deviceTypeByService = NetDevice::Workstation;
-        deviceName = service->serviceName().left( service->serviceName().lastIndexOf('[') ).trimmed();
+        deviceName = service->serviceName().left( service->serviceName().lastIndexOf(QLatin1Char('[')) ).trimmed();
     }
     else if( serviceType == QLatin1String("_net-assistant._udp") )
     {

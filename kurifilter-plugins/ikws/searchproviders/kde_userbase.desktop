@@ -7,6 +7,7 @@ Name[ar]=كتيّب كدي للمستخدمين
 Name[ast]=KDE UserBase
 Name[bg]=Потребителско ръководство за KDE
 Name[bn]=কে.ডি.ই. ইউসার-বেস
+Name[bs]=Korisnička baza KDE‑a
 Name[ca]=KDE UserBase
 Name[ca@valencia]=KDE UserBase
 Name[cs]=KDE UserBase
@@ -59,6 +60,7 @@ Name[sv]=KDE:s användarbas
 Name[tg]=KDE UserBase
 Name[th]=KDE UserBase
 Name[tr]=KDE UserBase
+Name[ug]=KDE UserBase
 Name[uk]=UserBase KDE
 Name[wa]=KDE UserBase (Uzeus)
 Name[x-test]=xxKDE UserBasexx
@@ -69,6 +71,7 @@ Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ast]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bg]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[bs]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca@valencia]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[cs]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
@@ -120,6 +123,7 @@ Query[sv]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[tg]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[th]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[tr]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[ug]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[wa]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx

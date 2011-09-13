@@ -12,6 +12,7 @@ Name[be@latin]=Baza źviestak „QRZ.com Callsign”
 Name[bg]=QRZ.com Callsign Database
 Name[bn]=QRZ.com কল-সাইন ডেটাবেস
 Name[bn_IN]=QRZ.com Callsign ডাটাবেস
+Name[bs]=KuRZ.kom baza pozivnika
 Name[ca]=Base de dades d'indicatius de QRZ.com
 Name[ca@valencia]=Base de dades d'indicatius de QRZ.com
 Name[cs]=Databáze volacích znaků QRZ.com
@@ -82,6 +83,7 @@ Name[te]=QRZ.com కాల్‌సైన్ డాటాబేస్
 Name[tg]=База позывных QRZ.com
 Name[th]=ฐานข้อมูลนามแฝง QRZ.com
 Name[tr]=QRZ.com Aramaişaret Veritabanı
+Name[ug]=QRZ.com Callsign ساندان
 Name[uk]=База даних callsign QRZ.com
 Name[vi]=Cơ sở dữ liệu tín hiệu QRZ.com
 Name[wa]=Båzes di dnêyes des indicatifs di houcaedje (avions) QRZ.com
@@ -99,6 +101,7 @@ Query[bg]=http://www.qrz.com/database?callsign=\\{@}
 Query[bn]=http://www.qrz.com/database?callsign=\\{@}
 Query[bn_IN]=http://www.qrz.com/database?callsign=\\{@}
 Query[br]=http://www.qrz.com/database?callsign=\\{@}
+Query[bs]=http://www.qrz.com/database?callsign=\\{@}
 Query[ca]=http://www.qrz.com/database?callsign=\\{@}
 Query[ca@valencia]=http://www.qrz.com/database?callsign=\\{@}
 Query[cs]=http://www.qrz.com/database?callsign=\\{@}
@@ -167,6 +170,7 @@ Query[te]=http://www.qrz.com/database?callsign=\\{@}
 Query[tg]=http://www.qrz.com/database?callsign=\\{@}
 Query[th]=http://www.qrz.com/database?callsign=\\{@}
 Query[tr]=http://www.qrz.com/database?callsign=\\{@}
+Query[ug]=http://www.qrz.com/database?callsign=\\{@}
 Query[uk]=http://www.qrz.com/database?callsign=\\{@}
 Query[uz]=http://www.qrz.com/database?callsign=\\{@}
 Query[uz@cyrillic]=http://www.qrz.com/database?callsign=\\{@}

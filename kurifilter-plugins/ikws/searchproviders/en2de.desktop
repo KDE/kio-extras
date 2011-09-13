@@ -12,6 +12,7 @@ Name[be@latin]=Pierakład „dict.cc”: anhielskaja ➙ niamieckaja
 Name[bg]=Превод с dict.cc — от английски към немски
 Name[bn]=dict.cc অনুবাদ: ইংরাজি থেকে জার্মান
 Name[bn_IN]=dict.cc অনুবাদ: ইংরাজি থেকে জার্মান
+Name[bs]=English to German: dikt.cc: sa engleskog na njemački
 Name[ca]=Traducció dict.cc: Anglès - Alemany
 Name[ca@valencia]=Traducció dict.cc: Anglés - Alemany
 Name[cs]=Překlad dict.cc: z angličtiny do němčiny
@@ -80,6 +81,7 @@ Name[te]=dict.cc అనువాదము: ఇంగ్లీష్ నుండ
 Name[tg]=dict.cc Translation: Англисӣ ба немисӣ
 Name[th]=การแปล dict.cc: ภาษาอังกฤษเป็นเยอรมัน
 Name[tr]=dict.cc Çevirisi: İngilizceden Almancaya
+Name[ug]=dict.cc تەرجىمە: ئىنگلىزچىدىن گېرمانچىغا
 Name[uk]=dict.cc — переклад з англійської німецькою
 Name[uz]=dict.cc tarjima: Inglizchadan Olmonchaga
 Name[uz@cyrillic]=dict.cc таржима: Инглизчадан Олмончага
@@ -99,6 +101,7 @@ Query[bg]=http://www.dict.cc/?s=\\{@}
 Query[bn]=http://www.dict.cc/?s=\\{@}
 Query[bn_IN]=http://www.dict.cc/?s=\\{@}
 Query[br]=http://www.dict.cc/?s=\\{@}
+Query[bs]=http://www.dict.cc/?s=\\{@}
 Query[ca]=http://www.dict.cc/?s=\\{@}
 Query[ca@valencia]=http://www.dict.cc/?s=\\{@}
 Query[cs]=http://www.dict.cc/?s=\\{@}
@@ -167,6 +170,7 @@ Query[te]=http://www.dict.cc/?s=\\{@}
 Query[tg]=http://www.dict.cc/?s=\\{@}
 Query[th]=http://www.dict.cc/?s=\\{@}
 Query[tr]=http://www.dict.cc/?s=\\{@}
+Query[ug]=http://www.dict.cc/?s=\\{@}
 Query[uk]=http://www.dict.cc/?s=\\{@}
 Query[uz]=http://www.dict.cc/?s=\\{@}
 Query[uz@cyrillic]=http://www.dict.cc/?s=\\{@}

@@ -57,11 +57,11 @@ class NetworkUri
 inline NetworkUri::NetworkUri( const KUrl& url )
 {
     mHostAddress = url.path().mid( 1 );
-    const int slashIndex = mHostAddress.indexOf( '/' );
+    const int slashIndex = mHostAddress.indexOf( QLatin1Char('/') );
     if( slashIndex != -1 )
     {
         // servicetype is currently appended as .type to the name
-        const int serviceTypeIndex = mHostAddress.lastIndexOf( '.' ) + 1;
+        const int serviceTypeIndex = mHostAddress.lastIndexOf( QLatin1Char('.') ) + 1;
         mServiceType = mHostAddress.mid( serviceTypeIndex );
 
         const int serviceNameLength = (serviceTypeIndex-1) - (slashIndex+1);

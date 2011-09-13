@@ -7,6 +7,7 @@ Name[ar]=ياهو المحلي
 Name[ast]=Yahoo Llocal
 Name[bg]=Локално търсене в Yahoo
 Name[bn]=ইয়াহু স্থানীয়
+Name[bs]=Jahu‑lokal
 Name[ca]=Yahoo Local
 Name[ca@valencia]=Yahoo Local
 Name[cs]=Yahoo Local
@@ -58,6 +59,7 @@ Name[sv]=Yahoo Local
 Name[tg]=Минтақаи Yahoo
 Name[th]=Yahoo Local
 Name[tr]=Yahoo Yerel
+Name[ug]=Yahoo يەرلىك
 Name[uk]=Yahoo Local
 Name[wa]=Yahoo Coinrece
 Name[x-test]=xxYahoo Localxx
@@ -68,6 +70,7 @@ Query[ar]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab
 Query[ast]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[bg]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[bn]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[bs]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ca]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ca@valencia]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[cs]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
@@ -119,6 +122,7 @@ Query[sv]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab
 Query[tg]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[th]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[tr]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[ug]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[uk]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[x-test]=xxhttp://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-imgxx
 Query[zh_CN]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

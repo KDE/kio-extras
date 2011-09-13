@@ -7,6 +7,7 @@ Name[ar]=فيس بوك
 Name[ast]=Facebook
 Name[bg]=Facebook
 Name[bn]=ফেসবুক
+Name[bs]=Fejsbuk
 Name[ca]=Facebook
 Name[ca@valencia]=Facebook
 Name[cs]=Facebook
@@ -59,6 +60,7 @@ Name[sv]=Facebook
 Name[tg]=Facebook
 Name[th]=เฟซบุ้ค
 Name[tr]=Facebook
+Name[ug]=Facebook
 Name[uk]=Facebook
 Name[wa]=Facebook
 Name[x-test]=xxFacebookxx
@@ -69,6 +71,7 @@ Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ast]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bg]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bn]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[bs]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ca]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ca@valencia]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[cs]=http://www.facebook.com/search/?q=\\{@}&init=quick
@@ -120,6 +123,7 @@ Query[sv]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[tg]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[th]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[tr]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ug]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[uk]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[wa]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[x-test]=xxhttp://www.facebook.com/search/?q=\\{@}&init=quickxx

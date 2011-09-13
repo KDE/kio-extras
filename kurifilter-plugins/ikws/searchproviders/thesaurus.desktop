@@ -11,6 +11,7 @@ Name[bg]=Речник Merriam-Webster
 Name[bn]=মেরিয়াম-ওয়েবস্টার থেসরাস
 Name[bn_IN]=মেরিয়াম-ওয়েবস্টার শব্দকোষ
 Name[br]=Tezorus Merriam-Webster
+Name[bs]=Merijam-Vebster (sinonimar)
 Name[ca]=Tesaurus Merriam-Webster
 Name[ca@valencia]=Tesaurus Merriam-Webster
 Name[cs]=Slovník synonym Merriam-Webster
@@ -79,6 +80,7 @@ Name[te]=మెరియమ్-వెబ్‌స్టర్ థెసారె
 Name[tg]=Merriam-Webster Thesaurus
 Name[th]=พจนานุกรมคำพ้อง Merriam-Webster
 Name[tr]=Merriam-Webster Thesaurus
+Name[ug]=Merriam-Webster Thesaurus
 Name[uk]=Словник синонімів Merriam-Webster
 Name[uz]=Merriam-Vebster lugʻati
 Name[uz@cyrillic]=Мерриам-Вебстер луғати
@@ -101,6 +103,7 @@ Query[bg]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[bn]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[bn_IN]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[br]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
+Query[bs]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[ca]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[ca@valencia]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[cs]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
@@ -169,6 +172,7 @@ Query[te]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[tg]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[th]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[tr]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
+Query[ug]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[uk]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[uz]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[uz@cyrillic]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}

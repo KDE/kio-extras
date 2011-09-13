@@ -188,9 +188,11 @@ private: // private methods
   void reportError(const KUrl &url, const int err);
 
   bool createUDSEntry(const QString &filename, const QByteArray &path,
-      KIO::UDSEntry &entry, short int details);
+                      KIO::UDSEntry &entry, short int details);
 
   QString canonicalizePath(const QString &path);
+  void requiresUserNameRedirection();
+  bool sftpConnect();
 };
 
 #endif

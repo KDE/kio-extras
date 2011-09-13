@@ -6,6 +6,7 @@ Name=Identi.ca Notices
 Name[ar]=إشعارات Identi.ca
 Name[ast]=Avisos Identi.ca
 Name[bg]=Бележки в Identi.ca
+Name[bs]=Identika-obaveštenja
 Name[ca]=Avisos a Identi.ca
 Name[ca@valencia]=Avisos a Identi.ca
 Name[cs]=Poznámky Identi.ca
@@ -57,6 +58,7 @@ Name[sr@latin]=identi.ca‑obaveštenja
 Name[sv]=Identi.ca anslag
 Name[th]=การแจ้ง Identi.ca
 Name[tr]=Identi.ca Bildirimleri
+Name[ug]=Identi.ca ئۇقتۇرۇشلار
 Name[uk]=Нотатки Identi.ca
 Name[wa]=Identi.ca Notices
 Name[x-test]=xxIdenti.ca Noticesxx
@@ -67,6 +69,7 @@ Query[ar]=http://info.alexa.com/search?q=\\{@}
 Query[ast]=http://identi.ca/search/notice?q=\\{@}
 Query[bg]=http://identi.ca/search/notice?q=\\{@}
 Query[bn]=http://identi.ca/search/notice?q=\\{@}
+Query[bs]=http://identi.ca/search/notice?q=\\{@}
 Query[ca]=http://identi.ca/search/notice?q=\\{@}
 Query[ca@valencia]=http://identi.ca/search/notice?q=\\{@}
 Query[cs]=http://identi.ca/search/notice?q=\\{@}
@@ -118,6 +121,7 @@ Query[sv]=http://identi.ca/search/notice?q=\\{@}
 Query[tg]=http://identi.ca/search/notice?q=\\{@}
 Query[th]=http://identi.ca/search/notice?q=\\{@}
 Query[tr]=http://identi.ca/search/notice?q=\\{@}
+Query[ug]=http://identi.ca/search/notice?q=\\{@}
 Query[uk]=http://identi.ca/search/notice?q=\\{@}
 Query[wa]=http://identi.ca/search/notice?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/notice?q=\\{@}xx

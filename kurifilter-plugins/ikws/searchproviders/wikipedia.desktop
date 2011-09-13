@@ -11,6 +11,7 @@ Name[bg]=Уикипедия - свободната енциклопедия
 Name[bn]=উইকিপেডিয়া - মুক্ত বিশ্বকোষ
 Name[bn_IN]=Wikipedia (উইকিপিডিয়া) - মুক্ত বিশ্বকোষ
 Name[br]=Wikipedia - Ar geriadur ouiziegezh frank
+Name[bs]=Vikipedija — slobodna enciklopedija
 Name[ca]=Viquipèdia - L'enciclopèdia lliure
 Name[ca@valencia]=Viquipèdia - L'enciclopèdia lliure
 Name[cs]=Wikipedia - volně dostupná encyklopedie
@@ -81,6 +82,7 @@ Name[te]=వికీపీడియా - స్వేఛ్ఛా విజ్�
 Name[tg]=Wikipedia - энсиклопедияи озод
 Name[th]=วิกิพีเดีย - สารานุกรมเสรี
 Name[tr]=Wikipedia - Ücretsiz Ansiklopedi
+Name[ug]=ۋىكىپېدىيە(Wikipedia) - ھەقسىز قامۇس
 Name[uk]=Вікіпедія — вільна енциклопедія
 Name[uz]=Wikipedia - Erkin ensiklopediya
 Name[uz@cyrillic]=Wikipedia - Эркин энциклопедия
@@ -101,6 +103,7 @@ Query[be@latin]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=http://bg.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn_IN]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[bs]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca@valencia]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[cs]=http://cs.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
@@ -167,6 +170,7 @@ Query[te]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tg]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[th]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tr]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ug]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz@cyrillic]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

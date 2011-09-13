@@ -11,6 +11,7 @@ Name[bg]=Търсене на изображения в Google
 Name[bn]=গুগল্ চিত্র অনুসন্ধান
 Name[bn_IN]=Google ছবি অনুসন্ধান
 Name[br]=Klask skeudennoù Google
+Name[bs]=Gugl‑slike
 Name[ca]=Cerca d'imatges a Google
 Name[ca@valencia]=Cerca d'imatges a Google
 Name[cs]=Hledání obrázků (Google)
@@ -82,6 +83,7 @@ Name[te]=గూగుల్ బొమ్మల అన్వెషణ
 Name[tg]=Тасвирҳои Google
 Name[th]=ค้นหาภาพด้วยกูเกิล
 Name[tr]=Google Resim Arayıcı
+Name[ug]=Google سۈرەت ئىزدە
 Name[uk]=Пошук зображень на Google
 Name[uz]=Google - Rasm qidirish
 Name[uz@cyrillic]=Google - Расм қидириш
@@ -104,6 +106,7 @@ Query[bg]=http://images.google.com/images?q=\\{@}
 Query[bn]=http://images.google.com/images?q=\\{@}
 Query[bn_IN]=http://images.google.com/images?q=\\{@}
 Query[br]=http://images.google.com/images?q=\\{@}
+Query[bs]=http://images.google.com/images?q=\\{@}
 Query[ca]=http://images.google.com/images?q=\\{@}
 Query[ca@valencia]=http://images.google.com/images?q=\\{@}
 Query[cs]=http://images.google.com/images?q=\\{@}
@@ -145,7 +148,7 @@ Query[mai]=http://images.google.com/images?q=\\{@}
 Query[ml]=http://images.google.com/images?q=\\{@}
 Query[mr]=http://images.google.com/images?q=\\{@}
 Query[ms]=http://images.google.com/images?q=\\{@}
-Query[nb]=http://images.google.no/images?hl=nn&q=\\{@}
+Query[nb]=http://images.google.no/images?q=\\{@}
 Query[nds]=http://images.google.com/images?q=\\{@}
 Query[ne]=http://images.google.com/images?q=\\{@}
 Query[nl]=http://images.google.nl/images?q=\\{@}
@@ -172,6 +175,7 @@ Query[te]=http://images.google.com/images?q=\\{@}
 Query[tg]=http://images.google.com/images?q=\\{@}
 Query[th]=http://images.google.com/images?q=\\{@}
 Query[tr]=http://images.google.com/images?q=\\{@}
+Query[ug]=http://images.google.com/images?q=\\{@}
 Query[uk]=http://images.google.com/images?q=\\{@}
 Query[uz]=http://images.google.com/images?q=\\{@}
 Query[uz@cyrillic]=http://images.google.com/images?q=\\{@}

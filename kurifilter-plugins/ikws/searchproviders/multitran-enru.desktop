@@ -10,6 +10,7 @@ Name[be@latin]=Pierakład „Multitran”: anhielskaja ➙ rasiejskaja
 Name[bg]=Multitran - превод между английски и руски
 Name[bn]=মাল্টিট্র্যান - ইংরিজি থেকে রুশ বা রুশ থেকে ইংরিজিতে অনুবাদ করুন
 Name[bn_IN]=Multitran - ইংরাজি ও রাশিয়ানের মধ্যে অনুবাদ করুন
+Name[bs]=Multitran: sa engleskog na ruski
 Name[ca]=Multitran - Tradueix entre anglès i rus
 Name[ca@valencia]=Multitran - Tradueix entre anglés i rus
 Name[cs]=Multitran - překlad mezi angličtinou a ruštinou
@@ -73,6 +74,7 @@ Name[te]=Multitran - ఇంగ్లీష్ మరియు రష్యన్
 Name[tg]=Multitran - тарҷумаҳои англисӣ-русӣ
 Name[th]=บริการ Multitran - แปลความหมายระหว่างภาษาอังกฤษและภาษารัสเซีย
 Name[tr]=Multitran - Translate Between English and Russian
+Name[ug]=Multitran - ئىنگلىزچە بىلەن رۇسچە ئارىسىدا تەرجىمە
 Name[uk]=Multitran — переклад з англійської російською
 Name[uz]=Multitran - Inglizchadan Ruschaga tarjima
 Name[uz@cyrillic]=Multitran - Инглизчадан Русчага таржима
@@ -90,6 +92,7 @@ Query[be@latin]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[bg]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[bn]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[bn_IN]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
+Query[bs]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[ca]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[ca@valencia]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[cs]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
@@ -153,6 +156,7 @@ Query[te]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[tg]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[th]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[tr]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
+Query[ug]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[uk]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[uz]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[uz@cyrillic]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}

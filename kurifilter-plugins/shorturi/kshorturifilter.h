@@ -23,8 +23,11 @@
 #ifndef KSHORTURIFILTER_H
 #define KSHORTURIFILTER_H
 
+#include <QtCore/QList>
+#include <QtCore/QRegExp>
+
 #include <kurifilter.h>
-#include <QList>
+
 
 /**
 * This is short URL filter class.
@@ -91,8 +94,8 @@ private:
         URLHint() {}
         URLHint( QString r, QString p,
                  KUriFilterData::UriTypes t = KUriFilterData::NetProtocol )
-               : regexp(r), prepend(p), type(t) {}
-        QString regexp; // if this matches, then...
+               : regexp(QRegExp(r)), prepend(p), type(t) {}
+        QRegExp regexp; // if this matches, then...
         QString prepend; // ...prepend this to the url
         KUriFilterData::UriTypes type;
     };

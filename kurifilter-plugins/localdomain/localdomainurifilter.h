@@ -42,16 +42,10 @@ class LocalDomainUriFilter : public KUriFilterPlugin
     LocalDomainUriFilter( QObject* parent, const QVariantList& args );
     virtual bool filterUri( KUriFilterData &data ) const;
 
-  public Q_SLOTS:
-    void lookedUp(const QHostInfo&);
-
   private:
     bool exists(const QString&) const;
 
     QRegExp m_hostPortPattern;
-    mutable QEventLoop *m_eventLoop;
-    mutable int m_lookupId;
-    mutable bool m_hostExists;
 };
 
 #endif

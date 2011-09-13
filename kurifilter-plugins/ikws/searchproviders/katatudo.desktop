@@ -11,6 +11,7 @@ Name[bg]=KataTudo
 Name[bn]=কাটা-টুডো
 Name[bn_IN]=KataTudo
 Name[br]=KataTudo
+Name[bs]=Katatudo
 Name[ca]=KataTudo
 Name[ca@valencia]=KataTudo
 Name[cs]=KataTudo
@@ -80,6 +81,7 @@ Name[te]=KataTudo
 Name[tg]=KataTudo
 Name[th]=บริการ KataTudo
 Name[tr]=KataTudo
+Name[ug]=KataTudo
 Name[uk]=KataTudo
 Name[uz]=KataTudo
 Name[uz@cyrillic]=KataTudo
@@ -101,6 +103,7 @@ Query[bg]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[bn]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[bn_IN]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[br]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
+Query[bs]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[ca]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[ca@valencia]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[cs]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
@@ -169,6 +172,7 @@ Query[te]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[tg]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[th]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[tr]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
+Query[ug]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[uk]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[uz]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[uz@cyrillic]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar

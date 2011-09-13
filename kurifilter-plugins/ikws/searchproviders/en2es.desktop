@@ -12,6 +12,7 @@ Name[be@latin]=Pierakład „WordReference.com”: anhielskaja ➙ hišpanskaja
 Name[bg]=Превод с WordReference.com — от английски към испански
 Name[bn]=WordReference.com অনুবাদ: ইংরাজি থেকে স্প্যানিশ
 Name[bn_IN]=WordReference.com অনুবাদ: ইংরাজি থেকে স্প্যানিশ
+Name[bs]=Vordreferens: sa engleskog na španski
 Name[ca]=Traducció WordReference.com: Anglès - Espanyol
 Name[ca@valencia]=Traducció WordReference.com: Anglés - Espanyol
 Name[cs]=Překlad WordReference.com: z angličtiny do španělštiny
@@ -80,6 +81,7 @@ Name[te]=WordReference.com అనువాదము: ఇంగ్లీష్ �
 Name[tg]=WordReference.com Translation: Англисӣ ба испанӣ
 Name[th]=การแปล WordReference.com: แปลภาษาอังกฤษเป็นสเปน
 Name[tr]=WordReference.com Çevirisi: İngilizceden İspanyolcaya
+Name[ug]=WordReference.com تەرجىمە: ئىنگلىزچىدىن ئىسپانچىغا
 Name[uk]=WordReference.com — переклад з англійської іспанською
 Name[uz]=WordReference.com tarjima: Inglizchadan Ispanchaga
 Name[uz@cyrillic]=WordReference.com таржима: Инглизчадан Испанчага
@@ -99,6 +101,7 @@ Query[bg]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[bn]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[bn_IN]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[br]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
+Query[bs]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[ca]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[ca@valencia]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[cs]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
@@ -167,6 +170,7 @@ Query[te]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[tg]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[th]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[tr]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
+Query[ug]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[uk]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[uz]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[uz@cyrillic]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}

@@ -11,6 +11,7 @@ Name[bg]=Търсене на пакети RPM
 Name[bn]=RPM-Find
 Name[bn_IN]=RPM-Find
 Name[br]=RPM-Find
+Name[bs]=RPM‑traženje
 Name[ca]=RPM-Find
 Name[ca@valencia]=RPM-Find
 Name[cs]=RPM-Find
@@ -81,6 +82,7 @@ Name[te]=RPM-Find
 Name[tg]=Ҷустуҷӯи RPM
 Name[th]=บริการค้นหา RPM
 Name[tr]=RPM-Find
+Name[ug]=RPM-Find
 Name[uk]=RPM-Find
 Name[uz]=RPM qidirish
 Name[uz@cyrillic]=RPM қидириш
@@ -102,6 +104,7 @@ Query[be@latin]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[bg]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[bn]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[bn_IN]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
+Query[bs]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[ca]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[ca@valencia]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[cs]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
@@ -168,6 +171,7 @@ Query[te]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[tg]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[th]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[tr]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
+Query[ug]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[uk]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[uz]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[uz@cyrillic]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}

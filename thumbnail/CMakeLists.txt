@@ -60,7 +60,7 @@ set(svgthumbnail_PART_SRCS svgcreator.cpp)
 
 kde4_add_plugin(svgthumbnail ${svgthumbnail_PART_SRCS})
 
-target_link_libraries(svgthumbnail ${KDE4_KIO_LIBS}) # needs kdeui for ksvgrenderer
+target_link_libraries(svgthumbnail ${KDE4_KIO_LIBS})
 
 install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 

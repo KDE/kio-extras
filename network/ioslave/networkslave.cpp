@@ -42,7 +42,9 @@ NetworkSlave::NetworkSlave( const QByteArray& name, const QByteArray& poolSocket
   : SlaveBase( name, poolSocket, programSocket )
 {
 kDebug();
-    mNetworkDBusProxy = new NetworkDBusInterface( "org.kde.kded", "/modules/networkwatcher", QDBusConnection::sessionBus() );
+    mNetworkDBusProxy = new NetworkDBusInterface( QLatin1String("org.kde.kded"),
+                                                  QLatin1String("/modules/networkwatcher"),
+                                                  QDBusConnection::sessionBus() );
 }
 
 void NetworkSlave::get( const KUrl& url )
@@ -88,7 +90,7 @@ kDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"servic
 
     if( type == NetworkUri::Domain )
     {
-        mimeType( Mimetypes::NetworkMimetype );
+        mimeType( QLatin1String(Mimetypes::NetworkMimetype) );
         finished();
         successfulMimetyping = true;
     }
@@ -104,7 +106,7 @@ kDebug()<<reply.isValid();
             {
                 Mollet::NetDevice deviceData = reply.value();
 
-                mimeType( Mimetypes::DeviceMimetype[deviceData.type()] );
+                mimeType( QLatin1String(Mimetypes::DeviceMimetype[deviceData.type()]) );
                 finished();
                 successfulMimetyping = true;
             }
@@ -285,7 +287,7 @@ void NetworkSlave::feedEntryAsNetwork( KIO::UDSEntry* entry )
 {
     entry->insert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
 //     entry->insert( KIO::UDSEntry::UDS_ICON_NAME,    NetworkIconName );
-    entry->insert( KIO::UDSEntry::UDS_MIME_TYPE,    Mimetypes::NetworkMimetype );
+    entry->insert( KIO::UDSEntry::UDS_MIME_TYPE,    QLatin1String(Mimetypes::NetworkMimetype) );
 
 }
 
@@ -295,17 +297,17 @@ void NetworkSlave::feedEntryAsDevice( KIO::UDSEntry* entry, const Mollet::NetDev
     entry->insert( KIO::UDSEntry::UDS_DISPLAY_NAME, deviceData.name() );
     entry->insert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
 //     entry->insert( KIO::UDSEntry::UDS_ICON_NAME,    NetDevice::iconName(deviceData.type()) );
-    entry->insert( KIO::UDSEntry::UDS_MIME_TYPE,    Mimetypes::DeviceMimetype[deviceData.type()] );
+    entry->insert( KIO::UDSEntry::UDS_MIME_TYPE,    QLatin1String(Mimetypes::DeviceMimetype[deviceData.type()]) );
 
 }
 
 void NetworkSlave::feedEntryAsService( KIO::UDSEntry* entry, const Mollet::NetService& serviceData )
 {
-    entry->insert( KIO::UDSEntry::UDS_NAME,         serviceData.name()+'.'+serviceData.type() );
+    entry->insert( KIO::UDSEntry::UDS_NAME,         serviceData.name()+QLatin1Char('.')+serviceData.type() );
     entry->insert( KIO::UDSEntry::UDS_DISPLAY_NAME, serviceData.name() );
     entry->insert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFLNK );
     entry->insert( KIO::UDSEntry::UDS_ACCESS,       S_IRWXU|S_IRWXG|S_IRWXO );
-//     entry->insert( KIO::UDSEntry::UDS_ICON_NAME,    serviceData.iconName() );
+    entry->insert( KIO::UDSEntry::UDS_ICON_NAME,    serviceData.iconName() );
     entry->insert( KIO::UDSEntry::UDS_MIME_TYPE,    Mimetypes::mimetypeForServiceType(serviceData.type()) );
     if( !serviceData.url().isEmpty() )
         entry->insert( KIO::UDSEntry::UDS_TARGET_URL, serviceData.url() );

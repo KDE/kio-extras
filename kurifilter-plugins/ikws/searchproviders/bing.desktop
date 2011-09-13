@@ -3,6 +3,7 @@ Type=Service
 Name=Bing
 Name[ast]=Bing
 Name[bg]=Bing
+Name[bs]=Bing
 Name[ca]=Bing
 Name[ca@valencia]=Bing
 Name[cs]=Bing
@@ -50,6 +51,7 @@ Name[sv]=Bing
 Name[tg]=Bing
 Name[th]=Bing
 Name[tr]=Bing
+Name[ug]=Bing
 Name[uk]=Bing
 Name[wa]=Bing
 Name[x-test]=xxBingxx
@@ -60,6 +62,7 @@ Keys=bing
 Query=http://www.bing.com/search?q=\\{@}
 Query[ast]=http://www.bing.com/search?q=\\{@}
 Query[bg]=http://www.bing.com/search?q=\\{@}
+Query[bs]=http://www.bing.com/search?q=\\{@}
 Query[ca]=http://www.bing.com/search?q=\\{@}
 Query[ca@valencia]=http://www.bing.com/search?q=\\{@}
 Query[cs]=http://www.bing.com/search?q=\\{@}
@@ -107,6 +110,7 @@ Query[sv]=http://www.bing.com/search?q=\\{@}
 Query[tg]=http://www.bing.com/search?q=\\{@}
 Query[th]=http://www.bing.com/search?q=\\{@}
 Query[tr]=http://www.bing.com/search?q=\\{@}
+Query[ug]=http://www.bing.com/search?q=\\{@}
 Query[uk]=http://www.bing.com/search?q=\\{@}
 Query[wa]=http://www.bing.com/search?q=\\{@}
 Query[x-test]=xxhttp://www.bing.com/search?q=\\{@}xx

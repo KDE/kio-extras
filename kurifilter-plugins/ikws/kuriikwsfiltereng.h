@@ -54,7 +54,7 @@ public:
   
 protected:
   QString formatResult (const QString& url, const QString& cset1, const QString& cset2,
-                        const QString& query, bool isMalformed, SubstMap& map) const;
+                        const QByteArray& query, bool isMalformed, SubstMap& map) const;
 
 private:
   KURISearchFilterEngine();

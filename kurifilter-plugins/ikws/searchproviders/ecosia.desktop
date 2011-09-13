@@ -4,6 +4,7 @@ Name=Ecosia search engine
 Name[ar]=محرك البحث Ecosia
 Name[ast]=Motor de gueta Ecosia
 Name[bg]=Търсачка Ecosia
+Name[bs]=Ekozija
 Name[ca]=Motor de cerca Ecosia
 Name[ca@valencia]=Motor de cerca Ecosia
 Name[cs]=Vyhledávací stroj Ecosia
@@ -56,6 +57,7 @@ Name[sv]=Ecosia söktjänst
 Name[tg]=Барномаи ҷустуҷӯии Ecosia
 Name[th]=บริการค้นหา Ecosia
 Name[tr]=Ecosia arama motoru
+Name[ug]=Ecosia ئىزدەش ماتورى
 Name[uk]=Рушій пошуку Ecosia
 Name[wa]=Ricwerrece Ecosia
 Name[x-test]=xxEcosia search enginexx
@@ -68,6 +70,7 @@ Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ast]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[bg]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[bn]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[bs]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ca]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ca@valencia]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[cs]=http://ecosia.org/search.php?q=\\{@}&meta=normal
@@ -119,6 +122,7 @@ Query[sv]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[tg]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[th]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[tr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[ug]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[uk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[wa]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[x-test]=xxhttp://ecosia.org/search.php?q=\\{@}&meta=normalxx

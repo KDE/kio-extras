@@ -7,6 +7,7 @@ Name[ar]=شفرة جوجل
 Name[ast]=Google Code
 Name[bg]=Код в Google
 Name[bn]=গুগল কোড
+Name[bs]=Gugl‑kod
 Name[ca]=Google Code
 Name[ca@valencia]=Google Code
 Name[cs]=Google Code
@@ -18,7 +19,7 @@ Name[es]=Google Code
 Name[et]=Google Code
 Name[eu]=Google Code
 Name[fi]=Google Code
-Name[fr]=Google Code
+Name[fr]=Code Google 
 Name[ga]=Cód Google
 Name[gu]=ગુગલ કોડ
 Name[he]=Google Code
@@ -58,6 +59,7 @@ Name[sv]=Google kod
 Name[tg]=Рамзи Google
 Name[th]=Google Code
 Name[tr]=Google Code
+Name[ug]=Google Code
 Name[uk]=Google Code
 Name[wa]=Google Côde
 Name[x-test]=xxGoogle Codexx
@@ -68,6 +70,7 @@ Query[ar]=http://froogle.google.com/froogle?q=\\{@}
 Query[ast]=http://code.google.com/query/#q=\\{%2520}
 Query[bg]=http://code.google.com/query/#q=\\{%2520}
 Query[bn]=http://code.google.com/query/#q=\\{%2520}
+Query[bs]=http://code.google.com/query/#q=\\{%2520}
 Query[ca]=http://code.google.com/query/#q=\\{%2520}
 Query[ca@valencia]=http://code.google.com/query/#q=\\{%2520}
 Query[cs]=http://code.google.com/query/#q=\\{%2520}
@@ -119,6 +122,7 @@ Query[sv]=http://code.google.com/query/#q=\\{%2520}
 Query[tg]=http://code.google.com/query/#q=\\{%2520}
 Query[th]=http://code.google.com/query/#q=\\{%2520}
 Query[tr]=http://code.google.com/query/#q=\\{%2520}
+Query[ug]=http://code.google.com/query/#q=\\{%2520}
 Query[uk]=http://code.google.com/query/#q=\\{%2520}
 Query[wa]=http://code.google.com/query/#q=\\{%2520}
 Query[x-test]=xxhttp://code.google.com/query/#q=\\{%2520}xx

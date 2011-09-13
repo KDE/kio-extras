@@ -12,6 +12,7 @@ Name[be@latin]=Pierakład „WordReference.com”: hišpanskaja ➙ anhielskaja
 Name[bg]=Превод с WordReference.com — от испански към английски
 Name[bn]=WordReference.com অনুবাদ: স্প্যানিশ থেকে ইংরাজি 
 Name[bn_IN]=WordReference.com অনুবাদ: স্প্যানিশ থেকে ইংরাজি
+Name[bs]=Vordreferens: sa španskog na engleski
 Name[ca]=Traducció WordReference.com: Espanyol - Anglès
 Name[ca@valencia]=Traducció WordReference.com: Espanyol - Anglés
 Name[cs]=Překlad WordReference.com: ze španělštiny do angličtiny
@@ -80,6 +81,7 @@ Name[te]=WordReference.com అనువాదము: స్పానిష్ �
 Name[tg]=WordReference.com Translation: Испанӣ ба англисӣ
 Name[th]=การแปลจาก WordReference.com: แปลภาษาสเปนเป็นอังกฤษ
 Name[tr]=WordReference.com Çevirisi: İspanyolcadan İngilizceye
+Name[ug]=WordReference.com تەرجىمە:  ئىسپانچىدىن ئىنگلىزچىغا
 Name[uk]=WordReference.com — переклад з іспанської англійською
 Name[uz]=WordReference.com tarjima: Ispanchadan Inglizchaga
 Name[uz@cyrillic]=WordReference.com таржима: Испанчадан Инглизчага
@@ -99,6 +101,7 @@ Query[bg]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[bn]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[bn_IN]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[br]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
+Query[bs]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[ca]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[ca@valencia]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[cs]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
@@ -167,6 +170,7 @@ Query[te]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[tg]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[th]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[tr]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
+Query[ug]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[uk]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[uz]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[uz@cyrillic]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}

@@ -5,6 +5,7 @@ Name[ar]=القاموس المتصل Beolingus
 Name[ast]=Diccionariu en llinia Beolingus
 Name[bg]=Онлайн речник Beolingus
 Name[bn]=Beolingus Online Dictionary
+Name[bs]=Beolingus, rječnik na vezi
 Name[ca]=Diccionari en línia Beolingus
 Name[ca@valencia]=Diccionari en línia Beolingus
 Name[cs]=Beolingus online slovník
@@ -54,6 +55,7 @@ Name[sv]=Beolingus nätordlista
 Name[tg]=Луғати интернетии Beolingus
 Name[th]=พจนานุกรมออนไลน์ Beolingus
 Name[tr]=Beolingus Çevrimiçi Sözlük
+Name[ug]=Beolingus تور لۇغىتى
 Name[uk]=Мережевий словник Beolingus
 Name[wa]=Motî so fyis Beolingus
 Name[x-test]=xxBeolingus Online Dictionaryxx
@@ -66,6 +68,7 @@ Query[ar]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&
 Query[ast]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[bg]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[bn]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
+Query[bs]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[ca]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[ca@valencia]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[cs]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
@@ -118,6 +121,7 @@ Query[sv]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&
 Query[tg]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[th]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[tr]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
+Query[ug]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[uk]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[wa]=http://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&email
 Query[x-test]=xxhttp://dict.tu-chemnitz.de/dings.cgi?lang=de&service=deen&opterrors=0&optpro=0&query=\\{@}&iservice=&comment=&emailxx

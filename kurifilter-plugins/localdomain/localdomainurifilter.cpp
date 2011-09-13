@@ -26,8 +26,6 @@
 #include <KDE/KPluginFactory>
 
 #include <QtCore/QStringBuilder>
-#include <QtCore/QEventLoop>
-#include <QtCore/QTimer>
 #include <QtNetwork/QHostInfo>
 
 #define QL1C(x)   QLatin1Char(x)
@@ -76,37 +74,10 @@ bool LocalDomainUriFilter::filterUri(KUriFilterData& data) const
     return false;
 }
 
-void LocalDomainUriFilter::lookedUp(const QHostInfo &hostInfo)
-{
-    if (hostInfo.lookupId() == m_lookupId) {
-        m_hostExists = (hostInfo.error() == QHostInfo::NoError);
-        if (m_eventLoop)
-            m_eventLoop->exit();
-    }
-}
-
 bool LocalDomainUriFilter::exists(const QString& host) const
 {
-    QEventLoop eventLoop;
-
-    m_hostExists = false;
-    m_eventLoop = &eventLoop;
-
-    LocalDomainUriFilter *self = const_cast<LocalDomainUriFilter*>( this );
-    m_lookupId = QHostInfo::lookupHost( host, self, SLOT(lookedUp(QHostInfo)) );
-
-    QTimer t;
-    connect( &t, SIGNAL(timeout()), &eventLoop, SLOT(quit()) );
-    t.start(1000);
-
-    eventLoop.exec();
-    m_eventLoop = 0;
-
-    t.stop();
-
-    QHostInfo::abortHostLookup( m_lookupId );
-
-    return m_hostExists;
+    QHostInfo hostInfo = resolveName (host, 1500);
+    return (hostInfo.error() == QHostInfo::NoError);
 }
 
 

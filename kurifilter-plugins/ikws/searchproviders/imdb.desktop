@@ -11,6 +11,7 @@ Name[bg]=Internet Movie Database
 Name[bn]=ইন্টারনেট চলচ্চিত্র ডেটাবেস
 Name[bn_IN]=ইন্টারনেট ছায়াছবির ডাটাবেস
 Name[br]=Stlennvon filmoù Internet
+Name[bs]=Internet baza filmova
 Name[ca]=Base de dades de pel·lícules a Internet
 Name[ca@valencia]=Base de dades de pel·lícules a Internet
 Name[cs]=Internetová databáze filmů
@@ -26,7 +27,7 @@ Name[et]=Interneti filmide andmebaas
 Name[eu]=Interneteko filmeen datu-basea
 Name[fa]=دادگان فیلم اینترنت
 Name[fi]=Internet Movie Database
-Name[fr]=Base de données vidéo sur Internet
+Name[fr]=Base de données de films sur Internet
 Name[fy]=Ynternetfilm-databank
 Name[ga]=Internet Movie Database
 Name[gl]=Base de datos de filmes de Internet
@@ -48,7 +49,7 @@ Name[km]=មូលដ្ឋាន​ទិន្នន័យ​ភាពយន�
 Name[kn]=ಜಾಲ ಚಲಚ್ಚಿತ್ರ ದತ್ತಸಂಚಯ
 Name[ko]=인터넷 영화 데이터베이스
 Name[ku]=Danegeha Fîlman a Înternetê
-Name[lt]=Interneto kinofilmų duomenų bazė
+Name[lt]=Interneto kino filmų duomenų bazė
 Name[lv]=Interneta filmu datubāze
 Name[mai]=इंटरनेट चलचित्र डाटाबेस
 Name[mk]=Интернет база на филмови
@@ -81,6 +82,7 @@ Name[te]=ఇంటర్‌నెట్ చలనచిత్ర డాటాబ
 Name[tg]=Манбаъи филмҳои Интернетӣ (imdb)
 Name[th]=ฐานข้อมูลภาพยนตร์ทางอินเทอร์เน็ต
 Name[tr]=İnternet Film Veritabanı
+Name[ug]=ئىنتېرنېت كىنو ساندىنى
 Name[uk]=База даних кінофільмів в Інтернет
 Name[uz]=Internetdagi kino maʼlumot bazasi
 Name[uz@cyrillic]=Интернетдаги кино маълумот базаси
@@ -96,6 +98,7 @@ Query[ar]=http://imdb.com/Find?\\{@}
 Query[ast]=http://imdb.com/find?s=all&q=\\{@}
 Query[bg]=http://imdb.com/find?s=all&q=\\{@}
 Query[bn]=http://imdb.com/find?s=all&q=\\{@}
+Query[bs]=http://imdb.com/find?s=all&q=\\{@}
 Query[ca]=http://imdb.com/find?s=all&q=\\{@}
 Query[ca@valencia]=http://imdb.com/find?s=all&q=\\{@}
 Query[cs]=http://imdb.com/find?s=all&q=\\{@}
@@ -147,6 +150,7 @@ Query[sv]=http://imdb.com/find?s=all&q=\\{@}
 Query[tg]=http://imdb.com/find?s=all&q=\\{@}
 Query[th]=http://imdb.com/find?s=all&q=\\{@}
 Query[tr]=http://imdb.com/find?s=all&q=\\{@}
+Query[ug]=http://imdb.com/find?s=all&q=\\{@}
 Query[uk]=http://imdb.com/find?s=all&q=\\{@}
 Query[wa]=http://imdb.com/find?s=all&q=\\{@}
 Query[x-test]=xxhttp://imdb.com/find?s=all&q=\\{@}xx

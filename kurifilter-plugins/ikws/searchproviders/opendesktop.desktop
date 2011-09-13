@@ -5,6 +5,7 @@ Keys=opendesktop,odesk,od
 Name=openDesktop.org
 Name[ast]=openDesktop.org
 Name[bg]=openDesktop.org
+Name[bs]=Otvorena površ
 Name[ca]=openDesktop.org
 Name[ca@valencia]=openDesktop.org
 Name[cs]=openDesktop.org
@@ -54,6 +55,7 @@ Name[sv]=openDesktop.org
 Name[tg]=openDesktop.org
 Name[th]=openDesktop.org
 Name[tr]=openDesktop.org
+Name[ug]=openDesktop.org
 Name[uk]=openDesktop.org
 Name[wa]=openDesktop.org
 Name[x-test]=xxopenDesktop.orgxx
@@ -64,6 +66,7 @@ Query[ar]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[ast]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[bg]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[bn]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[bs]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ca]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ca@valencia]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[cs]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
@@ -114,6 +117,7 @@ Query[sv]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[tg]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[th]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[tr]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[ug]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[wa]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.opendesktop.org/content/search.php?search=Search&name=\\{@}xx

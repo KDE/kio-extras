@@ -11,6 +11,7 @@ Name[bg]=Froogle
 Name[bn]=ফ্রুগল্
 Name[bn_IN]=Froogle
 Name[br]=Froogle
+Name[bs]=Frogl
 Name[ca]=Froogle
 Name[ca@valencia]=Froogle
 Name[cs]=Froogle
@@ -80,6 +81,7 @@ Name[te]=ఫ్రూగుల్
 Name[tg]=Froogle
 Name[th]=Froogle - หาสินค้าผ่าน google
 Name[tr]=Froogle
+Name[ug]=Froogle
 Name[uk]=Froogle
 Name[uz]=Froogle
 Name[uz@cyrillic]=Froogle
@@ -101,6 +103,7 @@ Query[bg]=http://froogle.google.com/froogle?q=\\{@}
 Query[bn]=http://froogle.google.com/froogle?q=\\{@}
 Query[bn_IN]=http://froogle.google.com/froogle?q=\\{@}
 Query[br]=http://froogle.google.com/froogle?q=\\{@}
+Query[bs]=http://froogle.google.com/froogle?q=\\{@}
 Query[ca]=http://froogle.google.com/froogle?q=\\{@}
 Query[ca@valencia]=http://froogle.google.com/froogle?q=\\{@}
 Query[cs]=http://froogle.google.com/froogle?q=\\{@}
@@ -169,6 +172,7 @@ Query[te]=http://froogle.google.com/froogle?q=\\{@}
 Query[tg]=http://froogle.google.com/froogle?q=\\{@}
 Query[th]=http://froogle.google.com/froogle?q=\\{@}
 Query[tr]=http://froogle.google.com/froogle?q=\\{@}
+Query[ug]=http://froogle.google.com/froogle?q=\\{@}
 Query[uk]=http://froogle.google.com/froogle?q=\\{@}
 Query[uz]=http://froogle.google.com/froogle?q=\\{@}
 Query[uz@cyrillic]=http://froogle.google.com/froogle?q=\\{@}

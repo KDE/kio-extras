@@ -11,6 +11,7 @@ Name[be@latin]=„CiteSeer”: navukovaja elektronnaja biblijateka
 Name[bg]=Цифрова библиотека с научна литература CiteSeer
 Name[bn]=CiteSeer: বিজ্ঞানসাহিত্যের ডিজিটাল লাইব্রেরী
 Name[bn_IN]=CiteSeer: বিজ্ঞানবিষয়ক নথিপত্রের ডিজিট্যাল লাইব্রেরি
+Name[bs]=Sajtsir: digitalna biblioteka naučne literature
 Name[ca]=CiteSeer: Biblioteca digital de literatura científica
 Name[ca@valencia]=CiteSeer: Biblioteca digital de literatura científica
 Name[cs]=CiteSeer: Vědecká digitální knihovna
@@ -81,6 +82,7 @@ Name[te]=CiteSeer: శాస్త్రీయ పాండిత్య డి�
 Name[tg]=CiteSeer: цифровая библиотека научной литературы
 Name[th]=CiteSeer: ห้องสมุดดิจิทัลของข้อเขียนทางวิทยาศาสตร์
 Name[tr]=CiteSeer: Bilimsel Literatür Kitaplığı
+Name[ug]=CiteSeer: پەن-تېخنىكا ئەسەرلىرى رەقەملىك كۇتۇپخانىسى
 Name[uk]=CiteSeer: цифрова бібліотека наукової літератури
 Name[uz]=CiteSeer: Aniq fanlar uchun elektron kutubxona
 Name[uz@cyrillic]=CiteSeer: Аниқ фанлар учун электрон кутубхона
@@ -100,6 +102,7 @@ Query[bg]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[bn]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[bn_IN]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[br]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
+Query[bs]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[ca]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[ca@valencia]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[cs]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
@@ -168,6 +171,7 @@ Query[te]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[tg]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[th]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[tr]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
+Query[ug]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[uk]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[uz]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[uz@cyrillic]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1

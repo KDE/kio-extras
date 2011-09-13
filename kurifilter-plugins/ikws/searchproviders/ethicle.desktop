@@ -5,6 +5,7 @@ Name[ar]=Ethicle
 Name[ast]=Ethicle
 Name[bg]=Ethicle
 Name[bn]=এথিকল
+Name[bs]=Etikl
 Name[ca]=Ethicle
 Name[ca@valencia]=Ethicle
 Name[cs]=Ethicle
@@ -61,6 +62,7 @@ Name[sv]=Ethicle
 Name[tg]=ickle
 Name[th]=บริการค้นหา Ethicle
 Name[tr]=Ethicle
+Name[ug]=Ethicle
 Name[uk]=Ethicle
 Name[wa]=Ethicle
 Name[x-test]=xxEthiclexx
@@ -73,6 +75,7 @@ Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ast]=http://www.ethicle.com/search.php?q=\\{@}
 Query[bg]=http://www.ethicle.com/search.php?q=\\{@}
 Query[bn]=http://www.ethicle.com/search.php?q=\\{@}
+Query[bs]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ca]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ca@valencia]=http://www.ethicle.com/search.php?q=\\{@}
 Query[cs]=http://www.ethicle.com/search.php?q=\\{@}
@@ -129,6 +132,7 @@ Query[sv]=http://www.ethicle.com/search.php?q=\\{@}
 Query[tg]=http://www.ethicle.com/search.php?q=\\{@}
 Query[th]=http://www.ethicle.com/search.php?q=\\{@}
 Query[tr]=http://www.ethicle.com/search.php?q=\\{@}
+Query[ug]=http://www.ethicle.com/search.php?q=\\{@}
 Query[uk]=http://www.ethicle.com/search.php?q=\\{@}
 Query[wa]=http://www.ethicle.com/search.php?q=\\{@}
 Query[x-test]=xxhttp://www.ethicle.com/search.php?q=\\{@}xx

@@ -10,6 +10,7 @@ Name[be@latin]=Pierakład „Multitran”: halandzkaja ➙ rasiejskaja
 Name[bg]=Multitran - превод между холандски и руски
 Name[bn]=মাল্টিট্র্যান - ওলন্দাজ থেকে রুশ বা রুশ থেকে ওলন্দাজে অনুবাদ করুন
 Name[bn_IN]=Multitran - ডাচ ও রাশিয়ানের মধ্যে অনুবাদ করুন
+Name[bs]=Multitran: sa holandskog na ruski
 Name[ca]=Multitran - Tradueix entre holandès i rus
 Name[ca@valencia]=Multitran - Tradueix entre holandés i rus
 Name[cs]=Multitran - překlad mezi holandštinou a ruštinou
@@ -73,6 +74,7 @@ Name[te]=Multitran - డచ్ మరియు రష్యన్ మద్య �
 Name[tg]=Multitran - тарҷумаҳои голландӣ-русӣ
 Name[th]=บริการ Multitran - แปลภาษาระหว่างภาษาดัตช์และภาษารัสเซีย
 Name[tr]=Multitran - Flamancadan Rusçaya Çeviri
+Name[ug]=Multitran - گوللاندىيەچە بىلەن رۇسچە ئارىسىدا تەرجىمە
 Name[uk]=Multitran — переклад з голландської російською
 Name[uz]=Multitran - Gollanchadan Ruschaga tarjima
 Name[uz@cyrillic]=Multitran - Голланчадан Русчага таржима
@@ -90,6 +92,7 @@ Query[be@latin]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[bg]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[bn]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[bn_IN]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
+Query[bs]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[ca]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[ca@valencia]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[cs]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
@@ -153,6 +156,7 @@ Query[te]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[tg]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[th]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[tr]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
+Query[ug]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[uk]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[uz]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[uz@cyrillic]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}

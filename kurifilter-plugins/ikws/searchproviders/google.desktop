@@ -11,6 +11,7 @@ Name[bg]=Google
 Name[bn]=গুগল্
 Name[bn_IN]=Google
 Name[br]=Google
+Name[bs]=Gugl
 Name[ca]=Google
 Name[ca@valencia]=Google
 Name[cs]=Google
@@ -82,6 +83,7 @@ Name[te]=గూగుల్
 Name[tg]=Google
 Name[th]=กูเกิล
 Name[tr]=Google
+Name[ug]=گۇگىل(Google)
 Name[uk]=Google
 Name[uz]=Google
 Name[uz@cyrillic]=Google
@@ -104,6 +106,7 @@ Query[bg]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn_IN]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[br]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[bs]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca@valencia]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[cs]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
@@ -149,7 +152,7 @@ Query[nb]=http://www.google.no/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[nds]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ne]=http://www.google.com/search?q=\\{@}ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.nl/search?q=\\{@}&ie=UTF-8&oe=UTF-8
-Query[nn]=http://www.google.no/search?hl=nn&q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[nn]=http://www.google.no/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[oc]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[or]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pa]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
@@ -172,6 +175,7 @@ Query[te]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[tg]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[th]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[tr]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[ug]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uk]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uz]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uz@cyrillic]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8

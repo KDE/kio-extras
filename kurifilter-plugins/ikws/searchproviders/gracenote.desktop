@@ -11,6 +11,7 @@ Name[bg]=Gracenote
 Name[bn]=গ্রেস-নোট
 Name[bn_IN]=Gracenote
 Name[br]=Gracenote
+Name[bs]=Grejsnout
 Name[ca]=Gracenote
 Name[ca@valencia]=Gracenote
 Name[cs]=Gracenote
@@ -80,6 +81,7 @@ Name[te]=గ్రెస్ నోట్
 Name[tg]=Gracenote
 Name[th]=Gracenote - ค้นหาดนตรี, วิดิโอ
 Name[tr]=Gracenote
+Name[ug]=Gracenote
 Name[uk]=Gracenote
 Name[uz]=Gracenote
 Name[uz@cyrillic]=Gracenote
@@ -101,6 +103,7 @@ Query[bg]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[bn]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[bn_IN]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[br]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
+Query[bs]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[ca]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[ca@valencia]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[cs]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
@@ -169,6 +172,7 @@ Query[te]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[tg]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[th]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[tr]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
+Query[ug]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[uk]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[uz]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[uz@cyrillic]=http://www.gracenote.com/music/search-adv.html?q=\\{@}

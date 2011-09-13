@@ -357,13 +357,13 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
                                               bool isMalformed ) const
 {
   SubstMap map;
-  return formatResult (url, cset1, cset2, query, isMalformed, map);
+  return formatResult (url, cset1, cset2, QUrl::toPercentEncoding(query), isMalformed, map);
 }
 
 QString KURISearchFilterEngine::formatResult( const QString& url,
                                               const QString& cset1,
                                               const QString& cset2,
-                                              const QString& query,
+                                              const QByteArray& query,
                                               bool /* isMalformed */,
                                               SubstMap& map ) const
 {
@@ -393,7 +393,7 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
   }
 
   // Decode user query:
-  QString userquery = QUrl::fromPercentEncoding( query.toUtf8() );
+  const QString userquery (QUrl::fromPercentEncoding( query ));
 
   PDVAR ("user query", userquery);
   PDVAR ("query definition", url);

@@ -11,6 +11,7 @@ Name[bg]=Директория със свободен софтуер на FSF/UN
 Name[bn]=FSF/UNESCO ফ্রী সফ্‌টওয়্যার ডিরেক্টরি
 Name[bn_IN]=FSF/UNESCO মুক্ত সফ্টওয়্যার অভিধান
 Name[br]=Renkell meziantoù frank FSF/UNESCO
+Name[bs]=Imenik slobodnog softvera ZSS/Unesko
 Name[ca]=Directori de programari lliure FSF/UNESCO
 Name[ca@valencia]=Directori de programari lliure FSF/UNESCO
 Name[cs]=Adresář svobodného softwaru FSF/UNESCO
@@ -80,6 +81,7 @@ Name[te]=FSF/UNESCO ఉచిత సాఫ్‍ట్‌వేర్ డైర�
 Name[tg]=Феҳристи нармафзори озод FSF/UNESCO
 Name[th]=FSF/UNESCO - ไดเรกทอรีซอฟต์แวร์เสรี
 Name[tr]=FSF/UNESCO Ücretsiz Yazılım Dizini
+Name[ug]=FSF/UNESCO ھەقسىز يۇمشاق دېتاللار مۇندەرىجىسى
 Name[uk]=Словник з вільного програмного забезпечення FSF/UNESCO
 Name[vi]=Thư mục Phần mềm Tự do FSF/UNESCO
 Name[wa]=Indecse des libes programes FSF/UNESCO
@@ -97,6 +99,7 @@ Query[be@latin]=http://directory.fsf.org/search/?query=\\{@}
 Query[bg]=http://directory.fsf.org/search/?query=\\{@}
 Query[bn]=http://directory.fsf.org/search/?query=\\{@}
 Query[bn_IN]=http://directory.fsf.org/search/?query=\\{@}
+Query[bs]=http://directory.fsf.org/search/?query=\\{@}
 Query[ca]=http://directory.fsf.org/search/?query=\\{@}
 Query[ca@valencia]=http://directory.fsf.org/search/?query=\\{@}
 Query[cs]=http://directory.fsf.org/search/?query=\\{@}
@@ -160,6 +163,7 @@ Query[te]=http://directory.fsf.org/search/?query=\\{@}
 Query[tg]=http://directory.fsf.org/search/?query=\\{@}
 Query[th]=http://directory.fsf.org/search/?query=\\{@}
 Query[tr]=http://directory.fsf.org/search/?query=\\{@}
+Query[ug]=http://directory.fsf.org/search/?query=\\{@}
 Query[uk]=http://directory.fsf.org/search/?query=\\{@}
 Query[uz]=http://directory.fsf.org/search/?query=\\{@}
 Query[uz@cyrillic]=http://directory.fsf.org/search/?query=\\{@}

@@ -11,6 +11,7 @@ Name[bg]=FreeDB
 Name[bn]=ফ্রী-ডি.বি.
 Name[bn_IN]=FreeDB
 Name[br]=FreeDB
+Name[bs]=FriDB
 Name[ca]=FreeDB
 Name[ca@valencia]=FreeDB
 Name[cs]=FreeDB
@@ -80,6 +81,7 @@ Name[te]=ఫ్రీడిబి
 Name[tg]=FreeDB
 Name[th]=FreeDB
 Name[tr]=FreeDB
+Name[ug]=FreeDB
 Name[uk]=FreeDB
 Name[uz]=FreeDB
 Name[uz@cyrillic]=FreeDB
@@ -101,6 +103,7 @@ Query[bg]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[bn]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[bn_IN]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[br]=http://www.freedb.org/freedb_search.php?words=\\{@}
+Query[bs]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[ca]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[ca@valencia]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[cs]=http://www.freedb.org/freedb_search.php?words=\\{@}
@@ -169,6 +172,7 @@ Query[te]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[tg]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[th]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[tr]=http://www.freedb.org/freedb_search.php?words=\\{@}
+Query[ug]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[uk]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[uz]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[uz@cyrillic]=http://www.freedb.org/freedb_search.php?words=\\{@}

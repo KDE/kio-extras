@@ -39,7 +39,7 @@ QString NetDevice::iconName( Type type )
     /*"unknown"*/"network-server", "scanner", "printer", "network-server-database", "network-server", "computer"
     };
 
-    return IconName[type];
+    return QLatin1String(IconName[type]);
 }
 
 NetDevice::NetDevice()

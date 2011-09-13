@@ -14,6 +14,7 @@ Name[bg]=Документация на KDE API
 Name[bn]=কে.ডি.ই. এ-পি-আই নির্দেশিকা
 Name[bn_IN]=KDE API সংক্রান্ত নথিপত্র
 Name[br]=Teuliadur API KDE
+Name[bs]=KDE API dokumentacija
 Name[ca]=Documentació de l'API de KDE
 Name[ca@valencia]=Documentació de l'API de KDE
 Name[cs]=KDE API dokumentace
@@ -83,6 +84,7 @@ Name[te]=KDE API పత్రికీకరణ
 Name[tg]=Дастурҳои KDE дар бораи API
 Name[th]=เอกสารอธิบาย API ของระบบ KDE
 Name[tr]=KDE API Belgeleri
+Name[ug]=KDE API پۈتۈكلىرى
 Name[uk]=Документація по API KDE
 Name[uz]=KDE API boʻyicha qoʻllanmalar
 Name[uz@cyrillic]=KDE API бўйича қўлланмалар
@@ -100,6 +102,7 @@ Query[be@latin]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[bg]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[bn]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[bn_IN]=http://api.kde.org/classmapper.php?class=\\{@}
+Query[bs]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[ca]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[ca@valencia]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[cs]=http://api.kde.org/classmapper.php?class=\\{@}
@@ -163,6 +166,7 @@ Query[te]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[tg]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[th]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[tr]=http://api.kde.org/classmapper.php?class=\\{@}
+Query[ug]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uk]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uz]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uz@cyrillic]=http://api.kde.org/classmapper.php?class=\\{@}

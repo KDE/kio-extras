@@ -6,6 +6,7 @@ Name=Duck Duck Go Info
 Name[ar]= معلومات Duck Duck Go
 Name[ast]=Duck Duck Go Info
 Name[bg]=Информация в Duck Duck Go
+Name[bs]=Dak dak go (informacije)
 Name[ca]=Duck Duck Go Info
 Name[ca@valencia]=Duck Duck Go Info
 Name[cs]=Duck Duck Go Info
@@ -55,6 +56,7 @@ Name[sr@latin]=Duck Duck Go (informacije)
 Name[sv]=Duck Duck Go information
 Name[th]=ข้อมูลของ Duck Duck Go
 Name[tr]=Duck Duck Go Bilgileri
+Name[ug]=Duck Duck Go ئۇچۇرى
 Name[uk]=Duck Duck Go Info
 Name[wa]=Duck Duck Go Info
 Name[x-test]=xxDuck Duck Go Infoxx
@@ -65,6 +67,7 @@ Query[ar]=http://imdb.com/Find?\\{@}
 Query[ast]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[bg]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[bn]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[bs]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ca]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ca@valencia]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=r
@@ -116,6 +119,7 @@ Query[sv]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[tg]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[th]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[ug]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[wa]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=rxx

@@ -11,6 +11,7 @@ Name[be@latin]=Zbor źviestak CIA
 Name[bg]=CIA World Factbook
 Name[bn]=সি-আই-এ ওয়ার্ল্ড ফ্যাক্ট বুক
 Name[bn_IN]=CIA World Fact Book
+Name[bs]=Cijina Knjiga svjetskih podataka
 Name[ca]=CIA World Fact Book
 Name[ca@valencia]=CIA World Fact Book
 Name[cs]=Světová kniha faktů CIA
@@ -77,6 +78,7 @@ Name[te]=CIA ప్రపంచ వాస్తవ పుస్తకం
 Name[tg]=Всемирная книга фактов (ЦРУ)
 Name[th]=CIA World Fact Book
 Name[tr]=CIA World Fact Book
+Name[ug]=CIA World Fact Book
 Name[uk]=Світова книга фактів ЦРУ
 Name[vi]=Sách sự thật Thế giới CIA
 Name[wa]=World Fact Book del CIA
@@ -93,6 +95,7 @@ Query[be@latin]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+boo
 Query[bg]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[bn]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[bn_IN]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
+Query[bs]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[ca]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[ca@valencia]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[cs]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
@@ -136,7 +139,7 @@ Query[nb]=http://www.google.com/search?q=allintitle%3A\\{@}+world+factbook+site%
 Query[nds]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[ne]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[nl]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
-Query[nn]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky&hl=nn
+Query[nn]=http://www.google.no/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[oc]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[or]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[pa]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
@@ -159,6 +162,7 @@ Query[te]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site
 Query[tg]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[th]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[tr]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
+Query[ug]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[uk]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[uz]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[uz@cyrillic]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky

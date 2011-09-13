@@ -13,6 +13,7 @@ Name[bg]=Английски речник WordReference.com
 Name[bn]=WordReference.com ইংরাজি অভিধান
 Name[bn_IN]=WordReference.com ইংরাজি অভিধান
 Name[br]=Geriaoueg saozneg WordReference.com
+Name[bs]=Vordreferens: engleski rječnik
 Name[ca]=WordReference.com diccionari anglès
 Name[ca@valencia]=WordReference.com diccionari anglés
 Name[cs]=Anglický slovník WordReference.com
@@ -81,6 +82,7 @@ Name[te]=WordReference.com ఇంగ్లీష్ పదకోశం
 Name[tg]=WordReference.com Луғати англисӣ
 Name[th]=พจนานุกรมอังกฤษ WordReference.com
 Name[tr]=WordReference.com İngilizce Sözlük
+Name[ug]=WordReference.com ئىنگلىزچە لۇغەت
 Name[uk]=Англійський словник WordReference.com
 Name[uz]=WordReference.com Inglizcha lugʻat
 Name[uz@cyrillic]=WordReference.com Инглизча луғат
@@ -100,6 +102,7 @@ Query[bg]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[bn]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[bn_IN]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[br]=http://www.wordreference.com/english/definition.asp?en=\\{@}
+Query[bs]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[ca]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[ca@valencia]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[cs]=http://www.wordreference.com/english/definition.asp?en=\\{@}
@@ -168,6 +171,7 @@ Query[te]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[tg]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[th]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[tr]=http://www.wordreference.com/english/definition.asp?en=\\{@}
+Query[ug]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[uk]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[uz]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[uz@cyrillic]=http://www.wordreference.com/english/definition.asp?en=\\{@}

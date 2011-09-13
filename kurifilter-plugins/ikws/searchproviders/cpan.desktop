@@ -10,6 +10,7 @@ Name[be@latin]=CPAN: zbor prahramaŭ u movie „Perl”
 Name[bg]=CPAN - Comprehensive Perl Archive Network
 Name[bn]=CPAN - কমপ্রিহেনসিভ পার্ল আর্কাইভ নেটওয়ার্ক
 Name[bn_IN]=CPAN - কম্প্রিহেনসিভ Perl আর্কাইভ নেটওয়ার্ক
+Name[bs]=CPAN — sveobuhvatna arhiva perla
 Name[ca]=CPAN - Xarxa comprensible de l'arxiu Perl
 Name[ca@valencia]=CPAN - Xarxa comprensible de l'arxiu Perl
 Name[cs]=CPAN - Comprehensive Perl Archive Network
@@ -80,6 +81,7 @@ Name[te]=CPAN - విశదీకృత Perl ఆర్చివ్ నెట్
 Name[tg]=CPAN - архив скриптов Perl
 Name[th]=CPAN - เครือข่ายเก็บบันทึกภาษา Perl แบบครอบคลุม
 Name[tr]=CPAN - Detaylı Perl Arşiv Ağı
+Name[ug]=CPAN - كەڭ دائىرىلىك Perl ئارخىپ تورى
 Name[uk]=CPAN — всеосяжна мережа архівів Perl
 Name[uz]=CPAN - Perl boʻyicha mukammal arxiv tarmogʻi
 Name[uz@cyrillic]=CPAN - Perl бўйича мукаммал архив тармоғи
@@ -100,6 +102,7 @@ Query[bg]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,
 Query[bn]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[bn_IN]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[br]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
+Query[bs]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[ca]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[ca@valencia]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[cs]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
@@ -168,6 +171,7 @@ Query[te]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,
 Query[tg]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[th]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[tr]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
+Query[ug]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[uk]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[uz]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[uz@cyrillic]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}

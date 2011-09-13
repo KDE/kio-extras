@@ -7,6 +7,7 @@ Name[ar]=مجموعات Identi.ca
 Name[ast]=Grupos Identi.ca
 Name[bg]=Групи в Identi.ca
 Name[bn]=Identi.ca গোষ্ঠীসমূহ
+Name[bs]=Identika-grupe
 Name[ca]=Grups a Identi.ca
 Name[ca@valencia]=Grups a Identi.ca
 Name[cs]=Skupiny Identi.ca
@@ -18,7 +19,7 @@ Name[es]=Grupos Identi.ca
 Name[et]=Identi.ca grupid
 Name[eu]=Identi.ca Taldeak
 Name[fi]=Identi.ca Ryhmät
-Name[fr]=Groupes Icenti.ca
+Name[fr]=Groupes Identi.ca
 Name[ga]=Grúpaí Identi.ca
 Name[gu]=આઈડેન્ટિ.કા સમૂહો
 Name[he]=Identi.ca Groups
@@ -59,6 +60,7 @@ Name[sv]=Identi.ca grupper
 Name[tg]=Гурӯҳи Identi.ca
 Name[th]=กลุ่มต่าง ๆ ของ Identi.ca
 Name[tr]=Identi.ca Grupları
+Name[ug]=Identi.ca گۇرۇپپىلار
 Name[uk]=Групи Identi.ca
 Name[wa]=Identi.ca Groupes
 Name[x-test]=xxIdenti.ca Groupsxx
@@ -69,6 +71,7 @@ Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ast]=http://identi.ca/search/group?q=\\{@}
 Query[bg]=http://identi.ca/search/group?q=\\{@}
 Query[bn]=http://identi.ca/search/group?q=\\{@}
+Query[bs]=http://identi.ca/search/group?q=\\{@}
 Query[ca]=http://identi.ca/search/group?q=\\{@}
 Query[ca@valencia]=http://identi.ca/search/group?q=\\{@}
 Query[cs]=http://identi.ca/search/group?q=\\{@}
@@ -120,6 +123,7 @@ Query[sv]=http://identi.ca/search/group?q=\\{@}
 Query[tg]=http://identi.ca/search/group?q=\\{@}
 Query[th]=http://identi.ca/search/group?q=\\{@}
 Query[tr]=http://identi.ca/search/group?q=\\{@}
+Query[ug]=http://identi.ca/search/group?q=\\{@}
 Query[uk]=http://identi.ca/search/group?q=\\{@}
 Query[wa]=http://identi.ca/search/group?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/group?q=\\{@}xx

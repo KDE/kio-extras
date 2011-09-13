@@ -11,6 +11,7 @@ Name[bg]=Групи в Google
 Name[bn]=গুগল্ গ্রুপস
 Name[bn_IN]=Google Groups (গ্রুপ)
 Name[br]=Stroladoù Google
+Name[bs]=Gugl‑grupe
 Name[ca]=Grups a Google
 Name[ca@valencia]=Grups a Google
 Name[cs]=Google - diskuzní skupiny
@@ -82,6 +83,7 @@ Name[te]=గూగుల్ గుంపులు
 Name[tg]=Гурӯҳҳои Google
 Name[th]=กลุ่มต่าง ๆ ของกูเกิล
 Name[tr]=Google Grupları
+Name[ug]=Google گۇرۇپپا
 Name[uk]=Групи Google
 Name[uz]=Google - Guruhlar
 Name[uz@cyrillic]=Google - Гуруҳлар
@@ -104,6 +106,7 @@ Query[bg]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[bn]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[bn_IN]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[br]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[bs]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[ca]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[ca@valencia]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[cs]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
@@ -172,6 +175,7 @@ Query[te]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[tg]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[th]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[tr]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ug]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[uk]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[uz]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[uz@cyrillic]=http://groups.google.com/groups?oi=djq&as_q=\\{@}

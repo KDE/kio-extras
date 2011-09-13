@@ -13,6 +13,7 @@ Name[bg]=Речник на испанската академия (RAE)
 Name[bn]=স্প্যানিশ অ্যাকাডেমীর অভিধান (RAE)
 Name[bn_IN]=স্প্যানিশ আকাডেমির অভিধান (RAE)
 Name[br]=Geriaoueg akadamiezh spaniolek (RAE)
+Name[bs]=Rječnik Španske akademije (RAE)
 Name[ca]=Diccionari de l'Acadèmia Espanyola (RAE)
 Name[ca@valencia]=Diccionari de l'Acadèmia Espanyola (RAE)
 Name[cs]=Slovník Špenělské akademie
@@ -82,6 +83,7 @@ Name[te]=స్పానిష్ అకాడమి (RAE) యొక్క ప�
 Name[tg]=Словарь Испанской Академии (RAE)
 Name[th]=พจนานุกรมของ Spanish Academy (RAE)
 Name[tr]=İspanyol Akademisinin Sözlüğü (RAE)
+Name[ug]=ئىسپانىيە ئاكادېمىيىسىنىڭ لۇغىتى(RAE)
 Name[uk]=Словник іспанської академії (RAE)
 Name[uz]=Ispan akademiyasining (RAE) lugʻati
 Name[uz@cyrillic]=Испан академиясининг (RAE) луғати
@@ -101,6 +103,7 @@ Query[bg]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FOR
 Query[bn]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[bn_IN]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[br]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[bs]=http://buscon.raje.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[ca]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[ca@valencia]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[cs]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
@@ -169,6 +172,7 @@ Query[te]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FOR
 Query[tg]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[th]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[tr]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
+Query[ug]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[uk]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[uz]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado
 Query[uz@cyrillic]=http://buscon.rae.es/draeI/SrvltGUIBusUsual?TIPO_HTML=2&LEMA=\\{@}&FORMATO=ampliado

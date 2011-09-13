@@ -11,6 +11,7 @@ Name[bg]=Open Directory
 Name[bn]=ওপেন ডিরেক্টরি
 Name[bn_IN]=মুক্ত ডিরেক্টরি
 Name[br]=Digeriñ ur renkell
+Name[bs]=Otvoreni imenik
 Name[ca]=Open Directory
 Name[ca@valencia]=Open Directory
 Name[cs]=Open Directory
@@ -81,6 +82,7 @@ Name[te]=ఓపెన్ డైరెక్టరీ
 Name[tg]=Кушодани феҳрист
 Name[th]=บริการ Open Directory
 Name[tr]=Open Directory
+Name[ug]=قىسقۇچ ئاچ
 Name[uk]=Відкритий каталог
 Name[uz]=Open Directory
 Name[uz@cyrillic]=Open Directory
@@ -103,6 +105,7 @@ Query[bg]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[bn]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[bn_IN]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[br]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
+Query[bs]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[ca]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[ca@valencia]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[cs]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
@@ -171,6 +174,7 @@ Query[te]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[tg]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[th]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[tr]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
+Query[ug]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[uk]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[uz]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[uz@cyrillic]=http://search.dmoz.org/cgi-bin/search?search=\\{@}

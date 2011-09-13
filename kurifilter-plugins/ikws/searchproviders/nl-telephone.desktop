@@ -8,6 +8,7 @@ Name[be]=Пошук тэлефонаў
 Name[be@latin]=Pošuk telefonaŭ
 Name[bg]=Търсене в телефонен указател
 Name[bn]=টেলিফোন-বুক অনুসন্ধান সরবরাহকারী
+Name[bs]=Telefonski imenik (Holandija)
 Name[ca]=Proveïdor de cerques a la guia de telèfons
 Name[ca@valencia]=Proveïdor de cerques a la guia de telèfons
 Name[cs]=Poskytovatel prohledávání tel. seznamu
@@ -77,6 +78,7 @@ Name[te]=టెలిఫోన్‌బుక్ శోధన కర్త
 Name[tg]=Telephonebook Search Provider
 Name[th]=ผู้ให้บริการค้นหาสมุดโทรศัพท์
 Name[tr]=Telefon Defteri Arama Sağlayıcı
+Name[ug]=تېلېفون دەپتىرىدىن ئىزدەشنى تەمىنلىگۈچى
 Name[uk]=Провайдер пошуку Telephonebook
 Name[uz]=Telefonlar daftarida qidirish
 Name[uz@cyrillic]=Телефонлар дафтарида қидириш
@@ -97,6 +99,7 @@ Query[be@latin]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&
 Query[bg]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[bn]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[bn_IN]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
+Query[bs]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[ca]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[ca@valencia]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[cs]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
@@ -163,6 +166,7 @@ Query[te]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\
 Query[tg]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[th]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[tr]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
+Query[ug]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[uk]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[uz]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[uz@cyrillic]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}

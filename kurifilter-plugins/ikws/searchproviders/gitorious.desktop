@@ -7,6 +7,7 @@ Name[ar]=Gitorious
 Name[ast]=Gitorious
 Name[bg]=Gitorious
 Name[bn]=গিটেরিয়াস
+Name[bs]=Gitorijus
 Name[ca]=Gitorious
 Name[ca@valencia]=Gitorious
 Name[cs]=Gitorious
@@ -59,6 +60,7 @@ Name[sv]=Gitorious
 Name[tg]=Gitorious
 Name[th]=Gitorious
 Name[tr]=Gitorious
+Name[ug]=Gitorious
 Name[uk]=Gitorious
 Name[wa]=Gitorious
 Name[x-test]=xxGitoriousxx
@@ -69,6 +71,7 @@ Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ast]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[bg]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[bn]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[bs]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ca]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ca@valencia]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[cs]=http://gitorious.org/search?q=\\{@}&commit=Search
@@ -119,6 +122,7 @@ Query[sv]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[tg]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[th]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[tr]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[ug]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[uk]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[wa]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[x-test]=xxhttp://gitorious.org/search?q=\\{@}&commit=Searchxx

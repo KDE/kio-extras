@@ -12,6 +12,7 @@ Name[be@latin]=Pierakład „WordReference.com”: anhielskaja ➙ italjanskaja
 Name[bg]=Превод с WordReference.com — от английски към италиански
 Name[bn]=WordReference.com অনুবাদ: ইংরাজি থেকে ইতালীয়
 Name[bn_IN]=WordReference.com অনুবাদ: ইংরাজি থেকে ইটালিয়ান
+Name[bs]=Vordreferens: sa engleskog na italijanski
 Name[ca]=Traducció WordReference.com: Anglès - Italià
 Name[ca@valencia]=Traducció WordReference.com: Anglés - Italià
 Name[cs]=Překlad WordReference.com: z angličtiny do italštiny
@@ -80,6 +81,7 @@ Name[te]=WordReference.com అనువాదము: ఇంగ్లీష్ �
 Name[tg]=WordReference.com Translation: Англисӣ ба итолиёӣ
 Name[th]=การแปลจาก WordReference.com: แปลภาษาอังกฤษเป็นอิตาเลี่ยน
 Name[tr]=WordReference.com Çevirisi: İngilizceden İtalyancaya
+Name[ug]=WordReference.com تەرجىمە: ئىنگلىزچىدىن ئىتاليانچىغا
 Name[uk]=WordReference.com — переклад з англійської італійською
 Name[uz]=WordReference.com tarjima: Inglizchadan Italyanchaga
 Name[uz@cyrillic]=WordReference.com таржима: Инглизчадан Италянчага
@@ -99,6 +101,7 @@ Query[bg]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[bn]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[bn_IN]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[br]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
+Query[bs]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[ca]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[ca@valencia]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[cs]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
@@ -167,6 +170,7 @@ Query[te]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[tg]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[th]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[tr]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
+Query[ug]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[uk]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[uz]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[uz@cyrillic]=http://www.wordreference.com/it/translation.asp?enit=\\{@}

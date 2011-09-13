@@ -11,6 +11,7 @@ Name[be]=Вялікі слоўнік каталонскай мовы (GRan Encic
 Name[be@latin]=Vialiki słoŭnik katalanskaje movy (GRan Enciclopèdia Catalana)
 Name[bg]=Голям речник на каталонски език (GRan Enciclopèdia  Catalana)
 Name[bn]=কাটালান ভাষার অভিধান (GRan Enciclopèdia  Catalana)
+Name[bs]=Veliki rječnik katalonskog jezika (GRan Enciclopèdia Catalana)
 Name[ca]=Gran diccionari de la Llengua Catalana (Grup Enciclopèdia Catalana)
 Name[ca@valencia]=Gran diccionari de la Llengua Catalana (Grup Enciclopèdia Catalana)
 Name[cs]=Velký katalánský slovník (GRan Enciclopèdia  Catalana)
@@ -79,6 +80,7 @@ Name[te]=కెటలాన్ భాషయొక్క గొప్ప పద�
 Name[tg]=Большой словарь каталонского языка (GRan Enciclopèdia  Catalana)
 Name[th]=พจนานุกรมที่ยิ่งใหญ่ของภาษาคาตะลาน (GRan Enciclopèdia  Catalana)
 Name[tr]=Katalanca Büyük Sözlük (GRan Enciclopèdia  Catalana)
+Name[ug]=كاتالان تىلىنىڭ بۈيۈك مۇندەرىجىسى (GRan Enciclopèdia  Catalana)
 Name[uk]=Великий словник каталонської мови (GRan Enciclopèdia Catalana)
 Name[vi]=Tra Từ điển Lớn của tiếng Catalan (GRan Enciclopèdia Catalana)
 Name[wa]=Grand motî do catalan lingaedje (GRan Enciclopèdia Catalana)
@@ -90,6 +92,7 @@ Query[ar]=http://www.grec.net/cgibin/lexicx.pgm?GECART=\\{@}
 Query[ast]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[bg]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[bn]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[bs]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[ca]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[ca@valencia]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[cs]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
@@ -146,6 +149,7 @@ Query[sv]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[tg]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[th]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[tr]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[ug]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[uk]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[wa]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[x-test]=xxhttp://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}xx

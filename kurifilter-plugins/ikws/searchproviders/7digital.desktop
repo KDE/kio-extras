@@ -7,6 +7,7 @@ Name[ar]=متجر الموسيقى 7Digital
 Name[ast]=7Digital
 Name[bg]=7Digital
 Name[bn]=7Digital
+Name[bs]=7‑didžital
 Name[ca]=7Digital
 Name[ca@valencia]=7Digital
 Name[cs]=7Digital
@@ -18,7 +19,7 @@ Name[es]=7Digital
 Name[et]=7Digital
 Name[eu]=7Digital
 Name[fi]=7Digital
-Name[fr]=7 numérique
+Name[fr]=7Digital
 Name[ga]=7Digital
 Name[gu]=૭ ડિજીટલ
 Name[he]=7Digital
@@ -59,6 +60,7 @@ Name[sv]=7Digital
 Name[tg]=7Digital
 Name[th]=7Digital
 Name[tr]=7Digital
+Name[ug]=7Digital
 Name[uk]=7Digital
 Name[wa]=7Digital
 Name[x-test]=xx7Digitalxx
@@ -69,6 +71,7 @@ Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ast]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[bg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[bn]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[bs]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ca]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ca@valencia]=http://vos.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[cs]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
@@ -116,9 +119,10 @@ Query[sr@ijekavian]=http://us.7digital.com/Search?search=\\{@}&searchtype=global
 Query[sr@ijekavianlatin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sr@latin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sv]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
-Query[tg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[tg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Ҷустуҷӯ
 Query[th]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[tr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[ug]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[uk]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[wa]=http://fr-be.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[x-test]=xxhttp://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Searchxx

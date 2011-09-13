@@ -10,6 +10,7 @@ Name[be@latin]=Pierakład „LEO”: niamieckaja ➙ francuskaja
 Name[bg]=LEO - превод между немски и френски
 Name[bn]=লিও - জার্মান থেকে ফরাসী বা ফরাসী থেকে জার্মান-এ অনুবাদ করুন
 Name[bn_IN]=LEO - জার্মান ও ফ্রেঞ্চের মধ্যে অনুবাদ করুন
+Name[bs]=Lio: sa nemačkog na francuski
 Name[ca]=LEO - Tradueix entre alemany i francès
 Name[ca@valencia]=LEO - Tradueix entre alemany i francés
 Name[cs]=LEO - překlad mezi němčinou a francouzštinou
@@ -78,6 +79,7 @@ Name[te]=LEO - జెర్మన్ మరియు ఫ్రెంచ్ మ�
 Name[tg]=LEO - тарҷумаҳои немисӣ-франсузӣ
 Name[th]=LEO - แปลภาษาเยอรมัน <->ฝรั่งเศส
 Name[tr]=LEO - Almancadan Fransızcaya Çeviri
+Name[ug]=LEO - گېرمانچە بىلەن فىرانسۇزچە ئارىسىدا تەرجىمە
 Name[uk]=LEO — з німецької французькою
 Name[uz]=LEO - Olmonchadan Fransuzchaga tarjima
 Name[uz@cyrillic]=LEO - Олмончадан Французчага таржима
@@ -99,6 +101,7 @@ Query[bg]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[bn]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[bn_IN]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[br]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[bs]=http://dict.lio.org/?lp=frde&search=\\{@}
 Query[ca]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[ca@valencia]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[cs]=http://dict.leo.org/?lp=frde&search=\\{@}
@@ -167,6 +170,7 @@ Query[te]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[tg]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[th]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[tr]=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[ug]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[uk]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[uz]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[uz@cyrillic]=http://dict.leo.org/?lp=frde&search=\\{@}
