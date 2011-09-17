@@ -122,7 +122,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // WORKAROUND: Allow the use of '@' in the username component of a URL since
   // other browsers such as firefox in their infinite wisdom allow such blatant
   // violations of RFC 3986. BR# 69326/118413.
-  if (!url.isValid() && cmd.count(QLatin1Char('@')) > 1) {
+  if (cmd.count(QLatin1Char('@')) > 1) {
     const int lastIndex = cmd.lastIndexOf(QLatin1Char('@'));
     // Percent encode all but the last '@'.
     QString encodedCmd = QUrl::toPercentEncoding(cmd.left(lastIndex), ":/");
