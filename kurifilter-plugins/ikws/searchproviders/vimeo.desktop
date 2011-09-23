@@ -112,6 +112,7 @@ Query[pt]=http://vimeo.com/videos/search:\\{@}
 Query[pt_BR]=http://vimeo.com/videos/search:\\{@}
 Query[ro]=http://vimeo.com/videos/search:\\{@}
 Query[ru]=http://vimeo.com/videos/search:\\{@}
+Query[si]=http://vimeo.com/videos/search:\\{@}
 Query[sk]=http://vimeo.com/videos/search:\\{@}
 Query[sl]=http://vimeo.com/videos/search:\\{@}
 Query[sr]=http://vimeo.com/videos/search:\\{@}

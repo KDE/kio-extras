@@ -113,6 +113,7 @@ Query[pt]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[pt_BR]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ro]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ru]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[si]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sk]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sl]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sr]=http://www.facebook.com/search/?q=\\{@}&init=quick

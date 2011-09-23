@@ -112,6 +112,7 @@ Query[pt]=http://identi.ca/search/notice?q=\\{@}
 Query[pt_BR]=http://identi.ca/search/notice?q=\\{@}
 Query[ro]=http://identi.ca/search/notice?q=\\{@}
 Query[ru]=http://identi.ca/search/notice?q=\\{@}
+Query[si]=http://identi.ca/search/notice?q=\\{@}
 Query[sk]=http://identi.ca/search/notice?q=\\{@}
 Query[sl]=http://identi.ca/search/notice?q=\\{@}
 Query[sr]=http://identi.ca/search/notice?q=\\{@}

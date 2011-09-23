@@ -112,6 +112,7 @@ Query[pt]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt_BR]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ro]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[ru]=http://gitorious.org/search?q=\\{@}&commit=Search
+Query[si]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[sk]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[sl]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[sr]=http://gitorious.org/search?q=\\{@}&commit=Search

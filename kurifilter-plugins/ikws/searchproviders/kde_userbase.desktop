@@ -113,6 +113,7 @@ Query[pt]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt_BR]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ro]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ru]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[si]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sl]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sr]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

@@ -113,6 +113,7 @@ Query[pt]=http://identi.ca/search/group?q=\\{@}
 Query[pt_BR]=http://identi.ca/search/group?q=\\{@}
 Query[ro]=http://identi.ca/search/group?q=\\{@}
 Query[ru]=http://identi.ca/search/group?q=\\{@}
+Query[si]=http://identi.ca/search/group?q=\\{@}
 Query[sk]=http://identi.ca/search/group?q=\\{@}
 Query[sl]=http://identi.ca/search/group?q=\\{@}
 Query[sr]=http://identi.ca/search/group?q=\\{@}

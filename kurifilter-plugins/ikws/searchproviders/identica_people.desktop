@@ -111,6 +111,7 @@ Query[pt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt_BR]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ro]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ru]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[si]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sk]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sl]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sr]=http://identi.ca/search/people?q=\\{@}&search=Search
