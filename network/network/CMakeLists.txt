@@ -58,6 +58,7 @@ set( molletnetwork_LINK_LIBS
     ${KDE4_KDECORE_LIBS}
     ${KDE4_KDNSSD_LIBS}
     ${QT_QTNETWORK_LIBRARY}
+    ${QT_QTGUI_LIBRARY}
 )
 
 if(SLP_FOUND)

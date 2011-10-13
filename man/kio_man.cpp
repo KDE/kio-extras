@@ -493,8 +493,8 @@ void MANProtocol::get(const KUrl& url )
        //check for the case that there is foo.1 and foo.1.gz found:
        // ### TODO make it more generic (other extensions)
        if ((foundPages.count()==2) &&
-           (((foundPages[0]+".gz") == foundPages[1]) ||
-            (foundPages[0] == (foundPages[1]+".gz"))))
+           ((QString(foundPages[0]+".gz") == foundPages[1]) ||
+            (foundPages[0] == QString(foundPages[1]+".gz"))))
           pageFound=true;
        else
           outputMatchingPages(foundPages);

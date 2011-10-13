@@ -48,6 +48,7 @@ class NetDevicePrivate : public QSharedData
     const QString& hostAddress() const;
     NetDevice::Type type() const;
     const QList<NetService>& serviceList() const;
+    bool hasService( const QString& serviceName ) const;
 
   public:
     void setName( const QString& name );

@@ -82,12 +82,13 @@ private Q_SLOTS:
         QTest::addColumn<QString>("destFile");
 
         const QString orig = "desktop:/" + m_testFileName;
-        QTest::newRow("from orig to .part") << false << orig << orig + ".part";
-        QTest::newRow("from .part to orig") << false << orig + ".part" << orig;
+        const QString part = orig + ".part";
+        QTest::newRow("from orig to .part") << false << orig << part;
+        QTest::newRow("from .part to orig") << false << part << orig;
         // Warnings: all tests without dirlister cache should above this line
         // and all tests with it should be below - the cache stays forever once it exists.
-        QTest::newRow("from orig to .part, with cache") << true << orig << orig + ".part";
-        QTest::newRow("from .part to orig, with cache (#218719)") << true << orig + ".part" << orig;
+        QTest::newRow("from orig to .part, with cache") << true << orig << part;
+        QTest::newRow("from .part to orig, with cache (#218719)") << true << part << orig;
     }
 
     void testRename() // relies on testCopyToDesktop being run before

@@ -184,7 +184,7 @@ enum RequestNum
   REQ_URL, // man(7) .URL macro
   REQ_Sm,  // mdoc(7) space mode
   REQ_Xo,  // mdoc(7) extended argument list open
-  REQ_Xc,  // mdoc(7) extended argument list close
+  REQ_Xc  // mdoc(7) extended argument list close
 };
 
 class RequestHash

@@ -210,6 +210,11 @@ extern "C" int KDE_EXPORT kdemain(int argc, char **argv)
   KCmdLineArgs::init(&about);
   KApplication app;
 
+  if (argc != 4) {
+      kError() << "Usage: kio_bookmarks protocol domain-socket1 domain-socket2";
+      exit(-1);
+  }
+
   BookmarksProtocol slave(argv[2], argv[3]);
   slave.dispatchLoop();
 

@@ -21,9 +21,9 @@
 
 #include <QImage>
 #include <QPainter>
+#include <QSvgRenderer>
 
 #include <kdemacros.h>
-#include <ksvgrenderer.h>
 
 extern "C"
 {
@@ -35,7 +35,7 @@ extern "C"
 
 bool SvgCreator::create(const QString &path, int w, int h, QImage &img)
 {
-    KSvgRenderer r(path);
+    QSvgRenderer r(path);
     if ( !r.isValid() )
         return false;
 

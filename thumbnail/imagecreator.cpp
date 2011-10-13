@@ -40,7 +40,7 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
     if (!img.load( path ))
 	return false;
     if (img.depth() != 32)
-	img = img.convertToFormat( QImage::Format_RGB32 );
+	img = img.convertToFormat(img.hasAlphaChannel() ? QImage::Format_ARGB32 : QImage::Format_RGB32);
     return true;
 }
 

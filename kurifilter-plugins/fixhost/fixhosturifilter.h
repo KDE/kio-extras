@@ -37,15 +37,9 @@ public:
     FixHostUriFilter(QObject* parent, const QVariantList& args);
     virtual bool filterUri(KUriFilterData &data) const;
 
-private Q_SLOTS:
-    void lookedUp(const QHostInfo &hostInfo);
-
 private:
-    bool exists(const KUrl& url) const;
-
-    mutable QEventLoop *m_eventLoop;
-    mutable int m_lookupId;
-    mutable bool m_hostExists;
+    bool exists(const QString& host) const;
+    bool isResolvable(const QString& host) const;
 };
 
 #endif

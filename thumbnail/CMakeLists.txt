@@ -7,8 +7,9 @@ macro_log_feature(EXIV2_FOUND "Exiv2" "A library to access image metadata" "http
 
 macro_bool_to_01(EXIV2_FOUND HAVE_EXIV2)
 
+include_directories(${JPEG_INCLUDE_DIR})
 if(EXIV2_FOUND)
-    include_directories(${JPEG_INCLUDE_DIR} ${EXIV2_INCLUDE_DIR})
+    include_directories(${EXIV2_INCLUDE_DIR})
 endif(EXIV2_FOUND)
 
 ########### next target ###############
@@ -37,30 +38,21 @@ install( FILES directorythumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 
 ########### next target ###############
 
-set(jpegthumbnail_PART_SRCS jpegcreator.cpp jpegcreatorhelper.cpp)
-
+set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
+kde4_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings.kcfgc)
 kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
 
-target_link_libraries(jpegthumbnail ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS})
-
-install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-
-########### next target ###############
+target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS})
 
 if (HAVE_EXIV2)
-    set(jpegrotatedthumbnail_PART_SRCS jpegrotatedcreator.cpp jpegcreatorhelper.cpp)
-
-    kde4_add_plugin(jpegrotatedthumbnail ${jpegrotatedthumbnail_PART_SRCS})
-
-    target_link_libraries(jpegrotatedthumbnail ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS})
-
-    set_source_files_properties(jpegrotatedcreator.cpp PROPERTIES COMPILE_FLAGS "-DHAVE_EXIV2 ${KDE4_ENABLE_EXCEPTIONS}")
+    set_source_files_properties(jpegcreator.cpp PROPERTIES
+                                COMPILE_FLAGS "-DHAVE_EXIV2 ${KDE4_ENABLE_EXCEPTIONS}")
     include_directories(${EXIV1_INCLUDE_DIR})
-    target_link_libraries(jpegrotatedthumbnail ${EXIV2_LIBRARIES})
-
-    install(TARGETS jpegrotatedthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-    install(FILES jpegrotatedthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+    target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
 endif (HAVE_EXIV2)
+
+install(FILES jpegcreatorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR})
+install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############
 
@@ -68,7 +60,7 @@ set(svgthumbnail_PART_SRCS svgcreator.cpp)
 
 kde4_add_plugin(svgthumbnail ${svgthumbnail_PART_SRCS})
 
-target_link_libraries(svgthumbnail ${KDE4_KIO_LIBS}) # needs kdeui for ksvgrenderer
+target_link_libraries(svgthumbnail ${KDE4_KIO_LIBS})
 
 install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 

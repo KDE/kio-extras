@@ -6100,6 +6100,7 @@ char *read_man_page(const char *filename)
     }
     else
     {
+      delete [] man_buf;
       man_buf = NULL;
     }
     fclose(man_stream);
