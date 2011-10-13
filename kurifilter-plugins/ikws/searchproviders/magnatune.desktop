@@ -113,6 +113,7 @@ Query[pt]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[pt_BR]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ro]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ru]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[si]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[sk]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[sl]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[sr]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

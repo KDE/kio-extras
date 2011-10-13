@@ -57,7 +57,7 @@ Name[sr@ijekavian]=КДЕ‑изглед
 Name[sr@ijekavianlatin]=KDE‑izgled
 Name[sr@latin]=KDE‑izgled
 Name[sv]=KDE Look
-Name[tg]=Намоиши KDE
+Name[tg]=Намуди зоҳирии KDE
 Name[th]=KDE Look
 Name[tr]=KDE Look
 Name[ug]=KDE Look
@@ -113,6 +113,7 @@ Query[pt]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[pt_BR]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ro]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ru]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[si]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sl]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[sr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

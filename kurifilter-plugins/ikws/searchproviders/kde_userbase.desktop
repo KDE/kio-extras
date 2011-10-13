@@ -57,7 +57,7 @@ Name[sr@ijekavian]=Корисничка база КДЕ‑а
 Name[sr@ijekavianlatin]=Korisnička baza KDE‑a
 Name[sr@latin]=Korisnička baza KDE‑a
 Name[sv]=KDE:s användarbas
-Name[tg]=KDE UserBase
+Name[tg]=Маълумоти корбари KDE
 Name[th]=KDE UserBase
 Name[tr]=KDE UserBase
 Name[ug]=KDE UserBase
@@ -113,6 +113,7 @@ Query[pt]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[pt_BR]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ro]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ru]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[si]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sl]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[sr]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

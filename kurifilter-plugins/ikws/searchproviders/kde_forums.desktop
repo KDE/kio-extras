@@ -106,6 +106,7 @@ Query[pt]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=
 Query[pt_BR]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[ro]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[ru]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
+Query[si]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[sk]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[sl]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[sr]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search

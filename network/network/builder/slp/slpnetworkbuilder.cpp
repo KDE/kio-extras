@@ -38,12 +38,12 @@ SlpNetworkBuilder::SlpNetworkBuilder( NetworkPrivate* networkPrivate )
 {
     mSlpServiceBrowser = new SlpServiceBrowser();
 
-    connect( mSlpServiceBrowser, SIGNAL(servicesAdded( const QList<SLPService>& )),
-             SLOT(onServicesAdded( const QList<SLPService>& )) );
-    connect( mSlpServiceBrowser, SIGNAL(servicesChanged( const QList<SLPService>& )),
-             SLOT(onServicesChanged( const QList<SLPService>& )) );
-    connect( mSlpServiceBrowser, SIGNAL(servicesRemoved( const QList<SLPService>& )),
-             SLOT(onServicesRemoved( const QList<SLPService>& )) );
+    connect( mSlpServiceBrowser, SIGNAL(servicesAdded(QList<SLPService>)),
+             SLOT(onServicesAdded(QList<SLPService>)) );
+    connect( mSlpServiceBrowser, SIGNAL(servicesChanged(QList<SLPService>)),
+             SLOT(onServicesChanged(QList<SLPService>)) );
+    connect( mSlpServiceBrowser, SIGNAL(servicesRemoved(QList<SLPService>)),
+             SLOT(onServicesRemoved(QList<SLPService>)) );
 }
 
 

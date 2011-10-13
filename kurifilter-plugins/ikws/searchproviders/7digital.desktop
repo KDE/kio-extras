@@ -112,6 +112,7 @@ Query[pt]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[pt_BR]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ro]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ru]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[si]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sk]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sl]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
@@ -119,7 +120,7 @@ Query[sr@ijekavian]=http://us.7digital.com/Search?search=\\{@}&searchtype=global
 Query[sr@ijekavianlatin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sr@latin]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[sv]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
-Query[tg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[tg]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Ҷустуҷӯ
 Query[th]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[tr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ug]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

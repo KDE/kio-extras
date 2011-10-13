@@ -101,9 +101,6 @@ private: // Private variables
   /** The sftp session for the connection */
   sftp_session mSftp;
 
-  /** Username originally set when setHost was called. */
-  QString mOrigUsername;
-
   /** Username to use when connecting */
   QString mUsername;
 
@@ -194,7 +191,7 @@ private: // private methods
                       KIO::UDSEntry &entry, short int details);
 
   QString canonicalizePath(const QString &path);
-  bool requiresUserNameRedirection();
+  void requiresUserNameRedirection();
   bool sftpConnect();
 };
 

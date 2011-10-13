@@ -54,7 +54,7 @@ Name[sr@ijekavian]=Екозија
 Name[sr@ijekavianlatin]=Ecosia
 Name[sr@latin]=Ecosia
 Name[sv]=Ecosia söktjänst
-Name[tg]=Барномаи ҷустуҷӯии Ecosia
+Name[tg]=Системаи ҷустуҷӯии Ecosia
 Name[th]=บริการค้นหา Ecosia
 Name[tr]=Ecosia arama motoru
 Name[ug]=Ecosia ئىزدەش ماتورى
@@ -112,6 +112,7 @@ Query[pt]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[pt_BR]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ro]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ru]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[si]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[sk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[sl]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[sr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
