@@ -39,7 +39,7 @@ KUriSearchFilter::KUriSearchFilter(QObject *parent, const QVariantList &)
                  :KUriFilterPlugin( "kurisearchfilter", parent )
 {
   KGlobal::locale()->insertCatalog("kurifilter");
-  QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
+  QDBusConnection::sessionBus().connect(QString(), "/", "org.kde.KUriFilterPlugin",
                                         "configure", this, SLOT(configure()));
 }
 

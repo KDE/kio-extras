@@ -96,7 +96,7 @@ static QString removeArgs( const QString& _cmd )
 KShortUriFilter::KShortUriFilter( QObject *parent, const QVariantList & /*args*/ )
                 :KUriFilterPlugin( "kshorturifilter", parent )
 {
-    QDBusConnection::sessionBus().connect(QString(), QString(), "org.kde.KUriFilterPlugin",
+    QDBusConnection::sessionBus().connect(QString(), "/", "org.kde.KUriFilterPlugin",
                                 "configure", this, SLOT(configure()));
     configure();
 }
