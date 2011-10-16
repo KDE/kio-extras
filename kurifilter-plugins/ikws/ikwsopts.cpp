@@ -208,6 +208,7 @@ static QSortFilterProxyModel* wrapInProxyModel(QAbstractItemModel* model)
   proxyModel->setSourceModel(model);
   proxyModel->setDynamicSortFilter(true);
   proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+  proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
   return proxyModel;
 }
 
@@ -217,7 +218,8 @@ FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *paren
 {
   m_dlg.setupUi(this);
 
-  m_dlg.lvSearchProviders->setModel(wrapInProxyModel(m_providersModel));
+  QSortFilterProxyModel* searchProviderModel = wrapInProxyModel(m_providersModel);
+  m_dlg.lvSearchProviders->setModel(searchProviderModel);
   m_dlg.cmbDefaultEngine->setModel(wrapInProxyModel(m_providersModel->createListModel()));
 
   // Connect all the signals/slots...
@@ -236,6 +238,7 @@ FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *paren
            SIGNAL(currentChanged(QModelIndex,QModelIndex)),
            SLOT(updateSearchProviderEditingButons()));
   connect(m_dlg.lvSearchProviders, SIGNAL(doubleClicked(QModelIndex)),SLOT(changeSearchProvider()));
+  connect(m_dlg.searchLineEdit, SIGNAL(textEdited(QString)), searchProviderModel, SLOT(setFilterFixedString(QString)));
 }
 
 QString FilterOptions::quickHelp() const
