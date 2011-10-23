@@ -22,6 +22,8 @@
 
 #include "netdevice_p.h"
 
+// library
+#include "netservice_p.h"
 // Qt
 #include <QtCore/QMutableListIterator>
 
@@ -35,13 +37,14 @@ NetDevicePrivate::NetDevicePrivate( const QString& name )
 {
 }
 
-bool NetDevicePrivate::hasService( const QString& serviceName ) const
+bool NetDevicePrivate::hasService( const QString& id ) const
 {
     bool result = false;
 
     foreach( const NetService& service, mServiceList )
     {
-        if( service.name() == serviceName )
+        const NetServicePrivate* const d = service.dPtr();
+        if( d->id() == id )
         {
             result = true;
             break;
@@ -51,14 +54,15 @@ bool NetDevicePrivate::hasService( const QString& serviceName ) const
     return result;
 }
 
-NetService NetDevicePrivate::removeService( const QString& serviceName )
+NetService NetDevicePrivate::removeService( const QString& id )
 {
     NetService result;
     QMutableListIterator<NetService> it( mServiceList );
     while( it.hasNext())
     {
         const NetService& service = it.next();
-        if( service.name() == serviceName )
+        const NetServicePrivate* const d = service.dPtr();
+        if( d->id() == id )
         {
             result = service;
             it.remove();

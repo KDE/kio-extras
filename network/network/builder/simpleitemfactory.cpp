@@ -191,6 +191,10 @@ Q_UNUSED( serviceType )
     return true;
 }
 
+QString SimpleItemFactory::dnssdId( const DNSSD::RemoteService::Ptr& dnssdService ) const
+{
+    return dnssdService->type() + QLatin1Char('_') + dnssdService->serviceName();
+}
 
 NetServicePrivate* SimpleItemFactory::createNetService( const DNSSD::RemoteService::Ptr& dnssdService, const NetDevice& device ) const
 {
@@ -228,7 +232,7 @@ NetServicePrivate* SimpleItemFactory::createNetService( const DNSSD::RemoteServi
     }
 
     result = new NetServicePrivate( dnssdService->serviceName(), iconName,
-        typeName, device, url.url() );
+        typeName, device, url.url(), SimpleItemFactory::dnssdId(dnssdService) );
 
     return result;
 }
@@ -238,6 +242,12 @@ bool SimpleItemFactory::canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDe
 Q_UNUSED( upnpDevice )
     return true;
 }
+
+QString SimpleItemFactory::upnpId( const Cagibi::Device& upnpDevice ) const
+{
+    return upnpDevice.udn();
+}
+
 // TODO: add KIcon with specialiced KIconLoader (fetches Icons via D-Bus)
 NetServicePrivate* SimpleItemFactory::createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const
 {
@@ -251,7 +261,7 @@ NetServicePrivate* SimpleItemFactory::createNetService( const Cagibi::Device& up
     }
     result = new NetServicePrivate( upnpDevice.friendlyName(),
         QString::fromLatin1("unknown"),
-        QString::fromLatin1("upnp.")+upnpDevice.type(), device, url );
+        QString::fromLatin1("upnp.")+upnpDevice.type(), device, url, SimpleItemFactory::upnpId(upnpDevice) );
 
     return result;
 }

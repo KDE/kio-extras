@@ -35,7 +35,7 @@ namespace Mollet
 // 
 K_GLOBAL_STATIC_WITH_ARGS(KSharedPtr< NetServicePrivate >,
     defaultEmptyNetServicePrivate,
-    ( new NetServicePrivate(QString(),QString(),QString(),NetDevice(),QString()) ))
+    ( new NetServicePrivate(QString(),QString(),QString(),NetDevice(),QString(),QString()) ))
 
 
 NetService::NetService()
