@@ -77,6 +77,7 @@ QDBusArgument& operator<<( QDBusArgument& argument, const Mollet::NetService& se
     argument << servicePrivate->iconName();
     argument << servicePrivate->type();
     argument << servicePrivate->url();
+    argument << servicePrivate->id();
     argument.endStructure();
 
     return argument;
@@ -87,15 +88,17 @@ const QDBusArgument& operator>>( const QDBusArgument& argument, Mollet::NetServi
     QString iconName;
     QString type;
     QString url;
+    QString id;
 
     argument.beginStructure();
     argument >> name;
     argument >> iconName;
     argument >> type;
     argument >> url;
+    argument >> id;
     argument.endStructure();
 
-    Mollet::NetServicePrivate* d = new Mollet::NetServicePrivate( name, iconName, type, Mollet::NetDevice(), url );
+    Mollet::NetServicePrivate* d = new Mollet::NetServicePrivate( name, iconName, type, Mollet::NetDevice(), url, id );
 
     service.setDPtr( d );
 

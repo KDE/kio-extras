@@ -144,7 +144,17 @@ kDebug()<<"existing device:"<<deviceHostName<<"at"<<device.ipAddress()<<"vs."<<h
             // workaround: KDNSSD currently (4.7.0) emits two signals per service
             // just relying on service->serviceName() is fragile, but matches
             // current approach in removeService(...)
-            if( d->hasService(service->serviceName()) )
+            QString id;
+            const QString serviceType = service->type();
+            foreach( const DNSSDNetSystemAble* factory, mNetSystemFactoryList )
+            {
+                if( factory->canCreateNetSystemFromDNSSD(serviceType) )
+                {
+                    id = factory->dnssdId( service );
+                    break;
+                }
+            }
+            if( d->hasService(id) )
                 return;
 
             deviceOfService = &device;
@@ -251,8 +261,18 @@ void DNSSDNetworkBuilder::removeService( DNSSD::RemoteService::Ptr service )
         if( device.hostName() == hostName )
         {
 // kDebug()<<hostName;
+            QString id;
+            const QString serviceType = service->type();
+            foreach( const DNSSDNetSystemAble* factory, mNetSystemFactoryList )
+            {
+                if( factory->canCreateNetSystemFromDNSSD(serviceType) )
+                {
+                    id = factory->dnssdId( service );
+                    break;
+                }
+            }
             NetDevicePrivate* d = device.dPtr();
-            NetService netService = d->removeService( service->serviceName() );
+            NetService netService = d->removeService( id );
             if( !netService.isValid() )
                 break;
 

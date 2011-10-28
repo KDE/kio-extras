@@ -34,28 +34,16 @@ Enable shortcuts that allow you to quickly search for information on the web. Fo
     </widget>
    </item>
    <item row="2" column="0">
-    <widget class="QTreeView" name="lvSearchProviders">
-     <property name="rootIsDecorated">
-      <bool>false</bool>
+    <widget class="KLineEdit" name="searchLineEdit">
+     <property name="placeholderText">
+      <string>Search for shortcut</string>
      </property>
-     <property name="uniformRowHeights">
+     <property name="showClearButton" stdset="0">
       <bool>true</bool>
-     </property>
-     <property name="itemsExpandable">
-      <bool>false</bool>
-     </property>
-     <property name="sortingEnabled">
-      <bool>true</bool>
-     </property>
-     <property name="allColumnsShowFocus">
-      <bool>true</bool>
-     </property>
-     <property name="headerHidden">
-      <bool>false</bool>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item row="2" column="1" rowspan="2">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QPushButton" name="pbNew">
@@ -109,6 +97,28 @@ Enable shortcuts that allow you to quickly search for information on the web. Fo
     </layout>
    </item>
    <item row="3" column="0">
+    <widget class="QTreeView" name="lvSearchProviders">
+     <property name="rootIsDecorated">
+      <bool>false</bool>
+     </property>
+     <property name="uniformRowHeights">
+      <bool>true</bool>
+     </property>
+     <property name="itemsExpandable">
+      <bool>false</bool>
+     </property>
+     <property name="sortingEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="allColumnsShowFocus">
+      <bool>true</bool>
+     </property>
+     <property name="headerHidden">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0">
     <layout class="QFormLayout" name="formLayout">
      <property name="fieldGrowthPolicy">
       <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
@@ -218,6 +228,11 @@ Select the search engine to use for input boxes that provide automatic lookup se
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

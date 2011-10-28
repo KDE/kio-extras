@@ -46,6 +46,7 @@ class DNSSDNetSystemAble
   public: // API to be implemented
     virtual bool canCreateNetSystemFromDNSSD( const QString& serviceType ) const = 0;
     virtual NetServicePrivate* createNetService( const DNSSD::RemoteService::Ptr& service, const NetDevice& device ) const = 0;
+    virtual QString dnssdId( const DNSSD::RemoteService::Ptr& dnssdService ) const = 0;
 };
 
 

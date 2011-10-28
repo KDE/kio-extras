@@ -25,6 +25,7 @@
 #include "searchprovider.h"
 #include "searchproviderdlg.h"
 
+#include <KDE/KDebug>
 #include <KDE/KStandardDirs>
 #include <KDE/KServiceTypeTrader>
 #include <KDE/KBuildSycocaProgressDialog>
@@ -102,8 +103,7 @@ QVariant ProvidersModel::data(const QModelIndex& index, int role) const
 void ProvidersModel::setProviders(const QList<SearchProvider*>& providers, const QStringList& favoriteEngines)
 {
   m_providers = providers;
-  m_favoriteEngines = QSet<QString>::fromList(favoriteEngines);
-  reset();
+  setFavoriteProviders(favoriteEngines);
 }
 
 void ProvidersModel::setFavoriteProviders(const QStringList& favoriteEngines)
@@ -148,7 +148,7 @@ void ProvidersModel::deleteProvider(SearchProvider* p)
 void ProvidersModel::addProvider(SearchProvider* p)
 {
   beginInsertRows(QModelIndex(), m_providers.size(), m_providers.size());
-  m_providers.append(p); 
+  m_providers.append(p);
   endInsertRows();
   emit dataModified();
 }
@@ -208,6 +208,7 @@ static QSortFilterProxyModel* wrapInProxyModel(QAbstractItemModel* model)
   proxyModel->setSourceModel(model);
   proxyModel->setDynamicSortFilter(true);
   proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+  proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
   return proxyModel;
 }
 
@@ -217,7 +218,8 @@ FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *paren
 {
   m_dlg.setupUi(this);
 
-  m_dlg.lvSearchProviders->setModel(wrapInProxyModel(m_providersModel));
+  QSortFilterProxyModel* searchProviderModel = wrapInProxyModel(m_providersModel);
+  m_dlg.lvSearchProviders->setModel(searchProviderModel);
   m_dlg.cmbDefaultEngine->setModel(wrapInProxyModel(m_providersModel->createListModel()));
 
   // Connect all the signals/slots...
@@ -236,6 +238,7 @@ FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *paren
            SIGNAL(currentChanged(QModelIndex,QModelIndex)),
            SLOT(updateSearchProviderEditingButons()));
   connect(m_dlg.lvSearchProviders, SIGNAL(doubleClicked(QModelIndex)),SLOT(changeSearchProvider()));
+  connect(m_dlg.searchLineEdit, SIGNAL(textEdited(QString)), searchProviderModel, SLOT(setFilterFixedString(QString)));
 }
 
 QString FilterOptions::quickHelp() const
@@ -276,7 +279,7 @@ void FilterOptions::load()
 
   Q_FOREACH(const KService::Ptr &service, services)
   {
-    SearchProvider* provider=new SearchProvider(service);
+    SearchProvider* provider = new SearchProvider(service);
     if (defaultSearchEngine == provider->desktopEntryName())
       defaultProviderIndex = providers.size();
     providers.append(provider);
@@ -318,58 +321,26 @@ void FilterOptions::save()
   group.writeEntry("FavoriteSearchEngines", m_providersModel->favoriteEngines());
   group.writeEntry("UseSelectedProvidersOnly", m_dlg.cbUseSelectedShortcutsOnly->isChecked());
 
-  QList<SearchProvider*> providers = m_providersModel->providers();
-  QString path = KGlobal::mainComponent().dirs()->saveLocation("services", "searchproviders/");
   int changedProviderCount = 0;
+  QList<SearchProvider*> providers = m_providersModel->providers();
+  const QString path = KGlobal::mainComponent().dirs()->saveLocation("services", "searchproviders/");
+
   Q_FOREACH(SearchProvider* provider, providers)
   {
     if (!provider->isDirty())
       continue;
+
     changedProviderCount++;
 
-    QString name = provider->desktopEntryName();
-    if (name.isEmpty())
-    {
-      // New provider                        
-      // Take the longest search shortcut as filename,
-      // if such a file already exists, append a number and increase it
-      // until the name is unique
-      Q_FOREACH(const QString& key, provider->keys())
-      {
-        if (key.length() > name.length())
-          name = key.toLower();
-      }
-      for (int suffix = 0; ; ++suffix)
-      {
-        QString located, check = name;
-        if (suffix)
-          check += QString().setNum(suffix);
-
-        if ((located = KStandardDirs::locate("services", "searchproviders/" + check + ".desktop")).isEmpty())
-        {
-          name = check;
-          break;
-        }
-        else if (located.startsWith(path))
-        {
-          // If it's a deleted (hidden) entry, overwrite it
-          if (KService(located).isDeleted())
-            break;
-        }
-      }
-    }
-
-    KConfig _service(path + name + ".desktop", KConfig::SimpleConfig );
+    KConfig _service(path + provider->desktopEntryName() + ".desktop", KConfig::SimpleConfig );
     KConfigGroup service(&_service, "Desktop Entry");                                                                                                      
-    service.writeEntry("Type",          "Service");
-    service.writeEntry("ServiceTypes",  "SearchProvider");
-    service.writeEntry("Name",          provider->name());
-    service.writeEntry("Query",         provider->query());
-    service.writeEntry("Keys",          provider->keys());
-    service.writeEntry("Charset",       provider->charset());
-
-    // we might be overwriting a hidden entry
-    service.writeEntry("Hidden", false);
+    service.writeEntry("Type", "Service");
+    service.writeEntry("ServiceTypes", "SearchProvider");
+    service.writeEntry("Name", provider->name());
+    service.writeEntry("Query", provider->query());
+    service.writeEntry("Keys", provider->keys());
+    service.writeEntry("Charset", provider->charset());
+    service.writeEntry("Hidden", false); // we might be overwriting a hidden entry
   }
  
   Q_FOREACH(const QString& providerName, m_deletedProviders)
@@ -381,6 +352,7 @@ void FilterOptions::save()
       continue;
 
     changedProviderCount++;
+
     if (matches.size() == 1 && matches.first().startsWith(path))
     {
       // If only the local copy existed, unlink it
@@ -388,6 +360,7 @@ void FilterOptions::save()
       QFile::remove(matches.first());
       continue;
     }
+
     KConfig _service(path + providerName + ".desktop", KConfig::SimpleConfig );
     KConfigGroup service(&_service,     "Desktop Entry");
     service.writeEntry("Type",          "Service");

@@ -1,7 +1,7 @@
 /*
     This file is part of the Mollet network library, part of the KDE project.
 
-    Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
+    Copyright 2009,2011 Friedrich W. H. Kossebau <kossebau@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -27,12 +27,13 @@ namespace Mollet
 {
 
 NetServicePrivate::NetServicePrivate( const QString& name, const QString& iconName, const QString& type,
-                                      const NetDevice& device, const QString& url )
+                                      const NetDevice& device, const QString& url, const QString& id )
   : mName( name )
   , mIconName( iconName )
   , mType( type )
   , mDevice( device )
   , mUrl( url )
+  , mId( id )
 {
 }
 

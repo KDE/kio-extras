@@ -18,6 +18,8 @@
 
 #include "searchprovider.h"
 
+#include <krandom.h>
+#include <kstandarddirs.h>
 #include <kservicetypetrader.h>
 
 SearchProvider::SearchProvider(const KService::Ptr service)
@@ -52,7 +54,47 @@ void SearchProvider::setKeys(const QStringList &keys)
   if (KUriFilterSearchProvider::keys() == keys)
         return;
 
-    KUriFilterSearchProvider::setKeys(keys);
+  KUriFilterSearchProvider::setKeys(keys);
+
+  QString name = desktopEntryName();
+  if (!name.isEmpty())
+      return;
+
+  // New provider. Set the desktopEntryName.
+  // Take the longest search shortcut as filename,
+  // if such a file already exists, append a number and increase it
+  // until the name is unique
+  Q_FOREACH(const QString& key, keys)
+  {
+    if (key.length() > name.length())
+      name = key.toLower();
+  }
+
+  const QString path (KGlobal::mainComponent().dirs()->saveLocation("services", "searchproviders/"));
+  bool firstRun = true;
+
+  while (true)
+  {
+    QString check(name);
+
+    if (!firstRun)
+      check += KRandom::randomString(4);
+
+    const QString located = KStandardDirs::locate("services", "searchproviders/" + check + ".desktop");
+    if (located.isEmpty())
+    {
+      name = check;
+      break;
+    }
+    else if (located.startsWith(path))
+    {
+      // If it's a deleted (hidden) entry, overwrite it
+      if (KService(located).isDeleted())
+        break;
+    }
+  }
+
+  setDesktopEntryName(name);
 }
 
 void SearchProvider::setCharset(const QString &charset)

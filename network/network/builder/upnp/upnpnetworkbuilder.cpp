@@ -243,8 +243,17 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<Cagibi::Device>& upnpDev
             const NetDevice& device = it.next();
             if( device.ipAddress() == ipAddress )
             {
+                QString id;
+                foreach( const UpnpNetSystemAble* factory, mNetSystemFactoryList )
+                {
+                    if( factory->canCreateNetSystemFromUpnp(upnpDevice) )
+                    {
+                        id = factory->upnpId( upnpDevice );
+                        break;
+                    }
+                }
                 NetDevicePrivate* d = device.dPtr();
-                NetService netService = d->removeService( upnpDevice.friendlyName() );
+                NetService netService = d->removeService( id );
                 if( ! netService.isValid() )
                     break;
 

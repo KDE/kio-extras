@@ -1,7 +1,7 @@
 /*
     This file is part of the Mollet network library, part of the KDE project.
 
-    Copyright 2009 Friedrich W. H. Kossebau <kossebau@kde.org>
+    Copyright 2009,2011 Friedrich W. H. Kossebau <kossebau@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -38,7 +38,7 @@ class NetServicePrivate : public QSharedData
 {
   public:
     explicit NetServicePrivate( const QString& name, const QString& iconName, const QString& type,
-                                const NetDevice& device, const QString& url );
+                                const NetDevice& device, const QString& url, const QString& id );
     virtual ~NetServicePrivate();
 
   public:
@@ -47,6 +47,7 @@ class NetServicePrivate : public QSharedData
     const QString& type() const;
     const NetDevice& device() const;
     const QString& url() const;
+    const QString& id() const;
 
   private:
     QString mName;
@@ -54,6 +55,7 @@ class NetServicePrivate : public QSharedData
     QString mType;
     NetDevice mDevice;
     QString mUrl;
+    QString mId;
 };
 
 
@@ -62,6 +64,7 @@ inline const QString& NetServicePrivate::iconName() const { return mIconName; }
 inline const QString& NetServicePrivate::type()     const { return mType; }
 inline const NetDevice& NetServicePrivate::device() const { return mDevice; }
 inline const QString& NetServicePrivate::url()      const { return mUrl; }
+inline const QString& NetServicePrivate::id()       const { return mId; }
 
 }
 
