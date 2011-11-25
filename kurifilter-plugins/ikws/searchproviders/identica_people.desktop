@@ -16,7 +16,7 @@ Name[en_GB]=Identi.ca People
 Name[es]=Gente Identi.ca
 Name[et]=Identi.ca inimesed
 Name[eu]=Identi.ca Jendea
-Name[fi]=Identi.ca-ihmiset
+Name[fi]=Identi.ca-ihmishaku
 Name[fr]=Personne Identi.ca
 Name[ga]=Daoine Identi.ca
 Name[gu]=આઈડેન્ટિ.કા લોકો
@@ -55,6 +55,7 @@ Name[sr@ijekavian]=Идентика‑људи
 Name[sr@ijekavianlatin]=identi.ca‑ljudi
 Name[sr@latin]=identi.ca‑ljudi
 Name[sv]=Identi.ca personer
+Name[tg]=Мардуми Identi.ca
 Name[th]=ผู้คน Identi.ca
 Name[tr]=Identi.ca Kişi
 Name[ug]=Identi.ca كىشىلەر
@@ -110,6 +111,7 @@ Query[pt]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[pt_BR]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ro]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ru]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[si]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sk]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sl]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[sr]=http://identi.ca/search/people?q=\\{@}&search=Search

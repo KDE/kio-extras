@@ -168,11 +168,11 @@ void DNSSDServiceDatum::feedUrl( KUrl* url, const DNSSD::RemoteService* remoteSe
 
     url->setProtocol( QString::fromLatin1(protocol) );
     if( userField )
-        url->setUser( serviceTextData[QString::fromLatin1(userField)] );
+        url->setUser( QLatin1String(serviceTextData.value(QLatin1String(userField)).constData()) );
     if( passwordField )
-        url->setPass( serviceTextData[QString::fromLatin1(passwordField)] );
+        url->setPass( QLatin1String(serviceTextData.value(QLatin1String(passwordField)).constData()) );
     if( pathField )
-        url->setPath( serviceTextData[QString::fromLatin1(pathField)] );
+        url->setPath( QLatin1String(serviceTextData.value(QLatin1String(pathField)).constData()) );
 
     url->setHost( remoteService->hostName() );
     url->setPort( remoteService->port() );
@@ -191,6 +191,10 @@ Q_UNUSED( serviceType )
     return true;
 }
 
+QString SimpleItemFactory::dnssdId( const DNSSD::RemoteService::Ptr& dnssdService ) const
+{
+    return dnssdService->type() + QLatin1Char('_') + dnssdService->serviceName();
+}
 
 NetServicePrivate* SimpleItemFactory::createNetService( const DNSSD::RemoteService::Ptr& dnssdService, const NetDevice& device ) const
 {
@@ -215,7 +219,7 @@ NetServicePrivate* SimpleItemFactory::createNetService( const DNSSD::RemoteServi
 
     const bool isUnknown = ( serviceDatum == &UnknownServiceDatum );
     const QString typeName = isUnknown ?
-        dnssdServiceType.mid( 1, dnssdServiceType.lastIndexOf('.')-1 ) :
+        dnssdServiceType.mid( 1, dnssdServiceType.lastIndexOf(QLatin1Char('.'))-1 ) :
         QString::fromLatin1( serviceDatum->typeName );
 
     QString iconName = QString::fromLatin1(serviceDatum->fallbackIconName);
@@ -228,7 +232,7 @@ NetServicePrivate* SimpleItemFactory::createNetService( const DNSSD::RemoteServi
     }
 
     result = new NetServicePrivate( dnssdService->serviceName(), iconName,
-        typeName, device, url.url() );
+        typeName, device, url.url(), SimpleItemFactory::dnssdId(dnssdService) );
 
     return result;
 }
@@ -238,6 +242,12 @@ bool SimpleItemFactory::canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDe
 Q_UNUSED( upnpDevice )
     return true;
 }
+
+QString SimpleItemFactory::upnpId( const Cagibi::Device& upnpDevice ) const
+{
+    return upnpDevice.udn();
+}
+
 // TODO: add KIcon with specialiced KIconLoader (fetches Icons via D-Bus)
 NetServicePrivate* SimpleItemFactory::createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const
 {
@@ -251,7 +261,7 @@ NetServicePrivate* SimpleItemFactory::createNetService( const Cagibi::Device& up
     }
     result = new NetServicePrivate( upnpDevice.friendlyName(),
         QString::fromLatin1("unknown"),
-        "upnp."+upnpDevice.type(), device, url );
+        QString::fromLatin1("upnp.")+upnpDevice.type(), device, url, SimpleItemFactory::upnpId(upnpDevice) );
 
     return result;
 }

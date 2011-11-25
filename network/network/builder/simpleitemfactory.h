@@ -49,10 +49,12 @@ class SimpleItemFactory : public AbstractNetSystemFactory,
   public: // DNSSDNetSystemAble API
     virtual bool canCreateNetSystemFromDNSSD( const QString& serviceType ) const;
     virtual NetServicePrivate* createNetService( const DNSSD::RemoteService::Ptr& service, const NetDevice& device ) const;
+    virtual QString dnssdId( const DNSSD::RemoteService::Ptr& dnssdService ) const;
 
   public: // UpnpNetSystemAble API
     virtual bool canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDevice ) const;
     virtual NetServicePrivate* createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const;
+    virtual QString upnpId( const Cagibi::Device& upnpDevice ) const;
 
   private:
 };

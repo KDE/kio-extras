@@ -101,9 +101,6 @@ private: // Private variables
   /** The sftp session for the connection */
   sftp_session mSftp;
 
-  /** Username originally set when setHost was called. */
-  QString mOrigUsername;
-
   /** Username to use when connecting */
   QString mUsername;
 
@@ -194,8 +191,25 @@ private: // private methods
                       KIO::UDSEntry &entry, short int details);
 
   QString canonicalizePath(const QString &path);
-  bool requiresUserNameRedirection();
+  void requiresUserNameRedirection();
   bool sftpConnect();
+  void sftpSendWarning(int errorCode, const QString& url);
+
+  /**
+    * Status Code returned from ftpPut() and ftpGet(), used to select
+    * source or destination url for error messages
+    */
+  typedef enum {
+    Success,
+    ClientError,
+    ServerError
+  } StatusCode;
+
+  StatusCode sftpGet(const KUrl& url, int& errorCode, KIO::fileoffset_t offset = -1, int fd = -1);
+  StatusCode sftpPut(const KUrl& url, int permissions, KIO::JobFlags flags, int& errorCode, int fd = -1);
+
+  StatusCode sftpCopyGet(const KUrl& url, const QString& src, int permissions, KIO::JobFlags flags, int& errorCode);
+  StatusCode sftpCopyPut(const KUrl& url, const QString& dest, int permissions, KIO::JobFlags flags, int& errorCode);
 };
 
 #endif

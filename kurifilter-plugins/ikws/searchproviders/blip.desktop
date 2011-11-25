@@ -113,6 +113,7 @@ Query[pt]=http://blip.tv/search?q=\\{@}
 Query[pt_BR]=http://blip.tv/search?q=\\{@}
 Query[ro]=http://blip.tv/search?q=\\{@}
 Query[ru]=http://blip.tv/search?q=\\{@}
+Query[si]=http://blip.tv/search?q=\\{@}
 Query[sk]=http://blip.tv/search?q=\\{@}
 Query[sl]=http://blip.tv/search?q=\\{@}
 Query[sr]=http://blip.tv/search?q=\\{@}

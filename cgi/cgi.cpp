@@ -157,9 +157,19 @@ void CgiProtocol::get( const KUrl& url )
       kDebug(7124) << "  end: " << end;
 #endif
 
+      // Set the charset meta data if one exists (BR# 241364).
+      if (end == semicolon) {
+          const int assignOp = output.indexOf('=', semicolon + 1);
+          if (assignOp != -1) {
+              const QByteArray charset (output.mid(assignOp+1, newline- assignOp -1).trimmed());
+              kDebug(7124) << "Charset:" << charset;
+              setMetaData(QLatin1String("charset"), charset.toLower());
+          }
+      }
+
       QByteArray contentType = output.mid( colon + 1, end - colon - 1 );
 
-      contentType = contentType.trimmed();
+      contentType = contentType.trimmed().toLower();
 
       kDebug(7124) << "ContentType: '" << contentType << "'";
 

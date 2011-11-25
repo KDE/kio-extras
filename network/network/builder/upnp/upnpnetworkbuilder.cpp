@@ -112,8 +112,8 @@ void UpnpNetworkBuilder::queryCurrentDevices()
 
     QDBusPendingCallWatcher* allDevicesCallWatcher =
         new QDBusPendingCallWatcher( allDevicesCall, this );
-    connect( allDevicesCallWatcher, SIGNAL(finished( QDBusPendingCallWatcher* )),
-             SLOT(onAllDevicesCallFinished( QDBusPendingCallWatcher* )) );
+    connect( allDevicesCallWatcher, SIGNAL(finished(QDBusPendingCallWatcher*)),
+             SLOT(onAllDevicesCallFinished(QDBusPendingCallWatcher*)) );
 }
 
 void UpnpNetworkBuilder::onAllDevicesCallFinished( QDBusPendingCallWatcher* allDevicesCallWatcher )
@@ -243,8 +243,17 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<Cagibi::Device>& upnpDev
             const NetDevice& device = it.next();
             if( device.ipAddress() == ipAddress )
             {
+                QString id;
+                foreach( const UpnpNetSystemAble* factory, mNetSystemFactoryList )
+                {
+                    if( factory->canCreateNetSystemFromUpnp(upnpDevice) )
+                    {
+                        id = factory->upnpId( upnpDevice );
+                        break;
+                    }
+                }
                 NetDevicePrivate* d = device.dPtr();
-                NetService netService = d->removeService( upnpDevice.friendlyName() );
+                NetService netService = d->removeService( id );
                 if( ! netService.isValid() )
                     break;
 
