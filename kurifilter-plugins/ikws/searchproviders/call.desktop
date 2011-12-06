@@ -103,6 +103,8 @@ Query[fr]=http://www.qrz.com/db/\\{@}
 Query[hu]=http://www.qrz.com/db/\\{@}
 Query[ia]=http://www.qrz.com/db/\\{@}
 Query[is]=http://www.qrz.com/db/\\{@}
+Query[it]=http://www.qrz.com/db/\\{@}
+Query[kk]=http://www.qrz.com/db/\\{@}
 Query[lt]=http://www.qrz.com/db/\\{@}
 Query[nb]=http://www.qrz.com/s?wd=\\{@}
 Query[nds]=http://www.qrz.com/db/\\{@}
@@ -111,6 +113,7 @@ Query[pa]=http://www.qrz.com/db/\\{@}
 Query[pt]=http://www.qrz.com/db/\\{@}
 Query[pt_BR]=http://www.qrz.com/db/\\{@}
 Query[ro]=http://www.qrz.com/db/\\{@}
+Query[ru]=http://www.qrz.com/db/\\{@}
 Query[sv]=http://www.qrz.com/db/\\{@}
 Query[uk]=http://www.qrz.com/db/\\{@}
 Query[x-test]=xxhttp://www.qrz.com/db/\\{@}xx
