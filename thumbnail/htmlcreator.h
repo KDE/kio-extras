@@ -1,6 +1,7 @@
 /*  This file is part of the KDE libraries
     Copyright (C) 2000 Malte Starostik <malte@kde.org>
     Copyright (C) 2006 Roberto Cappuccio <roberto.cappuccio@gmail.com>
+    Copyright (C) 2011 Dawit Alemayehu <adawit@kde.org>
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Library General Public
@@ -21,11 +22,12 @@
 #ifndef HTMLCREATOR_H
 #define HTMLCREATOR_H
 
-#include <kio/thumbcreator.h>
-#include <QTimerEvent>
-#include <QEventLoop>
+#include <QtCore/QObject>
+#include <QtCore/QEventLoop>
 
-class KHTMLPart;
+#include <kio/thumbcreator.h>
+
+class KWebPage;
 
 class HTMLCreator : public QObject, public ThumbCreator
 {
@@ -37,13 +39,14 @@ public:
     virtual Flags flags() const;
 
 protected:
-    virtual void timerEvent(QTimerEvent *);
+    virtual void timerEvent (QTimerEvent*);
 
 private Q_SLOTS:
-    void slotCompleted();
+    void slotFinished(bool);
 
 private:
-    KHTMLPart *m_html;
+    bool m_loadedOk;
+    KWebPage *m_page;
     QEventLoop m_eventLoop;
 };
 
