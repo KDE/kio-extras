@@ -191,6 +191,7 @@ Comment[zh_CN]=配置 CGI KIO slave
 Comment[zh_TW]=設定 CGI KIO slave
 
 X-KDE-Keywords=CGI,KIO,Slave,Paths
+X-KDE-Keywords[ca]=CGI,KIO,Esclau,Camins
 X-KDE-Keywords[kk]=CGI,KIO,Slave,Paths
 X-KDE-Keywords[nl]=CGI,KIO,slave,paden
 X-KDE-Keywords[pt]=CGI,KIO,Slave,Localizações
