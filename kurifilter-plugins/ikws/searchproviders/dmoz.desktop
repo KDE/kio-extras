@@ -25,7 +25,7 @@ Name[eo]=Open Directory
 Name[es]=Directorio abierto
 Name[et]=Open Directory
 Name[eu]=Irekitako direktorioa
-Name[fa]=باز کردن فهرست راهنما
+Name[fa]=Open Directory
 Name[fi]=Open Directory
 Name[fr]=Open Directory
 Name[fy]=Iepen Directory
@@ -118,6 +118,7 @@ Query[eo]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[es]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[et]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[eu]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
+Query[fa]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[fi]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[fr]=http://search.dmoz.org/cgi-bin/search?search=\\{@}
 Query[fy]=http://search.dmoz.org/cgi-bin/search?search=\\{@}

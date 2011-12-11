@@ -23,6 +23,7 @@ Name[eo]=Multitran - Traduko inter la germana kaj la rusa
 Name[es]=Multitran - Traducción entre alemán y ruso
 Name[et]=Multitran - tõlkimine: saksa-vene
 Name[eu]=Multitran - Itzuli alemana eta errusieraren artean
+Name[fa]=Multitran - ترجمه بین آلمانی و روسی
 Name[fi]=Multitran – käännä saksasta venäjään
 Name[fr]=Multitran - Traduction allemand - russe
 Name[fy]=Multitran - Oersetting tusken Dútsk en Russysk
@@ -105,6 +106,7 @@ Query[eo]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
 Query[es]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
 Query[et]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
 Query[eu]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
+Query[fa]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
 Query[fi]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
 Query[fr]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}
 Query[fy]=http://multitran.ru/c/m.exe?l1=3&s=\\{@}

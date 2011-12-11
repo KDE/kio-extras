@@ -25,6 +25,7 @@ Name[eo]=Froogle
 Name[es]=Froogle
 Name[et]=Froogle
 Name[eu]=Froogle
+Name[fa]=Froogle
 Name[fi]=Froogle
 Name[fr]=Froogle
 Name[fy]=Froogle
@@ -116,6 +117,7 @@ Query[eo]=http://froogle.google.com/froogle?q=\\{@}
 Query[es]=http://froogle.google.com/froogle?q=\\{@}
 Query[et]=http://froogle.google.com/froogle?q=\\{@}
 Query[eu]=http://froogle.google.com/froogle?q=\\{@}
+Query[fa]=http://froogle.google.com/froogle?q=\\{@}
 Query[fi]=http://froogle.google.com/froogle?q=\\{@}
 Query[fr]=http://froogle.google.com/froogle?q=\\{@}
 Query[fy]=http://froogle.google.com/froogle?q=\\{@}

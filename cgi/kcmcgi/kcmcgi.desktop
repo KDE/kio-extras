@@ -192,7 +192,9 @@ Comment[zh_TW]=設定 CGI KIO slave
 
 X-KDE-Keywords=CGI,KIO,Slave,Paths
 X-KDE-Keywords[ca]=CGI,KIO,Esclau,Camins
+X-KDE-Keywords[fa]=CGI,KIO,Slave,Paths
 X-KDE-Keywords[kk]=CGI,KIO,Slave,Paths
+X-KDE-Keywords[nb]=CGI,KIO,Slave,stier
 X-KDE-Keywords[nl]=CGI,KIO,slave,paden
 X-KDE-Keywords[pt]=CGI,KIO,Slave,Localizações
 X-KDE-Keywords[pt_BR]=CGI,KIO,Slave,Localizações
@@ -200,3 +202,4 @@ X-KDE-Keywords[ro]=CGI,KIO,Slave,Căi
 X-KDE-Keywords[sv]=CGI,KIO,Slav,Sökvägar
 X-KDE-Keywords[uk]=CGI,KIO,Slave,Paths,допоміжний,підлеглий,шляхи
 X-KDE-Keywords[x-test]=xxCGI,KIO,Slave,Pathsxx
+X-KDE-Keywords[zh_TW]=CGI,KIO,Slave,Paths

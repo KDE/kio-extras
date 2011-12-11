@@ -112,6 +112,7 @@ Query[eo]=http://directory.fsf.org/search/?query=\\{@}
 Query[es]=http://directory.fsf.org/search/fsd-search.py?q=\\{@}
 Query[et]=http://directory.fsf.org/search/?query=\\{@}
 Query[eu]=http://directory.fsf.org/search/?query=\\{@}
+Query[fa]=http://directory.fsf.org/search/?query=\\{@}
 Query[fi]=http://directory.fsf.org/search/?query=\\{@}
 Query[fr]=http://directory.fsf.org/search/?query=\\{@}
 Query[fy]=http://directory.fsf.org/search/?query=\\{@}

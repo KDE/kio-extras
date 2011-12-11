@@ -25,6 +25,7 @@ Name[eo]=HyperDictionary.com
 Name[es]=HyperDictionary.com
 Name[et]=HyperDictionary.com
 Name[eu]=HyperDictionary.com
+Name[fa]=HyperDictionary.com
 Name[fi]=HyperDictionary.com
 Name[fr]=HyperDictionary.com
 Name[fy]=HyperDictionary.com
@@ -117,6 +118,7 @@ Query[eo]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[es]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[et]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[eu]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
+Query[fa]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[fi]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[fr]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[fy]=http://www.hyperdictionary.com/search.aspx?define=\\{@}

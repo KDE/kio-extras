@@ -23,6 +23,7 @@ Name[eo]=Multitran - Traduko inter la angla kaj la rusa
 Name[es]=Multitran - Traducción entre inglés y ruso
 Name[et]=Multitran - tõlkimine: inglise-vene
 Name[eu]=Multitran - itzuli ingelesa eta errusieraren artean
+Name[fa]=Multitran - Translate Between English and Russian
 Name[fi]=Multitran – käännä englannista venäjään
 Name[fr]=Multitran - Traduction anglais - russe
 Name[fy]=Multitran - Oersetting tusken Ingelsk en Russysk
@@ -105,6 +106,7 @@ Query[eo]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[es]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[et]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[eu]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
+Query[fa]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[fi]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[fr]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[fy]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}

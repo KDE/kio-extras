@@ -25,6 +25,7 @@ Name[eo]=Gracenote
 Name[es]=Gracenote
 Name[et]=Gracenote
 Name[eu]=Gracenote
+Name[fa]=Gracenote
 Name[fi]=Gracenote
 Name[fr]=Gracenote
 Name[fy]=Gracenote
@@ -116,6 +117,7 @@ Query[eo]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[es]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[et]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[eu]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
+Query[fa]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[fi]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[fr]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
 Query[fy]=http://www.gracenote.com/music/search-adv.html?q=\\{@}
