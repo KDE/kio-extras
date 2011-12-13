@@ -31,6 +31,7 @@ Name[km]=Baidu
 Name[kn]=ಬೈಡು
 Name[ko]=Baidu
 Name[lt]=Baidu
+Name[lv]=Baidu
 Name[mai]=बैडू
 Name[nb]=Baidu
 Name[nds]=Baidu
@@ -92,6 +93,7 @@ Query[km]=http://www.baidu.com/s?wd=\\{@}
 Query[kn]=http://www.baidu.com/s?wd=\\{@}
 Query[ko]=http://www.baidu.com/s?wd=\\{@}
 Query[lt]=http://www.baidu.com/s?wd=\\{@}
+Query[lv]=http://www.baidu.com/s?wd=\\{@}
 Query[mai]=http://www.baidu.com/s?wd=\\{@}
 Query[nb]=http://www.baidu.com/s?wd=\\{@}
 Query[nds]=http://www.baidu.com/s?wd=\\{@}
