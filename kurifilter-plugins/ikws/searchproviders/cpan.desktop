@@ -115,6 +115,7 @@ Query[eo]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,
 Query[es]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[et]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[eu]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
+Query[fa]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[fi]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[fr]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
 Query[fy]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}

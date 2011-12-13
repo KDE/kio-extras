@@ -25,6 +25,7 @@ Name[eo]=Altavista
 Name[es]=AltaVista
 Name[et]=Altavista
 Name[eu]=AltaVista
+Name[fa]=AltaVista
 Name[fi]=AltaVista
 Name[fr]=AltaVista
 Name[fy]=AltaVista
@@ -117,6 +118,7 @@ Query[eo]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[es]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[et]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[eu]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
+Query[fa]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[fi]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[fr]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}
 Query[fy]=http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=\\{@}

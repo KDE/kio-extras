@@ -18,6 +18,7 @@ Name[en_GB]=KDE UserBase
 Name[es]=KDE UserBase
 Name[et]=KDE UserBase
 Name[eu]=KDE UserBase
+Name[fa]=KDE UserBase
 Name[fi]=KDE:n UserBase
 Name[fr]=Centre utilisateur de KDE
 Name[ga]=KDE UserBase
@@ -82,6 +83,7 @@ Query[en_GB]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[es]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[et]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[eu]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[fa]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[fi]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[fr]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ga]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

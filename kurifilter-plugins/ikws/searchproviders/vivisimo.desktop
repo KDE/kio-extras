@@ -25,6 +25,7 @@ Name[eo]=Vivisimo
 Name[es]=Vivisimo
 Name[et]=Vivisimo
 Name[eu]=Vivisimo
+Name[fa]=Vivisimo
 Name[fi]=Vivisimo
 Name[fr]=Vivisimo
 Name[fy]=Vivisimo
@@ -117,6 +118,7 @@ Query[eo]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFa
 Query[es]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[et]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[eu]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
+Query[fa]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[fi]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[fr]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[fy]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16

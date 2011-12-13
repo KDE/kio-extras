@@ -25,6 +25,7 @@ Name[eo]=AustroNaut
 Name[es]=AustroNaut
 Name[et]=AustroNaut
 Name[eu]=AustroNaut
+Name[fa]=AustroNaut
 Name[fi]=AustroNaut
 Name[fr]=AustroNaut
 Name[fy]=AustroNaut
@@ -116,6 +117,7 @@ Query[eo]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[es]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[et]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[eu]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
+Query[fa]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[fi]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[fr]=http://austronaut.at/page.php?begriff=\\{@}&wo=at
 Query[fy]=http://austronaut.at/page.php?begriff=\\{@}&wo=at

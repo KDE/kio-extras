@@ -112,6 +112,7 @@ Query[eo]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSea
 Query[es]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[et]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[eu]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
+Query[fa]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[fi]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[fr]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[fy]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search

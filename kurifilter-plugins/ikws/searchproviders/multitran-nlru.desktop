@@ -23,6 +23,7 @@ Name[eo]=Multitran - Traduko inter la nederlanda kaj la rusa
 Name[es]=Multitran - Traducción entre danés y ruso
 Name[et]=Multitran - tõlkimine: hollandi-vene
 Name[eu]=Multitran - itzuli holandera eta errusieraren artean
+Name[fa]=Multitran - Translate Between Dutch and Russian
 Name[fi]=Multitran – käännä hollannista venäjään
 Name[fr]=Multitran - Traduction néerlandais - russe
 Name[fy]=Multitran - Oersetting tusken Nederlâns en Russysk
@@ -105,6 +106,7 @@ Query[eo]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[es]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[et]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[eu]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
+Query[fa]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[fi]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[fr]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[fy]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
