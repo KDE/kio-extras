@@ -26,7 +26,7 @@ Name[es]=Wikipedia - La enciclopedia libre
 Name[et]=Wikipedia - Vaba entsüklopeedia
 Name[eu]=Wikipedia - Entziklopedia librea
 Name[fa]=Wikipedia - دایره‌المعارف آزاد
-Name[fi]=Wikipedia - Vapaa tietosanakirja
+Name[fi]=Wikipedia, vapaa tietosanakirja
 Name[fr]=Wikipédia - L'encyclopédie libre
 Name[fy]=Wikipedia - de frije ensyklopedy
 Name[ga]=Vicipéid - An Chiclipéid Shaor
@@ -116,6 +116,7 @@ Query[eo]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[es]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[et]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[eu]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[fa]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fi]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=http://fr.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fy]=http://fy.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

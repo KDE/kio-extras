@@ -25,6 +25,7 @@ Name[eo]=Katatudo
 Name[es]=KataTudo
 Name[et]=KataTudo
 Name[eu]=Kata Tudo
+Name[fa]=KataTudo
 Name[fi]=KataTudo
 Name[fr]=KataTudo
 Name[fy]=KataTudo
@@ -116,6 +117,7 @@ Query[eo]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[es]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[et]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[eu]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
+Query[fa]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[fi]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[fr]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[fy]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar

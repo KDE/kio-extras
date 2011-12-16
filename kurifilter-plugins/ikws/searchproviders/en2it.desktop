@@ -27,7 +27,7 @@ Name[es]=WordReference.com Traducción: inglés a italiano
 Name[et]=WordReference.com tõlkimine: inglise->itaalia
 Name[eu]=WordReference.com Itzulpena: ingelesetik italierara
 Name[fa]=ترجمه WordReference.com: انگلیسی به ایتالیایی
-Name[fi]=WordReference.com-käännös: englannista italiaksi
+Name[fi]=WordReference.com-käännös englannista italiaksi
 Name[fr]=Traduction sur WordReference.com : anglais en italien
 Name[fy]=WordReference.com-oersetting: Ingelsk nei Italiaansk
 Name[ga]=Aistriúchán WordReference.com: Béarla go hIodáilis
@@ -114,6 +114,7 @@ Query[eo]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[es]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[et]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[eu]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
+Query[fa]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[fi]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[fr]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[fy]=http://www.wordreference.com/it/translation.asp?enit=\\{@}

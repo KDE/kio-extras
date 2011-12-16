@@ -18,7 +18,8 @@ Name[en_GB]=Yahoo Shopping
 Name[es]=Yahoo Compras
 Name[et]=Yahoo Shopping
 Name[eu]=Yahoo Shopping
-Name[fi]=Yahoo Ostokset
+Name[fa]=Yahoo خرید
+Name[fi]=Yahoo tuotehaku
 Name[fr]=Yahoo Shopping
 Name[ga]=Siopadóireacht Yahoo
 Name[gu]=યાહુ ખરીદી
@@ -81,6 +82,7 @@ Query[en_GB]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu
 Query[es]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[et]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[eu]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
+Query[fa]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[fi]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[fr]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701
 Query[ga]=http://shopping.yahoo.com/search;_ylt=A0SO8ZgG65ZLyX8AsLX7w8QF;_ylu=X3oDMTBpcjIxMDllBHNlYwN0YWJzBHZ0aWQDVjEwOQ--?cop=mss&ei=UTF-8&p=\\{@}&fr2=tab-video&fr=yfp-t-701

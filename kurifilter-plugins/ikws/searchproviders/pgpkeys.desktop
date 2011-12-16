@@ -115,6 +115,7 @@ Query[eo]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[es]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[et]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[eu]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query[fa]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[fi]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[fr]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[fy]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex

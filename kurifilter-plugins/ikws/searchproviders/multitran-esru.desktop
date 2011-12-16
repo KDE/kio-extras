@@ -23,7 +23,8 @@ Name[eo]=Multitran - Traduko inter la hispana kaj la rusa
 Name[es]=Multitran - Traducción entre español y ruso
 Name[et]=Multitran - tõlkimine: hispaania-vene
 Name[eu]=Multitran - itzuli gaztelera eta errusieraren artean
-Name[fi]=Multitran - Käännä tekstiä espanjan ja venäjän välillä
+Name[fa]=Multitran - Translate Between Spanish and Russian
+Name[fi]=Multitran – käännä espanjasta venäjään
 Name[fr]=Multitran - Traduction espagnol - russe
 Name[fy]=Multitran - Oersetting tusken Spaansk en Russysk
 Name[ga]=Multitran - Aistriúchán idir Spáinnis agus Rúisis
@@ -105,6 +106,7 @@ Query[eo]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[es]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[et]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[eu]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
+Query[fa]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[fi]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[fr]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[fy]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}

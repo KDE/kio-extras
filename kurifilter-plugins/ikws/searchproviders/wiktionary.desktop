@@ -25,7 +25,7 @@ Name[es]=Wiktionary - El diccionario libre
 Name[et]=Wiktionary - Vaba sõnaraamat
 Name[eu]=Wiktionary - Hiztegi librea
 Name[fa]=Wiktionary - واژه‌نامه آزاد
-Name[fi]=Wiktionary - Vapaa sanakirja
+Name[fi]=Wikisanakirja, vapaa sanakirja
 Name[fr]=Wiktionary - Le dictionnaire libre
 Name[fy]=Wiktionary - It frije wurdboek
 Name[ga]=Vicífhoclóir - An Foclóir Saor
@@ -114,6 +114,7 @@ Query[eo]=http://eo.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[es]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[et]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[eu]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[fa]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fi]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=http://fr.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fy]=http://fy.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

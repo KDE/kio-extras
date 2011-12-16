@@ -25,7 +25,7 @@ Name[es]=Diccionario de computación en línea y gratuito
 Name[et]=Vaba arvutialane võrgusõnastik
 Name[eu]=Konputazioari buruzko lineako hiztegi librea
 Name[fa]=واژه‌نامه برخط رایگان محاسبات
-Name[fi]=Vapaa tietokonealan sanasto
+Name[fi]=Free On-Line Dictionary of Computing
 Name[fr]=Dictionnaire gratuit et en ligne de l'informatique
 Name[fy]=Free On-Line Dictionary Of Computing (IT-wurdboek)
 Name[ga]=Free On-Line Dictionary of Computing
@@ -116,6 +116,7 @@ Query[eo]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[es]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[et]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[eu]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
+Query[fa]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[fi]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[fr]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}
 Query[fy]=http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=\\{@}

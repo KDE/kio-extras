@@ -25,7 +25,7 @@ Name[es]=Google (Voy a tener suerte)
 Name[et]=Google (Ehk veab)
 Name[eu]=Google (Zorte onean nago)
 Name[fa]=گوگل )یا شانس و یا اقبال(
-Name[fi]=Google (Kokeile onneasi)
+Name[fi]=Google (kokeilen onneani)
 Name[fr]=Google (J'ai de la chance)
 Name[fy]=Google (Ik doch in gok)
 Name[ga]=Google (Tá an t-ádh orm inniu)
@@ -117,6 +117,7 @@ Query[eo]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8
 Query[es]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[et]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[eu]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
+Query[fa]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[fi]=http://www.google.fi/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[fr]=http://www.google.fr/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[fy]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8

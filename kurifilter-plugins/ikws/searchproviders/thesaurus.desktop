@@ -26,7 +26,7 @@ Name[es]=Sinónimos Merriam-Webster
 Name[et]=Merriam-Websteri tesaurus
 Name[eu]=Merriam-Webster thesaurus-a
 Name[fa]=فرهنگ جامع Merriam-Webster
-Name[fi]=Merriam-Webster-synonyymit
+Name[fi]=Merriam–Webster-synonyymit
 Name[fr]=Thésaurus Merriam-Webster
 Name[fy]=Merriam-Webster Thesaurus
 Name[ga]=Teasáras Merriam-Webster
@@ -116,6 +116,7 @@ Query[eo]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[es]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[et]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[eu]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
+Query[fa]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[fi]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[fr]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[fy]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}

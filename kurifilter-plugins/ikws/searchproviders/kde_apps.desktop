@@ -25,7 +25,7 @@ Name[es]=Búsqueda de aplicaciones de KDE
 Name[et]=KDE rakenduste otsing
 Name[eu]=KDEren aplikazio bilaketa
 Name[fa]=جستجوی کاربرد KDE
-Name[fi]=KDE-sovellusten haku
+Name[fi]=KDE App -haku
 Name[fr]=Chercher dans les applications de KDE
 Name[fy]=Programma's sykje
 Name[ga]=Cuardach Feidhmchláir KDE
@@ -117,6 +117,7 @@ Query[eo]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[es]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[et]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[eu]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
+Query[fa]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[fi]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[fr]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[fy]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}

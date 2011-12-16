@@ -25,6 +25,7 @@ Name[eo]=Freshmeat
 Name[es]=Freshmeat
 Name[et]=Freshmeat
 Name[eu]=Freshmeat
+Name[fa]=Freshmeat
 Name[fi]=Freshmeat
 Name[fr]=Freshmeat
 Name[fy]=Freshmeat
@@ -117,6 +118,7 @@ Query[eo]=http://freshmeat.net/search/?q=\\{@}
 Query[es]=http://freshmeat.net/search/?q=\\{@}
 Query[et]=http://freshmeat.net/search/?q=\\{@}
 Query[eu]=http://freshmeat.net/search/?q=\\{@}
+Query[fa]=http://freshmeat.net/search/?q=\\{@}
 Query[fi]=http://freshmeat.net/search/?q=\\{@}
 Query[fr]=http://freshmeat.net/search/?q=\\{@}
 Query[fy]=http://freshmeat.net/search/?q=\\{@}

@@ -18,6 +18,7 @@ Name[eo]=Ethicle
 Name[es]=Ethicle
 Name[et]=Ethicle
 Name[eu]=Ethicle
+Name[fa]=Ethicle
 Name[fi]=Ethicle
 Name[fr]=Ethicle
 Name[fy]=Ethicle
@@ -88,6 +89,7 @@ Query[eo]=http://www.ethicle.com/search.php?q=\\{@}
 Query[es]=http://www.ethicle.com/search.php?q=\\{@}
 Query[et]=http://www.ethicle.com/search.php?q=\\{@}
 Query[eu]=http://www.ethicle.com/search.php?q=\\{@}
+Query[fa]=http://www.ethicle.com/search.php?q=\\{@}
 Query[fi]=http://www.ethicle.com/search.php?q=\\{@}
 Query[fr]=http://www.ethicle.com/search.php?q=\\{@}
 Query[fy]=http://www.ethicle.com/search.php?q=\\{@}

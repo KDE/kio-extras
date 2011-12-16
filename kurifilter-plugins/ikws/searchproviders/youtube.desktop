@@ -16,6 +16,7 @@ Name[en_GB]=YouTube
 Name[es]=YouTube
 Name[et]=YouTube
 Name[eu]=YouTube
+Name[fa]=YouTube
 Name[fi]=YouTube
 Name[fr]=YouTube
 Name[ga]=YouTube
@@ -80,6 +81,7 @@ Query[en_GB]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[es]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[et]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[eu]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[fa]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[fi]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[fr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ga]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

@@ -27,7 +27,7 @@ Name[es]=WordReference.com Traducción: inglés a francés
 Name[et]=WordReference.com tõlkimine: inglise->prantsuse
 Name[eu]=WordReference.com Itzulpena: ingelesetik frantsesera
 Name[fa]=ترجمه WordReference.com: انگلیسی به فرانسوی
-Name[fi]=WordReference.com-käännös: englannista ranskaksi
+Name[fi]=WordReference.com-käännös englannista ranskaksi
 Name[fr]=Traduction sur WordReference.com : anglais en français
 Name[fy]=WordReference.com-oersetting: Ingelsk nei Frânsk
 Name[ga]=Aistriúchán WordReference.com: Béarla go Fraincis
@@ -114,6 +114,7 @@ Query[eo]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[es]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[et]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[eu]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
+Query[fa]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[fi]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[fr]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[fy]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}

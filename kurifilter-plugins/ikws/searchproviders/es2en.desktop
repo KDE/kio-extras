@@ -27,7 +27,7 @@ Name[es]=WordReference.com Traducción: español a inglés
 Name[et]=WordReference.com tõlkimine: hispaania->inglise
 Name[eu]=WordReference.com Itzulpena: gazteleratik ingelesera
 Name[fa]=ترجمه WordReference.com: اسپانیایی به انگلیسی
-Name[fi]=WordReference.com-käännös: espanjasta englanniksi
+Name[fi]=WordReference.com-käännös espanjasta englanniksi
 Name[fr]=Traduction sur WordReference.com : espagnol en anglais
 Name[fy]=WordReference.com-oersetting: Spaansk nei Ingelsk
 Name[ga]=WordReference.com Aistriúchán: Spáinnis go Béarla
@@ -114,6 +114,7 @@ Query[eo]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[es]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[et]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[eu]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
+Query[fa]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[fi]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[fr]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}
 Query[fy]=http://www.wordreference.com/es/en/translation.asp?spen=\\{@}

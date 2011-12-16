@@ -26,7 +26,7 @@ Name[es]=CiteSeer: Biblioteca digital de literatura científica
 Name[et]=CiteSeer: Teaduskirjanduse digitaalraamatukogu
 Name[eu]=CiteSeer: Zientzia-literatur liburutegi digitala 
 Name[fa]=CiteSeer: کتابخانه رقمی ادبیات علمی
-Name[fi]=CiteSeer: Tieteellisten tekstien digitaalinen kirjasto
+Name[fi]=CiteSeer: tieteellisten tekstien digitaalinen kirjasto
 Name[fr]=CiteSeer : bibliothèque numérique de littérature scientifique
 Name[fy]=CiteSeer: Scientific Literature Digital Library
 Name[ga]=CiteSeer: Leabharlann Dhigiteach den Litríocht Eolaíochta
@@ -115,6 +115,7 @@ Query[eo]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[es]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[et]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[eu]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
+Query[fa]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[fi]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[fr]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[fy]=http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
