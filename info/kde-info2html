@@ -60,7 +60,8 @@ require $config_file;  #-- configuration settings
 
 my $STYLESHEET_KDE =
    qq(<link rel="stylesheet" href="help:common/kde-default.css" type="text/css"/>
-     <link rel="stylesheet" href="file://$css_file" type="text/css"/>);
+      <link rel="stylesheet" href="file://$css_file" type="text/css"/>
+      <style type="text/css"><!-- .chapter { padding-right: 1em } --></style>);
 my $LOGO_KDE = "<img src=\"help:/common/kde_logo.png\" alt=\"KDE - The K Desktop Environment\" width=\"296\" height=\"79\" border=\"0\">";
 
 # the use of a query should make sure it never conflicts with a "real" path
