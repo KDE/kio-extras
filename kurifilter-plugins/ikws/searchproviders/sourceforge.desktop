@@ -88,8 +88,8 @@ Name[uz]=SourceForge
 Name[uz@cyrillic]=SourceForge
 Name[vi]=Tra SourceForge
 Name[wa]=SourceForge
-Name[x-test]=xxSourceForgexx
 Name[xh]=SourceForge
+Name[x-test]=xxSourceForgexx
 Name[zh_CN]=SourceForge
 Name[zh_TW]=SourceForge
 Query=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
