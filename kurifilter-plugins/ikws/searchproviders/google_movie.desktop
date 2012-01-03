@@ -175,6 +175,7 @@ Query[ug]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[uk]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[uz]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[uz@cyrillic]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[vi]=http://www.google.com.vn/search?q=movie:\{@}&ie=UTF-8&oe=UTF-8
 Query[wa]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8xx
 Query[zh_CN]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8

@@ -63,6 +63,7 @@ Name[th]=Wikia
 Name[tr]=Wikia
 Name[ug]=Wikia
 Name[uk]=Wikia
+Name[vi]=Wikia
 Name[wa]=Wikia
 Name[x-test]=xxWikiaxx
 Name[zh_CN]=Wikia
@@ -128,6 +129,7 @@ Query[th]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=S
 Query[tr]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[ug]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[uk]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
+Query[vi]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[wa]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search
 Query[x-test]=xxhttp://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Searchxx
 Query[zh_CN]=http://www.wikia.com/Special:Search?search=\\{@}&wikia_search_submit=Search

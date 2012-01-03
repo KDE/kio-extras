@@ -62,6 +62,7 @@ Name[th]=ช้อปปิ้งของ Duck Duck Go
 Name[tr]=Duck Duck Go Alışveriş
 Name[ug]=Duck Duck Go ئېلىم-سېتىم
 Name[uk]=Duck Duck Go Shopping
+Name[vi]=Duck Duck Go Mua Bán
 Name[wa]=Duck Duck Go Botikes
 Name[x-test]=xxDuck Duck Go Shoppingxx
 Name[zh_CN]=Duck Duck Go 购物
@@ -127,6 +128,7 @@ Query[th]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ug]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[vi]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[wa]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=sxx
 Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=s

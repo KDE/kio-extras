@@ -176,6 +176,7 @@ Query[ug]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[uk]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[uz]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[uz@cyrillic]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
+Query[vi]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[wa]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[x-test]=xxhttp://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}xx
 Query[zh_CN]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}

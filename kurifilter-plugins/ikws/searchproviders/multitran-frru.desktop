@@ -79,6 +79,7 @@ Name[ug]=Multitran - فىرانسۇزچە بىلەن رۇسچە ئارىسىدا
 Name[uk]=Multitran — переклад з французької німецькою
 Name[uz]=Multitran - Fransuzchadan Ruschaga tarjima
 Name[uz@cyrillic]=Multitran - Французчадан Русчага таржима
+Name[vi]=Multitran - Dịch giữa tiếng Pháp và tiếng Nga
 Name[wa]=Multitran - Ratoûne inte li Francès eyet l' Russe
 Name[x-test]=xxMultitran - Translate Between French and Russianxx
 Name[zh_CN]=Multitran - 在法语和俄语之间互译
@@ -162,6 +163,7 @@ Query[ug]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[uk]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[uz]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[uz@cyrillic]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
+Query[vi]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[wa]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}
 Query[x-test]=xxhttp://multitran.ru/c/m.exe?l1=4&s=\\{@}xx
 Query[zh_CN]=http://multitran.ru/c/m.exe?l1=4&s=\\{@}

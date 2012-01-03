@@ -63,6 +63,7 @@ Name[th]=Blip.tv
 Name[tr]=Blip.tv
 Name[ug]=Blip.tv
 Name[uk]=Blip.tv
+Name[vi]=Blip.tv
 Name[wa]=Blip.tv
 Name[x-test]=xxBlip.tvxx
 Name[zh_CN]=Blip.tv
@@ -128,6 +129,7 @@ Query[th]=http://blip.tv/search?q=\\{@}
 Query[tr]=http://blip.tv/search?q=\\{@}
 Query[ug]=http://blip.tv/search?q=\\{@}
 Query[uk]=http://blip.tv/search?q=\\{@}
+Query[vi]=http://blip.tv/search?q=\\{@}
 Query[wa]=http://blip.tv/search?q=\\{@}
 Query[x-test]=xxhttp://blip.tv/search?q=\\{@}xx
 Query[zh_CN]=http://blip.tv/search?q=\\{@}

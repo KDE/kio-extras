@@ -62,6 +62,7 @@ Name[th]=พจนานุกรม Urban
 Name[tr]=Urban Dictionary
 Name[ug]=Urban لۇغىتى
 Name[uk]=Urban Dictionary
+Name[vi]=Urban Dictionary
 Name[wa]=Urban Dictionary
 Name[x-test]=xxUrban Dictionaryxx
 Name[zh_CN]=都市词典
@@ -127,6 +128,7 @@ Query[th]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[tr]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ug]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[vi]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[wa]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[x-test]=xxhttp://www.urbandictionary.com/define.php?term=\\{@}xx
 Query[zh_CN]=http://www.urbandictionary.com/define.php?term=\\{@}

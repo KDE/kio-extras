@@ -65,6 +65,7 @@ Name[th]=บริการค้นหา Ethicle
 Name[tr]=Ethicle
 Name[ug]=Ethicle
 Name[uk]=Ethicle
+Name[vi]=Ethicle
 Name[wa]=Ethicle
 Name[x-test]=xxEthiclexx
 Name[zh_CN]=Ethicle
@@ -136,6 +137,7 @@ Query[th]=http://www.ethicle.com/search.php?q=\\{@}
 Query[tr]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ug]=http://www.ethicle.com/search.php?q=\\{@}
 Query[uk]=http://www.ethicle.com/search.php?q=\\{@}
+Query[vi]=http://www.ethicle.com/search.php?q=\\{@}
 Query[wa]=http://www.ethicle.com/search.php?q=\\{@}
 Query[x-test]=xxhttp://www.ethicle.com/search.php?q=\\{@}xx
 Query[zh_CN]=http://www.ethicle.com/search.php?q=\\{@}

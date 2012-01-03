@@ -63,6 +63,7 @@ Name[th]=กลุ่มต่าง ๆ ของ Identi.ca
 Name[tr]=Identi.ca Grupları
 Name[ug]=Identi.ca گۇرۇپپىلار
 Name[uk]=Групи Identi.ca
+Name[vi]=Identi.ca Nhóm
 Name[wa]=Identi.ca Groupes
 Name[x-test]=xxIdenti.ca Groupsxx
 Name[zh_CN]=Identi.ca 群组
@@ -128,6 +129,7 @@ Query[th]=http://identi.ca/search/group?q=\\{@}
 Query[tr]=http://identi.ca/search/group?q=\\{@}
 Query[ug]=http://identi.ca/search/group?q=\\{@}
 Query[uk]=http://identi.ca/search/group?q=\\{@}
+Query[vi]=http://identi.ca/search/group?q=\\{@}
 Query[wa]=http://identi.ca/search/group?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/group?q=\\{@}xx
 Query[zh_CN]=http://identi.ca/search/group?q=\\{@}

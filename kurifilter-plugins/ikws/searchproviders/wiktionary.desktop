@@ -84,7 +84,7 @@ Name[ug]=Wiktionary - ھەقسىز لۇغەت
 Name[uk]=Вікісловник — вільний словник
 Name[uz]=Wiktionary - Erkin lugʻat
 Name[uz@cyrillic]=Wiktionary - Эркин луғат
-Name[vi]=Wiktionary - Từ điển Tự do
+Name[vi]=Wiktionary - Từ điển tự do
 Name[wa]=L' esplicant motî do walon so Wikipedia
 Name[x-test]=xxWiktionary - The Free Dictionaryxx
 Name[zh_CN]=维基字典 - 免费的字典
@@ -173,6 +173,7 @@ Query[ug]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=http://uk.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uz@cyrillic]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[vi]=http://vi.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[wa]=http://wa.wikipedia.org/wiki/Motî:\{@}
 Query[x-test]=xxhttp://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Goxx
 Query[zh_CN]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

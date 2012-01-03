@@ -59,6 +59,7 @@ Name[tg]=Офариниши суратҳои Flickr
 Name[tr]=Flickr Creative Commons
 Name[ug]=Flickr ئاممىۋى ئىجادىيەت
 Name[uk]=Flickr Creative Commons
+Name[vi]=Flickr Creative Commons
 Name[wa]=Flickr Creative Commons
 Name[x-test]=xxFlickr Creative Commonsxx
 Name[zh_CN]=Flickr 公用创作物
@@ -124,6 +125,7 @@ Query[th]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[tr]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ug]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[uk]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[vi]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[wa]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1xx
 Query[zh_CN]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

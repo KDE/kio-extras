@@ -79,6 +79,7 @@ Name[ug]=Multitran - ئىنگلىزچە بىلەن رۇسچە ئارىسىدا �
 Name[uk]=Multitran — переклад з англійської російською
 Name[uz]=Multitran - Inglizchadan Ruschaga tarjima
 Name[uz@cyrillic]=Multitran - Инглизчадан Русчага таржима
+Name[vi]=Multitran - Dịch giữa tiếng Anh và tiếng Nga
 Name[wa]=Multitran - Ratoûne inte l' Inglès eyet l' Russe
 Name[x-test]=xxMultitran - Translate Between English and Russianxx
 Name[zh_CN]=Multitran - 在英语和俄语之间互译
@@ -162,6 +163,7 @@ Query[ug]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[uk]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[uz]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[uz@cyrillic]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
+Query[vi]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[wa]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}
 Query[x-test]=xxhttp://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}xx
 Query[zh_CN]=http://multitran.ru/c/m.exe?l1=1&l2=2&s=\\{@}

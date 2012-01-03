@@ -62,6 +62,7 @@ Name[th]=การแจ้ง Identi.ca
 Name[tr]=Identi.ca Bildirimleri
 Name[ug]=Identi.ca ئۇقتۇرۇشلار
 Name[uk]=Нотатки Identi.ca
+Name[vi]=Identi.ca Chú ý
 Name[wa]=Identi.ca Notices
 Name[x-test]=xxIdenti.ca Noticesxx
 Name[zh_CN]=Identi.ca 通知
@@ -127,6 +128,7 @@ Query[th]=http://identi.ca/search/notice?q=\\{@}
 Query[tr]=http://identi.ca/search/notice?q=\\{@}
 Query[ug]=http://identi.ca/search/notice?q=\\{@}
 Query[uk]=http://identi.ca/search/notice?q=\\{@}
+Query[vi]=http://identi.ca/search/notice?q=\\{@}
 Query[wa]=http://identi.ca/search/notice?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/notice?q=\\{@}xx
 Query[zh_CN]=http://identi.ca/search/notice?q=\\{@}

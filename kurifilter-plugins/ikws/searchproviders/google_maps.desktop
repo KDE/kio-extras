@@ -60,6 +60,7 @@ Name[th]=ดูแผนที่ต่าง ๆ ด้วยกูเกิล
 Name[tr]=Google Maps
 Name[ug]=Google خەرىتە
 Name[uk]=Карти Google
+Name[vi]=Google Bản Đồ
 Name[wa]=Google Mapes
 Name[x-test]=xxGoogle Mapsxx
 Name[zh_CN]=Google 地图
@@ -126,6 +127,7 @@ Query[th]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[tr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ug]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[uk]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[vi]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[wa]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[x-test]=xxhttp://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addrxx
 Query[zh_CN]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

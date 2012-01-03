@@ -61,6 +61,7 @@ Name[th]=บริการวีดิโอผ่าน YouTube
 Name[tr]=YouTube
 Name[ug]=YouTube
 Name[uk]=YouTube
+Name[vi]=YouTube
 Name[wa]=YouTube
 Name[x-test]=xxYouTubexx
 Name[zh_CN]=YouTube
@@ -125,6 +126,7 @@ Query[th]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[tr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ug]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[uk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[vi]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[wa]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[x-test]=xxhttp://www.youtube.com/results?search_query=\\{@}&search_type=&aq=fxx
 Query[zh_CN]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
