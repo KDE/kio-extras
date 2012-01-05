@@ -57,6 +57,11 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
 
     if (KUriFilter::self()->filterUri(*filterData, list))
     {
+        if ( expectedUriType == NO_FILTERING ) {
+            kError() << u << "Did not expect filtering. Got" << filterData->uri();
+            QVERIFY( expectedUriType != NO_FILTERING ); // fail the test
+        }
+
         // Copied from minicli...
         QString cmd;
         KUrl uri = filterData->uri();
@@ -108,7 +113,10 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
             // Hack for other locales than english, normalize google hosts to google.com
             cmd = cmd.replace( QRegExp( "www\\.google\\.[^/]*/" ), "www.google.com/" );
             QString expected = QString::fromUtf8( expectedResult );
-            QCOMPARE( cmd, expected );
+            if (cmd != expected) {
+                kError() << u;
+                QCOMPARE( cmd, expected );
+            }
         }
     }
     else
