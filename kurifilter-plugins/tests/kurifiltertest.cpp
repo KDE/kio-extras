@@ -97,10 +97,10 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
 
         if ( expectedUriType != -1 && expectedUriType != filterData->uriType() )
         {
+            kError() << u << "Got URI type" << s_uritypes[filterData->uriType()]
+                      << "expected" << s_uritypes[expectedUriType];
             QCOMPARE( s_uritypes[filterData->uriType()],
                       s_uritypes[expectedUriType] );
-            kError() << " Got URI type " << s_uritypes[filterData->uriType()]
-                      << " expected " << s_uritypes[expectedUriType] << endl;
         }
 
         if ( expectedResult )
@@ -198,7 +198,8 @@ void KUriFilterTest::localFiles()
 {
     filter( "/", "/", KUriFilterData::LocalDir );
     filter( "/", "/", KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) );
-    filter( "~/.bashrc", QDir::homePath().toLocal8Bit()+"/.bashrc", KUriFilterData::LocalFile, QStringList( "kshorturifilter" ) );
+    if (QFile::exists(QDir::homePath() + QLatin1String("/.bashrc")))
+        filter( "~/.bashrc", QDir::homePath().toLocal8Bit()+"/.bashrc", KUriFilterData::LocalFile, QStringList( "kshorturifilter" ) );
     filter( "~", QDir::homePath().toLocal8Bit(), KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), "/tmp" );
     filter( "~foobar", 0, KUriFilterData::Error, QStringList( "kshorturifilter" ) );
 
