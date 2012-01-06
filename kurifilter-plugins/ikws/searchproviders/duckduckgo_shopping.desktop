@@ -21,6 +21,7 @@ Name[fa]=خرید Duck Duck Go
 Name[fi]=Duck Duck Go -tuotehaku
 Name[fr]=Duck Duck Go Shopping
 Name[ga]=Siopadóireacht Duck Duck Go
+Name[gl]=Compras en Duck Duck Go
 Name[gu]=ડક ડક ગો ખરીદી
 Name[he]=Duck Duck Go Shopping
 Name[hi]=बतख़ जा जा खरीदारी
@@ -87,6 +88,7 @@ Query[fa]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[fi]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ga]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[gl]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[he]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[hi]=http://duckduckgo.com/?q=\\{@}&v=s

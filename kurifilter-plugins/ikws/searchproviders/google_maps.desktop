@@ -20,6 +20,7 @@ Name[fa]=نقشه‌های گوگل
 Name[fi]=Google Maps (kartat)
 Name[fr]=Google cartes
 Name[ga]=Mapaí Google
+Name[gl]=Google Maps
 Name[gu]=ગુગલ નકશાઓ
 Name[he]=Google מפות
 Name[hi]=गूगल मानचित्र
@@ -87,6 +88,7 @@ Query[fa]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[fi]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[fr]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ga]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[gl]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[gu]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[he]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[hi]=http://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

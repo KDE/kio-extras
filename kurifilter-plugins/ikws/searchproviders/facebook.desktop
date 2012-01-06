@@ -22,6 +22,7 @@ Name[fa]=فیس‌بوک
 Name[fi]=Facebook
 Name[fr]=Facebook
 Name[ga]=Facebook
+Name[gl]=Facebook
 Name[gu]=ફેસબુક
 Name[he]=Facebook
 Name[hi]=फेसबुक
@@ -88,6 +89,7 @@ Query[fa]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[fi]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[fr]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ga]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[gl]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[gu]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[he]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[hi]=http://www.facebook.com/search/?q=\\{@}&init=quick

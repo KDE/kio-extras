@@ -22,6 +22,7 @@ Name[fa]=Directory Watcher
 Name[fi]=7Digital
 Name[fr]=7Digital
 Name[ga]=7Digital
+Name[gl]=7Digital
 Name[gu]=૭ ડિજીટલ
 Name[he]=7Digital
 Name[hi]=7Digital
@@ -88,6 +89,7 @@ Query[fa]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[fi]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[fr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ga]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[gl]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[gu]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[he]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[hi]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

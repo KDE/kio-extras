@@ -22,6 +22,7 @@ Name[fa]=گروههای Identi.ca
 Name[fi]=Identi.ca-ryhmähaku
 Name[fr]=Groupes Identi.ca
 Name[ga]=Grúpaí Identi.ca
+Name[gl]=Grupos de Identi.ca
 Name[gu]=આઈડેન્ટિ.કા સમૂહો
 Name[he]=Identi.ca Groups
 Name[hi]=Identi.ca समूह
@@ -88,6 +89,7 @@ Query[fa]=http://identi.ca/search/group?q=\\{@}
 Query[fi]=http://identi.ca/search/group?q=\\{@}
 Query[fr]=http://identi.ca/search/group?q=\\{@}
 Query[ga]=http://identi.ca/search/group?q=\\{@}
+Query[gl]=http://identi.ca/search/group?q=\\{@}
 Query[gu]=http://identi.ca/search/group?q=\\{@}
 Query[he]=http://identi.ca/search/group?q=\\{@}
 Query[hi]=http://identi.ca/search/group?q=\\{@}
