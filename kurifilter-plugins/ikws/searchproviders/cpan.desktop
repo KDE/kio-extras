@@ -92,5 +92,14 @@ Name[x-test]=xxCPAN - Comprehensive Perl Archive Networkxx
 Name[zh_CN]=CPAN - 综合性 Perl 档案网络
 Name[zh_TW]=CPAN - 全面的 Perl 收集網路
 Query=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[ca]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[ga]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[kk]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[nl]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[pt]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[pt_BR]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[sv]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[uk]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[x-test]=xxhttp://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
