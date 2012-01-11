@@ -95,6 +95,7 @@ Query=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ca]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ca@valencia]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[da]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[et]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[fi]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ga]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[gl]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
