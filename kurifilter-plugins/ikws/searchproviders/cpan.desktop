@@ -96,6 +96,7 @@ Query[ca]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ca@valencia]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[cs]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[da]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[de]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[es]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[et]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[fi]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
@@ -108,6 +109,7 @@ Query[kk]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[km]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[nl]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[pa]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[pl]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[pt]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[pt_BR]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ro]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}

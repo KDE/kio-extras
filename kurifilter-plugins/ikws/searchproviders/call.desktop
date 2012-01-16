@@ -120,12 +120,17 @@ Query[nb]=http://www.qrz.com/s?wd=\\{@}
 Query[nds]=http://www.qrz.com/db/\\{@}
 Query[nl]=http://www.qrz.com/db/\\{@}
 Query[pa]=http://www.qrz.com/db/\\{@}
+Query[pl]=http://www.qrz.com/db/\\{@}
 Query[pt]=http://www.qrz.com/db/\\{@}
 Query[pt_BR]=http://www.qrz.com/db/\\{@}
 Query[ro]=http://www.qrz.com/db/\\{@}
 Query[ru]=http://www.qrz.com/db/\\{@}
 Query[sk]=http://www.qrz.com/db/\\{@}
 Query[sl]=http://www.qrz.com/db/\\{@}
+Query[sr]=http://www.qrz.com/db/\\{@}
+Query[sr@ijekavian]=http://www.qrz.com/db/\\{@}
+Query[sr@ijekavianlatin]=http://www.qrz.com/db/\\{@}
+Query[sr@latin]=http://www.qrz.com/db/\\{@}
 Query[sv]=http://www.qrz.com/db/\\{@}
 Query[tg]=http://www.qrz.com/db/\\{@}
 Query[ug]=http://www.qrz.com/db/\\{@}
