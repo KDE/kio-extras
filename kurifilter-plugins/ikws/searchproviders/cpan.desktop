@@ -121,6 +121,7 @@ Query[sr@ijekavian]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{qu
 Query[sr@ijekavianlatin]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[sr@latin]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[sv]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[ug]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[uk]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[wa]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[x-test]=xxhttp://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}xx
