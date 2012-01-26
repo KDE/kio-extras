@@ -22,6 +22,7 @@ Name[fa]=GitHub
 Name[fi]=GitHub
 Name[fr]=GitHub
 Name[ga]=GitHub
+Name[gl]=GitHub
 Name[gu]=ગીટહબ
 Name[he]=GitHub
 Name[hi]=गिटहब
@@ -63,6 +64,7 @@ Name[th]=GitHub
 Name[tr]=GitHub
 Name[ug]=GitHub
 Name[uk]=GitHub
+Name[vi]=GitHub
 Name[wa]=GitHub
 Name[x-test]=xxGitHubxx
 Name[zh_CN]=GitHub
@@ -87,6 +89,7 @@ Query[fa]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[fi]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[fr]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ga]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[gl]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[gu]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[he]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[hi]=http://github.com/search?q=\\{@}&x=0&y=0
@@ -128,6 +131,7 @@ Query[th]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[tr]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ug]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[uk]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[vi]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[wa]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://github.com/search?q=\\{@}&x=0&y=0xx
 Query[zh_CN]=http://github.com/search?q=\\{@}&x=0&y=0

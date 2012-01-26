@@ -168,6 +168,7 @@ Query[ug]=http://directory.fsf.org/search/?query=\\{@}
 Query[uk]=http://directory.fsf.org/search/?query=\\{@}
 Query[uz]=http://directory.fsf.org/search/?query=\\{@}
 Query[uz@cyrillic]=http://directory.fsf.org/search/?query=\\{@}
+Query[vi]=http://directory.fsf.org/search/?query=\\{@}
 Query[wa]=http://directory.fsf.org/search/?query=\\{@}
 Query[x-test]=xxhttp://directory.fsf.org/search/?query=\\{@}xx
 Query[zh_CN]=http://directory.fsf.org/search/?query=\\{@}

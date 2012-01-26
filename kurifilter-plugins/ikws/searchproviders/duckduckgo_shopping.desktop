@@ -21,6 +21,7 @@ Name[fa]=خرید Duck Duck Go
 Name[fi]=Duck Duck Go -tuotehaku
 Name[fr]=Duck Duck Go Shopping
 Name[ga]=Siopadóireacht Duck Duck Go
+Name[gl]=Compras en Duck Duck Go
 Name[gu]=ડક ડક ગો ખરીદી
 Name[he]=Duck Duck Go Shopping
 Name[hi]=बतख़ जा जा खरीदारी
@@ -62,6 +63,7 @@ Name[th]=ช้อปปิ้งของ Duck Duck Go
 Name[tr]=Duck Duck Go Alışveriş
 Name[ug]=Duck Duck Go ئېلىم-سېتىم
 Name[uk]=Duck Duck Go Shopping
+Name[vi]=Duck Duck Go Mua Bán
 Name[wa]=Duck Duck Go Botikes
 Name[x-test]=xxDuck Duck Go Shoppingxx
 Name[zh_CN]=Duck Duck Go 购物
@@ -86,6 +88,7 @@ Query[fa]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[fi]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ga]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[gl]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[he]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[hi]=http://duckduckgo.com/?q=\\{@}&v=s
@@ -127,6 +130,7 @@ Query[th]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[ug]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s
+Query[vi]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[wa]=http://duckduckgo.com/?q=\\{@}&v=s
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=sxx
 Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=s

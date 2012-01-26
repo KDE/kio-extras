@@ -22,6 +22,7 @@ Name[fa]=اخبار KDE
 Name[fi]=KDE:n TechBase
 Name[fr]=Centre technique de KDE
 Name[ga]=KDE TechBase
+Name[gl]=KDE TechBase
 Name[gu]=કેડીઈ ટેકબેઝ
 Name[he]=KDE TechBase
 Name[hi]=केडीई टेकभार
@@ -63,6 +64,7 @@ Name[th]=KDE TechBase
 Name[tr]=KDE TechBase
 Name[ug]=KDE TechBase
 Name[uk]=TechBase KDE
+Name[vi]=KDE TechBase
 Name[wa]=KDE TechBase (Tecnike)
 Name[x-test]=xxKDE TechBasexx
 Name[zh_CN]=KDE 技术信息库
@@ -87,6 +89,7 @@ Query[fa]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[fi]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[fr]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ga]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[gl]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[gu]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[he]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[hi]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
@@ -128,6 +131,7 @@ Query[th]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[tr]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ug]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[vi]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[wa]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx
 Query[zh_CN]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

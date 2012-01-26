@@ -22,6 +22,7 @@ Name[fa]=Magnatune
 Name[fi]=Magnatune
 Name[fr]=Magnatune
 Name[ga]=Magnatune
+Name[gl]=Magnatune
 Name[gu]=મેગ્નાટ્યુન
 Name[he]=Magnatune
 Name[hi]=मेग्नाट्यून
@@ -63,6 +64,7 @@ Name[th]=Magnatune
 Name[tr]=Magnatune
 Name[ug]=Magnatune
 Name[uk]=Magnatune
+Name[vi]=Magnatune
 Name[wa]=Magnatune
 Name[x-test]=xxMagnatunexx
 Name[zh_CN]=Magnatune
@@ -87,6 +89,7 @@ Query[fa]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[fi]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[fr]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ga]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[gl]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[gu]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[he]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[hi]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
@@ -128,6 +131,7 @@ Query[th]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[tr]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[ug]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[uk]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[vi]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[wa]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[x-test]=xxhttp://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0xx
 Query[zh_CN]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0

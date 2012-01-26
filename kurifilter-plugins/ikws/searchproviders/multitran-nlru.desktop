@@ -79,6 +79,7 @@ Name[ug]=Multitran - گوللاندىيەچە بىلەن رۇسچە ئارىسى
 Name[uk]=Multitran — переклад з голландської російською
 Name[uz]=Multitran - Gollanchadan Ruschaga tarjima
 Name[uz@cyrillic]=Multitran - Голланчадан Русчага таржима
+Name[vi]=Multitran - Dịch giữa tiếng Hà Lan và tiếng Nga
 Name[wa]=Multitran - Ratoûne inte li Neyerlandès eyet l' Russe
 Name[x-test]=xxMultitran - Translate Between Dutch and Russianxx
 Name[zh_CN]=Multitran - 在荷兰语和俄语之间互译
@@ -162,6 +163,7 @@ Query[ug]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[uk]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[uz]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[uz@cyrillic]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
+Query[vi]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[wa]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}
 Query[x-test]=xxhttp://multitran.ru/c/m.exe?l1=24&s=\\{@}xx
 Query[zh_CN]=http://multitran.ru/c/m.exe?l1=24&s=\\{@}

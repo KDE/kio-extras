@@ -21,6 +21,7 @@ Name[fa]=Identi.ca Notices
 Name[fi]=Identi.ca-tekstihaku
 Name[fr]=Notices Identi.ca
 Name[ga]=Fógraí Identi.ca
+Name[gl]=Noticias de Identi.ca
 Name[gu]=આઈડેન્ટિ.કા નોંધો
 Name[he]=Identi.ca Notices
 Name[hi]=Identi.ca नोटिस
@@ -62,6 +63,7 @@ Name[th]=การแจ้ง Identi.ca
 Name[tr]=Identi.ca Bildirimleri
 Name[ug]=Identi.ca ئۇقتۇرۇشلار
 Name[uk]=Нотатки Identi.ca
+Name[vi]=Identi.ca Chú ý
 Name[wa]=Identi.ca Notices
 Name[x-test]=xxIdenti.ca Noticesxx
 Name[zh_CN]=Identi.ca 通知
@@ -86,6 +88,7 @@ Query[fa]=http://identi.ca/search/notice?q=\\{@}
 Query[fi]=http://identi.ca/search/notice?q=\\{@}
 Query[fr]=http://identi.ca/search/notice?q=\\{@}
 Query[ga]=http://identi.ca/search/notice?q=\\{@}
+Query[gl]=http://identi.ca/search/notice?q=\\{@}
 Query[gu]=http://identi.ca/search/notice?q=\\{@}
 Query[he]=http://identi.ca/search/notice?q=\\{@}
 Query[hi]=http://identi.ca/search/notice?q=\\{@}
@@ -127,6 +130,7 @@ Query[th]=http://identi.ca/search/notice?q=\\{@}
 Query[tr]=http://identi.ca/search/notice?q=\\{@}
 Query[ug]=http://identi.ca/search/notice?q=\\{@}
 Query[uk]=http://identi.ca/search/notice?q=\\{@}
+Query[vi]=http://identi.ca/search/notice?q=\\{@}
 Query[wa]=http://identi.ca/search/notice?q=\\{@}
 Query[x-test]=xxhttp://identi.ca/search/notice?q=\\{@}xx
 Query[zh_CN]=http://identi.ca/search/notice?q=\\{@}

@@ -20,6 +20,7 @@ Name[fa]=YouTube
 Name[fi]=YouTube
 Name[fr]=YouTube
 Name[ga]=YouTube
+Name[gl]=YouTube
 Name[gu]=યુટ્યુબ
 Name[he]=YouTube
 Name[hi]=यूट्यूब
@@ -61,6 +62,7 @@ Name[th]=บริการวีดิโอผ่าน YouTube
 Name[tr]=YouTube
 Name[ug]=YouTube
 Name[uk]=YouTube
+Name[vi]=YouTube
 Name[wa]=YouTube
 Name[x-test]=xxYouTubexx
 Name[zh_CN]=YouTube
@@ -85,6 +87,7 @@ Query[fa]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[fi]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[fr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ga]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[gl]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[gu]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[he]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[hi]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
@@ -125,6 +128,7 @@ Query[th]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[tr]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ug]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[uk]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[vi]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[wa]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[x-test]=xxhttp://www.youtube.com/results?search_query=\\{@}&search_type=&aq=fxx
 Query[zh_CN]=http://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

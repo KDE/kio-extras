@@ -22,6 +22,7 @@ Name[fa]=ظاهر KDE
 Name[fi]=KDE Look
 Name[fr]=Apparence de KDE
 Name[ga]=KDE Look
+Name[gl]=KDE Look
 Name[gu]=કેડીઈ લૂક
 Name[he]=KDE Look
 Name[hi]=केडीई दिखावट
@@ -63,6 +64,7 @@ Name[th]=KDE Look
 Name[tr]=KDE Look
 Name[ug]=KDE Look
 Name[uk]=KDE Look
+Name[vi]=KDE Look
 Name[wa]=KDE Look (Rivnance)
 Name[x-test]=xxKDE Lookxx
 Name[zh_CN]=KDE 美化资源站
@@ -87,6 +89,7 @@ Query[fa]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[fi]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[fr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ga]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[gl]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[gu]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[he]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[hi]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
@@ -128,6 +131,7 @@ Query[th]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[tr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ug]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[vi]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[wa]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-look.org/content/search.php?search=Search&name=\\{@}xx
 Query[zh_CN]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}

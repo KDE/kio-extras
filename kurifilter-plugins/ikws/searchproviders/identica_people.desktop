@@ -20,6 +20,7 @@ Name[fa]=اعضای Identi.ca
 Name[fi]=Identi.ca-ihmishaku
 Name[fr]=Personne Identi.ca
 Name[ga]=Daoine Identi.ca
+Name[gl]=Xente de Identi.ca
 Name[gu]=આઈડેન્ટિ.કા લોકો
 Name[he]=Identi.ca People
 Name[hi]=Identi.ca लोग
@@ -61,6 +62,7 @@ Name[th]=ผู้คน Identi.ca
 Name[tr]=Identi.ca Kişi
 Name[ug]=Identi.ca كىشىلەر
 Name[uk]=Постаті Identi.ca
+Name[vi]=Identi.ca Mọi Người
 Name[wa]=Identi.ca Djins
 Name[x-test]=xxIdenti.ca Peoplexx
 Name[zh_CN]=Identi.ca 人物
@@ -85,6 +87,7 @@ Query[fa]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[fi]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[fr]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ga]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[gl]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[gu]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[he]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[hi]=http://identi.ca/search/people?q=\\{@}&search=Search
@@ -126,6 +129,7 @@ Query[th]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[tr]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[ug]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[uk]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[vi]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[wa]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[x-test]=xxhttp://identi.ca/search/people?q=\\{@}&search=Searchxx
 Query[zh_CN]=http://identi.ca/search/people?q=\\{@}&search=Search

@@ -22,6 +22,7 @@ Name[fa]=فیس‌بوک
 Name[fi]=Facebook
 Name[fr]=Facebook
 Name[ga]=Facebook
+Name[gl]=Facebook
 Name[gu]=ફેસબુક
 Name[he]=Facebook
 Name[hi]=फेसबुक
@@ -63,6 +64,7 @@ Name[th]=เฟซบุ้ค
 Name[tr]=Facebook
 Name[ug]=Facebook
 Name[uk]=Facebook
+Name[vi]=Facebook
 Name[wa]=Facebook
 Name[x-test]=xxFacebookxx
 Name[zh_CN]=Facebook
@@ -87,6 +89,7 @@ Query[fa]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[fi]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[fr]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ga]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[gl]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[gu]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[he]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[hi]=http://www.facebook.com/search/?q=\\{@}&init=quick
@@ -128,6 +131,7 @@ Query[th]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[tr]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ug]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[uk]=http://www.facebook.com/search/?q=\\{@}&init=quick
+Query[vi]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[wa]=http://www.facebook.com/search/?q=\\{@}&init=quick
 Query[x-test]=xxhttp://www.facebook.com/search/?q=\\{@}&init=quickxx
 Query[zh_CN]=http://www.facebook.com/search/?q=\\{@}&init=quick

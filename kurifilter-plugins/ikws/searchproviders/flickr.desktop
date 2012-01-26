@@ -22,6 +22,7 @@ Name[fa]=فلیکر
 Name[fi]=Flickr
 Name[fr]=Flickr
 Name[ga]=Flickr
+Name[gl]=Flickr
 Name[gu]=ફ્લિકર
 Name[he]=Flickr
 Name[hi]=फ़्लिकर
@@ -64,6 +65,7 @@ Name[th]=Flickr
 Name[tr]=Flickr
 Name[ug]=Flickr
 Name[uk]=Flickr
+Name[vi]=Flickr
 Name[wa]=Flickr
 Name[x-test]=xxFlickrxx
 Name[zh_CN]=Flickr
@@ -88,6 +90,7 @@ Query[fa]=http://www.flickr.com/search/?q=\\{@}
 Query[fi]=http://www.flickr.com/search/?q=\\{@}
 Query[fr]=http://www.flickr.com/search/?q=\\{@}
 Query[ga]=http://www.flickr.com/search/?q=\\{@}
+Query[gl]=http://www.flickr.com/search/?q=\\{@}
 Query[gu]=http://www.flickr.com/search/?q=\\{@}
 Query[he]=http://www.flickr.com/search/?q=\\{@}
 Query[hi]=http://www.flickr.com/search/?q=\\{@}
@@ -129,6 +132,7 @@ Query[th]=http://www.flickr.com/search/?q=\\{@}
 Query[tr]=http://www.flickr.com/search/?q=\\{@}
 Query[ug]=http://www.flickr.com/search/?q=\\{@}
 Query[uk]=http://www.flickr.com/search/?q=\\{@}
+Query[vi]=http://www.flickr.com/search/?q=\\{@}
 Query[wa]=http://www.flickr.com/search/?q=\\{@}
 Query[x-test]=xxhttp://www.flickr.com/search/?q=\\{@}xx
 Query[zh_CN]=http://www.flickr.com/search/?q=\\{@}

@@ -22,6 +22,7 @@ Name[fa]=آمازون MP3
 Name[fi]=Amazon MP3
 Name[fr]=Amazon MP3
 Name[ga]=Amazon MP3
+Name[gl]=Amazon MP3
 Name[gu]=એમેઝોન એમપી૩
 Name[he]=Amazon MP3
 Name[hi]=एमेज़ान MP3
@@ -64,6 +65,7 @@ Name[th]=อเมซอน MP3
 Name[tr]=Amazon MP3
 Name[ug]=ئامازون MP3
 Name[uk]=Amazon MP3
+Name[vi]=Amazon MP3
 Name[wa]=Amazon MP3
 Name[x-test]=xxAmazon MP3xx
 Name[zh_CN]=Amazon MP3
@@ -88,6 +90,7 @@ Query[fa]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&
 Query[fi]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[fr]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[ga]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[gl]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[gu]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[he]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[hi]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
@@ -129,6 +132,7 @@ Query[th]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&
 Query[tr]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[ug]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[uk]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
+Query[vi]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[wa]=http://www.amazon.fr/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[x-test]=xxhttp://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0xx
 Query[zh_CN]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0

@@ -18,6 +18,7 @@ Name[fa]=Baidu
 Name[fi]=Baidu
 Name[fr]=Baidu
 Name[ga]=Baidu
+Name[gl]=Baidu
 Name[gu]=બૈડુ
 Name[he]=Baidu
 Name[hi]=बैदु
@@ -57,6 +58,7 @@ Name[th]=Baidu
 Name[tr]=Baidu
 Name[ug]=Baidu
 Name[uk]=Baidu
+Name[vi]=Baidu
 Name[wa]=Baidu
 Name[x-test]=xxBaiduxx
 Name[zh_CN]=百度
@@ -81,6 +83,7 @@ Query[fa]=http://www.baidu.com/s?wd=\\{@}
 Query[fi]=http://www.baidu.com/s?wd=\\{@}
 Query[fr]=http://www.baidu.com/s?wd=\\{@}
 Query[ga]=http://www.baidu.com/s?wd=\\{@}
+Query[gl]=http://www.baidu.com/s?wd=\\{@}
 Query[gu]=http://www.baidu.com/s?wd=\\{@}
 Query[he]=http://www.baidu.com/s?wd=\\{@}
 Query[hi]=http://www.baidu.com/s?wd=\\{@}
@@ -120,6 +123,7 @@ Query[th]=http://www.baidu.com/s?wd=\\{@}
 Query[tr]=http://www.baidu.com/s?wd=\\{@}
 Query[ug]=http://www.baidu.com/s?wd=\\{@}
 Query[uk]=http://www.baidu.com/s?wd=\\{@}
+Query[vi]=http://www.baidu.com/s?wd=\\{@}
 Query[wa]=http://www.baidu.com/s?wd=\\{@}
 Query[x-test]=xxhttp://www.baidu.com/s?wd=\\{@}xx
 Query[zh_CN]=http://www.baidu.com/s?wd=\\{@}

@@ -18,6 +18,7 @@ Name[fa]=Bing
 Name[fi]=Bing
 Name[fr]=Bing
 Name[ga]=Bing
+Name[gl]=Bing
 Name[gu]=બિંગ
 Name[he]=Bing
 Name[hi]=बिंग
@@ -57,6 +58,7 @@ Name[th]=Bing
 Name[tr]=Bing
 Name[ug]=Bing
 Name[uk]=Bing
+Name[vi]=Bing
 Name[wa]=Bing
 Name[x-test]=xxBingxx
 Name[zh_CN]=必应
@@ -81,6 +83,7 @@ Query[fa]=http://www.bing.com/search?q=\\{@}
 Query[fi]=http://www.bing.com/search?q=\\{@}&cc=fi
 Query[fr]=http://www.bing.com/search?q=\\{@}
 Query[ga]=http://www.bing.com/search?q=\\{@}
+Query[gl]=http://www.bing.com/search?q=\\{@}
 Query[gu]=http://www.bing.com/search?q=\\{@}
 Query[he]=http://www.bing.com/search?q=\\{@}
 Query[hi]=http://www.bing.com/search?q=\\{@}
@@ -120,6 +123,7 @@ Query[th]=http://www.bing.com/search?q=\\{@}
 Query[tr]=http://www.bing.com/search?q=\\{@}
 Query[ug]=http://www.bing.com/search?q=\\{@}
 Query[uk]=http://www.bing.com/search?q=\\{@}
+Query[vi]=http://www.bing.com/search?q=\\{@}
 Query[wa]=http://www.bing.com/search?q=\\{@}
 Query[x-test]=xxhttp://www.bing.com/search?q=\\{@}xx
 Query[zh_CN]=http://www.bing.com/search?q=\\{@}

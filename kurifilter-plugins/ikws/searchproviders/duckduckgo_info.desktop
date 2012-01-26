@@ -21,6 +21,7 @@ Name[fa]=اطلاعات Duck Duck Go
 Name[fi]=Duck Duck Go -tietohaku
 Name[fr]=Duck Duck Go Info
 Name[ga]=Eolas Duck Duck Go
+Name[gl]=Información en Duck Duck Go
 Name[he]=Duck Duck Go Info
 Name[hi]=बतख़ जा जा जानकारी
 Name[hr]=Duck Duck Go Info
@@ -60,6 +61,7 @@ Name[th]=ข้อมูลของ Duck Duck Go
 Name[tr]=Duck Duck Go Bilgileri
 Name[ug]=Duck Duck Go ئۇچۇرى
 Name[uk]=Duck Duck Go Info
+Name[vi]=Duck Duck Go Thông Tin
 Name[wa]=Duck Duck Go Info
 Name[x-test]=xxDuck Duck Go Infoxx
 Name[zh_CN]=Duck Duck Go 信息
@@ -84,6 +86,7 @@ Query[fa]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[fi]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ga]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[gl]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[he]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[hi]=http://duckduckgo.com/?q=\\{@}&v=r
@@ -125,6 +128,7 @@ Query[th]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[ug]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=r
+Query[vi]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[wa]=http://duckduckgo.com/?q=\\{@}&v=r
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=rxx
 Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=r

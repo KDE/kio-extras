@@ -19,6 +19,7 @@ Name[fa]=موتور جستجوی Ecosia
 Name[fi]=Ecosia-hakukone
 Name[fr]=Moteur de recherche Ecosia
 Name[ga]=Inneall cuardaigh Ecosia
+Name[gl]=Motor de busca Ecosia
 Name[gu]=ઈકોસિયા શોધ એન્જિન
 Name[he]=מנוע חיפוש Ecosia
 Name[hi]=इकोसिया खोज इंजिन
@@ -60,6 +61,7 @@ Name[th]=บริการค้นหา Ecosia
 Name[tr]=Ecosia arama motoru
 Name[ug]=Ecosia ئىزدەش ماتورى
 Name[uk]=Рушій пошуку Ecosia
+Name[vi]=Bộ máy tìm kiếm Ecosia
 Name[wa]=Ricwerrece Ecosia
 Name[x-test]=xxEcosia search enginexx
 Name[zh_CN]=Ecosia 搜索引擎
@@ -86,6 +88,7 @@ Query[fa]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[fi]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[fr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ga]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[gl]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[gu]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[he]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[hi]=http://ecosia.org/search.php?q=\\{@}&meta=normal
@@ -127,6 +130,7 @@ Query[th]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[tr]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[ug]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[uk]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[vi]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[wa]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[x-test]=xxhttp://ecosia.org/search.php?q=\\{@}&meta=normalxx
 Query[zh_CN]=http://ecosia.org/search.php?q=\\{@}&meta=normal

@@ -21,6 +21,7 @@ Name[fa]=Duck Duck Go
 Name[fi]=Duck Duck Go
 Name[fr]=Duck Duck Go
 Name[ga]=Duck Duck Go
+Name[gl]=Duck Duck Go
 Name[gu]=ડક ડક ગો
 Name[he]=Duck Duck Go
 Name[hi]=बतख़ जा जा
@@ -61,6 +62,7 @@ Name[th]=Duck Duck Go
 Name[tr]=Duck Duck Go
 Name[ug]=Duck Duck Go
 Name[uk]=Duck Duck Go
+Name[vi]=Duck Duck Go
 Name[wa]=Duck Duck Go
 Name[x-test]=xxDuck Duck Goxx
 Name[zh_CN]=Duck Duck Go
@@ -85,6 +87,7 @@ Query[fa]=http://duckduckgo.com/?q=\\{@}&v=
 Query[fi]=http://duckduckgo.com/?q=\\{@}&v=
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ga]=http://duckduckgo.com/?q=\\{@}&v=
+Query[gl]=http://duckduckgo.com/?q=\\{@}&v=
 Query[gu]=http://duckduckgo.com/?q=\\{@}&v=
 Query[he]=http://duckduckgo.com/?q=\\{@}&v=
 Query[hi]=http://duckduckgo.com/?q=\\{@}&v=
@@ -126,6 +129,7 @@ Query[th]=http://duckduckgo.com/?q=\\{@}&v=
 Query[tr]=http://duckduckgo.com/?q=\\{@}&v=
 Query[ug]=http://duckduckgo.com/?q=\\{@}&v=
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=
+Query[vi]=http://duckduckgo.com/?q=\\{@}&v=
 Query[wa]=http://duckduckgo.com/?q=\\{@}&v=
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=xx
 Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=

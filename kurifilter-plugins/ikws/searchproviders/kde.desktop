@@ -171,6 +171,7 @@ Query[ug]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uk]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uz]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uz@cyrillic]=http://api.kde.org/classmapper.php?class=\\{@}
+Query[vi]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[wa]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[x-test]=xxhttp://api.kde.org/classmapper.php?class=\\{@}xx
 Query[zh_CN]=http://api.kde.org/classmapper.php?class=\\{@}

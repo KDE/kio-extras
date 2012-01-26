@@ -66,6 +66,7 @@ Name[th]=Wolfram Alpha
 Name[tr]=Tungsten Işığı
 Name[ug]=Wolfram Alpha
 Name[uk]=Wolfram Alpha
+Name[vi]=Wolfram Alpha
 Name[wa]=Wolfram Alpha
 Name[x-test]=xxWolfram Alphaxx
 Name[zh_CN]=Wolfram Alpha
@@ -135,6 +136,7 @@ Query[th]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[tr]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ug]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[uk]=http://www.wolframalpha.com/input/?i=\\{@}
+Query[vi]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[wa]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[x-test]=xxhttp://www.wolframalpha.com/input/?i=\\{@}xx
 Query[zh_CN]=http://www.wolframalpha.com/input/?i=\\{@}

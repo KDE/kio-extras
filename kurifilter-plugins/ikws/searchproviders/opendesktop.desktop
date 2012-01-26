@@ -20,6 +20,7 @@ Name[fa]=openDesktop.org
 Name[fi]=openDesktop.org
 Name[fr]=openDesktop.org
 Name[ga]=openDesktop.org
+Name[gl]=openDesktop.org
 Name[gu]=ઓપનડેસ્કટોપ.ઓર્ગ
 Name[he]=openDesktop.org
 Name[hi]=openDesktop.org
@@ -59,6 +60,7 @@ Name[th]=openDesktop.org
 Name[tr]=openDesktop.org
 Name[ug]=openDesktop.org
 Name[uk]=openDesktop.org
+Name[vi]=openDesktop.org
 Name[wa]=openDesktop.org
 Name[x-test]=xxopenDesktop.orgxx
 Name[zh_CN]=openDesktop.org
@@ -83,6 +85,7 @@ Query[fa]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[fi]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[fr]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ga]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[gl]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[gu]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[he]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[hi]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
@@ -123,6 +126,7 @@ Query[th]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[tr]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[ug]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
+Query[vi]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[wa]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.opendesktop.org/content/search.php?search=Search&name=\\{@}xx
 Query[zh_CN]=http://www.opendesktop.org/content/search.php?search=Search&name=\\{@}

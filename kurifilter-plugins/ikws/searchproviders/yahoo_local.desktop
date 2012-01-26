@@ -22,6 +22,7 @@ Name[fa]=Yahoo محلی
 Name[fi]=Yahoon paikallishaku
 Name[fr]=Yahoo Local
 Name[ga]=Yahoo Logánta
+Name[gl]=Yahoo Local
 Name[gu]=યાહુ સ્થાનિક
 Name[he]=Yahoo מקומי
 Name[hi]=याहू स्थानिक
@@ -62,6 +63,7 @@ Name[th]=Yahoo Local
 Name[tr]=Yahoo Yerel
 Name[ug]=Yahoo يەرلىك
 Name[uk]=Yahoo Local
+Name[vi]=Yahoo Địa Phương
 Name[wa]=Yahoo Coinrece
 Name[x-test]=xxYahoo Localxx
 Name[zh_CN]=Yahoo 本地信息
@@ -86,6 +88,7 @@ Query[fa]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab
 Query[fi]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[fr]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ga]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[gl]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[gu]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[he]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[hi]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
@@ -126,6 +129,8 @@ Query[th]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab
 Query[tr]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[ug]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[uk]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[vi]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
+Query[wa]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[x-test]=xxhttp://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-imgxx
 Query[zh_CN]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img
 Query[zh_TW]=http://local.yahoo.com/results?stx=\\{@}&ei=UTF-8&fr=yfp-t-701&fr2=tab-img

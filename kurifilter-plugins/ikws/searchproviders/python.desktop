@@ -86,7 +86,7 @@ Name[ug]=Python پايدىلىنىش قوللانمىسى
 Name[uk]=Довідник з Python
 Name[uz]=Python uchun koʻllanma
 Name[uz@cyrillic]=Python учун кўлланма
-Name[vi]=Sổ tay Tham khảo Python
+Name[vi]=Sổ tay tham khảo Python
 Name[wa]=Manuel di referince di Python
 Name[xh]=Ubhekiso lwe Python yesandla
 Name[x-test]=xxPython Reference Manualxx
@@ -174,6 +174,7 @@ Query[ug]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Sea
 Query[uk]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[uz]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[uz@cyrillic]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[vi]=http://www.google.com.vn/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[wa]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[x-test]=xxhttp://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.orgxx
 Query[zh_CN]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org

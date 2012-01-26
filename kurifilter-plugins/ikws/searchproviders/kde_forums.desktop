@@ -22,6 +22,7 @@ Name[fa]=انجمنهای کی‌دی‌ای
 Name[fi]=KDE:n foorumit
 Name[fr]=Forums de KDE
 Name[ga]=Fóraim KDE
+Name[gl]=Foros de KDE
 Name[gu]=કેડીઈ ફોરમ્સ
 Name[he]=הפורומים של KDE
 Name[hi]=केडीई फोरम
@@ -63,6 +64,7 @@ Name[th]=ฟอรัมของ KDE
 Name[tr]=KDE Forumları
 Name[ug]=KDE مۇنبىرى
 Name[uk]=Форуми KDE
+Name[vi]=Diễn đàn KDE
 Name[wa]=Foroms di KDE
 Name[x-test]=xxKDE Forumsxx
 Name[zh_CN]=KDE 社区论坛
@@ -84,6 +86,8 @@ Query[eu]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=
 Query[fa]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[fi]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[fr]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
+Query[ga]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
+Query[gl]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[he]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[hi]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[hr]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
@@ -122,6 +126,7 @@ Query[th]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=
 Query[tr]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[ug]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[uk]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
+Query[vi]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[wa]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search
 Query[x-test]=xxhttp://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Searchxx
 Query[zh_CN]=http://forum.kde.org/search.php?keywords=\\{@}&terms=all&author=&tags=&sv=0&sc=1&sf=all&sr=posts&sk=t&sd=d&st=0&ch=300&countlimit=100&t=0&submit=Search

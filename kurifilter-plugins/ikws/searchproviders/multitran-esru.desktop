@@ -79,6 +79,7 @@ Name[ug]=Multitran - ئىسپانچە بىلەن رۇسچە ئارىسىدا ت�
 Name[uk]=Multitran — переклад з іспанської російською
 Name[uz]=Multitran - Ispanchadan Ruschaga tarjima
 Name[uz@cyrillic]=Multitran - Испанчадан Русчага таржима
+Name[vi]=Multitran - Dịch giữa tiếng Tây Ban Nha và tiếng Nga
 Name[wa]=Multitran - Ratoûne inte l' Espagnol eyet l' Russe
 Name[x-test]=xxMultitran - Translate Between Spanish and Russianxx
 Name[zh_CN]=Multitran - 在西班牙语和俄语之间互译
@@ -162,6 +163,7 @@ Query[ug]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[uk]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[uz]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[uz@cyrillic]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
+Query[vi]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[wa]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[x-test]=xxhttp://multitran.ru/c/m.exe?l1=5&s=\\{@}xx
 Query[zh_CN]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}

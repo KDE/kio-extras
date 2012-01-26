@@ -22,6 +22,7 @@ Name[fa]=Directory Watcher
 Name[fi]=7Digital
 Name[fr]=7Digital
 Name[ga]=7Digital
+Name[gl]=7Digital
 Name[gu]=૭ ડિજીટલ
 Name[he]=7Digital
 Name[hi]=7Digital
@@ -63,6 +64,7 @@ Name[th]=7Digital
 Name[tr]=7Digital
 Name[ug]=7Digital
 Name[uk]=7Digital
+Name[vi]=7Digital
 Name[wa]=7Digital
 Name[x-test]=xx7Digitalxx
 Name[zh_CN]=7Digital
@@ -87,6 +89,7 @@ Query[fa]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[fi]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[fr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ga]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[gl]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[gu]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[he]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[hi]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
@@ -127,6 +130,7 @@ Query[th]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Se
 Query[tr]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[ug]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[uk]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
+Query[vi]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[wa]=http://fr-be.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search
 Query[x-test]=xxhttp://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Searchxx
 Query[zh_CN]=http://us.7digital.com/Search?search=\\{@}&searchtype=global&submit=Search

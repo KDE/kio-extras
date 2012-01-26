@@ -171,6 +171,7 @@ Query[ug]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\
 Query[uk]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[uz]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[uz@cyrillic]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
+Query[vi]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[wa]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
 Query[x-test]=xxhttp://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}xx
 Query[zh_CN]=http://www.detelefoongids.nl/tginl.dll?action=white&type=search&name=\\{1}&city=\\{2}
