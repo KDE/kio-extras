@@ -117,6 +117,7 @@ Query[pl]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[pt]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[pt_BR]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ro]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[sk]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[sr]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[sr@ijekavian]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[sr@ijekavianlatin]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
