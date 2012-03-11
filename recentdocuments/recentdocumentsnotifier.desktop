@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Service
+Name=Recent Document Watcher
+ServiceTypes=KDEDModule
+X-KDE-ServiceTypes=KDEDModule
+X-KDE-Library=recentdocumentsnotifier
+X-KDE-FactoryName=recentdocumentsnotifier
+X-KDE-DBus-ModuleName=recentdocumentsnotifier
+X-KDE-Kded-load-on-demand=true
+X-KDE-Kded-autoload=false
+Comment=Monitors Recent Document for changes
