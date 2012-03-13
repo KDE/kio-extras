@@ -1,6 +1,11 @@
 [Desktop Entry]
 Type=Service
 Name=Recent Document Watcher
+Name[nl]=Bewaker van recente documenten
+Name[pt]=Vigilante de Documentos Recentes
+Name[sv]=Bevakning av senaste dokument
+Name[uk]=Наглядач за недавніми документами
+Name[x-test]=xxRecent Document Watcherxx
 ServiceTypes=KDEDModule
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=recentdocumentsnotifier
@@ -9,3 +14,8 @@ X-KDE-DBus-ModuleName=recentdocumentsnotifier
 X-KDE-Kded-load-on-demand=true
 X-KDE-Kded-autoload=false
 Comment=Monitors Recent Document for changes
+Comment[nl]=Bewaakt recente documenten op wijzigingen
+Comment[pt]=Vigia as alterações nos documentos recentes
+Comment[sv]=Övervakar senaste dokument efter ändringar
+Comment[uk]=Стежить за змінами у недавніх документах
+Comment[x-test]=xxMonitors Recent Document for changesxx
