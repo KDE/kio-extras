@@ -145,7 +145,7 @@ void BookmarksProtocol::echoHead(const QString &redirect)
   echo("<head>");
   indent++;
   echo("<title>" + i18n("My Bookmarks") + "</title>");
-  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"file://" + QString(css.toUtf8()) + "\" />");
+  echo("<link rel=\"stylesheet\" type=\"text/css\" href=\"file://" + QString::fromUtf8(css.toUtf8()) + "\" />");
   echoStyle();
 
   if (!redirect.isEmpty())
