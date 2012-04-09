@@ -43,6 +43,7 @@
 #include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
+#include <kmd5.h>
 #include <kglobal.h>
 #include <kiconloader.h>
 #include <kmimetype.h>

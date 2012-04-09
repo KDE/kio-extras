@@ -21,6 +21,7 @@
 
 #include <QObject>
 #include <QByteArray>
+#include <QStringList>
 
 class KUriFilterTest : public QObject
 {
