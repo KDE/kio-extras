@@ -34,7 +34,7 @@
 
 #include <QtCore/QByteArray>
 #include <QtCore/QStringList>
-#include <QtGui/QImage>
+#include <QImage>
 #include <QtCore/QScopedPointer>
 
 #if defined(Q_OS_WIN)

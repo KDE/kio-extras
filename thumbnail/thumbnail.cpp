@@ -33,10 +33,10 @@
 
 #include <QtCore/QBuffer>
 #include <QtCore/QFile>
-#include <QtGui/QBitmap>
-#include <QtGui/QImage>
-#include <QtGui/QPainter>
-#include <QtGui/QPixmap>
+#include <QBitmap>
+#include <QImage>
+#include <QPainter>
+#include <QPixmap>
 
 #include <kcodecs.h>
 #include <kurl.h>

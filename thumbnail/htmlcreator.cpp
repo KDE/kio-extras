@@ -21,8 +21,8 @@
 
 #include "htmlcreator.h"
 
-#include <QtGui/QImage>
-#include <QtGui/QPainter>
+#include <QImage>
+#include <QPainter>
 #include <QtWebKit/QWebFrame>
 
 #include <kapplication.h>

@@ -32,7 +32,7 @@
 
 #include <QtCore/QFile>
 #include <QtDBus/QtDBus>
-#include <QtGui/QSortFilterProxyModel>
+#include <QSortFilterProxyModel>
 
 
 
