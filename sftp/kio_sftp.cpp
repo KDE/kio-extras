@@ -514,14 +514,14 @@ void sftpProtocol::openConnection() {
   info.url.setPort(mPort);
   info.url.setUser(mUsername);
   info.username = mUsername;
-  const QString origPasswd (mPassword);
 
   // Check for cached authentication info if no password is specified...
   if (mPassword.isEmpty()) {
-    kDebug(KIO_SFTP_DB) << "checking cache: info.username = " << info.username
-                        << ", info.url = " << info.url.prettyUrl();
-
+    kDebug(KIO_SFTP_DB) << "checking cache: info.username =" << info.username
+                        << ", info.url =" << info.url.prettyUrl();
     checkCachedAuthentication(info);
+  } else {
+      info.password = mPassword;
   }
 
   // Start the ssh connection.
@@ -723,10 +723,12 @@ login_start:
       }
     }
 
-    if (!firstTime || mPassword.isEmpty()) {
+    if (!firstTime || info.password.isEmpty()) {
 
       info.keepPassword = true; // make the "keep Password" check box visible to the user.
       info.setModified(false);
+
+      QString username (info.username);
 
       if (firstTime) {
         dlgResult = openPasswordDialog(info);
@@ -745,17 +747,12 @@ login_start:
 
       firstTime = false;
 
-      if (!mUsername.isEmpty() && mUsername != info.username) {
-        kDebug(KIO_SFTP_DB) << "Username changed from" << mUsername << "to" << info.username;
+      if (info.isModified() && !username.isEmpty() && username != info.username) {
+        kDebug(KIO_SFTP_DB) << "Username changed from" << username << "to" << info.username;
         info.url.setUser(info.username);
-        mUsername = info.username;
-        mPassword = info.password;
         closeConnection();
         goto login_start;
       }
-
-      mUsername = info.username;
-      mPassword = info.password;
     }
 
     // Try to authenticate with keyboard interactive
@@ -820,7 +817,6 @@ login_start:
   setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
 
   mConnected = true;
-  mPassword = origPasswd;
   connected();
 
   info.password.fill('x');
