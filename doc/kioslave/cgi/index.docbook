@@ -26,8 +26,7 @@ uses the filename from the given &URL; and searches a configurable
 list of folders.</para>
 <para>The list of folders can be retrieved using the command 
 <userinput><command>kde4-config</command> <option>--path cgi</option>
-</userinput>. The value defaults to <filename class="directory">$<envar>
-HOME</envar>/.kde4/cgi-bin/</filename>.</para>
+</userinput>. The value defaults to <filename class="directory">$<envar>HOME</envar>/.kde4/cgi-bin/</filename>.</para>
 
 <para>Use the &systemsettings; module <guilabel>CGI Script</guilabel> 
 (launched with <userinput><command>kcmshell4</command> <option>kcmcgi</option>
