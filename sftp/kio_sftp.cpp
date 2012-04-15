@@ -23,7 +23,9 @@
 
 #include <config-runtime.h>
 
-#include <fcntl.h>
+#include <cerrno>
+#include <cstring>
+#include <unistd.h>
 
 #include <QtCore/QCoreApplication>
 #include <QtCore/QBuffer>
@@ -34,19 +36,6 @@
 #include <QtCore/QString>
 #include <QtCore/QVarLengthArray>
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <time.h>
-#include <string.h>
-
-#include <arpa/inet.h>
-#include <netinet/in.h>
-
-#include <sys/time.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-
 #include <kapplication.h>
 #include <kuser.h>
 #include <kdebug.h>
@@ -56,19 +45,22 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kurl.h>
-#include <kio/ioslave_defaults.h>
 #include <kmimetype.h>
 #include <kde_file.h>
 #include <kconfiggroup.h>
+#include <kio/ioslave_defaults.h>
 
-#include <libssh/libssh.h>
-#include <libssh/sftp.h>
-#include <libssh/callbacks.h>
-
-#include <cerrno>
 
 #define KIO_SFTP_SPECIAL_TIMEOUT 30
 #define ZERO_STRUCTP(x) do { if ((x) != NULL) memset((char *)(x), 0, sizeof(*(x))); } while(0)
+
+// How big should each data packet be? Definitely not bigger than 64kb or
+// you will overflow the 2 byte size variable in a sftp packet.
+#define MAX_XFER_BUF_SIZE (60 * 1024)
+#define KIO_SFTP_DB 7120
+// Maximum amount of data which can be sent from the KIOSlave in one chunk
+// see TransferJob::slotDataReq (max_size variable) for the value
+#define MAX_TRANSFER_SIZE (14 * 1024 * 1024)
 
 using namespace KIO;
 extern "C"
@@ -195,7 +187,9 @@ int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
 
   info.url.setProtocol("sftp");
   info.url.setHost(mHost);
-  info.url.setPort(mPort);
+  if (mPort > 0 && mPort != DEFAULT_SFTP_PORT) {
+      info.url.setPort(mPort);
+  }
   info.url.setUser(mUsername);
 
   info.comment = "sftp://" + mUsername + "@"  + mHost;
@@ -256,7 +250,9 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
 
         infoKbdInt.url.setProtocol("sftp");
         infoKbdInt.url.setHost(mHost);
-        infoKbdInt.url.setPort(mPort);
+        if (mPort > 0 && mPort != DEFAULT_SFTP_PORT) {
+            infoKbdInt.url.setPort(mPort);
+        }
 
         infoKbdInt.caption = i18n("SFTP Login");
         infoKbdInt.comment = "sftp://" + mUsername + "@"  + mHost;
@@ -476,18 +472,7 @@ void sftpProtocol::setHost(const QString& host, quint16 port, const QString& use
   }
 
   mHost = host;
-
-  if (port > 0) {
-    mPort = port;
-  } else {
-    struct servent *pse;
-    if ((pse = getservbyname("ssh", "tcp") ) == NULL) {
-      mPort = 22;
-    } else {
-      mPort = ntohs(pse->s_port);
-    }
-  }
-
+  mPort = port;
   mUsername = user;
   mPassword = pass;
 }
@@ -511,7 +496,9 @@ void sftpProtocol::openConnection() {
   AuthInfo info;
   info.url.setProtocol("sftp");
   info.url.setHost(mHost);
-  info.url.setPort(mPort);
+  if ( mPort > 0 && mPort != DEFAULT_SFTP_PORT ) {
+      info.url.setPort(mPort);
+  }
   info.url.setUser(mUsername);
   info.username = mUsername;
 
@@ -2115,8 +2102,9 @@ void sftpProtocol::requiresUserNameRedirection()
     redirectUrl.setUser( mUsername );
     redirectUrl.setPass( mPassword );
     redirectUrl.setHost( mHost );
-    if (mPort > 0)
-      redirectUrl.setPort( mPort );
+    if (mPort > 0 && mPort != DEFAULT_SFTP_PORT) {
+        redirectUrl.setPort( mPort );
+    }
     kDebug(KIO_SFTP_DB) << "redirecting to" << redirectUrl;
     redirection( redirectUrl );
 }

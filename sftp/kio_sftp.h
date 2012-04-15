@@ -25,21 +25,12 @@
 #include <kurl.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
-#include <kdebug.h>
 
 #include <libssh/libssh.h>
 #include <libssh/sftp.h>
 #include <libssh/callbacks.h>
 
-#include <QQueue>
-
-// How big should each data packet be? Definitely not bigger than 64kb or
-// you will overflow the 2 byte size variable in a sftp packet.
-#define MAX_XFER_BUF_SIZE (60 * 1024)
-#define KIO_SFTP_DB 7120
-// Maximum amount of data which can be sent from the KIOSlave in one chunk
-// see TransferJob::slotDataReq (max_size variable) for the value
-#define MAX_TRANSFER_SIZE (14 * 1024 * 1024)
+#include <QtCore/QQueue>
 
 namespace KIO {
   class AuthInfo;
