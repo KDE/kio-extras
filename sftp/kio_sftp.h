@@ -123,6 +123,11 @@ private: // Private variables
   KIO::filesize_t openOffset;
 
   /**
+   * Holds public key authentication info for proper retry handling.
+   */
+  KIO::AuthInfo* mPublicKeyAuthInfo;
+
+  /**
    * GetRequest encapsulates several SFTP get requests into a single object.
    * As SFTP messages are limited to MAX_XFER_BUF_SIZE several requests
    * should be sent simultaneously in order to increase transfer speeds.
@@ -183,7 +188,9 @@ private: // private methods
 
   QString canonicalizePath(const QString &path);
   void requiresUserNameRedirection();
-  bool sftpConnect();
+  void clearPubKeyAuthInfo();
+  bool sftpLogin();
+  bool sftpOpenConnection(const KIO::AuthInfo&);
   void sftpSendWarning(int errorCode, const QString& url);
 
   /**
