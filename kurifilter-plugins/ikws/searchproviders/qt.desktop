@@ -97,6 +97,7 @@ Query[el]=http://qt-project.org/doc/\\{@}.html
 Query[ia]=http://qt-project.org/doc/\\{@}.html
 Query[nl]=http://qt-project.org/doc/\\{@}.html
 Query[pt]=http://qt-project.org/doc/\\{@}.html
+Query[pt_BR]=http://qt-project.org/doc/\\{@}.html
 Query[sv]=http://qt-project.org/doc/\\{@}.html
 Query[tr]=http://qt-project.org/doc/\\{@}.html
 Query[uk]=http://qt-project.org/doc/\\{@}.html
