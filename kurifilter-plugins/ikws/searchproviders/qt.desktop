@@ -102,6 +102,7 @@ Query[sv]=http://qt-project.org/doc/\\{@}.html
 Query[tr]=http://qt-project.org/doc/\\{@}.html
 Query[uk]=http://qt-project.org/doc/\\{@}.html
 Query[x-test]=xxhttp://qt-project.org/doc/\\{@}.htmlxx
+Query[zh_CN]=http://qt-project.org/doc/\\{@}.html
 Query[zh_TW]=http://qt-project.org/doc/\\{@}.html
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
