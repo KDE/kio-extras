@@ -61,14 +61,21 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
         m_page->settings()->setAttribute(QWebSettings::LocalContentCanAccessFileUrls, true);
     }
 
-    KUrl url;
-    url.setPath(path);
+    KUrl url(path);
     m_loadedOk = false;
-    m_page->mainFrame()->load(QUrl(url));
+    m_page->mainFrame()->load(url);
 
-    const int t = startTimer(5000);
+    const int t = startTimer((url.isLocalFile()?5000:30000));
     m_eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
     killTimer(t);
+
+    if (m_page->mainFrame()->contentsSize().isEmpty()) {
+        m_loadedOk = false;
+    }
+
+    if (!m_loadedOk) {
+        return false;
+    }
 
     QPixmap pix;
     if (width > 400 || height > 600) {
@@ -80,12 +87,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     } else {
         pix = QPixmap(400, 600);
     }
-
-    // light-grey background, in case loadind the page failed
-    if (!m_loadedOk) {
-        pix.fill(QColor( 245, 245, 245 ));
-    }
-
+    pix.fill(Qt::transparent);
     const int borderX = pix.width() / width;
     const int borderY = pix.height() / height;
     QRect clip (borderX, borderY, pix.width() - borderX * 2, pix.height() - borderY * 2);
