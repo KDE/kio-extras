@@ -197,7 +197,7 @@ static QString encodeString(const QString &s, QTextCodec *codec)
   for(QStringList::Iterator it = l.begin();
       it != l.end(); ++it)
   {
-     *it = codec->fromUnicode( *it ).toPercentEncoding();
+     *it = codec->fromUnicode( *it ).toPercentEncoding("?#");
   }
   return l.join("+");
 }
