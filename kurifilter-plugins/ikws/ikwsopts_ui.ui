@@ -29,7 +29,7 @@ Enable shortcuts that allow you to quickly search for information on the web. Fo
       <bool>false</bool>
      </property>
      <property name="text">
-      <string>&amp;Use selected shortcuts only</string>
+      <string>&amp;Use preferred shortcuts only</string>
      </property>
     </widget>
    </item>

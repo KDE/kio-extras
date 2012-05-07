@@ -27,17 +27,17 @@ class ProvidersModel: public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    enum {Name,Shortcuts,ColumnCount};
+    enum {Name,Shortcuts,Preferred,ColumnCount};
     ProvidersModel(QObject* parent = 0): QAbstractTableModel(parent){}
     ~ProvidersModel();
-    
+
     Qt::ItemFlags flags(const QModelIndex& index) const;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
     bool setData (const QModelIndex& index, const QVariant& value, int role = Qt::EditRole);
     QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
     int columnCount(const QModelIndex& parent = QModelIndex()) const{Q_UNUSED(parent); return ColumnCount;}
-    
+
     void setProviders(const QList<SearchProvider*>&, const QStringList&);
     void setFavoriteProviders(const QStringList&);
     void addProvider(SearchProvider* p);
@@ -45,12 +45,12 @@ public:
     void changeProvider(SearchProvider* p);
     QStringList favoriteEngines() const;
     QList<SearchProvider*> providers() const{ return m_providers;}
-    
+
     ///Creates new ProvidersListModel which directly uses data of this model.
     QAbstractListModel* createListModel();
 
 Q_SIGNALS:
-    void dataModified();   
+    void dataModified();
 
 private:
     QSet<QString> m_favoriteEngines;

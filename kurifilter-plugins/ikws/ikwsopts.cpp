@@ -48,10 +48,17 @@ QVariant ProvidersModel::headerData(int section, Qt::Orientation orientation, in
   Q_UNUSED(orientation);
   if (role == Qt::DisplayRole)
   {
-    if (section==Name)
+    switch (section) {
+    case Name:
       return i18n("Name");
-    return i18n("Shortcuts");
-  }   
+    case Shortcuts:
+      return i18n("Shortcuts");
+    case Preferred:
+      return i18n("Preferred");
+    default:
+      break;
+    }
+  }
   return QVariant();
 }
 
@@ -59,7 +66,7 @@ Qt::ItemFlags ProvidersModel::flags(const QModelIndex& index) const
 {
   if (!index.isValid())
     return Qt::ItemIsEnabled;
-  if (index.column()==Name)
+  if (index.column()==Preferred)
     return Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable;
   return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
@@ -80,22 +87,31 @@ bool ProvidersModel::setData (const QModelIndex& index, const QVariant& value, i
 
 QVariant ProvidersModel::data(const QModelIndex& index, int role) const
 {
-  if (!index.isValid())
-    return QVariant();
-  
-  if (role == Qt::CheckStateRole && index.column()==Name)
-    return (m_favoriteEngines.contains(m_providers.at(index.row())->desktopEntryName()) ? Qt::Checked : Qt::Unchecked);
-
-  if (role == Qt::DisplayRole)
+  if (index.isValid())
   {
-    if (index.column()==Name)
-      return m_providers.at(index.row())->name();
-    if (index.column()==Shortcuts)
-      return m_providers.at(index.row())->keys().join(",");
-  }
+    if (role == Qt::CheckStateRole && index.column()==Preferred)
+      return (m_favoriteEngines.contains(m_providers.at(index.row())->desktopEntryName()) ? Qt::Checked : Qt::Unchecked);
 
-  if (role == Qt::UserRole)
-    return index.row();//a nice way to bypass proxymodel
+    if (role == Qt::DisplayRole)
+    {
+      if (index.column()==Name)
+        return m_providers.at(index.row())->name();
+      if (index.column()==Shortcuts)
+        return m_providers.at(index.row())->keys().join(",");
+    }
+
+    if (role == Qt::ToolTipRole || role == Qt::WhatsThisRole)
+    {
+      if (index.column() == Preferred)
+        return i18n("<qt>Check this box to select the highlighted web shortcut "
+                    "as preferred.<p/><br/>Preferred web shortcuts are used in "
+                    "places where only a few select shortcuts can be shown "
+                    "at one time.</qt>");
+    }
+
+    if (role == Qt::UserRole)
+      return index.row();//a nice way to bypass proxymodel
+  }
 
   return QVariant();
 }
@@ -169,7 +185,7 @@ QStringList ProvidersModel::favoriteEngines() const
 //BEGIN ProvidersListModel
 ProvidersListModel::ProvidersListModel(QList<SearchProvider*>& providers,  QObject* parent)
     : QAbstractListModel(parent)
-    , m_providers(providers)        
+    , m_providers(providers)
 {}
 
 QVariant ProvidersListModel::data(const QModelIndex& index, int role) const
@@ -190,7 +206,6 @@ QVariant ProvidersListModel::data(const QModelIndex& index, int role) const
       return m_providers.at(index.row())->desktopEntryName();
     }
   }
-    
   return QVariant();
 }
 
@@ -209,6 +224,7 @@ static QSortFilterProxyModel* wrapInProxyModel(QAbstractItemModel* model)
   proxyModel->setDynamicSortFilter(true);
   proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
   proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+  proxyModel->setFilterKeyColumn(-1);
   return proxyModel;
 }
 
@@ -333,7 +349,7 @@ void FilterOptions::save()
     changedProviderCount++;
 
     KConfig _service(path + provider->desktopEntryName() + ".desktop", KConfig::SimpleConfig );
-    KConfigGroup service(&_service, "Desktop Entry");                                                                                                      
+    KConfigGroup service(&_service, "Desktop Entry");
     service.writeEntry("Type", "Service");
     service.writeEntry("ServiceTypes", "SearchProvider");
     service.writeEntry("Name", provider->name());
