@@ -33,7 +33,7 @@
 
 #include <QtCore/QTextCodec>
 
-#define PDVAR(n,v) kDebug(7023) << n << " = '" << v << "'\n"
+#define PDVAR(n,v) kDebug(7023) << n << " = '" << v << "'"
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -68,7 +68,7 @@ SearchProvider* KURISearchFilterEngine::webShortcutQuery(const QString& typedStr
       provider = SearchProvider::findByKey(key);
       if (provider)
       {
-        if (!m_bUseOnlySelectedShortcuts || m_favoriteEngines.contains(provider->desktopEntryName()))
+        if (!m_bUseOnlyPreferredWebShortcuts || m_preferredWebShortcuts.contains(provider->desktopEntryName()))
             searchTerm = typedString.mid(pos+1);
         else
         {
@@ -83,10 +83,10 @@ SearchProvider* KURISearchFilterEngine::webShortcutQuery(const QString& typedStr
 }
 
 
-SearchProvider* KURISearchFilterEngine::autoWebSearchQuery(const QString& typedString, const QString &defaultEngine) const
+SearchProvider* KURISearchFilterEngine::autoWebSearchQuery(const QString& typedString, const QString &defaultShortcut) const
 {
   SearchProvider *provider = 0;
-  const QString defaultSearchProvider = (m_defaultSearchEngine.isEmpty() ? defaultEngine : m_defaultSearchEngine);
+  const QString defaultSearchProvider = (m_defaultWebShortcut.isEmpty() ? defaultShortcut : m_defaultWebShortcut);
 
   if (m_bWebShortcutsEnabled && !defaultSearchProvider.isEmpty())
   {
@@ -112,12 +112,12 @@ char KURISearchFilterEngine::keywordDelimiter() const
 
 QString KURISearchFilterEngine::defaultSearchEngine() const
 {
-  return m_defaultSearchEngine;
+  return m_defaultWebShortcut;
 }
 
 QStringList KURISearchFilterEngine::favoriteEngineList() const
 {
-  return m_favoriteEngines;
+  return m_preferredWebShortcuts;
 }
 
 KURISearchFilterEngine* KURISearchFilterEngine::self()
@@ -424,19 +424,19 @@ void KURISearchFilterEngine::loadConfig()
 
   m_cKeywordDelimiter = QString(group.readEntry("KeywordDelimiter", ":")).at(0).toLatin1();
   m_bWebShortcutsEnabled = group.readEntry("EnableWebShortcuts", true);
-  m_defaultSearchEngine = group.readEntry("DefaultSearchEngine");
-  m_bUseOnlySelectedShortcuts = group.readEntry("UseSelectedProvidersOnly", false);
+  m_defaultWebShortcut = group.readEntry("DefaultWebShortcut");
+  m_bUseOnlyPreferredWebShortcuts = group.readEntry("UsePreferredWebShortcutsOnly", false);
 
-  QStringList defaultFavoriteSearchEngines;
-  if (!group.hasKey("FavoriteSearchEngines"))
-      defaultFavoriteSearchEngines = DEFAULT_PREFERRED_SEARCH_PROVIDERS;  
-  m_favoriteEngines = group.readEntry("FavoriteSearchEngines", defaultFavoriteSearchEngines);
+  QStringList defaultPreferredShortcuts;
+  if (!group.hasKey("PreferredWebShortcuts"))
+      defaultPreferredShortcuts = DEFAULT_PREFERRED_SEARCH_PROVIDERS;
+  m_preferredWebShortcuts = group.readEntry("PreferredWebShortcuts", defaultPreferredShortcuts);
 
   // Use either a white space or a : as the keyword delimiter...
   if (strchr (" :", m_cKeywordDelimiter) == 0)
     m_cKeywordDelimiter = ':';
 
-  kDebug(7023) << "Keyword Delimiter: " << m_cKeywordDelimiter << endl;
-  kDebug(7023) << "Default Search Engine: " << m_defaultSearchEngine << endl;
   kDebug(7023) << "Web Shortcuts Enabled: " << m_bWebShortcutsEnabled << endl;
+  kDebug(7023) << "Default Shortcut: " << m_defaultWebShortcut << endl;
+  kDebug(7023) << "Keyword Delimiter: " << m_cKeywordDelimiter << endl;
 }

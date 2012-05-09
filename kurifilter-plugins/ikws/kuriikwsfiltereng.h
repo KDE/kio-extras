@@ -45,7 +45,7 @@ public:
   QString defaultSearchEngine() const;
   QStringList favoriteEngineList() const;
   SearchProvider* webShortcutQuery (const QString& typedString, QString& searchTerm) const;
-  SearchProvider* autoWebSearchQuery (const QString& typedString, const QString& defaultEngine = QString()) const;
+  SearchProvider* autoWebSearchQuery (const QString& typedString, const QString& defaultShortcut = QString()) const;
   QString formatResult (const QString& url, const QString& cset1, const QString& cset2,
                         const QString& query, bool isMalformed) const;
 
@@ -65,10 +65,10 @@ private:
   QString substituteQuery (const QString& url, SubstMap &map,
                            const QString& userquery, QTextCodec *codec) const;
 
-  QString m_defaultSearchEngine;
-  QStringList m_favoriteEngines;
+  QString m_defaultWebShortcut;
+  QStringList m_preferredWebShortcuts;
   bool m_bWebShortcutsEnabled;
-  bool m_bUseOnlySelectedShortcuts;
+  bool m_bUseOnlyPreferredWebShortcuts;
   char m_cKeywordDelimiter;
 };
 

@@ -48,7 +48,7 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
     m_dlg.cbCharset->addItems(charsets);
     if (m_provider)
     {
-        setPlainCaption(i18n("Modify Search Provider"));
+        setPlainCaption(i18n("Modify Web Shortcut"));
         m_dlg.leName->setText(m_provider->name());
         m_dlg.leQuery->setText(m_provider->query());
         m_dlg.leShortcut->setText(m_provider->keys().join(","));
@@ -58,7 +58,7 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
     }
     else
     {
-        setPlainCaption(i18n("New Search Provider"));
+        setPlainCaption(i18n("New Web Shortcut"));
         m_dlg.leName->setFocus();
         enableButton(Ok, false);
     }
@@ -124,9 +124,9 @@ void SearchProviderDialog::slotButtonClicked(int button) {
     if (button == KDialog::Ok) {
         if ((m_dlg.leQuery->text().indexOf("\\{") == -1)
             && KMessageBox::warningContinueCancel(0,
-                i18n("The URI does not contain a \\{...} placeholder for the user query.\n"
-                    "This means that the same page is always going to be visited, "
-                    "regardless of what the user types."),
+                i18n("The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+                     "This means that the same page is always going to be visited, "
+                     "regardless of the text typed in with the shortcut."),
                 QString(), KGuiItem(i18n("Keep It"))) == KMessageBox::Cancel) {
             return;
         }
@@ -139,7 +139,7 @@ void SearchProviderDialog::slotButtonClicked(int button) {
         QStringList keys = m_dlg.leShortcut->text().trimmed().toLower().split(',', QString::SkipEmptyParts);
         keys.removeDuplicates();// #169801. Remove duplicates...
         const QString charset = (m_dlg.cbCharset->currentIndex() ? m_dlg.cbCharset->currentText().trimmed() : QString());
-        
+
         m_provider->setDirty((name != m_provider->name() || query != m_provider->query() ||
                               keys != m_provider->keys() || charset != m_provider->charset()));        
         m_provider->setName(name);

@@ -13,10 +13,8 @@
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <widget class="QCheckBox" name="cbEnableShortcuts">
-     <property name="whatsThis">
-      <string>&lt;qt&gt;
-Enable shortcuts that allow you to quickly search for information on the web. For example, entering the shortcut &lt;b&gt;gg:KDE&lt;/b&gt; will result in a search for the word &lt;b&gt;KDE&lt;/b&gt; on the Google(TM) search engine.
-&lt;/qt&gt;</string>
+     <property name="toolTip">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable web shortcuts. &lt;/p&gt;&lt;p&gt;Web shortcuts allow you to quickly access or search for information located online or on your hard drive. &lt;/p&gt;&lt;p&gt;KDE comes with many predefined Web shortcuts. One such Web shortcut is the Google (TM) search shortcut. To use it, you simply type the keyword 'gg' followed by the keyword delimiter and the search term, e.g. &lt;span style=&quot; font-weight:600;&quot;&gt;gg:KDE&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>&amp;Enable Web shortcuts</string>
@@ -43,59 +41,6 @@ Enable shortcuts that allow you to quickly search for information on the web. Fo
      </property>
     </widget>
    </item>
-   <item row="2" column="1" rowspan="2">
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QPushButton" name="pbNew">
-       <property name="whatsThis">
-        <string>Add a search provider.</string>
-       </property>
-       <property name="text">
-        <string>&amp;New...</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbChange">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="whatsThis">
-        <string>Modify a search provider.</string>
-       </property>
-       <property name="text">
-        <string>Chan&amp;ge...</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pbDelete">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="whatsThis">
-        <string>Delete the selected search provider.</string>
-       </property>
-       <property name="text">
-        <string>De&amp;lete</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>158</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
    <item row="3" column="0">
     <widget class="QTreeView" name="lvSearchProviders">
      <property name="rootIsDecorated">
@@ -117,6 +62,59 @@ Enable shortcuts that allow you to quickly search for information on the web. Fo
       <bool>false</bool>
      </property>
     </widget>
+   </item>
+   <item row="3" column="1">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QPushButton" name="pbNew">
+       <property name="toolTip">
+        <string>Add a new Web shortcut</string>
+       </property>
+       <property name="text">
+        <string>&amp;New...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbChange">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>Modify the highlighted Web shortcut</string>
+       </property>
+       <property name="text">
+        <string>Chan&amp;ge...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbDelete">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>Delete the highlighted Web shortcut</string>
+       </property>
+       <property name="text">
+        <string>De&amp;lete</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>158</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
    <item row="4" column="0">
     <layout class="QFormLayout" name="formLayout">
@@ -140,7 +138,7 @@ Select the search engine to use for input boxes that provide automatic lookup se
 &lt;/qt&gt;</string>
        </property>
        <property name="text">
-        <string>Default &amp;search engine:</string>
+        <string>Default Web &amp;shortcut:</string>
        </property>
        <property name="wordWrap">
         <bool>false</bool>
@@ -165,9 +163,7 @@ Select the search engine to use for input boxes that provide automatic lookup se
         </size>
        </property>
        <property name="whatsThis">
-        <string>&lt;qt&gt;
-Select the search engine to use for input boxes that provide automatic lookup services when you type in normal words and phrases instead of a URL. To disable this feature select &lt;b&gt;None&lt;/b&gt; from the list.
-&lt;/qt&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select a default web shortcut. &lt;/p&gt;&lt;p&gt;This allows applications to automatically convert the typed word or pharse to web shortcut queries when they cannot be filtered into a proper URL. &lt;/p&gt;&lt;p&gt;To disable this functionality select &lt;span style=&quot; font-weight:600;&quot;&gt;None&lt;/span&gt; from the list. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="sizeAdjustPolicy">
         <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
@@ -204,8 +200,8 @@ Select the search engine to use for input boxes that provide automatic lookup se
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="whatsThis">
-        <string>Choose the delimiter that separates the keyword from the phrase or word to be searched.</string>
+       <property name="toolTip">
+        <string>Choose a delimiter to mark the Web shortcut keyword.</string>
        </property>
        <item>
         <property name="text">

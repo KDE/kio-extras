@@ -7,20 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>449</width>
-    <height>207</height>
+    <height>143</height>
    </rect>
   </property>
   <layout class="QFormLayout" name="formLayout">
-   <property name="margin">
-    <number>0</number>
-   </property>
    <item row="0" column="0">
     <widget class="QLabel" name="lbName">
      <property name="whatsThis">
       <string>Enter the human-readable name of the search provider here.</string>
      </property>
      <property name="text">
-      <string>Search &amp;provider name:</string>
+      <string>Shortcut &amp;name:</string>
      </property>
      <property name="wordWrap">
       <bool>false</bool>
@@ -33,10 +30,10 @@
    <item row="0" column="1">
     <widget class="KLineEdit" name="leName">
      <property name="toolTip">
-      <string>Enter the human-readable name of the search provider here.</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the human-readable name of the web shortcut here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="whatsThis">
-      <string>Enter the human-readable name of the search provider here.</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the human-readable name of the web shortcut here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
@@ -49,7 +46,7 @@ Recommended is \{@}, since it removes all query variables (name=value) from the 
 &lt;/qt&gt;</string>
      </property>
      <property name="text">
-      <string>Search &amp;URI:</string>
+      <string>Shortcut &amp;URL:</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -86,7 +83,7 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
 &lt;/qt&gt;</string>
      </property>
      <property name="text">
-      <string>UR&amp;I shortcuts:</string>
+      <string>&amp;Shortcuts:</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -153,14 +150,14 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
-  <customwidget>
    <class>KComboBox</class>
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
   </customwidget>
  </customwidgets>
  <includes>

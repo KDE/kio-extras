@@ -104,7 +104,7 @@ QVariant ProvidersModel::data(const QModelIndex& index, int role) const
     {
       if (index.column() == Preferred)
         return i18n("<qt>Check this box to select the highlighted web shortcut "
-                    "as preferred.<p/><br/>Preferred web shortcuts are used in "
+                    "as preferred.<br/><br/>Preferred web shortcuts are used in "
                     "places where only a few select shortcuts can be shown "
                     "at one time.</qt>");
     }
