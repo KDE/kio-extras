@@ -163,7 +163,7 @@ Select the search engine to use for input boxes that provide automatic lookup se
         </size>
        </property>
        <property name="whatsThis">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select a default web shortcut. &lt;/p&gt;&lt;p&gt;This allows applications to automatically convert the typed word or pharse to web shortcut queries when they cannot be filtered into a proper URL. &lt;/p&gt;&lt;p&gt;To disable this functionality select &lt;span style=&quot; font-weight:600;&quot;&gt;None&lt;/span&gt; from the list. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select a default web shortcut. &lt;/p&gt;&lt;p&gt;This allows applications to automatically convert the typed word or phrase to web shortcut queries when they cannot be filtered into a proper URL. &lt;/p&gt;&lt;p&gt;To disable this functionality select &lt;span style=&quot; font-weight:600;&quot;&gt;None&lt;/span&gt; from the list. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="sizeAdjustPolicy">
         <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
