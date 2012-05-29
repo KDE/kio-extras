@@ -69,6 +69,10 @@ Name[zh_CN]=Duck Duck Go
 Name[zh_TW]=Duck Duck Go
 Query=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[ca]=http://duckduckgo.com/?q=\\{@}&t=KDE
+Query[cs]=http://duckduckgo.com/?q=\\{@}&t=KDE
+Query[de]=http://duckduckgo.com/?q=\\{@}&t=KDE
+Query[el]=http://duckduckgo.com/?q=\\{@}&t=KDE
+Query[et]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[hu]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[nl]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[pa]=http://duckduckgo.com/?q=\\{@}&t=KDE
@@ -78,5 +82,6 @@ Query[ro]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[sv]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[uk]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&t=KDExx
+Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&t=KDE
 ServiceTypes=SearchProvider
 Type=Service
