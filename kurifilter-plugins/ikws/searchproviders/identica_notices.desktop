@@ -14,6 +14,7 @@ Name[da]=Identi.ca-notitser
 Name[de]=Identi.ca Notices
 Name[el]=Identi.ca Notices
 Name[en_GB]=Identi.ca Notices
+Name[eo]=Novaĵoj de Identi.ko
 Name[es]=Avisos Identi.ca
 Name[et]=Identi.ca teadaanded
 Name[eu]=Identi.ca Berriak
@@ -81,6 +82,7 @@ Query[da]=http://identi.ca/search/notice?q=\\{@}
 Query[de]=http://identi.ca/search/notice?q=\\{@}
 Query[el]=http://identi.ca/search/notice?q=\\{@}
 Query[en_GB]=http://identi.ca/search/notice?q=\\{@}
+Query[eo]=http://identi.ca/search/notice?q=\\{@}
 Query[es]=http://identi.ca/search/notice?q=\\{@}
 Query[et]=http://identi.ca/search/notice?q=\\{@}
 Query[eu]=http://identi.ca/search/notice?q=\\{@}

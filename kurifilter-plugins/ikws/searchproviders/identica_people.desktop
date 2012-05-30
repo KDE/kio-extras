@@ -13,6 +13,7 @@ Name[da]=Identi.ca-folk
 Name[de]=Identi.ca People
 Name[el]=Identi.ca People
 Name[en_GB]=Identi.ca People
+Name[eo]=Presonoj de Identi.ko
 Name[es]=Gente Identi.ca
 Name[et]=Identi.ca inimesed
 Name[eu]=Identi.ca Jendea
@@ -80,6 +81,7 @@ Query[da]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[de]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[el]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[en_GB]=http://identi.ca/search/people?q=\\{@}&search=Search
+Query[eo]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[es]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[et]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[eu]=http://identi.ca/search/people?q=\\{@}&search=Search

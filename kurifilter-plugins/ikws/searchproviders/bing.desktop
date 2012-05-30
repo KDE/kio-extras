@@ -11,6 +11,7 @@ Name[da]=Bing
 Name[de]=Bing
 Name[el]=Bing
 Name[en_GB]=Bing
+Name[eo]=Bingo
 Name[es]=Bing
 Name[et]=Bing
 Name[eu]=Bing
@@ -76,6 +77,7 @@ Query[da]=http://www.bing.com/search?q=\\{@}
 Query[de]=http://www.bing.de/search/?q=\\{@}
 Query[el]=http://www.bing.com/search?q=\\{@}
 Query[en_GB]=http://www.bing.com/search?q=\\{@}
+Query[eo]=http://www.bing.com/search?q=\\{@}
 Query[es]=http://www.bing.com/search?q=\\{@}
 Query[et]=http://www.bing.com/search?q=\\{@}
 Query[eu]=http://www.bing.com/search?q=\\{@}

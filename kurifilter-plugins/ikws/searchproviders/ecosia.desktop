@@ -12,6 +12,7 @@ Name[da]=Ecosia søgemaskine
 Name[de]=Ecosia-Suchmaschine
 Name[el]=Ecosia Μηχανή αναζήτησης
 Name[en_GB]=Ecosia search engine
+Name[eo]=Serĉilo Ecosia
 Name[es]=Motor de búsqueda Ecosia
 Name[et]=Ecosia otsingumootor
 Name[eu]=Ecosia bilaketa motorea
@@ -81,6 +82,7 @@ Query[da]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[de]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[el]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[en_GB]=http://ecosia.org/search.php?q=\\{@}&meta=normal
+Query[eo]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[es]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[et]=http://ecosia.org/search.php?q=\\{@}&meta=normal
 Query[eu]=http://ecosia.org/search.php?q=\\{@}&meta=normal

@@ -112,7 +112,7 @@ Query[da]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=http://de.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[el]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[en_GB]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[eo]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[eo]=http://eo.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[es]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[et]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[eu]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

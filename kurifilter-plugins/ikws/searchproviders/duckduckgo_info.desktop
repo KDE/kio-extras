@@ -14,6 +14,7 @@ Name[da]=Duck Duck Go info
 Name[de]=Duck Duck Go Info
 Name[el]=Duck Duck Go Info
 Name[en_GB]=Duck Duck Go Info
+Name[eo]=Informoj de Duck Duck Go
 Name[es]=Duck Duck Go Info
 Name[et]=Duck Duck Go Info
 Name[eu]=Duck Duck Go Info
@@ -71,8 +72,10 @@ Query[ca]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[de]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[el]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
+Query[eo]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[et]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[hu]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
+Query[ia]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[pa]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
