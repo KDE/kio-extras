@@ -71,6 +71,7 @@ Name[zh_TW]=Duck Duck Go
 Query=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[ca]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[cs]=http://duckduckgo.com/?q=\\{@}&t=KDE
+Query[da]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[de]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[el]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[eo]=http://duckduckgo.com/?q=\\{@}&t=KDE
