@@ -86,6 +86,10 @@ Query[pl]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
 Query[ro]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
+Query[sr]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
+Query[sr@ijekavian]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
+Query[sr@ijekavianlatin]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
+Query[sr@latin]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s&t=KDE
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=s&t=KDExx
