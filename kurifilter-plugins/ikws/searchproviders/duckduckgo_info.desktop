@@ -68,6 +68,7 @@ Name[x-test]=xxDuck Duck Go Infoxx
 Name[zh_CN]=Duck Duck Go 信息
 Name[zh_TW]=Duck Duck Go Info
 Query=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
+Query[bg]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[ca]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE
 Query[da]=http://duckduckgo.com/?q=\\{@}&v=r&t=KDE

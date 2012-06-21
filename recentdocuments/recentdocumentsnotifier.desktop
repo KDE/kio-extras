@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Recent Document Watcher
+Name[bg]=Следене на скорошни документи
 Name[ca]=Vigilant de documents recents
 Name[cs]=Sledování nedávných dokumentů
 Name[da]=Overvågning af nylige dokumenter
@@ -42,6 +43,7 @@ X-KDE-DBus-ModuleName=recentdocumentsnotifier
 X-KDE-Kded-load-on-demand=true
 X-KDE-Kded-autoload=false
 Comment=Monitors "Recent Documents" folder for changes
+Comment[bg]=Следене за промени в скорошните документи
 Comment[ca]=Controla els canvis en la carpeta «Documents recents»
 Comment[cs]=Monitoruje změny ve složce nedávných dokumentů
 Comment[da]=Overvåger mappen med "nylige dokumenter" for ændringer
