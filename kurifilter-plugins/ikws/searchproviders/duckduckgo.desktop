@@ -91,6 +91,7 @@ Query[sr@ijekavian]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[sr@ijekavianlatin]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[sr@latin]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[sv]=http://duckduckgo.com/?q=\\{@}&t=KDE
+Query[tr]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[uk]=http://duckduckgo.com/?q=\\{@}&t=KDE
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&t=KDExx
 Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&t=KDE
