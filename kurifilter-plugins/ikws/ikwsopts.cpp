@@ -286,8 +286,8 @@ void FilterOptions::load()
   KConfig config(KURISearchFilterEngine::self()->name() + "rc", KConfig::NoGlobals);
   KConfigGroup group = config.group("General");
 
-  const QString defaultSearchEngine = group.readEntry("DefaultSearchEngine");
-  const QStringList favoriteEngines = group.readEntry("FavoriteSearchEngines", DEFAULT_PREFERRED_SEARCH_PROVIDERS);
+  const QString defaultSearchEngine = group.readEntry("DefaultWebShortcut");
+  const QStringList favoriteEngines = group.readEntry("PreferredWebShortcuts", DEFAULT_PREFERRED_SEARCH_PROVIDERS);
 
   QList<SearchProvider*> providers;
   const KService::List services = KServiceTypeTrader::self()->query("SearchProvider");
@@ -309,7 +309,7 @@ void FilterOptions::load()
   setDefaultEngine(defaultProviderIndex);
 
   m_dlg.cbEnableShortcuts->setChecked(group.readEntry("EnableWebShortcuts", true));
-  m_dlg.cbUseSelectedShortcutsOnly->setChecked(group.readEntry("UseSelectedProvidersOnly", false));
+  m_dlg.cbUseSelectedShortcutsOnly->setChecked(group.readEntry("UsePreferredWebShortcutsOnly", false));
 
   const QString delimiter = group.readEntry ("KeywordDelimiter", ":");
   setDelimiter(delimiter.at(0).toLatin1());
@@ -333,9 +333,9 @@ void FilterOptions::save()
   KConfigGroup group = config.group("General");
   group.writeEntry("EnableWebShortcuts", m_dlg.cbEnableShortcuts->isChecked());
   group.writeEntry("KeywordDelimiter", QString(QLatin1Char(delimiter())));
-  group.writeEntry("DefaultSearchEngine", m_dlg.cmbDefaultEngine->view()->currentIndex().data(ProvidersListModel::ShortNameRole));
-  group.writeEntry("FavoriteSearchEngines", m_providersModel->favoriteEngines());
-  group.writeEntry("UseSelectedProvidersOnly", m_dlg.cbUseSelectedShortcutsOnly->isChecked());
+  group.writeEntry("DefaultWebShortcut", m_dlg.cmbDefaultEngine->view()->currentIndex().data(ProvidersListModel::ShortNameRole));
+  group.writeEntry("PreferredWebShortcuts", m_providersModel->favoriteEngines());
+  group.writeEntry("UsePreferredWebShortcutsOnly", m_dlg.cbUseSelectedShortcutsOnly->isChecked());
 
   int changedProviderCount = 0;
   QList<SearchProvider*> providers = m_providersModel->providers();

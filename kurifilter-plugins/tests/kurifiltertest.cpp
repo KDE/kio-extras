@@ -178,7 +178,7 @@ void KUriFilterTest::init()
     // so the user has to set it up, which we do here.
     {
       KConfigGroup cfg( KSharedConfig::openConfig( "kuriikwsfilterrc", KConfig::SimpleConfig ), "General" );
-      cfg.writeEntry( "DefaultSearchEngine", "google" );
+      cfg.writeEntry( "DefaultWebShortcut", "google" );
       cfg.writeEntry( "Verbose", true );
       cfg.writeEntry( "KeywordDelimiter", QString(s_delimiter) );
       cfg.sync();
