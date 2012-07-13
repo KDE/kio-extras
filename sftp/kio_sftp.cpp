@@ -200,7 +200,7 @@ int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
   if (!mPublicKeyAuthInfo) {
       mPublicKeyAuthInfo = new KIO::AuthInfo;
   } else {
-      errMsg = i18n("Incorrect or invalid passpharse");
+      errMsg = i18n("Incorrect or invalid passphrase");
   }
 
   mPublicKeyAuthInfo->url.setProtocol(QLatin1String("sftp"));
