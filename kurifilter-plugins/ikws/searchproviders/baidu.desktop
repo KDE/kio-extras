@@ -3,6 +3,7 @@ Type=Service
 Name=Baidu
 Name[ast]=Baidu
 Name[bg]=Търсене в Baidu
+Name[bn]=বাইডু
 Name[bs]=Bajdu
 Name[ca]=Baidu
 Name[ca@valencia]=Baidu
@@ -69,6 +70,7 @@ Keys=baidu
 Query=http://www.baidu.com/s?wd=\\{@}
 Query[ast]=http://www.baidu.com/s?wd=\\{@}
 Query[bg]=http://www.baidu.com/s?wd=\\{@}
+Query[bn]=http://www.baidu.com/s?wd=\\{@}
 Query[bs]=http://www.baidu.com/s?wd=\\{@}
 Query[ca]=http://www.baidu.com/s?wd=\\{@}
 Query[ca@valencia]=http://www.baidu.com/s?wd=\\{@}
