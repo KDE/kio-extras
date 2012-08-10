@@ -92,6 +92,7 @@ Name[zh_CN]=QRZ.com Callsign 数据库
 Name[zh_TW]=QRZ.com Callsign 資料庫
 Query=http://www.qrz.com/db/\\{@}
 Query[bg]=http://www.qrz.com/db/\\{@}
+Query[bn]=http://www.qrz.com/db/\\{@}
 Query[ca]=http://www.qrz.com/db/\\{@}
 Query[ca@valencia]=http://www.qrz.com/db/\\{@}
 Query[cs]=http://www.qrz.com/db/\\{@}
@@ -122,6 +123,7 @@ Query[lv]=http://www.qrz.com/db/\\{@}
 Query[nb]=http://www.qrz.com/s?wd=\\{@}
 Query[nds]=http://www.qrz.com/db/\\{@}
 Query[nl]=http://www.qrz.com/db/\\{@}
+Query[nn]=http://www.qrz.com/db/\\{@}
 Query[pa]=http://www.qrz.com/db/\\{@}
 Query[pl]=http://www.qrz.com/db/\\{@}
 Query[pt]=http://www.qrz.com/db/\\{@}

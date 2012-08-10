@@ -93,6 +93,7 @@ Name[zh_CN]=CPAN - 综合性 Perl 档案网络
 Name[zh_TW]=CPAN - 全面的 Perl 收集網路
 Query=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[bg]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[bn]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ca]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ca@valencia]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[cs]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
@@ -119,12 +120,15 @@ Query[lv]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[nb]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[nds]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[nl]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[nn]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[pa]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[pl]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[pt]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[pt_BR]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ro]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[ru]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[sk]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[sl]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[sr]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[sr@ijekavian]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[sr@ijekavianlatin]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
