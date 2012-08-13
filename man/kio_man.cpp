@@ -136,7 +136,7 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
     const QString common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-default.css" );
     const QString strPath=QString( "file:%1/en/common" ).arg( common_dir );
     m_cssPath=strPath.toLocal8Bit(); // ### TODO encode for CSS
-    section_names << "1" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
+    section_names << "0" << "0p" << "1" << "1p" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
 
     QString cssPath(KStandardDirs::locate( "data", "kio_docfilter/kio_docfilter.css" ));
@@ -795,11 +795,23 @@ void MANProtocol::showMainIndex()
 
     os << "<table>" << endl;
 
+    QSet<QChar> accessKeys;
+    char alternateAccessKey = 'a';
     QStringList::ConstIterator it;
     for (it = sections.constBegin(); it != sections.constEnd(); ++it)
-        os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" <<
-	(((*it).length()==1)?(*it):(*it).right(1))<<"\">" << i18n("Section %1", *it)
+    {
+        // create a unique access key
+        QChar accessKey = (*it).at((*it).length() - 1);  // rightmost char
+
+        while ( accessKeys.contains(accessKey) )
+            accessKey = alternateAccessKey++;
+
+        accessKeys.insert(accessKey);
+
+        os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" << accessKey
+	<< "\">" << i18n("Section %1", *it)
 	<< "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
+    }
 
     os << "</table>" << endl;
 
