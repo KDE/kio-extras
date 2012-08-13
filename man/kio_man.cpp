@@ -719,32 +719,22 @@ void MANProtocol::mimetype(const KUrl & /*url*/)
 
 static QString sectionName(const QString& section)
 {
-    if (section == "1")
-        return i18n("User Commands");
-    else if (section == "2")
-        return i18n("System Calls");
-    else if (section == "3")
-        return i18n("Subroutines");
-    else if (section == "3p")
-    	return i18n("Perl Modules");
-    else if (section == "3n")
-    	return i18n("Network Functions");
-    else if (section == "4")
-        return i18n("Devices");
-    else if (section == "5")
-        return i18n("File Formats");
-    else if (section == "6")
-        return i18n("Games");
-    else if (section == "7")
-        return i18n("Miscellaneous");
-    else if (section == "8")
-        return i18n("System Administration");
-    else if (section == "9")
-        return i18n("Kernel");
-    else if (section == "l")
-    	return i18n("Local Documentation");
-    else if (section == "n")
-        return i18n("New");
+    if      (section ==  "0") return i18n("Header files");
+    else if (section == "0p") return i18n("Header files (POSIX)");
+    else if (section ==  "1") return i18n("User Commands");
+    else if (section == "1p") return i18n("User Commands (POSIX)");
+    else if (section ==  "2") return i18n("System Calls");
+    else if (section ==  "3") return i18n("Subroutines");
+    else if (section == "3p") return i18n("Perl Modules");
+    else if (section == "3n") return i18n("Network Functions");
+    else if (section ==  "4") return i18n("Devices");
+    else if (section ==  "5") return i18n("File Formats");
+    else if (section ==  "6") return i18n("Games");
+    else if (section ==  "7") return i18n("Miscellaneous");
+    else if (section ==  "8") return i18n("System Administration");
+    else if (section ==  "9") return i18n("Kernel");
+    else if (section ==  "l") return i18n("Local Documentation");
+    else if (section ==  "n") return i18n("New");
 
     return QString();
 }
