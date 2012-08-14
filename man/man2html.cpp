@@ -4427,14 +4427,7 @@ static char *scan_request(char *c)
             getArguments(c, args);
             output_possible = true;
             out_html(DOCTYPE"<HTML>\n<HEAD>\n");
-#ifdef SIMPLE_MAN2HTML
-            // Most English man pages are in ISO-8859-1
-            out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n");
-#else
-            out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=");
-            out_html(KGlobal::locale()->encoding());
-            out_html("\">\n");
-#endif
+            out_html("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
             out_html("<TITLE>");
             if ( args.count() )
             {
