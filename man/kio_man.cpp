@@ -40,7 +40,7 @@
 #include <kstandarddirs.h>
 #include <KProcess>
 #include <klocale.h>
-#include <kmimetype.h>
+#include <kencodingprober.h>
 
 #include "kio_man.moc"
 #include "man2html.h"
@@ -382,7 +382,7 @@ QStringList MANProtocol::findPages(const QString &_section,
 
 void MANProtocol::findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list)
 {
-    kDebug() << "findManPagesInSection " << dir << " " << title;
+    kDebug(7107) << "findManPagesInSection " << dir << " " << title;
     bool title_given = !title.isEmpty();
 
     DIR *dp = ::opendir( QFile::encodeName( dir ) );
@@ -530,11 +530,12 @@ void MANProtocol::get(const KUrl& url )
     finished();
 }
 
+//---------------------------------------------------------------------
+
 char *MANProtocol::readManPage(const char *_filename)
 {
     QByteArray filename = _filename;
-
-    char *buf = NULL;
+    QByteArray array;
 
     /* Determine type of man page file by checking its path. Determination by
      * MIME type with KMimeType doesn't work reliablely. E.g., Solaris 7:
@@ -550,57 +551,63 @@ char *MANProtocol::readManPage(const char *_filename)
         proc << mySgml2RoffPath << filename;
         proc.setOutputChannelMode( KProcess::OnlyStdoutChannel );
         proc.execute();
-        const QByteArray cstr = proc.readAllStandardOutput();
-        const int len = cstr.size()-1;
-        buf = new char[len + 4];
-        memmove(buf + 1, cstr.data(), len);
-        buf[0]=buf[len]='\n'; // Start and end with a end of line
-        buf[len+1]=buf[len+2]='\0'; // Two additional NUL characters at end
+        array = proc.readAllStandardOutput();
     }
     else
     {
-        if (QDir::isRelativePath(filename))
-        {
-            kDebug(7107) << "relative " << filename;
-            filename = QDir::cleanPath(lastdir + '/' + filename).toUtf8();
-            kDebug(7107) << "resolved to " << filename;
-        }
+      if (QDir::isRelativePath(filename))
+      {
+          kDebug(7107) << "relative " << filename;
+          filename = QDir::cleanPath(lastdir + '/' + filename).toUtf8();
+          kDebug(7107) << "resolved to " << filename;
+      }
 
-        lastdir = filename.left(filename.lastIndexOf('/'));
+      lastdir = filename.left(filename.lastIndexOf('/'));
 
-        if ( !QFile::exists(QFile::decodeName(filename)) )  // if given file does not exist, find with suffix
-        {
-            kDebug(7107) << "not existing " << filename;
-            QDir mandir(lastdir);
-            mandir.setNameFilters(QStringList() << (filename.mid(filename.lastIndexOf('/') + 1) + ".*"));
-            filename = lastdir + '/' + QFile::encodeName(mandir.entryList().first());
-            kDebug(7107) << "resolved to " << filename;
-        }
+      if ( !QFile::exists(QFile::decodeName(filename)) )  // if given file does not exist, find with suffix
+      {
+          kDebug(7107) << "not existing " << filename;
+          QDir mandir(lastdir);
+          mandir.setNameFilters(QStringList() << (filename.mid(filename.lastIndexOf('/') + 1) + ".*"));
+          filename = lastdir + '/' + QFile::encodeName(mandir.entryList().first());
+          kDebug(7107) << "resolved to " << filename;
+      }
 
-        QIODevice *fd= KFilterDev::deviceForFile(filename);
+      QIODevice *fd = KFilterDev::deviceForFile(filename);
 
-        if ( !fd || !fd->open(QIODevice::ReadOnly))
-        {
-           delete fd;
-           return 0;
-        }
-        QByteArray array(fd->readAll());
-        kDebug(7107) << "read " << array.size();
-        fd->close();
-        delete fd;
-
-        if (array.isEmpty())
-            return 0;
-
-        const int len = array.size();
-        buf = new char[len + 4];
-        memmove(buf + 1, array.data(), len);
-        buf[0]=buf[len]='\n'; // Start and end with a end of line
-        buf[len+1]=buf[len+2]='\0'; // Two NUL characters at end
+      if ( !fd || !fd->open(QIODevice::ReadOnly))
+      {
+         delete fd;
+         return 0;
+      }
+      array = fd->readAll();
+      kDebug(7107) << "read " << array.size();
+      fd->close();
+      delete fd;
     }
+
+    if (array.isEmpty())
+      return 0;
+
+    // as we do not know in which encoding the man source is, try to automatically
+    // detect it and always return it as UTF-8
+    KEncodingProber encodingProber;
+    encodingProber.feed(array);
+    kDebug(7107) << "auto-detect encoding for" << filename << "guess=" << encodingProber.encoding()
+                 << "confidence=" << encodingProber.confidence();
+    QString out = QTextCodec::codecForName(encodingProber.encoding())->toUnicode(array);
+    array = out.toUtf8();
+
+    const int len = array.size();
+    char *buf = new char[len + 4];
+    memmove(buf + 1, array.data(), len);
+    buf[0] = buf[len+1] = '\n'; // Start and end with an end of line
+    buf[len+2] = buf[len+3] = '\0'; // Two NUL characters at end
+
     return buf;
 }
 
+//---------------------------------------------------------------------
 
 void MANProtocol::outputError(const QString& errmsg)
 {
