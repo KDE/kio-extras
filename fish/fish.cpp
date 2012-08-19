@@ -640,7 +640,7 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
                 if (local)
                     connectionAuth.caption = i18n("Local Login");
                 else
-                    connectionAuth.caption = i18n("SSH Authorization");
+                    connectionAuth.caption = i18n("SSH Authentication");
                 if ((!firstLogin || !checkCachedAuthentication(connectionAuth))) {
                     connectionAuth.password.clear(); // don't prefill
                     if ( !openPasswordDialog(connectionAuth)) {
