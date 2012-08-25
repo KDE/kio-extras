@@ -75,6 +75,8 @@ Query[cs]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[es]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[hu]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
+Query[kk]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
+Query[nl]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[pt]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[sk]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
