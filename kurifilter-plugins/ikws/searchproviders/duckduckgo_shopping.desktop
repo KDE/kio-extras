@@ -93,5 +93,6 @@ Query[sv]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=s&t=kdexx
 Query[zh_CN]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
+Query[zh_TW]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 ServiceTypes=SearchProvider
 Type=Service
