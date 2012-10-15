@@ -71,6 +71,7 @@ Name[x-test]=xxDuck Duck Go Shoppingxx
 Name[zh_CN]=Duck Duck Go 购物
 Name[zh_TW]=Duck Duck Go Shopping
 Query=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
+Query[ca]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[cs]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[da]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[de]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
