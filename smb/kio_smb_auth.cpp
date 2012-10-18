@@ -154,6 +154,13 @@ bool SMBSlave::checkPassword(SMBUrl &url)
     if ( openPasswordDialog(info) ) {
         kDebug(KIO_SMB) << "openPasswordDialog returned " << info.username;
         url.setUser(info.username);
+
+        if (info.keepPassword) {
+            kDebug(KIO_SMB) << "Caching info.username = " << info.username
+                            << ", info.url = " << info.url.prettyUrl();
+            cacheAuthentication(info);
+        }
+
         return true;
     }
     kDebug(KIO_SMB) << "no value from openPasswordDialog\n";
