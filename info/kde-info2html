@@ -57,10 +57,11 @@ chomp $css_file;
 delete $ENV{CDPATH};
 delete $ENV{ENV};
 require $config_file;  #-- configuration settings
+my $DOCTYPE = qq(<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" >);
 
 my $STYLESHEET_KDE =
-   qq(<link rel="stylesheet" href="help:common/kde-default.css" type="text/css"/>
-      <link rel="stylesheet" href="file://$css_file" type="text/css"/>
+   qq(<link rel="stylesheet" href="help:common/kde-default.css" type="text/css">
+      <link rel="stylesheet" href="file://$css_file" type="text/css">
       <style type="text/css"><!-- .chapter { padding-right: 1em } --></style>);
 my $LOGO_KDE = "<img src=\"help:/common/kde_logo.png\" alt=\"KDE - The K Desktop Environment\" width=\"296\" height=\"79\" border=\"0\">";
 
@@ -94,7 +95,9 @@ sub DieFileNotFound {
 
   #-- TEXT : error message if a file could not be opened
   print <<EOF;
+$DOCTYPE
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 $STYLESHEET_KDE
 <title>Info: (no page found)</title>
 </head>
@@ -122,7 +125,9 @@ EOF
 sub Redirect {
 	my ($File,$Tag) = @_;
 	print <<EOF;
+	$DOCTYPE
 	<html><head><title>Doing redirection</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
         $STYLESHEET_KDE
 	<meta http-equiv="refresh" content="0; url=info:$File/$Tag">
         </head>
@@ -428,7 +433,7 @@ sub MenuItem2HTML {
     if (!defined (@parse_results)) { return $Line; }
     my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText) = @parse_results;
     #-- produce a HTML line
-    return "<tr class=\"infomenutr\"><td class=\"infomenutd\" width=\"30%\"><ul><li><a href=\"info:/$MenuLinkFile/$MenuLinkTag\">$MenuLinkRef</a></ul></td><td class=\"infomenutd\">$MenuLinkText";
+    return "<tr class=\"infomenutr\"><td class=\"infomenutd\" style=\"width:30%\"><ul><li><a href=\"info:/$MenuLinkFile/$MenuLinkTag\">$MenuLinkRef</a></ul></td><td class=\"infomenutd\">$MenuLinkText";
 }
 
 #-------------------------------------------------------------
@@ -645,13 +650,15 @@ sub PrintHeader {
   $UpcaseInfoFile =~ tr/a-z/A-Z/;
   #-- TEXT for the header of an info node
   print <<EOF;
+$DOCTYPE
 <html>
    <head>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
       <title>Info: ($BaseInfoFile) $LinkList[1]</title>
       $STYLESHEET_KDE
       <!-- These can't be in the .css file due to the help KIOSlave not being
            followed. -->
-      <style>
+      <style type="text/css">
       #header_top { background-image: url("help:/common/top.jpg"); }
       #header_top div { background-image: url("help:/common/top-left.jpg"); }
       #header_top div div { background-image: url("help:/common/top-right.jpg"); }
@@ -670,7 +677,7 @@ sub PrintHeader {
 <!--header start-->
    <div id="header"><div id="header_top">
        <div><div>
-       <img src="help:common/top-kde.jpg"> $UpcaseInfoFile: $LinkList[1]</div></div>
+       <img src="help:common/top-kde.jpg" alt="[KDE Help]"> $UpcaseInfoFile: $LinkList[1]</div></div>
    </div>
 <div class="header_bottom" style="border: none">
 EOF
@@ -687,15 +694,15 @@ sub common_headers {
   my @LinkList = @{$LinkList};
   print <<EOF;
       <table border="0" cellspacing="0" cellpadding="0" width="100%">
-      <tr><td width="33%" align="left">
+      <tr><td style="width:33%" align="left">
 EOF
   &PrintLinkInfo("Prev", $LinkList[6], $LinkList[7], $BaseInfoFile);
   print <<EOF;
-        </td><td width="34%" align="center">
+        </td><td style="width:34%" align="center">
 EOF
   &PrintLinkInfo("Up",   $LinkList[4], $LinkList[5], $BaseInfoFile);
   print <<EOF;
-        </td><td width="33%" align="right">
+        </td><td style="width:33%" align="right">
 EOF
   &PrintLinkInfo("Next", $LinkList[2], $LinkList[3], $BaseInfoFile);
   print <<EOF;
@@ -715,6 +722,7 @@ sub PrintFooter {
 
   #-- TEXT for the footer of an info node
   print <<EOF;
+    </div>
     </div>
     <div id="footer">
 EOF
@@ -737,7 +745,9 @@ EOF
 sub ReplyNotFoundMessage {
   my ($FileName, $Tag) = @_;
   print <<EOF;
+$DOCTYPE
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
 <title>Info Files  -  Error Message</title>
 $STYLESHEET_KDE
 </head>
