@@ -583,7 +583,7 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
   /* try to connect */
   rc = ssh_connect(mSession);
   if (rc < 0) {
-    error(KIO::ERR_COULD_NOT_CONNECT, QString::fromUtf8(ssh_get_error(mSession)));
+    error(KIO::ERR_SLAVE_DEFINED, QString::fromUtf8(ssh_get_error(mSession)));
     closeConnection();
     return false;
   }
@@ -604,7 +604,7 @@ void sftpProtocol::openConnection() {
 
   if (mHost.isEmpty()) {
     kDebug(KIO_SFTP_DB) << "openConnection(): Need hostname...";
-    error(KIO::ERR_UNKNOWN_HOST, i18n("No hostname specified."));
+    error(KIO::ERR_UNKNOWN_HOST, QString());
     return;
   }
 
@@ -643,7 +643,7 @@ void sftpProtocol::openConnection() {
   /* get the hash */
   hlen = ssh_get_pubkey_hash(mSession, &hash);
   if (hlen < 0) {
-    error(KIO::ERR_COULD_NOT_CONNECT, QString::fromUtf8(ssh_get_error(mSession)));
+    error(KIO::ERR_SLAVE_DEFINED, QString::fromUtf8(ssh_get_error(mSession)));
     closeConnection();
     return;
   }
@@ -657,7 +657,7 @@ void sftpProtocol::openConnection() {
       break;
     case SSH_SERVER_FOUND_OTHER:
       delete hash;
-      error(KIO::ERR_CONNECTION_BROKEN, i18n("The host key for this server was "
+      error(KIO::ERR_SLAVE_DEFINED, i18n("The host key for this server was "
             "not found, but another type of key exists.\n"
             "An attacker might change the default server key to confuse your "
             "client into thinking the key does not exist.\n"
@@ -668,7 +668,7 @@ void sftpProtocol::openConnection() {
       hexa = ssh_get_hexa(hash, hlen);
       delete hash;
       /* TODO print known_hosts file, port? */
-      error(KIO::ERR_CONNECTION_BROKEN, i18n("The host key for the server %1 has changed.\n"
+      error(KIO::ERR_SLAVE_DEFINED, i18n("The host key for the server %1 has changed.\n"
           "This could either mean that DNS SPOOFING is happening or the IP "
           "address for the host and its host key have changed at the same time.\n"
           "The fingerprint for the key sent by the remote host is:\n %2\n"
@@ -703,7 +703,7 @@ void sftpProtocol::openConnection() {
       break;
     case SSH_SERVER_ERROR:
       delete hash;
-      error(KIO::ERR_COULD_NOT_CONNECT, QString::fromUtf8(ssh_get_error(mSession)));
+      error(KIO::ERR_SLAVE_DEFINED, QString::fromUtf8(ssh_get_error(mSession)));
       return;
   }
 
