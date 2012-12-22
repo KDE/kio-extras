@@ -71,6 +71,7 @@ Name[zh_CN]=Duck Duck Go
 Name[zh_TW]=Duck Duck Go
 Query=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[bg]=http://duckduckgo.com/?q=\\{@}&t=kde
+Query[bs]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[ca]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[cs]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[da]=http://duckduckgo.com/?q=\\{@}&t=kde
