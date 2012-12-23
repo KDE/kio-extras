@@ -11,7 +11,6 @@ Name[bg]=Уикипедия - свободната енциклопедия
 Name[bn]=উইকিপেডিয়া - মুক্ত বিশ্বকোষ
 Name[bn_IN]=Wikipedia (উইকিপিডিয়া) - মুক্ত বিশ্বকোষ
 Name[br]=Wikipedia - Ar geriadur ouiziegezh frank
-Name[bs]=Vikipedija — slobodna enciklopedija
 Name[ca]=Viquipèdia - L'enciclopèdia lliure
 Name[ca@valencia]=Viquipèdia - L'enciclopèdia lliure
 Name[cs]=Wikipedia - volně dostupná encyklopedie
@@ -103,7 +102,6 @@ Query[be@latin]=http://be.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=http://bg.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn_IN]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[bs]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca@valencia]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[cs]=http://cs.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

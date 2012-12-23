@@ -11,7 +11,6 @@ Name[bg]=Уикиречник - свободният речник
 Name[bn]=ইউক্‌শনারি - মুক্ত অভিধান
 Name[bn_IN]=Wiktionary - মুক্ত অভিধান
 Name[br]=Wiktionary - Ar geriadur frank
-Name[bs]=Vikirečnik — slobodni rječnik
 Name[ca]=Viccionari - El diccionari lliure
 Name[ca@valencia]=Viccionari - El diccionari lliure
 Name[cs]=Wiktionary - volně dostupný slovník
@@ -101,7 +100,6 @@ Query[be@latin]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=http://bg.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bn_IN]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[bs]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca@valencia]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[cs]=http://cs.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

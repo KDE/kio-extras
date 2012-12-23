@@ -11,7 +11,6 @@ Name[bg]=Каталог CTAN
 Name[bn]=CTAN ক্যাটালগ
 Name[bn_IN]=CTAN ক্যাটালগ
 Name[br]=Katalog CTAN
-Name[bs]=CTAN‑ov katalog
 Name[ca]=Catàleg CTAN
 Name[ca@valencia]=Catàleg CTAN
 Name[cs]=CTAN katalog
@@ -99,7 +98,6 @@ Query[be@latin]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metad
 Query[bg]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[bn]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[bn_IN]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
-Query[bs]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[ca]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[ca@valencia]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[cs]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search

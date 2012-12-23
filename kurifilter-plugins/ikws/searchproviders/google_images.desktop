@@ -11,7 +11,6 @@ Name[bg]=Търсене на изображения в Google
 Name[bn]=গুগল্ চিত্র অনুসন্ধান
 Name[bn_IN]=Google ছবি অনুসন্ধান
 Name[br]=Klask skeudennoù Google
-Name[bs]=Gugl‑slike
 Name[ca]=Cerca d'imatges a Google
 Name[ca@valencia]=Cerca d'imatges a Google
 Name[cs]=Hledání obrázků (Google)
@@ -106,7 +105,6 @@ Query[bg]=http://images.google.com/images?q=\\{@}
 Query[bn]=http://images.google.com/images?q=\\{@}
 Query[bn_IN]=http://images.google.com/images?q=\\{@}
 Query[br]=http://images.google.com/images?q=\\{@}
-Query[bs]=http://images.google.com/images?q=\\{@}
 Query[ca]=http://images.google.com/images?q=\\{@}
 Query[ca@valencia]=http://images.google.com/images?q=\\{@}
 Query[cs]=http://images.google.com/images?q=\\{@}

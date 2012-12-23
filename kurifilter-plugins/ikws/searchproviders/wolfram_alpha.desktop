@@ -5,7 +5,6 @@ Name[ar]=ولفرام ألفا
 Name[ast]=Wolfram Alpha
 Name[bg]=Wolfram Alpha
 Name[bn]=উলফ্র্যাম আলফা
-Name[bs]=Volframova alfa
 Name[ca]=Wolfram Alpha
 Name[ca@valencia]=Wolfram Alpha
 Name[cs]=Wolfram Alpha
@@ -77,7 +76,6 @@ Query[ar]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[ast]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[bg]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[bn]=http://www.wolframalpha.com/input/?i=\\{@}
-Query[bs]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ca]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[ca@valencia]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[cs]=http://www.wolframalpha.com/input/?i=\\{@}

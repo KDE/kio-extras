@@ -11,7 +11,6 @@ Name[bg]=Freshmeat
 Name[bn]=ফ্রেশমীট
 Name[bn_IN]=Freshmeat
 Name[br]=Freshmeat
-Name[bs]=Frešmit
 Name[ca]=Freshmeat
 Name[ca@valencia]=Freshmeat
 Name[cs]=Freshmeat
@@ -105,7 +104,6 @@ Query[bg]=http://freshmeat.net/search/?q=\\{@}
 Query[bn]=http://freshmeat.net/search/?q=\\{@}
 Query[bn_IN]=http://freshmeat.net/search/?q=\\{@}
 Query[br]=http://freshmeat.net/search/?q=\\{@}
-Query[bs]=http://freshmeat.net/search/?q=\\{@}
 Query[ca]=http://freshmeat.net/search/?q=\\{@}
 Query[ca@valencia]=http://freshmeat.net/search/?q=\\{@}
 Query[cs]=http://freshmeat.net/search/?q=\\{@}

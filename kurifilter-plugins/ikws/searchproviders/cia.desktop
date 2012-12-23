@@ -11,7 +11,6 @@ Name[be@latin]=Zbor źviestak CIA
 Name[bg]=Факти за света от ЦРУ
 Name[bn]=সি-আই-এ ওয়ার্ল্ড ফ্যাক্ট বুক
 Name[bn_IN]=CIA World Fact Book
-Name[bs]=Cijina Knjiga svjetskih podataka
 Name[ca]=CIA World Fact Book
 Name[ca@valencia]=CIA World Fact Book
 Name[cs]=Světová kniha faktů CIA
@@ -96,7 +95,6 @@ Query[be@latin]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+boo
 Query[bg]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[bn]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[bn_IN]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
-Query[bs]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[ca]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[ca@valencia]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky
 Query[cs]=http://www.google.com/search?q=allintitle%3A\\{@}+world+fact+book+site%3Awww.cia.gov&ie=UTF-8&btnI=I%27m+Feeling+Lucky

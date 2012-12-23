@@ -11,7 +11,6 @@ Name[bg]=FreeDB
 Name[bn]=ফ্রী-ডি.বি.
 Name[bn_IN]=FreeDB
 Name[br]=FreeDB
-Name[bs]=FriDB
 Name[ca]=FreeDB
 Name[ca@valencia]=FreeDB
 Name[cs]=FreeDB
@@ -104,7 +103,6 @@ Query[bg]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[bn]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[bn_IN]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[br]=http://www.freedb.org/freedb_search.php?words=\\{@}
-Query[bs]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[ca]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[ca@valencia]=http://www.freedb.org/freedb_search.php?words=\\{@}
 Query[cs]=http://www.freedb.org/freedb_search.php?words=\\{@}

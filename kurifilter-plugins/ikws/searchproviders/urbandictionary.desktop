@@ -7,7 +7,6 @@ Name[ar]=القاموس المتمدّن
 Name[ast]=Urban Dictionary
 Name[bg]=Urban Dictionary
 Name[bn]=Urban Dictionary
-Name[bs]=Urbani rječnik
 Name[ca]=Urban Dictionary
 Name[ca@valencia]=Urban Dictionary
 Name[cs]=Urban Dictionary
@@ -74,7 +73,6 @@ Query[ar]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[ast]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[bg]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[bn]=http://www.urbandictionary.com/define.php?term=\\{@}
-Query[bs]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ca]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ca@valencia]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[cs]=http://www.urbandictionary.com/define.php?term=\\{@}

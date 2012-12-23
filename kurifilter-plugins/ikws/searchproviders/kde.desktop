@@ -14,7 +14,6 @@ Name[bg]=Документация на KDE API
 Name[bn]=কে.ডি.ই. এ-পি-আই নির্দেশিকা
 Name[bn_IN]=KDE API সংক্রান্ত নথিপত্র
 Name[br]=Teuliadur API KDE
-Name[bs]=KDE API dokumentacija
 Name[ca]=Documentació de l'API de KDE
 Name[ca@valencia]=Documentació de l'API de KDE
 Name[cs]=KDE API dokumentace
@@ -102,7 +101,6 @@ Query[be@latin]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[bg]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[bn]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[bn_IN]=http://api.kde.org/classmapper.php?class=\\{@}
-Query[bs]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[ca]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[ca@valencia]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[cs]=http://api.kde.org/classmapper.php?class=\\{@}

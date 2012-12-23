@@ -10,7 +10,6 @@ Name[be@latin]=Pierakład „LEO”: niamieckaja ➙ francuskaja
 Name[bg]=LEO - превод между немски и френски
 Name[bn]=লিও - জার্মান থেকে ফরাসী বা ফরাসী থেকে জার্মান-এ অনুবাদ করুন
 Name[bn_IN]=LEO - জার্মান ও ফ্রেঞ্চের মধ্যে অনুবাদ করুন
-Name[bs]=Lio: sa nemačkog na francuski
 Name[ca]=LEO - Tradueix entre alemany i francès
 Name[ca@valencia]=LEO - Tradueix entre alemany i francés
 Name[cs]=LEO - překlad mezi němčinou a francouzštinou
@@ -101,7 +100,6 @@ Query[bg]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[bn]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[bn_IN]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[br]=http://dict.leo.org/?lp=frde&search=\\{@}
-Query[bs]=http://dict.lio.org/?lp=frde&search=\\{@}
 Query[ca]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[ca@valencia]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[cs]=http://dict.leo.org/?lp=frde&search=\\{@}

@@ -11,7 +11,6 @@ Name[bg]=KataTudo
 Name[bn]=কাটা-টুডো
 Name[bn_IN]=KataTudo
 Name[br]=KataTudo
-Name[bs]=Katatudo
 Name[ca]=KataTudo
 Name[ca@valencia]=KataTudo
 Name[cs]=KataTudo
@@ -104,7 +103,6 @@ Query[bg]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[bn]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[bn_IN]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[br]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
-Query[bs]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[ca]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[ca@valencia]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar
 Query[cs]=http://www.katatudo.com.br/busca/resultado.php?q=\\{@}&onde=&b=Buscar

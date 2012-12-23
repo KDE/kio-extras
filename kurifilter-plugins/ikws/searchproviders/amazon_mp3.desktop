@@ -7,7 +7,6 @@ Name[ar]=Amazon MP3
 Name[ast]=Amazon MP3
 Name[bg]=Amazon MP3
 Name[bn]=অ্যামাজন MP3
-Name[bs]=Amazon MP3
 Name[ca]=Amazon MP3
 Name[ca@valencia]=Amazon MP3
 Name[cs]=Amazon MP3
@@ -76,7 +75,6 @@ Query[ar]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&
 Query[ast]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[bg]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[bn]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
-Query[bs]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[ca]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[ca@valencia]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0
 Query[cs]=http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias=digital-music&field-keywords=\\{@}&x=0&y=0

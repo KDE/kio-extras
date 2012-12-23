@@ -11,7 +11,6 @@ Name[bg]=Разширено търсене в Google
 Name[bn]=গুগল্ অগ্রসর অনুসন্ধান
 Name[bn_IN]=Google-র উন্নত বৈশিষ্ট্য সম্বলিত অনুসন্ধান
 Name[br]=Klask Google barek
-Name[bs]=Gugl (detaljno)
 Name[ca]=Cerca avançada de Google
 Name[ca@valencia]=Cerca avançada de Google
 Name[cs]=Rozšířené hledání (Google)
@@ -103,7 +102,6 @@ Query[be@latin]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btn
 Query[bg]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[bn]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[bn_IN]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
-Query[bs]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[ca]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[ca@valencia]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8
 Query[cs]=http://www.google.com/search?as_q=\\{all,@}&num=\\{num,"10"}&btnG=Google+Search&as_epq=\\{exact,""}&as_oq=\\{any,""}&as_eq=\\{without,""}&lr=\\{lang,""}&as_ft=\\{ft,"i"}&as_filetype=\\{filetype,""}&as_qdr=\\{date,"all"}&as_occt=\\{occ,"any"}&as_dt=\\{siteop,"i"}&as_sitesearch=\\{site}&safe=\\{safe,"active"}&ie=UTF-8&oe=UTF-8

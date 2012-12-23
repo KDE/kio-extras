@@ -11,7 +11,6 @@ Name[bg]=Директория със свободен софтуер на FSF/UN
 Name[bn]=FSF/UNESCO ফ্রী সফ্‌টওয়্যার ডিরেক্টরি
 Name[bn_IN]=FSF/UNESCO মুক্ত সফ্টওয়্যার অভিধান
 Name[br]=Renkell meziantoù frank FSF/UNESCO
-Name[bs]=Imenik slobodnog softvera ZSS/Unesko
 Name[ca]=Directori de programari lliure FSF/UNESCO
 Name[ca@valencia]=Directori de programari lliure FSF/UNESCO
 Name[cs]=Adresář svobodného softwaru FSF/UNESCO
@@ -99,7 +98,6 @@ Query[be@latin]=http://directory.fsf.org/search/?query=\\{@}
 Query[bg]=http://directory.fsf.org/search/?query=\\{@}
 Query[bn]=http://directory.fsf.org/search/?query=\\{@}
 Query[bn_IN]=http://directory.fsf.org/search/?query=\\{@}
-Query[bs]=http://directory.fsf.org/search/?query=\\{@}
 Query[ca]=http://directory.fsf.org/search/?query=\\{@}
 Query[ca@valencia]=http://directory.fsf.org/search/?query=\\{@}
 Query[cs]=http://directory.fsf.org/search/?query=\\{@}

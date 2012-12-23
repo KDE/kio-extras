@@ -11,7 +11,6 @@ Name[bg]=Речник Merriam-Webster
 Name[bn]=মেরিয়াম-ওয়েবস্টার থেসরাস
 Name[bn_IN]=মেরিয়াম-ওয়েবস্টার শব্দকোষ
 Name[br]=Tezorus Merriam-Webster
-Name[bs]=Merijam-Vebster (sinonimar)
 Name[ca]=Tesaurus Merriam-Webster
 Name[ca@valencia]=Tesaurus Merriam-Webster
 Name[cs]=Slovník synonym Merriam-Webster
@@ -103,7 +102,6 @@ Query[bg]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[bn]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[bn_IN]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[br]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
-Query[bs]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[ca]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[ca@valencia]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[cs]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}

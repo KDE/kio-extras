@@ -11,7 +11,6 @@ Name[bg]=Групи в Google
 Name[bn]=গুগল্ গ্রুপস
 Name[bn_IN]=Google Groups (গ্রুপ)
 Name[br]=Stroladoù Google
-Name[bs]=Gugl‑grupe
 Name[ca]=Grups a Google
 Name[ca@valencia]=Grups a Google
 Name[cs]=Google - diskuzní skupiny
@@ -106,7 +105,6 @@ Query[bg]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[bn]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[bn_IN]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[br]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
-Query[bs]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[ca]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[ca@valencia]=http://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[cs]=http://groups.google.com/groups?oi=djq&as_q=\\{@}

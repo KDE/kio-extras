@@ -7,7 +7,6 @@ Name[ar]=موقع مظهر كدي
 Name[ast]=KDE Look
 Name[bg]=Изгледи за KDE
 Name[bn]=কে.ডি.ই. লুক
-Name[bs]=KDE‑izgled
 Name[ca]=KDE Look
 Name[ca@valencia]=KDE Look
 Name[cs]=KDE Look
@@ -75,7 +74,6 @@ Query[ar]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[ast]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[bg]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[bn]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
-Query[bs]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ca]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ca@valencia]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[cs]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
