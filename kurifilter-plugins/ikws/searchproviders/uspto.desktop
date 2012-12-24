@@ -12,6 +12,7 @@ Name[be@latin]=Baza patentaŭ ZŠA
 Name[bg]=База от данни с патенти на САЩ
 Name[bn]=মার্কিন পেটেন্ট ডেটাবেস
 Name[bn_IN]=মার্কিন প্যাটেন্ট ডাটাবেস
+Name[bs]=Baza patenata SAD
 Name[ca]=Base de dades de patents EUA
 Name[ca@valencia]=Base de dades de patents EUA
 Name[cs]=Patentová databáze USA
@@ -101,6 +102,7 @@ Query[bg]=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2
 Query[bn]=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50
 Query[bn_IN]=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50
 Query[br]=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50
+Query[bs]=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50
 Query[ca]=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50
 Query[ca@valencia]=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50
 Query[cs]=http://patft.uspto.gov/netacgi/nph-Parser?TERM1=\\{@}&Sect1=PTO1&Sect2=HITOFF&d=PALL&p=1&u=/netahtml/srchnum.htm&r=0&f=S&l=50

@@ -7,6 +7,7 @@ Name[ar]=Blip.tv
 Name[ast]=Blip.tv
 Name[bg]=Blip.tv
 Name[bn]=Blip.tv
+Name[bs]=Blip.tv
 Name[ca]=Blip.tv
 Name[ca@valencia]=Blip.tv
 Name[cs]=Blip.tv
@@ -74,6 +75,7 @@ Query[ar]=http://info.alexa.com/search?q=\\{@}
 Query[ast]=http://blip.tv/search?q=\\{@}
 Query[bg]=http://blip.tv/search?q=\\{@}
 Query[bn]=http://blip.tv/search?q=\\{@}
+Query[bs]=http://blip.tv/search?q=\\{@}
 Query[ca]=http://blip.tv/search?q=\\{@}
 Query[ca@valencia]=http://blip.tv/search?q=\\{@}
 Query[cs]=http://blip.tv/search?q=\\{@}

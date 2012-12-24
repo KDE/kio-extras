@@ -11,6 +11,7 @@ Name[be]=Вялікі слоўнік каталонскай мовы (GRan Encic
 Name[be@latin]=Vialiki słoŭnik katalanskaje movy (GRan Enciclopèdia Catalana)
 Name[bg]=Голям речник на каталонски език (GRan Enciclopèdia  Catalana)
 Name[bn]=কাটালান ভাষার অভিধান (GRan Enciclopèdia  Catalana)
+Name[bs]=Veliki rječnik katalonskog jezika (GRan Enciclopèdia Catalana)
 Name[ca]=Gran diccionari de la Llengua Catalana (Grup Enciclopèdia Catalana)
 Name[ca@valencia]=Gran diccionari de la Llengua Catalana (Grup Enciclopèdia Catalana)
 Name[cs]=Velký katalánský slovník (GRan Enciclopèdia  Catalana)
@@ -91,6 +92,7 @@ Query[ar]=http://www.grec.net/cgibin/lexicx.pgm?GECART=\\{@}
 Query[ast]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[bg]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[bn]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[bs]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[ca]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[ca@valencia]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[cs]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}

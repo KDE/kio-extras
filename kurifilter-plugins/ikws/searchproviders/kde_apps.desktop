@@ -10,6 +10,7 @@ Name[be@latin]=Pošuk aplikacyjaŭ KDE
 Name[bg]=KDE App Search
 Name[bn]=কে.ডি.ই. অ্যাপলিকেশন অনুসন্ধান
 Name[bn_IN]=KDE অ্যাপ্লিকেশন অনুসন্ধান
+Name[bs]=KDE programi
 Name[ca]=Cerca d'aplicacions KDE
 Name[ca@valencia]=Cerca d'aplicacions KDE
 Name[cs]=Vyhledávání KDE aplikací
@@ -103,6 +104,7 @@ Query[bg]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[bn]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[bn_IN]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[br]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
+Query[bs]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[ca]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[ca@valencia]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[cs]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}

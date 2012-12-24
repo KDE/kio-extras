@@ -11,6 +11,7 @@ Name[bg]=Netcraft
 Name[bn]=নেট-ক্রাফ্ট
 Name[bn_IN]=Netcraft
 Name[br]=Netcraft
+Name[bs]=Netkraft
 Name[ca]=Netcraft
 Name[ca@valencia]=Netcraft
 Name[cs]=Netcraft
@@ -103,6 +104,7 @@ Query[bg]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[bn]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[bn_IN]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[br]=http://uptime.netcraft.com/up/graph?site=\\{@}
+Query[bs]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[ca]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[ca@valencia]=http://uptime.netcraft.com/up/graph?site=\\{@}
 Query[cs]=http://uptime.netcraft.com/up/graph?site=\\{@}

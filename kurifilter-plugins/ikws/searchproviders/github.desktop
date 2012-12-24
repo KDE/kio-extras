@@ -7,6 +7,7 @@ Name[ar]=GitHub
 Name[ast]=GitHub
 Name[bg]=GitHub
 Name[bn]=গিট-হাব
+Name[bs]=Githab
 Name[ca]=GitHub
 Name[ca@valencia]=GitHub
 Name[cs]=GitHub
@@ -74,6 +75,7 @@ Query[ar]=http://info.alexa.com/search?q=\\{@}
 Query[ast]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[bg]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[bn]=http://github.com/search?q=\\{@}&x=0&y=0
+Query[bs]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ca]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[ca@valencia]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[cs]=http://github.com/search?q=\\{@}&x=0&y=0

@@ -11,6 +11,7 @@ Name[bg]=Vivisimo
 Name[bn]=ভিভিসিমো
 Name[bn_IN]=Vivisimo
 Name[br]=Vivisimo
+Name[bs]=Vivisimo
 Name[ca]=Vivisimo
 Name[ca@valencia]=Vivisimo
 Name[cs]=Vivisimo
@@ -104,6 +105,7 @@ Query[bg]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFa
 Query[bn]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[bn_IN]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[br]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
+Query[bs]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[ca]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[ca@valencia]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16
 Query[cs]=http://vivisimo.com/search?query=\\{@}&se=Yahoo%2CAltaVista%2CMSN%2CFast%2COD%2CExcite%2CDirectHit%2CLooksmart%2CEuroseek&x=49&y=16

@@ -7,6 +7,7 @@ Name[ar]=إشعارات Identi.ca
 Name[ast]=Avisos Identi.ca
 Name[bg]=Бележки в Identi.ca
 Name[bn]=Identi.ca নোটিশ
+Name[bs]=Identika-obaveštenja
 Name[ca]=Avisos a Identi.ca
 Name[ca@valencia]=Avisos a Identi.ca
 Name[cs]=Poznámky Identi.ca
@@ -74,6 +75,7 @@ Query[ar]=http://info.alexa.com/search?q=\\{@}
 Query[ast]=http://identi.ca/search/notice?q=\\{@}
 Query[bg]=http://identi.ca/search/notice?q=\\{@}
 Query[bn]=http://identi.ca/search/notice?q=\\{@}
+Query[bs]=http://identi.ca/search/notice?q=\\{@}
 Query[ca]=http://identi.ca/search/notice?q=\\{@}
 Query[ca@valencia]=http://identi.ca/search/notice?q=\\{@}
 Query[cs]=http://identi.ca/search/notice?q=\\{@}

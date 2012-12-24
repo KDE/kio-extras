@@ -11,6 +11,7 @@ Name[bg]=Feedster
 Name[bn]=ফীডস্টার
 Name[bn_IN]=Feedster
 Name[br]=Feedster
+Name[bs]=Fidster
 Name[ca]=Feedster
 Name[ca@valencia]=Feedster
 Name[cs]=Feedster
@@ -103,6 +104,7 @@ Query[bg]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn_IN]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[br]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[bs]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca@valencia]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[cs]=http://www.feedster.com/search.php?q=\\{@}&ie=UTF-8&oe=UTF-8

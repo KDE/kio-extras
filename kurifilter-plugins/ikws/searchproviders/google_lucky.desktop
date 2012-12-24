@@ -10,6 +10,7 @@ Name[be@latin]=Google („Mnie pašancuje”)
 Name[bg]=Google ("Чувствам се късметлия")
 Name[bn]=গুগল্ (ভাগ্যবান মনে করছি)
 Name[bn_IN]=Google (I'm Feeling Lucky)
+Name[bs]=Gugl (iz prve ruke)
 Name[ca]=Google (Avui tinc sort!)
 Name[ca@valencia]=Google (Hui tinc sort!)
 Name[cs]=Google (Zkusím štěstí)
@@ -103,6 +104,7 @@ Query[bg]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8
 Query[bn]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[bn_IN]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[br]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
+Query[bs]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[ca]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[ca@valencia]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[cs]=http://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8

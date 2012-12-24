@@ -11,6 +11,7 @@ Name[bg]=Етикети в Technorati
 Name[bn]=টেক্‌নোক্রেটি ট্যাগ
 Name[bn_IN]=Technorati Tags
 Name[br]=Liketennoù Technorati
+Name[bs]=Tehnoratijeve oznake
 Name[ca]=Etiquetes Technorati
 Name[ca@valencia]=Etiquetes Technorati
 Name[cs]=Technorati značky
@@ -99,6 +100,7 @@ Query[bg]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[bn]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[bn_IN]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[br]=http://technorati.com/tag/\\{@}?sourceid=kde-search
+Query[bs]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[ca]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[ca@valencia]=http://technorati.com/tag/\\{@}?sourceid=kde-search
 Query[cs]=http://technorati.com/tag/\\{@}?sourceid=kde-search

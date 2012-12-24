@@ -11,6 +11,7 @@ Name[bg]=HyperDictionary.com
 Name[bn]=HyperDictionary.com
 Name[bn_IN]=HyperDictionary.com
 Name[br]=HyperDictionary.com
+Name[bs]=Hiperrečnik
 Name[ca]=HyperDictionary.com
 Name[ca@valencia]=HyperDictionary.com
 Name[cs]=HyperDictionary.com
@@ -104,6 +105,7 @@ Query[bg]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[bn]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[bn_IN]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[br]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
+Query[bs]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[ca]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[ca@valencia]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[cs]=http://www.hyperdictionary.com/search.aspx?define=\\{@}

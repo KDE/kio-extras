@@ -12,6 +12,7 @@ Name[be@latin]=Pierakład „WordReference.com”: anhielskaja ➙ francuskaja
 Name[bg]=Превод с WordReference.com — от английски към френски
 Name[bn]=WordReference.com অনুবাদ: ইংরাজি থেকে ফরাসী
 Name[bn_IN]=WordReference.com অনুবাদ: ইংরাজি থেকে ফ্রেঞ্চ
+Name[bs]=Vordreferens: sa engleskog na francuski
 Name[ca]=Traducció WordReference.com: Anglès - Francès
 Name[ca@valencia]=Traducció WordReference.com: Anglés - Francés
 Name[cs]=Překlad WordReference.com: z angličtiny do francouzštiny
@@ -100,6 +101,7 @@ Query[bg]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[bn]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[bn_IN]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[br]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
+Query[bs]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[ca]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[ca@valencia]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[cs]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}

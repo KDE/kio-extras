@@ -7,6 +7,7 @@ Name[ar]=أخبار كدي
 Name[ast]=KDE TechBase
 Name[bg]=Техническо ръководство за KDE
 Name[bn]=KDE টেক-বেস
+Name[bs]=Tehbaza KDE‑a
 Name[ca]=KDE TechBase
 Name[ca@valencia]=KDE TechBase
 Name[cs]=KDE TechBase
@@ -74,6 +75,7 @@ Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ast]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bg]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[bs]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca@valencia]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[cs]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

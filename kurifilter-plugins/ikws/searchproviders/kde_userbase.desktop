@@ -7,6 +7,7 @@ Name[ar]=كتيّب كدي للمستخدمين
 Name[ast]=KDE UserBase
 Name[bg]=Потребителско ръководство за KDE
 Name[bn]=কে.ডি.ই. ইউসার-বেস
+Name[bs]=Korisnička baza KDE‑a
 Name[ca]=KDE UserBase
 Name[ca@valencia]=KDE UserBase
 Name[cs]=KDE UserBase
@@ -74,6 +75,7 @@ Query[ar]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ast]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bg]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[bn]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[bs]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[ca@valencia]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[cs]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search

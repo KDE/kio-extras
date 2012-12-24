@@ -11,6 +11,7 @@ Name[bg]=Новини в Google
 Name[bn]=গুগল্ সংবাদ
 Name[bn_IN]=Google খবরাখবর
 Name[br]=Keleier Google
+Name[bs]=Gugl‑vesti
 Name[ca]=Notícies de Google
 Name[ca@valencia]=Notícies de Google
 Name[cs]=Google News
@@ -104,6 +105,7 @@ Query[bg]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn_IN]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[br]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[bs]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca@valencia]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[cs]=http://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8

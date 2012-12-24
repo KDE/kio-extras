@@ -7,6 +7,7 @@ Name[ar]=فلكر
 Name[ast]=Flickr
 Name[bg]=Flickr
 Name[bn]=ফ্লিকর
+Name[bs]=Flikr
 Name[ca]=Flickr
 Name[ca@valencia]=Flickr
 Name[cs]=Flickr
@@ -75,6 +76,7 @@ Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ast]=http://www.flickr.com/search/?q=\\{@}
 Query[bg]=http://www.flickr.com/search/?q=\\{@}
 Query[bn]=http://www.flickr.com/search/?q=\\{@}
+Query[bs]=http://www.flickr.com/search/?q=\\{@}
 Query[ca]=http://www.flickr.com/search/?q=\\{@}
 Query[ca@valencia]=http://www.flickr.com/search/?q=\\{@}
 Query[cs]=http://www.flickr.com/search/?q=\\{@}

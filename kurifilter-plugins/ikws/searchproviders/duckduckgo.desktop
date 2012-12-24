@@ -7,6 +7,7 @@ Name[ar]=Duck Duck Go
 Name[ast]=Duck Duck Go
 Name[bg]=Duck Duck Go
 Name[bn]=ডাক ডাক গো
+Name[bs]=Dak dak go
 Name[ca]=Duck Duck Go
 Name[ca@valencia]=Duck Duck Go
 Name[cs]=Duck Duck Go
@@ -70,6 +71,7 @@ Name[zh_CN]=Duck Duck Go
 Name[zh_TW]=Duck Duck Go
 Query=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[bg]=http://duckduckgo.com/?q=\\{@}&t=kde
+Query[bs]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[ca]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[cs]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[da]=http://duckduckgo.com/?q=\\{@}&t=kde

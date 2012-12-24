@@ -11,6 +11,7 @@ Name[bg]=Филми в Google
 Name[bn]=গুগল্ মুভিস্
 Name[bn_IN]=Google মুভিস
 Name[br]=Filmoù Google
+Name[bs]=Gugl‑filmovi
 Name[ca]=Pel·lícules Google
 Name[ca@valencia]=Pel·lícules Google
 Name[cs]=Google filmy
@@ -102,6 +103,7 @@ Query[be@latin]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[bg]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[bn_IN]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
+Query[bs]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca@valencia]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
 Query[cs]=http://www.google.com/search?q=movie:\\{@}&ie=UTF-8&oe=UTF-8
