@@ -71,6 +71,7 @@ Name[zh_CN]=Duck Duck Go
 Name[zh_TW]=Duck Duck Go
 Query=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[bg]=http://duckduckgo.com/?q=\\{@}&t=kde
+Query[bs]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[ca]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[cs]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[da]=http://duckduckgo.com/?q=\\{@}&t=kde
@@ -89,6 +90,7 @@ Query[kk]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[ko]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[nb]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[nl]=http://duckduckgo.com/?q=\\{@}&t=kde
+Query[pa]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[pl]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[pt]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[pt_BR]=http://duckduckgo.com/?q=\\{@}&t=kde
