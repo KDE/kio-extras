@@ -1,9 +1,22 @@
 macro_optional_find_package(OpenEXR)
-macro_log_feature(OPENEXR_FOUND "OpenEXR" "API for accessing OpenEXR formatted images" "http://www.openexr.com" FALSE "" "Provides support for OpenEXR formatted images in the thumbnail kioslave")
+set_package_properties(OpenEXR PROPERTIES DESCRIPTION "API for accessing OpenEXR formatted images"
+                       URL "http://www.openexr.com"
+                       TYPE OPTIONAL
+                       PURPOSE "Provides support for OpenEXR formatted images in the thumbnail kioslave"
+                      )
 
-find_package(JPEG REQUIRED)
+find_package(JPEG)
+set_package_properties(JPEG PROPERTIES DESCRIPTION "JPEG image format support"
+                       URL "http://www.ijg.org"
+                       TYPE REQUIRED
+                      )
+
 macro_optional_find_package(Exiv2)
-macro_log_feature(EXIV2_FOUND "Exiv2" "A library to access image metadata" "http://www.exiv2.org" FALSE "" "Provides support for automatic rotation of JPEGs in the thumbnail kioslave" )
+set_package_properties(Exiv2 PROPERTIES DESCRIPTION "A library to access image metadata"
+                       URL "http://www.exiv2.org"
+                       TYPE OPTIONAL
+                       PURPOSE "Provides support for automatic rotation of JPEGs in the thumbnail kioslave"
+                      )
 
 macro_bool_to_01(EXIV2_FOUND HAVE_EXIV2)
 

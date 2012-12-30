@@ -4,11 +4,19 @@ if(NOT WIN32)
 set(SAMBA_REQUIRE_SMBC_SET_CONTEXT TRUE)
 set(SAMBA_REQUIRE_SMBC_OPTION_SET TRUE)
 macro_optional_find_package(Samba)
-macro_log_feature(SAMBA_FOUND "Samba" "the SMB client library, a version with smbc_set_context() and smbc_option_set()" "http://www.samba.org" FALSE "" "Needed to build the SMB kioslave")
+set_package_properties(Samba PROPERTIES DESCRIPTION "the SMB client library, a version with smbc_set_context() and smbc_option_set()"
+                       URL "http://www.samba.org"
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build the SMB kioslave"
+                      )
 endif(NOT WIN32)
 
 macro_optional_find_package(LibSSH 0.4.0)
-macro_log_feature(LIBSSH_FOUND "libssh" "the SSH library with SFTP support" "http://www.libssh.org/" FALSE "0.4.0" "Needed to build the SFTP kioslave")
+set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP support"
+                       URL "http://www.libssh.org/"
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build the SFTP kioslave"
+                      )
 
 add_subdirectory( about )
 add_subdirectory( bookmarks )
@@ -45,9 +53,9 @@ if(NOT WIN32)
    add_subdirectory( finger )
    add_subdirectory( man )
    check_include_files(rpc/rpc.h HAVE_RPC_RPC_H)
-   macro_log_feature(HAVE_RPC_RPC_H "rpc library" "library routines for remote procedure calls" "" FALSE "" "Needed to build the NFS kioslave")
+   add_feature_info("NFS kioslave" HAVE_RPC_RPC_H "The RPC library is needed to build the NFS kioslave")
    if(HAVE_RPC_RPC_H)
-     add_subdirectory( nfs )  
+     add_subdirectory( nfs )
    endif(HAVE_RPC_RPC_H)
 endif(NOT WIN32)
 

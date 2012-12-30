@@ -1,13 +1,21 @@
 
 macro_optional_find_package(BZip2)
-macro_log_feature(BZIP2_FOUND "BZip2" "A high-quality data compressor" "http://www.bzip.org" FALSE "" "Provides the ability to read and write bzip2 compressed data files in the filter kioslave.")
+set_package_properties(BZip2 PROPERTIES DESCRIPTION "A high-quality data compressor"
+                       URL "http://www.bzip.org"
+                       TYPE OPTIONAL
+                       PURPOSE "Provides the ability to read and write bzip2 compressed data files in the filter kioslave."
+                      )
 
 macro_optional_find_package(LibLZMA)
-macro_log_feature(LIBLZMA_FOUND "LZMA/XZ" "A very high compression ratio data compressor" "http://tukaani.org/xz/" FALSE "" "Provides the ability to read and write xz compressed data files.")
+set_package_properties(LibLZMA PROPERTIES DESCRIPTION "A very high compression ratio data compressor"
+                       URL "http://tukaani.org/xz/"
+                       TYPE OPTIONAL
+                       PURPOSE "Provides the ability to read and write xz compressed data files."
+                      )
 
 ########### next target ###############
 
-set(kio_filter_PART_SRCS filter.cc )
+set(kio_filter_PART_SRCS filter.cc)
 
 
 kde4_add_plugin(kio_filter ${kio_filter_PART_SRCS})
@@ -15,7 +23,7 @@ kde4_add_plugin(kio_filter ${kio_filter_PART_SRCS})
 
 target_link_libraries(kio_filter  ${KDE4_KIO_LIBS})
 
-install(TARGETS kio_filter  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install(TARGETS kio_filter DESTINATION ${PLUGIN_INSTALL_DIR})
 
 
 ########### install files ###############
