@@ -41,6 +41,7 @@ Name[ko]=Urban Dictionary
 Name[lt]=Miesto žodynas
 Name[lv]=Urban Dictionary
 Name[ml]=അര്‍ബന്‍ നിഘണ്ടു
+Name[mr]=अर्बन शब्दकोश
 Name[nb]=Urban ordbok
 Name[nds]=Urban-Wöörbook
 Name[nl]=Urban woordenboek
@@ -109,6 +110,7 @@ Query[lt]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[lv]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[mai]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[ml]=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[mr]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nb]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nds]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[nl]=http://www.urbandictionary.com/define.php?term=\\{@}

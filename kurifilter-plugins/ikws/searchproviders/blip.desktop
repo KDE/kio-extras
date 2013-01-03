@@ -42,6 +42,7 @@ Name[lt]=Blip.tv
 Name[lv]=Blip.tv
 Name[mai]=Blip.tv
 Name[ml]=ബ്ലിപ്.ടിവി
+Name[mr]=ब्लिप.tv
 Name[nb]=Blip.tv
 Name[nds]=Blip.tv
 Name[nl]=Blip.tv
@@ -110,6 +111,7 @@ Query[lt]=http://blip.tv/search?q=\\{@}
 Query[lv]=http://blip.tv/search?q=\\{@}
 Query[mai]=http://blip.tv/search?q=\\{@}
 Query[ml]=http://blip.tv/search?q=\\{@}
+Query[mr]=http://blip.tv/search?q=\\{@}
 Query[nb]=http://blip.tv/search?q=\\{@}
 Query[nds]=http://blip.tv/search?q=\\{@}
 Query[nl]=http://blip.tv/search?q=\\{@}

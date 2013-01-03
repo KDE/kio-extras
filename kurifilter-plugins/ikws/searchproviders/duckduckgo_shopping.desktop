@@ -42,6 +42,7 @@ Name[lt]=Duck Duck Go Shopping
 Name[lv]=Duck Duck Go iepirkšanās
 Name[mai]=डक डक गो शापिंग
 Name[ml]=ഡക്ക് ഡക്ക് ഗോ ഷോപ്പിങ്ങ്
+Name[mr]=डक डक गो खरेदी
 Name[nb]=Duck Duck Go Shopping
 Name[nds]=Duck Duck Go - Inköpen
 Name[nl]=Duck Duck Go Shopping
@@ -90,6 +91,7 @@ Query[is]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[it]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[kk]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[ko]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
+Query[mr]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[nb]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[nl]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[pa]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde

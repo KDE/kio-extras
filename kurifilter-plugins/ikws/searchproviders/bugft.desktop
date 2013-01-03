@@ -133,6 +133,7 @@ Query[lt]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[lv]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[mai]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ml]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[mr]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[nb]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[nds]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[nl]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

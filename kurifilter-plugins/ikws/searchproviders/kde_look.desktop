@@ -42,6 +42,7 @@ Name[lt]=KDE Išvaizda
 Name[lv]=KDE izskats
 Name[mai]=KDE लुक
 Name[ml]=കെഡിഇ ലുക്ക്
+Name[mr]=KDE लूक
 Name[nb]=KDE utseende
 Name[nds]=KDE-Look
 Name[nl]=KDE Look
@@ -110,6 +111,7 @@ Query[lt]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[lv]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[mai]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[ml]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[mr]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[nb]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[nds]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[nl]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
