@@ -1562,6 +1562,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const KUrl& url, const QStrin
     offset = seekPos(fd, 0, SEEK_END);
     if(offset < 0) {
       errorCode = ERR_CANNOT_RESUME;
+      ::close(fd);
       return sftpProtocol::ClientError;                            // client side error
     }
     kDebug(KIO_SFTP_DB) << "resuming at" << offset;
@@ -1633,7 +1634,9 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyPut(const KUrl& url, const QStrin
   totalSize(buff.st_size);
 
   // delegate the real work (errorCode gets status) ...
-  return sftpPut(url, permissions, flags, errorCode, fd);
+  StatusCode ret = sftpPut(url, permissions, flags, errorCode, fd);
+  ::close(fd);
+  return ret;
 }
 
 
