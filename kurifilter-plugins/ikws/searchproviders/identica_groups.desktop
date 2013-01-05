@@ -42,6 +42,7 @@ Name[lt]=Identi.ca grupės
 Name[lv]=Identi.ca grupas
 Name[mai]=Identi.ca समूह
 Name[ml]=ഐഡന്റിക്ക ഗ്രൂപ്പുകള്‍
+Name[mr]=Identi.ca ग्रुप्स
 Name[nb]=Identi.ca-grupper
 Name[nds]=Identi.ca - Koppeln
 Name[nl]=Identi.ca Groepen
@@ -110,6 +111,7 @@ Query[lt]=http://identi.ca/search/group?q=\\{@}
 Query[lv]=http://identi.ca/search/group?q=\\{@}
 Query[mai]=http://identi.ca/search/group?q=\\{@}
 Query[ml]=http://identi.ca/search/group?q=\\{@}
+Query[mr]=http://identi.ca/search/group?q=\\{@}
 Query[nb]=http://identi.ca/search/group?q=\\{@}
 Query[nds]=http://identi.ca/search/group?q=\\{@}
 Query[nl]=http://identi.ca/search/group?q=\\{@}

@@ -42,6 +42,7 @@ Name[lt]=Identi.ca pranešimai
 Name[lv]=Identi.ca piezīmes
 Name[mai]=Identi.ca सूचना
 Name[ml]=ഐഡന്റിക്ക നോട്ടീസുകള്‍
+Name[mr]=Identi.ca सूचना
 Name[nb]=Identi.ca notiser
 Name[nds]=Identi.ca - Henwiesen
 Name[nl]=Identi.ca Notities
@@ -110,6 +111,7 @@ Query[lt]=http://identi.ca/search/notice?q=\\{@}
 Query[lv]=http://identi.ca/search/notice?q=\\{@}
 Query[mai]=http://identi.ca/search/notice?q=\\{@}
 Query[ml]=http://identi.ca/search/notice?q=\\{@}
+Query[mr]=http://identi.ca/search/notice?q=\\{@}
 Query[nb]=http://identi.ca/search/notice?q=\\{@}
 Query[nds]=http://identi.ca/search/notice?q=\\{@}
 Query[nl]=http://identi.ca/search/notice?q=\\{@}
