@@ -2079,10 +2079,8 @@ int sftpProtocol::GetRequest::readChunks(QByteArray &data) {
     if (bytesread == 0 || bytesread == SSH_AGAIN) {
       if (bytesread == 0) {
         pendingRequests.dequeue();
-      } else {
-        // Decrease maximum pending requests as we did not receive data fast enough
-        mMaxPendingRequests = qMax(1, mMaxPendingRequests / 2);
       }
+
       // Done reading or timeout
       data.resize(data.size() - request.expectedLength);
       break;
@@ -2118,9 +2116,6 @@ int sftpProtocol::GetRequest::readChunks(QByteArray &data) {
 
     pendingRequests.dequeue();
   }
-
-  // Adjust maximum pending requests
-  mMaxPendingRequests = qMin(mMaxPendingRequests * 2, MAX_TRANSFER_SIZE / MAX_XFER_BUF_SIZE);
 
   return totalRead;
 }

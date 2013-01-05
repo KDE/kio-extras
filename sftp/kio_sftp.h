@@ -142,7 +142,7 @@ private: // Private variables
      *                            The number will be adjusted automatically depending
      *                            on the connection speed.
      */
-    GetRequest(sftp_file file, sftp_attributes sb, ushort maxPendingRequests=5);
+    GetRequest(sftp_file file, sftp_attributes sb, ushort maxPendingRequests = 1);
     /**
      * Removes all pending requests and closes the SFTP channel and attributes
      * in order to avoid memory leaks.
