@@ -2043,7 +2043,7 @@ bool sftpProtocol::GetRequest::enqueueChunks() {
 
     pendingRequests.enqueue(request);
 
-    if (mFile->offset > mSb->size) {
+    if (mFile->offset >= mSb->size) {
       // Do not add any more chunks if the offset is larger than the given file size.
       // However this is done after adding a request as the remote file size may
       // have changed in the meantime.
