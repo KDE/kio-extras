@@ -138,6 +138,7 @@ Query[sr@latin]=http://qt-project.org/doc/\\{@}.html
 Query[sv]=http://qt-project.org/doc/\\{@}.html
 Query[tr]=http://qt-project.org/doc/\\{@}.html
 Query[uk]=http://qt-project.org/doc/\\{@}.html
+Query[vi]=http://qt-project.org/doc/\\{@}.html
 Query[wa]=http://qt-project.org/doc/\\{@}.html
 Query[x-test]=xxhttp://qt-project.org/doc/\\{@}.htmlxx
 Query[zh_CN]=http://qt-project.org/doc/\\{@}.html

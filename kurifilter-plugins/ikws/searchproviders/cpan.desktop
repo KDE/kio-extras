@@ -141,6 +141,7 @@ Query[sv]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[tr]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ug]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[uk]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[vi]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[wa]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[x-test]=xxhttp://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}xx
 Query[zh_CN]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
