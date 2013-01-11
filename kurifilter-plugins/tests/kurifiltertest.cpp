@@ -375,6 +375,7 @@ void KUriFilterTest::internetKeywords()
     filter( sc.sprintf("bug%c55798", s_delimiter).toUtf8(), "https://bugs.kde.org/show_bug.cgi?id=55798", KUriFilterData::NetProtocol );
 
     filter( sc.sprintf("gg%cC++", s_delimiter).toUtf8(), "http://www.google.com/search?q=C%2B%2B&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( sc.sprintf("gg%cC#", s_delimiter).toUtf8(), "http://www.google.com/search?q=C%23&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( sc.sprintf("ya%cfoo bar was here", s_delimiter).toUtf8(), 0, -1 ); // this triggers default search, i.e. google
     filter( sc.sprintf("gg%cwww.kde.org", s_delimiter).toUtf8(), "http://www.google.com/search?q=www.kde.org&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
     filter( sc.sprintf("av%c+rock +sample", s_delimiter).toUtf8(), "http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=%2Brock+%2Bsample", KUriFilterData::NetProtocol );
