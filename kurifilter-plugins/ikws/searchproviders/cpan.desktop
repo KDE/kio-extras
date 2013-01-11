@@ -105,6 +105,7 @@ Query[el]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[eo]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[es]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[et]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[fa]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[fi]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[fr]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ga]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
