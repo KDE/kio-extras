@@ -35,6 +35,8 @@ extern "C" {
         KComponentData componentData("kio_remote" );
         QCoreApplication app(argc, argv);
 
+        KGlobal::locale();
+
         // start the slave
         RemoteProtocol slave( argv[1], argv[2], argv[3] );
         slave.dispatchLoop();
