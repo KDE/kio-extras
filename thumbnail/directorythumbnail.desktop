@@ -1,6 +1,13 @@
 [Desktop Entry]
 Type=Service
 Name=Folders
+Name[de]=Ordner
+Name[es]=Carpetas
+Name[pt_BR]=Pastas
+Name[sk]=Priečinky
+Name[sv]=Kataloger
+Name[uk]=Теки
+Name[x-test]=xxFoldersxx
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=inode/directory;
 CacheThumbnail=false
