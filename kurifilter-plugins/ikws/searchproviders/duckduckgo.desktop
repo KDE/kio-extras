@@ -75,6 +75,7 @@ Query[ast]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[bg]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[bs]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[ca]=http://duckduckgo.com/?q=\\{@}&t=kde
+Query[ca@valencia]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[cs]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[da]=http://duckduckgo.com/?q=\\{@}&t=kde
 Query[de]=http://duckduckgo.com/?q=\\{@}&t=kde
