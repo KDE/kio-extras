@@ -110,6 +110,7 @@ Query[sr@ijekavian]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[sr@ijekavianlatin]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[sr@latin]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[sv]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
+Query[tr]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[uk]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[vi]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[x-test]=xxhttp://duckduckgo.com/?q=\\{@}&v=s&t=kdexx
