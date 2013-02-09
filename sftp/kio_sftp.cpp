@@ -2077,12 +2077,13 @@ int sftpProtocol::GetRequest::readChunks(QByteArray &data) {
     // kDebug(KIO_SFTP_DB) << "bytesread=" << QString::number(bytesread);
 
     if (bytesread == 0 || bytesread == SSH_AGAIN) {
-      if (bytesread == 0) {
-        pendingRequests.dequeue();
-      }
-
       // Done reading or timeout
       data.resize(data.size() - request.expectedLength);
+
+      if (bytesread == 0) {
+        pendingRequests.dequeue(); // This frees QByteArray &data!
+      }
+
       break;
     } else if (bytesread == SSH_ERROR) {
       return -1;
