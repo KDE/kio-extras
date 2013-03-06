@@ -305,13 +305,13 @@ void KUriFilterTest::executables()
 {
     // Executable tests - No IKWS in minicli
     filter( "cp", "cp", KUriFilterData::Executable, minicliFilters );
-    filter( "kfmclient", "kfmclient", KUriFilterData::Executable, minicliFilters );
+    filter( "ktraderclient", "ktraderclient", KUriFilterData::Executable, minicliFilters );
     filter( "xwininfo", "xwininfo", KUriFilterData::Executable, minicliFilters );
     filter( "KDE", "KDE", NO_FILTERING, minicliFilters );
     filter( "I/dont/exist", "I/dont/exist", NO_FILTERING, minicliFilters );      //krazy:exclude=spelling
     filter( "/I/dont/exist", 0, KUriFilterData::Error, minicliFilters );         //krazy:exclude=spelling
     filter( "/I/dont/exist#a", 0, KUriFilterData::Error, minicliFilters );       //krazy:exclude=spelling
-    filter( "kfmclient --help", "kfmclient --help", KUriFilterData::Executable, minicliFilters ); // the args are in argsAndOptions()
+    filter( "ktraderclient --help", "ktraderclient --help", KUriFilterData::Executable, minicliFilters ); // the args are in argsAndOptions()
     filter( "/usr/bin/gs", "/usr/bin/gs", KUriFilterData::Executable, minicliFilters );
     filter( "/usr/bin/gs -q -option arg1", "/usr/bin/gs -q -option arg1", KUriFilterData::Executable, minicliFilters ); // the args are in argsAndOptions()
 
