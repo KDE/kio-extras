@@ -709,14 +709,21 @@ void sftpProtocol::openConnection() {
 
   kDebug(KIO_SFTP_DB) << "Trying to authenticate with the server";
 
-  const int method = ssh_auth_list(mSession);
-
   // Try to login without authentication
   rc = ssh_userauth_none(mSession, NULL);
   if (rc == SSH_AUTH_ERROR) {
     closeConnection();
     error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
     return;
+  }
+
+  // This NEEDS to be called after ssh_userauth_none() !!!
+  int method = ssh_auth_list(mSession);
+  if (rc != SSH_AUTH_SUCCESS && method == 0) {
+      closeConnection();
+      error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed. The server "
+            "didn't send any authentication methods"));
+      return;
   }
 
   // Try to authenticate with public key first
@@ -811,6 +818,12 @@ void sftpProtocol::openConnection() {
       isFirstLoginAttempt = false; // failed attempt to login.
       info.password.clear();       // clear the password after failed attempts.
     }
+  }
+
+  // If we're still not authenticated then we need to leave.
+  if (rc != SSH_AUTH_SUCCESS) {
+    error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+    return;
   }
 
   // start sftp session
