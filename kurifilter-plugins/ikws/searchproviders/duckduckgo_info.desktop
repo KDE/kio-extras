@@ -24,6 +24,7 @@ Name[fi]=Duck Duck Go -tietohaku
 Name[fr]=Duck Duck Go Info
 Name[ga]=Eolas Duck Duck Go
 Name[gl]=Información en Duck Duck Go
+Name[gu]=ડક ડક ગો માહિતી
 Name[he]=Duck Duck Go Info
 Name[hi]=बतख़ जा जा जानकारी
 Name[hr]=Duck Duck Go Info
@@ -86,6 +87,7 @@ Query[fi]=http://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[fr]=http://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[ga]=http://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[gl]=http://duckduckgo.com/?q=\\{@}&v=r&t=kde
+Query[gu]=http://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[hu]=http://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[is]=http://duckduckgo.com/?q=\\{@}&v=r&t=kde
