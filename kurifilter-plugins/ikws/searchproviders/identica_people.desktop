@@ -70,7 +70,7 @@ Name[wa]=Identi.ca Djins
 Name[x-test]=xxIdenti.ca Peoplexx
 Name[zh_CN]=Identi.ca 人物
 Name[zh_TW]=Identi.ca People
-Query=http://identi.ca/search/people?q=\\{@}&search=Search
+Query=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ast]=http://identi.ca/search/people?q=\\{@}&search=Search
 Query[bg]=http://identi.ca/search/people?q=\\{@}&search=Search

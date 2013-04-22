@@ -71,7 +71,7 @@ Name[wa]=Duck Duck Go Botikes
 Name[x-test]=xxDuck Duck Go Shoppingxx
 Name[zh_CN]=Duck Duck Go 购物
 Name[zh_TW]=Duck Duck Go Shopping
-Query=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
+Query=https://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[ast]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[bg]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[bs]=http://duckduckgo.com/?q=\\{@}&v=s&t=kde

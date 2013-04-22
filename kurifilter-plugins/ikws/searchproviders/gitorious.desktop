@@ -71,7 +71,7 @@ Name[wa]=Gitorious
 Name[x-test]=xxGitoriousxx
 Name[zh_CN]=Gitorious
 Name[zh_TW]=Gitorious
-Query=http://gitorious.org/search?q=\\{@}&commit=Search
+Query=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[ar]=http://www.iblist.com/search/search.php?item=\\{@}&submit=Search
 Query[ast]=http://gitorious.org/search?q=\\{@}&commit=Search
 Query[bg]=http://gitorious.org/search?q=\\{@}&commit=Search

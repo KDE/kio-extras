@@ -91,7 +91,7 @@ Name[zh_CN]=维基字典 - 免费的字典
 Name[zh_TW]=Wiktionary - 免費的字典
 X-KDE-ServiceTypes=SearchProvider
 Keys=wt,wikt
-Query=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[af]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ar]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[as]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

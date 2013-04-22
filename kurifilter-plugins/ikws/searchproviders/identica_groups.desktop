@@ -71,7 +71,7 @@ Name[wa]=Identi.ca Groupes
 Name[x-test]=xxIdenti.ca Groupsxx
 Name[zh_CN]=Identi.ca 群组
 Name[zh_TW]=Identi.ca Groups
-Query=http://identi.ca/search/group?q=\\{@}
+Query=https://identi.ca/search/group?q=\\{@}
 Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ast]=http://identi.ca/search/group?q=\\{@}
 Query[bg]=http://identi.ca/search/group?q=\\{@}

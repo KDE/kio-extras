@@ -71,7 +71,7 @@ Name[wa]=Identi.ca Notices
 Name[x-test]=xxIdenti.ca Noticesxx
 Name[zh_CN]=Identi.ca 通知
 Name[zh_TW]=Identi.ca Notices
-Query=http://identi.ca/search/notice?q=\\{@}
+Query=https://identi.ca/search/notice?q=\\{@}
 Query[ar]=http://info.alexa.com/search?q=\\{@}
 Query[ast]=http://identi.ca/search/notice?q=\\{@}
 Query[bg]=http://identi.ca/search/notice?q=\\{@}

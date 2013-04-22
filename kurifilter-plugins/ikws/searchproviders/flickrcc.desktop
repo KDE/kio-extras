@@ -69,7 +69,7 @@ Name[wa]=Flickr Creative Commons
 Name[x-test]=xxFlickr Creative Commonsxx
 Name[zh_CN]=Flickr 公用创作物
 Name[zh_TW]=Flickr Creative Commons
-Query=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query=https://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[ar]=http://www.ethicle.com/search.php?q=\\{@}
 Query[ast]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[bg]=http://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1

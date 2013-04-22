@@ -70,7 +70,7 @@ Name[wa]=Google Côde
 Name[x-test]=xxGoogle Codexx
 Name[zh_CN]=Google Code
 Name[zh_TW]=Google Code
-Query=http://code.google.com/query/#q=\\{%2520}
+Query=https://code.google.com/query/#q=\\{%2520}
 Query[ar]=http://froogle.google.com/froogle?q=\\{@}
 Query[ast]=http://code.google.com/query/#q=\\{%2520}
 Query[bg]=http://code.google.com/query/#q=\\{%2520}
