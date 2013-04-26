@@ -70,6 +70,17 @@ Name[x-test]=xxYouTubexx
 Name[zh_CN]=YouTube
 Name[zh_TW]=YouTube
 Query=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[cs]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[de]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[es]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[is]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[nl]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[pt]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[ru]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[sk]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[sv]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[uk]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[x-test]=xxhttps://www.youtube.com/results?search_query=\\{@}&search_type=&aq=fxx
 ServiceTypes=SearchProvider
 Type=Service
 Charset=utf8

@@ -94,4 +94,15 @@ Name[zh_TW]=Wikipedia - 免費的 Encyclopedia
 X-KDE-ServiceTypes=SearchProvider
 Keys=wp
 Query=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[cs]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[de]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[es]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[is]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nl]=https://nl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pt]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ru]=https://ru.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sk]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[sv]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[uk]=http://uk.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[x-test]=xxhttps://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Goxx
 Charset=utf8

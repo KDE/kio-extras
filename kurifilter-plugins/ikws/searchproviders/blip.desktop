@@ -72,5 +72,16 @@ Name[x-test]=xxBlip.tvxx
 Name[zh_CN]=Blip.tv
 Name[zh_TW]=Blip.tv
 Query=https://blip.tv/search?q=\\{@}
+Query[cs]=https://blip.tv/search?q=\\{@}
+Query[de]=https://blip.tv/search?q=\\{@}
+Query[es]=https://blip.tv/search?q=\\{@}
+Query[is]=https://blip.tv/search?q=\\{@}
+Query[nl]=https://blip.tv/search?q=\\{@}
+Query[pt]=https://blip.tv/search?q=\\{@}
+Query[ru]=https://blip.tv/search?q=\\{@}
+Query[sk]=https://blip.tv/search?q=\\{@}
+Query[sv]=https://blip.tv/search?q=\\{@}
+Query[uk]=https://blip.tv/search?q=\\{@}
+Query[x-test]=xxhttps://blip.tv/search?q=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

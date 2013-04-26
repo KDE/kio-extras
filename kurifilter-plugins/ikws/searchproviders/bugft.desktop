@@ -92,5 +92,16 @@ Name[x-test]=xxKDE Bug Database Fulltext Searchxx
 Name[zh_CN]=KDE Bug 数据库全文检索
 Name[zh_TW]=KDE 臭蟲資料庫全文檢索
 Query=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[cs]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[de]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[es]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[is]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[nl]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[pt]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ru]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[sk]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[sv]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[uk]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[x-test]=xxhttps://bugs.kde.org/buglist.cgi?quicksearch=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

@@ -96,3 +96,14 @@ Name[zh_TW]=Google 群組
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggg,groups,dj,deja
 Query=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[cs]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[de]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[es]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[is]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[nl]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[pt]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ru]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[sk]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[sv]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[uk]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[x-test]=xxhttps://groups.google.com/groups?oi=djq&as_q=\\{@}xx

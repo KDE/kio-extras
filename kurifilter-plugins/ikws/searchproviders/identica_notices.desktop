@@ -72,5 +72,16 @@ Name[x-test]=xxIdenti.ca Noticesxx
 Name[zh_CN]=Identi.ca 通知
 Name[zh_TW]=Identi.ca Notices
 Query=https://identi.ca/search/notice?q=\\{@}
+Query[cs]=https://identi.ca/search/notice?q=\\{@}
+Query[de]=https://identi.ca/search/notice?q=\\{@}
+Query[es]=https://identi.ca/search/notice?q=\\{@}
+Query[is]=https://identi.ca/search/notice?q=\\{@}
+Query[nl]=https://identi.ca/search/notice?q=\\{@}
+Query[pt]=https://identi.ca/search/notice?q=\\{@}
+Query[ru]=https://identi.ca/search/notice?q=\\{@}
+Query[sk]=https://identi.ca/search/notice?q=\\{@}
+Query[sv]=https://identi.ca/search/notice?q=\\{@}
+Query[uk]=https://identi.ca/search/notice?q=\\{@}
+Query[x-test]=xxhttps://identi.ca/search/notice?q=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service

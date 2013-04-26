@@ -72,5 +72,16 @@ Name[x-test]=xxFacebookxx
 Name[zh_CN]=Facebook
 Name[zh_TW]=Facebook
 Query=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[cs]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[de]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[es]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[is]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[nl]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[pt]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ru]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[sk]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[sv]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[uk]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[x-test]=xxhttps://www.facebook.com/search/?q=\\{@}&init=quickxx
 ServiceTypes=SearchProvider
 Type=Service

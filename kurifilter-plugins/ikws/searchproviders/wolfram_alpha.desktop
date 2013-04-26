@@ -74,5 +74,16 @@ Name[x-test]=xxWolfram Alphaxx
 Name[zh_CN]=Wolfram Alpha
 Name[zh_TW]=Wolfram Alpha
 Query=https://www.wolframalpha.com/input/?i=\\{@}
+Query[cs]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[de]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[es]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[is]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[nl]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[pt]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[ru]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[sk]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[sv]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[uk]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[x-test]=xxhttps://www.wolframalpha.com/input/?i=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

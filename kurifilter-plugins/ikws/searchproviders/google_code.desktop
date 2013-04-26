@@ -71,5 +71,16 @@ Name[x-test]=xxGoogle Codexx
 Name[zh_CN]=Google Code
 Name[zh_TW]=Google Code
 Query=https://code.google.com/query/#q=\\{%2520}
+Query[cs]=https://code.google.com/query/#q=\\{%2520}
+Query[de]=https://code.google.com/query/#q=\\{%2520}
+Query[es]=https://code.google.com/query/#q=\\{%2520}
+Query[is]=https://code.google.com/query/#q=\\{%2520}
+Query[nl]=https://code.google.com/query/#q=\\{%2520}
+Query[pt]=https://code.google.com/query/#q=\\{%2520}
+Query[ru]=https://code.google.com/query/#q=\\{%2520}
+Query[sk]=https://code.google.com/query/#q=\\{%2520}
+Query[sv]=https://code.google.com/query/#q=\\{%2520}
+Query[uk]=https://code.google.com/query/#q=\\{%2520}
+Query[x-test]=xxhttps://code.google.com/query/#q=\\{%2520}xx
 ServiceTypes=SearchProvider
 Type=Service

@@ -71,5 +71,16 @@ Name[x-test]=xxIdenti.ca Peoplexx
 Name[zh_CN]=Identi.ca 人物
 Name[zh_TW]=Identi.ca People
 Query=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[cs]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[de]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[es]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[is]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[nl]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[pt]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[ru]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[sk]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[sv]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[uk]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[x-test]=xxhttps://identi.ca/search/people?q=\\{@}&search=Searchxx
 ServiceTypes=SearchProvider
 Type=Service

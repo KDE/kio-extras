@@ -71,5 +71,16 @@ Name[x-test]=xxDuck Duck Goxx
 Name[zh_CN]=Duck Duck Go
 Name[zh_TW]=Duck Duck Go
 Query=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[cs]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[de]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[es]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[is]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[nl]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[pt]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[ru]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[sk]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[sv]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[uk]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[x-test]=xxhttps://duckduckgo.com/?q=\\{@}&t=kdexx
 ServiceTypes=SearchProvider
 Type=Service

@@ -72,5 +72,16 @@ Name[x-test]=xxGitoriousxx
 Name[zh_CN]=Gitorious
 Name[zh_TW]=Gitorious
 Query=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[cs]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[de]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[es]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[is]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[nl]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[pt]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[ru]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[sk]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[sv]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[uk]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[x-test]=xxhttps://gitorious.org/search?q=\\{@}&commit=Searchxx
 ServiceTypes=SearchProvider
 Type=Service
