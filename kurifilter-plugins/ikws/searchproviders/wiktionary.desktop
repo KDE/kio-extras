@@ -115,7 +115,7 @@ Query[es]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[et]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[eu]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fa]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[fi]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[fi]=http://fi.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=http://fr.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fy]=http://fy.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ga]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
