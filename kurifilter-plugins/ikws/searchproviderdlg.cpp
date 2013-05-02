@@ -19,6 +19,8 @@
 #include "searchproviderdlg.h"
 #include "searchprovider.h"
 
+#include <QClipboard>
+
 #include <kapplication.h>
 #include <kcharsets.h>
 #include <kmessagebox.h>
@@ -60,6 +62,14 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
     {
         setPlainCaption(i18n("New Web Shortcut"));
         m_dlg.leName->setFocus();
+
+        //If the clipboard contains a url copy it to the query lineedit
+        const QClipboard *clipboard = QApplication::clipboard();
+        const QString url = clipboard->text();
+
+        if (!KUrl(url).host().isEmpty())
+            m_dlg.leQuery->setText(url);
+
         enableButton(Ok, false);
     }
 }
