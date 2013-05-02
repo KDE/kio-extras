@@ -297,8 +297,8 @@ void KUriFilterTest::shortUris()
     // The default search engine is set to 'Google'
     //this may fail if your DNS knows domains KDE or FTP
     filter( "gg:", "", KUriFilterData::NetProtocol ); // see bug 56218
-    filter( "KDE", "http://www.google.com/search?q=KDE&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
-    filter( "HTTP", "http://www.google.com/search?q=HTTP&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( "KDE", "https://www.google.com/search?q=KDE&ie=UTF-8", KUriFilterData::NetProtocol );
+    filter( "HTTP", "https://www.google.com/search?q=HTTP&ie=UTF-8", KUriFilterData::NetProtocol );
 }
 
 void KUriFilterTest::executables()
@@ -318,7 +318,7 @@ void KUriFilterTest::executables()
     // Typing 'cp' or any other valid unix command in konq's location bar should result in
     // a search using the default search engine
     // 'ls' is a bit of a special case though, due to the toplevel domain called 'ls'
-    filter( "cp", "http://www.google.com/search?q=cp&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol,
+    filter( "cp", "https://www.google.com/search?q=cp&ie=UTF-8", KUriFilterData::NetProtocol,
             QStringList(), 0, false /* don't check for executables, see konq_misc.cc */ );
 }
 
@@ -359,8 +359,8 @@ void KUriFilterTest::environmentVariables()
     filter( "$KDEHOME/share/Dir[Bracket", kdehome+"/share/Dir[Bracket", KUriFilterData::LocalDir );
 
     filter( "$HOME/$KDEDIR/kdebase/kcontrol/ebrowsing", 0, KUriFilterData::Error );
-    filter( "$1/$2/$3", "http://www.google.com/search?q=%241%2F%242%2F%243&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );  // can be used as bogus or valid test. Currently triggers default search, i.e. google
-    filter( "$$$$", "http://www.google.com/search?q=%24%24%24%24&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol ); // worst case scenarios.
+    filter( "$1/$2/$3", "https://www.google.com/search?q=%241%2F%242%2F%243&ie=UTF-8", KUriFilterData::NetProtocol );  // can be used as bogus or valid test. Currently triggers default search, i.e. google
+    filter( "$$$$", "https://www.google.com/search?q=%24%24%24%24&ie=UTF-8", KUriFilterData::NetProtocol ); // worst case scenarios.
 
     if (!qtdir.isEmpty()) {
         filter( "$QTDIR", qtdir, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) ); //use specific filter.
@@ -371,16 +371,16 @@ void KUriFilterTest::environmentVariables()
 void KUriFilterTest::internetKeywords()
 {
     QString sc;
-    filter( sc.sprintf("gg%cfoo bar",s_delimiter).toUtf8(), "http://www.google.com/search?q=foo+bar&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( sc.sprintf("gg%cfoo bar",s_delimiter).toUtf8(), "https://www.google.com/search?q=foo+bar&ie=UTF-8", KUriFilterData::NetProtocol );
     filter( sc.sprintf("bug%c55798", s_delimiter).toUtf8(), "https://bugs.kde.org/show_bug.cgi?id=55798", KUriFilterData::NetProtocol );
 
-    filter( sc.sprintf("gg%cC++", s_delimiter).toUtf8(), "http://www.google.com/search?q=C%2B%2B&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
-    filter( sc.sprintf("gg%cC#", s_delimiter).toUtf8(), "http://www.google.com/search?q=C%23&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( sc.sprintf("gg%cC++", s_delimiter).toUtf8(), "https://www.google.com/search?q=C%2B%2B&ie=UTF-8", KUriFilterData::NetProtocol );
+    filter( sc.sprintf("gg%cC#", s_delimiter).toUtf8(), "https://www.google.com/search?q=C%23&ie=UTF-8", KUriFilterData::NetProtocol );
     filter( sc.sprintf("ya%cfoo bar was here", s_delimiter).toUtf8(), 0, -1 ); // this triggers default search, i.e. google
-    filter( sc.sprintf("gg%cwww.kde.org", s_delimiter).toUtf8(), "http://www.google.com/search?q=www.kde.org&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( sc.sprintf("gg%cwww.kde.org", s_delimiter).toUtf8(), "https://www.google.com/search?q=www.kde.org&ie=UTF-8", KUriFilterData::NetProtocol );
     filter( sc.sprintf("av%c+rock +sample", s_delimiter).toUtf8(), "http://www.altavista.com/cgi-bin/query?pg=q&kl=XX&stype=stext&q=%2Brock+%2Bsample", KUriFilterData::NetProtocol );
-    filter( QString::fromUtf8("gg%1é").arg(s_delimiter).toUtf8() /*eaccent in utf8*/, "http://www.google.com/search?q=%C3%A9&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
-    filter( QString::fromUtf8("gg%1прйвет").arg(s_delimiter).toUtf8() /* greetings in russian utf-8*/, "http://www.google.com/search?q=%D0%BF%D1%80%D0%B9%D0%B2%D0%B5%D1%82&ie=UTF-8&oe=UTF-8", KUriFilterData::NetProtocol );
+    filter( QString::fromUtf8("gg%1é").arg(s_delimiter).toUtf8() /*eaccent in utf8*/, "https://www.google.com/search?q=%C3%A9&ie=UTF-8", KUriFilterData::NetProtocol );
+    filter( QString::fromUtf8("gg%1прйвет").arg(s_delimiter).toUtf8() /* greetings in russian utf-8*/, "https://www.google.com/search?q=%D0%BF%D1%80%D0%B9%D0%B2%D0%B5%D1%82&ie=UTF-8", KUriFilterData::NetProtocol );
 }
 
 void KUriFilterTest::localdomain()
