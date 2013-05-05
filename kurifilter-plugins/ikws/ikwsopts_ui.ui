@@ -205,12 +205,12 @@ Select the search engine to use for input boxes that provide automatic lookup se
        </property>
        <item>
         <property name="text">
-         <string>Colon</string>
+         <string comment="Colon as keyword delimiter">Colon</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>Space</string>
+         <string comment="Space as keyword delimiter">Space</string>
         </property>
        </item>
       </widget>

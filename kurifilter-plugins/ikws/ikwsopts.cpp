@@ -50,11 +50,11 @@ QVariant ProvidersModel::headerData(int section, Qt::Orientation orientation, in
   {
     switch (section) {
     case Name:
-      return i18n("Name");
+      return i18nc("@title:column Name label from web shortcuts column", "Name");
     case Shortcuts:
-      return i18n("Shortcuts");
+      return i18nc("@title:column", "Shortcuts");
     case Preferred:
-      return i18n("Preferred");
+      return i18nc("@title:column", "Preferred");
     default:
       break;
     }
@@ -103,10 +103,10 @@ QVariant ProvidersModel::data(const QModelIndex& index, int role) const
     if (role == Qt::ToolTipRole || role == Qt::WhatsThisRole)
     {
       if (index.column() == Preferred)
-        return i18n("<qt>Check this box to select the highlighted web shortcut "
-                    "as preferred.<br/><br/>Preferred web shortcuts are used in "
+        return i18nc("@info:tooltip", "Check this box to select the highlighted web shortcut "
+                    "as preferred.<nl/>Preferred web shortcuts are used in "
                     "places where only a few select shortcuts can be shown "
-                    "at one time.</qt>");
+                    "at one time.");
     }
 
     if (role == Qt::UserRole)
@@ -135,19 +135,19 @@ int ProvidersModel::rowCount(const QModelIndex & parent) const
   return m_providers.size();
 }
 
-QAbstractListModel* ProvidersModel::createListModel() 
+QAbstractListModel* ProvidersModel::createListModel()
 {
   ProvidersListModel* pListModel = new ProvidersListModel(m_providers, this);
-  connect(this, SIGNAL(modelAboutToBeReset()),        pListModel, SIGNAL(modelAboutToBeReset())); 
-  connect(this, SIGNAL(modelReset()),                 pListModel, SIGNAL(modelReset())); 
+  connect(this, SIGNAL(modelAboutToBeReset()),        pListModel, SIGNAL(modelAboutToBeReset()));
+  connect(this, SIGNAL(modelReset()),                 pListModel, SIGNAL(modelReset()));
   connect(this, SIGNAL(layoutAboutToBeChanged()),     pListModel, SIGNAL(modelReset()));
   connect(this, SIGNAL(layoutChanged()),              pListModel, SIGNAL(modelReset()));
-  connect(this, SIGNAL(dataChanged(QModelIndex, QModelIndex)),        pListModel, SLOT(emitDataChanged(QModelIndex, QModelIndex)));
-  connect(this, SIGNAL(rowsAboutToBeInserted(QModelIndex, int, int)), pListModel, SLOT(emitRowsAboutToBeInserted(QModelIndex, int, int ))); 
-  connect(this, SIGNAL(rowsAboutToBeRemoved(QModelIndex, int, int)),  pListModel, SLOT(emitRowsAboutToBeRemoved(QModelIndex, int, int ))); 
-  connect(this, SIGNAL(rowsInserted(QModelIndex, int, int )),         pListModel, SLOT(emitRowsInserted(QModelIndex, int, int )));
-  connect(this, SIGNAL(rowsRemoved(QModelIndex, int, int)),           pListModel, SLOT(emitRowsRemoved(QModelIndex, int, int )));
-  
+  connect(this, SIGNAL(dataChanged(QModelIndex,QModelIndex)),       pListModel, SLOT(emitDataChanged(QModelIndex,QModelIndex)));
+  connect(this, SIGNAL(rowsAboutToBeInserted(QModelIndex,int,int)), pListModel, SLOT(emitRowsAboutToBeInserted(QModelIndex,int,int)));
+  connect(this, SIGNAL(rowsAboutToBeRemoved(QModelIndex,int,int)),  pListModel, SLOT(emitRowsAboutToBeRemoved(QModelIndex,int,int)));
+  connect(this, SIGNAL(rowsInserted(QModelIndex,int,int)),          pListModel, SLOT(emitRowsInserted(QModelIndex,int,int)));
+  connect(this, SIGNAL(rowsRemoved(QModelIndex,int,int)),           pListModel, SLOT(emitRowsRemoved(QModelIndex,int,int)));
+
   return pListModel;
 }
 
@@ -195,7 +195,7 @@ QVariant ProvidersListModel::data(const QModelIndex& index, int role) const
     if (role==Qt::DisplayRole)
     {
       if (index.row() == m_providers.size())
-        return i18n("None");
+        return i18nc("@item:inlistbox No default web shortcut", "None");
       return m_providers.at(index.row())->name();
     }
 
@@ -259,15 +259,15 @@ FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *paren
 
 QString FilterOptions::quickHelp() const
 {
-  return i18n("<p>In this module you can configure the web shortcuts feature. "
+  return i18nc("@info:whatsthis", "<para>In this module you can configure the web shortcuts feature. "
               "Web shortcuts allow you to quickly search or lookup words on "
               "the Internet. For example, to search for information about the "
-              "KDE project using the Google engine, you simply type <b>gg:KDE</b> "
-              "or <b>google:KDE</b>.</p>"
-              "<p>If you select a default search engine, then you can search for "
+              "KDE project using the Google engine, you simply type <emphasis>gg:KDE</emphasis> "
+              "or <emphasis>google:KDE</emphasis>.</para>"
+              "<para>If you select a default search engine, then you can search for "
               "normal words or phrases by simply typing them into the input widget "
               "of applications that have built-in support for such a feature, e.g "
-              "Konqueror.</p>");
+              "Konqueror.</para>");
 }
 
 void FilterOptions::setDefaultEngine(int index)
@@ -409,22 +409,25 @@ void FilterOptions::defaults()
 void FilterOptions::addSearchProvider()
 {
   QList<SearchProvider*> providers = m_providersModel->providers();
-  SearchProviderDialog dlg(0, providers, this);
+  QPointer<SearchProviderDialog> dlg = new SearchProviderDialog(0, providers, this);
 
-  if (dlg.exec()) {
-    m_providersModel->addProvider(dlg.provider());
-    m_providersModel->changeProvider(dlg.provider());
+  if (dlg->exec()) {
+    m_providersModel->addProvider(dlg->provider());
+    m_providersModel->changeProvider(dlg->provider());
   }
+  delete dlg;
 }
 
 void FilterOptions::changeSearchProvider()
 {
   QList<SearchProvider*> providers = m_providersModel->providers();
   SearchProvider* provider = providers.at(m_dlg.lvSearchProviders->currentIndex().data(Qt::UserRole).toInt());
-  SearchProviderDialog dlg(provider, providers, this);
+  QPointer<SearchProviderDialog> dlg = new SearchProviderDialog(provider, providers, this);
 
-  if (dlg.exec())
-    m_providersModel->changeProvider(dlg.provider());
+  if (dlg->exec())
+    m_providersModel->changeProvider(dlg->provider());
+
+  delete dlg;
 }
 
 void FilterOptions::deleteSearchProvider()

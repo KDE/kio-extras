@@ -18,8 +18,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _LOCALDOMAINURIFILTER_H_
-#define _LOCALDOMAINURIFILTER_H_
+#ifndef LOCALDOMAINURIFILTER_H
+#define LOCALDOMAINURIFILTER_H
 
 #include <KDE/KUriFilter>
 

@@ -27,7 +27,7 @@ class SearchProvider : public KUriFilterSearchProvider
 {
 public:
     SearchProvider() : m_dirty(false) {}
-    SearchProvider(const KService::Ptr service);
+    explicit SearchProvider(const KService::Ptr service);
 
     const QString& charset() const { return m_charset; }
     const QString& query() const { return m_query; }

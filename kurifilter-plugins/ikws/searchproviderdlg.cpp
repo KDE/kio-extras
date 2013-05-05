@@ -41,12 +41,12 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
     connect(m_dlg.leName,      SIGNAL(textChanged(QString)), SLOT(slotChanged()));
     connect(m_dlg.leQuery,     SIGNAL(textChanged(QString)), SLOT(slotChanged()));
     connect(m_dlg.leShortcut,  SIGNAL(textChanged(QString)), SLOT(slotChanged()));
-    connect(m_dlg.leShortcut,  SIGNAL(textChanged(QString)), SLOT(shortcutsChanged(const QString&)));
+    connect(m_dlg.leShortcut,  SIGNAL(textChanged(QString)), SLOT(shortcutsChanged(QString)));
 
     // Data init
     m_providers = providers;
     QStringList charsets = KGlobal::charsets()->availableEncodingNames();
-    charsets.prepend(i18n("Default"));
+    charsets.prepend(i18nc("@item:inlistbox The default character set", "Default"));
     m_dlg.cbCharset->addItems(charsets);
     if (m_provider)
     {
@@ -90,12 +90,12 @@ void SearchProviderDialog::shortcutsChanged(const QString& newShorthands) {
     // setText() will reset it to the end, which is not what we want when
     // backspacing something in the middle.
     int savedCursorPosition = m_dlg.leShortcut->cursorPosition();
-    QString normalizedShorthands = QString(newShorthands).replace(" ", ",");
+    QString normalizedShorthands = QString(newShorthands).replace(' ', ',');
     m_dlg.leShortcut->setText(normalizedShorthands);
     m_dlg.leShortcut->setCursorPosition(savedCursorPosition);
 
     QHash<QString, const SearchProvider*> contenders;
-    QSet<QString> shorthands = normalizedShorthands.split(",").toSet();
+    QSet<QString> shorthands = normalizedShorthands.split(',').toSet();
 
     // Look at each shorthand the user entered and wade through the search
     // provider list in search of a conflicting shorthand. Do not continue

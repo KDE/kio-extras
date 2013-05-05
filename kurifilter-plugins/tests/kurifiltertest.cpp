@@ -16,6 +16,7 @@
  *  Boston, MA 02110-1301, USA.
  */
 
+#include "kurifiltertest.h"
 #include "qtest_kde.h"
 
 #include <kurifilter.h>
@@ -33,7 +34,6 @@
 #include <QtNetwork/QHostInfo>
 
 #include <iostream>
-#include "kurifiltertest.h"
 
 QTEST_KDEMAIN( KUriFilterTest, NoGUI )
 

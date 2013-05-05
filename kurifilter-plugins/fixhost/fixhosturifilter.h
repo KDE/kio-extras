@@ -18,8 +18,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _FIXHOSTURIFILTER_H_
-#define _FIXHOSTURIFILTER_H_
+#ifndef FIXHOSTURIFILTER_H
+#define FIXHOSTURIFILTER_H
 
 #include <KDE/KUriFilter>
 
