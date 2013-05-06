@@ -102,6 +102,7 @@ Query[es]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fi]=https://news.google.fi/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[is]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[nl]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[pl]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt_BR]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ru]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8

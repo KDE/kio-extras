@@ -99,6 +99,7 @@ Query[es]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[fi]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[is]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[nl]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[pl]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[pt]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[pt_BR]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ru]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

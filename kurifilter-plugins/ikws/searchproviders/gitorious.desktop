@@ -79,6 +79,7 @@ Query[es]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[fi]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[is]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[nl]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[pl]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt_BR]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[ru]=https://gitorious.org/search?q=\\{@}&commit=Search

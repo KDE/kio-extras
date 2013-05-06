@@ -78,6 +78,7 @@ Query[es]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[fi]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[is]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nl]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[pl]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[pt_BR]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ru]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

@@ -79,6 +79,7 @@ Query[es]=https://identi.ca/search/notice?q=\\{@}
 Query[fi]=https://identi.ca/search/notice?q=\\{@}
 Query[is]=https://identi.ca/search/notice?q=\\{@}
 Query[nl]=https://identi.ca/search/notice?q=\\{@}
+Query[pl]=https://identi.ca/search/notice?q=\\{@}
 Query[pt]=https://identi.ca/search/notice?q=\\{@}
 Query[pt_BR]=https://identi.ca/search/notice?q=\\{@}
 Query[ru]=https://identi.ca/search/notice?q=\\{@}

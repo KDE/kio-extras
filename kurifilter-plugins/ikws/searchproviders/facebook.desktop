@@ -79,6 +79,7 @@ Query[es]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[fi]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[is]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[nl]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[pl]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[pt]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[pt_BR]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ru]=https://www.facebook.com/search/?q=\\{@}&init=quick

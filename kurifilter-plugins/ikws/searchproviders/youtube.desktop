@@ -77,6 +77,7 @@ Query[es]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[fi]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[is]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[nl]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[pl]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[pt_BR]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ru]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
