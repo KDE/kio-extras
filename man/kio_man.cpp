@@ -1094,20 +1094,6 @@ void MANProtocol::checkManPaths()
 }
 
 
-//#define _USE_OLD_CODE
-
-#ifdef _USE_OLD_CODE
-#ifdef __GNUC__
-#warning "using old code"
-#endif
-#else
-
-// Define this, if you want to compile with qsort from stdlib.h
-// else the Qt Heapsort will be used.
-// Note, qsort seems to be a bit faster (~10%) on a large man section
-// eg. man section 3
-#define _USE_QSORT
-
 // Setup my own structure, with char pointers.
 // from now on only pointers are copied, no strings
 //
@@ -1121,7 +1107,6 @@ struct man_index_t {
 };
 typedef man_index_t *man_index_ptr;
 
-#ifdef _USE_QSORT
 int compare_man_index(const void *s1, const void *s2)
 {
     struct man_index_t *m1 = *(struct man_index_t **)s1;
@@ -1155,59 +1140,6 @@ int compare_man_index(const void *s1, const void *s2)
 		     m2->manpage_begin,
 		     m1->manpage_len);
 }
-
-#else /* !_USE_QSORT */
-#ifdef __GNUC__
-#warning using heapsort
-#endif
-// Set up my own man page list,
-// with a special compare function to sort itself
-typedef QList<struct man_index_t*> QManIndexListBase;
-typedef QList<struct man_index_t*>::Iterator QManIndexListIterator;
-
-class QManIndexList : public QManIndexListBase
-{
-public:
-private:
-    int compareItems( Q3PtrCollection::Item s1, Q3PtrCollection::Item s2 )
-	{
-	    struct man_index_t *m1 = (struct man_index_t *)s1;
-	    struct man_index_t *m2 = (struct man_index_t *)s2;
-	    int i;
-	    // compare the names of the pages
-	    // with the shorter length
-	    if (m1->manpage_len > m2->manpage_len)
-	    {
-		i = qstrnicmp(m1->manpage_begin,
-			     m2->manpage_begin,
-			     m2->manpage_len);
-		if (!i)
-		    return 1;
-		return i;
-	    }
-
-	    if (m1->manpage_len > m2->manpage_len)
-	    {
-
-		i = qstrnicmp(m1->manpage_begin,
-			     m2->manpage_begin,
-			     m1->manpage_len);
-		if (!i)
-		    return -1;
-		return i;
-	    }
-
-	    return qstrnicmp(m1->manpage_begin,
-			    m2->manpage_begin,
-			    m1->manpage_len);
-	}
-};
-
-#endif /* !_USE_QSORT */
-#endif /* !_USE_OLD_CODE */
-
-
-
 
 void MANProtocol::showIndex(const QString& section)
 {
@@ -1249,50 +1181,9 @@ void MANProtocol::showIndex(const QString& section)
     // print out the list
     os << "<table>" << endl;
 
-#ifdef _USE_OLD_CODE
-    pages.sort();
-
-    QMap<QString, QString> pagemap;
-
-    QStringList::ConstIterator page;
-    for (page = pages.constBegin(); page != pages.constEnd(); ++page)
-    {
-        QString fileName = *page;
-
-        stripExtension( &fileName );
-
-        pos = fileName.lastIndexOf('/');
-        if (pos > 0)
-            fileName = fileName.mid(pos+1);
-
-        if (!fileName.isEmpty())
-            pagemap[fileName] = *page;
-
-    }
-
-    for (QMap<QString,QString>::ConstIterator it = pagemap.constBegin();
-	 it != pagemap.constEnd(); ++it)
-    {
-	os << "<tr><td><a href=\"man:" << it.data() << "\">\n"
-	   << it.key() << "</a></td><td>&nbsp;</td><td> "
-	   << (indexmap.contains(it.key()) ? indexmap[it.key()] : "" )
-	   << "</td></tr>"  << endl;
-    }
-
-#else /* ! _USE_OLD_CODE */
-
-#ifdef _USE_QSORT
-
     int listlen = pages.count();
     man_index_ptr *indexlist = new man_index_ptr[listlen];
     listlen = 0;
-
-#else /* !_USE_QSORT */
-
-    QManIndexList manpages;
-    manpages.setAutoDelete(true);
-
-#endif /* _USE_QSORT */
 
     QStringList::const_iterator page;
     for (page = pages.constBegin(); page != pages.constEnd(); ++page)
@@ -1363,18 +1254,8 @@ void MANProtocol::showIndex(const QString& section)
 
 	if (0 < manindex->manpage_len)
 	{
-
-#ifdef _USE_QSORT
-
 	    indexlist[listlen] = manindex;
 	    listlen++;
-
-#else /* !_USE_QSORT */
-
-	    manpages.append(manindex);
-
-#endif /* _USE_QSORT */
-
 	}
 	else delete manindex;
     }
@@ -1387,8 +1268,6 @@ void MANProtocol::showIndex(const QString& section)
 
     struct man_index_t dummy_index = {0l,0l,0};
     struct man_index_t *last_index = &dummy_index;
-
-#ifdef _USE_QSORT
 
     // sort and print
     qsort(indexlist, listlen, sizeof(struct man_index_t *), compare_man_index);
@@ -1454,42 +1333,6 @@ void MANProtocol::showIndex(const QString& section)
     }
 
     delete [] indexlist;
-
-#else /* !_USE_QSORT */
-
-    manpages.sort(); // using
-
-    for (QManIndexListIterator mit(manpages);
-	 mit.current();
-	 ++mit )
-    {
-	struct man_index_t *manindex = mit.current();
-
-	// qstrncmp():
-	// "last_man" has already a \0 string ending, but
-	// "manindex->manpage_begin" has not,
-	// so do compare at most "manindex->manpage_len" of the strings.
-	if (last_index->manpage_len == manindex->manpage_len &&
-	    !qstrncmp(last_index->manpage_begin,
-		      manindex->manpage_begin,
-		      manindex->manpage_len)
-	    )
-	{
-	    continue;
-	}
-
-	os << "<tr><td><a href=\"man:"
-	   << manindex->manpath << "\">\n";
-
-	manindex->manpage_begin[manindex->manpage_len] = '\0';
-	os << manindex->manpage_begin
-	   << "</a></td><td>&nbsp;</td><td> "
-	   << (indexmap.contains(manindex->manpage_begin) ? indexmap[manindex->manpage_begin] : "" )
-	   << "</td></tr>"  << endl;
-	last_index = manindex;
-    }
-#endif /* _USE_QSORT */
-#endif /* _USE_OLD_CODE */
 
     os << "</table></div>" << endl;
 
