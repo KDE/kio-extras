@@ -98,6 +98,7 @@ Query[el]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[es]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fi]=https://fi.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nb]=https://no.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=https://nl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=https://pl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pt]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
