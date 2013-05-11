@@ -114,4 +114,5 @@ Query[sr@latin]=https://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&i
 Query[sv]=https://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[uk]=https://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttps://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8xx
+Query[zh_TW]=https://www.google.com/search?q=\\{@}&btnI=I%27m+Feeling+Lucky&ie=UTF-8&oe=UTF-8
 Charset=utf8

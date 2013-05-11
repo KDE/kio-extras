@@ -92,5 +92,6 @@ Query[sr@latin]=https://blip.tv/search?q=\\{@}
 Query[sv]=https://blip.tv/search?q=\\{@}
 Query[uk]=https://blip.tv/search?q=\\{@}
 Query[x-test]=xxhttps://blip.tv/search?q=\\{@}xx
+Query[zh_TW]=https://blip.tv/search?q=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

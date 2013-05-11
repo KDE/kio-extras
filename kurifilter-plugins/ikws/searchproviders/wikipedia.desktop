@@ -114,4 +114,5 @@ Query[sr@latin]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=http://uk.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[x-test]=xxhttps://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Goxx
+Query[zh_TW]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Charset=utf8

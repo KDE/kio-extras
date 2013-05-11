@@ -91,5 +91,6 @@ Query[sr@latin]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[sv]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[uk]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[x-test]=xxhttps://identi.ca/search/people?q=\\{@}&search=Searchxx
+Query[zh_TW]=https://identi.ca/search/people?q=\\{@}&search=Search
 ServiceTypes=SearchProvider
 Type=Service

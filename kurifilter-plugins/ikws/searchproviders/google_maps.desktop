@@ -91,3 +91,4 @@ Query[sr@latin]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[sv]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[uk]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[x-test]=xxhttps://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addrxx
+Query[zh_TW]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

@@ -92,5 +92,6 @@ Query[sr@latin]=https://identi.ca/search/group?q=\\{@}
 Query[sv]=https://identi.ca/search/group?q=\\{@}
 Query[uk]=https://identi.ca/search/group?q=\\{@}
 Query[x-test]=xxhttps://identi.ca/search/group?q=\\{@}xx
+Query[zh_TW]=https://identi.ca/search/group?q=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

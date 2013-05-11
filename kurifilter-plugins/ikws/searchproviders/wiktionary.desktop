@@ -112,4 +112,5 @@ Query[sr@latin]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=https://uk.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[x-test]=xxhttps://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Goxx
+Query[zh_TW]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Charset=utf8

@@ -91,5 +91,6 @@ Query[sr@latin]=https://code.google.com/query/#q=\\{%2520}
 Query[sv]=https://code.google.com/query/#q=\\{%2520}
 Query[uk]=https://code.google.com/query/#q=\\{%2520}
 Query[x-test]=xxhttps://code.google.com/query/#q=\\{%2520}xx
+Query[zh_TW]=https://code.google.com/query/#q=\\{%2520}
 ServiceTypes=SearchProvider
 Type=Service

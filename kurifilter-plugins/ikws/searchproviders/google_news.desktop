@@ -115,4 +115,5 @@ Query[sr@latin]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sv]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uk]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttps://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8xx
+Query[zh_TW]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Charset=utf8
