@@ -91,7 +91,7 @@ Name[xh]=Uphendlo Lwesitshixo se OpenPGP
 Name[x-test]=xxOpenPGP Key Searchxx
 Name[zh_CN]=OpenPGP 密钥搜索
 Name[zh_TW]=OpenPGP 金鑰搜尋
-Query=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
+Query=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[af]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ar]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex
 Query[as]=http://pgp.dtype.org:11371/pks/lookup?search=\\{@}&op=vindex

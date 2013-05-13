@@ -92,7 +92,7 @@ Name[zh_CN]=Technorati
 Name[zh_TW]=Technorati
 X-KDE-ServiceTypes=SearchProvider
 Keys=tr,technorati
-Query=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
+Query=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[af]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[ar]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}
 Query[as]=http://technorati.com/cosmos/search.html?sourceid=kde-search&url=\\{@}

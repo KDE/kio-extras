@@ -71,7 +71,7 @@ Name[wa]=Vimeo
 Name[x-test]=xxVimeoxx
 Name[zh_CN]=Vimeo
 Name[zh_TW]=Vimeo
-Query=http://vimeo.com/videos/search:\\{@}
+Query=http://vimeo.com/search?q=\\{@}
 Query[ar]=http://dict.leo.org/?search=\\{@}
 Query[ast]=http://vimeo.com/videos/search:\\{@}
 Query[bg]=http://vimeo.com/videos/search:\\{@}

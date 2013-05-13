@@ -91,7 +91,7 @@ Name[zh_CN]=首字母缩写数据库
 Name[zh_TW]=Acronym 資料庫
 X-KDE-ServiceTypes=SearchProvider
 Keys=ad,acro,acronym
-Query=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
+Query=http://www.abbreviations.com/\\{@}
 Query[af]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[ar]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}
 Query[as]=http://www.chemie.de/tools/acronym.php3?language=e&acronym=\\{@}

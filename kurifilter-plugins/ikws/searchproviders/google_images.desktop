@@ -95,7 +95,7 @@ Name[zh_CN]=Google 图像搜索
 Name[zh_TW]=Google 圖片搜尋
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggi,images
-Query=http://images.google.com/images?q=\\{@}
+Query=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[af]=http://images.google.com/images?q=\\{@}
 Query[ar]=http://images.google.com/images?q=\\{@}
 Query[as]=http://images.google.com/images?q=\\{@}

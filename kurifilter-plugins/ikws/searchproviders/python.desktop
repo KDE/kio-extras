@@ -92,7 +92,7 @@ Name[xh]=Ubhekiso lwe Python yesandla
 Name[x-test]=xxPython Reference Manualxx
 Name[zh_CN]=Python 参考手册
 Name[zh_TW]=Python 參考手冊
-Query=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[af]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[ar]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[as]=http://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
