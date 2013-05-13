@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Service
+Name=Freecode
+X-KDE-ServiceTypes=SearchProvider
+Keys=fc,freecode
+Query=http://freecode.com/search?q=\\{@}

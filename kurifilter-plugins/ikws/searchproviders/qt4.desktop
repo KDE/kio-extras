@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Service
+Name=Qt4 Documentation
+X-KDE-ServiceTypes=SearchProvider
+Keys=qt4
+Query=http://qt-project.org/doc/search/qt-4.8?search=\\{@}

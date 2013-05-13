@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Service
+Name=KDE Projects
+X-KDE-ServiceTypes=SearchProvider
+Keys=kp,kdeprojects
+Query=https://projects.kde.org/search?projects=1&q=\\{@}
