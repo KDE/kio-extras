@@ -93,4 +93,11 @@ Name[zh_TW]=Technorati
 X-KDE-ServiceTypes=SearchProvider
 Keys=tr,technorati
 Query=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[is]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[pt]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[pt_BR]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[sk]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[sv]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[uk]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[x-test]=xxhttp://technorati.com/search?return=sites&authority=high&q=\\{@}xx
 Charset=utf8

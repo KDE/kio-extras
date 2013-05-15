@@ -95,4 +95,11 @@ X-KDE-ServiceTypes=SearchProvider
 Keys=ggmovie
 Query=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hr]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[is]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[pt]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[pt_BR]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[sk]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[sv]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[uk]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[x-test]=xxhttp://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8xx
 Charset=utf8

@@ -41,7 +41,7 @@ Name[hsb]=Python-přiručka
 Name[hu]=Python referencia-kézikönyv
 Name[ia]=Manual de referentia de Python
 Name[id]=Manual Referensi Python
-Name[is]=Python Handbók
+Name[is]=Python handbókin
 Name[it]=Manuale di riferimento di Python
 Name[ja]=Python リファレンスマニュアル
 Name[kk]=Python анықтамасы
@@ -93,5 +93,12 @@ Name[x-test]=xxPython Reference Manualxx
 Name[zh_CN]=Python 参考手册
 Name[zh_TW]=Python 參考手冊
 Query=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[is]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[pt]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[pt_BR]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[sk]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[sv]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[uk]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[x-test]=xxhttps://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.orgxx
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

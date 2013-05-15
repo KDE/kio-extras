@@ -72,5 +72,12 @@ Name[x-test]=xxVimeoxx
 Name[zh_CN]=Vimeo
 Name[zh_TW]=Vimeo
 Query=http://vimeo.com/search?q=\\{@}
+Query[is]=http://vimeo.com/search?q=\\{@}
+Query[pt]=http://vimeo.com/search?q=\\{@}
+Query[pt_BR]=http://vimeo.com/search?q=\\{@}
+Query[sk]=http://vimeo.com/search?q=\\{@}
+Query[sv]=http://vimeo.com/search?q=\\{@}
+Query[uk]=http://vimeo.com/search?q=\\{@}
+Query[x-test]=xxhttp://vimeo.com/search?q=\\{@}xx
 ServiceTypes=SearchProvider
 Type=Service
