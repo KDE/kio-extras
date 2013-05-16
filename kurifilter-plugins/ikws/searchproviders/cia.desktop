@@ -87,7 +87,10 @@ Name[x-test]=xxCIA World Fact Bookxx
 Name[zh_CN]=CIA World Fact Book
 Name[zh_TW]=CIA World Fact Book
 Query=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
+Query[cs]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
+Query[fi]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
 Query[is]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
+Query[nl]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
 Query[pt]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
 Query[pt_BR]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
 Query[sk]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1

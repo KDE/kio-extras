@@ -92,7 +92,11 @@ Name[x-test]=xxOpenPGP Key Searchxx
 Name[zh_CN]=OpenPGP 密钥搜索
 Name[zh_TW]=OpenPGP 金鑰搜尋
 Query=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
+Query[cs]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
+Query[de]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
+Query[fi]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[is]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
+Query[nl]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[pt]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[pt_BR]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[sk]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex

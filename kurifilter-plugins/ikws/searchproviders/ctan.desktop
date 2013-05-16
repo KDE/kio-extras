@@ -92,7 +92,11 @@ Name[x-test]=xxCTAN - Comprehensive TeX Archive Networkxx
 Name[zh_CN]=CTAN - 综合性 TeX 档案网络
 Name[zh_TW]=CTAN - 全面的 Tex 收集網路
 Query=http://ctan.org/search?phrase=\\{@}
+Query[cs]=http://ctan.org/search?phrase=\\{@}
+Query[de]=http://ctan.org/search?phrase=\\{@}
+Query[fi]=http://ctan.org/search?phrase=\\{@}
 Query[is]=http://ctan.org/search?phrase=\\{@}
+Query[nl]=http://ctan.org/search?phrase=\\{@}
 Query[pt]=http://ctan.org/search?phrase=\\{@}
 Query[pt_BR]=http://ctan.org/search?phrase=\\{@}
 Query[sk]=http://ctan.org/search?phrase=\\{@}

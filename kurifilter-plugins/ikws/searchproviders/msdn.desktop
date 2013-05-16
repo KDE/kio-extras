@@ -93,7 +93,11 @@ Name[zh_TW]=微軟開發者網路搜尋
 X-KDE-ServiceTypes=SearchProvider
 Keys=msdn
 Query=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[cs]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[de]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[fi]=https://social.msdn.microsoft.com/Search/fi-FI?query=\\{@}
 Query[is]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[nl]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[pt]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[pt_BR]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[sk]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}

@@ -1,7 +1,11 @@
 [Desktop Entry]
 Type=Service
 Name=KDE Projects
+Name[cs]=Projekty KDE
+Name[de]=KDE-Projekte
+Name[fi]=KDE Projects
 Name[is]=KDE Verkefni
+Name[nl]=KDE-projecten
 Name[pt]=Projectos do KDE
 Name[pt_BR]=KDE Projects
 Name[sk]=KDE projekty
@@ -11,7 +15,11 @@ Name[x-test]=xxKDE Projectsxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=kp,kdeprojects
 Query=https://projects.kde.org/search?projects=1&q=\\{@}
+Query[cs]=https://projects.kde.org/search?projects=1&q=\\{@}
+Query[de]=https://projects.kde.org/search?projects=1&q=\\{@}
+Query[fi]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[is]=https://projects.kde.org/search?projects=1&q=\\{@}
+Query[nl]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[pt]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[pt_BR]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[sk]=https://projects.kde.org/search?projects=1&q=\\{@}

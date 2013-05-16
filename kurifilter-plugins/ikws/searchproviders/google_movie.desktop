@@ -94,8 +94,13 @@ Name[zh_TW]=Google 電影
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggmovie
 Query=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[cs]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[de]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[fi]=http://www.google.fi/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[fr]=http://www.google.fr/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hr]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[is]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[nl]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt_BR]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sk]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
