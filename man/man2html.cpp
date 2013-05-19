@@ -2961,7 +2961,7 @@ void getArguments(/* const */ char *&c, QList<QByteArray> &args, QList<char*> *a
       }
       else
       {
-        // according to http://heirloom.sourceforge.net/doctools/troff.pdf
+        // according to http://heirloom.sourceforge.net/doctools/troff.pdf chapter 7.3
         // two consecutive quotes inside a string is one quote char
         if ( *(c+1) == '"' )
         {
@@ -4332,7 +4332,6 @@ static char *scan_request(char *c)
         {
           out_html(set_font("B"));
           out_html("<small>");
-          trans_char(c, '"', '\a'); // ### VERIFY
           c = scan_troff(c + j, 1, NULL);
           out_html("</small>");
           out_html(set_font("R"));
@@ -4343,7 +4342,6 @@ static char *scan_request(char *c)
           c = c + j;
           if (*c == '\n') c++;
           out_html("<small>");
-          trans_char(c, '"', '\a'); // ### VERIFY
           c = scan_troff(c, 1, NULL);
           out_html("</small>");
           break;
