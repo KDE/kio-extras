@@ -6061,7 +6061,6 @@ void output_real(const char *insert)
 
 char *read_man_page(const char *filename)
 {
-  int man_pipe = 0;
   char *man_buf = NULL;
 
   FILE *man_stream = NULL;
@@ -6079,7 +6078,6 @@ char *read_man_page(const char *filename)
   }
   buf_size = stbuf.st_size;
   man_buf = new char[buf_size + 5];
-  man_pipe = 0;
   man_stream = fopen(filename, "r");
   if (man_stream)
   {
