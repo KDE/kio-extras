@@ -79,6 +79,7 @@ Query[is]=http://vimeo.com/search?q=\\{@}
 Query[nl]=http://vimeo.com/search?q=\\{@}
 Query[pt]=http://vimeo.com/search?q=\\{@}
 Query[pt_BR]=http://vimeo.com/search?q=\\{@}
+Query[ru]=http://vimeo.com/search?q=\\{@}
 Query[sk]=http://vimeo.com/search?q=\\{@}
 Query[sv]=http://vimeo.com/search?q=\\{@}
 Query[uk]=http://vimeo.com/search?q=\\{@}

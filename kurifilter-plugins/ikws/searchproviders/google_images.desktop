@@ -103,6 +103,7 @@ Query[is]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[nl]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[pt]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[pt_BR]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
+Query[ru]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[sk]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[sv]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[uk]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}

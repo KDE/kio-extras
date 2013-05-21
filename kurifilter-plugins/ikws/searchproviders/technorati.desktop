@@ -100,6 +100,7 @@ Query[is]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[nl]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[pt]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[pt_BR]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[ru]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[sk]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[sv]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[uk]=http://technorati.com/search?return=sites&authority=high&q=\\{@}

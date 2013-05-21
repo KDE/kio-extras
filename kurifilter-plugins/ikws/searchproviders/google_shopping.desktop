@@ -8,6 +8,7 @@ Name[is]=Google verslun
 Name[nl]=Google Shopping
 Name[pt]=Compras do Google
 Name[pt_BR]=Google Shopping
+Name[ru]=Google: Покупки
 Name[sk]=Google nakupovanie
 Name[sv]=Google shopping
 Name[uk]=Google Shopping
@@ -22,6 +23,7 @@ Query[is]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[nl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[pt]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[pt_BR]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[ru]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[sk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[sv]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[uk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}

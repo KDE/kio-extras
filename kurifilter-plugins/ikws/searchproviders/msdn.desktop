@@ -100,6 +100,7 @@ Query[is]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[nl]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[pt]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[pt_BR]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[ru]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[sk]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[sv]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[uk]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}

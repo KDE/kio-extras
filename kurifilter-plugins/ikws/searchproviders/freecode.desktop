@@ -8,6 +8,7 @@ Name[is]=Freecode
 Name[nl]=Freecode
 Name[pt]=Freecode
 Name[pt_BR]=Freecode
+Name[ru]=Freecode
 Name[sk]=Freecode
 Name[sv]=Freecode
 Name[uk]=Freecode
@@ -22,6 +23,7 @@ Query[is]=http://freecode.com/search?q=\\{@}
 Query[nl]=http://freecode.com/search?q=\\{@}
 Query[pt]=http://freecode.com/search?q=\\{@}
 Query[pt_BR]=http://freecode.com/search?q=\\{@}
+Query[ru]=http://freecode.com/search?q=\\{@}
 Query[sk]=http://freecode.com/search?q=\\{@}
 Query[sv]=http://freecode.com/search?q=\\{@}
 Query[uk]=http://freecode.com/search?q=\\{@}
