@@ -3,13 +3,19 @@ Type=Service
 Name=Google Shopping
 Name[cs]=Google Shopping
 Name[de]=Google-Shopping
+Name[es]=Compras de Google
 Name[fi]=Google Shopping
+Name[ia]=Google Shopping
 Name[is]=Google verslun
 Name[nl]=Google Shopping
 Name[pt]=Compras do Google
 Name[pt_BR]=Google Shopping
 Name[ru]=Google: Покупки
 Name[sk]=Google nakupovanie
+Name[sr]=Гугл‑шопинг
+Name[sr@ijekavian]=Гугл‑шопинг
+Name[sr@ijekavianlatin]=Google Shopping
+Name[sr@latin]=Google Shopping
 Name[sv]=Google shopping
 Name[uk]=Google Shopping
 Name[x-test]=xxGoogle Shoppingxx
@@ -18,13 +24,19 @@ Keys=ggs,ggshopping
 Query=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[cs]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[de]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[es]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[fi]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[ia]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[is]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[nl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[pt]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[pt_BR]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[ru]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[sk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[sr]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[sr@ijekavian]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[sr@ijekavianlatin]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[sr@latin]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[sv]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[uk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[x-test]=xxhttps://www.google.com/search?hl=en&tbm=shop&q=\\{@}xx
