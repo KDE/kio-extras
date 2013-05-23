@@ -111,3 +111,4 @@ Query[sr@latin]=http://foldoc.org/\\{@}
 Query[sv]=http://foldoc.org/\\{@}
 Query[uk]=http://foldoc.org/\\{@}
 Query[x-test]=xxhttp://foldoc.org/\\{@}xx
+Query[zh_TW]=http://foldoc.org/\\{@}

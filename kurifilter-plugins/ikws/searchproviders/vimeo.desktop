@@ -90,5 +90,6 @@ Query[sr@latin]=http://vimeo.com/search?q=\\{@}
 Query[sv]=http://vimeo.com/search?q=\\{@}
 Query[uk]=http://vimeo.com/search?q=\\{@}
 Query[x-test]=xxhttp://vimeo.com/search?q=\\{@}xx
+Query[zh_TW]=http://vimeo.com/search?q=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

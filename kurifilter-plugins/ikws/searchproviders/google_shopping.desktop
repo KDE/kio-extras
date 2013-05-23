@@ -19,6 +19,7 @@ Name[sr@latin]=Google Shopping
 Name[sv]=Google shopping
 Name[uk]=Google Shopping
 Name[x-test]=xxGoogle Shoppingxx
+Name[zh_TW]=Google Shopping
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggs,ggshopping
 Query=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
@@ -40,3 +41,4 @@ Query[sr@latin]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[sv]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[uk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[x-test]=xxhttps://www.google.com/search?hl=en&tbm=shop&q=\\{@}xx
+Query[zh_TW]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}

@@ -108,5 +108,6 @@ Query[sr@latin]=http://www.allmusic.com/search/all/\\{@}
 Query[sv]=http://www.allmusic.com/search/all/\\{@}
 Query[uk]=http://www.allmusic.com/search/all/\\{@}
 Query[x-test]=xxhttp://www.allmusic.com/search/all/\\{@}xx
+Query[zh_TW]=http://www.allmusic.com/search/all/\\{@}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

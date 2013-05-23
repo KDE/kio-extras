@@ -19,6 +19,7 @@ Name[sr@latin]=Dokumentacija Qt‑a 4
 Name[sv]=Qt4-dokumentation
 Name[uk]=Документація з Qt4
 Name[x-test]=xxQt4 Documentationxx
+Name[zh_TW]=Qt4 文件
 X-KDE-ServiceTypes=SearchProvider
 Keys=qt4
 Query=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
@@ -40,3 +41,4 @@ Query[sr@latin]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[sv]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[uk]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[x-test]=xxhttp://qt-project.org/doc/search/qt-4.8?search=\\{@}xx
+Query[zh_TW]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}

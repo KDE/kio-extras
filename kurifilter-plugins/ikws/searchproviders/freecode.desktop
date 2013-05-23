@@ -19,6 +19,7 @@ Name[sr@latin]=Freecode
 Name[sv]=Freecode
 Name[uk]=Freecode
 Name[x-test]=xxFreecodexx
+Name[zh_TW]=Freecode
 X-KDE-ServiceTypes=SearchProvider
 Keys=fc,freecode
 Query=http://freecode.com/search?q=\\{@}
@@ -40,3 +41,4 @@ Query[sr@latin]=http://freecode.com/search?q=\\{@}
 Query[sv]=http://freecode.com/search?q=\\{@}
 Query[uk]=http://freecode.com/search?q=\\{@}
 Query[x-test]=xxhttp://freecode.com/search?q=\\{@}xx
+Query[zh_TW]=http://freecode.com/search?q=\\{@}

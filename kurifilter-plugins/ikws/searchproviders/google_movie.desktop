@@ -114,4 +114,5 @@ Query[sr@latin]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sv]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uk]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8xx
+Query[zh_TW]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Charset=utf8

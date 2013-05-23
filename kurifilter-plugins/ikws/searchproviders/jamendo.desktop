@@ -91,5 +91,6 @@ Query[sr@latin]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[sv]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[uk]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[x-test]=xxhttp://www.jamendo.com/en/search?qs=q=\\{@}xx
+Query[zh_TW]=http://www.jamendo.com/en/search?qs=q=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

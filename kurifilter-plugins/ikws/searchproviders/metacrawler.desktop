@@ -113,3 +113,4 @@ Query[sr@latin]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\
 Query[sv]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[uk]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[x-test]=xxhttp://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}xx
+Query[zh_TW]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}

@@ -106,5 +106,6 @@ Query[sr@latin]=http://tools.ietf.org/id/\\{@}
 Query[sv]=http://tools.ietf.org/id/\\{@}
 Query[uk]=http://tools.ietf.org/id/\\{@}
 Query[x-test]=xxhttp://tools.ietf.org/id/\\{@}xx
+Query[zh_TW]=http://tools.ietf.org/id/\\{@}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service
