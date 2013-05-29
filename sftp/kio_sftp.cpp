@@ -1474,7 +1474,11 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const KUrl& url, int permissions,
         times[1].tv_sec =  dt.toTime_t(); // modification time
         times[0].tv_usec = times[1].tv_usec = 0;
 
-        sftp_utimes(mSftp, dest_orig_c.constData(), times);
+        kDebug(KIO_SFTP_DB) << "Trying to restore mtime for " << dest_orig << " to: " << mtimeStr;
+        result = sftp_utimes(mSftp, dest_orig_c.constData(), times);
+        if (result < 0) {
+            kWarning(KIO_SFTP_DB) << "Failed to set mtime for" << dest_orig;
+        }
         sftp_attributes_free(attr);
       }
     }
