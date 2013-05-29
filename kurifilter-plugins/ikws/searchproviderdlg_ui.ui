@@ -151,7 +151,7 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
    <item row="6" column="1" colspan="3">
     <widget class="QLabel" name="noteLabel">
      <property name="toolTip">
-      <string>Insert query placeholder</string>
+      <string/>
      </property>
      <property name="text">
       <string/>
