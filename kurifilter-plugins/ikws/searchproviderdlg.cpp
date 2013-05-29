@@ -42,6 +42,7 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
     connect(m_dlg.leQuery,     SIGNAL(textChanged(QString)), SLOT(slotChanged()));
     connect(m_dlg.leShortcut,  SIGNAL(textChanged(QString)), SLOT(slotChanged()));
     connect(m_dlg.leShortcut,  SIGNAL(textChanged(QString)), SLOT(shortcutsChanged(QString)));
+    connect(m_dlg.pbPaste,     SIGNAL(clicked()),            SLOT(pastePlaceholder()));
 
     // Data init
     m_providers = providers;
@@ -151,15 +152,20 @@ void SearchProviderDialog::slotButtonClicked(int button) {
         const QString charset = (m_dlg.cbCharset->currentIndex() ? m_dlg.cbCharset->currentText().trimmed() : QString());
 
         m_provider->setDirty((name != m_provider->name() || query != m_provider->query() ||
-                              keys != m_provider->keys() || charset != m_provider->charset()));        
+                              keys != m_provider->keys() || charset != m_provider->charset()));
         m_provider->setName(name);
         m_provider->setQuery(query);
-        m_provider->setKeys(keys); 
+        m_provider->setKeys(keys);
         m_provider->setCharset(charset);
         KDialog::accept();
     } else {
         KDialog::slotButtonClicked(button);
     }
+}
+
+void SearchProviderDialog::pastePlaceholder() {
+    m_dlg.leQuery->insert("\\{@}");
+    m_dlg.leQuery->setFocus();
 }
 
 #include "searchproviderdlg.moc"

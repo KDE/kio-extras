@@ -37,6 +37,7 @@ public:
 protected Q_SLOTS:
     void slotChanged();
     void shortcutsChanged(const QString& newShorthands);
+    void pastePlaceholder();
     virtual void slotButtonClicked(int button);
 
 private:
