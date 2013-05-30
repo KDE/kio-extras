@@ -70,7 +70,7 @@ Name[ru]=Полнотекстовый поиск ошибок в базе KDE
 Name[se]=KDE dihkkediehtovuođu ollesteakstaohcan
 Name[si]=KDE වැරදි දත්තමූල පූර්ණ පෙළ සෙවුම
 Name[sk]=Fulltextové hľadanie v databáze chýb KDE
-Name[sl]=Iskanje besedila po zbirki hroščev v KDE
+Name[sl]=Iskanje besedila po podatkovni zbirki hroščev v KDE
 Name[sr]=КДЕ‑ова база грешака (текстуално)
 Name[sr@ijekavian]=КДЕ‑ова база грешака (текстуално)
 Name[sr@ijekavianlatin]=KDE‑ova baza grešaka (tekstualno)
@@ -96,21 +96,26 @@ Query[cs]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[de]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[el]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[es]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[eu]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[fi]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ia]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[is]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[kk]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[nb]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[nl]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[pl]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[pt]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[pt_BR]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ro]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ru]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sk]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[sl]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sr]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sr@ijekavian]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sr@ijekavianlatin]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sr@latin]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[sv]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[tr]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[uk]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[x-test]=xxhttps://bugs.kde.org/buglist.cgi?quicksearch=\\{@}xx
 Query[zh_TW]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

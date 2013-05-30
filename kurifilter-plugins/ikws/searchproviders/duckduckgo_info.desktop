@@ -54,7 +54,7 @@ Name[ro]=Informații Duck Duck Go
 Name[ru]=Поиск Duck Duck Go: информация
 Name[si]=Duck Duck Go තොරතුරු
 Name[sk]=Duck Duck Go Info
-Name[sl]=Duck Duck Go – informacije
+Name[sl]=Duck Duck Go – podrobnosti
 Name[sr]=Дак дак го (информације)
 Name[sr@ijekavian]=Дак дак го (информације)
 Name[sr@ijekavianlatin]=Duck Duck Go (informacije)
@@ -75,21 +75,26 @@ Query[cs]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[de]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[el]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[es]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
+Query[eu]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[fi]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[ia]=http://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[is]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
+Query[kk]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[nb]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[nl]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[pl]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[pt]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[pt_BR]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
+Query[ro]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[ru]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[sk]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
+Query[sl]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[sr]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[sr@ijekavian]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[sr@ijekavianlatin]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[sr@latin]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[sv]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
+Query[tr]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[uk]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[x-test]=xxhttps://duckduckgo.com/?q=\\{@}&v=r&t=kdexx
 Query[zh_TW]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde

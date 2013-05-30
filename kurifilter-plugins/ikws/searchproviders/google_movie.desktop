@@ -23,7 +23,7 @@ Name[en_GB]=Google Movies
 Name[eo]=Guglo Filmoj
 Name[es]=Películas de Google
 Name[et]=Google Movies
-Name[eu]=Google pelikulak
+Name[eu]=Google filmak
 Name[fa]=فیلمهای گوگل
 Name[fi]=Googlen elokuvahaku
 Name[fr]=Vidéos « Google »
@@ -71,7 +71,7 @@ Name[ru]=Киноафиша Google
 Name[se]=Google filmmat
 Name[si]=Google සිනමා
 Name[sk]=Google filmy
-Name[sl]=Google Movies
+Name[sl]=Filmi Google
 Name[sr]=Гугл‑филмови
 Name[sr@ijekavian]=Гугл‑филмови
 Name[sr@ijekavianlatin]=Google-filmovi
@@ -97,21 +97,26 @@ Query=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[cs]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[de]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[es]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[eu]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fi]=http://www.google.fi/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fr]=http://www.google.fr/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hr]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ia]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[is]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[kk]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt_BR]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[ro]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ru]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sk]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[sl]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sr]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sr@ijekavian]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sr@ijekavianlatin]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sr@latin]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[sv]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[tr]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uk]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttp://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8xx
 Query[zh_TW]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
