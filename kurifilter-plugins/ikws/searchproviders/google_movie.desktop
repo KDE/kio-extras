@@ -100,9 +100,11 @@ Query[es]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[eu]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fi]=http://www.google.fi/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fr]=http://www.google.fr/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[gl]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hr]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ia]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[is]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[it]=http://www.google.it/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[kk]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[nl]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[pt]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8

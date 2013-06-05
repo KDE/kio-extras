@@ -6,6 +6,7 @@ Name[de]=Freecode
 Name[es]=Freecode
 Name[eu]=Freecode
 Name[fi]=Freecode
+Name[gl]=Freecode
 Name[ia]=Freecode
 Name[is]=Freecode
 Name[kk]=Freecode
@@ -33,6 +34,7 @@ Query[de]=http://freecode.com/search?q=\\{@}
 Query[es]=http://freecode.com/search?q=\\{@}
 Query[eu]=http://freecode.com/search?q=\\{@}
 Query[fi]=http://freecode.com/search?q=\\{@}
+Query[gl]=http://freecode.com/search?q=\\{@}
 Query[ia]=http://freecode.com/search?q=\\{@}
 Query[is]=http://freecode.com/search?q=\\{@}
 Query[kk]=http://freecode.com/search?q=\\{@}
