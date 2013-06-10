@@ -167,6 +167,7 @@ void ApplicationsProtocol::listDir(const KUrl& url)
             QString relPath = g->relPath();
             KUrl dirUrl = url; // preserve protocol, whether that's programs:/ or applications:/
             dirUrl.setPath('/' + relPath);
+            dirUrl.adjustPath(KUrl::RemoveTrailingSlash);
             kDebug() << "ApplicationsProtocol: adding entry" << dirUrl;
             createDirEntry(entry, groupCaption, dirUrl.url(), "inode/directory", g->icon());
 
