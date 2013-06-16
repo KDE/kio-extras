@@ -11,6 +11,7 @@ Name[ia]=Google Shopping
 Name[is]=Google verslun
 Name[kk]=Google Shopping
 Name[nl]=Google Shopping
+Name[pl]=Zakupy Google
 Name[pt]=Compras do Google
 Name[pt_BR]=Google Shopping
 Name[ro]=Cumpărături Google
@@ -39,6 +40,7 @@ Query[ia]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[is]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[kk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[nl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[pl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[pt]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[pt_BR]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[ro]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}

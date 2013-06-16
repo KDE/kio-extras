@@ -82,6 +82,7 @@ Query[ia]=http://vimeo.com/search?q=\\{@}
 Query[is]=http://vimeo.com/search?q=\\{@}
 Query[kk]=http://vimeo.com/search?q=\\{@}
 Query[nl]=http://vimeo.com/search?q=\\{@}
+Query[pl]=http://vimeo.com/search?q=\\{@}
 Query[pt]=http://vimeo.com/search?q=\\{@}
 Query[pt_BR]=http://vimeo.com/search?q=\\{@}
 Query[ro]=http://vimeo.com/search?q=\\{@}

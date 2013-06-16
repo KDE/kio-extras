@@ -83,6 +83,7 @@ Query[ia]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[is]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[kk]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[nl]=http://www.jamendo.com/en/search?qs=q=\\{@}
+Query[pl]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[pt]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[pt_BR]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[ro]=http://www.jamendo.com/en/search?qs=q=\\{@}
