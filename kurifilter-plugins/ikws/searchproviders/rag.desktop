@@ -1,0 +1,8 @@
+[Desktop Entry]
+Charset=
+Hidden=false
+Keys=rag
+Name=Dictionary of the Galician Academy (RAG)
+Query=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+X-KDE-ServiceTypes=SearchProvider
+Type=Service
