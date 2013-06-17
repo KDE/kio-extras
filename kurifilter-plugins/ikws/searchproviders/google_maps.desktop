@@ -71,6 +71,7 @@ Name[zh_TW]=Google 地圖
 X-KDE-ServiceTypes=SearchProvider
 Keys=googlemaps,ggmaps,ggm
 Query=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[ca]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[cs]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[de]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[el]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

@@ -92,6 +92,7 @@ Name[x-test]=xxKDE Bug Database Fulltext Searchxx
 Name[zh_CN]=KDE Bug 数据库全文检索
 Name[zh_TW]=KDE 臭蟲資料庫全文檢索
 Query=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ca]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[cs]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[de]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[el]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

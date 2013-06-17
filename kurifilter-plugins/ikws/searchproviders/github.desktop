@@ -72,6 +72,7 @@ Name[x-test]=xxGitHubxx
 Name[zh_CN]=GitHub
 Name[zh_TW]=GitHub
 Query=https://github.com/search?q=\\{@}&x=0&y=0
+Query[ca]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[cs]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[de]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[el]=https://github.com/search?q=\\{@}&x=0&y=0

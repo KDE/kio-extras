@@ -72,6 +72,7 @@ Name[x-test]=xxGitoriousxx
 Name[zh_CN]=Gitorious
 Name[zh_TW]=Gitorious
 Query=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[ca]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[cs]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[de]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[el]=https://gitorious.org/search?q=\\{@}&commit=Search

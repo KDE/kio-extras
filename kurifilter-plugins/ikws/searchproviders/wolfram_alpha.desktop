@@ -74,6 +74,7 @@ Name[x-test]=xxWolfram Alphaxx
 Name[zh_CN]=Wolfram Alpha
 Name[zh_TW]=Wolfram Alpha
 Query=https://www.wolframalpha.com/input/?i=\\{@}
+Query[ca]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[cs]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[de]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[el]=https://www.wolframalpha.com/input/?i=\\{@}
