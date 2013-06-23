@@ -103,8 +103,10 @@ Query[gl]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ia]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[kk]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[lt]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=https://no.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=https://nl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pa]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=https://pl.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pt]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pt_BR]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

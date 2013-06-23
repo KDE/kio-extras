@@ -12,6 +12,7 @@ Name[ia]=Projectos de KDE
 Name[is]=KDE Verkefni
 Name[kk]=KDE жобалары
 Name[nl]=KDE-projecten
+Name[pa]=ਕੇਡੀਈ ਪਰੋਜੈਕਟ
 Name[pl]=Projekty KDE
 Name[pt]=Projectos do KDE
 Name[pt_BR]=KDE Projects
@@ -41,7 +42,9 @@ Query[gl]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[ia]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[is]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[kk]=https://projects.kde.org/search?projects=1&q=\\{@}
+Query[lt]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[nl]=https://projects.kde.org/search?projects=1&q=\\{@}
+Query[pa]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[pl]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[pt]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[pt_BR]=https://projects.kde.org/search?projects=1&q=\\{@}

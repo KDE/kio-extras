@@ -83,8 +83,10 @@ Query[gl]=https://identi.ca/search/group?q=\\{@}
 Query[ia]=https://identi.ca/search/group?q=\\{@}
 Query[is]=https://identi.ca/search/group?q=\\{@}
 Query[kk]=https://identi.ca/search/group?q=\\{@}
+Query[lt]=https://identi.ca/search/group?q=\\{@}
 Query[nb]=https://identi.ca/search/group?q=\\{@}
 Query[nl]=https://identi.ca/search/group?q=\\{@}
+Query[pa]=https://identi.ca/search/group?q=\\{@}
 Query[pl]=https://identi.ca/search/group?q=\\{@}
 Query[pt]=https://identi.ca/search/group?q=\\{@}
 Query[pt_BR]=https://identi.ca/search/group?q=\\{@}

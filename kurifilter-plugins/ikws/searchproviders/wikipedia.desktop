@@ -105,8 +105,10 @@ Query[gl]=http://gl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ia]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[kk]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[lt]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=https://no.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=https://nl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[pa]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=https://pl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pt]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pt_BR]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

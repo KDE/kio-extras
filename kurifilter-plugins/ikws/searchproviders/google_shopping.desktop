@@ -11,7 +11,9 @@ Name[gl]=Compras en Google
 Name[ia]=Google Shopping
 Name[is]=Google verslun
 Name[kk]=Google Shopping
+Name[lt]=Yahoo parduotuvė
 Name[nl]=Google Shopping
+Name[pa]=ਗੂਗਲ ਖਰੀਦਦਾਰੀ
 Name[pl]=Zakupy Google
 Name[pt]=Compras do Google
 Name[pt_BR]=Google Shopping
@@ -41,7 +43,9 @@ Query[gl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[ia]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[is]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[kk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[lt]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[nl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[pa]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[pl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[pt]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[pt_BR]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}

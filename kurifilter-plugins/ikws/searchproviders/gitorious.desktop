@@ -83,8 +83,10 @@ Query[gl]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[ia]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[is]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[kk]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[lt]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[nb]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[nl]=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[pa]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[pl]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[pt_BR]=https://gitorious.org/search?q=\\{@}&commit=Search

@@ -11,7 +11,9 @@ Name[gl]=Freecode
 Name[ia]=Freecode
 Name[is]=Freecode
 Name[kk]=Freecode
+Name[lt]=Freecode
 Name[nl]=Freecode
+Name[pa]=ਫਰੀਕੋਡ
 Name[pl]=Freecode
 Name[pt]=Freecode
 Name[pt_BR]=Freecode
@@ -41,7 +43,9 @@ Query[gl]=http://freecode.com/search?q=\\{@}
 Query[ia]=http://freecode.com/search?q=\\{@}
 Query[is]=http://freecode.com/search?q=\\{@}
 Query[kk]=http://freecode.com/search?q=\\{@}
+Query[lt]=http://freecode.com/search?q=\\{@}
 Query[nl]=http://freecode.com/search?q=\\{@}
+Query[pa]=http://freecode.com/search?q=\\{@}
 Query[pl]=http://freecode.com/search?q=\\{@}
 Query[pt]=http://freecode.com/search?q=\\{@}
 Query[pt_BR]=http://freecode.com/search?q=\\{@}

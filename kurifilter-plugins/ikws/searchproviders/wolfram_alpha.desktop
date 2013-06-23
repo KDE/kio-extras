@@ -85,8 +85,10 @@ Query[gl]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[ia]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[is]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[kk]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[lt]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[nb]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[nl]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[pa]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[pl]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[pt]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[pt_BR]=https://www.wolframalpha.com/input/?i=\\{@}
