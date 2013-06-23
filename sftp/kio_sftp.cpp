@@ -1622,6 +1622,17 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const KUrl& url, const QStrin
     }
   }
 
+  const QString mtimeStr = metaData("modified");
+  if (!mtimeStr.isEmpty()) {
+    QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
+    if (dt.isValid()) {
+      struct utimbuf utbuf;
+      utbuf.actime = buff.st_atime; // access time, unchanged
+      utbuf.modtime = dt.toTime_t(); // modification time
+      KDE::utime(sCopyFile, &utbuf);
+    }
+  }
+
   return result;
 }
 

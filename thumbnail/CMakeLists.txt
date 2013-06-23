@@ -123,6 +123,10 @@ if(OPENEXR_FOUND)
 
    target_link_libraries(exrthumbnail ${KDE4_KIO_LIBS} ${OPENEXR_LIBRARIES})
 
+   # OpenEXR headers use exceptions; at least clang refuses to build the target
+   # when exceptions are not enabled.
+   set_target_properties(exrthumbnail PROPERTIES COMPILE_FLAGS "${KDE4_ENABLE_EXCEPTIONS}")
+
    install(TARGETS exrthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
    install( FILES exrthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 
