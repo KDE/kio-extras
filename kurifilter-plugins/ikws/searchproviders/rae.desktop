@@ -98,6 +98,7 @@ Query[cs]=http://www.rae.es/drae/?val=\\{@}
 Query[ia]=http://www.rae.es/drae/?val=\\{@}
 Query[kk]=http://www.rae.es/drae/?val=\\{@}
 Query[lt]=http://www.rae.es/drae/?val=\\{@}
+Query[nl]=http://www.rae.es/drae/?val=\\{@}
 Query[pa]=http://www.rae.es/drae/?val=\\{@}
 Query[pt]=http://www.rae.es/drae/?val=\\{@}
 Query[pt_BR]=http://www.rae.es/drae/?val=\\{@}
