@@ -306,7 +306,6 @@ void KUriFilterTest::executables()
     // Executable tests - No IKWS in minicli
     filter( "cp", "cp", KUriFilterData::Executable, minicliFilters );
     filter( "ktraderclient", "ktraderclient", KUriFilterData::Executable, minicliFilters );
-    filter( "xwininfo", "xwininfo", KUriFilterData::Executable, minicliFilters );
     filter( "KDE", "KDE", NO_FILTERING, minicliFilters );
     filter( "I/dont/exist", "I/dont/exist", NO_FILTERING, minicliFilters );      //krazy:exclude=spelling
     filter( "/I/dont/exist", 0, KUriFilterData::Error, minicliFilters );         //krazy:exclude=spelling
