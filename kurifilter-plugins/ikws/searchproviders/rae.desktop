@@ -103,12 +103,14 @@ Query[nl]=http://www.rae.es/drae/?val=\\{@}
 Query[pa]=http://www.rae.es/drae/?val=\\{@}
 Query[pt]=http://www.rae.es/drae/?val=\\{@}
 Query[pt_BR]=http://www.rae.es/drae/?val=\\{@}
+Query[sk]=http://www.rae.es/drae/?val=\\{@}
 Query[sl]=http://www.rae.es/drae/?val=\\{@}
 Query[sr]=http://www.rae.es/drae/?val=\\{@}
 Query[sr@ijekavian]=http://www.rae.es/drae/?val=\\{@}
 Query[sr@ijekavianlatin]=http://www.rae.es/drae/?val=\\{@}
 Query[sr@latin]=http://www.rae.es/drae/?val=\\{@}
 Query[sv]=http://www.rae.es/drae/?val=\\{@}
+Query[tr]=http://www.rae.es/drae/?val=\\{@}
 Query[uk]=http://www.rae.es/drae/?val=\\{@}
 Query[x-test]=xxhttp://www.rae.es/drae/?val=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
