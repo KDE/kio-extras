@@ -75,6 +75,7 @@ Query=http://vimeo.com/search?q=\\{@}
 Query[ca]=http://vimeo.com/search?q=\\{@}
 Query[cs]=http://vimeo.com/search?q=\\{@}
 Query[de]=http://vimeo.com/search?q=\\{@}
+Query[el]=http://vimeo.com/search?q=\\{@}
 Query[es]=http://vimeo.com/search?q=\\{@}
 Query[eu]=http://vimeo.com/search?q=\\{@}
 Query[fi]=http://vimeo.com/search?q=\\{@}

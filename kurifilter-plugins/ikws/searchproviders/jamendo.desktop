@@ -76,6 +76,7 @@ Query=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[ca]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[cs]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[de]=http://www.jamendo.com/en/search?qs=q=\\{@}
+Query[el]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[es]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[eu]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[fi]=http://www.jamendo.com/en/search?qs=q=\\{@}
