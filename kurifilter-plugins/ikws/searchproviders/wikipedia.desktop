@@ -60,7 +60,7 @@ Name[nb]=Wikipedia – det frie leksikonet
 Name[nds]=Wikipedia - dat fre'e Nakieksel
 Name[ne]=विकिपिडिया - नि:शुल्क इन्साइक्लोपेडिया
 Name[nl]=Wikipedia - de vrije encyclopedie
-Name[nn]=Wikipedia – det frie leksikonet
+Name[nn]=Wikipedia – det frie oppslagsverket
 Name[or]=Wikipedia - ମୁକ୍ତ ବିଶ୍ୱକୋଶ
 Name[pa]=ਵਿੱਕੀਪੀਡਿਆ - ਮੁਫਤ ਵਿਸ਼ਵਕੋਸ਼
 Name[pl]=Wikipedia - otwarta encyklopedia
@@ -109,6 +109,7 @@ Query[kk]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[lt]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nb]=https://no.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[nl]=https://nl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nn]=https://nn.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pa]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pl]=https://pl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[pt]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
