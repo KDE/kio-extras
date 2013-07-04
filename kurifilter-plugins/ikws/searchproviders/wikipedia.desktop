@@ -37,7 +37,7 @@ Name[hi]=विकिपेडिया- मुफ्त विश्वको�
 Name[hne]=विकिपीडिया- फोकट विस्वकोस
 Name[hr]=Wikipedia – besplatna enciklopedija
 Name[hsb]=Wikipedia - Swobodna encyklopedija
-Name[hu]=Wikipedia
+Name[hu]=Wikipédia - A szabad enciklopédia
 Name[ia]=Wikipedia - Le Encyclopedia Libere e Gratuite
 Name[id]=Wikipedia - Ensiklopedia Gratis
 Name[is]=Wikipedia - Frjálst alfræðiorðasafn
@@ -102,6 +102,7 @@ Query[es]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[eu]=http://eu.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fi]=https://fi.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[gl]=http://gl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hu]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ia]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ja]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

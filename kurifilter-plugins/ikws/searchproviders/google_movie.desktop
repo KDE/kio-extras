@@ -36,7 +36,7 @@ Name[hi]=गूगल सिनेमा
 Name[hne]=गूगल सिनेमा
 Name[hr]=Google filmovi
 Name[hsb]=Google filmy
-Name[hu]=Google Movies
+Name[hu]=Google filmek
 Name[ia]=Google Movies
 Name[id]=Google Movies
 Name[is]=Google kvikmyndir
@@ -104,6 +104,7 @@ Query[fi]=http://www.google.fi/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fr]=http://www.google.fr/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[gl]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hr]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[hu]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ia]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[is]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[it]=http://www.google.it/search?q=\\{@}&ie=UTF-8&oe=UTF-8

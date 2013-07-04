@@ -26,7 +26,7 @@ Name[gu]=ગુગલ નકશાઓ
 Name[he]=Google מפות
 Name[hi]=गूगल मानचित्र
 Name[hr]=Google Maps
-Name[hu]=Google Maps
+Name[hu]=Google térkép
 Name[ia]=Google Maps : Mappas de Google
 Name[id]=Google Maps
 Name[is]=Google Kort
@@ -79,6 +79,7 @@ Query[es]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[eu]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[fi]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[gl]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[hu]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ia]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[is]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ja]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
