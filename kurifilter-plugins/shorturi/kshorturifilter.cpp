@@ -256,7 +256,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     {
       const QString userName (path.mid( 1, slashPos-1 ));
       KUser user (userName);
-      if( user.isValid() && user.homeDir().isEmpty())
+      if( user.isValid() && !user.homeDir().isEmpty())
       {
         path.replace (0, slashPos, user.homeDir());
       }
