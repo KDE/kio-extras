@@ -105,6 +105,7 @@ Query[gl]=http://gl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hu]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ia]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[it]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ja]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[kk]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[lt]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

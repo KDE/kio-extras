@@ -99,6 +99,7 @@ Query[gl]=http://packages.debian.org/search?suite=squeeze-backports&section=all&
 Query[hu]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[ia]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[is]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
+Query[it]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[ja]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[kk]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[nl]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
