@@ -94,7 +94,8 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
                 kDebug() << "*** Result: Executable/Shell => '" << cmd << "'";
                 break;
             case KUriFilterData::Error:
-                kDebug() << "*** Result: Encountered error. See reason below.";
+                kDebug() << "*** Result: Encountered error => '" << cmd << "'";
+                kDebug() << "Reason:" << filterData->errorMsg();
                 break;
             default:
                 kDebug() << "*** Result: Unknown or invalid resource.";
@@ -209,7 +210,8 @@ void KUriFilterTest::localFiles()
     if (QFile::exists(QDir::homePath() + QLatin1String("/.bashrc")))
         filter( "~/.bashrc", QDir::homePath().toLocal8Bit()+"/.bashrc", KUriFilterData::LocalFile, QStringList( "kshorturifilter" ) );
     filter( "~", QDir::homePath().toLocal8Bit(), KUriFilterData::LocalDir, QStringList( "kshorturifilter" ), "/tmp" );
-    filter( "~foobar", 0, KUriFilterData::Error, QStringList( "kshorturifilter" ) );
+    filter( "~bin", 0, KUriFilterData::LocalDir, QStringList( "kshorturifilter" ) );
+    filter( "~does_not_exist", 0, KUriFilterData::Error, QStringList( "kshorturifilter" ) );
 
     // Absolute Path tests for kshorturifilter
     const QStringList kshorturifilter( QString("kshorturifilter") );
