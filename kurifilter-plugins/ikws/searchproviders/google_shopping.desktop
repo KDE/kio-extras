@@ -33,6 +33,7 @@ Name[sr@latin]=Google Shopping
 Name[sv]=Google shopping
 Name[tr]=Google Mağaza
 Name[uk]=Google Shopping
+Name[wa]=Botike Google
 Name[x-test]=xxGoogle Shoppingxx
 Name[zh_TW]=Google Shopping
 X-KDE-ServiceTypes=SearchProvider
@@ -70,5 +71,6 @@ Query[sr@latin]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[sv]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[tr]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[uk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[wa]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[x-test]=xxhttps://www.google.com/search?hl=en&tbm=shop&q=\\{@}xx
 Query[zh_TW]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}

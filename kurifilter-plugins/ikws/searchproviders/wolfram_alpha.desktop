@@ -107,6 +107,7 @@ Query[sr@latin]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[sv]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[tr]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[uk]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[wa]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[x-test]=xxhttps://www.wolframalpha.com/input/?i=\\{@}xx
 Query[zh_TW]=https://www.wolframalpha.com/input/?i=\\{@}
 X-KDE-ServiceTypes=SearchProvider

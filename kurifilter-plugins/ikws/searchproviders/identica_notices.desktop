@@ -105,6 +105,7 @@ Query[sr@latin]=https://identi.ca/search/notice?q=\\{@}
 Query[sv]=https://identi.ca/search/notice?q=\\{@}
 Query[tr]=https://identi.ca/search/notice?q=\\{@}
 Query[uk]=https://identi.ca/search/notice?q=\\{@}
+Query[wa]=https://identi.ca/search/notice?q=\\{@}
 Query[x-test]=xxhttps://identi.ca/search/notice?q=\\{@}xx
 Query[zh_TW]=https://identi.ca/search/notice?q=\\{@}
 ServiceTypes=SearchProvider

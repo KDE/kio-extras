@@ -103,6 +103,7 @@ Query[sr@latin]=https://www.youtube.com/results?search_query=\\{@}&search_type=&
 Query[sv]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[tr]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[uk]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[wa]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[x-test]=xxhttps://www.youtube.com/results?search_query=\\{@}&search_type=&aq=fxx
 Query[zh_TW]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 ServiceTypes=SearchProvider

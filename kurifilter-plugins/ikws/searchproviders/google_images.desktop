@@ -128,5 +128,6 @@ Query[sr@latin]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[sv]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[tr]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[uk]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
+Query[wa]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[x-test]=xxhttps://www.google.com/search?site=imghp&tbm=isch&q=\\{@}xx
 Query[zh_TW]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
