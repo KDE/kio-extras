@@ -72,6 +72,7 @@ Name[x-test]=xxIdenti.ca Noticesxx
 Name[zh_CN]=Identi.ca 通知
 Name[zh_TW]=Identi.ca Notices
 Query=https://identi.ca/search/notice?q=\\{@}
+Query[bs]=https://identi.ca/search/notice?q=\\{@}
 Query[ca]=https://identi.ca/search/notice?q=\\{@}
 Query[cs]=https://identi.ca/search/notice?q=\\{@}
 Query[de]=https://identi.ca/search/notice?q=\\{@}

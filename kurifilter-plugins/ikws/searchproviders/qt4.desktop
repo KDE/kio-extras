@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Qt4 Documentation
+Name[bs]=Dokumentacija QT4
 Name[ca]=Documentació de Qt4
 Name[cs]=Qt4 Documentation
 Name[de]=Qt4-Dokumentation
@@ -39,6 +40,7 @@ Name[zh_TW]=Qt4 文件
 X-KDE-ServiceTypes=SearchProvider
 Keys=qt4
 Query=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
+Query[bs]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[ca]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[cs]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[de]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}

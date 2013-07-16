@@ -72,6 +72,7 @@ Name[x-test]=xxVimeoxx
 Name[zh_CN]=Vimeo
 Name[zh_TW]=Vimeo
 Query=http://vimeo.com/search?q=\\{@}
+Query[bs]=http://vimeo.com/search?q=\\{@}
 Query[ca]=http://vimeo.com/search?q=\\{@}
 Query[cs]=http://vimeo.com/search?q=\\{@}
 Query[de]=http://vimeo.com/search?q=\\{@}

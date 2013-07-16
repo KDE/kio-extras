@@ -11,7 +11,7 @@ Name[be@latin]=Zbor źviestak CIA
 Name[bg]=Факти за света от ЦРУ
 Name[bn]=সি-আই-এ ওয়ার্ল্ড ফ্যাক্ট বুক
 Name[bn_IN]=CIA World Fact Book
-Name[bs]=Cijina Knjiga svjetskih podataka
+Name[bs]=CIA Knjiga svjetskih podataka
 Name[ca]=CIA World Fact Book
 Name[ca@valencia]=CIA World Fact Book
 Name[cs]=Světová kniha faktů CIA
@@ -87,6 +87,7 @@ Name[x-test]=xxCIA World Fact Bookxx
 Name[zh_CN]=CIA World Fact Book
 Name[zh_TW]=CIA World Fact Book
 Query=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
+Query[bs]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
 Query[ca]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
 Query[cs]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
 Query[de]=https://www.cia.gov/search?q=\\{@}&site=WORLD_FACTBOOK&btnG=Search&client=CIA&myAction=/search&proxystylesheet=CIA&submitMethod=get&oe=UTF-8&ie=UTF-8&ud=1
