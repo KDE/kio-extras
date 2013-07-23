@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Google Shopping
+Name[bg]=Пазаруване в Google
 Name[ca]=Google Shopping
 Name[cs]=Google Shopping
 Name[de]=Google-Shopping
@@ -39,6 +40,7 @@ Name[zh_TW]=Google Shopping
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggs,ggshopping
 Query=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[bg]=https://www.google.com/search?hl=bg&tbm=shop&q=\\{@}
 Query[ca]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[cs]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[de]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
