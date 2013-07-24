@@ -100,6 +100,7 @@ Query[el]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[es]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[eu]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[fi]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
+Query[fr]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[gl]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[hu]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ia]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
