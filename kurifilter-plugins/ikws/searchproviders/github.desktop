@@ -73,6 +73,7 @@ Name[zh_CN]=GitHub
 Name[zh_TW]=GitHub
 Query=https://github.com/search?q=\\{@}&x=0&y=0
 Query[bg]=https://github.com/search?q=\\{@}&x=0&y=0
+Query[bs]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[ca]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[cs]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[de]=https://github.com/search?q=\\{@}&x=0&y=0
