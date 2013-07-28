@@ -38,6 +38,7 @@ Name[tr]=Qt4 Belgelendirmesi
 Name[uk]=Документація з Qt4
 Name[wa]=Documintåcion di Qt4
 Name[x-test]=xxQt4 Documentationxx
+Name[zh_CN]=Qt4 文档
 Name[zh_TW]=Qt4 文件
 X-KDE-ServiceTypes=SearchProvider
 Keys=qt4
@@ -79,4 +80,5 @@ Query[tr]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[uk]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[wa]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[x-test]=xxhttp://qt-project.org/doc/search/qt-4.8?search=\\{@}xx
+Query[zh_CN]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[zh_TW]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}

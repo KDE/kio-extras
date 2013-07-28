@@ -109,4 +109,5 @@ Query[tr]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[uk]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[wa]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[x-test]=xxhttps://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addrxx
+Query[zh_CN]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[zh_TW]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr

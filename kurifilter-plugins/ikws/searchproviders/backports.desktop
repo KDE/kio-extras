@@ -124,6 +124,7 @@ Query[tr]=http://packages.debian.org/search?suite=squeeze-backports&section=all&
 Query[uk]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[wa]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[x-test]=xxhttp://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}xx
+Query[zh_CN]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[zh_TW]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

@@ -37,6 +37,7 @@ Name[tr]=KDE Projeleri
 Name[uk]=Проекти KDE
 Name[wa]=KDE Projects (Pordjets)
 Name[x-test]=xxKDE Projectsxx
+Name[zh_CN]=KDE 项目
 Name[zh_TW]=KDE 專案
 X-KDE-ServiceTypes=SearchProvider
 Keys=kp,kdeprojects
@@ -78,4 +79,5 @@ Query[tr]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[uk]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[wa]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[x-test]=xxhttps://projects.kde.org/search?projects=1&q=\\{@}xx
+Query[zh_CN]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[zh_TW]=https://projects.kde.org/search?projects=1&q=\\{@}
