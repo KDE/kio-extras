@@ -131,5 +131,6 @@ Query[tr]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=http://uk.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[wa]=https://wa.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Potch%C3%AE
 Query[x-test]=xxhttps://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Goxx
+Query[zh_CN]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[zh_TW]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Charset=utf8

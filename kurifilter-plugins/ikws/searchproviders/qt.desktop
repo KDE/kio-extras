@@ -128,6 +128,7 @@ Query[tr]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[uk]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[wa]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[x-test]=xxhttp://qt-project.org/doc/search/qt-5.0?search=\\{@}xx
+Query[zh_CN]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[zh_TW]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 X-KDE-ServiceTypes=SearchProvider
 Type=Service

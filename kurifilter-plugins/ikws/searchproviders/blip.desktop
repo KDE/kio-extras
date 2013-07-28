@@ -109,6 +109,7 @@ Query[tr]=https://blip.tv/search?q=\\{@}
 Query[uk]=https://blip.tv/search?q=\\{@}
 Query[wa]=https://blip.tv/search?q=\\{@}
 Query[x-test]=xxhttps://blip.tv/search?q=\\{@}xx
+Query[zh_CN]=https://blip.tv/search?q=\\{@}
 Query[zh_TW]=https://blip.tv/search?q=\\{@}
 ServiceTypes=SearchProvider
 Type=Service

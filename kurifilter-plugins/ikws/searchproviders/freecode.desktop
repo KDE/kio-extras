@@ -37,6 +37,7 @@ Name[tr]=Freecode
 Name[uk]=Freecode
 Name[wa]=Freecode
 Name[x-test]=xxFreecodexx
+Name[zh_CN]=Freecode
 Name[zh_TW]=Freecode
 X-KDE-ServiceTypes=SearchProvider
 Keys=fc,freecode
@@ -77,4 +78,5 @@ Query[tr]=http://freecode.com/search?q=\\{@}
 Query[uk]=http://freecode.com/search?q=\\{@}
 Query[wa]=http://freecode.com/search?q=\\{@}
 Query[x-test]=xxhttp://freecode.com/search?q=\\{@}xx
+Query[zh_CN]=http://freecode.com/search?q=\\{@}
 Query[zh_TW]=http://freecode.com/search?q=\\{@}
