@@ -87,6 +87,7 @@ Query[is]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[it]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ja]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[kk]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[ko]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[lt]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nb]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nl]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
