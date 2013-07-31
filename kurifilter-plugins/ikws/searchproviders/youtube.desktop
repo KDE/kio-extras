@@ -73,6 +73,7 @@ Query=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[bs]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ca]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[cs]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[da]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[de]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[el]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[es]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

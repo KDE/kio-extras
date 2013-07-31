@@ -75,6 +75,7 @@ Query=https://identi.ca/search/group?q=\\{@}
 Query[bs]=https://identi.ca/search/group?q=\\{@}
 Query[ca]=https://identi.ca/search/group?q=\\{@}
 Query[cs]=https://identi.ca/search/group?q=\\{@}
+Query[da]=https://identi.ca/search/group?q=\\{@}
 Query[de]=https://identi.ca/search/group?q=\\{@}
 Query[el]=https://identi.ca/search/group?q=\\{@}
 Query[es]=https://identi.ca/search/group?q=\\{@}

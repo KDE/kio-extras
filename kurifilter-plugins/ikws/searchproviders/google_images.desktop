@@ -99,6 +99,7 @@ Query=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[bs]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[ca]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[cs]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
+Query[da]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[de]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[el]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[es]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}

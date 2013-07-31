@@ -16,7 +16,7 @@ Name[ca]=Viccionari - El diccionari lliure
 Name[ca@valencia]=Viccionari - El diccionari lliure
 Name[cs]=Wiktionary - volně dostupný slovník
 Name[csb]=Wiktionary - wòlny słowôrz
-Name[da]=Wiktionary - Den frie ordbog
+Name[da]=Wiktionary - den frie ordbog
 Name[de]=Wiktionary – Das freie Wörterbuch
 Name[el]=Wiktionary - Το ελεύθερο λεξικό
 Name[en_GB]=Wiktionary - The Free Dictionary
@@ -95,6 +95,7 @@ Query=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bs]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca]=https://ca.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[cs]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[da]=https://da.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[el]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[es]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
