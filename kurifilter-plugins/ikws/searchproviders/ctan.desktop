@@ -96,6 +96,7 @@ Query[bg]=http://ctan.org/search?phrase=\\{@}
 Query[bs]=http://ctan.org/search?phrase=\\{@}
 Query[ca]=http://ctan.org/search?phrase=\\{@}
 Query[cs]=http://ctan.org/search?phrase=\\{@}
+Query[da]=http://ctan.org/search?phrase=\\{@}
 Query[de]=http://ctan.org/search?phrase=\\{@}
 Query[el]=http://ctan.org/search?phrase=\\{@}
 Query[es]=http://ctan.org/search?phrase=\\{@}

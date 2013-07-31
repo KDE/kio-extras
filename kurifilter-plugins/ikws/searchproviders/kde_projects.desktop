@@ -5,6 +5,7 @@ Name[bg]=Проекти на KDE
 Name[bs]=KDE projekti
 Name[ca]=Projectes del KDE
 Name[cs]=Projekty KDE
+Name[da]=KDE projekter
 Name[de]=KDE-Projekte
 Name[el]=Έργα KDE
 Name[es]=Proyectos de KDE
@@ -47,6 +48,7 @@ Query[bg]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[bs]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[ca]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[cs]=https://projects.kde.org/search?projects=1&q=\\{@}
+Query[da]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[de]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[el]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[es]=https://projects.kde.org/search?projects=1&q=\\{@}
