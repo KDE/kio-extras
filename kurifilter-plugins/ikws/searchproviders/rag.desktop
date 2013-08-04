@@ -16,6 +16,7 @@ Name[pt_BR]=Dicionário da Academia Galega (RAG)
 Name[sk]=Slovník Galícijskej akadémie (RAG)
 Name[sl]=Slovar Galicijske akademije (RAG)
 Name[sv]=Galiciska akademins ordbok (RAG)
+Name[ug]=گالىتسىيان تىلى ئاكادېمىيىسىنىڭ لۇغىتى(RAG)
 Name[uk]=Словник галісійської академії (RAG)
 Name[x-test]=xxDictionary of the Galician Academy (RAG)xx
 Query=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
@@ -32,6 +33,7 @@ Query[pt_BR]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitl
 Query[sk]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[sl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[sv]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[ug]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[uk]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[x-test]=xxhttp://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

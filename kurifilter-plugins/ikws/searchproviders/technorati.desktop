@@ -129,6 +129,7 @@ Query[sr@ijekavianlatin]=http://technorati.com/search?return=sites&authority=hig
 Query[sr@latin]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[sv]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[tr]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[ug]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[uk]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[wa]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[x-test]=xxhttp://technorati.com/search?return=sites&authority=high&q=\\{@}xx

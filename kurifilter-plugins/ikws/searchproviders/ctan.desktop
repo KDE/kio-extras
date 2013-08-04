@@ -128,6 +128,7 @@ Query[sr@ijekavianlatin]=http://ctan.org/search?phrase=\\{@}
 Query[sr@latin]=http://ctan.org/search?phrase=\\{@}
 Query[sv]=http://ctan.org/search?phrase=\\{@}
 Query[tr]=http://ctan.org/search?phrase=\\{@}
+Query[ug]=http://ctan.org/search?phrase=\\{@}
 Query[uk]=http://ctan.org/search?phrase=\\{@}
 Query[wa]=http://ctan.org/search?phrase=\\{@}
 Query[x-test]=xxhttp://ctan.org/search?phrase=\\{@}xx

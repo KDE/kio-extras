@@ -83,7 +83,7 @@ Name[te]=స్పానిష్ అకాడమి (RAE) యొక్క ప�
 Name[tg]=Луғати академияи испанӣ (RAE)
 Name[th]=พจนานุกรมของ Spanish Academy (RAE)
 Name[tr]=İspanyol Akademisinin Sözlüğü (RAE)
-Name[ug]=ئىسپانىيە ئاكادېمىيىسىنىڭ لۇغىتى(RAE)
+Name[ug]=ئىسپان تىلى ئاكادېمىيىسىنىڭ لۇغىتى(RAE)
 Name[uk]=Словник іспанської академії (RAE)
 Name[uz]=Ispan akademiyasining (RAE) lugʻati
 Name[uz@cyrillic]=Испан академиясининг (RAE) луғати
@@ -125,6 +125,7 @@ Query[sr@ijekavianlatin]=http://www.rae.es/drae/?val=\\{@}
 Query[sr@latin]=http://www.rae.es/drae/?val=\\{@}
 Query[sv]=http://www.rae.es/drae/?val=\\{@}
 Query[tr]=http://www.rae.es/drae/?val=\\{@}
+Query[ug]=http://www.rae.es/drae/?val=\\{@}
 Query[uk]=http://www.rae.es/drae/?val=\\{@}
 Query[wa]=http://www.rae.es/drae/?val=\\{@}
 Query[x-test]=xxhttp://www.rae.es/drae/?val=\\{@}xx

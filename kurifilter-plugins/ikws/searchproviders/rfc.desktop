@@ -124,6 +124,7 @@ Query[sr@ijekavianlatin]=http://tools.ietf.org/id/\\{@}
 Query[sr@latin]=http://tools.ietf.org/id/\\{@}
 Query[sv]=http://tools.ietf.org/id/\\{@}
 Query[tr]=http://tools.ietf.org/id/\\{@}
+Query[ug]=http://tools.ietf.org/id/\\{@}
 Query[uk]=http://tools.ietf.org/id/\\{@}
 Query[wa]=http://tools.ietf.org/id/\\{@}
 Query[x-test]=xxhttp://tools.ietf.org/id/\\{@}xx

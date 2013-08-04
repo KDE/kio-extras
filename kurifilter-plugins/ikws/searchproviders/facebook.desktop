@@ -64,7 +64,7 @@ Name[sv]=Facebook
 Name[tg]=Facebook
 Name[th]=เฟซบุ้ค
 Name[tr]=Facebook
-Name[ug]=Facebook
+Name[ug]=فېيىسبۇك(Facebook)
 Name[uk]=Facebook
 Name[vi]=Facebook
 Name[wa]=Facebook
@@ -109,6 +109,7 @@ Query[sr@ijekavianlatin]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sr@latin]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[sv]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[tr]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ug]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[uk]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[wa]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[x-test]=xxhttps://www.facebook.com/search/?q=\\{@}&init=quickxx

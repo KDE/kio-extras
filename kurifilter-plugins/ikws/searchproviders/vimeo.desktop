@@ -108,6 +108,7 @@ Query[sr@ijekavianlatin]=http://vimeo.com/search?q=\\{@}
 Query[sr@latin]=http://vimeo.com/search?q=\\{@}
 Query[sv]=http://vimeo.com/search?q=\\{@}
 Query[tr]=http://vimeo.com/search?q=\\{@}
+Query[ug]=http://vimeo.com/search?q=\\{@}
 Query[uk]=http://vimeo.com/search?q=\\{@}
 Query[wa]=http://vimeo.com/search?q=\\{@}
 Query[x-test]=xxhttp://vimeo.com/search?q=\\{@}xx

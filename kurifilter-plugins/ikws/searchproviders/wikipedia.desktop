@@ -131,6 +131,7 @@ Query[sr@ijekavianlatin]=https://en.wikipedia.org/wiki/Special:Search?search=\\{
 Query[sr@latin]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tr]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ug]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=http://uk.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[wa]=https://wa.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Potch%C3%AE
 Query[x-test]=xxhttps://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Goxx
