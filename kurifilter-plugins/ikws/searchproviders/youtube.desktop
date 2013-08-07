@@ -70,6 +70,7 @@ Name[x-test]=xxYouTubexx
 Name[zh_CN]=YouTube
 Name[zh_TW]=YouTube
 Query=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[bg]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[bs]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[ca]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[cs]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f

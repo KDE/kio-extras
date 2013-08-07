@@ -92,6 +92,7 @@ Name[zh_TW]=Acronym 資料庫
 X-KDE-ServiceTypes=SearchProvider
 Keys=ad,acro,acronym
 Query=http://www.abbreviations.com/\\{@}
+Query[bg]=http://www.abbreviations.com/\\{@}
 Query[bs]=http://www.abbreviations.com/\\{@}
 Query[ca]=http://www.abbreviations.com/\\{@}
 Query[cs]=http://www.abbreviations.com/\\{@}
