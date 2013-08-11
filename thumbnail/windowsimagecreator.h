@@ -1,7 +1,7 @@
 /*
     windowsimagecreator.h - Thumbnail Creator for Microsoft Windows Images
 
-    Copyright (c) 2009 by Pali Rohár <pali.rohar@gmail.com>
+    Copyright (c) 2009-2010 by Pali Rohár <pali.rohar@gmail.com>
 
     *************************************************************************
     *                                                                       *
@@ -20,10 +20,9 @@
 
 class WindowsImageCreator : public ThumbCreator
 {
-	public:
-		WindowsImageCreator() {}
-		bool create(const QString &path, int width, int height, QImage &img);
+public:
+    WindowsImageCreator() {}
+    bool create(const QString &path, int width, int height, QImage &img);
 };
 
 #endif // WINDOWS_IMAGE_CREATOR_H
-
