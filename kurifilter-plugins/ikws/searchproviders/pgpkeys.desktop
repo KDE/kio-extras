@@ -128,6 +128,7 @@ Query[sr@ijekavianlatin]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vin
 Query[sr@latin]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[sv]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[tr]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
+Query[ug]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[uk]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[wa]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[x-test]=xxhttp://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindexxx

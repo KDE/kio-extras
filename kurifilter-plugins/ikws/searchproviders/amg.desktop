@@ -126,6 +126,7 @@ Query[sr@ijekavianlatin]=http://www.allmusic.com/search/all/\\{@}
 Query[sr@latin]=http://www.allmusic.com/search/all/\\{@}
 Query[sv]=http://www.allmusic.com/search/all/\\{@}
 Query[tr]=http://www.allmusic.com/search/all/\\{@}
+Query[ug]=http://www.allmusic.com/search/all/\\{@}
 Query[uk]=http://www.allmusic.com/search/all/\\{@}
 Query[wa]=http://www.allmusic.com/search/all/\\{@}
 Query[x-test]=xxhttp://www.allmusic.com/search/all/\\{@}xx

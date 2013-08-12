@@ -129,6 +129,7 @@ Query[sr@ijekavianlatin]=https://en.wiktionary.org/wiki/Special:Search?search=\\
 Query[sr@latin]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[sv]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[tr]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ug]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=https://uk.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[wa]=https://wa.wiktionary.org/w/index.php?search=\\{@}&title=Sipeci%C3%A5s%3ACweri
 Query[x-test]=xxhttps://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Goxx

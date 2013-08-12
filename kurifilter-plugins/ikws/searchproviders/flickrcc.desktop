@@ -107,6 +107,7 @@ Query[sr@ijekavianlatin]=https://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all
 Query[sr@latin]=https://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[sv]=https://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[tr]=https://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
+Query[ug]=https://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[uk]=https://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[wa]=https://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1
 Query[x-test]=xxhttps://www.flickr.com/search/?q=\\{@}&l=cc&ct=0&mt=all&adv=1xx

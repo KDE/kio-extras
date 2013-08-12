@@ -36,6 +36,7 @@ Name[sr@ijekavianlatin]=Projekti KDE‑a
 Name[sr@latin]=Projekti KDE‑a
 Name[sv]=KDE-projekt
 Name[tr]=KDE Projeleri
+Name[ug]=ك د ئې(KDE) قۇرۇلۇشلىرى
 Name[uk]=Проекти KDE
 Name[wa]=KDE Projects (Pordjets)
 Name[x-test]=xxKDE Projectsxx
@@ -80,6 +81,7 @@ Query[sr@ijekavianlatin]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[sr@latin]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[sv]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[tr]=https://projects.kde.org/search?projects=1&q=\\{@}
+Query[ug]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[uk]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[wa]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[x-test]=xxhttps://projects.kde.org/search?projects=1&q=\\{@}xx

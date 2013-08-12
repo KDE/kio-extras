@@ -131,6 +131,7 @@ Query[sr@ijekavianlatin]=http://www.metacrawler.com/info.metac.cloud.other/searc
 Query[sr@latin]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[sv]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[tr]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
+Query[ug]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[uk]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[wa]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[x-test]=xxhttp://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}xx

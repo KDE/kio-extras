@@ -129,6 +129,7 @@ Query[sr@ijekavianlatin]=https://www.google.com/search?sourceid=python-search&q=
 Query[sr@latin]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[sv]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[tr]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[ug]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[uk]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[wa]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[x-test]=xxhttps://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.orgxx

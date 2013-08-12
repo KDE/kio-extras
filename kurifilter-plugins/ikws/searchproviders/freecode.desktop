@@ -37,6 +37,7 @@ Name[sr@ijekavianlatin]=Freecode
 Name[sr@latin]=Freecode
 Name[sv]=Freecode
 Name[tr]=Freecode
+Name[ug]=Freecode
 Name[uk]=Freecode
 Name[wa]=Freecode
 Name[x-test]=xxFreecodexx
@@ -81,6 +82,7 @@ Query[sr@ijekavianlatin]=http://freecode.com/search?q=\\{@}
 Query[sr@latin]=http://freecode.com/search?q=\\{@}
 Query[sv]=http://freecode.com/search?q=\\{@}
 Query[tr]=http://freecode.com/search?q=\\{@}
+Query[ug]=http://freecode.com/search?q=\\{@}
 Query[uk]=http://freecode.com/search?q=\\{@}
 Query[wa]=http://freecode.com/search?q=\\{@}
 Query[x-test]=xxhttp://freecode.com/search?q=\\{@}xx
