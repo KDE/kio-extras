@@ -4,6 +4,7 @@ Hidden=false
 Keys=rag
 Name=Dictionary of the Galician Academy (RAG)
 Name[cs]=Slovník Galicijské akademie (RAG)
+Name[da]=Ordbog fra det galisiske akademi (RAG)
 Name[de]=Lexikon der galizischen Akademie (RAG)
 Name[es]=Diccionario de la Real Academia Gallega (RAG)
 Name[eu]=Galiziera Akademiaren Hiztegia (RAG)
@@ -27,6 +28,7 @@ Name[uk]=Словник галісійської академії (RAG)
 Name[x-test]=xxDictionary of the Galician Academy (RAG)xx
 Query=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[cs]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[da]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[de]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[es]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[eu]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
