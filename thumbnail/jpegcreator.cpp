@@ -26,7 +26,7 @@
 #include <QFile>
 #include <QImage>
 #include <kdemacros.h>
-#include <klocale.h>
+#include <klocalizedstring.h>
 
 #ifdef HAVE_EXIV2
 #include <exiv2/image.hpp>

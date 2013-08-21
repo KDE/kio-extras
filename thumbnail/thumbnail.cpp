@@ -34,6 +34,7 @@
 #include <QtCore/QBuffer>
 #include <QtCore/QFile>
 #include <QBitmap>
+#Include <QCryptoGraphicHash>
 #include <QImage>
 #include <QPainter>
 #include <QPixmap>
@@ -47,7 +48,7 @@
 #include <kiconloader.h>
 #include <kmimetype.h>
 #include <klibrary.h>
-#include <kdebug.h>
+#include <QDebug>
 #include <kservice.h>
 #include <kservicetype.h>
 #include <kservicetypetrader.h>
@@ -96,10 +97,11 @@
 //                Otherwise, the data returned is the image in PNG format.
 
 using namespace KIO;
+//using namespace KCodecs;
 
 extern "C"
 {
-    KDE_EXPORT int kdemain(int argc, char **argv);
+    KIO_EXPORT int kdemain(int argc, char **argv);
 }
 
 
@@ -120,15 +122,15 @@ int kdemain(int argc, char **argv)
     // and HTML previews need even KApplication :(
     putenv(strdup("SESSION_MANAGER="));
     //KApplication::disableAutoDcopRegistration();
-    KAboutData about("kio_thumbnail", 0, ki18n("kio_thumbmail"), "KDE 4.x.x");
-    KCmdLineArgs::init(&about);
+    //KAboutData about("kio_thumbnail", 0, ki18n("kio_thumbmail"), "KDE 4.x.x");
+    //KCmdLineArgs::init(&about);
 
     KApplication app( true);
 #endif
 
 
     if (argc != 4) {
-        kError(7115) << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
+        //qFatal() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
         exit(-1);
     }
 
@@ -155,13 +157,13 @@ ThumbnailProtocol::~ThumbnailProtocol()
 void ThumbnailProtocol::get(const KUrl &url)
 {
     m_mimeType = metaData("mimeType");
-    kDebug(7115) << "Wanting MIME Type:" << m_mimeType;
+    qDebug() << "Wanting MIME Type:" << m_mimeType;
 #ifdef THUMBNAIL_HACK
     // ### HACK
     bool direct=false;
     if (m_mimeType.isEmpty()) {
         QFileInfo info(url.path());
-        kDebug(7115) << "PATH: " << url.path() << "isDir:" << info.isDir();
+        qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
         if (!info.exists()) {
             // The file does not exist
             error(KIO::ERR_DOES_NOT_EXIST,url.path());
@@ -178,7 +180,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             m_mimeType = KMimeType::findByUrl(KUrl(info.filePath()))->name();
         }
 
-        kDebug(7115) << "Guessing MIME Type:" << m_mimeType;
+        qDebug() << "Guessing MIME Type:" << m_mimeType;
         direct=true; // thumbnail: URL was probably typed in Konqueror
     }
 #endif
@@ -198,7 +200,7 @@ void ThumbnailProtocol::get(const KUrl &url)
     }
 #ifdef THUMBNAIL_HACK
     else if (!m_width || !m_height) {
-        kDebug(7115) << "Guessing height, width, icon size!";
+        qDebug() << "Guessing height, width, icon size!";
         m_width = 128;
         m_height = 128;
         iconSize = 128;
@@ -235,7 +237,7 @@ void ThumbnailProtocol::get(const KUrl &url)
                 KFileMetaInfoItem item = info.item("thumbnail");
                 if (item.isValid() && item.value().type() == QVariant::Image) {
                     img = item.value().value<QImage>();
-                    kDebug(7115) << "using KFMI for the thumbnail\n";
+                    qDebug() << "using KFMI for the thumbnail\n";
                     kfmiThumb = true;
                 }
             }
@@ -257,7 +259,7 @@ void ThumbnailProtocol::get(const KUrl &url)
                 plugin = pluginForMimeType(m_mimeType);
             }
 
-            kDebug(7115) << "Guess plugin: " << plugin;
+            qDebug() << "Guess plugin: " << plugin;
 #endif
             if (plugin.isEmpty()) {
                 error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
@@ -322,7 +324,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifdef THUMBNAIL_HACK
         if (direct) {
             // If thumbnail was called directly from Konqueror, then the image needs to be raw
-            //kDebug(7115) << "RAW IMAGE TO STREAM";
+            //qDebug() << "RAW IMAGE TO STREAM";
             QBuffer buf;
             if (!buf.open(QIODevice::WriteOnly)) {
                 error(KIO::ERR_INTERNAL, i18n("Could not write image."));
@@ -338,7 +340,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         {
             QByteArray imgData;
             QDataStream stream( &imgData, QIODevice::WriteOnly );
-            //kDebug(7115) << "IMAGE TO STREAM";
+            //qDebug() << "IMAGE TO STREAM";
             stream << img;
             mimeType("application/octet-stream");
             data(imgData);
@@ -347,7 +349,7 @@ void ThumbnailProtocol::get(const KUrl &url)
 #ifndef Q_WS_WIN
         QByteArray imgData;
         QDataStream stream( &imgData, QIODevice::WriteOnly );
-        //kDebug(7115) << "IMAGE TO SHMID";
+        //qDebug() << "IMAGE TO SHMID";
         void *shmaddr = shmat(shmid.toInt(), 0, 0);
         if (shmaddr == (void *)-1) {
             error(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
@@ -491,7 +493,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     //Use the current (custom) folder icon
     KUrl tempDirectory = directory;
     tempDirectory.setScheme("file"); //iconNameForUrl will not work with the "thumbnail:/" scheme
-    QString iconName = KMimeType::iconNameForUrl(tempDirectory, S_IFDIR);
+    QString iconName = KMimeType::iconNameForUrl(tempDirectory);
 
     const QPixmap folder = KIconLoader::global()->loadMimeTypeIcon(iconName,
                                                                    KIconLoader::Desktop,
@@ -704,7 +706,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
 
     ThumbCreator* subCreator = getThumbCreator(subPlugin);
     if (!subCreator) {
-        // kDebug(7115) << "found no creator for" << dir.filePath();
+        // qDebug() << "found no creator for" << dir.filePath();
         return false;
     }
 

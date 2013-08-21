@@ -21,8 +21,11 @@
 #define _THUMBNAIL_H_
 
 #include <QtCore/QHash>
+#include <QPainter>
 
 #include <kio/slavebase.h>
+#include <kio/kio_export.h>
+#include <KDE/KUrl>
 
 class ThumbCreator;
 class QImage;

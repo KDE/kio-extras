@@ -75,7 +75,7 @@ class ComicCreator : public QObject, public ThumbCreator
         QString unrarPath() const;
         QStringList getRARFileList(const QString& path, const QString& unrarPath);
 
-    private slots:
+    private Q_SLOTS:
         void readProcessOut();
         void readProcessErr();
         void finishedProcess(int exitCode, QProcess::ExitStatus exitStatus);

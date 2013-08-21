@@ -35,7 +35,7 @@
 
 #include <kzip.h>
 #include <ktar.h>
-#include <kdebug.h>
+#include <QDebug>
 #include <ktempdir.h>
 #include <kprocess.h>
 

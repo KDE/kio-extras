@@ -28,7 +28,7 @@
 #include <kapplication.h>
 #include <kwebpage.h>
 #include <kurl.h>
-#include <kdebug.h>
+#include <QDebug>
 
 extern "C"
 {
