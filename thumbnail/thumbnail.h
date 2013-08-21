@@ -25,7 +25,6 @@
 
 #include <kio/slavebase.h>
 #include <kio/kio_export.h>
-#include <KDE/KUrl>
 
 class ThumbCreator;
 class QImage;
@@ -36,7 +35,7 @@ public:
     ThumbnailProtocol(const QByteArray &pool, const QByteArray &app);
     virtual ~ThumbnailProtocol();
 
-    virtual void get(const KUrl &url);
+    virtual void get(const QUrl &url);
 
 protected:
     ThumbCreator* getThumbCreator(const QString& plugin);
@@ -44,7 +43,7 @@ protected:
     bool isOpaque(const QImage &image) const;
     void drawPictureFrame(QPainter *painter, const QPoint &pos, const QImage &image,
                           int frameWidth, QSize imageTargetSize) const;
-    QImage thumbForDirectory(const KUrl& directory);
+    QImage thumbForDirectory(const QUrl& directory);
     QString pluginForMimeType(const QString& mimeType);
 
     float sequenceIndex() const;

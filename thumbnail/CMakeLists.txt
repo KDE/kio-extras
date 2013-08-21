@@ -20,7 +20,7 @@ set_package_properties(Exiv2 PROPERTIES DESCRIPTION "A library to access image m
 
 macro_bool_to_01(EXIV2_FOUND HAVE_EXIV2)
 
-include_directories(${JPEG_INCLUDE_DIR})
+include_directories(${JPEG_INCLUDE_DIR} ${KDE4_INCLUDE_DIR}/kio)
 if(EXIV2_FOUND)
     include_directories(${EXIV2_INCLUDE_DIR})
 endif(EXIV2_FOUND)
@@ -73,27 +73,27 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############
 
-# install( FILES directorythumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install( FILES directorythumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 
 ########### next target ###############
 
-# set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
-# kde4_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings.kcfgc)
-# kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
-# 
-# target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES} ${KIO_LIBRARIES})
-# 
-# if (HAVE_EXIV2)
-#     set_source_files_properties(jpegcreator.cpp PROPERTIES
-#                                 COMPILE_FLAGS "-DHAVE_EXIV2 ${KDE4_ENABLE_EXCEPTIONS}")
-#     include_directories(${EXIV1_INCLUDE_DIR})
-#     target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
-# endif (HAVE_EXIV2)
-# 
-# install(FILES jpegcreatorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR})
-# install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
+kde4_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings.kcfgc)
+kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
 
-# ########### next target ###############
+target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS} KF5::KI18n KF5::KConfigCore KF5::KConfigGui)
+
+if (HAVE_EXIV2)
+    set_source_files_properties(jpegcreator.cpp PROPERTIES
+                                COMPILE_FLAGS "-DHAVE_EXIV2 ${KDE4_ENABLE_EXCEPTIONS}")
+    include_directories(${EXIV1_INCLUDE_DIR})
+    target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
+endif (HAVE_EXIV2)
+
+install(FILES jpegcreatorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR})
+install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
+########### next target ###############
 # 
 # set(svgthumbnail_PART_SRCS svgcreator.cpp)
 # 

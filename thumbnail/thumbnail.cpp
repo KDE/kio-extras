@@ -101,13 +101,7 @@
 using namespace KIO;
 //using namespace KCodecs;
 
-extern "C"
-{
-    KIO_EXPORT int kdemain(int argc, char **argv);
-}
-
-
-int kdemain(int argc, char **argv)
+extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 {
 #ifdef HAVE_NICE
     nice( 5 );
@@ -123,16 +117,13 @@ int kdemain(int argc, char **argv)
     // need QApplication
     // and HTML previews need even KApplication :(
     putenv(strdup("SESSION_MANAGER="));
-    //KApplication::disableAutoDcopRegistration();
-    //KAboutData about("kio_thumbnail", 0, ki18n("kio_thumbmail"), "KDE 4.x.x");
-    //KCmdLineArgs::init(&about);
 
-    QApplication app();
+    QCoreApplication app( argc, argv);
 #endif
 
 
     if (argc != 4) {
-        //qFatal() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
+        qCritical() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
         exit(-1);
     }
 
@@ -141,6 +132,7 @@ int kdemain(int argc, char **argv)
 
     return 0;
 }
+
 
 ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("thumbnail", pool, app),
@@ -156,7 +148,7 @@ ThumbnailProtocol::~ThumbnailProtocol()
     m_creators.clear();
 }
 
-void ThumbnailProtocol::get(const KUrl &url)
+void ThumbnailProtocol::get(const QUrl &url)
 {
     m_mimeType = metaData("mimeType");
     qDebug() << "Wanting MIME Type:" << m_mimeType;
@@ -179,7 +171,7 @@ void ThumbnailProtocol::get(const KUrl &url)
         if (info.isDir()) {
             m_mimeType = "inode/directory";
         } else {
-            m_mimeType = KMimeType::findByUrl(KUrl(info.filePath()))->name();
+            m_mimeType = KMimeType::findByUrl(QUrl(info.filePath()))->name();
         }
 
         qDebug() << "Guessing MIME Type:" << m_mimeType;
@@ -233,7 +225,7 @@ void ThumbnailProtocol::get(const KUrl &url)
             service->property("SupportsThumbnail").toBool()) {
             // was:  KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
             // but m_mimeType and WhatFlags are now unused in KFileMetaInfo, and not present in the
-            // call that takes a KUrl
+            // call that takes a QUrl
             KFileMetaInfo info(url);
             if (info.isValid()) {
                 KFileMetaInfoItem item = info.item("thumbnail");
@@ -474,7 +466,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     painter->drawImage(r.topLeft(), transformed);
 }
 
-QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
+QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
 {
     QImage img;
     if (m_propagationDirectories.isEmpty()) {
@@ -493,7 +485,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     // only as small overlay, use no margins)
 
     //Use the current (custom) folder icon
-    KUrl tempDirectory = directory;
+    QUrl tempDirectory = directory;
     tempDirectory.setScheme("file"); //iconNameForUrl will not work with the "thumbnail:/" scheme
     //QString iconName = KMimeType::findByUrl(tempDirectory)
     QString iconName = "plasma"; // FIXME
@@ -635,7 +627,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
             --max;
             dir.next();
             if (m_propagationDirectories.contains(dir.fileName())) {
-                return thumbForDirectory(KUrl(dir.filePath()));
+                return thumbForDirectory(QUrl(dir.filePath()));
             }
         }
 
@@ -701,7 +693,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
                                                              << "videopreview");
     }
 
-    const KUrl fileName = filePath;
+    const QUrl fileName(filePath);
     const QString subPlugin = pluginForMimeType(KMimeType::findByUrl(fileName)->name());
     if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
         return false;
