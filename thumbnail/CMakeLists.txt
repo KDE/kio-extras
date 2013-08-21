@@ -33,7 +33,20 @@ set(kio_thumbnail_PART_SRCS thumbnail.cpp imagefilter.cpp)
 
 kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
-target_link_libraries(kio_thumbnail ${KDE4_KIO_LIBS})
+#target_link_libraries(kio_thumbnail ${KIO_LIBRARIES})
+target_link_libraries(kio_thumbnail
+ ${KCore_LIBRARIES}
+ ${KDE4_KIO_LIBS}
+ ${KWindowSystem_LIBRARIES}
+ ${KCoreAddons_LIBRARIES}
+ plasma
+ ${Qt5Script_LIBRARIES}
+ ${KDE4Support_LIBRARIES}
+ ${Solid_LIBRARIES}
+ ${KIconThemes_LIBRARIES}
+ kdeclarative
+ KF5::KI18n
+)
 
 install(TARGETS kio_thumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -43,7 +56,18 @@ set(imagethumbnail_PART_SRCS imagecreator.cpp)
 
 kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
-target_link_libraries(imagethumbnail ${KDE4_KIO_LIBS})
+target_link_libraries(imagethumbnail
+ ${KCore_LIBRARIES}
+ ${KDE4_KIO_LIBS}
+ ${KWindowSystem_LIBRARIES}
+ ${KCoreAddons_LIBRARIES}
+ plasma
+ ${Qt5Script_LIBRARIES}
+ ${KDE4Support_LIBRARIES}
+ ${Solid_LIBRARIES}
+ kdeclarative
+ KF5::KI18n
+)
 
 install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
@@ -57,7 +81,7 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # kde4_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings.kcfgc)
 # kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
 # 
-# target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS})
+# target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES} ${KIO_LIBRARIES})
 # 
 # if (HAVE_EXIV2)
 #     set_source_files_properties(jpegcreator.cpp PROPERTIES
@@ -75,7 +99,7 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 # kde4_add_plugin(svgthumbnail ${svgthumbnail_PART_SRCS})
 # 
-# target_link_libraries(svgthumbnail ${KDE4_KIO_LIBS})
+# target_link_libraries(svgthumbnail ${KIO_LIBRARIES})
 # 
 # install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
@@ -85,7 +109,7 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 # kde4_add_plugin(textthumbnail ${textthumbnail_PART_SRCS})
 # 
-# target_link_libraries(textthumbnail ${KDE4_KIO_LIBS})
+# target_link_libraries(textthumbnail ${KIO_LIBRARIES})
 # 
 # install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
@@ -108,7 +132,7 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 # kde4_add_plugin(djvuthumbnail ${djvuthumbnail_PART_SRCS})
 # 
-# target_link_libraries(djvuthumbnail ${KDE4_KIO_LIBS})
+# target_link_libraries(djvuthumbnail ${KIO_LIBRARIES})
 # 
 # install(TARGETS djvuthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # endif(NOT WIN32)
@@ -123,7 +147,7 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 #    kde4_add_plugin(exrthumbnail ${exrthumbnail_PART_SRCS})
 # 
-#    target_link_libraries(exrthumbnail ${KDE4_KIO_LIBS} ${OPENEXR_LIBRARIES})
+#    target_link_libraries(exrthumbnail ${KIO_LIBRARIES} ${OPENEXR_LIBRARIES})
 # 
 #    # OpenEXR headers use exceptions; at least clang refuses to build the target
 #    # when exceptions are not enabled.
@@ -142,7 +166,7 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 #    kde4_add_plugin(cursorthumbnail ${cursorthumbnail_PART_SRCS})
 # 
-#    target_link_libraries(cursorthumbnail ${X11_Xcursor_LIB} ${KDE4_KIO_LIBS})
+#    target_link_libraries(cursorthumbnail ${X11_Xcursor_LIB} ${KIO_LIBRARIES})
 # 
 #    install(TARGETS cursorthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 #    install( FILES cursorthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
@@ -153,13 +177,13 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 # set ( windowsexethumbnail_SRCS windowsexecreator.cpp icoutils.cpp)
 # kde4_add_plugin ( windowsexethumbnail ${windowsexethumbnail_SRCS} )
-# target_link_libraries ( windowsexethumbnail ${KDE4_KIO_LIBS} )
+# target_link_libraries ( windowsexethumbnail ${KIO_LIBRARIES} )
 # install ( TARGETS windowsexethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
 # install ( FILES windowsexethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 # 
 # set ( windowsimagethumbnail_SRCS windowsimagecreator.cpp icoutils.cpp)
 # kde4_add_plugin ( windowsimagethumbnail ${windowsimagethumbnail_SRCS} )
-# target_link_libraries ( windowsimagethumbnail ${KDE4_KIO_LIBS} )
+# target_link_libraries ( windowsimagethumbnail ${KIO_LIBRARIES} )
 # install ( TARGETS windowsimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
 # install ( FILES windowsimagethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 # 
@@ -167,7 +191,7 @@ install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 # set(comicbookthumbnail_SRCS comiccreator.cpp)
 # kde4_add_plugin(comicbookthumbnail ${comicbookthumbnail_SRCS})
-# target_link_libraries(comicbookthumbnail ${KDE4_KIO_LIBS})
+# target_link_libraries(comicbookthumbnail ${KIO_LIBRARIES})
 # if (UNIX)
 #    target_link_libraries(comicbookthumbnail ${KDE4_KPTY_LIBRARY})
 # endif (UNIX)

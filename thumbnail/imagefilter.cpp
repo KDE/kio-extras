@@ -34,9 +34,9 @@
 
 #include "imagefilter.h"
 
-#include <QPainter>
-#include <QImage>
-#include <QColor>
+#include <QtGui/QPainter>
+#include <QtGui/QImage>
+#include <QtGui/QColor>
 
 #include <cmath>
 #include <string.h>

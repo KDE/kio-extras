@@ -22,7 +22,7 @@
 
 #include <assert.h>
 
-#include <QImage>
+#include <QtGui/QImage>
 
 #include <kdemacros.h>
 

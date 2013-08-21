@@ -31,17 +31,19 @@
 #include <sys/shm.h>
 #endif
 
+#include <QtWidgets/QApplication>
 #include <QtCore/QBuffer>
 #include <QtCore/QFile>
-#include <QBitmap>
-#Include <QCryptoGraphicHash>
-#include <QImage>
-#include <QPainter>
-#include <QPixmap>
+#include <QtGui/QBitmap>
+#include <QtCore/QCryptographicHash>
+//#include <qcryptographichash.h>
+#include <QtGui/QImage>
+#include <QtGui/QPainter>
+#include <QtGui/QPixmap>
 
-#include <kcodecs.h>
+//#include <kcodecs.h>
 #include <kurl.h>
-#include <kapplication.h>
+//#include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <kglobal.h>
@@ -125,7 +127,7 @@ int kdemain(int argc, char **argv)
     //KAboutData about("kio_thumbnail", 0, ki18n("kio_thumbmail"), "KDE 4.x.x");
     //KCmdLineArgs::init(&about);
 
-    KApplication app( true);
+    QApplication app();
 #endif
 
 
@@ -493,7 +495,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const KUrl& directory)
     //Use the current (custom) folder icon
     KUrl tempDirectory = directory;
     tempDirectory.setScheme("file"); //iconNameForUrl will not work with the "thumbnail:/" scheme
-    QString iconName = KMimeType::iconNameForUrl(tempDirectory);
+    //QString iconName = KMimeType::findByUrl(tempDirectory)
+    QString iconName = "plasma"; // FIXME
 
     const QPixmap folder = KIconLoader::global()->loadMimeTypeIcon(iconName,
                                                                    KIconLoader::Desktop,
@@ -714,8 +717,10 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
         // check whether a cached version of the file is available for
         // 128 x 128 or 256 x 256 pixels
         int cacheSize = 0;
-        KMD5 md5(QFile::encodeName(fileName.url()));
-        const QString thumbName = QFile::encodeName(md5.hexDigest()) + ".png";
+        QCryptographicHash md5(QCryptographicHash::Md5);
+        md5.addData(QFile::encodeName(fileName.url()));
+        const QString thumbName = QFile::encodeName(md5.result()) + ".png";
+
         if (m_thumbBasePath.isEmpty()) {
             m_thumbBasePath = QDir::homePath() + "/.thumbnails/";
             KStandardDirs::makeDir(m_thumbBasePath + "normal/", 0700);
