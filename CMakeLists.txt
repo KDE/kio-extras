@@ -30,7 +30,7 @@ set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP 
 # add_subdirectory( archive )
 # add_subdirectory( settings )
 # add_subdirectory( applications )
- if(NOT WINCE)
+if(NOT WINCE)
  add_subdirectory( trash )
 endif(NOT WINCE)
 # if(NOT WIN32)
