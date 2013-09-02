@@ -31,7 +31,7 @@ set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP 
 # add_subdirectory( settings )
 # add_subdirectory( applications )
  if(NOT WINCE)
-add_subdirectory( trash1 )
+add_subdirectory( trash )
  endif(NOT WINCE)
 # if(NOT WIN32)
 # add_subdirectory( network )
