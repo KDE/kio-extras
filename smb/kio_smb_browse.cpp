@@ -329,10 +329,10 @@ void SMBSlave::listDir( const KUrl& kurl )
 
            // Set name
            QString udsName;
-           QString dirpName = QString::fromUtf8( dirp->name );
+           const QString dirpName = QString::fromUtf8( dirp->name );
            // We cannot trust dirp->commentlen has it might be with or without the NUL character
            // See KDE bug #111430 and Samba bug #3030
-           QString comment = QString::fromUtf8( dirp->comment );
+           const QString comment = QString::fromUtf8( dirp->comment );
            if ( dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_WORKGROUP ) {
                udsName = dirpName.toLower();
                udsName[0] = dirpName.at( 0 ).toUpper();
@@ -345,10 +345,15 @@ void SMBSlave::listDir( const KUrl& kurl )
 
            udsentry.insert( KIO::UDSEntry::UDS_NAME, udsName );
 
-           if (udsName.toUpper()=="IPC$" || udsName=="." || udsName == ".." ||
-               udsName.toUpper() == "ADMIN$" || udsName.toLower() == "printer$" || udsName.toLower() == "print$" )
+           // Mark all administrative shares, e.g ADMIN$, as hidden. #197903
+           if (dirpName.endsWith(QLatin1Char('$'))) {
+              //kDebug(KIO_SMB) << dirpName << "marked as hidden";
+              udsentry.insert(KIO::UDSEntry::UDS_HIDDEN, 1);
+           }
+
+           if (udsName == "." || udsName == "..")
            {
-//            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
+               // fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                // do nothing and hide the hidden shares
            }
            else if(dirp->smbc_type == SMBC_FILE)
@@ -394,7 +399,7 @@ void SMBSlave::listDir( const KUrl& kurl )
 
                // Call base class to list entry
                listEntry(udsentry, false);
-            }
+           }
            else if(dirp->smbc_type == SMBC_WORKGROUP)
            {
                // Set type
