@@ -21,6 +21,7 @@ Name[ja]=Freecode
 Name[kk]=Freecode
 Name[ko]=Freecode
 Name[lt]=Freecode
+Name[nb]=Freecode
 Name[nl]=Freecode
 Name[nn]=Freecode
 Name[pa]=ਫਰੀਕੋਡ
@@ -66,6 +67,7 @@ Query[ja]=http://freecode.com/search?q=\\{@}
 Query[kk]=http://freecode.com/search?q=\\{@}
 Query[ko]=http://freecode.com/search?q=\\{@}
 Query[lt]=http://freecode.com/search?q=\\{@}
+Query[nb]=http://freecode.com/search?q=\\{@}
 Query[nl]=http://freecode.com/search?q=\\{@}
 Query[nn]=http://freecode.com/search?q=\\{@}
 Query[pa]=http://freecode.com/search?q=\\{@}
