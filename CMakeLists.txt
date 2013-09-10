@@ -18,7 +18,7 @@ set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP 
                        PURPOSE "Needed to build the SFTP kioslave"
                       )
 
-# add_subdirectory( about )
+add_subdirectory( about )
 # add_subdirectory( bookmarks )
 # if(NOT WINCE)
 # add_subdirectory( cgi )
