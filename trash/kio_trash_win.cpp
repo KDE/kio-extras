@@ -23,7 +23,7 @@
 #include "kio_trash_win.h"
 #include <kio/job.h>
 
-#include <kdebug.h>
+#include <QDebug>
 #include <kcomponentdata.h>
 #include <kconfiggroup.h>
 
@@ -145,7 +145,7 @@ TrashProtocol::~TrashProtocol()
         m_isfTrashFolder->Release();
 }
 
-void TrashProtocol::restore( const KUrl& trashURL, const KUrl &destURL )
+void TrashProtocol::restore( const QUrl& trashURL, const QUrl &destURL )
 {
     LPITEMIDLIST  pidl = NULL;
     LPCONTEXTMENU pCtxMenu = NULL;
@@ -208,9 +208,9 @@ void TrashProtocol::clearTrash()
     finished();
 }
 
-void TrashProtocol::rename( const KUrl &oldURL, const KUrl &newURL, KIO::JobFlags flags )
+void TrashProtocol::rename( const QUrl &oldURL, const QUrl &newURL, KIO::JobFlags flags )
 {
-    kDebug()<<"TrashProtocol::rename(): old="<<oldURL<<" new="<<newURL<<" overwrite=" << (flags & KIO::Overwrite);
+    qDebug()<<"TrashProtocol::rename(): old="<<oldURL<<" new="<<newURL<<" overwrite=" << (flags & KIO::Overwrite);
 
     if( oldURL.protocol() == QLatin1String( "trash" ) && newURL.protocol() == QLatin1String( "trash" ) ) {
         error( KIO::ERR_CANNOT_RENAME, oldURL.prettyUrl() );
@@ -220,9 +220,9 @@ void TrashProtocol::rename( const KUrl &oldURL, const KUrl &newURL, KIO::JobFlag
     copyOrMove( oldURL, newURL, (flags & KIO::Overwrite), Move );
 }
 
-void TrashProtocol::copy( const KUrl &src, const KUrl &dest, int /*permissions*/, KIO::JobFlags flags )
+void TrashProtocol::copy( const QUrl &src, const QUrl &dest, int /*permissions*/, KIO::JobFlags flags )
 {
-    kDebug()<<"TrashProtocol::copy(): " << src << " " << dest;
+    qDebug()<<"TrashProtocol::copy(): " << src << " " << dest;
 
     if( src.protocol() == QLatin1String( "trash" ) && dest.protocol() == QLatin1String( "trash" ) ) {
         error( KIO::ERR_UNSUPPORTED_ACTION, i18n( "This file is already in the trash bin." ) );
@@ -232,7 +232,7 @@ void TrashProtocol::copy( const KUrl &src, const KUrl &dest, int /*permissions*/
     copyOrMove( src, dest, (flags & KIO::Overwrite), Copy );
 }
 
-void TrashProtocol::copyOrMove( const KUrl &src, const KUrl &dest, bool overwrite, CopyOrMove action )
+void TrashProtocol::copyOrMove( const QUrl &src, const QUrl &dest, bool overwrite, CopyOrMove action )
 {
     if( src.protocol() == QLatin1String( "trash" ) && dest.isLocalFile() ) {
         if ( action == Move ) {
@@ -253,7 +253,7 @@ void TrashProtocol::copyOrMove( const KUrl &src, const KUrl &dest, bool overwrit
     }
 }
 
-void TrashProtocol::stat(const KUrl& url)
+void TrashProtocol::stat(const QUrl& url)
 {
     KIO::UDSEntry entry;
     if( url.path() == QLatin1String( "/" ) ) {
@@ -281,16 +281,16 @@ void TrashProtocol::stat(const KUrl& url)
     finished();
 }
 
-void TrashProtocol::del( const KUrl &url, bool /*isfile*/ )
+void TrashProtocol::del( const QUrl &url, bool /*isfile*/ )
 {
     if( !doFileOp( url, FO_DELETE, 0 ) )
       return;
     finished();
 }
 
-void TrashProtocol::listDir(const KUrl& url)
+void TrashProtocol::listDir(const QUrl& url)
 {
-    kDebug()<<"TrashProtocol::listDir(): " << url;
+    qDebug()<<"TrashProtocol::listDir(): " << url;
     // There are no subfolders in Windows Trash
     listRoot();
 }
@@ -365,9 +365,9 @@ void TrashProtocol::special( const QByteArray & data )
         break;
     case 3:
     {
-        KUrl url;
+        QUrl url;
         stream >> url;
-        restore( url, KUrl() );
+        restore( url, QUrl() );
         break;
     }
     default:
@@ -396,20 +396,20 @@ void TrashProtocol::updateRecycleBin()
     l->Release();
 }
 
-void TrashProtocol::put( const KUrl& url, int /*permissions*/, KIO::JobFlags )
+void TrashProtocol::put( const QUrl& url, int /*permissions*/, KIO::JobFlags )
 {
-    kDebug() << "put: " << url;
+    qDebug() << "put: " << url;
     // create deleted file. We need to get the mtime and original location from metadata...
     // Maybe we can find the info file for url.fileName(), in case ::rename() was called first, and failed...
     error( KIO::ERR_ACCESS_DENIED, url.prettyUrl() );
 }
 
-void TrashProtocol::get( const KUrl& url )
+void TrashProtocol::get( const QUrl& url )
 {
     // TODO
 }
 
-bool TrashProtocol::doFileOp(const KUrl &url, UINT wFunc, FILEOP_FLAGS fFlags)
+bool TrashProtocol::doFileOp(const QUrl &url, UINT wFunc, FILEOP_FLAGS fFlags)
 {
     const QString path = url.path().replace(QLatin1Char('/'),QLatin1Char('\\'));
     // must be double-null terminated.
@@ -434,4 +434,4 @@ bool TrashProtocol::translateError(HRESULT hRes)
     return true;
 }
 
-#include "kio_trash_win.moc"
+#include "moc_kio_trash_win.cpp"

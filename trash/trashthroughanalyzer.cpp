@@ -23,7 +23,7 @@
 #include <strigi/fieldtypes.h>
 #include <strigi/analysisresult.h>
 #include "trashimpl.h"
-#include <KUrl>
+#include <QUrl>
 using namespace Strigi;
 using namespace std;
 
@@ -66,7 +66,7 @@ InputStream* TrashThroughAnalyzer::connectInputStream(InputStream* in) {
             || strncmp(path.c_str(), "trash:/", 7)) {
         return in;
     }
-    KUrl url(path.c_str());
+    QUrl url(path.c_str());
 
     if ( url.protocol()==QLatin1String("system")
       && url.path().startsWith(QLatin1String("/trash")) )
@@ -77,7 +77,7 @@ InputStream* TrashThroughAnalyzer::connectInputStream(InputStream* in) {
         url.setPath(path);
     }
 
-    //kDebug() << info.url();
+    //qDebug() << info.url();
     if (url.protocol() != QLatin1String("trash"))
         return in;
 

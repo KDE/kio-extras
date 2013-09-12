@@ -23,7 +23,8 @@
 #include <kcmdlineargs.h>
 #include <klocale.h>
 #include <kdirnotify.h>
-#include <kdebug.h>
+#include <QDebug>
+#include <kdeversion.h>
 
 int main(int argc, char *argv[])
 {
@@ -50,11 +51,11 @@ int main(int argc, char *argv[])
         QByteArray packedArgs;
         QDataStream stream( &packedArgs, QIODevice::WriteOnly );
         stream << (int)1;
-        KIO::Job* job = KIO::special( KUrl("trash:/"), packedArgs );
+        KIO::Job* job = KIO::special( QUrl("trash:/"), packedArgs );
         (void)KIO::NetAccess::synchronousRun( job, 0 );
 
         // Update konq windows opened on trash:/
-        org::kde::KDirNotify::emitFilesAdded(QString::fromLatin1("trash:/")); // yeah, files were removed, but we don't know which ones...
+        org::kde::KDirNotify::emitFilesAdded(QUrl("trash:/")); // yeah, files were removed, but we don't know which ones...
         return 0;
     }
 
@@ -78,9 +79,9 @@ int main(int argc, char *argv[])
             restoreArg.prepend(QString::fromLatin1("trash:"));
         }
 
-        KUrl trashURL( restoreArg );
-        if ( !trashURL.isValid() || trashURL.protocol() != QLatin1String("trash") ) {
-            kError() << "Invalid URL for restoring a trashed file:" << trashURL << endl;
+        QUrl trashURL( restoreArg );
+        if ( !trashURL.isValid() || trashURL.scheme() != QLatin1String("trash") ) {
+            qCritical() << "Invalid URL for restoring a trashed file:" << trashURL << endl;
             return 1;
         }
 
@@ -90,7 +91,7 @@ int main(int argc, char *argv[])
         KIO::Job* job = KIO::special( trashURL, packedArgs );
         bool ok = KIO::NetAccess::synchronousRun( job, 0 );
         if ( !ok )
-            kError() << KIO::NetAccess::lastErrorString() << endl;
+            qCritical() << KIO::NetAccess::lastErrorString() << endl;
         return 0;
     }
 

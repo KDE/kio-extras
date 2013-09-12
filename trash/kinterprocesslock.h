@@ -23,6 +23,8 @@
 
 #include <QtCore/QObject>
 
+class KInterProcessLockPrivate;
+
 /**
  * @short A class for serializing access to a resource that is shared between multiple processes.
  *
@@ -56,6 +58,7 @@
 class KInterProcessLock : public QObject
 {
     Q_OBJECT
+    Q_DECLARE_PRIVATE(KInterProcessLock)
 
     public:
         /**
@@ -107,10 +110,9 @@ class KInterProcessLock : public QObject
         void lockGranted(KInterProcessLock *lock);
 
     private:
-        class Private;
-        Private* const d;
+        KInterProcessLockPrivate * const d_ptr;
 
-        Q_PRIVATE_SLOT(d, void _k_serviceRegistered(const QString&))
+        Q_PRIVATE_SLOT(d_func(), void _k_serviceRegistered(const QString&))
 };
 
 #endif
