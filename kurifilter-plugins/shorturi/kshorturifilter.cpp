@@ -33,7 +33,7 @@
 #include <kstandarddirs.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
-#include <kurlauthorized.h>
+#include <kauthorized.h>
 #include <kmimetype.h>
 #include <kuser.h>
 #include <kde_file.h>
@@ -375,7 +375,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     u.setRef(ref);
     u.setQuery(query);
 
-    if (!KUrlAuthorized::authorizeUrlAction( QLatin1String("open"), KUrl(), u))
+    if (!KAuthorized::authorizeUrlAction( QLatin1String("open"), KUrl(), u))
     {
       // No authorization, we pretend it's a file will get
       // an access denied error later on.
@@ -508,7 +508,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     u.setPath(path);
     u.setRef(ref);
 
-    if (!KUrlAuthorized::authorizeUrlAction( QL1S("open"), KUrl(), u))
+    if (!KAuthorized::authorizeUrlAction( QL1S("open"), KUrl(), u))
     {
       // No authorization, we pretend it exists and will get
       // an access denied error later on.
