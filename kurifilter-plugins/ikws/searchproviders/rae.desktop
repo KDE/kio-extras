@@ -115,6 +115,7 @@ Query[nb]=http://www.rae.es/drae/?val=\\{@}
 Query[nl]=http://www.rae.es/drae/?val=\\{@}
 Query[nn]=http://www.rae.es/drae/?val=\\{@}
 Query[pa]=http://www.rae.es/drae/?val=\\{@}
+Query[pl]=http://www.rae.es/drae/?val=\\{@}
 Query[pt]=http://www.rae.es/drae/?val=\\{@}
 Query[pt_BR]=http://www.rae.es/drae/?val=\\{@}
 Query[ru]=http://www.rae.es/drae/?val=\\{@}
