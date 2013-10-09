@@ -75,6 +75,7 @@ Query=https://identi.ca/search/notice?q=\\{@}
 Query[bg]=https://identi.ca/search/notice?q=\\{@}
 Query[bs]=https://identi.ca/search/notice?q=\\{@}
 Query[ca]=https://identi.ca/search/notice?q=\\{@}
+Query[ca@valencia]=https://identi.ca/search/notice?q=\\{@}
 Query[cs]=https://identi.ca/search/notice?q=\\{@}
 Query[da]=https://identi.ca/search/notice?q=\\{@}
 Query[de]=https://identi.ca/search/notice?q=\\{@}

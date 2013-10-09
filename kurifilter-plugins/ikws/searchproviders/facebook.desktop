@@ -75,6 +75,7 @@ Query=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bg]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bs]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ca]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ca@valencia]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[cs]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[da]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[de]=https://www.facebook.com/search/?q=\\{@}&init=quick

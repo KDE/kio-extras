@@ -91,6 +91,7 @@ Query=http://tools.ietf.org/id/\\{@}
 Query[bg]=http://tools.ietf.org/id/\\{@}
 Query[bs]=http://tools.ietf.org/id/\\{@}
 Query[ca]=http://tools.ietf.org/id/\\{@}
+Query[ca@valencia]=http://tools.ietf.org/id/\\{@}
 Query[cs]=http://tools.ietf.org/id/\\{@}
 Query[da]=http://tools.ietf.org/id/\\{@}
 Query[de]=http://tools.ietf.org/id/\\{@}

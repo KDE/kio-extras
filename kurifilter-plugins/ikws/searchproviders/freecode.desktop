@@ -4,6 +4,7 @@ Name=Freecode
 Name[bg]=Freecode
 Name[bs]=Freecode
 Name[ca]=Freecode
+Name[ca@valencia]=Freecode
 Name[cs]=Freecode
 Name[da]=Freecode
 Name[de]=Freecode
@@ -50,6 +51,7 @@ Query=http://freecode.com/search?q=\\{@}
 Query[bg]=http://freecode.com/search?q=\\{@}
 Query[bs]=http://freecode.com/search?q=\\{@}
 Query[ca]=http://freecode.com/search?q=\\{@}
+Query[ca@valencia]=http://freecode.com/search?q=\\{@}
 Query[cs]=http://freecode.com/search?q=\\{@}
 Query[da]=http://freecode.com/search?q=\\{@}
 Query[de]=http://freecode.com/search?q=\\{@}
