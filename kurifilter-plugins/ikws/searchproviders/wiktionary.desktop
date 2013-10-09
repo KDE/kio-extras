@@ -95,6 +95,7 @@ Query=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=https://bg.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bs]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca]=https://ca.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ca@valencia]=https://ca.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[cs]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[da]=https://da.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

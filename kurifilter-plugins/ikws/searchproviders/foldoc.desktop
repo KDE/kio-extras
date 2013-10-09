@@ -96,6 +96,7 @@ Query=http://foldoc.org/\\{@}
 Query[bg]=http://foldoc.org/\\{@}
 Query[bs]=http://foldoc.org/\\{@}
 Query[ca]=http://foldoc.org/\\{@}
+Query[ca@valencia]=http://foldoc.org/\\{@}
 Query[cs]=http://foldoc.org/\\{@}
 Query[da]=http://foldoc.org/\\{@}
 Query[de]=http://foldoc.org/\\{@}

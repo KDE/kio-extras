@@ -74,6 +74,7 @@ Query=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[bg]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[bs]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[ca]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[ca@valencia]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[cs]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[da]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[de]=https://identi.ca/search/people?q=\\{@}&search=Search

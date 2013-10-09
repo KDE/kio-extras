@@ -75,6 +75,7 @@ Query=https://blip.tv/search?q=\\{@}
 Query[bg]=https://blip.tv/search?q=\\{@}
 Query[bs]=https://blip.tv/search?q=\\{@}
 Query[ca]=https://blip.tv/search?q=\\{@}
+Query[ca@valencia]=https://blip.tv/search?q=\\{@}
 Query[cs]=https://blip.tv/search?q=\\{@}
 Query[da]=https://blip.tv/search?q=\\{@}
 Query[de]=https://blip.tv/search?q=\\{@}
