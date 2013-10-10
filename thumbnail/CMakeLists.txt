@@ -35,17 +35,17 @@ kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 
 #target_link_libraries(kio_thumbnail ${KIO_LIBRARIES})
 target_link_libraries(kio_thumbnail
- ${KCore_LIBRARIES}
- ${KDE4_KIO_LIBS}
- ${KWindowSystem_LIBRARIES}
- ${KCoreAddons_LIBRARIES}
- plasma
- ${Qt5Script_LIBRARIES}
- ${KDE4Support_LIBRARIES}
- ${Solid_LIBRARIES}
- ${KIconThemes_LIBRARIES}
- kdeclarative
- KF5::KI18n
+	Qt5::Script
+	KF5::KCoreAddons
+	KF5::KIOCore
+	KF5::KIOWidgets
+	KF5::Solid
+	KF5::KWindowSystem
+	KF5::plasma
+	KF5::KIconThemes
+	KF5::KDeclarative
+ 	KF5::KI18n
+	${KDE4Support_LIBRARIES}
 )
 
 install(TARGETS kio_thumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
@@ -57,16 +57,16 @@ set(imagethumbnail_PART_SRCS imagecreator.cpp)
 kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
 target_link_libraries(imagethumbnail
- ${KCore_LIBRARIES}
- ${KDE4_KIO_LIBS}
- ${KWindowSystem_LIBRARIES}
- ${KCoreAddons_LIBRARIES}
- plasma
- ${Qt5Script_LIBRARIES}
- ${KDE4Support_LIBRARIES}
- ${Solid_LIBRARIES}
- kdeclarative
- KF5::KI18n
+	Qt5::Script
+	KF5::KCoreAddons
+	KF5::KIOCore
+	KF5::KIOWidgets
+	KF5::KWindowSystem
+	KF5::Solid
+	KF5::KDeclarative
+ 	KF5::plasma
+ 	${KDE4Support_LIBRARIES}
+ 	KF5::KI18n
 )
 
 install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
@@ -81,7 +81,17 @@ set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
 kde4_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings.kcfgc)
 kde4_add_plugin(jpegthumbnail ${jpegthumbnail_PART_SRCS})
 
-target_link_libraries(jpegthumbnail ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${JPEG_LIBRARIES} ${KDE4_KIO_LIBS} KF5::KI18n KF5::KConfigCore KF5::KConfigGui)
+target_link_libraries(jpegthumbnail 
+	Qt5::Core
+	Qt5::Gui
+	KF5::KIOCore
+	KF5::KIOWidgets
+	${JPEG_LIBRARIES}
+	KF5::KI18n 
+	KF5::KConfigCore 
+	KF5::KConfigGui
+)
+
 
 if (HAVE_EXIV2)
     set_source_files_properties(jpegcreator.cpp PROPERTIES
