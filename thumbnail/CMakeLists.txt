@@ -41,7 +41,7 @@ target_link_libraries(kio_thumbnail
 	KF5::KIOWidgets
 	KF5::Solid
 	KF5::KWindowSystem
-	KF5::plasma
+	KF5::Plasma
 	KF5::KIconThemes
 	KF5::KDeclarative
  	KF5::KI18n
@@ -64,7 +64,7 @@ target_link_libraries(imagethumbnail
 	KF5::KWindowSystem
 	KF5::Solid
 	KF5::KDeclarative
- 	KF5::plasma
+ 	KF5::Plasma
  	${KDE4Support_LIBRARIES}
  	KF5::KI18n
 )
