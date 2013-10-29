@@ -45,7 +45,7 @@ target_link_libraries(kio_thumbnail
 	KF5::KIconThemes
 	KF5::KDeclarative
  	KF5::KI18n
-	${KDE4Support_LIBRARIES}
+	KF5::KDE4Support
 )
 
 install(TARGETS kio_thumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
@@ -65,7 +65,7 @@ target_link_libraries(imagethumbnail
 	KF5::Solid
 	KF5::KDeclarative
  	KF5::Plasma
- 	${KDE4Support_LIBRARIES}
+ 	KF5::KDE4Support
  	KF5::KI18n
 )
 
