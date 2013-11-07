@@ -42,7 +42,7 @@ Name[hsb]=Słownik španiskeje akademije (RAE)
 Name[hu]=A Spanyol Akadémia címjegyzéke (RAE)
 Name[ia]=Dictionario de le Academia Espaniol (RAE)
 Name[id]=Kamus Akademi Bahasa Spanyol (RAE)
-Name[is]=Orðabók spönsku akademíunnar (RAE)
+Name[is]=Orðabók spænsku akademíunnar (RAE)
 Name[it]=Dizionario dell'Accademia Spagnola (RAE)
 Name[ja]=スペイン大学辞書
 Name[kk]=Испан Академиясының сөздігі (RAE)
@@ -108,6 +108,7 @@ Query[fr]=http://www.rae.es/drae/?val=\\{@}
 Query[gl]=http://www.rae.es/drae/?val=\\{@}
 Query[hu]=http://www.rae.es/drae/?val=\\{@}
 Query[ia]=http://www.rae.es/drae/?val=\\{@}
+Query[is]=http://www.rae.es/drae/?val=\\{@}
 Query[it]=http://www.rae.es/drae/?val=\\{@}
 Query[ja]=http://www.rae.es/drae/?val=\\{@}
 Query[kk]=http://www.rae.es/drae/?val=\\{@}
