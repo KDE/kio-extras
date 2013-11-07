@@ -8,6 +8,6 @@ SET( copytesterSources main.cpp copytester.cpp )
 
 KDE4_ADD_EXECUTABLE( copytester ${copytesterSources} )
 
-TARGET_LINK_LIBRARIES( copytester ${KDE4_KDEUI_LIBS} ${KDE4_KIO_LIBS} )
+TARGET_LINK_LIBRARIES( copytester ${KDE4_KDEUI_LIBS} KF5::KIOCore )
 
 install( TARGETS copytester ${INSTALL_TARGETS_DEFAULT_ARGS}  )

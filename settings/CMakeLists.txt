@@ -2,7 +2,7 @@
 
 kde4_add_plugin(kio_settings kio_settings.cpp)
 
-target_link_libraries(kio_settings  ${KDE4_KIO_LIBS} )
+target_link_libraries(kio_settings  KF5::KIOCore )
 
 install(TARGETS kio_settings  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

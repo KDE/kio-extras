@@ -10,7 +10,7 @@ set(kio_info_PART_SRCS info.cc )
 kde4_add_plugin(kio_info ${kio_info_PART_SRCS})
 
 
-target_link_libraries(kio_info  ${KDE4_KIO_LIBS} )
+target_link_libraries(kio_info  KF5::KIOCore )
 
 install(TARGETS kio_info  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

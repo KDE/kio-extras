@@ -40,7 +40,7 @@ if (MD5SUM_EXECUTABLE)
 
    kde4_add_plugin(kio_fish ${kio_fish_PART_SRCS})
 
-   target_link_libraries(kio_fish ${KDE4_KIO_LIBS})
+   target_link_libraries(kio_fish KF5::KIOCore)
 
    if (UTIL_LIBRARIES)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})

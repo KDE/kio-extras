@@ -6,5 +6,5 @@ set(testdesktop_SRCS kio_desktop_test.cpp)
 
 kde4_add_unit_test(testdesktop ${testdesktop_SRCS})
 
-target_link_libraries(testdesktop  ${KDE4_KIO_LIBS} ${KDE4_SOLID_LIBS} ${QT_QTTEST_LIBRARY})
+target_link_libraries(testdesktop  KF5::KIOCore ${KDE4_SOLID_LIBS} ${QT_QTTEST_LIBRARY})
 

@@ -18,7 +18,7 @@ set( kio_network_SRCS
 
 kde4_add_plugin( kio_network  ${kio_network_SRCS} )
 
-target_link_libraries( kio_network  molletnetwork ${KDE4_KIO_LIBS} )
+target_link_libraries( kio_network  molletnetwork KF5::KIOCore )
 
 install( TARGETS kio_network  DESTINATION ${PLUGIN_INSTALL_DIR})
 

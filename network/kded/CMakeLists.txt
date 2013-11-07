@@ -15,7 +15,7 @@ qt4_add_dbus_adaptor( kded_networkwatcher_SRCS  org.kde.network.kioslavenotifier
 
 kde4_add_plugin( kded_networkwatcher  ${kded_networkwatcher_SRCS} )
 
-target_link_libraries( kded_networkwatcher  ${KDE4_KIO_LIBS} molletnetwork )
+target_link_libraries( kded_networkwatcher  KF5::KIOCore molletnetwork )
 
 install( TARGETS kded_networkwatcher  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
