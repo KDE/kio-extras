@@ -321,18 +321,16 @@ void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, KIO::JobFlags flags 
     {
         if(S_ISDIR(st.st_mode))
         {
-	    kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_DIR_ALREADY_EXIST";
+            kDebug(KIO_SMB) << "KIO::ERR_DIR_ALREADY_EXIST";
             error( KIO::ERR_DIR_ALREADY_EXIST, dst.prettyUrl());
-	    finished();
-	    return;
+            return;
         }
         if(!(flags & KIO::Overwrite))
         {
-	    kDebug(KIO_SMB) << "SMBSlave::rename KIO::ERR_FILE_ALREADY_EXIST";
+            kDebug(KIO_SMB) << "KIO::ERR_FILE_ALREADY_EXIST";
             error( KIO::ERR_FILE_ALREADY_EXIST, dst.prettyUrl());
-	    finished();
-	    return;
-	}
+            return;
+        }
     }
     kDebug(KIO_SMB ) << "smbc_rename " << src.toSmbcUrl() << " " << dst.toSmbcUrl();
     retVal = smbc_rename(src.toSmbcUrl(), dst.toSmbcUrl());
@@ -383,5 +381,3 @@ void SMBSlave::rename( const KUrl& ksrc, const KUrl& kdest, KIO::JobFlags flags 
     kDebug(KIO_SMB ) << "everything fine\n";
     finished();
 }
-
-
