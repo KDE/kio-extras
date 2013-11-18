@@ -4,6 +4,7 @@ Hidden=false
 Keys=rag
 Name=Dictionary of the Galician Academy (RAG)
 Name[bg]=Речник на галисийската академия (RAG)
+Name[bs]=Rječnik Galeške akademije (RAG)
 Name[ca]=Diccionari de l'Acadèmia Gallega (RAG)
 Name[cs]=Slovník Galicijské akademie (RAG)
 Name[da]=Ordbog fra det galisiske akademi (RAG)
@@ -14,6 +15,7 @@ Name[fi]=Galician Akatemian sanakirja (RAG)
 Name[gl]=Dicionario da Real Academia Galega (RAG)
 Name[hu]=A Gall Akadémia címjegyzéke (RAG)
 Name[ia]=Dictionario del Academia Galician (RAG)
+Name[is]=Orðabók galisísku akademíunnar (RAG)
 Name[kk]=Галисия Академиясының сөздігі (RAG)
 Name[nb]=Ordboka til det galiciske akademiet (RAG)
 Name[nl]=Woordenboek van de Gallische Academie (RAE)
@@ -35,6 +37,7 @@ Name[x-test]=xxDictionary of the Galician Academy (RAG)xx
 Name[zh_TW]=西班牙加里西亞學院字典 (RAG)
 Query=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[bg]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[bs]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[ca]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[cs]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[da]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
@@ -45,6 +48,7 @@ Query[fi]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\
 Query[gl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[hu]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[ia]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[is]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[kk]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nb]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}

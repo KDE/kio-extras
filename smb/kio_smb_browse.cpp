@@ -142,7 +142,6 @@ void SMBSlave::stat( const KUrl& kurl )
     {
     case SMBURLTYPE_UNKNOWN:
         error(ERR_MALFORMED_URL,m_current_url.prettyUrl());
-        finished();
         return;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
