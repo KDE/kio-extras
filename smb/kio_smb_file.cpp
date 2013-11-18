@@ -395,7 +395,6 @@ void SMBSlave::put( const KUrl& kurl,
             kDebug(KIO_SMB) << "error " << kurl <<" can not open for writing !!";
             error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, m_current_url.prettyUrl());
         }
-        finished();
         return;
     }
 
@@ -419,7 +418,6 @@ void SMBSlave::put( const KUrl& kurl,
         {
             kDebug(KIO_SMB) << "error " << kurl << "could not write !!";
             error( KIO::ERR_COULD_NOT_WRITE, m_current_url.prettyUrl());
-            finished();
             return;
         }
         kDebug(KIO_SMB ) << "wrote " << size;
@@ -430,7 +428,6 @@ void SMBSlave::put( const KUrl& kurl,
     {
         kDebug(KIO_SMB) << kurl << "could not write !!";
         error( KIO::ERR_COULD_NOT_WRITE, m_current_url.prettyUrl());
-        finished();
         return;
     }
 
