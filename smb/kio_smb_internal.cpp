@@ -54,6 +54,12 @@ SMBUrl::SMBUrl(const KUrl& kurl)
     updateCache();
 }
 
+SMBUrl::SMBUrl(const SMBUrl& other)
+    : KUrl(other),
+      m_surl(other.m_surl),
+      m_type(other.m_type)
+{
+}
 
 //-----------------------------------------------------------------------
 void SMBUrl::addPath(const QString &filedir)
@@ -123,3 +129,13 @@ SMBUrlType SMBUrl::getType() const
     return m_type;
 }
 
+SMBUrl SMBUrl::partUrl() const
+{
+    if (m_type == SMBURLTYPE_SHARE_OR_PATH && !fileName().isEmpty()) {
+        SMBUrl url (*this);
+        url.setFileName(fileName() + QLatin1String(".part"));
+        return url;
+    }
+
+    return SMBUrl();
+}
