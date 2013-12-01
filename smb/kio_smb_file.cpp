@@ -52,7 +52,7 @@ void SMBSlave::get( const KUrl& kurl )
     QByteArray  filedata;
     SMBUrl      url;
 
-    kDebug(KIO_SMB) << "SMBSlave::get on " << kurl;
+    kDebug(KIO_SMB) << kurl;
 
     // check (correct) URL
     KUrl kvurl = checkURL(kurl);
@@ -140,7 +140,7 @@ void SMBSlave::get( const KUrl& kurl )
 void SMBSlave::open( const KUrl& kurl, QIODevice::OpenMode mode)
 {
     int           errNum = 0;
-    kDebug(KIO_SMB) << "SMBSlave::open on " << kurl;
+    kDebug(KIO_SMB) << kurl;
 
     // check (correct) URL
     KUrl kvurl = checkURL(kurl);
@@ -319,7 +319,7 @@ void SMBSlave::put( const KUrl& kurl,
     mode_t      mode;
     QByteArray  filedata;
 
-    kDebug(KIO_SMB) << "SMBSlave::put on " << kurl;
+    kDebug(KIO_SMB) << kurl;
 
     errNum = cache_stat(m_current_url, &st);
     exists = (errNum == 0);
@@ -327,12 +327,12 @@ void SMBSlave::put( const KUrl& kurl,
     {
         if (S_ISDIR(st.st_mode))
         {
-            kDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" already isdir !!";
+            kDebug(KIO_SMB) << kurl <<" already isdir !!";
             error( KIO::ERR_DIR_ALREADY_EXIST, m_current_url.prettyUrl());
         }
         else
         {
-            kDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" already exist !!";
+            kDebug(KIO_SMB) << kurl <<" already exist !!";
             error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.prettyUrl());
         }
         return;
@@ -340,7 +340,7 @@ void SMBSlave::put( const KUrl& kurl,
 
     if (exists && !(flags & KIO::Resume) && (flags & KIO::Overwrite))
     {
-        kDebug(KIO_SMB) << "SMBSlave::put exists try to remove " << m_current_url.toSmbcUrl();
+        kDebug(KIO_SMB) << "exists try to remove " << m_current_url.toSmbcUrl();
         //   remove(m_current_url.url().toLocal8Bit());
     }
 
@@ -348,7 +348,7 @@ void SMBSlave::put( const KUrl& kurl,
     if (flags & KIO::Resume)
     {
         // append if resuming
-        kDebug(KIO_SMB) << "SMBSlave::put resume " << m_current_url.toSmbcUrl();
+        kDebug(KIO_SMB) << "resume " << m_current_url.toSmbcUrl();
         filefd = smbc_open(m_current_url.toSmbcUrl(), O_RDWR, 0 );
         if (filefd < 0) {
             errNum = errno;
@@ -374,7 +374,7 @@ void SMBSlave::put( const KUrl& kurl,
             mode = 600;//0666;
         }
 
-        kDebug(KIO_SMB) << "SMBSlave::put NO resume " << m_current_url.toSmbcUrl();
+        kDebug(KIO_SMB) << "NO resume " << m_current_url.toSmbcUrl();
         filefd = smbc_open(m_current_url.toSmbcUrl(), O_CREAT | O_TRUNC | O_WRONLY, mode);
         if (filefd < 0) {
             errNum = errno;
@@ -387,50 +387,47 @@ void SMBSlave::put( const KUrl& kurl,
     {
         if ( errNum == EACCES )
         {
-            kDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" access denied !!";
+            kDebug(KIO_SMB) << "error " << kurl <<" access denied !!";
             error( KIO::ERR_WRITE_ACCESS_DENIED, m_current_url.prettyUrl());
         }
         else
         {
-            kDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" can not open for writing !!";
+            kDebug(KIO_SMB) << "error " << kurl <<" can not open for writing !!";
             error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, m_current_url.prettyUrl());
         }
-        finished();
         return;
     }
 
     // Loop until we got 0 (end of data)
     while(1)
     {
-        kDebug(KIO_SMB) << "SMBSlave::put request data ";
+        kDebug(KIO_SMB) << "request data ";
         dataReq(); // Request for data
-        kDebug(KIO_SMB) << "SMBSlave::put write " << m_current_url.toSmbcUrl();
+        kDebug(KIO_SMB) << "write " << m_current_url.toSmbcUrl();
 
         if (readData(filedata) <= 0)
         {
             kDebug(KIO_SMB) << "readData <= 0";
             break;
         }
-        kDebug(KIO_SMB) << "SMBSlave::put write " << m_current_url.toSmbcUrl();
+        kDebug(KIO_SMB) << "write " << m_current_url.toSmbcUrl();
 	buf = filedata.data();
 	bufsize = filedata.size();
         ssize_t size = smbc_write(filefd, buf, bufsize);
         if ( size < 0)
         {
-            kDebug(KIO_SMB) << "SMBSlave::put error " << kurl <<" could not write !!";
+            kDebug(KIO_SMB) << "error " << kurl << "could not write !!";
             error( KIO::ERR_COULD_NOT_WRITE, m_current_url.prettyUrl());
-            finished();
             return;
         }
         kDebug(KIO_SMB ) << "wrote " << size;
     }
-    kDebug(KIO_SMB) << "SMBSlave::put close " << m_current_url.toSmbcUrl();
+    kDebug(KIO_SMB) << "close " << m_current_url.toSmbcUrl();
 
     if(smbc_close(filefd) < 0)
     {
-        kDebug(KIO_SMB) << "SMBSlave::put on " << kurl <<" could not write !!";
+        kDebug(KIO_SMB) << kurl << "could not write !!";
         error( KIO::ERR_COULD_NOT_WRITE, m_current_url.prettyUrl());
-        finished();
         return;
     }
 

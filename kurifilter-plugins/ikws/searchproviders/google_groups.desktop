@@ -99,6 +99,7 @@ Query=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[bg]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[bs]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[ca]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[ca@valencia]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[cs]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[da]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[de]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
@@ -108,6 +109,7 @@ Query[eu]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[fi]=https://groups.google.fi/groups?oi=djq&as_q=\\{@}
 Query[fr]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[gl]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[hi]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[hu]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[ia]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[is]=https://groups.google.com/groups?oi=djq&as_q=\\{@}

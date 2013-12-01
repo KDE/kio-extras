@@ -96,6 +96,7 @@ Query=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[bg]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[bs]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[ca]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[ca@valencia]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[cs]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[da]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[de]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
@@ -105,6 +106,7 @@ Query[eu]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[fi]=https://social.msdn.microsoft.com/Search/fi-FI?query=\\{@}
 Query[fr]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[gl]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[hi]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[hu]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[ia]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[is]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
@@ -113,6 +115,7 @@ Query[ja]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[kk]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[ko]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[lt]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[nb]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[nl]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[nn]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[pa]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}

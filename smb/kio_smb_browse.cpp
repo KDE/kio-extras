@@ -65,7 +65,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
    {
       if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
       {
-         kDebug(KIO_SMB)<<"SMBSlave::browse_stat_path mode: "<<st.st_mode;
+         kDebug(KIO_SMB) << "mode: "<< st.st_mode;
          warning(i18n("%1:\n"
                       "Unknown file type, neither directory or file.", url.prettyUrl()));
          return false;
@@ -109,7 +109,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
        } else if (cacheStatErr == ENOENT || cacheStatErr == ENOTDIR) {
            warning(i18n("File does not exist: %1", url.url()));
        }
-       kDebug(KIO_SMB) << "SMBSlave::browse_stat_path ERROR!!";
+       kDebug(KIO_SMB) << "ERROR!!";
        return false;
    }
 
@@ -119,7 +119,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
 //===========================================================================
 void SMBSlave::stat( const KUrl& kurl )
 {
-    kDebug(KIO_SMB) << "SMBSlave::stat on "<< kurl;
+    kDebug(KIO_SMB) << kurl;
     // make a valid URL
     KUrl url = checkURL(kurl);
 
@@ -142,7 +142,6 @@ void SMBSlave::stat( const KUrl& kurl )
     {
     case SMBURLTYPE_UNKNOWN:
         error(ERR_MALFORMED_URL,m_current_url.prettyUrl());
-        finished();
         return;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
@@ -154,12 +153,12 @@ void SMBSlave::stat( const KUrl& kurl )
         if (browse_stat_path(m_current_url, udsentry, false))
             break;
         else {
-            kDebug(KIO_SMB) << "SMBSlave::stat ERROR!!";
+            kDebug(KIO_SMB) << "ERROR!!";
             finished();
             return;
         }
     default:
-        kDebug(KIO_SMB) << "SMBSlave::stat UNKNOWN " << url;
+        kDebug(KIO_SMB) << "UNKNOWN " << url;
         finished();
         return;
     }
@@ -292,7 +291,7 @@ void SMBSlave::reportError(const SMBUrl &url, const int &errNum)
 //===========================================================================
 void SMBSlave::listDir( const KUrl& kurl )
 {
-   kDebug(KIO_SMB) << "SMBSlave::listDir on " << kurl;
+   kDebug(KIO_SMB) << kurl;
    int errNum = 0;
 
    // check (correct) URL
@@ -318,7 +317,7 @@ void SMBSlave::listDir( const KUrl& kurl )
       errNum = errno;
    }
 
-   kDebug(KIO_SMB) << "SMBSlave::listDir open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd;
+   kDebug(KIO_SMB) << "open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd;
    if(dirfd >= 0)
    {
        do {
@@ -329,10 +328,10 @@ void SMBSlave::listDir( const KUrl& kurl )
 
            // Set name
            QString udsName;
-           QString dirpName = QString::fromUtf8( dirp->name );
+           const QString dirpName = QString::fromUtf8( dirp->name );
            // We cannot trust dirp->commentlen has it might be with or without the NUL character
            // See KDE bug #111430 and Samba bug #3030
-           QString comment = QString::fromUtf8( dirp->comment );
+           const QString comment = QString::fromUtf8( dirp->comment );
            if ( dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_WORKGROUP ) {
                udsName = dirpName.toLower();
                udsName[0] = dirpName.at( 0 ).toUpper();
@@ -345,10 +344,15 @@ void SMBSlave::listDir( const KUrl& kurl )
 
            udsentry.insert( KIO::UDSEntry::UDS_NAME, udsName );
 
-           if (udsName.toUpper()=="IPC$" || udsName=="." || udsName == ".." ||
-               udsName.toUpper() == "ADMIN$" || udsName.toLower() == "printer$" || udsName.toLower() == "print$" )
+           // Mark all administrative shares, e.g ADMIN$, as hidden. #197903
+           if (dirpName.endsWith(QLatin1Char('$'))) {
+              //kDebug(KIO_SMB) << dirpName << "marked as hidden";
+              udsentry.insert(KIO::UDSEntry::UDS_HIDDEN, 1);
+           }
+
+           if (udsName == "." || udsName == "..")
            {
-//            fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
+               // fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                // do nothing and hide the hidden shares
            }
            else if(dirp->smbc_type == SMBC_FILE)
@@ -394,7 +398,7 @@ void SMBSlave::listDir( const KUrl& kurl )
 
                // Call base class to list entry
                listEntry(udsentry, false);
-            }
+           }
            else if(dirp->smbc_type == SMBC_WORKGROUP)
            {
                // Set type
@@ -415,7 +419,7 @@ void SMBSlave::listDir( const KUrl& kurl )
            }
            else
            {
-               kDebug(KIO_SMB) << "SMBSlave::listDir SMBC_UNKNOWN :" << dirpName;
+               kDebug(KIO_SMB) << "SMBC_UNKNOWN :" << dirpName;
                // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
                //       SMBC_LINK, SMBC_COMMS_SHARE
                //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);

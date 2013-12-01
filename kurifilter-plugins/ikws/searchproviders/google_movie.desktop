@@ -97,6 +97,7 @@ Query=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bg]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[bs]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ca]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[ca@valencia]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[cs]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[da]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[de]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
@@ -106,6 +107,7 @@ Query[eu]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fi]=http://www.google.fi/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[fr]=http://www.google.fr/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[gl]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[hi]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hr]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[hu]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[ia]=http://www.google.com/search?q=\\{@}&ie=UTF-8&oe=UTF-8

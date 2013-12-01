@@ -75,6 +75,7 @@ Query=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bg]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[bs]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ca]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[ca@valencia]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[cs]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[da]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[de]=https://www.facebook.com/search/?q=\\{@}&init=quick
@@ -84,6 +85,7 @@ Query[eu]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[fi]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[fr]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[gl]=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[hi]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[hu]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[ia]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[is]=https://www.facebook.com/search/?q=\\{@}&init=quick

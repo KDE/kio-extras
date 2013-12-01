@@ -4,6 +4,7 @@ Name=Google Shopping
 Name[bg]=Пазаруване в Google
 Name[bs]=Google‑shopping
 Name[ca]=Google Shopping
+Name[ca@valencia]=Google Shopping
 Name[cs]=Google Shopping
 Name[da]=Google Shopping
 Name[de]=Google-Shopping
@@ -13,6 +14,7 @@ Name[eu]=Google erosketak
 Name[fi]=Google Shopping
 Name[fr]=Boutique « Google »
 Name[gl]=Compras en Google
+Name[hi]=गूगल खरीदारी
 Name[hu]=Google vásárlás
 Name[ia]=Google Shopping
 Name[is]=Google verslun
@@ -21,6 +23,7 @@ Name[ja]=Google ショッピング
 Name[kk]=Google Shopping
 Name[ko]=Google 쇼핑
 Name[lt]=Yahoo parduotuvė
+Name[nb]=Google Shopping
 Name[nl]=Google Shopping
 Name[nn]=Google Shopping
 Name[pa]=ਗੂਗਲ ਖਰੀਦਦਾਰੀ
@@ -49,6 +52,7 @@ Query=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[bg]=https://www.google.com/search?hl=bg&tbm=shop&q=\\{@}
 Query[bs]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[ca]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[ca@valencia]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[cs]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[da]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[de]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
@@ -58,6 +62,7 @@ Query[eu]=https://www.google.com/search?hl=eu&tbm=shop&q=\\{@}
 Query[fi]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[fr]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[gl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[hi]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[hu]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[ia]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[is]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
@@ -66,6 +71,7 @@ Query[ja]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[kk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[ko]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[lt]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[nb]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[nl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[nn]=https://www.google.com/search?hl=nn&hl=en&tbm=shop&q=\\{@}
 Query[pa]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}

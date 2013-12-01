@@ -75,7 +75,7 @@ extern "C"
 //---------------------------
 #include "kio_smb_internal.h"
 
-#define MAX_XFER_BUF_SIZE           16348
+#define MAX_XFER_BUF_SIZE           65534
 #define KIO_SMB                     7106
 
 using namespace KIO;
@@ -259,6 +259,10 @@ public:
     virtual void special( const QByteArray & );
 
 private:
+    void smbCopy(const KUrl& src, const KUrl &dest, int permissions, KIO::JobFlags flags);
+    void smbCopyGet(const KUrl& src, const KUrl& dest, int permissions, KIO::JobFlags flags);
+    void smbCopyPut(const KUrl& src, const KUrl& dest, int permissions, KIO::JobFlags flags);
+
      /**
      * Used in open(), read(), write(), and close()
      * FIXME Placing these in the private section above causes m_openUrl = kurl

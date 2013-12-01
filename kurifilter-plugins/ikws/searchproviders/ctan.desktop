@@ -95,6 +95,7 @@ Query=http://ctan.org/search?phrase=\\{@}
 Query[bg]=http://ctan.org/search?phrase=\\{@}
 Query[bs]=http://ctan.org/search?phrase=\\{@}
 Query[ca]=http://ctan.org/search?phrase=\\{@}
+Query[ca@valencia]=http://ctan.org/search?phrase=\\{@}
 Query[cs]=http://ctan.org/search?phrase=\\{@}
 Query[da]=http://ctan.org/search?phrase=\\{@}
 Query[de]=http://ctan.org/search?phrase=\\{@}
@@ -104,6 +105,7 @@ Query[eu]=http://ctan.org/search?phrase=\\{@}
 Query[fi]=http://ctan.org/search?phrase=\\{@}
 Query[fr]=http://ctan.org/search?phrase=\\{@}
 Query[gl]=http://ctan.org/search?phrase=\\{@}
+Query[hi]=http://ctan.org/search?phrase=\\{@}
 Query[hu]=http://ctan.org/search?phrase=\\{@}
 Query[ia]=http://ctan.org/search?phrase=\\{@}
 Query[is]=http://ctan.org/search?phrase=\\{@}
@@ -112,6 +114,7 @@ Query[ja]=http://ctan.org/search?phrase=\\{@}
 Query[kk]=http://ctan.org/search?phrase=\\{@}
 Query[ko]=http://ctan.org/search?phrase=\\{@}
 Query[lt]=http://ctan.org/search?phrase=\\{@}
+Query[nb]=http://ctan.org/search?phrase=\\{@}
 Query[nl]=http://ctan.org/search?phrase=\\{@}
 Query[nn]=http://ctan.org/search?phrase=\\{@}
 Query[pa]=http://ctan.org/search?phrase=\\{@}

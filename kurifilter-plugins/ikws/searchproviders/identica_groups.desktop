@@ -75,6 +75,7 @@ Query=https://identi.ca/search/group?q=\\{@}
 Query[bg]=https://identi.ca/search/group?q=\\{@}
 Query[bs]=https://identi.ca/search/group?q=\\{@}
 Query[ca]=https://identi.ca/search/group?q=\\{@}
+Query[ca@valencia]=https://identi.ca/search/group?q=\\{@}
 Query[cs]=https://identi.ca/search/group?q=\\{@}
 Query[da]=https://identi.ca/search/group?q=\\{@}
 Query[de]=https://identi.ca/search/group?q=\\{@}
@@ -84,6 +85,7 @@ Query[eu]=https://identi.ca/search/group?q=\\{@}
 Query[fi]=https://identi.ca/search/group?q=\\{@}
 Query[fr]=https://identi.ca/search/group?q=\\{@}
 Query[gl]=https://identi.ca/search/group?q=\\{@}
+Query[hi]=https://identi.ca/search/group?q=\\{@}
 Query[hu]=https://identi.ca/search/group?q=\\{@}
 Query[ia]=https://identi.ca/search/group?q=\\{@}
 Query[is]=https://identi.ca/search/group?q=\\{@}

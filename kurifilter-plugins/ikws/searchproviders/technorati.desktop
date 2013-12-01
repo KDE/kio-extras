@@ -96,6 +96,7 @@ Query=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[bg]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[bs]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[ca]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[ca@valencia]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[cs]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[da]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[de]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
@@ -105,6 +106,7 @@ Query[eu]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[fi]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[fr]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[gl]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[hi]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[hu]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[ia]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[is]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
@@ -113,6 +115,7 @@ Query[ja]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[kk]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[ko]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[lt]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[nb]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[nl]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[nn]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[pa]=http://technorati.com/search?return=sites&authority=high&q=\\{@}

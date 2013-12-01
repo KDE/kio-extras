@@ -79,7 +79,7 @@ Name[ta]=விக்சனரி - கட்டற்ற அகராதி
 Name[te]=విక్షనరి - స్వేఛ్ఛా పదకోశము
 Name[tg]=Луғати озоди Wiktionary
 Name[th]=วิกิชันนารี - พจนานุุกรมเสรี
-Name[tr]=Wiktionary - Ücretsiz Ansiklopedi
+Name[tr]=VikiSözlük - Özgür Sözlük
 Name[ug]=Wiktionary - ھەقسىز لۇغەت
 Name[uk]=Вікісловник — вільний словник
 Name[uz]=Wiktionary - Erkin lugʻat
@@ -95,6 +95,7 @@ Query=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=https://bg.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bs]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca]=https://ca.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ca@valencia]=https://ca.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[cs]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[da]=https://da.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
@@ -104,6 +105,7 @@ Query[eu]=http://eu.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fi]=https://fi.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=https://fr.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[gl]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hi]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hu]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ia]=http://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go

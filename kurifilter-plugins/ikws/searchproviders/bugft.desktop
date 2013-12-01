@@ -95,6 +95,7 @@ Query=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[bg]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[bs]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ca]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[ca@valencia]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[cs]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[da]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[de]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
@@ -104,6 +105,7 @@ Query[eu]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[fi]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[fr]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[gl]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[hi]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[hu]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[ia]=http://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[is]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}

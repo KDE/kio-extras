@@ -74,6 +74,7 @@ Query=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[bg]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[bs]=httpa://duckduckgo.com/?q=\\{@}&t=kde
 Query[ca]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[ca@valencia]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[cs]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[da]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[de]=https://duckduckgo.com/?q=\\{@}&t=kde
@@ -83,6 +84,7 @@ Query[eu]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[fi]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[fr]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[gl]=https://duckduckgo.com/?q=\\{@}&t=kde
+Query[hi]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[hu]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[ia]=https://duckduckgo.com/?q=\\{@}&t=kde
 Query[is]=https://duckduckgo.com/?q=\\{@}&t=kde

@@ -185,13 +185,22 @@ install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 # ########### next target ###############
 # 
-# set ( windowsexethumbnail_SRCS windowsexecreator.cpp icoutils.cpp)
+#set ( windowsexethumbnail_SRCS windowsexecreator.cpp icoutils_common.cpp)
+#set ( windowsimagethumbnail_SRCS windowsimagecreator.cpp icoutils_common.cpp)
+#
+#if(WIN32)
+#    set ( windowsexethumbnail_SRCS ${windowsexethumbnail_SRCS} icoutils_win.cpp )
+#    set ( windowsimagethumbnail_SRCS ${windowsimagethumbnail_SRCS} icoutils_win.cpp )
+#else()
+#    set ( windowsexethumbnail_SRCS ${windowsexethumbnail_SRCS} icoutils_wrestool.cpp )
+#    set ( windowsimagethumbnail_SRCS ${windowsimagethumbnail_SRCS} icoutils_wrestool.cpp )
+#endif()
+
 # kde4_add_plugin ( windowsexethumbnail ${windowsexethumbnail_SRCS} )
 # target_link_libraries ( windowsexethumbnail ${KIO_LIBRARIES} )
 # install ( TARGETS windowsexethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
 # install ( FILES windowsexethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 # 
-# set ( windowsimagethumbnail_SRCS windowsimagecreator.cpp icoutils.cpp)
 # kde4_add_plugin ( windowsimagethumbnail ${windowsimagethumbnail_SRCS} )
 # target_link_libraries ( windowsimagethumbnail ${KIO_LIBRARIES} )
 # install ( TARGETS windowsimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )

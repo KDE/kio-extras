@@ -97,6 +97,7 @@ Query=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bg]=https://bg.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[bs]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ca]=https://ca.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[ca@valencia]=https://ca.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[cs]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[da]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
@@ -106,6 +107,7 @@ Query[eu]=http://eu.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fi]=https://fi.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=https://fr.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[gl]=http://gl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[hi]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hu]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ia]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

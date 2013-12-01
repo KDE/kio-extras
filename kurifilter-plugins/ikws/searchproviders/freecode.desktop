@@ -4,6 +4,7 @@ Name=Freecode
 Name[bg]=Freecode
 Name[bs]=Freecode
 Name[ca]=Freecode
+Name[ca@valencia]=Freecode
 Name[cs]=Freecode
 Name[da]=Freecode
 Name[de]=Freecode
@@ -13,6 +14,7 @@ Name[eu]=Freecode
 Name[fi]=Freecode
 Name[fr]=Freecode
 Name[gl]=Freecode
+Name[hi]=Freecode
 Name[hu]=Freecode
 Name[ia]=Freecode
 Name[is]=Freecode
@@ -21,6 +23,7 @@ Name[ja]=Freecode
 Name[kk]=Freecode
 Name[ko]=Freecode
 Name[lt]=Freecode
+Name[nb]=Freecode
 Name[nl]=Freecode
 Name[nn]=Freecode
 Name[pa]=ਫਰੀਕੋਡ
@@ -49,6 +52,7 @@ Query=http://freecode.com/search?q=\\{@}
 Query[bg]=http://freecode.com/search?q=\\{@}
 Query[bs]=http://freecode.com/search?q=\\{@}
 Query[ca]=http://freecode.com/search?q=\\{@}
+Query[ca@valencia]=http://freecode.com/search?q=\\{@}
 Query[cs]=http://freecode.com/search?q=\\{@}
 Query[da]=http://freecode.com/search?q=\\{@}
 Query[de]=http://freecode.com/search?q=\\{@}
@@ -58,6 +62,7 @@ Query[eu]=http://freecode.com/search?q=\\{@}
 Query[fi]=http://freecode.com/search?q=\\{@}
 Query[fr]=http://freecode.com/search?q=\\{@}
 Query[gl]=http://freecode.com/search?q=\\{@}
+Query[hi]=http://freecode.com/search?q=\\{@}
 Query[hu]=http://freecode.com/search?q=\\{@}
 Query[ia]=http://freecode.com/search?q=\\{@}
 Query[is]=http://freecode.com/search?q=\\{@}
@@ -66,6 +71,7 @@ Query[ja]=http://freecode.com/search?q=\\{@}
 Query[kk]=http://freecode.com/search?q=\\{@}
 Query[ko]=http://freecode.com/search?q=\\{@}
 Query[lt]=http://freecode.com/search?q=\\{@}
+Query[nb]=http://freecode.com/search?q=\\{@}
 Query[nl]=http://freecode.com/search?q=\\{@}
 Query[nn]=http://freecode.com/search?q=\\{@}
 Query[pa]=http://freecode.com/search?q=\\{@}

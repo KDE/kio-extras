@@ -96,6 +96,7 @@ Query=http://www.rae.es/drae/?val=\\{@}
 Query[bg]=http://www.rae.es/drae/?val=\\{@}
 Query[bs]=http://www.rae.es/drae/?val=\\{@}
 Query[ca]=http://www.rae.es/drae/?val=\\{@}
+Query[ca@valencia]=http://www.rae.es/drae/?val=\\{@}
 Query[cs]=http://www.rae.es/drae/?val=\\{@}
 Query[da]=http://www.rae.es/drae/?val=\\{@}
 Query[de]=http://www.rae.es/drae/?val=\\{@}
@@ -104,6 +105,8 @@ Query[es]=http://www.rae.es/drae/?val=\\{@}
 Query[eu]=http://www.rae.es/drae/?val=\\{@}
 Query[fi]=http://www.rae.es/drae/?val=\\{@}
 Query[fr]=http://www.rae.es/drae/?val=\\{@}
+Query[gl]=http://www.rae.es/drae/?val=\\{@}
+Query[hi]=http://www.rae.es/drae/?val=\\{@}
 Query[hu]=http://www.rae.es/drae/?val=\\{@}
 Query[ia]=http://www.rae.es/drae/?val=\\{@}
 Query[it]=http://www.rae.es/drae/?val=\\{@}
@@ -111,11 +114,14 @@ Query[ja]=http://www.rae.es/drae/?val=\\{@}
 Query[kk]=http://www.rae.es/drae/?val=\\{@}
 Query[ko]=http://www.rae.es/drae/?val=\\{@}
 Query[lt]=http://www.rae.es/drae/?val=\\{@}
+Query[nb]=http://www.rae.es/drae/?val=\\{@}
 Query[nl]=http://www.rae.es/drae/?val=\\{@}
 Query[nn]=http://www.rae.es/drae/?val=\\{@}
 Query[pa]=http://www.rae.es/drae/?val=\\{@}
+Query[pl]=http://www.rae.es/drae/?val=\\{@}
 Query[pt]=http://www.rae.es/drae/?val=\\{@}
 Query[pt_BR]=http://www.rae.es/drae/?val=\\{@}
+Query[ro]=http://www.rae.es/drae/?val=\\{@}
 Query[ru]=http://www.rae.es/drae/?val=\\{@}
 Query[sk]=http://www.rae.es/drae/?val=\\{@}
 Query[sl]=http://www.rae.es/drae/?val=\\{@}

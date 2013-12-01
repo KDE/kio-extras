@@ -98,6 +98,7 @@ Query=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[bg]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[bs]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[ca]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
+Query[ca@valencia]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[cs]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[da]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[de]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
@@ -107,6 +108,7 @@ Query[eu]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[fi]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[fr]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[gl]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
+Query[hi]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[hu]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[ia]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[is]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
@@ -115,6 +117,7 @@ Query[ja]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[kk]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[ko]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[lt]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
+Query[nb]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[nl]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[nn]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[pa]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}

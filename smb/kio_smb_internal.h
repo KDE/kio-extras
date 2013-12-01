@@ -61,6 +61,7 @@ class SMBUrl : public KUrl
 
 public:
     SMBUrl();
+    SMBUrl(const SMBUrl&);
     SMBUrl(const KUrl & kurl);
 
     /**
@@ -83,6 +84,7 @@ public:
     void setPass( const QString& _txt ) { KUrl::setPass(_txt); updateCache(); }
     void setUser( const QString& _txt ) { KUrl::setUser(_txt); updateCache(); }
     void setHost( const QString& _txt ) { KUrl::setHost(_txt); updateCache(); }
+    void setFileName(const QString& _txt) { KUrl::setFileName(_txt); updateCache(); }
 
     /**
      * Returns the workgroup if it given in url
@@ -98,6 +100,11 @@ public:
      * Return a URL that is suitable for libsmbclient
      */
     QByteArray toSmbcUrl() const { return m_surl; }
+
+    /**
+     * Returns the partial URL.
+     */
+    SMBUrl partUrl() const;
 
 private:
     /**

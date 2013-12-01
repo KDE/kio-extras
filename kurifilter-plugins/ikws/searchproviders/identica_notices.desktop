@@ -75,6 +75,7 @@ Query=https://identi.ca/search/notice?q=\\{@}
 Query[bg]=https://identi.ca/search/notice?q=\\{@}
 Query[bs]=https://identi.ca/search/notice?q=\\{@}
 Query[ca]=https://identi.ca/search/notice?q=\\{@}
+Query[ca@valencia]=https://identi.ca/search/notice?q=\\{@}
 Query[cs]=https://identi.ca/search/notice?q=\\{@}
 Query[da]=https://identi.ca/search/notice?q=\\{@}
 Query[de]=https://identi.ca/search/notice?q=\\{@}
@@ -84,6 +85,7 @@ Query[eu]=https://identi.ca/search/notice?q=\\{@}
 Query[fi]=https://identi.ca/search/notice?q=\\{@}
 Query[fr]=https://identi.ca/search/notice?q=\\{@}
 Query[gl]=https://identi.ca/search/notice?q=\\{@}
+Query[hi]=https://identi.ca/search/notice?q=\\{@}
 Query[hu]=https://identi.ca/search/notice?q=\\{@}
 Query[ia]=https://identi.ca/search/notice?q=\\{@}
 Query[is]=https://identi.ca/search/notice?q=\\{@}

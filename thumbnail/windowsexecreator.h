@@ -1,7 +1,7 @@
 /*
     windowsexecreator.h - Thumbnail Creator for Microsoft Windows Executables
 
-    Copyright (c) 2009 by Pali Rohár <pali.rohar@gmail.com>
+    Copyright (c) 2009-2010 by Pali Rohár <pali.rohar@gmail.com>
 
     *************************************************************************
     *                                                                       *
@@ -21,10 +21,9 @@
 
 class WindowsExeCreator : public ThumbCreator
 {
-	public:
-		WindowsExeCreator() {}
-		bool create(const QString &path, int width, int height, QImage &img);
+public:
+    WindowsExeCreator() {}
+    bool create(const QString &path, int width, int height, QImage &img);
 };
 
 #endif // WINDOWS_EXE_CREATOR_H
-

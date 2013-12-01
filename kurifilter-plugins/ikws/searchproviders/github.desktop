@@ -75,6 +75,7 @@ Query=https://github.com/search?q=\\{@}&x=0&y=0
 Query[bg]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[bs]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[ca]=https://github.com/search?q=\\{@}&x=0&y=0
+Query[ca@valencia]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[cs]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[da]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[de]=https://github.com/search?q=\\{@}&x=0&y=0
@@ -84,6 +85,7 @@ Query[eu]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[fi]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[fr]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[gl]=https://github.com/search?q=\\{@}&x=0&y=0
+Query[hi]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[hu]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[ia]=http://github.com/search?q=\\{@}&x=0&y=0
 Query[is]=https://github.com/search?q=\\{@}&x=0&y=0

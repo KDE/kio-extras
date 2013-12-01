@@ -77,6 +77,7 @@ Query=https://www.wolframalpha.com/input/?i=\\{@}
 Query[bg]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[bs]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[ca]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[ca@valencia]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[cs]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[da]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[de]=https://www.wolframalpha.com/input/?i=\\{@}
@@ -86,6 +87,7 @@ Query[eu]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[fi]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[fr]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[gl]=https://www.wolframalpha.com/input/?i=\\{@}
+Query[hi]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[hu]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[ia]=http://www.wolframalpha.com/input/?i=\\{@}
 Query[is]=https://www.wolframalpha.com/input/?i=\\{@}

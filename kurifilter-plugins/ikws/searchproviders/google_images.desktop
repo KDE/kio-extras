@@ -99,6 +99,7 @@ Query=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[bg]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[bs]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[ca]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
+Query[ca@valencia]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[cs]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[da]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[de]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
@@ -108,6 +109,7 @@ Query[eu]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[fi]=https://www.google.fi/search?site=imghp&tbm=isch&q=\\{@}
 Query[fr]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[gl]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
+Query[hi]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[hu]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[ia]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[is]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
@@ -116,6 +118,7 @@ Query[ja]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[kk]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[ko]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[lt]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
+Query[nb]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[nl]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[nn]=https://www.google.com/search?hl=nn&site=imghp&tbm=isch&q=\\{@}
 Query[pa]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
