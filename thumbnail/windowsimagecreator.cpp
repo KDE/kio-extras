@@ -18,31 +18,20 @@
 
 #include <QString>
 #include <QImage>
-#include <QTemporaryFile>
 
 #include <kdemacros.h>
 
 extern "C"
 {
-	KDE_EXPORT ThumbCreator *new_creator() {
-		return new WindowsImageCreator;
-	}
+    KDE_EXPORT ThumbCreator *new_creator()
+    {
+        return new WindowsImageCreator;
+    }
 }
 
-bool WindowsImageCreator::create(const QString &path, int width, int height, QImage &img) {
+bool WindowsImageCreator::create(const QString &path, int width, int height, QImage &img)
+{
 
-	QTemporaryFile pngTempFile;
-
-	if ( ! pngTempFile.open() )
-		return false;
-
-	if ( ! IcoUtils::convertIcoToPng(path, pngTempFile.fileName(), width, height) )
-		return false;
-
-	if ( ! img.load(pngTempFile.fileName()) )
-		return false;
-
-	return true;
+    return IcoUtils::loadIcoImage(path, img, width, height);
 
 }
-
