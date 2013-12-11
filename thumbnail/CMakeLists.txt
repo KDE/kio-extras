@@ -36,15 +36,15 @@ kde4_add_plugin(kio_thumbnail ${kio_thumbnail_PART_SRCS})
 #target_link_libraries(kio_thumbnail ${KIO_LIBRARIES})
 target_link_libraries(kio_thumbnail
 	Qt5::Script
-	KF5::KCoreAddons
+	KF5::CoreAddons
 	KF5::KIOCore
 	KF5::KIOWidgets
 	KF5::Solid
-	KF5::KWindowSystem
+	KF5::WindowSystem
 	KF5::Plasma
-	KF5::KIconThemes
-	KF5::KDeclarative
- 	KF5::KI18n
+	KF5::IconThemes
+	KF5::Declarative
+ 	KF5::I18n
 	KF5::KDE4Support
 )
 
@@ -58,15 +58,15 @@ kde4_add_plugin(imagethumbnail ${imagethumbnail_PART_SRCS})
 
 target_link_libraries(imagethumbnail
 	Qt5::Script
-	KF5::KCoreAddons
+	KF5::CoreAddons
 	KF5::KIOCore
 	KF5::KIOWidgets
-	KF5::KWindowSystem
+	KF5::WindowSystem
 	KF5::Solid
-	KF5::KDeclarative
+	KF5::Declarative
  	KF5::Plasma
  	KF5::KDE4Support
- 	KF5::KI18n
+ 	KF5::I18n
 )
 
 install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
@@ -87,9 +87,9 @@ target_link_libraries(jpegthumbnail
 	KF5::KIOCore
 	KF5::KIOWidgets
 	${JPEG_LIBRARIES}
-	KF5::KI18n 
-	KF5::KConfigCore 
-	KF5::KConfigGui
+	KF5::I18n 
+	KF5::ConfigCore 
+	KF5::ConfigGui
 )
 
 
