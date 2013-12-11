@@ -47,7 +47,7 @@ static void createUDSEntryBrowse(const QString &name, KIO::UDSEntry &entry)
     entry.insert( KIO::UDSEntry::UDS_MIME_TYPE, "inode/directory" );
 }
 
-static DWORD checkAuth(const KUrl &url)
+static DWORD checkAuth(const QUrl &url)
 {
     NETRESOURCE nr;
     HANDLE hEnum;
@@ -72,7 +72,7 @@ extern "C" {
         KComponentData componentData("kio_smb");
         if( argc != 4 )
         {
-            kDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2"
+            qCDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2"
                       << endl;
             return -1;
         }
@@ -94,7 +94,7 @@ SMBSlave::~SMBSlave()
 {
 }
 
-bool SMBSlave::rewriteUrl(const KUrl &url, KUrl &newUrl)
+bool SMBSlave::rewriteUrl(const QUrl &url, QUrl &newUrl)
 {
     newUrl.setProtocol("file");
     newUrl.setPath("//"+url.host()+url.path());
@@ -153,7 +153,7 @@ void SMBSlave::enumerateResources(LPNETRESOURCE lpnr, bool show_servers)
     dwResult = WNetCloseEnum(hEnum);
 }
 
-void SMBSlave::listDir(const KUrl &url)
+void SMBSlave::listDir(const QUrl &url)
 {
     if (!url.path().isEmpty() && url.path() != "/") {
         return KIO::ForwardingSlaveBase::listDir(url);
@@ -176,7 +176,7 @@ void SMBSlave::listDir(const KUrl &url)
     finished();
 }
 
-void SMBSlave::stat(const KUrl &url)
+void SMBSlave::stat(const QUrl &url)
 {
     DWORD res = checkAuth(url);
 

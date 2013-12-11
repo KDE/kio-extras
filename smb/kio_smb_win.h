@@ -39,9 +39,9 @@ class SMBSlave : public KIO::ForwardingSlaveBase
     public:
         SMBSlave(const QByteArray &pool, const QByteArray &app);
         ~SMBSlave();
-        bool rewriteUrl(const KUrl &url, KUrl &newUrl);
-        void listDir(const KUrl &url);
-        void stat(const KUrl &url);
+        bool rewriteUrl(const QUrl &url, QUrl &newUrl);
+        void listDir(const QUrl &url);
+        void stat(const QUrl &url);
     private:
         void enumerateResources(LPNETRESOURCE lpnr, bool show_servers = false);
 

@@ -34,6 +34,7 @@
 
 #include <kconfig.h>
 #include <kglobal.h>
+#include <QDir> // for QDir::cleanPath
 
 
 //===========================================================================
@@ -47,15 +48,15 @@ SMBUrl::SMBUrl()
 }
 
 //-----------------------------------------------------------------------
-SMBUrl::SMBUrl(const KUrl& kurl)
-    : KUrl(kurl)
+SMBUrl::SMBUrl(const QUrl& kurl)
+    : QUrl(kurl)
   //-----------------------------------------------------------------------
 {
     updateCache();
 }
 
 SMBUrl::SMBUrl(const SMBUrl& other)
-    : KUrl(other),
+    : QUrl(other),
       m_surl(other.m_surl),
       m_type(other.m_type)
 {
@@ -64,15 +65,18 @@ SMBUrl::SMBUrl(const SMBUrl& other)
 //-----------------------------------------------------------------------
 void SMBUrl::addPath(const QString &filedir)
 {
-    KUrl::addPath(filedir);
+    if(path().length() > 0 && path().at(path().length() - 1) != QLatin1Char('/')) {
+        QUrl::setPath(path() + QLatin1Char('/') + filedir);
+    } else {
+        QUrl::setPath(path() + filedir);
+    }
     updateCache();
 }
 
 //-----------------------------------------------------------------------
 bool SMBUrl::cd(const QString &filedir)
 {
-    if (!KUrl::cd(filedir))
-        return false;
+    setUrl(filedir);
     updateCache();
     return true;
 }
@@ -81,15 +85,15 @@ bool SMBUrl::cd(const QString &filedir)
 void SMBUrl::updateCache()
   //-----------------------------------------------------------------------
 {
-    cleanPath();
+    QUrl::setPath(QDir::cleanPath(path()));
 
     // SMB URLs are UTF-8 encoded
-    kDebug(KIO_SMB) << "updateCache " << KUrl::path();
+    qCDebug(KIO_SMB) << "updateCache " << QUrl::path();
 
-    if ( KUrl::url() == "smb:/" )
+    if ( QUrl::url() == "smb:/" )
       m_surl = "smb://";
     else
-      m_surl = KUrl::url( RemoveTrailingSlash ).toUtf8();
+      m_surl = toString(QUrl::PrettyDecoded).toUtf8();
     
     m_type = SMBURLTYPE_UNKNOWN;
     // update m_type
@@ -108,13 +112,13 @@ SMBUrlType SMBUrl::getType() const
     if(m_type != SMBURLTYPE_UNKNOWN)
         return m_type;
 
-    if (protocol() != "smb")
+    if (scheme() != "smb")
     {
         m_type = SMBURLTYPE_UNKNOWN;
         return m_type;
     }
 
-    if (path(KUrl::AddTrailingSlash) == "/")
+    if (path(QUrl::FullyDecoded) == "/")
     {
         if (host().isEmpty())
             m_type = SMBURLTYPE_ENTIRE_NETWORK;

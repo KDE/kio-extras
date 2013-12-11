@@ -28,7 +28,7 @@
 
 void SMBSlave::special( const QByteArray & data)
 {
-   kDebug(KIO_SMB)<<"Smb::special()";
+   qCDebug(KIO_SMB)<<"Smb::special()";
    int tmp;
    QDataStream stream(data);
    stream >> tmp;
@@ -47,21 +47,21 @@ void SMBSlave::special( const QByteArray & data)
          {
             host=sl.at(0).mid(2);
             share=sl.at(1);
-            kDebug(KIO_SMB)<<"special() host -"<< host <<"- share -" << share <<"-";
+            qCDebug(KIO_SMB)<<"special() host -"<< host <<"- share -" << share <<"-";
          }
 
          remotePath.replace('\\', '/');  // smbmounterplugin sends \\host/share
 
-         kDebug(KIO_SMB) << "mounting: " << remotePath.toLocal8Bit() << " to " << mountPoint.toLocal8Bit();
+         qCDebug(KIO_SMB) << "mounting: " << remotePath.toLocal8Bit() << " to " << mountPoint.toLocal8Bit();
 
          if (tmp==3) {
-             if (!KStandardDirs::makeDir(mountPoint)) {
+             if (!QDir().mkpath(mountPoint)) {
                  error(KIO::ERR_COULD_NOT_MKDIR, mountPoint);
                  return;
              }
          }
 
-         SMBUrl smburl(KUrl("smb:///"));
+         SMBUrl smburl(QUrl("smb:///"));
          smburl.setHost(host);
          smburl.setPath('/' + share);
 
@@ -80,18 +80,18 @@ void SMBSlave::special( const QByteArray & data)
 
          QString options;
 
-         if ( smburl.user().isEmpty() )
+         if ( smburl.userName().isEmpty() )
          {
            user = "guest";
            options = "guest";
          }
          else
          {
-           options = "username=" + smburl.user();
-           user = smburl.user();
+           options = "username=" + smburl.userName();
+           user = smburl.userName();
 
-           if ( ! smburl.pass().isEmpty() )
-             options += ",password=" + smburl.pass();
+           if ( ! smburl.password().isEmpty() )
+             options += ",password=" + smburl.password();
          }
 
          // TODO: check why the control center uses encodings with a blank char, e.g. "cp 1250"
@@ -113,7 +113,7 @@ void SMBSlave::special( const QByteArray & data)
          QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());
          QString mystderr = QString::fromLocal8Bit(proc.readAllStandardError());
 
-         kDebug(KIO_SMB) << "mount exit " << proc.exitCode()
+         qCDebug(KIO_SMB) << "mount exit " << proc.exitCode()
                           << "stdout:" << mybuf << endl << "stderr:" << mystderr << endl;
 
          if (proc.exitCode() != 0)
@@ -149,7 +149,7 @@ void SMBSlave::special( const QByteArray & data)
          QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());
          QString mystderr = QString::fromLocal8Bit(proc.readAllStandardError());
 
-         kDebug(KIO_SMB) << "smbumount exit " << proc.exitCode()
+         qCDebug(KIO_SMB) << "smbumount exit " << proc.exitCode()
                           << "stdout:" << mybuf << endl << "stderr:" << mystderr << endl;
 
          if (proc.exitCode() != 0)
@@ -189,5 +189,3 @@ void SMBSlave::special( const QByteArray & data)
    }
    finished();
 }
-
-#include "kio_smb.moc"

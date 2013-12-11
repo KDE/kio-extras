@@ -1,5 +1,8 @@
+INCLUDE(CheckIncludeFile)
+set(CMAKE_AUTOMAKE ON)
+
 if(NOT WIN32)
-check_include_files(utime.h HAVE_UTIME_H)
+CHECK_INCLUDE_FILE(utime.h HAVE_UTIME_H)
 
 configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)
 
@@ -15,17 +18,17 @@ set(kio_smb_PART_SRCS
 
 include_directories(${SAMBA_INCLUDE_DIR})
 
-kde4_add_plugin(kio_smb ${kio_smb_PART_SRCS})
+add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
 
 
-target_link_libraries(kio_smb  ${KDE4_KIO_LIBRARY} ${SAMBA_LIBRARIES} )
+target_link_libraries(kio_smb KF5::KIOCore KF5::KI18n ${SAMBA_LIBRARIES} )
 else(NOT WIN32)
 set(kio_smb_PART_SRCS 
    kio_smb_win.cpp)
 
-kde4_add_plugin(kio_smb ${kio_smb_PART_SRCS})
+add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
 
-target_link_libraries(kio_smb  ${KDE4_KIO_LIBRARY} mpr)    
+target_link_libraries(kio_smb KF5::KIOCore KF5::KI18n mpr)    
 endif(NOT WIN32)
 
 install(TARGETS kio_smb  DESTINATION ${PLUGIN_INSTALL_DIR} )

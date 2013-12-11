@@ -41,11 +41,8 @@
 //--------------
 // KDE includes
 //--------------
-#include <kdebug.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
-#include <kurl.h>
-#include <klocale.h>
 
 //-----------------------------
 // Standard C library includes
@@ -60,7 +57,14 @@
 #include <stdio.h>
 #include <errno.h>
 #include <time.h>
+
+//-----------------------------
+// Qt includes
+//-----------------------------
+
 #include <QObject>
+#include <QUrl>
+#include <QLoggingCategory>
 
 //-------------------------------
 // Samba client library includes
@@ -76,7 +80,9 @@ extern "C"
 #include "kio_smb_internal.h"
 
 #define MAX_XFER_BUF_SIZE           65534
-#define KIO_SMB                     7106
+
+// Categorized logger
+Q_DECLARE_LOGGING_CATEGORY(KIO_SMB)
 
 using namespace KIO;
 
@@ -201,10 +207,10 @@ protected:
      *                server   = host to connect
      *                share    = a share of the server (host)
      *                path     = a path of the share
-     * Parameter :    KUrl the url to check
-     * Return :       new KUrl if it is corrected. else the same KUrl
+     * Parameter :    QUrl the url to check
+     * Return :       new QUrl if it is corrected. else the same QUrl
      */
-    KUrl checkURL(const KUrl& kurl) const;
+    QUrl checkURL(const QUrl& kurl) const;
 
     void reportError(const SMBUrl &kurl, const int &errNum);
 
@@ -230,22 +236,22 @@ public:
     virtual ~SMBSlave();
 
     // Functions overwritten in kio_smb_browse.cpp
-    virtual void listDir( const KUrl& url );
-    virtual void stat( const KUrl& url );
+    virtual void listDir( const QUrl& url );
+    virtual void stat( const QUrl& url );
 
     // Functions overwritten in kio_smb_config.cpp
     virtual void reparseConfiguration();
 
     // Functions overwritten in kio_smb_dir.cpp
-    virtual void copy( const KUrl& src, const KUrl &dest, int permissions, KIO::JobFlags flags );
-    virtual void del( const KUrl& kurl, bool isfile);
-    virtual void mkdir( const KUrl& kurl, int permissions );
-    virtual void rename( const KUrl& src, const KUrl& dest, KIO::JobFlags flags );
+    virtual void copy( const QUrl& src, const QUrl &dest, int permissions, KIO::JobFlags flags );
+    virtual void del( const QUrl& kurl, bool isfile);
+    virtual void mkdir( const QUrl& kurl, int permissions );
+    virtual void rename( const QUrl& src, const QUrl& dest, KIO::JobFlags flags );
 
     // Functions overwritten in kio_smb_file.cpp
-    virtual void get( const KUrl& kurl );
-    virtual void put( const KUrl& kurl, int permissions, KIO::JobFlags flags );
-    virtual void open( const KUrl& kurl, QIODevice::OpenMode mode );
+    virtual void get( const QUrl& kurl );
+    virtual void put( const QUrl& kurl, int permissions, KIO::JobFlags flags );
+    virtual void open( const QUrl& kurl, QIODevice::OpenMode mode );
     virtual void read( KIO::filesize_t bytesRequested );
     virtual void write( const QByteArray &fileData );
     virtual void seek( KIO::filesize_t offset );
@@ -259,9 +265,9 @@ public:
     virtual void special( const QByteArray & );
 
 private:
-    void smbCopy(const KUrl& src, const KUrl &dest, int permissions, KIO::JobFlags flags);
-    void smbCopyGet(const KUrl& src, const KUrl& dest, int permissions, KIO::JobFlags flags);
-    void smbCopyPut(const KUrl& src, const KUrl& dest, int permissions, KIO::JobFlags flags);
+    void smbCopy(const QUrl& src, const QUrl &dest, int permissions, KIO::JobFlags flags);
+    void smbCopyGet(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
+    void smbCopyPut(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
 
      /**
      * Used in open(), read(), write(), and close()

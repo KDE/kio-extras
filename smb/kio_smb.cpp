@@ -33,6 +33,8 @@
 #include <kcomponentdata.h>
 #include <QCoreApplication>
 
+Q_LOGGING_CATEGORY(KIO_SMB, "kio_smb")
+
 //===========================================================================
 SMBSlave::SMBSlave(const QByteArray& pool, const QByteArray& app)
     : SlaveBase( "smb", pool, app ), m_openFd(-1)
@@ -54,13 +56,12 @@ SMBSlave::~SMBSlave()
 
 
 //===========================================================================
-int KDE_EXPORT kdemain( int argc, char **argv )
+int Q_DECL_EXPORT kdemain( int argc, char **argv )
 {
     QCoreApplication app(argc, argv);
-    KComponentData componentData("kio_smb");
     if( argc != 4 )
     {
-        kDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2"
+        qCDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2"
                   << endl;
         return -1;
     }

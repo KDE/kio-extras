@@ -59,7 +59,7 @@ endif(NOT WINCE)
 #    endif(HAVE_RPC_RPC_H)
 # endif(NOT WIN32)
 # 
-# if(SAMBA_FOUND OR WIN32 AND NOT WINCE)
-#     add_subdirectory(smb)
-# endif(SAMBA_FOUND OR WIN32 AND NOT WINCE)
+if(SAMBA_FOUND OR WIN32 AND NOT WINCE)
+    add_subdirectory(smb)
+endif(SAMBA_FOUND OR WIN32 AND NOT WINCE)
 

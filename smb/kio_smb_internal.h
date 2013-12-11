@@ -32,8 +32,8 @@
 #define KIO_SMB_INTERNAL_H_INCLUDED
 
 #include <kio/authinfo.h>
-//Added by qt3to4:
 #include <QByteArray>
+#include <QUrl>
 
 /**
  *   Types of a SMBURL :
@@ -51,18 +51,18 @@ enum SMBUrlType {
 //===========================================================================
 /**
  * Class to handle URL's
- * it can convert KUrl to smbUrl
+ * it can convert QUrl to smbUrl
  * and Handle UserInfo
  * it also check the correctness of the URL
  */
-class SMBUrl : public KUrl
+class SMBUrl : public QUrl
 {
 
 
 public:
     SMBUrl();
     SMBUrl(const SMBUrl&);
-    SMBUrl(const KUrl & kurl);
+    SMBUrl(const QUrl & kurl);
 
     /**
      * Appends the specified file and dir to this SMBUrl
@@ -81,10 +81,15 @@ public:
      */
     SMBUrlType getType() const;
 
-    void setPass( const QString& _txt ) { KUrl::setPass(_txt); updateCache(); }
-    void setUser( const QString& _txt ) { KUrl::setUser(_txt); updateCache(); }
-    void setHost( const QString& _txt ) { KUrl::setHost(_txt); updateCache(); }
-    void setFileName(const QString& _txt) { KUrl::setFileName(_txt); updateCache(); }
+    void setPass( const QString& _txt ) { QUrl::setPassword(_txt); updateCache(); }
+    void setUser( const QString& _txt ) { QUrl::setUserName(_txt); updateCache(); }
+    void setHost( const QString& _txt ) { QUrl::setHost(_txt); updateCache(); }
+    void setFileName(const QString& _txt)
+    {
+        QUrl::adjusted(QUrl::RemoveFilename);
+        QUrl::setPath(path() + _txt);
+        updateCache();
+    }
 
     /**
      * Returns the workgroup if it given in url
