@@ -52,15 +52,15 @@ public:
     Private()
         : player(0)
         , audioOutput(0)
-        , videoWidget(0) {
+        , videoWidget(0)
+    {
     }
 
-    MediaObject* player;
-    AudioOutput* audioOutput;
-    VideoWidget* videoWidget;
-    MediaControls* controls;
+    MediaObject *player;
+    AudioOutput *audioOutput;
+    VideoWidget *videoWidget;
+    MediaControls *controls;
 };
-
 
 KFileAudioPreview::KFileAudioPreview(QWidget *parent, const QVariantList &)
     : KPreviewWidgetBase(parent)
@@ -82,7 +82,7 @@ KFileAudioPreview::KFileAudioPreview(QWidget *parent, const QVariantList &)
     m_autoPlay->setChecked(config.readEntry("Autoplay", true));
     connect(m_autoPlay, SIGNAL(toggled(bool)), SLOT(toggleAuto(bool)));
 
-    QVBoxLayout* layout = new QVBoxLayout(this);
+    QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->addWidget(d->videoWidget);
     layout->addWidget(d->controls);
@@ -100,8 +100,9 @@ KFileAudioPreview::~KFileAudioPreview()
 
 void KFileAudioPreview::stateChanged(Phonon::State newstate, Phonon::State oldstate)
 {
-    if (oldstate == Phonon::LoadingState && newstate != Phonon::ErrorState)
+    if (oldstate == Phonon::LoadingState && newstate != Phonon::ErrorState) {
         d->controls->setEnabled(true);
+    }
 }
 
 void KFileAudioPreview::showPreview(const QUrl &url)
@@ -111,16 +112,17 @@ void KFileAudioPreview::showPreview(const QUrl &url)
         d->player = new MediaObject(this);
         Phonon::createPath(d->player, d->videoWidget);
         Phonon::createPath(d->player, d->audioOutput);
-        connect(d->player, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
-                SLOT(stateChanged(Phonon::State, Phonon::State)));
+        connect(d->player, SIGNAL(stateChanged(Phonon::State,Phonon::State)),
+                SLOT(stateChanged(Phonon::State,Phonon::State)));
         d->videoWidget->setVisible(d->player->hasVideo());
         connect(d->player, SIGNAL(hasVideoChanged(bool)), d->videoWidget, SLOT(setVisible(bool)));
         d->controls->setMediaObject(d->player);
     }
     d->player->setCurrentSource(url);
 
-    if (m_autoPlay->isChecked())
+    if (m_autoPlay->isChecked()) {
         d->player->play();
+    }
 }
 
 void KFileAudioPreview::clearPreview()
@@ -134,13 +136,15 @@ void KFileAudioPreview::clearPreview()
 
 void KFileAudioPreview::toggleAuto(bool on)
 {
-    if (!d->player)
+    if (!d->player) {
         return;
+    }
 
-    if (on && d->controls->isEnabled())
+    if (on && d->controls->isEnabled()) {
         d->player->play();
-    else
+    } else {
         d->player->stop();
+    }
 }
 
 #include "kfileaudiopreview.moc"

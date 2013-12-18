@@ -27,7 +27,6 @@
 class QCheckBox;
 class QUrl;
 
-
 /**
  * Audio "preview" widget for the file dialog.
  */

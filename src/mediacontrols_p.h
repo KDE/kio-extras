@@ -42,7 +42,8 @@ protected:
           pauseButton(parent),
           seekSlider(parent),
           volumeSlider(parent),
-          media(0) {
+          media(0)
+    {
         int size = parent->style()->pixelMetric(QStyle::PM_ToolBarIconSize);
         QSize iconSize(size, size);
         playButton.setIconSize(iconSize);
@@ -86,4 +87,3 @@ private:
 } // namespace Phonon
 
 #endif // PHONON_MEDIACONTROLS_P_H
-// vim: sw=4 sts=4 et tw=100

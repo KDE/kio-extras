@@ -59,16 +59,16 @@ void MediaControls::setMediaObject(MediaObject *media)
     Q_D(MediaControls);
     if (d->media) {
         disconnect(d->media, SIGNAL(destroyed()), this, SLOT(_k_mediaDestroyed()));
-        disconnect(d->media, SIGNAL(stateChanged(Phonon::State, Phonon::State)), this,
-                   SLOT(_k_stateChanged(Phonon::State, Phonon::State)));
+        disconnect(d->media, SIGNAL(stateChanged(Phonon::State,Phonon::State)), this,
+                   SLOT(_k_stateChanged(Phonon::State,Phonon::State)));
         disconnect(&d->playButton, SIGNAL(clicked()), d->media, SLOT(play()));
         disconnect(&d->pauseButton, SIGNAL(clicked()), d->media, SLOT(pause()));
     }
     d->media = media;
     if (media) {
         connect(media, SIGNAL(destroyed()), SLOT(_k_mediaDestroyed()));
-        connect(media, SIGNAL(stateChanged(Phonon::State, Phonon::State)),
-                SLOT(_k_stateChanged(Phonon::State, Phonon::State)));
+        connect(media, SIGNAL(stateChanged(Phonon::State,Phonon::State)),
+                SLOT(_k_stateChanged(Phonon::State,Phonon::State)));
         connect(&d->playButton, SIGNAL(clicked()), media, SLOT(play()));
         connect(&d->pauseButton, SIGNAL(clicked()), media, SLOT(pause()));
     }
@@ -96,7 +96,7 @@ void MediaControls::setVolumeControlVisible(bool vis)
     d->volumeSlider.setVisible(vis);
 }
 
-void MediaControls::resizeEvent(QResizeEvent*)
+void MediaControls::resizeEvent(QResizeEvent *)
 {
     Q_D(MediaControls);
     d->updateVolumeSliderVisibility();
@@ -136,4 +136,3 @@ void MediaControlsPrivate::_k_mediaDestroyed()
 } // namespace Phonon
 
 #include "moc_mediacontrols.cpp"
-// vim: sw=4 ts=4

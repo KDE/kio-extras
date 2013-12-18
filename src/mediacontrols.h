@@ -98,5 +98,4 @@ private:
 
 } // namespace Phonon
 
-// vim: sw=4 ts=4 tw=80
 #endif // PHONON_UI_MEDIACONTROLS_H
