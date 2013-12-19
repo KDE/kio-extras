@@ -16,7 +16,6 @@
 #include "icoutils.h"
 
 #include <windows.h>
-#include <strsafe.h>
 
 #include <QBuffer>
 #include <QDir>
@@ -99,7 +98,7 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, const QString &
     LPCTSTR fileName;
     QList<LPTSTR> iconResources;
 
-    fileName = QDir::toNativeSeparators( inputFileName ).utf16();
+    fileName = (TCHAR*) QDir::toNativeSeparators( inputFileName ).utf16();
 
     hModule = LoadLibraryEx ( fileName, 0, LOAD_LIBRARY_AS_DATAFILE );
 
