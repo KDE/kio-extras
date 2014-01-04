@@ -95,7 +95,7 @@ target_link_libraries(jpegthumbnail
 
 if (HAVE_EXIV2)
     set_source_files_properties(jpegcreator.cpp PROPERTIES
-                                COMPILE_FLAGS "-DHAVE_EXIV2 ${KDE4_ENABLE_EXCEPTIONS}")
+                                COMPILE_FLAGS "-DHAVE_EXIV2 ${KDE_ENABLE_EXCEPTIONS}")
     include_directories(${EXIV1_INCLUDE_DIR})
     target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
 endif (HAVE_EXIV2)
@@ -161,7 +161,7 @@ install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 #    # OpenEXR headers use exceptions; at least clang refuses to build the target
 #    # when exceptions are not enabled.
-#    set_target_properties(exrthumbnail PROPERTIES COMPILE_FLAGS "${KDE4_ENABLE_EXCEPTIONS}")
+#    set_target_properties(exrthumbnail PROPERTIES COMPILE_FLAGS "${KDE_ENABLE_EXCEPTIONS}")
 # 
 #    install(TARGETS exrthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 #    install( FILES exrthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
