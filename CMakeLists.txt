@@ -11,7 +11,7 @@ set_package_properties(Samba PROPERTIES DESCRIPTION "the SMB client library, a v
                       )
 endif(NOT WIN32)
 
-macro_optional_find_package(LibSSH 0.4.0)
+macro_optional_find_package(LibSSH 0.6.0)
 set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP support"
                        URL "http://www.libssh.org/"
                        TYPE OPTIONAL
