@@ -4,7 +4,7 @@ set(kio_sftp_PART_SRCS
    kio_sftp.cpp
 )
 
-include_directories(${LIBSSH_INCLUDE_DIRS})
+include_directories(${LIBSSH_INCLUDE_DIR})
 
 kde4_add_plugin(kio_sftp ${kio_sftp_PART_SRCS})
 target_link_libraries(kio_sftp ${KDE4_KIO_LIBS} ${LIBSSH_LIBRARIES})
