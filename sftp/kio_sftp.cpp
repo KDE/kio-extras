@@ -1364,12 +1364,12 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const KUrl& url, int permissions,
             initialMode = 0644;
           }
 
-          kDebug(KIO_SFTP_DB) << "Trying to open:" << dest << ", mode=" << QString::number(initialMode);
+          kDebug(KIO_SFTP_DB) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(initialMode);
           file = sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
         } // flags & KIO::Resume
 
         if (file == NULL) {
-          kDebug(KIO_SFTP_DB) << "COULD NOT WRITE " << dest
+          kDebug(KIO_SFTP_DB) << "COULD NOT WRITE " << QString(dest)
                               << ", permissions=" << permissions
                               << ", error=" << ssh_get_error(mSession);
           if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
