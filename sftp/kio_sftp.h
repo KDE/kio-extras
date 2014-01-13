@@ -73,8 +73,8 @@ public:
 
   // libssh logging callback (note that this is called by the
   // global ::log_callback() call.
-  void log_callback(ssh_session session, int priority, const char *message,
-    void *userdata);
+  void log_callback(int priority, const char *function, const char *buffer,
+                    void *userdata);
 
 private: // Private variables
   /** True if ioslave is connected to sftp server. */
