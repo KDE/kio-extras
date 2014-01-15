@@ -24,7 +24,7 @@ Name[en_GB]=Wikipedia - The Free Encyclopedia
 Name[eo]=Vikipedio - la libera enciklopedio
 Name[es]=Wikipedia - La enciclopedia libre
 Name[et]=Wikipedia - Vaba entsüklopeedia
-Name[eu]=Wikipedia - Entziklopedia librea
+Name[eu]=Wikipedia, entziklopedia askea
 Name[fa]=Wikipedia - دایره‌المعارف آزاد
 Name[fi]=Wikipedia, vapaa tietosanakirja
 Name[fr]=Wikipédia - L'encyclopédie libre
@@ -103,7 +103,7 @@ Query[da]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[el]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[es]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[eu]=http://eu.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[eu]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fi]=https://fi.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=https://fr.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[gl]=http://gl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go

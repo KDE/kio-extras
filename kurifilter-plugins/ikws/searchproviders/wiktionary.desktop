@@ -23,7 +23,7 @@ Name[en_GB]=Wiktionary - The Free Dictionary
 Name[eo]=Vikivortaro - la libera vortaro
 Name[es]=Wiktionary - El diccionario libre
 Name[et]=Wiktionary - Vaba sõnaraamat
-Name[eu]=Wiktionary - Hiztegi librea
+Name[eu]=Wiktionary, hiztegi askea
 Name[fa]=Wiktionary - واژه‌نامه آزاد
 Name[fi]=Wikisanakirja, vapaa sanakirja
 Name[fr]=Wiktionary - Le dictionnaire libre
@@ -101,7 +101,7 @@ Query[da]=https://da.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[de]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[el]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[es]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
-Query[eu]=http://eu.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[eu]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fi]=https://fi.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[fr]=https://fr.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[gl]=https://en.wiktionary.org/wiki/Special:Search?search=\\{@}&go=Go
