@@ -97,7 +97,7 @@ if (HAVE_EXIV2)
     set_source_files_properties(jpegcreator.cpp PROPERTIES
                                 COMPILE_DEFINITIONS "HAVE_EXIV2")
     kde_source_files_enable_exceptions(jpegcreator.cpp)
-    include_directories(${EXIV1_INCLUDE_DIR})
+    include_directories(${EXIV2_INCLUDE_DIR})
     target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
 endif (HAVE_EXIV2)
 
