@@ -116,6 +116,7 @@ Query[he]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[hi]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[hu]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ia]=http://search.cpan.org/search?mode=\\{mode,2,"dist"}&query=\\{query,q,1}
+Query[id]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[is]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[it]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[ja]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}

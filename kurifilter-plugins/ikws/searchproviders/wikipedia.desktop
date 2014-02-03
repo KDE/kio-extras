@@ -110,6 +110,7 @@ Query[gl]=http://gl.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hi]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[hu]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ia]=http://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[id]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[is]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[it]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[ja]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
