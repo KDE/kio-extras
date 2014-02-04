@@ -17,6 +17,7 @@ Name[gl]=Proxectos de KDE
 Name[hi]=केडीई परियोजनाएँ
 Name[hu]=KDE projektek
 Name[ia]=Projectos de KDE
+Name[id]=KDE Projects
 Name[is]=KDE Verkefni
 Name[it]=Progetti KDE
 Name[ja]=KDE プロジェクト
@@ -64,6 +65,7 @@ Query[gl]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[hi]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[hu]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[ia]=https://projects.kde.org/search?projects=1&q=\\{@}
+Query[id]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[is]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[it]=https://projects.kde.org/search?projects=1&q=\\{@}
 Query[ja]=https://projects.kde.org/search?projects=1&q=\\{@}
