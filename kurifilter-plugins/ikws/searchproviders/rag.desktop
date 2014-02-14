@@ -21,6 +21,7 @@ Name[ia]=Dictionario del Academia Galician (RAG)
 Name[id]=Kamus Akademi Galicia (RAG)
 Name[kk]=Галисия Академиясының сөздігі (RAG)
 Name[nb]=Ordboka til det galiciske akademiet (RAG)
+Name[nds]=Nakieksel vun de Galizsche Akademie (RAG)
 Name[nl]=Woordenboek van de Gallische Academie (RAE)
 Name[nn]=Ordboka til det galisiske akademiet (RAG)
 Name[pl]=Słownik Akademii Galicyjskiej (RAG)
@@ -60,6 +61,7 @@ Query[ia]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\
 Query[id]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[kk]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nb]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[nds]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nn]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[pl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
