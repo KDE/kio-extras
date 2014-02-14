@@ -117,6 +117,7 @@ Query[kk]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Se
 Query[ko]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[lt]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nb]=https://www.google.no/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[nds]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nl]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[nn]=https://www.google.com/search?hl=nn&sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[pa]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
