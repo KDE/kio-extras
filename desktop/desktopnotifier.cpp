@@ -27,6 +27,7 @@
 #include <KUrl>
 
 #include <kdirnotify.h>
+#include <QStandardPaths>
 
 
 K_PLUGIN_FACTORY(DesktopNotifierFactory, registerPlugin<DesktopNotifier>();)
@@ -38,7 +39,7 @@ DesktopNotifier::DesktopNotifier(QObject *parent, const QList<QVariant> &)
 {
     dirWatch = new KDirWatch(this);
     dirWatch->addDir(KGlobalSettings::desktopPath());
-    dirWatch->addDir(KGlobal::dirs()->localxdgdatadir() + "Trash/files");
+    dirWatch->addDir(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + '/' + "Trash/files");
 
     connect(dirWatch, SIGNAL(dirty(QString)), SLOT(dirty(QString)));
 }
@@ -52,7 +53,7 @@ void DesktopNotifier::dirty(const QString &path)
 {
     Q_UNUSED(path)
 
-    if (path.startsWith(KGlobal::dirs()->localxdgdatadir() + "Trash/files")) {
+    if (path.startsWith(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + '/' + "Trash/files")) {
         // Trigger an update of the trash icon
         if (QFile::exists(KGlobalSettings::desktopPath() + "/trash.desktop"))
             org::kde::KDirNotify::emitFilesChanged(QStringList() << "desktop:/trash.desktop");
