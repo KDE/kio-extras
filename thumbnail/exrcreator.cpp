@@ -63,7 +63,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 	// EXR images just to turn it into an icon, so we go back
 	// to honoring it in here.
 	qDebug() << "EXRcreator - using original image";
-	KSharedConfig::Ptr config = KGlobal::config();
+	KSharedConfig::Ptr config = KSharedConfig::openConfig();
 	KConfigGroup configGroup( config, "PreviewSettings" );
 	unsigned long long maxSize = configGroup.readEntry( "MaximumSize", 1024*1024 /* 1MB */ );
 	unsigned long long fileSize = QFile( path ).size();

@@ -79,6 +79,7 @@
 #include <errno.h>
 #include <sys/resource.h>
 #include <kdefakes.h>
+#include <QStandardPaths>
 
 #include "fishcode.h"
 
@@ -241,11 +242,11 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
 #ifdef Q_WS_WIN
         sshPath = strdup(QFile::encodeName(KStandardDirs::findExe("plink")));
 #else
-        sshPath = strdup(QFile::encodeName(KStandardDirs::findExe("ssh")));
+        sshPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("ssh")));
 #endif
     }
     if (suPath == NULL) {
-        suPath = strdup(QFile::encodeName(KStandardDirs::findExe("su")));
+        suPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("su")));
     }
     childPid = 0;
     connectionPort = 0;

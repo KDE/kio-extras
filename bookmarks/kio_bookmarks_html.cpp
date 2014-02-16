@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <kdebug.h>
 #include <kshell.h>
-#include <kstandarddirs.h>
+
 #include <kcomponentdata.h>
 #include <klocale.h>
 #include <kconfig.h>
@@ -34,6 +34,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <kcolorscheme.h>
 #include <kcolorutils.h>
 #include <kglobalsettings.h>
+#include <QStandardPaths>
 
 void BookmarksProtocol::echoBookmark( const KBookmark &bm)
 {
@@ -133,7 +134,7 @@ void BookmarksProtocol::echoHead(const QString &redirect)
 {
   SlaveBase::mimeType("text/html");
 
-  QString css(KStandardDirs::locate("data","kio_bookmarks/kio_bookmarks.css"));
+  QString css(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_bookmarks/kio_bookmarks.css"));
   if (css.isEmpty())
     this->warning(i18n("kio_bookmarks CSS file not found. Output will look ugly.\n"
     "Check your installation."));

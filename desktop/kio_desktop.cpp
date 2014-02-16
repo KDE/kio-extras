@@ -32,6 +32,7 @@
 #include <QDBusInterface>
 #include <QDesktopServices>
 #include <QDir>
+#include <QStandardPaths>
 
 extern "C"
 {
@@ -101,11 +102,11 @@ void DesktopProtocol::checkLocalInstall()
 
     if (desktopIsEmpty) {
         // Copy the .directory file
-        QFile::copy(KStandardDirs::locate("data", "kio_desktop/directory.desktop"),
+        QFile::copy(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_desktop/directory.desktop"),
                     desktopPath + "/.directory");
 
         // Copy the trash link
-        QFile::copy(KStandardDirs::locate("data", "kio_desktop/directory.trash"),
+        QFile::copy(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_desktop/directory.trash"),
                     desktopPath + "/trash.desktop");
  
         // Copy the desktop links
@@ -124,7 +125,7 @@ void DesktopProtocol::checkLocalInstall()
              if (file.readIcon() == "desktop")
                  file.desktopGroup().writeEntry("Icon", "user-desktop");
         } else
-             QFile::copy(KStandardDirs::locate("data", "kio_desktop/directory.desktop"), directoryFile);
+             QFile::copy(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_desktop/directory.desktop"), directoryFile);
   
         // Update the home icon to the FDO naming spec
         const QString homeLink = desktopPath + "/Home.desktop";

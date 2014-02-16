@@ -27,7 +27,7 @@
 #include <QPalette>
 #include <QTextCodec>
 
-#include <kstandarddirs.h>
+
 #include <kglobalsettings.h>
 #include <kencodingprober.h>
 #include <klocale.h>

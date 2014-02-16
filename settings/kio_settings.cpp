@@ -27,7 +27,8 @@
 #include <time.h>
 #include <kservice.h>
 #include <kservicegroup.h>
-#include <kstandarddirs.h>
+#include <QStandardPaths>
+
 
 class SettingsProtocol : public KIO::SlaveBase
 {
@@ -69,7 +70,7 @@ static void createFileEntry(KIO::UDSEntry& entry, const KService::Ptr& service)
     entry.insert(KIO::UDSEntry::UDS_ACCESS, 0500);
     entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, "application/x-desktop");
     entry.insert(KIO::UDSEntry::UDS_SIZE, 0);
-    entry.insert(KIO::UDSEntry::UDS_LOCAL_PATH, KStandardDirs::locate("services", service->entryPath()));
+    entry.insert(KIO::UDSEntry::UDS_LOCAL_PATH, QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kde5/services/") + service->entryPath()));
     entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, time(0));
     entry.insert(KIO::UDSEntry::UDS_ICON_NAME, service->icon());
 }
@@ -209,7 +210,7 @@ void SettingsProtocol::get( const KUrl & url )
     KService::Ptr service = KService::serviceByDesktopName(url.fileName());
     if (service && service->isValid()) {
         KUrl redirUrl;
-        redirUrl.setPath(KStandardDirs::locate("services", service->entryPath()));
+        redirUrl.setPath(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kde5/services/") + service->entryPath()));
         redirection(redirUrl);
         finished();
     } else {

@@ -24,7 +24,7 @@
 #include <kglobal.h>
 #include <kdebug.h>
 #include <klocale.h>
-#include <kstandarddirs.h>
+
 #include <kaboutdata.h>
 #include <kdeversion.h>
 

@@ -213,7 +213,7 @@ void ThumbnailProtocol::get(const QUrl &url)
 
     QImage img;
 
-    KConfigGroup group( KGlobal::config(), "PreviewSettings" );
+    KConfigGroup group( KSharedConfig::openConfig(), "PreviewSettings" );
 
     // ### KFMI
     bool kfmiThumb = false;
@@ -471,7 +471,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
     QImage img;
     if (m_propagationDirectories.isEmpty()) {
         // Directories that the directory preview will be propagated into if there is no direct sub-directories
-        const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
+        const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
         m_propagationDirectories = globalConfig.readEntry("PropagationDirectories", QStringList() << "VIDEO_TS").toSet();
         m_maxFileSize = globalConfig.readEntry("MaximumSize", 5 * 1024 * 1024); // 5 MByte default
     }
@@ -686,7 +686,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
                                            int segmentWidth, int segmentHeight)
 {
     if (m_enabledPlugins.isEmpty()) {
-        const KConfigGroup globalConfig(KGlobal::config(), "PreviewSettings");
+        const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
         m_enabledPlugins = globalConfig.readEntry("Plugins", QStringList()
                                                              << "imagethumbnail"
                                                              << "jpegthumbnail"

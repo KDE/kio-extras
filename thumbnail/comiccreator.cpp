@@ -43,6 +43,7 @@
 
 #include <QtCore/QFile>
 #include <QtCore/QEventLoop>
+#include <QStandardPaths>
 
 // For KIO-Thumbnail debug outputs
 #define KIO_THUMB 11371
@@ -220,7 +221,7 @@ QStringList ComicCreator::getRARFileList(const QString& path,
 QString ComicCreator::unrarPath() const
 {
     /// Check the standard paths to see if a suitable unrar is available.
-    QString unrar = KStandardDirs::findExe("unrar");
+    QString unrar = QStandardPaths::findExecutable("unrar");
     if (unrar.isEmpty()) {
         unrar = KStandardDirs::findExe("unrar-nonfree");
     }

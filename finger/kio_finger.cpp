@@ -29,10 +29,11 @@
 #include <kdebug.h>
 #include <kcomponentdata.h>
 #include <kglobal.h>
-#include <kstandarddirs.h>
+
 #include <klocale.h>
 #include <kurl.h>
 #include <KProcess>
+#include <QStandardPaths>
 
 
 using namespace KIO;
@@ -145,7 +146,7 @@ void FingerProtocol::getProgramPath()
   //kDebug() << "kfingerMainWindow::getProgramPath()";
   // Not to sure whether I'm using the right error number here. - schlpbch -
 
-  myPerlPath = new QString(KGlobal::dirs()->findExe("perl"));
+  myPerlPath = new QString(QStandardPaths::findExecutable("perl"));
   if (myPerlPath->isEmpty())
     {
       //kDebug() << "Perl command not found";
@@ -158,7 +159,7 @@ void FingerProtocol::getProgramPath()
       //kDebug() << "Perl command found:" << *myPerlPath;
     }
 
-  myFingerPath = new QString(KGlobal::dirs()->findExe("finger"));
+  myFingerPath = new QString(QStandardPaths::findExecutable("finger"));
   if ((myFingerPath->isEmpty()))
     {
       //kDebug() << "Finger command not found";
@@ -171,7 +172,7 @@ void FingerProtocol::getProgramPath()
       //kDebug() << "Finger command found:" << *myFingerPath;
     }
 
-  myFingerPerlScript = new QString(KStandardDirs::locate("data","kio_finger/kio_finger.pl"));
+  myFingerPerlScript = new QString(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_finger/kio_finger.pl"));
   if (myFingerPerlScript->isEmpty())
     {
       //kDebug() << "kio_finger.pl script not found";
@@ -184,7 +185,7 @@ void FingerProtocol::getProgramPath()
       //kDebug() << "kio_finger perl script found: " << *myFingerPerlScript;
     }
 
-  myFingerCSSFile = new QString(KStandardDirs::locate("data","kio_finger/kio_finger.css"));
+  myFingerCSSFile = new QString(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_finger/kio_finger.css"));
   if (myFingerCSSFile->isEmpty())
     {
       //kDebug() << "kio_finger.css file not found";

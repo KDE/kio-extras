@@ -28,7 +28,7 @@
 #include <kaboutdata.h>
 
 #include <kshell.h>
-#include <kstandarddirs.h>
+
 #include <kcomponentdata.h>
 #include <klocale.h>
 #include <kconfig.h>

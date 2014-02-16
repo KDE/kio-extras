@@ -47,6 +47,7 @@
 #include <assert.h>
 #include <kfilterbase.h>
 #include <kfilterdev.h>
+#include <QStandardPaths>
 
 using namespace KIO;
 
@@ -139,7 +140,7 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
     section_names << "0" << "0p" << "1" << "1p" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
 
-    QString cssPath(KStandardDirs::locate( "data", "kio_docfilter/kio_docfilter.css" ));
+    QString cssPath(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css" ));
     KUrl cssUrl(KUrl::fromPath(cssPath));
     m_manCSSFile = cssUrl.url().toUtf8();
 }
@@ -1406,12 +1407,12 @@ void MANProtocol::getProgramPath()
   if (!mySgml2RoffPath.isEmpty())
     return;
 
-  mySgml2RoffPath = KGlobal::dirs()->findExe("sgml2roff");
+  mySgml2RoffPath = KStandardDirs::findExe("sgml2roff");
   if (!mySgml2RoffPath.isEmpty())
     return;
 
   /* sgml2roff isn't found in PATH. Check some possible locations where it may be found. */
-  mySgml2RoffPath = KGlobal::dirs()->findExe("sgml2roff", QString(SGML2ROFF_DIRS));
+  mySgml2RoffPath = KStandardDirs::findExe("sgml2roff", QString(SGML2ROFF_DIRS));
   if (!mySgml2RoffPath.isEmpty())
     return;
 
