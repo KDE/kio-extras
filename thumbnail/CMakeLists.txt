@@ -20,7 +20,7 @@ set_package_properties(Exiv2 PROPERTIES DESCRIPTION "A library to access image m
 
 macro_bool_to_01(EXIV2_FOUND HAVE_EXIV2)
 
-include_directories(${JPEG_INCLUDE_DIR} ${KDE4_INCLUDE_DIR}/kio)
+include_directories(${JPEG_INCLUDE_DIR})
 if(EXIV2_FOUND)
     include_directories(${EXIV2_INCLUDE_DIR})
 endif(EXIV2_FOUND)
