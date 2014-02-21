@@ -5,8 +5,8 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/..)
 ########### next target ###############
 set(testremote_SRCS testremote.cpp ${libkioremote_SRCS} )
 
-
-kde4_add_executable(testremote TEST ${testremote_SRCS})
+add_executable(testremote ${testremote_SRCS})
+ecm_mark_as_test(testremote)
 
 target_link_libraries(testremote  KF5::KIOCore )
 

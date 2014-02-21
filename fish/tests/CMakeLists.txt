@@ -5,8 +5,7 @@ INCLUDE_DIRECTORIES( ${KDE4_INCLUDES} . )
 
 SET( copytesterSources main.cpp copytester.cpp )
 
-
-KDE4_ADD_EXECUTABLE( copytester ${copytesterSources} )
+ADD_EXECUTABLE( copytester ${copytesterSources} )
 
 TARGET_LINK_LIBRARIES( copytester ${KDE4_KDEUI_LIBS} KF5::KIOCore )
 
