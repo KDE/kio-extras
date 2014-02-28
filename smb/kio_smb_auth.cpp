@@ -34,6 +34,7 @@
 
 #include <kconfig.h>
 #include <kconfiggroup.h>
+#include <klocalizedstring.h>
 #include <stdlib.h>
 
 // call for libsmbclient
