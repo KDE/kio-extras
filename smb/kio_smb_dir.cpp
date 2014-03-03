@@ -36,9 +36,7 @@
 #include <QFileInfo>
 #include <QDateTime>
 
-#include <kde_file.h>
 #include <kconfiggroup.h>
-#include <kdeversion.h>
 #include <kio/ioslave_defaults.h>
 
 //===========================================================================
@@ -279,7 +277,6 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     }
 
     QFile file (filename);
-#if KDE_IS_VERSION(4,11,80)
     if (!bResume) {
         QFile::Permissions perms;
         if (permissions == -1) {
@@ -289,7 +286,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
         }
         file.setPermissions(perms);
     }
-#endif
+
     if (!file.open(mode)) {
         qCDebug(KIO_SMB) << "could not write to" << dstFile;
         switch (file.error()) {
@@ -413,14 +410,6 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
             return;
         }
     }
-
-#if KDE_VERSION < KDE_MAKE_VERSION(4,11,80)
-    if (permissions != -1 && !bResume) {
-        if (KDE::chmod(dstFile, permissions) < 0) {
-            qCWarning(KIO_SMB) << "failed to set permission on" << dstFile;
-        }
-    }
-#endif
 
     // Restore the mtime on the file.
     const QString mtimeStr = metaData("modified");

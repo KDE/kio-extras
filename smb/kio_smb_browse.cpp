@@ -34,10 +34,10 @@
 #include <grp.h>
 
 
-#include <kglobal.h>
 
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
+#include <KLocalizedString>
 
 using namespace KIO;
 

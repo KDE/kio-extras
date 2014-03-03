@@ -51,7 +51,7 @@ private:
 };
 
 extern "C" {
-    KDE_EXPORT int kdemain( int, char **argv )
+    Q_DECL_EXPORT int kdemain( int, char **argv )
     {
         kDebug() << "kdemain for settings kioslave";
         KComponentData componentData( "kio_settings" );

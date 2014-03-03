@@ -33,7 +33,6 @@
 
 
 #include <kconfig.h>
-#include <kglobal.h>
 #include <QDir> // for QDir::cleanPath
 
 

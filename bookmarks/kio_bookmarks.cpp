@@ -202,7 +202,7 @@ void BookmarksProtocol::get( const KUrl& url )
   finished();
 }
 
-extern "C" int KDE_EXPORT kdemain(int argc, char **argv)
+extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
   KAboutData about("kio_bookmarks", 0, ki18n("My bookmarks"), "0.2.2");
   about.addLicense(KAboutData::License_GPL_V2);

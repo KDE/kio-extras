@@ -30,7 +30,6 @@
 
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
-#include <kcomponentdata.h>
 #include <QCoreApplication>
 
 Q_LOGGING_CATEGORY(KIO_SMB, "kio_smb")

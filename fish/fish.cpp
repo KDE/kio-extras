@@ -128,7 +128,7 @@ static KProcess *childPid = 0;
 using namespace KIO;
 extern "C" {
 
-int KDE_EXPORT kdemain( int argc, char **argv )
+int Q_DECL_EXPORT kdemain( int argc, char **argv )
 {
     QCoreApplication app(argc, argv);
     KComponentData componentData("fish", "kio_fish");

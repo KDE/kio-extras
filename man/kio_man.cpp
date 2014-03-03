@@ -697,7 +697,7 @@ void MANProtocol::stat( const KUrl& url)
 extern "C"
 {
 
-    int KDE_EXPORT kdemain( int argc, char **argv ) {
+    int Q_DECL_EXPORT kdemain( int argc, char **argv ) {
 
         KComponentData componentData("kio_man");
 

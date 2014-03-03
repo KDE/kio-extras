@@ -30,7 +30,7 @@
 #ifndef MOLLETNETWORK_EXPORT
   // building the library?
 # if defined(MAKE_MOLLETNETWORK_LIB)
-#  define MOLLETNETWORK_EXPORT KDE_EXPORT
+#  define MOLLETNETWORK_EXPORT Q_DECL_EXPORT
   // using the library
 # else
 #  define MOLLETNETWORK_EXPORT KDE_IMPORT

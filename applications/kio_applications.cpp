@@ -42,7 +42,7 @@ private:
 };
 
 extern "C" {
-    KDE_EXPORT int kdemain( int, char **argv )
+    Q_DECL_EXPORT int kdemain( int, char **argv )
     {
         KComponentData componentData( "kio_applications" );
         ApplicationsProtocol slave(argv[1], argv[2], argv[3]);

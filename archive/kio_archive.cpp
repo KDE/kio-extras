@@ -42,7 +42,7 @@
 
 using namespace KIO;
 
-extern "C" { int KDE_EXPORT kdemain(int argc, char **argv); }
+extern "C" { int Q_DECL_EXPORT kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char **argv )
 {

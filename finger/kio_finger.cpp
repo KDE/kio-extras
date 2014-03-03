@@ -42,7 +42,7 @@ static const QString defaultRefreshRate = "60";
 
 extern "C"
 {
-  KDE_EXPORT int kdemain( int argc, char **argv )
+  Q_DECL_EXPORT int kdemain( int argc, char **argv )
   {
     KComponentData componentData( "kio_finger" );
 

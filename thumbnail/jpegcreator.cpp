@@ -25,7 +25,6 @@
 #include <QCheckBox>
 #include <QFile>
 #include <QImage>
-#include <kdemacros.h>
 #include <klocalizedstring.h>
 
 #ifdef HAVE_EXIV2
@@ -37,7 +36,7 @@ extern "C"
 {
     #include <jpeglib.h>
 
-    KDE_EXPORT ThumbCreator *new_creator()
+    Q_DECL_EXPORT ThumbCreator *new_creator()
     {
         return new JpegCreator;
     }

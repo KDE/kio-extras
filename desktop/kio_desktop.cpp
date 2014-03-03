@@ -36,7 +36,7 @@
 
 extern "C"
 {
-    int KDE_EXPORT kdemain(int argc, char **argv)
+    int Q_DECL_EXPORT kdemain(int argc, char **argv)
     {
         // necessary to use other kio slaves
         QCoreApplication app(argc, argv);
