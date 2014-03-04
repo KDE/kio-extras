@@ -1,8 +1,8 @@
 set(localdomainurifilter_PART_SRCS localdomainurifilter.cpp )
 
-kde4_add_plugin(localdomainurifilter ${localdomainurifilter_PART_SRCS})
+add_library(localdomainurifilter MODULE ${localdomainurifilter_PART_SRCS})
 
-target_link_libraries(localdomainurifilter ${KDE4_KIO_LIBS})
+target_link_libraries(localdomainurifilter KF5::KIOWidgets)
 
 install(TARGETS localdomainurifilter DESTINATION ${PLUGIN_INSTALL_DIR})
 

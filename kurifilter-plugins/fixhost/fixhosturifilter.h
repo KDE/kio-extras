@@ -21,7 +21,7 @@
 #ifndef FIXHOSTURIFILTER_H
 #define FIXHOSTURIFILTER_H
 
-#include <KDE/KUriFilter>
+#include <KUriFilter>
 
 class QHostInfo;
 class QEventLoop;

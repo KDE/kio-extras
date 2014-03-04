@@ -21,7 +21,7 @@
 #define SEARCHPROVIDER_H
 
 #include <kservice.h>
-#include <KDE/KUriFilter>
+#include <KUriFilter>
 
 class SearchProvider : public KUriFilterSearchProvider
 {

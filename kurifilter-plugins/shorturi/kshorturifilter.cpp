@@ -26,20 +26,21 @@
 #include <QtCore/QDir>
 #include <QtDBus/QtDBus>
 
-#include <kdebug.h>
 #include <klocalizedstring.h>
 #include <kpluginfactory.h>
 #include <kprotocolinfo.h>
-#include <kstandarddirs.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <kurlauthorized.h>
-#include <kmimetype.h>
 #include <kuser.h>
-#include <kde_file.h>
+#include <KDE4Support/kde_file.h>
 
 #define QL1S(x) QLatin1String(x)
 #define QL1C(x) QLatin1Char(x)
+
+namespace {
+QLoggingCategory category("org.kde.kurifilter-plugins");
+}
 
  /**
   * IMPORTANT:
@@ -86,7 +87,7 @@ static QString removeArgs( const QString& _cmd )
     if( spacePos > 0 )
     {
       cmd = cmd.left( spacePos );
-      //kDebug(7023) << "spacePos=" << spacePos << " returning " << cmd;
+      //qCDebug(category) << "spacePos=" << spacePos << " returning " << cmd;
     }
   }
 
@@ -116,7 +117,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   * hackable and is missing a config dialog.
   */
 
-  KUrl url = data.uri();
+  QUrl url = data.uri();
   QString cmd = data.typedString();
 
   // WORKAROUND: Allow the use of '@' in the username component of a URL since
@@ -127,7 +128,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // Percent encode all but the last '@'.
     QString encodedCmd = QUrl::toPercentEncoding(cmd.left(lastIndex), ":/");
     encodedCmd += cmd.mid(lastIndex);
-    KUrl u (encodedCmd);
+    QUrl u (encodedCmd);
     if (u.isValid()) {
       cmd = encodedCmd;
       url = u;
@@ -135,9 +136,9 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   }
 
   const bool isMalformed = !url.isValid();
-  QString protocol = url.protocol();
+  QString protocol = url.scheme();
 
-  kDebug(7023) << cmd;
+  qCDebug(category) << cmd;
 
   // Fix misparsing of "foo:80", QUrl thinks "foo" is the protocol and "80" is the path.
   // However, be careful not to do that for valid hostless URLs, e.g. file:///foo!
@@ -146,7 +147,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     protocol.clear();
   }
 
-  //kDebug(7023) << "url=" << url << "cmd=" << cmd << "isMalformed=" << isMalformed;
+  //qCDebug(category) << "url=" << url << "cmd=" << cmd << "isMalformed=" << isMalformed;
 
   if (!isMalformed &&
       (protocol.length() == 4) &&
@@ -156,7 +157,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       (protocol[3]=='p'))
   {
      // Handle "encrypted" URLs like: h++p://www.kde.org
-     url.setProtocol( QLatin1String("http"));
+     url.setScheme( QLatin1String("http"));
      setFilteredUri( data, url);
      setUriType( data, KUriFilterData::NetProtocol );
      return true;
@@ -170,7 +171,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   const QString starthere_proto = QL1S("start-here:");
   if (cmd.indexOf(starthere_proto) == 0 )
   {
-    setFilteredUri( data, KUrl("system:/") );
+    setFilteredUri( data, QUrl("system:/") );
     setUriType( data, KUriFilterData::LocalDir );
     return true;
   }
@@ -190,7 +191,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     else if ((cmd==info_proto) || (cmd==man_proto))
       cmd+='/';
 
-    setFilteredUri( data, KUrl( cmd ));
+    setFilteredUri( data, QUrl( cmd ));
     setUriType( data, KUriFilterData::Help );
     return true;
   }
@@ -201,7 +202,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // make sure path is unix style
     cmd.replace('\\', '/');
     cmd.prepend( QLatin1String( "smb:" ) );
-    setFilteredUri( data, KUrl( cmd ));
+    setFilteredUri( data, QUrl( cmd ));
     setUriType( data, KUriFilterData::NetProtocol );
     return true;
   }
@@ -214,31 +215,31 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   QString query;
   QString nameFilter;
 
-  if (KUrl::isRelativeUrl(cmd) && QDir::isRelativePath(cmd)) {
+  if (QUrl(cmd).isRelative() && QDir::isRelativePath(cmd)) {
      path = cmd;
-     //kDebug(7023) << "path=cmd=" << path;
+     //qCDebug(category) << "path=cmd=" << path;
   } else {
     if (url.isLocalFile())
     {
-      //kDebug(7023) << "hasRef=" << url.hasRef();
+      //qCDebug(category) << "hasRef=" << url.hasRef();
       // Split path from ref/query
       // but not for "/tmp/a#b", if "a#b" is an existing file,
       // or for "/tmp/a?b" (#58990)
-      if( ( url.hasRef() || !url.query().isEmpty() )
+      if( ( url.hasFragment() || !url.query().isEmpty() )
            && !url.path().endsWith(QL1S("/")) ) // /tmp/?foo is a namefilter, not a query
       {
         path = url.path();
-        ref = url.ref();
-        //kDebug(7023) << "isLocalFile set path to " << stringDetails( path );
-        //kDebug(7023) << "isLocalFile set ref to " << stringDetails( ref );
+        ref = url.fragment();
+        //qCDebug(category) << "isLocalFile set path to " << stringDetails( path );
+        //qCDebug(category) << "isLocalFile set ref to " << stringDetails( ref );
         query = url.query();
-        if (path.isEmpty() && url.hasHost())
+        if (path.isEmpty() && !url.host().isEmpty())
           path = '/';
       }
       else
       {
         path = cmd;
-        //kDebug(7023) << "(2) path=cmd=" << path;
+        //qCDebug(category) << "(2) path=cmd=" << path;
       }
     }
   }
@@ -291,7 +292,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   if ( expanded || cmd.startsWith( '/' ) )
   {
     // Look for #ref again, after $ and ~ expansion (testcase: $QTDIR/doc/html/functions.html#s)
-    // Can't use KUrl here, setPath would escape it...
+    // Can't use QUrl here, setPath would escape it...
     const int pos = path.indexOf('#');
     if ( pos > -1 )
     {
@@ -300,7 +301,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       {
         ref = path.mid( pos + 1 );
         path = newPath;
-        //kDebug(7023) << "Extracted ref: path=" << path << " ref=" << ref;
+        //qCDebug(category) << "Extracted ref: path=" << path << " ref=" << ref;
       }
     }
   }
@@ -317,7 +318,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   const bool canBeLocalAbsolute = (canBeAbsolute && abs_path[0] =='/' && !isMalformed);
   bool exists = false;
 
-  /*kDebug(7023) << "abs_path=" << abs_path
+  /*qCDebug(category) << "abs_path=" << abs_path
                << "protocol=" << protocol
                << "canBeAbsolute=" << canBeAbsolute
                << "canBeLocalAbsolute=" << canBeLocalAbsolute
@@ -331,9 +332,9 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     int len = path.length();
     if( (len==1 && path[0]=='.') || (len==2 && path[0]=='.' && path[1]=='.') )
         path += '/';
-    //kDebug(7023) << "adding " << abs << " and " << path;
+    //qCDebug(category) << "adding " << abs << " and " << path;
     abs = QDir::cleanPath(abs + '/' + path);
-    //kDebug(7023) << "checking whether " << abs << " exists.";
+    //qCDebug(category) << "checking whether " << abs << " exists.";
     // Check if it exists
     if( KDE::stat( abs, &buff ) == 0 )
     {
@@ -358,7 +359,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
            && KDE::stat( testPath, &buff ) == 0 )
         {
           nameFilter = fileName;
-          //kDebug(7023) << "Setting nameFilter to " << nameFilter;
+          //qCDebug(category) << "Setting nameFilter to " << nameFilter;
           path = testPath;
           exists = true;
         }
@@ -366,16 +367,16 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     }
   }
 
-  //kDebug(7023) << "path =" << path << " isLocalFullPath=" << isLocalFullPath << " exists=" << exists;
+  //qCDebug(category) << "path =" << path << " isLocalFullPath=" << isLocalFullPath << " exists=" << exists;
   if( exists )
   {
-    KUrl u;
+    QUrl u;
     u.setPath(path);
-    //kDebug(7023) << "ref=" << stringDetails(ref) << " query=" << stringDetails(query);
-    u.setRef(ref);
+    //qCDebug(category) << "ref=" << stringDetails(ref) << " query=" << stringDetails(query);
+    u.setFragment(ref);
     u.setQuery(query);
 
-    if (!KUrlAuthorized::authorizeUrlAction( QLatin1String("open"), KUrl(), u))
+    if (!KUrlAuthorized::authorizeUrlAction( QLatin1String("open"), QUrl(), u))
     {
       // No authorization, we pretend it's a file will get
       // an access denied error later on.
@@ -388,7 +389,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     bool isDir = S_ISDIR( buff.st_mode );
     if( !isDir && access ( QFile::encodeName(path).data(), X_OK) == 0 )
     {
-      //kDebug(7023) << "Abs path to EXECUTABLE";
+      //qCDebug(category) << "Abs path to EXECUTABLE";
       setFilteredUri( data, u );
       setUriType( data, KUriFilterData::Executable );
       return true;
@@ -397,16 +398,16 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // Open "uri" as file:/xxx if it is a non-executable local resource.
     if( isDir || S_ISREG( buff.st_mode ) )
     {
-      //kDebug(7023) << "Abs path as local file or directory";
+      //qCDebug(category) << "Abs path as local file or directory";
       if ( !nameFilter.isEmpty() )
-        u.setFileName( nameFilter );
+        u.setPath( u.path() + '/' + nameFilter );
       setFilteredUri( data, u );
       setUriType( data, ( isDir ) ? KUriFilterData::LocalDir : KUriFilterData::LocalFile );
       return true;
     }
 
     // Should we return LOCAL_FILE for non-regular files too?
-    kDebug(7023) << "File found, but not a regular file nor dir... socket?";
+    qCDebug(category) << "File found, but not a regular file nor dir... socket?";
   }
 
   if( data.checkForExecutables())
@@ -416,12 +417,12 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // We try hard to avoid parsing any possible command
     // line arguments or options that might have been supplied.
     QString exe = removeArgs( cmd );
-    //kDebug(7023) << "findExe with" << exe;
+    //qCDebug(category) << "findExe with" << exe;
 
-    if (!KStandardDirs::findExe( exe ).isNull() )
+    if (!QStandardPaths::findExecutable( exe ).isNull() )
     {
-      //kDebug(7023) << "EXECUTABLE  exe=" << exe;
-      setFilteredUri( data, KUrl::fromPath( exe ));
+      //qCDebug(category) << "EXECUTABLE  exe=" << exe;
+      setFilteredUri( data, QUrl::fromLocalFile( exe ));
       // check if we have command line arguments
       if( exe != cmd )
           setArguments(data, cmd.right(cmd.length() - exe.length()));
@@ -435,7 +436,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // slow things down...
   if ( !isMalformed && !isLocalFullPath && !protocol.isEmpty() )
   {
-    //kDebug(7023) << "looking for protocol " << protocol;
+    //qCDebug(category) << "looking for protocol " << protocol;
     if ( KProtocolInfo::isKnownProtocol( protocol ) )
     {
       setFilteredUri( data, url );
@@ -457,9 +458,9 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     {
       if (hint.regexp.indexIn(cmd) == 0)
       {
-        //kDebug(7023) << "match - prepending" << (*it).prepend;
+        //qCDebug(category) << "match - prepending" << (*it).prepend;
         const QString cmdStr = hint.prepend + cmd;
-        KUrl url(cmdStr);
+        QUrl url(cmdStr);
         if (KProtocolInfo::isKnownProtocol(url))
         {
           setFilteredUri( data, url );
@@ -485,13 +486,13 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
         urlStr += QL1S("://");
       urlStr += cmd;
 
-      KUrl url (urlStr);
+      QUrl url (urlStr);
       if (url.isValid())
       {
         setFilteredUri(data, url);
         setUriType(data, KUriFilterData::NetProtocol);
       }
-      else if (KProtocolInfo::isKnownProtocol(url.protocol()))
+      else if (KProtocolInfo::isKnownProtocol(url.scheme()))
       {
         setFilteredUri(data, data.uri());
         setUriType(data, KUriFilterData::Error);
@@ -504,11 +505,11 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // and if it doesn't exist, then error
   if( isLocalFullPath && !exists )
   {
-    KUrl u;
+    QUrl u;
     u.setPath(path);
-    u.setRef(ref);
+    u.setFragment(ref);
 
-    if (!KUrlAuthorized::authorizeUrlAction( QL1S("open"), KUrl(), u))
+    if (!KUrlAuthorized::authorizeUrlAction( QL1S("open"), QUrl(), u))
     {
       // No authorization, we pretend it exists and will get
       // an access denied error later on.
@@ -516,8 +517,8 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       setUriType( data, KUriFilterData::LocalFile );
       return true;
     }
-    //kDebug(7023) << "fileNotFound -> ERROR";
-    setErrorMsg( data, i18n( "<qt>The file or folder <b>%1</b> does not exist.</qt>", data.uri().prettyUrl() ) );
+    //qCDebug(category) << "fileNotFound -> ERROR";
+    setErrorMsg( data, i18n( "<qt>The file or folder <b>%1</b> does not exist.</qt>", data.uri().toDisplayString() ) );
     setUriType( data, KUriFilterData::Error );
     return true;
   }

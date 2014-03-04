@@ -27,13 +27,17 @@
 #include "kuriikwsfiltereng.h"
 #include "searchprovider.h"
 
-#include <kdebug.h>
 #include <kconfiggroup.h>
 #include <kprotocolinfo.h>
 
 #include <QtCore/QTextCodec>
+#include <QLoggingCategory>
 
-#define PDVAR(n,v) kDebug(7023) << n << " = '" << v << "'"
+namespace {
+QLoggingCategory category("org.kde.kurifilter-plugins");
+}
+
+#define PDVAR(n,v) qCDebug(category) << n << " = '" << v << "'"
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -120,9 +124,10 @@ QStringList KURISearchFilterEngine::favoriteEngineList() const
   return m_preferredWebShortcuts;
 }
 
+Q_GLOBAL_STATIC(KURISearchFilterEngine, sSelfPtr)
+
 KURISearchFilterEngine* KURISearchFilterEngine::self()
 {
-  K_GLOBAL_STATIC(KURISearchFilterEngine, sSelfPtr)
   return sSelfPtr;
 }
 
@@ -156,7 +161,7 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
   userquery.replace (QLatin1String("%20"), QLatin1String(" "));
   l.replaceInStrings(QLatin1String("%20"), QLatin1String(" "));
 
-  kDebug(7023) << "Generating substitution map:\n";
+  qCDebug(category) << "Generating substitution map:\n";
   // Generate substitution map from user query:
   for (int i=0; i<=l.count(); i++)
   {
@@ -176,7 +181,7 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
     PDVAR ("  map['" + nr + "']", map[nr]);
 
     // Insert named references (referenced by \name) to map:
-    if ((i>0) && (pos = v.indexOf("=")) > 0)
+    if ((i>0) && (pos = v.indexOf('=')) > 0)
     {
       QString s = v.mid(pos + 1);
       QString k = v.left(pos);
@@ -213,14 +218,14 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
     int pos = -1;
     if ((pos = newurl.indexOf("\\1")) >= 0)
     {
-      kDebug(7023) << "WARNING: Using compatibility mode for newurl='" << newurl
+      qCDebug(category) << "WARNING: Using compatibility mode for newurl='" << newurl
                    << "'. Please replace old style '\\1' with new style '\\{0}' "
                       "in the query definition.\n";
       newurl = newurl.replace(pos, 2, "\\{@}");
     }
   }
 
-  kDebug(7023) << "Substitute references:\n";
+  qCDebug(category) << "Substitute references:\n";
   // Substitute references (\{ref1,ref2,...}) with values from user query:
   {
     int pos = 0;
@@ -375,7 +380,7 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
   // Debug info of map:
   if (!map.isEmpty())
   {
-    kDebug(7023) << "Got non-empty substitution map:\n";
+    qCDebug(category) << "Got non-empty substitution map:\n";
     for(SubstMap::Iterator it = map.begin(); it != map.end(); ++it)
       PDVAR ("    map['" + it.key() + "']", it.value());
   }
@@ -416,7 +421,7 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
 
 void KURISearchFilterEngine::loadConfig()
 {
-  kDebug(7023) << "Keywords Engine: Loading config..." << endl;
+  qCDebug(category) << "Keywords Engine: Loading config...";
 
   // Load the config.
   KConfig config( name() + "rc", KConfig::NoGlobals );
@@ -436,7 +441,7 @@ void KURISearchFilterEngine::loadConfig()
   if (strchr (" :", m_cKeywordDelimiter) == 0)
     m_cKeywordDelimiter = ':';
 
-  kDebug(7023) << "Web Shortcuts Enabled: " << m_bWebShortcutsEnabled << endl;
-  kDebug(7023) << "Default Shortcut: " << m_defaultWebShortcut << endl;
-  kDebug(7023) << "Keyword Delimiter: " << m_cKeywordDelimiter << endl;
+  qCDebug(category) << "Web Shortcuts Enabled: " << m_bWebShortcutsEnabled;
+  qCDebug(category) << "Default Shortcut: " << m_defaultWebShortcut;
+  qCDebug(category) << "Keyword Delimiter: " << m_cKeywordDelimiter;
 }

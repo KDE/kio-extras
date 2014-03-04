@@ -23,16 +23,15 @@
 #include "searchprovider.h"
 #include "ikwsopts.h"
 
-#include <kdebug.h>
-#include <klocale.h>
-#include <kurl.h>
-#include <kglobal.h>
-#include <KDE/KPluginFactory>
+#include <KPluginFactory>
+#include <KLocalizedString>
 
 #include <QtDBus/QtDBus>
 
 #define QL1S(x)  QLatin1String(x)
 #define QL1C(x)  QLatin1Char(x)
+
+QLoggingCategory category("org.kde.kurlfilter-plugins");
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -45,7 +44,7 @@ K_EXPORT_PLUGIN(KAutoWebSearchFactory("kcmkurifilt"))
 KAutoWebSearch::KAutoWebSearch(QObject *parent, const QVariantList&)
                :KUriFilterPlugin( "kuriikwsfilter", parent )
 {
-  KGlobal::locale()->insertCatalog("kurifilter");
+  KLocalizedString::insertQtDomain("kurifilter");
   QDBusConnection::sessionBus().connect(QString(), "/", "org.kde.KUriFilterPlugin",
                                         "configure", this, SLOT(configure()));
 }
@@ -56,7 +55,7 @@ KAutoWebSearch::~KAutoWebSearch()
 
 void KAutoWebSearch::configure()
 {
-  kDebug(7023) << "Config reload requested...";
+  qCDebug(category) << "Config reload requested...";
   KURISearchFilterEngine::self()->loadConfig();
 }
 
@@ -108,7 +107,7 @@ void KAutoWebSearch::populateProvidersList(QList<KUriFilterSearchProvider*>& sea
 
 bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
 {
-  kDebug(7023) << data.typedString();
+  qCDebug(category) << data.typedString();
 
   KUriFilterData::SearchFilterOptions option = data.searchFilteringOptions();
 
@@ -150,7 +149,7 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
     return true;
   }
 
-  if ( data.uriType() == KUriFilterData::Unknown && data.uri().pass().isEmpty() )
+  if ( data.uriType() == KUriFilterData::Unknown && data.uri().password().isEmpty() )
   {
     KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
     SearchProvider *provider = filter->autoWebSearchQuery( data.typedString(), data.alternateDefaultSearchProvider() );
@@ -158,7 +157,7 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
     {
       const QString result = filter->formatResult(provider->query(), provider->charset(),
                                                   QString(), data.typedString(), true);
-      setFilteredUri( data, KUrl( result ) );
+      setFilteredUri( data, QUrl( result ) );
       setUriType( data, KUriFilterData::NetProtocol );
       setSearchProvider(data, provider->name(), data.typedString(), QL1C(filter->keywordDelimiter()));
 

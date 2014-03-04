@@ -38,6 +38,7 @@ class KURISearchFilterEngine
 public:
   typedef QMap <QString, QString> SubstMap;
 
+  KURISearchFilterEngine();
   ~KURISearchFilterEngine();
 
   QByteArray name() const;
@@ -57,7 +58,6 @@ protected:
                         const QByteArray& query, bool isMalformed, SubstMap& map) const;
 
 private:
-  KURISearchFilterEngine();
   KURISearchFilterEngine(const KURISearchFilterEngine&);
   KURISearchFilterEngine& operator= (const KURISearchFilterEngine&);
   

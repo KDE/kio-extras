@@ -23,9 +23,10 @@
 #include "kuriikwsfiltereng.h"
 #include "searchprovider.h"
 #include "ikwsopts.h"
-#include <kdebug.h>
 
 #include <QtDBus/QtDBus>
+#include <klocalizedstring.h>
+#include <kaboutdata.h>
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -35,10 +36,14 @@
 K_PLUGIN_FACTORY(KUriSearchFilterFactory, registerPlugin<KUriSearchFilter>();)
 K_EXPORT_PLUGIN(KUriSearchFilterFactory("kcmkurifilt"))
 
+namespace {
+QLoggingCategory category("org.kde.kurifilter-plugins");
+}
+
 KUriSearchFilter::KUriSearchFilter(QObject *parent, const QVariantList &)
                  :KUriFilterPlugin( "kurisearchfilter", parent )
 {
-  KGlobal::locale()->insertCatalog("kurifilter");
+  KLocalizedString::insertQtDomain("kurifilter");
   QDBusConnection::sessionBus().connect(QString(), "/", "org.kde.KUriFilterPlugin",
                                         "configure", this, SLOT(configure()));
 }
@@ -49,13 +54,13 @@ KUriSearchFilter::~KUriSearchFilter()
 
 void KUriSearchFilter::configure()
 {
-  kDebug(7023) << "Config reload requested...";
+  qCDebug(category) << "Config reload requested...";
   KURISearchFilterEngine::self()->loadConfig();
 }
 
 bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
 {
-  kDebug(7023) << data.typedString();
+  qCDebug(category) << data.typedString();
 
   if (data.uriType() == KUriFilterData::Unknown)
   {
@@ -67,7 +72,7 @@ bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
     {
       const QString result = filter->formatResult( provider->query(), provider->charset(),
                                                    QString(), searchTerm, true );
-      setFilteredUri( data, KUrl(result) );
+      setFilteredUri( data, QUrl(result) );
       setUriType( data, KUriFilterData::NetProtocol );
       setSearchProvider( data, provider->name(), searchTerm,  QLatin1Char(filter->keywordDelimiter()));
       delete provider;
@@ -79,7 +84,7 @@ bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
 
 KCModule *KUriSearchFilter::configModule(QWidget *parent, const char *) const
 {
-  return new FilterOptions( KUriSearchFilterFactory::componentData(), parent);
+  return new FilterOptions( KAboutData::pluginData("kcmkurifilt"), parent);
 }
 
 QString KUriSearchFilter::configName() const

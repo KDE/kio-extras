@@ -20,12 +20,14 @@
 #ifndef SEARCHPROVIDERDLG_H
 #define SEARCHPROVIDERDLG_H
 
-#include <kdialog.h>
+#include <qdialog.h>
 
 #include "ui_searchproviderdlg_ui.h"
+
+class QDialogButtonBox;
 class SearchProvider;
 
-class SearchProviderDialog : public KDialog
+class SearchProviderDialog : public QDialog
 {
     Q_OBJECT
 
@@ -38,12 +40,13 @@ protected Q_SLOTS:
     void slotChanged();
     void shortcutsChanged(const QString& newShorthands);
     void pastePlaceholder();
-    virtual void slotButtonClicked(int button);
+    void slotAcceptClicked();
 
 private:
     SearchProvider *m_provider;
     QList<SearchProvider*> m_providers; // The list of all search providers, used for checking for already assigned shortcuts.
     Ui::SearchProviderDlgUI m_dlg;
+    QDialogButtonBox* m_buttons;
 };
 
 #endif

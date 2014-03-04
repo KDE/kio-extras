@@ -21,22 +21,30 @@
 
 #include <QClipboard>
 
-#include <kapplication.h>
+#include <qapplication.h>
+#include <QVBoxLayout>
 #include <kcharsets.h>
 #include <kmessagebox.h>
-
-#include <kdebug.h>
+#include <klocalizedstring.h>
 
 SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<SearchProvider*> &providers, QWidget *parent)
-    : KDialog( parent )
+    : QDialog( parent )
     , m_provider(provider)
 {
     setModal(true);
-    setButtons( Ok | Cancel );
 
-    m_dlg.setupUi(mainWidget());
+    m_buttons = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Cancel, this);
+    connect(m_buttons, SIGNAL(accepted()), SLOT(accept()));
+    connect(m_buttons, SIGNAL(rejected()), SLOT(reject()));
 
-    m_dlg.leQuery->setMinimumWidth(kapp->fontMetrics().averageCharWidth() * 50);
+    QWidget* mainWidget = new QWidget(this);
+    m_dlg.setupUi(mainWidget);
+
+    QVBoxLayout* layout = new QVBoxLayout(this);
+    layout->addWidget(mainWidget);
+    layout->addWidget(m_buttons);
+
+    m_dlg.leQuery->setMinimumWidth(m_dlg.leQuery->fontMetrics().averageCharWidth() * 50);
 
     connect(m_dlg.leName,      SIGNAL(textChanged(QString)), SLOT(slotChanged()));
     connect(m_dlg.leQuery,     SIGNAL(textChanged(QString)), SLOT(slotChanged()));
@@ -46,12 +54,12 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
 
     // Data init
     m_providers = providers;
-    QStringList charsets = KGlobal::charsets()->availableEncodingNames();
+    QStringList charsets = KCharsets::charsets()->availableEncodingNames();
     charsets.prepend(i18nc("@item:inlistbox The default character set", "Default"));
     m_dlg.cbCharset->addItems(charsets);
     if (m_provider)
     {
-        setPlainCaption(i18n("Modify Web Shortcut"));
+        setWindowTitle(i18n("Modify Web Shortcut"));
         m_dlg.leName->setText(m_provider->name());
         m_dlg.leQuery->setText(m_provider->query());
         m_dlg.leShortcut->setText(m_provider->keys().join(","));
@@ -61,23 +69,23 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
     }
     else
     {
-        setPlainCaption(i18n("New Web Shortcut"));
+        setWindowTitle(i18n("New Web Shortcut"));
         m_dlg.leName->setFocus();
 
         //If the clipboard contains a url copy it to the query lineedit
         const QClipboard *clipboard = QApplication::clipboard();
         const QString url = clipboard->text();
 
-        if (!KUrl(url).host().isEmpty())
+        if (!QUrl(url).host().isEmpty())
             m_dlg.leQuery->setText(url);
 
-        enableButton(Ok, false);
+        m_buttons->button(QDialogButtonBox::Ok)->setEnabled(false);
     }
 }
 
 void SearchProviderDialog::slotChanged()
 {
-    enableButton(Ok, !(m_dlg.leName->text().isEmpty()
+    m_buttons->button(QDialogButtonBox::Ok)->setEnabled(!(m_dlg.leName->text().isEmpty()
                        || m_dlg.leShortcut->text().isEmpty()
                        || m_dlg.leQuery->text().isEmpty()));
 }
@@ -125,42 +133,39 @@ void SearchProviderDialog::shortcutsChanged(const QString& newShorthands) {
 
             m_dlg.noteLabel->setText(i18n("The following shortcuts are already assigned. Please choose different ones.\n%1", contenderList.join("\n")));
         }
-        enableButton(Ok, false);
+        m_buttons->button(QDialogButtonBox::Ok)->setEnabled(false);
     } else {
         m_dlg.noteLabel->clear();
     }
 }
 
-void SearchProviderDialog::slotButtonClicked(int button) {
-    if (button == KDialog::Ok) {
-        if ((m_dlg.leQuery->text().indexOf("\\{") == -1)
-            && KMessageBox::warningContinueCancel(0,
-                i18n("The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
-                     "This means that the same page is always going to be visited, "
-                     "regardless of the text typed in with the shortcut."),
-                QString(), KGuiItem(i18n("Keep It"))) == KMessageBox::Cancel) {
-            return;
-        }
-
-        if (!m_provider)
-            m_provider = new SearchProvider;
-
-        const QString name = m_dlg.leName->text().trimmed();
-        const QString query = m_dlg.leQuery->text().trimmed();
-        QStringList keys = m_dlg.leShortcut->text().trimmed().toLower().split(',', QString::SkipEmptyParts);
-        keys.removeDuplicates();// #169801. Remove duplicates...
-        const QString charset = (m_dlg.cbCharset->currentIndex() ? m_dlg.cbCharset->currentText().trimmed() : QString());
-
-        m_provider->setDirty((name != m_provider->name() || query != m_provider->query() ||
-                              keys != m_provider->keys() || charset != m_provider->charset()));
-        m_provider->setName(name);
-        m_provider->setQuery(query);
-        m_provider->setKeys(keys);
-        m_provider->setCharset(charset);
-        KDialog::accept();
-    } else {
-        KDialog::slotButtonClicked(button);
+void SearchProviderDialog::slotAcceptClicked()
+{
+    if ((m_dlg.leQuery->text().indexOf("\\{") == -1)
+        && KMessageBox::warningContinueCancel(0,
+            i18n("The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+                    "This means that the same page is always going to be visited, "
+                    "regardless of the text typed in with the shortcut."),
+            QString(), KGuiItem(i18n("Keep It"))) == KMessageBox::Cancel) {
+        return;
     }
+
+    if (!m_provider)
+        m_provider = new SearchProvider;
+
+    const QString name = m_dlg.leName->text().trimmed();
+    const QString query = m_dlg.leQuery->text().trimmed();
+    QStringList keys = m_dlg.leShortcut->text().trimmed().toLower().split(',', QString::SkipEmptyParts);
+    keys.removeDuplicates();// #169801. Remove duplicates...
+    const QString charset = (m_dlg.cbCharset->currentIndex() ? m_dlg.cbCharset->currentText().trimmed() : QString());
+
+    m_provider->setDirty((name != m_provider->name() || query != m_provider->query() ||
+                            keys != m_provider->keys() || charset != m_provider->charset()));
+    m_provider->setName(name);
+    m_provider->setQuery(query);
+    m_provider->setKeys(keys);
+    m_provider->setCharset(charset);
+    QDialog::accept();
 }
 
 void SearchProviderDialog::pastePlaceholder() {

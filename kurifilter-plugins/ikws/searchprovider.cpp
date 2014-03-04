@@ -19,7 +19,6 @@
 #include "searchprovider.h"
 
 #include <krandom.h>
-#include <kstandarddirs.h>
 #include <kservicetypetrader.h>
 #include <QStandardPaths>
 
@@ -71,7 +70,7 @@ void SearchProvider::setKeys(const QStringList &keys)
       name = key.toLower();
   }
 
-  const QString path (KGlobal::mainComponent().dirs()->saveLocation("services", "searchproviders/"));
+  const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "kde5/services/searchproviders/";
   bool firstRun = true;
 
   while (true)
@@ -81,7 +80,7 @@ void SearchProvider::setKeys(const QStringList &keys)
     if (!firstRun)
       check += KRandom::randomString(4);
 
-    const QString located = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kde5/services/") + "searchproviders/" + check + ".desktop");
+    const QString located = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kde5/services/searchproviders/") + check + ".desktop");
     if (located.isEmpty())
     {
       name = check;

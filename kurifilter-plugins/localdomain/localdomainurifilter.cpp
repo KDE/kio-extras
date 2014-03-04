@@ -21,9 +21,8 @@
 
 #include "localdomainurifilter.h"
 
-#include <KDE/KProtocolInfo>
-#include <KDE/KDebug>
-#include <KDE/KPluginFactory>
+#include <KProtocolInfo>
+#include <KPluginFactory>
 
 #include <QtCore/QStringBuilder>
 #include <QtNetwork/QHostInfo>
@@ -45,9 +44,7 @@ LocalDomainUriFilter::LocalDomainUriFilter( QObject *parent, const QVariantList 
 
 bool LocalDomainUriFilter::filterUri(KUriFilterData& data) const
 {
-    kDebug(7023) << data.typedString();
-
-    const KUrl url = data.uri();
+    const QUrl url = data.uri();
     const QString protocol = url.scheme();
 
     // When checking for local domain just validate it is indeed a local domain,
@@ -60,12 +57,11 @@ bool LocalDomainUriFilter::filterUri(KUriFilterData& data) const
         if (pos > -1)
             host.truncate(pos); // Remove port number
 
-        kDebug(7023) << "Checking local domain for" <<  host;
         if (exists(host)) {
             QString scheme (data.defaultUrlScheme());
             if (scheme.isEmpty())
                 scheme = QL1S("http://");
-            setFilteredUri(data, KUrl(scheme + data.typedString()));
+            setFilteredUri(data, QUrl(scheme + data.typedString()));
             setUriType(data, KUriFilterData::NetProtocol);
             return true;
         }

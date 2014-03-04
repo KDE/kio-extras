@@ -37,7 +37,7 @@ class FilterOptions : public KCModule
     Q_OBJECT
 
 public:
-    explicit FilterOptions(const KComponentData &componentData, QWidget *parent = 0);
+    explicit FilterOptions(const KAboutData* about, QWidget *parent = 0);
 
     void load();
     void save();

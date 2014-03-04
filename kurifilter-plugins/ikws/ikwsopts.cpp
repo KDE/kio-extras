@@ -25,10 +25,10 @@
 #include "searchprovider.h"
 #include "searchproviderdlg.h"
 
-#include <KDE/KDebug>
-#include <KDE/KStandardDirs>
-#include <KDE/KServiceTypeTrader>
-#include <KDE/KBuildSycocaProgressDialog>
+#include <KServiceTypeTrader>
+#include <KBuildSycocaProgressDialog>
+#include <klocalizedstring.h>
+#include <kconfiggroup.h>
 
 #include <QtCore/QFile>
 #include <QtDBus/QtDBus>
@@ -228,9 +228,9 @@ static QSortFilterProxyModel* wrapInProxyModel(QAbstractItemModel* model)
   return proxyModel;
 }
 
-FilterOptions::FilterOptions(const KComponentData &componentData, QWidget *parent)
-              :KCModule(componentData, parent),
-               m_providersModel(new ProvidersModel(this))
+FilterOptions::FilterOptions(const KAboutData* about, QWidget *parent)
+              : KCModule(about, parent),
+                m_providersModel(new ProvidersModel(this))
 {
   m_dlg.setupUi(this);
 
@@ -339,7 +339,7 @@ void FilterOptions::save()
 
   int changedProviderCount = 0;
   QList<SearchProvider*> providers = m_providersModel->providers();
-  const QString path = KGlobal::mainComponent().dirs()->saveLocation("services", "searchproviders/");
+  const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "kde5/services/searchproviders/";
 
   Q_FOREACH(SearchProvider* provider, providers)
   {
@@ -359,9 +359,15 @@ void FilterOptions::save()
     service.writeEntry("Hidden", false); // we might be overwriting a hidden entry
   }
  
+  const QStringList servicesDirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "kde5/services/searchproviders/", QStandardPaths::LocateDirectory);
   Q_FOREACH(const QString& providerName, m_deletedProviders)
   {
-    QStringList matches = KGlobal::mainComponent().dirs()->findAllResources("services", "searchproviders/" + providerName + ".desktop");
+    QStringList matches;
+    foreach(const QString& dir, servicesDirs) {
+      QString current = dir + '/' + providerName + ".desktop";
+      if(QFile::exists(current))
+        matches += current;
+    }
 
     // Shouldn't happen
     if (!matches.size())
@@ -446,6 +452,5 @@ void FilterOptions::updateSearchProviderEditingButons()
 }
 
 #include "ikwsopts.moc"
-#include "ikwsopts_p.moc"
 
 // kate: replace-tabs 1; indent-width 2;

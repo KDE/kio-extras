@@ -1,15 +1,6 @@
+add_library(kshorturifilter MODULE kshorturifilter.cpp)
 
-
-
-########### next target ###############
-
-set(kshorturifilter_PART_SRCS kshorturifilter.cpp )
-
-
-kde4_add_plugin(kshorturifilter ${kshorturifilter_PART_SRCS})
-
-
-target_link_libraries(kshorturifilter  ${KDE4_KIO_LIBS})
+target_link_libraries(kshorturifilter KF5::I18n KF5::KIOWidgets KF5::KDE4Support)
 
 install(TARGETS kshorturifilter  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

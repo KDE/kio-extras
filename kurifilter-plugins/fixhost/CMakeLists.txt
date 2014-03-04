@@ -1,8 +1,8 @@
 set(fixhosturifilter_PART_SRCS fixhosturifilter.cpp )
 
-kde4_add_plugin(fixhosturifilter ${fixhosturifilter_PART_SRCS})
+add_library(fixhosturifilter MODULE ${fixhosturifilter_PART_SRCS})
 
-target_link_libraries(fixhosturifilter ${KDE4_KIO_LIBS})
+target_link_libraries(fixhosturifilter KF5::KIOWidgets)
 
 install(TARGETS fixhosturifilter DESTINATION ${PLUGIN_INSTALL_DIR})
 

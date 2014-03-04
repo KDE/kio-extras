@@ -56,7 +56,7 @@ Recommended is \{@}, since it removes all query variables (name=value) from the 
     </widget>
    </item>
    <item row="2" column="2">
-    <widget class="KLineEdit" name="leQuery">
+    <widget class="QLineEdit" name="leQuery">
      <property name="toolTip">
       <string>&lt;qt&gt;
 Enter the URI that is used to perform a search on the search engine here.&lt;br/&gt;The whole text to be searched for can be specified as \{@} or \{0}.&lt;br/&gt;
@@ -68,9 +68,6 @@ Recommended is \{@}, since it removes all query variables (name=value) from the 
 Enter the URI that is used to perform a search on the search engine here.&lt;br/&gt;The whole text to be searched for can be specified as \{@} or \{0}.&lt;br/&gt;
 Recommended is \{@}, since it removes all query variables (name=value) from the resulting string, whereas \{0} will be substituted with the unmodified query string.&lt;br/&gt;You can use \{1} ... \{n} to specify certain words from the query and \{name} to specify a value given by 'name=value' in the user query.&lt;br/&gt;In addition it is possible to specify multiple references (names, numbers and strings) at once (\{name1,name2,...,&quot;string&quot;}).&lt;br/&gt;The first matching value (from the left) will be used as the substitution value for the resulting URI.&lt;br/&gt;A quoted string can be used as the default value if nothing matches from the left of the reference list.
 &lt;/qt&gt;</string>
-     </property>
-     <property name="clickMessage">
-      <string/>
      </property>
     </widget>
    </item>
@@ -88,7 +85,7 @@ Recommended is \{@}, since it removes all query variables (name=value) from the 
     </widget>
    </item>
    <item row="3" column="2" colspan="2">
-    <widget class="KLineEdit" name="leShortcut">
+    <widget class="QLineEdit" name="leShortcut">
      <property name="toolTip">
       <string>&lt;qt&gt;
 The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For example, the shortcut &lt;b&gt;av&lt;/b&gt; can be used as in &lt;b&gt;av&lt;/b&gt;:&lt;b&gt;my search&lt;/b&gt;
@@ -99,13 +96,10 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
 The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For example, the shortcut &lt;b&gt;av&lt;/b&gt; can be used as in &lt;b&gt;av&lt;/b&gt;:&lt;b&gt;my search&lt;/b&gt;
 &lt;/qt&gt;</string>
      </property>
-     <property name="clickMessage">
-      <string/>
-     </property>
     </widget>
    </item>
    <item row="0" column="2" colspan="2">
-    <widget class="KLineEdit" name="leName">
+    <widget class="QLineEdit" name="leName">
      <property name="toolTip">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the human-readable name of the web shortcut here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
@@ -181,11 +175,6 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
   </customwidget>
-  <customwidget>
-   <class>KLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>klineedit.h</header>
-  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>leName</tabstop>
@@ -194,7 +183,6 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
   <tabstop>cbCharset</tabstop>
  </tabstops>
  <includes>
-  <include location="local">klineedit.h</include>
   <include location="local">kcombobox.h</include>
  </includes>
  <resources/>

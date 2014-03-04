@@ -23,9 +23,7 @@
 
 #include <QtNetwork/QHostInfo>
 
-#include <KDE/KUrl>
-#include <KDE/KDebug>
-#include <KDE/KPluginFactory>
+#include <KPluginFactory>
 
 #define QL1S(x)   QLatin1String(x)
 #define QL1C(x)   QLatin1Char(x)
@@ -56,12 +54,9 @@ static bool hasCandidateHostName(const QString& host)
 
 bool FixHostUriFilter::filterUri( KUriFilterData& data ) const
 {
-    kDebug(7023) << data.typedString();
+    QUrl url = data.uri();
 
-    KUrl url = data.uri();
-    kDebug(7023) << "url:" << url << "type:" << data.uriType();
-
-    const QString protocol = url.protocol();
+    const QString protocol = url.scheme();
     const bool isHttp = isHttpUrl(protocol);
 
     if (isHttp || protocol == data.defaultUrlScheme()) {
