@@ -23,6 +23,7 @@
 #define KURIIKWSFILTER_H
 
 #include <kurifilter.h>
+#include <QVariant>
 
 class KAutoWebSearch : public KUriFilterPlugin
 {
