@@ -1,5 +1,12 @@
 project( molletnetwork )
 
+find_package(SLP)
+set_package_properties(SLP PROPERTIES DESCRIPTION "SLP (Service Location Protocol) implementation"
+                       URL "http://www.openslp.org/"
+                       TYPE OPTIONAL
+                       PURPOSE "Provides SLP support in the network:/ kioslave."
+                      )
+
 macro_bool_to_01( SLP_FOUND  HAVE_SLP )
 configure_file( config-slp.h.cmake  ${CMAKE_CURRENT_BINARY_DIR}/config-slp.h )
 
