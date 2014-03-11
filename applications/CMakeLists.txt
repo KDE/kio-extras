@@ -1,6 +1,6 @@
 ########### kio_applications ###############
 
-kde4_add_plugin(kio_applications kio_applications.cpp)
+add_library(kio_applications MODULE kio_applications.cpp)
 
 target_link_libraries(kio_applications  KF5::KIOCore )
 

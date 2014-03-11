@@ -4,7 +4,9 @@ set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
 
 set(testdesktop_SRCS kio_desktop_test.cpp)
 
-kde4_add_unit_test(testdesktop ${testdesktop_SRCS})
+add_executable(testdesktop ${testdesktop_SRCS})
+target_link_libraries(testdesktop  KF5::KIOCore KF5::Solid Qt5::Test)
 
-target_link_libraries(testdesktop  KF5::KIOCore ${KDE4_SOLID_LIBS} ${QT_QTTEST_LIBRARY})
+ecm_mark_as_test(testdesktop)
+add_test(testdesktop testdesktop)
 

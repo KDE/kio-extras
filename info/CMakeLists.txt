@@ -7,7 +7,7 @@
 set(kio_info_PART_SRCS info.cc )
 
 
-kde4_add_plugin(kio_info ${kio_info_PART_SRCS})
+add_library(kio_info MODULE ${kio_info_PART_SRCS})
 
 
 target_link_libraries(kio_info  KF5::KIOCore )

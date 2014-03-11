@@ -7,7 +7,7 @@
 set(kio_finger_PART_SRCS kio_finger.cpp )
 
 
-kde4_add_plugin(kio_finger ${kio_finger_PART_SRCS})
+add_library(kio_finger MODULE ${kio_finger_PART_SRCS})
 
 
 target_link_libraries(kio_finger KF5::KIOCore )

@@ -38,7 +38,7 @@ if (MD5SUM_EXECUTABLE)
 
    set(kio_fish_PART_SRCS fish.cpp ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h)
 
-   kde4_add_plugin(kio_fish ${kio_fish_PART_SRCS})
+   add_library(kio_fish MODULE ${kio_fish_PART_SRCS})
 
    target_link_libraries(kio_fish KF5::KIOCore)
 

@@ -1,7 +1,7 @@
 set(kio_nfs_PART_SRCS kio_nfs.cpp mount_xdr.c nfs_prot_xdr.c )
 
 
-kde4_add_plugin(kio_nfs ${kio_nfs_PART_SRCS})
+add_library(kio_nfs MODULE ${kio_nfs_PART_SRCS})
 
 
 target_link_libraries(kio_nfs   KF5::KIOCore)

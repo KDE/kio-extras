@@ -2,9 +2,9 @@
 
 set(kio_bookmarks_PART_SRCS kio_bookmarks.cpp kio_bookmarks_html.cpp kio_bookmarks_pixmap.cpp)
 
-kde4_add_plugin(kio_bookmarks ${kio_bookmarks_PART_SRCS})
+add_library(kio_bookmarks MODULE ${kio_bookmarks_PART_SRCS})
 
-target_link_libraries(kio_bookmarks  KF5::KIOCore ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_SOLID_LIBS})
+target_link_libraries(kio_bookmarks KF5::KIOCore KF5::KDE4Support KF5::Solid)
 
 install(TARGETS kio_bookmarks  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

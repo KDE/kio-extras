@@ -6,7 +6,7 @@
 set(kded_remotedirnotify_PART_SRCS remotedirnotify.cpp remotedirnotifymodule.cpp )
 
 
-kde4_add_plugin(kded_remotedirnotify ${kded_remotedirnotify_PART_SRCS})
+add_library(kded_remotedirnotify MODULE ${kded_remotedirnotify_PART_SRCS})
 
 
 target_link_libraries(kded_remotedirnotify  KF5::KIOCore)

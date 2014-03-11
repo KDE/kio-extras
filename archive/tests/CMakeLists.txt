@@ -1,3 +1,5 @@
 set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
-kde4_add_unit_test(testkioarchive testkioarchive.cpp)
-target_link_libraries(testkioarchive KF5::KIOCore ${QT_QTTEST_LIBRARY})
+add_executable(testkioarchive testkioarchive.cpp)
+target_link_libraries(testkioarchive KF5::KIOCore Qt5::Test)
+ecm_mark_as_test(testkioarchive)
+add_test(testkioarchive testkioarchive)

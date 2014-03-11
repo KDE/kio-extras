@@ -6,7 +6,7 @@
 set(kcm_cgi_PART_SRCS kcmcgi.cpp )
 
 
-kde4_add_plugin(kcm_cgi ${kcm_cgi_PART_SRCS})
+add_library(kcm_cgi MODULE ${kcm_cgi_PART_SRCS})
 
 
 target_link_libraries(kcm_cgi  KF5::KIOCore )

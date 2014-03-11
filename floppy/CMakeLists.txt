@@ -7,7 +7,7 @@
 set(kio_floppy_PART_SRCS kio_floppy.cpp program.cpp )
 
 
-kde4_add_plugin(kio_floppy ${kio_floppy_PART_SRCS})
+add_library(kio_floppy MODULE ${kio_floppy_PART_SRCS})
 
 
 target_link_libraries(kio_floppy  KF5::KIOCore )

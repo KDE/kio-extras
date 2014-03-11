@@ -11,9 +11,9 @@ set( kded_networkwatcher_SRCS
   main.cpp
 )
 
-qt4_add_dbus_adaptor( kded_networkwatcher_SRCS  org.kde.network.kioslavenotifier.xml kioslavenotifier.h Mollet::KioSlaveNotifier )
+qt5_add_dbus_adaptor( kded_networkwatcher_SRCS  org.kde.network.kioslavenotifier.xml kioslavenotifier.h Mollet::KioSlaveNotifier )
 
-kde4_add_plugin( kded_networkwatcher  ${kded_networkwatcher_SRCS} )
+add_library(kded_networkwatcher MODULE  ${kded_networkwatcher_SRCS} )
 
 target_link_libraries( kded_networkwatcher  KF5::KIOCore molletnetwork )
 

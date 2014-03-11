@@ -5,7 +5,7 @@ add_subdirectory(tests)
 
 set(kio_desktop_PART_SRCS kio_desktop.cpp)
 
-kde4_add_plugin(kio_desktop  ${kio_desktop_PART_SRCS})
+add_library(kio_desktop MODULE  ${kio_desktop_PART_SRCS})
 
 target_link_libraries(kio_desktop  KF5::KIOCore)
 
@@ -15,7 +15,7 @@ install(TARGETS kio_desktop DESTINATION  ${PLUGIN_INSTALL_DIR} )
 
 set(kded_desktopnotifier_PART_SRCS  desktopnotifier.cpp )
 
-kde4_add_plugin(kded_desktopnotifier  ${kded_desktopnotifier_PART_SRCS})
+add_library(kded_desktopnotifier MODULE  ${kded_desktopnotifier_PART_SRCS})
 
 target_link_libraries(kded_desktopnotifier  KF5::KIOCore)
 

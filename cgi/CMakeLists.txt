@@ -9,7 +9,7 @@ add_subdirectory( kcmcgi )
 set(kio_cgi_PART_SRCS cgi.cpp )
 
 
-kde4_add_plugin(kio_cgi ${kio_cgi_PART_SRCS})
+add_library(kio_cgi MODULE ${kio_cgi_PART_SRCS})
 
 
 target_link_libraries(kio_cgi  KF5::KIOCore )

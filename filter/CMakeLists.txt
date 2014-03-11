@@ -18,7 +18,7 @@ set_package_properties(LibLZMA PROPERTIES DESCRIPTION "A very high compression r
 set(kio_filter_PART_SRCS filter.cc)
 
 
-kde4_add_plugin(kio_filter ${kio_filter_PART_SRCS})
+add_library(kio_filter MODULE ${kio_filter_PART_SRCS})
 
 
 target_link_libraries(kio_filter  KF5::KIOCore)

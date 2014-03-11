@@ -14,9 +14,9 @@ set( kio_network_SRCS
   main.cpp
 )
 
-# qt4_add_dbus_interface( kio_network_SRCS  ../kded/org.kde.network.xml networkdbusproxy )
+# qt5_add_dbus_interface( kio_network_SRCS  ../kded/org.kde.network.xml networkdbusproxy )
 
-kde4_add_plugin( kio_network  ${kio_network_SRCS} )
+add_library(kio_network MODULE  ${kio_network_SRCS} )
 
 target_link_libraries( kio_network  molletnetwork KF5::KIOCore )
 
