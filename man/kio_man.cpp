@@ -45,7 +45,6 @@
 #include "kio_man.moc"
 #include "man2html.h"
 #include <assert.h>
-#include <kfilterbase.h>
 #include <kfilterdev.h>
 #include <QStandardPaths>
 
@@ -141,7 +140,7 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
                   << "8" << "9" << "l" << "n";
 
     QString cssPath(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css" ));
-    KUrl cssUrl(KUrl::fromPath(cssPath));
+    QUrl cssUrl(QUrl::fromLocalFile(cssPath));
     m_manCSSFile = cssUrl.url().toUtf8();
 }
 
@@ -450,7 +449,7 @@ extern void output_real(const char *insert)
 }
 #endif
 
-void MANProtocol::get(const KUrl& url )
+void MANProtocol::get(const QUrl& url )
 {
     kDebug(7107) << "GET " << url.url();
 
@@ -661,7 +660,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     finished();
 }
 
-void MANProtocol::stat( const KUrl& url)
+void MANProtocol::stat( const QUrl& url)
 {
     kDebug(7107) << "ENTERING STAT " << url.url();
 
@@ -719,7 +718,7 @@ extern "C"
 
 }
 
-void MANProtocol::mimetype(const KUrl & /*url*/)
+void MANProtocol::mimetype(const QUrl & /*url*/)
 {
     mimeType("text/html");
     finished();
@@ -1347,7 +1346,7 @@ void MANProtocol::showIndex(const QString& section)
     finished();
 }
 
-void MANProtocol::listDir(const KUrl &url)
+void MANProtocol::listDir(const QUrl &url)
 {
     kDebug( 7107 ) << url;
 

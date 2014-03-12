@@ -13,6 +13,8 @@
 #include <kiconloader.h>
 #include <kcomponentdata.h>
 #include <klocale.h>
+#include <KUrl>
+#include <KGlobal>
 
 using namespace KIO;
 
@@ -22,7 +24,7 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     , m_node( "" )
 {
     kDebug( 7108 ) << "InfoProtocol::InfoProtocol";
-    m_iconLoader = new KIconLoader(KGlobal::mainComponent().componentName(), KGlobal::mainComponent().dirs());
+    m_iconLoader = new KIconLoader(KGlobal::mainComponent().componentName());
     m_perl = KGlobal::dirs()->findExe( "perl" );
     m_infoScript = KStandardDirs::locate( "data", "kio_info/kde-info2html" );
     m_infoConf = KStandardDirs::locate("data", "kio_info/kde-info2html.conf");
@@ -51,10 +53,10 @@ InfoProtocol::~InfoProtocol()
     kDebug( 7108 ) << "InfoProtocol::~InfoProtocol - done";
 }
 
-void InfoProtocol::get( const KUrl& url )
+void InfoProtocol::get( const QUrl& url )
 {
     kDebug( 7108 ) << "InfoProtocol::get";
-    kDebug( 7108 ) << "URL: " << url.prettyUrl() << " , Path :" << url.path();
+    kDebug( 7108 ) << "URL: " << url.toDisplayString() << " , Path :" << url.path();
 
     if (url.path()=="/")
     {
@@ -77,7 +79,7 @@ void InfoProtocol::get( const KUrl& url )
     if ( url.path().right(1) == "/" )
     {
         // Trailing / are not supported, so we need to remove them.
-        KUrl newUrl( url );
+        QUrl newUrl( url );
         QString newPath( url.path() );
         newPath.chop( 1 );
         newUrl.setPath( newPath );
@@ -151,7 +153,7 @@ void InfoProtocol::get( const KUrl& url )
     kDebug( 7108 ) << "InfoProtocol::get - done";
 }
 
-void InfoProtocol::mimetype( const KUrl& /* url */ )
+void InfoProtocol::mimetype( const QUrl& /* url */ )
 {
     kDebug( 7108 ) << "InfoProtocol::mimetype";
 
@@ -164,7 +166,7 @@ void InfoProtocol::mimetype( const KUrl& /* url */ )
     kDebug( 7108 ) << "InfoProtocol::mimetype - done";
 }
 
-void InfoProtocol::decodeURL( const KUrl &url )
+void InfoProtocol::decodeURL( const QUrl &url )
 {
     kDebug( 7108 ) << "InfoProtocol::decodeURL";
 
@@ -226,7 +228,7 @@ void InfoProtocol::decodePath( QString path )
 
 // A minimalistic stat with only the file type
 // This seems to be enough for konqueror
-void InfoProtocol::stat( const KUrl & )
+void InfoProtocol::stat( const QUrl & )
 {
 	UDSEntry uds_entry;
 
@@ -238,7 +240,7 @@ void InfoProtocol::stat( const KUrl & )
 	finished();
 }
 
-extern "C" { int KDE_EXPORT kdemain( int argc, char **argv ); }
+extern "C" { int Q_DECL_EXPORT kdemain( int argc, char **argv ); }
 
 int kdemain( int argc, char **argv )
 {

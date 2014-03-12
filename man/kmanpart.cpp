@@ -27,10 +27,11 @@
 
 #include <kaboutdata.h>
 #include <kdeversion.h>
+#include <KUrl>
 
 static KAboutData createAboutData()
 {
-   return KAboutData("kmanpart", "kio_man", ki18n("KMan"), KDE_VERSION_STRING);
+   return KAboutData("kmanpart", "kio_man", i18n("KMan"), KDE_VERSION_STRING);
 }
 
 K_PLUGIN_FACTORY(KManPartFactory, registerPlugin<KManPart>();)
@@ -41,11 +42,11 @@ KManPart::KManPart(QWidget * parentWidget, QObject* parent, const QVariantList&)
 : KHTMLPart(parentWidget, parent)
 ,m_job(0)
 {
-   setComponentData(KManPartFactory::componentData());
+   setComponentData(createAboutData());
    m_extension = new KParts::BrowserExtension(this);
 }
 
-bool KManPart::openUrl( const KUrl &url )
+bool KManPart::openUrl( const QUrl &url )
 {
    // KHTML would detect text/plain, but we are going to write HTML to it.
    KParts::OpenUrlArguments args(arguments());

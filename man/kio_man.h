@@ -37,11 +37,11 @@ public:
     MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     virtual ~MANProtocol();
 
-    virtual void get(const KUrl& url);
-    virtual void stat(const KUrl& url);
+    virtual void get(const QUrl& url);
+    virtual void stat(const QUrl& url);
 
-    virtual void mimetype(const KUrl &url);
-    virtual void listDir(const KUrl &url);
+    virtual void mimetype(const QUrl &url);
+    virtual void listDir(const QUrl &url);
 
     void outputError(const QString& errmsg);
     void outputMatchingPages(const QStringList &matchingPages);
@@ -65,8 +65,6 @@ private:
                           const QString &title, 
                           bool full_path = true);
 
-    void addToBuffer(const char *buffer, int buflen);
-    QString pageName(const QString& page) const;
     QStringList buildSectionList(const QStringList& dirs) const;
     void constructPath(QStringList& constr_path, QStringList constr_catmanpath);
 private:

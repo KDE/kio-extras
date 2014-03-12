@@ -1,5 +1,3 @@
-set( EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_BINARY_DIR} )
-
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/.. )
 
 ########### next target ###############
@@ -15,7 +13,7 @@ set(kio_man_test_SRCS
 add_executable(kio_man_test ${kio_man_test_SRCS})
 ecm_mark_as_test(kio_man_test)
 set_target_properties(kio_man_test PROPERTIES COMPILE_FLAGS "-DSIMPLE_MAN2HTML -DKIO_MAN_TEST")
-target_link_libraries(kio_man_test KF5::KIOCore)
+target_link_libraries(kio_man_test KF5::KIOCore KF5::Archive KF5::KDE4Support)
 
 
 ########### next target ###############
