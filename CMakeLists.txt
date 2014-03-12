@@ -1,14 +1,14 @@
 
 if(NOT WIN32)
-# we need a version of samba which has already smbc_set_context(), Alex
-set(SAMBA_REQUIRE_SMBC_SET_CONTEXT TRUE)
-set(SAMBA_REQUIRE_SMBC_OPTION_SET TRUE)
-find_package(Samba)
-set_package_properties(Samba PROPERTIES DESCRIPTION "the SMB client library, a version with smbc_set_context() and smbc_option_set()"
-                       URL "http://www.samba.org"
-                       TYPE OPTIONAL
-                       PURPOSE "Needed to build the SMB kioslave"
-                      )
+    # we need a version of samba which has already smbc_set_context(), Alex
+    set(SAMBA_REQUIRE_SMBC_SET_CONTEXT TRUE)
+    set(SAMBA_REQUIRE_SMBC_OPTION_SET TRUE)
+    find_package(Samba)
+    set_package_properties(Samba PROPERTIES DESCRIPTION "the SMB client library, a version with smbc_set_context() and smbc_option_set()"
+                        URL "http://www.samba.org"
+                        TYPE OPTIONAL
+                        PURPOSE "Needed to build the SMB kioslave"
+                        )
 endif(NOT WIN32)
 
 find_package(LibSSH 0.4.0)
@@ -19,7 +19,7 @@ set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP 
                       )
 
 add_subdirectory( about )
-# add_subdirectory( bookmarks )
+add_subdirectory( bookmarks )
 # add_subdirectory( cgi )
 # add_subdirectory( filter )
 # add_subdirectory( info )
@@ -50,8 +50,7 @@ add_subdirectory( thumbnail )
 #      add_subdirectory( nfs )
 #    endif(HAVE_RPC_RPC_H)
 # endif(NOT WIN32)
-# 
-if(SAMBA_FOUND OR WIN32 AND NOT WINCE)
-    add_subdirectory(smb)
-endif(SAMBA_FOUND OR WIN32 AND NOT WINCE)
 
+if(SAMBA_FOUND)
+    add_subdirectory(smb)
+endif()

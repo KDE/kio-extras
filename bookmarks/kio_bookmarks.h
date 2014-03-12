@@ -22,8 +22,7 @@
 #include <kbookmarkmanager.h>
 #include <kconfig.h>
 #include <KConfigGroup>
-
-class KImageCache;
+#include <KImageCache>
 
 class BookmarksProtocol : public KIO::SlaveBase
 {
@@ -31,13 +30,13 @@ class BookmarksProtocol : public KIO::SlaveBase
     BookmarksProtocol( const QByteArray &pool, const QByteArray &app );
     ~BookmarksProtocol();
 
-    void get( const KUrl& url );
+    void get( const QUrl& url );
 
   private:
     int columns;
     int indent;
     int totalsize;
-    KImageCache* cache;
+    KSharedPixmapCacheMixin< KSharedDataCache >* cache;
     KBookmarkManager* manager;
     KConfig* cfg;
     KConfigGroup config;

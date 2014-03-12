@@ -22,10 +22,11 @@
 #include <stdlib.h>
 
 #include <qregexp.h>
+#include <qurlquery.h>
 
 #include <kapplication.h>
 #include <kcmdlineargs.h>
-#include <kaboutdata.h>
+#include <k4aboutdata.h>
 
 #include <kshell.h>
 
@@ -180,7 +181,7 @@ int BookmarksProtocol::sizeOfGroup( const KBookmarkGroup &folder, bool real )
   return size;
 }
 
-void BookmarksProtocol::get( const KUrl& url )
+void BookmarksProtocol::get( const QUrl& url )
 {
   QString path = url.path();
   QRegExp regexp("^/(background|icon)/([\\S]+)");
@@ -194,7 +195,7 @@ void BookmarksProtocol::get( const KUrl& url )
     KToolInvocation::kdeinitExec("keditbookmarks");
     echoHead("bookmarks:/");
   } else if (regexp.indexIn(path) >= 0) {
-    echoImage(regexp.cap(1), regexp.cap(2), url.queryItem("size"));
+    echoImage(regexp.cap(1), regexp.cap(2), QUrlQuery(url).queryItemValue("size"));
   } else {
     echoHead();
     echo("<p class=\"message\">" + i18n("Wrong request: %1",path) + "</p>");
@@ -204,8 +205,8 @@ void BookmarksProtocol::get( const KUrl& url )
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
-  KAboutData about("kio_bookmarks", 0, ki18n("My bookmarks"), "0.2.2");
-  about.addLicense(KAboutData::License_GPL_V2);
+  K4AboutData about("kio_bookmarks", 0, ki18n("My bookmarks"), "0.2.2");
+  about.addLicense(K4AboutData::License_GPL_V2);
   about.addAuthor(ki18n("Xavier Vello"), ki18n("Initial developer"), "xavier.vello@gmail.com", QByteArray());
   KCmdLineArgs::init(&about);
   KApplication app;
