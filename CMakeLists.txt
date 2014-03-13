@@ -20,8 +20,8 @@ include(ECMSetupVersion)
 #
 # Dependencies
 #
-set(QT_REQUIRED_VERSION 5.2.0)
-find_package(Qt5Widgets ${QT_REQUIRED_VERSION} REQUIRED NO_MODULE)
+set(REQUIRED_QT_VERSION 5.2.0)
+find_package(Qt5Widgets ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE)
 find_package(Phonon4Qt5 4.6.60 REQUIRED NO_MODULE)
 set_package_properties(Phonon4Qt5 PROPERTIES
    DESCRIPTION "Qt-based audio library"
