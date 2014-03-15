@@ -1143,18 +1143,22 @@ int compare_man_index(const void *s1, const void *s2)
 
 void MANProtocol::showIndex(const QString& section)
 {
-    QByteArray array;
-    QTextStream os(&array, QIODevice::WriteOnly);
-    os.setCodec( "UTF-8" );
+    QByteArray array_h;
+    QTextStream os_h(&array_h, QIODevice::WriteOnly);
+    os_h.setCodec( "UTF-8" );
 
     // print header
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
-    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
+    os_h << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
+    os_h << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
+    os_h << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
     if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
-    os << "</head>" << endl;
-    os << "<body><div class=\"secidxmain\">" << endl;
+        os_h << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
+    os_h << "</head>" << endl << "<body>" << endl;
+
+    QByteArray array_d;
+    QTextStream os(&array_d, QIODevice::WriteOnly);
+    os.setCodec( "UTF-8" );
+    os << "<div class=\"secidxmain\">" << endl;
     os << "<h1>" << i18n( "Index for Section %1: %2", section, sectionName(section)) << "</h1>" << endl;
 
     // compose list of search paths -------------------------------------------------------------
@@ -1171,7 +1175,7 @@ void MANProtocol::showIndex(const QString& section)
       os << "</div></body></html>" << endl;
 
       infoMessage(QString());
-      data(array);
+      data(array_h + array_d);
       finished();
       return;
     }
@@ -1341,8 +1345,11 @@ void MANProtocol::showIndex(const QString& section)
     // print footer
     os << "</body></html>" << endl;
 
+    // set the links "toolbar" also at the top
+    os_h << indexLine << endl;
+
     infoMessage(QString());
-    data(array);
+    data(array_h + array_d);
     finished();
 }
 
