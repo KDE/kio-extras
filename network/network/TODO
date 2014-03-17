@@ -70,8 +70,6 @@ For now simple listing with non-funct system items will do.
     // KDE
     { "_knotes._tcp",        "knotes",     "inode/vnd.kde.service.knotes",      "knotes",       false, "http", 0, 0, 0 },
 // TODO: make this second non-simple item, listing notes or enable the drop of ones (forwarding to some knotes: protocol?
-// Nepomuk Social Query Service
-    { "_nepomuk._tcp",       "nepomuk",    "inode/vnd.kde.service.nepomuk",     "nepomuk",      false, 0, 0, 0, 0 },
 
 
 
