@@ -27,6 +27,7 @@ Name[nb]=Ordboka til det galiciske akademiet (RAG)
 Name[nds]=Nakieksel vun de Galizsche Akademie (RAG)
 Name[nl]=Woordenboek van de Gallische Academie (RAE)
 Name[nn]=Ordboka til det galisiske akademiet (RAG)
+Name[pa]=ਗਾਲੀਸੀਅਨ ਐਕਡਮੀ ਦਾ ਡਿਕਸ਼ਨਰੀ (RAG)
 Name[pl]=Słownik Akademii Galicyjskiej (RAG)
 Name[pt]=Dicionário da Academia Galega (RAG)
 Name[pt_BR]=Dicionário da Academia Galega (RAG)
@@ -71,6 +72,7 @@ Query[nb]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\
 Query[nds]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nn]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[pa]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[pl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[pt]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[pt_BR]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
