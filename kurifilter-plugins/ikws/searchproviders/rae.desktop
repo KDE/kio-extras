@@ -26,7 +26,7 @@ Name[en_GB]=Dictionary of the Spanish Academy (RAE)
 Name[eo]=Vortaro de la Hispana Reĝa Akademio
 Name[es]=Diccionario de la Real Academia de la Lengua Española (RAE)
 Name[et]=Hispaania akadeemia (RAE) sõnaraamat
-Name[eu]=Gazteleraren Akademiaren hiztegia (RAE)
+Name[eu]=RAE Espainiako Errege Akademiaren hiztegia
 Name[fa]=واژه‌نامه فرهنگستان اسپانیایی (RAE)
 Name[fi]=Espanjan Akatemian sanakirja (RAE)
 Name[fr]=Dictionnaire de l'Académie Espagnole (RAE)
@@ -109,12 +109,14 @@ Query[gl]=http://www.rae.es/drae/?val=\\{@}
 Query[hi]=http://www.rae.es/drae/?val=\\{@}
 Query[hu]=http://www.rae.es/drae/?val=\\{@}
 Query[ia]=http://www.rae.es/drae/?val=\\{@}
+Query[id]=http://www.rae.es/drae/?val=\\{@}
 Query[it]=http://www.rae.es/drae/?val=\\{@}
 Query[ja]=http://www.rae.es/drae/?val=\\{@}
 Query[kk]=http://www.rae.es/drae/?val=\\{@}
 Query[ko]=http://www.rae.es/drae/?val=\\{@}
 Query[lt]=http://www.rae.es/drae/?val=\\{@}
 Query[nb]=http://www.rae.es/drae/?val=\\{@}
+Query[nds]=http://www.rae.es/drae/?val=\\{@}
 Query[nl]=http://www.rae.es/drae/?val=\\{@}
 Query[nn]=http://www.rae.es/drae/?val=\\{@}
 Query[pa]=http://www.rae.es/drae/?val=\\{@}

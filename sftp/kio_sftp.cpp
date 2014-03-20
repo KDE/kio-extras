@@ -176,16 +176,16 @@ static int auth_callback(const char *prompt, char *buf, size_t len,
   return 0;
 }
 
-static void log_callback(ssh_session session, int priority, const char *message,
+static void log_callback(int priority, const char *function, const char *buffer,
                          void *userdata)
 {
-  if (userdata == NULL) {
-    return;
-  }
+    if (userdata == NULL) {
+        return;
+    }
 
-  sftpProtocol *slave = (sftpProtocol *) userdata;
+    sftpProtocol *slave = (sftpProtocol *) userdata;
 
-  slave->log_callback(session, priority, message, userdata);
+    slave->log_callback(priority, function, buffer, userdata);
 }
 
 int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
@@ -235,13 +235,12 @@ int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
   return 0;
 }
 
-void sftpProtocol::log_callback(ssh_session session, int priority,
-                                const char *message, void *userdata)
+void sftpProtocol::log_callback(int priority, const char *function, const char *buffer,
+                                void *userdata)
 {
-  (void) session;
-  (void) userdata;
+    (void) userdata;
 
-  kDebug(KIO_SFTP_DB) << "[" << priority << "] " << message;
+    kDebug(KIO_SFTP_DB) << "[" << function << "] (" << priority << ") " << buffer;
 }
 
 int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
@@ -464,11 +463,33 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
 
   mCallbacks->userdata = this;
   mCallbacks->auth_function = ::auth_callback;
-  if (getenv("KIO_SFTP_LOG_VERBOSITY")) {
-    mCallbacks->log_function = ::log_callback;
-  }
 
   ssh_callbacks_init(mCallbacks);
+
+  char *verbosity = getenv("KIO_SFTP_LOG_VERBOSITY");
+  if (verbosity != NULL) {
+    int level = atoi(verbosity);
+    int rc;
+
+    rc = ssh_set_log_level(level);
+    if (rc != SSH_OK) {
+      error(KIO::ERR_INTERNAL, i18n("Could not set log verbosity."));
+      return;
+    }
+
+    rc = ssh_set_log_userdata(this);
+    if (rc != SSH_OK) {
+      error(KIO::ERR_INTERNAL, i18n("Could not set log userdata."));
+      return;
+    }
+
+    rc = ssh_set_log_callback(::log_callback);
+    if (rc != SSH_OK) {
+      error(KIO::ERR_INTERNAL, i18n("Could not set log callback."));
+      return;
+    }
+  }
+
 }
 
 sftpProtocol::~sftpProtocol() {
@@ -556,15 +577,6 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
     rc = ssh_options_set(mSession, SSH_OPTIONS_USER, info.username.toUtf8().constData());
     if (rc < 0) {
       error(KIO::ERR_INTERNAL, i18n("Could not set username."));
-      return false;
-    }
-  }
-
-  char* verbosity = getenv("KIO_SFTP_LOG_VERBOSITY");
-  if (verbosity) {
-    rc = ssh_options_set(mSession, SSH_OPTIONS_LOG_VERBOSITY_STR, verbosity);
-    if (rc < 0) {
-      error(KIO::ERR_INTERNAL, i18n("Could not set log verbosity."));
       return false;
     }
   }

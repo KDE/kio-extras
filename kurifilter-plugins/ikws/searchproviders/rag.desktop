@@ -4,7 +4,7 @@ Hidden=false
 Keys=rag
 Name=Dictionary of the Galician Academy (RAG)
 Name[bg]=Речник на галисийската академия (RAG)
-Name[bs]=Rječnik Galeške akademije (RAG)
+Name[bs]=Riječnik Galicijske akademije (RAG)
 Name[ca]=Diccionari de l'Acadèmia Gallega (RAG)
 Name[ca@valencia]=Diccionari de l'Acadèmia Gallega (RAG)
 Name[cs]=Slovník Galicijské akademie (RAG)
@@ -12,16 +12,21 @@ Name[da]=Ordbog fra det galisiske akademi (RAG)
 Name[de]=Lexikon der galizischen Akademie (RAG)
 Name[el]=Λεξικό της γαλικιανής ακαδημίας (RAG)
 Name[es]=Diccionario de la Real Academia Gallega (RAG)
-Name[eu]=Galiziera Akademiaren Hiztegia (RAG)
+Name[eu]=RAG Galiziako Akademiaren hiztegia
 Name[fi]=Galician Akatemian sanakirja (RAG)
 Name[fr]=Dictionnaire de l'Académie de Galice (RAG)
 Name[gl]=Dicionario da Real Academia Galega (RAG)
 Name[hu]=A Gall Akadémia címjegyzéke (RAG)
 Name[ia]=Dictionario del Academia Galician (RAG)
+Name[id]=Kamus Akademi Galicia (RAG)
+Name[it]=Dizionario dell'Accademia Gallega (RAE)
 Name[kk]=Галисия Академиясының сөздігі (RAG)
+Name[ko]=갈리시아 아카데미 사전 (RAG)
 Name[nb]=Ordboka til det galiciske akademiet (RAG)
+Name[nds]=Nakieksel vun de Galizsche Akademie (RAG)
 Name[nl]=Woordenboek van de Gallische Academie (RAE)
 Name[nn]=Ordboka til det galisiske akademiet (RAG)
+Name[pl]=Słownik Akademii Galicyjskiej (RAG)
 Name[pt]=Dicionário da Academia Galega (RAG)
 Name[pt_BR]=Dicionário da Academia Galega (RAG)
 Name[ro]=Dicționarul Academiei Galiciene (RAG)
@@ -55,10 +60,15 @@ Query[gl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\
 Query[hi]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[hu]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[ia]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[id]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[it]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[kk]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[ko]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nb]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[nds]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[nn]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
+Query[pl]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[pt]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[pt_BR]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}
 Query[ro]=http://www.realacademiagalega.org/dicionario#searchNoun.do?nounTitle=\\{@}

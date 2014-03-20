@@ -23,7 +23,7 @@ Name[en_GB]=CTAN - Comprehensive TeX Archive Network
 Name[eo]=CPAN - Ampleksa reta arkivo de TeX
 Name[es]=CTAN - Comprehensive TeX Archive Network
 Name[et]=CTAN - Comprehensive TeX Archive Network
-Name[eu]=CTAN - TeX fitxategi sare ulergarria
+Name[eu]=CTAN - TeX artxibo-sare zabala
 Name[fa]=CTAN - شبکه وسیع بایگانی TeX
 Name[fi]=CTAN – Comprehensive TeX Archive Network
 Name[fr]=CTAN (Comprehensive TeX Archive Network)
@@ -56,7 +56,7 @@ Name[ml]=സിടാന്‍ - അനേകം വിഷയങ്ങളടങ�
 Name[mr]=CTAN - कॉम्प्रेहेंसिव टेक्स संग्रह संजाळ
 Name[ms]=CTAN - Rangkaian Arkib TeX Komprehensif
 Name[nb]=CTAN -– TeX-arkiv: «Comprehensive TeX Archive Network»
-Name[nds]=CTAN - Comprehensive TeX Archive Network
+Name[nds]=CTAN - Ümfaten TeX-Archiev-Nettwark
 Name[ne]=CTAN - व्यापक TeX सङ्ग्रह सञ्जाल
 Name[nl]=CTAN - Comprehensive TeX Archive Network
 Name[nn]=CTAN – TeX-arkiv: «Comprehensive TeX Archive Network»
@@ -108,6 +108,7 @@ Query[gl]=http://ctan.org/search?phrase=\\{@}
 Query[hi]=http://ctan.org/search?phrase=\\{@}
 Query[hu]=http://ctan.org/search?phrase=\\{@}
 Query[ia]=http://ctan.org/search?phrase=\\{@}
+Query[id]=http://ctan.org/search?phrase=\\{@}
 Query[is]=http://ctan.org/search?phrase=\\{@}
 Query[it]=http://ctan.org/search?phrase=\\{@}
 Query[ja]=http://ctan.org/search?phrase=\\{@}
@@ -115,6 +116,7 @@ Query[kk]=http://ctan.org/search?phrase=\\{@}
 Query[ko]=http://ctan.org/search?phrase=\\{@}
 Query[lt]=http://ctan.org/search?phrase=\\{@}
 Query[nb]=http://ctan.org/search?phrase=\\{@}
+Query[nds]=http://ctan.org/search?phrase=\\{@}
 Query[nl]=http://ctan.org/search?phrase=\\{@}
 Query[nn]=http://ctan.org/search?phrase=\\{@}
 Query[pa]=http://ctan.org/search?phrase=\\{@}

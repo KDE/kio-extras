@@ -24,7 +24,7 @@ Name[en_GB]=CiteSeer: Scientific Literature Digital Library
 Name[eo]=CiteSeer: cifereca sciencoliteratura libraro
 Name[es]=CiteSeer: Biblioteca digital de literatura científica
 Name[et]=CiteSeer: Teaduskirjanduse digitaalraamatukogu
-Name[eu]=CiteSeer: Zientzia-literatur liburutegi digitala 
+Name[eu]=CiteSeer: zientzia-literaturaren liburutegi digitala
 Name[fa]=CiteSeer: کتابخانه رقمی ادبیات علمی
 Name[fi]=CiteSeer: tieteellisten tekstien digitaalinen kirjasto
 Name[fr]=CiteSeer : bibliothèque numérique de littérature scientifique
@@ -108,6 +108,7 @@ Query[gl]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=do
 Query[hi]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[hu]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[ia]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
+Query[id]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[is]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[it]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[ja]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
@@ -115,6 +116,7 @@ Query[kk]= http://citeseer.ist.psu.edu/cs?q=\\{@}&submit=Search+Documents&cs=1
 Query[ko]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[lt]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[nb]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
+Query[nds]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[nl]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[nn]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[pa]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc

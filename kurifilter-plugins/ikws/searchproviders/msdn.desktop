@@ -23,7 +23,7 @@ Name[en_GB]=Microsoft Developer Network Search
 Name[eo]=Reta serĉo por programistoj de Mikrosofto
 Name[es]=Red de búsqueda del desarrollador de Microsoft
 Name[et]=Microsoft Developer Network otsing
-Name[eu]=Microsoft-en garatzaileen sare bilaketa
+Name[eu]=Microsoft Developer Network-eko bilaketa
 Name[fa]=جستجوی شبکه توسعه‌دهنده مایکروسافت
 Name[fi]=Microsoft Developer Network -haku
 Name[fr]=Recherche sur le réseau des développeurs Microsoft
@@ -109,6 +109,7 @@ Query[gl]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[hi]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[hu]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[ia]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[id]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[is]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[it]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[ja]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
@@ -116,6 +117,7 @@ Query[kk]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[ko]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[lt]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[nb]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
+Query[nds]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[nl]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[nn]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}
 Query[pa]=https://social.msdn.microsoft.com/Search/en-US?query=\\{@}

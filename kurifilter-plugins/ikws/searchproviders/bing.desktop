@@ -27,6 +27,7 @@ Name[hi]=बिंग
 Name[hr]=Bing
 Name[hu]=Bing
 Name[ia]=Bing
+Name[id]=Bing
 Name[is]=Bing
 Name[it]=Bing
 Name[ja]=Bing
@@ -95,6 +96,7 @@ Query[hi]=http://www.bing.com/search?q=\\{@}
 Query[hr]=http://www.bing.com/search?q=\\{@}
 Query[hu]=http://www.bing.com/search?q=\\{@}
 Query[ia]=http://www.bing.com/search?q=\\{@}
+Query[id]=http://www.bing.com/search?q=\\{@}
 Query[is]=http://www.bing.com/search?q=\\{@}
 Query[it]=http://www.bing.com/search?q=\\{@}
 Query[ja]=http://www.bing.com/search?q=\\{@}

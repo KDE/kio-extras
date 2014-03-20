@@ -18,7 +18,7 @@ Name[en_GB]=Identi.ca Notices
 Name[eo]=Novaĵoj de Identi.ko
 Name[es]=Avisos Identi.ca
 Name[et]=Identi.ca teadaanded
-Name[eu]=Identi.ca Berriak
+Name[eu]=Identi.ca-ren jakinarazpenak
 Name[fa]=Identi.ca Notices
 Name[fi]=Identi.ca-tekstihaku
 Name[fr]=Annonces « Identi.ca »
@@ -88,6 +88,7 @@ Query[gl]=https://identi.ca/search/notice?q=\\{@}
 Query[hi]=https://identi.ca/search/notice?q=\\{@}
 Query[hu]=https://identi.ca/search/notice?q=\\{@}
 Query[ia]=https://identi.ca/search/notice?q=\\{@}
+Query[id]=https://identi.ca/search/notice?q=\\{@}
 Query[is]=https://identi.ca/search/notice?q=\\{@}
 Query[it]=https://identi.ca/search/notice?q=\\{@}
 Query[ja]=https://identi.ca/search/notice?q=\\{@}
@@ -95,6 +96,7 @@ Query[kk]=https://identi.ca/search/notice?q=\\{@}
 Query[ko]=https://identi.ca/search/notice?q=\\{@}
 Query[lt]=https://identi.ca/search/notice?q=\\{@}
 Query[nb]=https://identi.ca/search/notice?q=\\{@}
+Query[nds]=https://identi.ca/search/notice?q=\\{@}
 Query[nl]=https://identi.ca/search/notice?q=\\{@}
 Query[nn]=https://identi.ca/search/notice?q=\\{@}
 Query[pa]=https://identi.ca/search/notice?q=\\{@}

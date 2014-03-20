@@ -25,7 +25,7 @@ Name[en_GB]=Latest Qt Online Documentation
 Name[eo]=La plej aktuala reta dokumentado de Qt
 Name[es]=Ultima documentación Qt en línea
 Name[et]=Qt uusim dokumentatsioon võrgus
-Name[eu]=Azken Qt lineako dokumentazioa
+Name[eu]=Qt lineako azken dokumentazioa
 Name[fa]=آخرین مستندات برخط Qt
 Name[fi]=Uusin Qt-dokumentaatio
 Name[fr]=La dernière version de la documentation en ligne de Qt
@@ -108,6 +108,7 @@ Query[gl]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[hi]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[hu]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[ia]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
+Query[id]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[is]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[it]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[ja]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
@@ -115,6 +116,7 @@ Query[kk]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[ko]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[lt]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[nb]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
+Query[nds]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[nl]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[nn]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[pa]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}

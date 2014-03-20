@@ -17,7 +17,7 @@ Name[en_GB]=Identi.ca People
 Name[eo]=Presonoj de Identi.ko
 Name[es]=Gente Identi.ca
 Name[et]=Identi.ca inimesed
-Name[eu]=Identi.ca Jendea
+Name[eu]=Identi.ca-ren jendea
 Name[fa]=اعضای Identi.ca
 Name[fi]=Identi.ca-ihmishaku
 Name[fr]=Personne « Identi.ca »
@@ -87,6 +87,7 @@ Query[gl]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[hi]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[hu]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[ia]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[id]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[is]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[it]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[ja]=https://identi.ca/search/people?q=\\{@}&search=Search
@@ -94,6 +95,7 @@ Query[kk]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[ko]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[lt]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[nb]=https://identi.ca/search/people?q=\\{@}&search=Search
+Query[nds]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[nl]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[nn]=https://identi.ca/search/people?q=\\{@}&search=Search
 Query[pa]=https://identi.ca/search/people?q=\\{@}&search=Search

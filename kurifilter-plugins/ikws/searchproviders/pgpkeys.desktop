@@ -23,7 +23,7 @@ Name[en_GB]=OpenPGP Key Search
 Name[eo]=Ŝlosilserĉo de OpenPGP
 Name[es]=Búsqueda de clave OpenPGP
 Name[et]=OpenPGP võtme otsing
-Name[eu]=OpenPGP gako bilaketa
+Name[eu]=OpenPGP gako-bilatzailea
 Name[fa]=جستجوی کلید OpenPGP
 Name[fi]=OpenPGP-avainhaku
 Name[fr]=Recherche de clés « OpenPGP »
@@ -108,6 +108,7 @@ Query[gl]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[hi]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[hu]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ia]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
+Query[id]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[is]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[it]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ja]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
@@ -115,6 +116,7 @@ Query[kk]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[ko]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[lt]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[nb]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
+Query[nds]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[nl]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[nn]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[pa]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex

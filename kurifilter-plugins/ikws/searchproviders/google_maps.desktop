@@ -16,7 +16,7 @@ Name[en_GB]=Google Maps
 Name[eo]=Guglo Mapoj
 Name[es]=Google Maps
 Name[et]=Google Maps
-Name[eu]=Google Mapak
+Name[eu]=Google Maps
 Name[fa]=نقشه‌های گوگل
 Name[fi]=Google Maps (kartat)
 Name[fr]=Cartes « Google »
@@ -87,6 +87,7 @@ Query[gl]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[hi]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[hu]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ia]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[id]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[is]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[it]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ja]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
@@ -94,6 +95,7 @@ Query[kk]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[ko]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[lt]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nb]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
+Query[nds]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nl]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
 Query[nn]=https://maps.google.com/maps?hl=nn&q=\\{@}&ie=UTF8&iwloc=addr
 Query[pa]=https://maps.google.com/maps?q=\\{@}&ie=UTF8&iwloc=addr
