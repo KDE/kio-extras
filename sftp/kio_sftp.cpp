@@ -503,7 +503,7 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
 {
   mSession = ssh_new();
   if (mSession == NULL) {
-    error(KIO::ERR_INTERNAL, i18n("Could not create a new SSH session."));
+    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not create a new SSH session."));
     return false;
   }
 
@@ -514,39 +514,39 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
   // Set timeout
   int rc = ssh_options_set(mSession, SSH_OPTIONS_TIMEOUT, &timeout_sec);
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set a timeout."));
+    error(KIO::ERR_INTERNAL, i18n("Could not set a timeout."));
     return false;
   }
   rc = ssh_options_set(mSession, SSH_OPTIONS_TIMEOUT_USEC, &timeout_usec);
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set a timeout."));
+    error(KIO::ERR_INTERNAL, i18n("Could not set a timeout."));
     return false;
   }
 
   // Don't use any compression
   rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_C_S, "none");
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set compression."));
+    error(KIO::ERR_INTERNAL, i18n("Could not set compression."));
     return false;
   }
 
   rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_S_C, "none");
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set compression."));
+    error(KIO::ERR_INTERNAL, i18n("Could not set compression."));
     return false;
   }
 
   // Set host and port
   rc = ssh_options_set(mSession, SSH_OPTIONS_HOST, mHost.toUtf8().constData());
   if (rc < 0) {
-    error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set host."));
+    error(KIO::ERR_INTERNAL, i18n("Could not set host."));
     return false;
   }
 
   if (mPort > 0) {
     rc = ssh_options_set(mSession, SSH_OPTIONS_PORT, &mPort);
     if (rc < 0) {
-        error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set port."));
+        error(KIO::ERR_INTERNAL, i18n("Could not set port."));
       return false;
     }
   }
@@ -555,7 +555,7 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
   if (!info.username.isEmpty()) {
     rc = ssh_options_set(mSession, SSH_OPTIONS_USER, info.username.toUtf8().constData());
     if (rc < 0) {
-      error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set username."));
+      error(KIO::ERR_INTERNAL, i18n("Could not set username."));
       return false;
     }
   }
@@ -564,7 +564,7 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
   if (verbosity) {
     rc = ssh_options_set(mSession, SSH_OPTIONS_LOG_VERBOSITY_STR, verbosity);
     if (rc < 0) {
-      error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not set log verbosity."));
+      error(KIO::ERR_INTERNAL, i18n("Could not set log verbosity."));
       return false;
     }
   }
@@ -632,8 +632,10 @@ void sftpProtocol::openConnection() {
   QString msg;     // msg for dialog box
   QString caption; // dialog box caption
   unsigned char *hash = NULL; // the server hash
+  ssh_key srv_pubkey;
   char *hexa;
-  int rc, state, hlen;
+  size_t hlen;
+  int rc, state;
 
   // Attempt to start a ssh session and establish a connection with the server.
   if (!sftpOpenConnection(info)) {
@@ -643,9 +645,21 @@ void sftpProtocol::openConnection() {
   kDebug(KIO_SFTP_DB) << "Getting the SSH server hash";
 
   /* get the hash */
-  hlen = ssh_get_pubkey_hash(mSession, &hash);
-  if (hlen < 0) {
+  rc = ssh_get_publickey(mSession, &srv_pubkey);
+  if (rc < 0) {
     error(KIO::ERR_SLAVE_DEFINED, QString::fromUtf8(ssh_get_error(mSession)));
+    closeConnection();
+    return;
+  }
+
+  rc = ssh_get_publickey_hash(srv_pubkey,
+                              SSH_PUBLICKEY_HASH_SHA1,
+                              &hash,
+                              &hlen);
+  ssh_key_free(srv_pubkey);
+  if (rc < 0) {
+    error(KIO::ERR_SLAVE_DEFINED,
+          i18n("Could not create hash from server public key"));
     closeConnection();
     return;
   }
@@ -658,7 +672,7 @@ void sftpProtocol::openConnection() {
     case SSH_SERVER_KNOWN_OK:
       break;
     case SSH_SERVER_FOUND_OTHER:
-      delete hash;
+      ssh_string_free_char((char *)hash);
       error(KIO::ERR_SLAVE_DEFINED, i18n("The host key for this server was "
             "not found, but another type of key exists.\n"
             "An attacker might change the default server key to confuse your "
@@ -668,7 +682,7 @@ void sftpProtocol::openConnection() {
       return;
     case SSH_SERVER_KNOWN_CHANGED:
       hexa = ssh_get_hexa(hash, hlen);
-      delete hash;
+      ssh_string_free_char((char *)hash);
       /* TODO print known_hosts file, port? */
       error(KIO::ERR_SLAVE_DEFINED, i18n("The host key for the server %1 has changed.\n"
           "This could either mean that DNS SPOOFING is happening or the IP "
@@ -676,18 +690,18 @@ void sftpProtocol::openConnection() {
           "The fingerprint for the key sent by the remote host is:\n %2\n"
           "Please contact your system administrator.\n%3",
           mHost, QString::fromUtf8(hexa), QString::fromUtf8(ssh_get_error(mSession))));
-      delete hexa;
+      ssh_string_free_char(hexa);
       closeConnection();
       return;
     case SSH_SERVER_FILE_NOT_FOUND:
     case SSH_SERVER_NOT_KNOWN:
       hexa = ssh_get_hexa(hash, hlen);
-      delete hash;
+      ssh_string_free_char((char *)hash);
       caption = i18n("Warning: Cannot verify host's identity.");
       msg = i18n("The authenticity of host %1 cannot be established.\n"
         "The key fingerprint is: %2\n"
         "Are you sure you want to continue connecting?", mHost, hexa);
-      delete hexa;
+      ssh_string_free_char(hexa);
 
       if (KMessageBox::Yes != messageBox(WarningYesNo, msg, caption)) {
         closeConnection();
@@ -704,7 +718,7 @@ void sftpProtocol::openConnection() {
       }
       break;
     case SSH_SERVER_ERROR:
-      delete hash;
+      ssh_string_free_char((char *)hash);
       error(KIO::ERR_SLAVE_DEFINED, QString::fromUtf8(ssh_get_error(mSession)));
       return;
   }
@@ -732,7 +746,7 @@ void sftpProtocol::openConnection() {
   if (rc != SSH_AUTH_SUCCESS && (method & SSH_AUTH_METHOD_PUBLICKEY)) {
     kDebug(KIO_SFTP_DB) << "Trying to authenticate with public key";
     for(;;) {
-      rc = ssh_userauth_autopubkey(mSession, NULL);
+      rc = ssh_userauth_publickey_auto(mSession, NULL, NULL);
       if (rc == SSH_AUTH_ERROR) {
         kDebug(KIO_SFTP_DB) << "Public key authentication failed:" <<
                 QString::fromUtf8(ssh_get_error(mSession));
@@ -745,6 +759,19 @@ void sftpProtocol::openConnection() {
         break;
       }
     }
+  }
+
+  // Try to authenticate with GSSAPI
+  if (rc != SSH_AUTH_SUCCESS && (method & SSH_AUTH_METHOD_GSSAPI_MIC)) {
+      kDebug(KIO_SFTP_DB) << "Trying to authenticate with GSSAPI";
+      rc = ssh_userauth_gssapi(mSession);
+      if (rc == SSH_AUTH_ERROR) {
+          kDebug(KIO_SFTP_DB) << "Public key authentication failed:" <<
+                 QString::fromUtf8(ssh_get_error(mSession));
+          closeConnection();
+          error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+          return;
+      }
   }
 
   // Try to authenticate with keyboard interactive
@@ -1364,12 +1391,12 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const KUrl& url, int permissions,
             initialMode = 0644;
           }
 
-          kDebug(KIO_SFTP_DB) << "Trying to open:" << dest << ", mode=" << QString::number(initialMode);
+          kDebug(KIO_SFTP_DB) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(initialMode);
           file = sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
         } // flags & KIO::Resume
 
         if (file == NULL) {
-          kDebug(KIO_SFTP_DB) << "COULD NOT WRITE " << dest
+          kDebug(KIO_SFTP_DB) << "COULD NOT WRITE " << QString(dest)
                               << ", permissions=" << permissions
                               << ", error=" << ssh_get_error(mSession);
           if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
