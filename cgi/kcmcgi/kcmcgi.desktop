@@ -2,7 +2,7 @@
 Icon=run
 Type=Service
 X-KDE-ServiceTypes=KCModule
-Exec=kcmshell4 kcmcgi
+Exec=kcmshell5 kcmcgi
 X-DocPath=kcontrol/kcmcgi/index.html
 X-KDE-Library=kcm_cgi
 X-KDE-ParentApp=kcontrol
