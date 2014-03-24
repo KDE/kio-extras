@@ -9,7 +9,7 @@ if(NOT WIN32)
                         TYPE OPTIONAL
                         PURPOSE "Needed to build the SMB kioslave"
                         )
-endif(NOT WIN32)
+endif()
 
 find_package(LibSSH 0.6.0)
 set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP support"
@@ -38,7 +38,7 @@ add_subdirectory( thumbnail )
 add_subdirectory( docfilter )
 if (LIBSSH_FOUND)
   add_subdirectory(sftp)
-endif (LIBSSH_FOUND)
+endif ()
 
 if(NOT WIN32)
    add_subdirectory( floppy )
@@ -49,7 +49,7 @@ if(NOT WIN32)
    if(HAVE_RPC_RPC_H)
      add_subdirectory( nfs )
    endif()
-endif(NOT WIN32)
+endif()
 
 if(SAMBA_FOUND)
     add_subdirectory(smb)

@@ -1,5 +1,5 @@
-ADD_EXECUTABLE( copytester main.cpp copytester.cpp)
+add_executable( copytester main.cpp copytester.cpp)
 
-TARGET_LINK_LIBRARIES( copytester KF5::KDE4Support KF5::KIOCore )
+target_link_libraries( copytester KF5::KDE4Support KF5::KIOCore )
 
 install( TARGETS copytester ${INSTALL_TARGETS_DEFAULT_ARGS}  )

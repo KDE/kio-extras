@@ -23,7 +23,7 @@ macro_bool_to_01(EXIV2_FOUND HAVE_EXIV2)
 include_directories(${JPEG_INCLUDE_DIR})
 if(EXIV2_FOUND)
     include_directories(${EXIV2_INCLUDE_DIR})
-endif(EXIV2_FOUND)
+endif()
 
 include_directories(${CMAKE_BINARY_DIR})
 
@@ -99,7 +99,7 @@ if (HAVE_EXIV2)
     kde_source_files_enable_exceptions(jpegcreator.cpp)
     include_directories(${EXIV2_INCLUDE_DIR})
     target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
-endif (HAVE_EXIV2)
+endif ()
 
 install(FILES jpegcreatorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR})
 install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
@@ -134,7 +134,7 @@ install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # target_link_libraries(htmlthumbnail KF5::WebKit)
 # 
 # install(TARGETS htmlthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-# endif(NOT WINCE)
+# endif()
 # 
 # ########### next target ###############
 # 
@@ -146,7 +146,7 @@ install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # target_link_libraries(djvuthumbnail ${KIO_LIBRARIES})
 # 
 # install(TARGETS djvuthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-# endif(NOT WIN32)
+# endif()
 # 
 # ########### next target ###############
 # 
@@ -167,7 +167,7 @@ install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 #    install(TARGETS exrthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 #    install( FILES exrthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 # 
-# endif(OPENEXR_FOUND)
+# endif()
 # 
 # ########### next target ###############
 # 
@@ -182,7 +182,7 @@ install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 #    install(TARGETS cursorthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 #    install( FILES cursorthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 # 
-# endif(X11_Xcursor_FOUND)
+# endif()
 # 
 # ########### next target ###############
 # 
@@ -214,7 +214,7 @@ install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # target_link_libraries(comicbookthumbnail ${KIO_LIBRARIES})
 # if (UNIX)
 #    target_link_libraries(comicbookthumbnail KF5::Pty)
-# endif (UNIX)
+# endif ()
 # install(TARGETS comicbookthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### install files ###############

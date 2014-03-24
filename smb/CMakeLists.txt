@@ -1,8 +1,8 @@
-INCLUDE(CheckIncludeFile)
+include(CheckIncludeFile)
 set(CMAKE_AUTOMAKE ON)
 
 if(NOT WIN32)
-CHECK_INCLUDE_FILE(utime.h HAVE_UTIME_H)
+check_include_file(utime.h HAVE_UTIME_H)
 
 configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)
 
@@ -22,14 +22,14 @@ add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
 
 
 target_link_libraries(kio_smb KF5::KIOCore KF5::I18n ${SAMBA_LIBRARIES} )
-else(NOT WIN32)
+else()
 set(kio_smb_PART_SRCS 
    kio_smb_win.cpp)
 
 add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
 
 target_link_libraries(kio_smb KF5::KIOCore KF5::I18n mpr)    
-endif(NOT WIN32)
+endif()
 
 install(TARGETS kio_smb  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

@@ -24,7 +24,7 @@ set( slpnetworkbuilder_SRCS
   builder/slp/slpservicebrowser.cpp
   builder/slp/slpnetworkbuilder.cpp
 )
-endif(SLP_FOUND)
+endif()
 
 set( dnssdnetworkbuilder_SRCS
   builder/dnssd/dnssdnetworkbuilder.cpp
@@ -70,7 +70,7 @@ set( molletnetwork_LINK_LIBS
 
 if(SLP_FOUND)
 set( molletnetwork_LINK_LIBS  ${molletnetwork_LINK_LIBS} ${SLP_LIBRARIES} )
-endif(SLP_FOUND)
+endif()
 
 add_library( molletnetwork  SHARED ${molletnetwork_LIB_SRCS} )
 target_link_libraries( molletnetwork  ${molletnetwork_LINK_LIBS} )

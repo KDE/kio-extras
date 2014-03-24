@@ -25,15 +25,15 @@ if (MD5SUM_EXECUTABLE)
 
    if ("${MD5SUM_EXECUTABLE}" MATCHES "md5sum")
       set(CUT_ARG "-f 1")                            # for md5sum the sum is in the 1st column
-   else ("${MD5SUM_EXECUTABLE}" MATCHES "md5sum")
+   else ()
       set(CUT_ARG "-f 4")                            # for md5 the sum is in the 4th column
-   endif ("${MD5SUM_EXECUTABLE}" MATCHES "md5sum")
+   endif ()
 
    if (WIN32)
       set(FISH_GENERATOR "generate_fishcode.bat")
-   else (WIN32)
+   else ()
       set(FISH_GENERATOR "generate_fishcode.sh")
-   endif (WIN32)
+   endif ()
    add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h 
       COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/${FISH_GENERATOR} ARGS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl ${MD5SUM_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h "${CUT_ARG}"
       DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/fish.pl
@@ -47,7 +47,7 @@ if (MD5SUM_EXECUTABLE)
 
    if (UTIL_LIBRARIES)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})
-   endif (UTIL_LIBRARIES)
+   endif ()
 
    install(TARGETS kio_fish  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
@@ -56,4 +56,4 @@ if (MD5SUM_EXECUTABLE)
 
    install( FILES fish.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 
-endif (MD5SUM_EXECUTABLE)
+endif ()
