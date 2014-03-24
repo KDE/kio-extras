@@ -954,7 +954,7 @@ void sftpProtocol::special(const QByteArray &) {
     setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
 }
 
-void sftpProtocol::open(const KUrl &url, QIODevice::OpenMode mode) {
+void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
   kDebug(KIO_SFTP_DB) << "open: " << url;
 
   if (!sftpLogin()) {
