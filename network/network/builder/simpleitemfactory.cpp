@@ -49,7 +49,7 @@ struct DNSSDServiceDatum {
     const char* userField;
     const char* passwordField;
 
-    void feedUrl( KUrl* url, const DNSSD::RemoteService* remoteService ) const;
+    void feedUrl( KUrl* url, const KDNSSD::RemoteService* remoteService ) const;
 };
 
 static const DNSSDServiceDatum DNSSDServiceData[] =
@@ -162,7 +162,7 @@ static const DNSSDServiceDatum UnknownServiceDatum = { "", "unknown", "unknown",
 // * see how the apple specific protocols can be used for devicetype identification (printer, scanner)
 
 
-void DNSSDServiceDatum::feedUrl( KUrl* url, const DNSSD::RemoteService* remoteService ) const
+void DNSSDServiceDatum::feedUrl( KUrl* url, const KDNSSD::RemoteService* remoteService ) const
 {
     const QMap<QString,QByteArray> serviceTextData = remoteService->textData();
 
@@ -191,12 +191,12 @@ Q_UNUSED( serviceType )
     return true;
 }
 
-QString SimpleItemFactory::dnssdId( const DNSSD::RemoteService::Ptr& dnssdService ) const
+QString SimpleItemFactory::dnssdId( const KDNSSD::RemoteService::Ptr& dnssdService ) const
 {
     return dnssdService->type() + QLatin1Char('_') + dnssdService->serviceName();
 }
 
-NetServicePrivate* SimpleItemFactory::createNetService( const DNSSD::RemoteService::Ptr& dnssdService, const NetDevice& device ) const
+NetServicePrivate* SimpleItemFactory::createNetService( const KDNSSD::RemoteService::Ptr& dnssdService, const NetDevice& device ) const
 {
     NetServicePrivate* result;
 

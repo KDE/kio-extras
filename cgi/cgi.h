@@ -32,7 +32,7 @@ class CgiProtocol : public KIO::SlaveBase
     CgiProtocol( const QByteArray &pool, const QByteArray &app );
     virtual ~CgiProtocol();
 
-    virtual void get( const KUrl& url );
+    virtual void get( const QUrl& url );
 
 //    virtual void mimetype( const KUrl& url );
 

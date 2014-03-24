@@ -1,3 +1,6 @@
+include(CheckIncludeFiles)
+include(CheckFunctionExists)
+
 check_include_files(termios.h HAVE_TERMIOS_H)
 check_include_files(util.h HAVE_UTIL_H)
 check_include_files(sys/ioctl.h HAVE_SYS_IOCTL_H)
@@ -40,7 +43,7 @@ if (MD5SUM_EXECUTABLE)
 
    add_library(kio_fish MODULE ${kio_fish_PART_SRCS})
 
-   target_link_libraries(kio_fish KF5::KIOCore)
+   target_link_libraries(kio_fish KF5::KIOCore KF5::KDE4Support)
 
    if (UTIL_LIBRARIES)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})

@@ -35,8 +35,8 @@ public:
   FingerProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
   virtual ~FingerProtocol();
 
-  virtual void mimetype(const KUrl& url);
-  virtual void get(const KUrl& url);
+  virtual void mimetype(const QUrl& url);
+  virtual void get(const QUrl& url);
 
 private:
   KUrl                  *myURL;

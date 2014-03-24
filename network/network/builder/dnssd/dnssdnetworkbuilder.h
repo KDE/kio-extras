@@ -28,7 +28,9 @@
 #include "network.h"
 #include "netdevice.h"
 // KDE
-#include <DNSSD/RemoteService>
+#include <dnssd/remoteservice.h>
+#include <DNSSD/ServiceTypeBrowser>
+#include <DNSSD/ServiceBrowser>
 // Qt
 #include <QtCore/QHash>
 
@@ -59,9 +61,9 @@ class DNSSDNetworkBuilder : public AbstractNetworkBuilder
 
   private Q_SLOTS:
     void addServiceType( const QString& serviceType );
-    void addService( DNSSD::RemoteService::Ptr service );
+    void addService( KDNSSD::RemoteService::Ptr service );
     void removeServiceType( const QString& serviceType );
-    void removeService( DNSSD::RemoteService::Ptr service );
+    void removeService( KDNSSD::RemoteService::Ptr service );
 
     void onServiceTypeBrowserFinished();
     void onServiceBrowserFinished();
@@ -69,8 +71,8 @@ class DNSSDNetworkBuilder : public AbstractNetworkBuilder
   private: // data
     NetworkPrivate* mNetworkPrivate;
 
-    DNSSD::ServiceTypeBrowser* mServiceTypeBrowser;
-    QHash<QString,DNSSD::ServiceBrowser*> mServiceBrowserTable;
+    KDNSSD::ServiceTypeBrowser* mServiceTypeBrowser;
+    QHash<QString,KDNSSD::ServiceBrowser*> mServiceBrowserTable;
 
     QList<DNSSDNetSystemAble*> mNetSystemFactoryList;
 

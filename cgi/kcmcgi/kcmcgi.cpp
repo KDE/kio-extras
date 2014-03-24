@@ -20,6 +20,7 @@
 
 #include <KAboutData>
 #include <KConfig>
+#include <KConfigGroup>
 #include <KFileDialog>
 #include <KPluginFactory>
 #include <KPluginLoader>
@@ -31,18 +32,15 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 
-#include "kcmcgi.moc"
-
 K_PLUGIN_FACTORY(KCMCgiFactory, registerPlugin<KCMCgi>();)
 K_EXPORT_PLUGIN(KCMCgiFactory("kcmcgi"))
 
 KCMCgi::KCMCgi(QWidget *parent, const QVariantList &)
-  : KCModule(KCMCgiFactory::componentData(), parent)
+  : KCModule(parent)
 {
   setButtons(Default|Apply|Help);
 
   QVBoxLayout *topLayout = new QVBoxLayout(this);
-  topLayout->setSpacing(KDialog::spacingHint());
 
   QGroupBox *topBox = new QGroupBox(i18n("Paths to Local CGI Programs"), this);
   QVBoxLayout *vbox = new QVBoxLayout;
@@ -54,7 +52,6 @@ KCMCgi::KCMCgi(QWidget *parent, const QVariantList &)
 
   vbox->addWidget(mListBox);
   KHBox *buttonBox = new KHBox( topBox );
-  buttonBox->setSpacing( KDialog::spacingHint() );
 
   mAddButton = new QPushButton( i18n("Add..."), buttonBox );
   connect( mAddButton, SIGNAL( clicked() ), SLOT( addPath() ) );
@@ -70,11 +67,11 @@ KCMCgi::KCMCgi(QWidget *parent, const QVariantList &)
   updateButton();
   KAboutData *about =
     new KAboutData( I18N_NOOP("kcmcgi"), 0,
-                    ki18n("CGI KIO Slave Control Module"),
-                    0, KLocalizedString(), KAboutData::License_GPL,
-                    ki18n("(c) 2002 Cornelius Schumacher") );
+                    i18n("CGI KIO Slave Control Module"),
+                    0, QString(), KAboutData::License_GPL,
+                    i18n("(c) 2002 Cornelius Schumacher") );
 
-  about->addAuthor( ki18n("Cornelius Schumacher"), KLocalizedString(), "schumacher@kde.org" );
+  about->addAuthor( i18n("Cornelius Schumacher"), QString(), "schumacher@kde.org" );
   setAboutData(about);
 }
 
@@ -148,3 +145,5 @@ QString KCMCgi::quickHelp() const
               "In this control module you can configure the paths that "
               "are searched for CGI scripts.");
 }
+
+#include "kcmcgi.moc"

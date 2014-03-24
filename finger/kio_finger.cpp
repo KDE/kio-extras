@@ -90,7 +90,7 @@ FingerProtocol::~FingerProtocol()
 /* ---------------------------------------------------------------------------------- */
 
 
-void FingerProtocol::get(const KUrl& url )
+void FingerProtocol::get(const QUrl& url )
 {
   //kDebug() << "kio_finger::get(const KUrl& url)";
 
@@ -131,7 +131,7 @@ void FingerProtocol::get(const KUrl& url )
 /* ---------------------------------------------------------------------------------- */
 
 
-void FingerProtocol::mimetype(const KUrl & /*url*/)
+void FingerProtocol::mimetype(const QUrl & /*url*/)
 {
   mimeType("text/html");
   finished();

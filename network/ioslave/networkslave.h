@@ -43,10 +43,10 @@ class NetworkSlave : public KIO::SlaveBase
     virtual ~NetworkSlave();
 
   public: // KIO::SlaveBase API
-    virtual void mimetype( const KUrl& url );
-    virtual void get( const KUrl& url );
-    virtual void stat( const KUrl& url );
-    virtual void listDir( const KUrl& url );
+    virtual void mimetype( const QUrl& url );
+    virtual void get( const QUrl& url );
+    virtual void stat( const QUrl& url );
+    virtual void listDir( const QUrl& url );
 
   private:
     void feedEntryAsNetwork( KIO::UDSEntry* entry );

@@ -52,3 +52,5 @@ Network::~Network()
 }
 
 }
+
+#include "moc_network.cpp"

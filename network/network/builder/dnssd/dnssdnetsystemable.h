@@ -24,7 +24,7 @@
 #define DNSSDNETSYSTEMABLE_H
 
 // KDE
-#include <DNSSD/RemoteService>
+#include <dnssd/remoteservice.h>
 // Qt
 #include <QtCore/QtPlugin>
 
@@ -45,8 +45,8 @@ class DNSSDNetSystemAble
 
   public: // API to be implemented
     virtual bool canCreateNetSystemFromDNSSD( const QString& serviceType ) const = 0;
-    virtual NetServicePrivate* createNetService( const DNSSD::RemoteService::Ptr& service, const NetDevice& device ) const = 0;
-    virtual QString dnssdId( const DNSSD::RemoteService::Ptr& dnssdService ) const = 0;
+    virtual NetServicePrivate* createNetService( const KDNSSD::RemoteService::Ptr& service, const NetDevice& device ) const = 0;
+    virtual QString dnssdId( const KDNSSD::RemoteService::Ptr& dnssdService ) const = 0;
 };
 
 

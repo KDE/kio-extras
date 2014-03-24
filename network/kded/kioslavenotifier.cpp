@@ -153,8 +153,8 @@ void KioSlaveNotifier::notifyAboutRemoved( const QString& dirId, const QString& 
     QHash<QString, int>::Iterator it = mWatchedDirs.find( dirId );
     if( it != mWatchedDirs.end() )
     {
-        QStringList itemUrls;
-        itemUrls.append( QLatin1String("network:/") + itemPath );
+        QList<QUrl> itemUrls;
+        itemUrls.append( QUrl( QStringLiteral("network:/") + itemPath ) );
 kDebug()<<itemUrls;
         org::kde::KDirNotify::emitFilesRemoved( itemUrls );
     }

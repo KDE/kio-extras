@@ -43,23 +43,23 @@ public:
   sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
   virtual ~sftpProtocol();
   virtual void setHost(const QString &h, quint16 port, const QString& user, const QString& pass);
-  virtual void get(const KUrl &url);
-  virtual void listDir(const KUrl &url) ;
-  virtual void mimetype(const KUrl &url);
-  virtual void stat(const KUrl &url);
-  virtual void copy(const KUrl &src, const KUrl &dest, int permissions, KIO::JobFlags flags);
-  virtual void put(const KUrl &url, int permissions, KIO::JobFlags flags);
+  virtual void get(const QUrl &url);
+  virtual void listDir(const QUrl &url) ;
+  virtual void mimetype(const QUrl &url);
+  virtual void stat(const QUrl &url);
+  virtual void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
+  virtual void put(const QUrl &url, int permissions, KIO::JobFlags flags);
   virtual void closeConnection();
   virtual void slave_status();
-  virtual void del(const KUrl &url, bool isfile);
-  virtual void chmod(const KUrl &url, int permissions);
-  virtual void symlink(const QString &target, const KUrl &dest, KIO::JobFlags flags);
-  virtual void rename(const KUrl &src, const KUrl &dest, KIO::JobFlags flags);
-  virtual void mkdir(const KUrl &url, int permissions);
+  virtual void del(const QUrl &url, bool isfile);
+  virtual void chmod(const QUrl &url, int permissions);
+  virtual void symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags);
+  virtual void rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags);
+  virtual void mkdir(const QUrl &url, int permissions);
   virtual void openConnection();
 
   // KIO::FileJob interface
-  virtual void open(const KUrl &url, QIODevice::OpenMode mode);
+  virtual void open(const QUrl &url, QIODevice::OpenMode mode);
   virtual void read(KIO::filesize_t size);
   virtual void write(const QByteArray &data);
   virtual void seek(KIO::filesize_t offset);

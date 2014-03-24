@@ -30,9 +30,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <kdebug.h>
 #include <kmimetype.h>
 #include <kfilterbase.h>
+#include <kcompressiondevice.h>
+#include <kfilterdev.h>
 #include <kurl.h>
 
-extern "C" { KDE_EXPORT int kdemain(int argc, char **argv); }
+extern "C" { Q_DECL_EXPORT int kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char ** argv)
 {
@@ -57,11 +59,11 @@ FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &p
  : KIO::SlaveBase( protocol, pool, app )
 {
     QString mimetype = QString::fromLatin1("application/x-") + QString::fromLatin1(protocol);
-    filter = KFilterBase::findFilterByMimeType( mimetype );
+    filter = KCompressionDevice::filterForCompressionType(KFilterDev::compressionTypeForMimeType( mimetype ));
     Q_ASSERT(filter);
 }
 
-void FilterProtocol::get(const KUrl& url)
+void FilterProtocol::get(const QUrl& url)
 {
     // In the old solution, subURL would be set by setSubURL.
     // KDE4: now I simply assume bzip2:/localpath/file.bz2 and set subURL to the local path.

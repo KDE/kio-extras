@@ -24,6 +24,7 @@
 #include <kstandarddirs.h>
 #include <kdesktopfile.h>
 #include <kservice.h>
+#include <kglobal.h>
 #include <klocale.h>
 #include <kconfiggroup.h>
 

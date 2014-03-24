@@ -48,33 +48,33 @@ It is set to false if the connection becomes closed.
   /** Forced close of the connection */
   void closeConnection();
   /** get a file */
-  void get(const KUrl& url);
+  void get(const QUrl& url);
   /** put a file */
-  void put(const KUrl& url, int permissions, KIO::JobFlags flags );
+  void put(const QUrl& url, int permissions, KIO::JobFlags flags );
   /** aborts command sequence and calls error() */
   void error(int type, const QString &detail);
   /** executes next command in sequence or calls finished() if all is done */
   void finished();
   /** stat a file */
-  void stat(const KUrl& url);
+  void stat(const QUrl& url);
   /** find mimetype for a file */
-  void mimetype(const KUrl& url);
+  void mimetype(const QUrl& url);
   /** list a directory */
-  void listDir(const KUrl& url);
+  void listDir(const QUrl& url);
   /** create a directory */
-  void mkdir(const KUrl&url, int permissions);
+  void mkdir(const QUrl&url, int permissions);
   /** rename a file */
-  void rename(const KUrl& src, const KUrl& dest, KIO::JobFlags flags);
+  void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags);
   /** create a symlink */
-  void symlink(const QString& target, const KUrl& dest, KIO::JobFlags flags);
+  void symlink(const QString& target, const QUrl& dest, KIO::JobFlags flags);
   /** change file permissions */
-  void chmod(const KUrl& url, int permissions);
+  void chmod(const QUrl& url, int permissions);
   /** copies a file */
-  void copy(const KUrl &src, const KUrl &dest, int permissions, KIO::JobFlags flags);
+  void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
   /** report status */
   void slave_status();
   /** removes a file or directory */
-  void del(const KUrl &u, bool isfile);
+  void del(const QUrl &u, bool isfile);
   /** special like background execute */
   void special( const QByteArray &data );
 
@@ -212,7 +212,7 @@ protected: // Protected methods
   /** writes to process */
   void writeStdin(const QString &line);
   /** Verify port **/
-  void setHostInternal(const KUrl & u);
+  void setHostInternal(const QUrl & u);
 
 };
 

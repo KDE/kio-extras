@@ -34,3 +34,5 @@ void RecentDocumentsNotifier::dirty(const QString &path)
         org::kde::KDirNotify::emitFilesAdded(url.url());
     }
 }
+
+#include "recentdocumentsnotifier.moc"

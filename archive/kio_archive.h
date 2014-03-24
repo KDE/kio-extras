@@ -34,9 +34,9 @@ public:
     ArchiveProtocol( const QByteArray &pool, const QByteArray &app );
     virtual ~ArchiveProtocol();
 
-    virtual void listDir( const KUrl & url );
-    virtual void stat( const KUrl & url );
-    virtual void get( const KUrl & url );
+    virtual void listDir( const QUrl & url );
+    virtual void stat( const QUrl & url );
+    virtual void get( const QUrl & url );
 
 private:
     void createRootUDSEntry( KIO::UDSEntry & entry );
@@ -49,7 +49,7 @@ private:
      * \param errNum KIO error number (undefined if the function returns true)
      * \return true if file was found, false if there was an error
      */
-    bool checkNewFile( const KUrl & url, QString & path, KIO::Error& errorNum );
+    bool checkNewFile( const QUrl & url, QString & path, KIO::Error& errorNum );
 
     KArchive * m_archiveFile;
     QString m_archiveName;

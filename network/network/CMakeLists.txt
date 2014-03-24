@@ -62,10 +62,10 @@ set( molletnetwork_LIB_SRCS
 
 
 set( molletnetwork_LINK_LIBS
-    
     KF5::DNSSD
     Qt5::Network
     Qt5::Gui
+    KF5::KDE4Support
 )
 
 if(SLP_FOUND)

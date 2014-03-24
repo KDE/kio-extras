@@ -32,10 +32,10 @@ public:
 protected:
     void checkLocalInstall();
     QString desktopFile(KIO::UDSEntry&) const;
-    virtual bool rewriteUrl(const KUrl &url, KUrl &newUrl);
-    virtual void listDir(const KUrl &url);
+    virtual bool rewriteUrl(const QUrl &url, QUrl &newUrl);
+    virtual void listDir(const QUrl &url);
     virtual void prepareUDSEntry(KIO::UDSEntry &entry, bool listing=false) const;
-    virtual void rename(const KUrl &, const KUrl &, KIO::JobFlags flags);
+    virtual void rename(const QUrl &, const QUrl &, KIO::JobFlags flags);
 };
 
 #endif

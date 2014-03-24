@@ -61,7 +61,7 @@ void DNSSDNetworkBuilder::start()
     mIsInit = true;
     mNoOfInitServiceTypes = 0;
 
-    mServiceTypeBrowser = new DNSSD::ServiceTypeBrowser();
+    mServiceTypeBrowser = new KDNSSD::ServiceTypeBrowser();
     connect( mServiceTypeBrowser, SIGNAL(serviceTypeAdded(QString)),
              SLOT(addServiceType(QString)) );
     connect( mServiceTypeBrowser, SIGNAL(serviceTypeRemoved(QString)),
@@ -78,11 +78,11 @@ kDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
         return;
 
 // kDebug()<<serviceType;
-    DNSSD::ServiceBrowser* serviceBrowser = new DNSSD::ServiceBrowser( serviceType, true );
-    connect( serviceBrowser, SIGNAL(serviceAdded(DNSSD::RemoteService::Ptr)),
-            SLOT(addService(DNSSD::RemoteService::Ptr)) );
-    connect( serviceBrowser, SIGNAL(serviceRemoved(DNSSD::RemoteService::Ptr)),
-            SLOT(removeService(DNSSD::RemoteService::Ptr)) );
+    KDNSSD::ServiceBrowser* serviceBrowser = new KDNSSD::ServiceBrowser( serviceType, true );
+    connect( serviceBrowser, SIGNAL(serviceAdded(KDNSSD::RemoteService::Ptr)),
+            SLOT(addService(KDNSSD::RemoteService::Ptr)) );
+    connect( serviceBrowser, SIGNAL(serviceRemoved(KDNSSD::RemoteService::Ptr)),
+            SLOT(removeService(KDNSSD::RemoteService::Ptr)) );
 
     if( mIsInit )
     {
@@ -102,25 +102,25 @@ kDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
     // we could also go through all the devices and remove the services manually as a fix
     return;
 #if 0
-    QHash<QString,DNSSD::ServiceBrowser*>::Iterator it = mServiceBrowserTable.find( serviceType );
+    QHash<QString,KDNSSD::ServiceBrowser*>::Iterator it = mServiceBrowserTable.find( serviceType );
 
     if( it == mServiceBrowserTable.end() )
         return;
 
-    DNSSD::ServiceBrowser* serviceBrowser = *it;
+    KDNSSD::ServiceBrowser* serviceBrowser = *it;
     mServiceBrowserTable.erase( it );
     // TODO: will all servicesRemoved be called before? on test NO!
     serviceBrowser->deleteLater();
 #endif
 }
 
-void DNSSDNetworkBuilder::addService( DNSSD::RemoteService::Ptr service )
+void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
 {
     QList<NetDevice>& deviceList = mNetworkPrivate->deviceList();
 
     QString hostName = service->hostName();
     // TODO: this blocks. and the ip address should be delivered from DNS-SD with resolve
-    const QHostAddress hostAddress = DNSSD::ServiceBrowser::resolveHostName( hostName );
+    const QHostAddress hostAddress = KDNSSD::ServiceBrowser::resolveHostName( hostName );
     const QString ipAddress = hostAddress.toString();
     // forget domain name if just ip address
     if( hostName == ipAddress )
@@ -247,7 +247,7 @@ kDebug()<<"new device:"<<deviceName<<"at"<<hostName<<"by"<<service->type();
 
 // TODO: each builder should refcount its services, so a shared one does not get removed to early
 // (might disappear for one sd because of master breakdown)
-void DNSSDNetworkBuilder::removeService( DNSSD::RemoteService::Ptr service )
+void DNSSDNetworkBuilder::removeService( KDNSSD::RemoteService::Ptr service )
 {
     QList<NetDevice>& deviceList = mNetworkPrivate->deviceList();
 
@@ -317,7 +317,7 @@ void DNSSDNetworkBuilder::onServiceBrowserFinished()
 
 DNSSDNetworkBuilder::~DNSSDNetworkBuilder()
 {
-    foreach( DNSSD::ServiceBrowser* serviceBrowser, mServiceBrowserTable )
+    foreach( KDNSSD::ServiceBrowser* serviceBrowser, mServiceBrowserTable )
         delete serviceBrowser;
     delete mServiceTypeBrowser;
 }

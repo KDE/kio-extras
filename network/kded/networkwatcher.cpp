@@ -28,6 +28,12 @@
 // network
 #include <network.h>
 
+#include <KPluginFactory>
+#include <KPluginLoader>
+
+K_PLUGIN_FACTORY( NetworkWatcherFactory, registerPlugin<Mollet::NetworkWatcher>(); )
+K_EXPORT_PLUGIN( NetworkWatcherFactory("networkwatcher") )
+
 
 namespace Mollet
 {
@@ -116,3 +122,5 @@ NetworkWatcher::~NetworkWatcher()
 }
 
 }
+
+#include "networkwatcher.moc"

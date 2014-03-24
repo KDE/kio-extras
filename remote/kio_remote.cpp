@@ -55,7 +55,7 @@ RemoteProtocol::~RemoteProtocol()
 {
 }
 
-void RemoteProtocol::listDir(const KUrl &url)
+void RemoteProtocol::listDir(const QUrl &url)
 {
 	kDebug(1220) << "RemoteProtocol::listDir: " << url;
 
@@ -82,7 +82,7 @@ void RemoteProtocol::listDir(const KUrl &url)
 		return;
 	}
 
-	error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
+	error(KIO::ERR_MALFORMED_URL, url.toDisplayString());
 }
 
 void RemoteProtocol::listRoot()
@@ -113,7 +113,7 @@ void RemoteProtocol::listRoot()
 	finished();
 }
 
-void RemoteProtocol::stat(const KUrl &url)
+void RemoteProtocol::stat(const QUrl &url)
 {
 	kDebug(1220) << "RemoteProtocol::stat: " << url;
 
@@ -138,7 +138,7 @@ void RemoteProtocol::stat(const KUrl &url)
 		}
 		else
 		{
-			error(KIO::ERR_DOES_NOT_EXIST, url.prettyUrl());
+			error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
 		}
 		return;
 	}
@@ -173,10 +173,10 @@ void RemoteProtocol::stat(const KUrl &url)
 		}
 	}
 
-	error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
+	error(KIO::ERR_MALFORMED_URL, url.toDisplayString());
 }
 
-void RemoteProtocol::del(const KUrl &url, bool /*isFile*/)
+void RemoteProtocol::del(const QUrl &url, bool /*isFile*/)
 {
 	kDebug(1220) << "RemoteProtocol::del: " << url;
 
@@ -187,10 +187,10 @@ void RemoteProtocol::del(const KUrl &url, bool /*isFile*/)
 		return;
 	}
 
-	error(KIO::ERR_CANNOT_DELETE, url.prettyUrl());
+	error(KIO::ERR_CANNOT_DELETE, url.toDisplayString());
 }
 
-void RemoteProtocol::get(const KUrl &url)
+void RemoteProtocol::get(const QUrl &url)
 {
 	kDebug(1220) << "RemoteProtocol::get: " << url;
 
@@ -207,16 +207,16 @@ void RemoteProtocol::get(const KUrl &url)
 		return;
 	}
 
-	error(KIO::ERR_MALFORMED_URL, url.prettyUrl());
+	error(KIO::ERR_MALFORMED_URL, url.toDisplayString());
 }
 
-void RemoteProtocol::rename(const KUrl &src, const KUrl &dest,
+void RemoteProtocol::rename(const QUrl &src, const QUrl &dest,
                             KIO::JobFlags flags)
 {
-	if (src.protocol()!="remote" || dest.protocol()!="remote"
+	if (src.scheme()!="remote" || dest.scheme()!="remote"
          || m_impl.isWizardURL(src) || m_impl.isWizardURL(dest))
 	{
-		error(KIO::ERR_UNSUPPORTED_ACTION, src.prettyUrl());
+		error(KIO::ERR_UNSUPPORTED_ACTION, src.toDisplayString());
 		return;
 	}
 
@@ -226,10 +226,10 @@ void RemoteProtocol::rename(const KUrl &src, const KUrl &dest,
 		return;
 	}
 
-	error(KIO::ERR_CANNOT_RENAME, src.prettyUrl());
+	error(KIO::ERR_CANNOT_RENAME, src.toDisplayString());
 }
 
-void RemoteProtocol::symlink(const QString &target, const KUrl &dest, KIO::JobFlags flags)
+void RemoteProtocol::symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags)
 {
 	if (m_impl.changeFolderTarget(dest.fileName(), target, flags & KIO::Overwrite))
 	{
@@ -237,5 +237,5 @@ void RemoteProtocol::symlink(const QString &target, const KUrl &dest, KIO::JobFl
 		return;
 	}
 
-	error(KIO::ERR_CANNOT_SYMLINK, dest.prettyUrl());
+	error(KIO::ERR_CANNOT_SYMLINK, dest.toDisplayString());
 }

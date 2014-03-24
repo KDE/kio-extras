@@ -260,7 +260,7 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
     recvLen = -1;
     sendLen = -1;
     connectionAuth.keepPassword = true;
-    connectionAuth.url.setProtocol("fish");
+    connectionAuth.url.setScheme("fish");
     outBufPos = -1;
     outBuf = NULL;
     outBufLen = 0;
@@ -707,11 +707,11 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
     return buf.length();
 }
 
-void fishProtocol::setHostInternal(const KUrl & u){
+void fishProtocol::setHostInternal(const QUrl & u){
   int port = u.port();
   if(port <= 0 ) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
      port = 0;
-  setHost(u.host(),port,u.user(),u.pass());
+  setHost(u.host(),port,u.userName(),u.password());
 }
 
 /**
@@ -734,7 +734,7 @@ void fishProtocol::setHost(const QString & host, quint16 port, const QString & u
 
     connectionUser = user;
     connectionAuth.username = user;
-    connectionAuth.url.setUser(user);
+    connectionAuth.url.setUserName(user);
 
     connectionPort = port;
     connectionPassword = pass;
@@ -1343,7 +1343,7 @@ int fishProtocol::received(const char *buffer, KIO::fileoffset_t buflen)
     return buflen;
 }
 /** get a file */
-void fishProtocol::get(const KUrl& u){
+void fishProtocol::get(const QUrl& u){
     myDebug( << "@@@@@@@@@ get " << u << endl);
     setHostInternal(u);
     url = u;
@@ -1360,7 +1360,7 @@ void fishProtocol::get(const KUrl& u){
 }
 
 /** put a file */
-void fishProtocol::put(const KUrl& u, int permissions, KIO::JobFlags flags) {
+void fishProtocol::put(const QUrl& u, int permissions, KIO::JobFlags flags) {
     myDebug( << "@@@@@@@@@ put " << u << " " << permissions << " " << (flags & KIO::Overwrite) << " " /* << resume */ << endl);
     setHostInternal(u);
 
@@ -1520,7 +1520,7 @@ with .fishsrv.pl typically running on another computer. */
 }
 
 /** stat a file */
-void fishProtocol::stat(const KUrl& u){
+void fishProtocol::stat(const QUrl& u){
     myDebug( << "@@@@@@@@@ stat " << u << endl);
     setHostInternal(u);
     url = u;
@@ -1532,12 +1532,12 @@ void fishProtocol::stat(const KUrl& u){
     if (!url.hasPath()) {
         sendCommand(FISH_PWD);
     } else {
-        sendCommand(FISH_STAT,E(url.path(KUrl::RemoveTrailingSlash)));
+		sendCommand(FISH_STAT,E(url.path(KUrl::RemoveTrailingSlash)));
     }
     run();
 }
 /** find mimetype for a file */
-void fishProtocol::mimetype(const KUrl& u){
+void fishProtocol::mimetype(const QUrl& u){
     myDebug( << "@@@@@@@@@ mimetype " << u << endl);
     setHostInternal(u);
     url = u;
@@ -1553,7 +1553,7 @@ void fishProtocol::mimetype(const KUrl& u){
     run();
 }
 /** list a directory */
-void fishProtocol::listDir(const KUrl& u){
+void fishProtocol::listDir(const QUrl& u){
     myDebug( << "@@@@@@@@@ listDir " << u << endl);
     setHostInternal(u);
     url = u;
@@ -1569,7 +1569,7 @@ void fishProtocol::listDir(const KUrl& u){
     run();
 }
 /** create a directory */
-void fishProtocol::mkdir(const KUrl& u, int permissions) {
+void fishProtocol::mkdir(const QUrl& u, int permissions) {
     myDebug( << "@@@@@@@@@ mkdir " << u << " " << permissions << endl);
     setHostInternal(u);
     url = u;
@@ -1585,10 +1585,10 @@ void fishProtocol::mkdir(const KUrl& u, int permissions) {
     run();
 }
 /** rename a file */
-void fishProtocol::rename(const KUrl& s, const KUrl& d, KIO::JobFlags flags) {
+void fishProtocol::rename(const QUrl& s, const QUrl& d, KIO::JobFlags flags) {
     myDebug( << "@@@@@@@@@ rename " << s << " " << d << " " << (flags & KIO::Overwrite) << endl);
-    if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
-        error(ERR_UNSUPPORTED_ACTION,s.prettyUrl());
+    if (s.host() != d.host() || s.port() != d.port() || s.userName() != d.userName()) {
+        error(ERR_UNSUPPORTED_ACTION,s.toDisplayString());
         return;
     }
     setHostInternal(s);
@@ -1611,7 +1611,7 @@ void fishProtocol::rename(const KUrl& s, const KUrl& d, KIO::JobFlags flags) {
     run();
 }
 /** create a symlink */
-void fishProtocol::symlink(const QString& target, const KUrl& u, KIO::JobFlags flags) {
+void fishProtocol::symlink(const QString& target, const QUrl& u, KIO::JobFlags flags) {
     myDebug( << "@@@@@@@@@ symlink " << target << " " << u << " " << (flags & KIO::Overwrite) << endl);
     setHostInternal(u);
     url = u;
@@ -1631,7 +1631,7 @@ void fishProtocol::symlink(const QString& target, const KUrl& u, KIO::JobFlags f
     run();
 }
 /** change file permissions */
-void fishProtocol::chmod(const KUrl& u, int permissions){
+void fishProtocol::chmod(const QUrl& u, int permissions){
     myDebug( << "@@@@@@@@@ chmod " << u << " " << permissions << endl);
     setHostInternal(u);
     url = u;
@@ -1646,10 +1646,10 @@ void fishProtocol::chmod(const KUrl& u, int permissions){
     run();
 }
 /** copies a file */
-void fishProtocol::copy(const KUrl &s, const KUrl &d, int permissions, KIO::JobFlags flags) {
+void fishProtocol::copy(const QUrl &s, const QUrl &d, int permissions, KIO::JobFlags flags) {
     myDebug( << "@@@@@@@@@ copy " << s << " " << d << " " << permissions << " " << (flags & KIO::Overwrite) << endl);
-    if (s.host() != d.host() || s.port() != d.port() || s.user() != d.user()) {
-        error(ERR_UNSUPPORTED_ACTION,s.prettyUrl());
+    if (s.host() != d.host() || s.port() != d.port() || s.userName() != d.userName()) {
+        error(ERR_UNSUPPORTED_ACTION,s.toDisplayString());
         return;
     }
     //myDebug( << s << endl << d << endl);
@@ -1674,14 +1674,14 @@ void fishProtocol::copy(const KUrl &s, const KUrl &d, int permissions, KIO::JobF
     run();
 }
 /** removes a file or directory */
-void fishProtocol::del(const KUrl &u, bool isFile){
+void fishProtocol::del(const QUrl &u, bool isFile){
     myDebug( << "@@@@@@@@@ del " << u << " " << isFile << endl);
     setHostInternal(u);
     url = u;
     openConnection();
     if (!isLoggedIn) return;
     url.cleanPath();
-    if (!url.hasPath()) {
+    if (!url.path().isEmpty()) {
         sendCommand(FISH_PWD);
     } else {
         sendCommand((isFile?FISH_DELE:FISH_RMD),E(url.path()));

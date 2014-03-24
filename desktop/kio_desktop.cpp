@@ -25,6 +25,9 @@
 #include <KDesktopFile>
 #include <KGlobalSettings>
 #include <KStandardDirs>
+#include <KGlobal>
+#include <KUrl>
+#include <kdeversion.h>
 
 #include <kio/udsentry.h>
 
@@ -149,16 +152,14 @@ void DesktopProtocol::checkLocalInstall()
 #endif
 }
 
-bool DesktopProtocol::rewriteUrl(const KUrl &url, KUrl &newUrl)
+bool DesktopProtocol::rewriteUrl(const QUrl &url, QUrl &newUrl)
 {
-    newUrl.setProtocol("file");
-    newUrl.setPath(KGlobalSettings::desktopPath());
-    newUrl.addPath(url.path());
-
+    newUrl.setScheme("file");
+    newUrl.setPath(KGlobalSettings::desktopPath() + '/' + url.path());
     return true;
 }
 
-void DesktopProtocol::listDir(const KUrl &url)
+void DesktopProtocol::listDir(const QUrl &url)
 {
     KIO::ForwardingSlaveBase::listDir(url);
 
@@ -212,12 +213,12 @@ void DesktopProtocol::prepareUDSEntry(KIO::UDSEntry &entry, bool listing) const
     entry.insert(KIO::UDSEntry::UDS_TARGET_URL, entry.stringValue(KIO::UDSEntry::UDS_LOCAL_PATH));
 }
 
-void DesktopProtocol::rename(const KUrl &src, const KUrl &dest, KIO::JobFlags flags)
+void DesktopProtocol::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
 {
     KUrl url;
     rewriteUrl(src, url);
 
-    if (src.protocol() != "desktop" || dest.protocol() != "desktop" ||
+    if (src.scheme() != "desktop" || dest.scheme() != "desktop" ||
         !KDesktopFile::isDesktopFile(url.path()))
     {
         ForwardingSlaveBase::rename(src, dest, flags);

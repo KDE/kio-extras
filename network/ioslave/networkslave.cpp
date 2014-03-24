@@ -30,6 +30,7 @@
 #include <netdevice.h>
 #include <netservice.h>
 // KDE
+#include <kde_file.h>
 // Qt
 #include <QtCore/QEventLoop>
 
@@ -47,7 +48,7 @@ kDebug();
                                                   QDBusConnection::sessionBus() );
 }
 
-void NetworkSlave::get( const KUrl& url )
+void NetworkSlave::get( const QUrl& url )
 {
     const NetworkUri networkUri( url );
 
@@ -77,10 +78,10 @@ kDebug()<<reply.isValid();
     }
 
     if( ! successfulGetting )
-        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.toDisplayString() );
 }
 
-void NetworkSlave::mimetype( const KUrl& url )
+void NetworkSlave::mimetype( const QUrl& url )
 {
     const NetworkUri networkUri( url );
 
@@ -134,11 +135,11 @@ kDebug()<<reply.isValid();
     }
 
     if( !successfulMimetyping )
-        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.toDisplayString() );
 }
 
 
-void NetworkSlave::stat( const KUrl& url )
+void NetworkSlave::stat( const QUrl& url )
 {
     const NetworkUri networkUri( url );
 
@@ -198,10 +199,10 @@ kDebug()<<reply.isValid();
     }
 
     if( !successfulStating )
-        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.toDisplayString() );
 }
 
-void NetworkSlave::listDir( const KUrl& url )
+void NetworkSlave::listDir( const QUrl& url )
 {
     const NetworkUri networkUri( url );
 
@@ -279,7 +280,7 @@ kDebug()<<reply.isValid();
     }
 
     if( ! successfulListing )
-        error( KIO::ERR_DOES_NOT_EXIST, url.prettyUrl() );
+        error( KIO::ERR_DOES_NOT_EXIST, url.toDisplayString() );
 }
 
 

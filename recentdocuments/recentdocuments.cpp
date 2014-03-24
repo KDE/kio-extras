@@ -10,6 +10,10 @@
 #include <KStandardDirs>
 #include <KIO/Job>
 #include <KIO/NetAccess>
+#include <KLocalizedString>
+#include <KUrl>
+#include <KGlobal>
+#include <kde_file.h>
 
 #include <stdio.h>
 
@@ -50,16 +54,16 @@ RecentDocuments::~RecentDocuments()
 
 }
 
-bool RecentDocuments::rewriteUrl(const KUrl& url, KUrl& newUrl)
+bool RecentDocuments::rewriteUrl(const QUrl& url, QUrl& newUrl)
 {
     if (isRootUrl(url)) {
         return false;
     } else {
-        QString desktopFilePath = QString("%1/%2.desktop").arg(KRecentDocument::recentDocumentDirectory()).arg(url.path(KUrl::RemoveTrailingSlash));
+        QString desktopFilePath = QString("%1/%2.desktop").arg(KRecentDocument::recentDocumentDirectory()).arg(url.path());
         if (KDesktopFile::isDesktopFile(desktopFilePath)) {
             KDesktopFile file(desktopFilePath);
             if (file.hasLinkType())
-                newUrl = KUrl(file.readUrl());
+                newUrl = QUrl(file.readUrl());
         }
 
         return !newUrl.isEmpty();
@@ -67,7 +71,7 @@ bool RecentDocuments::rewriteUrl(const KUrl& url, KUrl& newUrl)
     return false;
 }
 
-void RecentDocuments::listDir(const KUrl& url)
+void RecentDocuments::listDir(const QUrl& url)
 {
     if (isRootUrl(url)) {
         // flush
@@ -82,8 +86,8 @@ void RecentDocuments::listDir(const KUrl& url)
                 KDesktopFile file(entry);
 
                 KUrl urlInside(file.readUrl());
-                QString prettyUrl = urlInside.prettyUrl();
-                if (urlInside.protocol() == "recentdocuments" || urlSet.contains(prettyUrl))
+                QString toDisplayString = urlInside.toDisplayString();
+                if (urlInside.protocol() == "recentdocuments" || urlSet.contains(toDisplayString))
                     continue;
 
                 KIO::UDSEntry uds;
@@ -97,17 +101,17 @@ void RecentDocuments::listDir(const KUrl& url)
                     }
                 }
 
-                urlSet.insert(prettyUrl);
+                urlSet.insert(toDisplayString);
                 uds.insert(KIO::UDSEntry::UDS_NAME, info.completeBaseName());
 
                 if (urlInside.isLocalFile()) {
                     uds.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, urlInside.toLocalFile());
                     uds.insert(KIO::UDSEntry::UDS_LOCAL_PATH, urlInside.path());
                 } else {
-                    uds.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, prettyUrl);
+                    uds.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, toDisplayString);
                     uds.insert(KIO::UDSEntry::UDS_ICON_NAME, file.readIcon());
                 }
-                uds.insert(KIO::UDSEntry::UDS_TARGET_URL, prettyUrl);
+                uds.insert(KIO::UDSEntry::UDS_TARGET_URL, toDisplayString);
                 udslist << uds;
             }
         }
@@ -117,7 +121,7 @@ void RecentDocuments::listDir(const KUrl& url)
         finished();
     }
     else
-        error(KIO::ERR_DOES_NOT_EXIST, url.prettyUrl());
+        error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
 }
 
 void RecentDocuments::prepareUDSEntry(KIO::UDSEntry& entry, bool listing) const
@@ -140,7 +144,7 @@ QString RecentDocuments::desktopFile(KIO::UDSEntry& entry) const
     return QString();
 }
 
-void RecentDocuments::stat(const KUrl& url)
+void RecentDocuments::stat(const QUrl& url)
 {
     if (isRootUrl(url)) {
         kDebug() << "Stat root" << url;
@@ -166,7 +170,7 @@ void RecentDocuments::stat(const KUrl& url)
     }
 }
 
-void RecentDocuments::mimetype(const KUrl& url)
+void RecentDocuments::mimetype(const QUrl& url)
 {
     kDebug() << url;
 
@@ -181,7 +185,7 @@ void RecentDocuments::mimetype(const KUrl& url)
     }
 }
 
-void RecentDocuments::del(const KUrl& url, bool isFile)
+void RecentDocuments::del(const QUrl& url, bool isFile)
 {
     ForwardingSlaveBase::del(url, isFile);
 }

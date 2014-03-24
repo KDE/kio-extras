@@ -20,9 +20,9 @@
 
 #include <kservicetypetrader.h>
 #include <kio/slavebase.h>
-#include <kcomponentdata.h>
 #include <kdebug.h>
-#include <klocale.h>
+#include <KUrl>
+#include <KComponentData>
 #include <sys/stat.h>
 #include <time.h>
 #include <kservice.h>
@@ -35,9 +35,9 @@ class SettingsProtocol : public KIO::SlaveBase
 public:
     SettingsProtocol(const QByteArray &protocol, const QByteArray &pool, const QByteArray &app);
     virtual ~SettingsProtocol();
-    virtual void get( const KUrl& url );
-    virtual void stat(const KUrl& url);
-    virtual void listDir(const KUrl& url);
+    virtual void get( const QUrl& url );
+    virtual void stat(const QUrl& url);
+    virtual void listDir(const QUrl& url);
 
 private:
     void initSettingsData();
@@ -119,7 +119,7 @@ void SettingsProtocol::initSettingsData()
     }
 }
 
-void SettingsProtocol::stat(const KUrl& url)
+void SettingsProtocol::stat(const QUrl& url)
 {
     initSettingsData();
     const QString fileName = url.fileName();
@@ -161,7 +161,7 @@ void SettingsProtocol::stat(const KUrl& url)
     error(KIO::ERR_DOES_NOT_EXIST, url.url());
 }
 
-void SettingsProtocol::listDir(const KUrl& url)
+void SettingsProtocol::listDir(const QUrl& url)
 {
     initSettingsData();
     const QString fileName = url.fileName();
@@ -205,7 +205,7 @@ void SettingsProtocol::listDir(const KUrl& url)
     finished();
 }
 
-void SettingsProtocol::get( const KUrl & url )
+void SettingsProtocol::get( const QUrl & url )
 {
     KService::Ptr service = KService::serviceByDesktopName(url.fileName());
     if (service && service->isValid()) {
@@ -214,6 +214,6 @@ void SettingsProtocol::get( const KUrl & url )
         redirection(redirUrl);
         finished();
     } else {
-        error( KIO::ERR_IS_DIRECTORY, url.prettyUrl() );
+        error( KIO::ERR_IS_DIRECTORY, url.toDisplayString() );
     }
 }

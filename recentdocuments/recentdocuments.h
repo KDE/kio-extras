@@ -13,12 +13,12 @@ public:
 
 protected:
     QString desktopFile(KIO::UDSEntry&) const;
-    virtual bool rewriteUrl(const KUrl &url, KUrl &newUrl);
-    virtual void listDir(const KUrl &url);
+    virtual bool rewriteUrl(const QUrl &url, QUrl &newUrl);
+    virtual void listDir(const QUrl &url);
     virtual void prepareUDSEntry(KIO::UDSEntry &entry, bool listing = false) const;
-    virtual void stat(const KUrl& url);
-    virtual void mimetype(const KUrl& url);
-    virtual void del(const KUrl& url, bool isfile);
+    virtual void stat(const QUrl& url);
+    virtual void mimetype(const QUrl& url);
+    virtual void del(const QUrl& url, bool isfile);
 private:
     KDirWatch* m_recentDocWatch;
 };

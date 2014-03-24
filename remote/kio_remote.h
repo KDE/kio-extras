@@ -29,12 +29,12 @@ public:
 	RemoteProtocol(const QByteArray &protocol, const QByteArray &pool,
 	               const QByteArray &app);
 	virtual ~RemoteProtocol();
-	virtual void listDir(const KUrl &url);
-	virtual void stat(const KUrl &url);
-	virtual void del(const KUrl &url, bool isFile);
-	virtual void get(const KUrl &url);
-	virtual void rename(const KUrl &src, const KUrl &dest, KIO::JobFlags flags);
-	virtual void symlink(const QString &target, const KUrl &dest, KIO::JobFlags flags);
+	virtual void listDir(const QUrl &url);
+	virtual void stat(const QUrl &url);
+	virtual void del(const QUrl &url, bool isFile);
+	virtual void get(const QUrl &url);
+	virtual void rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags);
+	virtual void symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags);
 
 private:
 	void listRoot();

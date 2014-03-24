@@ -26,6 +26,7 @@
 #include <kservice.h>
 #include <kservicegroup.h>
 #include <kstandarddirs.h>
+#include <KUrl>
 
 class ApplicationsProtocol : public KIO::SlaveBase
 {
@@ -33,9 +34,9 @@ public:
     enum RunMode { ProgramsMode, ApplicationsMode };
     ApplicationsProtocol(const QByteArray &protocol, const QByteArray &pool, const QByteArray &app);
     virtual ~ApplicationsProtocol();
-    virtual void get( const KUrl& url );
-    virtual void stat(const KUrl& url);
-    virtual void listDir(const KUrl& url);
+    virtual void get( const QUrl& url );
+    virtual void stat(const QUrl& url);
+    virtual void listDir(const QUrl& url);
 
 private:
     RunMode m_runMode;
@@ -93,7 +94,7 @@ ApplicationsProtocol::~ApplicationsProtocol()
 {
 }
 
-void ApplicationsProtocol::get( const KUrl & url )
+void ApplicationsProtocol::get( const QUrl & url )
 {
     KService::Ptr service = KService::serviceByDesktopName(url.fileName());
     if (service && service->isValid()) {
@@ -101,16 +102,18 @@ void ApplicationsProtocol::get( const KUrl & url )
         redirection(redirUrl);
         finished();
     } else {
-        error( KIO::ERR_IS_DIRECTORY, url.prettyUrl() );
+        error( KIO::ERR_IS_DIRECTORY, url.toDisplayString() );
     }
 }
 
 
-void ApplicationsProtocol::stat(const KUrl& url)
+void ApplicationsProtocol::stat(const QUrl& url)
 {
     KIO::UDSEntry entry;
 
-    QString servicePath( url.path( KUrl::AddTrailingSlash ) );
+    QString servicePath( url.path() );
+    if(!servicePath.endsWith('/'))
+        servicePath.append('/');
     servicePath.remove(0, 1); // remove starting '/'
 
     KServiceGroup::Ptr grp = KServiceGroup::group(servicePath);
@@ -133,9 +136,11 @@ void ApplicationsProtocol::stat(const KUrl& url)
 }
 
 
-void ApplicationsProtocol::listDir(const KUrl& url)
+void ApplicationsProtocol::listDir(const QUrl& url)
 {
-    QString groupPath = url.path( KUrl::AddTrailingSlash );
+    QString groupPath = url.path();
+    if(!groupPath.endsWith('/'))
+        groupPath.append('/');
     groupPath.remove(0, 1); // remove starting '/'
 
     KServiceGroup::Ptr grp = KServiceGroup::group(groupPath);
@@ -150,7 +155,7 @@ void ApplicationsProtocol::listDir(const KUrl& url)
 
     foreach (const KSycocaEntry::Ptr &e, grp->entries(true, true)) {
         if (e->isType(KST_KServiceGroup)) {
-            KServiceGroup::Ptr g(KServiceGroup::Ptr::staticCast(e));
+            KServiceGroup::Ptr g(e);
             QString groupCaption = g->caption();
 
             kDebug() << "ADDING SERVICE GROUP WITH PATH " << g->relPath();
@@ -172,7 +177,7 @@ void ApplicationsProtocol::listDir(const KUrl& url)
             createDirEntry(entry, groupCaption, dirUrl.url(), "inode/directory", g->icon());
 
         } else {
-            KService::Ptr service(KService::Ptr::staticCast(e));
+            KService::Ptr service(e);
 
             kDebug() << "the entry name is" << service->desktopEntryName()
                      << "with path" << service->entryPath();

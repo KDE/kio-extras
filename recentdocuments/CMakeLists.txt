@@ -1,20 +1,12 @@
-
-set(kio_recentdocuments_PART_SRCS
-   recentdocuments.cpp)
-
-add_library(kio_recentdocuments MODULE ${kio_recentdocuments_PART_SRCS})
-
-target_link_libraries(kio_recentdocuments KF5::KIOCore)
+add_library(kio_recentdocuments MODULE recentdocuments.cpp)
+target_link_libraries(kio_recentdocuments KF5::KIOCore Qt5::DBus KF5::KDE4Support)
 
 install(TARGETS kio_recentdocuments  DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############
 
-set(kded_recentdocumentsnotifier_PART_SRCS  recentdocumentsnotifier.cpp )
-
-add_library(kded_recentdocumentsnotifier MODULE  ${kded_recentdocumentsnotifier_PART_SRCS})
-
-target_link_libraries(kded_recentdocumentsnotifier  KF5::KIOCore)
+add_library(kded_recentdocumentsnotifier MODULE recentdocumentsnotifier.cpp)
+target_link_libraries(kded_recentdocumentsnotifier KF5::KIOCore KF5::DBusAddons KF5::KDE4Support)
 
 install(TARGETS kded_recentdocumentsnotifier  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
