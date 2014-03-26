@@ -1,0 +1,5 @@
+if(WIN32)
+    add_subdirectory(finger)
+    add_subdirectory(floppy)
+    add_subdirectory(recentdocuments)
+endif()
