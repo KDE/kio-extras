@@ -1,3 +1,4 @@
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if(NOT WIN32)
     # we need a version of samba which has already smbc_set_context(), Alex
@@ -49,3 +50,5 @@ endif()
 if(SAMBA_FOUND)
     add_subdirectory(smb)
 endif()
+
+configure_file (config-runtime.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-runtime.h )
