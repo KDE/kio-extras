@@ -29,6 +29,7 @@
 #include <KBuildSycocaProgressDialog>
 #include <klocalizedstring.h>
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 
 #include <QtCore/QFile>
 #include <QtDBus/QtDBus>

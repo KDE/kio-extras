@@ -28,6 +28,7 @@
 #include "searchprovider.h"
 
 #include <kconfiggroup.h>
+#include <kconfig.h>
 #include <kprotocolinfo.h>
 
 #include <QtCore/QTextCodec>
