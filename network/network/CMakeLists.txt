@@ -72,8 +72,13 @@ if(SLP_FOUND)
 set( molletnetwork_LINK_LIBS  ${molletnetwork_LINK_LIBS} ${SLP_LIBRARIES} )
 endif()
 
+set(MOLLETNETWORK_VERSION_MAJOR 4)
+set(MOLLETNETWORK_VERSION_MINOR 95)
+set(MOLLETNETWORK_VERSION_PATCH 0)
+set(MOLLETNETWORK_VERSION_STRING "${MOLLETNETWORK_VERSION_MAJOR}.${MOLLETNETWORK_VERSION_MINOR}.${MOLLETNETWORK_VERSION_PATCH}" )
+
 add_library( molletnetwork  SHARED ${molletnetwork_LIB_SRCS} )
 target_link_libraries( molletnetwork  ${molletnetwork_LINK_LIBS} )
-set_target_properties( molletnetwork  PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
+set_target_properties( molletnetwork  PROPERTIES VERSION ${MOLLETNETWORK_VERSION_STRING} SOVERSION 5 )
 
 install( TARGETS molletnetwork  ${INSTALL_TARGETS_DEFAULT_ARGS} )
