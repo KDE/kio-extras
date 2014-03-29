@@ -36,6 +36,7 @@
 #include <phonon/videowidget.h>
 #include "mediacontrols.h"
 #include <kconfiggroup.h>
+#include <ksharedconfig.h>
 
 K_PLUGIN_FACTORY(KFileAudioPreviewFactory, registerPlugin<KFileAudioPreview>();)
 
