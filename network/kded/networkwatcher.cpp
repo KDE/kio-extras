@@ -47,7 +47,7 @@ Q_UNUSED( parameters )
     new KioSlaveNotifier( mNetwork );
 
     new NetworkDBusAdaptor( this );
-    QDBusConnection::sessionBus().registerService( QString::fromLatin1("org.kde.kded") );
+    QDBusConnection::sessionBus().registerService( QString::fromLatin1("org.kde.kded5") );
     QDBusConnection::sessionBus().registerObject( QString::fromLatin1("/modules/networkwatcher"), this );
 }
 

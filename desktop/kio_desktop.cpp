@@ -58,7 +58,7 @@ DesktopProtocol::DesktopProtocol(const QByteArray& protocol, const QByteArray &p
 {
     checkLocalInstall();
 
-    QDBusInterface kded("org.kde.kded", "/kded", "org.kde.kded");
+    QDBusInterface kded("org.kde.kded5", "/kded", "org.kde.kded5");
     kded.call("loadModule", "desktopnotifier");
 }
 
@@ -166,7 +166,7 @@ void DesktopProtocol::listDir(const QUrl &url)
     KUrl actual;
     rewriteUrl(url, actual);
 
-    QDBusInterface kded("org.kde.kded", "/modules/desktopnotifier", "org.kde.DesktopNotifier");
+    QDBusInterface kded("org.kde.kded5", "/modules/desktopnotifier", "org.kde.DesktopNotifier");
     kded.call("watchDir", actual.path());
 }
 

@@ -43,7 +43,7 @@ NetworkSlave::NetworkSlave( const QByteArray& name, const QByteArray& poolSocket
   : SlaveBase( name, poolSocket, programSocket )
 {
 kDebug();
-    mNetworkDBusProxy = new NetworkDBusInterface( QLatin1String("org.kde.kded"),
+    mNetworkDBusProxy = new NetworkDBusInterface( QLatin1String("org.kde.kded5"),
                                                   QLatin1String("/modules/networkwatcher"),
                                                   QDBusConnection::sessionBus() );
 }

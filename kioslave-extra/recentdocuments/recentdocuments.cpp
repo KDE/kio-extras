@@ -45,7 +45,7 @@ bool isRootUrl(const KUrl& url)
 RecentDocuments::RecentDocuments(const QByteArray& pool, const QByteArray& app):
         ForwardingSlaveBase("recentdocuments", pool, app)
 {
-    QDBusInterface kded("org.kde.kded", "/kded", "org.kde.kded");
+    QDBusInterface kded("org.kde.kded5", "/kded", "org.kde.kded5");
     kded.call("loadModule", "recentdocumentsnotifier");
 }
 
