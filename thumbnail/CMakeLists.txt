@@ -33,17 +33,12 @@ set(kio_thumbnail_PART_SRCS thumbnail.cpp imagefilter.cpp)
 
 add_library(kio_thumbnail MODULE ${kio_thumbnail_PART_SRCS})
 
-#target_link_libraries(kio_thumbnail ${KIO_LIBRARIES})
 target_link_libraries(kio_thumbnail
-	Qt5::Script
 	KF5::CoreAddons
 	KF5::KIOCore
 	KF5::KIOWidgets
 	KF5::Solid
-	KF5::WindowSystem
-	KF5::Plasma
 	KF5::IconThemes
-	KF5::Declarative
  	KF5::I18n
 	KF5::KDE4Support
 )
@@ -57,14 +52,10 @@ set(imagethumbnail_PART_SRCS imagecreator.cpp)
 add_library(imagethumbnail MODULE ${imagethumbnail_PART_SRCS})
 
 target_link_libraries(imagethumbnail
-	Qt5::Script
 	KF5::CoreAddons
 	KF5::KIOCore
 	KF5::KIOWidgets
-	KF5::WindowSystem
 	KF5::Solid
-	KF5::Declarative
- 	KF5::Plasma
  	KF5::KDE4Support
  	KF5::I18n
 )

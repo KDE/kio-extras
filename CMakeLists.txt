@@ -3,16 +3,26 @@ project(kio-extras)
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 
 set(QT_MIN_VERSION "5.2.0")
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Widgets Quick Concurrent Script Test)
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Test)
 
 find_package(ECM 0.0.11 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 find_package(KF5 CONFIG REQUIRED COMPONENTS
-                    DNSSD KIO Declarative Plasma KHtml KDE4Support)
-
-find_package(KF5 CONFIG REQUIRED COMPONENTS SysGuard)
-find_package(KWinDBusInterface CONFIG REQUIRED)
+    Archive
+    Config
+    ConfigWidgets
+    CoreAddons
+    DBusAddons
+    DocTools
+    DNSSD
+    IconThemes
+    I18n
+    KIO
+    KHtml
+    KDE4Support
+    Solid
+)
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
