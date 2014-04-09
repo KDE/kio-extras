@@ -1,3 +1,34 @@
+project(kio-extras)
+
+cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
+
+set(QT_MIN_VERSION "5.2.0")
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Widgets Quick Concurrent Script Test)
+
+find_package(ECM 0.0.11 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
+find_package(KF5 CONFIG REQUIRED COMPONENTS
+                    DNSSD KIO Declarative Plasma KHtml KDE4Support)
+
+find_package(KF5 CONFIG REQUIRED COMPONENTS SysGuard)
+find_package(KWinDBusInterface CONFIG REQUIRED)
+
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings)
+include(ECMMarkNonGuiExecutable)
+include(ECMMarkAsTest)
+include(ECMPackageConfigHelpers)
+include(FeatureSummary)
+
+find_package(SLP)
+set_package_properties(SLP PROPERTIES DESCRIPTION "SLP (Service Location Protocol) implementation"
+                       URL "http://www.openslp.org/"
+                       TYPE OPTIONAL
+                       PURPOSE "Provides SLP support in the network:/ kioslave."
+                      )
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if(NOT WIN32)
@@ -50,3 +81,5 @@ if(SAMBA_FOUND)
 endif()
 
 configure_file (config-runtime.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-runtime.h )
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
