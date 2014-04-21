@@ -13,7 +13,7 @@
 #include <kiconloader.h>
 #include <kcomponentdata.h>
 #include <klocale.h>
-#include <KUrl>
+#include <QUrl>
 #include <KGlobal>
 
 using namespace KIO;
@@ -60,7 +60,7 @@ void InfoProtocol::get( const QUrl& url )
 
     if (url.path()=="/")
     {
-       KUrl newUrl("info:/dir");
+       QUrl newUrl("info:/dir");
        redirection(newUrl);
        finished();
        return;
@@ -68,7 +68,7 @@ void InfoProtocol::get( const QUrl& url )
 
     // some people write info://autoconf instead of info:/autoconf
     if (!url.host().isEmpty()) {
-        KUrl newURl(url);
+        QUrl newURl(url);
         newURl.setPath(url.host()+url.path());
         newURl.setHost(QString());
         redirection(newURl);
@@ -184,7 +184,7 @@ void InfoProtocol::decodeURL( const QUrl &url )
      * luis pedro
      */
 
-    if ( url == KUrl( "info:/browse_by_file?special=yes" ) ) {
+    if ( url == QUrl("info:/browse_by_file?special=yes") ) {
 	    m_page = "#special#";
 	    m_node = "browse_by_file";
 	    kDebug( 7108 ) << "InfoProtocol::decodeURL - special - browse by file";

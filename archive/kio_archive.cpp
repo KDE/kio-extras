@@ -25,9 +25,9 @@
 #include <unistd.h>
 
 #include <QFile>
+#include <QDir>
 
-#include <kglobal.h>
-#include <kurl.h>
+#include <QUrl>
 #include <kdebug.h>
 #include <kcomponentdata.h>
 #include <ktar.h>
@@ -249,7 +249,7 @@ void ArchiveProtocol::listDir( const QUrl & url )
             return;
         }
         // It's a real dir -> redirect
-        KUrl redir;
+        QUrl redir;
         redir.setPath( url.path() );
         kDebug( 7109 ) << "Ok, redirection to" << redir.url();
         redirection( redir );
@@ -262,7 +262,7 @@ void ArchiveProtocol::listDir( const QUrl & url )
 
     if ( path.isEmpty() )
     {
-        KUrl redir( url.scheme() + QString::fromLatin1( ":/") );
+        QUrl redir( url.scheme() + QString::fromLatin1( ":/") );
         kDebug( 7109 ) << "url.path()=" << url.path();
         redir.setPath( url.path() + QString::fromLatin1("/") );
         kDebug( 7109 ) << "ArchiveProtocol::listDir: redirection" << redir.url();
@@ -436,9 +436,15 @@ void ArchiveProtocol::get( const QUrl & url )
     const KArchiveFile* archiveFileEntry = static_cast<const KArchiveFile *>(archiveEntry);
     if ( !archiveEntry->symLinkTarget().isEmpty() )
     {
-      kDebug(7109) << "Redirection to" << archiveEntry->symLinkTarget();
-      KUrl realURL( url, archiveEntry->symLinkTarget() );
-      kDebug(7109).nospace() << "realURL=" << realURL.url();
+      const QString target = archiveEntry->symLinkTarget();
+      kDebug(7109) << "Redirection to" << target;
+      QUrl realURL(url);
+      if (QDir::isRelativePath(target)) {
+          realURL.setPath(realURL.path() + '/' + target);
+      } else {
+          realURL.setPath(target);
+      }
+      kDebug(7109) << "realURL=" << realURL;
       redirection( realURL );
       finished();
       return;

@@ -27,7 +27,7 @@
 
 #include <kapplication.h>
 #include <kwebpage.h>
-#include <kurl.h>
+#include <QUrl>
 #include <QDebug>
 
 extern "C"
@@ -61,7 +61,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
         m_page->settings()->setAttribute(QWebSettings::LocalContentCanAccessFileUrls, true);
     }
 
-    KUrl url(path);
+    QUrl url = QUrl::fromUserInput(path); // the argument should be a QUrl!
     m_loadedOk = false;
     m_page->mainFrame()->load(url);
 
