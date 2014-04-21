@@ -32,7 +32,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <kfilterbase.h>
 #include <kcompressiondevice.h>
 #include <kfilterdev.h>
-#include <kurl.h>
+#include <QUrl>
 
 extern "C" { Q_DECL_EXPORT int kdemain(int argc, char **argv); }
 
@@ -68,7 +68,7 @@ void FilterProtocol::get(const QUrl& url)
     // In the old solution, subURL would be set by setSubURL.
     // KDE4: now I simply assume bzip2:/localpath/file.bz2 and set subURL to the local path.
     subURL = url;
-    subURL.setProtocol("file");
+    subURL.setScheme("file");
 
     if (subURL.isEmpty()) {
         error(KIO::ERR_NO_SOURCE_PROTOCOL, QString::fromLatin1(mProtocol));
@@ -183,7 +183,7 @@ void FilterProtocol::get(const QUrl& url)
     } else {
         finished();
     }
-    subURL = KUrl(); // Clear subURL
+    subURL = QUrl(); // Clear subURL
 }
 
 #if 0
@@ -192,7 +192,7 @@ void FilterProtocol::put( const KUrl &/*url*/, int, KIO::JobFlags /* _flags */ )
   error( KIO::ERR_UNSUPPORTED_ACTION, QString::fromLatin1("put"));
 }
 
-void FilterProtocol::setSubURL(const KUrl &url)
+void FilterProtocol::setSubURL(const QUrl &url)
 {
    subURL = url;
 }

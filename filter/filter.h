@@ -27,9 +27,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include <QObject>
 #include <kio/slavebase.h>
-#include <kurl.h>
+#include <QUrl>
 
-class KUrl;
+class QUrl;
 class KFilterBase;
 
 class FilterProtocol : /*public QObject, */ public KIO::SlaveBase
@@ -41,12 +41,12 @@ public:
 
     virtual void get( const QUrl &url );
 #if 0
-    virtual void put( const KUrl &url, int _mode, KIO::JobFlags _flags );
-    virtual void setSubURL(const KUrl &url);
+    virtual void put( const QUrl &url, int _mode, KIO::JobFlags _flags );
+    virtual void setSubURL(const QUrl &url);
 #endif
 
 private:
-    KUrl subURL;
+    QUrl subURL;
     KFilterBase * filter;
 };
 

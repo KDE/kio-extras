@@ -11,7 +11,7 @@
 #include <KIO/Job>
 #include <KIO/NetAccess>
 #include <KLocalizedString>
-#include <KUrl>
+#include <QUrl>
 #include <KGlobal>
 #include <kde_file.h>
 
@@ -35,9 +35,9 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
     return 0;
 }
 
-bool isRootUrl(const KUrl& url)
+bool isRootUrl(const QUrl &url)
 {
-    const QString path = url.path(KUrl::RemoveTrailingSlash);
+    const QString path = url.adjusted(QUrl::StripTrailingSlash).path();
     return(!url.hasQuery() &&
            (path.isEmpty() || path == QLatin1String("/")));
 }
@@ -85,9 +85,9 @@ void RecentDocuments::listDir(const QUrl& url)
                 QFileInfo info(entry);
                 KDesktopFile file(entry);
 
-                KUrl urlInside(file.readUrl());
+                QUrl urlInside(file.readUrl());
                 QString toDisplayString = urlInside.toDisplayString();
-                if (urlInside.protocol() == "recentdocuments" || urlSet.contains(toDisplayString))
+                if (urlInside.scheme() == "recentdocuments" || urlSet.contains(toDisplayString))
                     continue;
 
                 KIO::UDSEntry uds;
@@ -135,8 +135,9 @@ QString RecentDocuments::desktopFile(KIO::UDSEntry& entry) const
     if (name == "." || name == "..")
         return QString();
 
-    KUrl url = processedUrl();
-    url.addPath(name);
+    QUrl url = processedUrl();
+    url = url.adjusted(QUrl::StripTrailingSlash);
+    url.setPath(url.path() + '/' + name);
 
     if (KDesktopFile::isDesktopFile(url.toLocalFile()))
         return url.toLocalFile();

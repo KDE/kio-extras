@@ -4,7 +4,7 @@
 #include <KPluginFactory>
 #include <KPluginLoader>
 #include <KStandardDirs>
-#include <KUrl>
+#include <QUrl>
 #include <KDirNotify>
 #include <KRecentDocument>
 
@@ -28,10 +28,10 @@ void RecentDocumentsNotifier::dirty(const QString &path)
 {
     if (path.endsWith(".desktop")) {
         // Emitting FilesAdded forces a re-read of the dir
-        KUrl url("recentdocuments:/");
+        QUrl url("recentdocuments:/");
         QFileInfo info(path);
-        url.addPath(info.fileName());
-        org::kde::KDirNotify::emitFilesAdded(url.url());
+        url.setPath(QStringLiteral("/") + info.fileName());
+        org::kde::KDirNotify::emitFilesAdded(url);
     }
 }
 

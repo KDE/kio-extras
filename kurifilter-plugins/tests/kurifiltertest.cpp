@@ -64,9 +64,9 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
 
         // Copied from minicli...
         QString cmd;
-        KUrl uri = filterData->uri();
+        QUrl uri = filterData->uri();
 
-        if ( uri.isLocalFile() && !uri.hasRef() && uri.query().isEmpty() &&
+        if ( uri.isLocalFile() && !uri.hasFragment() && !uri.hasQuery() &&
              (filterData->uriType() != KUriFilterData::NetProtocol))
             cmd = uri.toLocalFile();
         else
@@ -240,7 +240,7 @@ void KUriFilterTest::refOrQuery()
 
 void KUriFilterTest::shortUris()
 {
-    // hostnames are lowercased by KUrl
+    // hostnames are lowercased by QUrl
     filter( "http://www.myDomain.commyPort/ViewObjectRes//Default:name=hello",
             "http://www.mydomain.commyport/ViewObjectRes//Default:name=hello", KUriFilterData::NetProtocol);
     filter( "ftp://ftp.kde.org", "ftp://ftp.kde.org", KUriFilterData::NetProtocol );
@@ -333,7 +333,7 @@ void KUriFilterTest::environmentVariables()
     filter( "$ETC/passwd", "/etc/passwd", KUriFilterData::LocalFile );
     QString qtdocPath = qtdir+"/doc/html/functions.html";
     if (QFile::exists(qtdocPath)) {
-        QString expectedUrl = KUrl(qtdocPath).url()+"#s";
+        QString expectedUrl = QUrl::fromLocalFile(qtdocPath).toString()+"#s";
         filter( "$QTDIR/doc/html/functions.html#s", expectedUrl.toUtf8(), KUriFilterData::LocalFile );
     }
     filter( "http://www.kde.org/$USER", "http://www.kde.org/$USER", KUriFilterData::NetProtocol ); // no expansion

@@ -24,7 +24,7 @@
 #define NETWORKURI_H
 
 // KDE
-#include <KUrl>
+#include <QUrl>
 // // Qt
 // #include <QtCore/QDataStream>
 
@@ -37,7 +37,7 @@ class NetworkUri
   public:
     enum Type { InvalidUrl, Domain, Device, Service };
   public:
-    explicit NetworkUri( const KUrl& url );
+    explicit NetworkUri( const QUrl &url );
 
   public:
     const QString& hostAddress() const;
@@ -54,7 +54,7 @@ class NetworkUri
 };
 
 
-inline NetworkUri::NetworkUri( const KUrl& url )
+inline NetworkUri::NetworkUri( const QUrl &url )
 {
     mHostAddress = url.path().mid( 1 );
     const int slashIndex = mHostAddress.indexOf( QLatin1Char('/') );

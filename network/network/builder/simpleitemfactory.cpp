@@ -31,7 +31,7 @@
 #include <QIcon>
 
 // KDE
-#include <KUrl>
+#include <QUrl>
 
 #include <KDebug>
 
@@ -49,7 +49,7 @@ struct DNSSDServiceDatum {
     const char* userField;
     const char* passwordField;
 
-    void feedUrl( KUrl* url, const KDNSSD::RemoteService* remoteService ) const;
+    void feedUrl( QUrl* url, const KDNSSD::RemoteService* remoteService ) const;
 };
 
 static const DNSSDServiceDatum DNSSDServiceData[] =
@@ -162,15 +162,15 @@ static const DNSSDServiceDatum UnknownServiceDatum = { "", "unknown", "unknown",
 // * see how the apple specific protocols can be used for devicetype identification (printer, scanner)
 
 
-void DNSSDServiceDatum::feedUrl( KUrl* url, const KDNSSD::RemoteService* remoteService ) const
+void DNSSDServiceDatum::feedUrl( QUrl* url, const KDNSSD::RemoteService* remoteService ) const
 {
     const QMap<QString,QByteArray> serviceTextData = remoteService->textData();
 
-    url->setProtocol( QString::fromLatin1(protocol) );
+    url->setScheme( QString::fromLatin1(protocol) );
     if( userField )
-        url->setUser( QLatin1String(serviceTextData.value(QLatin1String(userField)).constData()) );
+        url->setUserName( QLatin1String(serviceTextData.value(QLatin1String(userField)).constData()) );
     if( passwordField )
-        url->setPass( QLatin1String(serviceTextData.value(QLatin1String(passwordField)).constData()) );
+        url->setPassword( QLatin1String(serviceTextData.value(QLatin1String(passwordField)).constData()) );
     if( pathField )
         url->setPath( QLatin1String(serviceTextData.value(QLatin1String(pathField)).constData()) );
 
@@ -213,7 +213,7 @@ NetServicePrivate* SimpleItemFactory::createNetService( const KDNSSD::RemoteServ
         }
     }
 
-    KUrl url;
+    QUrl url;
     if( serviceDatum->protocol )
         serviceDatum->feedUrl( &url, dnssdService.data() );
 

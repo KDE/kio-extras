@@ -33,7 +33,7 @@
 #include <kconfiggroup.h>
 #include <kurlauthorized.h>
 #include <kuser.h>
-#include <KDE4Support/kde_file.h>
+#include <kde_file.h>
 
 #define QL1S(x) QLatin1String(x)
 #define QL1C(x) QLatin1Char(x)

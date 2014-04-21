@@ -27,7 +27,7 @@
 
 #include <kaboutdata.h>
 #include <kdeversion.h>
-#include <KUrl>
+#include <QUrl>
 
 static KAboutData createAboutData()
 {
@@ -63,8 +63,8 @@ bool KManPart::openFile()
 
    begin();
 
-   KUrl url;
-   url.setProtocol( "man" );
+   QUrl url;
+   url.setScheme( "man" );
    url.setPath( localFilePath() );
 
    m_job = KIO::get( url, KIO::NoReload, KIO::HideProgressInfo );
