@@ -21,7 +21,7 @@
 #define TESTKIOARCHIVE_H
 
 #include <kio/job.h>
-#include <kurl.h>
+#include <QUrl>
 #include <QObject>
 
 /**
@@ -48,8 +48,8 @@ protected Q_SLOTS: // real slots, not tests
 
 private:
     QString tmpDir() const;
-    KUrl tarUrl() const;
-    void copyFromTar(const KUrl& url, const QString& destPath);
+    QUrl tarUrl() const;
+    void copyFromTar(const QUrl &url, const QString& destPath);
 
     QStringList m_listResult;
 };

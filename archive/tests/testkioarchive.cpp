@@ -44,8 +44,12 @@ static void writeTestFilesToArchive( KArchive* archive )
 
 void TestKioArchive::initTestCase()
 {
+    QStandardPaths::setTestModeEnabled(true);
+
     // Make sure we start clean
     cleanupTestCase();
+
+    QVERIFY(QDir().mkpath(tmpDir()));
 
     // Taken from KArchiveTest::testCreateTar
     KTar tar( s_tarFileName );
@@ -98,12 +102,13 @@ void TestKioArchive::testListRecursive()
     QCOMPARE(m_listResult.count("mydir/symlink"), 1);
 }
 
-KUrl TestKioArchive::tarUrl() const
+QUrl TestKioArchive::tarUrl() const
 {
-    KUrl url;
-    url.setProtocol("tar");
+    QUrl url;
+    url.setScheme("tar");
     url.setPath(QDir::currentPath());
-    url.addPath(s_tarFileName);
+    url = url.adjusted(QUrl::StripTrailingSlash);
+    url.setPath(url.path() + '/' + s_tarFileName);
     return url;
 }
 
@@ -118,24 +123,24 @@ void TestKioArchive::slotEntries( KIO::Job*, const KIO::UDSEntryList& lst )
 
 QString TestKioArchive::tmpDir() const
 {
-    // Note that this goes into ~/.kde-unit-test (see qtest_kde.h)
-    // Use saveLocation if locateLocal doesn't work
-    return KStandardDirs::locateLocal("tmp", "test_kio_archive/");
+    return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/test_kio_archive/";
 }
 
 void TestKioArchive::cleanupTestCase()
 {
-    KIO::NetAccess::synchronousRun(KIO::del(tmpDir(), KIO::HideProgressInfo), 0);
+    QDir(tmpDir()).removeRecursively();
 }
 
-void TestKioArchive::copyFromTar(const KUrl& src, const QString& destPath)
+void TestKioArchive::copyFromTar(const QUrl &src, const QString& destPath)
 {
-    KUrl dest(destPath);
+    QUrl dest = QUrl::fromLocalFile(destPath);
+    qDebug() << src << "->" << dest;
     // Check that src exists
     KIO::StatJob* statJob = KIO::stat(src, KIO::StatJob::SourceSide, 0, KIO::HideProgressInfo);
     QVERIFY(KIO::NetAccess::synchronousRun(statJob, 0));
 
     KIO::Job* job = KIO::copyAs( src, dest, KIO::HideProgressInfo );
+    qDebug() << "copyAs" << src << dest;
     bool ok = KIO::NetAccess::synchronousRun( job, 0 );
     QVERIFY( ok );
     QVERIFY( QFile::exists( destPath ) );
@@ -144,8 +149,9 @@ void TestKioArchive::copyFromTar(const KUrl& src, const QString& destPath)
 void TestKioArchive::testExtractFileFromTar()
 {
     const QString destPath = tmpDir() + "fileFromTar_copied";
-    KUrl u = tarUrl();
-    u.addPath("mydir/subfile");
+    QUrl u = tarUrl();
+    u = u.adjusted(QUrl::StripTrailingSlash);
+    u.setPath(u.path() + '/' + "mydir/subfile");
     copyFromTar(u, destPath);
     QVERIFY(QFileInfo(destPath).isFile());
     QVERIFY(QFileInfo(destPath).size() == 7);
@@ -154,8 +160,9 @@ void TestKioArchive::testExtractFileFromTar()
 void TestKioArchive::testExtractSymlinkFromTar()
 {
     const QString destPath = tmpDir() + "symlinkFromTar_copied";
-    KUrl u = tarUrl();
-    u.addPath("mydir/symlink");
+    QUrl u = tarUrl();
+    u = u.adjusted(QUrl::StripTrailingSlash);
+    u.setPath(u.path() + '/' + "mydir/symlink");
     copyFromTar(u, destPath);
     QVERIFY(QFileInfo(destPath).isFile());
     QEXPECT_FAIL("", "See #5601 -- on FTP we want to download the real file, not the symlink...", Continue);
