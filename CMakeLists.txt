@@ -40,6 +40,7 @@ include_directories (
    ${CMAKE_CURRENT_SOURCE_DIR}/src
    ${CMAKE_CURRENT_BINARY_DIR}/src)
 
+add_definitions(-DTRANSLATION_DOMAIN=\"kfileaudiopreview5\")
 add_subdirectory(src)
 
 #
