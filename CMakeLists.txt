@@ -62,7 +62,6 @@ set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP 
 
 add_subdirectory( doc )
 
-add_subdirectory( about )
 add_subdirectory( bookmarks )
 add_subdirectory( filter )
 add_subdirectory( info )
