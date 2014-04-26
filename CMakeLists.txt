@@ -27,10 +27,10 @@ set_package_properties(Phonon4Qt5 PROPERTIES
    DESCRIPTION "Qt-based audio library"
    TYPE REQUIRED)
 
-find_package(KF5Config ${KF5_VERSION} REQUIRED)
-find_package(KF5I18n ${KF5_VERSION} REQUIRED)
-find_package(KF5KIO ${KF5_VERSION} REQUIRED)
-find_package(KF5Service ${KF5_VERSION} REQUIRED)
+find_package(KF5Config ${KF5_DEP_VERSION} REQUIRED)
+find_package(KF5I18n ${KF5_DEP_VERSION} REQUIRED)
+find_package(KF5KIO ${KF5_DEP_VERSION} REQUIRED)
+find_package(KF5Service ${KF5_DEP_VERSION} REQUIRED)
 
 
 #
