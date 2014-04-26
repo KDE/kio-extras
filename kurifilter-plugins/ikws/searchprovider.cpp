@@ -70,7 +70,7 @@ void SearchProvider::setKeys(const QStringList &keys)
       name = key.toLower();
   }
 
-  const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "kde5/services/searchproviders/";
+  const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "kservices5/searchproviders/";
   bool firstRun = true;
 
   while (true)
@@ -80,7 +80,7 @@ void SearchProvider::setKeys(const QStringList &keys)
     if (!firstRun)
       check += KRandom::randomString(4);
 
-    const QString located = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kde5/services/searchproviders/") + check + ".desktop");
+    const QString located = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kservices5/searchproviders/") + check + ".desktop");
     if (located.isEmpty())
     {
       name = check;

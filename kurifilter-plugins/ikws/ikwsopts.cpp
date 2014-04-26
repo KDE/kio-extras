@@ -340,7 +340,7 @@ void FilterOptions::save()
 
   int changedProviderCount = 0;
   QList<SearchProvider*> providers = m_providersModel->providers();
-  const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "kde5/services/searchproviders/";
+  const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "kservices5/searchproviders/";
 
   Q_FOREACH(SearchProvider* provider, providers)
   {
@@ -360,7 +360,7 @@ void FilterOptions::save()
     service.writeEntry("Hidden", false); // we might be overwriting a hidden entry
   }
  
-  const QStringList servicesDirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "kde5/services/searchproviders/", QStandardPaths::LocateDirectory);
+ const QStringList servicesDirs = QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, "kservices5/searchproviders/", QStandardPaths::LocateDirectory);
   Q_FOREACH(const QString& providerName, m_deletedProviders)
   {
     QStringList matches;
