@@ -1056,7 +1056,7 @@ void fishProtocol::manageConnection(const QString &l) {
                 if (fishCommand == FISH_STAT)
                     udsStatEntry = udsEntry;
                 else if (listReason == LIST) {
-                    listEntry(udsEntry, false); //1
+                    listEntry(udsEntry); //1
                 } else if (listReason == CHECK) checkExist = true; //0
                 errorCount--;
                 udsEntry.clear();
@@ -1193,14 +1193,9 @@ void fishProtocol::manageConnection(const QString &l) {
         if (fishCommand == FISH_FISH) {
             connected();
         } else if (fishCommand == FISH_LIST) {
-            if (listReason == LIST) {
-                listEntry(UDSEntry(),true);
-            } else if (listReason == CHECK) {
-                if (!checkOverwrite && checkExist)
-                {
-                    error(ERR_FILE_ALREADY_EXIST,url.prettyUrl());
-                    return; // Don't call finished!
-                }
+            if (listReason == CHECK && !checkOverwrite && checkExist) {
+                error(ERR_FILE_ALREADY_EXIST,url.prettyUrl());
+                return; // Don't call finished!
             }
         } else if (fishCommand == FISH_STAT) {
             udsStatEntry.insert( KIO::UDSEntry::UDS_NAME, url.fileName() );

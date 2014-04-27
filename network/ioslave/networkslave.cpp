@@ -225,10 +225,8 @@ kDebug()<<reply.isValid();
                 {
                     KIO::UDSEntry entry;
                     feedEntryAsDevice( &entry, deviceData );
-                    listEntry( entry, false );
+                    listEntry( entry );
                 }
-                KIO::UDSEntry entry;
-                listEntry( entry, true );
                 finished();
                 successfulListing = true;
             }
@@ -249,10 +247,8 @@ kDebug()<<reply.isValid();
                     {
                         KIO::UDSEntry entry;
                         feedEntryAsService( &entry, serviceData );
-                        listEntry( entry, false );
+                        listEntry( entry );
                     }
-                    KIO::UDSEntry entry;
-                    listEntry( entry, true );
                     finished();
                     successfulListing = true;
                 }

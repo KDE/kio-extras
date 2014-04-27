@@ -523,9 +523,8 @@ void NFSProtocol::listDir( const QUrl& _url)
          entry.insert( KIO::UDSEntry::UDS_NAME, (*it) );
          kDebug(7121)<<"listing "<<(*it);
          createVirtualDirEntry(entry);
-         listEntry( entry, false);
+         listEntry( entry );
       }
-      listEntry( entry, true ); // ready
       finished();
       return;
    }
@@ -641,9 +640,8 @@ void NFSProtocol::listDir( const QUrl& _url)
       }
       else
          completeUDSEntry(entry,dirres.diropres_u.diropres.attributes);
-      listEntry( entry, false);
+      listEntry( entry );
    }
-   listEntry( entry, true ); // ready
    finished();
 }
 

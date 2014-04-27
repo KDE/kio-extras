@@ -299,7 +299,7 @@ void ArchiveProtocol::listDir( const QUrl & url )
     UDSEntry entry;
     if (!l.contains(".")) {
         createRootUDSEntry(entry);
-        listEntry(entry, false);
+        listEntry(entry);
     }
 
     QStringList::const_iterator it = l.begin();
@@ -310,10 +310,8 @@ void ArchiveProtocol::listDir( const QUrl & url )
 
         createUDSEntry( archiveEntry, entry );
 
-        listEntry( entry, false );
+        listEntry(entry);
     }
-
-    listEntry( entry, true ); // ready
 
     finished();
 

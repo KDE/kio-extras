@@ -74,9 +74,6 @@ bool RecentDocuments::rewriteUrl(const QUrl& url, QUrl& newUrl)
 void RecentDocuments::listDir(const QUrl& url)
 {
     if (isRootUrl(url)) {
-        // flush
-        listEntry(KIO::UDSEntry(), true);
-
         QStringList list = KRecentDocument::recentDocuments();
         KIO::UDSEntryList udslist;
         QSet<QString> urlSet;
@@ -116,8 +113,6 @@ void RecentDocuments::listDir(const QUrl& url)
             }
         }
         listEntries(udslist);
-
-        listEntry(KIO::UDSEntry(), true);
         finished();
     }
     else
