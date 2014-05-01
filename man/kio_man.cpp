@@ -133,8 +133,8 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
 {
     assert(!_self);
     _self = this;
-    const QString common_dir = KGlobal::dirs()->findResourceDir( "html", "en/common/kde-default.css" );
-    const QString strPath=QString( "file:%1/en/common" ).arg( common_dir );
+    const QString common_dir = KGlobal::dirs()->findResourceDir( "html", "en/kdoctools5-common/kde-default.css" );
+    const QString strPath=QString( "file:%1/en/kdoctools5-common" ).arg( common_dir );
     m_cssPath=strPath.toLocal8Bit(); // ### TODO encode for CSS
     section_names << "0" << "0p" << "1" << "1p" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";

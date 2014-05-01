@@ -4455,7 +4455,7 @@ static char *scan_request(char *c)
             out_html(" Manpage</TITLE>\n");
 
             // KDE defaults.
-            out_html("<link rel=\"stylesheet\" href=\"help:/common/kde-default.css\"");
+            out_html("<link rel=\"stylesheet\" href=\"help:/kdoctools5-common/kde-default.css\"");
             out_html(" type=\"text/css\">\n");
 
             // Output our custom stylesheet.
@@ -4467,11 +4467,11 @@ static char *scan_request(char *c)
             // could not be included in the stylesheet,
             // include it now.
             out_html("<style type=\"text/css\">\n#header_top { "
-                     "background-image: url(\"help:/common/top.jpg\"); }\n\n"
+                     "background-image: url(\"help:/kdoctools5-common/top.jpg\"); }\n\n"
                      "#header_top div { "
-                     "background-image: url(\"help:/common/top-left.jpg\"); }\n\n"
+                     "background-image: url(\"help:/kdoctools5-common/top-left.jpg\"); }\n\n"
                      "#header_top div div { "
-                     "background-image: url(\"help:/common/top-right.jpg\"); }\n\n"
+                     "background-image: url(\"help:/kdoctools5-common/top-right.jpg\"); }\n\n"
                      "</style>\n\n"
                     );
 
@@ -4487,7 +4487,7 @@ static char *scan_request(char *c)
 
             out_html("<div id=\"header\"><div id=\"header_top\">\n");
             out_html("<div><div>\n");
-            out_html("<img src=\"help:/common/top-kde.jpg\" alt=\"top-kde\"> ");
+            out_html("<img src=\"help:/kdoctools5-common/top-kde.jpg\" alt=\"top-kde\"> ");
             if ( args.count() )
               scan_troff(args[0].data(), 0, NULL);
             out_html(" - KDE Man Page Viewer");
