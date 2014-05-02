@@ -60,6 +60,32 @@ set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP 
                        PURPOSE "Needed to build the SFTP kioslave"
                       )
 
+# ECM's KDECompilerSettings.cmake should take care of enabling supporting on
+# 32bit architectures.
+# Thorw a fatal error if off_t isn't >=64bit to ensure that large files are working
+# as expected.
+# BUG: 165449
+if(UNIX)
+    check_cxx_source_compiles("
+        #include <sys/types.h>
+        /* Check that off_t can represent 2**63 - 1 correctly.
+            We can't simply define LARGE_OFF_T to be 9223372036854775807,
+            since some C++ compilers masquerading as C compilers
+            incorrectly reject 9223372036854775807.  */
+        #define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
+
+        int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721 && LARGE_OFF_T % 2147483647 == 1) ? 1 : -1];
+        int main() { return 0; }
+    "
+    OFFT_IS_64BIT)
+
+    if(NOT OFFT_IS_64BIT)
+        message(FATAL_ERROR "Large file support is not enabled.")
+    endif()
+else()
+    # FIXME: on windows we ignore support until trash gets integrated
+endif()
+
 add_subdirectory( doc )
 
 add_subdirectory( bookmarks )
