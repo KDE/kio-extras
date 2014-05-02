@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Google Shopping
+Name[nl]=Google Shopping
 Name[uk]=Google Shopping
 Name[x-test]=xxGoogle Shoppingxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggs,ggshopping
 Query=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
+Query[nl]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[uk]=https://www.google.com/search?hl=en&tbm=shop&q=\\{@}
 Query[x-test]=xxhttps://www.google.com/search?hl=en&tbm=shop&q=\\{@}xx

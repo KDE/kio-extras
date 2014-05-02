@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=dbug
 Name=Debian BTS Bug Search
+Name[nl]=Debian BTS Bug Search
 Name[uk]=Пошук у системі стеження за помилками для Debian
 Name[x-test]=xxDebian BTS Bug Searchxx
 Query=http://bugs.debian.org/\\{@}
+Query[nl]=http://bugs.debian.org/\\{@}
 Query[uk]=http://bugs.debian.org/\\{@}
 Query[x-test]=xxhttp://bugs.debian.org/\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

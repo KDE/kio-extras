@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Desktop Files
+Name[nl]=Bureaubladbestanden
 Name[uk]=Стільничні файли
 Name[x-test]=xxDesktop Filesxx
 X-KDE-ServiceTypes=ThumbCreator

@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=KDE App Search
+Name[nl]=Programma's zoeken
 Name[uk]=Пошук програм KDE
 Name[x-test]=xxKDE App Searchxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=apps,appsy
 Query=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
+Query[nl]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-apps.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-apps.org/content/search.php?search=Search&name=\\{@}xx

@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=duckduckgoshopping,dds,dukgoshop
 Name=Duck Duck Go Shopping
+Name[nl]=Duck Duck Go Shopping
 Name[uk]=Duck Duck Go Shopping
 Name[x-test]=xxDuck Duck Go Shoppingxx
 Query=https://duckduckgo.com/?q=\\{@}&v=s&t=kde
+Query[nl]=https://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[uk]=https://duckduckgo.com/?q=\\{@}&v=s&t=kde
 Query[x-test]=xxhttps://duckduckgo.com/?q=\\{@}&v=s&t=kdexx
 ServiceTypes=SearchProvider

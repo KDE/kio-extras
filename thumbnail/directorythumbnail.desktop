@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Folders
+Name[nl]=Mappen
 Name[uk]=Теки
 Name[x-test]=xxFoldersxx
 X-KDE-ServiceTypes=ThumbCreator

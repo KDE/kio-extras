@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=en2it
 Name=WordReference.com Translation: English to Italian
+Name[nl]=WordReference.com-vertaling: Engels naar Italiaans
 Name[uk]=WordReference.com — переклад з англійської італійською
 Name[x-test]=xxWordReference.com Translation: English to Italianxx
 Query=http://www.wordreference.com/it/translation.asp?enit=\\{@}
+Query[nl]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[uk]=http://www.wordreference.com/it/translation.asp?enit=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/it/translation.asp?enit=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

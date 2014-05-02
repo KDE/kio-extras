@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=vimeo,vm
 Name=Vimeo
+Name[nl]=Vimeo
 Name[uk]=Vimeo
 Name[x-test]=xxVimeoxx
 Query=http://vimeo.com/search?q=\\{@}
+Query[nl]=http://vimeo.com/search?q=\\{@}
 Query[uk]=http://vimeo.com/search?q=\\{@}
 Query[x-test]=xxhttp://vimeo.com/search?q=\\{@}xx
 ServiceTypes=SearchProvider

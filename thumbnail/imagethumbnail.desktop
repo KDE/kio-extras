@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Images (GIF, PNG, BMP, ...)
+Name[nl]=Afbeeldingen (GIF, PNG, BMP, ...)
 Name[uk]=Зображення (GIF, PNG, BMP…)
 Name[x-test]=xxImages (GIF, PNG, BMP, ...)xx
 X-KDE-ServiceTypes=ThumbCreator

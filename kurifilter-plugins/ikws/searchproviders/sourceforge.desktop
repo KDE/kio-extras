@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=sf,sourceforge
 Name=SourceForge
+Name[nl]=SourceForge
 Name[uk]=SourceForge
 Name[x-test]=xxSourceForgexx
 Query=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
+Query[nl]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[uk]=http://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}
 Query[x-test]=xxhttp://sourceforge.net/search/?type_of_search=\\{type,"soft"}&exact=\\{exact,"0"}&words=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

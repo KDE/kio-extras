@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Ethicle
+Name[nl]=Ethisch
 Name[uk]=Ethicle
 Name[x-test]=xxEthiclexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=et,ethicle
 Query=http://www.ethicle.com/search.php?q=\\{@}
+Query[nl]=http://www.ethicle.com/search.php?q=\\{@}
 Query[uk]=http://www.ethicle.com/search.php?q=\\{@}
 Query[x-test]=xxhttp://www.ethicle.com/search.php?q=\\{@}xx

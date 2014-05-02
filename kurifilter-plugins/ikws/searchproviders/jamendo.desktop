@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=jamendo,jmd
 Name=Jamendo
+Name[nl]=Jamendo
 Name[uk]=Jamendo
 Name[x-test]=xxJamendoxx
 Query=http://www.jamendo.com/en/search?qs=q=\\{@}
+Query[nl]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[uk]=http://www.jamendo.com/en/search?qs=q=\\{@}
 Query[x-test]=xxhttp://www.jamendo.com/en/search?qs=q=\\{@}xx
 ServiceTypes=SearchProvider

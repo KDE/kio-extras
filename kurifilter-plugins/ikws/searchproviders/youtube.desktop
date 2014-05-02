@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=yt,youtube
 Name=YouTube
+Name[nl]=YouTube
 Name[uk]=YouTube
 Name[x-test]=xxYouTubexx
 Query=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
+Query[nl]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[uk]=https://www.youtube.com/results?search_query=\\{@}&search_type=&aq=f
 Query[x-test]=xxhttps://www.youtube.com/results?search_query=\\{@}&search_type=&aq=fxx
 ServiceTypes=SearchProvider

@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Google Image Search
+Name[nl]=Google afbeeldingen zoeken
 Name[uk]=Пошук зображень на Google
 Name[x-test]=xxGoogle Image Searchxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggi,images
 Query=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
+Query[nl]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[uk]=https://www.google.com/search?site=imghp&tbm=isch&q=\\{@}
 Query[x-test]=xxhttps://www.google.com/search?site=imghp&tbm=isch&q=\\{@}xx

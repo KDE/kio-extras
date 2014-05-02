@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=pgp,pgpkeys
 Name=OpenPGP Key Search
+Name[nl]=Zoeken naar OpenPGP-sleutels
 Name[uk]=Пошук ключів OpenPGP
 Name[x-test]=xxOpenPGP Key Searchxx
 Query=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
+Query[nl]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[uk]=http://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindex
 Query[x-test]=xxhttp://pgp.mit.edu:11371/pks/lookup?search=\\{@}&op=vindexxx
 X-KDE-ServiceTypes=SearchProvider

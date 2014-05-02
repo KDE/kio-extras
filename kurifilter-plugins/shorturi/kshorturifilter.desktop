@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=ShortURIFilter
+Name[nl]=ShortURIFilter
 Name[uk]=Фільтр коротких URI
 Name[x-test]=xxShortURIFilterxx
 X-KDE-Library=kshorturifilter

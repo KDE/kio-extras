@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=ctan
 Name=CTAN - Comprehensive TeX Archive Network
+Name[nl]=CTAN - Comprehensive TeX Archive Network
 Name[uk]=CTAN — всеосяжна мережа архівів TeX
 Name[x-test]=xxCTAN - Comprehensive TeX Archive Networkxx
 Query=http://ctan.org/search?phrase=\\{@}
+Query[nl]=http://ctan.org/search?phrase=\\{@}
 Query[uk]=http://ctan.org/search?phrase=\\{@}
 Query[x-test]=xxhttp://ctan.org/search?phrase=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

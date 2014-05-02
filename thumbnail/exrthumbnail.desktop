@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=EXR Images
+Name[nl]=EXR-afbeeldingen
 Name[uk]=Зображення EXR
 Name[x-test]=xxEXR Imagesxx
 X-KDE-ServiceTypes=ThumbCreator

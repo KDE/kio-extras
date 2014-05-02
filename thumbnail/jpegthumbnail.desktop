@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=JPEG Images
+Name[nl]=JPEG-afbeeldingen
 Name[uk]=Зображення JPEG
 Name[x-test]=xxJPEG Imagesxx
 X-KDE-ServiceTypes=ThumbCreator

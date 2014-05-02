@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=wa,wolfram
 Name=Wolfram Alpha
+Name[nl]=Wolfram Alpha
 Name[uk]=Wolfram Alpha
 Name[x-test]=xxWolfram Alphaxx
 Query=https://www.wolframalpha.com/input/?i=\\{@}
+Query[nl]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[uk]=https://www.wolframalpha.com/input/?i=\\{@}
 Query[x-test]=xxhttps://www.wolframalpha.com/input/?i=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

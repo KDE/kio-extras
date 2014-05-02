@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=urbandictionary,ud
 Name=Urban Dictionary
+Name[nl]=Urban woordenboek
 Name[uk]=Urban Dictionary
 Name[x-test]=xxUrban Dictionaryxx
 Query=http://www.urbandictionary.com/define.php?term=\\{@}
+Query[nl]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[uk]=http://www.urbandictionary.com/define.php?term=\\{@}
 Query[x-test]=xxhttp://www.urbandictionary.com/define.php?term=\\{@}xx
 ServiceTypes=SearchProvider

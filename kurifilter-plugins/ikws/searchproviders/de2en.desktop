@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=de2en
 Name=dict.cc Translation: German to English
+Name[nl]=dict.cc-vertaling: Duits naar Engels
 Name[uk]=dict.cc — переклад з німецької англійською
 Name[x-test]=xxdict.cc Translation: German to Englishxx
 Query=http://www.dict.cc/?s=\\{@}
+Query[nl]=http://www.dict.cc/?s=\\{@}
 Query[uk]=http://www.dict.cc/?s=\\{@}
 Query[x-test]=xxhttp://www.dict.cc/?s=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

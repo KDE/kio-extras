@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=SVG Images
+Name[nl]=SVG-afbeeldingen
 Name[uk]=Зображення SVG
 Name[x-test]=xxSVG Imagesxx
 X-KDE-ServiceTypes=ThumbCreator

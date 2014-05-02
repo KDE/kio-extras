@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=HyperDictionary.com Thesaurus
+Name[nl]=HyperDictionary.com Thesaurus
 Name[uk]=Словник синонімів HyperDictionary.com
 Name[x-test]=xxHyperDictionary.com Thesaurusxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=hdt,hd-ths,hd-thesaurus
 Query=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
+Query[nl]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[uk]=http://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}
 Query[x-test]=xxhttp://www.hyperdictionary.com/search.aspx?Dict=T&define=\\{@}xx

@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Cursor Files
+Name[nl]=Cursorbestanden
 Name[uk]=Файли курсорів
 Name[x-test]=xxCursor Filesxx
 X-KDE-ServiceTypes=ThumbCreator

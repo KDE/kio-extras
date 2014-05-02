@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=cpan
 Name=CPAN - Comprehensive Perl Archive Network
+Name[nl]=CPAN - Comprehensive Perl Archive Network
 Name[uk]=CPAN — всеосяжна мережа архівів Perl
 Name[x-test]=xxCPAN - Comprehensive Perl Archive Networkxx
 Query=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
+Query[nl]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[uk]=http://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}
 Query[x-test]=xxhttp://search.cpan.org/search?mode=\\{mode,2,""}&query=\\{query,q,1}xx
 X-KDE-ServiceTypes=SearchProvider

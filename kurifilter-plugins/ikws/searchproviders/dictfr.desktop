@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=CNRTL/TILF French dictionary
+Name[nl]=CNRTL/TILF Frans woordenboek
 Name[uk]=Французький словник CNRTL/TILF
 Name[x-test]=xxCNRTL/TILF French dictionaryxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=dictfr
 Query=http://www.cnrtl.fr/definition/\\{@}
+Query[nl]=http://www.cnrtl.fr/definition/\\{@}
 Query[uk]=http://www.cnrtl.fr/definition/\\{@}
 Query[x-test]=xxhttp://www.cnrtl.fr/definition/\\{@}xx

@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=kdeuserbase,userbase,ub
 Name=KDE UserBase
+Name[nl]=KDE UserBase
 Name[uk]=UserBase KDE
 Name[x-test]=xxKDE UserBasexx
 Query=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[nl]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://userbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx
 ServiceTypes=SearchProvider

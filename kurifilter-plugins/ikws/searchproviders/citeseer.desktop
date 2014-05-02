@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=cite,cs
 Name=CiteSeer: Scientific Literature Digital Library
+Name[nl]=CiteSeer: Scientific Literature Digital Library
 Name[uk]=CiteSeer: цифрова бібліотека наукової літератури
 Name[x-test]=xxCiteSeer: Scientific Literature Digital Libraryxx
 Query=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
+Query[nl]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[uk]=http://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=doc
 Query[x-test]=xxhttp://citeseer.ist.psu.edu/search?q=\\{@}&submit=Search&sort=rlv&t=docxx
 X-KDE-ServiceTypes=SearchProvider

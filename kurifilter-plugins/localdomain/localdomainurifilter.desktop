@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=LocalDomainFilter
+Name[nl]=Lokaaldomeinfilter
 Name[uk]=Фільтр локальних доменів
 Name[x-test]=xxLocalDomainFilterxx
 X-KDE-Library=localdomainurifilter

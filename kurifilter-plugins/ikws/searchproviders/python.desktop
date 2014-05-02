@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=py,python
 Name=Python Reference Manual
+Name[nl]=Python Reference Manual
 Name[uk]=Довідник з Python
 Name[x-test]=xxPython Reference Manualxx
 Query=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
+Query[nl]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[uk]=https://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.org
 Query[x-test]=xxhttps://www.google.com/search?sourceid=python-search&q=\\{@}&submit=Search&q=site%3Apython.orgxx
 X-KDE-ServiceTypes=SearchProvider

@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=qt
 Name=Latest Qt Online Documentation
+Name[nl]=Nieuwste Qt Online-documentatie
 Name[uk]=Найсвіжіша документація з Qt у мережі
 Name[x-test]=xxLatest Qt Online Documentationxx
 Query=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
+Query[nl]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[uk]=http://qt-project.org/doc/search/qt-5.0?search=\\{@}
 Query[x-test]=xxhttp://qt-project.org/doc/search/qt-5.0?search=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Free On-Line Dictionary of Computing
+Name[nl]=Free On-Line Dictionary Of Computing (IT-woordenboek)
 Name[uk]=Вільний словник з інформатики в мережі
 Name[x-test]=xxFree On-Line Dictionary of Computingxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=fd,foldoc
 Query=http://foldoc.org/\\{@}
+Query[nl]=http://foldoc.org/\\{@}
 Query[uk]=http://foldoc.org/\\{@}
 Query[x-test]=xxhttp://foldoc.org/\\{@}xx

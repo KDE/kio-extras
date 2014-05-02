@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=wordref
 Name=WordReference.com English Dictionary
+Name[nl]=WordReference.com Engels woordenboek
 Name[uk]=Англійський словник WordReference.com
 Name[x-test]=xxWordReference.com English Dictionaryxx
 Query=http://www.wordreference.com/english/definition.asp?en=\\{@}
+Query[nl]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[uk]=http://www.wordreference.com/english/definition.asp?en=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/english/definition.asp?en=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

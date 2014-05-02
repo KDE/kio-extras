@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=bugft
 Name=KDE Bug Database Fulltext Search
+Name[nl]=KDE Bug Database -  volledige-tekst-zoekactie
 Name[uk]=Повнотекстовий пошук у базі даних KDE
 Name[x-test]=xxKDE Bug Database Fulltext Searchxx
 Query=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
+Query[nl]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[uk]=https://bugs.kde.org/buglist.cgi?quicksearch=\\{@}
 Query[x-test]=xxhttps://bugs.kde.org/buglist.cgi?quicksearch=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

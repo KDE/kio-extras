@@ -9,12 +9,15 @@ X-KDE-ParentApp=kcontrol
 X-KDE-PluginKeyword=cgi
 
 Name=CGI Scripts
+Name[nl]=CGI-scripts
 Name[uk]=Скрипти CGI
 Name[x-test]=xxCGI Scriptsxx
 Comment=Configure the CGI KIO slave
+Comment[nl]=Hier kunt u de CGI Kio-slave instellen
 Comment[uk]=Налаштування підлеглого KIO CGI
 Comment[x-test]=xxConfigure the CGI KIO slavexx
 
 X-KDE-Keywords=CGI,KIO,Slave,Paths
+X-KDE-Keywords[nl]=CGI,KIO,slave,paden
 X-KDE-Keywords[uk]=CGI,KIO,Slave,Paths,допоміжний,підлеглий,шляхи
 X-KDE-Keywords[x-test]=xxCGI,KIO,Slave,Pathsxx

@@ -1,6 +1,7 @@
 [Desktop Entry]
 Icon=network-workgroup
 Name=Samba Shares
+Name[nl]=Sambanetwerk
 Name[uk]=Спільні ресурси Samba
 Name[x-test]=xxSamba Sharesxx
 Open=false

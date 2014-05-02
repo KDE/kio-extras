@@ -2,6 +2,7 @@
 Type=ServiceType
 X-KDE-ServiceType=SearchProvider
 Comment=Search Engine
+Comment[nl]=Zoekmachine
 Comment[uk]=Рушій пошуку
 Comment[x-test]=xxSearch Enginexx
 

@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=deb
 Name=Debian Package Search
+Name[nl]=Debian Package Search
 Name[uk]=Пошук пакунків для Debian
 Name[x-test]=xxDebian Package Searchxx
 Query=http://packages.debian.org/\\{@}
+Query[nl]=http://packages.debian.org/\\{@}
 Query[uk]=http://packages.debian.org/\\{@}
 Query[x-test]=xxhttp://packages.debian.org/\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=Text Files
+Name[nl]=Tekstbestanden
 Name[uk]=Текстові файли
 Name[x-test]=xxText Filesxx
 X-KDE-ServiceTypes=ThumbCreator

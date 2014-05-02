@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Merriam-Webster Thesaurus
+Name[nl]=Merriam-Webster Thesaurus
 Name[uk]=Словник синонімів Merriam-Webster
 Name[x-test]=xxMerriam-Webster Thesaurusxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=ths,thesaurus
 Query=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
+Query[nl]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[uk]=http://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}
 Query[x-test]=xxhttp://www.m-w.com/cgi-bin/thesaurus?book=Thesaurus&va=\\{@}xx

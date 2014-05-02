@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Comment=Embeddable Troff Viewer
+Comment[nl]=Ingebed Troff-weergaveprogramma
 Comment[uk]=Вмонтований переглядач Troff
 Comment[x-test]=xxEmbeddable Troff Viewerxx
 MimeType=text/troff;application/x-troff-man;
 Name=KManPart
+Name[nl]=KManPart
 Name[uk]=KManPart
 Name[x-test]=xxKManPartxx
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View

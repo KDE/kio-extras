@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=MetaCrawler
+Name[nl]=MetaCrawler
 Name[uk]=MetaCrawler
 Name[x-test]=xxMetaCrawlerxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=mc,meta,metacrawler
 Query=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
+Query[nl]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[uk]=http://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}
 Query[x-test]=xxhttp://www.metacrawler.com/info.metac.cloud.other/search/web?q=\\{@}xx

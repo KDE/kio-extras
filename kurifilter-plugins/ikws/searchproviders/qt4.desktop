@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Qt4 Documentation
+Name[nl]=Qt4-documentatie
 Name[uk]=Документація з Qt4
 Name[x-test]=xxQt4 Documentationxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=qt4
 Query=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
+Query[nl]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[uk]=http://qt-project.org/doc/search/qt-4.8?search=\\{@}
 Query[x-test]=xxhttp://qt-project.org/doc/search/qt-4.8?search=\\{@}xx

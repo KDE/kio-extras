@@ -2,9 +2,11 @@
 Hidden=false
 Keys=amg
 Name=All Music Guide
+Name[nl]=All Music Guide
 Name[uk]=All Music Guide
 Name[x-test]=xxAll Music Guidexx
 Query=http://www.allmusic.com/search/all/\\{@}
+Query[nl]=http://www.allmusic.com/search/all/\\{@}
 Query[uk]=http://www.allmusic.com/search/all/\\{@}
 Query[x-test]=xxhttp://www.allmusic.com/search/all/\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

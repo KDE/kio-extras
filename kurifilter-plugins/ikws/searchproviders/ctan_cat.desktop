@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=ctan_cat
 Name=CTAN Catalog
+Name[nl]=CTAN Catalogus
 Name[uk]=Каталог CTAN
 Name[x-test]=xxCTAN Catalogxx
 Query=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
+Query[nl]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[uk]=http://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Search
 Query[x-test]=xxhttp://tug.ctan.org/cgi-bin/search.py?metadataSearch=\\{@}&metadataSearchSubmit=Searchxx
 X-KDE-ServiceTypes=SearchProvider

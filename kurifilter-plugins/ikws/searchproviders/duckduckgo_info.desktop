@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=duckduckgoinfo,ddi
 Name=Duck Duck Go Info
+Name[nl]=Duck Duck Go Info
 Name[uk]=Duck Duck Go Info
 Name[x-test]=xxDuck Duck Go Infoxx
 Query=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
+Query[nl]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[uk]=https://duckduckgo.com/?q=\\{@}&v=r&t=kde
 Query[x-test]=xxhttps://duckduckgo.com/?q=\\{@}&v=r&t=kdexx
 ServiceTypes=SearchProvider

@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=en2es
 Name=WordReference.com Translation: English to Spanish
+Name[nl]=WordReference.com-vertaling: Engels naar Spaans
 Name[uk]=WordReference.com — переклад з англійської іспанською
 Name[x-test]=xxWordReference.com Translation: English to Spanishxx
 Query=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
+Query[nl]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[uk]=http://www.wordreference.com/es/translation.asp?tranword=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/es/translation.asp?tranword=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

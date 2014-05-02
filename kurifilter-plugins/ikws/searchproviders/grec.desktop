@@ -3,9 +3,11 @@ Charset=ISO-8859-15
 Hidden=false
 Keys=grec
 Name=Great Dictionary of the Catalan Language (GRan Enciclopèdia  Catalana)
+Name[nl]=Catalaanse Encyclopedie
 Name[uk]=Великий словник каталонської мови (GRan Enciclopèdia Catalana)
 Name[x-test]=xxGreat Dictionary of the Catalan Language (GRan Enciclopèdia  Catalana)xx
 Query=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
+Query[nl]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[uk]=http://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}
 Query[x-test]=xxhttp://ec.grec.net/cgi-bin/AppDLC3.exe?APP=CERCADLC&GECART=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

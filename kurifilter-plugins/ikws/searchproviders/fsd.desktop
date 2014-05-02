@@ -1,11 +1,13 @@
 [Desktop Entry]
 Type=Service
 Name=FSF/UNESCO Free Software Directory
+Name[nl]=FSF/UNESCO Free Software Directory
 Name[uk]=Словник з вільного програмного забезпечення FSF/UNESCO
 Name[x-test]=xxFSF/UNESCO Free Software Directoryxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=fsd
 Query=http://directory.fsf.org/search/?query=\\{@}
+Query[nl]=http://directory.fsf.org/search/?query=\\{@}
 Query[uk]=http://directory.fsf.org/search/?query=\\{@}
 Query[x-test]=xxhttp://directory.fsf.org/search/?query=\\{@}xx
 

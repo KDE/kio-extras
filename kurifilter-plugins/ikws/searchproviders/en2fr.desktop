@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=en2fr
 Name=WordReference.com Translation: English to French
+Name[nl]=WordReference.com-vertaling: Engels naar Frans
 Name[uk]=WordReference.com — переклад з англійської французькою
 Name[x-test]=xxWordReference.com Translation: English to Frenchxx
 Query=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
+Query[nl]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[uk]=http://www.wordreference.com/fr/Translation.asp?enfr=\\{@}
 Query[x-test]=xxhttp://www.wordreference.com/fr/Translation.asp?enfr=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

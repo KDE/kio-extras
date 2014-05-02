@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=magnatune,mt
 Name=Magnatune
+Name[nl]=Magnatune
 Name[uk]=Magnatune
 Name[x-test]=xxMagnatunexx
 Query=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
+Query[nl]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[uk]=http://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0
 Query[x-test]=xxhttp://my.magnatune.com/search?w=\\{@}&t=m&x=0&y=0xx
 ServiceTypes=SearchProvider

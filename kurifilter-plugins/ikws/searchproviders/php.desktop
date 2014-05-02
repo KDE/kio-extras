@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=php
 Name=PHP Search
+Name[nl]=PHP-zoekactie
 Name[uk]=Пошук PHP
 Name[x-test]=xxPHP Searchxx
 Query=http://www.php.net/manual-lookup.php?pattern=\\{@}
+Query[nl]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[uk]=http://www.php.net/manual-lookup.php?pattern=\\{@}
 Query[x-test]=xxhttp://www.php.net/manual-lookup.php?pattern=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=identicagroups,identig,identicag,idg
 Name=Identi.ca Groups
+Name[nl]=Identi.ca Groepen
 Name[uk]=Групи Identi.ca
 Name[x-test]=xxIdenti.ca Groupsxx
 Query=https://identi.ca/search/group?q=\\{@}
+Query[nl]=https://identi.ca/search/group?q=\\{@}
 Query[uk]=https://identi.ca/search/group?q=\\{@}
 Query[x-test]=xxhttps://identi.ca/search/group?q=\\{@}xx
 ServiceTypes=SearchProvider

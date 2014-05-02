@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=kdetechbase,techbase,tb
 Name=KDE TechBase
+Name[nl]=KDE TechBase
 Name[uk]=TechBase KDE
 Name[x-test]=xxKDE TechBasexx
 Query=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
+Query[nl]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[uk]=http://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Search
 Query[x-test]=xxhttp://techbase.kde.org/Special:Search?search=\\{@}&fulltext=Searchxx
 ServiceTypes=SearchProvider

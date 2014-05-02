@@ -17,6 +17,7 @@ Icon=folder-remote
 maxInstances=20
 maxInstancesPerHost=5
 Description=A kioslave for sftp
+Description[nl]=Een kioslave voor sftp
 Description[uk]=Підлеглий В/В для sftp
 Description[x-test]=xxA kioslave for sftpxx
 X-DocPath=kioslave/sftp/index.html

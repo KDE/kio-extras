@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=RPM-Find
+Name[nl]=RPM-Find
 Name[uk]=RPM-Find
 Name[x-test]=xxRPM-Findxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=rf,rpmfind
 Query=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
+Query[nl]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[uk]=http://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}
 Query[x-test]=xxhttp://www.rpmfind.net/linux/rpm2html/search.php?query=\\{@}xx

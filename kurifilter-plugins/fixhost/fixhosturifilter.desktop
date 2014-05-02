@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=FixHostFilter
+Name[nl]=FixHostFilter
 Name[uk]=FixHostFilter
 Name[x-test]=xxFixHostFilterxx
 X-KDE-Library=fixhosturifilter

@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=HyperDictionary.com
+Name[nl]=HyperDictionary.com
 Name[uk]=HyperDictionary.com
 Name[x-test]=xxHyperDictionary.comxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=hd,hyperdict
 Query=http://www.hyperdictionary.com/search.aspx?define=\\{@}
+Query[nl]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[uk]=http://www.hyperdictionary.com/search.aspx?define=\\{@}
 Query[x-test]=xxhttp://www.hyperdictionary.com/search.aspx?define=\\{@}xx

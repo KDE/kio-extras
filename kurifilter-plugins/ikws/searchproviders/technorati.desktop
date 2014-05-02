@@ -1,11 +1,13 @@
 [Desktop Entry]
 Type=Service
 Name=Technorati
+Name[nl]=Technorati
 Name[uk]=Technorati
 Name[x-test]=xxTechnoratixx
 X-KDE-ServiceTypes=SearchProvider
 Keys=tr,technorati
 Query=http://technorati.com/search?return=sites&authority=high&q=\\{@}
+Query[nl]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[uk]=http://technorati.com/search?return=sites&authority=high&q=\\{@}
 Query[x-test]=xxhttp://technorati.com/search?return=sites&authority=high&q=\\{@}xx
 Charset=utf8

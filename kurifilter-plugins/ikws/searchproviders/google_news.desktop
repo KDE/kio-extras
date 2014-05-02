@@ -1,11 +1,13 @@
 [Desktop Entry]
 Type=Service
 Name=Google News
+Name[nl]=Google-nieuws
 Name[uk]=Новини Google
 Name[x-test]=xxGoogle Newsxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggn,googlenews
 Query=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
+Query[nl]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[uk]=https://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8
 Query[x-test]=xxhttps://news.google.com/news?q=\\{@}&ie=UTF-8&oe=UTF-8xx
 Charset=utf8

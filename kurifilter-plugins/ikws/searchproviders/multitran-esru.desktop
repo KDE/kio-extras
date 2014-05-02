@@ -2,10 +2,12 @@
 Charset=cp 1251
 Type=Service
 Name=Multitran - Translate Between Spanish and Russian
+Name[nl]=Multitran - vertaal van Spaans naar Russisch
 Name[uk]=Multitran — переклад з іспанської російською
 Name[x-test]=xxMultitran - Translate Between Spanish and Russianxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=mt,mtde
 Query=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
+Query[nl]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[uk]=http://multitran.ru/c/m.exe?l1=5&s=\\{@}
 Query[x-test]=xxhttp://multitran.ru/c/m.exe?l1=5&s=\\{@}xx

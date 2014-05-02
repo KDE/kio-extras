@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=ggc,googlecode,ggcode
 Name=Google Code
+Name[nl]=Google Code
 Name[uk]=Google Code
 Name[x-test]=xxGoogle Codexx
 Query=https://code.google.com/query/#q=\\{%2520}
+Query[nl]=https://code.google.com/query/#q=\\{%2520}
 Query[uk]=https://code.google.com/query/#q=\\{%2520}
 Query[x-test]=xxhttps://code.google.com/query/#q=\\{%2520}xx
 ServiceTypes=SearchProvider

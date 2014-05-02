@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=LEO - Translate Between French and German
+Name[nl]=LEO - vertaling tussen Frans en Duits
 Name[uk]=LEO — переклад з французької німецькою
 Name[x-test]=xxLEO - Translate Between French and Germanxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=fr2de
 Query=http://dict.leo.org/?lp=frde&search=\\{@}
+Query[nl]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[uk]=http://dict.leo.org/?lp=frde&search=\\{@}
 Query[x-test]=xxhttp://dict.leo.org/?lp=frde&search=\\{@}xx

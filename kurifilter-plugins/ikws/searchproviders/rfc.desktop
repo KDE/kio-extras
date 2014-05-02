@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=rfc,rfcs
 Name=IETF Requests for Comments
+Name[nl]=IETF Requests for Comments
 Name[uk]=Запит коментарів (RFC) IETF
 Name[x-test]=xxIETF Requests for Commentsxx
 Query=http://tools.ietf.org/id/\\{@}
+Query[nl]=http://tools.ietf.org/id/\\{@}
 Query[uk]=http://tools.ietf.org/id/\\{@}
 Query[x-test]=xxhttp://tools.ietf.org/id/\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

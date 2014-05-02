@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Microsoft Windows Executables
+Name[nl]=Uitvoerbare programma's voor Microsoft Windows
 Name[uk]=Виконувані файли Microsoft Windows
 Name[x-test]=xxMicrosoft Windows Executablesxx
 ServiceTypes=ThumbCreator

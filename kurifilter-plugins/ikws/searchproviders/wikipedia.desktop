@@ -1,11 +1,13 @@
 [Desktop Entry]
 Type=Service
 Name=Wikipedia - The Free Encyclopedia
+Name[nl]=Wikipedia - de vrije encyclopedie
 Name[uk]=Вікіпедія — вільна енциклопедія
 Name[x-test]=xxWikipedia - The Free Encyclopediaxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=wp
 Query=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
+Query[nl]=https://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[uk]=http://uk.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Go
 Query[x-test]=xxhttps://en.wikipedia.org/wiki/Special:Search?search=\\{@}&go=Goxx
 Charset=utf8

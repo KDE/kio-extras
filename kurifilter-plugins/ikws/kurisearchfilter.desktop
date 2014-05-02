@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=SearchKeywordsFilter
+Name[nl]=ZoekTermenFilter
 Name[uk]=Фільтр ключових слів інтернет
 Name[x-test]=xxSearchKeywordsFilterxx
 X-KDE-Library=kurisearchfilter

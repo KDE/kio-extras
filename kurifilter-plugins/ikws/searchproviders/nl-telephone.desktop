@@ -1,10 +1,12 @@
 [Desktop Entry]
 Name=Telephonebook Search Provider
+Name[nl]=Telefoonboek-zoekmachine
 Name[uk]=Провайдер пошуку Telephonebook
 Name[x-test]=xxTelephonebook Search Providerxx
 Type=Service
 X-KDE-ServiceTypes=SearchProvider
 Keys=telnl,telefoon
 Query=http://www.detelefoongids.nl/\\{1}/\\{2}/10-1/?oWhat=\\{1}&oWhere=\\{2}
+Query[nl]=http://www.detelefoongids.nl/\\{1}/\\{2}/10-1/?oWhat=\\{1}&oWhere=\\{2}
 Query[uk]=http://www.detelefoongids.nl/\\{1}/\\{2}/10-1/?oWhat=\\{1}&oWhere=\\{2}
 Query[x-test]=xxhttp://www.detelefoongids.nl/\\{1}/\\{2}/10-1/?oWhat=\\{1}&oWhere=\\{2}xx

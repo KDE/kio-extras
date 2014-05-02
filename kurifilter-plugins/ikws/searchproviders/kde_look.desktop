@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=kdelook,klook,kdel
 Name=KDE Look
+Name[nl]=KDE Look
 Name[uk]=KDE Look
 Name[x-test]=xxKDE Lookxx
 Query=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
+Query[nl]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[uk]=http://www.kde-look.org/content/search.php?search=Search&name=\\{@}
 Query[x-test]=xxhttp://www.kde-look.org/content/search.php?search=Search&name=\\{@}xx
 ServiceTypes=SearchProvider

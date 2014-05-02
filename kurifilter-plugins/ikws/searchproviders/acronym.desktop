@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Acronym Database
+Name[nl]=Acroniemen database
 Name[uk]=База даних акронімів
 Name[x-test]=xxAcronym Databasexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=ad,acro,acronym
 Query=http://www.abbreviations.com/\\{@}
+Query[nl]=http://www.abbreviations.com/\\{@}
 Query[uk]=http://www.abbreviations.com/\\{@}
 Query[x-test]=xxhttp://www.abbreviations.com/\\{@}xx

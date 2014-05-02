@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=gitorious,gt
 Name=Gitorious
+Name[nl]=Gitorious
 Name[uk]=Gitorious
 Name[x-test]=xxGitoriousxx
 Query=https://gitorious.org/search?q=\\{@}&commit=Search
+Query[nl]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[uk]=https://gitorious.org/search?q=\\{@}&commit=Search
 Query[x-test]=xxhttps://gitorious.org/search?q=\\{@}&commit=Searchxx
 ServiceTypes=SearchProvider

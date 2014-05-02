@@ -1,9 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Home
+Name[nl]=Home
 Name[uk]=Домівка
 Name[x-test]=xxHomexx
 GenericName=Personal Files
+GenericName[nl]=Persoonlijke bestanden
 GenericName[uk]=Особисті файли
 GenericName[x-test]=xxPersonal Filesxx
 URL[$e]=$HOME

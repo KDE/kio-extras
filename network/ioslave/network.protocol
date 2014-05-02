@@ -6,6 +6,7 @@ output=filesystem
 
 Icon=network-workgroup
 Description=A kioslave to browse the network
+Description[nl]=Een kioslave voor bladeren op het netwerk
 Description[uk]=kioslave для перегляду мережі
 Description[x-test]=xxA kioslave to browse the networkxx
 exec=kio_network

@@ -1,10 +1,12 @@
 [Desktop Entry]
 Name=Teletekst Search Provider
+Name[nl]=Teletekst-zoekmachine
 Name[uk]=Провайдер пошуку Teletekst
 Name[x-test]=xxTeletekst Search Providerxx
 Type=Service
 X-KDE-ServiceTypes=SearchProvider
 Keys=tt,teletekst
 Query=http://teletekst.nos.nl/gif/\\{@}-01.html
+Query[nl]=http://teletekst.nos.nl/gif/\\{@}-01.html
 Query[uk]=http://teletekst.nos.nl/gif/\\{@}-01.html
 Query[x-test]=xxhttp://teletekst.nos.nl/gif/\\{@}-01.htmlxx

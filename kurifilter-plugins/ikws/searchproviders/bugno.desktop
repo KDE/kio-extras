@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=bug,bugno,bugnr
 Name=KDE Bug Database Bug Number Search
+Name[nl]=KDE Bug Database  - zoeken op bugnummer
 Name[uk]=Пошук у базі даних помилок KDE за номером
 Name[x-test]=xxKDE Bug Database Bug Number Searchxx
 Query=https://bugs.kde.org/show_bug.cgi?id=\\{@}
+Query[nl]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[uk]=https://bugs.kde.org/show_bug.cgi?id=\\{@}
 Query[x-test]=xxhttps://bugs.kde.org/show_bug.cgi?id=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

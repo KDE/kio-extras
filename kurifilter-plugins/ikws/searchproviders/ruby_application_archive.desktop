@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Ruby Application Archive
+Name[nl]=Ruby programma-archief
 Name[uk]=Архів програм мовою Ruby
 Name[x-test]=xxRuby Application Archivexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=raa
 Query=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
+Query[nl]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[uk]=http://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}
 Query[x-test]=xxhttp://www.ruby-lang.org/en/raa-list.rhtml?name=\\{@}xx

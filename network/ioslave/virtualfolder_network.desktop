@@ -5,6 +5,7 @@ URL=network:/
 
 Icon=network-workgroup
 Name=Network
+Name[nl]=Netwerk
 Name[uk]=Мережа
 Name[x-test]=xxNetworkxx
 # Comment=

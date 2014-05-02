@@ -2,6 +2,7 @@
 Encoding=UTF-8
 Type=Service
 Name=Comic Books
+Name[nl]=Stripboeken
 Name[uk]=Комікси
 Name[x-test]=xxComic Booksxx
 ServiceTypes=ThumbCreator

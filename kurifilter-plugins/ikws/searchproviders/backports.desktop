@@ -1,9 +1,11 @@
 [Desktop Entry]
 Keys=backports
 Name=Debian Backports Search
+Name[nl]=Debian Backports Search
 Name[uk]=Пошук серед додаткових пакетів Debian
 Name[x-test]=xxDebian Backports Searchxx
 Query=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
+Query[nl]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[uk]=http://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}
 Query[x-test]=xxhttp://packages.debian.org/search?suite=squeeze-backports&section=all&arch=any&searchon=names&keywords=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

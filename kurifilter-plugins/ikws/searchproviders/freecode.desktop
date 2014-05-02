@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Freecode
+Name[nl]=Freecode
 Name[uk]=Freecode
 Name[x-test]=xxFreecodexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=fc,freecode
 Query=http://freecode.com/search?q=\\{@}
+Query[nl]=http://freecode.com/search?q=\\{@}
 Query[uk]=http://freecode.com/search?q=\\{@}
 Query[x-test]=xxhttp://freecode.com/search?q=\\{@}xx

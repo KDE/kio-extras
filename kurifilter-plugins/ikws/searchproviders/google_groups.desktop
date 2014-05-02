@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Google Groups
+Name[nl]=Google Groepen
 Name[uk]=Групи Google
 Name[x-test]=xxGoogle Groupsxx
 X-KDE-ServiceTypes=SearchProvider
 Keys=ggg,groups,dj,deja
 Query=https://groups.google.com/groups?oi=djq&as_q=\\{@}
+Query[nl]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[uk]=https://groups.google.com/groups?oi=djq&as_q=\\{@}
 Query[x-test]=xxhttps://groups.google.com/groups?oi=djq&as_q=\\{@}xx

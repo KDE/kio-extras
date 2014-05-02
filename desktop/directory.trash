@@ -1,9 +1,11 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Trash
+Name[nl]=Prullenbak
 Name[uk]=Смітник
 Name[x-test]=xxTrashxx
 Comment=Contains removed files
+Comment[nl]=Bevat de verwijderde bestanden
 Comment[uk]=Містить вилучені файли
 Comment[x-test]=xxContains removed filesxx
 Icon=user-trash-full

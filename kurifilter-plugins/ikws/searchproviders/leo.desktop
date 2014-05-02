@@ -1,10 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=LEO-Translate
+Name[nl]=LEO-Translate (Vertaling Duits-Engels-Duits)
 Name[uk]=LEO-Translate
 Name[x-test]=xxLEO-Translatexx
 X-KDE-ServiceTypes=SearchProvider
 Keys=leo
 Query=http://dict.leo.org/?search=\\{@}
+Query[nl]=http://dict.leo.org/?search=\\{@}
 Query[uk]=http://dict.leo.org/?search=\\{@}
 Query[x-test]=xxhttp://dict.leo.org/?search=\\{@}xx

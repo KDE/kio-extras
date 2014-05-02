@@ -1,6 +1,7 @@
 [Desktop Entry]
 Type=Service
 Name=DjVu Files
+Name[nl]=DjVu-bestanden
 Name[uk]=Файли DjVu
 Name[x-test]=xxDjVu Filesxx
 X-KDE-ServiceTypes=ThumbCreator

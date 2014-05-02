@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=rae
 Name=Dictionary of the Spanish Academy (RAE)
+Name[nl]=Woordenboek van de Spaanse academie (RAE)
 Name[uk]=Словник іспанської академії (RAE)
 Name[x-test]=xxDictionary of the Spanish Academy (RAE)xx
 Query=http://www.rae.es/drae/?val=\\{@}
+Query[nl]=http://www.rae.es/drae/?val=\\{@}
 Query[uk]=http://www.rae.es/drae/?val=\\{@}
 Query[x-test]=xxhttp://www.rae.es/drae/?val=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider

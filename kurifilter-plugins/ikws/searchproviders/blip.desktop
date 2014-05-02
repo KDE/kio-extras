@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=blip,bl
 Name=Blip.tv
+Name[nl]=Blip.tv
 Name[uk]=Blip.tv
 Name[x-test]=xxBlip.tvxx
 Query=https://blip.tv/search?q=\\{@}
+Query[nl]=https://blip.tv/search?q=\\{@}
 Query[uk]=https://blip.tv/search?q=\\{@}
 Query[x-test]=xxhttps://blip.tv/search?q=\\{@}xx
 ServiceTypes=SearchProvider

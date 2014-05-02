@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=github,gh
 Name=GitHub
+Name[nl]=GitHub
 Name[uk]=GitHub
 Name[x-test]=xxGitHubxx
 Query=https://github.com/search?q=\\{@}&x=0&y=0
+Query[nl]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[uk]=https://github.com/search?q=\\{@}&x=0&y=0
 Query[x-test]=xxhttps://github.com/search?q=\\{@}&x=0&y=0xx
 ServiceTypes=SearchProvider

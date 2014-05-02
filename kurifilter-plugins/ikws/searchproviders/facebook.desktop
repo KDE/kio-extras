@@ -3,9 +3,11 @@ Charset=
 Hidden=false
 Keys=facebook,face,fb
 Name=Facebook
+Name[nl]=Facebook
 Name[uk]=Facebook
 Name[x-test]=xxFacebookxx
 Query=https://www.facebook.com/search/?q=\\{@}&init=quick
+Query[nl]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[uk]=https://www.facebook.com/search/?q=\\{@}&init=quick
 Query[x-test]=xxhttps://www.facebook.com/search/?q=\\{@}&init=quickxx
 ServiceTypes=SearchProvider

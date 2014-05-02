@@ -4,9 +4,11 @@ Hidden=false
 Keys=kde
 Icon=kde
 Name=KDE API Documentation
+Name[nl]=KDE API Documentatie
 Name[uk]=Документація по API KDE
 Name[x-test]=xxKDE API Documentationxx
 Query=http://api.kde.org/classmapper.php?class=\\{@}
+Query[nl]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[uk]=http://api.kde.org/classmapper.php?class=\\{@}
 Query[x-test]=xxhttp://api.kde.org/classmapper.php?class=\\{@}xx
 X-KDE-ServiceTypes=SearchProvider
