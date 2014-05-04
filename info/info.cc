@@ -5,16 +5,15 @@
 #include <sys/stat.h>
 #include <unistd.h> // getpid()
 
+#include <QCoreApplication>
 #include <QFile>
+#include <KIconLoader>
+#include <QStandardPaths>
 
 #include <kdebug.h>
 #include <kshell.h>
-#include <kstandarddirs.h>
-#include <kiconloader.h>
-#include <kcomponentdata.h>
 #include <klocale.h>
 #include <QUrl>
-#include <KGlobal>
 
 using namespace KIO;
 
@@ -24,10 +23,10 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     , m_node( "" )
 {
     kDebug( 7108 ) << "InfoProtocol::InfoProtocol";
-    m_iconLoader = new KIconLoader(KGlobal::mainComponent().componentName());
-    m_perl = KGlobal::dirs()->findExe( "perl" );
-    m_infoScript = KStandardDirs::locate( "data", "kio_info/kde-info2html" );
-    m_infoConf = KStandardDirs::locate("data", "kio_info/kde-info2html.conf");
+    m_iconLoader = new KIconLoader(QCoreApplication::instance()->applicationName());
+    m_perl = QStandardPaths::findExecutable( "perl" );
+    m_infoScript = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html" );
+    m_infoConf = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html.conf");
 
     if( m_perl.isNull() || m_infoScript.isNull() || m_infoConf.isNull() ) {
 	kError( 7108 ) << "Critical error: Cannot locate files for HTML-conversion" << endl;
@@ -244,7 +243,8 @@ extern "C" { int Q_DECL_EXPORT kdemain( int argc, char **argv ); }
 
 int kdemain( int argc, char **argv )
 {
-  KComponentData componentData( "kio_info" );
+  QCoreApplication app(argc, argv);   // needed for QSocketNotifier
+  app.setApplicationName(QLatin1String("kio_info"));
 
   kDebug() << "kio_info starting " << getpid();
 
