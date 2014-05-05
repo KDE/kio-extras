@@ -10,8 +10,8 @@
 #include <KIconLoader>
 #include <QStandardPaths>
 
+#include <KLocalizedString>
 #include <kshell.h>
-#include <klocale.h>
 #include <QUrl>
 
 Q_LOGGING_CATEGORY(LOG_KIO_INFO, "kio_info")
