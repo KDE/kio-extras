@@ -10,7 +10,6 @@
 #include <KIconLoader>
 #include <QStandardPaths>
 
-#include <kdebug.h>
 #include <kshell.h>
 #include <klocale.h>
 #include <QUrl>
