@@ -3,6 +3,9 @@
 
 
 #include <kio/slavebase.h>
+#include <QtCore/QLoggingCategory>
+
+Q_DECLARE_LOGGING_CATEGORY(LOG_KIO_INFO)
 
 class KIconLoader;
 

@@ -15,6 +15,8 @@
 #include <klocale.h>
 #include <QUrl>
 
+Q_LOGGING_CATEGORY(LOG_KIO_INFO, "kio_info")
+
 using namespace KIO;
 
 InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
@@ -22,14 +24,14 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     , m_page( "" )
     , m_node( "" )
 {
-    kDebug( 7108 ) << "InfoProtocol::InfoProtocol";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::InfoProtocol";
     m_iconLoader = new KIconLoader(QCoreApplication::instance()->applicationName());
     m_perl = QStandardPaths::findExecutable( "perl" );
     m_infoScript = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html" );
     m_infoConf = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html.conf");
 
     if( m_perl.isNull() || m_infoScript.isNull() || m_infoConf.isNull() ) {
-	kError( 7108 ) << "Critical error: Cannot locate files for HTML-conversion" << endl;
+	qCCritical( LOG_KIO_INFO ) << "Critical error: Cannot locate files for HTML-conversion" << endl;
 	QString errorStr;
 	if ( m_perl.isNull() ) {
 		errorStr = "perl.";
@@ -42,20 +44,20 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
 	exit();
     }
 
-    kDebug( 7108 ) << "InfoProtocol::InfoProtocol - done";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::InfoProtocol - done";
 }
 
 InfoProtocol::~InfoProtocol()
 {
-    kDebug( 7108 ) << "InfoProtocol::~InfoProtocol";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::~InfoProtocol";
     delete m_iconLoader;
-    kDebug( 7108 ) << "InfoProtocol::~InfoProtocol - done";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::~InfoProtocol - done";
 }
 
 void InfoProtocol::get( const QUrl& url )
 {
-    kDebug( 7108 ) << "InfoProtocol::get";
-    kDebug( 7108 ) << "URL: " << url.toDisplayString() << " , Path :" << url.path();
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::get";
+    qCDebug( LOG_KIO_INFO ) << "URL: " << url.toDisplayString() << " , Path :" << url.path();
 
     if (url.path()=="/")
     {
@@ -114,11 +116,11 @@ void InfoProtocol::get( const QUrl& url )
     cmd += ' ';
     cmd += KShell::quoteArg(m_node);
 
-    kDebug( 7108 ) << "cmd: " << cmd;
+    qCDebug( LOG_KIO_INFO ) << "cmd: " << cmd;
 
     FILE *file = popen( QFile::encodeName(cmd), "r" );
     if ( !file ) {
-        kDebug( 7108 ) << "InfoProtocol::get popen failed";
+        qCDebug( LOG_KIO_INFO ) << "InfoProtocol::get popen failed";
         error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
         return;
     }
@@ -136,7 +138,7 @@ void InfoProtocol::get( const QUrl& url )
       if ( n < 0 )
       {
         // ERROR
-	kDebug( 7108 ) << "InfoProtocol::get ERROR!";
+	qCDebug( LOG_KIO_INFO ) << "InfoProtocol::get ERROR!";
         pclose( file );
 	return;
       }
@@ -149,12 +151,12 @@ void InfoProtocol::get( const QUrl& url )
 
     finished();
 
-    kDebug( 7108 ) << "InfoProtocol::get - done";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::get - done";
 }
 
 void InfoProtocol::mimetype( const QUrl& /* url */ )
 {
-    kDebug( 7108 ) << "InfoProtocol::mimetype";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::mimetype";
 
     // to get rid of those "Open with" dialogs...
     mimeType( "text/html" );
@@ -162,12 +164,12 @@ void InfoProtocol::mimetype( const QUrl& /* url */ )
     // finish action
     finished();
 
-    kDebug( 7108 ) << "InfoProtocol::mimetype - done";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::mimetype - done";
 }
 
 void InfoProtocol::decodeURL( const QUrl &url )
 {
-    kDebug( 7108 ) << "InfoProtocol::decodeURL";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodeURL";
 
     /* Notes:
      *
@@ -186,18 +188,18 @@ void InfoProtocol::decodeURL( const QUrl &url )
     if ( url == QUrl("info:/browse_by_file?special=yes") ) {
 	    m_page = "#special#";
 	    m_node = "browse_by_file";
-	    kDebug( 7108 ) << "InfoProtocol::decodeURL - special - browse by file";
+	    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodeURL - special - browse by file";
 	    return;
     }
 
     decodePath( url.path() );
 
-    kDebug( 7108 ) << "InfoProtocol::decodeURL - done";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodeURL - done";
 }
 
 void InfoProtocol::decodePath( QString path )
 {
-    kDebug( 7108 ) << "InfoProtocol::decodePath(-" <<path<<"-)";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodePath(-" <<path<<"-)";
 
     m_page = "dir";  //default
     m_node = "";
@@ -206,7 +208,7 @@ void InfoProtocol::decodePath( QString path )
     if ('/' == path[0]) {
       path = path.mid( 1 );
     }
-    //kDebug( 7108 ) << "Path: " << path;
+    //qCDebug( LOG_KIO_INFO ) << "Path: " << path;
 
     int slashPos = path.indexOf( "/" );
 
@@ -222,7 +224,7 @@ void InfoProtocol::decodePath( QString path )
     // remove leading+trailing whitespace
     m_node = path.right( path.length() - slashPos - 1).trimmed ();
 
-    kDebug( 7108 ) << "InfoProtocol::decodePath - done";
+    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodePath - done";
 }
 
 // A minimalistic stat with only the file type
@@ -243,10 +245,14 @@ extern "C" { int Q_DECL_EXPORT kdemain( int argc, char **argv ); }
 
 int kdemain( int argc, char **argv )
 {
+#ifndef QT_NO_DEBUG
+  QLoggingCategory::setFilterRules(QStringLiteral("kio_info.debug = true"));
+#endif
+
   QCoreApplication app(argc, argv);   // needed for QSocketNotifier
   app.setApplicationName(QLatin1String("kio_info"));
 
-  kDebug() << "kio_info starting " << getpid();
+  qCDebug( LOG_KIO_INFO ) << "kio_info starting " << getpid();
 
   if (argc != 4)
   {
