@@ -306,7 +306,8 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   }
 
 
-  bool isLocalFullPath = (!path.isEmpty() && path[0] == '/');
+
+  bool isLocalFullPath = QDir::isAbsolutePath(path);
 
   // Checking for local resource match...
   // Determine if "uri" is an absolute path to a local resource  OR
