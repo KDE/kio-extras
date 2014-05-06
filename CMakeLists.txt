@@ -42,6 +42,9 @@ include_directories (
    ${CMAKE_CURRENT_BINARY_DIR}/src)
 
 add_definitions(-DTRANSLATION_DOMAIN=\"kfileaudiopreview5\")
+if (IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/po")
+    ki18n_install(po)
+endif()
 add_subdirectory(src)
 
 #
