@@ -117,8 +117,14 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   * hackable and is missing a config dialog.
   */
 
-  QUrl url = data.uri();
+  //QUrl url = data.uri();
   QString cmd = data.typedString();
+
+  // Replicate what KUrl(cmd) did in KDE4. This could later be folded into the checks further down...
+  QUrl url(cmd);
+  if (cmd.startsWith('/')) {
+    url = QUrl::fromLocalFile(cmd);
+  }
 
   // WORKAROUND: Allow the use of '@' in the username component of a URL since
   // other browsers such as firefox in their infinite wisdom allow such blatant
@@ -221,7 +227,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   } else {
     if (url.isLocalFile())
     {
-      //qCDebug(category) << "hasRef=" << url.hasRef();
+      //qCDebug(category) << "hasRef=" << url.hasFragment();
       // Split path from ref/query
       // but not for "/tmp/a#b", if "a#b" is an existing file,
       // or for "/tmp/a?b" (#58990)
@@ -370,8 +376,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   //qCDebug(category) << "path =" << path << " isLocalFullPath=" << isLocalFullPath << " exists=" << exists;
   if( exists )
   {
-    QUrl u;
-    u.setPath(path);
+    QUrl u = QUrl::fromLocalFile(path);
     //qCDebug(category) << "ref=" << stringDetails(ref) << " query=" << stringDetails(query);
     u.setFragment(ref);
     u.setQuery(query);
@@ -505,8 +510,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   // and if it doesn't exist, then error
   if( isLocalFullPath && !exists )
   {
-    QUrl u;
-    u.setPath(path);
+    QUrl u = QUrl::fromLocalFile(path);
     u.setFragment(ref);
 
     if (!KUrlAuthorized::authorizeUrlAction( QL1S("open"), QUrl(), u))
