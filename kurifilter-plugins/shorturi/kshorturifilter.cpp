@@ -280,10 +280,9 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // Environment variable expansion.
     if ( sEnvVarExp.indexIn( path ) == 0 )
     {
-      const char* exp = qgetenv( path.mid( 1, sEnvVarExp.matchedLength() - 1 ).toLocal8Bit().data() );
-      if(exp)
-      {
-        path.replace( 0, sEnvVarExp.matchedLength(), QString::fromLocal8Bit(exp) );
+      QByteArray exp = qgetenv( path.mid( 1, sEnvVarExp.matchedLength() - 1 ).toLocal8Bit().data() );
+      if (!exp.isEmpty()) {
+        path.replace( 0, sEnvVarExp.matchedLength(), QFile::decodeName(exp) );
         expanded = true;
       }
     }
