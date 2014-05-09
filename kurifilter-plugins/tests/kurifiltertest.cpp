@@ -17,25 +17,20 @@
  */
 
 #include "kurifiltertest.h"
-#include "qtest_kde.h"
 
-#include <kurifilter.h>
-#include <kaboutdata.h>
-#include <kdebug.h>
-#include <kstandarddirs.h>
-#include <ksharedconfig.h>
-#include <klocale.h>
-#include <kio/netaccess.h>
-#include <kdefakes.h>
-#include <kconfiggroup.h>
 
-#include <QtCore/QDir>
-#include <QtCore/QRegExp>
-#include <QtNetwork/QHostInfo>
+#include <KUriFilter>
+#include <KSharedConfig>
+#include <KConfigGroup>
+
+#include <QtTestWidgets>
+#include <QDir>
+#include <QRegExp>
+#include <QHostInfo>
 
 #include <iostream>
 
-QTEST_KDEMAIN( KUriFilterTest, NoGUI )
+QTEST_MAIN( KUriFilterTest)
 
 static const char * const s_uritypes[] = { "NetProtocol", "LOCAL_FILE", "LOCAL_DIR", "EXECUTABLE", "HELP", "SHELL", "BLOCKED", "ERROR", "UNKNOWN" };
 #define NO_FILTERING -2
@@ -50,15 +45,15 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
     if( abs_path )
     {
         filterData->setAbsolutePath( QLatin1String( abs_path ) );
-        kDebug() << "Filtering: " << a << " with abs_path=" << abs_path;
+        qDebug() << "Filtering: " << a << " with abs_path=" << abs_path;
     }
     else
-        kDebug() << "Filtering: " << a;
+        qDebug() << "Filtering: " << a;
 
     if (KUriFilter::self()->filterUri(*filterData, list))
     {
         if ( expectedUriType == NO_FILTERING ) {
-            kError() << u << "Did not expect filtering. Got" << filterData->uri();
+            qCritical() << u << "Did not expect filtering. Got" << filterData->uri();
             QVERIFY( expectedUriType != NO_FILTERING ); // fail the test
         }
 
@@ -76,34 +71,34 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
         {
             case KUriFilterData::LocalFile:
             case KUriFilterData::LocalDir:
-                kDebug() << "*** Result: Local Resource =>  '"
+                qDebug() << "*** Result: Local Resource =>  '"
                           << filterData->uri().toLocalFile() << "'" << endl;
                 break;
             case KUriFilterData::Help:
-                kDebug() << "*** Result: Local Resource =>  '"
+                qDebug() << "*** Result: Local Resource =>  '"
                           << filterData->uri().url() << "'" << endl;
                 break;
             case KUriFilterData::NetProtocol:
-                kDebug() << "*** Result: Network Resource => '"
+                qDebug() << "*** Result: Network Resource => '"
                           << filterData->uri().url() << "'" << endl;
                 break;
             case KUriFilterData::Shell:
             case KUriFilterData::Executable:
                 if( filterData->hasArgsAndOptions() )
                     cmd += filterData->argsAndOptions();
-                kDebug() << "*** Result: Executable/Shell => '" << cmd << "'";
+                qDebug() << "*** Result: Executable/Shell => '" << cmd << "'";
                 break;
             case KUriFilterData::Error:
-                kDebug() << "*** Result: Encountered error => '" << cmd << "'";
-                kDebug() << "Reason:" << filterData->errorMsg();
+                qDebug() << "*** Result: Encountered error => '" << cmd << "'";
+                qDebug() << "Reason:" << filterData->errorMsg();
                 break;
             default:
-                kDebug() << "*** Result: Unknown or invalid resource.";
+                qDebug() << "*** Result: Unknown or invalid resource.";
         }
 
         if ( expectedUriType != -1 && expectedUriType != filterData->uriType() )
         {
-            kError() << u << "Got URI type" << s_uritypes[filterData->uriType()]
+            qCritical() << u << "Got URI type" << s_uritypes[filterData->uriType()]
                       << "expected" << s_uritypes[expectedUriType];
             QCOMPARE( s_uritypes[filterData->uriType()],
                       s_uritypes[expectedUriType] );
@@ -115,7 +110,7 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
             cmd = cmd.replace( QRegExp( "www\\.google\\.[^/]*/" ), "www.google.com/" );
             QString expected = QString::fromUtf8( expectedResult );
             if (cmd != expected) {
-                kError() << u;
+                qCritical() << u;
                 QCOMPARE( cmd, expected );
             }
         }
@@ -123,10 +118,10 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
     else
     {
         if ( expectedUriType == NO_FILTERING )
-            kDebug() << "*** No filtering required.";
+            qDebug() << "*** No filtering required.";
         else
         {
-            kDebug() << "*** Could not be filtered.";
+            qDebug() << "*** Could not be filtered.";
             if( expectedUriType != filterData->uriType() )
             {
                 QCOMPARE( s_uritypes[filterData->uriType()],
@@ -136,7 +131,7 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
     }
 
     delete filterData;
-    kDebug() << "-----";
+    qDebug() << "-----";
 }
 
 static void testLocalFile( const QString& filename )
@@ -151,22 +146,25 @@ static void testLocalFile( const QString& filename )
         tmpFile.remove();
     }
     else
-        kDebug() << "Couldn't create " << tmpFile.fileName() << ", skipping test";
+        qDebug() << "Couldn't create " << tmpFile.fileName() << ", skipping test";
 }
 
 static char s_delimiter = ':'; // the alternative is ' '
 
 KUriFilterTest::KUriFilterTest()
 {
+    QStandardPaths::setTestModeEnabled(true);
     minicliFilters << "kshorturifilter" << "kurisearchfilter" << "localdomainurifilter";
-    qtdir = getenv("QTDIR");
-    home = getenv("HOME");
-    kdehome = getenv("KDEHOME");
+    qtdir = qgetenv("QTDIR");
+    home = qgetenv("HOME");
+    // TODO: get rid of KDEHOME
+    qputenv("KDEHOME", QFile::encodeName(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)));
+    kdehome = qgetenv("KDEHOME");
 }
 
 void KUriFilterTest::init()
 {
-    kDebug() ;
+    qDebug() ;
     setenv( "KDE_FORK_SLAVES", "yes", true ); // simpler, for the final cleanup
 
     // Allow testing of the search engine using both delimiters...
@@ -190,7 +188,7 @@ void KUriFilterTest::init()
       KSharedConfig::openConfig("kshorturifilterrc", KConfig::SimpleConfig )->group(QString()).writeEntry( "Verbose", true );
     }
 
-    KStandardDirs::makeDir( kdehome+"/urifilter" );
+    QDir().mkpath(kdehome + "/urifilter");
 }
 
 void KUriFilterTest::noFiltering()
@@ -339,11 +337,11 @@ void KUriFilterTest::environmentVariables()
     filter( "http://www.kde.org/$USER", "http://www.kde.org/$USER", KUriFilterData::NetProtocol ); // no expansion
 
     filter( "$KDEHOME/share", kdehome+"/share", KUriFilterData::LocalDir );
-    KStandardDirs::makeDir( kdehome+"/urifilter/a+plus" );
+    QDir().mkpath(kdehome + "/urifilter/a+plus");
     filter( "$KDEHOME/urifilter/a+plus", kdehome+"/urifilter/a+plus", KUriFilterData::LocalDir );
 
     // BR 27788
-    KStandardDirs::makeDir( kdehome+"/share/Dir With Space" );
+    QDir().mkpath(kdehome + "/share/Dir With Space");
     filter( "$KDEHOME/share/Dir With Space", kdehome+"/share/Dir With Space", KUriFilterData::LocalDir );
 
     // support for name filters (BR 93825)
@@ -352,11 +350,11 @@ void KUriFilterTest::environmentVariables()
     filter( "$KDEHOME/a?c.txt", kdehome+"/a?c.txt", KUriFilterData::LocalDir );
     filter( "$KDEHOME/?c.txt", kdehome+"/?c.txt", KUriFilterData::LocalDir );
     // but let's check that a directory with * in the name still works
-    KStandardDirs::makeDir( kdehome+"/share/Dir*With*Stars" );
+    QDir().mkpath(kdehome + "/share/Dir*With*Stars");
     filter( "$KDEHOME/share/Dir*With*Stars", kdehome+"/share/Dir*With*Stars", KUriFilterData::LocalDir );
-    KStandardDirs::makeDir( kdehome+"/share/Dir?QuestionMark" );
+    QDir().mkpath(kdehome + "/share/Dir?QuestionMark");
     filter( "$KDEHOME/share/Dir?QuestionMark", kdehome+"/share/Dir?QuestionMark", KUriFilterData::LocalDir );
-    KStandardDirs::makeDir( kdehome+"/share/Dir[Bracket" );
+    QDir().mkpath(kdehome + "/share/Dir[Bracket");
     filter( "$KDEHOME/share/Dir[Bracket", kdehome+"/share/Dir[Bracket", KUriFilterData::LocalDir );
 
     filter( "$HOME/$KDEDIR/kdebase/kcontrol/ebrowsing", 0, KUriFilterData::Error );
