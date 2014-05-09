@@ -4,5 +4,5 @@ protocol=cgi
 input=none
 output=filesystem
 reading=true
-X-DocPath=kioslave/cgi/index.html
+X-DocPath=kioslave5/cgi/index.html
 Icon=text-html

@@ -10,7 +10,7 @@ makedir=true
 deleting=true
 linking=true
 moving=true
-X-DocPath=kioslave/nfs/index.html
+X-DocPath=kioslave5/nfs/index.html
 Icon=folder-remote
 Class=:internet
 

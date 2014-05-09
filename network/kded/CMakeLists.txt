@@ -19,4 +19,4 @@ target_link_libraries( kded_networkwatcher KF5::DBusAddons KF5::KIOCore molletne
 install( TARGETS kded_networkwatcher  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
 install( FILES networkwatcher.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kded )
-install( FILES org.kde.network.kioslavenotifier.xml  DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} )
+install( FILES org.kde.network.kioslavenotifier.xml  DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} RENAME kf5_org.kde.network.kioslavenotifier.xml )

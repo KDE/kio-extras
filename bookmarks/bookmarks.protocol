@@ -4,6 +4,6 @@ protocol=bookmarks
 input=none
 output=stream
 reading=true
-X-DocPath=kioslave/bookmarks/index.html
+X-DocPath=kioslave5/bookmarks/index.html
 Icon=bookmarks
 Class=:local

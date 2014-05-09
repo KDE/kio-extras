@@ -7,5 +7,5 @@ input=stream
 output=stream
 reading=true
 source=false
-X-DocPath=kioslave/bzip2/index.html
+X-DocPath=kioslave5/bzip2/index.html
 Icon=package-x-generic
