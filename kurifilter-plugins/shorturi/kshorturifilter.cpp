@@ -25,6 +25,7 @@
 
 #include <QtCore/QDir>
 #include <QtDBus/QtDBus>
+#include <qplatformdefs.h>
 
 #include <klocalizedstring.h>
 #include <kpluginfactory.h>
@@ -33,7 +34,6 @@
 #include <kconfiggroup.h>
 #include <kurlauthorized.h>
 #include <kuser.h>
-#include <kde_file.h>
 
 #define QL1S(x) QLatin1String(x)
 #define QL1C(x) QLatin1Char(x)
@@ -316,7 +316,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
                << "canBeLocalAbsolute=" << canBeLocalAbsolute
                << "isLocalFullPath=" << isLocalFullPath;*/
 
-  KDE_struct_stat buff;
+  QT_STATBUF buff;
   if ( canBeLocalAbsolute )
   {
     QString abs = QDir::cleanPath( abs_path );
@@ -328,8 +328,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     abs = QDir::cleanPath(abs + '/' + path);
     //qCDebug(category) << "checking whether " << abs << " exists.";
     // Check if it exists
-    if( KDE::stat( abs, &buff ) == 0 )
-    {
+    if(QT_STAT(QFile::encodeName(abs), &buff) == 0) {
       path = abs; // yes -> store as the new cmd
       exists = true;
       isLocalFullPath = true;
@@ -337,7 +336,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   }
 
   if (isLocalFullPath && !exists && !isMalformed) {
-    exists = ( KDE::stat( path, &buff ) == 0 );
+    exists = QT_STAT(QFile::encodeName(path), &buff) == 0;
 
     if ( !exists ) {
       // Support for name filter (/foo/*.txt), see also KonqMainWindow::detectNameFilter
@@ -347,9 +346,8 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       {
         QString fileName = path.mid( lastSlash + 1 );
         QString testPath = path.left( lastSlash + 1 );
-        if ( ( fileName.indexOf( '*' ) != -1 || fileName.indexOf( '[' ) != -1 || fileName.indexOf( '?' ) != -1 )
-           && KDE::stat( testPath, &buff ) == 0 )
-        {
+        if ((fileName.indexOf('*') != -1 || fileName.indexOf('[') != -1 || fileName.indexOf( '?' ) != -1)
+                && QT_STAT(QFile::encodeName(testPath), &buff) == 0) {
           nameFilter = fileName;
           //qCDebug(category) << "Setting nameFilter to " << nameFilter;
           path = testPath;
