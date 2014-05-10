@@ -110,21 +110,21 @@ static void runFilterTest(const QString &a, const QString &expectedResult = 0, i
                 qDebug() << "*** Result: Unknown or invalid resource.";
         }
 
-        if ( expectedUriType != -1 && expectedUriType != filterData->uriType() )
-        {
-            qCritical() << a << "Got URI type" << s_uritypes[filterData->uriType()]
-                      << "expected" << s_uritypes[expectedUriType];
-            QCOMPARE( s_uritypes[filterData->uriType()],
-                      s_uritypes[expectedUriType] );
-        }
-
         if (!expectedResult.isEmpty()) {
             // Hack for other locales than english, normalize google hosts to google.com
             cmd = cmd.replace( QRegExp( "www\\.google\\.[^/]*/" ), "www.google.com/" );
             if (cmd != expectedResult) {
-                qCritical() << a;
+                qWarning() << a;
                 QCOMPARE( cmd, expectedResult );
             }
+        }
+
+        if ( expectedUriType != -1 && expectedUriType != filterData->uriType() )
+        {
+            qWarning() << a << "Got URI type" << s_uritypes[filterData->uriType()]
+                      << "expected" << s_uritypes[expectedUriType];
+            QCOMPARE( s_uritypes[filterData->uriType()],
+                      s_uritypes[expectedUriType] );
         }
     }
     else
@@ -181,6 +181,7 @@ KUriFilterTest::KUriFilterTest()
     home = qgetenv("HOME");
     qputenv("DATAHOME", QFile::encodeName(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)));
     datahome = qgetenv("DATAHOME");
+    qDebug() << "libpaths" << QCoreApplication::libraryPaths();
 }
 
 void KUriFilterTest::init()
@@ -218,9 +219,9 @@ void KUriFilterTest::noFiltering_data()
     // URI that should require no filtering
     addRow( "http://www.kde.org", "http://www.kde.org", KUriFilterData::NetProtocol );
     addRow( "http://www.kde.org/developer//index.html", "http://www.kde.org/developer//index.html", KUriFilterData::NetProtocol );
-    addRow( "file:///", "file:///", KUriFilterData::NetProtocol );
-    addRow( "file:///etc", "file:///etc", KUriFilterData::NetProtocol );
-    addRow( "file:///etc/passwd", "file:///etc/passwd", KUriFilterData::NetProtocol );
+    addRow( "file:///", "/", KUriFilterData::LocalDir );
+    addRow( "file:///etc", "/etc", KUriFilterData::LocalDir );
+    addRow( "file:///etc/passwd", "/etc/passwd", KUriFilterData::LocalFile );
 }
 
 void KUriFilterTest::noFiltering()

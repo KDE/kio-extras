@@ -41,7 +41,7 @@
 #define QL1C(x) QLatin1Char(x)
 
 namespace {
-QLoggingCategory category("org.kde.kurifilter-plugins");
+QLoggingCategory category("org.kde.kurifilter-shorturi");
 }
 
  /**
@@ -133,7 +133,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
 
   // Replicate what KUrl(cmd) did in KDE4. This could later be folded into the checks further down...
   QUrl url(cmd);
-  if (cmd.startsWith('/')) {
+  if (QDir::isAbsolutePath(cmd)) {
     url = QUrl::fromLocalFile(cmd);
   }
 
@@ -238,8 +238,12 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
       }
       else
       {
-        path = cmd;
-        //qCDebug(category) << "(2) path=cmd=" << path;
+        if (cmd.startsWith("file://")) {
+          path = cmd.mid(strlen("file://"));
+        } else {
+          path = cmd;
+        }
+        qCDebug(category) << "(2) path=cmd=" << path;
       }
     }
   }
@@ -365,7 +369,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     }
   }
 
-  //qCDebug(category) << "path =" << path << " isLocalFullPath=" << isLocalFullPath << " exists=" << exists;
+  qCDebug(category) << "path =" << path << " isLocalFullPath=" << isLocalFullPath << " exists=" << exists << " url=" << url;
   if( exists )
   {
     QUrl u = QUrl::fromLocalFile(path);
