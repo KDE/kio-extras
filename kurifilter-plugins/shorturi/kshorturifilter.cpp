@@ -32,6 +32,8 @@
 #include <kprotocolinfo.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
+#include <kmimetypetrader.h>
+#include <kservice.h>
 #include <kurlauthorized.h>
 #include <kuser.h>
 
@@ -92,6 +94,15 @@ static QString removeArgs( const QString& _cmd )
   }
 
   return cmd;
+}
+
+static bool isKnownProtocol(const QString &protocol)
+{
+    if (KProtocolInfo::isKnownProtocol(protocol)) {
+        return true;
+    }
+    const KService::Ptr service = KMimeTypeTrader::self()->preferredService(QString::fromLatin1("x-scheme-handler/") + protocol);
+    return service;
 }
 
 KShortUriFilter::KShortUriFilter( QObject *parent, const QVariantList & /*args*/ )
@@ -426,7 +437,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
   if ( !isMalformed && !isLocalFullPath && !protocol.isEmpty() )
   {
     //qCDebug(category) << "looking for protocol " << protocol;
-    if ( KProtocolInfo::isKnownProtocol( protocol ) )
+    if (isKnownProtocol(protocol))
     {
       setFilteredUri( data, url );
       if ( protocol == QL1S("man") || protocol == QL1S("help") )
@@ -450,8 +461,8 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
         //qCDebug(category) << "match - prepending" << (*it).prepend;
         const QString cmdStr = hint.prepend + cmd;
         QUrl url(cmdStr);
-        if (KProtocolInfo::isKnownProtocol(url))
-        {
+        //qCDebug(category) << "match - prepending" << hint.prepend << "->" << cmdStr << "->" << url;
+        if (isKnownProtocol(url.scheme())) {
           setFilteredUri( data, url );
           setUriType( data, hint.type );
           return true;
@@ -471,7 +482,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
           urlStr = m_strDefaultUrlScheme;
 
       const int index = urlStr.indexOf(QL1C(':'));
-      if (index == -1 || !KProtocolInfo::isKnownProtocol(urlStr.left(index)))
+      if (index == -1 || !isKnownProtocol(urlStr.left(index)))
         urlStr += QL1S("://");
       urlStr += cmd;
 
@@ -481,7 +492,7 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
         setFilteredUri(data, url);
         setUriType(data, KUriFilterData::NetProtocol);
       }
-      else if (KProtocolInfo::isKnownProtocol(url.scheme()))
+      else if (isKnownProtocol(url.scheme()))
       {
         setFilteredUri(data, data.uri());
         setUriType(data, KUriFilterData::Error);
