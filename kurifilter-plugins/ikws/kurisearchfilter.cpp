@@ -63,7 +63,9 @@ bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
   qCDebug(category) << data.typedString() << ":" << data.uri() << ", type =" << data.uriType();
 
 
-  if (data.uriType() != KUriFilterData::Unknown) {
+  // some URLs like gg:www.kde.org are not accepted by QUrl, but we still want them
+  // This means we also have to allow KUriFilterData::Error
+  if (data.uriType() != KUriFilterData::Unknown && data.uriType() != KUriFilterData::Error) {
       return false;
   }
 
