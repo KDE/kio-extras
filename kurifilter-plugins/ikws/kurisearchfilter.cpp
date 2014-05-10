@@ -37,7 +37,7 @@ K_PLUGIN_FACTORY(KUriSearchFilterFactory, registerPlugin<KUriSearchFilter>();)
 K_EXPORT_PLUGIN(KUriSearchFilterFactory("kcmkurifilt"))
 
 namespace {
-QLoggingCategory category("org.kde.kurifilter-plugins");
+QLoggingCategory category("org.kde.kurifilter-ikws");
 }
 
 KUriSearchFilter::KUriSearchFilter(QObject *parent, const QVariantList &)
@@ -62,24 +62,22 @@ bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
 {
   qCDebug(category) << data.typedString();
 
-  if (data.uriType() == KUriFilterData::Unknown)
-  {
-    QString searchTerm;
-    KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
-    SearchProvider *provider = filter->webShortcutQuery( data.typedString(), searchTerm );
-
-    if (provider)
-    {
-      const QString result = filter->formatResult( provider->query(), provider->charset(),
-                                                   QString(), searchTerm, true );
-      setFilteredUri( data, QUrl(result) );
-      setUriType( data, KUriFilterData::NetProtocol );
-      setSearchProvider( data, provider->name(), searchTerm,  QLatin1Char(filter->keywordDelimiter()));
-      delete provider;
-      return true;
-    }
+  if (data.uriType() != KUriFilterData::Unknown) {
+      return false;
   }
-  return false;
+
+  QString searchTerm;
+  KURISearchFilterEngine *filter = KURISearchFilterEngine::self();
+  QScopedPointer<SearchProvider> provider(filter->webShortcutQuery(data.typedString(), searchTerm));
+  if (!provider) {
+    return false;
+  }
+
+  const QUrl result = filter->formatResult(provider->query(), provider->charset(), QString(), searchTerm, true );
+  setFilteredUri(data, result);
+  setUriType( data, KUriFilterData::NetProtocol );
+  setSearchProvider( data, provider->name(), searchTerm,  QLatin1Char(filter->keywordDelimiter()));
+  return true;
 }
 
 KCModule *KUriSearchFilter::configModule(QWidget *parent, const char *) const

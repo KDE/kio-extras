@@ -31,7 +31,7 @@
 #define QL1S(x)  QLatin1String(x)
 #define QL1C(x)  QLatin1Char(x)
 
-QLoggingCategory category("org.kde.kurlfilter-plugins");
+QLoggingCategory category("org.kde.kurlfilter-ikws");
 
 /**
  * IMPORTANT: If you change anything here, please run the regression test
@@ -153,9 +153,9 @@ bool KAutoWebSearch::filterUri( KUriFilterData &data ) const
     SearchProvider *provider = filter->autoWebSearchQuery( data.typedString(), data.alternateDefaultSearchProvider() );
     if( provider )
     {
-      const QString result = filter->formatResult(provider->query(), provider->charset(),
+      const QUrl result = filter->formatResult(provider->query(), provider->charset(),
                                                   QString(), data.typedString(), true);
-      setFilteredUri( data, QUrl( result ) );
+      setFilteredUri(data, result);
       setUriType( data, KUriFilterData::NetProtocol );
       setSearchProvider(data, provider->name(), data.typedString(), QL1C(filter->keywordDelimiter()));
 

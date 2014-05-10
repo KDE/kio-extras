@@ -35,7 +35,7 @@
 #include <QLoggingCategory>
 
 namespace {
-QLoggingCategory category("org.kde.kurifilter-plugins");
+QLoggingCategory category("org.kde.kurifilter-ikws");
 }
 
 #define PDVAR(n,v) qCDebug(category) << n << " = '" << v << "'"
@@ -214,7 +214,7 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
     int pos = -1;
     if ((pos = newurl.indexOf("\\1")) >= 0)
     {
-      qCDebug(category) << "WARNING: Using compatibility mode for newurl='" << newurl
+      qCWarning(category) << "WARNING: Using compatibility mode for newurl='" << newurl
                    << "'. Please replace old style '\\1' with new style '\\{0}' "
                       "in the query definition.\n";
       newurl = newurl.replace(pos, 2, "\\{@}");
@@ -351,27 +351,27 @@ QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &ma
   return newurl;
 }
 
-QString KURISearchFilterEngine::formatResult( const QString& url,
+QUrl KURISearchFilterEngine::formatResult( const QString& url,
                                               const QString& cset1,
                                               const QString& cset2,
                                               const QString& query,
                                               bool isMalformed ) const
 {
   SubstMap map;
-  return formatResult (url, cset1, cset2, QUrl::toPercentEncoding(query), isMalformed, map);
+  return formatResult (url, cset1, cset2, query, isMalformed, map);
 }
 
-QString KURISearchFilterEngine::formatResult( const QString& url,
+QUrl KURISearchFilterEngine::formatResult( const QString& url,
                                               const QString& cset1,
                                               const QString& cset2,
-                                              const QByteArray& query,
+                                              const QString& userquery,
                                               bool /* isMalformed */,
                                               SubstMap& map ) const
 {
   // Return nothing if userquery is empty and it contains
   // substitution strings...
-  if (query.isEmpty() && url.indexOf("\\{") > 0)
-    return QString();
+  if (userquery.isEmpty() && url.indexOf("\\{") > 0)
+    return QUrl();
 
   // Debug info of map:
   if (!map.isEmpty())
@@ -392,9 +392,6 @@ QString KURISearchFilterEngine::formatResult( const QString& url,
     cseta = "UTF-8";
     csetacodec = QTextCodec::codecForName(cseta.toLatin1());
   }
-
-  // Decode user query:
-  const QString userquery (QUrl::fromPercentEncoding( query ));
 
   PDVAR ("user query", userquery);
   PDVAR ("query definition", url);

@@ -47,15 +47,15 @@ public:
   QStringList favoriteEngineList() const;
   SearchProvider* webShortcutQuery (const QString& typedString, QString& searchTerm) const;
   SearchProvider* autoWebSearchQuery (const QString& typedString, const QString& defaultShortcut = QString()) const;
-  QString formatResult (const QString& url, const QString& cset1, const QString& cset2,
+  QUrl formatResult (const QString& url, const QString& cset1, const QString& cset2,
                         const QString& query, bool isMalformed) const;
 
   static KURISearchFilterEngine *self();
   void loadConfig();
   
 protected:
-  QString formatResult (const QString& url, const QString& cset1, const QString& cset2,
-                        const QByteArray& query, bool isMalformed, SubstMap& map) const;
+  QUrl formatResult (const QString& url, const QString& cset1, const QString& cset2,
+                        const QString& query, bool isMalformed, SubstMap& map) const;
 
 private:
   KURISearchFilterEngine(const KURISearchFilterEngine&);
