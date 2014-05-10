@@ -6,7 +6,7 @@ qt5_wrap_ui(kuriikwsfilter_PART_SRCS ikwsopts_ui.ui searchproviderdlg_ui.ui)
 
 add_library(kuriikwsfilter MODULE ${kuriikwsfilter_PART_SRCS})
 
-target_link_libraries(kuriikwsfilter KF5::ConfigWidgets KF5::KIOWidgets KF5::I18n KF5::KDE4Support Qt5::DBus)
+target_link_libraries(kuriikwsfilter KF5::ConfigWidgets KF5::KIOWidgets KF5::I18n Qt5::DBus)
 
 install(TARGETS kuriikwsfilter DESTINATION ${PLUGIN_INSTALL_DIR})
 
