@@ -145,11 +145,8 @@ bool KShortUriFilter::filterUri( KUriFilterData& data ) const
     // Percent encode all but the last '@'.
     QString encodedCmd = QUrl::toPercentEncoding(cmd.left(lastIndex), ":/");
     encodedCmd += cmd.mid(lastIndex);
-    QUrl u (encodedCmd);
-    if (u.isValid()) {
-      cmd = encodedCmd;
-      url = u;
-    }
+    cmd = encodedCmd;
+    url = QUrl(encodedCmd);
   }
 
   const bool isMalformed = !url.isValid();
