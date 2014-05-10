@@ -21,6 +21,7 @@
 #include <krandom.h>
 #include <kservicetypetrader.h>
 #include <QStandardPaths>
+#include <KIO/Global> // KIO::iconNameForUrl
 
 SearchProvider::SearchProvider(const KService::Ptr service)
                : m_dirty(false)
@@ -105,12 +106,9 @@ void SearchProvider::setCharset(const QString &charset)
     m_charset = charset;
 }
 
-void SearchProvider::setIconName(const QString& iconName)
+QString SearchProvider::iconName() const
 {
-    if (KUriFilterSearchProvider::iconName() == iconName)
-        return;
-
-    KUriFilterSearchProvider::setIconName(iconName);
+    return KIO::iconNameForUrl(m_query);
 }
 
 void SearchProvider::setDirty(bool dirty)

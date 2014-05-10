@@ -99,9 +99,7 @@ void KAutoWebSearch::populateProvidersList(QList<KUriFilterSearchProvider*>& sea
 
   for (int i = 0, count = providers.count(); i < count; ++i)
   {
-      SearchProvider* provider = providers[i];
-      provider->setIconName(iconNameFor(provider->query(), KUriFilterData::NetProtocol));
-      searchProviders << provider;
+      searchProviders << providers[i];
   }
 }
 
