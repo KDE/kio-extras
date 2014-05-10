@@ -65,7 +65,7 @@ static void filter( const char* u, const char * expectedResult = 0, int expected
              (filterData->uriType() != KUriFilterData::NetProtocol))
             cmd = uri.toLocalFile();
         else
-            cmd = uri.url();
+            cmd = uri.url(QUrl::FullyEncoded);
 
         switch( filterData->uriType() )
         {
