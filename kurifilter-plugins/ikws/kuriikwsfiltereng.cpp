@@ -409,7 +409,7 @@ QUrl KURISearchFilterEngine::formatResult( const QString& url,
 
   PDVAR ("substituted query", newurl);
 
-  return newurl;
+  return QUrl(newurl, QUrl::StrictMode);
 }
 
 void KURISearchFilterEngine::loadConfig()

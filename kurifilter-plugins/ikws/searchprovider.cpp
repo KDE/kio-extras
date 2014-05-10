@@ -108,7 +108,7 @@ void SearchProvider::setCharset(const QString &charset)
 
 QString SearchProvider::iconName() const
 {
-    return KIO::iconNameForUrl(m_query);
+    return KIO::iconNameForUrl(QUrl(m_query));
 }
 
 void SearchProvider::setDirty(bool dirty)
