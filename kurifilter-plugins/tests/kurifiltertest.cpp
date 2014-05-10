@@ -157,9 +157,8 @@ KUriFilterTest::KUriFilterTest()
     minicliFilters << "kshorturifilter" << "kurisearchfilter" << "localdomainurifilter";
     qtdir = qgetenv("QTDIR");
     home = qgetenv("HOME");
-    // TODO: get rid of KDEHOME
-    qputenv("KDEHOME", QFile::encodeName(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)));
-    kdehome = qgetenv("KDEHOME");
+    qputenv("DATAHOME", QFile::encodeName(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)));
+    datahome = qgetenv("DATAHOME");
 }
 
 void KUriFilterTest::init()
@@ -188,7 +187,7 @@ void KUriFilterTest::init()
       KSharedConfig::openConfig("kshorturifilterrc", KConfig::SimpleConfig )->group(QString()).writeEntry( "Verbose", true );
     }
 
-    QDir().mkpath(kdehome + "/urifilter");
+    QDir().mkpath(datahome + "/urifilter");
 }
 
 void KUriFilterTest::noFiltering()
@@ -213,9 +212,10 @@ void KUriFilterTest::localFiles()
 
     // Absolute Path tests for kshorturifilter
     const QStringList kshorturifilter( QString("kshorturifilter") );
-    filter( "./", kdehome+"/share", KUriFilterData::LocalDir, kshorturifilter, kdehome+"/share/" ); // cleanPath removes the trailing slash
-    filter( "../", kdehome, KUriFilterData::LocalDir, kshorturifilter, kdehome+"/share" );
-    filter( "config", kdehome+"/share/config", KUriFilterData::LocalDir, kshorturifilter, kdehome+"/share" );
+    filter( "./", datahome, KUriFilterData::LocalDir, kshorturifilter, datahome+"/" ); // cleanPath removes the trailing slash
+    const QString parentDir = QDir().cleanPath(datahome + "/..");
+    filter( "../", QFile::encodeName(parentDir), KUriFilterData::LocalDir, kshorturifilter, datahome );
+    filter( "share", datahome, KUriFilterData::LocalDir, kshorturifilter, QFile::encodeName(parentDir) );
     // Invalid URLs
     filter( "http://a[b]", "http://a[b]", KUriFilterData::Unknown, kshorturifilter, "/" );
 }
@@ -336,26 +336,26 @@ void KUriFilterTest::environmentVariables()
     }
     filter( "http://www.kde.org/$USER", "http://www.kde.org/$USER", KUriFilterData::NetProtocol ); // no expansion
 
-    filter( "$KDEHOME/share", kdehome+"/share", KUriFilterData::LocalDir );
-    QDir().mkpath(kdehome + "/urifilter/a+plus");
-    filter( "$KDEHOME/urifilter/a+plus", kdehome+"/urifilter/a+plus", KUriFilterData::LocalDir );
+    filter( "$DATAHOME", datahome, KUriFilterData::LocalDir );
+    QDir().mkpath(datahome + "/urifilter/a+plus");
+    filter( "$DATAHOME/urifilter/a+plus", datahome+"/urifilter/a+plus", KUriFilterData::LocalDir );
 
     // BR 27788
-    QDir().mkpath(kdehome + "/share/Dir With Space");
-    filter( "$KDEHOME/share/Dir With Space", kdehome+"/share/Dir With Space", KUriFilterData::LocalDir );
+    QDir().mkpath(datahome + "/Dir With Space");
+    filter( "$DATAHOME/Dir With Space", datahome+"/Dir With Space", KUriFilterData::LocalDir );
 
     // support for name filters (BR 93825)
-    filter( "$KDEHOME/*.txt", kdehome+"/*.txt", KUriFilterData::LocalDir );
-    filter( "$KDEHOME/[a-b]*.txt", kdehome+"/[a-b]*.txt", KUriFilterData::LocalDir );
-    filter( "$KDEHOME/a?c.txt", kdehome+"/a?c.txt", KUriFilterData::LocalDir );
-    filter( "$KDEHOME/?c.txt", kdehome+"/?c.txt", KUriFilterData::LocalDir );
+    filter( "$DATAHOME/*.txt", datahome+"/*.txt", KUriFilterData::LocalDir );
+    filter( "$DATAHOME/[a-b]*.txt", datahome+"/[a-b]*.txt", KUriFilterData::LocalDir );
+    filter( "$DATAHOME/a?c.txt", datahome+"/a?c.txt", KUriFilterData::LocalDir );
+    filter( "$DATAHOME/?c.txt", datahome+"/?c.txt", KUriFilterData::LocalDir );
     // but let's check that a directory with * in the name still works
-    QDir().mkpath(kdehome + "/share/Dir*With*Stars");
-    filter( "$KDEHOME/share/Dir*With*Stars", kdehome+"/share/Dir*With*Stars", KUriFilterData::LocalDir );
-    QDir().mkpath(kdehome + "/share/Dir?QuestionMark");
-    filter( "$KDEHOME/share/Dir?QuestionMark", kdehome+"/share/Dir?QuestionMark", KUriFilterData::LocalDir );
-    QDir().mkpath(kdehome + "/share/Dir[Bracket");
-    filter( "$KDEHOME/share/Dir[Bracket", kdehome+"/share/Dir[Bracket", KUriFilterData::LocalDir );
+    QDir().mkpath(datahome + "/share/Dir*With*Stars");
+    filter( "$DATAHOME/Dir*With*Stars", datahome+"/Dir*With*Stars", KUriFilterData::LocalDir );
+    QDir().mkpath(datahome + "/Dir?QuestionMark");
+    filter( "$DATAHOME/Dir?QuestionMark", datahome+"/Dir?QuestionMark", KUriFilterData::LocalDir );
+    QDir().mkpath(datahome + "/Dir[Bracket");
+    filter( "$DATAHOME/Dir[Bracket", datahome+"/Dir[Bracket", KUriFilterData::LocalDir );
 
     filter( "$HOME/$KDEDIR/kdebase/kcontrol/ebrowsing", 0, KUriFilterData::Error );
     filter( "$1/$2/$3", "https://www.google.com/search?q=%241%2F%242%2F%243&ie=UTF-8", KUriFilterData::NetProtocol );  // can be used as bogus or valid test. Currently triggers default search, i.e. google

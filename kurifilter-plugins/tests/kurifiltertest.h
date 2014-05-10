@@ -44,7 +44,7 @@ private:
     QStringList minicliFilters;
     QByteArray qtdir;
     QByteArray home;
-    QByteArray kdehome;
+    QByteArray datahome;
 
 };
 
