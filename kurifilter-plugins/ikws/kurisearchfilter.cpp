@@ -60,7 +60,8 @@ void KUriSearchFilter::configure()
 
 bool KUriSearchFilter::filterUri( KUriFilterData &data ) const
 {
-  qCDebug(category) << data.typedString();
+  qCDebug(category) << data.typedString() << ":" << data.uri() << ", type =" << data.uriType();
+
 
   if (data.uriType() != KUriFilterData::Unknown) {
       return false;

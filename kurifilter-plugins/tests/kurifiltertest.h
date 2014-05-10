@@ -31,12 +31,19 @@ public:
 
 private slots:
     void init();
+    void noFiltering_data();
     void noFiltering();
+    void localFiles_data();
     void localFiles();
+    void shortUris_data();
     void shortUris();
+    void refOrQuery_data();
     void refOrQuery();
+    void executables_data();
     void executables();
+    void environmentVariables_data();
     void environmentVariables();
+    void internetKeywords_data();
     void internetKeywords();
     void localdomain();
 
