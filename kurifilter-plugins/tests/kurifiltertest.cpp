@@ -266,12 +266,12 @@ void KUriFilterTest::shortUris()
     filter( "user@192.168.1.0:3128", "http://user@192.168.1.0:3128", KUriFilterData::NetProtocol );
     filter( "127.0.0.1", "http://127.0.0.1", KUriFilterData::NetProtocol );
     filter( "127.0.0.1:3128", "http://127.0.0.1:3128", KUriFilterData::NetProtocol );
-    filter( "127.1", "http://127.1", KUriFilterData::NetProtocol );
-    filter( "127.0.1", "http://127.0.1", KUriFilterData::NetProtocol );
+    filter( "127.1", "http://127.0.0.1", KUriFilterData::NetProtocol ); // Qt5: QUrl resolves to 127.0.0.1
+    filter( "127.0.1", "http://127.0.0.1", KUriFilterData::NetProtocol ); // Qt5: QUrl resolves to 127.0.0.1
 
     // IPv6 address formats (taken from RFC 2732)...
     filter("[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html", "http://[fedc:ba98:7654:3210:fedc:ba98:7654:3210]:80/index.html", KUriFilterData::NetProtocol );
-    filter("[1080:0:0:0:8:800:200C:417A]/index.html", "http://[1080:0:0:0:8:800:200c:417a]/index.html", KUriFilterData::NetProtocol );
+    filter("[1080:0:0:0:8:800:200C:417A]/index.html", "http://[1080::8:800:200c:417a]/index.html", KUriFilterData::NetProtocol ); // Qt5 QUrl change
     filter("[3ffe:2a00:100:7031::1]", "http://[3ffe:2a00:100:7031::1]", KUriFilterData::NetProtocol );
     filter("[1080::8:800:200C:417A]/foo", "http://[1080::8:800:200c:417a]/foo", KUriFilterData::NetProtocol );
     filter("[::192.9.5.5]/ipng", "http://[::192.9.5.5]/ipng", KUriFilterData::NetProtocol );
