@@ -197,10 +197,12 @@ QStringList KURISearchFilterEngine::modifySubstitutionMap(SubstMap& map,
   return l;
 }
 
-static QString encodeString(QString s, QTextCodec *codec)
+static QString encodeString(const QString& s, QTextCodec *codec)
 {
-    s.replace(QLatin1Char(' '), QLatin1Char('+'));
-    return codec->fromUnicode(s).toPercentEncoding();
+    // don't encode the space character, we replace it with + after the encoding
+    QByteArray encoded = codec->fromUnicode(s).toPercentEncoding(QByteArrayLiteral(" "));
+    encoded.replace(' ', '+');
+    return QString::fromUtf8(encoded);
 }
 
 QString KURISearchFilterEngine::substituteQuery(const QString& url, SubstMap &map, const QString& userquery, QTextCodec *codec) const
