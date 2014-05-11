@@ -4,6 +4,8 @@ protocol=network
 input=none
 output=filesystem
 
+X-DocPath=kioslave5/network/index.html
+
 Icon=network-workgroup
 Description=A kioslave to browse the network
 Description[ar]=خادم دخل وخرج كدي لتصفح الشبكة
