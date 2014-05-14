@@ -50,10 +50,10 @@ use strict;
 
 # set here the full path of the info2html.conf
 push @INC, $1 if $0 =~ m{(.*/)[^/]+$}; # full path of config file is passed in ARGV[1] by caller but let's clean this anyway
-my $IMAGEDIR = "file:$ARGV[1]/"; # TV: broken, broken, not passed
 my $config_file = $ARGV[0];
-my $css_file = `kde4-config --path data --locate kio_docfilter/kio_docfilter.css`;
+my $css_file = $ARGV[1];
 chomp $css_file;
+my $css_link = qq(<link rel="stylesheet" href="file://$css_file" type="text/css">) if $css_file;
 delete $ENV{CDPATH};
 delete $ENV{ENV};
 require $config_file;  #-- configuration settings
@@ -61,7 +61,7 @@ my $DOCTYPE = qq(<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" >);
 
 my $STYLESHEET_KDE =
    qq(<link rel="stylesheet" href="help:/kdoctools5-common/kde-default.css" type="text/css">
-      <link rel="stylesheet" href="file://$css_file" type="text/css">
+      $css_link
       <style type="text/css"><!-- .chapter { padding-right: 1em } --></style>);
 my $LOGO_KDE = "<img src=\"help:/kdoctools5-common/kde_logo.png\" alt=\"KDE - The K Desktop Environment\" width=\"296\" height=\"79\" border=\"0\">";
 

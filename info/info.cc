@@ -7,7 +7,6 @@
 
 #include <QCoreApplication>
 #include <QFile>
-#include <KIconLoader>
 #include <QStandardPaths>
 
 #include <KLocalizedString>
@@ -24,7 +23,7 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     , m_node( "" )
 {
     qCDebug( LOG_KIO_INFO ) << "InfoProtocol::InfoProtocol";
-    m_iconLoader = new KIconLoader(QCoreApplication::instance()->applicationName());
+    m_cssLocation = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css" );
     m_perl = QStandardPaths::findExecutable( "perl" );
     m_infoScript = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html" );
     m_infoConf = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html.conf");
@@ -49,7 +48,6 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
 InfoProtocol::~InfoProtocol()
 {
     qCDebug( LOG_KIO_INFO ) << "InfoProtocol::~InfoProtocol";
-    delete m_iconLoader;
     qCDebug( LOG_KIO_INFO ) << "InfoProtocol::~InfoProtocol - done";
 }
 
@@ -99,17 +97,13 @@ void InfoProtocol::get( const QUrl& url )
     // extract the path and node from url
     decodeURL( url );
 
-    QString path = m_iconLoader->iconPath("go-up", KIconLoader::Toolbar, true);
-    int revindex = path.lastIndexOf('/');
-    path = path.left(revindex);
-
     QString cmd = KShell::quoteArg(m_perl);
     cmd += ' ';
     cmd += KShell::quoteArg(m_infoScript);
     cmd += ' ';
     cmd += KShell::quoteArg(m_infoConf);
     cmd += ' ';
-    cmd += KShell::quoteArg(path);
+    cmd += KShell::quoteArg(m_cssLocation);
     cmd += ' ';
     cmd += KShell::quoteArg(m_page);
     cmd += ' ';

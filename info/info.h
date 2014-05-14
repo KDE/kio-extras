@@ -7,8 +7,6 @@
 
 Q_DECLARE_LOGGING_CATEGORY(LOG_KIO_INFO)
 
-class KIconLoader;
-
 class InfoProtocol : public KIO::SlaveBase
 {
 public:
@@ -33,7 +31,7 @@ private:
     QString   m_perl;
     QString   m_infoScript;
     QString   m_infoConf;
-    KIconLoader* m_iconLoader;
+    QString   m_cssLocation;
 };
 
 #endif // __info_h__
