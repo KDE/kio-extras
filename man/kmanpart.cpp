@@ -31,7 +31,7 @@
 
 static KAboutData createAboutData()
 {
-   return KAboutData("kmanpart", "kio_man", i18n("KMan"), KDE_VERSION_STRING);
+   return KAboutData("kmanpart", i18n("KMan"), KDE_VERSION_STRING);
 }
 
 K_PLUGIN_FACTORY(KManPartFactory, registerPlugin<KManPart>();)
