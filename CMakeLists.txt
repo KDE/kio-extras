@@ -39,6 +39,12 @@ set_package_properties(SLP PROPERTIES DESCRIPTION "SLP (Service Location Protoco
                        PURPOSE "Provides SLP support in the network:/ kioslave."
                       )
 
+find_package(Phonon4Qt5 4.6.60 NO_MODULE)
+set_package_properties(Phonon4Qt5 PROPERTIES
+   DESCRIPTION "Qt-based audio library"
+   PURPOSE "Required for the audio preview plugin"
+   TYPE OPTIONAL)
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if(NOT WIN32)
@@ -90,6 +96,9 @@ add_subdirectory( doc )
 
 add_subdirectory( bookmarks )
 add_subdirectory( filter )
+if(Phonon4Qt5_FOUND)
+    add_subdirectory( kfileaudiopreview )
+endif()
 add_subdirectory( info )
 add_subdirectory( archive )
 add_subdirectory( trash )
