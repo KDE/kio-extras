@@ -1,0 +1,2 @@
+KFileAudioPreview is a plugin for the KFileMetaPreview class in KIO to
+allow audio files to be previewed in places like the file open dialog.

@@ -1,4 +1,5 @@
 include_directories(${PHONON_INCLUDE_DIR})
+add_definitions(-DTRANSLATION_DOMAIN=\"kfileaudiopreview5\")
 
 set(kfileaudiopreview_PART_SRCS
    kfileaudiopreview.cpp
