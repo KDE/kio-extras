@@ -26,27 +26,26 @@
 #include <dirent.h>
 
 #include <QByteArray>
+#include <QCoreApplication>
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
 #include <QTextDocument>
 #include <QMap>
 #include <QRegExp>
+#include <QStandardPaths>
 #include <QTextCodec>
 
-#include <kdebug.h>
-#include <kcomponentdata.h>
-#include <kglobal.h>
-#include <kstandarddirs.h>
+#include <KLocalizedString>
 #include <KProcess>
-#include <klocale.h>
+#include <kdebug.h>
+#include <kglobal.h>
 #include <kencodingprober.h>
 
 #include "kio_man.moc"
 #include "man2html.h"
 #include <assert.h>
 #include <kfilterdev.h>
-#include <QStandardPaths>
 
 using namespace KIO;
 
@@ -90,7 +89,7 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
     QString url = _url;
     url = url.trimmed();
     if (url.isEmpty() || url.at(0) == '/') {
-        if (url.isEmpty() || KStandardDirs::exists(url)) {
+        if (url.isEmpty() || QFile::exists(url)) {
             // man:/usr/share/man/man1/ls.1.gz is a valid file
             title = url;
             return true;
@@ -133,7 +132,7 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
 {
     assert(!_self);
     _self = this;
-    const QString common_dir = KGlobal::dirs()->findResourceDir( "html", "en/kdoctools5-common/kde-default.css" );
+    const QString common_dir = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "doc/HTML/en/kdoctools5-common/kde-default.css" );
     const QString strPath=QString( "file:%1/en/kdoctools5-common" ).arg( common_dir );
     m_cssPath=strPath.toLocal8Bit(); // ### TODO encode for CSS
     section_names << "0" << "0p" << "1" << "1p" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
@@ -698,7 +697,8 @@ extern "C"
 
     int Q_DECL_EXPORT kdemain( int argc, char **argv ) {
 
-        KComponentData componentData("kio_man");
+        QCoreApplication app(argc, argv);
+        app.setApplicationName(QLatin1String("kio_man"));
 
         kDebug(7107) <<  "STARTING";
 
@@ -1413,12 +1413,12 @@ void MANProtocol::getProgramPath()
   if (!mySgml2RoffPath.isEmpty())
     return;
 
-  mySgml2RoffPath = KStandardDirs::findExe("sgml2roff");
+  mySgml2RoffPath = QStandardPaths::findExecutable("sgml2roff");
   if (!mySgml2RoffPath.isEmpty())
     return;
 
   /* sgml2roff isn't found in PATH. Check some possible locations where it may be found. */
-  mySgml2RoffPath = KStandardDirs::findExe("sgml2roff", QString(SGML2ROFF_DIRS));
+  mySgml2RoffPath = QStandardPaths::findExecutable("sgml2roff", QStringList(QLatin1String(SGML2ROFF_DIRS)));
   if (!mySgml2RoffPath.isEmpty())
     return;
 

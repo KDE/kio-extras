@@ -5,8 +5,8 @@
 #include "kio_man.h"
 
 
-#include <kapplication.h>
-#include <klocale.h>
+#include <QApplication>
+#include <KLocalizedString>
 
 
 class kio_man_test : public  MANProtocol

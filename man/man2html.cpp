@@ -140,8 +140,7 @@
 #else
 # include <QTextCodec>
 # include <QTextDocument>
-# include <kglobal.h>
-# include <klocale.h>
+# include <KLocalizedString>
 # include <kdebug.h>
 # include <kdeversion.h>
 # define BYTEARRAY(x) x

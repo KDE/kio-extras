@@ -19,13 +19,11 @@
 
 #include "kmanpart.h"
 
-#include <kcomponentdata.h>
+#include <KAboutData>
+#include <KLocalizedString>
 #include <kpluginfactory.h>
-#include <kglobal.h>
 #include <kdebug.h>
-#include <klocale.h>
 
-#include <kaboutdata.h>
 #include <kdeversion.h>
 #include <QUrl>
 
@@ -35,7 +33,6 @@ static KAboutData createAboutData()
 }
 
 K_PLUGIN_FACTORY(KManPartFactory, registerPlugin<KManPart>();)
-K_EXPORT_PLUGIN(KManPartFactory(createAboutData()))
 
 
 KManPart::KManPart(QWidget * parentWidget, QObject* parent, const QVariantList&)
