@@ -2,8 +2,22 @@ project(kio-extras)
 
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 
+include(FeatureSummary)
+
 set(QT_MIN_VERSION "5.3.0")
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Test)
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets)
+
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets)
+
+find_package(Qt5Test ${QT_MIN_VERSION} CONFIG QUIET)
+set_package_properties(Qt5Test PROPERTIES
+         PURPOSE "Required for tests"
+         TYPE OPTIONAL
+         )
+add_feature_info("Qt5Test" Qt5Test_FOUND "Required for building tests")
+if (NOT Qt5Test_FOUND)
+    set(BUILD_TESTING OFF CACHE BOOL "Build the testing tree.")
+endif()
 
 find_package(ECM 0.0.11 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
@@ -30,7 +44,6 @@ include(KDECompilerSettings)
 include(ECMMarkNonGuiExecutable)
 include(ECMMarkAsTest)
 include(ECMPackageConfigHelpers)
-include(FeatureSummary)
 
 find_package(SLP)
 set_package_properties(SLP PROPERTIES DESCRIPTION "SLP (Service Location Protocol) implementation"
