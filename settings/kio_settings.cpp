@@ -21,7 +21,6 @@
 #include <kservicetypetrader.h>
 #include <kio/slavebase.h>
 #include <kdebug.h>
-#include <KUrl>
 #include <KComponentData>
 #include <sys/stat.h>
 #include <time.h>
@@ -184,7 +183,7 @@ void SettingsProtocol::listDir(const QUrl& url)
             //dirUrl.addPath(category);
             createDirEntry(entry, category, service->icon());
             entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());
-            listEntry(entry, false);
+            listEntry(entry);
             ++count;
         }
     }
@@ -195,13 +194,12 @@ void SettingsProtocol::listDir(const QUrl& url)
         const QString category = service->property("X-KDE-System-Settings-Parent-Category").toString();
         if (!fileName.isEmpty() && category == fileName) {
             createFileEntry(entry, service);
-            listEntry(entry, false);
+            listEntry(entry);
             ++count;
         }
     }
 
     totalSize(count);
-    listEntry(entry, true);
     finished();
 }
 
@@ -209,8 +207,7 @@ void SettingsProtocol::get( const QUrl & url )
 {
     KService::Ptr service = KService::serviceByDesktopName(url.fileName());
     if (service && service->isValid()) {
-        KUrl redirUrl;
-        redirUrl.setPath(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kservices5/") + service->entryPath()));
+        QUrl redirUrl = QUrl::fromLocalFile(QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kservices5/") + service->entryPath()));
         redirection(redirUrl);
         finished();
     } else {

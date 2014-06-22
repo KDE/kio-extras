@@ -1,7 +1,0 @@
-this is an ioslave for KDE 2/3 for accessing fat/vfat floppies without
-mounting.
-It is a wrapper around the mtools.
-
-
-Alex
-neundorf@kde.org
