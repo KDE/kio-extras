@@ -1,3 +1,5 @@
+add_definitions(-DTRANSLATION_DOMAIN=\"kio_fish\")
+
 include(CheckIncludeFiles)
 include(CheckFunctionExists)
 

@@ -1,3 +1,5 @@
+add_definitions(-DTRANSLATION_DOMAIN=\"kio_recentdocuments\")
+
 add_library(kio_recentdocuments MODULE recentdocuments.cpp)
 target_link_libraries(kio_recentdocuments KF5::KIOCore Qt5::DBus KF5::KDE4Support)
 

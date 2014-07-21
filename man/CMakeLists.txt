@@ -1,3 +1,5 @@
+add_definitions(-DTRANSLATION_DOMAIN=\"kio_man\")
+
 add_subdirectory( tests )
 
 ########### next target ###############
@@ -16,4 +18,3 @@ target_link_libraries(kmanpart KF5::KHtml KF5::KDE4Support)
 
 install(TARGETS kmanpart  DESTINATION ${PLUGIN_INSTALL_DIR} )
 install(FILES man.protocol kmanpart.desktop  DESTINATION  ${SERVICES_INSTALL_DIR})
-

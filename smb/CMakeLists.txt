@@ -1,3 +1,5 @@
+add_definitions(-DTRANSLATION_DOMAIN=\"kio_smb\")
+
 include(CheckIncludeFile)
 set(CMAKE_AUTOMAKE ON)
 
@@ -39,4 +41,3 @@ install(TARGETS kio_smb  DESTINATION ${PLUGIN_INSTALL_DIR} )
 install( FILES smb-network.desktop  DESTINATION  ${DATA_INSTALL_DIR}/konqueror/dirtree/remote )
 install( FILES smb.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
 install( FILES smb-network.desktop  DESTINATION  ${DATA_INSTALL_DIR}/remoteview )
-
