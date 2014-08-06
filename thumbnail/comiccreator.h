@@ -40,7 +40,7 @@
 #if defined(Q_OS_WIN)
     #include <QtCore/QProcess>
 #else
-    #include <kptyprocess.h>
+    #include <KPty/KPtyProcess>
 #endif
 
 class KArchiveDirectory;

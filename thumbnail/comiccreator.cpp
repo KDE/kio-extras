@@ -82,7 +82,7 @@ bool ComicCreator::create(const QString& path, int width, int height, QImage& im
     }
 
     if (cover.isNull()) {
-        kDebug(KIO_THUMB)<<"Error creating the comic book thumbnail.";
+        qDebug()<<"Error creating the comic book thumbnail.";
         return false;
     }
 
@@ -178,7 +178,7 @@ QImage ComicCreator::extractRARImage(const QString& path)
     // Check if unrar is available. Get its path in 'unrarPath'.
     QString unrar = unrarPath();
     if (unrar.isEmpty()) {
-        kDebug(KIO_THUMB)<<"A suitable version of unrar is not available.";
+        qDebug()<<"A suitable version of unrar is not available.";
         return QImage();
     }
 
