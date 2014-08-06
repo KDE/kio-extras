@@ -31,6 +31,7 @@
 #include <kglobalsettings.h>
 #include <kencodingprober.h>
 #include <klocale.h>
+#include <kglobal.h>
 
 extern "C"
 {

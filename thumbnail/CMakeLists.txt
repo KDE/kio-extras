@@ -105,15 +105,12 @@ target_link_libraries(svgthumbnail KF5::KIOCore KF5::KIOWidgets Qt5::Svg)
 install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 # ########### next target ###############
-# 
-# set(textthumbnail_PART_SRCS textcreator.cpp)
-# 
-# add_library(textthumbnail MODULE ${textthumbnail_PART_SRCS})
-# 
-# target_link_libraries(textthumbnail ${KIO_LIBRARIES})
-# 
-# install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-# 
+
+set(textthumbnail_PART_SRCS textcreator.cpp)
+add_library(textthumbnail MODULE ${textthumbnail_PART_SRCS})
+target_link_libraries(textthumbnail KF5::KIOWidgets KF5::KDE4Support)
+install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
 # ########### next target ###############
 # 
 # if(NOT WINCE)
