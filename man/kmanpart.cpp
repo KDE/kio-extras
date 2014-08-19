@@ -29,7 +29,7 @@
 
 static KAboutData createAboutData()
 {
-   return KAboutData("kmanpart", i18n("KMan"), KDE_VERSION_STRING);
+   return KAboutData("kmanpart", i18n("KMan"), PROJECT_VERSION);
 }
 
 K_PLUGIN_FACTORY(KManPartFactory, registerPlugin<KManPart>();)

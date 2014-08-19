@@ -53,13 +53,6 @@ set( molletnetwork_LIB_SRCS
   netservice.cpp
 )
 
-
-
-set(MOLLETNETWORK_VERSION_MAJOR 4)
-set(MOLLETNETWORK_VERSION_MINOR 98)
-set(MOLLETNETWORK_VERSION_PATCH 0)
-set(MOLLETNETWORK_VERSION_STRING "${MOLLETNETWORK_VERSION_MAJOR}.${MOLLETNETWORK_VERSION_MINOR}.${MOLLETNETWORK_VERSION_PATCH}" )
-
 add_library( molletnetwork  SHARED ${molletnetwork_LIB_SRCS} )
 target_link_libraries( molletnetwork
     PUBLIC
@@ -71,6 +64,6 @@ target_link_libraries( molletnetwork
 if(SLP_FOUND)
     target_link_libraries( molletnetwork  PRIVATE ${SLP_LIBRARIES} )
 endif()
-set_target_properties( molletnetwork  PROPERTIES VERSION ${MOLLETNETWORK_VERSION_STRING} SOVERSION 5 )
+set_target_properties( molletnetwork  PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} )
 
 install( TARGETS molletnetwork  ${INSTALL_TARGETS_DEFAULT_ARGS} )

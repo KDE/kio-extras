@@ -13,6 +13,7 @@ install(TARGETS kio_man  DESTINATION ${PLUGIN_INSTALL_DIR} )
 ########### next target ###############
 
 add_library(kmanpart kmanpart.cpp)
+target_compile_definitions(kmanpart PRIVATE -DPROJECT_VERSION="${PROJECT_VERSION}")
 
 target_link_libraries(kmanpart KF5::KHtml KF5::KDE4Support)
 
