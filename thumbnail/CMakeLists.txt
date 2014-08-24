@@ -215,12 +215,12 @@ install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 install(FILES thumbcreator.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
 install(FILES
     thumbnail.protocol
-    svgthumbnail.desktop
+#    svgthumbnail.desktop
     imagethumbnail.desktop
     jpegthumbnail.desktop
-    textthumbnail.desktop
-    htmlthumbnail.desktop
-    djvuthumbnail.desktop
-    desktopthumbnail.desktop
-    comicbookthumbnail.desktop
+#    textthumbnail.desktop
+#    htmlthumbnail.desktop
+#    djvuthumbnail.desktop
+#    desktopthumbnail.desktop
+#    comicbookthumbnail.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})
