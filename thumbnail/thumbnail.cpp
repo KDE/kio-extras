@@ -714,7 +714,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
         const QString thumbName = QFile::encodeName(md5.result()) + ".png";
 
         if (m_thumbBasePath.isEmpty()) {
-            m_thumbBasePath = QDir::homePath() + "/.thumbnails/";
+            m_thumbBasePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/thumbnails/");
             KStandardDirs::makeDir(m_thumbBasePath + "normal/", 0700);
             KStandardDirs::makeDir(m_thumbBasePath + "large/", 0700);
         }
