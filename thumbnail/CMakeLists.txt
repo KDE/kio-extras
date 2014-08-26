@@ -98,15 +98,20 @@ install(FILES jpegcreatorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR})
 install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############
-# 
-# set(svgthumbnail_PART_SRCS svgcreator.cpp)
-# 
-# add_library(svgthumbnail MODULE ${svgthumbnail_PART_SRCS})
-# 
-# target_link_libraries(svgthumbnail ${KIO_LIBRARIES})
-# 
-# install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-# 
+
+set(svgthumbnail_PART_SRCS svgcreator.cpp)
+
+add_library(svgthumbnail MODULE ${svgthumbnail_PART_SRCS})
+
+target_link_libraries(svgthumbnail
+	Qt5::Gui
+	Qt5::Svg
+	KF5::KIOCore
+	KF5::KIOWidgets
+)
+
+install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
 # ########### next target ###############
 # 
 # set(textthumbnail_PART_SRCS textcreator.cpp)
@@ -215,7 +220,7 @@ install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 install(FILES thumbcreator.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
 install(FILES
     thumbnail.protocol
-#    svgthumbnail.desktop
+    svgthumbnail.desktop
     imagethumbnail.desktop
     jpegthumbnail.desktop
 #    textthumbnail.desktop
