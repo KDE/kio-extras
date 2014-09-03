@@ -20,14 +20,16 @@
 #ifndef _IMAGECREATOR_H_
 #define _IMAGECREATOR_H_
 
+#include <QtGlobal>
+
 #include <kio/thumbcreator.h>
 
 class ImageCreator : public ThumbCreator
 {
 public:
     ImageCreator() {}
-    virtual bool create(const QString &path, int, int, QImage &img);
-	virtual Flags flags() const;
+    virtual bool create(const QString &path, int, int, QImage &img) Q_DECL_OVERRIDE;
+    virtual Flags flags() const Q_DECL_OVERRIDE;
 };
 
 #endif

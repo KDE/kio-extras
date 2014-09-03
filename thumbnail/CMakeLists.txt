@@ -54,12 +54,7 @@ set(imagethumbnail_PART_SRCS imagecreator.cpp)
 add_library(imagethumbnail MODULE ${imagethumbnail_PART_SRCS})
 
 target_link_libraries(imagethumbnail
-	KF5::CoreAddons
-	KF5::KIOCore
-	KF5::KIOWidgets
-	KF5::Solid
- 	KF5::KDE4Support
- 	KF5::I18n
+    KF5::KIOWidgets
 )
 
 install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
