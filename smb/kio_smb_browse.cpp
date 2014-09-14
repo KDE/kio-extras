@@ -448,3 +448,37 @@ void SMBSlave::listDir( const QUrl& kurl )
    finished();
 }
 
+void SMBSlave::fileSystemFreeSpace(const QUrl& url)
+{
+    qCDebug(KIO_SMB) << url;
+
+    SMBUrl smbcUrl = url;
+    int handle = smbc_opendir(smbcUrl.toSmbcUrl());
+    if (handle < 0) {
+       error(KIO::ERR_COULD_NOT_STAT, url.url());
+       return;
+    }
+
+    struct statvfs dirStat;
+    memset(&dirStat, 0, sizeof(struct statvfs));
+    int err = smbc_fstatvfs(handle, &dirStat);
+    smbc_closedir(handle);
+
+    if (err < 0) {
+       error(KIO::ERR_COULD_NOT_STAT, url.url());
+       return;
+    }
+
+    KIO::filesize_t blockSize;
+    if (dirStat.f_frsize != 0) {
+       blockSize = dirStat.f_frsize;
+    } else {
+       blockSize = dirStat.f_bsize;
+    }
+
+    setMetaData("total", QString::number(blockSize * dirStat.f_blocks));
+    setMetaData("available", QString::number(blockSize * dirStat.f_bavail));
+
+    finished();
+}
+

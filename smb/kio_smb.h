@@ -264,10 +264,15 @@ public:
     //virtual void slave_status();
     virtual void special( const QByteArray & );
 
+protected:
+    void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
+
 private:
     void smbCopy(const QUrl& src, const QUrl &dest, int permissions, KIO::JobFlags flags);
     void smbCopyGet(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
     void smbCopyPut(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
+
+    void fileSystemFreeSpace(const QUrl &url);
 
      /**
      * Used in open(), read(), write(), and close()

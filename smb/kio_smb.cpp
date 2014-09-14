@@ -53,6 +53,17 @@ SMBSlave::~SMBSlave()
 {
 }
 
+void SMBSlave::virtual_hook(int id, void *data) {
+    switch(id) {
+    case SlaveBase::GetFileSystemFreeSpace: {
+        QUrl *url = static_cast<QUrl *>(data);
+        fileSystemFreeSpace(*url);
+    } break;
+    default: {
+        SlaveBase::virtual_hook(id, data);
+    } break;
+    }
+}
 
 //===========================================================================
 int Q_DECL_EXPORT kdemain( int argc, char **argv )
