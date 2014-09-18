@@ -252,7 +252,7 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
 
 #ifdef HAVE_EXIV2
     JpegCreatorSettings* settings = JpegCreatorSettings::self();
-    settings->readConfig();
+    settings->load();
     if (settings->rotate()) {
         //Handle exif rotation
         try {
@@ -300,6 +300,6 @@ void JpegCreator::writeConfiguration(const QWidget *configurationWidget)
     if (rotateCheckBox) {
         JpegCreatorSettings* settings = JpegCreatorSettings::self();
         settings->setRotate(rotateCheckBox->isChecked());
-        settings->writeConfig();
+        settings->save();
     }
 }
