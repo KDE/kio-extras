@@ -68,43 +68,6 @@
 using namespace KIO;
 using namespace std;
 
-//this is taken from kdelibs/kdecore/fakes.cpp
-//#if !defined(HAVE_GETDOMAINNAME)
-
-int x_getdomainname(char *name, size_t len)
-{
-   struct utsname uts;
-   struct hostent *hent;
-   int rv = -1;
-
-   if (name == 0L)
-      errno = EINVAL;
-   else
-   {
-      name[0] = '\0';
-      if (uname(&uts) >= 0)
-      {
-         if ((hent = gethostbyname(uts.nodename)) != 0L)
-         {
-            char *p = strchr(hent->h_name, '.');
-            if (p != 0L)
-            {
-               ++p;
-               if (strlen(p) > len-1)
-                  errno = EINVAL;
-               else
-               {
-                  strcpy(name, p);
-                  rv = 0;
-               }
-            }
-         }
-      }
-   }
-   return rv;
-}
-//#endif
-
 Q_DECLARE_LOGGING_CATEGORY(LOG_KIO_NFS)
 Q_LOGGING_CATEGORY(LOG_KIO_NFS, "kde.kio-nfs")
 
@@ -401,33 +364,13 @@ void NFSProtocol::openConnection()
          return;
       }
    }
-   QByteArray hostName("localhost");
-   char nameBuffer[1024];
-   nameBuffer[0] = '\0';
-   if (gethostname(nameBuffer, 1024)==0)
-   {
-      nameBuffer[sizeof(nameBuffer)-1] = '\0';
-      hostName=nameBuffer;
-      // I have the same problem here as Stefan Westerfeld, that's why I use
-      // the getdomainname() from fakes.cpp (renamed to x_getdomainname()), this one works
-      // taken from kdelibs/arts/mcopy/mcoputils.cc
-      nameBuffer[0] = '\0';
-      if (x_getdomainname(nameBuffer, 1024)==0)
-      {
-         nameBuffer[sizeof(nameBuffer)-1] = '\0';
-         /*
-          * I don't know why, but on my linux machine, the domainname
-          * always ends up being (none), which is certainly no valid
-          * domainname
-          */
-         if(strcmp(nameBuffer,"(none)") != 0) {
-            hostName += '.';
-            hostName += nameBuffer;
-         }
-      }
+   QString hostName = QHostInfo::localHostName();
+   QString domainName = QHostInfo::localDomainName();
+   if (!domainName.isEmpty()) {
+      hostName = hostName + QLatin1Char('.') + domainName;
    }
    qCDebug(LOG_KIO_NFS) << "hostname is -" << hostName << "-";
-   m_client->cl_auth = authunix_create(hostName.data(), geteuid(), getegid(), 0, 0);
+   m_client->cl_auth = authunix_create(hostName.toUtf8().data(), geteuid(), getegid(), 0, 0);
    total_timeout.tv_sec = 20;
    total_timeout.tv_usec = 0;
 
@@ -488,7 +431,7 @@ void NFSProtocol::openConnection()
          return;
       }
    }
-   m_client->cl_auth = authunix_create(hostName.data(),geteuid(),getegid(),0,0);
+   m_client->cl_auth = authunix_create(hostName.toUtf8().data(),geteuid(),getegid(),0,0);
    connected();
    qCDebug(LOG_KIO_NFS)<<"openConnection succeeded";
 }
