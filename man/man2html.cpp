@@ -2192,7 +2192,7 @@ static const char * const tableopt[] = { "center", "expand", "box", "allbox",
                                        "doublebox", "tab", "linesize",
                                        "delim", NULL
                                        };
-static int tableoptl[] = { 6, 6, 3, 6, 9, 3, 8, 5, 0};
+static const int tableoptl[] = { 6, 6, 3, 6, 9, 3, 8, 5, 0};
 
 
 static void clear_table(TABLEROW *table)

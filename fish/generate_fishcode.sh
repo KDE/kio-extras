@@ -7,7 +7,7 @@
 
 SUM=`$2 "$1" | cut -d ' ' $4 `
 echo '#define CHECKSUM "'$SUM'"' > $3
-echo 'static const char *fishCode(' >> $3
+echo 'static const char fishCode[] =' >> $3
 sed -e 's/\\/\\\\/g;s/"/\\"/g;s/^[ 	]*/"/;/^"# /d;s/[ 	]*$/\\n"/;/^"\\n"$/d;s/{CHECKSUM}/'$SUM'/;' "$1" >> $3 
-echo ');' >> $3
+echo ';' >> $3
 
