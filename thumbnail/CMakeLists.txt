@@ -201,14 +201,18 @@ install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # install ( FILES windowsimagethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
 # 
 # ########### next target ###############
-# 
-# set(comicbookthumbnail_SRCS comiccreator.cpp)
-# add_library(comicbookthumbnail MODULE ${comicbookthumbnail_SRCS})
-# target_link_libraries(comicbookthumbnail ${KIO_LIBRARIES})
-# if (UNIX)
-#    target_link_libraries(comicbookthumbnail KF5::Pty)
-# endif ()
-# install(TARGETS comicbookthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
+set(comicbookthumbnail_SRCS comiccreator.cpp)
+add_library(comicbookthumbnail MODULE ${comicbookthumbnail_SRCS})
+target_link_libraries(comicbookthumbnail
+    Qt5::Gui
+    KF5::Archive
+    KF5::KIOWidgets
+)
+if (UNIX)
+    target_link_libraries(comicbookthumbnail KF5::Pty)
+endif ()
+install(TARGETS comicbookthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### install files ###############
 
@@ -222,5 +226,5 @@ install(FILES
 #    htmlthumbnail.desktop
 #    djvuthumbnail.desktop
 #    desktopthumbnail.desktop
-#    comicbookthumbnail.desktop
+    comicbookthumbnail.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})

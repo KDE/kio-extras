@@ -29,23 +29,22 @@
 
 #include "comiccreator.h"
 
-#include <kdemacros.h>
-#include <kmimetype.h>
-#include <kstandarddirs.h>
-
 #include <kzip.h>
 #include <ktar.h>
 #include <QDebug>
-#include <ktempdir.h>
 #include <kprocess.h>
 
 #include <memory>
 
 #include <QtCore/QFile>
 #include <QtCore/QEventLoop>
+#include <QMimeDatabase>
+#include <QMimeType>
 #include <QStandardPaths>
+#include <QTemporaryDir>
 
 // For KIO-Thumbnail debug outputs
+// TODO KF5 qCDebug
 #define KIO_THUMB 11371
 
 extern "C"
@@ -66,23 +65,25 @@ bool ComicCreator::create(const QString& path, int width, int height, QImage& im
     QImage cover;
 
     // Detect mime type.
-    const KMimeType::Ptr mime = KMimeType::findByFileContent(path);
+    QMimeDatabase db;
+    db.mimeTypeForFile(path, QMimeDatabase::MatchContent);
+    const QMimeType mime = db.mimeTypeForFile(path, QMimeDatabase::MatchContent);
 
-    if (mime->is("application/x-cbz") || mime->name() == "application/zip") {
+    if (mime.inherits("application/x-cbz") || mime.inherits("application/zip")) {
         // ZIP archive.
         cover = extractArchiveImage(path, ZIP);
-    } else if (mime->is("application/x-cbt") ||
-                mime->name() == "application/x-gzip" ||
-                mime->name() == "application/x-tar") {
+    } else if (mime.inherits("application/x-cbt") ||
+                mime.inherits("application/x-gzip") ||
+                mime.inherits("application/x-tar")) {
         // TAR archive
         cover = extractArchiveImage(path, TAR);
-    } else if (mime->is("application/x-cbr") || mime->name() == "application/x-rar") {
+    } else if (mime.inherits("application/x-cbr") || mime.inherits("application/x-rar")) {
         // RAR archive.
         cover = extractRARImage(path);
     }
 
     if (cover.isNull()) {
-        kDebug(KIO_THUMB)<<"Error creating the comic book thumbnail.";
+        qDebug()<<"Error creating the comic book thumbnail.";
         return false;
     }
 
@@ -178,7 +179,7 @@ QImage ComicCreator::extractRARImage(const QString& path)
     // Check if unrar is available. Get its path in 'unrarPath'.
     QString unrar = unrarPath();
     if (unrar.isEmpty()) {
-        kDebug(KIO_THUMB)<<"A suitable version of unrar is not available.";
+        qDebug()<<"A suitable version of unrar is not available.";
         return QImage();
     }
 
@@ -195,14 +196,12 @@ QImage ComicCreator::extractRARImage(const QString& path)
 
     // Extract the cover file alone. Use verbose paths.
     // unrar x -n<file> path/to/archive /path/to/temp
-    KTempDir cUnrarTempDir;
-    startProcess(unrar, QStringList() << "x" << "-n" + entries[0] << path << cUnrarTempDir.name());
+    QTemporaryDir cUnrarTempDir;
+    startProcess(unrar, QStringList() << "x" << "-n" + entries[0] << path << cUnrarTempDir.path());
 
     // Load cover file data into image.
     QImage cover;
-    cover.load(cUnrarTempDir.name() + entries[0]);
-
-    cUnrarTempDir.unlink();
+    cover.load(cUnrarTempDir.path() + QDir::separator() + entries[0]);
 
     return cover;
 }
@@ -223,10 +222,10 @@ QString ComicCreator::unrarPath() const
     /// Check the standard paths to see if a suitable unrar is available.
     QString unrar = QStandardPaths::findExecutable("unrar");
     if (unrar.isEmpty()) {
-        unrar = KStandardDirs::findExe("unrar-nonfree");
+        unrar = QStandardPaths::findExecutable("unrar-nonfree");
     }
     if (unrar.isEmpty()) {
-        unrar = KStandardDirs::findExe("rar");
+        unrar = QStandardPaths::findExecutable("rar");
     }
     if (!unrar.isEmpty()) {
         QProcess proc;
@@ -313,5 +312,3 @@ ThumbCreator::Flags ComicCreator::flags() const
 {
     return DrawFrame;
 }
-
-#include "comiccreator.moc"

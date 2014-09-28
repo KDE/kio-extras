@@ -35,6 +35,7 @@ find_package(KF5 REQUIRED COMPONENTS
     KIO
     KHtml
     KDE4Support
+    Pty
     Solid
 )
 
