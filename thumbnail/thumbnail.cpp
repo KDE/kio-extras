@@ -118,7 +118,7 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
     // and HTML previews need even KApplication :(
     putenv(strdup("SESSION_MANAGER="));
 
-    QCoreApplication app( argc, argv);
+    QGuiApplication app(argc, argv);
 #endif
 
 

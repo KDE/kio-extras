@@ -107,16 +107,19 @@ target_link_libraries(svgthumbnail
 
 install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
-# ########### next target ###############
-# 
-# set(textthumbnail_PART_SRCS textcreator.cpp)
-# 
-# add_library(textthumbnail MODULE ${textthumbnail_PART_SRCS})
-# 
-# target_link_libraries(textthumbnail ${KIO_LIBRARIES})
-# 
-# install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-# 
+########### next target ###############
+
+set(textthumbnail_PART_SRCS textcreator.cpp)
+
+add_library(textthumbnail MODULE ${textthumbnail_PART_SRCS})
+
+target_link_libraries(textthumbnail
+    Qt5::Gui
+    KF5::KIOWidgets
+)
+
+install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
 # ########### next target ###############
 # 
 # if(NOT WINCE)
@@ -222,7 +225,7 @@ install(FILES
     svgthumbnail.desktop
     imagethumbnail.desktop
     jpegthumbnail.desktop
-#    textthumbnail.desktop
+    textthumbnail.desktop
 #    htmlthumbnail.desktop
 #    djvuthumbnail.desktop
 #    desktopthumbnail.desktop

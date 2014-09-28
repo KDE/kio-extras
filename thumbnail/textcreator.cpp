@@ -21,16 +21,15 @@
 #include "textcreator.h"
 
 #include <QFile>
+#include <QFontDatabase>
 #include <QPixmap>
 #include <QImage>
 #include <QPainter>
 #include <QPalette>
 #include <QTextCodec>
 
-
-#include <kglobalsettings.h>
-#include <kencodingprober.h>
-#include <klocale.h>
+// TODO Fix or remove kencodingprober code
+// #include <kencodingprober.h>
 
 extern "C"
 {
@@ -60,7 +59,7 @@ static QTextCodec *codecFromContent(const char *data, int dataSize)
 #else
     QByteArray ba = QByteArray::fromRawData(data, dataSize);
     // try to detect UTF text, fall back to locale default (which is usually UTF-8)
-    return QTextCodec::codecForUtfText(ba, KGlobal::locale()->codecForEncoding());
+    return QTextCodec::codecForUtfText(ba, QTextCodec::codecForLocale());
 #endif
 }
 
@@ -84,7 +83,8 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
     int yborder = 1 + pixmapSize.height()/16; // minimum y-border
 
     // this font is supposed to look good at small sizes
-    QFont font = KGlobalSettings::smallestReadableFont();
+    QFont font = QFontDatabase::systemFont(QFontDatabase::SmallestReadableFont);
+
     font.setPixelSize( qMax(7, qMin( 10, ( pixmapSize.height() - 2 * yborder ) / 16 ) ) );
     QFontMetrics fm( font );
 
@@ -121,7 +121,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             foreach ( const QString &line, textLines ) {
                 QString trimmedLine = line.trimmed();
                 if ( trimmedLine.contains( '\t' ) || trimmedLine.contains( "  " ) ) {
-                    font.setFamily( KGlobalSettings::fixedFont().family() );
+                    font.setFamily( QFontDatabase::systemFont(QFontDatabase::FixedFont).family());
                     break;
                 }
             }
