@@ -7,6 +7,7 @@ cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 include(FeatureSummary)
 
 set(QT_MIN_VERSION "5.3.0")
+set(KF5_MIN_VERSION "5.3.0")
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
 find_package(Qt5Test ${QT_MIN_VERSION} CONFIG QUIET)
@@ -22,7 +23,7 @@ endif()
 find_package(ECM 0.0.11 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-find_package(KF5 REQUIRED COMPONENTS
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Archive
     Config
     ConfigWidgets
