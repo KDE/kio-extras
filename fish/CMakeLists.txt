@@ -45,7 +45,7 @@ if (MD5SUM_EXECUTABLE)
 
    add_library(kio_fish MODULE ${kio_fish_PART_SRCS})
 
-   target_link_libraries(kio_fish KF5::KIOCore KF5::KDE4Support)
+   target_link_libraries(kio_fish KF5::KIOCore KF5::KDELibs4Support)
 
    if (UTIL_LIBRARIES)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})

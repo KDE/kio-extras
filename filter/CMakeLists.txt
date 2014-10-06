@@ -1,5 +1,5 @@
 add_library(kio_filter MODULE filter.cc)
-target_link_libraries(kio_filter KF5::KDE4Support KF5::Archive KF5::KIOCore)
+target_link_libraries(kio_filter KF5::KDELibs4Support KF5::Archive KF5::KIOCore)
 
 install(TARGETS kio_filter DESTINATION ${PLUGIN_INSTALL_DIR})
 install( FILES gzip.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )

@@ -59,7 +59,7 @@ target_link_libraries( molletnetwork
         KF5::DNSSD
         Qt5::Network
         Qt5::Gui
-        KF5::KDE4Support # KSharedPtr
+        KF5::KDELibs4Support # KSharedPtr
 )
 if(SLP_FOUND)
     target_link_libraries( molletnetwork  PRIVATE ${SLP_LIBRARIES} )

@@ -13,7 +13,7 @@ set(kio_man_test_SRCS
 add_executable(kio_man_test ${kio_man_test_SRCS})
 ecm_mark_as_test(kio_man_test)
 set_target_properties(kio_man_test PROPERTIES COMPILE_FLAGS "-DSIMPLE_MAN2HTML -DKIO_MAN_TEST")
-target_link_libraries(kio_man_test KF5::KIOCore KF5::Archive KF5::KDE4Support)
+target_link_libraries(kio_man_test KF5::KIOCore KF5::Archive KF5::KDELibs4Support)
 
 
 ########### next target ###############
@@ -26,5 +26,5 @@ set(man2html_SRCS
 add_executable(man2html ${man2html_SRCS})
 ecm_mark_as_test(man2html)
 set_target_properties(man2html PROPERTIES COMPILE_FLAGS -DSIMPLE_MAN2HTML)
-target_link_libraries(man2html KF5::KDE4Support)
+target_link_libraries(man2html KF5::KDELibs4Support)
 

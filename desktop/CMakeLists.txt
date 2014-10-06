@@ -2,7 +2,7 @@ add_subdirectory(tests)
 
 add_library(kio_desktop MODULE kio_desktop.cpp)
 
-target_link_libraries(kio_desktop KF5::KIOCore KF5::KDE4Support)
+target_link_libraries(kio_desktop KF5::KIOCore KF5::KDELibs4Support)
 
 install(TARGETS kio_desktop DESTINATION  ${PLUGIN_INSTALL_DIR} )
 
@@ -10,7 +10,7 @@ install(TARGETS kio_desktop DESTINATION  ${PLUGIN_INSTALL_DIR} )
 
 add_library(kded_desktopnotifier MODULE desktopnotifier.cpp)
 
-target_link_libraries(kded_desktopnotifier KF5::KIOCore KF5::DBusAddons KF5::KDE4Support)
+target_link_libraries(kded_desktopnotifier KF5::KIOCore KF5::DBusAddons KF5::KDELibs4Support)
 
 install(TARGETS kded_desktopnotifier  DESTINATION ${PLUGIN_INSTALL_DIR} )
 
