@@ -44,7 +44,7 @@ extern "C"
         // necessary to use other kio slaves
         QCoreApplication app(argc, argv);
         KComponentData("kio_desktop", "kdelibs4");
-        KGlobal::locale();
+        KLocale::global();
 
         // start the slave
         DesktopProtocol slave(argv[1], argv[2], argv[3]);
@@ -69,7 +69,7 @@ DesktopProtocol::~DesktopProtocol()
 void DesktopProtocol::checkLocalInstall()
 {
 #ifndef Q_WS_WIN
-    // We can't use KGlobalSettings::desktopPath() here, since it returns the home dir
+    // We can't use QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) here, since it returns the home dir
     // if the desktop folder doesn't exist.
     QString desktopPath = QDesktopServices::storageLocation(QDesktopServices::DesktopLocation);
     if (desktopPath.isEmpty())
@@ -155,7 +155,7 @@ void DesktopProtocol::checkLocalInstall()
 bool DesktopProtocol::rewriteUrl(const QUrl &url, QUrl &newUrl)
 {
     newUrl.setScheme("file");
-    newUrl.setPath(KGlobalSettings::desktopPath() + '/' + url.path());
+    newUrl.setPath(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + '/' + url.path());
     return true;
 }
 

@@ -35,13 +35,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <kcolorutils.h>
 #include <kglobalsettings.h>
 #include <QStandardPaths>
+#include <QFontDatabase>
 
 void BookmarksProtocol::echoBookmark( const KBookmark &bm)
 {
-  QString descriptionAsTitle = Qt::escape(bm.description());
+  QString descriptionAsTitle = bm.description().toHtmlEscaped();
   if (!descriptionAsTitle.isEmpty())
       descriptionAsTitle.prepend(QLatin1String("\" title=\""));
-  echo ("<li class=\"link\"><a href=\"" + bm.url().url() + descriptionAsTitle + "\"><img src=\"/icon/" + bm.icon() + "\"/>" + Qt::escape(bm.text()) + "</a></li>");
+  echo ("<li class=\"link\"><a href=\"" + bm.url().url() + descriptionAsTitle + "\"><img src=\"/icon/" + bm.icon() + "\"/>" + bm.text().toHtmlEscaped() + "</a></li>");
 }
 
 void BookmarksProtocol::echoSeparator()
@@ -176,7 +177,7 @@ void BookmarksProtocol::echoStyle()
   KColorScheme view = KColorScheme(QPalette::Active, KColorScheme::View);
   KColorScheme selection = KColorScheme(QPalette::Active, KColorScheme::Selection);
 
-  QFont font = KGlobalSettings::generalFont();
+  QFont font = QFontDatabase::systemFont(QFontDatabase::GeneralFont);
 
   echo("<style type=\"text/css\">");
   indent++;

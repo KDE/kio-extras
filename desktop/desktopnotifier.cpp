@@ -38,7 +38,7 @@ DesktopNotifier::DesktopNotifier(QObject *parent, const QList<QVariant> &)
     : KDEDModule(parent)
 {
     dirWatch = new KDirWatch(this);
-    dirWatch->addDir(KGlobalSettings::desktopPath());
+    dirWatch->addDir(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation));
     dirWatch->addDir(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + '/' + "Trash/files");
 
     connect(dirWatch, SIGNAL(dirty(QString)), SLOT(dirty(QString)));
@@ -55,12 +55,12 @@ void DesktopNotifier::dirty(const QString &path)
 
     if (path.startsWith(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + '/' + "Trash/files")) {
         // Trigger an update of the trash icon
-        if (QFile::exists(KGlobalSettings::desktopPath() + "/trash.desktop"))
+        if (QFile::exists(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "/trash.desktop"))
             org::kde::KDirNotify::emitFilesChanged(QList<QUrl>() << QUrl("desktop:/trash.desktop"));
     } else {
         // Emitting FilesAdded forces a re-read of the dir
         KUrl url("desktop:/");
-        url.addPath(KUrl::relativePath(KGlobalSettings::desktopPath(), path));
+        url.addPath(KUrl::relativePath(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation), path));
         url.cleanPath();
         org::kde::KDirNotify::emitFilesAdded(url.url());
     }

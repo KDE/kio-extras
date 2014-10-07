@@ -24,7 +24,7 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
     // necessary to use other kio slaves
     QCoreApplication app(argc, argv);
     KComponentData("kio_recentdocuments", "kio_recentdocuments");
-    KGlobal::locale();
+    KLocale::global();
     if (argc != 4) {
         fprintf(stderr, "Usage: kio_recentdocuments protocol domain-socket1 domain-socket2\n");
         exit(-1);

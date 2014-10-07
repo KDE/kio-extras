@@ -239,7 +239,7 @@ QStringList MANProtocol::manDirectories()
     {
         // Translated pages in "<mandir>/<lang>" if the directory
         // exists
-        QStringList languages = KGlobal::locale()->languageList();
+        QStringList languages = KLocale::global()->languageList();
 
         for (QStringList::ConstIterator it_lang = languages.constBegin();
              it_lang != languages.constEnd();
@@ -483,7 +483,7 @@ void MANProtocol::get(const QUrl& url )
            "Check that you have typed the name using the correct upper and lower case characters.<br />"
            "If everything looks correct, then you may need to improve the search path "
            "for man pages; either using the environment variable MANPATH or using a matching file "
-           "in the /etc directory.", Qt::escape(title)));
+           "in the /etc directory.", title.toHtmlEscaped()));
        pageFound=false;
     }
     else if (foundPages.count()>1)

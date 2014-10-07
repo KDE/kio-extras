@@ -69,7 +69,7 @@ extern "C"
   {
     QCoreApplication app(argc, argv);
     KComponentData componentData( "kio_sftp" );
-    (void) KGlobal::locale();
+    (void) KLocale::global();
 
     kDebug(KIO_SFTP_DB) << "*** Starting kio_sftp ";
 
