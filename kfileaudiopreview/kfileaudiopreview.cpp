@@ -81,7 +81,7 @@ KFileAudioPreview::KFileAudioPreview(QWidget *parent, const QVariantList &)
     m_autoPlay = new QCheckBox(i18n("Play &automatically"), this);
     KConfigGroup config(KSharedConfig::openConfig(), ConfigGroup);
     m_autoPlay->setChecked(config.readEntry("Autoplay", true));
-    connect(m_autoPlay, SIGNAL(toggled(bool)), SLOT(toggleAuto(bool)));
+    connect(m_autoPlay, &QCheckBox::toggled, this, &KFileAudioPreview::toggleAuto);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
@@ -113,8 +113,7 @@ void KFileAudioPreview::showPreview(const QUrl &url)
         d->player = new MediaObject(this);
         Phonon::createPath(d->player, d->videoWidget);
         Phonon::createPath(d->player, d->audioOutput);
-        connect(d->player, SIGNAL(stateChanged(Phonon::State,Phonon::State)),
-                SLOT(stateChanged(Phonon::State,Phonon::State)));
+        connect(d->player, &MediaObject::stateChanged, this, &KFileAudioPreview::stateChanged);
         d->videoWidget->setVisible(d->player->hasVideo());
         connect(d->player, SIGNAL(hasVideoChanged(bool)), d->videoWidget, SLOT(setVisible(bool)));
         d->controls->setMediaObject(d->player);

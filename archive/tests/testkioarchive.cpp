@@ -66,8 +66,7 @@ void TestKioArchive::testListTar()
 {
     m_listResult.clear();
     KIO::ListJob* job = KIO::listDir(tarUrl(), KIO::HideProgressInfo);
-    connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
-             SLOT( slotEntries( KIO::Job*, const KIO::UDSEntryList& ) ) );
+    connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = KIO::NetAccess::synchronousRun( job, 0 );
     QVERIFY( ok );
     kDebug() << "listDir done - entry count=" << m_listResult.count();
@@ -86,8 +85,7 @@ void TestKioArchive::testListRecursive()
 {
     m_listResult.clear();
     KIO::ListJob* job = KIO::listRecursive(tarUrl(), KIO::HideProgressInfo);
-    connect( job, SIGNAL( entries( KIO::Job*, const KIO::UDSEntryList& ) ),
-             SLOT( slotEntries( KIO::Job*, const KIO::UDSEntryList& ) ) );
+    connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = KIO::NetAccess::synchronousRun( job, 0 );
     QVERIFY( ok );
     kDebug() << "listDir done - entry count=" << m_listResult.count();

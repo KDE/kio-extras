@@ -62,11 +62,9 @@ void DNSSDNetworkBuilder::start()
     mNoOfInitServiceTypes = 0;
 
     mServiceTypeBrowser = new KDNSSD::ServiceTypeBrowser();
-    connect( mServiceTypeBrowser, SIGNAL(serviceTypeAdded(QString)),
-             SLOT(addServiceType(QString)) );
-    connect( mServiceTypeBrowser, SIGNAL(serviceTypeRemoved(QString)),
-             SLOT(removeServiceType(QString)) );
-    connect( mServiceTypeBrowser, SIGNAL(finished()), SLOT(onServiceTypeBrowserFinished()) );
+    connect(mServiceTypeBrowser, &KDNSSD::ServiceTypeBrowser::serviceTypeAdded, this, &DNSSDNetworkBuilder::addServiceType);
+    connect(mServiceTypeBrowser, &KDNSSD::ServiceTypeBrowser::serviceTypeRemoved, this, &DNSSDNetworkBuilder::removeServiceType);
+    connect(mServiceTypeBrowser, &KDNSSD::ServiceTypeBrowser::finished, this, &DNSSDNetworkBuilder::onServiceTypeBrowserFinished);
 // TODO: add a signal network initialized to Network, so is cleared when first usable
     mServiceTypeBrowser->startBrowse();
 }
@@ -79,15 +77,13 @@ kDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
 
 // kDebug()<<serviceType;
     KDNSSD::ServiceBrowser* serviceBrowser = new KDNSSD::ServiceBrowser( serviceType, true );
-    connect( serviceBrowser, SIGNAL(serviceAdded(KDNSSD::RemoteService::Ptr)),
-            SLOT(addService(KDNSSD::RemoteService::Ptr)) );
-    connect( serviceBrowser, SIGNAL(serviceRemoved(KDNSSD::RemoteService::Ptr)),
-            SLOT(removeService(KDNSSD::RemoteService::Ptr)) );
+    connect(serviceBrowser, &KDNSSD::ServiceBrowser::serviceAdded, this, &DNSSDNetworkBuilder::addService);
+    connect(serviceBrowser, &KDNSSD::ServiceBrowser::serviceRemoved, this, &DNSSDNetworkBuilder::removeService);
 
     if( mIsInit )
     {
         ++mNoOfInitServiceTypes;
-        connect( serviceBrowser, SIGNAL(finished()), SLOT(onServiceBrowserFinished()) );
+        connect(serviceBrowser, &KDNSSD::ServiceBrowser::finished, this, &DNSSDNetworkBuilder::onServiceBrowserFinished);
     }
 
     mServiceBrowserTable[serviceType] = serviceBrowser;

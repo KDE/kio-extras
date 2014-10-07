@@ -101,7 +101,7 @@ private Q_SLOTS:
             KDirLister lister;
             lister.openUrl(KUrl("desktop:/"));
             QEventLoop eventLoop;
-            connect(&lister, SIGNAL(completed()), &eventLoop, SLOT(quit()));
+            connect(&lister, static_cast<void (KDirLister::*)()>(&KDirLister::completed), &eventLoop, &QEventLoop::quit);
             eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
         }
 

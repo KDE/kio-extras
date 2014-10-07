@@ -53,7 +53,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
     if (!m_page)
     {
         m_page = new KWebPage;
-        connect(m_page, SIGNAL(loadFinished(bool)), SLOT(slotFinished(bool)));
+        connect(m_page, &KWebPage::loadFinished, this, &HTMLCreator::slotFinished);
         m_page->settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
         m_page->settings()->setAttribute(QWebSettings::JavaEnabled, false);
         m_page->settings()->setAttribute(QWebSettings::PluginsEnabled, false);

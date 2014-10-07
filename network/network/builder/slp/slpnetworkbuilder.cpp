@@ -38,12 +38,9 @@ SlpNetworkBuilder::SlpNetworkBuilder( NetworkPrivate* networkPrivate )
 {
     mSlpServiceBrowser = new SlpServiceBrowser();
 
-    connect( mSlpServiceBrowser, SIGNAL(servicesAdded(QList<SLPService>)),
-             SLOT(onServicesAdded(QList<SLPService>)) );
-    connect( mSlpServiceBrowser, SIGNAL(servicesChanged(QList<SLPService>)),
-             SLOT(onServicesChanged(QList<SLPService>)) );
-    connect( mSlpServiceBrowser, SIGNAL(servicesRemoved(QList<SLPService>)),
-             SLOT(onServicesRemoved(QList<SLPService>)) );
+    connect(mSlpServiceBrowser, &SlpServiceBrowser::servicesAdded, this, &SlpNetworkBuilder::onServicesAdded);
+    connect(mSlpServiceBrowser, &SlpServiceBrowser::servicesChanged, this, &SlpNetworkBuilder::onServicesChanged);
+    connect(mSlpServiceBrowser, &SlpServiceBrowser::servicesRemoved, this, &SlpNetworkBuilder::onServicesRemoved);
 }
 
 

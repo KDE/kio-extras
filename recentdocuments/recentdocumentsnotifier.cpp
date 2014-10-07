@@ -19,9 +19,9 @@ RecentDocumentsNotifier::RecentDocumentsNotifier(QObject *parent, const QList<QV
 {
     dirWatch = new KDirWatch(this);
     dirWatch->addDir(KRecentDocument::recentDocumentDirectory(), KDirWatch::WatchFiles);
-    connect(dirWatch, SIGNAL(created(QString)), this, SLOT(dirty(QString)));
-    connect(dirWatch, SIGNAL(deleted(QString)), this, SLOT(dirty(QString)));
-    connect(dirWatch, SIGNAL(dirty(QString)), this, SLOT(dirty(QString)));
+    connect(dirWatch, &KDirWatch::created, this, &RecentDocumentsNotifier::dirty);
+    connect(dirWatch, &KDirWatch::deleted, this, &RecentDocumentsNotifier::dirty);
+    connect(dirWatch, &KDirWatch::dirty, this, &RecentDocumentsNotifier::dirty);
 }
 
 void RecentDocumentsNotifier::dirty(const QString &path)

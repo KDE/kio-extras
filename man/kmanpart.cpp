@@ -65,8 +65,8 @@ bool KManPart::openFile()
    url.setPath( localFilePath() );
 
    m_job = KIO::get( url, KIO::NoReload, KIO::HideProgressInfo );
-   connect( m_job, SIGNAL( data( KIO::Job *, const QByteArray &) ), SLOT( readData( KIO::Job *, const QByteArray &) ) );
-   connect( m_job, SIGNAL( result(KJob*) ), SLOT( jobDone(KJob*) ) );
+   connect(m_job, &KIO::TransferJob::data, this, &KManPart::readData);
+   connect(m_job, &KIO::TransferJob::result, this, &KManPart::jobDone);
    return true;
 }
 

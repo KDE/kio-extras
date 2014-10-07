@@ -41,7 +41,7 @@ DesktopNotifier::DesktopNotifier(QObject *parent, const QList<QVariant> &)
     dirWatch->addDir(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation));
     dirWatch->addDir(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + '/' + "Trash/files");
 
-    connect(dirWatch, SIGNAL(dirty(QString)), SLOT(dirty(QString)));
+    connect(dirWatch, &KDirWatch::dirty, this, &DesktopNotifier::dirty);
 }
 
 void DesktopNotifier::watchDir(const QString &path)
