@@ -711,7 +711,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
         int cacheSize = 0;
         QCryptographicHash md5(QCryptographicHash::Md5);
         md5.addData(QFile::encodeName(fileName.url()));
-        const QString thumbName = QFile::encodeName(md5.result()) + ".png";
+        const QString thumbName = QFile::encodeName(md5.result().toHex()) + ".png";
 
         if (m_thumbBasePath.isEmpty()) {
             m_thumbBasePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/thumbnails/");
