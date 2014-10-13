@@ -32,7 +32,7 @@
 #include "builder/slp/slpnetworkbuilder.h"
 #endif
 
-#include <KDebug>
+#include <QDebug>
 
 namespace Mollet
 {
@@ -68,7 +68,7 @@ void NetworkPrivate::init()
 void NetworkPrivate::onBuilderInit()
 {
     --mNoOfInitBuilders;
-kDebug()<<mNoOfInitBuilders;
+//qDebug()<<mNoOfInitBuilders;
     if( mNoOfInitBuilders == 0 )
         emit p->initDone();
 }

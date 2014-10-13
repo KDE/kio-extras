@@ -27,7 +27,7 @@
 // Qt
 #include <QtCore/QList>
 
-#include <KDebug>
+#include <QDebug>
 
 
 namespace Mollet
@@ -46,17 +46,17 @@ SlpNetworkBuilder::SlpNetworkBuilder( NetworkPrivate* networkPrivate )
 
 void SlpNetworkBuilder::onServicesAdded( const QList<SLPService>& services )
 {
-kDebug()<<services.count()<<services[0].serviceUrl();
+//qDebug()<<services.count()<<services[0].serviceUrl();
 }
 
 void SlpNetworkBuilder::onServicesChanged( const QList<SLPService>& services )
 {
-kDebug()<<services.count()<<services[0].serviceUrl();
+//qDebug()<<services.count()<<services[0].serviceUrl();
 }
 
 void SlpNetworkBuilder::onServicesRemoved( const QList<SLPService>& services )
 {
-kDebug()<<services.count()<<services[0].serviceUrl();
+//qDebug()<<services.count()<<services[0].serviceUrl();
 }
 
 

@@ -31,7 +31,7 @@
 //Qt
 #include <QtCore/QCoreApplication>
 
-#include <KDebug>
+#include <QDebug>
 
 NetworkThread::NetworkThread()
   : QThread()
@@ -44,19 +44,19 @@ Mollet::Network* NetworkThread::network() const { return mNetwork; }
 
 void NetworkThread::pause()
 {
-kDebug()<<"before lock";
+//qDebug()<<"before lock";
     mMutex.lock();
-kDebug()<<"after lock";
+//qDebug()<<"after lock";
     exit();
-kDebug()<<"after exit";
+//qDebug()<<"after exit";
 }
 
 
 void NetworkThread::unpause()
 {
-kDebug()<<"before unlock";
+//qDebug()<<"before unlock";
     mMutex.unlock();
-kDebug()<<"after unlock";
+//qDebug()<<"after unlock";
 }
 
 void NetworkThread::finish()
@@ -70,19 +70,19 @@ void NetworkThread::run()
 {
     mNetwork = Mollet::Network::network();
 
-kDebug()<<"starting with lock";
+//qDebug()<<"starting with lock";
     mMutex.lock();
     new NetworkInitWatcher( mNetwork, &mMutex );
 
     do
     {
-kDebug()<<"going exec()";
+//qDebug()<<"going exec()";
         exec();
-kDebug()<<"left exec()";
+//qDebug()<<"left exec()";
         mMutex.lock();
-kDebug()<<"after lock";
+//qDebug()<<"after lock";
         mMutex.unlock();
-kDebug()<<"after unlock";
+//qDebug()<<"after unlock";
     }
     while( mContinue );
 }

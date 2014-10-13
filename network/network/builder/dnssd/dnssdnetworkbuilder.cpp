@@ -34,7 +34,7 @@
 #include <QtNetwork/QHostAddress>
 #include <QtCore/QMutableListIterator>
 
-#include <KDebug>
+#include <QDebug>
 
 
 namespace Mollet
@@ -71,11 +71,11 @@ void DNSSDNetworkBuilder::start()
 
 void DNSSDNetworkBuilder::addServiceType( const QString& serviceType )
 {
-kDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
+//qDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
     if( mServiceBrowserTable.contains(serviceType))
         return;
 
-// kDebug()<<serviceType;
+// //qDebug()<<serviceType;
     KDNSSD::ServiceBrowser* serviceBrowser = new KDNSSD::ServiceBrowser( serviceType, true );
     connect(serviceBrowser, &KDNSSD::ServiceBrowser::serviceAdded, this, &DNSSDNetworkBuilder::addService);
     connect(serviceBrowser, &KDNSSD::ServiceBrowser::serviceRemoved, this, &DNSSDNetworkBuilder::removeService);
@@ -92,7 +92,7 @@ kDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
 
 void DNSSDNetworkBuilder::removeServiceType( const QString& serviceType )
 {
-kDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
+//qDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
     // for now we keep the service browser (aren't that many) because otherwise
     // the serviceRemoved calls won't reach us.
     // we could also go through all the devices and remove the services manually as a fix
@@ -132,7 +132,7 @@ void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
         const bool isSameAddress = useIpAddress ?
             ( device.ipAddress() == ipAddress ) :
             ( deviceHostName == hostName );
-kDebug()<<"existing device:"<<deviceHostName<<"at"<<device.ipAddress()<<"vs."<<hostName<<"at"<<ipAddress<<":"<<isSameAddress;
+//qDebug()<<"existing device:"<<deviceHostName<<"at"<<device.ipAddress()<<"vs."<<hostName<<"at"<<ipAddress<<":"<<isSameAddress;
 
         if( isSameAddress )
         {
@@ -172,7 +172,7 @@ kDebug()<<"existing device:"<<deviceHostName<<"at"<<device.ipAddress()<<"vs."<<h
         // TODO: the new service will be announced two times, once with the new device and once alone.
         // what to do about that? which order? okay? for now just do not attach services before. find usecases.
         mNetworkPrivate->emitDevicesAdded( newDevices );
-kDebug()<<"new device:"<<deviceName<<"at"<<hostName<<"by"<<service->type();
+//qDebug()<<"new device:"<<deviceName<<"at"<<hostName<<"by"<<service->type();
     }
     else
     {
@@ -256,7 +256,7 @@ void DNSSDNetworkBuilder::removeService( KDNSSD::RemoteService::Ptr service )
         const NetDevice& device = it.next();
         if( device.hostName() == hostName )
         {
-// kDebug()<<hostName;
+// //qDebug()<<hostName;
             QString id;
             const QString serviceType = service->type();
             foreach( const DNSSDNetSystemAble* factory, mNetSystemFactoryList )
@@ -293,7 +293,7 @@ void DNSSDNetworkBuilder::removeService( KDNSSD::RemoteService::Ptr service )
 
 void DNSSDNetworkBuilder::onServiceTypeBrowserFinished()
 {
-// kDebug();
+// //qDebug();
     if( mIsInit )
     {
         mIsInit = false;
@@ -305,7 +305,7 @@ void DNSSDNetworkBuilder::onServiceTypeBrowserFinished()
 void DNSSDNetworkBuilder::onServiceBrowserFinished()
 {
     --mNoOfInitServiceTypes;
-// kDebug()<<"mIsInit="<<mIsInit<<"mNoOfInitServiceTypes="<<mNoOfInitServiceTypes;
+// //qDebug()<<"mIsInit="<<mIsInit<<"mNoOfInitServiceTypes="<<mNoOfInitServiceTypes;
     // only check for countdown after end of new service types
     if( !mIsInit && mNoOfInitServiceTypes == 0 )
         emit initDone();

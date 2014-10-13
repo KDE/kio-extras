@@ -34,7 +34,7 @@
 // Qt
 #include <QtCore/QEventLoop>
 
-#include <KDebug>
+#include <QDebug>
 
 // static const char NetworkIconName[] = "network-workgroup";
 
@@ -42,7 +42,7 @@
 NetworkSlave::NetworkSlave( const QByteArray& name, const QByteArray& poolSocket, const QByteArray& programSocket )
   : SlaveBase( name, poolSocket, programSocket )
 {
-kDebug();
+//qDebug();
     mNetworkDBusProxy = new NetworkDBusInterface( QLatin1String("org.kde.kded5"),
                                                   QLatin1String("/modules/networkwatcher"),
                                                   QDBusConnection::sessionBus() );
@@ -55,7 +55,7 @@ void NetworkSlave::get( const QUrl& url )
     bool successfulGetting = false;
 
     const NetworkUri::Type type = networkUri.type();
-kDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
+//qDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
     if( type == NetworkUri::Service )
     {
         const QString hostAddress =    networkUri.hostAddress();
@@ -63,7 +63,7 @@ kDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"servic
         const QString serviceType = networkUri.serviceType();
         QDBusReply<Mollet::NetService> reply = mNetworkDBusProxy->serviceData( hostAddress, serviceName, serviceType );
 
-kDebug()<<reply.isValid();
+//qDebug()<<reply.isValid();
         if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
         {
             Mollet::NetService serviceData = reply.value();
@@ -87,7 +87,7 @@ void NetworkSlave::mimetype( const QUrl& url )
 
     bool successfulMimetyping = false;
     NetworkUri::Type type = networkUri.type();
-kDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
+//qDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
 
     if( type == NetworkUri::Domain )
     {
@@ -102,7 +102,7 @@ kDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"servic
         {
             QDBusReply<Mollet::NetDevice> reply = mNetworkDBusProxy->deviceData( hostAddress );
 
-kDebug()<<reply.isValid();
+//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 Mollet::NetDevice deviceData = reply.value();
@@ -118,7 +118,7 @@ kDebug()<<reply.isValid();
             const QString serviceType = networkUri.serviceType();
             QDBusReply<Mollet::NetService> reply = mNetworkDBusProxy->serviceData( hostAddress, serviceName, serviceType );
 
-kDebug()<<reply.isValid();
+//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 Mollet::NetService serviceData = reply.value();
@@ -145,7 +145,7 @@ void NetworkSlave::stat( const QUrl& url )
 
     bool successfulStating = false;
     NetworkUri::Type type = networkUri.type();
-kDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
+//qDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
 
     if( type == NetworkUri::Domain )
     {
@@ -162,7 +162,7 @@ kDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"servic
         {
             QDBusReply<Mollet::NetDevice> reply = mNetworkDBusProxy->deviceData( hostAddress );
 
-kDebug()<<reply.isValid();
+//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 Mollet::NetDevice deviceData = reply.value();
@@ -180,7 +180,7 @@ kDebug()<<reply.isValid();
             const QString serviceType = networkUri.serviceType();
             QDBusReply<Mollet::NetService> reply = mNetworkDBusProxy->serviceData( hostAddress, serviceName, serviceType );
 
-kDebug()<<reply.isValid();
+//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 Mollet::NetService serviceData = reply.value();
@@ -208,7 +208,7 @@ void NetworkSlave::listDir( const QUrl& url )
 
     bool successfulListing = false;
     NetworkUri::Type networkUriType = networkUri.type();
-kDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
+//qDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
 
     if( networkUriType != NetworkUri::InvalidUrl )
     {
@@ -216,7 +216,7 @@ kDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"servic
         {
             QDBusReply<Mollet::NetDeviceList> reply = mNetworkDBusProxy->deviceDataList();
 
-kDebug()<<reply.isValid();
+//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 Mollet::NetDeviceList deviceDataList = reply.value();
@@ -238,7 +238,7 @@ kDebug()<<reply.isValid();
             {
                 QDBusReply<Mollet::NetServiceList> reply = mNetworkDBusProxy->serviceDataList( hostAddress );
 
-kDebug()<<reply.isValid();
+//qDebug()<<reply.isValid();
                 if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
                 {
                     Mollet::NetServiceList serviceDataList = reply.value();
@@ -259,7 +259,7 @@ kDebug()<<reply.isValid();
                 const QString serviceType = networkUri.serviceType();
                 QDBusReply<Mollet::NetService> reply = mNetworkDBusProxy->serviceData( hostAddress, serviceName, serviceType );
 
-kDebug()<<reply.isValid();
+//qDebug()<<reply.isValid();
                 if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
                 {
                     Mollet::NetService serviceData = reply.value();

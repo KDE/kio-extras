@@ -39,7 +39,7 @@
 #include <QtDBus/QDBusServiceWatcher>
 #include <QtCore/QStringList>
 
-#include <KDebug>
+#include <QDebug>
 
 namespace Mollet
 {
@@ -122,14 +122,14 @@ void UpnpNetworkBuilder::onAllDevicesCallFinished( QDBusPendingCallWatcher* allD
 
     if( reply.isValid() )
     {
-kDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
+//qDebug() << "Connected to Cagibi, listing of UPnP devices/services started.";
         const DeviceTypeMap deviceTypeMap = reply;
         onDevicesAdded( deviceTypeMap );
     }
     else
     {
-        kDebug() << "Could not connect to Cagibi, no listing of UPnP devices/services.";
-        kDebug() << "Error: " << reply.error().name();
+        //qDebug() << "Could not connect to Cagibi, no listing of UPnP devices/services.";
+        //qDebug() << "Error: " << reply.error().name();
     }
 
     delete allDevicesCallWatcher;
@@ -153,7 +153,7 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
         foreach( const NetDevice& device, deviceList )
         {
         const bool isSameAddress = ( device.ipAddress() == ipAddress );
-kDebug()<<"existing device:"<<device.hostName()<<"at"<<device.ipAddress()<<"vs."<<ipAddress<<":"<<isSameAddress;
+//qDebug()<<"existing device:"<<device.hostName()<<"at"<<device.ipAddress()<<"vs."<<ipAddress<<":"<<isSameAddress;
             // TODO: lookup hostname and try to use that
             if( isSameAddress )
             {
@@ -174,7 +174,7 @@ kDebug()<<"existing device:"<<device.hostName()<<"at"<<device.ipAddress()<<"vs."
             addedDevices.append( device );
             deviceList.append( device );
             deviceOfService = &deviceList.last();
-kDebug()<<"new device:"<<deviceName<<"at"<<ipAddress;
+//qDebug()<<"new device:"<<deviceName<<"at"<<ipAddress;
         }
 
         NetServicePrivate* netServicePrivate = 0;
@@ -194,7 +194,7 @@ kDebug()<<"new device:"<<deviceName<<"at"<<ipAddress;
         d->addService( netService );
 
         addedServices.append( netService );
-kDebug()<<"new service:"<<netService.name()<<netService.url();
+//qDebug()<<"new service:"<<netService.name()<<netService.url();
 
         // try guessing the device type by the services on it
         // TODO: move into  devicefactory
@@ -304,7 +304,7 @@ void UpnpNetworkBuilder::onDevicesRemoved( const DeviceTypeMap& deviceTypeMap )
             mActiveDevices.find( it.key() );
         if( adIt != mActiveDevices.end() )
         {
-kDebug()<<"removing UPnP device" << adIt.value().friendlyName();
+//qDebug()<<"removing UPnP device" << adIt.value().friendlyName();
             upnpDevices.append( adIt.value() );
             mActiveDevices.erase( adIt );
         }
@@ -336,7 +336,7 @@ void UpnpNetworkBuilder::onCagibiServiceOwnerChanged( const QString& serviceName
     // old service disappeared?
     if( ! oldOwner.isEmpty() )
     {
-kDebug()<<"Cagibi disappeared, removing all UPnP devices";
+//qDebug()<<"Cagibi disappeared, removing all UPnP devices";
 
         // remove all registered UPnP devices
         QList<Cagibi::Device> upnpDevices = mActiveDevices.values();

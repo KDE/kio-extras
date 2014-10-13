@@ -35,7 +35,7 @@
 // Qt
 #include <QtCore/QStringList>
 
-#include <KDebug>
+#include <QDebug>
 
 
 namespace Mollet
@@ -97,7 +97,7 @@ QStringList KioSlaveNotifier::watchedDirectories() const
 
 void KioSlaveNotifier::onDirectoryEntered( const QString& directory )
 {
-kDebug()<<directory;
+//qDebug()<<directory;
     if( !directory.startsWith(QLatin1String("network:/")) )
         return;
 
@@ -118,7 +118,7 @@ kDebug()<<directory;
 
 void KioSlaveNotifier::onDirectoryLeft( const QString& directory )
 {
-kDebug()<<directory;
+//qDebug()<<directory;
     if( !directory.startsWith(QLatin1String("network:/")) )
         return;
 
@@ -143,7 +143,7 @@ void KioSlaveNotifier::notifyAboutAdded( const QString& dirId )
     if( it != mWatchedDirs.end() )
     {
         const QString url = QLatin1String("network:/") + dirId;
-kDebug()<<url;
+//qDebug()<<url;
         org::kde::KDirNotify::emitFilesAdded( url );
     }
 }
@@ -155,7 +155,7 @@ void KioSlaveNotifier::notifyAboutRemoved( const QString& dirId, const QString& 
     {
         QList<QUrl> itemUrls;
         itemUrls.append( QUrl( QStringLiteral("network:/") + itemPath ) );
-kDebug()<<itemUrls;
+//qDebug()<<itemUrls;
         org::kde::KDirNotify::emitFilesRemoved( itemUrls );
     }
 }

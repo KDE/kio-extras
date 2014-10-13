@@ -22,7 +22,6 @@
 
 #include "network.h"
 #include "network_p.h"
-#include "network.moc"
 
 // KDE
 #include <KGlobal>

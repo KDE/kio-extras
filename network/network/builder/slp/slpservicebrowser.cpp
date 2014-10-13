@@ -25,7 +25,7 @@
 // Qt
 #include <QtCore/QStringList>
 
-#include <KDebug>
+#include <QDebug>
 
 #ifndef Q_OS_WIN
 extern "C"
@@ -135,7 +135,7 @@ Q_UNUSED( siteNParameter )
 
 SLPBoolean SlpServiceBrowser::onServiceTypesFound( SLPHandle hslp, const char* serviceTypes, SLPError errorCode, void* builder )
 {
-kDebug();
+//qDebug();
 
     if( errorCode == SLP_LAST_CALL )
         return SLP_FALSE;
@@ -149,7 +149,7 @@ kDebug();
 
     foreach( const QString& serviceType, serviceTypeList )
     {
-kDebug()<<serviceType;
+//qDebug()<<serviceType;
         //  "service:"<abstract-type.naming-authority>":"<concrete-type>
 continue;
         SLPFindSrvs( hslp, serviceType.toLatin1(), DefaultScope, AllServiceFilter, onServiceFound, builder );

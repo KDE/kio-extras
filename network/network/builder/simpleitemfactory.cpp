@@ -33,7 +33,7 @@
 // KDE
 #include <QUrl>
 
-#include <KDebug>
+#include <QDebug>
 
 namespace Mollet
 {
