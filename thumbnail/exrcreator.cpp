@@ -23,7 +23,6 @@
 
 #include <QDebug>
 #include <ksharedconfig.h>
-#include <kglobal.h>
 #include <QFile>
 
 #include <ImfInputFile.h>

@@ -22,8 +22,6 @@
 #include <QImage>
 #include <QFile>
 
-#include <kdemacros.h>
-
 #include <X11/Xlib.h>
 #include <X11/Xcursor/Xcursor.h>
 
