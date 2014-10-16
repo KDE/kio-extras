@@ -1,5 +1,3 @@
--symlink stuff (listing and stating works already)
--honour the resume flag
 -maybe use rpcgen ?
 -cache handling: how long should file handles be cached ?
 	should the stat'ed structures be cached ? no, IMHO

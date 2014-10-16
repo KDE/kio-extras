@@ -3,10 +3,15 @@
  * It was generated using rpcgen.
  */
 
-#ifndef _MOUNT_H_RPCGEN
-#define _MOUNT_H_RPCGEN
+#ifndef _MNT2_H_RPCGEN
+#define _MNT2_H_RPCGEN
 
 #include <rpc/rpc.h>
+
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*
  * Sun RPC is a product of Sun Microsystems, Inc. and is provided for
@@ -49,14 +54,6 @@
 #define FHSIZE 32
 
 typedef char fhandle[FHSIZE];
-#ifdef __cplusplus 
-extern "C" bool_t xdr_fhandle(XDR *, fhandle);
-#elif __STDC__ 
-extern  bool_t xdr_fhandle(XDR *, fhandle);
-#else /* Old Style C */ 
-bool_t xdr_fhandle();
-#endif /* Old Style C */ 
-
 
 struct fhstatus {
 	u_int fhs_status;
@@ -65,44 +62,12 @@ struct fhstatus {
 	} fhstatus_u;
 };
 typedef struct fhstatus fhstatus;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_fhstatus(XDR *, fhstatus*);
-#elif __STDC__ 
-extern  bool_t xdr_fhstatus(XDR *, fhstatus*);
-#else /* Old Style C */ 
-bool_t xdr_fhstatus();
-#endif /* Old Style C */ 
-
 
 typedef char *dirpath;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_dirpath(XDR *, dirpath*);
-#elif __STDC__ 
-extern  bool_t xdr_dirpath(XDR *, dirpath*);
-#else /* Old Style C */ 
-bool_t xdr_dirpath();
-#endif /* Old Style C */ 
-
 
 typedef char *name;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_name(XDR *, name*);
-#elif __STDC__ 
-extern  bool_t xdr_name(XDR *, name*);
-#else /* Old Style C */ 
-bool_t xdr_name();
-#endif /* Old Style C */ 
-
 
 typedef struct mountbody *mountlist;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_mountlist(XDR *, mountlist*);
-#elif __STDC__ 
-extern  bool_t xdr_mountlist(XDR *, mountlist*);
-#else /* Old Style C */ 
-bool_t xdr_mountlist();
-#endif /* Old Style C */ 
-
 
 struct mountbody {
 	name ml_hostname;
@@ -110,48 +75,16 @@ struct mountbody {
 	mountlist ml_next;
 };
 typedef struct mountbody mountbody;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_mountbody(XDR *, mountbody*);
-#elif __STDC__ 
-extern  bool_t xdr_mountbody(XDR *, mountbody*);
-#else /* Old Style C */ 
-bool_t xdr_mountbody();
-#endif /* Old Style C */ 
-
 
 typedef struct groupnode *groups;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_groups(XDR *, groups*);
-#elif __STDC__ 
-extern  bool_t xdr_groups(XDR *, groups*);
-#else /* Old Style C */ 
-bool_t xdr_groups();
-#endif /* Old Style C */ 
-
 
 struct groupnode {
 	name gr_name;
 	groups gr_next;
 };
 typedef struct groupnode groupnode;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_groupnode(XDR *, groupnode*);
-#elif __STDC__ 
-extern  bool_t xdr_groupnode(XDR *, groupnode*);
-#else /* Old Style C */ 
-bool_t xdr_groupnode();
-#endif /* Old Style C */ 
-
 
 typedef struct exportnode *exports;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_exports(XDR *, exports*);
-#elif __STDC__ 
-extern  bool_t xdr_exports(XDR *, exports*);
-#else /* Old Style C */ 
-bool_t xdr_exports();
-#endif /* Old Style C */ 
-
 
 struct exportnode {
 	dirpath ex_dir;
@@ -159,14 +92,6 @@ struct exportnode {
 	exports ex_next;
 };
 typedef struct exportnode exportnode;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_exportnode(XDR *, exportnode*);
-#elif __STDC__ 
-extern  bool_t xdr_exportnode(XDR *, exportnode*);
-#else /* Old Style C */ 
-bool_t xdr_exportnode();
-#endif /* Old Style C */ 
-
 
 struct ppathcnf {
 	int pc_link_max;
@@ -180,110 +105,62 @@ struct ppathcnf {
 	short pc_mask[2];
 };
 typedef struct ppathcnf ppathcnf;
-#ifdef __cplusplus 
-extern "C" bool_t xdr_ppathcnf(XDR *, ppathcnf*);
-#elif __STDC__ 
-extern  bool_t xdr_ppathcnf(XDR *, ppathcnf*);
-#else /* Old Style C */ 
-bool_t xdr_ppathcnf();
-#endif /* Old Style C */ 
-
 #endif /*!_rpcsvc_mount_h*/
 
-#define MOUNTPROG ((u_long)100005)
-#define MOUNTVERS ((u_long)1)
+#define MOUNTPROG 100005
+#define MOUNTVERS 1
 
-#ifdef __cplusplus
-#define MOUNTPROC_NULL ((u_long)0)
-extern "C" void * mountproc_null_1(void *, CLIENT *);
-extern "C" void * mountproc_null_1_svc(void *, struct svc_req *);
-#define MOUNTPROC_MNT ((u_long)1)
-extern "C" fhstatus * mountproc_mnt_1(dirpath *, CLIENT *);
-extern "C" fhstatus * mountproc_mnt_1_svc(dirpath *, struct svc_req *);
-#define MOUNTPROC_DUMP ((u_long)2)
-extern "C" mountlist * mountproc_dump_1(void *, CLIENT *);
-extern "C" mountlist * mountproc_dump_1_svc(void *, struct svc_req *);
-#define MOUNTPROC_UMNT ((u_long)3)
-extern "C" void * mountproc_umnt_1(dirpath *, CLIENT *);
-extern "C" void * mountproc_umnt_1_svc(dirpath *, struct svc_req *);
-#define MOUNTPROC_UMNTALL ((u_long)4)
-extern "C" void * mountproc_umntall_1(void *, CLIENT *);
-extern "C" void * mountproc_umntall_1_svc(void *, struct svc_req *);
-#define MOUNTPROC_EXPORT ((u_long)5)
-extern "C" exports * mountproc_export_1(void *, CLIENT *);
-extern "C" exports * mountproc_export_1_svc(void *, struct svc_req *);
-#define MOUNTPROC_EXPORTALL ((u_long)6)
-extern "C" exports * mountproc_exportall_1(void *, CLIENT *);
-extern "C" exports * mountproc_exportall_1_svc(void *, struct svc_req *);
-
-#elif __STDC__
-#define MOUNTPROC_NULL ((u_long)0)
+#if defined(__STDC__) || defined(__cplusplus)
+#define MOUNTPROC_NULL 0
 extern  void * mountproc_null_1(void *, CLIENT *);
 extern  void * mountproc_null_1_svc(void *, struct svc_req *);
-#define MOUNTPROC_MNT ((u_long)1)
+#define MOUNTPROC_MNT 1
 extern  fhstatus * mountproc_mnt_1(dirpath *, CLIENT *);
 extern  fhstatus * mountproc_mnt_1_svc(dirpath *, struct svc_req *);
-#define MOUNTPROC_DUMP ((u_long)2)
+#define MOUNTPROC_DUMP 2
 extern  mountlist * mountproc_dump_1(void *, CLIENT *);
 extern  mountlist * mountproc_dump_1_svc(void *, struct svc_req *);
-#define MOUNTPROC_UMNT ((u_long)3)
+#define MOUNTPROC_UMNT 3
 extern  void * mountproc_umnt_1(dirpath *, CLIENT *);
 extern  void * mountproc_umnt_1_svc(dirpath *, struct svc_req *);
-#define MOUNTPROC_UMNTALL ((u_long)4)
+#define MOUNTPROC_UMNTALL 4
 extern  void * mountproc_umntall_1(void *, CLIENT *);
 extern  void * mountproc_umntall_1_svc(void *, struct svc_req *);
-#define MOUNTPROC_EXPORT ((u_long)5)
+#define MOUNTPROC_EXPORT 5
 extern  exports * mountproc_export_1(void *, CLIENT *);
 extern  exports * mountproc_export_1_svc(void *, struct svc_req *);
-#define MOUNTPROC_EXPORTALL ((u_long)6)
+#define MOUNTPROC_EXPORTALL 6
 extern  exports * mountproc_exportall_1(void *, CLIENT *);
 extern  exports * mountproc_exportall_1_svc(void *, struct svc_req *);
+extern int mountprog_1_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
 
-#else /* Old Style C */ 
-#define MOUNTPROC_NULL ((u_long)0)
+#else /* K&R C */
+#define MOUNTPROC_NULL 0
 extern  void * mountproc_null_1();
 extern  void * mountproc_null_1_svc();
-#define MOUNTPROC_MNT ((u_long)1)
+#define MOUNTPROC_MNT 1
 extern  fhstatus * mountproc_mnt_1();
 extern  fhstatus * mountproc_mnt_1_svc();
-#define MOUNTPROC_DUMP ((u_long)2)
+#define MOUNTPROC_DUMP 2
 extern  mountlist * mountproc_dump_1();
 extern  mountlist * mountproc_dump_1_svc();
-#define MOUNTPROC_UMNT ((u_long)3)
+#define MOUNTPROC_UMNT 3
 extern  void * mountproc_umnt_1();
 extern  void * mountproc_umnt_1_svc();
-#define MOUNTPROC_UMNTALL ((u_long)4)
+#define MOUNTPROC_UMNTALL 4
 extern  void * mountproc_umntall_1();
 extern  void * mountproc_umntall_1_svc();
-#define MOUNTPROC_EXPORT ((u_long)5)
+#define MOUNTPROC_EXPORT 5
 extern  exports * mountproc_export_1();
 extern  exports * mountproc_export_1_svc();
-#define MOUNTPROC_EXPORTALL ((u_long)6)
+#define MOUNTPROC_EXPORTALL 6
 extern  exports * mountproc_exportall_1();
 extern  exports * mountproc_exportall_1_svc();
-#endif /* Old Style C */ 
-#define MOUNTVERS_POSIX ((u_long)2)
+extern int mountprog_1_freeresult ();
+#endif /* K&R C */
+#define MOUNTVERS_POSIX 2
 
-#ifdef __cplusplus
-extern "C" void * mountproc_null_2(void *, CLIENT *);
-extern "C" void * mountproc_null_2_svc(void *, struct svc_req *);
-extern "C" fhstatus * mountproc_mnt_2(dirpath *, CLIENT *);
-extern "C" fhstatus * mountproc_mnt_2_svc(dirpath *, struct svc_req *);
-extern "C" mountlist * mountproc_dump_2(void *, CLIENT *);
-extern "C" mountlist * mountproc_dump_2_svc(void *, struct svc_req *);
-extern "C" void * mountproc_umnt_2(dirpath *, CLIENT *);
-extern "C" void * mountproc_umnt_2_svc(dirpath *, struct svc_req *);
-extern "C" void * mountproc_umntall_2(void *, CLIENT *);
-extern "C" void * mountproc_umntall_2_svc(void *, struct svc_req *);
-extern "C" exports * mountproc_export_2(void *, CLIENT *);
-extern "C" exports * mountproc_export_2_svc(void *, struct svc_req *);
-extern "C" exports * mountproc_exportall_2(void *, CLIENT *);
-extern "C" exports * mountproc_exportall_2_svc(void *, struct svc_req *);
-#define MOUNTPROC_PATHCONF ((u_long)7)
-extern "C" ppathcnf * mountproc_pathconf_2(dirpath *, CLIENT *);
-extern "C" ppathcnf * mountproc_pathconf_2_svc(dirpath *, struct svc_req *);
-
-#elif __STDC__
+#if defined(__STDC__) || defined(__cplusplus)
 extern  void * mountproc_null_2(void *, CLIENT *);
 extern  void * mountproc_null_2_svc(void *, struct svc_req *);
 extern  fhstatus * mountproc_mnt_2(dirpath *, CLIENT *);
@@ -298,11 +175,12 @@ extern  exports * mountproc_export_2(void *, CLIENT *);
 extern  exports * mountproc_export_2_svc(void *, struct svc_req *);
 extern  exports * mountproc_exportall_2(void *, CLIENT *);
 extern  exports * mountproc_exportall_2_svc(void *, struct svc_req *);
-#define MOUNTPROC_PATHCONF ((u_long)7)
+#define MOUNTPROC_PATHCONF 7
 extern  ppathcnf * mountproc_pathconf_2(dirpath *, CLIENT *);
 extern  ppathcnf * mountproc_pathconf_2_svc(dirpath *, struct svc_req *);
+extern int mountprog_2_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
 
-#else /* Old Style C */ 
+#else /* K&R C */
 extern  void * mountproc_null_2();
 extern  void * mountproc_null_2_svc();
 extern  fhstatus * mountproc_mnt_2();
@@ -317,9 +195,44 @@ extern  exports * mountproc_export_2();
 extern  exports * mountproc_export_2_svc();
 extern  exports * mountproc_exportall_2();
 extern  exports * mountproc_exportall_2_svc();
-#define MOUNTPROC_PATHCONF ((u_long)7)
+#define MOUNTPROC_PATHCONF 7
 extern  ppathcnf * mountproc_pathconf_2();
 extern  ppathcnf * mountproc_pathconf_2_svc();
-#endif /* Old Style C */ 
+extern int mountprog_2_freeresult ();
+#endif /* K&R C */
 
-#endif /* !_MOUNT_H_RPCGEN */
+/* the xdr functions */
+
+#if defined(__STDC__) || defined(__cplusplus)
+extern  bool_t xdr_fhandle (XDR *, fhandle);
+extern  bool_t xdr_fhstatus (XDR *, fhstatus*);
+extern  bool_t xdr_dirpath (XDR *, dirpath*);
+extern  bool_t xdr_name (XDR *, name*);
+extern  bool_t xdr_mountlist (XDR *, mountlist*);
+extern  bool_t xdr_mountbody (XDR *, mountbody*);
+extern  bool_t xdr_groups (XDR *, groups*);
+extern  bool_t xdr_groupnode (XDR *, groupnode*);
+extern  bool_t xdr_exports (XDR *, exports*);
+extern  bool_t xdr_exportnode (XDR *, exportnode*);
+extern  bool_t xdr_ppathcnf (XDR *, ppathcnf*);
+
+#else /* K&R C */
+extern bool_t xdr_fhandle ();
+extern bool_t xdr_fhstatus ();
+extern bool_t xdr_dirpath ();
+extern bool_t xdr_name ();
+extern bool_t xdr_mountlist ();
+extern bool_t xdr_mountbody ();
+extern bool_t xdr_groups ();
+extern bool_t xdr_groupnode ();
+extern bool_t xdr_exports ();
+extern bool_t xdr_exportnode ();
+extern bool_t xdr_ppathcnf ();
+
+#endif /* K&R C */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* !_MNT2_H_RPCGEN */
