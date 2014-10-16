@@ -7,7 +7,6 @@
 #include <KRecentDocument>
 #include <KDirWatch>
 #include <KDesktopFile>
-#include <KStandardDirs>
 #include <KIO/Job>
 #include <KIO/NetAccess>
 #include <KLocalizedString>
