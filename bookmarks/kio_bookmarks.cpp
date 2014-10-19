@@ -31,13 +31,13 @@
 #include <kshell.h>
 
 #include <kcomponentdata.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <kbookmark.h>
 #include <kbookmarkmanager.h>
 #include <kimagecache.h>
-#include <kdebug.h>
+#include <qdebug.h>
 #include <kfileplacesmodel.h>
 #include <solid/device.h>
 #include <solid/deviceinterface.h>
@@ -152,7 +152,7 @@ void BookmarksProtocol::flattenTree( const KBookmarkGroup &folder )
     next = tree.next(bm);
 
     if (bm.isGroup() && bm.parentGroup().hasParent()) {
-      kDebug() << "moving " << bm.text() << " from " << bm.parentGroup().fullText() << " to " << prev.parentGroup().text() << endl;
+      //qDebug() << "moving " << bm.text() << " from " << bm.parentGroup().fullText() << " to " << prev.parentGroup().text() << endl;
 
       bm.setFullText("| " + bm.parentGroup().fullText() + " > " + bm.fullText());
       tree.moveBookmark(bm, prev);
@@ -212,7 +212,7 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
   KApplication app;
 
   if (argc != 4) {
-      kError() << "Usage: kio_bookmarks protocol domain-socket1 domain-socket2";
+      qCritical() << "Usage: kio_bookmarks protocol domain-socket1 domain-socket2";
       exit(-1);
   }
 

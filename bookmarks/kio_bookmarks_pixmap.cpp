@@ -22,8 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <stdlib.h>
 
 
-#include <kcomponentdata.h>
-#include <klocale.h>
 #include <kimagecache.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>
@@ -31,7 +29,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <qbuffer.h>
 #include <qpainter.h>
 #include <qpixmap.h>
-#include <kicon.h>
+#include <QIcon>
 #include <KImageCache>
 
 using namespace KIO;
@@ -51,7 +49,7 @@ void BookmarksProtocol::echoImage( const QString &type, const QString &string, c
   QImage image;
   bool ok = cache->findImage(type + string + QString::number(size), &image);
   if (!ok || image.isNull()) {
-    KIcon icon = KIcon(string);
+    QIcon icon = QIcon::fromTheme(string);
     QPixmap pix; // KIcon can't give us a QImage anyways.
 
     if (type == "icon") {

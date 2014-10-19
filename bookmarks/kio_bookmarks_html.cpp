@@ -20,20 +20,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <QTextDocument>
 
-#include <kdebug.h>
 #include <kshell.h>
 
-#include <kcomponentdata.h>
-#include <klocale.h>
+#include <KLocalizedString>
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <kbookmark.h>
 #include <kbookmarkmanager.h>
 #include <kcolorscheme.h>
 #include <kcolorutils.h>
-#include <kglobalsettings.h>
 #include <QStandardPaths>
 #include <QFontDatabase>
 
