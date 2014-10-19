@@ -18,15 +18,17 @@
 */
 
 #include "testkioarchive.h"
-#include <qtest_kde.h>
+#include <qtest.h>
 #include <kio/copyjob.h>
 #include <kio/deletejob.h>
 #include <kio/netaccess.h>
 #include <ktar.h>
-#include <kstandarddirs.h>
-#include <kdebug.h>
+#include <QDebug>
+#include <QStandardPaths>
+#include <QFileInfo>
+#include <QDir>
 
-QTEST_KDEMAIN(TestKioArchive, NoGUI)
+QTEST_MAIN(TestKioArchive)
 static const char s_tarFileName[] = "karchivetest.tar";
 
 static void writeTestFilesToArchive( KArchive* archive )
@@ -69,10 +71,10 @@ void TestKioArchive::testListTar()
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = KIO::NetAccess::synchronousRun( job, 0 );
     QVERIFY( ok );
-    kDebug() << "listDir done - entry count=" << m_listResult.count();
+    //qDebug() << "listDir done - entry count=" << m_listResult.count();
     QVERIFY( m_listResult.count() > 1 );
 
-    kDebug() << m_listResult;
+    //qDebug() << m_listResult;
     QCOMPARE(m_listResult.count( "." ), 1); // found it, and only once
     QCOMPARE(m_listResult.count("empty"), 1);
     QCOMPARE(m_listResult.count("test1"), 1);
@@ -88,10 +90,10 @@ void TestKioArchive::testListRecursive()
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = KIO::NetAccess::synchronousRun( job, 0 );
     QVERIFY( ok );
-    kDebug() << "listDir done - entry count=" << m_listResult.count();
+    //qDebug() << "listDir done - entry count=" << m_listResult.count();
     QVERIFY( m_listResult.count() > 1 );
 
-    kDebug() << m_listResult;
+    //qDebug() << m_listResult;
     QCOMPARE(m_listResult.count( "." ), 1); // found it, and only once
     QCOMPARE(m_listResult.count("empty"), 1);
     QCOMPARE(m_listResult.count("test1"), 1);

@@ -1,6 +1,6 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio_archive\")
 
-add_subdirectory(tests)
+add_subdirectory(autotests)
 
 add_library(kio_archive MODULE kio_archive.cpp kio_archive_debug.cpp)
 target_link_libraries(kio_archive KF5::KIOCore KF5::Archive KF5::KDELibs4Support)
