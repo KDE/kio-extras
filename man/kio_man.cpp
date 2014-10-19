@@ -38,7 +38,6 @@
 
 #include <KLocalizedString>
 #include <KProcess>
-#include <kdebug.h>
 #include <kglobal.h>
 #include <kencodingprober.h>
 

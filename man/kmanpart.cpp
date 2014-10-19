@@ -22,7 +22,6 @@
 #include <KAboutData>
 #include <KLocalizedString>
 #include <kpluginfactory.h>
-#include <kdebug.h>
 
 #include <kdeversion.h>
 #include <QUrl>
