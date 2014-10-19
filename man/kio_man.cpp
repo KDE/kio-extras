@@ -18,7 +18,7 @@
 */
 
 #include "kio_man.h"
-
+#include "kio_man_debug.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -42,7 +42,6 @@
 #include <kglobal.h>
 #include <kencodingprober.h>
 
-#include "kio_man.moc"
 #include "man2html.h"
 #include <assert.h>
 #include <kfilterdev.h>
@@ -96,7 +95,7 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
         } else
         {
             // If the directory does not exist, then it is perhaps a normal man page
-            kDebug(7107) << url << " does not exist";
+            qCDebug(KIO_MAN_LOG) << url << " does not exist";
         }
     }
 
@@ -315,7 +314,7 @@ QStringList MANProtocol::findPages(const QString &_section,
         //
         // Find pages
         //
-        //kDebug(7107)<<"Before inner loop";
+        //qCDebug(KIO_MAN_LOG)<<"Before inner loop";
         for ( QStringList::const_iterator it_dir = man_dirs.constBegin();
               it_dir != man_dirs.constEnd();
               it_dir++ )
@@ -353,35 +352,35 @@ QStringList MANProtocol::findPages(const QString &_section,
                 }
             }
 
-            //kDebug(7107) <<" after while loop";
+            //qCDebug(KIO_MAN_LOG) <<" after while loop";
             ::closedir( dp );
 #if 0
-            kDebug(7107)<<"================-";
-            kDebug(7107)<<"star=="<<star;
-            kDebug(7107)<<"it_s=="<<it_s;
-            kDebug(7107)<<"================+";
+            qCDebug(KIO_MAN_LOG)<<"================-";
+            qCDebug(KIO_MAN_LOG)<<"star=="<<star;
+            qCDebug(KIO_MAN_LOG)<<"it_s=="<<it_s;
+            qCDebug(KIO_MAN_LOG)<<"================+";
 #endif
             if ( it_s != star ) { // in that case we only look around for sections
-                //kDebug(7107)<<"Within if ( it_s != star )";
+                //qCDebug(KIO_MAN_LOG)<<"Within if ( it_s != star )";
                 const QString dir = man_dir + QString("/man") + (it_real) + '/';
                 const QString sdir = man_dir + QString("/sman") + (it_real) + '/';
 
-                //kDebug(7107)<<"calling findManPagesInSection";
+                //qCDebug(KIO_MAN_LOG)<<"calling findManPagesInSection";
                 findManPagesInSection(dir, title, full_path, list);
                 findManPagesInSection(sdir, title, full_path, list);
             }
-            kDebug(7107)<<"After if";
+            qCDebug(KIO_MAN_LOG)<<"After if";
         }
     }
 
-    //kDebug(7107) << "finished " << list << " " << sect_list;
+    //qCDebug(KIO_MAN_LOG) << "finished " << list << " " << sect_list;
 
     return list;
 }
 
 void MANProtocol::findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list)
 {
-    kDebug(7107) << "findManPagesInSection " << dir << " " << title;
+    qCDebug(KIO_MAN_LOG) << "findManPagesInSection " << dir << " " << title;
     bool title_given = !title.isEmpty();
 
     DIR *dp = ::opendir( QFile::encodeName( dir ) );
@@ -450,7 +449,7 @@ extern void output_real(const char *insert)
 
 void MANProtocol::get(const QUrl& url )
 {
-    kDebug(7107) << "GET " << url.url();
+    qCDebug(KIO_MAN_LOG) << "GET " << url.url();
 
     QString title, section;
 
@@ -556,20 +555,20 @@ char *MANProtocol::readManPage(const char *_filename)
     {
       if (QDir::isRelativePath(filename))
       {
-          kDebug(7107) << "relative " << filename;
+          qCDebug(KIO_MAN_LOG) << "relative " << filename;
           filename = QDir::cleanPath(lastdir + '/' + filename).toUtf8();
-          kDebug(7107) << "resolved to " << filename;
+          qCDebug(KIO_MAN_LOG) << "resolved to " << filename;
       }
 
       lastdir = filename.left(filename.lastIndexOf('/'));
 
       if ( !QFile::exists(QFile::decodeName(filename)) )  // if given file does not exist, find with suffix
       {
-          kDebug(7107) << "not existing " << filename;
+          qCDebug(KIO_MAN_LOG) << "not existing " << filename;
           QDir mandir(lastdir);
           mandir.setNameFilters(QStringList() << (filename.mid(filename.lastIndexOf('/') + 1) + ".*"));
           filename = lastdir + '/' + QFile::encodeName(mandir.entryList().first());
-          kDebug(7107) << "resolved to " << filename;
+          qCDebug(KIO_MAN_LOG) << "resolved to " << filename;
       }
 
       QIODevice *fd = KFilterDev::deviceForFile(filename);
@@ -580,7 +579,7 @@ char *MANProtocol::readManPage(const char *_filename)
          return 0;
       }
       array = fd->readAll();
-      kDebug(7107) << "read " << array.size();
+      qCDebug(KIO_MAN_LOG) << "read " << array.size();
       fd->close();
       delete fd;
     }
@@ -592,7 +591,7 @@ char *MANProtocol::readManPage(const char *_filename)
     // detect it and always return it as UTF-8
     KEncodingProber encodingProber;
     encodingProber.feed(array);
-    kDebug(7107) << "auto-detect encoding for" << filename << "guess=" << encodingProber.encoding()
+    qCDebug(KIO_MAN_LOG) << "auto-detect encoding for" << filename << "guess=" << encodingProber.encoding()
                  << "confidence=" << encodingProber.confidence();
     QString out = QTextCodec::codecForName(encodingProber.encoding())->toUnicode(array);
     array = out.toUtf8();
@@ -661,7 +660,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 
 void MANProtocol::stat( const QUrl& url)
 {
-    kDebug(7107) << "ENTERING STAT " << url.url();
+    qCDebug(KIO_MAN_LOG) << "ENTERING STAT " << url.url();
 
     QString title, section;
 
@@ -671,7 +670,7 @@ void MANProtocol::stat( const QUrl& url)
         return;
     }
 
-    kDebug(7107) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section;
+    qCDebug(KIO_MAN_LOG) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section;
 
     UDSEntry entry;
     entry.insert(KIO::UDSEntry::UDS_NAME, title);
@@ -700,7 +699,7 @@ extern "C"
         QCoreApplication app(argc, argv);
         app.setApplicationName(QLatin1String("kio_man"));
 
-        kDebug(7107) <<  "STARTING";
+        qCDebug(KIO_MAN_LOG) <<  "STARTING";
 
         if (argc != 4)
         {
@@ -711,7 +710,7 @@ extern "C"
         MANProtocol slave(argv[2], argv[3]);
         slave.dispatchLoop();
 
-        kDebug(7107) << "Done";
+        qCDebug(KIO_MAN_LOG) << "Done";
 
         return 0;
     }
@@ -1355,7 +1354,7 @@ void MANProtocol::showIndex(const QString& section)
 
 void MANProtocol::listDir(const QUrl &url)
 {
-    kDebug( 7107 ) << url;
+    qCDebug(KIO_MAN_LOG) << url;
 
     QString title;
     QString section;

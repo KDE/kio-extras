@@ -6,7 +6,8 @@ set(kio_man_test_SRCS
     kio_man_test.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/../request_hash.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man.cpp )
+    ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man_debug.cpp)
 
 
 
@@ -20,7 +21,8 @@ target_link_libraries(kio_man_test KF5::KIOCore KF5::Archive KF5::KDELibs4Suppor
 
 set(man2html_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/../request_hash.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp )
+    ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man_debug.cpp)
 
 
 add_executable(man2html ${man2html_SRCS})
