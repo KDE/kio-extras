@@ -5,7 +5,7 @@ set(kio_bookmarks_PART_SRCS kio_bookmarks.cpp kio_bookmarks_html.cpp kio_bookmar
 
 add_library(kio_bookmarks MODULE ${kio_bookmarks_PART_SRCS})
 
-target_link_libraries(kio_bookmarks KF5::KIOCore KF5::KDELibs4Support KF5::Solid)
+target_link_libraries(kio_bookmarks KF5::KIOCore KF5::I18n KF5::Bookmarks KF5::Solid KF5::GuiAddons KF5::KIOFileWidgets)
 
 install(TARGETS kio_bookmarks  DESTINATION ${PLUGIN_INSTALL_DIR} )
 

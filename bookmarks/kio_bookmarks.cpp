@@ -24,13 +24,8 @@
 #include <qregexp.h>
 #include <qurlquery.h>
 
-#include <kapplication.h>
-#include <kcmdlineargs.h>
-#include <k4aboutdata.h>
-
 #include <kshell.h>
 
-#include <kcomponentdata.h>
 #include <KLocalizedString>
 #include <kconfig.h>
 #include <kconfiggroup.h>
@@ -42,6 +37,7 @@
 #include <solid/device.h>
 #include <solid/deviceinterface.h>
 #include <ktoolinvocation.h>
+#include <QCoreApplication>
 
 using namespace KIO;
 
@@ -205,11 +201,8 @@ void BookmarksProtocol::get( const QUrl& url )
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
-  K4AboutData about("kio_bookmarks", 0, ki18n("My bookmarks"), "0.2.2");
-  about.addLicense(K4AboutData::License_GPL_V2);
-  about.addAuthor(ki18n("Xavier Vello"), ki18n("Initial developer"), "xavier.vello@gmail.com", QByteArray());
-  KCmdLineArgs::init(&about);
-  KApplication app;
+  QCoreApplication app(argc, argv); 
+  app.setApplicationName(QLatin1String("kio_ldap"));
 
   if (argc != 4) {
       qCritical() << "Usage: kio_bookmarks protocol domain-socket1 domain-socket2";

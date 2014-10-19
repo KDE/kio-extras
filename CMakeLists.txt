@@ -38,7 +38,11 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     KDELibs4Support
     Pty
     Solid
+    Bookmarks
+    GuiAddons
+    KIO
 )
+
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
