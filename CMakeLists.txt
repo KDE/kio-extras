@@ -132,6 +132,7 @@ if (LIBSSH_FOUND)
   add_subdirectory(sftp)
 endif ()
 add_subdirectory(settings)
+add_subdirectory( filenamesearch )
 
 if(NOT WIN32)
    add_subdirectory( man )
