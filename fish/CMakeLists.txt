@@ -47,11 +47,13 @@ if (MD5SUM_EXECUTABLE)
 
    target_link_libraries(kio_fish KF5::KIOCore KF5::KDELibs4Support)
 
+   set_target_properties(kio_fish PROPERTIES OUTPUT_NAME "fish")
+
    if (UTIL_LIBRARIES)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})
    endif ()
 
-   install(TARGETS kio_fish  DESTINATION ${PLUGIN_INSTALL_DIR} )
+   install(TARGETS kio_fish  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio )
 
 
    ########### install files ###############

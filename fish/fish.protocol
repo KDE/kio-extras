@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_fish
+exec=kf5/kio/fish
 protocol=fish
 input=none
 output=filesystem

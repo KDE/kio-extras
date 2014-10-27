@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_settings
+exec=kf5/kio/settings
 protocol=settings
 input=none
 output=filesystem

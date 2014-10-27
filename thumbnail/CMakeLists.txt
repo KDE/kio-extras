@@ -45,7 +45,9 @@ target_link_libraries(kio_thumbnail
 	KF5::KDELibs4Support
 )
 
-install(TARGETS kio_thumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+set_target_properties(kio_thumbnail PROPERTIES OUTPUT_NAME "thumbnail")
+
+install(TARGETS kio_thumbnail DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
 
 ########### next target ###############
 

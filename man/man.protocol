@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_man
+exec=kf5/kio/man
 protocol=man
 input=none
 output=filesystem

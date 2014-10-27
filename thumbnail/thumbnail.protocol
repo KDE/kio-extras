@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_thumbnail
+exec=kf5/kio/thumbnail
 protocol=thumbnail
 input=stream
 output=stream

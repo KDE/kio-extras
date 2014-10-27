@@ -33,7 +33,9 @@ add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
 target_link_libraries(kio_smb KF5::KIOCore KF5::I18n mpr)    
 endif()
 
-install(TARGETS kio_smb  DESTINATION ${PLUGIN_INSTALL_DIR} )
+set_target_properties(kio_smb PROPERTIES OUTPUT_NAME "smb")
+
+install(TARGETS kio_smb DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
 
 
 ########### install files ###############

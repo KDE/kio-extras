@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_bookmarks
+exec=kf5/kio/bookmarks
 protocol=bookmarks
 input=none
 output=stream

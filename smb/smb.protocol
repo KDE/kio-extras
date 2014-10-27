@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_smb
+exec=kf5/kio/smb
 protocol=smb
 input=none
 output=filesystem

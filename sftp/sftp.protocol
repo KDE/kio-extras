@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_sftp
+exec=kf5/kio/sftp
 protocol=sftp
 input=none
 listing=Name,Type,Size,Date,AccessDate,Access,Owner,Group,Link,MimeType

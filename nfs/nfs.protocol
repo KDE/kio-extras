@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_nfs
+exec=kf5/kio/nfs
 protocol=nfs
 input=none
 output=filesystem

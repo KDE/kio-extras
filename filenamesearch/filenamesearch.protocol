@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_filenamesearch
+exec=kf5/kio/filenamesearch
 protocol=filenamesearch
 input=none
 output=filesystem

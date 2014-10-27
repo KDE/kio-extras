@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_filter
+exec=kf5/kio/filter
 protocol=bzip2
 archiveMimetype=application/x-bzip2
 determineMimetypeFromExtension=false

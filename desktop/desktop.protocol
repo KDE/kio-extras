@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_desktop
+exec=kf5/kio/desktop
 protocol=desktop
 Icon=user-desktop
 input=none

@@ -4,7 +4,9 @@ add_library(kio_desktop MODULE kio_desktop.cpp)
 
 target_link_libraries(kio_desktop KF5::KIOCore KF5::KDELibs4Support)
 
-install(TARGETS kio_desktop DESTINATION  ${PLUGIN_INSTALL_DIR} )
+set_target_properties(kio_desktop PROPERTIES OUTPUT_NAME "desktop")
+
+install(TARGETS kio_desktop DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
 
 ########### next target ###############
 

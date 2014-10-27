@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_filter
+exec=kf5/kio/filter
 protocol=xz
 archiveMimetype=application/x-xz
 determineMimetypeFromExtension=false
