@@ -527,7 +527,7 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
     return false;
   }
 
-  int timeout_sec = 30, timeout_usec = 0;
+  long timeout_sec = 30, timeout_usec = 0;
 
   qCDebug(KIO_SMTP_LOG) << "Creating the SSH session and setting options";
 
