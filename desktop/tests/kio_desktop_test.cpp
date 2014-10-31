@@ -58,7 +58,7 @@ private Q_SLOTS:
         tempFile.write( "Hello world\n", 12 );
         QString fileName = tempFile.fileName();
         tempFile.close();
-        KIO::Job* job = KIO::file_copy(fileName, KUrl("desktop:/" + m_testFileName), -1, KIO::HideProgressInfo);
+        KIO::Job* job = KIO::file_copy(QUrl::fromLocalFile(fileName), QUrl("desktop:/" + m_testFileName), -1, KIO::HideProgressInfo);
         job->setUiDelegate(0);
         QVERIFY(job->exec());
         QVERIFY(QFile::exists(m_desktopPath + '/' + m_testFileName));
@@ -66,9 +66,9 @@ private Q_SLOTS:
 
     void testMostLocalUrl() // relies on testCopyToDesktop being run before
     {
-        const KUrl desktopUrl("desktop:/" + m_testFileName);
+        const QUrl desktopUrl("desktop:/" + m_testFileName);
         const QString filePath(m_desktopPath + '/' + m_testFileName);
-        KIO::StatJob* job = KIO::mostLocalUrl(KUrl(desktopUrl), KIO::HideProgressInfo);
+        KIO::StatJob* job = KIO::mostLocalUrl(desktopUrl, KIO::HideProgressInfo);
         QVERIFY(job);
         bool ok = job->exec();
         QVERIFY(ok);
@@ -99,14 +99,14 @@ private Q_SLOTS:
 
         if (withDirListerCache) {
             KDirLister lister;
-            lister.openUrl(KUrl("desktop:/"));
+            lister.openUrl(QUrl("desktop:/"));
             QEventLoop eventLoop;
             connect(&lister, static_cast<void (KDirLister::*)()>(&KDirLister::completed), &eventLoop, &QEventLoop::quit);
             eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
         }
 
-        const KUrl srcUrl(srcFile);
-        const KUrl destUrl(destFile);
+        const QUrl srcUrl = QUrl::fromLocalFile(srcFile);
+        const QUrl destUrl = QUrl::fromLocalFile(destFile);
 
         const QString srcFilePath(m_desktopPath + srcUrl.path());
         QVERIFY(QFile::exists(srcFilePath));
