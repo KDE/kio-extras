@@ -66,4 +66,4 @@ if(SLP_FOUND)
 endif()
 set_target_properties( molletnetwork  PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} )
 
-install( TARGETS molletnetwork  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+install( TARGETS molletnetwork  ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP )
