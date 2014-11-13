@@ -22,6 +22,7 @@
 #include <stdlib.h>
 
 #include <qregexp.h>
+#include <qtextdocument.h>
 #include <qurlquery.h>
 
 #include <kapplication.h>
@@ -198,7 +199,7 @@ void BookmarksProtocol::get( const QUrl& url )
     echoImage(regexp.cap(1), regexp.cap(2), QUrlQuery(url).queryItemValue("size"));
   } else {
     echoHead();
-    echo("<p class=\"message\">" + i18n("Wrong request: %1",path) + "</p>");
+    echo("<p class=\"message\">" + i18n("Wrong request: %1", Qt::escape(url.toDisplayString())) + "</p>");
   }
   finished();
 }
