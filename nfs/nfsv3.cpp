@@ -2009,12 +2009,12 @@ bool NFSProtocolV3::rename(const QString& src, const QString& dest, int& rpcStat
     memset(&args, 0, sizeof(args));
 
     QByteArray srcByteName = QFile::encodeName(srcFileInfo.fileName());
-    srcDirectoryFH.toFH(args.fromfile.dir);
-    args.fromfile.name = srcByteName.data();
+    srcDirectoryFH.toFH(args.from.dir);
+    args.from.name = srcByteName.data();
 
     QByteArray destByteName = QFile::encodeName(destFileInfo.fileName());
-    destDirectoryFH.toFH(args.tofile.dir);
-    args.tofile.name = destByteName.data();
+    destDirectoryFH.toFH(args.to.dir);
+    args.to.name = destByteName.data();
 
     rpcStatus = clnt_call(m_nfsClient, NFSPROC3_RENAME,
                           (xdrproc_t) xdr_RENAME3args, reinterpret_cast<caddr_t>(&args),

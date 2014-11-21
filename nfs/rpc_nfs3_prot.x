@@ -15,10 +15,22 @@ const NFS3_COOKIEVERFSIZE = 8;
 const NFS3_CREATEVERFSIZE = 8;
 const NFS3_WRITEVERFSIZE  = 8;
 
-typedef u_int64_t uint64;
+%#if defined(HAVE_XDR_U_INT64_T)
+%#define xdr_uint64_t xdr_u_int64_t
+%#elif !defined(HAVE_XDR_UINT64_T)
+%#if defined(HAVE_XDR_U_HYPER)
+%#define xdr_uint64_t xdr_u_hyper
+%#define xdr_int64_t xdr_hyper
+%#elif defined(HAVE_XDR_U_LONGLONG_T)
+%#define xdr_uint64_t xdr_u_longlong_t
+%#define xdr_int64_t xdr_longlong_t
+%#endif
+%#endif
+
+typedef uint64_t uint64;
 typedef int64_t int64;
-typedef u_int32_t uint32;
-typedef int32_t int32;
+typedef unsigned long uint32;
+typedef long int32;
 typedef string filename3<>;
 typedef string nfspath3<>;
 typedef uint64 fileid3;
@@ -204,73 +216,73 @@ struct diropargs3 {
 
 program NFS_PROGRAM {
   version NFS_V3 {
-    
+
     void
      NFSPROC3_NULL(void)                    = 0;
-    
+
     GETATTR3res
      NFSPROC3_GETATTR(GETATTR3args)         = 1;
-    
+
     SETATTR3res
      NFSPROC3_SETATTR(SETATTR3args)         = 2;
-    
+
     LOOKUP3res
      NFSPROC3_LOOKUP(LOOKUP3args)           = 3;
-    
+
     ACCESS3res
      NFSPROC3_ACCESS(ACCESS3args)           = 4;
-    
+
     READLINK3res
      NFSPROC3_READLINK(READLINK3args)       = 5;
-    
+
     READ3res
      NFSPROC3_READ(READ3args)               = 6;
-    
+
     WRITE3res
      NFSPROC3_WRITE(WRITE3args)             = 7;
-    
+
     CREATE3res
      NFSPROC3_CREATE(CREATE3args)           = 8;
-    
+
     MKDIR3res
      NFSPROC3_MKDIR(MKDIR3args)             = 9;
-    
+
     SYMLINK3res
      NFSPROC3_SYMLINK(SYMLINK3args)         = 10;
-    
+
     MKNOD3res
      NFSPROC3_MKNOD(MKNOD3args)             = 11;
-    
+
     REMOVE3res
      NFSPROC3_REMOVE(REMOVE3args)           = 12;
-    
+
     RMDIR3res
      NFSPROC3_RMDIR(RMDIR3args)             = 13;
-    
+
     RENAME3res
      NFSPROC3_RENAME(RENAME3args)           = 14;
-    
+
     LINK3res
      NFSPROC3_LINK(LINK3args)               = 15;
-    
+
     READDIR3res
      NFSPROC3_READDIR(READDIR3args)         = 16;
-    
+
     READDIRPLUS3res
      NFSPROC3_READDIRPLUS(READDIRPLUS3args) = 17;
-    
+
     FSSTAT3res
      NFSPROC3_FSSTAT(FSSTAT3args)           = 18;
-    
+
     FSINFO3res
      NFSPROC3_FSINFO(FSINFO3args)           = 19;
-    
+
     PATHCONF3res
      NFSPROC3_PATHCONF(PATHCONF3args)       = 20;
-    
+
     COMMIT3res
      NFSPROC3_COMMIT(COMMIT3args)           = 21;
-    
+
 } = 3;
 } = 100003;
 
@@ -838,13 +850,13 @@ default:
 };
 
 
-const MNTPATHLEN = 1024;  /* Maximum bytes in a path name */
-const MNTNAMLEN  = 255;   /* Maximum bytes in a name */
-const FHSIZE3    = 64;    /* Maximum bytes in a V3 file handle */
+const MNTPATHLEN3 = 1024;   /* Maximum bytes in a path name */
+const MNTNAMLEN3  = 255;    /* Maximum bytes in a name */
+const FHSIZE3    = 64;      /* Maximum bytes in a V3 file handle */
 
 typedef opaque fhandle3<FHSIZE3>;
-typedef string dirpath<MNTPATHLEN>;
-typedef string name<MNTNAMLEN>;
+typedef string dirpath3<MNTPATHLEN3>;
+typedef string name3<MNTNAMLEN3>;
 
 enum mountstat3 {
    MNT3_OK = 0,                 /* no error */
@@ -862,12 +874,12 @@ enum mountstat3 {
 
 program MOUNT_PROGRAM {
   version MOUNT_V3 {
-    void      MOUNTPROC3_NULL(void)    = 0;
-    mountres3 MOUNTPROC3_MNT(dirpath)  = 1;
-    mountlist MOUNTPROC3_DUMP(void)    = 2;
-    void      MOUNTPROC3_UMNT(dirpath) = 3;
-    void      MOUNTPROC3_UMNTALL(void) = 4;
-    exports   MOUNTPROC3_EXPORT(void)  = 5;
+    void        MOUNTPROC3_NULL(void)     = 0;
+    mountres3   MOUNTPROC3_MNT(dirpath3)  = 1;
+    mountlist3  MOUNTPROC3_DUMP(void)     = 2;
+    void        MOUNTPROC3_UMNT(dirpath3) = 3;
+    void        MOUNTPROC3_UMNTALL(void)  = 4;
+    exports3    MOUNTPROC3_EXPORT(void)   = 5;
   } = 3;
 } = 100005;
 
@@ -883,26 +895,26 @@ default:
   void;
 };
 
-typedef struct mountbody *mountlist;
+typedef struct mountbody3 *mountlist3;
 
-struct mountbody {
-  name       ml_hostname;
-  dirpath    ml_directory;
-  mountlist  ml_next;
+struct mountbody3 {
+  name3       ml_hostname;
+  dirpath3    ml_directory;
+  mountlist3  ml_next;
 };
 
 
-typedef struct groupnode *groups;
+typedef struct groupnode3 *groups3;
 
-struct groupnode {
-  name     gr_name;
-  groups   gr_next;
+struct groupnode3 {
+  name3     gr_name;
+  groups3   gr_next;
 };
 
-typedef struct exportnode *exports;
+typedef struct exportnode3 *exports3;
 
-struct exportnode {
-  dirpath  ex_dir;
-  groups   ex_groups;
-  exports  ex_next;
+struct exportnode3 {
+  dirpath3  ex_dir;
+  groups3   ex_groups;
+  exports3  ex_next;
 };

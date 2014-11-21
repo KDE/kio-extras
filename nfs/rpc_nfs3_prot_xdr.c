@@ -4,13 +4,24 @@
  */
 
 #include "rpc_nfs3_prot.h"
+#if defined(HAVE_XDR_U_INT64_T)
+#define xdr_uint64_t xdr_u_int64_t
+#elif !defined(HAVE_XDR_UINT64_T)
+#if defined(HAVE_XDR_U_HYPER)
+#define xdr_uint64_t xdr_u_hyper
+#define xdr_int64_t xdr_hyper
+#elif defined(HAVE_XDR_U_LONGLONG_T)
+#define xdr_uint64_t xdr_u_longlong_t
+#define xdr_int64_t xdr_longlong_t
+#endif
+#endif
 
 bool_t
 xdr_uint64 (XDR *xdrs, uint64 *objp)
 {
 	register int32_t *buf;
 
-	 if (!xdr_u_quad_t (xdrs, objp))
+	 if (!xdr_uint64_t (xdrs, objp))
 		 return FALSE;
 	return TRUE;
 }
@@ -20,7 +31,7 @@ xdr_int64 (XDR *xdrs, int64 *objp)
 {
 	register int32_t *buf;
 
-	 if (!xdr_quad_t (xdrs, objp))
+	 if (!xdr_int64_t (xdrs, objp))
 		 return FALSE;
 	return TRUE;
 }
@@ -30,7 +41,7 @@ xdr_uint32 (XDR *xdrs, uint32 *objp)
 {
 	register int32_t *buf;
 
-	 if (!xdr_u_int (xdrs, objp))
+	 if (!xdr_u_long (xdrs, objp))
 		 return FALSE;
 	return TRUE;
 }
@@ -40,7 +51,7 @@ xdr_int32 (XDR *xdrs, int32 *objp)
 {
 	register int32_t *buf;
 
-	 if (!xdr_int (xdrs, objp))
+	 if (!xdr_long (xdrs, objp))
 		 return FALSE;
 	return TRUE;
 }
@@ -1315,9 +1326,9 @@ xdr_RENAME3args (XDR *xdrs, RENAME3args *objp)
 {
 	register int32_t *buf;
 
-	 if (!xdr_diropargs3 (xdrs, &objp->fromfile))
+	 if (!xdr_diropargs3 (xdrs, &objp->from))
 		 return FALSE;
-	 if (!xdr_diropargs3 (xdrs, &objp->tofile))
+	 if (!xdr_diropargs3 (xdrs, &objp->to))
 		 return FALSE;
 	return TRUE;
 }
@@ -1904,5 +1915,146 @@ xdr_COMMIT3res (XDR *xdrs, COMMIT3res *objp)
 			 return FALSE;
 		break;
 	}
+	return TRUE;
+}
+
+bool_t
+xdr_fhandle3 (XDR *xdrs, fhandle3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_bytes (xdrs, (char **)&objp->fhandle3_val, (u_int *) &objp->fhandle3_len, FHSIZE3))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_dirpath3 (XDR *xdrs, dirpath3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_string (xdrs, objp, MNTPATHLEN3))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_name3 (XDR *xdrs, name3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_string (xdrs, objp, MNTNAMLEN3))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_mountstat3 (XDR *xdrs, mountstat3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_enum (xdrs, (enum_t *) objp))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_mountres3_ok (XDR *xdrs, mountres3_ok *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_fhandle3 (xdrs, &objp->fhandle))
+		 return FALSE;
+	 if (!xdr_array (xdrs, (char **)&objp->auth_flavors.auth_flavors_val, (u_int *) &objp->auth_flavors.auth_flavors_len, ~0,
+		sizeof (int), (xdrproc_t) xdr_int))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_mountres3 (XDR *xdrs, mountres3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_mountstat3 (xdrs, &objp->fhs_status))
+		 return FALSE;
+	switch (objp->fhs_status) {
+	case MNT3_OK:
+		 if (!xdr_mountres3_ok (xdrs, &objp->mountres3_u.mountinfo))
+			 return FALSE;
+		break;
+	default:
+		break;
+	}
+	return TRUE;
+}
+
+bool_t
+xdr_mountlist3 (XDR *xdrs, mountlist3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_pointer (xdrs, (char **)objp, sizeof (struct mountbody3), (xdrproc_t) xdr_mountbody3))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_mountbody3 (XDR *xdrs, mountbody3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_name3 (xdrs, &objp->ml_hostname))
+		 return FALSE;
+	 if (!xdr_dirpath3 (xdrs, &objp->ml_directory))
+		 return FALSE;
+	 if (!xdr_mountlist3 (xdrs, &objp->ml_next))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_groups3 (XDR *xdrs, groups3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_pointer (xdrs, (char **)objp, sizeof (struct groupnode3), (xdrproc_t) xdr_groupnode3))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_groupnode3 (XDR *xdrs, groupnode3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_name3 (xdrs, &objp->gr_name))
+		 return FALSE;
+	 if (!xdr_groups3 (xdrs, &objp->gr_next))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_exports3 (XDR *xdrs, exports3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_pointer (xdrs, (char **)objp, sizeof (struct exportnode3), (xdrproc_t) xdr_exportnode3))
+		 return FALSE;
+	return TRUE;
+}
+
+bool_t
+xdr_exportnode3 (XDR *xdrs, exportnode3 *objp)
+{
+	register int32_t *buf;
+
+	 if (!xdr_dirpath3 (xdrs, &objp->ex_dir))
+		 return FALSE;
+	 if (!xdr_groups3 (xdrs, &objp->ex_groups))
+		 return FALSE;
+	 if (!xdr_exports3 (xdrs, &objp->ex_next))
+		 return FALSE;
 	return TRUE;
 }

@@ -106,7 +106,7 @@ struct nfs_fh {
 	opaque data[NFS_FHSIZE];
 };
 
-/* 
+/*
  * Timeval
  */
 struct nfstime {
@@ -148,7 +148,7 @@ struct sattr {
 };
 
 
-typedef string filename<NFS_MAXNAMLEN>; 
+typedef string filename<NFS_MAXNAMLEN>;
 typedef string nfspath<NFS_MAXPATHLEN>;
 
 /*
@@ -222,7 +222,7 @@ default:
 };
 
 /*
- * Arguments to remote write 
+ * Arguments to remote write
  */
 struct writeargs {
 	nfs_fh	file;		/* handle for file */
@@ -304,28 +304,28 @@ default:
  */
 program NFS_PROGRAM {
 	version NFS_VERSION {
-		void 
+		void
 		NFSPROC_NULL(void) = 0;
 
-		attrstat 
+		attrstat
 		NFSPROC_GETATTR(nfs_fh) =	1;
 
-		attrstat 
+		attrstat
 		NFSPROC_SETATTR(sattrargs) = 2;
 
-		void 
+		void
 		NFSPROC_ROOT(void) = 3;
 
-		diropres 
+		diropres
 		NFSPROC_LOOKUP(diropargs) = 4;
 
-		readlinkres 
+		readlinkres
 		NFSPROC_READLINK(nfs_fh) = 5;
 
-		readres 
+		readres
 		NFSPROC_READ(readargs) = 6;
 
-		void 
+		void
 		NFSPROC_WRITECACHE(void) = 7;
 
 		attrstat
@@ -359,6 +359,215 @@ program NFS_PROGRAM {
 		NFSPROC_STATFS(nfs_fh) = 17;
 	} = 2;
 } = 100003;
+
+/* Mount v2 */
+
+const MNTPATHLEN = 1024;	/* maximum bytes in a pathname argument */
+const MNTNAMLEN = 255;		/* maximum bytes in a name argument */
+const FHSIZE = 32;		/* size in bytes of a file handle */
+
+/*
+ * The fhandle is the file handle that the server passes to the client.
+ * All file operations are done using the file handles to refer to a file
+ * or a directory. The file handle can contain whatever information the
+ * server needs to distinguish an individual file.
+ */
+typedef opaque fhandle[FHSIZE];
+
+/*
+ * If a status of zero is returned, the call completed successfully, and
+ * a file handle for the directory follows. A non-zero status indicates
+ * some sort of error. The status corresponds with UNIX error numbers.
+ */
+union fhstatus switch (unsigned fhs_status) {
+case 0:
+	fhandle fhs_fhandle;
+default:
+	void;
+};
+
+/*
+ * The type dirpath is the pathname of a directory
+ */
+typedef string dirpath<MNTPATHLEN>;
+
+/*
+ * The type name is used for arbitrary names (hostnames, groupnames)
+ */
+typedef string name<MNTNAMLEN>;
+
+/*
+ * A list of who has what mounted
+ */
+typedef struct mountbody *mountlist;
+struct mountbody {
+	name ml_hostname;
+	dirpath ml_directory;
+	mountlist ml_next;
+};
+
+/*
+ * A list of netgroups
+ */
+typedef struct groupnode *groups;
+struct groupnode {
+	name gr_name;
+	groups gr_next;
+};
+
+/*
+ * A list of what is exported and to whom
+ */
+typedef struct exportnode *exports;
+struct exportnode {
+	dirpath ex_dir;
+	groups ex_groups;
+	exports ex_next;
+};
+
+/*
+ * POSIX pathconf information
+ */
+struct ppathcnf {
+	int	pc_link_max;	/* max links allowed */
+	short	pc_max_canon;	/* max line len for a tty */
+	short	pc_max_input;	/* input a tty can eat all at once */
+	short	pc_name_max;	/* max file name length (dir entry) */
+	short	pc_path_max;	/* max path name length (/x/y/x/.. ) */
+	short	pc_pipe_buf;	/* size of a pipe (bytes) */
+	u_char	pc_vdisable;	/* safe char to turn off c_cc[i] */
+	char	pc_xxx;		/* alignment padding; cc_t == char */
+	short	pc_mask[2];	/* validity and boolean bits */
+};
+
+program MOUNTPROG {
+	/*
+	 * Version one of the mount protocol communicates with version two
+	 * of the NFS protocol. The only connecting point is the fhandle
+	 * structure, which is the same for both protocols.
+	 */
+	version MOUNTVERS {
+		/*
+		 * Does no work. It is made available in all RPC services
+		 * to allow server reponse testing and timing
+		 */
+		void
+		MOUNTPROC_NULL(void) = 0;
+
+		/*
+		 * If fhs_status is 0, then fhs_fhandle contains the
+		 * file handle for the directory. This file handle may
+		 * be used in the NFS protocol. This procedure also adds
+		 * a new entry to the mount list for this client mounting
+		 * the directory.
+		 * Unix authentication required.
+		 */
+		fhstatus
+		MOUNTPROC_MNT(dirpath) = 1;
+
+		/*
+		 * Returns the list of remotely mounted filesystems. The
+		 * mountlist contains one entry for each hostname and
+		 * directory pair.
+		 */
+		mountlist
+		MOUNTPROC_DUMP(void) = 2;
+
+		/*
+		 * Removes the mount list entry for the directory
+		 * Unix authentication required.
+		 */
+		void
+		MOUNTPROC_UMNT(dirpath) = 3;
+
+		/*
+		 * Removes all of the mount list entries for this client
+		 * Unix authentication required.
+		 */
+		void
+		MOUNTPROC_UMNTALL(void) = 4;
+
+		/*
+		 * Returns a list of all the exported filesystems, and which
+		 * machines are allowed to import it.
+		 */
+		exports
+		MOUNTPROC_EXPORT(void)  = 5;
+
+		/*
+		 * Identical to MOUNTPROC_EXPORT above
+		 */
+		exports
+		MOUNTPROC_EXPORTALL(void) = 6;
+	} = 1;
+
+	/*
+	 * Version two of the mount protocol communicates with version two
+	 * of the NFS protocol.
+	 * The only difference from version one is the addition of a POSIX
+	 * pathconf call.
+	 */
+	version MOUNTVERS_POSIX {
+		/*
+		 * Does no work. It is made available in all RPC services
+		 * to allow server reponse testing and timing
+		 */
+		void
+		MOUNTPROC_NULL(void) = 0;
+
+		/*
+		 * If fhs_status is 0, then fhs_fhandle contains the
+		 * file handle for the directory. This file handle may
+		 * be used in the NFS protocol. This procedure also adds
+		 * a new entry to the mount list for this client mounting
+		 * the directory.
+		 * Unix authentication required.
+		 */
+		fhstatus
+		MOUNTPROC_MNT(dirpath) = 1;
+
+		/*
+		 * Returns the list of remotely mounted filesystems. The
+		 * mountlist contains one entry for each hostname and
+		 * directory pair.
+		 */
+		mountlist
+		MOUNTPROC_DUMP(void) = 2;
+
+		/*
+		 * Removes the mount list entry for the directory
+		 * Unix authentication required.
+		 */
+		void
+		MOUNTPROC_UMNT(dirpath) = 3;
+
+		/*
+		 * Removes all of the mount list entries for this client
+		 * Unix authentication required.
+		 */
+		void
+		MOUNTPROC_UMNTALL(void) = 4;
+
+		/*
+		 * Returns a list of all the exported filesystems, and which
+		 * machines are allowed to import it.
+		 */
+		exports
+		MOUNTPROC_EXPORT(void)  = 5;
+
+		/*
+		 * Identical to MOUNTPROC_EXPORT above
+		 */
+		exports
+		MOUNTPROC_EXPORTALL(void) = 6;
+
+		/*
+		 * POSIX pathconf info (Sun hack)
+		 */
+		ppathcnf
+		MOUNTPROC_PATHCONF(dirpath) = 7;
+	} = 2;
+} = 100005;
 
 #ifdef RPC_HDR
 %#endif /*!_rpcsvc_nfs_prot_h*/
