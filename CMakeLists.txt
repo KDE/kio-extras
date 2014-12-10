@@ -85,6 +85,13 @@ set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP 
                        PURPOSE "Needed to build the SFTP kioslave"
                       )
 
+find_package(Mtp)
+set_package_properties(Mtp PROPERTIES DESCRIPTION "the MTP library"
+                       URL "http://libmtp.sourceforge.net/"
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build the MTP kioslave"
+                       )
+
 # ECM's KDECompilerSettings.cmake should take care of enabling supporting on
 # 32bit architectures.
 # Thorw a fatal error if off_t isn't >=64bit to ensure that large files are working
@@ -133,6 +140,9 @@ if (LIBSSH_FOUND)
 endif ()
 add_subdirectory(settings)
 add_subdirectory( filenamesearch )
+if (MTP_FOUND)
+  add_subdirectory(mtp)
+endif()
 
 if(NOT WIN32)
    add_subdirectory( man )
