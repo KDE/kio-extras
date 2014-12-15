@@ -1,6 +1,8 @@
 [Desktop Entry]
 Icon=multimedia-player
 Name=MTP Devices
+Name[de]=MTP-Geräte
+Name[en_GB]=MTP Devices
 Name[es]=Dispositivos MTP
 Name[fi]=MTP-laitteet
 Name[nl]=MTP-apparaten
@@ -8,6 +10,10 @@ Name[pl]=Urządzenia MTP
 Name[pt]=Dispositivos MTP
 Name[pt_BR]=Dispositivos MTP
 Name[sk]=Zariadenia MTP
+Name[sr]=МТП уређаји
+Name[sr@ijekavian]=МТП уређаји
+Name[sr@ijekavianlatin]=MTP uređaji
+Name[sr@latin]=MTP uređaji
 Name[uk]=Пристрої MTP
 Name[x-test]=xxMTP Devicesxx
 Open=false
