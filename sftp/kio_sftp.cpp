@@ -930,25 +930,25 @@ void sftpProtocol::special(const QByteArray &) {
         return;
 
     /*
-     * channel_poll() returns the number of bytes that may be read on the
+     * ssh_channel_poll() returns the number of bytes that may be read on the
      * channel. It does so by checking the input buffer and eventually the
      * network socket for data to read. If the input buffer is not empty, it
      * will not probe the network (and such not read packets nor reply to
      * keepalives).
      *
-     * As channel_poll can act on two specific buffers (a channel has two
+     * As ssh_channel_poll can act on two specific buffers (a channel has two
      * different stream: stdio and stderr), polling for data on the stderr
      * stream has more chance of not being in the problematic case (data left
      * in the buffer). Checking the return value (for >0) would be a good idea
      * to debug the problem.
      */
-    rc = channel_poll(mSftp->channel, 0);
+    rc = ssh_channel_poll(mSftp->channel, 0);
     if (rc > 0) {
-        rc = channel_poll(mSftp->channel, 1);
+        rc = ssh_channel_poll(mSftp->channel, 1);
     }
 
     if (rc < 0) {
-        kDebug(KIO_SFTP_DB) << "channel_poll failed: " << ssh_get_error(mSession);
+        kDebug(KIO_SFTP_DB) << "ssh_channel_poll failed: " << ssh_get_error(mSession);
     }
 
     setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
