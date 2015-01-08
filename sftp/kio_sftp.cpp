@@ -2160,20 +2160,22 @@ int sftpProtocol::GetRequest::readChunks(QByteArray &data) {
     totalRead += bytesread;
 
     if (bytesread < request.expectedLength) {
+      int rc;
+
       // If less data is read than expected - requeue the request
       data.resize(data.size() - (request.expectedLength - bytesread));
 
-      // Save current file offset
-      uint64_t oldOffset = mFile->offset;
-      mFile->offset = request.startOffset + bytesread;
-
       // Modify current request
-      request.expectedLength = request.expectedLength - bytesread;
-      request.startOffset = mFile->offset;
-      request.id = sftp_async_read_begin(mFile, request.expectedLength);
+      request.expectedLength -= bytesread;
+      request.startOffset += bytesread;
 
-      // Restore the file offset
-      mFile->offset = oldOffset;
+      rc = sftp_seek64(mFile, request.startOffset);
+      if (rc < 0) {
+        // Failed to continue reading
+        return -1;
+      }
+
+      request.id = sftp_async_read_begin(mFile, request.expectedLength);
 
       if (request.id < 0) {
         // Failed to dispatch rerequest
