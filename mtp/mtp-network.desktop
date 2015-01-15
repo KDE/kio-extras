@@ -14,6 +14,7 @@ Name[sr@latin]=MTP uređaji
 Name[sv]=MTP-enheter
 Name[uk]=Пристрої MTP
 Name[x-test]=xxMTP Devicesxx
+Name[zh_CN]=MTP 设备
 Open=false
 Type=Link
 URL=mtp:/
