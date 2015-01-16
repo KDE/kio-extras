@@ -68,7 +68,7 @@ install( FILES directorythumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
 ########### next target ###############
 
 set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
-kconfig_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings.kcfgc)
+kconfig_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings5.kcfgc)
 add_library(jpegthumbnail MODULE ${jpegthumbnail_PART_SRCS})
 
 target_link_libraries(jpegthumbnail 
@@ -91,7 +91,7 @@ if (HAVE_EXIV2)
     target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
 endif ()
 
-install(FILES jpegcreatorsettings.kcfg DESTINATION ${KCFG_INSTALL_DIR})
+install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KCFG_INSTALL_DIR})
 install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ########### next target ###############

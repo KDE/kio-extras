@@ -21,7 +21,7 @@
 
 #include <cstdio>
 #include <csetjmp>
-#include "jpegcreatorsettings.h"
+#include "jpegcreatorsettings5.h"
 #include <QCheckBox>
 #include <QFile>
 #include <QImage>
