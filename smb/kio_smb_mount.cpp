@@ -23,6 +23,7 @@
 #include <unistd.h>
 #include <QByteArray>
 #include <QDir>
+#include <QDataStream>
 #include <KLocalizedString>
 #include <KProcess>
 #include <kshell.h>
