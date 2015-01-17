@@ -23,6 +23,8 @@
 
 class QByteArray;
 
+#include <QObject>
+
 #include <kparts/part.h>
 #include <kparts/browserextension.h>
 #include <khtml_part.h>
