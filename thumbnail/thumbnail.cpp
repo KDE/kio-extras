@@ -31,43 +31,37 @@
 #include <sys/shm.h>
 #endif
 
-#include <QtWidgets/QApplication>
-#include <QtCore/QBuffer>
-#include <QtCore/QFile>
-#include <QtGui/QBitmap>
-#include <QtCore/QCryptographicHash>
-//#include <qcryptographichash.h>
-#include <QtGui/QImage>
-#include <QtGui/QPainter>
-#include <QtGui/QPixmap>
-
-//#include <kcodecs.h>
+#include <QApplication>
+#include <QBuffer>
+#include <QFile>
+#include <QSaveFile>
+#include <QBitmap>
+#include <QCryptographicHash>
+#include <QImage>
+#include <QPainter>
+#include <QPixmap>
 #include <QUrl>
-//#include <kapplication.h>
-#include <kcmdlineargs.h>
-#include <kaboutdata.h>
-#include <kglobal.h>
-#include <kiconloader.h>
-#include <kmimetype.h>
-#include <klibrary.h>
+#include <QMimeType>
+#include <QMimeDatabase>
+#include <QLibrary>
+#include <QTemporaryFile>
 #include <QDebug>
-#include <kservice.h>
-#include <kservicetype.h>
-#include <kservicetypetrader.h>
-#include <kmimetypetrader.h>
-#include <kstandarddirs.h>
-#include <ktemporaryfile.h>
-#include <kfilemetainfo.h>
-#include <klocale.h>
+
+#include <KLocalizedString>
+#include <KSharedConfig>
+#include <KConfigGroup>
+#include <KMimeTypeTrader>
+#include <KServiceTypeTrader>
+
+#include <kaboutdata.h>
+#include <kiconloader.h>
 #include <kde_file.h>
 
-#include <config-runtime.h> // For HAVE_NICE
 #include <kio/thumbcreator.h>
 #include <kio/thumbsequencecreator.h>
-#include <kconfiggroup.h>
 
 #include <iostream>
-#include <QtCore/QDirIterator>
+#include <QDirIterator>
 
 // Use correctly KComponentData instead of KApplication (but then no QPixmap)
 #undef USE_KINSTANCE
@@ -171,7 +165,9 @@ void ThumbnailProtocol::get(const QUrl &url)
         if (info.isDir()) {
             m_mimeType = "inode/directory";
         } else {
-            m_mimeType = KMimeType::findByUrl(QUrl(info.filePath()))->name();
+            const QMimeDatabase db;
+
+            m_mimeType = db.mimeTypeForUrl(QUrl(info.filePath())).name();
         }
 
         qDebug() << "Guessing MIME Type:" << m_mimeType;
@@ -214,29 +210,8 @@ void ThumbnailProtocol::get(const QUrl &url)
     QImage img;
 
     KConfigGroup group( KSharedConfig::openConfig(), "PreviewSettings" );
+    bool kfmiThumb = false; // TODO Figure out if we can use KFileMetadata as a last resource
 
-    // ### KFMI
-    bool kfmiThumb = false;
-    if (group.readEntry( "UseFileThumbnails", true)) {
-        KService::Ptr service =
-            KMimeTypeTrader::self()->preferredService( m_mimeType, "KFilePlugin");
-
-        if (service && service->isValid() &&
-            service->property("SupportsThumbnail").toBool()) {
-            // was:  KFileMetaInfo info(url.path(), m_mimeType, KFileMetaInfo::Thumbnail);
-            // but m_mimeType and WhatFlags are now unused in KFileMetaInfo, and not present in the
-            // call that takes a QUrl
-            KFileMetaInfo info(url);
-            if (info.isValid()) {
-                KFileMetaInfoItem item = info.item("thumbnail");
-                if (item.isValid() && item.value().type() == QVariant::Image) {
-                    img = item.value().value<QImage>();
-                    qDebug() << "using KFMI for the thumbnail\n";
-                    kfmiThumb = true;
-                }
-            }
-        }
-    }
     ThumbCreator::Flags flags = ThumbCreator::None;
 
     if (!kfmiThumb) {
@@ -359,7 +334,7 @@ void ThumbnailProtocol::get(const QUrl &url)
         }
         // Keep in sync with kdelibs/kio/kio/previewjob.cpp
         stream << img.width() << img.height() << quint8(img.format());
-        memcpy(shmaddr, img.bits(), img.numBytes());
+        memcpy(shmaddr, img.bits(), img.byteCount());
         shmdt((char*)shmaddr);
         mimeType("application/octet-stream");
         data(imgData);
@@ -487,7 +462,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
     //Use the current (custom) folder icon
     QUrl tempDirectory = directory;
     tempDirectory.setScheme("file"); //iconNameForUrl will not work with the "thumbnail:/" scheme
-    //QString iconName = KMimeType::findByUrl(tempDirectory)
+    //QString iconName = db.mimeTypeForUrl(tempDirectory)
     QString iconName = "plasma"; // FIXME
 
     const QPixmap folder = KIconLoader::global()->loadMimeTypeIcon(iconName,
@@ -650,9 +625,9 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
     if (!creator) {
         // Don't use KPluginFactory here, this is not a QObject and
         // neither is ThumbCreator
-        KLibrary library(plugin);
+        QLibrary library(plugin);
         if (library.load()) {
-            newCreator create = (newCreator)library.resolveFunction("new_creator");
+            newCreator create = (newCreator)library.resolve("new_creator");
             if (create) {
                 creator = create();
             }
@@ -670,9 +645,11 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
 
 const QImage ThumbnailProtocol::getIcon()
 {
+    const QMimeDatabase db;
+
     ///@todo Can we really do this? It doesn't seem to respect the size
     if (!m_iconDict.contains(m_mimeType)) { // generate it
-        QImage icon( KIconLoader::global()->loadMimeTypeIcon( KMimeType::mimeType(m_mimeType)->iconName(), KIconLoader::Desktop, m_iconSize ).toImage() );
+        QImage icon(KIconLoader::global()->loadMimeTypeIcon(db.mimeTypeForName(m_mimeType).iconName(), KIconLoader::Desktop, m_iconSize).toImage());
         icon = icon.convertToFormat(QImage::Format_ARGB32);
         m_iconDict.insert(m_mimeType, icon);
 
@@ -693,8 +670,9 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
                                                              << "videopreview");
     }
 
-    const QUrl fileName(filePath);
-    const QString subPlugin = pluginForMimeType(KMimeType::findByUrl(fileName)->name());
+    const QMimeDatabase db;
+    const QUrl fileUrl = QUrl::fromLocalFile(filePath);
+    const QString subPlugin = pluginForMimeType(db.mimeTypeForUrl(fileUrl).name());
     if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
         return false;
     }
@@ -710,48 +688,45 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
         // 128 x 128 or 256 x 256 pixels
         int cacheSize = 0;
         QCryptographicHash md5(QCryptographicHash::Md5);
-        md5.addData(QFile::encodeName(fileName.url()));
-        const QString thumbName = QFile::encodeName(md5.result().toHex()) + ".png";
+        md5.addData(QFile::encodeName(fileUrl.toLocalFile()));
+        const QString thumbName = QFile::encodeName(md5.result().toHex()).append(".png");
 
         if (m_thumbBasePath.isEmpty()) {
             m_thumbBasePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/thumbnails/");
-            KStandardDirs::makeDir(m_thumbBasePath + "normal/", 0700);
-            KStandardDirs::makeDir(m_thumbBasePath + "large/", 0700);
+            QDir basePath(m_thumbBasePath);
+            basePath.mkpath("normal/");
+            QFile::setPermissions(basePath.absoluteFilePath("normal"), QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner);
+            basePath.mkpath("large/");
+            QFile::setPermissions(basePath.absoluteFilePath("large"), QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner);
         }
 
-        QString thumbPath = m_thumbBasePath;
+        QDir thumbPath(m_thumbBasePath);
         if ((segmentWidth <= 128) && (segmentHeight <= 128)) {
             cacheSize = 128;
-            thumbPath += "normal/";
+            thumbPath.cd("normal");
         } else {
             cacheSize = 256;
-            thumbPath += "large/";
+            thumbPath.cd("large");
         }
-        if (!thumbnail.load(thumbPath + thumbName)) {
+        if (!thumbnail.load(thumbPath.absoluteFilePath(thumbName))) {
             // no cached version is available, a new thumbnail must be created
 
-            QString tempFileName;
+            QSaveFile thumbnailfile(thumbPath.absoluteFilePath(thumbName));
             bool savedCorrectly = false;
             if (subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
                 scaleDownImage(thumbnail, cacheSize, cacheSize);
 
                 // The thumbnail has been created successfully. Store the thumbnail
                 // to the cache for future access.
-                KTemporaryFile temp;
-                temp.setPrefix(thumbPath + "kde-tmp-");
-                temp.setSuffix(".png");
-                temp.setAutoRemove(false);
-                if (temp.open()) {
-                    tempFileName = temp.fileName();
-                    savedCorrectly = thumbnail.save(tempFileName, "PNG");
+                if (thumbnailfile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+                    savedCorrectly = thumbnail.save(&thumbnailfile, "PNG");
                 }
             } else {
                 return false;
             }
             if(savedCorrectly)
             {
-                Q_ASSERT(!tempFileName.isEmpty());
-                KDE::rename(tempFileName, thumbPath + thumbName);
+                thumbnailfile.commit();
             }
         }
     } else if (!subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail)) {
