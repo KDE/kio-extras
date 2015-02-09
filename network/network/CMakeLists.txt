@@ -38,7 +38,7 @@ set( networkdbus_LIB_SRCS
   networkdbus.cpp
 )
 
-set( molletnetwork_LIB_SRCS
+set( molletnetwork5_LIB_SRCS
   ${netsystemdriver_SRCS}
 #   ${slpnetworkbuilder_SRCS}
   ${upnpnetworkbuilder_SRCS}
@@ -53,8 +53,8 @@ set( molletnetwork_LIB_SRCS
   netservice.cpp
 )
 
-add_library( molletnetwork  SHARED ${molletnetwork_LIB_SRCS} )
-target_link_libraries( molletnetwork
+add_library( molletnetwork5  SHARED ${molletnetwork5_LIB_SRCS} )
+target_link_libraries( molletnetwork5
     PUBLIC
         KF5::DNSSD
         Qt5::Network
@@ -62,8 +62,8 @@ target_link_libraries( molletnetwork
         KF5::KDELibs4Support # KSharedPtr
 )
 if(SLP_FOUND)
-    target_link_libraries( molletnetwork  PRIVATE ${SLP_LIBRARIES} )
+    target_link_libraries( molletnetwork5  PRIVATE ${SLP_LIBRARIES} )
 endif()
-set_target_properties( molletnetwork  PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} )
+set_target_properties( molletnetwork5 PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} )
 
-install( TARGETS molletnetwork  ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP )
+install( TARGETS molletnetwork5 ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP )
