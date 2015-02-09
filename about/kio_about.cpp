@@ -20,7 +20,7 @@
 
 #include "kio_about.h"
 
-#include <kcomponentdata.h>
+#include <QCoreApplication>
 
 using namespace KIO;
 
@@ -33,7 +33,7 @@ AboutProtocol::~AboutProtocol()
 {
 }
 
-void AboutProtocol::get( const KUrl& )
+void AboutProtocol::get( const QUrl& )
 {
     QByteArray output;
     
@@ -48,28 +48,27 @@ void AboutProtocol::get( const KUrl& )
     finished();
 }
 
-void AboutProtocol::mimetype( const KUrl& )
+void AboutProtocol::mimetype( const QUrl& )
 {
     mimeType("text/html");
     finished();
 }
 
-extern "C"
+extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 {
-    int KDE_EXPORT kdemain( int argc, char **argv ) {
+    QCoreApplication app(argc, argv);
 
-        KComponentData componentData("kio_about");
+    app.setApplicationName("kio_about");
 
-        if (argc != 4)
-        {
-            fprintf(stderr, "Usage: kio_about protocol domain-socket1 domain-socket2\n");
-            exit(-1);
-        }
-
-        AboutProtocol slave(argv[2], argv[3]);
-        slave.dispatchLoop();
-
-        return 0;
+    if (argc != 4)
+    {
+        fprintf(stderr, "Usage: kio_about protocol domain-socket1 domain-socket2\n");
+        exit(-1);
     }
+
+    AboutProtocol slave(argv[2], argv[3]);
+    slave.dispatchLoop();
+
+    return 0;
 }
 

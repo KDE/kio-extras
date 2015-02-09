@@ -120,6 +120,7 @@ endif()
 
 add_subdirectory( doc )
 
+add_subdirectory( about )
 add_subdirectory( bookmarks )
 add_subdirectory( filter )
 if(Phonon4Qt5_FOUND)
