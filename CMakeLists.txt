@@ -50,6 +50,7 @@ include(KDECompilerSettings)
 include(ECMMarkNonGuiExecutable)
 include(ECMMarkAsTest)
 include(ECMPackageConfigHelpers)
+include(ECMOptionalAddSubdirectory)
 
 find_package(SLP)
 set_package_properties(SLP PROPERTIES DESCRIPTION "SLP (Service Location Protocol) implementation"
