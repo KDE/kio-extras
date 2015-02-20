@@ -63,7 +63,6 @@ my $STYLESHEET_KDE =
    qq(<link rel="stylesheet" href="help:/kdoctools5-common/kde-default.css" type="text/css">
       $css_link
       <style type="text/css"><!-- .chapter { padding-right: 1em } --></style>);
-my $LOGO_KDE = "<img src=\"help:/kdoctools5-common/kde_logo.png\" alt=\"KDE - The K Desktop Environment\" width=\"296\" height=\"79\" border=\"0\">";
 
 # the use of a query should make sure it never conflicts with a "real" path
 my $BROWSE_BY_FILE_PATH = '/browse_by_file?special=yes';
