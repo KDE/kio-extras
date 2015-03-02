@@ -52,6 +52,7 @@
 #include <KConfigGroup>
 #include <KMimeTypeTrader>
 #include <KServiceTypeTrader>
+#include <KPluginLoader>
 
 #include <kaboutdata.h>
 #include <kiconloader.h>
@@ -625,7 +626,7 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
     if (!creator) {
         // Don't use KPluginFactory here, this is not a QObject and
         // neither is ThumbCreator
-        QLibrary library(plugin);
+        QLibrary library(KPluginLoader::findPlugin((plugin)));
         if (library.load()) {
             newCreator create = (newCreator)library.resolve("new_creator");
             if (create) {
