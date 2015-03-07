@@ -76,6 +76,9 @@ public:
   void log_callback(int priority, const char *function, const char *buffer,
                     void *userdata);
 
+protected:
+  void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
+
 private: // Private variables
   /** True if ioslave is connected to sftp server. */
   bool mConnected;
@@ -208,6 +211,8 @@ private: // private methods
 
   StatusCode sftpCopyGet(const KUrl& url, const QString& src, int permissions, KIO::JobFlags flags, int& errorCode);
   StatusCode sftpCopyPut(const KUrl& url, const QString& dest, int permissions, KIO::JobFlags flags, int& errorCode);
+
+  void fileSystemFreeSpace(const QUrl& url);  // KF6 TODO: Once a virtual fileSystemFreeSpace method in SlaveBase exists, override it
 };
 
 #endif

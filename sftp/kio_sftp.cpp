@@ -242,6 +242,18 @@ void sftpProtocol::log_callback(int priority, const char *function, const char *
     qCDebug(KIO_SMTP_LOG) << "[" << function << "] (" << priority << ") " << buffer;
 }
 
+void sftpProtocol::virtual_hook(int id, void *data)
+{
+  switch(id) {
+  case SlaveBase::GetFileSystemFreeSpace: {
+    QUrl *url = static_cast<QUrl *>(data);
+    fileSystemFreeSpace(*url);
+  } break;
+  default:
+    SlaveBase::virtual_hook(id, data);
+  }
+}
+
 int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
 
   int err = ssh_userauth_kbdint(mSession, NULL, NULL);
@@ -2249,4 +2261,28 @@ void sftpProtocol::clearPubKeyAuthInfo()
       delete mPublicKeyAuthInfo;
       mPublicKeyAuthInfo = 0;
   }
+}
+
+void sftpProtocol::fileSystemFreeSpace(const QUrl& url)
+{
+  qCDebug(KIO_SMTP_LOG) << "file system free space of" << url;
+
+  if (!sftpLogin()) {
+    return;
+  }
+
+  const QByteArray path = url.path().toUtf8();
+
+  sftp_statvfs_t statvfs = sftp_statvfs(mSftp, path.constData());
+  if (statvfs == nullptr) {
+    reportError(url, sftp_get_error(mSftp));
+    return;
+  }
+
+  setMetaData(QString::fromLatin1("total"), QString::number(statvfs->f_frsize * statvfs->f_blocks));
+  setMetaData(QString::fromLatin1("available"), QString::number(statvfs->f_frsize * statvfs->f_bavail));
+
+  sftp_statvfs_free(statvfs);
+
+  finished();
 }
