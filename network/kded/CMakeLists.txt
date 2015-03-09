@@ -1,5 +1,3 @@
-project( networkwatcher )
-
 include_directories(
   ../network
   ../ioslave

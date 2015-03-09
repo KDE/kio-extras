@@ -1,5 +1,3 @@
-project( kio_network )
-
 include_directories(
   ../network
 )

@@ -1,5 +1,3 @@
-project( molletnetwork )
-
 set(HAVE_SLP ${SLP_FOUND})
 configure_file( config-slp.h.cmake  ${CMAKE_CURRENT_BINARY_DIR}/config-slp.h )
 
