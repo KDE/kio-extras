@@ -40,6 +40,7 @@
 #include <QtGui/QImage>
 #include <QtGui/QPainter>
 #include <QtGui/QPixmap>
+#include <QMimeDatabase>
 
 //#include <kcodecs.h>
 #include <QUrl>
