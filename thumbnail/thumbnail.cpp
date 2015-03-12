@@ -461,10 +461,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
     // only as small overlay, use no margins)
 
     //Use the current (custom) folder icon
-    QUrl tempDirectory = directory;
-    tempDirectory.setScheme("file"); //iconNameForUrl will not work with the "thumbnail:/" scheme
-    //QString iconName = db.mimeTypeForUrl(tempDirectory)
-    QString iconName = "plasma"; // FIXME
+    const QMimeDatabase db;
+    const QString iconName = db.mimeTypeForName("inode/directory").iconName();
 
     const QPixmap folder = KIconLoader::global()->loadMimeTypeIcon(iconName,
                                                                    KIconLoader::Desktop,
