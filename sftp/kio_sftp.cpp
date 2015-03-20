@@ -2271,6 +2271,10 @@ void sftpProtocol::fileSystemFreeSpace(const QUrl& url)
     return;
   }
 
+  if (sftp_extension_supported(mSftp, "statvfs@openssh.com", "2") == 0) {
+    return;
+  }
+
   const QByteArray path = url.path().toUtf8();
 
   sftp_statvfs_t statvfs = sftp_statvfs(mSftp, path.constData());
