@@ -7,7 +7,7 @@ Actions=open;
 Exec=kioclient exec mtp:udi=%i/
 Icon=system-file-manager
 Name=Open with File Manager
-Name[ar]=افتح بمدير الملفات
+Name[ar]=افتح بمدير الملفّات
 Name[bg]=Отваряне с файлов мениджър
 Name[ca]=Obre amb el gestor de fitxers
 Name[cs]=Otevřít ve správci souborů

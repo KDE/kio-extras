@@ -18,7 +18,6 @@ maxInstances=20
 maxInstancesPerHost=5
 Description=A kioslave for sftp
 Description[af]='n Kioslave vir sftp
-Description[ar]=خادم دخل وخرج كدي SFTP
 Description[be]=Kioslave для sftp
 Description[be@latin]=Słužba „kioslave” dla SFTP
 Description[bg]=kioslave за sftp
