@@ -101,14 +101,13 @@ void KioSlaveNotifier::onDirectoryEntered( const QString& directory )
     if( !directory.startsWith(QLatin1String("network:/")) )
         return;
 
-    const NetworkUri networkUri( directory );
+    const NetworkUri networkUri(( QUrl(directory) ));
     const QString id = idFrom( networkUri );
 
     QHash<QString, int>::Iterator it = mWatchedDirs.find( id );
 
     if( it == mWatchedDirs.end() )
     {
-        const QString id = idFrom( networkUri );
         mWatchedDirs.insert( id, 1 );
     }
     else
@@ -122,7 +121,7 @@ void KioSlaveNotifier::onDirectoryLeft( const QString& directory )
     if( !directory.startsWith(QLatin1String("network:/")) )
         return;
 
-    const NetworkUri networkUri( directory );
+    const NetworkUri networkUri(( QUrl(directory) ));
     const QString id = idFrom( networkUri );
 
     QHash<QString, int>::Iterator it = mWatchedDirs.find( id );
@@ -142,7 +141,7 @@ void KioSlaveNotifier::notifyAboutAdded( const QString& dirId )
     QHash<QString, int>::Iterator it = mWatchedDirs.find( dirId );
     if( it != mWatchedDirs.end() )
     {
-        const QString url = QLatin1String("network:/") + dirId;
+        const QUrl url( QLatin1String("network:/") + dirId );
 //qDebug()<<url;
         org::kde::KDirNotify::emitFilesAdded( url );
     }

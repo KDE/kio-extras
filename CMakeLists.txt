@@ -52,6 +52,8 @@ include(ECMMarkAsTest)
 include(ECMPackageConfigHelpers)
 include(ECMOptionalAddSubdirectory)
 
+add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
+
 find_package(SLP)
 set_package_properties(SLP PROPERTIES DESCRIPTION "SLP (Service Location Protocol) implementation"
                        URL "http://www.openslp.org/"

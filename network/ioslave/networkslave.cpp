@@ -69,7 +69,7 @@ void NetworkSlave::get( const QUrl& url )
             Mollet::NetService serviceData = reply.value();
             if( serviceData.isValid() )
             {
-                const QString url = serviceData.url();
+                const QUrl url(serviceData.url());
                 redirection( url );
                 finished();
                 successfulGetting = true;
@@ -124,7 +124,7 @@ void NetworkSlave::mimetype( const QUrl& url )
                 Mollet::NetService serviceData = reply.value();
                 if( serviceData.isValid() )
                 {
-                    const QString url = serviceData.url();
+                    const QUrl url(serviceData.url());
                     redirection( url );
                     //mimeType( Mimetypes::mimetypeForServiceType(serviceData.type()) );
                     finished();
@@ -186,7 +186,7 @@ void NetworkSlave::stat( const QUrl& url )
                 Mollet::NetService serviceData = reply.value();
                 if( serviceData.isValid() )
                 {
-                    const QString url = serviceData.url();
+                    const QUrl url( serviceData.url() );
                     redirection( url );
                     //KIO::UDSEntry entry;
                     //feedEntryAsService( &entry, serviceData );
@@ -265,7 +265,7 @@ void NetworkSlave::listDir( const QUrl& url )
                     Mollet::NetService serviceData = reply.value();
                     if( serviceData.isValid() )
                     {
-                        const QString url = serviceData.url();
+                        const QUrl url( serviceData.url() );
                         redirection( url );
                         finished();
                         successfulListing = true;

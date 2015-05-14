@@ -1191,7 +1191,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpGet(const KUrl& url, int& errorCode, 
       emit mimeType(mime->name());
     } else {
       accuracy = 0;
-      mime = KMimeType::findByUrl(url.fileName(), 0, false, true, &accuracy);
+      mime = KMimeType::findByUrl(url, 0, false, true, &accuracy);
       emit mimeType(mime->name());
     }
     sftp_rewind(file);

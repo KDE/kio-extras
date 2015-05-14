@@ -62,7 +62,7 @@ void DesktopNotifier::dirty(const QString &path)
         KUrl url("desktop:/");
         url.addPath(KUrl::relativePath(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation), path));
         url.cleanPath();
-        org::kde::KDirNotify::emitFilesAdded(url.url());
+        org::kde::KDirNotify::emitFilesAdded(url);
     }
 }
 

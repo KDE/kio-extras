@@ -438,10 +438,11 @@ void MTPSlave::mimetype(const QUrl &url)
     QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(url.path());
 
     if (pair.first) {
+//      NOTE the difference between calling mimetype and mimeType
         if (pathItems.size() > 2) {
-            mimetype(getMimetype(((LIBMTP_file_t *) pair.first)->filetype));
+            mimeType(getMimetype(((LIBMTP_file_t *) pair.first)->filetype));
         } else {
-            mimetype(QString::fromLatin1("inode/directory"));
+            mimeType(QString::fromLatin1("inode/directory"));
         }
     } else {
         error(ERR_DOES_NOT_EXIST, url.path());

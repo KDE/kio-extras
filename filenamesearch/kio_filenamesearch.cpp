@@ -149,7 +149,7 @@ bool FileNameSearchProtocol::contentContainsPattern(const QUrl &fileName, const 
         QTemporaryFile tempFile;
         if (tempFile.open()) {
             KIO::Job* getJob = KIO::file_copy(fileName,
-                                              tempFile.fileName(),
+                                              QUrl::fromLocalFile(tempFile.fileName()),
                                               -1,
                                               KIO::Overwrite | KIO::HideProgressInfo);
             if (getJob->exec()) {
