@@ -208,9 +208,6 @@ void DesktopProtocol::prepareUDSEntry(KIO::UDSEntry &entry, bool listing) const
         if (file.noDisplay() || !file.tryExec())
             entry.insert(KIO::UDSEntry::UDS_HIDDEN, 1);
     }
-
-    // Set the target URL to the local path 
-    entry.insert(KIO::UDSEntry::UDS_TARGET_URL, entry.stringValue(KIO::UDSEntry::UDS_LOCAL_PATH));
 }
 
 void DesktopProtocol::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
