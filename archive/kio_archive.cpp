@@ -436,12 +436,7 @@ void ArchiveProtocol::get( const QUrl & url )
     {
       const QString target = archiveEntry->symLinkTarget();
       qCDebug(KIO_ARCHIVE_LOG) << "Redirection to" << target;
-      QUrl realURL(url);
-      if (QDir::isRelativePath(target)) {
-          realURL.setPath(realURL.path() + '/' + target);
-      } else {
-          realURL.setPath(target);
-      }
+      const QUrl realURL = url.resolved(QUrl(target));
       qCDebug(KIO_ARCHIVE_LOG) << "realURL=" << realURL;
       redirection( realURL );
       finished();
