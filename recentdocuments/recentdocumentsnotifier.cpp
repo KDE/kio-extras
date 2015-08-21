@@ -10,9 +10,9 @@
 
 #include "recentdocumentsnotifier.h"
 
-K_PLUGIN_FACTORY(RecentDocumentsFactory, registerPlugin<RecentDocumentsNotifier>();)
-K_EXPORT_PLUGIN(RecentDocumentsFactory("kio_recentdocuments"))
-
+K_PLUGIN_FACTORY_WITH_JSON(RecentDocumentsFactory,
+                           "recentdocumentsnotifier.json",
+                           registerPlugin<RecentDocumentsNotifier>();)
 
 RecentDocumentsNotifier::RecentDocumentsNotifier(QObject *parent, const QList<QVariant> &)
     : KDEDModule(parent)

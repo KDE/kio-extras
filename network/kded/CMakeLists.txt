@@ -11,10 +11,11 @@ set( kded_networkwatcher_SRCS
 qt5_add_dbus_adaptor( kded_networkwatcher_SRCS  org.kde.network.kioslavenotifier.xml kioslavenotifier.h Mollet::KioSlaveNotifier )
 
 add_library(kded_networkwatcher MODULE  ${kded_networkwatcher_SRCS} )
+set_target_properties(kded_networkwatcher PROPERTIES OUTPUT_NAME networkwatcher)
+kcoreaddons_desktop_to_json(kded_networkwatcher networkwatcher.desktop)
 
 target_link_libraries( kded_networkwatcher KF5::DBusAddons KF5::KIOCore molletnetwork5 )
 
-install( TARGETS kded_networkwatcher  DESTINATION ${PLUGIN_INSTALL_DIR} )
+install( TARGETS kded_networkwatcher  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kded )
 
-install( FILES networkwatcher.desktop  DESTINATION ${SERVICES_INSTALL_DIR}/kded )
 install( FILES org.kde.network.kioslavenotifier.xml  DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} RENAME kf5_org.kde.network.kioslavenotifier.xml )

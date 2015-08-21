@@ -31,9 +31,9 @@
 #include <KPluginFactory>
 #include <KPluginLoader>
 
-K_PLUGIN_FACTORY( NetworkWatcherFactory, registerPlugin<Mollet::NetworkWatcher>(); )
-K_EXPORT_PLUGIN( NetworkWatcherFactory("networkwatcher") )
-
+K_PLUGIN_FACTORY_WITH_JSON(NetworkWatcherFactory,
+                           "networkwatcher.json",
+                           registerPlugin<Mollet::NetworkWatcher>(); )
 
 namespace Mollet
 {
