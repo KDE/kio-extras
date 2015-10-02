@@ -1676,7 +1676,7 @@ void fishProtocol::del(const QUrl &u, bool isFile){
     openConnection();
     if (!isLoggedIn) return;
     url.cleanPath();
-    if (!url.path().isEmpty()) {
+    if (url.path().isEmpty()) {
         sendCommand(FISH_PWD);
     } else {
         sendCommand((isFile?FISH_DELE:FISH_RMD),E(url.path()));
