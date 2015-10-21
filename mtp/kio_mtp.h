@@ -70,6 +70,9 @@ public:
 //
 //     void test();
 
+protected:
+    void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
+
 private:
     /**
      * Check if it is a valid url or an udi.
@@ -81,6 +84,8 @@ private:
     int checkUrl(const QUrl &url, bool redirect = true);
     static QString urlDirectory(const QUrl &url, bool appendTrailingSlash = false);
     static QString urlFileName(const QUrl &url);
+
+    void fileSystemFreeSpace(const QUrl &url);
 
     FileCache *fileCache;
     DeviceCache *deviceCache;

@@ -909,5 +909,57 @@ void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
     }
 }
 
+void MTPSlave::virtual_hook(int id, void *data)
+{
+    switch(id) {
+        case SlaveBase::GetFileSystemFreeSpace: {
+            QUrl *url = static_cast<QUrl *>(data);
+            fileSystemFreeSpace(*url);
+        }   break;
+        default:
+            SlaveBase::virtual_hook(id, data);
+    }
+}
+
+void MTPSlave::fileSystemFreeSpace(const QUrl &url)
+{
+    qCDebug(LOG_KIO_MTP) << "fileSystemFreeSpace:" << url;
+
+    const int check = checkUrl(url);
+    switch (check) {
+    case 0:
+        break;
+    case 1:
+        finished();
+        return;
+    case 2:
+        error(ERR_DOES_NOT_EXIST, url.toDisplayString());
+        return;
+    default:
+        error(ERR_MALFORMED_URL, url.toDisplayString());
+        return;
+    }
+
+    const auto path = url.path();
+
+    const auto storagePath = path.section(QLatin1Char('/'), 0, 2, QString::SectionIncludeLeadingSep);
+    if (storagePath.count(QLatin1Char('/')) != 2) { // /{device}/{storage}
+        error(KIO::ERR_COULD_NOT_STAT, url.toDisplayString());
+        return;
+    }
+
+    const auto pair = getPath(storagePath);
+    auto storage = (LIBMTP_devicestorage_t *)pair.first;
+    if (!storage) {
+        error(KIO::ERR_COULD_NOT_STAT, url.toDisplayString());
+        return;
+    }
+
+    setMetaData(QStringLiteral("total"), QString::number(storage->MaxCapacity));
+    setMetaData(QStringLiteral("available"), QString::number(storage->FreeSpaceInBytes));
+
+    finished();
+}
+
 #include "kio_mtp.moc"
 
