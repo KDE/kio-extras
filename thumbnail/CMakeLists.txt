@@ -225,6 +225,19 @@ if (UNIX)
 endif ()
 install(TARGETS comicbookthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
+# ########### next target ###############
+
+set(kritathumbnail_SRCS kritacreator.cpp)
+add_library(kritathumbnail MODULE ${kritathumbnail_SRCS})
+
+target_link_libraries(kritathumbnail
+    KF5::KIOWidgets
+    KF5::Archive
+    Qt5::Gui
+)
+
+install(TARGETS kritathumbnail  DESTINATION ${PLUGIN_INSTALL_DIR})
+
 ########### install files ###############
 
 install(FILES thumbcreator.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
@@ -237,4 +250,5 @@ install(FILES
 #    htmlthumbnail.desktop
 #    desktopthumbnail.desktop
     comicbookthumbnail.desktop
+    kraorathumbnail.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})
