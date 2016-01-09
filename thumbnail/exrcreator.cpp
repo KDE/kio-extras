@@ -18,21 +18,20 @@
 */
 
 #include "exrcreator.h"
-#include <kio/kio_export.h>
-#include <QImage>
 
+#include <QImage>
 #include <QDebug>
-#include <ksharedconfig.h>
 #include <QFile>
 
 #include <ImfInputFile.h>
 #include <ImfPreviewImage.h>
 
+#include <ksharedconfig.h>
 #include <kconfiggroup.h>
 
 extern "C"
 {
-    KIO_EXPORT ThumbCreator *new_creator()
+    Q_DECL_EXPORT ThumbCreator *new_creator()
     {
         return new EXRCreator;
     }
