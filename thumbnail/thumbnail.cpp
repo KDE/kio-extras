@@ -113,7 +113,9 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
     // and HTML previews need even KApplication :(
     putenv(strdup("SESSION_MANAGER="));
 
-    QGuiApplication app(argc, argv);
+    // some thumbnail plugins reuse QWidget-tainted code for the rendering,
+    // so use QApplication here, not just QGuiApplication
+    QApplication app(argc, argv);
 #endif
 
 
