@@ -38,9 +38,6 @@
 #include <QFile>
 #include <QImage>
 
-#include <kdemacros.h>
-
-
 
 extern "C"
 {

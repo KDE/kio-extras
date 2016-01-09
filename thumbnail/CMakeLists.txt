@@ -133,18 +133,20 @@ install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # 
 # install(TARGETS htmlthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 # endif()
-# 
-# ########### next target ###############
-# 
-# if(NOT WIN32)
-# set(djvuthumbnail_PART_SRCS djvucreator.cpp)
-# 
-# add_library(djvuthumbnail MODULE ${djvuthumbnail_PART_SRCS})
-# 
-# target_link_libraries(djvuthumbnail ${KIO_LIBRARIES})
-# 
-# install(TARGETS djvuthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-# endif()
+
+########### next target ###############
+
+if(NOT WIN32)
+set(djvuthumbnail_PART_SRCS djvucreator.cpp)
+
+add_library(djvuthumbnail MODULE ${djvuthumbnail_PART_SRCS})
+
+target_link_libraries(djvuthumbnail KF5::KIOWidgets)
+
+install(TARGETS djvuthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES djvuthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+
+endif()
 
 ########### next target ###############
 
@@ -233,7 +235,6 @@ install(FILES
     jpegthumbnail.desktop
     textthumbnail.desktop
 #    htmlthumbnail.desktop
-#    djvuthumbnail.desktop
 #    desktopthumbnail.desktop
     comicbookthumbnail.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})
