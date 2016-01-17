@@ -2,12 +2,18 @@
 Type=Service
 Name=Krita Documents
 Name[ca]=Documents del Krita
+Name[ca@valencia]=Documents del Krita
 Name[gl]=Documentos Krita
+Name[is]=Krita skjöl
 Name[nb]=Krita-dokumenter
 Name[nl]=Krita-documenten
 Name[pt]=Documentos do Krita
 Name[pt_BR]=Documentos do Krita
 Name[sl]=Dokumenti za Krito
+Name[sr]=Критини документи
+Name[sr@ijekavian]=Критини документи
+Name[sr@ijekavianlatin]=Kritini dokumenti
+Name[sr@latin]=Kritini dokumenti
 Name[uk]=Документи Krita
 Name[x-test]=xxKrita Documentsxx
 
