@@ -46,7 +46,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
-include(KDECompilerSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMMarkNonGuiExecutable)
 include(ECMMarkAsTest)
 include(ECMPackageConfigHelpers)
