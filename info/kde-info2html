@@ -171,7 +171,7 @@ sub FileNotFound {
 		next if $looking && !/\* Menu/;
 		$looking = 0;
 		my @item = &ParseMenuItem($_,'dir');
-		if (!defined(@item)) { next }
+		if (!@item) { next }
     		my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText) = @item;
 		if ($MenuLinkRef eq $FileName) {
 			&Redirect($MenuLinkFile, $MenuLinkTag);
@@ -429,7 +429,7 @@ sub ParseMenuItem {
 sub MenuItem2HTML {
     my ($Line, $BaseInfoFile) = @_;
     my @parse_results = &ParseMenuItem($Line, $BaseInfoFile);
-    if (!defined (@parse_results)) { return $Line; }
+    if (!@parse_results) { return $Line; }
     my ($MenuLinkTag, $MenuLinkFile, $MenuLinkRef, $MenuLinkText) = @parse_results;
     #-- produce a HTML line
     return "<tr class=\"infomenutr\"><td class=\"infomenutd\" style=\"width:30%\"><ul><li><a href=\"info:/$MenuLinkFile/$MenuLinkTag\">$MenuLinkRef</a></ul></td><td class=\"infomenutd\">$MenuLinkText";
