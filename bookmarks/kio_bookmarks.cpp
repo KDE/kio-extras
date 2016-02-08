@@ -195,7 +195,7 @@ void BookmarksProtocol::get( const QUrl& url )
     echoImage(regexp.cap(1), regexp.cap(2), QUrlQuery(url).queryItemValue("size"));
   } else {
     echoHead();
-    echo("<p class=\"message\">" + i18n("Wrong request: %1", Qt::escape(url.toDisplayString())) + "</p>");
+    echo("<p class=\"message\">" + i18n("Wrong request: %1", url.toDisplayString().toHtmlEscaped()) + "</p>");
   }
   finished();
 }

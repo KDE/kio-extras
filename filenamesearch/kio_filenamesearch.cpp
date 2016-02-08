@@ -28,6 +28,7 @@
 #include <QCoreApplication>
 #include <QRegularExpression>
 #include <QUrl>
+#include <QUrlQuery>
 
 Q_LOGGING_CATEGORY(KIO_FILENAMESEARCH, "kio_filenamesearch")
 
@@ -42,7 +43,8 @@ FileNameSearchProtocol::~FileNameSearchProtocol()
 
 void FileNameSearchProtocol::listDir(const QUrl &url)
 {
-    const QString search = url.queryItemValue("search");
+    const QUrlQuery urlQuery(url);
+    const QString search = urlQuery.queryItemValue("search");
     if (search.isEmpty()) {
         finished();
         return;
@@ -51,7 +53,7 @@ void FileNameSearchProtocol::listDir(const QUrl &url)
     const QRegularExpression pattern(search, QRegularExpression::CaseInsensitiveOption);
 
     std::function<bool(const KFileItem &)> validator;
-    if (url.queryItemValue("checkContent") == QStringLiteral("yes")) {
+    if (urlQuery.queryItemValue("checkContent") == QStringLiteral("yes")) {
         validator = [pattern](const KFileItem &item) -> bool {
             return item.determineMimeType().inherits(QStringLiteral("text/plain")) &&
                    contentContainsPattern(item.url(), pattern);
@@ -63,7 +65,7 @@ void FileNameSearchProtocol::listDir(const QUrl &url)
     }
 
     QSet<QString> iteratedDirs;
-    const QUrl directory(url.queryItemValue("url"));
+    const QUrl directory(urlQuery.queryItemValue("url"));
     searchDirectory(directory, validator, iteratedDirs);
 
     finished();
