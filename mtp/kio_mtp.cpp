@@ -275,11 +275,9 @@ void MTPSlave::listDir(const QUrl &url)
 
             getEntry(entry, device);
 
-            listEntry(entry, false);
+            listEntry(entry);
             entry.clear();
         }
-
-        listEntry(entry, true);
 
         qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Devices";
         finished();
@@ -303,11 +301,10 @@ void MTPSlave::listDir(const QUrl &url)
                     foreach(const QString & storageName, storages.keys()) {
                         getEntry(entry, storages.value(storageName));
 
-                        listEntry(entry, false);
+                        listEntry(entry);
                         entry.clear();
                     }
 
-                    listEntry(entry, true);
                     finished();
                     qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storages";
                 } else {
@@ -346,11 +343,10 @@ void MTPSlave::listDir(const QUrl &url)
 
                     getEntry(entry, file);
 
-                    listEntry(entry, false);
+                    listEntry(entry);
                     entry.clear();
                 }
 
-                listEntry(entry, true);
                 finished();
 
                 qCDebug(LOG_KIO_MTP) << "[SUCCESS] Files";
