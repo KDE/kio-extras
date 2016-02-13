@@ -67,7 +67,6 @@ bool RecentDocuments::rewriteUrl(const QUrl& url, QUrl& newUrl)
 
         return !newUrl.isEmpty();
     }
-    return false;
 }
 
 void RecentDocuments::listDir(const QUrl& url)

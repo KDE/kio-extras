@@ -36,7 +36,6 @@
 #include <QtCore/QString>
 #include <QtCore/QVarLengthArray>
 
-#include <kapplication.h>
 #include <kuser.h>
 #include <kmessagebox.h>
 #include <kcomponentdata.h>
