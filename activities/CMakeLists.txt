@@ -2,7 +2,7 @@
 
 project (kioslave-activities)
 
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_activities\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_activities\")
 
 include_directories (
    ${CMAKE_BINARY_DIR}/src
