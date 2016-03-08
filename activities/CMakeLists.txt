@@ -2,6 +2,8 @@
 
 project (kioslave-activities)
 
+add_definitions(-DTRANSLATION_DOMAIN=\"kio_activities\")
+
 include_directories (
    ${CMAKE_BINARY_DIR}/src
    ${CMAKE_CURRENT_SOURCE_DIR}
