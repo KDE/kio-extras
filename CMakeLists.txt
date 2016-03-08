@@ -40,6 +40,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Solid
     Bookmarks
     GuiAddons
+    Activities
 )
 
 
@@ -123,6 +124,7 @@ endif()
 add_subdirectory( doc )
 
 add_subdirectory( about )
+add_subdirectory( activities )
 add_subdirectory( bookmarks )
 add_subdirectory( filter )
 if(Phonon4Qt5_FOUND)
