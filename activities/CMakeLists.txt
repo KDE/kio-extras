@@ -1,7 +1,5 @@
 # vim:set softtabstop=3 shiftwidth=3 tabstop=3 expandtab:
 
-project (kioslave-activities)
-
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_activities\")
 
 include_directories (
