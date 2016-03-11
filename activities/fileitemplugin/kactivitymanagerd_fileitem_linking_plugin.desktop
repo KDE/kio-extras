@@ -2,9 +2,12 @@
 Encoding=UTF-8
 Type=Service
 Name=File to activity linking plugin
+Name[ca]=Connector per enllaçar fitxers amb activitats
+Name[es]=Archivo para el complemento de enlace de actividades
 Name[nl]=Plug-in voor koppelen van bestand aan activiteit
 Name[pt]='Plugin' de ligação de ficheiros a actividades
 Name[pt_BR]=Plugin de ligação de arquivo a atividade
+Name[sk]=Súbor na plugin linkovania aktivít
 Name[sl]=Vstavek za povezovanje datoteke z dejavnostjo
 Name[sv]=Insticksprogram för länkning av fil till aktivitet
 Name[uk]=Додаток прив’язування файлів до просторів дій
