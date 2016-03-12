@@ -3,7 +3,6 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_activities\")
 
 include_directories (
-   ${CMAKE_BINARY_DIR}/src
    ${CMAKE_CURRENT_SOURCE_DIR}
    ${CMAKE_CURRENT_BINARY_DIR}
    )

@@ -4,8 +4,6 @@ find_package (KF5 REQUIRED COMPONENTS KIO Activities)
 find_package (Qt5 REQUIRED NO_MODULE COMPONENTS Sql)
 
 include_directories (
-   ${KACTIVITIES_CURRENT_ROOT_SOURCE_DIR}/src
-   ${CMAKE_BINARY_DIR}/src
    ${CMAKE_CURRENT_SOURCE_DIR}
    ${CMAKE_CURRENT_BINARY_DIR}
    )
