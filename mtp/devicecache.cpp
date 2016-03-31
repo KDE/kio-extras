@@ -107,22 +107,23 @@ DeviceCache::~DeviceCache()
 
 void DeviceCache::checkDevice(Solid::Device solidDevice)
 {
-    Solid::GenericInterface *iface = solidDevice.as<Solid::GenericInterface>();
-    QMap<QString, QVariant> properties = iface->allProperties();
-
-    int solidBusNum = properties.value(QLatin1String("BUSNUM")).toInt();
-    int solidDevNum = properties.value(QLatin1String("DEVNUM")).toInt();
-
-    int isMtpDevice = LIBMTP_Check_Specific_Device(solidBusNum, solidDevNum);
-
-    if (isMtpDevice == 1 && !udiCache.contains(solidDevice.udi())) {
+    if (!udiCache.contains(solidDevice.udi())) {
         qCDebug(LOG_KIO_MTP) << "new device, getting raw devices";
+
+        Solid::GenericInterface *iface = solidDevice.as<Solid::GenericInterface>();
+        if (!iface) {
+            qCDebug( LOG_KIO_MTP ) << "Solid device " << solidDevice.udi() << " has NOT a Solid::GenericInterface";
+            return;
+        }
+
+        const QMap<QString, QVariant> &properties = iface->allProperties();
+        const uint32_t solidBusNum = properties.value ( QLatin1String ( "BUSNUM" ) ).toUInt();
+        const uint32_t solidDevNum = properties.value ( QLatin1String ( "DEVNUM" ) ).toUInt();
 
         LIBMTP_raw_device_t *rawdevices = 0;
         int numrawdevices;
         LIBMTP_error_number_t err;
 
-        QMap<QString, LIBMTP_raw_device_t *> devices;
 
         err = LIBMTP_Detect_Raw_Devices(&rawdevices, &numrawdevices);
         switch (err) {
