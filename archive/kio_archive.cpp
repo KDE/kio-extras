@@ -76,7 +76,7 @@ ArchiveProtocol::~ArchiveProtocol()
 
 bool ArchiveProtocol::checkNewFile( const QUrl & url, QString & path, KIO::Error& errorNum )
 {
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     QString fullPath = url.path();
 #else
     QString fullPath = url.path().remove(0, 1);
@@ -134,7 +134,7 @@ bool ArchiveProtocol::checkNewFile( const QUrl & url, QString & path, KIO::Error
         {
             archiveFile = tryPath;
             m_mtime = statbuf.st_mtime;
-#ifdef Q_WS_WIN // st_uid and st_gid provides no information
+#ifdef Q_OS_WIN // st_uid and st_gid provides no information
             m_user.clear();
             m_group.clear();
 #else
@@ -347,7 +347,7 @@ void ArchiveProtocol::stat( const QUrl & url )
         qCDebug(KIO_ARCHIVE_LOG).nospace() << "ArchiveProtocol::stat returning name=" << url.fileName();
 
         KDE_struct_stat buff;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         QString fullPath = url.path().remove(0, 1);
 #else
         QString fullPath = url.path();

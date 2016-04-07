@@ -105,7 +105,7 @@
 #define sendmimeType(x) mimeType(x)
 #endif
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 #define ENDLINE "\r\n"
 #else
 #define ENDLINE '\n'
@@ -117,7 +117,7 @@ static char *suPath = NULL;
 // static int isOpenSSH = 0;
 
 /** the SSH process used to communicate with the remote end */
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
 static pid_t childPid;
 #else
 static KProcess *childPid = 0;
@@ -239,7 +239,7 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
     if (sshPath == NULL) {
         // disabled: currently not needed. Didn't work reliably.
         // isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         sshPath = strdup(QFile::encodeName(KStandardDirs::findExe("plink")));
 #else
         sshPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("ssh")));
@@ -311,7 +311,7 @@ void fishProtocol::openConnection() {
 }
 
 // XXX Use KPty! XXX
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
 static int open_pty_pair(int fd[2])
 {
 #if defined(HAVE_TERMIOS_H) && defined(HAVE_GRANTPT) && !defined(HAVE_OPENPTY)
@@ -386,7 +386,7 @@ bool fishProtocol::connectionStart() {
     int rc, flags;
     thisFn.clear();
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     rc = open_pty_pair(fd);
     if (rc == -1) {
         myDebug( << "socketpair failed, error: " << strerror(errno) << endl);
@@ -396,7 +396,7 @@ bool fishProtocol::connectionStart() {
 
     if (!requestNetwork()) return true;
     myDebug( << "Exec: " << (local ? suPath : sshPath) << " Port: " << connectionPort << " User: " << connectionUser << endl);
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     childPid = new KProcess();
     childPid->setOutputChannelMode(KProcess::MergedChannels);
     QStringList common_args;
@@ -562,7 +562,7 @@ bool fishProtocol::connectionStart() {
 /**
 writes one chunk of data to stdin of child process
 */
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
 void fishProtocol::writeChild(const char *buf, KIO::fileoffset_t len) {
     if (outBufPos >= 0 && outBuf) {
 #else
@@ -583,7 +583,7 @@ void fishProtocol::writeChild(const QByteArray &buf, KIO::fileoffset_t len) {
 /**
 manages initial communication setup including password queries
 */
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
 int fishProtocol::establishConnection(char *buffer, KIO::fileoffset_t len) {
     QString buf = QString::fromLatin1(buffer,len);
 #else
@@ -672,7 +672,7 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
                 writeChild(connectionAuth.password.toLatin1(),connectionAuth.password.length());
             }
             thisFn.clear();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
             return buf.length();
         }
 #else
@@ -691,7 +691,7 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
         else {
             myDebug( << "unmatched case in initial handling! should not happen!" << endl);
         }
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         if (buf.endsWith(QLatin1String("(y/n)"))) {
             int rc = messageBox(QuestionYesNo,thisFn+buf);
             if (rc == KMessageBox::Yes) {
@@ -757,14 +757,14 @@ Closes the connection
  */
 void fishProtocol::shutdownConnection(bool forced){
     if (childPid) {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         childPid->terminate();
 #else
         int killStatus = kill(childPid,SIGTERM); // We may not have permission...
         if (killStatus == 0) waitpid(childPid, 0, 0);
 #endif
         childPid = 0;
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
         ::close(childFd); // ...in which case this should do the trick
         childFd = -1;
 #endif
@@ -1423,14 +1423,14 @@ with .fishsrv.pl typically running on another computer. */
         int rc;
         isRunning = true;
         finished();
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
         fd_set rfds, wfds;
         FD_ZERO(&rfds);
 #endif
         char buf[32768];
         int offset = 0;
         while (isRunning) {
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
             FD_SET(childFd,&rfds);
             FD_ZERO(&wfds);
             if (outBufPos >= 0) FD_SET(childFd,&wfds);
@@ -1465,7 +1465,7 @@ with .fishsrv.pl typically running on another computer. */
                 if (rc >= 0)
                     outBufPos += rc;
                 else {
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
                     if (errno == EINTR)
                         continue;
                     myDebug( << "write failed, rc: " << rc << ", error: " << strerror(errno) << endl);
@@ -1482,7 +1482,7 @@ with .fishsrv.pl typically running on another computer. */
                     sent();
                 }
             }
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
             else if (FD_ISSET(childFd,&rfds)) {
                 rc = ::read(childFd, buf + offset, sizeof(buf) - offset);
 #else
@@ -1496,7 +1496,7 @@ with .fishsrv.pl typically running on another computer. */
                     //myDebug( << "left " << noff << " bytes: " << QString::fromLatin1(buf,offset) << endl);
                     offset = noff;
                 } else {
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
                     if (errno == EINTR)
                         continue;
                     myDebug( << "read failed, rc: " << rc << ", error: " << strerror(errno) << endl);

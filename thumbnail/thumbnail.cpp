@@ -26,7 +26,7 @@
     #include <machine/param.h>
 #endif
 #include <sys/types.h>
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #endif
@@ -318,7 +318,7 @@ void ThumbnailProtocol::get(const QUrl &url)
             data(imgData);
         }
     } else {
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
         QByteArray imgData;
         QDataStream stream( &imgData, QIODevice::WriteOnly );
         //qDebug() << "IMAGE TO SHMID";
