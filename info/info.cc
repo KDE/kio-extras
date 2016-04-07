@@ -3,7 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#ifdef Q_OS_WIN
+#include <process.h>
+#define getpid _getpid
+#define popen _popen
+#define pclose _pclose
+#else
 #include <unistd.h> // getpid()
+#endif
 
 #include <QCoreApplication>
 #include <QFile>
@@ -226,8 +233,13 @@ void InfoProtocol::stat( const QUrl & )
 {
 	UDSEntry uds_entry;
 
+#ifdef Q_OS_WIN
+	// Regular file with rwx permission for all
+	uds_entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG );
+#else
 	// Regular file with rwx permission for all
 	uds_entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO );
+#endif
 
 	statEntry( uds_entry );
 
