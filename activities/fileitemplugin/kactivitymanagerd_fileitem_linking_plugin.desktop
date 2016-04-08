@@ -24,6 +24,7 @@ Name[sr@latin]=Fajl za priključak povezivanja aktivnosti
 Name[sv]=Insticksprogram för länkning av fil till aktivitet
 Name[uk]=Додаток прив’язування файлів до просторів дій
 Name[x-test]=xxFile to activity linking pluginxx
+Name[zh_CN]=文件链接到活动插件
 Icon=preferences-activities
 X-KDE-Library=kactivitymanagerd_fileitem_linking_plugin
 ServiceTypes=KFileItemAction/Plugin
