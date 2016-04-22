@@ -188,30 +188,31 @@ endif()
 # 
 # endif()
 # 
-# ########### next target ###############
-# 
-#set ( windowsexethumbnail_SRCS windowsexecreator.cpp icoutils_common.cpp)
-#set ( windowsimagethumbnail_SRCS windowsimagecreator.cpp icoutils_common.cpp)
-#
-#if(WIN32)
-#    set ( windowsexethumbnail_SRCS ${windowsexethumbnail_SRCS} icoutils_win.cpp )
-#    set ( windowsimagethumbnail_SRCS ${windowsimagethumbnail_SRCS} icoutils_win.cpp )
-#else()
-#    set ( windowsexethumbnail_SRCS ${windowsexethumbnail_SRCS} icoutils_wrestool.cpp )
-#    set ( windowsimagethumbnail_SRCS ${windowsimagethumbnail_SRCS} icoutils_wrestool.cpp )
-#endif()
 
-# add_library(windowsexethumbnail MODULE ${windowsexethumbnail_SRCS} )
-# target_link_libraries ( windowsexethumbnail ${KIO_LIBRARIES} )
-# install ( TARGETS windowsexethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
-# install ( FILES windowsexethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
-# 
-# add_library(windowsimagethumbnail MODULE ${windowsimagethumbnail_SRCS} )
-# target_link_libraries ( windowsimagethumbnail ${KIO_LIBRARIES} )
-# install ( TARGETS windowsimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
-# install ( FILES windowsimagethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
-# 
-# ########### next target ###############
+########### next target ###############
+
+set ( windowsexethumbnail_SRCS windowsexecreator.cpp icoutils_common.cpp)
+set ( windowsimagethumbnail_SRCS windowsimagecreator.cpp icoutils_common.cpp)
+
+if(WIN32)
+    set ( windowsexethumbnail_SRCS ${windowsexethumbnail_SRCS} icoutils_win.cpp )
+    set ( windowsimagethumbnail_SRCS ${windowsimagethumbnail_SRCS} icoutils_win.cpp )
+else()
+    set ( windowsexethumbnail_SRCS ${windowsexethumbnail_SRCS} icoutils_wrestool.cpp )
+    set ( windowsimagethumbnail_SRCS ${windowsimagethumbnail_SRCS} icoutils_wrestool.cpp )
+endif()
+
+add_library(windowsexethumbnail MODULE ${windowsexethumbnail_SRCS} )
+target_link_libraries ( windowsexethumbnail KF5::KIOWidgets )
+install ( TARGETS windowsexethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
+install ( FILES windowsexethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
+
+add_library(windowsimagethumbnail MODULE ${windowsimagethumbnail_SRCS} )
+target_link_libraries ( windowsimagethumbnail KF5::KIOWidgets )
+install ( TARGETS windowsimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
+install ( FILES windowsimagethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
+
+########### next target ###############
 
 set(comicbookthumbnail_SRCS comiccreator.cpp)
 add_library(comicbookthumbnail MODULE ${comicbookthumbnail_SRCS})
