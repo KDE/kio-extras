@@ -1220,7 +1220,7 @@ void fishProtocol::manageConnection(const QString &l) {
 
 void fishProtocol::writeStdin(const QString &line)
 {
-    qlist.append(line.toLatin1());
+    qlist.append(E(line));
 
     if (writeReady) {
         writeReady = false;
