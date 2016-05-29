@@ -4,6 +4,7 @@ Type=Service
 Name=File to activity linking plugin
 Name[ca]=Connector per enllaçar fitxers amb activitats
 Name[ca@valencia]=Connector per enllaçar fitxers amb activitats
+Name[da]=Fil til aktivitetslink-plugin
 Name[de]=Modul für die Verknüpfung von Dateien zu Aktivitäten
 Name[en_GB]=File to activity linking plugin
 Name[es]=Archivo para el complemento de enlace de actividades
