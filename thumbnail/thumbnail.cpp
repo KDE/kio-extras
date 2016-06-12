@@ -38,6 +38,7 @@
 #include <QBitmap>
 #include <QCryptographicHash>
 #include <QImage>
+#include <QIcon>
 #include <QPainter>
 #include <QPixmap>
 #include <QUrl>
@@ -466,9 +467,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
     const QMimeDatabase db;
     const QString iconName = db.mimeTypeForName("inode/directory").iconName();
 
-    const QPixmap folder = KIconLoader::global()->loadMimeTypeIcon(iconName,
-                                                                   KIconLoader::Desktop,
-                                                                   qMin(m_width, m_height));
+    const QPixmap folder = QIcon::fromTheme(iconName).pixmap(qMin(m_width, m_height));
+
     const int folderWidth  = folder.width();
     const int folderHeight = folder.height();
 
