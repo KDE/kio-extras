@@ -39,6 +39,7 @@ Name[ug]=پائالىيەت ئۇلانما قىستۇرما ھۆججىتى
 Name[uk]=Додаток прив’язування файлів до просторів дій
 Name[x-test]=xxFile to activity linking pluginxx
 Name[zh_CN]=文件链接到活动插件
+Name[zh_TW]=連結檔案與活動的外掛程式
 Icon=preferences-activities
 X-KDE-Library=kactivitymanagerd_fileitem_linking_plugin
 ServiceTypes=KFileItemAction/Plugin
