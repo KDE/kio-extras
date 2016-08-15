@@ -1246,7 +1246,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpGet(const KUrl& url, int& errorCode, 
 
     if (fd == -1) {
         data(filedata);
-    } else if ((errorCode = writeToFile(fd, filedata.constData(), filedata.size()) != 0)) {
+    } else if ((errorCode = writeToFile(fd, filedata.constData(), filedata.size())) != 0) {
         return sftpProtocol::ClientError;
     }
     // increment total bytes read
