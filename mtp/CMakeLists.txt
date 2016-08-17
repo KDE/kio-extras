@@ -9,6 +9,7 @@ set(kio_mtp_PART_SRCS
     kio_mtp_helpers.cpp
 )
 
+include_directories(${MTP_INCLUDE_DIR})
 add_library(kio_mtp MODULE ${kio_mtp_PART_SRCS} )
 target_link_libraries(kio_mtp ${MTP_LIBRARIES} Qt5::Core KF5::KIOCore KF5::I18n KF5::Solid)
 set_target_properties(kio_mtp PROPERTIES OUTPUT_NAME "mtp")
