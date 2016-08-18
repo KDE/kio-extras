@@ -31,7 +31,6 @@ Name[sv]=Krita-dokument
 Name[uk]=Документи Krita
 Name[x-test]=xxKrita Documentsxx
 Name[zh_CN]=Krita 文档
-Name[zh_TW]=Krita 文件
 
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-krita;image/openraster;
