@@ -1,5 +1,4 @@
 [Protocol]
-DocPath=kioslave/kio_recentdocuments.html
 exec=kf5/kio/recentdocuments
 protocol=recentdocuments
 Icon=document-open-recent
