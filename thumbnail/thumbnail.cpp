@@ -149,13 +149,13 @@ ThumbnailProtocol::~ThumbnailProtocol()
 void ThumbnailProtocol::get(const QUrl &url)
 {
     m_mimeType = metaData("mimeType");
-    qDebug() << "Wanting MIME Type:" << m_mimeType;
+    //qDebug() << "Wanting MIME Type:" << m_mimeType;
 #ifdef THUMBNAIL_HACK
     // ### HACK
     bool direct=false;
     if (m_mimeType.isEmpty()) {
         QFileInfo info(url.path());
-        qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
+        //qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
         if (!info.exists()) {
             // The file does not exist
             error(KIO::ERR_DOES_NOT_EXIST,url.path());
@@ -174,7 +174,7 @@ void ThumbnailProtocol::get(const QUrl &url)
             m_mimeType = db.mimeTypeForUrl(QUrl(info.filePath())).name();
         }
 
-        qDebug() << "Guessing MIME Type:" << m_mimeType;
+        //qDebug() << "Guessing MIME Type:" << m_mimeType;
         direct=true; // thumbnail: URL was probably typed in Konqueror
     }
 #endif
@@ -194,7 +194,7 @@ void ThumbnailProtocol::get(const QUrl &url)
     }
 #ifdef THUMBNAIL_HACK
     else if (!m_width || !m_height) {
-        qDebug() << "Guessing height, width, icon size!";
+        //qDebug() << "Guessing height, width, icon size!";
         m_width = 128;
         m_height = 128;
         iconSize = 128;
@@ -232,7 +232,7 @@ void ThumbnailProtocol::get(const QUrl &url)
                 plugin = pluginForMimeType(m_mimeType);
             }
 
-            qDebug() << "Guess plugin: " << plugin;
+            //qDebug() << "Guess plugin: " << plugin;
 #endif
             if (plugin.isEmpty()) {
                 error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
