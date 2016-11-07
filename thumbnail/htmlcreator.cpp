@@ -21,14 +21,11 @@
 
 #include "htmlcreator.h"
 
+#include <QUrl>
 #include <QImage>
 #include <QPainter>
-#include <QtWebKit/QWebFrame>
-
-#include <kapplication.h>
-#include <kwebpage.h>
-#include <QUrl>
-#include <QDebug>
+#include <QWebEnginePage>
+#include <QWebEngineSettings>
 
 extern "C"
 {
@@ -52,24 +49,23 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
 {
     if (!m_page)
     {
-        m_page = new KWebPage;
-        connect(m_page, &KWebPage::loadFinished, this, &HTMLCreator::slotFinished);
-        m_page->settings()->setAttribute(QWebSettings::JavascriptEnabled, false);
-        m_page->settings()->setAttribute(QWebSettings::JavaEnabled, false);
-        m_page->settings()->setAttribute(QWebSettings::PluginsEnabled, false);
-        m_page->settings()->setAttribute(QWebSettings::LocalContentCanAccessRemoteUrls, false);
-        m_page->settings()->setAttribute(QWebSettings::LocalContentCanAccessFileUrls, true);
+        m_page = new QWebEnginePage;
+        connect(m_page, &QWebEnginePage::loadFinished, this, &HTMLCreator::slotFinished);
+        m_page->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, false);
+        m_page->settings()->setAttribute(QWebEngineSettings::PluginsEnabled, false);
+        m_page->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, false);
+        m_page->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessFileUrls, true);
     }
 
     QUrl url = QUrl::fromUserInput(path); // the argument should be a QUrl!
     m_loadedOk = false;
-    m_page->mainFrame()->load(url);
+    m_page->load(url);
 
     const int t = startTimer((url.isLocalFile()?5000:30000));
     m_eventLoop.exec(QEventLoop::ExcludeUserInputEvents);
     killTimer(t);
 
-    if (m_page->mainFrame()->contentsSize().isEmpty()) {
+    if (m_page->contentsSize().isEmpty()) {
         m_loadedOk = false;
     }
 
@@ -88,13 +84,7 @@ bool HTMLCreator::create(const QString &path, int width, int height, QImage &img
         pix = QPixmap(400, 600);
     }
     pix.fill(Qt::transparent);
-    const int borderX = pix.width() / width;
-    const int borderY = pix.height() / height;
-    QRect clip (borderX, borderY, pix.width() - borderX * 2, pix.height() - borderY * 2);
-    QPainter p (&pix);
-    m_page->setViewportSize(m_page->mainFrame()->contentsSize());
-    m_page->mainFrame()->render(&p, QWebFrame::ContentsLayer, clip);
-
+    m_page->view()->render(&pix);
     img = pix.toImage();
     return true;
 }

@@ -22,12 +22,12 @@
 #ifndef HTMLCREATOR_H
 #define HTMLCREATOR_H
 
-#include <QtCore/QObject>
-#include <QtCore/QEventLoop>
+#include <QObject>
+#include <QEventLoop>
 
 #include <kio/thumbcreator.h>
 
-class KWebPage;
+class QWebEnginePage;
 
 class HTMLCreator : public QObject, public ThumbCreator
 {
@@ -46,7 +46,7 @@ private Q_SLOTS:
 
 private:
     bool m_loadedOk;
-    KWebPage *m_page;
+    QWebEnginePage *m_page;
     QEventLoop m_eventLoop;
 };
 

@@ -71,14 +71,14 @@ set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
 kconfig_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings5.kcfgc)
 add_library(jpegthumbnail MODULE ${jpegthumbnail_PART_SRCS})
 
-target_link_libraries(jpegthumbnail 
+target_link_libraries(jpegthumbnail
 	Qt5::Core
 	Qt5::Gui
 	KF5::KIOCore
 	KF5::KIOWidgets
 	${JPEG_LIBRARIES}
-	KF5::I18n 
-	KF5::ConfigCore 
+	KF5::I18n
+	KF5::ConfigCore
 	KF5::ConfigGui
 )
 
@@ -122,18 +122,21 @@ target_link_libraries(textthumbnail
 
 install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
-# ########### next target ###############
-# 
-# if(NOT WINCE)
-# set(htmlthumbnail_PART_SRCS htmlcreator.cpp)
-# 
-# add_library(htmlthumbnail MODULE ${htmlthumbnail_PART_SRCS})
-# 
-# target_link_libraries(htmlthumbnail KF5::WebKit)
-# 
-# install(TARGETS htmlthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-# endif()
+############ next target ###############
 
+find_package(Qt5WebEngineWidgets 5.6.0 QUIET)
+
+if (Qt5WebEngineWidgets_FOUND)
+
+    set(htmlthumbnail_PART_SRCS htmlcreator.cpp)
+
+    add_library(htmlthumbnail MODULE ${htmlthumbnail_PART_SRCS})
+
+    target_link_libraries(htmlthumbnail Qt5::Core Qt5::WebEngineWidgets KF5::KIOWidgets)
+
+    install(TARGETS htmlthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
+endif()
 ########### next target ###############
 
 if(NOT WIN32)
@@ -176,18 +179,18 @@ endif()
 ########### next target ###############
 
 # if(X11_Xcursor_FOUND)
-# 
+#
 #    set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
-# 
+#
 #    add_library(cursorthumbnail MODULE ${cursorthumbnail_PART_SRCS})
-# 
+#
 #    target_link_libraries(cursorthumbnail ${X11_Xcursor_LIB} ${KIO_LIBRARIES})
-# 
+#
 #    install(TARGETS cursorthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 #    install( FILES cursorthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-# 
+#
 # endif()
-# 
+#
 
 ########### next target ###############
 
