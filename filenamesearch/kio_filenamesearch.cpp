@@ -29,12 +29,15 @@
 #include <QRegularExpression>
 #include <QUrl>
 #include <QUrlQuery>
+#include <QtDBus/QDBusInterface>
 
 Q_LOGGING_CATEGORY(KIO_FILENAMESEARCH, "kio_filenamesearch")
 
 FileNameSearchProtocol::FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("search", pool, app)
 {
+    QDBusInterface kded(QStringLiteral("org.kde.kded5"), QStringLiteral("/kded"), QStringLiteral("org.kde.kded5"));
+    kded.call(QStringLiteral("loadModule"), QStringLiteral("filenamesearchmodule"));
 }
 
 FileNameSearchProtocol::~FileNameSearchProtocol()
