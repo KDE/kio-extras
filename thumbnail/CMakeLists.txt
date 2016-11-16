@@ -124,7 +124,7 @@ install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
 ############ next target ###############
 
-find_package(Qt5WebEngineWidgets 5.6.0 QUIET)
+find_package(Qt5WebEngineWidgets 5.7.0 QUIET)
 
 if (Qt5WebEngineWidgets_FOUND)
 
