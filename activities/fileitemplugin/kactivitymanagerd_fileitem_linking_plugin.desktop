@@ -2,7 +2,6 @@
 Encoding=UTF-8
 Type=Service
 Name=File to activity linking plugin
-Name[ast]=Complementu d'enllazamientu d'actividaes a ficheros
 Name[bs]=Datoteka dodatka za povezivanje na aktivnost
 Name[ca]=Connector per enllaçar fitxers amb activitats
 Name[ca@valencia]=Connector per enllaçar fitxers amb activitats
