@@ -59,8 +59,13 @@ void FileNameSearchModule::unregisterSearchUrl(const QString &urlString)
 
 void FileNameSearchModule::slotFilesAdded(const QString &urlString)
 {
+    const QUrl url(urlString);
+    if (!url.isLocalFile()) {
+        return;
+    }
+    const QString urlPath = url.path();
     for (const QUrl &dirUrl : m_searchUrls) {
-        if (urlString.startsWith(dirUrl.path())) {
+        if (urlPath.startsWith(dirUrl.path())) {
             org::kde::KDirNotify::emitFilesAdded(dirUrl);
         }
     }
@@ -69,11 +74,14 @@ void FileNameSearchModule::slotFilesAdded(const QString &urlString)
 void FileNameSearchModule::slotFilesChanged(const QStringList &files)
 {
     QList<QUrl> fileList;
-    fileList.reserve(files.count());
-    for (const QUrl &dirUrl : m_searchUrls) {
-        for (const QString &file : files) {
-            if (file.startsWith(dirUrl.path())) {
-                QUrl url(file);
+    for (const QString &file : files) {
+        QUrl url(file);
+        if (!url.isLocalFile()) {
+            continue;
+        }
+        const QString urlPath = url.path();
+        for (const QUrl &dirUrl : m_searchUrls) {
+            if (urlPath.startsWith(dirUrl.path())) {
                 url.setScheme(QStringLiteral("filenamesearch"));
                 fileList << url;
             }
@@ -87,11 +95,14 @@ void FileNameSearchModule::slotFilesChanged(const QStringList &files)
 void FileNameSearchModule::slotFilesRemoved(const QStringList &files)
 {
     QList<QUrl> fileList;
-    fileList.reserve(files.count());
-    for (const QUrl &dirUrl : m_searchUrls) {
-        for (const QString &file : files) {
-            if (file.startsWith(dirUrl.path())) {
-                QUrl url(file);
+    for (const QString &file : files) {
+        QUrl url(file);
+        if (!url.isLocalFile()) {
+            continue;
+        }
+        const QString urlPath = url.path();
+        for (const QUrl &dirUrl : m_searchUrls) {
+            if (urlPath.startsWith(dirUrl.path())) {
                 url.setScheme(QStringLiteral("filenamesearch"));
                 fileList << url;
             }
