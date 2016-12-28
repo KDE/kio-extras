@@ -1,4 +1,9 @@
 %struct-type
+%language=C++
+%define initializer-suffix ,REQ_UNKNOWN
+%includes
+%null-strings
+%compare-strncmp
 struct Requests { const char *name; RequestNum number; };
 %%
 "ab", REQ_ab
