@@ -45,13 +45,13 @@ class Perfect_Hash
 private:
   static inline unsigned int hash (const char *str, unsigned int len);
 public:
-  static const struct Requests *in_word_set (const char *str, unsigned int len);
+  static struct Requests *in_word_set (const char *str, unsigned int len);
 };
 
 inline unsigned int
 Perfect_Hash::hash (register const char *str, register unsigned int len)
 {
-  static const unsigned short asso_values[] =
+  static unsigned short asso_values[] =
     {
       483, 483, 483, 483, 483, 483, 483, 483, 483, 483,
       483, 483, 483, 483, 483, 483, 483, 483, 483, 483,
@@ -83,10 +83,10 @@ Perfect_Hash::hash (register const char *str, register unsigned int len)
   return len + asso_values[(unsigned char)str[len - 1]] + asso_values[(unsigned char)str[0]+3];
 }
 
-const struct Requests *
+struct Requests *
 Perfect_Hash::in_word_set (register const char *str, register unsigned int len)
 {
-  static const struct Requests wordlist[] =
+  static struct Requests wordlist[] =
     {
       {(char*)0, REQ_UNKNOWN}, {(char*)0, REQ_UNKNOWN},
       {(char*)0, REQ_UNKNOWN}, {(char*)0, REQ_UNKNOWN},
