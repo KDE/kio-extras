@@ -119,6 +119,11 @@ if(UNIX)
     if(NOT OFFT_IS_64BIT)
         message(FATAL_ERROR "Large file support is not enabled.")
     endif()
+
+    find_package(Gperf)
+    set_package_properties(Gperf PROPERTIES TYPE OPTIONAL
+                           PURPOSE "Needed to build the man kioslave"
+                           )
 else()
     # FIXME: on windows we ignore support until trash gets integrated
 endif()
@@ -151,7 +156,9 @@ if (MTP_FOUND)
 endif()
 
 if(NOT WIN32)
-   add_subdirectory( man )
+   if(Gperf_FOUND)
+     add_subdirectory( man )
+   endif()
    check_include_files(rpc/rpc.h HAVE_RPC_RPC_H)
    add_feature_info("NFS kioslave" HAVE_RPC_RPC_H "The RPC library is needed to build the NFS kioslave")
    if(HAVE_RPC_RPC_H)

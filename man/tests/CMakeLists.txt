@@ -8,6 +8,7 @@ set(kio_man_test_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/../request_hash.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man_debug.cpp)
+ecm_gperf_generate(../requests.gperf ${CMAKE_CURRENT_BINARY_DIR}/request_gperf.h kio_man_test_SRCS)
 
 
 
@@ -23,6 +24,7 @@ set(man2html_SRCS
     ${CMAKE_CURRENT_SOURCE_DIR}/../request_hash.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp 
     ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man_debug.cpp)
+ecm_gperf_generate(../requests.gperf ${CMAKE_CURRENT_BINARY_DIR}/request_gperf.h man2html_SRCS)
 
 
 add_executable(man2html ${man2html_SRCS})

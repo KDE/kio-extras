@@ -18,7 +18,7 @@
 */
 
 #include "request_hash.h"
-#include "request_gperf.c"
+#include <request_gperf.h>
 
 //---------------------------------------------------------------------
 

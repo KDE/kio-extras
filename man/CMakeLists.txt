@@ -5,6 +5,7 @@ add_subdirectory( tests )
 ########### next target ###############
 
 set(kio_man_PART_SRCS man2html.cpp kio_man.cpp request_hash.cpp kio_man_debug.cpp)
+ecm_gperf_generate(requests.gperf ${CMAKE_CURRENT_BINARY_DIR}/request_gperf.h kio_man_PART_SRCS)
 add_library(kio_man MODULE ${kio_man_PART_SRCS})
 
 target_link_libraries(kio_man KF5::KIOCore Qt5::Widgets KF5::Archive KF5::KDELibs4Support)
