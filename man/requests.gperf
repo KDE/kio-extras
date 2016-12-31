@@ -4,6 +4,7 @@
 %includes
 %null-strings
 %compare-strncmp
+%readonly-tables
 struct Requests { const char *name; RequestNum number; };
 %%
 "ab", REQ_ab
