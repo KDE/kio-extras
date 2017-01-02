@@ -39,7 +39,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Solid
     Bookmarks
     GuiAddons
-    Activities
 )
 # As this is the check used for linkage, only require it in the same location...
 if (UNIX)
@@ -55,6 +54,12 @@ include(ECMPackageConfigHelpers)
 include(ECMOptionalAddSubdirectory)
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
+
+find_package(KF5Activities QUIET)
+set_package_properties(KF5Activities PROPERTIES
+    PURPOSE "Provides the activities:/ kioslave and fileitem plugin."
+    TYPE OPTIONAL
+)
 
 find_package(SLP)
 set_package_properties(SLP PROPERTIES DESCRIPTION "SLP (Service Location Protocol) implementation"
@@ -131,7 +136,9 @@ endif()
 add_subdirectory( doc )
 
 add_subdirectory( about )
-add_subdirectory( activities )
+if(KF5Activities_FOUND)
+  add_subdirectory( activities )
+endif()
 add_subdirectory( bookmarks )
 add_subdirectory( filter )
 if(Phonon4Qt5_FOUND)
