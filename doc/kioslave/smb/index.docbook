@@ -12,6 +12,8 @@
 <author>&Alexander.Neundorf; &Alexander.Neundorf.mail;</author>
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
+<date>2016-12-11</date>
+<releaseinfo>Applications 16.12</releaseinfo>
 </articleinfo>
 <para>
 The smb ioslave enables you to browse the shares of a &Windows; (or Samba)
@@ -45,20 +47,12 @@ The smb ioslave requires that you have libsmbclient to use this ioslave.
 
 <para>
 You can set your default user name and password in the &systemsettings; 
-category <guilabel>Network and Connectivity</guilabel> in
-<menuchoice><guisubmenu>Sharing</guisubmenu><guimenuitem>
+category <guilabel>Network</guilabel> in
+<menuchoice><guisubmenu>Connectivity</guisubmenu><guimenuitem>
 Windows Shares</guimenuitem></menuchoice>.  This is especially useful if you are a
 member of a &Windows; <acronym>NT</acronym> domain. There you can also set your
 workgroup name, but in most cases this is not required.  The kioslave will ask for your username and password if a default is not set.
 </para>
 
-<para>
-This ioslave is tested and developed using mainly Samba 2.0.7, but other
-versions of Samba should work too.
-</para>
-
-<para>
-Author: Alexander Neundorf <email>neundorf@kde.org</email>
-</para>
 </article>
 

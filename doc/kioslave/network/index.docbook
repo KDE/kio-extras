@@ -18,8 +18,8 @@
   <!-- TRANS:ROLES_OF_TRANSLATORS -->
   </authorgroup>
 
-  <date>2009-04-28</date>
-  <releaseinfo>0.1</releaseinfo>
+  <date>2016-12-11</date>
+  <releaseinfo>Applications 16.12</releaseinfo>
 
 </articleinfo>
 
@@ -32,17 +32,17 @@
 
 <para>
   To see all the devices found, enter
-  <userinput><command>network:/</command></userinput>.
+  <userinput><command>network://</command></userinput>.
 </para>
 
 <para>
-  <userinput><command>network:/</command><replaceable>hostname_of_device</replaceable></userinput>
+  <userinput><command>network://</command><replaceable>hostname_of_device</replaceable></userinput>
   will list the services found to be running on a device.
 </para>
 
 <para>
   Selecting a service will forward to a url which matches the service, given there is a suitable, e.g.
-  <userinput><command>ssh:/</command>hostname_of_device:port/</userinput> for a <acronym>SSH</acronym> service.
+  <userinput><command>ssh://</command>hostname_of_device:port/</userinput> for a <acronym>SSH</acronym> service.
   Each known service type has a mimetype assigned to it, so a user can assign new handlers
   for the resulting urls. This is done with the control module
   <menuchoice><guimenuitem>File Associations</guimenuitem></menuchoice> in &systemsettings;.
