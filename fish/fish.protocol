@@ -15,6 +15,7 @@ maxInstances=20
 maxInstancesPerHost=5
 Description=A kioslave for the FISH protocol
 Description[af]='n Kioslave vir die FISH protokol
+Description[ast]=Un kioslave pal protocolu FISH
 Description[be]=Kioslave для пратакола FISH
 Description[be@latin]=Słužba „kioslave” dla pratakoła FISH
 Description[bg]=Kioslave за протокола FISH
