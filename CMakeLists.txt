@@ -167,7 +167,7 @@ if (MTP_FOUND)
 endif()
 
 if(NOT WIN32)
-   if(Gperf_FOUND AND KF5Html_FOUND)
+   if(Gperf_FOUND AND KF5KHtml_FOUND)
      add_subdirectory( man )
    endif()
    check_include_files(rpc/rpc.h HAVE_RPC_RPC_H)
