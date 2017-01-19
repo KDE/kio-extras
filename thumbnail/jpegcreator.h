@@ -32,8 +32,6 @@ public:
     virtual Flags flags() const;
     virtual QWidget *createConfigurationWidget();
     virtual void writeConfiguration(const QWidget *configurationWidget);
-private:
-    QTransform orientationMatrix(int exivOrientation) const;
 };
 
 #endif

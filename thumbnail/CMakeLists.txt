@@ -7,26 +7,6 @@ set_package_properties(OpenEXR PROPERTIES DESCRIPTION "API for accessing OpenEXR
                        PURPOSE "Provides support for OpenEXR formatted images in the thumbnail kioslave"
                       )
 
-find_package(JPEG)
-set_package_properties(JPEG PROPERTIES DESCRIPTION "JPEG image format support"
-                       URL "http://www.ijg.org"
-                       TYPE REQUIRED
-                      )
-
-find_package(Exiv2)
-set_package_properties(Exiv2 PROPERTIES DESCRIPTION "A library to access image metadata"
-                       URL "http://www.exiv2.org"
-                       TYPE OPTIONAL
-                       PURPOSE "Provides support for automatic rotation of JPEGs in the thumbnail kioslave"
-                      )
-
-macro_bool_to_01(EXIV2_FOUND HAVE_EXIV2)
-
-include_directories(${JPEG_INCLUDE_DIR})
-if(EXIV2_FOUND)
-    include_directories(${EXIV2_INCLUDE_DIR})
-endif()
-
 include_directories(${CMAKE_BINARY_DIR})
 
 ########### next target ###############
@@ -76,20 +56,10 @@ target_link_libraries(jpegthumbnail
 	Qt5::Gui
 	KF5::KIOCore
 	KF5::KIOWidgets
-	${JPEG_LIBRARIES}
 	KF5::I18n
 	KF5::ConfigCore
 	KF5::ConfigGui
 )
-
-
-if (HAVE_EXIV2)
-    set_source_files_properties(jpegcreator.cpp PROPERTIES
-                                COMPILE_DEFINITIONS "HAVE_EXIV2")
-    kde_source_files_enable_exceptions(jpegcreator.cpp)
-    include_directories(${EXIV2_INCLUDE_DIR})
-    target_link_libraries(jpegthumbnail ${EXIV2_LIBRARIES})
-endif ()
 
 install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KCFG_INSTALL_DIR})
 install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})

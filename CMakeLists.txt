@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 
 include(FeatureSummary)
 
-set(QT_MIN_VERSION "5.4.0")
+set(QT_MIN_VERSION "5.5.0")
 set(KF5_MIN_VERSION "5.3.0")
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
