@@ -229,7 +229,7 @@ QString ComicCreator::unrarPath() const
     }
     if (!unrar.isEmpty()) {
         QProcess proc;
-        proc.start(unrar, QStringList() << "--version");
+        proc.start(unrar, QStringList() << "-version");
         proc.waitForFinished(-1);
         const QStringList lines = QString::fromLocal8Bit(proc.readAllStandardOutput()).split
             ('\n', QString::SkipEmptyParts);
