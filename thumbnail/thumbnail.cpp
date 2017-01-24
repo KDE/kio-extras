@@ -48,6 +48,7 @@
 #include <QTemporaryFile>
 #include <QDebug>
 
+#include <KFileItem>
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KConfigGroup>
@@ -463,11 +464,10 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
 
-    //Use the current (custom) folder icon
-    const QMimeDatabase db;
-    const QString iconName = db.mimeTypeForName("inode/directory").iconName();
+    QString localFile = directory.path();
 
-    const QPixmap folder = QIcon::fromTheme(iconName).pixmap(qMin(m_width, m_height));
+    KFileItem item(QUrl::fromLocalFile(localFile));
+    const QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(qMin(m_width, m_height));
 
     const int folderWidth  = folder.width();
     const int folderHeight = folder.height();
@@ -483,8 +483,6 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
         // the segment size is too small for a useful preview
         return img;
     }
-
-    QString localFile = directory.path();
 
     // Multiply with a high number, so we get some semi-random sequence
     int skipValidItems = ((int)sequenceIndex()) * tiles * tiles;
