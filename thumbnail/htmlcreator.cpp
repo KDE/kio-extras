@@ -102,7 +102,7 @@ void HTMLCreator::slotFinished(bool ok)
 
 ThumbCreator::Flags HTMLCreator::flags() const
 {
-    return DrawFrame;
+    return None;
 }
 
 #include "htmlcreator.moc"

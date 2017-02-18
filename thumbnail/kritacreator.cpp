@@ -104,5 +104,5 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
 
 ThumbCreator::Flags KritaCreator::flags() const
 {
-    return DrawFrame;
+    return None;
 }
