@@ -310,5 +310,5 @@ int ComicCreator::startProcess(const QString& processPath, const QStringList& ar
 
 ThumbCreator::Flags ComicCreator::flags() const
 {
-    return DrawFrame;
+    return None;
 }

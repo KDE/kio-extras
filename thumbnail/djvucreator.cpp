@@ -127,7 +127,7 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
 
 ThumbCreator::Flags DjVuCreator::flags() const
 {
-  return static_cast<Flags>(DrawFrame);
+  return static_cast<Flags>(None);
 }
 
 
