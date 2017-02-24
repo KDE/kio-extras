@@ -602,6 +602,18 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
 
   qCDebug(KIO_SMTP_LOG) << "Trying to connect to the SSH server";
 
+  unsigned int effectivePort;
+  if (mPort > 0) {
+      effectivePort = mPort;
+  } else {
+      effectivePort = DEFAULT_SFTP_PORT;
+      ssh_options_get_port(mSession, &effectivePort);
+  }
+
+  qCDebug(KIO_SMTP_LOG) << "username=" << mUsername << ", host=" << mHost << ", port=" << effectivePort;
+
+  infoMessage(xi18n("Opening SFTP connection to host %1:%2", mHost, QString::number(effectivePort)));
+
   /* try to connect */
   rc = ssh_connect(mSession);
   if (rc < 0) {
@@ -619,12 +631,6 @@ void sftpProtocol::openConnection() {
   if (mConnected) {
     return;
   }
-
-  const int effectivePort = mPort > 0 ? mPort : DEFAULT_SFTP_PORT;
-
-  qCDebug(KIO_SMTP_LOG) << "username=" << mUsername << ", host=" << mHost << ", port=" << effectivePort;
-
-  infoMessage(xi18n("Opening SFTP connection to host %1:%2", mHost, QString::number(effectivePort)));
 
   if (mHost.isEmpty()) {
     qCDebug(KIO_SMTP_LOG) << "openConnection(): Need hostname...";
