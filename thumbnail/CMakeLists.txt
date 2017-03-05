@@ -221,7 +221,9 @@ install(FILES
     imagethumbnail.desktop
     jpegthumbnail.desktop
     textthumbnail.desktop
-#    htmlthumbnail.desktop
+if (Qt5WebEngineWidgets_FOUND)
+    htmlthumbnail.desktop
+endif()
 #    desktopthumbnail.desktop
     comicbookthumbnail.desktop
     kraorathumbnail.desktop
