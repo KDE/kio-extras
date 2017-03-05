@@ -221,10 +221,13 @@ install(FILES
     imagethumbnail.desktop
     jpegthumbnail.desktop
     textthumbnail.desktop
-if (Qt5WebEngineWidgets_FOUND)
-    htmlthumbnail.desktop
-endif()
 #    desktopthumbnail.desktop
     comicbookthumbnail.desktop
     kraorathumbnail.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})
+
+if (Qt5WebEngineWidgets_FOUND)
+   install(FILES htmlthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+ 
+endif()
+
