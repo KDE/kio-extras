@@ -334,7 +334,7 @@ void getEntry(UDSEntry &entry, const LIBMTP_devicestorage_t *storage)
     entry.insert(UDSEntry::UDS_NAME, storageName);
     entry.insert(UDSEntry::UDS_ICON_NAME, QLatin1String("drive-removable-media"));
     entry.insert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.insert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
+    entry.insert(UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
     entry.insert(UDSEntry::UDS_MIME_TYPE, QLatin1String("inode/directory"));
 }
 
