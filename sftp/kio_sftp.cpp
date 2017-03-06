@@ -2271,6 +2271,7 @@ void sftpProtocol::fileSystemFreeSpace(const QUrl& url)
   }
 
   if (sftp_extension_supported(mSftp, "statvfs@openssh.com", "2") == 0) {
+    error(ERR_UNSUPPORTED_ACTION, QString());
     return;
   }
 
