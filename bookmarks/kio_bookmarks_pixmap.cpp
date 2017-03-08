@@ -49,8 +49,8 @@ void BookmarksProtocol::echoImage( const QString &type, const QString &string, c
   QImage image;
   bool ok = cache->findImage(type + string + QString::number(size), &image);
   if (!ok || image.isNull()) {
-    QIcon icon = QIcon::fromTheme(string);
-    QPixmap pix; // KIcon can't give us a QImage anyways.
+    const QIcon icon = QIcon::fromTheme(string);
+    QPixmap pix; // QIcon can't give us a QImage anyways.
 
     if (type == "icon") {
       pix = icon.pixmap(size, size);
