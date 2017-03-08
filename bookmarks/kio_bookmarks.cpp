@@ -203,7 +203,7 @@ void BookmarksProtocol::get( const QUrl& url )
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
   QCoreApplication app(argc, argv); 
-  app.setApplicationName(QLatin1String("kio_ldap"));
+  app.setApplicationName(QLatin1String("kio_bookmarks"));
 
   if (argc != 4) {
       qCritical() << "Usage: kio_bookmarks protocol domain-socket1 domain-socket2";
