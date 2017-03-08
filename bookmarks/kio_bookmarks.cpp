@@ -38,7 +38,7 @@
 #include <solid/device.h>
 #include <solid/deviceinterface.h>
 #include <ktoolinvocation.h>
-#include <QCoreApplication>
+#include <QGuiApplication>
 
 using namespace KIO;
 
@@ -202,7 +202,7 @@ void BookmarksProtocol::get( const QUrl& url )
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
-  QCoreApplication app(argc, argv); 
+  QGuiApplication app(argc, argv);
   app.setApplicationName(QLatin1String("kio_bookmarks"));
 
   if (argc != 4) {
