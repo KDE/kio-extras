@@ -212,6 +212,18 @@ target_link_libraries(kritathumbnail
 
 install(TARGETS kritathumbnail  DESTINATION ${PLUGIN_INSTALL_DIR})
 
+########### next target #################
+
+find_package(Taglib 1.11)
+
+if(TAGLIB_FOUND)
+    set(auditohumbnail_SRCS audiocreator.cpp)
+    add_library(audiothumbnail MODULE ${auditohumbnail_SRCS})
+    target_link_libraries(audiothumbnail ${TAGLIB_LIBRARIES} KF5::KIOWidgets)
+    install(TARGETS audiothumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+    set(audiothumbnail_desktop audiothumbnail.desktop)
+endif(TAGLIB_FOUND)
+
 ########### install files ###############
 
 install(FILES thumbcreator.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
@@ -224,6 +236,7 @@ install(FILES
 #    desktopthumbnail.desktop
     comicbookthumbnail.desktop
     kraorathumbnail.desktop
+    ${audiothumbnail_desktop}
     DESTINATION ${SERVICES_INSTALL_DIR})
 
 if (Qt5WebEngineWidgets_FOUND)

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Type=Service
+Name=Audio files
+ServiceTypes=ThumbCreator
+MimeType=audio/*;
+CacheThumbnail=true
+X-KDE-Library=audiothumbnail
