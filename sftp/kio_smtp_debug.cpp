@@ -18,6 +18,6 @@
 */
 
 #include "kio_smtp_debug.h"
-Q_LOGGING_CATEGORY(KIO_SMTP_LOG, "log_kio_sftp")
+Q_LOGGING_CATEGORY(KIO_SFTP_LOG, "log_kio_sftp")
 
 
