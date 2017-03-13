@@ -2,6 +2,13 @@
 Encoding=UTF-8
 Type=Service
 Name=Audio files
+Name[ca]=Fitxers d'àudio
+Name[nl]=Geluidsbestanden
+Name[pt]=Ficheiros de áudio
+Name[sv]=Ljudfiler
+Name[uk]=Звукові файли
+Name[x-test]=xxAudio filesxx
+Name[zh_TW]=音訊檔案
 ServiceTypes=ThumbCreator
 MimeType=audio/*;
 CacheThumbnail=true
