@@ -20,41 +20,15 @@
 #ifndef KIO_ARCHIVE_H
 #define KIO_ARCHIVE_H
 
-#include <sys/types.h>
+#include "kio_archivebase.h"
 
-#include <kio/global.h>
-#include <kio/slavebase.h>
-
-class KArchive;
-class KArchiveEntry;
-
-class ArchiveProtocol : public KIO::SlaveBase
+class ArchiveProtocol : public ArchiveProtocolBase
 {
 public:
-    ArchiveProtocol( const QByteArray &pool, const QByteArray &app );
-    virtual ~ArchiveProtocol();
+    ArchiveProtocol( const QByteArray &proto, const QByteArray &pool, const QByteArray &app );
+    virtual ~ArchiveProtocol() = default;
 
-    virtual void listDir( const QUrl & url );
-    virtual void stat( const QUrl & url );
-    virtual void get( const QUrl & url );
-
-private:
-    void createRootUDSEntry( KIO::UDSEntry & entry );
-    void createUDSEntry( const KArchiveEntry * tarEntry, KIO::UDSEntry & entry );
-
-    /**
-     * \brief find, check and open the archive file
-     * \param url The URL of the archive
-     * \param path Path where the archive really is (returned value)
-     * \param errNum KIO error number (undefined if the function returns true)
-     * \return true if file was found, false if there was an error
-     */
-    bool checkNewFile( const QUrl & url, QString & path, KIO::Error& errorNum );
-
-    KArchive * m_archiveFile;
-    QString m_archiveName;
-    QString m_user, m_group;
-    time_t m_mtime;
+    KArchive *createArchive( const QString & proto, const QString & archiveFile ) Q_DECL_OVERRIDE;
 };
 
 #endif // KIO_ARCHIVE_H
