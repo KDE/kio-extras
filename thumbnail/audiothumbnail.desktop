@@ -3,6 +3,7 @@ Encoding=UTF-8
 Type=Service
 Name=Audio files
 Name[ca]=Fitxers d'àudio
+Name[ca@valencia]=Fitxers d'àudio
 Name[cs]=Audio soubory
 Name[it]=File audio
 Name[nl]=Geluidsbestanden
