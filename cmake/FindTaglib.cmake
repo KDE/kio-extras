@@ -53,7 +53,10 @@ if(TAGLIBCONFIG_EXECUTABLE)
   exec_program(${TAGLIBCONFIG_EXECUTABLE} ARGS --libs RETURN_VALUE _return_VALUE OUTPUT_VARIABLE TAGLIB_LIBRARIES)
 
   exec_program(${TAGLIBCONFIG_EXECUTABLE} ARGS --cflags RETURN_VALUE _return_VALUE OUTPUT_VARIABLE TAGLIB_CFLAGS)
-  string(REGEX REPLACE " *-I" ";" TAGLIB_INCLUDES "${TAGLIB_CFLAGS}")
+
+  # Assume software will include by things like #include <taglib/tfile.h> instead of <tfile.h>
+  string(REPLACE "/taglib" "" TAGLIB_STRIPPED_INCLUDE_PATHS "${TAGLIB_CFLAGS}")
+  string(REGEX REPLACE " *-I" ";" TAGLIB_INCLUDES "${TAGLIB_STRIPPED_INCLUDE_PATHS}")
 
   include(FindPackageHandleStandardArgs)
   find_package_handle_standard_args(Taglib FOUND_VAR TAGLIB_FOUND
