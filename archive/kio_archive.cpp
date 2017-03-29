@@ -19,7 +19,7 @@
 
 #include "kio_archive.h"
 
-#include <QApplication>
+#include <QCoreApplication>
 #include <QUrl>
 
 #include <kar.h>
@@ -34,7 +34,7 @@ extern "C" { int Q_DECL_EXPORT kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char **argv )
 {
-  QApplication app(argc, argv);
+  QCoreApplication app(argc, argv);
   app.setApplicationName(QLatin1String("kio_archive"));
 
   qCDebug(KIO_ARCHIVE_LOG) << "Starting" << getpid();
