@@ -1,5 +1,5 @@
 ########### next target ###############
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_bookmarks\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_bookmarks\")
 
 set(kio_bookmarks_PART_SRCS kio_bookmarks.cpp kio_bookmarks_html.cpp kio_bookmarks_pixmap.cpp)
 

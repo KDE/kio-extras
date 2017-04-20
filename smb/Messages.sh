@@ -1,2 +1,2 @@
 #! /usr/bin/env bash
-$XGETTEXT *.cpp -o $podir/kio_smb.pot
+$XGETTEXT *.cpp -o $podir/kio5_smb.pot

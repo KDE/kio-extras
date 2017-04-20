@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_thumbnail\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_thumbnail\")
 
 find_package(OpenEXR)
 set_package_properties(OpenEXR PROPERTIES DESCRIPTION "API for accessing OpenEXR formatted images"

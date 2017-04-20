@@ -23,7 +23,7 @@ if (HAVE_XDR_U_LONGLONG_T)
     add_definitions(-DHAVE_XDR_U_LONGLONG_T)
 endif (HAVE_XDR_U_LONGLONG_T)
 
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_nfs\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_nfs\")
 
 add_library(kio_nfs MODULE kio_nfs.cpp nfsv2.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c rpc_nfs2_prot_xdr.c)
 target_link_libraries(kio_nfs KF5::KIOCore KF5::I18n Qt5::Network)

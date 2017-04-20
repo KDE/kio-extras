@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_man\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_man\")
 
 add_subdirectory( tests )
 

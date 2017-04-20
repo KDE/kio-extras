@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_archive\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_archive\")
 
 add_subdirectory(autotests)
 

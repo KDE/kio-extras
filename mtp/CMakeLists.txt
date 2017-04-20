@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_mtp\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_mtp\")
 
 add_definitions(-DQT_NO_CAST_FROM_ASCII)
 

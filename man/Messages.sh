@@ -1,2 +1,2 @@
 #! /usr/bin/env bash
-$XGETTEXT *.cpp *.h -o $podir/kio_man.pot
+$XGETTEXT *.cpp *.h -o $podir/kio5_man.pot
