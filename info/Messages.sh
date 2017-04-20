@@ -1,2 +1,2 @@
 #! /usr/bin/env bash
-$XGETTEXT *.cc -o $podir/kio_info.pot
+$XGETTEXT *.cc -o $podir/kio5_info.pot

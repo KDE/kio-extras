@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_smb\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_smb\")
 
 include(CheckIncludeFile)
 set(CMAKE_AUTOMAKE ON)

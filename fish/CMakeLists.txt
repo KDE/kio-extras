@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_fish\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_fish\")
 
 include(CheckIncludeFiles)
 include(CheckFunctionExists)

@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio_sftp\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_sftp\")
 
 include_directories(${LIBSSH_INCLUDE_DIR})
 
