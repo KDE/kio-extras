@@ -95,6 +95,10 @@ install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 ############ next target ###############
 
 find_package(Qt5WebEngineWidgets 5.7.0 QUIET)
+set_package_properties(Qt5WebEngineWidgets PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Provides support for HTML previews in the thumbnail ioslave"
+                      )
 
 if (Qt5WebEngineWidgets_FOUND)
 
@@ -242,6 +246,6 @@ install(FILES
 
 if (Qt5WebEngineWidgets_FOUND)
    install(FILES htmlthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
- 
+
 endif()
 
