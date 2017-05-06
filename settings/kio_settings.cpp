@@ -18,15 +18,13 @@
    Boston, MA 02110-1301, USA.
 */
 
+#include <QDebug>
+#include <QStandardPaths>
+
 #include <kservicetypetrader.h>
 #include <kio/slavebase.h>
-#include <kdebug.h>
-#include <KComponentData>
-#include <sys/stat.h>
-#include <time.h>
 #include <kservice.h>
 #include <kservicegroup.h>
-#include <QStandardPaths>
 
 
 class SettingsProtocol : public KIO::SlaveBase
@@ -50,10 +48,11 @@ private:
 };
 
 extern "C" {
-    Q_DECL_EXPORT int kdemain( int, char **argv )
+    Q_DECL_EXPORT int kdemain( int argc, char **argv )
     {
-        kDebug() << "kdemain for settings kioslave";
-        KComponentData componentData( "kio_settings" );
+        QCoreApplication app(argc, argv);
+        app.setApplicationName("kio_settings");
+        qDebug() << "kdemain for settings kioslave";
         SettingsProtocol slave(argv[1], argv[2], argv[3]);
         slave.dispatchLoop();
         return 0;
@@ -122,7 +121,7 @@ void SettingsProtocol::stat(const QUrl& url)
 {
     initSettingsData();
     const QString fileName = url.fileName();
-    kDebug() << fileName;
+    qDebug() << fileName;
 
     KIO::UDSEntry entry;
     // Root dir?
@@ -139,7 +138,7 @@ void SettingsProtocol::stat(const QUrl& url)
         const KService::Ptr service = it.value();
         const QString parentCategory = service->property("X-KDE-System-Settings-Parent-Category").toString();
         const QString category = service->property("X-KDE-System-Settings-Category").toString();
-        //kDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
+        //qDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
         createDirEntry(entry, category, service->icon());
         entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());
         statEntry(entry);
@@ -177,7 +176,7 @@ void SettingsProtocol::listDir(const QUrl& url)
         const KService::Ptr service = m_categories.at(i);
         QString parentCategory = service->property("X-KDE-System-Settings-Parent-Category").toString();
         QString category = service->property("X-KDE-System-Settings-Category").toString();
-        //kDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
+        //qDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
         if (parentCategory == fileName) {
             //KUrl dirUrl = url;
             //dirUrl.addPath(category);
