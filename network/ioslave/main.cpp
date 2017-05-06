@@ -22,8 +22,6 @@
 
 #include "networkslave.h"
 
-// KDE
-#include <KComponentData>
 // Qt
 #include <QtCore/QCoreApplication>
 
@@ -33,8 +31,8 @@ extern "C"
 
 int Q_DECL_EXPORT kdemain( int argc, char** argv )
 {
-    KComponentData componentData( "kio_network" );
     QCoreApplication app( argc, argv );
+    app.setApplicationName(QLatin1String("kio_network"));
 
     NetworkSlave slave( argv[1], argv[2], argv[3] );
     slave.dispatchLoop();

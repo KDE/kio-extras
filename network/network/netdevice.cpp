@@ -23,13 +23,10 @@
 #include "netdevice.h"
 #include "netdevice_p.h"
 
-// KDE
-#include <KGlobal>
-
 namespace Mollet
 {
 
-K_GLOBAL_STATIC_WITH_ARGS(KSharedPtr< NetDevicePrivate >, dummyNetDevicePrivate, ( new NetDevicePrivate(QString()) ))
+Q_GLOBAL_STATIC_WITH_ARGS(QSharedPointer<NetDevicePrivate>, dummyNetDevicePrivate, ( new NetDevicePrivate(QString()) ))
 
 
 QString NetDevice::iconName( Type type )
@@ -73,7 +70,7 @@ NetDevice& NetDevice::operator =( const NetDevice& other )
 
 void NetDevice::setDPtr( NetDevicePrivate* _d )
 {
-    d = _d;
+    d.reset(_d);
 }
 
 NetDevice::~NetDevice()

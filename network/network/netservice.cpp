@@ -25,15 +25,15 @@
 
 // lib
 #include "netdevice.h"
-// KDE
-#include <KGlobal>
+// Qt
+#include <QGlobalStatic>
 
 
 namespace Mollet
 {
 
 // 
-K_GLOBAL_STATIC_WITH_ARGS(KSharedPtr< NetServicePrivate >,
+Q_GLOBAL_STATIC_WITH_ARGS(QSharedPointer<NetServicePrivate>,
     defaultEmptyNetServicePrivate,
     ( new NetServicePrivate(QString(),QString(),QString(),NetDevice(),QString(),QString()) ))
 
@@ -69,7 +69,7 @@ NetService& NetService::operator =( const NetService& other )
 
 void NetService::setDPtr( NetServicePrivate* _d )
 {
-    d = _d;
+    d.reset(_d);
 }
 
 NetService::~NetService()

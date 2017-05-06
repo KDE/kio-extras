@@ -25,8 +25,8 @@
 
 // lib
 #include "molletnetwork_export.h"
-// KDE
-#include <KSharedPtr>
+// Qt
+#include <QSharedPointer>
 
 namespace Mollet {
 class NetService;
@@ -82,7 +82,7 @@ class MOLLETNETWORK_EXPORT NetDevice
     NetDevicePrivate* dPtr() const;
 
   private:
-    KSharedPtr<NetDevicePrivate> d;
+    QSharedPointer<NetDevicePrivate> d;
 };
 
 typedef QList<NetDevice> NetDeviceList;

@@ -23,18 +23,18 @@
 #include "network.h"
 #include "network_p.h"
 
-// KDE
-#include <KGlobal>
 // Qt
+#include <QtCore/QGlobalStatic>
 #include <QtCore/QList>
 
 
 namespace Mollet
 {
 
+Q_GLOBAL_STATIC( Network, networkSingleton )
+
 Network* Network::network()
 {
-    K_GLOBAL_STATIC( Network, networkSingleton )
     return networkSingleton;
 }
 

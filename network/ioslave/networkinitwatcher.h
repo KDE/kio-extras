@@ -28,8 +28,7 @@
 //Qt
 #include <QtCore/QObject>
 #include <QtCore/QMutex>
-
-#include <KDebug>
+#include <QtCore/QDebug>
 
 using namespace Mollet;
 
@@ -57,16 +56,16 @@ inline NetworkInitWatcher::NetworkInitWatcher( Network* network, QMutex* mutex )
 }
 inline NetworkInitWatcher::~NetworkInitWatcher()
 {
-kDebug();
+qDebug();
 }
 
 inline void NetworkInitWatcher::onNetworkInitDone()
 {
-kDebug()<<"before unlock";
+qDebug()<<"before unlock";
     mMutex->unlock();
-kDebug()<<"after unlock";
+qDebug()<<"after unlock";
     deleteLater();
-kDebug()<<"after deleteLater";
+qDebug()<<"after deleteLater";
 }
 
 #endif

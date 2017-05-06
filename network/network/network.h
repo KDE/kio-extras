@@ -49,6 +49,7 @@ class MOLLETNETWORK_EXPORT Network : public QObject
     static Network* network();
 
   public:
+    Network();
     virtual ~Network();
 
   public:
@@ -63,7 +64,6 @@ class MOLLETNETWORK_EXPORT Network : public QObject
     void initDone();
 
   private:
-    Network();
     Q_PRIVATE_SLOT( d, void onBuilderInit() )
 
   private:

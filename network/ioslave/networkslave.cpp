@@ -29,12 +29,9 @@
 // network
 #include <netdevice.h>
 #include <netservice.h>
-// KDE
-#include <kde_file.h>
 // Qt
 #include <QtCore/QEventLoop>
-
-#include <QDebug>
+#include <QtCore/QDebug>
 
 // static const char NetworkIconName[] = "network-workgroup";
 
