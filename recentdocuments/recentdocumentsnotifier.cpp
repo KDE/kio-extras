@@ -1,9 +1,5 @@
 #include <KDirWatch>
-#include <KGlobal>
-#include <KGlobalSettings>
 #include <KPluginFactory>
-#include <KPluginLoader>
-#include <KStandardDirs>
 #include <QUrl>
 #include <KDirNotify>
 #include <KRecentDocument>

@@ -1,18 +1,14 @@
 #include <QCoreApplication>
 #include <QDBusInterface>
 #include <QFileInfo>
+#include <QDebug>
+#include <QUrl>
 
-#include <KDebug>
-#include <KComponentData>
 #include <KRecentDocument>
 #include <KDirWatch>
 #include <KDesktopFile>
 #include <KIO/Job>
-#include <KIO/NetAccess>
 #include <KLocalizedString>
-#include <QUrl>
-#include <KGlobal>
-#include <kde_file.h>
 
 #include <stdio.h>
 
@@ -22,8 +18,7 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     // necessary to use other kio slaves
     QCoreApplication app(argc, argv);
-    KComponentData("kio_recentdocuments", "kio_recentdocuments");
-    KLocale::global();
+    app.setApplicationName("kio_recentdocuments");
     if (argc != 4) {
         fprintf(stderr, "Usage: kio_recentdocuments protocol domain-socket1 domain-socket2\n");
         exit(-1);
@@ -91,7 +86,7 @@ void RecentDocuments::listDir(const QUrl& url)
                     // we do not want to wait for the event loop to delete the job
                     QScopedPointer<KIO::StatJob> sp(job);
                     job->setAutoDelete(false);
-                    if (KIO::NetAccess::synchronousRun(job, 0)) {
+                    if (job->exec()) {
                         uds = job->statResult();
                     }
                 }
@@ -141,7 +136,7 @@ QString RecentDocuments::desktopFile(KIO::UDSEntry& entry) const
 void RecentDocuments::stat(const QUrl& url)
 {
     if (isRootUrl(url)) {
-        kDebug() << "Stat root" << url;
+        qDebug() << "Stat root" << url;
         //
         // stat the root path
         //
@@ -159,14 +154,14 @@ void RecentDocuments::stat(const QUrl& url)
     }
     // results are forwarded
     else {
-        kDebug() << "Stat forward" << url;
+        qDebug() << "Stat forward" << url;
         ForwardingSlaveBase::stat(url);
     }
 }
 
 void RecentDocuments::mimetype(const QUrl& url)
 {
-    kDebug() << url;
+    qDebug() << url;
 
     // the root url is always a folder
     if (isRootUrl(url)) {
