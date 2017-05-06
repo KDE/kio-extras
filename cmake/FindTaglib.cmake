@@ -66,7 +66,6 @@ if(TAGLIBCONFIG_EXECUTABLE)
 
 else(TAGLIBCONFIG_EXECUTABLE)
 
-  include(FindLibraryWithDebug)
   include(FindPackageHandleStandardArgs)
 
   find_path(TAGLIB_INCLUDES
@@ -74,15 +73,16 @@ else(TAGLIBCONFIG_EXECUTABLE)
     tag.h
     PATH_SUFFIXES taglib
     PATHS
-    ${KDE4_INCLUDE_DIR}
     ${INCLUDE_INSTALL_DIR}
   )
 
-  find_library_with_debug(TAGLIB_LIBRARIES
-    WIN32_DEBUG_POSTFIX d
+  # TODO: this originally used find_library_with_debug(),
+  # which is only available with KDELibs4Support, with
+  # arguments "WIN32_DEBUG_POSTFIX d".  It is equivalent
+  # to find_library on all platforms other than Win32.
+  find_library(TAGLIB_LIBRARIES
     NAMES tag
     PATHS
-    ${KDE4_LIB_DIR}
     ${LIB_INSTALL_DIR}
   )
 
