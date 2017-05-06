@@ -22,7 +22,6 @@ target_link_libraries(kio_thumbnail
 	KF5::Solid
 	KF5::IconThemes
  	KF5::I18n
-	KF5::KDELibs4Support
 )
 
 set_target_properties(kio_thumbnail PROPERTIES OUTPUT_NAME "thumbnail")

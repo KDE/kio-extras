@@ -34,7 +34,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     IconThemes
     I18n
     KIO
-    KDELibs4Support
     Solid
     Bookmarks
     GuiAddons

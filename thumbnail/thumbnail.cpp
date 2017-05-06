@@ -58,7 +58,6 @@
 
 #include <kaboutdata.h>
 #include <kiconloader.h>
-#include <kde_file.h>
 
 #include <kio/thumbcreator.h>
 #include <kio/thumbsequencecreator.h>
