@@ -23,24 +23,29 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #include "filter.h"
+
+#include <QCoreApplication>
 #include <QFileInfo>
 #include <QFile>
+#include <QDebug>
+#include <QUrl>
+#include <QMimeType>
+#include <QMimeDatabase>
 
-#include <kcomponentdata.h>
-#include <kdebug.h>
-#include <kmimetype.h>
 #include <kfilterbase.h>
 #include <kcompressiondevice.h>
 #include <kfilterdev.h>
-#include <QUrl>
+
+#include "loggingcategory.h"
 
 extern "C" { Q_DECL_EXPORT int kdemain(int argc, char **argv); }
 
 int kdemain( int argc, char ** argv)
 {
-  KComponentData componentData( "kio_filter" );
+  QCoreApplication app(argc, argv);
+  app.setApplicationName("kio_filter");
 
-  kDebug(7110) << "Starting";
+  qDebug(KIO_FILTER_DEBUG) << "Starting";
 
   if (argc != 4)
   {
@@ -51,7 +56,7 @@ int kdemain( int argc, char ** argv)
   FilterProtocol slave(argv[1], argv[2], argv[3]);
   slave.dispatchLoop();
 
-  kDebug(7110) << "Done";
+  qDebug(KIO_FILTER_DEBUG) << "Done";
   return 0;
 }
 
@@ -113,7 +118,7 @@ void FilterProtocol::get(const QUrl& url)
 #else
         result = localFile.read(inputBuffer.data(), inputBuffer.size());
 #endif
-        kDebug(7110) << "requestData: got " << result;
+        qDebug(KIO_FILTER_DEBUG) << "requestData: got " << result;
         if (result <= 0)
         {
           bError = true;
@@ -131,7 +136,7 @@ void FilterProtocol::get(const QUrl& url)
      result = filter->uncompress();
      if ((filter->outBufferAvailable() == 0) || (result == KFilterBase::End))
      {
-         kDebug(7110) << "avail_out = " << filter->outBufferAvailable();
+         qDebug(KIO_FILTER_DEBUG) << "avail_out = " << filter->outBufferAvailable();
         if (filter->outBufferAvailable() != 0)
         {
             // Discard unused space :-)
@@ -140,17 +145,18 @@ void FilterProtocol::get(const QUrl& url)
         if (bNeedMimetype) {
             // Can we use the "base" filename? E.g. foo.txt.bz2
             const QString extension = QFileInfo(subURL.path()).suffix();
-            KMimeType::Ptr mime;
+            QMimeDatabase db;
+            QMimeType mime;
             if (extension == "gz" || extension == "bz" || extension == "bz2") {
                 QString baseName = subURL.path();
                 baseName.truncate(baseName.length() - extension.length() - 1 /*the dot*/);
-                kDebug(7110) << "baseName=" << baseName;
-                mime = KMimeType::findByNameAndContent(baseName, outputBuffer);
+                qDebug(KIO_FILTER_DEBUG) << "baseName=" << baseName;
+                mime = db.mimeTypeForFileNameAndData(baseName, outputBuffer);
             } else {
-                mime = KMimeType::findByContent(outputBuffer);
+                mime = db.mimeTypeForData(outputBuffer);
             }
-            kDebug(7110) << "Emitting mimetype " << mime->name();
-            mimeType( mime->name() );
+            qDebug(KIO_FILTER_DEBUG) << "Emitting mimetype " << mime.name();
+            mimeType( mime.name() );
             bNeedMimetype = false;
         }
         data( outputBuffer ); // Send data
@@ -172,7 +178,7 @@ void FilterProtocol::get(const QUrl& url)
 #else
         result = localFile.read(inputBuffer.data(), inputBuffer.size());
 #endif
-        kDebug(7110) << "requestData: got" << result << "(expecting 0)";
+        qDebug(KIO_FILTER_DEBUG) << "requestData: got" << result << "(expecting 0)";
         data(QByteArray()); // Send EOF
     }
 

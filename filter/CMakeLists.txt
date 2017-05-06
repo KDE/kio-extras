@@ -1,7 +1,16 @@
-add_library(kio_filter MODULE filter.cc)
-target_link_libraries(kio_filter KF5::KDELibs4Support KF5::Archive KF5::KIOCore)
-set_target_properties(kio_filter PROPERTIES OUTPUT_NAME "filter")
+include(ECMQtDeclareLoggingCategory)
 
+set(kio_filter_SRCS filter.cc)
+
+ecm_qt_declare_logging_category(kio_filter_SRCS
+                                HEADER loggingcategory.h
+                                IDENTIFIER KIO_FILTER_DEBUG
+                                CATEGORY_NAME kio_filter
+                                DEFAULT_SEVERITY Debug)
+
+add_library(kio_filter MODULE ${kio_filter_SRCS})
+target_link_libraries(kio_filter KF5::Archive KF5::KIOCore)
+set_target_properties(kio_filter PROPERTIES OUTPUT_NAME "filter")
 
 install(TARGETS kio_filter DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
 install( FILES gzip.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
