@@ -26,25 +26,19 @@
 #include <cerrno>
 #include <cstring>
 #include <unistd.h>
+#include <utime.h>
 
 #include <QtCore/QCoreApplication>
-#include <QtCore/QBuffer>
-#include <QtCore/QByteArray>
 #include <QtCore/QDir>
 #include <QtCore/QFile>
-#include <QtCore/QObject>
-#include <QtCore/QString>
 #include <QtCore/QVarLengthArray>
+#include <QtCore/QMimeType>
+#include <QtCore/QMimeDatabase>
 
 #include <kuser.h>
 #include <kmessagebox.h>
-#include <kcomponentdata.h>
-#include <kglobal.h>
 
-#include <KMimeType>
-#include <klocale.h>
-#include <kurl.h>
-#include <kde_file.h>
+#include <klocalizedstring.h>
 #include <kconfiggroup.h>
 #include <kio/ioslave_defaults.h>
 
@@ -66,13 +60,12 @@ extern "C"
   int Q_DECL_EXPORT kdemain( int argc, char **argv )
   {
     QCoreApplication app(argc, argv);
-    KComponentData componentData( "kio_sftp" );
-    (void) KLocale::global();
+    app.setApplicationName("kio_sftp");
 
     qCDebug(KIO_SFTP_LOG) << "*** Starting kio_sftp ";
 
     if (argc != 4) {
-      qCDebug(KIO_SFTP_LOG) << "Usage: kio_sftp  protocol domain-socket1 domain-socket2";
+      qCDebug(KIO_SFTP_LOG) << "Usage: kio_sftp protocol domain-socket1 domain-socket2";
       exit(-1);
     }
 
@@ -139,7 +132,7 @@ static int writeToFile(int fd, const char *buf, size_t len)
 static int seekPos(int fd, KIO::fileoffset_t pos, int mode)
 {
     KIO::fileoffset_t offset = -1;
-    while ((offset=KDE_lseek(fd, pos, mode)) == EAGAIN);
+    while ((offset = QT_LSEEK(fd, pos, mode)) == EAGAIN);
     return offset;
 }
 
@@ -208,7 +201,7 @@ int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
   }
   mPublicKeyAuthInfo->url.setUserName(mUsername);
 
-  KUrl u (mPublicKeyAuthInfo->url);
+  QUrl u (mPublicKeyAuthInfo->url);
   u.setPath(QString());
   mPublicKeyAuthInfo->comment = u.url();
   mPublicKeyAuthInfo->readOnly = true;
@@ -220,7 +213,7 @@ int sftpProtocol::auth_callback(const char *prompt, char *buf, size_t len,
 
   qCDebug(KIO_SFTP_LOG) << "Entering authentication callback, prompt=" << mPublicKeyAuthInfo->prompt;
 
-  if (!openPasswordDialog(*mPublicKeyAuthInfo, errMsg)) {
+  if (openPasswordDialogV2(*mPublicKeyAuthInfo, errMsg) != 0) {
     qCDebug(KIO_SFTP_LOG) << "User canceled public key passpharse dialog";
     return -1;
   }
@@ -298,7 +291,7 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
         infoKbdInt.readOnly = false;
         infoKbdInt.keepPassword = false;
 
-        if (openPasswordDialog(infoKbdInt, i18n("Use the username input field to answer this question."))) {
+        if (openPasswordDialogV2(infoKbdInt, i18n("Use the username input field to answer this question.")) == 0) {
           qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
           answer = info.username.toUtf8().constData();
         }
@@ -319,7 +312,7 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
         info.commentLabel = i18n("Site:");
         info.setExtraField(QLatin1String("hide-username-line"), true);
 
-        if (openPasswordDialog(info)) {
+        if (openPasswordDialogV2(info) == 0) {
           qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
           answer = info.password.toUtf8().constData();
         }
@@ -337,7 +330,7 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
   return err;
 }
 
-void sftpProtocol::reportError(const KUrl &url, const int err) {
+void sftpProtocol::reportError(const QUrl &url, const int err) {
   qCDebug(KIO_SFTP_LOG) << "url = " << url << " - err=" << err;
 
   const int kioError = toKIOError(err);
@@ -840,10 +833,12 @@ void sftpProtocol::openConnection() {
                             << isFirstLoginAttempt << "error:" << errMsg;
 
         // Handle user canceled or dialog failed to open...
-        if (!openPasswordDialog(info, errMsg)) {
+
+        int errCode = openPasswordDialogV2(info, errMsg);
+        if (errCode != 0) {
           qCDebug(KIO_SFTP_LOG) << "User canceled password/retry dialog";
           closeConnection();
-          error(KIO::ERR_USER_CANCELED, QString());
+          error(errCode, QString());
           return;
         }
 
@@ -1049,8 +1044,9 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
       return;
     } else {
       QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
-      KMimeType::Ptr p_mimeType = KMimeType::findByNameAndContent(mOpenUrl.fileName(), fileData);
-      emit mimeType(p_mimeType->name());
+      QMimeDatabase db;
+      QMimeType mime = db.mimeTypeForFileNameAndData(mOpenUrl.fileName(), fileData);
+      emit mimeType(mime.name());
 
       // Go back to the beginning of the file.
       sftp_rewind(mOpenFile);
@@ -1140,7 +1136,7 @@ void sftpProtocol::get(const QUrl& url) {
   }
 }
 
-sftpProtocol::StatusCode sftpProtocol::sftpGet(const KUrl& url, int& errorCode, KIO::fileoffset_t offset, int fd) {
+sftpProtocol::StatusCode sftpProtocol::sftpGet(const QUrl& url, int& errorCode, KIO::fileoffset_t offset, int fd) {
 
   qCDebug(KIO_SFTP_LOG) << url;
 
@@ -1190,14 +1186,13 @@ sftpProtocol::StatusCode sftpProtocol::sftpGet(const KUrl& url, int& errorCode, 
     errorCode = KIO::ERR_COULD_NOT_READ;
     return sftpProtocol::ServerError;
   } else  {
-    int accuracy = 0;
-    KMimeType::Ptr mime = KMimeType::findByNameAndContent(url.fileName(), QByteArray(mimeTypeBuf, bytesread), 0, &accuracy);
-    if (!mime->isDefault() && accuracy == 100) {
-      emit mimeType(mime->name());
+    QMimeDatabase db;
+    QMimeType mime = db.mimeTypeForFileNameAndData(url.fileName(), QByteArray(mimeTypeBuf, bytesread));
+    if (!mime.isDefault()) {
+      emit mimeType(mime.name());
     } else {
-      accuracy = 0;
-      mime = KMimeType::findByUrl(url, 0, false, true, &accuracy);
-      emit mimeType(mime->name());
+      mime = db.mimeTypeForUrl(url);
+      emit mimeType(mime.name());
     }
     sftp_rewind(file);
   }
@@ -1290,7 +1285,7 @@ void sftpProtocol::put(const QUrl& url, int permissions, KIO::JobFlags flags) {
   }
 }
 
-sftpProtocol::StatusCode sftpProtocol::sftpPut(const KUrl& url, int permissions, JobFlags flags, int& errorCode, int fd) {
+sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions, JobFlags flags, int& errorCode, int fd) {
   qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << permissions
                       << ", overwrite =" << (flags & KIO::Overwrite)
                       << ", resume =" << (flags & KIO::Resume);
@@ -1582,13 +1577,13 @@ void sftpProtocol::copy(const QUrl &src, const QUrl &dest, int permissions, KIO:
   }
 }
 
-sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const KUrl& url, const QString& sCopyFile, int permissions, KIO::JobFlags flags, int& errorCode)
+sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QString& sCopyFile, int permissions, KIO::JobFlags flags, int& errorCode)
 {
   qCDebug(KIO_SFTP_LOG) << url << "->" << sCopyFile << ", permissions=" << permissions;
 
   // check if destination is ok ...
-  KDE_struct_stat buff;
-  const bool bDestExists = (KDE::stat(sCopyFile, &buff) != -1);
+  QT_STATBUF buff;
+  const bool bDestExists = (QT_STAT(QFile::encodeName(sCopyFile), &buff) != -1);
 
   if(bDestExists)  {
     if(S_ISDIR(buff.st_mode)) {
@@ -1604,7 +1599,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const KUrl& url, const QStrin
 
   bool bResume = false;
   const QString sPart = sCopyFile + QLatin1String(".part"); // do we have a ".part" file?
-  const bool bPartExists = (KDE::stat(sPart, &buff) != -1);
+  const bool bPartExists = (QT_STAT(QFile::encodeName(sPart), &buff) != -1);
   const bool bMarkPartial = config()->readEntry("MarkPartial", true);
   const QString dest = (bMarkPartial ? sPart : sCopyFile);
 
@@ -1631,7 +1626,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const KUrl& url, const QStrin
   int fd = -1;
   KIO::fileoffset_t offset = 0;
   if (bResume) {
-    fd = KDE::open( sPart, O_RDWR );  // append if resuming
+    fd = QT_OPEN( QFile::encodeName(sPart), O_RDWR );  // append if resuming
     offset = seekPos(fd, 0, SEEK_END);
     if(offset < 0) {
       errorCode = ERR_CANNOT_RESUME;
@@ -1641,7 +1636,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const KUrl& url, const QStrin
     qCDebug(KIO_SFTP_LOG) << "resuming at" << offset;
   }
   else {
-    fd = KDE::open(dest, O_CREAT | O_TRUNC | O_WRONLY, initialMode);
+    fd = QT_OPEN(QFile::encodeName(dest), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
   }
 
   if (fd == -1) {
@@ -1660,16 +1655,16 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const KUrl& url, const QStrin
   // handle renaming or deletion of a partial file ...
   if (bMarkPartial) {
     if (result == sftpProtocol::Success) { // rename ".part" on success
-      if ( KDE::rename( sPart, sCopyFile ) ) {
+      if ( !QFile::rename( QFile::encodeName(sPart), sCopyFile ) ) {
         // If rename fails, try removing the destination first if it exists.
-        if (!bDestExists || !(QFile::remove(sCopyFile) && KDE::rename(sPart, sCopyFile) == 0)) {
+        if (!bDestExists || !QFile::remove(sCopyFile) || !QFile::rename(sPart, sCopyFile)) {
             qCDebug(KIO_SFTP_LOG) << "cannot rename " << sPart << " to " << sCopyFile;
             errorCode = ERR_CANNOT_RENAME_PARTIAL;
             result = sftpProtocol::ClientError;
         }
       }
     }
-    else if (KDE::stat( sPart, &buff ) == 0) { // should a very small ".part" be deleted?
+    else if (QT_STAT( QFile::encodeName(sPart), &buff ) == 0) { // should a very small ".part" be deleted?
       const int size = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
       if (buff.st_size <  size)
         QFile::remove(sPart);
@@ -1683,20 +1678,20 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const KUrl& url, const QStrin
       struct utimbuf utbuf;
       utbuf.actime = buff.st_atime; // access time, unchanged
       utbuf.modtime = dt.toTime_t(); // modification time
-      KDE::utime(sCopyFile, &utbuf);
+      utime(QFile::encodeName(sCopyFile), &utbuf);
     }
   }
 
   return result;
 }
 
-sftpProtocol::StatusCode sftpProtocol::sftpCopyPut(const KUrl& url, const QString& sCopyFile, int permissions, JobFlags flags, int& errorCode)
+sftpProtocol::StatusCode sftpProtocol::sftpCopyPut(const QUrl& url, const QString& sCopyFile, int permissions, JobFlags flags, int& errorCode)
 {
   qCDebug(KIO_SFTP_LOG) << sCopyFile << "->" << url << ", permissions=" << permissions << ", flags" << flags;
 
   // check if source is ok ...
-  KDE_struct_stat buff;
-  bool bSrcExists = (KDE::stat(sCopyFile, &buff) != -1);
+  QT_STATBUF buff;
+  bool bSrcExists = (QT_STAT(QFile::encodeName(sCopyFile), &buff) != -1);
 
   if (bSrcExists) {
     if (S_ISDIR(buff.st_mode)) {
@@ -1708,7 +1703,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyPut(const KUrl& url, const QStrin
     return sftpProtocol::ClientError;
   }
 
-  const int fd = KDE::open(sCopyFile, O_RDONLY);
+  const int fd = QT_OPEN(QFile::encodeName(sCopyFile), O_RDONLY);
   if(fd == -1)
   {
     errorCode = ERR_CANNOT_OPEN_FOR_READING;
@@ -1745,7 +1740,7 @@ void sftpProtocol::stat(const QUrl& url) {
       error(KIO::ERR_MALFORMED_URL, url.toDisplayString());
       return;
     }
-    KUrl redir(url);
+    QUrl redir(url);
     redir.setPath(cPath);
     redirection(redir);
 
@@ -1807,7 +1802,7 @@ void sftpProtocol::listDir(const QUrl& url) {
       error(KIO::ERR_MALFORMED_URL, url.toDisplayString());
       return;
     }
-    KUrl redir(url);
+    QUrl redir(url);
     redir.setPath(cPath);
     redirection(redir);
 
@@ -1916,11 +1911,9 @@ notype:
     }
 
     sftp_attributes_free(dirent);
-    listEntry(entry, false);
+    listEntry(entry);
   } // for ever
   sftp_closedir(dp);
-  listEntry(entry, true); // ready
-
   finished();
 }
 
@@ -2224,10 +2217,10 @@ sftpProtocol::GetRequest::~GetRequest() {
 
 void sftpProtocol::requiresUserNameRedirection()
 {
-    KUrl redirectUrl;
-    redirectUrl.setProtocol( QLatin1String("sftp") );
-    redirectUrl.setUser( mUsername );
-    redirectUrl.setPass( mPassword );
+    QUrl redirectUrl;
+    redirectUrl.setScheme( QLatin1String("sftp") );
+    redirectUrl.setUserName( mUsername );
+    redirectUrl.setPassword( mPassword );
     redirectUrl.setHost( mHost );
     if (mPort > 0 && mPort != DEFAULT_SFTP_PORT) {
         redirectUrl.setPort( mPort );

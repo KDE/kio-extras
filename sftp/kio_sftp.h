@@ -22,7 +22,6 @@
 #ifndef __kio_sftp_h__
 #define __kio_sftp_h__
 
-#include <kurl.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
 
@@ -105,7 +104,7 @@ private: // Private variables
   sftp_file mOpenFile;
 
   /** The open URL */
-  KUrl mOpenUrl;
+  QUrl mOpenUrl;
 
   ssh_callbacks mCallbacks;
 
@@ -122,7 +121,7 @@ private: // Private variables
   // KIO::FileJob interface
   /** The opened handle */
   QByteArray openHandle;
-  KUrl openUrl;
+  QUrl openUrl;
   KIO::filesize_t openOffset;
 
   /**
@@ -184,7 +183,7 @@ private: // private methods
 
   int authenticateKeyboardInteractive(KIO::AuthInfo &info);
 
-  void reportError(const KUrl &url, const int err);
+  void reportError(const QUrl &url, const int err);
 
   bool createUDSEntry(const QString &filename, const QByteArray &path,
                       KIO::UDSEntry &entry, short int details);
@@ -206,11 +205,11 @@ private: // private methods
     ServerError
   } StatusCode;
 
-  StatusCode sftpGet(const KUrl& url, int& errorCode, KIO::fileoffset_t offset = -1, int fd = -1);
-  StatusCode sftpPut(const KUrl& url, int permissions, KIO::JobFlags flags, int& errorCode, int fd = -1);
+  StatusCode sftpGet(const QUrl& url, int& errorCode, KIO::fileoffset_t offset = -1, int fd = -1);
+  StatusCode sftpPut(const QUrl& url, int permissions, KIO::JobFlags flags, int& errorCode, int fd = -1);
 
-  StatusCode sftpCopyGet(const KUrl& url, const QString& src, int permissions, KIO::JobFlags flags, int& errorCode);
-  StatusCode sftpCopyPut(const KUrl& url, const QString& dest, int permissions, KIO::JobFlags flags, int& errorCode);
+  StatusCode sftpCopyGet(const QUrl& url, const QString& src, int permissions, KIO::JobFlags flags, int& errorCode);
+  StatusCode sftpCopyPut(const QUrl& url, const QString& dest, int permissions, KIO::JobFlags flags, int& errorCode);
 
   void fileSystemFreeSpace(const QUrl& url);  // KF6 TODO: Once a virtual fileSystemFreeSpace method in SlaveBase exists, override it
 };
