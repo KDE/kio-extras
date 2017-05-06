@@ -2,6 +2,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_fish\")
 
 include(CheckIncludeFiles)
 include(CheckFunctionExists)
+include(ECMQtDeclareLoggingCategory)
 
 check_include_files(termios.h HAVE_TERMIOS_H)
 check_include_files(util.h HAVE_UTIL_H)
@@ -43,9 +44,15 @@ if (MD5SUM_EXECUTABLE)
 
    set(kio_fish_PART_SRCS fish.cpp ${CMAKE_CURRENT_BINARY_DIR}/fishcode.h)
 
+   ecm_qt_declare_logging_category(kio_fish_PART_SRCS
+                                   HEADER loggingcategory.h
+                                   IDENTIFIER KIO_FISH_DEBUG
+                                   CATEGORY_NAME kio_fish
+                                   DEFAULT_SEVERITY Debug)
+
    add_library(kio_fish MODULE ${kio_fish_PART_SRCS})
 
-   target_link_libraries(kio_fish KF5::KIOCore KF5::KDELibs4Support)
+   target_link_libraries(kio_fish KF5::KIOCore KF5::WidgetsAddons KF5::I18n)
 
    set_target_properties(kio_fish PROPERTIES OUTPUT_NAME "fish")
 

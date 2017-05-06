@@ -16,12 +16,9 @@
 #ifndef FISH_H
 #define FISH_H
 
-#include <kurl.h>
 #include <kio/global.h>
 #include <kio/slavebase.h>
-#include <kprocess.h>
 #include <kio/authinfo.h>
-#include <time.h>
 
 #define FISH_EXEC_CMD 'X'
 
@@ -113,7 +110,7 @@ protected: // Protected attributes
   QString wantedFn;
   QString statPath;
   /** url of current request */
-  KUrl url;
+  QUrl url;
   /** true if connection is logged in successfully */
   bool isLoggedIn;
   /** host name of current connection */
