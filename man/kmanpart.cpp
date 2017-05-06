@@ -23,7 +23,6 @@
 #include <KLocalizedString>
 #include <kpluginfactory.h>
 
-#include <kdeversion.h>
 #include <QUrl>
 
 static KAboutData createAboutData()

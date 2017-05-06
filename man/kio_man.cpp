@@ -35,10 +35,9 @@
 #include <QRegExp>
 #include <QStandardPaths>
 #include <QTextCodec>
+#include <QProcess>
 
 #include <KLocalizedString>
-#include <KProcess>
-#include <kglobal.h>
 #include <kencodingprober.h>
 
 #include "man2html.h"
@@ -211,10 +210,12 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
 		    break;
 	    }
             if ( it_name == names.constEnd() ) {
-                KProcess proc;
-                proc << "whatis" << "-M" << (*it_dir) << "-w" << "*";
-                proc.setOutputChannelMode( KProcess::OnlyStdoutChannel );
-                proc.execute();
+                QProcess proc;
+                proc.setProgram("whatis");
+                proc.setArguments(QStringList() << "-M" << (*it_dir) << "-w" << "*");
+                proc.setProcessChannelMode( QProcess::ForwardedErrorChannel );
+                proc.start();
+                proc.waitForFinished();
                 QTextStream t( proc.readAllStandardOutput(), QIODevice::ReadOnly );
                 parseWhatIs( i, t, mark );
             }
@@ -237,14 +238,14 @@ QStringList MANProtocol::manDirectories()
     {
         // Translated pages in "<mandir>/<lang>" if the directory
         // exists
-        QStringList languages = KLocale::global()->languageList();
-
-        for (QStringList::ConstIterator it_lang = languages.constBegin();
-             it_lang != languages.constEnd();
-             it_lang++ )
+        QList<QLocale> locales = QLocale::matchingLocales(QLocale::AnyLanguage, QLocale::AnyScript, QLocale::AnyCountry);
+        for (QList<QLocale>::ConstIterator it_loc = locales.constBegin();
+             it_loc != locales.constEnd();
+             it_loc++ )
         {
-            if ( !(*it_lang).isEmpty() && (*it_lang) != QString("C") ) {
-                QString dir = (*it_dir) + '/' + (*it_lang);
+            QString lang = QLocale::languageToString((*it_loc).language());
+            if ( !lang.isEmpty() && lang!=QString("C") ) {
+                QString dir = (*it_dir) + '/' + lang;
 
                 struct stat sbuf;
 
@@ -542,12 +543,14 @@ char *MANProtocol::readManPage(const char *_filename)
     //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
     if (QString(filename).contains("sman", Qt::CaseInsensitive)) //file_mimetype == "text/html" || )
     {
-        KProcess proc;
+        QProcess proc;
         // Determine path to sgml2roff, if not already done.
         getProgramPath();
-        proc << mySgml2RoffPath << filename;
-        proc.setOutputChannelMode( KProcess::OnlyStdoutChannel );
-        proc.execute();
+        proc.setProgram(mySgml2RoffPath);
+        proc.setArguments(QStringList() << filename);
+        proc.setProcessChannelMode( QProcess::ForwardedErrorChannel );
+        proc.start();
+        proc.waitForFinished();
         array = proc.readAllStandardOutput();
     }
     else
