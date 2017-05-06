@@ -21,7 +21,6 @@
 #include <qtest.h>
 #include <kio/copyjob.h>
 #include <kio/deletejob.h>
-#include <kio/netaccess.h>
 #include <ktar.h>
 #include <QDebug>
 #include <QStandardPaths>
@@ -69,7 +68,7 @@ void TestKioArchive::testListTar()
     m_listResult.clear();
     KIO::ListJob* job = KIO::listDir(tarUrl(), KIO::HideProgressInfo);
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
-    bool ok = KIO::NetAccess::synchronousRun( job, 0 );
+    bool ok = job->exec();
     QVERIFY( ok );
     //qDebug() << "listDir done - entry count=" << m_listResult.count();
     QVERIFY( m_listResult.count() > 1 );
@@ -88,7 +87,7 @@ void TestKioArchive::testListRecursive()
     m_listResult.clear();
     KIO::ListJob* job = KIO::listRecursive(tarUrl(), KIO::HideProgressInfo);
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
-    bool ok = KIO::NetAccess::synchronousRun( job, 0 );
+    bool ok = job->exec();
     QVERIFY( ok );
     //qDebug() << "listDir done - entry count=" << m_listResult.count();
     QVERIFY( m_listResult.count() > 1 );
@@ -137,11 +136,12 @@ void TestKioArchive::copyFromTar(const QUrl &src, const QString& destPath)
     qDebug() << src << "->" << dest;
     // Check that src exists
     KIO::StatJob* statJob = KIO::stat(src, KIO::StatJob::SourceSide, 0, KIO::HideProgressInfo);
-    QVERIFY(KIO::NetAccess::synchronousRun(statJob, 0));
+    bool ok = statJob->exec();
+    QVERIFY( ok );
 
     KIO::Job* job = KIO::copyAs( src, dest, KIO::HideProgressInfo );
     qDebug() << "copyAs" << src << dest;
-    bool ok = KIO::NetAccess::synchronousRun( job, 0 );
+    ok = job->exec();
     QVERIFY( ok );
     QVERIFY( QFile::exists( destPath ) );
 }

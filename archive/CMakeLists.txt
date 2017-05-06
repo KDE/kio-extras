@@ -3,7 +3,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_archive\")
 add_subdirectory(autotests)
 
 set(LIBKIOARCHIVE_VERSION "5.97.0")
-set(LIBKIOARCHIVE_SOVERSION "6")
+set(LIBKIOARCHIVE_SOVERSION "5")
 
 include(ECMSetupVersion)
 ecm_setup_version(${LIBKIOARCHIVE_VERSION} VARIABLE_PREFIX "KIOARCHIVE"
@@ -51,7 +51,6 @@ target_link_libraries(kioarchive
     KF5::KIOCore
     PRIVATE
     KF5::I18n
-    KF5::KDELibs4Support
 )
 
 set_target_properties(kioarchive PROPERTIES
@@ -60,7 +59,7 @@ set_target_properties(kioarchive PROPERTIES
     EXPORT_NAME KioArchive
 )
 
-install(TARGETS kioarchive EXPORT KioArchiveTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ############### Archive KIOslave ######################
 

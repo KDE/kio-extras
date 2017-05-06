@@ -33,7 +33,6 @@
 #include <ktar.h>
 #include <kzip.h>
 #include <kar.h>
-#include <kde_file.h>
 #include <kio/global.h>
 #include <kio_archive_debug.h>
 #include <kuser.h>
@@ -66,8 +65,8 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     if ( m_archiveFile && m_archiveName == fullPath.left(m_archiveName.length()) )
     {
         // Has it changed ?
-        KDE_struct_stat statbuf;
-        if ( KDE_stat( QFile::encodeName( m_archiveName ), &statbuf ) == 0 )
+        QT_STATBUF statbuf;
+        if ( QT_STAT( QFile::encodeName( m_archiveName ), &statbuf ) == 0 )
         {
             if ( m_mtime == statbuf.st_mtime )
             {
@@ -97,13 +96,13 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
         fullPath += '/';
 
     qCDebug(KIO_ARCHIVE_LOG) << "the full path is" << fullPath;
-    KDE_struct_stat statbuf;
+    QT_STATBUF statbuf;
     statbuf.st_mode = 0; // be sure to clear the directory bit
     while ( (pos=fullPath.indexOf( '/', pos+1 )) != -1 )
     {
         QString tryPath = fullPath.left( pos );
         qCDebug(KIO_ARCHIVE_LOG) << fullPath << "trying" << tryPath;
-        if ( KDE_stat( QFile::encodeName(tryPath), &statbuf ) == -1 )
+        if ( QT_STAT( QFile::encodeName(tryPath), &statbuf ) == -1 )
         {
             // We are not in the file system anymore, either we have already enough data or we will never get any useful data anymore
             break;
@@ -316,14 +315,14 @@ void ArchiveProtocolBase::stat( const QUrl & url )
         entry.insert( KIO::UDSEntry::UDS_NAME, url.fileName());
         qCDebug(KIO_ARCHIVE_LOG).nospace() << "ArchiveProtocolBase::stat returning name=" << url.fileName();
 
-        KDE_struct_stat buff;
+        QT_STATBUF buff;
 #ifdef Q_OS_WIN
         QString fullPath = url.path().remove(0, 1);
 #else
         QString fullPath = url.path();
 #endif
 
-        if ( KDE_stat( QFile::encodeName( fullPath ), &buff ) == -1 )
+        if ( QT_STAT( QFile::encodeName( fullPath ), &buff ) == -1 )
         {
             // Should not happen, as the file was already stated by checkNewFile
             error( KIO::ERR_COULD_NOT_STAT, url.toDisplayString() );
