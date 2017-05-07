@@ -39,3 +39,9 @@
 
 /* type to use in place of socklen_t if not defined */
 #define kde_socklen_t socklen_t
+
+/*
+ * Used for the "KDE" version string in generated man pages.
+ * Using the definition from this project so as to be independent of Plasma.
+ */
+#define KDE_VERSION_STRING "@PROJECT_VERSION@"
