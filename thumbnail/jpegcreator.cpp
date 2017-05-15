@@ -43,9 +43,10 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
     QImageReader imageReader(path);
 
     const QSize imageSize = imageReader.size();
-    const QSize thumbnailSize = imageSize.isValid() ? imageSize.scaled(width, height, Qt::KeepAspectRatio)
-                                                    : QSize(width, height);
-    imageReader.setScaledSize(thumbnailSize); // fast downscaling
+    if (imageSize.isValid() && (imageSize.width() > width || imageSize.height() > height)) {
+        const QSize thumbnailSize = imageSize.scaled(width, height, Qt::KeepAspectRatio);
+        imageReader.setScaledSize(thumbnailSize); // fast downscaling
+    }
     imageReader.setQuality(0);
 
     JpegCreatorSettings* settings = JpegCreatorSettings::self();
