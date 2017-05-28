@@ -59,6 +59,10 @@
 #include <util.h>
 #endif
 
+#ifndef Q_OS_WIN
+#include <errno.h>
+#endif
+
 #include <kmessagebox.h>
 #include <klocalizedstring.h>
 #include <kremoteencoding.h>
