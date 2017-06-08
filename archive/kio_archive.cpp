@@ -37,7 +37,7 @@ int kdemain( int argc, char **argv )
   QCoreApplication app(argc, argv);
   app.setApplicationName(QLatin1String("kio_archive"));
 
-  qCDebug(KIO_ARCHIVE_LOG) << "Starting" << getpid();
+  qCDebug(KIO_ARCHIVE_LOG) << "Starting" << QCoreApplication::applicationPid();
 
   if (argc != 4)
   {

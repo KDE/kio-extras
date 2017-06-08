@@ -22,7 +22,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 #include <QFile>
 #include <QDir>
@@ -37,6 +36,10 @@
 #include <kio_archive_debug.h>
 #include <kuser.h>
 #include <KLocalizedString>
+
+#ifdef Q_OS_WIN
+#define S_ISDIR(m) (((m & S_IFMT) == S_IFDIR))
+#endif
 
 using namespace KIO;
 

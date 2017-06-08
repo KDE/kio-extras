@@ -25,7 +25,6 @@
 #include "kio_smtp_debug.h"
 #include <cerrno>
 #include <cstring>
-#include <unistd.h>
 #include <utime.h>
 
 #include <QtCore/QCoreApplication>

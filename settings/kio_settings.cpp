@@ -26,6 +26,7 @@
 #include <kservice.h>
 #include <kservicegroup.h>
 
+#include <time.h>
 
 class SettingsProtocol : public KIO::SlaveBase
 {

@@ -28,6 +28,7 @@
 #ifndef Q_OS_WIN
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <unistd.h> // nice()
 #endif
 
 #include <QApplication>
