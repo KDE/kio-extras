@@ -21,7 +21,6 @@
 #include "thumbnail.h"
 
 #include <stdlib.h>
-#include <unistd.h>
 #ifdef __FreeBSD__
     #include <machine/param.h>
 #endif
