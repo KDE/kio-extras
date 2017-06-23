@@ -129,9 +129,6 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
 {
     assert(!_self);
     _self = this;
-    const QString common_dir = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "doc/HTML/en/kdoctools5-common/kde-default.css" );
-    const QString strPath=QString( "file:%1/en/kdoctools5-common" ).arg( common_dir );
-    m_cssPath=strPath.toLocal8Bit(); // ### TODO encode for CSS
     section_names << "0" << "0p" << "1" << "1p" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
 
@@ -501,7 +498,6 @@ void MANProtocol::get(const QUrl& url )
 
     if (pageFound)
     {
-       setResourcePath(m_cssPath);
        setCssFile(m_manCSSFile);
        m_outputBuffer.open(QIODevice::WriteOnly);
        const QByteArray filename=QFile::encodeName(foundPages[0]);

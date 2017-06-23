@@ -619,14 +619,9 @@ static int getNumberRegisterValue(const QByteArray &name, int sign = 0);
 
 static QList<QByteArray> s_argumentList;
 
-static QByteArray cssPath, cssFile;
+static QByteArray cssFile;
 
 static QByteArray s_dollarZero; // Value of $0
-
-void setResourcePath(const QByteArray& _cssPath)
-{
-  cssPath = _cssPath;
-}
 
 void setCssFile(const QByteArray& _cssFile)
 {
@@ -6103,7 +6098,6 @@ char *read_man_page(const char *filename)
 #ifndef KIO_MAN_TEST
 int main(int argc, char **argv)
 {
-  cssPath = "."; // krazy:exclude=doublequote_chars
   if (argc < 2)
   {
     std::cerr << "call: " << argv[0] << " <filename>\n";

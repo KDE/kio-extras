@@ -14,15 +14,6 @@ class QByteArray;
 /** call this with the buffer you have */
 void scan_man_page(const char *man_page);
 
-/**
- * Set the paths to KDE resources
- *
- * \param cssPath Path to the KDE resources, encoded for CSS
- * \since 3.5
- *
- */
-extern void setResourcePath(const QByteArray& _cssPath);
-
 /*
  * Sets the path to a CSS file that should be included with the generated
  * HTML output.
