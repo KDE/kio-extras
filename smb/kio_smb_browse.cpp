@@ -380,10 +380,10 @@ void SMBSlave::listDir( const QUrl& kurl )
                // Set type
                udsentry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
 
-               // Set permissions
-               udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
 
                if (dirp->smbc_type == SMBC_SERVER) {
+                   udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
+
                    // QString workgroup = m_current_url.host().toUpper();
                    QUrl u("smb:/");
                    u.setHost(dirpName);
@@ -394,7 +394,9 @@ void SMBSlave::listDir( const QUrl& kurl )
                    udsentry.insert(KIO::UDSEntry::UDS_URL, u.url());
 
                    udsentry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-server"));
-               }
+               } else
+                   udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
+
 
                // Call base class to list entry
                listEntry(udsentry);
