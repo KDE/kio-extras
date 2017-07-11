@@ -705,6 +705,10 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
         }
 
         QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(src.path());
+        if (!pair.first) {
+            error(ERR_COULD_NOT_READ, src.path());
+            return;
+        }
 
         LIBMTP_mtpdevice_t *device = pair.second;
         LIBMTP_file_t *source = (LIBMTP_file_t *) pair.first;
