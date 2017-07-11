@@ -593,15 +593,12 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
 {
     qCDebug(LOG_KIO_MTP) << src.path() << dest.path();
 
-    // mtp:/// to mtp:///
     if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("mtp")) {
         qCDebug(LOG_KIO_MTP) << "Copy on device: Not supported";
         // MTP doesn't support moving files directly on the device, so we have to download and then upload...
 
         error(ERR_UNSUPPORTED_ACTION, i18n("Cannot copy/move files on the device itself"));
-    }
-    // file:/// tp mtp:///
-    if (src.scheme() == QLatin1String("file") && dest.scheme() == QLatin1String("mtp")) {
+    } else if (src.scheme() == QLatin1String("file") && dest.scheme() == QLatin1String("mtp")) {
         int check = checkUrl(dest);
         switch (check) {
         case 0:
@@ -680,9 +677,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
         }
 
         qCDebug(LOG_KIO_MTP) << "Sent file";
-    }
-    // mtp:/// to file:///
-    if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("file")) {
+    } else if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("file")) {
         int check = checkUrl(src);
         switch (check) {
         case 0:
