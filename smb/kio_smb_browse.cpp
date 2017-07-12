@@ -55,8 +55,7 @@ int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
 }
 
 //---------------------------------------------------------------------------
-bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ignore_errors)
-  // Returns: true on success, false on failure
+int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
 {
    SMBUrl url = _url;
 
@@ -68,7 +67,7 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
          qCDebug(KIO_SMB) << "mode: "<< st.st_mode;
          warning(i18n("%1:\n"
                       "Unknown file type, neither directory or file.", url.toDisplayString()));
-         return false;
+         return EINVAL;
       }
 
       udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
@@ -96,24 +95,8 @@ bool SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry, bool ign
       udsentry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
       // No, st_ctime is not UDS_CREATION_TIME...
    }
-   else
-   {
-       if (!ignore_errors) {
-           if (cacheStatErr == EPERM || cacheStatErr == EACCES)
-               if (checkPassword(url)) {
-                   redirection( url );
-                   return false;
-               }
 
-           reportError(url, cacheStatErr);
-       } else if (cacheStatErr == ENOENT || cacheStatErr == ENOTDIR) {
-           warning(i18n("File does not exist: %1", url.url()));
-       }
-       qCDebug(KIO_SMB) << "ERROR!!";
-       return false;
-   }
-
-   return true;
+   return cacheStatErr;
 }
 
 //===========================================================================
@@ -141,7 +124,7 @@ void SMBSlave::stat( const QUrl& kurl )
     switch(m_current_url.getType())
     {
     case SMBURLTYPE_UNKNOWN:
-        error(ERR_MALFORMED_URL,m_current_url.toDisplayString());
+        error(ERR_MALFORMED_URL, url.toDisplayString());
         return;
 
     case SMBURLTYPE_ENTIRE_NETWORK:
@@ -150,12 +133,38 @@ void SMBSlave::stat( const QUrl& kurl )
         break;
 
     case SMBURLTYPE_SHARE_OR_PATH:
-        if (browse_stat_path(m_current_url, udsentry, false))
+        {
+            int ret = browse_stat_path(m_current_url, udsentry);
+
+            if (ret == EPERM || ret == EACCES)
+            {
+                SMBUrl smbUrl(url);
+
+                if (checkPassword(smbUrl))
+                {
+                    redirection(smbUrl);
+                    finished();
+                }
+                else
+                {
+                    reportError(url, ret);
+                }
+
+                return;
+            }
+            else if (ret == ENOENT || ret == ENOTDIR)
+            {
+                warning(i18n("File does not exist: %1", url.url()));
+                finished();
+                return;
+            }
+            else if (ret != 0)
+            {
+                qCDebug(KIO_SMB) << "stat() error" << ret << url;
+                reportError(url, ret);
+                return;
+            }
             break;
-        else {
-            qCDebug(KIO_SMB) << "ERROR!!";
-            finished();
-            return;
         }
     default:
         qCDebug(KIO_SMB) << "UNKNOWN " << url;
@@ -366,7 +375,7 @@ void SMBSlave::listDir( const QUrl& kurl )
            {
                // Set stat information
                m_current_url.addPath(dirpName);
-               browse_stat_path(m_current_url, udsentry, true);
+               browse_stat_path(m_current_url, udsentry);
                m_current_url.cd("..");
 
                // Call base class to list entry
@@ -375,7 +384,7 @@ void SMBSlave::listDir( const QUrl& kurl )
            else if(dirp->smbc_type == SMBC_DIR)
            {
                m_current_url.addPath(dirpName);
-               browse_stat_path(m_current_url, udsentry, true);
+               browse_stat_path(m_current_url, udsentry);
                m_current_url.cd("..");
 
                // Call base class to list entry
@@ -446,7 +455,7 @@ void SMBSlave::listDir( const QUrl& kurl )
        else
        {
            udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
-           browse_stat_path(m_current_url, udsentry, true);
+           browse_stat_path(m_current_url, udsentry);
        }
        listEntry(udsentry);
        udsentry.clear();

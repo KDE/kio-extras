@@ -156,10 +156,9 @@ protected:
      * Description :  Return a stat of given SMBUrl. Calls cache_stat and
      *                pack it in UDSEntry. UDSEntry will not be cleared
      * Parameter :    SMBUrl the url to stat
-     *                ignore_errors do not call error(), but warning()
-     * Return :       false if any error occurred (errno), else true
+     * Return :       cache_stat() return code
      */
-    bool browse_stat_path(const SMBUrl& url, UDSEntry& udsentry, bool ignore_errors);
+    int browse_stat_path(const SMBUrl& url, UDSEntry& udsentry);
 
     /**
      * Description :  call smbc_stat and return stats of the url
