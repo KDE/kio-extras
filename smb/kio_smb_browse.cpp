@@ -309,6 +309,7 @@ void SMBSlave::listDir( const QUrl& kurl )
    int                 dirfd;
    struct smbc_dirent  *dirp = NULL;
    UDSEntry    udsentry;
+   bool dir_is_root = true;
 
    dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
    if (dirfd > 0){
@@ -350,8 +351,14 @@ void SMBSlave::listDir( const QUrl& kurl )
               udsentry.insert(KIO::UDSEntry::UDS_HIDDEN, 1);
            }
 
-           if (udsName == "." || udsName == "..")
+           if (udsName == ".")
            {
+               // Skip the "." entry
+               // Mind the way m_current_url is handled in the loop
+           }
+           else if (udsName == "..")
+           {
+               dir_is_root = false;
                // fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                // do nothing and hide the hidden shares
            }
@@ -429,6 +436,20 @@ void SMBSlave::listDir( const QUrl& kurl )
            }
            udsentry.clear();
        } while (dirp); // checked already in the head
+
+       if (dir_is_root) {
+           udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+           udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
+           udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
+           udsentry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QLatin1String("application/x-smb-server"));
+       }
+       else
+       {
+           udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
+           browse_stat_path(m_current_url, udsentry, true);
+       }
+       listEntry(udsentry);
+       udsentry.clear();
 
        // clean up
        smbc_closedir(dirfd);
