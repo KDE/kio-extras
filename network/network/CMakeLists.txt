@@ -62,6 +62,6 @@ target_link_libraries( molletnetwork5
 if(SLP_FOUND)
     target_link_libraries( molletnetwork5  PRIVATE ${SLP_LIBRARIES} )
 endif()
-set_target_properties( molletnetwork5 PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR} )
+set_target_properties( molletnetwork5 PROPERTIES VERSION ${KDE_APPLICATIONS_VERSION} SOVERSION ${KDE_APPLICATIONS_VERSION_MAJOR} )
 
 install( TARGETS molletnetwork5 ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP )
