@@ -297,6 +297,11 @@ void SMBSlave::reportError(const SMBUrl &url, const int &errNum)
     }
 }
 
+void SMBSlave::reportWarning(const SMBUrl& url, const int errNum)
+{
+    warning(i18n("Error %1 while browsing: %2", errNum, url.url()));
+}
+
 //===========================================================================
 void SMBSlave::listDir( const QUrl& kurl )
 {
@@ -376,7 +381,11 @@ void SMBSlave::listDir( const QUrl& kurl )
            {
                // Set stat information
                m_current_url.addPath(dirpName);
-               browse_stat_path(m_current_url, udsentry);
+               const int statErr = browse_stat_path(m_current_url, udsentry);
+               if (statErr == ENOENT || statErr == ENOTDIR)
+               {
+                   reportWarning(m_current_url, statErr);
+               }
                m_current_url.cd("..");
 
                // Call base class to list entry
@@ -447,7 +456,11 @@ void SMBSlave::listDir( const QUrl& kurl )
        else
        {
            udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
-           browse_stat_path(m_current_url, udsentry);
+           const int statErr = browse_stat_path(m_current_url, udsentry);
+           if (statErr == ENOENT || statErr == ENOTDIR)
+           {
+               reportWarning(m_current_url, statErr);
+           }
        }
        listEntry(udsentry);
        udsentry.clear();

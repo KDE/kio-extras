@@ -212,6 +212,7 @@ protected:
     QUrl checkURL(const QUrl& kurl) const;
 
     void reportError(const SMBUrl &kurl, const int &errNum);
+    void reportWarning(const SMBUrl& url, const int errNum);
 
 public:
 
