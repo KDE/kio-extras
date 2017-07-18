@@ -94,6 +94,12 @@ class SMBSlave : public QObject, public KIO::SlaveBase
     Q_OBJECT
 
 private:
+    class SMBError {
+    public:
+        int kioErrorId;
+        QString errorString;
+    };
+
     //---------------------------------------------------------------------
     // please make sure your private data does not duplicate existing data
     //---------------------------------------------------------------------
@@ -211,7 +217,8 @@ protected:
      */
     QUrl checkURL(const QUrl& kurl) const;
 
-    void reportError(const SMBUrl &kurl, const int &errNum);
+    void reportError(const SMBUrl& url, const int errNum);
+    void reportWarning(const SMBUrl& url, const int errNum);
 
 public:
 
@@ -267,6 +274,7 @@ protected:
     void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
 
 private:
+    SMBError errnumToKioError(const SMBUrl& url, const int errNum);
     void smbCopy(const QUrl& src, const QUrl &dest, int permissions, KIO::JobFlags flags);
     void smbCopyGet(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
     void smbCopyPut(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);

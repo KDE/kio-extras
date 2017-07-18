@@ -33,11 +33,10 @@
 #include <pwd.h>
 #include <grp.h>
 
-
-
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 #include <KLocalizedString>
+#include <KIO/Job>
 
 using namespace KIO;
 
@@ -152,12 +151,6 @@ void SMBSlave::stat( const QUrl& kurl )
 
                 return;
             }
-            else if (ret == ENOENT || ret == ENOTDIR)
-            {
-                warning(i18n("File does not exist: %1", url.url()));
-                finished();
-                return;
-            }
             else if (ret != 0)
             {
                 qCDebug(KIO_SMB) << "stat() error" << ret << url;
@@ -219,7 +212,7 @@ QUrl SMBSlave::checkURL(const QUrl& kurl) const
     return url;
 }
 
-void SMBSlave::reportError(const SMBUrl &url, const int &errNum)
+SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNum)
 {
     qCDebug(KIO_SMB) << "errNum" << errNum;
 
@@ -227,74 +220,75 @@ void SMBSlave::reportError(const SMBUrl &url, const int &errNum)
     {
     case ENOENT:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK)
-            error( ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall."));
+            return SMBError{ ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall.") };
         else
-            error( ERR_DOES_NOT_EXIST, url.toDisplayString());
-        break;
+            return SMBError{ ERR_DOES_NOT_EXIST, url.toDisplayString() };
 #ifdef ENOMEDIUM
     case ENOMEDIUM:
-        error( ERR_SLAVE_DEFINED,
-               i18n( "No media in device for %1", url.toDisplayString() ) );
-        break;
+        return SMBError{ ERR_SLAVE_DEFINED, i18n("No media in device for %1", url.toDisplayString()) };
 #endif
 #ifdef EHOSTDOWN
     case EHOSTDOWN:
 #endif
     case ECONNREFUSED:
-        error(  ERR_SLAVE_DEFINED,
-                i18n( "Could not connect to host for %1", url.toDisplayString() ) );
+        return SMBError{ ERR_SLAVE_DEFINED, i18n("Could not connect to host for %1", url.toDisplayString()) };
         break;
     case ENOTDIR:
-        error( ERR_CANNOT_ENTER_DIRECTORY, url.toDisplayString());
-        break;
+        return SMBError{ ERR_CANNOT_ENTER_DIRECTORY, url.toDisplayString() };
     case EFAULT:
     case EINVAL:
-        error( ERR_DOES_NOT_EXIST, url.toDisplayString());
-        break;
+        return SMBError{ ERR_DOES_NOT_EXIST, url.toDisplayString() };
     case EPERM:
     case EACCES:
-        error( ERR_ACCESS_DENIED, url.toDisplayString() );
-        break;
+        return SMBError{ ERR_ACCESS_DENIED, url.toDisplayString() };
     case EIO:
     case ENETUNREACH:
         if ( url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER )
-            error( ERR_SLAVE_DEFINED, i18n( "Error while connecting to server responsible for %1", url.toDisplayString() ) );
+            return SMBError{ ERR_SLAVE_DEFINED, i18n("Error while connecting to server responsible for %1", url.toDisplayString()) };
         else
-            error( ERR_CONNECTION_BROKEN, url.toDisplayString());
-        break;
+            return SMBError{ ERR_CONNECTION_BROKEN, url.toDisplayString() };
     case ENOMEM:
-        error( ERR_OUT_OF_MEMORY, url.toDisplayString() );
-        break;
+        return SMBError{ ERR_OUT_OF_MEMORY, url.toDisplayString() };
     case ENODEV:
-        error( ERR_SLAVE_DEFINED, i18n("Share could not be found on given server"));
-        break;
+        return SMBError{ ERR_SLAVE_DEFINED, i18n("Share could not be found on given server") };
     case EBADF:
-        error( ERR_INTERNAL, i18n("BAD File descriptor"));
-        break;
+        return SMBError{ ERR_INTERNAL, i18n("Bad file descriptor") };
     case ETIMEDOUT:
-        error( ERR_SERVER_TIMEOUT, url.host() );
-        break;
+        return SMBError{ ERR_SERVER_TIMEOUT, url.host() };
 #ifdef ENOTUNIQ
     case ENOTUNIQ:
-        error( ERR_SLAVE_DEFINED, i18n( "The given name could not be resolved to a unique server. "
-                                        "Make sure your network is setup without any name conflicts "
-                                        "between names used by Windows and by UNIX name resolution." ) );
-        break;
+        return SMBError{ ERR_SLAVE_DEFINED, i18n("The given name could not be resolved to a unique server. "
+                                                 "Make sure your network is setup without any name conflicts "
+                                                 "between names used by Windows and by UNIX name resolution." ) };
 #endif
     case 0: // success
-	  error( ERR_INTERNAL, i18n("libsmbclient reported an error, but did not specify "
-								"what the problem is. This might indicate a severe problem "
-								"with your network - but also might indicate a problem with "
-								"libsmbclient.\n"
-								"If you want to help us, please provide a tcpdump of the "
-								"network interface while you try to browse (be aware that "
-								"it might contain private data, so do not post it if you are "
-								"unsure about that - you can send it privately to the developers "
-								"if they ask for it)") );
-	  break;
+      return SMBError{ ERR_INTERNAL, i18n("libsmbclient reported an error, but did not specify "
+                                          "what the problem is. This might indicate a severe problem "
+                                          "with your network - but also might indicate a problem with "
+                                          "libsmbclient.\n"
+                                          "If you want to help us, please provide a tcpdump of the "
+                                          "network interface while you try to browse (be aware that "
+                                          "it might contain private data, so do not post it if you are "
+                                          "unsure about that - you can send it privately to the developers "
+                                          "if they ask for it)") };
     default:
-        error( ERR_INTERNAL, i18n("Unknown error condition in stat: %1", QString::fromLocal8Bit( strerror(errNum))) );
+        return SMBError{ ERR_INTERNAL, i18n("Unknown error condition in stat: %1", QString::fromLocal8Bit( strerror(errNum))) };
     }
+}
+
+void SMBSlave::reportError(const SMBUrl& url, const int errNum)
+{
+    const SMBError smbErr = errnumToKioError(url, errNum);
+
+    error(smbErr.kioErrorId, smbErr.errorString);
+}
+
+void SMBSlave::reportWarning(const SMBUrl& url, const int errNum)
+{
+    const SMBError smbErr = errnumToKioError(url, errNum);
+    const QString errorString = buildErrorString(smbErr.kioErrorId, smbErr.errorString);
+
+    warning(xi18n("Error occurred while trying to access %1<nl/>%2", url.url(), errorString));
 }
 
 //===========================================================================
@@ -371,24 +365,25 @@ void SMBSlave::listDir( const QUrl& kurl )
                // fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                // do nothing and hide the hidden shares
            }
-           else if(dirp->smbc_type == SMBC_FILE)
+           else if (dirp->smbc_type == SMBC_FILE ||
+                    dirp->smbc_type == SMBC_DIR)
            {
                // Set stat information
                m_current_url.addPath(dirpName);
-               browse_stat_path(m_current_url, udsentry);
+               const int statErr = browse_stat_path(m_current_url, udsentry);
+               if (statErr)
+               {
+                   if (statErr == ENOENT || statErr == ENOTDIR)
+                   {
+                       reportWarning(m_current_url, statErr);
+                   }
+               }
+               else
+               {
+                   // Call base class to list entry
+                   listEntry(udsentry);
+               }
                m_current_url.cd("..");
-
-               // Call base class to list entry
-               listEntry(udsentry);
-           }
-           else if(dirp->smbc_type == SMBC_DIR)
-           {
-               m_current_url.addPath(dirpName);
-               browse_stat_path(m_current_url, udsentry);
-               m_current_url.cd("..");
-
-               // Call base class to list entry
-               listEntry(udsentry);
            }
            else if(dirp->smbc_type == SMBC_SERVER ||
                    dirp->smbc_type == SMBC_FILE_SHARE)
@@ -450,12 +445,21 @@ void SMBSlave::listDir( const QUrl& kurl )
            udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
            udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
            udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
-           udsentry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QLatin1String("application/x-smb-server"));
        }
        else
        {
            udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
-           browse_stat_path(m_current_url, udsentry);
+           const int statErr = browse_stat_path(m_current_url, udsentry);
+           if (statErr)
+           {
+               if (statErr == ENOENT || statErr == ENOTDIR)
+               {
+                   reportWarning(m_current_url, statErr);
+               }
+               // Create a default UDSEntry if we could not stat the actual directory
+               udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+               udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
+           }
        }
        listEntry(udsentry);
        udsentry.clear();
