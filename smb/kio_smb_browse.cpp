@@ -33,11 +33,10 @@
 #include <pwd.h>
 #include <grp.h>
 
-
-
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 #include <KLocalizedString>
+#include <KIO/Job>
 
 using namespace KIO;
 
@@ -287,8 +286,9 @@ void SMBSlave::reportError(const SMBUrl& url, const int errNum)
 void SMBSlave::reportWarning(const SMBUrl& url, const int errNum)
 {
     const SMBError smbErr = errnumToKioError(url, errNum);
+    const QString errorString = buildErrorString(smbErr.kioErrorId, smbErr.errorString);
 
-    warning(i18n("Error %1 while browsing: %2", errNum, url.url()));
+    warning(xi18n("Error occurred while trying to access %1<nl/>%2", url.url(), errorString));
 }
 
 //===========================================================================
