@@ -445,7 +445,6 @@ void SMBSlave::listDir( const QUrl& kurl )
            udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
            udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
            udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
-           udsentry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QLatin1String("application/x-smb-server"));
        }
        else
        {
