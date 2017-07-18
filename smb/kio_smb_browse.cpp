@@ -152,12 +152,6 @@ void SMBSlave::stat( const QUrl& kurl )
 
                 return;
             }
-            else if (ret == ENOENT || ret == ENOTDIR)
-            {
-                warning(i18n("File does not exist: %1", url.url()));
-                finished();
-                return;
-            }
             else if (ret != 0)
             {
                 qCDebug(KIO_SMB) << "stat() error" << ret << url;
