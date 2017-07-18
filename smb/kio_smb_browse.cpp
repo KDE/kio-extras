@@ -371,18 +371,10 @@ void SMBSlave::listDir( const QUrl& kurl )
                // fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                // do nothing and hide the hidden shares
            }
-           else if(dirp->smbc_type == SMBC_FILE)
+           else if (dirp->smbc_type == SMBC_FILE ||
+                    dirp->smbc_type == SMBC_DIR)
            {
                // Set stat information
-               m_current_url.addPath(dirpName);
-               browse_stat_path(m_current_url, udsentry);
-               m_current_url.cd("..");
-
-               // Call base class to list entry
-               listEntry(udsentry);
-           }
-           else if(dirp->smbc_type == SMBC_DIR)
-           {
                m_current_url.addPath(dirpName);
                browse_stat_path(m_current_url, udsentry);
                m_current_url.cd("..");
