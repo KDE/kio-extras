@@ -382,14 +382,19 @@ void SMBSlave::listDir( const QUrl& kurl )
                // Set stat information
                m_current_url.addPath(dirpName);
                const int statErr = browse_stat_path(m_current_url, udsentry);
-               if (statErr == ENOENT || statErr == ENOTDIR)
+               if (statErr)
                {
-                   reportWarning(m_current_url, statErr);
+                   if (statErr == ENOENT || statErr == ENOTDIR)
+                   {
+                       reportWarning(m_current_url, statErr);
+                   }
+               }
+               else
+               {
+                   // Call base class to list entry
+                   listEntry(udsentry);
                }
                m_current_url.cd("..");
-
-               // Call base class to list entry
-               listEntry(udsentry);
            }
            else if(dirp->smbc_type == SMBC_SERVER ||
                    dirp->smbc_type == SMBC_FILE_SHARE)
@@ -457,9 +462,15 @@ void SMBSlave::listDir( const QUrl& kurl )
        {
            udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
            const int statErr = browse_stat_path(m_current_url, udsentry);
-           if (statErr == ENOENT || statErr == ENOTDIR)
+           if (statErr)
            {
-               reportWarning(m_current_url, statErr);
+               if (statErr == ENOENT || statErr == ENOTDIR)
+               {
+                   reportWarning(m_current_url, statErr);
+               }
+               // Create a default UDSEntry if we could not stat the actual directory
+               udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+               udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
            }
        }
        listEntry(udsentry);
