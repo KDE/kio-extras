@@ -80,7 +80,7 @@ KFileAudioPreview::KFileAudioPreview(QWidget *parent, const QVariantList &)
 
     m_autoPlay = new QCheckBox(i18n("Play &automatically"), this);
     KConfigGroup config(KSharedConfig::openConfig(), ConfigGroup);
-    m_autoPlay->setChecked(config.readEntry("Autoplay", true));
+    m_autoPlay->setChecked(config.readEntry("Autoplay", false));
     connect(m_autoPlay, &QCheckBox::toggled, this, &KFileAudioPreview::toggleAuto);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
