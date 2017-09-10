@@ -1,6 +1,8 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_archive\")
 
-add_subdirectory(autotests)
+if(BUILD_TESTING)
+    add_subdirectory(autotests)
+endif()
 
 set(LIBKIOARCHIVE_VERSION "5.97.0")
 set(LIBKIOARCHIVE_SOVERSION "5")
