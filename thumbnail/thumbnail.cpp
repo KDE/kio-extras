@@ -61,6 +61,7 @@
 
 #include <kio/thumbcreator.h>
 #include <kio/thumbsequencecreator.h>
+#include <kio/previewjob.h>
 
 #include <iostream>
 #include <QDirIterator>
@@ -662,10 +663,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
 {
     if (m_enabledPlugins.isEmpty()) {
         const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
-        m_enabledPlugins = globalConfig.readEntry("Plugins", QStringList()
-                                                             << "imagethumbnail"
-                                                             << "jpegthumbnail"
-                                                             << "videopreview");
+        m_enabledPlugins = globalConfig.readEntry("Plugins", KIO::PreviewJob::defaultPlugins());
     }
 
     const QMimeDatabase db;
