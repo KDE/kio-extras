@@ -121,7 +121,7 @@ SMBUrlType SMBUrl::getType() const
         return m_type;
     }
 
-    if (path(QUrl::FullyDecoded) == "/")
+    if (path().isEmpty() || path(QUrl::FullyDecoded) == "/")
     {
         if (host().isEmpty())
             m_type = SMBURLTYPE_ENTIRE_NETWORK;
