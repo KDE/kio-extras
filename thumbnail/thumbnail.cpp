@@ -663,7 +663,14 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
 {
     if (m_enabledPlugins.isEmpty()) {
         const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 40, 0)
         m_enabledPlugins = globalConfig.readEntry("Plugins", KIO::PreviewJob::defaultPlugins());
+#else
+        // We don't have KF5.40 yet; emulate the behavior of KIO::PreviewJob::defaultPlugins()
+        QStringList defaultPlugins = KIO::PreviewJob::availablePlugins();
+        defaultPlugins.removeAll(QStringLiteral("textthumbnail"));
+        m_enabledPlugins = globalConfig.readEntry("Plugins", defaultPlugins);
+#endif
     }
 
     const QMimeDatabase db;
