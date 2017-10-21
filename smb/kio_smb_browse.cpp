@@ -175,18 +175,22 @@ QUrl SMBSlave::checkURL(const QUrl& kurl) const
 {
     qCDebug(KIO_SMB) << "checkURL " << kurl;
     QString surl = kurl.url();
+    //transform any links in the form smb:/ into smb://
     if (surl.startsWith(QLatin1String("smb:/"))) {
-        if (surl.length() == 5) // just the above
-            return kurl; // unchanged
-
+        if (surl.length() == 5) {
+            return QUrl("smb://");
+        }
         if (surl.at(5) != '/') {
             surl = "smb://" + surl.mid(5);
             qCDebug(KIO_SMB) << "checkURL return1 " << surl << " " << QUrl(surl);
             return QUrl(surl);
         }
     }
+    if (surl == QLatin1String("smb://")) {
+        return kurl; //unchanged
+    }
 
-    // smb:/ normaly have no userinfo
+    // smb:// normally have no userinfo
     // we must redirect ourself to remove the username and password
     if (surl.contains('@') && !surl.contains("smb://")) {
         QUrl url(kurl);
@@ -202,7 +206,7 @@ QUrl SMBSlave::checkURL(const QUrl& kurl) const
         return url;
     }
 
-    // no emtpy path
+    //if there's a valid host, don't have an empty path
     QUrl url(kurl);
 
     if (url.path().isEmpty())
@@ -396,7 +400,7 @@ void SMBSlave::listDir( const QUrl& kurl )
                    udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
 
                    // QString workgroup = m_current_url.host().toUpper();
-                   QUrl u("smb:/");
+                   QUrl u("smb://");
                    u.setHost(dirpName);
 
                    // when libsmbclient knows
@@ -423,7 +427,7 @@ void SMBSlave::listDir( const QUrl& kurl )
                udsentry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-workgroup"));
 
                // QString workgroup = m_current_url.host().toUpper();
-               QUrl u("smb:/");
+               QUrl u("smb://");
                u.setHost(dirpName);
                udsentry.insert(KIO::UDSEntry::UDS_URL, u.url());
 
