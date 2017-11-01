@@ -278,6 +278,7 @@ private:
     void smbCopy(const QUrl& src, const QUrl &dest, int permissions, KIO::JobFlags flags);
     void smbCopyGet(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
     void smbCopyPut(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
+    bool workaroundEEXIST(const int errNum) const;
 
     void fileSystemFreeSpace(const QUrl &url);
 
@@ -288,6 +289,8 @@ private:
      */
     int m_openFd;
     SMBUrl m_openUrl;
+
+    const bool m_enableEEXISTWorkaround; /* Enables a workaround for some broken libsmbclient versions */
 };
 
 //==========================================================================

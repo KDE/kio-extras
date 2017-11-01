@@ -31,12 +31,40 @@
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 #include <QCoreApplication>
+#include <QVersionNumber>
 
 Q_LOGGING_CATEGORY(KIO_SMB, "kio_smb")
 
+bool needsEEXISTWorkaround()
+{
+    /* There is an issue with some libsmbclient versions that return EEXIST
+     * return code from smbc_opendir() instead of EPERM when the user
+     * tries to access a resource that requires login authetification.
+     * We are working around the issue by treating EEXIST as a special case
+     * of "invalid/unavailable credentials" if we detect that we are using
+     * the affected versions of libsmbclient
+     *
+     * Upstream bug report: https://bugzilla.samba.org/show_bug.cgi?id=13050
+     */
+    static const QVersionNumber firstBrokenVer{4, 7, 0};
+    static const QVersionNumber lastBrokenVer{9, 9, 9}; /* Adjust accordingly when this gets fixed upstream */
+
+    const QVersionNumber currentVer = QVersionNumber::fromString(smbc_version());
+    qCDebug(KIO_SMB) << "Using libsmbclient library version" << currentVer;
+
+    if (currentVer >= firstBrokenVer && currentVer <= lastBrokenVer) {
+        qCDebug(KIO_SMB) << "Detected broken libsmbclient version" << currentVer;
+        return true;
+    }
+
+    return false;
+}
+
 //===========================================================================
 SMBSlave::SMBSlave(const QByteArray& pool, const QByteArray& app)
-    : SlaveBase( "smb", pool, app ), m_openFd(-1)
+    : SlaveBase( "smb", pool, app ),
+      m_openFd(-1),
+      m_enableEEXISTWorkaround(needsEEXISTWorkaround())
 {
     m_initialized_smbc = false;
 
