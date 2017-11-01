@@ -473,7 +473,7 @@ void SMBSlave::listDir( const QUrl& kurl )
    }
    else
    {
-       if (errNum == EPERM || errNum == EACCES) {
+       if (errNum == EPERM || errNum == EACCES || workaroundEEXIST(errNum)) {
            if (checkPassword(m_current_url)) {
                redirection( m_current_url );
                finished();
@@ -520,5 +520,10 @@ void SMBSlave::fileSystemFreeSpace(const QUrl& url)
     setMetaData("available", QString::number(blockSize * dirStat.f_bavail));
 
     finished();
+}
+
+bool SMBSlave::workaroundEEXIST(const int errNum) const
+{
+    return (errNum == EEXIST) && m_enableEEXISTWorkaround;
 }
 
