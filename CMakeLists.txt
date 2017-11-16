@@ -10,7 +10,7 @@ project(kio-extras VERSION ${KDE_APPLICATIONS_VERSION})
 include(FeatureSummary)
 
 set(QT_MIN_VERSION "5.5.0")
-set(KF5_MIN_VERSION "5.3.0")
+set(KF5_MIN_VERSION "5.40.0")
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
 find_package(Qt5Test ${QT_MIN_VERSION} CONFIG QUIET)
