@@ -571,8 +571,20 @@ char *MANProtocol::readManPage(const char *_filename)
       {
           qCDebug(KIO_MAN_LOG) << "not existing " << filename;
           QDir mandir(lastdir);
-          mandir.setNameFilters(QStringList() << (filename.mid(filename.lastIndexOf('/') + 1) + ".*"));
-          filename = lastdir + '/' + QFile::encodeName(mandir.entryList().first());
+          const QString nameFilter = filename.mid(filename.lastIndexOf('/') + 1) + ".*";
+          mandir.setNameFilters(QStringList(nameFilter));
+
+          const QStringList entries = mandir.entryList();
+          if (entries.isEmpty())
+          {
+              outputError(i18n("The specified man page referenced another page '%1',<br />"
+                               "but the referenced page '%2' could not be found.",
+                               QFile::decodeName(filename),
+                               QDir::cleanPath(lastdir + '/' + nameFilter)));
+              return 0;
+          }
+
+          filename = lastdir + '/' + QFile::encodeName(entries.first());
           qCDebug(KIO_MAN_LOG) << "resolved to " << filename;
       }
 
