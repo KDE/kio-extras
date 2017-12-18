@@ -360,4 +360,3 @@ void ActivitiesProtocol::del(const QUrl& url, bool isfile)
 }
 
 
-// #include "KioActivities.moc"

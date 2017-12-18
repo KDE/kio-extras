@@ -956,5 +956,4 @@ void MTPSlave::fileSystemFreeSpace(const QUrl &url)
     finished();
 }
 
-#include "kio_mtp.moc"
 
