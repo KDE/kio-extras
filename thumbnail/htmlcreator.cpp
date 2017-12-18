@@ -105,5 +105,4 @@ ThumbCreator::Flags HTMLCreator::flags() const
     return None;
 }
 
-#include "htmlcreator.moc"
 
