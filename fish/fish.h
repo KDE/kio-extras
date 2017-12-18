@@ -26,7 +26,7 @@ class fishProtocol : public KIO::SlaveBase
 {
 public:
   fishProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
-  virtual ~fishProtocol();
+  ~fishProtocol() override;
 
   /**
 Connects to a server and logs us in via SSH. Then starts FISH protocol.
@@ -34,46 +34,46 @@ Connects to a server and logs us in via SSH. Then starts FISH protocol.
 It is set to false if the connection becomes closed.
 
  */
-  void openConnection();
+  void openConnection() override;
 
   /**
    Clean up connection
   */
   void shutdownConnection(bool forced=false);
   /** sets connection information for subsequent commands */
-  void setHost(const QString & host, quint16 port, const QString & user, const QString & pass);
+  void setHost(const QString & host, quint16 port, const QString & user, const QString & pass) override;
   /** Forced close of the connection */
-  void closeConnection();
+  void closeConnection() override;
   /** get a file */
-  void get(const QUrl& url);
+  void get(const QUrl& url) override;
   /** put a file */
-  void put(const QUrl& url, int permissions, KIO::JobFlags flags );
+  void put(const QUrl& url, int permissions, KIO::JobFlags flags ) override;
   /** aborts command sequence and calls error() */
   void error(int type, const QString &detail);
   /** executes next command in sequence or calls finished() if all is done */
   void finished();
   /** stat a file */
-  void stat(const QUrl& url);
+  void stat(const QUrl& url) override;
   /** find mimetype for a file */
-  void mimetype(const QUrl& url);
+  void mimetype(const QUrl& url) override;
   /** list a directory */
-  void listDir(const QUrl& url);
+  void listDir(const QUrl& url) override;
   /** create a directory */
-  void mkdir(const QUrl&url, int permissions);
+  void mkdir(const QUrl&url, int permissions) override;
   /** rename a file */
-  void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags);
+  void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) override;
   /** create a symlink */
-  void symlink(const QString& target, const QUrl& dest, KIO::JobFlags flags);
+  void symlink(const QString& target, const QUrl& dest, KIO::JobFlags flags) override;
   /** change file permissions */
-  void chmod(const QUrl& url, int permissions);
+  void chmod(const QUrl& url, int permissions) override;
   /** copies a file */
-  void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
+  void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
   /** report status */
-  void slave_status();
+  void slave_status() override;
   /** removes a file or directory */
-  void del(const QUrl &u, bool isfile);
+  void del(const QUrl &u, bool isfile) override;
   /** special like background execute */
-  void special( const QByteArray &data );
+  void special( const QByteArray &data ) override;
 
 private: // Private attributes
   /** fd for reading and writing to the process */

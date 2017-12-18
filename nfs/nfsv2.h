@@ -33,32 +33,32 @@ class NFSProtocolV2 : public NFSProtocol
 {
 public:
     NFSProtocolV2(NFSSlave* slave);
-    ~NFSProtocolV2();
+    ~NFSProtocolV2() override;
 
-    bool isCompatible(bool& connectionError) Q_DECL_OVERRIDE;
-    bool isConnected() const Q_DECL_OVERRIDE;
+    bool isCompatible(bool& connectionError) override;
+    bool isConnected() const override;
 
-    void openConnection() Q_DECL_OVERRIDE;
-    void closeConnection() Q_DECL_OVERRIDE;
+    void openConnection() override;
+    void closeConnection() override;
 
-    void setHost(const QString& host) Q_DECL_OVERRIDE;
+    void setHost(const QString& host) override;
 
-    void put(const QUrl& url, int _mode, KIO::JobFlags _flags) Q_DECL_OVERRIDE;
-    void get(const QUrl& url) Q_DECL_OVERRIDE;
-    void listDir(const QUrl& url) Q_DECL_OVERRIDE;
-    void symlink(const QString& target, const QUrl& dest, KIO::JobFlags) Q_DECL_OVERRIDE;
-    void stat(const QUrl& url) Q_DECL_OVERRIDE;
-    void mkdir(const QUrl& url, int permissions) Q_DECL_OVERRIDE;
-    void del(const QUrl& url, bool isfile) Q_DECL_OVERRIDE;
-    void chmod(const QUrl& url, int permissions) Q_DECL_OVERRIDE;
-    void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) Q_DECL_OVERRIDE;
+    void put(const QUrl& url, int _mode, KIO::JobFlags _flags) override;
+    void get(const QUrl& url) override;
+    void listDir(const QUrl& url) override;
+    void symlink(const QString& target, const QUrl& dest, KIO::JobFlags) override;
+    void stat(const QUrl& url) override;
+    void mkdir(const QUrl& url, int permissions) override;
+    void del(const QUrl& url, bool isfile) override;
+    void chmod(const QUrl& url, int permissions) override;
+    void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) override;
 
 protected:
-    void copySame(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) Q_DECL_OVERRIDE;
-    void copyFrom(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) Q_DECL_OVERRIDE;
-    void copyTo(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) Q_DECL_OVERRIDE;
+    void copySame(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) override;
+    void copyFrom(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) override;
+    void copyTo(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) override;
 
-    NFSFileHandle lookupFileHandle(const QString& path) Q_DECL_OVERRIDE;
+    NFSFileHandle lookupFileHandle(const QString& path) override;
 
 private:
     bool create(const QString& path, int mode, int& rpcStatus, diropres& result);

@@ -44,9 +44,9 @@ class FileNameSearchProtocol : public KIO::SlaveBase
 {
 public:
     FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app);
-    virtual ~FileNameSearchProtocol();
+    ~FileNameSearchProtocol() override;
 
-    void listDir(const QUrl &url) Q_DECL_OVERRIDE;
+    void listDir(const QUrl &url) override;
 
 private:
     void searchDirectory(const QUrl &directory,

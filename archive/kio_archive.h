@@ -26,9 +26,9 @@ class ArchiveProtocol : public ArchiveProtocolBase
 {
 public:
     ArchiveProtocol( const QByteArray &proto, const QByteArray &pool, const QByteArray &app );
-    virtual ~ArchiveProtocol() = default;
+    ~ArchiveProtocol() override = default;
 
-    KArchive *createArchive( const QString & proto, const QString & archiveFile ) Q_DECL_OVERRIDE;
+    KArchive *createArchive( const QString & proto, const QString & archiveFile ) override;
 };
 
 #endif // KIO_ARCHIVE_H

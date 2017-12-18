@@ -45,23 +45,23 @@ class NFSSlave : public QObject, public KIO::SlaveBase
 
 public:
     NFSSlave(const QByteArray& pool, const QByteArray& app);
-    ~NFSSlave();
+    ~NFSSlave() override;
 
-    void openConnection() Q_DECL_OVERRIDE;
-    void closeConnection() Q_DECL_OVERRIDE;
+    void openConnection() override;
+    void closeConnection() override;
 
-    void setHost(const QString& host, quint16 port, const QString& user, const QString& pass) Q_DECL_OVERRIDE;
+    void setHost(const QString& host, quint16 port, const QString& user, const QString& pass) override;
 
-    void put(const QUrl& url, int _mode, KIO::JobFlags _flags) Q_DECL_OVERRIDE;
-    void get(const QUrl& url) Q_DECL_OVERRIDE;
-    void listDir(const QUrl& url) Q_DECL_OVERRIDE;
-    void symlink(const QString& target, const QUrl& dest, KIO::JobFlags) Q_DECL_OVERRIDE;
-    void stat(const QUrl& url) Q_DECL_OVERRIDE;
-    void mkdir(const QUrl& url, int permissions) Q_DECL_OVERRIDE;
-    void del(const QUrl& url, bool isfile) Q_DECL_OVERRIDE;
-    void chmod(const QUrl& url, int permissions) Q_DECL_OVERRIDE;
-    void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) Q_DECL_OVERRIDE;
-    void copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) Q_DECL_OVERRIDE;
+    void put(const QUrl& url, int _mode, KIO::JobFlags _flags) override;
+    void get(const QUrl& url) override;
+    void listDir(const QUrl& url) override;
+    void symlink(const QString& target, const QUrl& dest, KIO::JobFlags) override;
+    void stat(const QUrl& url) override;
+    void mkdir(const QUrl& url, int permissions) override;
+    void del(const QUrl& url, bool isfile) override;
+    void chmod(const QUrl& url, int permissions) override;
+    void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) override;
+    void copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) override;
 
 protected:
     // Verifies the current protocol and connection state, returns true if valid.

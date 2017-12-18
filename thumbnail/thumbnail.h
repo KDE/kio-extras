@@ -32,9 +32,9 @@ class ThumbnailProtocol : public KIO::SlaveBase
 {
 public:
     ThumbnailProtocol(const QByteArray &pool, const QByteArray &app);
-    virtual ~ThumbnailProtocol();
+    ~ThumbnailProtocol() override;
 
-    virtual void get(const QUrl &url);
+    void get(const QUrl &url) override;
 
 protected:
     ThumbCreator* getThumbCreator(const QString& plugin);

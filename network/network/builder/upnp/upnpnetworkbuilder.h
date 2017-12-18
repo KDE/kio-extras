@@ -51,11 +51,11 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
 
   public:
     explicit UpnpNetworkBuilder( NetworkPrivate* networkPrivate );
-    virtual ~UpnpNetworkBuilder();
+    ~UpnpNetworkBuilder() override;
 
   public: // AbstractNetworkBuilder API
-    virtual void registerNetSystemFactory( AbstractNetSystemFactory* netSystemFactory );
-    virtual void start();
+    void registerNetSystemFactory( AbstractNetSystemFactory* netSystemFactory ) override;
+    void start() override;
     //TODO: void stop(); ? why needed, what to do?
 
   protected:

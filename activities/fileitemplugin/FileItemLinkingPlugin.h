@@ -35,10 +35,10 @@
 class FileItemLinkingPlugin : public KAbstractFileItemActionPlugin {
 public:
     FileItemLinkingPlugin(QObject *parent, const QVariantList &);
-    ~FileItemLinkingPlugin();
+    ~FileItemLinkingPlugin() override;
 
     QList<QAction *> actions(const KFileItemListProperties &fileItemInfos,
-                             QWidget *parentWidget) Q_DECL_OVERRIDE;
+                             QWidget *parentWidget) override;
 
 private:
     D_PTR;

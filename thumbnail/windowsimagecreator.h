@@ -22,7 +22,7 @@ class WindowsImageCreator : public ThumbCreator
 {
 public:
     WindowsImageCreator() {}
-    bool create(const QString &path, int width, int height, QImage &img);
+    bool create(const QString &path, int width, int height, QImage &img) override;
 };
 
 #endif // WINDOWS_IMAGE_CREATOR_H

@@ -31,10 +31,10 @@ class AboutProtocol : public KIO::SlaveBase
 {
 public:
     AboutProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
-    virtual ~AboutProtocol();
+    ~AboutProtocol() override;
 
-    virtual void get(const QUrl& url);
-    virtual void mimetype(const QUrl& url);
+    void get(const QUrl& url) override;
+    void mimetype(const QUrl& url) override;
 };
 
 #endif

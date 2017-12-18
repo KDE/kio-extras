@@ -37,11 +37,11 @@ class KFileAudioPreview : public KPreviewWidgetBase
 public:
     explicit KFileAudioPreview(QWidget *parent = nullptr,
                                const QVariantList &args = QVariantList());
-    ~KFileAudioPreview();
+    ~KFileAudioPreview() override;
 
 public Q_SLOTS:
-    virtual void showPreview(const QUrl &url);
-    virtual void clearPreview();
+    void showPreview(const QUrl &url) override;
+    void clearPreview() override;
 
 private Q_SLOTS:
     void toggleAuto(bool on);

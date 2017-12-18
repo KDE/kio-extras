@@ -32,10 +32,10 @@ class KritaCreator : public ThumbCreator
 {
 public:
     KritaCreator();
-    virtual ~KritaCreator();
+    ~KritaCreator() override;
 
-    virtual bool create(const QString &path, int width, int height, QImage &image) Q_DECL_OVERRIDE;
-    virtual Flags flags() const Q_DECL_OVERRIDE;
+    bool create(const QString &path, int width, int height, QImage &image) override;
+    Flags flags() const override;
 };
 
 #endif

@@ -27,9 +27,9 @@ class TextCreator : public ThumbCreator
 {
 public:
     TextCreator();
-    virtual ~TextCreator();
-    virtual bool create(const QString &path, int width, int height, QImage &img);
-    virtual Flags flags() const;
+    ~TextCreator() override;
+    bool create(const QString &path, int width, int height, QImage &img) override;
+    Flags flags() const override;
 
 private:
     char *m_data;

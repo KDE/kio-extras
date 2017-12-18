@@ -39,7 +39,7 @@ class NetworkInitWatcher : public QObject
 
   public:
     NetworkInitWatcher( Network* network, QMutex* mutex );
-    virtual ~NetworkInitWatcher();
+    ~NetworkInitWatcher() override;
 
   public Q_SLOTS:
     void onNetworkInitDone();

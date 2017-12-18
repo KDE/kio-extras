@@ -39,7 +39,7 @@ Q_OBJECT
 
 public:
     explicit CachedDevice(LIBMTP_mtpdevice_t *device, LIBMTP_raw_device_t *rawdevice, const QString udi, qint32 timeout);
-    virtual ~CachedDevice();
+    ~CachedDevice() override;
 
     LIBMTP_mtpdevice_t *getDevice();
     const QString getName();
@@ -61,7 +61,7 @@ Q_OBJECT
 
 public:
     DeviceCache(qint32 timeout, QObject *parent = nullptr);
-    virtual ~DeviceCache();
+    ~DeviceCache() override;
 
     QHash< QString, CachedDevice * > getAll();
     CachedDevice *get(const QString &string, bool isUdi = false);

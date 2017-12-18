@@ -41,7 +41,7 @@ class KioSlaveNotifier : public QObject
 
   public:
     explicit KioSlaveNotifier( Network* network, QObject* parent = nullptr );
-    virtual ~KioSlaveNotifier();
+    ~KioSlaveNotifier() override;
 
   public: // for debugging, remove also from adaptor.xml
     QStringList watchedDirectories() const;

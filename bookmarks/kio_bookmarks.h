@@ -28,9 +28,9 @@ class BookmarksProtocol : public KIO::SlaveBase
 {
   public:
     BookmarksProtocol( const QByteArray &pool, const QByteArray &app );
-    ~BookmarksProtocol();
+    ~BookmarksProtocol() override;
 
-    void get( const QUrl& url );
+    void get( const QUrl& url ) override;
 
   private:
     int columns;

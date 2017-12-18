@@ -43,7 +43,7 @@ class NetworkDBusAdaptor: public QDBusAbstractAdaptor
 
   public:
     explicit NetworkDBusAdaptor( NetworkWatcher* parent );
-    virtual ~NetworkDBusAdaptor();
+    ~NetworkDBusAdaptor() override;
 
   public:
     NetworkWatcher* parent() const;

@@ -30,7 +30,7 @@ class AudioCreator : public QObject, public ThumbCreator
     Q_OBJECT
 public:
     AudioCreator();
-    ~AudioCreator();
+    ~AudioCreator() override;
     bool create(const QString &path, int w, int h, QImage &img) override;
     Flags flags() const override;
 };

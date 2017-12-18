@@ -30,15 +30,15 @@ class ActivitiesProtocol : public KIO::ForwardingSlaveBase {
 
 public:
     ActivitiesProtocol(const QByteArray &poolSocket, const QByteArray &appSocket);
-    ~ActivitiesProtocol();
+    ~ActivitiesProtocol() override;
 
 protected:
-    bool rewriteUrl(const QUrl &url, QUrl &newUrl) Q_DECL_OVERRIDE;
-    void listDir(const QUrl &url) Q_DECL_OVERRIDE;
-    void prepareUDSEntry(KIO::UDSEntry &entry, bool listing = false) const Q_DECL_OVERRIDE;
-    void stat(const QUrl& url) Q_DECL_OVERRIDE;
-    void mimetype(const QUrl& url) Q_DECL_OVERRIDE;
-    void del(const QUrl& url, bool isfile) Q_DECL_OVERRIDE;
+    bool rewriteUrl(const QUrl &url, QUrl &newUrl) override;
+    void listDir(const QUrl &url) override;
+    void prepareUDSEntry(KIO::UDSEntry &entry, bool listing = false) const override;
+    void stat(const QUrl& url) override;
+    void mimetype(const QUrl& url) override;
+    void del(const QUrl& url, bool isfile) override;
 
 private:
     D_PTR;

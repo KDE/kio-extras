@@ -50,7 +50,7 @@ class MOLLETNETWORK_EXPORT Network : public QObject
 
   public:
     Network();
-    virtual ~Network();
+    ~Network() override;
 
   public:
     QList<NetDevice> deviceList() const;

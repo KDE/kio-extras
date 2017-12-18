@@ -44,17 +44,17 @@ class SimpleItemFactory : public AbstractNetSystemFactory,
 
   public:
     SimpleItemFactory();
-    virtual ~SimpleItemFactory();
+    ~SimpleItemFactory() override;
 
   public: // DNSSDNetSystemAble API
-    virtual bool canCreateNetSystemFromDNSSD( const QString& serviceType ) const;
-    virtual NetServicePrivate* createNetService( const KDNSSD::RemoteService::Ptr& service, const NetDevice& device ) const;
-    virtual QString dnssdId( const KDNSSD::RemoteService::Ptr& dnssdService ) const;
+    bool canCreateNetSystemFromDNSSD( const QString& serviceType ) const override;
+    NetServicePrivate* createNetService( const KDNSSD::RemoteService::Ptr& service, const NetDevice& device ) const override;
+    QString dnssdId( const KDNSSD::RemoteService::Ptr& dnssdService ) const override;
 
   public: // UpnpNetSystemAble API
-    virtual bool canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDevice ) const;
-    virtual NetServicePrivate* createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const;
-    virtual QString upnpId( const Cagibi::Device& upnpDevice ) const;
+    bool canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDevice ) const override;
+    NetServicePrivate* createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const override;
+    QString upnpId( const Cagibi::Device& upnpDevice ) const override;
 
   private:
 };

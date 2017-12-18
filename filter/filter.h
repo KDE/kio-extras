@@ -39,7 +39,7 @@ class FilterProtocol : /*public QObject, */ public KIO::SlaveBase
 public:
     FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
 
-    virtual void get( const QUrl &url );
+    void get( const QUrl &url ) override;
 #if 0
     virtual void put( const QUrl &url, int _mode, KIO::JobFlags _flags );
     virtual void setSubURL(const QUrl &url);

@@ -35,13 +35,13 @@ class MANProtocol : public QObject, public KIO::SlaveBase
 public:
 
     MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
-    virtual ~MANProtocol();
+    ~MANProtocol() override;
 
-    virtual void get(const QUrl& url);
-    virtual void stat(const QUrl& url);
+    void get(const QUrl& url) override;
+    void stat(const QUrl& url) override;
 
-    virtual void mimetype(const QUrl &url);
-    virtual void listDir(const QUrl &url);
+    void mimetype(const QUrl &url) override;
+    void listDir(const QUrl &url) override;
 
     void outputError(const QString& errmsg);
     void outputMatchingPages(const QStringList &matchingPages);

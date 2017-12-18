@@ -53,11 +53,11 @@ class DNSSDNetworkBuilder : public AbstractNetworkBuilder
 
   public:
     explicit DNSSDNetworkBuilder( NetworkPrivate* networkPrivate );
-    virtual ~DNSSDNetworkBuilder();
+    ~DNSSDNetworkBuilder() override;
 
   public: // AbstractNetworkBuilder API
-    virtual void registerNetSystemFactory( AbstractNetSystemFactory* netSystemFactory );
-    virtual void start();
+    void registerNetSystemFactory( AbstractNetSystemFactory* netSystemFactory ) override;
+    void start() override;
 
   private Q_SLOTS:
     void addServiceType( const QString& serviceType );

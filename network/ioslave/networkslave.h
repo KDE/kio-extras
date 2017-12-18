@@ -40,13 +40,13 @@ class NetworkSlave : public KIO::SlaveBase
 {
   public:
     NetworkSlave( const QByteArray& name, const QByteArray& poolSocket, const QByteArray& programSocket );
-    virtual ~NetworkSlave();
+    ~NetworkSlave() override;
 
   public: // KIO::SlaveBase API
-    virtual void mimetype( const QUrl& url );
-    virtual void get( const QUrl& url );
-    virtual void stat( const QUrl& url );
-    virtual void listDir( const QUrl& url );
+    void mimetype( const QUrl& url ) override;
+    void get( const QUrl& url ) override;
+    void stat( const QUrl& url ) override;
+    void listDir( const QUrl& url ) override;
 
   private:
     void feedEntryAsNetwork( KIO::UDSEntry* entry );

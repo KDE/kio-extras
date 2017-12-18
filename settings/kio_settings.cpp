@@ -32,10 +32,10 @@ class SettingsProtocol : public KIO::SlaveBase
 {
 public:
     SettingsProtocol(const QByteArray &protocol, const QByteArray &pool, const QByteArray &app);
-    virtual ~SettingsProtocol();
-    virtual void get( const QUrl& url );
-    virtual void stat(const QUrl& url);
-    virtual void listDir(const QUrl& url);
+    ~SettingsProtocol() override;
+    void get( const QUrl& url ) override;
+    void stat(const QUrl& url) override;
+    void listDir(const QUrl& url) override;
 
 private:
     void initSettingsData();

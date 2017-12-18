@@ -44,12 +44,12 @@ class KManPart : public KHTMLPart
       KParts::BrowserExtension * extension() {return m_extension;}
 
    public Q_SLOTS:
-      virtual bool openUrl( const QUrl &url );
+      bool openUrl( const QUrl &url ) override;
    protected Q_SLOTS:
       void readData(KIO::Job * , const QByteArray & data);
       void jobDone( KJob *);
    protected:
-      virtual bool openFile();
+      bool openFile() override;
       KParts::BrowserExtension * m_extension;
       KIO::TransferJob *m_job;
 };

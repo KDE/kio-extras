@@ -9,16 +9,16 @@ class RecentDocuments : public KIO::ForwardingSlaveBase
 {
 public:
     RecentDocuments(const QByteArray &pool, const QByteArray &app);
-    virtual ~RecentDocuments();
+    ~RecentDocuments() override;
 
 protected:
     QString desktopFile(KIO::UDSEntry&) const;
-    virtual bool rewriteUrl(const QUrl &url, QUrl &newUrl);
-    virtual void listDir(const QUrl &url);
-    virtual void prepareUDSEntry(KIO::UDSEntry &entry, bool listing = false) const;
-    virtual void stat(const QUrl& url);
-    virtual void mimetype(const QUrl& url);
-    virtual void del(const QUrl& url, bool isfile);
+    bool rewriteUrl(const QUrl &url, QUrl &newUrl) override;
+    void listDir(const QUrl &url) override;
+    void prepareUDSEntry(KIO::UDSEntry &entry, bool listing = false) const override;
+    void stat(const QUrl& url) override;
+    void mimetype(const QUrl& url) override;
+    void del(const QUrl& url, bool isfile) override;
 private:
     KDirWatch* m_recentDocWatch;
 };

@@ -36,7 +36,7 @@ class AbstractNetworkBuilder : public QObject
     Q_OBJECT
 
   public:
-    virtual ~AbstractNetworkBuilder();
+    ~AbstractNetworkBuilder() override;
 
   public: // API to be implemented
     // build initial table synch

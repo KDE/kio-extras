@@ -34,12 +34,12 @@ class HTMLCreator : public QObject, public ThumbCreator
     Q_OBJECT
 public:
     HTMLCreator();
-    virtual ~HTMLCreator();
-    virtual bool create(const QString &path, int width, int height, QImage &img);
-    virtual Flags flags() const;
+    ~HTMLCreator() override;
+    bool create(const QString &path, int width, int height, QImage &img) override;
+    Flags flags() const override;
 
 protected:
-    virtual void timerEvent (QTimerEvent*);
+    void timerEvent (QTimerEvent*) override;
 
 private Q_SLOTS:
     void slotFinished(bool);

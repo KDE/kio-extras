@@ -36,7 +36,7 @@ class NetworkThread : public QThread
 {
   public:
     NetworkThread();
-    virtual ~NetworkThread();
+    ~NetworkThread() override;
 
   public:
     Mollet::Network* network() const;
@@ -47,7 +47,7 @@ class NetworkThread : public QThread
     void finish();
 
   protected: // QThread API
-    virtual void run();
+    void run() override;
 
   private:
     QMutex mMutex;

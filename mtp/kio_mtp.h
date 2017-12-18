@@ -54,24 +54,24 @@ public:
      * Overwritten KIO-functions, see "kio_mtp.cpp"
      */
     MTPSlave(const QByteArray &pool, const QByteArray &app);
-    virtual ~MTPSlave();
+    ~MTPSlave() override;
 
-    virtual void listDir(const QUrl &url) Q_DECL_OVERRIDE;
-    virtual void stat(const QUrl &url) Q_DECL_OVERRIDE;
-    virtual void mimetype(const QUrl &url) Q_DECL_OVERRIDE;
-    virtual void get(const QUrl &url) Q_DECL_OVERRIDE;
-    virtual void put(const QUrl &url, int, JobFlags flags) Q_DECL_OVERRIDE;
-    virtual void copy(const QUrl &src, const QUrl &dest, int, JobFlags flags) Q_DECL_OVERRIDE;
-    virtual void mkdir(const QUrl &url, int) Q_DECL_OVERRIDE;
-    virtual void del(const QUrl &url, bool) Q_DECL_OVERRIDE;
-    virtual void rename(const QUrl &src, const QUrl &dest, JobFlags flags) Q_DECL_OVERRIDE;
+    void listDir(const QUrl &url) override;
+    void stat(const QUrl &url) override;
+    void mimetype(const QUrl &url) override;
+    void get(const QUrl &url) override;
+    void put(const QUrl &url, int, JobFlags flags) override;
+    void copy(const QUrl &src, const QUrl &dest, int, JobFlags flags) override;
+    void mkdir(const QUrl &url, int) override;
+    void del(const QUrl &url, bool) override;
+    void rename(const QUrl &src, const QUrl &dest, JobFlags flags) override;
 
 // private slots:
 //
 //     void test();
 
 protected:
-    void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
+    void virtual_hook(int id, void *data) override;
 
 private:
     /**

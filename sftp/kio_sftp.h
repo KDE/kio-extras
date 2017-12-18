@@ -40,30 +40,30 @@ class sftpProtocol : public KIO::SlaveBase
 
 public:
   sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
-  virtual ~sftpProtocol();
-  virtual void setHost(const QString &h, quint16 port, const QString& user, const QString& pass);
-  virtual void get(const QUrl &url);
-  virtual void listDir(const QUrl &url) ;
-  virtual void mimetype(const QUrl &url);
-  virtual void stat(const QUrl &url);
-  virtual void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
-  virtual void put(const QUrl &url, int permissions, KIO::JobFlags flags);
-  virtual void closeConnection();
-  virtual void slave_status();
-  virtual void del(const QUrl &url, bool isfile);
-  virtual void chmod(const QUrl &url, int permissions);
-  virtual void symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags);
-  virtual void rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags);
-  virtual void mkdir(const QUrl &url, int permissions);
-  virtual void openConnection();
+  ~sftpProtocol() override;
+  void setHost(const QString &h, quint16 port, const QString& user, const QString& pass) override;
+  void get(const QUrl &url) override;
+  void listDir(const QUrl &url) override ;
+  void mimetype(const QUrl &url) override;
+  void stat(const QUrl &url) override;
+  void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
+  void put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
+  void closeConnection() override;
+  void slave_status() override;
+  void del(const QUrl &url, bool isfile) override;
+  void chmod(const QUrl &url, int permissions) override;
+  void symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags) override;
+  void rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
+  void mkdir(const QUrl &url, int permissions) override;
+  void openConnection() override;
 
   // KIO::FileJob interface
-  virtual void open(const QUrl &url, QIODevice::OpenMode mode);
-  virtual void read(KIO::filesize_t size);
-  virtual void write(const QByteArray &data);
-  virtual void seek(KIO::filesize_t offset);
-  virtual void close();
-  virtual void special(const QByteArray &data);
+  void open(const QUrl &url, QIODevice::OpenMode mode) override;
+  void read(KIO::filesize_t size) override;
+  void write(const QByteArray &data) override;
+  void seek(KIO::filesize_t offset) override;
+  void close() override;
+  void special(const QByteArray &data) override;
 
   // libssh authentication callback (note that this is called by the
   // global ::auth_callback() call.
@@ -76,7 +76,7 @@ public:
                     void *userdata);
 
 protected:
-  void virtual_hook(int id, void *data) Q_DECL_OVERRIDE;
+  void virtual_hook(int id, void *data) override;
 
 private: // Private variables
   /** True if ioslave is connected to sftp server. */

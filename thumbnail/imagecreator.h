@@ -28,8 +28,8 @@ class ImageCreator : public ThumbCreator
 {
 public:
     ImageCreator() {}
-    virtual bool create(const QString &path, int, int, QImage &img) Q_DECL_OVERRIDE;
-    virtual Flags flags() const Q_DECL_OVERRIDE;
+    bool create(const QString &path, int, int, QImage &img) override;
+    Flags flags() const override;
 };
 
 #endif

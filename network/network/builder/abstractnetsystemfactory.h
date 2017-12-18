@@ -35,7 +35,7 @@ class AbstractNetSystemFactory : public QObject
    Q_OBJECT
 
   public:
-    virtual ~AbstractNetSystemFactory();
+    ~AbstractNetSystemFactory() override;
 
   public: // API to be implemented
 };

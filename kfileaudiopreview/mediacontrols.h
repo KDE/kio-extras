@@ -67,7 +67,7 @@ public:
      * Constructs a media control widget with a \p parent.
      */
     explicit MediaControls(QWidget *parent = nullptr);
-    ~MediaControls();
+    ~MediaControls() override;
 
     bool isSeekSliderVisible() const;
     bool isVolumeControlVisible() const;
@@ -87,7 +87,7 @@ public Q_SLOTS:
     void setAudioOutput(AudioOutput *audioOutput);
 
 protected:
-    void resizeEvent(QResizeEvent *event);
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     Q_PRIVATE_SLOT(d_func(), void _k_stateChanged(Phonon::State, Phonon::State))

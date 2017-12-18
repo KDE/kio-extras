@@ -23,7 +23,7 @@ class WindowsExeCreator : public ThumbCreator
 {
 public:
     WindowsExeCreator() {}
-    bool create(const QString &path, int width, int height, QImage &img);
+    bool create(const QString &path, int width, int height, QImage &img) override;
 };
 
 #endif // WINDOWS_EXE_CREATOR_H

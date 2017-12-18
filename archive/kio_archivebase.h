@@ -34,11 +34,11 @@ class LIBKIOARCHIVE_EXPORT ArchiveProtocolBase : public KIO::SlaveBase
 {
 public:
     ArchiveProtocolBase( const QByteArray &proto, const QByteArray &pool, const QByteArray &app );
-    virtual ~ArchiveProtocolBase();
+    ~ArchiveProtocolBase() override;
 
-    virtual void listDir( const QUrl & url );
-    virtual void stat( const QUrl & url );
-    virtual void get( const QUrl & url );
+    void listDir( const QUrl & url ) override;
+    void stat( const QUrl & url ) override;
+    void get( const QUrl & url ) override;
 
 private:
     void createRootUDSEntry( KIO::UDSEntry & entry );

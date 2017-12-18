@@ -26,8 +26,8 @@ class SvgCreator : public ThumbCreator
 {
 public:
     SvgCreator() {}
-    virtual bool create(const QString &path, int w, int h, QImage &img);
-    virtual Flags flags() const;
+    bool create(const QString &path, int w, int h, QImage &img) override;
+    Flags flags() const override;
 };
 
 #endif

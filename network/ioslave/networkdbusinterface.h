@@ -38,7 +38,7 @@ class NetworkDBusInterface: public QDBusAbstractInterface
 
   public:
     NetworkDBusInterface( const QString& service, const QString& path, const QDBusConnection& connection, QObject* parent = nullptr );
-    virtual ~NetworkDBusInterface();
+    ~NetworkDBusInterface() override;
 
   public Q_SLOTS:
     QDBusReply<Mollet::NetDevice> deviceData( const QString& hostAddress );

@@ -36,7 +36,7 @@ class FileItemLinkingPluginActionLoader: public QThread {
 public:
     static FileItemLinkingPluginActionLoader* create(const KFileItemListProperties &items);
 
-    void run() Q_DECL_OVERRIDE;
+    void run() override;
 
     Action createAction(const QString &activity, bool link,
                           const QString &title = QString(),

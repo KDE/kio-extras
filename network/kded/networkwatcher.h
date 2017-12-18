@@ -41,7 +41,7 @@ class NetworkWatcher : public KDEDModule
 
   public:
     NetworkWatcher( QObject* parent, const QList<QVariant>& parameters );
-    virtual ~NetworkWatcher();
+    ~NetworkWatcher() override;
 
   public:
     Mollet::NetDevice deviceData( const QString& hostAddress );

@@ -12,11 +12,11 @@ class InfoProtocol : public KIO::SlaveBase
 public:
 
     InfoProtocol( const QByteArray &pool, const QByteArray &app );
-    virtual ~InfoProtocol();
+    ~InfoProtocol() override;
 
-    virtual void get( const QUrl& url );
-    virtual void stat( const QUrl& url );
-    virtual void mimetype( const QUrl& url );
+    void get( const QUrl& url ) override;
+    void stat( const QUrl& url ) override;
+    void mimetype( const QUrl& url ) override;
 
 protected:
 
