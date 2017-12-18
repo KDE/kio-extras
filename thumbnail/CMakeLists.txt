@@ -128,17 +128,15 @@ endif()
 
 if(OpenEXR_FOUND)
 
-    include_directories( ${OpenEXR_INCLUDE_DIRS})
-
     set(exrthumbnail_PART_SRCS exrcreator.cpp)
 
     add_library(exrthumbnail MODULE ${exrthumbnail_PART_SRCS})
-
     target_link_libraries(exrthumbnail
             KF5::KIOCore
             KF5::KIOWidgets
             ${OpenEXR_LIBRARIES}
-        )
+    )
+    target_include_directories(exrthumbnail SYSTEM PRIVATE ${OpenEXR_INCLUDE_DIRS})
 
     # OpenEXR headers use exceptions; at least clang refuses to build the target
     # when exceptions are not enabled.
