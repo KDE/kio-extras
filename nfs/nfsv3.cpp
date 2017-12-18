@@ -64,9 +64,9 @@
 NFSProtocolV3::NFSProtocolV3(NFSSlave* slave)
     : NFSProtocol(slave),
       m_slave(slave),
-      m_mountClient(0),
+      m_mountClient(nullptr),
       m_mountSock(-1),
-      m_nfsClient(0),
+      m_nfsClient(nullptr),
       m_nfsSock(-1),
       m_readBufferSize(0),
       m_writeBufferSize(0),
@@ -89,7 +89,7 @@ bool NFSProtocolV3::isCompatible(bool& connectionError)
 
     int ret = -1;
 
-    CLIENT* client = NULL;
+    CLIENT* client = nullptr;
     int sock = 0;
     if (NFSProtocol::openConnection(m_currentHost, NFSPROG, NFSVERS, client, sock) == 0) {
         timeval check_timeout;
@@ -98,8 +98,8 @@ bool NFSProtocolV3::isCompatible(bool& connectionError)
 
         // Check if the NFS version is compatible
         ret = clnt_call(client, NFSPROC3_NULL,
-                        (xdrproc_t) xdr_void, NULL,
-                        (xdrproc_t) xdr_void, NULL,
+                        (xdrproc_t) xdr_void, nullptr,
+                        (xdrproc_t) xdr_void, nullptr,
                         check_timeout);
 
         connectionError = false;
@@ -112,7 +112,7 @@ bool NFSProtocolV3::isCompatible(bool& connectionError)
         ::close(sock);
     }
 
-    if (client != NULL) {
+    if (client != nullptr) {
         CLNT_DESTROY(client);
     }
 
@@ -123,7 +123,7 @@ bool NFSProtocolV3::isCompatible(bool& connectionError)
 
 bool NFSProtocolV3::isConnected() const
 {
-    return (m_nfsClient != 0);
+    return (m_nfsClient != nullptr);
 }
 
 void NFSProtocolV3::closeConnection()
@@ -131,10 +131,10 @@ void NFSProtocolV3::closeConnection()
     qCDebug(LOG_KIO_NFS);
 
     // Unmount all exported dirs(if any)
-    if (m_mountClient != 0) {
+    if (m_mountClient != nullptr) {
         clnt_call(m_mountClient, MOUNTPROC3_UMNTALL,
-                  (xdrproc_t) xdr_void, NULL,
-                  (xdrproc_t) xdr_void, NULL,
+                  (xdrproc_t) xdr_void, nullptr,
+                  (xdrproc_t) xdr_void, nullptr,
                   clnt_timeout);
     }
 
@@ -147,13 +147,13 @@ void NFSProtocolV3::closeConnection()
         m_nfsSock = -1;
     }
 
-    if (m_mountClient != 0) {
+    if (m_mountClient != nullptr) {
         CLNT_DESTROY(m_mountClient);
-        m_mountClient = 0;
+        m_mountClient = nullptr;
     }
-    if (m_nfsClient != 0) {
+    if (m_nfsClient != nullptr) {
         CLNT_DESTROY(m_nfsClient);
-        m_nfsClient = 0;
+        m_nfsClient = nullptr;
     }
 }
 
@@ -237,7 +237,7 @@ void NFSProtocolV3::openConnection()
     memset(&exportlist, 0, sizeof(exportlist));
 
     int clnt_stat = clnt_call(m_mountClient, MOUNTPROC3_EXPORT,
-                              (xdrproc_t) xdr_void, NULL,
+                              (xdrproc_t) xdr_void, nullptr,
                               (xdrproc_t) xdr_exports3, reinterpret_cast<caddr_t>(&exportlist),
                               clnt_timeout);
 
@@ -250,7 +250,7 @@ void NFSProtocolV3::openConnection()
     QStringList failList;
 
     mountres3 fhStatus;
-    for (; exportlist != 0; exportlist = exportlist->ex_next, exportsCount++) {
+    for (; exportlist != nullptr; exportlist = exportlist->ex_next, exportsCount++) {
         memset(&fhStatus, 0, sizeof(fhStatus));
         clnt_stat = clnt_call(m_mountClient, MOUNTPROC3_MNT,
                               (xdrproc_t) xdr_dirpath3, reinterpret_cast<caddr_t>(&exportlist->ex_dir),
@@ -366,12 +366,12 @@ void NFSProtocolV3::listDir(const QUrl& url)
     READDIRPLUS3res listres;
     memset(&listres, 0, sizeof(listres));
 
-    entryplus3* lastEntry = 0;
+    entryplus3* lastEntry = nullptr;
     do {
         memset(&listres, 0, sizeof(listres));
 
         // In case that we didn't get all entries we need to set the cookie to the last one we actually received.
-        if (lastEntry != 0) {
+        if (lastEntry != nullptr) {
             listargs.cookie = lastEntry->cookie;
         }
 
@@ -391,7 +391,7 @@ void NFSProtocolV3::listDir(const QUrl& url)
             return;
         }
 
-        for (entryplus3* dirEntry = listres.READDIRPLUS3res_u.resok.reply.entries; dirEntry != 0; dirEntry = dirEntry->nextentry) {
+        for (entryplus3* dirEntry = listres.READDIRPLUS3res_u.resok.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
             if (dirEntry->name == QString(".") || dirEntry->name == QString("..")) {
                 continue;
             }
@@ -457,7 +457,7 @@ void NFSProtocolV3::listDir(const QUrl& url)
 
             lastEntry = dirEntry;
         }
-    } while (listres.READDIRPLUS3res_u.resok.reply.entries != NULL && !listres.READDIRPLUS3res_u.resok.reply.eof);
+    } while (listres.READDIRPLUS3res_u.resok.reply.entries != nullptr && !listres.READDIRPLUS3res_u.resok.reply.eof);
 
     m_slave->finished();
 }
@@ -523,12 +523,12 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
     fh.toFH(listargs.dir);
 
     READDIR3res listres;
-    entry3* lastEntry = 0;
+    entry3* lastEntry = nullptr;
     do {
         memset(&listres, 0, sizeof(listres));
 
         // In case that we didn't get all entries we need to set the cookie to the last one we actually received
-        if (lastEntry != 0) {
+        if (lastEntry != nullptr) {
             listargs.cookie = lastEntry->cookie;
         }
 
@@ -541,7 +541,7 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
             return;
         }
 
-        for (entry3* dirEntry = listres.READDIR3res_u.resok.reply.entries; dirEntry != 0; dirEntry = dirEntry->nextentry) {
+        for (entry3* dirEntry = listres.READDIR3res_u.resok.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
             if (dirEntry->name != QString(".") && dirEntry->name != QString("..")) {
                 filesToList.append(QFile::decodeName(dirEntry->name));
             }
@@ -899,7 +899,7 @@ void NFSProtocolV3::get(const QUrl& url)
 
     } while (read > 0);
 
-    if (readRes.READ3res_u.resok.data.data_val != NULL) {
+    if (readRes.READ3res_u.resok.data.data_val != nullptr) {
         delete [] readRes.READ3res_u.resok.data.data_val;
     }
 

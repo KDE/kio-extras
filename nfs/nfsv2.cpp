@@ -63,9 +63,9 @@
 NFSProtocolV2::NFSProtocolV2(NFSSlave* slave)
     :  NFSProtocol(slave),
        m_slave(slave),
-       m_mountClient(0),
+       m_mountClient(nullptr),
        m_mountSock(-1),
-       m_nfsClient(0),
+       m_nfsClient(nullptr),
        m_nfsSock(-1)
 {
     qCDebug(LOG_KIO_NFS) << "NFS2::NFS2";
@@ -83,13 +83,13 @@ bool NFSProtocolV2::isCompatible(bool& connectionError)
 {
     int ret = -1;
 
-    CLIENT* client = NULL;
+    CLIENT* client = nullptr;
     int sock = 0;
     if (NFSProtocol::openConnection(m_currentHost, NFSPROG, NFSVERS, client, sock) == 0) {
         // Check if the NFS version is compatible
         ret = clnt_call(client, NFSPROC_NULL,
-                        (xdrproc_t) xdr_void, NULL,
-                        (xdrproc_t) xdr_void, NULL, clnt_timeout);
+                        (xdrproc_t) xdr_void, nullptr,
+                        (xdrproc_t) xdr_void, nullptr, clnt_timeout);
 
         connectionError = false;
     } else {
@@ -101,7 +101,7 @@ bool NFSProtocolV2::isCompatible(bool& connectionError)
         ::close(sock);
     }
 
-    if (client != NULL) {
+    if (client != nullptr) {
         CLNT_DESTROY(client);
     }
 
@@ -111,7 +111,7 @@ bool NFSProtocolV2::isCompatible(bool& connectionError)
 
 bool NFSProtocolV2::isConnected() const
 {
-    return (m_nfsClient != 0);
+    return (m_nfsClient != nullptr);
 }
 
 void NFSProtocolV2::closeConnection()
@@ -119,10 +119,10 @@ void NFSProtocolV2::closeConnection()
     qCDebug(LOG_KIO_NFS);
 
     // Unmount all exported dirs(if any)
-    if (m_mountClient != 0) {
+    if (m_mountClient != nullptr) {
         clnt_call(m_mountClient, MOUNTPROC_UMNTALL,
-                  (xdrproc_t) xdr_void, NULL,
-                  (xdrproc_t) xdr_void, NULL,
+                  (xdrproc_t) xdr_void, nullptr,
+                  (xdrproc_t) xdr_void, nullptr,
                   clnt_timeout);
     }
 
@@ -135,13 +135,13 @@ void NFSProtocolV2::closeConnection()
         m_nfsSock = -1;
     }
 
-    if (m_mountClient != 0) {
+    if (m_mountClient != nullptr) {
         CLNT_DESTROY(m_mountClient);
-        m_mountClient = 0;
+        m_mountClient = nullptr;
     }
-    if (m_nfsClient != 0) {
+    if (m_nfsClient != nullptr) {
         CLNT_DESTROY(m_nfsClient);
-        m_nfsClient = 0;
+        m_nfsClient = nullptr;
     }
 }
 
@@ -220,7 +220,7 @@ void NFSProtocolV2::openConnection()
     memset(&exportlist, 0, sizeof(exportlist));
 
     int clnt_stat = clnt_call(m_mountClient, MOUNTPROC_EXPORT,
-                              (xdrproc_t) xdr_void, NULL,
+                              (xdrproc_t) xdr_void, nullptr,
                               (xdrproc_t) xdr_exports, reinterpret_cast<caddr_t>(&exportlist),
                               clnt_timeout);
 
@@ -232,7 +232,7 @@ void NFSProtocolV2::openConnection()
     QStringList failList;
 
     fhstatus fhStatus;
-    for (; exportlist != 0; exportlist = exportlist->ex_next, exportsCount++) {
+    for (; exportlist != nullptr; exportlist = exportlist->ex_next, exportsCount++) {
         memset(&fhStatus, 0, sizeof(fhStatus));
 
         clnt_stat = clnt_call(m_mountClient, MOUNTPROC_MNT,
@@ -343,11 +343,11 @@ void NFSProtocolV2::listDir(const QUrl& url)
     readdirres listres;
 
     QStringList filesToList;
-    entry* lastEntry = 0;
+    entry* lastEntry = nullptr;
     do {
         memset(&listres, 0, sizeof(listres));
         // In case that we didn't get all entries we need to set the cookie to the last one we actually received.
-        if (lastEntry != 0) {
+        if (lastEntry != nullptr) {
             memcpy(listargs.cookie, lastEntry->cookie, NFS_COOKIESIZE);
         }
 
@@ -360,7 +360,7 @@ void NFSProtocolV2::listDir(const QUrl& url)
             return;
         }
 
-        for (entry* dirEntry = listres.readdirres_u.reply.entries; dirEntry != 0; dirEntry = dirEntry->nextentry) {
+        for (entry* dirEntry = listres.readdirres_u.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
             if (dirEntry->name != QString(".") && dirEntry->name != QString("..")) {
                 filesToList.append(QFile::decodeName(dirEntry->name));
             }

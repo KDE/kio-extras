@@ -258,11 +258,11 @@ LIBMTP_filetype_t getFiletype(const QString &filename)
 
 QMap<QString, LIBMTP_devicestorage_t *> getDevicestorages(LIBMTP_mtpdevice_t *&device)
 {
-    qCDebug(LOG_KIO_MTP) << "[ENTER]" << (device == 0);
+    qCDebug(LOG_KIO_MTP) << "[ENTER]" << (device == nullptr);
 
     QMap<QString, LIBMTP_devicestorage_t *> storages;
     if (device) {
-        for (LIBMTP_devicestorage_t *storage = device->storage; storage != NULL; storage = storage->next) {
+        for (LIBMTP_devicestorage_t *storage = device->storage; storage != nullptr; storage = storage->next) {
             //             char *storageIdentifier = storage->VolumeIdentifier;
             char *storageDescription = storage->StorageDescription;
 
@@ -290,7 +290,7 @@ QMap<QString, LIBMTP_file_t *> getFiles(LIBMTP_mtpdevice_t *&device, uint32_t st
     QMap<QString, LIBMTP_file_t *> fileMap;
 
     LIBMTP_file_t *files = LIBMTP_Get_Files_And_Folders(device, storage_id, parent_id), *file;
-    for (file = files; file != NULL; file = file->next) {
+    for (file = files; file != nullptr; file = file->next) {
         fileMap.insert(QString::fromUtf8(file->filename), file);
         //         qCDebug(LOG_KIO_MTP) << "found file" << file->filename;
     }

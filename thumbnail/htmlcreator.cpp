@@ -36,7 +36,7 @@ extern "C"
 }
 
 HTMLCreator::HTMLCreator()
-    : m_loadedOk(true), m_page(0)
+    : m_loadedOk(true), m_page(nullptr)
 {
 }
 

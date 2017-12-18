@@ -120,7 +120,7 @@ void DeviceCache::checkDevice(Solid::Device solidDevice)
         const uint32_t solidBusNum = properties.value ( QLatin1String ( "BUSNUM" ) ).toUInt();
         const uint32_t solidDevNum = properties.value ( QLatin1String ( "DEVNUM" ) ).toUInt();
 
-        LIBMTP_raw_device_t *rawdevices = 0;
+        LIBMTP_raw_device_t *rawdevices = nullptr;
         int numrawdevices;
         LIBMTP_error_number_t err;
 

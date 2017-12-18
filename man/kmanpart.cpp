@@ -35,7 +35,7 @@ K_PLUGIN_FACTORY(KManPartFactory, registerPlugin<KManPart>();)
 
 KManPart::KManPart(QWidget * parentWidget, QObject* parent, const QVariantList&)
 : KHTMLPart(parentWidget, parent)
-,m_job(0)
+,m_job(nullptr)
 {
    setComponentData(createAboutData());
    m_extension = new KParts::BrowserExtension(this);
@@ -53,7 +53,7 @@ bool KManPart::openUrl( const QUrl &url )
 
 bool KManPart::openFile()
 {
-   if (m_job!=0)
+   if (m_job!=nullptr)
       m_job->kill();
 
    begin();
@@ -75,7 +75,7 @@ void KManPart::readData(KIO::Job * , const QByteArray & data)
 
 void KManPart::jobDone( KJob *)
 {
-   m_job=0;
+   m_job=nullptr;
    end();
 }
 

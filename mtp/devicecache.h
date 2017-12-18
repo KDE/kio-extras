@@ -60,7 +60,7 @@ class DeviceCache : public QEventLoop
 Q_OBJECT
 
 public:
-    DeviceCache(qint32 timeout, QObject *parent = 0);
+    DeviceCache(qint32 timeout, QObject *parent = nullptr);
     virtual ~DeviceCache();
 
     QHash< QString, CachedDevice * > getAll();

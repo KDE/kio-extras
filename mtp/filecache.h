@@ -39,7 +39,7 @@ class FileCache : public QObject
 Q_OBJECT
 
 public:
-    explicit FileCache(QObject *parent = 0);
+    explicit FileCache(QObject *parent = nullptr);
 
     /**
      * Returns the ID of the item at the given path, else 0.

@@ -153,7 +153,7 @@ static bool wasUsernameChanged(const QString& username, const KIO::AuthInfo& inf
 static int auth_callback(const char *prompt, char *buf, size_t len,
                          int echo, int verify, void *userdata)
 {
-  if (userdata == NULL) {
+  if (userdata == nullptr) {
     return -1;
   }
 
@@ -169,7 +169,7 @@ static int auth_callback(const char *prompt, char *buf, size_t len,
 static void log_callback(int priority, const char *function, const char *buffer,
                          void *userdata)
 {
-    if (userdata == NULL) {
+    if (userdata == nullptr) {
         return;
     }
 
@@ -247,7 +247,7 @@ void sftpProtocol::virtual_hook(int id, void *data)
 
 int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
 
-  int err = ssh_userauth_kbdint(mSession, NULL, NULL);
+  int err = ssh_userauth_kbdint(mSession, nullptr, nullptr);
 
   while (err == SSH_AUTH_INFO) {
     const QString name = QString::fromUtf8(ssh_userauth_kbdint_getname(mSession));
@@ -323,7 +323,7 @@ int sftpProtocol::authenticateKeyboardInteractive(AuthInfo &info) {
         }
       }
     }
-    err = ssh_userauth_kbdint(mSession, NULL, NULL);
+    err = ssh_userauth_kbdint(mSession, nullptr, nullptr);
   }
 
   return err;
@@ -346,7 +346,7 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
   Q_ASSERT(entry.count() == 0);
 
   sftp_attributes sb = sftp_lstat(mSftp, path.constData());
-  if (sb == NULL) {
+  if (sb == nullptr) {
     return false;
   }
 
@@ -355,7 +355,7 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
   if (sb->type == SSH_FILEXFER_TYPE_SYMLINK) {
     entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
     link = sftp_readlink(mSftp, path.constData());
-    if (link == NULL) {
+    if (link == nullptr) {
       sftp_attributes_free(sb);
       return false;
     }
@@ -364,7 +364,7 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
     // A symlink -> follow it only if details > 1
     if (details > 1) {
       sftp_attributes sb2 = sftp_stat(mSftp, path.constData());
-      if (sb2 == NULL) {
+      if (sb2 == nullptr) {
         // It is a link pointing to nowhere
         type = S_IFMT - 1;
         access = S_IRWXU | S_IRWXG | S_IRWXO;
@@ -427,14 +427,14 @@ notype:
 QString sftpProtocol::canonicalizePath(const QString &path) {
   qCDebug(KIO_SFTP_LOG) << "Path to canonicalize: " << path;
   QString cPath;
-  char *sPath = NULL;
+  char *sPath = nullptr;
 
   if (path.isEmpty()) {
     return cPath;
   }
 
   sPath = sftp_canonicalize_path(mSftp, path.toUtf8().constData());
-  if (sPath == NULL) {
+  if (sPath == nullptr) {
     qCDebug(KIO_SFTP_LOG) << "Could not canonicalize path: " << path;
     return cPath;
   }
@@ -449,7 +449,7 @@ QString sftpProtocol::canonicalizePath(const QString &path) {
 
 sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
              : SlaveBase("kio_sftp", pool_socket, app_socket),
-               mConnected(false), mPort(-1), mSession(NULL), mSftp(NULL), mPublicKeyAuthInfo(0) {
+               mConnected(false), mPort(-1), mSession(nullptr), mSftp(nullptr), mPublicKeyAuthInfo(nullptr) {
 #ifndef Q_OS_WIN
   qCDebug(KIO_SFTP_LOG) << "pid = " << getpid();
 
@@ -457,7 +457,7 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
 #endif
 
   mCallbacks = (ssh_callbacks) malloc(sizeof(struct ssh_callbacks_struct));
-  if (mCallbacks == NULL) {
+  if (mCallbacks == nullptr) {
     error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not allocate callbacks"));
     return;
   }
@@ -469,7 +469,7 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
   ssh_callbacks_init(mCallbacks);
 
   char *verbosity = getenv("KIO_SFTP_LOG_VERBOSITY");
-  if (verbosity != NULL) {
+  if (verbosity != nullptr) {
     int level = atoi(verbosity);
     int rc;
 
@@ -525,7 +525,7 @@ void sftpProtocol::setHost(const QString& host, quint16 port, const QString& use
 bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
 {
   mSession = ssh_new();
-  if (mSession == NULL) {
+  if (mSession == nullptr) {
     error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not create a new SSH session."));
     return false;
   }
@@ -584,7 +584,7 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
   }
 
   // Read ~/.ssh/config
-  rc = ssh_options_parse_config(mSession, NULL);
+  rc = ssh_options_parse_config(mSession, nullptr);
   if (rc < 0) {
     error(KIO::ERR_INTERNAL, i18n("Could not parse the config file."));
     return false;
@@ -651,7 +651,7 @@ void sftpProtocol::openConnection() {
   // Start the ssh connection.
   QString msg;     // msg for dialog box
   QString caption; // dialog box caption
-  unsigned char *hash = NULL; // the server hash
+  unsigned char *hash = nullptr; // the server hash
   ssh_key srv_pubkey;
   char *hexa;
   size_t hlen;
@@ -746,7 +746,7 @@ void sftpProtocol::openConnection() {
   qCDebug(KIO_SFTP_LOG) << "Trying to authenticate with the server";
 
   // Try to login without authentication
-  rc = ssh_userauth_none(mSession, NULL);
+  rc = ssh_userauth_none(mSession, nullptr);
   if (rc == SSH_AUTH_ERROR) {
     closeConnection();
     error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
@@ -766,7 +766,7 @@ void sftpProtocol::openConnection() {
   if (rc != SSH_AUTH_SUCCESS && (method & SSH_AUTH_METHOD_PUBLICKEY)) {
     qCDebug(KIO_SFTP_LOG) << "Trying to authenticate with public key";
     for(;;) {
-      rc = ssh_userauth_publickey_auto(mSession, NULL, NULL);
+      rc = ssh_userauth_publickey_auto(mSession, nullptr, nullptr);
       if (rc == SSH_AUTH_ERROR) {
         qCDebug(KIO_SFTP_LOG) << "Public key authentication failed:" <<
                 QString::fromUtf8(ssh_get_error(mSession));
@@ -880,7 +880,7 @@ void sftpProtocol::openConnection() {
   // start sftp session
   qCDebug(KIO_SFTP_LOG) << "Trying to request the sftp session";
   mSftp = sftp_new(mSession);
-  if (mSftp == NULL) {
+  if (mSftp == nullptr) {
     closeConnection();
     error(KIO::ERR_COULD_NOT_LOGIN, i18n("Unable to request the SFTP subsystem. "
           "Make sure SFTP is enabled on the server."));
@@ -921,12 +921,12 @@ void sftpProtocol::closeConnection() {
 
   if (mSftp) {
     sftp_free(mSftp);
-    mSftp = NULL;
+    mSftp = nullptr;
   }
 
   if (mSession) {
     ssh_disconnect(mSession);
-    mSession = NULL;
+    mSession = nullptr;
   }
 
   mConnected = false;
@@ -975,7 +975,7 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
   const QByteArray path_c = path.toUtf8();
 
   sftp_attributes sb = sftp_lstat(mSftp, path_c.constData());
-  if (sb == NULL) {
+  if (sb == nullptr) {
     reportError(url, sftp_get_error(mSftp));
     return;
   }
@@ -1022,7 +1022,7 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
     mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0);
   }
 
-  if (mOpenFile == NULL) {
+  if (mOpenFile == nullptr) {
     error(KIO::ERR_CANNOT_OPEN_FOR_READING, path);
     return;
   }
@@ -1063,7 +1063,7 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
 void sftpProtocol::read(KIO::filesize_t bytes) {
   qCDebug(KIO_SFTP_LOG) << "read, offset = " << openOffset << ", bytes = " << bytes;
 
-  Q_ASSERT(mOpenFile != NULL);
+  Q_ASSERT(mOpenFile != nullptr);
 
   QVarLengthArray<char> buffer(bytes);
 
@@ -1084,7 +1084,7 @@ void sftpProtocol::read(KIO::filesize_t bytes) {
 void sftpProtocol::write(const QByteArray &data) {
   qCDebug(KIO_SFTP_LOG) << "write, offset = " << openOffset << ", bytes = " << data.size();
 
-  Q_ASSERT(mOpenFile != NULL);
+  Q_ASSERT(mOpenFile != nullptr);
 
   ssize_t bytesWritten = sftp_write(mOpenFile, data.data(), data.size());
   if (bytesWritten < 0) {
@@ -1100,7 +1100,7 @@ void sftpProtocol::write(const QByteArray &data) {
 void sftpProtocol::seek(KIO::filesize_t offset) {
   qCDebug(KIO_SFTP_LOG) << "seek, offset = " << offset;
 
-  Q_ASSERT(mOpenFile != NULL);
+  Q_ASSERT(mOpenFile != nullptr);
 
   if (sftp_seek64(mOpenFile, static_cast<uint64_t>(offset)) < 0) {
     error(KIO::ERR_COULD_NOT_SEEK, mOpenUrl.path());
@@ -1113,7 +1113,7 @@ void sftpProtocol::seek(KIO::filesize_t offset) {
 void sftpProtocol::close() {
   sftp_close(mOpenFile);
 
-  mOpenFile = NULL;
+  mOpenFile = nullptr;
   finished();
 }
 
@@ -1145,12 +1145,12 @@ sftpProtocol::StatusCode sftpProtocol::sftpGet(const QUrl& url, int& errorCode, 
 
   QByteArray path = url.path().toUtf8();
 
-  sftp_file file = NULL;
+  sftp_file file = nullptr;
   KIO::filesize_t totalbytesread  = 0;
   QByteArray filedata;
 
   sftp_attributes sb = sftp_lstat(mSftp, path.constData());
-  if (sb == NULL) {
+  if (sb == nullptr) {
     errorCode = toKIOError(sftp_get_error(mSftp));
     return sftpProtocol::ServerError;
   }
@@ -1172,7 +1172,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpGet(const QUrl& url, int& errorCode, 
 
   // Open file
   file = sftp_open(mSftp, path.constData(), O_RDONLY, 0);
-  if (file == NULL) {
+  if (file == nullptr) {
     errorCode = KIO::ERR_CANNOT_OPEN_FOR_READING;
     sftp_attributes_free(sb);
     return sftpProtocol::ServerError;
@@ -1301,7 +1301,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
   gid_t group = 0;
 
   sftp_attributes sb = sftp_lstat(mSftp, dest_orig_c.constData());
-  const bool bOrigExists = (sb != NULL);
+  const bool bOrigExists = (sb != nullptr);
   bool bPartExists = false;
   const bool bMarkPartial = config()->readEntry("MarkPartial", true);
 
@@ -1314,7 +1314,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
 
   if (bMarkPartial) {
     sftp_attributes sbPart = sftp_lstat(mSftp, dest_part_c.constData());
-    bPartExists = (sbPart != NULL);
+    bPartExists = (sbPart != nullptr);
 
     if (bPartExists && !(flags & KIO::Resume) && !(flags & KIO::Overwrite) &&
         sbPart->size > 0 && sbPart->type == SSH_FILEXFER_TYPE_REGULAR) {
@@ -1355,7 +1355,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
 
   QByteArray dest;
   int result = -1;
-  sftp_file file = NULL;
+  sftp_file file = nullptr;
   StatusCode cs = sftpProtocol::Success;
   KIO::fileoffset_t totalBytesSent = 0;
 
@@ -1417,7 +1417,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
           file = sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
         } // flags & KIO::Resume
 
-        if (file == NULL) {
+        if (file == nullptr) {
           qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString(dest)
                               << ", permissions=" << permissions
                               << ", error=" << ssh_get_error(mSession);
@@ -1448,11 +1448,11 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
   if (result < 0) {
     qCDebug(KIO_SFTP_LOG) << "Error during 'put'. Aborting.";
 
-    if (file != NULL) {
+    if (file != nullptr) {
       sftp_close(file);
 
       sftp_attributes attr = sftp_stat(mSftp, dest.constData());
-      if (bMarkPartial && attr != NULL) {
+      if (bMarkPartial && attr != nullptr) {
         size_t size = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
         if (attr->size < size) {
           sftp_unlink(mSftp, dest.constData());
@@ -1465,7 +1465,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
     return cs;
   }
 
-  if (file == NULL) { // we got nothing to write out, so we never opened the file
+  if (file == nullptr) { // we got nothing to write out, so we never opened the file
     return sftpProtocol::Success;
   }
 
@@ -1517,7 +1517,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
       struct timeval times[2];
 
       sftp_attributes attr = sftp_lstat(mSftp, dest_orig_c.constData());
-      if (attr != NULL) {
+      if (attr != nullptr) {
         times[0].tv_sec = attr->atime; //// access time, unchanged
         times[1].tv_sec =  dt.toTime_t(); // modification time
         times[0].tv_usec = times[1].tv_usec = 0;
@@ -1814,12 +1814,12 @@ void sftpProtocol::listDir(const QUrl& url) {
   QByteArray path = url.path().toUtf8();
 
   sftp_dir dp = sftp_opendir(mSftp, path.constData());
-  if (dp == NULL) {
+  if (dp == nullptr) {
     reportError(url, sftp_get_error(mSftp));
     return;
   }
 
-  sftp_attributes dirent = NULL;
+  sftp_attributes dirent = nullptr;
   const QString sDetails = metaData(QLatin1String("details"));
   const int details = sDetails.isEmpty() ? 2 : sDetails.toInt();
   UDSEntry entry;
@@ -1832,7 +1832,7 @@ void sftpProtocol::listDir(const QUrl& url) {
     char *link;
 
     dirent = sftp_readdir(mSftp, dp);
-    if (dirent == NULL) {
+    if (dirent == nullptr) {
       break;
     }
 
@@ -1845,7 +1845,7 @@ void sftpProtocol::listDir(const QUrl& url) {
       entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
 
       link = sftp_readlink(mSftp, file.constData());
-      if (link == NULL) {
+      if (link == nullptr) {
         sftp_attributes_free(dirent);
         error(KIO::ERR_INTERNAL, i18n("Could not read link: %1", QString::fromUtf8(file)));
         return;
@@ -1855,7 +1855,7 @@ void sftpProtocol::listDir(const QUrl& url) {
       // A symlink -> follow it only if details > 1
       if (details > 1) {
         sftp_attributes sb = sftp_stat(mSftp, file.constData());
-        if (sb == NULL) {
+        if (sb == nullptr) {
           // It is a link pointing to nowhere
           type = S_IFMT - 1;
           access = S_IRWXU | S_IRWXG | S_IRWXO;
@@ -1938,7 +1938,7 @@ void sftpProtocol::mkdir(const QUrl &url, int permissions) {
 
   qCDebug(KIO_SFTP_LOG) << "Trying to create directory: " << path;
   sftp_attributes sb = sftp_lstat(mSftp, path_c.constData());
-  if (sb == NULL) {
+  if (sb == nullptr) {
     if (sftp_mkdir(mSftp, path_c.constData(), 0777) < 0) {
       reportError(url, sftp_get_error(mSftp));
       sftp_attributes_free(sb);
@@ -1976,7 +1976,7 @@ void sftpProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags
   QByteArray qdest = dest.path().toUtf8();
 
   sftp_attributes sb = sftp_lstat(mSftp, qdest.constData());
-  if (sb != NULL) {
+  if (sb != nullptr) {
     if (!(flags & KIO::Overwrite)) {
       if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
         error(KIO::ERR_DIR_ALREADY_EXIST, dest.url());
@@ -2026,7 +2026,7 @@ void sftpProtocol::symlink(const QString &target, const QUrl &dest, KIO::JobFlag
   if (sftp_symlink(mSftp, t.constData(), d.constData()) < 0) {
     if (flags == KIO::Overwrite) {
       sftp_attributes sb = sftp_lstat(mSftp, d.constData());
-      if (sb == NULL) {
+      if (sb == nullptr) {
         failed = true;
       } else {
         if (sftp_unlink(mSftp, d.constData()) < 0) {
@@ -2256,7 +2256,7 @@ void sftpProtocol::clearPubKeyAuthInfo()
 {
   if (mPublicKeyAuthInfo) {
       delete mPublicKeyAuthInfo;
-      mPublicKeyAuthInfo = 0;
+      mPublicKeyAuthInfo = nullptr;
   }
 }
 

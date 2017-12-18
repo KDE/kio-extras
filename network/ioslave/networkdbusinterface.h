@@ -37,7 +37,7 @@ class NetworkDBusInterface: public QDBusAbstractInterface
     Q_OBJECT
 
   public:
-    NetworkDBusInterface( const QString& service, const QString& path, const QDBusConnection& connection, QObject* parent = 0 );
+    NetworkDBusInterface( const QString& service, const QString& path, const QDBusConnection& connection, QObject* parent = nullptr );
     virtual ~NetworkDBusInterface();
 
   public Q_SLOTS:

@@ -51,9 +51,9 @@ class KFileAudioPreview::Private
 {
 public:
     Private()
-        : player(0)
-        , audioOutput(0)
-        , videoWidget(0)
+        : player(nullptr)
+        , audioOutput(nullptr)
+        , videoWidget(nullptr)
     {
     }
 
@@ -129,7 +129,7 @@ void KFileAudioPreview::clearPreview()
 {
     if (d->player) {
         delete d->player;
-        d->player = 0;
+        d->player = nullptr;
         d->controls->setEnabled(false);
     }
 }

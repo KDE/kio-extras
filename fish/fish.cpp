@@ -98,8 +98,8 @@
 #define ENDLINE '\n'
 #endif
 
-static char *sshPath = NULL;
-static char *suPath = NULL;
+static char *sshPath = nullptr;
+static char *suPath = nullptr;
 // disabled: currently not needed. Didn't work reliably.
 // static int isOpenSSH = 0;
 
@@ -223,7 +223,7 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
     mimeTypeSent(false)
 {
     myDebug( << "fishProtocol::fishProtocol()");
-    if (sshPath == NULL) {
+    if (sshPath == nullptr) {
         // disabled: currently not needed. Didn't work reliably.
         // isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
 #ifdef Q_OS_WIN
@@ -232,7 +232,7 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
         sshPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("ssh")));
 #endif
     }
-    if (suPath == NULL) {
+    if (suPath == nullptr) {
         suPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("su")));
     }
     childPid = 0;
@@ -249,7 +249,7 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
     connectionAuth.keepPassword = true;
     connectionAuth.url.setScheme("fish");
     outBufPos = -1;
-    outBuf = NULL;
+    outBuf = nullptr;
     outBufLen = 0;
 
     udsType = 0;
@@ -355,7 +355,7 @@ close_master:
     ti.c_cflag = CLOCAL|CREAD|CS8;
     ti.c_cc[VMIN] = 1;
 
-    return openpty(fd,fd+1,NULL,&ti,NULL);
+    return openpty(fd,fd+1,nullptr,&ti,nullptr);
 #else
 #ifdef __GNUC__
 #warning "No tty support available. Password dialog won't work."
@@ -464,7 +464,7 @@ bool fishProtocol::connectionStart() {
         setpgid(0,0);
 
         if (local) {
-            execl(suPath, "su", "-", connectionUser.toLatin1().constData(), "-c", "cd ~;echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)0);
+            execl(suPath, "su", "-", connectionUser.toLatin1().constData(), "-c", "cd ~;echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)nullptr);
         } else {
             #define common_args "-l", connectionUser.toLatin1().constData(), "-x", "-e", "none", \
                     "-q", connectionHost.toLatin1().constData(),        \
@@ -498,7 +498,7 @@ bool fishProtocol::connectionStart() {
         struct timeval timeout;
         timeout.tv_sec = 0;
         timeout.tv_usec = 1000;
-        rc = select(childFd+1, &rfds, &wfds, NULL, &timeout);
+        rc = select(childFd+1, &rfds, &wfds, nullptr, &timeout);
         if (rc < 0) {
             if (errno == EINTR)
                 continue;
@@ -522,7 +522,7 @@ bool fishProtocol::connectionStart() {
             }
             if (outBufPos >= outBufLen) {
                 outBufPos = -1;
-                outBuf = NULL;
+                outBuf = nullptr;
                 outBufLen = 0;
             }
         } else if (FD_ISSET(childFd,&rfds)) {
@@ -749,7 +749,7 @@ void fishProtocol::shutdownConnection(bool forced){
         childPid->terminate();
 #else
         int killStatus = kill(childPid,SIGTERM); // We may not have permission...
-        if (killStatus == 0) waitpid(childPid, 0, 0);
+        if (killStatus == 0) waitpid(childPid, nullptr, 0);
 #endif
         childPid = 0;
 #ifndef Q_OS_WIN
@@ -763,7 +763,7 @@ void fishProtocol::shutdownConnection(bool forced){
         }
     }
     outBufPos = -1;
-    outBuf = NULL;
+    outBuf = nullptr;
     outBufLen = 0;
     qlist.clear();
     commandList.clear();
@@ -1096,7 +1096,7 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_APPEND:
             rawWrite = sendLen;
             //myDebug( << "sending " << sendLen);
-            writeChild(NULL,0);
+            writeChild(nullptr,0);
             break;
         default : break;
         }
@@ -1427,7 +1427,7 @@ with .fishsrv.pl typically running on another computer. */
             struct timeval timeout;
             timeout.tv_sec = 0;
             timeout.tv_usec = 1000;
-            rc = select(childFd+1, &rfds, &wfds, NULL, &timeout);
+            rc = select(childFd+1, &rfds, &wfds, nullptr, &timeout);
             if (rc < 0) {
                 if (errno == EINTR)
                     continue;
@@ -1468,7 +1468,7 @@ with .fishsrv.pl typically running on another computer. */
                 }
                 if (outBufPos >= outBufLen) {
                     outBufPos = -1;
-                    outBuf = NULL;
+                    outBuf = nullptr;
                     sent();
                 }
             }

@@ -66,14 +66,14 @@ int kdemain(int argc, char** argv)
 
 NFSSlave::NFSSlave(const QByteArray& pool, const QByteArray& app)
     :  KIO::SlaveBase("nfs", pool, app),
-       m_protocol(NULL)
+       m_protocol(nullptr)
 {
 
     qCDebug(LOG_KIO_NFS) << pool << app;
 }
 NFSSlave::~NFSSlave()
 {
-    if (m_protocol != NULL) {
+    if (m_protocol != nullptr) {
         delete m_protocol;
     }
 }
@@ -82,7 +82,7 @@ void NFSSlave::openConnection()
 {
     qCDebug(LOG_KIO_NFS) << "openConnection";
 
-    if (m_protocol != NULL) {
+    if (m_protocol != nullptr) {
         m_protocol->openConnection();
     } else {
         bool connectionError = false;
@@ -109,7 +109,7 @@ void NFSSlave::openConnection()
             }
 
             // Unimplemented protocol version
-            if (m_protocol == NULL) {
+            if (m_protocol == nullptr) {
                 version--;
                 continue;
             }
@@ -121,11 +121,11 @@ void NFSSlave::openConnection()
 
             version--;
             delete m_protocol;
-            m_protocol = NULL;
+            m_protocol = nullptr;
         }
 
 
-        if (m_protocol == NULL) {
+        if (m_protocol == nullptr) {
             // If we could not find a compatible protocol, send an error.
             if (!connectionError) {
                 error(KIO::ERR_COULD_NOT_CONNECT, i18n("%1: Unsupported NFS version", m_host));
@@ -143,7 +143,7 @@ void NFSSlave::closeConnection()
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (m_protocol != NULL) {
+    if (m_protocol != nullptr) {
         m_protocol->closeConnection();
     }
 }
@@ -152,12 +152,12 @@ void NFSSlave::setHost(const QString& host, quint16 /*port*/, const QString& /*u
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (m_protocol != NULL) {
+    if (m_protocol != nullptr) {
         // New host? New protocol!
         if (m_host != host) {
             qCDebug(LOG_KIO_NFS) << "Deleting old protocol";
             delete m_protocol;
-            m_protocol = NULL;
+            m_protocol = nullptr;
         } else {
             m_protocol->setHost(host);
         }
@@ -258,11 +258,11 @@ void NFSSlave::copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags f
 
 bool NFSSlave::verifyProtocol()
 {
-    const bool haveProtocol = (m_protocol != NULL);
+    const bool haveProtocol = (m_protocol != nullptr);
     if (!haveProtocol) {
         openConnection();
 
-        if (m_protocol == NULL) {
+        if (m_protocol == nullptr) {
             // We have failed.... :(
             qCDebug(LOG_KIO_NFS) << "Could not find a compatible protocol version!!";
             return false;
@@ -290,9 +290,9 @@ bool NFSSlave::verifyProtocol()
 
 
 NFSFileHandle::NFSFileHandle()
-    : m_handle(NULL),
+    : m_handle(nullptr),
       m_size(0),
-      m_linkHandle(NULL),
+      m_linkHandle(nullptr),
       m_linkSize(0),
       m_isInvalid(true),
       m_isLink(false)
@@ -332,10 +332,10 @@ NFSFileHandle::NFSFileHandle(const nfs_fh& src)
 
 NFSFileHandle::~NFSFileHandle()
 {
-    if (m_handle != NULL) {
+    if (m_handle != nullptr) {
         delete [] m_handle;
     }
-    if (m_linkHandle != NULL) {
+    if (m_linkHandle != nullptr) {
         delete [] m_linkHandle;
     }
 }
@@ -365,9 +365,9 @@ void NFSFileHandle::toFHLink(nfs_fh& fh) const
 NFSFileHandle& NFSFileHandle::operator=(const NFSFileHandle& src)
 {
     if (src.m_size > 0) {
-        if (m_handle != NULL) {
+        if (m_handle != nullptr) {
             delete [] m_handle;
-            m_handle = NULL;
+            m_handle = nullptr;
         }
 
         m_size = src.m_size;
@@ -375,9 +375,9 @@ NFSFileHandle& NFSFileHandle::operator=(const NFSFileHandle& src)
         memcpy(m_handle, src.m_handle, m_size);
     }
     if (src.m_linkSize > 0) {
-        if (m_linkHandle != NULL) {
+        if (m_linkHandle != nullptr) {
             delete [] m_linkHandle;
-            m_linkHandle = NULL;
+            m_linkHandle = nullptr;
         }
 
         m_linkSize = src.m_linkSize;
@@ -392,9 +392,9 @@ NFSFileHandle& NFSFileHandle::operator=(const NFSFileHandle& src)
 
 NFSFileHandle& NFSFileHandle::operator=(const fhandle3& src)
 {
-    if (m_handle != NULL) {
+    if (m_handle != nullptr) {
         delete [] m_handle;
-        m_handle = NULL;
+        m_handle = nullptr;
     }
 
     m_size = src.fhandle3_len;
@@ -406,9 +406,9 @@ NFSFileHandle& NFSFileHandle::operator=(const fhandle3& src)
 
 NFSFileHandle& NFSFileHandle::operator=(const fhandle& src)
 {
-    if (m_handle != NULL) {
+    if (m_handle != nullptr) {
         delete [] m_handle;
-        m_handle = NULL;
+        m_handle = nullptr;
     }
 
     m_size = NFS_FHSIZE;
@@ -420,9 +420,9 @@ NFSFileHandle& NFSFileHandle::operator=(const fhandle& src)
 
 NFSFileHandle& NFSFileHandle::operator=(const nfs_fh3& src)
 {
-    if (m_handle != NULL) {
+    if (m_handle != nullptr) {
         delete [] m_handle;
-        m_handle = NULL;
+        m_handle = nullptr;
     }
 
     m_size = src.data.data_len;
@@ -434,9 +434,9 @@ NFSFileHandle& NFSFileHandle::operator=(const nfs_fh3& src)
 
 NFSFileHandle& NFSFileHandle::operator=(const nfs_fh& src)
 {
-    if (m_handle != NULL) {
+    if (m_handle != nullptr) {
         delete [] m_handle;
-        m_handle = NULL;
+        m_handle = nullptr;
     }
 
     m_size = NFS_FHSIZE;
@@ -448,9 +448,9 @@ NFSFileHandle& NFSFileHandle::operator=(const nfs_fh& src)
 
 void NFSFileHandle::setLinkSource(const nfs_fh3& src)
 {
-    if (m_linkHandle != NULL) {
+    if (m_linkHandle != nullptr) {
         delete [] m_linkHandle;
-        m_linkHandle = NULL;
+        m_linkHandle = nullptr;
     }
 
     m_linkSize = src.data.data_len;
@@ -461,9 +461,9 @@ void NFSFileHandle::setLinkSource(const nfs_fh3& src)
 
 void NFSFileHandle::setLinkSource(const nfs_fh& src)
 {
-    if (m_linkHandle != NULL) {
+    if (m_linkHandle != nullptr) {
         delete [] m_linkHandle;
-        m_linkHandle = NULL;
+        m_linkHandle = nullptr;
     }
 
     m_linkSize = NFS_FHSIZE;
@@ -610,7 +610,7 @@ int NFSProtocol::openConnection(const QString& host, int prog, int vers, CLIENT*
         server_addr.sin_addr.s_addr = inet_addr(host.toLatin1());
     } else {
         struct hostent* hp = gethostbyname(host.toLatin1());
-        if (hp == 0) {
+        if (hp == nullptr) {
             return KIO::ERR_UNKNOWN_HOST;
         }
         server_addr.sin_family = AF_INET;
@@ -621,7 +621,7 @@ int NFSProtocol::openConnection(const QString& host, int prog, int vers, CLIENT*
 
     sock = RPC_ANYSOCK;
     client = clnttcp_create(&server_addr, prog, vers, &sock, 0, 0);
-    if (client == 0) {
+    if (client == nullptr) {
         server_addr.sin_port = 0;
         sock = RPC_ANYSOCK;
 
@@ -629,7 +629,7 @@ int NFSProtocol::openConnection(const QString& host, int prog, int vers, CLIENT*
         pertry_timeout.tv_sec = 3;
         pertry_timeout.tv_usec = 0;
         client = clntudp_create(&server_addr, prog, vers, pertry_timeout, &sock);
-        if (client == 0) {
+        if (client == nullptr) {
             ::close(sock);
             return KIO::ERR_COULD_NOT_CONNECT;
         }
@@ -641,7 +641,7 @@ int NFSProtocol::openConnection(const QString& host, int prog, int vers, CLIENT*
         hostName = hostName + QLatin1Char('.') + domainName;
     }
 
-    client->cl_auth = authunix_create(hostName.toUtf8().data(), geteuid(), getegid(), 0, 0);
+    client->cl_auth = authunix_create(hostName.toUtf8().data(), geteuid(), getegid(), 0, nullptr);
 
     return 0;
 }

@@ -81,7 +81,7 @@ void MediaControls::setAudioOutput(AudioOutput *audioOutput)
     Q_D(MediaControls);
     d->volumeSlider.setAudioOutput(audioOutput);
     d->updateVolumeSliderVisibility();
-    d->volumeSlider.setVisible(audioOutput != 0);
+    d->volumeSlider.setVisible(audioOutput != nullptr);
 }
 
 void MediaControls::setSeekSliderVisible(bool vis)
@@ -105,7 +105,7 @@ void MediaControls::resizeEvent(QResizeEvent *)
 void MediaControlsPrivate::updateVolumeSliderVisibility()
 {
     bool isWide = q_ptr->width() > playButton.sizeHint().width() + seekSlider.sizeHint().width() + volumeSlider.sizeHint().width();
-    bool hasAudio = volumeSlider.audioOutput() != 0;
+    bool hasAudio = volumeSlider.audioOutput() != nullptr;
     volumeSlider.setVisible(isWide && hasAudio);
 }
 
@@ -130,7 +130,7 @@ void MediaControlsPrivate::_k_stateChanged(State newstate, State)
 
 void MediaControlsPrivate::_k_mediaDestroyed()
 {
-    media = 0;
+    media = nullptr;
 }
 
 } // namespace Phonon

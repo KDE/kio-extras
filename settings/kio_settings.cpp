@@ -70,7 +70,7 @@ static void createFileEntry(KIO::UDSEntry& entry, const KService::Ptr& service)
     entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, "application/x-desktop");
     entry.insert(KIO::UDSEntry::UDS_SIZE, 0);
     entry.insert(KIO::UDSEntry::UDS_LOCAL_PATH, QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kservices5/") + service->entryPath()));
-    entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, time(0));
+    entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, time(nullptr));
     entry.insert(KIO::UDSEntry::UDS_ICON_NAME, service->icon());
 }
 

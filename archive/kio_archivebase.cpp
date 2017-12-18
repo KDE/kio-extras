@@ -46,7 +46,7 @@ using namespace KIO;
 ArchiveProtocolBase::ArchiveProtocolBase( const QByteArray &proto, const QByteArray &pool, const QByteArray &app ) : SlaveBase( proto, pool, app )
 {
   qCDebug(KIO_ARCHIVE_LOG);
-  m_archiveFile = 0L;
+  m_archiveFile = nullptr;
 }
 
 ArchiveProtocolBase::~ArchiveProtocolBase()
@@ -86,7 +86,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     {
         m_archiveFile->close();
         delete m_archiveFile;
-        m_archiveFile = 0L;
+        m_archiveFile = nullptr;
     }
 
     // Find where the tar file is in the full path
@@ -163,7 +163,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     {
         qCDebug(KIO_ARCHIVE_LOG) << "Opening" << archiveFile << "failed.";
         delete m_archiveFile;
-        m_archiveFile = 0L;
+        m_archiveFile = nullptr;
         errorNum = KIO::ERR_CANNOT_OPEN_FOR_READING;
         return false;
     }
@@ -228,7 +228,7 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
         finished();
         // And let go of the tar file - for people who want to unmount a cdrom after that
         delete m_archiveFile;
-        m_archiveFile = 0L;
+        m_archiveFile = nullptr;
         return;
     }
 
@@ -340,7 +340,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
 
         // And let go of the tar file - for people who want to unmount a cdrom after that
         delete m_archiveFile;
-        m_archiveFile = 0L;
+        m_archiveFile = nullptr;
         return;
     }
 

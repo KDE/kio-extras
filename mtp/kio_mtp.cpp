@@ -320,7 +320,7 @@ void MTPSlave::listDir(const QUrl &url)
 
                     LIBMTP_devicestorage_t *storage = (LIBMTP_devicestorage_t *)pair.first;
 
-                    qCDebug(LOG_KIO_MTP) << "We have a storage:" << (storage == NULL);
+                    qCDebug(LOG_KIO_MTP) << "We have a storage:" << (storage == nullptr);
 
                     files = getFiles(device, storage->id);
                 } else {
@@ -536,7 +536,7 @@ void MTPSlave::put(const QUrl &url, int, JobFlags flags)
         file->modificationdate = QDateTime::currentDateTime().toTime_t();
         file->storage_id = parent->storage_id;
 
-        int ret = LIBMTP_Send_File_From_File_Descriptor(device, temp.handle(), file, NULL, NULL);
+        int ret = LIBMTP_Send_File_From_File_Descriptor(device, temp.handle(), file, nullptr, nullptr);
         LIBMTP_destroy_file_t(file);
 
         if (ret != 0) {

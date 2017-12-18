@@ -42,7 +42,7 @@ protected:
           pauseButton(parent),
           seekSlider(parent),
           volumeSlider(parent),
-          media(0)
+          media(nullptr)
     {
         int size = parent->style()->pixelMetric(QStyle::PM_ToolBarIconSize);
         QSize iconSize(size, size);

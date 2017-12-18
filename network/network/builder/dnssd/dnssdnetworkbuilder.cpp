@@ -43,7 +43,7 @@ namespace Mollet
 DNSSDNetworkBuilder::DNSSDNetworkBuilder( NetworkPrivate* networkPrivate )
   : AbstractNetworkBuilder()
   , mNetworkPrivate( networkPrivate )
-  , mServiceTypeBrowser( 0 )
+  , mServiceTypeBrowser( nullptr )
 {
 }
 
@@ -123,8 +123,8 @@ void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
         hostName.clear();
 
     // device TODO: only search for if we can create the service?
-    NetDevicePrivate* d = 0;
-    const NetDevice* deviceOfService = 0;
+    NetDevicePrivate* d = nullptr;
+    const NetDevice* deviceOfService = nullptr;
     foreach( const NetDevice& device, deviceList )
     {
         const QString deviceHostName = device.hostName();
@@ -183,7 +183,7 @@ void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
 
     const QString serviceType = service->type();
 
-    NetServicePrivate* netServicePrivate = 0;
+    NetServicePrivate* netServicePrivate = nullptr;
     // do a priority based lookup who can build the object
     // TODO: priorisation
     foreach( const DNSSDNetSystemAble* factory, mNetSystemFactoryList )

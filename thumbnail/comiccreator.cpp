@@ -55,7 +55,7 @@ extern "C"
     }
 }
 
-ComicCreator::ComicCreator() : m_loop(0) {}
+ComicCreator::ComicCreator() : m_loop(nullptr) {}
 
 bool ComicCreator::create(const QString& path, int width, int height, QImage& img)
 {
@@ -130,7 +130,7 @@ QImage ComicCreator::extractArchiveImage(const QString& path, const ComicCreator
     }
 
     // Get the archive's directory.
-    const KArchiveDirectory* cArchiveDir = 0;
+    const KArchiveDirectory* cArchiveDir = nullptr;
     cArchiveDir = cArchive->directory();
     if (!cArchiveDir) {
         return QImage();
@@ -302,7 +302,7 @@ int ComicCreator::startProcess(const QString& processPath, const QStringList& ar
     QEventLoop loop;
     m_loop = &loop;
     ret = loop.exec(QEventLoop::WaitForMoreEvents);
-    m_loop = 0;
+    m_loop = nullptr;
 #endif
 
     return ret;

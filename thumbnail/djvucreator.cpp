@@ -66,7 +66,7 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
   argv[3] = "-size";
   argv[4] = sizearg.data(); 
   argv[5] = fnamearg.data(); 
-  argv[6] = 0;
+  argv[6] = nullptr;
   
   pid_t pid = fork(); 
   if (pid == 0)
@@ -87,7 +87,7 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
         struct timeval tv;
         tv.tv_sec = 20;
         tv.tv_usec = 0;
-        if (select(output[0] + 1, &fds, 0, 0, &tv) <= 0) {
+        if (select(output[0] + 1, &fds, nullptr, nullptr, &tv) <= 0) {
           if (errno == EINTR || errno == EAGAIN)
             continue;
           break; // error or timeout

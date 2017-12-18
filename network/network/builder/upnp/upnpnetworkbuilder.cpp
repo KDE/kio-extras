@@ -50,7 +50,7 @@ static const char cagibiDeviceListInterface[] =  "org.kde.Cagibi.DeviceList";
 UpnpNetworkBuilder::UpnpNetworkBuilder( NetworkPrivate* networkPrivate )
   : AbstractNetworkBuilder()
   , mNetworkPrivate( networkPrivate )
-  , mCagibiDeviceListDBusProxy( 0 )
+  , mCagibiDeviceListDBusProxy( nullptr )
 {
 }
 
@@ -148,8 +148,8 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
 
         const QString ipAddress = upnpDevice.ipAddress();
 
-        NetDevicePrivate* d = 0;
-        const NetDevice* deviceOfService = 0;
+        NetDevicePrivate* d = nullptr;
+        const NetDevice* deviceOfService = nullptr;
         foreach( const NetDevice& device, deviceList )
         {
         const bool isSameAddress = ( device.ipAddress() == ipAddress );
@@ -177,7 +177,7 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
 //qDebug()<<"new device:"<<deviceName<<"at"<<ipAddress;
         }
 
-        NetServicePrivate* netServicePrivate = 0;
+        NetServicePrivate* netServicePrivate = nullptr;
         // do a priority based lookup who can build the object
         // TODO: priorisation
         foreach( const UpnpNetSystemAble* factory, mNetSystemFactoryList )
@@ -288,7 +288,7 @@ void UpnpNetworkBuilder::onDevicesAdded( const DeviceTypeMap& deviceTypeMap )
         args << udn;
         mCagibiDeviceListDBusProxy->callWithCallback(
             QLatin1String("deviceDetails"), args,
-            this, SLOT(onAddedDeviceDetails(Cagibi::Device)), 0 );
+            this, SLOT(onAddedDeviceDetails(Cagibi::Device)), nullptr );
     }
 }
 

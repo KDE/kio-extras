@@ -75,7 +75,7 @@ KArchive *ArchiveProtocol::createArchive( const QString & proto, const QString &
       return new KZip( archiveFile );
     } else {
       qCWarning(KIO_ARCHIVE_LOG) << "Protocol" << proto << "not supported by this IOSlave" ;
-      return 0L;
+      return nullptr;
     }
 }
 

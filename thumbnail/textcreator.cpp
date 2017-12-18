@@ -40,7 +40,7 @@ extern "C"
 }
 
 TextCreator::TextCreator()
-    : m_data(0),
+    : m_data(nullptr),
       m_dataSize(0)
 {
 }

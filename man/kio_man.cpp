@@ -46,7 +46,7 @@
 
 using namespace KIO;
 
-MANProtocol *MANProtocol::_self = 0;
+MANProtocol *MANProtocol::_self = nullptr;
 
 #define SGML2ROFF_DIRS "/usr/lib/sgml"
 
@@ -141,7 +141,7 @@ MANProtocol *MANProtocol::self() { return _self; }
 
 MANProtocol::~MANProtocol()
 {
-    _self = 0;
+    _self = nullptr;
 }
 
 void MANProtocol::parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const QString &mark )
@@ -330,7 +330,7 @@ QStringList MANProtocol::findPages(const QString &_section,
             const QString man = QString("man");
             const QString sman = QString("sman");
 
-            while ( (ep = ::readdir( dp )) != 0L ) {
+            while ( (ep = ::readdir( dp )) != nullptr ) {
 
                 const QString file = QFile::decodeName( ep->d_name );
                 QString sect;
@@ -387,7 +387,7 @@ void MANProtocol::findManPagesInSection(const QString &dir, const QString &title
 
     struct dirent *ep;
 
-    while ( (ep = ::readdir( dp )) != 0L ) {
+    while ( (ep = ::readdir( dp )) != nullptr ) {
         if ( ep->d_name[0] != '.' ) {
 
             QString name = QFile::decodeName( ep->d_name );
@@ -513,7 +513,7 @@ void MANProtocol::get(const QUrl& url )
        scan_man_page(buf);
        delete [] buf;
 
-       output(0); // flush
+       output(nullptr); // flush
 
        m_outputBuffer.close();
        data(m_outputBuffer.buffer());
@@ -574,7 +574,7 @@ char *MANProtocol::readManPage(const char *_filename)
       if ( !fd || !fd->open(QIODevice::ReadOnly))
       {
          delete fd;
-         return 0;
+         return nullptr;
       }
       array = fd->readAll();
       qCDebug(KIO_MAN_LOG) << "read " << array.size();
@@ -583,7 +583,7 @@ char *MANProtocol::readManPage(const char *_filename)
     }
 
     if (array.isEmpty())
-      return 0;
+      return nullptr;
 
     // as we do not know in which encoding the man source is, try to automatically
     // detect it and always return it as UTF-8
@@ -920,7 +920,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
         "/usr/sunpc/man",
         "/usr/ncd/man",
         "/usr/newsprint/man",
-        NULL };
+        nullptr };
 
 
     int i = 0;
@@ -1235,11 +1235,11 @@ void MANProtocol::showIndex(const QString& section)
 	    end--;
 
 	if ( end < begin )
-	    manpage_end = 0;
+	    manpage_end = nullptr;
 	else
 	    manpage_end = end;
 
-	if (NULL == manpage_end)
+	if (nullptr == manpage_end)
 	{
 	    // no '.' ending ???
 	    // set the pointer past the end of the filename
@@ -1267,7 +1267,7 @@ void MANProtocol::showIndex(const QString& section)
     // While printing avoid duplicate man page names
     //
 
-    struct man_index_t dummy_index = {0l,0l,0};
+    struct man_index_t dummy_index = {nullptr,nullptr,0};
     struct man_index_t *last_index = &dummy_index;
 
     // sort and print

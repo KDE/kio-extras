@@ -40,7 +40,7 @@ class KioSlaveNotifier : public QObject
     Q_OBJECT
 
   public:
-    explicit KioSlaveNotifier( Network* network, QObject* parent = 0 );
+    explicit KioSlaveNotifier( Network* network, QObject* parent = nullptr );
     virtual ~KioSlaveNotifier();
 
   public: // for debugging, remove also from adaptor.xml

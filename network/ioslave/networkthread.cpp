@@ -35,7 +35,7 @@
 
 NetworkThread::NetworkThread()
   : QThread()
-  , mNetwork( 0 )
+  , mNetwork( nullptr )
   , mContinue( true )
 {
 }

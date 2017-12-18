@@ -324,7 +324,7 @@ void ThumbnailProtocol::get(const QUrl &url)
         QByteArray imgData;
         QDataStream stream( &imgData, QIODevice::WriteOnly );
         //qDebug() << "IMAGE TO SHMID";
-        void *shmaddr = shmat(shmid.toInt(), 0, 0);
+        void *shmaddr = shmat(shmid.toInt(), nullptr, 0);
         if (shmaddr == (void *)-1) {
             error(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
             return;
@@ -632,7 +632,7 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
             }
         }
         if (!creator) {
-            return 0;
+            return nullptr;
         }
 
         m_creators.insert(plugin, creator);
