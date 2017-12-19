@@ -163,31 +163,31 @@ bool AudioCreator::create(const QString &path, int, int, QImage &img)
     }
 
     if (type.inherits("audio/mpeg")) {
-        TagLib::MPEG::File file(QFile::encodeName(path));
+        TagLib::MPEG::File file(QFile::encodeName(path).data());
         return parseID3v2Tag(file, img) || parseAPETag(file, img);
     }
     if (type.inherits("audio/x-flac") || type.inherits("audio/flac")) {
-        TagLib::FLAC::File file(QFile::encodeName(path));
+        TagLib::FLAC::File file(QFile::encodeName(path).data());
         return parseFlacTag(file, img) || parseID3v2Tag(file, img);
     }
     if (type.inherits("audio/mp4") || type.inherits("audio/x-m4a")) {
-        TagLib::MP4::File file(QFile::encodeName(path));
+        TagLib::MP4::File file(QFile::encodeName(path).data());
         return parseMP4Tag(file, img);
     }
     if (type.inherits("audio/x-ape")) {
-        TagLib::APE::File file(QFile::encodeName(path));
+        TagLib::APE::File file(QFile::encodeName(path).data());
         return parseAPETag(file, img);
     }
     if (type.inherits("audio/x-wavpack") || type.inherits("audio/x-vw")) {
-        TagLib::WavPack::File file(QFile::encodeName(path));
+        TagLib::WavPack::File file(QFile::encodeName(path).data());
         return parseAPETag(file, img);
     }
     if (type.inherits("audio/x-musepack")) {
-        TagLib::MPC::File file(QFile::encodeName(path));
+        TagLib::MPC::File file(QFile::encodeName(path).data());
         return parseAPETag(file, img);
     }
     if (type.inherits("audio/ogg") || type.inherits("audio/vorbis")) {
-        TagLib::FileRef fileRef(QFile::encodeName(path));
+        TagLib::FileRef fileRef(QFile::encodeName(path).data());
         if (fileRef.isNull()) {
             return false;
         }
@@ -198,11 +198,11 @@ bool AudioCreator::create(const QString &path, int, int, QImage &img)
         return parseFlacTag(*xiphComment, img);
     }
     if (type.inherits("audio/x-aiff")) {
-        TagLib::RIFF::AIFF::FileExt file(QFile::encodeName(path));
+        TagLib::RIFF::AIFF::FileExt file(QFile::encodeName(path).data());
         return parseID3v2Tag(file, img);
     }
     if (type.inherits("audio/x-wav")) {
-        TagLib::RIFF::WAV::File file(QFile::encodeName(path));
+        TagLib::RIFF::WAV::File file(QFile::encodeName(path).data());
         return parseID3v2Tag(file, img);
     }
     return false;

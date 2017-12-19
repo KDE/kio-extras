@@ -68,10 +68,11 @@ else(TAGLIBCONFIG_EXECUTABLE)
 
   include(FindPackageHandleStandardArgs)
 
+  # To avoid issues, make the same assumption as above:
+  # Assume software will include by things like #include <taglib/tfile.h> instead of <tfile.h>
   find_path(TAGLIB_INCLUDES
     NAMES
-    tag.h
-    PATH_SUFFIXES taglib
+    taglib/tag.h
     PATHS
     ${INCLUDE_INSTALL_DIR}
   )
