@@ -32,6 +32,6 @@ A library which models the network with all its devices and the services offered
 
 Currently it uses KDNSSD, the KDElibs interface to the zeroconf service discovery system,
 as the engine to find about the content of network structure. Later on this library should
-support different backends concurrently (also SLP, UPnP, Windows related stuff like smb,
+support different backends concurrently (also UPnP, Windows related stuff like smb,
 including undiscoverable/hidden but user/admin entered ones).
 If this works out this library might end in KDElibs solid module.

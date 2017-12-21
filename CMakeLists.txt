@@ -62,13 +62,6 @@ set_package_properties(KF5Activities PROPERTIES
     TYPE OPTIONAL
 )
 
-find_package(SLP)
-set_package_properties(SLP PROPERTIES DESCRIPTION "SLP (Service Location Protocol) implementation"
-                       URL "http://www.openslp.org/"
-                       TYPE OPTIONAL
-                       PURPOSE "Provides SLP support in the network:/ kioslave."
-                      )
-
 find_package(Phonon4Qt5 4.6.60 NO_MODULE)
 set_package_properties(Phonon4Qt5 PROPERTIES
    DESCRIPTION "Qt-based audio library"

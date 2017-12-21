@@ -1,5 +1,4 @@
 Add backends for
-* SLP
 * Jini
 * UPnP
 * SMB
@@ -96,4 +95,3 @@ For now simple listing with non-funct system items will do.
         newDevices.append( device );
         mNetworkPrivate->emitDevicesAdded( newDevices );
     }
-

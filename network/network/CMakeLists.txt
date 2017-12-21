@@ -1,5 +1,4 @@
-set(HAVE_SLP ${SLP_FOUND})
-configure_file( config-slp.h.cmake  ${CMAKE_CURRENT_BINARY_DIR}/config-slp.h )
+
 
 include_directories(
   builder
@@ -8,14 +7,6 @@ include_directories(
 set( netsystemdriver_SRCS
   builder/simpleitemfactory.cpp
 )
-
-# TODO: find best-practice to do such dependant inclusion of files to compile, this is unreadable
-if(SLP_FOUND)
-set( slpnetworkbuilder_SRCS
-  builder/slp/slpservicebrowser.cpp
-  builder/slp/slpnetworkbuilder.cpp
-)
-endif()
 
 set( dnssdnetworkbuilder_SRCS
   builder/dnssd/dnssdnetworkbuilder.cpp
@@ -38,7 +29,6 @@ set( networkdbus_LIB_SRCS
 
 set( molletnetwork5_LIB_SRCS
   ${netsystemdriver_SRCS}
-#   ${slpnetworkbuilder_SRCS}
   ${upnpnetworkbuilder_SRCS}
   ${dnssdnetworkbuilder_SRCS}
   ${networkbuilder_SRCS}
@@ -59,9 +49,7 @@ target_link_libraries( molletnetwork5
         Qt5::Gui
         Qt5::DBus
 )
-if(SLP_FOUND)
-    target_link_libraries( molletnetwork5  PRIVATE ${SLP_LIBRARIES} )
-endif()
+
 set_target_properties( molletnetwork5 PROPERTIES VERSION ${KDE_APPLICATIONS_VERSION} SOVERSION ${KDE_APPLICATIONS_VERSION_MAJOR} )
 
 install( TARGETS molletnetwork5 ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP )

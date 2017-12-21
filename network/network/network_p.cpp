@@ -22,15 +22,10 @@
 
 #include "network_p.h"
 
-//
-#include <config-slp.h>
 // lib
 #include "builder/dnssd/dnssdnetworkbuilder.h"
 #include "builder/upnp/upnpnetworkbuilder.h"
 #include "builder/simpleitemfactory.h"
-#ifdef HAVE_SLP
-#include "builder/slp/slpnetworkbuilder.h"
-#endif
 
 #include <QDebug>
 
@@ -49,9 +44,6 @@ void NetworkPrivate::init()
 
     DNSSDNetworkBuilder* dnssdBuilder = new DNSSDNetworkBuilder( this );
     UpnpNetworkBuilder* upnpBuilder = new UpnpNetworkBuilder( this );
-#ifdef HAVE_SLP
-//     mSlpBuilder = new SlpNetworkBuilder( this );
-#endif
     mNetworkBuilderList.append( dnssdBuilder );
     mNetworkBuilderList.append( upnpBuilder );
     mNoOfInitBuilders = mNetworkBuilderList.count();
