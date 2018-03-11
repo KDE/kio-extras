@@ -11,7 +11,7 @@ set(kio_mtp_PART_SRCS
 
 include_directories(${MTP_INCLUDE_DIR})
 add_library(kio_mtp MODULE ${kio_mtp_PART_SRCS} )
-target_link_libraries(kio_mtp ${MTP_LIBRARIES} Qt5::Core KF5::KIOCore KF5::I18n KF5::Solid)
+target_link_libraries(kio_mtp ${MTP_LIBRARIES} Qt5::Core KF5::KIOCore KF5::I18n KF5::Solid Qt5::Network)
 set_target_properties(kio_mtp PROPERTIES OUTPUT_NAME "mtp")
 
 install(TARGETS kio_mtp DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)

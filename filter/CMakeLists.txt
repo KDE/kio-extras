@@ -9,7 +9,7 @@ ecm_qt_declare_logging_category(kio_filter_SRCS
                                 DEFAULT_SEVERITY Debug)
 
 add_library(kio_filter MODULE ${kio_filter_SRCS})
-target_link_libraries(kio_filter KF5::Archive KF5::KIOCore)
+target_link_libraries(kio_filter KF5::Archive KF5::KIOCore Qt5::Network)
 set_target_properties(kio_filter PROPERTIES OUTPUT_NAME "filter")
 
 install(TARGETS kio_filter DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)

@@ -23,14 +23,14 @@ include_directories(${SAMBA_INCLUDE_DIR})
 add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
 
 
-target_link_libraries(kio_smb KF5::KIOCore KF5::I18n ${SAMBA_LIBRARIES} )
+target_link_libraries(kio_smb KF5::KIOCore KF5::I18n ${SAMBA_LIBRARIES} Qt5::Network)
 else()
 set(kio_smb_PART_SRCS 
    kio_smb_win.cpp)
 
 add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
 
-target_link_libraries(kio_smb KF5::KIOCore KF5::I18n mpr)    
+target_link_libraries(kio_smb KF5::KIOCore KF5::I18n mpr Qt5::Network)    
 endif()
 
 set_target_properties(kio_smb PROPERTIES OUTPUT_NAME "smb")

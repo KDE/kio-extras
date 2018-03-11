@@ -5,6 +5,7 @@ target_link_libraries(kio_info
     KF5::I18n
     KF5::IconThemes
     KF5::KIOCore
+    Qt5::Network
 )
 set_target_properties(kio_info PROPERTIES OUTPUT_NAME "info")
 

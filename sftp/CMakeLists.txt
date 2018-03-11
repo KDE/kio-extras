@@ -7,6 +7,7 @@ target_link_libraries(kio_sftp
    KF5::KIOCore
    KF5::WidgetsAddons # KMessageBox
    KF5::I18n
+   Qt5::Network
    ${LIBSSH_LIBRARIES})
 set_target_properties(kio_sftp PROPERTIES OUTPUT_NAME "sftp")
 

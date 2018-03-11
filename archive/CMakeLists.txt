@@ -53,6 +53,8 @@ target_link_libraries(kioarchive
     KF5::KIOCore
     PRIVATE
     KF5::I18n
+    Qt5::Network
+    Qt5::DBus
 )
 
 set_target_properties(kioarchive PROPERTIES
@@ -66,7 +68,7 @@ install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KF5_
 ############### Archive KIOslave ######################
 
 add_library(kio_archive MODULE kio_archive.cpp kio_archive_debug.cpp)
-target_link_libraries(kio_archive KF5::KIOCore KF5::Archive kioarchive)
+target_link_libraries(kio_archive KF5::KIOCore KF5::Archive kioarchive Qt5::Network)
 set_target_properties(kio_archive PROPERTIES OUTPUT_NAME "archive")
 install(TARGETS kio_archive DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
 install(FILES tar.protocol ar.protocol zip.protocol DESTINATION ${SERVICES_INSTALL_DIR})

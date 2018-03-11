@@ -15,7 +15,7 @@ ecm_gperf_generate(../requests.gperf ${CMAKE_CURRENT_BINARY_DIR}/request_gperf.h
 add_executable(kio_man_test ${kio_man_test_SRCS})
 ecm_mark_as_test(kio_man_test)
 set_target_properties(kio_man_test PROPERTIES COMPILE_FLAGS "-DSIMPLE_MAN2HTML -DKIO_MAN_TEST")
-target_link_libraries(kio_man_test Qt5::Widgets KF5::I18n KF5::KIOCore KF5::Archive KF5::Codecs)
+target_link_libraries(kio_man_test Qt5::Widgets KF5::I18n KF5::KIOCore KF5::Archive KF5::Codecs Qt5::Network)
 
 
 ########### next target ###############

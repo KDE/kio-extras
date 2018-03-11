@@ -52,7 +52,7 @@ if (MD5SUM_EXECUTABLE)
 
    add_library(kio_fish MODULE ${kio_fish_PART_SRCS})
 
-   target_link_libraries(kio_fish KF5::KIOCore KF5::WidgetsAddons KF5::I18n)
+   target_link_libraries(kio_fish KF5::KIOCore KF5::WidgetsAddons KF5::I18n Qt5::Network)
 
    set_target_properties(kio_fish PROPERTIES OUTPUT_NAME "fish")
 

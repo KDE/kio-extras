@@ -1,7 +1,7 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_settings\")
 
 add_library(kio_settings MODULE kio_settings.cpp)
-target_link_libraries(kio_settings KF5::KIOCore)
+target_link_libraries(kio_settings KF5::KIOCore Qt5::Network)
 set_target_properties(kio_settings PROPERTIES OUTPUT_NAME "settings")
 
 install(TARGETS kio_settings  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio )

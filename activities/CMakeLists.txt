@@ -33,6 +33,7 @@ target_link_libraries (
    KF5::DBusAddons
    KF5::Activities
    KF5::I18n
+   Qt5::Network
    )
 
 install (
