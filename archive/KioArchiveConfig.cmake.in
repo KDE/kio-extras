@@ -1,5 +1,7 @@
 @PACKAGE_INIT@
 
+include(CMakeFindDependencyMacro)
+
 find_dependency(KF5KIO)
 
 include("${CMAKE_CURRENT_LIST_DIR}/KioArchiveTargets.cmake")
