@@ -46,12 +46,12 @@ if (UNIX)
     find_package(KF5Pty ${KF5_MIN_VERSION} REQUIRED)
 endif()
 
+include(CMakePackageConfigHelpers)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMMarkNonGuiExecutable)
 include(ECMMarkAsTest)
-include(ECMPackageConfigHelpers)
 include(ECMOptionalAddSubdirectory)
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
