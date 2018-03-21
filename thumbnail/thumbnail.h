@@ -20,8 +20,9 @@
 #ifndef _THUMBNAIL_H_
 #define _THUMBNAIL_H_
 
-#include <QtCore/QHash>
-#include <QtGui/QPainter>
+#include <QHash>
+#include <QPainter>
+#include <QSet>
 
 #include <kio/slavebase.h>
 
