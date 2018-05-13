@@ -2,9 +2,12 @@
 Icon=network-workgroup
 Name=Shared Folders (SMB)
 Name[ca]=Carpetes compartides (SMB)
+Name[en_GB]=Shared Folders (SMB)
+Name[nl]=Gedeelde mappen (SMB)
 Name[pt]=Pastas Partilhadas (SMB)
 Name[uk]=Спільні теки (SMB)
 Name[x-test]=xxShared Folders (SMB)xx
+Name[zh_TW]=分享的資料夾 (SMB)
 Open=false
 Type=Link
 URL=smb:/
