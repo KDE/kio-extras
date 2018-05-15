@@ -21,6 +21,7 @@
 #include "kio_about.h"
 
 #include <QCoreApplication>
+#include <QTextStream>
 
 using namespace KIO;
 

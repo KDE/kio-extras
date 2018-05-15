@@ -467,7 +467,14 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
     QString localFile = directory.path();
 
     KFileItem item(QUrl::fromLocalFile(localFile));
-    const QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(qMin(m_width, m_height));
+    const int extent = qMin(m_width, m_height);
+    QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(extent);
+
+    // Scale up base icon to ensure overlays are rendered with
+    // the best quality possible even for low-res custom folder icons
+    if (qMax(folder.width(), folder.height()) < extent) {
+        folder = folder.scaled(extent, extent, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
 
     const int folderWidth  = folder.width();
     const int folderHeight = folder.height();

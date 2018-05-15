@@ -48,7 +48,7 @@ if (MD5SUM_EXECUTABLE)
                                    HEADER loggingcategory.h
                                    IDENTIFIER KIO_FISH_DEBUG
                                    CATEGORY_NAME kio_fish
-                                   DEFAULT_SEVERITY Debug)
+                                   DEFAULT_SEVERITY Info)
 
    add_library(kio_fish MODULE ${kio_fish_PART_SRCS})
 
