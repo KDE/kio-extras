@@ -2,6 +2,13 @@
 Encoding=UTF-8
 Type=Service
 Name=Linking Files to Activities
+Name[ca]=Enllaçat de fitxers a activitats
+Name[gl]=Ligazón de ficheiros con actividades
+Name[nl]=Bestanden koppelen aan activiteiten
+Name[pt]=Associação de Ficheiros a Actividades
+Name[uk]=Пов'язування файлів із просторами дій
+Name[x-test]=xxLinking Files to Activitiesxx
+Name[zh_TW]=連結檔案至活動
 Icon=preferences-activities
 X-KDE-Library=kactivitymanagerd_fileitem_linking_plugin
 ServiceTypes=KFileItemAction/Plugin
