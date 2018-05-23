@@ -12,6 +12,7 @@ Name[pt]=Associação de Ficheiros a Actividades
 Name[sv]=Länkar filer till aktiviteter
 Name[uk]=Пов'язування файлів із просторами дій
 Name[x-test]=xxLink Files to Activitiesxx
+Name[zh_TW]=連結檔案至活動
 Icon=preferences-activities
 X-KDE-Library=kactivitymanagerd_fileitem_linking_plugin
 ServiceTypes=KFileItemAction/Plugin
