@@ -28,6 +28,8 @@
 #include <QPalette>
 #include <QTextCodec>
 
+#include <KDesktopFile>
+
 // TODO Fix or remove kencodingprober code
 // #include <kencodingprober.h>
 
@@ -65,6 +67,11 @@ static QTextCodec *codecFromContent(const char *data, int dataSize)
 
 bool TextCreator::create(const QString &path, int width, int height, QImage &img)
 {
+    // Bug 220330: desktop files aren't traditional text files
+    if (KDesktopFile::isDesktopFile(path)) {
+        return false;
+    }
+
     bool ok = false;
 
     // determine some sizes...
