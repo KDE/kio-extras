@@ -401,7 +401,7 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
   }
   entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
   entry.insert(KIO::UDSEntry::UDS_ACCESS, access);
-  entry.insert( KIO::UDSEntry::UDS_SIZE, size);
+  entry.insert(KIO::UDSEntry::UDS_SIZE, size);
 
   if (details > 0) {
     if (sb->owner) {
@@ -420,7 +420,6 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
     entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, sb->mtime);
     entry.insert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
   }
-
 
   sftp_attributes_free(sb);
 
