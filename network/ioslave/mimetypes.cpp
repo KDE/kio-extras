@@ -23,7 +23,7 @@
 #include "mimetypes.h"
 
 // Qt
-#include <QtCore/QString>
+#include <QString>
 
 
 const char Mimetypes::NetworkMimetype[] = "inode/vnd.kde.network";

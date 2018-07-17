@@ -26,9 +26,9 @@
 // network
 #include "network.h"
 //Qt
-#include <QtCore/QObject>
-#include <QtCore/QMutex>
-#include <QtCore/QDebug>
+#include <QObject>
+#include <QMutex>
+#include <QDebug>
 
 using namespace Mollet;
 

@@ -28,7 +28,7 @@
 #include "netdevice.h"
 #include "netservice.h"
 // Qt
-#include <QtCore/QMetaType>
+#include <QMetaType>
 
 
 // TODO: copying single items out of an interlinked structure does not work

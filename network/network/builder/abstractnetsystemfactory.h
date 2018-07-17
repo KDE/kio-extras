@@ -24,7 +24,7 @@
 #define ABSTRACTNETSYSTEMFACTORY_H
 
 // Qt
-#include <QtCore/QObject>
+#include <QObject>
 
 
 namespace Mollet

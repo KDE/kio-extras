@@ -3,7 +3,7 @@
 
 
 #include <kio/slavebase.h>
-#include <QtCore/QLoggingCategory>
+#include <QLoggingCategory>
 
 Q_DECLARE_LOGGING_CATEGORY(LOG_KIO_INFO)
 

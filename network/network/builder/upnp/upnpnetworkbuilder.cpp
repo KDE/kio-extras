@@ -31,13 +31,13 @@
 #include "cagibidevice.h"
 #include "cagibidbuscodec.h"
 // Qt
-#include <QtDBus/QDBusMetaType>
-#include <QtDBus/QDBusReply>
-#include <QtDBus/QDBusConnection>
-#include <QtDBus/QDBusInterface>
-#include <QtDBus/QDBusPendingCallWatcher>
-#include <QtDBus/QDBusServiceWatcher>
-#include <QtCore/QStringList>
+#include <QDBusMetaType>
+#include <QDBusReply>
+#include <QDBusConnection>
+#include <QDBusInterface>
+#include <QDBusPendingCallWatcher>
+#include <QDBusServiceWatcher>
+#include <QStringList>
 
 #include <QDebug>
 

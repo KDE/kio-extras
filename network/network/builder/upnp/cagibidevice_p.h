@@ -26,8 +26,8 @@
 // lib
 #include "cagibidevice.h"
 // Qt
-#include <QtCore/QString>
-#include <QtCore/QSharedData>
+#include <QString>
+#include <QSharedData>
 
 
 namespace Cagibi

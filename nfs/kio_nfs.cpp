@@ -33,7 +33,7 @@
 #include <QFile>
 #include <QDir>
 #include <QDebug>
-#include <QtNetwork/QHostInfo>
+#include <QHostInfo>
 
 #include <KLocalizedString>
 #include <kio/global.h>

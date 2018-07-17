@@ -32,7 +32,7 @@
 #include <DNSSD/ServiceTypeBrowser>
 #include <DNSSD/ServiceBrowser>
 // Qt
-#include <QtCore/QHash>
+#include <QHash>
 
 namespace Mollet {
 class DNSSDNetSystemAble;

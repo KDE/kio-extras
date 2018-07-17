@@ -29,7 +29,7 @@
 #include "netdevice.h"
 #include "netservice.h"
 //Qt
-#include <QtCore/QCoreApplication>
+#include <QCoreApplication>
 
 #include <QDebug>
 

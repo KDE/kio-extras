@@ -36,8 +36,8 @@
 
 #include <memory>
 
-#include <QtCore/QFile>
-#include <QtCore/QEventLoop>
+#include <QFile>
+#include <QEventLoop>
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QStandardPaths>

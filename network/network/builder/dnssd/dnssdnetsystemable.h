@@ -26,7 +26,7 @@
 // KDE
 #include <dnssd/remoteservice.h>
 // Qt
-#include <QtCore/QtPlugin>
+#include <QtPlugin>
 
 namespace Mollet {
 class NetServicePrivate;

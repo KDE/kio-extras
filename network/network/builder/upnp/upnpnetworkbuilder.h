@@ -28,8 +28,8 @@
 #include <network.h>
 #include <netdevice.h>
 // Qt
-#include <QtCore/QMetaType>
-#include <QtCore/QHash>
+#include <QMetaType>
+#include <QHash>
 
 namespace Cagibi { class Device; }
 

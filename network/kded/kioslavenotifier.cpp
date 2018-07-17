@@ -33,7 +33,7 @@
 // KDE
 #include <kdirnotify.h>
 // Qt
-#include <QtCore/QStringList>
+#include <QStringList>
 
 #include <QDebug>
 

@@ -24,7 +24,7 @@
 #define UPNPNETSYSTEMABLE_H
 
 // Qt
-#include <QtCore/QtPlugin>
+#include <QtPlugin>
 
 namespace Cagibi {
 class Device;

@@ -23,7 +23,7 @@
 #include "networkslave.h"
 
 // Qt
-#include <QtCore/QCoreApplication>
+#include <QCoreApplication>
 
 
 extern "C"

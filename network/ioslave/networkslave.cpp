@@ -30,8 +30,8 @@
 #include <netdevice.h>
 #include <netservice.h>
 // Qt
-#include <QtCore/QEventLoop>
-#include <QtCore/QDebug>
+#include <QEventLoop>
+#include <QDebug>
 
 // static const char NetworkIconName[] = "network-workgroup";
 

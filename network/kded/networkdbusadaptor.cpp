@@ -25,7 +25,7 @@
 // network
 #include <networkdbus.h>
 // Qt
-#include <QtDBus/QDBusMetaType>
+#include <QDBusMetaType>
 
 
 namespace Mollet

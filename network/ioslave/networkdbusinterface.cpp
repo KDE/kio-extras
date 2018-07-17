@@ -23,7 +23,7 @@
 #include "networkdbusinterface.h"
 
 // Qt
-#include <QtDBus/QDBusMetaType>
+#include <QDBusMetaType>
 
 
 static const char NetworkDBusInterfaceName[] = "org.kde.network";

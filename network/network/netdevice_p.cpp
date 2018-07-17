@@ -25,7 +25,7 @@
 // library
 #include "netservice_p.h"
 // Qt
-#include <QtCore/QMutableListIterator>
+#include <QMutableListIterator>
 
 
 namespace Mollet

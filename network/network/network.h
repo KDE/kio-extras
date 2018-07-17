@@ -26,7 +26,7 @@
 // lib
 #include "molletnetwork_export.h"
 // Qt
-#include <QtCore/QObject>
+#include <QObject>
 
 namespace Mollet {
 class NetDevice;

@@ -26,7 +26,7 @@
 // KDE
 #include <QUrl>
 // // Qt
-// #include <QtCore/QDataStream>
+// #include <QDataStream>
 
 
 // network://domain/hostname/servicename

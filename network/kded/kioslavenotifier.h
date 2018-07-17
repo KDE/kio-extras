@@ -24,8 +24,8 @@
 #define KIOSLAVENOTIFIER_H
 
 // Qt
-#include <QtCore/QHash>
-#include <QtCore/QObject>
+#include <QHash>
+#include <QObject>
 
 namespace Mollet
 {

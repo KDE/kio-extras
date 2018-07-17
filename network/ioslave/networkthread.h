@@ -24,8 +24,8 @@
 #define NETWORKTHREAD_H
 
 // Qt
-#include <QtCore/QThread>
-#include <QtCore/QMutex>
+#include <QThread>
+#include <QMutex>
 
 namespace Mollet {
 class Network;

@@ -24,7 +24,7 @@
 #define ABSTRACTNETWORKBUILDER_H
 
 // Qt
-#include <QtCore/QObject>
+#include <QObject>
 
 namespace Mollet
 {

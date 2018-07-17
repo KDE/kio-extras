@@ -20,7 +20,7 @@
 
 #include "imagecreator.h"
 
-#include <QtGui/QImage>
+#include <QImage>
 
 extern "C"
 {

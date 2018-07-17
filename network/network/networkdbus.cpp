@@ -26,7 +26,7 @@
 #include "netdevice_p.h"
 #include "netservice_p.h"
 // Qt
-#include <QtDBus/QDBusArgument>
+#include <QDBusArgument>
 
 
 // TODO: Attention, we currently do not stream any references to other items, just the direct data!

@@ -29,7 +29,7 @@
 #include <libssh/sftp.h>
 #include <libssh/callbacks.h>
 
-#include <QtCore/QQueue>
+#include <QQueue>
 
 namespace KIO {
   class AuthInfo;

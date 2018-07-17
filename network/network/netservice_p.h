@@ -27,8 +27,8 @@
 #include "netdevice.h"
 #include "netservice.h"
 // Qt
-#include <QtCore/QSharedData>
-#include <QtCore/QString>
+#include <QSharedData>
+#include <QString>
 
 
 namespace Mollet

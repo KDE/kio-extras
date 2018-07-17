@@ -32,13 +32,13 @@
 
 #include <kio/thumbcreator.h>
 
-#include <QtCore/QByteArray>
-#include <QtCore/QStringList>
+#include <QByteArray>
+#include <QStringList>
 #include <QImage>
-#include <QtCore/QScopedPointer>
+#include <QScopedPointer>
 
 #if defined(Q_OS_WIN)
-    #include <QtCore/QProcess>
+    #include <QProcess>
 #else
     #include <kptyprocess.h>
 #endif

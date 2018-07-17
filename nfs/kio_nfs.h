@@ -25,11 +25,11 @@
 #include <kio/global.h>
 #include <kconfiggroup.h>
 
-#include <QtCore/QHash>
-#include <QtCore/QMap>
-#include <QtCore/QString>
-#include <QtCore/QStringList>
-#include <QtCore/QTimer>
+#include <QHash>
+#include <QMap>
+#include <QString>
+#include <QStringList>
+#include <QTimer>
 #include <QLoggingCategory>
 
 #include "rpc_nfs2_prot.h"

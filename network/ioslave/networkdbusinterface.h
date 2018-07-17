@@ -27,8 +27,8 @@
 // network
 #include <networkdbus.h>
 // Qt
-#include <QtDBus/QDBusAbstractInterface>
-#include <QtDBus/QDBusReply>
+#include <QDBusAbstractInterface>
+#include <QDBusReply>
 
 
 // TODO: see file networkdbus.h

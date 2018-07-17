@@ -27,12 +27,12 @@
 #include <cstring>
 #include <utime.h>
 
-#include <QtCore/QCoreApplication>
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtCore/QVarLengthArray>
-#include <QtCore/QMimeType>
-#include <QtCore/QMimeDatabase>
+#include <QCoreApplication>
+#include <QDir>
+#include <QFile>
+#include <QVarLengthArray>
+#include <QMimeType>
+#include <QMimeDatabase>
 
 #include <kuser.h>
 #include <kmessagebox.h>

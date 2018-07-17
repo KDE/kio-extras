@@ -24,8 +24,8 @@
 #include "network_p.h"
 
 // Qt
-#include <QtCore/QGlobalStatic>
-#include <QtCore/QList>
+#include <QGlobalStatic>
+#include <QList>
 
 
 namespace Mollet

@@ -31,8 +31,8 @@
 #include <DNSSD/ServiceTypeBrowser>
 #include <DNSSD/ServiceBrowser>
 // Qt
-#include <QtNetwork/QHostAddress>
-#include <QtCore/QMutableListIterator>
+#include <QHostAddress>
+#include <QMutableListIterator>
 
 #include <QDebug>
 

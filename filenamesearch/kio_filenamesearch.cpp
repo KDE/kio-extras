@@ -29,7 +29,7 @@
 #include <QRegularExpression>
 #include <QUrl>
 #include <QUrlQuery>
-#include <QtDBus/QDBusInterface>
+#include <QDBusInterface>
 
 Q_LOGGING_CATEGORY(KIO_FILENAMESEARCH, "kio_filenamesearch")
 

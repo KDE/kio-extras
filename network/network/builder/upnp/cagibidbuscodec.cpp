@@ -25,9 +25,9 @@
 // network
 #include "cagibidevice_p.h"
 // Qt
-#include <QtDBus/QDBusArgument>
+#include <QDBusArgument>
 
-#include <QtCore/QDebug>
+#include <QDebug>
 
 static const QString type = QLatin1String( "deviceType" );
 static const QString friendlyName = QLatin1String( "friendlyName" );

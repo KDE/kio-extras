@@ -31,7 +31,7 @@
 
 #include <libmtp.h>
 
-// #include <QtCore/QCache>
+// #include <QCache>
 #include "filecache.h"
 #include "devicecache.h"
 

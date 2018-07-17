@@ -123,11 +123,11 @@
 
 #include <stdio.h>
 
-#include <QtCore/QByteArray>
-#include <QtCore/QDateTime>
-#include <QtCore/QMap>
-#include <QtCore/QStack>
-#include <QtCore/QString>
+#include <QByteArray>
+#include <QDateTime>
+#include <QMap>
+#include <QStack>
+#include <QString>
 
 #ifdef SIMPLE_MAN2HTML
 # include <stdlib.h>
