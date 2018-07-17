@@ -2,7 +2,6 @@
 #define RECENTDOCUMENTNOTIFIER_H
 
 #include <KDEDModule>
-#include <QtDBus/QtDBus>
 
 class KDirWatch;
 

@@ -27,9 +27,11 @@
 #include "kioslavenotifier.h"
 // network
 #include <network.h>
-
+// KF
 #include <KPluginFactory>
 #include <KPluginLoader>
+// Qt
+#include <QDBusConnection>
 
 K_PLUGIN_FACTORY_WITH_JSON(NetworkWatcherFactory,
                            "networkwatcher.json",

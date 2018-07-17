@@ -29,7 +29,7 @@
 #include <networkdbus.h>
 // Qt
 #include <QObject>
-#include <QtDBus>
+#include <QDBusAbstractAdaptor>
 
 
 namespace Mollet

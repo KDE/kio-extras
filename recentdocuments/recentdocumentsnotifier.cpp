@@ -3,6 +3,7 @@
 #include <QUrl>
 #include <KDirNotify>
 #include <KRecentDocument>
+#include <QFileInfo>
 
 #include "recentdocumentsnotifier.h"
 
