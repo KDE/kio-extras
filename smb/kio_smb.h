@@ -239,36 +239,36 @@ public:
 
     // Functions overwritten in kio_smb.cpp
     SMBSlave(const QByteArray& pool, const QByteArray& app);
-    virtual ~SMBSlave();
+    ~SMBSlave() override;
 
     // Functions overwritten in kio_smb_browse.cpp
-    virtual void listDir( const QUrl& url );
-    virtual void stat( const QUrl& url );
+    void listDir( const QUrl& url ) override;
+    void stat( const QUrl& url ) override;
 
     // Functions overwritten in kio_smb_config.cpp
-    virtual void reparseConfiguration();
+    void reparseConfiguration() override;
 
     // Functions overwritten in kio_smb_dir.cpp
-    virtual void copy( const QUrl& src, const QUrl &dest, int permissions, KIO::JobFlags flags );
-    virtual void del( const QUrl& kurl, bool isfile);
-    virtual void mkdir( const QUrl& kurl, int permissions );
-    virtual void rename( const QUrl& src, const QUrl& dest, KIO::JobFlags flags );
+    void copy( const QUrl& src, const QUrl &dest, int permissions, KIO::JobFlags flags ) override;
+    void del( const QUrl& kurl, bool isfile) override;
+    void mkdir( const QUrl& kurl, int permissions ) override;
+    void rename( const QUrl& src, const QUrl& dest, KIO::JobFlags flags ) override;
 
     // Functions overwritten in kio_smb_file.cpp
-    virtual void get( const QUrl& kurl );
-    virtual void put( const QUrl& kurl, int permissions, KIO::JobFlags flags );
-    virtual void open( const QUrl& kurl, QIODevice::OpenMode mode );
-    virtual void read( KIO::filesize_t bytesRequested );
-    virtual void write( const QByteArray &fileData );
-    virtual void seek( KIO::filesize_t offset );
-    virtual void close();
+    void get( const QUrl& kurl ) override;
+    void put( const QUrl& kurl, int permissions, KIO::JobFlags flags ) override;
+    void open( const QUrl& kurl, QIODevice::OpenMode mode ) override;
+    void read( KIO::filesize_t bytesRequested ) override;
+    void write( const QByteArray &fileData ) override;
+    void seek( KIO::filesize_t offset ) override;
+    void close() override;
 
     // Functions not implemented  (yet)
     //virtual void setHost(const QString& host, int port, const QString& user, const QString& pass);
     //virtual void openConnection();
     //virtual void closeConnection();
     //virtual void slave_status();
-    virtual void special( const QByteArray & );
+    void special( const QByteArray & ) override;
 
 protected:
     void virtual_hook(int id, void *data) override;
