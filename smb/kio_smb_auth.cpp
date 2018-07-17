@@ -46,7 +46,7 @@ void auth_smbc_get_data(SMBCCTX * context,
                         char *password, int pwmaxlen)
 //==========================================================================
 {
-    if (context != NULL) {
+    if (context != nullptr) {
 #ifdef DEPRECATED_SMBC_INTERFACE
         SMBSlave *theSlave = (SMBSlave*) smbc_getOptionUserData(context);
 #else
@@ -174,7 +174,7 @@ bool SMBSlave::checkPassword(SMBUrl &url)
 // Returns: 0 on success -1 with errno set on error
 bool SMBSlave::auth_initialize_smbc()
 {
-    SMBCCTX *smb_context = NULL;
+    SMBCCTX *smb_context = nullptr;
 
     qCDebug(KIO_SMB) << "auth_initialize_smbc ";
     if(m_initialized_smbc == false)
@@ -184,7 +184,7 @@ bool SMBSlave::auth_initialize_smbc()
         int debug_level = cfg.group( "SMB" ).readEntry( "DebugLevel", 0 );
 
 	smb_context = smbc_new_context();
-	if (smb_context == NULL) {
+	if (smb_context == nullptr) {
             SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to create context"));
 	    return false;
 	}
@@ -212,7 +212,7 @@ bool SMBSlave::auth_initialize_smbc()
 
 	if (!smbc_init_context(smb_context)) {
 		smbc_free_context(smb_context, 0);
-		smb_context = NULL;
+		smb_context = nullptr;
             	SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to initialize context"));
 	    	return false;
 	}

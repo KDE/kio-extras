@@ -314,7 +314,7 @@ void SMBSlave::listDir( const QUrl& kurl )
    m_current_url = kurl;
 
    int                 dirfd;
-   struct smbc_dirent  *dirp = NULL;
+   struct smbc_dirent  *dirp = nullptr;
    UDSEntry    udsentry;
    bool dir_is_root = true;
 
@@ -331,7 +331,7 @@ void SMBSlave::listDir( const QUrl& kurl )
        do {
            qCDebug(KIO_SMB) << "smbc_readdir ";
            dirp = smbc_readdir(dirfd);
-           if(dirp == 0)
+           if(dirp == nullptr)
                break;
 
            // Set name

@@ -181,7 +181,7 @@ Database::Ptr Database::instance(Source source, OpenMode openMode)
     ptr->d->database.reset(new QSqlDatabaseWrapper(info));
 
     if (!ptr->d->database->isOpen()) {
-        return Q_NULLPTR;
+        return nullptr;
     }
 
     databases[info] = ptr;

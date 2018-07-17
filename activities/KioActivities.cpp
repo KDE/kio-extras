@@ -58,8 +58,8 @@ public:
         ActivityPathItem
     };
 
-    PathType pathType(const QUrl &url, QString *activity = Q_NULLPTR,
-                      QString *filePath = Q_NULLPTR) const
+    PathType pathType(const QUrl &url, QString *activity = nullptr,
+                      QString *filePath = nullptr) const
     {
         const auto fullPath = url.adjusted(QUrl::StripTrailingSlash).path();
         const auto path = fullPath.midRef(fullPath.startsWith('/') ? 1 : 0);

@@ -148,7 +148,7 @@ void FileItemLinkingPlugin::Private::setActions(const ActionList &actions)
 
     for (auto actionInfo: actions) {
         if (actionInfo.icon != "-") {
-            auto action = new QAction(Q_NULLPTR);
+            auto action = new QAction(nullptr);
 
             action->setText(actionInfo.title);
             action->setIcon(QIcon::fromTheme(actionInfo.icon));
@@ -161,7 +161,7 @@ void FileItemLinkingPlugin::Private::setActions(const ActionList &actions)
                     this, &Private::actionTriggered);
 
         } else {
-            auto action = new QAction(actionInfo.title, Q_NULLPTR);
+            auto action = new QAction(actionInfo.title, nullptr);
             action->setSeparator(true);
 
             rootMenu->addAction(action);
