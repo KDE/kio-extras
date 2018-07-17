@@ -77,7 +77,7 @@ class MOLLETNETWORK_EXPORT NetDevice
     NetDevice& operator =( const NetDevice& other );
 
   private:
-    NetDevice( NetDevicePrivate* _d );
+    explicit NetDevice( NetDevicePrivate* _d );
     void setDPtr( NetDevicePrivate* _d );
     NetDevicePrivate* dPtr() const;
 

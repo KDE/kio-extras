@@ -73,7 +73,7 @@ class MOLLETNETWORK_EXPORT NetService
     NetService& operator =( const NetService& other );
 
   private:
-    NetService( NetServicePrivate* _d );
+    explicit NetService( NetServicePrivate* _d );
     void setDPtr( NetServicePrivate* _d );
     NetServicePrivate* dPtr() const;
 
