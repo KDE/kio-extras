@@ -146,7 +146,7 @@ void DeviceCache::checkDevice(Solid::Device solidDevice)
 
                     LIBMTP_mtpdevice_t *mtpDevice = LIBMTP_Open_Raw_Device_Uncached(rawDevice);
 
-                    if (udiCache.find(solidDevice.udi()) == udiCache.end()) {
+                    if (mtpDevice && udiCache.find(solidDevice.udi()) == udiCache.end()) {
                         CachedDevice *cDev = new CachedDevice(mtpDevice, rawDevice, solidDevice.udi(), timeout);
                         udiCache.insert(solidDevice.udi(), cDev);
                         nameCache.insert(cDev->getName(), cDev);
