@@ -72,6 +72,6 @@ Name[x-test]=xxMicrosoft Windows Imagesxx
 Name[zh_CN]=Microsoft Windows 图像
 Name[zh_TW]=Microsoft Windows 影像
 ServiceTypes=ThumbCreator
-MimeType=image/vnd.microsoft.icon;image/x-win-bitmap;application/x-navi-animation;
+MimeType=image/x-ico;image/vnd.microsoft.icon;image/x-win-bitmap;application/x-navi-animation;
 CacheThumbnail=false
 X-KDE-Library=windowsimagethumbnail
