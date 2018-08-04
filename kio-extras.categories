@@ -1,0 +1,12 @@
+kde.kio-mtp kioslave
+kde.kio-nfs kioslave
+kio_filenamesearch
+kio_filter kioslave
+kio_fish kioslave
+kio_info kioslave
+kio_smb kioslave
+log_kio_man kioslave (kio_man)
+log_kio_sftp kioslave (kio_sftp)
+log_kio_archive kioslave (kio_archive)
+log_kio_man kioslave (kio_man)
+log_kio_sftp kioslave (kio_sftp)
