@@ -41,6 +41,8 @@
 #include <KPluginFactory>
 #include <KLocalizedString>
 
+#include <algorithm>
+
 #include "common/dbus/common.h"
 
 K_PLUGIN_FACTORY_WITH_JSON(ActivityLinkingFileItemActionFactory,
@@ -141,6 +143,10 @@ void FileItemLinkingPlugin::Private::loadAllActions()
 
 void FileItemLinkingPlugin::Private::setActions(const ActionList &actions)
 {
+    if (!rootMenu) {
+        return;
+    }
+
     for (auto action: rootMenu->actions()) {
         rootMenu->removeAction(action);
         action->deleteLater();
@@ -189,6 +195,17 @@ FileItemLinkingPlugin::~FileItemLinkingPlugin()
 
 QList<QAction *> FileItemLinkingPlugin::actions(const KFileItemListProperties &fileItemInfos, QWidget *parentWidget)
 {
+    // We can only link local files, don't show the menu if there are none
+    // KFileItemListProperties::isLocal() is for *all* being local, we just want *any* local
+    const auto urlList = fileItemInfos.urlList();
+    const bool hasLocalUrl = std::any_of(urlList.begin(), urlList.end(), [](const QUrl &url) {
+        return url.isLocalFile();
+    });
+
+    if (!hasLocalUrl) {
+        return {};
+    }
+
     d->items = fileItemInfos;
 
     return { d->basicAction(parentWidget) };

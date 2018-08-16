@@ -45,7 +45,7 @@ public:
     Private();
 
     QAction *root;
-    QMenu *rootMenu;
+    QMenu *rootMenu = nullptr;
     KFileItemListProperties items;
 
     QAction *basicAction(QWidget *parentWidget);
