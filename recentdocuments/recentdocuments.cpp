@@ -9,6 +9,7 @@
 #include <KDesktopFile>
 #include <KIO/Job>
 #include <KLocalizedString>
+#include <KProtocolManager>
 
 #include <stdio.h>
 
@@ -77,7 +78,12 @@ void RecentDocuments::listDir(const QUrl& url)
 
                 QUrl urlInside(file.readUrl());
                 QString toDisplayString = urlInside.toDisplayString();
-                if (urlInside.scheme() == "recentdocuments" || urlSet.contains(toDisplayString))
+
+                // Filter out things that can't be viewed in a file manager because they don't
+                // meet the user definition of a file for the purpose of "recently accessed files"
+                if (urlInside.scheme() == "recentdocuments"
+                    || !KProtocolManager::supportsListing(urlInside)
+                    || urlSet.contains(toDisplayString))
                     continue;
 
                 KIO::UDSEntry uds;
