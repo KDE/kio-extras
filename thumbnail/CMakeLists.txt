@@ -7,6 +7,14 @@ set_package_properties(OpenEXR PROPERTIES DESCRIPTION "API for accessing OpenEXR
                        PURPOSE "Provides support for OpenEXR formatted images in the thumbnail kioslave"
                       )
 
+# TODO find libappimage only
+find_package(AppImageKit)
+set_package_properties(AppImageKit PROPERTIES DESCRIPTION "Core library of the AppImage project"
+                       URL "https://github.com/AppImage/libappimage"
+                       TYPE OPTIONAL
+                       PURPOSE "Provides support for AppImage thumbnails"
+                       )
+
 include_directories(${CMAKE_BINARY_DIR})
 
 ########### next target ###############
@@ -225,6 +233,24 @@ if(TAGLIB_FOUND)
     install(TARGETS audiothumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
     set(audiothumbnail_desktop audiothumbnail.desktop)
 endif(TAGLIB_FOUND)
+
+# ########### next target ###############
+
+if(AppImageKit_FOUND)
+
+set(appimagethumbnail_SRCS appimagecreator.cpp)
+add_library(appimagethumbnail MODULE ${appimagethumbnail_SRCS})
+
+target_link_libraries(appimagethumbnail
+    KF5::KIOWidgets
+    Qt5::Gui
+    appimage
+)
+
+install(TARGETS appimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES appimagethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+
+endif()
 
 ########### install files ###############
 
