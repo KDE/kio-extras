@@ -21,7 +21,28 @@
 #include <QImage>
 #include <QImageReader>
 
-#define abs(n) ( ( n < 0 ) ? -n : n )
+#include <algorithm>
+
+qreal distance(int width, int height, int desiredWidth, int desiredHeight, int depth)
+{
+    // We want as high of a depth as possible (32-bit)
+    auto targetSamples = desiredWidth * desiredHeight * 32;
+    auto xscale = (1.0 * desiredWidth) / width;
+    auto yscale = (1.0 * desiredHeight) / height;
+
+    // clamp to the lower of the two scales
+    // also clamp to one, as scaling up adds no effective
+    // samples, only interpolated samples
+    auto sampleScale = std::min(1.0, std::min(xscale, yscale));
+
+    // number of effective source samles in the target
+    auto effectiveSamples = width * height * sampleScale * sampleScale * depth;
+    // scale down another time, to account for loss of fidelity when
+    // using a downscaled image, biases towards smaller downscaling ratios
+    effectiveSamples *= sampleScale;
+
+    return targetSamples - effectiveSamples;
+}
 
 bool IcoUtils::loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int needWidth, int needHeight, const qint32 iconNumber)
 {
@@ -68,30 +89,26 @@ bool IcoUtils::loadIcoImage(QImageReader &reader, QImage &image, int needWidth, 
     if ( icons.empty() )
         return false;
 
-    int min_w = 1024;
-    int min_h = 1024;
     int index = icons.size() - 1;
+    qreal best = std::numeric_limits<qreal>::max();
 
+    for (int i = 0; i < icons.size(); ++i) {
+        const QImage &icon = icons.at(i);
 
-    // we loop in reverse order because QtIcoHandler converts all images to 32-bit depth, and resources are ordered from lower depth to higher depth
-    for ( int i_index = icons.size() - 1; i_index >= 0 ; --i_index )
-    {
-
-        const QImage &icon = icons.at(i_index);
-        int i_width = icon.width();
-        int i_height = icon.height();
-        int i_w = abs(i_width - needWidth);
-        int i_h = abs(i_height - needHeight);
-
-        if ( i_w < min_w || ( i_w == min_w && i_h < min_h ) )
-        {
-
-            min_w = i_w;
-            min_h = i_h;
-            index = i_index;
-
+        // QtIcoHandler converts all images to 32-bit depth,
+        // but it stores the actual depth of the icon extracted in custom text:
+        // qtbase/src/plugins/imageformats/ico/qicohandler.cpp:455
+        int depth = icon.text(QStringLiteral("_q_icoOrigDepth")).toInt();
+        if (depth == 0) {
+            depth = icon.depth();
         }
 
+        const qreal dist = distance(icon.width(), icon.height(), needWidth, needHeight, depth);
+
+        if (dist < best) {
+            index = i;
+            best = dist;
+        }
     }
 
     image = icons.at(index);
