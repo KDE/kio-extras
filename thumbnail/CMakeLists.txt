@@ -7,9 +7,8 @@ set_package_properties(OpenEXR PROPERTIES DESCRIPTION "API for accessing OpenEXR
                        PURPOSE "Provides support for OpenEXR formatted images in the thumbnail kioslave"
                       )
 
-# TODO find libappimage only
-find_package(AppImageKit)
-set_package_properties(AppImageKit PROPERTIES DESCRIPTION "Core library of the AppImage project"
+find_package(libappimage)
+set_package_properties(libappimage PROPERTIES DESCRIPTION "Core library of the AppImage project"
                        URL "https://github.com/AppImage/libappimage"
                        TYPE OPTIONAL
                        PURPOSE "Provides support for AppImage thumbnails"
@@ -236,7 +235,7 @@ endif(TAGLIB_FOUND)
 
 # ########### next target ###############
 
-if(AppImageKit_FOUND)
+if(libappimage_FOUND)
 
 set(appimagethumbnail_SRCS appimagecreator.cpp)
 add_library(appimagethumbnail MODULE ${appimagethumbnail_SRCS})
