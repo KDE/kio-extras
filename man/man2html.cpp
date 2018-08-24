@@ -152,8 +152,6 @@
 #define HUGE_STR_MAX  10000
 #define LARGE_STR_MAX 2000
 #define MED_STR_MAX   500
-#define SMALL_STR_MAX 100
-#define TINY_STR_MAX  10
 
 #define DOCTYPE "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n"
 
@@ -586,6 +584,55 @@ static const CSTRDEF standardchar[] =
   { V('l', 'z'), 1, "&loz;" },
   { V('a', 'n'), 1, "-" }, // "horizontal arrow extension"  ### TODO Where in Unicode?
 };
+
+// long form for abbreviated standard names (.St macro)
+struct StandardNames
+{
+  const char *abbrev;
+  const char *formalName;
+};
+
+static const StandardNames STANDARD_NAMES[] =
+{
+  { "-ansiC", "ANSI X3.159-1989 ('ANSI C89')" },
+  { "-ansiC-89", "ANSI X3.159-1989 ('ANSI C89')" },
+  { "-isoC", "ISO/IEC 9899:1990 ('ISO C90')" },
+  { "-isoC-90", "ISO/IEC 9899:1990 ('ISO C90')" },
+  { "-isoC-99", "ISO/IEC 9899:1999 ('ISO C99')" },
+  { "-isoC-2011", "ISO/IEC 9899:2011 ('ISO C11')" },
+  { "-iso9945-1-90", "ISO/IEC 9945-1:1990 ('POSIX.1')" },
+  { "-iso9945-1-96", "ISO/IEC 9945-1:1996 ('POSIX.1')" },
+  { "-p1003.1", "IEEE Std 1003.1 ('POSIX.1')" },
+  { "-p1003.1-88", "IEEE Std 1003.1-1988 ('POSIX.1')" },
+  { "-p1003.1-90", "ISO/IEC 9945-1:1990 ('POSIX.1')" },
+  { "-p1003.1-96", "ISO/IEC 9945-1:1996 ('POSIX.1')" },
+  { "-p1003.1b-93", "IEEE Std 1003.1b-1993 ('POSIX.1')" },
+  { "-p1003.1c-95", "IEEE Std 1003.1c-1995 ('POSIX.1')" },
+  { "-p1003.1g-2000", "IEEE Std 1003.1g-2000 ('POSIX.1')" },
+  { "-p1003.1i-95", "IEEE Std 1003.1i-1995 ('POSIX.1')" },
+  { "-p1003.1-2001", "IEEE Std 1003.1-2001 ('POSIX.1')" },
+  { "-p1003.1-2004", "IEEE Std 1003.1-2004 ('POSIX.1')" },
+  { "-p1003.1-2008", "IEEE Std 1003.1-2008 ('POSIX.1')" },
+  { "-iso9945-2-93", "ISO/IEC 9945-2:1993 ('POSIX.2')" },
+  { "-p1003.2", "IEEE Std 1003.2 ('POSIX.2')" },
+  { "-p1003.2-92", "IEEE Std 1003.2-1992 ('POSIX.2')" },
+  { "-p1003.2a-92", "IEEE Std 1003.2a-1992 ('POSIX.2')" },
+  { "-susv2", "Version 2 of the Single UNIX Specification ('SUSv2')" },
+  { "-susv3", "Version 3 of the Single UNIX Specification ('SUSv3')" },
+  { "-svid4", "System V Interface Definition, Fourth Edition ('SVID4')" },
+  { "-xbd5", "X/Open Base Definitions Issue 5 ('XBD5')" },
+  { "-xcu5", "X/Open Commands and Utilities Issue 5 ('XCU5')" },
+  { "-xcurses4.2", "X/Open Curses Issue 4, Version 2 ('XCURSES4.2')" },
+  { "-xns5", "X/Open Networking Services Issue 5 ('XNS5')" },
+  { "-xns5.2", "X/Open Networking Services Issue 5.2 ('XNS5.2')" },
+  { "-xpg3", "X/Open Portability Guide Issue 3 ('XPG3')" },
+  { "-xpg4", "X/Open Portability Guide Issue 4 ('XPG4')" },
+  { "-xpg4.2", "X/Open Portability Guide Issue 4, Version 2 ('XPG4.2')" },
+  { "-xsh5", "X/Open System Interfaces and Headers Issue 5 ('XSH5')" },
+  { "-ieee754", "IEEE Std 754-1985" },
+  { "-iso8802-3", "ISO/IEC 8802-3:1989" }
+};
+
 
 /* default: print code */
 
@@ -4406,6 +4453,27 @@ static char *scan_request(char *c)
             curpos++;
           else
             curpos = 0;
+          break;
+        }
+        case REQ_St: // groff_mdoc
+        {
+          c += j;
+          getArguments(c, args);
+          if ( args.count() )
+          {
+            bool found = false;
+            for (size_t i = 0; i < (sizeof(STANDARD_NAMES) / sizeof(STANDARD_NAMES[0])); i++)
+            {
+              if ( args[0] == STANDARD_NAMES[i].abbrev )
+              {
+                found = true;
+                out_html(STANDARD_NAMES[i].formalName);
+                break;
+              }
+            }
+            if ( !found )  // an unknown standard - print the abbreviation
+              out_html(args[0]);
+          }
           break;
         }
         case REQ_TS: // Table Start tbl(1)

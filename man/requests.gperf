@@ -63,6 +63,7 @@ struct Requests { const char *name; RequestNum number; };
 "SB", REQ_SB
 "SM", REQ_SM
 "Ss", REQ_Ss
+"St", REQ_St
 "SS", REQ_SS
 "Sh", REQ_Sh
 "SH", REQ_SH

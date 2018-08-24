@@ -86,6 +86,7 @@ enum RequestNum
   REQ_SB,
   REQ_SM,
   REQ_Ss,
+  REQ_St,
   REQ_SS,
   REQ_Sh,
   REQ_SH, // man(7) "Sub Header"
