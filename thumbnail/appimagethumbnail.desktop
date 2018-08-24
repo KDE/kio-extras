@@ -1,6 +1,10 @@
 [Desktop Entry]
 Type=Service
 Name=AppImage
+Name[pt]=AppImage
+Name[sv]=AppImage
+Name[uk]=AppImage
+Name[x-test]=xxAppImagexx
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-iso9660-appimage;application/vnd.appimage;
 X-KDE-Library=appimagethumbnail
