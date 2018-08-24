@@ -30,4 +30,4 @@ ecm_gperf_generate(../requests.gperf ${CMAKE_CURRENT_BINARY_DIR}/request_gperf.h
 add_executable(man2html ${man2html_SRCS})
 ecm_mark_as_test(man2html)
 set_target_properties(man2html PROPERTIES COMPILE_FLAGS -DSIMPLE_MAN2HTML)
-target_link_libraries(man2html Qt5::Core)
+target_link_libraries(man2html Qt5::Core KF5::Codecs)

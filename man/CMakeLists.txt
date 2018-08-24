@@ -1,5 +1,7 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_man\")
 
+find_package(KF5 REQUIRED COMPONENTS Codecs)
+
 if(BUILD_TESTING)
     add_subdirectory( tests )
 endif()
