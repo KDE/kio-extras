@@ -644,7 +644,7 @@ static char *buffer = nullptr;
 static int buffpos = 0, buffmax = 0;
 static bool scaninbuff = false;
 static int itemdepth = 0;
-static int section = 0;
+static int in_div = 0;
 static int dl_set[20] = { 0 };
 static QStack<QByteArray> listItemStack;
 static bool still_dd = 0;
@@ -1027,13 +1027,24 @@ static void add_links(char *c)
   output_real(c);
 }
 
+//---------------------------------------------------------------------
+
 static QByteArray current_font;
 static int current_size = 0;
+
+/*
+ "fillout" is the mode of text output:
+ 1 = fill mode (line breaks happen when the browser wants them. Normal HTML text)
+ 0 = no-fill mode (preformatted text (<pre>..</pre>).
+     Input lines are output as-is, retaining line breaks and ignoring the current line length.
+*/
 static int fillout = 1;
+
+//---------------------------------------------------------------------
 
 static void out_html(const char *c)
 {
-  if (!c) return;
+  if ( !c || !*c ) return;
 
   // Added, probably due to the const?
   char *c2 = qstrdup(c);
@@ -2248,7 +2259,11 @@ static void clear_table(TABLEROW *table)
   }
 }
 
+//---------------------------------------------------------------------
+
 static char *scan_expression(char *c, int *result);
+
+//---------------------------------------------------------------------
 
 static char *scan_format(char *c, TABLEROW **result, int *maxcol)
 {
@@ -2377,6 +2392,8 @@ static char *scan_format(char *c, TABLEROW **result, int *maxcol)
   return c;
 }
 
+//---------------------------------------------------------------------
+
 static TABLEROW *next_row(TABLEROW *tr)
 {
   if (tr->next)
@@ -2393,6 +2410,8 @@ static TABLEROW *next_row(TABLEROW *tr)
     return tr->next;
   }
 }
+
+//---------------------------------------------------------------------
 
 static char itemreset[20] = "\\fR\\s0";
 
@@ -2960,6 +2979,8 @@ static char *scan_expression(char *c, int *result)
   return scan_expression(c, result, 0);
 }
 
+//---------------------------------------------------------------------
+
 static void trans_char(char *c, char s, char t)
 {
   char *sl = c;
@@ -3328,6 +3349,8 @@ static char *skip_till_newline(char *c)
   return c;
 }
 
+//---------------------------------------------------------------------
+
 static bool s_whileloop = false;
 
 /// Processing the .while request
@@ -3425,6 +3448,8 @@ static void request_mixed_fonts(char*& c, int j, const char* font1, const char* 
 //static int ifelseval=0;
 // If/else can be nested!
 static QStack<int> s_ifelseval;
+
+//---------------------------------------------------------------------
 
 // Process a (mdoc) request involving quotes
 static char* process_quote(char* c, int j, const char* open, const char* close)
@@ -4318,9 +4343,8 @@ static char *scan_request(char *c)
           if (fillout)
             out_html("<br>\n");
           else
-          {
             out_html(NEWLINE);
-          }
+
           curpos = 0;
           c = skip_till_newline(c);
           break;
@@ -4418,10 +4442,10 @@ static char *scan_request(char *c)
             out_html("</PRE>");
           }
           trans_char(c, '"', '\a');
-          if (section)
+          if (in_div)
           {
             out_html("</div>\n");
-            section = 0;
+            in_div = 0;
           }
           if (mode)
             out_html("\n<H3>");
@@ -4435,7 +4459,7 @@ static char *scan_request(char *c)
             out_html("</H2>\n");
 
           out_html("<div>\n");
-          section = 1;
+          in_div = 1;
           curpos = 0;
           break;
         }
@@ -5383,9 +5407,6 @@ static char *scan_request(char *c)
         case REQ_Ev:    /* mdoc(7) */
         case REQ_Fr:    /* mdoc(7) */
         case REQ_Li:    /* mdoc(7) */
-        case REQ_No:    /* mdoc(7) */
-        case REQ_Ns:    /* mdoc(7) */
-        case REQ_Tn:    /* mdoc(7) */
         case REQ_nN:    /* mdoc(7) */
         {
           trans_char(c, '"', '\a');
@@ -5394,6 +5415,44 @@ static char *scan_request(char *c)
           out_html(set_font("B"));
           c = scan_troff_mandoc(c, 1, nullptr);
           out_html(set_font("R"));
+          out_html(NEWLINE);
+          if (fillout)
+            curpos++;
+          else
+            curpos = 0;
+          break;
+        }
+        case REQ_Tn:    /* mdoc(7) Trade Names ... prints its arguments in a smaller font */
+        {
+          trans_char(c, '"', '\a');
+          c += j;
+          if (*c == '\n') c++;
+          out_html("<small>");
+          c = scan_troff_mandoc(c, 1, NULL);
+          out_html("</small>");
+          if (fillout)
+            curpos++;
+          else
+            curpos = 0;
+          break;
+        }
+        case REQ_Ns:    /* mdoc(7) No-Space Macro */
+        {
+          c += j;
+          while (*c && isspace(*c) && (*c != '\n')) c++;
+          // fallthrough (The '.Ns' macro always invokes the '.No' macro...)
+        }
+        case REQ_No:    /* mdoc(7) Normal Text Macro */
+        {
+          if ( request == REQ_No ) // not fallen through from REQ_Ns
+          {
+            trans_char(c, '"', '\a');
+            c += j;
+            if (*c == '\n') c++;
+          }
+          out_html("<span style=\"font-style:normal\">");
+          c = scan_troff_mandoc(c, 1, NULL);
+          out_html("</span>");
           out_html(NEWLINE);
           if (fillout)
             curpos++;
@@ -5707,10 +5766,9 @@ static bool mandoc_line = false; // Signals whether to look for embedded mandoc 
 
 static char *scan_troff(char *c, bool san, char **result)
 {   /* san : stop at newline */
-  char *h;
-  char intbuff[NULL_TERMINATED(MED_STR_MAX)];
-  int ibp = 0;
-#define FLUSHIBP  if (ibp) { intbuff[ibp]=0; out_html(intbuff); ibp=0; }
+  QByteArray intbuff;
+  intbuff.reserve(MED_STR_MAX);
+#define FLUSHIBP  { out_html(intbuff); intbuff.clear(); }
   char *exbuffer;
   int exbuffpos, exbuffmax, exnewline_for_fun;
   bool exscaninbuff;
@@ -5738,7 +5796,7 @@ static char *scan_troff(char *c, bool san, char **result)
     }
     scaninbuff = true;
   }
-  h = c; // ### FIXME below are too many tests that may go before the position of c
+  char *h = c; // ### FIXME below are too many tests that may go before the position of c
   /* start scanning */
 
   while (h && *h && (!san || newline_for_fun || (*h != '\n')) && !break_the_while_loop)
@@ -5806,56 +5864,46 @@ static char *scan_troff(char *c, bool san, char **result)
       switch (*h)
       {
         case '&':
-          intbuff[ibp++] = '&';
-          intbuff[ibp++] = 'a';
-          intbuff[ibp++] = 'm';
-          intbuff[ibp++] = 'p';
-          intbuff[ibp++] = ';';
+        {
+          intbuff += "&amp;";
           curpos++;
           break;
+        }
         case '<':
-          intbuff[ibp++] = '&';
-          intbuff[ibp++] = 'l';
-          intbuff[ibp++] = 't';
-          intbuff[ibp++] = ';';
+        {
+          intbuff += "&lt;";
           curpos++;
           break;
+        }
         case '>':
-          intbuff[ibp++] = '&';
-          intbuff[ibp++] = 'g';
-          intbuff[ibp++] = 't';
-          intbuff[ibp++] = ';';
+        {
+          intbuff += "&gt;";
           curpos++;
           break;
+        }
         case '"':
-          intbuff[ibp++] = '&';
-          intbuff[ibp++] = 'q';
-          intbuff[ibp++] = 'u';
-          intbuff[ibp++] = 'o';
-          intbuff[ibp++] = 't';
-          intbuff[ibp++] = ';';
+        {
+          intbuff += "&quot;";
           curpos++;
           break;
+        }
         case '\n':
+        {
           if (h != c && h[-1] == '\n' && fillout)
           {
-            intbuff[ibp++] = '<';
-            intbuff[ibp++] = 'P';
-            intbuff[ibp++] = '>';
+            intbuff += "<p>";
           }
           if (contained_tab && fillout)
           {
-            intbuff[ibp++] = '<';
-            intbuff[ibp++] = 'B';
-            intbuff[ibp++] = 'R';
-            intbuff[ibp++] = '>';
+            intbuff += "<br>";
           }
           contained_tab = 0;
           curpos = 0;
           usenbsp = 0;
-          intbuff[ibp++] = '\n';
+          intbuff += '\n';
           FLUSHIBP;
           break;
+        }
         case '\t':
         {
           int curtab = 0;
@@ -5871,8 +5919,8 @@ static char *scan_troff(char *c, bool san, char **result)
             {
               while (curpos < tabstops[curtab])
               {
-                intbuff[ibp++] = ' ';
-                if (ibp > 480)
+                intbuff += ' ';
+                if (intbuff.length() > MED_STR_MAX)
                 {
                   FLUSHIBP;
                 }
@@ -5890,9 +5938,10 @@ static char *scan_troff(char *c, bool san, char **result)
               out_html("</TT>");
             }
           }
+          break;
         }
-        break;
         default:
+        {
           if (*h == ' ' && (h[-1] == '\n' || usenbsp))
           {
             FLUSHIBP;
@@ -5902,18 +5951,21 @@ static char *scan_troff(char *c, bool san, char **result)
               curpos = 0;
             }
             usenbsp = fillout;
-            if (usenbsp) out_html("&nbsp;");
-            else intbuff[ibp++] = ' ';
+            if (usenbsp)
+              out_html("&nbsp;");
+            else
+              intbuff += ' ';
           }
-          else if (*h > 31 && *h < 127) intbuff[ibp++] = *h;
+          else if (*h > 31 && *h < 127) intbuff += *h;
           else if (((unsigned char)(*h)) > 127)
           {
-            intbuff[ibp++] = *h;
+            intbuff += *h;
           }
           curpos++;
           break;
+        }
       }
-      if (ibp > (MED_STR_MAX - 20)) FLUSHIBP;
+      if ( intbuff.length() > MED_STR_MAX ) FLUSHIBP;
       h++;
     }
   }
@@ -5995,7 +6047,7 @@ void scan_man_page(const char *man_page)
   s_argumentList.clear();
   listItemStack.clear();
 
-  section = 0;
+  in_div = 0;
 
   s_dollarZero = ""; // No macro called yet!
   mandoc_name = "";
@@ -6029,10 +6081,10 @@ void scan_man_page(const char *man_page)
   }
   out_html(NEWLINE);
 
-  if (section)
+  if (in_div)
   {
     output_real("</div><div style=\"margin-left: 2cm\">\n");
-    section = 0;
+    in_div = 0;
   }
 
   if (output_possible)
