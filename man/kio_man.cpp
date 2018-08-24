@@ -112,9 +112,9 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
 
     pos = section.indexOf(')');
     if (pos >= 0) {
-	if (pos < section.length() - 2 && title.isEmpty()) {
-		title = section.mid(pos + 2);
-	}
+        if (pos < section.length() - 2 && title.isEmpty()) {
+                title = section.mid(pos + 2);
+        }
         section = section.left(pos);
     }
 
@@ -150,21 +150,21 @@ void MANProtocol::parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const 
     QString l;
     while ( !t.atEnd() )
     {
-	l = t.readLine();
-	int pos = re.indexIn( l );
-	if (pos != -1)
-	{
-	    QString names = l.left(pos);
-	    QString descr = l.mid(pos + re.matchedLength());
-	    while ((pos = names.indexOf(",")) != -1)
-	    {
-		i[names.left(pos++)] = descr;
-		while (names[pos] == ' ')
-		    pos++;
-		names = names.mid(pos);
-	    }
-	    i[names] = descr;
-	}
+        l = t.readLine();
+        int pos = re.indexIn( l );
+        if (pos != -1)
+        {
+            QString names = l.left(pos);
+            QString descr = l.mid(pos + re.matchedLength());
+            while ((pos = names.indexOf(",")) != -1)
+            {
+                i[names.left(pos++)] = descr;
+                while (names[pos] == ' ')
+                    pos++;
+                names = names.mid(pos);
+            }
+            i[names] = descr;
+        }
     }
 }
 
@@ -198,14 +198,14 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
           ++it_dir )
     {
         if ( QFile::exists( *it_dir ) ) {
-    	    QStringList::ConstIterator it_name;
+            QStringList::ConstIterator it_name;
             for ( it_name = names.constBegin();
-	          it_name != names.constEnd();
-	          it_name++ )
+                  it_name != names.constEnd();
+                  it_name++ )
             {
-	        if (addWhatIs(i, (*it_dir) + '/' + (*it_name), mark))
-		    break;
-	    }
+                if (addWhatIs(i, (*it_dir) + '/' + (*it_name), mark))
+                    break;
+            }
             if ( it_name == names.constEnd() ) {
                 QProcess proc;
                 proc.setProgram("whatis");
@@ -308,8 +308,8 @@ QStringList MANProtocol::findPages(const QString &_section,
     //
     for ( int i=0;i<sect_list.count(); i++)
     {
-            QString it_s=sect_list.at(i);
-	    QString it_real = it_s.toLower();
+        QString it_s=sect_list.at(i);
+        QString it_real = it_s.toLower();
         //
         // Find pages
         //
@@ -342,7 +342,7 @@ QStringList MANProtocol::findPages(const QString &_section,
                 else if (file.startsWith(sman))
                     sect = file.mid(4);
 
-		if (sect.toLower()==it_real) it_real = sect;
+                if (sect.toLower()==it_real) it_real = sect;
 
                 // Only add sect if not already contained, avoid duplicates
                 if (!sect_list.contains(sect) && _section.isEmpty())  {
@@ -741,18 +741,18 @@ QStringList MANProtocol::buildSectionList(const QStringList& dirs) const
     QStringList l;
 
     for (QStringList::ConstIterator it = section_names.begin();
-	    it != section_names.end(); ++it)
+            it != section_names.end(); ++it)
     {
-	    for (QStringList::ConstIterator dir = dirs.begin();
-		    dir != dirs.end(); ++dir)
-	    {
-		QDir d((*dir)+"/man"+(*it));
-		if (d.exists())
-		{
-		    l << *it;
-		    break;
-		}
-	    }
+        for (QStringList::ConstIterator dir = dirs.begin();
+             dir != dirs.end(); ++dir)
+        {
+            QDir d((*dir)+"/man"+(*it));
+            if (d.exists())
+            {
+                l << *it;
+                break;
+            }
+        }
     }
     return l;
 }
@@ -776,9 +776,9 @@ void MANProtocol::showMainIndex()
     const QString sectList = getenv("MANSECT");
     QStringList sections;
     if (sectList.isEmpty())
-    	sections = buildSectionList(manDirectories());
+        sections = buildSectionList(manDirectories());
     else
-	sections = sectList.split( ':');
+        sections = sectList.split(':');
 
     os << "<table>" << endl;
 
@@ -796,8 +796,8 @@ void MANProtocol::showMainIndex()
         accessKeys.insert(accessKey);
 
         os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" << accessKey
-	<< "\">" << i18n("Section %1", *it)
-	<< "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
+           << "\">" << i18n("Section %1", *it)
+           << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
     }
 
     os << "</table>" << endl;
@@ -1108,27 +1108,27 @@ int compare_man_index(const void *s1, const void *s2)
     // this is a bit tricky
     if ( m1->manpage_len > m2->manpage_len)
     {
-	i = qstrnicmp( m1->manpage_begin,
-		      m2->manpage_begin,
-		      m2->manpage_len);
-	if (!i)
-	    return 1;
-	return i;
+        i = qstrnicmp(m1->manpage_begin,
+                      m2->manpage_begin,
+                      m2->manpage_len);
+        if (!i)
+            return 1;
+        return i;
     }
 
     if ( m1->manpage_len < m2->manpage_len)
     {
-	i = qstrnicmp( m1->manpage_begin,
-		      m2->manpage_begin,
-		      m1->manpage_len);
-	if (!i)
-	    return -1;
-	return i;
+        i = qstrnicmp(m1->manpage_begin,
+                      m2->manpage_begin,
+                      m1->manpage_len);
+        if (!i)
+            return -1;
+        return i;
     }
 
-    return qstrnicmp( m1->manpage_begin,
-		     m2->manpage_begin,
-		     m1->manpage_len);
+    return qstrnicmp(m1->manpage_begin,
+                     m2->manpage_begin,
+                     m1->manpage_len);
 }
 
 void MANProtocol::showIndex(const QString& section)
@@ -1182,76 +1182,76 @@ void MANProtocol::showIndex(const QString& section)
     QStringList::const_iterator page;
     for (page = pages.constBegin(); page != pages.constEnd(); ++page)
     {
-	// I look for the beginning of the man page name
-	// i.e. "bla/pagename.3.gz" by looking for the last "/"
-	// Then look for the end of the name by searching backwards
-	// for the last ".", not counting zip extensions.
-	// If the len of the name is >0,
-	// store it in the list structure, to be sorted later
+        // I look for the beginning of the man page name
+        // i.e. "bla/pagename.3.gz" by looking for the last "/"
+        // Then look for the end of the name by searching backwards
+        // for the last ".", not counting zip extensions.
+        // If the len of the name is >0,
+        // store it in the list structure, to be sorted later
 
         char *manpage_end;
         struct man_index_t *manindex = new man_index_t;
-	manindex->manpath = strdup((*page).toUtf8());
+        manindex->manpath = strdup((*page).toUtf8());
 
-	manindex->manpage_begin = strrchr(manindex->manpath, '/');
-	if (manindex->manpage_begin)
-	{
-	    manindex->manpage_begin++;
-	    assert(manindex->manpage_begin >= manindex->manpath);
-	}
-	else
-	{
-	    manindex->manpage_begin = manindex->manpath;
-	    assert(manindex->manpage_begin >= manindex->manpath);
-	}
+        manindex->manpage_begin = strrchr(manindex->manpath, '/');
+        if (manindex->manpage_begin)
+        {
+            manindex->manpage_begin++;
+            assert(manindex->manpage_begin >= manindex->manpath);
+        }
+        else
+        {
+            manindex->manpage_begin = manindex->manpath;
+            assert(manindex->manpage_begin >= manindex->manpath);
+        }
 
-	// Skip extension ".section[.gz]"
+        // Skip extension ".section[.gz]"
 
-	char *begin = (char*)(manindex->manpage_begin);
-	int len = strlen( begin );
-	char *end = begin+(len-1);
+        char *begin = (char*)(manindex->manpage_begin);
+        int len = strlen( begin );
+        char *end = begin+(len-1);
 
-	if ( len >= 3 && strcmp( end-2, ".gz" ) == 0 )
-	    end -= 3;
-	else if ( len >= 2 && strcmp( end-1, ".Z" ) == 0 )
-	    end -= 2;
-	else if ( len >= 2 && strcmp( end-1, ".z" ) == 0 )
-	    end -= 2;
-	else if ( len >= 4 && strcmp( end-3, ".bz2" ) == 0 )
-	    end -= 4;
-	else if ( len >= 5 && strcmp( end-4, ".lzma" ) == 0 )
-	    end -= 5;
-	else if ( len >= 3 && strcmp( end-2, ".xz" ) == 0 )
-	    end -= 3;
+        if ( len >= 3 && strcmp( end-2, ".gz" ) == 0 )
+            end -= 3;
+        else if ( len >= 2 && strcmp( end-1, ".Z" ) == 0 )
+            end -= 2;
+        else if ( len >= 2 && strcmp( end-1, ".z" ) == 0 )
+            end -= 2;
+        else if ( len >= 4 && strcmp( end-3, ".bz2" ) == 0 )
+            end -= 4;
+        else if ( len >= 5 && strcmp( end-4, ".lzma" ) == 0 )
+            end -= 5;
+        else if ( len >= 3 && strcmp( end-2, ".xz" ) == 0 )
+            end -= 3;
 
-	while ( end >= begin && *end != '.' )
-	    end--;
+        while ( end >= begin && *end != '.' )
+            end--;
 
-	if ( end < begin )
-	    manpage_end = nullptr;
-	else
-	    manpage_end = end;
+        if ( end < begin )
+            manpage_end = nullptr;
+        else
+            manpage_end = end;
 
-	if (nullptr == manpage_end)
-	{
-	    // no '.' ending ???
-	    // set the pointer past the end of the filename
-	    manindex->manpage_len = (*page).length();
-	    manindex->manpage_len -= (manindex->manpage_begin - manindex->manpath);
-	    assert(manindex->manpage_len >= 0);
-	}
-	else
-	{
-	    manindex->manpage_len = (manpage_end - manindex->manpage_begin);
-	    assert(manindex->manpage_len >= 0);
-	}
+        if (nullptr == manpage_end)
+        {
+            // no '.' ending ???
+            // set the pointer past the end of the filename
+            manindex->manpage_len = (*page).length();
+            manindex->manpage_len -= (manindex->manpage_begin - manindex->manpath);
+            assert(manindex->manpage_len >= 0);
+        }
+        else
+        {
+            manindex->manpage_len = (manpage_end - manindex->manpage_begin);
+            assert(manindex->manpage_len >= 0);
+        }
 
-	if (0 < manindex->manpage_len)
-	{
-	    indexlist[listlen] = manindex;
-	    listlen++;
-	}
-	else delete manindex;
+        if (0 < manindex->manpage_len)
+        {
+            indexlist[listlen] = manindex;
+            listlen++;
+        }
+        else delete manindex;
     }
 
     //
@@ -1270,60 +1270,60 @@ void MANProtocol::showIndex(const QString& section)
     QString indexLine="<div class=\"secidxshort\">\n";
     if (indexlist[0]->manpage_len>0)
     {
-	firstchar=QChar((indexlist[0]->manpage_begin)[0]).toLower();
+        firstchar=QChar((indexlist[0]->manpage_begin)[0]).toLower();
 
-	const QString appendixstr = QString(
-	    " [<a href=\"#%1\" accesskey=\"%2\">%3</a>]\n"
-	).arg(firstchar).arg(firstchar).arg(firstchar);
-	indexLine.append(appendixstr);
+        const QString appendixstr = QString(
+            " [<a href=\"#%1\" accesskey=\"%2\">%3</a>]\n"
+        ).arg(firstchar).arg(firstchar).arg(firstchar);
+        indexLine.append(appendixstr);
     }
     os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
        << firstchar << "\">" << firstchar <<"</a>\n</td></tr>" << endl;
 
     for (int i=0; i<listlen; i++)
     {
-	struct man_index_t *manindex = indexlist[i];
+        struct man_index_t *manindex = indexlist[i];
 
-	// qstrncmp():
-	// "last_man" has already a \0 string ending, but
-	// "manindex->manpage_begin" has not,
-	// so do compare at most "manindex->manpage_len" of the strings.
-	if (last_index->manpage_len == manindex->manpage_len &&
-	    !qstrncmp(last_index->manpage_begin,
-		      manindex->manpage_begin,
-		      manindex->manpage_len)
-	    )
-	{
-	    continue;
-	}
+        // qstrncmp():
+        // "last_man" has already a \0 string ending, but
+        // "manindex->manpage_begin" has not,
+        // so do compare at most "manindex->manpage_len" of the strings.
+        if (last_index->manpage_len == manindex->manpage_len &&
+            !qstrncmp(last_index->manpage_begin,
+                      manindex->manpage_begin,
+                      manindex->manpage_len)
+            )
+        {
+            continue;
+        }
 
-	tmp=QChar((manindex->manpage_begin)[0]).toLower();
-	if (firstchar != tmp)
-	{
-	    firstchar = tmp;
-	    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
-	       << firstchar << "\">" << firstchar << "</a>\n</td></tr>" << endl;
+        tmp=QChar((manindex->manpage_begin)[0]).toLower();
+        if (firstchar != tmp)
+        {
+            firstchar = tmp;
+            os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
+               << firstchar << "\">" << firstchar << "</a>\n</td></tr>" << endl;
 
-    	    const QString appendixstr = QString(
-    		" [<a href=\"#%1\" accesskey=\"%2\">%3</a>]\n"
-	    ).arg(firstchar).arg(firstchar).arg(firstchar);
-	    indexLine.append(appendixstr);
-	}
-	os << "<tr><td><a href=\"man:"
-	   << manindex->manpath << "\">\n";
+           const QString appendixstr = QString(
+            " [<a href=\"#%1\" accesskey=\"%2\">%3</a>]\n"
+            ).arg(firstchar).arg(firstchar).arg(firstchar);
+            indexLine.append(appendixstr);
+        }
+        os << "<tr><td><a href=\"man:"
+           << manindex->manpath << "\">\n";
 
-	((char *)manindex->manpage_begin)[manindex->manpage_len] = '\0';
-	os << manindex->manpage_begin
-	   << "</a></td><td>&nbsp;</td><td> "
-	   << (indexmap.contains(manindex->manpage_begin) ? indexmap[manindex->manpage_begin] : "" )
-	   << "</td></tr>"  << endl;
-	last_index = manindex;
+        ((char *)manindex->manpage_begin)[manindex->manpage_len] = '\0';
+        os << manindex->manpage_begin
+           << "</a></td><td>&nbsp;</td><td> "
+           << (indexmap.contains(manindex->manpage_begin) ? indexmap[manindex->manpage_begin] : "" )
+           << "</td></tr>"  << endl;
+        last_index = manindex;
     }
     indexLine.append("</div>");
 
     for (int i=0; i<listlen; i++) {
-	::free(indexlist[i]->manpath);   // allocated by strdup
-	delete indexlist[i];
+        ::free(indexlist[i]->manpath);   // allocated by strdup
+        delete indexlist[i];
     }
 
     delete [] indexlist;
@@ -1360,7 +1360,7 @@ void MANProtocol::listDir(const QUrl &url)
     // But we cannot list man:ls as a directory, this makes no sense (#154173)
 
     if (!title.isEmpty() && title != "/") {
-	error(KIO::ERR_IS_FILE, url.url());
+        error(KIO::ERR_IS_FILE, url.url());
         return;
     }
 
