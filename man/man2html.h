@@ -11,6 +11,12 @@
 
 class QByteArray;
 
+/**
+  Try to detect the encoding of given man page content
+  and convert it to UTF-8
+*/
+char *manPageToUtf8(const QByteArray &input, const QByteArray &dirName);
+
 /** call this with the buffer you have */
 void scan_man_page(const char *man_page);
 

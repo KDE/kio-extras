@@ -38,7 +38,6 @@
 #include <QProcess>
 
 #include <KLocalizedString>
-#include <kencodingprober.h>
 
 #include "man2html.h"
 #include <assert.h>
@@ -220,6 +219,8 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
     }
     return i;
 }
+
+//---------------------------------------------------------------------
 
 QStringList MANProtocol::manDirectories()
 {
@@ -529,7 +530,7 @@ void MANProtocol::get(const QUrl& url )
 char *MANProtocol::readManPage(const char *_filename)
 {
     QByteArray filename = _filename;
-    QByteArray array;
+    QByteArray array, dirName;
 
     /* Determine type of man page file by checking its path. Determination by
      * MIME type with KMimeType doesn't work reliablely. E.g., Solaris 7:
@@ -560,6 +561,11 @@ char *MANProtocol::readManPage(const char *_filename)
 
       lastdir = filename.left(filename.lastIndexOf('/'));
 
+      // get the last directory name (which might be a language name, to be able to guess the encoding)
+      QDir dir(lastdir);
+      dir.cdUp();
+      dirName = QFile::encodeName(dir.dirName());
+
       if ( !QFile::exists(QFile::decodeName(filename)) )  // if given file does not exist, find with suffix
       {
           qCDebug(KIO_MAN_LOG) << "not existing " << filename;
@@ -585,22 +591,7 @@ char *MANProtocol::readManPage(const char *_filename)
     if (array.isEmpty())
       return nullptr;
 
-    // as we do not know in which encoding the man source is, try to automatically
-    // detect it and always return it as UTF-8
-    KEncodingProber encodingProber;
-    encodingProber.feed(array);
-    qCDebug(KIO_MAN_LOG) << "auto-detect encoding for" << filename << "guess=" << encodingProber.encoding()
-                 << "confidence=" << encodingProber.confidence();
-    QString out = QTextCodec::codecForName(encodingProber.encoding())->toUnicode(array);
-    array = out.toUtf8();
-
-    const int len = array.size();
-    char *buf = new char[len + 4];
-    memmove(buf + 1, array.data(), len);
-    buf[0] = buf[len+1] = '\n'; // Start and end with an end of line
-    buf[len+2] = buf[len+3] = '\0'; // Two NUL characters at end
-
-    return buf;
+    return manPageToUtf8(array, dirName);
 }
 
 //---------------------------------------------------------------------
