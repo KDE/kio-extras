@@ -1,6 +1,8 @@
 [Desktop Entry]
 Type=Service
 Name=AppImage
+Name[ca]=AppImage
+Name[nl]=AppImage
 Name[pt]=AppImage
 Name[sv]=AppImage
 Name[uk]=AppImage
