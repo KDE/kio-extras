@@ -107,6 +107,9 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 #ifdef USE_KINSTANCE
     KComponentData componentData("kio_thumbnail");
 #else
+
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+
     // creating KApplication in a slave in not a very good idea,
     // as dispatchLoop() doesn't allow it to process its messages,
     // so it for example wouldn't reply to ksmserver - on the other
