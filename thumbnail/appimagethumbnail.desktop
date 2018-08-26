@@ -2,11 +2,14 @@
 Type=Service
 Name=AppImage
 Name[ca]=AppImage
+Name[fr]=AppImage
+Name[it]=AppImage
 Name[nl]=AppImage
 Name[pt]=AppImage
 Name[sv]=AppImage
 Name[uk]=AppImage
 Name[x-test]=xxAppImagexx
+Name[zh_TW]=AppImage
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-iso9660-appimage;application/vnd.appimage;
 X-KDE-Library=appimagethumbnail
