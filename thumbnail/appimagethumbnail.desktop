@@ -2,9 +2,11 @@
 Type=Service
 Name=AppImage
 Name[ca]=AppImage
+Name[ca@valencia]=AppImage
 Name[fr]=AppImage
 Name[it]=AppImage
 Name[nl]=AppImage
+Name[nn]=AppImage
 Name[pt]=AppImage
 Name[sv]=AppImage
 Name[uk]=AppImage
