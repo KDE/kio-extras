@@ -98,25 +98,6 @@ target_link_libraries(textthumbnail
 
 install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
 
-############ next target ###############
-
-find_package(Qt5WebEngineWidgets 5.7.0 QUIET)
-set_package_properties(Qt5WebEngineWidgets PROPERTIES
-                       TYPE OPTIONAL
-                       PURPOSE "Provides support for HTML previews in the thumbnail ioslave"
-                      )
-
-if (Qt5WebEngineWidgets_FOUND)
-
-    set(htmlthumbnail_PART_SRCS htmlcreator.cpp)
-
-    add_library(htmlthumbnail MODULE ${htmlthumbnail_PART_SRCS})
-
-    target_link_libraries(htmlthumbnail Qt5::Core Qt5::WebEngineWidgets KF5::KIOWidgets)
-
-    install(TARGETS htmlthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-
-endif()
 ########### next target ###############
 
 if(NOT WIN32)
@@ -265,9 +246,4 @@ install(FILES
     kraorathumbnail.desktop
     ${audiothumbnail_desktop}
     DESTINATION ${SERVICES_INSTALL_DIR})
-
-if (Qt5WebEngineWidgets_FOUND)
-   install(FILES htmlthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
-
-endif()
 
