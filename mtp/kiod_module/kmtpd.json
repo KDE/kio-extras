@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Description": "TODO",
+        "Name": "KDE MTP daemon",
+        "ServiceTypes": [
+            "KDEDModule"
+        ]
+    },
+    "X-KDE-DBus-ServiceName": "kmtpd",
+    "X-KDE-Kded-autoload": false,
+    "X-KDE-Kded-load-on-demand": true
+}

@@ -1,6 +1,7 @@
 /*
  *  Main implementation for KIO-MTP
  *  Copyright (C) 2012  Philipp Schmidt <philschmidt@gmx.net>
+ *  Copyright (C) 2018 Andreas Krutzler <andreas.krutzler@gmx.net>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -29,17 +30,19 @@
 #include <errno.h>
 #include <time.h>
 
-#include <libmtp.h>
 
 // #include <QCache>
-#include "filecache.h"
-#include "devicecache.h"
 
 #include <QUrl>
 #include <QLoggingCategory>
 
 #define MAX_XFER_BUF_SIZE 16348
 #define KIO_MTP 7000
+#include <kmtpdinterface.h>
+
+class KMTPDeviceInterface;
+class KMTPStorageInterface;
+class KMTPFile;
 
 using namespace KIO;
 
@@ -82,14 +85,17 @@ private:
      * @return 0 if valid, 1 if udi and redirected, 2 if udi but invalid device, -1 else
      */
     int checkUrl(const QUrl &url, bool redirect = true);
-    static QString urlDirectory(const QUrl &url, bool appendTrailingSlash = false);
-    static QString urlFileName(const QUrl &url);
 
     void fileSystemFreeSpace(const QUrl &url);
 
-    FileCache *fileCache;
-    DeviceCache *deviceCache;
-    QPair<void *, LIBMTP_mtpdevice_t *> getPath(const QString &path);
+    /**
+     * @brief Waits for a pending copy operation to finish while updating its progress.
+     * @param storage
+     * @return The result of the operation, usually 0 if valid
+     */
+    int waitForCopyOperation(const KMTPStorageInterface *storage);
+
+    KMTPDInterface m_kmtpDaemon;
 };
 
 #endif // KIO_MTP_H

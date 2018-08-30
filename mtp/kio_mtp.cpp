@@ -1,6 +1,7 @@
 /*
  *  Main implementation for KIO-MTP
  *  Copyright (C) 2012  Philipp Schmidt <philschmidt@gmx.net>
+ *  Copyright (C) 2018 Andreas Krutzler <andreas.krutzler@gmx.net>
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,7 +19,6 @@
  */
 
 #include "kio_mtp.h"
-#include "kio_mtp_helpers.h"
 
 // #include <KComponentData>
 #include <QTemporaryFile>
@@ -31,8 +31,68 @@
 #include <sys/types.h>
 #include <utime.h>
 
-#include <solid/device.h>
-#include <solid/genericinterface.h>
+#include "kmtpdeviceinterface.h"
+#include "kmtpstorageinterface.h"
+
+static UDSEntry getEntry(const KMTPDeviceInterface *device)
+{
+    UDSEntry entry;
+    entry.fastInsert(UDSEntry::UDS_NAME, device->friendlyName());
+    entry.fastInsert(UDSEntry::UDS_ICON_NAME, QStringLiteral("multimedia-player"));
+    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
+    entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    return entry;
+}
+
+static UDSEntry getEntry(const KMTPStorageInterface *storage)
+{
+    UDSEntry entry;
+    entry.fastInsert(UDSEntry::UDS_NAME, storage->description());
+    entry.fastInsert(UDSEntry::UDS_ICON_NAME, QStringLiteral("drive-removable-media"));
+    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    return entry;
+}
+
+static UDSEntry getEntry(const KMTPFile &file)
+{
+    UDSEntry entry;
+    entry.fastInsert(UDSEntry::UDS_NAME, file.filename());
+    if (file.isFolder()) {
+        entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IRWXO);
+    } else {
+        entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFREG);
+        entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
+        entry.fastInsert(UDSEntry::UDS_SIZE, file.filesize());
+    }
+    entry.fastInsert(UDSEntry::UDS_MIME_TYPE, file.filetype());
+    entry.fastInsert(UDSEntry::UDS_INODE, file.itemId());
+    entry.fastInsert(UDSEntry::UDS_ACCESS_TIME, file.modificationdate());
+    entry.fastInsert(UDSEntry::UDS_MODIFICATION_TIME, file.modificationdate());
+    entry.fastInsert(UDSEntry::UDS_CREATION_TIME, file.modificationdate());
+    return entry;
+}
+
+static QString urlDirectory(const QUrl &url, bool appendTrailingSlash = false)
+{
+    if (!appendTrailingSlash) {
+        return url.adjusted(QUrl::StripTrailingSlash | QUrl::RemoveFilename).path();
+    }
+    return url.adjusted(QUrl::RemoveFilename).path();
+}
+
+static QString urlFileName(const QUrl &url)
+{
+    return url.fileName();
+}
+
+static QString convertPath(const QString &slavePath)
+{
+    return slavePath.section(QLatin1Char('/'), 3, -1, QString::SectionIncludeLeadingSep);
+}
 
 //////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Slave Implementation ///////////////////////////
@@ -63,160 +123,27 @@ int Q_DECL_EXPORT kdemain(int argc, char **argv)
 MTPSlave::MTPSlave(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("mtp", pool, app)
 {
-    LIBMTP_Init();
-
     qCDebug(LOG_KIO_MTP) << "Slave started";
-
-    deviceCache = new DeviceCache(60000);
-    fileCache = new FileCache(this);
-
-    qCDebug(LOG_KIO_MTP) << "Caches created";
+    qCDebug(LOG_KIO_MTP) << "Connected to kiod5 module:" << m_kmtpDaemon.isValid();
 }
 
 MTPSlave::~MTPSlave()
 {
     qCDebug(LOG_KIO_MTP) << "Slave destroyed";
-    delete fileCache;
-    delete deviceCache;
-}
-
-/**
- * @brief Get's the correct object from the device.
- * @param pathItems A QStringList containing the items of the filepath
- * @return QPair with the object and its device. pair.first is a nullpointer if the object doesn't exist or for root or, depending on the pathItems size device (1), storage (2) or file (>=3)
- */
-QPair<void *, LIBMTP_mtpdevice_t *> MTPSlave::getPath(const QString &path)
-{
-    QStringList pathItems = path.split(QLatin1Char('/'), QString::SkipEmptyParts);
-
-    qCDebug(LOG_KIO_MTP) << path << pathItems.size();
-
-    QPair<void *, LIBMTP_mtpdevice_t *> ret;
-
-    // Don' handle the root directory
-    if (pathItems.size() <= 0) {
-        return ret;
-    }
-
-    if (deviceCache->contains(pathItems.at(0))) {
-        LIBMTP_mtpdevice_t *device = deviceCache->get(pathItems.at(0))->getDevice();
-
-        // return specific device
-        if (pathItems.size() == 1) {
-            ret.first = device;
-            ret.second = device;
-
-            qCDebug(LOG_KIO_MTP) << "returning LIBMTP_mtpdevice_t";
-        }
-
-        if (pathItems.size() > 2) {
-            // Query Cache after we have the device
-            uint32_t c_fileID = fileCache->queryPath(path);
-            if (c_fileID != 0) {
-                qCDebug(LOG_KIO_MTP)  << "Match found in cache, checking device";
-
-                LIBMTP_file_t *file = LIBMTP_Get_Filemetadata(device, c_fileID);
-                if (file) {
-                    qCDebug(LOG_KIO_MTP) << "Found file in cache";
-                    ret.first = file;
-                    ret.second = device;
-
-                    qCDebug(LOG_KIO_MTP) << "returning LIBMTP_file_t from cache";
-
-                    return ret;
-                }
-            }
-            // Query cache for parent
-            else if (pathItems.size() > 3) {
-                QString parentPath = convertToPath(pathItems, pathItems.size() - 1);
-                uint32_t c_parentID = fileCache->queryPath(parentPath);
-
-                qCDebug(LOG_KIO_MTP)  << "Match for parent found in cache, checking device. Parent id = " << c_parentID;
-
-                LIBMTP_file_t *parent = LIBMTP_Get_Filemetadata(device, c_parentID);
-                if (parent) {
-                    qCDebug(LOG_KIO_MTP) << "Found parent in cache";
-//                     fileCache->addPath( parentPath, c_parentID );
-
-                    QMap<QString, LIBMTP_file_t *> files = getFiles(device, parent->storage_id, c_parentID);
-
-                    for (QMap<QString, LIBMTP_file_t *>::iterator it = files.begin(); it != files.end(); ++it) {
-                        QString filePath = parentPath;
-                        filePath.append(QString::fromUtf8("/")).append(it.key());
-                        fileCache->addPath(filePath, it.value()->item_id);
-                    }
-
-                    if (files.contains(pathItems.last())) {
-                        LIBMTP_file_t *file = files.value(pathItems.last());
-
-                        ret.first = file;
-                        ret.second = device;
-
-                        qCDebug(LOG_KIO_MTP) << "returning LIBMTP_file_t from cached parent" ;
-
-                        fileCache->addPath(path, file->item_id);
-                    }
-
-                    return ret;
-                }
-            }
-        }
-
-        QMap<QString, LIBMTP_devicestorage_t *> storages = getDevicestorages(device);
-
-        if (pathItems.size() > 1 && storages.contains(pathItems.at(1))) {
-            LIBMTP_devicestorage_t *storage = storages.value(pathItems.at(1));
-
-            if (pathItems.size() == 2) {
-                ret.first = storage;
-                ret.second = device;
-
-                qCDebug(LOG_KIO_MTP) << "returning LIBMTP_devicestorage_t";
-
-                return ret;
-            }
-
-            int currentLevel = 2, currentParent = 0xFFFFFFFF;
-
-            QMap<QString, LIBMTP_file_t *> files;
-
-            // traverse further while depth not reached
-            while (currentLevel < pathItems.size()) {
-                files = getFiles(device, storage->id, currentParent);
-
-                if (files.contains(pathItems.at(currentLevel))) {
-                    currentParent = files.value(pathItems.at(currentLevel))->item_id;
-                } else {
-                    qCDebug(LOG_KIO_MTP) << "returning LIBMTP_file_t using tree walk";
-
-                    return ret;
-                }
-                currentLevel++;
-            }
-
-            ret.first = LIBMTP_Get_Filemetadata(device, currentParent);
-            ret.second = device;
-
-            fileCache->addPath(path, currentParent);
-        }
-    }
-
-    return ret;
 }
 
 int MTPSlave::checkUrl(const QUrl &url, bool redirect)
 {
-    qCDebug(LOG_KIO_MTP) << url;
-
     if (url.path().startsWith(QLatin1String("udi=")) && redirect) {
-        QString udi = url.adjusted(QUrl::StripTrailingSlash).path().remove(0, 4);
+        const QString udi = url.adjusted(QUrl::StripTrailingSlash).path().remove(0, 4);
 
         qCDebug(LOG_KIO_MTP) << "udi = " << udi;
 
-        if (deviceCache->contains(udi, true)) {
+        const KMTPDeviceInterface *device = m_kmtpDaemon.deviceFromUdi(udi);
+        if (device) {
             QUrl newUrl;
-            newUrl.setScheme(QLatin1String("mtp"));
-            newUrl.setPath(QLatin1Char('/') + deviceCache->get(udi, true)->getName());
+            newUrl.setScheme(QStringLiteral("mtp"));
+            newUrl.setPath(QLatin1Char('/') + device->friendlyName());
             redirection(newUrl);
 
             return 1;
@@ -229,24 +156,9 @@ int MTPSlave::checkUrl(const QUrl &url, bool redirect)
     return -1;
 }
 
-QString MTPSlave::urlDirectory(const QUrl &url, bool appendTrailingSlash)
-{
-    if (!appendTrailingSlash) {
-        return url.adjusted(QUrl::StripTrailingSlash | QUrl::RemoveFilename).path();
-    }
-    return url.adjusted(QUrl::RemoveFilename).path();
-}
-
-QString MTPSlave::urlFileName(const QUrl &url)
-{
-    return url.fileName();
-}
-
 void MTPSlave::listDir(const QUrl &url)
 {
-    qCDebug(LOG_KIO_MTP) << url.path();
-
-    int check = checkUrl(url);
+    const int check = checkUrl(url);
     switch (check) {
     case 0:
         break;
@@ -261,111 +173,93 @@ void MTPSlave::listDir(const QUrl &url)
         return;
     }
 
-    QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    // list '.' entry, otherwise files cannot be pasted to empty folders
+    KIO::UDSEntry entry;
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    listEntry(entry);
 
-    UDSEntry entry;
-
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
     // list devices
-    if (pathItems.size() == 0) {
+    if (pathItems.isEmpty()) {
         qCDebug(LOG_KIO_MTP) << "Root directory, listing devices";
-        totalSize(deviceCache->size());
 
-        foreach(CachedDevice * cachedDevice, deviceCache->getAll().values()) {
-            LIBMTP_mtpdevice_t *device = cachedDevice->getDevice();
+        totalSize(filesize_t(m_kmtpDaemon.devices().size()));
 
-            getEntry(entry, device);
-
-            listEntry(entry);
-            entry.clear();
+        const auto devices = m_kmtpDaemon.devices();
+        for (const KMTPDeviceInterface *device : devices) {
+            listEntry(getEntry(device));
         }
 
-        qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Devices";
+        qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Devices:" << m_kmtpDaemon.devices().size();
         finished();
+        return;
     }
+
     // traverse into device
-    else if (deviceCache->contains(pathItems.at(0))) {
-        QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(url.path());
-        UDSEntry entry;
+    const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
+    if (mtpDevice) {
+        // list storages
+        if (pathItems.size() == 1) {
+            qCDebug(LOG_KIO_MTP) << "Listing storages for device " << pathItems.first();
 
-        if (pair.first) {
-            LIBMTP_mtpdevice_t *device = pair.second;
+            const auto storages = mtpDevice->storages();
+            totalSize(filesize_t(storages.size()));
 
-            // Device, list storages
-            if (pathItems.size() == 1) {
-                QMap<QString, LIBMTP_devicestorage_t *> storages = getDevicestorages(device);
-
-                qCDebug(LOG_KIO_MTP) << "Listing storages for device " << pathItems.at(0);
-                totalSize(storages.size());
-
-                if (storages.size() > 0) {
-                    foreach(const QString & storageName, storages.keys()) {
-                        getEntry(entry, storages.value(storageName));
-
-                        listEntry(entry);
-                        entry.clear();
-                    }
-
-                    finished();
-                    qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storages";
-                } else {
-                    warning(i18n("No Storages found. Make sure your device is unlocked and has MTP enabled in its USB connection settings."));
-                }
-            }
-            // Storage, list files and folders of storage root
-            else {
-                QMap<QString, LIBMTP_file_t *> files;
-
-                if (pathItems.size() == 2) {
-                    qCDebug(LOG_KIO_MTP) << "Getting storage root listing";
-
-                    LIBMTP_devicestorage_t *storage = (LIBMTP_devicestorage_t *)pair.first;
-
-                    qCDebug(LOG_KIO_MTP) << "We have a storage:" << (storage == nullptr);
-
-                    files = getFiles(device, storage->id);
-                } else {
-                    LIBMTP_file_t *parent = (LIBMTP_file_t *)pair.first;
-
-                    files = getFiles(device, parent->storage_id, parent->item_id);
-                }
-
-                for (QMap<QString, LIBMTP_file_t *>::iterator it = files.begin(); it != files.end(); ++it) {
-                    LIBMTP_file_t *file = it.value();
-
-                    QString filePath;
-                    if (url.path().endsWith(QLatin1Char('/'))) {
-                        filePath = url.path().append(it.key());
-                    } else {
-                        filePath = url.path().append(QLatin1Char('/')).append(it.key());
-                    }
-
-                    fileCache->addPath(filePath, file->item_id);
-
-                    getEntry(entry, file);
-
-                    listEntry(entry);
-                    entry.clear();
+            if (storages.count() > 0) {
+                for (KMTPStorageInterface *storage : storages) {
+                    listEntry(getEntry(storage));
                 }
 
                 finished();
-
-                qCDebug(LOG_KIO_MTP) << "[SUCCESS] Files";
+                qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storages:" << storages.count();
+            } else {
+                warning(i18n("No storages found. Make sure your device is unlocked and has MTP enabled in its USB connection settings."));
             }
         } else {
-            error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
-            qCDebug(LOG_KIO_MTP) << "[ERROR]";
+            // list files and folders
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
+            if (storage) {
+                int result;
+                const QString path = convertPath(url.path());
+                const KMTPFileList files = storage->getFilesAndFolders(path, result);
+
+                switch (result) {
+                case 0:
+                    break;
+                case 2:
+                    error(ERR_IS_FILE, url.path());
+                    return;
+                default:
+                    // path not found
+                    error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
+                    return;
+                }
+
+                for (const KMTPFile &file : files) {
+                    listEntry(getEntry(file));
+                }
+
+                finished();
+                qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Files:" << files.count();
+            } else {
+                // storage not found
+                error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
+                qCDebug(LOG_KIO_MTP) << "[ERROR] :: Storage";
+            }
         }
     } else {
+        // device not found
         error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
-        qCDebug(LOG_KIO_MTP) << "[ERROR]";
+        qCDebug(LOG_KIO_MTP) << "[ERROR] :: Device";
     }
 }
 
 void MTPSlave::stat(const QUrl &url)
 {
-    qCDebug(LOG_KIO_MTP) << url.path();
-
-    int check = checkUrl(url);
+    const int check = checkUrl(url);
     switch (check) {
     case 0:
         break;
@@ -380,39 +274,51 @@ void MTPSlave::stat(const QUrl &url)
         return;
     }
 
-    QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
-
-    QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(url.path());
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
     UDSEntry entry;
+    // root
+    if (pathItems.size() < 1) {
+        entry.fastInsert(UDSEntry::UDS_NAME, QLatin1String("mtp:///"));
+        entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
+        entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    } else {
+        const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
+        if (mtpDevice) {
 
-    if (pair.first) {
-        // Root
-        if (pathItems.size() < 1) {
-            entry.insert(UDSEntry::UDS_NAME, QLatin1String("mtp:///"));
-            entry.insert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-            entry.insert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
-            entry.insert(UDSEntry::UDS_MIME_TYPE, QLatin1String("inode/directory"));
-        }
-        // Device
-        else if (pathItems.size() < 2) {
-            getEntry(entry, pair.second);
-        }
-        // Storage
-        else if (pathItems.size() < 3) {
-            getEntry(entry, (LIBMTP_devicestorage_t *) pair.first);
-        }
-        // Folder/File
-        else {
-            getEntry(entry, (LIBMTP_file_t *) pair.first);
+            // device
+            if (pathItems.size() < 2) {
+                entry = getEntry(mtpDevice);
+            } else {
+                const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
+                if (storage) {
+
+                    // storage
+                    if (pathItems.size() < 3) {
+                        entry = getEntry(storage);
+                    }
+                    // folder/file
+                    else {
+                        entry = getEntry(storage->getFileMetadata(convertPath(url.path())));
+                    }
+                } else {
+                    error(ERR_DOES_NOT_EXIST, url.path());
+                    return;
+                }
+            }
+        } else {
+            error(ERR_DOES_NOT_EXIST, url.path());
+            return;
         }
     }
+
     statEntry(entry);
     finished();
 }
 
 void MTPSlave::mimetype(const QUrl &url)
 {
-    int check = checkUrl(url);
+    const int check = checkUrl(url);
     switch (check) {
     case 0:
         break;
@@ -427,28 +333,29 @@ void MTPSlave::mimetype(const QUrl &url)
         return;
     }
 
-    qCDebug(LOG_KIO_MTP) << url.path();
-
-    QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
-
-    QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(url.path());
-
-    if (pair.first) {
-//      NOTE the difference between calling mimetype and mimeType
-        if (pathItems.size() > 2) {
-            mimeType(getMimetype(((LIBMTP_file_t *) pair.first)->filetype));
-        } else {
-            mimeType(QString::fromLatin1("inode/directory"));
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    if (pathItems.size() > 2) {
+        const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
+        if (mtpDevice) {
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
+            if (storage) {
+                const KMTPFile file = storage->getFileMetadata(convertPath(url.path()));
+                // NOTE the difference between calling mimetype and mimeType
+                mimeType(file.filetype());
+                return;
+            }
         }
     } else {
-        error(ERR_DOES_NOT_EXIST, url.path());
+        mimeType(QStringLiteral("inode/directory"));
         return;
     }
+
+    error(ERR_DOES_NOT_EXIST, url.path());
 }
 
-void MTPSlave::put(const QUrl &url, int, JobFlags flags)
+void MTPSlave::get(const QUrl &url)
 {
-    int check = checkUrl(url);
+    const int check = checkUrl(url);
     switch (check) {
     case 0:
         break;
@@ -457,66 +364,81 @@ void MTPSlave::put(const QUrl &url, int, JobFlags flags)
         return;
     }
 
-    qCDebug(LOG_KIO_MTP) << url.path();
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
 
-    QStringList destItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    // file
+    if (pathItems.size() > 2) {
 
-    // Can't copy to root or device, needs storage
+        const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
+        if (mtpDevice) {
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
+            if (storage) {
+                const QString path = convertPath(url.path());
+                const KMTPFile source = storage->getFileMetadata(path);
+                if (!source.isValid()) {
+                    error(KIO::ERR_DOES_NOT_EXIST, url.path());
+                    return;
+                }
+
+                mimeType(source.filetype());
+                totalSize(source.filesize());
+
+                int result = storage->getFileToHandler(path);
+                if (result) {
+                    error(KIO::ERR_CANNOT_READ, url.path());
+                    return;
+                }
+
+                QEventLoop loop;
+                connect(storage, &KMTPStorageInterface::dataReady, this, [this] (const QByteArray &data) {
+                    MTPSlave::data(data);
+                });
+                connect(storage, &KMTPStorageInterface::copyFinished, &loop, &QEventLoop::exit);
+                result = loop.exec();
+
+                qCDebug(LOG_KIO_MTP) << "data received";
+
+                if (result) {
+                    error(ERR_CANNOT_READ, url.path());
+                    return;
+                }
+
+                data(QByteArray());
+                finished();
+                return;
+            }
+        }
+    } else {
+        error(ERR_UNSUPPORTED_ACTION, url.path());
+        return;
+    }
+    error(ERR_CANNOT_READ, url.path());
+}
+
+void MTPSlave::put(const QUrl &url, int, JobFlags flags)
+{
+    const int check = checkUrl(url);
+    switch (check) {
+    case 0:
+        break;
+    default:
+        error(ERR_MALFORMED_URL, url.path());
+        return;
+    }
+
+    const QStringList destItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+
+    // can't copy to root or device, needs storage
     if (destItems.size() < 2) {
         error(ERR_UNSUPPORTED_ACTION, url.path());
         return;
     }
 
-    if (!(flags & KIO::Overwrite) && getPath(url.path()).first) {
-        error(ERR_FILE_ALREADY_EXIST, url.path());
-        return;
-    }
+    // we need to get the entire file first, then we can upload
+    qCDebug(LOG_KIO_MTP) << "use temp file";
 
-    destItems.takeLast();
-
-    QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(urlDirectory(url));
-
-    if (!pair.first) {
-        error(ERR_DOES_NOT_EXIST, url.path());
-        return;
-    }
-
-    LIBMTP_mtpdevice_t *device = pair.second;
-    LIBMTP_file_t *parent = (LIBMTP_file_t *) pair.first;
-    if (parent->filetype != LIBMTP_FILETYPE_FOLDER) {
-        error(ERR_IS_FILE, urlDirectory(url));
-        return;
-    }
-
-    // We did get a total size from the application
-    if (hasMetaData(QLatin1String("sourceSize"))) {
-        qCDebug(LOG_KIO_MTP) << "direct put";
-
-        LIBMTP_file_t *file = LIBMTP_new_file_t();
-        file->parent_id = parent->item_id;
-        file->filename = strdup(urlFileName(url).toUtf8().data());
-        file->filetype = getFiletype(urlFileName(url));
-        file->filesize = metaData(QLatin1String("sourceSize")).toULongLong();
-        file->modificationdate = QDateTime::currentDateTime().toTime_t();
-        file->storage_id = parent->storage_id;
-
-        qCDebug(LOG_KIO_MTP) << "Sending file" << file->filename;
-
-        int ret = LIBMTP_Send_File_From_Handler(device, &dataGet, this, file, &dataProgress, this);
-        LIBMTP_destroy_file_t(file);
-
-        if (ret != 0) {
-            error(KIO::ERR_COULD_NOT_WRITE, urlFileName(url));
-            LIBMTP_Dump_Errorstack(device);
-            LIBMTP_Clear_Errorstack(device);
-            return;
-        }
-    }
-    // We need to get the entire file first, then we can upload
-    else {
-        qCDebug(LOG_KIO_MTP) << "use temp file";
-
-        QTemporaryFile temp;
+    QTemporaryFile temp;
+    if (temp.open()) {
         QByteArray buffer;
         int len = 0;
 
@@ -526,80 +448,74 @@ void MTPSlave::put(const QUrl &url, int, JobFlags flags)
             temp.write(buffer);
         } while (len > 0);
 
-        QFileInfo info(temp);
+        const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(destItems.first());
+        if (mtpDevice) {
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(destItems.at(1));
+            if (storage) {
+                const QString destinationPath = convertPath(url.path());
 
-        LIBMTP_file_t *file = LIBMTP_new_file_t();
-        file->parent_id = parent->item_id;
-        file->filename = strdup(urlFileName(url).toUtf8().data());
-        file->filetype = getFiletype(urlFileName(url));
-        file->filesize = info.size();
-        file->modificationdate = QDateTime::currentDateTime().toTime_t();
-        file->storage_id = parent->storage_id;
+                // check if the file already exists on the device
+                const KMTPFile destinationFile = storage->getFileMetadata(destinationPath);
+                if (destinationFile.isValid()) {
+                    if (flags & KIO::Overwrite) {
+                        // delete existing file on the device
+                        const int result = storage->deleteObject(destinationPath);
+                        if (result) {
+                            error(ERR_CANNOT_DELETE, url.path());
+                            return;
+                        }
+                    } else {
+                        error(ERR_FILE_ALREADY_EXIST, url.path());
+                        return;
+                    }
+                }
 
-        int ret = LIBMTP_Send_File_From_File_Descriptor(device, temp.handle(), file, nullptr, nullptr);
-        LIBMTP_destroy_file_t(file);
+                totalSize(quint64(temp.size()));
 
-        if (ret != 0) {
-            error(KIO::ERR_COULD_NOT_WRITE, urlFileName(url));
-            return;
-        }
-        finished();
-    }
-}
+                QDBusUnixFileDescriptor descriptor(temp.handle());
+                int result = storage->sendFileFromFileDescriptor(descriptor, destinationPath);
+                if (result) {
+                    error(KIO::ERR_CANNOT_WRITE, urlFileName(url));
+                    return;
+                }
 
-void MTPSlave::get(const QUrl &url)
-{
-    int check = checkUrl(url);
-    switch (check) {
-    case 0:
-        break;
-    default:
-        error(ERR_MALFORMED_URL, url.path());
-        return;
-    }
+                result = waitForCopyOperation(storage);
+                processedSize(quint64(temp.size()));
+                temp.close();
 
-    qCDebug(LOG_KIO_MTP) << url.path();
+                switch (result) {
+                case 0:
+                    break;
+                case 2:
+                    error(ERR_IS_FILE, urlDirectory(url));
+                    return;
+                default:
+                    error(KIO::ERR_CANNOT_WRITE, urlFileName(url));
+                    return;
+                }
 
-    QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
-
-    // File
-    if (pathItems.size() > 2) {
-        QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(url.path());
-
-        if (pair.first) {
-            LIBMTP_file_t *file = (LIBMTP_file_t *) pair.first;
-
-            mimeType(getMimetype(file->filetype));
-            totalSize(file->filesize);
-
-            LIBMTP_mtpdevice_t *device = pair.second;
-
-            int ret = LIBMTP_Get_File_To_Handler(device, file->item_id, &dataPut, this, &dataProgress, this);
-            if (ret != 0) {
-                error(ERR_COULD_NOT_READ, url.path());
+                qCDebug(LOG_KIO_MTP) << "data sent";
+                finished();
                 return;
             }
-            data(QByteArray());
-            finished();
-        } else {
-            error(ERR_DOES_NOT_EXIST, url.path());
         }
-    } else {
-        error(ERR_UNSUPPORTED_ACTION, url.path());
     }
+
+    error(KIO::ERR_CANNOT_WRITE, urlFileName(url));
 }
 
 void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
 {
-    qCDebug(LOG_KIO_MTP) << src.path() << dest.path();
-
     if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("mtp")) {
         qCDebug(LOG_KIO_MTP) << "Copy on device: Not supported";
         // MTP doesn't support moving files directly on the device, so we have to download and then upload...
 
         error(ERR_UNSUPPORTED_ACTION, i18n("Cannot copy/move files on the device itself"));
+        return;
     } else if (src.scheme() == QLatin1String("file") && dest.scheme() == QLatin1String("mtp")) {
-        int check = checkUrl(dest);
+        // copy from filesystem to the device
+
+        const int check = checkUrl(dest);
         switch (check) {
         case 0:
             break;
@@ -610,7 +526,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
 
         QStringList destItems = dest.path().split(QLatin1Char('/') , QString::SkipEmptyParts);
 
-        // Can't copy to root or device, needs storage
+        // can't copy to root or device, needs storage
         if (destItems.size() < 2) {
             error(ERR_UNSUPPORTED_ACTION, dest.path());
             return;
@@ -618,67 +534,65 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
 
         qCDebug(LOG_KIO_MTP) << "Copy file " << urlFileName(src) << "from filesystem to device" << urlDirectory(src, true) << urlDirectory(dest, true);
 
-        if (!(flags & KIO::Overwrite) && getPath(dest.path()).first) {
-            error(ERR_FILE_ALREADY_EXIST, dest.path());
-            return;
-        }
+        const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(destItems.first());
+        if (mtpDevice) {
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(destItems.at(1));
+            if (storage) {
+                const QString destinationPath = convertPath(dest.path());
 
-        destItems.takeLast();
+                // check if the file already exists on the device
+                const KMTPFile destinationFile = storage->getFileMetadata(destinationPath);
+                if (destinationFile.isValid()) {
+                    if (flags & KIO::Overwrite) {
+                        // delete existing file on the device
+                        const int result = storage->deleteObject(destinationPath);
+                        if (result) {
+                            error(ERR_CANNOT_DELETE, dest.path());
+                            return;
+                        }
+                    } else {
+                        error(ERR_FILE_ALREADY_EXIST, dest.path());
+                        return;
+                    }
+                }
 
-        QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(urlDirectory(dest));
+                QFile srcFile(src.path());
+                if (!srcFile.open(QIODevice::ReadOnly)) {
+                    error(KIO::ERR_CANNOT_OPEN_FOR_READING, src.path());
+                    return;
+                }
 
-        if (!pair.first) {
-            error(ERR_DOES_NOT_EXIST, urlDirectory(dest, true));
-            return;
-        }
+                qCDebug(LOG_KIO_MTP) << "Sending file" << srcFile.fileName() << "with size" << srcFile.size();
 
-        LIBMTP_mtpdevice_t *device = pair.second;
+                totalSize(quint64(srcFile.size()));
 
-        uint32_t parent_id = 0xFFFFFFFF, storage_id = 0;
+                QDBusUnixFileDescriptor descriptor(srcFile.handle());
+                int result = storage->sendFileFromFileDescriptor(descriptor, destinationPath);
+                if (result) {
+                    error(KIO::ERR_CANNOT_WRITE, urlFileName(dest));
+                    return;
+                }
 
-        if (destItems.size() == 2) {
-            LIBMTP_devicestorage_t *storage = (LIBMTP_devicestorage_t *) pair.first;
+                result = waitForCopyOperation(storage);
+                processedSize(quint64(srcFile.size()));
+                srcFile.close();
 
-            storage_id = storage->id;
-        } else {
-            LIBMTP_file_t *parent = (LIBMTP_file_t *) pair.first;
+                if (result) {
+                    error(KIO::ERR_CANNOT_WRITE, urlFileName(dest));
+                    return;
+                }
 
-            storage_id = parent->storage_id;
-            parent_id = parent->item_id;
-
-            if (parent->filetype != LIBMTP_FILETYPE_FOLDER) {
-                error(ERR_IS_FILE, urlDirectory(dest));
+                qCDebug(LOG_KIO_MTP) << "Sent file";
+                finished();
                 return;
             }
         }
+        error(KIO::ERR_CANNOT_WRITE, urlFileName(src));
 
-        QFileInfo source(src.path());
-
-        LIBMTP_file_t *file = LIBMTP_new_file_t();
-        file->parent_id = parent_id;
-        file->filename = strdup(urlFileName(dest).toUtf8().data());
-        file->filetype = getFiletype(urlFileName(dest));
-        file->filesize = source.size();
-        file->modificationdate = source.lastModified().toTime_t();
-        file->storage_id = storage_id;
-
-        qCDebug(LOG_KIO_MTP) << "Sending file" << file->filename << "with size" << file->filesize;
-
-        totalSize(source.size());
-
-        int ret = LIBMTP_Send_File_From_File(device, src.path().toUtf8().data(), file, (LIBMTP_progressfunc_t) &dataProgress, this);
-        LIBMTP_destroy_file_t(file);
-
-        if (ret != 0) {
-            error(KIO::ERR_COULD_NOT_WRITE, urlFileName(dest));
-            LIBMTP_Dump_Errorstack(device);
-            LIBMTP_Clear_Errorstack(device);
-            return;
-        }
-
-        qCDebug(LOG_KIO_MTP) << "Sent file";
     } else if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("file")) {
-        int check = checkUrl(src);
+        // copy from the device to filesystem
+
+        const int check = checkUrl(src);
         switch (check) {
         case 0:
             break;
@@ -687,7 +601,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
             return;
         }
 
-        qCDebug(LOG_KIO_MTP) << "Copy file " << urlFileName(src) << "from device to filesystem" << urlDirectory(src, true) << urlDirectory(dest, true);
+        qCDebug(LOG_KIO_MTP) << "Copy file" << urlFileName(src) << "from device to filesystem" << urlDirectory(src, true) << urlDirectory(dest, true);
 
         QFileInfo destination(dest.path());
 
@@ -696,56 +610,68 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
             return;
         }
 
-        QStringList srcItems = src.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+        const QStringList srcItems = src.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
 
-        // Can't copy to root or device, needs storage
+        // can't copy to root or device, needs storage
         if (srcItems.size() < 2) {
             error(ERR_UNSUPPORTED_ACTION, src.path());
             return;
         }
 
-        QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(src.path());
-        if (!pair.first) {
-            error(ERR_COULD_NOT_READ, src.path());
-            return;
+        const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(srcItems.first());
+        if (mtpDevice) {
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(srcItems.at(1));
+            if (storage) {
+
+                QFile destFile(dest.path());
+                if (!destFile.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
+                    error(KIO::ERR_WRITE_ACCESS_DENIED, dest.path());
+                    return;
+                }
+
+                const KMTPFile source = storage->getFileMetadata(convertPath(src.path()));
+                if (!source.isValid()) {
+                    error(KIO::ERR_DOES_NOT_EXIST, src.path());
+                    return;
+                }
+
+                totalSize(source.filesize());
+
+                QDBusUnixFileDescriptor descriptor(destFile.handle());
+                int result = storage->getFileToFileDescriptor(descriptor, convertPath(src.path()));
+                if (result) {
+                    error(KIO::ERR_CANNOT_READ, urlFileName(src));
+                    return;
+                }
+
+                result = waitForCopyOperation(storage);
+                processedSize(quint64(source.filesize()));
+                destFile.close();
+
+                if (result) {
+                    error(KIO::ERR_CANNOT_READ, urlFileName(src));
+                    return;
+                }
+
+                // set correct modification time
+                struct ::utimbuf times;
+                times.actime = QDateTime::currentDateTime().toTime_t();
+                times.modtime = source.modificationdate();
+
+                ::utime(dest.path().toUtf8().data(), &times);
+
+                qCDebug(LOG_KIO_MTP) << "Received file";
+                finished();
+                return;
+            }
         }
-
-        LIBMTP_mtpdevice_t *device = pair.second;
-        LIBMTP_file_t *source = (LIBMTP_file_t *) pair.first;
-        if (source->filetype == LIBMTP_FILETYPE_FOLDER) {
-            error(ERR_IS_DIRECTORY, urlDirectory(src));
-            return;
-        }
-
-        qCDebug(LOG_KIO_MTP) << "Getting file" << source->filename << urlFileName(dest) << source->filesize;
-
-        totalSize(source->filesize);
-
-        int ret = LIBMTP_Get_File_To_File(device, source->item_id, dest.path().toUtf8().data(), (LIBMTP_progressfunc_t) &dataProgress, this);
-        if (ret != 0) {
-            error(KIO::ERR_COULD_NOT_WRITE, urlFileName(dest));
-            LIBMTP_Dump_Errorstack(device);
-            LIBMTP_Clear_Errorstack(device);
-            return;
-        }
-
-        struct utimbuf *times = (utimbuf *) malloc(sizeof(utimbuf));
-        times->actime = QDateTime::currentDateTime().toTime_t();
-        times->modtime = source->modificationdate;
-
-        int result = utime(dest.path().toUtf8().data(), times);
-
-        free(times);
-
-        qCDebug(LOG_KIO_MTP) << "Sent file";
-
+        error(KIO::ERR_CANNOT_READ, urlFileName(src));
     }
-    finished();
 }
 
 void MTPSlave::mkdir(const QUrl &url, int)
 {
-    int check = checkUrl(url);
+    const int check = checkUrl(url);
     switch (check) {
     case 0:
         break;
@@ -754,57 +680,27 @@ void MTPSlave::mkdir(const QUrl &url, int)
         return;
     }
 
-    qCDebug(LOG_KIO_MTP) << url.path();
-
-    QStringList pathItems = url.path().split(QLatin1Char('/') , QString::SkipEmptyParts);
-    int pathDepth = pathItems.size();
-
-    if (pathItems.size() > 2 && !getPath(url.path()).first) {
-        char *dirName = strdup(pathItems.takeLast().toUtf8().data());
-
-        LIBMTP_mtpdevice_t *device;
-        LIBMTP_file_t *file;
-        LIBMTP_devicestorage_t *storage;
-        int ret = 0;
-
-        QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(urlDirectory(url));
-
-        if (pathDepth == 3) {
-            //the folder need to be created straight to a storage device
-            storage = (LIBMTP_devicestorage_t *) pair.first;
-            device = pair.second;
-            ret = LIBMTP_Create_Folder(device, dirName, 0xFFFFFFFF, storage->id);
-        } else if (pair.first) {
-            file = (LIBMTP_file_t *) pair.first;
-            device = pair.second;
-
-            if (file && file->filetype == LIBMTP_FILETYPE_FOLDER) {
-                qCDebug(LOG_KIO_MTP) << "Found parent" << file->item_id << file->filename;
-                qCDebug(LOG_KIO_MTP) << "Attempting to create folder" << dirName;
-
-                ret = LIBMTP_Create_Folder(device, dirName, file->item_id, file->storage_id);
-
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    if (pathItems.size() > 2) {
+        const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
+        if (mtpDevice) {
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
+            if (storage) {
+                // TODO: folder already exists
+                const quint32 itemId = storage->createFolder(convertPath(url.path()));
+                if (itemId) {
+                    finished();
+                    return;
+                }
             }
         }
-        if (ret != 0) {
-            fileCache->addPath(url.path(), ret);
-            finished();
-            return;
-        } else {
-            LIBMTP_Dump_Errorstack(device);
-            LIBMTP_Clear_Errorstack(device);
-        }
-    } else {
-        error(ERR_DIR_ALREADY_EXIST, url.path());
-        return;
     }
-
-    error(ERR_COULD_NOT_MKDIR, url.path());
+    error(ERR_CANNOT_MKDIR, url.path());
 }
 
 void MTPSlave::del(const QUrl &url, bool)
 {
-    int check = checkUrl(url);
+    const int check = checkUrl(url);
     switch (check) {
     case 0:
         break;
@@ -813,30 +709,21 @@ void MTPSlave::del(const QUrl &url, bool)
         return;
     }
 
-    qCDebug(LOG_KIO_MTP) << url.path();
-
-    QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
-
-    if (pathItems.size() < 2) {
-        error(ERR_CANNOT_DELETE, url.path());
-        return;
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    if (pathItems.size() >= 2) {
+        const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
+        if (mtpDevice) {
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
+            if (storage) {
+                const int result = storage->deleteObject(convertPath(url.path()));
+                if (!result) {
+                    finished();
+                    return;
+                }
+            }
+        }
     }
-
-    QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(url.path());
-
-    LIBMTP_file_t *file = (LIBMTP_file_t *) pair.first;
-
-    int ret = LIBMTP_Delete_Object(pair.second, file->item_id);
-
-    LIBMTP_destroy_file_t (file);
-
-    if (ret != 0) {
-        error(ERR_CANNOT_DELETE, url.path());
-        return;
-    }
-
-    fileCache->removePath(url.path());
-    finished();
+    error(ERR_CANNOT_DELETE, url.path());
 }
 
 void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
@@ -858,61 +745,71 @@ void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
         return;
     }
 
-    qCDebug(LOG_KIO_MTP) << src.path();
+    if (src.scheme() != QLatin1String("mtp")) {
+        // Kate: when editing files directly on the device and the user wants to save the changes,
+        // Kate tries to move the file from /tmp/xxx to the MTP device which is not supported.
+        // The ERR_UNSUPPORTED_ACTION error tells Kate to copy the file instead of moving.
+        error(ERR_UNSUPPORTED_ACTION, src.path());
+        return;
+    }
 
-    QStringList srcItems = src.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
-    QPair<void *, LIBMTP_mtpdevice_t *> pair = getPath(src.path());
-
-    if (pair.first) {
-        // Rename Device
+    const QStringList srcItems = src.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(srcItems.first());
+    if (mtpDevice) {
+        // rename Device
         if (srcItems.size() == 1) {
-            LIBMTP_Set_Friendlyname(pair.second, urlFileName(dest).toUtf8().data());
+            const int result = mtpDevice->setFriendlyName(urlFileName(dest));
+            if (!result) {
+                finished();
+                return;
+            }
         }
-        // Rename Storage
+        // rename Storage
         else if (srcItems.size() == 2) {
             error(ERR_CANNOT_RENAME, src.path());
             return;
         } else {
-            LIBMTP_file_t *destination = (LIBMTP_file_t *) getPath(dest.path()).first;
-            LIBMTP_file_t *source = (LIBMTP_file_t *) pair.first;
+            // rename file or folder
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(srcItems.at(1));
+            if (storage) {
 
-            if (!(flags & KIO::Overwrite) && destination) {
-                if (destination->filetype == LIBMTP_FILETYPE_FOLDER) {
-                    error(ERR_DIR_ALREADY_EXIST, dest.path());
-                } else {
-                    error(ERR_FILE_ALREADY_EXIST, dest.path());
+                // check if the file already exists on the device
+                const QString destinationPath = convertPath(dest.path());
+                const KMTPFile destinationFile = storage->getFileMetadata(destinationPath);
+                if (destinationFile.isValid()) {
+                    if (flags & KIO::Overwrite) {
+                        // delete existing file on the device
+                        const int result = storage->deleteObject(destinationPath);
+                        if (result) {
+                            error(ERR_CANNOT_DELETE, dest.path());
+                            return;
+                        }
+                    } else {
+                        error(ERR_FILE_ALREADY_EXIST, dest.path());
+                        return;
+                    }
                 }
-                return;
+
+                const int result = storage->setFileName(convertPath(src.path()), dest.fileName());
+                if (!result) {
+                    finished();
+                    return;
+                }
             }
-
-            int ret = LIBMTP_Set_File_Name(pair.second, source, urlFileName(dest).toUtf8().data());
-
-            if (ret != 0) {
-                error(ERR_CANNOT_RENAME, src.path());
-                return;
-            } else {
-                fileCache->addPath(dest.path(), source->item_id);
-                fileCache->removePath(src.path());
-            }
-
-            LIBMTP_destroy_file_t (source);
         }
-
-        finished();
-    } else {
-        error(ERR_DOES_NOT_EXIST, src.path());
     }
+    error(ERR_CANNOT_RENAME, src.path());
 }
 
 void MTPSlave::virtual_hook(int id, void *data)
 {
     switch(id) {
-        case SlaveBase::GetFileSystemFreeSpace: {
-            QUrl *url = static_cast<QUrl *>(data);
-            fileSystemFreeSpace(*url);
-        }   break;
-        default:
-            SlaveBase::virtual_hook(id, data);
+    case SlaveBase::GetFileSystemFreeSpace: {
+        QUrl *url = static_cast<QUrl *>(data);
+        fileSystemFreeSpace(*url);
+    }   break;
+    default:
+        SlaveBase::virtual_hook(id, data);
     }
 }
 
@@ -935,25 +832,35 @@ void MTPSlave::fileSystemFreeSpace(const QUrl &url)
         return;
     }
 
-    const auto path = url.path();
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
 
-    const auto storagePath = path.section(QLatin1Char('/'), 0, 2, QString::SectionIncludeLeadingSep);
-    if (storagePath.count(QLatin1Char('/')) != 2) { // /{device}/{storage}
-        error(KIO::ERR_COULD_NOT_STAT, url.toDisplayString());
-        return;
+    // Storage
+    if (pathItems.size() > 1) {
+        const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
+        if (mtpDevice) {
+            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
+            if (storage) {
+                setMetaData(QStringLiteral("total"), QString::number(storage->maxCapacity()));
+                setMetaData(QStringLiteral("available"), QString::number(storage->freeSpaceInBytes()));
+                finished();
+                return;
+            }
+        }
     }
+    error(KIO::ERR_COULD_NOT_STAT, url.toDisplayString());
+}
 
-    const auto pair = getPath(storagePath);
-    auto storage = (LIBMTP_devicestorage_t *)pair.first;
-    if (!storage) {
-        error(KIO::ERR_COULD_NOT_STAT, url.toDisplayString());
-        return;
-    }
+int MTPSlave::waitForCopyOperation(const KMTPStorageInterface *storage)
+{
+    QEventLoop loop;
+    connect(storage, &KMTPStorageInterface::copyProgress, this, [this] (qulonglong sent, qulonglong total) {
+        Q_UNUSED(total)
+        processedSize(sent);
+    });
 
-    setMetaData(QStringLiteral("total"), QString::number(storage->MaxCapacity));
-    setMetaData(QStringLiteral("available"), QString::number(storage->FreeSpaceInBytes));
-
-    finished();
+    // any chance to 'miss' the copyFinished signal and dead lock the slave?
+    connect(storage, &KMTPStorageInterface::copyFinished, &loop, &QEventLoop::exit);
+    return loop.exec();
 }
 
 

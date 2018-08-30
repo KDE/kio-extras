@@ -2,16 +2,16 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_mtp\")
 
 add_definitions(-DQT_NO_CAST_FROM_ASCII)
 
+add_subdirectory(shared)
+add_subdirectory(kiod_module)
+
 set(kio_mtp_PART_SRCS
-    devicecache.cpp
-    filecache.cpp
     kio_mtp.cpp
-    kio_mtp_helpers.cpp
 )
 
-include_directories(${MTP_INCLUDE_DIR})
+include_directories("shared")
 add_library(kio_mtp MODULE ${kio_mtp_PART_SRCS} )
-target_link_libraries(kio_mtp ${MTP_LIBRARIES} Qt5::Core KF5::KIOCore KF5::I18n KF5::Solid Qt5::Network)
+target_link_libraries(kio_mtp kmtp Qt5::Core KF5::KIOCore KF5::I18n KF5::DBusAddons)
 set_target_properties(kio_mtp PROPERTIES OUTPUT_NAME "mtp")
 
 install(TARGETS kio_mtp DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
