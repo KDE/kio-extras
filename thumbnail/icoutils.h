@@ -29,7 +29,7 @@ namespace IcoUtils
 
     bool loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int needWidth=512, int needHeight=512, const qint32 iconNumber=0);
     bool loadIcoImageFromExe(const QString &inputPath, QImage &image, int needWidth=512, int needHeight=512, const qint32 iconNumber=0);
-    bool loadIcoImageFromExe(const QString &inputFileName, const QString &outputFileName, const qint32 iconNumber);
+    bool loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice, const qint32 iconNumber);
 
     bool loadIcoImage(QIODevice * inputDevice, QImage &image, int needWidth=512, int needHeight=512);
     bool loadIcoImage(const QString &inputFileName, QImage &image, int needWidth=512, int needHeight=512);

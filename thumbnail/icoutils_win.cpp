@@ -91,7 +91,7 @@ BOOL CALLBACK enumResNameCallback( HMODULE hModule, LPCTSTR lpszType, LPTSTR lps
     return TRUE;
 }
 
-bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, const QString &outputFileName, const qint32 iconNumber)
+bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice, const qint32 iconNumber)
 {
 
     HMODULE hModule;
@@ -183,12 +183,10 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, const QString &
             imageOffset += resourceSize;
         }
 
-        QFile outFile(outputFileName);
-        outFile.open(QIODevice::WriteOnly);
-        outFile.write(outBuffer.data());
+        const bool ok = (outputDevice->write(outBuffer.data()) == outBuffer.size());
 
         FreeLibrary( hModule );
-        return true;
+        return ok;
     }
 
     FreeLibrary( hModule );

@@ -15,6 +15,7 @@
 
 #include "icoutils.h"
 
+#include <QBuffer>
 #include <QList>
 #include <QString>
 #include <QTemporaryFile>
@@ -63,17 +64,19 @@ bool IcoUtils::loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int n
 
 bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, int needWidth, int needHeight, const qint32 iconNumber)
 {
-
-    QTemporaryFile outputFile;
-
-    if ( ! outputFile.open() )
+    QBuffer iconData;
+    if (!iconData.open(QIODevice::ReadWrite)) {
         return false;
+    }
 
-    if ( ! IcoUtils::loadIcoImageFromExe(inputFileName, outputFile.fileName(), iconNumber) )
+    if ( ! IcoUtils::loadIcoImageFromExe(inputFileName, &iconData, iconNumber) )
          return false;
 
-    return IcoUtils::loadIcoImage(outputFile.fileName(), image, needWidth, needHeight);
+    if (!iconData.seek(0)) {
+        return false;
+    }
 
+    return IcoUtils::loadIcoImage(&iconData, image, needWidth, needHeight);
 }
 
 bool IcoUtils::loadIcoImage(QImageReader &reader, QImage &image, int needWidth, int needHeight)

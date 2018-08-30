@@ -27,7 +27,7 @@
 #define abs(n) ( ( n < 0 ) ? -n : n )
 typedef QPair < QString, int > IconInExe;
 
-bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, const QString &outputFileName, const qint32 iconNumber)
+bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice, const qint32 iconNumber)
 {
 
     QProcess wrestool;
@@ -76,14 +76,20 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, const QString &
         if ( name.at(0) == '\'' )
             name = name.mid(1, name.size()-2);
 
-        QFile(outputFileName).resize(0);
-
-        wrestool.start("wrestool", QStringList() << "-x" << "-t" << QString::number(type) << "-n" << name << inputFileName << "-o" << outputFileName);
+        wrestool.start("wrestool", QStringList() << "-x" << "-t" << QString::number(type) << "-n" << name << inputFileName);
         wrestool.waitForFinished();
 
-        if ( wrestool.exitCode() == 0 && QFile(outputFileName).size() != 0 )
-            return true;
+        if (wrestool.exitCode() != 0) {
+            return false;
+        }
 
+        const QByteArray iconData = wrestool.readAllStandardOutput();
+
+        if (outputDevice->write(iconData) != iconData.size()) {
+            return false;
+        }
+
+        return true;
     }
 
     return false;
