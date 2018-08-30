@@ -142,7 +142,6 @@
 # include <KFilterDev>
 # define BYTEARRAY(x) x.constData()
 #else
-# include <QTextDocument>
 # include <KLocalizedString>
 # define BYTEARRAY(x) x
 #endif
