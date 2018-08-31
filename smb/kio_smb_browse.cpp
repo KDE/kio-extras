@@ -492,6 +492,14 @@ void SMBSlave::fileSystemFreeSpace(const QUrl& url)
 {
     qCDebug(KIO_SMB) << url;
 
+    // Avoid crashing in smbc_fstatvfs below when
+    // requesting free space for smb:// which doesn't
+    // make sense to do to begin with
+    if (url.host().isEmpty()) {
+        error(KIO::ERR_COULD_NOT_STAT, url.url());
+        return;
+    }
+
     SMBUrl smbcUrl = url;
     int handle = smbc_opendir(smbcUrl.toSmbcUrl());
     if (handle < 0) {
