@@ -6150,7 +6150,7 @@ char *manPageToUtf8(const QByteArray &input, const QByteArray &dirName)
   // (but I find pages which do not excactly obey the format described in manconv, e.g.
   // the control char is either "." or "'")
   // Therefore use a QRegExp
-  QRegExp regex("[\\.']\\\\\".*coding:\\s*(\\S*)\\s", Qt::CaseInsensitive);
+  QRegExp regex("[\\.']\\\\\"[^$]*coding:\\s*(\\S*)\\s", Qt::CaseInsensitive);
   if ( regex.indexIn(QLatin1String(input)) == 0 )
   {
     encoding = regex.cap(1).toLatin1();
