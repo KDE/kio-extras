@@ -942,8 +942,10 @@ void sftpProtocol::special(const QByteArray &) {
     int rc;
     qCDebug(KIO_SFTP_LOG) << "special(): polling";
 
-    if (!mSftp)
+    if (!mSftp) {
+        error(KIO::ERR_INTERNAL, i18n("Invalid sftp context"));
         return;
+    }
 
     /*
      * ssh_channel_poll() returns the number of bytes that may be read on the
@@ -968,6 +970,8 @@ void sftpProtocol::special(const QByteArray &) {
     }
 
     setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
+
+    finished();
 }
 
 void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
@@ -1064,6 +1068,7 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
   totalSize(fileSize);
   position(0);
   opened();
+  finished();
 }
 
 void sftpProtocol::read(KIO::filesize_t bytes) {
@@ -1085,6 +1090,7 @@ void sftpProtocol::read(KIO::filesize_t bytes) {
 
   const QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
   data(fileData);
+  finished();
 }
 
 void sftpProtocol::write(const QByteArray &data) {
@@ -1101,6 +1107,7 @@ void sftpProtocol::write(const QByteArray &data) {
   }
 
   written(bytesWritten);
+  finished();
 }
 
 void sftpProtocol::seek(KIO::filesize_t offset) {
@@ -1114,6 +1121,7 @@ void sftpProtocol::seek(KIO::filesize_t offset) {
   }
 
   position(sftp_tell64(mOpenFile));
+  finished();
 }
 
 void sftpProtocol::close() {
@@ -1129,16 +1137,14 @@ void sftpProtocol::get(const QUrl& url) {
   int errorCode = 0;
   const sftpProtocol::StatusCode cs = sftpGet(url, errorCode);
 
-  if (cs == sftpProtocol::Success) {
-    finished();
-    return;
-  }
-
   // The call to sftpGet should only return server side errors since the file
   // descriptor parameter is set to -1.
   if (cs == sftpProtocol::ServerError && errorCode) {
      error(errorCode, url.toDisplayString());
+     return;
   }
+
+  finished();
 }
 
 sftpProtocol::StatusCode sftpProtocol::sftpGet(const QUrl& url, int& errorCode, KIO::fileoffset_t offset, int fd) {
@@ -1278,16 +1284,14 @@ void sftpProtocol::put(const QUrl& url, int permissions, KIO::JobFlags flags) {
   int errorCode = 0;
   const sftpProtocol::StatusCode cs = sftpPut(url, permissions, flags, errorCode);
 
-  if (cs == sftpProtocol::Success) {
-    finished();
-    return;
-  }
-
   // The call to sftpPut should only return server side errors since the file
   // descriptor parameter is set to -1.
   if (cs == sftpProtocol::ServerError && errorCode) {
      error(errorCode, url.toDisplayString());
+     return;
   }
+
+  finished();
 }
 
 sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions, JobFlags flags, int& errorCode, int fd) {
@@ -1568,18 +1572,16 @@ void sftpProtocol::copy(const QUrl &src, const QUrl &dest, int permissions, KIO:
     sCopyFile.clear();
   }
 
-  // On success or errorcode < 0, emit the finished signal and
-  // send a warning message to the client if errorCode < 0.
-  if (cs == sftpProtocol::Success || errorCode < 0) {
-    if (errorCode < 0)
-      sftpSendWarning(errorCode, sCopyFile);
-    finished();
+  if (cs != sftpProtocol::Success && errorCode > 0) {
+    error(errorCode, sCopyFile);
     return;
   }
 
-  if (errorCode) {
-    error(errorCode, sCopyFile);
+  if (errorCode < 0) {
+    sftpSendWarning(errorCode, sCopyFile);
   }
+
+  finished();
 }
 
 sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QString& sCopyFile, int permissions, KIO::JobFlags flags, int& errorCode)
@@ -1950,16 +1952,18 @@ void sftpProtocol::mkdir(const QUrl &url, int permissions) {
       reportError(url, sftp_get_error(mSftp));
       sftp_attributes_free(sb);
       return;
-    } else {
-      qCDebug(KIO_SFTP_LOG) << "Successfully created directory: " << url;
-      if (permissions != -1) {
-        chmod(url, permissions);
-      } else {
-        finished();
-      }
-      sftp_attributes_free(sb);
-      return;
     }
+
+    qCDebug(KIO_SFTP_LOG) << "Successfully created directory: " << url;
+    if (permissions != -1) {
+      // This will report an error or finished.
+      chmod(url, permissions);
+    } else {
+      finished();
+    }
+
+    sftp_attributes_free(sb);
+    return;
   }
 
   if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
