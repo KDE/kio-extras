@@ -333,8 +333,9 @@ void sftpProtocol::reportError(const QUrl &url, const int err) {
     qCDebug(KIO_SFTP_LOG) << "url = " << url << " - err=" << err;
 
     const int kioError = toKIOError(err);
-    if (kioError)
-        error(kioError, url.toDisplayString());
+    Q_ASSERT(kioError != 0);
+
+    error(kioError, url.toDisplayString());
 }
 
 bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &path,
