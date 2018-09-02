@@ -337,7 +337,6 @@ void sftpProtocol::reportError(const QUrl &url, const int err) {
 
 bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &path,
       UDSEntry &entry, short int details) {
-  mode_t type;
   mode_t access;
   char *link;
   bool isBrokenLink = false;
@@ -1825,7 +1824,6 @@ void sftpProtocol::listDir(const QUrl& url) {
 
   for (;;) {
     mode_t access;
-    mode_t type;
     char *link;
     bool isBrokenLink = false;
     long long fileType = S_IFREG;
