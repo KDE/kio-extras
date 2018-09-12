@@ -2,7 +2,14 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_sftp\")
 
 include_directories(${LIBSSH_INCLUDE_DIR})
 
-add_library(kio_sftp MODULE kio_sftp.cpp kio_smtp_debug.cpp)
+set(kio_sftp_SRCS kio_sftp.cpp)
+
+ecm_qt_declare_logging_category(kio_sftp_SRCS
+    HEADER kio_sftp_debug.h
+    IDENTIFIER KIO_SFTP_LOG
+    CATEGORY_NAME log_kio_sftp)
+
+add_library(kio_sftp MODULE ${kio_sftp_SRCS})
 target_link_libraries(kio_sftp
    KF5::KIOCore
    KF5::WidgetsAddons # KMessageBox

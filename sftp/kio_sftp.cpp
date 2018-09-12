@@ -22,7 +22,7 @@
 #include "kio_sftp.h"
 
 #include <config-runtime.h>
-#include "kio_smtp_debug.h"
+#include "kio_sftp_debug.h"
 #include <cerrno>
 #include <cstring>
 #include <utime.h>

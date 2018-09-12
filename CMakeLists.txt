@@ -53,6 +53,7 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMMarkNonGuiExecutable)
 include(ECMMarkAsTest)
 include(ECMOptionalAddSubdirectory)
+include(ECMQtDeclareLoggingCategory)
 
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 
