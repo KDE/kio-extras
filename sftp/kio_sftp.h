@@ -141,10 +141,11 @@ private: // Private variables
      * @param file the sftp_file object which should be transferred.
      * @param sb the attributes of that sftp_file object.
      * @param maxPendingRequests the maximum number of parallel requests to start with.
-     *                            The number will be adjusted automatically depending
-     *                            on the connection speed.
+     *                           The more are pending the higher the potential memory
+     *                           foot print, however if the connection allows it
+     *                           we'll get better throughput.
      */
-    GetRequest(sftp_file file, sftp_attributes sb, ushort maxPendingRequests = 1);
+    GetRequest(sftp_file file, sftp_attributes sb, ushort maxPendingRequests = 128);
     /**
      * Removes all pending requests and closes the SFTP channel and attributes
      * in order to avoid memory leaks.
