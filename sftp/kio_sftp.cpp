@@ -42,7 +42,6 @@
 #include <kio/ioslave_defaults.h>
 
 #define KIO_SFTP_SPECIAL_TIMEOUT 30
-#define ZERO_STRUCTP(x) do { if ((x) != NULL) memset((char *)(x), 0, sizeof(*(x))); } while(0)
 
 // How big should each data packet be? Definitely not bigger than 64kb or
 // you will overflow the 2 byte size variable in a sftp packet.
@@ -453,12 +452,12 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
   qCDebug(KIO_SFTP_LOG) << "debug = " << getenv("KIO_SFTP_LOG_VERBOSITY");
 #endif
 
-  mCallbacks = (ssh_callbacks) malloc(sizeof(struct ssh_callbacks_struct));
+  // Members are 'value initialized' to zero because of non-user defined ()!
+  mCallbacks = new struct ssh_callbacks_struct();
   if (mCallbacks == nullptr) {
     error(KIO::ERR_OUT_OF_MEMORY, i18n("Could not allocate callbacks"));
     return;
   }
-  ZERO_STRUCTP(mCallbacks);
 
   mCallbacks->userdata = this;
   mCallbacks->auth_function = ::auth_callback;
