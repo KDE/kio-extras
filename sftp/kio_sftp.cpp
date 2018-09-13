@@ -70,12 +70,11 @@ extern "C"
   }
 }
 
-// Converts SSH error into KIO error
+// Converts SSH error into KIO error. Only must be called for error handling
+// as this will always return an error state and never NoError.
 static int toKIOError (const int err)
 {
   switch (err) {
-    case SSH_FX_OK:
-      break;
     case SSH_FX_NO_SUCH_FILE:
     case SSH_FX_NO_SUCH_PATH:
       return KIO::ERR_DOES_NOT_EXIST;
@@ -92,7 +91,12 @@ static int toKIOError (const int err)
     default:
       return KIO::ERR_INTERNAL;
   }
-  return 0;
+  // We should not get here. When this function gets called we've
+  // encountered an error on the libssh side, this needs to be mapped to *any*
+  // KIO error. Not mapping is not an option at this point, even if the ssh err
+  // is wrong or 'ok'.
+  Q_UNREACHABLE();
+  return KIO::ERR_UNKNOWN;
 }
 
 // Writes 'len' bytes from 'buf' to the file handle 'fd'.
