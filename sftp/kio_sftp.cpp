@@ -41,17 +41,12 @@
 #include <kconfiggroup.h>
 #include <kio/ioslave_defaults.h>
 
-
 #define KIO_SFTP_SPECIAL_TIMEOUT 30
 #define ZERO_STRUCTP(x) do { if ((x) != NULL) memset((char *)(x), 0, sizeof(*(x))); } while(0)
 
 // How big should each data packet be? Definitely not bigger than 64kb or
 // you will overflow the 2 byte size variable in a sftp packet.
 #define MAX_XFER_BUF_SIZE (60 * 1024)
-#define KIO_SFTP_DB 7120
-// Maximum amount of data which can be sent from the KIOSlave in one chunk
-// see TransferJob::slotDataReq (max_size variable) for the value
-#define MAX_TRANSFER_SIZE (14 * 1024 * 1024)
 
 using namespace KIO;
 extern "C"
