@@ -464,12 +464,10 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
 
   ssh_callbacks_init(mCallbacks);
 
-  char *verbosity = getenv("KIO_SFTP_LOG_VERBOSITY");
-  if (verbosity != nullptr) {
-    int level = atoi(verbosity);
-    int rc;
-
-    rc = ssh_set_log_level(level);
+  bool ok;
+  int level = qEnvironmentVariableIntValue("KIO_SFTP_LOG_VERBOSITY", &ok);
+  if (ok) {
+    int rc = ssh_set_log_level(level);
     if (rc != SSH_OK) {
       error(KIO::ERR_INTERNAL, i18n("Could not set log verbosity."));
       return;
@@ -487,7 +485,6 @@ sftpProtocol::sftpProtocol(const QByteArray &pool_socket, const QByteArray &app_
       return;
     }
   }
-
 }
 
 sftpProtocol::~sftpProtocol() {
