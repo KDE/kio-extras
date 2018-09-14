@@ -351,7 +351,7 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
     return false;
   }
 
-  entry.insert(KIO::UDSEntry::UDS_NAME, filename);
+  entry.fastInsert(KIO::UDSEntry::UDS_NAME, filename);
 
   if (sb->type == SSH_FILEXFER_TYPE_SYMLINK) {
     link = sftp_readlink(mSftp, path.constData());
@@ -359,7 +359,7 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
       sftp_attributes_free(sb);
       return false;
     }
-    entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
+    entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
     free(link);
     // A symlink -> follow it only if details > 1
     if (details > 1) {
@@ -397,26 +397,26 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
     access = sb->permissions & 07777;
     size = sb->size;
   }
-  entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
-  entry.insert(KIO::UDSEntry::UDS_ACCESS, access);
-  entry.insert(KIO::UDSEntry::UDS_SIZE, size);
+  entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
+  entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, access);
+  entry.fastInsert(KIO::UDSEntry::UDS_SIZE, size);
 
   if (details > 0) {
     if (sb->owner) {
-      entry.insert(KIO::UDSEntry::UDS_USER, QString::fromUtf8(sb->owner));
+      entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::fromUtf8(sb->owner));
     } else {
-      entry.insert(KIO::UDSEntry::UDS_USER, QString::number(sb->uid));
+      entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::number(sb->uid));
     }
 
     if (sb->group) {
-      entry.insert(KIO::UDSEntry::UDS_GROUP, QString::fromUtf8(sb->group));
+      entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::fromUtf8(sb->group));
     } else {
-      entry.insert(KIO::UDSEntry::UDS_GROUP, QString::number(sb->gid));
+      entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::number(sb->gid));
     }
 
-    entry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, sb->atime);
-    entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, sb->mtime);
-    entry.insert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, sb->atime);
+    entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, sb->mtime);
+    entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
   }
 
   sftp_attributes_free(sb);
@@ -1837,7 +1837,7 @@ void sftpProtocol::listDir(const QUrl& url) {
     }
 
     entry.clear();
-    entry.insert(KIO::UDSEntry::UDS_NAME, QFile::decodeName(dirent->name));
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, QFile::decodeName(dirent->name));
 
     if (dirent->type == SSH_FILEXFER_TYPE_SYMLINK) {
       QByteArray file = path + '/' + QFile::decodeName(dirent->name).toUtf8();
@@ -1848,7 +1848,7 @@ void sftpProtocol::listDir(const QUrl& url) {
         error(KIO::ERR_INTERNAL, i18n("Could not read link: %1", QString::fromUtf8(file)));
         return;
       }
-      entry.insert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
+      entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
       free(link);
       // A symlink -> follow it only if details > 1
       if (details > 1) {
@@ -1886,26 +1886,26 @@ void sftpProtocol::listDir(const QUrl& url) {
       access = dirent->permissions & 07777;
       size = dirent->size;
     }
-    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
-    entry.insert(KIO::UDSEntry::UDS_ACCESS, access);
-    entry.insert(KIO::UDSEntry::UDS_SIZE, size);
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, access);
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, size);
 
     if (details > 0) {
       if (dirent->owner) {
-          entry.insert(KIO::UDSEntry::UDS_USER, QString::fromUtf8(dirent->owner));
+          entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::fromUtf8(dirent->owner));
       } else {
-          entry.insert(KIO::UDSEntry::UDS_USER, QString::number(dirent->uid));
+          entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::number(dirent->uid));
       }
 
       if (dirent->group) {
-          entry.insert(KIO::UDSEntry::UDS_GROUP, QString::fromUtf8(dirent->group));
+          entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::fromUtf8(dirent->group));
       } else {
-          entry.insert(KIO::UDSEntry::UDS_GROUP, QString::number(dirent->gid));
+          entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::number(dirent->gid));
       }
 
-      entry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, dirent->atime);
-      entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, dirent->mtime);
-      entry.insert(KIO::UDSEntry::UDS_CREATION_TIME, dirent->createtime);
+      entry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, dirent->atime);
+      entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, dirent->mtime);
+      entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, dirent->createtime);
     }
 
     sftp_attributes_free(dirent);
