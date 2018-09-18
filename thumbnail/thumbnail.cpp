@@ -86,6 +86,10 @@
 // plugin       - the name of the plugin library to be used for thumbnail creation.
 //                Provided by the application to save an addition KTrader
 //                query here.
+// enabledPlugins - a list of enabled thumbnailer plugins. PreviewJob does not call
+//                  this thumbnail slave when a given plugin isn't enabled. However,
+//                  for directory thumbnails it doesn't know that the thumbnailer
+//                  internally also loads the plugins.
 // shmid        - the shared memory segment id to write the image's data to.
 //                The segment is assumed to provide enough space for a 32-bit
 //                image sized width x height pixels.
@@ -153,6 +157,11 @@ ThumbnailProtocol::~ThumbnailProtocol()
 void ThumbnailProtocol::get(const QUrl &url)
 {
     m_mimeType = metaData("mimeType");
+    m_enabledPlugins = metaData("enabledPlugins").split(QLatin1Char(','), QString::SkipEmptyParts);
+    if (m_enabledPlugins.isEmpty()) {
+        const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
+        m_enabledPlugins = globalConfig.readEntry("Plugins", KIO::PreviewJob::defaultPlugins());
+    }
     //qDebug() << "Wanting MIME Type:" << m_mimeType;
 #ifdef THUMBNAIL_HACK
     // ### HACK
@@ -671,11 +680,6 @@ const QImage ThumbnailProtocol::getIcon()
 bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& filePath,
                                            int segmentWidth, int segmentHeight)
 {
-    if (m_enabledPlugins.isEmpty()) {
-        const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
-        m_enabledPlugins = globalConfig.readEntry("Plugins", KIO::PreviewJob::defaultPlugins());
-    }
-
     const QMimeDatabase db;
     const QUrl fileUrl = QUrl::fromLocalFile(filePath);
     const QString subPlugin = pluginForMimeType(db.mimeTypeForUrl(fileUrl).name());
