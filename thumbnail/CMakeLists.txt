@@ -216,6 +216,19 @@ endif(TAGLIB_FOUND)
 
 # ########### next target ###############
 
+set(opendocumentthumbnail_SRCS opendocumentcreator.cpp)
+add_library(opendocumentthumbnail MODULE ${opendocumentthumbnail_SRCS})
+
+target_link_libraries(opendocumentthumbnail
+    Qt5::Gui
+    KF5::KIOWidgets
+    KF5::Archive
+)
+
+install(TARGETS opendocumentthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+
+# ########### next target ###############
+
 if(libappimage_FOUND)
 
 set(appimagethumbnail_SRCS appimagecreator.cpp)
@@ -244,6 +257,7 @@ install(FILES
 #    desktopthumbnail.desktop
     comicbookthumbnail.desktop
     kraorathumbnail.desktop
+    opendocumentthumbnail.desktop
     ${audiothumbnail_desktop}
     DESTINATION ${SERVICES_INSTALL_DIR})
 
