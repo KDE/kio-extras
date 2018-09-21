@@ -1,6 +1,12 @@
 [Desktop Entry]
 Type=Service
 Name=Office Documents (Open Document Files)
+Name[ca]=Documents Office (Fitxers Open Document)
+Name[nl]=Kantoordocumenten (Open Document bestanden)
+Name[pt]=Documentos de Escritório (Ficheiros Open Document)
+Name[sv]=Kontorsdokument (Open Document-filer)
+Name[uk]=Офісні документи (файли ODF)
+Name[x-test]=xxOffice Documents (Open Document Files)xx
 
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/vnd.oasis.opendocument.text;application/vnd.oasis.opendocument.text-template;application/vnd.oasis.opendocument.text-master;application/vnd.oasis.opendocument.text-master-template;application/vnd.oasis.opendocument.spreadsheet;application/vnd.oasis.opendocument.spreadsheet-template;application/vnd.oasis.opendocument.graphics;application/vnd.oasis.opendocument.graphics-template;application/vnd.oasis.opendocument.presentation;application/vnd.oasis.opendocument.presentation-template;application/vnd.oasis.opendocument.formula;application/vnd.oasis.opendocument.formula-template;application/vnd.oasis.opendocument.chart;application/vnd.oasis.opendocument.chart-template;
