@@ -47,6 +47,8 @@
 // you will overflow the 2 byte size variable in a sftp packet.
 #define MAX_XFER_BUF_SIZE (60 * 1024)
 
+#define KSFTP_ISDIR(sb) (sb->type == SSH_FILEXFER_TYPE_DIRECTORY)
+
 using namespace KIO;
 extern "C"
 {
@@ -1354,11 +1356,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
   }
 
   if (bOrigExists && !(flags & KIO::Overwrite) && !(flags & KIO::Resume)) {
-    if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
-      errorCode = KIO::ERR_DIR_ALREADY_EXIST;
-    } else {
-      errorCode = KIO::ERR_FILE_ALREADY_EXIST;
-    }
+    errorCode = KSFTP_ISDIR(sb) ? KIO::ERR_DIR_ALREADY_EXIST : KIO::ERR_FILE_ALREADY_EXIST;
     sftp_attributes_free(sb);
     return sftpProtocol::ServerError;
   }
@@ -1969,14 +1967,9 @@ void sftpProtocol::mkdir(const QUrl &url, int permissions) {
     return;
   }
 
-  if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
-    error(KIO::ERR_DIR_ALREADY_EXIST, path);
-  } else {
-    error(KIO::ERR_FILE_ALREADY_EXIST, path);
-  }
-
+  auto err = KSFTP_ISDIR(sb) ? KIO::ERR_DIR_ALREADY_EXIST : KIO::ERR_FILE_ALREADY_EXIST;
   sftp_attributes_free(sb);
-  return;
+  error(err, path);
 }
 
 void sftpProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) {
@@ -1992,18 +1985,15 @@ void sftpProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags
 
   sftp_attributes sb = sftp_lstat(mSftp, qdest.constData());
   if (sb != nullptr) {
+    const bool isDir = KSFTP_ISDIR(sb);
     if (!(flags & KIO::Overwrite)) {
-      if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
-        error(KIO::ERR_DIR_ALREADY_EXIST, dest.url());
-      } else {
-        error(KIO::ERR_FILE_ALREADY_EXIST, dest.url());
-      }
+      error(isDir ? KIO::ERR_DIR_ALREADY_EXIST : KIO::ERR_FILE_ALREADY_EXIST, dest.url());
       sftp_attributes_free(sb);
       return;
     }
 
     // Delete the existing destination file/dir...
-    if (sb->type == SSH_FILEXFER_TYPE_DIRECTORY) {
+    if (isDir) {
       if (sftp_rmdir(mSftp, qdest.constData()) < 0) {
         reportError(dest, sftp_get_error(mSftp));
         return;
