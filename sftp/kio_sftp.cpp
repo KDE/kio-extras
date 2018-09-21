@@ -978,6 +978,7 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
   qCDebug(KIO_SFTP_LOG) << "open: " << url;
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
@@ -1729,6 +1730,7 @@ void sftpProtocol::stat(const QUrl& url) {
   qCDebug(KIO_SFTP_LOG) << url;
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
@@ -1777,6 +1779,7 @@ void sftpProtocol::mimetype(const QUrl& url){
   qCDebug(KIO_SFTP_LOG) << url;
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
@@ -1790,6 +1793,7 @@ void sftpProtocol::listDir(const QUrl& url) {
   qCDebug(KIO_SFTP_LOG) << "list directory: " << url;
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
@@ -1927,6 +1931,7 @@ void sftpProtocol::mkdir(const QUrl &url, int permissions) {
   qCDebug(KIO_SFTP_LOG) << "create directory: " << url;
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
@@ -1978,6 +1983,7 @@ void sftpProtocol::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags
   qCDebug(KIO_SFTP_LOG) << "rename " << src << " to " << dest << flags;
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
@@ -2025,6 +2031,7 @@ void sftpProtocol::symlink(const QString &target, const QUrl &dest, KIO::JobFlag
                       << ", resume = " << (flags & KIO::Resume);
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
@@ -2062,6 +2069,7 @@ void sftpProtocol::chmod(const QUrl& url, int permissions) {
   qCDebug(KIO_SFTP_LOG) << "change permission of " << url << " to " << QString::number(permissions);
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
@@ -2079,6 +2087,7 @@ void sftpProtocol::del(const QUrl &url, bool isfile){
   qCDebug(KIO_SFTP_LOG) << "deleting " << (isfile ? "file: " : "directory: ") << url;
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
@@ -2280,6 +2289,7 @@ void sftpProtocol::fileSystemFreeSpace(const QUrl& url)
   qCDebug(KIO_SFTP_LOG) << "file system free space of" << url;
 
   if (!sftpLogin()) {
+    // sftpLogin finished()
     return;
   }
 
