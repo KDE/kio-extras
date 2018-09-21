@@ -542,6 +542,7 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
     return false;
   }
 
+#if LIBSSH_VERSION_INT >= SSH_VERSION_INT(0, 8, 0)
   // Disable Nagle's Algorithm (TCP_NODELAY). Usually faster for sftp.
   bool nodelay = true;
   rc = ssh_options_set(mSession, SSH_OPTIONS_NODELAY, &nodelay);
@@ -549,6 +550,7 @@ bool sftpProtocol::sftpOpenConnection (const AuthInfo& info)
     error(KIO::ERR_INTERNAL, i18n("Could not disable Nagle's Algorithm."));
     return false;
   }
+#endif // 0.8.0
 
   // Don't use any compression
   rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_C_S, "none");
