@@ -1049,7 +1049,7 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
     bytesRead = sftp_read(mOpenFile, buffer.data(), bytesRequested);
     if (bytesRead < 0) {
       error(KIO::ERR_COULD_NOT_READ, mOpenUrl.toDisplayString());
-      close();
+      closeWithoutFinish();
       return;
     } else {
       QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
@@ -1084,7 +1084,7 @@ void sftpProtocol::read(KIO::filesize_t bytes) {
   if (bytesRead < 0) {
     qCDebug(KIO_SFTP_LOG) << "Could not read " << mOpenUrl;
     error(KIO::ERR_COULD_NOT_READ, mOpenUrl.toDisplayString());
-    close();
+    closeWithoutFinish();
     return;
   }
 
@@ -1102,7 +1102,7 @@ void sftpProtocol::write(const QByteArray &data) {
   if (bytesWritten < 0) {
     qCDebug(KIO_SFTP_LOG) << "Could not write to " << mOpenUrl;
     error(KIO::ERR_COULD_NOT_WRITE, mOpenUrl.toDisplayString());
-    close();
+    closeWithoutFinish();
     return;
   }
 
@@ -1117,7 +1117,8 @@ void sftpProtocol::seek(KIO::filesize_t offset) {
 
   if (sftp_seek64(mOpenFile, static_cast<uint64_t>(offset)) < 0) {
     error(KIO::ERR_COULD_NOT_SEEK, mOpenUrl.path());
-    close();
+    closeWithoutFinish();
+    return;
   }
 
   position(sftp_tell64(mOpenFile));
@@ -1125,9 +1126,7 @@ void sftpProtocol::seek(KIO::filesize_t offset) {
 }
 
 void sftpProtocol::close() {
-  sftp_close(mOpenFile);
-
-  mOpenFile = nullptr;
+  closeWithoutFinish();
   finished();
 }
 
@@ -1783,9 +1782,8 @@ void sftpProtocol::mimetype(const QUrl& url){
 
   // open() feeds the mimetype
   open(url, QIODevice::ReadOnly);
-  close();
-
-  finished();
+  // open() finished(), don't finish in close again.
+  closeWithoutFinish();
 }
 
 void sftpProtocol::listDir(const QUrl& url) {
@@ -2261,6 +2259,12 @@ void sftpProtocol::sftpSendWarning(int errorCode, const QString& url)
   default:
       break;
   }
+}
+
+void sftpProtocol::closeWithoutFinish()
+{
+  sftp_close(mOpenFile);
+  mOpenFile = nullptr;
 }
 
 void sftpProtocol::clearPubKeyAuthInfo()

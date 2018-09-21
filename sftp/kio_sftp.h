@@ -196,6 +196,9 @@ private: // private methods
   bool sftpOpenConnection(const KIO::AuthInfo&);
   void sftpSendWarning(int errorCode, const QString& url);
 
+  // Close without error() or finish() call (in case of errors for example)
+  void closeWithoutFinish();
+
   /**
     * Status Code returned from ftpPut() and ftpGet(), used to select
     * source or destination url for error messages
