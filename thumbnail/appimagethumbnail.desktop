@@ -14,6 +14,7 @@ Name[pt_BR]=AppImage
 Name[sv]=AppImage
 Name[uk]=AppImage
 Name[x-test]=xxAppImagexx
+Name[zh_CN]=AppImage
 Name[zh_TW]=AppImage
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-iso9660-appimage;application/vnd.appimage;
