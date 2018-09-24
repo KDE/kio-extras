@@ -2,6 +2,7 @@
 Type=Service
 Name=Office Documents (Open Document Files)
 Name[ca]=Documents Office (Fitxers Open Document)
+Name[ca@valencia]=Documents Office (Fitxers Open Document)
 Name[nl]=Kantoordocumenten (Open Document bestanden)
 Name[nn]=Kontordokument (OpenDocument-filer)
 Name[pt]=Documentos de Escritório (Ficheiros Open Document)
