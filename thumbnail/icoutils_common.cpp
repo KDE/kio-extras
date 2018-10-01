@@ -81,9 +81,11 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, 
 
 bool IcoUtils::loadIcoImage(QImageReader &reader, QImage &image, int needWidth, int needHeight)
 {
-
-    if ( ! reader.canRead() )
+    // QTBUG-70812: for files with incorrect bits per pixel, QImageReader::canRead() returns
+    // false but it can still correctly determin the imageCount() and read the icon just fine.
+    if (reader.imageCount() == 0) {
         return false;
+    }
 
     QList <QImage> icons;
     do icons << reader.read();
