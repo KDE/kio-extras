@@ -102,7 +102,7 @@ bool IcoUtils::loadIcoImage(QImageReader &reader, QImage &image, int needWidth, 
         // but it stores the actual depth of the icon extracted in custom text:
         // qtbase/src/plugins/imageformats/ico/qicohandler.cpp:455
         int depth = icon.text(QStringLiteral("_q_icoOrigDepth")).toInt();
-        if (depth == 0) {
+        if (depth == 0 || depth > 32) {
             depth = icon.depth();
         }
 
