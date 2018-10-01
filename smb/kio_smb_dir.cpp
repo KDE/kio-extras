@@ -624,7 +624,7 @@ void SMBSlave::del( const QUrl &kurl, bool isfile)
     if(isfile)
     {
         // Delete file
-        qCDebug(KIO_SMB) << kurl;
+        qCDebug(KIO_SMB) << "Deleting file" << kurl;
         retVal = smbc_unlink(m_current_url.toSmbcUrl());
         if ( retVal < 0 ){
             errNum = errno;
@@ -634,7 +634,7 @@ void SMBSlave::del( const QUrl &kurl, bool isfile)
     }
     else
     {
-        qCDebug(KIO_SMB) << kurl;
+        qCDebug(KIO_SMB) << "Deleting directory" << kurl;
         // Delete directory
         retVal = smbc_rmdir(m_current_url.toSmbcUrl());
         if( retVal < 0 ) {
