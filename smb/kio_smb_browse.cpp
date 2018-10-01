@@ -259,6 +259,8 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
         return SMBError{ ERR_INTERNAL, i18n("Bad file descriptor") };
     case ETIMEDOUT:
         return SMBError{ ERR_SERVER_TIMEOUT, url.host() };
+    case ENOTEMPTY:
+        return SMBError{ ERR_CANNOT_RMDIR, url.toDisplayString() };
 #ifdef ENOTUNIQ
     case ENOTUNIQ:
         return SMBError{ ERR_SLAVE_DEFINED, i18n("The given name could not be resolved to a unique server. "
