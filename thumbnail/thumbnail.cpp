@@ -527,18 +527,6 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
 
     const int maxYPos = folderHeight - bottomMargin - segmentHeight;
 
-    // Setup image object for preview with only one tile
-    QImage oneTileImg(folder.size(), QImage::Format_ARGB32);
-    oneTileImg.fill(0);
-
-    QPainter oneTilePainter(&oneTileImg);
-    oneTilePainter.setCompositionMode(QPainter::CompositionMode_Source);
-    oneTilePainter.drawPixmap(0, 0, folder);
-    oneTilePainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-
-    const int oneTileWidth = folderWidth - leftMargin - rightMargin;
-    const int oneTileHeight = folderHeight - topMargin - bottomMargin;
-
     int validThumbnails = 0;
 
     while ((skipped <= skipValidItems) && (yPos <= maxYPos) && validThumbnails == 0) {
@@ -568,10 +556,6 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
 
             if (!drawSubThumbnail(p, dir.filePath(), segmentWidth, segmentHeight, xPos, yPos, frameWidth)) {
                 continue;
-            }
-
-            if (validThumbnails == 0) {
-                drawSubThumbnail(oneTilePainter, dir.filePath(), oneTileWidth, oneTileHeight, xPos, yPos, frameWidth);
             }
 
             if (skipped < skipValidItems) {
@@ -629,8 +613,20 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
         img = QImage();
     }
 
-    // If only for one file a thumbnail could be generated then use image with only one tile
+    // If only for one file a thumbnail could be generated then paint an image with only one tile
     if (validThumbnails == 1) {
+        QImage oneTileImg(folder.size(), QImage::Format_ARGB32);
+        oneTileImg.fill(0);
+
+        QPainter oneTilePainter(&oneTileImg);
+        oneTilePainter.setCompositionMode(QPainter::CompositionMode_Source);
+        oneTilePainter.drawPixmap(0, 0, folder);
+        oneTilePainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+
+        const int oneTileWidth = folderWidth - leftMargin - rightMargin;
+        const int oneTileHeight = folderHeight - topMargin - bottomMargin;
+
+        drawSubThumbnail(oneTilePainter, hadFirstThumbnail, oneTileWidth, oneTileHeight, leftMargin, topMargin, frameWidth);
         return oneTileImg;
     }
 
