@@ -36,7 +36,7 @@ qreal distance(int width, int height, int desiredWidth, int desiredHeight, int d
     // samples, only interpolated samples
     auto sampleScale = std::min(1.0, std::min(xscale, yscale));
 
-    // number of effective source samles in the target
+    // number of effective source samples in the target
     auto effectiveSamples = width * height * sampleScale * sampleScale * depth;
     // scale down another time, to account for loss of fidelity when
     // using a downscaled image, biases towards smaller downscaling ratios
@@ -82,7 +82,7 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, 
 bool IcoUtils::loadIcoImage(QImageReader &reader, QImage &image, int needWidth, int needHeight)
 {
     // QTBUG-70812: for files with incorrect bits per pixel, QImageReader::canRead() returns
-    // false but it can still correctly determin the imageCount() and read the icon just fine.
+    // false but it can still correctly determine the imageCount() and read the icon just fine.
     if (reader.imageCount() == 0) {
         return false;
     }

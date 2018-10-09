@@ -56,7 +56,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 	return true;
     } else {
         // do it the hard way
-	// We ignore maximum size when just extracting the thumnail
+	// We ignore maximum size when just extracting the thumbnail
 	// from the header, but it is very expensive to render large
 	// EXR images just to turn it into an icon, so we go back
 	// to honoring it in here.

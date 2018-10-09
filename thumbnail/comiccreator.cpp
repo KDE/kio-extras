@@ -234,7 +234,7 @@ QString ComicCreator::unrarPath() const
         const QStringList lines = QString::fromLocal8Bit(proc.readAllStandardOutput()).split
             ('\n', QString::SkipEmptyParts);
         if (!lines.isEmpty()) {
-            if (lines.first().startsWith("RAR ") || lines.first().startsWith("UNRAR ")) {
+            if (lines.first().startsWith(QLatin1String("RAR ")) || lines.first().startsWith(QLatin1String("UNRAR "))) {
                 return unrar;
             }
         }
@@ -289,8 +289,8 @@ int ComicCreator::startProcess(const QString& processPath, const QStringList& ar
 
     connect(m_process.data(), SIGNAL(readyReadStandardOutput()), SLOT(readProcessOut()));
     connect(m_process.data(), SIGNAL(readyReadStandardError()), SLOT(readProcessErr()));
-    connect(m_process.data(), SIGNAL(finished(int, QProcess::ExitStatus)),
-        SLOT(finishedProcess(int, QProcess::ExitStatus)));
+    connect(m_process.data(), SIGNAL(finished(int,QProcess::ExitStatus)),
+        SLOT(finishedProcess(int,QProcess::ExitStatus)));
 
 #if defined(Q_OS_WIN)
     m_process->start(processPath, args, QIODevice::ReadWrite | QIODevice::Unbuffered);

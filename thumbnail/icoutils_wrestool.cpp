@@ -48,7 +48,7 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outp
 
     QList <IconInExe> icons;
 
-    // First try use group icons (type 14, default first for windows executables), then icons (type 3), then group cursors (type 12) and finaly cursors (type 1)
+    // First try use group icons (type 14, default first for windows executables), then icons (type 3), then group cursors (type 12) and finally cursors (type 1)
     // Note: Last icon (type 3) could be in higher resolution
 
     // Group Icons

@@ -17,8 +17,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA            *
  ***************************************************************************/
 
-#ifndef FILENAMESEARCHPROTOCOL_H
-#define FILENAMESEARCHPROTOCOL_H
+#ifndef KIO_FILENAMESEARCH_H
+#define KIO_FILENAMESEARCH_H
 
 #include <kio/slavebase.h>
 

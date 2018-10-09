@@ -20,8 +20,8 @@
  *
  */
 
-#ifndef FILENAME_SEARCH_KDED_MODULE_H_
-#define FILENAME_SEARCH_KDED_MODULE_H_
+#ifndef KDED_FILENAME_SEARCH_MODULE_H_
+#define KDED_FILENAME_SEARCH_MODULE_H_
 
 #include <KDEDModule>
 #include <kdirnotify.h>

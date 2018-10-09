@@ -23,6 +23,6 @@ Name[uk]=Спільні теки (SMB)
 Name[x-test]=xxShared Folders (SMB)xx
 Name[zh_CN]=共享文件夹 (SMB)
 Name[zh_TW]=分享的資料夾 (SMB)
-Open=false
+# Open=false
 Type=Link
 URL=smb:/

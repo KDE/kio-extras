@@ -534,9 +534,9 @@ char *MANProtocol::readManPage(const char *_filename)
     QByteArray array, dirName;
 
     /* Determine type of man page file by checking its path. Determination by
-     * MIME type with KMimeType doesn't work reliablely. E.g., Solaris 7:
+     * MIME type with KMimeType doesn't work reliably. E.g., Solaris 7:
      * /usr/man/sman7fs/pcfs.7fs -> text/x-csrc : WRONG
-     * If the path name constains the string sman, assume that it's SGML and
+     * If the path name contains the string sman, assume that it's SGML and
      * convert it to roff format (used on Solaris). */
     //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
     if (QString(filename).contains("sman", Qt::CaseInsensitive)) //file_mimetype == "text/html" || )
@@ -1003,7 +1003,7 @@ void MANProtocol::checkManPaths()
         construct_path = true; // need to read config file
     }
 
-    // Constucted man path -- consists of paths from
+    // Constructed man path -- consists of paths from
     //   /etc/man.conf
     //   default dirs
     //   $PATH

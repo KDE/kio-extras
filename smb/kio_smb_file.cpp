@@ -160,7 +160,7 @@ void SMBSlave::open( const QUrl& kurl, QIODevice::OpenMode mode)
 
     // Save the URL as a private member
     // FIXME For some reason m_openUrl has be be declared in bottom private
-    // section of the class SMBSlave declaratiom instead of the top section
+    // section of the class SMBSlave declaration instead of the top section
     // or else this assignment fails
     m_openUrl = kurl;
 

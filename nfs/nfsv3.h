@@ -32,7 +32,7 @@
 class NFSProtocolV3 : public NFSProtocol
 {
 public:
-    NFSProtocolV3(NFSSlave* slave);
+    explicit NFSProtocolV3(NFSSlave* slave);
     ~NFSProtocolV3() override;
 
     bool isCompatible(bool& connectionError) override;

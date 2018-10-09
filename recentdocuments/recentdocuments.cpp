@@ -1,3 +1,5 @@
+#include "recentdocuments.h"
+
 #include <QCoreApplication>
 #include <QDBusInterface>
 #include <QFileInfo>
@@ -12,8 +14,6 @@
 #include <KProtocolManager>
 
 #include <stdio.h>
-
-#include "recentdocuments.h"
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {

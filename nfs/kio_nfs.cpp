@@ -553,7 +553,7 @@ NFSFileHandle NFSProtocol::getFileHandle(const QString& path)
         return NFSFileHandle();
     }
 
-    // Look up the file handle from the procotol
+    // Look up the file handle from the protocol
     NFSFileHandle childFH = lookupFileHandle(path);
     if (!childFH.isInvalid()) {
         m_handleCache.insert(path, childFH);

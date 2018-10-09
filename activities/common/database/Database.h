@@ -60,7 +60,7 @@ public:
     friend class Locker;
     class Locker {
     public:
-        Locker(Database &database);
+        explicit Locker(Database &database);
         ~Locker();
 
     private:

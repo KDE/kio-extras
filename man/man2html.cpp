@@ -104,7 +104,7 @@
 **  * The tabbing environment is converted by counting characters and adding
 **    spaces. This might go wrong (outside <PRE>)
 **  * Some manpages rely on the fact that troff/nroff is used to convert
-**    them and use features which are not descripted in the man manpages.
+**    them and use features which are not described in the man manpages.
 **    (definitions, calculations, conditionals, requests). I can't guarantee
 **    that all these features work on all manpages. (I didn't have the
 **    time to look through all the available manpages.)
@@ -3469,7 +3469,7 @@ static char* process_quote(char* c, int j, const char* open, const char* close)
 
 //---------------------------------------------------------------------
 /**
- * Is the char \p ch a puntuaction in sence of mdoc(7)
+ * Is the char \p ch a punctuation in sense of mdoc(7)
  */
 
 static bool is_mdoc_punctuation(const char ch)

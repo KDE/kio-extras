@@ -248,7 +248,7 @@ QString SimpleItemFactory::upnpId( const Cagibi::Device& upnpDevice ) const
     return upnpDevice.udn();
 }
 
-// TODO: add KIcon with specialiced KIconLoader (fetches Icons via D-Bus)
+// TODO: add KIcon with specialized KIconLoader (fetches Icons via D-Bus)
 NetServicePrivate* SimpleItemFactory::createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const
 {
     NetServicePrivate* result;

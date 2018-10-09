@@ -40,7 +40,7 @@ QStringList schema()
 
     return QStringList()
 
-        << // Schema informations table, used for versioning
+        << // Schema information table, used for versioning
            QStringLiteral("CREATE TABLE IF NOT EXISTS SchemaInfo ("
                "key text PRIMARY KEY, value text"
            ")")
@@ -51,7 +51,7 @@ QStringList schema()
 
         << // The ResourceEvent table saves the Opened/Closed event pairs for
            // a resource. The Accessed event is mapped to those.
-           // Focussing events are not stored in order not to get a
+           // Focusing events are not stored in order not to get a
            // huge database file and to lessen writes to the disk.
            QStringLiteral("CREATE TABLE IF NOT EXISTS ResourceEvent ("
                "usedActivity TEXT, "
@@ -61,7 +61,7 @@ QStringList schema()
                "end INTEGER "
            ")")
 
-        << // The ResourceScoreCache table stores the calcualted scores
+        << // The ResourceScoreCache table stores the calculated scores
            // for resources based on the recorded events.
            QStringLiteral("CREATE TABLE IF NOT EXISTS ResourceScoreCache ("
                "usedActivity TEXT, "

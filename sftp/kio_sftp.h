@@ -158,7 +158,7 @@ private: // Private variables
      */
     bool enqueueChunks();
     /**
-     * Attemps to read all pending chunks in the given QByteArray.
+     * Attempts to read all pending chunks in the given QByteArray.
      * @param data the array into which the data should be saved (it should be empty).
      * @return 0 on EOF or timeout, -1 on error and the number of bytes read otherwise.
      */

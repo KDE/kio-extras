@@ -19,6 +19,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "nfsv3.h"
+
 #include <config-runtime.h>
 
 #include <arpa/inet.h>
@@ -51,8 +53,6 @@
 #include <KLocalizedString>
 #include <kio/global.h>
 #include <kio/ioslave_defaults.h>
-
-#include "nfsv3.h"
 
 // This ioslave is for NFS version 3.
 #define NFSPROG 100003UL

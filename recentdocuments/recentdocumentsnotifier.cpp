@@ -1,11 +1,11 @@
+#include "recentdocumentsnotifier.h"
+
 #include <KDirWatch>
 #include <KPluginFactory>
 #include <QUrl>
 #include <KDirNotify>
 #include <KRecentDocument>
 #include <QFileInfo>
-
-#include "recentdocumentsnotifier.h"
 
 K_PLUGIN_FACTORY_WITH_JSON(RecentDocumentsFactory,
                            "recentdocumentsnotifier.json",
@@ -23,7 +23,7 @@ RecentDocumentsNotifier::RecentDocumentsNotifier(QObject *parent, const QList<QV
 
 void RecentDocumentsNotifier::dirty(const QString &path)
 {
-    if (path.endsWith(".desktop")) {
+    if (path.endsWith(QLatin1String(".desktop"))) {
         // Emitting FilesAdded forces a re-read of the dir
         QUrl url("recentdocuments:/");
         QFileInfo info(path);

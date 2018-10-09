@@ -19,6 +19,8 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include "nfsv2.h"
+
 #include <config-runtime.h>
 
 #include <arpa/inet.h>
@@ -52,8 +54,6 @@
 #include <kio/global.h>
 #include <kio/ioslave_defaults.h>
 #include <iostream>
-
-#include "nfsv2.h"
 
 // This is for NFS version 2.
 #define NFSPROG 100003UL

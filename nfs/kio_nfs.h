@@ -144,7 +144,7 @@ typedef QMap<QString, NFSFileHandle> NFSFileHandleMap;
 class NFSProtocol
 {
 public:
-    NFSProtocol(NFSSlave* slave);
+    explicit NFSProtocol(NFSSlave* slave);
     virtual ~NFSProtocol() {}
 
     virtual bool isCompatible(bool &connectionError) = 0;
