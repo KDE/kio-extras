@@ -1,7 +1,20 @@
 {
     "KPlugin": {
         "Description": "TODO",
+        "Description[ca]": "PENDENT",
+        "Description[es]": "POR HACER",
+        "Description[nl]": "TE DOEN",
+        "Description[pt]": "POR FAZER",
+        "Description[uk]": "ЩЕ НЕ НАПИСАНО",
+        "Description[x-test]": "xxTODOxx",
         "Name": "KDE MTP daemon",
+        "Name[ca]": "Dimoni MTP del KDE",
+        "Name[de]": "KDE-MTP-Dienst",
+        "Name[es]": "Demonio MTP de KDE",
+        "Name[nl]": "KDE MTP-daemon",
+        "Name[pt]": "Servidor de MTP do KDE",
+        "Name[uk]": "Фонова служба MTP KDE",
+        "Name[x-test]": "xxKDE MTP daemonxx",
         "ServiceTypes": [
             "KDEDModule"
         ]
