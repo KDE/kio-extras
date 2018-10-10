@@ -21,7 +21,7 @@
 #include "appimagecreator.h"
 
 #include <QImage>
-#include <QTemporaryFile>
+#include <QScopedPointer>
 
 #include <appimage/appimage.h>
 
@@ -42,20 +42,22 @@ bool AppImageCreator::create(const QString &path, int width, int height, QImage 
     Q_UNUSED(width);
     Q_UNUSED(height);
 
-    QTemporaryFile file;
-    if (!file.open()) {
+    unsigned long size = 0L;
+    char *buf = nullptr;
+
+    bool ok = appimage_read_file_into_buffer_following_symlinks(qUtf8Printable(path),
+                                                                ".DirIcon",
+                                                                &buf,
+                                                                &size);
+
+    QScopedPointer<char, QScopedPointerPodDeleter> cleanup(buf);
+    Q_UNUSED(cleanup);
+
+    if (!ok) {
         return false;
     }
 
-    appimage_extract_file_following_symlinks(qUtf8Printable(path),
-                                             ".DirIcon",
-                                             qUtf8Printable(file.fileName()));
-
-    if (!image.load(file.fileName())) {
-        return false;
-    }
-
-    return true;
+    return image.loadFromData(reinterpret_cast<uchar*>(buf), size);
 }
 
 ThumbCreator::Flags AppImageCreator::flags() const
