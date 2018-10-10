@@ -64,6 +64,7 @@
 #include <kio/previewjob.h>
 
 #include <iostream>
+#include <limits>
 #include <QDirIterator>
 
 // Use correctly KComponentData instead of KApplication (but then no QPixmap)
@@ -465,7 +466,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
         // Directories that the directory preview will be propagated into if there is no direct sub-directories
         const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
         m_propagationDirectories = globalConfig.readEntry("PropagationDirectories", QStringList() << "VIDEO_TS").toSet();
-        m_maxFileSize = globalConfig.readEntry("MaximumSize", qulonglong(5 * 1024 * 1024)); // 5 MByte default
+        m_maxFileSize = globalConfig.readEntry("MaximumSize", std::numeric_limits<qint64>::max());
     }
 
     const int tiles = 2; //Count of items shown on each dimension
