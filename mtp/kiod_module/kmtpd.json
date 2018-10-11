@@ -5,6 +5,8 @@
         "Description[es]": "POR HACER",
         "Description[nl]": "TE DOEN",
         "Description[pt]": "POR FAZER",
+        "Description[sk]": "Úlohy",
+        "Description[sv]": "ATT GÖRA",
         "Description[uk]": "ЩЕ НЕ НАПИСАНО",
         "Description[x-test]": "xxTODOxx",
         "Name": "KDE MTP daemon",
@@ -13,6 +15,8 @@
         "Name[es]": "Demonio MTP de KDE",
         "Name[nl]": "KDE MTP-daemon",
         "Name[pt]": "Servidor de MTP do KDE",
+        "Name[sk]": "KDE MTP démon",
+        "Name[sv]": "KDE:s MTP-demon",
         "Name[uk]": "Фонова служба MTP KDE",
         "Name[x-test]": "xxKDE MTP daemonxx",
         "ServiceTypes": [
