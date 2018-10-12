@@ -279,6 +279,7 @@ private:
     void smbCopyGet(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
     void smbCopyPut(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
     bool workaroundEEXIST(const int errNum) const;
+    void listDNSSD(UDSEntry &udsentry, const QUrl &url, const uint direntCount);
 
     void fileSystemFreeSpace(const QUrl &url);
 

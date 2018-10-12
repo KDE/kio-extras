@@ -14,3 +14,6 @@
  * Using the definition from this project so as to be independent of Plasma.
  */
 #define KDE_VERSION_STRING "@PROJECT_VERSION@"
+
+/* kdnssd with signal race protection */
+#cmakedefine HAVE_KDNSSD_WITH_SIGNAL_RACE_PROTECTION 1

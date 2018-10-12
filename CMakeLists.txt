@@ -181,6 +181,12 @@ if(NOT WIN32)
    endif()
 endif()
 
+# KDNSSD before 5.54 suffers from a race condition in avahi's dbus API and
+# ideally should not be used in ways that can deadlock a slave.
+if(${KF5DNSSD_FOUND} AND ${KF5DNSSD_VERSION} VERSION_GREATER "5.54")
+    set(HAVE_KDNSSD_WITH_SIGNAL_RACE_PROTECTION TRUE)
+endif()
+
 if(SAMBA_FOUND)
     add_subdirectory(smb)
 endif()
