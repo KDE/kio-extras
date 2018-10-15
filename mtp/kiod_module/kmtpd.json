@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "TODO",
+        "Description[ca@valencia]": "PENDENT",
         "Description[ca]": "PENDENT",
         "Description[es]": "POR HACER",
         "Description[nl]": "TE DOEN",
@@ -10,6 +11,7 @@
         "Description[uk]": "ЩЕ НЕ НАПИСАНО",
         "Description[x-test]": "xxTODOxx",
         "Name": "KDE MTP daemon",
+        "Name[ca@valencia]": "Dimoni MTP del KDE",
         "Name[ca]": "Dimoni MTP del KDE",
         "Name[de]": "KDE-MTP-Dienst",
         "Name[es]": "Demonio MTP de KDE",
