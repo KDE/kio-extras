@@ -135,7 +135,7 @@ void SMBSlave::stat( const QUrl& kurl )
         {
             int ret = browse_stat_path(m_current_url, udsentry);
 
-            if (ret == EPERM || ret == EACCES)
+            if (ret == EPERM || ret == EACCES || workaroundEEXIST(ret))
             {
                 SMBUrl smbUrl(url);
 
