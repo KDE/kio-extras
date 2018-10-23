@@ -46,6 +46,7 @@ if (UNIX)
     find_package(KF5Pty ${KF5_MIN_VERSION} REQUIRED)
 endif()
 
+include(CheckIncludeFile)
 include(CMakePackageConfigHelpers)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
@@ -96,6 +97,8 @@ set_package_properties(Mtp PROPERTIES DESCRIPTION "the MTP library"
                        TYPE OPTIONAL
                        PURPOSE "Needed to build the MTP kioslave"
                        )
+
+check_include_file(utime.h HAVE_UTIME_H)
 
 # ECM's KDECompilerSettings.cmake should take care of enabling supporting on
 # 32bit architectures.
