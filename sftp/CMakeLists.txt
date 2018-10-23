@@ -9,6 +9,11 @@ ecm_qt_declare_logging_category(kio_sftp_SRCS
     IDENTIFIER KIO_SFTP_LOG
     CATEGORY_NAME log_kio_sftp)
 
+ecm_qt_declare_logging_category(kio_sftp_SRCS
+    HEADER kio_sftp_trace_debug.h
+    IDENTIFIER KIO_SFTP_TRACE_LOG
+    CATEGORY_NAME log_kio_sftp.trace)
+
 add_library(kio_sftp MODULE ${kio_sftp_SRCS})
 target_link_libraries(kio_sftp
    KF5::KIOCore

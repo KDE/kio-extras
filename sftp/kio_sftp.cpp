@@ -23,6 +23,7 @@
 
 #include <config-runtime.h>
 #include "kio_sftp_debug.h"
+#include "kio_sftp_trace_debug.h"
 #include <cerrno>
 #include <cstring>
 #include <utime.h>
@@ -2112,7 +2113,7 @@ sftpProtocol::GetRequest::GetRequest(sftp_file file, sftp_attributes sb, ushort 
 bool sftpProtocol::GetRequest::enqueueChunks() {
     sftpProtocol::GetRequest::Request request;
 
-    qCDebug(KIO_SFTP_LOG) << "enqueueChunks";
+    qCDebug(KIO_SFTP_TRACE_LOG) << "enqueueChunks";
 
     while (pendingRequests.count() < mMaxPendingRequests) {
         request.expectedLength = MAX_XFER_BUF_SIZE;
@@ -2136,7 +2137,7 @@ bool sftpProtocol::GetRequest::enqueueChunks() {
         }
     }
 
-    qCDebug(KIO_SFTP_LOG) << "enqueueChunks done" << QString::number(pendingRequests.size());
+    qCDebug(KIO_SFTP_TRACE_LOG) << "enqueueChunks done" << QString::number(pendingRequests.size());
 
     return true;
 }
