@@ -84,8 +84,8 @@ if(NOT WIN32)
                         )
 endif()
 
-find_package(libssh 0.7.0)
-set_package_properties(LibSSH PROPERTIES DESCRIPTION "the SSH library with SFTP support"
+find_package(libssh 0.7.0 MODULE)
+set_package_properties(libssh PROPERTIES DESCRIPTION "the SSH library with SFTP support"
                        URL "http://www.libssh.org/"
                        TYPE OPTIONAL
                        PURPOSE "Needed to build the SFTP kioslave"
@@ -160,7 +160,7 @@ if (NOT WIN32)
 endif()
 add_subdirectory( thumbnail )
 add_subdirectory( docfilter )
-if (LIBSSH_LIBRARY AND HAVE_UTIME_H)
+if (libssh_FOUND AND HAVE_UTIME_H)
     # does not compile on Windows: kio_sftp.cpp(28): fatal error C1083: Cannot open include file: 'utime.h': No such file or directory
     add_subdirectory(sftp)
 endif ()
