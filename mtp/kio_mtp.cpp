@@ -216,7 +216,7 @@ void MTPSlave::listDir(const QUrl &url)
                 finished();
                 qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storages:" << storages.count();
             } else {
-                warning(i18n("No storages found. Make sure your device is unlocked and has MTP enabled in its USB connection settings."));
+                error(ERR_SLAVE_DEFINED, i18n("No storages found. Make sure your device is unlocked and has MTP enabled in its USB connection settings."));
             }
         } else {
             // list files and folders
