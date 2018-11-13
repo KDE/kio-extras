@@ -17,6 +17,7 @@
         "Description[sv]": "ATT GÖRA",
         "Description[uk]": "ЩЕ НЕ НАПИСАНО",
         "Description[x-test]": "xxTODOxx",
+        "Description[zh_CN]": "待办事项",
         "Name": "KDE MTP daemon",
         "Name[ca@valencia]": "Dimoni MTP del KDE",
         "Name[ca]": "Dimoni MTP del KDE",
@@ -34,6 +35,7 @@
         "Name[sv]": "KDE:s MTP-demon",
         "Name[uk]": "Фонова служба MTP KDE",
         "Name[x-test]": "xxKDE MTP daemonxx",
+        "Name[zh_CN]": "KDE MTP 守护程序",
         "ServiceTypes": [
             "KDEDModule"
         ]
