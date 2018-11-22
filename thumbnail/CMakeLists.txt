@@ -13,6 +13,12 @@ set_package_properties(libappimage PROPERTIES DESCRIPTION "Core library of the A
                        TYPE OPTIONAL
                        PURPOSE "Provides support for AppImage thumbnails"
                        )
+if (libappimage_FOUND)
+    # workaround for currently released libappimage versions (sadly no version check possible yet)
+    if (NOT LIBAPPIMAGE_INCLUDE_DIRS)
+        get_target_property(LIBAPPIMAGE_INCLUDE_DIRS libappimage INTERFACE_INCLUDE_DIRECTORIES)
+    endif()
+endif()
 
 include_directories(${CMAKE_BINARY_DIR})
 
@@ -233,11 +239,11 @@ if(libappimage_FOUND)
 
 set(appimagethumbnail_SRCS appimagecreator.cpp)
 add_library(appimagethumbnail MODULE ${appimagethumbnail_SRCS})
-
+target_include_directories(appimagethumbnail PRIVATE ${LIBAPPIMAGE_INCLUDE_DIRS})
 target_link_libraries(appimagethumbnail
     KF5::KIOWidgets
     Qt5::Gui
-    appimage
+    ${LIBAPPIMAGE_LIBRARIES}
 )
 
 install(TARGETS appimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
