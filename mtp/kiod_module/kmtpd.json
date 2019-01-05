@@ -20,6 +20,7 @@
         "Description[uk]": "ЩЕ НЕ НАПИСАНО",
         "Description[x-test]": "xxTODOxx",
         "Description[zh_CN]": "待办事项",
+        "Description[zh_TW]": "待做",
         "Name": "KDE MTP daemon",
         "Name[ca@valencia]": "Dimoni MTP del KDE",
         "Name[ca]": "Dimoni MTP del KDE",
@@ -40,6 +41,7 @@
         "Name[uk]": "Фонова служба MTP KDE",
         "Name[x-test]": "xxKDE MTP daemonxx",
         "Name[zh_CN]": "KDE MTP 守护程序",
+        "Name[zh_TW]": "KDE MTP 守護程式",
         "ServiceTypes": [
             "KDEDModule"
         ]
