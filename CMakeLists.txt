@@ -78,7 +78,7 @@ if(NOT WIN32)
     set(SAMBA_REQUIRE_SMBC_OPTION_SET TRUE)
     find_package(Samba)
     set_package_properties(Samba PROPERTIES DESCRIPTION "the SMB client library, a version with smbc_set_context() and smbc_option_set()"
-                        URL "http://www.samba.org"
+                        URL "https://www.samba.org/"
                         TYPE OPTIONAL
                         PURPOSE "Needed to build the SMB kioslave"
                         )
@@ -86,7 +86,7 @@ endif()
 
 find_package(libssh 0.7.0 MODULE)
 set_package_properties(libssh PROPERTIES DESCRIPTION "the SSH library with SFTP support"
-                       URL "http://www.libssh.org/"
+                       URL "https://www.libssh.org/"
                        TYPE OPTIONAL
                        PURPOSE "Needed to build the SFTP kioslave"
                       )
