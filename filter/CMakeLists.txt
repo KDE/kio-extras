@@ -1,5 +1,3 @@
-include(ECMQtDeclareLoggingCategory)
-
 set(kio_filter_SRCS filter.cc)
 
 ecm_qt_declare_logging_category(kio_filter_SRCS

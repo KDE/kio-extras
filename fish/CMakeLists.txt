@@ -2,7 +2,6 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_fish\")
 
 include(CheckIncludeFiles)
 include(CheckFunctionExists)
-include(ECMQtDeclareLoggingCategory)
 
 check_include_files(termios.h HAVE_TERMIOS_H)
 check_include_files(util.h HAVE_UTIL_H)
