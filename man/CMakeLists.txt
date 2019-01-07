@@ -18,7 +18,7 @@ install(TARGETS kio_man DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### next target ###############
 
-add_library(kmanpart kmanpart.cpp )
+add_library(kmanpart MODULE kmanpart.cpp )
 target_compile_definitions(kmanpart PRIVATE -DPROJECT_VERSION="${PROJECT_VERSION}")
 
 target_link_libraries(kmanpart KF5::KHtml)
