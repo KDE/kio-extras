@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_about
+exec=kf5/kio/about
 protocol=about
 input=none
 output=filesystem

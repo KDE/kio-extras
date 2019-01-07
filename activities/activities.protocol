@@ -1,5 +1,5 @@
 [Protocol]
-exec=kio_activities
+exec=kf5/kio/activities
 protocol=activities
 input=none
 output=filesystem

@@ -35,10 +35,11 @@ target_link_libraries (
    KF5::I18n
    Qt5::Network
    )
+set_target_properties(kio_activities PROPERTIES OUTPUT_NAME "activities")
 
 install (
    TARGETS kio_activities
-   DESTINATION ${KDE_INSTALL_PLUGINDIR}
+   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio
    )
 
 ########### install files ###############
