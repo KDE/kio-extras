@@ -659,15 +659,9 @@ void MANProtocol::stat( const QUrl& url)
     qCDebug(KIO_MAN_LOG) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section;
 
     UDSEntry entry;
-#if (KIO_VERSION >= QT_VERSION_CHECK(5, 48, 0))
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, title);
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
     entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
-#else
-    entry.insert(KIO::UDSEntry::UDS_NAME, title);
-    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-    entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
-#endif
 
 #if 0 // not useful, is it?
     QString newUrl = "man:"+title;
@@ -1371,15 +1365,9 @@ void MANProtocol::listDir(const QUrl &url)
             UDSEntry     uds_entry;
 
             QString name = "man:/(" + *it + ')';
-#if (KIO_VERSION >= QT_VERSION_CHECK(5, 48, 0))
             uds_entry.fastInsert( KIO::UDSEntry::UDS_NAME, sectionName( *it ) );
             uds_entry.fastInsert( KIO::UDSEntry::UDS_URL, name );
             uds_entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
-#else
-            uds_entry.insert( KIO::UDSEntry::UDS_NAME, sectionName( *it ) );
-            uds_entry.insert( KIO::UDSEntry::UDS_URL, name );
-            uds_entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
-#endif
 
             uds_entry_list.append( uds_entry );
         }
@@ -1394,15 +1382,9 @@ void MANProtocol::listDir(const QUrl &url)
         stripExtension( &(*it) );
 
         UDSEntry     uds_entry;
-#if (KIO_VERSION >= QT_VERSION_CHECK(5, 48, 0))
         uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, *it);
         uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
         uds_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
-#else
-        uds_entry.insert(KIO::UDSEntry::UDS_NAME, *it);
-        uds_entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-        uds_entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
-#endif
         uds_entry_list.append( uds_entry );
     }
 
