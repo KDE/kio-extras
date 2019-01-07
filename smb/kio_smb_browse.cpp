@@ -77,8 +77,8 @@ int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
          return EINVAL;
       }
 
-      udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
-      udsentry.insert(KIO::UDSEntry::UDS_SIZE, st.st_size);
+      udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
+      udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
 
       QString str;
       uid_t uid = st.st_uid;
@@ -87,7 +87,7 @@ int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
           str = user->pw_name;
       else
           str = QString::number( uid );
-      udsentry.insert(KIO::UDSEntry::UDS_USER, str);
+      udsentry.fastInsert(KIO::UDSEntry::UDS_USER, str);
 
       gid_t gid = st.st_gid;
       struct group *grp = getgrgid( gid );
@@ -95,11 +95,11 @@ int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
           str = grp->gr_name;
       else
           str = QString::number( gid );
-      udsentry.insert(KIO::UDSEntry::UDS_GROUP, str);
+      udsentry.fastInsert(KIO::UDSEntry::UDS_GROUP, str);
 
-      udsentry.insert(KIO::UDSEntry::UDS_ACCESS, st.st_mode & 07777);
-      udsentry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
-      udsentry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
+      udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, st.st_mode & 07777);
+      udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
+      udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
       // No, st_ctime is not UDS_CREATION_TIME...
    }
 
@@ -126,7 +126,7 @@ void SMBSlave::stat( const QUrl& kurl )
 
     UDSEntry    udsentry;
     // Set name
-    udsentry.insert( KIO::UDSEntry::UDS_NAME, kurl.fileName() );
+    udsentry.fastInsert( KIO::UDSEntry::UDS_NAME, kurl.fileName() );
 
     switch(m_current_url.getType())
     {
@@ -136,7 +136,7 @@ void SMBSlave::stat( const QUrl& kurl )
 
     case SMBURLTYPE_ENTIRE_NETWORK:
     case SMBURLTYPE_WORKGROUP_OR_SERVER:
-        udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         break;
 
     case SMBURLTYPE_SHARE_OR_PATH:
@@ -363,12 +363,12 @@ void SMBSlave::listDir( const QUrl& kurl )
 
            qCDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type;
 
-           udsentry.insert( KIO::UDSEntry::UDS_NAME, udsName );
+           udsentry.fastInsert( KIO::UDSEntry::UDS_NAME, udsName );
 
            // Mark all administrative shares, e.g ADMIN$, as hidden. #197903
            if (dirpName.endsWith(QLatin1Char('$'))) {
               //qCDebug(KIO_SMB) << dirpName << "marked as hidden";
-              udsentry.insert(KIO::UDSEntry::UDS_HIDDEN, 1);
+              udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, 1);
            }
 
            if (udsName == ".")
@@ -406,11 +406,11 @@ void SMBSlave::listDir( const QUrl& kurl )
                    dirp->smbc_type == SMBC_FILE_SHARE)
            {
                // Set type
-               udsentry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
+               udsentry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
 
 
                if (dirp->smbc_type == SMBC_SERVER) {
-                   udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
+                   udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
 
                    // QString workgroup = m_current_url.host().toUpper();
                    QUrl u("smb://");
@@ -419,11 +419,11 @@ void SMBSlave::listDir( const QUrl& kurl )
                    // when libsmbclient knows
                    // u = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.toUpper());
                    qCDebug(KIO_SMB) << "list item " << u;
-                   udsentry.insert(KIO::UDSEntry::UDS_URL, u.url());
+                   udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
 
-                   udsentry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-server"));
+                   udsentry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-server"));
                } else
-                   udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
+                   udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
 
 
                // Call base class to list entry
@@ -432,17 +432,17 @@ void SMBSlave::listDir( const QUrl& kurl )
            else if(dirp->smbc_type == SMBC_WORKGROUP)
            {
                // Set type
-               udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+               udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
 
                // Set permissions
-               udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
+               udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
 
-               udsentry.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-workgroup"));
+               udsentry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-workgroup"));
 
                // QString workgroup = m_current_url.host().toUpper();
                QUrl u("smb://");
                u.setHost(dirpName);
-               udsentry.insert(KIO::UDSEntry::UDS_URL, u.url());
+               udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
 
                // Call base class to list entry
                listEntry(udsentry);
@@ -461,13 +461,13 @@ void SMBSlave::listDir( const QUrl& kurl )
        listDNSSD(udsentry, url, direntCount);
 
        if (dir_is_root) {
-           udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-           udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
-           udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
+           udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+           udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+           udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
        }
        else
        {
-           udsentry.insert(KIO::UDSEntry::UDS_NAME, ".");
+           udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
            const int statErr = browse_stat_path(m_current_url, udsentry);
            if (statErr)
            {
@@ -476,8 +476,8 @@ void SMBSlave::listDir( const QUrl& kurl )
                    reportWarning(m_current_url, statErr);
                }
                // Create a default UDSEntry if we could not stat the actual directory
-               udsentry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-               udsentry.insert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
+               udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+               udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
            }
        }
        listEntry(udsentry);

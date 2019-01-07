@@ -98,16 +98,16 @@ void RecentDocuments::listDir(const QUrl& url)
                 }
 
                 urlSet.insert(toDisplayString);
-                uds.insert(KIO::UDSEntry::UDS_NAME, info.completeBaseName());
+                uds.replace(KIO::UDSEntry::UDS_NAME, info.completeBaseName());
 
                 if (urlInside.isLocalFile()) {
-                    uds.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, urlInside.toLocalFile());
-                    uds.insert(KIO::UDSEntry::UDS_LOCAL_PATH, urlInside.path());
+                    uds.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, urlInside.toLocalFile());
+                    uds.replace(KIO::UDSEntry::UDS_LOCAL_PATH, urlInside.path());
                 } else {
-                    uds.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, toDisplayString);
-                    uds.insert(KIO::UDSEntry::UDS_ICON_NAME, file.readIcon());
+                    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, toDisplayString);
+                    uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, file.readIcon());
                 }
-                uds.insert(KIO::UDSEntry::UDS_TARGET_URL, toDisplayString);
+                uds.replace(KIO::UDSEntry::UDS_TARGET_URL, toDisplayString);
                 udslist << uds;
             }
         }
@@ -148,12 +148,12 @@ void RecentDocuments::stat(const QUrl& url)
         //
         QString dirName = i18n("Recent Documents");
         KIO::UDSEntry uds;
-        uds.insert(KIO::UDSEntry::UDS_NAME, dirName);
-        uds.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
-        uds.insert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
-        uds.insert(KIO::UDSEntry::UDS_ICON_NAME, QString::fromLatin1("document-open-recent"));
-        uds.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        uds.insert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
+        uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
+        uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QString::fromLatin1("document-open-recent"));
+        uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
 
         statEntry(uds);
         finished();

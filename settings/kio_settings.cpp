@@ -63,25 +63,25 @@ extern "C" {
 static void createFileEntry(KIO::UDSEntry& entry, const KService::Ptr& service)
 {
     entry.clear();
-    entry.insert(KIO::UDSEntry::UDS_NAME, KIO::encodeFileName(service->desktopEntryName()));
-    entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name()); // translated name
-    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-    entry.insert(KIO::UDSEntry::UDS_ACCESS, 0500);
-    entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, "application/x-desktop");
-    entry.insert(KIO::UDSEntry::UDS_SIZE, 0);
-    entry.insert(KIO::UDSEntry::UDS_LOCAL_PATH, QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kservices5/") + service->entryPath()));
-    entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, time(nullptr));
-    entry.insert(KIO::UDSEntry::UDS_ICON_NAME, service->icon());
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, KIO::encodeFileName(service->desktopEntryName()));
+    entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name()); // translated name
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0500);
+    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, "application/x-desktop");
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
+    entry.fastInsert(KIO::UDSEntry::UDS_LOCAL_PATH, QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kservices5/") + service->entryPath()));
+    entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, time(nullptr));
+    entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, service->icon());
 }
 
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& iconName)
 {
     entry.clear();
-    entry.insert( KIO::UDSEntry::UDS_NAME, name );
-    entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
-    entry.insert( KIO::UDSEntry::UDS_ACCESS, 0500 );
-    entry.insert( KIO::UDSEntry::UDS_MIME_TYPE, "inode/directory" );
-    entry.insert( KIO::UDSEntry::UDS_ICON_NAME, iconName );
+    entry.fastInsert( KIO::UDSEntry::UDS_NAME, name );
+    entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
+    entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, 0500 );
+    entry.fastInsert( KIO::UDSEntry::UDS_MIME_TYPE, "inode/directory" );
+    entry.fastInsert( KIO::UDSEntry::UDS_ICON_NAME, iconName );
 }
 
 SettingsProtocol::SettingsProtocol( const QByteArray &protocol, const QByteArray &pool, const QByteArray &app)
@@ -141,7 +141,7 @@ void SettingsProtocol::stat(const QUrl& url)
         const QString category = service->property("X-KDE-System-Settings-Category").toString();
         //qDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
         createDirEntry(entry, category, service->icon());
-        entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());
+        entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());
         statEntry(entry);
         finished();
         return;
@@ -182,7 +182,7 @@ void SettingsProtocol::listDir(const QUrl& url)
             //KUrl dirUrl = url;
             //dirUrl.addPath(category);
             createDirEntry(entry, category, service->icon());
-            entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());
+            entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());
             listEntry(entry);
             ++count;
         }

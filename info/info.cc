@@ -235,10 +235,10 @@ void InfoProtocol::stat( const QUrl & )
 
 #ifdef Q_OS_WIN
 	// Regular file with rwx permission for all
-	uds_entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG );
+	uds_entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG );
 #else
 	// Regular file with rwx permission for all
-	uds_entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO );
+	uds_entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO );
 #endif
 
 	statEntry( uds_entry );

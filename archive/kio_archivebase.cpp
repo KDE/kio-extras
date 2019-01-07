@@ -176,25 +176,25 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
 void ArchiveProtocolBase::createRootUDSEntry( KIO::UDSEntry & entry )
 {
     entry.clear();
-    entry.insert( KIO::UDSEntry::UDS_NAME, "." );
-    entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
-    entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, m_mtime );
-    //entry.insert( KIO::UDSEntry::UDS_ACCESS, 07777 ); // fake 'x' permissions, this is a pseudo-directory
-    entry.insert( KIO::UDSEntry::UDS_USER, m_user);
-    entry.insert( KIO::UDSEntry::UDS_GROUP, m_group);
+    entry.fastInsert( KIO::UDSEntry::UDS_NAME, "." );
+    entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
+    entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, m_mtime );
+    //entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, 07777 ); // fake 'x' permissions, this is a pseudo-directory
+    entry.fastInsert( KIO::UDSEntry::UDS_USER, m_user);
+    entry.fastInsert( KIO::UDSEntry::UDS_GROUP, m_group);
 }
 
 void ArchiveProtocolBase::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
 {
     entry.clear();
-    entry.insert( KIO::UDSEntry::UDS_NAME, archiveEntry->name() );
-    entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->permissions() & S_IFMT ); // keep file type only
-    entry.insert( KIO::UDSEntry::UDS_SIZE, archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L );
-    entry.insert( KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date().toTime_t());
-    entry.insert( KIO::UDSEntry::UDS_ACCESS, archiveEntry->permissions() & 07777 ); // keep permissions only
-    entry.insert( KIO::UDSEntry::UDS_USER, archiveEntry->user());
-    entry.insert( KIO::UDSEntry::UDS_GROUP, archiveEntry->group());
-    entry.insert( KIO::UDSEntry::UDS_LINK_DEST, archiveEntry->symLinkTarget());
+    entry.fastInsert( KIO::UDSEntry::UDS_NAME, archiveEntry->name() );
+    entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->permissions() & S_IFMT ); // keep file type only
+    entry.fastInsert( KIO::UDSEntry::UDS_SIZE, archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L );
+    entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date().toTime_t());
+    entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, archiveEntry->permissions() & 07777 ); // keep permissions only
+    entry.fastInsert( KIO::UDSEntry::UDS_USER, archiveEntry->user());
+    entry.fastInsert( KIO::UDSEntry::UDS_GROUP, archiveEntry->group());
+    entry.fastInsert( KIO::UDSEntry::UDS_LINK_DEST, archiveEntry->symLinkTarget());
 }
 
 void ArchiveProtocolBase::listDir( const QUrl & url )
@@ -315,7 +315,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
             return;
         }
         // Real directory. Return just enough information for KRun to work
-        entry.insert( KIO::UDSEntry::UDS_NAME, url.fileName());
+        entry.fastInsert( KIO::UDSEntry::UDS_NAME, url.fileName());
         qCDebug(KIO_ARCHIVE_LOG).nospace() << "ArchiveProtocolBase::stat returning name=" << url.fileName();
 
         QT_STATBUF buff;
@@ -332,7 +332,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
             return;
         }
 
-        entry.insert( KIO::UDSEntry::UDS_FILE_TYPE, buff.st_mode & S_IFMT);
+        entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, buff.st_mode & S_IFMT);
 
         statEntry( entry );
 

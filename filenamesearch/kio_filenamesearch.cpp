@@ -101,7 +101,7 @@ void FileNameSearchProtocol::searchDirectory(const QUrl &directory,
     foreach (const KFileItem &item, items) {
         if (itemValidator(item)) {
             KIO::UDSEntry entry = item.entry();
-            entry.insert(KIO::UDSEntry::UDS_URL, item.url().url());
+            entry.replace(KIO::UDSEntry::UDS_URL, item.url().url());
             listEntry(entry);
         }
 
