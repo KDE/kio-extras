@@ -39,7 +39,7 @@ target_link_libraries(kio_thumbnail
 
 set_target_properties(kio_thumbnail PROPERTIES OUTPUT_NAME "thumbnail")
 
-install(TARGETS kio_thumbnail DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
+install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### next target ###############
 
@@ -51,11 +51,11 @@ target_link_libraries(imagethumbnail
     KF5::KIOWidgets
 )
 
-install(TARGETS imagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS imagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
-install( FILES directorythumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install( FILES directorythumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 
 ########### next target ###############
 
@@ -73,8 +73,8 @@ target_link_libraries(jpegthumbnail
 	KF5::ConfigGui
 )
 
-install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KCFG_INSTALL_DIR})
-install(TARGETS jpegthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
+install(TARGETS jpegthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
@@ -89,7 +89,7 @@ target_link_libraries(svgthumbnail
 	KF5::KIOWidgets
 )
 
-install(TARGETS svgthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS svgthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
@@ -102,7 +102,7 @@ target_link_libraries(textthumbnail
     KF5::KIOWidgets
 )
 
-install(TARGETS textthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS textthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
@@ -113,8 +113,8 @@ add_library(djvuthumbnail MODULE ${djvuthumbnail_PART_SRCS})
 
 target_link_libraries(djvuthumbnail KF5::KIOWidgets)
 
-install(TARGETS djvuthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES djvuthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(TARGETS djvuthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(FILES djvuthumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 
 endif()
 
@@ -136,8 +136,8 @@ if(OpenEXR_FOUND)
     # when exceptions are not enabled.
     kde_source_files_enable_exceptions(exrcreator.cpp)
 
-    install(TARGETS exrthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-    install( FILES exrthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+    install(TARGETS exrthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
+    install( FILES exrthumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 
 endif()
 
@@ -151,8 +151,8 @@ endif()
 #
 #    target_link_libraries(cursorthumbnail ${X11_Xcursor_LIB} ${KIO_LIBRARIES})
 #
-#    install(TARGETS cursorthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-#    install( FILES cursorthumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+#    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
+#    install( FILES cursorthumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 #
 # endif()
 #
@@ -172,13 +172,13 @@ endif()
 
 add_library(windowsexethumbnail MODULE ${windowsexethumbnail_SRCS} )
 target_link_libraries ( windowsexethumbnail KF5::KIOWidgets )
-install ( TARGETS windowsexethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
-install ( FILES windowsexethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
+install ( TARGETS windowsexethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR} )
+install ( FILES windowsexethumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )
 
 add_library(windowsimagethumbnail MODULE ${windowsimagethumbnail_SRCS} )
 target_link_libraries ( windowsimagethumbnail KF5::KIOWidgets )
-install ( TARGETS windowsimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR} )
-install ( FILES windowsimagethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR} )
+install ( TARGETS windowsimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR} )
+install ( FILES windowsimagethumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )
 
 ########### next target ###############
 
@@ -192,7 +192,7 @@ target_link_libraries(comicbookthumbnail
 if (UNIX)
     target_link_libraries(comicbookthumbnail KF5::Pty)
 endif ()
-install(TARGETS comicbookthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 # ########### next target ###############
 
@@ -205,7 +205,7 @@ target_link_libraries(kritathumbnail
     Qt5::Gui
 )
 
-install(TARGETS kritathumbnail  DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS kritathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target #################
 
@@ -216,7 +216,7 @@ if(TAGLIB_FOUND)
     add_library(audiothumbnail MODULE ${audiothumbnail_SRCS})
     target_include_directories(audiothumbnail BEFORE PRIVATE ${TAGLIB_INCLUDES})
     target_link_libraries(audiothumbnail ${TAGLIB_LIBRARIES} KF5::KIOWidgets)
-    install(TARGETS audiothumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+    install(TARGETS audiothumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
     set(audiothumbnail_desktop audiothumbnail.desktop)
 endif(TAGLIB_FOUND)
 
@@ -231,7 +231,7 @@ target_link_libraries(opendocumentthumbnail
     KF5::Archive
 )
 
-install(TARGETS opendocumentthumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
+install(TARGETS opendocumentthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 # ########### next target ###############
 
@@ -246,14 +246,14 @@ target_link_libraries(appimagethumbnail
     ${LIBAPPIMAGE_LIBRARIES}
 )
 
-install(TARGETS appimagethumbnail DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES appimagethumbnail.desktop DESTINATION ${SERVICES_INSTALL_DIR})
+install(TARGETS appimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(FILES appimagethumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 
 endif()
 
 ########### install files ###############
 
-install(FILES thumbcreator.desktop DESTINATION ${SERVICETYPES_INSTALL_DIR})
+install(FILES thumbcreator.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
 install(FILES
     thumbnail.protocol
     svgthumbnail.desktop
@@ -265,5 +265,5 @@ install(FILES
     kraorathumbnail.desktop
     opendocumentthumbnail.desktop
     ${audiothumbnail_desktop}
-    DESTINATION ${SERVICES_INSTALL_DIR})
+    DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 

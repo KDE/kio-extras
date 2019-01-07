@@ -1,3 +1,3 @@
 ########### install files ###############
 
-install( FILES kio_docfilter.css  DESTINATION ${DATA_INSTALL_DIR}/kio_docfilter )
+install( FILES kio_docfilter.css  DESTINATION ${KDE_INSTALL_DATADIR}/kio_docfilter )

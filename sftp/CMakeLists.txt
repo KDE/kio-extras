@@ -23,6 +23,6 @@ target_link_libraries(kio_sftp
    ${LIBSSH_LIBRARIES})
 set_target_properties(kio_sftp PROPERTIES OUTPUT_NAME "sftp")
 
-install(TARGETS kio_sftp DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
+install(TARGETS kio_sftp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
-install( FILES sftp.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install( FILES sftp.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )

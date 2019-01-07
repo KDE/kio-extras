@@ -14,11 +14,11 @@ add_library(kio_mtp MODULE ${kio_mtp_PART_SRCS} )
 target_link_libraries(kio_mtp kmtp Qt5::Core KF5::KIOCore KF5::I18n KF5::DBusAddons)
 set_target_properties(kio_mtp PROPERTIES OUTPUT_NAME "mtp")
 
-install(TARGETS kio_mtp DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
+install(TARGETS kio_mtp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### install files ###############
 
-install( FILES mtp-network.desktop  DESTINATION  ${DATA_INSTALL_DIR}/konqueror/dirtree/remote )
-install( FILES solid_mtp.desktop  DESTINATION  ${DATA_INSTALL_DIR}/solid/actions )
-install( FILES mtp.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
-install( FILES mtp-network.desktop  DESTINATION  ${DATA_INSTALL_DIR}/remoteview )
+install( FILES mtp-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote )
+install( FILES solid_mtp.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/solid/actions )
+install( FILES mtp.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
+install( FILES mtp-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/remoteview )

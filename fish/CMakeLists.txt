@@ -60,11 +60,11 @@ if (MD5SUM_EXECUTABLE)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})
    endif ()
 
-   install(TARGETS kio_fish  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio )
+   install(TARGETS kio_fish  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio )
 
 
    ########### install files ###############
 
-   install( FILES fish.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
+   install( FILES fish.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
 
 endif ()

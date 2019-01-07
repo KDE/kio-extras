@@ -47,12 +47,12 @@ endif()
 
 set_target_properties(kio_smb PROPERTIES OUTPUT_NAME "smb")
 
-install(TARGETS kio_smb DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
+install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 
 ########### install files ###############
 
-install( FILES smb-network.desktop  DESTINATION  ${DATA_INSTALL_DIR}/konqueror/dirtree/remote )
-install( FILES smb.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
-install( FILES smb-network.desktop  DESTINATION  ${DATA_INSTALL_DIR}/remoteview )
+install( FILES smb-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote )
+install( FILES smb.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
+install( FILES smb-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/remoteview )
 

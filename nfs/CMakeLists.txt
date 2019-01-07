@@ -29,8 +29,8 @@ add_library(kio_nfs MODULE kio_nfs.cpp nfsv2.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c r
 target_link_libraries(kio_nfs KF5::KIOCore KF5::I18n Qt5::Network)
 set_target_properties(kio_nfs PROPERTIES OUTPUT_NAME "nfs")
 
-install(TARGETS kio_nfs DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kio)
+install(TARGETS kio_nfs DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### install files ###############
 
-install( FILES nfs.protocol  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install( FILES nfs.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )

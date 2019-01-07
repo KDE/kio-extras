@@ -15,4 +15,4 @@ target_link_libraries(kfileaudiopreview
 )
 
 install(TARGETS kfileaudiopreview
-        DESTINATION ${PLUGIN_INSTALL_DIR})
+        DESTINATION ${KDE_INSTALL_PLUGINDIR})

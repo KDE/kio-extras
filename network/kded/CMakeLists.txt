@@ -16,6 +16,6 @@ kcoreaddons_desktop_to_json(kded_networkwatcher networkwatcher.desktop)
 
 target_link_libraries( kded_networkwatcher KF5::DBusAddons KF5::KIOCore molletnetwork5 )
 
-install( TARGETS kded_networkwatcher  DESTINATION ${PLUGIN_INSTALL_DIR}/kf5/kded )
+install( TARGETS kded_networkwatcher  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kded )
 
-install( FILES org.kde.network.kioslavenotifier.xml  DESTINATION ${DBUS_INTERFACES_INSTALL_DIR} RENAME kf5_org.kde.network.kioslavenotifier.xml )
+install( FILES org.kde.network.kioslavenotifier.xml  DESTINATION ${KDE_INSTALL_DBUSINTERFACEDIR} RENAME kf5_org.kde.network.kioslavenotifier.xml )
