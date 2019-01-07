@@ -468,7 +468,7 @@ bool fishProtocol::connectionStart() {
         } else {
             #define common_args "-l", connectionUser.toLatin1().constData(), "-x", "-e", "none", \
                     "-q", connectionHost.toLatin1().constData(),        \
-                "echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)0
+                "echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)nullptr
             // disabled: leave compression up to the client.
             // (isOpenSSH?"-C":"+C"),
 
