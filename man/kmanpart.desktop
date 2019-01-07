@@ -181,4 +181,4 @@ Name[x-test]=xxKManPartxx
 Name[zh_CN]=KManPart
 Name[zh_TW]=KManPart
 X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View
-X-KDE-Library=kmanpart
+X-KDE-Library=kf5/parts/kmanpart

@@ -23,5 +23,5 @@ target_compile_definitions(kmanpart PRIVATE -DPROJECT_VERSION="${PROJECT_VERSION
 
 target_link_libraries(kmanpart KF5::KHtml)
 
-install(TARGETS kmanpart  DESTINATION ${KDE_INSTALL_PLUGINDIR} )
+install(TARGETS kmanpart  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/parts )
 install(FILES man.protocol kmanpart.desktop  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR})
