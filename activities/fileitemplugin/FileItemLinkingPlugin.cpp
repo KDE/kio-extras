@@ -45,9 +45,7 @@
 
 #include "common/dbus/common.h"
 
-K_PLUGIN_FACTORY_WITH_JSON(ActivityLinkingFileItemActionFactory,
-                           "kactivitymanagerd_fileitem_linking_plugin.json",
-                           registerPlugin<FileItemLinkingPlugin>();)
+K_PLUGIN_CLASS_WITH_JSON(FileItemLinkingPlugin, "kactivitymanagerd_fileitem_linking_plugin.json")
 
 
 // Private

@@ -7,9 +7,7 @@
 #include <KRecentDocument>
 #include <QFileInfo>
 
-K_PLUGIN_FACTORY_WITH_JSON(RecentDocumentsFactory,
-                           "recentdocumentsnotifier.json",
-                           registerPlugin<RecentDocumentsNotifier>();)
+K_PLUGIN_CLASS_WITH_JSON(RecentDocumentsNotifier, "recentdocumentsnotifier.json")
 
 RecentDocumentsNotifier::RecentDocumentsNotifier(QObject *parent, const QList<QVariant> &)
     : KDEDModule(parent)

@@ -28,7 +28,7 @@
 
 #include "daemonadaptor.h"
 
-K_PLUGIN_FACTORY_WITH_JSON(MtpdFactory, "kmtpd.json", registerPlugin<KMTPd>(); )
+K_PLUGIN_CLASS_WITH_JSON(KMTPd, "kmtpd.json")
 
 Q_LOGGING_CATEGORY(LOG_KIOD_KMTPD, "kf5.kiod.kmtpd")
 

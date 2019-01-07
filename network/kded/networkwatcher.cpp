@@ -33,12 +33,10 @@
 // Qt
 #include <QDBusConnection>
 
-K_PLUGIN_FACTORY_WITH_JSON(NetworkWatcherFactory,
-                           "networkwatcher.json",
-                           registerPlugin<Mollet::NetworkWatcher>(); )
-
 namespace Mollet
 {
+
+K_PLUGIN_CLASS_WITH_JSON(NetworkWatcher, "networkwatcher.json")
 
 NetworkWatcher::NetworkWatcher( QObject* parent, const QList<QVariant>& parameters )
   : KDEDModule( parent )

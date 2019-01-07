@@ -113,8 +113,6 @@ void FileNameSearchModule::slotFilesRemoved(const QStringList &files)
     }
 }
 
-K_PLUGIN_FACTORY_WITH_JSON(Factory,
-                           "filenamesearchmodule.json",
-                           registerPlugin<FileNameSearchModule>();)
+K_PLUGIN_CLASS_WITH_JSON(FileNameSearchModule, "filenamesearchmodule.json")
 
 #include "filenamesearchmodule.moc"
