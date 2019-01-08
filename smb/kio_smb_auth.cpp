@@ -152,7 +152,8 @@ bool SMBSlave::checkPassword(SMBUrl &url)
     info.username = url.userName();
     qCDebug(KIO_SMB) << "call openPasswordDialog for " << info.url;
 
-    if ( openPasswordDialog(info) ) {
+    const int passwordDialogErrorCode = openPasswordDialogV2(info);
+    if (passwordDialogErrorCode == KJob::NoError) {
         qCDebug(KIO_SMB) << "openPasswordDialog returned " << info.username;
         url.setUser(info.username);
 
