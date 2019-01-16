@@ -20,7 +20,7 @@
 
 #include "imagecreator.h"
 
-#include <QImage>
+#include <QImageReader>
 
 extern "C"
 {
@@ -33,7 +33,10 @@ extern "C"
 bool ImageCreator::create(const QString &path, int, int, QImage &img)
 {
     // create image preview
-    if (!img.load( path ))
+    QImageReader ir(path);
+    ir.setDecideFormatFromContent(true);
+    img = ir.read();
+    if (img.isNull())
         return false;
     if (img.depth() != 32)
         img = img.convertToFormat(img.hasAlphaChannel() ? QImage::Format_ARGB32 : QImage::Format_RGB32);
