@@ -40,7 +40,7 @@ JpegCreator::JpegCreator()
 
 bool JpegCreator::create(const QString &path, int width, int height, QImage &image)
 {
-    QImageReader imageReader(path);
+    QImageReader imageReader(path, "jpeg");
 
     const QSize imageSize = imageReader.size();
     if (imageSize.isValid() && (imageSize.width() > width || imageSize.height() > height)) {
