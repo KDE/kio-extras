@@ -7,18 +7,12 @@ set_package_properties(OpenEXR PROPERTIES DESCRIPTION "API for accessing OpenEXR
                        PURPOSE "Provides support for OpenEXR formatted images in the thumbnail kioslave"
                       )
 
-find_package(libappimage)
+find_package(libappimage 0.1.10 CONFIG)
 set_package_properties(libappimage PROPERTIES DESCRIPTION "Core library of the AppImage project"
                        URL "https://github.com/AppImage/libappimage"
                        TYPE OPTIONAL
                        PURPOSE "Provides support for AppImage thumbnails"
                        )
-if (libappimage_FOUND)
-    # workaround for currently released libappimage versions (sadly no version check possible yet)
-    if (NOT LIBAPPIMAGE_INCLUDE_DIRS)
-        get_target_property(LIBAPPIMAGE_INCLUDE_DIRS libappimage INTERFACE_INCLUDE_DIRECTORIES)
-    endif()
-endif()
 
 include_directories(${CMAKE_BINARY_DIR})
 
@@ -239,11 +233,10 @@ if(libappimage_FOUND)
 
 set(appimagethumbnail_SRCS appimagecreator.cpp)
 add_library(appimagethumbnail MODULE ${appimagethumbnail_SRCS})
-target_include_directories(appimagethumbnail PRIVATE ${LIBAPPIMAGE_INCLUDE_DIRS})
 target_link_libraries(appimagethumbnail
     KF5::KIOWidgets
     Qt5::Gui
-    ${LIBAPPIMAGE_LIBRARIES}
+    libappimage
 )
 
 install(TARGETS appimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
