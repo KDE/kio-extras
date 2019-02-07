@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Service
+Name=eBooks
+
+X-KDE-ServiceTypes=ThumbCreator
+MimeType=application/epub+zip;application/x-fictionbook+xml;application/x-zip-compressed-fb2;
+
+X-KDE-Library=ebookthumbnail
+CacheThumbnail=true

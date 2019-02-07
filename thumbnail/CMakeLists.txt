@@ -251,6 +251,19 @@ install(FILES appimagethumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR}
 
 endif()
 
+# ########### next target ###############
+
+set(ebookthumbnail_SRCS ebookcreator.cpp)
+add_library(ebookthumbnail MODULE ${ebookthumbnail_SRCS})
+
+target_link_libraries(ebookthumbnail
+    Qt5::Gui
+    KF5::KIOWidgets
+    KF5::Archive
+)
+
+install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
+
 ########### install files ###############
 
 install(FILES thumbcreator.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
@@ -264,6 +277,7 @@ install(FILES
     comicbookthumbnail.desktop
     kraorathumbnail.desktop
     opendocumentthumbnail.desktop
+    ebookthumbnail.desktop
     ${audiothumbnail_desktop}
     DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 
