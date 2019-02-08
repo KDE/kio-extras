@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Kai Uwe Broulik <kde@broulik.de>
+ * Copyright (c) 2018-2019 Kai Uwe Broulik <kde@broulik.de>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -21,6 +21,8 @@
 #include "opendocumentcreator.h"
 
 #include <QImage>
+#include <QScopedPointer>
+#include <QXmlStreamReader>
 
 #include <KZip>
 
@@ -46,12 +48,45 @@ bool OpenDocumentCreator::create(const QString &path, int width, int height, QIm
         return false;
     }
 
+    // Open Document
     const KArchiveEntry *entry = zip.directory()->entry(QStringLiteral("Thumbnails/thumbnail.png"));
 
-    if (!entry || !entry->isFile()) {
-        return false;
+    if (entry && entry->isFile()) {
+        const KZipFileEntry *zipFileEntry = static_cast<const KZipFileEntry *>(entry);
+
+        if (image.loadFromData(zipFileEntry->data(), "PNG")) {
+            return true;
+        }
     }
 
-    const KZipFileEntry *zipFileEntry = static_cast<const KZipFileEntry *>(entry);
-    return image.loadFromData(zipFileEntry->data(), "PNG");
+    // Open Packaging Conventions (e.g. Office "Open" XML)
+    const KArchiveEntry *relsEntry = zip.directory()->entry(QStringLiteral("_rels/.rels"));
+    if (relsEntry && relsEntry->isFile()) {
+        const auto *relsFileEntry = static_cast<const KZipFileEntry *>(relsEntry);
+
+        QScopedPointer<QIODevice> relsDevice(relsFileEntry->createDevice());
+
+        QString thumbnailPath;
+
+        QXmlStreamReader xml(relsDevice.data());
+        while (!xml.atEnd() && !xml.hasError()) {
+            xml.readNext();
+            if (xml.isStartElement() && xml.name() == QLatin1String("Relationship")) {
+                const auto attributes = xml.attributes();
+                if (attributes.value(QStringLiteral("Type")) == QLatin1String("http://schemas.openxmlformats.org/package/2006/relationships/metadata/thumbnail")) {
+                    thumbnailPath = attributes.value(QStringLiteral("Target")).toString();
+                    break;
+                }
+            }
+        }
+
+        if (!thumbnailPath.isEmpty()) {
+            const auto *thumbnailEntry = zip.directory()->entry(thumbnailPath);
+            if (thumbnailEntry && thumbnailEntry->isFile()) {
+                return image.loadFromData(static_cast<const KZipFileEntry *>(thumbnailEntry)->data());
+            }
+        }
+    }
+
+    return false;
 }
