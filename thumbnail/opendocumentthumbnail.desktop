@@ -1,27 +1,6 @@
 [Desktop Entry]
 Type=Service
 Name=Office Documents
-Name[ca]=Documents Office (Fitxers Open Document)
-Name[ca@valencia]=Documents Office (Fitxers Open Document)
-Name[cs]=Kancelářské dokumenty (soubory Open Document)
-Name[de]=Office-Dokumente  (Open Document Dateien)
-Name[en_GB]=Office Documents (Open Document Files)
-Name[es]=Documentos de oficina (archivos de Open Document)
-Name[eu]=Office dokumentuak (Open Document fitxategiak)
-Name[fi]=Toimistotiedostot (OpenDocument-tiedostot)
-Name[fr]=Documents Office (fichiers Open Document)
-Name[gl]=Documentos de oficina (ficheiros Open Document)
-Name[it]=Documenti d'ufficio (file Open Document)
-Name[nl]=Kantoordocumenten (Open Document bestanden)
-Name[nn]=Kontordokument (OpenDocument-filer)
-Name[pl]=Dokumenty Office (Pliki Open Document)
-Name[pt]=Documentos de Escritório (Ficheiros Open Document)
-Name[pt_BR]=Documentos de Escritório (Arquivos Open Document)
-Name[sv]=Kontorsdokument (Open Document-filer)
-Name[uk]=Офісні документи (файли ODF)
-Name[x-test]=xxOffice Documents (Open Document Files)xx
-Name[zh_CN]=Office 文档 (ODF 文件)
-Name[zh_TW]=Office 文件 (開啟文件檔案)
 
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/vnd.oasis.opendocument.text;application/vnd.oasis.opendocument.text-template;application/vnd.oasis.opendocument.text-master;application/vnd.oasis.opendocument.text-master-template;application/vnd.oasis.opendocument.spreadsheet;application/vnd.oasis.opendocument.spreadsheet-template;application/vnd.oasis.opendocument.graphics;application/vnd.oasis.opendocument.graphics-template;application/vnd.oasis.opendocument.presentation;application/vnd.oasis.opendocument.presentation-template;application/vnd.oasis.opendocument.formula;application/vnd.oasis.opendocument.formula-template;application/vnd.oasis.opendocument.chart;application/vnd.oasis.opendocument.chart-template;application/vnd.openxmlformats-officedocument.wordprocessingml.document;application/vnd.openxmlformats-officedocument.wordprocessingml.template;application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;application/vnd.openxmlformats-officedocument.spreadsheetml.template;application/vnd.openxmlformats-officedocument.presentationml.presentation;application/vnd.openxmlformats-officedocument.presentationml.template;application/oxps;application/vnd.ms-xpsdocument;

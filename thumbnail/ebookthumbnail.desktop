@@ -1,6 +1,13 @@
 [Desktop Entry]
 Type=Service
 Name=eBooks
+Name[ca]=eBooks
+Name[nl]=eBooks
+Name[pt]=eBooks
+Name[pt_BR]=eBooks
+Name[sv]=e-böcker
+Name[uk]=Електронні книги
+Name[x-test]=xxeBooksxx
 
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/epub+zip;application/x-fictionbook+xml;application/x-zip-compressed-fb2;
