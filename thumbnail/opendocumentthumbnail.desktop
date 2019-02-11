@@ -2,6 +2,7 @@
 Type=Service
 Name=Office Documents
 Name[ca]=Documents de l'Office
+Name[ca@valencia]=Documents de l'Office
 Name[gl]=Documentos de oficina
 Name[nl]=Kantoordocumenten
 Name[pt]=Documentos de Escritório

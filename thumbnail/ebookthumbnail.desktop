@@ -2,6 +2,7 @@
 Type=Service
 Name=eBooks
 Name[ca]=eBooks
+Name[ca@valencia]=eBooks
 Name[gl]=Libros electrónicos
 Name[nl]=eBooks
 Name[pt]=eBooks
