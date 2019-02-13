@@ -10,6 +10,7 @@ Name[pt_BR]=eBooks
 Name[sv]=e-böcker
 Name[uk]=Електронні книги
 Name[x-test]=xxeBooksxx
+Name[zh_TW]=eBooks
 
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/epub+zip;application/x-fictionbook+xml;application/x-zip-compressed-fb2;
