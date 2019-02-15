@@ -201,9 +201,9 @@ void MTPSlave::listDir(const QUrl &url)
     // traverse into device
     const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
     if (mtpDevice) {
-        // list storages
+        // list storage media
         if (pathItems.size() == 1) {
-            qCDebug(LOG_KIO_MTP) << "Listing storages for device " << pathItems.first();
+            qCDebug(LOG_KIO_MTP) << "Listing storage media for device " << pathItems.first();
 
             const auto storages = mtpDevice->storages();
             totalSize(filesize_t(storages.size()));
@@ -214,9 +214,9 @@ void MTPSlave::listDir(const QUrl &url)
                 }
 
                 finished();
-                qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storages:" << storages.count();
+                qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storage media:" << storages.count();
             } else {
-                error(ERR_SLAVE_DEFINED, i18n("No storages found. Make sure your device is unlocked and has MTP enabled in its USB connection settings."));
+                error(ERR_SLAVE_DEFINED, i18n("No storage media found. Make sure your device is unlocked and has MTP enabled in its USB connection settings."));
             }
         } else {
             // list files and folders
