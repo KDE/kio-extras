@@ -3,6 +3,7 @@ Type=Service
 Name=eBooks
 Name[ca]=eBooks
 Name[ca@valencia]=eBooks
+Name[es]=eBooks
 Name[fi]=eBooks
 Name[gl]=Libros electrónicos
 Name[nl]=eBooks
@@ -11,6 +12,7 @@ Name[pt_BR]=eBooks
 Name[sv]=e-böcker
 Name[uk]=Електронні книги
 Name[x-test]=xxeBooksxx
+Name[zh_CN]=电子书
 Name[zh_TW]=eBooks
 
 X-KDE-ServiceTypes=ThumbCreator
