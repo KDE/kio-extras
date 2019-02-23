@@ -64,7 +64,7 @@ void FileNameSearchModule::slotFilesAdded(const QString &urlString)
         return;
     }
     const QString urlPath = url.path();
-    for (const QUrl &dirUrl : m_searchUrls) {
+    for (const QUrl &dirUrl : qAsConst(m_searchUrls)) {
         if (urlPath.startsWith(dirUrl.path())) {
             org::kde::KDirNotify::emitFilesAdded(dirUrl);
         }
@@ -80,7 +80,7 @@ void FileNameSearchModule::slotFilesChanged(const QStringList &files)
             continue;
         }
         const QString urlPath = url.path();
-        for (const QUrl &dirUrl : m_searchUrls) {
+        for (const QUrl &dirUrl : qAsConst(m_searchUrls)) {
             if (urlPath.startsWith(dirUrl.path())) {
                 url.setScheme(QStringLiteral("filenamesearch"));
                 fileList << url;
@@ -101,7 +101,7 @@ void FileNameSearchModule::slotFilesRemoved(const QStringList &files)
             continue;
         }
         const QString urlPath = url.path();
-        for (const QUrl &dirUrl : m_searchUrls) {
+        for (const QUrl &dirUrl : qAsConst(m_searchUrls)) {
             if (urlPath.startsWith(dirUrl.path())) {
                 url.setScheme(QStringLiteral("filenamesearch"));
                 fileList << url;
