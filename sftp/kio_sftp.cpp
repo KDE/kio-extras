@@ -1392,7 +1392,7 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
             QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
             QMimeDatabase db;
             QMimeType mime = db.mimeTypeForFileNameAndData(mOpenUrl.fileName(), fileData);
-            emit mimeType(mime.name());
+            mimeType(mime.name());
 
             // Go back to the beginning of the file.
             sftp_rewind(mOpenFile);
@@ -1536,10 +1536,10 @@ sftpProtocol::StatusCode sftpProtocol::sftpGet(const QUrl& url, int& errorCode, 
         QMimeDatabase db;
         QMimeType mime = db.mimeTypeForFileNameAndData(url.fileName(), QByteArray(mimeTypeBuf, bytesread));
         if (!mime.isDefault()) {
-            emit mimeType(mime.name());
+            mimeType(mime.name());
         } else {
             mime = db.mimeTypeForUrl(url);
-            emit mimeType(mime.name());
+            mimeType(mime.name());
         }
         sftp_rewind(file);
     }
@@ -1780,7 +1780,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
                 result = -1;
             } else {
                 totalBytesSent += bytesWritten;
-                emit processedSize(totalBytesSent);
+                processedSize(totalBytesSent);
             }
         } // result
     } while (result > 0);
