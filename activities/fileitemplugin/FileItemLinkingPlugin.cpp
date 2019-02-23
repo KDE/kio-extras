@@ -150,7 +150,7 @@ void FileItemLinkingPlugin::Private::setActions(const ActionList &actions)
         action->deleteLater();
     }
 
-    for (auto actionInfo: actions) {
+    for (const auto& actionInfo: actions) {
         if (actionInfo.icon != "-") {
             auto action = new QAction(nullptr);
 

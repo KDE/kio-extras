@@ -235,7 +235,7 @@ void ActivitiesProtocol::listDir(const QUrl &url)
             uds.fastInsert(KIO::UDSEntry::UDS_TARGET_URL, QStringLiteral("activities:/") + activities.currentActivity());
             udslist << uds;
 
-            for (const auto activity: activities.activities()) {
+            for (const auto& activity: activities.activities()) {
                 udslist << d->activityEntry(activity);
             }
 

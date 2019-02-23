@@ -265,7 +265,7 @@ QSqlQuery Database::execQueries(const QStringList &queries) const
 {
     QSqlQuery result;
 
-    for (const auto query: queries) {
+    for (const auto& query: queries) {
         result = execQuery(query);
     }
 
