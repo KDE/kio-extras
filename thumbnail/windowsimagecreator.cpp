@@ -33,3 +33,8 @@ bool WindowsImageCreator::create(const QString &path, int width, int height, QIm
     return IcoUtils::loadIcoImage(path, img, width, height);
 
 }
+
+ThumbCreator::Flags WindowsImageCreator::flags() const
+{
+    return SupportsSandbox;
+}

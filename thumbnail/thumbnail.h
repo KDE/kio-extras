@@ -26,6 +26,8 @@
 
 #include <kio/slavebase.h>
 
+#include "sandboxedthumbnailerrunner.h"
+
 class ThumbCreator;
 class QImage;
 
@@ -69,7 +71,14 @@ private:
      **/
     bool drawSubThumbnail(QPainter& p, const QString& filePath, int width, int height,
                           int xPos, int yPos, int frameWidth);
+
+    /**
+     * Create a thumbnail using the given creator.
+     * If possible, it's done inside a sandbox.
+     **/
+    bool createThumbnail(const QString &pluginName, ThumbCreator *creator, const QString &path, QSize size, QImage &img, float sequenceIndex);
 private:
+	SandboxedThumbnailerRunner m_sandboxedThumbnailerRunner;
     QString m_mimeType;
     int m_width;
     int m_height;

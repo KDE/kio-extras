@@ -80,5 +80,5 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 
 ThumbCreator::Flags EXRCreator::flags() const
 {
-    return None;
+    return SupportsSandbox;
 }

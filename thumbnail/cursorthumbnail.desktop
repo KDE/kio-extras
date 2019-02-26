@@ -93,3 +93,4 @@ X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/x-xcursor;
 X-KDE-Library=cursorthumbnail
 CacheThumbnail=false
+SupportsSandbox=true

@@ -38,4 +38,5 @@ Name[zh_TW]=音訊檔案
 ServiceTypes=ThumbCreator
 MimeType=audio/*;
 CacheThumbnail=true
+SupportsSandbox=true
 X-KDE-Library=audiothumbnail

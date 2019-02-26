@@ -1,0 +1,2 @@
+#define KTHUMBNAILHELPER_BIN "${CMAKE_INSTALL_FULL_LIBEXECDIR}/thumbnailhelper"
+#cmakedefine01 HAVE_SECCOMP

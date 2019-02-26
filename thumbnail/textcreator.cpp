@@ -179,6 +179,6 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
 
 ThumbCreator::Flags TextCreator::flags() const
 {
-    return (Flags)BlendIcon;
+    return Flags(BlendIcon | SupportsSandbox);
 }
 

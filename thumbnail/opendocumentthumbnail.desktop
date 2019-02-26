@@ -31,3 +31,4 @@ MimeType=application/vnd.oasis.opendocument.text;application/vnd.oasis.opendocum
 
 X-KDE-Library=opendocumentthumbnail
 CacheThumbnail=true
+SupportsSandbox=true

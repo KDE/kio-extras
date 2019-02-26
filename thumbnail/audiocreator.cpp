@@ -210,5 +210,5 @@ bool AudioCreator::create(const QString &path, int, int, QImage &img)
 
 ThumbCreator::Flags AudioCreator::flags() const
 {
-    return (Flags)BlendIcon;
+    return Flags(BlendIcon | SupportsSandbox);
 }

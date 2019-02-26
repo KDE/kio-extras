@@ -52,3 +52,8 @@ bool CursorCreator::create( const QString &path, int width, int height, QImage &
     return false;
 }
 
+ThumbCreator::Flags CursorCreator::flags()
+{
+    return SupportsSandbox;
+}
+

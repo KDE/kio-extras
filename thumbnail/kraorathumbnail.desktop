@@ -45,3 +45,4 @@ MimeType=application/x-krita;image/openraster;
 
 X-KDE-Library=kritathumbnail
 CacheThumbnail=true
+SupportsSandbox=true

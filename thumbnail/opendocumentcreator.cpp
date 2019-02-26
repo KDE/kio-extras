@@ -90,3 +90,8 @@ bool OpenDocumentCreator::create(const QString &path, int width, int height, QIm
 
     return false;
 }
+
+ThumbCreator::Flags OpenDocumentCreator::flags() const
+{
+    return SupportsSandbox;
+}

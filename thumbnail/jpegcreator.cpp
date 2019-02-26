@@ -58,7 +58,7 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
 
 ThumbCreator::Flags JpegCreator::flags() const
 {
-    return None;
+    return SupportsSandbox;
 }
 
 QWidget *JpegCreator::createConfigurationWidget()

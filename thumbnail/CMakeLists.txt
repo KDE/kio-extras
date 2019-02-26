@@ -14,11 +14,25 @@ set_package_properties(libappimage PROPERTIES DESCRIPTION "Core library of the A
                        PURPOSE "Provides support for AppImage thumbnails"
                        )
 
+find_package(Seccomp)
+set_package_properties(Seccomp PROPERTIES
+    TYPE
+        OPTIONAL
+    PURPOSE
+        "Used for sandboxing thumbnailers"
+)
+set(HAVE_SECCOMP ${Seccomp_FOUND})
+
+configure_file(config-thumbnail.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-thumbnail.h)
 include_directories(${CMAKE_BINARY_DIR})
 
 ########### next target ###############
 
 set(kio_thumbnail_PART_SRCS thumbnail.cpp imagefilter.cpp)
+
+if(HAVE_SECCOMP)
+    set(kio_thumbnail_PART_SRCS ${kio_thumbnail_PART_SRCS} sandboxedthumbnailerrunner.cpp)
+endif()
 
 add_library(kio_thumbnail MODULE ${kio_thumbnail_PART_SRCS})
 
@@ -34,6 +48,29 @@ target_link_libraries(kio_thumbnail
 set_target_properties(kio_thumbnail PROPERTIES OUTPUT_NAME "thumbnail")
 
 install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
+
+########### next target ###############
+
+if(HAVE_SECCOMP)
+    set(thumbnailhelper_SRCS thumbnailhelper.cpp)
+
+    ecm_qt_declare_logging_category(thumbnailhelper_SRCS
+       HEADER thumbnailhelper-debug.h
+       IDENTIFIER THUMBNAILHELPER_LOG
+       CATEGORY_NAME org.kde.kio.thumbnail.helper
+       DEFAULT_SEVERITY Warning)
+
+    add_executable(thumbnailhelper ${thumbnailhelper_SRCS})
+
+    target_link_libraries(thumbnailhelper
+        KF5::CoreAddons
+        KF5::Service
+        KF5::KIOWidgets
+        Seccomp::Seccomp
+    )
+
+    install(TARGETS thumbnailhelper DESTINATION ${CMAKE_INSTALL_FULL_LIBEXECDIR})
+endif()
 
 ########### next target ###############
 

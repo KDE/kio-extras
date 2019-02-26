@@ -62,5 +62,5 @@ bool AppImageCreator::create(const QString &path, int width, int height, QImage 
 
 ThumbCreator::Flags AppImageCreator::flags() const
 {
-    return None;
+    return SupportsSandbox;
 }

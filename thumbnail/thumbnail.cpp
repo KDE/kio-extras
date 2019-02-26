@@ -61,6 +61,7 @@
 
 #include <kio/thumbcreator.h>
 #include <kio/thumbsequencecreator.h>
+#include <kio/thumbcreatorsandboxed.h>
 #include <kio/previewjob.h>
 
 #include <iostream>
@@ -77,6 +78,10 @@
 #endif
 
 #include "imagefilter.h"
+#include "config-thumbnail.h"
+#if HAVE_SANDBOX
+#include "sandboxedthumbnailerrunner.h"
+#endif
 
 // Recognized metadata entries:
 // mimeType     - the mime type of the file, used for the overlay icon if any
@@ -259,14 +264,11 @@ void ThumbnailProtocol::get(const QUrl &url)
                 return;
             }
 
-            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator);
-            if(sequenceCreator)
-                sequenceCreator->setSequenceIndex(sequenceIndex());
-
-            if (!creator->create(url.path(), m_width, m_height, img)) {
+            if (!createThumbnail(plugin, creator, url.path(), QSize(m_width, m_height), img, sequenceIndex())) {
                 error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
                 return;
             }
+
             flags = creator->flags();
         }
     }
@@ -724,7 +726,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
 
             QSaveFile thumbnailfile(thumbPath.absoluteFilePath(thumbName));
             bool savedCorrectly = false;
-            if (subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
+            if (createThumbnail(subPlugin, subCreator, filePath, QSize(cacheSize, cacheSize), thumbnail, 0)) {
                 scaleDownImage(thumbnail, cacheSize, cacheSize);
 
                 // The thumbnail has been created successfully. Store the thumbnail
@@ -740,7 +742,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
                 thumbnailfile.commit();
             }
         }
-    } else if (!subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail)) {
+    } else if (!createThumbnail(subPlugin, subCreator, filePath, QSize(segmentWidth, segmentHeight), thumbnail, 0)) {
         return false;
     }
     return true;
@@ -777,4 +779,22 @@ bool ThumbnailProtocol::drawSubThumbnail(QPainter& p, const QString& filePath, i
     drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize);
 
     return true;
+}
+
+bool ThumbnailProtocol::createThumbnail(const QString &pluginName, ThumbCreator *creator, const QString &path, QSize size, QImage &img, float sequenceIndex)
+{
+#if HAVE_SECCOMP
+    if ((creator->flags() & ThumbCreator::SupportsSandbox)) {
+        return m_sandboxedThumbnailerRunner.create(pluginName, path, size, img, sequenceIndex);
+    }
+#endif
+
+    if (sequenceIndex) {
+        ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator);
+        if(sequenceCreator) {
+            sequenceCreator->setSequenceIndex(sequenceIndex);
+        }
+    }
+
+    return creator->create(path, size.width(), size.height(), img);
 }

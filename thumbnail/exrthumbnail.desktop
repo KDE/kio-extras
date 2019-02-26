@@ -93,3 +93,4 @@ MimeType=image/x-exr;
 X-KDE-Library=exrthumbnail
 CacheThumbnail=true
 IgnoreMaximumSize=true
+SupportsSandbox=true

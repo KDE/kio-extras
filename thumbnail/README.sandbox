@@ -1,0 +1,60 @@
+Sandboxed thumbnail creation
+============================
+
+Thumbnails are often shown even for completely untrusted (USB drives) or
+not fully trusted (Download folder) files. Creation depends entirely on the
+format of the file, which can range from simple (.txt file preview), over
+slightly more involved (.png inside a .zip container) to full file format
+parsing and rendering (PDF, HTML). As thumbnails are usually generated
+automatically, and even for untrusted files, it needs to be tightly controlled
+what a malicious file could potentially do.
+
+Thumbnailhelper
+---------------
+
+To achive this with kio, the thumbnail: protocol slave gained the ability to
+run the thumbnail creation (ThumbCreator::create) inside a sandboxed process
+called "thumbnailhelper". This process can do read-only file operations, write
+to stdout and call mmap - nothing else. This list can be extended further should
+the need arise.
+
+Sandboxing is achieved using libseccomp to whitelist syscalls, but other
+mechanisms for sandboxing could be added as well, e.g. to support other
+platforms where libseccomp is not available.
+
+    Application 1 \
+                   --> kio_thumbnail -> [thumbnailhelper (sandbox) -> file.pdf]
+    Application 2 /
+
+Steps of thumbnail creation
+---------------------------
+
+If the thumbnail kioslave generates a thumbnail and the creator used for the
+file supports sandboxing (marked by SupportsSandbox=true in the .desktop file
+and a set bit in ThumbCreator::flags()), it starts a thumbnailhelper process
+and communicates with it using a QDataStream over stdout/stdin.
+This is handled in the SandboxedThumbnailerRunner class.
+If starting the helper process fails or the handshake fails, no thumbnail can
+be generated. Falling back to not using the sandbox would make it possible to
+skip the sandbox in some cases.
+
+If the handshake succeeds, the kioslave sends the name of the ThumbCreator
+plugin, the path to the file a thumbnail should be created from and other
+metadata such as the requested thumbnail size and the sequence index.
+
+If the helper could create a thumbnail successfully, the raw image data is sent
+over the QDataStream and returned to the kioslave for eventual caching.
+
+Enabling ThumbCreators for sandboxing
+-------------------------------------
+
+If a creator does not require any syscalls outside of the whitelist for creating
+thumbnails, it's possible to enable it for sandboxing. Only the create(...)
+method is run in a sandbox, the constructor (and flags()) calls are not, so
+initialization calls should be done there instead of in create(...).
+
+Whether a ThumbCreator plugin supports running inside a sandbox is defined in
+two places:
+
+- virtual Flags ThumbCreator::flags(): Return a value including SupportsSandbox
+- SupportsSandbox boolean in the plugin's .desktop file: Set to true

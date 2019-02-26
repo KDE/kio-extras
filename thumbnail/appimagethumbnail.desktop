@@ -29,3 +29,4 @@ X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-iso9660-appimage;application/vnd.appimage;
 X-KDE-Library=appimagethumbnail
 CacheThumbnail=true
+SupportsSandbox=true

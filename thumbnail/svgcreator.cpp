@@ -55,5 +55,5 @@ bool SvgCreator::create(const QString &path, int w, int h, QImage &img)
 
 ThumbCreator::Flags SvgCreator::flags() const
 {
-    return None;
+    return SupportsSandbox;
 }

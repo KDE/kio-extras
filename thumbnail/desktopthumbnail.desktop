@@ -75,3 +75,4 @@ X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-desktop;
 X-KDE-Library=textthumbnail
 CacheThumbnail=false
+SupportsSandbox=true
