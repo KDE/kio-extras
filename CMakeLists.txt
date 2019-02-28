@@ -40,6 +40,7 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Solid
     Bookmarks
     GuiAddons
+    SyntaxHighlighting
 )
 # As this is the check used for linkage, only require it in the same location...
 if (UNIX)

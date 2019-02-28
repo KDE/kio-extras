@@ -22,6 +22,7 @@
 
 #include <QPixmap>
 #include <kio/thumbcreator.h>
+#include <KSyntaxHighlighting/Repository>
 
 class TextCreator : public ThumbCreator
 {
@@ -35,6 +36,8 @@ private:
     char *m_data;
     int m_dataSize;
     QPixmap m_pixmap;
+
+    KSyntaxHighlighting::Repository m_highlightingRepository;
 };
 
 #endif

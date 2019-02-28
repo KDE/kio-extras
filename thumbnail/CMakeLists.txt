@@ -94,6 +94,7 @@ add_library(textthumbnail MODULE ${textthumbnail_PART_SRCS})
 target_link_libraries(textthumbnail
     Qt5::Gui
     KF5::KIOWidgets
+    KF5::SyntaxHighlighting
 )
 
 install(TARGETS textthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})

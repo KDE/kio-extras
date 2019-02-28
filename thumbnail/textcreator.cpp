@@ -27,7 +27,11 @@
 #include <QPainter>
 #include <QPalette>
 #include <QTextCodec>
+#include <QTextDocument>
 
+#include <KSyntaxHighlighting/SyntaxHighlighter>
+#include <KSyntaxHighlighting/Theme>
+#include <KSyntaxHighlighting/Definition>
 #include <KDesktopFile>
 
 // TODO Fix or remove kencodingprober code
@@ -96,9 +100,8 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
     QFontMetrics fm( font );
 
     // calculate a better border so that the text is centered
-    int canvasWidth  = pixmapSize.width()  - 2*xborder;
-    int canvasHeight = pixmapSize.height() -  2*yborder;
-    int numLines = (int) ( canvasHeight / fm.height() );
+    const QSizeF canvasSize(pixmapSize.width() - 2 * xborder, pixmapSize.height() - 2 * yborder);
+    const int numLines = (int) (canvasSize.height() / fm.height());
 
     // assumes an average line length of <= 120 chars
     const int bytesToRead = 120 * numLines;
@@ -136,7 +139,6 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
 #if 0
             QPalette palette;
             QColor bgColor = palette.color( QPalette::Base );
-            QColor fgColor = palette.color( QPalette::Text );
             if ( qGray( bgColor.rgb() ) > qGray( fgColor.rgb() ) ) {
                 bgColor = bgColor.darker( 103 );
             } else {
@@ -144,18 +146,33 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             }
 #else
             QColor bgColor = QColor ( 245, 245, 245 ); // light-grey background
-            QColor fgColor = Qt::black;
 #endif
             m_pixmap.fill( bgColor );
 
             QPainter painter( &m_pixmap );
-            painter.setFont( font );
-            painter.setPen( fgColor );
+
+            QTextDocument textDocument(text);
+
+            // QTextDocument only supports one margin value for all borders,
+            // so we do a page-in-page behind its back, and do our own borders
+            textDocument.setDocumentMargin(0);
+            textDocument.setPageSize(canvasSize);
+            textDocument.setDefaultFont(font);
 
             QTextOption textOption( Qt::AlignTop | Qt::AlignLeft );
             textOption.setTabStop( 8 * painter.fontMetrics().width( ' ' ) );
             textOption.setWrapMode( QTextOption::WrapAtWordBoundaryOrAnywhere );
-            painter.drawText( QRect( xborder, yborder, canvasWidth, canvasHeight ), text, textOption );
+            textDocument.setDefaultTextOption(textOption);
+
+            KSyntaxHighlighting::SyntaxHighlighter syntaxHighlighter(&textDocument);
+            syntaxHighlighter.setDefinition(m_highlightingRepository.definitionForFileName(path));
+            const auto highlightingTheme = m_highlightingRepository.defaultTheme(KSyntaxHighlighting::Repository::LightTheme);
+            syntaxHighlighter.setTheme(highlightingTheme);
+
+            // draw page-in-page, with clipping as needed
+            painter.translate(xborder, yborder);
+            textDocument.drawContents(&painter, QRectF(QPointF(0, 0), canvasSize));
+
             painter.end();
 
             img = m_pixmap.toImage();
