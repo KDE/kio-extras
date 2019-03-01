@@ -63,7 +63,7 @@ protected:
         volumeSlider.setMaximumWidth(80);
         volumeSlider.hide();
 
-        layout.setMargin(0);
+        layout.setContentsMargins(0, 0, 0, 0);
         layout.setSpacing(0);
         layout.addWidget(&playButton);
         layout.addWidget(&pauseButton);

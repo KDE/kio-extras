@@ -84,7 +84,7 @@ KFileAudioPreview::KFileAudioPreview(QWidget *parent, const QVariantList &)
     connect(m_autoPlay, &QCheckBox::toggled, this, &KFileAudioPreview::toggleAuto);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(d->videoWidget);
     layout->addWidget(d->controls);
     layout->addWidget(m_autoPlay, 0, Qt::AlignHCenter);
