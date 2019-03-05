@@ -136,17 +136,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
                 }
             }
 
-#if 0
-            QPalette palette;
-            QColor bgColor = palette.color( QPalette::Base );
-            if ( qGray( bgColor.rgb() ) > qGray( fgColor.rgb() ) ) {
-                bgColor = bgColor.darker( 103 );
-            } else {
-                bgColor = bgColor.lighter( 103 );
-            }
-#else
             QColor bgColor = QColor ( 245, 245, 245 ); // light-grey background
-#endif
             m_pixmap.fill( bgColor );
 
             QPainter painter( &m_pixmap );
