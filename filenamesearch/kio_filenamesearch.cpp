@@ -98,7 +98,7 @@ void FileNameSearchProtocol::searchDirectory(const QUrl &directory,
     // Visualize all items that match the search pattern
     QList<QUrl> pendingDirs;
     const KFileItemList items = dirLister->items();
-    foreach (const KFileItem &item, items) {
+    for (const KFileItem &item : items) {
         if (itemValidator(item)) {
             KIO::UDSEntry entry = item.entry();
             entry.replace(KIO::UDSEntry::UDS_URL, item.url().url());
@@ -124,7 +124,7 @@ void FileNameSearchProtocol::searchDirectory(const QUrl &directory,
     dirLister.reset();
 
     // Recursively iterate all sub directories
-    foreach (const QUrl &pendingDir, pendingDirs) {
+    for (const QUrl &pendingDir : qAsConst(pendingDirs)) {
         searchDirectory(pendingDir, itemValidator, iteratedDirs);
     }
 }

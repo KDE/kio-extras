@@ -141,8 +141,7 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
     QList<NetService> addedServices;
 
     QList<NetDevice>& deviceList = mNetworkPrivate->deviceList();
-    foreach( const Cagibi::Device& upnpDevice, upnpDevices )
-    {
+    for (const Cagibi::Device& upnpDevice : upnpDevices) {
         if( upnpDevice.hasParentDevice() )
             continue;
 
@@ -150,8 +149,7 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
 
         NetDevicePrivate* d = nullptr;
         const NetDevice* deviceOfService = nullptr;
-        foreach( const NetDevice& device, deviceList )
-        {
+        for (const NetDevice& device : qAsConst(deviceList)) {
         const bool isSameAddress = ( device.ipAddress() == ipAddress );
 //qDebug()<<"existing device:"<<device.hostName()<<"at"<<device.ipAddress()<<"vs."<<ipAddress<<":"<<isSameAddress;
             // TODO: lookup hostname and try to use that
@@ -180,8 +178,7 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
         NetServicePrivate* netServicePrivate = nullptr;
         // do a priority based lookup who can build the object
         // TODO: priorisation
-        foreach( const UpnpNetSystemAble* factory, mNetSystemFactoryList )
-        {
+        for (const UpnpNetSystemAble* factory : qAsConst(mNetSystemFactoryList)) {
             if( factory->canCreateNetSystemFromUpnp(upnpDevice) )
             {
                 // TODO: here we should rather see if this service already exists
@@ -233,8 +230,7 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<Cagibi::Device>& upnpDev
     QList<NetService> removedServices;
 
     QList<NetDevice>& deviceList = mNetworkPrivate->deviceList();
-    foreach( const Cagibi::Device& upnpDevice, upnpDevices )
-    {
+    for (const Cagibi::Device& upnpDevice : upnpDevices) {
         const QString ipAddress = upnpDevice.ipAddress();
 
         QMutableListIterator<NetDevice> it( deviceList );
@@ -244,8 +240,7 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<Cagibi::Device>& upnpDev
             if( device.ipAddress() == ipAddress )
             {
                 QString id;
-                foreach( const UpnpNetSystemAble* factory, mNetSystemFactoryList )
-                {
+                for (const UpnpNetSystemAble* factory : mNetSystemFactoryList) {
                     if( factory->canCreateNetSystemFromUpnp(upnpDevice) )
                     {
                         id = factory->upnpId( upnpDevice );

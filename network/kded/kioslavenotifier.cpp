@@ -162,8 +162,7 @@ void KioSlaveNotifier::notifyAboutRemoved( const QString& dirId, const QString& 
 
 void KioSlaveNotifier::onDevicesAdded( const QList<NetDevice>& deviceList )
 {
-    foreach( const NetDevice& device, deviceList )
-    {
+    for (const NetDevice& device : deviceList) {
         const QString id = dirIdFor( device );
         notifyAboutAdded( id );
     }
@@ -171,8 +170,7 @@ void KioSlaveNotifier::onDevicesAdded( const QList<NetDevice>& deviceList )
 
 void KioSlaveNotifier::onDevicesRemoved( const QList<NetDevice>& deviceList )
 {
-    foreach( const NetDevice& device, deviceList )
-    {
+    for (const NetDevice& device : deviceList) {
         const QString dirId = dirIdFor( device );
         const QString itemPath = pathFor( device );
         notifyAboutRemoved( dirId, itemPath );
@@ -182,8 +180,7 @@ void KioSlaveNotifier::onDevicesRemoved( const QList<NetDevice>& deviceList )
 
 void KioSlaveNotifier::onServicesAdded( const QList<NetService>& serviceList )
 {
-    foreach( const NetService& service, serviceList )
-    {
+    for (const NetService& service : serviceList) {
         const QString id = dirIdFor( service );
         notifyAboutAdded( id );
     }
@@ -192,8 +189,7 @@ void KioSlaveNotifier::onServicesAdded( const QList<NetService>& serviceList )
 
 void KioSlaveNotifier::onServicesRemoved( const QList<NetService>& serviceList )
 {
-    foreach( const NetService& service, serviceList )
-    {
+    for (const NetService& service : serviceList) {
         const QString dirId = dirIdFor( service );
         const QString itemPath = pathFor( service );
         notifyAboutRemoved( dirId, itemPath );

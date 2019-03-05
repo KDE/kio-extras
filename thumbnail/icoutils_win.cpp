@@ -119,8 +119,7 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outp
         }
 
         // we can get rid of the iconResources list now
-        foreach ( LPTSTR iconRes, iconResources )
-        {
+        for (LPTSTR iconRes : qAsConst(iconResources)) {
             if ( !IS_INTRESOURCE(iconRes) )
             {
                 delete [] iconRes;

@@ -41,8 +41,7 @@ bool NetDevicePrivate::hasService( const QString& id ) const
 {
     bool result = false;
 
-    foreach( const NetService& service, mServiceList )
-    {
+    for (const NetService& service : mServiceList) {
         const NetServicePrivate* const d = service.dPtr();
         if( d->id() == id )
         {

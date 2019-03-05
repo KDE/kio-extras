@@ -68,10 +68,10 @@ bool RecentDocuments::rewriteUrl(const QUrl& url, QUrl& newUrl)
 void RecentDocuments::listDir(const QUrl& url)
 {
     if (isRootUrl(url)) {
-        QStringList list = KRecentDocument::recentDocuments();
+        const QStringList list = KRecentDocument::recentDocuments();
         KIO::UDSEntryList udslist;
         QSet<QString> urlSet;
-        Q_FOREACH(const QString & entry, list) {
+        for (const QString& entry : list) {
             if (KDesktopFile::isDesktopFile(entry)) {
                 QFileInfo info(entry);
                 KDesktopFile file(entry);

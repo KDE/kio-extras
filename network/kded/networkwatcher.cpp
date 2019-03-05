@@ -57,8 +57,7 @@ NetDevice NetworkWatcher::deviceData( const QString& hostAddress )
     NetDevice result;
 
     const QList<NetDevice> deviceList = mNetwork->deviceList();
-    foreach( const NetDevice& device, deviceList )
-    {
+    for (const NetDevice& device : deviceList) {
         if( device.hostAddress() == hostAddress )
         {
             result = device;
@@ -74,14 +73,12 @@ NetService NetworkWatcher::serviceData( const QString& hostAddress, const QStrin
     NetService result;
 
     const QList<NetDevice> deviceList = mNetwork->deviceList();
-    foreach( const NetDevice& device, deviceList )
-    {
+    for (const NetDevice& device : deviceList) {
         if( device.hostAddress() == hostAddress )
         {
             const QList<NetService> serviceList = device.serviceList();
 
-            foreach( const NetService& service, serviceList )
-            {
+            for (const NetService& service : serviceList) {
                 if( service.name() == serviceName && service.type() == serviceType )
                 {
                     result = service;
@@ -105,8 +102,7 @@ NetServiceList NetworkWatcher::serviceDataList( const QString& hostAddress )
     NetServiceList result;
 
     const QList<NetDevice> deviceList = mNetwork->deviceList();
-    foreach( const NetDevice& device, deviceList )
-    {
+    for (const NetDevice& device : deviceList) {
         if( device.hostAddress() == hostAddress )
         {
             result = device.serviceList();

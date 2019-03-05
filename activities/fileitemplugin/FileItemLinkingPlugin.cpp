@@ -85,7 +85,8 @@ void FileItemLinkingPlugin::Private::actionTriggered()
 
     KAMD_DBUS_DECL_INTERFACE(service, Resources/Linking, ResourcesLinking);
 
-    foreach (const auto &item, items.urlList()) {
+    const auto urlList = items.urlList();
+    for (const auto &item : urlList) {
         service.asyncCall(
                 link ? "LinkResourceToActivity" : "UnlinkResourceFromActivity",
                 QString(),

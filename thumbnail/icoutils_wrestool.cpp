@@ -52,14 +52,16 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outp
     // Note: Last icon (type 3) could be in higher resolution
 
     // Group Icons
-    foreach ( const QString &line, output )
+    for (const QString &line : output) {
         if ( regExp.indexIn(line) != -1 && regExp.cap(1).toInt() == 14 )
             icons << qMakePair(regExp.cap(2), 14);
+    }
 
     // Icons
-    foreach ( const QString &line, output )
+    for (const QString &line : output) {
         if ( regExp.indexIn(line) != -1 && regExp.cap(1).toInt() == 3 )
             icons << qMakePair(regExp.cap(2), 3);
+    }
 
     if ( icons.isEmpty() )
         return false;
@@ -67,8 +69,7 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outp
     if ( iconNumber > 0 && icons.size() >= iconNumber )
         icons = QList <IconInExe> () << icons.at(iconNumber+1);
 
-    foreach ( const IconInExe &icon, icons )
-    {
+    for (const IconInExe &icon : qAsConst(icons)) {
 
         QString name = icon.first;
         int type = icon.second;

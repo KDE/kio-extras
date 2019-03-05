@@ -48,10 +48,10 @@ void NetworkPrivate::init()
     mNetworkBuilderList.append( upnpBuilder );
     mNoOfInitBuilders = mNetworkBuilderList.count();
 
-    foreach( AbstractNetworkBuilder* builder, mNetworkBuilderList )
-    {
-        foreach( AbstractNetSystemFactory* factory, mNetSystemFactoryList )
+    for (AbstractNetworkBuilder* builder : qAsConst(mNetworkBuilderList)) {
+        for (AbstractNetSystemFactory* factory : qAsConst(mNetSystemFactoryList)) {
             builder->registerNetSystemFactory( factory );
+        }
         p->connect( builder, SIGNAL(initDone()), SLOT(onBuilderInit()) );
         builder->start();
     }

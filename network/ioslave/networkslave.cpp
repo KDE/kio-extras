@@ -216,10 +216,9 @@ void NetworkSlave::listDir( const QUrl& url )
 //qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
-                Mollet::NetDeviceList deviceDataList = reply.value();
+                const Mollet::NetDeviceList deviceDataList = reply.value();
 
-                foreach( const Mollet::NetDevice& deviceData, deviceDataList )
-                {
+                for (const Mollet::NetDevice& deviceData : deviceDataList) {
                     KIO::UDSEntry entry;
                     feedEntryAsDevice( &entry, deviceData );
                     listEntry( entry );
@@ -238,10 +237,9 @@ void NetworkSlave::listDir( const QUrl& url )
 //qDebug()<<reply.isValid();
                 if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
                 {
-                    Mollet::NetServiceList serviceDataList = reply.value();
+                    const Mollet::NetServiceList serviceDataList = reply.value();
 
-                    foreach( const Mollet::NetService& serviceData, serviceDataList )
-                    {
+                    for (const Mollet::NetService& serviceData : serviceDataList) {
                         KIO::UDSEntry entry;
                         feedEntryAsService( &entry, serviceData );
                         listEntry( entry );

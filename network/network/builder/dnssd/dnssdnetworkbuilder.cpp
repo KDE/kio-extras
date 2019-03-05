@@ -125,8 +125,7 @@ void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
     // device TODO: only search for if we can create the service?
     NetDevicePrivate* d = nullptr;
     const NetDevice* deviceOfService = nullptr;
-    foreach( const NetDevice& device, deviceList )
-    {
+    for (const NetDevice& device : qAsConst(deviceList)) {
         const QString deviceHostName = device.hostName();
         const bool useIpAddress = ( deviceHostName.isEmpty() || hostName.isEmpty() );
         const bool isSameAddress = useIpAddress ?
@@ -142,8 +141,7 @@ void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
             // current approach in removeService(...)
             QString id;
             const QString serviceType = service->type();
-            foreach( const DNSSDNetSystemAble* factory, mNetSystemFactoryList )
-            {
+            for (const DNSSDNetSystemAble* factory : qAsConst(mNetSystemFactoryList)) {
                 if( factory->canCreateNetSystemFromDNSSD(serviceType) )
                 {
                     id = factory->dnssdId( service );
@@ -186,8 +184,7 @@ void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
     NetServicePrivate* netServicePrivate = nullptr;
     // do a priority based lookup who can build the object
     // TODO: priorisation
-    foreach( const DNSSDNetSystemAble* factory, mNetSystemFactoryList )
-    {
+    for (const DNSSDNetSystemAble* factory : qAsConst(mNetSystemFactoryList)) {
         if( factory->canCreateNetSystemFromDNSSD(serviceType) )
         {
             // TODO: here we should rather see if this service already exists
@@ -259,8 +256,7 @@ void DNSSDNetworkBuilder::removeService( KDNSSD::RemoteService::Ptr service )
 // //qDebug()<<hostName;
             QString id;
             const QString serviceType = service->type();
-            foreach( const DNSSDNetSystemAble* factory, mNetSystemFactoryList )
-            {
+            for (const DNSSDNetSystemAble* factory : qAsConst(mNetSystemFactoryList)) {
                 if( factory->canCreateNetSystemFromDNSSD(serviceType) )
                 {
                     id = factory->dnssdId( service );
@@ -313,8 +309,7 @@ void DNSSDNetworkBuilder::onServiceBrowserFinished()
 
 DNSSDNetworkBuilder::~DNSSDNetworkBuilder()
 {
-    foreach( KDNSSD::ServiceBrowser* serviceBrowser, mServiceBrowserTable )
-        delete serviceBrowser;
+    qDeleteAll(mServiceBrowserTable);
     delete mServiceTypeBrowser;
 }
 
