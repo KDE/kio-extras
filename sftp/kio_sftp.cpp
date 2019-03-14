@@ -1268,6 +1268,7 @@ void sftpProtocol::closeConnection() {
 
     if (mSession) {
         ssh_disconnect(mSession);
+        ssh_free(mSession);
         mSession = nullptr;
     }
 
