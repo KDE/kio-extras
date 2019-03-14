@@ -443,7 +443,7 @@ QString sftpProtocol::canonicalizePath(const QString &path) {
     }
 
     cPath = QFile::decodeName(sPath);
-    delete sPath;
+    ssh_string_free_char(sPath);
 
     qCDebug(KIO_SFTP_LOG) << "Canonicalized path: " << cPath;
 
