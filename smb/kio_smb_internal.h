@@ -84,12 +84,7 @@ public:
     void setPass( const QString& _txt ) { QUrl::setPassword(_txt); updateCache(); }
     void setUser( const QString& _txt ) { QUrl::setUserName(_txt); updateCache(); }
     void setHost( const QString& _txt ) { QUrl::setHost(_txt); updateCache(); }
-    void setFileName(const QString& _txt)
-    {
-        QUrl::adjusted(QUrl::RemoveFilename);
-        QUrl::setPath(path() + _txt);
-        updateCache();
-    }
+    void setPath( const QString& _txt ) { QUrl::setPath(_txt); updateCache(); }
 
     /**
      * Returns the workgroup if it given in url

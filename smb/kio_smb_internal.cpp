@@ -140,7 +140,7 @@ SMBUrl SMBUrl::partUrl() const
 {
     if (m_type == SMBURLTYPE_SHARE_OR_PATH && !fileName().isEmpty()) {
         SMBUrl url (*this);
-        url.setFileName(fileName() + QLatin1String(".part"));
+        url.setPath(path() + QLatin1String(".part"));
         return url;
     }
 
