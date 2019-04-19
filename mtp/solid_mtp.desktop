@@ -6,7 +6,7 @@ Actions=open;
 [Desktop Action open]
 Exec=kioclient5 exec mtp:udi=%i/
 Icon=system-file-manager
-Name=Open with File Manager
+Name=Browse Files with File Manager
 Name[ar]=افتح بمدير الملفّات
 Name[bg]=Отваряне с файлов мениджър
 Name[ca]=Obre amb el gestor de fitxers
