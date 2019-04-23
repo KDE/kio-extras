@@ -7,3 +7,12 @@ Actions=open;
 Exec=kioclient5 exec mtp:udi=%i/
 Icon=system-file-manager
 Name=Browse Files with File Manager
+Name[ca]=Navega pels fitxers amb el gestor de fitxers
+Name[en_GB]=Browse Files with File Manager
+Name[es]=Explorar archivos con el gestor de archivos
+Name[gl]=Explorar o ficheiros co xestor de ficheiros
+Name[nl]=Door bestanden bladeren met bestandsbeheerder
+Name[pt]=Navegar com o Gestor de Ficheiros
+Name[sv]=Bläddra bland filer med filhanterare
+Name[uk]=Переглянути файли у програмі для керування файлами
+Name[x-test]=xxBrowse Files with File Managerxx
