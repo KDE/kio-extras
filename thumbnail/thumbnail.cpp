@@ -352,7 +352,11 @@ void ThumbnailProtocol::get(const QUrl &url)
         }
         // Keep in sync with kdelibs/kio/kio/previewjob.cpp
         stream << img.width() << img.height() << quint8(img.format());
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+        memcpy(shmaddr, img.bits(), img.sizeInBytes());
+#else
         memcpy(shmaddr, img.bits(), img.byteCount());
+#endif
         shmdt((char*)shmaddr);
         mimeType("application/octet-stream");
         data(imgData);
