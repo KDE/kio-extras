@@ -150,7 +150,11 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             textDocument.setDefaultFont(font);
 
             QTextOption textOption( Qt::AlignTop | Qt::AlignLeft );
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+            textOption.setTabStopDistance(8 * painter.fontMetrics().horizontalAdvance(QLatin1Char(' ')));
+#else
             textOption.setTabStop( 8 * painter.fontMetrics().width( ' ' ) );
+#endif
             textOption.setWrapMode( QTextOption::WrapAtWordBoundaryOrAnywhere );
             textDocument.setDefaultTextOption(textOption);
 
