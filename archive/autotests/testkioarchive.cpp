@@ -33,11 +33,11 @@ static const char s_tarFileName[] = "karchivetest.tar";
 static void writeTestFilesToArchive( KArchive* archive )
 {
     bool ok;
-    ok = archive->writeFile( "empty", "weis", "users", "", 0 );
+    ok = archive->writeFile("empty", QByteArray(), 0100644, "weis", "users");
     QVERIFY( ok );
-    ok = archive->writeFile( "test1", "weis", "users", "Hallo", 5 );
+    ok = archive->writeFile("test1", QByteArrayLiteral("Hallo"), 0100644, "weis", "users");
     QVERIFY( ok );
-    ok = archive->writeFile( "mydir/subfile", "dfaure", "users", "Bonjour", 7 );
+    ok = archive->writeFile("mydir/subfile", QByteArrayLiteral("Bonjour"), 0100644, "dfaure", "users");
     QVERIFY( ok );
     ok = archive->writeSymLink( "mydir/symlink", "subfile", "dfaure", "users" );
     QVERIFY( ok );
