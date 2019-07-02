@@ -61,6 +61,8 @@ SMBUrl::SMBUrl(const SMBUrl& other)
 {
 }
 
+SMBUrl& SMBUrl::operator=(const SMBUrl&) = default;
+
 //-----------------------------------------------------------------------
 void SMBUrl::addPath(const QString &filedir)
 {

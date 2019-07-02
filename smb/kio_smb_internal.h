@@ -64,6 +64,8 @@ public:
     SMBUrl(const SMBUrl&);
     SMBUrl(const QUrl & kurl);
 
+    SMBUrl& operator=(const SMBUrl&);
+
     /**
      * Appends the specified file and dir to this SMBUrl
      * "smb://server/share" --> "smb://server/share/filedir"
