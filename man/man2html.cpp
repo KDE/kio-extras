@@ -3995,6 +3995,24 @@ static char *scan_request(char *c)
             h = name + 3;
           else
             h = name;
+
+          // The format of the argument to .so varies among man pages.
+          // Some of them, e.g. pam.8, use "PAM.8".  Others, e.g. telinit.8,
+          // use "man8/init.8".  So they are not always true relative paths,
+          // although the man(1) command seems to handle them with no problem.
+          //
+          // The code above starting "h = c - 3" attempts to turn the argument
+          // into a relative path, but that is not correct in the case of pam.8
+          // as above.  So this removes the "../" prefix again if there is
+          // no other slash following it.
+          char *firstSlash = strchr(h, '/');
+          if (firstSlash != 0)
+          {
+            char *nextSlash = strchr(firstSlash + 1, '/');
+            if (nextSlash == 0)
+              h = firstSlash + 1;
+          }
+
           /* this works alright, except for section 3 */
           buf = read_man_page(h);
           if (!buf)
