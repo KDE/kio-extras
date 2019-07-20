@@ -26,7 +26,6 @@
 #include "kio_sftp_trace_debug.h"
 #include <cerrno>
 #include <cstring>
-#include <utime.h>
 
 #include <QCoreApplication>
 #include <QDir>
@@ -34,6 +33,7 @@
 #include <QVarLengthArray>
 #include <QMimeType>
 #include <QMimeDatabase>
+#include <QDateTime>
 
 #include <kuser.h>
 #include <kmessagebox.h>
@@ -41,6 +41,14 @@
 #include <klocalizedstring.h>
 #include <kconfiggroup.h>
 #include <kio/ioslave_defaults.h>
+
+#ifdef Q_OS_WIN
+#include <experimental/filesystem>  // for permissions
+using namespace std::experimental::filesystem;
+#include <qplatformdefs.h>
+#else
+#include <utime.h>
+#endif
 
 #define KIO_SFTP_SPECIAL_TIMEOUT 30
 
@@ -344,7 +352,7 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
     mode_t access;
     char *link;
     bool isBrokenLink = false;
-    long long fileType = S_IFREG;
+    long long fileType = QT_STAT_REG;
     long long size = 0LL;
 
     Q_ASSERT(entry.count() == 0);
@@ -378,23 +386,27 @@ bool sftpProtocol::createUDSEntry(const QString &filename, const QByteArray &pat
 
     if (isBrokenLink) {
         // It is a link pointing to nowhere
-        fileType = S_IFMT - 1;
+        fileType = QT_STAT_MASK - 1;
+#ifdef Q_OS_WIN
+        access = static_cast<mode_t>(perms::owner_all | perms::group_all | perms::others_all);
+#else
         access = S_IRWXU | S_IRWXG | S_IRWXO;
+#endif
         size = 0LL;
     } else {
         switch (sb->type) {
         case SSH_FILEXFER_TYPE_REGULAR:
-            fileType = S_IFREG;
+            fileType = QT_STAT_REG;
             break;
         case SSH_FILEXFER_TYPE_DIRECTORY:
-            fileType = S_IFDIR;
+            fileType = QT_STAT_DIR;
             break;
         case SSH_FILEXFER_TYPE_SYMLINK:
-            fileType = S_IFLNK;
+            fileType = QT_STAT_LNK;
             break;
         case SSH_FILEXFER_TYPE_SPECIAL:
         case SSH_FILEXFER_TYPE_UNKNOWN:
-            fileType = S_IFMT - 1;
+            fileType = QT_STAT_MASK - 1;
             break;
         }
         access = sb->permissions & 07777;
@@ -1751,7 +1763,11 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
                     mode_t initialMode;
 
                     if (permissions != -1) {
+#ifdef Q_OS_WIN
+                        initialMode = permissions | static_cast<mode_t>(perms::owner_write | perms::owner_read);
+#else
                         initialMode = permissions | S_IWUSR | S_IRUSR;
+#endif
                     } else {
                         initialMode = 0644;
                     }
@@ -1922,11 +1938,10 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QStrin
     qCDebug(KIO_SFTP_LOG) << url << "->" << sCopyFile << ", permissions=" << permissions;
 
     // check if destination is ok ...
-    QT_STATBUF buff;
-    const bool bDestExists = (QT_STAT(QFile::encodeName(sCopyFile), &buff) != -1);
-
+    QFileInfo copyFile(sCopyFile);
+    const bool bDestExists = copyFile.exists();
     if(bDestExists)  {
-        if(S_ISDIR(buff.st_mode)) {
+        if(copyFile.isDir()) {
             errorCode = ERR_IS_DIRECTORY;
             return sftpProtocol::ClientError;
         }
@@ -1939,16 +1954,17 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QStrin
 
     bool bResume = false;
     const QString sPart = sCopyFile + QLatin1String(".part"); // do we have a ".part" file?
-    const bool bPartExists = (QT_STAT(QFile::encodeName(sPart), &buff) != -1);
+    QFileInfo partFile(sPart);
+    const bool bPartExists = partFile.exists();
     const bool bMarkPartial = config()->readEntry("MarkPartial", true);
     const QString dest = (bMarkPartial ? sPart : sCopyFile);
 
-    if (bMarkPartial && bPartExists && buff.st_size > 0) {
-        if (S_ISDIR(buff.st_mode)) {
+    if (bMarkPartial && bPartExists && copyFile.size() > 0) {
+        if(partFile.isDir()) {
             errorCode = ERR_DIR_ALREADY_EXIST;
             return sftpProtocol::ClientError;                            // client side error
         }
-        bResume = canResume( buff.st_size );
+        bResume = canResume( copyFile.size() );
     }
 
     if (bPartExists && !bResume)                  // get rid of an unwanted ".part" file
@@ -1958,7 +1974,11 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QStrin
     // otherwise we can be in for a surprise on NFS.
     mode_t initialMode;
     if (permissions != -1)
+#ifdef Q_OS_WIN
+        initialMode = permissions | static_cast<mode_t>(perms::owner_write);
+#else
         initialMode = permissions | S_IWUSR;
+#endif
     else
         initialMode = 0666;
 
@@ -2004,21 +2024,27 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QStrin
                 }
             }
         }
-        else if (QT_STAT( QFile::encodeName(sPart), &buff ) == 0) { // should a very small ".part" be deleted?
+        else{
+            partFile.refresh();
             const int size = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
-            if (buff.st_size <  size)
+            if (partFile.exists() && partFile.size() <  size) { // should a very small ".part" be deleted?
                 QFile::remove(sPart);
+            }
         }
-    }
 
     const QString mtimeStr = metaData("modified");
     if (!mtimeStr.isEmpty()) {
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
-            struct utimbuf utbuf;
-            utbuf.actime = buff.st_atime; // access time, unchanged
-            utbuf.modtime = dt.toTime_t(); // modification time
-            utime(QFile::encodeName(sCopyFile), &utbuf);
+            QFile receivedFile(sCopyFile);
+            if (receivedFile.exists()) {
+                if (!receivedFile.open(QIODevice::ReadWrite | QIODevice::Text)) {
+                    QString error_msg = receivedFile.errorString();
+                    qCDebug(KIO_SFTP_LOG) << "Couldn't update modified time : " << error_msg;
+                } else {
+                    receivedFile.setFileTime(dt, QFileDevice::FileModificationTime);
+                }
+            }
         }
     }
 
@@ -2030,11 +2056,10 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyPut(const QUrl& url, const QStrin
     qCDebug(KIO_SFTP_LOG) << sCopyFile << "->" << url << ", permissions=" << permissions << ", flags" << flags;
 
     // check if source is ok ...
-    QT_STATBUF buff;
-    bool bSrcExists = (QT_STAT(QFile::encodeName(sCopyFile), &buff) != -1);
-
+    QFileInfo copyFile(sCopyFile);
+    bool bSrcExists = copyFile.exists();
     if (bSrcExists) {
-        if (S_ISDIR(buff.st_mode)) {
+        if(copyFile.isDir()) {
             errorCode = ERR_IS_DIRECTORY;
             return sftpProtocol::ClientError;
         }
@@ -2050,7 +2075,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyPut(const QUrl& url, const QStrin
         return sftpProtocol::ClientError;
     }
 
-    totalSize(buff.st_size);
+    totalSize(copyFile.size());
 
     // delegate the real work (errorCode gets status) ...
     StatusCode ret = sftpPut(url, permissions, flags, errorCode, fd);
@@ -2173,7 +2198,7 @@ void sftpProtocol::listDir(const QUrl& url) {
         mode_t access;
         char *link;
         bool isBrokenLink = false;
-        long long fileType = S_IFREG;
+        long long fileType = QT_STAT_REG;
         long long size = 0LL;
 
         dirent = sftp_readdir(mSftp, dp);
@@ -2209,19 +2234,23 @@ void sftpProtocol::listDir(const QUrl& url) {
 
         if (isBrokenLink) {
             // It is a link pointing to nowhere
-            fileType = S_IFMT - 1;
+            fileType = QT_STAT_MASK - 1;
+#ifdef Q_OS_WIN
+            access = static_cast<mode_t>(perms::owner_all | perms::group_all | perms::others_all);
+#else
             access = S_IRWXU | S_IRWXG | S_IRWXO;
+#endif
             size = 0LL;
         } else {
             switch (dirent->type) {
             case SSH_FILEXFER_TYPE_REGULAR:
-                fileType = S_IFREG;
+                fileType = QT_STAT_REG;
                 break;
             case SSH_FILEXFER_TYPE_DIRECTORY:
-                fileType = S_IFDIR;
+                fileType = QT_STAT_DIR;
                 break;
             case SSH_FILEXFER_TYPE_SYMLINK:
-                fileType = S_IFLNK;
+                fileType = QT_STAT_LNK;
                 break;
             case SSH_FILEXFER_TYPE_SPECIAL:
             case SSH_FILEXFER_TYPE_UNKNOWN:
