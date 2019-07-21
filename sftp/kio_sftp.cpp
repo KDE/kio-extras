@@ -1995,7 +1995,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QStrin
     // handle renaming or deletion of a partial file ...
     if (bMarkPartial) {
         if (result == sftpProtocol::Success) { // rename ".part" on success
-            if ( !QFile::rename( QFile::encodeName(sPart), sCopyFile ) ) {
+            if (!QFile::rename(sPart, sCopyFile)) {
                 // If rename fails, try removing the destination first if it exists.
                 if (!bDestExists || !QFile::remove(sCopyFile) || !QFile::rename(sPart, sCopyFile)) {
                     qCDebug(KIO_SFTP_LOG) << "cannot rename " << sPart << " to " << sCopyFile;
