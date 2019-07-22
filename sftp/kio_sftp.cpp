@@ -2031,6 +2031,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QStrin
                 QFile::remove(sPart);
             }
         }
+    }
 
     const QString mtimeStr = metaData("modified");
     if (!mtimeStr.isEmpty()) {
