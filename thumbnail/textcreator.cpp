@@ -71,8 +71,12 @@ static QTextCodec *codecFromContent(const char *data, int dataSize)
 
 bool TextCreator::create(const QString &path, int width, int height, QImage &img)
 {
-    // Bug 220330: desktop files aren't traditional text files
-    if (KDesktopFile::isDesktopFile(path)) {
+    // Desktop files, .directory files, and flatpakrefs aren't traditional
+    // text files, so their icons should be shown instead
+    if (KDesktopFile::isDesktopFile(path)
+        || path.endsWith(QStringLiteral(".directory"))
+        || path.endsWith(QStringLiteral(".flatpakref"))
+    ) {
         return false;
     }
 
