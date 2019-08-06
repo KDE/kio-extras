@@ -2473,7 +2473,8 @@ sftpProtocol::GetRequest::GetRequest(sftp_file file, sftp_attributes sb, ushort 
 
 }
 
-bool sftpProtocol::GetRequest::enqueueChunks() {
+bool sftpProtocol::GetRequest::enqueueChunks()
+{
     sftpProtocol::GetRequest::Request request;
 
     qCDebug(KIO_SFTP_TRACE_LOG) << "enqueueChunks";
