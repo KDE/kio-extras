@@ -58,7 +58,8 @@ class ComicCreator : public QObject, public ThumbCreator
         enum Type {
             ZIP,
             TAR,
-            RAR
+            RAR,
+            SEVENZIP
         };
         void filterImages(QStringList& entries);
         int  startProcess(const QString& processPath, const QStringList& args);

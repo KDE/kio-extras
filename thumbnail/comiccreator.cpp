@@ -31,6 +31,7 @@
 
 #include <kzip.h>
 #include <ktar.h>
+#include <k7zip.h>
 #include <QDebug>
 #include <kprocess.h>
 
@@ -77,6 +78,8 @@ bool ComicCreator::create(const QString& path, int width, int height, QImage& im
                 mime.inherits("application/x-tar")) {
         // TAR archive
         cover = extractArchiveImage(path, TAR);
+    } else if (mime.inherits("application/x-cb7") || mime.inherits("application/x-7z-compressed")) {
+        cover = extractArchiveImage(path, SEVENZIP);
     } else if (mime.inherits("application/x-cbr") || mime.inherits("application/x-rar")) {
         // RAR archive.
         cover = extractRARImage(path);
@@ -119,6 +122,9 @@ QImage ComicCreator::extractArchiveImage(const QString& path, const ComicCreator
     } else if (type==TAR) {
         // Open the TAR archive.
         cArchive.reset(new KTar(path));
+    } else if (type==SEVENZIP) {
+        // Open the 7z archive.
+        cArchive.reset(new K7Zip(path));
     } else {
         // Reject all other types for this method.
         return QImage();
