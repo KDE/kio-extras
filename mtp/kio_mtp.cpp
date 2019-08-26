@@ -299,7 +299,13 @@ void MTPSlave::stat(const QUrl &url)
                     }
                     // folder/file
                     else {
-                        entry = getEntry(storage->getFileMetadata(convertPath(url.path())));
+                        const KMTPFile file = storage->getFileMetadata(convertPath(url.path()));
+                        if (file.isValid()) {
+                            entry = getEntry(file);
+                        } else {
+                            error(ERR_DOES_NOT_EXIST, url.path());
+                            return;
+                        }
                     }
                 } else {
                     error(ERR_DOES_NOT_EXIST, url.path());
@@ -340,9 +346,11 @@ void MTPSlave::mimetype(const QUrl &url)
             const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
             if (storage) {
                 const KMTPFile file = storage->getFileMetadata(convertPath(url.path()));
-                // NOTE the difference between calling mimetype and mimeType
-                mimeType(file.filetype());
-                return;
+                if (file.isValid()) {
+                    // NOTE the difference between calling mimetype and mimeType
+                    mimeType(file.filetype());
+                    return;
+                }
             }
         }
     } else {
