@@ -65,6 +65,12 @@ set_package_properties(KF5Activities PROPERTIES
     TYPE OPTIONAL
 )
 
+find_package(KF5ActivitiesStats QUIET)
+set_package_properties(KF5ActivitiesStats PROPERTIES
+    PURPOSE "Provides the recentlyused:/ kioslave."
+    TYPE OPTIONAL
+)
+
 find_package(Phonon4Qt5 4.6.60 NO_MODULE)
 set_package_properties(Phonon4Qt5 PROPERTIES
    DESCRIPTION "Qt-based audio library"
@@ -142,6 +148,9 @@ add_subdirectory( doc )
 add_subdirectory( about )
 if(KF5Activities_FOUND)
   add_subdirectory( activities )
+endif()
+if(KF5ActivitiesStats_FOUND)
+    add_subdirectory( recentlyused )
 endif()
 add_subdirectory( bookmarks )
 add_subdirectory( filter )

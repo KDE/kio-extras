@@ -1,0 +1,34 @@
+{
+    "KDE-KIO-Protocols": {
+        "recentlyused": {
+            "Class": ":local",
+            "Icon": "document-open-recent",
+            "ProxiedBy": "file",
+            "X-DocPath": "kioslave5/recentlyused/index.html",
+            "copyFromFile": false,
+            "copyToFile": false,
+            "deleting": false,
+            "exec": "kf5/kio/recentlyused",
+            "input": "none",
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "Access",
+                "Owner",
+                "Group",
+                "Link"
+            ],
+            "linking": false,
+            "makedir": false,
+            "maxInstances": 1,
+            "maxInstancesPerHost": 1,
+            "moving": false,
+            "output": "filesystem",
+            "protocol": "recentlyused",
+            "reading": false,
+            "writing": false
+        }
+    }
+}
