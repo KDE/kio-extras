@@ -65,7 +65,7 @@ set_package_properties(KF5Activities PROPERTIES
     TYPE OPTIONAL
 )
 
-find_package(KF5ActivitiesStats QUIET)
+find_package(KF5ActivitiesStats 5.62 QUIET)
 set_package_properties(KF5ActivitiesStats PROPERTIES
     PURPOSE "Provides the recentlyused:/ kioslave."
     TYPE OPTIONAL
