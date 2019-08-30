@@ -292,6 +292,8 @@ private:
     SMBUrl m_openUrl;
 
     const bool m_enableEEXISTWorkaround; /* Enables a workaround for some broken libsmbclient versions */
+    // Close without calling finish(). Use this to close after error.
+    void closeWithoutFinish();
 };
 
 //==========================================================================

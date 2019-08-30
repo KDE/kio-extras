@@ -1406,7 +1406,6 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
     totalSize(fileSize);
     position(0);
     opened();
-    finished();
 }
 
 void sftpProtocol::read(KIO::filesize_t bytes) {
@@ -1428,7 +1427,6 @@ void sftpProtocol::read(KIO::filesize_t bytes) {
 
     const QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
     data(fileData);
-    finished();
 }
 
 void sftpProtocol::write(const QByteArray &data) {
@@ -1445,7 +1443,6 @@ void sftpProtocol::write(const QByteArray &data) {
     }
 
     written(bytesWritten);
-    finished();
 }
 
 void sftpProtocol::seek(KIO::filesize_t offset) {
@@ -1460,7 +1457,6 @@ void sftpProtocol::seek(KIO::filesize_t offset) {
     }
 
     position(sftp_tell64(mOpenFile));
-    finished();
 }
 
 void sftpProtocol::close() {
