@@ -72,5 +72,5 @@ Name[zh_CN]=Microsoft Windows 可执行文件
 Name[zh_TW]=Microsoft Windows 執行檔
 ServiceTypes=ThumbCreator
 MimeType=application/x-ms-dos-executable;application/x-msdownload;application/x-wine-extension-cpl;
-CacheThumbnail=false
+CacheThumbnail=true
 X-KDE-Library=windowsexethumbnail
