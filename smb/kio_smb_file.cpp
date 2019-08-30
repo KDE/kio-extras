@@ -220,7 +220,7 @@ void SMBSlave::open( const QUrl& kurl, QIODevice::OpenMode mode)
         if(bytesRead < 0)
         {
             error( KIO::ERR_COULD_NOT_READ, m_openUrl.toDisplayString());
-            close();
+            closeWithoutFinish();
             return;
         }
         else
@@ -233,7 +233,7 @@ void SMBSlave::open( const QUrl& kurl, QIODevice::OpenMode mode)
             off_t res = smbc_lseek(m_openFd, 0, SEEK_SET);
             if (res == (off_t)-1) {
                 error(KIO::ERR_COULD_NOT_SEEK, m_openUrl.path());
-                close();
+                closeWithoutFinish();
                 return;
             }
         }
@@ -258,7 +258,7 @@ void SMBSlave::read( KIO::filesize_t bytesRequested )
     {
         qCDebug(KIO_SMB) << "Could not read " << m_openUrl;
         error( KIO::ERR_COULD_NOT_READ, m_openUrl.toDisplayString());
-        close();
+        closeWithoutFinish();
         return;
     }
 
@@ -278,7 +278,7 @@ void SMBSlave::write(const QByteArray &fileData)
     {
         qCDebug(KIO_SMB) << "Could not write to " << m_openUrl;
         error( KIO::ERR_COULD_NOT_WRITE, m_openUrl.toDisplayString());
-        close();
+        closeWithoutFinish();
         return;
     }
 
@@ -290,16 +290,21 @@ void SMBSlave::seek(KIO::filesize_t offset)
     off_t res = smbc_lseek(m_openFd, static_cast<off_t>(offset), SEEK_SET);
     if (res == (off_t)-1) {
         error(KIO::ERR_COULD_NOT_SEEK, m_openUrl.path());
-        close();
+        closeWithoutFinish();
     } else {
         qCDebug( KIO_SMB ) << "res" << res;
         position( res );
     }
 }
 
-void SMBSlave::close()
+void SMBSlave::closeWithoutFinish()
 {
     smbc_close(m_openFd);
+}
+
+void SMBSlave::close()
+{
+    closeWithoutFinish();
     finished();
 }
 
