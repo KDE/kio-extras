@@ -171,7 +171,7 @@ FileItemLinkingPluginActionLoader::createAction(const QString &activity,
     if (title.isEmpty()) {
         KActivities::Info activityInfo(activity);
         action.title = activityInfo.name();
-        action.icon  = activityInfo.icon().isEmpty() ? "preferences-activities"
+        action.icon  = activityInfo.icon().isEmpty() ? "activities"
                                                      : activityInfo.icon();
 
     } else {

@@ -227,7 +227,7 @@ void ActivitiesProtocol::listDir(const QUrl &url)
             uds.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("current"));
             uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Current activity"));
             uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Activity"));
-            uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("preferences-activities"));
+            uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities"));
             uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
             uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
             uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0500);
@@ -308,7 +308,7 @@ void ActivitiesProtocol::stat(const QUrl& url)
             uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
             uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
             uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
-            uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("preferences-activities"));
+            uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities"));
             uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
             uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
 

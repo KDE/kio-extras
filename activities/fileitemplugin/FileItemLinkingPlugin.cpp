@@ -97,7 +97,7 @@ void FileItemLinkingPlugin::Private::actionTriggered()
 
 QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
 {
-    root = new QAction(QIcon::fromTheme("preferences-activities"),
+    root = new QAction(QIcon::fromTheme("activities"),
                                 i18n("Activities"), parentWidget);
 
     rootMenu = new QMenu();
