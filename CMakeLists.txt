@@ -134,11 +134,6 @@ if(UNIX)
     set_package_properties(Gperf PROPERTIES TYPE OPTIONAL
                            PURPOSE "Needed to build the man kioslave"
                            )
-
-    find_package(KF5KHtml QUIET)
-    set_package_properties(KF5KHtml PROPERTIES TYPE OPTIONAL
-                           PURPOSE "Needed to build the man kioslave"
-                           )
 else()
     # FIXME: on windows we ignore support until trash gets integrated
 endif()
@@ -180,7 +175,7 @@ if (MTP_FOUND)
 endif()
 
 if(NOT WIN32)
-   if(Gperf_FOUND AND KF5KHtml_FOUND)
+   if(Gperf_FOUND)
      add_subdirectory( man )
    endif()
    check_include_files(rpc/rpc.h HAVE_RPC_RPC_H)
