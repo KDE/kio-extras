@@ -17,7 +17,7 @@
 
 #include <QList>
 #include <QPair>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QString>
 #include <QStringList>
 #include <QFile>
@@ -38,36 +38,38 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outp
     if ( wrestool.exitCode() != 0 )
         return false;
 
-    const QStringList output = QString(wrestool.readAll()).split('\n');
+    QList<IconInExe> icons;
 
-    QRegExp regExp("--type=(.*) --name=(.*) --language=(.*) \\[(.*)\\]");
+    const QString output = QString::fromUtf8(wrestool.readAll());
 
-    // If we specify number of icon, use only group icons (Windows use only group icons)
-    if ( iconNumber > 0 )
-        regExp.setPattern("--type=(14) --name=(.*) --language=(.*) \\[(.*)\\]");
+    // 16 bit binaries don't have "--language"
+    const QRegularExpression regExp(QStringLiteral("--type=(\\d+) (?:--name=(.*) --language=(.*)|--name=(.*)) \\[.*\\]"));
 
-    QList <IconInExe> icons;
+    auto matches = regExp.globalMatch(output);
 
-    // First try use group icons (type 14, default first for windows executables), then icons (type 3), then group cursors (type 12) and finally cursors (type 1)
-    // Note: Last icon (type 3) could be in higher resolution
+    while (matches.hasNext()) {
+        const auto match = matches.next();
 
-    // Group Icons
-    for (const QString &line : output) {
-        if ( regExp.indexIn(line) != -1 && regExp.cap(1).toInt() == 14 )
-            icons << qMakePair(regExp.cap(2), 14);
-    }
+        const int type = match.capturedRef(1).toInt();
+        if (type != 14) {
+            continue;
+        }
 
-    // Icons
-    for (const QString &line : output) {
-        if ( regExp.indexIn(line) != -1 && regExp.cap(1).toInt() == 3 )
-            icons << qMakePair(regExp.cap(2), 3);
+        QString name = match.captured(2);
+        if (name.isEmpty()) {
+            name = match.captured(4);
+        }
+
+        icons << qMakePair(name, type);
     }
 
     if ( icons.isEmpty() )
         return false;
 
-    if ( iconNumber > 0 && icons.size() >= iconNumber )
-        icons = QList <IconInExe> () << icons.at(iconNumber+1);
+    // iconNumber 0 is ambiguous...
+    if (iconNumber > 0 && iconNumber < icons.count()) {
+        icons = {icons.at(iconNumber)};
+    }
 
     for (const IconInExe &icon : qAsConst(icons)) {
 
