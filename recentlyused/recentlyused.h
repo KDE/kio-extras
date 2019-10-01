@@ -27,7 +27,16 @@
 
 /**
  * Implements recentlyused:/ ioslave
- * It uses KActivitiesStats as a backend (as kickoff/kicker do).
+ * It uses KActivitiesStats as a backend (as kickoff/kicker do) to retrieve recently accessed
+ * files or folders.
+ * It supports filtering on mimetype (option type), path, date of access or date of access range, activity and agent (meaning application).
+ * There are also order and limit options.
+ *
+ * There only three path allowed : / /files and /locations.
+ * / does not do anything special
+ * /files returns only files whose mimetype is known to the KActivity backend
+ * /locations returns only folders
+ * When /locations is used the option ?type, described below, cannot be used.
  *
  * It supports options to filter what is returned through url parameters:
  *
@@ -99,6 +108,7 @@ protected:
 
 private:
     KIO::UDSEntry udsEntryFromResource(const QString &resource);
+    KIO::UDSEntry udsEntryForRoot(const QString &dirName, const QString &iconName);
 };
 
 #endif

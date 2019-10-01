@@ -92,13 +92,20 @@ ResultModel *runQuery(const QUrl &url)
                  | Limit(30);
 
     // Parse url query parameter
-    auto urlQuery = QUrlQuery(url);
+    const auto urlQuery = QUrlQuery(url);
 
-    // handles type aka mimetype
-    if (urlQuery.hasQueryItem(QStringLiteral("type"))) {
-        const auto typeValue = urlQuery.queryItemValue(QStringLiteral("type"));
-        const auto types = typeValue.split(QLatin1Char(','));
-        query.setTypes(types);
+    const auto path = url.path();
+    if (path == QStringLiteral("/locations")) {
+        query.setTypes(Type::directories());
+    } else {
+        if (urlQuery.hasQueryItem(QStringLiteral("type"))) {
+            // handles type parameter aka mimetype
+            const auto typeValue = urlQuery.queryItemValue(QStringLiteral("type"));
+            const auto types = typeValue.split(QLatin1Char(','));
+            query.setTypes(types);
+        } else if (path == QStringLiteral("/files")) {
+            query.setTypes(Type::files());
+        }
     }
 
     // limit parameter
@@ -198,8 +205,11 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource)
 void RecentlyUsed::listDir(const QUrl &url)
 {
     if (!isRootUrl(url)) {
-        error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
-        return;
+        const auto path = url.path();
+        if (path != QStringLiteral("/files") && path != QStringLiteral("/locations") ){
+            error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+            return;
+        }
     }
 
     auto model = runQuery(url);
@@ -218,6 +228,19 @@ void RecentlyUsed::listDir(const QUrl &url)
     finished();
 }
 
+KIO::UDSEntry RecentlyUsed::udsEntryForRoot(const QString &dirName, const QString &iconName)
+{
+    KIO::UDSEntry uds;
+    uds.reserve(6);
+    uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
+    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
+    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
+    uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, iconName);
+    uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    return uds;
+}
+
 void RecentlyUsed::stat(const QUrl &url)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "stating" << " " << url;
@@ -227,21 +250,25 @@ void RecentlyUsed::stat(const QUrl &url)
         // stat the root path
         //
 
-        QString dirName = i18n("Recent Documents");
-        KIO::UDSEntry uds;
-        uds.reserve(6);
-        uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
-        uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("document-open-recent"));
-        uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+        const QString dirName = i18n("Recent Documents");
 
-        statEntry(uds);
+        statEntry(udsEntryForRoot(dirName, QStringLiteral("document-open-recent")));
         finished();
     } else {
-        // only the root path is supported
-        error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+
+        const auto path = url.path();
+        if (path == QStringLiteral("/files")) {
+            const QString dirName = i18n("Recent Files");
+            statEntry(udsEntryForRoot(dirName, QStringLiteral("document-open-recent")));
+            finished();
+        } else if (path == QStringLiteral("/locations")) {
+            const QString dirName = i18n("Recent Locations");
+            statEntry(udsEntryForRoot(dirName, QStringLiteral("folder-open-recent")));
+            finished();
+        } else {
+            // only / /files and /locations paths are supported
+            error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+        }
     }
 }
 
