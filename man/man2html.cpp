@@ -309,7 +309,7 @@ static void InitNumberDefinitions(void)
 
 //used in expand_char, e.g. for "\(bu"
 // see groff_char(7) for list
-static const CSTRDEF standardchar[] =
+static const CSTRDEF standardchars[] =
 {
   { V('*', '*'), 1, "*" },
   { V('*', 'A'), 1, "&Alpha;" },
@@ -585,13 +585,13 @@ static const CSTRDEF standardchar[] =
 };
 
 // long form for abbreviated standard names (.St macro)
-struct StandardNames
+struct StandardName
 {
   const char *abbrev;
   const char *formalName;
 };
 
-static const StandardNames STANDARD_NAMES[] =
+static const StandardName STANDARD_NAMES[] =
 {
   { "-ansiC", "ANSI X3.159-1989 ('ANSI C89')" },
   { "-ansiC-89", "ANSI X3.159-1989 ('ANSI C89')" },
@@ -669,12 +669,12 @@ void setCssFile(const QByteArray& _cssFile)
 
 static void fill_old_character_definitions(void)
 {
-  for (size_t i = 0; i < sizeof(standardchar) / sizeof(CSTRDEF); i++)
+  for (const CSTRDEF &standardchar : standardchars)
   {
-    const int nr = standardchar[i].nr;
+    const int nr = standardchar.nr;
     const char temp[3] = { char(nr / 256), char(nr % 256), 0 };
     QByteArray name(temp);
-    s_characterDefinitionMap.insert(name, StringDefinition(standardchar[i].slen, standardchar[i].st));
+    s_characterDefinitionMap.insert(name, StringDefinition(standardchar.slen, standardchar.st));
   }
 }
 
@@ -4503,12 +4503,12 @@ static char *scan_request(char *c)
           if ( args.count() )
           {
             bool found = false;
-            for (size_t i = 0; i < (sizeof(STANDARD_NAMES) / sizeof(STANDARD_NAMES[0])); i++)
+            for (const StandardName &standardName : STANDARD_NAMES)
             {
-              if ( args[0] == STANDARD_NAMES[i].abbrev )
+              if ( args[0] == standardName.abbrev )
               {
                 found = true;
-                out_html(STANDARD_NAMES[i].formalName);
+                out_html(standardName.formalName);
                 break;
               }
             }
