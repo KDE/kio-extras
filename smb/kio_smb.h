@@ -144,7 +144,7 @@ protected:
      */
     bool auth_initialize_smbc();
 
-    bool checkPassword(SMBUrl &url);
+    int checkPassword(SMBUrl &url);
 
 
     //---------------------------------------------

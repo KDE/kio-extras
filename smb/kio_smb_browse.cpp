@@ -147,14 +147,19 @@ void SMBSlave::stat( const QUrl& kurl )
             {
                 SMBUrl smbUrl(url);
 
-                if (checkPassword(smbUrl))
+                const int passwordError = checkPassword(smbUrl);
+                if (passwordError == KJob::NoError)
                 {
                     redirection(smbUrl);
                     finished();
                 }
-                else
+                else if (passwordError == KIO::ERR_USER_CANCELED)
                 {
                     reportError(url, ret);
+                }
+                else
+                {
+                    error(passwordError, url.toString());
                 }
 
                 return;
@@ -489,11 +494,17 @@ void SMBSlave::listDir( const QUrl& kurl )
    else
    {
        if (errNum == EPERM || errNum == EACCES || workaroundEEXIST(errNum)) {
-           if (checkPassword(m_current_url)) {
+           const int passwordError = checkPassword(m_current_url);
+           if (passwordError == KJob::NoError) {
                redirection( m_current_url );
                finished();
-               return;
+           } else if (passwordError == KIO::ERR_USER_CANCELED) {
+               reportError(m_current_url, errNum);
+           } else {
+               error(passwordError, m_current_url.toString());
            }
+
+           return;
        }
 
        reportError(m_current_url, errNum);
