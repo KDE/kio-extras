@@ -119,7 +119,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     strncpy(password, info.password.toUtf8(), pwmaxlen - 1);
 }
 
-bool SMBSlave::checkPassword(SMBUrl &url)
+int SMBSlave::checkPassword(SMBUrl &url)
 {
     qCDebug(KIO_SMB) << "checkPassword for " << url;
 
@@ -163,10 +163,10 @@ bool SMBSlave::checkPassword(SMBUrl &url)
             cacheAuthentication(info);
         }
 
-        return true;
+        return KJob::NoError;
     }
-    qCDebug(KIO_SMB) << "no value from openPasswordDialog\n";
-    return false;
+    qCDebug(KIO_SMB) << "no value from openPasswordDialog; error:" << passwordDialogErrorCode;
+    return passwordDialogErrorCode;
 }
 
 //--------------------------------------------------------------------------
