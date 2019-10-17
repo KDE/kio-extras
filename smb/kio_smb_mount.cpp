@@ -67,9 +67,9 @@ void SMBSlave::special( const QByteArray & data)
          smburl.setHost(host);
          smburl.setPath('/' + share);
 
-         if ( checkPassword(smburl) != KJob::NoError )
-         {
-           finished();
+         const int passwordError = checkPassword(smburl);
+         if (passwordError != KJob::NoError && passwordError != KIO::ERR_USER_CANCELED) {
+           error(passwordError, smburl.toString());
            return;
          }
 
