@@ -22,7 +22,7 @@ target_link_libraries(kio_sftp
    KF5::WidgetsAddons # KMessageBox
    KF5::I18n
    Qt5::Network
-   ${LIBSSH_LIBRARIES})
+   ssh)
 set_target_properties(kio_sftp PROPERTIES OUTPUT_NAME "sftp")
 
 install(TARGETS kio_sftp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
