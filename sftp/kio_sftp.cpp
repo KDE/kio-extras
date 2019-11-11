@@ -1658,7 +1658,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
     sftp_attributes sb = sftp_lstat(mSftp, dest_orig_c.constData());
     const bool bOrigExists = (sb != nullptr);
     bool bPartExists = false;
-    const bool bMarkPartial = config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = configValue(QStringLiteral("MarkPartial"), true);
 
     // Don't change permissions of the original file
     if (bOrigExists) {
@@ -1808,7 +1808,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
 
             sftp_attributes attr = sftp_stat(mSftp, dest.constData());
             if (bMarkPartial && attr != nullptr) {
-                size_t size = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+                size_t size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
                 if (attr->size < size) {
                     sftp_unlink(mSftp, dest.constData());
                 }
@@ -1952,7 +1952,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QStrin
     const QString sPart = sCopyFile + QLatin1String(".part"); // do we have a ".part" file?
     QFileInfo partFile(sPart);
     const bool bPartExists = partFile.exists();
-    const bool bMarkPartial = config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = configValue(QStringLiteral("MarkPartial"), true);
     const QString dest = (bMarkPartial ? sPart : sCopyFile);
 
     if (bMarkPartial && bPartExists && copyFile.size() > 0) {
@@ -2022,7 +2022,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QStrin
         }
         else{
             partFile.refresh();
-            const int size = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const int size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (partFile.exists() && partFile.size() <  size) { // should a very small ".part" be deleted?
                 QFile::remove(sPart);
             }

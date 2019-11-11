@@ -862,7 +862,7 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     const QString partFilePath = destPath + QLatin1String(".part");
     const NFSFileHandle partFH = getFileHandle(partFilePath);
     const bool bPartExists = !partFH.isInvalid();
-    const bool bMarkPartial = m_slave->config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = m_slave->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bPartExists) {
         int rpcStatus;
@@ -992,7 +992,7 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = m_slave->config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const unsigned int size = m_slave->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (writeArgs.offset <  size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
@@ -1077,7 +1077,7 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     bool bResume = false;
     const QFileInfo partInfo(destPath + QLatin1String(".part"));
     const bool bPartExists = partInfo.exists();
-    const bool bMarkPartial = m_slave->config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = m_slave->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bMarkPartial && bPartExists && partInfo.size() > 0) {
         if (partInfo.isDir()) {
@@ -1195,7 +1195,7 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep
-            const int size = m_slave->config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const int size = m_slave->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (partInfo.size() <  size) {
                 QFile::remove(partInfo.absoluteFilePath());
             }
@@ -1277,7 +1277,7 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     const QString partFilePath = destPath + QLatin1String(".part");
     const NFSFileHandle partFH = getFileHandle(partFilePath);
     const bool bPartExists = !partFH.isInvalid();
-    const bool bMarkPartial = m_slave->config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = m_slave->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bPartExists) {
         int rpcStatus;
@@ -1392,7 +1392,7 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = m_slave->config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const unsigned int size = m_slave->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (writeArgs.offset <  size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";

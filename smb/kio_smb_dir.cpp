@@ -251,7 +251,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     bool bResume = false;
     const QFileInfo partInfo (dstFile + QLatin1String(".part"));
     const bool bPartExists = partInfo.exists();
-    const bool bMarkPartial = config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = configValue(QStringLiteral("MarkPartial"), true);
 
     if (bMarkPartial && bPartExists && partInfo.size() > 0) {
       if (partInfo.isDir()) {
@@ -389,7 +389,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     if (isErr) {
         const QString sPart = partInfo.absoluteFilePath();
         if (bMarkPartial) {
-            const int size = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const int size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (partInfo.size() <  size) {
                 QFile::remove(sPart);
             }
@@ -462,7 +462,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 
     bool bResume = false;
     bool bPartExists = false;
-    const bool bMarkPartial = config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = configValue(QStringLiteral("MarkPartial"), true);
     const SMBUrl dstOrigUrl (kdst);
 
     if (bMarkPartial) {
@@ -576,7 +576,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     // Handle error condition.
     if (isErr) {
         if (bMarkPartial) {
-            const int size = config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const int size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             const int errNum = cache_stat(dstUrl, &st);
             if (errNum == 0 && st.st_size < size) {
                 smbc_unlink(dstUrl.toSmbcUrl());
