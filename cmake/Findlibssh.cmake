@@ -32,6 +32,19 @@
 # OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 # SUCH DAMAGE.
 
+# Define an imported target to have compatibility with newer libssh and so
+# we have a single target to use regardless of the code path taken in the
+# finder and the actual libssh version defining the target.
+macro(libssh_ensure_imported_target)
+  if(NOT TARGET ssh)
+      add_library(ssh SHARED IMPORTED)
+      set_target_properties(ssh PROPERTIES
+          IMPORTED_LOCATION "${LIBSSH_LIBRARIES}"
+          INTERFACE_INCLUDE_DIRECTORIES "${LIBSSH_INCLUDE_DIR}"
+      )
+  endif()
+endmacro()
+
 # We prefer the config, but on Ubuntu 18.04 LTS (and to some extent later
 # versions it seems) they've not packaged the config properly. So, go for the
 # config by default and fall back to manual lookup iff the config was not found.
@@ -39,6 +52,9 @@
 # https://bugs.launchpad.net/ubuntu/+source/libssh/+bug/1800135
 find_package(libssh ${libssh_FIND_VERSION} NO_MODULE QUIET)
 if(libssh_FOUND)
+  # Certain versions with config may not have the target, so make sure it's
+  # defined.
+  libssh_ensure_imported_target()
   return()
 endif()
 
@@ -108,6 +124,8 @@ find_package_handle_standard_args(libssh
                                     LIBSSH_INCLUDE_DIR
                                   VERSION_VAR
                                     LIBSSH_VERSION)
+
+libssh_ensure_imported_target()
 
 # show the LIBSSH_INCLUDE_DIRS and LIBSSH_LIBRARIES variables only in the advanced view
 mark_as_advanced(LIBSSH_INCLUDE_DIR LIBSSH_LIBRARIES)
