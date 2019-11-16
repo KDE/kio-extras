@@ -47,6 +47,10 @@ void TestKioArchive::initTestCase()
 {
     QStandardPaths::setTestModeEnabled(true);
 
+    // avoid KIO triggering klauncher, which can get the CI stuck
+    qputenv("KDE_FORK_SLAVES", "yes");
+    qputenv("KIO_DISABLE_CACHE_CLEANER", "yes");
+
     // Make sure we start clean
     cleanupTestCase();
 
