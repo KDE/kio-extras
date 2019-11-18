@@ -6165,7 +6165,7 @@ char *manPageToUtf8(const QByteArray &input, const QByteArray &dirName)
   QByteArray encoding;
 
   // some pages contain "coding:" information. See "man manconv"
-  // (but I find pages which do not excactly obey the format described in manconv, e.g.
+  // (but I find pages which do not exactly obey the format described in manconv, e.g.
   // the control char is either "." or "'")
   // Therefore use a QRegExp
   QRegExp regex("[\\.']\\\\\"[^$]*coding:\\s*(\\S*)\\s", Qt::CaseInsensitive);

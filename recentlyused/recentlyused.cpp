@@ -130,7 +130,7 @@ ResultModel *runQuery(const QUrl &url)
         query.setActivities(Activity::current());
     }
 
-    // date parameter, filter using the date when an event occured on a resource
+    // date parameter, filter using the date when an event occurred on a resource
     if (urlQuery.hasQueryItem(QStringLiteral("date"))) {
         const auto dateValue = urlQuery.queryItemValue(QStringLiteral("date"));
         if (dateValue == QStringLiteral("today")) {
@@ -156,7 +156,7 @@ ResultModel *runQuery(const QUrl &url)
         const auto pathValue = urlQuery.queryItemValue(QStringLiteral("path"));
         query.setUrlFilters(pathValue);
     } else {
-        // only files are suported for now, because of limited support in udsEntryFromResource
+        // only files are supported for now, because of limited support in udsEntryFromResource
         query.setUrlFilters(Url::file());
     }
 

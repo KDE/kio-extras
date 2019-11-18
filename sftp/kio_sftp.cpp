@@ -896,7 +896,7 @@ void sftpProtocol::openConnection()
                     return;
                 }
 
-                // If the user name changes, we have to restablish connection again
+                // If the user name changes, we have to re-establish connection again
                 // since the user name must always be set before calling ssh_connect.
                 if (wasUsernameChanged(username, info)) {
                     qCDebug(KIO_SFTP_LOG) << "Username changed to" << info.username;

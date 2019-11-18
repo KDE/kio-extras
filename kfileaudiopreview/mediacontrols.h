@@ -48,7 +48,7 @@ class MediaControls : public QWidget
      * playback is visible.
      *
      * By default the slider is visible. It is enabled/disabled automatically
-     * depending on whether the media can be seeked or not.
+     * depending on whether the media can be sought or not.
      */
     Q_PROPERTY(bool seekSliderVisible READ isSeekSliderVisible WRITE setSeekSliderVisible)
 

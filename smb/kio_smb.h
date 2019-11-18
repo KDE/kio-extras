@@ -5,7 +5,7 @@
 // File:        kio_smb.h
 //
 // Abstract:    The main kio slave class declaration.  For convenience,
-//              in concurrent devlopment, the implementation for this class
+//              in concurrent development, the implementation for this class
 //              is separated into several .cpp files -- the file containing
 //              the implementation should be noted in the comments for each
 //              member function.
