@@ -272,7 +272,7 @@ void NFSProtocolV3::openConnection()
         }
     }
     if (failList.size() > 0) {
-        m_slave->error(KIO::ERR_COULD_NOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
+        m_slave->error(KIO::ERR_CANNOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
 
         // All exports failed to mount, fail
         if (failList.size() == exportsCount) {
@@ -1433,7 +1433,7 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
             readArgs.offset += bytesRead;
 
             if (destFile.write(readRes.READ3res_u.resok.data.data_val, bytesRead) < 0) {
-                m_slave->error(KIO::ERR_COULD_NOT_WRITE, destPath);
+                m_slave->error(KIO::ERR_CANNOT_WRITE, destPath);
 
                 error = true;
                 break;
@@ -1622,7 +1622,7 @@ void NFSProtocolV3::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
 
         bytesRead = srcFile.read(writeArgs.data.data_val, m_writeBufferSize);
         if (bytesRead < 0) {
-            m_slave->error(KIO::ERR_COULD_NOT_READ, srcPath);
+            m_slave->error(KIO::ERR_CANNOT_READ, srcPath);
 
             error = true;
             break;

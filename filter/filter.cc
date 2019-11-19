@@ -82,7 +82,7 @@ void FilterProtocol::get(const QUrl& url)
 
     QFile localFile(url.path());
     if (!localFile.open(QIODevice::ReadOnly)) {
-        error(KIO::ERR_COULD_NOT_READ, QString::fromLatin1(mProtocol));
+        error(KIO::ERR_CANNOT_READ, QString::fromLatin1(mProtocol));
         return;
     }
 
@@ -185,7 +185,7 @@ void FilterProtocol::get(const QUrl& url)
     filter->terminate();
 
     if (bError) {
-        error(KIO::ERR_COULD_NOT_READ, subURL.url());
+        error(KIO::ERR_CANNOT_READ, subURL.url());
     } else {
         finished();
     }

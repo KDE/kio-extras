@@ -257,7 +257,7 @@ void NFSProtocolV2::openConnection()
 
     // Check if some exported dirs failed to mount
     if (failList.size() > 0) {
-        m_slave->error(KIO::ERR_COULD_NOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
+        m_slave->error(KIO::ERR_CANNOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
 
         // All exports failed to mount, fail
         if (failList.size() == exportsCount) {
@@ -1179,7 +1179,7 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
             readArgs.offset += bytesRead;
 
             if (destFile.write(readRes.readres_u.reply.data.data_val, bytesRead) != bytesRead) {
-                m_slave->error(KIO::ERR_COULD_NOT_WRITE, destPath);
+                m_slave->error(KIO::ERR_CANNOT_WRITE, destPath);
 
                 error = true;
                 break;
@@ -1364,7 +1364,7 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     do {
         bytesRead = srcFile.read(writeArgs.data.data_val, NFS_MAXDATA);
         if (bytesRead < 0) {
-            m_slave->error(KIO::ERR_COULD_NOT_READ, srcPath);
+            m_slave->error(KIO::ERR_CANNOT_READ, srcPath);
 
             error = true;
             break;

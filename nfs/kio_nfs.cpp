@@ -128,9 +128,9 @@ void NFSSlave::openConnection()
         if (m_protocol == nullptr) {
             // If we could not find a compatible protocol, send an error.
             if (!connectionError) {
-                error(KIO::ERR_COULD_NOT_CONNECT, i18n("%1: Unsupported NFS version", m_host));
+                error(KIO::ERR_CANNOT_CONNECT, i18n("%1: Unsupported NFS version", m_host));
             } else {
-                error(KIO::ERR_COULD_NOT_CONNECT, m_host);
+                error(KIO::ERR_CANNOT_CONNECT, m_host);
             }
         } else {
             // Otherwise we open the connection
@@ -631,7 +631,7 @@ int NFSProtocol::openConnection(const QString& host, int prog, int vers, CLIENT*
         client = clntudp_create(&server_addr, prog, vers, pertry_timeout, &sock);
         if (client == nullptr) {
             ::close(sock);
-            return KIO::ERR_COULD_NOT_CONNECT;
+            return KIO::ERR_CANNOT_CONNECT;
         }
     }
 
@@ -697,13 +697,13 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
             m_slave->error(KIO::ERR_INTERNAL_SERVER, i18n("No space left on device"));
             break;
         case NFSERR_ROFS:
-            m_slave->error(KIO::ERR_COULD_NOT_WRITE, i18n("Read only file system"));
+            m_slave->error(KIO::ERR_CANNOT_WRITE, i18n("Read only file system"));
             break;
         case NFSERR_NAMETOOLONG:
             m_slave->error(KIO::ERR_INTERNAL_SERVER, i18n("Filename too long"));
             break;
         case NFSERR_NOTEMPTY:
-            m_slave->error(KIO::ERR_COULD_NOT_RMDIR, text);
+            m_slave->error(KIO::ERR_CANNOT_RMDIR, text);
             break;
         //does this mapping make sense ?
         case NFSERR_DQUOT:

@@ -131,7 +131,7 @@ static int writeToFile(int fd, const char *buf, size_t len)
         case ENOSPC:
             return ERR_DISK_FULL;
         default:
-            return ERR_COULD_NOT_WRITE;
+            return ERR_CANNOT_WRITE;
         }
     }
     return 0;
@@ -804,7 +804,7 @@ void sftpProtocol::openConnection()
     rc = ssh_userauth_none(mSession, nullptr);
     if (rc == SSH_AUTH_ERROR) {
         closeConnection();
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
         return;
     }
 
@@ -812,7 +812,7 @@ void sftpProtocol::openConnection()
     int method = ssh_auth_list(mSession);
     if (rc != SSH_AUTH_SUCCESS && method == 0) {
         closeConnection();
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed. The server "
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed. The server "
                     "didn't send any authentication methods"));
         return;
     }
@@ -827,7 +827,7 @@ void sftpProtocol::openConnection()
                     QString::fromUtf8(ssh_get_error(mSession));
                 closeConnection();
                 clearPubKeyAuthInfo();
-                error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+                error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
                 return;
             } else if (rc != SSH_AUTH_DENIED || !mPublicKeyAuthInfo || !mPublicKeyAuthInfo->isModified()) {
                 clearPubKeyAuthInfo();
@@ -844,7 +844,7 @@ void sftpProtocol::openConnection()
             qCDebug(KIO_SFTP_LOG) << "Public key authentication failed:" <<
                 QString::fromUtf8(ssh_get_error(mSession));
             closeConnection();
-            error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+            error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
             return;
         }
     }
@@ -860,7 +860,7 @@ void sftpProtocol::openConnection()
             qCDebug(KIO_SFTP_LOG) << "Keyboard interactive authentication failed:"
                 << QString::fromUtf8(ssh_get_error(mSession));
             closeConnection();
-            error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+            error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
             return;
         }
     }
@@ -917,7 +917,7 @@ void sftpProtocol::openConnection()
                 qCDebug(KIO_SFTP_LOG) << "Password authentication failed:"
                     << QString::fromUtf8(ssh_get_error(mSession));
                 closeConnection();
-                error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+                error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
                 return;
             }
 
@@ -928,7 +928,7 @@ void sftpProtocol::openConnection()
 
     // If we're still not authenticated then we need to leave.
     if (rc != SSH_AUTH_SUCCESS) {
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
         return;
     }
 
@@ -937,7 +937,7 @@ void sftpProtocol::openConnection()
     mSftp = sftp_new(mSession);
     if (mSftp == nullptr) {
         closeConnection();
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Unable to request the SFTP subsystem. "
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Unable to request the SFTP subsystem. "
                     "Make sure SFTP is enabled on the server."));
         return;
     }
@@ -945,7 +945,7 @@ void sftpProtocol::openConnection()
     qCDebug(KIO_SFTP_LOG) << "Trying to initialize the sftp session";
     if (sftp_init(mSftp) < 0) {
         closeConnection();
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Could not initialize the SFTP session."));
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Could not initialize the SFTP session."));
         return;
     }
 
@@ -1102,7 +1102,7 @@ void sftpProtocol::openConnection()
     rc = ssh_userauth_none(mSession, nullptr);
     if (rc == SSH_AUTH_ERROR) {
         closeConnection();
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
         return;
     }
 
@@ -1110,7 +1110,7 @@ void sftpProtocol::openConnection()
     int method = ssh_auth_list(mSession);
     if (rc != SSH_AUTH_SUCCESS && method == 0) {
         closeConnection();
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed. The server "
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed. The server "
                                              "didn't send any authentication methods"));
         return;
     }
@@ -1125,7 +1125,7 @@ void sftpProtocol::openConnection()
                                          QString::fromUtf8(ssh_get_error(mSession));
                 closeConnection();
                 clearPubKeyAuthInfo();
-                error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+                error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
                 return;
             } else if (rc != SSH_AUTH_DENIED || !mPublicKeyAuthInfo || !mPublicKeyAuthInfo->isModified()) {
                 clearPubKeyAuthInfo();
@@ -1142,7 +1142,7 @@ void sftpProtocol::openConnection()
             qCDebug(KIO_SFTP_LOG) << "Public key authentication failed:" <<
                                      QString::fromUtf8(ssh_get_error(mSession));
             closeConnection();
-            error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+            error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
             return;
         }
     }
@@ -1158,7 +1158,7 @@ void sftpProtocol::openConnection()
             qCDebug(KIO_SFTP_LOG) << "Keyboard interactive authentication failed:"
                                   << QString::fromUtf8(ssh_get_error(mSession));
             closeConnection();
-            error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+            error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
             return;
         }
     }
@@ -1215,7 +1215,7 @@ void sftpProtocol::openConnection()
                 qCDebug(KIO_SFTP_LOG) << "Password authentication failed:"
                                       << QString::fromUtf8(ssh_get_error(mSession));
                 closeConnection();
-                error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+                error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
                 return;
             }
 
@@ -1226,7 +1226,7 @@ void sftpProtocol::openConnection()
 
     // If we're still not authenticated then we need to leave.
     if (rc != SSH_AUTH_SUCCESS) {
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Authentication failed."));
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
         return;
     }
 
@@ -1235,7 +1235,7 @@ void sftpProtocol::openConnection()
     mSftp = sftp_new(mSession);
     if (mSftp == nullptr) {
         closeConnection();
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Unable to request the SFTP subsystem. "
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Unable to request the SFTP subsystem. "
                                              "Make sure SFTP is enabled on the server."));
         return;
     }
@@ -1243,7 +1243,7 @@ void sftpProtocol::openConnection()
     qCDebug(KIO_SFTP_LOG) << "Trying to initialize the sftp session";
     if (sftp_init(mSftp) < 0) {
         closeConnection();
-        error(KIO::ERR_COULD_NOT_LOGIN, i18n("Could not initialize the SFTP session."));
+        error(KIO::ERR_CANNOT_LOGIN, i18n("Could not initialize the SFTP session."));
         return;
     }
 
@@ -1398,7 +1398,7 @@ void sftpProtocol::open(const QUrl &url, QIODevice::OpenMode mode) {
 
         bytesRead = sftp_read(mOpenFile, buffer.data(), bytesRequested);
         if (bytesRead < 0) {
-            error(KIO::ERR_COULD_NOT_READ, mOpenUrl.toDisplayString());
+            error(KIO::ERR_CANNOT_READ, mOpenUrl.toDisplayString());
             closeWithoutFinish();
             return;
         } else {
@@ -1432,7 +1432,7 @@ void sftpProtocol::read(KIO::filesize_t bytes) {
 
     if (bytesRead < 0) {
         qCDebug(KIO_SFTP_LOG) << "Could not read " << mOpenUrl;
-        error(KIO::ERR_COULD_NOT_READ, mOpenUrl.toDisplayString());
+        error(KIO::ERR_CANNOT_READ, mOpenUrl.toDisplayString());
         closeWithoutFinish();
         return;
     }
@@ -1449,7 +1449,7 @@ void sftpProtocol::write(const QByteArray &data) {
     ssize_t bytesWritten = sftp_write(mOpenFile, data.data(), data.size());
     if (bytesWritten < 0) {
         qCDebug(KIO_SFTP_LOG) << "Could not write to " << mOpenUrl;
-        error(KIO::ERR_COULD_NOT_WRITE, mOpenUrl.toDisplayString());
+        error(KIO::ERR_CANNOT_WRITE, mOpenUrl.toDisplayString());
         closeWithoutFinish();
         return;
     }
@@ -1463,7 +1463,7 @@ void sftpProtocol::seek(KIO::filesize_t offset) {
     Q_ASSERT(mOpenFile != nullptr);
 
     if (sftp_seek64(mOpenFile, static_cast<uint64_t>(offset)) < 0) {
-        error(KIO::ERR_COULD_NOT_SEEK, mOpenUrl.path());
+        error(KIO::ERR_CANNOT_SEEK, mOpenUrl.path());
         closeWithoutFinish();
         return;
     }
@@ -1539,7 +1539,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpGet(const QUrl& url, int& errorCode, 
     ssize_t bytesread = sftp_read(file, mimeTypeBuf, sizeof(mimeTypeBuf));
 
     if (bytesread < 0) {
-        errorCode = KIO::ERR_COULD_NOT_READ;
+        errorCode = KIO::ERR_CANNOT_READ;
         return sftpProtocol::ServerError;
     } else  {
         QMimeDatabase db;
@@ -1584,7 +1584,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpGet(const QUrl& url, int& errorCode, 
     for (;;) {
         // Enqueue get requests
         if (!request.enqueueChunks()) {
-            errorCode = KIO::ERR_COULD_NOT_READ;
+            errorCode = KIO::ERR_CANNOT_READ;
             return sftpProtocol::ServerError;
         }
 
@@ -1592,7 +1592,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpGet(const QUrl& url, int& errorCode, 
         bytesread = request.readChunks(filedata);
         // Read pending get requests
         if (bytesread == -1) {
-            errorCode = KIO::ERR_COULD_NOT_READ;
+            errorCode = KIO::ERR_CANNOT_READ;
             return sftpProtocol::ServerError;
         } else if (bytesread == 0) {
             if (file->eof)
@@ -1688,7 +1688,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
                     qCDebug(KIO_SFTP_LOG) << "Failed to seek to" << sbPart->size << "bytes in source file. Reason given" << strerror(errno);
                     sftp_attributes_free(sb);
                     sftp_attributes_free(sbPart);
-                    errorCode = ERR_COULD_NOT_SEEK;
+                    errorCode = ERR_CANNOT_SEEK;
                     return sftpProtocol::ClientError;
                 }
                 flags |= KIO::Resume;
@@ -1721,7 +1721,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
             char buf[MAX_XFER_BUF_SIZE]; //
             result = ::read(fd, buf, sizeof(buf));
             if(result < 0) {
-                errorCode = ERR_COULD_NOT_READ;
+                errorCode = ERR_CANNOT_READ;
                 cs = sftpProtocol::ClientError;
                 break;
             }
@@ -1789,7 +1789,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
 
             ssize_t bytesWritten = sftp_write(file, buffer.data(), buffer.size());
             if (bytesWritten < 0) {
-                errorCode = KIO::ERR_COULD_NOT_WRITE;
+                errorCode = KIO::ERR_CANNOT_WRITE;
                 result = -1;
             } else {
                 totalBytesSent += bytesWritten;
@@ -1826,7 +1826,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
 
     if (sftp_close(file) < 0) {
         qCWarning(KIO_SFTP_LOG) << "Error when closing file descriptor";
-        error(KIO::ERR_COULD_NOT_WRITE, dest_orig);
+        error(KIO::ERR_CANNOT_WRITE, dest_orig);
         return sftpProtocol::ServerError;
     }
 
@@ -2004,7 +2004,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpCopyGet(const QUrl& url, const QStrin
     StatusCode result = sftpGet(url, errorCode, offset, fd);
 
     if( ::close(fd) && result == sftpProtocol::Success ) {
-        errorCode = ERR_COULD_NOT_WRITE;
+        errorCode = ERR_CANNOT_WRITE;
         result = sftpProtocol::ClientError;
     }
 

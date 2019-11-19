@@ -24,7 +24,7 @@
 
 class QTransform;
 
-class JpegCreator : public ThumbCreatorV2
+class JpegCreator : public ThumbCreator
 {
 public:
     JpegCreator();

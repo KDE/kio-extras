@@ -632,14 +632,14 @@ void SMBSlave::fileSystemFreeSpace(const QUrl& url)
     // requesting free space for smb:// which doesn't
     // make sense to do to begin with
     if (url.host().isEmpty()) {
-        error(KIO::ERR_COULD_NOT_STAT, url.url());
+        error(KIO::ERR_CANNOT_STAT, url.url());
         return;
     }
 
     SMBUrl smbcUrl = url;
     int handle = smbc_opendir(smbcUrl.toSmbcUrl());
     if (handle < 0) {
-       error(KIO::ERR_COULD_NOT_STAT, url.url());
+       error(KIO::ERR_CANNOT_STAT, url.url());
        return;
     }
 
@@ -649,7 +649,7 @@ void SMBSlave::fileSystemFreeSpace(const QUrl& url)
     smbc_closedir(handle);
 
     if (err < 0) {
-       error(KIO::ERR_COULD_NOT_STAT, url.url());
+       error(KIO::ERR_CANNOT_STAT, url.url());
        return;
     }
 

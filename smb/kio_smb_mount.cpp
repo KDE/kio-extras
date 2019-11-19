@@ -58,7 +58,7 @@ void SMBSlave::special( const QByteArray & data)
 
          if (tmp==3) {
              if (!QDir().mkpath(mountPoint)) {
-                 error(KIO::ERR_COULD_NOT_MKDIR, mountPoint);
+                 error(KIO::ERR_CANNOT_MKDIR, mountPoint);
                  return;
              }
          }
@@ -120,7 +120,7 @@ void SMBSlave::special( const QByteArray & data)
 
          if (proc.exitCode() != 0)
          {
-           error( KIO::ERR_COULD_NOT_MOUNT,
+           error( KIO::ERR_CANNOT_MOUNT,
                i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4",
                 share, host, user, mybuf + '\n' + mystderr));
            return;
@@ -156,7 +156,7 @@ void SMBSlave::special( const QByteArray & data)
 
          if (proc.exitCode() != 0)
          {
-           error(KIO::ERR_COULD_NOT_UNMOUNT,
+           error(KIO::ERR_CANNOT_UNMOUNT,
                i18n("Unmounting of mountpoint \"%1\" failed.\n%2",
                 mountPoint, mybuf + '\n' + mystderr));
            return;
@@ -178,7 +178,7 @@ void SMBSlave::special( const QByteArray & data)
 
            if ( !ok )
            {
-             error(KIO::ERR_COULD_NOT_RMDIR, mountPoint);
+             error(KIO::ERR_CANNOT_RMDIR, mountPoint);
              return;
            }
          }

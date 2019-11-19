@@ -176,7 +176,7 @@ void ThumbnailProtocol::get(const QUrl &url)
             return;
         } else if (!info.isReadable()) {
             // The file is not readable!
-            error(KIO::ERR_COULD_NOT_READ,url.path());
+            error(KIO::ERR_CANNOT_READ,url.path());
             return;
         }
 

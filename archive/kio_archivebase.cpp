@@ -328,7 +328,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
         if ( QT_STAT( QFile::encodeName( fullPath ), &buff ) == -1 )
         {
             // Should not happen, as the file was already stated by checkNewFile
-            error( KIO::ERR_COULD_NOT_STAT, url.toDisplayString() );
+            error( KIO::ERR_CANNOT_STAT, url.toDisplayString() );
             return;
         }
 
@@ -474,7 +474,7 @@ void ArchiveProtocolBase::get( const QUrl & url )
         if ( read != bufferSize )
         {
             qCWarning(KIO_ARCHIVE_LOG) << "Read" << read << "bytes but expected" << bufferSize ;
-            error( KIO::ERR_COULD_NOT_READ, url.toDisplayString() );
+            error( KIO::ERR_CANNOT_READ, url.toDisplayString() );
             delete io;
             return;
         }

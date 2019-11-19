@@ -855,7 +855,7 @@ void MTPSlave::fileSystemFreeSpace(const QUrl &url)
             }
         }
     }
-    error(KIO::ERR_COULD_NOT_STAT, url.toDisplayString());
+    error(KIO::ERR_CANNOT_STAT, url.toDisplayString());
 }
 
 int MTPSlave::waitForCopyOperation(const KMTPStorageInterface *storage)

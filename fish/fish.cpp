@@ -290,7 +290,7 @@ void fishProtocol::openConnection() {
     sendCommand(FISH_FISH);
     sendCommand(FISH_VER);
     if (connectionStart()) {
-        error(ERR_COULD_NOT_CONNECT,connectionHost);
+        error(ERR_CANNOT_CONNECT,connectionHost);
         shutdownConnection();
         return;
     };
@@ -1059,7 +1059,7 @@ void fishProtocol::manageConnection(const QString &l) {
             }
             recvLen = line.toLongLong(&isOk);
             if (!isOk) {
-                error(ERR_COULD_NOT_READ,url.toDisplayString());
+                error(ERR_CANNOT_READ,url.toDisplayString());
                 shutdownConnection();
                 break;
             }
@@ -1078,7 +1078,7 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_RETR:
             myDebug( << "reading " << recvLen);
             if (recvLen == -1) {
-                error(ERR_COULD_NOT_READ,url.toDisplayString());
+                error(ERR_CANNOT_READ,url.toDisplayString());
                 shutdownConnection();
             } else {
                 rawRead = recvLen;
@@ -1105,11 +1105,11 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_STOR:
         case FISH_WRITE:
         case FISH_APPEND:
-            error(ERR_COULD_NOT_WRITE,url.toDisplayString());
+            error(ERR_CANNOT_WRITE,url.toDisplayString());
             shutdownConnection();
             break;
         case FISH_RETR:
-            error(ERR_COULD_NOT_READ,url.toDisplayString());
+            error(ERR_CANNOT_READ,url.toDisplayString());
             shutdownConnection();
             break;
         case FISH_READ:
@@ -1122,7 +1122,7 @@ void fishProtocol::manageConnection(const QString &l) {
             }
             else
             {
-               error(ERR_COULD_NOT_READ,url.toDisplayString());
+               error(ERR_CANNOT_READ,url.toDisplayString());
                shutdownConnection();
             }
             break;
@@ -1158,10 +1158,10 @@ void fishProtocol::manageConnection(const QString &l) {
             if ( rc == 501 )
                 error(ERR_DIR_ALREADY_EXIST,url.toDisplayString());
             else
-                error(ERR_COULD_NOT_MKDIR,url.toDisplayString());
+                error(ERR_CANNOT_MKDIR,url.toDisplayString());
             break;
         case FISH_RMD:
-            error(ERR_COULD_NOT_RMDIR,url.toDisplayString());
+            error(ERR_CANNOT_RMDIR,url.toDisplayString());
             break;
         case FISH_DELE:
             error(ERR_CANNOT_DELETE,url.toDisplayString());
@@ -1172,7 +1172,7 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_COPY:
         case FISH_LINK:
         case FISH_SYMLINK:
-            error(ERR_COULD_NOT_WRITE,url.toDisplayString());
+            error(ERR_CANNOT_WRITE,url.toDisplayString());
             break;
         default : break;
         }

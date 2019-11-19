@@ -184,8 +184,8 @@ void SMBSlave::smbCopy(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO:
             n = smbc_write(dstfd, buf, n);
             if(n == -1)
             {
-	        qCDebug(KIO_SMB) << "SMBSlave::copy copy now KIO::ERR_COULD_NOT_WRITE";
-                error( KIO::ERR_COULD_NOT_WRITE, dst.toDisplayString());
+	        qCDebug(KIO_SMB) << "SMBSlave::copy copy now KIO::ERR_CANNOT_WRITE";
+                error( KIO::ERR_CANNOT_WRITE, dst.toDisplayString());
                 break;
             }
 
@@ -198,7 +198,7 @@ void SMBSlave::smbCopy(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO:
 	}
 	else
 	{
-            error( KIO::ERR_COULD_NOT_READ, src.toDisplayString());
+            error( KIO::ERR_CANNOT_READ, src.toDisplayString());
 	    break;
         }
     }
@@ -220,7 +220,7 @@ void SMBSlave::smbCopy(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO:
         }
         else
         {
-            error( KIO::ERR_COULD_NOT_WRITE, dst.toDisplayString());
+            error( KIO::ERR_CANNOT_WRITE, dst.toDisplayString());
 	    return;
         }
     }
@@ -338,7 +338,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
             qCDebug(KIO_SMB) << "seeking to size" << partInfo.size();
             off_t offset = smbc_lseek(srcfd, partInfo.size(), SEEK_SET);
             if (offset == -1) {
-                error(KIO::ERR_COULD_NOT_SEEK, src.toDisplayString());
+                error(KIO::ERR_CANNOT_SEEK, src.toDisplayString());
                 smbc_close(srcfd);
                 return;
             } else {
@@ -364,7 +364,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
         const ssize_t bytesRead = smbc_read(srcfd, buf, MAX_XFER_BUF_SIZE);
         if (bytesRead <= 0) {
             if (bytesRead < 0) {
-                error( KIO::ERR_COULD_NOT_READ, src.toDisplayString());
+                error( KIO::ERR_CANNOT_READ, src.toDisplayString());
                 isErr = true;
             }
             break;
@@ -372,8 +372,8 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 
         const qint64 bytesWritten = file.write(buf, bytesRead);
         if (bytesWritten == -1) {
-            qCDebug(KIO_SMB) << "copy now KIO::ERR_COULD_NOT_WRITE";
-            error( KIO::ERR_COULD_NOT_WRITE, kdst.toDisplayString());
+            qCDebug(KIO_SMB) << "copy now KIO::ERR_CANNOT_WRITE";
+            error( KIO::ERR_CANNOT_WRITE, kdst.toDisplayString());
             isErr = true;
             break;
         }
@@ -501,7 +501,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
         } else {
             const off_t offset = smbc_lseek(dstfd, 0, SEEK_END);
             if (offset == (off_t)-1) {
-                error(KIO::ERR_COULD_NOT_SEEK, dstUrl.toDisplayString());
+                error(KIO::ERR_CANNOT_SEEK, dstUrl.toDisplayString());
                 smbc_close(dstfd);
                 return;
             } else {
@@ -545,7 +545,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
             const ssize_t bytesRead = srcFile.read(buf, MAX_XFER_BUF_SIZE);
             if (bytesRead <= 0) {
                 if (bytesRead < 0) {
-                    error(KIO::ERR_COULD_NOT_READ, ksrc.toDisplayString());
+                    error(KIO::ERR_CANNOT_READ, ksrc.toDisplayString());
                     isErr = true;
                 }
                 break;
@@ -553,7 +553,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 
             const qint64 bytesWritten = smbc_write(dstfd, buf, bytesRead);
             if (bytesWritten == -1) {
-                error(KIO::ERR_COULD_NOT_WRITE, kdst.toDisplayString());
+                error(KIO::ERR_CANNOT_WRITE, kdst.toDisplayString());
                 isErr = true;
                 break;
             }
@@ -563,13 +563,13 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
         }
     } else {
         isErr = true;
-        error(KIO::ERR_COULD_NOT_SEEK, ksrc.toDisplayString());
+        error(KIO::ERR_CANNOT_SEEK, ksrc.toDisplayString());
     }
 
     // FINISHED
     if (smbc_close(dstfd) < 0) {
         qCDebug(KIO_SMB) << dstUrl << "could not write";
-        error( KIO::ERR_COULD_NOT_WRITE, dstUrl.toDisplayString());
+        error( KIO::ERR_CANNOT_WRITE, dstUrl.toDisplayString());
         return;
     }
 
