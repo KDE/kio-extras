@@ -9,7 +9,7 @@ project(kio-extras VERSION ${KDE_APPLICATIONS_VERSION})
 
 include(FeatureSummary)
 
-set(QT_MIN_VERSION "5.8.0")
+set(QT_MIN_VERSION "5.11.0")
 set(KF5_MIN_VERSION "5.64.0")
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
@@ -197,11 +197,7 @@ endif()
 
 configure_file (config-runtime.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-runtime.h )
 
-if (${ECM_VERSION} STRGREATER "5.58.0")
-    install(FILES kio-extras.categories DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
-else()
-    install(FILES kio-extras.categories DESTINATION ${KDE_INSTALL_CONFDIR})
-endif()
+install(FILES kio-extras.categories DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
 
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
