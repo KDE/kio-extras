@@ -29,6 +29,8 @@
 // network
 #include <netdevice.h>
 #include <netservice.h>
+// KDE Libs
+#include <KLocalizedString>
 // Qt
 #include <QEventLoop>
 #include <QDebug>
@@ -278,6 +280,7 @@ void NetworkSlave::listDir( const QUrl& url )
 void NetworkSlave::feedEntryAsNetwork( KIO::UDSEntry* entry )
 {
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
+    entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Network"));
 //     entry->fastInsert( KIO::UDSEntry::UDS_ICON_NAME,    NetworkIconName );
     entry->fastInsert( KIO::UDSEntry::UDS_MIME_TYPE,    QLatin1String(Mimetypes::NetworkMimetype) );
 
