@@ -1,2 +1,2 @@
 #! /usr/bin/env bash
-$XGETTEXT *.cpp -o $podir/kio5_network.pot
+$XGETTEXT $(find . -name *.cpp) -o $podir/kio5_network.pot
