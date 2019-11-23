@@ -2,7 +2,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_thumbnail\")
 
 find_package(OpenEXR)
 set_package_properties(OpenEXR PROPERTIES DESCRIPTION "API for accessing OpenEXR formatted images"
-                       URL "http://www.openexr.com"
+                       URL "https://www.openexr.com"
                        TYPE OPTIONAL
                        PURPOSE "Provides support for OpenEXR formatted images in the thumbnail kioslave"
                       )

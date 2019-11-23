@@ -24,7 +24,7 @@
 
 extern "C"
 {
-    // icon structs, as per http://msdn.microsoft.com/en-us/library/ms997538.aspx
+    // icon structs, as per https://msdn.microsoft.com/en-us/library/ms997538.aspx
 #pragma pack( push )
 #pragma pack( 2 )
     typedef struct

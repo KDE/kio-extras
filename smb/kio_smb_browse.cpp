@@ -27,7 +27,7 @@
 //
 //     You should have received a copy of the GNU General Public License
 //     along with this program; see the file COPYING.  If not, please obtain
-//     a copy from http://www.gnu.org/copyleft/gpl.html
+//     a copy from https://www.gnu.org/copyleft/gpl.html
 //
 /////////////////////////////////////////////////////////////////////////////
 
