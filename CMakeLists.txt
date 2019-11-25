@@ -65,6 +65,12 @@ set_package_properties(KF5Activities PROPERTIES
     TYPE OPTIONAL
 )
 
+find_package(Qt5Sql QUIET)
+set_package_properties(Qt5Sql PROPERTIES
+    PURPOSE "Provides the activities:/ kioslave and fileitem plugin."
+    TYPE OPTIONAL
+)
+
 find_package(KF5ActivitiesStats 5.62 QUIET)
 set_package_properties(KF5ActivitiesStats PROPERTIES
     PURPOSE "Provides the recentlyused:/ kioslave."
@@ -141,7 +147,7 @@ endif()
 add_subdirectory( doc )
 
 add_subdirectory( about )
-if(KF5Activities_FOUND)
+if(TARGET KF5::Activities AND TARGET Qt5::Sql)
   add_subdirectory( activities )
 endif()
 if(KF5ActivitiesStats_FOUND)

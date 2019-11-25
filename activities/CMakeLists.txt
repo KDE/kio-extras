@@ -7,9 +7,6 @@ include_directories (
    ${CMAKE_CURRENT_BINARY_DIR}
    )
 
-find_package (Qt5 REQUIRED NO_MODULE COMPONENTS Sql)
-find_package (KF5 REQUIRED COMPONENTS KIO I18n Activities)
-
 add_subdirectory(fileitemplugin)
 
 ########### next target ###############

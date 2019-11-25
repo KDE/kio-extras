@@ -1,13 +1,5 @@
 # vim:set softtabstop=3 shiftwidth=3 tabstop=3 expandtab:
 
-find_package (KF5 REQUIRED COMPONENTS KIO Activities)
-find_package (Qt5 REQUIRED NO_MODULE COMPONENTS Sql)
-
-include_directories (
-   ${CMAKE_CURRENT_SOURCE_DIR}
-   ${CMAKE_CURRENT_BINARY_DIR}
-   )
-
 set (kactivitymanagerd_fileitem_linking_plugin_SRCS
    FileItemLinkingPlugin.cpp
    FileItemLinkingPluginActionLoader.cpp
