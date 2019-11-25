@@ -1,0 +1,13 @@
+{
+    "KPlugin": {
+        "Icon": "activities",
+        "MimeTypes": [
+            "application/octet-stream",
+            "inode/directory"
+        ],
+        "Name": "Link Files to Activities",
+        "ServiceTypes": [
+            "KFileItemAction/Plugin"
+        ]
+    }
+}

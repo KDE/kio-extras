@@ -19,12 +19,6 @@ add_library (
    ${kactivitymanagerd_fileitem_linking_plugin_SRCS}
    )
 
-kcoreaddons_desktop_to_json (
-   kactivitymanagerd_fileitem_linking_plugin
-   kactivitymanagerd_fileitem_linking_plugin.desktop
-   SERVICE_TYPES kfileitemactionplugin.desktop
-   )
-
 target_link_libraries (
    kactivitymanagerd_fileitem_linking_plugin
    Qt5::Core
@@ -36,9 +30,5 @@ target_link_libraries (
 
 install (
    TARGETS kactivitymanagerd_fileitem_linking_plugin
-   DESTINATION ${KDE_INSTALL_PLUGINDIR}
-   )
-install (
-   FILES kactivitymanagerd_fileitem_linking_plugin.desktop
-   DESTINATION ${KDE_INSTALL_KSERVICES5DIR}
+   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kfileitemaction
    )
