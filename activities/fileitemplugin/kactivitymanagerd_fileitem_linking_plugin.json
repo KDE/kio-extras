@@ -6,6 +6,15 @@
             "inode/directory"
         ],
         "Name": "Link Files to Activities",
+        "Name[ca]": "Enllaçat de fitxers a les activitats",
+        "Name[es]": "Enlazar archivos a actividades",
+        "Name[gl]": "Ligar ficheiros con actividades",
+        "Name[nl]": "Bestanden koppelen aan activiteiten",
+        "Name[pt]": "Associar Ficheiros a Actividades",
+        "Name[pt_BR]": "Link de arquivos para atividades",
+        "Name[uk]": "Пов'язування файлів із просторами дій",
+        "Name[x-test]": "xxLink Files to Activitiesxx",
+        "Name[zh_TW]": "連結檔案至活動",
         "ServiceTypes": [
             "KFileItemAction/Plugin"
         ]
