@@ -191,7 +191,7 @@ void ArchiveProtocolBase::createUDSEntry( const KArchiveEntry * archiveEntry, UD
     entry.fastInsert( KIO::UDSEntry::UDS_NAME, archiveEntry->name() );
     entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->permissions() & S_IFMT ); // keep file type only
     entry.fastInsert( KIO::UDSEntry::UDS_SIZE, archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L );
-    entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date().toTime_t());
+    entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date().toSecsSinceEpoch());
     entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, archiveEntry->permissions() & 07777 ); // keep permissions only
     entry.fastInsert( KIO::UDSEntry::UDS_USER, archiveEntry->user());
     entry.fastInsert( KIO::UDSEntry::UDS_GROUP, archiveEntry->group());

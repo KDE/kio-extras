@@ -1874,7 +1874,7 @@ sftpProtocol::StatusCode sftpProtocol::sftpPut(const QUrl& url, int permissions,
             sftp_attributes attr = sftp_lstat(mSftp, dest_orig_c.constData());
             if (attr != nullptr) {
                 times[0].tv_sec = attr->atime; //// access time, unchanged
-                times[1].tv_sec =  dt.toTime_t(); // modification time
+                times[1].tv_sec =  dt.toSecsSinceEpoch(); // modification time
                 times[0].tv_usec = times[1].tv_usec = 0;
 
                 qCDebug(KIO_SFTP_LOG) << "Trying to restore mtime for " << dest_orig << " to: " << mtimeStr;

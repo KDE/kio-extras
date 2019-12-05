@@ -663,7 +663,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
 
                 // set correct modification time
                 struct ::utimbuf times;
-                times.actime = QDateTime::currentDateTime().toTime_t();
+                times.actime = QDateTime::currentDateTime().toSecsSinceEpoch();
                 times.modtime = source.modificationdate();
 
                 ::utime(dest.path().toUtf8().data(), &times);

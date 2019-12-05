@@ -856,7 +856,7 @@ int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr,
     }
     dt.date().setDate(year,month,day);
 
-    return dt.toTime_t();
+    return dt.toSecsSinceEpoch();
 }
 
 /**
@@ -980,7 +980,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     if (pos < 0 || pos2 < 0 || pos3 < 0) break;
                     dt.setTime(QTime(line.mid(pos+1,pos2-pos-1).toInt(),line.mid(pos2+1,pos3-pos2-1).toInt(),line.mid(pos3+1).toInt()));
                     errorCount--;
-                    udsEntry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, dt.toTime_t());
+                    udsEntry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, dt.toSecsSinceEpoch());
                     break;
 
                 case 'S':

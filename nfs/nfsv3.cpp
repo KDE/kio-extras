@@ -406,7 +406,7 @@ void NFSProtocolV3::listDir(const QUrl& url)
                 int rpcStatus;
                 READLINK3res readLinkRes;
                 char nameBuf[NFS3_MAXPATHLEN];
-                if (readLink(filePath, rpcStatus, readLinkRes, nameBuf)) {
+                if (symLinkTarget(filePath, rpcStatus, readLinkRes, nameBuf)) {
                     QString linkDest = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
                     entry.insert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
 
@@ -571,7 +571,7 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
             int rpcStatus;
             READLINK3res readLinkRes;
             char nameBuf[NFS3_MAXPATHLEN];
-            if (readLink(filePath, rpcStatus, readLinkRes, nameBuf)) {
+            if (symLinkTarget(filePath, rpcStatus, readLinkRes, nameBuf)) {
                 const QString linkDest = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
                 entry.insert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
 
@@ -671,7 +671,7 @@ void NFSProtocolV3::stat(const QUrl& url)
         int rpcStatus;
         READLINK3res readLinkRes;
         char nameBuf[NFS3_MAXPATHLEN];
-        if (readLink(path, rpcStatus, readLinkRes, nameBuf)) {
+        if (symLinkTarget(path, rpcStatus, readLinkRes, nameBuf)) {
             linkDest = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
         } else {
             entry.insert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
@@ -1085,7 +1085,7 @@ void NFSProtocolV3::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
         int rpcStatus;
         READLINK3res readLinkRes;
         char nameBuf[NFS3_MAXPATHLEN];
-        if (!readLink(srcPath, rpcStatus, readLinkRes, nameBuf)) {
+        if (!symLinkTarget(srcPath, rpcStatus, readLinkRes, nameBuf)) {
             m_slave->error(KIO::ERR_DOES_NOT_EXIST, srcPath);
             return;
         }
@@ -1314,7 +1314,7 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
         int rpcStatus;
         READLINK3res readLinkRes;
         char nameBuf[NFS3_MAXPATHLEN];
-        if (!readLink(srcPath, rpcStatus, readLinkRes, nameBuf)) {
+        if (!symLinkTarget(srcPath, rpcStatus, readLinkRes, nameBuf)) {
             m_slave->error(KIO::ERR_DOES_NOT_EXIST, srcPath);
             return;
         }
@@ -1476,8 +1476,8 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
             QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
             if (dt.isValid()) {
                 struct utimbuf utbuf;
-                utbuf.actime = QFileInfo(destPath).lastRead().toTime_t(); // access time, unchanged
-                utbuf.modtime = dt.toTime_t(); // modification time
+                utbuf.actime = QFileInfo(destPath).lastRead().toSecsSinceEpoch(); // access time, unchanged
+                utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
                 utime(QFile::encodeName(destPath).constData(), &utbuf);
             }
         }
@@ -1683,7 +1683,7 @@ void NFSProtocolV3::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
                 sattr3 attributes;
                 memset(&attributes, 0, sizeof(attributes));
                 attributes.mtime.set_it = SET_TO_CLIENT_TIME;
-                attributes.mtime.set_mtime_u.mtime.seconds = dt.toTime_t();
+                attributes.mtime.set_mtime_u.mtime.seconds = dt.toSecsSinceEpoch();
                 attributes.mtime.set_mtime_u.mtime.nseconds = attributes.mtime.set_mtime_u.mtime.seconds * 1000000000ULL;
 
                 int rpcStatus;
@@ -1868,7 +1868,7 @@ bool NFSProtocolV3::lookupHandle(const QString& path, int& rpcStatus, LOOKUP3res
     return (rpcStatus == RPC_SUCCESS && result.status == NFS3_OK);
 }
 
-bool NFSProtocolV3::readLink(const QString& path, int& rpcStatus, READLINK3res& result, char* dataBuffer)
+bool NFSProtocolV3::symLinkTarget(const QString& path, int& rpcStatus, READLINK3res& result, char* dataBuffer)
 {
     qCDebug(LOG_KIO_NFS) << path;
 

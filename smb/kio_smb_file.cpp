@@ -454,7 +454,7 @@ void SMBSlave::put( const QUrl& kurl,
             if (cache_stat( m_current_url, &st ) == 0) {
                 struct utimbuf utbuf;
                 utbuf.actime = st.st_atime; // access time, unchanged
-                utbuf.modtime = dt.toTime_t(); // modification time
+                utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
                 smbc_utime( m_current_url.toSmbcUrl(), &utbuf );
             }
         }
