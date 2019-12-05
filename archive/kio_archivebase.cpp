@@ -32,6 +32,7 @@
 #include <ktar.h>
 #include <kzip.h>
 #include <kar.h>
+#include <k7zip.h>
 #include <kio/global.h>
 #include <kio_archive_debug.h>
 #include <kuser.h>

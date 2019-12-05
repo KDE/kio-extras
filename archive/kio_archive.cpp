@@ -25,6 +25,7 @@
 #include <kar.h>
 #include <ktar.h>
 #include <kzip.h>
+#include <k7zip.h>
 
 #include "kio_archive_debug.h"
 
@@ -63,8 +64,8 @@ ArchiveProtocol::ArchiveProtocol( const QByteArray &proto, const QByteArray &poo
 KArchive *ArchiveProtocol::createArchive( const QString & proto, const QString & archiveFile )
 {
     if ( proto == "ar" ) {
-        qCDebug(KIO_ARCHIVE_LOG) << "Opening KAr on " << archiveFile;
-        return new KAr( archiveFile );
+      qCDebug(KIO_ARCHIVE_LOG) << "Opening KAr on " << archiveFile;
+      return new KAr( archiveFile );
     }
     else if ( proto == "tar" ) {
       qCDebug(KIO_ARCHIVE_LOG) << "Opening KTar on " << archiveFile;
@@ -73,6 +74,10 @@ KArchive *ArchiveProtocol::createArchive( const QString & proto, const QString &
     else if ( proto == "zip" ) {
       qCDebug(KIO_ARCHIVE_LOG) << "Opening KZip on " << archiveFile;
       return new KZip( archiveFile );
+    }
+    else if ( proto == "sevenz" ) {
+      qCDebug(KIO_ARCHIVE_LOG) << "Opening K7Zip on " << archiveFile;
+      return new K7Zip( archiveFile );
     } else {
       qCWarning(KIO_ARCHIVE_LOG) << "Protocol" << proto << "not supported by this IOSlave" ;
       return nullptr;
