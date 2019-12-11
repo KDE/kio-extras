@@ -111,7 +111,7 @@ void KioSlaveNotifier::onDirectoryEntered( const QString& directory )
         mWatchedDirs.insert( id, 1 );
     }
     else
-        *it++;
+        (*it)++;
 }
 
 
@@ -132,7 +132,7 @@ void KioSlaveNotifier::onDirectoryLeft( const QString& directory )
     if( *it == 1 )
         mWatchedDirs.erase( it );
     else
-        *it--;
+        (*it)--;
 }
 
 
