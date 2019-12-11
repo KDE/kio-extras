@@ -162,10 +162,12 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
             textOption.setWrapMode( QTextOption::WrapAtWordBoundaryOrAnywhere );
             textDocument.setDefaultTextOption(textOption);
 
-            KSyntaxHighlighting::SyntaxHighlighter syntaxHighlighter(&textDocument);
+            KSyntaxHighlighting::SyntaxHighlighter syntaxHighlighter;
             syntaxHighlighter.setDefinition(m_highlightingRepository.definitionForFileName(path));
             const auto highlightingTheme = m_highlightingRepository.defaultTheme(KSyntaxHighlighting::Repository::LightTheme);
             syntaxHighlighter.setTheme(highlightingTheme);
+            syntaxHighlighter.setDocument(&textDocument);
+            syntaxHighlighter.rehighlight();
 
             // draw page-in-page, with clipping as needed
             painter.translate(xborder, yborder);
