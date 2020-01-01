@@ -14,6 +14,13 @@ set_package_properties(libappimage PROPERTIES DESCRIPTION "Core library of the A
                        PURPOSE "Provides support for AppImage thumbnails"
                        )
 
+find_package(X11)
+set_package_properties(X11 PROPERTIES DESCRIPTION "X11 libraries"
+                        URL "https://www.x.org"
+                        TYPE OPTIONAL
+                        PURPOSE "Provides support for XCursor thumbnails"
+                    )
+
 include_directories(${CMAKE_BINARY_DIR})
 
 ########### next target ###############
@@ -138,19 +145,22 @@ endif()
 
 ########### next target ###############
 
-# if(X11_Xcursor_FOUND)
-#
-#    set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
-#
-#    add_library(cursorthumbnail MODULE ${cursorthumbnail_PART_SRCS})
-#
-#    target_link_libraries(cursorthumbnail ${X11_Xcursor_LIB} ${KIO_LIBRARIES})
-#
-#    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
-#    install( FILES cursorthumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-#
-# endif()
-#
+if(X11_Xcursor_FOUND)
+
+    set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
+
+    add_library(cursorthumbnail MODULE ${cursorthumbnail_PART_SRCS})
+
+    target_link_libraries(cursorthumbnail
+        KF5::KIOCore
+        KF5::KIOWidgets
+        ${X11_Xcursor_LIB}
+    )
+
+    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
+    install( FILES cursorthumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+
+endif()
 
 ########### next target ###############
 
