@@ -611,14 +611,15 @@ void MANProtocol::outputError(const QString& errmsg)
     QTextStream os(&array, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
 
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
-    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os << "<title>" << i18n("Man output") << "</title>\n" << endl;
+    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
+    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
+    os << "<title>" << i18n("Man output") << "</title>\n\n";
     if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
-    os << "</head>" << endl;
-    os << "<body>" << i18n("<h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
-    os << "</html>" << endl;
+        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
+    os << "</head>\n";
+    os << "<body>" << i18n("<h1>KDE Man Viewer Error</h1>") << errmsg << "</body>\n";
+    os << "</html>\n";
+    os.flush();
 
     data(array);
 }
@@ -629,12 +630,12 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     QTextStream os(&array, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
 
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
-    os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"<<endl;
-    os << "<title>" << i18n("Man output") <<"</title>" << endl;
+    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
+    os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
+    os << "<title>" << i18n("Man output") <<"</title>\n";
     if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
-    os << "</head>" <<endl;
+        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
+    os << "</head>\n";
     os << "<body><h1>" << i18n("There is more than one matching man page.");
     os << "</h1>\n<ul>\n";
 
@@ -650,8 +651,8 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
        " be aware it can contain some mistakes or be obsolete."
        " In case of doubt, you should have a look at the English version.") << "</p>";
 
-    os << "</body>\n</html>"<<endl;
-
+    os << "</body>\n</html>\n";
+    os.flush();
     data(array);
     finished();
 }
@@ -770,13 +771,13 @@ void MANProtocol::showMainIndex()
     os.setCodec( "UTF-8" );
 
     // print header
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
-    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
+    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
+    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
+    os << "<title>" << i18n("UNIX Manual Index") << "</title>\n";
     if (!m_manCSSFile.isEmpty())
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
-    os << "</head>" << endl;
-    os << "<body><h1>" << i18n("UNIX Manual Index") << "</h1>" << endl;
+        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
+    os << "</head>\n";
+    os << "<body><h1>" << i18n("UNIX Manual Index") << "</h1>\n";
 
     // ### TODO: why still the environment variable
     const QString sectList = getenv("MANSECT");
@@ -786,7 +787,7 @@ void MANProtocol::showMainIndex()
     else
         sections = sectList.split(':');
 
-    os << "<table>" << endl;
+    os << "<table>\n";
 
     QSet<QChar> accessKeys;
     char alternateAccessKey = 'a';
@@ -803,13 +804,14 @@ void MANProtocol::showMainIndex()
 
         os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" << accessKey
            << "\">" << i18n("Section %1", *it)
-           << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
+           << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>\n";
     }
 
-    os << "</table>" << endl;
+    os << "</table>\n";
 
     // print footer
-    os << "</body></html>" << endl;
+    os << "</body></html>\n";
+    os.flush();
 
     data(array);
     finished();
@@ -1144,18 +1146,18 @@ void MANProtocol::showIndex(const QString& section)
     os_h.setCodec( "UTF-8" );
 
     // print header
-    os_h << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
-    os_h << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os_h << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
+    os_h << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
+    os_h << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
+    os_h << "<title>" << i18n("UNIX Manual Index") << "</title>\n";
     if ( !m_manCSSFile.isEmpty() )
-        os_h << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
-    os_h << "</head>" << endl << "<body>" << endl;
+        os_h << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
+    os_h << "</head>\n" << "<body>\n";
 
     QByteArray array_d;
     QTextStream os(&array_d, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
-    os << "<div class=\"secidxmain\">" << endl;
-    os << "<h1>" << i18n( "Index for Section %1: %2", section, sectionName(section)) << "</h1>" << endl;
+    os << "<div class=\"secidxmain\">\n";
+    os << "<h1>" << i18n( "Index for Section %1: %2", section, sectionName(section)) << "</h1>\n";
 
     // compose list of search paths -------------------------------------------------------------
 
@@ -1168,7 +1170,9 @@ void MANProtocol::showIndex(const QString& section)
     if ( pages.count() == 0 )  // not a single page found
     {
       // print footer
-      os << "</div></body></html>" << endl;
+      os << "</div></body></html>\n";
+      os.flush();
+      os_h.flush();
 
       infoMessage(QString());
       data(array_h + array_d);
@@ -1179,7 +1183,7 @@ void MANProtocol::showIndex(const QString& section)
     QMap<QString, QString> indexmap = buildIndexMap(section);
 
     // print out the list
-    os << "<table>" << endl;
+    os << "<table>\n";
 
     int listlen = pages.count();
     man_index_ptr *indexlist = new man_index_ptr[listlen];
@@ -1284,7 +1288,7 @@ void MANProtocol::showIndex(const QString& section)
         indexLine.append(appendixstr);
     }
     os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
-       << firstchar << "\">" << firstchar <<"</a>\n</td></tr>" << endl;
+       << firstchar << "\">" << firstchar <<"</a>\n</td></tr>\n";
 
     for (int i=0; i<listlen; i++)
     {
@@ -1308,7 +1312,7 @@ void MANProtocol::showIndex(const QString& section)
         {
             firstchar = tmp;
             os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
-               << firstchar << "\">" << firstchar << "</a>\n</td></tr>" << endl;
+               << firstchar << "\">" << firstchar << "</a>\n</td></tr>\n";
 
            const QString appendixstr = QString(
             " [<a href=\"#%1\" accesskey=\"%2\">%3</a>]\n"
@@ -1322,7 +1326,7 @@ void MANProtocol::showIndex(const QString& section)
         os << manindex->manpage_begin
            << "</a></td><td>&nbsp;</td><td> "
            << (indexmap.contains(manindex->manpage_begin) ? indexmap[manindex->manpage_begin] : "" )
-           << "</td></tr>"  << endl;
+           << "</td></tr>\n";
         last_index = manindex;
     }
     indexLine.append("</div>");
@@ -1334,15 +1338,17 @@ void MANProtocol::showIndex(const QString& section)
 
     delete [] indexlist;
 
-    os << "</table></div>" << endl;
+    os << "</table></div>\n";
 
-    os << indexLine << endl;
+    os << indexLine << '\n';
 
     // print footer
-    os << "</body></html>" << endl;
+    os << "</body></html>\n";
 
     // set the links "toolbar" also at the top
-    os_h << indexLine << endl;
+    os_h << indexLine << '\n';
+    os.flush();
+    os_h.flush();
 
     infoMessage(QString());
     data(array_h + array_d);

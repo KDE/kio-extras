@@ -130,7 +130,7 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 
 
     if (argc != 4) {
-        qCritical() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
+        qCritical() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2";
         exit(-1);
     }
 

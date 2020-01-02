@@ -99,8 +99,7 @@ int Q_DECL_EXPORT kdemain( int argc, char **argv )
     QCoreApplication app(argc, argv);
     if( argc != 4 )
     {
-        qCDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2"
-                  << endl;
+        qCDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2";
         return -1;
     }
 

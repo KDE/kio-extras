@@ -116,7 +116,7 @@ void SMBSlave::special( const QByteArray & data)
          QString mystderr = QString::fromLocal8Bit(proc.readAllStandardError());
 
          qCDebug(KIO_SMB) << "mount exit " << proc.exitCode()
-                          << "stdout:" << mybuf << endl << "stderr:" << mystderr << endl;
+                          << "stdout:" << mybuf << "\nstderr:" << mystderr;
 
          if (proc.exitCode() != 0)
          {
@@ -152,7 +152,7 @@ void SMBSlave::special( const QByteArray & data)
          QString mystderr = QString::fromLocal8Bit(proc.readAllStandardError());
 
          qCDebug(KIO_SMB) << "smbumount exit " << proc.exitCode()
-                          << "stdout:" << mybuf << endl << "stderr:" << mystderr << endl;
+                          << "stdout:" << mybuf << "\nstderr:" << mystderr;
 
          if (proc.exitCode() != 0)
          {

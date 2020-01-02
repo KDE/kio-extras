@@ -75,7 +75,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
         return;
     }
     qCDebug(KIO_SMB) << "auth_smbc_get_dat: set user=" << username << ", workgroup=" << workgroup
-                     << " server=" << server << ", share=" << share << endl;
+                     << " server=" << server << ", share=" << share;
 
     QString s_server = QString::fromUtf8(server);
     QString s_share = QString::fromUtf8(share);
