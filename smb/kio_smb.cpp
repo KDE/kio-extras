@@ -35,6 +35,13 @@
 
 Q_LOGGING_CATEGORY(KIO_SMB, "kio_smb")
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.smb" FILE "smb.json")
+};
+
 bool needsEEXISTWorkaround()
 {
     /* There is an issue with some libsmbclient versions that return EEXIST
@@ -110,3 +117,4 @@ int Q_DECL_EXPORT kdemain( int argc, char **argv )
     return 0;
 }
 
+#include "kio_smb.moc"

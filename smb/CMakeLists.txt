@@ -53,6 +53,5 @@ install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 ########### install files ###############
 
 install( FILES smb-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote )
-install( FILES smb.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
 install( FILES smb-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/remoteview )
 
