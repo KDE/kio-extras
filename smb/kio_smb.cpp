@@ -33,7 +33,7 @@
 #include <QCoreApplication>
 #include <QVersionNumber>
 
-Q_LOGGING_CATEGORY(KIO_SMB, "kio_smb")
+#include "smb-logsettings.h"
 
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject

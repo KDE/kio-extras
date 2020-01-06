@@ -21,6 +21,11 @@ set(kio_smb_PART_SRCS
    kio_smb_internal.cpp 
    kio_smb_mount.cpp )
 
+ecm_qt_declare_logging_category(kio_smb_PART_SRCS
+                                HEADER smb-logsettings.h
+                                IDENTIFIER KIO_SMB_LOG
+                                CATEGORY_NAME log_kio_smb)
+
 include_directories(${SAMBA_INCLUDE_DIR})
 
 add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
