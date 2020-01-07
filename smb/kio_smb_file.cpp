@@ -52,7 +52,7 @@ void SMBSlave::get( const QUrl& kurl )
     QByteArray  filedata;
     SMBUrl      url;
 
-    qCDebug(KIO_SMB) << kurl;
+    qCDebug(KIO_SMB_LOG) << kurl;
 
     // check (correct) URL
     QUrl kvurl = checkURL(kurl);
@@ -141,7 +141,7 @@ void SMBSlave::get( const QUrl& kurl )
 void SMBSlave::open( const QUrl& kurl, QIODevice::OpenMode mode)
 {
     int           errNum = 0;
-    qCDebug(KIO_SMB) << kurl;
+    qCDebug(KIO_SMB_LOG) << kurl;
 
     // check (correct) URL
     QUrl kvurl = checkURL(kurl);
@@ -256,7 +256,7 @@ void SMBSlave::read( KIO::filesize_t bytesRequested )
 
     if(bytesRead < 0)
     {
-        qCDebug(KIO_SMB) << "Could not read " << m_openUrl;
+        qCDebug(KIO_SMB_LOG) << "Could not read " << m_openUrl;
         error( KIO::ERR_CANNOT_READ, m_openUrl.toDisplayString());
         closeWithoutFinish();
         return;
@@ -276,7 +276,7 @@ void SMBSlave::write(const QByteArray &fileData)
     ssize_t size = smbc_write(m_openFd, buf.data(), buf.size());
     if (size < 0)
     {
-        qCDebug(KIO_SMB) << "Could not write to " << m_openUrl;
+        qCDebug(KIO_SMB_LOG) << "Could not write to " << m_openUrl;
         error( KIO::ERR_CANNOT_WRITE, m_openUrl.toDisplayString());
         closeWithoutFinish();
         return;
@@ -292,7 +292,7 @@ void SMBSlave::seek(KIO::filesize_t offset)
         error(KIO::ERR_CANNOT_SEEK, m_openUrl.path());
         closeWithoutFinish();
     } else {
-        qCDebug( KIO_SMB ) << "res" << res;
+        qCDebug(KIO_SMB_LOG) << "res" << res;
         position( res );
     }
 }
@@ -326,7 +326,7 @@ void SMBSlave::put( const QUrl& kurl,
     mode_t      mode;
     QByteArray  filedata;
 
-    qCDebug(KIO_SMB) << kurl;
+    qCDebug(KIO_SMB_LOG) << kurl;
 
     errNum = cache_stat(m_current_url, &st);
     exists = (errNum == 0);
@@ -334,12 +334,12 @@ void SMBSlave::put( const QUrl& kurl,
     {
         if (S_ISDIR(st.st_mode))
         {
-            qCDebug(KIO_SMB) << kurl <<" already isdir !!";
+            qCDebug(KIO_SMB_LOG) << kurl <<" already isdir !!";
             error( KIO::ERR_DIR_ALREADY_EXIST, m_current_url.toDisplayString());
         }
         else
         {
-            qCDebug(KIO_SMB) << kurl <<" already exist !!";
+            qCDebug(KIO_SMB_LOG) << kurl <<" already exist !!";
             error( KIO::ERR_FILE_ALREADY_EXIST, m_current_url.toDisplayString());
         }
         return;
@@ -347,7 +347,7 @@ void SMBSlave::put( const QUrl& kurl,
 
     if (exists && !(flags & KIO::Resume) && (flags & KIO::Overwrite))
     {
-        qCDebug(KIO_SMB) << "exists try to remove " << m_current_url.toSmbcUrl();
+        qCDebug(KIO_SMB_LOG) << "exists try to remove " << m_current_url.toSmbcUrl();
         //   remove(m_current_url.url().toLocal8Bit());
     }
 
@@ -355,7 +355,7 @@ void SMBSlave::put( const QUrl& kurl,
     if (flags & KIO::Resume)
     {
         // append if resuming
-        qCDebug(KIO_SMB) << "resume " << m_current_url.toSmbcUrl();
+        qCDebug(KIO_SMB_LOG) << "resume " << m_current_url.toSmbcUrl();
         filefd = smbc_open(m_current_url.toSmbcUrl(), O_RDWR, 0 );
         if (filefd < 0) {
             errNum = errno;
@@ -381,7 +381,7 @@ void SMBSlave::put( const QUrl& kurl,
             mode = 600;//0666;
         }
 
-        qCDebug(KIO_SMB) << "NO resume " << m_current_url.toSmbcUrl();
+        qCDebug(KIO_SMB_LOG) << "NO resume " << m_current_url.toSmbcUrl();
         filefd = smbc_open(m_current_url.toSmbcUrl(), O_CREAT | O_TRUNC | O_WRONLY, mode);
         if (filefd < 0) {
             errNum = errno;
@@ -394,12 +394,12 @@ void SMBSlave::put( const QUrl& kurl,
     {
         if ( errNum == EACCES )
         {
-            qCDebug(KIO_SMB) << "error " << kurl <<" access denied !!";
+            qCDebug(KIO_SMB_LOG) << "error " << kurl <<" access denied !!";
             error( KIO::ERR_WRITE_ACCESS_DENIED, m_current_url.toDisplayString());
         }
         else
         {
-            qCDebug(KIO_SMB) << "error " << kurl <<" can not open for writing !!";
+            qCDebug(KIO_SMB_LOG) << "error " << kurl <<" can not open for writing !!";
             error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, m_current_url.toDisplayString());
         }
         return;
@@ -408,32 +408,32 @@ void SMBSlave::put( const QUrl& kurl,
     // Loop until we got 0 (end of data)
     while(1)
     {
-        qCDebug(KIO_SMB) << "request data ";
+        qCDebug(KIO_SMB_LOG) << "request data ";
         dataReq(); // Request for data
-        qCDebug(KIO_SMB) << "write " << m_current_url.toSmbcUrl();
+        qCDebug(KIO_SMB_LOG) << "write " << m_current_url.toSmbcUrl();
 
         if (readData(filedata) <= 0)
         {
-            qCDebug(KIO_SMB) << "readData <= 0";
+            qCDebug(KIO_SMB_LOG) << "readData <= 0";
             break;
         }
-        qCDebug(KIO_SMB) << "write " << m_current_url.toSmbcUrl();
+        qCDebug(KIO_SMB_LOG) << "write " << m_current_url.toSmbcUrl();
 	buf = filedata.data();
 	bufsize = filedata.size();
         ssize_t size = smbc_write(filefd, buf, bufsize);
         if ( size < 0)
         {
-            qCDebug(KIO_SMB) << "error " << kurl << "could not write !!";
+            qCDebug(KIO_SMB_LOG) << "error " << kurl << "could not write !!";
             error( KIO::ERR_CANNOT_WRITE, m_current_url.toDisplayString());
             return;
         }
-        qCDebug(KIO_SMB ) << "wrote " << size;
+        qCDebug(KIO_SMB_LOG) << "wrote " << size;
     }
-    qCDebug(KIO_SMB) << "close " << m_current_url.toSmbcUrl();
+    qCDebug(KIO_SMB_LOG) << "close " << m_current_url.toSmbcUrl();
 
     if(smbc_close(filefd) < 0)
     {
-        qCDebug(KIO_SMB) << kurl << "could not write !!";
+        qCDebug(KIO_SMB_LOG) << kurl << "could not write !!";
         error( KIO::ERR_CANNOT_WRITE, m_current_url.toDisplayString());
         return;
     }

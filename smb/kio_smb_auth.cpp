@@ -71,10 +71,10 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     SMBUrlType t = m_current_url.getType();
     if( t == SMBURLTYPE_ENTIRE_NETWORK )
     {
-        qCDebug(KIO_SMB) << "we don't really need to authenticate for this top level url, returning";
+        qCDebug(KIO_SMB_LOG) << "we don't really need to authenticate for this top level url, returning";
         return;
     }
-    qCDebug(KIO_SMB) << "auth_smbc_get_dat: set user=" << username << ", workgroup=" << workgroup
+    qCDebug(KIO_SMB_LOG) << "auth_smbc_get_dat: set user=" << username << ", workgroup=" << workgroup
                      << " server=" << server << ", share=" << share;
 
     QString s_server = QString::fromUtf8(server);
@@ -95,7 +95,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     info.password = s_password;
     info.verifyPath = true;
 
-    qCDebug(KIO_SMB) << "libsmb-auth-callback URL:" << info.url;
+    qCDebug(KIO_SMB_LOG) << "libsmb-auth-callback URL:" << info.url;
 
     if ( !checkCachedAuthentication( info ) )
     {
@@ -113,7 +113,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
         }
 
     } else
-        qCDebug(KIO_SMB) << "got password through cache";
+        qCDebug(KIO_SMB_LOG) << "got password through cache";
 
     strncpy(username, info.username.toUtf8(), unmaxlen - 1);
     strncpy(password, info.password.toUtf8(), pwmaxlen - 1);
@@ -121,7 +121,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 
 int SMBSlave::checkPassword(SMBUrl &url)
 {
-    qCDebug(KIO_SMB) << "checkPassword for " << url;
+    qCDebug(KIO_SMB_LOG) << "checkPassword for " << url;
 
     KIO::AuthInfo info;
     info.url = QUrl("smb:///");
@@ -150,22 +150,22 @@ int SMBSlave::checkPassword(SMBUrl &url)
                         share );
 
     info.username = url.userName();
-    qCDebug(KIO_SMB) << "call openPasswordDialog for " << info.url;
+    qCDebug(KIO_SMB_LOG) << "call openPasswordDialog for " << info.url;
 
     const int passwordDialogErrorCode = openPasswordDialogV2(info);
     if (passwordDialogErrorCode == KJob::NoError) {
-        qCDebug(KIO_SMB) << "openPasswordDialog returned " << info.username;
+        qCDebug(KIO_SMB_LOG) << "openPasswordDialog returned " << info.username;
         url.setUser(info.username);
 
         if (info.keepPassword) {
-            qCDebug(KIO_SMB) << "Caching info.username = " << info.username
+            qCDebug(KIO_SMB_LOG) << "Caching info.username = " << info.username
                             << ", info.url = " << info.url.toDisplayString();
             cacheAuthentication(info);
         }
 
         return KJob::NoError;
     }
-    qCDebug(KIO_SMB) << "no value from openPasswordDialog; error:" << passwordDialogErrorCode;
+    qCDebug(KIO_SMB_LOG) << "no value from openPasswordDialog; error:" << passwordDialogErrorCode;
     return passwordDialogErrorCode;
 }
 
@@ -177,10 +177,10 @@ bool SMBSlave::auth_initialize_smbc()
 {
     SMBCCTX *smb_context = nullptr;
 
-    qCDebug(KIO_SMB) << "auth_initialize_smbc ";
+    qCDebug(KIO_SMB_LOG) << "auth_initialize_smbc ";
     if(m_initialized_smbc == false)
     {
-        qCDebug(KIO_SMB) << "smbc_init call";
+        qCDebug(KIO_SMB_LOG) << "smbc_init call";
         KConfig cfg( "kioslaverc", KConfig::SimpleConfig);
         int debug_level = cfg.group( "SMB" ).readEntry( "DebugLevel", 0 );
 

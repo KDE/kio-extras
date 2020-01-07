@@ -33,8 +33,6 @@
 #include <QCoreApplication>
 #include <QVersionNumber>
 
-#include "smb-logsettings.h"
-
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
 {
@@ -57,10 +55,10 @@ bool needsEEXISTWorkaround()
     static const QVersionNumber lastBrokenVer{4, 7, 6};
 
     const QVersionNumber currentVer = QVersionNumber::fromString(smbc_version());
-    qCDebug(KIO_SMB) << "Using libsmbclient library version" << currentVer;
+    qCDebug(KIO_SMB_LOG) << "Using libsmbclient library version" << currentVer;
 
     if (currentVer >= firstBrokenVer && currentVer <= lastBrokenVer) {
-        qCDebug(KIO_SMB) << "Detected broken libsmbclient version" << currentVer;
+        qCDebug(KIO_SMB_LOG) << "Detected broken libsmbclient version" << currentVer;
         return true;
     }
 
@@ -106,7 +104,7 @@ int Q_DECL_EXPORT kdemain( int argc, char **argv )
     QCoreApplication app(argc, argv);
     if( argc != 4 )
     {
-        qCDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2";
+        qCDebug(KIO_SMB_LOG) << "Usage: kio_smb protocol domain-socket1 domain-socket2";
         return -1;
     }
 

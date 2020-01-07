@@ -30,7 +30,7 @@
 
 void SMBSlave::special( const QByteArray & data)
 {
-   qCDebug(KIO_SMB)<<"Smb::special()";
+   qCDebug(KIO_SMB_LOG)<<"Smb::special()";
    int tmp;
    QDataStream stream(data);
    stream >> tmp;
@@ -49,12 +49,12 @@ void SMBSlave::special( const QByteArray & data)
          {
             host=sl.at(0).mid(2);
             share=sl.at(1);
-            qCDebug(KIO_SMB)<<"special() host -"<< host <<"- share -" << share <<"-";
+            qCDebug(KIO_SMB_LOG)<<"special() host -"<< host <<"- share -" << share <<"-";
          }
 
          remotePath.replace('\\', '/');  // smbmounterplugin sends \\host/share
 
-         qCDebug(KIO_SMB) << "mounting: " << remotePath.toLocal8Bit() << " to " << mountPoint.toLocal8Bit();
+         qCDebug(KIO_SMB_LOG) << "mounting: " << remotePath.toLocal8Bit() << " to " << mountPoint.toLocal8Bit();
 
          if (tmp==3) {
              if (!QDir().mkpath(mountPoint)) {
@@ -115,7 +115,7 @@ void SMBSlave::special( const QByteArray & data)
          QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());
          QString mystderr = QString::fromLocal8Bit(proc.readAllStandardError());
 
-         qCDebug(KIO_SMB) << "mount exit " << proc.exitCode()
+         qCDebug(KIO_SMB_LOG) << "mount exit " << proc.exitCode()
                           << "stdout:" << mybuf << "\nstderr:" << mystderr;
 
          if (proc.exitCode() != 0)
@@ -151,7 +151,7 @@ void SMBSlave::special( const QByteArray & data)
          QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());
          QString mystderr = QString::fromLocal8Bit(proc.readAllStandardError());
 
-         qCDebug(KIO_SMB) << "smbumount exit " << proc.exitCode()
+         qCDebug(KIO_SMB_LOG) << "smbumount exit " << proc.exitCode()
                           << "stdout:" << mybuf << "\nstderr:" << mystderr;
 
          if (proc.exitCode() != 0)

@@ -38,6 +38,8 @@
 
 #include <config-smb.h>
 
+#include "smb-logsettings.h"
+
 //--------------
 // KDE includes
 //--------------
@@ -80,9 +82,6 @@ extern "C"
 #include "kio_smb_internal.h"
 
 #define MAX_XFER_BUF_SIZE           65534
-
-// Categorized logger
-Q_DECLARE_LOGGING_CATEGORY(KIO_SMB)
 
 using namespace KIO;
 

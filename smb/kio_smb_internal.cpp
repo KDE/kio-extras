@@ -93,7 +93,7 @@ void SMBUrl::updateCache()
     QUrl::setPath(QDir::cleanPath(path()));
 
     // SMB URLs are UTF-8 encoded
-    qCDebug(KIO_SMB) << "updateCache " << QUrl::path();
+    qCDebug(KIO_SMB_LOG) << "updateCache " << QUrl::path();
 
     if ( QUrl::url() == "smb:/" )
       m_surl = "smb://";

@@ -68,7 +68,7 @@ void SMBSlave::smbCopy(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO:
     KIO::filesize_t processed_size = 0;
     unsigned char   buf[MAX_XFER_BUF_SIZE];
 
-    qCDebug(KIO_SMB) << "SMBSlave::copy with src = " << ksrc << "and dest = " << kdst;
+    qCDebug(KIO_SMB_LOG) << "SMBSlave::copy with src = " << ksrc << "and dest = " << kdst;
 
     // setup urls
     src = ksrc;
@@ -184,7 +184,7 @@ void SMBSlave::smbCopy(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO:
             n = smbc_write(dstfd, buf, n);
             if(n == -1)
             {
-	        qCDebug(KIO_SMB) << "SMBSlave::copy copy now KIO::ERR_CANNOT_WRITE";
+	        qCDebug(KIO_SMB_LOG) << "SMBSlave::copy copy now KIO::ERR_CANNOT_WRITE";
                 error( KIO::ERR_CANNOT_WRITE, dst.toDisplayString());
                 break;
             }
@@ -230,7 +230,7 @@ void SMBSlave::smbCopy(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO:
 
 void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SMB) << "src = " << ksrc << ", dest = " << kdst;
+    qCDebug(KIO_SMB_LOG) << "src = " << ksrc << ", dest = " << kdst;
 
     // check if destination is ok ...
     const QString dstFile = kdst.toLocalFile();
@@ -288,7 +288,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     }
 
     if (!file.open(mode)) {
-        qCDebug(KIO_SMB) << "could not write to" << dstFile;
+        qCDebug(KIO_SMB_LOG) << "could not write to" << dstFile;
         switch (file.error()) {
           case QFile::OpenError:
               if (bResume) {
@@ -335,7 +335,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     } else {
         errNum = 0;
         if (bResume) {
-            qCDebug(KIO_SMB) << "seeking to size" << partInfo.size();
+            qCDebug(KIO_SMB_LOG) << "seeking to size" << partInfo.size();
             off_t offset = smbc_lseek(srcfd, partInfo.size(), SEEK_SET);
             if (offset == -1) {
                 error(KIO::ERR_CANNOT_SEEK, src.toDisplayString());
@@ -372,7 +372,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 
         const qint64 bytesWritten = file.write(buf, bytesRead);
         if (bytesWritten == -1) {
-            qCDebug(KIO_SMB) << "copy now KIO::ERR_CANNOT_WRITE";
+            qCDebug(KIO_SMB_LOG) << "copy now KIO::ERR_CANNOT_WRITE";
             error( KIO::ERR_CANNOT_WRITE, kdst.toDisplayString());
             isErr = true;
             break;
@@ -405,7 +405,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
             QFile::remove(dstFile);
         }
         if (!QFile::rename(sPart, dstFile)) {
-            qCDebug(KIO_SMB) << "failed to rename" << sPart << "to" << dstFile;
+            qCDebug(KIO_SMB_LOG) << "failed to rename" << sPart << "to" << dstFile;
             error(ERR_CANNOT_RENAME_PARTIAL, sPart);
             return;
         }
@@ -413,7 +413,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 
     // Restore the mtime on the file.
     const QString mtimeStr = metaData("modified");
-    qCDebug(KIO_SMB) << "modified:" << mtimeStr;
+    qCDebug(KIO_SMB_LOG) << "modified:" << mtimeStr;
     if (!mtimeStr.isEmpty()) {
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
@@ -429,7 +429,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 
 void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SMB) << "src = " << ksrc << ", dest = " << kdst;
+    qCDebug(KIO_SMB_LOG) << "src = " << ksrc << ", dest = " << kdst;
 
     QFile srcFile (ksrc.toLocalFile());
     const QFileInfo srcInfo (srcFile);
@@ -445,7 +445,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     }
 
     if (!srcFile.open(QFile::ReadOnly)) {
-        qCDebug(KIO_SMB) << "could not read from" << ksrc;
+        qCDebug(KIO_SMB_LOG) << "could not read from" << ksrc;
         switch (srcFile.error()) {
           case QFile::PermissionsError:
               error(KIO::ERR_WRITE_ACCESS_DENIED, ksrc.toDisplayString());
@@ -494,7 +494,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 
     if (bResume) {
         // append if resuming
-        qCDebug(KIO_SMB) << "resume" << dstUrl;
+        qCDebug(KIO_SMB_LOG) << "resume" << dstUrl;
         dstfd = smbc_open(dstUrl.toSmbcUrl(), O_RDWR, 0 );
         if (dstfd < 0) {
             errNum = errno;
@@ -516,7 +516,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
             mode = permissions | S_IRUSR | S_IWUSR;
         }
 
-        qCDebug(KIO_SMB) << "NO resume" << dstUrl;
+        qCDebug(KIO_SMB_LOG) << "NO resume" << dstUrl;
         dstfd = smbc_open(dstUrl.toSmbcUrl(), O_CREAT | O_TRUNC | O_WRONLY, mode);
         if (dstfd < 0) {
             errNum = errno;
@@ -525,11 +525,11 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 
     if (dstfd < 0) {
         if (errNum == EACCES) {
-            qCDebug(KIO_SMB) << "access denied";
+            qCDebug(KIO_SMB_LOG) << "access denied";
             error( KIO::ERR_WRITE_ACCESS_DENIED, dstUrl.toDisplayString());
         }
         else {
-            qCDebug(KIO_SMB) << "can not open for writing";
+            qCDebug(KIO_SMB_LOG) << "can not open for writing";
             error( KIO::ERR_CANNOT_OPEN_FOR_WRITING, dstUrl.toDisplayString());
         }
         return;
@@ -568,7 +568,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 
     // FINISHED
     if (smbc_close(dstfd) < 0) {
-        qCDebug(KIO_SMB) << dstUrl << "could not write";
+        qCDebug(KIO_SMB_LOG) << dstUrl << "could not write";
         error( KIO::ERR_CANNOT_WRITE, dstUrl.toDisplayString());
         return;
     }
@@ -589,7 +589,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     if (bMarkPartial) {
         smbc_unlink(dstOrigUrl.toSmbcUrl());
         if (smbc_rename(dstUrl.toSmbcUrl(), dstOrigUrl.toSmbcUrl()) < 0) {
-            qCDebug(KIO_SMB) << "failed to rename" << dstUrl << "to" << dstOrigUrl << "->" << strerror(errno);
+            qCDebug(KIO_SMB_LOG) << "failed to rename" << dstUrl << "to" << dstOrigUrl << "->" << strerror(errno);
             error(ERR_CANNOT_RENAME_PARTIAL, dstUrl.toDisplayString());
             return;
         }
@@ -616,7 +616,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
 //===========================================================================
 void SMBSlave::del( const QUrl &kurl, bool isfile)
 {
-    qCDebug(KIO_SMB) << kurl;
+    qCDebug(KIO_SMB_LOG) << kurl;
     m_current_url = kurl;
     int errNum = 0;
     int retVal = 0;
@@ -624,7 +624,7 @@ void SMBSlave::del( const QUrl &kurl, bool isfile)
     if(isfile)
     {
         // Delete file
-        qCDebug(KIO_SMB) << "Deleting file" << kurl;
+        qCDebug(KIO_SMB_LOG) << "Deleting file" << kurl;
         retVal = smbc_unlink(m_current_url.toSmbcUrl());
         if ( retVal < 0 ){
             errNum = errno;
@@ -634,7 +634,7 @@ void SMBSlave::del( const QUrl &kurl, bool isfile)
     }
     else
     {
-        qCDebug(KIO_SMB) << "Deleting directory" << kurl;
+        qCDebug(KIO_SMB_LOG) << "Deleting directory" << kurl;
         // Delete directory
         retVal = smbc_rmdir(m_current_url.toSmbcUrl());
         if( retVal < 0 ) {
@@ -657,7 +657,7 @@ void SMBSlave::del( const QUrl &kurl, bool isfile)
 //===========================================================================
 void SMBSlave::mkdir( const QUrl &kurl, int permissions )
 {
-    qCDebug(KIO_SMB) << kurl;
+    qCDebug(KIO_SMB_LOG) << kurl;
     int errNum = 0;
     int retVal = 0;
     m_current_url = kurl;
@@ -686,7 +686,7 @@ void SMBSlave::mkdir( const QUrl &kurl, int permissions )
         {
             reportError(kurl, errNum);
         }
-        qCDebug(KIO_SMB) << "exit with error " << kurl;
+        qCDebug(KIO_SMB_LOG) << "exit with error " << kurl;
     }
     else // success
     {
@@ -709,31 +709,31 @@ void SMBSlave::rename( const QUrl& ksrc, const QUrl& kdest, KIO::JobFlags flags 
     int         errNum = 0;
     int         retVal = 0;
 
-    qCDebug(KIO_SMB) << "old name = " << ksrc << ", new name = " << kdest;
+    qCDebug(KIO_SMB_LOG) << "old name = " << ksrc << ", new name = " << kdest;
 
     src = ksrc;
     dst = kdest;
 
     // Check to se if the destination exists
 
-    qCDebug(KIO_SMB) << "stat dst";
+    qCDebug(KIO_SMB_LOG) << "stat dst";
     errNum = cache_stat(dst, &st);
     if( errNum == 0 )
     {
         if(S_ISDIR(st.st_mode))
         {
-            qCDebug(KIO_SMB) << "KIO::ERR_DIR_ALREADY_EXIST";
+            qCDebug(KIO_SMB_LOG) << "KIO::ERR_DIR_ALREADY_EXIST";
             error( KIO::ERR_DIR_ALREADY_EXIST, dst.toDisplayString());
             return;
         }
         if(!(flags & KIO::Overwrite))
         {
-            qCDebug(KIO_SMB) << "KIO::ERR_FILE_ALREADY_EXIST";
+            qCDebug(KIO_SMB_LOG) << "KIO::ERR_FILE_ALREADY_EXIST";
             error( KIO::ERR_FILE_ALREADY_EXIST, dst.toDisplayString());
             return;
         }
     }
-    qCDebug(KIO_SMB ) << "smbc_rename " << src.toSmbcUrl() << " " << dst.toSmbcUrl();
+    qCDebug(KIO_SMB_LOG) << "smbc_rename " << src.toSmbcUrl() << " " << dst.toSmbcUrl();
     retVal = smbc_rename(src.toSmbcUrl(), dst.toSmbcUrl());
     if( retVal < 0 ){
         errNum = errno;
@@ -743,7 +743,7 @@ void SMBSlave::rename( const QUrl& ksrc, const QUrl& kdest, KIO::JobFlags flags 
 
     if( retVal < 0 )
     {
-      qCDebug(KIO_SMB ) << "failed ";
+      qCDebug(KIO_SMB_LOG) << "failed ";
       switch(errNum)
       {
         case ENOENT:
@@ -752,12 +752,12 @@ void SMBSlave::rename( const QUrl& ksrc, const QUrl& kdest, KIO::JobFlags flags 
           {
               if(errNum == EACCES)
 	      {
-	        qCDebug(KIO_SMB) << "KIO::ERR_ACCESS_DENIED";
+	        qCDebug(KIO_SMB_LOG) << "KIO::ERR_ACCESS_DENIED";
                 error(KIO::ERR_ACCESS_DENIED, src.toDisplayString());
               }
               else
               {
-		qCDebug(KIO_SMB) << "KIO::ERR_DOES_NOT_EXIST";
+		qCDebug(KIO_SMB_LOG) << "KIO::ERR_DOES_NOT_EXIST";
                 error(KIO::ERR_DOES_NOT_EXIST, src.toDisplayString());
               }
           }
@@ -765,20 +765,20 @@ void SMBSlave::rename( const QUrl& ksrc, const QUrl& kdest, KIO::JobFlags flags 
 
         case EACCES:
         case EPERM:
-          qCDebug(KIO_SMB) << "KIO::ERR_ACCESS_DENIED";
+          qCDebug(KIO_SMB_LOG) << "KIO::ERR_ACCESS_DENIED";
           error( KIO::ERR_ACCESS_DENIED, dst.toDisplayString() );
           break;
 
         default:
-          qCDebug(KIO_SMB) << "KIO::ERR_CANNOT_RENAME";
+          qCDebug(KIO_SMB_LOG) << "KIO::ERR_CANNOT_RENAME";
           error( KIO::ERR_CANNOT_RENAME, src.toDisplayString() );
 
       }
 
-      qCDebug(KIO_SMB) << "exit with error";
+      qCDebug(KIO_SMB_LOG) << "exit with error";
       return;
     }
 
-    qCDebug(KIO_SMB ) << "everything fine\n";
+    qCDebug(KIO_SMB_LOG) << "everything fine\n";
     finished();
 }

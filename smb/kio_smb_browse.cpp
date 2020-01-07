@@ -57,7 +57,7 @@ int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
     } else {
         cacheStatErr = errno;
     }
-    qCDebug(KIO_SMB) << "size " << (KIO::filesize_t)st->st_size;
+    qCDebug(KIO_SMB_LOG) << "size " << (KIO::filesize_t)st->st_size;
     return cacheStatErr;
 }
 
@@ -71,7 +71,7 @@ int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
    {
       if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
       {
-         qCDebug(KIO_SMB) << "mode: "<< st.st_mode;
+         qCDebug(KIO_SMB_LOG) << "mode: "<< st.st_mode;
          warning(i18n("%1:\n"
                       "Unknown file type, neither directory or file.", url.toDisplayString()));
          return EINVAL;
@@ -109,14 +109,14 @@ int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
 //===========================================================================
 void SMBSlave::stat( const QUrl& kurl )
 {
-    qCDebug(KIO_SMB) << kurl;
+    qCDebug(KIO_SMB_LOG) << kurl;
     // make a valid URL
     QUrl url = checkURL(kurl);
 
     // if URL is not valid we have to redirect to correct URL
     if (url != kurl)
     {
-        qCDebug(KIO_SMB) << "redirection " << url;
+        qCDebug(KIO_SMB_LOG) << "redirection " << url;
         redirection(url);
         finished();
         return;
@@ -166,14 +166,14 @@ void SMBSlave::stat( const QUrl& kurl )
             }
             else if (ret != 0)
             {
-                qCDebug(KIO_SMB) << "stat() error" << ret << url;
+                qCDebug(KIO_SMB_LOG) << "stat() error" << ret << url;
                 reportError(url, ret);
                 return;
             }
             break;
         }
     default:
-        qCDebug(KIO_SMB) << "UNKNOWN " << url;
+        qCDebug(KIO_SMB_LOG) << "UNKNOWN " << url;
         finished();
         return;
     }
@@ -186,7 +186,7 @@ void SMBSlave::stat( const QUrl& kurl )
 // TODO: complete checking
 QUrl SMBSlave::checkURL(const QUrl& kurl) const
 {
-    qCDebug(KIO_SMB) << "checkURL " << kurl;
+    qCDebug(KIO_SMB_LOG) << "checkURL " << kurl;
     QString surl = kurl.url();
     //transform any links in the form smb:/ into smb://
     if (surl.startsWith(QLatin1String("smb:/"))) {
@@ -195,7 +195,7 @@ QUrl SMBSlave::checkURL(const QUrl& kurl) const
         }
         if (surl.at(5) != '/') {
             surl = "smb://" + surl.mid(5);
-            qCDebug(KIO_SMB) << "checkURL return1 " << surl << " " << QUrl(surl);
+            qCDebug(KIO_SMB_LOG) << "checkURL return1 " << surl << " " << QUrl(surl);
             return QUrl(surl);
         }
     }
@@ -215,7 +215,7 @@ QUrl SMBSlave::checkURL(const QUrl& kurl) const
         } else {
             url.setUserName(userinfo);
         }
-        qCDebug(KIO_SMB) << "checkURL return2 " << url;
+        qCDebug(KIO_SMB_LOG) << "checkURL return2 " << url;
         return url;
     }
 
@@ -225,13 +225,13 @@ QUrl SMBSlave::checkURL(const QUrl& kurl) const
     if (url.path().isEmpty())
         url.setPath("/");
 
-    qCDebug(KIO_SMB) << "checkURL return3 " << url;
+    qCDebug(KIO_SMB_LOG) << "checkURL return3 " << url;
     return url;
 }
 
 SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNum)
 {
-    qCDebug(KIO_SMB) << "errNum" << errNum;
+    qCDebug(KIO_SMB_LOG) << "errNum" << errNum;
 
     switch(errNum)
     {
@@ -313,7 +313,7 @@ void SMBSlave::reportWarning(const SMBUrl& url, const int errNum)
 //===========================================================================
 void SMBSlave::listDir( const QUrl& kurl )
 {
-   qCDebug(KIO_SMB) << kurl;
+   qCDebug(KIO_SMB_LOG) << kurl;
    int errNum = 0;
 
    // check (correct) URL
@@ -340,12 +340,12 @@ void SMBSlave::listDir( const QUrl& kurl )
       errNum = errno;
    }
 
-   qCDebug(KIO_SMB) << "open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd;
+   qCDebug(KIO_SMB_LOG) << "open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd;
    if(dirfd >= 0)
    {
        uint direntCount = 0;
        do {
-           qCDebug(KIO_SMB) << "smbc_readdir ";
+           qCDebug(KIO_SMB_LOG) << "smbc_readdir ";
            dirp = smbc_readdir(dirfd);
            if(dirp == nullptr)
                break;
@@ -366,13 +366,13 @@ void SMBSlave::listDir( const QUrl& kurl )
            } else
                udsName = dirpName;
 
-           qCDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type;
+           qCDebug(KIO_SMB_LOG) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type;
 
            udsentry.fastInsert( KIO::UDSEntry::UDS_NAME, udsName );
 
            // Mark all administrative shares, e.g ADMIN$, as hidden. #197903
            if (dirpName.endsWith(QLatin1Char('$'))) {
-              //qCDebug(KIO_SMB) << dirpName << "marked as hidden";
+              //qCDebug(KIO_SMB_LOG) << dirpName << "marked as hidden";
               udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, 1);
            }
 
@@ -423,7 +423,7 @@ void SMBSlave::listDir( const QUrl& kurl )
 
                    // when libsmbclient knows
                    // u = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.toUpper());
-                   qCDebug(KIO_SMB) << "list item " << u;
+                   qCDebug(KIO_SMB_LOG) << "list item " << u;
                    udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
 
                    udsentry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-server"));
@@ -454,7 +454,7 @@ void SMBSlave::listDir( const QUrl& kurl )
            }
            else
            {
-               qCDebug(KIO_SMB) << "SMBC_UNKNOWN :" << dirpName;
+               qCDebug(KIO_SMB_LOG) << "SMBC_UNKNOWN :" << dirpName;
                // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
                //       SMBC_LINK, SMBC_COMMS_SHARE
                //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
@@ -540,7 +540,7 @@ void SMBSlave::listDNSSD(UDSEntry &udsentry, const QUrl &url, const uint direntC
     KDNSSD::ServiceBrowser browser(QStringLiteral("_smb._tcp"));
     connect(&browser, &KDNSSD::ServiceBrowser::serviceAdded,
             this, [&services](KDNSSD::RemoteService::Ptr service){
-        qCDebug(KIO_SMB) << "DNSSD added:"
+        qCDebug(KIO_SMB_LOG) << "DNSSD added:"
                          << service->serviceName()
                          << service->type()
                          << service->domain()
@@ -563,7 +563,7 @@ void SMBSlave::listDNSSD(UDSEntry &udsentry, const QUrl &url, const uint direntC
     });
     connect(&browser, &KDNSSD::ServiceBrowser::serviceRemoved,
             this, [&services](KDNSSD::RemoteService::Ptr service){
-        qCDebug(KIO_SMB) << "DNSSD removed:"
+        qCDebug(KIO_SMB_LOG) << "DNSSD removed:"
                          << service->serviceName()
                          << service->type()
                          << service->domain()
@@ -580,7 +580,7 @@ void SMBSlave::listDNSSD(UDSEntry &udsentry, const QUrl &url, const uint direntC
         for (auto it = services.begin(); it != services.end(); ++it) {
             auto service = *it;
             if (!service->resolve()) {
-                qCWarning(KIO_SMB) << "Failed to resolve DNSSD service"
+                qCWarning(KIO_SMB_LOG) << "Failed to resolve DNSSD service"
                                    << service->serviceName();
                 it = services.erase(it);
             }
@@ -626,7 +626,7 @@ void SMBSlave::listDNSSD(UDSEntry &udsentry, const QUrl &url, const uint direntC
 
 void SMBSlave::fileSystemFreeSpace(const QUrl& url)
 {
-    qCDebug(KIO_SMB) << url;
+    qCDebug(KIO_SMB_LOG) << url;
 
     // Avoid crashing in smbc_fstatvfs below when
     // requesting free space for smb:// which doesn't

@@ -72,7 +72,7 @@ extern "C" {
         KComponentData componentData("kio_smb");
         if( argc != 4 )
         {
-            qCDebug(KIO_SMB) << "Usage: kio_smb protocol domain-socket1 domain-socket2"
+            qCDebug(KIO_SMB_LOG) << "Usage: kio_smb protocol domain-socket1 domain-socket2"
                       << endl;
             return -1;
         }
