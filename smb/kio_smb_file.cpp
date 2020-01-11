@@ -304,7 +304,7 @@ void SMBSlave::truncate(KIO::filesize_t length)
         error(KIO::ERR_CANNOT_TRUNCATE, m_openUrl.path());
         closeWithoutFinish();
     } else {
-        qCDebug( KIO_SMB ) << "res" << res;
+        qCDebug( KIO_SMB_LOG ) << "res" << res;
         truncated(length);
     }
 }
