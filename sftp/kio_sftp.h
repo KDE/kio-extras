@@ -61,6 +61,7 @@ public:
     void read(KIO::filesize_t size) override;
     void write(const QByteArray &data) override;
     void seek(KIO::filesize_t offset) override;
+    void truncate(KIO::filesize_t length);
     void close() override;
     void special(const QByteArray &data) override;
 

@@ -26,6 +26,7 @@
             "output": "filesystem",
             "protocol": "smb",
             "opening": true,
+            "truncating": true,
             "reading": true,
             "writing": true
         }

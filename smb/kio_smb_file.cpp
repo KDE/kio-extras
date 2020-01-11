@@ -297,6 +297,18 @@ void SMBSlave::seek(KIO::filesize_t offset)
     }
 }
 
+void SMBSlave::truncate(KIO::filesize_t length)
+{
+    off_t res = smbc_ftruncate(m_openFd, static_cast<off_t>(length));
+    if (res < 0) {
+        error(KIO::ERR_CANNOT_TRUNCATE, m_openUrl.path());
+        closeWithoutFinish();
+    } else {
+        qCDebug( KIO_SMB ) << "res" << res;
+        truncated(length);
+    }
+}
+
 void SMBSlave::closeWithoutFinish()
 {
     smbc_close(m_openFd);

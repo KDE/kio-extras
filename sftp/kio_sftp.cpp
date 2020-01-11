@@ -249,6 +249,10 @@ void sftpProtocol::virtual_hook(int id, void *data)
         QUrl *url = static_cast<QUrl *>(data);
         fileSystemFreeSpace(*url);
     } break;
+    case SlaveBase::Truncate: {
+        auto length = static_cast<KIO::filesize_t *>(data);
+        truncate(*length);
+    } break;
     default:
         SlaveBase::virtual_hook(id, data);
     }
@@ -1469,6 +1473,30 @@ void sftpProtocol::seek(KIO::filesize_t offset) {
     }
 
     position(sftp_tell64(mOpenFile));
+}
+void sftpProtocol::truncate(KIO::filesize_t length) {
+    qCDebug(KIO_SFTP_LOG) << "truncate, length =" << length;
+
+    Q_ASSERT(mOpenFile);
+
+    int errorCode = 0;
+    sftp_attributes attr = sftp_fstat(mOpenFile);
+    if (attr) {
+        attr->size = length;
+        if (sftp_setstat(mSftp, mOpenUrl.path().toUtf8().constData(), attr) == 0) {
+            truncated(length);
+        } else {
+            errorCode = toKIOError(sftp_get_error(mSftp));
+        }
+        sftp_attributes_free(attr);
+    } else {
+        errorCode = toKIOError(sftp_get_error(mSftp));
+    }
+
+    if (errorCode) {
+        error(errorCode == KIO::ERR_INTERNAL ? KIO::ERR_CANNOT_TRUNCATE : errorCode, mOpenUrl.path());
+        closeWithoutFinish();
+    }
 }
 
 void sftpProtocol::close() {

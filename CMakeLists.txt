@@ -10,7 +10,7 @@ project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
 include(FeatureSummary)
 
 set(QT_MIN_VERSION "5.11.0")
-set(KF5_MIN_VERSION "5.64.0")
+set(KF5_MIN_VERSION "5.66.0")
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
 find_package(Qt5Test ${QT_MIN_VERSION} CONFIG QUIET)

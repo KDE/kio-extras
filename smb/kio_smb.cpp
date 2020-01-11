@@ -92,6 +92,10 @@ void SMBSlave::virtual_hook(int id, void *data) {
         QUrl *url = static_cast<QUrl *>(data);
         fileSystemFreeSpace(*url);
     } break;
+    case SlaveBase::Truncate: {
+        auto length = static_cast<KIO::filesize_t *>(data);
+        truncate(*length);
+    } break;
     default: {
         SlaveBase::virtual_hook(id, data);
     } break;

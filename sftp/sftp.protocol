@@ -10,6 +10,7 @@ makedir=true
 deleting=true
 moving=true
 opening=true
+truncating=true
 linking=true
 copyToFile=true
 copyFromFile=true
