@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------
 //
 // Copyright (c) 2000  Caldera Systems, Inc.
-// Copyright (c) 2018  Harald Sitter <sitter@kde.org>
+// Copyright (c) 2018-2020  Harald Sitter <sitter@kde.org>
 //
 // This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the
@@ -41,10 +41,14 @@
 
 #include <QEventLoop>
 
+#include <QTimer>
+
 #include <pwd.h>
 #include <grp.h>
 
 #include <config-runtime.h>
+#include "wsdiscoverer.h"
+#include "dnssddiscoverer.h"
 
 using namespace KIO;
 
@@ -509,7 +513,72 @@ void SMBSlave::listDir( const QUrl& kurl )
            udsentry.clear();
        } while (dirp); // checked already in the head
 
-       listDNSSD(udsentry, url, direntCount);
+       // Run service discovery if the path is root. This augments
+       // "native" results from libsmbclient.
+       auto normalizedUrl = url.adjusted(QUrl::NormalizePathSegments);
+       if (normalizedUrl.path().isEmpty()) {
+           qCDebug(KIO_SMB_LOG) << "Trying modern discovery (dnssd/wsdiscovery)";
+
+           QEventLoop e;
+
+           UDSEntryList list;
+
+           const auto flushEntries = [this, &list]() {
+               if (list.isEmpty()) {
+                   return;
+               }
+               listEntries(list);
+               list.clear();
+           };
+
+           const auto quitLoop = [&e, &flushEntries]() {
+               flushEntries();
+               e.quit();
+           };
+
+           // Since slavebase has no eventloop it wont publish results
+           // on a timer, since we do not know how long our discovery
+           // will take this is super meh because we may appear
+           // stuck for a while. Implement our own listing system
+           // based on QTimer to mitigate.
+           QTimer sendTimer;
+           sendTimer.setInterval(300);
+           connect(&sendTimer, &QTimer::timeout, this, flushEntries);
+           sendTimer.start();
+
+           DNSSDDiscoverer d;
+           WSDiscoverer w;
+
+           const QList<Discoverer *> discoverers {&d, &w};
+
+           auto appendDiscovery = [&](Discovery::Ptr discovery) {
+               list.append(discovery->toEntry());
+           };
+
+           auto maybeFinished = [&] { // finishes if all discoveries finished
+               bool allFinished = true;
+               for (auto discoverer : discoverers) {
+                   allFinished = allFinished && discoverer->isFinished();
+               }
+               if (allFinished) {
+                   quitLoop();
+               }
+           };
+
+           connect(&d, &DNSSDDiscoverer::newDiscovery, this, appendDiscovery);
+           connect(&w, &WSDiscoverer::newDiscovery, this, appendDiscovery);
+
+           connect(&d, &DNSSDDiscoverer::finished, this, maybeFinished);
+           connect(&w, &WSDiscoverer::finished, this, maybeFinished);
+
+           d.start();
+           w.start();
+
+           QTimer::singleShot(16000, &e, quitLoop); // max execution time!
+           e.exec();
+
+           qCDebug(KIO_SMB_LOG) << "Modern discovery finished.";
+       }
 
        if (dir_is_root) {
            udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
@@ -558,116 +627,6 @@ void SMBSlave::listDir( const QUrl& kurl )
    }
 
    finished();
-}
-
-void SMBSlave::listDNSSD(UDSEntry &udsentry, const QUrl &url, const uint direntCount)
-{
-    // Certain versions of KDNSSD suffer from signal races which can easily
-    // deadlock the slave.
-#ifndef HAVE_KDNSSD_WITH_SIGNAL_RACE_PROTECTION
-    return;
-#endif // HAVE_KDNSSD_WITH_SIGNAL_RACE_PROTECTION
-
-    // This entire method act as fallback logic iff SMB discovery is not working
-    // (for example when using a protocol version that doesn't have discovery).
-    // As such we can return if entries were discovered or the URL is not '/'
-    auto normalizedUrl = url.adjusted(QUrl::NormalizePathSegments);
-    if (direntCount > 0 || !normalizedUrl.path().isEmpty()) {
-        return;
-    }
-
-    // Slaves have no event loop, start one for the poll.
-    // KDNSSD has an internal timeout which may trigger if this takes too long
-    // so in theory this should not ever be able to get stuck.
-    // The eventloop runs until the discovery is finished. The finished slot
-    // will quit it.
-    QList<KDNSSD::RemoteService::Ptr> services;
-    QEventLoop e;
-    KDNSSD::ServiceBrowser browser(QStringLiteral("_smb._tcp"));
-    connect(&browser, &KDNSSD::ServiceBrowser::serviceAdded,
-            this, [&services](KDNSSD::RemoteService::Ptr service){
-        qCDebug(KIO_SMB_LOG) << "DNSSD added:"
-                         << service->serviceName()
-                         << service->type()
-                         << service->domain()
-                         << service->hostName()
-                         << service->port();
-        // Manual contains check. We need to use the == of the underlying
-        // objects, not the pointers. The same service may have >1
-        // RemoteService* instances representing it, so the == impl of
-        // RemoteService::Ptr is useless here.
-        for (const auto &it : services) {
-            if (*service == *it) {
-                return;
-            }
-        }
-        // Schedule resolution of hostname. We'll later call resolve
-        // which will block until the resolution is done. This basically
-        // gives us a head start.
-        service->resolveAsync();
-        services.append(service);
-    });
-    connect(&browser, &KDNSSD::ServiceBrowser::serviceRemoved,
-            this, [&services](KDNSSD::RemoteService::Ptr service){
-        qCDebug(KIO_SMB_LOG) << "DNSSD removed:"
-                         << service->serviceName()
-                         << service->type()
-                         << service->domain()
-                         << service->hostName()
-                         << service->port();
-        services.removeAll(service);
-    });
-    connect(&browser, &KDNSSD::ServiceBrowser::finished,
-            this, [&]() {
-        browser.disconnect(); // Stop sending anything, we'll exit here.
-        // Resolution still requires an event loop. So, let the resolutions
-        // finish and then quit the loop. Services that fail resolution
-        // get dropped since we won't be able to access them properly.
-        for (auto it = services.begin(); it != services.end(); ++it) {
-            auto service = *it;
-            if (!service->resolve()) {
-                qCWarning(KIO_SMB_LOG) << "Failed to resolve DNSSD service"
-                                   << service->serviceName();
-                it = services.erase(it);
-            }
-        }
-        e.quit();
-    });
-    browser.startBrowse();
-    e.exec();
-
-    for (const auto &service : services) {
-        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, service->serviceName());
-
-        udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
-
-        // TODO: it may be better to resolve the host to an ip address. dnssd
-        //   being able to find a service doesn't mean name resolution is
-        //   properly set up for its domain. So, we may not be able to resolve
-        //   this without help from avahi. OTOH KDNSSD doesn't have API for this
-        //   and from a platform POV we should probably assume that if avahi
-        //   is functional it is also set up as resolution provider.
-        //   Given the plugin design on glibc's libnss however I am not sure
-        //   that assumption will be true all the time. ~sitter, 2018
-        QUrl u(QStringLiteral("smb://"));
-        u.setHost(service->hostName());
-        if (service->port() > 0 && service->port() != 445 /* default smb */) {
-            u.setPort(service->port());
-        }
-
-        udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-        udsentry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE,
-                            QStringLiteral("application/x-smb-server"));
-
-        listEntry(udsentry);
-        udsentry.clear();
-    }
-
-    // NOTE: workgroups cannot be properly resolved because libsmbclient
-    //   seems to lack the appropriate API to pull this data out of netbios.
-    //   Netbios is also not working on IPv6 and its replacement (LLMNR)
-    //   doesn't support the concept of workgroups.
 }
 
 void SMBSlave::fileSystemFreeSpace(const QUrl& url)
