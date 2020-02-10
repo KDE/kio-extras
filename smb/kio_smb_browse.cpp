@@ -186,10 +186,24 @@ void SMBSlave::stat( const QUrl& kurl )
 }
 
 //===========================================================================
-// TODO: complete checking
-QUrl SMBSlave::checkURL(const QUrl& kurl) const
+// TODO: complete checking <-- what does that even mean?
+// TODO: why is this not part of SMBUrl or at the very least URL validation should
+//    be 100% shared between this and SMBUrl. Notably SMBUrl has code that looks
+//    to do a similar thing but is much less complete.
+QUrl SMBSlave::checkURL(const QUrl &kurl_) const
 {
-    qCDebug(KIO_SMB) << "checkURL " << kurl;
+    qCDebug(KIO_SMB) << "checkURL " << kurl_;
+
+    QUrl kurl(kurl_);
+    // We treat cifs as an alias but need to translate it to smb.
+    // https://bugs.kde.org/show_bug.cgi?id=327295
+    // It's not IANA registered and also libsmbc internally expects
+    // smb URIs so we do very broadly coerce cifs to smb.
+    // Also see SMBUrl.
+    if (kurl.scheme() == "cifs") {
+        kurl.setScheme("smb");
+    }
+
     QString surl = kurl.url();
     //transform any links in the form smb:/ into smb://
     if (surl.startsWith(QLatin1String("smb:/"))) {

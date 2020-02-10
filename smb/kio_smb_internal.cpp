@@ -51,6 +51,14 @@ SMBUrl::SMBUrl(const QUrl& kurl)
     : QUrl(kurl)
   //-----------------------------------------------------------------------
 {
+    // We treat cifs as an alias but need to translate it to smb.
+    // https://bugs.kde.org/show_bug.cgi?id=327295
+    // It's not IANA registered and also libsmbc internally expects
+    // smb URIs so we do very broadly coerce cifs to smb.
+    // Also see SMBSlave::checkURL.
+    if (scheme() == "cifs") {
+        setScheme("smb");
+    }
     updateCache();
 }
 

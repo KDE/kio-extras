@@ -1,6 +1,6 @@
 [Protocol]
 exec=kf5/kio/smb
-protocol=smb
+protocol=@PROTOCOL@
 input=none
 output=filesystem
 listing=Name,Type,Size,Date,Access,Owner,Group

@@ -10,6 +10,10 @@ if(NOT WIN32)
 check_include_file(utime.h HAVE_UTIME_H)
 
 configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)
+foreach(PROTOCOL smb cifs)
+   configure_file(smb.protocol.cmake ${CMAKE_CURRENT_BINARY_DIR}/${PROTOCOL}.protocol)
+   install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${PROTOCOL}.protocol DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+endforeach()
 
 set(kio_smb_PART_SRCS 
    kio_smb.cpp 
@@ -53,6 +57,5 @@ install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 ########### install files ###############
 
 install( FILES smb-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote )
-install( FILES smb.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
 install( FILES smb-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/remoteview )
 
