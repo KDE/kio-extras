@@ -95,22 +95,10 @@ int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
       udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
       udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
 
-      QString str;
-      uid_t uid = st.st_uid;
-      struct passwd *user = getpwuid( uid );
-      if ( user )
-          str = user->pw_name;
-      else
-          str = QString::number( uid );
-      udsentry.fastInsert(KIO::UDSEntry::UDS_USER, str);
-
-      gid_t gid = st.st_gid;
-      struct group *grp = getgrgid( gid );
-      if ( grp )
-          str = grp->gr_name;
-      else
-          str = QString::number( gid );
-      udsentry.fastInsert(KIO::UDSEntry::UDS_GROUP, str);
+      // UID and GID **must** not be mapped. The values returned by libsmbclient are
+      // simply the getuid/getgid of the process. They mean absolutely nothing.
+      // Also see libsmb_stat.c.
+      // Related: https://bugs.kde.org/show_bug.cgi?id=212801
 
       udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, st.st_mode & 07777);
       udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
