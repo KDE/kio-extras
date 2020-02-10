@@ -372,6 +372,7 @@ void SMBSlave::listDir( const QUrl& kurl )
            qCDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type;
 
            udsentry.fastInsert( KIO::UDSEntry::UDS_NAME, udsName );
+           udsentry.fastInsert(KIO::UDSEntry::UDS_COMMENT, QString::fromUtf8(dirp->comment));
 
            // Mark all administrative shares, e.g ADMIN$, as hidden. #197903
            if (dirpName.endsWith(QLatin1Char('$'))) {
