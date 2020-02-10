@@ -652,31 +652,34 @@ void SMBSlave::fileSystemFreeSpace(const QUrl& url)
     }
 
     SMBUrl smbcUrl = url;
-    int handle = smbc_opendir(smbcUrl.toSmbcUrl());
-    if (handle < 0) {
-       error(KIO::ERR_COULD_NOT_STAT, url.url());
-       return;
-    }
 
     struct statvfs dirStat;
     memset(&dirStat, 0, sizeof(struct statvfs));
-    int err = smbc_fstatvfs(handle, &dirStat);
-    smbc_closedir(handle);
-
+    const int err = smbc_statvfs(smbcUrl.toSmbcUrl().data(), &dirStat);
     if (err < 0) {
        error(KIO::ERR_COULD_NOT_STAT, url.url());
        return;
     }
 
-    KIO::filesize_t blockSize;
-    if (dirStat.f_frsize != 0) {
-       blockSize = dirStat.f_frsize;
-    } else {
-       blockSize = dirStat.f_bsize;
-    }
+    // libsmb_stat.c has very awkward conditional branching that results
+    // in data meaning different things based on context:
+    // A samba host with unix extensions has f_frsize==0 and the f_bsize is
+    // the actual block size. Any other server (such as windows) has a non-zero
+    // f_frsize denoting the amount of sectors in a block and the f_bsize is
+    // the amount of bytes in a sector. As such frsize*bsize is the actual
+    // block size.
+    // This was also broken in different ways throughout history, so depending
+    // on the specific libsmbc versions the milage will vary. 4.7 to 4.11 are
+    // at least behaving as described though.
+    // https://bugs.kde.org/show_bug.cgi?id=298801
+    const auto frames = (dirStat.f_frsize == 0) ? 1 : dirStat.f_frsize;
+    const auto blockSize =  dirStat.f_bsize * frames;
+    // Further more on older versions of samba f_bavail may not be set...
+    const auto total = blockSize * dirStat.f_blocks;
+    const auto available = blockSize * ((dirStat.f_bavail != 0) ? dirStat.f_bavail : dirStat.f_bfree);
 
-    setMetaData("total", QString::number(blockSize * dirStat.f_blocks));
-    setMetaData("available", QString::number(blockSize * dirStat.f_bavail));
+    setMetaData("total", QString::number(total));
+    setMetaData("available", QString::number(available));
 
     finished();
 }
