@@ -77,6 +77,21 @@ int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
          return EINVAL;
       }
 
+      if (!S_ISDIR(st.st_mode)) {
+          // Awkwardly documented at
+          //    https://www.samba.org/samba/docs/using_samba/ch08.html
+          // libsmb_stat.c assigns special meaning to +x permissions
+          // (obviously only on files, all dirs are +x so this hacky representation
+          //  wouldn't work!):
+          // - S_IXUSR = DOS archive: This file has been touched since the last DOS backup was performed on it.
+          // - S_IXGRP = DOS system: This file has a specific purpose required by the operating system.
+          // - S_IXOTH = DOS hidden: This file has been marked to be invisible to the user, unless the operating system is explicitly set to show it.
+          // Only hiding has backing through KIO right now.
+          if (st.st_mode & S_IXOTH) { // DOS hidden
+              udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, true);
+          }
+      }
+
       udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
       udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
 
