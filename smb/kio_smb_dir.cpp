@@ -418,7 +418,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
             struct utimbuf utbuf;
-            utbuf.actime = QFileInfo(file).lastRead().toTime_t(); // access time, unchanged
+            utbuf.actime = QFileInfo(dstFile).lastRead().toTime_t(); // access time, unchanged
             utbuf.modtime = dt.toTime_t(); // modification time
             utime(QFile::encodeName(dstFile).constData(), &utbuf);
         }
