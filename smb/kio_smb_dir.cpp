@@ -604,7 +604,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
             struct utimbuf utbuf;
             utbuf.actime = st.st_atime; // access time, unchanged
             utbuf.modtime = dt.toTime_t(); // modification time
-            smbc_utime( dstUrl.toSmbcUrl(), &utbuf );
+            smbc_utime( dstOrigUrl.toSmbcUrl(), &utbuf );
         }
     }
 #endif
