@@ -77,25 +77,28 @@ int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
          return EINVAL;
       }
 
+      if (!S_ISDIR(st.st_mode)) {
+          // Awkwardly documented at
+          //    https://www.samba.org/samba/docs/using_samba/ch08.html
+          // libsmb_stat.c assigns special meaning to +x permissions
+          // (obviously only on files, all dirs are +x so this hacky representation
+          //  wouldn't work!):
+          // - S_IXUSR = DOS archive: This file has been touched since the last DOS backup was performed on it.
+          // - S_IXGRP = DOS system: This file has a specific purpose required by the operating system.
+          // - S_IXOTH = DOS hidden: This file has been marked to be invisible to the user, unless the operating system is explicitly set to show it.
+          // Only hiding has backing through KIO right now.
+          if (st.st_mode & S_IXOTH) { // DOS hidden
+              udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, true);
+          }
+      }
+
       udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
       udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
 
-      QString str;
-      uid_t uid = st.st_uid;
-      struct passwd *user = getpwuid( uid );
-      if ( user )
-          str = user->pw_name;
-      else
-          str = QString::number( uid );
-      udsentry.fastInsert(KIO::UDSEntry::UDS_USER, str);
-
-      gid_t gid = st.st_gid;
-      struct group *grp = getgrgid( gid );
-      if ( grp )
-          str = grp->gr_name;
-      else
-          str = QString::number( gid );
-      udsentry.fastInsert(KIO::UDSEntry::UDS_GROUP, str);
+      // UID and GID **must** not be mapped. The values returned by libsmbclient are
+      // simply the getuid/getgid of the process. They mean absolutely nothing.
+      // Also see libsmb_stat.c.
+      // Related: https://bugs.kde.org/show_bug.cgi?id=212801
 
       udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, st.st_mode & 07777);
       udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
@@ -183,10 +186,24 @@ void SMBSlave::stat( const QUrl& kurl )
 }
 
 //===========================================================================
-// TODO: complete checking
-QUrl SMBSlave::checkURL(const QUrl& kurl) const
+// TODO: complete checking <-- what does that even mean?
+// TODO: why is this not part of SMBUrl or at the very least URL validation should
+//    be 100% shared between this and SMBUrl. Notably SMBUrl has code that looks
+//    to do a similar thing but is much less complete.
+QUrl SMBSlave::checkURL(const QUrl &kurl_) const
 {
-    qCDebug(KIO_SMB_LOG) << "checkURL " << kurl;
+    qCDebug(KIO_SMB_LOG) << "checkURL " << kurl_;
+
+    QUrl kurl(kurl_);
+    // We treat cifs as an alias but need to translate it to smb.
+    // https://bugs.kde.org/show_bug.cgi?id=327295
+    // It's not IANA registered and also libsmbc internally expects
+    // smb URIs so we do very broadly coerce cifs to smb.
+    // Also see SMBUrl.
+    if (kurl.scheme() == "cifs") {
+        kurl.setScheme("smb");
+    }
+
     QString surl = kurl.url();
     //transform any links in the form smb:/ into smb://
     if (surl.startsWith(QLatin1String("smb:/"))) {
@@ -369,6 +386,7 @@ void SMBSlave::listDir( const QUrl& kurl )
            qCDebug(KIO_SMB_LOG) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type;
 
            udsentry.fastInsert( KIO::UDSEntry::UDS_NAME, udsName );
+           udsentry.fastInsert(KIO::UDSEntry::UDS_COMMENT, QString::fromUtf8(dirp->comment));
 
            // Mark all administrative shares, e.g ADMIN$, as hidden. #197903
            if (dirpName.endsWith(QLatin1Char('$'))) {
@@ -637,31 +655,34 @@ void SMBSlave::fileSystemFreeSpace(const QUrl& url)
     }
 
     SMBUrl smbcUrl = url;
-    int handle = smbc_opendir(smbcUrl.toSmbcUrl());
-    if (handle < 0) {
-       error(KIO::ERR_CANNOT_STAT, url.url());
-       return;
-    }
 
     struct statvfs dirStat;
     memset(&dirStat, 0, sizeof(struct statvfs));
-    int err = smbc_fstatvfs(handle, &dirStat);
-    smbc_closedir(handle);
-
+    const int err = smbc_statvfs(smbcUrl.toSmbcUrl().data(), &dirStat);
     if (err < 0) {
        error(KIO::ERR_CANNOT_STAT, url.url());
        return;
     }
 
-    KIO::filesize_t blockSize;
-    if (dirStat.f_frsize != 0) {
-       blockSize = dirStat.f_frsize;
-    } else {
-       blockSize = dirStat.f_bsize;
-    }
+    // libsmb_stat.c has very awkward conditional branching that results
+    // in data meaning different things based on context:
+    // A samba host with unix extensions has f_frsize==0 and the f_bsize is
+    // the actual block size. Any other server (such as windows) has a non-zero
+    // f_frsize denoting the amount of sectors in a block and the f_bsize is
+    // the amount of bytes in a sector. As such frsize*bsize is the actual
+    // block size.
+    // This was also broken in different ways throughout history, so depending
+    // on the specific libsmbc versions the milage will vary. 4.7 to 4.11 are
+    // at least behaving as described though.
+    // https://bugs.kde.org/show_bug.cgi?id=298801
+    const auto frames = (dirStat.f_frsize == 0) ? 1 : dirStat.f_frsize;
+    const auto blockSize =  dirStat.f_bsize * frames;
+    // Further more on older versions of samba f_bavail may not be set...
+    const auto total = blockSize * dirStat.f_blocks;
+    const auto available = blockSize * ((dirStat.f_bavail != 0) ? dirStat.f_bavail : dirStat.f_bfree);
 
-    setMetaData("total", QString::number(blockSize * dirStat.f_blocks));
-    setMetaData("available", QString::number(blockSize * dirStat.f_bavail));
+    setMetaData("total", QString::number(total));
+    setMetaData("available", QString::number(available));
 
     finished();
 }

@@ -418,7 +418,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
             struct utimbuf utbuf;
-            utbuf.actime = QFileInfo(file).lastRead().toSecsSinceEpoch(); // access time, unchanged
+            utbuf.actime = QFileInfo(dstFile).lastRead().toSecsSinceEpoch(); // access time, unchanged
             utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
             utime(QFile::encodeName(dstFile).constData(), &utbuf);
         }
@@ -604,7 +604,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
             struct utimbuf utbuf;
             utbuf.actime = st.st_atime; // access time, unchanged
             utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
-            smbc_utime( dstUrl.toSmbcUrl(), &utbuf );
+            smbc_utime( dstOrigUrl.toSmbcUrl(), &utbuf );
         }
     }
 #endif
