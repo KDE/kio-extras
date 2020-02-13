@@ -297,6 +297,8 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
                                                  "Make sure your network is setup without any name conflicts "
                                                  "between names used by Windows and by UNIX name resolution." ) };
 #endif
+    case ECONNABORTED:
+        return SMBError{ ERR_CONNECTION_BROKEN, url.host() };
     case 0: // success
       return SMBError{ ERR_INTERNAL, i18n("libsmbclient reported an error, but did not specify "
                                           "what the problem is. This might indicate a severe problem "
