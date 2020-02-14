@@ -108,7 +108,7 @@ private:
      * From Controlcenter
      */
     QString  m_default_user;
-//    QString  m_default_workgroup; //currently unused, Alex <neundorf@kde.org>
+    QString  m_default_workgroup = QStringLiteral("WORKGROUP"); // overwritten with value from smbc
     QString  m_default_password;
     QString  m_default_encoding;
 

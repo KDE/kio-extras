@@ -94,6 +94,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     info.username = s_username;
     info.password = s_password;
     info.verifyPath = true;
+    info.setExtraField("domain", s_workgroup);
 
     qCDebug(KIO_SMB_LOG) << "libsmb-auth-callback URL:" << info.url;
 
@@ -115,8 +116,21 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
     } else
         qCDebug(KIO_SMB_LOG) << "got password through cache";
 
-    strncpy(username, info.username.toUtf8(), unmaxlen - 1);
-    strncpy(password, info.password.toUtf8(), pwmaxlen - 1);
+    // Make sure it'll be safe to cast to size_t (unsigned)
+    Q_ASSERT(unmaxlen > 0);
+    Q_ASSERT(pwmaxlen > 0);
+    Q_ASSERT(wgmaxlen > 0);
+
+    strncpy(username, info.username.toUtf8(), static_cast<size_t>(unmaxlen - 1));
+    strncpy(password, info.password.toUtf8(), static_cast<size_t>(pwmaxlen - 1));
+    // TODO: isEmpty guard can be removed in 20.08+
+    //   It is only here to prevent us setting an empty work group if a user updates
+    //   but doesn't restart so kiod5 could hold an old cache without domain
+    //   field. In that event we'll leave the input workgroup as-is.
+    const QString domain = info.getExtraField("domain").toString();
+    if (!domain.isEmpty()) {
+        strncpy(workgroup, domain.toUtf8(), static_cast<size_t>(wgmaxlen - 1));
+    }
 }
 
 int SMBSlave::checkPassword(SMBUrl &url)
@@ -136,6 +150,9 @@ int SMBSlave::checkPassword(SMBUrl &url)
     info.url.setPath('/' + share);
     info.verifyPath = true;
     info.keepPassword = true;
+
+    info.setExtraField("anonymous", true); // arbitrary default for dialog
+    info.setExtraField("domain", m_default_workgroup);
 
     if ( share.isEmpty() )
         info.prompt = i18n(
@@ -219,6 +236,13 @@ bool SMBSlave::auth_initialize_smbc()
 	}
 
 	smbc_set_context(smb_context);
+
+    // TODO: refactor; checkPassword should query this on
+    // demand to not run into situations where we may have cached
+    // the workgroup early on and it changed since. Needs context
+    // being held in the slave though, which opens us up to nullptr
+    // problems should checkPassword be called without init first.
+    m_default_workgroup = smbc_getWorkgroup(smb_context);
 
         m_initialized_smbc = true;
     }

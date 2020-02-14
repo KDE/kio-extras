@@ -92,15 +92,36 @@ int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
           }
       }
 
-      udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
-      udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
-
       // UID and GID **must** not be mapped. The values returned by libsmbclient are
       // simply the getuid/getgid of the process. They mean absolutely nothing.
       // Also see libsmb_stat.c.
       // Related: https://bugs.kde.org/show_bug.cgi?id=212801
 
-      udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, st.st_mode & 07777);
+      // POSIX Access mode must not be mapped either!
+      // It's meaningless for smb shares and downright disadvantagous.
+      // The mode attributes outside the ones used and document above are
+      // useless. The only one actively set is readonlyness.
+      //
+      // BUT the READONLY attribute does nothing on NT systems:
+      // https://support.microsoft.com/en-us/help/326549/you-cannot-view-or-change-the-read-only-or-the-system-attributes-of-fo
+      // The Read-only and System attributes is only used by Windows Explorer to determine
+      // whether the folder is a special folder, such as a system folder that has its view
+      // customized by Windows (for example, My Documents, Favorites, Fonts, Downloaded Program Files),
+      // or a folder that you customized by using the Customize tab of the folder's Properties dialog box.
+      //
+      // As such respecting it on a KIO level is actually wrong as it doesn't indicate actual
+      // readonlyness since the 90s and causes us to show readonly UI states when in fact
+      // the directory is perfectly writable.
+      // https://bugs.kde.org/show_bug.cgi?id=414482
+      //
+      // Should we ever want to parse desktop.ini like we do .directory we'd only want to when a
+      // dir is readonly as per the above microsoft support article.
+      // Also see:
+      // https://docs.microsoft.com/en-us/windows/win32/shell/how-to-customize-folders-with-desktop-ini
+      udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, -1);
+
+      udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
+      udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
       udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
       udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
       // No, st_ctime is not UDS_CREATION_TIME...
@@ -297,6 +318,8 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
                                                  "Make sure your network is setup without any name conflicts "
                                                  "between names used by Windows and by UNIX name resolution." ) };
 #endif
+    case ECONNABORTED:
+        return SMBError{ ERR_CONNECTION_BROKEN, url.host() };
     case 0: // success
       return SMBError{ ERR_INTERNAL, i18n("libsmbclient reported an error, but did not specify "
                                           "what the problem is. This might indicate a severe problem "
