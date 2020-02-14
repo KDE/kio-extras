@@ -320,6 +320,11 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
 #endif
     case ECONNABORTED:
         return SMBError{ ERR_CONNECTION_BROKEN, url.host() };
+    case EHOSTUNREACH:
+        return SMBError{ ERR_CANNOT_CONNECT,
+                    i18nc("@info:status smb failed to reach the server (e.g. server offline or network failure). %1 is an ip address or hostname",
+                          "%1: Host unreachable",
+                          url.host()) };
     case 0: // success
       return SMBError{ ERR_INTERNAL, i18n("libsmbclient reported an error, but did not specify "
                                           "what the problem is. This might indicate a severe problem "
