@@ -1,6 +1,7 @@
 /*
     SPDX-License-Identifier: LGPL-2.0-or-later
     SPDX-FileCopyrightText: 2000 Alexander Neundorf <neundorf@kde.org>
+    SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
 */
 
 #include "kio_smb.h"
@@ -14,7 +15,78 @@
 #include <QDir>
 #include <unistd.h>
 
-WorkerResult SMBWorker::special(const QByteArray &data)
+WorkerResult SMBWorker::getACE(QDataStream &stream)
+{
+    QUrl qurl;
+    stream >> qurl;
+    const SMBUrl url(qurl);
+
+    // Use the same buffer for all properties to reduce the likelihood of having needless allocations. ACL will usually
+    // be the largest of the lot and if we try to get that first we'll probably fit all the other properties into the
+    // same buffer easy peasy.
+    constexpr auto defaultArraySize = 4096; // arbitrary, the ACL is of unknown size
+    const int pageSize = static_cast<int>(sysconf(_SC_PAGESIZE));
+    Q_ASSERT(pageSize == sysconf(_SC_PAGESIZE)); // ensure conversion accuracy
+    QVarLengthArray<char, defaultArraySize> value(pageSize);
+
+    for (auto xattr : {
+             "system.nt_sec_desc.acl.*+",
+             "system.nt_sec_desc.owner+",
+             "system.nt_sec_desc.group+",
+         }) {
+        while (true) {
+            const auto result = smbc_getxattr(url.toSmbcUrl(), xattr, value.data(), value.size());
+            if (const auto error = errno; result < 0) {
+                // https://bugzilla.samba.org/show_bug.cgi?id=15088
+                if (error == ERANGE) {
+                    value.resize(value.size() + pageSize);
+                    continue;
+                }
+                qWarning() << xattr << strerror(error);
+                return WorkerResult::fail(ERR_INTERNAL, strerror(error));
+            }
+            qCDebug(KIO_SMB_LOG) << "XATTR" << xattr << value.data();
+            if (QLatin1String("system.nt_sec_desc.acl.*+") == QLatin1String(xattr)) {
+                setMetaData("ACL", QString::fromUtf8(value.constData()));
+            }
+            if (QLatin1String("system.nt_sec_desc.owner+") == QLatin1String(xattr)) {
+                setMetaData("OWNER", QString::fromUtf8(value.constData()));
+            }
+            if (QLatin1String("system.nt_sec_desc.group+") == QLatin1String(xattr)) {
+                setMetaData("GROUP", QString::fromUtf8(value.constData()));
+            }
+            break;
+        }
+    }
+    return WorkerResult::pass();
+}
+
+KIO::WorkerResult SMBWorker::setACE(QDataStream &stream)
+{
+    QUrl qurl;
+    stream >> qurl;
+    const SMBUrl url(qurl);
+
+    QString sid;
+    QString aceString;
+    stream >> sid >> aceString;
+
+    const QString attr = QLatin1String("system.nt_sec_desc.acl+:") + sid;
+    qCDebug(KIO_SMB_LOG) << attr << aceString;
+
+    // https://bugzilla.samba.org/show_bug.cgi?id=15089
+    auto flags = SMBC_XATTR_FLAG_REPLACE | SMBC_XATTR_FLAG_CREATE;
+    const QByteArray ace = aceString.toUtf8();
+    int result = smbc_setxattr(url.toSmbcUrl(), qUtf8Printable(attr), ace.constData(), ace.size(), flags);
+    if (const auto error = errno; result < 0) {
+        qCDebug(KIO_SMB_LOG) << "smbc_setxattr" << result << strerror(error);
+        return WorkerResult::fail(ERR_INTERNAL, strerror(error));
+    }
+    return WorkerResult::pass();
+}
+
+// TODO: rename this file _special instead of _mount. Or better yet: stop having multiple cpp files for the same class.
+KIO::WorkerResult SMBWorker::special(const QByteArray &data)
 {
     qCDebug(KIO_SMB_LOG) << "Smb::special()";
     int tmp;
@@ -140,8 +212,13 @@ WorkerResult SMBWorker::special(const QByteArray &data)
                 return WorkerResult::fail(KIO::ERR_CANNOT_RMDIR, mountPoint);
             }
         }
+    } break;
+    case 0xAC: { // ACL
+        return getACE(stream);
     }
-    break;
+    case 0xACD: { // setACE
+        return setACE(stream);
+    }
     default:
         break;
     }

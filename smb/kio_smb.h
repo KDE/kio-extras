@@ -1,7 +1,7 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
     SPDX-FileCopyrightText: 2000 Caldera Systems Inc.
-    SPDX-FileCopyrightText: 2021 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2021-2022 Harald Sitter <sitter@kde.org>
     SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
 */
 
@@ -225,6 +225,8 @@ private:
     Q_REQUIRED_RESULT WorkerResult smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags);
     bool workaroundEEXIST(const int errNum) const;
     int statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry);
+    Q_REQUIRED_RESULT WorkerResult getACE(QDataStream &stream);
+    Q_REQUIRED_RESULT WorkerResult setACE(QDataStream &stream);
 
     /**
      * Used in open(), read(), write(), and close()
