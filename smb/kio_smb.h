@@ -79,7 +79,6 @@ extern "C" {
 //---------------------------
 #include "smburl.h"
 
-#define MAX_XFER_BUF_SIZE 65534
 
 using namespace KIO;
 

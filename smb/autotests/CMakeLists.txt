@@ -11,6 +11,7 @@ include(ECMAddTests)
 
 ecm_add_tests(
     smburltest
+    transfertest
     LINK_LIBRARIES
         Qt5::Test
         kio_smb_static

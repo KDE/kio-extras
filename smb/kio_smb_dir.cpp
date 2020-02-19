@@ -39,6 +39,10 @@
 #include <kconfiggroup.h>
 #include <kio/ioslave_defaults.h>
 
+#include <future>
+
+#include "transfer.h"
+
 void SMBSlave::copy(const QUrl &src, const QUrl &dst, int permissions, KIO::JobFlags flags)
 {
     const bool isSourceLocal = src.isLocalFile();
@@ -55,25 +59,14 @@ void SMBSlave::copy(const QUrl &src, const QUrl &dst, int permissions, KIO::JobF
 
 void SMBSlave::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags)
 {
-    SMBUrl src;
-    SMBUrl dst;
-    mode_t initialmode;
-    ssize_t n;
-    int dstflags;
-    int srcfd = -1;
-    int dstfd = -1;
-    int errNum = 0;
-    KIO::filesize_t processed_size = 0;
-    unsigned char buf[MAX_XFER_BUF_SIZE];
-
     qCDebug(KIO_SMB_LOG) << "SMBSlave::copy with src = " << ksrc << "and dest = " << kdst;
 
     // setup urls
-    src = ksrc;
-    dst = kdst;
+    SMBUrl src = ksrc;
+    SMBUrl dst = kdst;
 
     // Obtain information about source
-    errNum = cache_stat(src, &st);
+    int errNum = cache_stat(src, &st);
     if (errNum != 0) {
         if (errNum == EACCES) {
             error(KIO::ERR_ACCESS_DENIED, src.toDisplayString());
@@ -86,7 +79,8 @@ void SMBSlave::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO:
         error(KIO::ERR_IS_DIRECTORY, src.toDisplayString());
         return;
     }
-    totalSize(st.st_size);
+    const auto srcSize = st.st_size;
+    totalSize(srcSize);
 
     // Check to se if the destination exists
     errNum = cache_stat(dst, &st);
@@ -102,7 +96,7 @@ void SMBSlave::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO:
     }
 
     // Open the source file
-    srcfd = smbc_open(src.toSmbcUrl(), O_RDONLY, 0);
+    int srcfd = smbc_open(src.toSmbcUrl(), O_RDONLY, 0);
     if (srcfd < 0) {
         errNum = errno;
     } else {
@@ -118,6 +112,8 @@ void SMBSlave::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO:
         return;
     }
 
+
+    mode_t initialmode = 0;
     // Determine initial creation mode
     if (permissions != -1) {
         initialmode = permissions | S_IWUSR;
@@ -126,11 +122,11 @@ void SMBSlave::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO:
     }
 
     // Open the destination file
-    dstflags = O_CREAT | O_TRUNC | O_WRONLY;
+    int dstflags = O_CREAT | O_TRUNC | O_WRONLY;
     if (!(flags & KIO::Overwrite)) {
         dstflags |= O_EXCL;
     }
-    dstfd = smbc_open(dst.toSmbcUrl(), dstflags, initialmode);
+    int dstfd = smbc_open(dst.toSmbcUrl(), dstflags, initialmode);
     if (dstfd < 0) {
         errNum = errno;
     } else {
@@ -151,10 +147,15 @@ void SMBSlave::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO:
     }
 
     // Perform copy
+    // TODO: if and when smb_context becomes thread-safe, use two contexts connected with
+    //   a ring buffer to optimize transfer speed (also see smbCopyGet)
+    //   https://bugzilla.samba.org/show_bug.cgi?id=11413
+    KIO::filesize_t processed_size = 0;
+    TransferSegment segment(srcSize);
     while (true) {
-        n = smbc_read(srcfd, buf, MAX_XFER_BUF_SIZE);
+        ssize_t n = smbc_read(srcfd, segment.buf.data(), segment.buf.size());
         if (n > 0) {
-            n = smbc_write(dstfd, buf, n);
+            n = smbc_write(dstfd, segment.buf.data(), n);
             if (n == -1) {
                 qCDebug(KIO_SMB_LOG) << "SMBSlave::copy copy now KIO::ERR_CANNOT_WRITE";
                 error(KIO::ERR_CANNOT_WRITE, dst.toDisplayString());
@@ -316,30 +317,49 @@ void SMBSlave::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, K
         return;
     }
 
-    // Perform the copy
-    char buf[MAX_XFER_BUF_SIZE];
-    bool isErr = false;
+    std::atomic<bool> isErr(false);
+    TransferRingBuffer buffer(st.st_size);
+    auto future = std::async(std::launch::async, [&buffer, &srcfd, &isErr]() -> int {
+        while (!isErr) {
+            TransferSegment *segment = buffer.nextFree();
+            segment->size = smbc_read(srcfd, segment->buf.data(), segment->buf.capacity());
+            if (segment->size <= 0) {
+                buffer.push();
+                buffer.done();
+                if (segment->size < 0) {
+                    return KIO::ERR_COULD_NOT_READ;
+                }
+                break;
+            }
+            buffer.push();
+        }
+        return KJob::NoError;
+    });
 
     while (true) {
-        const ssize_t bytesRead = smbc_read(srcfd, buf, MAX_XFER_BUF_SIZE);
-        if (bytesRead <= 0) {
-            if (bytesRead < 0) {
-                error(KIO::ERR_CANNOT_READ, src.toDisplayString());
-                isErr = true;
-            }
+        TransferSegment *segment = buffer.pop();
+        if (!segment) { // done, no more segments pending
             break;
         }
 
-        const qint64 bytesWritten = file.write(buf, bytesRead);
+        const qint64 bytesWritten = file.write(segment->buf.data(), segment->size);
         if (bytesWritten == -1) {
             qCDebug(KIO_SMB_LOG) << "copy now KIO::ERR_CANNOT_WRITE";
             error(KIO::ERR_CANNOT_WRITE, kdst.toDisplayString());
             isErr = true;
+            buffer.unpop();
             break;
         }
 
         processed_size += bytesWritten;
         processedSize(processed_size);
+        buffer.unpop();
+    }
+    if (isErr) { // writing failed
+        future.wait();
+    } else if (future.get() != KJob::NoError) { // check if read had an error
+        error(future.get(), ksrc.toDisplayString());
+        isErr = true;
     }
 
     // FINISHED
@@ -499,10 +519,9 @@ void SMBSlave::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, K
 
     if (processed_size == 0 || srcFile.seek(processed_size)) {
         // Perform the copy
-        char buf[MAX_XFER_BUF_SIZE];
-
+        TransferSegment segment(srcInfo.size());
         while (true) {
-            const ssize_t bytesRead = srcFile.read(buf, MAX_XFER_BUF_SIZE);
+            const ssize_t bytesRead = srcFile.read(segment.buf.data(), segment.buf.size());
             if (bytesRead <= 0) {
                 if (bytesRead < 0) {
                     error(KIO::ERR_CANNOT_READ, ksrc.toDisplayString());
@@ -511,7 +530,7 @@ void SMBSlave::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, K
                 break;
             }
 
-            const qint64 bytesWritten = smbc_write(dstfd, buf, bytesRead);
+            const qint64 bytesWritten = smbc_write(dstfd, segment.buf.data(), bytesRead);
             if (bytesWritten == -1) {
                 error(KIO::ERR_CANNOT_WRITE, kdst.toDisplayString());
                 isErr = true;

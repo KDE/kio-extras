@@ -19,6 +19,8 @@ add_feature_info("Internal KDSoapWSDiscoveryClient" INTERNAL_WSDCLIENT
 add_feature_info("SMB DNS-SD Discovery" HAVE_KDNSSD_WITH_SIGNAL_RACE_PROTECTION
     "Discover SMB hosts via DNS-SD/Avahi/Bonjour. KF5DNSSD >= 5.54 is required to support this.")
 
+find_package(Threads REQUIRED)
+
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_smb\")
 
 include(CheckIncludeFile)
@@ -47,6 +49,7 @@ set(kio_smb_PART_SRCS
     wsdiscoverer.cpp
     dnssddiscoverer.cpp
     discovery.cpp
+    transfer.cpp
 )
 
 ecm_qt_declare_logging_category(kio_smb_PART_SRCS
@@ -69,6 +72,7 @@ target_link_libraries(kio_smb_static
     Qt5::Network
     KF5::DNSSD
     KDSoap::WSDiscoveryClient
+    Threads::Threads # std::async
 )
 
 # Final plugin target.

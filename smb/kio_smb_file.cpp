@@ -37,19 +37,12 @@
 #include <QMimeType>
 #include <QVarLengthArray>
 
+#include <future>
+
+#include "transfer.h"
+
 void SMBSlave::get(const QUrl &kurl)
 {
-    char buf[MAX_XFER_BUF_SIZE];
-    int filefd = 0;
-    int errNum = 0;
-    ssize_t bytesread = 0;
-    // time_t      curtime         = 0;
-    // time_t      lasttime        = 0; // Disabled durint port to Qt5/KF5. Seems to be unused.
-    // time_t      starttime       = 0; // Disabled durint port to Qt5/KF5. Seems to be unused.
-    KIO::filesize_t totalbytesread = 0;
-    QByteArray filedata;
-    SMBUrl url;
-
     qCDebug(KIO_SMB_LOG) << kurl;
 
     // check (correct) URL
@@ -65,8 +58,8 @@ void SMBSlave::get(const QUrl &kurl)
         return;
 
     // Stat
-    url = kurl;
-    errNum = cache_stat(url, &st);
+    SMBUrl url = kurl;
+    int errNum = cache_stat(url, &st);
     if (errNum != 0) {
         if (errNum == EACCES)
             error(KIO::ERR_ACCESS_DENIED, url.toDisplayString());
@@ -83,44 +76,64 @@ void SMBSlave::get(const QUrl &kurl)
     totalSize(st.st_size);
 
     // Open and read the file
-    filefd = smbc_open(url.toSmbcUrl(), O_RDONLY, 0);
-    if (filefd >= 0) {
-        bool isFirstPacket = true;
-        // lasttime = starttime = time(NULL); // This seems to be unused..
-        while (true) {
-            bytesread = smbc_read(filefd, buf, MAX_XFER_BUF_SIZE);
-            if (bytesread == 0) {
-                // All done reading
-                break;
-            } else if (bytesread < 0) {
-                error(KIO::ERR_CANNOT_READ, url.toDisplayString());
-                return;
-            }
-
-            filedata = QByteArray::fromRawData(buf, bytesread);
-            if (isFirstPacket) {
-                QMimeDatabase db;
-                QMimeType type = db.mimeTypeForFileNameAndData(url.fileName(), filedata);
-                mimeType(type.name());
-                isFirstPacket = false;
-            }
-            data(filedata);
-            filedata.clear();
-
-            // increment total bytes read
-            totalbytesread += bytesread;
-
-            processedSize(totalbytesread);
-        }
-
-        smbc_close(filefd);
-        data(QByteArray());
-        processedSize(static_cast<KIO::filesize_t>(st.st_size));
-
-    } else {
+    int filefd = smbc_open(url.toSmbcUrl(), O_RDONLY, 0);
+    if (filefd < 0) {
         error(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toDisplayString());
         return;
     }
+
+    KIO::filesize_t totalbytesread = 0;
+    QByteArray filedata;
+    bool isFirstPacket = true;
+
+    TransferRingBuffer buffer(st.st_size);
+    auto future = std::async(std::launch::async, [&buffer, &filefd]() -> int {
+        while (true) {
+            TransferSegment *s = buffer.nextFree();
+            s->size = smbc_read(filefd, s->buf.data(), s->buf.capacity());
+            if (s->size <= 0) {
+                buffer.push();
+                buffer.done();
+                if (s->size < 0) {
+                    return KIO::ERR_COULD_NOT_READ;
+                }
+                break;
+            }
+            buffer.push();
+        }
+        return KJob::NoError;
+    });
+
+    while (true) {
+        TransferSegment *s = buffer.pop();
+        if (!s) { // done, no more segments pending
+            break;
+        }
+
+        filedata = QByteArray::fromRawData(s->buf.data(), s->size);
+        if (isFirstPacket) {
+            QMimeDatabase db;
+            QMimeType type = db.mimeTypeForFileNameAndData(url.fileName(), filedata);
+            mimeType(type.name());
+            isFirstPacket = false;
+        }
+        data(filedata);
+        filedata.clear();
+
+        // increment total bytes read
+        totalbytesread += s->size;
+
+        processedSize(totalbytesread);
+        buffer.unpop();
+    }
+    if (future.get() != KJob::NoError) { // check if read had an error
+        error(future.get(), url.toDisplayString());
+    }
+
+    smbc_close(filefd);
+    data(QByteArray());
+#warning fixme this is potentially a lie
+    processedSize(static_cast<KIO::filesize_t>(st.st_size));
 
     finished();
 }
