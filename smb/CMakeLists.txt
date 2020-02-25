@@ -21,7 +21,6 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_smb\")
 include(CheckIncludeFile)
 set(CMAKE_AUTOMAKE ON)
 
-if(NOT WIN32)
 check_include_file(utime.h HAVE_UTIME_H)
 
 configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)
@@ -57,25 +56,11 @@ target_link_libraries(kio_smb
     KF5::DNSSD
     KDSoap::WSDiscoveryClient
 )
-else()
-set(kio_smb_PART_SRCS 
-   kio_smb_win.cpp)
-
-add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
-
-target_link_libraries(kio_smb
-    KF5::KIOCore
-    KF5::I18n
-    mpr
-    Qt5::Network
-    KF5::DNSSD)
-endif()
 
 set_target_properties(kio_smb PROPERTIES OUTPUT_NAME "smb")
 set_target_properties(kio_smb PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio")
 
 install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
-
 
 ########### install files ###############
 
