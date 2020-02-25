@@ -165,7 +165,9 @@ void SMBSlave::stat( const QUrl& kurl )
     case SMBURLTYPE_ENTIRE_NETWORK:
     case SMBURLTYPE_WORKGROUP_OR_SERVER:
         udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        break;
+        statEntry(udsentry);
+        finished();
+        return;
 
     case SMBURLTYPE_SHARE_OR_PATH:
         {
@@ -198,15 +200,14 @@ void SMBSlave::stat( const QUrl& kurl )
                 reportError(url, ret);
                 return;
             }
-            break;
+
+            statEntry(udsentry);
+            finished();
+            return;
         }
-    default:
-        qCDebug(KIO_SMB_LOG) << "UNKNOWN " << url;
-        finished();
-        return;
     }
 
-    statEntry(udsentry);
+    qCDebug(KIO_SMB_LOG) << "UNKNOWN " << url;
     finished();
 }
 
