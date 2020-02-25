@@ -61,15 +61,13 @@ int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
     } else {
         cacheStatErr = errno;
     }
-    qCDebug(KIO_SMB_LOG) << "size " << (KIO::filesize_t)st->st_size;
+    qCDebug(KIO_SMB_LOG) << "size " << static_cast<KIO::filesize_t>(st->st_size);
     return cacheStatErr;
 }
 
 //---------------------------------------------------------------------------
-int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
+int SMBSlave::browse_stat_path(const SMBUrl &url, UDSEntry& udsentry)
 {
-   SMBUrl url = _url;
-
    int cacheStatErr = cache_stat(url, &st);
    if(cacheStatErr == 0)
    {
@@ -292,7 +290,6 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
 #endif
     case ECONNREFUSED:
         return SMBError{ ERR_SLAVE_DEFINED, i18n("Could not connect to host for %1", url.toDisplayString()) };
-        break;
     case ENOTDIR:
         return SMBError{ ERR_CANNOT_ENTER_DIRECTORY, url.toDisplayString() };
     case EFAULT:
@@ -378,12 +375,11 @@ void SMBSlave::listDir( const QUrl& kurl )
 
    m_current_url = kurl;
 
-   int                 dirfd;
    struct smbc_dirent  *dirp = nullptr;
    UDSEntry    udsentry;
    bool dir_is_root = true;
 
-   dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
+   int dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
    if (dirfd > 0){
       errNum = 0;
    } else {
@@ -552,7 +548,7 @@ void SMBSlave::listDir( const QUrl& kurl )
 
            const QList<Discoverer *> discoverers {&d, &w};
 
-           auto appendDiscovery = [&](Discovery::Ptr discovery) {
+           auto appendDiscovery = [&](const Discovery::Ptr &discovery) {
                list.append(discovery->toEntry());
            };
 
@@ -644,7 +640,7 @@ void SMBSlave::fileSystemFreeSpace(const QUrl& url)
 
     SMBUrl smbcUrl = url;
 
-    struct statvfs dirStat;
+    struct statvfs dirStat{};
     memset(&dirStat, 0, sizeof(struct statvfs));
     const int err = smbc_statvfs(smbcUrl.toSmbcUrl().data(), &dirStat);
     if (err < 0) {

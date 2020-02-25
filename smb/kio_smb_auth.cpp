@@ -35,7 +35,7 @@
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <klocalizedstring.h>
-#include <stdlib.h>
+#include <cstdlib>
 
 // call for libsmbclient
 //==========================================================================
@@ -48,9 +48,9 @@ void auth_smbc_get_data(SMBCCTX * context,
 {
     if (context != nullptr) {
 #ifdef DEPRECATED_SMBC_INTERFACE
-        SMBSlave *theSlave = (SMBSlave*) smbc_getOptionUserData(context);
+        auto *theSlave = static_cast<SMBSlave*>(smbc_getOptionUserData(context));
 #else
-        SMBSlave *theSlave = (SMBSlave*)smbc_option_get(context, "user_data");
+        auto *theSlave = static_cast<SMBSlave*>(smbc_option_get(context, "user_data"));
 #endif
         theSlave->auth_smbc_get_data(server, share,
                                      workgroup,wgmaxlen,

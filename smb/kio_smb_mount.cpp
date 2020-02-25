@@ -40,11 +40,14 @@ void SMBSlave::special( const QByteArray & data)
    case 1:
    case 3:
       {
-         QString remotePath, mountPoint, user;
+         QString remotePath;
+         QString mountPoint;
+         QString user;
          stream >> remotePath >> mountPoint;
 
          QStringList sl=remotePath.split('/');
-         QString share,host;
+         QString share;
+         QString host;
          if (sl.count()>=2)
          {
             host=sl.at(0).mid(2);

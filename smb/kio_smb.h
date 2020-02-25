@@ -128,7 +128,7 @@ private:
      * else it crashes on exit next method after use cache_stat,
      * looks like gcc (C/C++) failure
      */
-    struct stat st;
+    struct stat st{};
 
 protected:
     //---------------------------------------------
@@ -248,7 +248,7 @@ public:
     void reparseConfiguration() override;
 
     // Functions overwritten in kio_smb_dir.cpp
-    void copy( const QUrl& src, const QUrl &dest, int permissions, KIO::JobFlags flags ) override;
+    void copy( const QUrl& src, const QUrl &dst, int permissions, KIO::JobFlags flags ) override;
     void del( const QUrl& kurl, bool isfile) override;
     void mkdir( const QUrl& kurl, int permissions ) override;
     void rename( const QUrl& src, const QUrl& dest, KIO::JobFlags flags ) override;
@@ -275,9 +275,9 @@ protected:
 
 private:
     SMBError errnumToKioError(const SMBUrl& url, const int errNum);
-    void smbCopy(const QUrl& src, const QUrl &dest, int permissions, KIO::JobFlags flags);
-    void smbCopyGet(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
-    void smbCopyPut(const QUrl& src, const QUrl& dest, int permissions, KIO::JobFlags flags);
+    void smbCopy(const QUrl& src, const QUrl &dst, int permissions, KIO::JobFlags flags);
+    void smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO::JobFlags flags);
+    void smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO::JobFlags flags);
     bool workaroundEEXIST(const int errNum) const;
 
     void fileSystemFreeSpace(const QUrl &url);

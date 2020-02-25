@@ -46,7 +46,8 @@ KIO::UDSEntry DNSSDDiscovery::toEntry() const
     QUrl u;
     u.setScheme(QStringLiteral("smb"));
     u.setHost(m_service->hostName());
-    if (m_service->port() > 0 && m_service->port() != 445 /* default smb */) {
+    const int defaultPort = 445;
+    if (m_service->port() > 0 && m_service->port() != defaultPort) {
         u.setPort(m_service->port());
     }
     u.setPath("/"); // https://bugs.kde.org/show_bug.cgi?id=388922

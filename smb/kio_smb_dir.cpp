@@ -176,8 +176,7 @@ void SMBSlave::smbCopy(const QUrl& ksrc, const QUrl& kdst, int permissions, KIO:
 
 
     // Perform copy
-    while(1)
-    {
+    while (true) {
         n = smbc_read(srcfd, buf, MAX_XFER_BUF_SIZE );
         if(n > 0)
         {
@@ -360,7 +359,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     char buf[MAX_XFER_BUF_SIZE];
     bool isErr = false;
 
-    while (1) {
+    while (true) {
         const ssize_t bytesRead = smbc_read(srcfd, buf, MAX_XFER_BUF_SIZE);
         if (bytesRead <= 0) {
             if (bytesRead < 0) {
@@ -417,7 +416,7 @@ void SMBSlave::smbCopyGet(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     if (!mtimeStr.isEmpty()) {
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
-            struct utimbuf utbuf;
+            struct utimbuf utbuf{};
             utbuf.actime = QFileInfo(dstFile).lastRead().toSecsSinceEpoch(); // access time, unchanged
             utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
             utime(QFile::encodeName(dstFile).constData(), &utbuf);
@@ -541,7 +540,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
         // Perform the copy
         char buf[MAX_XFER_BUF_SIZE];
 
-        while (1) {
+        while (true) {
             const ssize_t bytesRead = srcFile.read(buf, MAX_XFER_BUF_SIZE);
             if (bytesRead <= 0) {
                 if (bytesRead < 0) {
@@ -601,7 +600,7 @@ void SMBSlave::smbCopyPut(const QUrl& ksrc, const QUrl& kdst, int permissions, K
     if (!mtimeStr.isEmpty() ) {
         QDateTime dt = QDateTime::fromString( mtimeStr, Qt::ISODate );
         if ( dt.isValid() ) {
-            struct utimbuf utbuf;
+            struct utimbuf utbuf{};
             utbuf.actime = st.st_atime; // access time, unchanged
             utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
             smbc_utime( dstOrigUrl.toSmbcUrl(), &utbuf );

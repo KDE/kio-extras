@@ -91,8 +91,7 @@ void SMBSlave::get( const QUrl& kurl )
     {
         bool isFirstPacket = true;
         // lasttime = starttime = time(NULL); // This seems to be unused..
-        while(1)
-        {
+        while (true) {
             bytesread = smbc_read(filefd, buf, MAX_XFER_BUF_SIZE);
             if(bytesread == 0)
             {
@@ -240,7 +239,7 @@ void SMBSlave::open( const QUrl& kurl, QIODevice::OpenMode mode)
     }
 
     position( 0 );
-    emit opened();
+    opened();
 }
 
 
@@ -418,8 +417,7 @@ void SMBSlave::put( const QUrl& kurl,
     }
 
     // Loop until we got 0 (end of data)
-    while(1)
-    {
+    while (true) {
         qCDebug(KIO_SMB_LOG) << "request data ";
         dataReq(); // Request for data
         qCDebug(KIO_SMB_LOG) << "write " << m_current_url.toSmbcUrl();
@@ -464,7 +462,7 @@ void SMBSlave::put( const QUrl& kurl,
         QDateTime dt = QDateTime::fromString( mtimeStr, Qt::ISODate );
         if ( dt.isValid() ) {
             if (cache_stat( m_current_url, &st ) == 0) {
-                struct utimbuf utbuf;
+                struct utimbuf utbuf{};
                 utbuf.actime = st.st_atime; // access time, unchanged
                 utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
                 smbc_utime( m_current_url.toSmbcUrl(), &utbuf );

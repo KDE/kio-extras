@@ -40,16 +40,8 @@
 // SMBUrl Function Implementation
 //===========================================================================
 
-//-----------------------------------------------------------------------
-SMBUrl::SMBUrl()
-{
-    m_type = SMBURLTYPE_UNKNOWN;
-}
-
-//-----------------------------------------------------------------------
-SMBUrl::SMBUrl(const QUrl& kurl)
+SMBUrl::SMBUrl(const QUrl &kurl)
     : QUrl(kurl)
-  //-----------------------------------------------------------------------
 {
     // We treat cifs as an alias but need to translate it to smb.
     // https://bugs.kde.org/show_bug.cgi?id=327295
@@ -62,14 +54,10 @@ SMBUrl::SMBUrl(const QUrl& kurl)
     updateCache();
 }
 
-SMBUrl::SMBUrl(const SMBUrl& other)
-    : QUrl(other),
-      m_surl(other.m_surl),
-      m_type(other.m_type)
-{
-}
-
-SMBUrl& SMBUrl::operator=(const SMBUrl&) = default;
+SMBUrl::SMBUrl() = default;
+SMBUrl::SMBUrl(const SMBUrl &other) = default;
+SMBUrl::~SMBUrl() = default;
+SMBUrl &SMBUrl::operator=(const SMBUrl &) = default;
 
 //-----------------------------------------------------------------------
 void SMBUrl::addPath(const QString &filedir)

@@ -82,9 +82,7 @@ SMBSlave::SMBSlave(const QByteArray& pool, const QByteArray& app)
 
 
 //===========================================================================
-SMBSlave::~SMBSlave()
-{
-}
+SMBSlave::~SMBSlave() = default;
 
 void SMBSlave::virtual_hook(int id, void *data) {
     switch(id) {

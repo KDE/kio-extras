@@ -63,6 +63,7 @@ public:
     SMBUrl();
     SMBUrl(const SMBUrl&);
     SMBUrl(const QUrl & kurl);
+    ~SMBUrl();
 
     SMBUrl& operator=(const SMBUrl&);
 
@@ -121,7 +122,7 @@ private:
      * Type of URL
      * @see _SMBUrlType
      */
-    mutable SMBUrlType m_type;
+    mutable SMBUrlType m_type = SMBURLTYPE_UNKNOWN;
 };
 
 
