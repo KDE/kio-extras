@@ -31,14 +31,8 @@
 #include "kio_smb_internal.h"
 #include "kio_smb.h"
 
-
-#include <kconfig.h>
 #include <QDir> // for QDir::cleanPath
-
-
-//===========================================================================
-// SMBUrl Function Implementation
-//===========================================================================
+#include <kconfig.h>
 
 SMBUrl::SMBUrl(const QUrl &kurl)
     : QUrl(kurl)
@@ -59,10 +53,9 @@ SMBUrl::SMBUrl(const SMBUrl &other) = default;
 SMBUrl::~SMBUrl() = default;
 SMBUrl &SMBUrl::operator=(const SMBUrl &) = default;
 
-//-----------------------------------------------------------------------
 void SMBUrl::addPath(const QString &filedir)
 {
-    if(path().length() > 0 && path().at(path().length() - 1) != QLatin1Char('/')) {
+    if (path().length() > 0 && path().at(path().length() - 1) != QLatin1Char('/')) {
         QUrl::setPath(path() + QLatin1Char('/') + filedir);
     } else {
         QUrl::setPath(path() + filedir);
@@ -70,7 +63,6 @@ void SMBUrl::addPath(const QString &filedir)
     updateCache();
 }
 
-//-----------------------------------------------------------------------
 bool SMBUrl::cd(const QString &filedir)
 {
     if (filedir == "..") {
@@ -82,45 +74,34 @@ bool SMBUrl::cd(const QString &filedir)
     return true;
 }
 
-//-----------------------------------------------------------------------
 void SMBUrl::updateCache()
-  //-----------------------------------------------------------------------
 {
     QUrl::setPath(QDir::cleanPath(path()));
 
     // SMB URLs are UTF-8 encoded
     qCDebug(KIO_SMB_LOG) << "updateCache " << QUrl::path();
 
-    if ( QUrl::url() == "smb:/" )
-      m_surl = "smb://";
+    if (QUrl::url() == "smb:/")
+        m_surl = "smb://";
     else
-      m_surl = toString(QUrl::PrettyDecoded).toUtf8();
-    
+        m_surl = toString(QUrl::PrettyDecoded).toUtf8();
+
     m_type = SMBURLTYPE_UNKNOWN;
     // update m_type
     (void)getType();
 }
 
-//-----------------------------------------------------------------------
 SMBUrlType SMBUrl::getType() const
-  // Returns the type of this SMBUrl:
-  //   SMBURLTYPE_UNKNOWN  - Type could not be determined. Bad SMB Url.
-  //   SMBURLTYPE_ENTIRE_NETWORK - "smb:/" is entire network
-  //   SMBURLTYPE_WORKGROUP_OR_SERVER - "smb:/mygroup" or "smb:/myserver"
-  //   SMBURLTYPE_SHARE_OR_PATH - "smb:/mygroupe/mymachine/myshare/mydir"
-  //-----------------------------------------------------------------------
 {
-    if(m_type != SMBURLTYPE_UNKNOWN)
+    if (m_type != SMBURLTYPE_UNKNOWN)
         return m_type;
 
-    if (scheme() != "smb")
-    {
+    if (scheme() != "smb") {
         m_type = SMBURLTYPE_UNKNOWN;
         return m_type;
     }
 
-    if (path().isEmpty() || path(QUrl::FullyDecoded) == "/")
-    {
+    if (path().isEmpty() || path(QUrl::FullyDecoded) == "/") {
         if (host().isEmpty())
             m_type = SMBURLTYPE_ENTIRE_NETWORK;
         else
@@ -137,7 +118,7 @@ SMBUrlType SMBUrl::getType() const
 SMBUrl SMBUrl::partUrl() const
 {
     if (m_type == SMBURLTYPE_SHARE_OR_PATH && !fileName().isEmpty()) {
-        SMBUrl url (*this);
+        SMBUrl url(*this);
         url.setPath(path() + QLatin1String(".part"));
         return url;
     }

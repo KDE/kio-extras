@@ -21,15 +21,16 @@
 #ifndef WSDISCOVERER_H
 #define WSDISCOVERER_H
 
+#include "discovery.h"
 #include <QObject>
 #include <QTimer>
-#include "discovery.h"
 
 class WSDiscoveryClient;
 class WSDiscoveryTargetService;
 class PBSDResolver;
 
-namespace KIO {
+namespace KIO
+{
 class UDSEntry;
 }
 

@@ -29,9 +29,9 @@
 #include <WSDiscoveryClient>
 #include <WSDiscoveryTargetService>
 
+#include <KDSoapClient/KDSoapClientInterface>
 #include <KDSoapClient/KDSoapMessage>
 #include <KDSoapClient/KDSoapMessageAddressingProperties>
-#include <KDSoapClient/KDSoapClientInterface>
 #include <KDSoapClient/KDSoapNamespaceManager>
 
 #include <KIO/UDSEntry>
@@ -207,7 +207,7 @@ void WSDiscoverer::start()
     // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-pbsd
     KDQName type("wsdp:Device");
     type.setNameSpace("http://schemas.xmlsoap.org/ws/2006/02/devprof");
-    m_client->sendProbe({ type }, {});
+    m_client->sendProbe({type}, {});
 }
 
 void WSDiscoverer::stop()

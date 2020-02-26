@@ -32,25 +32,22 @@
 #include "kio_smb.h"
 #include "kio_smb_internal.h"
 
+#include <cstdlib>
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <klocalizedstring.h>
-#include <cstdlib>
 
-// call for libsmbclient
-//==========================================================================
 void auth_smbc_get_data(SMBCCTX * context,
                         const char *server,const char *share,
                         char *workgroup, int wgmaxlen,
                         char *username, int unmaxlen,
                         char *password, int pwmaxlen)
-//==========================================================================
 {
     if (context != nullptr) {
 #ifdef DEPRECATED_SMBC_INTERFACE
-        auto *theSlave = static_cast<SMBSlave*>(smbc_getOptionUserData(context));
+        auto *theSlave = static_cast<SMBSlave *>(smbc_getOptionUserData(context));
 #else
-        auto *theSlave = static_cast<SMBSlave*>(smbc_option_get(context, "user_data"));
+        auto *theSlave = static_cast<SMBSlave *>(smbc_option_get(context, "user_data"));
 #endif
         theSlave->auth_smbc_get_data(server, share,
                                      workgroup,wgmaxlen,
@@ -60,17 +57,14 @@ void auth_smbc_get_data(SMBCCTX * context,
 
 }
 
-//--------------------------------------------------------------------------
 void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
                                   char *workgroup, int wgmaxlen,
                                   char *username, int unmaxlen,
                                   char *password, int pwmaxlen)
-//--------------------------------------------------------------------------
 {
-    //check this to see if we "really" need to authenticate...
+    // check this to see if we "really" need to authenticate...
     SMBUrlType t = m_current_url.getType();
-    if( t == SMBURLTYPE_ENTIRE_NETWORK )
-    {
+    if (t == SMBURLTYPE_ENTIRE_NETWORK) {
         qCDebug(KIO_SMB_LOG) << "we don't really need to authenticate for this top level url, returning";
         return;
     }
@@ -98,16 +92,12 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
 
     qCDebug(KIO_SMB_LOG) << "libsmb-auth-callback URL:" << info.url;
 
-    if ( !checkCachedAuthentication( info ) )
-    {
-        if ( m_default_user.isEmpty() )
-        {
+    if (!checkCachedAuthentication(info)) {
+        if (m_default_user.isEmpty()) {
             // ok, we do not know the password. Let's try anonymous before we try for real
             info.username = "anonymous";
             info.password.clear();
-        }
-        else
-        {
+        } else {
             // user defined a default username/password in kcontrol; try this
             info.username = m_default_user;
             info.password = m_default_password;
@@ -154,17 +144,15 @@ int SMBSlave::checkPassword(SMBUrl &url)
     info.setExtraField("anonymous", true); // arbitrary default for dialog
     info.setExtraField("domain", m_default_workgroup);
 
-    if ( share.isEmpty() )
-        info.prompt = i18n(
-                    "<qt>Please enter authentication information for <b>%1</b></qt>" ,
-                    url.host() );
+    if (share.isEmpty())
+        info.prompt = i18n("<qt>Please enter authentication information for <b>%1</b></qt>", url.host());
     else
         info.prompt = i18n(
-                    "Please enter authentication information for:\n"
-                    "Server = %1\n"
-                    "Share = %2" ,
-                    url.host() ,
-                    share );
+            "Please enter authentication information for:\n"
+            "Server = %1\n"
+            "Share = %2",
+            url.host(),
+            share);
 
     info.username = url.userName();
     qCDebug(KIO_SMB_LOG) << "call openPasswordDialog for " << info.url;
@@ -186,10 +174,6 @@ int SMBSlave::checkPassword(SMBUrl &url)
     return passwordDialogErrorCode;
 }
 
-//--------------------------------------------------------------------------
-// Initializes the smbclient library
-//
-// Returns: 0 on success -1 with errno set on error
 bool SMBSlave::auth_initialize_smbc()
 {
     if (m_initialized_smbc) {
@@ -219,7 +203,7 @@ bool SMBSlave::auth_initialize_smbc()
 #else
     smb_context->debug = debug_level;
     smb_context->callbacks.auth_fn = NULL;
-    smbc_option_set(smb_context, "auth_function", (void*)::auth_smbc_get_data);
+    smbc_option_set(smb_context, "auth_function", (void *)::auth_smbc_get_data);
     smbc_option_set(smb_context, "user_data", this);
 
 #if defined(SMB_CTX_FLAG_USE_KERBEROS) && defined(SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS)

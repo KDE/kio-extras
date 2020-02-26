@@ -78,8 +78,7 @@ DNSSDDiscoverer::DNSSDDiscoverer()
             }
         }
 
-        connect(service.data(), &KDNSSD::RemoteService::resolved,
-                this, [=] {
+        connect(service.data(), &KDNSSD::RemoteService::resolved, this, [=] {
             ++m_resolvedCount;
             emit newDiscovery(Discovery::Ptr(new DNSSDDiscovery(service)));
             maybeFinish();

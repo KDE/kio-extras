@@ -21,8 +21,8 @@
 #ifndef DISCOVERY_H
 #define DISCOVERY_H
 
-#include <QSharedPointer>
 #include <KIO/UDSEntry>
+#include <QSharedPointer>
 
 class Discovery
 {
@@ -50,4 +50,3 @@ public:
 };
 
 #endif // DISCOVERY_H
-

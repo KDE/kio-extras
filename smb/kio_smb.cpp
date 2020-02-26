@@ -51,8 +51,8 @@ bool needsEEXISTWorkaround()
      *
      * Upstream bug report: https://bugzilla.samba.org/show_bug.cgi?id=13050
      */
-    static const QVersionNumber firstBrokenVer{4, 7, 0};
-    static const QVersionNumber lastBrokenVer{4, 7, 6};
+    static const QVersionNumber firstBrokenVer {4, 7, 0};
+    static const QVersionNumber lastBrokenVer {4, 7, 6};
 
     const QVersionNumber currentVer = QVersionNumber::fromString(smbc_version());
     qCDebug(KIO_SMB_LOG) << "Using libsmbclient library version" << currentVer;
@@ -65,27 +65,25 @@ bool needsEEXISTWorkaround()
     return false;
 }
 
-//===========================================================================
-SMBSlave::SMBSlave(const QByteArray& pool, const QByteArray& app)
-    : SlaveBase( "smb", pool, app ),
-      m_openFd(-1),
-      m_enableEEXISTWorkaround(needsEEXISTWorkaround())
+SMBSlave::SMBSlave(const QByteArray &pool, const QByteArray &app)
+    : SlaveBase("smb", pool, app)
+    , m_openFd(-1)
+    , m_enableEEXISTWorkaround(needsEEXISTWorkaround())
 {
     m_initialized_smbc = false;
 
-    //read in the default workgroup info...
+    // read in the default workgroup info...
     reparseConfiguration();
 
-    //initialize the library...
+    // initialize the library...
     auth_initialize_smbc();
 }
 
-
-//===========================================================================
 SMBSlave::~SMBSlave() = default;
 
-void SMBSlave::virtual_hook(int id, void *data) {
-    switch(id) {
+void SMBSlave::virtual_hook(int id, void *data)
+{
+    switch (id) {
     case SlaveBase::GetFileSystemFreeSpace: {
         QUrl *url = static_cast<QUrl *>(data);
         fileSystemFreeSpace(*url);
@@ -100,17 +98,15 @@ void SMBSlave::virtual_hook(int id, void *data) {
     }
 }
 
-//===========================================================================
-int Q_DECL_EXPORT kdemain( int argc, char **argv )
+int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
-    if( argc != 4 )
-    {
+    if (argc != 4) {
         qCDebug(KIO_SMB_LOG) << "Usage: kio_smb protocol domain-socket1 domain-socket2";
         return -1;
     }
 
-    SMBSlave slave( argv[2], argv[3] );
+    SMBSlave slave(argv[2], argv[3]);
 
     slave.dispatchLoop();
 

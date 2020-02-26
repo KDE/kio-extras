@@ -31,9 +31,9 @@
 #ifndef KIO_SMB_INTERNAL_H_INCLUDED
 #define KIO_SMB_INTERNAL_H_INCLUDED
 
-#include <kio/authinfo.h>
 #include <QByteArray>
 #include <QUrl>
+#include <kio/authinfo.h>
 
 /**
  *   Types of a SMBURL :
@@ -61,11 +61,11 @@ class SMBUrl : public QUrl
 
 public:
     SMBUrl();
-    SMBUrl(const SMBUrl&);
-    SMBUrl(const QUrl & kurl);
+    SMBUrl(const SMBUrl &);
+    SMBUrl(const QUrl &kurl);
     ~SMBUrl();
 
-    SMBUrl& operator=(const SMBUrl&);
+    SMBUrl &operator=(const SMBUrl &);
 
     /**
      * Appends the specified file and dir to this SMBUrl
@@ -84,10 +84,10 @@ public:
      */
     SMBUrlType getType() const;
 
-    void setPass( const QString& _txt ) { QUrl::setPassword(_txt); updateCache(); }
-    void setUser( const QString& _txt ) { QUrl::setUserName(_txt); updateCache(); }
-    void setHost( const QString& _txt ) { QUrl::setHost(_txt); updateCache(); }
-    void setPath( const QString& _txt ) { QUrl::setPath(_txt); updateCache(); }
+    void setPass(const QString &_txt) { QUrl::setPassword(_txt); updateCache(); }
+    void setUser(const QString &_txt) { QUrl::setUserName(_txt); updateCache(); }
+    void setHost(const QString &_txt) { QUrl::setHost(_txt); updateCache(); }
+    void setPath(const QString &_txt) { QUrl::setPath(_txt); updateCache(); }
 
     /**
      * Returns the workgroup if it given in url
@@ -113,7 +113,7 @@ private:
     /**
      * Change from QString to QCString (MS Windows's character encoding)
      */
-    QByteArray fromUnicode( const QString &_str ) const;
+    QByteArray fromUnicode(const QString &_str) const;
 
     void updateCache();
     QByteArray m_surl;
