@@ -1,3 +1,4 @@
-.vscode
+.vscode/
+build/
 
 *.kdev4
