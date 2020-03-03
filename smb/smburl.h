@@ -33,7 +33,6 @@
 
 #include <QByteArray>
 #include <QUrl>
-#include <kio/authinfo.h>
 
 /**
  *   Types of a SMBURL :

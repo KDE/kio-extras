@@ -29,10 +29,11 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "smburl.h"
-#include "kio_smb.h"
+#include "smb-logsettings.h"
 
-#include <QDir> // for QDir::cleanPath
-#include <kconfig.h>
+#include <QDir>
+#include <KConfig>
+#include <KIO/Global>
 
 SMBUrl::SMBUrl(const QUrl &kurl)
     : QUrl(kurl)
