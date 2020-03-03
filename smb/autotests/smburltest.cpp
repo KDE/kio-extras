@@ -62,6 +62,33 @@ private Q_SLOTS:
         SMBUrl url(QUrl("cifs://host/share/file"));
         QCOMPARE(url.toSmbcUrl(), "smb://host/share/file");
     }
+
+    void testIPv6Literal()
+    {
+        // https://bugs.kde.org/show_bug.cgi?id=417682
+        // Samba cannot deal with RFC5952 IPv6 notation (e.g. ::1%lo)
+        // to work around we convert to windows ipv6 literals.
+
+        // The actual represented URL should not change!
+        // i.e. towards the KIO client we do not leak the IPv6
+        // literal when returning an URL.
+        QCOMPARE(SMBUrl(QUrl("smb://[::1]/share")).toString(),
+                 "smb://[::1]/share");
+
+        // The internal smbc representation should be literal though:
+        // :: prefix
+        QCOMPARE(SMBUrl(QUrl("smb://[::1]/share")).toSmbcUrl(),
+                 "smb://0--1.ipv6-literal.net/share");
+        // :: suffix
+        QCOMPARE(SMBUrl(QUrl("smb://[fe80::]/share")).toSmbcUrl(),
+                 "smb://fe80--0.ipv6-literal.net/share");
+        // %lo scope
+        QCOMPARE(SMBUrl(QUrl("smb://[::1%lo]/share")).toSmbcUrl(),
+                 "smb://0--1slo.ipv6-literal.net/share");
+        // random valid addr
+        QCOMPARE(SMBUrl(QUrl("smb://[fe80::9cd7:32c7:faeb:f23d]/share")).toSmbcUrl(),
+                 "smb://fe80--9cd7-32c7-faeb-f23d.ipv6-literal.net/share");
+    }
 };
 
 QTEST_GUILESS_MAIN(SMBUrlTest)

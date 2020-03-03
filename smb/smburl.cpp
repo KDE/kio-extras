@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------
 //
 // Copyright (c) 2000  Caldera Systems, Inc.
+// Copyright (c) 2020  Harald Sitter <sitter@kde.org>
 //
 // This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the
@@ -32,6 +33,7 @@
 #include "smb-logsettings.h"
 
 #include <QDir>
+#include <QHostAddress>
 #include <KConfig>
 #include <KIO/Global>
 
@@ -77,10 +79,43 @@ void SMBUrl::updateCache()
     // SMB URLs are UTF-8 encoded
     qCDebug(KIO_SMB_LOG) << "updateCache " << QUrl::path();
 
-    if (QUrl::url() == "smb:/")
+    QUrl sambaUrl(*this);
+
+    const QHostAddress address(sambaUrl.host());
+    switch (address.protocol()) {
+    case QAbstractSocket::IPv6Protocol: {
+        // Convert to Windows IPv6 literal to bypass limitations in samba.
+        // https://bugzilla.samba.org/show_bug.cgi?id=14297
+        // https://docs.microsoft.com/en-us/windows/win32/api/winnetwk/nf-winnetwk-wnetaddconnection2a
+        // https://devblogs.microsoft.com/oldnewthing/20100915-00/?p=12863
+        // https://www.samba.org/~idra/code/nss-ipv6literal/README.html
+        // https://ipv6-literal.com
+        QString literal = address.toString();
+        literal.replace(':', '-'); // address
+        literal.replace('%', 's'); // scope
+        if (literal.front() == '-') {
+            // Special prefix for [::f] so it doesn't start with a dash.
+            literal.prepend('0');
+        }
+        if (literal.back() == '-') {
+            // Special suffix, also cannot end with a dash.
+            literal.append('0');
+        }
+        literal += ".ipv6-literal.net"; // reserved host host
+        qCDebug(KIO_SMB_LOG) << "converting IPv6 to literal " << host() << literal;
+        sambaUrl.setHost(literal);
+        break;
+    }
+    case QAbstractSocket::IPv4Protocol:
+    case QAbstractSocket::AnyIPProtocol:
+    case QAbstractSocket::UnknownNetworkLayerProtocol:
+        break;
+    }
+
+    if (sambaUrl.url() == "smb:/")
         m_surl = "smb://";
     else
-        m_surl = toString(QUrl::PrettyDecoded).toUtf8();
+        m_surl = sambaUrl.toString(QUrl::PrettyDecoded).toUtf8();
 
     m_type = SMBURLTYPE_UNKNOWN;
     // update m_type
