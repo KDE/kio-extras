@@ -40,8 +40,8 @@
 #include <KLocalizedString>
 
 #include <QEventLoop>
-
 #include <QTimer>
+#include <QUrlQuery>
 
 #include <grp.h>
 #include <pwd.h>
@@ -519,6 +519,16 @@ void SMBSlave::listDir(const QUrl &kurl)
                 // QString workgroup = m_current_url.host().toUpper();
                 QUrl u("smb://");
                 u.setHost(dirpName);
+                if (!u.isValid()) {
+                    // In the event that the workgroup contains bad characters, put it in a query instead.
+                    // This is transparently handled by SMBUrl when we get this as input again.
+                    // Also see documentation there.
+                    // https://bugs.kde.org/show_bug.cgi?id=204423
+                    u.setHost(QString());
+                    QUrlQuery q;
+                    q.addQueryItem("kio-workgroup", dirpName);
+                    u.setQuery(q);
+                }
                 udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
 
                 // Call base class to list entry

@@ -89,6 +89,41 @@ private Q_SLOTS:
         QCOMPARE(SMBUrl(QUrl("smb://[fe80::9cd7:32c7:faeb:f23d]/share")).toSmbcUrl(),
                  "smb://fe80--9cd7-32c7-faeb-f23d.ipv6-literal.net/share");
     }
+
+    void testWorkgroupWithSpaces()
+    {
+        // Workgroups can have spaces but QUrls cannot, so we have a hack
+        // that puts the workgroup info into a query.
+        // Only applicable to SMB1 pretty much, we do not do workgroup browsing
+        // for 2+.
+        // https://bugs.kde.org/show_bug.cgi?id=204423
+
+        // wg
+        QCOMPARE(SMBUrl(QUrl("smb://?kio-workgroup=hax max")).toSmbcUrl(),
+                 "smb://hax max/");
+        // wg and query
+        QCOMPARE(SMBUrl(QUrl("smb://?kio-workgroup=hax max&q=a")).toSmbcUrl(),
+                 "smb://hax max/?q=a");
+        // host and wg and query
+        QCOMPARE(SMBUrl(QUrl("smb://host/?kio-workgroup=hax max&q=a")).toSmbcUrl(),
+                 "smb://hax max/host?q=a");
+        // host and wg and query
+        QCOMPARE(SMBUrl(QUrl("smb://host/share?kio-workgroup=hax max")).toSmbcUrl(),
+                 "smb://hax max/host/share");
+        // Non-empty path. libsmbc hates unclean paths
+        QCOMPARE(SMBUrl(QUrl("smb:///////?kio-workgroup=hax max")).toSmbcUrl(),
+                 "smb://hax max/");
+        // % character - run through .url() to simulate behavior of our listDir()
+        QCOMPARE(SMBUrl(QUrl(QUrl("smb://?kio-workgroup=HAX%25MAX").url())).toSmbcUrl(),
+                 "smb://HAX%25MAX/");
+        // !ascii - run through .url() to simulate behavior of our listDir()
+        QCOMPARE(SMBUrl(QUrl(QUrl("smb:///?kio-workgroup=DOMÄNE A").url())).toSmbcUrl(),
+                 "smb://DOMÄNE A/"); // works as-is with smbc.
+
+        // Also make sure type detection knows about this
+        QCOMPARE(SMBUrl(QUrl("smb:/?kio-workgroup=hax max")).getType(),
+                 SMBURLTYPE_WORKGROUP_OR_SERVER);
+    }
 };
 
 QTEST_GUILESS_MAIN(SMBUrlTest)
