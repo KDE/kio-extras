@@ -26,17 +26,17 @@ check_include_file(utime.h HAVE_UTIME_H)
 configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)
 
 set(kio_smb_PART_SRCS 
-   kio_smb.cpp 
-   kio_smb_auth.cpp 
-   kio_smb_browse.cpp 
-   kio_smb_config.cpp 
-   kio_smb_dir.cpp 
-   kio_smb_file.cpp 
-   smburl.cpp
-   kio_smb_mount.cpp
-   wsdiscoverer.cpp
-   dnssddiscoverer.cpp
-   discovery.cpp
+    kio_smb.cpp
+    kio_smb_auth.cpp
+    kio_smb_browse.cpp
+    kio_smb_config.cpp
+    kio_smb_dir.cpp
+    kio_smb_file.cpp
+    smburl.cpp
+    kio_smb_mount.cpp
+    wsdiscoverer.cpp
+    dnssddiscoverer.cpp
+    discovery.cpp
 )
 
 ecm_qt_declare_logging_category(kio_smb_PART_SRCS
@@ -61,9 +61,5 @@ set_target_properties(kio_smb PROPERTIES OUTPUT_NAME "smb")
 set_target_properties(kio_smb PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio")
 
 install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
-
-########### install files ###############
-
-install( FILES smb-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote )
-install( FILES smb-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/remoteview )
-
+install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote)
+install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
