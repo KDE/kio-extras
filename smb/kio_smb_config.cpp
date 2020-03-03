@@ -30,7 +30,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "kio_smb.h"
-#include "kio_smb_internal.h"
+#include "smburl.h"
 #include <kconfig.h>
 #include <kconfiggroup.h>
 

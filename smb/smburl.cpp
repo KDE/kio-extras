@@ -2,7 +2,7 @@
 //
 // Project:     SMB kioslave for KDE2
 //
-// File:        kio_smb_internal.cpp
+// File:        smburl.cpp
 //
 // Abstract:    Utility class implementation used by SMBSlave
 //
@@ -28,7 +28,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-#include "kio_smb_internal.h"
+#include "smburl.h"
 #include "kio_smb.h"
 
 #include <QDir> // for QDir::cleanPath

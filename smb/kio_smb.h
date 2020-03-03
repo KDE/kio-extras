@@ -77,7 +77,7 @@ extern "C" {
 //---------------------------
 // kio_smb internal includes
 //---------------------------
-#include "kio_smb_internal.h"
+#include "smburl.h"
 
 #define MAX_XFER_BUF_SIZE 65534
 

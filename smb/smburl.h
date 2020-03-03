@@ -2,7 +2,7 @@
 //
 // Project:     SMB kioslave for KDE2
 //
-// File:        kio_smb_internal.h
+// File:        smburl.h
 //
 // Abstract:    Utility classes used by SMBSlave
 //

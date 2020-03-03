@@ -32,7 +32,7 @@ set(kio_smb_PART_SRCS
    kio_smb_config.cpp 
    kio_smb_dir.cpp 
    kio_smb_file.cpp 
-   kio_smb_internal.cpp 
+   smburl.cpp
    kio_smb_mount.cpp
    wsdiscoverer.cpp
    dnssddiscoverer.cpp

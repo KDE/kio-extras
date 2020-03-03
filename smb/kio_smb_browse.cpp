@@ -32,7 +32,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 #include "kio_smb.h"
-#include "kio_smb_internal.h"
+#include "smburl.h"
 
 #include <DNSSD/RemoteService>
 #include <DNSSD/ServiceBrowser>
