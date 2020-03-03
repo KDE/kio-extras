@@ -98,19 +98,4 @@ void SMBSlave::virtual_hook(int id, void *data)
     }
 }
 
-int Q_DECL_EXPORT kdemain(int argc, char **argv)
-{
-    QCoreApplication app(argc, argv);
-    if (argc != 4) {
-        qCDebug(KIO_SMB_LOG) << "Usage: kio_smb protocol domain-socket1 domain-socket2";
-        return -1;
-    }
-
-    SMBSlave slave(argv[2], argv[3]);
-
-    slave.dispatchLoop();
-
-    return 0;
-}
-
 #include "kio_smb.moc"

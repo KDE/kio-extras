@@ -46,15 +46,25 @@ ecm_qt_declare_logging_category(kio_smb_PART_SRCS
 
 include_directories(${SAMBA_INCLUDE_DIR})
 
-add_library(kio_smb MODULE ${kio_smb_PART_SRCS})
-
-target_link_libraries(kio_smb
+# Intermediate static lib target for reuse in testing.
+add_library(kio_smb_static STATIC ${kio_smb_PART_SRCS})
+target_include_directories(kio_smb_static
+    PUBLIC
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..;${CMAKE_CURRENT_BINARY_DIR}/..>"
+)
+target_link_libraries(kio_smb_static
     KF5::KIOCore
     KF5::I18n
     ${SAMBA_LIBRARIES}
     Qt5::Network
     KF5::DNSSD
     KDSoap::WSDiscoveryClient
+)
+
+# Final plugin target.
+add_library(kio_smb MODULE main.cpp)
+target_link_libraries(kio_smb
+    kio_smb_static
 )
 
 set_target_properties(kio_smb PROPERTIES OUTPUT_NAME "smb")
