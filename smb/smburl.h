@@ -46,8 +46,6 @@ enum SMBUrlType {
     SMBURLTYPE_WORKGROUP_OR_SERVER = 2, SMBURLTYPE_SHARE_OR_PATH = 3
 };
 
-
-//===========================================================================
 /**
  * Class to handle URL's
  * it can convert QUrl to smbUrl
@@ -56,8 +54,6 @@ enum SMBUrlType {
  */
 class SMBUrl : public QUrl
 {
-
-
 public:
     SMBUrl();
     SMBUrl(const SMBUrl &);
@@ -88,16 +84,6 @@ public:
     void setHost(const QString &_txt) { QUrl::setHost(_txt); updateCache(); }
     void setPath(const QString &_txt) { QUrl::setPath(_txt); updateCache(); }
 
-    /**
-     * Returns the workgroup if it given in url
-     */
-//    QString getWorkgroup() const;
-
-    /**
-     * Returns path after workgroup
-     */
-//    QString getServerShareDir() const;
-
      /**
      * Return a URL that is suitable for libsmbclient
      */
@@ -124,6 +110,4 @@ private:
     mutable SMBUrlType m_type = SMBURLTYPE_UNKNOWN;
 };
 
-
 #endif
-
