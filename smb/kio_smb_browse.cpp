@@ -119,7 +119,6 @@ int SMBSlave::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
         // dir is readonly as per the above microsoft support article.
         // Also see:
         // https://docs.microsoft.com/en-us/windows/win32/shell/how-to-customize-folders-with-desktop-ini
-        udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, -1);
 
         udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
         udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
