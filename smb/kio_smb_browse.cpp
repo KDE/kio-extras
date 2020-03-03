@@ -422,7 +422,7 @@ void SMBSlave::listDir(const QUrl &kurl)
                     // Call base class to list entry
                     listEntry(udsentry);
                 }
-                m_current_url.cd("..");
+                m_current_url.cdUp();
             } else if (dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_FILE_SHARE) {
                 // Set type
                 udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);

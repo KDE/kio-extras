@@ -73,3 +73,5 @@ set_target_properties(kio_smb PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINAR
 install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote)
 install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
+
+add_subdirectory(autotests)

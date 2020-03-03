@@ -68,7 +68,7 @@ public:
      */
     void addPath(const QString &filedir);
 
-    bool cd(const QString &dir);
+    void cdUp();
 
     /**
      *   Returns the type of this SMBUrl:

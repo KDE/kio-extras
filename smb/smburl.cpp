@@ -64,15 +64,10 @@ void SMBUrl::addPath(const QString &filedir)
     updateCache();
 }
 
-bool SMBUrl::cd(const QString &filedir)
+void SMBUrl::cdUp()
 {
-    if (filedir == "..") {
-        setUrl(KIO::upUrl(*this).url());
-    } else {
-        setUrl(filedir);
-    }
+    setUrl(KIO::upUrl(*this).url());
     updateCache();
-    return true;
 }
 
 void SMBUrl::updateCache()
