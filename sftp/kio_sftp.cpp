@@ -2601,7 +2601,7 @@ Result SFTPInternal::fileSystemFreeSpace(const QUrl& url)
         return Result::fail(ERR_UNSUPPORTED_ACTION, QString());
     }
 
-    const QByteArray path = url.path().toUtf8();
+    const QByteArray path = url.path().isEmpty() ? QByteArrayLiteral("/") : url.path().toUtf8();
 
     sftp_statvfs_t statvfs = sftp_statvfs(mSftp, path.constData());
     if (statvfs == nullptr) {
