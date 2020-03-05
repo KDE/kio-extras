@@ -488,7 +488,12 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
 
         entry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, sb->atime);
         entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, sb->mtime);
-        entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
+
+        if (sb->flags & SSH_FILEXFER_ATTR_CREATETIME) {
+            // Availability depends on outside factors.
+            // https://bugs.kde.org/show_bug.cgi?id=375305
+            entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
+        }
     }
 
     sftp_attributes_free(sb);
