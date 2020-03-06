@@ -120,8 +120,10 @@ public:
         KDSoapMessage response = client.call(QString(), message);
         if (response.isFault()) {
             qCDebug(KIO_SMB_LOG) << "Failed to obtain PBSD response"
-                             << response.arguments()
-                             << response.faultAsString();
+                                 << m_endpointUrl.host()
+                                 << m_destination
+                                 << response.arguments()
+                                 << response.faultAsString();
             // No return! We'd disqualify systems that do not implement pbsd.
         } else {
             // The response xml would be nesting Metdata<MetadataSection<Relationship<Host<Computer
