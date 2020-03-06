@@ -271,7 +271,7 @@ void WSDiscoverer::resolveReceived(const QSharedPointer<WSDiscoveryTargetService
         return;
     }
 
-    PBSDResolver *resolver = new PBSDResolver(addr, service->endpointReference());
+    PBSDResolver *resolver = new PBSDResolver(addr, service->endpointReference(), this);
     connect(resolver, &PBSDResolver::resolved, this, [this](Discovery::Ptr discovery) {
         ++m_resolvedCount;
         emit newDiscovery(discovery);
