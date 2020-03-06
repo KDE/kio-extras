@@ -165,8 +165,9 @@ public:
         }
 
         if (computer.isEmpty()) {
-            computer = i18nc("host entry when no pretty name is available. %1 likely is an IP address",
-                             "Unknown Device @ <resource>%1</resource>");
+            computer = xi18nc("host entry when no pretty name is available. %1 likely is an IP address",
+                              "Unknown Device @ <resource>%1</resource>",
+                              m_endpointUrl.host());
         }
 
         m_discovery.reset(new WSDiscovery(computer, m_endpointUrl.host()));
