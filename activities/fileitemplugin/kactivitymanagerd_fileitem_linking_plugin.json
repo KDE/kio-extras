@@ -25,6 +25,7 @@
         "Name[sv]": "Länkar filer till aktiviteter",
         "Name[uk]": "Пов'язування файлів із просторами дій",
         "Name[x-test]": "xxLink Files to Activitiesxx",
+        "Name[zh_CN]": "将文件关联到活动",
         "Name[zh_TW]": "連結檔案至活動",
         "ServiceTypes": [
             "KFileItemAction/Plugin"
