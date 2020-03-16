@@ -19,8 +19,15 @@ add_feature_info("SMB DNS-SD Discovery" HAVE_KDNSSD_WITH_SIGNAL_RACE_PROTECTION
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_smb\")
 
 include(CheckIncludeFile)
+include(CheckSymbolExists)
+include(CMakePushCheckState)
 set(CMAKE_AUTOMAKE ON)
 
+cmake_push_check_state()
+list(APPEND CMAKE_REQUIRED_INCLUDES ${SAMBA_INCLUDE_DIR})
+list(APPEND CMAKE_REQUIRED_LIBRARIES ${SAMBA_LIBRARIES})
+check_symbol_exists(smbc_readdirplus2 "libsmbclient.h" HAVE_READDIRPLUS2)
+cmake_pop_check_state()
 check_include_file(utime.h HAVE_UTIME_H)
 
 configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)

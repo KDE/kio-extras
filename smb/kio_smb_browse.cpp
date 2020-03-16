@@ -69,65 +69,71 @@ int SMBSlave::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
 {
     int cacheStatErr = cache_stat(url, &st);
     if (cacheStatErr == 0) {
-        if (!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode)) {
-            qCDebug(KIO_SMB_LOG) << "mode: " << st.st_mode;
-            warning(
-                i18n("%1:\n"
-                     "Unknown file type, neither directory or file.",
-                     url.toDisplayString()));
-            return EINVAL;
-        }
-
-        if (!S_ISDIR(st.st_mode)) {
-            // Awkwardly documented at
-            //    https://www.samba.org/samba/docs/using_samba/ch08.html
-            // libsmb_stat.c assigns special meaning to +x permissions
-            // (obviously only on files, all dirs are +x so this hacky representation
-            //  wouldn't work!):
-            // - S_IXUSR = DOS archive: This file has been touched since the last DOS backup was performed on it.
-            // - S_IXGRP = DOS system: This file has a specific purpose required by the operating system.
-            // - S_IXOTH = DOS hidden: This file has been marked to be invisible to the user, unless the operating system is explicitly set to show it.
-            // Only hiding has backing through KIO right now.
-            if (st.st_mode & S_IXOTH) { // DOS hidden
-                udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, true);
-            }
-        }
-
-        // UID and GID **must** not be mapped. The values returned by libsmbclient are
-        // simply the getuid/getgid of the process. They mean absolutely nothing.
-        // Also see libsmb_stat.c.
-        // Related: https://bugs.kde.org/show_bug.cgi?id=212801
-
-        // POSIX Access mode must not be mapped either!
-        // It's meaningless for smb shares and downright disadvantagous.
-        // The mode attributes outside the ones used and document above are
-        // useless. The only one actively set is readonlyness.
-        //
-        // BUT the READONLY attribute does nothing on NT systems:
-        // https://support.microsoft.com/en-us/help/326549/you-cannot-view-or-change-the-read-only-or-the-system-attributes-of-fo
-        // The Read-only and System attributes is only used by Windows Explorer to determine
-        // whether the folder is a special folder, such as a system folder that has its view
-        // customized by Windows (for example, My Documents, Favorites, Fonts, Downloaded Program Files),
-        // or a folder that you customized by using the Customize tab of the folder's Properties dialog box.
-        //
-        // As such respecting it on a KIO level is actually wrong as it doesn't indicate actual
-        // readonlyness since the 90s and causes us to show readonly UI states when in fact
-        // the directory is perfectly writable.
-        // https://bugs.kde.org/show_bug.cgi?id=414482
-        //
-        // Should we ever want to parse desktop.ini like we do .directory we'd only want to when a
-        // dir is readonly as per the above microsoft support article.
-        // Also see:
-        // https://docs.microsoft.com/en-us/windows/win32/shell/how-to-customize-folders-with-desktop-ini
-
-        udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
-        udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
-        udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
-        udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
-        // No, st_ctime is not UDS_CREATION_TIME...
+        return statToUDSEntry(url, st, udsentry);
     }
 
     return cacheStatErr;
+}
+
+int SMBSlave::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry)
+{
+    if (!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode)) {
+        qCDebug(KIO_SMB_LOG) << "mode: "<< st.st_mode;
+        warning(i18n("%1:\n"
+                     "Unknown file type, neither directory or file.",
+                     url.toDisplayString()));
+        return EINVAL;
+    }
+
+    if (!S_ISDIR(st.st_mode)) {
+        // Awkwardly documented at
+        //    https://www.samba.org/samba/docs/using_samba/ch08.html
+        // libsmb_stat.c assigns special meaning to +x permissions
+        // (obviously only on files, all dirs are +x so this hacky representation
+        //  wouldn't work!):
+        // - S_IXUSR = DOS archive: This file has been touched since the last DOS backup was performed on it.
+        // - S_IXGRP = DOS system: This file has a specific purpose required by the operating system.
+        // - S_IXOTH = DOS hidden: This file has been marked to be invisible to the user, unless the operating system is explicitly set to show it.
+        // Only hiding has backing through KIO right now.
+        if (st.st_mode & S_IXOTH) { // DOS hidden
+            udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, true);
+        }
+    }
+
+    // UID and GID **must** not be mapped. The values returned by libsmbclient are
+    // simply the getuid/getgid of the process. They mean absolutely nothing.
+    // Also see libsmb_stat.c.
+    // Related: https://bugs.kde.org/show_bug.cgi?id=212801
+
+    // POSIX Access mode must not be mapped either!
+    // It's meaningless for smb shares and downright disadvantagous.
+    // The mode attributes outside the ones used and document above are
+    // useless. The only one actively set is readonlyness.
+    //
+    // BUT the READONLY attribute does nothing on NT systems:
+    // https://support.microsoft.com/en-us/help/326549/you-cannot-view-or-change-the-read-only-or-the-system-attributes-of-fo
+    // The Read-only and System attributes is only used by Windows Explorer to determine
+    // whether the folder is a special folder, such as a system folder that has its view
+    // customized by Windows (for example, My Documents, Favorites, Fonts, Downloaded Program Files),
+    // or a folder that you customized by using the Customize tab of the folder's Properties dialog box.
+    //
+    // As such respecting it on a KIO level is actually wrong as it doesn't indicate actual
+    // readonlyness since the 90s and causes us to show readonly UI states when in fact
+    // the directory is perfectly writable.
+    // https://bugs.kde.org/show_bug.cgi?id=414482
+    //
+    // Should we ever want to parse desktop.ini like we do .directory we'd only want to when a
+    // dir is readonly as per the above microsoft support article.
+    // Also see:
+    // https://docs.microsoft.com/en-us/windows/win32/shell/how-to-customize-folders-with-desktop-ini
+
+    udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
+    udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
+    udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
+    udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
+    // No, st_ctime is not UDS_CREATION_TIME...
+
+    return 0;
 }
 
 void SMBSlave::stat(const QUrl &kurl)
@@ -369,6 +375,27 @@ void SMBSlave::listDir(const QUrl &kurl)
 
     qCDebug(KIO_SMB_LOG) << "open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd;
     if (dirfd >= 0) {
+#ifdef HAVE_READDIRPLUS2
+           // readdirplus2 improves performance by giving us a stat without separate call (Samba>=4.12)
+           while (const struct libsmb_file_info *fileInfo = smbc_readdirplus2(dirfd, &st)) {
+               const QString name = QString::fromUtf8(fileInfo->name);
+               if (name == ".") {
+                   continue;
+               } else if (name == "..") {
+                   dir_is_root = false;
+                   continue;
+               }
+               udsentry.fastInsert( KIO::UDSEntry::UDS_NAME, name);
+
+               m_current_url.addPath(name);
+               statToUDSEntry(m_current_url, st, udsentry); // won't produce useful error
+               listEntry(udsentry);
+               m_current_url.cd("..");
+
+               udsentry.clear();
+           }
+#endif // HAVE_READDIRPLUS2
+
         uint direntCount = 0;
         do {
             qCDebug(KIO_SMB_LOG) << "smbc_readdir ";
@@ -411,6 +438,7 @@ void SMBSlave::listDir(const QUrl &kurl)
                 // fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                 // do nothing and hide the hidden shares
             } else if (dirp->smbc_type == SMBC_FILE || dirp->smbc_type == SMBC_DIR) {
+#if !defined(HAVE_READDIRPLUS2)
                 // Set stat information
                 m_current_url.addPath(dirpName);
                 const int statErr = browse_stat_path(m_current_url, udsentry);
@@ -424,6 +452,7 @@ void SMBSlave::listDir(const QUrl &kurl)
                 }
                 m_current_url.cdUp();
             } else if (dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_FILE_SHARE) {
+#endif // HAVE_READDIRPLUS2
                 // Set type
                 udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
 

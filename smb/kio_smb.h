@@ -266,7 +266,7 @@ private:
     void smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags);
     void smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags);
     bool workaroundEEXIST(const int errNum) const;
-
+    int statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry);
     void fileSystemFreeSpace(const QUrl &url);
 
     /**
