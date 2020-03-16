@@ -437,8 +437,8 @@ void SMBSlave::listDir(const QUrl &kurl)
                 dir_is_root = false;
                 // fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
                 // do nothing and hide the hidden shares
-            } else if (dirp->smbc_type == SMBC_FILE || dirp->smbc_type == SMBC_DIR) {
 #if !defined(HAVE_READDIRPLUS2)
+            } else if (dirp->smbc_type == SMBC_FILE || dirp->smbc_type == SMBC_DIR) {
                 // Set stat information
                 m_current_url.addPath(dirpName);
                 const int statErr = browse_stat_path(m_current_url, udsentry);
@@ -451,8 +451,8 @@ void SMBSlave::listDir(const QUrl &kurl)
                     listEntry(udsentry);
                 }
                 m_current_url.cdUp();
-            } else if (dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_FILE_SHARE) {
 #endif // HAVE_READDIRPLUS2
+            } else if (dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_FILE_SHARE) {
                 // Set type
                 udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
 
