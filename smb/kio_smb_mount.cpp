@@ -116,8 +116,6 @@ void SMBSlave::special(const QByteArray &data)
             error(KIO::ERR_CANNOT_MOUNT, i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4", share, host, user, mybuf + '\n' + mystderr));
             return;
         }
-
-        finished();
     } break;
     case 2:
     case 4: {
@@ -162,8 +160,6 @@ void SMBSlave::special(const QByteArray &data)
                 return;
             }
         }
-
-        finished();
     } break;
     default:
         break;
