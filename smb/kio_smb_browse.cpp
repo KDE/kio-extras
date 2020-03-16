@@ -385,7 +385,7 @@ void SMBSlave::listDir(const QUrl &kurl)
                    dir_is_root = false;
                    continue;
                }
-               udsentry.fastInsert( KIO::UDSEntry::UDS_NAME, name);
+               udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
 
                m_current_url.addPath(name);
                statToUDSEntry(m_current_url, st, udsentry); // won't produce useful error
