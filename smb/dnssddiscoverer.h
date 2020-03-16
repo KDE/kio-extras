@@ -32,6 +32,7 @@ class DNSSDDiscovery : public Discovery
 {
 public:
     DNSSDDiscovery(KDNSSD::RemoteService::Ptr service);
+    QString udsName() const override;
     KIO::UDSEntry toEntry() const override;
 
 private:

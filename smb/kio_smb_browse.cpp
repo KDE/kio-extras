@@ -509,6 +509,7 @@ void SMBSlave::listDir(const QUrl &kurl)
             QEventLoop e;
 
             UDSEntryList list;
+            QStringList discoveredNames;
 
             const auto flushEntries = [this, &list]() {
                 if (list.isEmpty()) {
@@ -538,7 +539,13 @@ void SMBSlave::listDir(const QUrl &kurl)
 
             const QList<Discoverer *> discoverers {&d, &w};
 
-            auto appendDiscovery = [&](const Discovery::Ptr &discovery) { list.append(discovery->toEntry()); };
+            auto appendDiscovery = [&](const Discovery::Ptr &discovery) {
+                if (discoveredNames.contains(discovery->udsName())) {
+                    return;
+                }
+                discoveredNames << discovery->udsName();
+                list.append(discovery->toEntry());
+            };
 
             auto maybeFinished = [&] { // finishes if all discoveries finished
                 bool allFinished = true;

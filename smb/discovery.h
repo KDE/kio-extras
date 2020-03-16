@@ -31,6 +31,7 @@ public:
 
     Discovery();
     virtual ~Discovery();
+    virtual QString udsName() const = 0;
     virtual KIO::UDSEntry toEntry() const = 0;
 };
 

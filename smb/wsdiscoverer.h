@@ -41,7 +41,7 @@ class WSDiscovery : public Discovery
 
 public:
     WSDiscovery(const QString &computer, const QString &remote);
-
+    QString udsName() const override;
     KIO::UDSEntry toEntry() const override;
 };
 
