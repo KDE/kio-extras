@@ -1,4 +1,5 @@
 /* Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +22,17 @@
 #include <QDateTime>
 #include <QUrl>
 
+class WSDiscoveryTargetServiceData;
+
 class WSDISCOVERYCLIENT_EXPORT WSDiscoveryTargetService
 {
 public:
+    explicit WSDiscoveryTargetService();
     explicit WSDiscoveryTargetService(const QString &endpointReference);
+    WSDiscoveryTargetService(const WSDiscoveryTargetService &other);
+    ~WSDiscoveryTargetService();
 
+    void setEndpointReference(const QString &endpointReference);
     QString endpointReference() const;
     QList<KDQName> typeList() const;
     void setTypeList(const QList<KDQName> &typeList);
@@ -37,15 +44,11 @@ public:
     void setLastSeen(const QDateTime &lastSeen);
     void updateLastSeen();
 
-    bool isMatchingType(const KDQName &matchingType);
-    bool isMatchingScope(const QUrl &matchingScope);
+    bool isMatchingType(const KDQName &matchingType) const;
+    bool isMatchingScope(const QUrl &matchingScope) const;
 
 private:
-    QString m_endpointReference;
-    QList<KDQName> m_typeList;
-    QList<QUrl> m_scopeList;
-    QList<QUrl> m_xAddrList;
-    QDateTime m_lastSeen;
+    QSharedDataPointer<WSDiscoveryTargetServiceData> d;
 };
 
 #endif // WSDISCOVERYTARGETSERVICE_H

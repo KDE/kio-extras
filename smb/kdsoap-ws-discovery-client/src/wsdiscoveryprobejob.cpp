@@ -1,4 +1,5 @@
 /* Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,14 +88,14 @@ void WSDiscoveryProbeJob::timeout()
     m_client->sendProbe(m_typeList, m_scopeList);
 }
 
-void WSDiscoveryProbeJob::probeMatchReceived(const QSharedPointer<WSDiscoveryTargetService> &probeMatchService)
+void WSDiscoveryProbeJob::probeMatchReceived(const WSDiscoveryTargetService &probeMatchService)
 {
     bool isMatch = true;
-    for(const KDQName& type : m_typeList) {
-        isMatch = probeMatchService->isMatchingType(type) && isMatch;
+    for(const KDQName& type : qAsConst(m_typeList)) {
+        isMatch = probeMatchService.isMatchingType(type) && isMatch;
     }
-    for(const QUrl& scope : m_scopeList) {
-        isMatch = probeMatchService->isMatchingScope(scope) && isMatch;
+    for(const QUrl& scope : qAsConst(m_scopeList)) {
+        isMatch = probeMatchService.isMatchingScope(scope) && isMatch;
     }
     if(isMatch) {
         emit matchReceived(probeMatchService);

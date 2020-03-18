@@ -1,4 +1,5 @@
 /* Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,13 +21,19 @@
 #include <WSDiscoveryClient>
 #include <WSDiscoveryProbeJob>
 #include <WSDiscoveryTargetService>
+#include <WSDiscoveryServiceAggrigator>
 
 OnvifDiscover::OnvifDiscover(QObject *parent) : QObject(parent)
 {
     m_client = new WSDiscoveryClient(this);
 
     m_probeJob = new WSDiscoveryProbeJob(m_client);
-    connect(m_probeJob, &WSDiscoveryProbeJob::matchReceived, this, &OnvifDiscover::matchReceived);
+    
+    m_aggrigator = new WSDiscoveryServiceAggrigator(this);
+    
+    connect(m_probeJob, &WSDiscoveryProbeJob::matchReceived, m_aggrigator, &WSDiscoveryServiceAggrigator::updateService);
+    connect(m_aggrigator, &WSDiscoveryServiceAggrigator::serviceUpdated, this, &OnvifDiscover::matchReceived);
+    
     KDQName type("tdn:NetworkVideoTransmitter");
     type.setNameSpace("http://www.onvif.org/ver10/network/wsdl");
     m_probeJob->addType(type);
@@ -44,13 +51,16 @@ void OnvifDiscover::matchReceived(const QSharedPointer<WSDiscoveryTargetService>
 {
     qDebug() << "ProbeMatch received:";
     qDebug() << "  Endpoint reference:" << matchedService->endpointReference();
-    for(auto type : matchedService->typeList()) {
+    const auto& typeList = matchedService->typeList();
+    for(const auto& type : typeList) {
         qDebug() << "  Type:"  << type.localName() << "in namespace" << type.nameSpace();
     }
-    for(auto scope : matchedService->scopeList()) {
+    const auto& scopeList = matchedService->scopeList();
+    for(const auto& scope : scopeList) {
         qDebug() << "  Scope:"  << scope.toString();
     }
-    for(auto xAddr : matchedService->xAddrList()) {
+    const auto& xAddrList = matchedService->xAddrList();
+    for(const auto& xAddr : xAddrList) {
         qDebug() << "  XAddr:" << xAddr.toString();
     }
 }

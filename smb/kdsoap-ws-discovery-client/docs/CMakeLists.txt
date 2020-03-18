@@ -16,10 +16,22 @@
 
 cmake_minimum_required(VERSION 3.7)
 
-project(onvif-discover)
-
-add_executable(${PROJECT_NAME}
-    "main.cpp"
-    "onvifdiscover.cpp"
-)
-target_link_libraries(${PROJECT_NAME} KDSoapWSDiscoveryClient)
+find_package(Doxygen
+             OPTIONAL_COMPONENTS dot mscgen dia)
+             
+if(DOXYGEN_FOUND)             
+    doxygen_add_docs(docs
+        "README.md"
+        "src/wsdiscoveryclient.h"
+        "src/wsdiscoveryprobejob.h"
+        "src/wsdiscoverytargetservice.h"
+        "src/wsdiscoveryserviceaggrigator.h"
+        ALL
+        USE_STAMP_FILE
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/..
+        )
+    install(DIRECTORY
+            ${CMAKE_CURRENT_BINARY_DIR}/html/
+        DESTINATION ${KDE_INSTALL_DATADIR}/doc/KDSoapWSDiscoveryClient
+        COMPONENT Devel)
+endif()

@@ -1,4 +1,4 @@
-/* Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+/* Copyright (C) 2020  Casper Meijn <casper@meijn.net>
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,33 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifndef ONVIFDISCOVER_H
-#define ONVIFDISCOVER_H
 
+#ifndef WSDISCOVERYSERVICEAGGRIGATOR_P_H
+#define WSDISCOVERYSERVICEAGGRIGATOR_P_H
+
+#include <QSharedPointer>
 #include <QObject>
+#include "wsdiscoverytargetservice.h"
 
-class WSDiscoveryClient;
-class WSDiscoveryProbeJob;
-class WSDiscoveryTargetService;
-class WSDiscoveryServiceAggrigator;
-
-class OnvifDiscover : public QObject
+class WSDiscoveryServiceAggrigatorPrivate
 {
-    Q_OBJECT
 public:
-    explicit OnvifDiscover(QObject *parent = nullptr);
-    ~OnvifDiscover();
-
-public slots:
-    void start();
-
-private slots:
-    void matchReceived(const QSharedPointer<WSDiscoveryTargetService>& matchedService);
-
-private:
-    WSDiscoveryClient * m_client;
-    WSDiscoveryProbeJob * m_probeJob;
-    WSDiscoveryServiceAggrigator * m_aggrigator;
+    QHash<QString, QSharedPointer<WSDiscoveryTargetService>> targetServiceMap;
 };
 
-#endif // ONVIFDISCOVER_H
+#endif // WSDISCOVERYSERVICEAGGRIGATOR_P_H

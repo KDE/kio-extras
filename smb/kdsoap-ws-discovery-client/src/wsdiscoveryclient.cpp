@@ -1,4 +1,5 @@
 /* Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,8 +31,8 @@
 #include "wsdl_ws-discovery.h"
 
 static const int DISCOVERY_PORT = 3702;
-static const QHostAddress DISCOVERY_ADDRESS_IPV4 = QHostAddress(QStringLiteral("239.255.255.250"));
-static const QHostAddress DISCOVERY_ADDRESS_IPV6 = QHostAddress(QStringLiteral("FF02::C"));
+#define DISCOVERY_ADDRESS_IPV4 (QHostAddress(QStringLiteral("239.255.255.250")))
+#define DISCOVERY_ADDRESS_IPV6 (QHostAddress(QStringLiteral("FF02::C")))
 
 WSDiscoveryClient::WSDiscoveryClient(QObject *parent) :
     QObject(parent)
@@ -127,31 +128,24 @@ void WSDiscoveryClient::receivedMessage(const KDSoapMessage &replyMessage, const
 
         auto resolveMatch = resolveMatches.resolveMatch();
         const QString& endpointReference = resolveMatch.endpointReference().address();
-        QSharedPointer<WSDiscoveryTargetService> service = m_targetServiceMap.value(endpointReference);
-        if(service.isNull()) {
-            service = QSharedPointer<WSDiscoveryTargetService>::create(endpointReference);
-            m_targetServiceMap.insert(endpointReference, service);
-        }
-        service->setTypeList(resolveMatch.types().entries());
-        service->setScopeList(QUrl::fromStringList(resolveMatch.scopes().value().entries()));
-        service->setXAddrList(QUrl::fromStringList(resolveMatch.xAddrs().entries()));
-        service->updateLastSeen();
+        auto service = WSDiscoveryTargetService(endpointReference);
+        service.setTypeList(resolveMatch.types().entries());
+        service.setScopeList(QUrl::fromStringList(resolveMatch.scopes().value().entries()));
+        service.setXAddrList(QUrl::fromStringList(resolveMatch.xAddrs().entries()));
+        service.updateLastSeen();
         emit resolveMatchReceived(service);
     } else if(replyMessage.messageAddressingProperties().action() == QStringLiteral("http://schemas.xmlsoap.org/ws/2005/04/discovery/ProbeMatches")) {
         WSDiscovery200504::TNS__ProbeMatchesType probeMatches;
         probeMatches.deserialize(replyMessage);
 
-        for(const WSDiscovery200504::TNS__ProbeMatchType& probeMatch : probeMatches.probeMatch()) {
+        const QList<WSDiscovery200504::TNS__ProbeMatchType>& probeMatchList = probeMatches.probeMatch();
+        for(const WSDiscovery200504::TNS__ProbeMatchType& probeMatch : probeMatchList) {
             const QString& endpointReference = probeMatch.endpointReference().address();
-            QSharedPointer<WSDiscoveryTargetService> service = m_targetServiceMap.value(endpointReference);
-            if(service.isNull()) {
-                service = QSharedPointer<WSDiscoveryTargetService>::create(endpointReference);
-                m_targetServiceMap.insert(endpointReference, service);
-            }
-            service->setTypeList(probeMatch.types().entries());
-            service->setScopeList(QUrl::fromStringList(probeMatch.scopes().value().entries()));
-            service->setXAddrList(QUrl::fromStringList(probeMatch.xAddrs().entries()));
-            service->updateLastSeen();
+            auto service = WSDiscoveryTargetService(endpointReference);
+            service.setTypeList(probeMatch.types().entries());
+            service.setScopeList(QUrl::fromStringList(probeMatch.scopes().value().entries()));
+            service.setXAddrList(QUrl::fromStringList(probeMatch.xAddrs().entries()));
+            service.updateLastSeen();
             emit probeMatchReceived(service);
         }
     } else {
