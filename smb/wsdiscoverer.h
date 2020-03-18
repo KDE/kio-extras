@@ -59,8 +59,8 @@ signals:
     void finished() override;
 
 private slots:
-    void matchReceived(const QSharedPointer<WSDiscoveryTargetService> &matchedService);
-    void resolveReceived(const QSharedPointer<WSDiscoveryTargetService> &matchedService);
+    void matchReceived(const WSDiscoveryTargetService &matchedService);
+    void resolveReceived(const WSDiscoveryTargetService &matchedService);
 
 private:
     void stop() override;

@@ -226,34 +226,34 @@ bool WSDiscoverer::isFinished() const
     return m_startedTimer && !m_probeMatchTimer.isActive() && m_resolvers.count() == m_resolvedCount;
 }
 
-void WSDiscoverer::matchReceived(const QSharedPointer<WSDiscoveryTargetService> &matchedService)
+void WSDiscoverer::matchReceived(const WSDiscoveryTargetService &matchedService)
 {
     // (re)start match timer to finish-early if at all possible.
     m_probeMatchTimer.start();
     m_startedTimer = true;
 
-    if (matchedService->xAddrList().isEmpty()) {
+    if (matchedService.xAddrList().isEmpty()) {
         // Has no addresses -> needs resolving still
-        m_client->sendResolve(matchedService->endpointReference());
+        m_client->sendResolve(matchedService.endpointReference());
         return;
     }
 
     resolveReceived(matchedService);
 }
 
-void WSDiscoverer::resolveReceived(const QSharedPointer<WSDiscoveryTargetService> &service)
+void WSDiscoverer::resolveReceived(const WSDiscoveryTargetService &service)
 {
     // (re)start match timer to finish-early if at all possible.
     m_probeMatchTimer.start();
     m_startedTimer = true;
 
-    if (m_seenEndpoints.contains(service->endpointReference())) {
+    if (m_seenEndpoints.contains(service.endpointReference())) {
         return;
     }
-    m_seenEndpoints << service->endpointReference();
+    m_seenEndpoints << service.endpointReference();
 
     QUrl addr;
-    for (const auto &xAddr : service->xAddrList()) {
+    for (const auto &xAddr : service.xAddrList()) {
         // https://docs.microsoft.com/en-us/windows/win32/wsdapi/xaddr-validation-rules
         // "At least one IP address included in the XAddrs (or IP address resolved from
         // a hostname included in the XAddrs) must be on the same subnet as the adapter
@@ -268,11 +268,11 @@ void WSDiscoverer::resolveReceived(const QSharedPointer<WSDiscoveryTargetService
     if (addr.isEmpty()) {
         qCWarning(KIO_SMB_LOG) << "Failed to resolve any WS transport address."
                                << "This suggests that DNS resolution may be broken."
-                               << service->xAddrList();
+                               << service.xAddrList();
         return;
     }
 
-    PBSDResolver *resolver = new PBSDResolver(addr, service->endpointReference(), this);
+    PBSDResolver *resolver = new PBSDResolver(addr, service.endpointReference(), this);
     connect(resolver, &PBSDResolver::resolved, this, [this](Discovery::Ptr discovery) {
         ++m_resolvedCount;
         emit newDiscovery(discovery);
