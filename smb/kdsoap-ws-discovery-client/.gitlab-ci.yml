@@ -1,9 +1,14 @@
+# Copyright (C) 2019-2020 Casper Meijn <casper@meijn.net>
+#
+# SPDX-License-Identifier: CC0-1.0
+   
 fedora:
-    image: registry.gitlab.com/caspermeijn/docker-images/fedora-build-onvifviewer:latest
     stage: build
-    script: 
+    image: registry.gitlab.com/caspermeijn/docker-images/fedora-build-onvifviewer:latest
+    before_script:
         - cd ..
         - git clone https://github.com/KDAB/KDSoap.git
+        - cd KDSoap && git checkout kdsoap-1.9 && cd ..
         - mkdir build-KDSoap
         - cd build-KDSoap/
         - cmake ../KDSoap/ -DCMAKE_INSTALL_PREFIX=/usr/local
@@ -12,6 +17,57 @@ fedora:
         - cd ..
         - mkdir build-kdsoap-ws-discovery-client
         - cd build-kdsoap-ws-discovery-client
+    script: 
         - cmake $CI_PROJECT_DIR 
         - make 
         - make install
+        - ctest --verbose
+        
+fedora-clang:
+    stage: build
+    image: fedora:31
+    variables:
+        CC: clang
+        CXX: clang++
+    before_script:
+        - dnf install -y 'dnf-command(copr)'
+        - dnf copr -y enable caspermeijn/kdsoap
+        - dnf install -y git cmake ninja-build clang clang-tools-extra clazy extra-cmake-modules qt5-qtbase-devel kf5-kcoreaddons-devel kdsoap-devel
+        - cd ..
+        - mkdir build
+        - cd build
+    script: 
+        - cmake -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON $CI_PROJECT_DIR 
+        - ninja 
+        - cd $CI_PROJECT_DIR && clang-tidy -p ../build/compile_commands.json **/*.cpp
+        - cd $CI_PROJECT_DIR && clazy-standalone -p ../build/compile_commands.json -checks=level0,level1,level2 **/*.cpp
+        
+pages:
+    image: registry.gitlab.com/caspermeijn/docker-images/fedora-build-onvifviewer:latest
+    before_script:
+        - cd ..
+        - git clone https://github.com/KDAB/KDSoap.git
+        - cd KDSoap && git checkout kdsoap-1.9 && cd ..
+        - mkdir build-KDSoap
+        - cd build-KDSoap/
+        - cmake ../KDSoap/ -DCMAKE_INSTALL_PREFIX=/usr/local
+        - make
+        - make install
+        - cd ..
+        - mkdir build-kdsoap-ws-discovery-client
+        - cd build-kdsoap-ws-discovery-client
+    script:
+        - cmake $CI_PROJECT_DIR
+        - make docs
+        - mv docs/html/ $CI_PROJECT_DIR/public/
+    artifacts:
+        paths:
+        - public
+    only:
+    - master
+
+reuse:
+  stage: test
+  image: fsfe/reuse:latest
+  script:
+    - reuse lint || echo "Always report as successful. For now this is a informational test"

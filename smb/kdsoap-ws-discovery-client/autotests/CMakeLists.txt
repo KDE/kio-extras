@@ -1,4 +1,4 @@
-# Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+# Copyright (C) 2019-2020 Casper Meijn <casper@meijn.net>
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 # This program is free software: you can redistribute it and/or modify
@@ -16,10 +16,9 @@
 
 cmake_minimum_required(VERSION 3.7)
 
-project(onvif-discover)
+include(ECMAddTests)
 
-add_executable(${PROJECT_NAME}
-    "main.cpp"
-    "onvifdiscover.cpp"
+ecm_add_tests(
+    test_wsdiscoveryclient.cpp
+    LINK_LIBRARIES Qt5::Network Qt5::Test KDSoap::WSDiscoveryClient
 )
-target_link_libraries(${PROJECT_NAME} KDSoapWSDiscoveryClient)

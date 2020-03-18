@@ -1,4 +1,5 @@
 /* Copyright (C) 2019 Casper Meijn <casper@meijn.net>
+ * SPDX-License-Identifier: GPL-3.0-or-later
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,8 +26,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     qDebug() << "Starting ONVIF discovery for 5 seconds";
     QTimer::singleShot(5000, &app, &QCoreApplication::quit);
 
-    OnvifDiscover * onvifDiscover = new OnvifDiscover(&app);
+    auto onvifDiscover = new OnvifDiscover(&app);
     onvifDiscover->start();
 
-    return app.exec();
+    return QCoreApplication::exec();
 }
