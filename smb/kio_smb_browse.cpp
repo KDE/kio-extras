@@ -390,7 +390,7 @@ void SMBSlave::listDir(const QUrl &kurl)
                m_current_url.addPath(name);
                statToUDSEntry(m_current_url, st, udsentry); // won't produce useful error
                listEntry(udsentry);
-               m_current_url.cd("..");
+               m_current_url.cdUp();
 
                udsentry.clear();
            }
