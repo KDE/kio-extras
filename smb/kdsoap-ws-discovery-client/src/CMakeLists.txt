@@ -88,7 +88,7 @@ if(BUILD_QCH)
         ORG_DOMAIN net.meijn
         SOURCES # using only public headers, to cover only public API
             ${KDSoapWSDiscoveryClient_HEADERS}
-        MD_MAINPAGE "${CMAKE_SOURCE_DIR}/README.md"
+        MD_MAINPAGE "${CMAKE_CURRENT_SOURCE_DIR}/../README.md"
         LINK_QCHS
             Qt5Core_QCH
             KDSoap_QCH
