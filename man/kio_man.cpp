@@ -32,7 +32,7 @@
 #include <QTextStream>
 #include <QTextDocument>
 #include <QMap>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStandardPaths>
 #include <QTextCodec>
 #include <QProcess>
@@ -146,16 +146,17 @@ MANProtocol::~MANProtocol()
 
 void MANProtocol::parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const QString &mark )
 {
-    QRegExp re( mark );
+    const QRegularExpression re(mark);
     QString l;
     while ( !t.atEnd() )
     {
         l = t.readLine();
-        int pos = re.indexIn( l );
+        QRegularExpressionMatch match = re.match(l);
+        int pos = match.capturedStart(0);
         if (pos != -1)
         {
             QString names = l.left(pos);
-            QString descr = l.mid(pos + re.matchedLength());
+            QString descr = l.mid(match.capturedEnd(0));
             while ((pos = names.indexOf(",")) != -1)
             {
                 i[names.left(pos++)] = descr;
@@ -830,12 +831,17 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     // Mappings from $PATH to manpath are given by lines starting with
     // "MANPATH_MAP"
 
-    QRegExp manpath_regex( "^MANPATH\\s" );
-    QRegExp mandatory_regex( "^MANDATORY_MANPATH\\s" );
-    QRegExp manpath_map_regex( "^MANPATH_MAP\\s" );
-    QRegExp mandb_map_regex( "^MANDB_MAP\\s" );
+    // The entry is e.g. "MANDATORY_MANPATH    <manpath>"
+    const QRegularExpression manpath_regex("^(?:MANPATH|MANDATORY_MANPATH)\\s+(\\S+)");
+
+    // The entry is "MANPATH_MAP  <path>  <manpath>"
+    const QRegularExpression manpath_map_regex("^MANPATH_MAP\\s+(\\S+)\\s+(\\S+)");
+
+    // The entry is "MANDB_MAP  <manpath>  <catmanpath>"
+    const QRegularExpression mandb_map_regex("^MANDB_MAP\\s+(\\S+)\\s+(\\S+)");
+
     //QRegExp section_regex( "^SECTION\\s" );
-    QRegExp space_regex( "\\s+" ); // for parsing manpath map
+    const QRegularExpression space_regex("\\s+"); // for parsing manpath map
 
     QFile mc("/etc/man.conf");             // Caldera
     if (!mc.exists())
@@ -851,43 +857,18 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
         while (!is.atEnd())
         {
             const QString line = is.readLine();
-            if ( manpath_regex.indexIn(line) == 0 )
-            {
-                const QString path = line.mid(8).trimmed();
-                constr_path += path;
-            }
-            else if ( mandatory_regex.indexIn(line) == 0 )
-            {
-                const QString path = line.mid(18).trimmed();
-                constr_path += path;
-            }
-            else if ( manpath_map_regex.indexIn(line) == 0 )
-            {
-                        // The entry is "MANPATH_MAP  <path>  <manpath>"
-                const QStringList mapping =
-                        line.split( space_regex);
 
-                if ( mapping.count() == 3 )
-                {
-                    const QString dir = QDir::cleanPath( mapping[1] );
-                    const QString mandir = QDir::cleanPath( mapping[2] );
-
-                    manpath_map[ dir ] = mandir;
-                }
-            }
-            else if ( mandb_map_regex.indexIn(line) == 0 )
-            {
-                        // The entry is "MANDB_MAP  <manpath>  <catmanpath>"
-                const QStringList mapping =
-                        line.split( space_regex);
-
-                if ( mapping.count() == 3 )
-                {
-                    const QString mandir = QDir::cleanPath( mapping[1] );
-                    const QString catmandir = QDir::cleanPath( mapping[2] );
-
-                    mandb_map[ mandir ] = catmandir;
-                }
+            QRegularExpressionMatch rmatch;
+            if (line.contains(manpath_regex, &rmatch)) {
+                constr_path += rmatch.captured(1);
+            } else if (line.contains(manpath_map_regex, &rmatch)) {
+                const QString dir = QDir::cleanPath(rmatch.captured(1));
+                const QString mandir = QDir::cleanPath(rmatch.captured(2));
+                manpath_map[dir] = mandir;
+            } else if (line.contains(mandb_map_regex, &rmatch)) {
+                const QString mandir = QDir::cleanPath(rmatch.captured(1));
+                const QString catmandir = QDir::cleanPath(rmatch.captured(2));
+                mandb_map[mandir] = catmandir;
             }
     /* sections are not used
             else if ( section_regex.find(line, 0) == 0 )

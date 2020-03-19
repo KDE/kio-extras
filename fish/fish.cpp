@@ -30,7 +30,7 @@
 #include <config-fish.h>
 #include <QFile>
 #include <QDateTime>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QStandardPaths>
@@ -787,16 +787,16 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
     va_start(list, cmd);
     QString realCmd = info.command;
     QString realAlt = info.alt;
-    static QRegExp rx("[][\\\\\n $`#!()*?{}~&<>;'\"%^@|\t]");
+    static const QRegularExpression rx("[][\\\\\n $`#!()*?{}~&<>;'\"%^@|\t]");
     for (int i = 0; i < info.params; i++) {
         QString arg(va_arg(list, const char *));
         int pos = -2;
-        while ((pos = rx.indexIn(arg,pos+2)) >= 0) {
+        while ((pos = arg.indexOf(rx, pos + 2)) >= 0) {
             arg.replace(pos,0,QString("\\"));
         }
         //myDebug( << "arg " << i << ": " << arg);
         realCmd.append(" ").append(arg);
-        realAlt.replace(QRegExp('%'+QString::number(i+1)),arg);
+        realAlt.replace(QRegularExpression(QLatin1Char('%') + QString::number(i + 1)), arg);
     }
     QString s("#");
     s.append(realCmd).append("\n ").append(realAlt).append(" 2>&1;echo '### 000'\n");

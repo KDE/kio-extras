@@ -130,6 +130,7 @@
 #include <QString>
 #include <QTextCodec>
 #include <QDebug>
+#include <QRegularExpression>
 
 #ifdef SIMPLE_MAN2HTML
 # include <stdlib.h>
@@ -6167,11 +6168,12 @@ char *manPageToUtf8(const QByteArray &input, const QByteArray &dirName)
   // some pages contain "coding:" information. See "man manconv"
   // (but I find pages which do not exactly obey the format described in manconv, e.g.
   // the control char is either "." or "'")
-  // Therefore use a QRegExp
-  QRegExp regex("[\\.']\\\\\"[^$]*coding:\\s*(\\S*)\\s", Qt::CaseInsensitive);
-  if ( regex.indexIn(QLatin1String(input)) == 0 )
+  // Therefore use a QRegularExpression
+  const QRegularExpression regex("[\\.']\\\\\"[^$]*coding:\\s*(\\S*)\\s", QRegularExpression::CaseInsensitiveOption);
+  QRegularExpressionMatch rmatch;
+  if (QString::fromLatin1(input).indexOf(regex, 0, &rmatch) == 0)
   {
-    encoding = regex.cap(1).toLatin1();
+    encoding = rmatch.captured(1).toLatin1();
 
     qCDebug(KIO_MAN_LOG) << "found embedded encoding" << encoding;
   }
