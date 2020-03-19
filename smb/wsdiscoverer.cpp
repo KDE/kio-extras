@@ -295,10 +295,15 @@ WSDiscovery::WSDiscovery(const QString &computer, const QString &remote)
 {
 }
 
+QString WSDiscovery::udsName() const
+{
+    return m_computer;
+}
+
 KIO::UDSEntry WSDiscovery::toEntry() const
 {
     KIO::UDSEntry entry;
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, m_computer);
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, udsName());
 
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));

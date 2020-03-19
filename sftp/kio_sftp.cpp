@@ -139,13 +139,6 @@ static int writeToFile(int fd, const char *buf, int len)
     return 0;
 }
 
-static KIO::fileoffset_t seekPos(int fd, KIO::fileoffset_t pos, int mode)
-{
-    KIO::fileoffset_t offset = -1;
-    while ((offset = QT_LSEEK(fd, pos, mode)) == EAGAIN);
-    return offset;
-}
-
 static bool wasUsernameChanged(const QString &username, const KIO::AuthInfo &info)
 {
     QString loginName (username);
@@ -1689,9 +1682,9 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
                 qCDebug(KIO_SFTP_LOG) << "put got answer " << (flags & KIO::Resume);
 
             } else {
-                KIO::filesize_t pos = seekPos(fd, sbPart->size, SEEK_SET);
+                KIO::filesize_t pos = QT_LSEEK(fd, sbPart->size, SEEK_SET);
                 if (pos != sbPart->size) {
-                    qCDebug(KIO_SFTP_LOG) << "Failed to seek to" << sbPart->size << "bytes in source file. Reason given" << strerror(errno);
+                    qCDebug(KIO_SFTP_LOG) << "Failed to seek to" << sbPart->size << "bytes in source file. Reason given:" << strerror(errno);
                     sftp_attributes_free(sb);
                     sftp_attributes_free(sbPart);
                     return Result::fail(ERR_CANNOT_SEEK, url.toString());
@@ -1915,7 +1908,7 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
     // check if destination is ok ...
     QFileInfo copyFile(sCopyFile);
     const bool bDestExists = copyFile.exists();
-    if (bDestExists)  {
+    if (bDestExists) {
         if (copyFile.isDir()) {
             return Result::fail(ERR_IS_DIRECTORY, sCopyFile);
         }
@@ -1959,8 +1952,9 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
     KIO::fileoffset_t offset = 0;
     if (bResume) {
         fd = QT_OPEN( QFile::encodeName(sPart), O_RDWR );  // append if resuming
-        offset = seekPos(fd, 0, SEEK_END);
-        if(offset < 0) {
+        offset = QT_LSEEK(fd, partFile.size(), SEEK_SET);
+        if (offset != partFile.size()) {
+            qCDebug(KIO_SFTP_LOG) << "Failed to seek to" << partFile.size() << "bytes in target file. Reason given:" << strerror(errno);
             ::close(fd);
             return Result::fail(ERR_CANNOT_RESUME, sCopyFile);
         }

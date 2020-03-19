@@ -26,10 +26,15 @@ DNSSDDiscovery::DNSSDDiscovery(KDNSSD::RemoteService::Ptr service)
 {
 }
 
+QString DNSSDDiscovery::udsName() const
+{
+    return m_service->serviceName();
+}
+
 KIO::UDSEntry DNSSDDiscovery::toEntry() const
 {
     KIO::UDSEntry entry;
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, m_service->serviceName());
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, udsName());
 
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
