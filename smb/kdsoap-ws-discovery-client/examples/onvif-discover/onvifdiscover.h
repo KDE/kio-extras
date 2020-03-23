@@ -22,7 +22,7 @@
 class WSDiscoveryClient;
 class WSDiscoveryProbeJob;
 class WSDiscoveryTargetService;
-class WSDiscoveryServiceAggrigator;
+class WSDiscoveryServiceAggregator;
 
 class OnvifDiscover : public QObject
 {
@@ -40,7 +40,7 @@ private slots:
 private:
     WSDiscoveryClient * m_client;
     WSDiscoveryProbeJob * m_probeJob;
-    WSDiscoveryServiceAggrigator * m_aggrigator;
+    WSDiscoveryServiceAggregator * m_aggregator;
 };
 
 #endif // ONVIFDISCOVER_H

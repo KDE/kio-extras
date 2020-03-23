@@ -15,17 +15,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WSDISCOVERYSERVICEAGGRIGATOR_P_H
-#define WSDISCOVERYSERVICEAGGRIGATOR_P_H
+#ifndef WSDISCOVERYSERVICEAGGREGATOR_P_H
+#define WSDISCOVERYSERVICEAGGREGATOR_P_H
 
 #include <QSharedPointer>
 #include <QObject>
 #include "wsdiscoverytargetservice.h"
 
-class WSDiscoveryServiceAggrigatorPrivate
+class WSDiscoveryServiceAggregatorPrivate
 {
 public:
     QHash<QString, QSharedPointer<WSDiscoveryTargetService>> targetServiceMap;
 };
 
-#endif // WSDISCOVERYSERVICEAGGRIGATOR_P_H
+#endif // WSDISCOVERYSERVICEAGGREGATOR_P_H

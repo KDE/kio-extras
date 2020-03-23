@@ -15,23 +15,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef WSDISCOVERYSERVICEAGGRIGATOR_H
-#define WSDISCOVERYSERVICEAGGRIGATOR_H
+#ifndef WSDISCOVERYSERVICEAGGREGATOR_H
+#define WSDISCOVERYSERVICEAGGREGATOR_H
 
 #include "wsdiscoveryclient_export.h"
 #include <QObject>
 
 class WSDiscoveryTargetService;
-class WSDiscoveryServiceAggrigatorPrivate;
+class WSDiscoveryServiceAggregatorPrivate;
 
 /*!
- * \brief Aggrigates multiple updates from the same WSDiscoveryTargetService
- * 
+ * \brief Aggregates multiple updates from the same WSDiscoveryTargetService
+ *
  * When receiving multiple probe and resolve matches of the same service, this
- * class will aggrigate those into a single shared instance. This eases the 
+ * class will aggregate those into a single shared instance. This eases the
  * administration needed by the application.
  */
-class WSDISCOVERYCLIENT_EXPORT WSDiscoveryServiceAggrigator : public QObject
+class WSDISCOVERYCLIENT_EXPORT WSDiscoveryServiceAggregator : public QObject
 {
     Q_OBJECT
 
@@ -40,13 +40,13 @@ public:
      * Create a WSDiscoveryClient
      * \param parent The QObject parent
      */
-    WSDiscoveryServiceAggrigator(QObject* parent = nullptr);
-    
+    WSDiscoveryServiceAggregator(QObject* parent = nullptr);
+
     /*!
      * Destructor
      */
-    ~WSDiscoveryServiceAggrigator();
-    
+    ~WSDiscoveryServiceAggregator();
+
 signals:
     /*!
      * Emitted when a service has new information. The service instance is 
@@ -55,7 +55,7 @@ signals:
      * \param updatedService A pointer to the updated service
      */
     void serviceUpdated(const QSharedPointer<WSDiscoveryTargetService>& updatedService);
-    
+
 public slots:
     /*!
      * Provides a new service update. 
@@ -64,8 +64,8 @@ public slots:
     void updateService(const WSDiscoveryTargetService& receivedService);
 
 private:
-    WSDiscoveryServiceAggrigatorPrivate* const d_ptr;
-    Q_DECLARE_PRIVATE(WSDiscoveryServiceAggrigator)
+    WSDiscoveryServiceAggregatorPrivate* const d_ptr;
+    Q_DECLARE_PRIVATE(WSDiscoveryServiceAggregator)
 };
 
-#endif // WSDISCOVERYSERVICEAGGRIGATOR_H
+#endif // WSDISCOVERYSERVICEAGGREGATOR_H

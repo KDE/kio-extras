@@ -29,7 +29,7 @@ set(KDSoapWSDiscoveryClient_SRCS
     "wsdiscoveryclient.cpp"
     "wsdiscoveryprobejob.cpp"
     "wsdiscoverytargetservice.cpp"
-    "wsdiscoveryserviceaggrigator.cpp"
+    "wsdiscoveryserviceaggregator.cpp"
 )
 
 ecm_qt_declare_logging_category(KDSoapWSDiscoveryClient_SRCS
@@ -65,7 +65,7 @@ ecm_generate_headers(KDSoapWSDiscoveryClient_HEADERS
     WSDiscoveryClient
     WSDiscoveryProbeJob
     WSDiscoveryTargetService
-    WSDiscoveryServiceAggrigator
+    WSDiscoveryServiceAggregator
 
     REQUIRED_HEADERS KDSoapWSDiscoveryClient_HEADERS
 )

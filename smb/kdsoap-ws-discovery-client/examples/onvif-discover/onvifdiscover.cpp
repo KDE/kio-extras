@@ -21,7 +21,7 @@
 #include <WSDiscoveryClient>
 #include <WSDiscoveryProbeJob>
 #include <WSDiscoveryTargetService>
-#include <WSDiscoveryServiceAggrigator>
+#include <WSDiscoveryServiceAggregator>
 
 OnvifDiscover::OnvifDiscover(QObject *parent) : QObject(parent)
 {
@@ -29,10 +29,10 @@ OnvifDiscover::OnvifDiscover(QObject *parent) : QObject(parent)
 
     m_probeJob = new WSDiscoveryProbeJob(m_client);
     
-    m_aggrigator = new WSDiscoveryServiceAggrigator(this);
+    m_aggregator = new WSDiscoveryServiceAggregator(this);
     
-    connect(m_probeJob, &WSDiscoveryProbeJob::matchReceived, m_aggrigator, &WSDiscoveryServiceAggrigator::updateService);
-    connect(m_aggrigator, &WSDiscoveryServiceAggrigator::serviceUpdated, this, &OnvifDiscover::matchReceived);
+    connect(m_probeJob, &WSDiscoveryProbeJob::matchReceived, m_aggregator, &WSDiscoveryServiceAggregator::updateService);
+    connect(m_aggregator, &WSDiscoveryServiceAggregator::serviceUpdated, this, &OnvifDiscover::matchReceived);
     
     KDQName type("tdn:NetworkVideoTransmitter");
     type.setNameSpace("http://www.onvif.org/ver10/network/wsdl");
