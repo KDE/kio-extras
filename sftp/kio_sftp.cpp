@@ -414,6 +414,7 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
 
     sftp_attributes sb = sftp_lstat(mSftp, path.constData());
     if (sb == nullptr) {
+        qCDebug(KIO_SFTP_LOG) << "Failed to stat" << path << sftp_get_error(mSftp);
         return false;
     }
 
@@ -422,6 +423,7 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
     if (sb->type == SSH_FILEXFER_TYPE_SYMLINK) {
         link = sftp_readlink(mSftp, path.constData());
         if (link == nullptr) {
+            qCDebug(KIO_SFTP_LOG) << "Failed to readlink despite this being a link!" << path << sftp_get_error(mSftp);
             sftp_attributes_free(sb);
             return false;
         }
