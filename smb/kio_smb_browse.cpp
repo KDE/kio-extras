@@ -373,7 +373,10 @@ void SMBSlave::listDir(const QUrl &kurl)
         errNum = errno;
     }
 
-    qCDebug(KIO_SMB_LOG) << "open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd;
+    qCDebug(KIO_SMB_LOG) << "open " << m_current_url.toSmbcUrl()
+                         << "url-type:" << m_current_url.getType()
+                         << "dirfd:" << dirfd
+                         << "errNum:" << errNum;
     if (dirfd >= 0) {
 #ifdef HAVE_READDIRPLUS2
            // readdirplus2 improves performance by giving us a stat without separate call (Samba>=4.12)
@@ -595,19 +598,23 @@ void SMBSlave::listDir(const QUrl &kurl)
         smbc_closedir(dirfd);
     } else {
         if (errNum == EPERM || errNum == EACCES || workaroundEEXIST(errNum)) {
+            qCDebug(KIO_SMB_LOG) << "trying checkPassword";
             const int passwordError = checkPassword(m_current_url);
             if (passwordError == KJob::NoError) {
                 redirection(m_current_url);
                 finished();
             } else if (passwordError == KIO::ERR_USER_CANCELED) {
+                qCDebug(KIO_SMB_LOG) << "user cancelled password request";
                 reportError(m_current_url, errNum);
             } else {
+                qCDebug(KIO_SMB_LOG) << "generic password error:" << passwordError;
                 error(passwordError, m_current_url.toString());
             }
 
             return;
         }
 
+        qCDebug(KIO_SMB_LOG) << "reporting generic error:" << errNum;
         reportError(m_current_url, errNum);
         return;
     }
