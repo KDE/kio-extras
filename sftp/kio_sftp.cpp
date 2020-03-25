@@ -488,7 +488,12 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
 
         entry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, sb->atime);
         entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, sb->mtime);
-        entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
+
+        if (sb->flags & SSH_FILEXFER_ATTR_CREATETIME) {
+            // Availability depends on outside factors.
+            // https://bugs.kde.org/show_bug.cgi?id=375305
+            entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
+        }
     }
 
     sftp_attributes_free(sb);
@@ -1927,11 +1932,13 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
     const bool bMarkPartial = q->configValue(QStringLiteral("MarkPartial"), true);
     const QString dest = (bMarkPartial ? sPart : sCopyFile);
 
-    if (bMarkPartial && bPartExists && copyFile.size() > 0) {
+    if (bMarkPartial && bPartExists) {
         if (partFile.isDir()) {
             return Result::fail(ERR_FILE_ALREADY_EXIST, sCopyFile);
         }
-        bResume = q->canResume(copyFile.size());
+        if (partFile.size() > 0) {
+            bResume = q->canResume(copyFile.size());
+        }
     }
 
     if (bPartExists && !bResume)                  // get rid of an unwanted ".part" file

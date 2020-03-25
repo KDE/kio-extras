@@ -95,11 +95,6 @@ public:
     SMBUrl partUrl() const;
 
 private:
-    /**
-     * Change from QString to QCString (MS Windows's character encoding)
-     */
-    QByteArray fromUnicode(const QString &_str) const;
-
     void updateCache();
     QByteArray m_surl;
 
