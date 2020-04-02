@@ -75,12 +75,6 @@ MTPDevice::~MTPDevice()
 
 LIBMTP_mtpdevice_t *MTPDevice::getDevice()
 {
-    if (!m_mtpdevice->storage) {
-        qCDebug(LOG_KIOD_KMTPD) << "no storage found: reopen mtpdevice";
-        LIBMTP_Release_Device(m_mtpdevice);
-        m_mtpdevice = LIBMTP_Open_Raw_Device_Uncached(&m_rawdevice);
-    }
-
     return m_mtpdevice;
 }
 
