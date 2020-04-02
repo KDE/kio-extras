@@ -219,6 +219,36 @@ QUrl SMBSlave::checkURL(const QUrl &kurl_) const
         kurl.setScheme("smb");
     }
 
+    // For WS-Discovered hosts we assume they'll respond to DNSSD names on .local but
+    // they may only respond to llmnr/netbios names. Transparently fall back.
+    //
+    // Desktop linuxes tend to have llmnr disabled, by contrast win10 has dnssd enabled,
+    // so chances are we'll be able to find a host.local more reliably.
+    // Attempt to resolve foo.local natively, if that works use it, otherwise default to
+    // the presumed LLMNR/netbios name found during discovery.
+    // This should then yield reasonable results with any combination of WSD/DNSSD/LLMNR support.
+    // - WSD+Avahi (on linux)
+    // - WSD+Win10 (i.e. dnssd + llmnr)
+    // - WSD+CrappyNAS (e.g. llmnr or netbios only)
+    //
+    // NB: smbc has no way to resolve a name without also triggering auth etc.: we must
+    //   rely on the system's ability to resolve DNSSD for this check.
+    const QLatin1String wsdSuffix(".kio-discovery-wsd");
+    if (m_current_url.host().endsWith(wsdSuffix)) {
+        QString host = m_current_url.host();
+        host.chop(wsdSuffix.size());
+        const QString dnssd(host + ".local");
+        auto dnssdHost = QHostInfo::fromName(dnssd);
+        if (dnssdHost.error() == QHostInfo::NoError) {
+            qCDebug(KIO_SMB_LOG) << "Resolved DNSSD name:" << dnssd;
+            host = dnssd;
+        } else {
+            qCDebug(KIO_SMB_LOG) << "Failed to resolve DNSSD name:" << dnssd;
+            qCDebug(KIO_SMB_LOG) << "Falling back to LLMNR name:" << host;
+        }
+        kurl.setHost(host);
+    }
+
     QString surl = kurl.url();
     // transform any links in the form smb:/ into smb://
     if (surl.startsWith(QLatin1String("smb:/"))) {
