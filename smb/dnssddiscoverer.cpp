@@ -34,6 +34,7 @@ QString DNSSDDiscovery::udsName() const
 KIO::UDSEntry DNSSDDiscovery::toEntry() const
 {
     KIO::UDSEntry entry;
+    entry.reserve(6);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, udsName());
 
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);

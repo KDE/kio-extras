@@ -303,6 +303,7 @@ QString WSDiscovery::udsName() const
 KIO::UDSEntry WSDiscovery::toEntry() const
 {
     KIO::UDSEntry entry;
+    entry.reserve(6);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, udsName());
 
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);

@@ -63,6 +63,7 @@ extern "C" {
 static void createFileEntry(KIO::UDSEntry& entry, const KService::Ptr& service)
 {
     entry.clear();
+    entry.reserve(9);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, KIO::encodeFileName(service->desktopEntryName()));
     entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name()); // translated name
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
@@ -77,6 +78,7 @@ static void createFileEntry(KIO::UDSEntry& entry, const KService::Ptr& service)
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& iconName)
 {
     entry.clear();
+    entry.reserve(6); // +1 for UDS_DISPLAY_NAME
     entry.fastInsert( KIO::UDSEntry::UDS_NAME, name );
     entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
     entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, 0500 );

@@ -177,6 +177,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
 void ArchiveProtocolBase::createRootUDSEntry( KIO::UDSEntry & entry )
 {
     entry.clear();
+    entry.reserve(5);
     entry.fastInsert( KIO::UDSEntry::UDS_NAME, "." );
     entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
     entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, m_mtime );
@@ -188,6 +189,7 @@ void ArchiveProtocolBase::createRootUDSEntry( KIO::UDSEntry & entry )
 void ArchiveProtocolBase::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
 {
     entry.clear();
+    entry.reserve(8);
     entry.fastInsert( KIO::UDSEntry::UDS_NAME, archiveEntry->name() );
     entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->permissions() & S_IFMT ); // keep file type only
     entry.fastInsert( KIO::UDSEntry::UDS_SIZE, archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L );
@@ -315,6 +317,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
             error( errorNum, url.toDisplayString() );
             return;
         }
+        entry.reserve(2);
         // Real directory. Return just enough information for KRun to work
         entry.fastInsert( KIO::UDSEntry::UDS_NAME, url.fileName());
         qCDebug(KIO_ARCHIVE_LOG).nospace() << "ArchiveProtocolBase::stat returning name=" << url.fileName();

@@ -148,6 +148,7 @@ void RecentDocuments::stat(const QUrl& url)
         //
         QString dirName = i18n("Recent Documents");
         KIO::UDSEntry uds;
+        uds.reserve(6);
         uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
         uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
         uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);

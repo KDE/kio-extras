@@ -672,6 +672,7 @@ void MANProtocol::stat( const QUrl& url)
     qCDebug(KIO_MAN_LOG) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section;
 
     UDSEntry entry;
+    entry.reserve(3);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, title);
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
     entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
@@ -1381,6 +1382,7 @@ void MANProtocol::listDir(const QUrl &url)
     if (section.isEmpty()) {
         for (QStringList::ConstIterator it = section_names.constBegin(); it != section_names.constEnd(); ++it) {
             UDSEntry     uds_entry;
+            uds_entry.reserve(3);
 
             QString name = "man:/(" + *it + ')';
             uds_entry.fastInsert( KIO::UDSEntry::UDS_NAME, sectionName( *it ) );
@@ -1400,6 +1402,7 @@ void MANProtocol::listDir(const QUrl &url)
         stripExtension( &(*it) );
 
         UDSEntry     uds_entry;
+        uds_entry.reserve(3);
         uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, *it);
         uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
         uds_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));

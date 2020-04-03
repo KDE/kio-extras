@@ -279,6 +279,7 @@ void NetworkSlave::listDir( const QUrl& url )
 
 void NetworkSlave::feedEntryAsNetwork( KIO::UDSEntry* entry )
 {
+    entry->reserve(3);
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
     entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Network"));
 //     entry->fastInsert( KIO::UDSEntry::UDS_ICON_NAME,    NetworkIconName );
@@ -288,6 +289,7 @@ void NetworkSlave::feedEntryAsNetwork( KIO::UDSEntry* entry )
 
 void NetworkSlave::feedEntryAsDevice( KIO::UDSEntry* entry, const Mollet::NetDevice& deviceData )
 {
+    entry->reserve(4);
     entry->fastInsert( KIO::UDSEntry::UDS_NAME,         deviceData.hostAddress() );
     entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, deviceData.name() );
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
@@ -298,6 +300,7 @@ void NetworkSlave::feedEntryAsDevice( KIO::UDSEntry* entry, const Mollet::NetDev
 
 void NetworkSlave::feedEntryAsService( KIO::UDSEntry* entry, const Mollet::NetService& serviceData )
 {
+    entry->reserve(7);
     entry->fastInsert( KIO::UDSEntry::UDS_NAME,         serviceData.name()+QLatin1Char('.')+serviceData.type() );
     entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, serviceData.name() );
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFLNK );

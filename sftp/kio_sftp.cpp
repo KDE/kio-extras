@@ -411,6 +411,7 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
     uint64_t size = 0U;
 
     Q_ASSERT(entry.count() == 0);
+    entry.reserve(10);
 
     sftp_attributes sb = sftp_lstat(mSftp, path.constData());
     if (sb == nullptr) {
@@ -2178,6 +2179,7 @@ Result SFTPInternal::listDir(const QUrl &url)
         }
 
         entry.clear();
+        entry.reserve(10);
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, QFile::decodeName(dirent->name));
 
         if (dirent->type == SSH_FILEXFER_TYPE_SYMLINK) {

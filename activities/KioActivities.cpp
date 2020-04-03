@@ -101,6 +101,7 @@ public:
     KIO::UDSEntry activityEntry(const QString &activity)
     {
         KIO::UDSEntry uds;
+        uds.reserve(8);
         KActivities::Info activityInfo(activity);
         uds.fastInsert(KIO::UDSEntry::UDS_NAME, activity);
         uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, activityInfo.name());
@@ -224,6 +225,7 @@ void ActivitiesProtocol::listDir(const QUrl &url)
             KIO::UDSEntryList udslist;
 
             KIO::UDSEntry uds;
+            uds.reserve(9);
             uds.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("current"));
             uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Current activity"));
             uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Activity"));
@@ -305,6 +307,7 @@ void ActivitiesProtocol::stat(const QUrl& url)
         {
             QString dirName = i18n("Activities");
             KIO::UDSEntry uds;
+            uds.reserve(6);
             uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
             uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
             uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
