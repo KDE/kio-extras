@@ -34,6 +34,7 @@
 
 #include <QDir>
 #include <QHostAddress>
+#include <QUrlQuery>
 #include <KConfig>
 #include <KIO/Global>
 
@@ -112,10 +113,62 @@ void SMBUrl::updateCache()
         break;
     }
 
-    if (sambaUrl.url() == "smb:/")
+    // NetBios workgroup names may contain characters that QUrl will not
+    // allow in a host. Yet the SMB URI requires us to have the workgroup
+    // in the host field when browsing a workgroup.
+    // As a hacky workaround we'll not set a host but use a query param
+    // when encountering a workgroup that causes QUrl to error out.
+    // For libsmbc we then need to translate the query back to SMB URI.
+    // Since this is super daft string construction it will doubltlessly
+    // be imperfect and so we do still prefer deferring the string
+    // construction to QUrl whenever possible.
+    // https://support.microsoft.com/en-gb/help/909264/naming-conventions-in-active-directory-for-computers-domains-sites-and
+    // https://bugs.kde.org/show_bug.cgi?id=204423
+    //
+    // Should we ever stop supporting workgroup browsing this entire
+    // hack can be removed.
+    QUrlQuery query(sambaUrl);
+    const QString workgroup = query.queryItemValue("kio-workgroup");
+    if (workgroup.isEmpty()) {
+        // If we don't have a hack to apply we can simply defer to QUrl
+        if (sambaUrl.url() == "smb:/") {
+            m_surl = "smb://";
+        } else {
+            m_surl = sambaUrl.toString(QUrl::PrettyDecoded).toUtf8();
+        }
+    } else {
+        // If we have a workgroup hack to apply we need to manually construct
+        // the stringy URI.
+        query.removeQueryItem("kio-workgroup");
+        sambaUrl.setQuery(query);
+
         m_surl = "smb://";
-    else
-        m_surl = sambaUrl.toString(QUrl::PrettyDecoded).toUtf8();
+        if (!sambaUrl.userInfo().isEmpty()) {
+            m_surl += sambaUrl.userInfo() + "@";
+        }
+        m_surl += workgroup;
+        // Workgroups can have ports per the IANA definition of smb.
+        if (sambaUrl.port() != -1) {
+            m_surl += ':' + QString::number(sambaUrl.port());
+        }
+
+        // Make sure to only use clear paths. libsmbc is allergic to excess slashes.
+        QString path('/');
+        if (!sambaUrl.host().isEmpty()) {
+            path += sambaUrl.host();
+        }
+        if (!sambaUrl.path().isEmpty()) {
+            path += sambaUrl.path();
+        }
+        m_surl += QDir::cleanPath(path);
+
+        if (!sambaUrl.query().isEmpty()) {
+            m_surl += '?' + sambaUrl.query();
+        }
+        if (!sambaUrl.fragment().isEmpty()) {
+            m_surl += '#' + sambaUrl.fragment();
+        }
+    }
 
     m_type = SMBURLTYPE_UNKNOWN;
     // update m_type
@@ -133,7 +186,7 @@ SMBUrlType SMBUrl::getType() const
     }
 
     if (path().isEmpty() || path(QUrl::FullyDecoded) == "/") {
-        if (host().isEmpty())
+        if (host().isEmpty() && !query().contains("kio-workgroup"))
             m_type = SMBURLTYPE_ENTIRE_NETWORK;
         else
             m_type = SMBURLTYPE_WORKGROUP_OR_SERVER;

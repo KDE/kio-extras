@@ -164,13 +164,20 @@ public:
             }
         }
 
+        // Default the host to the IP unless we have a prettyName in which case we use
+        // the presumed DNSSD name prettyName.local. listDir will redirect this to the
+        // LLMNR variant (without .local) should it turn out not resolvable.
+        QString host = m_endpointUrl.host();
         if (computer.isEmpty()) {
             computer = xi18nc("host entry when no pretty name is available. %1 likely is an IP address",
                               "Unknown Device @ <resource>%1</resource>",
-                              m_endpointUrl.host());
+                              host);
+        } else {
+            // If we got a DNSSD name, use that, otherwise redirect to on-demand resolution.
+            host = computer.endsWith(".local") ? computer : computer + ".kio-discovery-wsd";
         }
 
-        m_discovery.reset(new WSDiscovery(computer, m_endpointUrl.host()));
+        m_discovery.reset(new WSDiscovery(computer, host));
         emit resolved(m_discovery);
     }
 
