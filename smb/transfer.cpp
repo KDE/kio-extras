@@ -14,7 +14,7 @@ TransferSegment::TransferSegment(const off_t fileSize)
 
 off_t TransferSegment::segmentSizeForFileSize(const off_t fileSize_)
 {
-    const off_t fileSize = qMax(static_cast<off_t>(0), fileSize_);
+    const off_t fileSize = qMax<off_t>(0, fileSize_);
 
     // read() internally splits our read requests into multiple server
     // requests and then assembles the responses into our buffer.
