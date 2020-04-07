@@ -12,8 +12,8 @@
 #include <condition_variable>
 #include <mutex>
 
-constexpr auto c_minSegmentSize = 64 * 1024; // minimal size on stack
-constexpr auto c_maxSegmentSize = 4L * 1024 * 1024; // 4MiB is the largest request we make
+constexpr off_t c_minSegmentSize = 64 * 1024; // minimal size on stack
+constexpr off_t c_maxSegmentSize = 4L * 1024 * 1024; // 4MiB is the largest request we make
 
 struct TransferSegment
 {

@@ -35,12 +35,12 @@ off_t TransferSegment::segmentSizeForFileSize(const off_t fileSize_)
     //
     // TODO: perhaps it would actually make sense to read at a multiple of
     // the target drive's block size?
-    const off_t idealSegmentSize = qMin(fileSize / 50, c_maxSegmentSize);
-    segmentSize = qMax(segmentSize, idealSegmentSize);
+    const off_t idealSegmentSize = qMin<off_t>(fileSize / 50, c_maxSegmentSize);
+    segmentSize = qMax<off_t>(segmentSize, idealSegmentSize);
     // If the segment size is larger than the file size it appears we can
     // actually degrade performance, so pick the smaller of the two.
     if (fileSize != 0) {
-        segmentSize = qMin(segmentSize, fileSize);
+        segmentSize = qMin<off_t>(segmentSize, fileSize);
     }
     return segmentSize;
 }
