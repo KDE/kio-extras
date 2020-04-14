@@ -1722,10 +1722,14 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
         if (fd == -1) {
             q->dataReq(); // Request for data
             result = q->readData(buffer);
+            if (result < 0) {
+                qCDebug(KIO_SFTP_LOG) << "unexpected error during readData";
+            }
         } else {
             char buf[MAX_XFER_BUF_SIZE]; //
             result = ::read(fd, buf, sizeof(buf));
-            if(result < 0) {
+            if (result < 0) {
+                qCDebug(KIO_SFTP_LOG) << "failed to read" << errno;
                 errorCode = ERR_CANNOT_READ;
                 break;
             }
@@ -1792,6 +1796,10 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
 
             ssize_t bytesWritten = sftp_write(file, buffer.data(), buffer.size());
             if (bytesWritten < 0) {
+                qCDebug(KIO_SFTP_LOG) << "Failed to sftp_write" << buffer.size() << "bytes."
+                                      << "- Already written: " << totalBytesSent
+                                      << "- SFTP error:" << sftp_get_error(mSftp)
+                                      << "- SSH error:" << ssh_get_error_code(mSession);
                 errorCode = KIO::ERR_CANNOT_WRITE;
                 result = -1;
             } else {
