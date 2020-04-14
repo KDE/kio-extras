@@ -403,7 +403,7 @@ void MTPSlave::get(const QUrl &url)
                 }
 
                 QEventLoop loop;
-                connect(storage, &KMTPStorageInterface::dataReady, this, [this] (const QByteArray &data) {
+                connect(storage, &KMTPStorageInterface::dataReady, &loop, [this] (const QByteArray &data) {
                     MTPSlave::data(data);
                 });
                 connect(storage, &KMTPStorageInterface::copyFinished, &loop, &QEventLoop::exit);
@@ -866,7 +866,7 @@ void MTPSlave::fileSystemFreeSpace(const QUrl &url)
 int MTPSlave::waitForCopyOperation(const KMTPStorageInterface *storage)
 {
     QEventLoop loop;
-    connect(storage, &KMTPStorageInterface::copyProgress, this, [this] (qulonglong sent, qulonglong total) {
+    connect(storage, &KMTPStorageInterface::copyProgress, &loop, [this] (qulonglong sent, qulonglong total) {
         Q_UNUSED(total)
         processedSize(sent);
     });

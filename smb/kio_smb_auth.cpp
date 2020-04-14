@@ -193,6 +193,7 @@ bool SMBSlave::auth_initialize_smbc()
 
 #ifdef DEPRECATED_SMBC_INTERFACE // defined by libsmbclient.h of Samba 3.2
     /* New libsmbclient interface of Samba 3.2 */
+    qCDebug(KIO_SMB_LOG) << "Setting debug level to:" << debug_level;
     smbc_setDebug(smb_context, debug_level);
     smbc_setFunctionAuthDataWithContext(smb_context, ::auth_smbc_get_data);
     smbc_setOptionUserData(smb_context, this);
