@@ -132,7 +132,9 @@ void SMBSlave::get(const QUrl &kurl)
 
     smbc_close(filefd);
     data(QByteArray());
-#warning fixme this is potentially a lie
+    if (totalbytesread != static_cast<KIO::filesize_t>(st.st_size)) {
+        qCWarning(KIO_SMB_LOG) << "Got" << totalbytesread << "bytes but expected" << st.st_size;
+    }
     processedSize(static_cast<KIO::filesize_t>(st.st_size));
 
     finished();
