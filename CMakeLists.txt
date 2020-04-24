@@ -57,7 +57,7 @@ include(ECMMarkAsTest)
 include(ECMOptionalAddSubdirectory)
 include(ECMQtDeclareLoggingCategory)
 
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
+add_definitions(-DQT_NO_URL_CAST_FROM_STRING -DQT_NO_CAST_TO_ASCII)
 
 find_package(KF5Activities QUIET)
 set_package_properties(KF5Activities PROPERTIES
