@@ -142,14 +142,15 @@ void SMBUrl::updateCache()
         query.removeQueryItem("kio-workgroup");
         sambaUrl.setQuery(query);
 
-        m_surl = "smb://";
+        QString url;
+        url = "smb://";
         if (!sambaUrl.userInfo().isEmpty()) {
-            m_surl += sambaUrl.userInfo() + "@";
+            url += sambaUrl.userInfo() + "@";
         }
-        m_surl += workgroup;
+        url += workgroup;
         // Workgroups can have ports per the IANA definition of smb.
         if (sambaUrl.port() != -1) {
-            m_surl += ':' + QString::number(sambaUrl.port());
+            url += ':' + QString::number(sambaUrl.port());
         }
 
         // Make sure to only use clear paths. libsmbc is allergic to excess slashes.
@@ -160,14 +161,15 @@ void SMBUrl::updateCache()
         if (!sambaUrl.path().isEmpty()) {
             path += sambaUrl.path();
         }
-        m_surl += QDir::cleanPath(path);
+        url += QDir::cleanPath(path);
 
         if (!sambaUrl.query().isEmpty()) {
-            m_surl += '?' + sambaUrl.query();
+            url += '?' + sambaUrl.query();
         }
         if (!sambaUrl.fragment().isEmpty()) {
-            m_surl += '#' + sambaUrl.fragment();
+            url += '#' + sambaUrl.fragment();
         }
+        m_surl = QUrl(url).toString(QUrl::PrettyDecoded).toUtf8();
     }
 
     m_type = SMBURLTYPE_UNKNOWN;
