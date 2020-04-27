@@ -358,11 +358,11 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
                               "if they ask for it)")};
     default:
         return SMBError {
-            // errnum is glued in to not break string freeze in 20.04
             ERR_INTERNAL,
-                    i18n("Unknown error condition in stat: %1",
-                         QString("[%1] %2").arg(QString::number(errNum),
-                                                QString::fromLocal8Bit(strerror(errNum))))
+                    i18nc("%1 is an error number, %2 either a pretty string or the number",
+                          "Unknown error condition: [%1] %2",
+                          QString::number(errNum),
+                          QString::fromLocal8Bit(strerror(errNum)))
         };
     }
 }
