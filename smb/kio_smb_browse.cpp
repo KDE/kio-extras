@@ -234,8 +234,8 @@ QUrl SMBSlave::checkURL(const QUrl &kurl_) const
     // NB: smbc has no way to resolve a name without also triggering auth etc.: we must
     //   rely on the system's ability to resolve DNSSD for this check.
     const QLatin1String wsdSuffix(".kio-discovery-wsd");
-    if (m_current_url.host().endsWith(wsdSuffix)) {
-        QString host = m_current_url.host();
+    if (kurl.host().endsWith(wsdSuffix)) {
+        QString host = kurl.host();
         host.chop(wsdSuffix.size());
         const QString dnssd(host + ".local");
         auto dnssdHost = QHostInfo::fromName(dnssd);
