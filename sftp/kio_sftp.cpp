@@ -1795,6 +1795,17 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
                 } // file
             } // dest.isEmpty
 
+            if (result == 0) {
+                // proftpd stumbles over zero size writes.
+                // https://bugs.kde.org/show_bug.cgi?id=419999
+                // http://bugs.proftpd.org/show_bug.cgi?id=4398
+                // At this point we'll have opened the file and thus created it.
+                // It's safe to break here as even in the ideal scenario that the server
+                // doesn't fall over, the write code is pointless because zero size writes
+                // do absolutely nothing.
+                break;
+            }
+
             ssize_t bytesWritten = sftp_write(file, buffer.data(), buffer.size());
             if (bytesWritten < 0) {
                 qCDebug(KIO_SFTP_LOG) << "Failed to sftp_write" << buffer.size() << "bytes."
