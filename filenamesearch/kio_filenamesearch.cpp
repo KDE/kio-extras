@@ -30,6 +30,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QDBusInterface>
+#include <KLocalizedString>
 
 Q_LOGGING_CATEGORY(KIO_FILENAMESEARCH, "kio_filenamesearch")
 
@@ -42,6 +43,28 @@ FileNameSearchProtocol::FileNameSearchProtocol(const QByteArray &pool, const QBy
 
 FileNameSearchProtocol::~FileNameSearchProtocol()
 {
+}
+
+void FileNameSearchProtocol::stat(const QUrl& url)
+{
+    KIO::UDSEntry uds;
+    uds.reserve(9);
+    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0700);
+    uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    uds.fastInsert(KIO::UDSEntry::UDS_ICON_OVERLAY_NAMES, QStringLiteral("baloo"));
+    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Search Folder"));
+    uds.fastInsert(KIO::UDSEntry::UDS_URL, url.url());
+
+    QUrlQuery query(url);
+    QString title = query.queryItemValue(QStringLiteral("title"), QUrl::FullyDecoded);
+    if (!title.isEmpty()) {
+        uds.fastInsert(KIO::UDSEntry::UDS_NAME, title);
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, title);
+    }
+
+    statEntry(uds);
+    finished();
 }
 
 void FileNameSearchProtocol::listDir(const QUrl &url)
