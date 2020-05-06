@@ -238,8 +238,8 @@ QUrl SMBSlave::checkURL(const QUrl &kurl_) const
         QString host = kurl.host();
         host.chop(wsdSuffix.size());
         const QString dnssd(host + ".local");
-        auto dnssdHost = QHostInfo::fromName(dnssd);
-        if (dnssdHost.error() == QHostInfo::NoError) {
+        auto dnssdHost = KDNSSD::ServiceBrowser::resolveHostName(dnssd);
+        if (!dnssdHost.isNull()) {
             qCDebug(KIO_SMB_LOG) << "Resolved DNSSD name:" << dnssd;
             host = dnssd;
         } else {
