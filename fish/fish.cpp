@@ -381,7 +381,6 @@ bool fishProtocol::connectionStart() {
     }
 #endif
 
-    if (!requestNetwork()) return true;
     myDebug( << "Exec: " << (local ? suPath : sshPath) << " Port: " << connectionPort << " User: " << connectionUser);
 #ifdef Q_OS_WIN
     childPid = new KProcess();
@@ -425,7 +424,6 @@ bool fishProtocol::connectionStart() {
         ::close(fd[0]);
         ::close(fd[1]);
         childPid = 0;
-        dropNetwork();
         return true;
     }
     if (childPid == 0) {
@@ -760,7 +758,6 @@ void fishProtocol::shutdownConnection(bool forced){
 #endif
         if (!forced)
         {
-           dropNetwork();
            infoMessage(i18n("Disconnected."));
         }
     }
