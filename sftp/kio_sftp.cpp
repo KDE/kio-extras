@@ -1387,7 +1387,7 @@ Result SFTPInternal::open(const QUrl &url, QIODevice::OpenMode mode) {
     }
 
     if (mOpenFile == nullptr) {
-        return Result::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, path);
+        return Result::fail(toKIOError(sftp_get_error(mSftp)), path);
     }
 
     // Determine the mimetype of the file to be retrieved, and emit it.
