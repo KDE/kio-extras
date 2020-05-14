@@ -55,6 +55,22 @@ using namespace std::experimental::filesystem;
 
 // How big should each data packet be? Definitely not bigger than 64kb or
 // you will overflow the 2 byte size variable in a sftp packet.
+// TODO: investigate what size we should have and consider changing.
+// this seems too large...
+// from the RFC:
+//   The maximum size of a packet is in practise determined by the client
+//   (the maximum size of read or write requests that it sends, plus a few
+//   bytes of packet overhead).  All servers SHOULD support packets of at
+//   least 34000 bytes (where the packet size refers to the full length,
+//   including the header above).  This should allow for reads and writes of
+//   at most 32768 bytes.
+// In practise that means we can assume that the server supports 32kb,
+// it may be more or it could be less. Since there's not really a system in place to
+// figure out the maximum (and at least openssh arbitrarily resets the entire
+// session if it finds a packet that is too large
+// [https://bugs.kde.org/show_bug.cgi?id=404890]) we ought to be more conservative!
+// At the same time there's no bug reports about the 60k requests being too large so
+// perhaps all popular servers effectively support at least 64k.
 #define MAX_XFER_BUF_SIZE (60 * 1024)
 
 #define KSFTP_ISDIR(sb) (sb->type == SSH_FILEXFER_TYPE_DIRECTORY)
@@ -1437,14 +1453,13 @@ Result SFTPInternal::write(const QByteArray &data)
 
     Q_ASSERT(mOpenFile != nullptr);
 
-    ssize_t bytesWritten = sftp_write(mOpenFile, data.data(), data.size());
-    if (bytesWritten < 0) {
+    if (!sftpWrite(mOpenFile, data, nullptr)) {
         qCDebug(KIO_SFTP_LOG) << "Could not write to " << mOpenUrl;
         close();
         return Result::fail(KIO::ERR_CANNOT_WRITE, mOpenUrl.toDisplayString());
     }
 
-    q->written(bytesWritten);
+    q->written(data.size());
 
     return Result::pass();
 }
@@ -1806,17 +1821,15 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
                 break;
             }
 
-            ssize_t bytesWritten = sftp_write(file, buffer.data(), buffer.size());
-            if (bytesWritten < 0) {
-                qCDebug(KIO_SFTP_LOG) << "Failed to sftp_write" << buffer.size() << "bytes."
-                                      << "- Already written: " << totalBytesSent
-                                      << "- SFTP error:" << sftp_get_error(mSftp)
-                                      << "- SSH error:" << ssh_get_error_code(mSession);
+            bool success = sftpWrite(file, buffer, [this,&totalBytesSent](int bytes) {
+                totalBytesSent += bytes;
+                q->processedSize(totalBytesSent);
+            });
+            if (!success) {
+                qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
                 errorCode = KIO::ERR_CANNOT_WRITE;
                 result = -1;
-            } else {
-                totalBytesSent += bytesWritten;
-                q->processedSize(totalBytesSent);
+                break;
             }
         } // result
     } while (result > 0);
@@ -1908,6 +1921,38 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
     }
 
     return Result::pass();
+}
+
+bool SFTPInternal::sftpWrite(sftp_file file,
+                             const QByteArray &buffer,
+                             const std::function<void(int bytes)> &onWritten)
+{
+    // TODO: enqueue requests.
+    // Similarly to reading we may enqueue a number of requests to mitigate the
+    // network overhead and speed up things. Serial iteration gives super poor
+    // performance.
+
+    // Break up into multiple requests in case a single request would be too large.
+    // Servers can impose an arbitrary size limit that we don't want to hit.
+    // https://bugs.kde.org/show_bug.cgi?id=404890
+    off_t offset = 0;
+    while (offset < buffer.size()) {
+        const auto length = qMin<int>(MAX_XFER_BUF_SIZE, buffer.size() - offset);
+        ssize_t bytesWritten = sftp_write(file, buffer.data() + offset, length);
+        if (bytesWritten < 0) {
+            qCDebug(KIO_SFTP_LOG) << "Failed to sftp_write" << length << "bytes."
+                                  << "- Already written (for this call):" << offset
+                                  << "- Return of sftp_write:" << bytesWritten
+                                  << "- SFTP error:" << sftp_get_error(mSftp)
+                                  << "- SSH error:" << ssh_get_error_code(mSession)
+                                  << "- SSH errorString:" << ssh_get_error(mSession);
+            return false;
+        } else if (onWritten) {
+            onWritten(bytesWritten);
+        }
+        offset += bytesWritten;
+    }
+    return true;
 }
 
 Result SFTPInternal::copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags)

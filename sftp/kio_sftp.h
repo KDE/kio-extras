@@ -223,6 +223,14 @@ private: // private methods
     Q_REQUIRED_RESULT Result sftpGet(const QUrl &url, KIO::fileoffset_t offset = -1, int fd = -1);
     Q_REQUIRED_RESULT Result sftpPut(const QUrl &url, int permissions, KIO::JobFlags flags, int fd = -1);
 
+    /**
+     * sftp_write wrapper breaking buffer into suitable pieces
+     * \param onWritten acts as callback, for each written block.
+     */
+    Q_REQUIRED_RESULT bool sftpWrite(sftp_file fd,
+                                     const QByteArray &buffer,
+                                     const std::function<void(int bytes)> &onWritten);
+
     Q_REQUIRED_RESULT Result sftpCopyGet(const QUrl &url, const QString &src, int permissions, KIO::JobFlags flags);
     Q_REQUIRED_RESULT Result sftpCopyPut(const QUrl &url, const QString &dest, int permissions, KIO::JobFlags flags);
 };
