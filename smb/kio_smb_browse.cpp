@@ -549,100 +549,82 @@ void SMBSlave::listDir(const QUrl &kurl)
             udsentry.clear();
         } while (dirp); // checked already in the head
 
-        // Run service discovery if the path is root. This augments
-        // "native" results from libsmbclient.
-        auto normalizedUrl = url.adjusted(QUrl::NormalizePathSegments);
-        if (normalizedUrl.path().isEmpty()) {
-            qCDebug(KIO_SMB_LOG) << "Trying modern discovery (dnssd/wsdiscovery)";
-
-            QEventLoop e;
-
-            UDSEntryList list;
-            QStringList discoveredNames;
-
-            const auto flushEntries = [this, &list]() {
-                if (list.isEmpty()) {
-                    return;
-                }
-                listEntries(list);
-                list.clear();
-            };
-
-            const auto quitLoop = [&e, &flushEntries]() {
-                flushEntries();
-                e.quit();
-            };
-
-            // Since slavebase has no eventloop it wont publish results
-            // on a timer, since we do not know how long our discovery
-            // will take this is super meh because we may appear
-            // stuck for a while. Implement our own listing system
-            // based on QTimer to mitigate.
-            QTimer sendTimer;
-            sendTimer.setInterval(300);
-            connect(&sendTimer, &QTimer::timeout, this, flushEntries);
-            sendTimer.start();
-
-            DNSSDDiscoverer d;
-            WSDiscoverer w;
-
-            const QList<Discoverer *> discoverers {&d, &w};
-
-            auto appendDiscovery = [&](const Discovery::Ptr &discovery) {
-                if (discoveredNames.contains(discovery->udsName())) {
-                    return;
-                }
-                discoveredNames << discovery->udsName();
-                list.append(discovery->toEntry());
-            };
-
-            auto maybeFinished = [&] { // finishes if all discoveries finished
-                bool allFinished = true;
-                for (auto discoverer : discoverers) {
-                    allFinished = allFinished && discoverer->isFinished();
-                }
-                if (allFinished) {
-                    quitLoop();
-                }
-            };
-
-            connect(&d, &DNSSDDiscoverer::newDiscovery, this, appendDiscovery);
-            connect(&w, &WSDiscoverer::newDiscovery, this, appendDiscovery);
-
-            connect(&d, &DNSSDDiscoverer::finished, this, maybeFinished);
-            connect(&w, &WSDiscoverer::finished, this, maybeFinished);
-
-            d.start();
-            w.start();
-
-            QTimer::singleShot(16000, &e, quitLoop); // max execution time!
-            e.exec();
-
-            qCDebug(KIO_SMB_LOG) << "Modern discovery finished.";
-        }
-
-        if (dir_is_root) {
-            udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-            udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
-            udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
-        } else {
-            udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
-            const int statErr = browse_stat_path(m_current_url, udsentry);
-            if (statErr) {
-                if (statErr == ENOENT || statErr == ENOTDIR) {
-                    reportWarning(m_current_url, statErr);
-                }
-                // Create a default UDSEntry if we could not stat the actual directory
-                udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-                udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
-            }
-        }
-        listEntry(udsentry);
-        udsentry.clear();
-
         // clean up
         smbc_closedir(dirfd);
-    } else {
+    }
+
+    // Run service discovery if the path is root. This augments
+    // "native" results from libsmbclient.
+    // Also, should native resolution have encountered an error it will not matter.
+    auto normalizedUrl = url.adjusted(QUrl::NormalizePathSegments);
+    if (normalizedUrl.path().isEmpty()) {
+        qCDebug(KIO_SMB_LOG) << "Trying modern discovery (dnssd/wsdiscovery)";
+
+        QEventLoop e;
+
+        UDSEntryList list;
+        QStringList discoveredNames;
+
+        const auto flushEntries = [this, &list]() {
+            if (list.isEmpty()) {
+                return;
+            }
+            listEntries(list);
+            list.clear();
+        };
+
+        const auto quitLoop = [&e, &flushEntries]() {
+            flushEntries();
+            e.quit();
+        };
+
+        // Since slavebase has no eventloop it wont publish results
+        // on a timer, since we do not know how long our discovery
+        // will take this is super meh because we may appear
+        // stuck for a while. Implement our own listing system
+        // based on QTimer to mitigate.
+        QTimer sendTimer;
+        sendTimer.setInterval(300);
+        connect(&sendTimer, &QTimer::timeout, this, flushEntries);
+        sendTimer.start();
+
+        DNSSDDiscoverer d;
+        WSDiscoverer w;
+
+        const QList<Discoverer *> discoverers {&d, &w};
+
+        auto appendDiscovery = [&](const Discovery::Ptr &discovery) {
+            if (discoveredNames.contains(discovery->udsName())) {
+                return;
+            }
+            discoveredNames << discovery->udsName();
+            list.append(discovery->toEntry());
+        };
+
+        auto maybeFinished = [&] { // finishes if all discoveries finished
+            bool allFinished = true;
+            for (auto discoverer : discoverers) {
+                allFinished = allFinished && discoverer->isFinished();
+            }
+            if (allFinished) {
+                quitLoop();
+            }
+        };
+
+        connect(&d, &DNSSDDiscoverer::newDiscovery, this, appendDiscovery);
+        connect(&w, &WSDiscoverer::newDiscovery, this, appendDiscovery);
+
+        connect(&d, &DNSSDDiscoverer::finished, this, maybeFinished);
+        connect(&w, &WSDiscoverer::finished, this, maybeFinished);
+
+        d.start();
+        w.start();
+
+        QTimer::singleShot(16000, &e, quitLoop); // max execution time!
+        e.exec();
+
+        qCDebug(KIO_SMB_LOG) << "Modern discovery finished.";
+    } else if (dirfd < 0) { // not smb:// and had an error -> handle it
         if (errNum == EPERM || errNum == EACCES || workaroundEEXIST(errNum)) {
             qCDebug(KIO_SMB_LOG) << "trying checkPassword";
             const int passwordError = checkPassword(m_current_url);
@@ -664,6 +646,24 @@ void SMBSlave::listDir(const QUrl &kurl)
         reportError(m_current_url, errNum);
         return;
     }
+
+    if (dir_is_root) {
+        udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+        udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
+    } else {
+        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+        const int statErr = browse_stat_path(m_current_url, udsentry);
+        if (statErr) {
+            if (statErr == ENOENT || statErr == ENOTDIR) {
+                reportWarning(m_current_url, statErr);
+            }
+            // Create a default UDSEntry if we could not stat the actual directory
+            udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+            udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
+        }
+    }
+    listEntry(udsentry);
 
     finished();
 }
