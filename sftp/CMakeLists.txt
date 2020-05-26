@@ -2,7 +2,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_sftp\")
 
 include_directories(${LIBSSH_INCLUDE_DIR})
 if(WIN32)
-include_directories(${QT_MKSPECS_DIR}/default) # for SYMLINKS 
+include_directories(${QT_MKSPECS_DIR}/default) # for SYMLINKS
 endif()
 set(kio_sftp_SRCS kio_sftp.cpp)
 

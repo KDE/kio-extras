@@ -253,7 +253,7 @@ void SFTPInternal::log_callback(int priority, const char *function, const char *
 
 Result SFTPInternal::init()
 {
-    qCDebug(KIO_SFTP_LOG) << "pid = " << getpid();
+    qCDebug(KIO_SFTP_LOG) << "pid = " << qApp->applicationPid();
     qCDebug(KIO_SFTP_LOG) << "debug = " << getenv("KIO_SFTP_LOG_VERBOSITY");
 
     // Members are 'value initialized' to zero because of non-user defined ()!
@@ -548,7 +548,7 @@ SFTPInternal::SFTPInternal(SFTPSlave *qptr)
 }
 
 SFTPInternal::~SFTPInternal() {
-    qCDebug(KIO_SFTP_LOG) << "pid = " << getpid();
+    qCDebug(KIO_SFTP_LOG) << "pid = " << qApp->applicationPid();
     closeConnection();
 
     delete mCallbacks;
