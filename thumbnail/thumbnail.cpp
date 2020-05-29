@@ -411,6 +411,8 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
 
     if ((image.size().width() > imageTargetSize.width()) && (imageTargetSize.width() != 0)) {
         scaling = float(imageTargetSize.width()) / float(image.size().width());
+    } else if ((image.size().height() > imageTargetSize.height()) && (imageTargetSize.height() != 0)) {
+        scaling = float(imageTargetSize.height()) / float(image.size().height());
     }
 
     QImage frame(imageTargetSize + QSize(frameWidth * 2, frameWidth * 2),
