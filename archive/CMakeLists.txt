@@ -63,6 +63,11 @@ set_target_properties(kioarchive PROPERTIES
     EXPORT_NAME KioArchive
 )
 
+ecm_qt_declare_logging_category(kioarchive
+                                HEADER kio_archive_debug.h
+                                IDENTIFIER KIO_ARCHIVE_LOG
+CATEGORY_NAME log_kio_archive)
+
 install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ############### Archive KIOslave ######################
