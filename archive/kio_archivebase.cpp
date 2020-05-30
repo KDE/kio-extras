@@ -23,6 +23,8 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 
+#include <KIO/StatJob>
+
 #include <QFile>
 #include <QDir>
 #include <QMimeDatabase>
@@ -173,26 +175,77 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     return true;
 }
 
+uint ArchiveProtocolBase::computeArchiveDirSize(const KArchiveDirectory *dir)
+{
+    // compute size of archive content
+    uint totalSize = 0;
+    for (const auto entryName: dir->entries()) {
+        auto entry = dir->entry(entryName);
+        if (entry->isFile()) {
+            auto fileEntry = static_cast<const KArchiveFile *>(entry);
+            totalSize += fileEntry->size();
+        }
+        else if (entry->isDirectory()) {
+            const auto dirEntry = static_cast<const KArchiveDirectory *>(entry);
+            // recurse
+            totalSize += computeArchiveDirSize(dirEntry);
+        }
+    }
+    return totalSize;
+}
+
+KIO::StatDetails ArchiveProtocolBase::getStatDetails()
+{
+    // takes care of converting old metadata details to new StatDetails
+    // TODO KF6 : remove legacy "details" code path
+    KIO::StatDetails details;
+#if KIOCORE_BUILD_DEPRECATED_SINCE(5, 69)
+    if (hasMetaData(QStringLiteral("statDetails"))) {
+#endif
+        const QString statDetails = metaData(QStringLiteral("statDetails"));
+        details = statDetails.isEmpty() ? KIO::StatDefaultDetails : static_cast<KIO::StatDetails>(statDetails.toInt());
+#if KIOCORE_BUILD_DEPRECATED_SINCE(5, 69)
+    } else {
+        const QString sDetails = metaData(QStringLiteral("details"));
+        details = sDetails.isEmpty() ? KIO::StatDefaultDetails : KIO::detailsToStatDetails(sDetails.toInt());
+    }
+#endif
+    return details;
+}
 
 void ArchiveProtocolBase::createRootUDSEntry( KIO::UDSEntry & entry )
 {
     entry.clear();
-    entry.reserve(5);
+    entry.reserve(7);
+
+    auto path = m_archiveFile->fileName();
+    path = path.mid(path.lastIndexOf(QLatin1Char('/')) + 1);
+
     entry.fastInsert( KIO::UDSEntry::UDS_NAME, "." );
+    entry.fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, path );
     entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
     entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, m_mtime );
     //entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, 07777 ); // fake 'x' permissions, this is a pseudo-directory
     entry.fastInsert( KIO::UDSEntry::UDS_USER, m_user);
     entry.fastInsert( KIO::UDSEntry::UDS_GROUP, m_group);
+
+    QMimeDatabase db;
+    QMimeType mt = db.mimeTypeForFile(m_archiveFile->fileName());
+    if (mt.isValid()) {
+        entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, mt.name());
+    }
 }
 
 void ArchiveProtocolBase::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
 {
     entry.clear();
+
     entry.reserve(8);
     entry.fastInsert( KIO::UDSEntry::UDS_NAME, archiveEntry->name() );
-    entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->permissions() & S_IFMT ); // keep file type only
-    entry.fastInsert( KIO::UDSEntry::UDS_SIZE, archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L );
+    entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->isFile() ? archiveEntry->permissions() & S_IFMT : S_IFDIR ); // keep file type only
+    if (archiveEntry->isFile()) {
+        entry.fastInsert( KIO::UDSEntry::UDS_SIZE, ((KArchiveFile *)archiveEntry)->size() );
+    }
     entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date().toSecsSinceEpoch());
     entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, archiveEntry->permissions() & 07777 ); // keep permissions only
     entry.fastInsert( KIO::UDSEntry::UDS_USER, archiveEntry->user());
@@ -363,7 +416,19 @@ void ArchiveProtocolBase::stat( const QUrl & url )
         return;
     }
 
-    createUDSEntry( archiveEntry, entry );
+    if (archiveEntry == root) {
+        createRootUDSEntry( entry );
+    } else {
+        createUDSEntry( archiveEntry, entry );
+    }
+
+    if (archiveEntry->isDirectory()) {
+        auto details = getStatDetails();
+        if (details & KIO::StatRecursiveSize) {
+            const auto directoryEntry = static_cast<const KArchiveDirectory *>(archiveEntry);
+            entry.fastInsert(KIO::UDSEntry::UDS_RECURSIVE_SIZE, static_cast<long long>(computeArchiveDirSize(directoryEntry)));
+        }
+    }
     statEntry( entry );
 
     finished();
