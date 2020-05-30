@@ -29,6 +29,13 @@
 
 #include "kio_archive_debug.h"
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.archive" FILE "archive.json")
+};
+
 using namespace KIO;
 
 extern "C" { int Q_DECL_EXPORT kdemain(int argc, char **argv); }
@@ -83,5 +90,8 @@ KArchive *ArchiveProtocol::createArchive( const QString & proto, const QString &
       return nullptr;
     }
 }
+
+// needed for JSON file embedding
+#include "kio_archive.moc"
 
 // kate: space-indent on; indent-width 4; replace-tabs on;
