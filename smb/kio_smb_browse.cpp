@@ -670,6 +670,10 @@ void SMBSlave::listDir(const QUrl &kurl)
 
 void SMBSlave::fileSystemFreeSpace(const QUrl &url)
 {
+    if (url.host().endsWith("kio-discovery-wsd")) {
+        error(KIO::ERR_UNKNOWN_HOST, url.url());
+        return;
+    }
     qCDebug(KIO_SMB_LOG) << url;
 
     // Avoid crashing in smbc_fstatvfs below when
