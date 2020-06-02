@@ -102,7 +102,7 @@ void SMBSlave::auth_smbc_get_data(const char *server,const char *share,
             info.username = m_default_user;
             info.password = m_default_password;
         }
-
+        qCDebug(KIO_SMB_LOG) << "trying defaults for user" << info.username;
     } else
         qCDebug(KIO_SMB_LOG) << "got password through cache";
 
