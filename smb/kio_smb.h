@@ -85,6 +85,7 @@ using namespace KIO;
 class SMBSlave : public QObject, public KIO::SlaveBase
 {
     Q_OBJECT
+    friend class SMBCDiscoverer;
 
 private:
     class SMBError

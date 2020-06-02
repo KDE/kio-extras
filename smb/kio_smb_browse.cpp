@@ -41,12 +41,12 @@
 
 #include <QEventLoop>
 #include <QTimer>
-#include <QUrlQuery>
 
 #include <grp.h>
 #include <pwd.h>
 
 #include "dnssddiscoverer.h"
+#include "smbcdiscoverer.h"
 #include "wsdiscoverer.h"
 #include <config-runtime.h>
 
@@ -385,7 +385,6 @@ void SMBSlave::reportWarning(const SMBUrl &url, const int errNum)
 void SMBSlave::listDir(const QUrl &kurl)
 {
     qCDebug(KIO_SMB_LOG) << kurl;
-    int errNum = 0;
 
     // check (correct) URL
     QUrl url = checkURL(kurl);
@@ -398,234 +397,93 @@ void SMBSlave::listDir(const QUrl &kurl)
 
     m_current_url = kurl;
 
-    struct smbc_dirent *dirp = nullptr;
-    UDSEntry udsentry;
-    bool dir_is_root = true;
+    QEventLoop e;
 
-    int dirfd = smbc_opendir(m_current_url.toSmbcUrl());
-    if (dirfd > 0) {
-        errNum = 0;
-    } else {
-        errNum = errno;
-    }
+    UDSEntryList list;
+    QStringList discoveredNames;
 
-    qCDebug(KIO_SMB_LOG) << "open " << m_current_url.toSmbcUrl()
-                         << "url-type:" << m_current_url.getType()
-                         << "dirfd:" << dirfd
-                         << "errNum:" << errNum;
-    if (dirfd >= 0) {
-#ifdef HAVE_READDIRPLUS2
-           // readdirplus2 improves performance by giving us a stat without separate call (Samba>=4.12)
-           while (const struct libsmb_file_info *fileInfo = smbc_readdirplus2(dirfd, &st)) {
-               const QString name = QString::fromUtf8(fileInfo->name);
-               if (name == ".") {
-                   continue;
-               } else if (name == "..") {
-                   dir_is_root = false;
-                   continue;
-               }
-               udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
+    const auto flushEntries = [this, &list]() {
+        if (list.isEmpty()) {
+            return;
+        }
+        listEntries(list);
+        list.clear();
+    };
 
-               m_current_url.addPath(name);
-               statToUDSEntry(m_current_url, st, udsentry); // won't produce useful error
-               listEntry(udsentry);
-               m_current_url.cdUp();
+    const auto quitLoop = [&e, &flushEntries]() {
+        flushEntries();
+        e.quit();
+    };
 
-               udsentry.clear();
-           }
-#endif // HAVE_READDIRPLUS2
+    // Since slavebase has no eventloop it wont publish results
+    // on a timer, since we do not know how long our discovery
+    // will take this is super meh because we may appear
+    // stuck for a while. Implement our own listing system
+    // based on QTimer to mitigate.
+    QTimer sendTimer;
+    sendTimer.setInterval(300);
+    connect(&sendTimer, &QTimer::timeout, this, flushEntries);
+    sendTimer.start();
 
-        uint direntCount = 0;
-        do {
-            qCDebug(KIO_SMB_LOG) << "smbc_readdir ";
-            dirp = smbc_readdir(dirfd);
-            if (dirp == nullptr)
-                break;
+    QSharedPointer<SMBCDiscoverer> smbc(new SMBCDiscoverer(m_current_url, &e, this));
 
-            ++direntCount;
+    QVector<QSharedPointer<Discoverer>> discoverers;
+    discoverers << smbc;
 
-            // Set name
-            QString udsName;
-            const QString dirpName = QString::fromUtf8(dirp->name);
-            // We cannot trust dirp->commentlen has it might be with or without the NUL character
-            // See KDE bug #111430 and Samba bug #3030
-            const QString comment = QString::fromUtf8(dirp->comment);
-            if (dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_WORKGROUP) {
-                udsName = dirpName.toLower();
-                udsName[0] = dirpName.at(0).toUpper();
-                if (!comment.isEmpty() && dirp->smbc_type == SMBC_SERVER)
-                    udsName += " (" + comment + ')';
-            } else
-                udsName = dirpName;
+    auto appendDiscovery = [&](const Discovery::Ptr &discovery) {
+        if (discoveredNames.contains(discovery->udsName())) {
+            return;
+        }
+        discoveredNames << discovery->udsName();
+        list.append(discovery->toEntry());
+    };
 
-            qCDebug(KIO_SMB_LOG) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type;
+    auto maybeFinished = [&] { // finishes if all discoveries finished
+        bool allFinished = true;
+        for (auto discoverer : discoverers) {
+            allFinished = allFinished && discoverer->isFinished();
+        }
+        if (allFinished) {
+            quitLoop();
+        }
+    };
 
-            udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, udsName);
-            udsentry.fastInsert(KIO::UDSEntry::UDS_COMMENT, QString::fromUtf8(dirp->comment));
-
-            // Mark all administrative shares, e.g ADMIN$, as hidden. #197903
-            if (dirpName.endsWith(QLatin1Char('$'))) {
-                // qCDebug(KIO_SMB_LOG) << dirpName << "marked as hidden";
-                udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, 1);
-            }
-
-            if (udsName == ".") {
-                // Skip the "." entry
-                // Mind the way m_current_url is handled in the loop
-            } else if (udsName == "..") {
-                dir_is_root = false;
-                // fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
-                // do nothing and hide the hidden shares
-#if !defined(HAVE_READDIRPLUS2)
-            } else if (dirp->smbc_type == SMBC_FILE || dirp->smbc_type == SMBC_DIR) {
-                // Set stat information
-                m_current_url.addPath(dirpName);
-                const int statErr = browse_stat_path(m_current_url, udsentry);
-                if (statErr) {
-                    if (statErr == ENOENT || statErr == ENOTDIR) {
-                        reportWarning(m_current_url, statErr);
-                    }
-                } else {
-                    // Call base class to list entry
-                    listEntry(udsentry);
-                }
-                m_current_url.cdUp();
-#endif // HAVE_READDIRPLUS2
-            } else if (dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_FILE_SHARE) {
-                // Set type
-                udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-
-                if (dirp->smbc_type == SMBC_SERVER) {
-                    udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
-
-                    // QString workgroup = m_current_url.host().toUpper();
-                    QUrl u("smb://");
-                    u.setHost(dirpName);
-
-                    // when libsmbclient knows
-                    // u = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.toUpper());
-                    qCDebug(KIO_SMB_LOG) << "list item " << u;
-                    udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-
-                    udsentry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-server"));
-                } else
-                    udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
-
-                // Call base class to list entry
-                listEntry(udsentry);
-            } else if (dirp->smbc_type == SMBC_WORKGROUP) {
-                // Set type
-                udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-
-                // Set permissions
-                udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
-
-                udsentry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-workgroup"));
-
-                // QString workgroup = m_current_url.host().toUpper();
-                QUrl u("smb://");
-                u.setHost(dirpName);
-                if (!u.isValid()) {
-                    // In the event that the workgroup contains bad characters, put it in a query instead.
-                    // This is transparently handled by SMBUrl when we get this as input again.
-                    // Also see documentation there.
-                    // https://bugs.kde.org/show_bug.cgi?id=204423
-                    u.setHost(QString());
-                    QUrlQuery q;
-                    q.addQueryItem("kio-workgroup", dirpName);
-                    u.setQuery(q);
-                }
-                udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-
-                // Call base class to list entry
-                listEntry(udsentry);
-            } else {
-                qCDebug(KIO_SMB_LOG) << "SMBC_UNKNOWN :" << dirpName;
-                // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
-                //       SMBC_LINK, SMBC_COMMS_SHARE
-                // SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
-                // continue;
-            }
-            udsentry.clear();
-        } while (dirp); // checked already in the head
-
-        // clean up
-        smbc_closedir(dirfd);
-    }
+    connect(smbc.data(), &SMBCDiscoverer::newDiscovery, this, appendDiscovery);
+    connect(smbc.data(), &SMBCDiscoverer::finished, this, maybeFinished);
 
     // Run service discovery if the path is root. This augments
     // "native" results from libsmbclient.
     // Also, should native resolution have encountered an error it will not matter.
-    auto normalizedUrl = url.adjusted(QUrl::NormalizePathSegments);
-    if (normalizedUrl.path().isEmpty()) {
-        qCDebug(KIO_SMB_LOG) << "Trying modern discovery (dnssd/wsdiscovery)";
+    if (m_current_url.getType() == SMBURLTYPE_ENTIRE_NETWORK) {
+        QSharedPointer<DNSSDDiscoverer> dnssd(new DNSSDDiscoverer);
+        QSharedPointer<WSDiscoverer> wsd(new WSDiscoverer);
+        discoverers << dnssd << wsd;
 
-        QEventLoop e;
+        qCDebug(KIO_SMB_LOG) << "Adding modern discovery (dnssd/wsdiscovery)";
 
-        UDSEntryList list;
-        QStringList discoveredNames;
+        connect(dnssd.data(), &DNSSDDiscoverer::newDiscovery, this, appendDiscovery);
+        connect(wsd.data(), &WSDiscoverer::newDiscovery, this, appendDiscovery);
 
-        const auto flushEntries = [this, &list]() {
-            if (list.isEmpty()) {
-                return;
-            }
-            listEntries(list);
-            list.clear();
-        };
+        connect(dnssd.data(), &DNSSDDiscoverer::finished, this, maybeFinished);
+        connect(wsd.data(), &WSDiscoverer::finished, this, maybeFinished);
 
-        const auto quitLoop = [&e, &flushEntries]() {
-            flushEntries();
-            e.quit();
-        };
+        dnssd->start();
+        wsd->start();
 
-        // Since slavebase has no eventloop it wont publish results
-        // on a timer, since we do not know how long our discovery
-        // will take this is super meh because we may appear
-        // stuck for a while. Implement our own listing system
-        // based on QTimer to mitigate.
-        QTimer sendTimer;
-        sendTimer.setInterval(300);
-        connect(&sendTimer, &QTimer::timeout, this, flushEntries);
-        sendTimer.start();
+        qCDebug(KIO_SMB_LOG) << "Modern discovery set up.";
+    }
 
-        DNSSDDiscoverer d;
-        WSDiscoverer w;
+    qCDebug(KIO_SMB_LOG) << "Starting discovery.";
+    smbc->start();
+    QTimer::singleShot(16000, &e, quitLoop); // max execution time!
+    e.exec();
 
-        const QList<Discoverer *> discoverers {&d, &w};
+    qCDebug(KIO_SMB_LOG) << "Discovery finished.";
 
-        auto appendDiscovery = [&](const Discovery::Ptr &discovery) {
-            if (discoveredNames.contains(discovery->udsName())) {
-                return;
-            }
-            discoveredNames << discovery->udsName();
-            list.append(discovery->toEntry());
-        };
-
-        auto maybeFinished = [&] { // finishes if all discoveries finished
-            bool allFinished = true;
-            for (auto discoverer : discoverers) {
-                allFinished = allFinished && discoverer->isFinished();
-            }
-            if (allFinished) {
-                quitLoop();
-            }
-        };
-
-        connect(&d, &DNSSDDiscoverer::newDiscovery, this, appendDiscovery);
-        connect(&w, &WSDiscoverer::newDiscovery, this, appendDiscovery);
-
-        connect(&d, &DNSSDDiscoverer::finished, this, maybeFinished);
-        connect(&w, &WSDiscoverer::finished, this, maybeFinished);
-
-        d.start();
-        w.start();
-
-        QTimer::singleShot(16000, &e, quitLoop); // max execution time!
-        e.exec();
-
-        qCDebug(KIO_SMB_LOG) << "Modern discovery finished.";
-    } else if (dirfd < 0) { // not smb:// and had an error -> handle it
-        if (errNum == EPERM || errNum == EACCES || workaroundEEXIST(errNum)) {
+    if (m_current_url.getType() != SMBURLTYPE_ENTIRE_NETWORK && smbc->error() != 0) {
+        // not smb:// and had an error -> handle it
+        const int err = smbc->error();
+        if (err == EPERM || err == EACCES || workaroundEEXIST(err)) {
             qCDebug(KIO_SMB_LOG) << "trying checkPassword";
             const int passwordError = checkPassword(m_current_url);
             if (passwordError == KJob::NoError) {
@@ -633,7 +491,7 @@ void SMBSlave::listDir(const QUrl &kurl)
                 finished();
             } else if (passwordError == KIO::ERR_USER_CANCELED) {
                 qCDebug(KIO_SMB_LOG) << "user cancelled password request";
-                reportError(m_current_url, errNum);
+                reportError(m_current_url, err);
             } else {
                 qCDebug(KIO_SMB_LOG) << "generic password error:" << passwordError;
                 error(passwordError, m_current_url.toString());
@@ -642,12 +500,13 @@ void SMBSlave::listDir(const QUrl &kurl)
             return;
         }
 
-        qCDebug(KIO_SMB_LOG) << "reporting generic error:" << errNum;
-        reportError(m_current_url, errNum);
+        qCDebug(KIO_SMB_LOG) << "reporting generic error:" << err;
+        reportError(m_current_url, err);
         return;
     }
 
-    if (dir_is_root) {
+    UDSEntry udsentry;
+    if (smbc->dirWasRoot()) {
         udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
         udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));

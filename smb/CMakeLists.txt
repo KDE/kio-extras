@@ -50,6 +50,7 @@ set(kio_smb_PART_SRCS
     dnssddiscoverer.cpp
     discovery.cpp
     transfer.cpp
+    smbcdiscoverer.cpp
 )
 
 ecm_qt_declare_logging_category(kio_smb_PART_SRCS
