@@ -405,9 +405,14 @@ void SMBSlave::listDir(const QUrl &kurl)
     discoverers << smbc;
 
     auto appendDiscovery = [&](const Discovery::Ptr &discovery) {
-        if (discoveredNames.contains(discovery->udsName())) {
+        if (discoveredNames.contains(discovery->udsName(), Qt::CaseInsensitive)) {
             return;
         }
+        // Not tracking hosts. Tracking hosts means **guessing** if foo.local
+        // and foo and foo.kio-discovery-wsd will actually resolve to the same
+        // IP address, which is tricky to do at best. In the interest of efficency
+        // I'd rather have the de-duplication requirement be that the name of
+        // two competing service discovery systems needs to be the same.
         discoveredNames << discovery->udsName();
         list.append(discovery->toEntry());
     };
