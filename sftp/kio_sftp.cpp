@@ -44,8 +44,8 @@
 #include <kio/ioslave_defaults.h>
 
 #ifdef Q_OS_WIN
-#include <experimental/filesystem>  // for permissions
-using namespace std::experimental::filesystem;
+#include <filesystem>  // for permissions
+using namespace std::filesystem;
 #include <qplatformdefs.h>
 #else
 #include <utime.h>

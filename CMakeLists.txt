@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 
+if(WIN32)
+    set(CMAKE_CXX_STANDARD 17)
+endif()
+
 # KDE Applications Version, managed by release script
 set (RELEASE_SERVICE_VERSION_MAJOR "20")
 set (RELEASE_SERVICE_VERSION_MINOR "07")
