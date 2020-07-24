@@ -9,6 +9,7 @@
 #include <QtGlobal>
 #include <QVarLengthArray>
 
+#include <array>
 #include <condition_variable>
 #include <mutex>
 
