@@ -216,14 +216,12 @@ install(TARGETS kritathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 find_package(Taglib 1.11)
 
-if(TAGLIB_FOUND)
-    set(audiothumbnail_SRCS audiocreator.cpp)
-    add_library(audiothumbnail MODULE ${audiothumbnail_SRCS})
-    target_include_directories(audiothumbnail BEFORE PRIVATE ${TAGLIB_INCLUDES})
-    target_link_libraries(audiothumbnail ${TAGLIB_LIBRARIES} KF5::KIOWidgets)
+if(Taglib_FOUND)
+    add_library(audiothumbnail MODULE audiocreator.cpp)
+    target_link_libraries(audiothumbnail Taglib::Taglib KF5::KIOWidgets)
     install(TARGETS audiothumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
     set(audiothumbnail_desktop audiothumbnail.desktop)
-endif(TAGLIB_FOUND)
+endif()
 
 # ########### next target ###############
 
