@@ -37,7 +37,7 @@ check_include_file(utime.h HAVE_UTIME_H)
 
 configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)
 
-set(kio_smb_PART_SRCS 
+set(kio_smb_PART_SRCS
     kio_smb.cpp
     kio_smb_auth.cpp
     kio_smb_browse.cpp
@@ -66,7 +66,7 @@ include_directories(${SAMBA_INCLUDE_DIR})
 add_library(kio_smb_static STATIC ${kio_smb_PART_SRCS})
 target_include_directories(kio_smb_static
     PUBLIC
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..;${CMAKE_CURRENT_BINARY_DIR}/..>"
+        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..;${CMAKE_CURRENT_BINARY_DIR}/..>"
 )
 target_link_libraries(kio_smb_static
     KF5::KIOCore
@@ -92,3 +92,4 @@ install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/konqueror/d
 install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
 
 add_subdirectory(autotests)
+add_subdirectory(kded)

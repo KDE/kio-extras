@@ -124,6 +124,15 @@ private Q_SLOTS:
         QCOMPARE(SMBUrl(QUrl("smb:/?kio-workgroup=hax max")).getType(),
                  SMBURLTYPE_WORKGROUP_OR_SERVER);
     }
+
+    void testNonSmb()
+    {
+        // In the kdirnotify integration we load arbitrary urls into smburl,
+        // make sure they get reported as unknown.
+        QCOMPARE(SMBUrl(QUrl("file:///")).getType(), SMBURLTYPE_UNKNOWN);
+        QCOMPARE(SMBUrl(QUrl("file:///home/foo/bar")).getType(), SMBURLTYPE_UNKNOWN);
+        QCOMPARE(SMBUrl(QUrl("sftp://me@localhost/foo/bar")).getType(), SMBURLTYPE_UNKNOWN);
+    }
 };
 
 QTEST_GUILESS_MAIN(SMBUrlTest)
