@@ -5,7 +5,9 @@
 #  MTP_INCLUDE_DIR - the libmtp include directory
 #  MTP_LIBRARIES - Link these to use libmtp
 #  MTP_DEFINITIONS - Compiler switches required for using libmtp
-#
+
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileCopyrightText: 2014 Jan Grulich <jgrulich@redhat.com>
 
 if (MTP_INCLUDE_DIR AND MTP_LIBRARIES AND MTP_VERSION_OKAY)
 
