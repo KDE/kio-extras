@@ -72,7 +72,7 @@ TransferSegment *TransferRingBuffer::pop()
 void TransferRingBuffer::unpop()
 {
     std::unique_lock<std::mutex> lock(m_mutex);
-    tail = ++tail % m_capacity;
+    tail = (tail + 1) % m_capacity;
     m_cond.notify_all();
 }
 
