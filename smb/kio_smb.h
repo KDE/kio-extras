@@ -50,35 +50,36 @@ extern "C" {
 // kio_smb internal includes
 //---------------------------
 #include "smburl.h"
-
+#include "smbauthenticator.h"
+#include "smbcontext.h"
 
 using namespace KIO;
+class SMBSlave;
+
+class SlaveFrontend : public SMBAbstractFrontend
+{
+public:
+    SlaveFrontend(SMBSlave &slave);
+    bool checkCachedAuthentication(AuthInfo &info) override;
+private:
+    SMBSlave &m_slave;
+};
 
 class SMBSlave : public QObject, public KIO::SlaveBase
 {
     Q_OBJECT
     friend class SMBCDiscoverer;
+    SlaveFrontend m_frontend { *this };
+    SMBContext m_context { new SMBAuthenticator(m_frontend) };
 
 private:
+
     class SMBError
     {
     public:
         int kioErrorId;
         QString errorString;
     };
-
-    //---------------------------------------------------------------------
-    // please make sure your private data does not duplicate existing data
-    //---------------------------------------------------------------------
-    bool m_initialized_smbc;
-
-    /**
-     * From Controlcenter
-     */
-    QString m_default_user;
-    QString m_default_workgroup = QStringLiteral("WORKGROUP"); // overwritten with value from smbc
-    QString m_default_password;
-    QString m_default_encoding;
 
     /**
      * we store the current url, it's needed for
@@ -185,11 +186,6 @@ protected:
 
 public:
     //-----------------------------------------------------------------------
-    // smbclient authentication callback (note that this is called by  the
-    // global ::auth_smbc_get_data() call.
-    void auth_smbc_get_data(const char *server, const char *share, char *workgroup, int wgmaxlen, char *username, int unmaxlen, char *password, int pwmaxlen);
-
-    //-----------------------------------------------------------------------
     // Overwritten functions from the base class that define the operation of
     // this slave. (See the base class headerfile slavebase.h for more
     // details)
@@ -253,12 +249,6 @@ private:
     // Close without calling finish(). Use this to close after error.
     void closeWithoutFinish();
 };
-
-//==========================================================================
-// the global libsmbclient authentication callback function
-extern "C" {
-void auth_smbc_get_data(SMBCCTX *context, const char *server, const char *share, char *workgroup, int wgmaxlen, char *username, int unmaxlen, char *password, int pwmaxlen);
-}
 
 //===========================================================================
 // Main slave entrypoint (see kio_smb.cpp)

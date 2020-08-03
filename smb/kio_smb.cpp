@@ -46,13 +46,6 @@ SMBSlave::SMBSlave(const QByteArray &pool, const QByteArray &app)
     , m_openFd(-1)
     , m_enableEEXISTWorkaround(needsEEXISTWorkaround())
 {
-    m_initialized_smbc = false;
-
-    // read in the default workgroup info...
-    reparseConfiguration();
-
-    // initialize the library...
-    auth_initialize_smbc();
 }
 
 SMBSlave::~SMBSlave() = default;
@@ -72,6 +65,16 @@ void SMBSlave::virtual_hook(int id, void *data)
         SlaveBase::virtual_hook(id, data);
     } break;
     }
+}
+
+SlaveFrontend::SlaveFrontend(SMBSlave &slave)
+    : m_slave(slave)
+{
+}
+
+bool SlaveFrontend::checkCachedAuthentication(AuthInfo &info)
+{
+    return m_slave.checkCachedAuthentication(info);
 }
 
 #include "kio_smb.moc"

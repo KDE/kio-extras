@@ -51,6 +51,8 @@ set(kio_smb_PART_SRCS
     discovery.cpp
     transfer.cpp
     smbcdiscoverer.cpp
+    smbcontext.cpp
+    smbauthenticator.cpp
 )
 
 ecm_qt_declare_logging_category(kio_smb_PART_SRCS

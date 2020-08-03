@@ -12,6 +12,7 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QVarLengthArray>
+#include <KLocalizedString>
 
 #include <future>
 
@@ -30,8 +31,10 @@ void SMBSlave::get(const QUrl &kurl)
         return;
     }
 
-    if (!auth_initialize_smbc())
+    if (!m_context.isValid()) {
+        SlaveBase::error(ERR_INTERNAL, i18n("libsmbclient failed to create context"));
         return;
+    }
 
     // Stat
     SMBUrl url = kurl;
@@ -131,7 +134,7 @@ void SMBSlave::open(const QUrl &kurl, QIODevice::OpenMode mode)
         return;
     }
 
-    if (!auth_initialize_smbc()) {
+    if (!m_context.isValid()) {
         error(KIO::ERR_ACCESS_DENIED, kurl.toDisplayString());
         return;
     }
