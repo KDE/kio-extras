@@ -145,7 +145,7 @@ void SMBUrl::updateCache()
         if (!sambaUrl.fragment().isEmpty()) {
             url += '#' + sambaUrl.fragment();
         }
-        m_surl = QUrl(url).toString(QUrl::PrettyDecoded).toUtf8();
+        m_surl = url.toUtf8();
     }
 
     m_type = SMBURLTYPE_UNKNOWN;
