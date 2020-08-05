@@ -1441,7 +1441,10 @@ Result SFTPInternal::read(KIO::filesize_t bytes)
     Q_ASSERT(bytesRead <= static_cast<ssize_t>(bytes));
 
     if (bytesRead < 0) {
-        qCDebug(KIO_SFTP_LOG) << "Could not read " << mOpenUrl;
+        qCDebug(KIO_SFTP_LOG) << "Could not read" << mOpenUrl
+                              << sftp_get_error(mSftp)
+                              << ssh_get_error_code(mSession)
+                              << ssh_get_error(mSession);
         close();
         return Result::fail(KIO::ERR_CANNOT_READ, mOpenUrl.toDisplayString());
     }
