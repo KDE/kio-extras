@@ -35,6 +35,8 @@
 #include <QMimeType>
 #include <QMimeDatabase>
 #include <QDateTime>
+#include <QScopedPointer>
+#include <QScopeGuard>
 
 #include <kuser.h>
 #include <kmessagebox.h>
@@ -74,6 +76,16 @@ using namespace std::filesystem;
 #define MAX_XFER_BUF_SIZE (60 * 1024)
 
 #define KSFTP_ISDIR(sb) (sb->type == SSH_FILEXFER_TYPE_DIRECTORY)
+
+// sftp_attributes must be freed. Use this ScopedPtr to ensure they always are!
+struct ScopedPointerCustomDeleter
+{
+    static inline void cleanup(sftp_attributes attr)
+    {
+        sftp_attributes_free(attr);
+    }
+};
+typedef QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter> SFTPAttributesPtr;
 
 using namespace KIO;
 extern "C"
@@ -429,7 +441,7 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
     Q_ASSERT(entry.count() == 0);
     entry.reserve(10);
 
-    sftp_attributes sb = sftp_lstat(mSftp, path.constData());
+    SFTPAttributesPtr sb(sftp_lstat(mSftp, path.constData()));
     if (sb == nullptr) {
         qCDebug(KIO_SFTP_LOG) << "Failed to stat" << path << sftp_get_error(mSftp);
         return false;
@@ -441,7 +453,6 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
         link = sftp_readlink(mSftp, path.constData());
         if (link == nullptr) {
             qCDebug(KIO_SFTP_LOG) << "Failed to readlink despite this being a link!" << path << sftp_get_error(mSftp);
-            sftp_attributes_free(sb);
             return false;
         }
         entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
@@ -452,8 +463,7 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
             if (sb2 == nullptr) {
                 isBrokenLink = true;
             } else {
-                sftp_attributes_free(sb);
-                sb = sb2;
+                sb.reset(sb2);
             }
         }
     }
@@ -512,8 +522,6 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
             entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
         }
     }
-
-    sftp_attributes_free(sb);
 
     return true;
 }
@@ -1342,18 +1350,16 @@ Result SFTPInternal::open(const QUrl &url, QIODevice::OpenMode mode) {
     const QString path = url.path();
     const QByteArray path_c = path.toUtf8();
 
-    sftp_attributes sb = sftp_lstat(mSftp, path_c.constData());
+    SFTPAttributesPtr sb(sftp_lstat(mSftp, path_c.constData()));
     if (sb == nullptr) {
         return reportError(url, sftp_get_error(mSftp));
     }
 
     switch (sb->type) {
     case SSH_FILEXFER_TYPE_DIRECTORY:
-        sftp_attributes_free(sb);
         return Result::fail(KIO::ERR_IS_DIRECTORY, url.toDisplayString());
     case SSH_FILEXFER_TYPE_SPECIAL:
     case SSH_FILEXFER_TYPE_UNKNOWN:
-        sftp_attributes_free(sb);
         return Result::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toDisplayString());
     case SSH_FILEXFER_TYPE_SYMLINK:
     case SSH_FILEXFER_TYPE_REGULAR:
@@ -1361,7 +1367,6 @@ Result SFTPInternal::open(const QUrl &url, QIODevice::OpenMode mode) {
     }
 
     KIO::filesize_t fileSize = sb->size;
-    sftp_attributes_free(sb);
 
     int flags = 0;
 
@@ -1487,15 +1492,14 @@ Result SFTPInternal::truncate(KIO::filesize_t length)
     Q_ASSERT(mOpenFile);
 
     int errorCode = KJob::NoError;
-    sftp_attributes attr = sftp_fstat(mOpenFile);
+    SFTPAttributesPtr attr(sftp_fstat(mOpenFile));
     if (attr) {
         attr->size = length;
-        if (sftp_setstat(mSftp, mOpenUrl.path().toUtf8().constData(), attr) == 0) {
+        if (sftp_setstat(mSftp, mOpenUrl.path().toUtf8().constData(), attr.data()) == 0) {
             q->truncated(length);
         } else {
             errorCode = toKIOError(sftp_get_error(mSftp));
         }
-        sftp_attributes_free(attr);
     } else {
         errorCode = toKIOError(sftp_get_error(mSftp));
     }
@@ -1541,14 +1545,13 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
     KIO::filesize_t totalbytesread  = 0;
     QByteArray filedata;
 
-    sftp_attributes sb = sftp_lstat(mSftp, path.constData());
+    SFTPAttributesPtr sb(sftp_lstat(mSftp, path.constData()));
     if (sb == nullptr) {
         return Result::fail(toKIOError(sftp_get_error(mSftp)), url.toString());
     }
 
     switch (sb->type) {
     case SSH_FILEXFER_TYPE_DIRECTORY:
-        sftp_attributes_free(sb);
         return Result::fail(KIO::ERR_IS_DIRECTORY, url.toString());
     case SSH_FILEXFER_TYPE_SPECIAL:
     case SSH_FILEXFER_TYPE_UNKNOWN:
@@ -1560,8 +1563,8 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 
     // Open file
     file = sftp_open(mSftp, path.constData(), O_RDONLY, 0);
+    const auto fileFree = qScopeGuard([file]{ sftp_close(file); });
     if (file == nullptr) {
-        sftp_attributes_free(sb);
         return Result::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toString());
     }
 
@@ -1608,7 +1611,7 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
     }
 
     bytesread = 0;
-    SFTPInternal::GetRequest request(file, sb);
+    SFTPInternal::GetRequest request(file, sb.data());
 
     for (;;) {
         // Enqueue get requests
@@ -1677,7 +1680,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
     uid_t owner = 0;
     gid_t group = 0;
 
-    sftp_attributes sb = sftp_lstat(mSftp, dest_orig_c.constData());
+    SFTPAttributesPtr sb(sftp_lstat(mSftp, dest_orig_c.constData()));
     const bool bOrigExists = (sb != nullptr);
     bool bPartExists = false;
     const bool bMarkPartial = q->configValue(QStringLiteral("MarkPartial"), true);
@@ -1690,7 +1693,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
     }
 
     if (bMarkPartial) {
-        sftp_attributes sbPart = sftp_lstat(mSftp, dest_part_c.constData());
+        SFTPAttributesPtr sbPart(sftp_lstat(mSftp, dest_part_c.constData()));
         bPartExists = (sbPart != nullptr);
 
         if (bPartExists && !(flags & KIO::Resume) && !(flags & KIO::Overwrite) &&
@@ -1708,20 +1711,16 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
                 KIO::filesize_t pos = QT_LSEEK(fd, sbPart->size, SEEK_SET);
                 if (pos != sbPart->size) {
                     qCDebug(KIO_SFTP_LOG) << "Failed to seek to" << sbPart->size << "bytes in source file. Reason given:" << strerror(errno);
-                    sftp_attributes_free(sb);
-                    sftp_attributes_free(sbPart);
                     return Result::fail(ERR_CANNOT_SEEK, url.toString());
                 }
                 flags |= KIO::Resume;
             }
             qCDebug(KIO_SFTP_LOG) << "Resuming at" << sbPart->size;
-            sftp_attributes_free(sbPart);
         }
     }
 
     if (bOrigExists && !(flags & KIO::Overwrite) && !(flags & KIO::Resume)) {
         const int error = KSFTP_ISDIR(sb) ? KIO::ERR_DIR_ALREADY_EXIST : KIO::ERR_FILE_ALREADY_EXIST;
-        sftp_attributes_free(sb);
         return Result::fail(error, url.toString());
     }
 
@@ -1767,16 +1766,13 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
                 } // bMarkPartial
 
                 if ((flags & KIO::Resume)) {
-                    sftp_attributes fstat;
-
                     qCDebug(KIO_SFTP_LOG) << "Trying to append: " << dest;
                     file = sftp_open(mSftp, dest.constData(), O_RDWR, 0);  // append if resuming
                     if (file) {
-                        fstat = sftp_fstat(file);
+                        SFTPAttributesPtr fstat(sftp_fstat(file));
                         if (fstat) {
                             sftp_seek64(file, fstat->size); // Seek to end TODO
                             totalBytesSent += fstat->size;
-                            sftp_attributes_free(fstat);
                         }
                     }
                 } else {
@@ -1833,7 +1829,6 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
             }
         } // result
     } while (result > 0);
-    sftp_attributes_free(sb);
 
     // An error occurred deal with it.
     if (result < 0) {
@@ -1842,14 +1837,13 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
         if (file != nullptr) {
             sftp_close(file);
 
-            sftp_attributes attr = sftp_stat(mSftp, dest.constData());
+            SFTPAttributesPtr attr(sftp_stat(mSftp, dest.constData()));
             if (bMarkPartial && attr != nullptr) {
                 size_t size = q->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
                 if (attr->size < size) {
                     sftp_unlink(mSftp, dest.constData());
                 }
             }
-            sftp_attributes_free(attr);
         }
 
         return errorCode == KJob::NoError ? Result::pass() : Result::fail(errorCode, url.toString());
@@ -1904,7 +1898,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
         if (dt.isValid()) {
             struct timeval times[2];
 
-            sftp_attributes attr = sftp_lstat(mSftp, dest_orig_c.constData());
+            SFTPAttributesPtr attr(sftp_lstat(mSftp, dest_orig_c.constData()));
             if (attr != nullptr) {
                 times[0].tv_sec = attr->atime; //// access time, unchanged
                 times[1].tv_sec =  dt.toSecsSinceEpoch(); // modification time
@@ -1915,7 +1909,6 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
                 if (result < 0) {
                     qCWarning(KIO_SFTP_LOG) << "Failed to set mtime for" << dest_orig;
                 }
-                sftp_attributes_free(attr);
             }
         }
     }
@@ -2223,7 +2216,7 @@ Result SFTPInternal::listDir(const QUrl &url)
         return reportError(url, sftp_get_error(mSftp));
     }
 
-    sftp_attributes dirent = nullptr;
+    SFTPAttributesPtr dirent(nullptr);
     const QString sDetails = q->metaData(QLatin1String("details"));
     const int details = sDetails.isEmpty() ? 2 : sDetails.toInt();
     UDSEntry entry;
@@ -2237,7 +2230,7 @@ Result SFTPInternal::listDir(const QUrl &url)
         long long fileType = QT_STAT_REG;
         long long size = 0LL;
 
-        dirent = sftp_readdir(mSftp, dp);
+        dirent.reset(sftp_readdir(mSftp, dp));
         if (dirent == nullptr) {
             break;
         }
@@ -2251,7 +2244,6 @@ Result SFTPInternal::listDir(const QUrl &url)
 
             link = sftp_readlink(mSftp, file.constData());
             if (link == nullptr) {
-                sftp_attributes_free(dirent);
                 return Result::fail(KIO::ERR_INTERNAL, i18n("Could not read link: %1", QString::fromUtf8(file)));
             }
             entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
@@ -2262,8 +2254,7 @@ Result SFTPInternal::listDir(const QUrl &url)
                 if (sb == nullptr) {
                     isBrokenLink = true;
                 } else {
-                    sftp_attributes_free(dirent);
-                    dirent = sb;
+                    dirent.reset(sb);
                 }
             }
         }
@@ -2318,7 +2309,6 @@ Result SFTPInternal::listDir(const QUrl &url)
             entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, dirent->createtime);
         }
 
-        sftp_attributes_free(dirent);
         q->listEntry(entry);
     } // for ever
     sftp_closedir(dp);
@@ -2347,10 +2337,9 @@ Result SFTPInternal::mkdir(const QUrl &url, int permissions)
     }
 
     qCDebug(KIO_SFTP_LOG) << "Trying to create directory: " << path;
-    sftp_attributes sb = sftp_lstat(mSftp, path_c.constData());
+    SFTPAttributesPtr sb(sftp_lstat(mSftp, path_c.constData()));
     if (sb == nullptr) {
         if (sftp_mkdir(mSftp, path_c.constData(), 0777) < 0) {
-            sftp_attributes_free(sb);
             return reportError(url, sftp_get_error(mSftp));
         }
 
@@ -2362,12 +2351,10 @@ Result SFTPInternal::mkdir(const QUrl &url, int permissions)
             }
         }
 
-        sftp_attributes_free(sb);
         return Result::pass();
     }
 
     auto err = KSFTP_ISDIR(sb) ? KIO::ERR_DIR_ALREADY_EXIST : KIO::ERR_FILE_ALREADY_EXIST;
-    sftp_attributes_free(sb);
     return Result::fail(err, path);
 }
 
@@ -2383,11 +2370,10 @@ Result SFTPInternal::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags fla
     QByteArray qsrc = src.path().toUtf8();
     QByteArray qdest = dest.path().toUtf8();
 
-    sftp_attributes sb = sftp_lstat(mSftp, qdest.constData());
+    SFTPAttributesPtr sb(sftp_lstat(mSftp, qdest.constData()));
     if (sb != nullptr) {
         const bool isDir = KSFTP_ISDIR(sb);
         if (!(flags & KIO::Overwrite)) {
-            sftp_attributes_free(sb);
             return Result::fail(isDir ? KIO::ERR_DIR_ALREADY_EXIST : KIO::ERR_FILE_ALREADY_EXIST, dest.url());
         }
 
@@ -2402,7 +2388,6 @@ Result SFTPInternal::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags fla
             }
         }
     }
-    sftp_attributes_free(sb);
 
     if (sftp_rename(mSftp, qsrc.constData(), qdest.constData()) < 0) {
         return reportError(dest, sftp_get_error(mSftp));
@@ -2428,7 +2413,7 @@ Result SFTPInternal::symlink(const QString &target, const QUrl &dest, KIO::JobFl
     bool failed = false;
     if (sftp_symlink(mSftp, t.constData(), d.constData()) < 0) {
         if (flags == KIO::Overwrite) {
-            sftp_attributes sb = sftp_lstat(mSftp, d.constData());
+            SFTPAttributesPtr sb(sftp_lstat(mSftp, d.constData()));
             if (sb == nullptr) {
                 failed = true;
             } else {
@@ -2440,7 +2425,6 @@ Result SFTPInternal::symlink(const QString &target, const QUrl &dest, KIO::JobFl
                     }
                 }
             }
-            sftp_attributes_free(sb);
         }
     }
 
@@ -2614,10 +2598,6 @@ SFTPInternal::GetRequest::~GetRequest()
         request = pendingRequests.dequeue();
         sftp_async_read(mFile, buf, request.expectedLength, request.id);
     }
-
-    // Close channel & free attributes
-    sftp_close(mFile);
-    sftp_attributes_free(mSb);
 }
 
 void SFTPInternal::requiresUserNameRedirection()

@@ -164,6 +164,8 @@ private: // Private variables
     public:
         /**
          * Creates a new GetRequest object.
+         * Requests do not take ownership of the SFTP pointers! The caller is
+         * responsible for freeing them.
          * @param file the sftp_file object which should be transferred.
          * @param sb the attributes of that sftp_file object.
          * @param maxPendingRequests the maximum number of parallel requests to start with.
