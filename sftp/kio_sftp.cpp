@@ -2483,7 +2483,9 @@ void SFTPInternal::slave_status() {
 }
 
 SFTPInternal::GetRequest::GetRequest(sftp_file file, sftp_attributes sb, ushort maxPendingRequests)
-    :mFile(file), mSb(sb), mMaxPendingRequests(maxPendingRequests)
+    : m_file(file)
+    , m_sb(sb)
+    , m_maxPendingRequests(maxPendingRequests)
 {
 }
 
@@ -2493,21 +2495,21 @@ bool SFTPInternal::GetRequest::enqueueChunks()
 
     qCDebug(KIO_SFTP_TRACE_LOG) << "enqueueChunks";
 
-    while (pendingRequests.count() < mMaxPendingRequests) {
+    while (m_pendingRequests.count() < m_maxPendingRequests) {
         request.expectedLength = MAX_XFER_BUF_SIZE;
-        request.startOffset = mFile->offset;
-        request.id = sftp_async_read_begin(mFile, request.expectedLength);
+        request.startOffset = m_file->offset;
+        request.id = sftp_async_read_begin(m_file, request.expectedLength);
         if (request.id < 0) {
-            if (pendingRequests.isEmpty()) {
+            if (m_pendingRequests.isEmpty()) {
                 return false;
             } else {
                 break;
             }
         }
 
-        pendingRequests.enqueue(request);
+        m_pendingRequests.enqueue(request);
 
-        if (mFile->offset >= mSb->size) {
+        if (m_file->offset >= m_sb->size) {
             // Do not add any more chunks if the offset is larger than the given file size.
             // However this is done after adding a request as the remote file size may
             // have changed in the meantime.
@@ -2515,19 +2517,18 @@ bool SFTPInternal::GetRequest::enqueueChunks()
         }
     }
 
-    qCDebug(KIO_SFTP_TRACE_LOG) << "enqueueChunks done" << QString::number(pendingRequests.size());
+    qCDebug(KIO_SFTP_TRACE_LOG) << "enqueueChunks done" << QString::number(m_pendingRequests.size());
 
     return true;
 }
 
 int SFTPInternal::GetRequest::readChunks(QByteArray &data)
 {
-
     int totalRead = 0;
     ssize_t bytesread = 0;
 
-    while (!pendingRequests.isEmpty()) {
-        SFTPInternal::GetRequest::Request &request = pendingRequests.head();
+    while (!m_pendingRequests.isEmpty()) {
+        SFTPInternal::GetRequest::Request &request = m_pendingRequests.head();
         int dataSize = data.size() + request.expectedLength;
 
         data.resize(dataSize);
@@ -2537,7 +2538,7 @@ int SFTPInternal::GetRequest::readChunks(QByteArray &data)
             break;
         }
 
-        bytesread = sftp_async_read(mFile, data.data() + totalRead, request.expectedLength, request.id);
+        bytesread = sftp_async_read(m_file, data.data() + totalRead, request.expectedLength, request.id);
 
         // qCDebug(KIO_SFTP_LOG) << "bytesread=" << QString::number(bytesread);
 
@@ -2546,7 +2547,7 @@ int SFTPInternal::GetRequest::readChunks(QByteArray &data)
             data.resize(data.size() - request.expectedLength);
 
             if (bytesread == 0) {
-                pendingRequests.dequeue(); // This frees QByteArray &data!
+                m_pendingRequests.dequeue(); // This frees QByteArray &data!
             }
 
             break;
@@ -2566,13 +2567,13 @@ int SFTPInternal::GetRequest::readChunks(QByteArray &data)
             request.expectedLength -= bytesread;
             request.startOffset += bytesread;
 
-            rc = sftp_seek64(mFile, request.startOffset);
+            rc = sftp_seek64(m_file, request.startOffset);
             if (rc < 0) {
                 // Failed to continue reading
                 return -1;
             }
 
-            request.id = sftp_async_read_begin(mFile, request.expectedLength);
+            request.id = sftp_async_read_begin(m_file, request.expectedLength);
 
             if (request.id < 0) {
                 // Failed to dispatch rerequest
@@ -2582,7 +2583,7 @@ int SFTPInternal::GetRequest::readChunks(QByteArray &data)
             return totalRead;
         }
 
-        pendingRequests.dequeue();
+        m_pendingRequests.dequeue();
     }
 
     return totalRead;
@@ -2594,9 +2595,9 @@ SFTPInternal::GetRequest::~GetRequest()
     char buf[MAX_XFER_BUF_SIZE];
 
     // Remove pending reads to avoid memory leaks
-    while (!pendingRequests.isEmpty()) {
-        request = pendingRequests.dequeue();
-        sftp_async_read(mFile, buf, request.expectedLength, request.id);
+    while (!m_pendingRequests.isEmpty()) {
+        request = m_pendingRequests.dequeue();
+        sftp_async_read(m_file, buf, request.expectedLength, request.id);
     }
 }
 

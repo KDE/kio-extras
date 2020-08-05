@@ -202,10 +202,10 @@ private: // Private variables
             uint64_t startOffset;
         };
 
-        sftp_file mFile;
-        sftp_attributes mSb;
-        ushort mMaxPendingRequests;
-        QQueue<Request> pendingRequests;
+        sftp_file m_file;
+        sftp_attributes m_sb;
+        ushort m_maxPendingRequests;
+        QQueue<Request> m_pendingRequests;
     };
 
 private: // private methods
