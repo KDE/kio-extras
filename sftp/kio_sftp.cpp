@@ -1611,7 +1611,7 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
     }
 
     bytesread = 0;
-    SFTPInternal::GetRequest request(file, sb.data());
+    SFTPInternal::GetRequest request(file, sb->size);
 
     for (;;) {
         // Enqueue get requests
@@ -2482,9 +2482,9 @@ void SFTPInternal::slave_status() {
     q->slaveStatus((mConnected ? mHost : QString()), mConnected);
 }
 
-SFTPInternal::GetRequest::GetRequest(sftp_file file, sftp_attributes sb, ushort maxPendingRequests)
+SFTPInternal::GetRequest::GetRequest(sftp_file file, size_t size, ushort maxPendingRequests)
     : m_file(file)
-    , m_sb(sb)
+    , m_size(size)
     , m_maxPendingRequests(maxPendingRequests)
 {
 }
@@ -2509,7 +2509,7 @@ bool SFTPInternal::GetRequest::enqueueChunks()
 
         m_pendingRequests.enqueue(request);
 
-        if (m_file->offset >= m_sb->size) {
+        if (m_file->offset >= m_size) {
             // Do not add any more chunks if the offset is larger than the given file size.
             // However this is done after adding a request as the remote file size may
             // have changed in the meantime.

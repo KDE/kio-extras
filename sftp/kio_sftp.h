@@ -167,13 +167,13 @@ private: // Private variables
          * Requests do not take ownership of the SFTP pointers! The caller is
          * responsible for freeing them.
          * @param file the sftp_file object which should be transferred.
-         * @param sb the attributes of that sftp_file object.
+         * @param size the total size of the file.
          * @param maxPendingRequests the maximum number of parallel requests to start with.
          *                           The more are pending the higher the potential memory
          *                           foot print, however if the connection allows it
          *                           we'll get better throughput.
          */
-        GetRequest(sftp_file file, sftp_attributes sb, ushort maxPendingRequests = 128);
+        GetRequest(sftp_file file, uint64_t size, ushort maxPendingRequests = 128);
         /**
          * Removes all pending requests and closes the SFTP channel and attributes
          * in order to avoid memory leaks.
@@ -203,7 +203,7 @@ private: // Private variables
         };
 
         sftp_file m_file;
-        sftp_attributes m_sb;
+        const uint64_t m_size; // size of file (max readable)
         ushort m_maxPendingRequests;
         QQueue<Request> m_pendingRequests;
     };
