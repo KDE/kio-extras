@@ -232,7 +232,7 @@ int SFTPInternal::auth_callback(const char *prompt, char *buf, size_t len,
     qCDebug(KIO_SFTP_LOG) << "Entering authentication callback, prompt=" << mPublicKeyAuthInfo->prompt;
 
     if (q->openPasswordDialogV2(*mPublicKeyAuthInfo, errMsg) != 0) {
-        qCDebug(KIO_SFTP_LOG) << "User canceled public key passpharse dialog";
+        qCDebug(KIO_SFTP_LOG) << "User canceled public key password dialog";
         return -1;
     }
 
