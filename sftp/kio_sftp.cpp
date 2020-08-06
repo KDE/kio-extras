@@ -58,13 +58,13 @@ using namespace std::filesystem;
 // TODO: investigate what size we should have and consider changing.
 // this seems too large...
 // from the RFC:
-//   The maximum size of a packet is in practise determined by the client
+//   The maximum size of a packet is in practice determined by the client
 //   (the maximum size of read or write requests that it sends, plus a few
 //   bytes of packet overhead).  All servers SHOULD support packets of at
 //   least 34000 bytes (where the packet size refers to the full length,
 //   including the header above).  This should allow for reads and writes of
 //   at most 32768 bytes.
-// In practise that means we can assume that the server supports 32kb,
+// In practice that means we can assume that the server supports 32kb,
 // it may be more or it could be less. Since there's not really a system in place to
 // figure out the maximum (and at least openssh arbitrarily resets the entire
 // session if it finds a packet that is too large
