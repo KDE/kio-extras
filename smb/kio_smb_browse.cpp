@@ -28,7 +28,7 @@ using namespace KIO;
 
 int SMBSlave::cache_stat(const SMBUrl &url, struct stat *st)
 {
-    int cacheStatErr;
+    int cacheStatErr = 0;
     int result = smbc_stat(url.toSmbcUrl(), st);
     if (result == 0) {
         cacheStatErr = 0;
@@ -419,7 +419,7 @@ void SMBSlave::listDir(const QUrl &kurl)
 
     auto maybeFinished = [&] { // finishes if all discoveries finished
         bool allFinished = true;
-        for (auto discoverer : discoverers) {
+        for (const auto &discoverer : discoverers) {
             allFinished = allFinished && discoverer->isFinished();
         }
         if (allFinished) {
@@ -492,7 +492,7 @@ void SMBSlave::listDir(const QUrl &kurl)
     } else {
         udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
         const int statErr = browse_stat_path(m_current_url, udsentry);
-        if (statErr) {
+        if (statErr != 0) {
             if (statErr == ENOENT || statErr == ENOTDIR) {
                 reportWarning(m_current_url, statErr);
             }

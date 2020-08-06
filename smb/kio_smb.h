@@ -142,7 +142,7 @@ protected:
      *                method segfault on returning try to change the stat*
      *                variable
      */
-    int cache_stat(const SMBUrl &url, struct stat *st);
+    static int cache_stat(const SMBUrl &url, struct stat *st);
 
     //---------------------------------------------
     // Configuration functions (kio_smb_config.cpp)
