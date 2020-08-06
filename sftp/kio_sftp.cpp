@@ -2529,6 +2529,7 @@ int SFTPInternal::GetRequest::readChunks(QByteArray &data)
 {
     int totalRead = 0;
     ssize_t bytesread = 0;
+    const uint64_t initialOffset = m_file->offset;
 
     while (!m_pendingRequests.isEmpty()) {
         SFTPInternal::GetRequest::Request &request = m_pendingRequests.head();
@@ -2580,6 +2581,17 @@ int SFTPInternal::GetRequest::readChunks(QByteArray &data)
 
             if (request.id < 0) {
                 // Failed to dispatch rerequest
+                return -1;
+            }
+
+            // Move the offset back to where it was before the read.
+            // The way this works is that originally the offset is at the maximum of all pending requests,
+            // read then reduces that by the amount that it came up short, we then seek to where the short request
+            // left off and make another request for the remaining data. After that we need to move the offset
+            // back to the original value - without the reduction because we re-requested the missing data!
+            rc = sftp_seek64(m_file, initialOffset);
+            if (rc < 0) {
+                // Failed to continue reading
                 return -1;
             }
 
