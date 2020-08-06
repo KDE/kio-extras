@@ -174,11 +174,12 @@ private: // Private variables
          *                           we'll get better throughput.
          */
         GetRequest(sftp_file file, uint64_t size, ushort maxPendingRequests = 128);
+
         /**
          * Removes all pending requests and closes the SFTP channel and attributes
          * in order to avoid memory leaks.
          */
-        ~GetRequest();
+        virtual ~GetRequest();
 
         /**
          * Starts up to maxPendingRequests file requests. Reading is performed in the
@@ -188,24 +189,61 @@ private: // Private variables
         /**
          * Attempts to read all pending chunks in the given QByteArray.
          * @param data the array into which the data should be saved (it should be empty).
+         * @param offset start offset to start at in data (i.e. leave bytes before untouched)
          * @return 0 on EOF or timeout, -1 on error and the number of bytes read otherwise.
          */
-        int readChunks(QByteArray &data);
+        int readChunks(QByteArray &data, int offset = 0);
 
-    private:
+    protected:
+        // Whether or not any more requests may be made.
+        virtual bool isLimitExhausted() const = 0;
+        // The expected size for a new request.
+        virtual int newRequestSize() const = 0;
+        // Called after a request was enqueued to check if the loop should be aborted.
+        // Similar but different from limit exhaustion in that continuation has
+        // queued a request if the limit wasn't exhausted but will abort the queue
+        // after that. Limit exhaustion prevents any queuing from happening.
+        virtual bool shouldContinueMakingRequests() const = 0;
+
         struct Request {
             /** Identifier as returned by the sftp_async_read_begin call */
             int id;
             /** The number of bytes expected to be returned */
-            uint32_t expectedLength;
+            int expectedLength;
             /** The SSH start offset when this request was made */
             uint64_t startOffset;
         };
 
         sftp_file m_file;
         const uint64_t m_size; // size of file (max readable)
-        ushort m_maxPendingRequests;
+        uint64_t m_requestableSize; // the remaining size that can be requested (decreasing from m_size)
+        const ushort m_maxPendingRequests;
         QQueue<Request> m_pendingRequests;
+    };
+
+    // A get request that never requests more than the passed in size constraint.
+    // Useful for ::read() which reads up to N bytes
+    class HardLimitGetRequest : public GetRequest
+    {
+    public:
+        using GetRequest::GetRequest;
+    protected:
+        bool isLimitExhausted() const override;
+        int newRequestSize() const override;
+        bool shouldContinueMakingRequests() const override;
+    };
+
+    // A get request that requests more than the passed in size constraint so long as data returns.
+    // Useful for ::get() which reads all the bytes however many there may be, and that may change
+    // when the remote file grows for whatever reason.
+    class SoftLimitGetRequest : public GetRequest
+    {
+    public:
+        using GetRequest::GetRequest;
+    protected:
+        bool isLimitExhausted() const override;
+        int newRequestSize() const override;
+        bool shouldContinueMakingRequests() const override;
     };
 
 private: // private methods

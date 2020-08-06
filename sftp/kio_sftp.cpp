@@ -1431,14 +1431,44 @@ Result SFTPInternal::open(const QUrl &url, QIODevice::OpenMode mode) {
 
 Result SFTPInternal::read(KIO::filesize_t bytes)
 {
-    qCDebug(KIO_SFTP_LOG) << "read, offset = " << openOffset << ", bytes = " << bytes;
+    qCDebug(KIO_SFTP_LOG) << "read, offset = " << mOpenFile->offset  << ", bytes = " << bytes;
 
     Q_ASSERT(mOpenFile != nullptr);
 
-    QVarLengthArray<char> buffer(bytes);
+    QByteArray data;
+    data.reserve(bytes); // optimize a bit. we'll only ever read up to bytes since this is a hard-limited request
+    ssize_t bytesRead = 0;
+    if (bytes <= MAX_XFER_BUF_SIZE) {
+        data.resize(bytes);
+        Q_ASSERT(data.size() == static_cast<int>(bytes) /* we know it's <= the xfer buffer's tiny size */);
+        bytesRead = sftp_read(mOpenFile, data.data(), bytes);
+    } else {
+        qCDebug(KIO_SFTP_LOG) << "Doing multi-request read for bytes:" << bytes;
+        SFTPInternal::HardLimitGetRequest request(mOpenFile, bytes);
+        while (true) {
+            if (!request.enqueueChunks()) {
+                return Result::fail(KIO::ERR_CANNOT_READ, mOpenUrl.toString());
+            }
 
-    ssize_t bytesRead = sftp_read(mOpenFile, buffer.data(), bytes);
-    Q_ASSERT(bytesRead <= static_cast<ssize_t>(bytes));
+            const ssize_t newBytes = request.readChunks(data, bytesRead);
+            bytesRead += newBytes;
+
+            if (newBytes < 0) { // error
+                data.clear();
+                bytesRead = newBytes;
+                break;
+            }
+            if (newBytes == 0) { // EOF or timeout
+                if (mOpenFile->eof) {
+                    break;
+                }
+                continue; // must have been a timeout
+            }
+            if (static_cast<KIO::filesize_t>(bytesRead) >= bytes) {
+                break; // got all bytes
+            }
+        }
+    }
 
     if (bytesRead < 0) {
         qCDebug(KIO_SFTP_LOG) << "Could not read" << mOpenUrl
@@ -1449,8 +1479,10 @@ Result SFTPInternal::read(KIO::filesize_t bytes)
         return Result::fail(KIO::ERR_CANNOT_READ, mOpenUrl.toDisplayString());
     }
 
-    const QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
-    q->data(fileData);
+    // SFTP reads must not ever be more than we requested as per the RFC.
+    Q_ASSERT(bytesRead <= static_cast<ssize_t>(bytes));
+    Q_ASSERT(bytesRead == data.size());
+    q->data(data);
 
     return Result::pass();
 }
@@ -1614,7 +1646,7 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
     }
 
     bytesread = 0;
-    SFTPInternal::GetRequest request(file, sb->size);
+    SFTPInternal::SoftLimitGetRequest request(file, sb->size);
 
     for (;;) {
         // Enqueue get requests
@@ -2488,34 +2520,45 @@ void SFTPInternal::slave_status() {
 SFTPInternal::GetRequest::GetRequest(sftp_file file, size_t size, ushort maxPendingRequests)
     : m_file(file)
     , m_size(size)
+    , m_requestableSize(size)
     , m_maxPendingRequests(maxPendingRequests)
 {
 }
 
 bool SFTPInternal::GetRequest::enqueueChunks()
 {
-    SFTPInternal::GetRequest::Request request;
-
     qCDebug(KIO_SFTP_TRACE_LOG) << "enqueueChunks";
 
-    while (m_pendingRequests.count() < m_maxPendingRequests) {
-        request.expectedLength = MAX_XFER_BUF_SIZE;
+    while (m_pendingRequests.count() < m_maxPendingRequests && !isLimitExhausted()) {
+        SFTPInternal::GetRequest::Request request;
+        request.expectedLength = newRequestSize();
         request.startOffset = m_file->offset;
         request.id = sftp_async_read_begin(m_file, request.expectedLength);
-        if (request.id < 0) {
+
+        if (request.id < 0) { // begin request failed
             if (m_pendingRequests.isEmpty()) {
                 return false;
-            } else {
-                break;
             }
+            break;
         }
 
+        const auto remainingSize = m_requestableSize - request.expectedLength;
+        if (remainingSize >= m_requestableSize) { // underflow
+            m_requestableSize = 0;
+        } else {
+            m_requestableSize = remainingSize;
+        }
         m_pendingRequests.enqueue(request);
 
-        if (m_file->offset >= m_size) {
-            // Do not add any more chunks if the offset is larger than the given file size.
-            // However this is done after adding a request as the remote file size may
-            // have changed in the meantime.
+        // TODO: revisit this.
+        // @sitter isn't sure supporting growing files is ever useful at all. What's more the way this
+        // is implemented means that once the file has grown beyond the originally stat'd size all
+        // reads become sequential, async, but sequential. So, either do away with the soft limit
+        // nonesense or reload the target size on-the-fly.
+        // NB: this is orthogonal to limit exhaustion. When the limit is exhausted we'll not
+        // queue any requests, when this cap is reached we've queued a request but it may
+        // produce a 0 byte read.
+        if (!shouldContinueMakingRequests()) {
             break;
         }
     }
@@ -2525,10 +2568,9 @@ bool SFTPInternal::GetRequest::enqueueChunks()
     return true;
 }
 
-int SFTPInternal::GetRequest::readChunks(QByteArray &data)
+int SFTPInternal::GetRequest::readChunks(QByteArray &data, int offset)
 {
     int totalRead = 0;
-    ssize_t bytesread = 0;
     const uint64_t initialOffset = m_file->offset;
 
     while (!m_pendingRequests.isEmpty()) {
@@ -2537,50 +2579,56 @@ int SFTPInternal::GetRequest::readChunks(QByteArray &data)
 
         data.resize(dataSize);
         if (data.size() < dataSize) {
-            // Could not allocate enough memory - skip current chunk
+            // Could not allocate enough memory resize down again and skip current chunk.
+            // This is a bit awkward as we might return 0 from this if we failed to read any data. It's unclear
+            // if that is terribly likely to happen outside scenarios where something in the slave is leaking
+            // though.
             data.resize(dataSize - request.expectedLength);
             break;
         }
 
-        bytesread = sftp_async_read(m_file, data.data() + totalRead, request.expectedLength, request.id);
+        void *blob = data.data() + offset + totalRead;
+        ssize_t currentRead = sftp_async_read(m_file, blob, request.expectedLength, request.id);
 
-        // qCDebug(KIO_SFTP_LOG) << "bytesread=" << QString::number(bytesread);
+        qCDebug(KIO_SFTP_LOG) << "currentRead=" << currentRead;
 
-        if (bytesread == 0 || bytesread == SSH_AGAIN) {
+        if (currentRead == 0 || currentRead == SSH_AGAIN) {
+            qCDebug(KIO_SFTP_LOG) << "done reading" << currentRead;
             // Done reading or timeout
             data.resize(data.size() - request.expectedLength);
 
-            if (bytesread == 0) {
-                m_pendingRequests.dequeue(); // This frees QByteArray &data!
+            if (currentRead == 0) {
+                m_pendingRequests.dequeue();
             }
 
             break;
-        } else if (bytesread == SSH_ERROR) {
+        }
+        if (currentRead == SSH_ERROR) {
             return -1;
         }
 
-        totalRead += bytesread;
+        totalRead += currentRead;
 
-        if (bytesread < request.expectedLength) {
-            int rc;
+        if (currentRead < request.expectedLength) {
+            // If less data is read than expected we move the offset of the request
+            // object, request another read and return without the dequeue().
+            // i.e. this leaves the very same request with modified offset in the queue's head
 
-            // If less data is read than expected - requeue the request
-            data.resize(data.size() - (request.expectedLength - bytesread));
+            data.resize(data.size() - (request.expectedLength - currentRead));
 
             // Modify current request
-            request.expectedLength -= bytesread;
-            request.startOffset += bytesread;
+            request.expectedLength -= currentRead;
+            request.startOffset += currentRead;
 
-            rc = sftp_seek64(m_file, request.startOffset);
+            int rc = sftp_seek64(m_file, request.startOffset);
             if (rc < 0) {
                 // Failed to continue reading
                 return -1;
             }
 
             request.id = sftp_async_read_begin(m_file, request.expectedLength);
-
             if (request.id < 0) {
-                // Failed to dispatch rerequest
+                // Failed to dispatch request
                 return -1;
             }
 
@@ -2609,11 +2657,52 @@ SFTPInternal::GetRequest::~GetRequest()
     SFTPInternal::GetRequest::Request request;
     char buf[MAX_XFER_BUF_SIZE];
 
-    // Remove pending reads to avoid memory leaks
+    // Remove pending reads to avoid memory leaks.
+    // In practice this cannot really happen. The RFC specifies that the sftp server **must not** return with more
+    // data than was requested. To that end the only way we could end up un-spooling requests is if we encountered
+    // an error and the download was aborted. On successful reads we'll never get more data than we
+    // asked for.
     while (!m_pendingRequests.isEmpty()) {
         request = m_pendingRequests.dequeue();
         sftp_async_read(m_file, buf, request.expectedLength, request.id);
     }
+}
+
+bool SFTPInternal::HardLimitGetRequest::isLimitExhausted() const
+{
+    return m_requestableSize == 0;
+}
+
+int SFTPInternal::HardLimitGetRequest::newRequestSize() const
+{
+    return qMin<int>(MAX_XFER_BUF_SIZE, m_requestableSize);
+}
+
+bool SFTPInternal::HardLimitGetRequest::shouldContinueMakingRequests() const
+{
+    return true; // always continue until the limit is exhausted
+}
+
+bool SFTPInternal::SoftLimitGetRequest::isLimitExhausted() const
+{
+    return false; // soft limits are never exceeded
+}
+
+int SFTPInternal::SoftLimitGetRequest::newRequestSize() const
+{
+    return MAX_XFER_BUF_SIZE;
+}
+
+bool SFTPInternal::SoftLimitGetRequest::shouldContinueMakingRequests() const
+{
+    // Do not add any more chunks if the offset is larger than the given file size.
+    // However this is done after adding a request as the remote file size may
+    // have changed in the meantime.
+    // This effectively queues size+N on soft limited requests. The point
+    // of this is that should the file have grown on the remote we'll get
+    // the extra request back with data and know that the file is larger than
+    // expected. We can then adjust accordingly and continue reading.
+    return m_file->offset < m_size;
 }
 
 void SFTPInternal::requiresUserNameRedirection()
