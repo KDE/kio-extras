@@ -23,7 +23,9 @@ target_link_libraries(kio_sftp
    KF5::I18n
    Qt5::Network
    ssh)
-set_target_properties(kio_sftp PROPERTIES OUTPUT_NAME "sftp")
+set_target_properties(kio_sftp PROPERTIES
+    OUTPUT_NAME "sftp"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio")
 
 install(TARGETS kio_sftp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
