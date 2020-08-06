@@ -213,10 +213,11 @@ void SMBCDiscoverer::discoverNext()
         // Set stat information
         m_url.addPath(name);
         const int statErr = m_slave->browse_stat_path(m_url, entry);
-        if (statErr) {
-            if (statErr == ENOENT || statErr == ENOTDIR) {
-                m_slave->reportWarning(m_url, statErr);
-            }
+        if (statErr != 0) {
+            // The entry can disappear in the time span between
+            // listing and the stat call. There's nothing we or the user
+            // can do about it. Log the incident and move on with listing.
+            qCWarning(KIO_SMB_LOG) << "Failed to stat" << m_url << statErr;
         } else {
             emit newDiscovery(Discovery::Ptr(new SMBCDiscovery(entry)));
         }
