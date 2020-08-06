@@ -26,21 +26,21 @@
 #include <QMimeType>
 #include <QMimeDatabase>
 
-#include <taglib/apetag.h>
-#include <taglib/mp4tag.h>
-#include <taglib/id3v2tag.h>
-#include <taglib/fileref.h>
-#include <taglib/mp4file.h>
-#include <taglib/wavfile.h>
-#include <taglib/apefile.h>
-#include <taglib/mpcfile.h>
-#include <taglib/mpegfile.h>
-#include <taglib/aifffile.h>
-#include <taglib/flacfile.h>
-#include <taglib/wavpackfile.h>
-#include <taglib/xiphcomment.h>
-#include <taglib/flacpicture.h>
-#include <taglib/attachedpictureframe.h>
+#include <apetag.h>
+#include <mp4tag.h>
+#include <id3v2tag.h>
+#include <fileref.h>
+#include <mp4file.h>
+#include <wavfile.h>
+#include <apefile.h>
+#include <mpcfile.h>
+#include <mpegfile.h>
+#include <aifffile.h>
+#include <flacfile.h>
+#include <wavpackfile.h>
+#include <xiphcomment.h>
+#include <flacpicture.h>
+#include <attachedpictureframe.h>
 
 extern "C"
 {
