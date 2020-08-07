@@ -1,6 +1,7 @@
+// SPDX-License-Identifier: MIT
+
 #ifndef __info_h__
 #define __info_h__
-
 
 #include <kio/slavebase.h>
 #include <QLoggingCategory>

@@ -5,25 +5,6 @@ This KIO slave enables KDE applications to access
 files stored on devices that provide access to them
 via the MTP protocol.
 
-Project page: https://projects.kde.org/projects/kde/workspace/kio-extras
-
-
-Installation
-------------
-
-Dependencies:
-* LibMTP - http://libmtp.sourceforge.net/
-    Library providing convenience Access to MTP devices.
-    Version 1.1.3 or newer required.
-
-1) Install LibMTP
-2) Clone from git://anongit.kde.org/kio-extras
-3) cd kio-extras
-4) mkdir build && cd build
-5) cmake -DCMAKE_INSTALL_PREFIX=$( kde4-config --prefix ) -DCMAKE_BUILD_TYPE=Debug ..
-6) make && su -c 'make install'
-
-
 Usage
 -----
 
