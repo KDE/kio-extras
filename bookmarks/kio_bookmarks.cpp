@@ -37,8 +37,8 @@
 #include <kfileplacesmodel.h>
 #include <solid/device.h>
 #include <solid/deviceinterface.h>
-#include <ktoolinvocation.h>
 #include <QGuiApplication>
+#include <KIO/ApplicationLauncherJob>
 
 using namespace KIO;
 
@@ -185,10 +185,22 @@ void BookmarksProtocol::get( const QUrl& url )
   if (path.isEmpty() || path == "/") {
     echoIndex();
   } else if (path == "/config") {
-    KToolInvocation::startServiceByDesktopName("bookmarks", "");
+    const KService::Ptr bookmarksKCM = KService::serviceByDesktopName(QStringLiteral("bookmarks"));
+    if (bookmarksKCM) {
+      auto job = new KIO::ApplicationLauncherJob(bookmarksKCM);
+      job->start();
+    } else {
+      error(KIO::ERR_SLAVE_DEFINED, i18n("Could not find bookmarks config"));
+    }
     echoHead("bookmarks:/");
   } else if (path == "/editbookmarks") {
-    KToolInvocation::kdeinitExec("keditbookmarks");
+    const KService::Ptr keditbookmarks = KService::serviceByDesktopName(QStringLiteral("org.kde.keditbookmarks"));
+    if (keditbookmarks) {
+      auto job = new KIO::ApplicationLauncherJob(keditbookmarks);
+      job->start();
+    } else {
+      error(KIO::ERR_SLAVE_DEFINED, i18n("Could not find bookmarks editor"));
+    }
     echoHead("bookmarks:/");
   } else if (path.indexOf(regexp, 0, &rmatch) >= 0) {
     echoImage(rmatch.captured(1), rmatch.captured(2), QUrlQuery(url).queryItemValue("size"));
