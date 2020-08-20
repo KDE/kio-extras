@@ -18,9 +18,9 @@
 */
 
 #include "exrcreator.h"
+#include "thumbnail-exr-logsettings.h"
 
 #include <QImage>
-#include <QDebug>
 #include <QFile>
 
 #include <ImfInputFile.h>
@@ -43,7 +43,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
     const Imf::Header &h = in.header();
 
     if ( h.hasPreviewImage() ) {
-	qDebug() << "EXRcreator - using preview";
+	qCDebug(KIO_THUMBNAIL_EXR_LOG) << "EXRcreator - using preview";
 	const Imf::PreviewImage &preview = in.header().previewImage();
 	QImage qpreview(preview.width(), preview.height(), QImage::Format_RGB32);
 	for ( unsigned int y=0; y < preview.height(); y++ ) {
@@ -60,7 +60,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 	// from the header, but it is very expensive to render large
 	// EXR images just to turn it into an icon, so we go back
 	// to honoring it in here.
-	qDebug() << "EXRcreator - using original image";
+	qCDebug(KIO_THUMBNAIL_EXR_LOG) << "EXRcreator - using original image";
 	KSharedConfig::Ptr config = KSharedConfig::openConfig();
 	KConfigGroup configGroup( config, "PreviewSettings" );
 	unsigned long long maxSize = configGroup.readEntry( "MaximumSize", 1024*1024 /* 1MB */ );

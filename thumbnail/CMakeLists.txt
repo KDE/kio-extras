@@ -27,6 +27,11 @@ include_directories(${CMAKE_BINARY_DIR})
 
 set(kio_thumbnail_PART_SRCS thumbnail.cpp imagefilter.cpp)
 
+ecm_qt_declare_logging_category(kio_thumbnail_PART_SRCS
+                                HEADER thumbnail-logsettings.h
+                                IDENTIFIER KIO_THUMBNAIL_LOG
+                                CATEGORY_NAME log_kio_thumbnail)
+
 add_library(kio_thumbnail MODULE ${kio_thumbnail_PART_SRCS})
 
 target_link_libraries(kio_thumbnail
@@ -125,6 +130,10 @@ endif()
 if(OpenEXR_FOUND)
 
     set(exrthumbnail_PART_SRCS exrcreator.cpp)
+    ecm_qt_declare_logging_category(exrthumbnail_PART_SRCS
+                                    HEADER thumbnail-exr-logsettings.h
+                                    IDENTIFIER KIO_THUMBNAIL_EXR_LOG
+                                    CATEGORY_NAME log_kio_thumbnail.exr)
 
     add_library(exrthumbnail MODULE ${exrthumbnail_PART_SRCS})
     target_link_libraries(exrthumbnail
@@ -188,6 +197,11 @@ install ( FILES windowsimagethumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICE
 ########### next target ###############
 
 set(comicbookthumbnail_SRCS comiccreator.cpp)
+ecm_qt_declare_logging_category(comicbookthumbnail_SRCS
+                                HEADER thumbnail-comic-logsettings.h
+                                IDENTIFIER KIO_THUMBNAIL_COMIC_LOG
+                                CATEGORY_NAME log_kio_thumbnail.comic)
+
 add_library(comicbookthumbnail MODULE ${comicbookthumbnail_SRCS})
 target_link_libraries(comicbookthumbnail
     Qt5::Gui

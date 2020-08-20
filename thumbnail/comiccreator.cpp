@@ -28,11 +28,11 @@
 // comiccreator.cpp
 
 #include "comiccreator.h"
+#include "thumbnail-comic-logsettings.h"
 
 #include <kzip.h>
 #include <ktar.h>
 #include <k7zip.h>
-#include <QDebug>
 #include <kprocess.h>
 
 #include <memory>
@@ -43,10 +43,6 @@
 #include <QMimeType>
 #include <QStandardPaths>
 #include <QTemporaryDir>
-
-// For KIO-Thumbnail debug outputs
-// TODO KF5 qCDebug
-#define KIO_THUMB 11371
 
 extern "C"
 {
@@ -86,7 +82,7 @@ bool ComicCreator::create(const QString& path, int width, int height, QImage& im
     }
 
     if (cover.isNull()) {
-        qDebug()<<"Error creating the comic book thumbnail.";
+        qCDebug(KIO_THUMBNAIL_COMIC_LOG) << "Error creating the comic book thumbnail.";
         return false;
     }
 
@@ -186,7 +182,7 @@ QImage ComicCreator::extractRARImage(const QString& path)
     // Check if unrar is available. Get its path in 'unrarPath'.
     QString unrar = unrarPath();
     if (unrar.isEmpty()) {
-        qDebug()<<"A suitable version of unrar is not available.";
+        qCDebug(KIO_THUMBNAIL_COMIC_LOG) << "A suitable version of unrar is not available.";
         return QImage();
     }
 
