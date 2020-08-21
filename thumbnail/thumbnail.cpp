@@ -701,7 +701,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
         // 128 x 128 or 256 x 256 pixels
         int cacheSize = 0;
         QCryptographicHash md5(QCryptographicHash::Md5);
-        md5.addData(QFile::encodeName(fileUrl.toString()));
+        md5.addData(fileUrl.toEncoded());
         const QString thumbName = QFile::encodeName(md5.result().toHex()).append(".png");
 
         if (m_thumbBasePath.isEmpty()) {
