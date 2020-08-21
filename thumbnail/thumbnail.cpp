@@ -703,7 +703,18 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
             cacheSize = 256;
             thumbPath.cd("large");
         }
-        if (!thumbnail.load(thumbPath.absoluteFilePath(thumbName))) {
+
+        if (thumbnail.load(thumbPath.absoluteFilePath(thumbName))) {
+            return true;
+        } else if (cacheSize == 128) {
+            QDir fallbackPath(m_thumbBasePath);
+            fallbackPath.cd("large");
+            if (thumbnail.load(fallbackPath.absoluteFilePath(thumbName))) {
+                return true;
+            }
+        }
+
+        if (thumbnail.isNull()) {
             // no cached version is available, a new thumbnail must be created
 
             QSaveFile thumbnailfile(thumbPath.absoluteFilePath(thumbName));
