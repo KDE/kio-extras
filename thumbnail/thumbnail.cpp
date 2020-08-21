@@ -734,6 +734,11 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
                 // The thumbnail has been created successfully. Store the thumbnail
                 // to the cache for future access.
                 if (thumbnailfile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+                    QFileInfo fi(filePath);
+                    thumbnail.setText(QStringLiteral("Thumb::URI"), QString::fromUtf8(fileUrl.toEncoded()));
+                    thumbnail.setText(QStringLiteral("Thumb::MTime"), QString::number(fi.lastModified().toSecsSinceEpoch()));
+                    thumbnail.setText(QStringLiteral("Thumb::Size"), QString::number(fi.size()));
+
                     savedCorrectly = thumbnail.save(&thumbnailfile, "PNG");
                 }
             } else {
