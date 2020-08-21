@@ -667,18 +667,16 @@ const QImage ThumbnailProtocol::getIcon()
 bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& filePath,
                                            int segmentWidth, int segmentHeight)
 {
-    const QMimeDatabase db;
     const QUrl fileUrl = QUrl::fromLocalFile(filePath);
-    const QString subPlugin = pluginForMimeType(db.mimeTypeForUrl(fileUrl).name());
-    if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
-        return false;
-    }
 
-    ThumbCreator* subCreator = getThumbCreator(subPlugin);
-    if (!subCreator) {
-        // qDebug() << "found no creator for" << dir.filePath();
-        return false;
-    }
+    auto getSubCreator = [&fileUrl, this]() -> ThumbCreator* {
+        const QMimeDatabase db;
+        const QString subPlugin = pluginForMimeType(db.mimeTypeForUrl(fileUrl).name());
+        if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
+            return nullptr;
+        }
+        return getThumbCreator(subPlugin);
+    };
 
     if ((segmentWidth <= 256) && (segmentHeight <= 256)) {
         // check whether a cached version of the file is available for
@@ -710,7 +708,8 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
 
             QSaveFile thumbnailfile(thumbPath.absoluteFilePath(thumbName));
             bool savedCorrectly = false;
-            if (subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
+            ThumbCreator* subCreator = getSubCreator();
+            if (subCreator && subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
                 scaleDownImage(thumbnail, cacheSize, cacheSize);
 
                 // The thumbnail has been created successfully. Store the thumbnail
@@ -726,8 +725,9 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
                 thumbnailfile.commit();
             }
         }
-    } else if (!subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail)) {
-        return false;
+    } else {
+        ThumbCreator* subCreator = getSubCreator();
+        return subCreator && subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail);
     }
     return true;
 }
