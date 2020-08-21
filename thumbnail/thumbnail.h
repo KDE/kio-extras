@@ -65,9 +65,9 @@ private:
     void scaleDownImage(QImage& img, int maxWidth, int maxHeight);
 
     /**
-     * Create and draw the SubThumbnail
+     * Draw the SubThumbnail
      **/
-    bool drawSubThumbnail(QPainter& p, const QString& filePath, int width, int height,
+    bool drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height,
                           int xPos, int yPos, int frameWidth);
 private:
     QString m_mimeType;

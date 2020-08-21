@@ -517,6 +517,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
 
     int iterations = 0;
     QString hadFirstThumbnail;
+    QImage firstThumbnail;
     int skipped = 0;
 
     const int maxYPos = folderHeight - bottomMargin - segmentHeight;
@@ -528,6 +529,10 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
         if (!dir.hasNext()) {
             break;
         }
+
+        // Seed the random number generator so that it always returns the same result
+        // for the same directory and sequence-item
+        qsrand(qHash(directory) + skipValidItems);
 
         while (dir.hasNext() && (yPos <= maxYPos)) {
             ++iterations;
@@ -545,7 +550,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
                 continue;
             }
 
-            if (!drawSubThumbnail(p, dir.filePath(), segmentWidth, segmentHeight, xPos, yPos, frameWidth)) {
+            QImage subThumbnail;
+            if (!createSubThumbnail(subThumbnail, dir.filePath(), segmentWidth, segmentHeight)) {
                 continue;
             }
 
@@ -554,8 +560,13 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
                 continue;
             }
 
+            if (!drawSubThumbnail(p, subThumbnail, segmentWidth, segmentHeight, xPos, yPos, frameWidth)) {
+                continue;
+            }
+
             if (hadFirstThumbnail.isEmpty()) {
                 hadFirstThumbnail = dir.filePath();
+                firstThumbnail = subThumbnail;
             }
 
             ++validThumbnails;
@@ -617,7 +628,10 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
         const int oneTileWidth = folderWidth - leftMargin - rightMargin;
         const int oneTileHeight = folderHeight - topMargin - bottomMargin;
 
-        drawSubThumbnail(oneTilePainter, hadFirstThumbnail, oneTileWidth, oneTileHeight, leftMargin, topMargin, frameWidth);
+        if (firstThumbnail.width() < oneTileWidth && firstThumbnail.height() < oneTileHeight) {
+            createSubThumbnail(firstThumbnail, hadFirstThumbnail, oneTileWidth, oneTileHeight);
+        }
+        drawSubThumbnail(oneTilePainter, firstThumbnail, oneTileWidth, oneTileHeight, leftMargin, topMargin, frameWidth);
         return oneTileImg;
     }
 
@@ -750,17 +764,8 @@ void ThumbnailProtocol::scaleDownImage(QImage& img, int maxWidth, int maxHeight)
     }
 }
 
-bool ThumbnailProtocol::drawSubThumbnail(QPainter& p, const QString& filePath, int width, int height, int xPos, int yPos, int frameWidth)
+bool ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height, int xPos, int yPos, int frameWidth)
 {
-    QImage subThumbnail;
-    if (!createSubThumbnail(subThumbnail, filePath, width, height)) {
-        return false;
-    }
-
-    // Seed the random number generator so that it always returns the same result
-    // for the same directory and sequence-item
-    qsrand(qHash(filePath));
-
     // Apply fake smooth scaling, as seen on several blogs
     if (subThumbnail.width() > width * 4 || subThumbnail.height() > height * 4) {
         subThumbnail = subThumbnail.scaled(width*4, height*4, Qt::KeepAspectRatio, Qt::FastTransformation);
