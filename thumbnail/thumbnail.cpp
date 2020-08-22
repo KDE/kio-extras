@@ -163,29 +163,33 @@ void ThumbnailProtocol::get(const QUrl &url)
         const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
         m_enabledPlugins = globalConfig.readEntry("Plugins", KIO::PreviewJob::defaultPlugins());
     }
+
+    Q_ASSERT(url.scheme() == "thumbnail");
+    QFileInfo info(url.path());
+    Q_ASSERT(info.isAbsolute());
+
+    if (!info.exists()) {
+	// The file does not exist
+	error(KIO::ERR_DOES_NOT_EXIST, url.path());
+	return;
+    } else if (!info.isReadable()) {
+	// The file is not readable!
+	error(KIO::ERR_CANNOT_READ, url.path());
+	return;
+    }
+
     //qDebug() << "Wanting MIME Type:" << m_mimeType;
 #ifdef THUMBNAIL_HACK
     // ### HACK
     bool direct=false;
     if (m_mimeType.isEmpty()) {
-        QFileInfo info(url.path());
         //qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
-        if (!info.exists()) {
-            // The file does not exist
-            error(KIO::ERR_DOES_NOT_EXIST,url.path());
-            return;
-        } else if (!info.isReadable()) {
-            // The file is not readable!
-            error(KIO::ERR_CANNOT_READ,url.path());
-            return;
-        }
-
         if (info.isDir()) {
             m_mimeType = "inode/directory";
         } else {
             const QMimeDatabase db;
 
-            m_mimeType = db.mimeTypeForUrl(QUrl(info.filePath())).name();
+            m_mimeType = db.mimeTypeForFile(info).name();
         }
 
         //qDebug() << "Guessing MIME Type:" << m_mimeType;
