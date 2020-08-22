@@ -239,7 +239,7 @@ void ThumbnailProtocol::get(const QUrl &url)
     if (!kfmiThumb) {
         QString plugin = metaData("plugin");
         if ((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
-            img = thumbForDirectory(url);
+            img = thumbForDirectory(info.canonicalFilePath());
             if(img.isNull()) {
               error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
               return;
@@ -267,8 +267,8 @@ void ThumbnailProtocol::get(const QUrl &url)
             if(sequenceCreator)
                 sequenceCreator->setSequenceIndex(sequenceIndex());
 
-            if (!creator->create(url.path(), m_width, m_height, img)) {
-                error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
+            if (!creator->create(info.canonicalFilePath(), m_width, m_height, img)) {
+                error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
                 return;
             }
             flags = creator->flags();
@@ -469,7 +469,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     painter->drawImage(r.topLeft(), transformed);
 }
 
-QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
+QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
 {
     QImage img;
     if (m_propagationDirectories.isEmpty()) {
@@ -487,9 +487,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
 
-    QString localFile = directory.path();
-
-    KFileItem item(QUrl::fromLocalFile(localFile));
+    KFileItem item(QUrl::fromLocalFile(directory));
     const int extent = qMin(m_width, m_height);
     QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(extent);
 
@@ -541,7 +539,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
     int validThumbnails = 0;
 
     while ((skipped <= skipValidItems) && (yPos <= maxYPos) && validThumbnails == 0) {
-        QDirIterator dir(localFile, QDir::Files | QDir::Readable);
+        QDirIterator dir(directory, QDir::Files | QDir::Readable);
         if (!dir.hasNext()) {
             break;
         }
@@ -609,13 +607,13 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
 
     if (validThumbnails == 0) {
         // Eventually propagate the contained items from a sub-directory
-        QDirIterator dir(localFile, QDir::Dirs);
+        QDirIterator dir(directory, QDir::Dirs);
         int max = 50;
         while (dir.hasNext() && max > 0) {
             --max;
             dir.next();
             if (m_propagationDirectories.contains(dir.fileName())) {
-                return thumbForDirectory(QUrl(dir.filePath()));
+                return thumbForDirectory(dir.filePath());
             }
         }
 

@@ -43,7 +43,7 @@ protected:
     bool isOpaque(const QImage &image) const;
     void drawPictureFrame(QPainter *painter, const QPoint &pos, const QImage &image,
                           int frameWidth, QSize imageTargetSize) const;
-    QImage thumbForDirectory(const QUrl& directory);
+    QImage thumbForDirectory(const QString& directory);
     QString pluginForMimeType(const QString& mimeType);
 
     float sequenceIndex() const;
