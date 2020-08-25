@@ -182,9 +182,3 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
     }
     return ok;
 }
-
-ThumbCreator::Flags TextCreator::flags() const
-{
-    return (Flags)BlendIcon;
-}
-

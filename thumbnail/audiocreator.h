@@ -32,7 +32,6 @@ public:
     AudioCreator();
     ~AudioCreator() override;
     bool create(const QString &path, int w, int h, QImage &img) override;
-    Flags flags() const override;
 };
 
 #endif // _AUDIO_CREATOR_H_

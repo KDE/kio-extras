@@ -207,8 +207,3 @@ bool AudioCreator::create(const QString &path, int, int, QImage &img)
     }
     return false;
 }
-
-ThumbCreator::Flags AudioCreator::flags() const
-{
-    return (Flags)BlendIcon;
-}

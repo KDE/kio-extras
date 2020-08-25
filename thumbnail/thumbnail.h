@@ -39,7 +39,6 @@ public:
 
 protected:
     ThumbCreator* getThumbCreator(const QString& plugin);
-    const QImage getIcon();
     bool isOpaque(const QImage &image) const;
     void drawPictureFrame(QPainter *painter, const QPoint &pos, const QImage &image,
                           int frameWidth, QSize imageTargetSize) const;
@@ -73,12 +72,8 @@ private:
     QString m_mimeType;
     int m_width;
     int m_height;
-    int m_iconSize;
-    int m_iconAlpha;
     // Thumbnail creators
     QHash<QString, ThumbCreator*> m_creators;
-    // transparent icon cache
-    QHash<QString, QImage> m_iconDict;
     QStringList m_enabledPlugins;
     QSet<QString> m_propagationDirectories;
     QString m_thumbBasePath;

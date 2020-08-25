@@ -57,7 +57,6 @@
 #include <KPluginLoader>
 
 #include <kaboutdata.h>
-#include <kiconloader.h>
 
 #include <kio/thumbcreator.h>
 #include <kio/thumbsequencecreator.h>
@@ -82,8 +81,8 @@
 // mimeType     - the mime type of the file, used for the overlay icon if any
 // width        - maximum width for the thumbnail
 // height       - maximum height for the thumbnail
-// iconSize     - the size of the overlay icon to use if any
-// iconAlpha    - the transparency value used for icon overlays
+// iconSize     - the size of the overlay icon to use if any (deprecated, ignored)
+// iconAlpha    - the transparency value used for icon overlays (deprecated, ignored)
 // plugin       - the name of the plugin library to be used for thumbnail creation.
 //                Provided by the application to save an addition KTrader
 //                query here.
@@ -143,7 +142,6 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 
 ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("thumbnail", pool, app),
-      m_iconSize(0),
       m_maxFileSize(0)
 {
 
@@ -204,7 +202,6 @@ void ThumbnailProtocol::get(const QUrl &url)
 
     m_width = metaData("width").toInt();
     m_height = metaData("height").toInt();
-    int iconSize = metaData("iconSize").toInt();
 
     if (m_width < 0 || m_height < 0) {
         error(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
@@ -215,19 +212,8 @@ void ThumbnailProtocol::get(const QUrl &url)
         //qDebug() << "Guessing height, width, icon size!";
         m_width = 128;
         m_height = 128;
-        iconSize = 128;
     }
 #endif
-
-    if (!iconSize) {
-        iconSize = KIconLoader::global()->currentSize(KIconLoader::Desktop);
-    }
-    if (iconSize != m_iconSize) {
-        m_iconDict.clear();
-    }
-    m_iconSize = iconSize;
-
-    m_iconAlpha = metaData("iconAlpha").toInt();
 
     QImage img;
 
@@ -276,19 +262,6 @@ void ThumbnailProtocol::get(const QUrl &url)
     }
 
     scaleDownImage(img, m_width, m_height);
-
-    if ((flags & ThumbCreator::BlendIcon) && KIconLoader::global()->alphaBlending(KIconLoader::Desktop)) {
-        // blending the mimetype icon in
-        QImage icon = getIcon();
-
-        int x = img.width() - icon.width() - 4;
-        x = qMax( x, 0 );
-        int y = img.height() - icon.height() - 6;
-        y = qMax( y, 0 );
-        QPainter p(&img);
-        p.setOpacity(m_iconAlpha/255.0);
-        p.drawImage(x, y, icon);
-    }
 
     if (img.isNull()) {
         error(KIO::ERR_INTERNAL, i18n("Failed to create a thumbnail."));
@@ -654,23 +627,6 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
     }
 
     return creator;
-}
-
-
-const QImage ThumbnailProtocol::getIcon()
-{
-    const QMimeDatabase db;
-
-    ///@todo Can we really do this? It doesn't seem to respect the size
-    if (!m_iconDict.contains(m_mimeType)) { // generate it
-        QImage icon(KIconLoader::global()->loadMimeTypeIcon(db.mimeTypeForName(m_mimeType).iconName(), KIconLoader::Desktop, m_iconSize).toImage());
-        icon = icon.convertToFormat(QImage::Format_ARGB32);
-        m_iconDict.insert(m_mimeType, icon);
-
-        return icon;
-    }
-
-    return m_iconDict.value(m_mimeType);
 }
 
 bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& filePath,

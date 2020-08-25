@@ -30,7 +30,6 @@ public:
     TextCreator();
     ~TextCreator() override;
     bool create(const QString &path, int width, int height, QImage &img) override;
-    Flags flags() const override;
 
 private:
     char *m_data;
