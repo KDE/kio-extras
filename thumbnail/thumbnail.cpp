@@ -277,21 +277,6 @@ void ThumbnailProtocol::get(const QUrl &url)
 
     scaleDownImage(img, m_width, m_height);
 
-    if (flags & ThumbCreator::DrawFrame) {
-        int x2 = img.width() - 1;
-        int y2 = img.height() - 1;
-        // paint a black rectangle around the "page"
-        QPainter p;
-        p.begin( &img );
-        p.setPen( QColor( 48, 48, 48 ));
-        p.drawLine( x2, 0, x2, y2 );
-        p.drawLine( 0, y2, x2, y2 );
-        p.setPen( QColor( 215, 215, 215 ));
-        p.drawLine( 0, 0, x2, 0 );
-        p.drawLine( 0, 0, 0, y2 );
-        p.end();
-    }
-
     if ((flags & ThumbCreator::BlendIcon) && KIconLoader::global()->alphaBlending(KIconLoader::Desktop)) {
         // blending the mimetype icon in
         QImage icon = getIcon();
