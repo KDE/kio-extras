@@ -101,8 +101,3 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
 
     return false;
 }
-
-ThumbCreator::Flags KritaCreator::flags() const
-{
-    return None;
-}

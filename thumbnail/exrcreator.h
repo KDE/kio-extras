@@ -27,7 +27,6 @@ class EXRCreator : public ThumbCreator
 public:
     EXRCreator() {};
     bool create(const QString &path, int, int, QImage &img) override;
-    Flags flags() const override;
 };
 
 #endif

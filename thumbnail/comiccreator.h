@@ -52,7 +52,6 @@ class ComicCreator : public QObject, public ThumbCreator
     public:
         ComicCreator();
         bool create(const QString& path, int width, int height, QImage& img) override;
-        Flags flags() const override;
 
     private:
         enum Type {

@@ -310,8 +310,3 @@ int ComicCreator::startProcess(const QString& processPath, const QStringList& ar
 
     return ret;
 }
-
-ThumbCreator::Flags ComicCreator::flags() const
-{
-    return None;
-}

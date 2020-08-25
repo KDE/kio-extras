@@ -56,11 +56,6 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
     return imageReader.read(&image);
 }
 
-ThumbCreator::Flags JpegCreator::flags() const
-{
-    return None;
-}
-
 QWidget *JpegCreator::createConfigurationWidget()
 {
     QCheckBox *rotateCheckBox = new QCheckBox(i18nc("@option:check", "Rotate the image automatically"));

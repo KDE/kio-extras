@@ -123,11 +123,3 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
   int l = img.loadFromData( data );
   return ok && l;
 }
-
-
-ThumbCreator::Flags DjVuCreator::flags() const
-{
-  return static_cast<Flags>(None);
-}
-
-

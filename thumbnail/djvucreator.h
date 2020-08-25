@@ -28,8 +28,6 @@ class DjVuCreator : public ThumbCreator
 public:
     DjVuCreator() {}
     bool create(const QString &path, int, int, QImage &img) override;
-	Flags flags() const override;
-
 };
 
 #endif
