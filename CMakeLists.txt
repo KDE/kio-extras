@@ -157,7 +157,7 @@ endif()
 add_subdirectory( doc )
 
 add_subdirectory( about )
-if(TARGET KF5::Activities AND TARGET Qt5::Sql)
+if(TARGET KF5::Activities AND TARGET Qt5::Sql AND NOT WIN32)
   add_subdirectory( activities )
 endif()
 if(KF5ActivitiesStats_FOUND)
