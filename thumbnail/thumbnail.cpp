@@ -542,9 +542,10 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
                 break; // Never show the same thumbnail twice
             }
 
-            if (dir.fileInfo().size() > m_maxFileSize) {
+            auto fileSize = dir.fileInfo().size();
+            if ((fileSize == 0) || (fileSize > m_maxFileSize)) {
                 // don't create thumbnails for files that exceed
-                // the maximum set file size
+                // the maximum set file size or are empty
                 continue;
             }
 
