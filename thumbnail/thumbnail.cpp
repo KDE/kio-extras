@@ -681,11 +681,9 @@ const QImage ThumbnailProtocol::getIcon()
 bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& filePath,
                                            int segmentWidth, int segmentHeight)
 {
-    const QUrl fileUrl = QUrl::fromLocalFile(filePath);
-
-    auto getSubCreator = [&fileUrl, this]() -> ThumbCreator* {
+    auto getSubCreator = [&filePath, this]() -> ThumbCreator* {
         const QMimeDatabase db;
-        const QString subPlugin = pluginForMimeType(db.mimeTypeForUrl(fileUrl).name());
+        const QString subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
         if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
             return nullptr;
         }
@@ -697,8 +695,9 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
         // 128 x 128 or 256 x 256 pixels
         int cacheSize = 0;
         QCryptographicHash md5(QCryptographicHash::Md5);
-        md5.addData(fileUrl.toEncoded());
-        const QString thumbName = QFile::encodeName(md5.result().toHex()).append(".png");
+        const QByteArray fileUrl = QUrl::fromLocalFile(filePath).toEncoded();
+        md5.addData(fileUrl);
+        const QString thumbName = QString::fromLatin1(md5.result().toHex()).append(".png");
 
         if (m_thumbBasePath.isEmpty()) {
             m_thumbBasePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/thumbnails/");
