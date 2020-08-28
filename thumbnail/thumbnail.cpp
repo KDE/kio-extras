@@ -524,9 +524,6 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
     while (true) {
         QDirIterator dir(directory, QDir::Files | QDir::Readable);
         int skipped = 0;
-        if (!dir.hasNext()) {
-            break;
-        }
 
         // Seed the random number generator so that it always returns the same result
         // for the same directory and sequence-item
