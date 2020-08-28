@@ -497,8 +497,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
         return img;
     }
 
-    // Multiply with a high number, so we get some semi-random sequence
-    int skipValidItems = ((int)sequenceIndex()) * tiles * tiles;
+    // Advance to the next tile page each second
+    int skipValidItems = ((int)sequenceIndex()) * visibleCount;
 
     img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
     img.fill(0);
@@ -583,18 +583,12 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
             break;
         }
 
-        if (skipped != 0) { // Round up to full pages
-            const int roundedDown = (skipped / visibleCount) * visibleCount;
-            if (roundedDown < skipped) {
-                skipped = roundedDown + visibleCount;
-            } else {
-                skipped = roundedDown;
-            }
-        }
-
         if (skipped == 0) {
             break; // No valid items were found
         }
+
+        // Round up to full pages
+        skipped = ((skipped + visibleCount - 1) / visibleCount) * visibleCount;
 
         // We don't need to iterate again and again: Subtract any multiple of "skipped" from the count we still need to skip
         skipValidItems -= (skipValidItems / skipped) * skipped;
