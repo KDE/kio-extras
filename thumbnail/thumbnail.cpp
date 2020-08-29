@@ -518,12 +518,12 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
     int iterations = 0;
     QString hadFirstThumbnail;
     QImage firstThumbnail;
-    int skipped = 0;
 
     int validThumbnails = 0;
 
-    while (skipped <= skipValidItems) {
+    while (true) {
         QDirIterator dir(directory, QDir::Files | QDir::Readable);
+        int skipped = 0;
         if (!dir.hasNext()) {
             break;
         }
@@ -587,12 +587,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
             break; // No valid items were found
         }
 
-        // Round up to full pages
-        skipped = ((skipped + visibleCount - 1) / visibleCount) * visibleCount;
+        // Calculate number of (partial) pages for all valid items in the directory
+        auto skippedPages = (skipped + visibleCount - 1) / visibleCount;
 
-        // We don't need to iterate again and again: Subtract any multiple of "skipped" from the count we still need to skip
-        skipValidItems -= (skipValidItems / skipped) * skipped;
-        skipped = 0;
+        // The sequence is continously repeated after all valid items, calculate remainder
+        skipValidItems = (((int)sequenceIndex()) % skippedPages) * visibleCount;
     }
 
     p.end();
