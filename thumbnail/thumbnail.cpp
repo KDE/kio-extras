@@ -520,11 +520,9 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
     QImage firstThumbnail;
     int skipped = 0;
 
-    const int maxYPos = folderHeight - bottomMargin - segmentHeight;
-
     int validThumbnails = 0;
 
-    while ((skipped <= skipValidItems) && (yPos <= maxYPos) && validThumbnails == 0) {
+    while (skipped <= skipValidItems) {
         QDirIterator dir(directory, QDir::Files | QDir::Readable);
         if (!dir.hasNext()) {
             break;
@@ -534,7 +532,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
         // for the same directory and sequence-item
         qsrand(qHash(directory) + skipValidItems);
 
-        while (dir.hasNext() && (yPos <= maxYPos)) {
+        while (dir.hasNext()) {
             ++iterations;
             if (iterations > 500) {
                 skipValidItems = skipped = 0;
@@ -570,12 +568,19 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
             }
 
             ++validThumbnails;
+            if (validThumbnails >= visibleCount) {
+                break;
+            }
 
             xPos += segmentWidth + spacing;
             if (xPos > folderWidth - rightMargin - segmentWidth) {
                 xPos = leftMargin;
                 yPos += segmentHeight + spacing;
             }
+        }
+
+        if (validThumbnails > 0) {
+            break;
         }
 
         if (skipped != 0) { // Round up to full pages
