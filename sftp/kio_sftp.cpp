@@ -2485,7 +2485,7 @@ void SFTPInternal::slave_status() {
     q->slaveStatus((mConnected ? mHost : QString()), mConnected);
 }
 
-SFTPInternal::GetRequest::GetRequest(sftp_file file, size_t size, ushort maxPendingRequests)
+SFTPInternal::GetRequest::GetRequest(sftp_file file, uint64_t size, ushort maxPendingRequests)
     : m_file(file)
     , m_size(size)
     , m_maxPendingRequests(maxPendingRequests)
