@@ -15,6 +15,8 @@
 #include <smbauthenticator.h>
 #include <smb-logsettings.h>
 
+#include <errno.h>
+
 // Frontend implementation in place of slavebase
 class Frontend : public SMBAbstractFrontend
 {
