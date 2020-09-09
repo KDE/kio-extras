@@ -273,7 +273,7 @@ QStringList MANProtocol::findPages(const QString &_section,
 
     QStringList list;
 
-    // kDebug() << "findPages '" << section << "' '" << title << "'\n";
+    // qCDebug(KIO_MAN_LOG) << "findPages '" << section << "' '" << title << "'\n";
     if ( (!title.isEmpty()) && (title.at(0) == '/') ) {
        list.append(title);
        return list;
@@ -347,7 +347,7 @@ QStringList MANProtocol::findPages(const QString &_section,
 
                 // Only add sect if not already contained, avoid duplicates
                 if (!sect_list.contains(sect) && _section.isEmpty())  {
-                    //kDebug() << "another section " << sect;
+                    //qCDebug(KIO_MAN_LOG) << "another section " << sect;
                     sect_list += sect;
                 }
             }
@@ -369,7 +369,7 @@ QStringList MANProtocol::findPages(const QString &_section,
                 findManPagesInSection(dir, title, full_path, list);
                 findManPagesInSection(sdir, title, full_path, list);
             }
-            qCDebug(KIO_MAN_LOG)<<"After if";
+            //qCDebug(KIO_MAN_LOG)<<"After if";
         }
     }
 
@@ -380,7 +380,7 @@ QStringList MANProtocol::findPages(const QString &_section,
 
 void MANProtocol::findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list)
 {
-    qCDebug(KIO_MAN_LOG) << "findManPagesInSection " << dir << " " << title;
+    qCDebug(KIO_MAN_LOG) << dir << title;
     bool title_given = !title.isEmpty();
 
     DIR *dp = ::opendir( QFile::encodeName( dir ) );
@@ -447,7 +447,7 @@ extern void output_real(const char *insert)
 }
 #endif
 
-void MANProtocol::get(const QUrl& url )
+void MANProtocol::get(const QUrl &url)
 {
     qCDebug(KIO_MAN_LOG) << "GET " << url.url();
 
@@ -456,6 +456,7 @@ void MANProtocol::get(const QUrl& url )
     if (!parseUrl(url.path(), title, section))
     {
         showMainIndex();
+        finished();
         return;
     }
 
@@ -469,44 +470,60 @@ void MANProtocol::get(const QUrl& url )
             showMainIndex();
         else
             showIndex(section);
+        finished();
         return;
     }
 
-    const QStringList foundPages=findPages(section, title);
-    bool pageFound=true;
+    QStringList foundPages = findPages(section, title);
+    QString pageFound;
 
     if (foundPages.isEmpty())
     {
+        // TODO: improve wording
        outputError(i18n("No man page matching to %1 found.<br /><br />"
            "Check that you have not mistyped the name of the page that you want.<br />"
            "Check that you have typed the name using the correct upper and lower case characters.<br />"
            "If everything looks correct, then you may need to improve the search path "
            "for man pages; either using the environment variable MANPATH or using a matching file "
            "in the /etc directory.", title.toHtmlEscaped()));
-       pageFound=false;
-    }
-    else if (foundPages.count()>1)
-    {
-       pageFound=false;
-       //check for the case that there is foo.1 and foo.1.gz found:
-       // ### TODO make it more generic (other extensions)
-       if ((foundPages.count()==2) &&
-           ((QString(foundPages[0]+".gz") == foundPages[1]) ||
-            (foundPages[0] == QString(foundPages[1]+".gz"))))
-          pageFound=true;
-       else
-          outputMatchingPages(foundPages);
-    }
-    //yes, we found exactly one man page
 
-    if (pageFound)
+       // TODO: call error(KIO::SLAVE_DEFINED, QString()) in outputError()
+       // and not finished() here
+       finished();
+       return;
+    }
+
+    // Sort the list of pages now, for display if required and for
+    // testing for equivalents below.
+    std::sort(foundPages.begin(), foundPages.end());
+    pageFound = foundPages.first();
+
+    if (foundPages.count()>1)
     {
+        // See if the multiple pages found refer to the same man page, for example
+        // if 'foo.1' and 'foo.1.gz' were both found.  To make this generic with
+        // regard to compression suffixes, assume that the first page name (after
+        // the list has been sorted above) is the shortest.  Then check that all of
+        // the others are the same with a possible compression suffix added.
+        for (int i = 1; i<foundPages.count(); ++i)
+        {
+            if (!foundPages[i].startsWith(pageFound+'.'))
+            {
+                // There is a page which is not the same as the reference, even
+                // allowing for a compression suffix.  Output the list of multiple
+                // pages only.
+                outputMatchingPages(foundPages);
+                finished();
+                return;
+            }
+        }
+    }
+
        setCssFile(m_manCSSFile);
        m_outputBuffer.open(QIODevice::WriteOnly);
-       const QByteArray filename=QFile::encodeName(foundPages[0]);
-       char *buf = readManPage(filename);
-
-       if (!buf)
+       const QByteArray filename = QFile::encodeName(pageFound);
+       const char *buf = readManPage(filename);
+       if (buf==nullptr)
        {
           outputError(i18n("Open of %1 failed.", title));
           finished();
@@ -523,7 +540,7 @@ void MANProtocol::get(const QUrl& url )
        m_outputBuffer.setData(QByteArray());
        // tell we are done
        data(QByteArray());
-    }
+
     finished();
 }
 
@@ -612,6 +629,7 @@ void MANProtocol::outputError(const QString& errmsg)
     QTextStream os(&array, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
 
+    // TODO: eliminate repetition, used 4 times
     os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
     os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
     os << "<title>" << i18n("Man output") << "</title>\n\n";
@@ -655,12 +673,12 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     os << "</body>\n</html>\n";
     os.flush();
     data(array);
-    finished();
+    // Do not call finished(), the caller will do that
 }
 
 void MANProtocol::stat( const QUrl& url)
 {
-    qCDebug(KIO_MAN_LOG) << "ENTERING STAT " << url.url();
+    qCDebug(KIO_MAN_LOG) << "STAT " << url.url();
 
     QString title, section;
 
@@ -670,7 +688,7 @@ void MANProtocol::stat( const QUrl& url)
         return;
     }
 
-    qCDebug(KIO_MAN_LOG) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section;
+    qCDebug(KIO_MAN_LOG) << "URL" << url.url() << "parsed to title" << title << "section" << section;
 
     UDSEntry entry;
     entry.reserve(3);
@@ -816,7 +834,7 @@ void MANProtocol::showMainIndex()
     os.flush();
 
     data(array);
-    finished();
+    // Do not call finished(), the caller will do that
 }
 
 void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_catmanpath)
@@ -1158,7 +1176,6 @@ void MANProtocol::showIndex(const QString& section)
 
       infoMessage(QString());
       data(array_h + array_d);
-      finished();
       return;
     }
 
@@ -1334,7 +1351,7 @@ void MANProtocol::showIndex(const QString& section)
 
     infoMessage(QString());
     data(array_h + array_d);
-    finished();
+    // Do not call finished(), the caller will do that
 }
 
 void MANProtocol::listDir(const QUrl &url)
