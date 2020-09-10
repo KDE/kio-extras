@@ -623,58 +623,69 @@ char *MANProtocol::readManPage(const char *_filename)
 
 //---------------------------------------------------------------------
 
+void MANProtocol::outputHeader(QTextStream &os, const QString &header, const QString &title)
+{
+    os.setCodec("UTF-8");
+
+    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
+    os << "<html><head>\n";
+    os << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
+    os << "<title>" << (!title.isEmpty() ? title : header) << "</title>\n";
+    if (!m_manCSSFile.isEmpty()) {
+        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
+    }
+    os << "</head>\n\n";
+    os << "<body>\n";
+    os << "<h1>" << header << "</h1>\n";
+
+    os.flush();
+}
+
+
 void MANProtocol::outputError(const QString& errmsg)
 {
     QByteArray array;
     QTextStream os(&array, QIODevice::WriteOnly);
-    os.setCodec( "UTF-8" );
 
-    // TODO: eliminate repetition, used 4 times
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
-    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-    os << "<title>" << i18n("Man output") << "</title>\n\n";
-    if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
-    os << "</head>\n";
-    os << "<body>" << i18n("<h1>KDE Man Viewer Error</h1>") << errmsg << "</body>\n";
+    outputHeader(os, i18n("Manual Page Viewer Error"));
+    os << errmsg << "\n";
+    os << "</body>\n";
     os << "</html>\n";
-    os.flush();
 
+    os.flush();
     data(array);
 }
+
+
 
 void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 {
     QByteArray array;
     QTextStream os(&array, QIODevice::WriteOnly);
-    os.setCodec( "UTF-8" );
 
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
-    os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-    os << "<title>" << i18n("Man output") <<"</title>\n";
-    if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
-    os << "</head>\n";
-    os << "<body><h1>" << i18n("There is more than one matching man page.");
-    os << "</h1>\n<ul>\n";
+    outputHeader(os, i18n("There is more than one matching man page:"), i18n("Multiple Manual Pages"));
+    os << "<ul>\n";
 
-    int acckey=1;
+    int acckey = 1;
     for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
     {
-      os<<"<li><a href='man:"<<(*it)<<"' accesskey='"<< acckey <<"'>"<< *it <<"</a><br>\n<br>\n";
-      acckey++;
+        os << "<li><a href='man:" << (*it) << "' accesskey='" << acckey << "'>" << *it << "</a><br>\n<br>\n";
+        ++acckey;
     }
+
     os << "</ul>\n";
     os << "<hr>\n";
     os << "<p>" << i18n("Note: if you read a man page in your language,"
        " be aware it can contain some mistakes or be obsolete."
        " In case of doubt, you should have a look at the English version.") << "</p>";
 
-    os << "</body>\n</html>\n";
+    os << "</body>\n";
+    os << "</html>\n";
     os.flush();
     data(array);
     // Do not call finished(), the caller will do that
 }
+
 
 void MANProtocol::stat( const QUrl& url)
 {
@@ -788,16 +799,8 @@ void MANProtocol::showMainIndex()
 {
     QByteArray array;
     QTextStream os(&array, QIODevice::WriteOnly);
-    os.setCodec( "UTF-8" );
 
-    // print header
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
-    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-    os << "<title>" << i18n("UNIX Manual Index") << "</title>\n";
-    if (!m_manCSSFile.isEmpty())
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
-    os << "</head>\n";
-    os << "<body><h1>" << i18n("UNIX Manual Index") << "</h1>\n";
+    outputHeader(os, i18n("Main Manual Page Index"));
 
     // ### TODO: why still the environment variable
     const QString sectList = getenv("MANSECT");
@@ -811,8 +814,7 @@ void MANProtocol::showMainIndex()
 
     QSet<QChar> accessKeys;
     char alternateAccessKey = 'a';
-    QStringList::ConstIterator it;
-    for (it = sections.constBegin(); it != sections.constEnd(); ++it)
+    for (QStringList::ConstIterator it = sections.constBegin(); it != sections.constEnd(); ++it)
     {
         // create a unique access key
         QChar accessKey = (*it).at((*it).length() - 1);  // rightmost char
@@ -828,11 +830,9 @@ void MANProtocol::showMainIndex()
     }
 
     os << "</table>\n";
-
-    // print footer
-    os << "</body></html>\n";
+    os << "</body>\n";
+    os << "</html>\n";
     os.flush();
-
     data(array);
     // Do not call finished(), the caller will do that
 }
@@ -1143,21 +1143,14 @@ void MANProtocol::showIndex(const QString& section)
 {
     QByteArray array_h;
     QTextStream os_h(&array_h, QIODevice::WriteOnly);
-    os_h.setCodec( "UTF-8" );
 
     // print header
-    os_h << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
-    os_h << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
-    os_h << "<title>" << i18n("UNIX Manual Index") << "</title>\n";
-    if ( !m_manCSSFile.isEmpty() )
-        os_h << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
-    os_h << "</head>\n" << "<body>\n";
+    outputHeader(os_h, i18n( "Index for section %1: %2", section, sectionName(section)), i18n("Manual Page Index"));
 
     QByteArray array_d;
     QTextStream os(&array_d, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
     os << "<div class=\"secidxmain\">\n";
-    os << "<h1>" << i18n( "Index for Section %1: %2", section, sectionName(section)) << "</h1>\n";
 
     // compose list of search paths -------------------------------------------------------------
 
@@ -1167,7 +1160,7 @@ void MANProtocol::showIndex(const QString& section)
     // search for the man pages
     QStringList pages = findPages( section, QString() );
 
-    if ( pages.count() == 0 )  // not a single page found
+    if (pages.isEmpty())				// not a single page found
     {
       // print footer
       os << "</div></body></html>\n";
@@ -1182,6 +1175,7 @@ void MANProtocol::showIndex(const QString& section)
     QMap<QString, QString> indexmap = buildIndexMap(section);
 
     // print out the list
+    os << "<br/><br/>\n";
     os << "<table>\n";
 
     int listlen = pages.count();
@@ -1286,8 +1280,9 @@ void MANProtocol::showIndex(const QString& section)
         ).arg(firstchar).arg(firstchar).arg(firstchar);
         indexLine.append(appendixstr);
     }
-    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
-       << firstchar << "\">" << firstchar <<"</a>\n</td></tr>\n";
+    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n";
+    os << "<a name=\"" << firstchar << "\">" << firstchar <<"</a>\n";
+    os << "</td></tr>\n";
 
     for (int i=0; i<listlen; i++)
     {
@@ -1338,6 +1333,7 @@ void MANProtocol::showIndex(const QString& section)
     delete [] indexlist;
 
     os << "</table></div>\n";
+    os << "<br/><br/>\n";
 
     os << indexLine << '\n';
 
