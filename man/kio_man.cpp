@@ -479,13 +479,15 @@ void MANProtocol::get(const QUrl &url)
 
     if (foundPages.isEmpty())
     {
-        // TODO: improve wording
-       outputError(i18n("No man page matching to %1 found.<br /><br />"
-           "Check that you have not mistyped the name of the page that you want.<br />"
-           "Check that you have typed the name using the correct upper and lower case characters.<br />"
-           "If everything looks correct, then you may need to improve the search path "
-           "for man pages; either using the environment variable MANPATH or using a matching file "
-           "in the /etc directory.", title.toHtmlEscaped()));
+        outputError(xi18nc("@info", "No man page matching <resource>%1</resource> could be found."
+                                    "<nl/><nl/>"
+                                    "Check that you have not mistyped the name of the page, "
+                                    "and note that man page names are case sensitive."
+                                    "<nl/><nl/>"
+                                    "If the name is correct, then you may need to extend the search path "
+                                    "for man pages, either using the <envar>MANPATH</envar> environment "
+                                    "variable or a configuration file in the <filename>/etc</filename> "
+                           "directory.", title.toHtmlEscaped()));
 
        // TODO: call error(KIO::SLAVE_DEFINED, QString()) in outputError()
        // and not finished() here
@@ -525,9 +527,10 @@ void MANProtocol::get(const QUrl &url)
        const char *buf = readManPage(filename);
        if (buf==nullptr)
        {
-          outputError(i18n("Open of %1 failed.", title));
-          finished();
-          return;
+           outputError(xi18nc("@info", "The man page <filename>%1</filename> was found, "
+                                       "but it could not be read or parsed.", title));
+           finished();
+           return;
        }
        // will call output_real
        scan_man_page(buf);
@@ -595,10 +598,13 @@ char *MANProtocol::readManPage(const char *_filename)
           const QStringList entries = mandir.entryList();
           if (entries.isEmpty())
           {
-              outputError(i18n("The specified man page referenced another page '%1',<br />"
-                               "but the referenced page '%2' could not be found.",
-                               QFile::decodeName(filename),
-                               QDir::cleanPath(lastdir + '/' + nameFilter)));
+              outputError(xi18nc("@info", "The specified man page references "
+                                          "another page <filename>%1</filename>,"
+                                          "<nl/>"
+                                          "but the referenced page <filename>%2</filename> "
+                                          "could not be found.",
+                                 QFile::decodeName(filename),
+                                 QDir::cleanPath(lastdir + '/' + nameFilter)));
               return 0;
           }
 
@@ -1422,7 +1428,9 @@ void MANProtocol::getProgramPath()
     return;
 
   /* Cannot find sgml2roff program: */
-  outputError(i18n("Could not find the sgml2roff program on your system. Please install it, if necessary, and extend the search path by adjusting the environment variable PATH before starting KDE."));
+  outputError(xi18nc("@info", "Could not find the <command>sgml2roff</command> program on your system. "
+                              "Please install it if necessary, and ensure that it can be found using "
+                              "the environment variable <envar>PATH</envar>."));
   finished();
   exit();
 }
