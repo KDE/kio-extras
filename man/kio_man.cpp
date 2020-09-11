@@ -487,12 +487,10 @@ void MANProtocol::get(const QUrl &url)
                                     "If the name is correct, then you may need to extend the search path "
                                     "for man pages, either using the <envar>MANPATH</envar> environment "
                                     "variable or a configuration file in the <filename>/etc</filename> "
-                           "directory.", title.toHtmlEscaped()));
+                                    "directory.", title.toHtmlEscaped()));
 
-       // TODO: call error(KIO::SLAVE_DEFINED, QString()) in outputError()
-       // and not finished() here
-       finished();
-       return;
+        error(KIO::ERR_SLAVE_DEFINED, QString());
+        return;
     }
 
     // Sort the list of pages now, for display if required and for
@@ -529,7 +527,7 @@ void MANProtocol::get(const QUrl &url)
        {
            outputError(xi18nc("@info", "The man page <filename>%1</filename> was found, "
                                        "but it could not be read or parsed.", title));
-           finished();
+           error(KIO::ERR_SLAVE_DEFINED, QString());
            return;
        }
        // will call output_real
@@ -605,7 +603,7 @@ char *MANProtocol::readManPage(const char *_filename)
                                           "could not be found.",
                                  QFile::decodeName(filename),
                                  QDir::cleanPath(lastdir + '/' + nameFilter)));
-              return 0;
+              return nullptr;
           }
 
           filename = lastdir + '/' + QFile::encodeName(entries.first());
@@ -721,7 +719,6 @@ void MANProtocol::stat( const QUrl& url)
 #endif
 
     statEntry(entry);
-
     finished();
 }
 
@@ -1431,6 +1428,6 @@ void MANProtocol::getProgramPath()
   outputError(xi18nc("@info", "Could not find the <command>sgml2roff</command> program on your system. "
                               "Please install it if necessary, and ensure that it can be found using "
                               "the environment variable <envar>PATH</envar>."));
-  finished();
+  error(KIO::ERR_SLAVE_DEFINED, QString());
   exit();
 }
