@@ -1,0 +1,34 @@
+{
+    "KDE-KIO-Protocols": {
+        "s3": {
+            "Class": ":internet",
+            "ExtraNames": [
+            ],
+            "Icon": "folder-gdrive",
+            "X-DocPath": "kioslave5/s3/index.html",
+            "deleteRecursive": true,
+            "deleting": true,
+            "exec": "kf5/kio/s3",
+            "input": "none",
+            "linking": true,
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "AccessDate",
+                "Access",
+                "Owner",
+                "Group",
+                "Link"
+            ],
+            "makedir": true,
+            "moving": true,
+            "opening": false,
+            "output": "filesystem",
+            "protocol": "s3",
+            "reading": true,
+            "writing": true
+        }
+    }
+}

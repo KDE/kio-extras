@@ -209,6 +209,8 @@ if(SAMBA_FOUND)
     add_subdirectory(smb)
 endif()
 
+add_subdirectory(s3)
+
 configure_file (config-runtime.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-runtime.h )
 
 install(FILES kio-extras.categories DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
