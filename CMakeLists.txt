@@ -116,6 +116,14 @@ set_package_properties(Mtp PROPERTIES DESCRIPTION "the MTP library"
                        PURPOSE "Needed to build the MTP kioslave"
                        )
 
+find_package(AWSSDK COMPONENTS core s3)
+set_package_properties(AWSSDK PROPERTIES DESCRIPTION "the AWS SDK for C++"
+                       URL "https://github.com/aws/aws-sdk-cpp"
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build the S3 kioslave"
+                       )
+
+
 check_include_file(utime.h HAVE_UTIME_H)
 
 # ECM's KDECompilerSettings.cmake should take care of enabling supporting on

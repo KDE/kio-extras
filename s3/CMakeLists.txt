@@ -17,6 +17,7 @@ target_link_libraries(kio_s3
     Qt5::Network
     KF5::KIOCore
     KF5::KIOWidgets
-    KF5::I18n)
+    KF5::I18n
+    ${AWSSDK_LINK_LIBRARIES})
 
 set_target_properties(kio_s3 PROPERTIES OUTPUT_NAME "s3")

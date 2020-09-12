@@ -23,6 +23,12 @@
 
 #include <QCoreApplication>
 
+#include <aws/core/auth/AWSCredentialsProvider.h>
+#include <aws/core/Aws.h>
+#include <aws/s3/S3Client.h>
+#include <aws/s3/model/Bucket.h>
+#include <aws/s3/model/ListObjectsRequest.h>
+
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
@@ -52,6 +58,10 @@ S3Slave::S3Slave(const QByteArray &protocol, const QByteArray &pool_socket,
     SlaveBase("s3", pool_socket, app_socket)
 {
     Q_UNUSED(protocol)
+
+    Aws::SDKOptions options;
+    Aws::InitAPI(options);
+
     qCDebug(S3) << "kio_s3 ready";
 }
 
@@ -71,6 +81,45 @@ void S3Slave::listDir(const QUrl &url)
 void S3Slave::stat(const QUrl &url)
 {
     Q_UNUSED(url)
+
+    const auto profileName = Aws::Auth::GetConfigProfileName();
+    Aws::Client::ClientConfiguration config(profileName.c_str());
+
+    qCDebug(S3) << "Config region:"  << config.region.c_str();
+
+
+    Aws::S3::S3Client s3_client(config);
+    Aws::S3::Model::ListBucketsOutcome outcome = s3_client.ListBuckets();
+
+    if (outcome.IsSuccess()) {
+        qCDebug(S3) << "Bucket names:";
+
+        Aws::Vector<Aws::S3::Model::Bucket> buckets = outcome.GetResult().GetBuckets();
+        const auto bucketName = buckets[0].GetName();
+        for (Aws::S3::Model::Bucket& bucket : buckets) {
+            qCDebug(S3) << bucket.GetName().c_str();
+        }
+
+        Aws::S3::Model::ListObjectsRequest request;
+        request.WithBucket(bucketName);
+
+        qCDebug(S3) << "Listing objects in bucket '" << bucketName.c_str() << "':";
+        auto outcome = s3_client.ListObjects(request);
+
+        if (outcome.IsSuccess()) {
+
+            Aws::Vector<Aws::S3::Model::Object> objects = outcome.GetResult().GetContents();
+            for (Aws::S3::Model::Object& object : objects) {
+                qCDebug(S3) << object.GetKey().c_str();
+            }
+        } else {
+            qCDebug(S3) << "Error: ListObjects: " << outcome.GetError().GetMessage().c_str();
+        }
+
+    } else {
+        qCDebug(S3) << "Error: ListBuckets: " << outcome.GetError().GetMessage().c_str();
+    }
+
     qCDebug(S3) << "Not implemented yet.";
     error(KIO::ERR_UNSUPPORTED_ACTION, i18n("Not implemented yet."));
 }
