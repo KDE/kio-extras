@@ -82,42 +82,39 @@ void S3Slave::stat(const QUrl &url)
 {
     Q_UNUSED(url)
 
-    const auto profileName = Aws::Auth::GetConfigProfileName();
-    Aws::Client::ClientConfiguration config(profileName.c_str());
+    const auto configProfileName = Aws::Auth::GetConfigProfileName();   // This is needed to make the SDK get the proper region from ~/.aws/config
+    const Aws::Client::ClientConfiguration clientConfiguration(configProfileName.c_str());
 
-    qCDebug(S3) << "Config region:"  << config.region.c_str();
+    const Aws::S3::S3Client client(clientConfiguration);
+    const auto listBucketsOutcome = client.ListBuckets();
 
-
-    Aws::S3::S3Client s3_client(config);
-    Aws::S3::Model::ListBucketsOutcome outcome = s3_client.ListBuckets();
-
-    if (outcome.IsSuccess()) {
+    if (listBucketsOutcome.IsSuccess()) {
         qCDebug(S3) << "Bucket names:";
 
-        Aws::Vector<Aws::S3::Model::Bucket> buckets = outcome.GetResult().GetBuckets();
+        const auto buckets = listBucketsOutcome.GetResult().GetBuckets();
         const auto bucketName = buckets[0].GetName();
-        for (Aws::S3::Model::Bucket& bucket : buckets) {
+        for (const auto &bucket : buckets) {
             qCDebug(S3) << bucket.GetName().c_str();
         }
 
-        Aws::S3::Model::ListObjectsRequest request;
-        request.WithBucket(bucketName);
+        Aws::S3::Model::ListObjectsRequest listObjectsRequest;
+        listObjectsRequest.WithBucket(bucketName);
 
         qCDebug(S3) << "Listing objects in bucket '" << bucketName.c_str() << "':";
-        auto outcome = s3_client.ListObjects(request);
+        const auto listObjectsOutcome = client.ListObjects(listObjectsRequest);
 
-        if (outcome.IsSuccess()) {
+        if (listObjectsOutcome.IsSuccess()) {
 
-            Aws::Vector<Aws::S3::Model::Object> objects = outcome.GetResult().GetContents();
-            for (Aws::S3::Model::Object& object : objects) {
+            const auto objects = listObjectsOutcome.GetResult().GetContents();
+            for (const auto &object : objects) {
                 qCDebug(S3) << object.GetKey().c_str();
             }
         } else {
-            qCDebug(S3) << "Error: ListObjects: " << outcome.GetError().GetMessage().c_str();
+            qCDebug(S3) << "Error: ListObjects: " << listObjectsOutcome.GetError().GetMessage().c_str();
         }
 
     } else {
-        qCDebug(S3) << "Error: ListBuckets: " << outcome.GetError().GetMessage().c_str();
+        qCDebug(S3) << "Error: ListBuckets: " << listBucketsOutcome.GetError().GetMessage().c_str();
     }
 
     qCDebug(S3) << "Not implemented yet.";

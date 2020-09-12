@@ -217,7 +217,9 @@ if(SAMBA_FOUND)
     add_subdirectory(smb)
 endif()
 
-add_subdirectory(s3)
+if(AWSSDK_FOUND)
+    add_subdirectory(s3)
+endif()
 
 configure_file (config-runtime.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-runtime.h )
 
