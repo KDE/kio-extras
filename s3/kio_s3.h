@@ -19,6 +19,8 @@
 #ifndef KIO_S3_H
 #define KIO_S3_H
 
+#include "s3url.h"
+
 #include <KIO/SlaveBase>
 
 #include <QUrl>
@@ -44,6 +46,12 @@ public:
 
 private:
     Q_DISABLE_COPY(S3Slave)
+
+    void listBuckets();
+    void listBucket(const QString &bucketName);
+    void listFolder(const S3Url &s3url);
+
+    QStringList m_bucketNamesCache;
 };
 
 #endif // KIO_S3_H
