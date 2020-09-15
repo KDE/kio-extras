@@ -29,6 +29,7 @@
 #include <aws/s3/S3Client.h>
 #include <aws/s3/model/Bucket.h>
 #include <aws/s3/model/GetObjectRequest.h>
+#include <aws/s3/model/HeadObjectRequest.h>
 #include <aws/s3/model/ListObjectsV2Request.h>
 
 class KIOPluginForMetaData : public QObject
@@ -147,20 +148,27 @@ void S3Slave::stat(const QUrl &url)
 
 void S3Slave::mimetype(const QUrl &url)
 {
-    Q_UNUSED(url)
-    qCDebug(S3) << "Not implemented yet.";
-    error(KIO::ERR_UNSUPPORTED_ACTION, i18n("Not implemented yet."));
+    qCDebug(S3) << "Going to get mimetype for" << url;
+    const auto s3url = S3Url(url);
+    qCDebug(S3) << "bucketName:" << s3url.bucketName() << "key" << s3url.key();
+
+    mimeType(contentType(s3url));
+    finished();
 }
 
 void S3Slave::get(const QUrl &url)
 {
     qCDebug(S3) << "Going to get" << url;
     const auto s3url = S3Url(url);
+    qCDebug(S3) << "bucketName:" << s3url.bucketName() << "key" << s3url.key();
 
     const auto configProfileName = Aws::Auth::GetConfigProfileName();   // This is needed to make the SDK get the proper region from ~/.aws/config
     const Aws::Client::ClientConfiguration clientConfiguration(configProfileName.c_str());
 
     const Aws::S3::S3Client client(clientConfiguration);
+
+    mimeType(contentType(s3url));
+
     Aws::S3::Model::GetObjectRequest objectRequest;
     objectRequest.SetBucket(s3url.bucketName().toStdString());
     objectRequest.SetKey(s3url.key().toStdString());
@@ -391,6 +399,30 @@ void S3Slave::listFolder(const S3Url &s3url)
     } else {
         qCDebug(S3) << "Could not list prefix" << s3url.key() << " - " << listObjectsOutcome.GetError().GetMessage().c_str();
     }
+}
+
+QString S3Slave::contentType(const S3Url &s3url)
+{
+    QString contentType;
+
+    const auto configProfileName = Aws::Auth::GetConfigProfileName();   // This is needed to make the SDK get the proper region from ~/.aws/config
+    const Aws::Client::ClientConfiguration clientConfiguration(configProfileName.c_str());
+
+    const Aws::S3::S3Client client(clientConfiguration);
+
+    Aws::S3::Model::HeadObjectRequest headObjectRequest;
+    headObjectRequest.SetBucket(s3url.bucketName().toStdString());
+    headObjectRequest.SetKey(s3url.key().toStdString());
+
+    auto headObjectRequestOutcome = client.HeadObject(headObjectRequest);
+    if (headObjectRequestOutcome.IsSuccess()) {
+        contentType = QString::fromStdString(headObjectRequestOutcome.GetResult().GetContentType());
+        qCDebug(S3) << "Key" << s3url.key() << "has content type:" << contentType;
+    } else {
+        qCDebug(S3) << "Could not get content type for key:" << s3url.key() << " - " << headObjectRequestOutcome.GetError().GetMessage().c_str();
+    }
+
+    return contentType;
 }
 
 #include "kio_s3.moc"

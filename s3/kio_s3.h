@@ -50,6 +50,7 @@ private:
     void listBuckets();
     void listBucket(const QString &bucketName);
     void listFolder(const S3Url &s3url);
+    QString contentType(const S3Url &s3url);
 
     QStringList m_bucketNamesCache;
 };
