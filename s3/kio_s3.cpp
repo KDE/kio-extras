@@ -56,14 +56,15 @@ int Q_DECL_EXPORT kdemain(int argc, char **argv)
     return 0;
 }
 
-S3Slave::S3Slave(const QByteArray &protocol, const QByteArray &pool_socket,
-                      const QByteArray &app_socket):
-    SlaveBase("s3", pool_socket, app_socket)
+S3Slave::S3Slave(const QByteArray &protocol, const QByteArray &pool_socket, const QByteArray &app_socket)
+    : SlaveBase("s3", pool_socket, app_socket)
 {
     Q_UNUSED(protocol)
 
     Aws::SDKOptions options;
     Aws::InitAPI(options);
+
+    m_configProfileName = QByteArray::fromStdString(Aws::Auth::GetConfigProfileFilename());
 
     qCDebug(S3) << "kio_s3 ready";
 }
@@ -77,15 +78,8 @@ S3Slave::~S3Slave()
 void S3Slave::listDir(const QUrl &url)
 {
     qCDebug(S3) << "Going to list" << url;
-
-    QString prefix = url.path().remove(0, 1);
-    if (!prefix.endsWith(QLatin1Char('/'))) {
-        prefix += QLatin1Char('/');
-    }
-
-
     const auto s3url = S3Url(url);
-    qCDebug(S3) << "bucketName:" << s3url.bucketName() << "key" << s3url.key();
+    qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
 
     if (s3url.isRoot()) {
         listBuckets();
@@ -109,6 +103,7 @@ void S3Slave::listDir(const QUrl &url)
 
     // We also need a non-null and writable UDSentry for "."
     KIO::UDSEntry entry;
+    entry.reserve(4);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
@@ -122,7 +117,7 @@ void S3Slave::stat(const QUrl &url)
 {
     qCDebug(S3) << "Going to stat()" << url;
     const auto s3url = S3Url(url);
-    qCDebug(S3) << "bucketName:" << s3url.bucketName() << "key" << s3url.key();
+    qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
 
     if (s3url.isRoot()) {
         finished();
@@ -150,7 +145,7 @@ void S3Slave::mimetype(const QUrl &url)
 {
     qCDebug(S3) << "Going to get mimetype for" << url;
     const auto s3url = S3Url(url);
-    qCDebug(S3) << "bucketName:" << s3url.bucketName() << "key" << s3url.key();
+    qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
 
     mimeType(contentType(s3url));
     finished();
@@ -160,10 +155,9 @@ void S3Slave::get(const QUrl &url)
 {
     qCDebug(S3) << "Going to get" << url;
     const auto s3url = S3Url(url);
-    qCDebug(S3) << "bucketName:" << s3url.bucketName() << "key" << s3url.key();
+    qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
 
-    const auto configProfileName = Aws::Auth::GetConfigProfileName();   // This is needed to make the SDK get the proper region from ~/.aws/config
-    const Aws::Client::ClientConfiguration clientConfiguration(configProfileName.c_str());
+    const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
 
     const Aws::S3::S3Client client(clientConfiguration);
 
@@ -180,12 +174,11 @@ void S3Slave::get(const QUrl &url)
         qCDebug(S3) << "Key" << s3url.key() << "has Content-Length:" << objectResult.GetContentLength();
         totalSize(objectResult.GetContentLength());
 
-        QByteArray contentData;
-        char buffer[1024 * 1024] = { 0 };
+        std::array<char, 1024*1024> buffer{};
         while (!retrievedFile.eof()) {
-            const auto readBytes = retrievedFile.read(buffer, sizeof(buffer)).gcount();
+            const auto readBytes = retrievedFile.read(buffer.data(), buffer.size()).gcount();
             if (readBytes > 0) {
-                data(QByteArray(buffer, readBytes));
+                data(QByteArray(buffer.data(), readBytes));
             }
         }
 
@@ -241,10 +234,7 @@ void S3Slave::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
 void S3Slave::listBuckets()
 {
     if (m_bucketNamesCache.isEmpty()) {
-
-        const auto configProfileName = Aws::Auth::GetConfigProfileName();   // This is needed to make the SDK get the proper region from ~/.aws/config
-        const Aws::Client::ClientConfiguration clientConfiguration(configProfileName.c_str());
-
+        const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
         const Aws::S3::S3Client client(clientConfiguration);
         const auto listBucketsOutcome = client.ListBuckets();
 
@@ -261,8 +251,9 @@ void S3Slave::listBuckets()
         }
     }
 
-    for (const auto &bucketName : m_bucketNamesCache) {
+    for (const auto &bucketName : qAsConst(m_bucketNamesCache)) {
         KIO::UDSEntry entry;
+        entry.reserve(6);
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, bucketName);
         entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, bucketName);
         entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
@@ -274,6 +265,7 @@ void S3Slave::listBuckets()
 
     // Create also non-writable UDSentry for "."
     KIO::UDSEntry entry;
+    entry.reserve(4);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
@@ -283,9 +275,7 @@ void S3Slave::listBuckets()
 
 void S3Slave::listBucket(const QString &bucketName)
 {
-    const auto configProfileName = Aws::Auth::GetConfigProfileName();   // This is needed to make the SDK get the proper region from ~/.aws/config
-    const Aws::Client::ClientConfiguration clientConfiguration(configProfileName.c_str());
-
+    const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
 
     Aws::S3::Model::ListObjectsV2Request listObjectsRequest;
@@ -294,12 +284,12 @@ void S3Slave::listBucket(const QString &bucketName)
 
     qCDebug(S3) << "Listing objects in bucket" << bucketName << "...";
     const auto listObjectsOutcome = client.ListObjectsV2(listObjectsRequest);
-
     if (listObjectsOutcome.IsSuccess()) {
 
         const auto objects = listObjectsOutcome.GetResult().GetContents();
         for (const auto &object : objects) {
             KIO::UDSEntry entry;
+            entry.reserve(4);
             entry.fastInsert(KIO::UDSEntry::UDS_NAME, object.GetKey().c_str());
             entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, object.GetKey().c_str());
             entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
@@ -314,7 +304,7 @@ void S3Slave::listBucket(const QString &bucketName)
             if (prefix.endsWith(QLatin1Char('/'))) {
                 prefix.chop(1);
             }
-
+            entry.reserve(4);
             entry.fastInsert(KIO::UDSEntry::UDS_NAME, prefix);
             entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, prefix);
             entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
@@ -322,7 +312,6 @@ void S3Slave::listBucket(const QString &bucketName)
 
             listEntry(entry);
         }
-
     } else {
         qCDebug(S3) << "Could not list bucket: " << listObjectsOutcome.GetError().GetMessage().c_str();
     }
@@ -330,9 +319,7 @@ void S3Slave::listBucket(const QString &bucketName)
 
 void S3Slave::listFolder(const S3Url &s3url)
 {
-    const auto configProfileName = Aws::Auth::GetConfigProfileName();   // This is needed to make the SDK get the proper region from ~/.aws/config
-    const Aws::Client::ClientConfiguration clientConfiguration(configProfileName.c_str());
-
+    const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
 
     const QString prefix = s3url.prefix();
@@ -344,9 +331,7 @@ void S3Slave::listFolder(const S3Url &s3url)
 
     qCDebug(S3) << "Listing prefix" << prefix << "...";
     const auto listObjectsOutcome = client.ListObjectsV2(listObjectsRequest);
-
     if (listObjectsOutcome.IsSuccess()) {
-
         const auto objects = listObjectsOutcome.GetResult().GetContents();
         // TODO: handle listObjectsOutcome.GetResult().GetIsTruncated()
         // By default the max-keys request parameter is 1000, which is reasonable for us
@@ -354,36 +339,31 @@ void S3Slave::listFolder(const S3Url &s3url)
         // if someone has very big folders with more than 1000 files.
         qCDebug(S3) << "Prefix" << prefix << "has" << objects.size() << "objects";
         for (const auto &object : objects) {
-            qCDebug(S3) << "Found object:" << object.GetKey().c_str();
-
             QString key = QString::fromStdString(object.GetKey());
             key.remove(0, prefix.length());
-            qCDebug(S3) << "Going to list key:" << key;
 
             KIO::UDSEntry entry;
             // S3 always appends trailing slash to "folder" objects.
             if (key.endsWith(QLatin1Char('/'))) {
+                entry.reserve(4);
                 entry.fastInsert(KIO::UDSEntry::UDS_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
                 entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
                 listEntry(entry);
             } else { // Not a folder.
+                entry.reserve(4);
                 entry.fastInsert(KIO::UDSEntry::UDS_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
                 entry.fastInsert(KIO::UDSEntry::UDS_SIZE, object.GetSize());
                 listEntry(entry);
-
             }
-
         }
 
         const auto commonPrefixes = listObjectsOutcome.GetResult().GetCommonPrefixes();
         qCDebug(S3) << "Prefix" << s3url.key() << "has" << commonPrefixes.size() << "prefixes";
         for (const auto &commonPrefix : commonPrefixes) {
-            qCDebug(S3) << "Found commonPrefix:" << commonPrefix.GetPrefix().c_str();
-
             QString subprefix = QString::fromStdString(commonPrefix.GetPrefix());
             if (subprefix.endsWith(QLatin1Char('/'))) {
                 subprefix.chop(1);
@@ -392,6 +372,7 @@ void S3Slave::listFolder(const S3Url &s3url)
                 subprefix.remove(0, prefix.length());
             }
             KIO::UDSEntry entry;
+            entry.reserve(4);
             entry.fastInsert(KIO::UDSEntry::UDS_NAME, subprefix);
             entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, subprefix);
             entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
@@ -408,9 +389,7 @@ QString S3Slave::contentType(const S3Url &s3url)
 {
     QString contentType;
 
-    const auto configProfileName = Aws::Auth::GetConfigProfileName();   // This is needed to make the SDK get the proper region from ~/.aws/config
-    const Aws::Client::ClientConfiguration clientConfiguration(configProfileName.c_str());
-
+    const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
 
     Aws::S3::Model::HeadObjectRequest headObjectRequest;
