@@ -28,6 +28,7 @@
 #include <aws/core/Aws.h>
 #include <aws/s3/S3Client.h>
 #include <aws/s3/model/Bucket.h>
+#include <aws/s3/model/GetObjectRequest.h>
 #include <aws/s3/model/ListObjectsV2Request.h>
 
 class KIOPluginForMetaData : public QObject
@@ -153,9 +154,37 @@ void S3Slave::mimetype(const QUrl &url)
 
 void S3Slave::get(const QUrl &url)
 {
-    Q_UNUSED(url)
-    qCDebug(S3) << "Not implemented yet.";
-    error(KIO::ERR_UNSUPPORTED_ACTION, i18n("Not implemented yet."));
+    qCDebug(S3) << "Going to get" << url;
+    const auto s3url = S3Url(url);
+
+    const auto configProfileName = Aws::Auth::GetConfigProfileName();   // This is needed to make the SDK get the proper region from ~/.aws/config
+    const Aws::Client::ClientConfiguration clientConfiguration(configProfileName.c_str());
+
+    const Aws::S3::S3Client client(clientConfiguration);
+    Aws::S3::Model::GetObjectRequest objectRequest;
+    objectRequest.SetBucket(s3url.bucketName().toStdString());
+    objectRequest.SetKey(s3url.key().toStdString());
+
+    auto getObjectOutcome = client.GetObject(objectRequest);
+    if (getObjectOutcome.IsSuccess()) {
+        auto& retrievedFile = getObjectOutcome.GetResultWithOwnership().GetBody();
+
+        QByteArray contentData;
+        char buffer[1024 * 1024] = { 0 };
+        while (!retrievedFile.eof()) {
+            const auto readBytes = retrievedFile.read(buffer, sizeof(buffer)).gcount();
+            if (readBytes > 0) {
+                data(QByteArray(buffer, readBytes));
+            }
+        }
+
+        data(QByteArray());
+
+    } else {
+        qCDebug(S3) << "Could not get object with key:" << s3url.key() << " - " << getObjectOutcome.GetError().GetMessage().c_str();
+    }
+
+    finished();
 }
 
 void S3Slave::put(const QUrl &url, int, KIO::JobFlags flags)
