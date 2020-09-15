@@ -175,7 +175,10 @@ void S3Slave::get(const QUrl &url)
 
     auto getObjectOutcome = client.GetObject(objectRequest);
     if (getObjectOutcome.IsSuccess()) {
-        auto& retrievedFile = getObjectOutcome.GetResultWithOwnership().GetBody();
+        auto objectResult = getObjectOutcome.GetResultWithOwnership();
+        auto& retrievedFile = objectResult.GetBody();
+        qCDebug(S3) << "Key" << s3url.key() << "has Content-Length:" << objectResult.GetContentLength();
+        totalSize(objectResult.GetContentLength());
 
         QByteArray contentData;
         char buffer[1024 * 1024] = { 0 };
@@ -417,7 +420,7 @@ QString S3Slave::contentType(const S3Url &s3url)
     auto headObjectRequestOutcome = client.HeadObject(headObjectRequest);
     if (headObjectRequestOutcome.IsSuccess()) {
         contentType = QString::fromStdString(headObjectRequestOutcome.GetResult().GetContentType());
-        qCDebug(S3) << "Key" << s3url.key() << "has content type:" << contentType;
+        qCDebug(S3) << "Key" << s3url.key() << "has Content-Type:" << contentType;
     } else {
         qCDebug(S3) << "Could not get content type for key:" << s3url.key() << " - " << headObjectRequestOutcome.GetError().GetMessage().c_str();
     }
