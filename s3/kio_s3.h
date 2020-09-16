@@ -49,7 +49,7 @@ private:
 
     void listBuckets();
     void listBucket(const QString &bucketName);
-    void listFolder(const S3Url &s3url);
+    void listKey(const S3Url &s3url);
     void listCwdEntry();
     QString contentType(const S3Url &s3url);
 

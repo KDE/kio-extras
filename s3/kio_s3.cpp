@@ -109,7 +109,7 @@ void S3Slave::listDir(const QUrl &url)
 
     Q_ASSERT(s3url.isKey());
 
-    listFolder(s3url);
+    listKey(s3url);
     listCwdEntry();
     finished();
 }
@@ -314,6 +314,7 @@ void S3Slave::listBucket(const QString &bucketName)
             entry.reserve(4);
             entry.fastInsert(KIO::UDSEntry::UDS_NAME, object.GetKey().c_str());
             entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, object.GetKey().c_str());
+            entry.fastInsert(KIO::UDSEntry::UDS_URL, QStringLiteral("s3://%1/%2").arg(bucketName, object.GetKey().c_str()));
             entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
             entry.fastInsert(KIO::UDSEntry::UDS_SIZE, object.GetSize());
             listEntry(entry);
@@ -329,6 +330,7 @@ void S3Slave::listBucket(const QString &bucketName)
             entry.reserve(4);
             entry.fastInsert(KIO::UDSEntry::UDS_NAME, prefix);
             entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, prefix);
+            entry.fastInsert(KIO::UDSEntry::UDS_URL, QStringLiteral("s3://%1/%2/").arg(bucketName, prefix));
             entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
             entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
 
@@ -339,7 +341,7 @@ void S3Slave::listBucket(const QString &bucketName)
     }
 }
 
-void S3Slave::listFolder(const S3Url &s3url)
+void S3Slave::listKey(const S3Url &s3url)
 {
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
@@ -384,7 +386,7 @@ void S3Slave::listFolder(const S3Url &s3url)
         }
 
         const auto commonPrefixes = listObjectsOutcome.GetResult().GetCommonPrefixes();
-        qCDebug(S3) << "Prefix" << s3url.key() << "has" << commonPrefixes.size() << "prefixes";
+        qCDebug(S3) << "Prefix" << prefix << "has" << commonPrefixes.size() << "common prefixes";
         for (const auto &commonPrefix : commonPrefixes) {
             QString subprefix = QString::fromStdString(commonPrefix.GetPrefix());
             if (subprefix.endsWith(QLatin1Char('/'))) {
