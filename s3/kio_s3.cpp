@@ -83,6 +83,7 @@ void S3Slave::listDir(const QUrl &url)
 
     if (s3url.isRoot()) {
         listBuckets();
+        listCwdEntry();
         finished();
         return;
     }
@@ -95,6 +96,7 @@ void S3Slave::listDir(const QUrl &url)
 
     if (s3url.isBucket()) {
         listBucket(s3url.bucketName());
+        listCwdEntry();
         finished();
         return;
     }
@@ -108,16 +110,7 @@ void S3Slave::listDir(const QUrl &url)
     Q_ASSERT(s3url.isKey());
 
     listFolder(s3url);
-
-    // We also need a non-null and writable UDSentry for "."
-    KIO::UDSEntry entry;
-    entry.reserve(4);
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
-    listEntry(entry);
-
+    listCwdEntry();
     finished();
 }
 
@@ -300,15 +293,6 @@ void S3Slave::listBuckets()
         entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("folder-network"));
         listEntry(entry);
     }
-
-    // Create also non-writable UDSentry for "."
-    KIO::UDSEntry entry;
-    entry.reserve(4);
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
-    listEntry(entry);
 }
 
 void S3Slave::listBucket(const QString &bucketName)
@@ -421,6 +405,18 @@ void S3Slave::listFolder(const S3Url &s3url)
     } else {
         qCDebug(S3) << "Could not list prefix" << s3url.key() << " - " << listObjectsOutcome.GetError().GetMessage().c_str();
     }
+}
+
+void S3Slave::listCwdEntry()
+{
+    // List a non-writable UDSEntry for "."
+    KIO::UDSEntry entry;
+    entry.reserve(4);
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    listEntry(entry);
 }
 
 QString S3Slave::contentType(const S3Url &s3url)
