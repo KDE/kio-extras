@@ -66,12 +66,12 @@ S3Slave::S3Slave(const QByteArray &protocol, const QByteArray &pool_socket, cons
 
     m_configProfileName = QByteArray::fromStdString(Aws::Auth::GetConfigProfileFilename());
 
-    qCDebug(S3) << "kio_s3 ready";
+    qCDebug(S3) << "kio_s3 ready.";
 }
 
 S3Slave::~S3Slave()
 {
-    qCDebug(S3) << "kio_s3 ready";
+    qCDebug(S3) << "kio_s3 ended.";
 }
 
 
@@ -137,6 +137,29 @@ void S3Slave::stat(const QUrl &url)
     }
 
 //    Q_ASSERT(s3url.isKey());
+
+    const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
+    const Aws::S3::S3Client client(clientConfiguration);
+
+    Aws::S3::Model::HeadObjectRequest headObjectRequest;
+    headObjectRequest.SetBucket(s3url.bucketName().toStdString());
+    headObjectRequest.SetKey(s3url.key().toStdString());
+
+    auto headObjectRequestOutcome = client.HeadObject(headObjectRequest);
+    if (headObjectRequestOutcome.IsSuccess()) {
+        const QString contentType = QString::fromStdString(headObjectRequestOutcome.GetResult().GetContentType());
+        const bool isDir = contentType.isEmpty();
+
+        KIO::UDSEntry entry;
+        entry.reserve(4);
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, url.fileName());
+        entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, url.fileName());
+        entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, isDir ? S_IFDIR : S_IFREG);
+        entry.fastInsert(KIO::UDSEntry::UDS_SIZE, isDir ? 0 : headObjectRequestOutcome.GetResult().GetContentLength());
+    } else {
+        qCDebug(S3) << "Could not get HEAD object for key:" << s3url.key() << " - " << headObjectRequestOutcome.GetError().GetMessage().c_str();
+    }
+
 
     finished();
 }
