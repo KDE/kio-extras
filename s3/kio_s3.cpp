@@ -99,6 +99,14 @@ void S3Slave::listDir(const QUrl &url)
         return;
     }
 
+    if (!s3url.isKey()) {
+        qCDebug(S3) << "Could not list invalid S3 url:" << url;
+        error(KIO::ERR_SLAVE_DEFINED, xi18nc("@info", "Invalid S3 URI, bucket name is missing from the host.<nl/>A valid S3 URI must be written in the form: <link>%1</link>", "s3://bucket/key"));
+        return;
+    }
+
+    Q_ASSERT(s3url.isKey());
+
     listFolder(s3url);
 
     // We also need a non-null and writable UDSentry for "."
@@ -136,7 +144,13 @@ void S3Slave::stat(const QUrl &url)
         return;
     }
 
-//    Q_ASSERT(s3url.isKey());
+    if (!s3url.isKey()) {
+        qCDebug(S3) << "Could not stat invalid S3 url:" << url;
+        error(KIO::ERR_SLAVE_DEFINED, xi18nc("@info", "Invalid S3 URI, bucket name is missing from the host.<nl/>A valid S3 URI must be written in the form: <link>%1</link>", "s3://bucket/key"));
+        return;
+    }
+
+    Q_ASSERT(s3url.isKey());
 
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
