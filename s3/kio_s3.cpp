@@ -145,6 +145,12 @@ void S3Slave::stat(const QUrl &url)
 
     Q_ASSERT(s3url.isKey());
 
+    // Try to do an HEAD request for the key.
+    // If the URL is a folder, S3 will reply only if there is a 0-sized object with that key.
+    const auto pathComponents = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
+    // The URL could be s3://<bucketName>/ which would have "/" as path(). Fallback to bucketName in that case.
+    const auto fileName = pathComponents.isEmpty() ? s3url.bucketName() : pathComponents.last();
+
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
 
@@ -154,20 +160,34 @@ void S3Slave::stat(const QUrl &url)
 
     auto headObjectRequestOutcome = client.HeadObject(headObjectRequest);
     if (headObjectRequestOutcome.IsSuccess()) {
-        const QString contentType = QString::fromStdString(headObjectRequestOutcome.GetResult().GetContentType());
-        const bool isDir = contentType.isEmpty();
-
+        QString contentType = QString::fromStdString(headObjectRequestOutcome.GetResult().GetContentType());
+        // This is set by S3 when creating a 0-sized folder from the AWS console. Use the freedesktop mimetype instead.
+        if (contentType == QLatin1String("application/x-directory")) {
+            contentType = QStringLiteral("inode/directory");
+        }
+        const bool isDir = contentType == QLatin1String("inode/directory");
         KIO::UDSEntry entry;
         entry.reserve(5);
-        entry.fastInsert(KIO::UDSEntry::UDS_NAME, url.fileName());
-        entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, url.fileName());
-        entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, isDir ? QStringLiteral("inode/directory") : contentType);
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, fileName);
+        entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
+        entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, contentType);
         entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, isDir ? S_IFDIR : S_IFREG);
-        entry.fastInsert(KIO::UDSEntry::UDS_SIZE, isDir ? 0 : headObjectRequestOutcome.GetResult().GetContentLength());
+        entry.fastInsert(KIO::UDSEntry::UDS_SIZE, headObjectRequestOutcome.GetResult().GetContentLength());
+        statEntry(entry);
     } else {
         qCDebug(S3) << "Could not get HEAD object for key:" << s3url.key() << " - " << headObjectRequestOutcome.GetError().GetMessage().c_str();
+        // Last chance: if the key ends with a slash, assume this is a folder (i.e. virtual key without associated object).
+        if (s3url.key().endsWith(QLatin1Char('/'))) {
+            KIO::UDSEntry entry;
+            entry.reserve(5);
+            entry.fastInsert(KIO::UDSEntry::UDS_NAME, fileName);
+            entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
+            entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+            entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+            entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
+            statEntry(entry);
+        }
     }
-
 
     finished();
 }
