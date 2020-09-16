@@ -385,6 +385,7 @@ void S3Slave::listKey(const S3Url &s3url)
         qCDebug(S3) << "Prefix" << prefix << "has" << objects.size() << "objects";
         for (const auto &object : objects) {
             QString key = QString::fromStdString(object.GetKey());
+            // Note: key might be empty. 0-sized virtual folders have object.GetKey() equal to prefix.
             key.remove(0, prefix.length());
 
             KIO::UDSEntry entry;
@@ -396,7 +397,7 @@ void S3Slave::listKey(const S3Url &s3url)
                 entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
                 entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
                 listEntry(entry);
-            } else { // Not a folder.
+            } else if (!key.isEmpty()) { // Not a folder.
                 entry.reserve(4);
                 entry.fastInsert(KIO::UDSEntry::UDS_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, key);
