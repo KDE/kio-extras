@@ -276,9 +276,10 @@ void S3Slave::listBuckets()
 
     for (const auto &bucketName : qAsConst(m_bucketNamesCache)) {
         KIO::UDSEntry entry;
-        entry.reserve(6);
+        entry.reserve(7);
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, bucketName);
         entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, bucketName);
+        entry.fastInsert(KIO::UDSEntry::UDS_URL, QStringLiteral("s3://%1/").arg(bucketName));
         entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
         entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
