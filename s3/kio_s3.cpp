@@ -31,6 +31,7 @@
 #include <aws/s3/model/GetObjectRequest.h>
 #include <aws/s3/model/HeadObjectRequest.h>
 #include <aws/s3/model/ListObjectsV2Request.h>
+#include <aws/s3/model/PutObjectRequest.h>
 
 class KIOPluginForMetaData : public QObject
 {
@@ -244,10 +245,40 @@ void S3Slave::get(const QUrl &url)
 
 void S3Slave::put(const QUrl &url, int, KIO::JobFlags flags)
 {
-    Q_UNUSED(url)
     Q_UNUSED(flags)
-    qCDebug(S3) << "Not implemented yet.";
-    error(KIO::ERR_UNSUPPORTED_ACTION, i18n("Not implemented yet."));
+    qCDebug(S3) << "Going to upload data to" << url;
+    const auto s3url = S3Url(url);
+
+    const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
+    const Aws::S3::S3Client client(clientConfiguration);
+
+    Aws::S3::Model::PutObjectRequest request;
+    request.SetBucket(s3url.bucketName().toStdString());
+    request.SetKey(s3url.key().toStdString());
+
+    const auto putDataStream = std::make_shared<Aws::StringStream>("");
+
+    int result;
+    do {
+        QByteArray buffer;
+        dataReq();
+        result = readData(buffer);
+        if (!buffer.isEmpty()) {
+            *putDataStream << buffer.data();
+        }
+    } while (result > 0);
+
+
+    request.SetBody(putDataStream);
+
+    auto putObjectOutcome = client.PutObject(request);
+    if (putObjectOutcome.IsSuccess()) {
+        qCDebug(S3) << "PUT OK!";
+    } else {
+        qCDebug(S3) << "Could not PUT object with key:" << s3url.key() << " - " << putObjectOutcome.GetError().GetMessage().c_str();
+    }
+
+    finished();
 }
 
 void S3Slave::copy(const QUrl &src, const QUrl &dest, int, KIO::JobFlags flags)
