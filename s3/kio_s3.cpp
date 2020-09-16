@@ -158,9 +158,10 @@ void S3Slave::stat(const QUrl &url)
         const bool isDir = contentType.isEmpty();
 
         KIO::UDSEntry entry;
-        entry.reserve(4);
+        entry.reserve(5);
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, url.fileName());
         entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, url.fileName());
+        entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, isDir ? QStringLiteral("inode/directory") : contentType);
         entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, isDir ? S_IFDIR : S_IFREG);
         entry.fastInsert(KIO::UDSEntry::UDS_SIZE, isDir ? 0 : headObjectRequestOutcome.GetResult().GetContentLength());
     } else {
