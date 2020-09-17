@@ -259,22 +259,23 @@ void S3Slave::put(const QUrl &url, int, KIO::JobFlags flags)
 
     const auto putDataStream = std::make_shared<Aws::StringStream>("");
 
-    int result;
+    int bytesCount = 0;
+    int n;
     do {
         QByteArray buffer;
         dataReq();
-        result = readData(buffer);
+        n = readData(buffer);
+        bytesCount += n;
         if (!buffer.isEmpty()) {
-            *putDataStream << buffer.data();
+            putDataStream->write(buffer.data(), n);
         }
-    } while (result > 0);
-
+    } while (n > 0);
 
     request.SetBody(putDataStream);
 
     auto putObjectOutcome = client.PutObject(request);
     if (putObjectOutcome.IsSuccess()) {
-        qCDebug(S3) << "PUT OK!";
+        qCDebug(S3) << "Uploaded" <<  bytesCount << "bytes to key:" << s3url.key();
     } else {
         qCDebug(S3) << "Could not PUT object with key:" << s3url.key() << " - " << putObjectOutcome.GetError().GetMessage().c_str();
     }
