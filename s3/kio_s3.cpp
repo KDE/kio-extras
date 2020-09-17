@@ -28,6 +28,7 @@
 #include <aws/core/Aws.h>
 #include <aws/s3/S3Client.h>
 #include <aws/s3/model/Bucket.h>
+#include <aws/s3/model/DeleteObjectRequest.h>
 #include <aws/s3/model/GetObjectRequest.h>
 #include <aws/s3/model/HeadObjectRequest.h>
 #include <aws/s3/model/ListObjectsV2Request.h>
@@ -299,9 +300,23 @@ void S3Slave::mkdir(const QUrl &url, int)
 
 void S3Slave::del(const QUrl &url, bool)
 {
-    Q_UNUSED(url)
-    qCDebug(S3) << "Not implemented yet.";
-    error(KIO::ERR_UNSUPPORTED_ACTION, i18n("Not implemented yet."));
+    qCDebug(S3) << "Going to delete" << url;
+    const auto s3url = S3Url(url);
+
+    const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
+    const Aws::S3::S3Client client(clientConfiguration);
+
+    Aws::S3::Model::DeleteObjectRequest request;
+    request.SetBucket(s3url.bucketName().toStdString());
+    // FIXME: what about folders? how should we handle them?
+    request.SetKey(s3url.key().toStdString());
+
+    auto deleteObjectOutcome = client.DeleteObject(request);
+    if (!deleteObjectOutcome.IsSuccess()) {
+        qCDebug(S3) << "Could not delete object with key:" << s3url.key() << " - " << deleteObjectOutcome.GetError().GetMessage().c_str();
+    }
+
+    finished();
 }
 
 void S3Slave::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
