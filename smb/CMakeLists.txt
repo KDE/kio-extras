@@ -16,9 +16,6 @@ endif()
 add_feature_info("Internal KDSoapWSDiscoveryClient" INTERNAL_WSDCLIENT
     "Building using internal client because a system-provided version could not be found.")
 
-add_feature_info("SMB DNS-SD Discovery" HAVE_KDNSSD_WITH_SIGNAL_RACE_PROTECTION
-    "Discover SMB hosts via DNS-SD/Avahi/Bonjour. KF5DNSSD >= 5.54 is required to support this.")
-
 find_package(Threads REQUIRED)
 
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_smb\")
