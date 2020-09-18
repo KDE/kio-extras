@@ -22,6 +22,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <errno.h>
 
 #include <KIO/StatJob>
 
@@ -64,8 +65,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
 #else
     QString fullPath = url.path().remove(0, 1);
 #endif
-    qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::checkNewFile" << fullPath;
-
+    qCDebug(KIO_ARCHIVE_LOG) << fullPath;
 
     // Are we already looking at that file ?
     if ( m_archiveFile && m_archiveName == fullPath.left(m_archiveName.length()) )
@@ -77,7 +77,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
             if ( m_mtime == statbuf.st_mtime )
             {
                 path = fullPath.mid( m_archiveName.length() );
-                qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::checkNewFile returning" << path;
+                qCDebug(KIO_ARCHIVE_LOG) << "returning" << path;
                 return true;
             }
         }
@@ -110,9 +110,22 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
         qCDebug(KIO_ARCHIVE_LOG) << fullPath << "trying" << tryPath;
         if ( QT_STAT( QFile::encodeName(tryPath), &statbuf ) == -1 )
         {
-            // We are not in the file system anymore, either we have already enough data or we will never get any useful data anymore
-            break;
+            if (errno == ENOENT)
+            {
+                // The current path is no longer part of the local filesystem.
+                // Either we already have enough of the pathname, or we will
+                // not get anything more useful.
+                statbuf.st_mode = 0;			// do not trust the result
+                break;
+            }
+
+            if (errno == EACCES)
+                errorNum = KIO::ERR_ACCESS_DENIED;
+            else
+                errorNum = KIO::ERR_CANNOT_STAT;
+            return false;
         }
+
         if ( !S_ISDIR(statbuf.st_mode) )
         {
             archiveFile = tryPath;
@@ -142,8 +155,8 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     }
     if ( archiveFile.isEmpty() )
     {
-        qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::checkNewFile: not found";
-        if ( S_ISDIR(statbuf.st_mode) ) // Was the last stat about a directory?
+        qCDebug(KIO_ARCHIVE_LOG) << "not found";
+        if ( S_ISDIR(statbuf.st_mode) ) // Did the last stat() find a directory?
         {
             // Too bad, it is a directory, not an archive.
             qCDebug(KIO_ARCHIVE_LOG) << "Path is a directory, not an archive.";
@@ -255,7 +268,7 @@ void ArchiveProtocolBase::createUDSEntry( const KArchiveEntry * archiveEntry, UD
 
 void ArchiveProtocolBase::listDir( const QUrl & url )
 {
-    qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::listDir" << url.url();
+    qCDebug(KIO_ARCHIVE_LOG) << url.url();
 
     QString path;
     KIO::Error errorNum;
@@ -277,8 +290,7 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
             return;
         }
         // It's a real dir -> redirect
-        QUrl redir;
-        redir.setPath( url.path() );
+        QUrl redir = QUrl::fromLocalFile(url.path());
         qCDebug(KIO_ARCHIVE_LOG) << "Ok, redirection to" << redir.url();
         redirection( redir );
         finished();
@@ -290,10 +302,11 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
 
     if ( path.isEmpty() )
     {
-        QUrl redir( url.scheme() + QString::fromLatin1( ":/") );
+        QUrl redir;
+        redir.setScheme(url.scheme());
         qCDebug(KIO_ARCHIVE_LOG) << "url.path()=" << url.path();
         redir.setPath( url.path() + QString::fromLatin1("/") );
-        qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::listDir: redirection" << redir.url();
+        qCDebug(KIO_ARCHIVE_LOG) << "redirection" << redir.url();
         redirection( redir );
         finished();
         return;
@@ -343,7 +356,7 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
 
     finished();
 
-    qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::listDir done";
+    qCDebug(KIO_ARCHIVE_LOG) << "done";
 }
 
 void ArchiveProtocolBase::stat( const QUrl & url )
@@ -373,7 +386,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
         entry.reserve(2);
         // Real directory. Return just enough information for KRun to work
         entry.fastInsert( KIO::UDSEntry::UDS_NAME, url.fileName());
-        qCDebug(KIO_ARCHIVE_LOG).nospace() << "ArchiveProtocolBase::stat returning name=" << url.fileName();
+        qCDebug(KIO_ARCHIVE_LOG) << "returning name" << url.fileName();
 
         QT_STATBUF buff;
 #ifdef Q_OS_WIN
@@ -436,7 +449,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
 
 void ArchiveProtocolBase::get( const QUrl & url )
 {
-    qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::get" << url.url();
+    qCDebug(KIO_ARCHIVE_LOG) << url.url();
 
     QString path;
     KIO::Error errorNum;
