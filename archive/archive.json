@@ -7,6 +7,8 @@
             "exec": "kf5/kio/archive",
             "Icon": "package-x-generic",
             "Class":"local",
+            "input":"filesystem",
+            "output":"filesystem",
             "listing": [
                 "Name",
                 "Type",
@@ -41,6 +43,8 @@
             "exec": "kf5/kio/archive",
             "Icon": "package-x-generic",
             "Class":"local",
+            "input":"filesystem",
+            "output":"filesystem",
             "listing": [
                 "Name",
                 "Type",
@@ -67,6 +71,8 @@
             "exec": "kf5/kio/archive",
             "Icon": "package-x-generic",
             "Class":"local",
+            "input":"filesystem",
+            "output":"filesystem",
             "listing": [
                 "Name",
                 "Type",
@@ -93,6 +99,8 @@
             "exec": "kf5/kio/archive",
             "Icon": "package-x-generic",
             "Class":"local",
+            "input":"filesystem",
+            "output":"filesystem",
             "listing": [
                 "Name",
                 "Type",
