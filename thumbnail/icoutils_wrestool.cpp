@@ -15,81 +15,51 @@
 
 #include "icoutils.h"
 
-#include <QList>
-#include <QPair>
 #include <QRegularExpression>
 #include <QString>
-#include <QStringList>
-#include <QFile>
 #include <QProcess>
-#include <QSet>
-
-#define abs(n) ( ( n < 0 ) ? -n : n )
-typedef QPair < QString, int > IconInExe;
 
 bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice)
 {
-
     QProcess wrestool;
 
-    wrestool.start("wrestool", QStringList() << "-l" << inputFileName);
+    // list all resources with type RT_GROUP_ICON=14
+    wrestool.start(QStringLiteral("wrestool"), {QStringLiteral("-t14"), QStringLiteral("-l"), inputFileName});
     wrestool.waitForFinished();
 
-    if ( wrestool.exitCode() != 0 )
+    if (wrestool.exitCode() != 0) {
         return false;
-
-    QList<IconInExe> icons;
+    }
 
     const QString output = QString::fromUtf8(wrestool.readAll());
 
     // 16 bit binaries don't have "--language"
-    const QRegularExpression regExp(QStringLiteral("--type=(\\d+) (?:--name=(.*) --language=(.*)|--name=(.*)) \\[.*\\]"));
+    const QRegularExpression regExp(QStringLiteral("--type=\\d+ --name=(\\S+) (?:--language=.* )?\\[.*\\]"));
 
-    auto matches = regExp.globalMatch(output);
-
-    while (matches.hasNext()) {
-        const auto match = matches.next();
-
-        const int type = match.capturedRef(1).toInt();
-        if (type != 14) {
-            continue;
-        }
-
-        QString name = match.captured(2);
-        if (name.isEmpty()) {
-            name = match.captured(4);
-        }
-
-        icons << qMakePair(name, type);
-    }
-
-    if ( icons.isEmpty() )
+    // https://docs.microsoft.com/en-us/windows/win32/menurc/about-icons#icon-display
+    // "Select the RT_GROUP_ICON resource. If more than one such resource exists,
+    // the system uses the first resource listed in the resource scrip."
+    auto match = regExp.match(output);
+    if (!match.hasMatch()) {
         return false;
-
-    for (const IconInExe &icon : qAsConst(icons)) {
-
-        QString name = icon.first;
-        int type = icon.second;
-
-        if ( name.at(0) == '\'' )
-            name = name.mid(1, name.size()-2);
-
-        wrestool.start("wrestool", QStringList() << "-x" << "-t" << QString::number(type) << "-n" << name << inputFileName);
-        wrestool.waitForFinished();
-
-        if (wrestool.exitCode() != 0) {
-            return false;
-        }
-
-        const QByteArray iconData = wrestool.readAllStandardOutput();
-
-        if (outputDevice->write(iconData) != iconData.size()) {
-            return false;
-        }
-
-        return true;
     }
 
-    return false;
+    QString name = match.captured(1);
+    if (name.at(0) == '\'') {
+        name = name.mid(1, name.size()-2);
+    }
 
+    wrestool.start(QStringLiteral("wrestool"), {QStringLiteral("-x"), QStringLiteral("-t14"), QStringLiteral("-n"), name, inputFileName});
+    wrestool.waitForFinished();
+
+    if (wrestool.exitCode() != 0) {
+        return false;
+    }
+
+    const QByteArray iconData = wrestool.readAllStandardOutput();
+    if (outputDevice->write(iconData) != iconData.size()) {
+        return false;
+    }
+
+    return true;
 }
