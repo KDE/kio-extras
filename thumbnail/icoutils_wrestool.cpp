@@ -27,7 +27,7 @@
 #define abs(n) ( ( n < 0 ) ? -n : n )
 typedef QPair < QString, int > IconInExe;
 
-bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice, const qint32 iconNumber)
+bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice)
 {
 
     QProcess wrestool;
@@ -65,11 +65,6 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outp
 
     if ( icons.isEmpty() )
         return false;
-
-    // iconNumber 0 is ambiguous...
-    if (iconNumber > 0 && iconNumber < icons.count()) {
-        icons = {icons.at(iconNumber)};
-    }
 
     for (const IconInExe &icon : qAsConst(icons)) {
 
