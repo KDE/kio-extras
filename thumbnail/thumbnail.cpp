@@ -663,7 +663,8 @@ const QImage ThumbnailProtocol::getIcon()
 
     ///@todo Can we really do this? It doesn't seem to respect the size
     if (!m_iconDict.contains(m_mimeType)) { // generate it
-        QImage icon(KIconLoader::global()->loadMimeTypeIcon(db.mimeTypeForName(m_mimeType).iconName(), KIconLoader::Desktop, m_iconSize).toImage());
+        const QIcon mimeIcon = QIcon::fromTheme(db.mimeTypeForName(m_mimeType).iconName(), QIcon::fromTheme(QStringLiteral("application-octet-stream")));
+        QImage icon(mimeIcon.pixmap(m_iconSize).toImage());
         icon = icon.convertToFormat(QImage::Format_ARGB32);
         m_iconDict.insert(m_mimeType, icon);
 
