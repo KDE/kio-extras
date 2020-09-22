@@ -116,6 +116,11 @@ install(TARGETS textthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 if(NOT WIN32)
 set(djvuthumbnail_PART_SRCS djvucreator.cpp)
 
+ecm_qt_declare_logging_category(djvuthumbnail_PART_SRCS
+                                HEADER thumbnail-djvu-logsettings.h
+                                IDENTIFIER KIO_THUMBNAIL_DJVU_LOG
+                                CATEGORY_NAME log_kio_thumbnail.djvu)
+
 add_library(djvuthumbnail MODULE ${djvuthumbnail_PART_SRCS})
 
 target_link_libraries(djvuthumbnail KF5::KIOWidgets)
