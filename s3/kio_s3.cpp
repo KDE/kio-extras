@@ -28,6 +28,7 @@
 #include <aws/core/Aws.h>
 #include <aws/s3/S3Client.h>
 #include <aws/s3/model/Bucket.h>
+#include <aws/s3/model/CopyObjectRequest.h>
 #include <aws/s3/model/DeleteObjectRequest.h>
 #include <aws/s3/model/GetObjectRequest.h>
 #include <aws/s3/model/HeadObjectRequest.h>
@@ -285,11 +286,53 @@ void S3Slave::put(const QUrl &url, int, KIO::JobFlags flags)
 
 void S3Slave::copy(const QUrl &src, const QUrl &dest, int, KIO::JobFlags flags)
 {
-    Q_UNUSED(src)
-    Q_UNUSED(dest)
     Q_UNUSED(flags)
-    qCDebug(S3) << "Not implemented yet.";
-    error(KIO::ERR_UNSUPPORTED_ACTION, i18n("Not implemented yet."));
+    qCDebug(S3) << "Going to copy" << src << "to" << dest;
+
+    const auto s3src = S3Url(src);
+    const auto s3dest = S3Url(dest);
+
+    if (s3src.isRoot() || s3src.isBucket()) {
+        qCDebug(S3) << "Cannot copy from root or bucket url:" << src;
+        error(KIO::ERR_CANNOT_OPEN_FOR_READING, src.toDisplayString());
+        return;
+    }
+
+    if (!s3src.isKey()) {
+        qCDebug(S3) << "Cannot copu from invalid S3 url:" << src;
+        error(KIO::ERR_CANNOT_OPEN_FOR_READING, src.toDisplayString());
+        return;
+    }
+
+    // TODO: can we copy to isBucket() urls?
+    if (s3dest.isRoot() || s3dest.isBucket()) {
+        qCDebug(S3) << "Cannot copy to root or bucket url:" << dest;
+        error(KIO::ERR_WRITE_ACCESS_DENIED, dest.toDisplayString());
+        return;
+    }
+
+    if (!s3dest.isKey()) {
+        qCDebug(S3) << "Cannot write to invalid S3 url:" << dest;
+        error(KIO::ERR_WRITE_ACCESS_DENIED, dest.toDisplayString());
+        return;
+    }
+
+    const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
+    const Aws::S3::S3Client client(clientConfiguration);
+
+    Aws::S3::Model::CopyObjectRequest request;
+    request.SetCopySource(QStringLiteral("%1/%2").arg(s3src.bucketName(), s3src.key()).toStdString());
+    request.SetBucket(s3dest.bucketName().toStdString());
+    request.SetKey(s3dest.key().toStdString());
+
+    auto copyObjectOutcome = client.CopyObject(request);
+    if (!copyObjectOutcome.IsSuccess()) {
+        qCDebug(S3) << "Could not copy" << src << "to" << dest << "- " << copyObjectOutcome.GetError().GetMessage().c_str();
+        error(KIO::ERR_SLAVE_DEFINED, xi18nc("@info", "Could not copy <link>%1</link> to <link>%2</link>", src.toDisplayString(), dest.toDisplayString()));
+        return;
+    }
+
+    finished();
 }
 
 void S3Slave::mkdir(const QUrl &url, int)
