@@ -54,7 +54,6 @@ private:
     QString contentType(const S3Url &s3url);
 
     QByteArray m_configProfileName;    // This must be passed to the S3Client objects to get the proper region from ~/.aws/config
-    QStringList m_bucketNamesCache;
 };
 
 #endif // KIO_S3_H

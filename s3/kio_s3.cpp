@@ -91,12 +91,6 @@ void S3Slave::listDir(const QUrl &url)
         return;
     }
 
-//    if (!m_bucketNames.contains(s3url.bucketName())) {
-//        qCDebug(S3) << "Unknown bucket" << s3url.bucketName() << "for" << url;
-//        error(KIO::ERR_SLAVE_DEFINED, i18n("%1 is not a known S3 account", s3url.bucketName()));
-//        return;
-//    }
-
     if (s3url.isBucket()) {
         listBucket(s3url.bucketName());
         listCwdEntry();
@@ -380,35 +374,28 @@ void S3Slave::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
 
 void S3Slave::listBuckets()
 {
-    if (m_bucketNamesCache.isEmpty()) {
-        const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
-        const Aws::S3::S3Client client(clientConfiguration);
-        const auto listBucketsOutcome = client.ListBuckets();
+    const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
+    const Aws::S3::S3Client client(clientConfiguration);
+    const auto listBucketsOutcome = client.ListBuckets();
 
-        if (listBucketsOutcome.IsSuccess()) {
-            const auto buckets = listBucketsOutcome.GetResult().GetBuckets();
-            for (const auto &bucket : buckets) {
-                const auto bucketName = QString::fromStdString(bucket.GetName());
-                qCDebug(S3) << "Found bucket:" << bucketName;
-                m_bucketNamesCache << bucketName;
-
-            }
-        } else {
-            qCDebug(S3) << "Could not list buckets:" << listBucketsOutcome.GetError().GetMessage().c_str();
+    if (listBucketsOutcome.IsSuccess()) {
+        const auto buckets = listBucketsOutcome.GetResult().GetBuckets();
+        for (const auto &bucket : buckets) {
+            const auto bucketName = QString::fromStdString(bucket.GetName());
+            qCDebug(S3) << "Found bucket:" << bucketName;
+            KIO::UDSEntry entry;
+            entry.reserve(7);
+            entry.fastInsert(KIO::UDSEntry::UDS_NAME, bucketName);
+            entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, bucketName);
+            entry.fastInsert(KIO::UDSEntry::UDS_URL, QStringLiteral("s3://%1/").arg(bucketName));
+            entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+            entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
+            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+            entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("folder-network"));
+            listEntry(entry);
         }
-    }
-
-    for (const auto &bucketName : qAsConst(m_bucketNamesCache)) {
-        KIO::UDSEntry entry;
-        entry.reserve(7);
-        entry.fastInsert(KIO::UDSEntry::UDS_NAME, bucketName);
-        entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, bucketName);
-        entry.fastInsert(KIO::UDSEntry::UDS_URL, QStringLiteral("s3://%1/").arg(bucketName));
-        entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
-        entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-        entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("folder-network"));
-        listEntry(entry);
+    } else {
+        qCDebug(S3) << "Could not list buckets:" << listBucketsOutcome.GetError().GetMessage().c_str();
     }
 }
 
