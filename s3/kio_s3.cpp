@@ -272,6 +272,11 @@ void S3Slave::put(const QUrl &url, int, KIO::JobFlags flags)
         }
     } while (n > 0);
 
+    if (bytesCount <= 0) {
+        error(KIO::ERR_CANNOT_WRITE, url.toDisplayString());
+        return;
+    }
+
     request.SetBody(putDataStream);
 
     auto putObjectOutcome = client.PutObject(request);
