@@ -363,9 +363,10 @@ void S3Slave::del(const QUrl &url, bool)
     auto deleteObjectOutcome = client.DeleteObject(request);
     if (!deleteObjectOutcome.IsSuccess()) {
         qCDebug(S3) << "Could not delete object with key:" << s3url.key() << " - " << deleteObjectOutcome.GetError().GetMessage().c_str();
+        error(KIO::ERR_CANNOT_DELETE, url.toDisplayString());
+    } else {
+        finished();
     }
-
-    finished();
 }
 
 void S3Slave::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
