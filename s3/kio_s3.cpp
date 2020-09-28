@@ -170,18 +170,29 @@ void S3Slave::stat(const QUrl &url)
         entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, contentType);
         entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, isDir ? S_IFDIR : S_IFREG);
         entry.fastInsert(KIO::UDSEntry::UDS_SIZE, headObjectRequestOutcome.GetResult().GetContentLength());
+        if (isDir) {
+            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
+        } else {
+            // For keys we would need another request (GetObjectAclRequest) to get the permission,
+            // but it is kind of pointless to map the AWS ACL model to UNIX permission anyway.
+            // So assume keys are always writable, we'll handle the failure if they are not.
+            // The same logic will be applied to all the other UDS_ACCESS instances for keys.
+            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH );
+        }
+
         statEntry(entry);
     } else {
         qCDebug(S3) << "Could not get HEAD object for key:" << s3url.key() << " - " << headObjectRequestOutcome.GetError().GetMessage().c_str();
         // Last chance: if the key ends with a slash, assume this is a folder (i.e. virtual key without associated object).
         if (s3url.key().endsWith(QLatin1Char('/'))) {
             KIO::UDSEntry entry;
-            entry.reserve(5);
+            entry.reserve(6);
             entry.fastInsert(KIO::UDSEntry::UDS_NAME, fileName);
             entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
             entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
             entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
             entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
+            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
             statEntry(entry);
         }
     }
@@ -390,7 +401,7 @@ void S3Slave::listBuckets()
             entry.fastInsert(KIO::UDSEntry::UDS_URL, QStringLiteral("s3://%1/").arg(bucketName));
             entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
             entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
-            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
             entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("folder-network"));
             listEntry(entry);
         }
@@ -415,12 +426,13 @@ void S3Slave::listBucket(const QString &bucketName)
         const auto objects = listObjectsOutcome.GetResult().GetContents();
         for (const auto &object : objects) {
             KIO::UDSEntry entry;
-            entry.reserve(4);
+            entry.reserve(6);
             entry.fastInsert(KIO::UDSEntry::UDS_NAME, object.GetKey().c_str());
             entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, object.GetKey().c_str());
             entry.fastInsert(KIO::UDSEntry::UDS_URL, QStringLiteral("s3://%1/%2").arg(bucketName, object.GetKey().c_str()));
             entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
             entry.fastInsert(KIO::UDSEntry::UDS_SIZE, object.GetSize());
+            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH );
             listEntry(entry);
         }
 
@@ -431,11 +443,12 @@ void S3Slave::listBucket(const QString &bucketName)
             if (prefix.endsWith(QLatin1Char('/'))) {
                 prefix.chop(1);
             }
-            entry.reserve(4);
+            entry.reserve(6);
             entry.fastInsert(KIO::UDSEntry::UDS_NAME, prefix);
             entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, prefix);
             entry.fastInsert(KIO::UDSEntry::UDS_URL, QStringLiteral("s3://%1/%2/").arg(bucketName, prefix));
             entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
             entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
 
             listEntry(entry);
@@ -474,18 +487,20 @@ void S3Slave::listKey(const S3Url &s3url)
             KIO::UDSEntry entry;
             // S3 always appends trailing slash to "folder" objects.
             if (key.endsWith(QLatin1Char('/'))) {
-                entry.reserve(4);
+                entry.reserve(5);
                 entry.fastInsert(KIO::UDSEntry::UDS_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+                entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
                 entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
                 listEntry(entry);
             } else if (!key.isEmpty()) { // Not a folder.
-                entry.reserve(4);
+                entry.reserve(5);
                 entry.fastInsert(KIO::UDSEntry::UDS_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
                 entry.fastInsert(KIO::UDSEntry::UDS_SIZE, object.GetSize());
+                entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH );
                 listEntry(entry);
             }
         }
