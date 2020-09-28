@@ -182,19 +182,19 @@ void S3Slave::stat(const QUrl &url)
 
         statEntry(entry);
     } else {
-        qCDebug(S3) << "Could not get HEAD object for key:" << s3url.key() << " - " << headObjectRequestOutcome.GetError().GetMessage().c_str();
-        // Last chance: if the key ends with a slash, assume this is a folder (i.e. virtual key without associated object).
-        if (s3url.key().endsWith(QLatin1Char('/'))) {
-            KIO::UDSEntry entry;
-            entry.reserve(6);
-            entry.fastInsert(KIO::UDSEntry::UDS_NAME, fileName);
-            entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
-            entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
-            entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-            entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
-            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
-            statEntry(entry);
-        }
+        qCDebug(S3).nospace() << "Could not get HEAD object for key: " << s3url.key() << " - " << headObjectRequestOutcome.GetError().GetMessage().c_str() << " - assuming it's a folder.";
+        // HACK: assume this is a folder (i.e. a virtual key without associated object).
+        // If it were a key or a 0-sized folder the HEAD request would likely have worked.
+        // This is needed to upload local folders to S3.
+        KIO::UDSEntry entry;
+        entry.reserve(6);
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, fileName);
+        entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
+        entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+        entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
+        entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
+        statEntry(entry);
     }
 
     finished();
@@ -348,8 +348,8 @@ void S3Slave::copy(const QUrl &src, const QUrl &dest, int, KIO::JobFlags flags)
 void S3Slave::mkdir(const QUrl &url, int)
 {
     Q_UNUSED(url)
-    qCDebug(S3) << "Not implemented yet.";
-    error(KIO::ERR_UNSUPPORTED_ACTION, i18n("Not implemented yet."));
+    qCDebug(S3) << "Pretending creation of folder" << url;
+    finished();
 }
 
 void S3Slave::del(const QUrl &url, bool)
