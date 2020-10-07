@@ -4,7 +4,7 @@
             "Class": ":internet",
             "ExtraNames": [
             ],
-            "Icon": "folder-gdrive",
+            "Icon": "folder-network",
             "X-DocPath": "kioslave5/s3/index.html",
             "deleteRecursive": true,
             "deleting": true,
