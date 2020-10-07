@@ -25,6 +25,8 @@
 
 #include <QUrl>
 
+#include <aws/s3/S3Client.h>
+
 class S3Slave : public KIO::SlaveBase
 {
 public:
@@ -51,6 +53,7 @@ private:
     void listBucket(const QString &bucketName);
     void listKey(const S3Url &s3url);
     void listCwdEntry();
+    bool deletePrefix(const Aws::S3::S3Client &client, const S3Url &s3url, const QString &prefix);
     QString contentType(const S3Url &s3url);
 
     QByteArray m_configProfileName;    // This must be passed to the S3Client objects to get the proper region from ~/.aws/config
