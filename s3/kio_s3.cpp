@@ -216,7 +216,6 @@ void S3Slave::get(const QUrl &url)
     qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
 
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
-
     const Aws::S3::S3Client client(clientConfiguration);
 
     mimeType(contentType(s3url));
@@ -308,7 +307,7 @@ void S3Slave::copy(const QUrl &src, const QUrl &dest, int, KIO::JobFlags flags)
     }
 
     if (!s3src.isKey()) {
-        qCDebug(S3) << "Cannot copu from invalid S3 url:" << src;
+        qCDebug(S3) << "Cannot copy from invalid S3 url:" << src;
         error(KIO::ERR_CANNOT_OPEN_FOR_READING, src.toDisplayString());
         return;
     }
@@ -356,6 +355,16 @@ void S3Slave::del(const QUrl &url, bool)
     qCDebug(S3) << "Going to delete" << url;
     const auto s3url = S3Url(url);
     qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
+
+    if (s3url.isRoot() || s3url.isBucket()) {
+        error(KIO::ERR_CANNOT_DELETE, url.toDisplayString());
+        return;
+    }
+
+    if (!s3url.isKey()) {
+        error(KIO::ERR_SLAVE_DEFINED, xi18nc("@info", "Invalid S3 URI, bucket name is missing from the host.<nl/>A valid S3 URI must be written in the form: <link>%1</link>", "s3://bucket/key"));
+        return;
+    }
 
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
