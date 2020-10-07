@@ -145,7 +145,8 @@ void S3Slave::stat(const QUrl &url)
     // If the URL is a folder, S3 will reply only if there is a 0-sized object with that key.
     const auto pathComponents = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
     // The URL could be s3://<bucketName>/ which would have "/" as path(). Fallback to bucketName in that case.
-    const auto fileName = pathComponents.isEmpty() ? s3url.bucketName() : pathComponents.last();
+    const bool isRootKey = pathComponents.isEmpty();
+    const auto fileName = isRootKey ? s3url.bucketName() : pathComponents.last();
 
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
@@ -155,7 +156,7 @@ void S3Slave::stat(const QUrl &url)
     headObjectRequest.SetKey(s3url.key().toStdString());
 
     auto headObjectRequestOutcome = client.HeadObject(headObjectRequest);
-    if (headObjectRequestOutcome.IsSuccess()) {
+    if (!isRootKey && headObjectRequestOutcome.IsSuccess()) {
         QString contentType = QString::fromStdString(headObjectRequestOutcome.GetResult().GetContentType());
         // This is set by S3 when creating a 0-sized folder from the AWS console. Use the freedesktop mimetype instead.
         if (contentType == QLatin1String("application/x-directory")) {
@@ -181,7 +182,9 @@ void S3Slave::stat(const QUrl &url)
 
         statEntry(entry);
     } else {
-        qCDebug(S3).nospace() << "Could not get HEAD object for key: " << s3url.key() << " - " << headObjectRequestOutcome.GetError().GetMessage().c_str() << " - assuming it's a folder.";
+        if (!isRootKey) {
+            qCDebug(S3).nospace() << "Could not get HEAD object for key: " << s3url.key() << " - " << headObjectRequestOutcome.GetError().GetMessage().c_str() << " - assuming it's a folder.";
+        }
         // HACK: assume this is a folder (i.e. a virtual key without associated object).
         // If it were a key or a 0-sized folder the HEAD request would likely have worked.
         // This is needed to upload local folders to S3.
