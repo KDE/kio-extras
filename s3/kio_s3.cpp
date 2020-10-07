@@ -85,7 +85,7 @@ void S3Slave::listDir(const QUrl &url)
 
     if (s3url.isRoot()) {
         listBuckets();
-        listCwdEntry();
+        listCwdEntry(ReadOnlyCwd);
         finished();
         return;
     }
@@ -535,15 +535,20 @@ void S3Slave::listKey(const S3Url &s3url)
     }
 }
 
-void S3Slave::listCwdEntry()
+void S3Slave::listCwdEntry(CwdAccess access)
 {
-    // List a non-writable UDSEntry for "."
+    // List UDSEntry for "."
     KIO::UDSEntry entry;
     entry.reserve(4);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    if (access == ReadOnlyCwd) {
+        entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    } else {
+        entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    }
+
     listEntry(entry);
 }
 

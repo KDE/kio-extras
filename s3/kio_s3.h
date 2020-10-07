@@ -49,10 +49,15 @@ public:
 private:
     Q_DISABLE_COPY(S3Slave)
 
+    enum CwdAccess {
+        ReadOnlyCwd,
+        WritableCwd
+    };
+
     void listBuckets();
     void listBucket(const QString &bucketName);
     void listKey(const S3Url &s3url);
-    void listCwdEntry();
+    void listCwdEntry(CwdAccess access = WritableCwd);
     bool deletePrefix(const Aws::S3::S3Client &client, const S3Url &s3url, const QString &prefix);
     QString contentType(const S3Url &s3url);
 
