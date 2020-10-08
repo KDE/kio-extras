@@ -6,13 +6,11 @@
 #ifndef KIO_S3_H
 #define KIO_S3_H
 
-#include "s3url.h"
+#include "s3backend.h"
 
 #include <KIO/SlaveBase>
 
 #include <QUrl>
-
-#include <aws/s3/S3Client.h>
 
 class S3Slave : public KIO::SlaveBase
 {
@@ -27,28 +25,18 @@ public:
     void stat(const QUrl &url) override;
     void mimetype(const QUrl &url) override;
     void get(const QUrl &url) override;
-    void put(const QUrl &url, int, KIO::JobFlags flags) override;
-    void copy(const QUrl &src, const QUrl &dest, int, KIO::JobFlags flags) override;
-    void mkdir(const QUrl &url, int) override;
-    void del(const QUrl &url, bool) override;
+    void put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
+    void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
+    void mkdir(const QUrl &url, int permissions) override;
+    void del(const QUrl &url, bool isfile) override;
     void rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
 
 private:
     Q_DISABLE_COPY(S3Slave)
 
-    enum CwdAccess {
-        ReadOnlyCwd,
-        WritableCwd
-    };
+    void finalize(const S3Backend::Result &result);
 
-    void listBuckets();
-    void listBucket(const QString &bucketName);
-    void listKey(const S3Url &s3url);
-    void listCwdEntry(CwdAccess access = WritableCwd);
-    bool deletePrefix(const Aws::S3::S3Client &client, const S3Url &s3url, const QString &prefix);
-    QString contentType(const S3Url &s3url);
-
-    QByteArray m_configProfileName;    // This must be passed to the S3Client objects to get the proper region from ~/.aws/config
+    QScopedPointer<S3Backend> d { new S3Backend(this) };
 };
 
 #endif // KIO_S3_H

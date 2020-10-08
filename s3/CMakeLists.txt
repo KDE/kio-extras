@@ -1,6 +1,6 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_s3\")
 
-set(kio_s3_SRCS kio_s3.cpp s3url.cpp)
+set(kio_s3_SRCS kio_s3.cpp s3backend.cpp s3url.cpp)
 
 ecm_qt_declare_logging_category(kio_s3_SRCS
     HEADER s3debug.h
