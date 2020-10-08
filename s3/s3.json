@@ -10,7 +10,7 @@
             "deleting": true,
             "exec": "kf5/kio/s3",
             "input": "none",
-            "linking": true,
+            "linking": false,
             "listing": [
                 "Name",
                 "Type",
