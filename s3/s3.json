@@ -12,15 +12,7 @@
             "input": "none",
             "linking": false,
             "listing": [
-                "Name",
-                "Type",
-                "Size",
-                "Date",
-                "AccessDate",
-                "Access",
-                "Owner",
-                "Group",
-                "Link"
+                "Name"
             ],
             "makedir": true,
             "moving": true,
