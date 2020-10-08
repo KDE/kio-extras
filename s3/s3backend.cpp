@@ -324,11 +324,22 @@ S3Backend::Result S3Backend::del(const QUrl &url, bool isfile)
 
 S3Backend::Result S3Backend::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
 {
-    Q_UNUSED(src)
-    Q_UNUSED(dest)
     Q_UNUSED(flags)
-    qCDebug(S3) << "Not implemented yet.";
-    return {KIO::ERR_UNSUPPORTED_ACTION, i18n("Not implemented yet.")};
+    qCDebug(S3) << "Going to rename" << src << "to" << dest;
+
+    const auto copyResult = copy(src, dest, -1, flags);
+    if (copyResult.exitCode > 0) {
+        qCDebug(S3).nospace() << "Could not copy " << src << " to " << dest << ", aborting rename()";
+        return {KIO::ERR_CANNOT_RENAME, src.toDisplayString()};
+    }
+
+    const auto delResult = del(src, false);
+    if (delResult.exitCode > 0) {
+        qCDebug(S3) << "Could not delete" << src << "after it was copied to" << dest;
+        return {KIO::ERR_CANNOT_RENAME, src.toDisplayString()};
+    }
+
+    return m_finished;
 }
 
 void S3Backend::listBuckets()
