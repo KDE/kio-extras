@@ -247,6 +247,10 @@ S3Backend::Result S3Backend::copy(const QUrl &src, const QUrl &dest, int permiss
     Q_UNUSED(flags)
     qCDebug(S3) << "Going to copy" << src << "to" << dest;
 
+    if (src == dest) {
+        return {KIO::ERR_FILE_ALREADY_EXIST, QString()};
+    }
+
     const auto s3src = S3Url(src);
     const auto s3dest = S3Url(dest);
 
