@@ -94,6 +94,17 @@ void DNSSDNetworkBuilder::removeServiceType( const QString& serviceType )
     // the serviceRemoved calls won't reach us.
     // we could also go through all the devices and remove the services manually as a fix
     return;
+#if 0
+    QHash<QString,KDNSSD::ServiceBrowser*>::Iterator it = mServiceBrowserTable.find( serviceType );
+
+    if( it == mServiceBrowserTable.end() )
+        return;
+
+    KDNSSD::ServiceBrowser* serviceBrowser = *it;
+    mServiceBrowserTable.erase( it );
+    // TODO: will all servicesRemoved be called before? on test NO!
+    serviceBrowser->deleteLater();
+#endif
 }
 
 void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
