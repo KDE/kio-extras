@@ -141,7 +141,6 @@ void SettingsProtocol::stat(const QUrl& url)
         const KService::Ptr service = it.value();
         const QString parentCategory = service->property("X-KDE-System-Settings-Parent-Category").toString();
         const QString category = service->property("X-KDE-System-Settings-Category").toString();
-        //qDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
         createDirEntry(entry, category, service->icon());
         entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());
         statEntry(entry);
@@ -179,7 +178,6 @@ void SettingsProtocol::listDir(const QUrl& url)
         const KService::Ptr service = m_categories.at(i);
         QString parentCategory = service->property("X-KDE-System-Settings-Parent-Category").toString();
         QString category = service->property("X-KDE-System-Settings-Category").toString();
-        //qDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
         if (parentCategory == fileName) {
             //KUrl dirUrl = url;
             //dirUrl.addPath(category);

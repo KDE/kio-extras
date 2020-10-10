@@ -71,11 +71,9 @@ void DNSSDNetworkBuilder::start()
 
 void DNSSDNetworkBuilder::addServiceType( const QString& serviceType )
 {
-//qDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
     if( mServiceBrowserTable.contains(serviceType))
         return;
 
-// //qDebug()<<serviceType;
     KDNSSD::ServiceBrowser* serviceBrowser = new KDNSSD::ServiceBrowser( serviceType, true );
     connect(serviceBrowser, &KDNSSD::ServiceBrowser::serviceAdded, this, &DNSSDNetworkBuilder::addService);
     connect(serviceBrowser, &KDNSSD::ServiceBrowser::serviceRemoved, this, &DNSSDNetworkBuilder::removeService);
@@ -92,7 +90,6 @@ void DNSSDNetworkBuilder::addServiceType( const QString& serviceType )
 
 void DNSSDNetworkBuilder::removeServiceType( const QString& serviceType )
 {
-//qDebug()<<serviceType<<mServiceBrowserTable.contains(serviceType);
     // for now we keep the service browser (aren't that many) because otherwise
     // the serviceRemoved calls won't reach us.
     // we could also go through all the devices and remove the services manually as a fix
@@ -120,7 +117,6 @@ void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
         const bool isSameAddress = useIpAddress ?
             ( device.ipAddress() == ipAddress ) :
             ( deviceHostName == hostName );
-//qDebug()<<"existing device:"<<deviceHostName<<"at"<<device.ipAddress()<<"vs."<<hostName<<"at"<<ipAddress<<":"<<isSameAddress;
 
         if( isSameAddress )
         {
@@ -159,7 +155,6 @@ void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
         // TODO: the new service will be announced two times, once with the new device and once alone.
         // what to do about that? which order? okay? for now just do not attach services before. find usecases.
         mNetworkPrivate->emitDevicesAdded( newDevices );
-//qDebug()<<"new device:"<<deviceName<<"at"<<hostName<<"by"<<service->type();
     }
     else
     {
@@ -242,7 +237,6 @@ void DNSSDNetworkBuilder::removeService( KDNSSD::RemoteService::Ptr service )
         const NetDevice& device = it.next();
         if( device.hostName() == hostName )
         {
-// //qDebug()<<hostName;
             QString id;
             const QString serviceType = service->type();
             for (const DNSSDNetSystemAble* factory : qAsConst(mNetSystemFactoryList)) {
@@ -278,7 +272,6 @@ void DNSSDNetworkBuilder::removeService( KDNSSD::RemoteService::Ptr service )
 
 void DNSSDNetworkBuilder::onServiceTypeBrowserFinished()
 {
-// //qDebug();
     if( mIsInit )
     {
         mIsInit = false;
@@ -290,7 +283,6 @@ void DNSSDNetworkBuilder::onServiceTypeBrowserFinished()
 void DNSSDNetworkBuilder::onServiceBrowserFinished()
 {
     --mNoOfInitServiceTypes;
-// //qDebug()<<"mIsInit="<<mIsInit<<"mNoOfInitServiceTypes="<<mNoOfInitServiceTypes;
     // only check for countdown after end of new service types
     if( !mIsInit && mNoOfInitServiceTypes == 0 )
         emit initDone();

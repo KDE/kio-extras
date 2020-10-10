@@ -44,19 +44,14 @@ Mollet::Network* NetworkThread::network() const { return mNetwork; }
 
 void NetworkThread::pause()
 {
-//qDebug()<<"before lock";
     mMutex.lock();
-//qDebug()<<"after lock";
     exit();
-//qDebug()<<"after exit";
 }
 
 
 void NetworkThread::unpause()
 {
-//qDebug()<<"before unlock";
     mMutex.unlock();
-//qDebug()<<"after unlock";
 }
 
 void NetworkThread::finish()
@@ -70,19 +65,14 @@ void NetworkThread::run()
 {
     mNetwork = Mollet::Network::network();
 
-//qDebug()<<"starting with lock";
     mMutex.lock();
     new NetworkInitWatcher( mNetwork, &mMutex );
 
     do
     {
-//qDebug()<<"going exec()";
         exec();
-//qDebug()<<"left exec()";
         mMutex.lock();
-//qDebug()<<"after lock";
         mMutex.unlock();
-//qDebug()<<"after unlock";
     }
     while( mContinue );
 }

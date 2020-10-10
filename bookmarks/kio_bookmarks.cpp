@@ -149,8 +149,6 @@ void BookmarksProtocol::flattenTree( const KBookmarkGroup &folder )
     next = tree.next(bm);
 
     if (bm.isGroup() && bm.parentGroup().hasParent()) {
-      //qDebug() << "moving " << bm.text() << " from " << bm.parentGroup().fullText() << " to " << prev.parentGroup().text() << endl;
-
       bm.setFullText("| " + bm.parentGroup().fullText() + " > " + bm.fullText());
       tree.moveBookmark(bm, prev);
       prev = bm;

@@ -74,10 +74,8 @@ void TestKioArchive::testListTar()
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = job->exec();
     QVERIFY( ok );
-    //qDebug() << "listDir done - entry count=" << m_listResult.count();
     QVERIFY( m_listResult.count() > 1 );
 
-    //qDebug() << m_listResult;
     QCOMPARE(m_listResult.count( "." ), 1); // found it, and only once
     QCOMPARE(m_listResult.count("empty"), 1);
     QCOMPARE(m_listResult.count("test1"), 1);
@@ -93,10 +91,8 @@ void TestKioArchive::testListRecursive()
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = job->exec();
     QVERIFY( ok );
-    //qDebug() << "listDir done - entry count=" << m_listResult.count();
     QVERIFY( m_listResult.count() > 1 );
 
-    //qDebug() << m_listResult;
     QCOMPARE(m_listResult.count( "." ), 1); // found it, and only once
     QCOMPARE(m_listResult.count("empty"), 1);
     QCOMPARE(m_listResult.count("test1"), 1);
