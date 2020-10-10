@@ -253,6 +253,7 @@ S3Backend::Result S3Backend::copy(const QUrl &src, const QUrl &dest, int permiss
 
     const auto s3src = S3Url(src);
     const auto s3dest = S3Url(dest);
+    qCDebug(S3) << "src key:" << s3src.key() << "dest key:" << s3dest.key();
 
     if (s3src.isRoot() || s3src.isBucket()) {
         qCDebug(S3) << "Cannot copy from root or bucket url:" << src;
@@ -277,6 +278,15 @@ S3Backend::Result S3Backend::copy(const QUrl &src, const QUrl &dest, int permiss
 
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
+
+    // Check if destination key already exists, otherwise S3 will overwrite it leading to data loss.
+    Aws::S3::Model::HeadObjectRequest headObjectRequest;
+    headObjectRequest.SetBucket(s3dest.bucketName().toStdString());
+    headObjectRequest.SetKey(s3dest.key().toStdString());
+    auto headObjectRequestOutcome = client.HeadObject(headObjectRequest);
+    if (headObjectRequestOutcome.IsSuccess()) {
+        return {KIO::ERR_FILE_ALREADY_EXIST, QString()};
+    }
 
     Aws::S3::Model::CopyObjectRequest request;
     request.SetCopySource(QStringLiteral("%1/%2").arg(s3src.bucketName(), s3src.key()).toStdString());
@@ -334,6 +344,9 @@ S3Backend::Result S3Backend::rename(const QUrl &src, const QUrl &dest, KIO::JobF
     const auto copyResult = copy(src, dest, -1, flags);
     if (copyResult.exitCode > 0) {
         qCDebug(S3).nospace() << "Could not copy " << src << " to " << dest << ", aborting rename()";
+        if (copyResult.exitCode == KIO::ERR_FILE_ALREADY_EXIST) {
+            return {KIO::ERR_FILE_ALREADY_EXIST, QString()};
+        }
         return {KIO::ERR_CANNOT_RENAME, src.toDisplayString()};
     }
 
