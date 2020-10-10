@@ -354,12 +354,7 @@ QStringList MANProtocol::findPages(const QString &_section,
 
             //qCDebug(KIO_MAN_LOG) <<" after while loop";
             ::closedir( dp );
-#if 0
-            qCDebug(KIO_MAN_LOG)<<"================-";
-            qCDebug(KIO_MAN_LOG)<<"star=="<<star;
-            qCDebug(KIO_MAN_LOG)<<"it_s=="<<it_s;
-            qCDebug(KIO_MAN_LOG)<<"================+";
-#endif
+
             if ( it_s != star ) { // in that case we only look around for sections
                 //qCDebug(KIO_MAN_LOG)<<"Within if ( it_s != star )";
                 const QString dir = man_dir + QString("/man") + (it_real) + '/';
@@ -710,13 +705,6 @@ void MANProtocol::stat( const QUrl& url)
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, title);
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
     entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
-
-#if 0 // not useful, is it?
-    QString newUrl = "man:"+title;
-    if (!section.isEmpty())
-        newUrl += QString("(%1)").arg(section);
-    entry.insert(KIO::UDSEntry::UDS_URL, newUrl);
-#endif
 
     statEntry(entry);
     finished();

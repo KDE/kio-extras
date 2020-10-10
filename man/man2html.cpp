@@ -3116,13 +3116,6 @@ void getArguments(/* const */ char *&c, QList<QByteArray> &args, QList<char*> *a
   }
 
   if ( *c ) c++;
-
-#if 0
-  for (int i = 0; i < args.count(); i++)
-  {
-    qWarning("ARG:%d >>>%s<<<", i, args[i].data());
-  }
-#endif
 }
 
 //---------------------------------------------------------------------

@@ -92,10 +92,6 @@ void FilterProtocol::get(const QUrl& url)
         return;
     }
 
-#if 0
-  needSubUrlData();
-#endif
-
   filter->init(QIODevice::ReadOnly);
 
   bool bNeedHeader = true;
@@ -112,12 +108,7 @@ void FilterProtocol::get(const QUrl& url)
   {
      if (filter->inBufferEmpty())
      {
-#if 0
-        dataReq(); // Request data
-        result = readData( inputBuffer);
-#else
         result = localFile.read(inputBuffer.data(), inputBuffer.size());
-#endif
         qDebug(KIO_FILTER_DEBUG) << "requestData: got " << result;
         if (result <= 0)
         {
@@ -172,12 +163,7 @@ void FilterProtocol::get(const QUrl& url)
   }
 
     if (!bError) {
-#if 0
-        dataReq(); // Request data
-        result = readData( inputBuffer);
-#else
         result = localFile.read(inputBuffer.data(), inputBuffer.size());
-#endif
         qDebug(KIO_FILTER_DEBUG) << "requestData: got" << result << "(expecting 0)";
         data(QByteArray()); // Send EOF
     }
@@ -191,15 +177,3 @@ void FilterProtocol::get(const QUrl& url)
     }
     subURL = QUrl(); // Clear subURL
 }
-
-#if 0
-void FilterProtocol::put( const KUrl &/*url*/, int, KIO::JobFlags /* _flags */ )
-{
-  error( KIO::ERR_UNSUPPORTED_ACTION, QString::fromLatin1("put"));
-}
-
-void FilterProtocol::setSubURL(const QUrl &url)
-{
-   subURL = url;
-}
-#endif

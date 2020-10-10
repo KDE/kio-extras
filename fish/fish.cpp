@@ -554,10 +554,6 @@ void fishProtocol::writeChild(const char *buf, KIO::fileoffset_t len) {
 void fishProtocol::writeChild(const QByteArray &buf, KIO::fileoffset_t len) {
     if (outBufPos >= 0 && outBuf.size()) {
 #endif
-#if 0
-        QString debug = QString::fromLatin1(outBuf,outBufLen);
-        if (len > 0) myDebug( << "write request while old one is pending, throwing away input (" << outBufLen << "," << outBufPos << "," << debug.left(10) << "...)");
-#endif
         return;
     }
     outBuf = buf;
