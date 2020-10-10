@@ -1680,7 +1680,6 @@ void fishProtocol::special( const QByteArray &data ){
         {
             QUrl u;
             QString command;
-            QString tempfile;
             stream >> u;
             stream >> command;
             myDebug( << "@@@@@@@@@ exec " << u << " " << command);

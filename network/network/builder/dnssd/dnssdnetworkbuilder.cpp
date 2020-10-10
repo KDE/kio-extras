@@ -90,6 +90,7 @@ void DNSSDNetworkBuilder::addServiceType( const QString& serviceType )
 
 void DNSSDNetworkBuilder::removeServiceType( const QString& serviceType )
 {
+    Q_UNUSED(serviceType)
     // for now we keep the service browser (aren't that many) because otherwise
     // the serviceRemoved calls won't reach us.
     // we could also go through all the devices and remove the services manually as a fix

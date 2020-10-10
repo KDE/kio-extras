@@ -139,7 +139,6 @@ void SettingsProtocol::stat(const QUrl& url)
     QHash<QString, KService::Ptr>::const_iterator it = m_categoryLookup.constFind(fileName);
     if (it != m_categoryLookup.constEnd()) {
         const KService::Ptr service = it.value();
-        const QString parentCategory = service->property("X-KDE-System-Settings-Parent-Category").toString();
         const QString category = service->property("X-KDE-System-Settings-Category").toString();
         createDirEntry(entry, category, service->icon());
         entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());

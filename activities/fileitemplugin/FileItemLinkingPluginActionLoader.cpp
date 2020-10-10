@@ -109,7 +109,8 @@ void FileItemLinkingPluginActionLoader::run()
                 QSqlField field;
                 field.setType(QVariant::String);
 
-                for (const auto& item: items.urlList()) {
+                const auto urlList = items.urlList();
+                for (const auto& item: urlList) {
                     field.setValue(QFileInfo(item.toLocalFile()).canonicalFilePath());
                     escapedFiles << database.driver()->formatValue(field);
                 }

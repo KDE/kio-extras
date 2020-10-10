@@ -849,9 +849,6 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     // The entry is "MANDB_MAP  <manpath>  <catmanpath>"
     const QRegularExpression mandb_map_regex("^MANDB_MAP\\s+(\\S+)\\s+(\\S+)");
 
-    //QRegExp section_regex( "^SECTION\\s" );
-    const QRegularExpression space_regex("\\s+"); // for parsing manpath map
-
     QFile mc("/etc/man.conf");             // Caldera
     if (!mc.exists())
         mc.setFileName("/etc/manpath.config"); // SuSE, Debian
@@ -1008,8 +1005,6 @@ void MANProtocol::checkManPaths()
     //   $PATH
     QStringList constr_path;
     QStringList constr_catmanpath; // catmanpath
-
-    QString conf_section;
 
     if ( construct_path )
     {

@@ -192,7 +192,8 @@ uint ArchiveProtocolBase::computeArchiveDirSize(const KArchiveDirectory *dir)
 {
     // compute size of archive content
     uint totalSize = 0;
-    for (const auto entryName: dir->entries()) {
+    const auto entries = dir->entries();
+    for (const auto &entryName: entries) {
         auto entry = dir->entry(entryName);
         if (entry->isFile()) {
             auto fileEntry = static_cast<const KArchiveFile *>(entry);

@@ -240,7 +240,7 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<Cagibi::Device>& upnpDev
             if( device.ipAddress() == ipAddress )
             {
                 QString id;
-                for (const UpnpNetSystemAble* factory : mNetSystemFactoryList) {
+                for (const UpnpNetSystemAble* factory : qAsConst(mNetSystemFactoryList)) {
                     if( factory->canCreateNetSystemFromUpnp(upnpDevice) )
                     {
                         id = factory->upnpId( upnpDevice );
