@@ -341,6 +341,13 @@ S3Backend::Result S3Backend::rename(const QUrl &src, const QUrl &dest, KIO::JobF
     Q_UNUSED(flags)
     qCDebug(S3) << "Going to rename" << src << "to" << dest;
 
+    // FIXME: rename of virtual folders doesn't work, because folders don't exist in S3.
+    // This would require some special handling:
+    // 1. detect that src is a folder
+    // 2. list the folder
+    // 3. rename each key listed
+    // Workaround: copy+delete from dolphin...
+
     const auto copyResult = copy(src, dest, -1, flags);
     if (copyResult.exitCode > 0) {
         qCDebug(S3).nospace() << "Could not copy " << src << " to " << dest << ", aborting rename()";
