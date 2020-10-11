@@ -40,7 +40,7 @@ QString S3Url::prefix() const
         return QString();
     }
 
-    QString prefix = key().remove(0, 1);
+    QString prefix = key().mid(1);
     if (!prefix.endsWith(QLatin1Char('/'))) {
         prefix += QLatin1Char('/');
     }
