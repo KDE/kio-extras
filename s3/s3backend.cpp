@@ -38,13 +38,13 @@ S3Backend::Result S3Backend::listDir(const QUrl &url)
     if (s3url.isRoot()) {
         listBuckets();
         listCwdEntry(ReadOnlyCwd);
-        return m_finished;
+        return finished();
     }
 
     if (s3url.isBucket()) {
         listBucket(s3url.bucketName());
         listCwdEntry();
-        return m_finished;
+        return finished();
     }
 
     if (!s3url.isKey()) {
@@ -56,7 +56,7 @@ S3Backend::Result S3Backend::listDir(const QUrl &url)
 
     listKey(s3url);
     listCwdEntry();
-    return m_finished;
+    return finished();
 }
 
 S3Backend::Result S3Backend::stat(const QUrl &url)
@@ -66,7 +66,7 @@ S3Backend::Result S3Backend::stat(const QUrl &url)
     qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
 
     if (s3url.isRoot()) {
-        return m_finished;
+        return finished();
     }
 
     if (s3url.isBucket()) {
@@ -77,7 +77,7 @@ S3Backend::Result S3Backend::stat(const QUrl &url)
         entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
         entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
         q->statEntry(entry);
-        return m_finished;
+        return finished();
     }
 
     if (!s3url.isKey()) {
@@ -145,7 +145,7 @@ S3Backend::Result S3Backend::stat(const QUrl &url)
         q->statEntry(entry);
     }
 
-    return m_finished;
+    return finished();
 }
 
 S3Backend::Result S3Backend::mimetype(const QUrl &url)
@@ -155,7 +155,7 @@ S3Backend::Result S3Backend::mimetype(const QUrl &url)
     qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
 
     q->mimeType(contentType(s3url));
-    return m_finished;
+    return finished();
 }
 
 S3Backend::Result S3Backend::get(const QUrl &url)
@@ -194,7 +194,7 @@ S3Backend::Result S3Backend::get(const QUrl &url)
         qCDebug(S3) << "Could not get object with key:" << s3url.key() << " - " << getObjectOutcome.GetError().GetMessage().c_str();
     }
 
-    return m_finished;
+    return finished();
 }
 
 S3Backend::Result S3Backend::put(const QUrl &url, int permissions, KIO::JobFlags flags)
@@ -238,7 +238,7 @@ S3Backend::Result S3Backend::put(const QUrl &url, int permissions, KIO::JobFlags
         qCDebug(S3) << "Could not PUT object with key:" << s3url.key() << " - " << putObjectOutcome.GetError().GetMessage().c_str();
     }
 
-    return m_finished;
+    return finished();
 }
 
 S3Backend::Result S3Backend::copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags)
@@ -299,7 +299,7 @@ S3Backend::Result S3Backend::copy(const QUrl &src, const QUrl &dest, int permiss
         return {KIO::ERR_SLAVE_DEFINED, xi18nc("@info", "Could not copy <link>%1</link> to <link>%2</link>", src.toDisplayString(), dest.toDisplayString())};
     }
 
-    return m_finished;
+    return finished();
 }
 
 S3Backend::Result S3Backend::mkdir(const QUrl &url, int permissions)
@@ -307,7 +307,7 @@ S3Backend::Result S3Backend::mkdir(const QUrl &url, int permissions)
     Q_UNUSED(url)
     Q_UNUSED(permissions)
     qCDebug(S3) << "Pretending creation of folder" << url;
-    return m_finished;
+    return finished();
 }
 
 S3Backend::Result S3Backend::del(const QUrl &url, bool isfile)
@@ -330,7 +330,7 @@ S3Backend::Result S3Backend::del(const QUrl &url, bool isfile)
 
     // Start recursive delete by using the root prefix.
     if (deletePrefix(client, s3url, s3url.prefix())) {
-        return m_finished;
+        return finished();
     } else {
         return {KIO::ERR_CANNOT_DELETE, url.toDisplayString()};
     }
@@ -363,7 +363,7 @@ S3Backend::Result S3Backend::rename(const QUrl &src, const QUrl &dest, KIO::JobF
         return {KIO::ERR_CANNOT_RENAME, src.toDisplayString()};
     }
 
-    return m_finished;
+    return finished();
 }
 
 void S3Backend::listBuckets()

@@ -54,8 +54,12 @@ private:
     bool deletePrefix(const Aws::S3::S3Client &client, const S3Url &s3url, const QString &prefix);
     QString contentType(const S3Url &s3url);
 
+    static S3Backend::Result finished() {
+        static const S3Backend::Result s_finished = {0, QString()};
+        return s_finished; // frontend should emit finished().
+    }
+
     QByteArray m_configProfileName;    // This must be passed to the S3Client objects to get the proper region from ~/.aws/config
-    S3Backend::Result m_finished = {0, QString()};  // frontend should emit finished().
     S3Slave *q = nullptr;
 };
 
