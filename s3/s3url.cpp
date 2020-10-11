@@ -26,12 +26,12 @@ bool S3Url::isKey() const
 
 QString S3Url::bucketName() const
 {
-    return url().host();
+    return m_url.host();
 }
 
 QString S3Url::key() const
 {
-    return url().path();
+    return m_url.path();
 }
 
 QString S3Url::prefix() const
