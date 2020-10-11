@@ -225,7 +225,7 @@ S3Backend::Result S3Backend::put(const QUrl &url, int permissions, KIO::JobFlags
         }
     } while (n > 0);
 
-    if (bytesCount <= 0) {
+    if (n <= 0) {
         return {KIO::ERR_CANNOT_WRITE, url.toDisplayString()};
     }
 
