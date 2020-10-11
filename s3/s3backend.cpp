@@ -219,8 +219,8 @@ S3Backend::Result S3Backend::put(const QUrl &url, int permissions, KIO::JobFlags
         QByteArray buffer;
         q->dataReq();
         n = q->readData(buffer);
-        bytesCount += n;
         if (!buffer.isEmpty()) {
+            bytesCount += n;
             putDataStream->write(buffer.data(), n);
         }
     } while (n > 0);
