@@ -114,7 +114,7 @@ S3Backend::Result S3Backend::stat(const QUrl &url)
         }
         const bool isDir = contentType == QLatin1String("inode/directory");
         KIO::UDSEntry entry;
-        entry.reserve(5);
+        entry.reserve(7);
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, fileName);
         entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
         entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, contentType);
@@ -128,6 +128,8 @@ S3Backend::Result S3Backend::stat(const QUrl &url)
             // So assume keys are always writable, we'll handle the failure if they are not.
             // The same logic will be applied to all the other UDS_ACCESS instances for keys.
             entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH );
+            const auto lastModifiedTime = headObjectRequestOutcome.GetResult().GetLastModified();
+            entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, lastModifiedTime.SecondsWithMSPrecision());
         }
 
         q->statEntry(entry);
@@ -482,12 +484,13 @@ void S3Backend::listKey(const S3Url &s3url)
                 entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
                 q->listEntry(entry);
             } else if (!key.isEmpty()) { // Not a folder.
-                entry.reserve(5);
+                entry.reserve(6);
                 entry.fastInsert(KIO::UDSEntry::UDS_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, key);
                 entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
                 entry.fastInsert(KIO::UDSEntry::UDS_SIZE, object.GetSize());
                 entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH );
+                entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, object.GetLastModified().SecondsWithMSPrecision());
                 q->listEntry(entry);
             }
         }
