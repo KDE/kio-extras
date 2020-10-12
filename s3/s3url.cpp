@@ -53,3 +53,10 @@ QUrl S3Url::url() const
     return m_url;
 }
 
+QDebug operator<<(QDebug debug, const S3Url &s3url)
+{
+    QDebugStateSaver stateSaver(debug);
+    debug.nospace() << s3url.url().toDisplayString() << " (bucket: " << s3url.bucketName() << ", key: " << s3url.key() << ")";
+    return debug.maybeSpace();
+}
+

@@ -6,6 +6,7 @@
 #ifndef S3URL_H
 #define S3URL_H
 
+#include <QDebug>
 #include <QUrl>
 
 class S3Url
@@ -24,5 +25,7 @@ public:
 private:
     const QUrl m_url;
 };
+
+QDebug operator<<(QDebug debug, const S3Url &s3url);
 
 #endif // S3URL_H

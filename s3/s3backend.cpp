@@ -35,9 +35,8 @@ S3Backend::S3Backend(S3Slave *q)
 
 S3Backend::Result S3Backend::listDir(const QUrl &url)
 {
-    qCDebug(S3) << "Going to list" << url;
     const auto s3url = S3Url(url);
-    qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
+    qCDebug(S3) << "Going to list" << s3url;
 
     if (s3url.isRoot()) {
         listBuckets();
@@ -65,9 +64,8 @@ S3Backend::Result S3Backend::listDir(const QUrl &url)
 
 S3Backend::Result S3Backend::stat(const QUrl &url)
 {
-    qCDebug(S3) << "Going to stat()" << url;
     const auto s3url = S3Url(url);
-    qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
+    qCDebug(S3) << "Going to stat()" << s3url;
 
     if (s3url.isRoot()) {
         return finished();
@@ -156,9 +154,8 @@ S3Backend::Result S3Backend::stat(const QUrl &url)
 
 S3Backend::Result S3Backend::mimetype(const QUrl &url)
 {
-    qCDebug(S3) << "Going to get mimetype for" << url;
     const auto s3url = S3Url(url);
-    qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
+    qCDebug(S3) << "Going to get mimetype for" << s3url;
 
     q->mimeType(contentType(s3url));
     return finished();
@@ -166,9 +163,8 @@ S3Backend::Result S3Backend::mimetype(const QUrl &url)
 
 S3Backend::Result S3Backend::get(const QUrl &url)
 {
-    qCDebug(S3) << "Going to get" << url;
     const auto s3url = S3Url(url);
-    qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
+    qCDebug(S3) << "Going to get" << s3url;
 
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
@@ -207,8 +203,8 @@ S3Backend::Result S3Backend::put(const QUrl &url, int permissions, KIO::JobFlags
 {
     Q_UNUSED(permissions)
     Q_UNUSED(flags)
-    qCDebug(S3) << "Going to upload data to" << url;
     const auto s3url = S3Url(url);
+    qCDebug(S3) << "Going to upload data to" << s3url;
 
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
     const Aws::S3::S3Client client(clientConfiguration);
@@ -251,15 +247,14 @@ S3Backend::Result S3Backend::copy(const QUrl &src, const QUrl &dest, int permiss
 {
     Q_UNUSED(permissions)
     Q_UNUSED(flags)
-    qCDebug(S3) << "Going to copy" << src << "to" << dest;
+
+    const auto s3src = S3Url(src);
+    const auto s3dest = S3Url(dest);
+    qCDebug(S3) << "Going to copy" << s3src << "to" << s3dest;
 
     if (src == dest) {
         return {KIO::ERR_FILE_ALREADY_EXIST, QString()};
     }
-
-    const auto s3src = S3Url(src);
-    const auto s3dest = S3Url(dest);
-    qCDebug(S3) << "src key:" << s3src.key() << "dest key:" << s3dest.key();
 
     if (s3src.isRoot() || s3src.isBucket()) {
         qCDebug(S3) << "Cannot copy from root or bucket url:" << src;
@@ -319,9 +314,8 @@ S3Backend::Result S3Backend::mkdir(const QUrl &url, int permissions)
 S3Backend::Result S3Backend::del(const QUrl &url, bool isFile)
 {
     Q_UNUSED(isFile)
-    qCDebug(S3) << "Going to delete" << url;
     const auto s3url = S3Url(url);
-    qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();
+    qCDebug(S3) << "Going to delete" << s3url;
 
     if (s3url.isRoot() || s3url.isBucket()) {
         return {KIO::ERR_CANNOT_DELETE, url.toDisplayString()};
