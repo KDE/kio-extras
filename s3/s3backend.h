@@ -29,15 +29,15 @@ struct Result {
 
     S3Backend(S3Slave *q);
 
-    Result listDir(const QUrl &url);
-    Result stat(const QUrl &url);
-    Result mimetype(const QUrl &url);
-    Result get(const QUrl &url);
-    Result put(const QUrl &url, int permissions, KIO::JobFlags flags);
-    Result copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
-    Result mkdir(const QUrl &url, int permissions);
-    Result del(const QUrl &url, bool isFile);
-    Result rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags);
+    Q_REQUIRED_RESULT Result listDir(const QUrl &url);
+    Q_REQUIRED_RESULT Result stat(const QUrl &url);
+    Q_REQUIRED_RESULT Result mimetype(const QUrl &url);
+    Q_REQUIRED_RESULT Result get(const QUrl &url);
+    Q_REQUIRED_RESULT Result put(const QUrl &url, int permissions, KIO::JobFlags flags);
+    Q_REQUIRED_RESULT Result copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
+    Q_REQUIRED_RESULT Result mkdir(const QUrl &url, int permissions);
+    Q_REQUIRED_RESULT Result del(const QUrl &url, bool isFile);
+    Q_REQUIRED_RESULT Result rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags);
 
 private:
     Q_DISABLE_COPY(S3Backend)
