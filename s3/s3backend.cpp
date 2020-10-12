@@ -316,9 +316,9 @@ S3Backend::Result S3Backend::mkdir(const QUrl &url, int permissions)
     return finished();
 }
 
-S3Backend::Result S3Backend::del(const QUrl &url, bool isfile)
+S3Backend::Result S3Backend::del(const QUrl &url, bool isFile)
 {
-    Q_UNUSED(isfile)
+    Q_UNUSED(isFile)
     qCDebug(S3) << "Going to delete" << url;
     const auto s3url = S3Url(url);
     qCDebug(S3) << "Bucket:" << s3url.bucketName() << "Key:" << s3url.key();

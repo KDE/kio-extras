@@ -36,7 +36,7 @@ struct Result {
     Result put(const QUrl &url, int permissions, KIO::JobFlags flags);
     Result copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
     Result mkdir(const QUrl &url, int permissions);
-    Result del(const QUrl &url, bool isfile);
+    Result del(const QUrl &url, bool isFile);
     Result rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags);
 
 private:
