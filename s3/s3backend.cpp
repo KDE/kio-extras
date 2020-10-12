@@ -24,6 +24,15 @@ static S3Backend::Result finished() {
     return s_finished; // frontend should emit finished().
 }
 
+static S3Backend::Result invalidUrlError() {
+    static const S3Backend::Result s_invalidUrlError = {
+        KIO::ERR_SLAVE_DEFINED,
+        xi18nc("@info", "Invalid S3 URI, bucket name is missing from the host.<nl/>A valid S3 URI must be written in the form: <link>%1</link>", "s3://bucket/key")
+    };
+
+    return s_invalidUrlError;
+}
+
 S3Backend::S3Backend(S3Slave *q)
     : q(q)
 {
@@ -52,7 +61,7 @@ S3Backend::Result S3Backend::listDir(const QUrl &url)
 
     if (!s3url.isKey()) {
         qCDebug(S3) << "Could not list invalid S3 url:" << url;
-        return {KIO::ERR_SLAVE_DEFINED, xi18nc("@info", "Invalid S3 URI, bucket name is missing from the host.<nl/>A valid S3 URI must be written in the form: <link>%1</link>", "s3://bucket/key")};
+        return invalidUrlError();
     }
 
     Q_ASSERT(s3url.isKey());
@@ -84,7 +93,7 @@ S3Backend::Result S3Backend::stat(const QUrl &url)
 
     if (!s3url.isKey()) {
         qCDebug(S3) << "Could not stat invalid S3 url:" << url;
-        return {KIO::ERR_SLAVE_DEFINED, xi18nc("@info", "Invalid S3 URI, bucket name is missing from the host.<nl/>A valid S3 URI must be written in the form: <link>%1</link>", "s3://bucket/key")};
+        return invalidUrlError();
     }
 
     Q_ASSERT(s3url.isKey());
@@ -322,7 +331,7 @@ S3Backend::Result S3Backend::del(const QUrl &url, bool isFile)
     }
 
     if (!s3url.isKey()) {
-        return {KIO::ERR_SLAVE_DEFINED, xi18nc("@info", "Invalid S3 URI, bucket name is missing from the host.<nl/>A valid S3 URI must be written in the form: <link>%1</link>", "s3://bucket/key")};
+        return invalidUrlError();
     }
 
     const Aws::Client::ClientConfiguration clientConfiguration(m_configProfileName);
