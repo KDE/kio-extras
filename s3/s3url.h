@@ -22,7 +22,7 @@ public:
     QUrl url() const;
 
 private:
-    QUrl m_url;
+    const QUrl m_url;
 };
 
 #endif // S3URL_H
