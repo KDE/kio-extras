@@ -384,11 +384,6 @@ void SMBSlave::listDir(const QUrl &kurl)
         list.clear();
     };
 
-    const auto quitLoop = [&e, &flushEntries]() {
-        flushEntries();
-        e.quit();
-    };
-
     // Since slavebase has no eventloop it wont publish results
     // on a timer, since we do not know how long our discovery
     // will take this is super meh because we may appear
@@ -423,7 +418,8 @@ void SMBSlave::listDir(const QUrl &kurl)
             allFinished = allFinished && discoverer->isFinished();
         }
         if (allFinished) {
-            quitLoop();
+            flushEntries();
+            e.quit();
         }
     };
 
@@ -450,14 +446,6 @@ void SMBSlave::listDir(const QUrl &kurl)
         wsd->start();
 
         qCDebug(KIO_SMB_LOG) << "Modern discovery set up.";
-
-        // Conceivably discovery could be kept from finishing by breakage in the stack.
-        // At some point we'll forcefully consider it finished to prevent broken servers and the like from
-        // holding up use of potentially working servers.
-        // NB: This must only be done for SMBURLTYPE_ENTIRE_NETWORK. Other types
-        // may take a long time to discover by necessity - e.g. listing a server with a
-        // million shares or a directory with a billion files. https://bugs.kde.org/show_bug.cgi?id=427644
-        QTimer::singleShot(16000, &e, quitLoop); // max execution time!
     }
 
     qCDebug(KIO_SMB_LOG) << "Starting discovery.";
