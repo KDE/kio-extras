@@ -81,80 +81,90 @@ void FileItemLinkingPluginActionLoader::run()
         }
 
     } else {
-        auto database = QSqlDatabase::addDatabase(
-            QStringLiteral("QSQLITE"),
+        auto connectionName =
             QStringLiteral("kactivities_db_resources_")
-            + QString::number((quintptr) this));
+            + QString::number((quintptr) this);
 
-        database.setDatabaseName(
-            QStandardPaths::writableLocation(
-                QStandardPaths::GenericDataLocation)
-            + QStringLiteral("/kactivitymanagerd/resources/database"));
+        {
+            auto database = QSqlDatabase::addDatabase(
+                QStringLiteral("QSQLITE"),
+                connectionName);
 
-        if (database.open()) {
+            database.setDatabaseName(
+                QStandardPaths::writableLocation(
+                    QStandardPaths::GenericDataLocation)
+                + QStringLiteral("/kactivitymanagerd/resources/database"));
 
-            static const auto queryString = QStringLiteral(
-                "SELECT usedActivity, COUNT(targettedResource) "
-                "FROM ResourceLink "
-                "WHERE targettedResource IN (%1) "
-                    "AND initiatingAgent = \":global\" "
-                    "AND usedActivity != \":global\" "
-                "GROUP BY usedActivity");
+            if (database.open()) {
 
-            QStringList escapedFiles;
-            QSqlField field;
-            field.setType(QVariant::String);
+                static const auto queryString = QStringLiteral(
+                    "SELECT usedActivity, COUNT(targettedResource) "
+                    "FROM ResourceLink "
+                    "WHERE targettedResource IN (%1) "
+                        "AND initiatingAgent = \":global\" "
+                        "AND usedActivity != \":global\" "
+                    "GROUP BY usedActivity");
 
-            for (const auto& item: items.urlList()) {
-                field.setValue(QFileInfo(item.toLocalFile()).canonicalFilePath());
-                escapedFiles << database.driver()->formatValue(field);
-            }
+                QStringList escapedFiles;
+                QSqlField field;
+                field.setType(QVariant::String);
 
-            QSqlQuery query(queryString.arg(escapedFiles.join(",")),
-                            database);
-
-            QStringList activitiesForLinking;
-            QStringList activitiesForUnlinking;
-
-            for (const auto& result: query) {
-                const auto linkedFileCount = result[1].toInt();
-                const auto activity = result[0].toString();
-                if (linkedFileCount < itemsSize) {
-                    activitiesForLinking << activity;
+                const auto urlList = items.urlList();
+                for (const auto& item: urlList) {
+                    field.setValue(QFileInfo(item.toLocalFile()).canonicalFilePath());
+                    escapedFiles << database.driver()->formatValue(field);
                 }
 
-                if (linkedFileCount > 0) {
-                    activitiesForUnlinking << activity;
-                }
-            }
+                QSqlQuery query(queryString.arg(escapedFiles.join(",")),
+                                database);
 
-            if (activitiesForLinking.contains(activities.currentActivity()) ||
-                    !activitiesForUnlinking.contains(activities.currentActivity())) {
-                actions << createAction(QString(), true,
-                                        i18n("Link to the current activity"),
-                                        "list-add");
-            }
-            if (activitiesForUnlinking.contains(activities.currentActivity())) {
-                actions << createAction(QString(), false,
-                                        i18n("Unlink from the current activity"),
-                                        "list-remove");
-            }
+                QStringList activitiesForLinking;
+                QStringList activitiesForUnlinking;
 
-            actions << createSeparator(i18n("Link to:"));
-            for (const auto& activity: activitiesList) {
-                if (activitiesForLinking.contains(activity) ||
-                        !activitiesForUnlinking.contains(activity)) {
-                    actions << createAction(activity, true);
-                }
-            }
+                for (const auto& result: query) {
+                    const auto linkedFileCount = result[1].toInt();
+                    const auto activity = result[0].toString();
+                    if (linkedFileCount < itemsSize) {
+                        activitiesForLinking << activity;
+                    }
 
-            actions << createSeparator(i18n("Unlink from:"));
-            for (const auto& activity: activitiesList) {
-                if (activitiesForUnlinking.contains(activity)) {
-                    actions << createAction(activity, false);
+                    if (linkedFileCount > 0) {
+                        activitiesForUnlinking << activity;
+                    }
                 }
+
+                if (activitiesForLinking.contains(activities.currentActivity()) ||
+                        !activitiesForUnlinking.contains(activities.currentActivity())) {
+                    actions << createAction(QString(), true,
+                                            i18n("Link to the current activity"),
+                                            "list-add");
+                }
+                if (activitiesForUnlinking.contains(activities.currentActivity())) {
+                    actions << createAction(QString(), false,
+                                            i18n("Unlink from the current activity"),
+                                            "list-remove");
+                }
+
+                actions << createSeparator(i18n("Link to:"));
+                for (const auto& activity: activitiesList) {
+                    if (activitiesForLinking.contains(activity) ||
+                            !activitiesForUnlinking.contains(activity)) {
+                        actions << createAction(activity, true);
+                    }
+                }
+
+                actions << createSeparator(i18n("Unlink from:"));
+                for (const auto& activity: activitiesList) {
+                    if (activitiesForUnlinking.contains(activity)) {
+                        actions << createAction(activity, false);
+                    }
+                }
+
+                database.close();
             }
         }
+
+        QSqlDatabase::removeDatabase(connectionName);
     }
 
     emit result(actions);

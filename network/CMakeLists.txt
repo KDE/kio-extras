@@ -1,3 +1,5 @@
+add_definitions(-DTRANSLATION_DOMAIN=\"kio5_network\")
+
 add_definitions(
     -DQT_USE_FAST_OPERATOR_PLUS
     -DQT_NO_CAST_TO_ASCII

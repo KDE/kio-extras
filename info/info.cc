@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 #include "info.h"
 
 #include <stdio.h>
@@ -36,7 +38,7 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     m_infoConf = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html.conf");
 
     if( m_perl.isNull() || m_infoScript.isNull() || m_infoConf.isNull() ) {
-	qCCritical( LOG_KIO_INFO ) << "Critical error: Cannot locate files for HTML-conversion" << endl;
+        qCCritical( LOG_KIO_INFO ) << "Critical error: Cannot locate files for HTML-conversion";
 	QString errorStr;
 	if ( m_perl.isNull() ) {
 		errorStr = "perl.";

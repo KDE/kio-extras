@@ -1,4 +1,0 @@
-TODO:
-  Improve keyboard interactive authentication
-  Improve password dialog for passphrase
-  Support for statvfs with libssh 0.4

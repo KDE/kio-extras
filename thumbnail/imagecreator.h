@@ -29,7 +29,6 @@ class ImageCreator : public ThumbCreator
 public:
     ImageCreator() {}
     bool create(const QString &path, int, int, QImage &img) override;
-    Flags flags() const override;
 };
 
 #endif

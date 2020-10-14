@@ -63,6 +63,7 @@ extern "C" {
 static void createFileEntry(KIO::UDSEntry& entry, const KService::Ptr& service)
 {
     entry.clear();
+    entry.reserve(9);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, KIO::encodeFileName(service->desktopEntryName()));
     entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name()); // translated name
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
@@ -77,6 +78,7 @@ static void createFileEntry(KIO::UDSEntry& entry, const KService::Ptr& service)
 static void createDirEntry(KIO::UDSEntry& entry, const QString& name, const QString& iconName)
 {
     entry.clear();
+    entry.reserve(6); // +1 for UDS_DISPLAY_NAME
     entry.fastInsert( KIO::UDSEntry::UDS_NAME, name );
     entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
     entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, 0500 );
@@ -137,9 +139,7 @@ void SettingsProtocol::stat(const QUrl& url)
     QHash<QString, KService::Ptr>::const_iterator it = m_categoryLookup.constFind(fileName);
     if (it != m_categoryLookup.constEnd()) {
         const KService::Ptr service = it.value();
-        const QString parentCategory = service->property("X-KDE-System-Settings-Parent-Category").toString();
         const QString category = service->property("X-KDE-System-Settings-Category").toString();
-        //qDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
         createDirEntry(entry, category, service->icon());
         entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, service->name());
         statEntry(entry);
@@ -177,7 +177,6 @@ void SettingsProtocol::listDir(const QUrl& url)
         const KService::Ptr service = m_categories.at(i);
         QString parentCategory = service->property("X-KDE-System-Settings-Parent-Category").toString();
         QString category = service->property("X-KDE-System-Settings-Category").toString();
-        //qDebug() << "category" << service->desktopEntryName() << service->name() << "category=" << category << "parentCategory=" << parentCategory;
         if (parentCategory == fileName) {
             //KUrl dirUrl = url;
             //dirUrl.addPath(category);

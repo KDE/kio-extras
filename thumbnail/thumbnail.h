@@ -39,11 +39,10 @@ public:
 
 protected:
     ThumbCreator* getThumbCreator(const QString& plugin);
-    const QImage getIcon();
     bool isOpaque(const QImage &image) const;
     void drawPictureFrame(QPainter *painter, const QPoint &pos, const QImage &image,
                           int frameWidth, QSize imageTargetSize) const;
-    QImage thumbForDirectory(const QUrl& directory);
+    QImage thumbForDirectory(const QString& directory);
     QString pluginForMimeType(const QString& mimeType);
 
     float sequenceIndex() const;
@@ -65,20 +64,16 @@ private:
     void scaleDownImage(QImage& img, int maxWidth, int maxHeight);
 
     /**
-     * Create and draw the SubThumbnail
+     * Draw the SubThumbnail
      **/
-    bool drawSubThumbnail(QPainter& p, const QString& filePath, int width, int height,
+    bool drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height,
                           int xPos, int yPos, int frameWidth);
 private:
     QString m_mimeType;
     int m_width;
     int m_height;
-    int m_iconSize;
-    int m_iconAlpha;
     // Thumbnail creators
     QHash<QString, ThumbCreator*> m_creators;
-    // transparent icon cache
-    QHash<QString, QImage> m_iconDict;
     QStringList m_enabledPlugins;
     QSet<QString> m_propagationDirectories;
     QString m_thumbBasePath;

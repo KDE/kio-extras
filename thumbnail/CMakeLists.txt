@@ -2,7 +2,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_thumbnail\")
 
 find_package(OpenEXR)
 set_package_properties(OpenEXR PROPERTIES DESCRIPTION "API for accessing OpenEXR formatted images"
-                       URL "http://www.openexr.com"
+                       URL "https://www.openexr.com"
                        TYPE OPTIONAL
                        PURPOSE "Provides support for OpenEXR formatted images in the thumbnail kioslave"
                       )
@@ -14,6 +14,13 @@ set_package_properties(libappimage PROPERTIES DESCRIPTION "Core library of the A
                        PURPOSE "Provides support for AppImage thumbnails"
                        )
 
+find_package(X11)
+set_package_properties(X11 PROPERTIES DESCRIPTION "X11 libraries"
+                        URL "https://www.x.org"
+                        TYPE OPTIONAL
+                        PURPOSE "Provides support for XCursor thumbnails"
+                    )
+
 pkg_search_module(POPPLER poppler-qt5)
 
 include_directories(${CMAKE_BINARY_DIR})
@@ -21,6 +28,11 @@ include_directories(${CMAKE_BINARY_DIR})
 ########### next target ###############
 
 set(kio_thumbnail_PART_SRCS thumbnail.cpp imagefilter.cpp)
+
+ecm_qt_declare_logging_category(kio_thumbnail_PART_SRCS
+                                HEADER thumbnail-logsettings.h
+                                IDENTIFIER KIO_THUMBNAIL_LOG
+                                CATEGORY_NAME log_kio_thumbnail)
 
 add_library(kio_thumbnail MODULE ${kio_thumbnail_PART_SRCS})
 
@@ -106,6 +118,11 @@ install(TARGETS textthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 if(NOT WIN32)
 set(djvuthumbnail_PART_SRCS djvucreator.cpp)
 
+ecm_qt_declare_logging_category(djvuthumbnail_PART_SRCS
+                                HEADER thumbnail-djvu-logsettings.h
+                                IDENTIFIER KIO_THUMBNAIL_DJVU_LOG
+                                CATEGORY_NAME log_kio_thumbnail.djvu)
+
 add_library(djvuthumbnail MODULE ${djvuthumbnail_PART_SRCS})
 
 target_link_libraries(djvuthumbnail KF5::KIOWidgets)
@@ -120,6 +137,10 @@ endif()
 if(OpenEXR_FOUND)
 
     set(exrthumbnail_PART_SRCS exrcreator.cpp)
+    ecm_qt_declare_logging_category(exrthumbnail_PART_SRCS
+                                    HEADER thumbnail-exr-logsettings.h
+                                    IDENTIFIER KIO_THUMBNAIL_EXR_LOG
+                                    CATEGORY_NAME log_kio_thumbnail.exr)
 
     add_library(exrthumbnail MODULE ${exrthumbnail_PART_SRCS})
     target_link_libraries(exrthumbnail
@@ -140,19 +161,22 @@ endif()
 
 ########### next target ###############
 
-# if(X11_Xcursor_FOUND)
-#
-#    set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
-#
-#    add_library(cursorthumbnail MODULE ${cursorthumbnail_PART_SRCS})
-#
-#    target_link_libraries(cursorthumbnail ${X11_Xcursor_LIB} ${KIO_LIBRARIES})
-#
-#    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
-#    install( FILES cursorthumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
-#
-# endif()
-#
+if(X11_Xcursor_FOUND)
+
+    set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
+
+    add_library(cursorthumbnail MODULE ${cursorthumbnail_PART_SRCS})
+
+    target_link_libraries(cursorthumbnail
+        KF5::KIOCore
+        KF5::KIOWidgets
+        ${X11_Xcursor_LIB}
+    )
+
+    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
+    install( FILES cursorthumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+
+endif()
 
 ########### next target ###############
 
@@ -180,6 +204,11 @@ install ( FILES windowsimagethumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICE
 ########### next target ###############
 
 set(comicbookthumbnail_SRCS comiccreator.cpp)
+ecm_qt_declare_logging_category(comicbookthumbnail_SRCS
+                                HEADER thumbnail-comic-logsettings.h
+                                IDENTIFIER KIO_THUMBNAIL_COMIC_LOG
+                                CATEGORY_NAME log_kio_thumbnail.comic)
+
 add_library(comicbookthumbnail MODULE ${comicbookthumbnail_SRCS})
 target_link_libraries(comicbookthumbnail
     Qt5::Gui
@@ -208,14 +237,12 @@ install(TARGETS kritathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 find_package(Taglib 1.11)
 
-if(TAGLIB_FOUND)
-    set(audiothumbnail_SRCS audiocreator.cpp)
-    add_library(audiothumbnail MODULE ${audiothumbnail_SRCS})
-    target_include_directories(audiothumbnail BEFORE PRIVATE ${TAGLIB_INCLUDES})
-    target_link_libraries(audiothumbnail ${TAGLIB_LIBRARIES} KF5::KIOWidgets)
+if(Taglib_FOUND)
+    add_library(audiothumbnail MODULE audiocreator.cpp)
+    target_link_libraries(audiothumbnail Taglib::Taglib KF5::KIOWidgets)
     install(TARGETS audiothumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
     set(audiothumbnail_desktop audiothumbnail.desktop)
-endif(TAGLIB_FOUND)
+endif()
 
 # ########### next target ###############
 

@@ -59,8 +59,3 @@ bool AppImageCreator::create(const QString &path, int width, int height, QImage 
 
     return image.loadFromData(reinterpret_cast<uchar*>(buf), size);
 }
-
-ThumbCreator::Flags AppImageCreator::flags() const
-{
-    return None;
-}

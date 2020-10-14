@@ -1,0 +1,64 @@
+{
+    "KDE-KIO-Protocols": {
+        "smb": {
+            "Class": ":internet",
+            "Icon": "network-workgroup",
+            "X-DocPath": "kioslave5/smb/index.html",
+            "copyFromFile": true,
+            "copyToFile": true,
+            "deleting": true,
+            "exec": "kf5/kio/smb",
+            "input": "none",
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "Access",
+                "Owner",
+                "Group"
+            ],
+            "linking": false,
+            "makedir": true,
+            "maxInstances": 20,
+            "maxInstancesPerHost": 5,
+            "moving": true,
+            "output": "filesystem",
+            "protocol": "smb",
+            "opening": true,
+            "truncating": true,
+            "reading": true,
+            "writing": true
+        },
+        "cifs": {
+            "Class": ":internet",
+            "Icon": "network-workgroup",
+            "X-DocPath": "kioslave5/smb/index.html",
+            "copyFromFile": true,
+            "copyToFile": true,
+            "deleting": true,
+            "exec": "kf5/kio/smb",
+            "input": "none",
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "Access",
+                "Owner",
+                "Group"
+            ],
+            "linking": false,
+            "makedir": true,
+            "maxInstances": 20,
+            "maxInstancesPerHost": 5,
+            "moving": true,
+            "output": "filesystem",
+            "protocol": "cifs",
+            "opening": true,
+            "truncating": true,
+            "reading": true,
+            "writing": true
+        }
+    }
+}

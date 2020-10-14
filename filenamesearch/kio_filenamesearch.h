@@ -46,6 +46,7 @@ public:
     FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app);
     ~FileNameSearchProtocol() override;
 
+    void stat(const QUrl& url) override;
     void listDir(const QUrl &url) override;
 
 private:

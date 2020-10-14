@@ -272,7 +272,7 @@ void NFSProtocolV3::openConnection()
         }
     }
     if (failList.size() > 0) {
-        m_slave->error(KIO::ERR_COULD_NOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
+        m_slave->error(KIO::ERR_CANNOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
 
         // All exports failed to mount, fail
         if (failList.size() == exportsCount) {
@@ -406,7 +406,7 @@ void NFSProtocolV3::listDir(const QUrl& url)
                 int rpcStatus;
                 READLINK3res readLinkRes;
                 char nameBuf[NFS3_MAXPATHLEN];
-                if (readLink(filePath, rpcStatus, readLinkRes, nameBuf)) {
+                if (symLinkTarget(filePath, rpcStatus, readLinkRes, nameBuf)) {
                     QString linkDest = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
                     entry.insert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
 
@@ -571,7 +571,7 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
             int rpcStatus;
             READLINK3res readLinkRes;
             char nameBuf[NFS3_MAXPATHLEN];
-            if (readLink(filePath, rpcStatus, readLinkRes, nameBuf)) {
+            if (symLinkTarget(filePath, rpcStatus, readLinkRes, nameBuf)) {
                 const QString linkDest = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
                 entry.insert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
 
@@ -671,7 +671,7 @@ void NFSProtocolV3::stat(const QUrl& url)
         int rpcStatus;
         READLINK3res readLinkRes;
         char nameBuf[NFS3_MAXPATHLEN];
-        if (readLink(path, rpcStatus, readLinkRes, nameBuf)) {
+        if (symLinkTarget(path, rpcStatus, readLinkRes, nameBuf)) {
             linkDest = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
         } else {
             entry.insert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
@@ -1085,7 +1085,7 @@ void NFSProtocolV3::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
         int rpcStatus;
         READLINK3res readLinkRes;
         char nameBuf[NFS3_MAXPATHLEN];
-        if (!readLink(srcPath, rpcStatus, readLinkRes, nameBuf)) {
+        if (!symLinkTarget(srcPath, rpcStatus, readLinkRes, nameBuf)) {
             m_slave->error(KIO::ERR_DOES_NOT_EXIST, srcPath);
             return;
         }
@@ -1107,7 +1107,7 @@ void NFSProtocolV3::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     const QString partFilePath = destPath + QLatin1String(".part");
     const NFSFileHandle partFH = getFileHandle(partFilePath);
     const bool bPartExists = !partFH.isInvalid();
-    const bool bMarkPartial = m_slave->config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = m_slave->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bPartExists) {
         int rpcStatus;
@@ -1241,7 +1241,7 @@ void NFSProtocolV3::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = m_slave->config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const unsigned int size = m_slave->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (writeArgs.offset <  size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
@@ -1314,7 +1314,7 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
         int rpcStatus;
         READLINK3res readLinkRes;
         char nameBuf[NFS3_MAXPATHLEN];
-        if (!readLink(srcPath, rpcStatus, readLinkRes, nameBuf)) {
+        if (!symLinkTarget(srcPath, rpcStatus, readLinkRes, nameBuf)) {
             m_slave->error(KIO::ERR_DOES_NOT_EXIST, srcPath);
             return;
         }
@@ -1333,7 +1333,7 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     bool bResume = false;
     const QFileInfo partInfo(destPath + QLatin1String(".part"));
     const bool bPartExists = partInfo.exists();
-    const bool bMarkPartial = m_slave->config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = m_slave->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bMarkPartial && bPartExists && partInfo.size() > 0) {
         if (partInfo.isDir()) {
@@ -1433,7 +1433,7 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
             readArgs.offset += bytesRead;
 
             if (destFile.write(readRes.READ3res_u.resok.data.data_val, bytesRead) < 0) {
-                m_slave->error(KIO::ERR_COULD_NOT_WRITE, destPath);
+                m_slave->error(KIO::ERR_CANNOT_WRITE, destPath);
 
                 error = true;
                 break;
@@ -1451,7 +1451,7 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep
-            const int size = m_slave->config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const int size = m_slave->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (partInfo.size() <  size) {
                 QFile::remove(partInfo.absoluteFilePath());
             }
@@ -1476,8 +1476,8 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
             QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
             if (dt.isValid()) {
                 struct utimbuf utbuf;
-                utbuf.actime = QFileInfo(destPath).lastRead().toTime_t(); // access time, unchanged
-                utbuf.modtime = dt.toTime_t(); // modification time
+                utbuf.actime = QFileInfo(destPath).lastRead().toSecsSinceEpoch(); // access time, unchanged
+                utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
                 utime(QFile::encodeName(destPath).constData(), &utbuf);
             }
         }
@@ -1531,7 +1531,7 @@ void NFSProtocolV3::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     const QString partFilePath = destPath + QLatin1String(".part");
     const NFSFileHandle partFH = getFileHandle(partFilePath);
     const bool bPartExists = !partFH.isInvalid();
-    const bool bMarkPartial = m_slave->config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = m_slave->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bPartExists) {
         int rpcStatus;
@@ -1622,7 +1622,7 @@ void NFSProtocolV3::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
 
         bytesRead = srcFile.read(writeArgs.data.data_val, m_writeBufferSize);
         if (bytesRead < 0) {
-            m_slave->error(KIO::ERR_COULD_NOT_READ, srcPath);
+            m_slave->error(KIO::ERR_CANNOT_READ, srcPath);
 
             error = true;
             break;
@@ -1653,7 +1653,7 @@ void NFSProtocolV3::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = m_slave->config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const unsigned int size = m_slave->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (writeArgs.offset <  size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
@@ -1683,7 +1683,7 @@ void NFSProtocolV3::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
                 sattr3 attributes;
                 memset(&attributes, 0, sizeof(attributes));
                 attributes.mtime.set_it = SET_TO_CLIENT_TIME;
-                attributes.mtime.set_mtime_u.mtime.seconds = dt.toTime_t();
+                attributes.mtime.set_mtime_u.mtime.seconds = dt.toSecsSinceEpoch();
                 attributes.mtime.set_mtime_u.mtime.nseconds = attributes.mtime.set_mtime_u.mtime.seconds * 1000000000ULL;
 
                 int rpcStatus;
@@ -1868,7 +1868,7 @@ bool NFSProtocolV3::lookupHandle(const QString& path, int& rpcStatus, LOOKUP3res
     return (rpcStatus == RPC_SUCCESS && result.status == NFS3_OK);
 }
 
-bool NFSProtocolV3::readLink(const QString& path, int& rpcStatus, READLINK3res& result, char* dataBuffer)
+bool NFSProtocolV3::symLinkTarget(const QString& path, int& rpcStatus, READLINK3res& result, char* dataBuffer)
 {
     qCDebug(LOG_KIO_NFS) << path;
 

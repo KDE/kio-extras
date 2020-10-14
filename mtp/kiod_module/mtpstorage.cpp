@@ -552,7 +552,7 @@ int MTPStorage::sendFileFromFileDescriptor(const QDBusUnixFileDescriptor &descri
             file->filename = qstrdup(filename.toUtf8().data());
             file->filetype = getFiletype(filename);
             file->filesize = quint64(srcBuf.st_size);
-            file->modificationdate = lastModified.toTime_t();   // no matter what to set here, current time is taken
+            file->modificationdate = lastModified.toSecsSinceEpoch();   // no matter what to set here, current time is taken
             file->storage_id = m_id;
 
             result = LIBMTP_Send_File_From_File_Descriptor(getDevice(), descriptor.fileDescriptor(), file, onDataProgress, this);

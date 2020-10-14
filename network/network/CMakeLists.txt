@@ -50,6 +50,6 @@ target_link_libraries( molletnetwork5
         Qt5::DBus
 )
 
-set_target_properties( molletnetwork5 PROPERTIES VERSION ${KDE_APPLICATIONS_VERSION} SOVERSION ${KDE_APPLICATIONS_VERSION_MAJOR} )
+set_target_properties( molletnetwork5 PROPERTIES VERSION ${RELEASE_SERVICE_VERSION} SOVERSION ${RELEASE_SERVICE_VERSION_MAJOR} )
 
 install( TARGETS molletnetwork5 ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP )

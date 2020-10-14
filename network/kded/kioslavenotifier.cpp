@@ -97,7 +97,6 @@ QStringList KioSlaveNotifier::watchedDirectories() const
 
 void KioSlaveNotifier::onDirectoryEntered( const QString& directory )
 {
-//qDebug()<<directory;
     if( !directory.startsWith(QLatin1String("network:/")) )
         return;
 
@@ -111,13 +110,12 @@ void KioSlaveNotifier::onDirectoryEntered( const QString& directory )
         mWatchedDirs.insert( id, 1 );
     }
     else
-        *it++;
+        (*it)++;
 }
 
 
 void KioSlaveNotifier::onDirectoryLeft( const QString& directory )
 {
-//qDebug()<<directory;
     if( !directory.startsWith(QLatin1String("network:/")) )
         return;
 
@@ -132,7 +130,7 @@ void KioSlaveNotifier::onDirectoryLeft( const QString& directory )
     if( *it == 1 )
         mWatchedDirs.erase( it );
     else
-        *it--;
+        (*it)--;
 }
 
 
@@ -142,7 +140,6 @@ void KioSlaveNotifier::notifyAboutAdded( const QString& dirId )
     if( it != mWatchedDirs.end() )
     {
         const QUrl url( QLatin1String("network:/") + dirId );
-//qDebug()<<url;
         org::kde::KDirNotify::emitFilesAdded( url );
     }
 }
@@ -154,7 +151,6 @@ void KioSlaveNotifier::notifyAboutRemoved( const QString& dirId, const QString& 
     {
         QList<QUrl> itemUrls;
         itemUrls.append( QUrl( QStringLiteral("network:/") + itemPath ) );
-//qDebug()<<itemUrls;
         org::kde::KDirNotify::emitFilesRemoved( itemUrls );
     }
 }

@@ -1,122 +1,124 @@
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Project:     SMB kioslave for KDE2
-//
-// File:        kio_smb_browse.cpp
-//
-// Abstract:    member function implementations for SMBSlave that deal with
-//              SMB browsing
-//
-// Author(s):   Matthew Peterson <mpeterson@caldera.com>
-//
-//---------------------------------------------------------------------------
-//
-// Copyright (c) 2000  Caldera Systems, Inc.
-// Copyright (c) 2018  Harald Sitter <sitter@kde.org>
-//
-// This program is free software; you can redistribute it and/or modify it
-// under the terms of the GNU General Public License as published by the
-// Free Software Foundation; either version 2.1 of the License, or
-// (at your option) any later version.
-//
-//     This program is distributed in the hope that it will be useful,
-//     but WITHOUT ANY WARRANTY; without even the implied warranty of
-//     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//     GNU Lesser General Public License for more details.
-//
-//     You should have received a copy of the GNU General Public License
-//     along with this program; see the file COPYING.  If not, please obtain
-//     a copy from http://www.gnu.org/copyleft/gpl.html
-//
-/////////////////////////////////////////////////////////////////////////////
+/*
+    SPDX-License-Identifier: GPL-2.0-or-later
+    SPDX-FileCopyrightText: 2000 Caldera Systems, Inc.
+    SPDX-FileCopyrightText: 2018-2020 Harald Sitter <sitter@kde.org>
+    SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
+*/
 
 #include "kio_smb.h"
-#include "kio_smb_internal.h"
+#include "smburl.h"
 
-#include <DNSSD/ServiceBrowser>
 #include <DNSSD/RemoteService>
-#include <KLocalizedString>
+#include <DNSSD/ServiceBrowser>
 #include <KIO/Job>
+#include <KLocalizedString>
 
 #include <QEventLoop>
+#include <QTimer>
 
-#include <pwd.h>
 #include <grp.h>
+#include <pwd.h>
 
+#include "dnssddiscoverer.h"
+#include "smbcdiscoverer.h"
+#include "wsdiscoverer.h"
 #include <config-runtime.h>
 
 using namespace KIO;
 
-int SMBSlave::cache_stat(const SMBUrl &url, struct stat* st )
+int SMBSlave::cache_stat(const SMBUrl &url, struct stat *st)
 {
-    int cacheStatErr;
-    int result = smbc_stat( url.toSmbcUrl(), st);
-    if (result == 0){
+    int cacheStatErr = 0;
+    int result = smbc_stat(url.toSmbcUrl(), st);
+    if (result == 0) {
         cacheStatErr = 0;
     } else {
         cacheStatErr = errno;
     }
-    qCDebug(KIO_SMB) << "size " << (KIO::filesize_t)st->st_size;
+    qCDebug(KIO_SMB_LOG) << "size " << static_cast<KIO::filesize_t>(st->st_size);
     return cacheStatErr;
 }
 
-//---------------------------------------------------------------------------
-int SMBSlave::browse_stat_path(const SMBUrl& _url, UDSEntry& udsentry)
+int SMBSlave::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
 {
-   SMBUrl url = _url;
+    int cacheStatErr = cache_stat(url, &st);
+    if (cacheStatErr == 0) {
+        return statToUDSEntry(url, st, udsentry);
+    }
 
-   int cacheStatErr = cache_stat(url, &st);
-   if(cacheStatErr == 0)
-   {
-      if(!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode))
-      {
-         qCDebug(KIO_SMB) << "mode: "<< st.st_mode;
-         warning(i18n("%1:\n"
-                      "Unknown file type, neither directory or file.", url.toDisplayString()));
-         return EINVAL;
-      }
-
-      udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
-      udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
-
-      QString str;
-      uid_t uid = st.st_uid;
-      struct passwd *user = getpwuid( uid );
-      if ( user )
-          str = user->pw_name;
-      else
-          str = QString::number( uid );
-      udsentry.fastInsert(KIO::UDSEntry::UDS_USER, str);
-
-      gid_t gid = st.st_gid;
-      struct group *grp = getgrgid( gid );
-      if ( grp )
-          str = grp->gr_name;
-      else
-          str = QString::number( gid );
-      udsentry.fastInsert(KIO::UDSEntry::UDS_GROUP, str);
-
-      udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, st.st_mode & 07777);
-      udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
-      udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
-      // No, st_ctime is not UDS_CREATION_TIME...
-   }
-
-   return cacheStatErr;
+    return cacheStatErr;
 }
 
-//===========================================================================
-void SMBSlave::stat( const QUrl& kurl )
+int SMBSlave::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry)
 {
-    qCDebug(KIO_SMB) << kurl;
+    if (!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode)) {
+        qCDebug(KIO_SMB_LOG) << "mode: "<< st.st_mode;
+        warning(i18n("%1:\n"
+                     "Unknown file type, neither directory or file.",
+                     url.toDisplayString()));
+        return EINVAL;
+    }
+
+    if (!S_ISDIR(st.st_mode)) {
+        // Awkwardly documented at
+        //    https://www.samba.org/samba/docs/using_samba/ch08.html
+        // libsmb_stat.c assigns special meaning to +x permissions
+        // (obviously only on files, all dirs are +x so this hacky representation
+        //  wouldn't work!):
+        // - S_IXUSR = DOS archive: This file has been touched since the last DOS backup was performed on it.
+        // - S_IXGRP = DOS system: This file has a specific purpose required by the operating system.
+        // - S_IXOTH = DOS hidden: This file has been marked to be invisible to the user, unless the operating system is explicitly set to show it.
+        // Only hiding has backing through KIO right now.
+        if (st.st_mode & S_IXOTH) { // DOS hidden
+            udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, true);
+        }
+    }
+
+    // UID and GID **must** not be mapped. The values returned by libsmbclient are
+    // simply the getuid/getgid of the process. They mean absolutely nothing.
+    // Also see libsmb_stat.c.
+    // Related: https://bugs.kde.org/show_bug.cgi?id=212801
+
+    // POSIX Access mode must not be mapped either!
+    // It's meaningless for smb shares and downright disadvantagous.
+    // The mode attributes outside the ones used and document above are
+    // useless. The only one actively set is readonlyness.
+    //
+    // BUT the READONLY attribute does nothing on NT systems:
+    // https://support.microsoft.com/en-us/help/326549/you-cannot-view-or-change-the-read-only-or-the-system-attributes-of-fo
+    // The Read-only and System attributes is only used by Windows Explorer to determine
+    // whether the folder is a special folder, such as a system folder that has its view
+    // customized by Windows (for example, My Documents, Favorites, Fonts, Downloaded Program Files),
+    // or a folder that you customized by using the Customize tab of the folder's Properties dialog box.
+    //
+    // As such respecting it on a KIO level is actually wrong as it doesn't indicate actual
+    // readonlyness since the 90s and causes us to show readonly UI states when in fact
+    // the directory is perfectly writable.
+    // https://bugs.kde.org/show_bug.cgi?id=414482
+    //
+    // Should we ever want to parse desktop.ini like we do .directory we'd only want to when a
+    // dir is readonly as per the above microsoft support article.
+    // Also see:
+    // https://docs.microsoft.com/en-us/windows/win32/shell/how-to-customize-folders-with-desktop-ini
+
+    udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
+    udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
+    udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
+    udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
+    // No, st_ctime is not UDS_CREATION_TIME...
+
+    return 0;
+}
+
+void SMBSlave::stat(const QUrl &kurl)
+{
+    qCDebug(KIO_SMB_LOG) << kurl;
     // make a valid URL
     QUrl url = checkURL(kurl);
 
     // if URL is not valid we have to redirect to correct URL
-    if (url != kurl)
-    {
-        qCDebug(KIO_SMB) << "redirection " << url;
+    if (url != kurl) {
+        qCDebug(KIO_SMB_LOG) << "redirection " << url;
         redirection(url);
         finished();
         return;
@@ -124,12 +126,11 @@ void SMBSlave::stat( const QUrl& kurl )
 
     m_current_url = url;
 
-    UDSEntry    udsentry;
+    UDSEntry udsentry;
     // Set name
-    udsentry.fastInsert( KIO::UDSEntry::UDS_NAME, kurl.fileName() );
+    udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, kurl.fileName());
 
-    switch(m_current_url.getType())
-    {
+    switch (m_current_url.getType()) {
     case SMBURLTYPE_UNKNOWN:
         error(ERR_MALFORMED_URL, url.toDisplayString());
         return;
@@ -137,172 +138,217 @@ void SMBSlave::stat( const QUrl& kurl )
     case SMBURLTYPE_ENTIRE_NETWORK:
     case SMBURLTYPE_WORKGROUP_OR_SERVER:
         udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        break;
+        statEntry(udsentry);
+        finished();
+        return;
 
-    case SMBURLTYPE_SHARE_OR_PATH:
-        {
-            int ret = browse_stat_path(m_current_url, udsentry);
+    case SMBURLTYPE_SHARE_OR_PATH: {
+        int ret = browse_stat_path(m_current_url, udsentry);
 
-            if (ret == EPERM || ret == EACCES || workaroundEEXIST(ret))
-            {
-                SMBUrl smbUrl(url);
+        if (ret == EPERM || ret == EACCES || workaroundEEXIST(ret)) {
+            SMBUrl smbUrl(url);
 
-                const int passwordError = checkPassword(smbUrl);
-                if (passwordError == KJob::NoError)
-                {
-                    redirection(smbUrl);
-                    finished();
-                }
-                else if (passwordError == KIO::ERR_USER_CANCELED)
-                {
-                    reportError(url, ret);
-                }
-                else
-                {
-                    error(passwordError, url.toString());
-                }
-
-                return;
-            }
-            else if (ret != 0)
-            {
-                qCDebug(KIO_SMB) << "stat() error" << ret << url;
+            const int passwordError = checkPassword(smbUrl);
+            if (passwordError == KJob::NoError) {
+                redirection(smbUrl);
+                finished();
+            } else if (passwordError == KIO::ERR_USER_CANCELED) {
                 reportError(url, ret);
-                return;
+            } else {
+                error(passwordError, url.toString());
             }
-            break;
+
+            return;
+        } else if (ret != 0) {
+            qCDebug(KIO_SMB_LOG) << "stat() error" << ret << url;
+            reportError(url, ret);
+            return;
         }
-    default:
-        qCDebug(KIO_SMB) << "UNKNOWN " << url;
+
+        statEntry(udsentry);
         finished();
         return;
     }
+    }
 
-    statEntry(udsentry);
+    qCDebug(KIO_SMB_LOG) << "UNKNOWN " << url;
     finished();
 }
 
-//===========================================================================
-// TODO: complete checking
-QUrl SMBSlave::checkURL(const QUrl& kurl) const
+// TODO: complete checking <-- what does that even mean?
+// TODO: why is this not part of SMBUrl or at the very least URL validation should
+//    be 100% shared between this and SMBUrl. Notably SMBUrl has code that looks
+//    to do a similar thing but is much less complete.
+QUrl SMBSlave::checkURL(const QUrl &kurl_) const
 {
-    qCDebug(KIO_SMB) << "checkURL " << kurl;
+    qCDebug(KIO_SMB_LOG) << "checkURL " << kurl_;
+
+    QUrl kurl(kurl_);
+    // We treat cifs as an alias but need to translate it to smb.
+    // https://bugs.kde.org/show_bug.cgi?id=327295
+    // It's not IANA registered and also libsmbc internally expects
+    // smb URIs so we do very broadly coerce cifs to smb.
+    // Also see SMBUrl.
+    if (kurl.scheme() == "cifs") {
+        kurl.setScheme("smb");
+    }
+
+    // For WS-Discovered hosts we assume they'll respond to DNSSD names on .local but
+    // they may only respond to llmnr/netbios names. Transparently fall back.
+    //
+    // Desktop linuxes tend to have llmnr disabled, by contrast win10 has dnssd enabled,
+    // so chances are we'll be able to find a host.local more reliably.
+    // Attempt to resolve foo.local natively, if that works use it, otherwise default to
+    // the presumed LLMNR/netbios name found during discovery.
+    // This should then yield reasonable results with any combination of WSD/DNSSD/LLMNR support.
+    // - WSD+Avahi (on linux)
+    // - WSD+Win10 (i.e. dnssd + llmnr)
+    // - WSD+CrappyNAS (e.g. llmnr or netbios only)
+    //
+    // NB: smbc has no way to resolve a name without also triggering auth etc.: we must
+    //   rely on the system's ability to resolve DNSSD for this check.
+    const QLatin1String wsdSuffix(".kio-discovery-wsd");
+    if (kurl.host().endsWith(wsdSuffix)) {
+        QString host = kurl.host();
+        host.chop(wsdSuffix.size());
+        const QString dnssd(host + ".local");
+        auto dnssdHost = KDNSSD::ServiceBrowser::resolveHostName(dnssd);
+        if (!dnssdHost.isNull()) {
+            qCDebug(KIO_SMB_LOG) << "Resolved DNSSD name:" << dnssd;
+            host = dnssd;
+        } else {
+            qCDebug(KIO_SMB_LOG) << "Failed to resolve DNSSD name:" << dnssd;
+            qCDebug(KIO_SMB_LOG) << "Falling back to LLMNR name:" << host;
+        }
+        kurl.setHost(host);
+    }
+
     QString surl = kurl.url();
-    //transform any links in the form smb:/ into smb://
+    // transform any links in the form smb:/ into smb://
     if (surl.startsWith(QLatin1String("smb:/"))) {
         if (surl.length() == 5) {
             return QUrl("smb://");
         }
         if (surl.at(5) != '/') {
             surl = "smb://" + surl.mid(5);
-            qCDebug(KIO_SMB) << "checkURL return1 " << surl << " " << QUrl(surl);
+            qCDebug(KIO_SMB_LOG) << "checkURL return1 " << surl << " " << QUrl(surl);
             return QUrl(surl);
         }
     }
     if (surl == QLatin1String("smb://")) {
-        return kurl; //unchanged
+        return kurl; // unchanged
     }
 
     // smb:// normally have no userinfo
     // we must redirect ourself to remove the username and password
     if (surl.contains('@') && !surl.contains("smb://")) {
         QUrl url(kurl);
-        url.setPath('/'+kurl.url().right( kurl.url().length()-kurl.url().indexOf('@') -1));
-        QString userinfo = kurl.url().mid(5, kurl.url().indexOf('@')-5);
-        if(userinfo.contains(':'))  {
+        url.setPath('/' + kurl.url().right(kurl.url().length() - kurl.url().indexOf('@') - 1));
+        QString userinfo = kurl.url().mid(5, kurl.url().indexOf('@') - 5);
+        if (userinfo.contains(':')) {
             url.setUserName(userinfo.left(userinfo.indexOf(':')));
-            url.setPassword(userinfo.right(userinfo.length()-userinfo.indexOf(':')-1));
+            url.setPassword(userinfo.right(userinfo.length() - userinfo.indexOf(':') - 1));
         } else {
             url.setUserName(userinfo);
         }
-        qCDebug(KIO_SMB) << "checkURL return2 " << url;
+        qCDebug(KIO_SMB_LOG) << "checkURL return2 " << url;
         return url;
     }
 
-    //if there's a valid host, don't have an empty path
+    // if there's a valid host, don't have an empty path
     QUrl url(kurl);
 
     if (url.path().isEmpty())
         url.setPath("/");
 
-    qCDebug(KIO_SMB) << "checkURL return3 " << url;
+    qCDebug(KIO_SMB_LOG) << "checkURL return3 " << url;
     return url;
 }
 
 SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNum)
 {
-    qCDebug(KIO_SMB) << "errNum" << errNum;
+    qCDebug(KIO_SMB_LOG) << "errNum" << errNum;
 
-    switch(errNum)
-    {
+    switch (errNum) {
     case ENOENT:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK)
-            return SMBError{ ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall.") };
+            return SMBError {ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall.")};
         else
-            return SMBError{ ERR_DOES_NOT_EXIST, url.toDisplayString() };
+            return SMBError {ERR_DOES_NOT_EXIST, url.toDisplayString()};
 #ifdef ENOMEDIUM
     case ENOMEDIUM:
-        return SMBError{ ERR_SLAVE_DEFINED, i18n("No media in device for %1", url.toDisplayString()) };
+        return SMBError {ERR_SLAVE_DEFINED, i18n("No media in device for %1", url.toDisplayString())};
 #endif
 #ifdef EHOSTDOWN
     case EHOSTDOWN:
 #endif
     case ECONNREFUSED:
-        return SMBError{ ERR_SLAVE_DEFINED, i18n("Could not connect to host for %1", url.toDisplayString()) };
-        break;
+        return SMBError {ERR_SLAVE_DEFINED, i18n("Could not connect to host for %1", url.toDisplayString())};
     case ENOTDIR:
-        return SMBError{ ERR_CANNOT_ENTER_DIRECTORY, url.toDisplayString() };
+        return SMBError {ERR_CANNOT_ENTER_DIRECTORY, url.toDisplayString()};
     case EFAULT:
     case EINVAL:
-        return SMBError{ ERR_DOES_NOT_EXIST, url.toDisplayString() };
+        return SMBError {ERR_DOES_NOT_EXIST, url.toDisplayString()};
     case EPERM:
     case EACCES:
-        return SMBError{ ERR_ACCESS_DENIED, url.toDisplayString() };
+        return SMBError {ERR_ACCESS_DENIED, url.toDisplayString()};
     case EIO:
     case ENETUNREACH:
-        if ( url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER )
-            return SMBError{ ERR_SLAVE_DEFINED, i18n("Error while connecting to server responsible for %1", url.toDisplayString()) };
+        if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER)
+            return SMBError {ERR_SLAVE_DEFINED, i18n("Error while connecting to server responsible for %1", url.toDisplayString())};
         else
-            return SMBError{ ERR_CONNECTION_BROKEN, url.toDisplayString() };
+            return SMBError {ERR_CONNECTION_BROKEN, url.toDisplayString()};
     case ENOMEM:
-        return SMBError{ ERR_OUT_OF_MEMORY, url.toDisplayString() };
+        return SMBError {ERR_OUT_OF_MEMORY, url.toDisplayString()};
     case ENODEV:
-        return SMBError{ ERR_SLAVE_DEFINED, i18n("Share could not be found on given server") };
+        return SMBError {ERR_SLAVE_DEFINED, i18n("Share could not be found on given server")};
     case EBADF:
-        return SMBError{ ERR_INTERNAL, i18n("Bad file descriptor") };
+        return SMBError {ERR_INTERNAL, i18n("Bad file descriptor")};
     case ETIMEDOUT:
-        return SMBError{ ERR_SERVER_TIMEOUT, url.host() };
+        return SMBError {ERR_SERVER_TIMEOUT, url.host()};
     case ENOTEMPTY:
-        return SMBError{ ERR_CANNOT_RMDIR, url.toDisplayString() };
+        return SMBError {ERR_CANNOT_RMDIR, url.toDisplayString()};
 #ifdef ENOTUNIQ
     case ENOTUNIQ:
-        return SMBError{ ERR_SLAVE_DEFINED, i18n("The given name could not be resolved to a unique server. "
-                                                 "Make sure your network is setup without any name conflicts "
-                                                 "between names used by Windows and by UNIX name resolution." ) };
+        return SMBError {ERR_SLAVE_DEFINED,
+                         i18n("The given name could not be resolved to a unique server. "
+                              "Make sure your network is setup without any name conflicts "
+                              "between names used by Windows and by UNIX name resolution.")};
 #endif
+    case ECONNABORTED:
+        return SMBError {ERR_CONNECTION_BROKEN, url.host()};
+    case EHOSTUNREACH:
+        return SMBError {ERR_CANNOT_CONNECT, i18nc("@info:status smb failed to reach the server (e.g. server offline or network failure). %1 is an ip address or hostname", "%1: Host unreachable", url.host())};
     case 0: // success
-      return SMBError{ ERR_INTERNAL, i18n("libsmbclient reported an error, but did not specify "
-                                          "what the problem is. This might indicate a severe problem "
-                                          "with your network - but also might indicate a problem with "
-                                          "libsmbclient.\n"
-                                          "If you want to help us, please provide a tcpdump of the "
-                                          "network interface while you try to browse (be aware that "
-                                          "it might contain private data, so do not post it if you are "
-                                          "unsure about that - you can send it privately to the developers "
-                                          "if they ask for it)") };
+        return SMBError {ERR_INTERNAL,
+                         i18n("libsmbclient reported an error, but did not specify "
+                              "what the problem is. This might indicate a severe problem "
+                              "with your network - but also might indicate a problem with "
+                              "libsmbclient.\n"
+                              "If you want to help us, please provide a tcpdump of the "
+                              "network interface while you try to browse (be aware that "
+                              "it might contain private data, so do not post it if you are "
+                              "unsure about that - you can send it privately to the developers "
+                              "if they ask for it)")};
     default:
-        return SMBError{ ERR_INTERNAL, i18n("Unknown error condition in stat: %1", QString::fromLocal8Bit( strerror(errNum))) };
+        return SMBError {
+            ERR_INTERNAL,
+                    i18nc("%1 is an error number, %2 either a pretty string or the number",
+                          "Unknown error condition: [%1] %2",
+                          QString::number(errNum),
+                          QString::fromLocal8Bit(strerror(errNum)))
+        };
     }
 }
 
-void SMBSlave::reportError(const SMBUrl& url, const int errNum)
+void SMBSlave::reportError(const SMBUrl &url, const int errNum)
 {
     const SMBError smbErr = errnumToKioError(url, errNum);
 
     error(smbErr.kioErrorId, smbErr.errorString);
 }
 
-void SMBSlave::reportWarning(const SMBUrl& url, const int errNum)
+void SMBSlave::reportWarning(const SMBUrl &url, const int errNum)
 {
     const SMBError smbErr = errnumToKioError(url, errNum);
     const QString errorString = buildErrorString(smbErr.kioErrorId, smbErr.errorString);
@@ -310,358 +356,202 @@ void SMBSlave::reportWarning(const SMBUrl& url, const int errNum)
     warning(xi18n("Error occurred while trying to access %1<nl/>%2", url.url(), errorString));
 }
 
-//===========================================================================
-void SMBSlave::listDir( const QUrl& kurl )
+void SMBSlave::listDir(const QUrl &kurl)
 {
-   qCDebug(KIO_SMB) << kurl;
-   int errNum = 0;
+    qCDebug(KIO_SMB_LOG) << kurl;
 
-   // check (correct) URL
-   QUrl url = checkURL(kurl);
-   // if URL is not valid we have to redirect to correct URL
-   if (url != kurl)
-   {
-      redirection(url);
-      finished();
-      return;
-   }
-
-   m_current_url = kurl;
-
-   int                 dirfd;
-   struct smbc_dirent  *dirp = nullptr;
-   UDSEntry    udsentry;
-   bool dir_is_root = true;
-
-   dirfd = smbc_opendir( m_current_url.toSmbcUrl() );
-   if (dirfd > 0){
-      errNum = 0;
-   } else {
-      errNum = errno;
-   }
-
-   qCDebug(KIO_SMB) << "open " << m_current_url.toSmbcUrl() << " " << m_current_url.getType() << " " << dirfd;
-   if(dirfd >= 0)
-   {
-       uint direntCount = 0;
-       do {
-           qCDebug(KIO_SMB) << "smbc_readdir ";
-           dirp = smbc_readdir(dirfd);
-           if(dirp == nullptr)
-               break;
-
-           ++direntCount;
-
-           // Set name
-           QString udsName;
-           const QString dirpName = QString::fromUtf8( dirp->name );
-           // We cannot trust dirp->commentlen has it might be with or without the NUL character
-           // See KDE bug #111430 and Samba bug #3030
-           const QString comment = QString::fromUtf8( dirp->comment );
-           if ( dirp->smbc_type == SMBC_SERVER || dirp->smbc_type == SMBC_WORKGROUP ) {
-               udsName = dirpName.toLower();
-               udsName[0] = dirpName.at( 0 ).toUpper();
-               if ( !comment.isEmpty() && dirp->smbc_type == SMBC_SERVER )
-                   udsName += " (" + comment + ')';
-           } else
-               udsName = dirpName;
-
-           qCDebug(KIO_SMB) << "dirp->name " <<  dirp->name  << " " << dirpName << " '" << comment << "'" << " " << dirp->smbc_type;
-
-           udsentry.fastInsert( KIO::UDSEntry::UDS_NAME, udsName );
-
-           // Mark all administrative shares, e.g ADMIN$, as hidden. #197903
-           if (dirpName.endsWith(QLatin1Char('$'))) {
-              //qCDebug(KIO_SMB) << dirpName << "marked as hidden";
-              udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, 1);
-           }
-
-           if (udsName == ".")
-           {
-               // Skip the "." entry
-               // Mind the way m_current_url is handled in the loop
-           }
-           else if (udsName == "..")
-           {
-               dir_is_root = false;
-               // fprintf(stderr,"----------- hide: -%s-\n",dirp->name);
-               // do nothing and hide the hidden shares
-           }
-           else if (dirp->smbc_type == SMBC_FILE ||
-                    dirp->smbc_type == SMBC_DIR)
-           {
-               // Set stat information
-               m_current_url.addPath(dirpName);
-               const int statErr = browse_stat_path(m_current_url, udsentry);
-               if (statErr)
-               {
-                   if (statErr == ENOENT || statErr == ENOTDIR)
-                   {
-                       reportWarning(m_current_url, statErr);
-                   }
-               }
-               else
-               {
-                   // Call base class to list entry
-                   listEntry(udsentry);
-               }
-               m_current_url.cd("..");
-           }
-           else if(dirp->smbc_type == SMBC_SERVER ||
-                   dirp->smbc_type == SMBC_FILE_SHARE)
-           {
-               // Set type
-               udsentry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
-
-
-               if (dirp->smbc_type == SMBC_SERVER) {
-                   udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
-
-                   // QString workgroup = m_current_url.host().toUpper();
-                   QUrl u("smb://");
-                   u.setHost(dirpName);
-
-                   // when libsmbclient knows
-                   // u = QString("smb://%1?WORKGROUP=%2").arg(dirpName).arg(workgroup.toUpper());
-                   qCDebug(KIO_SMB) << "list item " << u;
-                   udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-
-                   udsentry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-server"));
-               } else
-                   udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
-
-
-               // Call base class to list entry
-               listEntry(udsentry);
-           }
-           else if(dirp->smbc_type == SMBC_WORKGROUP)
-           {
-               // Set type
-               udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-
-               // Set permissions
-               udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
-
-               udsentry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-workgroup"));
-
-               // QString workgroup = m_current_url.host().toUpper();
-               QUrl u("smb://");
-               u.setHost(dirpName);
-               udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-
-               // Call base class to list entry
-               listEntry(udsentry);
-           }
-           else
-           {
-               qCDebug(KIO_SMB) << "SMBC_UNKNOWN :" << dirpName;
-               // TODO: we don't handle SMBC_IPC_SHARE, SMBC_PRINTER_SHARE
-               //       SMBC_LINK, SMBC_COMMS_SHARE
-               //SlaveBase::error(ERR_INTERNAL, TEXT_UNSUPPORTED_FILE_TYPE);
-               // continue;
-           }
-           udsentry.clear();
-       } while (dirp); // checked already in the head
-
-       listDNSSD(udsentry, url, direntCount);
-
-       if (dir_is_root) {
-           udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-           udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
-           udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
-       }
-       else
-       {
-           udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
-           const int statErr = browse_stat_path(m_current_url, udsentry);
-           if (statErr)
-           {
-               if (statErr == ENOENT || statErr == ENOTDIR)
-               {
-                   reportWarning(m_current_url, statErr);
-               }
-               // Create a default UDSEntry if we could not stat the actual directory
-               udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-               udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
-           }
-       }
-       listEntry(udsentry);
-       udsentry.clear();
-
-       // clean up
-       smbc_closedir(dirfd);
-   }
-   else
-   {
-       if (errNum == EPERM || errNum == EACCES || workaroundEEXIST(errNum)) {
-           const int passwordError = checkPassword(m_current_url);
-           if (passwordError == KJob::NoError) {
-               redirection( m_current_url );
-               finished();
-           } else if (passwordError == KIO::ERR_USER_CANCELED) {
-               reportError(m_current_url, errNum);
-           } else {
-               error(passwordError, m_current_url.toString());
-           }
-
-           return;
-       }
-
-       reportError(m_current_url, errNum);
-       return;
-   }
-
-   finished();
-}
-
-void SMBSlave::listDNSSD(UDSEntry &udsentry, const QUrl &url, const uint direntCount)
-{
-    // Certain versions of KDNSSD suffer from signal races which can easily
-    // deadlock the slave.
-#ifndef HAVE_KDNSSD_WITH_SIGNAL_RACE_PROTECTION
-    return;
-#endif // HAVE_KDNSSD_WITH_SIGNAL_RACE_PROTECTION
-
-    // This entire method act as fallback logic iff SMB discovery is not working
-    // (for example when using a protocol version that doesn't have discovery).
-    // As such we can return if entries were discovered or the URL is not '/'
-    auto normalizedUrl = url.adjusted(QUrl::NormalizePathSegments);
-    if (direntCount > 0 || !normalizedUrl.path().isEmpty()) {
+    // check (correct) URL
+    QUrl url = checkURL(kurl);
+    // if URL is not valid we have to redirect to correct URL
+    if (url != kurl) {
+        redirection(url);
+        finished();
         return;
     }
 
-    // Slaves have no event loop, start one for the poll.
-    // KDNSSD has an internal timeout which may trigger if this takes too long
-    // so in theory this should not ever be able to get stuck.
-    // The eventloop runs until the discovery is finished. The finished slot
-    // will quit it.
-    QList<KDNSSD::RemoteService::Ptr> services;
+    m_current_url = kurl;
+
     QEventLoop e;
-    KDNSSD::ServiceBrowser browser(QStringLiteral("_smb._tcp"));
-    connect(&browser, &KDNSSD::ServiceBrowser::serviceAdded,
-            this, [&services](KDNSSD::RemoteService::Ptr service){
-        qCDebug(KIO_SMB) << "DNSSD added:"
-                         << service->serviceName()
-                         << service->type()
-                         << service->domain()
-                         << service->hostName()
-                         << service->port();
-        // Manual contains check. We need to use the == of the underlying
-        // objects, not the pointers. The same service may have >1
-        // RemoteService* instances representing it, so the == impl of
-        // RemoteService::Ptr is useless here.
-        for (const auto &it : services) {
-            if (*service == *it) {
-                return;
-            }
+
+    UDSEntryList list;
+    QStringList discoveredNames;
+
+    const auto flushEntries = [this, &list]() {
+        if (list.isEmpty()) {
+            return;
         }
-        // Schedule resolution of hostname. We'll later call resolve
-        // which will block until the resolution is done. This basically
-        // gives us a head start.
-        service->resolveAsync();
-        services.append(service);
-    });
-    connect(&browser, &KDNSSD::ServiceBrowser::serviceRemoved,
-            this, [&services](KDNSSD::RemoteService::Ptr service){
-        qCDebug(KIO_SMB) << "DNSSD removed:"
-                         << service->serviceName()
-                         << service->type()
-                         << service->domain()
-                         << service->hostName()
-                         << service->port();
-        services.removeAll(service);
-    });
-    connect(&browser, &KDNSSD::ServiceBrowser::finished,
-            this, [&]() {
-        browser.disconnect(); // Stop sending anything, we'll exit here.
-        // Resolution still requires an event loop. So, let the resolutions
-        // finish and then quit the loop. Services that fail resolution
-        // get dropped since we won't be able to access them properly.
-        for (auto it = services.begin(); it != services.end(); ++it) {
-            auto service = *it;
-            if (!service->resolve()) {
-                qCWarning(KIO_SMB) << "Failed to resolve DNSSD service"
-                                   << service->serviceName();
-                it = services.erase(it);
-            }
-        }
+        listEntries(list);
+        list.clear();
+    };
+
+    const auto quitLoop = [&e, &flushEntries]() {
+        flushEntries();
         e.quit();
-    });
-    browser.startBrowse();
-    e.exec();
+    };
 
-    for (const auto &service : services) {
-        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, service->serviceName());
+    // Since slavebase has no eventloop it wont publish results
+    // on a timer, since we do not know how long our discovery
+    // will take this is super meh because we may appear
+    // stuck for a while. Implement our own listing system
+    // based on QTimer to mitigate.
+    QTimer sendTimer;
+    sendTimer.setInterval(300);
+    connect(&sendTimer, &QTimer::timeout, this, flushEntries);
+    sendTimer.start();
 
-        udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
+    QSharedPointer<SMBCDiscoverer> smbc(new SMBCDiscoverer(m_current_url, &e, this));
 
-        // TODO: it may be better to resolve the host to an ip address. dnssd
-        //   being able to find a service doesn't mean name resolution is
-        //   properly set up for its domain. So, we may not be able to resolve
-        //   this without help from avahi. OTOH KDNSSD doesn't have API for this
-        //   and from a platform POV we should probably assume that if avahi
-        //   is functional it is also set up as resolution provider.
-        //   Given the plugin design on glibc's libnss however I am not sure
-        //   that assumption will be true all the time. ~sitter, 2018
-        QUrl u(QStringLiteral("smb://"));
-        u.setHost(service->hostName());
-        if (service->port() > 0 && service->port() != 445 /* default smb */) {
-            u.setPort(service->port());
+    QVector<QSharedPointer<Discoverer>> discoverers;
+    discoverers << smbc;
+
+    auto appendDiscovery = [&](const Discovery::Ptr &discovery) {
+        if (discoveredNames.contains(discovery->udsName(), Qt::CaseInsensitive)) {
+            return;
         }
+        // Not tracking hosts. Tracking hosts means **guessing** if foo.local
+        // and foo and foo.kio-discovery-wsd will actually resolve to the same
+        // IP address, which is tricky to do at best. In the interest of efficency
+        // I'd rather have the de-duplication requirement be that the name of
+        // two competing service discovery systems needs to be the same.
+        discoveredNames << discovery->udsName();
+        list.append(discovery->toEntry());
+    };
 
-        udsentry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-        udsentry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE,
-                            QStringLiteral("application/x-smb-server"));
+    auto maybeFinished = [&] { // finishes if all discoveries finished
+        bool allFinished = true;
+        for (const auto &discoverer : discoverers) {
+            allFinished = allFinished && discoverer->isFinished();
+        }
+        if (allFinished) {
+            quitLoop();
+        }
+    };
 
-        listEntry(udsentry);
-        udsentry.clear();
+    connect(smbc.data(), &SMBCDiscoverer::newDiscovery, this, appendDiscovery);
+    connect(smbc.data(), &SMBCDiscoverer::finished, this, maybeFinished);
+
+    // Run service discovery if the path is root. This augments
+    // "native" results from libsmbclient.
+    // Also, should native resolution have encountered an error it will not matter.
+    if (m_current_url.getType() == SMBURLTYPE_ENTIRE_NETWORK) {
+        QSharedPointer<DNSSDDiscoverer> dnssd(new DNSSDDiscoverer);
+        QSharedPointer<WSDiscoverer> wsd(new WSDiscoverer);
+        discoverers << dnssd << wsd;
+
+        qCDebug(KIO_SMB_LOG) << "Adding modern discovery (dnssd/wsdiscovery)";
+
+        connect(dnssd.data(), &DNSSDDiscoverer::newDiscovery, this, appendDiscovery);
+        connect(wsd.data(), &WSDiscoverer::newDiscovery, this, appendDiscovery);
+
+        connect(dnssd.data(), &DNSSDDiscoverer::finished, this, maybeFinished);
+        connect(wsd.data(), &WSDiscoverer::finished, this, maybeFinished);
+
+        dnssd->start();
+        wsd->start();
+
+        qCDebug(KIO_SMB_LOG) << "Modern discovery set up.";
     }
 
-    // NOTE: workgroups cannot be properly resolved because libsmbclient
-    //   seems to lack the appropriate API to pull this data out of netbios.
-    //   Netbios is also not working on IPv6 and its replacement (LLMNR)
-    //   doesn't support the concept of workgroups.
+    qCDebug(KIO_SMB_LOG) << "Starting discovery.";
+    smbc->start();
+    QTimer::singleShot(16000, &e, quitLoop); // max execution time!
+    e.exec();
+
+    qCDebug(KIO_SMB_LOG) << "Discovery finished.";
+
+    if (m_current_url.getType() != SMBURLTYPE_ENTIRE_NETWORK && smbc->error() != 0) {
+        // not smb:// and had an error -> handle it
+        const int err = smbc->error();
+        if (err == EPERM || err == EACCES || workaroundEEXIST(err)) {
+            qCDebug(KIO_SMB_LOG) << "trying checkPassword";
+            const int passwordError = checkPassword(m_current_url);
+            if (passwordError == KJob::NoError) {
+                redirection(m_current_url);
+                finished();
+            } else if (passwordError == KIO::ERR_USER_CANCELED) {
+                qCDebug(KIO_SMB_LOG) << "user cancelled password request";
+                reportError(m_current_url, err);
+            } else {
+                qCDebug(KIO_SMB_LOG) << "generic password error:" << passwordError;
+                error(passwordError, m_current_url.toString());
+            }
+
+            return;
+        }
+
+        qCDebug(KIO_SMB_LOG) << "reporting generic error:" << err;
+        reportError(m_current_url, err);
+        return;
+    }
+
+    UDSEntry udsentry;
+    if (smbc->dirWasRoot()) {
+        udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+        udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
+    } else {
+        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+        const int statErr = browse_stat_path(m_current_url, udsentry);
+        if (statErr != 0) {
+            if (statErr == ENOENT || statErr == ENOTDIR) {
+                reportWarning(m_current_url, statErr);
+            }
+            // Create a default UDSEntry if we could not stat the actual directory
+            udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+            udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
+        }
+    }
+    listEntry(udsentry);
+
+    finished();
 }
 
-void SMBSlave::fileSystemFreeSpace(const QUrl& url)
+void SMBSlave::fileSystemFreeSpace(const QUrl &url)
 {
-    qCDebug(KIO_SMB) << url;
+    if (url.host().endsWith("kio-discovery-wsd")) {
+        error(KIO::ERR_UNKNOWN_HOST, url.url());
+        return;
+    }
+    qCDebug(KIO_SMB_LOG) << url;
 
     // Avoid crashing in smbc_fstatvfs below when
     // requesting free space for smb:// which doesn't
     // make sense to do to begin with
     if (url.host().isEmpty()) {
-        error(KIO::ERR_COULD_NOT_STAT, url.url());
+        error(KIO::ERR_CANNOT_STAT, url.url());
         return;
     }
 
     SMBUrl smbcUrl = url;
-    int handle = smbc_opendir(smbcUrl.toSmbcUrl());
-    if (handle < 0) {
-       error(KIO::ERR_COULD_NOT_STAT, url.url());
-       return;
-    }
 
-    struct statvfs dirStat;
+    struct statvfs dirStat {
+    };
     memset(&dirStat, 0, sizeof(struct statvfs));
-    int err = smbc_fstatvfs(handle, &dirStat);
-    smbc_closedir(handle);
-
+    const int err = smbc_statvfs(smbcUrl.toSmbcUrl().data(), &dirStat);
     if (err < 0) {
-       error(KIO::ERR_COULD_NOT_STAT, url.url());
-       return;
+        error(KIO::ERR_CANNOT_STAT, url.url());
+        return;
     }
 
-    KIO::filesize_t blockSize;
-    if (dirStat.f_frsize != 0) {
-       blockSize = dirStat.f_frsize;
-    } else {
-       blockSize = dirStat.f_bsize;
-    }
+    // libsmb_stat.c has very awkward conditional branching that results
+    // in data meaning different things based on context:
+    // A samba host with unix extensions has f_frsize==0 and the f_bsize is
+    // the actual block size. Any other server (such as windows) has a non-zero
+    // f_frsize denoting the amount of sectors in a block and the f_bsize is
+    // the amount of bytes in a sector. As such frsize*bsize is the actual
+    // block size.
+    // This was also broken in different ways throughout history, so depending
+    // on the specific libsmbc versions the milage will vary. 4.7 to 4.11 are
+    // at least behaving as described though.
+    // https://bugs.kde.org/show_bug.cgi?id=298801
+    const auto frames = (dirStat.f_frsize == 0) ? 1 : dirStat.f_frsize;
+    const auto blockSize = dirStat.f_bsize * frames;
+    // Further more on older versions of samba f_bavail may not be set...
+    const auto total = blockSize * dirStat.f_blocks;
+    const auto available = blockSize * ((dirStat.f_bavail != 0) ? dirStat.f_bavail : dirStat.f_bfree);
 
-    setMetaData("total", QString::number(blockSize * dirStat.f_blocks));
-    setMetaData("available", QString::number(blockSize * dirStat.f_bavail));
+    setMetaData("total", QString::number(total));
+    setMetaData("available", QString::number(available));
 
     finished();
 }
@@ -670,4 +560,3 @@ bool SMBSlave::workaroundEEXIST(const int errNum) const
 {
     return (errNum == EEXIST) && m_enableEEXISTWorkaround;
 }
-

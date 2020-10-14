@@ -54,7 +54,7 @@ bool RecentDocuments::rewriteUrl(const QUrl& url, QUrl& newUrl)
     if (isRootUrl(url)) {
         return false;
     } else {
-        QString desktopFilePath = QString("%1/%2.desktop").arg(KRecentDocument::recentDocumentDirectory()).arg(url.path());
+        const QString desktopFilePath = QString("%1/%2.desktop").arg(KRecentDocument::recentDocumentDirectory(), url.path());
         if (KDesktopFile::isDesktopFile(desktopFilePath)) {
             KDesktopFile file(desktopFilePath);
             if (file.hasLinkType())
@@ -148,6 +148,7 @@ void RecentDocuments::stat(const QUrl& url)
         //
         QString dirName = i18n("Recent Documents");
         KIO::UDSEntry uds;
+        uds.reserve(6);
         uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
         uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
         uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);

@@ -257,7 +257,7 @@ void NFSProtocolV2::openConnection()
 
     // Check if some exported dirs failed to mount
     if (failList.size() > 0) {
-        m_slave->error(KIO::ERR_COULD_NOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
+        m_slave->error(KIO::ERR_CANNOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
 
         // All exports failed to mount, fail
         if (failList.size() == exportsCount) {
@@ -389,7 +389,7 @@ void NFSProtocolV2::listDir(const QUrl& url)
             int rpcStatus;
             readlinkres readLinkRes;
             char nameBuf[NFS_MAXPATHLEN];
-            if (readLink(filePath, rpcStatus, readLinkRes, nameBuf)) {
+            if (symLinkTarget(filePath, rpcStatus, readLinkRes, nameBuf)) {
                 const QString linkDest = QString::fromLocal8Bit(readLinkRes.readlinkres_u.data);
                 entry.insert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
 
@@ -486,7 +486,7 @@ void NFSProtocolV2::stat(const QUrl& url)
         int rpcStatus;
         readlinkres readLinkRes;
         char nameBuf[NFS_MAXPATHLEN];
-        if (readLink(path, rpcStatus, readLinkRes, nameBuf)) {
+        if (symLinkTarget(path, rpcStatus, readLinkRes, nameBuf)) {
             linkDest = QString::fromLocal8Bit(readLinkRes.readlinkres_u.data);
         } else {
             entry.insert(KIO::UDSEntry::UDS_LINK_DEST, i18n("Unknown target"));
@@ -840,7 +840,7 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
         int rpcStatus;
         readlinkres readLinkRes;
         char nameBuf[NFS_MAXPATHLEN];
-        if (!readLink(srcPath, rpcStatus, readLinkRes, nameBuf)) {
+        if (!symLinkTarget(srcPath, rpcStatus, readLinkRes, nameBuf)) {
             m_slave->error(KIO::ERR_DOES_NOT_EXIST, srcPath);
             return;
         }
@@ -862,7 +862,7 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     const QString partFilePath = destPath + QLatin1String(".part");
     const NFSFileHandle partFH = getFileHandle(partFilePath);
     const bool bPartExists = !partFH.isInvalid();
-    const bool bMarkPartial = m_slave->config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = m_slave->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bPartExists) {
         int rpcStatus;
@@ -992,7 +992,7 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = m_slave->config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const unsigned int size = m_slave->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (writeArgs.offset <  size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
@@ -1063,7 +1063,7 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
         int rpcStatus;
         readlinkres readLinkRes;
         char nameBuf[NFS_MAXPATHLEN];
-        if (!readLink(srcPath, rpcStatus, readLinkRes, nameBuf)) {
+        if (!symLinkTarget(srcPath, rpcStatus, readLinkRes, nameBuf)) {
             m_slave->error(KIO::ERR_DOES_NOT_EXIST, srcPath);
             return;
         }
@@ -1077,7 +1077,7 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     bool bResume = false;
     const QFileInfo partInfo(destPath + QLatin1String(".part"));
     const bool bPartExists = partInfo.exists();
-    const bool bMarkPartial = m_slave->config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = m_slave->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bMarkPartial && bPartExists && partInfo.size() > 0) {
         if (partInfo.isDir()) {
@@ -1179,7 +1179,7 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
             readArgs.offset += bytesRead;
 
             if (destFile.write(readRes.readres_u.reply.data.data_val, bytesRead) != bytesRead) {
-                m_slave->error(KIO::ERR_COULD_NOT_WRITE, destPath);
+                m_slave->error(KIO::ERR_CANNOT_WRITE, destPath);
 
                 error = true;
                 break;
@@ -1195,7 +1195,7 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep
-            const int size = m_slave->config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const int size = m_slave->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (partInfo.size() <  size) {
                 QFile::remove(partInfo.absoluteFilePath());
             }
@@ -1219,11 +1219,11 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
         if (!mtimeStr.isEmpty()) {
             QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
             if (dt.isValid()) {
-                qCDebug(LOG_KIO_NFS) << "Setting modification time to" << dt.toTime_t();
+                qCDebug(LOG_KIO_NFS) << "Setting modification time to" << dt.toSecsSinceEpoch();
 
                 struct utimbuf utbuf;
-                utbuf.actime = QFileInfo(destPath).lastRead().toTime_t(); // access time, unchanged
-                utbuf.modtime = dt.toTime_t(); // modification time
+                utbuf.actime = QFileInfo(destPath).lastRead().toSecsSinceEpoch(); // access time, unchanged
+                utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
                 utime(QFile::encodeName(destPath).constData(), &utbuf);
             }
         }
@@ -1277,7 +1277,7 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     const QString partFilePath = destPath + QLatin1String(".part");
     const NFSFileHandle partFH = getFileHandle(partFilePath);
     const bool bPartExists = !partFH.isInvalid();
-    const bool bMarkPartial = m_slave->config()->readEntry("MarkPartial", true);
+    const bool bMarkPartial = m_slave->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bPartExists) {
         int rpcStatus;
@@ -1364,7 +1364,7 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     do {
         bytesRead = srcFile.read(writeArgs.data.data_val, NFS_MAXDATA);
         if (bytesRead < 0) {
-            m_slave->error(KIO::ERR_COULD_NOT_READ, srcPath);
+            m_slave->error(KIO::ERR_CANNOT_READ, srcPath);
 
             error = true;
             break;
@@ -1392,7 +1392,7 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = m_slave->config()->readEntry("MinimumKeepSize", DEFAULT_MINIMUM_KEEP_SIZE);
+            const unsigned int size = m_slave->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (writeArgs.offset <  size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
@@ -1421,7 +1421,7 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
             if (dt.isValid()) {
                 sattr attributes;
                 memset(&attributes, 0xFF, sizeof(attributes));
-                attributes.mtime.seconds = dt.toTime_t();
+                attributes.mtime.seconds = dt.toSecsSinceEpoch();
                 attributes.mtime.useconds = attributes.mtime.seconds * 1000000ULL;
 
                 int rpcStatus;
@@ -1572,7 +1572,7 @@ bool NFSProtocolV2::lookupHandle(const QString& path, int& rpcStatus, diropres& 
     return (rpcStatus == RPC_SUCCESS && result.status == NFS_OK);
 }
 
-bool NFSProtocolV2::readLink(const QString& path, int& rpcStatus, readlinkres& result, char* dataBuffer)
+bool NFSProtocolV2::symLinkTarget(const QString& path, int& rpcStatus, readlinkres& result, char* dataBuffer)
 {
     const NFSFileHandle fh = getFileHandle(path);
 

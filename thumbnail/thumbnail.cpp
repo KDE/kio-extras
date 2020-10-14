@@ -57,7 +57,6 @@
 #include <KPluginLoader>
 
 #include <kaboutdata.h>
-#include <kiconloader.h>
 
 #include <kio/thumbcreator.h>
 #include <kio/thumbsequencecreator.h>
@@ -82,8 +81,8 @@
 // mimeType     - the mime type of the file, used for the overlay icon if any
 // width        - maximum width for the thumbnail
 // height       - maximum height for the thumbnail
-// iconSize     - the size of the overlay icon to use if any
-// iconAlpha    - the transparency value used for icon overlays
+// iconSize     - the size of the overlay icon to use if any (deprecated, ignored)
+// iconAlpha    - the transparency value used for icon overlays (deprecated, ignored)
 // plugin       - the name of the plugin library to be used for thumbnail creation.
 //                Provided by the application to save an addition KTrader
 //                query here.
@@ -130,7 +129,7 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 
 
     if (argc != 4) {
-        qCritical() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2" << endl;
+        qCritical() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2";
         exit(-1);
     }
 
@@ -143,7 +142,6 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 
 ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("thumbnail", pool, app),
-      m_iconSize(0),
       m_maxFileSize(0)
 {
 
@@ -163,29 +161,33 @@ void ThumbnailProtocol::get(const QUrl &url)
         const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
         m_enabledPlugins = globalConfig.readEntry("Plugins", KIO::PreviewJob::defaultPlugins());
     }
+
+    Q_ASSERT(url.scheme() == "thumbnail");
+    QFileInfo info(url.path());
+    Q_ASSERT(info.isAbsolute());
+
+    if (!info.exists()) {
+	// The file does not exist
+	error(KIO::ERR_DOES_NOT_EXIST, url.path());
+	return;
+    } else if (!info.isReadable()) {
+	// The file is not readable!
+	error(KIO::ERR_CANNOT_READ, url.path());
+	return;
+    }
+
     //qDebug() << "Wanting MIME Type:" << m_mimeType;
 #ifdef THUMBNAIL_HACK
     // ### HACK
     bool direct=false;
     if (m_mimeType.isEmpty()) {
-        QFileInfo info(url.path());
         //qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
-        if (!info.exists()) {
-            // The file does not exist
-            error(KIO::ERR_DOES_NOT_EXIST,url.path());
-            return;
-        } else if (!info.isReadable()) {
-            // The file is not readable!
-            error(KIO::ERR_COULD_NOT_READ,url.path());
-            return;
-        }
-
         if (info.isDir()) {
             m_mimeType = "inode/directory";
         } else {
             const QMimeDatabase db;
 
-            m_mimeType = db.mimeTypeForUrl(QUrl(info.filePath())).name();
+            m_mimeType = db.mimeTypeForFile(info).name();
         }
 
         //qDebug() << "Guessing MIME Type:" << m_mimeType;
@@ -200,7 +202,6 @@ void ThumbnailProtocol::get(const QUrl &url)
 
     m_width = metaData("width").toInt();
     m_height = metaData("height").toInt();
-    int iconSize = metaData("iconSize").toInt();
 
     if (m_width < 0 || m_height < 0) {
         error(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
@@ -211,19 +212,8 @@ void ThumbnailProtocol::get(const QUrl &url)
         //qDebug() << "Guessing height, width, icon size!";
         m_width = 128;
         m_height = 128;
-        iconSize = 128;
     }
 #endif
-
-    if (!iconSize) {
-        iconSize = KIconLoader::global()->currentSize(KIconLoader::Desktop);
-    }
-    if (iconSize != m_iconSize) {
-        m_iconDict.clear();
-    }
-    m_iconSize = iconSize;
-
-    m_iconAlpha = metaData("iconAlpha").toInt();
 
     QImage img;
 
@@ -235,7 +225,7 @@ void ThumbnailProtocol::get(const QUrl &url)
     if (!kfmiThumb) {
         QString plugin = metaData("plugin");
         if ((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
-            img = thumbForDirectory(url);
+            img = thumbForDirectory(info.canonicalFilePath());
             if(img.isNull()) {
               error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
               return;
@@ -263,8 +253,8 @@ void ThumbnailProtocol::get(const QUrl &url)
             if(sequenceCreator)
                 sequenceCreator->setSequenceIndex(sequenceIndex());
 
-            if (!creator->create(url.path(), m_width, m_height, img)) {
-                error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", url.path()));
+            if (!creator->create(info.canonicalFilePath(), m_width, m_height, img)) {
+                error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
                 return;
             }
             flags = creator->flags();
@@ -272,34 +262,6 @@ void ThumbnailProtocol::get(const QUrl &url)
     }
 
     scaleDownImage(img, m_width, m_height);
-
-    if (flags & ThumbCreator::DrawFrame) {
-        int x2 = img.width() - 1;
-        int y2 = img.height() - 1;
-        // paint a black rectangle around the "page"
-        QPainter p;
-        p.begin( &img );
-        p.setPen( QColor( 48, 48, 48 ));
-        p.drawLine( x2, 0, x2, y2 );
-        p.drawLine( 0, y2, x2, y2 );
-        p.setPen( QColor( 215, 215, 215 ));
-        p.drawLine( 0, 0, x2, 0 );
-        p.drawLine( 0, 0, 0, y2 );
-        p.end();
-    }
-
-    if ((flags & ThumbCreator::BlendIcon) && KIconLoader::global()->alphaBlending(KIconLoader::Desktop)) {
-        // blending the mimetype icon in
-        QImage icon = getIcon();
-
-        int x = img.width() - icon.width() - 4;
-        x = qMax( x, 0 );
-        int y = img.height() - icon.height() - 6;
-        y = qMax( y, 0 );
-        QPainter p(&img);
-        p.setOpacity(m_iconAlpha/255.0);
-        p.drawImage(x, y, icon);
-    }
 
     if (img.isNull()) {
         error(KIO::ERR_INTERNAL, i18n("Failed to create a thumbnail."));
@@ -411,6 +373,8 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
 
     if ((image.size().width() > imageTargetSize.width()) && (imageTargetSize.width() != 0)) {
         scaling = float(imageTargetSize.width()) / float(image.size().width());
+    } else if ((image.size().height() > imageTargetSize.height()) && (imageTargetSize.height() != 0)) {
+        scaling = float(imageTargetSize.height()) / float(image.size().height());
     }
 
     QImage frame(imageTargetSize + QSize(frameWidth * 2, frameWidth * 2),
@@ -463,7 +427,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     painter->drawImage(r.topLeft(), transformed);
 }
 
-QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
+QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
 {
     QImage img;
     if (m_propagationDirectories.isEmpty()) {
@@ -481,9 +445,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
 
-    QString localFile = directory.path();
-
-    KFileItem item(QUrl::fromLocalFile(localFile));
+    KFileItem item(QUrl::fromLocalFile(directory));
     const int extent = qMin(m_width, m_height);
     QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(extent);
 
@@ -508,8 +470,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
         return img;
     }
 
-    // Multiply with a high number, so we get some semi-random sequence
-    int skipValidItems = ((int)sequenceIndex()) * tiles * tiles;
+    // Advance to the next tile page each second
+    int skipValidItems = ((int)sequenceIndex()) * visibleCount;
 
     img = QImage(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
     img.fill(0);
@@ -528,19 +490,19 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
 
     int iterations = 0;
     QString hadFirstThumbnail;
-    int skipped = 0;
-
-    const int maxYPos = folderHeight - bottomMargin - segmentHeight;
+    QImage firstThumbnail;
 
     int validThumbnails = 0;
 
-    while ((skipped <= skipValidItems) && (yPos <= maxYPos) && validThumbnails == 0) {
-        QDirIterator dir(localFile, QDir::Files | QDir::Readable);
-        if (!dir.hasNext()) {
-            break;
-        }
+    while (true) {
+        QDirIterator dir(directory, QDir::Files | QDir::Readable);
+        int skipped = 0;
 
-        while (dir.hasNext() && (yPos <= maxYPos)) {
+        // Seed the random number generator so that it always returns the same result
+        // for the same directory and sequence-item
+        qsrand(qHash(directory) + skipValidItems);
+
+        while (dir.hasNext()) {
             ++iterations;
             if (iterations > 500) {
                 skipValidItems = skipped = 0;
@@ -549,17 +511,15 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
 
             dir.next();
 
-            if (validThumbnails > 0 && hadFirstThumbnail == dir.filePath()) {
-                break; // Never show the same thumbnail twice
-            }
-
-            if (dir.fileInfo().size() > m_maxFileSize) {
+            auto fileSize = dir.fileInfo().size();
+            if ((fileSize == 0) || (fileSize > m_maxFileSize)) {
                 // don't create thumbnails for files that exceed
-                // the maximum set file size
+                // the maximum set file size or are empty
                 continue;
             }
 
-            if (!drawSubThumbnail(p, dir.filePath(), segmentWidth, segmentHeight, xPos, yPos, frameWidth)) {
+            QImage subThumbnail;
+            if (!createSubThumbnail(subThumbnail, dir.filePath(), segmentWidth, segmentHeight)) {
                 continue;
             }
 
@@ -568,11 +528,19 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
                 continue;
             }
 
+            if (!drawSubThumbnail(p, subThumbnail, segmentWidth, segmentHeight, xPos, yPos, frameWidth)) {
+                continue;
+            }
+
             if (hadFirstThumbnail.isEmpty()) {
                 hadFirstThumbnail = dir.filePath();
+                firstThumbnail = subThumbnail;
             }
 
             ++validThumbnails;
+            if (validThumbnails >= visibleCount) {
+                break;
+            }
 
             xPos += segmentWidth + spacing;
             if (xPos > folderWidth - rightMargin - segmentWidth) {
@@ -581,35 +549,32 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
             }
         }
 
-        if (skipped != 0) { // Round up to full pages
-            const int roundedDown = (skipped / visibleCount) * visibleCount;
-            if (roundedDown < skipped) {
-                skipped = roundedDown + visibleCount;
-            } else {
-                skipped = roundedDown;
-            }
+        if (validThumbnails > 0) {
+            break;
         }
 
         if (skipped == 0) {
             break; // No valid items were found
         }
 
-        // We don't need to iterate again and again: Subtract any multiple of "skipped" from the count we still need to skip
-        skipValidItems -= (skipValidItems / skipped) * skipped;
-        skipped = 0;
+        // Calculate number of (partial) pages for all valid items in the directory
+        auto skippedPages = (skipped + visibleCount - 1) / visibleCount;
+
+        // The sequence is continously repeated after all valid items, calculate remainder
+        skipValidItems = (((int)sequenceIndex()) % skippedPages) * visibleCount;
     }
 
     p.end();
 
     if (validThumbnails == 0) {
         // Eventually propagate the contained items from a sub-directory
-        QDirIterator dir(localFile, QDir::Dirs);
+        QDirIterator dir(directory, QDir::Dirs);
         int max = 50;
         while (dir.hasNext() && max > 0) {
             --max;
             dir.next();
             if (m_propagationDirectories.contains(dir.fileName())) {
-                return thumbForDirectory(QUrl(dir.filePath()));
+                return thumbForDirectory(dir.filePath());
             }
         }
 
@@ -631,7 +596,10 @@ QImage ThumbnailProtocol::thumbForDirectory(const QUrl& directory)
         const int oneTileWidth = folderWidth - leftMargin - rightMargin;
         const int oneTileHeight = folderHeight - topMargin - bottomMargin;
 
-        drawSubThumbnail(oneTilePainter, hadFirstThumbnail, oneTileWidth, oneTileHeight, leftMargin, topMargin, frameWidth);
+        if (firstThumbnail.width() < oneTileWidth && firstThumbnail.height() < oneTileHeight) {
+            createSubThumbnail(firstThumbnail, hadFirstThumbnail, oneTileWidth, oneTileHeight);
+        }
+        drawSubThumbnail(oneTilePainter, firstThumbnail, oneTileWidth, oneTileHeight, leftMargin, topMargin, frameWidth);
         return oneTileImg;
     }
 
@@ -661,46 +629,26 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
     return creator;
 }
 
-
-const QImage ThumbnailProtocol::getIcon()
-{
-    const QMimeDatabase db;
-
-    ///@todo Can we really do this? It doesn't seem to respect the size
-    if (!m_iconDict.contains(m_mimeType)) { // generate it
-        QImage icon(KIconLoader::global()->loadMimeTypeIcon(db.mimeTypeForName(m_mimeType).iconName(), KIconLoader::Desktop, m_iconSize).toImage());
-        icon = icon.convertToFormat(QImage::Format_ARGB32);
-        m_iconDict.insert(m_mimeType, icon);
-
-        return icon;
-    }
-
-    return m_iconDict.value(m_mimeType);
-}
-
 bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& filePath,
                                            int segmentWidth, int segmentHeight)
 {
-    const QMimeDatabase db;
-    const QUrl fileUrl = QUrl::fromLocalFile(filePath);
-    const QString subPlugin = pluginForMimeType(db.mimeTypeForUrl(fileUrl).name());
-    if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
-        return false;
-    }
-
-    ThumbCreator* subCreator = getThumbCreator(subPlugin);
-    if (!subCreator) {
-        // qDebug() << "found no creator for" << dir.filePath();
-        return false;
-    }
+    auto getSubCreator = [&filePath, this]() -> ThumbCreator* {
+        const QMimeDatabase db;
+        const QString subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
+        if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
+            return nullptr;
+        }
+        return getThumbCreator(subPlugin);
+    };
 
     if ((segmentWidth <= 256) && (segmentHeight <= 256)) {
         // check whether a cached version of the file is available for
         // 128 x 128 or 256 x 256 pixels
         int cacheSize = 0;
         QCryptographicHash md5(QCryptographicHash::Md5);
-        md5.addData(QFile::encodeName(fileUrl.toString()));
-        const QString thumbName = QFile::encodeName(md5.result().toHex()).append(".png");
+        const QByteArray fileUrl = QUrl::fromLocalFile(filePath).toEncoded();
+        md5.addData(fileUrl);
+        const QString thumbName = QString::fromLatin1(md5.result().toHex()).append(".png");
 
         if (m_thumbBasePath.isEmpty()) {
             m_thumbBasePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/thumbnails/");
@@ -719,17 +667,34 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
             cacheSize = 256;
             thumbPath.cd("large");
         }
-        if (!thumbnail.load(thumbPath.absoluteFilePath(thumbName))) {
+
+        if (thumbnail.load(thumbPath.absoluteFilePath(thumbName))) {
+            return true;
+        } else if (cacheSize == 128) {
+            QDir fallbackPath(m_thumbBasePath);
+            fallbackPath.cd("large");
+            if (thumbnail.load(fallbackPath.absoluteFilePath(thumbName))) {
+                return true;
+            }
+        }
+
+        if (thumbnail.isNull()) {
             // no cached version is available, a new thumbnail must be created
 
             QSaveFile thumbnailfile(thumbPath.absoluteFilePath(thumbName));
             bool savedCorrectly = false;
-            if (subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
+            ThumbCreator* subCreator = getSubCreator();
+            if (subCreator && subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
                 scaleDownImage(thumbnail, cacheSize, cacheSize);
 
                 // The thumbnail has been created successfully. Store the thumbnail
                 // to the cache for future access.
                 if (thumbnailfile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+                    QFileInfo fi(filePath);
+                    thumbnail.setText(QStringLiteral("Thumb::URI"), QString::fromUtf8(fileUrl));
+                    thumbnail.setText(QStringLiteral("Thumb::MTime"), QString::number(fi.lastModified().toSecsSinceEpoch()));
+                    thumbnail.setText(QStringLiteral("Thumb::Size"), QString::number(fi.size()));
+
                     savedCorrectly = thumbnail.save(&thumbnailfile, "PNG");
                 }
             } else {
@@ -740,8 +705,9 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
                 thumbnailfile.commit();
             }
         }
-    } else if (!subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail)) {
-        return false;
+    } else {
+        ThumbCreator* subCreator = getSubCreator();
+        return subCreator && subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail);
     }
     return true;
 }
@@ -753,17 +719,8 @@ void ThumbnailProtocol::scaleDownImage(QImage& img, int maxWidth, int maxHeight)
     }
 }
 
-bool ThumbnailProtocol::drawSubThumbnail(QPainter& p, const QString& filePath, int width, int height, int xPos, int yPos, int frameWidth)
+bool ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height, int xPos, int yPos, int frameWidth)
 {
-    QImage subThumbnail;
-    if (!createSubThumbnail(subThumbnail, filePath, width, height)) {
-        return false;
-    }
-
-    // Seed the random number generator so that it always returns the same result
-    // for the same directory and sequence-item
-    qsrand(qHash(filePath));
-
     // Apply fake smooth scaling, as seen on several blogs
     if (subThumbnail.width() > width * 4 || subThumbnail.height() > height * 4) {
         subThumbnail = subThumbnail.scaled(width*4, height*4, Qt::KeepAspectRatio, Qt::FastTransformation);

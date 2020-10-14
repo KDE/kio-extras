@@ -45,7 +45,7 @@ qreal distance(int width, int height, int desiredWidth, int desiredHeight, int d
     return targetSamples - effectiveSamples;
 }
 
-bool IcoUtils::loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int needWidth, int needHeight, const qint32 iconNumber)
+bool IcoUtils::loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int needWidth, int needHeight)
 {
 
     QTemporaryFile inputFile;
@@ -58,18 +58,18 @@ bool IcoUtils::loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int n
     if ( inputFile.write(data) == -1 )
         return false;
 
-    return IcoUtils::loadIcoImageFromExe(inputFile.fileName(), image, needWidth, needHeight, iconNumber);
+    return IcoUtils::loadIcoImageFromExe(inputFile.fileName(), image, needWidth, needHeight);
 
 }
 
-bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, int needWidth, int needHeight, const qint32 iconNumber)
+bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, int needWidth, int needHeight)
 {
     QBuffer iconData;
     if (!iconData.open(QIODevice::ReadWrite)) {
         return false;
     }
 
-    if ( ! IcoUtils::loadIcoImageFromExe(inputFileName, &iconData, iconNumber) )
+    if ( ! IcoUtils::loadIcoImageFromExe(inputFileName, &iconData) )
          return false;
 
     if (!iconData.seek(0)) {

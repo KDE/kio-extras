@@ -204,9 +204,7 @@ QString BookmarksProtocol::htmlColor(const QColor &col)
 {
   int r, g, b;
   col.getRgb(&r, &g, &b);
-  QString num;
-
-  num.sprintf("#%02X%02X%02X", r, g, b);
+  const QString num = QString::asprintf("#%02X%02X%02X", r, g, b);
   return num;
 }
 

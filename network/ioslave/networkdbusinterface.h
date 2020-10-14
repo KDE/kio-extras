@@ -51,13 +51,13 @@ class NetworkDBusInterface: public QDBusAbstractInterface
 inline QDBusReply<Mollet::NetDevice> NetworkDBusInterface::deviceData( const QString& hostAddress )
 {
     QList<QVariant> argumentList;
-    argumentList << qVariantFromValue(hostAddress);
+    argumentList << QVariant::fromValue(hostAddress);
     return callWithArgumentList( QDBus::Block, QString::fromLatin1("deviceData"), argumentList );
 }
 inline QDBusReply<Mollet::NetService> NetworkDBusInterface::serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType )
 {
     QList<QVariant> argumentList;
-    argumentList << qVariantFromValue(hostAddress) << qVariantFromValue(serviceName) << qVariantFromValue(serviceType);
+    argumentList << QVariant::fromValue(hostAddress) << QVariant::fromValue(serviceName) << QVariant::fromValue(serviceType);
     return callWithArgumentList( QDBus::Block, QString::fromLatin1("serviceData"), argumentList );
 }
 inline QDBusReply<Mollet::NetDeviceList> NetworkDBusInterface::deviceDataList()
@@ -67,7 +67,7 @@ inline QDBusReply<Mollet::NetDeviceList> NetworkDBusInterface::deviceDataList()
 inline QDBusReply<Mollet::NetServiceList> NetworkDBusInterface::serviceDataList( const QString& hostAddress )
 {
     QList<QVariant> argumentList;
-    argumentList << qVariantFromValue(hostAddress);
+    argumentList << QVariant::fromValue(hostAddress);
     return callWithArgumentList( QDBus::Block, QString::fromLatin1("serviceDataList"), argumentList );
 }
 

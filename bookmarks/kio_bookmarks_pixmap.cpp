@@ -60,7 +60,6 @@ void BookmarksProtocol::echoImage( const QString &type, const QString &string, c
 
       QPainter painter(&pix);
       painter.setOpacity(0.3);
-      QRectF rect(0, 0, size, size);
       painter.drawPixmap(pix.rect(), icon.pixmap(size, size), pix.rect());
     }
 

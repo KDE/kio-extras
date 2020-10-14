@@ -29,6 +29,8 @@
 // network
 #include <netdevice.h>
 #include <netservice.h>
+// KDE Libs
+#include <KLocalizedString>
 // Qt
 #include <QEventLoop>
 #include <QDebug>
@@ -39,7 +41,6 @@
 NetworkSlave::NetworkSlave( const QByteArray& name, const QByteArray& poolSocket, const QByteArray& programSocket )
   : SlaveBase( name, poolSocket, programSocket )
 {
-//qDebug();
     mNetworkDBusProxy = new NetworkDBusInterface( QLatin1String("org.kde.kded5"),
                                                   QLatin1String("/modules/networkwatcher"),
                                                   QDBusConnection::sessionBus() );
@@ -52,7 +53,6 @@ void NetworkSlave::get( const QUrl& url )
     bool successfulGetting = false;
 
     const NetworkUri::Type type = networkUri.type();
-//qDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
     if( type == NetworkUri::Service )
     {
         const QString hostAddress =    networkUri.hostAddress();
@@ -60,7 +60,6 @@ void NetworkSlave::get( const QUrl& url )
         const QString serviceType = networkUri.serviceType();
         QDBusReply<Mollet::NetService> reply = mNetworkDBusProxy->serviceData( hostAddress, serviceName, serviceType );
 
-//qDebug()<<reply.isValid();
         if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
         {
             Mollet::NetService serviceData = reply.value();
@@ -84,8 +83,6 @@ void NetworkSlave::mimetype( const QUrl& url )
 
     bool successfulMimetyping = false;
     NetworkUri::Type type = networkUri.type();
-//qDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
-
     if( type == NetworkUri::Domain )
     {
         mimeType( QLatin1String(Mimetypes::NetworkMimetype) );
@@ -99,7 +96,6 @@ void NetworkSlave::mimetype( const QUrl& url )
         {
             QDBusReply<Mollet::NetDevice> reply = mNetworkDBusProxy->deviceData( hostAddress );
 
-//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 Mollet::NetDevice deviceData = reply.value();
@@ -115,7 +111,6 @@ void NetworkSlave::mimetype( const QUrl& url )
             const QString serviceType = networkUri.serviceType();
             QDBusReply<Mollet::NetService> reply = mNetworkDBusProxy->serviceData( hostAddress, serviceName, serviceType );
 
-//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 Mollet::NetService serviceData = reply.value();
@@ -142,7 +137,6 @@ void NetworkSlave::stat( const QUrl& url )
 
     bool successfulStating = false;
     NetworkUri::Type type = networkUri.type();
-//qDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
 
     if( type == NetworkUri::Domain )
     {
@@ -159,7 +153,6 @@ void NetworkSlave::stat( const QUrl& url )
         {
             QDBusReply<Mollet::NetDevice> reply = mNetworkDBusProxy->deviceData( hostAddress );
 
-//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 Mollet::NetDevice deviceData = reply.value();
@@ -177,7 +170,6 @@ void NetworkSlave::stat( const QUrl& url )
             const QString serviceType = networkUri.serviceType();
             QDBusReply<Mollet::NetService> reply = mNetworkDBusProxy->serviceData( hostAddress, serviceName, serviceType );
 
-//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 Mollet::NetService serviceData = reply.value();
@@ -205,7 +197,6 @@ void NetworkSlave::listDir( const QUrl& url )
 
     bool successfulListing = false;
     NetworkUri::Type networkUriType = networkUri.type();
-//qDebug()<<"type="<<networkUri.type()<<"host="<<networkUri.hostAddress()<<"service="<<networkUri.serviceName()<<"stype="<<networkUri.serviceType();
 
     if( networkUriType != NetworkUri::InvalidUrl )
     {
@@ -213,7 +204,6 @@ void NetworkSlave::listDir( const QUrl& url )
         {
             QDBusReply<Mollet::NetDeviceList> reply = mNetworkDBusProxy->deviceDataList();
 
-//qDebug()<<reply.isValid();
             if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
             {
                 const Mollet::NetDeviceList deviceDataList = reply.value();
@@ -234,7 +224,6 @@ void NetworkSlave::listDir( const QUrl& url )
             {
                 QDBusReply<Mollet::NetServiceList> reply = mNetworkDBusProxy->serviceDataList( hostAddress );
 
-//qDebug()<<reply.isValid();
                 if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
                 {
                     const Mollet::NetServiceList serviceDataList = reply.value();
@@ -254,7 +243,6 @@ void NetworkSlave::listDir( const QUrl& url )
                 const QString serviceType = networkUri.serviceType();
                 QDBusReply<Mollet::NetService> reply = mNetworkDBusProxy->serviceData( hostAddress, serviceName, serviceType );
 
-//qDebug()<<reply.isValid();
                 if( reply.isValid() ) // TODO: find how a not found service can be expressed in the reply
                 {
                     Mollet::NetService serviceData = reply.value();
@@ -277,7 +265,9 @@ void NetworkSlave::listDir( const QUrl& url )
 
 void NetworkSlave::feedEntryAsNetwork( KIO::UDSEntry* entry )
 {
+    entry->reserve(3);
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
+    entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Network"));
 //     entry->fastInsert( KIO::UDSEntry::UDS_ICON_NAME,    NetworkIconName );
     entry->fastInsert( KIO::UDSEntry::UDS_MIME_TYPE,    QLatin1String(Mimetypes::NetworkMimetype) );
 
@@ -285,6 +275,7 @@ void NetworkSlave::feedEntryAsNetwork( KIO::UDSEntry* entry )
 
 void NetworkSlave::feedEntryAsDevice( KIO::UDSEntry* entry, const Mollet::NetDevice& deviceData )
 {
+    entry->reserve(4);
     entry->fastInsert( KIO::UDSEntry::UDS_NAME,         deviceData.hostAddress() );
     entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, deviceData.name() );
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
@@ -295,6 +286,7 @@ void NetworkSlave::feedEntryAsDevice( KIO::UDSEntry* entry, const Mollet::NetDev
 
 void NetworkSlave::feedEntryAsService( KIO::UDSEntry* entry, const Mollet::NetService& serviceData )
 {
+    entry->reserve(7);
     entry->fastInsert( KIO::UDSEntry::UDS_NAME,         serviceData.name()+QLatin1Char('.')+serviceData.type() );
     entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, serviceData.name() );
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFLNK );

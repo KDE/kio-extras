@@ -1,0 +1,65 @@
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KDEDModule
+X-KDE-Kded-autoload=true
+# We need this module loaded all the time, lazy loading on slave use wouldn't
+# be sufficient as the kdirnotify signal is already out by the time the slave
+# is initalized so the first opened dir wouldn't be watched then.
+# It'd be better if we had a general monitor module that slaves can register
+# with. The monitor would then listen to kdirnotify and check the schemes
+# to decide which watcher to load, and then simply forward the call to the watcher
+# in-process. Would also save us from having to connect to dbus in every watcher.
+X-KDE-Kded-load-on-demand=true
+# Delayed load
+X-KDE-Kded-phase=2
+X-KDE-Library=smbwatcher
+Icon=preferences-system-network-share-windows
+
+Name=SMB Watcher
+Name[ca]=Vigilant de SMB
+Name[ca@valencia]=Vigilant de SMB
+Name[cs]=Sledovač SMB
+Name[de]=SMB-Überwachung
+Name[el]=Επόπτης SMB
+Name[en_GB]=SMB Watcher
+Name[es]=Observador SMB
+Name[et]=SMB jälgija
+Name[eu]=SMB behatzailea
+Name[fi]=SMB-valvoja
+Name[fr]=Surveillance « Samba »
+Name[ia]=Observator de  SMB
+Name[it]=Osservatore SMB
+Name[ko]=SMB 모니터
+Name[nl]=SMB-bewaker
+Name[nn]=SMB-overvaking
+Name[pt]=Vigilante do SMB
+Name[pt_BR]=Monitor SMB
+Name[sk]=Sledovanie SMB
+Name[sl]=Opazovalnik SMB
+Name[sv]=SMB-övervakare
+Name[uk]=Наглядач SMB
+Name[x-test]=xxSMB Watcherxx
+Comment=Monitors directories on the smb:/ protocol for changes
+Comment[ca]=Controla els canvis als directoris en el protocol «smb:/»
+Comment[ca@valencia]=Controla els canvis als directoris en el protocol «smb:/»
+Comment[cs]=Monitoruje změny v adresáři protokolu smb:/
+Comment[de]=Überwacht Ordner für das Protokoll „smb:/“ auf Änderungen
+Comment[el]=Ελέγχει τους καταλόγους στο smb:/ πρωτόκολλο για αλλαγές
+Comment[en_GB]=Monitors directories on the smb:/ protocol for changes
+Comment[es]=Monitoriza cambios en directorios del protocolo smb:/
+Comment[et]=smb:/ protokolli kaudu ühendatud kataloogide muutuste jälgimine
+Comment[eu]=«smb:/» protokoloko direktorioak zelatatzen ditu aldaketa bila
+Comment[fi]=Tarkkailee smb:/-yhteyskäytännön kansioiden muutoksia
+Comment[fr]=Surveille les modifications pour les dossiers gérés par le protocole « smb:/ » 
+Comment[ia]=Il monitora le directorios pro variationes sur le protocollo smb:/
+Comment[it]=Sorveglia i cambiamenti nelle cartelle del protocollo smb:/
+Comment[ko]=smb:/ 프로토콜의 디렉터리 변경 사항 감시
+Comment[nl]=Bewaakt mappen via het protocol smb:// op wijzigingen
+Comment[nn]=Overvakar mapper på smb:/-protokollen for endringar
+Comment[pt]=Vigia as alterações nas pastas com protocolo smb:/
+Comment[pt_BR]=Monitora as alterações nas pastas do protocolo smb://
+Comment[sk]=Sleduje zmeny adresárov protokolu smb:/
+Comment[sl]=Nadzira direktorije smb:/ za spremembami
+Comment[sv]=Övervakar katalogen med protokollet smb:/ för ändringar
+Comment[uk]=Стежить за змінами у теках, доступ до яких здійснюється за протоколом smb:/
+Comment[x-test]=xxMonitors directories on the smb:/ protocol for changesxx

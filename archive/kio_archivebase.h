@@ -29,6 +29,7 @@
 
 class KArchive;
 class KArchiveEntry;
+class KArchiveDirectory;
 
 class LIBKIOARCHIVE_EXPORT ArchiveProtocolBase : public KIO::SlaveBase
 {
@@ -45,6 +46,9 @@ private:
     void createUDSEntry( const KArchiveEntry * tarEntry, KIO::UDSEntry & entry );
 
     virtual KArchive *createArchive( const QString & proto, const QString & archiveFile ) = 0;
+
+    KIO::StatDetails getStatDetails();
+    uint             computeArchiveDirSize(const KArchiveDirectory *dir);
 
     /**
      * \brief find, check and open the archive file

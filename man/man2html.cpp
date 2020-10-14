@@ -130,6 +130,7 @@
 #include <QString>
 #include <QTextCodec>
 #include <QDebug>
+#include <QRegularExpression>
 
 #ifdef SIMPLE_MAN2HTML
 # include <stdlib.h>
@@ -464,8 +465,8 @@ static const CSTRDEF standardchars[] =
   { V('~', 'N'), 1, "&Ntilde;" },
   { V('~', 'O'), 1, "&Otilde;" },
   { V('~', 'a'), 1, "&atilde" },
-  { V('~', 'n'), 1, "&ntidle;" },
-  { V('~', 'o'), 1, "&otidle;" },
+  { V('~', 'n'), 1, "&ntilde;" },
+  { V('~', 'o'), 1, "&otilde;" },
   { V(',', 'C'), 1, "&Ccedil;" },
   { V(',', 'c'), 1, "&ccedil;" },
   { V('/', 'L'), 1, "&#x0141;" },
@@ -523,7 +524,7 @@ static const CSTRDEF standardchars[] =
   { V('f', '/'), 1, "&frasl;" }, // Fraction slash
   { V('s', 'd'), 1, "&Prime;" },
   { V('h', 'a'), 1, "^" },
-  { V('t', 'i'), 1, "&tidle;" },
+  { V('t', 'i'), 1, "&tilde;" },
   { V('l', 'B'), 1, "[" },
   { V('r', 'B'), 1, "]" },
   { V('l', 'C'), 1, "{" },
@@ -3115,13 +3116,6 @@ void getArguments(/* const */ char *&c, QList<QByteArray> &args, QList<char*> *a
   }
 
   if ( *c ) c++;
-
-#if 0
-  for (int i = 0; i < args.count(); i++)
-  {
-    qWarning("ARG:%d >>>%s<<<", i, args[i].data());
-  }
-#endif
 }
 
 //---------------------------------------------------------------------
@@ -6165,13 +6159,14 @@ char *manPageToUtf8(const QByteArray &input, const QByteArray &dirName)
   QByteArray encoding;
 
   // some pages contain "coding:" information. See "man manconv"
-  // (but I find pages which do not excactly obey the format described in manconv, e.g.
+  // (but I find pages which do not exactly obey the format described in manconv, e.g.
   // the control char is either "." or "'")
-  // Therefore use a QRegExp
-  QRegExp regex("[\\.']\\\\\"[^$]*coding:\\s*(\\S*)\\s", Qt::CaseInsensitive);
-  if ( regex.indexIn(QLatin1String(input)) == 0 )
+  // Therefore use a QRegularExpression
+  const QRegularExpression regex("[\\.']\\\\\"[^$]*coding:\\s*(\\S*)\\s", QRegularExpression::CaseInsensitiveOption);
+  QRegularExpressionMatch rmatch;
+  if (QString::fromLatin1(input).indexOf(regex, 0, &rmatch) == 0)
   {
-    encoding = regex.cap(1).toLatin1();
+    encoding = rmatch.captured(1).toLatin1();
 
     qCDebug(KIO_MAN_LOG) << "found embedded encoding" << encoding;
   }

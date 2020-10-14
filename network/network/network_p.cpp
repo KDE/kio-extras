@@ -60,7 +60,6 @@ void NetworkPrivate::init()
 void NetworkPrivate::onBuilderInit()
 {
     --mNoOfInitBuilders;
-//qDebug()<<mNoOfInitBuilders;
     if( mNoOfInitBuilders == 0 )
         emit p->initDone();
 }

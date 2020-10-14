@@ -47,18 +47,13 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
         const QSize thumbnailSize = imageSize.scaled(width, height, Qt::KeepAspectRatio);
         imageReader.setScaledSize(thumbnailSize); // fast downscaling
     }
-    imageReader.setQuality(0);
+    imageReader.setQuality(75); // set quality so that the jpeg handler will use a high quality downscaler
 
     JpegCreatorSettings* settings = JpegCreatorSettings::self();
     settings->load();
     imageReader.setAutoTransform(settings->rotate());
 
     return imageReader.read(&image);
-}
-
-ThumbCreator::Flags JpegCreator::flags() const
-{
-    return None;
 }
 
 QWidget *JpegCreator::createConfigurationWidget()

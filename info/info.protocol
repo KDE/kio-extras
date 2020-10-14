@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 [Protocol]
 exec=kf5/kio/info
 protocol=info

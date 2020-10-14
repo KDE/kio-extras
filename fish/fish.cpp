@@ -30,7 +30,7 @@
 #include <config-fish.h>
 #include <QFile>
 #include <QDateTime>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QCoreApplication>
 #include <QDebug>
 #include <QStandardPaths>
@@ -290,7 +290,7 @@ void fishProtocol::openConnection() {
     sendCommand(FISH_FISH);
     sendCommand(FISH_VER);
     if (connectionStart()) {
-        error(ERR_COULD_NOT_CONNECT,connectionHost);
+        error(ERR_CANNOT_CONNECT,connectionHost);
         shutdownConnection();
         return;
     };
@@ -381,7 +381,6 @@ bool fishProtocol::connectionStart() {
     }
 #endif
 
-    if (!requestNetwork()) return true;
     myDebug( << "Exec: " << (local ? suPath : sshPath) << " Port: " << connectionPort << " User: " << connectionUser);
 #ifdef Q_OS_WIN
     childPid = new KProcess();
@@ -425,7 +424,6 @@ bool fishProtocol::connectionStart() {
         ::close(fd[0]);
         ::close(fd[1]);
         childPid = 0;
-        dropNetwork();
         return true;
     }
     if (childPid == 0) {
@@ -556,10 +554,6 @@ void fishProtocol::writeChild(const char *buf, KIO::fileoffset_t len) {
 void fishProtocol::writeChild(const QByteArray &buf, KIO::fileoffset_t len) {
     if (outBufPos >= 0 && outBuf.size()) {
 #endif
-#if 0
-        QString debug = QString::fromLatin1(outBuf,outBufLen);
-        if (len > 0) myDebug( << "write request while old one is pending, throwing away input (" << outBufLen << "," << outBufPos << "," << debug.left(10) << "...)");
-#endif
         return;
     }
     outBuf = buf;
@@ -595,7 +589,9 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
             infoMessage(i18n("Initiating protocol..."));
             if (!connectionAuth.password.isEmpty()) {
                 connectionAuth.password = connectionAuth.password.left(connectionAuth.password.length()-1);
-                cacheAuthentication(connectionAuth);
+                if (connectionAuth.keepPassword) {
+                    cacheAuthentication(connectionAuth);
+                }
             }
             isLoggedIn = true;
             return 0;
@@ -758,7 +754,6 @@ void fishProtocol::shutdownConnection(bool forced){
 #endif
         if (!forced)
         {
-           dropNetwork();
            infoMessage(i18n("Disconnected."));
         }
     }
@@ -787,16 +782,16 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
     va_start(list, cmd);
     QString realCmd = info.command;
     QString realAlt = info.alt;
-    static QRegExp rx("[][\\\\\n $`#!()*?{}~&<>;'\"%^@|\t]");
+    static const QRegularExpression rx("[][\\\\\n $`#!()*?{}~&<>;'\"%^@|\t]");
     for (int i = 0; i < info.params; i++) {
         QString arg(va_arg(list, const char *));
         int pos = -2;
-        while ((pos = rx.indexIn(arg,pos+2)) >= 0) {
+        while ((pos = arg.indexOf(rx, pos + 2)) >= 0) {
             arg.replace(pos,0,QString("\\"));
         }
         //myDebug( << "arg " << i << ": " << arg);
         realCmd.append(" ").append(arg);
-        realAlt.replace(QRegExp('%'+QString::number(i+1)),arg);
+        realAlt.replace(QRegularExpression(QLatin1Char('%') + QString::number(i + 1)), arg);
     }
     QString s("#");
     s.append(realCmd).append("\n ").append(realAlt).append(" 2>&1;echo '### 000'\n");
@@ -856,7 +851,7 @@ int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr,
     }
     dt.date().setDate(year,month,day);
 
-    return dt.toTime_t();
+    return dt.toSecsSinceEpoch();
 }
 
 /**
@@ -980,7 +975,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     if (pos < 0 || pos2 < 0 || pos3 < 0) break;
                     dt.setTime(QTime(line.mid(pos+1,pos2-pos-1).toInt(),line.mid(pos2+1,pos3-pos2-1).toInt(),line.mid(pos3+1).toInt()));
                     errorCount--;
-                    udsEntry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, dt.toTime_t());
+                    udsEntry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, dt.toSecsSinceEpoch());
                     break;
 
                 case 'S':
@@ -1059,7 +1054,7 @@ void fishProtocol::manageConnection(const QString &l) {
             }
             recvLen = line.toLongLong(&isOk);
             if (!isOk) {
-                error(ERR_COULD_NOT_READ,url.toDisplayString());
+                error(ERR_CANNOT_READ,url.toDisplayString());
                 shutdownConnection();
                 break;
             }
@@ -1078,7 +1073,7 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_RETR:
             myDebug( << "reading " << recvLen);
             if (recvLen == -1) {
-                error(ERR_COULD_NOT_READ,url.toDisplayString());
+                error(ERR_CANNOT_READ,url.toDisplayString());
                 shutdownConnection();
             } else {
                 rawRead = recvLen;
@@ -1105,11 +1100,11 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_STOR:
         case FISH_WRITE:
         case FISH_APPEND:
-            error(ERR_COULD_NOT_WRITE,url.toDisplayString());
+            error(ERR_CANNOT_WRITE,url.toDisplayString());
             shutdownConnection();
             break;
         case FISH_RETR:
-            error(ERR_COULD_NOT_READ,url.toDisplayString());
+            error(ERR_CANNOT_READ,url.toDisplayString());
             shutdownConnection();
             break;
         case FISH_READ:
@@ -1122,7 +1117,7 @@ void fishProtocol::manageConnection(const QString &l) {
             }
             else
             {
-               error(ERR_COULD_NOT_READ,url.toDisplayString());
+               error(ERR_CANNOT_READ,url.toDisplayString());
                shutdownConnection();
             }
             break;
@@ -1158,10 +1153,10 @@ void fishProtocol::manageConnection(const QString &l) {
             if ( rc == 501 )
                 error(ERR_DIR_ALREADY_EXIST,url.toDisplayString());
             else
-                error(ERR_COULD_NOT_MKDIR,url.toDisplayString());
+                error(ERR_CANNOT_MKDIR,url.toDisplayString());
             break;
         case FISH_RMD:
-            error(ERR_COULD_NOT_RMDIR,url.toDisplayString());
+            error(ERR_CANNOT_RMDIR,url.toDisplayString());
             break;
         case FISH_DELE:
             error(ERR_CANNOT_DELETE,url.toDisplayString());
@@ -1172,7 +1167,7 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_COPY:
         case FISH_LINK:
         case FISH_SYMLINK:
-            error(ERR_COULD_NOT_WRITE,url.toDisplayString());
+            error(ERR_CANNOT_WRITE,url.toDisplayString());
             break;
         default : break;
         }
@@ -1685,7 +1680,6 @@ void fishProtocol::special( const QByteArray &data ){
         {
             QUrl u;
             QString command;
-            QString tempfile;
             stream >> u;
             stream >> command;
             myDebug( << "@@@@@@@@@ exec " << u << " " << command);

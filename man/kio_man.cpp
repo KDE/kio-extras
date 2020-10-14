@@ -32,7 +32,7 @@
 #include <QTextStream>
 #include <QTextDocument>
 #include <QMap>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QStandardPaths>
 #include <QTextCodec>
 #include <QProcess>
@@ -146,16 +146,17 @@ MANProtocol::~MANProtocol()
 
 void MANProtocol::parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const QString &mark )
 {
-    QRegExp re( mark );
+    const QRegularExpression re(mark);
     QString l;
     while ( !t.atEnd() )
     {
         l = t.readLine();
-        int pos = re.indexIn( l );
+        QRegularExpressionMatch match = re.match(l);
+        int pos = match.capturedStart(0);
         if (pos != -1)
         {
             QString names = l.left(pos);
-            QString descr = l.mid(pos + re.matchedLength());
+            QString descr = l.mid(match.capturedEnd(0));
             while ((pos = names.indexOf(",")) != -1)
             {
                 i[names.left(pos++)] = descr;
@@ -272,7 +273,7 @@ QStringList MANProtocol::findPages(const QString &_section,
 
     QStringList list;
 
-    // kDebug() << "findPages '" << section << "' '" << title << "'\n";
+    // qCDebug(KIO_MAN_LOG) << "findPages '" << section << "' '" << title << "'\n";
     if ( (!title.isEmpty()) && (title.at(0) == '/') ) {
        list.append(title);
        return list;
@@ -346,19 +347,14 @@ QStringList MANProtocol::findPages(const QString &_section,
 
                 // Only add sect if not already contained, avoid duplicates
                 if (!sect_list.contains(sect) && _section.isEmpty())  {
-                    //kDebug() << "another section " << sect;
+                    //qCDebug(KIO_MAN_LOG) << "another section " << sect;
                     sect_list += sect;
                 }
             }
 
             //qCDebug(KIO_MAN_LOG) <<" after while loop";
             ::closedir( dp );
-#if 0
-            qCDebug(KIO_MAN_LOG)<<"================-";
-            qCDebug(KIO_MAN_LOG)<<"star=="<<star;
-            qCDebug(KIO_MAN_LOG)<<"it_s=="<<it_s;
-            qCDebug(KIO_MAN_LOG)<<"================+";
-#endif
+
             if ( it_s != star ) { // in that case we only look around for sections
                 //qCDebug(KIO_MAN_LOG)<<"Within if ( it_s != star )";
                 const QString dir = man_dir + QString("/man") + (it_real) + '/';
@@ -368,7 +364,7 @@ QStringList MANProtocol::findPages(const QString &_section,
                 findManPagesInSection(dir, title, full_path, list);
                 findManPagesInSection(sdir, title, full_path, list);
             }
-            qCDebug(KIO_MAN_LOG)<<"After if";
+            //qCDebug(KIO_MAN_LOG)<<"After if";
         }
     }
 
@@ -379,7 +375,7 @@ QStringList MANProtocol::findPages(const QString &_section,
 
 void MANProtocol::findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list)
 {
-    qCDebug(KIO_MAN_LOG) << "findManPagesInSection " << dir << " " << title;
+    qCDebug(KIO_MAN_LOG) << dir << title;
     bool title_given = !title.isEmpty();
 
     DIR *dp = ::opendir( QFile::encodeName( dir ) );
@@ -446,7 +442,7 @@ extern void output_real(const char *insert)
 }
 #endif
 
-void MANProtocol::get(const QUrl& url )
+void MANProtocol::get(const QUrl &url)
 {
     qCDebug(KIO_MAN_LOG) << "GET " << url.url();
 
@@ -455,6 +451,7 @@ void MANProtocol::get(const QUrl& url )
     if (!parseUrl(url.path(), title, section))
     {
         showMainIndex();
+        finished();
         return;
     }
 
@@ -468,48 +465,65 @@ void MANProtocol::get(const QUrl& url )
             showMainIndex();
         else
             showIndex(section);
+        finished();
         return;
     }
 
-    const QStringList foundPages=findPages(section, title);
-    bool pageFound=true;
+    QStringList foundPages = findPages(section, title);
+    QString pageFound;
 
     if (foundPages.isEmpty())
     {
-       outputError(i18n("No man page matching to %1 found.<br /><br />"
-           "Check that you have not mistyped the name of the page that you want.<br />"
-           "Check that you have typed the name using the correct upper and lower case characters.<br />"
-           "If everything looks correct, then you may need to improve the search path "
-           "for man pages; either using the environment variable MANPATH or using a matching file "
-           "in the /etc directory.", title.toHtmlEscaped()));
-       pageFound=false;
-    }
-    else if (foundPages.count()>1)
-    {
-       pageFound=false;
-       //check for the case that there is foo.1 and foo.1.gz found:
-       // ### TODO make it more generic (other extensions)
-       if ((foundPages.count()==2) &&
-           ((QString(foundPages[0]+".gz") == foundPages[1]) ||
-            (foundPages[0] == QString(foundPages[1]+".gz"))))
-          pageFound=true;
-       else
-          outputMatchingPages(foundPages);
-    }
-    //yes, we found exactly one man page
+        outputError(xi18nc("@info", "No man page matching <resource>%1</resource> could be found."
+                                    "<nl/><nl/>"
+                                    "Check that you have not mistyped the name of the page, "
+                                    "and note that man page names are case sensitive."
+                                    "<nl/><nl/>"
+                                    "If the name is correct, then you may need to extend the search path "
+                                    "for man pages, either using the <envar>MANPATH</envar> environment "
+                                    "variable or a configuration file in the <filename>/etc</filename> "
+                                    "directory.", title.toHtmlEscaped()));
 
-    if (pageFound)
+        error(KIO::ERR_SLAVE_DEFINED, QString());
+        return;
+    }
+
+    // Sort the list of pages now, for display if required and for
+    // testing for equivalents below.
+    std::sort(foundPages.begin(), foundPages.end());
+    pageFound = foundPages.first();
+
+    if (foundPages.count()>1)
     {
+        // See if the multiple pages found refer to the same man page, for example
+        // if 'foo.1' and 'foo.1.gz' were both found.  To make this generic with
+        // regard to compression suffixes, assume that the first page name (after
+        // the list has been sorted above) is the shortest.  Then check that all of
+        // the others are the same with a possible compression suffix added.
+        for (int i = 1; i<foundPages.count(); ++i)
+        {
+            if (!foundPages[i].startsWith(pageFound+'.'))
+            {
+                // There is a page which is not the same as the reference, even
+                // allowing for a compression suffix.  Output the list of multiple
+                // pages only.
+                outputMatchingPages(foundPages);
+                finished();
+                return;
+            }
+        }
+    }
+
        setCssFile(m_manCSSFile);
        m_outputBuffer.open(QIODevice::WriteOnly);
-       const QByteArray filename=QFile::encodeName(foundPages[0]);
-       char *buf = readManPage(filename);
-
-       if (!buf)
+       const QByteArray filename = QFile::encodeName(pageFound);
+       const char *buf = readManPage(filename);
+       if (buf==nullptr)
        {
-          outputError(i18n("Open of %1 failed.", title));
-          finished();
-          return;
+           outputError(xi18nc("@info", "The man page <filename>%1</filename> was found, "
+                                       "but it could not be read or parsed.", title));
+           error(KIO::ERR_SLAVE_DEFINED, QString());
+           return;
        }
        // will call output_real
        scan_man_page(buf);
@@ -522,7 +536,7 @@ void MANProtocol::get(const QUrl& url )
        m_outputBuffer.setData(QByteArray());
        // tell we are done
        data(QByteArray());
-    }
+
     finished();
 }
 
@@ -577,11 +591,14 @@ char *MANProtocol::readManPage(const char *_filename)
           const QStringList entries = mandir.entryList();
           if (entries.isEmpty())
           {
-              outputError(i18n("The specified man page referenced another page '%1',<br />"
-                               "but the referenced page '%2' could not be found.",
-                               QFile::decodeName(filename),
-                               QDir::cleanPath(lastdir + '/' + nameFilter)));
-              return 0;
+              outputError(xi18nc("@info", "The specified man page references "
+                                          "another page <filename>%1</filename>,"
+                                          "<nl/>"
+                                          "but the referenced page <filename>%2</filename> "
+                                          "could not be found.",
+                                 QFile::decodeName(filename),
+                                 QDir::cleanPath(lastdir + '/' + nameFilter)));
+              return nullptr;
           }
 
           filename = lastdir + '/' + QFile::encodeName(entries.first());
@@ -605,60 +622,73 @@ char *MANProtocol::readManPage(const char *_filename)
 
 //---------------------------------------------------------------------
 
+void MANProtocol::outputHeader(QTextStream &os, const QString &header, const QString &title)
+{
+    os.setCodec("UTF-8");
+
+    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">\n";
+    os << "<html><head>\n";
+    os << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n";
+    os << "<title>" << (!title.isEmpty() ? title : header) << "</title>\n";
+    if (!m_manCSSFile.isEmpty()) {
+        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">\n";
+    }
+    os << "</head>\n\n";
+    os << "<body>\n";
+    os << "<h1>" << header << "</h1>\n";
+
+    os.flush();
+}
+
+
 void MANProtocol::outputError(const QString& errmsg)
 {
     QByteArray array;
     QTextStream os(&array, QIODevice::WriteOnly);
-    os.setCodec( "UTF-8" );
 
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
-    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os << "<title>" << i18n("Man output") << "</title>\n" << endl;
-    if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
-    os << "</head>" << endl;
-    os << "<body>" << i18n("<h1>KDE Man Viewer Error</h1>") << errmsg << "</body>" << endl;
-    os << "</html>" << endl;
+    outputHeader(os, i18n("Manual Page Viewer Error"));
+    os << errmsg << "\n";
+    os << "</body>\n";
+    os << "</html>\n";
 
+    os.flush();
     data(array);
 }
+
+
 
 void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 {
     QByteArray array;
     QTextStream os(&array, QIODevice::WriteOnly);
-    os.setCodec( "UTF-8" );
 
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
-    os << "<html>\n<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"<<endl;
-    os << "<title>" << i18n("Man output") <<"</title>" << endl;
-    if ( !m_manCSSFile.isEmpty() )
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
-    os << "</head>" <<endl;
-    os << "<body><h1>" << i18n("There is more than one matching man page.");
-    os << "</h1>\n<ul>\n";
+    outputHeader(os, i18n("There is more than one matching man page:"), i18n("Multiple Manual Pages"));
+    os << "<ul>\n";
 
-    int acckey=1;
+    int acckey = 1;
     for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
     {
-      os<<"<li><a href='man:"<<(*it)<<"' accesskey='"<< acckey <<"'>"<< *it <<"</a><br>\n<br>\n";
-      acckey++;
+        os << "<li><a href='man:" << (*it) << "' accesskey='" << acckey << "'>" << *it << "</a><br>\n<br>\n";
+        ++acckey;
     }
+
     os << "</ul>\n";
     os << "<hr>\n";
     os << "<p>" << i18n("Note: if you read a man page in your language,"
        " be aware it can contain some mistakes or be obsolete."
        " In case of doubt, you should have a look at the English version.") << "</p>";
 
-    os << "</body>\n</html>"<<endl;
-
+    os << "</body>\n";
+    os << "</html>\n";
+    os.flush();
     data(array);
-    finished();
+    // Do not call finished(), the caller will do that
 }
+
 
 void MANProtocol::stat( const QUrl& url)
 {
-    qCDebug(KIO_MAN_LOG) << "ENTERING STAT " << url.url();
+    qCDebug(KIO_MAN_LOG) << "STAT " << url.url();
 
     QString title, section;
 
@@ -668,22 +698,15 @@ void MANProtocol::stat( const QUrl& url)
         return;
     }
 
-    qCDebug(KIO_MAN_LOG) << "URL " << url.url() << " parsed to title='" << title << "' section=" << section;
+    qCDebug(KIO_MAN_LOG) << "URL" << url.url() << "parsed to title" << title << "section" << section;
 
     UDSEntry entry;
+    entry.reserve(3);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, title);
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
     entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
 
-#if 0 // not useful, is it?
-    QString newUrl = "man:"+title;
-    if (!section.isEmpty())
-        newUrl += QString("(%1)").arg(section);
-    entry.insert(KIO::UDSEntry::UDS_URL, newUrl);
-#endif
-
     statEntry(entry);
-
     finished();
 }
 
@@ -767,16 +790,8 @@ void MANProtocol::showMainIndex()
 {
     QByteArray array;
     QTextStream os(&array, QIODevice::WriteOnly);
-    os.setCodec( "UTF-8" );
 
-    // print header
-    os << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
-    os << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
-    if (!m_manCSSFile.isEmpty())
-        os << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
-    os << "</head>" << endl;
-    os << "<body><h1>" << i18n("UNIX Manual Index") << "</h1>" << endl;
+    outputHeader(os, i18n("Main Manual Page Index"));
 
     // ### TODO: why still the environment variable
     const QString sectList = getenv("MANSECT");
@@ -786,12 +801,11 @@ void MANProtocol::showMainIndex()
     else
         sections = sectList.split(':');
 
-    os << "<table>" << endl;
+    os << "<table>\n";
 
     QSet<QChar> accessKeys;
     char alternateAccessKey = 'a';
-    QStringList::ConstIterator it;
-    for (it = sections.constBegin(); it != sections.constEnd(); ++it)
+    for (QStringList::ConstIterator it = sections.constBegin(); it != sections.constEnd(); ++it)
     {
         // create a unique access key
         QChar accessKey = (*it).at((*it).length() - 1);  // rightmost char
@@ -803,16 +817,15 @@ void MANProtocol::showMainIndex()
 
         os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" << accessKey
            << "\">" << i18n("Section %1", *it)
-           << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>" << endl;
+           << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>\n";
     }
 
-    os << "</table>" << endl;
-
-    // print footer
-    os << "</body></html>" << endl;
-
+    os << "</table>\n";
+    os << "</body>\n";
+    os << "</html>\n";
+    os.flush();
     data(array);
-    finished();
+    // Do not call finished(), the caller will do that
 }
 
 void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_catmanpath)
@@ -827,12 +840,14 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     // Mappings from $PATH to manpath are given by lines starting with
     // "MANPATH_MAP"
 
-    QRegExp manpath_regex( "^MANPATH\\s" );
-    QRegExp mandatory_regex( "^MANDATORY_MANPATH\\s" );
-    QRegExp manpath_map_regex( "^MANPATH_MAP\\s" );
-    QRegExp mandb_map_regex( "^MANDB_MAP\\s" );
-    //QRegExp section_regex( "^SECTION\\s" );
-    QRegExp space_regex( "\\s+" ); // for parsing manpath map
+    // The entry is e.g. "MANDATORY_MANPATH    <manpath>"
+    const QRegularExpression manpath_regex("^(?:MANPATH|MANDATORY_MANPATH)\\s+(\\S+)");
+
+    // The entry is "MANPATH_MAP  <path>  <manpath>"
+    const QRegularExpression manpath_map_regex("^MANPATH_MAP\\s+(\\S+)\\s+(\\S+)");
+
+    // The entry is "MANDB_MAP  <manpath>  <catmanpath>"
+    const QRegularExpression mandb_map_regex("^MANDB_MAP\\s+(\\S+)\\s+(\\S+)");
 
     QFile mc("/etc/man.conf");             // Caldera
     if (!mc.exists())
@@ -848,43 +863,18 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
         while (!is.atEnd())
         {
             const QString line = is.readLine();
-            if ( manpath_regex.indexIn(line) == 0 )
-            {
-                const QString path = line.mid(8).trimmed();
-                constr_path += path;
-            }
-            else if ( mandatory_regex.indexIn(line) == 0 )
-            {
-                const QString path = line.mid(18).trimmed();
-                constr_path += path;
-            }
-            else if ( manpath_map_regex.indexIn(line) == 0 )
-            {
-                        // The entry is "MANPATH_MAP  <path>  <manpath>"
-                const QStringList mapping =
-                        line.split( space_regex);
 
-                if ( mapping.count() == 3 )
-                {
-                    const QString dir = QDir::cleanPath( mapping[1] );
-                    const QString mandir = QDir::cleanPath( mapping[2] );
-
-                    manpath_map[ dir ] = mandir;
-                }
-            }
-            else if ( mandb_map_regex.indexIn(line) == 0 )
-            {
-                        // The entry is "MANDB_MAP  <manpath>  <catmanpath>"
-                const QStringList mapping =
-                        line.split( space_regex);
-
-                if ( mapping.count() == 3 )
-                {
-                    const QString mandir = QDir::cleanPath( mapping[1] );
-                    const QString catmandir = QDir::cleanPath( mapping[2] );
-
-                    mandb_map[ mandir ] = catmandir;
-                }
+            QRegularExpressionMatch rmatch;
+            if (line.contains(manpath_regex, &rmatch)) {
+                constr_path += rmatch.captured(1);
+            } else if (line.contains(manpath_map_regex, &rmatch)) {
+                const QString dir = QDir::cleanPath(rmatch.captured(1));
+                const QString mandir = QDir::cleanPath(rmatch.captured(2));
+                manpath_map[dir] = mandir;
+            } else if (line.contains(mandb_map_regex, &rmatch)) {
+                const QString mandir = QDir::cleanPath(rmatch.captured(1));
+                const QString catmandir = QDir::cleanPath(rmatch.captured(2));
+                mandb_map[mandir] = catmandir;
             }
     /* sections are not used
             else if ( section_regex.find(line, 0) == 0 )
@@ -1016,8 +1006,6 @@ void MANProtocol::checkManPaths()
     QStringList constr_path;
     QStringList constr_catmanpath; // catmanpath
 
-    QString conf_section;
-
     if ( construct_path )
     {
         constructPath(constr_path, constr_catmanpath);
@@ -1141,21 +1129,14 @@ void MANProtocol::showIndex(const QString& section)
 {
     QByteArray array_h;
     QTextStream os_h(&array_h, QIODevice::WriteOnly);
-    os_h.setCodec( "UTF-8" );
 
     // print header
-    os_h << "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Strict//EN\">" << endl;
-    os_h << "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">" << endl;
-    os_h << "<title>" << i18n("UNIX Manual Index") << "</title>" << endl;
-    if ( !m_manCSSFile.isEmpty() )
-        os_h << "<link href=\"" << m_manCSSFile << "\" type=\"text/css\" rel=\"stylesheet\">" << endl;
-    os_h << "</head>" << endl << "<body>" << endl;
+    outputHeader(os_h, i18n( "Index for section %1: %2", section, sectionName(section)), i18n("Manual Page Index"));
 
     QByteArray array_d;
     QTextStream os(&array_d, QIODevice::WriteOnly);
     os.setCodec( "UTF-8" );
-    os << "<div class=\"secidxmain\">" << endl;
-    os << "<h1>" << i18n( "Index for Section %1: %2", section, sectionName(section)) << "</h1>" << endl;
+    os << "<div class=\"secidxmain\">\n";
 
     // compose list of search paths -------------------------------------------------------------
 
@@ -1165,21 +1146,23 @@ void MANProtocol::showIndex(const QString& section)
     // search for the man pages
     QStringList pages = findPages( section, QString() );
 
-    if ( pages.count() == 0 )  // not a single page found
+    if (pages.isEmpty())				// not a single page found
     {
       // print footer
-      os << "</div></body></html>" << endl;
+      os << "</div></body></html>\n";
+      os.flush();
+      os_h.flush();
 
       infoMessage(QString());
       data(array_h + array_d);
-      finished();
       return;
     }
 
     QMap<QString, QString> indexmap = buildIndexMap(section);
 
     // print out the list
-    os << "<table>" << endl;
+    os << "<br/><br/>\n";
+    os << "<table>\n";
 
     int listlen = pages.count();
     man_index_ptr *indexlist = new man_index_ptr[listlen];
@@ -1283,8 +1266,9 @@ void MANProtocol::showIndex(const QString& section)
         ).arg(firstchar).arg(firstchar).arg(firstchar);
         indexLine.append(appendixstr);
     }
-    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
-       << firstchar << "\">" << firstchar <<"</a>\n</td></tr>" << endl;
+    os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n";
+    os << "<a name=\"" << firstchar << "\">" << firstchar <<"</a>\n";
+    os << "</td></tr>\n";
 
     for (int i=0; i<listlen; i++)
     {
@@ -1308,7 +1292,7 @@ void MANProtocol::showIndex(const QString& section)
         {
             firstchar = tmp;
             os << "<tr><td class=\"secidxnextletter\"" << " colspan=\"3\">\n  <a name=\""
-               << firstchar << "\">" << firstchar << "</a>\n</td></tr>" << endl;
+               << firstchar << "\">" << firstchar << "</a>\n</td></tr>\n";
 
            const QString appendixstr = QString(
             " [<a href=\"#%1\" accesskey=\"%2\">%3</a>]\n"
@@ -1322,7 +1306,7 @@ void MANProtocol::showIndex(const QString& section)
         os << manindex->manpage_begin
            << "</a></td><td>&nbsp;</td><td> "
            << (indexmap.contains(manindex->manpage_begin) ? indexmap[manindex->manpage_begin] : "" )
-           << "</td></tr>"  << endl;
+           << "</td></tr>\n";
         last_index = manindex;
     }
     indexLine.append("</div>");
@@ -1334,19 +1318,22 @@ void MANProtocol::showIndex(const QString& section)
 
     delete [] indexlist;
 
-    os << "</table></div>" << endl;
+    os << "</table></div>\n";
+    os << "<br/><br/>\n";
 
-    os << indexLine << endl;
+    os << indexLine << '\n';
 
     // print footer
-    os << "</body></html>" << endl;
+    os << "</body></html>\n";
 
     // set the links "toolbar" also at the top
-    os_h << indexLine << endl;
+    os_h << indexLine << '\n';
+    os.flush();
+    os_h.flush();
 
     infoMessage(QString());
     data(array_h + array_d);
-    finished();
+    // Do not call finished(), the caller will do that
 }
 
 void MANProtocol::listDir(const QUrl &url)
@@ -1375,6 +1362,7 @@ void MANProtocol::listDir(const QUrl &url)
     if (section.isEmpty()) {
         for (QStringList::ConstIterator it = section_names.constBegin(); it != section_names.constEnd(); ++it) {
             UDSEntry     uds_entry;
+            uds_entry.reserve(3);
 
             QString name = "man:/(" + *it + ')';
             uds_entry.fastInsert( KIO::UDSEntry::UDS_NAME, sectionName( *it ) );
@@ -1394,6 +1382,7 @@ void MANProtocol::listDir(const QUrl &url)
         stripExtension( &(*it) );
 
         UDSEntry     uds_entry;
+        uds_entry.reserve(3);
         uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, *it);
         uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
         uds_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("text/html"));
@@ -1419,7 +1408,9 @@ void MANProtocol::getProgramPath()
     return;
 
   /* Cannot find sgml2roff program: */
-  outputError(i18n("Could not find the sgml2roff program on your system. Please install it, if necessary, and extend the search path by adjusting the environment variable PATH before starting KDE."));
-  finished();
+  outputError(xi18nc("@info", "Could not find the <command>sgml2roff</command> program on your system. "
+                              "Please install it if necessary, and ensure that it can be found using "
+                              "the environment variable <envar>PATH</envar>."));
+  error(KIO::ERR_SLAVE_DEFINED, QString());
   exit();
 }

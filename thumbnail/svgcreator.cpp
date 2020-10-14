@@ -52,8 +52,3 @@ bool SvgCreator::create(const QString &path, int w, int h, QImage &img)
     img = i;
     return true;
 }
-
-ThumbCreator::Flags SvgCreator::flags() const
-{
-    return None;
-}

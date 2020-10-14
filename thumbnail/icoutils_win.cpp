@@ -24,7 +24,7 @@
 
 extern "C"
 {
-    // icon structs, as per http://msdn.microsoft.com/en-us/library/ms997538.aspx
+    // icon structs, as per https://msdn.microsoft.com/en-us/library/ms997538.aspx
 #pragma pack( push )
 #pragma pack( 2 )
     typedef struct
@@ -91,7 +91,7 @@ BOOL CALLBACK enumResNameCallback( HMODULE hModule, LPCTSTR lpszType, LPTSTR lps
     return TRUE;
 }
 
-bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice, const qint32 iconNumber)
+bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice)
 {
 
     HMODULE hModule;
@@ -109,9 +109,9 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outp
 
     EnumResourceNames ( hModule, RT_GROUP_ICON, enumResNameCallback, (LONG_PTR) &iconResources );
 
-    if ( iconNumber < iconResources.size() )
+    if (!iconResources.isEmpty() )
     {
-        HRSRC resourceInfo = FindResourceW ( hModule, (LPCTSTR) iconResources.at(iconNumber), RT_GROUP_ICON );
+        HRSRC resourceInfo = FindResourceW ( hModule, (LPCTSTR) iconResources.at(0), RT_GROUP_ICON );
         if ( resourceInfo == 0 )
         {
             FreeLibrary( hModule );

@@ -37,6 +37,7 @@
 static UDSEntry getEntry(const KMTPDeviceInterface *device)
 {
     UDSEntry entry;
+    entry.reserve(5);
     entry.fastInsert(UDSEntry::UDS_NAME, device->friendlyName());
     entry.fastInsert(UDSEntry::UDS_ICON_NAME, QStringLiteral("multimedia-player"));
     entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
@@ -48,6 +49,7 @@ static UDSEntry getEntry(const KMTPDeviceInterface *device)
 static UDSEntry getEntry(const KMTPStorageInterface *storage)
 {
     UDSEntry entry;
+    entry.reserve(5);
     entry.fastInsert(UDSEntry::UDS_NAME, storage->description());
     entry.fastInsert(UDSEntry::UDS_ICON_NAME, QStringLiteral("drive-removable-media"));
     entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
@@ -59,6 +61,7 @@ static UDSEntry getEntry(const KMTPStorageInterface *storage)
 static UDSEntry getEntry(const KMTPFile &file)
 {
     UDSEntry entry;
+    entry.reserve(9);
     entry.fastInsert(UDSEntry::UDS_NAME, file.filename());
     if (file.isFolder()) {
         entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
@@ -175,6 +178,7 @@ void MTPSlave::listDir(const QUrl &url)
 
     // list '.' entry, otherwise files cannot be pasted to empty folders
     KIO::UDSEntry entry;
+    entry.reserve(4);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
@@ -278,6 +282,7 @@ void MTPSlave::stat(const QUrl &url)
     UDSEntry entry;
     // root
     if (pathItems.size() < 1) {
+        entry.reserve(4);
         entry.fastInsert(UDSEntry::UDS_NAME, QLatin1String("mtp:///"));
         entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
@@ -398,7 +403,7 @@ void MTPSlave::get(const QUrl &url)
                 }
 
                 QEventLoop loop;
-                connect(storage, &KMTPStorageInterface::dataReady, this, [this] (const QByteArray &data) {
+                connect(storage, &KMTPStorageInterface::dataReady, &loop, [this] (const QByteArray &data) {
                     MTPSlave::data(data);
                 });
                 connect(storage, &KMTPStorageInterface::copyFinished, &loop, &QEventLoop::exit);
@@ -663,7 +668,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
 
                 // set correct modification time
                 struct ::utimbuf times;
-                times.actime = QDateTime::currentDateTime().toTime_t();
+                times.actime = QDateTime::currentDateTime().toSecsSinceEpoch();
                 times.modtime = source.modificationdate();
 
                 ::utime(dest.path().toUtf8().data(), &times);
@@ -855,13 +860,13 @@ void MTPSlave::fileSystemFreeSpace(const QUrl &url)
             }
         }
     }
-    error(KIO::ERR_COULD_NOT_STAT, url.toDisplayString());
+    error(KIO::ERR_CANNOT_STAT, url.toDisplayString());
 }
 
 int MTPSlave::waitForCopyOperation(const KMTPStorageInterface *storage)
 {
     QEventLoop loop;
-    connect(storage, &KMTPStorageInterface::copyProgress, this, [this] (qulonglong sent, qulonglong total) {
+    connect(storage, &KMTPStorageInterface::copyProgress, &loop, [this] (qulonglong sent, qulonglong total) {
         Q_UNUSED(total)
         processedSize(sent);
     });

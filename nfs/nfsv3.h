@@ -71,7 +71,7 @@ private:
 
     bool lookupHandle(const QString& path, int& rpcStatus, LOOKUP3res& result);
 
-    bool readLink(const QString& path, int& rpcStatus, READLINK3res& result, char* dataBuffer);
+    bool symLinkTarget(const QString& path, int& rpcStatus, READLINK3res& result, char* dataBuffer);
 
     // Calls @remove, but with dummy rpcStatus and result arguments
     bool remove(const QString& path);

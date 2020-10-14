@@ -12,9 +12,7 @@ To understand it, you'll need two ice cubes, a pair of handcuffs, and a
 ferret.  Some Crisco (or other shortening) is optional.  Well, that aside,
 this document focuses on the business end of the whole kio library.  The
 ioslave. See the documentation of the SlaveBase class for the methods
-you need to reimplement, and see 
-http://developer.kde.org/documentation/design/kde/ioslaves/ for more docu
-online.
+you need to reimplement.
 
 That's nice, but how can I use it?
 
@@ -28,13 +26,6 @@ Basically, you create "jobs" by calling a public KIO::blah method
 connect to the result() signal, and wait for the result. There are
 other signals emitted by jobs, see kio/jobclasses.h. Once again,
 see the online documentation for more.
-
-
-If you are interested in working on an ioslave,
-the following slaves are severely lacking in functionality:
-
-	SMTP
-        SMB
 
 -------------
 

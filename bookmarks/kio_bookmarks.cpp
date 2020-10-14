@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <qregexp.h>
+#include <QRegularExpression>
 #include <qtextdocument.h>
 #include <qurlquery.h>
 
@@ -149,8 +149,6 @@ void BookmarksProtocol::flattenTree( const KBookmarkGroup &folder )
     next = tree.next(bm);
 
     if (bm.isGroup() && bm.parentGroup().hasParent()) {
-      //qDebug() << "moving " << bm.text() << " from " << bm.parentGroup().fullText() << " to " << prev.parentGroup().text() << endl;
-
       bm.setFullText("| " + bm.parentGroup().fullText() + " > " + bm.fullText());
       tree.moveBookmark(bm, prev);
       prev = bm;
@@ -181,7 +179,8 @@ int BookmarksProtocol::sizeOfGroup( const KBookmarkGroup &folder, bool real )
 void BookmarksProtocol::get( const QUrl& url )
 {
   QString path = url.path();
-  QRegExp regexp("^/(background|icon)/([\\S]+)");
+  const QRegularExpression regexp(QStringLiteral("^/(background|icon)/([\\S]+)"));
+  QRegularExpressionMatch rmatch;
 
   if (path.isEmpty() || path == "/") {
     echoIndex();
@@ -191,8 +190,8 @@ void BookmarksProtocol::get( const QUrl& url )
   } else if (path == "/editbookmarks") {
     KToolInvocation::kdeinitExec("keditbookmarks");
     echoHead("bookmarks:/");
-  } else if (regexp.indexIn(path) >= 0) {
-    echoImage(regexp.cap(1), regexp.cap(2), QUrlQuery(url).queryItemValue("size"));
+  } else if (path.indexOf(regexp, 0, &rmatch) >= 0) {
+    echoImage(rmatch.captured(1), rmatch.captured(2), QUrlQuery(url).queryItemValue("size"));
   } else {
     echoHead();
     echo("<p class=\"message\">" + i18n("Wrong request: %1", url.toDisplayString().toHtmlEscaped()) + "</p>");

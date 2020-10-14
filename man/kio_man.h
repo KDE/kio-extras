@@ -67,6 +67,9 @@ private:
 
     QStringList buildSectionList(const QStringList& dirs) const;
     void constructPath(QStringList& constr_path, QStringList constr_catmanpath);
+
+    void outputHeader(QTextStream &os, const QString &header, const QString &title = QString());
+
 private:
     static MANProtocol *_self;
     QByteArray lastdir;

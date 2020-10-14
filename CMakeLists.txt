@@ -1,16 +1,21 @@
 cmake_minimum_required(VERSION 3.0)
 
+if(WIN32)
+    set(CMAKE_CXX_STANDARD 17)
+endif()
+
 # KDE Applications Version, managed by release script
-set (KDE_APPLICATIONS_VERSION_MAJOR "19")
-set (KDE_APPLICATIONS_VERSION_MINOR "12")
-set (KDE_APPLICATIONS_VERSION_MICRO "0")
-set (KDE_APPLICATIONS_VERSION "${KDE_APPLICATIONS_VERSION_MAJOR}.${KDE_APPLICATIONS_VERSION_MINOR}.${KDE_APPLICATIONS_VERSION_MICRO}")
-project(kio-extras VERSION ${KDE_APPLICATIONS_VERSION})
+set (RELEASE_SERVICE_VERSION_MAJOR "20")
+set (RELEASE_SERVICE_VERSION_MINOR "11")
+set (RELEASE_SERVICE_VERSION_MICRO "70")
+set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
+project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
 
 include(FeatureSummary)
 
-set(QT_MIN_VERSION "5.8.0")
-set(KF5_MIN_VERSION "5.48.0")
+set(QT_MIN_VERSION "5.11.0")
+# TODO: when bumping to 5.72+ drop FindTaglib.cmake
+set(KF5_MIN_VERSION "5.66.0")
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
 find_package(Qt5Test ${QT_MIN_VERSION} CONFIG QUIET)
@@ -24,7 +29,7 @@ if (NOT Qt5Test_FOUND)
 endif()
 
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Archive
@@ -57,10 +62,16 @@ include(ECMMarkAsTest)
 include(ECMOptionalAddSubdirectory)
 include(ECMQtDeclareLoggingCategory)
 
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
+add_definitions(-DQT_NO_URL_CAST_FROM_STRING -DQT_NO_CAST_TO_ASCII)
 
 find_package(KF5Activities QUIET)
 set_package_properties(KF5Activities PROPERTIES
+    PURPOSE "Provides the activities:/ kioslave and fileitem plugin."
+    TYPE OPTIONAL
+)
+
+find_package(Qt5Sql QUIET)
+set_package_properties(Qt5Sql PROPERTIES
     PURPOSE "Provides the activities:/ kioslave and fileitem plugin."
     TYPE OPTIONAL
 )
@@ -134,6 +145,11 @@ if(UNIX)
     set_package_properties(Gperf PROPERTIES TYPE OPTIONAL
                            PURPOSE "Needed to build the man kioslave"
                            )
+
+    find_package(TIRPC)
+    set_package_properties(TIRPC PROPERTIES TYPE OPTIONAL
+                           PURPOSE "Needed to build the NFS kioslave"
+                           )
 else()
     # FIXME: on windows we ignore support until trash gets integrated
 endif()
@@ -141,7 +157,7 @@ endif()
 add_subdirectory( doc )
 
 add_subdirectory( about )
-if(KF5Activities_FOUND)
+if(TARGET KF5::Activities AND TARGET Qt5::Sql AND NOT WIN32)
   add_subdirectory( activities )
 endif()
 if(KF5ActivitiesStats_FOUND)
@@ -178,9 +194,7 @@ if(NOT WIN32)
    if(Gperf_FOUND)
      add_subdirectory( man )
    endif()
-   check_include_files(rpc/rpc.h HAVE_RPC_RPC_H)
-   add_feature_info("NFS kioslave" HAVE_RPC_RPC_H "The RPC library is needed to build the NFS kioslave")
-   if(HAVE_RPC_RPC_H)
+   if(TIRPC_FOUND)
      add_subdirectory( nfs )
    endif()
 endif()
@@ -197,11 +211,7 @@ endif()
 
 configure_file (config-runtime.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-runtime.h )
 
-if (${ECM_VERSION} STRGREATER "5.58.0")
-    install(FILES kio-extras.categories DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
-else()
-    install(FILES kio-extras.categories DESTINATION ${KDE_INSTALL_CONFDIR})
-endif()
+install(FILES kio-extras.categories DESTINATION  ${KDE_INSTALL_LOGGINGCATEGORIESDIR})
 
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

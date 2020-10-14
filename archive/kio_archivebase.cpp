@@ -22,6 +22,9 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
+#include <errno.h>
+
+#include <KIO/StatJob>
 
 #include <QFile>
 #include <QDir>
@@ -32,6 +35,7 @@
 #include <ktar.h>
 #include <kzip.h>
 #include <kar.h>
+#include <k7zip.h>
 #include <kio/global.h>
 #include <kio_archive_debug.h>
 #include <kuser.h>
@@ -61,8 +65,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
 #else
     QString fullPath = url.path().remove(0, 1);
 #endif
-    qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::checkNewFile" << fullPath;
-
+    qCDebug(KIO_ARCHIVE_LOG) << fullPath;
 
     // Are we already looking at that file ?
     if ( m_archiveFile && m_archiveName == fullPath.left(m_archiveName.length()) )
@@ -74,7 +77,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
             if ( m_mtime == statbuf.st_mtime )
             {
                 path = fullPath.mid( m_archiveName.length() );
-                qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::checkNewFile returning" << path;
+                qCDebug(KIO_ARCHIVE_LOG) << "returning" << path;
                 return true;
             }
         }
@@ -107,9 +110,22 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
         qCDebug(KIO_ARCHIVE_LOG) << fullPath << "trying" << tryPath;
         if ( QT_STAT( QFile::encodeName(tryPath), &statbuf ) == -1 )
         {
-            // We are not in the file system anymore, either we have already enough data or we will never get any useful data anymore
-            break;
+            if (errno == ENOENT)
+            {
+                // The current path is no longer part of the local filesystem.
+                // Either we already have enough of the pathname, or we will
+                // not get anything more useful.
+                statbuf.st_mode = 0;			// do not trust the result
+                break;
+            }
+
+            if (errno == EACCES)
+                errorNum = KIO::ERR_ACCESS_DENIED;
+            else
+                errorNum = KIO::ERR_CANNOT_STAT;
+            return false;
         }
+
         if ( !S_ISDIR(statbuf.st_mode) )
         {
             archiveFile = tryPath;
@@ -139,8 +155,8 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     }
     if ( archiveFile.isEmpty() )
     {
-        qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::checkNewFile: not found";
-        if ( S_ISDIR(statbuf.st_mode) ) // Was the last stat about a directory?
+        qCDebug(KIO_ARCHIVE_LOG) << "not found";
+        if ( S_ISDIR(statbuf.st_mode) ) // Did the last stat() find a directory?
         {
             // Too bad, it is a directory, not an archive.
             qCDebug(KIO_ARCHIVE_LOG) << "Path is a directory, not an archive.";
@@ -172,25 +188,79 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     return true;
 }
 
+uint ArchiveProtocolBase::computeArchiveDirSize(const KArchiveDirectory *dir)
+{
+    // compute size of archive content
+    uint totalSize = 0;
+    const auto entries = dir->entries();
+    for (const auto &entryName: entries) {
+        auto entry = dir->entry(entryName);
+        if (entry->isFile()) {
+            auto fileEntry = static_cast<const KArchiveFile *>(entry);
+            totalSize += fileEntry->size();
+        }
+        else if (entry->isDirectory()) {
+            const auto dirEntry = static_cast<const KArchiveDirectory *>(entry);
+            // recurse
+            totalSize += computeArchiveDirSize(dirEntry);
+        }
+    }
+    return totalSize;
+}
+
+KIO::StatDetails ArchiveProtocolBase::getStatDetails()
+{
+    // takes care of converting old metadata details to new StatDetails
+    // TODO KF6 : remove legacy "details" code path
+    KIO::StatDetails details;
+#if KIOCORE_BUILD_DEPRECATED_SINCE(5, 69)
+    if (hasMetaData(QStringLiteral("statDetails"))) {
+#endif
+        const QString statDetails = metaData(QStringLiteral("statDetails"));
+        details = statDetails.isEmpty() ? KIO::StatDefaultDetails : static_cast<KIO::StatDetails>(statDetails.toInt());
+#if KIOCORE_BUILD_DEPRECATED_SINCE(5, 69)
+    } else {
+        const QString sDetails = metaData(QStringLiteral("details"));
+        details = sDetails.isEmpty() ? KIO::StatDefaultDetails : KIO::detailsToStatDetails(sDetails.toInt());
+    }
+#endif
+    return details;
+}
 
 void ArchiveProtocolBase::createRootUDSEntry( KIO::UDSEntry & entry )
 {
     entry.clear();
+    entry.reserve(7);
+
+    auto path = m_archiveFile->fileName();
+    path = path.mid(path.lastIndexOf(QLatin1Char('/')) + 1);
+
     entry.fastInsert( KIO::UDSEntry::UDS_NAME, "." );
+    entry.fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, path );
     entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
     entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, m_mtime );
     //entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, 07777 ); // fake 'x' permissions, this is a pseudo-directory
     entry.fastInsert( KIO::UDSEntry::UDS_USER, m_user);
     entry.fastInsert( KIO::UDSEntry::UDS_GROUP, m_group);
+
+    QMimeDatabase db;
+    QMimeType mt = db.mimeTypeForFile(m_archiveFile->fileName());
+    if (mt.isValid()) {
+        entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, mt.name());
+    }
 }
 
 void ArchiveProtocolBase::createUDSEntry( const KArchiveEntry * archiveEntry, UDSEntry & entry )
 {
     entry.clear();
+
+    entry.reserve(8);
     entry.fastInsert( KIO::UDSEntry::UDS_NAME, archiveEntry->name() );
-    entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->permissions() & S_IFMT ); // keep file type only
-    entry.fastInsert( KIO::UDSEntry::UDS_SIZE, archiveEntry->isFile() ? ((KArchiveFile *)archiveEntry)->size() : 0L );
-    entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date().toTime_t());
+    entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->isFile() ? archiveEntry->permissions() & S_IFMT : S_IFDIR ); // keep file type only
+    if (archiveEntry->isFile()) {
+        entry.fastInsert( KIO::UDSEntry::UDS_SIZE, ((KArchiveFile *)archiveEntry)->size() );
+    }
+    entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date().toSecsSinceEpoch());
     entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, archiveEntry->permissions() & 07777 ); // keep permissions only
     entry.fastInsert( KIO::UDSEntry::UDS_USER, archiveEntry->user());
     entry.fastInsert( KIO::UDSEntry::UDS_GROUP, archiveEntry->group());
@@ -199,7 +269,7 @@ void ArchiveProtocolBase::createUDSEntry( const KArchiveEntry * archiveEntry, UD
 
 void ArchiveProtocolBase::listDir( const QUrl & url )
 {
-    qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::listDir" << url.url();
+    qCDebug(KIO_ARCHIVE_LOG) << url.url();
 
     QString path;
     KIO::Error errorNum;
@@ -221,8 +291,7 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
             return;
         }
         // It's a real dir -> redirect
-        QUrl redir;
-        redir.setPath( url.path() );
+        QUrl redir = QUrl::fromLocalFile(url.path());
         qCDebug(KIO_ARCHIVE_LOG) << "Ok, redirection to" << redir.url();
         redirection( redir );
         finished();
@@ -234,10 +303,11 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
 
     if ( path.isEmpty() )
     {
-        QUrl redir( url.scheme() + QString::fromLatin1( ":/") );
+        QUrl redir;
+        redir.setScheme(url.scheme());
         qCDebug(KIO_ARCHIVE_LOG) << "url.path()=" << url.path();
         redir.setPath( url.path() + QString::fromLatin1("/") );
-        qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::listDir: redirection" << redir.url();
+        qCDebug(KIO_ARCHIVE_LOG) << "redirection" << redir.url();
         redirection( redir );
         finished();
         return;
@@ -287,7 +357,7 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
 
     finished();
 
-    qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::listDir done";
+    qCDebug(KIO_ARCHIVE_LOG) << "done";
 }
 
 void ArchiveProtocolBase::stat( const QUrl & url )
@@ -314,9 +384,10 @@ void ArchiveProtocolBase::stat( const QUrl & url )
             error( errorNum, url.toDisplayString() );
             return;
         }
+        entry.reserve(2);
         // Real directory. Return just enough information for KRun to work
         entry.fastInsert( KIO::UDSEntry::UDS_NAME, url.fileName());
-        qCDebug(KIO_ARCHIVE_LOG).nospace() << "ArchiveProtocolBase::stat returning name=" << url.fileName();
+        qCDebug(KIO_ARCHIVE_LOG) << "returning name" << url.fileName();
 
         QT_STATBUF buff;
 #ifdef Q_OS_WIN
@@ -328,7 +399,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
         if ( QT_STAT( QFile::encodeName( fullPath ), &buff ) == -1 )
         {
             // Should not happen, as the file was already stated by checkNewFile
-            error( KIO::ERR_COULD_NOT_STAT, url.toDisplayString() );
+            error( KIO::ERR_CANNOT_STAT, url.toDisplayString() );
             return;
         }
 
@@ -359,7 +430,19 @@ void ArchiveProtocolBase::stat( const QUrl & url )
         return;
     }
 
-    createUDSEntry( archiveEntry, entry );
+    if (archiveEntry == root) {
+        createRootUDSEntry( entry );
+    } else {
+        createUDSEntry( archiveEntry, entry );
+    }
+
+    if (archiveEntry->isDirectory()) {
+        auto details = getStatDetails();
+        if (details & KIO::StatRecursiveSize) {
+            const auto directoryEntry = static_cast<const KArchiveDirectory *>(archiveEntry);
+            entry.fastInsert(KIO::UDSEntry::UDS_RECURSIVE_SIZE, static_cast<long long>(computeArchiveDirSize(directoryEntry)));
+        }
+    }
     statEntry( entry );
 
     finished();
@@ -367,7 +450,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
 
 void ArchiveProtocolBase::get( const QUrl & url )
 {
-    qCDebug(KIO_ARCHIVE_LOG) << "ArchiveProtocolBase::get" << url.url();
+    qCDebug(KIO_ARCHIVE_LOG) << url.url();
 
     QString path;
     KIO::Error errorNum;
@@ -474,7 +557,7 @@ void ArchiveProtocolBase::get( const QUrl & url )
         if ( read != bufferSize )
         {
             qCWarning(KIO_ARCHIVE_LOG) << "Read" << read << "bytes but expected" << bufferSize ;
-            error( KIO::ERR_COULD_NOT_READ, url.toDisplayString() );
+            error( KIO::ERR_CANNOT_READ, url.toDisplayString() );
             delete io;
             return;
         }
