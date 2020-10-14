@@ -14,6 +14,8 @@ set_package_properties(libappimage PROPERTIES DESCRIPTION "Core library of the A
                        PURPOSE "Provides support for AppImage thumbnails"
                        )
 
+pkg_search_module(POPPLER poppler-qt5)
+
 include_directories(${CMAKE_BINARY_DIR})
 
 ########### next target ###############
@@ -257,6 +259,24 @@ target_link_libraries(ebookthumbnail
 )
 
 install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
+
+# ########### next target ###############
+
+if(POPPLER_FOUND)
+
+set(pdfthumbnail_SRCS pdfcreator.cpp)
+add_library(pdfthumbnail MODULE ${pdfthumbnail_SRCS})
+include_directories(${POPPLER_INCLUDE_DIRS})
+target_link_libraries(pdfthumbnail
+    KF5::KIOWidgets
+    Qt5::Gui
+    ${POPPLER_LIBRARIES}
+)
+
+install(TARGETS pdfthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
+install(FILES pdfthumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+
+endif()
 
 ########### install files ###############
 

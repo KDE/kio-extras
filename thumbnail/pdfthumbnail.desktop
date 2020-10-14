@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Service
+Name=PDF Files
+X-KDE-ServiceTypes=ThumbCreator
+MimeType=application/pdf;
+X-KDE-Library=pdfthumbnail
+CacheThumbnail=true
+IgnoreMaximumSize=true
