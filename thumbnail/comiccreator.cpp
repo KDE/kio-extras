@@ -97,6 +97,11 @@ void ComicCreator::filterImages(QStringList& entries)
     /// Sort case-insensitive, then remove non-image entries.
     QMap<QString, QString> entryMap;
     for (const QString& entry : qAsConst(entries)) {
+        // Skip MacOS resource forks
+        if (entry.startsWith(QLatin1String("__MACOSX"), Qt::CaseInsensitive) ||
+            entry.startsWith(QLatin1String(".DS_Store"), Qt::CaseInsensitive)) {
+            continue;
+        }
         if (entry.endsWith(QLatin1String(".gif"), Qt::CaseInsensitive) ||
                 entry.endsWith(QLatin1String(".jpg"), Qt::CaseInsensitive) ||
                 entry.endsWith(QLatin1String(".jpeg"), Qt::CaseInsensitive) ||
