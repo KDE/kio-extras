@@ -668,12 +668,14 @@ bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& fil
             thumbPath.cd("large");
         }
 
-        if (thumbnail.load(thumbPath.absoluteFilePath(thumbName))) {
+        QFile thumbFile(thumbPath.absoluteFilePath(thumbName));
+        if (thumbFile.open(QIODevice::ReadOnly) && thumbnail.load(&thumbFile, "png")) {
             return true;
         } else if (cacheSize == 128) {
             QDir fallbackPath(m_thumbBasePath);
             fallbackPath.cd("large");
-            if (thumbnail.load(fallbackPath.absoluteFilePath(thumbName))) {
+            QFile fallbackThumbFile(fallbackPath.absoluteFilePath(thumbName));
+            if (fallbackThumbFile.open(QIODevice::ReadOnly) && thumbnail.load(&fallbackThumbFile, "png")) {
                 return true;
             }
         }
