@@ -35,13 +35,6 @@
 #include <QByteArray>
 #include <QStringList>
 #include <QImage>
-#include <QScopedPointer>
-
-#if defined(Q_OS_WIN)
-    #include <QProcess>
-#else
-    #include <kptyprocess.h>
-#endif
 
 class KArchiveDirectory;
 class QEventLoop;
@@ -61,7 +54,7 @@ class ComicCreator : public QObject, public ThumbCreator
             SEVENZIP
         };
         void filterImages(QStringList& entries);
-        int  startProcess(const QString& processPath, const QStringList& args);
+        int  runProcess(const QString& processPath, const QStringList& args);
 
         // For "zip" and "tar" type files.
         // Uses KDE's internal archive classes.
@@ -75,20 +68,8 @@ class ComicCreator : public QObject, public ThumbCreator
         QString unrarPath() const;
         QStringList getRARFileList(const QString& path, const QString& unrarPath);
 
-    private Q_SLOTS:
-        void readProcessOut();
-        void readProcessErr();
-        void finishedProcess(int exitCode, QProcess::ExitStatus exitStatus);
-
     private:
-#if defined(Q_OS_WIN)
-        QScopedPointer<QProcess> m_process;
-#else
-        QScopedPointer<KPtyProcess> m_process;
-#endif
         QByteArray m_stdOut;
-        QByteArray m_stdErr;
-        QEventLoop* m_loop;
 };
 
 #endif

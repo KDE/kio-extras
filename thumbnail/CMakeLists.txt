@@ -213,9 +213,6 @@ target_link_libraries(comicbookthumbnail
     KF5::Archive
     KF5::KIOWidgets
 )
-if (UNIX)
-    target_link_libraries(comicbookthumbnail KF5::Pty)
-endif ()
 install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 # ########### next target ###############

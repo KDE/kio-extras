@@ -47,10 +47,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     GuiAddons
     SyntaxHighlighting
 )
-# As this is the check used for linkage, only require it in the same location...
-if (UNIX)
-    find_package(KF5Pty ${KF5_MIN_VERSION} REQUIRED)
-endif()
 
 include(CheckIncludeFile)
 include(CMakePackageConfigHelpers)

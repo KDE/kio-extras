@@ -33,7 +33,6 @@
 #include <kzip.h>
 #include <ktar.h>
 #include <k7zip.h>
-#include <kprocess.h>
 
 #include <memory>
 
@@ -41,6 +40,7 @@
 #include <QEventLoop>
 #include <QMimeDatabase>
 #include <QMimeType>
+#include <QProcess>
 #include <QStandardPaths>
 #include <QTemporaryDir>
 
@@ -52,7 +52,7 @@ extern "C"
     }
 }
 
-ComicCreator::ComicCreator() : m_loop(nullptr) {}
+ComicCreator::ComicCreator() {}
 
 bool ComicCreator::create(const QString& path, int width, int height, QImage& img)
 {
@@ -82,7 +82,7 @@ bool ComicCreator::create(const QString& path, int width, int height, QImage& im
     }
 
     if (cover.isNull()) {
-        qCDebug(KIO_THUMBNAIL_COMIC_LOG) << "Error creating the comic book thumbnail.";
+        qCDebug(KIO_THUMBNAIL_COMIC_LOG) << "Error creating the comic book thumbnail for" << path;
         return false;
     }
 
@@ -185,9 +185,8 @@ QImage ComicCreator::extractRARImage(const QString& path)
     /// Extracts the cover image out of the .cbr file.
 
     // Check if unrar is available. Get its path in 'unrarPath'.
-    QString unrar = unrarPath();
+    static const QString unrar = unrarPath();
     if (unrar.isEmpty()) {
-        qCDebug(KIO_THUMBNAIL_COMIC_LOG) << "A suitable version of unrar is not available.";
         return QImage();
     }
 
@@ -198,14 +197,10 @@ QImage ComicCreator::extractRARImage(const QString& path)
         return QImage();
     }
 
-    // Clear previously used data arrays.
-    m_stdOut.clear();
-    m_stdErr.clear();
-
     // Extract the cover file alone. Use verbose paths.
     // unrar x -n<file> path/to/archive /path/to/temp
     QTemporaryDir cUnrarTempDir;
-    startProcess(unrar, QStringList() << "x" << "-n" + entries[0] << path << cUnrarTempDir.path());
+    runProcess(unrar, {"x", "-n" + entries[0], path, cUnrarTempDir.path()});
 
     // Load cover file data into image.
     QImage cover;
@@ -220,7 +215,7 @@ QStringList ComicCreator::getRARFileList(const QString& path,
     /// Get a verbose unrar listing so we can extract a single file later.
     // CMD: unrar vb /path/to/archive
     QStringList entries;
-    startProcess(unrarPath, QStringList() << "vb" << path);
+    runProcess(unrarPath, {"vb", path});
     entries = QString::fromLocal8Bit(m_stdOut).split('\n', QString::SkipEmptyParts);
     return entries;
 }
@@ -237,7 +232,7 @@ QString ComicCreator::unrarPath() const
     }
     if (!unrar.isEmpty()) {
         QProcess proc;
-        proc.start(unrar, QStringList() << "-version");
+        proc.start(unrar, {"-version"});
         proc.waitForFinished(-1);
         const QStringList lines = QString::fromLocal8Bit(proc.readAllStandardOutput()).split
             ('\n', QString::SkipEmptyParts);
@@ -247,71 +242,23 @@ QString ComicCreator::unrarPath() const
             }
         }
     }
+    qCWarning(KIO_THUMBNAIL_COMIC_LOG) << "A suitable version of unrar is not available.";
     return QString();
 }
 
-void ComicCreator::readProcessOut()
+int ComicCreator::runProcess(const QString& processPath, const QStringList& args)
 {
-    /// Read all std::out data and store to the data array.
-    if (!m_process)
-        return;
+    /// Run a process and store stdout data in a buffer.
 
-    m_stdOut += m_process->readAllStandardOutput();
-}
+    QProcess process;
+    process.setProcessChannelMode(QProcess::SeparateChannels);
 
-void ComicCreator::readProcessErr()
-{
-    /// Read available std:err data and kill process if there is any.
-    if (!m_process)
-        return;
+    process.setProgram(processPath);
+    process.setArguments(args);
+    process.start(QIODevice::ReadWrite | QIODevice::Unbuffered);
 
-    m_stdErr += m_process->readAllStandardError();
-    if (!m_stdErr.isEmpty())
-    {
-        m_process->kill();
-        return;
-    }
-}
-
-void ComicCreator::finishedProcess(int exitCode, QProcess::ExitStatus exitStatus)
-{
-    /// Run when process finishes.
-    Q_UNUSED(exitCode)
-    if (m_loop)
-    {
-        m_loop->exit(exitStatus == QProcess::CrashExit ? 1 : 0);
-    }
-}
-
-int ComicCreator::startProcess(const QString& processPath, const QStringList& args)
-{
-    /// Run a process and store std::out, std::err data in their respective buffers.
-    int ret = 0;
-
-#if defined(Q_OS_WIN)
-    m_process.reset(new QProcess(this));
-#else
-    m_process.reset(new KPtyProcess(this));
-    m_process->setOutputChannelMode(KProcess::SeparateChannels);
-#endif
-
-    connect(m_process.data(), SIGNAL(readyReadStandardOutput()), SLOT(readProcessOut()));
-    connect(m_process.data(), SIGNAL(readyReadStandardError()), SLOT(readProcessErr()));
-    connect(m_process.data(), SIGNAL(finished(int,QProcess::ExitStatus)),
-        SLOT(finishedProcess(int,QProcess::ExitStatus)));
-
-#if defined(Q_OS_WIN)
-    m_process->start(processPath, args, QIODevice::ReadWrite | QIODevice::Unbuffered);
-    ret = m_process->waitForFinished(-1) ? 0 : 1;
-#else
-    m_process->setProgram(processPath, args);
-    m_process->setNextOpenMode(QIODevice::ReadWrite | QIODevice::Unbuffered);
-    m_process->start();
-    QEventLoop loop;
-    m_loop = &loop;
-    ret = loop.exec(QEventLoop::WaitForMoreEvents);
-    m_loop = nullptr;
-#endif
+    auto ret = process.waitForFinished(-1);
+    m_stdOut = process.readAllStandardOutput();
 
     return ret;
 }
