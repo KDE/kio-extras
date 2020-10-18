@@ -170,7 +170,8 @@ bool AudioCreator::create(const QString &path, int, int, QImage &img)
         TagLib::FLAC::File file(QFile::encodeName(path).data());
         return parseFlacTag(file, img) || parseID3v2Tag(file, img);
     }
-    if (type.inherits("audio/mp4") || type.inherits("audio/x-m4a")) {
+    if (type.inherits("audio/mp4") || type.inherits("audio/x-m4a") ||
+        type.inherits("audio/vnd.audible.aax")) {
         TagLib::MP4::File file(QFile::encodeName(path).data());
         return parseMP4Tag(file, img);
     }
@@ -197,7 +198,7 @@ bool AudioCreator::create(const QString &path, int, int, QImage &img)
         }
         return parseFlacTag(*xiphComment, img);
     }
-    if (type.inherits("audio/x-aiff")) {
+    if (type.inherits("audio/x-aiff") || type.inherits("audio/x-aifc")) {
         TagLib::RIFF::AIFF::FileExt file(QFile::encodeName(path).data());
         return parseID3v2Tag(file, img);
     }
