@@ -855,9 +855,9 @@ int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr,
         return 0;
     } else {
         if (month > currentMonth + 1) year--;
-        dt.time().setHMS(timeyearStr.left(pos).toInt(),timeyearStr.mid(pos+1).toInt(),0);
+        dt.setTime(QTime(timeyearStr.left(pos).toInt(), timeyearStr.mid(pos+1).toInt(), 0));
     }
-    dt.date().setDate(year,month,day);
+    dt.setDate(QDate(year, month, day));
 
     return dt.toSecsSinceEpoch();
 }
