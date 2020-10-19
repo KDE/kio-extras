@@ -802,7 +802,7 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
         realAlt.replace(QRegularExpression(QLatin1Char('%') + QString::number(i + 1)), arg);
     }
     QString s("#");
-    s.append(realCmd).append("\n ").append(realAlt).append(" 2>&1;echo '### 000'\n");
+    s.append(realCmd).append("\n ").append(realAlt).append(" 2>&1;echo '### 200'\n");
     if (realCmd == "FISH")
         s.prepend(" ");
     commandList.append(s);
