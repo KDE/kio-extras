@@ -58,50 +58,55 @@ ecm_setup_version(PROJECT
 
 
 add_subdirectory(src)
-# add_subdirectory(examples)
-# add_subdirectory(docs)  
-# if(BUILD_TESTING)
-#     add_subdirectory(autotests)
-# endif()
-# 
+
+# Disable for imported source
+if (FALSE)
+add_subdirectory(examples)
+add_subdirectory(docs)  
+if(BUILD_TESTING)
+    add_subdirectory(autotests)
+endif()
+
 # create a Config.cmake and a ConfigVersion.cmake file and install them
-# set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KDSoapWSDiscoveryClient")
-# 
-# if (BUILD_QCH)
-#     ecm_install_qch_export(
-#         TARGETS KDSoapWSDiscoveryClient_QCH
-#         FILE KDSoapWSDiscoveryClientQchTargets.cmake
-#         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-#         COMPONENT Devel
-#     )
-#     set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KDSoapWSDiscoveryClientQchTargets.cmake\")")
-# endif()
-# 
-# include(CMakePackageConfigHelpers)
-# 
-# configure_package_config_file(
-#     "${CMAKE_CURRENT_SOURCE_DIR}/KDSoapWSDiscoveryClientConfig.cmake.in"
-#     "${CMAKE_CURRENT_BINARY_DIR}/KDSoapWSDiscoveryClientConfig.cmake"
-#     INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
-# )
-# 
-# install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kdsoap_wsdiscovery_client_version.h
-#         DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KDSoapWSDiscoveryClient
-#         COMPONENT Devel)
-# 
-# install(FILES
-#             "${CMAKE_CURRENT_BINARY_DIR}/KDSoapWSDiscoveryClientConfig.cmake"
-#             "${CMAKE_CURRENT_BINARY_DIR}/KDSoapWSDiscoveryClientConfigVersion.cmake"
-#         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-#         COMPONENT Devel)
-# 
-# install(EXPORT KDSoapWSDiscoveryClientTargets
-#         DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
-#         FILE KDSoapWSDiscoveryClientTargets.cmake
-#         NAMESPACE KDSoap::)
-# 
-# 
-# feature_summary(
-#     WHAT ALL
-#     FATAL_ON_MISSING_REQUIRED_PACKAGES
-# )
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KDSoapWSDiscoveryClient")
+
+if (BUILD_QCH)
+    ecm_install_qch_export(
+        TARGETS KDSoapWSDiscoveryClient_QCH
+        FILE KDSoapWSDiscoveryClientQchTargets.cmake
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        COMPONENT Devel
+    )
+    set(PACKAGE_INCLUDE_QCHTARGETS "include(\"\${CMAKE_CURRENT_LIST_DIR}/KDSoapWSDiscoveryClientQchTargets.cmake\")")
+endif()
+
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(
+    "${CMAKE_CURRENT_SOURCE_DIR}/KDSoapWSDiscoveryClientConfig.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/KDSoapWSDiscoveryClientConfig.cmake"
+    INSTALL_DESTINATION ${CMAKECONFIG_INSTALL_DIR}
+)
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kdsoap_wsdiscovery_client_version.h
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR}/KDSoapWSDiscoveryClient
+        COMPONENT Devel)
+
+install(FILES
+            "${CMAKE_CURRENT_BINARY_DIR}/KDSoapWSDiscoveryClientConfig.cmake"
+            "${CMAKE_CURRENT_BINARY_DIR}/KDSoapWSDiscoveryClientConfigVersion.cmake"
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        COMPONENT Devel)
+
+install(EXPORT KDSoapWSDiscoveryClientTargets
+        DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
+        FILE KDSoapWSDiscoveryClientTargets.cmake
+        NAMESPACE KDSoap::)
+
+endif()
+# Disable for imported source
+
+feature_summary(
+    WHAT ALL
+    FATAL_ON_MISSING_REQUIRED_PACKAGES
+)
