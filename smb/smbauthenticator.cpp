@@ -10,6 +10,7 @@
 #include <KConfig>
 #include <KConfigGroup>
 #include <KIO/AuthInfo>
+#include <KLocalizedString>
 #include <QTextCodec>
 
 #include "smburl.h"
@@ -85,37 +86,26 @@ void SMBAuthenticator::auth(const char *server, const char *share, char *workgro
     info.username = s_username;
     info.password = s_password;
     info.verifyPath = true;
-    info.setExtraField("domain", s_workgroup);
 
     qCDebug(KIO_SMB_LOG) << "libsmb-auth-callback URL:" << info.url;
 
-    if (!m_frontend.checkCachedAuthentication(info)) {
-        if (m_defaultUser.isEmpty()) {
-            // ok, we do not know the password. Let's try anonymous before we try for real
-            info.username = "anonymous";
-            info.password.clear();
-        } else {
-            // user defined a default username/password in kcontrol; try this
-            info.username = m_defaultUser;
-            info.password = m_defaultPassword;
-        }
-        qCDebug(KIO_SMB_LOG) << "trying defaults for user" << info.username;
-    } else
+    // NOTE: By suggestion from upstream we do not default to any amount of
+    //   anonymous/guest logins as it's not safe to do in many environments:
+    //   https://bugzilla.samba.org/show_bug.cgi?id=14326
+
+    if (m_frontend.checkCachedAuthentication(info)) {
         qCDebug(KIO_SMB_LOG) << "got password through cache" << info.username << info.password;
+    } else if (!m_defaultUser.isEmpty()) {
+        // user defined a default username/password in kcontrol; try this
+        info.username = m_defaultUser;
+        info.password = m_defaultPassword;
+        qCDebug(KIO_SMB_LOG) << "trying defaults for user" << info.username;
+    }
 
     // Make sure it'll be safe to cast to size_t (unsigned)
     Q_ASSERT(unmaxlen > 0);
     Q_ASSERT(pwmaxlen > 0);
-    Q_ASSERT(wgmaxlen > 0);
 
     strncpy(username, info.username.toUtf8(), static_cast<size_t>(unmaxlen - 1));
     strncpy(password, info.password.toUtf8(), static_cast<size_t>(pwmaxlen - 1));
-    // TODO: isEmpty guard can be removed in 20.08+
-    //   It is only here to prevent us setting an empty work group if a user updates
-    //   but doesn't restart so kiod5 could hold an old cache without domain
-    //   field. In that event we'll leave the input workgroup as-is.
-    const QString domain = info.getExtraField("domain").toString();
-    if (!domain.isEmpty()) {
-        strncpy(workgroup, domain.toUtf8(), static_cast<size_t>(wgmaxlen - 1));
-    }
 }
