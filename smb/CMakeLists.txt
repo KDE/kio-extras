@@ -10,7 +10,7 @@ if(INTERNAL_WSDCLIENT)
     # its API finalized and gotten a stable release.
     # Until then when using it as external library you should try
     # to use a snapshot that matches the internal copy's git ref.
-    # Currently at: 14287e92e80a77aa4c0adee2871e6b87c9c3055e
+    # Currently at: dcefb65c88e76f1f9eda8b0318006e93d15a0e1e
     add_subdirectory(kdsoap-ws-discovery-client)
 endif()
 add_feature_info("Internal KDSoapWSDiscoveryClient" INTERNAL_WSDCLIENT
