@@ -220,8 +220,6 @@ void ThumbnailProtocol::get(const QUrl &url)
     KConfigGroup group( KSharedConfig::openConfig(), "PreviewSettings" );
     bool kfmiThumb = false; // TODO Figure out if we can use KFileMetadata as a last resource
 
-    ThumbCreator::Flags flags = ThumbCreator::None;
-
     if (!kfmiThumb) {
         QString plugin = metaData("plugin");
         if ((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
