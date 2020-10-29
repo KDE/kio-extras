@@ -19,6 +19,7 @@
 */
 
 #include "thumbnail.h"
+#include "thumbnail-logsettings.h"
 
 #include <stdlib.h>
 #ifdef __FreeBSD__
@@ -601,23 +602,26 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
 
 ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
 {
-    ThumbCreator *creator = m_creators[plugin];
-    if (!creator) {
-        // Don't use KPluginFactory here, this is not a QObject and
-        // neither is ThumbCreator
-        QLibrary library(KPluginLoader::findPlugin((plugin)));
-        if (library.load()) {
-            newCreator create = (newCreator)library.resolve("new_creator");
-            if (create) {
-                creator = create();
-            }
-        }
-        if (!creator) {
-            return nullptr;
-        }
-
-        m_creators.insert(plugin, creator);
+    auto it = m_creators.constFind(plugin);
+    if (it != m_creators.constEnd()) {
+	return *it;
     }
+
+    ThumbCreator *creator = nullptr;
+    // Don't use KPluginFactory here, this is not a QObject and
+    // neither is ThumbCreator
+    QLibrary library(KPluginLoader::findPlugin((plugin)));
+    if (library.load()) {
+	auto createFn = (newCreator)library.resolve("new_creator");
+	if (createFn) {
+	    creator = createFn();
+	}
+    }
+    if (!creator) {
+	qCWarning(KIO_THUMBNAIL_LOG) << "Failed to load" << plugin << library.errorString();
+    }
+
+    m_creators.insert(plugin, creator);
 
     return creator;
 }
