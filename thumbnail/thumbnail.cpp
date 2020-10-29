@@ -255,7 +255,6 @@ void ThumbnailProtocol::get(const QUrl &url)
                 error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
                 return;
             }
-            flags = creator->flags();
         }
     }
 
