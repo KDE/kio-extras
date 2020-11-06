@@ -1285,6 +1285,8 @@ Result SFTPInternal::openConnection()
 
     info.password.fill('x');
     info.password.clear();
+
+    return Result::pass();
 }
 #endif // 0.8.0
 
