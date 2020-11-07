@@ -148,11 +148,15 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
       ("pwd"),
       1 },
     { ("LIST"), 1,
-      ("echo `ls -Lla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`; ls -Lla %1 2>/dev/null | grep '^[-dspl]' | ( while read -r p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
+      ("echo `ls -Lla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`;"
+                "echo '### 100';"
+                "ls -Lla %1 2>/dev/null | grep '^[-dspl]' | ( while read -r p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
                 "ls -Lla %1 2>/dev/null | grep '^[cb]' | ( while read -r p x u g a i m d y n; do echo \"P$p $u.$g\nE$a$i\nd$m $d $y\n:$n\n\"; done; )"),
       0 },
     { ("STAT"), 1,
-      ("echo `ls -dLla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`; ls -dLla %1 2>/dev/null | grep '^[-dspl]' | ( while read -r p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
+      ("echo `ls -dLla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`;"
+                "echo '### 100';"
+                "ls -dLla %1 2>/dev/null | grep '^[-dspl]' | ( while read -r p x u g s m d y n; do file -b -i $n 2>/dev/null | sed -e '\\,^[^/]*$,d;s/^/M/;s,/.*[ \t],/,'; FILE=%1; if [ -e %1\"/$n\" ]; then FILE=%1\"/$n\"; fi; if [ -L \"$FILE\" ]; then echo \":$n\"; ls -lad \"$FILE\" | sed -e 's/.* -> /L/'; else echo \":$n\" | sed -e 's/ -> /\\\nL/'; fi; echo \"P$p $u.$g\nS$s\nd$m $d $y\n\"; done; );"
                 "ls -dLla %1 2>/dev/null | grep '^[cb]' | ( while read -r p x u g a i m d y n; do echo \"P$p $u.$g\nE$a$i\nd$m $d $y\n:$n\n\"; done; )"),
       0 },
     { ("RETR"), 1,
@@ -794,7 +798,7 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
         realAlt.replace(QRegularExpression(QLatin1Char('%') + QString::number(i + 1)), arg);
     }
     QString s("#");
-    s.append(realCmd).append("\n ").append(realAlt).append(" 2>&1;echo '### 000'\n");
+    s.append(realCmd).append("\n ").append(realAlt).append(" 2>&1;echo '### 200'\n");
     if (realCmd == "FISH")
         s.prepend(" ");
     commandList.append(s);
@@ -847,9 +851,9 @@ int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr,
         return 0;
     } else {
         if (month > currentMonth + 1) year--;
-        dt.time().setHMS(timeyearStr.left(pos).toInt(),timeyearStr.mid(pos+1).toInt(),0);
+        dt.setTime(QTime(timeyearStr.left(pos).toInt(), timeyearStr.mid(pos+1).toInt(), 0));
     }
-    dt.date().setDate(year,month,day);
+    dt.setDate(QDate(year, month, day));
 
     return dt.toSecsSinceEpoch();
 }
