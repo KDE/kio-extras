@@ -22,7 +22,6 @@
 #include <kzip.h>
 
 // Qt
-#include <QPainter>
 #include <QImage>
 #include <QIODevice>
 #include <QFile>
@@ -54,7 +53,6 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
     }
 
     QImage thumbnail;
-    bool biggerSizeNeeded = true;
 
     // first check if normal thumbnail is good enough
     // ORA thumbnail?
@@ -69,34 +67,20 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
     }
 
     const KZipFileEntry* fileZipEntry = static_cast<const KZipFileEntry*>(entry);
-    bool thumbLoaded = thumbnail.loadFromData(fileZipEntry->data(), "PNG");
-    if (thumbLoaded) {
-        biggerSizeNeeded = (thumbnail.width() < width || thumbnail.height() < height);
+    bool thumbLoaded = image.loadFromData(fileZipEntry->data(), "PNG");
+    // The requested size is a boundingbox, so meeting one size is sufficient
+    if (thumbLoaded && ((image.width() >= width) || (image.height() >= height))) {
+        return true;
     }
 
-    if (biggerSizeNeeded || !thumbLoaded) {
-        entry = zip.directory()->entry(QLatin1String("mergedimage.png"));
-    }
-
+    entry = zip.directory()->entry(QLatin1String("mergedimage.png"));
     if (entry && entry->isFile()) {
         fileZipEntry = static_cast<const KZipFileEntry*>(entry);
         thumbLoaded = thumbnail.loadFromData(fileZipEntry->data(), "PNG");
         if (thumbLoaded) {
-            thumbnail = thumbnail.scaled(width, height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        } else {
-            return false;
+            image = thumbnail;
+            return true;
         }
-    }
-
-    if (!thumbnail.isNull()) {
-        // transparent areas put a white background behind the thumbnail
-        // (or better checkerboard?)
-        image = QImage(thumbnail.size(), QImage::Format_RGB32);
-        image.fill(QColor(Qt::white).rgb());
-        QPainter p(&image);
-        p.drawImage(QPoint(0, 0), thumbnail);
-
-        return true;
     }
 
     return false;

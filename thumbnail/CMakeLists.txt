@@ -221,7 +221,6 @@ add_library(kritathumbnail MODULE ${kritathumbnail_SRCS})
 target_link_libraries(kritathumbnail
     KF5::KIOWidgets
     KF5::Archive
-    Qt5::Gui
 )
 
 install(TARGETS kritathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR})
