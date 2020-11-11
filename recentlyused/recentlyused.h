@@ -22,7 +22,6 @@
 #ifndef RECENTLYUSED_H
 #define RECENTLYUSED_H
 
-#include <KActivities/Stats/ResultModel>
 #include <kio/slavebase.h>
 
 /**
