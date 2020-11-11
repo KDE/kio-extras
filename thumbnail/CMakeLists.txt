@@ -38,7 +38,6 @@ target_link_libraries(kio_thumbnail
 	KF5::CoreAddons
 	KF5::KIOCore
 	KF5::KIOWidgets
-	KF5::Solid
 	KF5::IconThemes
  	KF5::I18n
 )

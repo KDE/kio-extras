@@ -32,12 +32,12 @@
 #include <unistd.h> // nice()
 #endif
 
-#include <QApplication>
 #include <QBuffer>
 #include <QFile>
 #include <QSaveFile>
 #include <QBitmap>
 #include <QCryptographicHash>
+#include <QGuiApplication>
 #include <QImage>
 #include <QIcon>
 #include <QPainter>
@@ -46,7 +46,6 @@
 #include <QMimeType>
 #include <QMimeDatabase>
 #include <QLibrary>
-#include <QTemporaryFile>
 #include <QDebug>
 
 #include <KFileItem>
@@ -57,18 +56,13 @@
 #include <KServiceTypeTrader>
 #include <KPluginLoader>
 
-#include <kaboutdata.h>
-
 #include <kio/thumbcreator.h>
 #include <kio/thumbsequencecreator.h>
 #include <kio/previewjob.h>
 
-#include <iostream>
 #include <limits>
 #include <QDirIterator>
 
-// Use correctly KComponentData instead of KApplication (but then no QPixmap)
-#undef USE_KINSTANCE
 // Fix thumbnail: protocol
 #define THUMBNAIL_HACK (1)
 
@@ -101,7 +95,6 @@
 //                Otherwise, the data returned is the image in PNG format.
 
 using namespace KIO;
-//using namespace KCodecs;
 
 extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 {
@@ -109,25 +102,18 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
     nice( 5 );
 #endif
 
-#ifdef USE_KINSTANCE
-    KComponentData componentData("kio_thumbnail");
-#else
-
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
     // creating KApplication in a slave in not a very good idea,
     // as dispatchLoop() doesn't allow it to process its messages,
     // so it for example wouldn't reply to ksmserver - on the other
     // hand, this slave uses QPixmaps for some reason, and they
-    // need QApplication
-    // and HTML previews need even KApplication :(
+    // need QGuiApplication
     putenv(strdup("SESSION_MANAGER="));
 
     // some thumbnail plugins reuse QWidget-tainted code for the rendering,
     // so use QApplication here, not just QGuiApplication
-    QApplication app(argc, argv);
-#endif
-
+    QGuiApplication app(argc, argv);
 
     if (argc != 4) {
         qCritical() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2";
