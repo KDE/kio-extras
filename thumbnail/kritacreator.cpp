@@ -56,13 +56,13 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
 
     // first check if normal thumbnail is good enough
     // ORA thumbnail?
-    const KArchiveEntry *entry = zip.directory()->entry(QLatin1String("Thumbnails/thumbnail.png"));
-    // KRA thumbnail
-    if (!entry || !entry->isFile()) {
-        entry = zip.directory()->entry(QLatin1String("preview.png"));
+    const KArchiveFile *entry = zip.directory()->file(QLatin1String("Thumbnails/thumbnail.png"));
+    if (!entry) {
+        // KRA thumbnail
+        entry = zip.directory()->file(QLatin1String("preview.png"));
     }
 
-    if (!entry || !entry->isFile()) {
+    if (!entry) {
         return false;
     }
 
@@ -73,8 +73,8 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
         return true;
     }
 
-    entry = zip.directory()->entry(QLatin1String("mergedimage.png"));
-    if (entry && entry->isFile()) {
+    entry = zip.directory()->file(QLatin1String("mergedimage.png"));
+    if (entry) {
         fileZipEntry = static_cast<const KZipFileEntry*>(entry);
         thumbLoaded = thumbnail.loadFromData(fileZipEntry->data(), "PNG");
         if (thumbLoaded) {
