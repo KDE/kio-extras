@@ -21,10 +21,9 @@
 
 #include <kzip.h>
 
-// Qt
+#include <memory>
 #include <QImage>
 #include <QIODevice>
-#include <QFile>
 
 extern "C"
 {
@@ -52,8 +51,6 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
         return false;
     }
 
-    QImage thumbnail;
-
     // first check if normal thumbnail is good enough
     // ORA thumbnail?
     const KArchiveFile *entry = zip.directory()->file(QLatin1String("Thumbnails/thumbnail.png"));
@@ -66,8 +63,8 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
         return false;
     }
 
-    const KZipFileEntry* fileZipEntry = static_cast<const KZipFileEntry*>(entry);
-    bool thumbLoaded = image.loadFromData(fileZipEntry->data(), "PNG");
+    std::unique_ptr<QIODevice> fileDevice{entry->createDevice()};
+    bool thumbLoaded = image.load(fileDevice.get(), "PNG");
     // The requested size is a boundingbox, so meeting one size is sufficient
     if (thumbLoaded && ((image.width() >= width) || (image.height() >= height))) {
         return true;
@@ -75,8 +72,9 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
 
     entry = zip.directory()->file(QLatin1String("mergedimage.png"));
     if (entry) {
-        fileZipEntry = static_cast<const KZipFileEntry*>(entry);
-        thumbLoaded = thumbnail.loadFromData(fileZipEntry->data(), "PNG");
+        QImage thumbnail;
+        fileDevice.reset(entry->createDevice());
+        thumbLoaded = thumbnail.load(fileDevice.get(), "PNG");
         if (thumbLoaded) {
             image = thumbnail;
             return true;
