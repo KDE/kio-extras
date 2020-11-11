@@ -23,20 +23,11 @@
 #include "recentlyused.h"
 
 #include <QCoreApplication>
-#include <QDBusInterface>
-#include <QFileInfo>
 #include <QUrl>
 #include <QUrlQuery>
-#include <QString>
 
-#include <KRecentDocument>
-#include <KDirWatch>
-#include <KDesktopFile>
 #include <KIO/Job>
 #include <KLocalizedString>
-#include <KProtocolManager>
-
-#include <stdio.h>
 
 #include <KActivities/Stats/Cleaning>
 #include <KActivities/Stats/ResultModel>
