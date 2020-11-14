@@ -148,13 +148,14 @@ void RecentDocuments::stat(const QUrl& url)
         //
         QString dirName = i18n("Recent Documents");
         KIO::UDSEntry uds;
-        uds.reserve(6);
+        uds.reserve(7);
         uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
         uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
         uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
         uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QString::fromLatin1("document-open-recent"));
         uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
+        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR);
 
         statEntry(uds);
         finished();

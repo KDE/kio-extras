@@ -270,7 +270,7 @@ void NetworkSlave::feedEntryAsNetwork( KIO::UDSEntry* entry )
     entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Network"));
 //     entry->fastInsert( KIO::UDSEntry::UDS_ICON_NAME,    NetworkIconName );
     entry->fastInsert( KIO::UDSEntry::UDS_MIME_TYPE,    QLatin1String(Mimetypes::NetworkMimetype) );
-
+    entry->fastInsert( KIO::UDSEntry::UDS_ACCESS,       S_IRUSR | S_IXUSR );
 }
 
 void NetworkSlave::feedEntryAsDevice( KIO::UDSEntry* entry, const Mollet::NetDevice& deviceData )
@@ -279,9 +279,9 @@ void NetworkSlave::feedEntryAsDevice( KIO::UDSEntry* entry, const Mollet::NetDev
     entry->fastInsert( KIO::UDSEntry::UDS_NAME,         deviceData.hostAddress() );
     entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, deviceData.name() );
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
+    entry->fastInsert( KIO::UDSEntry::UDS_ACCESS,       S_IRUSR | S_IXUSR );
 //     entry->fastInsert( KIO::UDSEntry::UDS_ICON_NAME,    NetDevice::iconName(deviceData.type()) );
     entry->fastInsert( KIO::UDSEntry::UDS_MIME_TYPE,    QLatin1String(Mimetypes::DeviceMimetype[deviceData.type()]) );
-
 }
 
 void NetworkSlave::feedEntryAsService( KIO::UDSEntry* entry, const Mollet::NetService& serviceData )

@@ -222,13 +222,14 @@ void RecentlyUsed::listDir(const QUrl &url)
 KIO::UDSEntry RecentlyUsed::udsEntryForRoot(const QString &dirName, const QString &iconName)
 {
     KIO::UDSEntry uds;
-    uds.reserve(6);
+    uds.reserve(7);
     uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
     uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
     uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
     uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, iconName);
     uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR);
     return uds;
 }
 
