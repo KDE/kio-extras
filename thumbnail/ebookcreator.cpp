@@ -114,6 +114,7 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
 
         if (xml.isStartElement() && xml.name() == QLatin1String("rootfile")) {
             opfPath = xml.attributes().value(QStringLiteral("full-path")).toString();
+            break;
         }
     }
 
