@@ -22,6 +22,7 @@
 
 #include <QFile>
 #include <QImage>
+#include <QMap>
 #include <QMimeDatabase>
 #include <QXmlStreamReader>
 
@@ -94,7 +95,6 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
 
     QScopedPointer<QIODevice> zipDevice;
     QString opfPath;
-    QString coverId;
     QString coverHref;
 
     // First figure out where the OPF file with metadata is
@@ -134,6 +134,9 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
     xml.setDevice(zipDevice.data());
 
     bool inMetadata = false;
+    bool inManifest = false;
+    QString coverId;
+    QMap<QString, QString> itemHrefs;
 
     while (!xml.atEnd() && !xml.hasError()) {
         xml.readNext();
@@ -142,24 +145,45 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
             if (xml.isStartElement()) {
                 inMetadata = true;
             } else if (xml.isEndElement()) {
-                break;
+                inMetadata = false;
             }
-        }
-
-        if (!inMetadata) {
             continue;
         }
 
-        if (xml.isStartElement() && xml.name() == QLatin1String("meta")) {
-            const auto attributes = xml.attributes();
-            if (attributes.value(QStringLiteral("name")) == QLatin1String("cover")) {
-                coverId = attributes.value(QStringLiteral("content")).toString();
+        if (xml.name() == QLatin1String("manifest")) {
+            if (xml.isStartElement()) {
+                inManifest = true;
+            } else if (xml.isEndElement()) {
+                inManifest = false;
+            }
+            continue;
+        }
+
+        if (xml.isStartElement()) {
+            if (inMetadata && (xml.name() == QLatin1String("meta"))) {
+                const auto attributes = xml.attributes();
+                if (attributes.value(QStringLiteral("name")) == QLatin1String("cover")) {
+                    coverId = attributes.value(QStringLiteral("content")).toString();
+                }
+            } else if (inManifest && (xml.name() == QLatin1String("item"))) {
+                const auto attributes = xml.attributes();
+                const QString href = attributes.value(QStringLiteral("href")).toString();
+                const QString id = attributes.value(QStringLiteral("id")).toString();
+                if (!id.isEmpty() && !href.isEmpty()) {
+                    itemHrefs[id] = href;
+                }
+            } else {
+                continue;
+            }
+
+            if (!coverId.isEmpty() && itemHrefs.contains(coverId)) {
+                coverHref = itemHrefs[coverId];
                 break;
             }
         }
     }
 
-    if (coverId.isEmpty()) {
+    if (coverHref.isEmpty()) {
         // Maybe we're lucky and the archive contains an iTunesArtwork file from iBooks
         entry = zip.directory()->entry(QStringLiteral("iTunesArtwork"));
         if (entry && entry->isFile()) {
@@ -183,39 +207,6 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
                 return true;
             }
         }
-    }
-
-    // Read OPF file again from beginning and look for <item id="our id from above" href="...">
-    zipDevice->seek(0);
-    xml.setDevice(zipDevice.data());
-
-    bool inManifest = false;
-
-    while (!xml.atEnd() && !xml.hasError()) {
-        xml.readNext();
-
-        if (xml.name() == QLatin1String("manifest")) {
-            if (xml.isStartElement()) {
-                inManifest = true;
-            } else if (xml.isEndElement()) {
-                break;
-            }
-        }
-
-        if (!inManifest) {
-            continue;
-        }
-
-        if (xml.isStartElement() && xml.name() == QLatin1String("item")) {
-            const auto attributes = xml.attributes();
-            if (attributes.value(QStringLiteral("id")).compare(coverId, Qt::CaseInsensitive) == 0) {
-                coverHref = attributes.value(QStringLiteral("href")).toString();
-                break;
-            }
-        }
-    }
-
-    if (coverHref.isEmpty()) {
         return false;
     }
 
