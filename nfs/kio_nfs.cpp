@@ -73,9 +73,7 @@ NFSSlave::NFSSlave(const QByteArray& pool, const QByteArray& app)
 }
 NFSSlave::~NFSSlave()
 {
-    if (m_protocol != nullptr) {
-        delete m_protocol;
-    }
+    delete m_protocol;
 }
 
 void NFSSlave::openConnection()
