@@ -15,6 +15,10 @@
 
 #include <stdio.h>
 
+#ifdef Q_OS_WIN
+#include <sys/stat.h>
+#endif
+
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     // necessary to use other kio slaves
@@ -155,8 +159,11 @@ void RecentDocuments::stat(const QUrl& url)
         uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QString::fromLatin1("document-open-recent"));
         uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
-        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR);
-
+#ifdef Q_OS_WIN
+        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD | _S_IWRITE );
+#else
+        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR );
+#endif
         statEntry(uds);
         finished();
     }
