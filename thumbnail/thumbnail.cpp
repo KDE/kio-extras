@@ -32,12 +32,12 @@
 #include <unistd.h> // nice()
 #endif
 
+#include <QApplication>
 #include <QBuffer>
 #include <QFile>
 #include <QSaveFile>
 #include <QBitmap>
 #include <QCryptographicHash>
-#include <QGuiApplication>
 #include <QImage>
 #include <QIcon>
 #include <QPainter>
@@ -111,9 +111,9 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
     // need QGuiApplication
     putenv(strdup("SESSION_MANAGER="));
 
-    // some thumbnail plugins reuse QWidget-tainted code for the rendering,
+    // Some thumbnail plugins use QWidget classes for the rendering,
     // so use QApplication here, not just QGuiApplication
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
 
     if (argc != 4) {
         qCritical() << "Usage: kio_thumbnail protocol domain-socket1 domain-socket2";
