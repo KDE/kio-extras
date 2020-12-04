@@ -100,7 +100,7 @@ QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
     root = new QAction(QIcon::fromTheme("activities"),
                                 i18n("Activities"), parentWidget);
 
-    rootMenu = new QMenu();
+    rootMenu = new QMenu(parentWidget);
     rootMenu->addAction(new QAction(i18n("Loading..."), this));
 
     connect(root, &QAction::hovered,
