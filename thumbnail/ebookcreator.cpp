@@ -72,12 +72,12 @@ bool EbookCreator::create(const QString &path, int width, int height, QImage &im
                 continue;
             }
 
-            const auto *entry = zip.directory()->entry(entryPath);
-            if (!entry || !entry->isFile()) {
+            const auto *entry = zip.directory()->file(entryPath);
+            if (!entry) {
                 return false;
             }
 
-            zipDevice.reset(static_cast<const KZipFileEntry *>(entry)->createDevice());
+            zipDevice.reset(entry->createDevice());
         }
 
         return createFb2(zipDevice.data(), image);
@@ -98,15 +98,13 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
     QString coverHref;
 
     // First figure out where the OPF file with metadata is
-    const auto *entry = zip.directory()->entry(QStringLiteral("META-INF/container.xml"));
+    const auto *entry = zip.directory()->file(QStringLiteral("META-INF/container.xml"));
 
-    if (!entry || !entry->isFile()) {
+    if (!entry) {
         return false;
     }
 
-    const auto *zipEntry = static_cast<const KZipFileEntry *>(entry);
-
-    zipDevice.reset(zipEntry->createDevice());
+    zipDevice.reset(entry->createDevice());
 
     QXmlStreamReader xml(zipDevice.data());
     while (!xml.atEnd() && !xml.hasError()) {
@@ -123,14 +121,12 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
     }
 
     // Now read the OPF file and look for a <meta name="cover" content="...">
-    entry = zip.directory()->entry(opfPath);
-    if (!entry || !entry->isFile()) {
+    entry = zip.directory()->file(opfPath);
+    if (!entry) {
         return false;
     }
 
-    zipEntry = static_cast<const KZipFileEntry *>(entry);
-
-    zipDevice.reset(zipEntry->createDevice());
+    zipDevice.reset(entry->createDevice());
 
     xml.setDevice(zipDevice.data());
 
@@ -186,9 +182,9 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
 
     if (coverHref.isEmpty()) {
         // Maybe we're lucky and the archive contains an iTunesArtwork file from iBooks
-        entry = zip.directory()->entry(QStringLiteral("iTunesArtwork"));
-        if (entry && entry->isFile()) {
-            return image.loadFromData(static_cast<const KZipFileEntry *>(entry)->data());
+        entry = zip.directory()->file(QStringLiteral("iTunesArtwork"));
+        if (entry) {
+            return image.loadFromData(entry->data());
         }
 
         // Maybe there's a file called "cover" somewhere
@@ -199,12 +195,12 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
                 continue;
             }
 
-            entry = zip.directory()->entry(name);
-            if (!entry || !entry->isFile()) {
+            entry = zip.directory()->file(name);
+            if (!entry) {
                 continue;
             }
 
-            if (image.loadFromData(static_cast<const KZipFileEntry *>(entry)->data())) {
+            if (image.loadFromData(entry->data())) {
                 return true;
             }
         }
@@ -219,12 +215,12 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
     }
 
     // Finally, just load the cover image file
-    entry = zip.directory()->entry(coverHref);
-    if (!entry || !entry->isFile()) {
-        return false;
+    entry = zip.directory()->file(coverHref);
+    if (entry) {
+        return image.loadFromData(entry->data());
     }
 
-    return image.loadFromData(static_cast<const KZipFileEntry *>(entry)->data());
+    return false;
 }
 
 bool EbookCreator::createFb2(QIODevice *device, QImage &image)
