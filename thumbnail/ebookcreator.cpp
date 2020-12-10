@@ -192,7 +192,8 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
         // Maybe we're lucky and the archive contains an iTunesArtwork file from iBooks
         entry = zip.directory()->file(QStringLiteral("iTunesArtwork"));
         if (entry) {
-            return image.loadFromData(entry->data());
+            zipDevice.reset(entry->createDevice());
+            return image.load(zipDevice.data(), "");
         }
 
         // Maybe there's a file called "cover" somewhere
@@ -208,7 +209,8 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
                 continue;
             }
 
-            if (image.loadFromData(entry->data())) {
+            zipDevice.reset(entry->createDevice());
+            if (image.load(zipDevice.data(), "")) {
                 return true;
             }
         }
@@ -229,7 +231,8 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
     // Finally, just load the cover image file
     entry = zip.directory()->file(coverHref);
     if (entry) {
-        return image.loadFromData(entry->data());
+        zipDevice.reset(entry->createDevice());
+        return image.load(zipDevice.data(), "");
     }
 
     return false;
