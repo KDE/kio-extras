@@ -168,6 +168,13 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
                 const QString href = attributes.value(QStringLiteral("href")).toString();
                 const QString id = attributes.value(QStringLiteral("id")).toString();
                 if (!id.isEmpty() && !href.isEmpty()) {
+                    // EPUB 3 has the "cover-image" property set
+                    const auto properties = attributes.value(QStringLiteral("properties")).toString();
+                    const auto propertyList = properties.split(QChar(' '), Qt::SkipEmptyParts);
+                    if (propertyList.contains(QLatin1String("cover-image"))) {
+                        coverHref = href;
+                        break;
+                    }
                     itemHrefs[id] = href;
                 }
             } else {
