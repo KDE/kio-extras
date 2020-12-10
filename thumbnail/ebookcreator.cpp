@@ -24,6 +24,7 @@
 #include <QImage>
 #include <QMap>
 #include <QMimeDatabase>
+#include <QUrl>
 #include <QXmlStreamReader>
 
 #include <KZip>
@@ -206,6 +207,10 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
         }
         return false;
     }
+
+    // Decode percent encoded URL
+    QByteArray encoded = itemHrefs[coverId].toUtf8();
+    coverHref = QUrl::fromPercentEncoding(encoded);
 
     // Make coverHref relative to OPF location
     const int lastOpfSlash = opfPath.lastIndexOf(QLatin1Char('/'));
