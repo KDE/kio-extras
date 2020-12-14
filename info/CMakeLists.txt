@@ -3,7 +3,6 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_info\")
 add_library(kio_info MODULE info.cc)
 target_link_libraries(kio_info
     KF5::I18n
-    KF5::IconThemes
     KF5::KIOCore
     Qt5::Network
 )
