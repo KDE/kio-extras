@@ -223,6 +223,7 @@ sub list {
     my $cwd = getcwd();
     chdir($dn) || do { print "### 500 $!\n"; return; };
     foreach (@entries) {
+        $_ = '.' if (!length($_));
         my $link = readlink;
         my ($mode,$uid,$gid,$size,$mtime) = (lstat)[2,4,5,7,9];
         print filetype($mode,$link,$uid,$gid);
