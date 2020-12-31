@@ -269,7 +269,7 @@ void NetworkSlave::listDir( const QUrl& url )
 
 void NetworkSlave::feedEntryAsNetwork( KIO::UDSEntry* entry )
 {
-    entry->reserve(3);
+    entry->reserve(4);
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
     entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Network"));
 //     entry->fastInsert( KIO::UDSEntry::UDS_ICON_NAME,    NetworkIconName );
@@ -283,7 +283,7 @@ void NetworkSlave::feedEntryAsNetwork( KIO::UDSEntry* entry )
 
 void NetworkSlave::feedEntryAsDevice( KIO::UDSEntry* entry, const Mollet::NetDevice& deviceData )
 {
-    entry->reserve(4);
+    entry->reserve(5);
     entry->fastInsert( KIO::UDSEntry::UDS_NAME,         deviceData.hostAddress() );
     entry->fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, deviceData.name() );
     entry->fastInsert( KIO::UDSEntry::UDS_FILE_TYPE,    S_IFDIR );
