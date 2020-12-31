@@ -234,7 +234,7 @@ KIO::UDSEntry RecentlyUsed::udsEntryForRoot(const QString &dirName, const QStrin
     uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
 #ifdef Q_OS_WIN
-    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD | _S_IWRITE );
+    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD );
 #else
     uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR );
 #endif
