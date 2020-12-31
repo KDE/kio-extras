@@ -20,8 +20,8 @@ public:
         m_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         m_entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
         m_entry.fastInsert(KIO::UDSEntry::UDS_URL, url());
-        m_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-server"));
-        m_entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, "network-server");
+        m_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-server"));
+        m_entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("network-server"));
     }
 
     QString url()
@@ -51,7 +51,7 @@ public:
     {
         m_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         m_entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
-        m_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("application/x-smb-workgroup"));
+        m_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-workgroup"));
         m_entry.fastInsert(KIO::UDSEntry::UDS_URL, url());
     }
 

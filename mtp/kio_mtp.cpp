@@ -283,7 +283,7 @@ void MTPSlave::stat(const QUrl &url)
     // root
     if (pathItems.size() < 1) {
         entry.reserve(4);
-        entry.fastInsert(UDSEntry::UDS_NAME, QLatin1String("mtp:///"));
+        entry.fastInsert(UDSEntry::UDS_NAME, QStringLiteral("mtp:///"));
         entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
         entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
