@@ -18,6 +18,8 @@
 
 #include <QString>
 #include <QImage>
+#include <QImageReader>
+#include <QMimeDatabase>
 
 extern "C"
 {
@@ -29,7 +31,16 @@ extern "C"
 
 bool WindowsImageCreator::create(const QString &path, int width, int height, QImage &img)
 {
+    if (IcoUtils::loadIcoImage(path, img, width, height)) {
+        return true;
+    }
 
-    return IcoUtils::loadIcoImage(path, img, width, height);
+    // Maybe it's an animated cursor
+    if (QMimeDatabase().mimeTypeForFile(path).name() == QLatin1String("application/x-navi-animation")) {
+        QImageReader reader(path, "ani");
+        return reader.read(&img);
+    }
+
+    return false;
 
 }
