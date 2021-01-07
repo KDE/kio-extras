@@ -94,7 +94,7 @@ void SMBAuthenticator::auth(const char *server, const char *share, char *workgro
     //   https://bugzilla.samba.org/show_bug.cgi?id=14326
 
     if (m_frontend.checkCachedAuthentication(info)) {
-        qCDebug(KIO_SMB_LOG) << "got password through cache" << info.username << info.password;
+        qCDebug(KIO_SMB_LOG) << "got password through cache" << info.username;
     } else if (!m_defaultUser.isEmpty()) {
         // user defined a default username/password in kcontrol; try this
         info.username = m_defaultUser;
