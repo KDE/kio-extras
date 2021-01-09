@@ -34,6 +34,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QHostInfo>
+#include <QCoreApplication>
 
 #include <KLocalizedString>
 #include <kio/global.h>
@@ -51,12 +52,13 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char** argv);
 
 int kdemain(int argc, char** argv)
 {
+    QCoreApplication app(argc, argv);
+    app.setApplicationName(QLatin1String("kio_nfs"));
+
     if (argc != 4) {
         fprintf(stderr, "Usage: kio_nfs protocol domain-socket1 domain-socket2\n");
         exit(-1);
     }
-
-    qCDebug(LOG_KIO_NFS) << "NFS: kdemain: starting";
 
     NFSSlave slave(argv[2], argv[3]);
     slave.dispatchLoop();
@@ -68,9 +70,9 @@ NFSSlave::NFSSlave(const QByteArray& pool, const QByteArray& app)
     :  KIO::SlaveBase("nfs", pool, app),
        m_protocol(nullptr)
 {
-
     qCDebug(LOG_KIO_NFS) << pool << app;
 }
+
 NFSSlave::~NFSSlave()
 {
     delete m_protocol;
