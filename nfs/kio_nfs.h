@@ -64,8 +64,8 @@ public:
     void copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) override;
 
 protected:
-    // Verifies the current protocol and connection state, returns true if valid.
-    bool verifyProtocol();
+    // Verifies the URL, current protocol and connection state, returns true if valid.
+    bool verifyProtocol(const QUrl &url);
 
 private:
     NFSProtocol* m_protocol;

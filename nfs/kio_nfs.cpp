@@ -80,7 +80,7 @@ NFSSlave::~NFSSlave()
 
 void NFSSlave::openConnection()
 {
-    qCDebug(LOG_KIO_NFS) << "openConnection";
+    qCDebug(LOG_KIO_NFS);
 
     if (m_protocol != nullptr) {
         m_protocol->openConnection();
@@ -170,7 +170,7 @@ void NFSSlave::put(const QUrl& url, int _mode, KIO::JobFlags _flags)
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(url)) {
         m_protocol->put(url, _mode, _flags);
     }
 }
@@ -179,7 +179,7 @@ void NFSSlave::get(const QUrl& url)
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(url)) {
         m_protocol->get(url);
     }
 }
@@ -188,7 +188,7 @@ void NFSSlave::listDir(const QUrl& url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(url)) {
         m_protocol->listDir(url);
     }
 }
@@ -197,7 +197,7 @@ void NFSSlave::symlink(const QString& target, const QUrl& dest, KIO::JobFlags _f
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(dest)) {
         m_protocol->symlink(target, dest, _flags);
     }
 }
@@ -206,7 +206,7 @@ void NFSSlave::stat(const QUrl& url)
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(url)) {
         m_protocol->stat(url);
     }
 }
@@ -215,7 +215,7 @@ void NFSSlave::mkdir(const QUrl& url, int permissions)
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(url)) {
         m_protocol->mkdir(url, permissions);
     }
 }
@@ -224,7 +224,7 @@ void NFSSlave::del(const QUrl& url, bool isfile)
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(url)) {
         m_protocol->del(url, isfile);
     }
 }
@@ -233,7 +233,7 @@ void NFSSlave::chmod(const QUrl& url, int permissions)
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(url)) {
         m_protocol->chmod(url, permissions);
     }
 }
@@ -242,7 +242,7 @@ void NFSSlave::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags)
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(src) && verifyProtocol(dest)) {
         m_protocol->rename(src, dest, flags);
     }
 }
@@ -251,13 +251,29 @@ void NFSSlave::copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags f
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (verifyProtocol()) {
+    if (verifyProtocol(src) && verifyProtocol(dest)) {
         m_protocol->copy(src, dest, mode, flags);
     }
 }
 
-bool NFSSlave::verifyProtocol()
+bool NFSSlave::verifyProtocol(const QUrl &url)
 {
+    // The NFS protocol definition includes copyToFile=true and copyFromFile=true,
+    // so the URL scheme here can also be "file".  No URL or protocol checking
+    // is required in this case.
+    if (url.scheme() != "nfs") {
+        return true;
+    }
+
+    // A NFS URL must include a host name, if it does not then nothing
+    // sensible can be done.  Doing the check here and returning immediately
+    // avoids multiple calls of SlaveBase::error() as each protocol is tried
+    // in NFSSlave::openConnection().
+    if (url.host().isEmpty()) {
+        error(KIO::ERR_SLAVE_DEFINED, i18n("The NFS protocol requires a server host name."));
+        return false;
+    }
+
     const bool haveProtocol = (m_protocol != nullptr);
     if (!haveProtocol) {
         openConnection();
