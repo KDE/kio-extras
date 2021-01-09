@@ -519,7 +519,8 @@ const QStringList& NFSProtocol::getExportedDirs()
 bool NFSProtocol::isExportedDir(const QString& path)
 {
     // If the path is the root filesystem we always return true.
-    if (QFileInfo(path).isRoot()) {
+    if (path.isEmpty() || path == "/" || QFileInfo(path).isRoot()) {
+        qCDebug(LOG_KIO_NFS) << path << "is root";
         return true;
     }
 
@@ -527,8 +528,7 @@ bool NFSProtocol::isExportedDir(const QString& path)
         if (path.length() < (*it).length() && (*it).startsWith(path)) {
             QString rest = (*it).mid(path.length());
             if (rest.isEmpty() || rest[0] == QDir::separator()) {
-                qCDebug(LOG_KIO_NFS) << "isExportedDir" << path << "returning true";
-
+                qCDebug(LOG_KIO_NFS) << path << "is exported";
                 return true;
             }
         }

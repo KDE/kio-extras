@@ -330,12 +330,15 @@ void NFSProtocolV3::listDir(const QUrl& url)
             }
         }
 
+        KIO::UDSEntry entry;
+        createVirtualDirEntry(entry);
+        entry.insert(KIO::UDSEntry::UDS_NAME, ".");
+        m_slave->listEntry(entry);
+
         for (QStringList::const_iterator it = virtualList.constBegin(); it != virtualList.constEnd(); ++it) {
             qCDebug(LOG_KIO_NFS) << "Found " << (*it) << "in exported dir";
 
-            KIO::UDSEntry entry;
             entry.insert(KIO::UDSEntry::UDS_NAME, (*it));
-            createVirtualDirEntry(entry);
             m_slave->listEntry(entry);
         }
 
@@ -392,14 +395,21 @@ void NFSProtocolV3::listDir(const QUrl& url)
         }
 
         for (entryplus3* dirEntry = listres.READDIRPLUS3res_u.resok.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
-            if (dirEntry->name == QString(".") || dirEntry->name == QString("..")) {
+            if (dirEntry->name == QString("..")) {
+                continue;
+            }
+
+            KIO::UDSEntry entry;
+            entry.insert(KIO::UDSEntry::UDS_NAME, dirEntry->name);
+
+            if (dirEntry->name == QString(".")) {
+                createVirtualDirEntry(entry);
+                completeUDSEntry(entry, dirEntry->name_attributes.post_op_attr_u.attributes);
+                m_slave->listEntry(entry);
                 continue;
             }
 
             const QString& filePath = QFileInfo(QDir(path), dirEntry->name).filePath();
-
-            KIO::UDSEntry entry;
-            entry.insert(KIO::UDSEntry::UDS_NAME, dirEntry->name);
 
             // Is it a symlink ?
             if (dirEntry->name_attributes.post_op_attr_u.attributes.type == NF3LNK) {
