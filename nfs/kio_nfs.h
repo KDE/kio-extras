@@ -103,13 +103,8 @@ public:
 
     bool isInvalid() const
     {
-        return m_isInvalid;
+        return m_size==0 && m_linkSize==0;
     }
-    void setInvalid()
-    {
-        m_isInvalid = true;
-    }
-
     bool isLink() const
     {
         return m_isLink;
@@ -134,12 +129,11 @@ protected:
     // Set to the link source's handle.
     char* m_linkHandle;
     unsigned int m_linkSize;
-
-    bool m_isInvalid;
     bool m_isLink;
 };
 
 typedef QMap<QString, NFSFileHandle> NFSFileHandleMap;
+
 
 class NFSProtocol
 {

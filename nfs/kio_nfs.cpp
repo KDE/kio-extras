@@ -66,6 +66,19 @@ int kdemain(int argc, char** argv)
     return 0;
 }
 
+
+// Both the insertion and lookup in the file handle cache (managed by
+// NFSProtocol), and the use of QFileInfo to locate a parent directory,
+// are sensitive to paths having trailing slashes.  In order to keep
+// everything consistent, any URLs passed in must be cleaned before using
+// them as a fileystem or NFS protocol path.
+
+static QUrl cleanPath(const QUrl &url)
+{
+    return (url.adjusted(QUrl::StripTrailingSlash|QUrl::NormalizePathSegments));
+}
+
+
 NFSSlave::NFSSlave(const QByteArray& pool, const QByteArray& app)
     :  KIO::SlaveBase("nfs", pool, app),
        m_protocol(nullptr)
@@ -171,7 +184,7 @@ void NFSSlave::put(const QUrl& url, int _mode, KIO::JobFlags _flags)
     qCDebug(LOG_KIO_NFS);
 
     if (verifyProtocol(url)) {
-        m_protocol->put(url, _mode, _flags);
+        m_protocol->put(cleanPath(url), _mode, _flags);
     }
 }
 
@@ -180,7 +193,7 @@ void NFSSlave::get(const QUrl& url)
     qCDebug(LOG_KIO_NFS);
 
     if (verifyProtocol(url)) {
-        m_protocol->get(url);
+        m_protocol->get(cleanPath(url));
     }
 }
 
@@ -189,7 +202,7 @@ void NFSSlave::listDir(const QUrl& url)
     qCDebug(LOG_KIO_NFS) << url;
 
     if (verifyProtocol(url)) {
-        m_protocol->listDir(url);
+        m_protocol->listDir(cleanPath(url));
     }
 }
 
@@ -198,7 +211,7 @@ void NFSSlave::symlink(const QString& target, const QUrl& dest, KIO::JobFlags _f
     qCDebug(LOG_KIO_NFS);
 
     if (verifyProtocol(dest)) {
-        m_protocol->symlink(target, dest, _flags);
+        m_protocol->symlink(target, cleanPath(dest), _flags);
     }
 }
 
@@ -207,7 +220,7 @@ void NFSSlave::stat(const QUrl& url)
     qCDebug(LOG_KIO_NFS);
 
     if (verifyProtocol(url)) {
-        m_protocol->stat(url);
+        m_protocol->stat(cleanPath(url));
     }
 }
 
@@ -216,7 +229,7 @@ void NFSSlave::mkdir(const QUrl& url, int permissions)
     qCDebug(LOG_KIO_NFS);
 
     if (verifyProtocol(url)) {
-        m_protocol->mkdir(url, permissions);
+        m_protocol->mkdir(cleanPath(url), permissions);
     }
 }
 
@@ -225,7 +238,7 @@ void NFSSlave::del(const QUrl& url, bool isfile)
     qCDebug(LOG_KIO_NFS);
 
     if (verifyProtocol(url)) {
-        m_protocol->del(url, isfile);
+        m_protocol->del(cleanPath(url), isfile);
     }
 }
 
@@ -234,7 +247,7 @@ void NFSSlave::chmod(const QUrl& url, int permissions)
     qCDebug(LOG_KIO_NFS);
 
     if (verifyProtocol(url)) {
-        m_protocol->chmod(url, permissions);
+        m_protocol->chmod(cleanPath(url), permissions);
     }
 }
 
@@ -243,7 +256,7 @@ void NFSSlave::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags)
     qCDebug(LOG_KIO_NFS);
 
     if (verifyProtocol(src) && verifyProtocol(dest)) {
-        m_protocol->rename(src, dest, flags);
+        m_protocol->rename(cleanPath(src), cleanPath(dest), flags);
     }
 }
 
@@ -252,7 +265,7 @@ void NFSSlave::copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags f
     qCDebug(LOG_KIO_NFS);
 
     if (verifyProtocol(src) && verifyProtocol(dest)) {
-        m_protocol->copy(src, dest, mode, flags);
+        m_protocol->copy(cleanPath(src), cleanPath(dest), mode, flags);
     }
 }
 
@@ -310,10 +323,8 @@ NFSFileHandle::NFSFileHandle()
       m_size(0),
       m_linkHandle(nullptr),
       m_linkSize(0),
-      m_isInvalid(true),
       m_isLink(false)
 {
-
 }
 
 NFSFileHandle::NFSFileHandle(const NFSFileHandle& src)
@@ -385,7 +396,6 @@ NFSFileHandle& NFSFileHandle::operator=(const NFSFileHandle& src)
             delete [] m_handle;
             m_handle = nullptr;
         }
-
         m_size = src.m_size;
         m_handle = new char[m_size];
         memcpy(m_handle, src.m_handle, m_size);
@@ -401,7 +411,6 @@ NFSFileHandle& NFSFileHandle::operator=(const NFSFileHandle& src)
         memcpy(m_linkHandle, src.m_linkHandle, m_linkSize);
     }
 
-    m_isInvalid = src.m_isInvalid;
     m_isLink = src.m_isLink;
     return *this;
 }
@@ -416,7 +425,6 @@ NFSFileHandle& NFSFileHandle::operator=(const fhandle3& src)
     m_size = src.fhandle3_len;
     m_handle = new char[m_size];
     memcpy(m_handle, src.fhandle3_val, m_size);
-    m_isInvalid = false;
     return *this;
 }
 
@@ -430,7 +438,6 @@ NFSFileHandle& NFSFileHandle::operator=(const fhandle& src)
     m_size = NFS_FHSIZE;
     m_handle = new char[m_size];
     memcpy(m_handle, src, m_size);
-    m_isInvalid = false;
     return *this;
 }
 
@@ -444,7 +451,6 @@ NFSFileHandle& NFSFileHandle::operator=(const nfs_fh3& src)
     m_size = src.data.data_len;
     m_handle = new char[m_size];
     memcpy(m_handle, src.data.data_val, m_size);
-    m_isInvalid = false;
     return *this;
 }
 
@@ -458,7 +464,6 @@ NFSFileHandle& NFSFileHandle::operator=(const nfs_fh& src)
     m_size = NFS_FHSIZE;
     m_handle = new char[m_size];
     memcpy(m_handle, src.data, m_size);
-    m_isInvalid = false;
     return *this;
 }
 
@@ -487,7 +492,6 @@ void NFSFileHandle::setLinkSource(const nfs_fh& src)
     memcpy(m_linkHandle, src.data, m_linkSize);
     m_isLink = true;
 }
-
 
 NFSProtocol::NFSProtocol(NFSSlave* slave)
     : m_slave(slave)
@@ -544,7 +548,8 @@ void NFSProtocol::removeExportedDir(const QString& path)
 
 void NFSProtocol::addFileHandle(const QString& path, NFSFileHandle fh)
 {
-    m_handleCache.insert(path, fh);
+    if (fh.isInvalid()) qDebug() << "not adding" << path << "with invalid NFSFileHandle";
+    else m_handleCache.insert(path, fh);
 }
 
 NFSFileHandle NFSProtocol::getFileHandle(const QString& path)
@@ -556,6 +561,10 @@ NFSFileHandle NFSProtocol::getFileHandle(const QString& path)
     if (!isValidPath(path)) {
         qCDebug(LOG_KIO_NFS) << path << "is not a valid path";
         return NFSFileHandle();
+    }
+
+    if (path.endsWith('/')) {
+        qCWarning(LOG_KIO_NFS) << "Passed a path ending with '/'.  Fix the caller.";
     }
 
     // The handle may already be in the cache, check it now.
@@ -572,7 +581,7 @@ NFSFileHandle NFSProtocol::getFileHandle(const QString& path)
     // Look up the file handle from the protocol
     NFSFileHandle childFH = lookupFileHandle(path);
     if (!childFH.isInvalid()) {
-        m_handleCache.insert(path, childFH);
+        addFileHandle(path, childFH);
     }
 
     return childFH;

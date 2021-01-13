@@ -61,6 +61,7 @@
 #define NFS3_MAXDATA    32768
 #define NFS3_MAXPATHLEN PATH_MAX
 
+
 NFSProtocolV3::NFSProtocolV3(NFSSlave* slave)
     : NFSProtocol(slave),
       m_slave(slave),
@@ -307,7 +308,6 @@ void NFSProtocolV3::listDir(const QUrl& url)
     }
 
     const QString path(url.path());
-
     // Is it part of an exported(virtual) dir?
     if (isExportedDir(path)) {
         qCDebug(LOG_KIO_NFS) << "Listing virtual dir" << path;
@@ -458,8 +458,8 @@ void NFSProtocolV3::listDir(const QUrl& url)
                     completeBadLinkUDSEntry(entry, dirEntry->name_attributes.post_op_attr_u.attributes);
                 }
             } else {
-                addFileHandle(filePath, static_cast<NFSFileHandle>(dirEntry->name_handle.post_op_fh3_u.handle));
-
+                NFSFileHandle entryFH = dirEntry->name_handle.post_op_fh3_u.handle;
+                addFileHandle(filePath, entryFH);
                 completeUDSEntry(entry, dirEntry->name_attributes.post_op_attr_u.attributes);
             }
 
@@ -485,7 +485,6 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
     }
 
     const QString path(url.path());
-
     // Is it part of an exported (virtual) dir?
     if (NFSProtocol::isExportedDir(path)) {
         QStringList virtualList;
@@ -639,7 +638,6 @@ void NFSProtocolV3::stat(const QUrl& url)
     qCDebug(LOG_KIO_NFS) << url;
 
     const QString path(url.path());
-
     // We can't stat an exported dir, but we know it's a dir.
     if (isExportedDir(path)) {
         KIO::UDSEntry entry;
@@ -746,7 +744,6 @@ void NFSProtocolV3::mkdir(const QUrl& url, int permissions)
     qCDebug(LOG_KIO_NFS) << url;
 
     const QString path(url.path());
-
     const QFileInfo fileInfo(path);
     if (isExportedDir(fileInfo.path())) {
         m_slave->error(KIO::ERR_ACCESS_DENIED, path);
@@ -793,7 +790,6 @@ void NFSProtocolV3::del(const QUrl& url, bool/* isfile*/)
     qCDebug(LOG_KIO_NFS) << url;
 
     const QString path(url.path());
-
     if (isExportedDir(QFileInfo(path).path())) {
         m_slave->error(KIO::ERR_ACCESS_DENIED, path);
         return;
@@ -839,7 +835,6 @@ void NFSProtocolV3::get(const QUrl& url)
     qCDebug(LOG_KIO_NFS) << url;
 
     const QString path(url.path());
-
     const NFSFileHandle fh = getFileHandle(path);
     if (fh.isInvalid() || fh.isBadLink()) {
         m_slave->error(KIO::ERR_DOES_NOT_EXIST, path);
@@ -929,7 +924,6 @@ void NFSProtocolV3::put(const QUrl& url, int _mode, KIO::JobFlags flags)
     qCDebug(LOG_KIO_NFS) << url;
 
     const QString destPath(url.path());
-
     if (isExportedDir(QFileInfo(destPath).path())) {
         m_slave->error(KIO::ERR_WRITE_ACCESS_DENIED, destPath);
         return;
@@ -1064,7 +1058,6 @@ void NFSProtocolV3::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     qCDebug(LOG_KIO_NFS) << src << "to" << dest;
 
     const QString srcPath(src.path());
-
     if (isExportedDir(QFileInfo(srcPath).path())) {
         m_slave->error(KIO::ERR_ACCESS_DENIED, srcPath);
         return;
@@ -1077,7 +1070,6 @@ void NFSProtocolV3::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     }
 
     const QString destPath(dest.path());
-
     if (isExportedDir(QFileInfo(destPath).path())) {
         m_slave->error(KIO::ERR_ACCESS_DENIED, destPath);
         return;
@@ -1301,7 +1293,6 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     qCDebug(LOG_KIO_NFS) << src << "to" << dest;
 
     const QString srcPath(src.path());
-
     const NFSFileHandle srcFH = getFileHandle(srcPath);
     if (srcFH.isInvalid()) {
         m_slave->error(KIO::ERR_DOES_NOT_EXIST, srcPath);
@@ -1309,7 +1300,6 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     }
 
     const QString destPath(dest.path());
-
     // The file exists and we don't want to overwrite.
     if (QFile::exists(destPath) && (_flags & KIO::Overwrite) == 0) {
         m_slave->error(KIO::ERR_FILE_ALREADY_EXIST, destPath);
@@ -1714,7 +1704,6 @@ void NFSProtocolV3::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
 void NFSProtocolV3::symlink(const QString& target, const QUrl& dest, KIO::JobFlags flags)
 {
     const QString destPath(dest.path());
-
     if (isExportedDir(QFileInfo(destPath).path())) {
         m_slave->error(KIO::ERR_ACCESS_DENIED, destPath);
         return;
