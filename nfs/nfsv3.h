@@ -91,6 +91,7 @@ private:
     // UDS helper functions
     void completeUDSEntry(KIO::UDSEntry& entry, const fattr3& attributes);
     void completeBadLinkUDSEntry(KIO::UDSEntry& entry, const fattr3& attributes);
+    void completeInvalidUDSEntry(KIO::UDSEntry& entry);
 
     NFSSlave* m_slave;
 

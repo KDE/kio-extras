@@ -385,6 +385,7 @@ void NFSProtocolV3::listDir(const QUrl& url)
 
         // Not a supported call? Try the old READDIR method.
         if (listres.status == NFS3ERR_NOTSUPP) {
+            qCDebug(LOG_KIO_NFS) << "NFS server does not support READDIRPLUS3, listing in compatibility mode";
             listDirCompat(url);
             return;
         }
@@ -459,8 +460,26 @@ void NFSProtocolV3::listDir(const QUrl& url)
                 }
             } else {
                 NFSFileHandle entryFH = dirEntry->name_handle.post_op_fh3_u.handle;
-                addFileHandle(filePath, entryFH);
-                completeUDSEntry(entry, dirEntry->name_attributes.post_op_attr_u.attributes);
+
+                // Some NFS servers seem to return names from the READDIRPLUS3
+                // call without a valid file handle or attributes.  This has
+                // been observed with a WD MyCloud NAS running Debian wheezy.
+                // The READDIR3 call does not have this problem, but by the time
+                // it can be detected it is too late to repeat the listing in
+                // compatibility mode since some listEntry()'s may already have
+                // been done.
+                //
+                // Accept the name, and assume null values for the attributes.
+                // Do not save the invalid file handle in the cache;  if that
+                // subdirectory is accessed later on it will be listed again
+                // which seems to work properly.
+                if (entryFH.isInvalid()) {
+                    qCDebug(LOG_KIO_NFS) << "NFS server returned invalid handle for" << (path+"/"+dirEntry->name);
+                    completeInvalidUDSEntry(entry);
+                } else {
+                    addFileHandle(filePath, entryFH);
+                    completeUDSEntry(entry, dirEntry->name_attributes.post_op_attr_u.attributes);
+                }
             }
 
             m_slave->listEntry(entry);
@@ -2184,14 +2203,23 @@ void NFSProtocolV3::completeUDSEntry(KIO::UDSEntry& entry, const fattr3& attribu
     entry.replace(KIO::UDSEntry::UDS_GROUP, str);
 }
 
+
 void NFSProtocolV3::completeBadLinkUDSEntry(KIO::UDSEntry& entry, const fattr3& attributes)
 {
-    entry.replace(KIO::UDSEntry::UDS_SIZE, 0LL);
+    completeInvalidUDSEntry(entry);
+
     entry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
     entry.replace(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);
     entry.replace(KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds);
-    entry.replace(KIO::UDSEntry::UDS_FILE_TYPE, S_IFMT - 1);
     entry.replace(KIO::UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IRWXO);
+}
+
+
+void NFSProtocolV3::completeInvalidUDSEntry(KIO::UDSEntry& entry)
+{
+    entry.replace(KIO::UDSEntry::UDS_SIZE, 0);
+    entry.replace(KIO::UDSEntry::UDS_FILE_TYPE, S_IFMT - 1);
+    entry.replace(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
     // The UDS_USER and UDS_GROUP must be string values.  It would be possible
     // to look up appropriate values as in completeUDSEntry() above, but it seems
     // pointless to go to that trouble for an unusable bad link.
