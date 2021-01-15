@@ -365,10 +365,16 @@ void NFSProtocolV3::listDir(const QUrl& url)
         KIO::UDSEntry entry;
         createVirtualDirEntry(entry);
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+        entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
         m_slave->listEntry(entry);
 
-        for (QStringList::const_iterator it = virtualList.constBegin(); it != virtualList.constEnd(); ++it) {
-            entry.replace(KIO::UDSEntry::UDS_NAME, (*it));
+        for (QStringList::const_iterator it = virtualList.constBegin();
+             it != virtualList.constEnd(); ++it) {
+            const QString &name = (*it);
+            entry.replace(KIO::UDSEntry::UDS_NAME, name);
+            if (isExportedDir(dirPrefix+name)) entry.replace(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
+            else entry.replace(KIO::UDSEntry::UDS_ICON_NAME, "folder");
+
             m_slave->listEntry(entry);
         }
 
@@ -699,6 +705,7 @@ void NFSProtocolV3::stat(const QUrl& url)
         KIO::UDSEntry entry;
 
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, path);
+        entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
         createVirtualDirEntry(entry);
 
         m_slave->statEntry(entry);
