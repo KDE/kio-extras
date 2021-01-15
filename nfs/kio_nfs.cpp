@@ -746,15 +746,18 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
     return true;
 }
 
+
+// This uses KIO::UDSEntry::fastInsert() and so must only be called with
+// a blank UDSEntry or one where only UDS_NAME has been filled in.
 void NFSProtocol::createVirtualDirEntry(UDSEntry& entry)
 {
-    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.insert(KIO::UDSEntry::UDS_MIME_TYPE, "inode/directory");
-    entry.insert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
-    entry.insert(KIO::UDSEntry::UDS_USER, QString::fromLatin1("root"));
-    entry.insert(KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root"));
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, "inode/directory");
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::fromLatin1("root"));
+    entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root"));
     // Dummy size.
-    entry.insert(KIO::UDSEntry::UDS_SIZE, 0);
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
 }
 
 #include "moc_kio_nfs.cpp"

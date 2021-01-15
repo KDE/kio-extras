@@ -319,7 +319,7 @@ void NFSProtocolV2::listDir(const QUrl& url)
             qCDebug(LOG_KIO_NFS) << (*it) << "found in exported dir";
 
             KIO::UDSEntry entry;
-            entry.insert(KIO::UDSEntry::UDS_NAME, (*it));
+            entry.fastInsert(KIO::UDSEntry::UDS_NAME, (*it));
 
             createVirtualDirEntry(entry);
             m_slave->listEntry(entry);
@@ -369,7 +369,6 @@ void NFSProtocolV2::listDir(const QUrl& url)
         }
     } while (!listres.readdirres_u.reply.eof);
 
-    KIO::UDSEntry entry;
     for (QStringList::const_iterator it = filesToList.constBegin(); it != filesToList.constEnd(); ++it) {
         QString filePath = QFileInfo(QDir(path), (*it)).filePath();
 
@@ -381,8 +380,8 @@ void NFSProtocolV2::listDir(const QUrl& url)
             continue;
         }
 
-        entry.clear();
-        entry.insert(KIO::UDSEntry::UDS_NAME, (*it));
+        KIO::UDSEntry entry;
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, (*it));
 
         //is it a symlink ?
         if (dirres.diropres_u.diropres.attributes.type == NFLNK) {
@@ -391,7 +390,7 @@ void NFSProtocolV2::listDir(const QUrl& url)
             char nameBuf[NFS_MAXPATHLEN];
             if (symLinkTarget(filePath, rpcStatus, readLinkRes, nameBuf)) {
                 const QString linkDest = QString::fromLocal8Bit(readLinkRes.readlinkres_u.data);
-                entry.insert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
+                entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
 
                 bool badLink = true;
                 NFSFileHandle linkFH;
@@ -428,7 +427,7 @@ void NFSProtocolV2::listDir(const QUrl& url)
 
                 addFileHandle(filePath, linkFH);
             } else {
-                entry.insert(KIO::UDSEntry::UDS_LINK_DEST, i18n("Unknown target"));
+                entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, i18n("Unknown target"));
                 completeBadLinkUDSEntry(entry, dirres.diropres_u.diropres.attributes);
             }
         } else {
@@ -450,7 +449,7 @@ void NFSProtocolV2::stat(const QUrl& url)
     if (isExportedDir(path)) {
         KIO::UDSEntry entry;
 
-        entry.insert(KIO::UDSEntry::UDS_NAME, path);
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, path);
         createVirtualDirEntry(entry);
 
         m_slave->statEntry(entry);
@@ -475,7 +474,7 @@ void NFSProtocolV2::stat(const QUrl& url)
     const QFileInfo fileInfo(path);
 
     KIO::UDSEntry entry;
-    entry.insert(KIO::UDSEntry::UDS_NAME, fileInfo.fileName());
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, fileInfo.fileName());
 
     // Is it a symlink?
     if (attrAndStat.attrstat_u.attributes.type == NFLNK) {
@@ -489,7 +488,7 @@ void NFSProtocolV2::stat(const QUrl& url)
         if (symLinkTarget(path, rpcStatus, readLinkRes, nameBuf)) {
             linkDest = QString::fromLocal8Bit(readLinkRes.readlinkres_u.data);
         } else {
-            entry.insert(KIO::UDSEntry::UDS_LINK_DEST, i18n("Unknown target"));
+            entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, i18n("Unknown target"));
             completeBadLinkUDSEntry(entry, attrAndStat.attrstat_u.attributes);
 
             m_slave->statEntry(entry);
@@ -499,7 +498,7 @@ void NFSProtocolV2::stat(const QUrl& url)
 
         qCDebug(LOG_KIO_NFS) << "link dest is" << linkDest;
 
-        entry.insert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
+        entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
         if (!isValidLink(fileInfo.path(), linkDest)) {
             completeBadLinkUDSEntry(entry, attrAndStat.attrstat_u.attributes);
         } else {
@@ -1803,14 +1802,18 @@ bool NFSProtocolV2::symLink(const QString& target, const QString& dest, int& rpc
 }
 
 
+// This function and completeBadLinkUDSEntry() must use KIO::UDSEntry::replace()
+// because they may be called with a UDSEntry that has already been partially
+// filled in by NFSProtocol::createVirtualDirEntry().
+
 void NFSProtocolV2::completeUDSEntry(KIO::UDSEntry& entry, const fattr& attributes)
 {
-    entry.insert(KIO::UDSEntry::UDS_SIZE, attributes.size);
-    entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
-    entry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);
-    entry.insert(KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds);
-    entry.insert(KIO::UDSEntry::UDS_ACCESS, (attributes.mode & 07777));
-    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, attributes.mode & S_IFMT); // extract file type
+    entry.replace(KIO::UDSEntry::UDS_SIZE, attributes.size);
+    entry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
+    entry.replace(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);
+    entry.replace(KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds);
+    entry.replace(KIO::UDSEntry::UDS_ACCESS, (attributes.mode & 07777));
+    entry.replace(KIO::UDSEntry::UDS_FILE_TYPE, attributes.mode & S_IFMT); // extract file type
 
     QString str;
 
@@ -1827,7 +1830,7 @@ void NFSProtocolV2::completeUDSEntry(KIO::UDSEntry& entry, const fattr& attribut
         str = m_usercache.value(uid);
     }
 
-    entry.insert(KIO::UDSEntry::UDS_USER, str);
+    entry.replace(KIO::UDSEntry::UDS_USER, str);
 
     const gid_t gid = attributes.gid;
     if (!m_groupcache.contains(gid)) {
@@ -1842,17 +1845,20 @@ void NFSProtocolV2::completeUDSEntry(KIO::UDSEntry& entry, const fattr& attribut
         str = m_groupcache.value(gid);
     }
 
-    entry.insert(KIO::UDSEntry::UDS_GROUP, str);
+    entry.replace(KIO::UDSEntry::UDS_GROUP, str);
 }
 
 void NFSProtocolV2::completeBadLinkUDSEntry(KIO::UDSEntry& entry, const fattr& attributes)
 {
-    entry.insert(KIO::UDSEntry::UDS_SIZE, 0LL);
-    entry.insert(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
-    entry.insert(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);
-    entry.insert(KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds);
-    entry.insert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFMT - 1);
-    entry.insert(KIO::UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IRWXO);
-    entry.insert(KIO::UDSEntry::UDS_USER, attributes.uid);
-    entry.insert(KIO::UDSEntry::UDS_GROUP, attributes.gid);
+    entry.replace(KIO::UDSEntry::UDS_SIZE, 0LL);
+    entry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
+    entry.replace(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);
+    entry.replace(KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds);
+    entry.replace(KIO::UDSEntry::UDS_FILE_TYPE, S_IFMT - 1);
+    entry.replace(KIO::UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IRWXO);
+    // The UDS_USER and UDS_GROUP must be string values.  It would be possible
+    // to look up appropriate values as in completeUDSEntry() above, but it seems
+    // pointless to go to that trouble for an unusable bad link.
+    entry.replace(KIO::UDSEntry::UDS_USER, QString::fromLatin1("root"));
+    entry.replace(KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root"));
 }
