@@ -520,26 +520,45 @@ const QStringList& NFSProtocol::getExportedDirs()
     return m_exportedDirs;
 }
 
+
 bool NFSProtocol::isExportedDir(const QString& path)
 {
-    // If the path is the root filesystem we always return true.
-    if (path.isEmpty() || path == "/" || QFileInfo(path).isRoot()) {
+    // See whether the path is an exported directory:  that is, a prefix
+    // of but not identical to any of the server exports.  If it is, then
+    // it can be virtually listed and some operations are forbidden.
+    // For example, if the server exports "/export/nfs/dir" then the root,
+    // "/export" and "/export/nfs" are considered to be exported directories,
+    // but "/export/nfs/dir" is not because it needs a server mount in order
+    // to be listed.
+    //
+    // This function looks similar to, but is not the same as, isValidPath()
+    // below.  This tests for "is the given path a prefix of any exported
+    // directory", but isValidPath() tests for "is any exported directory equal
+    // to or a prefix of the given path".
+
+    // The root is always considered to be exported.
+    if (path.isEmpty() || path == "/" || QFileInfo(path).isRoot())
+    {
         qCDebug(LOG_KIO_NFS) << path << "is root";
         return true;
     }
 
-    for (QStringList::const_iterator it = m_exportedDirs.constBegin(); it != m_exportedDirs.constEnd(); ++it) {
-        if (path.length() < (*it).length() && (*it).startsWith(path)) {
-            QString rest = (*it).mid(path.length());
-            if (rest.isEmpty() || rest[0] == QDir::separator()) {
-                qCDebug(LOG_KIO_NFS) << path << "is exported";
-                return true;
-            }
+    const QString dirPath = path+QDir::separator();
+    for (QStringList::const_iterator it = m_exportedDirs.constBegin();
+         it != m_exportedDirs.constEnd(); ++it) {
+        const QString &exportedDir = (*it);
+        // We know that both 'path' and the contents of m_exportedDirs
+        // have been cleaned of any trailing slashes.
+        if (exportedDir.startsWith(dirPath))
+        {
+            qCDebug(LOG_KIO_NFS) << path << "is exported";
+            return true;
         }
     }
 
     return false;
 }
+
 
 void NFSProtocol::removeExportedDir(const QString& path)
 {
@@ -574,6 +593,7 @@ NFSFileHandle NFSProtocol::getFileHandle(const QString& path)
     }
 
     if (!isValidPath(path)) {
+        // TODO: propagate KIO::ERR_CANNOT_ENTER_DIRECTORY
         qCDebug(LOG_KIO_NFS) << path << "is not a valid path";
         return NFSFileHandle();
     }
@@ -612,21 +632,38 @@ void NFSProtocol::removeFileHandle(const QString& path)
 }
 
 
-// TODO: this seems to be very similar to isExportedDir() above
 bool NFSProtocol::isValidPath(const QString& path)
 {
-    if (path.isEmpty() || path == QDir::separator()) {
+    // See whether the path is or below an exported directory:
+    // that is, any of the server exports is identical to or a prefix
+    // of the path.  If it does not start with an exported prefix,
+    // then it is not a valid NFS file path on the server.
+
+    // This function looks similar to, but is not the same as,
+    // isExportedDir() above.  This tests for "is any exported directory
+    // equal to or is a prefix of the given path", but isExportedDir()
+    // tests for "is the given path a prefix of any exported
+    // directory".
+
+    // The root is always considered to be valid.
+    if (path.isEmpty() || path == "/" || QFileInfo(path).isRoot())
+    {
         return true;
     }
 
-    for (QStringList::const_iterator it = m_exportedDirs.constBegin(); it != m_exportedDirs.constEnd(); ++it) {
-        if ((path.length() == (*it).length() && path.startsWith((*it))) || (path.startsWith((*it) + QDir::separator()))) {
-            return true;
-        }
+    for (QStringList::const_iterator it = m_exportedDirs.constBegin();
+         it != m_exportedDirs.constEnd(); ++it)
+    {
+        const QString &exportedDir = (*it);
+        // We know that both 'path' and the contents of m_exportedDirs
+        // have been cleaned of any trailing slashes.
+        if (path == exportedDir) return true;
+        if (path.startsWith(exportedDir+QDir::separator())) return true;
     }
 
     return false;
 }
+
 
 bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
 {
