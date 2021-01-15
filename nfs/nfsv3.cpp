@@ -248,7 +248,7 @@ void NFSProtocolV3::openConnection()
     }
 
     int exportsCount = 0;
-    QStringList failList;
+    bool mountHint = false;
 
     mountres3 fhStatus;
     for (; exportlist != nullptr; exportlist = exportlist->ex_next, exportsCount++) {
@@ -258,30 +258,51 @@ void NFSProtocolV3::openConnection()
                               (xdrproc_t) xdr_mountres3, reinterpret_cast<caddr_t>(&fhStatus),
                               clnt_timeout);
 
-        if (fhStatus.fhs_status == 0) {
-            QString fname = QFileInfo(QDir("/"), exportlist->ex_dir).filePath();
+        QString fname = QFileInfo(QDir::root(), exportlist->ex_dir).filePath();
+        if (fhStatus.fhs_status == 0) {			// mount succeeded
 
-            // Check if the dir is already exported
-            if (NFSProtocol::isExportedDir(fname)) {
-                continue;
-            }
+            // Check if the directory is already noted as exported,
+            // if so there is no need to add it again.
+            if (NFSProtocol::isExportedDir(fname)) continue;
 
+            // Save the exported directory and its NFS file handle.
             addFileHandle(fname, static_cast<NFSFileHandle>(fhStatus.mountres3_u.mountinfo.fhandle));
             addExportedDir(fname);
-        } else {
-            failList.append(exportlist->ex_dir);
+        } else {					// mount failed with error
+            qCDebug(LOG_KIO_NFS) << "Cannot mount" << fname << "- status" << fhStatus.fhs_status;
+
+            // Even if the mount failed, record the directory path as exported
+            // so that it can be listed as a virtual directory.  However, do
+            // not record its (invalid) file handle in the cache.  Trying to
+            // access the directory in any way other than just listing it, or
+            // accessing anything below it, will be detected in
+            // NFSProtocol::getFileHandle() and fail with an appropriate
+            // error.
+            if (!NFSProtocol::isExportedDir(fname)) addExportedDir(fname);
+
+            // Many modern NFS servers by default reject any access attempted to
+            // them from a non-reserved source port (i.e. above 1024).  Since
+            // this KIO slave runs as a normal user, it is not able to use the
+            // reserved port numbers and hence the access will be rejected.  Show
+            // a hint if this could possibly be the problem - only once, as the
+            // server may have many exported directories.
+            if (fhStatus.fhs_status == MNT3ERR_ACCES) {
+                if (!mountHint) {
+                    qCDebug(LOG_KIO_NFS) << "Check that the NFS server is exporting the filesystem";
+                    qCDebug(LOG_KIO_NFS) << "with appropriate access permissions.  Note that it must";
+                    qCDebug(LOG_KIO_NFS) << "allow mount requests originating from an unprivileged";
+                    qCDebug(LOG_KIO_NFS) << "source port (see exports(5), the 'insecure' option may";
+                    qCDebug(LOG_KIO_NFS) << "be required).";
+                    mountHint = true;
+                }
+            }
         }
     }
-    if (failList.size() > 0) {
-        m_slave->error(KIO::ERR_CANNOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
 
-        // All exports failed to mount, fail
-        if (failList.size() == exportsCount) {
-            closeConnection();
-            return;
-        }
-    }
-
+    // If nothing can be mounted then there is no point trying to open the
+    // NFS server connection here.  However, call openConnection() anyway
+    // and pretend that we are connected so that listing virtual directories
+    // will work.
     if ((connErr = NFSProtocol::openConnection(m_currentHost, NFSPROG, NFSVERS, m_nfsClient, m_nfsSock)) != 0) {
         closeConnection();
         m_slave->error(connErr, m_currentHost);
@@ -296,6 +317,8 @@ void NFSProtocolV3::listDir(const QUrl& url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
+    // TODO: this only needs be checked if not listing a virtual directory,
+    // so it can be moved down to after the 'if (isExportedDir(path))' test.
     // We should always be connected if it reaches this point,
     // but better safe than sorry!
     if (!isConnected()) {
@@ -312,20 +335,29 @@ void NFSProtocolV3::listDir(const QUrl& url)
     if (isExportedDir(path)) {
         qCDebug(LOG_KIO_NFS) << "Listing virtual dir" << path;
 
+        QString dirPrefix = path;
+        if (dirPrefix!="/") dirPrefix += QDir::separator();
+
         QStringList virtualList;
-        for (QStringList::const_iterator it = getExportedDirs().constBegin(); it != getExportedDirs().constEnd(); ++it) {
-            // When an export is multiple levels deep(/mnt/nfs for example) we only
-            // want to display one level at a time.
-            QString name = (*it);
-            name = name.remove(0, path.length());
-            if (name.startsWith(QDir::separator())) {
-                name = name.mid(1);
-            }
-            if (name.indexOf(QDir::separator()) != -1) {
-                name.truncate(name.indexOf(QDir::separator()));
-            }
+        const QStringList exportedDirs = getExportedDirs();
+        for (QStringList::const_iterator it = exportedDirs.constBegin(); it != exportedDirs.constEnd(); ++it) {
+
+            // When an export is multiple levels deep (for example "/export/nfs/dir"
+            // where "/export" is being listed), we only want to display one level
+            // ("nfs") at a time.  Find all of the exported directories that are
+            // below the 'dirPrefix', and list the first (or only) path component
+            // of each.
+
+            QString name = (*it);			// this exported directory
+            if (!name.startsWith(dirPrefix)) continue;	// not below this prefix
+
+            name = name.mid(dirPrefix.length());	// remainder after the prefix
+
+            const int idx = name.indexOf(QDir::separator());
+            if (idx!=-1) name = name.left(idx);		// take first path component
 
             if (!virtualList.contains(name)) {
+                qCDebug(LOG_KIO_NFS) << "Found exported" << name;
                 virtualList.append(name);
             }
         }
@@ -336,8 +368,6 @@ void NFSProtocolV3::listDir(const QUrl& url)
         m_slave->listEntry(entry);
 
         for (QStringList::const_iterator it = virtualList.constBegin(); it != virtualList.constEnd(); ++it) {
-            qCDebug(LOG_KIO_NFS) << "Found " << (*it) << "in exported dir";
-
             entry.replace(KIO::UDSEntry::UDS_NAME, (*it));
             m_slave->listEntry(entry);
         }
@@ -493,6 +523,9 @@ void NFSProtocolV3::listDir(const QUrl& url)
 
 void NFSProtocolV3::listDirCompat(const QUrl& url)
 {
+    // TODO: the next two checks will have already been
+    // done in listDir().
+
     // We should always be connected if it reaches this point,
     // but better safe than sorry!
     if (!isConnected()) {
@@ -504,6 +537,11 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
     }
 
     const QString path(url.path());
+
+    // TODO: can never get here, if an exported dir it will have been
+    // checked in listDir() and there will have been no attempt to
+    // access the NFS server.
+
     // Is it part of an exported (virtual) dir?
     if (NFSProtocol::isExportedDir(path)) {
         QStringList virtualList;

@@ -558,17 +558,36 @@ NFSFileHandle NFSProtocol::getFileHandle(const QString& path)
         return NFSFileHandle();
     }
 
+    if (m_exportedDirs.contains(path))
+    {
+        // All exported directories should have already been stored in
+        // m_handleCache by the protocol's openConnection().  If any
+        // exported directory could not be mounted, then it will be in
+        // m_exportedDirs but not in m_handleCache.  There is nothing more
+        // that can be done in this case.
+        //
+        // TODO: This situation should really be propagated up to the
+        // caller as KIO::ERR_CANNOT_MOUNT.
+        if (!m_handleCache.contains(path)) {
+            return NFSFileHandle();
+        }
+    }
+
     if (!isValidPath(path)) {
         qCDebug(LOG_KIO_NFS) << path << "is not a valid path";
         return NFSFileHandle();
     }
 
+    // In theory the root ("/") is a valid path but matches here.
+    // However, it should never be seen unless the NFS server is
+    // exporting its entire filesystem (which is very unlikely).
     if (path.endsWith('/')) {
         qCWarning(LOG_KIO_NFS) << "Passed a path ending with '/'.  Fix the caller.";
     }
 
     // The handle may already be in the cache, check it now.
-    // The exported dirs are always in the cache.
+    // The exported dirs are always in the cache, unless there was a
+    // problem mounting them which will have been checked above.
     if (m_handleCache.contains(path)) {
         return m_handleCache[path];
     }
@@ -592,6 +611,8 @@ void NFSProtocol::removeFileHandle(const QString& path)
     m_handleCache.remove(path);
 }
 
+
+// TODO: this seems to be very similar to isExportedDir() above
 bool NFSProtocol::isValidPath(const QString& path)
 {
     if (path.isEmpty() || path == QDir::separator()) {
