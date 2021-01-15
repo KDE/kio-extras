@@ -370,7 +370,8 @@ void NFSProtocolV3::listDir(const QUrl& url)
 
         for (QStringList::const_iterator it = virtualList.constBegin();
              it != virtualList.constEnd(); ++it) {
-            const QString &name = (*it);
+            const QString &name = (*it);		// this listed directory
+
             entry.replace(KIO::UDSEntry::UDS_NAME, name);
             if (isExportedDir(dirPrefix+name)) entry.replace(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
             else entry.replace(KIO::UDSEntry::UDS_ICON_NAME, "folder");
@@ -700,11 +701,25 @@ void NFSProtocolV3::stat(const QUrl& url)
     qCDebug(LOG_KIO_NFS) << url;
 
     const QString path(url.path());
-    // We can't stat an exported dir, but we know it's a dir.
-    if (isExportedDir(path)) {
-        KIO::UDSEntry entry;
+    if (path.isEmpty())
+    {
+        // Displaying a location with an empty path (e.g. "nfs://server")
+        // seems to confuse Konqueror, it will not descend into the first
+        // level directory.  The same location with a root path ("nfs://server/")
+        // works, so redirect to that.
+        QUrl redir = url.resolved(QUrl("/"));
+        qDebug() << "root with empty path, redirecting to" << redir;
+        m_slave->redirection(redir);
+        m_slave->finished();
+        return;
+    }
 
-        entry.fastInsert(KIO::UDSEntry::UDS_NAME, path);
+    // We can't stat an exported directory on the NFS server,
+    // but we know that it must be a directory.
+    if (isExportedDir(path))
+    {
+        KIO::UDSEntry entry;
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
         entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
         createVirtualDirEntry(entry);
 
