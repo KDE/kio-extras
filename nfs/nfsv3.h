@@ -65,7 +65,7 @@ protected:
     NFSFileHandle lookupFileHandle(const QString& path) override;
 
 private:
-    bool create(const QString& path, int mode, int& rpcStatus, CREATE3res& result);
+    NFSFileHandle create(const QString& path, int mode);
 
     bool getAttr(const QString& path, int& rpcStatus, GETATTR3res& result);
 

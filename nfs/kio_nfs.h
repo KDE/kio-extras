@@ -50,6 +50,8 @@ public:
     void openConnection() override;
     void closeConnection() override;
 
+    void setError(KIO::Error errid, const QString &text);
+
     void setHost(const QString& host, quint16 port, const QString& user, const QString& pass) override;
 
     void put(const QUrl& url, int _mode, KIO::JobFlags _flags) override;
@@ -63,9 +65,14 @@ public:
     void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) override;
     void copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) override;
 
+    // TODO: when all converted
+    //void finished() = delete;
+    //void error(int errid, const QString &text) = delete;
+
 protected:
     // Verifies the URL, current protocol and connection state, returns true if valid.
     bool verifyProtocol(const QUrl &url);
+    void finishOperation();
 
 private:
     NFSProtocol* m_protocol;
@@ -73,6 +80,9 @@ private:
     // We need to cache this because the @openConnection call is responsible
     // for creating the protocol, and the @setHost call might happen before that.
     QString m_host;
+
+    KIO::Error m_errorId;
+    QString m_errorText;
 };
 
 
@@ -187,7 +197,7 @@ protected:
     bool isValidPath(const QString& path);
     bool isValidLink(const QString& parentDir, const QString& linkDest);
 
-    int openConnection(const QString& host, int prog, int vers, CLIENT*& client, int& sock);
+    KIO::Error openConnection(const QString& host, int prog, int vers, CLIENT*& client, int& sock);
 
     bool checkForError(int clientStat, int nfsStat, const QString& text);
 
