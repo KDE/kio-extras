@@ -96,9 +96,6 @@ void NFSSlave::openConnection()
 {
     qCDebug(LOG_KIO_NFS);
 
-    m_errorId = KIO::Error(0);				// ensure reset before starting
-    m_errorText.clear();
-
     // TODO: check for valid and resolvable host name
     // before trying protocol
 
@@ -149,9 +146,9 @@ void NFSSlave::openConnection()
             // If we could not find a compatible protocol, send an error.
             if (!connectionError) {
                 // TODO: ERR_UNSUPPORTED_PROTOCOL
-                error(KIO::ERR_CANNOT_CONNECT, i18n("%1: Unsupported NFS version", m_host));
+                SlaveBase::error(KIO::ERR_CANNOT_CONNECT, i18n("%1: Unsupported NFS version", m_host));
             } else {
-                error(KIO::ERR_CANNOT_CONNECT, m_host);
+                SlaveBase::error(KIO::ERR_CANNOT_CONNECT, m_host);
             }
         } else {
             // Otherwise we open the connection
@@ -298,6 +295,9 @@ bool NFSSlave::verifyProtocol(const QUrl &url)
     // is required in this case.
     if (url.scheme() != "nfs") return true;
 
+    m_errorId = KIO::Error(0);				// ensure reset before starting
+    m_errorText.clear();
+
     // A NFS URL must include a host name, if it does not then nothing
     // sensible can be done.  Doing the check here and returning immediately
     // avoids multiple calls of SlaveBase::error() as each protocol is tried
@@ -360,9 +360,9 @@ void NFSSlave::setError(KIO::Error errid, const QString &text)
 void NFSSlave::finishOperation()
 {
     if (m_errorId==0) {					// no error encountered
-        finished();
+        SlaveBase::finished();
     } else {						// there was an error
-        error(m_errorId, m_errorText);
+        SlaveBase::error(m_errorId, m_errorText);
     }
 }
 

@@ -227,8 +227,8 @@ void NFSProtocolV3::openConnection()
     // Destroy the old connection first
     closeConnection();
 
-    KIO::Error connErr;
-    if ((connErr = NFSProtocol::openConnection(m_currentHost, MOUNT_PROGRAM, MOUNT_V3, m_mountClient, m_mountSock)) != 0) {
+    KIO::Error connErr = NFSProtocol::openConnection(m_currentHost, MOUNT_PROGRAM, MOUNT_V3, m_mountClient, m_mountSock);
+    if (connErr != 0) {
         closeConnection();
         m_slave->setError(connErr, m_currentHost);
         return;
@@ -848,6 +848,7 @@ void NFSProtocolV3::mkdir(const QUrl& url, int permissions)
     checkForError(clnt_stat, dirres.status, path);
 }
 
+
 void NFSProtocolV3::del(const QUrl& url, bool/* isfile*/)
 {
     qCDebug(LOG_KIO_NFS) << url;
@@ -860,11 +861,10 @@ void NFSProtocolV3::del(const QUrl& url, bool/* isfile*/)
 
     int rpcStatus;
     REMOVE3res res;
-    if (!remove(path, rpcStatus, res)) {
-        checkForError(rpcStatus, res.status, path);
-        return;
-    }
+    remove(path, rpcStatus, res);
+    checkForError(rpcStatus, res.status, path);
 }
+
 
 void NFSProtocolV3::chmod(const QUrl& url, int permissions)
 {
@@ -883,11 +883,10 @@ void NFSProtocolV3::chmod(const QUrl& url, int permissions)
 
     int rpcStatus;
     SETATTR3res setAttrRes;
-    if (!setAttr(path, attributes, rpcStatus, setAttrRes)) {
-        checkForError(rpcStatus, setAttrRes.status, path);
-        return;
-    }
+    setAttr(path, attributes, rpcStatus, setAttrRes);
+    checkForError(rpcStatus, setAttrRes.status, path);
 }
+
 
 void NFSProtocolV3::get(const QUrl& url)
 {
@@ -1090,11 +1089,10 @@ void NFSProtocolV3::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags _fla
 
     int rpcStatus;
     RENAME3res res;
-    if (!rename(srcPath, destPath, rpcStatus, res)) {
-        checkForError(rpcStatus, res.status, destPath);
-        return;
-    }
+    rename(srcPath, destPath, rpcStatus, res);
+    checkForError(rpcStatus, res.status, destPath);
 }
+
 
 void NFSProtocolV3::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::JobFlags _flags)
 {

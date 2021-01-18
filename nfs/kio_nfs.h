@@ -50,8 +50,6 @@ public:
     void openConnection() override;
     void closeConnection() override;
 
-    void setError(KIO::Error errid, const QString &text);
-
     void setHost(const QString& host, quint16 port, const QString& user, const QString& pass) override;
 
     void put(const QUrl& url, int _mode, KIO::JobFlags _flags) override;
@@ -65,9 +63,10 @@ public:
     void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) override;
     void copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags flags) override;
 
-    // TODO: when all converted
-    //void finished() = delete;
-    //void error(int errid, const QString &text) = delete;
+    void setError(KIO::Error errid, const QString &text);
+    // NFSProtocol should not call these.  See setError() and finishOperation().
+    void finished() = delete;
+    void error(int errid, const QString &text) = delete;
 
 protected:
     // Verifies the URL, current protocol and connection state, returns true if valid.
