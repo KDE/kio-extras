@@ -96,9 +96,6 @@ void NFSSlave::openConnection()
 {
     qCDebug(LOG_KIO_NFS);
 
-    // TODO: check for valid and resolvable host name
-    // before trying protocol
-
     if (m_protocol != nullptr) {
         m_protocol->openConnection();
     } else {
@@ -141,14 +138,12 @@ void NFSSlave::openConnection()
             m_protocol = nullptr;
         }
 
-
         if (m_protocol == nullptr) {
             // If we could not find a compatible protocol, send an error.
             if (!connectionError) {
-                // TODO: ERR_UNSUPPORTED_PROTOCOL
-                SlaveBase::error(KIO::ERR_CANNOT_CONNECT, i18n("%1: Unsupported NFS version", m_host));
+                setError(KIO::ERR_SLAVE_DEFINED, i18n("Cannot find an NFS version that host '%1' supports", m_host));
             } else {
-                SlaveBase::error(KIO::ERR_CANNOT_CONNECT, m_host);
+                setError(KIO::ERR_CANNOT_CONNECT, m_host);
             }
         } else {
             // Otherwise we open the connection
@@ -302,11 +297,27 @@ bool NFSSlave::verifyProtocol(const QUrl &url)
     // sensible can be done.  Doing the check here and returning immediately
     // avoids multiple calls of SlaveBase::error() as each protocol is tried
     // in NFSSlave::openConnection().
-    if (url.host().isEmpty())
+
+    const QString host = url.host();
+    if (host.isEmpty())
     {
-        // TODO: ERR_UNKNOWN_HOST with a blank host name
+        // KIO::ERR_UNKNOWN_HOST with a blank host name results in the
+        // error message "No hostname specified", but Konqueror does not
+        // report it properly.  Return our own message.
         setError(KIO::ERR_SLAVE_DEFINED, i18n("The NFS protocol requires a server host name."));
         goto fail;
+    }
+    else
+    {
+        // There is a host name, so check that it can be resolved.  If it
+        // can't, return an error now and don't bother trying the protocol.
+        QHostInfo hostInfo = QHostInfo::fromName(host);
+        if (hostInfo.error() != QHostInfo::NoError)
+        {
+            qCDebug(LOG_KIO_NFS) << "host lookup of" << host << "error" << hostInfo.errorString();
+            setError(KIO::ERR_UNKNOWN_HOST, host);
+            goto fail;
+        }
     }
 
     if (m_protocol==nullptr)				// no protocol connection yet
@@ -335,9 +346,9 @@ fail:							// default error if none already
 // and return the error or finish the operation appropriately when
 // the operation is complete.
 //
-// NFSProtocol and classes derived from it should call NFSSlave::setError()
-// instead of SlaveBase::error().  When the operation is complete, just return
-// and do not call SlaveBase::finished().
+// NFSProtocol and classes derived from it, and anything that they call,
+// should call setError() instead of SlaveBase::error().  When the
+// operation is complete, just return and do not call SlaveBase::finished().
 
 // Record the error information, but do not call SlaveBase::error().
 // If there has been an error, finishOperation() will report it when
@@ -731,9 +742,14 @@ bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
 
 KIO::Error NFSProtocol::openConnection(const QString& host, int prog, int vers, CLIENT*& client, int& sock)
 {
+    // NFSSlave::verifyProtocol() should already have checked that
+    // the host name is not blank and is resolveable, so the two
+    // KIO::ERR_UNKNOWN_HOST failures here should never happen.
+
     if (host.isEmpty()) {
         return KIO::ERR_UNKNOWN_HOST;
     }
+
     struct sockaddr_in server_addr;
     if (host[0] >= '0' && host[0] <= '9') {
         server_addr.sin_family = AF_INET;
