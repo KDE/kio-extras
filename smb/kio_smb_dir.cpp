@@ -1,6 +1,7 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
     SPDX-FileCopyrightText: 2000 Caldera Systems, Inc.
+    SPDX-FileCopyrightText: 2021 Harald Sitter <sitter@kde.org>
     SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
 */
 
@@ -638,6 +639,23 @@ void SMBSlave::mkdir(const QUrl &kurl, int permissions)
     }
 }
 
+static bool sameInodeStat(bool hasSrcStat, const struct stat srcStat, const struct stat dstStat)
+{
+    if (!hasSrcStat) {
+        return false;
+    }
+    const auto badInode = static_cast<ino_t>(-1); // Fun fact: smb actually has code paths that can return -1 cast to ino_t (i.e. unsigned) ... ... ... :(
+    if (srcStat.st_ino == badInode || dstStat.st_ino == badInode) {
+        // If either returns a bad inode we don't know and assume they aren't the same entity.
+        return false;
+    }
+    const bool equal = (srcStat.st_ino == dstStat.st_ino && srcStat.st_dev == dstStat.st_dev);
+    qDebug(KIO_SMB_LOG) << "sameInodeStat"
+                        << "equal" << equal << "hasSrcStat" << hasSrcStat << "srcStat.st_ino" << srcStat.st_ino << "dstStat.st_ino" << dstStat.st_ino
+                        << "badInode" << badInode << "srcStat.st_dev" << srcStat.st_dev << "dstStat.st_dev" << dstStat.st_dev;
+    return equal;
+}
+
 void SMBSlave::rename(const QUrl &ksrc, const QUrl &kdest, KIO::JobFlags flags)
 {
     SMBUrl src;
@@ -651,10 +669,22 @@ void SMBSlave::rename(const QUrl &ksrc, const QUrl &kdest, KIO::JobFlags flags)
     dst = kdest;
 
     // Check to se if the destination exists
-
-    qCDebug(KIO_SMB_LOG) << "stat dst";
+    // Samba can be case sensitive or insensitive, depending on server capabilities and configuration. As such if the src and dst have the same case insensitive
+    // name we'll stat the src to ascertain its inode and device. On recent samba and windows servers these seem to provide actually valid numbers we can rely
+    // on. When not we can still pretend like they aren't the same file. Worst case the user gets an overwrite prompt.
+    // https://bugs.kde.org/show_bug.cgi?id=430585
+    bool hasSrcStat = false;
+    struct stat srcStat{};
+    if (src.path().compare(dst.path(), Qt::CaseInsensitive) == 0) {
+        qCDebug(KIO_SMB_LOG) << "smbc_rename " << "src and dst insensitive equal, performing inode comparision";
+        errNum = cache_stat(dst, &st);
+        if (errNum == 0) {
+            hasSrcStat = true;
+            srcStat = st;
+        }
+    }
     errNum = cache_stat(dst, &st);
-    if (errNum == 0) {
+    if (errNum == 0 && !sameInodeStat(hasSrcStat, srcStat, st)) {
         if (S_ISDIR(st.st_mode)) {
             qCDebug(KIO_SMB_LOG) << "KIO::ERR_DIR_ALREADY_EXIST";
             error(KIO::ERR_DIR_ALREADY_EXIST, dst.toDisplayString());
@@ -666,6 +696,7 @@ void SMBSlave::rename(const QUrl &ksrc, const QUrl &kdest, KIO::JobFlags flags)
             return;
         }
     }
+
     qCDebug(KIO_SMB_LOG) << "smbc_rename " << src.toSmbcUrl() << " " << dst.toSmbcUrl();
     retVal = smbc_rename(src.toSmbcUrl(), dst.toSmbcUrl());
     if (retVal < 0) {
