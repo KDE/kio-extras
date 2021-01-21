@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-// SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
+// SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
 
 #include <KDirNotify>
 #include <KPasswdServerClient>
@@ -10,10 +10,14 @@
 #include <QScopeGuard>
 #include <QUrl>
 #include <QElapsedTimer>
+#include <QTimer>
+#include <QThread>
 
 #include <smbcontext.h>
 #include <smbauthenticator.h>
 #include <smb-logsettings.h>
+
+#include <mutex>
 
 #include <errno.h>
 
@@ -40,6 +44,86 @@ public:
     {
         return !from.isEmpty() && !to.isEmpty();
     }
+};
+
+// Renaming a file on Windows 10 first sends a removal event followed by a rename event, this messes with stateful assumptions made in the receiving code as
+// we'd remove a file and then move a no longer existing file. This helper queues the removal with an auto timer but the option to discard it should
+// a move appear as next event indicator.
+// https://bugs.kde.org/show_bug.cgi?id=431877
+class PendingRemove
+{
+    Q_DISABLE_COPY(PendingRemove)
+public:
+    PendingRemove()
+    {
+        // A tad awkward. The main thread is actually blocked by libsmb, and libsmb isn't really safe to use on more than one thread.
+        // libsmb does provide a polling system but that is simply a timer that would wake us up after a fixed timeout effectively amounting
+        // to polling - less than ideal.
+        // Instead put our timer into a different thread and fully lock this object. This way we get neatly efficient event looping for the timer.
+        m_timer.moveToThread(&m_timerThread);
+        // The timing is probably tight given networking is involved but we needn't wait too long as this directly impacts delay in GUI updates.
+        m_timer.setInterval(1000);
+        QObject::connect(&m_timer, &QTimer::timeout, [this] {
+            const std::lock_guard<std::mutex> lock(m_mutex);
+            sendWithLock();
+        });
+        m_timerThread.start();
+    }
+
+    ~PendingRemove()
+    {
+        m_timerThread.quit();
+        m_timerThread.wait();
+    }
+
+    void schedule(const QUrl &url)
+    {
+        const std::lock_guard<std::mutex> lock(m_mutex);
+        if (url.isEmpty()) {
+            return;
+        }
+        Q_ASSERT(m_url.isEmpty());
+        m_url = url;
+        QMetaObject::invokeMethod(&m_timer, QOverload<>::of(&QTimer::start)); // timers may not be started from foreign threads!
+    }
+
+    // A new event arrived. If it is the start of a move on the same url then discard the removal otherwise send it immediately as the remove
+    // probably(?) doesn't translate to a move. It's unclear if this could technically be racing or not, we get two callbacks from libsmb so
+    // the remove and the rename may be in separate packets (opening opportunity for event racing) or not.
+    void newEventFor(uint32_t action, const QUrl &url)
+    {
+        const std::lock_guard<std::mutex> lock(m_mutex);
+        if (m_url.isEmpty()) {
+            return;
+        }
+        if (action == SMBC_NOTIFY_ACTION_OLD_NAME && url == m_url) {
+            qCDebug(KIO_SMB_LOG) << "Discarding pending remove because it was followed by a move from the same url" << m_url;
+            resetWithLock();
+        } else {
+            sendWithLock();
+        }
+    }
+
+private:
+    void sendWithLock()
+    {
+        if (m_url.isEmpty()) {
+            return;
+        }
+        OrgKdeKDirNotifyInterface::emitFilesRemoved({m_url});
+        resetWithLock();
+    }
+
+    void resetWithLock()
+    {
+        QMetaObject::invokeMethod(&m_timer, &QTimer::stop); // timers may not be stopped from foreign threads!
+        m_url.clear();
+    }
+
+    std::mutex m_mutex;
+    QThread m_timerThread;
+    QTimer m_timer;
+    QUrl m_url;
 };
 
 // Rate limit modification signals. SMB will send modification actions
@@ -129,8 +213,9 @@ int main(int argc, char **argv)
         const QUrl url;
         // Modification happens a lot, rate limit the notifications going through dbus.
         ModificationLimiter modificationLimiter;
+        PendingRemove pendingRemove;
     };
-    NotifyContext context { QUrl(parser.positionalArguments().at(0)), {} };
+    NotifyContext context {QUrl(parser.positionalArguments().at(0)), {}, {}};
 
     auto notify = [](const struct smbc_notify_callback_action *actions, size_t num_actions, void *private_data) -> int {
         auto *context = static_cast<NotifyContext *>(private_data);
@@ -158,12 +243,14 @@ int main(int argc, char **argv)
                 context->modificationLimiter.forget(url);
             }
 
+            context->pendingRemove.newEventFor(actions->action, url);
+
             switch (actions->action) {
             case SMBC_NOTIFY_ACTION_ADDED:
                 OrgKdeKDirNotifyInterface::emitFilesAdded(context->url /* dir */);
                 continue;
             case SMBC_NOTIFY_ACTION_REMOVED:
-                OrgKdeKDirNotifyInterface::emitFilesRemoved({url});
+                context->pendingRemove.schedule(url);
                 continue;
             case SMBC_NOTIFY_ACTION_MODIFIED:
                 context->modificationLimiter.notify(url);
@@ -204,6 +291,7 @@ int main(int argc, char **argv)
     // Values @ 2.2.35 SMB2 CHANGE_NOTIFY Request
     //   https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/598f395a-e7a2-4cc8-afb3-ccb30dd2df7c
     // Not subscribing to stream changes see the callback handler for details.
+
     const int nh = smbc_notify(dh,
                                0 /* not recursive */,
                                SMBC_NOTIFY_CHANGE_FILE_NAME |
