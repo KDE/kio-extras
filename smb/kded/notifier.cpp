@@ -28,7 +28,7 @@ public:
     }
 };
 
-// Trivial move action wrapper. Moves happen in two subsqeuent events so
+// Trivial move action wrapper. Moves happen in two subsequent events so
 // we need to preserve the context across one iteration.
 class MoveAction
 {
@@ -76,7 +76,7 @@ public:
         OrgKdeKDirNotifyInterface::emitFilesChanged({url});
     }
 
-    // A non-move event occured on this URL. If the url is in the limiter then throw it out to reclaim the memory.
+    // A non-move event occurred on this URL. If the url is in the limiter then throw it out to reclaim the memory.
     // A non-move means the url was otherwise transformed which by extension means the modification must have
     // concluded. We do not emit a final change here because the current non-move event would imply a specific change
     // anyway.
@@ -139,7 +139,7 @@ int main(int argc, char **argv)
         //   https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-fasod/271a36e8-c94b-4527-8735-e884f5504cd9
         //   https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/14f9d050-27b2-49df-b009-54e08e8bf7b5
 
-        qCDebug(KIO_SMB_LOG) << "notifiying for n actions:" << num_actions;
+        qCDebug(KIO_SMB_LOG) << "notifying for n actions:" << num_actions;
 
         // Moves are a bit award. They arrive in two subsequent events this object helps us collect the events.
         MoveAction pendingMove;
