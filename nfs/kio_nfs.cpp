@@ -626,7 +626,7 @@ void NFSProtocol::removeExportedDir(const QString& path)
 
 void NFSProtocol::addFileHandle(const QString& path, NFSFileHandle fh)
 {
-    if (fh.isInvalid()) qDebug() << "not adding" << path << "with invalid NFSFileHandle";
+    if (fh.isInvalid()) qCDebug(LOG_KIO_NFS) << "not adding" << path << "with invalid NFSFileHandle";
     else m_handleCache.insert(path, fh);
 }
 
@@ -722,21 +722,28 @@ bool NFSProtocol::isValidPath(const QString& path)
 }
 
 
-bool NFSProtocol::isValidLink(const QString& parentDir, const QString& linkDest)
+bool NFSProtocol::isValidLink(const QString &parentDir, const QString &linkDest)
 {
-    if (linkDest.isEmpty()) {
+    qCDebug(LOG_KIO_NFS) << "checking" << linkDest << "in" << parentDir;
+
+    if (linkDest.isEmpty()) return false;		// ensure link is absolute
+    const QString absDest = QFileInfo(parentDir, linkDest).absoluteFilePath();
+
+    // The link target may not be valid on the NFS server (i.e. it may
+    // point outside of the exported directories).  Check for this before
+    // calling getFileHandle() for the target of the link, as otherwise
+    // the isValidPath() check in getFileHandle() will set the error
+    // ERR_CANNOT_ENTER_DIRECTORY which will be taken as the result of
+    // the NFS operation.  This is not an error condition if just checking
+    // the target of a link, so do the same check here but ignore any error.
+    if (!isValidPath(absDest))
+    {
+        qCDebug(LOG_KIO_NFS) << "target" << absDest << "is invalid";
         return false;
     }
 
-    if (QFileInfo(linkDest).isAbsolute()) {
-        return (!getFileHandle(linkDest).isInvalid());
-    } else {
-        QString absDest = QFileInfo(parentDir, linkDest).filePath();
-        absDest = QDir::cleanPath(absDest);
-        return (!getFileHandle(absDest).isInvalid());
-    }
-
-    return false;
+    // It is now safe to call getFileHandle() on the link target.
+    return (!getFileHandle(absDest).isInvalid());
 }
 
 

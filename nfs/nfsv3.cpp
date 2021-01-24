@@ -160,10 +160,11 @@ void NFSProtocolV3::closeConnection()
 
 NFSFileHandle NFSProtocolV3::lookupFileHandle(const QString& path)
 {
+    NFSFileHandle fh;
     int rpcStatus;
     LOOKUP3res res;
     if (lookupHandle(path, rpcStatus, res)) {
-        NFSFileHandle fh = res.LOOKUP3res_u.resok.object;
+        fh = res.LOOKUP3res_u.resok.object;
 
         // Is it a link? Get the link target.
         if (res.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.type == NF3LNK) {
@@ -182,36 +183,39 @@ NFSFileHandle NFSProtocolV3::lookupFileHandle(const QString& path)
                                       (xdrproc_t) xdr_READLINK3res, reinterpret_cast<caddr_t>(&readLinkRes),
                                       clnt_timeout);
 
-            if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS3_OK) {
-                const QString linkDest = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
-                QString linkPath;
-                if (QFileInfo(linkDest).isAbsolute()) {
-                    linkPath = linkDest;
-                } else {
-                    linkPath = QFileInfo(QFileInfo(path).path(), linkDest).absoluteFilePath();
-                }
+            if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS3_OK)
+            {						// get the absolute link target
+                QString linkPath = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
+                linkPath = QFileInfo(QFileInfo(path).path(), linkPath).absoluteFilePath();
 
-                LOOKUP3res linkRes;
-                if (lookupHandle(linkPath, rpcStatus, linkRes)) {
-                    // It's a link, so return the target file handle, and add the link source to it.
-                    NFSFileHandle linkFh = linkRes.LOOKUP3res_u.resok.object;
-                    linkFh.setLinkSource(res.LOOKUP3res_u.resok.object);
-
-                    qCDebug(LOG_KIO_NFS) << "Found target -" << linkPath;
-
-                    return linkFh;
+                // As with the tests done in NFSProtocol::isValidLink(), the link
+                // target may not be valid on the NFS server (i.e. it may point
+                // outside of the exported directories).  Check for this before
+                // calling lookupHandle() on the target of the link, as otherwise
+                // an error will be set which is not relevant.
+                if (isValidPath(linkPath))
+                {
+                    LOOKUP3res linkRes;
+                    if (lookupHandle(linkPath, rpcStatus, linkRes))
+                    {
+                        // It's a link, so return the target file handle
+                        // with the link source recorded in it.
+                        NFSFileHandle linkFh = linkRes.LOOKUP3res_u.resok.object;
+                        linkFh.setLinkSource(res.LOOKUP3res_u.resok.object);
+                        qCDebug(LOG_KIO_NFS) << "Found link target" << linkPath;
+                        return linkFh;
+                    }
                 }
             }
 
-            // If we have reached this point the file is a link, but we failed to get the target.
+            // If we have reached this point the file is a link,
+            // but we failed to read the target.
             fh.setBadLink();
-            qCDebug(LOG_KIO_NFS) << path << "is an invalid link!!";
+            qCDebug(LOG_KIO_NFS) << "Invalid link" << path;
         }
-
-        return fh;
     }
 
-    return NFSFileHandle();
+    return fh;
 }
 
 /* Open connection connects to the mount daemon on the server side.
@@ -263,7 +267,7 @@ void NFSProtocolV3::openConnection()
 
             // Check if the directory is already noted as exported,
             // if so there is no need to add it again.
-            if (NFSProtocol::isExportedDir(fname)) continue;
+            if (isExportedDir(fname)) continue;
 
             // Save the exported directory and its NFS file handle.
             addFileHandle(fname, static_cast<NFSFileHandle>(fhStatus.mountres3_u.mountinfo.fhandle));
@@ -278,7 +282,7 @@ void NFSProtocolV3::openConnection()
             // accessing anything below it, will be detected in
             // NFSProtocol::getFileHandle() and fail with an appropriate
             // error.
-            if (!NFSProtocol::isExportedDir(fname)) addExportedDir(fname);
+            if (!isExportedDir(fname)) addExportedDir(fname);
 
             // Many modern NFS servers by default reject any access attempted to
             // them from a non-reserved source port (i.e. above 1024).  Since
@@ -317,16 +321,8 @@ void NFSProtocolV3::listDir(const QUrl& url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
-    // TODO: this only needs be checked if not listing a virtual directory,
-    // so it can be moved down to after the 'if (isExportedDir(path))' test.
-    // We should always be connected if it reaches this point,
-    // but better safe than sorry!
-    if (!isConnected()) {
-        return;
-    }
-
     if (url.isEmpty()) {
-        m_slave->setError(KIO::ERR_DOES_NOT_EXIST, url.path());
+        m_slave->setError(KIO::ERR_MALFORMED_URL, url.toDisplayString());
         return;
     }
 
@@ -381,6 +377,10 @@ void NFSProtocolV3::listDir(const QUrl& url)
 
         return;						// listed, no more to do
     }
+
+    // For this listing we actually need to access the NFS server.
+    // We should always be connected at this point, but better safe than sorry!
+    if (!isConnected()) return;
 
     const NFSFileHandle fh = getFileHandle(path);
 
@@ -453,20 +453,17 @@ void NFSProtocolV3::listDir(const QUrl& url)
                 int rpcStatus;
                 READLINK3res readLinkRes;
                 char nameBuf[NFS3_MAXPATHLEN];
+
                 if (symLinkTarget(filePath, rpcStatus, readLinkRes, nameBuf)) {
                     QString linkDest = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
                     entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
 
                     bool badLink = true;
                     NFSFileHandle linkFH;
-                    if (isValidLink(path, linkDest)) {
-                        QString linkPath;
-                        if (QFileInfo(linkDest).isAbsolute()) {
-                            linkPath = linkDest;
-                        } else {
-                            linkPath = QFileInfo(path, linkDest).absoluteFilePath();
-                        }
-
+                    if (isValidLink(path, linkDest))
+                    {
+                        const QString linkPath = QFileInfo(path, linkDest).absoluteFilePath();
+							// get the absolute link target
                         int rpcStatus;
                         LOOKUP3res lookupRes;
                         if (lookupHandle(linkPath, rpcStatus, lookupRes)) {
@@ -525,21 +522,9 @@ void NFSProtocolV3::listDir(const QUrl& url)
     } while (listres.READDIRPLUS3res_u.resok.reply.entries != nullptr && !listres.READDIRPLUS3res_u.resok.reply.eof);
 }
 
+
 void NFSProtocolV3::listDirCompat(const QUrl& url)
 {
-    // TODO: the next two checks will have already been
-    // done in listDir().
-
-    // We should always be connected if it reaches this point,
-    // but better safe than sorry!
-    if (!isConnected()) {
-        return;
-    }
-
-    if (url.isEmpty()) {
-        m_slave->setError(KIO::ERR_DOES_NOT_EXIST, url.path());
-    }
-
     const QString path(url.path());
 
     // TODO: can never get here, if an exported dir it will have been
@@ -547,35 +532,11 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
     // access the NFS server.
 
     // Is it part of an exported (virtual) dir?
-    if (NFSProtocol::isExportedDir(path)) {
-        QStringList virtualList;
-        for (QStringList::const_iterator it = getExportedDirs().constBegin(); it != getExportedDirs().constEnd(); ++it) {
-            // When an export is multiple levels deep(mnt/nfs for example) we only
-            // want to display one level at a time.
-            QString name = (*it);
-            name = name.remove(0, path.length());
-            if (name.startsWith('/')) {
-                name = name.mid(1);
-            }
-            if (name.indexOf('/') != -1) {
-                name.truncate(name.indexOf('/'));
-            }
-
-            if (!virtualList.contains(name)) {
-                virtualList.append(name);
-            }
-        }
-
-        for (QStringList::const_iterator it = virtualList.constBegin(); it != virtualList.constEnd(); ++it) {
-            qCDebug(LOG_KIO_NFS) << "Found " << (*it) << "in exported dir";
-
-            KIO::UDSEntry entry;
-            entry.fastInsert(KIO::UDSEntry::UDS_NAME, (*it));
-            createVirtualDirEntry(entry);
-            m_slave->listEntry(entry);
-        }
-
-        return;						// listed, no more to do
+    if (isExportedDir(path))
+    {
+        qCWarning(LOG_KIO_NFS) << "Called for an exported dir";
+        m_slave->setError(KIO::ERR_INTERNAL, path);
+        return;
     }
 
     const NFSFileHandle fh = getFileHandle(path);
@@ -611,7 +572,7 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
         }
 
         for (entry3* dirEntry = listres.READDIR3res_u.resok.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
-            if (dirEntry->name != QString(".") && dirEntry->name != QString("..")) {
+            if (dirEntry->name != QString("..")) {
                 filesToList.append(QFile::decodeName(dirEntry->name));
             }
 
@@ -645,14 +606,10 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
 
                 bool badLink = true;
                 NFSFileHandle linkFH;
-                if (isValidLink(path, linkDest)) {
-                    QString linkPath;
-                    if (QFileInfo(linkDest).isAbsolute()) {
-                        linkPath = linkDest;
-                    } else {
-                        linkPath = QFileInfo(path, linkDest).absoluteFilePath();
-                    }
-
+                if (isValidLink(path, linkDest))
+                {
+                    const QString linkPath = QFileInfo(path, linkDest).absoluteFilePath();
+							// get the absolute link target
                     int rpcStatus;
                     LOOKUP3res lookupRes;
                     if (lookupHandle(linkPath, rpcStatus, lookupRes)) {
@@ -682,7 +639,6 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
             }
         } else {
             addFileHandle(filePath, dirres.LOOKUP3res_u.resok.object);
-
             completeUDSEntry(entry, dirres.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes);
         }
 
@@ -702,7 +658,7 @@ void NFSProtocolV3::stat(const QUrl& url)
         // level directory.  The same location with a root path ("nfs://server/")
         // works, so redirect to that.
         QUrl redir = url.resolved(QUrl("/"));
-        qDebug() << "root with empty path, redirecting to" << redir;
+        qCDebug(LOG_KIO_NFS) << "root with empty path, redirecting to" << redir;
         m_slave->redirection(redir);
         return;
     }
@@ -766,13 +722,8 @@ void NFSProtocolV3::stat(const QUrl& url)
         if (!isValidLink(fileInfo.path(), linkDest)) {
             completeBadLinkUDSEntry(entry, attrAndStat.GETATTR3res_u.resok.obj_attributes);
         } else {
-            QString linkPath;
-            if (QFileInfo(linkDest).isAbsolute()) {
-                linkPath = linkDest;
-            } else {
-                linkPath = QFileInfo(fileInfo.path(), linkDest).absoluteFilePath();
-            }
-
+            const QString linkPath = QFileInfo(fileInfo.path(), linkDest).absoluteFilePath();
+							// get the absolute link target
             int rpcStatus;
             GETATTR3res attrAndStat;
             if (!getAttr(linkPath, rpcStatus, attrAndStat)) {
