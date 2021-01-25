@@ -74,7 +74,7 @@ Description[uk]=Підлеглий засіб введення-виведенн�
 Description[vi]=Một kioslave để duyệt mạng
 Description[wa]=On vårlet d' I/R po betchter el rantoele
 Description[x-test]=xxA kioslave to browse the networkxx
-Description[zh_CN]=浏览网络的 KIO slave
+Description[zh_CN]=用于浏览网络的 KIO 从属程序
 Description[zh_TW]=瀏覽網路的 kioslave
 exec=kf5/kio/network
 
