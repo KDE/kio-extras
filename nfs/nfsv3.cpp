@@ -327,7 +327,7 @@ void NFSProtocolV3::listDir(const QUrl& url)
     }
 
     const QString path(url.path());
-    // Is it part of an exported(virtual) dir?
+    // Is it part of an exported (virtual) dir?
     if (isExportedDir(path)) {
         qCDebug(LOG_KIO_NFS) << "Listing virtual dir" << path;
 

@@ -53,7 +53,6 @@
 #include <KLocalizedString>
 #include <kio/global.h>
 #include <kio/ioslave_defaults.h>
-#include <iostream>
 
 // This is for NFS version 2.
 #define NFSPROG 100003UL
@@ -147,10 +146,12 @@ void NFSProtocolV2::closeConnection()
 
 NFSFileHandle NFSProtocolV2::lookupFileHandle(const QString& path)
 {
+    NFSFileHandle fh;
     int rpcStatus;
     diropres res;
+
     if (lookupHandle(path, rpcStatus, res)) {
-        NFSFileHandle fh = res.diropres_u.diropres.file;
+        fh = res.diropres_u.diropres.file;
 
         // It it a link? Get the link target.
         if (res.diropres_u.diropres.attributes.type == NFLNK) {
@@ -168,34 +169,37 @@ NFSFileHandle NFSProtocolV2::lookupFileHandle(const QString& path)
                                       (xdrproc_t) xdr_readlinkres, reinterpret_cast<caddr_t>(&readLinkRes),
                                       clnt_timeout);
 
-            if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS_OK) {
-                const QString linkDest = QString::fromLocal8Bit(readLinkRes.readlinkres_u.data);
-                QString linkPath;
-                if (QFileInfo(linkDest).isAbsolute()) {
-                    linkPath = linkDest;
-                } else {
-                    linkPath = QFileInfo(QFileInfo(path).path(), linkDest).absoluteFilePath();
-                }
+            if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS_OK)
+            {						// get the absolute link target
+                QString linkPath = QString::fromLocal8Bit(readLinkRes.readlinkres_u.data);
+                linkPath = QFileInfo(QFileInfo(path).path(), linkPath).absoluteFilePath();
 
-                diropres linkRes;
-                if (lookupHandle(linkPath, rpcStatus, linkRes)) {
-                    NFSFileHandle linkFH = linkRes.diropres_u.diropres.file;
-                    linkFH.setLinkSource(res.diropres_u.diropres.file);
-
-                    qCDebug(LOG_KIO_NFS) << "Found target -" << linkPath;
-
-                    return linkFH;
+                // As with the tests done in NFSProtocol::isValidLink(), the link
+                // target may not be valid on the NFS server (i.e. it may point
+                // outside of the exported directories).  Check for this before
+                // calling lookupHandle() on the target of the link, as otherwise
+                // an error will be set which is not relevant.
+                if (isValidPath(linkPath))
+                {
+                    diropres linkRes;
+                    if (lookupHandle(linkPath, rpcStatus, linkRes))
+                    {
+                        NFSFileHandle linkFh = linkRes.diropres_u.diropres.file;
+                        linkFh.setLinkSource(res.diropres_u.diropres.file);
+                        qCDebug(LOG_KIO_NFS) << "Found link target" << linkPath;
+                        return linkFh;
+                    }
                 }
             }
 
-            // If we have reached this point the file is a link, but we failed to get the target.
+            // If we have reached this point the file is a link,
+            // but we failed to read the target.
             fh.setBadLink();
+            qCDebug(LOG_KIO_NFS) << "Invalid link" << path;
         }
-
-        return fh;
     }
 
-    return NFSFileHandle();
+    return fh;
 }
 
 /* Open connection connects to the mount daemon on the server side.
@@ -229,7 +233,7 @@ void NFSProtocolV2::openConnection()
     }
 
     int exportsCount = 0;
-    QStringList failList;
+    bool mountHint = false;
 
     fhstatus fhStatus;
     for (; exportlist != nullptr; exportlist = exportlist->ex_next, exportsCount++) {
@@ -240,32 +244,53 @@ void NFSProtocolV2::openConnection()
                               (xdrproc_t) xdr_fhstatus, reinterpret_cast<caddr_t>(&fhStatus),
                               clnt_timeout);
 
-        if (fhStatus.fhs_status == 0) {
-            QString fname = QFileInfo(QDir("/"), exportlist->ex_dir).filePath();
 
-            // Check if the dir is already exported
+        QString fname = QFileInfo(QDir::root(), exportlist->ex_dir).filePath();
+        if (fhStatus.fhs_status == 0) {
+            // Check if the directory is already noted as exported,
+            // if so there is no need to add it again.
             if (NFSProtocol::isExportedDir(fname)) {
                 continue;
             }
 
+            // Save the exported directory and its NFS file handle.
             addFileHandle(fname, static_cast<NFSFileHandle>(fhStatus.fhstatus_u.fhs_fhandle));
             addExportedDir(fname);
-        } else {
-            failList.append(exportlist->ex_dir);
+        } else {					// mount failed with error
+            qCDebug(LOG_KIO_NFS) << "Cannot mount" << fname << "- status" << fhStatus.fhs_status;
+
+            // Even if the mount failed, record the directory path as exported
+            // so that it can be listed as a virtual directory.  However, do
+            // not record its (invalid) file handle in the cache.  Trying to
+            // access the directory in any way other than just listing it, or
+            // accessing anything below it, will be detected in
+            // NFSProtocol::getFileHandle() and fail with an appropriate
+            // error.
+            if (!isExportedDir(fname)) addExportedDir(fname);
+
+            // Many modern NFS servers by default reject any access attempted to
+            // them from a non-reserved source port (i.e. above 1024).  Since
+            // this KIO slave runs as a normal user, it is not able to use the
+            // reserved port numbers and hence the access will be rejected.  Show
+            // a hint if this could possibly be the problem - only once, as the
+            // server may have many exported directories.
+            if (fhStatus.fhs_status == NFSERR_ACCES) {
+                if (!mountHint) {
+                    qCDebug(LOG_KIO_NFS) << "Check that the NFS server is exporting the filesystem";
+                    qCDebug(LOG_KIO_NFS) << "with appropriate access permissions.  Note that it must";
+                    qCDebug(LOG_KIO_NFS) << "allow mount requests originating from an unprivileged";
+                    qCDebug(LOG_KIO_NFS) << "source port (see exports(5), the 'insecure' option may";
+                    qCDebug(LOG_KIO_NFS) << "be required).";
+                    mountHint = true;
+                }
+            }
         }
     }
 
-    // Check if some exported dirs failed to mount
-    if (failList.size() > 0) {
-        m_slave->setError(KIO::ERR_CANNOT_MOUNT, i18n("Failed to mount %1", failList.join(", ")));
-
-        // All exports failed to mount, fail
-        if (failList.size() == exportsCount) {
-            closeConnection();
-            return;
-        }
-    }
-
+    // If nothing can be mounted then there is no point trying to open the
+    // NFS server connection here.  However, call openConnection() anyway
+    // and pretend that we are connected so that listing virtual directories
+    // will work.
     if ((connErr = NFSProtocol::openConnection(m_currentHost, NFSPROG, NFSVERS, m_nfsClient, m_nfsSock)) != 0) {
         closeConnection();
         m_slave->setError(connErr, m_currentHost);
@@ -278,53 +303,67 @@ void NFSProtocolV2::openConnection()
 
 void NFSProtocolV2::listDir(const QUrl& url)
 {
-    // We should always be connected if it reaches this point,
-    // but better safe than sorry!
-    if (!isConnected()) {
-        return;
-    }
-
+    // TODO: common, move to NFSProtocol
     if (url.isEmpty()) {
-        m_slave->setError(KIO::ERR_DOES_NOT_EXIST, url.path());
-
+        m_slave->setError(KIO::ERR_MALFORMED_URL, url.toDisplayString());
         return;
     }
 
     const QString path(url.path());
-
+    // TODO: common, move to NFSProtocol
     // The root "directory" is just a list of the exported directories,
     // so list them here.
     if (isExportedDir(path)) {
-        qCDebug(LOG_KIO_NFS) << "Listing exported dir";
+        qCDebug(LOG_KIO_NFS) << "Listing virtual dir" << path;
+
+        QString dirPrefix = path;
+        if (dirPrefix!="/") dirPrefix += QDir::separator();
 
         QStringList virtualList;
-        for (QStringList::const_iterator it = getExportedDirs().constBegin(); it != getExportedDirs().constEnd(); ++it) {
-            // When an export is multiple levels deep(mnt/nfs for example) we only
-            // want to display one level at a time.
-            QString name = (*it);
-            name = name.remove(0, path.length());
-            if (name.startsWith('/')) {
-                name = name.mid(1);
-            }
-            if (name.indexOf('/') != -1) {
-                name.truncate(name.indexOf('/'));
-            }
+        const QStringList exportedDirs = getExportedDirs();
+        for (QStringList::const_iterator it = exportedDirs.constBegin(); it != exportedDirs.constEnd(); ++it)
+        {
+            // When an export is multiple levels deep (for example "/export/nfs/dir"
+            // where "/export" is being listed), we only want to display one level
+            // ("nfs") at a time.  Find all of the exported directories that are
+            // below the 'dirPrefix', and list the first (or only) path component
+            // of each.
+
+            QString name = (*it);			// this exported directory
+            if (!name.startsWith(dirPrefix)) continue;	// not below this prefix
+
+            name = name.mid(dirPrefix.length());	// remainder after the prefix
+
+            const int idx = name.indexOf(QDir::separator());
+            if (idx!=-1) name = name.left(idx);		// take first path component
 
             if (!virtualList.contains(name)) {
+                qCDebug(LOG_KIO_NFS) << "Found exported" << name;
                 virtualList.append(name);
             }
         }
 
-        for (QStringList::const_iterator it = virtualList.constBegin(); it != virtualList.constEnd(); ++it) {
-            qCDebug(LOG_KIO_NFS) << (*it) << "found in exported dir";
+        KIO::UDSEntry entry;
+        createVirtualDirEntry(entry);
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+        entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
+        m_slave->listEntry(entry);
 
-            KIO::UDSEntry entry;
-            entry.fastInsert(KIO::UDSEntry::UDS_NAME, (*it));
-
-            createVirtualDirEntry(entry);
+        for (QStringList::const_iterator it = virtualList.constBegin(); it != virtualList.constEnd(); ++it)
+        {
+            const QString &name = (*it);
+            entry.replace(KIO::UDSEntry::UDS_NAME, name);
+            if (isExportedDir(dirPrefix+name)) entry.replace(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
+            else entry.replace(KIO::UDSEntry::UDS_ICON_NAME, "folder");
             m_slave->listEntry(entry);
         }
 
+        return;
+    }
+
+    // We should always be connected if it reaches this point,
+    // but better safe than sorry!
+    if (!isConnected()) {
         return;
     }
 
@@ -360,7 +399,7 @@ void NFSProtocolV2::listDir(const QUrl& url)
         }
 
         for (entry* dirEntry = listres.readdirres_u.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
-            if (dirEntry->name != QString(".") && dirEntry->name != QString("..")) {
+            if (dirEntry->name != QString("..")) {
                 filesToList.append(QFile::decodeName(dirEntry->name));
             }
 
@@ -394,12 +433,7 @@ void NFSProtocolV2::listDir(const QUrl& url)
                 bool badLink = true;
                 NFSFileHandle linkFH;
                 if (isValidLink(path, linkDest)) {
-                    QString linkPath;
-                    if (QFileInfo(linkDest).isAbsolute()) {
-                        linkPath = linkDest;
-                    } else {
-                        linkPath = QFileInfo(path, linkDest).absoluteFilePath();
-                    }
+                    QString linkPath = QFileInfo(path, linkDest).absoluteFilePath();
 
                     int rpcStatus;
                     diropres lookupRes;
@@ -444,10 +478,27 @@ void NFSProtocolV2::stat(const QUrl& url)
     qCDebug(LOG_KIO_NFS) << url;
 
     const QString path(url.path());
-    if (isExportedDir(path)) {
-        KIO::UDSEntry entry;
+    // TODO: do this check in NFSSlave::stat()
+    if (path.isEmpty())
+    {
+        // Displaying a location with an empty path (e.g. "nfs://server")
+        // seems to confuse Konqueror, it will not descend into the first
+        // level directory.  The same location with a root path ("nfs://server/")
+        // works, so redirect to that.
+        QUrl redir = url.resolved(QUrl("/"));
+        qDebug() << "root with empty path, redirecting to" << redir;
+        m_slave->redirection(redir);
+        return;
+    }
 
-        entry.fastInsert(KIO::UDSEntry::UDS_NAME, path);
+    // TODO: common, move to NFSProtocol
+    // We can't stat an exported directory on the NFS server,
+    // but we know that it must be a directory.
+    if (isExportedDir(path))
+    {
+        KIO::UDSEntry entry;
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+        entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
         createVirtualDirEntry(entry);
 
         m_slave->statEntry(entry);
@@ -498,12 +549,7 @@ void NFSProtocolV2::stat(const QUrl& url)
         if (!isValidLink(fileInfo.path(), linkDest)) {
             completeBadLinkUDSEntry(entry, attrAndStat.attrstat_u.attributes);
         } else {
-            QString linkPath;
-            if (QFileInfo(linkDest).isAbsolute()) {
-                linkPath = linkDest;
-            } else {
-                linkPath = QFileInfo(fileInfo.path(), linkDest).absoluteFilePath();
-            }
+            QString linkPath = QFileInfo(fileInfo.path(), linkDest).absoluteFilePath();
 
             int rpcStatus;
             attrstat attrAndStat;
@@ -522,6 +568,7 @@ void NFSProtocolV2::stat(const QUrl& url)
 }
 
 
+// TODO: common, move to NFSProtocol
 void NFSProtocolV2::setHost(const QString& host)
 {
     qCDebug(LOG_KIO_NFS) << host;
@@ -538,6 +585,7 @@ void NFSProtocolV2::setHost(const QString& host)
     m_currentHost = host;
     closeConnection();
 }
+
 
 void NFSProtocolV2::mkdir(const QUrl& url, int permissions)
 {
@@ -1768,6 +1816,7 @@ bool NFSProtocolV2::symLink(const QString& target, const QString& dest, int& rpc
 // because they may be called with a UDSEntry that has already been partially
 // filled in by NFSProtocol::createVirtualDirEntry().
 
+// TODO: common, move to NFSProtocol
 void NFSProtocolV2::completeUDSEntry(KIO::UDSEntry& entry, const fattr& attributes)
 {
     entry.replace(KIO::UDSEntry::UDS_SIZE, attributes.size);
@@ -1810,6 +1859,7 @@ void NFSProtocolV2::completeUDSEntry(KIO::UDSEntry& entry, const fattr& attribut
     entry.replace(KIO::UDSEntry::UDS_GROUP, str);
 }
 
+// TODO: common, move to NFSProtocol
 void NFSProtocolV2::completeBadLinkUDSEntry(KIO::UDSEntry& entry, const fattr& attributes)
 {
     entry.replace(KIO::UDSEntry::UDS_SIZE, 0LL);
