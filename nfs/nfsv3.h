@@ -41,8 +41,6 @@ public:
     void openConnection() override;
     void closeConnection() override;
 
-    void setHost(const QString& host) override;
-
     void put(const QUrl& url, int _mode, KIO::JobFlags _flags) override;
     void get(const QUrl& url) override;
     void listDir(const QUrl& url) override;
@@ -91,20 +89,13 @@ private:
     // UDS helper functions
     void completeUDSEntry(KIO::UDSEntry& entry, const fattr3& attributes);
     void completeBadLinkUDSEntry(KIO::UDSEntry& entry, const fattr3& attributes);
-    void completeInvalidUDSEntry(KIO::UDSEntry& entry);
 
-    NFSSlave* m_slave;
-
-    QString m_currentHost;
     CLIENT* m_mountClient;
     int m_mountSock;
     CLIENT* m_nfsClient;
     int m_nfsSock;
 
     timeval clnt_timeout;
-
-    QHash<long, QString> m_usercache;
-    QHash<long, QString> m_groupcache;
 
     // The optimal read and write buffer sizes and read dir size, cached values
     uint32 m_readBufferSize;

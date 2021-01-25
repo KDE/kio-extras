@@ -285,13 +285,19 @@ void NFSSlave::copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags f
 // calling either error() or finished().
 bool NFSSlave::verifyProtocol(const QUrl &url)
 {
+    m_errorId = KIO::Error(0);				// ensure reset before starting
+    m_errorText.clear();
+
     // The NFS protocol definition includes copyToFile=true and copyFromFile=true,
     // so the URL scheme here can also be "file".  No URL or protocol checking
     // is required in this case.
     if (url.scheme() != "nfs") return true;
 
-    m_errorId = KIO::Error(0);				// ensure reset before starting
-    m_errorText.clear();
+    if (!url.isValid())					// also checks for empty
+    {
+        setError(KIO::ERR_MALFORMED_URL, url.toDisplayString());
+        return (false);
+    }
 
     // A NFS URL must include a host name, if it does not then nothing
     // sensible can be done.  Doing the check here and returning immediately
@@ -305,7 +311,7 @@ bool NFSSlave::verifyProtocol(const QUrl &url)
         // error message "No hostname specified", but Konqueror does not
         // report it properly.  Return our own message.
         setError(KIO::ERR_SLAVE_DEFINED, i18n("The NFS protocol requires a server host name."));
-        goto fail;
+        return (false);
     }
     else
     {
@@ -316,7 +322,7 @@ bool NFSSlave::verifyProtocol(const QUrl &url)
         {
             qCDebug(LOG_KIO_NFS) << "host lookup of" << host << "error" << hostInfo.errorString();
             setError(KIO::ERR_UNKNOWN_HOST, host);
-            goto fail;
+            return (false);
         }
     }
 
@@ -353,6 +359,7 @@ fail:							// default error if none already
 // Record the error information, but do not call SlaveBase::error().
 // If there has been an error, finishOperation() will report it when
 // the protocol operation is complete.
+
 void NFSSlave::setError(KIO::Error errid, const QString &text)
 {
     if (m_errorId!=0)
@@ -876,15 +883,195 @@ bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text
 }
 
 
+// Perform checks and, if so indicated, list a virtual (exported)
+// directory that will not actually involve accessing the NFS server.
+// Return the directory path, or a null string if there is a problem
+// or if the URL refers to a virtual directory which has been listed.
+
+QString NFSProtocol::listDirInternal(const QUrl &url)
+{
+    qCDebug(LOG_KIO_NFS) << url;
+
+    const QString path(url.path());
+    // Is the path part of an exported (virtual) directory?
+    if (isExportedDir(path))
+    {
+        qCDebug(LOG_KIO_NFS) << "Listing virtual dir" << path;
+
+        QString dirPrefix = path;
+        if (dirPrefix!="/") dirPrefix += QDir::separator();
+
+        QStringList virtualList;
+        const QStringList exportedDirs = getExportedDirs();
+        for (QStringList::const_iterator it = exportedDirs.constBegin(); it != exportedDirs.constEnd(); ++it)
+        {
+            // When an export is multiple levels deep (for example "/export/nfs/dir"
+            // where "/export" is being listed), we only want to display one level
+            // ("nfs") at a time.  Find all of the exported directories that are
+            // below the 'dirPrefix', and list the first (or only) path component
+            // of each.
+
+            QString name = (*it);			// this exported directory
+            if (!name.startsWith(dirPrefix)) continue;	// not below this prefix
+
+            name = name.mid(dirPrefix.length());	// remainder after the prefix
+
+            const int idx = name.indexOf(QDir::separator());
+            if (idx!=-1) name = name.left(idx);		// take first path component
+
+            if (!virtualList.contains(name)) {
+                qCDebug(LOG_KIO_NFS) << "Found exported" << name;
+                virtualList.append(name);
+            }
+        }
+
+        KIO::UDSEntry entry;
+        createVirtualDirEntry(entry);
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+        entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
+        m_slave->listEntry(entry);
+
+        for (QStringList::const_iterator it = virtualList.constBegin(); it != virtualList.constEnd(); ++it)
+        {
+            const QString &name = (*it);		// this listed directory
+
+            entry.replace(KIO::UDSEntry::UDS_NAME, name);
+            if (isExportedDir(dirPrefix+name)) entry.replace(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
+            else entry.replace(KIO::UDSEntry::UDS_ICON_NAME, "folder");
+
+            m_slave->listEntry(entry);
+        }
+
+        return (QString());				// listed, no more to do
+    }
+
+    // For the listing we now actually need to access the NFS server.
+    // We should always be connected at this point, but better safe than sorry!
+    if (!isConnected()) return (QString());
+
+    return (path);					// the path to list
+}
+
+
+// Perform checks and, if so indicated, return information for
+// a virtual (exported) directory.  Return the entry path, or a
+// null string if there is a problem or if the URL refers to a
+// virtual directory which has been processed.
+
+QString NFSProtocol::statInternal(const QUrl &url)
+{
+    qCDebug(LOG_KIO_NFS) << url;
+
+    const QString path(url.path());
+    if (path.isEmpty())
+    {
+        // Displaying a location with an empty path (e.g. "nfs://server")
+        // seems to confuse Konqueror, it shows the directory but will not
+        // descend into any subdirectories.  The same location with a root
+        // path ("nfs://server/") works, so redirect to that.
+        QUrl redir = url.resolved(QUrl("/"));
+        qDebug() << "root with empty path, redirecting to" << redir;
+        slave()->redirection(redir);
+        return (QString());
+    }
+
+    // We can't stat an exported directory on the NFS server,
+    // but we know that it must be a directory.
+    if (isExportedDir(path))
+    {
+        KIO::UDSEntry entry;
+        entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+        entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
+        createVirtualDirEntry(entry);
+
+        slave()->statEntry(entry);
+        return (QString());
+    }
+
+    return (path);					// the path to stat
+}
+
+
+// Set the host to be accessed.  If the host has changed a new
+// host connection is required, so close the current one.
+//
+// Due the way that NFSSlave::setHost() is implemented, if the
+// host name changes then the protocol will always be deleted
+// and recreated.  So in reality this function does nothing useful.
+
+void NFSProtocol::setHost(const QString& host)
+{
+    qCDebug(LOG_KIO_NFS) << host;
+
+    if (host.isEmpty())					// must have a host name
+    {
+        m_slave->setError(KIO::ERR_UNKNOWN_HOST, host);
+        return;
+    }
+
+    if (host == m_currentHost) return;			// nothing to do if host hasn't changed
+    closeConnection();					// close the existing connection
+    m_currentHost = host;				// set the new host name
+}
+
+
+// This function and completeInvalidUDSEntry() must use KIO::UDSEntry::replace()
+// because they may be called with a UDSEntry that has already been partially
+// filled in by NFSProtocol::createVirtualDirEntry().
+
+void NFSProtocol::completeUDSEntry(KIO::UDSEntry &entry, uid_t uid, gid_t gid)
+{
+    QString str;
+
+    if (!m_usercache.contains(uid))
+    {
+        const struct passwd *user = getpwuid(uid);
+        if (user!=nullptr)
+        {
+            m_usercache.insert(uid, QString::fromLatin1(user->pw_name));
+            str = user->pw_name;
+        }
+        else str = QString::number(uid);
+    }
+    else str = m_usercache.value(uid);
+    entry.replace(KIO::UDSEntry::UDS_USER, str);
+
+    if (!m_groupcache.contains(gid))
+    {
+        const struct group *grp = getgrgid(gid);
+        if (grp!=nullptr)
+        {
+            m_groupcache.insert(gid, QString::fromLatin1(grp->gr_name));
+            str = grp->gr_name;
+        }
+        else str = QString::number(gid);
+    }
+    else str = m_groupcache.value(gid);
+    entry.replace(KIO::UDSEntry::UDS_GROUP, str);
+}
+
+
+void NFSProtocol::completeInvalidUDSEntry(KIO::UDSEntry &entry)
+{
+    entry.replace(KIO::UDSEntry::UDS_SIZE, 0);		// dummy size
+    entry.replace(KIO::UDSEntry::UDS_FILE_TYPE, S_IFMT - 1);
+    entry.replace(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    // The UDS_USER and UDS_GROUP must be string values.  It would be possible
+    // to look up appropriate values as in completeUDSEntry() above, but it seems
+    // pointless to go to that trouble for an unusable invalid entry.
+    entry.replace(KIO::UDSEntry::UDS_USER, QString::fromLatin1("root"));
+    entry.replace(KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root"));
+}
+
+
 // This uses KIO::UDSEntry::fastInsert() and so must only be called with
 // a blank UDSEntry or one where only UDS_NAME has been filled in.
 void NFSProtocol::createVirtualDirEntry(UDSEntry& entry)
 {
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);	// dummy size
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, "inode/directory");
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
     entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::fromLatin1("root"));
     entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root"));
-    // Dummy size.
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
 }

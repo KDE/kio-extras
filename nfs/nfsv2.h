@@ -41,8 +41,6 @@ public:
     void openConnection() override;
     void closeConnection() override;
 
-    void setHost(const QString& host) override;
-
     void put(const QUrl& url, int _mode, KIO::JobFlags _flags) override;
     void get(const QUrl& url) override;
     void listDir(const QUrl& url) override;
@@ -85,19 +83,12 @@ private:
     void completeUDSEntry(KIO::UDSEntry& entry, const fattr& attributes);
     void completeBadLinkUDSEntry(KIO::UDSEntry& entry, const fattr& attributes);
 
-    NFSSlave* m_slave;
-
-    QString m_currentHost;
-
     CLIENT* m_mountClient;
     int m_mountSock;
     CLIENT* m_nfsClient;
     int m_nfsSock;
 
     timeval clnt_timeout;
-
-    QHash<long, QString> m_usercache;
-    QHash<long, QString> m_groupcache;
 };
 
 #endif

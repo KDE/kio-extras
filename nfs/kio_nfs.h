@@ -156,7 +156,7 @@ public:
     virtual void openConnection() = 0;
     virtual void closeConnection() = 0;
 
-    virtual void setHost(const QString& host) = 0;
+    virtual void setHost(const QString &host);
 
     virtual void put(const QUrl& url, int _mode, KIO::JobFlags _flags) = 0;
     virtual void get(const QUrl& url) = 0;
@@ -202,11 +202,24 @@ protected:
 
     void createVirtualDirEntry(KIO::UDSEntry& entry);
 
+    QString listDirInternal(const QUrl &url);
+    QString statInternal(const QUrl &url);
+    void completeUDSEntry(KIO::UDSEntry &entry, uid_t uid, gid_t gid);
+    void completeInvalidUDSEntry(KIO::UDSEntry &entry);
+
+    QString currentHost() const					{ return (m_currentHost); }
+    NFSSlave *slave() const					{ return (m_slave); }
+    void setError(KIO::Error errid, const QString &text)	{ m_slave->setError(errid, text); }
+
 private:
     NFSSlave* m_slave;
+    QString m_currentHost;
 
     NFSFileHandleMap m_handleCache;
     QStringList m_exportedDirs;
+
+    QHash<uid_t, QString> m_usercache;
+    QHash<gid_t, QString> m_groupcache;
 };
 
 #endif
