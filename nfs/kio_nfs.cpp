@@ -148,7 +148,7 @@ case 2:     m_protocol = new NFSProtocolV2(this);
 
         if (m_protocol != nullptr)			// created protocol for that version
         {
-            m_protocol->setHost(m_host);		// try to make initial connection
+            m_protocol->setHost(m_host, m_user);	// try to make initial connection
             if (m_protocol->isCompatible(connectionError)) break;
         }
 
@@ -184,23 +184,31 @@ void NFSSlave::closeConnection()
     }
 }
 
-void NFSSlave::setHost(const QString& host, quint16 /*port*/, const QString& /*user*/, const QString& /*pass*/)
-{
-    qCDebug(LOG_KIO_NFS);
 
-    if (m_protocol != nullptr) {
-        // New host? New protocol!
-        if (m_host != host) {
+void NFSSlave::setHost(const QString& host, quint16 /*port*/, const QString &user, const QString& /*pass*/)
+{
+    qCDebug(LOG_KIO_NFS) << "host" << host << "user" << user;
+
+    if (m_protocol != nullptr)
+    {
+        // New host or user? New protocol!
+        if (host != m_host || user != m_user)
+        {
             qCDebug(LOG_KIO_NFS) << "Deleting old protocol";
             delete m_protocol;
             m_protocol = nullptr;
-        } else {
-            m_protocol->setHost(host);
+        }
+        else
+        {
+            // TODO: Doing this is pointless if nothing has changed
+            m_protocol->setHost(host, user);
         }
     }
 
     m_host = host;
+    m_user = user;
 }
+
 
 void NFSSlave::put(const QUrl& url, int _mode, KIO::JobFlags _flags)
 {
@@ -824,7 +832,20 @@ KIO::Error NFSProtocol::openConnection(const QString& host, int prog, int vers, 
         hostName = hostName + QLatin1Char('.') + domainName;
     }
 
-    client->cl_auth = authunix_create(hostName.toUtf8().data(), geteuid(), getegid(), 0, nullptr);
+    uid_t uid = geteuid();
+    if (!m_currentUser.isEmpty())
+    {
+        bool ok;
+        uid_t num = m_currentUser.toUInt(&ok);
+        if (ok) uid = num;
+        else
+        {
+            const struct passwd *pwd = getpwnam(m_currentUser.toLocal8Bit());
+            if (pwd != nullptr) uid = pwd->pw_uid;
+        }
+    }
+
+    client->cl_auth = authunix_create(hostName.toUtf8().data(), uid, getegid(), 0, nullptr);
     return KIO::Error(0);
 }
 
@@ -1022,19 +1043,20 @@ QString NFSProtocol::statInternal(const QUrl &url)
 // host name changes then the protocol will always be deleted
 // and recreated.  So in reality this function does nothing useful.
 
-void NFSProtocol::setHost(const QString& host)
+void NFSProtocol::setHost(const QString &host, const QString &user)
 {
-    qCDebug(LOG_KIO_NFS) << host;
+    qCDebug(LOG_KIO_NFS) << "host" << host << "user" << user;
 
     if (host.isEmpty())					// must have a host name
     {
         m_slave->setError(KIO::ERR_UNKNOWN_HOST, host);
         return;
     }
-
-    if (host == m_currentHost) return;			// nothing to do if host hasn't changed
+							// nothing to do if no change
+    if (host == m_currentHost && user == m_currentUser) return;
     closeConnection();					// close the existing connection
     m_currentHost = host;				// set the new host name
+    m_currentUser = user;				// set the new user name
 }
 
 

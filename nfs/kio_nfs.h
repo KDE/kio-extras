@@ -78,9 +78,11 @@ protected:
 private:
     NFSProtocol* m_protocol;
 
-    // We need to cache this because the @openConnection call is responsible
+    // We need to cache these because the @openConnection call is responsible
     // for creating the protocol, and the @setHost call might happen before that.
     QString m_host;
+    QString m_user;
+
     bool m_usedirplus3;
 
     KIO::Error m_errorId;
@@ -159,7 +161,7 @@ public:
     virtual void openConnection() = 0;
     virtual void closeConnection() = 0;
 
-    virtual void setHost(const QString &host);
+    virtual void setHost(const QString &host, const QString &user = QString());
 
     virtual void put(const QUrl& url, int _mode, KIO::JobFlags _flags) = 0;
     virtual void get(const QUrl& url) = 0;
@@ -217,6 +219,7 @@ protected:
 private:
     NFSSlave* m_slave;
     QString m_currentHost;
+    QString m_currentUser;
 
     NFSFileHandleMap m_handleCache;
     QStringList m_exportedDirs;
