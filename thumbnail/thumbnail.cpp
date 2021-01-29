@@ -235,8 +235,13 @@ void ThumbnailProtocol::get(const QUrl &url)
             }
 
             ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator);
-            if(sequenceCreator)
+            if (sequenceCreator) {
                 sequenceCreator->setSequenceIndex(sequenceIndex());
+
+                const float wp = sequenceCreator->sequenceIndexWraparoundPoint();
+                setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wp));
+                setMetaData("handlesSequences", QStringLiteral("1"));
+            }
 
             if (!creator->create(info.canonicalFilePath(), m_width, m_height, img)) {
                 error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
@@ -473,6 +478,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
     QImage firstThumbnail;
 
     int validThumbnails = 0;
+    int totalValidThumbs = -1;
 
     while (true) {
         QDirIterator dir(directory, QDir::Files | QDir::Readable);
@@ -537,6 +543,12 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
             }
         }
 
+        if (!dir.hasNext() && totalValidThumbs < 0) {
+            // We iterated over the entire directory for the first time, so now we know how many thumbs
+            // were actually created.
+            totalValidThumbs = skipped+validThumbnails;
+        }
+
         if (validThumbnails > 0) {
             break;
         }
@@ -553,6 +565,14 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
     }
 
     p.end();
+
+    if (totalValidThumbs >= 0) {
+        // We only know this once we've iterated over the entire directory, so this will only be
+        // set for large enough sequence indices.
+        const int wraparoundPoint = (totalValidThumbs-1)/visibleCount + 1;
+        setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wraparoundPoint));
+    }
+    setMetaData("handlesSequences", QStringLiteral("1"));
 
     if (validThumbnails == 0) {
         // Eventually propagate the contained items from a sub-directory
