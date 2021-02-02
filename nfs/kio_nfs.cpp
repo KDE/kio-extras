@@ -36,7 +36,9 @@
 #include <QHostInfo>
 #include <QCoreApplication>
 
-#include <KLocalizedString>
+#include <klocalizedstring.h>
+#include <ksharedconfig.h>
+#include <kconfiggroup.h>
 #include <kio/global.h>
 
 #include "nfsv2.h"
@@ -82,6 +84,7 @@ static QUrl cleanPath(const QUrl &url)
 NFSSlave::NFSSlave(const QByteArray& pool, const QByteArray& app)
     :  KIO::SlaveBase("nfs", pool, app),
        m_protocol(nullptr),
+       m_usedirplus3(true),
        m_errorId(KIO::Error(0))
 {
     qCDebug(LOG_KIO_NFS) << pool << app;
@@ -96,61 +99,81 @@ void NFSSlave::openConnection()
 {
     qCDebug(LOG_KIO_NFS);
 
-    if (m_protocol != nullptr) {
+    if (m_protocol != nullptr)
+    {
         m_protocol->openConnection();
-    } else {
-        bool connectionError = false;
+        return;
+    }
 
-        int version = 4;
-        while (version > 1) {
-            qCDebug(LOG_KIO_NFS) << "Trying NFS version" << version;
+    const KSharedConfig::Ptr cfg = KSharedConfig::openConfig("kionfsrc");
 
-            // We need to create a new NFS protocol handler
-            switch (version) {
-            case 4: {
-                // TODO
-                qCDebug(LOG_KIO_NFS) << "NFSv4 is not supported at this time";
-            }
+    const KConfigGroup grp1 = cfg->group("Default");		// default for all hosts
+    int minproto = grp1.readEntry("minproto", 2);		// minimum NFS version to accept
+    int maxproto = grp1.readEntry("maxproto", 4);		// maximum NFS version to try
+    m_usedirplus3 = grp1.readEntry("usedirplus3", true);	// use READDIRPLUS3 for listing
+
+    const KConfigGroup grp2 = cfg->group("Host "+m_host);
+    if (grp2.exists())						// look for host-specific settings
+    {								// with default values from above
+        minproto = grp2.readEntry("minproto", minproto);
+        maxproto = grp2.readEntry("maxproto", maxproto);
+        m_usedirplus3 = grp2.readEntry("usedirplus3", m_usedirplus3);
+    }
+
+    minproto = qBound(2, minproto, 4);				// enforce limits
+    maxproto = qBound(minproto, maxproto, 4);
+    qCDebug(LOG_KIO_NFS) << "configuration for" << m_host;
+    qCDebug(LOG_KIO_NFS) << "minproto" << minproto << "maxproto" << maxproto << "usedirplus3" << m_usedirplus3;
+
+    bool connectionError = false;
+
+    int version = maxproto;
+    while (version >= minproto)
+    {
+        qCDebug(LOG_KIO_NFS) << "Trying NFS version" << version;
+
+        // Try to create an NFS protocol handler for that version
+        switch (version)
+        {
+case 4:     // TODO
+            qCDebug(LOG_KIO_NFS) << "NFSv4 is not supported at this time";
             break;
-            case 3: {
-                m_protocol = new NFSProtocolV3(this);
-            }
+
+case 3:     m_protocol = new NFSProtocolV3(this);
             break;
-            case 2: {
-                m_protocol = new NFSProtocolV2(this);
-            }
+
+case 2:     m_protocol = new NFSProtocolV2(this);
             break;
-            }
-
-            // Unimplemented protocol version
-            if (m_protocol == nullptr) {
-                version--;
-                continue;
-            }
-
-            m_protocol->setHost(m_host);
-            if (m_protocol->isCompatible(connectionError)) {
-                break;
-            }
-
-            version--;
-            delete m_protocol;
-            m_protocol = nullptr;
         }
 
-        if (m_protocol == nullptr) {
-            // If we could not find a compatible protocol, send an error.
-            if (!connectionError) {
-                setError(KIO::ERR_SLAVE_DEFINED, i18n("Cannot find an NFS version that host '%1' supports", m_host));
-            } else {
-                setError(KIO::ERR_CANNOT_CONNECT, m_host);
-            }
-        } else {
-            // Otherwise we open the connection
-            m_protocol->openConnection();
+        if (m_protocol != nullptr)			// created protocol for that version
+        {
+            m_protocol->setHost(m_host);		// try to make initial connection
+            if (m_protocol->isCompatible(connectionError)) break;
+        }
+
+        delete m_protocol;				// no point using that protocol
+        --version;					// try the next lower
+        m_protocol = nullptr;				// try again with new protocol
+    }
+
+    if (m_protocol == nullptr)				// failed to find a protocol
+    {
+        if (!connectionError)				// but connection was possible
+        {
+            setError(KIO::ERR_SLAVE_DEFINED, i18n("Cannot find an NFS version that host '%1' supports", m_host));
+        }
+        else						// connection failed
+        {
+            setError(KIO::ERR_CANNOT_CONNECT, m_host);
         }
     }
+    else						// usable protocol was created
+    {
+        m_protocol->openConnection();			// open the connection
+    }
 }
+
 
 void NFSSlave::closeConnection()
 {

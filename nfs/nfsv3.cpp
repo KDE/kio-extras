@@ -87,8 +87,6 @@ NFSProtocolV3::~NFSProtocolV3()
 
 bool NFSProtocolV3::isCompatible(bool& connectionError)
 {
-    qCDebug(LOG_KIO_NFS);
-
     int ret = -1;
 
     CLIENT* client = nullptr;
@@ -118,8 +116,7 @@ bool NFSProtocolV3::isCompatible(bool& connectionError)
         CLNT_DESTROY(client);
     }
 
-    qCDebug(LOG_KIO_NFS) << ret;
-
+    qCDebug(LOG_KIO_NFS) << "RPC status" << ret << "connectionError" << connectionError;
     return (ret == RPC_SUCCESS);
 }
 
@@ -338,6 +335,12 @@ void NFSProtocolV3::listDir(const QUrl& url)
     // Get the preferred read dir size from the server
     if (m_readDirSize == 0) {
         initPreferredSizes(fh);
+    }
+
+    if (!slave()->usedirplus3())			// want compatibility mode listing
+    {
+        listDirCompat(url);
+        return;
     }
 
     READDIRPLUS3args listargs;

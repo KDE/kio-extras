@@ -68,7 +68,7 @@ NFSProtocolV2::NFSProtocolV2(NFSSlave* slave)
        m_nfsClient(nullptr),
        m_nfsSock(-1)
 {
-    qCDebug(LOG_KIO_NFS) << "NFS2::NFS2";
+    qCDebug(LOG_KIO_NFS);
 
     clnt_timeout.tv_sec = 20;
     clnt_timeout.tv_usec = 0;
@@ -105,7 +105,7 @@ bool NFSProtocolV2::isCompatible(bool& connectionError)
         CLNT_DESTROY(client);
     }
 
-    qCDebug(LOG_KIO_NFS) << ret;
+    qCDebug(LOG_KIO_NFS) << "RPC status" << ret << "connectionError" << connectionError;
     return (ret == RPC_SUCCESS);
 }
 

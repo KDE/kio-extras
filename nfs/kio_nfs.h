@@ -68,6 +68,8 @@ public:
     void finished() = delete;
     void error(int errid, const QString &text) = delete;
 
+    bool usedirplus3() const					{ return (m_usedirplus3); }
+
 protected:
     // Verifies the URL, current protocol and connection state, returns true if valid.
     bool verifyProtocol(const QUrl &url);
@@ -79,6 +81,7 @@ private:
     // We need to cache this because the @openConnection call is responsible
     // for creating the protocol, and the @setHost call might happen before that.
     QString m_host;
+    bool m_usedirplus3;
 
     KIO::Error m_errorId;
     QString m_errorText;
