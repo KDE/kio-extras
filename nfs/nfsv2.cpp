@@ -1718,7 +1718,6 @@ void NFSProtocolV2::completeUDSEntry(KIO::UDSEntry& entry, const fattr& attribut
     entry.replace(KIO::UDSEntry::UDS_SIZE, attributes.size);
     entry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
     entry.replace(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);
-    entry.replace(KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds);
     entry.replace(KIO::UDSEntry::UDS_ACCESS, (attributes.mode & 07777));
     entry.replace(KIO::UDSEntry::UDS_FILE_TYPE, attributes.mode & S_IFMT); // extract file type
 
@@ -1730,7 +1729,6 @@ void NFSProtocolV2::completeBadLinkUDSEntry(KIO::UDSEntry& entry, const fattr& a
 {
     entry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
     entry.replace(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);
-    entry.replace(KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds);
 
     NFSProtocol::completeInvalidUDSEntry(entry);
 }

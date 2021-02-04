@@ -1997,7 +1997,6 @@ void NFSProtocolV3::completeUDSEntry(KIO::UDSEntry& entry, const fattr3& attribu
     entry.replace(KIO::UDSEntry::UDS_SIZE, attributes.size);
     entry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
     entry.replace(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);
-    entry.replace(KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds);
 
     // Some servers still send the file type information in the mode, even though
     // the reference specifies NFSv3 shouldn't, so we need to work around that here.
@@ -2042,7 +2041,6 @@ void NFSProtocolV3::completeBadLinkUDSEntry(KIO::UDSEntry& entry, const fattr3& 
 {
     entry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
     entry.replace(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);
-    entry.replace(KIO::UDSEntry::UDS_CREATION_TIME, attributes.ctime.seconds);
 
     NFSProtocol::completeInvalidUDSEntry(entry);
 }
