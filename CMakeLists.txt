@@ -1,9 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
 
-if(WIN32)
-    set(CMAKE_CXX_STANDARD 17)
-endif()
-
 # KDE Applications Version, managed by release script
 set (RELEASE_SERVICE_VERSION_MAJOR "21")
 set (RELEASE_SERVICE_VERSION_MINOR "03")
@@ -16,6 +12,10 @@ include(FeatureSummary)
 set(QT_MIN_VERSION "5.11.0")
 # TODO: when bumping to 5.72+ drop FindTaglib.cmake
 set(KF5_MIN_VERSION "5.69.0")
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
 find_package(Qt5Test ${QT_MIN_VERSION} CONFIG QUIET)
