@@ -10,8 +10,7 @@ project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
 include(FeatureSummary)
 
 set(QT_MIN_VERSION "5.11.0")
-# TODO: when bumping to 5.72+ drop FindTaglib.cmake
-set(KF5_MIN_VERSION "5.69.0")
+set(KF5_MIN_VERSION "5.72.0")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
