@@ -852,10 +852,12 @@ KIO::Error NFSProtocol::openConnection(const QString& host, int prog, int vers, 
 
 bool NFSProtocol::checkForError(int clientStat, int nfsStat, const QString& text)
 {
-    if (clientStat != RPC_SUCCESS)
+    if (clientStat!=RPC_SUCCESS)
     {
-        qCDebug(LOG_KIO_NFS) << "RPC error" << clientStat << text;
-        m_slave->setError(KIO::ERR_INTERNAL_SERVER, i18n("RPC error %1", QString::number(clientStat)));
+        const char *errstr = clnt_sperrno(static_cast<clnt_stat>(clientStat));
+        qCDebug(LOG_KIO_NFS) << "RPC error" << clientStat << errstr << "on" << text;
+        m_slave->setError(KIO::ERR_INTERNAL_SERVER,
+                          i18n("RPC error %1, %2", QString::number(clientStat), errstr));
         return false;
     }
 
