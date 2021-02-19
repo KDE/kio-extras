@@ -300,8 +300,12 @@ sub infocat {
 				}
 				$collect=16 if (m/START-INFO-DIR-ENTRY/);
 			}
-			if ($empty) { $filedesc .= 'no description available'; }
+
+                        # Avoid a noisy "Broken pipe" message from bzcat
+			while (<INFOFILE>) {}
 			close INFOFILE;
+
+			if ($empty) { $filedesc .= 'no description available'; }
 			$filedesc .= $infofile if ($filedesc eq "");
 # Add to the hash
 			$LinkText{$filedesc} = "$dir/$infofile";
@@ -763,7 +767,7 @@ sub PrintByFileLink {
 
 	<hr width="80%"/>
 	<p>If you did not find what you were looking for try <a href="info:$BROWSE_BY_FILE_PATH">browsing by file</a> to
-	see files from packages which did not update the directory.
+	see info files from packages which may not have updated the directory.
 EOF
 }
 

@@ -8,12 +8,13 @@
 
 Q_DECLARE_LOGGING_CATEGORY(LOG_KIO_INFO)
 
+
 class InfoProtocol : public KIO::SlaveBase
 {
 public:
 
     InfoProtocol( const QByteArray &pool, const QByteArray &app );
-    ~InfoProtocol() override;
+    ~InfoProtocol() override = default;
 
     void get( const QUrl& url ) override;
     void stat( const QUrl& url ) override;

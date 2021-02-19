@@ -26,44 +26,38 @@ Q_LOGGING_CATEGORY(LOG_KIO_INFO, "kio_info")
 
 using namespace KIO;
 
+
 InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     : SlaveBase( "info", pool, app )
-    , m_page( "" )
-    , m_node( "" )
 {
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::InfoProtocol";
-    m_cssLocation = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css" );
-    m_perl = QStandardPaths::findExecutable( "perl" );
-    m_infoScript = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html" );
-    m_infoConf = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html.conf");
+    qCDebug(LOG_KIO_INFO);
 
-    if( m_perl.isNull() || m_infoScript.isNull() || m_infoConf.isNull() ) {
-        qCCritical( LOG_KIO_INFO ) << "Critical error: Cannot locate files for HTML-conversion";
-	QString errorStr;
-	if ( m_perl.isNull() ) {
-		errorStr = "perl.";
-	} else {
-		QString missing =m_infoScript.isNull() ?  "kio_info/kde-info2html" : "kio_info/kde-info2html.conf";
-		errorStr = "kde-info2html" + i18n( "\nUnable to locate file %1 which is necessary to run this service. "
-				"Please check your software installation." ,  missing );
-	}
-	error( KIO::ERR_CANNOT_LAUNCH_PROCESS, errorStr );
+    QStringList missingFiles;
+    m_cssLocation = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css");
+    if (m_cssLocation.isEmpty()) missingFiles.append("kio_docfilter/kio_docfilter.css");
+    m_perl = QStandardPaths::findExecutable( "perl" );
+    if (m_perl.isEmpty()) missingFiles.append("perl");
+    m_infoScript = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html" );
+    if (m_infoScript.isEmpty()) missingFiles.append("kio_info/kde-info2html");
+    m_infoConf = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html.conf");
+    if (m_infoConf.isEmpty()) missingFiles.append("kio_info/kde-info2html.conf");
+
+    if (!missingFiles.isEmpty())
+    {
+        qCCritical(LOG_KIO_INFO) << "Cannot locate files for HTML conversion," << qPrintable(missingFiles.join(' '));
+	QString errorStr = i18n("Unable to locate files which are necessary to run this service:<br>%1<br>"
+                                "Please check your software installation.", missingFiles.join(' '));
+	error(KIO::ERR_SLAVE_DEFINED, errorStr);
 	exit();
     }
 
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::InfoProtocol - done";
+    qCDebug(LOG_KIO_INFO) << "done";
 }
 
-InfoProtocol::~InfoProtocol()
-{
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::~InfoProtocol";
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::~InfoProtocol - done";
-}
 
 void InfoProtocol::get( const QUrl& url )
 {
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::get";
-    qCDebug( LOG_KIO_INFO ) << "URL: " << url.toDisplayString() << " , Path :" << url.path();
+    qCDebug(LOG_KIO_INFO) << "URL" << url.toDisplayString() << "path" << url.path();
 
     if (url.path()=="/")
     {
@@ -98,7 +92,7 @@ void InfoProtocol::get( const QUrl& url )
     // '<' in the path looks suspicious, someone is trying info:/dir/<script>alert('xss')</script>
     if (url.path().contains('<'))
     {
-        error(KIO::ERR_DOES_NOT_EXIST, url.url());
+        error(KIO::ERR_MALFORMED_URL, url.url());
         return;
     }
 
@@ -118,11 +112,11 @@ void InfoProtocol::get( const QUrl& url )
     cmd += ' ';
     cmd += KShell::quoteArg(m_node);
 
-    qCDebug( LOG_KIO_INFO ) << "cmd: " << cmd;
+    qCDebug(LOG_KIO_INFO) << "cmd" << cmd;
 
     FILE *file = popen( QFile::encodeName(cmd), "r" );
     if ( !file ) {
-        qCDebug( LOG_KIO_INFO ) << "InfoProtocol::get popen failed";
+        qCDebug(LOG_KIO_INFO) << "popen failed";
         error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
         return;
     }
@@ -140,7 +134,7 @@ void InfoProtocol::get( const QUrl& url )
       if ( n < 0 )
       {
         // ERROR
-	qCDebug( LOG_KIO_INFO ) << "InfoProtocol::get ERROR!";
+	qCWarning(LOG_KIO_INFO) << "read error!";
         pclose( file );
 	return;
       }
@@ -153,25 +147,23 @@ void InfoProtocol::get( const QUrl& url )
 
     finished();
 
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::get - done";
+    qCDebug(LOG_KIO_INFO) << "done";
 }
 
 void InfoProtocol::mimetype( const QUrl& /* url */ )
 {
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::mimetype";
+    qCDebug(LOG_KIO_INFO);
 
     // to get rid of those "Open with" dialogs...
     mimeType( "text/html" );
 
     // finish action
     finished();
-
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::mimetype - done";
 }
 
 void InfoProtocol::decodeURL( const QUrl &url )
 {
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodeURL";
+    qCDebug(LOG_KIO_INFO) << url;
 
     /* Notes:
      *
@@ -190,18 +182,16 @@ void InfoProtocol::decodeURL( const QUrl &url )
     if ( url == QUrl("info:/browse_by_file?special=yes") ) {
 	    m_page = "#special#";
 	    m_node = "browse_by_file";
-	    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodeURL - special - browse by file";
+	    qCDebug(LOG_KIO_INFO) << "InfoProtocol::decodeURL - special - browse by file";
 	    return;
     }
 
     decodePath( url.path() );
-
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodeURL - done";
 }
 
 void InfoProtocol::decodePath( QString path )
 {
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodePath(-" <<path<<"-)";
+    qCDebug(LOG_KIO_INFO) << path;
 
     m_page = "dir";  //default
     m_node = "";
@@ -210,7 +200,7 @@ void InfoProtocol::decodePath( QString path )
     if ('/' == path[0]) {
       path = path.mid( 1 );
     }
-    //qCDebug( LOG_KIO_INFO ) << "Path: " << path;
+    //qCDebug(LOG_KIO_INFO) << "Path: " << path;
 
     int slashPos = path.indexOf( "/" );
 
@@ -226,7 +216,7 @@ void InfoProtocol::decodePath( QString path )
     // remove leading+trailing whitespace
     m_node = path.right( path.length() - slashPos - 1).trimmed ();
 
-    qCDebug( LOG_KIO_INFO ) << "InfoProtocol::decodePath - done";
+    qCDebug(LOG_KIO_INFO) << "-> page" << m_page << "node" << m_node;
 }
 
 // A minimalistic stat with only the file type
@@ -244,22 +234,18 @@ void InfoProtocol::stat( const QUrl & )
 #endif
 
 	statEntry( uds_entry );
-
 	finished();
 }
+
 
 extern "C" { int Q_DECL_EXPORT kdemain( int argc, char **argv ); }
 
 int kdemain( int argc, char **argv )
 {
-#ifndef QT_NO_DEBUG
-  QLoggingCategory::setFilterRules(QStringLiteral("kio_info.debug = true"));
-#endif
-
-  QCoreApplication app(argc, argv);   // needed for QSocketNotifier
+  QCoreApplication app(argc, argv);			// needed for QSocketNotifier
   app.setApplicationName(QLatin1String("kio_info"));
 
-  qCDebug( LOG_KIO_INFO ) << "kio_info starting " << getpid();
+  qCDebug(LOG_KIO_INFO) << "kio_info starting" << getpid();
 
   if (argc != 4)
   {
