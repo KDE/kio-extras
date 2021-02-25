@@ -491,6 +491,14 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
 
             dir.next();
 
+            if (dir.fileInfo().isSymbolicLink()) {
+                // Skip symbolic links, as these may point to e.g. network file
+                // systems or other slow storage. The calling code already
+                // checks for the directory itself, and if it is fine any
+                // contained plain file is fine as well.
+                continue;
+            }
+
             auto fileSize = dir.fileInfo().size();
             if ((fileSize == 0) || (fileSize > m_maxFileSize)) {
                 // don't create thumbnails for files that exceed
