@@ -29,6 +29,8 @@
 #include <ksharedconfig.h>
 #include <kconfiggroup.h>
 
+#include <limits>
+
 extern "C"
 {
     Q_DECL_EXPORT ThumbCreator *new_creator()
@@ -63,8 +65,8 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
 	qCDebug(KIO_THUMBNAIL_EXR_LOG) << "EXRcreator - using original image";
 	KSharedConfig::Ptr config = KSharedConfig::openConfig();
 	KConfigGroup configGroup( config, "PreviewSettings" );
-	unsigned long long maxSize = configGroup.readEntry( "MaximumSize", 1024*1024 /* 1MB */ );
-	unsigned long long fileSize = QFile( path ).size();
+	const qint64 maxSize = configGroup.readEntry( "MaximumSize", std::numeric_limits<qint64>::max() );
+	const qint64 fileSize = QFile( path ).size();
 	if ( (fileSize > 0) && (fileSize < maxSize) ) {
 	    if (!img.load( path )) {
 		return false;
