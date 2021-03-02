@@ -83,9 +83,7 @@ void FileItemLinkingPlugin::Private::actionTriggered()
     bool link = action->property("link").toBool();
     QString activity = action->property("activity").toString();
 
-    // clang-format off
-    KAMD_DBUS_DECL_INTERFACE(service, Resources/Linking, ResourcesLinking);
-    // clang-format on
+    KAMD_DBUS_DECL_INTERFACE(service, "Resources/Linking", "ResourcesLinking");
 
     const auto urlList = items.urlList();
     for (const auto &item : urlList) {
