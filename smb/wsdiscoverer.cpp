@@ -44,6 +44,7 @@ public:
         , m_endpointUrl(endpointUrl)
         , m_destination(destination)
     {
+        qDebug() << Q_FUNC_INFO << this << m_endpointUrl << m_destination;
     }
 
     static QString nameFromComputerInfo(const QString &info)
@@ -76,6 +77,7 @@ public:
     // This must always set m_discovery and it must also time out on its own!
     void run()
     {
+        qDebug() << Q_FUNC_INFO << this;
         // NB: when windows talks to windows they use lms:LargeMetadataSupport we probably don't
         // need this for the data we want, so it's left out. The actual messagse a windows
         // machine creates would be using "http://schemas.microsoft.com/windows/lms/2007/08"
@@ -163,6 +165,7 @@ public:
         }
 
         m_discovery.reset(new WSDiscovery(computer, host));
+        qDebug() << Q_FUNC_INFO << this << "resolved" << computer << host;
         emit resolved(m_discovery);
     }
 
@@ -176,6 +179,7 @@ private:
 WSDiscoverer::WSDiscoverer()
     : m_client(new WSDiscoveryClient(this))
 {
+    qDebug() << Q_FUNC_INFO;
     connect(m_client, &WSDiscoveryClient::probeMatchReceived,
             this, &WSDiscoverer::matchReceived);
     connect(m_client, &WSDiscoveryClient::resolveMatchReceived,
@@ -187,13 +191,14 @@ WSDiscoverer::WSDiscoverer()
     // kdsoap.
     // NB: only started after first match! If we have no matches the slave will
     // stop us eventually anyway.
-    m_probeMatchTimer.setInterval(2000);
+    m_probeMatchTimer.setInterval(12000);
     m_probeMatchTimer.setSingleShot(true);
     connect(&m_probeMatchTimer, &QTimer::timeout, this, &WSDiscoverer::stop);
 }
 
 void WSDiscoverer::start()
 {
+    qDebug() << Q_FUNC_INFO;
     m_client->start();
 
     // We only want devices.
@@ -207,6 +212,7 @@ void WSDiscoverer::start()
 
 void WSDiscoverer::stop()
 {
+    qDebug() << Q_FUNC_INFO;
     m_startedTimer = true;
     disconnect(&m_probeMatchTimer);
     m_probeMatchTimer.stop();
@@ -215,11 +221,13 @@ void WSDiscoverer::stop()
 
 bool WSDiscoverer::isFinished() const
 {
+    qDebug() << Q_FUNC_INFO << (m_startedTimer && !m_probeMatchTimer.isActive() && m_resolvers.count() == m_resolvedCount);
     return m_startedTimer && !m_probeMatchTimer.isActive() && m_resolvers.count() == m_resolvedCount;
 }
 
 void WSDiscoverer::matchReceived(const WSDiscoveryTargetService &matchedService)
 {
+    qDebug() << Q_FUNC_INFO << matchedService.xAddrList();
     // (re)start match timer to finish-early if at all possible.
     m_probeMatchTimer.start();
     m_startedTimer = true;
@@ -235,6 +243,7 @@ void WSDiscoverer::matchReceived(const WSDiscoveryTargetService &matchedService)
 
 void WSDiscoverer::resolveReceived(const WSDiscoveryTargetService &service)
 {
+    qDebug() << Q_FUNC_INFO << service.endpointReference() << m_seenEndpoints;
     // (re)start match timer to finish-early if at all possible.
     m_probeMatchTimer.start();
     m_startedTimer = true;
@@ -276,6 +285,7 @@ void WSDiscoverer::resolveReceived(const WSDiscoveryTargetService &service)
 
 void WSDiscoverer::maybeFinish()
 {
+    qDebug() << Q_FUNC_INFO;
     if (isFinished()) {
         emit finished();
     }

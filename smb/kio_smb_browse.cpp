@@ -400,7 +400,9 @@ void SMBSlave::listDir(const QUrl &kurl)
     discoverers << smbc;
 
     auto appendDiscovery = [&](const Discovery::Ptr &discovery) {
+        qDebug() << "new discovery" << discovery->udsName();
         if (discoveredNames.contains(discovery->udsName(), Qt::CaseInsensitive)) {
+            qDebug() << "already seen discovery";
             return;
         }
         // Not tracking hosts. Tracking hosts means **guessing** if foo.local
@@ -413,11 +415,13 @@ void SMBSlave::listDir(const QUrl &kurl)
     };
 
     auto maybeFinished = [&] { // finishes if all discoveries finished
+        qDebug() << "maybe finished?";
         bool allFinished = true;
         for (const auto &discoverer : discoverers) {
             allFinished = allFinished && discoverer->isFinished();
         }
         if (allFinished) {
+            qDebug() << "all discovery finished!";
             flushEntries();
             e.quit();
         }
