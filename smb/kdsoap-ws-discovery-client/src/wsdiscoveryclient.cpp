@@ -37,6 +37,7 @@ static const int DISCOVERY_PORT = 3702;
 WSDiscoveryClient::WSDiscoveryClient(QObject *parent) :
     QObject(parent)
 {
+    qDebug() << Q_FUNC_INFO;
     m_soapUdpClient = new KDSoapUdpClient(this);
     connect(m_soapUdpClient, &KDSoapUdpClient::receivedMessage, this, &WSDiscoveryClient::receivedMessage);
 }
@@ -45,7 +46,9 @@ WSDiscoveryClient::~WSDiscoveryClient() = default;
 
 void WSDiscoveryClient::start()
 {
+    qDebug() << Q_FUNC_INFO;
     bool rc = m_soapUdpClient->bind(DISCOVERY_PORT, QAbstractSocket::ShareAddress);
+    qDebug() << Q_FUNC_INFO << rc;
     Q_ASSERT(rc);
 }
 
@@ -82,14 +85,18 @@ void WSDiscoveryClient::sendProbe(const QList<KDQName> &typeList, const QList<QU
     addressing.setReplyEndpointAddress(KDSoapMessageAddressingProperties::predefinedAddressToString(KDSoapMessageAddressingProperties::Anonymous));
     message.setMessageAddressingProperties(addressing);
 
+    qDebug() << Q_FUNC_INFO << message;
     auto rc = m_soapUdpClient->sendMessage(message, KDSoapHeaders(), DISCOVERY_ADDRESS_IPV4, DISCOVERY_PORT);
+    qDebug() << Q_FUNC_INFO << "legacy" << rc;
     Q_ASSERT(rc);
     rc = m_soapUdpClient->sendMessage(message, KDSoapHeaders(), DISCOVERY_ADDRESS_IPV6, DISCOVERY_PORT);
+    qDebug() << Q_FUNC_INFO << "ip" << rc;
     Q_ASSERT(rc);
 }
 
 void WSDiscoveryClient::sendResolve(const QString &endpointReferenceString)
 {
+    qDebug() << Q_FUNC_INFO << endpointReferenceString;
     WSDiscovery200504::TNS__ResolveType resolve;
 
     WSDiscovery200504::WSA__AttributedURI endpointReferenceAddress;
@@ -117,20 +124,26 @@ void WSDiscoveryClient::sendResolve(const QString &endpointReferenceString)
 
     auto rc = m_soapUdpClient->sendMessage(message, KDSoapHeaders(), DISCOVERY_ADDRESS_IPV4, DISCOVERY_PORT);
     Q_ASSERT(rc);
+    qDebug() << "v4" << rc;
     rc = m_soapUdpClient->sendMessage(message, KDSoapHeaders(), DISCOVERY_ADDRESS_IPV6, DISCOVERY_PORT);
     Q_ASSERT(rc);
+    qDebug() << "v6" << rc;
 }
 
 void WSDiscoveryClient::receivedMessage(const KDSoapMessage &replyMessage, const KDSoapHeaders &replyHeaders, const QHostAddress &senderAddress, quint16 senderPort)
 {
+    qDebug() << Q_FUNC_INFO << replyMessage << replyHeaders << senderAddress << senderPort;
     Q_UNUSED(replyHeaders);
     Q_UNUSED(senderAddress);
     Q_UNUSED(senderPort);
     if(replyMessage.messageAddressingProperties().action() == QStringLiteral("http://schemas.xmlsoap.org/ws/2005/04/discovery/Probe")) {
         // NO-OP
+        qDebug() << Q_FUNC_INFO << "is a probe";
     } else if(replyMessage.messageAddressingProperties().action() == QStringLiteral("http://schemas.xmlsoap.org/ws/2005/04/discovery/Resolve")) {
         // NO-OP
-    } else if(replyMessage.messageAddressingProperties().action() == QStringLiteral("http://schemas.xmlsoap.org/ws/2005/04/discovery/ResolveMatches")) {
+        qDebug() << Q_FUNC_INFO << "is a resolve";
+    } else if (replyMessage.messageAddressingProperties().action() == QStringLiteral("http://schemas.xmlsoap.org/ws/2005/04/discovery/ResolveMatches")) {
+        qDebug() << Q_FUNC_INFO << "is a resolvematch";
         WSDiscovery200504::TNS__ResolveMatchesType resolveMatches;
         resolveMatches.deserialize(replyMessage);
 
@@ -142,7 +155,8 @@ void WSDiscoveryClient::receivedMessage(const KDSoapMessage &replyMessage, const
         service.setXAddrList(QUrl::fromStringList(resolveMatch.xAddrs().entries()));
         service.updateLastSeen();
         emit resolveMatchReceived(service);
-    } else if(replyMessage.messageAddressingProperties().action() == QStringLiteral("http://schemas.xmlsoap.org/ws/2005/04/discovery/ProbeMatches")) {
+    } else if (replyMessage.messageAddressingProperties().action() == QStringLiteral("http://schemas.xmlsoap.org/ws/2005/04/discovery/ProbeMatches")) {
+        qDebug() << Q_FUNC_INFO << "is a probematch";
         WSDiscovery200504::TNS__ProbeMatchesType probeMatches;
         probeMatches.deserialize(replyMessage);
 
@@ -157,6 +171,7 @@ void WSDiscoveryClient::receivedMessage(const KDSoapMessage &replyMessage, const
             emit probeMatchReceived(service);
         }
     } else {
+        qDebug() << Q_FUNC_INFO << "else";
         qCDebug(KDSoapWSDiscoveryClient) << "Received message with unknown action:" << replyMessage.messageAddressingProperties().action();
     }
 }

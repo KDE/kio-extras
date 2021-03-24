@@ -26,6 +26,7 @@ WSDiscoveryProbeJob::WSDiscoveryProbeJob(WSDiscoveryClient *parent) :
     QObject(parent),
     m_client(parent)
 {
+    qDebug() << Q_FUNC_INFO;
     connect(m_client, &WSDiscoveryClient::probeMatchReceived, this, &WSDiscoveryProbeJob::probeMatchReceived);
 
     m_timer.setInterval(30000);
@@ -85,21 +86,26 @@ void WSDiscoveryProbeJob::stop()
 
 void WSDiscoveryProbeJob::timeout()
 {
+    qDebug() << Q_FUNC_INFO;
     m_client->sendProbe(m_typeList, m_scopeList);
 }
 
 void WSDiscoveryProbeJob::probeMatchReceived(const WSDiscoveryTargetService &probeMatchService)
 {
+    qDebug() << Q_FUNC_INFO;
     bool isMatch = true;
-    for(const KDQName& type : qAsConst(m_typeList)) {
+    for (const KDQName &type : qAsConst(m_typeList)) {
         isMatch = probeMatchService.isMatchingType(type) && isMatch;
+        qDebug() << Q_FUNC_INFO << "type match?" << type << isMatch;
     }
-    for(const QUrl& scope : qAsConst(m_scopeList)) {
+    for (const QUrl &scope : qAsConst(m_scopeList)) {
         isMatch = probeMatchService.isMatchingScope(scope) && isMatch;
+        qDebug() << Q_FUNC_INFO << "scope match?" << scope << isMatch;
     }
-    if(isMatch) {
+    if (isMatch) {
+        qDebug() << Q_FUNC_INFO << "ismatch";
         emit matchReceived(probeMatchService);
     } else {
-        qCDebug(KDSoapWSDiscoveryClient) << "Received probe match that didn't match the probe job";
+        qDebug() << Q_FUNC_INFO << "probe";
     }
 }
