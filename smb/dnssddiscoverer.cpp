@@ -86,11 +86,13 @@ DNSSDDiscoverer::DNSSDDiscoverer()
 
 void DNSSDDiscoverer::start()
 {
+        qDebug() << Q_FUNC_INFO;
     m_browser.startBrowse();
 }
 
 void DNSSDDiscoverer::stop()
 {
+        qDebug() << Q_FUNC_INFO;
     m_browser.disconnect();
     m_disconnected = true;
     maybeFinish();
@@ -98,6 +100,7 @@ void DNSSDDiscoverer::stop()
 
 bool DNSSDDiscoverer::isFinished() const
 {
+        qDebug() << Q_FUNC_INFO << (m_disconnected && m_services.count() == m_resolvedCount);
     return m_disconnected && m_services.count() == m_resolvedCount;
 }
 

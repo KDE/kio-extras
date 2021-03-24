@@ -424,6 +424,8 @@ void SMBSlave::listDir(const QUrl &kurl)
             qDebug() << "all discovery finished!";
             flushEntries();
             e.quit();
+        } else {
+            qDebug() << "not all finished";
         }
     };
 

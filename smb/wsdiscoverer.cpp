@@ -24,6 +24,8 @@
 
 #include "kio_smb.h"
 
+#include "kdsoap-ws-discovery-client/kdsoap_wsdiscovery_client_version.h"
+
 // Publication service data resolver!
 // Specifically we'll ask the endpoint for PBSData via ws-transfer/Get.
 // The implementation is the bare minimum for our purposes!
@@ -179,7 +181,7 @@ private:
 WSDiscoverer::WSDiscoverer()
     : m_client(new WSDiscoveryClient(this))
 {
-    qDebug() << Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO << WSDISCOVERY_VERSION_STRING;
     connect(m_client, &WSDiscoveryClient::probeMatchReceived,
             this, &WSDiscoverer::matchReceived);
     connect(m_client, &WSDiscoveryClient::resolveMatchReceived,

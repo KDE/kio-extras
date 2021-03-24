@@ -99,6 +99,7 @@ SMBCDiscoverer::SMBCDiscoverer(const SMBUrl &url, QEventLoop *loop, SMBSlave *sl
 
 SMBCDiscoverer::~SMBCDiscoverer()
 {
+        qDebug() << Q_FUNC_INFO;
     if (m_dirFd > 0) {
         smbc_closedir(m_dirFd);
     }
@@ -106,12 +107,14 @@ SMBCDiscoverer::~SMBCDiscoverer()
 
 void SMBCDiscoverer::start()
 {
+        qDebug() << Q_FUNC_INFO;
     queue();
 }
 
 
 bool SMBCDiscoverer::discoverNextFileInfo()
 {
+        qDebug() << Q_FUNC_INFO;
 #ifdef HAVE_READDIRPLUS2
     // Readdirplus2 dir/file listing. Becomes noop when at end of data associated with dirfd.
     // If readdirplus2 isn't available the regular dirent listing is done.
@@ -143,6 +146,7 @@ bool SMBCDiscoverer::discoverNextFileInfo()
 
 void SMBCDiscoverer::discoverNext()
 {
+        qDebug() << Q_FUNC_INFO;
     // Poor man's concurrency. smbc isn't thread safe so we'd hold up other
     // discoverers until we are done. While that will likely happen anyway
     // because smbc_opendir (usually?) blocks until it actually has all
@@ -249,12 +253,14 @@ void SMBCDiscoverer::customEvent(QEvent *event)
 
 void SMBCDiscoverer::stop()
 {
+        qDebug() << Q_FUNC_INFO;
     m_finished = true;
     emit finished();
 }
 
 bool SMBCDiscoverer::isFinished() const
 {
+        qDebug() << Q_FUNC_INFO;
     return m_finished;
 }
 
