@@ -238,14 +238,18 @@ void ThumbnailProtocol::get(const QUrl &url)
             if (sequenceCreator) {
                 sequenceCreator->setSequenceIndex(sequenceIndex());
 
-                const float wp = sequenceCreator->sequenceIndexWraparoundPoint();
-                setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wp));
                 setMetaData("handlesSequences", QStringLiteral("1"));
             }
 
             if (!creator->create(info.canonicalFilePath(), m_width, m_height, img)) {
                 error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
                 return;
+            }
+
+            if (sequenceCreator) {
+                // We MUST do this after calling create(), because the create() call itself might change it.
+                const float wp = sequenceCreator->sequenceIndexWraparoundPoint();
+                setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wp));
             }
         }
     }
