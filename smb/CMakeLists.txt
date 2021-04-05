@@ -68,6 +68,7 @@ target_include_directories(kio_smb_static
 target_link_libraries(kio_smb_static
     KF5::KIOCore
     KF5::I18n
+    KF5::ConfigCore
     ${SAMBA_LIBRARIES}
     Qt5::Network
     KF5::DNSSD
