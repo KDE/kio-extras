@@ -1,0 +1,3 @@
+# This file is added to prevent clang-format changes this directory, it should be kept in case the import gets renewed
+DisableFormat: true
+SortIncludes: false
