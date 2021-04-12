@@ -55,7 +55,7 @@ struct Result
     QString errorString;
 
     Q_REQUIRED_RESULT inline static Result fail(int _error = KIO::ERR_UNKNOWN,
-                                                const QString &_errorString = QString())
+            const QString &_errorString = QString())
     {
         return Result { false, _error, _errorString };
     }

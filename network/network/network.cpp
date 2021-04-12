@@ -39,12 +39,14 @@ Network* Network::network()
 }
 
 Network::Network()
-  : d( new NetworkPrivate(this) )
+    : d( new NetworkPrivate(this) )
 {
     d->init();
 }
 
-QList<NetDevice> Network::deviceList() const { return d->deviceList(); }
+QList<NetDevice> Network::deviceList() const {
+    return d->deviceList();
+}
 
 Network::~Network()
 {

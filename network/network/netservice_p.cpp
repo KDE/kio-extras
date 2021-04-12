@@ -28,12 +28,12 @@ namespace Mollet
 
 NetServicePrivate::NetServicePrivate( const QString& name, const QString& iconName, const QString& type,
                                       const NetDevice& device, const QString& url, const QString& id )
-  : mName( name )
-  , mIconName( iconName )
-  , mType( type )
-  , mDevice( device )
-  , mUrl( url )
-  , mId( id )
+    : mName( name )
+    , mIconName( iconName )
+    , mType( type )
+    , mDevice( device )
+    , mUrl( url )
+    , mId( id )
 {
 }
 

@@ -674,7 +674,7 @@ void SMBSlave::rename(const QUrl &ksrc, const QUrl &kdest, KIO::JobFlags flags)
     // on. When not we can still pretend like they aren't the same file. Worst case the user gets an overwrite prompt.
     // https://bugs.kde.org/show_bug.cgi?id=430585
     bool hasSrcStat = false;
-    struct stat srcStat{};
+    struct stat srcStat {};
     if (src.path().compare(dst.path(), Qt::CaseInsensitive) == 0) {
         qCDebug(KIO_SMB_LOG) << "smbc_rename " << "src and dst insensitive equal, performing inode comparision";
         errNum = cache_stat(dst, &st);

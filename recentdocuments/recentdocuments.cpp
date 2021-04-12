@@ -42,7 +42,7 @@ bool isRootUrl(const QUrl &url)
 }
 
 RecentDocuments::RecentDocuments(const QByteArray& pool, const QByteArray& app):
-        ForwardingSlaveBase("recentdocuments", pool, app)
+    ForwardingSlaveBase("recentdocuments", pool, app)
 {
     QDBusInterface kded("org.kde.kded5", "/kded", "org.kde.kded5");
     kded.call("loadModule", "recentdocumentsnotifier");
@@ -86,8 +86,8 @@ void RecentDocuments::listDir(const QUrl& url)
                 // Filter out things that can't be viewed in a file manager because they don't
                 // meet the user definition of a file for the purpose of "recently accessed files"
                 if (urlInside.scheme() == "recentdocuments"
-                    || !KProtocolManager::supportsListing(urlInside)
-                    || urlSet.contains(toDisplayString))
+                        || !KProtocolManager::supportsListing(urlInside)
+                        || urlSet.contains(toDisplayString))
                     continue;
 
                 KIO::UDSEntry uds;

@@ -48,9 +48,9 @@ static const char cagibiDeviceListObjectPath[] = "/org/kde/Cagibi/DeviceList";
 static const char cagibiDeviceListInterface[] =  "org.kde.Cagibi.DeviceList";
 
 UpnpNetworkBuilder::UpnpNetworkBuilder( NetworkPrivate* networkPrivate )
-  : AbstractNetworkBuilder()
-  , mNetworkPrivate( networkPrivate )
-  , mCagibiDeviceListDBusProxy( nullptr )
+    : AbstractNetworkBuilder()
+    , mNetworkPrivate( networkPrivate )
+    , mCagibiDeviceListDBusProxy( nullptr )
 {
 }
 
@@ -150,7 +150,7 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
         NetDevicePrivate* d = nullptr;
         const NetDevice* deviceOfService = nullptr;
         for (const NetDevice& device : qAsConst(deviceList)) {
-        const bool isSameAddress = ( device.ipAddress() == ipAddress );
+            const bool isSameAddress = ( device.ipAddress() == ipAddress );
 //qDebug()<<"existing device:"<<device.hostName()<<"at"<<device.ipAddress()<<"vs."<<ipAddress<<":"<<isSameAddress;
             // TODO: lookup hostname and try to use that
             if( isSameAddress )
@@ -201,7 +201,7 @@ void UpnpNetworkBuilder::addUPnPDevices( const QList<Cagibi::Device>& upnpDevice
         if( serviceType == QLatin1String("InternetGatewayDevice1") )
             deviceTypeByService = NetDevice::Router;
         else if( serviceType == QLatin1String("PrinterBasic1")
-             || serviceType == QLatin1String("PrinterEnhanced1") )
+                 || serviceType == QLatin1String("PrinterEnhanced1") )
             deviceTypeByService = NetDevice::Printer;
         else if( serviceType == QLatin1String("Scanner1") )
             deviceTypeByService = NetDevice::Scanner;
@@ -265,9 +265,9 @@ void UpnpNetworkBuilder::removeUPnPDevices( const QList<Cagibi::Device>& upnpDev
             }
         }
     }
-   if( ! removedServices.isEmpty() )
+    if( ! removedServices.isEmpty() )
         mNetworkPrivate->emitServicesRemoved( removedServices );
-   if( ! removedDevices.isEmpty() )
+    if( ! removedDevices.isEmpty() )
         mNetworkPrivate->emitDevicesRemoved( removedDevices );
 }
 
@@ -322,8 +322,8 @@ void UpnpNetworkBuilder::onAddedDeviceDetails( const Cagibi::Device& device )
 }
 
 void UpnpNetworkBuilder::onCagibiServiceOwnerChanged( const QString& serviceName,
-                                                      const QString& oldOwner,
-                                                      const QString& newOwner )
+        const QString& oldOwner,
+        const QString& newOwner )
 {
     Q_UNUSED(serviceName);
     Q_UNUSED(newOwner);

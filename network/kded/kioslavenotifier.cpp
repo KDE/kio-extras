@@ -50,7 +50,7 @@ static inline QString idFrom( const NetworkUri& networkUri )
 
 static inline QString dirIdFor( const NetDevice& device )
 {
-Q_UNUSED( device )
+    Q_UNUSED( device )
     return QString();
 }
 static inline QString pathFor( const NetDevice& device )
@@ -70,7 +70,7 @@ static inline QString pathFor( const NetService& service )
 
 
 KioSlaveNotifier::KioSlaveNotifier( Network* network, QObject* parent )
-  : QObject( parent )
+    : QObject( parent )
 {
     QDBusConnection sessionBus = QDBusConnection::sessionBus();
     const QString allServices;

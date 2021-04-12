@@ -38,24 +38,24 @@ class UDSEntry;
 
 class NetworkSlave : public KIO::SlaveBase
 {
-  public:
+public:
     NetworkSlave( const QByteArray& name, const QByteArray& poolSocket, const QByteArray& programSocket );
     ~NetworkSlave() override;
 
-  public: // KIO::SlaveBase API
+public: // KIO::SlaveBase API
     void mimetype( const QUrl& url ) override;
     void get( const QUrl& url ) override;
     void stat( const QUrl& url ) override;
     void listDir( const QUrl& url ) override;
 
-  private:
+private:
     void feedEntryAsNetwork( KIO::UDSEntry* entry );
     void feedEntryAsDevice( KIO::UDSEntry* entry, const Mollet::NetDevice& deviceData );
     void feedEntryAsService( KIO::UDSEntry* entry, const Mollet::NetService& serviceData );
 
     void reportError( const NetworkUri& networkUri, int errorId );
 
-  private: // data
+private: // data
     NetworkDBusInterface* mNetworkDBusProxy;
 };
 

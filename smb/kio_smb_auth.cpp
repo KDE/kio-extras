@@ -42,17 +42,17 @@ int SMBSlave::checkPassword(SMBUrl &url)
                               "<para><placeholder>username@domain.com</placeholder>: Modern corporate logon names are formed like e-mail addresses</para>"
                               "<para><placeholder>DOMAIN\\username</placeholder>: For ancient corporate networks or workgroups you may need to prefix the NetBIOS domain name (pre-Windows 2000)</para>"
                               "<para><placeholder>anonymous</placeholder>: Anonymous logins can be attempted using empty username and password. Depending on server configuration non-empty usernames may be required</para>"
-    ));
+                             ));
 
     if (share.isEmpty())
         info.prompt = i18n("<qt>Please enter authentication information for <b>%1</b></qt>", url.host());
     else
         info.prompt = i18n(
-            "Please enter authentication information for:\n"
-            "Server = %1\n"
-            "Share = %2",
-            url.host(),
-            share);
+                          "Please enter authentication information for:\n"
+                          "Server = %1\n"
+                          "Share = %2",
+                          url.host(),
+                          share);
 
     info.username = url.userName();
     qCDebug(KIO_SMB_LOG) << "call openPasswordDialog for " << info.url;

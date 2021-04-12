@@ -34,13 +34,15 @@
 #include <QDebug>
 
 NetworkThread::NetworkThread()
-  : QThread()
-  , mNetwork( nullptr )
-  , mContinue( true )
+    : QThread()
+    , mNetwork( nullptr )
+    , mContinue( true )
 {
 }
 
-Mollet::Network* NetworkThread::network() const { return mNetwork; }
+Mollet::Network* NetworkThread::network() const {
+    return mNetwork;
+}
 
 void NetworkThread::pause()
 {

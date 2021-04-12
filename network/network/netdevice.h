@@ -53,17 +53,17 @@ class MOLLETNETWORK_EXPORT NetDevice
     friend QDBusArgument& ::operator<<( QDBusArgument& argument, const NetDevice& device );
     friend const QDBusArgument& ::operator>>( const QDBusArgument& argument, NetDevice& device );
 
-  public:
+public:
     // later has priority
     enum Type { Unknown = 0, Scanner, Printer, FileServer, Router, Workstation };
     static QString iconName( Type type );
 
-  public:
+public:
     NetDevice();
     NetDevice( const NetDevice& other );
     virtual ~NetDevice();
 
-  public:
+public:
     QString name() const;
     QString hostName() const;
     /// if hostName is not set, use ipAddress to identify device
@@ -73,22 +73,24 @@ class MOLLETNETWORK_EXPORT NetDevice
     Type type() const;
     QList<NetService> serviceList() const;
 
-  public:
+public:
     NetDevice& operator =( const NetDevice& other );
 
-  private:
+private:
     explicit NetDevice( NetDevicePrivate* _d );
     void setDPtr( NetDevicePrivate* _d );
     NetDevicePrivate* dPtr() const;
 
-  private:
+private:
     QSharedPointer<NetDevicePrivate> d;
 };
 
 typedef QList<NetDevice> NetDeviceList;
 
 
-inline  NetDevicePrivate* NetDevice::dPtr() const { return const_cast<NetDevicePrivate*>( d.data() ); }
+inline  NetDevicePrivate* NetDevice::dPtr() const {
+    return const_cast<NetDevicePrivate*>( d.data() );
+}
 
 }
 

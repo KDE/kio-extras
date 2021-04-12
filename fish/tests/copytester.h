@@ -11,10 +11,10 @@ It was written to verify KDE bug 147948: https://bugs.kde.org/show_bug.cgi?id=14
 
 class Browser : public QWidget
 {
-  Q_OBJECT
-  public:
+    Q_OBJECT
+public:
     Browser();
-  public slots:
+public slots:
     void slotButtonClicked();
     void dataishere(KIO::Job *,const QByteArray &);
 };

@@ -51,15 +51,15 @@ class DNSSDNetworkBuilder : public AbstractNetworkBuilder
 {
     Q_OBJECT
 
-  public:
+public:
     explicit DNSSDNetworkBuilder( NetworkPrivate* networkPrivate );
     ~DNSSDNetworkBuilder() override;
 
-  public: // AbstractNetworkBuilder API
+public: // AbstractNetworkBuilder API
     void registerNetSystemFactory( AbstractNetSystemFactory* netSystemFactory ) override;
     void start() override;
 
-  private Q_SLOTS:
+private Q_SLOTS:
     void addServiceType( const QString& serviceType );
     void addService( KDNSSD::RemoteService::Ptr service );
     void removeServiceType( const QString& serviceType );
@@ -68,7 +68,7 @@ class DNSSDNetworkBuilder : public AbstractNetworkBuilder
     void onServiceTypeBrowserFinished();
     void onServiceBrowserFinished();
 
-  private: // data
+private: // data
     NetworkPrivate* mNetworkPrivate;
 
     KDNSSD::ServiceTypeBrowser* mServiceTypeBrowser;

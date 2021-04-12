@@ -171,7 +171,7 @@ NFSFileHandle NFSProtocolV2::lookupFileHandle(const QString& path)
                                       clnt_timeout);
 
             if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS_OK)
-            {						// get the absolute link target
+            {   // get the absolute link target
                 QString linkPath = QString::fromLocal8Bit(readLinkRes.readlinkres_u.data);
                 linkPath = QFileInfo(QFileInfo(path).path(), linkPath).absoluteFilePath();
 
@@ -258,7 +258,7 @@ void NFSProtocolV2::openConnection()
             // Save the exported directory and its NFS file handle.
             addFileHandle(fname, static_cast<NFSFileHandle>(fhStatus.fhstatus_u.fhs_fhandle));
             addExportedDir(fname);
-        } else {					// mount failed with error
+        } else {                    // mount failed with error
             qCDebug(LOG_KIO_NFS) << "Cannot mount" << fname << "- status" << fhStatus.fhs_status;
 
             // Even if the mount failed, record the directory path as exported
@@ -308,8 +308,8 @@ void NFSProtocolV2::listDir(const QUrl& url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
-    const QString path = listDirInternal(url);		// check path, list virtual dir
-    if (path.isEmpty()) return;				// no more to do
+    const QString path = listDirInternal(url);      // check path, list virtual dir
+    if (path.isEmpty()) return;             // no more to do
 
     const NFSFileHandle fh = getFileHandle(path);
     if (fh.isInvalid() || fh.isBadLink()) {
@@ -421,8 +421,8 @@ void NFSProtocolV2::stat(const QUrl &url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
-    const QString path = statInternal(url);		// check path, process virtual dir
-    if (path.isEmpty()) return;				// no more to do
+    const QString path = statInternal(url);     // check path, process virtual dir
+    if (path.isEmpty()) return;             // no more to do
 
     const NFSFileHandle fh = getFileHandle(path);
     if (fh.isInvalid())

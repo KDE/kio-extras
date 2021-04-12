@@ -253,7 +253,7 @@ private:
 //===========================================================================
 // Main slave entrypoint (see kio_smb.cpp)
 extern "C" {
-int kdemain(int argc, char **argv);
+    int kdemain(int argc, char **argv);
 }
 
 #endif //#endif KIO_SMB_H_INCLUDED

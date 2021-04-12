@@ -26,13 +26,13 @@
 
 class BookmarksProtocol : public KIO::SlaveBase
 {
-  public:
+public:
     BookmarksProtocol( const QByteArray &pool, const QByteArray &app );
     ~BookmarksProtocol() override;
 
     void get( const QUrl& url ) override;
 
-  private:
+private:
     int columns;
     int indent;
     int totalsize;

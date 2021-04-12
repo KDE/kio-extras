@@ -52,7 +52,7 @@ KIO::UDSEntry DNSSDDiscovery::toEntry() const
 DNSSDDiscoverer::DNSSDDiscoverer()
 {
     connect(&m_browser, &KDNSSD::ServiceBrowser::serviceAdded,
-            this, [=](KDNSSD::RemoteService::Ptr service){
+    this, [=](KDNSSD::RemoteService::Ptr service) {
         qCDebug(KIO_SMB_LOG) << "DNSSD added:"
                              << service->serviceName()
                              << service->type()

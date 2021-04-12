@@ -79,15 +79,29 @@ public:
      */
     SMBUrlType getType() const;
 
-    void setPass(const QString &_txt) { QUrl::setPassword(_txt); updateCache(); }
-    void setUser(const QString &_txt) { QUrl::setUserName(_txt); updateCache(); }
-    void setHost(const QString &_txt) { QUrl::setHost(_txt); updateCache(); }
-    void setPath(const QString &_txt) { QUrl::setPath(_txt); updateCache(); }
+    void setPass(const QString &_txt) {
+        QUrl::setPassword(_txt);
+        updateCache();
+    }
+    void setUser(const QString &_txt) {
+        QUrl::setUserName(_txt);
+        updateCache();
+    }
+    void setHost(const QString &_txt) {
+        QUrl::setHost(_txt);
+        updateCache();
+    }
+    void setPath(const QString &_txt) {
+        QUrl::setPath(_txt);
+        updateCache();
+    }
 
-     /**
-     * Return a URL that is suitable for libsmbclient
-     */
-    QByteArray toSmbcUrl() const { return m_surl; }
+    /**
+    * Return a URL that is suitable for libsmbclient
+    */
+    QByteArray toSmbcUrl() const {
+        return m_surl;
+    }
 
     /**
      * Returns the partial URL.

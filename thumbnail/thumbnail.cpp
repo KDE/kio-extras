@@ -23,7 +23,7 @@
 
 #include <stdlib.h>
 #ifdef __FreeBSD__
-    #include <machine/param.h>
+#include <machine/param.h>
 #endif
 #include <sys/types.h>
 #ifndef Q_OS_WIN
@@ -154,13 +154,13 @@ void ThumbnailProtocol::get(const QUrl &url)
     Q_ASSERT(info.isAbsolute());
 
     if (!info.exists()) {
-	// The file does not exist
-	error(KIO::ERR_DOES_NOT_EXIST, url.path());
-	return;
+        // The file does not exist
+        error(KIO::ERR_DOES_NOT_EXIST, url.path());
+        return;
     } else if (!info.isReadable()) {
-	// The file is not readable!
-	error(KIO::ERR_CANNOT_READ, url.path());
-	return;
+        // The file is not readable!
+        error(KIO::ERR_CANNOT_READ, url.path());
+        return;
     }
 
     //qDebug() << "Wanting MIME Type:" << m_mimeType;
@@ -212,8 +212,8 @@ void ThumbnailProtocol::get(const QUrl &url)
         if ((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
             img = thumbForDirectory(info.canonicalFilePath());
             if(img.isNull()) {
-              error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
-              return;
+                error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
+                return;
             }
         } else {
 #ifdef THUMBNAIL_HACK
@@ -355,7 +355,7 @@ bool ThumbnailProtocol::isOpaque(const QImage &image) const
 }
 
 void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &centerPos,
-                                         const QImage &image, int frameWidth, QSize imageTargetSize) const
+        const QImage &image, int frameWidth, QSize imageTargetSize) const
 {
     // Scale the image down so it matches the aspect ratio
     float scaling = 1.0;
@@ -622,7 +622,7 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
 {
     auto it = m_creators.constFind(plugin);
     if (it != m_creators.constEnd()) {
-	return *it;
+        return *it;
     }
 
     ThumbCreator *creator = nullptr;
@@ -630,13 +630,13 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
     // neither is ThumbCreator
     QLibrary library(KPluginLoader::findPlugin((plugin)));
     if (library.load()) {
-	auto createFn = (newCreator)library.resolve("new_creator");
-	if (createFn) {
-	    creator = createFn();
-	}
+        auto createFn = (newCreator)library.resolve("new_creator");
+        if (createFn) {
+            creator = createFn();
+        }
     }
     if (!creator) {
-	qCWarning(KIO_THUMBNAIL_LOG) << "Failed to load" << plugin << library.errorString();
+        qCWarning(KIO_THUMBNAIL_LOG) << "Failed to load" << plugin << library.errorString();
     }
 
     m_creators.insert(plugin, creator);
@@ -645,7 +645,7 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
 }
 
 bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& filePath,
-                                           int segmentWidth, int segmentHeight)
+        int segmentWidth, int segmentHeight)
 {
     auto getSubCreator = [&filePath, this]() -> ThumbCreator* {
         const QMimeDatabase db;

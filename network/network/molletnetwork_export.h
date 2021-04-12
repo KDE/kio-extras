@@ -24,10 +24,10 @@
 #define MOLLETNETWORK_EXPORT_H
 
 #ifndef MOLLETNETWORK_EXPORT
-  // building the library?
+// building the library?
 # if defined(MAKE_MOLLETNETWORK_LIB)
 #  define MOLLETNETWORK_EXPORT Q_DECL_EXPORT
-  // using the library
+// using the library
 # else
 #  define MOLLETNETWORK_EXPORT Q_DECL_IMPORT
 # endif

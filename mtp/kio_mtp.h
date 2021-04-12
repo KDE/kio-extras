@@ -50,7 +50,7 @@ Q_DECLARE_LOGGING_CATEGORY(LOG_KIO_MTP)
 
 class MTPSlave : public QObject, public KIO::SlaveBase
 {
-Q_OBJECT
+    Q_OBJECT
 
 public:
     /*

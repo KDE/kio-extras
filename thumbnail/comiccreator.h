@@ -42,34 +42,34 @@ class QEventLoop;
 class ComicCreator : public QObject, public ThumbCreator
 {
     Q_OBJECT
-    public:
-        ComicCreator();
-        bool create(const QString& path, int width, int height, QImage& img) override;
+public:
+    ComicCreator();
+    bool create(const QString& path, int width, int height, QImage& img) override;
 
-    private:
-        enum Type {
-            ZIP,
-            TAR,
-            RAR,
-            SEVENZIP
-        };
-        void filterImages(QStringList& entries);
-        int  runProcess(const QString& processPath, const QStringList& args);
+private:
+    enum Type {
+        ZIP,
+        TAR,
+        RAR,
+        SEVENZIP
+    };
+    void filterImages(QStringList& entries);
+    int  runProcess(const QString& processPath, const QStringList& args);
 
-        // For "zip" and "tar" type files.
-        // Uses KDE's internal archive classes.
-        QImage extractArchiveImage(const QString& path, const ComicCreator::Type);
-        void getArchiveFileList(QStringList& entries, const QString& prefix,
-            const KArchiveDirectory* dir);
+    // For "zip" and "tar" type files.
+    // Uses KDE's internal archive classes.
+    QImage extractArchiveImage(const QString& path, const ComicCreator::Type);
+    void getArchiveFileList(QStringList& entries, const QString& prefix,
+                            const KArchiveDirectory* dir);
 
-        // For "rar" type files.
-        // Uses the non-free 'unrar' executable, if available.
-        QImage extractRARImage(const QString& path);
-        QString unrarPath() const;
-        QStringList getRARFileList(const QString& path, const QString& unrarPath);
+    // For "rar" type files.
+    // Uses the non-free 'unrar' executable, if available.
+    QImage extractRARImage(const QString& path);
+    QString unrarPath() const;
+    QStringList getRARFileList(const QString& path, const QString& unrarPath);
 
-    private:
-        QByteArray m_stdOut;
+private:
+    QByteArray m_stdOut;
 };
 
 #endif

@@ -51,7 +51,7 @@ bool IcoUtils::loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int n
     QTemporaryFile inputFile;
 
     if ( ! inputFile.open() )
-         return false;
+        return false;
 
     QByteArray data = inputDevice->readAll();
 
@@ -70,7 +70,7 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, 
     }
 
     if ( ! IcoUtils::loadIcoImageFromExe(inputFileName, &iconData) )
-         return false;
+        return false;
 
     if (!iconData.seek(0)) {
         return false;

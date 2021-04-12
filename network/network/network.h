@@ -45,17 +45,17 @@ class MOLLETNETWORK_EXPORT Network : public QObject
 
     friend class NetworkPrivate;
 
-  public:
+public:
     static Network* network();
 
-  public:
+public:
     Network();
     ~Network() override;
 
-  public:
+public:
     QList<NetDevice> deviceList() const;
 
-  Q_SIGNALS:
+Q_SIGNALS:
     void devicesAdded( const QList<NetDevice>& deviceList );
     void devicesRemoved( const QList<NetDevice>& deviceList );
     void servicesAdded( const QList<NetService>& serviceList );
@@ -63,10 +63,10 @@ class MOLLETNETWORK_EXPORT Network : public QObject
 
     void initDone();
 
-  private:
+private:
     Q_PRIVATE_SLOT( d, void onBuilderInit() )
 
-  private:
+private:
     NetworkPrivate* const d;
 };
 

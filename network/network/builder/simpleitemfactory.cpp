@@ -126,7 +126,7 @@ static const DNSSDServiceDatum DNSSDServiceData[] =
     { "_pgpkey-ldap._tcp",  "pgpkey-ldap",  "application-pgp-keys",  false, nullptr, nullptr, nullptr, nullptr, nullptr },
     { "_pgpkey-hkp._tcp",   "pgpkey-hkp",   "application-pgp-keys",  false, nullptr, nullptr, nullptr, nullptr, nullptr },
     { "_pgpkey-https._tcp", "pgpkey-https", "application-pgp-keys",  true, "https", "path", nullptr, nullptr, nullptr },
-    
+
     // Maemo
     { "_maemo-inf._tcp",    "maemo-inf",    "pda",  false, nullptr, nullptr, nullptr, nullptr, nullptr },
     // TODO: _maemo-inf._tcp seems to be not a service, just some about info, use to identify device and hide
@@ -180,14 +180,14 @@ void DNSSDServiceDatum::feedUrl( QUrl* url, const KDNSSD::RemoteService* remoteS
 
 
 SimpleItemFactory::SimpleItemFactory()
-  : AbstractNetSystemFactory()
+    : AbstractNetSystemFactory()
 {
 }
 
 
 bool SimpleItemFactory::canCreateNetSystemFromDNSSD( const QString& serviceType ) const
 {
-Q_UNUSED( serviceType )
+    Q_UNUSED( serviceType )
     return true;
 }
 
@@ -219,8 +219,8 @@ NetServicePrivate* SimpleItemFactory::createNetService( const KDNSSD::RemoteServ
 
     const bool isUnknown = ( serviceDatum == &UnknownServiceDatum );
     const QString typeName = isUnknown ?
-        dnssdServiceType.mid( 1, dnssdServiceType.lastIndexOf(QLatin1Char('.'))-1 ) :
-        QString::fromLatin1( serviceDatum->typeName );
+                             dnssdServiceType.mid( 1, dnssdServiceType.lastIndexOf(QLatin1Char('.'))-1 ) :
+                             QString::fromLatin1( serviceDatum->typeName );
 
     QString iconName = QString::fromLatin1(serviceDatum->fallbackIconName);
     if ( serviceDatum->iconField ) {
@@ -232,14 +232,14 @@ NetServicePrivate* SimpleItemFactory::createNetService( const KDNSSD::RemoteServ
     }
 
     result = new NetServicePrivate( dnssdService->serviceName(), iconName,
-        typeName, device, url.url(), SimpleItemFactory::dnssdId(dnssdService) );
+                                    typeName, device, url.url(), SimpleItemFactory::dnssdId(dnssdService) );
 
     return result;
 }
 
 bool SimpleItemFactory::canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDevice ) const
 {
-Q_UNUSED( upnpDevice )
+    Q_UNUSED( upnpDevice )
     return true;
 }
 
@@ -260,8 +260,8 @@ NetServicePrivate* SimpleItemFactory::createNetService( const Cagibi::Device& up
         url.append( upnpDevice.udn() );
     }
     result = new NetServicePrivate( upnpDevice.friendlyName(),
-        QString::fromLatin1("unknown"),
-        QString::fromLatin1("upnp.")+upnpDevice.type(), device, url, SimpleItemFactory::upnpId(upnpDevice) );
+                                    QString::fromLatin1("unknown"),
+                                    QString::fromLatin1("upnp.")+upnpDevice.type(), device, url, SimpleItemFactory::upnpId(upnpDevice) );
 
     return result;
 }

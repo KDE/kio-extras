@@ -32,7 +32,7 @@ namespace Mollet
 {
 
 NetworkDBusAdaptor::NetworkDBusAdaptor( NetworkWatcher* parent )
-  : QDBusAbstractAdaptor( parent )
+    : QDBusAbstractAdaptor( parent )
 {
     // TODO: best place to do this?
     qDBusRegisterMetaType<Mollet::NetDevice>();

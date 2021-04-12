@@ -38,56 +38,58 @@ class KIOPluginForMetaData : public QObject
 
 using namespace KIO;
 
-extern "C" { int Q_DECL_EXPORT kdemain(int argc, char **argv); }
+extern "C" {
+    int Q_DECL_EXPORT kdemain(int argc, char **argv);
+}
 
 int kdemain( int argc, char **argv )
 {
-  QCoreApplication app(argc, argv);
-  app.setApplicationName(QLatin1String("kio_archive"));
+    QCoreApplication app(argc, argv);
+    app.setApplicationName(QLatin1String("kio_archive"));
 
-  qCDebug(KIO_ARCHIVE_LOG) << "Starting" << QCoreApplication::applicationPid();
+    qCDebug(KIO_ARCHIVE_LOG) << "Starting" << QCoreApplication::applicationPid();
 
-  if (argc != 4)
-  {
-     fprintf(stderr, "Usage: kio_archive protocol domain-socket1 domain-socket2\n");
-     exit(-1);
-  }
+    if (argc != 4)
+    {
+        fprintf(stderr, "Usage: kio_archive protocol domain-socket1 domain-socket2\n");
+        exit(-1);
+    }
 
-  ArchiveProtocol slave( argv[1], argv[2], argv[3]);
-  slave.dispatchLoop();
+    ArchiveProtocol slave( argv[1], argv[2], argv[3]);
+    slave.dispatchLoop();
 
-  qCDebug(KIO_ARCHIVE_LOG) << "Done";
-  return 0;
+    qCDebug(KIO_ARCHIVE_LOG) << "Done";
+    return 0;
 }
 
 
 ArchiveProtocol::ArchiveProtocol( const QByteArray &proto, const QByteArray &pool, const QByteArray &app )
     : ArchiveProtocolBase( proto, pool, app )
 {
-  qCDebug(KIO_ARCHIVE_LOG);
+    qCDebug(KIO_ARCHIVE_LOG);
 }
 
 
 KArchive *ArchiveProtocol::createArchive( const QString & proto, const QString & archiveFile )
 {
     if ( proto == "ar" ) {
-      qCDebug(KIO_ARCHIVE_LOG) << "Opening KAr on " << archiveFile;
-      return new KAr( archiveFile );
+        qCDebug(KIO_ARCHIVE_LOG) << "Opening KAr on " << archiveFile;
+        return new KAr( archiveFile );
     }
     else if ( proto == "tar" ) {
-      qCDebug(KIO_ARCHIVE_LOG) << "Opening KTar on " << archiveFile;
-      return new KTar( archiveFile );
+        qCDebug(KIO_ARCHIVE_LOG) << "Opening KTar on " << archiveFile;
+        return new KTar( archiveFile );
     }
     else if ( proto == "zip" ) {
-      qCDebug(KIO_ARCHIVE_LOG) << "Opening KZip on " << archiveFile;
-      return new KZip( archiveFile );
+        qCDebug(KIO_ARCHIVE_LOG) << "Opening KZip on " << archiveFile;
+        return new KZip( archiveFile );
     }
     else if ( proto == "sevenz" ) {
-      qCDebug(KIO_ARCHIVE_LOG) << "Opening K7Zip on " << archiveFile;
-      return new K7Zip( archiveFile );
+        qCDebug(KIO_ARCHIVE_LOG) << "Opening K7Zip on " << archiveFile;
+        return new K7Zip( archiveFile );
     } else {
-      qCWarning(KIO_ARCHIVE_LOG) << "Protocol" << proto << "not supported by this IOSlave" ;
-      return nullptr;
+        qCWarning(KIO_ARCHIVE_LOG) << "Protocol" << proto << "not supported by this IOSlave" ;
+        return nullptr;
     }
 }
 

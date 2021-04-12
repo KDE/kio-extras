@@ -54,15 +54,15 @@ public:
     char *readManPage(const char *filename);
 
     static MANProtocol *self();
-   
+
 private:
     void checkManPaths();
     QStringList manDirectories();
     QMap<QString, QString> buildIndexMap(const QString& section);
     bool addWhatIs(QMap<QString, QString>& i, const QString& f, const QString& mark);
     void parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const QString &mark );
-    QStringList findPages(const QString& section, 
-                          const QString &title, 
+    QStringList findPages(const QString& section,
+                          const QString &title,
                           bool full_path = true);
 
     QStringList buildSectionList(const QStringList& dirs) const;

@@ -33,33 +33,45 @@ QString NetDevice::iconName( Type type )
 {
     static const char* const IconName[] =
     {
-    /*"unknown"*/"network-server", "scanner", "printer", "network-server-database", "network-server", "computer"
+        /*"unknown"*/"network-server", "scanner", "printer", "network-server-database", "network-server", "computer"
     };
 
     return QLatin1String(IconName[type]);
 }
 
 NetDevice::NetDevice()
-  : d( *dummyNetDevicePrivate )
+    : d( *dummyNetDevicePrivate )
 {
 }
 
 NetDevice::NetDevice( NetDevicePrivate* _d )
-  : d( _d )
+    : d( _d )
 {
 }
 
 NetDevice::NetDevice( const NetDevice& other )
-  : d( other.d )
+    : d( other.d )
 {
 }
 
-QString NetDevice::name() const     { return d->name(); }
-QString NetDevice::hostName() const { return d->hostName(); }
-QString NetDevice::ipAddress() const { return d->ipAddress(); }
-QString NetDevice::hostAddress() const { return d->hostAddress(); }
-NetDevice::Type NetDevice::type() const  { return d->type(); }
-QList<NetService> NetDevice::serviceList() const { return d->serviceList(); }
+QString NetDevice::name() const     {
+    return d->name();
+}
+QString NetDevice::hostName() const {
+    return d->hostName();
+}
+QString NetDevice::ipAddress() const {
+    return d->ipAddress();
+}
+QString NetDevice::hostAddress() const {
+    return d->hostAddress();
+}
+NetDevice::Type NetDevice::type() const  {
+    return d->type();
+}
+QList<NetService> NetDevice::serviceList() const {
+    return d->serviceList();
+}
 
 
 NetDevice& NetDevice::operator =( const NetDevice& other )

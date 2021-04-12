@@ -39,9 +39,9 @@ namespace Mollet
 K_PLUGIN_CLASS_WITH_JSON(NetworkWatcher, "networkwatcher.json")
 
 NetworkWatcher::NetworkWatcher( QObject* parent, const QList<QVariant>& parameters )
-  : KDEDModule( parent )
+    : KDEDModule( parent )
 {
-Q_UNUSED( parameters )
+    Q_UNUSED( parameters )
     mNetwork = Network::network();
 
     new KioSlaveNotifier( mNetwork );

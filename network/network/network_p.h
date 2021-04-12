@@ -36,25 +36,25 @@ class AbstractNetSystemFactory;
 
 class NetworkPrivate
 {
-  public:
+public:
     explicit NetworkPrivate( Network* parent );
     virtual ~NetworkPrivate();
 
-  public:
+public:
     const QList<NetDevice>& deviceList() const;
     QList<NetDevice>& deviceList();
 
-  public:
+public:
     void init();
     void onBuilderInit();
 
-  public:
+public:
     void emitDevicesAdded( const QList<NetDevice>& deviceList );
     void emitDevicesRemoved( const QList<NetDevice>& deviceList );
     void emitServicesAdded( const QList<NetService>& serviceList );
     void emitServicesRemoved( const QList<NetService>& serviceList );
 
-  private: // data
+private: // data
     Network* p;
     QList<NetDevice> mDeviceList;
     QList<AbstractNetworkBuilder*> mNetworkBuilderList;

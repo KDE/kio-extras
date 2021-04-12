@@ -46,9 +46,9 @@ bool AppImageCreator::create(const QString &path, int width, int height, QImage 
     char *buf = nullptr;
 
     bool ok = appimage_read_file_into_buffer_following_symlinks(qUtf8Printable(path),
-                                                                ".DirIcon",
-                                                                &buf,
-                                                                &size);
+              ".DirIcon",
+              &buf,
+              &size);
 
     QScopedPointer<char, QScopedPointerPodDeleter> cleanup(buf);
     Q_UNUSED(cleanup);

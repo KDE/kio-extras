@@ -27,9 +27,9 @@ KMTPStorageInterface::KMTPStorageInterface(const QString &dbusObjectPath, KMTPDe
     : QObject(parent)
 {
     m_dbusInterface = new org::kde::kmtp::Storage(QStringLiteral("org.kde.kiod5"),
-                                                  dbusObjectPath,
-                                                  QDBusConnection::sessionBus(),
-                                                  this);
+            dbusObjectPath,
+            QDBusConnection::sessionBus(),
+            this);
     m_dbusInterface->setTimeout(5 * 60 * 1000); // TODO: listing folders with a huge amount of files may take a while
 
     qDBusRegisterMetaType<KMTPFile>();

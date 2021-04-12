@@ -39,25 +39,25 @@ namespace Common {
 
 namespace {
 #ifdef QT_DEBUG
-    QString lastExecutedQuery;
+QString lastExecutedQuery;
 #endif
 
-    std::mutex databases_mutex;
+std::mutex databases_mutex;
 
-    struct DatabaseInfo {
-        Qt::HANDLE thread;
-        Database::OpenMode openMode;
-    };
+struct DatabaseInfo {
+    Qt::HANDLE thread;
+    Database::OpenMode openMode;
+};
 
-    bool operator<(const DatabaseInfo &left, const DatabaseInfo &right)
-    {
-        return
-            left.thread < right.thread     ? true  :
-            left.thread > right.thread     ? false :
-            left.openMode < right.openMode;
-    }
+bool operator<(const DatabaseInfo &left, const DatabaseInfo &right)
+{
+    return
+        left.thread < right.thread     ? true  :
+        left.thread > right.thread     ? false :
+        left.openMode < right.openMode;
+}
 
-    std::map<DatabaseInfo, std::weak_ptr<Database>> databases;
+std::map<DatabaseInfo, std::weak_ptr<Database>> databases;
 };
 
 class QSqlDatabaseWrapper {
@@ -71,16 +71,16 @@ public:
         : m_open(false)
     {
         m_connectionName =
-                "kactivities_db_resources_"
-                    // Adding the thread number to the database name
-                    + QString::number((quintptr)info.thread)
-                    // And whether it is read-only or read-write
-                    + (info.openMode == Database::ReadOnly ? "_readonly" : "_readwrite");
+            "kactivities_db_resources_"
+            // Adding the thread number to the database name
+            + QString::number((quintptr)info.thread)
+            // And whether it is read-only or read-write
+            + (info.openMode == Database::ReadOnly ? "_readonly" : "_readwrite");
 
         m_database =
             QSqlDatabase::contains(m_connectionName)
-                ? QSqlDatabase::database(m_connectionName)
-                : QSqlDatabase::addDatabase(QStringLiteral("QSQLITE"), m_connectionName);
+            ? QSqlDatabase::database(m_connectionName)
+            : QSqlDatabase::addDatabase(QStringLiteral("QSQLITE"), m_connectionName);
 
         if (info.openMode == Database::ReadOnly) {
             m_database.setConnectOptions(QStringLiteral("QSQLITE_OPEN_READONLY"));
@@ -212,11 +212,11 @@ Database::Ptr Database::instance(Source source, OpenMode openMode)
     ptr->setPragma(QStringLiteral("wal_autocheckpoint = 100"));
 
     qDebug() << "KActivities: Database connection: " << ptr->d->database->connectionName()
-        << "\n    query_only:         " << ptr->pragma(QStringLiteral("query_only"))
-        << "\n    journal_mode:       " << ptr->pragma(QStringLiteral("journal_mode"))
-        << "\n    wal_autocheckpoint: " << ptr->pragma(QStringLiteral("wal_autocheckpoint"))
-        << "\n    synchronous:        " << ptr->pragma(QStringLiteral("synchronous"))
-        ;
+             << "\n    query_only:         " << ptr->pragma(QStringLiteral("query_only"))
+             << "\n    journal_mode:       " << ptr->pragma(QStringLiteral("journal_mode"))
+             << "\n    wal_autocheckpoint: " << ptr->pragma(QStringLiteral("wal_autocheckpoint"))
+             << "\n    synchronous:        " << ptr->pragma(QStringLiteral("synchronous"))
+             ;
 
     return ptr;
 }

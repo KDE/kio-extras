@@ -34,20 +34,20 @@ class NetworkUri
 {
 //     friend QDataStream& operator<<( QDataStream& stream, const NetworkUri& networkUri );
 
-  public:
+public:
     enum Type { InvalidUrl, Domain, Device, Service };
-  public:
+public:
     explicit NetworkUri( const QUrl &url );
 
-  public:
+public:
     const QString& hostAddress() const;
     const QString& serviceName() const;
     const QString& serviceType() const;
     NetworkUri::Type type() const;
 
-  private:
+private:
 
-  private: // data
+private: // data
     QString mHostAddress;
     QString mServiceName;
     QString mServiceType;
@@ -70,9 +70,15 @@ inline NetworkUri::NetworkUri( const QUrl &url )
     }
 }
 
-inline const QString& NetworkUri::hostAddress()    const { return mHostAddress; }
-inline const QString& NetworkUri::serviceName() const { return mServiceName; }
-inline const QString& NetworkUri::serviceType() const { return mServiceType; }
+inline const QString& NetworkUri::hostAddress()    const {
+    return mHostAddress;
+}
+inline const QString& NetworkUri::serviceName() const {
+    return mServiceName;
+}
+inline const QString& NetworkUri::serviceType() const {
+    return mServiceType;
+}
 
 inline NetworkUri::Type NetworkUri::type() const
 {

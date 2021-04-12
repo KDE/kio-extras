@@ -26,7 +26,9 @@
 // Qt
 #include <QExplicitlySharedDataPointer>
 
-namespace Cagibi { class Device; }
+namespace Cagibi {
+class Device;
+}
 class QString;
 class QDBusArgument;
 extern QDBusArgument& operator<<( QDBusArgument& argument,
@@ -41,24 +43,24 @@ class DevicePrivate;
 
 class Device
 {
-  friend QDBusArgument& ::operator<<( QDBusArgument& argument,
-                                      const Cagibi::Device& device );
-  friend const QDBusArgument& ::operator>>( const QDBusArgument& argument,
-                                            Cagibi::Device& device );
+    friend QDBusArgument& ::operator<<( QDBusArgument& argument,
+                                        const Cagibi::Device& device );
+    friend const QDBusArgument& ::operator>>( const QDBusArgument& argument,
+            Cagibi::Device& device );
 
-  protected:
+protected:
     explicit Device( DevicePrivate* _d );
 
-  public:
+public:
     Device();
     Device( const Device& other );
 
     ~Device();
 
-  public:
+public:
     Device& operator=( const Device& other );
 
-  public:
+public:
     const QString& type() const;
     const QString& friendlyName() const;
     const QString& manufacturerName() const;
@@ -76,7 +78,7 @@ class Device
     bool hasParentDevice() const;
     const QString& parentDeviceUdn() const;
 
-  protected:
+protected:
     QExplicitlySharedDataPointer<DevicePrivate> d;
 };
 

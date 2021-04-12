@@ -33,7 +33,7 @@ namespace Mollet
 {
 
 NetworkPrivate::NetworkPrivate( Network* parent )
-  : p( parent )
+    : p( parent )
 {
 }
 

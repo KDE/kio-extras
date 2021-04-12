@@ -32,8 +32,8 @@ namespace Mollet
 {
 
 NetDevicePrivate::NetDevicePrivate( const QString& name )
-  : mName( name )
-  , mType( NetDevice::Unknown )
+    : mName( name )
+    , mType( NetDevice::Unknown )
 {
 }
 

@@ -115,37 +115,38 @@ static KProcess *childPid = 0;
 using namespace KIO;
 extern "C" {
 
-int Q_DECL_EXPORT kdemain( int argc, char **argv )
-{
-    QCoreApplication app(argc, argv);
-    app.setApplicationName("kio_fish");
+    int Q_DECL_EXPORT kdemain( int argc, char **argv )
+    {
+        QCoreApplication app(argc, argv);
+        app.setApplicationName("kio_fish");
 
-    myDebug( << "*** Starting fish ");
-    if (argc != 4) {
-        myDebug( << "Usage: kio_fish protocol domain-socket1 domain-socket2");
-        exit(-1);
+        myDebug( << "*** Starting fish ");
+        if (argc != 4) {
+            myDebug( << "Usage: kio_fish protocol domain-socket1 domain-socket2");
+            exit(-1);
+        }
+
+        setenv("TZ", "UTC", true);
+
+        fishProtocol slave(argv[2], argv[3]);
+        slave.dispatchLoop();
+
+        myDebug( << "*** fish Done");
+        return 0;
     }
-
-    setenv("TZ", "UTC", true);
-
-    fishProtocol slave(argv[2], argv[3]);
-    slave.dispatchLoop();
-
-    myDebug( << "*** fish Done");
-    return 0;
-}
 
 }
 
 const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
-    { ("FISH"), 0,
-      ("echo; /bin/sh -c start_fish_server > /dev/null 2>/dev/null; perl .fishsrv.pl " CHECKSUM " 2>/dev/null; perl -e '$|=1; print \"### 100 transfer fish server\\n\"; while(<STDIN>) { last if /^__END__/; $code.=$_; } exit(eval($code));' 2>/dev/null;"),
+    {   ("FISH"), 0,
+        ("echo; /bin/sh -c start_fish_server > /dev/null 2>/dev/null; perl .fishsrv.pl " CHECKSUM " 2>/dev/null; perl -e '$|=1; print \"### 100 transfer fish server\\n\"; while(<STDIN>) { last if /^__END__/; $code.=$_; } exit(eval($code));' 2>/dev/null;"),
       1 },
     { ("VER 0.0.3 copy append lscount lslinks lsmime exec stat"), 0,
       ("echo 'VER 0.0.3 copy append lscount lslinks lsmime exec stat'"),
-      1 },
-    { ("PWD"), 0,
-      ("pwd"),
+        1
+    },
+    {   ("PWD"), 0,
+        ("pwd"),
       1 },
     { ("LIST"), 1,
       ("echo `ls -Lla %1 2> /dev/null | grep '^[-dsplcb]' | wc -l`;"
@@ -223,8 +224,8 @@ const struct fishProtocol::fish_info fishProtocol::fishInfo[] = {
 };
 
 fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
-  : SlaveBase("fish", pool_socket, app_socket), mimeBuffer(1024, '\0'),
-    mimeTypeSent(false)
+    : SlaveBase("fish", pool_socket, app_socket), mimeBuffer(1024, '\0'),
+      mimeTypeSent(false)
 {
     myDebug( << "fishProtocol::fishProtocol()");
     if (sshPath == nullptr) {
@@ -284,8 +285,8 @@ void fishProtocol::openConnection() {
 
     if (connectionHost.isEmpty())
     {
-       error( KIO::ERR_UNKNOWN_HOST, QString() );
-       return;
+        error( KIO::ERR_UNKNOWN_HOST, QString() );
+        return;
     }
 
     infoMessage(i18n("Connecting..."));
@@ -306,8 +307,8 @@ void fishProtocol::openConnection() {
 static int open_pty_pair(int fd[2])
 {
 #if defined(HAVE_TERMIOS_H) && defined(HAVE_GRANTPT) && !defined(HAVE_OPENPTY)
-/** with kind regards to The GNU C Library
-Reference Manual for Version 2.2.x of the GNU C Library */
+    /** with kind regards to The GNU C Library
+    Reference Manual for Version 2.2.x of the GNU C Library */
     int master, slave;
     char *name;
     struct ::termios ti;
@@ -333,9 +334,9 @@ Reference Manual for Version 2.2.x of the GNU C Library */
 
 #if (defined(HAVE_ISASTREAM) || defined(isastream)) && defined(I_PUSH)
     if (isastream(slave) &&
-        (ioctl(slave, I_PUSH, "ptem") < 0 ||
-         ioctl(slave, I_PUSH, "ldterm") < 0))
-            goto close_slave;
+            (ioctl(slave, I_PUSH, "ptem") < 0 ||
+             ioctl(slave, I_PUSH, "ldterm") < 0))
+        goto close_slave;
 #endif
 
     tcsetattr(slave, TCSANOW, &ti);
@@ -395,7 +396,7 @@ bool fishProtocol::connectionStart() {
 
     childPid->setProgram(sshPath, common_args);
     childPid->start();
-    
+
     QByteArray buf;
     int offset = 0;
     while (!isLoggedIn) {
@@ -468,7 +469,7 @@ bool fishProtocol::connectionStart() {
         if (local) {
             execl(suPath, "su", "-", connectionUser.toLatin1().constData(), "-c", "cd ~;echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)nullptr);
         } else {
-            #define common_args "-l", connectionUser.toLatin1().constData(), "-x", "-e", "none", \
+#define common_args "-l", connectionUser.toLatin1().constData(), "-x", "-e", "none", \
                     "-q", connectionHost.toLatin1().constData(),        \
                 "echo FISH:;exec /bin/sh -c \"if env true 2>/dev/null; then env PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; else PS1= PS2= TZ=UTC LANG=C LC_ALL=C LOCALE=C /bin/sh; fi\"", (void *)nullptr
             // disabled: leave compression up to the client.
@@ -478,7 +479,7 @@ bool fishProtocol::connectionStart() {
                 execl(sshPath, "ssh", "-p", qPrintable(QString::number(connectionPort)), common_args);
             else
                 execl(sshPath, "ssh", common_args);
-            #undef common_args
+#undef common_args
         }
         myDebug( << "could not exec! " << strerror(errno));
         ::exit(-1);
@@ -578,11 +579,11 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
     int pos=0;
     // Strip trailing whitespace
     while (buf.length() && (buf[buf.length()-1] == ' '))
-       buf.truncate(buf.length()-1);
+        buf.truncate(buf.length()-1);
 
     myDebug( << "establishing: got " << buf);
     while (childPid && ((pos = buf.indexOf('\n')) >= 0 ||
-            buf.endsWith(':') || buf.endsWith('?'))) {
+                        buf.endsWith(':') || buf.endsWith('?'))) {
         pos++;
         QString str = buf.left(pos);
         buf = buf.mid(pos);
@@ -695,17 +696,17 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
     return buf.length();
 }
 
-void fishProtocol::setHostInternal(const QUrl & u){
-  int port = u.port();
-  if(port <= 0 ) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
-     port = 0;
-  setHost(u.host(),port,u.userName(),u.password());
+void fishProtocol::setHostInternal(const QUrl & u) {
+    int port = u.port();
+    if(port <= 0 ) // no port is -1 in QUrl, but in kde3 we used 0 and the kioslaves assume that.
+        port = 0;
+    setHost(u.host(),port,u.userName(),u.password());
 }
 
 /**
 sets connection information for subsequent commands
 */
-void fishProtocol::setHost(const QString & host, quint16 port, const QString & u, const QString & pass){
+void fishProtocol::setHost(const QString & host, quint16 port, const QString & u, const QString & pass) {
     QString user(u);
 
     local = (host == "localhost" && port == 0);
@@ -735,7 +736,7 @@ Forced close of the connection
 This function gets called from the application side of the universe,
 it shouldn't send any response.
  */
-void fishProtocol::closeConnection(){
+void fishProtocol::closeConnection() {
     myDebug( << "closeConnection()");
     shutdownConnection(true);
 }
@@ -743,7 +744,7 @@ void fishProtocol::closeConnection(){
 /**
 Closes the connection
  */
-void fishProtocol::shutdownConnection(bool forced){
+void fishProtocol::shutdownConnection(bool forced) {
     if (childPid) {
 #ifdef Q_OS_WIN
         childPid->terminate();
@@ -758,7 +759,7 @@ void fishProtocol::shutdownConnection(bool forced){
 #endif
         if (!forced)
         {
-           infoMessage(i18n("Disconnected."));
+            infoMessage(i18n("Disconnected."));
         }
     }
     outBufPos = -1;
@@ -810,7 +811,7 @@ bool fishProtocol::sendCommand(fish_command_type cmd, ...) {
 /**
 checks response string for result code, converting 000 and 001 appropriately
 */
-int fishProtocol::handleResponse(const QString &str){
+int fishProtocol::handleResponse(const QString &str) {
     myDebug( << "handling: " << str);
     if (str.startsWith(QLatin1String("### "))) {
         bool isOk = false;
@@ -835,14 +836,14 @@ int fishProtocol::makeTimeFromLs(const QString &monthStr, const QString &dayStr,
     int day = dayStr.toInt();
 
     static const char * const monthNames[12] = {
-          "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
         "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
     };
 
     for (int i=0; i < 12; i++) if (monthStr.startsWith(monthNames[i])) {
-        month = i+1;
-        break;
-    }
+            month = i+1;
+            break;
+        }
 
     int pos = timeyearStr.indexOf(':');
     if (timeyearStr.length() == 4 && pos == -1) {
@@ -884,7 +885,7 @@ void fishProtocol::manageConnection(const QString &l) {
             break;
         case FISH_LIST:
             myDebug( << "listReason: " << static_cast<int>(listReason));
-            /* Fall through */
+        /* Fall through */
         case FISH_STAT:
             if (line.length() > 0) {
                 switch (line[0].cell()) {
@@ -1004,11 +1005,11 @@ void fishProtocol::manageConnection(const QString &l) {
                     // By default, the mimetype comes from the extension
                     // We'll use the file(1) result only as fallback [like the rest of KDE does]
                     {
-                      QUrl kurl("fish://host/"+thisFn);
-                      QMimeDatabase db;
-                      QMimeType mime = db.mimeTypeForUrl(kurl);
-                      if ( !mime.isDefault() )
-                          udsMime = mime.name();
+                        QUrl kurl("fish://host/"+thisFn);
+                        QMimeDatabase db;
+                        QMimeType mime = db.mimeTypeForUrl(kurl);
+                        if ( !mime.isDefault() )
+                            udsMime = mime.name();
                     }
                     errorCount--;
                     break;
@@ -1018,10 +1019,10 @@ void fishProtocol::manageConnection(const QString &l) {
                     // guesses, so we must try to ignore them (#51274)
                     if (udsMime.isEmpty() && line.right(8) != "/unknown" &&
                             (thisFn.indexOf('.') < 0 || (line.left(8) != "Mtext/x-"
-                                                  && line != "Mtext/plain"))) {
+                                                         && line != "Mtext/plain"))) {
                         udsMime = line.mid(1);
                         if ( udsMime == "inode/directory" ) // a symlink to a dir is a dir
-                          udsType = S_IFDIR;
+                            udsType = S_IFDIR;
                     }
                     errorCount--;
                     break;
@@ -1063,7 +1064,8 @@ void fishProtocol::manageConnection(const QString &l) {
                 break;
             }
             break;
-        default : break;
+        default :
+            break;
         }
 
     } else if (rc == 100) {
@@ -1073,7 +1075,7 @@ void fishProtocol::manageConnection(const QString &l) {
             break;
         case FISH_READ:
             recvLen = 1024;
-            /* fall through */
+        /* fall through */
         case FISH_RETR:
             myDebug( << "reading " << recvLen);
             if (recvLen == -1) {
@@ -1097,7 +1099,8 @@ void fishProtocol::manageConnection(const QString &l) {
             //myDebug( << "sending " << sendLen);
             writeChild(nullptr,0);
             break;
-        default : break;
+        default :
+            break;
         }
     } else if (rc/100 != 2) {
         switch (fishCommand) {
@@ -1114,15 +1117,15 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_READ:
             if ( rc == 501 )
             {
-               mimeType("inode/directory");
-               mimeTypeSent = true;
-               recvLen = 0;
-               finished();
+                mimeType("inode/directory");
+                mimeTypeSent = true;
+                recvLen = 0;
+                finished();
             }
             else
             {
-               error(ERR_CANNOT_READ,url.toDisplayString());
-               shutdownConnection();
+                error(ERR_CANNOT_READ,url.toDisplayString());
+                shutdownConnection();
             }
             break;
         case FISH_FISH:
@@ -1173,7 +1176,8 @@ void fishProtocol::manageConnection(const QString &l) {
         case FISH_SYMLINK:
             error(ERR_CANNOT_WRITE,url.toDisplayString());
             break;
-        default : break;
+        default :
+            break;
         }
     } else {
         if (fishCommand == FISH_STOR) fishCommand = (hasAppend?FISH_APPEND:FISH_WRITE);
@@ -1311,23 +1315,23 @@ int fishProtocol::received(const char *buffer, KIO::fileoffset_t buflen)
 
         if (pos < buflen)
         {
-           QString s = remoteEncoding()->decode(QByteArray(buffer,pos));
+            QString s = remoteEncoding()->decode(QByteArray(buffer,pos));
 
-           buffer += pos+1;
-           buflen -= pos+1;
+            buffer += pos+1;
+            buflen -= pos+1;
 
-           manageConnection(s);
+            manageConnection(s);
 
-           pos = 0;
-           // Find next newline
-           while((pos < buflen) && (buffer[pos] != '\n'))
-               ++pos;
+            pos = 0;
+            // Find next newline
+            while((pos < buflen) && (buffer[pos] != '\n'))
+                ++pos;
         }
     } while (childPid && buflen && (rawRead > 0 || pos < buflen));
     return buflen;
 }
 /** get a file */
-void fishProtocol::get(const QUrl& u){
+void fishProtocol::get(const QUrl& u) {
     myDebug( << "@@@@@@@@@ get " << u);
     setHostInternal(u);
     url = u;
@@ -1435,10 +1439,10 @@ with .fishsrv.pl typically running on another computer. */
                 shutdownConnection();
                 return;
             }
-	    // We first write the complete buffer, including all newlines.
-	    // Do: send command and newlines, expect response then
-	    // Do not: send commands, expect response, send newlines, expect response on newlines
-	    // Newlines do not trigger a response.
+            // We first write the complete buffer, including all newlines.
+            // Do: send command and newlines, expect response then
+            // Do not: send commands, expect response, send newlines, expect response on newlines
+            // Newlines do not trigger a response.
             if (FD_ISSET(childFd,&wfds) && outBufPos >= 0) {
                 if (outBufLen-outBufPos > 0)
                     rc = ::write(childFd, outBuf + outBufPos, outBufLen - outBufPos);
@@ -1504,7 +1508,7 @@ with .fishsrv.pl typically running on another computer. */
 }
 
 /** stat a file */
-void fishProtocol::stat(const QUrl& u){
+void fishProtocol::stat(const QUrl& u) {
     myDebug( << "@@@@@@@@@ stat " << u);
     setHostInternal(u);
     url = u;
@@ -1521,7 +1525,7 @@ void fishProtocol::stat(const QUrl& u){
     run();
 }
 /** find mimetype for a file */
-void fishProtocol::mimetype(const QUrl& u){
+void fishProtocol::mimetype(const QUrl& u) {
     myDebug( << "@@@@@@@@@ mimetype " << u);
     setHostInternal(u);
     url = u;
@@ -1537,7 +1541,7 @@ void fishProtocol::mimetype(const QUrl& u){
     run();
 }
 /** list a directory */
-void fishProtocol::listDir(const QUrl& u){
+void fishProtocol::listDir(const QUrl& u) {
     myDebug( << "@@@@@@@@@ listDir " << u);
     setHostInternal(u);
     url = u;
@@ -1615,7 +1619,7 @@ void fishProtocol::symlink(const QString& target, const QUrl& u, KIO::JobFlags f
     run();
 }
 /** change file permissions */
-void fishProtocol::chmod(const QUrl& u, int permissions){
+void fishProtocol::chmod(const QUrl& u, int permissions) {
     myDebug( << "@@@@@@@@@ chmod " << u << " " << permissions);
     setHostInternal(u);
     url = u;
@@ -1658,7 +1662,7 @@ void fishProtocol::copy(const QUrl &s, const QUrl &d, int permissions, KIO::JobF
     run();
 }
 /** removes a file or directory */
-void fishProtocol::del(const QUrl &u, bool isFile){
+void fishProtocol::del(const QUrl &u, bool isFile) {
     myDebug( << "@@@@@@@@@ del " << u << " " << isFile);
     setHostInternal(u);
     url = u;
@@ -1673,32 +1677,32 @@ void fishProtocol::del(const QUrl &u, bool isFile){
     run();
 }
 /** special like background execute */
-void fishProtocol::special( const QByteArray &data ){
+void fishProtocol::special( const QByteArray &data ) {
     int tmp;
 
     QDataStream stream(data);
 
     stream >> tmp;
     switch (tmp) {
-        case FISH_EXEC_CMD: // SSH EXEC
-        {
-            QUrl u;
-            QString command;
-            stream >> u;
-            stream >> command;
-            myDebug( << "@@@@@@@@@ exec " << u << " " << command);
-            setHostInternal(u);
-            url = u;
-            openConnection();
-            if (!isLoggedIn) return;
-            sendCommand(FISH_EXEC,E(command),E(url.path()));
-            run();
-            break;
-        }
-        default:
-            // Some command we don't understand.
-            error(ERR_UNSUPPORTED_ACTION,QString().setNum(tmp));
-            break;
+    case FISH_EXEC_CMD: // SSH EXEC
+    {
+        QUrl u;
+        QString command;
+        stream >> u;
+        stream >> command;
+        myDebug( << "@@@@@@@@@ exec " << u << " " << command);
+        setHostInternal(u);
+        url = u;
+        openConnection();
+        if (!isLoggedIn) return;
+        sendCommand(FISH_EXEC,E(command),E(url.path()));
+        run();
+        break;
+    }
+    default:
+        // Some command we don't understand.
+        error(ERR_UNSUPPORTED_ACTION,QString().setNum(tmp));
+        break;
     }
 }
 /** report status */

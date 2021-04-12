@@ -37,7 +37,7 @@ AboutProtocol::~AboutProtocol()
 void AboutProtocol::get( const QUrl& )
 {
     QByteArray output;
-    
+
     QTextStream os( &output, QIODevice::WriteOnly );
     os.setCodec( "ISO-8859-1" ); // In fact ASCII
 

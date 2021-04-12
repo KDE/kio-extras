@@ -67,7 +67,7 @@ public:
         QSqlDatabase &m_database;
     };
 
-    #define DATABASE_TRANSACTION(A) \
+#define DATABASE_TRANSACTION(A) \
         /* enable this for debugging only: qDebug() << "Location:" << __FILE__ << __LINE__; */ \
         Common::Database::Locker lock(A)
 
@@ -77,7 +77,7 @@ private:
 
 template <typename EscapeFunction>
 QString parseStarPattern(const QString &pattern, const QString &joker,
-                                   EscapeFunction escape)
+                         EscapeFunction escape)
 {
     const auto begin     = pattern.constBegin();
     const auto end       = pattern.constEnd();
@@ -89,10 +89,10 @@ QString parseStarPattern(const QString &pattern, const QString &joker,
 
     // This should be available in the QString class...
     auto stringFromIterators = [&](const QString::const_iterator &currentStart,
-                                   const QString::const_iterator &currentPosition) {
+    const QString::const_iterator &currentPosition) {
         return pattern.mid(
-                std::distance(begin, currentStart),
-                std::distance(currentStart, currentPosition));
+                   std::distance(begin, currentStart),
+                   std::distance(currentStart, currentPosition));
     };
 
     // Escaping % and _ for sql like
@@ -115,7 +115,7 @@ QString parseStarPattern(const QString &pattern, const QString &joker,
         } else if (*currentPosition == '*') {
             // Replacing the star with the sql like joker - %
             resultPattern.append(escape(stringFromIterators(
-                                    currentStart, currentPosition)) + joker);
+                                            currentStart, currentPosition)) + joker);
             currentStart = currentPosition + 1;
 
         } else {
@@ -125,7 +125,7 @@ QString parseStarPattern(const QString &pattern, const QString &joker,
 
     if (currentStart != currentPosition) {
         resultPattern.append(escape(stringFromIterators(
-                                currentStart, currentPosition)));
+                                        currentStart, currentPosition)));
     }
 
     return resultPattern;

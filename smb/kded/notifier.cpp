@@ -265,8 +265,10 @@ int main(int argc, char **argv)
                 OrgKdeKDirNotifyInterface::emitFileRenamed(pendingMove.from, pendingMove.to);
                 pendingMove = MoveAction();
                 continue;
-            case SMBC_NOTIFY_ACTION_ADDED_STREAM: Q_FALLTHROUGH();
-            case SMBC_NOTIFY_ACTION_REMOVED_STREAM: Q_FALLTHROUGH();
+            case SMBC_NOTIFY_ACTION_ADDED_STREAM:
+                Q_FALLTHROUGH();
+            case SMBC_NOTIFY_ACTION_REMOVED_STREAM:
+                Q_FALLTHROUGH();
             case SMBC_NOTIFY_ACTION_MODIFIED_STREAM:
                 // https://docs.microsoft.com/en-us/windows/win32/fileio/file-streams
                 // Streams have no real use for us I think. They sound like proprietary
@@ -281,7 +283,7 @@ int main(int argc, char **argv)
 
     qCDebug(KIO_SMB_LOG) << "notifying on" << context.url.toString();
     const int dh = smbc_opendir(qUtf8Printable(context.url.toString()));
-    auto dhClose = qScopeGuard([dh]{ smbc_closedir(dh); });
+    auto dhClose = qScopeGuard([dh] { smbc_closedir(dh); });
     if (dh < 0) {
         qCWarning(KIO_SMB_LOG) << "-- Failed to smbc_opendir:" << strerror(errno);
         return 1;

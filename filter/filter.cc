@@ -38,30 +38,32 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include "loggingcategory.h"
 
-extern "C" { Q_DECL_EXPORT int kdemain(int argc, char **argv); }
+extern "C" {
+    Q_DECL_EXPORT int kdemain(int argc, char **argv);
+}
 
 int kdemain( int argc, char ** argv)
 {
-  QCoreApplication app(argc, argv);
-  app.setApplicationName("kio_filter");
+    QCoreApplication app(argc, argv);
+    app.setApplicationName("kio_filter");
 
-  qDebug(KIO_FILTER_DEBUG) << "Starting";
+    qDebug(KIO_FILTER_DEBUG) << "Starting";
 
-  if (argc != 4)
-  {
-     fprintf(stderr, "Usage: kio_filter protocol domain-socket1 domain-socket2\n");
-     exit(-1);
-  }
+    if (argc != 4)
+    {
+        fprintf(stderr, "Usage: kio_filter protocol domain-socket1 domain-socket2\n");
+        exit(-1);
+    }
 
-  FilterProtocol slave(argv[1], argv[2], argv[3]);
-  slave.dispatchLoop();
+    FilterProtocol slave(argv[1], argv[2], argv[3]);
+    slave.dispatchLoop();
 
-  qDebug(KIO_FILTER_DEBUG) << "Done";
-  return 0;
+    qDebug(KIO_FILTER_DEBUG) << "Done";
+    return 0;
 }
 
 FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app )
- : KIO::SlaveBase( protocol, pool, app )
+    : KIO::SlaveBase( protocol, pool, app )
 {
     QString mimetype = QString::fromLatin1("application/x-") + QString::fromLatin1(protocol);
     filter = KCompressionDevice::filterForCompressionType(KFilterDev::compressionTypeForMimeType( mimetype ));
@@ -92,75 +94,75 @@ void FilterProtocol::get(const QUrl& url)
         return;
     }
 
-  filter->init(QIODevice::ReadOnly);
+    filter->init(QIODevice::ReadOnly);
 
-  bool bNeedHeader = true;
-  bool bNeedMimetype = true;
-  bool bError = true;
-  int result;
+    bool bNeedHeader = true;
+    bool bNeedMimetype = true;
+    bool bError = true;
+    int result;
 
-  QByteArray inputBuffer;
-  inputBuffer.resize(8*1024);
-  QByteArray outputBuffer;
-  outputBuffer.resize(8*1024); // Start with a modest buffer
-  filter->setOutBuffer( outputBuffer.data(), outputBuffer.size() );
-  while(true)
-  {
-     if (filter->inBufferEmpty())
-     {
-        result = localFile.read(inputBuffer.data(), inputBuffer.size());
-        qDebug(KIO_FILTER_DEBUG) << "requestData: got " << result;
-        if (result <= 0)
+    QByteArray inputBuffer;
+    inputBuffer.resize(8*1024);
+    QByteArray outputBuffer;
+    outputBuffer.resize(8*1024); // Start with a modest buffer
+    filter->setOutBuffer( outputBuffer.data(), outputBuffer.size() );
+    while(true)
+    {
+        if (filter->inBufferEmpty())
         {
-          bError = true;
-          break; // Unexpected EOF.
-        }
-        filter->setInBuffer( inputBuffer.data(), inputBuffer.size() );
-     }
-     if (bNeedHeader)
-     {
-        bError = !filter->readHeader();
-        if (bError)
-            break;
-        bNeedHeader = false;
-     }
-     result = filter->uncompress();
-     if ((filter->outBufferAvailable() == 0) || (result == KFilterBase::End))
-     {
-         qDebug(KIO_FILTER_DEBUG) << "avail_out = " << filter->outBufferAvailable();
-        if (filter->outBufferAvailable() != 0)
-        {
-            // Discard unused space :-)
-            outputBuffer.resize(outputBuffer.size() - filter->outBufferAvailable());
-        }
-        if (bNeedMimetype) {
-            // Can we use the "base" filename? E.g. foo.txt.bz2
-            const QString extension = QFileInfo(subURL.path()).suffix();
-            QMimeDatabase db;
-            QMimeType mime;
-            if (extension == "gz" || extension == "bz" || extension == "bz2") {
-                QString baseName = subURL.path();
-                baseName.truncate(baseName.length() - extension.length() - 1 /*the dot*/);
-                qDebug(KIO_FILTER_DEBUG) << "baseName=" << baseName;
-                mime = db.mimeTypeForFileNameAndData(baseName, outputBuffer);
-            } else {
-                mime = db.mimeTypeForData(outputBuffer);
+            result = localFile.read(inputBuffer.data(), inputBuffer.size());
+            qDebug(KIO_FILTER_DEBUG) << "requestData: got " << result;
+            if (result <= 0)
+            {
+                bError = true;
+                break; // Unexpected EOF.
             }
-            qDebug(KIO_FILTER_DEBUG) << "Emitting mimetype " << mime.name();
-            mimeType( mime.name() );
-            bNeedMimetype = false;
+            filter->setInBuffer( inputBuffer.data(), inputBuffer.size() );
         }
-        data( outputBuffer ); // Send data
-        filter->setOutBuffer( outputBuffer.data(), outputBuffer.size() );
-        if (result == KFilterBase::End)
-           break; // Finished.
-     }
-     if (result != KFilterBase::Ok)
-     {
-        bError = true;
-        break; // Error
-     }
-  }
+        if (bNeedHeader)
+        {
+            bError = !filter->readHeader();
+            if (bError)
+                break;
+            bNeedHeader = false;
+        }
+        result = filter->uncompress();
+        if ((filter->outBufferAvailable() == 0) || (result == KFilterBase::End))
+        {
+            qDebug(KIO_FILTER_DEBUG) << "avail_out = " << filter->outBufferAvailable();
+            if (filter->outBufferAvailable() != 0)
+            {
+                // Discard unused space :-)
+                outputBuffer.resize(outputBuffer.size() - filter->outBufferAvailable());
+            }
+            if (bNeedMimetype) {
+                // Can we use the "base" filename? E.g. foo.txt.bz2
+                const QString extension = QFileInfo(subURL.path()).suffix();
+                QMimeDatabase db;
+                QMimeType mime;
+                if (extension == "gz" || extension == "bz" || extension == "bz2") {
+                    QString baseName = subURL.path();
+                    baseName.truncate(baseName.length() - extension.length() - 1 /*the dot*/);
+                    qDebug(KIO_FILTER_DEBUG) << "baseName=" << baseName;
+                    mime = db.mimeTypeForFileNameAndData(baseName, outputBuffer);
+                } else {
+                    mime = db.mimeTypeForData(outputBuffer);
+                }
+                qDebug(KIO_FILTER_DEBUG) << "Emitting mimetype " << mime.name();
+                mimeType( mime.name() );
+                bNeedMimetype = false;
+            }
+            data( outputBuffer ); // Send data
+            filter->setOutBuffer( outputBuffer.data(), outputBuffer.size() );
+            if (result == KFilterBase::End)
+                break; // Finished.
+        }
+        if (result != KFilterBase::Ok)
+        {
+            bError = true;
+            break; // Error
+        }
+    }
 
     if (!bError) {
         result = localFile.read(inputBuffer.data(), inputBuffer.size());

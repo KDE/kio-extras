@@ -29,7 +29,7 @@
 static const char NetworkDBusInterfaceName[] = "org.kde.network";
 
 NetworkDBusInterface::NetworkDBusInterface( const QString& service, const QString& path, const QDBusConnection& connection, QObject* parent )
-  : QDBusAbstractInterface( service, path, NetworkDBusInterfaceName, connection, parent )
+    : QDBusAbstractInterface( service, path, NetworkDBusInterfaceName, connection, parent )
 {
     // TODO: best place to do this?
     qDBusRegisterMetaType<Mollet::NetDevice>();

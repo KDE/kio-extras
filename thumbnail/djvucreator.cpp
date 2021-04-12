@@ -20,28 +20,28 @@ extern "C"
 
 bool DjVuCreator::create(const QString &path, int width, int height, QImage &img)
 {
-  QProcess ddjvu;
+    QProcess ddjvu;
 
-  const QStringList args{
-    QStringLiteral("-page=1"),
-    QStringLiteral("-size=") + QString::number(width) + QChar('x') + QString::number(height),
-    QStringLiteral("-format=ppm"),
-    path
-  };
+    const QStringList args{
+        QStringLiteral("-page=1"),
+        QStringLiteral("-size=") + QString::number(width) + QChar('x') + QString::number(height),
+        QStringLiteral("-format=ppm"),
+        path
+    };
 
-  ddjvu.start(QStringLiteral("ddjvu"), args);
-  ddjvu.waitForFinished();
+    ddjvu.start(QStringLiteral("ddjvu"), args);
+    ddjvu.waitForFinished();
 
-  static bool warnOnce = true;
-  if (ddjvu.exitCode() != 0) {
-    if (warnOnce) {
-      qCWarning(KIO_THUMBNAIL_DJVU_LOG) << ddjvu.error()
-        << ddjvu.readAllStandardError();
-      warnOnce = false;
+    static bool warnOnce = true;
+    if (ddjvu.exitCode() != 0) {
+        if (warnOnce) {
+            qCWarning(KIO_THUMBNAIL_DJVU_LOG) << ddjvu.error()
+                                              << ddjvu.readAllStandardError();
+            warnOnce = false;
+        }
+        return false;
     }
-    return false;
-  }
 
-  img.load(&ddjvu, "ppm");
-  return true;
+    img.load(&ddjvu, "ppm");
+    return true;
 }

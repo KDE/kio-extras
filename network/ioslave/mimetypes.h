@@ -28,7 +28,7 @@ class QString;
 
 class Mimetypes
 {
-  public:
+public:
     static const char NetworkMimetype[];
     static const char* const DeviceMimetype[];
 

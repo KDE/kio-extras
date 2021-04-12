@@ -60,20 +60,20 @@ AudioCreator::~AudioCreator()
 
 namespace TagLib
 {
-    namespace RIFF
+namespace RIFF
+{
+namespace AIFF
+{
+struct FileExt : public File
+{
+    using File::File;
+    ID3v2::Tag* ID3v2Tag() const
     {
-        namespace AIFF
-        {
-            struct FileExt : public File
-            {
-                using File::File;
-                ID3v2::Tag* ID3v2Tag() const
-                {
-                    return tag();
-                }
-            };
-        }
+        return tag();
     }
+};
+}
+}
 }
 
 template<class T> static
@@ -171,7 +171,7 @@ bool AudioCreator::create(const QString &path, int, int, QImage &img)
         return parseFlacTag(file, img) || parseID3v2Tag(file, img);
     }
     if (type.inherits("audio/mp4") || type.inherits("audio/x-m4a") ||
-        type.inherits("audio/vnd.audible.aax")) {
+            type.inherits("audio/vnd.audible.aax")) {
         TagLib::MP4::File file(QFile::encodeName(path).data());
         return parseMP4Tag(file, img);
     }

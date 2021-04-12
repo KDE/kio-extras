@@ -28,7 +28,7 @@ NextValueIterator<QSqlQuery> begin(QSqlQuery &query)
 NextValueIterator<QSqlQuery> end(QSqlQuery &query)
 {
     return NextValueIterator
-        <QSqlQuery>(query, NextValueIterator<QSqlQuery>::EndIterator);
+           <QSqlQuery>(query, NextValueIterator<QSqlQuery>::EndIterator);
 }
 
 

@@ -46,7 +46,7 @@ extern "C" {
  * Copyright (c) 1987, 1990 by Sun Microsystems, Inc.
  */
 
-/* from @(#)nfs_prot.x	1.3 91/03/11 TIRPC 1.0 */
+/* from @(#)nfs_prot.x  1.3 91/03/11 TIRPC 1.0 */
 #ifndef _rpcsvc_nfs_prot_h
 #define _rpcsvc_nfs_prot_h
 #define NFS_PORT 2049
@@ -66,77 +66,77 @@ extern "C" {
 #define NFSMODE_FIFO 0010000
 
 enum nfsstat {
-	NFS_OK = 0,
-	NFSERR_PERM = 1,
-	NFSERR_NOENT = 2,
-	NFSERR_IO = 5,
-	NFSERR_NXIO = 6,
-	NFSERR_ACCES = 13,
-	NFSERR_EXIST = 17,
-	NFSERR_NODEV = 19,
-	NFSERR_NOTDIR = 20,
-	NFSERR_ISDIR = 21,
-	NFSERR_INVAL = 22,
-	NFSERR_FBIG = 27,
-	NFSERR_NOSPC = 28,
-	NFSERR_ROFS = 30,
-	NFSERR_NAMETOOLONG = 63,
-	NFSERR_NOTEMPTY = 66,
-	NFSERR_DQUOT = 69,
-	NFSERR_STALE = 70,
-	NFSERR_WFLUSH = 99,
+    NFS_OK = 0,
+    NFSERR_PERM = 1,
+    NFSERR_NOENT = 2,
+    NFSERR_IO = 5,
+    NFSERR_NXIO = 6,
+    NFSERR_ACCES = 13,
+    NFSERR_EXIST = 17,
+    NFSERR_NODEV = 19,
+    NFSERR_NOTDIR = 20,
+    NFSERR_ISDIR = 21,
+    NFSERR_INVAL = 22,
+    NFSERR_FBIG = 27,
+    NFSERR_NOSPC = 28,
+    NFSERR_ROFS = 30,
+    NFSERR_NAMETOOLONG = 63,
+    NFSERR_NOTEMPTY = 66,
+    NFSERR_DQUOT = 69,
+    NFSERR_STALE = 70,
+    NFSERR_WFLUSH = 99,
 };
 typedef enum nfsstat nfsstat;
 
 enum ftype {
-	NFNON = 0,
-	NFREG = 1,
-	NFDIR = 2,
-	NFBLK = 3,
-	NFCHR = 4,
-	NFLNK = 5,
-	NFSOCK = 6,
-	NFBAD = 7,
-	NFFIFO = 8,
+    NFNON = 0,
+    NFREG = 1,
+    NFDIR = 2,
+    NFBLK = 3,
+    NFCHR = 4,
+    NFLNK = 5,
+    NFSOCK = 6,
+    NFBAD = 7,
+    NFFIFO = 8,
 };
 typedef enum ftype ftype;
 
 struct nfs_fh {
-	char data[NFS_FHSIZE];
+    char data[NFS_FHSIZE];
 };
 typedef struct nfs_fh nfs_fh;
 
 struct nfstime {
-	u_int seconds;
-	u_int useconds;
+    u_int seconds;
+    u_int useconds;
 };
 typedef struct nfstime nfstime;
 
 struct fattr {
-	ftype type;
-	u_int mode;
-	u_int nlink;
-	u_int uid;
-	u_int gid;
-	u_int size;
-	u_int blocksize;
-	u_int rdev;
-	u_int blocks;
-	u_int fsid;
-	u_int fileid;
-	nfstime atime;
-	nfstime mtime;
-	nfstime ctime;
+    ftype type;
+    u_int mode;
+    u_int nlink;
+    u_int uid;
+    u_int gid;
+    u_int size;
+    u_int blocksize;
+    u_int rdev;
+    u_int blocks;
+    u_int fsid;
+    u_int fileid;
+    nfstime atime;
+    nfstime mtime;
+    nfstime ctime;
 };
 typedef struct fattr fattr;
 
 struct sattr {
-	u_int mode;
-	u_int uid;
-	u_int gid;
-	u_int size;
-	nfstime atime;
-	nfstime mtime;
+    u_int mode;
+    u_int uid;
+    u_int gid;
+    u_int size;
+    nfstime atime;
+    nfstime mtime;
 };
 typedef struct sattr sattr;
 
@@ -145,154 +145,154 @@ typedef char *filename;
 typedef char *nfspath;
 
 struct attrstat {
-	nfsstat status;
-	union {
-		fattr attributes;
-	} attrstat_u;
+    nfsstat status;
+    union {
+        fattr attributes;
+    } attrstat_u;
 };
 typedef struct attrstat attrstat;
 
 struct sattrargs {
-	nfs_fh file;
-	sattr attributes;
+    nfs_fh file;
+    sattr attributes;
 };
 typedef struct sattrargs sattrargs;
 
 struct diropargs {
-	nfs_fh dir;
-	filename name;
+    nfs_fh dir;
+    filename name;
 };
 typedef struct diropargs diropargs;
 
 struct diropokres {
-	nfs_fh file;
-	fattr attributes;
+    nfs_fh file;
+    fattr attributes;
 };
 typedef struct diropokres diropokres;
 
 struct diropres {
-	nfsstat status;
-	union {
-		diropokres diropres;
-	} diropres_u;
+    nfsstat status;
+    union {
+        diropokres diropres;
+    } diropres_u;
 };
 typedef struct diropres diropres;
 
 struct readlinkres {
-	nfsstat status;
-	union {
-		nfspath data;
-	} readlinkres_u;
+    nfsstat status;
+    union {
+        nfspath data;
+    } readlinkres_u;
 };
 typedef struct readlinkres readlinkres;
 
 struct readargs {
-	nfs_fh file;
-	u_int offset;
-	u_int count;
-	u_int totalcount;
+    nfs_fh file;
+    u_int offset;
+    u_int count;
+    u_int totalcount;
 };
 typedef struct readargs readargs;
 
 struct readokres {
-	fattr attributes;
-	struct {
-		u_int data_len;
-		char *data_val;
-	} data;
+    fattr attributes;
+    struct {
+        u_int data_len;
+        char *data_val;
+    } data;
 };
 typedef struct readokres readokres;
 
 struct readres {
-	nfsstat status;
-	union {
-		readokres reply;
-	} readres_u;
+    nfsstat status;
+    union {
+        readokres reply;
+    } readres_u;
 };
 typedef struct readres readres;
 
 struct writeargs {
-	nfs_fh file;
-	u_int beginoffset;
-	u_int offset;
-	u_int totalcount;
-	struct {
-		u_int data_len;
-		char *data_val;
-	} data;
+    nfs_fh file;
+    u_int beginoffset;
+    u_int offset;
+    u_int totalcount;
+    struct {
+        u_int data_len;
+        char *data_val;
+    } data;
 };
 typedef struct writeargs writeargs;
 
 struct createargs {
-	diropargs where;
-	sattr attributes;
+    diropargs where;
+    sattr attributes;
 };
 typedef struct createargs createargs;
 
 struct renameargs {
-	diropargs from;
-	diropargs to;
+    diropargs from;
+    diropargs to;
 };
 typedef struct renameargs renameargs;
 
 struct linkargs {
-	nfs_fh from;
-	diropargs to;
+    nfs_fh from;
+    diropargs to;
 };
 typedef struct linkargs linkargs;
 
 struct symlinkargs {
-	diropargs from;
-	nfspath to;
-	sattr attributes;
+    diropargs from;
+    nfspath to;
+    sattr attributes;
 };
 typedef struct symlinkargs symlinkargs;
 
 typedef char nfscookie[NFS_COOKIESIZE];
 
 struct readdirargs {
-	nfs_fh dir;
-	nfscookie cookie;
-	u_int count;
+    nfs_fh dir;
+    nfscookie cookie;
+    u_int count;
 };
 typedef struct readdirargs readdirargs;
 
 struct entry {
-	u_int fileid;
-	filename name;
-	nfscookie cookie;
-	struct entry *nextentry;
+    u_int fileid;
+    filename name;
+    nfscookie cookie;
+    struct entry *nextentry;
 };
 typedef struct entry entry;
 
 struct dirlist {
-	entry *entries;
-	bool_t eof;
+    entry *entries;
+    bool_t eof;
 };
 typedef struct dirlist dirlist;
 
 struct readdirres {
-	nfsstat status;
-	union {
-		dirlist reply;
-	} readdirres_u;
+    nfsstat status;
+    union {
+        dirlist reply;
+    } readdirres_u;
 };
 typedef struct readdirres readdirres;
 
 struct statfsokres {
-	u_int tsize;
-	u_int bsize;
-	u_int blocks;
-	u_int bfree;
-	u_int bavail;
+    u_int tsize;
+    u_int bsize;
+    u_int blocks;
+    u_int bfree;
+    u_int bavail;
 };
 typedef struct statfsokres statfsokres;
 
 struct statfsres {
-	nfsstat status;
-	union {
-		statfsokres reply;
-	} statfsres_u;
+    nfsstat status;
+    union {
+        statfsokres reply;
+    } statfsres_u;
 };
 typedef struct statfsres statfsres;
 #define MNTPATHLEN 1024
@@ -302,10 +302,10 @@ typedef struct statfsres statfsres;
 typedef char fhandle[FHSIZE];
 
 struct fhstatus {
-	u_int fhs_status;
-	union {
-		fhandle fhs_fhandle;
-	} fhstatus_u;
+    u_int fhs_status;
+    union {
+        fhandle fhs_fhandle;
+    } fhstatus_u;
 };
 typedef struct fhstatus fhstatus;
 
@@ -316,39 +316,39 @@ typedef char *name;
 typedef struct mountbody *mountlist;
 
 struct mountbody {
-	name ml_hostname;
-	dirpath ml_directory;
-	mountlist ml_next;
+    name ml_hostname;
+    dirpath ml_directory;
+    mountlist ml_next;
 };
 typedef struct mountbody mountbody;
 
 typedef struct groupnode *groups;
 
 struct groupnode {
-	name gr_name;
-	groups gr_next;
+    name gr_name;
+    groups gr_next;
 };
 typedef struct groupnode groupnode;
 
 typedef struct exportnode *exports;
 
 struct exportnode {
-	dirpath ex_dir;
-	groups ex_groups;
-	exports ex_next;
+    dirpath ex_dir;
+    groups ex_groups;
+    exports ex_next;
 };
 typedef struct exportnode exportnode;
 
 struct ppathcnf {
-	int pc_link_max;
-	short pc_max_canon;
-	short pc_max_input;
-	short pc_name_max;
-	short pc_path_max;
-	short pc_pipe_buf;
-	u_char pc_vdisable;
-	char pc_xxx;
-	short pc_mask[2];
+    int pc_link_max;
+    short pc_max_canon;
+    short pc_max_input;
+    short pc_name_max;
+    short pc_path_max;
+    short pc_pipe_buf;
+    u_char pc_vdisable;
+    char pc_xxx;
+    short pc_mask[2];
 };
 typedef struct ppathcnf ppathcnf;
 #endif /*!_rpcsvc_nfs_prot_h*/
@@ -361,56 +361,56 @@ typedef struct ppathcnf ppathcnf;
 extern  void * nfsproc_null_2(CLIENT *);
 extern  void * nfsproc_null_2_svc(struct svc_req *);
 #define NFSPROC_GETATTR 1
-extern  attrstat * nfsproc_getattr_2(nfs_fh , CLIENT *);
-extern  attrstat * nfsproc_getattr_2_svc(nfs_fh , struct svc_req *);
+extern  attrstat * nfsproc_getattr_2(nfs_fh, CLIENT *);
+extern  attrstat * nfsproc_getattr_2_svc(nfs_fh, struct svc_req *);
 #define NFSPROC_SETATTR 2
-extern  attrstat * nfsproc_setattr_2(sattrargs , CLIENT *);
-extern  attrstat * nfsproc_setattr_2_svc(sattrargs , struct svc_req *);
+extern  attrstat * nfsproc_setattr_2(sattrargs, CLIENT *);
+extern  attrstat * nfsproc_setattr_2_svc(sattrargs, struct svc_req *);
 #define NFSPROC_ROOT 3
 extern  void * nfsproc_root_2(CLIENT *);
 extern  void * nfsproc_root_2_svc(struct svc_req *);
 #define NFSPROC_LOOKUP 4
-extern  diropres * nfsproc_lookup_2(diropargs , CLIENT *);
-extern  diropres * nfsproc_lookup_2_svc(diropargs , struct svc_req *);
+extern  diropres * nfsproc_lookup_2(diropargs, CLIENT *);
+extern  diropres * nfsproc_lookup_2_svc(diropargs, struct svc_req *);
 #define NFSPROC_READLINK 5
-extern  readlinkres * nfsproc_readlink_2(nfs_fh , CLIENT *);
-extern  readlinkres * nfsproc_readlink_2_svc(nfs_fh , struct svc_req *);
+extern  readlinkres * nfsproc_readlink_2(nfs_fh, CLIENT *);
+extern  readlinkres * nfsproc_readlink_2_svc(nfs_fh, struct svc_req *);
 #define NFSPROC_READ 6
-extern  readres * nfsproc_read_2(readargs , CLIENT *);
-extern  readres * nfsproc_read_2_svc(readargs , struct svc_req *);
+extern  readres * nfsproc_read_2(readargs, CLIENT *);
+extern  readres * nfsproc_read_2_svc(readargs, struct svc_req *);
 #define NFSPROC_WRITECACHE 7
 extern  void * nfsproc_writecache_2(CLIENT *);
 extern  void * nfsproc_writecache_2_svc(struct svc_req *);
 #define NFSPROC_WRITE 8
-extern  attrstat * nfsproc_write_2(writeargs , CLIENT *);
-extern  attrstat * nfsproc_write_2_svc(writeargs , struct svc_req *);
+extern  attrstat * nfsproc_write_2(writeargs, CLIENT *);
+extern  attrstat * nfsproc_write_2_svc(writeargs, struct svc_req *);
 #define NFSPROC_CREATE 9
-extern  diropres * nfsproc_create_2(createargs , CLIENT *);
-extern  diropres * nfsproc_create_2_svc(createargs , struct svc_req *);
+extern  diropres * nfsproc_create_2(createargs, CLIENT *);
+extern  diropres * nfsproc_create_2_svc(createargs, struct svc_req *);
 #define NFSPROC_REMOVE 10
-extern  nfsstat * nfsproc_remove_2(diropargs , CLIENT *);
-extern  nfsstat * nfsproc_remove_2_svc(diropargs , struct svc_req *);
+extern  nfsstat * nfsproc_remove_2(diropargs, CLIENT *);
+extern  nfsstat * nfsproc_remove_2_svc(diropargs, struct svc_req *);
 #define NFSPROC_RENAME 11
-extern  nfsstat * nfsproc_rename_2(renameargs , CLIENT *);
-extern  nfsstat * nfsproc_rename_2_svc(renameargs , struct svc_req *);
+extern  nfsstat * nfsproc_rename_2(renameargs, CLIENT *);
+extern  nfsstat * nfsproc_rename_2_svc(renameargs, struct svc_req *);
 #define NFSPROC_LINK 12
-extern  nfsstat * nfsproc_link_2(linkargs , CLIENT *);
-extern  nfsstat * nfsproc_link_2_svc(linkargs , struct svc_req *);
+extern  nfsstat * nfsproc_link_2(linkargs, CLIENT *);
+extern  nfsstat * nfsproc_link_2_svc(linkargs, struct svc_req *);
 #define NFSPROC_SYMLINK 13
-extern  nfsstat * nfsproc_symlink_2(symlinkargs , CLIENT *);
-extern  nfsstat * nfsproc_symlink_2_svc(symlinkargs , struct svc_req *);
+extern  nfsstat * nfsproc_symlink_2(symlinkargs, CLIENT *);
+extern  nfsstat * nfsproc_symlink_2_svc(symlinkargs, struct svc_req *);
 #define NFSPROC_MKDIR 14
-extern  diropres * nfsproc_mkdir_2(createargs , CLIENT *);
-extern  diropres * nfsproc_mkdir_2_svc(createargs , struct svc_req *);
+extern  diropres * nfsproc_mkdir_2(createargs, CLIENT *);
+extern  diropres * nfsproc_mkdir_2_svc(createargs, struct svc_req *);
 #define NFSPROC_RMDIR 15
-extern  nfsstat * nfsproc_rmdir_2(diropargs , CLIENT *);
-extern  nfsstat * nfsproc_rmdir_2_svc(diropargs , struct svc_req *);
+extern  nfsstat * nfsproc_rmdir_2(diropargs, CLIENT *);
+extern  nfsstat * nfsproc_rmdir_2_svc(diropargs, struct svc_req *);
 #define NFSPROC_READDIR 16
-extern  readdirres * nfsproc_readdir_2(readdirargs , CLIENT *);
-extern  readdirres * nfsproc_readdir_2_svc(readdirargs , struct svc_req *);
+extern  readdirres * nfsproc_readdir_2(readdirargs, CLIENT *);
+extern  readdirres * nfsproc_readdir_2_svc(readdirargs, struct svc_req *);
 #define NFSPROC_STATFS 17
-extern  statfsres * nfsproc_statfs_2(nfs_fh , CLIENT *);
-extern  statfsres * nfsproc_statfs_2_svc(nfs_fh , struct svc_req *);
+extern  statfsres * nfsproc_statfs_2(nfs_fh, CLIENT *);
+extern  statfsres * nfsproc_statfs_2_svc(nfs_fh, struct svc_req *);
 extern int nfs_program_2_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
 
 #else /* K&R C */
@@ -479,14 +479,14 @@ extern int nfs_program_2_freeresult ();
 extern  void * mountproc_null_1(CLIENT *);
 extern  void * mountproc_null_1_svc(struct svc_req *);
 #define MOUNTPROC_MNT 1
-extern  fhstatus * mountproc_mnt_1(dirpath , CLIENT *);
-extern  fhstatus * mountproc_mnt_1_svc(dirpath , struct svc_req *);
+extern  fhstatus * mountproc_mnt_1(dirpath, CLIENT *);
+extern  fhstatus * mountproc_mnt_1_svc(dirpath, struct svc_req *);
 #define MOUNTPROC_DUMP 2
 extern  mountlist * mountproc_dump_1(CLIENT *);
 extern  mountlist * mountproc_dump_1_svc(struct svc_req *);
 #define MOUNTPROC_UMNT 3
-extern  void * mountproc_umnt_1(dirpath , CLIENT *);
-extern  void * mountproc_umnt_1_svc(dirpath , struct svc_req *);
+extern  void * mountproc_umnt_1(dirpath, CLIENT *);
+extern  void * mountproc_umnt_1_svc(dirpath, struct svc_req *);
 #define MOUNTPROC_UMNTALL 4
 extern  void * mountproc_umntall_1(CLIENT *);
 extern  void * mountproc_umntall_1_svc(struct svc_req *);
@@ -527,12 +527,12 @@ extern int mountprog_1_freeresult ();
 #if defined(__STDC__) || defined(__cplusplus)
 extern  void * mountproc_null_2(CLIENT *);
 extern  void * mountproc_null_2_svc(struct svc_req *);
-extern  fhstatus * mountproc_mnt_2(dirpath , CLIENT *);
-extern  fhstatus * mountproc_mnt_2_svc(dirpath , struct svc_req *);
+extern  fhstatus * mountproc_mnt_2(dirpath, CLIENT *);
+extern  fhstatus * mountproc_mnt_2_svc(dirpath, struct svc_req *);
 extern  mountlist * mountproc_dump_2(CLIENT *);
 extern  mountlist * mountproc_dump_2_svc(struct svc_req *);
-extern  void * mountproc_umnt_2(dirpath , CLIENT *);
-extern  void * mountproc_umnt_2_svc(dirpath , struct svc_req *);
+extern  void * mountproc_umnt_2(dirpath, CLIENT *);
+extern  void * mountproc_umnt_2_svc(dirpath, struct svc_req *);
 extern  void * mountproc_umntall_2(CLIENT *);
 extern  void * mountproc_umntall_2_svc(struct svc_req *);
 extern  exports * mountproc_export_2(CLIENT *);
@@ -540,8 +540,8 @@ extern  exports * mountproc_export_2_svc(struct svc_req *);
 extern  exports * mountproc_exportall_2(CLIENT *);
 extern  exports * mountproc_exportall_2_svc(struct svc_req *);
 #define MOUNTPROC_PATHCONF 7
-extern  ppathcnf * mountproc_pathconf_2(dirpath , CLIENT *);
-extern  ppathcnf * mountproc_pathconf_2_svc(dirpath , struct svc_req *);
+extern  ppathcnf * mountproc_pathconf_2(dirpath, CLIENT *);
+extern  ppathcnf * mountproc_pathconf_2_svc(dirpath, struct svc_req *);
 extern int mountprog_2_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
 
 #else /* K&R C */

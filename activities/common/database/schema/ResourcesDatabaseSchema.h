@@ -27,14 +27,14 @@
 namespace Common {
 namespace ResourcesDatabaseSchema {
 
-    QString version();
+QString version();
 
-    QStringList schema();
+QStringList schema();
 
-    QString path();
-    void overridePath(const QString &path);
+QString path();
+void overridePath(const QString &path);
 
-    void initSchema(Database &database);
+void initSchema(Database &database);
 
 } // namespace ResourcesDatabase
 } // namespace Common

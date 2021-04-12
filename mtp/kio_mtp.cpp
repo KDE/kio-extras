@@ -537,7 +537,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
             return;
         }
 
-        QStringList destItems = dest.path().split(QLatin1Char('/') , QString::SkipEmptyParts);
+        QStringList destItems = dest.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
 
         // can't copy to root or device, needs storage
         if (destItems.size() < 2) {
@@ -820,7 +820,8 @@ void MTPSlave::virtual_hook(int id, void *data)
     case SlaveBase::GetFileSystemFreeSpace: {
         QUrl *url = static_cast<QUrl *>(data);
         fileSystemFreeSpace(*url);
-    }   break;
+    }
+    break;
     default:
         SlaveBase::virtual_hook(id, data);
     }

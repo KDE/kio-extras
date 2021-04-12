@@ -37,35 +37,35 @@ class NetworkInitWatcher : public QObject
 {
     Q_OBJECT
 
-  public:
+public:
     NetworkInitWatcher( Network* network, QMutex* mutex );
     ~NetworkInitWatcher() override;
 
-  public Q_SLOTS:
+public Q_SLOTS:
     void onNetworkInitDone();
 
-  private:
+private:
     QMutex* mMutex;
 };
 
 
 inline NetworkInitWatcher::NetworkInitWatcher( Network* network, QMutex* mutex )
-  : mMutex( mutex )
+    : mMutex( mutex )
 {
     connect( network, SIGNAL(initDone()), SLOT(onNetworkInitDone()) );
 }
 inline NetworkInitWatcher::~NetworkInitWatcher()
 {
-qDebug();
+    qDebug();
 }
 
 inline void NetworkInitWatcher::onNetworkInitDone()
 {
-qDebug()<<"before unlock";
+    qDebug()<<"before unlock";
     mMutex->unlock();
-qDebug()<<"after unlock";
+    qDebug()<<"after unlock";
     deleteLater();
-qDebug()<<"after deleteLater";
+    qDebug()<<"after deleteLater";
 }
 
 #endif

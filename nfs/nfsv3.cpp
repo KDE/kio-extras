@@ -182,7 +182,7 @@ NFSFileHandle NFSProtocolV3::lookupFileHandle(const QString& path)
                                       clnt_timeout);
 
             if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS3_OK)
-            {						// get the absolute link target
+            {   // get the absolute link target
                 QString linkPath = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
                 linkPath = QFileInfo(QFileInfo(path).path(), linkPath).absoluteFilePath();
 
@@ -262,7 +262,7 @@ void NFSProtocolV3::openConnection()
                               clnt_timeout);
 
         QString fname = QFileInfo(QDir::root(), exportlist->ex_dir).filePath();
-        if (fhStatus.fhs_status == 0) {			// mount succeeded
+        if (fhStatus.fhs_status == 0) {         // mount succeeded
 
             // Check if the directory is already noted as exported,
             // if so there is no need to add it again.
@@ -271,7 +271,7 @@ void NFSProtocolV3::openConnection()
             // Save the exported directory and its NFS file handle.
             addFileHandle(fname, static_cast<NFSFileHandle>(fhStatus.mountres3_u.mountinfo.fhandle));
             addExportedDir(fname);
-        } else {					// mount failed with error
+        } else {                    // mount failed with error
             qCDebug(LOG_KIO_NFS) << "Cannot mount" << fname << "- status" << fhStatus.fhs_status;
 
             // Even if the mount failed, record the directory path as exported
@@ -321,8 +321,8 @@ void NFSProtocolV3::listDir(const QUrl& url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
-    const QString path = listDirInternal(url);		// check path, list virtual dir
-    if (path.isEmpty()) return;				// no more to do
+    const QString path = listDirInternal(url);      // check path, list virtual dir
+    if (path.isEmpty()) return;             // no more to do
 
     const NFSFileHandle fh = getFileHandle(path);
     // There doesn't seem to be an invalid link error code in KIO,
@@ -337,7 +337,7 @@ void NFSProtocolV3::listDir(const QUrl& url)
         initPreferredSizes(fh);
     }
 
-    if (!slave()->usedirplus3())			// want compatibility mode listing
+    if (!slave()->usedirplus3())            // want compatibility mode listing
     {
         listDirCompat(url);
         return;
@@ -411,7 +411,7 @@ void NFSProtocolV3::listDir(const QUrl& url)
                     if (isValidLink(path, linkDest))
                     {
                         const QString linkPath = QFileInfo(path, linkDest).absoluteFilePath();
-							// get the absolute link target
+                        // get the absolute link target
                         int rpcStatus;
                         LOOKUP3res lookupRes;
                         if (lookupHandle(linkPath, rpcStatus, lookupRes)) {
@@ -555,7 +555,7 @@ void NFSProtocolV3::listDirCompat(const QUrl& url)
                 if (isValidLink(path, linkDest))
                 {
                     const QString linkPath = QFileInfo(path, linkDest).absoluteFilePath();
-							// get the absolute link target
+                    // get the absolute link target
                     int rpcStatus;
                     LOOKUP3res lookupRes;
                     if (lookupHandle(linkPath, rpcStatus, lookupRes)) {
@@ -596,8 +596,8 @@ void NFSProtocolV3::stat(const QUrl& url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
-    const QString path = statInternal(url);		// check path, process virtual dir
-    if (path.isEmpty()) return;				// no more to do
+    const QString path = statInternal(url);     // check path, process virtual dir
+    if (path.isEmpty()) return;             // no more to do
 
     const NFSFileHandle fh = getFileHandle(path);
     if (fh.isInvalid())
@@ -636,7 +636,7 @@ void NFSProtocolV3::stat(const QUrl& url)
             completeBadLinkUDSEntry(entry, attrAndStat.GETATTR3res_u.resok.obj_attributes);
 
             slave()->statEntry(entry);
-            return;					// have result, no more to do
+            return;                 // have result, no more to do
         }
 
         qCDebug(LOG_KIO_NFS) << "link dest is" << linkDest;
@@ -647,7 +647,7 @@ void NFSProtocolV3::stat(const QUrl& url)
             completeBadLinkUDSEntry(entry, attrAndStat.GETATTR3res_u.resok.obj_attributes);
         } else {
             const QString linkPath = QFileInfo(fileInfo.path(), linkDest).absoluteFilePath();
-							// get the absolute link target
+            // get the absolute link target
             int rpcStatus;
             GETATTR3res attrAndStat;
             if (!getAttr(linkPath, rpcStatus, attrAndStat)) {
@@ -996,7 +996,7 @@ void NFSProtocolV3::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
         SYMLINK3res linkRes;
         symLink(linkPath, destPath, rpcStatus, linkRes);
         checkForError(rpcStatus, linkRes.status, linkPath);
-        return;						// done, no more to do
+        return;                     // done, no more to do
     }
 
     unsigned long resumeOffset = 0;
@@ -1210,7 +1210,7 @@ void NFSProtocolV3::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
         }
 
         QFile::link(QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data), destPath);
-        return;						// done, no more to do
+        return;                     // done, no more to do
     }
 
     if (m_readBufferSize == 0) {
@@ -1407,7 +1407,7 @@ void NFSProtocolV3::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
 
         symLink(symlinkTarget, destPath, rpcStatus, linkRes);
         checkForError(rpcStatus, linkRes.status, symlinkTarget);
-        return;						// done, no more to do
+        return;                     // done, no more to do
     }
 
     unsigned long resumeOffset = 0;
@@ -1493,7 +1493,7 @@ void NFSProtocolV3::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     }
 
     WRITE3res writeRes;
-    memset(&writeRes, 0 , sizeof(writeRes));
+    memset(&writeRes, 0, sizeof(writeRes));
 
     bool error = false;
     int bytesRead = 0;

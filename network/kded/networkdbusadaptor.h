@@ -41,14 +41,14 @@ class NetworkDBusAdaptor: public QDBusAbstractAdaptor
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.kde.network")
 
-  public:
+public:
     explicit NetworkDBusAdaptor( NetworkWatcher* parent );
     ~NetworkDBusAdaptor() override;
 
-  public:
+public:
     NetworkWatcher* parent() const;
 
-  public Q_SLOTS:
+public Q_SLOTS:
     Mollet::NetDevice deviceData( const QString& hostAddress );
     Mollet::NetService serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType );
     Mollet::NetDeviceList deviceDataList();
@@ -56,7 +56,9 @@ class NetworkDBusAdaptor: public QDBusAbstractAdaptor
 };
 
 
-inline NetworkWatcher* NetworkDBusAdaptor::parent() const { return static_cast<NetworkWatcher*>( QObject::parent() ); }
+inline NetworkWatcher* NetworkDBusAdaptor::parent() const {
+    return static_cast<NetworkWatcher*>( QObject::parent() );
+}
 
 }
 

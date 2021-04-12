@@ -34,22 +34,22 @@ class Network;
 
 class NetworkThread : public QThread
 {
-  public:
+public:
     NetworkThread();
     ~NetworkThread() override;
 
-  public:
+public:
     Mollet::Network* network() const;
 
-  public:
+public:
     void pause();
     void unpause();
     void finish();
 
-  protected: // QThread API
+protected: // QThread API
     void run() override;
 
-  private:
+private:
     QMutex mMutex;
     Mollet::Network* mNetwork;
 

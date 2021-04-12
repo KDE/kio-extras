@@ -36,11 +36,11 @@ class NetworkDBusInterface: public QDBusAbstractInterface
 {
     Q_OBJECT
 
-  public:
+public:
     NetworkDBusInterface( const QString& service, const QString& path, const QDBusConnection& connection, QObject* parent = nullptr );
     ~NetworkDBusInterface() override;
 
-  public Q_SLOTS:
+public Q_SLOTS:
     QDBusReply<Mollet::NetDevice> deviceData( const QString& hostAddress );
     QDBusReply<Mollet::NetService> serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType );
     QDBusReply<Mollet::NetDeviceList> deviceDataList();

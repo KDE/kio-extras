@@ -39,8 +39,8 @@ public:
     void run() override;
 
     Action createAction(const QString &activity, bool link,
-                          const QString &title = QString(),
-                          const QString &icon = QString()) const;
+                        const QString &title = QString(),
+                        const QString &icon = QString()) const;
     Action createSeparator(const QString &title) const;
 
 Q_SIGNALS:

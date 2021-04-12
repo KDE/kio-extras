@@ -27,13 +27,13 @@ class QImageReader;
 namespace IcoUtils
 {
 
-    bool loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int needWidth=512, int needHeight=512);
-    bool loadIcoImageFromExe(const QString &inputPath, QImage &image, int needWidth=512, int needHeight=512);
-    bool loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice);
+bool loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int needWidth=512, int needHeight=512);
+bool loadIcoImageFromExe(const QString &inputPath, QImage &image, int needWidth=512, int needHeight=512);
+bool loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice);
 
-    bool loadIcoImage(QIODevice * inputDevice, QImage &image, int needWidth=512, int needHeight=512);
-    bool loadIcoImage(const QString &inputFileName, QImage &image, int needWidth=512, int needHeight=512);
-    bool loadIcoImage(QImageReader &reader, QImage &image, int needWidth, int needHeight);
+bool loadIcoImage(QIODevice * inputDevice, QImage &image, int needWidth=512, int needHeight=512);
+bool loadIcoImage(const QString &inputFileName, QImage &image, int needWidth=512, int needHeight=512);
+bool loadIcoImage(QImageReader &reader, QImage &image, int needWidth, int needHeight);
 
 }
 

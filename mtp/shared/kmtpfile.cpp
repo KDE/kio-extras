@@ -32,12 +32,12 @@ KMTPFile::KMTPFile()
 }
 
 KMTPFile::KMTPFile(quint32 itemId,
-                 quint32 parentId,
-                 quint32 storageId,
-                 const char *filename,
-                 quint64 filesize,
-                 qint64 modificationdate,
-                 const QString &filetype)
+                   quint32 parentId,
+                   quint32 storageId,
+                   const char *filename,
+                   quint64 filesize,
+                   qint64 modificationdate,
+                   const QString &filetype)
     : m_itemId(itemId),
       m_parentId(parentId),
       m_storageId(storageId),
@@ -112,12 +112,12 @@ const QDBusArgument &operator>>(const QDBusArgument &argument, KMTPFile &mtpFile
 {
     argument.beginStructure();
     argument >> mtpFile.m_itemId
-            >> mtpFile.m_parentId
-            >> mtpFile.m_storageId
-            >> mtpFile.m_filename
-            >> mtpFile.m_filesize
-            >> mtpFile.m_modificationdate
-            >> mtpFile.m_filetype;
+             >> mtpFile.m_parentId
+             >> mtpFile.m_storageId
+             >> mtpFile.m_filename
+             >> mtpFile.m_filesize
+             >> mtpFile.m_modificationdate
+             >> mtpFile.m_filetype;
     argument.endStructure();
     return argument;
 }

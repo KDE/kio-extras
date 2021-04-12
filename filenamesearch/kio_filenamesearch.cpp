@@ -82,7 +82,7 @@ void FileNameSearchProtocol::listDir(const QUrl &url)
     if (urlQuery.queryItemValue("checkContent") == QStringLiteral("yes")) {
         validator = [pattern](const KFileItem &item) -> bool {
             return item.determineMimeType().inherits(QStringLiteral("text/plain")) &&
-                   contentContainsPattern(item.url(), pattern);
+            contentContainsPattern(item.url(), pattern);
         };
     } else {
         validator = [pattern](const KFileItem &item) -> bool {
@@ -98,8 +98,8 @@ void FileNameSearchProtocol::listDir(const QUrl &url)
 }
 
 void FileNameSearchProtocol::searchDirectory(const QUrl &directory,
-                                             const std::function<bool(const KFileItem &)> &itemValidator,
-                                             QSet<QString> &iteratedDirs)
+        const std::function<bool(const KFileItem &)> &itemValidator,
+        QSet<QString> &iteratedDirs)
 {
     if (directory.path() == QStringLiteral("/proc")) {
         // Don't try to iterate the /proc directory of Linux

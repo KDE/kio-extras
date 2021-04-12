@@ -35,10 +35,10 @@ class AbstractNetworkBuilder : public QObject
 {
     Q_OBJECT
 
-  public:
+public:
     ~AbstractNetworkBuilder() override;
 
-  public: // API to be implemented
+public: // API to be implemented
     // build initial table synch
 //     virtual void init() = 0;
     // build initial table asynch
@@ -54,7 +54,7 @@ class AbstractNetworkBuilder : public QObject
 //     virtual void rescan()
 //     virtual void startRescan()
 
-  Q_SIGNALS:
+Q_SIGNALS:
     /** initial structure build */
     void initDone();
 };

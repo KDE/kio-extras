@@ -10,12 +10,12 @@ It was written to verify KDE bug 147948: https://bugs.kde.org/show_bug.cgi?id=14
 
 int main (int argc, char *argv[])
 {
-  const QByteArray& ba=QByteArray("test");
-  const KLocalizedString name=ki18n("copytester");
-  KAboutData aboutData( ba, ba, name, ba, name);
-  KCmdLineArgs::init( argc, argv, &aboutData );
-  KApplication copytester;
+    const QByteArray& ba=QByteArray("test");
+    const KLocalizedString name=ki18n("copytester");
+    KAboutData aboutData( ba, ba, name, ba, name);
+    KCmdLineArgs::init( argc, argv, &aboutData );
+    KApplication copytester;
 
-  Browser *mw = new Browser();
-  copytester.exec();
+    Browser *mw = new Browser();
+    copytester.exec();
 }

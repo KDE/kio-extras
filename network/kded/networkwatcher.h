@@ -39,17 +39,17 @@ class NetworkWatcher : public KDEDModule
 {
     Q_OBJECT
 
-  public:
+public:
     NetworkWatcher( QObject* parent, const QList<QVariant>& parameters );
     ~NetworkWatcher() override;
 
-  public:
+public:
     Mollet::NetDevice deviceData( const QString& hostAddress );
     Mollet::NetService serviceData( const QString& hostAddress, const QString& serviceName, const QString& serviceType );
     Mollet::NetDeviceList deviceDataList();
     Mollet::NetServiceList serviceDataList( const QString& hostAddress );
 
-  private:
+private:
     Network* mNetwork;
 };
 

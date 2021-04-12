@@ -87,8 +87,8 @@ void FileItemLinkingPluginActionLoader::run()
 
         {
             auto database = QSqlDatabase::addDatabase(
-                QStringLiteral("QSQLITE"),
-                connectionName);
+                                QStringLiteral("QSQLITE"),
+                                connectionName);
 
             database.setDatabaseName(
                 QStandardPaths::writableLocation(
@@ -98,12 +98,12 @@ void FileItemLinkingPluginActionLoader::run()
             if (database.open()) {
 
                 static const auto queryString = QStringLiteral(
-                    "SELECT usedActivity, COUNT(targettedResource) "
-                    "FROM ResourceLink "
-                    "WHERE targettedResource IN (%1) "
-                        "AND initiatingAgent = \":global\" "
-                        "AND usedActivity != \":global\" "
-                    "GROUP BY usedActivity");
+                                                    "SELECT usedActivity, COUNT(targettedResource) "
+                                                    "FROM ResourceLink "
+                                                    "WHERE targettedResource IN (%1) "
+                                                    "AND initiatingAgent = \":global\" "
+                                                    "AND usedActivity != \":global\" "
+                                                    "GROUP BY usedActivity");
 
                 QStringList escapedFiles;
                 QSqlField field;

@@ -32,12 +32,12 @@ namespace Mollet
 
 class AbstractNetSystemFactory : public QObject
 {
-   Q_OBJECT
+    Q_OBJECT
 
-  public:
+public:
     ~AbstractNetSystemFactory() override;
 
-  public: // API to be implemented
+public: // API to be implemented
 };
 
 

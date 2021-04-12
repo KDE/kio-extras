@@ -12,38 +12,38 @@ To use this program, do
 #include <kio/jobclasses.h>
 #include <kdebug.h>
 #include <kio/copyjob.h>
-#include <kapplication.h> 
+#include <kapplication.h>
 
 class TransferJob;
 
 Browser::Browser() : QWidget(NULL)
 {
-  slotButtonClicked();
+    slotButtonClicked();
 }
 
 void Browser::slotButtonClicked()
 {
-  kDebug() << "entering function";
-  // creating a kioslave
-  kDebug() << "getting via fish*************************************************************";
-  KUrl::List selectedUrls;
+    kDebug() << "entering function";
+    // creating a kioslave
+    kDebug() << "getting via fish*************************************************************";
+    KUrl::List selectedUrls;
 
-  for (int i=1; i<=99; i++)
-  {
-    QString filename=QString("/tmp/fishtest");
-    filename.append(QString::number(i)).append(".txt");
-    kDebug() << filename;
-    selectedUrls.push_back(KUrl(filename));
-  }
-  KUrl destUrl("fish://root@localhost/tmp/test");
-  KIO::CopyJob* job0 = KIO::copy( selectedUrls, destUrl );
-  job0->start();
+    for (int i=1; i<=99; i++)
+    {
+        QString filename=QString("/tmp/fishtest");
+        filename.append(QString::number(i)).append(".txt");
+        kDebug() << filename;
+        selectedUrls.push_back(KUrl(filename));
+    }
+    KUrl destUrl("fish://root@localhost/tmp/test");
+    KIO::CopyJob* job0 = KIO::copy( selectedUrls, destUrl );
+    job0->start();
 }
 
 void Browser::dataishere(KIO::Job *,const QByteArray & data )
 {
-  static int counter=0;
-  kDebug() << ++counter << " data is here*************************************************************";
-  kDebug() << data;
-  kapp->quit();
+    static int counter=0;
+    kDebug() << ++counter << " data is here*************************************************************";
+    kDebug() << data;
+    kapp->quit();
 }

@@ -33,30 +33,30 @@ namespace Mollet
 {
 
 class SimpleItemFactory : public AbstractNetSystemFactory,
-                          public DNSSDNetSystemAble,
-                          public UpnpNetSystemAble
+    public DNSSDNetSystemAble,
+    public UpnpNetSystemAble
 {
-  Q_OBJECT
-  Q_INTERFACES(
-    Mollet::DNSSDNetSystemAble
-    Mollet::UpnpNetSystemAble
-  )
+    Q_OBJECT
+    Q_INTERFACES(
+        Mollet::DNSSDNetSystemAble
+        Mollet::UpnpNetSystemAble
+    )
 
-  public:
+public:
     SimpleItemFactory();
     ~SimpleItemFactory() override;
 
-  public: // DNSSDNetSystemAble API
+public: // DNSSDNetSystemAble API
     bool canCreateNetSystemFromDNSSD( const QString& serviceType ) const override;
     NetServicePrivate* createNetService( const KDNSSD::RemoteService::Ptr& service, const NetDevice& device ) const override;
     QString dnssdId( const KDNSSD::RemoteService::Ptr& dnssdService ) const override;
 
-  public: // UpnpNetSystemAble API
+public: // UpnpNetSystemAble API
     bool canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDevice ) const override;
     NetServicePrivate* createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const override;
     QString upnpId( const Cagibi::Device& upnpDevice ) const override;
 
-  private:
+private:
 };
 
 }

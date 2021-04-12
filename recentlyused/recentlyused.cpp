@@ -201,7 +201,7 @@ void RecentlyUsed::listDir(const QUrl &url)
 {
     if (!isRootUrl(url)) {
         const auto path = url.path();
-        if (path != QStringLiteral("/files") && path != QStringLiteral("/locations") ){
+        if (path != QStringLiteral("/files") && path != QStringLiteral("/locations") ) {
             error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
             return;
         }

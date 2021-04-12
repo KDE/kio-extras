@@ -36,8 +36,8 @@ extern "C"
 bool CursorCreator::create( const QString &path, int width, int height, QImage &img )
 {
     XcursorImage *cursor = XcursorFilenameLoadImage(
-		    QFile::encodeName( path ).data(),
-		    width > height ? height : width );
+                               QFile::encodeName( path ).data(),
+                               width > height ? height : width );
 
     if ( cursor ) {
         img = QImage( reinterpret_cast<uchar *>( cursor->pixels ),

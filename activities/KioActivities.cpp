@@ -86,8 +86,8 @@ public:
         }
 
         return path.length() == 0 ? RootItem
-             : path.contains("/") ? ActivityPathItem
-             : ActivityRootItem;
+               : path.contains("/") ? ActivityPathItem
+               : ActivityRootItem;
     }
 
     void syncActivities(KActivities::Consumer &activities)
@@ -142,14 +142,14 @@ public:
     {
         // return QString::fromUtf8(QUrl::toPercentEncoding(path));
         return QString::fromLatin1(path.toUtf8().toBase64(
-            QByteArray::Base64UrlEncoding | QByteArray::OmitTrailingEquals));
+                                       QByteArray::Base64UrlEncoding | QByteArray::OmitTrailingEquals));
     }
 
     QString demangledPath(const QString &mangled) const
     {
         // return QUrl::fromPercentEncoding(mangled.toUtf8());
         return QString::fromUtf8(QByteArray::fromBase64(mangled.toLatin1(),
-            QByteArray::Base64UrlEncoding | QByteArray::OmitTrailingEquals));
+                                 QByteArray::Base64UrlEncoding | QByteArray::OmitTrailingEquals));
     }
 
     // KActivities::Consumer activities;
@@ -186,30 +186,30 @@ bool ActivitiesProtocol::rewriteUrl(const QUrl &url, QUrl &newUrl)
 {
     QString activity, path;
     switch (d->pathType(url, &activity, &path)) {
-        case Private::RootItem:
-        case Private::ActivityRootItem:
-            if (activity == "current") {
-                KActivities::Consumer activities;
-                d->syncActivities(activities);
-                newUrl = QUrl(QStringLiteral("activities:/")
-                                  + activities.currentActivity());
-                return true;
-            }
-            return false;
-
-        case Private::ActivityPathItem:
-        {
-            // auto demangled = d->demangledPath(path);
-            // QProcess::execute("kdialog",
-            //                   { "--passivepopup",
-            //                     path.midRef(1).toString() + "\n" + demangled });
-
-            newUrl = QUrl::fromLocalFile(path);
+    case Private::RootItem:
+    case Private::ActivityRootItem:
+        if (activity == "current") {
+            KActivities::Consumer activities;
+            d->syncActivities(activities);
+            newUrl = QUrl(QStringLiteral("activities:/")
+                          + activities.currentActivity());
             return true;
         }
+        return false;
 
-        default:
-            return true;
+    case Private::ActivityPathItem:
+    {
+        // auto demangled = d->demangledPath(path);
+        // QProcess::execute("kdialog",
+        //                   { "--passivepopup",
+        //                     path.midRef(1).toString() + "\n" + demangled });
+
+        newUrl = QUrl::fromLocalFile(path);
+        return true;
+    }
+
+    default:
+        return true;
     }
 }
 
@@ -220,76 +220,76 @@ void ActivitiesProtocol::listDir(const QUrl &url)
 
     QString activity, path;
     switch (d->pathType(url, &activity, &path)) {
-        case Private::RootItem:
-        {
-            KIO::UDSEntryList udslist;
+    case Private::RootItem:
+    {
+        KIO::UDSEntryList udslist;
+
+        KIO::UDSEntry uds;
+        uds.reserve(9);
+        uds.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("current"));
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Current activity"));
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Activity"));
+        uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities"));
+        uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0500);
+        uds.fastInsert(KIO::UDSEntry::UDS_USER, KUser().loginName());
+        uds.fastInsert(KIO::UDSEntry::UDS_TARGET_URL, QStringLiteral("activities:/") + activities.currentActivity());
+        udslist << uds;
+
+        for (const auto& activity: activities.activities()) {
+            udslist << d->activityEntry(activity);
+        }
+
+        listEntries(udslist);
+        finished();
+        break;
+    }
+
+    case Private::ActivityRootItem:
+    {
+        KIO::UDSEntryList udslist;
+
+        auto database = Common::Database::instance(
+                            Common::Database::ResourcesDatabase,
+                            Common::Database::ReadOnly);
+
+        if (!database) {
+            finished();
+            break;
+        }
+
+        if (activity == "current") {
+            activity = activities.currentActivity();
+        }
+
+        static const auto queryString = QStringLiteral(
+                                            "SELECT targettedResource "
+                                            "FROM ResourceLink "
+                                            "WHERE usedActivity = '%1' "
+                                            "AND initiatingAgent = \":global\" "
+                                        );
+
+        auto query = database->execQuery(queryString.arg(activity));
+
+        for (const auto& result: query) {
+            auto path = result[0].toString();
+
+            if (!QFile(path).exists()) continue;
 
             KIO::UDSEntry uds;
-            uds.reserve(9);
-            uds.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("current"));
-            uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Current activity"));
-            uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Activity"));
-            uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities"));
-            uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-            uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
-            uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0500);
-            uds.fastInsert(KIO::UDSEntry::UDS_USER, KUser().loginName());
-            uds.fastInsert(KIO::UDSEntry::UDS_TARGET_URL, QStringLiteral("activities:/") + activities.currentActivity());
-            udslist << uds;
 
-            for (const auto& activity: activities.activities()) {
-                udslist << d->activityEntry(activity);
-            }
-
-            listEntries(udslist);
-            finished();
-            break;
+            udslist << d->filesystemEntry(path);
         }
 
-        case Private::ActivityRootItem:
-        {
-            KIO::UDSEntryList udslist;
+        listEntries(udslist);
+        finished();
+        break;
+    }
 
-            auto database = Common::Database::instance(
-                Common::Database::ResourcesDatabase,
-                Common::Database::ReadOnly);
-
-            if (!database) {
-                finished();
-                break;
-            }
-
-            if (activity == "current") {
-                activity = activities.currentActivity();
-            }
-
-            static const auto queryString = QStringLiteral(
-                "SELECT targettedResource "
-                "FROM ResourceLink "
-                "WHERE usedActivity = '%1' "
-                    "AND initiatingAgent = \":global\" "
-                );
-
-            auto query = database->execQuery(queryString.arg(activity));
-
-            for (const auto& result: query) {
-                auto path = result[0].toString();
-
-                if (!QFile(path).exists()) continue;
-
-                KIO::UDSEntry uds;
-
-                udslist << d->filesystemEntry(path);
-            }
-
-            listEntries(udslist);
-            finished();
-            break;
-        }
-
-        case Private::ActivityPathItem:
-            ForwardingSlaveBase::listDir(QUrl::fromLocalFile(path));
-            break;
+    case Private::ActivityPathItem:
+        ForwardingSlaveBase::listDir(QUrl::fromLocalFile(path));
+        break;
     }
 }
 
@@ -303,55 +303,55 @@ void ActivitiesProtocol::stat(const QUrl& url)
     QString activity;
 
     switch (d->pathType(url, &activity)) {
-        case Private::RootItem:
-        {
-            QString dirName = i18n("Activities");
-            KIO::UDSEntry uds;
-            uds.reserve(6);
-            uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
-            uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
-            uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
-            uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities"));
-            uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-            uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    case Private::RootItem:
+    {
+        QString dirName = i18n("Activities");
+        KIO::UDSEntry uds;
+        uds.reserve(6);
+        uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
+        uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities"));
+        uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
 
-            statEntry(uds);
-            finished();
-            break;
+        statEntry(uds);
+        finished();
+        break;
+    }
+
+    case Private::ActivityRootItem:
+    {
+        KActivities::Consumer activities;
+        d->syncActivities(activities);
+
+        if (activity == "current") {
+            activity = activities.currentActivity();
         }
 
-        case Private::ActivityRootItem:
-        {
-            KActivities::Consumer activities;
-            d->syncActivities(activities);
+        statEntry(d->activityEntry(activity));
+        finished();
+        break;
+    }
 
-            if (activity == "current") {
-                activity = activities.currentActivity();
-            }
-
-            statEntry(d->activityEntry(activity));
-            finished();
-            break;
-        }
-
-        case Private::ActivityPathItem:
-            ForwardingSlaveBase::stat(url);
-            break;
+    case Private::ActivityPathItem:
+        ForwardingSlaveBase::stat(url);
+        break;
     }
 }
 
 void ActivitiesProtocol::mimetype(const QUrl& url)
 {
     switch (d->pathType(url)) {
-        case Private::RootItem:
-        case Private::ActivityRootItem:
-            mimeType(QStringLiteral("inode/directory"));
-            finished();
-            break;
+    case Private::RootItem:
+    case Private::ActivityRootItem:
+        mimeType(QStringLiteral("inode/directory"));
+        finished();
+        break;
 
-        case Private::ActivityPathItem:
-            ForwardingSlaveBase::mimetype(url);
-            break;
+    case Private::ActivityPathItem:
+        ForwardingSlaveBase::mimetype(url);
+        break;
     }
 
 }

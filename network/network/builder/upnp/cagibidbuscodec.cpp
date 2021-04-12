@@ -65,50 +65,50 @@ const QDBusArgument& operator>>( const QDBusArgument& argument,
     QString value;
     while( ! argument.atEnd() )
     {
-         argument.beginMapEntry();
-         argument >> key;
+        argument.beginMapEntry();
+        argument >> key;
 
-         if( key == type )
-         {
+        if( key == type )
+        {
             QString type;
             argument >> type;
             const QStringList typeParts = type.split( QLatin1Char(':') );
-qDebug()<<type;
+            qDebug()<<type;
             if( typeParts.size() >=5 )
                 devicePrivate->mType = typeParts[3]+typeParts[4];
-         }
-         else if( key == friendlyName )
-             argument >> devicePrivate->mFriendlyName;
-         else if( key == manufacturerName )
-             argument >> devicePrivate->mManufacturerName;
+        }
+        else if( key == friendlyName )
+            argument >> devicePrivate->mFriendlyName;
+        else if( key == manufacturerName )
+            argument >> devicePrivate->mManufacturerName;
 //     const QString& manufacturerUrl() const;
-         else if( key == modelDescription )
-             argument >> devicePrivate->mModelDescription;
-         else if( key == modelName )
-             argument >> devicePrivate->mModelName;
-         else if( key == modelNumber )
-             argument >> devicePrivate->mModelNumber;
-         else if( key == serialNumber )
-             argument >> devicePrivate->mSerialNumber;
-         else if( key == udn )
-             argument >> devicePrivate->mUdn;
+        else if( key == modelDescription )
+            argument >> devicePrivate->mModelDescription;
+        else if( key == modelName )
+            argument >> devicePrivate->mModelName;
+        else if( key == modelNumber )
+            argument >> devicePrivate->mModelNumber;
+        else if( key == serialNumber )
+            argument >> devicePrivate->mSerialNumber;
+        else if( key == udn )
+            argument >> devicePrivate->mUdn;
 //     const QString upc() const;
-         else if( key == presentationUrl )
-             argument >> devicePrivate->mPresentationUrl;
-         else if( key == ipAddress )
-             argument >> devicePrivate->mIpAddress;
-         else if( key == portNumber )
-             argument >> devicePrivate->mIpPortNumber;
-         else if( key == parentDeviceUdn )
-             argument >> devicePrivate->mParentDeviceUdn;
+        else if( key == presentationUrl )
+            argument >> devicePrivate->mPresentationUrl;
+        else if( key == ipAddress )
+            argument >> devicePrivate->mIpAddress;
+        else if( key == portNumber )
+            argument >> devicePrivate->mIpPortNumber;
+        else if( key == parentDeviceUdn )
+            argument >> devicePrivate->mParentDeviceUdn;
 //     const QList<Icon>& icons() const;
 //     const QList<Service>& services() const;
 //     const QList<Device>& devices() const;
-         // unknown key
-         else
-             argument >> value;
-         argument.endMapEntry();
-     }
+        // unknown key
+        else
+            argument >> value;
+        argument.endMapEntry();
+    }
 
     argument.endMap();
 

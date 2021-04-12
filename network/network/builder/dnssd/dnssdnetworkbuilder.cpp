@@ -41,9 +41,9 @@ namespace Mollet
 {
 
 DNSSDNetworkBuilder::DNSSDNetworkBuilder( NetworkPrivate* networkPrivate )
-  : AbstractNetworkBuilder()
-  , mNetworkPrivate( networkPrivate )
-  , mServiceTypeBrowser( nullptr )
+    : AbstractNetworkBuilder()
+    , mNetworkPrivate( networkPrivate )
+    , mServiceTypeBrowser( nullptr )
 {
 }
 
@@ -127,8 +127,8 @@ void DNSSDNetworkBuilder::addService( KDNSSD::RemoteService::Ptr service )
         const QString deviceHostName = device.hostName();
         const bool useIpAddress = ( deviceHostName.isEmpty() || hostName.isEmpty() );
         const bool isSameAddress = useIpAddress ?
-            ( device.ipAddress() == ipAddress ) :
-            ( deviceHostName == hostName );
+                                   ( device.ipAddress() == ipAddress ) :
+                                   ( deviceHostName == hostName );
 
         if( isSameAddress )
         {

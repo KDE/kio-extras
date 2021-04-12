@@ -88,17 +88,17 @@ void FileItemLinkingPlugin::Private::actionTriggered()
     const auto urlList = items.urlList();
     for (const auto &item : urlList) {
         service.asyncCall(
-                link ? "LinkResourceToActivity" : "UnlinkResourceFromActivity",
-                QString(),
-                item.toLocalFile(),
-                activity);
+            link ? "LinkResourceToActivity" : "UnlinkResourceFromActivity",
+            QString(),
+            item.toLocalFile(),
+            activity);
     }
 }
 
 QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
 {
     root = new QAction(QIcon::fromTheme("activities"),
-                                i18n("Activities"), parentWidget);
+                       i18n("Activities"), parentWidget);
 
     rootMenu = new QMenu(parentWidget);
     rootMenu->addAction(new QAction(i18n("Loading..."), this));
@@ -115,7 +115,7 @@ QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
 void FileItemLinkingPlugin::Private::loadAllActions()
 {
     if (!shouldLoad
-        || activities.serviceStatus() == KActivities::Consumer::Unknown) {
+            || activities.serviceStatus() == KActivities::Consumer::Unknown) {
         return;
     }
 

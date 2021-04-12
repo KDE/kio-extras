@@ -147,7 +147,7 @@ private:
     inline bool isInterestingUrl(const QString &str)
     {
         SMBUrl url { QUrl(str) };
-        switch (url.getType()){
+        switch (url.getType()) {
         case SMBURLTYPE_UNKNOWN:
         case SMBURLTYPE_ENTIRE_NETWORK:
         case SMBURLTYPE_WORKGROUP_OR_SERVER:

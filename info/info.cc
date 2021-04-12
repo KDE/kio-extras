@@ -45,10 +45,10 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
     if (!missingFiles.isEmpty())
     {
         qCCritical(LOG_KIO_INFO) << "Cannot locate files for HTML conversion," << qPrintable(missingFiles.join(' '));
-	QString errorStr = i18n("Unable to locate files which are necessary to run this service:<br>%1<br>"
+        QString errorStr = i18n("Unable to locate files which are necessary to run this service:<br>%1<br>"
                                 "Please check your software installation.", missingFiles.join(' '));
-	error(KIO::ERR_SLAVE_DEFINED, errorStr);
-	exit();
+        error(KIO::ERR_SLAVE_DEFINED, errorStr);
+        exit();
     }
 
     qCDebug(LOG_KIO_INFO) << "done";
@@ -61,10 +61,10 @@ void InfoProtocol::get( const QUrl& url )
 
     if (url.path()=="/")
     {
-       QUrl newUrl("info:/dir");
-       redirection(newUrl);
-       finished();
-       return;
+        QUrl newUrl("info:/dir");
+        redirection(newUrl);
+        finished();
+        return;
     };
 
     // some people write info://autoconf instead of info:/autoconf
@@ -126,21 +126,21 @@ void InfoProtocol::get( const QUrl& url )
     bool empty = true;
     while ( !feof( file ) )
     {
-      int n = fread( buffer, 1, sizeof( buffer ), file );
-      if ( !n && feof( file ) && empty ) {
-	      error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
-	      return;
-      }
-      if ( n < 0 )
-      {
-        // ERROR
-	qCWarning(LOG_KIO_INFO) << "read error!";
-        pclose( file );
-	return;
-      }
+        int n = fread( buffer, 1, sizeof( buffer ), file );
+        if ( !n && feof( file ) && empty ) {
+            error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
+            return;
+        }
+        if ( n < 0 )
+        {
+            // ERROR
+            qCWarning(LOG_KIO_INFO) << "read error!";
+            pclose( file );
+            return;
+        }
 
-      empty = false;
-      data( QByteArray::fromRawData( buffer, n ) );
+        empty = false;
+        data( QByteArray::fromRawData( buffer, n ) );
     }
 
     pclose( file );
@@ -180,10 +180,10 @@ void InfoProtocol::decodeURL( const QUrl &url )
      */
 
     if ( url == QUrl("info:/browse_by_file?special=yes") ) {
-	    m_page = "#special#";
-	    m_node = "browse_by_file";
-	    qCDebug(LOG_KIO_INFO) << "InfoProtocol::decodeURL - special - browse by file";
-	    return;
+        m_page = "#special#";
+        m_node = "browse_by_file";
+        qCDebug(LOG_KIO_INFO) << "InfoProtocol::decodeURL - special - browse by file";
+        return;
     }
 
     decodePath( url.path() );
@@ -198,7 +198,7 @@ void InfoProtocol::decodePath( QString path )
 
     // remove leading slash
     if ('/' == path[0]) {
-      path = path.mid( 1 );
+        path = path.mid( 1 );
     }
     //qCDebug(LOG_KIO_INFO) << "Path: " << path;
 
@@ -206,9 +206,9 @@ void InfoProtocol::decodePath( QString path )
 
     if( slashPos < 0 )
     {
-	m_page = path;
-	m_node = "Top";
-	return;
+        m_page = path;
+        m_node = "Top";
+        return;
     }
 
     m_page = path.left( slashPos );
@@ -223,38 +223,40 @@ void InfoProtocol::decodePath( QString path )
 // This seems to be enough for konqueror
 void InfoProtocol::stat( const QUrl & )
 {
-	UDSEntry uds_entry;
+    UDSEntry uds_entry;
 
 #ifdef Q_OS_WIN
-	// Regular file with rwx permission for all
-	uds_entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG );
+    // Regular file with rwx permission for all
+    uds_entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG );
 #else
-	// Regular file with rwx permission for all
-	uds_entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO );
+    // Regular file with rwx permission for all
+    uds_entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG | S_IRWXU | S_IRWXG | S_IRWXO );
 #endif
 
-	statEntry( uds_entry );
-	finished();
+    statEntry( uds_entry );
+    finished();
 }
 
 
-extern "C" { int Q_DECL_EXPORT kdemain( int argc, char **argv ); }
+extern "C" {
+    int Q_DECL_EXPORT kdemain( int argc, char **argv );
+}
 
 int kdemain( int argc, char **argv )
 {
-  QCoreApplication app(argc, argv);			// needed for QSocketNotifier
-  app.setApplicationName(QLatin1String("kio_info"));
+    QCoreApplication app(argc, argv);         // needed for QSocketNotifier
+    app.setApplicationName(QLatin1String("kio_info"));
 
-  qCDebug(LOG_KIO_INFO) << "kio_info starting" << getpid();
+    qCDebug(LOG_KIO_INFO) << "kio_info starting" << getpid();
 
-  if (argc != 4)
-  {
-     fprintf(stderr, "Usage: kio_info protocol domain-socket1 domain-socket2\n");
-     exit(-1);
-  }
+    if (argc != 4)
+    {
+        fprintf(stderr, "Usage: kio_info protocol domain-socket1 domain-socket2\n");
+        exit(-1);
+    }
 
-  InfoProtocol slave( argv[2], argv[3] );
-  slave.dispatchLoop();
+    InfoProtocol slave( argv[2], argv[3] );
+    slave.dispatchLoop();
 
-  return 0;
+    return 0;
 }

@@ -122,9 +122,9 @@ public:
             const auto childValues = response.childValues();
             for (const auto &section : qAsConst(childValues)) {
                 computer = section
-                        .childValues().child("Relationship")
-                        .childValues().child("Host")
-                        .childValues().child("Computer").value().toString();
+                           .childValues().child("Relationship")
+                           .childValues().child("Host")
+                           .childValues().child("Computer").value().toString();
                 if (!computer.isEmpty()) {
                     break;
                 }

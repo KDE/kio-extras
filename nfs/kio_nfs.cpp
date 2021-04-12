@@ -107,20 +107,20 @@ void NFSSlave::openConnection()
 
     const KSharedConfig::Ptr cfg = KSharedConfig::openConfig("kionfsrc");
 
-    const KConfigGroup grp1 = cfg->group("Default");		// default for all hosts
-    int minproto = grp1.readEntry("minproto", 2);		// minimum NFS version to accept
-    int maxproto = grp1.readEntry("maxproto", 4);		// maximum NFS version to try
-    m_usedirplus3 = grp1.readEntry("usedirplus3", true);	// use READDIRPLUS3 for listing
+    const KConfigGroup grp1 = cfg->group("Default");        // default for all hosts
+    int minproto = grp1.readEntry("minproto", 2);       // minimum NFS version to accept
+    int maxproto = grp1.readEntry("maxproto", 4);       // maximum NFS version to try
+    m_usedirplus3 = grp1.readEntry("usedirplus3", true);    // use READDIRPLUS3 for listing
 
     const KConfigGroup grp2 = cfg->group("Host "+m_host);
-    if (grp2.exists())						// look for host-specific settings
-    {								// with default values from above
+    if (grp2.exists())                      // look for host-specific settings
+    {   // with default values from above
         minproto = grp2.readEntry("minproto", minproto);
         maxproto = grp2.readEntry("maxproto", maxproto);
         m_usedirplus3 = grp2.readEntry("usedirplus3", m_usedirplus3);
     }
 
-    minproto = qBound(2, minproto, 4);				// enforce limits
+    minproto = qBound(2, minproto, 4);              // enforce limits
     maxproto = qBound(minproto, maxproto, 4);
     qCDebug(LOG_KIO_NFS) << "configuration for" << m_host;
     qCDebug(LOG_KIO_NFS) << "minproto" << minproto << "maxproto" << maxproto << "usedirplus3" << m_usedirplus3;
@@ -135,42 +135,44 @@ void NFSSlave::openConnection()
         // Try to create an NFS protocol handler for that version
         switch (version)
         {
-case 4:     // TODO
+        case 4:     // TODO
             qCDebug(LOG_KIO_NFS) << "NFSv4 is not supported at this time";
             break;
 
-case 3:     m_protocol = new NFSProtocolV3(this);
+        case 3:
+            m_protocol = new NFSProtocolV3(this);
             break;
 
-case 2:     m_protocol = new NFSProtocolV2(this);
+        case 2:
+            m_protocol = new NFSProtocolV2(this);
             break;
         }
 
-        if (m_protocol != nullptr)			// created protocol for that version
+        if (m_protocol != nullptr)          // created protocol for that version
         {
-            m_protocol->setHost(m_host, m_user);	// try to make initial connection
+            m_protocol->setHost(m_host, m_user);    // try to make initial connection
             if (m_protocol->isCompatible(connectionError)) break;
         }
 
-        delete m_protocol;				// no point using that protocol
-        --version;					// try the next lower
-        m_protocol = nullptr;				// try again with new protocol
+        delete m_protocol;              // no point using that protocol
+        --version;                  // try the next lower
+        m_protocol = nullptr;               // try again with new protocol
     }
 
-    if (m_protocol == nullptr)				// failed to find a protocol
+    if (m_protocol == nullptr)              // failed to find a protocol
     {
-        if (!connectionError)				// but connection was possible
+        if (!connectionError)               // but connection was possible
         {
             setError(KIO::ERR_SLAVE_DEFINED, i18n("Cannot find an NFS version that host '%1' supports", m_host));
         }
-        else						// connection failed
+        else                        // connection failed
         {
             setError(KIO::ERR_CANNOT_CONNECT, m_host);
         }
     }
-    else						// usable protocol was created
+    else                        // usable protocol was created
     {
-        m_protocol->openConnection();			// open the connection
+        m_protocol->openConnection();           // open the connection
     }
 }
 
@@ -316,7 +318,7 @@ void NFSSlave::copy(const QUrl& src, const QUrl& dest, int mode, KIO::JobFlags f
 // calling either error() or finished().
 bool NFSSlave::verifyProtocol(const QUrl &url)
 {
-    m_errorId = KIO::Error(0);				// ensure reset before starting
+    m_errorId = KIO::Error(0);              // ensure reset before starting
     m_errorText.clear();
 
     // The NFS protocol definition includes copyToFile=true and copyFromFile=true,
@@ -324,7 +326,7 @@ bool NFSSlave::verifyProtocol(const QUrl &url)
     // is required in this case.
     if (url.scheme() != "nfs") return true;
 
-    if (!url.isValid())					// also checks for empty
+    if (!url.isValid())                 // also checks for empty
     {
         setError(KIO::ERR_MALFORMED_URL, url.toDisplayString());
         return (false);
@@ -357,23 +359,23 @@ bool NFSSlave::verifyProtocol(const QUrl &url)
         }
     }
 
-    if (m_protocol==nullptr)				// no protocol connection yet
+    if (m_protocol==nullptr)                // no protocol connection yet
     {
-        openConnection();				// create and open connection
-        if (m_protocol==nullptr)			// if that failed, then
-        {						// no more can be done
+        openConnection();               // create and open connection
+        if (m_protocol==nullptr)            // if that failed, then
+        {   // no more can be done
             qCDebug(LOG_KIO_NFS) << "Could not resolve a compatible protocol version!";
             goto fail;
         }
     }
-    else if (!m_protocol->isConnected())		// already have a protocol
+    else if (!m_protocol->isConnected())        // already have a protocol
     {
-        m_protocol->openConnection();			// open its connection
+        m_protocol->openConnection();           // open its connection
     }
 
-    if (m_protocol->isConnected()) return true;		// connection succeeded
+    if (m_protocol->isConnected()) return true;     // connection succeeded
 
-fail:							// default error if none already
+fail:                           // default error if none already
     setError(KIO::ERR_INTERNAL, i18n("Failed to initialise protocol"));
     return false;
 }
@@ -408,9 +410,9 @@ void NFSSlave::setError(KIO::Error errid, const QString &text)
 // An operation is complete.  If there has been an error, then report it.
 void NFSSlave::finishOperation()
 {
-    if (m_errorId==0) {					// no error encountered
+    if (m_errorId==0) {                 // no error encountered
         SlaveBase::finished();
-    } else {						// there was an error
+    } else {                        // there was an error
         SlaveBase::error(m_errorId, m_errorText);
     }
 }
@@ -642,7 +644,7 @@ bool NFSProtocol::isExportedDir(const QString& path)
 
     const QString dirPath = path+QDir::separator();
     for (QStringList::const_iterator it = m_exportedDirs.constBegin();
-         it != m_exportedDirs.constEnd(); ++it) {
+            it != m_exportedDirs.constEnd(); ++it) {
         const QString &exportedDir = (*it);
         // We know that both 'path' and the contents of m_exportedDirs
         // have been cleaned of any trailing slashes.
@@ -747,7 +749,7 @@ bool NFSProtocol::isValidPath(const QString& path)
     }
 
     for (QStringList::const_iterator it = m_exportedDirs.constBegin();
-         it != m_exportedDirs.constEnd(); ++it)
+            it != m_exportedDirs.constEnd(); ++it)
     {
         const QString &exportedDir = (*it);
         // We know that both 'path' and the contents of m_exportedDirs
@@ -764,7 +766,7 @@ bool NFSProtocol::isValidLink(const QString &parentDir, const QString &linkDest)
 {
     qCDebug(LOG_KIO_NFS) << "checking" << linkDest << "in" << parentDir;
 
-    if (linkDest.isEmpty()) return false;		// ensure link is absolute
+    if (linkDest.isEmpty()) return false;       // ensure link is absolute
     const QString absDest = QFileInfo(parentDir, linkDest).absoluteFilePath();
 
     // The link target may not be valid on the NFS server (i.e. it may
@@ -957,13 +959,13 @@ QString NFSProtocol::listDirInternal(const QUrl &url)
             // below the 'dirPrefix', and list the first (or only) path component
             // of each.
 
-            QString name = (*it);			// this exported directory
-            if (!name.startsWith(dirPrefix)) continue;	// not below this prefix
+            QString name = (*it);           // this exported directory
+            if (!name.startsWith(dirPrefix)) continue;  // not below this prefix
 
-            name = name.mid(dirPrefix.length());	// remainder after the prefix
+            name = name.mid(dirPrefix.length());    // remainder after the prefix
 
             const int idx = name.indexOf(QDir::separator());
-            if (idx!=-1) name = name.left(idx);		// take first path component
+            if (idx!=-1) name = name.left(idx);     // take first path component
 
             if (!virtualList.contains(name)) {
                 qCDebug(LOG_KIO_NFS) << "Found exported" << name;
@@ -979,7 +981,7 @@ QString NFSProtocol::listDirInternal(const QUrl &url)
 
         for (QStringList::const_iterator it = virtualList.constBegin(); it != virtualList.constEnd(); ++it)
         {
-            const QString &name = (*it);		// this listed directory
+            const QString &name = (*it);        // this listed directory
 
             entry.replace(KIO::UDSEntry::UDS_NAME, name);
             if (isExportedDir(dirPrefix+name)) entry.replace(KIO::UDSEntry::UDS_ICON_NAME, "folder-network");
@@ -988,14 +990,14 @@ QString NFSProtocol::listDirInternal(const QUrl &url)
             m_slave->listEntry(entry);
         }
 
-        return (QString());				// listed, no more to do
+        return (QString());             // listed, no more to do
     }
 
     // For the listing we now actually need to access the NFS server.
     // We should always be connected at this point, but better safe than sorry!
     if (!isConnected()) return (QString());
 
-    return (path);					// the path to list
+    return (path);                  // the path to list
 }
 
 
@@ -1034,7 +1036,7 @@ QString NFSProtocol::statInternal(const QUrl &url)
         return (QString());
     }
 
-    return (path);					// the path to stat
+    return (path);                  // the path to stat
 }
 
 
@@ -1049,16 +1051,16 @@ void NFSProtocol::setHost(const QString &host, const QString &user)
 {
     qCDebug(LOG_KIO_NFS) << "host" << host << "user" << user;
 
-    if (host.isEmpty())					// must have a host name
+    if (host.isEmpty())                 // must have a host name
     {
         m_slave->setError(KIO::ERR_UNKNOWN_HOST, host);
         return;
     }
-							// nothing to do if no change
+    // nothing to do if no change
     if (host == m_currentHost && user == m_currentUser) return;
-    closeConnection();					// close the existing connection
-    m_currentHost = host;				// set the new host name
-    m_currentUser = user;				// set the new user name
+    closeConnection();                  // close the existing connection
+    m_currentHost = host;               // set the new host name
+    m_currentUser = user;               // set the new user name
 }
 
 
@@ -1100,7 +1102,7 @@ void NFSProtocol::completeUDSEntry(KIO::UDSEntry &entry, uid_t uid, gid_t gid)
 
 void NFSProtocol::completeInvalidUDSEntry(KIO::UDSEntry &entry)
 {
-    entry.replace(KIO::UDSEntry::UDS_SIZE, 0);		// dummy size
+    entry.replace(KIO::UDSEntry::UDS_SIZE, 0);      // dummy size
     entry.replace(KIO::UDSEntry::UDS_FILE_TYPE, S_IFMT - 1);
     entry.replace(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
     // The UDS_USER and UDS_GROUP must be string values.  It would be possible
@@ -1115,7 +1117,7 @@ void NFSProtocol::completeInvalidUDSEntry(KIO::UDSEntry &entry)
 // a blank UDSEntry or one where only UDS_NAME has been filled in.
 void NFSProtocol::createVirtualDirEntry(UDSEntry& entry)
 {
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);	// dummy size
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);   // dummy size
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, "inode/directory");
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);

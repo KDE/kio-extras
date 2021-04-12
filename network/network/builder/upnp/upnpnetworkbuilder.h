@@ -31,7 +31,9 @@
 #include <QMetaType>
 #include <QHash>
 
-namespace Cagibi { class Device; }
+namespace Cagibi {
+class Device;
+}
 
 class QDBusInterface;
 class QDBusPendingCallWatcher;
@@ -49,20 +51,20 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
 {
     Q_OBJECT
 
-  public:
+public:
     explicit UpnpNetworkBuilder( NetworkPrivate* networkPrivate );
     ~UpnpNetworkBuilder() override;
 
-  public: // AbstractNetworkBuilder API
+public: // AbstractNetworkBuilder API
     void registerNetSystemFactory( AbstractNetSystemFactory* netSystemFactory ) override;
     void start() override;
     //TODO: void stop(); ? why needed, what to do?
 
-  protected:
+protected:
     void addUPnPDevices( const QList<Cagibi::Device>& devices );
     void removeUPnPDevices( const QList<Cagibi::Device>& devices );
 
-  private Q_SLOTS:
+private Q_SLOTS:
     void startBrowse();
 
     void onDevicesAdded( const DeviceTypeMap& deviceTypeMap );
@@ -73,10 +75,10 @@ class UpnpNetworkBuilder : public AbstractNetworkBuilder
 
     void onAllDevicesCallFinished( QDBusPendingCallWatcher* allDevicesCallWatcher );
 
-  private:
+private:
     void queryCurrentDevices();
 
-  private: // data
+private: // data
     NetworkPrivate* mNetworkPrivate;
 
     QList<UpnpNetSystemAble*> mNetSystemFactoryList;

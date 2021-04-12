@@ -54,12 +54,12 @@ class MOLLETNETWORK_EXPORT NetService
     friend QDBusArgument& ::operator<<( QDBusArgument& argument, const NetService& service );
     friend const QDBusArgument& ::operator>>( const QDBusArgument& argument, NetService& service );
 
-  public:
+public:
     NetService();
     NetService( const NetService& other );
     virtual ~NetService();
 
-  public:
+public:
     QString name() const;
     QString iconName() const;
     QString type() const;
@@ -69,22 +69,24 @@ class MOLLETNETWORK_EXPORT NetService
     // TODO: not sure all services come down to one url
     QString url() const;
 
-  public:
+public:
     NetService& operator =( const NetService& other );
 
-  private:
+private:
     explicit NetService( NetServicePrivate* _d );
     void setDPtr( NetServicePrivate* _d );
     NetServicePrivate* dPtr() const;
 
-  private:
+private:
     QSharedPointer<NetServicePrivate> d;
 };
 
 typedef QList<NetService> NetServiceList;
 
 
-inline  NetServicePrivate* NetService::dPtr() const { return const_cast<NetServicePrivate*>( d.data() ); }
+inline  NetServicePrivate* NetService::dPtr() const {
+    return const_cast<NetServicePrivate*>( d.data() );
+}
 
 }
 

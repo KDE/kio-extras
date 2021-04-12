@@ -43,11 +43,11 @@
 
 
 NetworkSlave::NetworkSlave( const QByteArray& name, const QByteArray& poolSocket, const QByteArray& programSocket )
-  : SlaveBase( name, poolSocket, programSocket )
+    : SlaveBase( name, poolSocket, programSocket )
 {
     mNetworkDBusProxy = new NetworkDBusInterface( QLatin1String("org.kde.kded5"),
-                                                  QLatin1String("/modules/networkwatcher"),
-                                                  QDBusConnection::sessionBus() );
+            QLatin1String("/modules/networkwatcher"),
+            QDBusConnection::sessionBus() );
 }
 
 void NetworkSlave::get( const QUrl& url )
@@ -311,8 +311,8 @@ void NetworkSlave::feedEntryAsService( KIO::UDSEntry* entry, const Mollet::NetSe
 
 void NetworkSlave::reportError( const NetworkUri& networkUri, int errorId )
 {
-Q_UNUSED( networkUri )
-Q_UNUSED( errorId )
+    Q_UNUSED( networkUri )
+    Q_UNUSED( errorId )
 }
 
 NetworkSlave::~NetworkSlave()

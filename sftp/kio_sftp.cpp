@@ -90,24 +90,24 @@ typedef QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter> SFTPA
 using namespace KIO;
 extern "C"
 {
-int Q_DECL_EXPORT kdemain( int argc, char **argv )
-{
-    QCoreApplication app(argc, argv);
-    app.setApplicationName("kio_sftp");
+    int Q_DECL_EXPORT kdemain( int argc, char **argv )
+    {
+        QCoreApplication app(argc, argv);
+        app.setApplicationName("kio_sftp");
 
-    qCDebug(KIO_SFTP_LOG) << "*** Starting kio_sftp ";
+        qCDebug(KIO_SFTP_LOG) << "*** Starting kio_sftp ";
 
-    if (argc != 4) {
-        qCDebug(KIO_SFTP_LOG) << "Usage: kio_sftp protocol domain-socket1 domain-socket2";
-        exit(-1);
+        if (argc != 4) {
+            qCDebug(KIO_SFTP_LOG) << "Usage: kio_sftp protocol domain-socket1 domain-socket2";
+            exit(-1);
+        }
+
+        SFTPSlave slave(argv[2], argv[3]);
+        slave.dispatchLoop();
+
+        qCDebug(KIO_SFTP_LOG) << "*** kio_sftp Done";
+        return 0;
     }
-
-    SFTPSlave slave(argv[2], argv[3]);
-    slave.dispatchLoop();
-
-    qCDebug(KIO_SFTP_LOG) << "*** kio_sftp Done";
-    return 0;
-}
 }
 
 // Converts SSH error into KIO error. Only must be called for error handling
@@ -700,7 +700,7 @@ Result SFTPInternal::openConnection()
     // Check for cached authentication info if no password is specified...
     if (mPassword.isEmpty()) {
         qCDebug(KIO_SFTP_LOG) << "checking cache: info.username =" << info.username
-            << ", info.url =" << info.url.toDisplayString();
+                              << ", info.url =" << info.url.toDisplayString();
         q->checkCachedAuthentication(info);
     } else {
         info.password = mPassword;
@@ -767,66 +767,66 @@ Result SFTPInternal::openConnection()
     /* check the server public key hash */
     state = ssh_session_is_known_server(mSession);
     switch (state) {
-        case SSH_KNOWN_HOSTS_OTHER: {
-            ssh_string_free_char(fingerprint);
-            const QString errorString = i18n("An %1 host key for this server was "
-                                             "not found, but another type of key exists.\n"
-                                             "An attacker might change the default server key to confuse your "
-                                             "client into thinking the key does not exist.\n"
-                                             "Please contact your system administrator.\n"
-                                             "%2",
-                                             QString::fromUtf8(srv_pubkey_type),
-                                             QString::fromUtf8(ssh_get_error(mSession)));
-            closeConnection();
-            return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
-        }
-        case SSH_KNOWN_HOSTS_CHANGED: {
-            const QString errorString = i18n("The host key for the server %1 has changed.\n"
-                                             "This could either mean that DNS SPOOFING is happening or the IP "
-                                             "address for the host and its host key have changed at the same time.\n"
-                                             "The fingerprint for the %2 key sent by the remote host is:\n"
-                                             "  SHA256:%3\n"
-                                             "Please contact your system administrator.\n%4",
-                                             mHost,
-                                             QString::fromUtf8(srv_pubkey_type),
-                                             QString::fromUtf8(fingerprint),
-                                             QString::fromUtf8(ssh_get_error(mSession)));
-            ssh_string_free_char(fingerprint);
-            closeConnection();
-            return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
-        }
-        case SSH_KNOWN_HOSTS_NOT_FOUND:
-        case SSH_KNOWN_HOSTS_UNKNOWN: {
-            caption = i18n("Warning: Cannot verify host's identity.");
-            msg = i18n("The authenticity of host %1 cannot be established.\n"
-                       "The %2 key fingerprint is: %3\n"
-                       "Are you sure you want to continue connecting?",
-                       mHost,
-                       QString::fromUtf8(srv_pubkey_type),
-                       QString::fromUtf8(fingerprint));
-            ssh_string_free_char(fingerprint);
+    case SSH_KNOWN_HOSTS_OTHER: {
+        ssh_string_free_char(fingerprint);
+        const QString errorString = i18n("An %1 host key for this server was "
+                                         "not found, but another type of key exists.\n"
+                                         "An attacker might change the default server key to confuse your "
+                                         "client into thinking the key does not exist.\n"
+                                         "Please contact your system administrator.\n"
+                                         "%2",
+                                         QString::fromUtf8(srv_pubkey_type),
+                                         QString::fromUtf8(ssh_get_error(mSession)));
+        closeConnection();
+        return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
+    }
+    case SSH_KNOWN_HOSTS_CHANGED: {
+        const QString errorString = i18n("The host key for the server %1 has changed.\n"
+                                         "This could either mean that DNS SPOOFING is happening or the IP "
+                                         "address for the host and its host key have changed at the same time.\n"
+                                         "The fingerprint for the %2 key sent by the remote host is:\n"
+                                         "  SHA256:%3\n"
+                                         "Please contact your system administrator.\n%4",
+                                         mHost,
+                                         QString::fromUtf8(srv_pubkey_type),
+                                         QString::fromUtf8(fingerprint),
+                                         QString::fromUtf8(ssh_get_error(mSession)));
+        ssh_string_free_char(fingerprint);
+        closeConnection();
+        return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
+    }
+    case SSH_KNOWN_HOSTS_NOT_FOUND:
+    case SSH_KNOWN_HOSTS_UNKNOWN: {
+        caption = i18n("Warning: Cannot verify host's identity.");
+        msg = i18n("The authenticity of host %1 cannot be established.\n"
+                   "The %2 key fingerprint is: %3\n"
+                   "Are you sure you want to continue connecting?",
+                   mHost,
+                   QString::fromUtf8(srv_pubkey_type),
+                   QString::fromUtf8(fingerprint));
+        ssh_string_free_char(fingerprint);
 
-            if (KMessageBox::Yes != q->messageBox(SlaveBase::WarningYesNo, msg, caption)) {
-                closeConnection();
-                return Result::fail(KIO::ERR_USER_CANCELED);
-            }
-
-            /* write the known_hosts file */
-            qCDebug(KIO_SFTP_LOG) << "Adding server to known_hosts file.";
-            rc = ssh_session_update_known_hosts(mSession);
-            if (rc != SSH_OK) {
-                const QString errorString = QString::fromUtf8(ssh_get_error(mSession));
-                closeConnection();
-                return Result::fail(KIO::ERR_USER_CANCELED,errorString);
-            }
-            break;
+        if (KMessageBox::Yes != q->messageBox(SlaveBase::WarningYesNo, msg, caption)) {
+            closeConnection();
+            return Result::fail(KIO::ERR_USER_CANCELED);
         }
-        case SSH_KNOWN_HOSTS_ERROR:
-            ssh_string_free_char(fingerprint);
-            return Result::fail(KIO::ERR_SLAVE_DEFINED,
-                                QString::fromUtf8(ssh_get_error(mSession)));
-        case SSH_KNOWN_HOSTS_OK:
-            break;
+
+        /* write the known_hosts file */
+        qCDebug(KIO_SFTP_LOG) << "Adding server to known_hosts file.";
+        rc = ssh_session_update_known_hosts(mSession);
+        if (rc != SSH_OK) {
+            const QString errorString = QString::fromUtf8(ssh_get_error(mSession));
+            closeConnection();
+            return Result::fail(KIO::ERR_USER_CANCELED,errorString);
+        }
+        break;
+    }
+    case SSH_KNOWN_HOSTS_ERROR:
+        ssh_string_free_char(fingerprint);
+        return Result::fail(KIO::ERR_SLAVE_DEFINED,
+                            QString::fromUtf8(ssh_get_error(mSession)));
+    case SSH_KNOWN_HOSTS_OK:
+        break;
     }
 
     qCDebug(KIO_SFTP_LOG) << "Trying to authenticate with the server";
@@ -843,7 +843,7 @@ Result SFTPInternal::openConnection()
     if (rc != SSH_AUTH_SUCCESS && method == 0) {
         closeConnection();
         return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed. The server "
-                                                        "didn't send any authentication methods"));
+                            "didn't send any authentication methods"));
     }
 
     // Try to authenticate with public key first
@@ -853,7 +853,7 @@ Result SFTPInternal::openConnection()
             rc = ssh_userauth_publickey_auto(mSession, nullptr, nullptr);
             if (rc == SSH_AUTH_ERROR) {
                 qCDebug(KIO_SFTP_LOG) << "Public key authentication failed:" <<
-                    QString::fromUtf8(ssh_get_error(mSession));
+                                      QString::fromUtf8(ssh_get_error(mSession));
                 closeConnection();
                 clearPubKeyAuthInfo();
                 return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
@@ -870,7 +870,7 @@ Result SFTPInternal::openConnection()
         rc = ssh_userauth_gssapi(mSession);
         if (rc == SSH_AUTH_ERROR) {
             qCDebug(KIO_SFTP_LOG) << "Public key authentication failed:" <<
-                QString::fromUtf8(ssh_get_error(mSession));
+                                  QString::fromUtf8(ssh_get_error(mSession));
             closeConnection();
             return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
         }
@@ -885,7 +885,7 @@ Result SFTPInternal::openConnection()
             info = info2;
         } else if (rc == SSH_AUTH_ERROR) {
             qCDebug(KIO_SFTP_LOG) << "Keyboard interactive authentication failed:"
-                << QString::fromUtf8(ssh_get_error(mSession));
+                                  << QString::fromUtf8(ssh_get_error(mSession));
             closeConnection();
             return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
         }
@@ -910,7 +910,7 @@ Result SFTPInternal::openConnection()
                 const QString errMsg(isFirstLoginAttempt ? QString() : i18n("Incorrect username or password"));
 
                 qCDebug(KIO_SFTP_LOG) << "Username:" << username << "first attempt?"
-                    << isFirstLoginAttempt << "error:" << errMsg;
+                                      << isFirstLoginAttempt << "error:" << errMsg;
 
                 // Handle user canceled or dialog failed to open...
 
@@ -941,7 +941,7 @@ Result SFTPInternal::openConnection()
                 break;
             } else if (rc == SSH_AUTH_ERROR) {
                 qCDebug(KIO_SFTP_LOG) << "Password authentication failed:"
-                    << QString::fromUtf8(ssh_get_error(mSession));
+                                      << QString::fromUtf8(ssh_get_error(mSession));
                 closeConnection();
                 return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
             }
@@ -962,7 +962,7 @@ Result SFTPInternal::openConnection()
     if (mSftp == nullptr) {
         closeConnection();
         return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Unable to request the SFTP subsystem. "
-                                                        "Make sure SFTP is enabled on the server."));
+                            "Make sure SFTP is enabled on the server."));
     }
 
     qCDebug(KIO_SFTP_LOG) << "Trying to initialize the sftp session";
@@ -975,7 +975,7 @@ Result SFTPInternal::openConnection()
     q->infoMessage(i18n("Successfully connected to %1", mHost));
     if (info.keepPassword) {
         qCDebug(KIO_SFTP_LOG) << "Caching info.username = " << info.username
-            << ", info.url = " << info.url.toDisplayString();
+                              << ", info.url = " << info.url.toDisplayString();
         q->cacheAuthentication(info);
     }
 
@@ -1137,7 +1137,7 @@ Result SFTPInternal::openConnection()
     if (rc != SSH_AUTH_SUCCESS && method == 0) {
         closeConnection();
         return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed. The server "
-                                                        "didn't send any authentication methods"));
+                            "didn't send any authentication methods"));
     }
 
     // Try to authenticate with public key first
@@ -1147,7 +1147,7 @@ Result SFTPInternal::openConnection()
             rc = ssh_userauth_publickey_auto(mSession, nullptr, nullptr);
             if (rc == SSH_AUTH_ERROR) {
                 qCDebug(KIO_SFTP_LOG) << "Public key authentication failed:" <<
-                                         QString::fromUtf8(ssh_get_error(mSession));
+                                      QString::fromUtf8(ssh_get_error(mSession));
                 closeConnection();
                 clearPubKeyAuthInfo();
                 return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
@@ -1164,7 +1164,7 @@ Result SFTPInternal::openConnection()
         rc = ssh_userauth_gssapi(mSession);
         if (rc == SSH_AUTH_ERROR) {
             qCDebug(KIO_SFTP_LOG) << "Public key authentication failed:" <<
-                                     QString::fromUtf8(ssh_get_error(mSession));
+                                  QString::fromUtf8(ssh_get_error(mSession));
             closeConnection();
             return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
         }
@@ -1256,7 +1256,7 @@ Result SFTPInternal::openConnection()
     if (mSftp == nullptr) {
         closeConnection();
         return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Unable to request the SFTP subsystem. "
-                                                        "Make sure SFTP is enabled on the server."));
+                            "Make sure SFTP is enabled on the server."));
     }
 
     qCDebug(KIO_SFTP_LOG) << "Trying to initialize the sftp session";
@@ -1568,7 +1568,7 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 
     // Open file
     file = sftp_open(mSftp, path.constData(), O_RDONLY, 0);
-    const auto fileFree = qScopeGuard([file]{ sftp_close(file); });
+    const auto fileFree = qScopeGuard([file] { sftp_close(file); });
     if (file == nullptr) {
         return Result::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toString());
     }
@@ -2064,7 +2064,7 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
                     errorString = sCopyFile;
                 }
             }
-        } else{
+        } else {
             partFile.refresh();
             const int size = q->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (partFile.exists() && partFile.size() <  size) { // should a very small ".part" be deleted?

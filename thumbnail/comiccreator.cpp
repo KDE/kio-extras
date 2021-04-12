@@ -70,8 +70,8 @@ bool ComicCreator::create(const QString& path, int width, int height, QImage& im
         // ZIP archive.
         cover = extractArchiveImage(path, ZIP);
     } else if (mime.inherits("application/x-cbt") ||
-                mime.inherits("application/x-gzip") ||
-                mime.inherits("application/x-tar")) {
+               mime.inherits("application/x-gzip") ||
+               mime.inherits("application/x-tar")) {
         // TAR archive
         cover = extractArchiveImage(path, TAR);
     } else if (mime.inherits("application/x-cb7") || mime.inherits("application/x-7z-compressed")) {
@@ -99,7 +99,7 @@ void ComicCreator::filterImages(QStringList& entries)
     for (const QString& entry : qAsConst(entries)) {
         // Skip MacOS resource forks
         if (entry.startsWith(QLatin1String("__MACOSX"), Qt::CaseInsensitive) ||
-            entry.startsWith(QLatin1String(".DS_Store"), Qt::CaseInsensitive)) {
+                entry.startsWith(QLatin1String(".DS_Store"), Qt::CaseInsensitive)) {
             continue;
         }
         if (entry.endsWith(QLatin1String(".gif"), Qt::CaseInsensitive) ||
@@ -133,7 +133,7 @@ QImage ComicCreator::extractArchiveImage(const QString& path, const ComicCreator
 
     // Can our archive be opened?
     if (!cArchive->open(QIODevice::ReadOnly)) {
-            return QImage();
+        return QImage();
     }
 
     // Get the archive's directory.
@@ -154,7 +154,7 @@ QImage ComicCreator::extractArchiveImage(const QString& path, const ComicCreator
 
     // Extract the cover file.
     const KArchiveFile *coverFile = static_cast<const KArchiveFile*>
-        (cArchiveDir->entry(entries[0]));
+                                    (cArchiveDir->entry(entries[0]));
     if (!coverFile) {
         return QImage();
     }
@@ -165,15 +165,15 @@ QImage ComicCreator::extractArchiveImage(const QString& path, const ComicCreator
 
 
 void ComicCreator::getArchiveFileList(QStringList& entries, const QString& prefix,
-    const KArchiveDirectory *dir)
+                                      const KArchiveDirectory *dir)
 {
     /// Recursively list all files in the ZIP archive into 'entries'.
     const auto dirEntries = dir->entries();
     for (const QString& entry : dirEntries) {
         const KArchiveEntry *e = dir->entry(entry);
         if (e->isDirectory()) {
-        getArchiveFileList(entries, prefix + entry + '/',
-            static_cast<const KArchiveDirectory*>(e));
+            getArchiveFileList(entries, prefix + entry + '/',
+                               static_cast<const KArchiveDirectory*>(e));
         } else if (e->isFile()) {
             entries.append(prefix + entry);
         }
@@ -210,7 +210,7 @@ QImage ComicCreator::extractRARImage(const QString& path)
 }
 
 QStringList ComicCreator::getRARFileList(const QString& path,
-    const QString& unrarPath)
+        const QString& unrarPath)
 {
     /// Get a verbose unrar listing so we can extract a single file later.
     // CMD: unrar vb /path/to/archive
@@ -235,7 +235,7 @@ QString ComicCreator::unrarPath() const
         proc.start(unrar, {"-version"});
         proc.waitForFinished(-1);
         const QStringList lines = QString::fromLocal8Bit(proc.readAllStandardOutput()).split
-            ('\n', QString::SkipEmptyParts);
+                                  ('\n', QString::SkipEmptyParts);
         if (!lines.isEmpty()) {
             if (lines.first().startsWith(QLatin1String("RAR ")) || lines.first().startsWith(QLatin1String("UNRAR "))) {
                 return unrar;

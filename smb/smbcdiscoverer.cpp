@@ -75,7 +75,7 @@ public:
 
 SMBCDiscovery::SMBCDiscovery(const UDSEntry &entry)
     : m_entry(entry)
-    // cache the name, it may get accessed more than once
+      // cache the name, it may get accessed more than once
     , m_name(entry.stringValue(KIO::UDSEntry::UDS_NAME))
 {
 }

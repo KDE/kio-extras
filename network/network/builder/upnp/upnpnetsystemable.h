@@ -40,10 +40,10 @@ class NetDevice;
 
 class UpnpNetSystemAble
 {
-  public:
+public:
     virtual ~UpnpNetSystemAble();
 
-  public: // API to be implemented
+public: // API to be implemented
     virtual bool canCreateNetSystemFromUpnp( const Cagibi::Device& upnpDevice ) const = 0;
     virtual NetServicePrivate* createNetService( const Cagibi::Device& upnpDevice, const NetDevice& device ) const = 0;
     virtual QString upnpId( const Cagibi::Device& upnpDevice ) const = 0;

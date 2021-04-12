@@ -333,10 +333,10 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
     default:
         return SMBError {
             ERR_INTERNAL,
-                    i18nc("%1 is an error number, %2 either a pretty string or the number",
-                          "Unknown error condition: [%1] %2",
-                          QString::number(errNum),
-                          QString::fromLocal8Bit(strerror(errNum)))
+            i18nc("%1 is an error number, %2 either a pretty string or the number",
+                  "Unknown error condition: [%1] %2",
+                  QString::number(errNum),
+                  QString::fromLocal8Bit(strerror(errNum)))
         };
     }
 }

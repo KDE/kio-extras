@@ -24,8 +24,8 @@
 
 RequestNum RequestHash::getRequest(const char *str, int len)
 {
-  const Requests *req = Perfect_Hash::in_word_set(str, len);
-  return req ? req->number : REQ_UNKNOWN;
+    const Requests *req = Perfect_Hash::in_word_set(str, len);
+    return req ? req->number : REQ_UNKNOWN;
 }
 
 //---------------------------------------------------------------------

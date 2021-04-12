@@ -115,7 +115,7 @@ void KMTPd::checkDevice(const Solid::Device &solidDevice)
                 }
             }
         }
-            break;
+        break;
         case LIBMTP_ERROR_GENERAL:
         default:
             qCWarning(LOG_KIOD_KMTPD) << "Unknown connection error";

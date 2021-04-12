@@ -49,8 +49,8 @@ using namespace KIO;
 
 ArchiveProtocolBase::ArchiveProtocolBase( const QByteArray &proto, const QByteArray &pool, const QByteArray &app ) : SlaveBase( proto, pool, app )
 {
-  qCDebug(KIO_ARCHIVE_LOG);
-  m_archiveFile = nullptr;
+    qCDebug(KIO_ARCHIVE_LOG);
+    m_archiveFile = nullptr;
 }
 
 ArchiveProtocolBase::~ArchiveProtocolBase()
@@ -115,7 +115,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
                 // The current path is no longer part of the local filesystem.
                 // Either we already have enough of the pathname, or we will
                 // not get anything more useful.
-                statbuf.st_mode = 0;			// do not trust the result
+                statbuf.st_mode = 0;            // do not trust the result
                 break;
             }
 
@@ -281,7 +281,7 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
             // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
                    i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
-                             url.toDisplayString() ) );
+                         url.toDisplayString() ) );
             return;
         }
         else if ( errorNum != ERR_IS_DIRECTORY )
@@ -375,7 +375,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
             // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
                    i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
-                             url.toDisplayString() ) );
+                         url.toDisplayString() ) );
             return;
         }
         else if ( errorNum != ERR_IS_DIRECTORY )
@@ -462,7 +462,7 @@ void ArchiveProtocolBase::get( const QUrl & url )
             // Therefore give a more specific error message
             error( KIO::ERR_SLAVE_DEFINED,
                    i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
-                             url.toDisplayString() ) );
+                         url.toDisplayString() ) );
             return;
         }
         else
@@ -489,13 +489,13 @@ void ArchiveProtocolBase::get( const QUrl & url )
     const KArchiveFile* archiveFileEntry = static_cast<const KArchiveFile *>(archiveEntry);
     if ( !archiveEntry->symLinkTarget().isEmpty() )
     {
-      const QString target = archiveEntry->symLinkTarget();
-      qCDebug(KIO_ARCHIVE_LOG) << "Redirection to" << target;
-      const QUrl realURL = url.resolved(QUrl(target));
-      qCDebug(KIO_ARCHIVE_LOG) << "realURL=" << realURL;
-      redirection( realURL );
-      finished();
-      return;
+        const QString target = archiveEntry->symLinkTarget();
+        qCDebug(KIO_ARCHIVE_LOG) << "Redirection to" << target;
+        const QUrl realURL = url.resolved(QUrl(target));
+        qCDebug(KIO_ARCHIVE_LOG) << "realURL=" << realURL;
+        redirection( realURL );
+        finished();
+        return;
     }
 
     //qCDebug(KIO_ARCHIVE_LOG) << "Preparing to get the archive data";
@@ -512,8 +512,8 @@ void ArchiveProtocolBase::get( const QUrl & url )
     if (!io)
     {
         error( KIO::ERR_SLAVE_DEFINED,
-            i18n( "The archive file could not be opened, perhaps because the format is unsupported.\n%1" ,
-                      url.toDisplayString() ) );
+               i18n( "The archive file could not be opened, perhaps because the format is unsupported.\n%1",
+                     url.toDisplayString() ) );
         return;
     }
 
