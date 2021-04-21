@@ -51,6 +51,8 @@ public:
     QAction *basicAction(QWidget *parentWidget);
 
     KActivities::Consumer activities;
+    bool loaded = false;
+    bool shouldLoad = false;
 
 public Q_SLOTS:
     void activitiesServiceStatusChanged(KActivities::Consumer::ServiceStatus status);
@@ -59,10 +61,6 @@ public Q_SLOTS:
 
     void actionTriggered();
     void loadAllActions();
-
-private:
-    bool shouldLoad : 1;
-    bool loaded : 1;
 };
 
 class FileItemLinkingPluginActionStaticInit {

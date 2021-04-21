@@ -51,8 +51,6 @@ K_PLUGIN_CLASS_WITH_JSON(FileItemLinkingPlugin, "kactivitymanagerd_fileitem_link
 // Private
 
 FileItemLinkingPlugin::Private::Private()
-    : shouldLoad(false)
-    , loaded(false)
 {
     connect(&activities, &KActivities::Consumer::serviceStatusChanged,
             this, &Private::activitiesServiceStatusChanged);
@@ -205,6 +203,7 @@ QList<QAction *> FileItemLinkingPlugin::actions(const KFileItemListProperties &f
         return {};
     }
 
+    d->loaded = false;
     d->items = fileItemInfos;
 
     return { d->basicAction(parentWidget) };
