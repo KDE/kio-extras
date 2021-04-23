@@ -23,6 +23,7 @@
 #include <QImage>
 #include <QFile>
 
+#include <ImfHeader.h>
 #include <ImfInputFile.h>
 #include <ImfPreviewImage.h>
 
