@@ -10,6 +10,7 @@
 #include <QHash>
 #include <QPainter>
 #include <QSet>
+#include <QRandomGenerator>
 
 #include <kio/slavebase.h>
 
@@ -28,7 +29,7 @@ protected:
     ThumbCreator* getThumbCreator(const QString& plugin);
     bool isOpaque(const QImage &image) const;
     void drawPictureFrame(QPainter *painter, const QPoint &pos, const QImage &image,
-                          int frameWidth, QSize imageTargetSize) const;
+                          int frameWidth, QSize imageTargetSize, int rotationAngle) const;
     QImage thumbForDirectory(const QString& directory);
     QString pluginForMimeType(const QString& mimeType);
 
@@ -65,6 +66,7 @@ private:
     QSet<QString> m_propagationDirectories;
     QString m_thumbBasePath;
     qint64 m_maxFileSize;
+    QRandomGenerator m_randomGenerator;
 };
 
 #endif

@@ -34,6 +34,7 @@
 #include <QMimeDatabase>
 #include <QLibrary>
 #include <QDebug>
+#include <QRandomGenerator>
 
 #include <KFileItem>
 #include <KLocalizedString>
@@ -116,7 +117,8 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 
 ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("thumbnail", pool, app),
-      m_maxFileSize(0)
+      m_maxFileSize(0),
+      m_randomGenerator()
 {
 
 }
@@ -336,7 +338,7 @@ bool ThumbnailProtocol::isOpaque(const QImage &image) const
 }
 
 void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &centerPos,
-        const QImage &image, int frameWidth, QSize imageTargetSize) const
+        const QImage &image, int frameWidth, QSize imageTargetSize, int rotationAngle) const
 {
     // Scale the image down so it matches the aspect ratio
     float scaling = 1.0;
@@ -354,7 +356,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     float scaledFrameWidth = frameWidth / scaling;
 
     QTransform m;
-    m.rotate(qrand() % 17 - 8); // Random rotation ±8°
+    m.rotate(rotationAngle);
     m.scale(scaling, scaling);
 
     QRectF frameRect(QPointF(0, 0), QPointF(image.width() + scaledFrameWidth*2, image.height() + scaledFrameWidth*2));
@@ -472,7 +474,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
 
         // Seed the random number generator so that it always returns the same result
         // for the same directory and sequence-item
-        qsrand(qHash(directory) + skipValidItems);
+        m_randomGenerator.seed(qHash(directory) + skipValidItems);
 
         while (dir.hasNext()) {
             ++iterations;
@@ -724,7 +726,8 @@ bool ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int w
 
     // center the image inside the segment boundaries
     const QPoint centerPos(xPos + (width/ 2), yPos + (height / 2));
-    drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize);
+    const int rotationAngle = m_randomGenerator.bounded(-8, 9); // Random rotation ±8°
+    drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize, rotationAngle);
 
     return true;
 }
