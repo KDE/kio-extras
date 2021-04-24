@@ -9,7 +9,7 @@ project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
 
 include(FeatureSummary)
 
-set(QT_MIN_VERSION "5.11.0")
+set(QT_MIN_VERSION "5.14.0")
 set(KF5_MIN_VERSION "5.80.0")
 
 set(CMAKE_CXX_STANDARD 17)
