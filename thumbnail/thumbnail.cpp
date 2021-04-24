@@ -190,54 +190,48 @@ void ThumbnailProtocol::get(const QUrl &url)
 #endif
 
     QImage img;
-
-    KConfigGroup group( KSharedConfig::openConfig(), "PreviewSettings" );
-    bool kfmiThumb = false; // TODO Figure out if we can use KFileMetadata as a last resource
-
-    if (!kfmiThumb) {
-        QString plugin = metaData("plugin");
-        if ((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
-            img = thumbForDirectory(info.canonicalFilePath());
-            if(img.isNull()) {
-                error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
-                return;
-            }
-        } else {
+    QString plugin = metaData("plugin");
+    if ((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
+        img = thumbForDirectory(info.canonicalFilePath());
+        if(img.isNull()) {
+            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
+            return;
+        }
+    } else {
 #ifdef THUMBNAIL_HACK
-            if (plugin.isEmpty()) {
-                plugin = pluginForMimeType(m_mimeType);
-            }
+        if (plugin.isEmpty()) {
+            plugin = pluginForMimeType(m_mimeType);
+        }
 
-            //qDebug() << "Guess plugin: " << plugin;
+        //qDebug() << "Guess plugin: " << plugin;
 #endif
-            if (plugin.isEmpty()) {
-                error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
-                return;
-            }
+        if (plugin.isEmpty()) {
+            error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
+            return;
+        }
 
-            ThumbCreator* creator = getThumbCreator(plugin);
-            if(!creator) {
-                error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
-                return;
-            }
+        ThumbCreator* creator = getThumbCreator(plugin);
+        if(!creator) {
+            error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
+            return;
+        }
 
-            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator);
-            if (sequenceCreator) {
-                sequenceCreator->setSequenceIndex(sequenceIndex());
+        ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator);
+        if (sequenceCreator) {
+            sequenceCreator->setSequenceIndex(sequenceIndex());
 
-                setMetaData("handlesSequences", QStringLiteral("1"));
-            }
+            setMetaData("handlesSequences", QStringLiteral("1"));
+        }
 
-            if (!creator->create(info.canonicalFilePath(), m_width, m_height, img)) {
-                error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
-                return;
-            }
+        if (!creator->create(info.canonicalFilePath(), m_width, m_height, img)) {
+            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
+            return;
+        }
 
-            if (sequenceCreator) {
-                // We MUST do this after calling create(), because the create() call itself might change it.
-                const float wp = sequenceCreator->sequenceIndexWraparoundPoint();
-                setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wp));
-            }
+        if (sequenceCreator) {
+            // We MUST do this after calling create(), because the create() call itself might change it.
+            const float wp = sequenceCreator->sequenceIndexWraparoundPoint();
+            setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wp));
         }
     }
 
