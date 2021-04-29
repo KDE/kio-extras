@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: kdsoap-ws-discovery-client
+Upstream-Contact: Casper Meijn
+Source: https://gitlab.com/caspermeijn/kdsoap-ws-discovery-client/
+
+Files: smb/kdsoap-ws-discovery-client/*
+Copyright: Casper Meijn
+License: GPL-3.0-or-later
