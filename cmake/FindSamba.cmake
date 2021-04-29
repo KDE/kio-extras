@@ -8,7 +8,7 @@
 #  which comes with smbc_set_context()
 
 # SPDX-License-Identifier: BSD-3-Clause
-# SPDX-FileCopyrightText: 2006 Alexander Neundorf, <neundorf@kde.org>
+# SPDX-FileCopyrightText: 2006 Alexander Neundorf <neundorf@kde.org>
 
 if(SAMBA_INCLUDE_DIR AND SAMBA_LIBRARIES)
     # Already in cache, be silent

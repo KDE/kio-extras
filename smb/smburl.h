@@ -10,7 +10,7 @@
 //              Frank Schwanz <schwanz@fh-brandenburg.de>
 //---------------------------------------------------------------------------
 //
-// Copyright (c) 2000  Caldera Systems, Inc.
+// SPDX-FileCopyrightText: 2000 Caldera Systems Inc.
 //
 // This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the

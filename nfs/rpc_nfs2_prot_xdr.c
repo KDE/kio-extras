@@ -34,7 +34,7 @@
  * Mountain View, California  94043
  */
 /*
- * Copyright (c) 1987, 1990 by Sun Microsystems, Inc.
+ * SPDX-FileCopyrightText: 1987, 1990 Sun Microsystems Inc.
  */
 
 /* from @(#)nfs_prot.x	1.3 91/03/11 TIRPC 1.0 */

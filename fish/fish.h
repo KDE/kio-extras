@@ -1,18 +1,9 @@
-/***************************************************************************
-                          fish.h  -  a FISH kioslave
-                             -------------------
-    begin                : Thu Oct  4 17:09:14 CEST 2001
-    copyright            : (C) 2001 by Jörg Walter
-    email                : trouble@garni.ch
- ***************************************************************************/
+/*
+    fish.h  -  a FISH kioslave
+    SPDX-FileCopyrightText: 2001 Jörg Walter <trouble@garni.ch>
+    SPDX-License-Identifier: GPL-2.0-only
+*/
 
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation, version 2 of the License                *
- *                                                                         *
- ***************************************************************************/
 #ifndef FISH_H
 #define FISH_H
 

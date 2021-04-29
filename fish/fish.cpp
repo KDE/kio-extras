@@ -1,18 +1,8 @@
-/***************************************************************************
-                          fish.cpp  -  a FISH kioslave
-                             -------------------
-    begin                : Thu Oct  4 17:09:14 CEST 2001
-    copyright            : (C) 2001-2003 by Jörg Walter
-    email                : jwalt-kde@garni.ch
- ***************************************************************************/
-
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation, version 2 of the License                *
- *                                                                         *
- ***************************************************************************/
+/*
+    fish.cpp  -  a FISH kioslave
+    SPDX-FileCopyrightText: 2001 Jörg Walter <trouble@garni.ch>
+    SPDX-License-Identifier: GPL-2.0-only
+*/
 
 /*
   This code contains fragments and ideas from the ftp kioslave

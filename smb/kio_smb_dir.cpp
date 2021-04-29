@@ -1,6 +1,6 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
-    SPDX-FileCopyrightText: 2000 Caldera Systems, Inc.
+    SPDX-FileCopyrightText: 2000 Caldera Systems Inc.
     SPDX-FileCopyrightText: 2021 Harald Sitter <sitter@kde.org>
     SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
 */

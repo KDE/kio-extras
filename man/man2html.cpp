@@ -1,9 +1,9 @@
 /*
     This file is part of the KDE libraries
 
-    Copyright (C) 2000 Stephan Kulow <coolo@kde.org>
-    Copyright (C) 2005 Nicolas GOUTTE <goutte@kde.org>
-    Copyright (C) 2011 Martin Koller <kollix@aon.at>
+    SPDX-FileCopyrightText: 2000 Stephan Kulow <coolo@kde.org>
+    SPDX-FileCopyrightText: 2005 Nicolas GOUTTE <goutte@kde.org>
+    SPDX-FileCopyrightText: 2011 Martin Koller <kollix@aon.at>
 
     ... and others (see SVN history)
 */
