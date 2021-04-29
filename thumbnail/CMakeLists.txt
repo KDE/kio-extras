@@ -1,6 +1,9 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_thumbnail\")
 
-find_package(OpenEXR)
+find_package(OpenEXR 3.0 CONFIG QUIET)
+if(NOT OpenEXR_FOUND)
+    find_package(OpenEXR)
+endif()
 set_package_properties(OpenEXR PROPERTIES DESCRIPTION "API for accessing OpenEXR formatted images"
                        URL "https://www.openexr.com"
                        TYPE OPTIONAL
@@ -142,9 +145,13 @@ if(OpenEXR_FOUND)
     target_link_libraries(exrthumbnail
             KF5::KIOCore
             KF5::KIOWidgets
-            ${OpenEXR_LIBRARIES}
     )
-    target_include_directories(exrthumbnail SYSTEM PRIVATE ${OpenEXR_INCLUDE_DIRS})
+    if(TARGET OpenEXR::OpenEXR)
+        target_link_libraries(exrthumbnail OpenEXR::OpenEXR)
+    else()
+        target_include_directories(exrthumbnail SYSTEM PRIVATE ${OpenEXR_INCLUDE_DIRS})
+        target_link_libraries(exrthumbnail ${OpenEXR_LIBRARIES})
+    endif()
 
     # OpenEXR headers use exceptions; at least clang refuses to build the target
     # when exceptions are not enabled.
