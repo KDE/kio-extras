@@ -55,7 +55,7 @@ target_link_libraries(KDSoapWSDiscoveryClient
 )
 
 set_target_properties(KDSoapWSDiscoveryClient PROPERTIES
-    VERSION     ${WSDISCOVERY_VERSION_STRING}
+    VERSION     ${WSDISCOVERY_VERSION}
     SOVERSION   ${WSDISCOVERY_SOVERSION}
     EXPORT_NAME "WSDiscoveryClient"
 )

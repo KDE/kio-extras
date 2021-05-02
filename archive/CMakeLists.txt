@@ -58,7 +58,7 @@ target_link_libraries(kioarchive
 )
 
 set_target_properties(kioarchive PROPERTIES
-    VERSION ${KIOARCHIVE_VERSION_STRING}
+    VERSION ${KIOARCHIVE_VERSION}
     SOVERSION ${KIOARCHIVE_SOVERSION}
     EXPORT_NAME KioArchive
 )
