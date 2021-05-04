@@ -288,13 +288,14 @@ void ThumbnailProtocol::get(const QUrl &url)
             error(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
             return;
         }
-        if (img.width() * img.height() > m_width * m_height) {
+        if( img.format() != QImage::Format_ARGB32 ) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
+            img = img.convertToFormat(QImage::Format_ARGB32); //  so make sure there is none
+        }
+        struct shmid_ds shmStat;
+        if (shmctl(shmid.toInt(), IPC_STAT, &shmStat) == -1 || shmStat.shm_segsz < img.sizeInBytes()) {
             error(KIO::ERR_INTERNAL, i18n("Image is too big for the shared memory segment"));
             shmdt((char*)shmaddr);
             return;
-        }
-        if( img.format() != QImage::Format_ARGB32 ) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
-            img = img.convertToFormat(QImage::Format_ARGB32); //  so make sure there is none
         }
         // Keep in sync with kdelibs/kio/kio/previewjob.cpp
         stream << img.width() << img.height() << quint8(img.format());
