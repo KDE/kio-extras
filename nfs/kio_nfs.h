@@ -16,7 +16,6 @@
 #include <QMap>
 #include <QString>
 #include <QStringList>
-#include <QTimer>
 
 #include "rpc_nfs2_prot.h"
 #include "rpc_nfs3_prot.h"
