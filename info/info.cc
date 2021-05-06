@@ -22,8 +22,6 @@
 #include <kshell.h>
 #include <QUrl>
 
-Q_LOGGING_CATEGORY(LOG_KIO_INFO, "kio_info")
-
 using namespace KIO;
 
 

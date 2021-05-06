@@ -3,11 +3,9 @@
 #ifndef __info_h__
 #define __info_h__
 
+#include "kio_info_debug.h"
+
 #include <kio/slavebase.h>
-#include <QLoggingCategory>
-
-Q_DECLARE_LOGGING_CATEGORY(LOG_KIO_INFO)
-
 
 class InfoProtocol : public KIO::SlaveBase
 {
