@@ -12,9 +12,6 @@
 #include <libmtp.h>
 
 #include <QDBusObjectPath>
-#include <QLoggingCategory>
-
-Q_DECLARE_LOGGING_CATEGORY(LOG_KIOD_KMTPD)
 
 class MTPStorage;
 

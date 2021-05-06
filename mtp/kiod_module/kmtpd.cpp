@@ -16,10 +16,9 @@
 #include <Solid/DeviceNotifier>
 
 #include "daemonadaptor.h"
+#include "kiod_kmtpd_debug.h"
 
 K_PLUGIN_CLASS_WITH_JSON(KMTPd, "kmtpd.json")
-
-Q_LOGGING_CATEGORY(LOG_KIOD_KMTPD, "kf5.kiod.kmtpd")
 
 KMTPd::KMTPd(QObject *parent, const QList<QVariant> &parameters)
     : KDEDModule(parent)

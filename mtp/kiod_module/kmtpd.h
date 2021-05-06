@@ -16,8 +16,6 @@
 
 #include "mtpdevice.h"
 
-Q_DECLARE_LOGGING_CATEGORY(LOG_KIOD_KMTPD)
-
 class KMTPd : public KDEDModule
 {
     Q_OBJECT

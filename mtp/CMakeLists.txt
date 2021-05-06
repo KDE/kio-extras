@@ -14,6 +14,12 @@ add_library(kio_mtp MODULE ${kio_mtp_PART_SRCS} )
 target_link_libraries(kio_mtp kmtp Qt5::Core KF5::KIOCore KF5::I18n KF5::DBusAddons)
 set_target_properties(kio_mtp PROPERTIES OUTPUT_NAME "mtp")
 
+ecm_qt_declare_logging_category(kio_mtp
+    HEADER kio_mtp_debug.h
+    IDENTIFIER LOG_KIO_MTP
+    CATEGORY_NAME kde.kio-mtp
+)
+
 install(TARGETS kio_mtp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### install files ###############

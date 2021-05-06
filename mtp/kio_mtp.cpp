@@ -7,6 +7,7 @@
  */
 
 #include "kio_mtp.h"
+#include "kio_mtp_debug.h"
 
 // #include <KComponentData>
 #include <QTemporaryFile>
@@ -88,8 +89,6 @@ static QString convertPath(const QString &slavePath)
 //////////////////////////////////////////////////////////////////////////////
 ///////////////////////////// Slave Implementation ///////////////////////////
 //////////////////////////////////////////////////////////////////////////////
-
-Q_LOGGING_CATEGORY(LOG_KIO_MTP, "kde.kio-mtp")
 
 extern "C"
 int Q_DECL_EXPORT kdemain(int argc, char **argv)

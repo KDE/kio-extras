@@ -11,6 +11,7 @@
 #include <QDateTime>
 #include <qplatformdefs.h>
 
+#include "kiod_kmtpd_debug.h"
 #include "mtpdevice.h"
 #include "storageadaptor.h"
 

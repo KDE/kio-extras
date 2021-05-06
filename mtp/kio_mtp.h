@@ -22,7 +22,6 @@
 // #include <QCache>
 
 #include <QUrl>
-#include <QLoggingCategory>
 
 #define MAX_XFER_BUF_SIZE 16348
 #define KIO_MTP 7000
@@ -33,8 +32,6 @@ class KMTPStorageInterface;
 class KMTPFile;
 
 using namespace KIO;
-
-Q_DECLARE_LOGGING_CATEGORY(LOG_KIO_MTP)
 
 class MTPSlave : public QObject, public KIO::SlaveBase
 {

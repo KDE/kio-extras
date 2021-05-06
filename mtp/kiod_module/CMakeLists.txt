@@ -16,4 +16,10 @@ kcoreaddons_add_plugin(kmtpd INSTALL_NAMESPACE "kf5/kiod" JSON kmtpd.json SOURCE
 
 target_link_libraries(kmtpd ${MTP_LIBRARIES} kmtp Qt5::Core KF5::CoreAddons KF5::DBusAddons KF5::Solid)
 
+ecm_qt_declare_logging_category(kmtpd
+    HEADER kiod_kmtpd_debug.h
+    IDENTIFIER LOG_KIOD_KMTPD
+    CATEGORY_NAME kf5.kiod.kmtpd
+)
+
 kdbusaddons_generate_dbus_service_file(kiod5 org.kde.kmtp.daemon ${KDE_INSTALL_FULL_LIBEXECDIR_KF5})

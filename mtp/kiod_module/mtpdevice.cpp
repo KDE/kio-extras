@@ -15,6 +15,7 @@
 #include <Solid/DeviceNotifier>
 
 #include "mtpstorage.h"
+#include "kiod_kmtpd_debug.h"
 
 // D-Bus adaptors
 #include "deviceadaptor.h"
