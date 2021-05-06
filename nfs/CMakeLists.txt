@@ -32,6 +32,12 @@ add_library(kio_nfs MODULE kio_nfs.cpp nfsv2.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c r
 target_link_libraries(kio_nfs KF5::KIOCore KF5::I18n Qt5::Network ${TIRPC_LIBRARIES})
 set_target_properties(kio_nfs PROPERTIES OUTPUT_NAME "nfs")
 
+ecm_qt_declare_logging_category(kio_nfs
+    HEADER kio_nfs_debug.h
+    IDENTIFIER LOG_KIO_NFS
+    CATEGORY_NAME kde.kio_nfs
+)
+
 install(TARGETS kio_nfs DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### install files ###############

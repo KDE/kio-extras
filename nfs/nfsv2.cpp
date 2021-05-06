@@ -7,6 +7,7 @@
 */
 
 #include "nfsv2.h"
+#include "kio_nfs_debug.h"
 
 #include <config-runtime.h>
 
@@ -33,7 +34,6 @@
 #include <QFile>
 #include <QDir>
 #include <QDebug>
-#include <QLoggingCategory>
 #include <QMimeDatabase>
 #include <QMimeType>
 

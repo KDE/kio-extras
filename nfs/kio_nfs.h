@@ -17,12 +17,9 @@
 #include <QString>
 #include <QStringList>
 #include <QTimer>
-#include <QLoggingCategory>
 
 #include "rpc_nfs2_prot.h"
 #include "rpc_nfs3_prot.h"
-
-Q_DECLARE_LOGGING_CATEGORY(LOG_KIO_NFS);
 
 class NFSProtocol;
 

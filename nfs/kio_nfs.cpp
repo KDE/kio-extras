@@ -28,14 +28,12 @@
 #include <kconfiggroup.h>
 #include <kio/global.h>
 
+#include "kio_nfs_debug.h"
 #include "nfsv2.h"
 #include "nfsv3.h"
 
 using namespace KIO;
 using namespace std;
-
-Q_LOGGING_CATEGORY(LOG_KIO_NFS, "kde.kio-nfs")
-
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char** argv);
 
