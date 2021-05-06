@@ -19,8 +19,6 @@
 #include <QDBusInterface>
 #include <KLocalizedString>
 
-Q_LOGGING_CATEGORY(KIO_FILENAMESEARCH, "kio_filenamesearch")
-
 FileNameSearchProtocol::FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("search", pool, app)
 {

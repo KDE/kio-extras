@@ -7,17 +7,15 @@
 #ifndef KIO_FILENAMESEARCH_H
 #define KIO_FILENAMESEARCH_H
 
+#include "kio_filenamesearch_debug.h"
+
 #include <kio/slavebase.h>
 
 #include <functional>
 
-#include <QLoggingCategory>
-
 class QUrl;
 class QRegularExpression;
 class KFileItem;
-
-Q_DECLARE_LOGGING_CATEGORY(KIO_FILENAMESEARCH)
 
 /**
  * @brief Lists files where the filename matches do a given query.
