@@ -40,9 +40,15 @@ install(FILES
     COMPONENT Devel
 )
 
+ecm_qt_declare_logging_category(kio_archive_debug_SRCS
+    HEADER kio_archive_debug.h
+    IDENTIFIER KIO_ARCHIVE_LOG
+    CATEGORY_NAME log_kio_archive
+)
+
 ############### ArchiveProtocolBase library ###########
 
-add_library(kioarchive kio_archivebase.cpp kio_archive_debug.cpp)
+add_library(kioarchive kio_archivebase.cpp ${kio_archive_debug_SRCS})
 
 include(GenerateExportHeader)
 generate_export_header(kioarchive BASE_NAME libkioarchive EXPORT_FILE_NAME libkioarchive_export.h)
@@ -63,16 +69,11 @@ set_target_properties(kioarchive PROPERTIES
     EXPORT_NAME KioArchive
 )
 
-ecm_qt_declare_logging_category(kioarchive
-                                HEADER kio_archive_debug.h
-                                IDENTIFIER KIO_ARCHIVE_LOG
-CATEGORY_NAME log_kio_archive)
-
 install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ############### Archive KIOslave ######################
 
-add_library(kio_archive MODULE kio_archive.cpp kio_archive_debug.cpp)
+add_library(kio_archive MODULE kio_archive.cpp ${kio_archive_debug_SRCS})
 target_link_libraries(kio_archive KF5::KIOCore KF5::Archive kioarchive Qt5::Network)
 set_target_properties(kio_archive PROPERTIES OUTPUT_NAME "archive")
 install(TARGETS kio_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
