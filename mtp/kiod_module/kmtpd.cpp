@@ -17,6 +17,7 @@
 
 #include "daemonadaptor.h"
 #include "kiod_kmtpd_debug.h"
+#include "mtpdevice.h"
 
 K_PLUGIN_CLASS_WITH_JSON(KMTPd, "kmtpd.json")
 

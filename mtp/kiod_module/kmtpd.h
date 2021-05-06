@@ -14,7 +14,7 @@
 
 #include <QDBusObjectPath>
 
-#include "mtpdevice.h"
+class MTPDevice;
 
 class KMTPd : public KDEDModule
 {
