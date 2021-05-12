@@ -510,9 +510,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
                 continue;
             }
 
-            if (!drawSubThumbnail(p, subThumbnail, segmentWidth, segmentHeight, xPos, yPos, frameWidth)) {
-                continue;
-            }
+            drawSubThumbnail(p, subThumbnail, segmentWidth, segmentHeight, xPos, yPos, frameWidth);
 
             if (hadFirstThumbnail.isEmpty()) {
                 hadFirstThumbnail = dir.filePath();
@@ -714,7 +712,7 @@ void ThumbnailProtocol::scaleDownImage(QImage& img, int maxWidth, int maxHeight)
     }
 }
 
-bool ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height, int xPos, int yPos, int frameWidth)
+void ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height, int xPos, int yPos, int frameWidth)
 {
     // Apply fake smooth scaling, as seen on several blogs
     if (subThumbnail.width() > width * 4 || subThumbnail.height() > height * 4) {
@@ -728,6 +726,4 @@ bool ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int w
     const QPoint centerPos(xPos + (width/ 2), yPos + (height / 2));
     const int rotationAngle = m_randomGenerator.bounded(-8, 9); // Random rotation ±8°
     drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize, rotationAngle);
-
-    return true;
 }

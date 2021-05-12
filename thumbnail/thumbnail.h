@@ -54,7 +54,7 @@ private:
     /**
      * Draw the SubThumbnail
      **/
-    bool drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height,
+    void drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height,
                           int xPos, int yPos, int frameWidth);
 private:
     QString m_mimeType;
