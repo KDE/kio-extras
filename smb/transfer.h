@@ -12,6 +12,7 @@
 #include <array>
 #include <condition_variable>
 #include <mutex>
+#include <thread>
 
 constexpr off_t c_minSegmentSize = 64 * 1024; // minimal size on stack
 constexpr off_t c_maxSegmentSize = 4L * 1024 * 1024; // 4MiB is the largest request we make
