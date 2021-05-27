@@ -1,0 +1,37 @@
+{
+    "KDE-KIO-Protocols": {
+        "nfs": {
+            "Class": ":internet",
+            "ExtraNames": [
+            ],
+            "Icon": "folder-remote",
+            "X-DocPath": "kioslave5/nfs/index.html",
+            "copyFromFile": true,
+            "copyToFile": true,
+            "deleting": true,
+            "exec": "kf5/kio/nfs",
+            "input": "none",
+            "linking": true,
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "AccessDate",
+                "CreationDate",
+                "Access",
+                "Owner",
+                "Group",
+                "Link"
+            ],
+            "makedir": true,
+            "maxInstances": 20,
+            "maxInstancesPerHost": 5,
+            "moving": true,
+            "output": "filesystem",
+            "protocol": "nfs",
+            "reading": true,
+            "writing": true
+        }
+    }
+}

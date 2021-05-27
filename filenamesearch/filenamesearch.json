@@ -1,0 +1,34 @@
+{
+    "KDE-KIO-Protocols": {
+        "filenamesearch": {
+            "Class": ":local",
+            "ExtraNames": [
+            ],
+            "Icon": "edit-find",
+            "deleting": true,
+            "determineMimetypeFromExtension": false,
+            "exec": "kf5/kio/filenamesearch",
+            "input": "none",
+            "linking": false,
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "AccessDate",
+                "Access",
+                "Owner",
+                "Group",
+                "Link"
+            ],
+            "makedir": false,
+            "maxInstances": 10,
+            "moving": false,
+            "output": "filesystem",
+            "protocol": "filenamesearch",
+            "reading": true,
+            "source": false,
+            "writing": false
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{
+    "KDE-KIO-Protocols": {
+        "settings": {
+            "Class": ":local",
+            "ExtraNames": [
+            ],
+            "Icon": "preferences-system",
+            "deleting": false,
+            "exec": "kf5/kio/settings",
+            "input": "none",
+            "linking": false,
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "Access",
+                "Owner",
+                "Group",
+                "Link",
+                ""
+            ],
+            "makedir": false,
+            "maxInstances": 2,
+            "moving": false,
+            "output": "filesystem",
+            "protocol": "settings",
+            "reading": true,
+            "writing": false
+        }
+    }
+}

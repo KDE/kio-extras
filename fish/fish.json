@@ -1,0 +1,33 @@
+{
+    "KDE-KIO-Protocols": {
+        "fish": {
+            "ExtraNames": [
+            ],
+            "Icon": "folder-remote",
+            "X-DocPath": "kioslave5/fish/index.html",
+            "deleting": true,
+            "exec": "kf5/kio/fish",
+            "input": "none",
+            "linking": true,
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "Access",
+                "Owner",
+                "Group",
+                "Link",
+                ""
+            ],
+            "makedir": true,
+            "maxInstances": 20,
+            "maxInstancesPerHost": 5,
+            "moving": true,
+            "output": "filesystem",
+            "protocol": "fish",
+            "reading": true,
+            "writing": true
+        }
+    }
+}

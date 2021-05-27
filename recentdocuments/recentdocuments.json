@@ -1,0 +1,31 @@
+{
+    "KDE-KIO-Protocols": {
+        "recentdocuments": {
+            "Class": ":local",
+            "ExtraNames": [
+            ],
+            "Icon": "document-open-recent",
+            "X-DocPath": "kioslave5/recentdocuments/index.html",
+            "deleting": true,
+            "exec": "kf5/kio/recentdocuments",
+            "input": "none",
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "AccessDate",
+                "Access",
+                "Owner",
+                "Group",
+                "Link"
+            ],
+            "maxInstances": 1,
+            "opening": true,
+            "output": "filesystem",
+            "protocol": "recentdocuments",
+            "reading": true,
+            "writing": true
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "KDE-KIO-Protocols": {
+        "thumbnail": {
+            "ExtraNames": [
+            ],
+            "Icon": "view-preview",
+            "X-DocPath": "kioslave5/thumbnail/index.html",
+            "exec": "kf5/kio/thumbnail",
+            "input": "stream",
+            "output": "stream",
+            "protocol": "thumbnail",
+            "reading": true,
+            "source": false
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "KDE-KIO-Protocols": {
+        "mtp": {
+            "ExtraNames": [
+            ],
+            "Icon": "network-workgroup",
+            "copyFromFile": true,
+            "copyToFile": true,
+            "deleting": true,
+            "exec": "kf5/kio/mtp",
+            "input": "none",
+            "linking": false,
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Access"
+            ],
+            "makedir": true,
+            "maxInstances": 1,
+            "moving": false,
+            "opening": true,
+            "output": "filesystem",
+            "protocol": "mtp",
+            "reading": true,
+            "writing": true
+        }
+    }
+}

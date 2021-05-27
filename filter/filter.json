@@ -1,0 +1,84 @@
+{
+    "KDE-KIO-Protocols": {
+        "bzip": {
+            "ExtraNames": [
+            ],
+            "Icon": "package-x-generic",
+            "X-DocPath": "kioslave5/bzip2/index.html",
+            "archiveMimetype": [
+                "application/x-bzip"
+            ],
+            "determineMimetypeFromExtension": false,
+            "exec": "kf5/kio/filter",
+            "input": "stream",
+            "output": "stream",
+            "protocol": "bzip",
+            "reading": true,
+            "source": false
+        },
+        "bzip2": {
+            "ExtraNames": [
+            ],
+            "Icon": "package-x-generic",
+            "X-DocPath": "kioslave5/bzip2/index.html",
+            "archiveMimetype": [
+                "application/x-bzip2"
+            ],
+            "determineMimetypeFromExtension": false,
+            "exec": "kf5/kio/filter",
+            "input": "stream",
+            "output": "stream",
+            "protocol": "bzip2",
+            "reading": true,
+            "source": false
+        },
+        "gzip": {
+            "ExtraNames": [
+            ],
+            "Icon": "package-x-generic",
+            "X-DocPath": "kioslave5/gzip/index.html",
+            "archiveMimetype": [
+                "application/gzip"
+            ],
+            "determineMimetypeFromExtension": false,
+            "exec": "kf5/kio/filter",
+            "input": "stream",
+            "output": "stream",
+            "protocol": "gzip",
+            "reading": true,
+            "source": false
+        },
+        "lzma": {
+            "ExtraNames": [
+            ],
+            "Icon": "package-x-generic",
+            "X-DocPath": "kioslave5/xz/index.html",
+            "archiveMimetype": [
+                "application/x-lzma"
+            ],
+            "determineMimetypeFromExtension": true,
+            "exec": "kf5/kio/filter",
+            "input": "stream",
+            "output": "stream",
+            "protocol": "lzma",
+            "reading": true,
+            "source": false
+        },
+        "xz": {
+            "ExtraNames": [
+            ],
+            "Icon": "package-x-generic",
+            "X-DocPath": "kioslave5/xz/index.html",
+            "archiveMimetype": [
+                "application/x-xz"
+            ],
+            "determineMimetypeFromExtension": false,
+            "exec": "kf5/kio/filter",
+            "input": "stream",
+            "output": "stream",
+            "protocol": "xz",
+            "reading": true,
+            "source": false
+        }
+    }
+}

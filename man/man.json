@@ -1,0 +1,22 @@
+{
+    "KDE-KIO-Protocols": {
+        "man": {
+            "Class": ":local",
+            "ExtraNames": [
+            ],
+            "Icon": "help-contents",
+            "X-DocPath": "kioslave5/man/index.html",
+            "defaultMimetype": "text/html",
+            "determineMimetypeFromExtension": false,
+            "exec": "kf5/kio/man",
+            "input": "none",
+            "listing": [
+                "Name"
+            ],
+            "maxInstances": 10,
+            "output": "filesystem",
+            "protocol": "man",
+            "reading": true
+        }
+    }
+}

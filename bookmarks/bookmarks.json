@@ -1,0 +1,16 @@
+{
+    "KDE-KIO-Protocols": {
+        "bookmarks": {
+            "Class": ":local",
+            "ExtraNames": [
+            ],
+            "Icon": "bookmarks",
+            "X-DocPath": "kioslave5/bookmarks/index.html",
+            "exec": "kf5/kio/bookmarks",
+            "input": "none",
+            "output": "stream",
+            "protocol": "bookmarks",
+            "reading": true
+        }
+    }
+}
