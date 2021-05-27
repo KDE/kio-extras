@@ -9,6 +9,5 @@ ecm_qt_declare_logging_category(kio_filenamesearch
 )
 
 install(TARGETS kio_filenamesearch DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
-install(FILES filenamesearch.protocol DESTINATION  ${KDE_INSTALL_KSERVICES5DIR})
 
 add_subdirectory(kded)

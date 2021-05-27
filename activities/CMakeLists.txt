@@ -38,10 +38,3 @@ install (
    TARGETS kio_activities
    DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio
    )
-
-########### install files ###############
-
-install (
-   FILES activities.protocol
-   DESTINATION ${KDE_INSTALL_KSERVICES5DIR}
-   )

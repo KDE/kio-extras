@@ -290,7 +290,6 @@ install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 install(FILES thumbcreator.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
 install(FILES
-    thumbnail.protocol
     svgthumbnail.desktop
     imagethumbnail.desktop
     jpegthumbnail.desktop

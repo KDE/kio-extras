@@ -26,5 +26,4 @@ install(TARGETS kio_mtp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 install( FILES mtp-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote )
 install( FILES solid_mtp.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/solid/actions )
-install( FILES mtp.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
 install( FILES mtp-network.desktop  DESTINATION  ${KDE_INSTALL_DATADIR}/remoteview )

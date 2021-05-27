@@ -16,5 +16,3 @@ target_link_libraries(kded_recentdocumentsnotifier KF5::KIOCore KF5::DBusAddons)
 install(TARGETS kded_recentdocumentsnotifier  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kded )
 
 ########### install files ###############
-
-install( FILES recentdocuments.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )

@@ -41,5 +41,3 @@ ecm_qt_declare_logging_category(kio_nfs
 install(TARGETS kio_nfs DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### install files ###############
-
-install( FILES nfs.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )

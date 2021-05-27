@@ -44,4 +44,3 @@ target_link_libraries(kio_man
 set_target_properties(kio_man PROPERTIES OUTPUT_NAME "man")
 
 install(TARGETS kio_man DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
-install(FILES man.protocol DESTINATION  ${KDE_INSTALL_KSERVICES5DIR})

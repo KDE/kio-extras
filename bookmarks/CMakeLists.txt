@@ -14,4 +14,3 @@ install(TARGETS kio_bookmarks DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### install files ###############
 install( FILES kio_bookmarks.css DESTINATION  ${KDE_INSTALL_DATADIR}/kio_bookmarks )
-install( FILES bookmarks.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )

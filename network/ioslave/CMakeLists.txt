@@ -21,6 +21,5 @@ set_target_properties(kio_network PROPERTIES OUTPUT_NAME "network")
 
 install( TARGETS kio_network  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
-install( FILES network.protocol  DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
 install( FILES network.desktop  DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
 install( FILES virtualfolder_network.desktop  DESTINATION ${KDE_INSTALL_DATADIR}/konqsidebartng/virtual_folders/remote)

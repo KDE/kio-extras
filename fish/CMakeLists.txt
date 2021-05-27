@@ -63,9 +63,4 @@ if (MD5SUM_EXECUTABLE)
 
    install(TARGETS kio_fish  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio )
 
-
-   ########### install files ###############
-
-   install( FILES fish.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
-
 endif ()

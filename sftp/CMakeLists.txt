@@ -28,5 +28,3 @@ set_target_properties(kio_sftp PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio")
 
 install(TARGETS kio_sftp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
-
-install( FILES sftp.protocol  DESTINATION  ${KDE_INSTALL_KSERVICES5DIR} )
