@@ -1,9 +1,0 @@
-[Protocol]
-exec=kf5/kio/thumbnail
-protocol=thumbnail
-input=stream
-output=stream
-reading=true
-source=false
-X-DocPath=kioslave5/thumbnail/index.html
-Icon=view-preview

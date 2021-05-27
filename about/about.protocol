@@ -1,9 +1,0 @@
-[Protocol]
-exec=kf5/kio/about
-protocol=about
-input=none
-output=filesystem
-reading=true
-defaultMimetype=text/html
-Icon=help-about
-Class=:local
