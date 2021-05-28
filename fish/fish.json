@@ -1,8 +1,6 @@
 {
     "KDE-KIO-Protocols": {
         "fish": {
-            "ExtraNames": [
-            ],
             "Icon": "folder-remote",
             "X-DocPath": "kioslave5/fish/index.html",
             "deleting": true,

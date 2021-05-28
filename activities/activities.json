@@ -2,8 +2,6 @@
     "KDE-KIO-Protocols": {
         "activities": {
             "Class": ":local",
-            "ExtraNames": [
-            ],
             "Icon": "folder-activities",
             "deleting": true,
             "exec": "kf5/kio/activities",

@@ -2,8 +2,6 @@
     "KDE-KIO-Protocols": {
         "nfs": {
             "Class": ":internet",
-            "ExtraNames": [
-            ],
             "Icon": "folder-remote",
             "X-DocPath": "kioslave5/nfs/index.html",
             "copyFromFile": true,

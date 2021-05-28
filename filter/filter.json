@@ -1,8 +1,6 @@
 {
     "KDE-KIO-Protocols": {
         "bzip": {
-            "ExtraNames": [
-            ],
             "Icon": "package-x-generic",
             "X-DocPath": "kioslave5/bzip2/index.html",
             "archiveMimetype": [
@@ -17,8 +15,6 @@
             "source": false
         },
         "bzip2": {
-            "ExtraNames": [
-            ],
             "Icon": "package-x-generic",
             "X-DocPath": "kioslave5/bzip2/index.html",
             "archiveMimetype": [
@@ -33,8 +29,6 @@
             "source": false
         },
         "gzip": {
-            "ExtraNames": [
-            ],
             "Icon": "package-x-generic",
             "X-DocPath": "kioslave5/gzip/index.html",
             "archiveMimetype": [
@@ -49,8 +43,6 @@
             "source": false
         },
         "lzma": {
-            "ExtraNames": [
-            ],
             "Icon": "package-x-generic",
             "X-DocPath": "kioslave5/xz/index.html",
             "archiveMimetype": [
@@ -65,8 +57,6 @@
             "source": false
         },
         "xz": {
-            "ExtraNames": [
-            ],
             "Icon": "package-x-generic",
             "X-DocPath": "kioslave5/xz/index.html",
             "archiveMimetype": [

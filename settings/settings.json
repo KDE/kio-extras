@@ -2,8 +2,6 @@
     "KDE-KIO-Protocols": {
         "settings": {
             "Class": ":local",
-            "ExtraNames": [
-            ],
             "Icon": "preferences-system",
             "deleting": false,
             "exec": "kf5/kio/settings",

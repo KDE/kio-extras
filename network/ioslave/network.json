@@ -2,8 +2,6 @@
     "KDE-KIO-Protocols": {
         "network": {
             "Class": ":internet",
-            "ExtraNames": [
-            ],
             "Icon": "network-workgroup",
             "X-DocPath": "kioslave5/network/index.html",
             "determineMimetypeFromExtension": false,

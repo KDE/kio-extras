@@ -2,8 +2,6 @@
     "KDE-KIO-Protocols": {
         "filenamesearch": {
             "Class": ":local",
-            "ExtraNames": [
-            ],
             "Icon": "edit-find",
             "deleting": true,
             "determineMimetypeFromExtension": false,

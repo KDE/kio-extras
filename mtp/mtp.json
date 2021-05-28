@@ -1,8 +1,6 @@
 {
     "KDE-KIO-Protocols": {
         "mtp": {
-            "ExtraNames": [
-            ],
             "Icon": "network-workgroup",
             "copyFromFile": true,
             "copyToFile": true,

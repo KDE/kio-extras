@@ -2,8 +2,6 @@
     "KDE-KIO-Protocols": {
         "recentdocuments": {
             "Class": ":local",
-            "ExtraNames": [
-            ],
             "Icon": "document-open-recent",
             "X-DocPath": "kioslave5/recentdocuments/index.html",
             "deleting": true,

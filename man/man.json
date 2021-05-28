@@ -2,8 +2,6 @@
     "KDE-KIO-Protocols": {
         "man": {
             "Class": ":local",
-            "ExtraNames": [
-            ],
             "Icon": "help-contents",
             "X-DocPath": "kioslave5/man/index.html",
             "defaultMimetype": "text/html",
