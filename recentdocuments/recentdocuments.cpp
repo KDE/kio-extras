@@ -19,6 +19,13 @@
 #include <sys/stat.h>
 #endif
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.recentdocuments" FILE "recentdocuments.json")
+};
+
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     // necessary to use other kio slaves
@@ -193,3 +200,5 @@ void RecentDocuments::del(const QUrl& url, bool isFile)
 {
     ForwardingSlaveBase::del(url, isFile);
 }
+
+#include "recentdocuments.moc"

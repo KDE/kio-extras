@@ -33,6 +33,13 @@
 
 using namespace KIO;
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.man" FILE "man.json")
+};
+
 MANProtocol *MANProtocol::_self = nullptr;
 
 #define SGML2ROFF_DIRS "/usr/lib/sgml"
@@ -1404,3 +1411,5 @@ void MANProtocol::getProgramPath()
     error(KIO::ERR_SLAVE_DEFINED, QString());
     exit();
 }
+
+#include "kio_man.moc"

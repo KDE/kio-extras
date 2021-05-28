@@ -19,6 +19,13 @@
 #include <QDBusInterface>
 #include <KLocalizedString>
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.filenamesearch" FILE "filenamesearch.json")
+};
+
 FileNameSearchProtocol::FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app)
     : SlaveBase("search", pool, app)
 {
@@ -189,3 +196,5 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 
     return 0;
 }
+
+#include "kio_filenamesearch.moc"

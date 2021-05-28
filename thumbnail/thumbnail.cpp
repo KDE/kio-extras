@@ -84,6 +84,13 @@
 
 using namespace KIO;
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.thumbnail" FILE "thumbnail.json")
+};
+
 extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 {
 #ifdef HAVE_NICE
@@ -727,3 +734,5 @@ void ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int w
     const int rotationAngle = m_randomGenerator.bounded(-8, 9); // Random rotation ±8°
     drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize, rotationAngle);
 }
+
+#include "thumbnail.moc"

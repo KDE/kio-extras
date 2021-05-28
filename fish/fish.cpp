@@ -102,6 +102,13 @@ static KProcess *childPid = 0;
 
 #define E(x) ((const char*)remoteEncoding()->encode(x).data())
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.fish" FILE "fish.json")
+};
+
 using namespace KIO;
 extern "C" {
 
@@ -1703,3 +1710,5 @@ void fishProtocol::slave_status() {
     else
         slaveStatus(QString(),false);
 }
+
+#include "fish.moc"

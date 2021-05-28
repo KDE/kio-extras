@@ -23,6 +23,13 @@ SPDX-License-Identifier: MIT
 
 #include "loggingcategory.h"
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.filter" FILE "filter.json")
+};
+
 extern "C" {
     Q_DECL_EXPORT int kdemain(int argc, char **argv);
 }
@@ -164,3 +171,5 @@ void FilterProtocol::get(const QUrl& url)
     }
     subURL = QUrl(); // Clear subURL
 }
+
+#include "filter.moc"

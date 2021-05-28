@@ -11,6 +11,12 @@
 // Qt
 #include <QCoreApplication>
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.network" FILE "network.json")
+};
 
 extern "C"
 {
@@ -27,3 +33,5 @@ extern "C"
     }
 
 }
+
+#include "main.moc"

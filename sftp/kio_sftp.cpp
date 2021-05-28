@@ -73,6 +73,13 @@ struct ScopedPointerCustomDeleter
 };
 typedef QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter> SFTPAttributesPtr;
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.sftp" FILE "sftp.json")
+};
+
 using namespace KIO;
 extern "C"
 {
@@ -2794,3 +2801,5 @@ void SFTPSlave::special(const QByteArray &data)
 {
     maybeError(d->special(data));
 }
+
+#include "kio_sftp.moc"

@@ -12,6 +12,13 @@
 
 using namespace KIO;
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.about" FILE "about.json")
+};
+
 AboutProtocol::AboutProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
     : SlaveBase("about", pool_socket, app_socket)
 {
@@ -60,3 +67,4 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
     return 0;
 }
 
+#include "kio_about.moc"

@@ -23,6 +23,13 @@
 #include "kmtpdeviceinterface.h"
 #include "kmtpstorageinterface.h"
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.mtp" FILE "mtp.json")
+};
+
 static UDSEntry getEntry(const KMTPDeviceInterface *device)
 {
     UDSEntry entry;
@@ -864,4 +871,4 @@ int MTPSlave::waitForCopyOperation(const KMTPStorageInterface *storage)
     return loop.exec();
 }
 
-
+#include "kio_mtp.moc"

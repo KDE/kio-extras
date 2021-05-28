@@ -35,6 +35,13 @@
 using namespace KIO;
 using namespace std;
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.nfs" FILE "nfs.json")
+};
+
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char** argv);
 
 int kdemain(int argc, char** argv)
@@ -1109,3 +1116,5 @@ void NFSProtocol::createVirtualDirEntry(UDSEntry& entry)
     entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::fromLatin1("root"));
     entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root"));
 }
+
+#include "kio_nfs.moc"

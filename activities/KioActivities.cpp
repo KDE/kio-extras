@@ -32,6 +32,13 @@
 
 #include <QProcess>
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.activities" FILE "activities.json")
+};
+
 class ActivitiesProtocol::Private {
 public:
     Private()
@@ -348,4 +355,4 @@ void ActivitiesProtocol::del(const QUrl& url, bool isfile)
     Q_UNUSED(isfile);
 }
 
-
+#include "KioActivities.moc"

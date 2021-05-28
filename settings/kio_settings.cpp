@@ -15,6 +15,13 @@
 
 #include <time.h>
 
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.settings" FILE "settings.json")
+};
+
 class SettingsProtocol : public KIO::SlaveBase
 {
 public:
@@ -200,3 +207,5 @@ void SettingsProtocol::get( const QUrl & url )
         error( KIO::ERR_IS_DIRECTORY, url.toDisplayString() );
     }
 }
+
+#include "kio_settings.moc"
