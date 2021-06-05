@@ -14,7 +14,7 @@
 #include "network.h"
 #include "netdevice.h"
 // KF
-#include <dnssd/remoteservice.h>
+#include <DNSSD/RemoteService>
 #include <DNSSD/ServiceTypeBrowser>
 #include <DNSSD/ServiceBrowser>
 // Qt
