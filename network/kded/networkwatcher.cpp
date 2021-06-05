@@ -15,7 +15,6 @@
 #include <network.h>
 // KF
 #include <KPluginFactory>
-#include <KPluginLoader>
 // Qt
 #include <QDBusConnection>
 
