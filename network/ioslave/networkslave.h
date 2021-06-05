@@ -9,7 +9,7 @@
 #ifndef NETWORKSLAVE_H
 #define NETWORKSLAVE_H
 
-// KDE
+// KF
 #include <KIO/SlaveBase>
 
 class NetworkDBusInterface;

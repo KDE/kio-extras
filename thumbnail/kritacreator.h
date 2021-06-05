@@ -9,7 +9,7 @@
 
 #include <QtGlobal>
 
-// KDE
+// KF
 #include <kio/thumbcreator.h>
 
 /**

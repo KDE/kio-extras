@@ -16,7 +16,7 @@
 #include <network.h>
 #include <netdevice.h>
 #include <netservice.h>
-// KDE
+// KF
 #include <kdirnotify.h>
 // Qt
 #include <QStringList>

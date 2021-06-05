@@ -9,7 +9,7 @@
 #ifndef NETWORKWATCHER_H
 #define NETWORKWATCHER_H
 
-// KDE
+// KF
 #include <KDEDModule>
 
 namespace Mollet

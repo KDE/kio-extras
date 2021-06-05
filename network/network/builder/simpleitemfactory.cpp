@@ -16,7 +16,7 @@
 // Qt
 #include <QIcon>
 
-// KDE
+// KF
 #include <QUrl>
 
 #include <QDebug>

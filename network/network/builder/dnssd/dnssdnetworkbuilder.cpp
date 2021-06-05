@@ -13,7 +13,7 @@
 #include "abstractnetsystemfactory.h"
 #include "network_p.h"
 #include "netdevice_p.h"
-// KDE
+// KF
 #include <DNSSD/ServiceTypeBrowser>
 #include <DNSSD/ServiceBrowser>
 // Qt

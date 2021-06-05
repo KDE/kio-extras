@@ -13,7 +13,7 @@
 #include "abstractnetworkbuilder.h"
 #include "network.h"
 #include "netdevice.h"
-// KDE
+// KF
 #include <dnssd/remoteservice.h>
 #include <DNSSD/ServiceTypeBrowser>
 #include <DNSSD/ServiceBrowser>

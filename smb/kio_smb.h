@@ -12,7 +12,7 @@
 #include "smb-logsettings.h"
 
 //--------------
-// KDE includes
+// KF includes
 //--------------
 #include <kio/global.h>
 #include <kio/slavebase.h>

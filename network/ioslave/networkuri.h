@@ -9,7 +9,7 @@
 #ifndef NETWORKURI_H
 #define NETWORKURI_H
 
-// KDE
+// KF
 #include <QUrl>
 // // Qt
 // #include <QDataStream>

@@ -9,7 +9,7 @@
 #ifndef DNSSDNETSYSTEMABLE_H
 #define DNSSDNETSYSTEMABLE_H
 
-// KDE
+// KF
 #include <dnssd/remoteservice.h>
 // Qt
 #include <QtPlugin>

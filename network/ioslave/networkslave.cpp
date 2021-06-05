@@ -15,7 +15,7 @@
 // network
 #include <netdevice.h>
 #include <netservice.h>
-// KDE Libs
+// KF
 #include <KLocalizedString>
 // Qt
 #include <QEventLoop>
