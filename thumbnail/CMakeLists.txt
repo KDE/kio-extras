@@ -41,7 +41,7 @@ target_link_libraries(kio_thumbnail
 	KF5::CoreAddons
 	KF5::KIOCore
 	KF5::KIOWidgets
- 	KF5::I18n
+	KF5::I18n
 )
 
 set_target_properties(kio_thumbnail PROPERTIES OUTPUT_NAME "thumbnail")

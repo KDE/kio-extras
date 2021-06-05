@@ -690,19 +690,28 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
         if (subCreator && subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
             scaleDownImage(thumbnail, cacheSize, cacheSize);
 
-            // The thumbnail has been created successfully. Store the thumbnail
-            // to the cache for future access.
-            QSaveFile thumbnailfile(thumbPath.absoluteFilePath(thumbName));
-            if (thumbnailfile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-                QFileInfo fi(filePath);
-                thumbnail.setText(QStringLiteral("Thumb::URI"), QString::fromUtf8(fileUrl));
-                thumbnail.setText(QStringLiteral("Thumb::MTime"), QString::number(fi.lastModified().toSecsSinceEpoch()));
-                thumbnail.setText(QStringLiteral("Thumb::Size"), QString::number(fi.size()));
+            // The thumbnail has been created successfully. Check if we can store
+            // the thumbnail to the cache for future access.
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 83, 0)
+            if (metaData("cache").toInt()) {
+#else
+            {
+#endif
+                // Save the cache
+                QSaveFile thumbnailfile(thumbPath.absoluteFilePath(thumbName));
 
-                if (thumbnail.save(&thumbnailfile, "png")) {
-                    thumbnailfile.commit();
+                if (thumbnailfile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+                    QFileInfo fi(filePath);
+                    thumbnail.setText(QStringLiteral("Thumb::URI"), QString::fromUtf8(fileUrl));
+                    thumbnail.setText(QStringLiteral("Thumb::MTime"), QString::number(fi.lastModified().toSecsSinceEpoch()));
+                    thumbnail.setText(QStringLiteral("Thumb::Size"), QString::number(fi.size()));
+
+                    if (thumbnail.save(&thumbnailfile, "png")) {
+                        thumbnailfile.commit();
+                    }
                 }
             }
+
         } else {
             return false;
         }
