@@ -26,10 +26,10 @@
 
 extern "C"
 {
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new TextCreator;
-    }
+Q_DECL_EXPORT ThumbCreator *new_creator()
+{
+    return new TextCreator;
+}
 }
 
 TextCreator::TextCreator()

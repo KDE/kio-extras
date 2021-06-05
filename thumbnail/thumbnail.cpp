@@ -132,7 +132,7 @@ ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &a
 
 ThumbnailProtocol::~ThumbnailProtocol()
 {
-    qDeleteAll( m_creators );
+    qDeleteAll(m_creators);
     m_creators.clear();
 }
 
@@ -634,8 +634,8 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
     return creator;
 }
 
-bool ThumbnailProtocol::createSubThumbnail(QImage& thumbnail, const QString& filePath,
-        int segmentWidth, int segmentHeight)
+bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &filePath,
+                                           int segmentWidth, int segmentHeight)
 {
     auto getSubCreator = [&filePath, this]() -> ThumbCreator* {
         const QMimeDatabase db;
