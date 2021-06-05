@@ -136,6 +136,18 @@ ThumbnailProtocol::~ThumbnailProtocol()
     m_creators.clear();
 }
 
+/**
+ * Scales down the image \p img in a way that it fits into the given maximum width and height
+ */
+void scaleDownImage(QImage& img, int maxWidth, int maxHeight)
+{
+    if (img.width() > maxWidth || img.height() > maxHeight) {
+        img = img.scaled(maxWidth,
+                         maxHeight,
+                         Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    }
+}
+
 void ThumbnailProtocol::get(const QUrl &url)
 {
     m_mimeType = metaData("mimeType");
@@ -741,27 +753,14 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
     return true;
 }
 
-void ThumbnailProtocol::scaleDownImage(QImage& img, int maxWidth, int maxHeight)
-{
-    if (img.width() > maxWidth || img.height() > maxHeight) {
-        img = img.scaled(maxWidth, maxHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    }
-}
-
 void ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height, int xPos, int yPos, int frameWidth)
 {
-    // Apply fake smooth scaling, as seen on several blogs
-    if (subThumbnail.width() > width * 4 || subThumbnail.height() > height * 4) {
-        subThumbnail = subThumbnail.scaled(width*4, height*4, Qt::KeepAspectRatio, Qt::FastTransformation);
-    }
-
-    QSize targetSize(subThumbnail.size());
-    targetSize.scale(width, height, Qt::KeepAspectRatio);
+    scaleDownImage(subThumbnail, width, height);
 
     // center the image inside the segment boundaries
     const QPoint centerPos(xPos + (width/ 2), yPos + (height / 2));
     const int rotationAngle = m_randomGenerator.bounded(-8, 9); // Random rotation ±8°
-    drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, targetSize, rotationAngle);
+    drawPictureFrame(&p, centerPos, subThumbnail, frameWidth, QSize(width, height), rotationAngle);
 }
 
 #include "thumbnail.moc"
