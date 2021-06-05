@@ -669,24 +669,27 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
 
         ensureDirsCreated();
 
-        QDir thumbPath(m_thumbBasePath);
-        if ((segmentWidth <= 128) && (segmentHeight <= 128)) {
-            cacheSize = 128;
-            thumbPath.cd("normal");
-        } else {
-            cacheSize = 256;
-            thumbPath.cd("large");
-        }
+        struct CachePool {
+            QString path;
+            int minSize;
+        };
 
-        QFile thumbFile(thumbPath.absoluteFilePath(thumbName));
-        if (thumbFile.open(QIODevice::ReadOnly) && thumbnail.load(&thumbFile, "png")) {
-            return true;
-        } else if (cacheSize == 128) {
-            QDir fallbackPath(m_thumbBasePath);
-            fallbackPath.cd("large");
-            QFile fallbackThumbFile(fallbackPath.absoluteFilePath(thumbName));
-            if (fallbackThumbFile.open(QIODevice::ReadOnly) && thumbnail.load(&fallbackThumbFile, "png")) {
-                return true;
+        static const auto pools = {
+            CachePool{QStringLiteral("normal/"), 128},
+            CachePool{QStringLiteral("large/"), 256},
+        };
+
+        const int wants = std::max(segmentWidth, segmentHeight);
+        for (const auto &pool : pools) {
+            if (pool.minSize < wants) {
+                continue;
+            } else if (cacheSize == 0) {
+                // the lowest cache size the thumbnail could be at
+                cacheSize = pool.minSize;
+            }
+            // try in folders with higher image quality as well
+            if (thumbnail.load(m_thumbBasePath + pool.path + thumbName, "png")) {
+                break;
             }
         }
 
@@ -702,9 +705,20 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
 #else
             {
 #endif
-                // Save the cache
-                QSaveFile thumbnailfile(thumbPath.absoluteFilePath(thumbName));
+                QString thumbPath;
+                const int wants = std::max(thumbnail.width(), thumbnail.height());
+                for (const auto &pool : pools) {
+                    if (pool.minSize < wants) {
+                        continue;
+                    } else if (thumbPath.isEmpty()) {
+                        // that's the appropriate path for this thumbnail
+                        thumbPath = m_thumbBasePath + pool.path;
+                    }
+                }
 
+                // The thumbnail has been created successfully. Store the thumbnail
+                // to the cache for future access.
+                QSaveFile thumbnailfile(QDir(thumbPath).absoluteFilePath(thumbName));
                 if (thumbnailfile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
                     QFileInfo fi(filePath);
                     thumbnail.setText(QStringLiteral("Thumb::URI"), QString::fromUtf8(fileUrl));
