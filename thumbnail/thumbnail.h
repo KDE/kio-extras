@@ -57,6 +57,8 @@ private:
     void drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height,
                           int xPos, int yPos, int frameWidth);
 private:
+    void ensureDirsCreated();
+    
     QString m_mimeType;
     int m_width;
     int m_height;

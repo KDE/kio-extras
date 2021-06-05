@@ -634,6 +634,18 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
     return creator;
 }
 
+void ThumbnailProtocol::ensureDirsCreated()
+{
+    if (m_thumbBasePath.isEmpty()) {
+        m_thumbBasePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/thumbnails/");
+        QDir basePath(m_thumbBasePath);
+        basePath.mkpath("normal/");
+        QFile::setPermissions(basePath.absoluteFilePath("normal"), QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner);
+        basePath.mkpath("large/");
+        QFile::setPermissions(basePath.absoluteFilePath("large"), QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner);
+    }
+}
+
 bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &filePath,
                                            int segmentWidth, int segmentHeight)
 {
@@ -655,14 +667,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
         md5.addData(fileUrl);
         const QString thumbName = QString::fromLatin1(md5.result().toHex()).append(".png");
 
-        if (m_thumbBasePath.isEmpty()) {
-            m_thumbBasePath = QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/thumbnails/");
-            QDir basePath(m_thumbBasePath);
-            basePath.mkpath("normal/");
-            QFile::setPermissions(basePath.absoluteFilePath("normal"), QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner);
-            basePath.mkpath("large/");
-            QFile::setPermissions(basePath.absoluteFilePath("large"), QFile::ReadOwner | QFile::WriteOwner | QFile::ExeOwner);
-        }
+        ensureDirsCreated();
 
         QDir thumbPath(m_thumbBasePath);
         if ((segmentWidth <= 128) && (segmentHeight <= 128)) {
