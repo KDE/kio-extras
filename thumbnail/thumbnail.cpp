@@ -231,25 +231,27 @@ void ThumbnailProtocol::get(const QUrl &url)
             return;
         }
 
-        ThumbCreator* creator = getThumbCreator(plugin);
-        if(!creator) {
-            error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
+        ThumbCreatorWithMetadata* creator = getThumbCreator(plugin);
+        if (!creator) {
             return;
         }
 
-        ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator);
-        if (sequenceCreator) {
-            sequenceCreator->setSequenceIndex(sequenceIndex());
+        if (creator->handleSequences) {
+            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator->creator);
+            if (sequenceCreator) {
+                sequenceCreator->setSequenceIndex(sequenceIndex());
 
-            setMetaData("handlesSequences", QStringLiteral("1"));
+                setMetaData("handlesSequences", QStringLiteral("1"));
+            }
         }
 
-        if (!creator->create(info.canonicalFilePath(), m_width, m_height, img)) {
+        if (!createThumbnail(creator, info.canonicalFilePath(), m_width, m_height, img)) {
             error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
             return;
         }
 
-        if (sequenceCreator) {
+        if (creator->handleSequences) {
+            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator->creator);
             // We MUST do this after calling create(), because the create() call itself might change it.
             const float wp = sequenceCreator->sequenceIndexWraparoundPoint();
             setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wp));
@@ -620,16 +622,16 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
     return img;
 }
 
-ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
+ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plugin)
 {
     auto it = m_creators.constFind(plugin);
     if (it != m_creators.constEnd()) {
         return *it;
     }
 
-    ThumbCreator *creator = nullptr;
     // Don't use KPluginFactory here, this is not a QObject and
     // neither is ThumbCreator
+    ThumbCreator *creator = nullptr;
     QLibrary library(KPluginLoader::findPlugin((plugin)));
     if (library.load()) {
         auto createFn = (newCreator)library.resolve("new_creator");
@@ -637,13 +639,31 @@ ThumbCreator* ThumbnailProtocol::getThumbCreator(const QString& plugin)
             creator = createFn();
         }
     }
-    if (!creator) {
+
+    ThumbCreatorWithMetadata *thumbCreator = nullptr;
+    if (creator) {
+        const KService::List plugins = KServiceTypeTrader::self()->query(QStringLiteral("ThumbCreator"), QStringLiteral("Library == '%1'").arg(plugin));
+        if (plugins.size() == 0) {
+            qCWarning(KIO_THUMBNAIL_LOG) << "Plugin not found:" << plugin;
+        } else {
+            auto service = plugins.first();
+
+            QVariant cacheThumbnails = service->property("CacheThumbnail");
+            QVariant handleSequences = service->property("HandleSequences");
+
+            thumbCreator = new ThumbCreatorWithMetadata{
+                creator,
+                cacheThumbnails.isValid() ? cacheThumbnails.toBool() : true,
+                handleSequences.isValid() ? handleSequences.toBool() : false
+            };
+        }
+    } else {
         qCWarning(KIO_THUMBNAIL_LOG) << "Failed to load" << plugin << library.errorString();
     }
 
-    m_creators.insert(plugin, creator);
+    m_creators.insert(plugin, thumbCreator);
 
-    return creator;
+    return thumbCreator;
 }
 
 void ThumbnailProtocol::ensureDirsCreated()
@@ -661,7 +681,7 @@ void ThumbnailProtocol::ensureDirsCreated()
 bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &filePath,
                                            int segmentWidth, int segmentHeight)
 {
-    auto getSubCreator = [&filePath, this]() -> ThumbCreator* {
+    auto getSubCreator = [&filePath, this]() -> ThumbCreatorWithMetadata* {
         const QMimeDatabase db;
         const QString subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
         if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
@@ -706,51 +726,71 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
         }
 
         // no cached version is available, a new thumbnail must be created
-        ThumbCreator* subCreator = getSubCreator();
-        if (subCreator && subCreator->create(filePath, cacheSize, cacheSize, thumbnail)) {
-            scaleDownImage(thumbnail, cacheSize, cacheSize);
+        if (thumbnail.isNull()) {
+            ThumbCreatorWithMetadata* subCreator = getSubCreator();
+            if (subCreator && createThumbnail(subCreator, filePath, cacheSize, cacheSize, thumbnail)) {
+                scaleDownImage(thumbnail, cacheSize, cacheSize);
 
-            // The thumbnail has been created successfully. Check if we can store
-            // the thumbnail to the cache for future access.
+                // The thumbnail has been created successfully. Check if we can store
+                // the thumbnail to the cache for future access.
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 83, 0)
-            if (metaData("cache").toInt()) {
+                if (subCreator->cacheThumbnail && metaData("cache").toInt()&& !thumbnail.isNull()) {
 #else
-            {
+                if (subCreator->cacheThumbnail && !thumbnail.isNull()) {
 #endif
-                QString thumbPath;
-                const int wants = std::max(thumbnail.width(), thumbnail.height());
-                for (const auto &pool : pools) {
-                    if (pool.minSize < wants) {
-                        continue;
-                    } else if (thumbPath.isEmpty()) {
-                        // that's the appropriate path for this thumbnail
-                        thumbPath = m_thumbBasePath + pool.path;
+                    QString thumbPath;
+                    const int wants = std::max(thumbnail.width(), thumbnail.height());
+                    for (const auto &pool : pools) {
+                        if (pool.minSize < wants) {
+                            continue;
+                        } else if (thumbPath.isEmpty()) {
+                            // that's the appropriate path for this thumbnail
+                            thumbPath = m_thumbBasePath + pool.path;
+                        }
                     }
-                }
+                    
+                    // The thumbnail has been created successfully. Store the thumbnail
+                    // to the cache for future access.
+                    QSaveFile thumbnailfile(QDir(thumbPath).absoluteFilePath(thumbName));
+                    if (thumbnailfile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
+                        QFileInfo fi(filePath);
+                        thumbnail.setText(QStringLiteral("Thumb::URI"), QString::fromUtf8(fileUrl));
+                        thumbnail.setText(QStringLiteral("Thumb::MTime"), QString::number(fi.lastModified().toSecsSinceEpoch()));
+                        thumbnail.setText(QStringLiteral("Thumb::Size"), QString::number(fi.size()));
 
-                // The thumbnail has been created successfully. Store the thumbnail
-                // to the cache for future access.
-                QSaveFile thumbnailfile(QDir(thumbPath).absoluteFilePath(thumbName));
-                if (thumbnailfile.open(QIODevice::WriteOnly | QIODevice::Truncate)) {
-                    QFileInfo fi(filePath);
-                    thumbnail.setText(QStringLiteral("Thumb::URI"), QString::fromUtf8(fileUrl));
-                    thumbnail.setText(QStringLiteral("Thumb::MTime"), QString::number(fi.lastModified().toSecsSinceEpoch()));
-                    thumbnail.setText(QStringLiteral("Thumb::Size"), QString::number(fi.size()));
-
-                    if (thumbnail.save(&thumbnailfile, "png")) {
-                        thumbnailfile.commit();
+                        if (thumbnail.save(&thumbnailfile, "png")) {
+                            thumbnailfile.commit();
+                        }
                     }
                 }
             }
+        }
 
-        } else {
+        if (thumbnail.isNull()) {
             return false;
         }
+
     } else {
-        ThumbCreator* subCreator = getSubCreator();
-        return subCreator && subCreator->create(filePath, segmentWidth, segmentHeight, thumbnail);
+        // image requested is too big to be stored in the cache
+        // create an image on demand
+        ThumbCreatorWithMetadata* subCreator = getSubCreator();
+        if (!subCreator || !createThumbnail(subCreator, filePath, segmentWidth, segmentHeight, thumbnail)) {
+            return false;
+        }
     }
     return true;
+}
+
+bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, const QString& filePath, int width, int height, QImage& thumbnail)
+{
+    if (thumbCreator->creator->create(filePath, width, height, thumbnail)) {
+        // make sure the image is not bigger than the expected size
+        scaleDownImage(thumbnail, width, height);
+
+        return true;
+    }
+
+    return false;
 }
 
 void ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height, int xPos, int yPos, int frameWidth)

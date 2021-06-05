@@ -17,6 +17,15 @@
 class ThumbCreator;
 class QImage;
 
+namespace  {
+
+struct ThumbCreatorWithMetadata {
+    ThumbCreator *creator = nullptr;
+    bool cacheThumbnail = true;
+    bool handleSequences = false;
+};
+};
+
 class ThumbnailProtocol : public KIO::SlaveBase
 {
 public:
@@ -26,7 +35,7 @@ public:
     void get(const QUrl &url) override;
 
 protected:
-    ThumbCreator* getThumbCreator(const QString& plugin);
+    ThumbCreatorWithMetadata* getThumbCreator(const QString& plugin);
     bool isOpaque(const QImage &image) const;
     void drawPictureFrame(QPainter *painter, const QPoint &pos, const QImage &image,
                           int frameWidth, QSize imageTargetSize, int rotationAngle) const;
@@ -52,12 +61,13 @@ private:
                           int xPos, int yPos, int frameWidth);
 private:
     void ensureDirsCreated();
-    
+    bool createThumbnail(ThumbCreatorWithMetadata* subCreator, const QString& filePath, int width, int height, QImage& thumbnail);
+
     QString m_mimeType;
     int m_width;
     int m_height;
     // Thumbnail creators
-    QHash<QString, ThumbCreator*> m_creators;
+    QHash<QString, ThumbCreatorWithMetadata*> m_creators;
     QStringList m_enabledPlugins;
     QSet<QString> m_propagationDirectories;
     QString m_thumbBasePath;
