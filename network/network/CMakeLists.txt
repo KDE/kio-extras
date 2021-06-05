@@ -5,6 +5,8 @@ set_target_properties( molletnetwork5 PROPERTIES
     SOVERSION ${RELEASE_SERVICE_VERSION_MAJOR}
 )
 
+generate_export_header(molletnetwork5 BASE_NAME molletnetwork)
+
 target_sources(molletnetwork5 PRIVATE
     builder/simpleitemfactory.cpp
 

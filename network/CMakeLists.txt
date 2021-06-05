@@ -1,3 +1,5 @@
+include(GenerateExportHeader)
+
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_network\")
 
 add_definitions(
