@@ -31,7 +31,6 @@ ecm_qt_declare_logging_category(kio_man_debug
 
 set(kio_man_PART_SRCS man2html.cpp kio_man.cpp request_hash.cpp)
 ecm_gperf_generate(requests.gperf ${CMAKE_CURRENT_BINARY_DIR}/request_gperf.h kio_man_PART_SRCS)
-set_property(SOURCE ${CMAKE_CURRENT_BINARY_DIR}/request_gperf.h PROPERTY SKIP_AUTOMOC ON)
 add_library(kio_man MODULE ${kio_man_PART_SRCS})
 
 if (AVOID_NULLPTR_WARNING_FLAG)
