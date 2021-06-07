@@ -10,8 +10,8 @@ find_package(Qt5Test ${QT_MIN_VERSION} CONFIG REQUIRED)
 include(ECMAddTests)
 
 ecm_add_tests(
-    smburltest
-    transfertest
+    smburltest.cpp
+    transfertest.cpp
     LINK_LIBRARIES
         Qt5::Test
         kio_smb_static
