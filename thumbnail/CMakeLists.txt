@@ -28,14 +28,18 @@ include_directories(${CMAKE_BINARY_DIR})
 
 ########### next target ###############
 
-set(kio_thumbnail_PART_SRCS thumbnail.cpp imagefilter.cpp)
+add_library(kio_thumbnail MODULE)
+set_target_properties(kio_thumbnail PROPERTIES OUTPUT_NAME "thumbnail")
 
-ecm_qt_declare_logging_category(kio_thumbnail_PART_SRCS
+target_sources(kio_thumbnail PRIVATE
+    thumbnail.cpp
+    imagefilter.cpp
+)
+
+ecm_qt_declare_logging_category(kio_thumbnail
                                 HEADER thumbnail-logsettings.h
                                 IDENTIFIER KIO_THUMBNAIL_LOG
                                 CATEGORY_NAME log_kio_thumbnail)
-
-add_library(kio_thumbnail MODULE ${kio_thumbnail_PART_SRCS})
 
 target_link_libraries(kio_thumbnail
 	KF5::CoreAddons
@@ -44,15 +48,11 @@ target_link_libraries(kio_thumbnail
 	KF5::I18n
 )
 
-set_target_properties(kio_thumbnail PROPERTIES OUTPUT_NAME "thumbnail")
-
 install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### next target ###############
 
-set(imagethumbnail_PART_SRCS imagecreator.cpp)
-
-add_library(imagethumbnail MODULE ${imagethumbnail_PART_SRCS})
+add_library(imagethumbnail MODULE imagecreator.cpp)
 
 target_link_libraries(imagethumbnail
     KF5::KIOWidgets
@@ -66,9 +66,8 @@ install( FILES directorythumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DI
 
 ########### next target ###############
 
-set(jpegthumbnail_PART_SRCS jpegcreator.cpp)
-kconfig_add_kcfg_files(jpegthumbnail_PART_SRCS jpegcreatorsettings5.kcfgc)
-add_library(jpegthumbnail MODULE ${jpegthumbnail_PART_SRCS})
+add_library(jpegthumbnail MODULE jpegcreator.cpp)
+kconfig_add_kcfg_files(jpegthumbnail jpegcreatorsettings5.kcfgc)
 
 target_link_libraries(jpegthumbnail
 	Qt5::Core
@@ -85,9 +84,7 @@ install(TARGETS jpegthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
-set(svgthumbnail_PART_SRCS svgcreator.cpp)
-
-add_library(svgthumbnail MODULE ${svgthumbnail_PART_SRCS})
+add_library(svgthumbnail MODULE svgcreator.cpp)
 
 target_link_libraries(svgthumbnail
 	Qt5::Gui
@@ -100,9 +97,7 @@ install(TARGETS svgthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 ########### next target ###############
 
-set(textthumbnail_PART_SRCS textcreator.cpp)
-
-add_library(textthumbnail MODULE ${textthumbnail_PART_SRCS})
+add_library(textthumbnail MODULE textcreator.cpp)
 
 target_link_libraries(textthumbnail
     Qt5::Gui
@@ -115,14 +110,12 @@ install(TARGETS textthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 ########### next target ###############
 
 if(NOT WIN32)
-set(djvuthumbnail_PART_SRCS djvucreator.cpp)
+add_library(djvuthumbnail MODULE djvucreator.cpp)
 
-ecm_qt_declare_logging_category(djvuthumbnail_PART_SRCS
+ecm_qt_declare_logging_category(djvuthumbnail
                                 HEADER thumbnail-djvu-logsettings.h
                                 IDENTIFIER KIO_THUMBNAIL_DJVU_LOG
                                 CATEGORY_NAME log_kio_thumbnail.djvu)
-
-add_library(djvuthumbnail MODULE ${djvuthumbnail_PART_SRCS})
 
 target_link_libraries(djvuthumbnail KF5::KIOWidgets)
 
@@ -135,13 +128,12 @@ endif()
 
 if(OpenEXR_FOUND)
 
-    set(exrthumbnail_PART_SRCS exrcreator.cpp)
-    ecm_qt_declare_logging_category(exrthumbnail_PART_SRCS
+    add_library(exrthumbnail MODULE exrcreator.cpp)
+    ecm_qt_declare_logging_category(exrthumbnail
                                     HEADER thumbnail-exr-logsettings.h
                                     IDENTIFIER KIO_THUMBNAIL_EXR_LOG
                                     CATEGORY_NAME log_kio_thumbnail.exr)
 
-    add_library(exrthumbnail MODULE ${exrthumbnail_PART_SRCS})
     target_link_libraries(exrthumbnail
             KF5::KIOCore
             KF5::KIOWidgets
@@ -166,9 +158,7 @@ endif()
 
 if(X11_Xcursor_FOUND)
 
-    set(cursorthumbnail_PART_SRCS cursorcreator.cpp)
-
-    add_library(cursorthumbnail MODULE ${cursorthumbnail_PART_SRCS})
+    add_library(cursorthumbnail MODULE cursorcreator.cpp)
 
     target_link_libraries(cursorthumbnail
         KF5::KIOCore
@@ -183,36 +173,33 @@ endif()
 
 ########### next target ###############
 
-set ( windowsexethumbnail_SRCS windowsexecreator.cpp icoutils_common.cpp)
-set ( windowsimagethumbnail_SRCS windowsimagecreator.cpp icoutils_common.cpp)
+add_library(windowsexethumbnail MODULE windowsexecreator.cpp icoutils_common.cpp)
+add_library(windowsimagethumbnail MODULE windowsimagecreator.cpp icoutils_common.cpp)
 
 if(WIN32)
-    set ( windowsexethumbnail_SRCS ${windowsexethumbnail_SRCS} icoutils_win.cpp )
-    set ( windowsimagethumbnail_SRCS ${windowsimagethumbnail_SRCS} icoutils_win.cpp )
+    target_sources(windowsexethumbnail PRIVATE icoutils_win.cpp)
+    target_sources(windowsimagethumbnail PRIVATE icoutils_win.cpp)
 else()
-    set ( windowsexethumbnail_SRCS ${windowsexethumbnail_SRCS} icoutils_wrestool.cpp )
-    set ( windowsimagethumbnail_SRCS ${windowsimagethumbnail_SRCS} icoutils_wrestool.cpp )
+    target_sources(windowsexethumbnail PRIVATE icoutils_wrestool.cpp)
+    target_sources(windowsimagethumbnail PRIVATE icoutils_wrestool.cpp)
 endif()
 
-add_library(windowsexethumbnail MODULE ${windowsexethumbnail_SRCS} )
 target_link_libraries ( windowsexethumbnail KF5::KIOWidgets )
 install ( TARGETS windowsexethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 install ( FILES windowsexethumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )
 
-add_library(windowsimagethumbnail MODULE ${windowsimagethumbnail_SRCS} )
 target_link_libraries ( windowsimagethumbnail KF5::KIOWidgets )
 install ( TARGETS windowsimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR} )
 install ( FILES windowsimagethumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR} )
 
 ########### next target ###############
 
-set(comicbookthumbnail_SRCS comiccreator.cpp)
-ecm_qt_declare_logging_category(comicbookthumbnail_SRCS
+add_library(comicbookthumbnail MODULE comiccreator.cpp)
+ecm_qt_declare_logging_category(comicbookthumbnail
                                 HEADER thumbnail-comic-logsettings.h
                                 IDENTIFIER KIO_THUMBNAIL_COMIC_LOG
                                 CATEGORY_NAME log_kio_thumbnail.comic)
 
-add_library(comicbookthumbnail MODULE ${comicbookthumbnail_SRCS})
 target_link_libraries(comicbookthumbnail
     Qt5::Gui
     KF5::Archive
@@ -222,8 +209,7 @@ install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 # ########### next target ###############
 
-set(kritathumbnail_SRCS kritacreator.cpp)
-add_library(kritathumbnail MODULE ${kritathumbnail_SRCS})
+add_library(kritathumbnail MODULE kritacreator.cpp)
 
 target_link_libraries(kritathumbnail
     KF5::KIOWidgets
@@ -245,8 +231,7 @@ endif()
 
 # ########### next target ###############
 
-set(opendocumentthumbnail_SRCS opendocumentcreator.cpp)
-add_library(opendocumentthumbnail MODULE ${opendocumentthumbnail_SRCS})
+add_library(opendocumentthumbnail MODULE opendocumentcreator.cpp)
 
 target_link_libraries(opendocumentthumbnail
     Qt5::Gui
@@ -260,8 +245,8 @@ install(TARGETS opendocumentthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR})
 
 if(libappimage_FOUND)
 
-set(appimagethumbnail_SRCS appimagecreator.cpp)
-add_library(appimagethumbnail MODULE ${appimagethumbnail_SRCS})
+add_library(appimagethumbnail MODULE appimagecreator.cpp)
+
 target_link_libraries(appimagethumbnail
     KF5::KIOWidgets
     Qt5::Gui
@@ -275,8 +260,7 @@ endif()
 
 # ########### next target ###############
 
-set(ebookthumbnail_SRCS ebookcreator.cpp)
-add_library(ebookthumbnail MODULE ${ebookthumbnail_SRCS})
+add_library(ebookthumbnail MODULE ebookcreator.cpp)
 
 target_link_libraries(ebookthumbnail
     Qt5::Gui
