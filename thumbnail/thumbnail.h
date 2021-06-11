@@ -17,13 +17,10 @@
 class ThumbCreator;
 class QImage;
 
-namespace  {
-
 struct ThumbCreatorWithMetadata {
     ThumbCreator *creator = nullptr;
     bool cacheThumbnail = true;
     bool handleSequences = false;
-};
 };
 
 class ThumbnailProtocol : public KIO::SlaveBase
