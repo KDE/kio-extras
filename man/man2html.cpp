@@ -2892,6 +2892,7 @@ static char *scan_expression(char *c, int *result, const unsigned int numLoop)
                     c++;
                     break;
                 }
+                Q_FALLTHROUGH();
             case '>':
             case '<':
             case '+':
@@ -3678,6 +3679,7 @@ static char *scan_request(char *c)
             }
             case REQ_ds: // groff(7) "Define String variable"
                 mode = true;
+                Q_FALLTHROUGH();
             case REQ_as: // groff (7) "Append String variable"
             {
                 qCDebug(KIO_MAN_LOG) << "start .ds/.as";
@@ -4065,6 +4067,7 @@ static char *scan_request(char *c)
             }
             case REQ_B: // man(7) "Bold"
                 mode = 1;
+                Q_FALLTHROUGH();
             case REQ_I: // man(7) "Italic"
             {
                 /* parse one line in a certain font */
@@ -4426,11 +4429,14 @@ static char *scan_request(char *c)
             }
             case REQ_Ss: // mdoc(7) "Sub Section"
                 mandoc_command = 1;
+                Q_FALLTHROUGH();
             case REQ_SS: // mdoc(7) "Sub Section"
                 mode = true;
+                Q_FALLTHROUGH();
             case REQ_Sh: // mdoc(7) "Sub Header"
                 /* hack for fallthru from above */
                 mandoc_command = !mode || mandoc_command;
+                Q_FALLTHROUGH();
             case REQ_SH: // man(7) "Sub Header"
             {
                 c = c + j;
@@ -4516,6 +4522,7 @@ static char *scan_request(char *c)
             }
             case REQ_Dt:    /* mdoc(7) */
                 mandoc_command = true;
+                Q_FALLTHROUGH();
             case REQ_TH: // man(7) "Title Header"
             {
                 if (!output_possible)
@@ -4637,6 +4644,7 @@ static char *scan_request(char *c)
             case REQ_rm: // groff(7) "ReMove"
                 /* .rm xx : Remove request, macro or string */
                 mode = true;
+                Q_FALLTHROUGH();
             case REQ_rn: // groff(7) "ReName"
                 /* .rn xx yy : Rename request, macro or string xx to yy */
             {
@@ -4743,7 +4751,7 @@ static char *scan_request(char *c)
                 /* .am xx yy : append to a macro. */
                 /* define or handle as .ig yy */
                 mode = true;
-            // fallthrough
+                Q_FALLTHROUGH();
             case REQ_de: // groff(7) "DEfine macro"
             case REQ_de1: // groff(7) "DEfine macro"
             {
@@ -5449,7 +5457,7 @@ static char *scan_request(char *c)
             {
                 c += j;
                 while (*c && isspace(*c) && (*c != '\n')) c++;
-                // fallthrough (The '.Ns' macro always invokes the '.No' macro...)
+                Q_FALLTHROUGH(); // (The '.Ns' macro always invokes the '.No' macro...)
             }
             case REQ_No:    /* mdoc(7) Normal Text Macro */
             {
@@ -5532,6 +5540,7 @@ static char *scan_request(char *c)
             }
             case REQ_nroff: // groff(7)  "NROFF mode"
                 mode = true;
+                Q_FALLTHROUGH();
             case REQ_troff: // groff(7) "TROFF mode"
             {
                 s_nroff = mode;
