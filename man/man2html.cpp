@@ -4065,7 +4065,7 @@ static char *scan_request(char *c)
                 break;
             }
             case REQ_B: // man(7) "Bold"
-                mode = 1;
+                mode = true;
                 Q_FALLTHROUGH();
             case REQ_I: // man(7) "Italic"
             {
