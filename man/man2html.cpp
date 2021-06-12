@@ -3799,7 +3799,6 @@ static char *scan_request(char *c)
                 else
                     escapesym = '\\';
                 break;
-                c = skip_till_newline(c);
             }
             case REQ_eo: // groff(7) "turn Escape character Off"
             {
