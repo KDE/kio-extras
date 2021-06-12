@@ -208,7 +208,12 @@ KIO::StatDetails ArchiveProtocolBase::getStatDetails()
 #if KIOCORE_BUILD_DEPRECATED_SINCE(5, 69)
     } else {
         const QString sDetails = metaData(QStringLiteral("details"));
+        // silence deprecation warning for KIO::detailsToStatDetails
+        QT_WARNING_PUSH
+        QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
+        QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
         details = sDetails.isEmpty() ? KIO::StatDefaultDetails : KIO::detailsToStatDetails(sDetails.toInt());
+        QT_WARNING_POP
     }
 #endif
     return details;
