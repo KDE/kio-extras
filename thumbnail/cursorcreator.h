@@ -13,7 +13,7 @@ class CursorCreator : public ThumbCreator
 {
 public:
     CursorCreator() {}
-    bool create( const QString &path, int, int, QImage &img );
+    bool create( const QString &path, int, int, QImage &img ) override;
 };
 
 #endif

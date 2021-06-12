@@ -32,7 +32,7 @@ class SMBCDiscoverer : public QObject, public Discoverer
     Q_OBJECT
 public:
     SMBCDiscoverer(const SMBUrl &url, QEventLoop *discoverNext, SMBSlave *slave);
-    virtual ~SMBCDiscoverer();
+    ~SMBCDiscoverer() override;
 
     void start() override;
     bool isFinished() const override;

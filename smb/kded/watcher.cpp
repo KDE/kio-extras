@@ -26,7 +26,7 @@ public:
     {
     }
 
-    ~Notifier()
+    ~Notifier() override
     {
         if (m_proc) {
             m_proc->disconnect(); // no need for a finished signal
