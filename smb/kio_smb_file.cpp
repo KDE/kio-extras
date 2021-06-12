@@ -74,7 +74,7 @@ void SMBSlave::get(const QUrl &kurl)
                 buffer.push();
                 buffer.done();
                 if (s->size < 0) {
-                    return KIO::ERR_COULD_NOT_READ;
+                    return KIO::ERR_CANNOT_READ;
                 }
                 break;
             }

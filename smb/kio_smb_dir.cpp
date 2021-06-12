@@ -303,7 +303,7 @@ void SMBSlave::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, K
                 buffer.push();
                 buffer.done();
                 if (segment->size < 0) {
-                    return KIO::ERR_COULD_NOT_READ;
+                    return KIO::ERR_CANNOT_READ;
                 }
                 break;
             }
