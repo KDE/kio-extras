@@ -179,7 +179,7 @@ void MTPSlave::listDir(const QUrl &url)
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
     listEntry(entry);
 
-    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
     // list devices
     if (pathItems.isEmpty()) {
         qCDebug(LOG_KIO_MTP) << "Root directory, listing devices";
@@ -272,7 +272,7 @@ void MTPSlave::stat(const QUrl &url)
         return;
     }
 
-    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
     UDSEntry entry;
     // root
     if (pathItems.size() < 1) {
@@ -338,7 +338,7 @@ void MTPSlave::mimetype(const QUrl &url)
         return;
     }
 
-    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
     if (pathItems.size() > 2) {
         const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
         if (mtpDevice) {
@@ -371,7 +371,7 @@ void MTPSlave::get(const QUrl &url)
         return;
     }
 
-    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
     // file
     if (pathItems.size() > 2) {
@@ -433,7 +433,7 @@ void MTPSlave::put(const QUrl &url, int, JobFlags flags)
         return;
     }
 
-    const QStringList destItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList destItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
     // can't copy to root or device, needs storage
     if (destItems.size() < 2) {
@@ -531,7 +531,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
             return;
         }
 
-        QStringList destItems = dest.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+        QStringList destItems = dest.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
         // can't copy to root or device, needs storage
         if (destItems.size() < 2) {
@@ -617,7 +617,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
             return;
         }
 
-        const QStringList srcItems = src.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+        const QStringList srcItems = src.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
         // can't copy to root or device, needs storage
         if (srcItems.size() < 2) {
@@ -687,7 +687,7 @@ void MTPSlave::mkdir(const QUrl &url, int)
         return;
     }
 
-    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
     if (pathItems.size() > 2) {
         const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
         if (mtpDevice) {
@@ -716,7 +716,7 @@ void MTPSlave::del(const QUrl &url, bool)
         return;
     }
 
-    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
     if (pathItems.size() >= 2) {
         const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
         if (mtpDevice) {
@@ -760,7 +760,7 @@ void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
         return;
     }
 
-    const QStringList srcItems = src.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList srcItems = src.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
     KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(srcItems.first());
     if (mtpDevice) {
         // rename Device
@@ -840,7 +840,7 @@ void MTPSlave::fileSystemFreeSpace(const QUrl &url)
         return;
     }
 
-    const QStringList pathItems = url.path().split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
     // Storage
     if (pathItems.size() > 1) {

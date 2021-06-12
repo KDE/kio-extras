@@ -202,7 +202,7 @@ QStringList ComicCreator::getRARFileList(const QString& path,
     // CMD: unrar vb /path/to/archive
     QStringList entries;
     runProcess(unrarPath, {"vb", path});
-    entries = QString::fromLocal8Bit(m_stdOut).split('\n', QString::SkipEmptyParts);
+    entries = QString::fromLocal8Bit(m_stdOut).split('\n', Qt::SkipEmptyParts);
     return entries;
 }
 
@@ -221,7 +221,7 @@ QString ComicCreator::unrarPath() const
         proc.start(unrar, {"-version"});
         proc.waitForFinished(-1);
         const QStringList lines = QString::fromLocal8Bit(proc.readAllStandardOutput()).split
-                                  ('\n', QString::SkipEmptyParts);
+                                  ('\n', Qt::SkipEmptyParts);
         if (!lines.isEmpty()) {
             if (lines.first().startsWith(QLatin1String("RAR ")) || lines.first().startsWith(QLatin1String("UNRAR "))) {
                 return unrar;

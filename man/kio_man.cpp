@@ -923,7 +923,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
 
     if ( ::getenv("PATH") ) {
         const QStringList path =
-            QString::fromLocal8Bit( ::getenv("PATH") ).split( ':', QString::SkipEmptyParts );
+            QString::fromLocal8Bit( ::getenv("PATH") ).split( ':', Qt::SkipEmptyParts );
 
         for ( QStringList::const_iterator it = path.constBegin();
                 it != path.constEnd();
@@ -1017,7 +1017,7 @@ void MANProtocol::checkManPaths()
     // satisfied if any empty string in path_list_env (there
     // should be 1 or 0) is replaced by the constructed path.
 
-    const QStringList path_list_env = manpath_env.split( ':', QString::KeepEmptyParts);
+    const QStringList path_list_env = manpath_env.split( ':', Qt::KeepEmptyParts);
 
     for ( QStringList::const_iterator it = path_list_env.constBegin();
             it != path_list_env.constEnd();
@@ -1062,7 +1062,7 @@ void MANProtocol::checkManPaths()
 
     /* sections are not used
         // Sections
-        QStringList m_mansect = mansect_env.split( ':', QString::KeepEmptyParts);
+        QStringList m_mansect = mansect_env.split( ':', Qt::KeepEmptyParts);
 
         const char* const default_sect[] =
             { "1", "2", "3", "4", "5", "6", "7", "8", "9", "n", 0L };

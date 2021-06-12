@@ -316,7 +316,7 @@ LIBMTP_mtpdevice_t *MTPStorage::getDevice() const
 
 KMTPFile MTPStorage::getFileFromPath(const QString &path)
 {
-    const QStringList pathItems = path.split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList pathItems = path.split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
     // don't handle the root directory
     if (!pathItems.isEmpty()) {
@@ -514,7 +514,7 @@ int MTPStorage::sendFileFromFileDescriptor(const QDBusUnixFileDescriptor &descri
 {
     qCDebug(LOG_KIOD_KMTPD) << "sendFileFromFileDescriptor:" << destinationPath;
 
-    QStringList destItems = destinationPath.split(QLatin1Char('/'), QString::SkipEmptyParts);
+    QStringList destItems = destinationPath.split(QLatin1Char('/'), Qt::SkipEmptyParts);
     if (destItems.isEmpty()) {
         return 1;
     }
@@ -583,7 +583,7 @@ quint32 MTPStorage::createFolder(const QString &path)
     qCDebug(LOG_KIOD_KMTPD) << "createFolder:" << path;
 
     quint32 folderId = 0;
-    const QStringList pathItems = path.split(QLatin1Char('/'), QString::SkipEmptyParts);
+    const QStringList pathItems = path.split(QLatin1Char('/'), Qt::SkipEmptyParts);
     const quint32 destinationId = queryPath(path);
 
     if (!pathItems.isEmpty() && !destinationId) {
