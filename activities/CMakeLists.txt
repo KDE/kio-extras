@@ -11,16 +11,16 @@ add_subdirectory(fileitemplugin)
 
 ########### next target ###############
 
-set (kio_activities_PART_SRCS
+add_library(kio_activities MODULE)
+set_target_properties(kio_activities PROPERTIES
+    OUTPUT_NAME "activities"
+)
+
+target_sources(kio_activities PRIVATE
    KioActivities.cpp
    utils/qsqlquery_iterator.cpp
    common/database/Database.cpp
    common/database/schema/ResourcesDatabaseSchema.cpp
-   )
-
-add_library (
-   kio_activities MODULE
-   ${kio_activities_PART_SRCS}
    )
 
 target_link_libraries (
@@ -32,7 +32,6 @@ target_link_libraries (
    KF5::I18n
    Qt5::Network
    )
-set_target_properties(kio_activities PROPERTIES OUTPUT_NAME "activities")
 
 install (
    TARGETS kio_activities

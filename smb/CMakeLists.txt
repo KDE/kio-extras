@@ -34,7 +34,10 @@ check_include_file(utime.h HAVE_UTIME_H)
 
 configure_file(config-smb.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-smb.h)
 
-set(kio_smb_PART_SRCS
+# Intermediate static lib target for reuse in testing.
+add_library(kio_smb_static STATIC)
+
+target_sources(kio_smb_static PRIVATE
     kio_smb.cpp
     kio_smb_auth.cpp
     kio_smb_browse.cpp
@@ -52,15 +55,13 @@ set(kio_smb_PART_SRCS
     smbauthenticator.cpp
 )
 
-ecm_qt_declare_logging_category(kio_smb_PART_SRCS
+ecm_qt_declare_logging_category(kio_smb_static
                                 HEADER smb-logsettings.h
                                 IDENTIFIER KIO_SMB_LOG
                                 CATEGORY_NAME log_kio_smb)
 
 include_directories(${SAMBA_INCLUDE_DIR})
 
-# Intermediate static lib target for reuse in testing.
-add_library(kio_smb_static STATIC ${kio_smb_PART_SRCS})
 target_include_directories(kio_smb_static
     PUBLIC
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..;${CMAKE_CURRENT_BINARY_DIR}/..>"

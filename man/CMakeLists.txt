@@ -29,9 +29,19 @@ ecm_qt_declare_logging_category(kio_man_debug
 
 ########### next target ###############
 
-set(kio_man_PART_SRCS man2html.cpp kio_man.cpp request_hash.cpp)
-ecm_gperf_generate(requests.gperf ${CMAKE_CURRENT_BINARY_DIR}/request_gperf.h kio_man_PART_SRCS)
-add_library(kio_man MODULE ${kio_man_PART_SRCS})
+add_library(kio_man MODULE)
+set_target_properties(kio_man PROPERTIES
+    OUTPUT_NAME "man"
+)
+
+set(kio_man_generated_SRCS)
+ecm_gperf_generate(requests.gperf ${CMAKE_CURRENT_BINARY_DIR}/request_gperf.h kio_man_generated_SRCS)
+target_sources(kio_man PRIVATE
+    ${kio_man_generated_SRCS}
+    man2html.cpp
+    kio_man.cpp
+    request_hash.cpp
+)
 
 if (AVOID_NULLPTR_WARNING_FLAG)
     target_compile_options(kio_man PRIVATE ${AVOID_NULLPTR_WARNING_FLAG})
@@ -40,6 +50,5 @@ endif()
 target_link_libraries(kio_man
     PRIVATE KF5::KIOCore Qt5::Widgets KF5::Archive KF5::I18n KF5::Codecs Qt5::Network kio_man_debug
 )
-set_target_properties(kio_man PROPERTIES OUTPUT_NAME "man")
 
 install(TARGETS kio_man DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)

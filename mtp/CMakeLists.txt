@@ -5,14 +5,17 @@ add_definitions(-DQT_NO_CAST_FROM_ASCII)
 add_subdirectory(shared)
 add_subdirectory(kiod_module)
 
-set(kio_mtp_PART_SRCS
+add_library(kio_mtp MODULE)
+set_target_properties(kio_mtp PROPERTIES
+    OUTPUT_NAME "mtp"
+)
+
+target_sources(kio_mtp PRIVATE
     kio_mtp.cpp
 )
 
-include_directories("shared")
-add_library(kio_mtp MODULE ${kio_mtp_PART_SRCS} )
+target_include_directories(kio_mtp PRIVATE shared)
 target_link_libraries(kio_mtp kmtp Qt5::Core KF5::KIOCore KF5::I18n KF5::DBusAddons)
-set_target_properties(kio_mtp PROPERTIES OUTPUT_NAME "mtp")
 
 ecm_qt_declare_logging_category(kio_mtp
     HEADER kio_mtp_debug.h

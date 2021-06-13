@@ -1,8 +1,9 @@
-set (KDED_FILENAMESEARCH_SRCS
+add_library(filenamesearchmodule MODULE)
+
+target_sources(filenamesearchmodule PRIVATE
      filenamesearchmodule.cpp
 )
 
-add_library(filenamesearchmodule MODULE ${KDED_FILENAMESEARCH_SRCS})
 kcoreaddons_desktop_to_json(filenamesearchmodule filenamesearchmodule.desktop)
 
 target_link_libraries(filenamesearchmodule

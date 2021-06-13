@@ -1,14 +1,11 @@
 # vim:set softtabstop=3 shiftwidth=3 tabstop=3 expandtab:
 
-set (kactivitymanagerd_fileitem_linking_plugin_SRCS
+add_library(kactivitymanagerd_fileitem_linking_plugin MODULE)
+
+target_sources(kactivitymanagerd_fileitem_linking_plugin PRIVATE
    FileItemLinkingPlugin.cpp
    FileItemLinkingPluginActionLoader.cpp
    ../utils/qsqlquery_iterator.cpp
-   )
-
-add_library (
-   kactivitymanagerd_fileitem_linking_plugin MODULE
-   ${kactivitymanagerd_fileitem_linking_plugin_SRCS}
    )
 
 target_link_libraries (

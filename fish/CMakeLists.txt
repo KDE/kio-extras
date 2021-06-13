@@ -25,6 +25,11 @@ find_program(MD5SUM_EXECUTABLE NAMES md5sum md5 )
     
 if (MD5SUM_EXECUTABLE)
 
+   add_library(kio_fish MODULE)
+   set_target_properties(kio_fish PROPERTIES
+      OUTPUT_NAME "fish"
+   )
+
    if ("${MD5SUM_EXECUTABLE}" MATCHES "md5sum")
       set(CUT_ARG "-f 1")                            # for md5sum the sum is in the 1st column
    else ()
@@ -43,19 +48,18 @@ if (MD5SUM_EXECUTABLE)
       WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} )
    set_source_files_properties(${fishcode_HDR} PROPERTIES SKIP_AUTOMOC TRUE)
 
-   set(kio_fish_PART_SRCS fish.cpp ${fishcode_HDR})
+   target_sources(kio_fish PRIVATE
+      fish.cpp
+      ${fishcode_HDR}
+   )
 
-   ecm_qt_declare_logging_category(kio_fish_PART_SRCS
+   ecm_qt_declare_logging_category(kio_fish
                                    HEADER loggingcategory.h
                                    IDENTIFIER KIO_FISH_DEBUG
                                    CATEGORY_NAME kio_fish
                                    DEFAULT_SEVERITY Info)
 
-   add_library(kio_fish MODULE ${kio_fish_PART_SRCS})
-
    target_link_libraries(kio_fish KF5::KIOCore KF5::WidgetsAddons KF5::I18n Qt5::Network)
-
-   set_target_properties(kio_fish PROPERTIES OUTPUT_NAME "fish")
 
    if (UTIL_LIBRARIES)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})
