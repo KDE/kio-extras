@@ -5,7 +5,6 @@ ServiceTypes=KDEDModule
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=filenamesearchmodule
 X-KDE-FactoryName=filenamesearchmodule
-X-KDE-DBus-ModuleName=filenamesearchmodule
 X-KDE-Kded-load-on-demand=true
 X-KDE-Kded-autoload=false
 

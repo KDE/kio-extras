@@ -2,7 +2,6 @@
 Type=Service
 X-KDE-ServiceTypes=KDEDModule
 X-KDE-Library=networkwatcher
-X-KDE-DBus-ModuleName=networkwatcher
 X-KDE-Kded-autoload=false
 X-KDE-Kded-load-on-demand=true
 Name=Network Watcher
