@@ -316,6 +316,12 @@ LIBMTP_mtpdevice_t *MTPStorage::getDevice() const
 
 KMTPFile MTPStorage::getFileFromPath(const QString &path)
 {
+    LIBMTP_mtpdevice_t *device = getDevice();
+    if (!device) {
+        qCDebug(LOG_KIOD_KMTPD) << "Couldn't find a valid LIBMTP_mtpdevice_t device associated with:" << path;
+        return {};
+    }
+
     const QStringList pathItems = path.split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
     // don't handle the root directory
