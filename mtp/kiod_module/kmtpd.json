@@ -68,7 +68,7 @@
             "KDEDModule"
         ]
     },
-    "X-KDE-DBus-ServiceName": "kmtpd",
+    "X-KDE-DBus-ServiceName": "org.kde.kmtpd5",
     "X-KDE-Kded-autoload": false,
     "X-KDE-Kded-load-on-demand": true
 }

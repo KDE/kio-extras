@@ -13,7 +13,7 @@ KMTPDInterface::KMTPDInterface(QObject *parent)
     : QObject(parent)
 {
     // connect to the KDE MTP daemon over D-Bus
-    m_dbusInterface = new org::kde::kmtp::Daemon(QStringLiteral("org.kde.kiod5"),
+    m_dbusInterface = new org::kde::kmtp::Daemon(QStringLiteral("org.kde.kmtpd5"),
             QStringLiteral("/modules/kmtpd"),
             QDBusConnection::sessionBus());
 
