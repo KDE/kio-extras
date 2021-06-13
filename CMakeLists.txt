@@ -107,9 +107,8 @@ set_package_properties(libssh PROPERTIES DESCRIPTION "the SSH library with SFTP 
                        PURPOSE "Needed to build the SFTP kioslave"
                       )
 
-find_package(Mtp)
-set_package_properties(Mtp PROPERTIES DESCRIPTION "the MTP library"
-                       URL "http://libmtp.sourceforge.net/"
+find_package(Libmtp 1.1.2)
+set_package_properties(Libmtp PROPERTIES
                        TYPE OPTIONAL
                        PURPOSE "Needed to build the MTP kioslave"
                        )
@@ -184,7 +183,7 @@ if (libssh_FOUND)
 endif ()
 add_subdirectory(settings)
 add_subdirectory( filenamesearch )
-if (MTP_FOUND)
+if (Libmtp_FOUND)
   add_subdirectory(mtp)
 endif()
 
