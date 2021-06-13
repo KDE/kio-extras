@@ -5,8 +5,8 @@ if(NOT OpenEXR_FOUND)
     find_package(OpenEXR)
 endif()
 set_package_properties(OpenEXR PROPERTIES
-    DESCRIPTION "API for accessing OpenEXR formatted images"
-    URL "https://www.openexr.com"
+    DESCRIPTION "A library for handling OpenEXR high dynamic-range image files"
+    URL "https://www.openexr.com/"
     TYPE OPTIONAL
     PURPOSE "Provides support for OpenEXR formatted images in the thumbnail kioslave"
 )
