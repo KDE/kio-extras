@@ -11,9 +11,13 @@ target_sources(recentlyused PRIVATE
 )
 
 ecm_qt_declare_logging_category(recentlyused
-                                HEADER recentlyused-logsettings.h
-                                IDENTIFIER KIO_RECENTLYUSED_LOG
-CATEGORY_NAME log_kio_recentlyused)
+    HEADER recentlyused-logsettings.h
+    IDENTIFIER KIO_RECENTLYUSED_LOG
+    CATEGORY_NAME kf.kio.slaves.recentlyused
+    OLD_CATEGORY_NAMES log_kio_recentlyused
+    DESCRIPTION "KIO recentlyused"
+    EXPORT KIO_EXTRAS
+)
 
 target_link_libraries(recentlyused
     KF5::KIOCore

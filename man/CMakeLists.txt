@@ -24,7 +24,10 @@ target_link_libraries(kio_man_debug
 ecm_qt_declare_logging_category(kio_man_debug
     HEADER kio_man_debug.h
     IDENTIFIER KIO_MAN_LOG
-    CATEGORY_NAME log_kio_man
+    CATEGORY_NAME kf.kio.slaves.man
+    OLD_CATEGORY_NAMES log_kio_man
+    DESCRIPTION "KIO man"
+    EXPORT KIO_EXTRAS
 )
 
 ########### next target ###############

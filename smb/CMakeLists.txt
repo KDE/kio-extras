@@ -56,9 +56,13 @@ target_sources(kio_smb_static PRIVATE
 )
 
 ecm_qt_declare_logging_category(kio_smb_static
-                                HEADER smb-logsettings.h
-                                IDENTIFIER KIO_SMB_LOG
-                                CATEGORY_NAME log_kio_smb)
+    HEADER smb-logsettings.h
+    IDENTIFIER KIO_SMB_LOG
+    CATEGORY_NAME kf.kio.slaves.smb
+    OLD_CATEGORY_NAMES log_kio_smb
+    DESCRIPTION "KIO smb"
+    EXPORT KIO_EXTRAS
+)
 
 include_directories(${SAMBA_INCLUDE_DIR})
 

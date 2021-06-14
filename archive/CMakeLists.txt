@@ -43,7 +43,10 @@ install(FILES
 ecm_qt_declare_logging_category(kio_archive_debug_SRCS
     HEADER kio_archive_debug.h
     IDENTIFIER KIO_ARCHIVE_LOG
-    CATEGORY_NAME log_kio_archive
+    CATEGORY_NAME kf.kio.slaves.archive
+    OLD_CATEGORY_NAMES log_kio_archive
+    DESCRIPTION "KIO archive"
+    EXPORT KIO_EXTRAS
 )
 
 ############### ArchiveProtocolBase library ###########

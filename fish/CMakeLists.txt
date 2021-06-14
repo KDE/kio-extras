@@ -54,10 +54,14 @@ if (MD5SUM_EXECUTABLE)
    )
 
    ecm_qt_declare_logging_category(kio_fish
-                                   HEADER loggingcategory.h
-                                   IDENTIFIER KIO_FISH_DEBUG
-                                   CATEGORY_NAME kio_fish
-                                   DEFAULT_SEVERITY Info)
+      HEADER loggingcategory.h
+      IDENTIFIER KIO_FISH_DEBUG
+      CATEGORY_NAME kf.kio.slaves.fish
+      OLD_CATEGORY_NAMES kio_fish
+      DEFAULT_SEVERITY Info
+      DESCRIPTION "KIO fish"
+      EXPORT KIO_EXTRAS
+   )
 
    target_link_libraries(kio_fish KF5::KIOCore KF5::WidgetsAddons KF5::I18n Qt5::Network)
 

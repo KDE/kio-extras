@@ -24,7 +24,10 @@ target_link_libraries(kmtpd
 ecm_qt_declare_logging_category(kmtpd
     HEADER kiod_kmtpd_debug.h
     IDENTIFIER LOG_KIOD_KMTPD
-    CATEGORY_NAME kf5.kiod.kmtpd
+    CATEGORY_NAME kf.kiod.kmtpd.
+    OLD_CATEGORY_NAMES kf5.kiod.kmtpd
+    DESCRIPTION "KIO mtp (demon)"
+    EXPORT KIO_EXTRAS
 )
 
 kdbusaddons_generate_dbus_service_file(kiod5 org.kde.kmtp.daemon ${KDE_INSTALL_FULL_LIBEXECDIR_KF5})

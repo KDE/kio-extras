@@ -6,10 +6,14 @@ set_target_properties(kio_filter PROPERTIES
 target_sources(kio_filter PRIVATE filter.cc)
 
 ecm_qt_declare_logging_category(kio_filter
-                                HEADER loggingcategory.h
-                                IDENTIFIER KIO_FILTER_DEBUG
-                                CATEGORY_NAME kio_filter
-                                DEFAULT_SEVERITY Debug)
+    HEADER loggingcategory.h
+    IDENTIFIER KIO_FILTER_DEBUG
+    CATEGORY_NAME kf.kio.slaves.filter
+    OLD_CATEGORY_NAMES kio_filter
+    DEFAULT_SEVERITY Debug
+    DESCRIPTION "KIO filter"
+    EXPORT KIO_EXTRAS
+)
 
 target_link_libraries(kio_filter KF5::Archive KF5::KIOCore Qt5::Network)
 

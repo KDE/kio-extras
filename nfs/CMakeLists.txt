@@ -35,7 +35,10 @@ set_target_properties(kio_nfs PROPERTIES OUTPUT_NAME "nfs")
 ecm_qt_declare_logging_category(kio_nfs
     HEADER kio_nfs_debug.h
     IDENTIFIER LOG_KIO_NFS
-    CATEGORY_NAME kde.kio_nfs
+    CATEGORY_NAME kf.kio.slaves.nfs
+    OLD_CATEGORY_NAMES kde.kio_nfs
+    DESCRIPTION "KIO nfs"
+    EXPORT KIO_EXTRAS
 )
 
 install(TARGETS kio_nfs DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
