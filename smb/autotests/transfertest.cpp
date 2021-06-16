@@ -6,6 +6,7 @@
 #include <QTest>
 
 #include <future>
+#include <thread>
 
 #include "transfer.h"
 
