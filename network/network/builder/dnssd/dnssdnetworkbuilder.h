@@ -14,9 +14,17 @@
 #include "network.h"
 #include "netdevice.h"
 // KF
+#include <kdnssd_version.h>
+#if KDNSSD_VERSION >= QT_VERSION_CHECK(5, 84, 0)
+#include <KDNSSD/RemoteService>
+#include <KDNSSD/ServiceTypeBrowser>
+#include <KDNSSD/ServiceBrowser>
+#else
 #include <DNSSD/RemoteService>
 #include <DNSSD/ServiceTypeBrowser>
 #include <DNSSD/ServiceBrowser>
+#endif
+
 // Qt
 #include <QHash>
 

@@ -9,8 +9,16 @@
 #ifndef DNSSDNETSYSTEMABLE_H
 #define DNSSDNETSYSTEMABLE_H
 
+#include <QtGlobal>
 // KF
+#include <kdnssd_version.h>
+#if KDNSSD_VERSION >= QT_VERSION_CHECK(5, 84, 0)
+#include <KDNSSD/RemoteService>
+#else
 #include <DNSSD/RemoteService>
+#endif
+
+
 // Qt
 #include <QtPlugin>
 

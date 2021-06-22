@@ -14,8 +14,16 @@
 #include "network_p.h"
 #include "netdevice_p.h"
 // KF
+#include <kdnssd_version.h>
+#if KDNSSD_VERSION >= QT_VERSION_CHECK(5, 84, 0)
+#include <KDNSSD/ServiceTypeBrowser>
+#include <KDNSSD/ServiceBrowser>
+#else
 #include <DNSSD/ServiceTypeBrowser>
 #include <DNSSD/ServiceBrowser>
+#endif
+
+
 // Qt
 #include <QHostAddress>
 #include <QMutableListIterator>
