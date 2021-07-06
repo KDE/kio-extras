@@ -1,9 +1,6 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_thumbnail\")
 
-remove_definitions(
-    -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_FROM_BYTEARRAY
-)
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 find_package(OpenEXR 3.0 CONFIG QUIET)
 if(NOT OpenEXR_FOUND)

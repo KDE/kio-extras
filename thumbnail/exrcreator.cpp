@@ -29,7 +29,8 @@ extern "C"
 
 bool EXRCreator::create(const QString &path, int, int, QImage &img)
 {
-    Imf::InputFile in ( QFile::encodeName( path ) );
+    const QByteArray encodedPath = QFile::encodeName(path);
+    Imf::InputFile in (encodedPath.constData());
     const Imf::Header &h = in.header();
 
     if ( h.hasPreviewImage() ) {
