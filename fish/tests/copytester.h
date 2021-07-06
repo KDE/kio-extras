@@ -14,7 +14,7 @@ class Browser : public QWidget
     Q_OBJECT
 public:
     Browser();
-public slots:
+public Q_SLOTS:
     void slotButtonClicked();
     void dataishere(KIO::Job *,const QByteArray &);
 };

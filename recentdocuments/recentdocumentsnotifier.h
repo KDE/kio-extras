@@ -13,7 +13,7 @@ class RecentDocumentsNotifier : public KDEDModule
 public:
     RecentDocumentsNotifier(QObject* parent, const QList<QVariant>&);
 
-private slots:
+private Q_SLOTS:
     void dirty(const QString &path);
 
 private:

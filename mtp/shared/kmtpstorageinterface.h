@@ -36,7 +36,7 @@ public:
 private:
     org::kde::kmtp::Storage *m_dbusInterface;
 
-public slots:
+public Q_SLOTS:
     // file management
     KMTPFileList getFilesAndFolders(const QString &path, int &result) const;
     KMTPFile getFileMetadata(const QString &path) const;
@@ -54,7 +54,7 @@ public slots:
     // object management
     int deleteObject(const QString &path) const;
 
-signals:
+Q_SIGNALS:
     void dataReady(const QByteArray &data);
     void copyProgress(qulonglong transferredBytes, qulonglong totalBytes);
     void copyFinished(int result);

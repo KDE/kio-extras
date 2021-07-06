@@ -40,11 +40,11 @@ public:
     bool dirWasRoot() const;
     int error() const;
 
-signals:
+Q_SIGNALS:
     void newDiscovery(Discovery::Ptr discovery) override;
     void finished() override;
 
-private slots:
+private Q_SLOTS:
     /**
      * Process one dirent, queue a new loop event and return.
      * @see customEvent

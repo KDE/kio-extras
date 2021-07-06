@@ -102,7 +102,7 @@ private:
 
     QHash<QString, QPair<QDateTime, uint32_t> > m_cache;
 
-public slots:
+public Q_SLOTS:
     // D-Bus methods
 
     // file management
@@ -121,7 +121,7 @@ public slots:
     // object management
     int deleteObject(const QString &path);
 
-signals:
+Q_SIGNALS:
     // D-Bus signals
     void dataReady(const QByteArray &data);
     void copyProgress(qulonglong transferredBytes, qulonglong totalBytes);

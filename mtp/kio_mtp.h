@@ -54,7 +54,7 @@ public:
     void del(const QUrl &url, bool) override;
     void rename(const QUrl &src, const QUrl &dest, JobFlags flags) override;
 
-// private slots:
+// private Q_SLOTS:
 //
 //     void test();
 

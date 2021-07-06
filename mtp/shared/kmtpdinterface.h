@@ -43,11 +43,11 @@ private:
     org::kde::kmtp::Daemon *m_dbusInterface;
     QVector<KMTPDeviceInterface *> m_devices;
 
-public slots:
+public Q_SLOTS:
     // D-Bus methods
     QList<QDBusObjectPath> listDevices();
 
-signals:
+Q_SIGNALS:
     // D-Bus signals
     void devicesChanged();
 };

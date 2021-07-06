@@ -60,7 +60,6 @@ ecm_setup_version(PROJECT
     PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KDSoapWSDiscoveryClientConfigVersion.cmake"
 )
 
-
 add_subdirectory(src)
 
 # Disable for imported source

@@ -39,10 +39,10 @@ private:
     org::kde::kmtp::Device *m_dbusInterface;
     QVector<KMTPStorageInterface *> m_storages;
 
-public slots:
+public Q_SLOTS:
     int setFriendlyName(const QString &friendlyName);
 
-signals:
+Q_SIGNALS:
     void friendlyNameChanged(const QString &friendlyName);
 };
 

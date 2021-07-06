@@ -34,15 +34,15 @@ private:
     QList<MTPDevice *> m_devices;
     qint32 m_timeout;
 
-public slots:
+public Q_SLOTS:
     // D-Bus methods
     QList<QDBusObjectPath> listDevices() const;
 
-private slots:
+private Q_SLOTS:
     void deviceAdded(const QString &udi);
     void deviceRemoved(const QString &udi);
 
-signals:
+Q_SIGNALS:
     // D-Bus signals
     void devicesChanged();
 };

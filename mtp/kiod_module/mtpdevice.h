@@ -51,13 +51,13 @@ private:
     QString m_udi;
     QString m_friendlyName;
 
-public slots:
+public Q_SLOTS:
     // D-Bus methods
 
     int setFriendlyName(const QString &friendlyName);
     QList<QDBusObjectPath> listStorages() const;
 
-signals:
+Q_SIGNALS:
     void friendlyNameChanged(const QString &friendlyName);
 };
 

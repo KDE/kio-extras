@@ -48,10 +48,10 @@ public:
         return m_lastEntry < other.m_lastEntry;
     }
 
-signals:
+Q_SIGNALS:
     void finished(const QString &url);
 
-public slots:
+public Q_SLOTS:
     void start()
     {
         ++m_startCounter;
@@ -70,7 +70,7 @@ public slots:
         m_proc->start();
     }
 
-private slots:
+private Q_SLOTS:
     void maybeRestart(int code, QProcess::ExitStatus status)
     {
         if (code == 0 || status != QProcess::NormalExit || m_startCounter >= m_startCounterLimit) {
@@ -106,7 +106,7 @@ public:
                 this, &Watcher::unwatchDirectory);
     }
 
-private slots:
+private Q_SLOTS:
     void watchDirectory(const QString &url)
     {
         if (!isInterestingUrl(url)) {

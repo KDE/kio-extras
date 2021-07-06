@@ -39,7 +39,7 @@ public:
     void start() override;
     bool isFinished() const override;
 
-signals:
+Q_SIGNALS:
     void newDiscovery(Discovery::Ptr discovery) override;
     void finished() override;
 

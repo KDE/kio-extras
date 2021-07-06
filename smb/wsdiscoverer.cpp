@@ -31,7 +31,8 @@
 class PBSDResolver : public QObject
 {
     Q_OBJECT
-signals:
+
+Q_SIGNALS:
     void resolved(Discovery::Ptr discovery);
 
 public:

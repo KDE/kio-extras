@@ -39,11 +39,11 @@ public:
     void start() override;
     bool isFinished() const override;
 
-signals:
+Q_SIGNALS:
     void newDiscovery(Discovery::Ptr discovery) override;
     void finished() override;
 
-private slots:
+private Q_SLOTS:
     void matchReceived(const WSDiscoveryTargetService &matchedService);
     void resolveReceived(const WSDiscoveryTargetService &matchedService);
 
