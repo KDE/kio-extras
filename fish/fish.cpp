@@ -229,13 +229,13 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
         // disabled: currently not needed. Didn't work reliably.
         // isOpenSSH = !system("ssh -V 2>&1 | grep OpenSSH > /dev/null");
 #ifdef Q_OS_WIN
-        sshPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("plink")));
+        sshPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("plink")).constData());
 #else
-        sshPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("ssh")));
+        sshPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("ssh")).constData());
 #endif
     }
     if (suPath == nullptr) {
-        suPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("su")));
+        suPath = strdup(QFile::encodeName(QStandardPaths::findExecutable("su")).constData());
     }
     childPid = 0;
     connectionPort = 0;
@@ -619,7 +619,7 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
                 // the password prompt so we wait a while.
                 if (local)
                     sleep(1);
-                writeChild(connectionAuth.password.toLatin1(),connectionAuth.password.length());
+                writeChild(connectionAuth.password.toLatin1().constData(),connectionAuth.password.length());
             } else {
                 myDebug( << "sending mpass");
                 connectionAuth.prompt = thisFn+buf;
@@ -655,7 +655,7 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
                 myDebug( << "sending pass");
                 if (local)
                     sleep(1);
-                writeChild(connectionAuth.password.toLatin1(),connectionAuth.password.length());
+                writeChild(connectionAuth.password.toLatin1().constData(),connectionAuth.password.length());
             }
             thisFn.clear();
 #ifdef Q_OS_WIN
@@ -1215,7 +1215,7 @@ void fishProtocol::writeStdin(const QString &line)
         //myDebug( << "Writing: " << qlist.first().mid(0,qlist.first().indexOf('\n')));
         myDebug( << "Writing: " << qlist.first());
         myDebug( << "---------");
-        writeChild((const char *)qlist.first(), qlist.first().length());
+        writeChild((const char *)qlist.first().constData(), qlist.first().length());
     }
 }
 
@@ -1247,7 +1247,7 @@ void fishProtocol::sent()
         //myDebug( << "Writing: " << qlist.first().mid(0,qlist.first().indexOf('\n')));
         myDebug( << "Writing: " << qlist.first());
         myDebug( << "---------");
-        writeChild((const char *)qlist.first(),qlist.first().length());
+        writeChild((const char *)qlist.first().constData(),qlist.first().length());
     }
 }
 
