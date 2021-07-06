@@ -56,6 +56,11 @@ ecm_qt_declare_logging_category(kio_thumbnail
     EXPORT KIO_EXTRAS
 )
 
+target_compile_definitions(kio_thumbnail
+    PRIVATE
+        -DKSERVICE_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055100 # KMimeTypeTrader
+)
+
 target_link_libraries(kio_thumbnail
     KF5::CoreAddons
     KF5::KIOCore

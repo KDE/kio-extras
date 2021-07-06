@@ -56,6 +56,11 @@ add_library(kioarchive kio_archivebase.cpp ${kio_archive_debug_SRCS})
 include(GenerateExportHeader)
 generate_export_header(kioarchive BASE_NAME libkioarchive EXPORT_FILE_NAME libkioarchive_export.h)
 
+target_compile_definitions(kioarchive
+    PRIVATE
+        -DKIOCORE_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054400 # need to support KIO::detailsToStatDetails
+)
+
 target_link_libraries(kioarchive
     PUBLIC
     KF5::Archive

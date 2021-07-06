@@ -60,8 +60,6 @@ include(ECMMarkAsTest)
 include(ECMOptionalAddSubdirectory)
 include(ECMQtDeclareLoggingCategory)
 
-add_definitions(-DQT_NO_URL_CAST_FROM_STRING -DQT_NO_CAST_TO_ASCII)
-
 find_package(KF5Activities QUIET)
 set_package_properties(KF5Activities PROPERTIES
     PURPOSE "Provides the activities:/ kioslave and fileitem plugin."
@@ -150,6 +148,15 @@ if(UNIX)
 else()
     # FIXME: on windows we ignore support until trash gets integrated
 endif()
+
+add_definitions(
+    -DQT_NO_URL_CAST_FROM_STRING
+    -DQT_NO_CAST_TO_ASCII
+    -DQT_DISABLE_DEPRECATED_BEFORE=0x050F00
+    -DQT_DEPRECATED_WARNINGS_SINCE=0x060000
+    -DKF_DISABLE_DEPRECATED_BEFORE_AND_AT=0x055200
+    -DKF_DEPRECATED_WARNINGS_SINCE=0x060000
+)
 
 add_subdirectory( doc )
 
