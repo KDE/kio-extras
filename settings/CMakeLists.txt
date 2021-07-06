@@ -1,3 +1,5 @@
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
+
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_settings\")
 
 add_library(kio_settings MODULE kio_settings.cpp)

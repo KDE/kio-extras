@@ -1,14 +1,17 @@
+remove_definitions(
+    -DQT_NO_CAST_FROM_ASCII
+    -DQT_NO_CAST_FROM_BYTEARRAY
+    # KDSoapWSDiscoveryClient uses "signals" and "slots" in public headers
+    # so remove definition both for internal copy as well as smb code
+    -DQT_NO_KEYWORDS
+)
+
 option(BUILD_KDSoapWSDiscoveryClient "Automatically build WSD client if a system one isn't found." ON)
 find_package(KDSoapWSDiscoveryClient QUIET)
 set(INTERNAL_WSDCLIENT ${BUILD_KDSoapWSDiscoveryClient})
 if(KDSoapWSDiscoveryClient_FOUND)
     set(INTERNAL_WSDCLIENT OFF)
 endif()
-# KDSoapWSDiscoveryClient uses "signals" and "slots" in public headers
-# so remove definition both for internal copy as well as smb code
-remove_definitions(
-    -DQT_NO_KEYWORDS
-)
 if(INTERNAL_WSDCLIENT)
     # Special internal version, mangled to be a STATIC lib.
     # This is only useful and necessary until the library has

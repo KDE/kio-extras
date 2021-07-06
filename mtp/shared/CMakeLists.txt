@@ -1,5 +1,3 @@
-add_definitions(-DQT_NO_CAST_FROM_ASCII)
-
 add_library(kmtp STATIC)
 
 set_source_files_properties(org.kde.kmtp.storage.xml PROPERTIES

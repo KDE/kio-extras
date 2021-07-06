@@ -1,3 +1,5 @@
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
+
 add_library(kio_about MODULE)
 set_target_properties(kio_about PROPERTIES
     OUTPUT_NAME "about"

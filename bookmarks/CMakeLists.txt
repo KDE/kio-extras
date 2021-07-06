@@ -1,5 +1,7 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_bookmarks\")
 
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
+
 add_library(kio_bookmarks MODULE)
 set_target_properties(kio_bookmarks PROPERTIES
     OUTPUT_NAME "bookmarks"

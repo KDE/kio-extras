@@ -1,5 +1,3 @@
-add_definitions(-DQT_NO_CAST_FROM_ASCII)
-
 set(kiod_kmtpd_SRCS
     kmtpd.cpp
     mtpdevice.cpp

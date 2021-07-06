@@ -1,3 +1,5 @@
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
+
 add_library(kio_filter MODULE)
 set_target_properties(kio_filter PROPERTIES
     OUTPUT_NAME "filter"

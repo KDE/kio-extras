@@ -1,5 +1,10 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_sftp\")
 
+remove_definitions(
+    -DQT_NO_CAST_FROM_ASCII
+    -DQT_NO_CAST_FROM_BYTEARRAY
+)
+
 add_library(kio_sftp MODULE)
 set_target_properties(kio_sftp PROPERTIES
     OUTPUT_NAME "sftp"

@@ -1,7 +1,5 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_mtp\")
 
-add_definitions(-DQT_NO_CAST_FROM_ASCII)
-
 add_subdirectory(shared)
 add_subdirectory(kiod_module)
 
