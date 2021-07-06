@@ -59,7 +59,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     {
         // Has it changed ?
         QT_STATBUF statbuf;
-        if ( QT_STAT( QFile::encodeName( m_archiveName ), &statbuf ) == 0 )
+        if ( QT_STAT( QFile::encodeName(m_archiveName).constData(), &statbuf ) == 0 )
         {
             if ( m_mtime == statbuf.st_mtime )
             {
@@ -95,7 +95,7 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     {
         QString tryPath = fullPath.left( pos );
         qCDebug(KIO_ARCHIVE_LOG) << fullPath << "trying" << tryPath;
-        if ( QT_STAT( QFile::encodeName(tryPath), &statbuf ) == -1 )
+        if ( QT_STAT( QFile::encodeName(tryPath).constData(), &statbuf ) == -1 )
         {
             if (errno == ENOENT)
             {
@@ -388,7 +388,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
         QString fullPath = url.path();
 #endif
 
-        if ( QT_STAT( QFile::encodeName( fullPath ), &buff ) == -1 )
+        if ( QT_STAT( QFile::encodeName(fullPath).constData(), &buff ) == -1 )
         {
             // Should not happen, as the file was already stated by checkNewFile
             error( KIO::ERR_CANNOT_STAT, url.toDisplayString() );

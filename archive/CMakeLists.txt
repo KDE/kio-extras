@@ -1,9 +1,6 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_archive\")
 
-remove_definitions(
-    -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_FROM_BYTEARRAY
-)
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 if(BUILD_TESTING)
     add_subdirectory(autotests)
