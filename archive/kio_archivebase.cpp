@@ -84,14 +84,13 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
     QString archiveFile;
     path.clear();
 
-    int len = fullPath.length();
-    if ( len != 0 && fullPath[ len - 1 ] != '/' )
-        fullPath += '/';
+    if (!fullPath.isEmpty() && !fullPath.endsWith(QLatin1Char('/')))
+        fullPath += QLatin1Char('/');
 
     qCDebug(KIO_ARCHIVE_LOG) << "the full path is" << fullPath;
     QT_STATBUF statbuf;
     statbuf.st_mode = 0; // be sure to clear the directory bit
-    while ( (pos=fullPath.indexOf( '/', pos+1 )) != -1 )
+    while ( (pos=fullPath.indexOf(QLatin1Char('/'), pos+1 )) != -1 )
     {
         QString tryPath = fullPath.left( pos );
         qCDebug(KIO_ARCHIVE_LOG) << fullPath << "trying" << tryPath;
@@ -128,14 +127,13 @@ bool ArchiveProtocolBase::checkNewFile( const QUrl & url, QString & path, KIO::E
 #endif
             path = fullPath.mid( pos + 1 );
             qCDebug(KIO_ARCHIVE_LOG).nospace() << "fullPath=" << fullPath << " path=" << path;
-            len = path.length();
-            if ( len > 1 )
+            if ( path.length() > 1 )
             {
-                if ( path[ len - 1 ] == '/' )
-                    path.truncate( len - 1 );
+                if (path.endsWith(QLatin1Char('/')))
+                    path.chop(1);
             }
             else
-                path = QString::fromLatin1("/");
+                path = QStringLiteral("/");
             qCDebug(KIO_ARCHIVE_LOG).nospace() << "Found. archiveFile=" << archiveFile << " path=" << path;
             break;
         }
@@ -227,7 +225,7 @@ void ArchiveProtocolBase::createRootUDSEntry( KIO::UDSEntry & entry )
     auto path = m_archiveFile->fileName();
     path = path.mid(path.lastIndexOf(QLatin1Char('/')) + 1);
 
-    entry.fastInsert( KIO::UDSEntry::UDS_NAME, "." );
+    entry.fastInsert( KIO::UDSEntry::UDS_NAME, QStringLiteral(".") );
     entry.fastInsert( KIO::UDSEntry::UDS_DISPLAY_NAME, path );
     entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
     entry.fastInsert( KIO::UDSEntry::UDS_MODIFICATION_TIME, m_mtime );
@@ -298,7 +296,7 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
         QUrl redir;
         redir.setScheme(url.scheme());
         qCDebug(KIO_ARCHIVE_LOG) << "url.path()=" << url.path();
-        redir.setPath( url.path() + QString::fromLatin1("/") );
+        redir.setPath( url.path() + QLatin1Char('/') );
         qCDebug(KIO_ARCHIVE_LOG) << "redirection" << redir.url();
         redirection( redir );
         finished();
@@ -308,7 +306,7 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
     qCDebug(KIO_ARCHIVE_LOG) << "checkNewFile done";
     const KArchiveDirectory* root = m_archiveFile->directory();
     const KArchiveDirectory* dir;
-    if (!path.isEmpty() && path != "/")
+    if (!path.isEmpty() && path != QLatin1String("/"))
     {
         qCDebug(KIO_ARCHIVE_LOG) << "Looking for entry" << path;
         const KArchiveEntry* e = root->entry( path );
@@ -331,7 +329,7 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
     totalSize( l.count() );
 
     UDSEntry entry;
-    if (!l.contains(".")) {
+    if (!l.contains(QLatin1String("."))) {
         createRootUDSEntry(entry);
         listEntry(entry);
     }
@@ -411,7 +409,7 @@ void ArchiveProtocolBase::stat( const QUrl & url )
     const KArchiveEntry* archiveEntry;
     if ( path.isEmpty() )
     {
-        path = QString::fromLatin1( "/" );
+        path = QStringLiteral("/");
         archiveEntry = root;
     } else {
         archiveEntry = root->entry( path );

@@ -59,19 +59,19 @@ ArchiveProtocol::ArchiveProtocol( const QByteArray &proto, const QByteArray &poo
 
 KArchive *ArchiveProtocol::createArchive( const QString & proto, const QString & archiveFile )
 {
-    if ( proto == "ar" ) {
+    if ( proto == QLatin1String("ar") ) {
         qCDebug(KIO_ARCHIVE_LOG) << "Opening KAr on " << archiveFile;
         return new KAr( archiveFile );
     }
-    else if ( proto == "tar" ) {
+    else if ( proto == QLatin1String("tar") ) {
         qCDebug(KIO_ARCHIVE_LOG) << "Opening KTar on " << archiveFile;
         return new KTar( archiveFile );
     }
-    else if ( proto == "zip" ) {
+    else if ( proto == QLatin1String("zip") ) {
         qCDebug(KIO_ARCHIVE_LOG) << "Opening KZip on " << archiveFile;
         return new KZip( archiveFile );
     }
-    else if ( proto == "sevenz" ) {
+    else if ( proto == QLatin1String("sevenz") ) {
         qCDebug(KIO_ARCHIVE_LOG) << "Opening K7Zip on " << archiveFile;
         return new K7Zip( archiveFile );
     } else {
