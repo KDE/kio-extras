@@ -7,7 +7,7 @@ endif()
 # KDSoapWSDiscoveryClient uses "signals" and "slots" in public headers
 # so remove definition both for internal copy as well as smb code
 remove_definitions(
-    -DQT_NO_SIGNALS_SLOTS_KEYWORDS
+    -DQT_NO_KEYWORDS
 )
 if(INTERNAL_WSDCLIENT)
     # Special internal version, mangled to be a STATIC lib.

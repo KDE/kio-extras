@@ -21,7 +21,7 @@
 static uint16_t onDataPut(void *, void *priv, uint32_t sendlen, unsigned char *data, uint32_t *putlen)
 {
     MTPStorage *storage = static_cast<MTPStorage *>(priv);
-    emit storage->dataReady(QByteArray(reinterpret_cast<char *>(data), int(sendlen)));
+    Q_EMIT storage->dataReady(QByteArray(reinterpret_cast<char *>(data), int(sendlen)));
     *putlen = sendlen;
 
     return LIBMTP_HANDLER_RETURN_OK;
@@ -30,7 +30,7 @@ static uint16_t onDataPut(void *, void *priv, uint32_t sendlen, unsigned char *d
 static int onDataProgress(const uint64_t sent, const uint64_t total, const void * const priv)
 {
     MTPStorage *storage = const_cast<MTPStorage *>(static_cast<const MTPStorage *>(priv));
-    emit storage->copyProgress(sent, total);
+    Q_EMIT storage->copyProgress(sent, total);
     return LIBMTP_HANDLER_RETURN_OK;
 }
 
@@ -480,7 +480,7 @@ int MTPStorage::getFileToHandler(const QString &path)
                 LIBMTP_Dump_Errorstack(getDevice());
                 LIBMTP_Clear_Errorstack(getDevice());
             }
-            emit copyFinished(result);
+            Q_EMIT copyFinished(result);
         });
         return 0;
     }
@@ -503,7 +503,7 @@ int MTPStorage::getFileToFileDescriptor(const QDBusUnixFileDescriptor &descripto
                 LIBMTP_Dump_Errorstack(getDevice());
                 LIBMTP_Clear_Errorstack(getDevice());
             }
-            emit copyFinished(result);
+            Q_EMIT copyFinished(result);
         });
         return 0;
     }
@@ -553,7 +553,7 @@ int MTPStorage::sendFileFromFileDescriptor(const QDBusUnixFileDescriptor &descri
                 LIBMTP_Clear_Errorstack(getDevice());
             }
         }
-        emit copyFinished(result);
+        Q_EMIT copyFinished(result);
     });
 
     return 0;

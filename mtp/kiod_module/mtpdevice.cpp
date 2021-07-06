@@ -92,7 +92,7 @@ int MTPDevice::setFriendlyName(const QString &friendlyName)
     const int result = LIBMTP_Set_Friendlyname(m_mtpdevice, friendlyName.toUtf8().constData());
     if (!result) {
         m_friendlyName = friendlyName;
-        emit friendlyNameChanged(m_friendlyName);
+        Q_EMIT friendlyNameChanged(m_friendlyName);
 
     }
     return result;

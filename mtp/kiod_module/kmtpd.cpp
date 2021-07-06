@@ -97,7 +97,7 @@ void KMTPd::checkDevice(const Solid::Device &solidDevice)
                     if (mtpDevice) {
                         MTPDevice *device = new MTPDevice(QStringLiteral("/modules/kmtpd/device%1").arg(m_devices.count()), mtpDevice, rawDevice, solidDevice.udi(), m_timeout);
                         m_devices.append(device);
-                        emit devicesChanged();
+                        Q_EMIT devicesChanged();
                     } else {
                         qCWarning(LOG_KIOD_KMTPD) << "LIBMTP_Open_Raw_Device_Uncached: Could not open MTP device";
                     }
@@ -153,7 +153,7 @@ void KMTPd::deviceRemoved(const QString &udi)
 
         m_devices.removeOne(device);
         delete device;
-        emit devicesChanged();
+        Q_EMIT devicesChanged();
     }
 }
 

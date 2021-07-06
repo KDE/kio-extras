@@ -133,7 +133,7 @@ bool SMBCDiscoverer::discoverNextFileInfo()
 
         m_url.addPath(name);
         m_slave->statToUDSEntry(m_url, st, entry); // won't produce useful error
-        emit newDiscovery(Discovery::Ptr(new SMBCDiscovery(entry)));
+        Q_EMIT newDiscovery(Discovery::Ptr(new SMBCDiscovery(entry)));
         m_url.cdUp();
         return true;
     }
@@ -219,18 +219,18 @@ void SMBCDiscoverer::discoverNext()
             // can do about it. Log the incident and move on with listing.
             qCWarning(KIO_SMB_LOG) << "Failed to stat" << m_url << statErr;
         } else {
-            emit newDiscovery(Discovery::Ptr(new SMBCDiscovery(entry)));
+            Q_EMIT newDiscovery(Discovery::Ptr(new SMBCDiscovery(entry)));
         }
         m_url.cdUp();
     }
 #endif // HAVE_READDIRPLUS2
 
     if (dirp->smbc_type == SMBC_SERVER) {
-        emit newDiscovery(Discovery::Ptr(new SMBCServerDiscovery(entry)));
+        Q_EMIT newDiscovery(Discovery::Ptr(new SMBCServerDiscovery(entry)));
     } else if (dirp->smbc_type == SMBC_FILE_SHARE) {
-        emit newDiscovery(Discovery::Ptr(new SMBCShareDiscovery(entry)));
+        Q_EMIT newDiscovery(Discovery::Ptr(new SMBCShareDiscovery(entry)));
     } else if (dirp->smbc_type == SMBC_WORKGROUP) {
-        emit newDiscovery(Discovery::Ptr(new SMBCWorkgroupDiscovery(entry)));
+        Q_EMIT newDiscovery(Discovery::Ptr(new SMBCWorkgroupDiscovery(entry)));
     } else {
         qCDebug(KIO_SMB_LOG) << "SMBC_UNKNOWN :" << name;
     }
@@ -250,7 +250,7 @@ void SMBCDiscoverer::customEvent(QEvent *event)
 void SMBCDiscoverer::stop()
 {
     m_finished = true;
-    emit finished();
+    Q_EMIT finished();
 }
 
 bool SMBCDiscoverer::isFinished() const

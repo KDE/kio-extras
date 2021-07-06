@@ -74,7 +74,7 @@ private Q_SLOTS:
     void maybeRestart(int code, QProcess::ExitStatus status)
     {
         if (code == 0 || status != QProcess::NormalExit || m_startCounter >= m_startCounterLimit) {
-            emit finished(m_url);
+            Q_EMIT finished(m_url);
             return;
         }
         m_proc->deleteLater();

@@ -164,7 +164,7 @@ public:
         }
 
         m_discovery.reset(new WSDiscovery(computer, host));
-        emit resolved(m_discovery);
+        Q_EMIT resolved(m_discovery);
     }
 
 private:
@@ -268,7 +268,7 @@ void WSDiscoverer::resolveReceived(const WSDiscoveryTargetService &service)
     PBSDResolver *resolver = new PBSDResolver(addr, service.endpointReference(), this);
     connect(resolver, &PBSDResolver::resolved, this, [this](Discovery::Ptr discovery) {
         ++m_resolvedCount;
-        emit newDiscovery(discovery);
+        Q_EMIT newDiscovery(discovery);
         maybeFinish();
     });
     QTimer::singleShot(0, resolver, &PBSDResolver::run);
@@ -278,7 +278,7 @@ void WSDiscoverer::resolveReceived(const WSDiscoveryTargetService &service)
 void WSDiscoverer::maybeFinish()
 {
     if (isFinished()) {
-        emit finished();
+        Q_EMIT finished();
     }
 }
 

@@ -153,7 +153,7 @@ void FileItemLinkingPluginActionLoader::run()
         QSqlDatabase::removeDatabase(connectionName);
     }
 
-    emit result(actions);
+    Q_EMIT result(actions);
 }
 
 Action

@@ -71,7 +71,7 @@ DNSSDDiscoverer::DNSSDDiscoverer()
 
         connect(service.data(), &KDNSSD::RemoteService::resolved, this, [=] {
             ++m_resolvedCount;
-            emit newDiscovery(Discovery::Ptr(new DNSSDDiscovery(service)));
+            Q_EMIT newDiscovery(Discovery::Ptr(new DNSSDDiscovery(service)));
             maybeFinish();
         });
 
@@ -104,6 +104,6 @@ bool DNSSDDiscoverer::isFinished() const
 void DNSSDDiscoverer::maybeFinish()
 {
     if (isFinished()) {
-        emit finished();
+        Q_EMIT finished();
     }
 }
