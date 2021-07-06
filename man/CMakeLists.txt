@@ -3,6 +3,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_man\")
 remove_definitions(
     -DQT_NO_CAST_FROM_ASCII
     -DQT_NO_CAST_FROM_BYTEARRAY
+    -DQT_USE_QSTRINGBUILDER
 )
 
 find_package(KF5 REQUIRED COMPONENTS Codecs)
