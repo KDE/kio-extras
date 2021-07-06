@@ -2016,7 +2016,7 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
     int fd = -1;
     KIO::fileoffset_t offset = 0;
     if (bResume) {
-        fd = QT_OPEN( QFile::encodeName(sPart), O_RDWR );  // append if resuming
+        fd = QT_OPEN( QFile::encodeName(sPart).constData(), O_RDWR );  // append if resuming
         offset = QT_LSEEK(fd, partFile.size(), SEEK_SET);
         if (offset != partFile.size()) {
             qCDebug(KIO_SFTP_LOG) << "Failed to seek to" << partFile.size() << "bytes in target file. Reason given:" << strerror(errno);
@@ -2026,7 +2026,7 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
         qCDebug(KIO_SFTP_LOG) << "resuming at" << offset;
     }
     else {
-        fd = QT_OPEN(QFile::encodeName(dest), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
+        fd = QT_OPEN(QFile::encodeName(dest).constData(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
     }
 
     if (fd == -1) {
@@ -2100,7 +2100,7 @@ Result SFTPInternal::sftpCopyPut(const QUrl &url, const QString &sCopyFile, int 
         return Result::fail(ERR_DOES_NOT_EXIST, sCopyFile);
     }
 
-    const int fd = QT_OPEN(QFile::encodeName(sCopyFile), O_RDONLY);
+    const int fd = QT_OPEN(QFile::encodeName(sCopyFile).constData(), O_RDONLY);
     if (fd == -1) {
         return Result::fail(ERR_CANNOT_OPEN_FOR_READING, sCopyFile);
     }
