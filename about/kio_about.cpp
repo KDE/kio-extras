@@ -38,14 +38,14 @@ void AboutProtocol::get( const QUrl& )
     os << "<html><head><title>about:blank</title></head><body></body></html>";
     os.flush();
 
-    mimeType("text/html");
+    mimeType(QStringLiteral("text/html"));
     data( output );
     finished();
 }
 
 void AboutProtocol::mimetype( const QUrl& )
 {
-    mimeType("text/html");
+    mimeType(QStringLiteral("text/html"));
     finished();
 }
 
@@ -53,7 +53,7 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 {
     QCoreApplication app(argc, argv);
 
-    app.setApplicationName("kio_about");
+    app.setApplicationName(QStringLiteral("kio_about"));
 
     if (argc != 4)
     {
