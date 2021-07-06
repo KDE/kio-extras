@@ -28,8 +28,12 @@
 
 #include "man2html.h"
 #include <assert.h>
-#include <kfilterdev.h>
-#include <kio_version.h>
+#include <karchive_version.h>
+#if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
+#include <KCompressionDevice>
+#else
+#include <KFilterDev>
+#endif
 
 using namespace KIO;
 
@@ -601,7 +605,11 @@ char *MANProtocol::readManPage(const char *_filename)
             qCDebug(KIO_MAN_LOG) << "resolved to " << filename;
         }
 
+#if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
+        KCompressionDevice fd(QFile::encodeName(filename));
+#else
         KFilterDev fd(QFile::encodeName(filename));
+#endif
 
         if ( !fd.open(QIODevice::ReadOnly))
             return nullptr;
