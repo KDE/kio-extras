@@ -792,9 +792,9 @@ KIO::Error NFSProtocol::openConnection(const QString& host, int prog, int vers, 
     struct sockaddr_in server_addr;
     if (host[0] >= '0' && host[0] <= '9') {
         server_addr.sin_family = AF_INET;
-        server_addr.sin_addr.s_addr = inet_addr(host.toLatin1());
+        server_addr.sin_addr.s_addr = inet_addr(host.toLatin1().constData());
     } else {
-        struct hostent* hp = gethostbyname(host.toLatin1());
+        struct hostent* hp = gethostbyname(host.toLatin1().constData());
         if (hp == nullptr) {
             return KIO::ERR_UNKNOWN_HOST;
         }
@@ -834,7 +834,7 @@ KIO::Error NFSProtocol::openConnection(const QString& host, int prog, int vers, 
         if (ok) uid = num;
         else
         {
-            const struct passwd *pwd = getpwnam(m_currentUser.toLocal8Bit());
+            const struct passwd *pwd = getpwnam(m_currentUser.toLocal8Bit().constData());
             if (pwd != nullptr) uid = pwd->pw_uid;
         }
     }

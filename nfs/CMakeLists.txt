@@ -1,7 +1,4 @@
-remove_definitions(
-    -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_FROM_BYTEARRAY
-)
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 ## Check for XDR functions
 include(CheckCXXSymbolExists)
