@@ -118,7 +118,7 @@ void InfoProtocol::get( const QUrl& url )
 
     qCDebug(LOG_KIO_INFO) << "cmd" << cmd;
 
-    FILE *file = popen( QFile::encodeName(cmd), "r" );
+    FILE *file = popen( QFile::encodeName(cmd).constData(), "r" );
     if ( !file ) {
         qCDebug(LOG_KIO_INFO) << "popen failed";
         error( ERR_CANNOT_LAUNCH_PROCESS, cmd );

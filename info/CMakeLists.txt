@@ -1,9 +1,6 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_info\")
 
-remove_definitions(
-    -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_FROM_BYTEARRAY
-)
+remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 add_library(kio_info MODULE info.cc)
 target_link_libraries(kio_info
