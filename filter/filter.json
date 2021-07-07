@@ -69,6 +69,20 @@
             "protocol": "xz",
             "reading": true,
             "source": false
+        },
+        "zstd": {
+            "Icon": "package-x-generic",
+            "X-DocPath": "kioslave5/zstd/index.html",
+            "archiveMimetype": [
+                "application/zstd"
+            ],
+            "determineMimetypeFromExtension": true,
+            "exec": "kf5/kio/filter",
+            "input": "stream",
+            "output": "stream",
+            "protocol": "zstd",
+            "reading": true,
+            "source": false
         }
     }
 }

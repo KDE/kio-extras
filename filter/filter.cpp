@@ -61,7 +61,10 @@ int kdemain( int argc, char ** argv)
 FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app )
     : KIO::SlaveBase( protocol, pool, app )
 {
-    QString mimetype = QString::fromLatin1("application/x-") + QString::fromLatin1(protocol);
+    const QString mimetype =
+        (protocol == "zstd") ? QStringLiteral("application/zstd") :
+        QLatin1String("application/x-") + QLatin1String(protocol.constData());
+
 #if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
     filter = KCompressionDevice::filterForCompressionType(KCompressionDevice::compressionTypeForMimeType( mimetype ));
 #else
@@ -140,7 +143,7 @@ void FilterProtocol::get(const QUrl& url)
                 const QString extension = QFileInfo(subURL.path()).suffix();
                 QMimeDatabase db;
                 QMimeType mime;
-                if (extension == "gz" || extension == "bz" || extension == "bz2") {
+                if (extension == "gz" || extension == "bz" || extension == "bz2"|| extension == "zst") {
                     QString baseName = subURL.path();
                     baseName.truncate(baseName.length() - extension.length() - 1 /*the dot*/);
                     qDebug(KIO_FILTER_DEBUG) << "baseName=" << baseName;
