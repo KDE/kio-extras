@@ -2,7 +2,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_info\")
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
-add_library(kio_info MODULE info.cc)
+add_library(kio_info MODULE info.cpp)
 target_link_libraries(kio_info
     KF5::I18n
     KF5::KIOCore

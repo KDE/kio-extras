@@ -5,7 +5,7 @@ set_target_properties(kio_filter PROPERTIES
     OUTPUT_NAME "filter"
 )
 
-target_sources(kio_filter PRIVATE filter.cc)
+target_sources(kio_filter PRIVATE filter.cpp)
 
 ecm_qt_declare_logging_category(kio_filter
     HEADER loggingcategory.h
