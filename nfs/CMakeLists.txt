@@ -27,12 +27,28 @@ if (HAVE_XDR_U_LONGLONG_T)
     add_definitions(-DHAVE_XDR_U_LONGLONG_T)
 endif (HAVE_XDR_U_LONGLONG_T)
 
+# silence warnings for gperf generating code with 0 for null pointers
+set(AVOID_UNUSED_VARIABLE_WARNING_FLAG)
+if (CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID MATCHES "Clang")
+    set(_flag "-Wno-unused-variable")
+    check_c_compiler_flag(${_flag} _flag_present)
+    if(_flag_present)
+        set(AVOID_UNUSED_VARIABLE_WARNING_FLAG ${_flag})
+    endif()
+endif()
+
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_nfs\")
 include_directories(${TIRPC_INCLUDE_DIRS})
 
 add_library(kio_nfs MODULE kio_nfs.cpp nfsv2.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c rpc_nfs2_prot_xdr.c)
 target_link_libraries(kio_nfs KF5::KIOCore KF5::I18n Qt5::Network ${TIRPC_LIBRARIES})
 set_target_properties(kio_nfs PROPERTIES OUTPUT_NAME "nfs")
+
+if(AVOID_UNUSED_VARIABLE_WARNING_FLAG)
+    set_source_files_properties(rpc_nfs2_prot_xdr.c rpc_nfs3_prot_xdr.c PROPERTIES
+        COMPILE_OPTIONS "${AVOID_UNUSED_VARIABLE_WARNING_FLAG}"
+    )
+endif()
 
 ecm_qt_declare_logging_category(kio_nfs
     HEADER kio_nfs_debug.h
