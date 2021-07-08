@@ -7,13 +7,26 @@ set (RELEASE_SERVICE_VERSION_MICRO "70")
 set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
 
-include(FeatureSummary)
-
 set(QT_MIN_VERSION "5.15.0")
 set(KF5_MIN_VERSION "5.82.0")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
+
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+
+include(ECMMarkNonGuiExecutable)
+include(ECMMarkAsTest)
+include(ECMOptionalAddSubdirectory)
+include(ECMQtDeclareLoggingCategory)
+include(CheckIncludeFile)
+include(CMakePackageConfigHelpers)
+include(FeatureSummary)
 
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
@@ -26,9 +39,6 @@ add_feature_info("Qt5Test" Qt5Test_FOUND "Required for building tests")
 if (NOT Qt5Test_FOUND)
     set(BUILD_TESTING OFF CACHE BOOL "Build the testing tree.")
 endif()
-
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Archive
@@ -46,19 +56,9 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     SyntaxHighlighting
 )
 
-include(CheckIncludeFile)
-include(CMakePackageConfigHelpers)
-include(KDEInstallDirs)
-include(KDECMakeSettings)
-include(KDECompilerSettings NO_POLICY_SCOPE)
-include(ECMMarkNonGuiExecutable)
 include(KDEClangFormat)
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
-
-include(ECMMarkAsTest)
-include(ECMOptionalAddSubdirectory)
-include(ECMQtDeclareLoggingCategory)
 
 find_package(KF5Activities QUIET)
 set_package_properties(KF5Activities PROPERTIES
