@@ -102,6 +102,7 @@ void FileNameSearchProtocol::searchDirectory(const QUrl &directory,
     QScopedPointer<KCoreDirLister> dirLister(new KCoreDirLister);
     dirLister->setDelayedMimeTypes(true);
     dirLister->openUrl(directory);
+    dirLister->setAutoErrorHandlingEnabled(false);
 
     QEventLoop eventLoop;
     QObject::connect(dirLister.data(), static_cast<void(KCoreDirLister::*)()>(&KCoreDirLister::canceled),
