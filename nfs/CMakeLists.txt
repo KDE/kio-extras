@@ -37,6 +37,20 @@ if (CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID MATCHES "Clang")
     endif()
 endif()
 
+# silence warnings for use of xdr_void as no-op method in calls of clnt_call()
+# It's method signature "bool_t xdr_void(void)" does not match the xdrproc_t definition
+# which is "bool_t (*)(XDR*, ...)", and the compiler correctly points that out as issue.
+# While no-one has come up so far with a nice way to tell the compiler that cast is fine,
+# for now just disable the warning completely for the compilation unit.
+set(AVOID_CAST_FUNCTION_TYPE_WARNING_FLAG)
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    set(_flag "-Wno-cast-function-type")
+    check_cxx_compiler_flag(${_flag} _flag_present)
+    if(_flag_present)
+        set(AVOID_CAST_FUNCTION_TYPE_WARNING_FLAG ${_flag})
+    endif()
+endif()
+
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_nfs\")
 include_directories(${TIRPC_INCLUDE_DIRS})
 
@@ -47,6 +61,12 @@ set_target_properties(kio_nfs PROPERTIES OUTPUT_NAME "nfs")
 if(AVOID_UNUSED_VARIABLE_WARNING_FLAG)
     set_source_files_properties(rpc_nfs2_prot_xdr.c rpc_nfs3_prot_xdr.c PROPERTIES
         COMPILE_OPTIONS "${AVOID_UNUSED_VARIABLE_WARNING_FLAG}"
+    )
+endif()
+
+if(AVOID_CAST_FUNCTION_TYPE_WARNING_FLAG)
+    set_source_files_properties(nfsv2.cpp nfsv3.cpp PROPERTIES
+        COMPILE_OPTIONS "${AVOID_CAST_FUNCTION_TYPE_WARNING_FLAG}"
     )
 endif()
 
