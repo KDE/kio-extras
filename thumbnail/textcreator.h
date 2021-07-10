@@ -7,12 +7,12 @@
 #ifndef _TEXTCREATOR_H_
 #define _TEXTCREATOR_H_
 
+#include <KSyntaxHighlighting/Repository>
 #include <QPixmap>
 #include <kio/thumbcreator.h>
-#include <KSyntaxHighlighting/Repository>
+#include <kio/thumbdevicepixelratiodependentcreator.h>
 
-class TextCreator : public ThumbCreator
-{
+class TextCreator : public KIO::ThumbDevicePixelRatioDependentCreator {
 public:
     TextCreator();
     ~TextCreator() override;

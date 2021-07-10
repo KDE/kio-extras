@@ -94,3 +94,6 @@ Type=bool
 
 [PropertyDef::IgnoreMaximumSize]
 Type=bool
+
+[PropertyDef::DevicePixelRatioDependent]
+Type=bool

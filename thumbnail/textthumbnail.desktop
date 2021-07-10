@@ -94,4 +94,5 @@ Name[zh_TW]=文字檔案
 X-KDE-ServiceTypes=ThumbCreator
 MimeType=text/plain;
 X-KDE-Library=textthumbnail
+DevicePixelRatioDependent=true
 CacheThumbnail=false

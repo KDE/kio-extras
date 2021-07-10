@@ -20,6 +20,7 @@ class QImage;
 struct ThumbCreatorWithMetadata {
     ThumbCreator *creator = nullptr;
     bool cacheThumbnail = true;
+    bool devicePixelRatioDependent = false;
     bool handleSequences = false;
 };
 
@@ -55,7 +56,7 @@ private:
      * Draw the SubThumbnail
      **/
     void drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height,
-                          int xPos, int yPos, int frameWidth);
+                          int xPos, int yPos, int borderStrokeWidth);
 private:
     void ensureDirsCreated();
     bool createThumbnail(ThumbCreatorWithMetadata* subCreator, const QString& filePath, int width, int height, QImage& thumbnail);
@@ -63,6 +64,7 @@ private:
     QString m_mimeType;
     int m_width;
     int m_height;
+    int m_devicePixelRatio;
     // Thumbnail creators
     QHash<QString, ThumbCreatorWithMetadata*> m_creators;
     QStringList m_enabledPlugins;

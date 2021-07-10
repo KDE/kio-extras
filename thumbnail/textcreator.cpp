@@ -26,17 +26,16 @@
 
 extern "C"
 {
-Q_DECL_EXPORT ThumbCreator *new_creator()
+Q_DECL_EXPORT KIO::ThumbDevicePixelRatioDependentCreator *new_creator()
 {
     return new TextCreator;
 }
 }
 
 TextCreator::TextCreator()
-    : m_data(nullptr),
-      m_dataSize(0)
-{
-}
+    : KIO::ThumbDevicePixelRatioDependentCreator(),
+      m_data(nullptr),
+      m_dataSize(0) {}
 
 TextCreator::~TextCreator()
 {
@@ -71,27 +70,29 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
 
     // determine some sizes...
     // example: width: 60, height: 64
-    QSize pixmapSize( width, height );
+    QSize pixmapSize( width * devicePixelRatio(), height * devicePixelRatio() );
     if (height * 3 > width * 4)
-        pixmapSize.setHeight( width * 4 / 3 );
+        pixmapSize.setHeight( width * 4 / 3 * devicePixelRatio());
     else
-        pixmapSize.setWidth( height * 3 / 4 );
+        pixmapSize.setWidth( height * 3 / 4 * devicePixelRatio());
 
-    if ( pixmapSize != m_pixmap.size() )
+    if ( pixmapSize != m_pixmap.size() ) {
         m_pixmap = QPixmap( pixmapSize );
+        m_pixmap.setDevicePixelRatio(devicePixelRatio());
+    }
 
     // one pixel for the rectangle, the rest. whitespace
-    int xborder = 1 + pixmapSize.width()/16;  // minimum x-border
-    int yborder = 1 + pixmapSize.height()/16; // minimum y-border
+    int xborder = 1 + pixmapSize.width()/16 / devicePixelRatio();  // minimum x-border
+    int yborder = 1 + pixmapSize.height()/16 / devicePixelRatio(); // minimum y-border
 
     // this font is supposed to look good at small sizes
     QFont font = QFontDatabase::systemFont(QFontDatabase::SmallestReadableFont);
 
-    font.setPixelSize( qMax(7, qMin( 10, ( pixmapSize.height() - 2 * yborder ) / 16 ) ) );
+    font.setPixelSize( qMax(7, qMin( 10, ( pixmapSize.height()/ devicePixelRatio() - 2 * yborder ) / 16 ) ) );
     QFontMetrics fm( font );
 
     // calculate a better border so that the text is centered
-    const QSizeF canvasSize(pixmapSize.width() - 2 * xborder, pixmapSize.height() - 2 * yborder);
+    const QSizeF canvasSize(pixmapSize.width() / devicePixelRatio() - 2 * xborder, pixmapSize.height() / devicePixelRatio() - 2 * yborder);
     const int numLines = (int) (canvasSize.height() / fm.height());
 
     // assumes an average line length of <= 120 chars
