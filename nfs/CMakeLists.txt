@@ -27,7 +27,7 @@ if (HAVE_XDR_U_LONGLONG_T)
     add_definitions(-DHAVE_XDR_U_LONGLONG_T)
 endif (HAVE_XDR_U_LONGLONG_T)
 
-# silence warnings for gperf generating code with 0 for null pointers
+# silence warnings for rpcgen generated code having lots of unused variables
 set(AVOID_UNUSED_VARIABLE_WARNING_FLAG)
 if (CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID MATCHES "Clang")
     set(_flag "-Wno-unused-variable")
