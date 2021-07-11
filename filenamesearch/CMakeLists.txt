@@ -1,8 +1,9 @@
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
-add_library(kio_filenamesearch MODULE kio_filenamesearch.cpp)
+kcoreaddons_add_plugin(kio_filenamesearch INSTALL_NAMESPACE "kf5/kio")
+
 target_link_libraries(kio_filenamesearch KF5::KIOCore KF5::DBusAddons Qt5::Network KF5::KIOCore KF5::I18n)
-set_target_properties(kio_filenamesearch PROPERTIES OUTPUT_NAME "filenamesearch")
+target_sources(kio_filenamesearch PRIVATE kio_filenamesearch.cpp)
 
 ecm_qt_declare_logging_category(kio_filenamesearch
     HEADER kio_filenamesearch_debug.h
@@ -12,7 +13,5 @@ ecm_qt_declare_logging_category(kio_filenamesearch
     DESCRIPTION "KIO filenamesearch"
     EXPORT KIO_EXTRAS
 )
-
-install(TARGETS kio_filenamesearch DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 add_subdirectory(kded)
