@@ -7,42 +7,47 @@
 #ifndef KIO_FILENAMESEARCH_H
 #define KIO_FILENAMESEARCH_H
 
-#include "kio_filenamesearch_debug.h"
+#include <KIO/SlaveBase>
 
-#include <kio/slavebase.h>
+#include <QUrl>
 
-#include <functional>
-
-class QUrl;
-class QRegularExpression;
-class KFileItem;
+#include <set>
+#include <vector>
 
 /**
- * @brief Lists files where the filename matches do a given query.
+ * @brief Lists files that match a specific search pattern.
  *
- * The query is defined as part of the "search" query item of the URL.
- * The directory where the searching is started is defined in the "url" query
- * item. If the query item "checkContent" is set to "yes", all files with
- * a text MIME type will be checked for the content.
+ * For example, an application could create a url:
+ * filenamesearch:?search=sometext&url=file:///home/foo/bar&title=Query Results from 'sometext'
+ *
+ * - The pattern to search for, @c sometext is the value of the "search" query
+ * item of the URL
+ * - The directory where the search is performed, @c file:///home/foo/bar, is the value
+ * of the "url" query item.
+ *
+ * By default the files with names matching the search pattern are listed.
+ * Alternatively if the query item "checkContent" is set to "yes", the contents
+ * of files with a text MimeType will be searched for the given pattern and
+ * the matching files will be listed.
  */
-class FileNameSearchProtocol : public KIO::SlaveBase
+class FileNameSearchProtocol : public QObject, public KIO::SlaveBase
 {
+    Q_OBJECT
+
 public:
     FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app);
     ~FileNameSearchProtocol() override;
 
-    void stat(const QUrl& url) override;
+    void stat(const QUrl &url) override;
     void listDir(const QUrl &url) override;
 
 private:
-    void searchDirectory(const QUrl &directory,
-                         const std::function<bool(const KFileItem &)> &itemValidator,
-                         QSet<QString> &iteratedDirs);
-
-    /**
-     * @return True, if the \a pattern is part of the file \a fileName.
-     */
-    static bool contentContainsPattern(const QUrl &fileName, const QRegularExpression &pattern);
+    void listRootEntry();
+    void searchDir(const QUrl &dirUrl,
+                   const QRegularExpression &regex,
+                   bool searchContents,
+                   std::set<QString> &iteratedDirs,
+                   std::vector<QUrl> &pendingDirs);
 };
 
 #endif
