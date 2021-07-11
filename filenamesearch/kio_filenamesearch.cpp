@@ -6,18 +6,17 @@
 
 #include "kio_filenamesearch.h"
 
-#include <KCoreDirLister>
-#include <KFileItem>
-#include <KIO/Job>
+#include "kio_filenamesearch_debug.h"
 
-#include <QTemporaryFile>
-#include <QScopedPointer>
+#include <KIO/Job>
+#include <KLocalizedString>
+
 #include <QCoreApplication>
-#include <QRegularExpression>
+#include <QDBusInterface>
+#include <QMimeDatabase>
+#include <QTemporaryFile>
 #include <QUrl>
 #include <QUrlQuery>
-#include <QDBusInterface>
-#include <KLocalizedString>
 
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
@@ -27,17 +26,18 @@ class KIOPluginForMetaData : public QObject
 };
 
 FileNameSearchProtocol::FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app)
-    : SlaveBase("search", pool, app)
+    : QObject()
+    , SlaveBase("search", pool, app)
 {
     QDBusInterface kded(QStringLiteral("org.kde.kded5"), QStringLiteral("/kded"), QStringLiteral("org.kde.kded5"));
     kded.call(QStringLiteral("loadModule"), QStringLiteral("filenamesearchmodule"));
+
+    m_regex.setPatternOptions(QRegularExpression::CaseInsensitiveOption);
 }
 
-FileNameSearchProtocol::~FileNameSearchProtocol()
-{
-}
+FileNameSearchProtocol::~FileNameSearchProtocol() = default;
 
-void FileNameSearchProtocol::stat(const QUrl& url)
+void FileNameSearchProtocol::stat(const QUrl &url)
 {
     KIO::UDSEntry uds;
     uds.reserve(9);
@@ -59,94 +59,131 @@ void FileNameSearchProtocol::stat(const QUrl& url)
     finished();
 }
 
+// Create a UDSEntry for "."
+void FileNameSearchProtocol::listRootEntry()
+{
+    KIO::UDSEntry entry;
+    entry.reserve(4);
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
+    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    listEntry(entry);
+}
+
 void FileNameSearchProtocol::listDir(const QUrl &url)
 {
+    m_iteratedDirs.clear();
+
+    listRootEntry();
+
     const QUrlQuery urlQuery(url);
-    const QString search = urlQuery.queryItemValue("search");
+    const QString search = urlQuery.queryItemValue(QStringLiteral("search"));
     if (search.isEmpty()) {
         finished();
         return;
     }
 
-    const QRegularExpression pattern(search, QRegularExpression::CaseInsensitiveOption);
-
-    std::function<bool(const KFileItem &)> validator;
-    if (urlQuery.queryItemValue("checkContent") == QStringLiteral("yes")) {
-        validator = [pattern](const KFileItem &item) -> bool {
-            return item.determineMimeType().inherits(QStringLiteral("text/plain")) &&
-            contentContainsPattern(item.url(), pattern);
-        };
-    } else {
-        validator = [pattern](const KFileItem &item) -> bool {
-            return item.text().contains(pattern);
-        };
+    m_regex.setPattern(search);
+    if (!m_regex.isValid()) {
+        qCWarning(KIO_FILENAMESEARCH) << "Invalid QRegularExpression/PCRE search pattern:" << search;
+        finished();
+        return;
     }
 
-    QSet<QString> iteratedDirs;
-    const QUrl directory(urlQuery.queryItemValue("url"));
-    searchDirectory(directory, validator, iteratedDirs);
+    m_url = QUrl(urlQuery.queryItemValue(QStringLiteral("url")));
+    const bool isContent = urlQuery.queryItemValue(QStringLiteral("checkContent")) == QLatin1String("yes");
+    m_searchType = isContent ? SearchContent : SearchFileNames;
+
+    searchDir(m_url);
 
     finished();
 }
 
-void FileNameSearchProtocol::searchDirectory(const QUrl &directory,
-        const std::function<bool(const KFileItem &)> &itemValidator,
-        QSet<QString> &iteratedDirs)
+void FileNameSearchProtocol::searchDir(const QUrl &dirUrl)
 {
-    if (directory.path() == QStringLiteral("/proc")) {
+    if (dirUrl.path() == QLatin1String("/proc")) {
         // Don't try to iterate the /proc directory of Linux
         return;
     }
 
-    // Get all items of the directory
-    QScopedPointer<KCoreDirLister> dirLister(new KCoreDirLister);
-    dirLister->setDelayedMimeTypes(true);
-    dirLister->openUrl(directory);
+    KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, false /* hidden */);
 
-    QEventLoop eventLoop;
-    QObject::connect(dirLister.data(), static_cast<void(KCoreDirLister::*)()>(&KCoreDirLister::canceled),
-                     &eventLoop, &QEventLoop::quit);
-    QObject::connect(dirLister.data(), static_cast<void(KCoreDirLister::*)()>(&KCoreDirLister::completed),
-                     &eventLoop, &QEventLoop::quit);
-    eventLoop.exec();
+    connect(this, &QObject::destroyed, listJob, [listJob]() {
+        listJob->kill();
+    });
 
-    // Visualize all items that match the search pattern
-    QList<QUrl> pendingDirs;
-    const KFileItemList items = dirLister->items();
-    for (const KFileItem &item : items) {
-        if (itemValidator(item)) {
-            KIO::UDSEntry entry = item.entry();
-            entry.replace(KIO::UDSEntry::UDS_URL, item.url().url());
-            listEntry(entry);
+    std::vector<QUrl> pendingDirs;
+
+    connect(listJob, &KIO::ListJob::entries, this, [&](KJob *, const KIO::UDSEntryList &list) mutable {
+        if (listJob->error()) {
+            qCWarning(KIO_FILENAMESEARCH) << "Searching failed:" << listJob->errorText();
+            return;
         }
 
-        if (item.isDir()) {
-            if (item.isLink()) {
-                // Assure that no endless searching is done in directories that
-                // have already been iterated.
-                const QUrl linkDest = item.url().resolved(QUrl::fromLocalFile(item.linkDest()));
-                if (!iteratedDirs.contains(linkDest.path())) {
-                    pendingDirs.append(linkDest);
+        KIO::UDSEntryList entryList = list;
+
+        for (auto &entry : entryList) {
+            QUrl entryUrl(dirUrl);
+            QString path = entryUrl.path();
+            if (!path.endsWith(QLatin1Char('/'))) {
+                path += QLatin1Char('/');
+            }
+            // UDS_NAME is e.g. "foo/bar/somefile.txt"
+            entryUrl.setPath(path + entry.stringValue(KIO::UDSEntry::UDS_NAME));
+
+            const QString urlStr = entryUrl.toDisplayString();
+            entry.replace(KIO::UDSEntry::UDS_URL, urlStr);
+
+            const QString fileName = entryUrl.fileName();
+            entry.replace(KIO::UDSEntry::UDS_NAME, fileName);
+
+            if (entry.isDir()) {
+                // Also search the target of a dir symlink
+                if (const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST); !linkDest.isEmpty()) {
+                    // Remember the dir to prevent endless loops
+                    if (const auto [it, isInserted] = m_iteratedDirs.insert(linkDest); isInserted) {
+                        pendingDirs.push_back(entryUrl.resolved(QUrl(linkDest)));
+                    }
                 }
-            } else {
-                pendingDirs.append(item.url());
+
+                m_iteratedDirs.insert(urlStr);
+            }
+
+            if (match(entry)) {
+                // UDS_DISPLAY_NAME is e.g. "foo/bar/somefile.txt"
+                entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
+                listEntry(entry);
             }
         }
-    }
+    });
 
-    iteratedDirs.insert(directory.path());
+    listJob->exec();
 
-    dirLister.reset();
-
-    // Recursively iterate all sub directories
-    for (const QUrl &pendingDir : qAsConst(pendingDirs)) {
-        searchDirectory(pendingDir, itemValidator, iteratedDirs);
+    for (const auto &u : pendingDirs) {
+        searchDir(u);
     }
 }
 
-bool FileNameSearchProtocol::contentContainsPattern(const QUrl &fileName, const QRegularExpression &pattern)
+bool FileNameSearchProtocol::match(const KIO::UDSEntry &entry) const
 {
-    auto fileContainsPattern = [&pattern](const QString &path) -> bool {
+    if (m_searchType == SearchFileNames) {
+        return m_regex.match(entry.stringValue(KIO::UDSEntry::UDS_NAME)).hasMatch();
+    } else {
+        const QUrl entryUrl(entry.stringValue(KIO::UDSEntry::UDS_URL));
+        QMimeDatabase mdb;
+        QMimeType mimetype = mdb.mimeTypeForUrl(entryUrl);
+        if (mimetype.inherits(QStringLiteral("text/plain"))) {
+            return contentContainsPattern(entryUrl);
+        }
+    }
+
+    return false;
+}
+
+bool FileNameSearchProtocol::contentContainsPattern(const QUrl &url) const
+{
+    auto fileContainsPattern = [this](const QString &path) -> bool {
         QFile file(path);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             return false;
@@ -155,7 +192,7 @@ bool FileNameSearchProtocol::contentContainsPattern(const QUrl &fileName, const 
         QTextStream in(&file);
         while (!in.atEnd()) {
             const QString line = in.readLine();
-            if (line.contains(pattern)) {
+            if (m_regex.match(line).hasMatch()) {
                 return true;
             }
         }
@@ -163,18 +200,16 @@ bool FileNameSearchProtocol::contentContainsPattern(const QUrl &fileName, const 
         return false;
     };
 
-    if (fileName.isLocalFile()) {
-        return fileContainsPattern(fileName.toLocalFile());
+    if (url.isLocalFile()) {
+        return fileContainsPattern(url.toLocalFile());
     } else {
         QTemporaryFile tempFile;
         if (tempFile.open()) {
-            KIO::Job* getJob = KIO::file_copy(fileName,
-                                              QUrl::fromLocalFile(tempFile.fileName()),
-                                              -1,
-                                              KIO::Overwrite | KIO::HideProgressInfo);
+            const QString tempName = tempFile.fileName();
+            KIO::Job *getJob = KIO::file_copy(url, QUrl::fromLocalFile(tempName), -1, KIO::Overwrite | KIO::HideProgressInfo);
             if (getJob->exec()) {
                 // The non-local file was downloaded successfully.
-                return fileContainsPattern(tempFile.fileName());
+                return fileContainsPattern(tempName);
             }
         }
     }
