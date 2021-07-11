@@ -2,7 +2,10 @@ remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 add_library(kio_filenamesearch MODULE kio_filenamesearch.cpp)
 target_link_libraries(kio_filenamesearch KF5::KIOCore KF5::DBusAddons Qt5::Network KF5::KIOCore KF5::I18n)
-set_target_properties(kio_filenamesearch PROPERTIES OUTPUT_NAME "filenamesearch")
+set_target_properties(kio_filenamesearch PROPERTIES
+    OUTPUT_NAME "filenamesearch"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio"
+)
 
 ecm_qt_declare_logging_category(kio_filenamesearch
     HEADER kio_filenamesearch_debug.h
