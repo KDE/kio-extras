@@ -16,6 +16,7 @@ X-KDE-Library=smbwatcher
 Icon=preferences-system-network-share-windows
 
 Name=SMB Watcher
+Name[ar]=مراقب سامبا
 Name[ca]=Vigilant de SMB
 Name[ca@valencia]=Vigilant de SMB
 Name[cs]=Sledovač SMB
@@ -45,6 +46,7 @@ Name[uk]=Наглядач SMB
 Name[x-test]=xxSMB Watcherxx
 Name[zh_CN]=SMB 监视程序
 Comment=Monitors directories on the smb:/ protocol for changes
+Comment[ar]=يراقب التّغييرات في ميفاق smb:/
 Comment[ca]=Controla els canvis als directoris en el protocol «smb:/»
 Comment[ca@valencia]=Controla els canvis als directoris en el protocol «smb:/»
 Comment[cs]=Monitoruje změny v adresáři protokolu smb:/
