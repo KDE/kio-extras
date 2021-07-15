@@ -67,7 +67,7 @@ void FileItemLinkingPluginActionLoader::run()
         }
 
     } else {
-        auto connectionName =
+        const QString connectionName =
             QStringLiteral("kactivities_db_resources_")
             + QString::number((quintptr) this);
 
