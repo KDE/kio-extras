@@ -1,5 +1,3 @@
-remove_definitions(-DQT_NO_CAST_FROM_ASCII)
-
 kcoreaddons_add_plugin(kio_filenamesearch INSTALL_NAMESPACE "kf5/kio")
 
 target_link_libraries(kio_filenamesearch KF5::KIOCore KF5::DBusAddons Qt5::Network KF5::KIOCore KF5::I18n)
