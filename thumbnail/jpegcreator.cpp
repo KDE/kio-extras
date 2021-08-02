@@ -8,7 +8,6 @@
 #include "jpegcreator.h"
 #include "jpegcreatorsettings5.h"
 
-#include <QCheckBox>
 #include <QImage>
 #include <QImageReader>
 #include <klocalizedstring.h>
@@ -41,21 +40,4 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
     imageReader.setAutoTransform(settings->rotate());
 
     return imageReader.read(&image);
-}
-
-QWidget *JpegCreator::createConfigurationWidget()
-{
-    QCheckBox *rotateCheckBox = new QCheckBox(i18nc("@option:check", "Rotate the image automatically"));
-    rotateCheckBox->setChecked(JpegCreatorSettings::rotate());
-    return rotateCheckBox;
-}
-
-void JpegCreator::writeConfiguration(const QWidget *configurationWidget)
-{
-    const QCheckBox *rotateCheckBox = qobject_cast<const QCheckBox*>(configurationWidget);
-    if (rotateCheckBox) {
-        JpegCreatorSettings* settings = JpegCreatorSettings::self();
-        settings->setRotate(rotateCheckBox->isChecked());
-        settings->save();
-    }
 }

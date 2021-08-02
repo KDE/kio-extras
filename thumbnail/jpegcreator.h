@@ -16,8 +16,6 @@ class JpegCreator : public ThumbCreator
 public:
     JpegCreator();
     bool create(const QString &path, int, int, QImage &img) override;
-    QWidget *createConfigurationWidget() override;
-    void writeConfiguration(const QWidget *configurationWidget) override;
 };
 
 #endif

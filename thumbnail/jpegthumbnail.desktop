@@ -75,5 +75,4 @@ X-KDE-ServiceTypes=ThumbCreator
 MimeType=image/jpeg;
 X-KDE-Library=jpegthumbnail
 CacheThumbnail=true
-Configurable=true
 ThumbnailerVersion=2
