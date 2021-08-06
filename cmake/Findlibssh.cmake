@@ -2,7 +2,7 @@
 # Once done this will define
 #
 #  LIBSSH_FOUND - system has libssh
-#  LIBSSH_INCLUDE_DIRS - the libssh include directory
+#  LIBSSH_INCLUDE_DIR - the libssh include directory
 #  LIBSSH_LIBRARIES - Link these to use libssh
 #  LIBSSH_DEFINITIONS - Compiler switches required for using libssh
 
@@ -105,5 +105,5 @@ find_package_handle_standard_args(libssh
 
 libssh_ensure_imported_target()
 
-# show the LIBSSH_INCLUDE_DIRS and LIBSSH_LIBRARIES variables only in the advanced view
+# show the LIBSSH_INCLUDE_DIR and LIBSSH_LIBRARIES variables only in the advanced view
 mark_as_advanced(LIBSSH_INCLUDE_DIR LIBSSH_LIBRARIES)

@@ -28,7 +28,6 @@ ecm_qt_declare_logging_category(kio_sftp
     EXPORT KIO_EXTRAS
 )
 
-target_include_directories(kio_sftp PRIVATE ${LIBSSH_INCLUDE_DIR})
 if(WIN32)
     target_include_directories(kio_sftp PRIVATE ${QT_MKSPECS_DIR}/default) # for SYMLINKS
 endif()
