@@ -20,8 +20,7 @@ class MANProtocol : public QObject, public KIO::SlaveBase
     Q_OBJECT
 
 public:
-
-    MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
+    explicit MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     ~MANProtocol() override;
 
     void get(const QUrl& url) override;
@@ -30,12 +29,6 @@ public:
     void mimetype(const QUrl &url) override;
     void listDir(const QUrl &url) override;
 
-    void outputError(const QString& errmsg);
-    void outputMatchingPages(const QStringList &matchingPages);
-
-    void showMainIndex();
-    void showIndex(const QString& section);
-
     // the following two functions are the interface to man2html
     void output(const char *insert);
     char *readManPage(const char *filename);
@@ -43,6 +36,12 @@ public:
     static MANProtocol *self();
 
 private:
+    void outputError(const QString& errmsg);
+    void outputMatchingPages(const QStringList &matchingPages);
+
+    void showMainIndex();
+    void showIndex(const QString& section);
+
     void checkManPaths();
     QStringList manDirectories();
     QMap<QString, QString> buildIndexMap(const QString& section);

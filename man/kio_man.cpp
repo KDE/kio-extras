@@ -446,17 +446,17 @@ void MANProtocol::get(const QUrl &url)
 {
     qCDebug(KIO_MAN_LOG) << "GET " << url.url();
 
-    QString title, section;
+    // Indicate the mimetype - this will apply to both
+    // formatted man pages and error pages.
+    mimeType("text/html");
 
+    QString title, section;
     if (!parseUrl(url.path(), title, section))
     {
         showMainIndex();
         finished();
         return;
     }
-
-    // tell the mimetype
-    mimeType("text/html");
 
     // see if an index was requested
     if (url.query().isEmpty() && (title.isEmpty() || title == "/" || title == "."))
@@ -483,8 +483,6 @@ void MANProtocol::get(const QUrl &url)
                            "for man pages, either using the <envar>MANPATH</envar> environment "
                            "variable or a configuration file in the <filename>/etc</filename> "
                            "directory.", title.toHtmlEscaped()));
-
-        error(KIO::ERR_SLAVE_DEFINED, QString());
         return;
     }
 
@@ -518,13 +516,8 @@ void MANProtocol::get(const QUrl &url)
     m_outputBuffer.open(QIODevice::WriteOnly);
     const QByteArray filename = QFile::encodeName(pageFound);
     const char *buf = readManPage(filename);
-    if (buf==nullptr)
-    {
-        outputError(xi18nc("@info", "The man page <filename>%1</filename> was found, "
-                           "but it could not be read or parsed.", title));
-        error(KIO::ERR_SLAVE_DEFINED, QString());
-        return;
-    }
+    if (buf==nullptr) return;
+
     // will call output_real
     scan_man_page(buf);
     delete [] buf;
@@ -534,14 +527,16 @@ void MANProtocol::get(const QUrl &url)
     m_outputBuffer.close();
     data(m_outputBuffer.buffer());
     m_outputBuffer.setData(QByteArray());
+
     // tell we are done
     data(QByteArray());
-
     finished();
 }
 
 //---------------------------------------------------------------------
 
+// If this function returns nullptr to indicate a problem,
+// then it must call outputError() first.
 char *MANProtocol::readManPage(const char *_filename)
 {
     QByteArray filename = _filename;
@@ -611,17 +606,21 @@ char *MANProtocol::readManPage(const char *_filename)
         KFilterDev fd(QFile::encodeName(filename));
 #endif
 
-        if ( !fd.open(QIODevice::ReadOnly))
+        if (!fd.open(QIODevice::ReadOnly)) {
+            outputError(xi18nc("@info", "The man page <filename%1</filename> could not be read.", QFile::decodeName(filename)));
             return nullptr;
+        }
 
         array = fd.readAll();
         qCDebug(KIO_MAN_LOG) << "read " << array.size();
     }
 
-    if (array.isEmpty())
+    if (array.isEmpty()) {
+        outputError(xi18nc("@info", "The man page <filename%1</filename> could not be converted.", QFile::decodeName(filename)));
         return nullptr;
+    }
 
-    return manPageToUtf8(array, dirName);
+    return manPageToUtf8(array, dirName);		// never returns nullptr
 }
 
 //---------------------------------------------------------------------
@@ -645,6 +644,9 @@ void MANProtocol::outputHeader(QTextStream &os, const QString &header, const QSt
 }
 
 
+// This calls SlaveBase::finished(), so do not call any other
+// SlaveBase functions afterwards.  It is assumed that mimeType()
+// has already been called at the start of get().
 void MANProtocol::outputError(const QString& errmsg)
 {
     QByteArray array;
@@ -657,8 +659,8 @@ void MANProtocol::outputError(const QString& errmsg)
 
     os.flush();
     data(array);
+    finished();
 }
-
 
 
 void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
@@ -1416,8 +1418,7 @@ void MANProtocol::getProgramPath()
     outputError(xi18nc("@info", "Could not find the <command>sgml2roff</command> program on your system. "
                        "Please install it if necessary, and ensure that it can be found using "
                        "the environment variable <envar>PATH</envar>."));
-    error(KIO::ERR_SLAVE_DEFINED, QString());
-    exit();
+    return;
 }
 
 #include "kio_man.moc"
