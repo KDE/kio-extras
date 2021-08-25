@@ -66,7 +66,7 @@ private:
     QStringList section_names;
 
     QString mySgml2RoffPath;
-    void getProgramPath();
+    bool getProgramPath();
 
     QBuffer m_outputBuffer; ///< Buffer for the output
     QByteArray m_manCSSFile; ///< Path to kio_man.css

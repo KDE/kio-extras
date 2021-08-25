@@ -46,7 +46,9 @@ class KIOPluginForMetaData : public QObject
 
 MANProtocol *MANProtocol::_self = nullptr;
 
-#define SGML2ROFF_DIRS "/usr/lib/sgml"
+static const char *SGML2ROFF_DIRS = "/usr/lib/sgml";
+static const char *SGML2ROFF_EXECUTABLE = "sgml2roff";
+
 
 /*
  * Drop trailing ".section[.gz]" from name
@@ -552,7 +554,7 @@ char *MANProtocol::readManPage(const char *_filename)
     {
         QProcess proc;
         // Determine path to sgml2roff, if not already done.
-        getProgramPath();
+        if (!getProgramPath()) return nullptr;
         proc.setProgram(mySgml2RoffPath);
         proc.setArguments(QStringList() << filename);
         proc.setProcessChannelMode( QProcess::ForwardedErrorChannel );
@@ -1400,25 +1402,25 @@ void MANProtocol::listDir(const QUrl &url)
     finished();
 }
 
-void MANProtocol::getProgramPath()
+bool MANProtocol::getProgramPath()
 {
     if (!mySgml2RoffPath.isEmpty())
-        return;
+        return true;
 
-    mySgml2RoffPath = QStandardPaths::findExecutable("sgml2roff");
+    mySgml2RoffPath = QStandardPaths::findExecutable(SGML2ROFF_EXECUTABLE);
     if (!mySgml2RoffPath.isEmpty())
-        return;
+        return true;
 
     /* sgml2roff isn't found in PATH. Check some possible locations where it may be found. */
-    mySgml2RoffPath = QStandardPaths::findExecutable("sgml2roff", QStringList(QLatin1String(SGML2ROFF_DIRS)));
+    mySgml2RoffPath = QStandardPaths::findExecutable(SGML2ROFF_EXECUTABLE, QStringList(QLatin1String(SGML2ROFF_DIRS)));
     if (!mySgml2RoffPath.isEmpty())
-        return;
+        return true;
 
     /* Cannot find sgml2roff program: */
-    outputError(xi18nc("@info", "Could not find the <command>sgml2roff</command> program on your system. "
+    outputError(xi18nc("@info", "Could not find the <command>%1</command> program on your system. "
                        "Please install it if necessary, and ensure that it can be found using "
-                       "the environment variable <envar>PATH</envar>."));
-    return;
+                       "the environment variable <envar>PATH</envar>.", SGML2ROFF_EXECUTABLE));
+    return false;
 }
 
 #include "kio_man.moc"
