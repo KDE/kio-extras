@@ -35,12 +35,13 @@ public:
 
     static MANProtocol *self();
 
+    void showIndex(const QString& section);
+
 private:
     void outputError(const QString& errmsg);
     void outputMatchingPages(const QStringList &matchingPages);
 
     void showMainIndex();
-    void showIndex(const QString& section);
 
     void checkManPaths();
     QStringList manDirectories();
