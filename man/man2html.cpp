@@ -4600,7 +4600,7 @@ static char *scan_request(char *c)
                     out_html("<img src=\"help:/kdoctools5-common/top-kde.jpg\" alt=\"top-kde\"> ");
                     if ( args.count() )
                         scan_troff(args[0].data(), 0, nullptr);
-                    out_html(" - KDE Man Page Viewer");
+                    out_html(" Manual Page");
                     out_html("</div></div></div></div>\n");
 
                     out_html("<div style=\"margin-left: 5em; margin-right: 5em;\">\n");
