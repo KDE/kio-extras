@@ -17,7 +17,6 @@
 #include <QDir>
 #include <QFile>
 #include <QTextStream>
-#include <QTextDocument>
 #include <QMap>
 #include <QRegularExpression>
 #include <QStandardPaths>
@@ -27,13 +26,13 @@
 #include <KLocalizedString>
 
 #include "man2html.h"
-#include <assert.h>
 #include <karchive_version.h>
 #if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
 #include <KCompressionDevice>
 #else
 #include <KFilterDev>
 #endif
+
 
 using namespace KIO;
 
@@ -44,7 +43,7 @@ class KIOPluginForMetaData : public QObject
     Q_PLUGIN_METADATA(IID "org.kde.kio.slave.man" FILE "man.json")
 };
 
-MANProtocol *MANProtocol::_self = nullptr;
+MANProtocol *MANProtocol::s_self = nullptr;
 
 static const char *SGML2ROFF_DIRS = "/usr/lib/sgml";
 static const char *SGML2ROFF_EXECUTABLE = "sgml2roff";
@@ -54,7 +53,7 @@ static const char *SGML2ROFF_EXECUTABLE = "sgml2roff";
  * Drop trailing ".section[.gz]" from name
  */
 static
-void stripExtension( QString *name )
+void stripExtension(QString *name)
 {
     int pos = name->length();
 
@@ -79,27 +78,24 @@ void stripExtension( QString *name )
 }
 
 static
-bool parseUrl(const QString& _url, QString &title, QString &section)
+bool parseUrl(const QString &_url, QString &title, QString &section)
 {
     section.clear();
 
-    QString url = _url;
-    url = url.trimmed();
-    if (url.isEmpty() || url.at(0) == '/') {
+    QString url = _url.trimmed();
+    if (url.isEmpty() || url.startsWith('/')) {
         if (url.isEmpty() || QFile::exists(url)) {
             // man:/usr/share/man/man1/ls.1.gz is a valid file
             title = url;
             return true;
-        } else
-        {
-            // If the directory does not exist, then it is perhaps a normal man page
+        } else {
+            // If a full path is specified but does not exist,
+            // then it is perhaps a normal man page.
             qCDebug(KIO_MAN_LOG) << url << " does not exist";
         }
     }
 
-    while (!url.isEmpty() && url.at(0) == '/')
-        url.remove(0,1);
-
+    while (url.startsWith('/')) url.remove(0, 1);
     title = url;
 
     int pos = url.indexOf('(');
@@ -107,7 +103,6 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
         return true; // man:ls -> title=ls
 
     title = title.left(pos);
-
     section = url.mid(pos+1);
 
     pos = section.indexOf(')');
@@ -127,24 +122,26 @@ bool parseUrl(const QString& _url, QString &title, QString &section)
 MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
     : QObject(), SlaveBase("man", pool_socket, app_socket)
 {
-    assert(!_self);
-    _self = this;
-    section_names << "0" << "0p" << "1" << "1p" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
+    Q_ASSERT(s_self==nullptr);
+    s_self = this;
+
+    m_sectionNames << "0" << "0p" << "1" << "1p" << "2" << "3" << "3n" << "3p" << "4" << "5" << "6" << "7"
                   << "8" << "9" << "l" << "n";
 
-    QString cssPath(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css" ));
-    QUrl cssUrl(QUrl::fromLocalFile(cssPath));
-    m_manCSSFile = cssUrl.url().toUtf8();
+    const QString cssPath(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css"));
+    m_manCSSFile = QFile::encodeName(QUrl::fromLocalFile(cssPath).url());
 }
 
-MANProtocol *MANProtocol::self() {
-    return _self;
+MANProtocol *MANProtocol::self()
+{
+    return s_self;
 }
 
 MANProtocol::~MANProtocol()
 {
-    _self = nullptr;
+    s_self = nullptr;
 }
+
 
 void MANProtocol::parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const QString &mark )
 {
@@ -174,8 +171,8 @@ void MANProtocol::parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const 
 bool MANProtocol::addWhatIs(QMap<QString, QString> &i, const QString &name, const QString &mark)
 {
     QFile f(name);
-    if (!f.open(QIODevice::ReadOnly))
-        return false;
+    if (!f.open(QIODevice::ReadOnly)) return false;
+
     QTextStream t(&f);
     parseWhatIs( i, t, mark );
     return true;
@@ -183,6 +180,8 @@ bool MANProtocol::addWhatIs(QMap<QString, QString> &i, const QString &name, cons
 
 QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
 {
+    qCDebug(KIO_MAN_LOG) << "for section" << section;
+
     QMap<QString, QString> i;
     QStringList man_dirs = manDirectories();
     // Supplementary places for whatis databases
@@ -194,33 +193,44 @@ QMap<QString, QString> MANProtocol::buildIndexMap(const QString &section)
 
     QStringList names;
     names << "whatis.db" << "whatis";
-    QString mark = "\\s+\\(" + section + "[a-z]*\\)\\s+-\\s+";
+    const QString mark = "\\s+\\(" + section + "[a-z]*\\)\\s+-\\s+";
 
-    for ( QStringList::ConstIterator it_dir = man_dirs.constBegin();
-            it_dir != man_dirs.constEnd();
-            ++it_dir )
+    int count0;
+    for (const QString &it_dir : qAsConst(man_dirs))
     {
-        if ( QFile::exists( *it_dir ) ) {
-            QStringList::ConstIterator it_name;
-            for ( it_name = names.constBegin();
-                    it_name != names.constEnd();
-                    it_name++ )
+        if (!QFile::exists(it_dir)) continue;
+
+        bool added = false;
+        for (const QString &it_name : qAsConst(names))
+        {
+            count0 = i.count();
+            if (addWhatIs(i, (it_dir+'/'+it_name), mark))
             {
-                if (addWhatIs(i, (*it_dir) + '/' + (*it_name), mark))
-                    break;
-            }
-            if ( it_name == names.constEnd() ) {
-                QProcess proc;
-                proc.setProgram("whatis");
-                proc.setArguments(QStringList() << "-M" << (*it_dir) << "-w" << "*");
-                proc.setProcessChannelMode( QProcess::ForwardedErrorChannel );
-                proc.start();
-                proc.waitForFinished();
-                QTextStream t( proc.readAllStandardOutput(), QIODevice::ReadOnly );
-                parseWhatIs( i, t, mark );
+                qCDebug(KIO_MAN_LOG) << "added" << (i.count()-count0) << "from" << it_name << "in" << it_dir;
+                added = true;
+                break;
             }
         }
+
+        if (!added)
+        {
+            // Nothing was able to be added by scanning the directory,
+            // so try parsing the output of the whatis(1) command.
+            QProcess proc;
+            proc.setProgram("whatis");
+            proc.setArguments(QStringList() << "-M" << it_dir << "-w" << "*");
+            proc.setProcessChannelMode( QProcess::ForwardedErrorChannel );
+            proc.start();
+            proc.waitForFinished();
+            QTextStream t( proc.readAllStandardOutput(), QIODevice::ReadOnly );
+
+            count0 = i.count();
+            parseWhatIs( i, t, mark );
+            qCDebug(KIO_MAN_LOG) << "added" << (i.count()-count0) << "from whatis in" << it_dir;
+        }
     }
+
+    qCDebug(KIO_MAN_LOG) << "returning" << i.count() << "index entries";
     return i;
 }
 
@@ -233,37 +243,35 @@ QStringList MANProtocol::manDirectories()
     // Build a list of man directories including translations
     //
     QStringList man_dirs;
+    const QList<QLocale> locales = QLocale::matchingLocales(QLocale::AnyLanguage, QLocale::AnyScript, QLocale::AnyCountry);
 
-    for ( QStringList::ConstIterator it_dir = m_manpath.constBegin();
-            it_dir != m_manpath.constEnd();
-            it_dir++ )
+    for (const QString &it_dir : qAsConst(m_manpath))
     {
         // Translated pages in "<mandir>/<lang>" if the directory
         // exists
-        QList<QLocale> locales = QLocale::matchingLocales(QLocale::AnyLanguage, QLocale::AnyScript, QLocale::AnyCountry);
-        for (QList<QLocale>::ConstIterator it_loc = locales.constBegin();
-                it_loc != locales.constEnd();
-                it_loc++ )
+        for (const QLocale &it_loc : locales)
         {
-            QString lang = QLocale::languageToString((*it_loc).language());
-            if ( !lang.isEmpty() && lang!=QString("C") ) {
-                QString dir = (*it_dir) + '/' + lang;
-
-                struct stat sbuf;
-
-                if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0
-                        && S_ISDIR( sbuf.st_mode ) )
+            // TODO: languageToString() is wrong, that returns the readable name
+            // of the language.  We want the country code returned by name().
+            QString lang = QLocale::languageToString(it_loc.language());
+            if ( !lang.isEmpty() && lang!=QString("C") )
+            {
+                QString dir = it_dir+'/'+lang;
+                QDir d(dir);
+                if (d.exists())
                 {
-                    const QString p = QDir(dir).canonicalPath();
+                    const QString p = d.canonicalPath();
                     if (!man_dirs.contains(p)) man_dirs += p;
                 }
             }
         }
 
         // Untranslated pages in "<mandir>"
-        const QString p = QDir(*it_dir).canonicalPath();
+        const QString p = QDir(it_dir).canonicalPath();
         if (!man_dirs.contains(p)) man_dirs += p;
     }
+
+    qCDebug(KIO_MAN_LOG) << "returning" << man_dirs.count() << "man directories";
     return man_dirs;
 }
 
@@ -274,23 +282,20 @@ QStringList MANProtocol::findPages(const QString &_section,
     QString section = _section;
 
     QStringList list;
-
     // qCDebug(KIO_MAN_LOG) << "findPages '" << section << "' '" << title << "'\n";
-    if ( (!title.isEmpty()) && (title.at(0) == '/') ) {
+    if (title.startsWith('/') ) {
         list.append(title);
         return list;
     }
 
-    const QString star( "*" );
+    const QString star("*");
+    if (section.isEmpty()) section = star;
 
     //
     // Find man sections in this directory
     //
     QStringList sect_list;
-    if ( section.isEmpty() )
-        section = star;
-
-    if ( section != star )
+    if (section != star)
     {
         //
         // Section given as argument
@@ -380,6 +385,8 @@ void MANProtocol::findManPagesInSection(const QString &dir, const QString &title
     qCDebug(KIO_MAN_LOG) << dir << title;
     bool title_given = !title.isEmpty();
 
+    /////////// TODO: opendir etc -> QDir
+
     DIR *dp = ::opendir( QFile::encodeName( dir ) );
 
     if ( !dp )
@@ -415,6 +422,8 @@ void MANProtocol::findManPagesInSection(const QString &dir, const QString &title
     ::closedir( dp );
 }
 
+//---------------------------------------------------------------------
+
 void MANProtocol::output(const char *insert)
 {
     if (insert)
@@ -444,6 +453,8 @@ extern void output_real(const char *insert)
 }
 #endif
 
+//---------------------------------------------------------------------
+
 void MANProtocol::get(const QUrl &url)
 {
     qCDebug(KIO_MAN_LOG) << "GET " << url.url();
@@ -472,8 +483,6 @@ void MANProtocol::get(const QUrl &url)
     }
 
     QStringList foundPages = findPages(section, title);
-    QString pageFound;
-
     if (foundPages.isEmpty())
     {
         outputError(xi18nc("@info", "No man page matching <resource>%1</resource> could be found."
@@ -491,7 +500,7 @@ void MANProtocol::get(const QUrl &url)
     // Sort the list of pages now, for display if required and for
     // testing for equivalents below.
     std::sort(foundPages.begin(), foundPages.end());
-    pageFound = foundPages.first();
+    const QString pageFound = foundPages.first();
 
     if (foundPages.count()>1)
     {
@@ -544,13 +553,17 @@ char *MANProtocol::readManPage(const char *_filename)
     QByteArray filename = _filename;
     QByteArray array, dirName;
 
-    /* Determine type of man page file by checking its path. Determination by
-     * MIME type with KMimeType doesn't work reliably. E.g., Solaris 7:
-     * /usr/man/sman7fs/pcfs.7fs -> text/x-csrc : WRONG
-     * If the path name contains the string sman, assume that it's SGML and
-     * convert it to roff format (used on Solaris). */
+    // Determine the type of man page file by checking its path
+    // Determination by MIME type with KMimeType doesn't work reliably.
+    // E.g., Solaris 7: /usr/man/sman7fs/pcfs.7fs -> text/x-csrc - WRONG
+    //
+    // If the path name contains a component "sman", assume that it's SGML
+    // and convert it to roff format (used on Solaris).  Check for a pathname
+    // component of "sman" only - we don't want a man page called "gasman.1"
+    // to match.
     //QString file_mimetype = KMimeType::findByPath(QString(filename), 0, false)->name();
-    if (QString(filename).contains("sman", Qt::CaseInsensitive)) //file_mimetype == "text/html" || )
+
+    if (QString(filename).contains("/sman/", Qt::CaseInsensitive))
     {
         QProcess proc;
         // Determine path to sgml2roff, if not already done.
@@ -566,9 +579,9 @@ char *MANProtocol::readManPage(const char *_filename)
     {
         if (QDir::isRelativePath(filename))
         {
-            qCDebug(KIO_MAN_LOG) << "relative " << filename;
+            qCDebug(KIO_MAN_LOG) << "relative" << filename;
             filename = QDir::cleanPath(lastdir + '/' + filename).toUtf8();
-            qCDebug(KIO_MAN_LOG) << "resolved to " << filename;
+            qCDebug(KIO_MAN_LOG) << "resolved to" << filename;
         }
 
         lastdir = filename.left(filename.lastIndexOf('/'));
@@ -661,6 +674,7 @@ void MANProtocol::outputError(const QString& errmsg)
 
     os.flush();
     data(array);
+    data(QByteArray());
     finished();
 }
 
@@ -674,9 +688,9 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
     os << "<ul>\n";
 
     int acckey = 1;
-    for (QStringList::ConstIterator it = matchingPages.begin(); it != matchingPages.end(); ++it)
+    for (const QString &page : matchingPages)
     {
-        os << "<li><a href='man:" << (*it) << "' accesskey='" << acckey << "'>" << *it << "</a><br>\n<br>\n";
+        os << "<li><a href='man:" << page << "' accesskey='" << acckey << "'>" << page << "</a><br>\n<br>\n";
         ++acckey;
     }
 
@@ -751,6 +765,8 @@ void MANProtocol::mimetype(const QUrl & /*url*/)
     finished();
 }
 
+//---------------------------------------------------------------------
+
 static QString sectionName(const QString& section)
 {
     if      (section ==  "0") return i18n("Header files");
@@ -776,23 +792,22 @@ static QString sectionName(const QString& section)
 QStringList MANProtocol::buildSectionList(const QStringList& dirs) const
 {
     QStringList l;
-
-    for (QStringList::ConstIterator it = section_names.begin();
-            it != section_names.end(); ++it)
+    for (const QString &it_sect : qAsConst(m_sectionNames))
     {
-        for (QStringList::ConstIterator dir = dirs.begin();
-                dir != dirs.end(); ++dir)
+        for (const QString &it_dir : dirs)
         {
-            QDir d((*dir)+"/man"+(*it));
+            QDir d(it_dir+"/man"+it_sect);
             if (d.exists())
             {
-                l << *it;
+                l << it_sect;
                 break;
             }
         }
     }
     return l;
 }
+
+//---------------------------------------------------------------------
 
 void MANProtocol::showMainIndex()
 {
@@ -802,7 +817,8 @@ void MANProtocol::showMainIndex()
     outputHeader(os, i18n("Main Manual Page Index"));
 
     // ### TODO: why still the environment variable
-    const QString sectList = getenv("MANSECT");
+    // if keeping it, also use it in listDir()
+    const QString sectList = qgetenv("MANSECT");
     QStringList sections;
     if (sectList.isEmpty())
         sections = buildSectionList(manDirectories());
@@ -813,19 +829,18 @@ void MANProtocol::showMainIndex()
 
     QSet<QChar> accessKeys;
     char alternateAccessKey = 'a';
-    for (QStringList::ConstIterator it = sections.constBegin(); it != sections.constEnd(); ++it)
+    for (const QString &it_sect : qAsConst(sections))
     {
+        if (it_sect.isEmpty()) continue;		// guard back() below
+
         // create a unique access key
-        QChar accessKey = (*it).at((*it).length() - 1);  // rightmost char
-
-        while ( accessKeys.contains(accessKey) )
-            accessKey = alternateAccessKey++;
-
+        QChar accessKey = it_sect.back();		// rightmost char
+        while (accessKeys.contains(accessKey)) accessKey = alternateAccessKey++;
         accessKeys.insert(accessKey);
 
-        os << "<tr><td><a href=\"man:(" << *it << ")\" accesskey=\"" << accessKey
-           << "\">" << i18n("Section %1", *it)
-           << "</a></td><td>&nbsp;</td><td> " << sectionName(*it) << "</td></tr>\n";
+        os << "<tr><td><a href=\"man:(" << it_sect << ")\" accesskey=\"" << accessKey
+           << "\">" << i18n("Section %1", it_sect)
+           << "</a></td><td>&nbsp;</td><td> " << sectionName(it_sect) << "</td></tr>\n";
     }
 
     os << "</table>\n";
@@ -833,8 +848,11 @@ void MANProtocol::showMainIndex()
     os << "</html>\n";
     os.flush();
     data(array);
+    data(QByteArray());
     // Do not call finished(), the caller will do that
 }
+
+//---------------------------------------------------------------------
 
 void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_catmanpath)
 {
@@ -937,11 +955,9 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
         const QStringList path =
             QString::fromLocal8Bit( ::getenv("PATH") ).split( ':', Qt::SkipEmptyParts );
 
-        for ( QStringList::const_iterator it = path.constBegin();
-                it != path.constEnd();
-                ++it )
+        for (const QString &it : qAsConst(path))
         {
-            const QString dir = QDir::cleanPath( *it );
+            const QString dir = QDir::cleanPath(it);
             QString mandir = manpath_map[ dir ];
 
             if ( !mandir.isEmpty() ) {
@@ -990,8 +1006,7 @@ void MANProtocol::checkManPaths()
 
     inited = true;
 
-    const QString manpath_env = QString::fromLocal8Bit( ::getenv("MANPATH") );
-    //QString mansect_env = QString::fromLocal8Bit( ::getenv("MANSECT") );
+    const QString manpath_env = qgetenv("MANPATH");
 
     // Decide if $MANPATH is enough on its own or if it should be merged
     // with the constructed path.
@@ -1001,9 +1016,9 @@ void MANProtocol::checkManPaths()
     bool construct_path = false;
 
     if ( manpath_env.isEmpty()
-            || manpath_env[0] == ':'
-            || manpath_env[manpath_env.length()-1] == ':'
-            || manpath_env.contains( "::" ) )
+         || manpath_env.startsWith(':')
+         || manpath_env.endsWith(':')
+         || manpath_env.contains("::"))
     {
         construct_path = true; // need to read config file
     }
@@ -1020,7 +1035,7 @@ void MANProtocol::checkManPaths()
         constructPath(constr_path, constr_catmanpath);
     }
 
-    m_mandbpath=constr_catmanpath;
+    m_mandbpath = constr_catmanpath;
 
     // Merge $MANPATH with the constructed path to form the
     // actual manpath.
@@ -1030,14 +1045,10 @@ void MANProtocol::checkManPaths()
     // should be 1 or 0) is replaced by the constructed path.
 
     const QStringList path_list_env = manpath_env.split( ':', Qt::KeepEmptyParts);
-
-    for ( QStringList::const_iterator it = path_list_env.constBegin();
-            it != path_list_env.constEnd();
-            ++it )
+    for (const QString &dir : path_list_env)
     {
+        // TODO: use QDir/QFile
         struct stat sbuf;
-
-        QString dir = (*it);
 
         if ( !dir.isEmpty() ) {
             // Add dir to the man path if it exists
@@ -1049,22 +1060,18 @@ void MANProtocol::checkManPaths()
                 }
             }
         }
-        else {
+        else
+        {
             // Insert constructed path ($MANPATH was empty, or
             // there was a ":" at an end or "::")
-
-            for ( QStringList::const_iterator it2 = constr_path.constBegin();
-                    it2 != constr_path.constEnd();
-                    it2++ )
+            for (const QString &dir2 : qAsConst(constr_path))
             {
-                dir = (*it2);
-
-                if ( !dir.isEmpty() ) {
-                    if ( m_manpath.indexOf( dir ) == -1 ) {
-                        if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0
+                if (!dir2.isEmpty()) {
+                    if (!m_manpath.contains(dir2)) {
+                        if ( ::stat( QFile::encodeName( dir2 ), &sbuf ) == 0
                                 && S_ISDIR( sbuf.st_mode ) )
                         {
-                            m_manpath += dir;
+                            m_manpath += dir2;
                         }
                     }
                 }
@@ -1178,7 +1185,7 @@ void MANProtocol::showIndex(const QString& section)
     listlen = 0;
 
     QStringList::const_iterator page;
-    for (page = pages.constBegin(); page != pages.constEnd(); ++page)
+    for (const QString &page : qAsConst(pages))
     {
         // I look for the beginning of the man page name
         // i.e. "bla/pagename.3.gz" by looking for the last "/"
@@ -1187,27 +1194,26 @@ void MANProtocol::showIndex(const QString& section)
         // If the len of the name is >0,
         // store it in the list structure, to be sorted later
 
-        char *manpage_end;
         struct man_index_t *manindex = new man_index_t;
-        manindex->manpath = strdup((*page).toUtf8());
+        manindex->manpath = strdup(page.toUtf8());
 
         manindex->manpage_begin = strrchr(manindex->manpath, '/');
         if (manindex->manpage_begin)
         {
             manindex->manpage_begin++;
-            assert(manindex->manpage_begin >= manindex->manpath);
+            Q_ASSERT(manindex->manpage_begin >= manindex->manpath);
         }
         else
         {
             manindex->manpage_begin = manindex->manpath;
-            assert(manindex->manpage_begin >= manindex->manpath);
+            Q_ASSERT(manindex->manpage_begin >= manindex->manpath);
         }
 
         // Skip extension ".section[.gz]"
 
-        char *begin = (char*)(manindex->manpage_begin);
-        int len = strlen( begin );
-        char *end = begin+(len-1);
+        const char *begin = manindex->manpage_begin;
+        const int len = strlen( begin );
+        const char *end = begin+(len-1);
 
         if ( len >= 3 && strcmp( end-2, ".gz" ) == 0 )
             end -= 3;
@@ -1225,26 +1231,22 @@ void MANProtocol::showIndex(const QString& section)
         while ( end >= begin && *end != '.' )
             end--;
 
-        if ( end < begin )
-            manpage_end = nullptr;
-        else
-            manpage_end = end;
-
-        if (nullptr == manpage_end)
+        if (end <begin)
         {
             // no '.' ending ???
             // set the pointer past the end of the filename
-            manindex->manpage_len = (*page).length();
+            manindex->manpage_len = page.length();
             manindex->manpage_len -= (manindex->manpage_begin - manindex->manpath);
-            assert(manindex->manpage_len >= 0);
+            Q_ASSERT(manindex->manpage_len >= 0);
         }
         else
         {
+            const char *manpage_end = end;
             manindex->manpage_len = (manpage_end - manindex->manpage_begin);
-            assert(manindex->manpage_len >= 0);
+            Q_ASSERT(manindex->manpage_len >= 0);
         }
 
-        if (0 < manindex->manpage_len)
+        if (manindex->manpage_len>0)
         {
             indexlist[listlen] = manindex;
             listlen++;
@@ -1366,10 +1368,11 @@ void MANProtocol::listDir(const QUrl &url)
         return;
     }
 
+    // TODO: eliminate list with listEntry, SlaveBase accumulates
     UDSEntryList uds_entry_list;
 
     if (section.isEmpty()) {
-        for (QStringList::ConstIterator it = section_names.constBegin(); it != section_names.constEnd(); ++it) {
+        for (QStringList::ConstIterator it = m_sectionNames.constBegin(); it != m_sectionNames.constEnd(); ++it) {
             UDSEntry     uds_entry;
             uds_entry.reserve(3);
 
@@ -1401,6 +1404,7 @@ void MANProtocol::listDir(const QUrl &url)
     listEntries( uds_entry_list );
     finished();
 }
+
 
 bool MANProtocol::getProgramPath()
 {

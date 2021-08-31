@@ -7,10 +7,7 @@
 #ifndef __kio_man_h__
 #define __kio_man_h__
 
-
-
 #include <QBuffer>
-#include <QTextStream>
 
 #include <kio/global.h>
 #include <kio/slavebase.h>
@@ -54,20 +51,21 @@ private:
 
     QStringList buildSectionList(const QStringList& dirs) const;
     void constructPath(QStringList& constr_path, QStringList constr_catmanpath);
+    void findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list);
 
     void outputHeader(QTextStream &os, const QString &header, const QString &title = QString());
 
+    bool getProgramPath();
+
 private:
-    static MANProtocol *_self;
+    static MANProtocol *s_self;
     QByteArray lastdir;
 
-    void findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list);
     QStringList m_manpath; ///< Path of man directories
     QStringList m_mandbpath; ///< Path of catman directories
-    QStringList section_names;
+    QStringList m_sectionNames;
 
     QString mySgml2RoffPath;
-    bool getProgramPath();
 
     QBuffer m_outputBuffer; ///< Buffer for the output
     QByteArray m_manCSSFile; ///< Path to kio_man.css
