@@ -609,7 +609,7 @@ char *MANProtocol::readManPage(const char *_filename)
 #endif
 
         if (!fd.open(QIODevice::ReadOnly)) {
-            outputError(xi18nc("@info", "The man page <filename%1</filename> could not be read.", QFile::decodeName(filename)));
+            outputError(xi18nc("@info", "The man page <filename>%1</filename> could not be read.", QFile::decodeName(filename)));
             return nullptr;
         }
 
@@ -618,7 +618,7 @@ char *MANProtocol::readManPage(const char *_filename)
     }
 
     if (array.isEmpty()) {
-        outputError(xi18nc("@info", "The man page <filename%1</filename> could not be converted.", QFile::decodeName(filename)));
+        outputError(xi18nc("@info", "The man page <filename>%1</filename> could not be converted.", QFile::decodeName(filename)));
         return nullptr;
     }
 
