@@ -51,7 +51,7 @@ private:
 
     QStringList buildSectionList(const QStringList& dirs) const;
     void constructPath(QStringList& constr_path, QStringList constr_catmanpath);
-    void findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list);
+    QStringList findManPagesInSection(const QString &dir, const QString &title, bool full_path);
 
     void outputHeader(QTextStream &os, const QString &header, const QString &title = QString());
 

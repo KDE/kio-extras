@@ -6,10 +6,8 @@
 
 #include "kio_man.h"
 #include "kio_man_debug.h"
-#include <stdio.h>
+
 #include <stdlib.h>
-#include <sys/stat.h>
-#include <string.h>
 #include <dirent.h>
 
 #include <QByteArray>
@@ -53,28 +51,19 @@ static const char *SGML2ROFF_EXECUTABLE = "sgml2roff";
  * Drop trailing ".section[.gz]" from name
  */
 static
-void stripExtension(QString *name)
+QString stripExtension(const QString &name)
 {
-    int pos = name->length();
+    int pos = name.length();
 
-    if ( name->indexOf(".gz", -3) != -1 )
-        pos -= 3;
-    else if ( name->indexOf(".z", -2, Qt::CaseInsensitive) != -1 )
-        pos -= 2;
-    else if ( name->indexOf(".bz2", -4) != -1 )
-        pos -= 4;
-    else if ( name->indexOf(".bz", -3) != -1 )
-        pos -= 3;
-    else if ( name->indexOf(".lzma", -5) != -1 )
-        pos -= 5;
-    else if ( name->indexOf(".xz", -3) != -1 )
-        pos -= 3;
+    if (name.endsWith(".gz")) pos -= 3;
+    else if (name.endsWith(".z", Qt::CaseInsensitive)) pos -= 2;
+    else if (name.endsWith(".bz2")) pos -= 4;
+    else if (name.endsWith(".bz")) pos -= 3;
+    else if (name.endsWith(".lzma")) pos -= 5;
+    else if (name.endsWith(".xz")) pos -= 3;
 
-    if ( pos > 0 )
-        pos = name->lastIndexOf('.', pos-1);
-
-    if ( pos > 0 )
-        name->truncate( pos );
+    if (pos>0) pos = name.lastIndexOf('.', pos-1);
+    return (pos>0 ? name.left(pos) : name);
 }
 
 static
@@ -368,8 +357,8 @@ QStringList MANProtocol::findPages(const QString &_section,
                 const QString sdir = man_dir + QString("/sman") + (it_real) + '/';
 
                 //qCDebug(KIO_MAN_LOG)<<"calling findManPagesInSection";
-                findManPagesInSection(dir, title, full_path, list);
-                findManPagesInSection(sdir, title, full_path, list);
+                list.append(findManPagesInSection(dir, title, full_path));
+                list.append(findManPagesInSection(sdir, title, full_path));
             }
             //qCDebug(KIO_MAN_LOG)<<"After if";
         }
@@ -380,8 +369,10 @@ QStringList MANProtocol::findPages(const QString &_section,
     return list;
 }
 
-void MANProtocol::findManPagesInSection(const QString &dir, const QString &title, bool full_path, QStringList &list)
+QStringList MANProtocol::findManPagesInSection(const QString &dir, const QString &title, bool full_path)
 {
+    QStringList list;
+
     qCDebug(KIO_MAN_LOG) << dir << title;
     bool title_given = !title.isEmpty();
 
@@ -390,7 +381,7 @@ void MANProtocol::findManPagesInSection(const QString &dir, const QString &title
     DIR *dp = ::opendir( QFile::encodeName( dir ) );
 
     if ( !dp )
-        return;
+        return QStringList();
 
     struct dirent *ep;
 
@@ -406,8 +397,7 @@ void MANProtocol::findManPagesInSection(const QString &dir, const QString &title
                 }
                 else {
                     // beginning matches, do a more thorough check...
-                    QString tmp_name = name;
-                    stripExtension( &tmp_name );
+                    QString tmp_name = stripExtension(name);
                     if ( tmp_name != title )
                         continue;
                 }
@@ -420,6 +410,7 @@ void MANProtocol::findManPagesInSection(const QString &dir, const QString &title
         }
     }
     ::closedir( dp );
+    return (list);
 }
 
 //---------------------------------------------------------------------
@@ -854,6 +845,7 @@ void MANProtocol::showMainIndex()
 
 //---------------------------------------------------------------------
 
+// TODO: constr_catmanpath modified here, should parameter be passed by reference?
 void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_catmanpath)
 {
     QMap<QString, QString> manpath_map;
@@ -1000,10 +992,7 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
 void MANProtocol::checkManPaths()
 {
     static bool inited = false;
-
-    if (inited)
-        return;
-
+    if (inited) return;
     inited = true;
 
     const QString manpath_env = qgetenv("MANPATH");
@@ -1013,15 +1002,10 @@ void MANProtocol::checkManPaths()
     // A $MANPATH starting or ending with ":", or containing "::",
     // should be merged with the constructed path.
 
-    bool construct_path = false;
-
-    if ( manpath_env.isEmpty()
-         || manpath_env.startsWith(':')
-         || manpath_env.endsWith(':')
-         || manpath_env.contains("::"))
-    {
-        construct_path = true; // need to read config file
-    }
+    const bool construct_path = (manpath_env.isEmpty() ||
+                                 manpath_env.startsWith(':') ||
+                                 manpath_env.endsWith(':') ||
+                                 manpath_env.contains("::"));
 
     // Constructed man path -- consists of paths from
     //   /etc/man.conf
@@ -1030,7 +1014,7 @@ void MANProtocol::checkManPaths()
     QStringList constr_path;
     QStringList constr_catmanpath; // catmanpath
 
-    if ( construct_path )
+    if (construct_path)					// need to read config file
     {
         constructPath(constr_path, constr_catmanpath);
     }
@@ -1044,37 +1028,24 @@ void MANProtocol::checkManPaths()
     // satisfied if any empty string in path_list_env (there
     // should be 1 or 0) is replaced by the constructed path.
 
-    const QStringList path_list_env = manpath_env.split( ':', Qt::KeepEmptyParts);
+    const QStringList path_list_env = manpath_env.split(':', Qt::KeepEmptyParts);
     for (const QString &dir : path_list_env)
     {
-        // TODO: use QDir/QFile
-        struct stat sbuf;
-
-        if ( !dir.isEmpty() ) {
-            // Add dir to the man path if it exists
-            if ( m_manpath.indexOf( dir ) == -1 ) {
-                if ( ::stat( QFile::encodeName( dir ), &sbuf ) == 0
-                        && S_ISDIR( sbuf.st_mode ) )
-                {
-                    m_manpath += dir;
-                }
-            }
+        if (!dir.isEmpty())				// non empty part - add if exists
+        {
+            if (m_manpath.contains(dir)) continue;	// ignore if already present
+            if (QDir(dir).exists()) m_manpath += dir;	// add to list if exists
         }
-        else
+        else						// empty part - merge constructed path
         {
             // Insert constructed path ($MANPATH was empty, or
-            // there was a ":" at an end or "::")
+            // there was a ":" at either end or "::" within)
             for (const QString &dir2 : qAsConst(constr_path))
             {
-                if (!dir2.isEmpty()) {
-                    if (!m_manpath.contains(dir2)) {
-                        if ( ::stat( QFile::encodeName( dir2 ), &sbuf ) == 0
-                                && S_ISDIR( sbuf.st_mode ) )
-                        {
-                            m_manpath += dir2;
-                        }
-                    }
-                }
+                if (dir2.isEmpty()) continue;		// don't add a null entry
+                if (m_manpath.contains(dir2)) continue;	// ignore if already present
+							// add to list if exists
+                if (QDir(dir2).exists()) m_manpath += dir2;
             }
         }
     }
@@ -1091,6 +1062,7 @@ void MANProtocol::checkManPaths()
                 m_mansect += QString( default_sect[i] );
     */
 
+    qCDebug(KIO_MAN_LOG) << "manpath" << m_manpath;
 }
 
 
@@ -1391,7 +1363,7 @@ void MANProtocol::listDir(const QUrl &url)
     QStringList::Iterator end = list.end();
 
     for ( ; it != end; ++it ) {
-        stripExtension( &(*it) );
+        const QString name = stripExtension(*it);
 
         UDSEntry     uds_entry;
         uds_entry.reserve(3);
