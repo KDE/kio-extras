@@ -7,9 +7,6 @@
 #include "kio_man.h"
 #include "kio_man_debug.h"
 
-#include <stdlib.h>
-#include <dirent.h>
-
 #include <QByteArray>
 #include <QCoreApplication>
 #include <QDir>
@@ -268,104 +265,95 @@ QStringList MANProtocol::findPages(const QString &_section,
                                    const QString &title,
                                    bool full_path)
 {
-    QString section = _section;
-
     QStringList list;
     // qCDebug(KIO_MAN_LOG) << "findPages '" << section << "' '" << title << "'\n";
-    if (title.startsWith('/') ) {
-        list.append(title);
+    if (title.startsWith('/'))				// absolute man page path
+    {
+        list.append(title);				// just that and nothing else
         return list;
     }
 
-    const QString star("*");
-    if (section.isEmpty()) section = star;
+    const QString star("*");				// flag for finding sections
+    const QString man("man");				// prefix for ROFF subdirectories
+    const QString sman("sman");				// prefix for SGML subdirectories
 
-    //
-    // Find man sections in this directory
-    //
+    // Generate a list of applicable sections
     QStringList sect_list;
-    if (section != star)
+    if (!_section.isEmpty())				// section requested as parameter
     {
-        //
-        // Section given as argument
-        //
-        sect_list += section;
+        sect_list += _section;
+
+        // It's not clear what this code does.  If a section with a letter
+        // suffix is specified, for example "3p", both "3p" and "3" are
+        // added to the section list.  The result is that "man:(3p)" returns
+        // the same entries as "man:(3)"
+        QString section = _section;
         while ( (!section.isEmpty()) && (section.at(section.length() - 1).isLetter()) ) {
             section.truncate(section.length() - 1);
             sect_list += section;
         }
-    } else {
-        sect_list += section;
+    }
+    else
+    {
+        sect_list += star;
     }
 
-    QStringList man_dirs = manDirectories();
+    const QStringList man_dirs = manDirectories();
+    QStringList nameFilters;
+    nameFilters += man+'*';
+    nameFilters += sman+'*';
 
+    // Find man pages in the sections specified above,
+    // or all sections.
     //
-    // Find man pages in the sections listed above
-    //
-    for ( int i=0; i<sect_list.count(); i++)
+    // Do not convert this loop to an iterator, or 'it_s' below
+    // to a reference.  The 'sect_list' list can be modified
+    // within the loop.
+    for (int i = 0; i<sect_list.count(); ++i)
     {
-        QString it_s=sect_list.at(i);
+        const QString it_s = sect_list.at(i);
         QString it_real = it_s.toLower();
-        //
-        // Find pages
-        //
-        //qCDebug(KIO_MAN_LOG)<<"Before inner loop";
-        for ( QStringList::const_iterator it_dir = man_dirs.constBegin();
-                it_dir != man_dirs.constEnd();
-                it_dir++ )
+
+        // Find applicable pages within all man directories.
+        for (const QString &man_dir : man_dirs)
         {
-            QString man_dir = (*it_dir);
-            //
-            // Sections = all sub directories "man*" and "sman*"
-            //
-            DIR *dp = ::opendir( QFile::encodeName( man_dir ) );
-
-            if ( !dp )
-                continue;
-
-            struct dirent *ep;
-
-            const QString man = QString("man");
-            const QString sman = QString("sman");
-
-            while ( (ep = ::readdir( dp )) != nullptr ) {
-
-                const QString file = QFile::decodeName( ep->d_name );
+            // Find all subdirectories named "man*" and "sman*"
+            // to extend the list of sections and find the correct
+            // case for the section suffix.
+            QDir dp(man_dir);
+            dp.setFilter(QDir::Dirs|QDir::NoDotAndDotDot);
+            dp.setNameFilters(nameFilters);
+            const QStringList entries = dp.entryList();
+            for (const QString &file : entries)
+            {
                 QString sect;
-
-                if ( file.startsWith( man ) )
-                    sect = file.mid(3);
-                else if (file.startsWith(sman))
-                    sect = file.mid(4);
+                if (file.startsWith(man)) sect = file.mid(man.length());
+                else if (file.startsWith(sman)) sect = file.mid(sman.length());
+                // Should never happen, because of the name filter above.
+                if (sect.isEmpty()) continue;
 
                 if (sect.toLower()==it_real) it_real = sect;
 
                 // Only add sect if not already contained, avoid duplicates
-                if (!sect_list.contains(sect) && _section.isEmpty())  {
+                if (!sect_list.contains(sect) && _section.isEmpty())
+                {
                     //qCDebug(KIO_MAN_LOG) << "another section " << sect;
                     sect_list += sect;
                 }
             }
 
-            //qCDebug(KIO_MAN_LOG) <<" after while loop";
-            ::closedir( dp );
-
-            if ( it_s != star ) { // in that case we only look around for sections
-                //qCDebug(KIO_MAN_LOG)<<"Within if ( it_s != star )";
-                const QString dir = man_dir + QString("/man") + (it_real) + '/';
-                const QString sdir = man_dir + QString("/sman") + (it_real) + '/';
-
-                //qCDebug(KIO_MAN_LOG)<<"calling findManPagesInSection";
+            if (it_s!=star)				// finding pages, not just sections
+            {
+                const QString dir = man_dir + '/' + man + it_real + '/';
                 list.append(findManPagesInSection(dir, title, full_path));
+
+                const QString sdir = man_dir + '/' + sman + it_real + '/';
                 list.append(findManPagesInSection(sdir, title, full_path));
             }
-            //qCDebug(KIO_MAN_LOG)<<"After if";
         }
     }
 
     //qCDebug(KIO_MAN_LOG) << "finished " << list << " " << sect_list;
-
     return list;
 }
 
@@ -373,43 +361,27 @@ QStringList MANProtocol::findManPagesInSection(const QString &dir, const QString
 {
     QStringList list;
 
-    qCDebug(KIO_MAN_LOG) << dir << title;
-    bool title_given = !title.isEmpty();
+    qCDebug(KIO_MAN_LOG) << "in" << dir << "title" << title;
+    const bool title_given = !title.isEmpty();
 
-    /////////// TODO: opendir etc -> QDir
-
-    DIR *dp = ::opendir( QFile::encodeName( dir ) );
-
-    if ( !dp )
-        return QStringList();
-
-    struct dirent *ep;
-
-    while ( (ep = ::readdir( dp )) != nullptr ) {
-        if ( ep->d_name[0] != '.' ) {
-
-            QString name = QFile::decodeName( ep->d_name );
-
+    QDir dp(dir);
+    dp.setFilter(QDir::Files);
+    const QStringList names = dp.entryList();
+    for (const QString &name : names)
+    {
+        if (title_given)
+        {
             // check title if we're looking for a specific page
-            if ( title_given ) {
-                if ( !name.startsWith( title ) ) {
-                    continue;
-                }
-                else {
-                    // beginning matches, do a more thorough check...
-                    QString tmp_name = stripExtension(name);
-                    if ( tmp_name != title )
-                        continue;
-                }
-            }
-
-            if ( full_path )
-                name.prepend( dir );
-
-            list += name ;
+            if (!name.startsWith(title)) continue;
+            // beginning matches, do a more thorough check...
+            const QString tmp_name = stripExtension(name);
+            if (tmp_name!=title) continue;
         }
+
+        list.append(full_path ? dir+name : name);
     }
-    ::closedir( dp );
+
+    qCDebug(KIO_MAN_LOG) << "returning" << list.count() << "pages";
     return (list);
 }
 
@@ -766,6 +738,7 @@ static QString sectionName(const QString& section)
     else if (section == "1p") return i18n("User Commands (POSIX)");
     else if (section ==  "2") return i18n("System Calls");
     else if (section ==  "3") return i18n("Subroutines");
+    // TODO: current usage of '3p' seems to be "Subroutines (POSIX)"
     else if (section == "3p") return i18n("Perl Modules");
     else if (section == "3n") return i18n("Network Functions");
     else if (section ==  "4") return i18n("Devices");
@@ -775,6 +748,7 @@ static QString sectionName(const QString& section)
     else if (section ==  "8") return i18n("System Administration");
     else if (section ==  "9") return i18n("Kernel");
     else if (section ==  "l") return i18n("Local Documentation");
+    // TODO: current usage of 'n' seems to be TCL commands
     else if (section ==  "n") return i18n("New");
 
     return QString();
