@@ -247,6 +247,7 @@ void ThumbnailProtocol::get(const QUrl &url)
 
         ThumbCreatorWithMetadata* creator = getThumbCreator(plugin);
         if (!creator) {
+            error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
             return;
         }
 
