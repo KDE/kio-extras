@@ -45,10 +45,9 @@ static const char *SGML2ROFF_EXECUTABLE = "sgml2roff";
 
 
 /*
- * Drop trailing ".section[.gz]" from name
+ * Drop trailing compression suffix from name
  */
-static
-QString stripExtension(const QString &name)
+static QString stripCompression(const QString &name)
 {
     int pos = name.length();
 
@@ -59,12 +58,20 @@ QString stripExtension(const QString &name)
     else if (name.endsWith(".lzma")) pos -= 5;
     else if (name.endsWith(".xz")) pos -= 3;
 
-    if (pos>0) pos = name.lastIndexOf('.', pos-1);
     return (pos>0 ? name.left(pos) : name);
 }
 
-static
-bool parseUrl(const QString &_url, QString &title, QString &section)
+/*
+ * Drop trailing compression suffix and section from name
+ */
+static QString stripExtension(const QString &name)
+{
+    QString wc = stripCompression(name);
+    const int pos = wc.lastIndexOf('.');
+    return (pos>0 ? wc.left(pos) : wc);
+}
+
+static bool parseUrl(const QString &_url, QString &title, QString &section)
 {
     section.clear();
 
@@ -732,8 +739,8 @@ void MANProtocol::mimetype(const QUrl & /*url*/)
 
 static QString sectionName(const QString& section)
 {
-    if      (section ==  "0") return i18n("Header files");
-    else if (section == "0p") return i18n("Header files (POSIX)");
+    if      (section ==  "0") return i18n("Header Files");
+    else if (section == "0p") return i18n("Header Files (POSIX)");
     else if (section ==  "1") return i18n("User Commands");
     else if (section == "1p") return i18n("User Commands (POSIX)");
     else if (section ==  "2") return i18n("System Calls");
@@ -1305,49 +1312,61 @@ void MANProtocol::listDir(const QUrl &url)
         return;
     }
 
-    // stat() and listDir() declared that everything is an html file.
+    // stat() and listDir() declared that everything is a HTML file.
     // However we can list man: and man:(1) as a directory (e.g. in dolphin).
-    // But we cannot list man:ls as a directory, this makes no sense (#154173)
+    // But we cannot list man:ls as a directory, this makes no sense (#154173).
 
     if (!title.isEmpty() && title != "/") {
         error(KIO::ERR_IS_FILE, url.url());
         return;
     }
 
-    // TODO: eliminate list with listEntry, SlaveBase accumulates
-    UDSEntryList uds_entry_list;
+    // There is no need to accumulate a list of UDSEntry's and deliver
+    // them all in one block with SlaveBase::listEntries(), because
+    // SlaveBase::listEntry() batches the entries and delivers them
+    // timed to maximise application performance.
 
-    if (section.isEmpty()) {
-        for (QStringList::ConstIterator it = m_sectionNames.constBegin(); it != m_sectionNames.constEnd(); ++it) {
-            UDSEntry     uds_entry;
-            uds_entry.reserve(3);
+    UDSEntry uds_entry;
+    uds_entry.reserve(4);
 
-            QString name = "man:/(" + *it + ')';
-            uds_entry.fastInsert( KIO::UDSEntry::UDS_NAME, sectionName( *it ) );
-            uds_entry.fastInsert( KIO::UDSEntry::UDS_URL, name );
+    uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+    uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    listEntry(uds_entry);
+
+    if (section.isEmpty())				// list the top level directory
+    {
+        for (const QString &sect : m_sectionNames)
+        {
+            uds_entry.clear();				// sectionName() is already I18N'ed
+            uds_entry.fastInsert( KIO::UDSEntry::UDS_NAME, (sect + " - " + sectionName(sect)) );
+            uds_entry.fastInsert( KIO::UDSEntry::UDS_URL, ("man:/(" + sect + ')') );
             uds_entry.fastInsert( KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR );
+            listEntry(uds_entry);
+        }
+    }
+    else						// list all pages in a section
+    {
+        const QStringList list = findPages(section, QString());
+        for (const QString &page : list)
+        {
+            // Remove any compression suffix present
+            QString name = stripCompression(page);
+            // Remove any preceding pathname components, just leave the base name
+            int pos = name.lastIndexOf('/');
+            if (pos>0) name = name.mid(pos+1);
+            // Reformat the section suffix into the standard form
+            pos = name.lastIndexOf('.');
+            if (pos>0) name = name.left(pos)+" ("+name.mid(pos+1)+')';
 
-            uds_entry_list.append( uds_entry );
+            uds_entry.clear();
+            uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
+            uds_entry.fastInsert(KIO::UDSEntry::UDS_URL, ("man:" + page));
+            uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+            uds_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html"));
+            listEntry(uds_entry);
         }
     }
 
-    QStringList list = findPages( section, QString(), false );
-
-    QStringList::Iterator it = list.begin();
-    QStringList::Iterator end = list.end();
-
-    for ( ; it != end; ++it ) {
-        const QString name = stripExtension(*it);
-
-        UDSEntry     uds_entry;
-        uds_entry.reserve(3);
-        uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, *it);
-        uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-        uds_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html"));
-        uds_entry_list.append( uds_entry );
-    }
-
-    listEntries( uds_entry_list );
     finished();
 }
 
