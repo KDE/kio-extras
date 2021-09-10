@@ -9,6 +9,7 @@
 #include "kio_filenamesearch_debug.h"
 
 #include <KIO/Job>
+#include <KIO/UDSEntry>
 #include <KLocalizedString>
 
 #include <QCoreApplication>
