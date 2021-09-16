@@ -86,7 +86,7 @@ int SMBSlave::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEnt
     // Related: https://bugs.kde.org/show_bug.cgi?id=212801
 
     // POSIX Access mode must not be mapped either!
-    // It's meaningless for smb shares and downright disadvantagous.
+    // It's meaningless for smb shares and downright disadvantageous.
     // The mode attributes outside the ones used and document above are
     // useless. The only one actively set is readonlyness.
     //
@@ -411,7 +411,7 @@ void SMBSlave::listDir(const QUrl &kurl)
         }
         // Not tracking hosts. Tracking hosts means **guessing** if foo.local
         // and foo and foo.kio-discovery-wsd will actually resolve to the same
-        // IP address, which is tricky to do at best. In the interest of efficency
+        // IP address, which is tricky to do at best. In the interest of efficiency
         // I'd rather have the de-duplication requirement be that the name of
         // two competing service discovery systems needs to be the same.
         discoveredNames << discovery->udsName();

@@ -50,7 +50,7 @@ public:
     static QString nameFromComputerInfo(const QString &info)
     {
         // NB: spec says to use \ or / based on context, but in reality they are used
-        //    interchangibly in implementations.
+        //    interchangeably in implementations.
         static QRegularExpression domainExpression("(?<name>.+)[\\/]Domain:(?<domain>.+)");
         static QRegularExpression workgroupExpression("(?<name>.+)[\\/]Workgroup:(?<workgroup>.+)");
         static QRegularExpression notJoinedExpression("(?<name>.+)[\\/]NotJoined");
@@ -78,7 +78,7 @@ public:
     void run()
     {
         // NB: when windows talks to windows they use lms:LargeMetadataSupport we probably don't
-        // need this for the data we want, so it's left out. The actual messagse a windows
+        // need this for the data we want, so it's left out. The actual messages a windows
         // machine creates would be using "http://schemas.microsoft.com/windows/lms/2007/08"
         // as messageNamespace and set an additional header <LargeMetadataSupport/> on the message.
         // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-dpwssn/f700463d-cbbf-4545-ab47-b9a6fbf1ac7b
@@ -115,7 +115,7 @@ public:
             // The response xml would be nesting Metdata<MetadataSection<Relationship<Host<Computer
             // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-pbsd/ec0810ba-2427-46f5-8d47-cc94919ee4c1
             // The value therein is $netbiosname/Domain:$domain or $netbiosname\Workgroup:$workgroup or $netbiosname\NotJoined
-            // (yes, that is either a forward or backward slash!). In practise everyone uses a / for everything though!
+            // (yes, that is either a forward or backward slash!). In practice everyone uses a / for everything though!
             // For simplicity's sake we'll manually pop the value (or empty) out, if we get a name it's grand
             // otherwise we'll attempt reverse resolution from the IP (which ideally would yield results
             // over systemd-resolved's llmnr).
