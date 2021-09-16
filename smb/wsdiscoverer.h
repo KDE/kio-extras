@@ -1,18 +1,20 @@
 /*
     SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-    SPDX-FileCopyrightText: 2019-2020 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2019-2021 Harald Sitter <sitter@kde.org>
 */
 
 #ifndef WSDISCOVERER_H
 #define WSDISCOVERER_H
 
 #include "discovery.h"
+#include <QHash>
 #include <QObject>
 #include <QTimer>
 
 class WSDiscoveryClient;
 class WSDiscoveryTargetService;
 class PBSDResolver;
+class WSDResolver;
 
 namespace KIO
 {
@@ -35,6 +37,7 @@ class WSDiscoverer : public QObject, public Discoverer
     Q_OBJECT
 public:
     WSDiscoverer();
+    ~WSDiscoverer() override;
 
     void start() override;
     bool isFinished() const override;
@@ -57,6 +60,9 @@ private:
     QStringList m_seenEndpoints;
     QList<PBSDResolver *> m_resolvers;
     int m_resolvedCount = 0;
+    QHash<QString, WSDResolver *> m_endpointResolvers;
+
+    Q_DISABLE_COPY_MOVE(WSDiscoverer)
 };
 
 #endif // WSDISCOVERER_H

@@ -1,6 +1,6 @@
 /*
     SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-    SPDX-FileCopyrightText: 2019-2020 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2019-2021 Harald Sitter <sitter@kde.org>
 */
 
 #include "wsdiscoverer.h"
@@ -22,7 +22,21 @@
 #include <KIO/UDSEntry>
 #include <KLocalizedString>
 
+#include <chrono>
+
 #include "kio_smb.h"
+
+using namespace std::chrono_literals;
+
+// http://docs.oasis-open.org/ws-dd/dpws/wsdd-dpws-1.1-spec.html
+// WSD itself defines shorter timeouts. We follow DPWS instead because Windows 10 actually speaks DPWS, so it seems
+// prudent to follow its presumed internal limits.
+// - discard Probe & ResolveMatch N seconds after corresponding Probe:
+constexpr auto MATCH_TIMEOUT = 10s;
+
+// Not specified default value for HTTP timeouts. We could go with a default 120s or 600s timeout but that seems
+// a bit excessive. We only use SOAP over HTTP for device PBSD resolution.
+constexpr auto HTTP_TIMEOUT = 20s;
 
 // Publication service data resolver!
 // Specifically we'll ask the endpoint for PBSData via ws-transfer/Get.
@@ -86,7 +100,7 @@ public:
         KDSoapClientInterface client(m_endpointUrl.toString(),
                                      QStringLiteral("http://schemas.xmlsoap.org/ws/2004/09/transfer"));
         client.setSoapVersion(KDSoapClientInterface::SoapVersion::SOAP1_2);
-        client.setTimeout(8000);
+        client.setTimeout(std::chrono::milliseconds(HTTP_TIMEOUT).count());
 
         KDSoapMessage message;
         KDSoapMessageAddressingProperties addressing;
@@ -173,24 +187,70 @@ private:
     Discovery::Ptr m_discovery;
 };
 
+// Wraps a /Resolve request. Resolves are subject to timeouts which is implemented by only waiting for a reply until
+// the internal timeout is hit and then deleting the resolver.
+class WSDResolver : public QObject
+{
+    Q_OBJECT
+public:
+    explicit WSDResolver(const QString &endpoint, QObject *parent = nullptr)
+        : QObject(parent)
+        , m_endpoint(endpoint)
+    {
+        connect(&m_client, &WSDiscoveryClient::resolveMatchReceived, this, [this](const WSDiscoveryTargetService &service) {
+            Q_ASSERT(service.endpointReference() == m_endpoint);
+            Q_EMIT resolved(service);
+            stop();
+        });
+
+        m_stopTimer.setInterval(MATCH_TIMEOUT); // R4066 of DPWS spec
+        m_stopTimer.setSingleShot(true);
+        connect(&m_stopTimer, &QTimer::timeout, this, &WSDResolver::stop);
+    }
+
+public Q_SLOTS:
+    void start()
+    {
+        m_client.sendResolve(m_endpoint);
+        m_stopTimer.start();
+    }
+
+    void stop()
+    {
+        m_stopTimer.stop();
+        disconnect(&m_stopTimer);
+        Q_EMIT stopped();
+    }
+
+Q_SIGNALS:
+    void resolved(const WSDiscoveryTargetService &service);
+    void stopped();
+
+private:
+    const QString m_endpoint;
+    WSDiscoveryClient m_client;
+    QTimer m_stopTimer;
+};
+
 // Utilizes WSDiscoveryClient to probe and resolve WSD services.
 WSDiscoverer::WSDiscoverer()
     : m_client(new WSDiscoveryClient(this))
 {
     connect(m_client, &WSDiscoveryClient::probeMatchReceived,
             this, &WSDiscoverer::matchReceived);
-    connect(m_client, &WSDiscoveryClient::resolveMatchReceived,
-            this, &WSDiscoverer::resolveReceived);
 
-    // If we haven't had a probematch in some seconds there's likely no more replies
-    // coming and all hosts are known. Naturally resolvers may still be running and
-    // get blocked on during stop(). Resolvers themselves have a timeout via
-    // kdsoap.
-    // NB: only started after first match! If we have no matches the slave will
-    // stop us eventually anyway.
-    m_probeMatchTimer.setInterval(2000);
+    // Matches may only arrive within a given time period afterwards we no
+    // longer care as per the spec. stopping is further contigent on all
+    // resolvers having finished though (they each have timeouts as well).
+    m_probeMatchTimer.setInterval(MATCH_TIMEOUT);
     m_probeMatchTimer.setSingleShot(true);
     connect(&m_probeMatchTimer, &QTimer::timeout, this, &WSDiscoverer::stop);
+}
+
+WSDiscoverer::~WSDiscoverer()
+{
+    qDeleteAll(m_resolvers);
+    qDeleteAll(m_endpointResolvers);
 }
 
 void WSDiscoverer::start()
@@ -204,6 +264,10 @@ void WSDiscoverer::start()
     KDQName type("wsdp:Device");
     type.setNameSpace("http://schemas.xmlsoap.org/ws/2006/02/devprof");
     m_client->sendProbe({type}, {});
+
+    // (re)start match timer to finish-early if at all possible.
+    m_probeMatchTimer.start();
+    m_startedTimer = true;
 }
 
 void WSDiscoverer::stop()
@@ -216,18 +280,36 @@ void WSDiscoverer::stop()
 
 bool WSDiscoverer::isFinished() const
 {
-    return m_startedTimer && !m_probeMatchTimer.isActive() && m_resolvers.count() == m_resolvedCount;
+    const bool notProbing = !m_probeMatchTimer.isActive();
+    const bool notWaitingForWSDResolve = m_endpointResolvers.isEmpty();
+    const bool notWaitingForPBSD = m_resolvers.count() == m_resolvedCount;
+    return m_startedTimer && (notProbing && notWaitingForWSDResolve && notWaitingForPBSD);
 }
 
 void WSDiscoverer::matchReceived(const WSDiscoveryTargetService &matchedService)
 {
-    // (re)start match timer to finish-early if at all possible.
-    m_probeMatchTimer.start();
-    m_startedTimer = true;
+    if (!m_probeMatchTimer.isActive()) { // R4065 of DPWS spec
+        qCWarning(KIO_SMB_LOG) << "match received too late" << matchedService.endpointReference();
+        return;
+    }
 
-    if (matchedService.xAddrList().isEmpty()) {
-        // Has no addresses -> needs resolving still
-        m_client->sendResolve(matchedService.endpointReference());
+    if (matchedService.xAddrList().isEmpty()) { // Has no addresses -> needs resolving still
+        const QString endpoint = matchedService.endpointReference();
+        if (m_seenEndpoints.contains(endpoint) || m_endpointResolvers.contains(endpoint)) {
+            return;
+        }
+
+        auto resolver = new WSDResolver(endpoint, this);
+        connect(resolver, &WSDResolver::resolved, this, &WSDiscoverer::resolveReceived);
+        connect(resolver, &WSDResolver::stopped, this, [this, endpoint] {
+            if (m_endpointResolvers.contains(endpoint)) {
+                m_endpointResolvers.take(endpoint)->deleteLater();
+            }
+            maybeFinish();
+        });
+        m_endpointResolvers.insert(endpoint, resolver);
+        resolver->start();
+
         return;
     }
 
@@ -236,10 +318,6 @@ void WSDiscoverer::matchReceived(const WSDiscoveryTargetService &matchedService)
 
 void WSDiscoverer::resolveReceived(const WSDiscoveryTargetService &service)
 {
-    // (re)start match timer to finish-early if at all possible.
-    m_probeMatchTimer.start();
-    m_startedTimer = true;
-
     if (m_seenEndpoints.contains(service.endpointReference())) {
         return;
     }
