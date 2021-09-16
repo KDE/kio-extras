@@ -246,7 +246,8 @@ void WSDiscoverer::resolveReceived(const WSDiscoveryTargetService &service)
     m_seenEndpoints << service.endpointReference();
 
     QUrl addr;
-    for (const auto &xAddr : service.xAddrList()) {
+    const QList<QUrl> xAddrList = service.xAddrList();
+    for (const auto &xAddr : xAddrList) {
         // https://docs.microsoft.com/en-us/windows/win32/wsdapi/xaddr-validation-rules
         // "At least one IP address included in the XAddrs (or IP address resolved from
         // a hostname included in the XAddrs) must be on the same subnet as the adapter
@@ -265,7 +266,7 @@ void WSDiscoverer::resolveReceived(const WSDiscoveryTargetService &service)
         return;
     }
 
-    PBSDResolver *resolver = new PBSDResolver(addr, service.endpointReference(), this);
+    auto *resolver = new PBSDResolver(addr, service.endpointReference(), this);
     connect(resolver, &PBSDResolver::resolved, this, [this](Discovery::Ptr discovery) {
         ++m_resolvedCount;
         Q_EMIT newDiscovery(discovery);
@@ -296,7 +297,8 @@ QString WSDiscovery::udsName() const
 KIO::UDSEntry WSDiscovery::toEntry() const
 {
     KIO::UDSEntry entry;
-    entry.reserve(6);
+    const int fastInsertCount = 6;
+    entry.reserve(fastInsertCount);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, udsName());
 
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
