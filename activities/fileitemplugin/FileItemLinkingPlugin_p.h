@@ -9,7 +9,7 @@
 
 #include "FileItemLinkingPlugin.h"
 
-#include <QThread>
+#include <QPointer>
 
 #include <KFileItemListProperties>
 
@@ -30,7 +30,7 @@ class FileItemLinkingPlugin::Private : public QObject {
 public:
     Private();
 
-    QAction *root;
+    QPointer<QAction> root;
     QMenu *rootMenu = nullptr;
     KFileItemListProperties items;
 
@@ -47,8 +47,12 @@ public Q_SLOTS:
     void loadAllActions();
 
 private:
-    bool shouldLoad : 1;
-    bool loaded : 1;
+    enum class Status {
+        LoadingBlocked,
+        ShouldLoad,
+        Loaded
+    };
+    Status status = Status::LoadingBlocked;
 };
 
 class FileItemLinkingPluginActionStaticInit {

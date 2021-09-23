@@ -37,8 +37,6 @@ K_PLUGIN_CLASS_WITH_JSON(FileItemLinkingPlugin, "kactivitymanagerd_fileitem_link
 // Private
 
 FileItemLinkingPlugin::Private::Private()
-    : shouldLoad(false)
-    , loaded(false)
 {
     connect(&activities, &KActivities::Consumer::serviceStatusChanged,
             this, &Private::activitiesServiceStatusChanged);
@@ -54,7 +52,10 @@ void FileItemLinkingPlugin::Private::activitiesServiceStatusChanged(
 
 void FileItemLinkingPlugin::Private::rootActionHovered()
 {
-    shouldLoad = true;
+    if (status != Status::LoadingBlocked) {
+        return;
+    }
+    status = Status::ShouldLoad;
     loadAllActions();
 }
 
@@ -83,6 +84,14 @@ void FileItemLinkingPlugin::Private::actionTriggered()
 
 QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
 {
+    if (root) {
+        return root;
+    }
+
+    // If we are showing Loading... text, this means the submenu
+    // is not opened yet, so activities should not be loaded
+    status = Status::LoadingBlocked;
+
     root = new QAction(QIcon::fromTheme("activities"),
                        i18n("Activities"), parentWidget);
 
@@ -92,7 +101,6 @@ QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
     connect(root, &QAction::hovered,
             this, &Private::rootActionHovered);
 
-
     root->setMenu(rootMenu);
 
     return root;
@@ -100,7 +108,7 @@ QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
 
 void FileItemLinkingPlugin::Private::loadAllActions()
 {
-    if (!shouldLoad
+    if (status != Status::ShouldLoad
             || activities.serviceStatus() == KActivities::Consumer::Unknown) {
         return;
     }
@@ -111,7 +119,9 @@ void FileItemLinkingPlugin::Private::loadAllActions()
 
         setActions({ action });
 
-    } else if (!loaded) {
+    } else if (status != Status::Loaded) {
+        status = Status::Loaded; // loading is async, we don't want to slin two threads
+
         auto loader = FileItemLinkingPluginActionLoader::create(items);
 
         static FileItemLinkingPluginActionStaticInit init;
@@ -121,8 +131,6 @@ void FileItemLinkingPlugin::Private::loadAllActions()
                 Qt::QueuedConnection);
 
         loader->start();
-
-        loaded = true; // ignore that the thread may not be finished at this time
     }
 }
 
