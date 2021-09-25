@@ -91,7 +91,8 @@ void ComicCreator::filterImages(QStringList& entries)
         if (entry.endsWith(QLatin1String(".gif"), Qt::CaseInsensitive) ||
                 entry.endsWith(QLatin1String(".jpg"), Qt::CaseInsensitive) ||
                 entry.endsWith(QLatin1String(".jpeg"), Qt::CaseInsensitive) ||
-                entry.endsWith(QLatin1String(".png"), Qt::CaseInsensitive)) {
+                entry.endsWith(QLatin1String(".png"), Qt::CaseInsensitive) ||
+                entry.endsWith(QLatin1String(".webp"), Qt::CaseInsensitive)) {
             entryMap.insert(entry.toLower(), entry);
         }
     }
