@@ -306,7 +306,7 @@ void SMBSlave::put(const QUrl &kurl, int permissions, KIO::JobFlags flags)
     mode_t mode;
     QByteArray filedata;
 
-    qCDebug(KIO_SMB_LOG) << kurl;
+    qCDebug(KIO_SMB_LOG) << kurl << flags;
 
     errNum = cache_stat(m_current_url, &st);
     exists = (errNum == 0);

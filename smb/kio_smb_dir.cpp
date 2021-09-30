@@ -35,7 +35,7 @@ void SMBSlave::copy(const QUrl &src, const QUrl &dst, int permissions, KIO::JobF
 
 void SMBSlave::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SMB_LOG) << "SMBSlave::copy with src = " << ksrc << "and dest = " << kdst;
+    qCDebug(KIO_SMB_LOG) << "SMBSlave::copy with src = " << ksrc << "and dest = " << kdst << flags;
 
     // setup urls
     SMBUrl src = ksrc;
@@ -168,7 +168,7 @@ void SMBSlave::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO:
 
 void SMBSlave::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SMB_LOG) << "src = " << ksrc << ", dest = " << kdst;
+    qCDebug(KIO_SMB_LOG) << "src = " << ksrc << ", dest = " << kdst << flags;
 
     // check if destination is ok ...
     const QString dstFile = kdst.toLocalFile();
@@ -386,7 +386,7 @@ void SMBSlave::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, K
 
 void SMBSlave::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SMB_LOG) << "src = " << ksrc << ", dest = " << kdst;
+    qCDebug(KIO_SMB_LOG) << "src = " << ksrc << ", dest = " << kdst << flags;
 
     QFile srcFile(ksrc.toLocalFile());
     const QFileInfo srcInfo(srcFile);
@@ -663,7 +663,7 @@ void SMBSlave::rename(const QUrl &ksrc, const QUrl &kdest, KIO::JobFlags flags)
     int errNum = 0;
     int retVal = 0;
 
-    qCDebug(KIO_SMB_LOG) << "old name = " << ksrc << ", new name = " << kdest;
+    qCDebug(KIO_SMB_LOG) << "old name = " << ksrc << ", new name = " << kdest << flags;
 
     src = ksrc;
     dst = kdest;
