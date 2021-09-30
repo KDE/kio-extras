@@ -162,6 +162,8 @@ void SMBSlave::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO:
         }
     }
 
+    applyMTimeSMBC(dst);
+
     finished();
 }
 
