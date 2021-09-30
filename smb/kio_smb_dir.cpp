@@ -610,7 +610,7 @@ void SMBSlave::mkdir(const QUrl &kurl, int permissions)
     int retVal = 0;
     m_current_url = kurl;
 
-    retVal = smbc_mkdir(m_current_url.toSmbcUrl(), 0777);
+    retVal = smbc_mkdir(m_current_url.toSmbcUrl(), S_IRWXU | S_IRWXG | S_IRWXO);
     if (retVal < 0) {
         errNum = errno;
     } else {
