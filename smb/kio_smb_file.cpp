@@ -1,14 +1,13 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
     SPDX-FileCopyrightText: 2000 Caldera Systems Inc.
-    SPDX-FileCopyrightText: 2018-2020 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2018-2021 Harald Sitter <sitter@kde.org>
     SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
 */
 
 #include "kio_smb.h"
 #include "smburl.h"
 
-#include <QDateTime>
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QVarLengthArray>
@@ -404,22 +403,8 @@ void SMBSlave::put(const QUrl &kurl, int permissions, KIO::JobFlags flags)
         // TODO: put in call to chmod when it is working!
         // smbc_chmod(url.toSmbcUrl(),permissions);
     }
-#ifdef HAVE_UTIME_H
-    // set modification time
-    const QString mtimeStr = metaData("modified");
-    if (!mtimeStr.isEmpty()) {
-        QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
-        if (dt.isValid()) {
-            if (cache_stat(m_current_url, &st) == 0) {
-                struct utimbuf utbuf {
-                };
-                utbuf.actime = st.st_atime;            // access time, unchanged
-                utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
-                smbc_utime(m_current_url.toSmbcUrl(), &utbuf);
-            }
-        }
-    }
-#endif
+
+    applyMTimeSMBC(m_current_url);
 
     // We have done our job => finish
     finished();

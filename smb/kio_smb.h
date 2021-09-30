@@ -1,6 +1,7 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
     SPDX-FileCopyrightText: 2000 Caldera Systems Inc.
+    SPDX-FileCopyrightText: 2021 Harald Sitter <sitter@kde.org>
     SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
 */
 
@@ -35,6 +36,7 @@
 // Qt includes
 //-----------------------------
 
+#include <QDateTime>
 #include <QLoggingCategory>
 #include <QObject>
 #include <QUrl>
@@ -248,6 +250,40 @@ private:
     const bool m_enableEEXISTWorkaround; /* Enables a workaround for some broken libsmbclient versions */
     // Close without calling finish(). Use this to close after error.
     void closeWithoutFinish();
+
+    // Apply mtime if modified metadata is set. This callsback with a utbuf
+    // with modtime accordingly set. The callback should implement the actual apply.
+    template<typename UTimeFunction>
+    void applyMTime(UTimeFunction &&callback)
+    {
+        const QString mtimeStr = metaData("modified");
+        if (mtimeStr.isEmpty()) {
+            return;
+        }
+        qCDebug(KIO_SMB_LOG) << "modified:" << mtimeStr;
+
+        const QDateTime dateTime = QDateTime::fromString(mtimeStr, Qt::ISODate);
+        if (dateTime.isValid()) {
+            struct utimbuf utbuf {
+            };
+            utbuf.modtime = dateTime.toSecsSinceEpoch(); // modification time
+            callback(utbuf);
+        }
+    }
+
+    void applyMTimeSMBC(const SMBUrl &url)
+    {
+#ifdef HAVE_UTIME_H // smbc_utime is conditional inside the libsmb headers
+        applyMTime([url](struct utimbuf utbuf) {
+            struct stat st {
+            };
+            if (cache_stat(url, &st) == 0) {
+                utbuf.actime = st.st_atime; // access time, unchanged
+                smbc_utime(url.toSmbcUrl(), &utbuf);
+            }
+        });
+#endif
+    }
 };
 
 //===========================================================================

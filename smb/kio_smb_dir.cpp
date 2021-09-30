@@ -8,7 +8,6 @@
 #include "kio_smb.h"
 #include "smburl.h"
 
-#include <QDateTime>
 #include <QFile>
 #include <QFileInfo>
 
@@ -367,19 +366,11 @@ void SMBSlave::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, K
         }
     }
 
-    // Restore the mtime on the file.
-    const QString mtimeStr = metaData("modified");
-    qCDebug(KIO_SMB_LOG) << "modified:" << mtimeStr;
-    if (!mtimeStr.isEmpty()) {
-        QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
-        if (dt.isValid()) {
-            struct utimbuf utbuf {
-            };
-            utbuf.actime = QFileInfo(dstFile).lastRead().toSecsSinceEpoch(); // access time, unchanged
-            utbuf.modtime = dt.toSecsSinceEpoch();                           // modification time
-            utime(QFile::encodeName(dstFile).constData(), &utbuf);
-        }
-    }
+    // set modification time (if applicable)
+    applyMTime([dstFile](struct utimbuf utbuf) {
+        utbuf.actime = QFileInfo(dstFile).lastRead().toSecsSinceEpoch(); // access time, unchanged
+        utime(QFile::encodeName(dstFile).constData(), &utbuf);
+    });
 
     finished();
 }
@@ -550,20 +541,7 @@ void SMBSlave::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, K
         }
     }
 
-#ifdef HAVE_UTIME_H
-    // set modification time
-    const QString mtimeStr = metaData("modified");
-    if (!mtimeStr.isEmpty()) {
-        QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
-        if (dt.isValid()) {
-            struct utimbuf utbuf {
-            };
-            utbuf.actime = st.st_atime;            // access time, unchanged
-            utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
-            smbc_utime(dstOrigUrl.toSmbcUrl(), &utbuf);
-        }
-    }
-#endif
+    applyMTimeSMBC(dstOrigUrl);
 
     // We have done our job => finish
     finished();
