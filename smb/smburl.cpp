@@ -1,7 +1,7 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
     SPDX-FileCopyrightText: 2000 Caldera Systems Inc.
-    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
     SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
 */
 
@@ -179,7 +179,10 @@ SMBUrlType SMBUrl::getType() const
 
 SMBUrl SMBUrl::partUrl() const
 {
-    if (m_type == SMBURLTYPE_SHARE_OR_PATH && !fileName().isEmpty()) {
+    const bool isRemoteFile = m_type == SMBURLTYPE_SHARE_OR_PATH && !fileName().isEmpty();
+    const bool isLocalFile = scheme() == QLatin1String("file") && !fileName().isEmpty();
+    //  Mind that filename doesn't necessarily mean it is a file.
+    if (isRemoteFile || isLocalFile) {
         SMBUrl url(*this);
         url.setPath(path() + QLatin1String(".part"));
         return url;

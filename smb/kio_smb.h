@@ -71,6 +71,7 @@ class SMBSlave : public QObject, public KIO::SlaveBase
 {
     Q_OBJECT
     friend class SMBCDiscoverer;
+    friend class SMBResumeIO;
     SlaveFrontend m_frontend { *this };
     SMBContext m_context { new SMBAuthenticator(m_frontend) };
 

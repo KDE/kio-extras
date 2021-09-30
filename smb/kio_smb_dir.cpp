@@ -17,6 +17,7 @@
 #include <future>
 
 #include "transfer.h"
+#include "transfer_resume.h"
 
 void SMBSlave::copy(const QUrl &src, const QUrl &dst, int permissions, KIO::JobFlags flags)
 {
@@ -187,35 +188,17 @@ void SMBSlave::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, K
         }
     }
 
-    bool bResume = false;
-    const QFileInfo partInfo(dstFile + QLatin1String(".part"));
-    const bool bPartExists = partInfo.exists();
-    const bool bMarkPartial = configValue(QStringLiteral("MarkPartial"), true);
-
-    if (bMarkPartial && bPartExists && partInfo.size() > 0) {
-        if (partInfo.isDir()) {
-            error(ERR_IS_DIRECTORY, partInfo.absoluteFilePath());
-            return;
-        }
-        bResume = canResume(partInfo.size());
+    auto optionalResume = Transfer::shouldResume<QFileResumeIO>(kdst, flags, this);
+    if (!optionalResume.has_value()) { // had error
+        return;
     }
-
-    if (bPartExists && !bResume) // get rid of an unwanted ".part" file
-        QFile::remove(partInfo.absoluteFilePath());
+    const auto resume = optionalResume.value();
 
     // open the output file...
-    QFile::OpenMode mode;
-    QString filename;
-    if (bResume) {
-        filename = partInfo.absoluteFilePath();
-        mode = QFile::WriteOnly | QFile::Append;
-    } else {
-        filename = (bMarkPartial ? partInfo.absoluteFilePath() : dstFile);
-        mode = QFile::WriteOnly | QFile::Truncate;
-    }
+    const QFile::OpenMode mode = resume.resuming ? (QFile::WriteOnly | QFile::Append) : (QFile::WriteOnly | QFile::Truncate);
 
-    QFile file(filename);
-    if (!bResume) {
+    QFile file(resume.destination.path());
+    if (!resume.resuming) {
         QFile::Permissions perms;
         if (permissions == -1) {
             perms = QFile::ReadOwner | QFile::WriteOwner;
@@ -229,7 +212,7 @@ void SMBSlave::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, K
         qCDebug(KIO_SMB_LOG) << "could not write to" << dstFile;
         switch (file.error()) {
         case QFile::OpenError:
-            if (bResume) {
+            if (resume.resuming) {
                 error(ERR_CANNOT_RESUME, kdst.toDisplayString());
             } else {
                 error(ERR_CANNOT_OPEN_FOR_WRITING, kdst.toDisplayString());
@@ -272,9 +255,9 @@ void SMBSlave::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, K
         errNum = errno;
     } else {
         errNum = 0;
-        if (bResume) {
-            qCDebug(KIO_SMB_LOG) << "seeking to size" << partInfo.size();
-            off_t offset = smbc_lseek(srcfd, partInfo.size(), SEEK_SET);
+        if (resume.resuming) {
+            qCDebug(KIO_SMB_LOG) << "seeking to size" << resume.destinationOffset;
+            off_t offset = smbc_lseek(srcfd, resume.destinationOffset, SEEK_SET);
             if (offset == -1) {
                 error(KIO::ERR_CANNOT_SEEK, src.toDisplayString());
                 smbc_close(srcfd);
@@ -343,29 +326,9 @@ void SMBSlave::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, K
     smbc_close(srcfd);
 
     // Handle error condition.
-    if (isErr) {
-        const QString sPart = partInfo.absoluteFilePath();
-        if (bMarkPartial) {
-            const int size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-            if (partInfo.size() < size) {
-                QFile::remove(sPart);
-            }
-        }
-        return;
-    }
 
-    // Rename partial file to its original name.
-    if (bMarkPartial) {
-        const QString sPart = partInfo.absoluteFilePath();
-        // Remove old dest file if it exists..
-        if (dstInfo.exists()) {
-            QFile::remove(dstFile);
-        }
-        if (!QFile::rename(sPart, dstFile)) {
-            qCDebug(KIO_SMB_LOG) << "failed to rename" << sPart << "to" << dstFile;
-            error(ERR_CANNOT_RENAME_PARTIAL, sPart);
-            return;
-        }
+    if (Transfer::concludeResumeHasError<QFileResumeIO>(isErr, resume, this)) {
+        return; // NB: error() called inside if applicable
     }
 
     // set modification time (if applicable)
@@ -410,39 +373,20 @@ void SMBSlave::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, K
 
     totalSize(static_cast<filesize_t>(srcInfo.size()));
 
-    bool bResume = false;
-    bool bPartExists = false;
-    const bool bMarkPartial = configValue(QStringLiteral("MarkPartial"), true);
     const SMBUrl dstOrigUrl(kdst);
 
-    if (bMarkPartial) {
-        const int errNum = cache_stat(dstOrigUrl.partUrl(), &st);
-        bPartExists = (errNum == 0);
-        if (bPartExists) {
-            if (!(flags & KIO::Overwrite) && !(flags & KIO::Resume)) {
-                bResume = canResume(st.st_size);
-            } else {
-                bResume = (flags & KIO::Resume);
-            }
-        }
-    }
-
-    int dstfd = -1;
-    int errNum = cache_stat(dstOrigUrl, &st);
-
-    if (errNum == 0 && !(flags & KIO::Overwrite) && !(flags & KIO::Resume)) {
-        if (S_ISDIR(st.st_mode)) {
-            error(KIO::ERR_IS_DIRECTORY, dstOrigUrl.toDisplayString());
-        } else {
-            error(KIO::ERR_FILE_ALREADY_EXIST, dstOrigUrl.toDisplayString());
-        }
+    const std::optional<TransferContext> resumeOptional = Transfer::shouldResume<SMBResumeIO>(dstOrigUrl, flags, this);
+    if (!resumeOptional.has_value()) { // had an error
         return;
     }
+    const TransferContext &resume = resumeOptional.value();
 
     KIO::filesize_t processed_size = 0;
-    const SMBUrl dstUrl(bMarkPartial ? dstOrigUrl.partUrl() : dstOrigUrl);
+    const SMBUrl dstUrl(resume.destination);
 
-    if (bResume) {
+    int dstfd = -1;
+    int errNum = 0;
+    if (resume.resuming) {
         // append if resuming
         qCDebug(KIO_SMB_LOG) << "resume" << dstUrl;
         dstfd = smbc_open(dstUrl.toSmbcUrl(), O_RDWR, 0);
@@ -485,7 +429,6 @@ void SMBSlave::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, K
     }
 
     bool isErr = false;
-
     if (processed_size == 0 || srcFile.seek(processed_size)) {
         // Perform the copy
         TransferSegment segment(srcInfo.size());
@@ -521,27 +464,9 @@ void SMBSlave::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, K
         return;
     }
 
-    // Handle error condition.
-    if (isErr) {
-        if (bMarkPartial) {
-            const int size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-            const int errNum = cache_stat(dstUrl, &st);
-            if (errNum == 0 && st.st_size < size) {
-                smbc_unlink(dstUrl.toSmbcUrl());
-            }
-        }
-        return;
-    }
-
-    // Rename partial file to its original name.
-    if (bMarkPartial) {
-        smbc_unlink(dstOrigUrl.toSmbcUrl());
-        if (smbc_rename(dstUrl.toSmbcUrl(), dstOrigUrl.toSmbcUrl()) < 0) {
-            qCDebug(KIO_SMB_LOG) << "failed to rename" << dstUrl << "to" << dstOrigUrl << "->" << strerror(errno);
-            error(ERR_CANNOT_RENAME_PARTIAL, dstUrl.toDisplayString());
-            return;
-        }
-    }
+    if (Transfer::concludeResumeHasError<SMBResumeIO>(isErr, resume, this)) {
+        return; // NB: error() called inside if applicable
+     }
 
     applyMTimeSMBC(dstOrigUrl);
 

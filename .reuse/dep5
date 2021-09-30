@@ -6,3 +6,7 @@ Source: https://invent.kde.org/network/kio-extras
 Files: smb/kdsoap-ws-discovery-client/*
 Copyright: Casper Meijn
 License: GPL-3.0-or-later
+
+Files: smb/autotests/fixtures/*
+Copyright: none
+License: CC0-1.0

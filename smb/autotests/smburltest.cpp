@@ -1,6 +1,6 @@
 /*
     SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
 */
 
 #include <QTest>
@@ -132,6 +132,16 @@ private Q_SLOTS:
         QCOMPARE(SMBUrl(QUrl("file:///")).getType(), SMBURLTYPE_UNKNOWN);
         QCOMPARE(SMBUrl(QUrl("file:///home/foo/bar")).getType(), SMBURLTYPE_UNKNOWN);
         QCOMPARE(SMBUrl(QUrl("sftp://me@localhost/foo/bar")).getType(), SMBURLTYPE_UNKNOWN);
+    }
+
+    void testFileParts()
+    {
+        // We use SMBUrl for transfers from and to local files as well, make sure it behaves accordingly.
+        SMBUrl url(QUrl("file:///foo"));
+        QCOMPARE(QUrl("file:///foo"), url);
+        QCOMPARE(QUrl("file:///foo.part"), url.partUrl());
+        // Clearly not a file should not work
+        QCOMPARE(QUrl(), SMBUrl(QUrl("file:///")).partUrl());
     }
 };
 
