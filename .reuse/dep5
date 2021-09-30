@@ -1,7 +1,7 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: kdsoap-ws-discovery-client
-Upstream-Contact: Casper Meijn
-Source: https://gitlab.com/caspermeijn/kdsoap-ws-discovery-client/
+Upstream-Name: kio-extras
+Upstream-Contact: KDE <community@kde.org>
+Source: https://invent.kde.org/network/kio-extras
 
 Files: smb/kdsoap-ws-discovery-client/*
 Copyright: Casper Meijn
