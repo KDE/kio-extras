@@ -40,7 +40,7 @@ MTPDevice::MTPDevice(const QString &dbusObjectPath, LIBMTP_mtpdevice_t *device, 
     const char *deviceModel = LIBMTP_Get_Modelname(device);
 
     // prefer friendly devicename over model
-    if (!deviceName) {
+    if (!deviceName || strlen(deviceName) == 0) {
         m_friendlyName = QString::fromUtf8(deviceModel);
     } else {
         m_friendlyName = QString::fromUtf8(deviceName);
