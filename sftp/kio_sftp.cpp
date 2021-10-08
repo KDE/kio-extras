@@ -667,6 +667,63 @@ Result SFTPInternal::sftpOpenConnection(const AuthInfo &info)
     return Result::pass();
 }
 
+struct ServerKeyInspection {
+    QByteArray serverPublicKeyType;
+    QByteArray fingerprint;
+    Result result;
+
+    ServerKeyInspection &withResult(const Result &result)
+    {
+        this->result = result;
+        return *this;
+    }
+};
+
+Q_REQUIRED_RESULT ServerKeyInspection fingerpint(ssh_session session)
+{
+    ServerKeyInspection inspection;
+
+    ssh_key srv_pubkey = nullptr;
+    const auto freeKey = qScopeGuard([srv_pubkey] {
+        ssh_key_free(srv_pubkey);
+    });
+    int rc = ssh_get_server_publickey(session, &srv_pubkey);
+    if (rc < 0) {
+        return inspection.withResult(Result::fail(KIO::ERR_SLAVE_DEFINED, QString::fromUtf8(ssh_get_error(session))));
+    }
+
+    const char *srv_pubkey_type = ssh_key_type_to_char(ssh_key_type(srv_pubkey));
+    if (srv_pubkey_type == nullptr) {
+        return inspection.withResult(Result::fail(KIO::ERR_SLAVE_DEFINED, i18n("Could not get server public key type name")));
+    }
+    inspection.serverPublicKeyType = QByteArray(srv_pubkey_type);
+
+    unsigned char *hash = nullptr; // the server hash
+    const auto freeHash = qScopeGuard([&hash] { ssh_clean_pubkey_hash(&hash); });
+
+    size_t hlen = 0;
+    rc = ssh_get_publickey_hash(srv_pubkey,
+                                SSH_PUBLICKEY_HASH_SHA256,
+                                &hash,
+                                &hlen);
+    if (rc != SSH_OK) {
+        return inspection.withResult(Result::fail(KIO::ERR_SLAVE_DEFINED, i18n("Could not create hash from server public key")));
+    }
+
+    char *fingerprint = ssh_get_fingerprint_hash(SSH_PUBLICKEY_HASH_SHA256, hash, hlen);
+    const auto freeFingerprint = qScopeGuard([fingerprint] {
+        ssh_string_free_char(fingerprint);
+    });
+
+    if (fingerprint == nullptr) {
+        return inspection.withResult(Result::fail(KIO::ERR_SLAVE_DEFINED, i18n("Could not create fingerprint for server public key")));
+    }
+
+    inspection.fingerprint = fingerprint;
+
+    return inspection.withResult(Result::pass());
+}
+
 Result SFTPInternal::openConnection()
 {
     if (mConnected) {
@@ -699,13 +756,6 @@ Result SFTPInternal::openConnection()
     // Start the ssh connection.
     QString msg;     // msg for dialog box
     QString caption; // dialog box caption
-    unsigned char *hash = nullptr; // the server hash
-    size_t hlen;
-    ssh_key srv_pubkey = nullptr;
-    const char *srv_pubkey_type = nullptr;
-    char *fingerprint = nullptr;
-    enum ssh_known_hosts_e state;
-    int rc;
 
     // Attempt to start a ssh session and establish a connection with the server.
     const Result openResult = sftpOpenConnection(info);
@@ -713,59 +763,29 @@ Result SFTPInternal::openConnection()
         return openResult;
     }
 
+    // get the hash
     qCDebug(KIO_SFTP_LOG) << "Getting the SSH server hash";
-
-    /* get the hash */
-    rc = ssh_get_server_publickey(mSession, &srv_pubkey);
-    if (rc < 0) {
-        const QString errorString = QString::fromUtf8(ssh_get_error(mSession));
+    const ServerKeyInspection inspection = fingerpint(mSession);
+    if (!inspection.result.success) {
         closeConnection();
-        return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
+        return inspection.result;
     }
-
-    srv_pubkey_type = ssh_key_type_to_char(ssh_key_type(srv_pubkey));
-    if (srv_pubkey_type == nullptr) {
-        ssh_key_free(srv_pubkey);
-        closeConnection();
-        return Result::fail(KIO::ERR_SLAVE_DEFINED,
-                            i18n("Could not get server public key type name"));
-    }
-
-    rc = ssh_get_publickey_hash(srv_pubkey,
-                                SSH_PUBLICKEY_HASH_SHA256,
-                                &hash,
-                                &hlen);
-    ssh_key_free(srv_pubkey);
-    if (rc != SSH_OK) {
-        closeConnection();
-        return Result::fail(KIO::ERR_SLAVE_DEFINED,
-                            i18n("Could not create hash from server public key"));
-    }
-
-    fingerprint = ssh_get_fingerprint_hash(SSH_PUBLICKEY_HASH_SHA256,
-                                           hash,
-                                           hlen);
-    ssh_string_free_char((char *)hash);
-    if (fingerprint == nullptr) {
-        closeConnection();
-        return Result::fail(KIO::ERR_SLAVE_DEFINED,
-                            i18n("Could not create fingerprint for server public key"));
-    }
+    const QString fingerprint = QString::fromUtf8(inspection.fingerprint);
+    const QString serverPublicKeyType = QString::fromUtf8(inspection.serverPublicKeyType);
 
     qCDebug(KIO_SFTP_LOG) << "Checking if the SSH server is known";
 
     /* check the server public key hash */
-    state = ssh_session_is_known_server(mSession);
+    enum ssh_known_hosts_e state = ssh_session_is_known_server(mSession);
     switch (state) {
     case SSH_KNOWN_HOSTS_OTHER: {
-        ssh_string_free_char(fingerprint);
         const QString errorString = i18n("An %1 host key for this server was "
                                          "not found, but another type of key exists.\n"
                                          "An attacker might change the default server key to confuse your "
                                          "client into thinking the key does not exist.\n"
                                          "Please contact your system administrator.\n"
                                          "%2",
-                                         QString::fromUtf8(srv_pubkey_type),
+                                         serverPublicKeyType,
                                          QString::fromUtf8(ssh_get_error(mSession)));
         closeConnection();
         return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
@@ -778,10 +798,10 @@ Result SFTPInternal::openConnection()
                                          "  SHA256:%3\n"
                                          "Please contact your system administrator.\n%4",
                                          mHost,
-                                         QString::fromUtf8(srv_pubkey_type),
-                                         QString::fromUtf8(fingerprint),
+                                         serverPublicKeyType,
+                                         fingerprint,
                                          QString::fromUtf8(ssh_get_error(mSession)));
-        ssh_string_free_char(fingerprint);
+
         closeConnection();
         return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
     }
@@ -792,9 +812,8 @@ Result SFTPInternal::openConnection()
                    "The %2 key fingerprint is: %3\n"
                    "Are you sure you want to continue connecting?",
                    mHost,
-                   QString::fromUtf8(srv_pubkey_type),
-                   QString::fromUtf8(fingerprint));
-        ssh_string_free_char(fingerprint);
+                   serverPublicKeyType,
+                   fingerprint);
 
         if (KMessageBox::Yes != q->messageBox(SlaveBase::WarningYesNo, msg, caption)) {
             closeConnection();
@@ -803,7 +822,7 @@ Result SFTPInternal::openConnection()
 
         /* write the known_hosts file */
         qCDebug(KIO_SFTP_LOG) << "Adding server to known_hosts file.";
-        rc = ssh_session_update_known_hosts(mSession);
+        int rc = ssh_session_update_known_hosts(mSession);
         if (rc != SSH_OK) {
             const QString errorString = QString::fromUtf8(ssh_get_error(mSession));
             closeConnection();
@@ -812,7 +831,6 @@ Result SFTPInternal::openConnection()
         break;
     }
     case SSH_KNOWN_HOSTS_ERROR:
-        ssh_string_free_char(fingerprint);
         return Result::fail(KIO::ERR_SLAVE_DEFINED,
                             QString::fromUtf8(ssh_get_error(mSession)));
     case SSH_KNOWN_HOSTS_OK:
@@ -822,7 +840,7 @@ Result SFTPInternal::openConnection()
     qCDebug(KIO_SFTP_LOG) << "Trying to authenticate with the server";
 
     // Try to login without authentication
-    rc = ssh_userauth_none(mSession, nullptr);
+    int rc = ssh_userauth_none(mSession, nullptr);
     if (rc == SSH_AUTH_ERROR) {
         closeConnection();
         return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
