@@ -98,7 +98,7 @@ if(NOT WIN32)
                         )
 endif()
 
-find_package(libssh 0.7.0 MODULE)
+find_package(libssh 0.8.3 MODULE)
 set_package_properties(libssh PROPERTIES DESCRIPTION "the SSH library with SFTP support"
                        URL "https://www.libssh.org/"
                        TYPE OPTIONAL
