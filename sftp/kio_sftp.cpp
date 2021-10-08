@@ -555,7 +555,7 @@ SFTPInternal::~SFTPInternal() {
     delete mCallbacks;
     delete mPublicKeyAuthInfo; // for precaution
 
-    /* cleanup and shut down cryto stuff */
+    /* cleanup and shut down crypto stuff */
     ssh_finalize();
 }
 
@@ -2280,7 +2280,7 @@ int SFTPInternal::GetRequest::readChunks(QByteArray &data)
             request.id = sftp_async_read_begin(m_file, request.expectedLength);
 
             if (request.id < 0) {
-                // Failed to dispatch rerequest
+                // Failed to dispatch re-request
                 return -1;
             }
 
