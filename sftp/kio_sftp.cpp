@@ -7,28 +7,26 @@
  */
 
 #include "kio_sftp.h"
-
 #include <config-runtime.h>
-#include "kio_sftp_debug.h"
-#include "kio_sftp_trace_debug.h"
+
 #include <cerrno>
 #include <cstring>
 
 #include <QCoreApplication>
+#include <QDateTime>
 #include <QDir>
 #include <QFile>
-#include <QVarLengthArray>
-#include <QMimeType>
 #include <QMimeDatabase>
-#include <QDateTime>
-#include <QScopedPointer>
+#include <QMimeType>
 #include <QScopeGuard>
+#include <QScopedPointer>
+#include <QVarLengthArray>
 
-#include <kuser.h>
-#include <kmessagebox.h>
+#include <KMessageBox>
+#include <KUser>
 
-#include <klocalizedstring.h>
-#include <kconfiggroup.h>
+#include <KConfigGroup>
+#include <KLocalizedString>
 #include <kio/ioslave_defaults.h>
 
 #ifdef Q_OS_WIN
@@ -38,6 +36,9 @@ using namespace std::filesystem;
 #else
 #include <utime.h>
 #endif
+
+#include "kio_sftp_debug.h"
+#include "kio_sftp_trace_debug.h"
 
 #define KIO_SFTP_SPECIAL_TIMEOUT 30
 
