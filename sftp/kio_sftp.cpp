@@ -137,8 +137,8 @@ static int toKIOError(const int err)
 static int writeToFile(int fd, const char *buf, int len)
 {
     while (len > 0)  {
-        size_t lenSize = static_cast<size_t>(len); // len is always >> 0 and, being an int, always << size_t
-        ssize_t written = write(fd, buf, lenSize);
+        const auto lenSize = static_cast<size_t>(len); // len is always >> 0 and, being an int, always << size_t
+        const ssize_t written = write(fd, buf, lenSize);
 
         if (written >= 0) {
             buf += written;
@@ -183,8 +183,7 @@ static int auth_callback(const char *prompt, char *buf, size_t len,
         return -1;
     }
 
-    SFTPInternal *slave = static_cast<SFTPInternal *>(userdata);
-
+    auto *slave = static_cast<SFTPInternal *>(userdata);
     if (slave->auth_callback(prompt, buf, len, echo, verify, userdata) < 0) {
         return -1;
     }
@@ -199,8 +198,7 @@ static void log_callback(int priority, const char *function, const char *buffer,
         return;
     }
 
-    SFTPInternal *slave = static_cast<SFTPInternal *>(userdata);
-
+    auto *slave = static_cast<SFTPInternal *>(userdata);
     slave->log_callback(priority, function, buffer, userdata);
 }
 
@@ -340,7 +338,7 @@ int SFTPInternal::authenticateKeyboardInteractive(AuthInfo &info)
         qCDebug(KIO_SFTP_LOG) << "name=" << name << " instruction=" << instruction << " prompts=" << n;
 
         for (int iInt = 0; iInt < n; ++iInt) {
-            unsigned int i = static_cast<unsigned int>(iInt); // can only be >0
+            const auto i = static_cast<unsigned int>(iInt); // can only be >0
             char echo;
             const char *answer = "";
 
