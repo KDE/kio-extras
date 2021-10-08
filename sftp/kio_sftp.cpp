@@ -1098,22 +1098,9 @@ Result SFTPInternal::open(const QUrl &url, QIODevice::OpenMode mode) {
     // If we're not opening the file ReadOnly or ReadWrite, don't attempt to
     // read the file and send the mimetype.
     if (mode & QIODevice::ReadOnly) {
-        size_t bytesRequested = 1024;
-        ssize_t bytesRead = 0;
-        QVarLengthArray<char> buffer(bytesRequested);
-
-        bytesRead = sftp_read(mOpenFile, buffer.data(), bytesRequested);
-        if (bytesRead < 0) {
+        if (const Result result = sftpSendMimetype(mOpenFile, mOpenUrl); !result.success) {
             close();
-            return Result::fail(KIO::ERR_CANNOT_READ, mOpenUrl.toDisplayString());
-        } else {
-            QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
-            QMimeDatabase db;
-            QMimeType mime = db.mimeTypeForFileNameAndData(mOpenUrl.fileName(), fileData);
-            q->mimeType(mime.name());
-
-            // Go back to the beginning of the file.
-            sftp_rewind(mOpenFile);
+            return result;
         }
     }
 
@@ -1230,6 +1217,27 @@ Result SFTPInternal::get(const QUrl& url)
     return Result::pass();
 }
 
+Result SFTPInternal::sftpSendMimetype(sftp_file file, const QUrl &url)
+{
+    constexpr int readLimit = 1024; // entirely arbitrary
+    std::array<char, readLimit> mimeTypeBuf{};
+    const ssize_t bytesRead = sftp_read(file, mimeTypeBuf.data(), readLimit);
+    if (bytesRead < 0) {
+        return Result::fail(KIO::ERR_CANNOT_READ, url.toString());
+    }
+
+    QMimeDatabase db;
+    const QMimeType mime = db.mimeTypeForFileNameAndData(url.fileName(), QByteArray(mimeTypeBuf.data(), bytesRead));
+    if (!mime.isDefault()) {
+        q->mimeType(mime.name());
+    } else {
+        q->mimeType(db.mimeTypeForUrl(url).name());
+    }
+    sftp_rewind(file);
+
+    return Result::pass();
+}
+
 Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 {
     qCDebug(KIO_SFTP_LOG) << url;
@@ -1268,21 +1276,8 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
         return Result::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toString());
     }
 
-    char mimeTypeBuf[1024];
-    ssize_t bytesread = sftp_read(file, mimeTypeBuf, sizeof(mimeTypeBuf));
-
-    if (bytesread < 0) {
-        return Result::fail(KIO::ERR_CANNOT_READ, url.toString());
-    } else  {
-        QMimeDatabase db;
-        QMimeType mime = db.mimeTypeForFileNameAndData(url.fileName(), QByteArray(mimeTypeBuf, bytesread));
-        if (!mime.isDefault()) {
-            q->mimeType(mime.name());
-        } else {
-            mime = db.mimeTypeForUrl(url);
-            q->mimeType(mime.name());
-        }
-        sftp_rewind(file);
+    if (const Result result = sftpSendMimetype(file, url); !result.success) {
+        return result;
     }
 
     // Set the total size
@@ -1310,7 +1305,6 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
         }
     }
 
-    bytesread = 0;
     SFTPInternal::GetRequest request(file, sb->size);
 
     for (;;) {
@@ -1320,7 +1314,7 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
         }
 
         filedata.clear();
-        bytesread = request.readChunks(filedata);
+        const size_t bytesread = request.readChunks(filedata);
         // Read pending get requests
         if (bytesread == -1) {
             return Result::fail(KIO::ERR_CANNOT_READ, url.toString());
