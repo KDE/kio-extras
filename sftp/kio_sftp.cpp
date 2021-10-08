@@ -2304,7 +2304,9 @@ Result SFTPInternal::listDir(const QUrl &url)
 
             entry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, dirent->atime);
             entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, dirent->mtime);
-            entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, dirent->createtime);
+            if (dirent->flags & SSH_FILEXFER_ATTR_CREATETIME) {
+                entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, dirent->createtime);
+            }
         }
 
         q->listEntry(entry);
