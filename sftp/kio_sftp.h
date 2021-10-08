@@ -222,6 +222,7 @@ private: // private methods
     Q_REQUIRED_RESULT Result sftpCopyGet(const QUrl &url, const QString &src, int permissions, KIO::JobFlags flags);
     Q_REQUIRED_RESULT Result sftpCopyPut(const QUrl &url, const QString &dest, int permissions, KIO::JobFlags flags);
     Q_REQUIRED_RESULT Result sftpSendMimetype(sftp_file file, const QUrl &url);
+    Q_REQUIRED_RESULT Result openConnectionWithoutCloseOnError();
 };
 
 /**
