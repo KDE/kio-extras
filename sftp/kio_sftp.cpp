@@ -583,7 +583,8 @@ Result SFTPInternal::sftpOpenConnection(const AuthInfo &info)
         return Result::fail(KIO::ERR_OUT_OF_MEMORY, i18n("Could not create a new SSH session."));
     }
 
-    long timeout_sec = 30, timeout_usec = 0;
+    const long timeout_sec = 30;
+    const long timeout_usec = 0;
 
     qCDebug(KIO_SFTP_LOG) << "Creating the SSH session and setting options";
 
