@@ -756,8 +756,6 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
     }
 
     // Start the ssh connection.
-    QString msg;     // msg for dialog box
-    QString caption; // dialog box caption
 
     // Attempt to start a ssh session and establish a connection with the server.
     const Result openResult = sftpOpenConnection(info);
@@ -805,13 +803,14 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
     }
     case SSH_KNOWN_HOSTS_NOT_FOUND:
     case SSH_KNOWN_HOSTS_UNKNOWN: {
-        caption = i18n("Warning: Cannot verify host's identity.");
-        msg = i18n("The authenticity of host %1 cannot be established.\n"
-                   "The %2 key fingerprint is: %3\n"
-                   "Are you sure you want to continue connecting?",
-                   mHost,
-                   serverPublicKeyType,
-                   fingerprint);
+        const QString caption = i18n("Warning: Cannot verify host's identity.");
+        const QString msg = i18n(
+            "The authenticity of host %1 cannot be established.\n"
+            "The %2 key fingerprint is: %3\n"
+            "Are you sure you want to continue connecting?",
+            mHost,
+            serverPublicKeyType,
+            fingerprint);
 
         if (KMessageBox::Yes != q->messageBox(SlaveBase::WarningYesNo, msg, caption)) {
             return Result::fail(KIO::ERR_USER_CANCELED);
