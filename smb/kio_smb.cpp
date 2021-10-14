@@ -20,7 +20,7 @@ bool needsEEXISTWorkaround()
 {
     /* There is an issue with some libsmbclient versions that return EEXIST
      * return code from smbc_opendir() instead of EPERM when the user
-     * tries to access a resource that requires login authetification.
+     * tries to access a resource that requires login authetication.
      * We are working around the issue by treating EEXIST as a special case
      * of "invalid/unavailable credentials" if we detect that we are using
      * the affected versions of libsmbclient
