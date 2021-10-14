@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2001 Lucas Fisher <ljfisher@purdue.edu>
  * SPDX-FileCopyrightText: 2009 Andreas Schneider <mail@cynapses.org>
- * SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
+ * SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
@@ -11,6 +11,7 @@
 
 #include <cerrno>
 #include <cstring>
+#include <memory>
 
 #include <QCoreApplication>
 #include <QDateTime>
@@ -63,16 +64,6 @@ using namespace std::filesystem;
 #define MAX_XFER_BUF_SIZE (60 * 1024)
 
 #define KSFTP_ISDIR(sb) (sb->type == SSH_FILEXFER_TYPE_DIRECTORY)
-
-// sftp_attributes must be freed. Use this ScopedPtr to ensure they always are!
-struct ScopedPointerCustomDeleter
-{
-    static inline void cleanup(sftp_attributes attr)
-    {
-        sftp_attributes_free(attr);
-    }
-};
-typedef QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter> SFTPAttributesPtr;
 
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
@@ -421,34 +412,27 @@ Result SFTPInternal::reportError(const QUrl &url, const int err)
     return Result::fail(kioError, url.toDisplayString());
 }
 
-bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &path,
-                                  UDSEntry &entry, short int details)
+Result SFTPInternal::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const QByteArray &path, const QString &name, int details)
 {
-    mode_t access;
-    char *link;
-    bool isBrokenLink = false;
-    long long fileType = QT_STAT_REG;
-    uint64_t size = 0U;
+    // caller should make sure it is not null. behavior between stat on a file and listing a dir is different!
+    // Also we consume the pointer, hence why it is a SFTPAttributesPtr
+    Q_ASSERT(sb.get());
 
-    Q_ASSERT(entry.count() == 0);
+    entry.clear();
     entry.reserve(10);
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, name /* awkwardly sftp_lstat doesn't fill the attributes name correctly, calculate from path */);
 
-    SFTPAttributesPtr sb(sftp_lstat(mSftp, path.constData()));
-    if (sb == nullptr) {
-        qCDebug(KIO_SFTP_LOG) << "Failed to stat" << path << sftp_get_error(mSftp);
-        return false;
-    }
-
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, filename);
-
+    bool isBrokenLink = false;
     if (sb->type == SSH_FILEXFER_TYPE_SYMLINK) {
-        link = sftp_readlink(mSftp, path.constData());
-        if (link == nullptr) {
-            qCDebug(KIO_SFTP_LOG) << "Failed to readlink despite this being a link!" << path << sftp_get_error(mSftp);
-            return false;
+        std::unique_ptr<char, decltype(&free)> link(sftp_readlink(mSftp, path.constData()), free);
+        if (!link) {
+            return Result::fail(KIO::ERR_INTERNAL,
+                                i18nc("error message. %1 is a path, %2 is a numeric error code",
+                                      "Could not read link: %1 [%2]",
+                                      QString::fromUtf8(path),
+                                      QString::number(sftp_get_error(mSftp))));
         }
-        entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
-        free(link);
+        entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link.get()));
         // A symlink -> follow it only if details > 1
         if (details > 1) {
             sftp_attributes sb2 = sftp_stat(mSftp, path.constData());
@@ -460,6 +444,9 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
         }
     }
 
+    mode_t access = 0;
+    long long fileType = QT_STAT_REG;
+    uint64_t size = 0U;
     if (isBrokenLink) {
         // It is a link pointing to nowhere
         fileType = QT_STAT_MASK - 1;
@@ -515,7 +502,7 @@ bool SFTPInternal::createUDSEntry(const QString &filename, const QByteArray &pat
         }
     }
 
-    return true;
+    return Result::pass();
 }
 
 QString SFTPInternal::canonicalizePath(const QString &path)
@@ -1851,12 +1838,16 @@ Result SFTPInternal::stat(const QUrl &url)
     const QString sDetails = q->metaData(QLatin1String("details"));
     const int details = sDetails.isEmpty() ? 2 : sDetails.toInt();
 
-    UDSEntry entry;
-    entry.clear();
-    if (!createUDSEntry(url.fileName(), path, entry, details)) {
+    sftp_attributes_struct *attributes = sftp_lstat(mSftp, path.constData());
+    if (attributes == nullptr) {
         return Result::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
     }
 
+    UDSEntry entry;
+    const Result result = createUDSEntry(SFTPAttributesPtr(attributes), entry, path, QFileInfo(path).fileName(), details);
+    if (!result.success) {
+        return result;
+    }
     q->statEntry(entry);
 
     return Result::pass();
@@ -1916,99 +1907,25 @@ Result SFTPInternal::listDir(const QUrl &url)
         return reportError(url, sftp_get_error(mSftp));
     }
 
-    SFTPAttributesPtr dirent(nullptr);
     const QString sDetails = q->metaData(QLatin1String("details"));
     const int details = sDetails.isEmpty() ? 2 : sDetails.toInt();
-    UDSEntry entry;
 
     qCDebug(KIO_SFTP_LOG) << "readdir: " << path << ", details: " << QString::number(details);
 
+    UDSEntry entry; // internally this is backed by a heap'd Private, no need allocating that repeatedly
     for (;;) {
-        mode_t access;
-        char *link;
-        bool isBrokenLink = false;
-        long long fileType = QT_STAT_REG;
-        long long size = 0LL;
-
-        dirent.reset(sftp_readdir(mSftp, dp));
-        if (dirent == nullptr) {
+        sftp_attributes_struct *attributes = sftp_readdir(mSftp, dp);
+        if (attributes == nullptr) {
             break;
         }
 
-        entry.clear();
-        entry.reserve(10);
-        entry.fastInsert(KIO::UDSEntry::UDS_NAME, QFile::decodeName(dirent->name));
-
-        if (dirent->type == SSH_FILEXFER_TYPE_SYMLINK) {
-            QByteArray file = path + '/' + QFile::decodeName(dirent->name).toUtf8();
-
-            link = sftp_readlink(mSftp, file.constData());
-            if (link == nullptr) {
-                return Result::fail(KIO::ERR_INTERNAL, i18n("Could not read link: %1", QString::fromUtf8(file)));
-            }
-            entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link));
-            free(link);
-            // A symlink -> follow it only if details > 1
-            if (details > 1) {
-                sftp_attributes sb = sftp_stat(mSftp, file.constData());
-                if (sb == nullptr) {
-                    isBrokenLink = true;
-                } else {
-                    dirent.reset(sb);
-                }
-            }
-        }
-
-        if (isBrokenLink) {
-            // It is a link pointing to nowhere
-            fileType = QT_STAT_MASK - 1;
-#ifdef Q_OS_WIN
-            access = static_cast<mode_t>(perms::owner_all | perms::group_all | perms::others_all);
-#else
-            access = S_IRWXU | S_IRWXG | S_IRWXO;
-#endif
-            size = 0LL;
-        } else {
-            switch (dirent->type) {
-            case SSH_FILEXFER_TYPE_REGULAR:
-                fileType = QT_STAT_REG;
-                break;
-            case SSH_FILEXFER_TYPE_DIRECTORY:
-                fileType = QT_STAT_DIR;
-                break;
-            case SSH_FILEXFER_TYPE_SYMLINK:
-                fileType = QT_STAT_LNK;
-                break;
-            case SSH_FILEXFER_TYPE_SPECIAL:
-            case SSH_FILEXFER_TYPE_UNKNOWN:
-                break;
-            }
-
-            access = dirent->permissions & 07777;
-            size = dirent->size;
-        }
-        entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
-        entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, access);
-        entry.fastInsert(KIO::UDSEntry::UDS_SIZE, size);
-
-        if (details > 0) {
-            if (dirent->owner) {
-                entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::fromUtf8(dirent->owner));
-            } else {
-                entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::number(dirent->uid));
-            }
-
-            if (dirent->group) {
-                entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::fromUtf8(dirent->group));
-            } else {
-                entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::number(dirent->gid));
-            }
-
-            entry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, dirent->atime);
-            entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, dirent->mtime);
-            if (dirent->flags & SSH_FILEXFER_ATTR_CREATETIME) {
-                entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, dirent->createtime);
-            }
+        const QByteArray name = QFile::decodeName(attributes->name).toUtf8();
+        const QByteArray filePath = path + '/' + name;
+        const Result result = createUDSEntry(SFTPAttributesPtr(attributes), entry, filePath, QString::fromUtf8(name), details);
+        if (!result.success) {
+            // Failing to list one entry in a directory is not a fatal problem. Log the problem and move on.
+            qCWarning(KIO_SFTP_LOG) << result.error << result.errorString;
+            continue;
         }
 
         q->listEntry(entry);

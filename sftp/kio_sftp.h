@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2001 Lucas Fisher <ljfisher@purdue.edu>
  * SPDX-FileCopyrightText: 2009 Andreas Schneider <mail@cynapses.org>
- * SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
+ * SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
@@ -51,6 +51,17 @@ struct Result
         return Result { true, 0, QString() };
     }
 };
+
+
+// sftp_attributes must be freed. Use this ScopedPtr to ensure they always are!
+struct ScopedPointerCustomDeleter
+{
+    static inline void cleanup(sftp_attributes attr)
+    {
+        sftp_attributes_free(attr);
+    }
+};
+typedef QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter> SFTPAttributesPtr;
 
 class SFTPSlave;
 
@@ -199,8 +210,7 @@ private: // private methods
 
     Q_REQUIRED_RESULT Result reportError(const QUrl &url, const int err);
 
-    bool createUDSEntry(const QString &filename, const QByteArray &path,
-                        KIO::UDSEntry &entry, short int details);
+    Q_REQUIRED_RESULT Result createUDSEntry(SFTPAttributesPtr sb, KIO::UDSEntry &entry, const QByteArray &path, const QString &name, int details);
 
     QString canonicalizePath(const QString &path);
     void requiresUserNameRedirection();
