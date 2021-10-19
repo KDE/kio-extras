@@ -3941,23 +3941,24 @@ static char *scan_request(char *c)
                 else
                 {
                     char *h = args[0].data();
-                    j = 0;
+                    int sign = 0;
                     i = 0;
                     if (*h == '-')
                     {
-                        j = -1;
+                        sign = -1;
                         h++;
                     }
-                    else if (*h == '+')
-                        j = 1;
-                    h++;
+                    else if (*h == '+') {
+                        sign = 1;
+                        h++;
+                    }
                     scan_expression(h, &i);
-                    if (!j)
+                    if (sign == 0)
                     {
-                        j = 1;
+                        sign = 1;
                         if (i > 5) i = i - 10;
                     }
-                    out_html(change_to_size(i*j));
+                    out_html(change_to_size(sign * i));
                 }
                 break;
             }
