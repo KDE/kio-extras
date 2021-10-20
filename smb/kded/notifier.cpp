@@ -129,7 +129,7 @@ private:
 // Rate limit modification signals. SMB will send modification actions
 // every time we write during a copy to the remote. This is very excessive
 // signals spam so we limit the amount of actual emissions to dbus.
-// This is done here in the notifier rahter than KIO because we have
+// This is done here in the notifier rather than KIO because we have
 // a much easier time telling which urls events are happening on.
 class ModificationLimiter
 {
