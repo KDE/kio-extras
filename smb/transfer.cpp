@@ -19,12 +19,12 @@ off_t TransferSegment::segmentSizeForFileSize(const off_t fileSize_)
     // read() internally splits our read requests into multiple server
     // requests and then assembles the responses into our buffer.
     // The larger the chunks we request the better the performance.
-    // At the same time we'll want a semblence of progress reporting
+    // At the same time we'll want a semblance of progress reporting
     // and also not eat too much RAM. It's a balancing act :|
     off_t segmentSize = c_minSegmentSize;
     // The segment size is largely arbitrary and sacrifices better throughput for
     // greater memory use.
-    // This only goes up to a maxiumum because bigger transfer blobs directly
+    // This only goes up to a maximum because bigger transfer blobs directly
     // translate to more RAM use. Mind that the effective RAM use will
     // be (segmentSize * (segments + 1)). The +1 is because smbc internally will also
     // allocate up to a full segment for one read() call.
