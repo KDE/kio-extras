@@ -12,6 +12,7 @@
 #include <cerrno>
 #include <cstring>
 #include <memory>
+#include <array>
 
 #include <QCoreApplication>
 #include <QDateTime>
