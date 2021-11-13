@@ -36,13 +36,13 @@
 #include <QDebug>
 #include <QRandomGenerator>
 
+#include <KConfigGroup>
 #include <KFileItem>
 #include <KLocalizedString>
-#include <KSharedConfig>
-#include <KConfigGroup>
-#include <KMimeTypeTrader>
-#include <KServiceTypeTrader>
+#include <KPluginInfo>
 #include <KPluginLoader>
+#include <KServiceTypeTrader>
+#include <KSharedConfig>
 
 #include <kio/previewjob.h>
 #include <kio/thumbcreator.h>
@@ -337,24 +337,37 @@ void ThumbnailProtocol::get(const QUrl &url)
     finished();
 }
 
-QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
-    KService::List offers = KMimeTypeTrader::self()->query( mimeType, QLatin1String("ThumbCreator"));
-    if (!offers.isEmpty()) {
-        KService::Ptr serv;
-        serv = offers.first();
-        return serv->library();
+static QVector<KPluginMetaData> availablePlugins()
+{
+    auto jsonMetaDataPlugins = KPluginMetaData::findPlugins(QStringLiteral("kf5/thumbcreator"));
+    QT_WARNING_PUSH
+    QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
+    QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
+    // TODO KF6 remove this compat codepath
+    const KService::List plugins = KServiceTypeTrader::self()->query(QStringLiteral("ThumbCreator"));
+    for (const auto &plugin : plugins) {
+        if (KPluginInfo info(plugin); info.isValid()) {
+            jsonMetaDataPlugins << info.toMetaData();
+        }
     }
+    QT_WARNING_POP
+    return jsonMetaDataPlugins;
+}
 
-    //Match group mimetypes
-    ///@todo Move this into some central location together with the related matching code in previewjob.cpp. This doesn't handle inheritance and such
-    const KService::List plugins = KServiceTypeTrader::self()->query("ThumbCreator");
-    for (const KService::Ptr& plugin : plugins) {
-        const QStringList mimeTypes = plugin->serviceTypes();
+QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
+    const static auto plugins = availablePlugins();
+    for (const auto &plugin : plugins) {
+        if (plugin.supportsMimeType(mimeType)) {
+            return plugin.fileName();
+        }
+    }
+    for (const auto &plugin : plugins) {
+        const QStringList mimeTypes = plugin.mimeTypes() + plugin.value(QStringLiteral("ServiceTypes"), QStringList());
         for (const QString& mime : mimeTypes) {
             if(mime.endsWith('*')) {
                 const auto mimeGroup = mime.leftRef(mime.length()-1);
                 if(mimeType.startsWith(mimeGroup))
-                    return plugin->library();
+                    return plugin.fileName();
             }
         }
     }
@@ -663,21 +676,29 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
 
     ThumbCreatorWithMetadata *thumbCreator = nullptr;
     if (creator) {
-        const KService::List plugins = KServiceTypeTrader::self()->query(QStringLiteral("ThumbCreator"), QStringLiteral("Library == '%1'").arg(plugin));
-        if (plugins.size() == 0) {
+        KPluginMetaData data;
+        if (plugin.contains(QLatin1String("kf5") + QDir::separator() + QLatin1String("thumbcreator"))) {
+            data = KPluginMetaData(plugin);
+        } else {
+            QT_WARNING_PUSH
+            QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
+            QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
+            // TODO KF6 remove this compat codepath
+            const QString constraint = QStringLiteral("Library == '%1'").arg(QFileInfo(plugin).fileName());
+            const KService::List plugins = KServiceTypeTrader::self()->query(QStringLiteral("ThumbCreator"), constraint);
+            if (!plugins.isEmpty()) {
+                data = KPluginInfo(plugins.first()).toMetaData();
+            }
+            QT_WARNING_POP
+        }
+        if (!data.isValid()) {
             qCWarning(KIO_THUMBNAIL_LOG) << "Plugin not found:" << plugin;
         } else {
-            auto service = plugins.first();
-
-            QVariant cacheThumbnails = service->property("CacheThumbnail");
-            QVariant devicePixelRatioDependent = service->property("DevicePixelRatioDependent");
-            QVariant handleSequences = service->property("HandleSequences");
-
             thumbCreator = new ThumbCreatorWithMetadata{
                 creator,
-                cacheThumbnails.isValid() ? cacheThumbnails.toBool() : true,
-                devicePixelRatioDependent.isValid() ? devicePixelRatioDependent.toBool() : false,
-                handleSequences.isValid() ? handleSequences.toBool() : false
+                data.value("CacheThumbnail", true),
+                data.value("DevicePixelRatioDependent", false),
+                data.value("HandleSequences", false),
             };
         }
     } else {
