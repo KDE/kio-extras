@@ -8,17 +8,12 @@
 
 #include "windowsexecreator.h"
 #include "icoutils.h"
+#include "macros.h"
 
 #include <QString>
 #include <QImage>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new WindowsExeCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(WindowsExeCreator, "windowsexethumbnail.json")
 
 bool WindowsExeCreator::create(const QString &path, int width, int height, QImage &img)
 {
@@ -26,3 +21,5 @@ bool WindowsExeCreator::create(const QString &path, int width, int height, QImag
     return IcoUtils::loadIcoImageFromExe(path, img, width, height);
 
 }
+
+#include "windowsexecreator.moc"

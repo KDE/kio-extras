@@ -6,19 +6,15 @@
 
 #include "opendocumentcreator.h"
 
+#include "macros.h"
+
 #include <QImage>
 #include <QScopedPointer>
 #include <QXmlStreamReader>
 
 #include <KZip>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new OpenDocumentCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(OpenDocumentCreator, "opendocumentthumbnail.json")
 
 OpenDocumentCreator::OpenDocumentCreator() = default;
 
@@ -76,3 +72,5 @@ bool OpenDocumentCreator::create(const QString &path, int width, int height, QIm
 
     return false;
 }
+
+#include "opendocumentcreator.moc"

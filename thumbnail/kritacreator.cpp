@@ -6,19 +6,15 @@
 
 #include "kritacreator.h"
 
+#include "macros.h"
+
 #include <kzip.h>
 
 #include <memory>
 #include <QImage>
 #include <QIODevice>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new KritaCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(KritaCreator, "kraorathumbnail.json")
 
 KritaCreator::KritaCreator()
 {
@@ -70,3 +66,5 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
 
     return false;
 }
+
+#include "kritacreator.moc"

@@ -7,15 +7,11 @@
 
 #include "imagecreator.h"
 
+#include "macros.h"
+
 #include <QImageReader>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new ImageCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(ImageCreator, "imagethumbnail.json")
 
 bool ImageCreator::create(const QString &path, int, int, QImage &img)
 {
@@ -29,3 +25,5 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
         img = img.convertToFormat(img.hasAlphaChannel() ? QImage::Format_ARGB32 : QImage::Format_RGB32);
     return true;
 }
+
+#include "imagecreator.moc"

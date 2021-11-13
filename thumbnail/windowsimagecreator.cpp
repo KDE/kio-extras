@@ -8,19 +8,14 @@
 
 #include "windowsimagecreator.h"
 #include "icoutils.h"
+#include "macros.h"
 
 #include <QString>
 #include <QImage>
 #include <QImageReader>
 #include <QMimeDatabase>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new WindowsImageCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(WindowsImageCreator, "windowsimagethumbnail.json")
 
 bool WindowsImageCreator::create(const QString &path, int width, int height, QImage &img)
 {
@@ -37,3 +32,4 @@ bool WindowsImageCreator::create(const QString &path, int width, int height, QIm
     return false;
 
 }
+#include "windowsimagecreator.moc"

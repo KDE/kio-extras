@@ -9,6 +9,8 @@
 
 #include "audiocreator.h"
 
+#include "macros.h"
+
 #include <QFile>
 #include <QImage>
 #include <QMimeType>
@@ -30,13 +32,7 @@
 #include <flacpicture.h>
 #include <attachedpictureframe.h>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator* new_creator()
-    {
-        return new AudioCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(AudioCreator, "audiothumbnail.json")
 
 AudioCreator::AudioCreator()
 {
@@ -196,3 +192,5 @@ bool AudioCreator::create(const QString &path, int, int, QImage &img)
     }
     return false;
 }
+
+#include "audiocreator.moc"

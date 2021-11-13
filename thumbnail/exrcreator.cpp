@@ -7,6 +7,8 @@
 #include "exrcreator.h"
 #include "thumbnail-exr-logsettings.h"
 
+#include "macros.h"
+
 #include <QImage>
 #include <QFile>
 
@@ -19,13 +21,7 @@
 
 #include <limits>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new EXRCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(EXRCreator, "exrthumbnail.json")
 
 bool EXRCreator::create(const QString &path, int, int, QImage &img)
 {
@@ -69,3 +65,5 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
         }
     }
 }
+
+#include "exrcreator.moc"

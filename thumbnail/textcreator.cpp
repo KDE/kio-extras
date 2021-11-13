@@ -24,6 +24,12 @@
 // TODO Fix or remove kencodingprober code
 // #include <kencodingprober.h>
 
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.thumbcreator" FILE "textthumbnail.json")
+};
+
 extern "C"
 {
 Q_DECL_EXPORT KIO::ThumbDevicePixelRatioDependentCreator *new_creator()
@@ -166,3 +172,5 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
     }
     return ok;
 }
+
+#include "textcreator.moc"

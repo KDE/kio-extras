@@ -12,14 +12,6 @@
 #include <X11/Xlib.h>
 #include <X11/Xcursor/Xcursor.h>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new CursorCreator;
-    }
-}
-
 bool CursorCreator::create( const QString &path, int width, int height, QImage &img )
 {
     XcursorImage *cursor = XcursorFilenameLoadImage(

@@ -6,6 +6,8 @@
 
 #include "ebookcreator.h"
 
+#include "macros.h"
+
 #include <QFile>
 #include <QImage>
 #include <QMap>
@@ -15,13 +17,7 @@
 
 #include <KZip>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new EbookCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(EbookCreator, "ebookthumbnail.json")
 
 EbookCreator::EbookCreator() = default;
 
@@ -320,3 +316,5 @@ QStringList EbookCreator::getEntryList(const KArchiveDirectory *dir, const QStri
 
     return list;
 }
+
+#include "ebookcreator.moc"

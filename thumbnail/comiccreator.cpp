@@ -16,6 +16,8 @@
 #include "comiccreator.h"
 #include "thumbnail-comic-logsettings.h"
 
+#include "macros.h"
+
 #include <kzip.h>
 #include <ktar.h>
 #include <k7zip.h>
@@ -30,13 +32,7 @@
 #include <QStandardPaths>
 #include <QTemporaryDir>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new ComicCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(ComicCreator, "comicbookthumbnail.json")
 
 ComicCreator::ComicCreator() {}
 
@@ -249,3 +245,5 @@ int ComicCreator::runProcess(const QString& processPath, const QStringList& args
 
     return ret;
 }
+
+#include "comiccreator.moc"

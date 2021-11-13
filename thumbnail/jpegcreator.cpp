@@ -8,17 +8,13 @@
 #include "jpegcreator.h"
 #include "jpegcreatorsettings5.h"
 
+#include "macros.h"
+
 #include <QImage>
 #include <QImageReader>
 #include <klocalizedstring.h>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new JpegCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(JpegCreator, "jpegthumbnail.json")
 
 JpegCreator::JpegCreator()
 {
@@ -41,3 +37,5 @@ bool JpegCreator::create(const QString &path, int width, int height, QImage &ima
 
     return imageReader.read(&image);
 }
+
+#include "jpegcreator.moc"

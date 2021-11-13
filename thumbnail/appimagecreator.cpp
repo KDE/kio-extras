@@ -6,18 +6,14 @@
 
 #include "appimagecreator.h"
 
+#include "macros.h"
+
 #include <QImage>
 #include <QScopedPointer>
 
 #include <appimage/appimage.h>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new AppImageCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(AppImageCreator, "appimagethumbnail.json")
 
 AppImageCreator::AppImageCreator() = default;
 AppImageCreator::~AppImageCreator() = default;
@@ -45,3 +41,5 @@ bool AppImageCreator::create(const QString &path, int width, int height, QImage 
 
     return image.loadFromData(reinterpret_cast<uchar*>(buf), size);
 }
+
+#include "appimagecreator.moc"

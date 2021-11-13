@@ -6,17 +6,13 @@
 #include "djvucreator.h"
 #include "thumbnail-djvu-logsettings.h"
 
+#include "macros.h"
+
 #include <QProcess>
 #include <QString>
 #include <QImage>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new DjVuCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(DjVuCreator, "djvuthumbnail.json")
 
 bool DjVuCreator::create(const QString &path, int width, int height, QImage &img)
 {
@@ -45,3 +41,5 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
     img.load(&ddjvu, "ppm");
     return true;
 }
+
+#include "djvucreator.moc"

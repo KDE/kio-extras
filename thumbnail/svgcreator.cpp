@@ -6,17 +6,13 @@
 
 #include "svgcreator.h"
 
+#include "macros.h"
+
 #include <QImage>
 #include <QPainter>
 #include <QSvgRenderer>
 
-extern "C"
-{
-    Q_DECL_EXPORT ThumbCreator *new_creator()
-    {
-        return new SvgCreator;
-    }
-}
+EXPORT_THUMBNAILER_WITH_JSON(SvgCreator, "svgthumbnail.json")
 
 bool SvgCreator::create(const QString &path, int w, int h, QImage &img)
 {
@@ -39,3 +35,5 @@ bool SvgCreator::create(const QString &path, int w, int h, QImage &img)
     img = i;
     return true;
 }
+
+#include "svgcreator.moc"
