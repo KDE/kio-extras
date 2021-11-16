@@ -592,13 +592,13 @@ Result SFTPInternal::sftpOpenConnection(const AuthInfo &info)
         return Result::fail(KIO::ERR_INTERNAL, i18n("Could not disable Nagle's Algorithm."));
     }
 
-    // Don't use any compression
-    rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_C_S, "none");
+    // Prefer not to use compression
+    rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_C_S, "none,zlib@openssh.com,zlib");
     if (rc < 0) {
         return Result::fail(KIO::ERR_INTERNAL, i18n("Could not set compression."));
     }
 
-    rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_S_C, "none");
+    rc = ssh_options_set(mSession, SSH_OPTIONS_COMPRESSION_S_C, "none,zlib@openssh.com,zlib");
     if (rc < 0) {
         return Result::fail(KIO::ERR_INTERNAL, i18n("Could not set compression."));
     }
