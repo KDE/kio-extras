@@ -109,7 +109,7 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
     // so it for example wouldn't reply to ksmserver - on the other
     // hand, this slave uses QPixmaps for some reason, and they
     // need QGuiApplication
-    putenv(strdup("SESSION_MANAGER="));
+    qunsetenv("SESSION_MANAGER");
 
     // Some thumbnail plugins use QWidget classes for the rendering,
     // so use QApplication here, not just QGuiApplication
