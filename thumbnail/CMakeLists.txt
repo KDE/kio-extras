@@ -21,13 +21,16 @@ set_package_properties(libappimage PROPERTIES
     PURPOSE "Provides support for AppImage thumbnails"
 )
 
-find_package(X11)
-set_package_properties(X11 PROPERTIES
-    DESCRIPTION "X11 libraries"
-    URL "https://www.x.org"
-    TYPE OPTIONAL
-    PURPOSE "Provides support for XCursor thumbnails"
-)
+option(WITHOUT_X11 "Build without support for XCursor thumbnails (disables finding X11)" OFF)
+if (NOT WITHOUT_X11)
+    find_package(X11)
+    set_package_properties(X11 PROPERTIES
+        DESCRIPTION "X11 libraries"
+        URL "https://www.x.org"
+        TYPE OPTIONAL
+        PURPOSE "Provides support for XCursor thumbnails"
+    )
+endif()
 
 find_package(Taglib 1.11)
 set_package_properties(Taglib PROPERTIES
@@ -210,7 +213,7 @@ endif()
 
 ########### next target ###############
 
-if(X11_Xcursor_FOUND)
+if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
 
     add_library(cursorthumbnail MODULE cursorcreator.cpp cursorcreatorplugin.cpp)
 
