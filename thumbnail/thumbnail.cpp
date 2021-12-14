@@ -139,7 +139,6 @@ ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &a
 ThumbnailProtocol::~ThumbnailProtocol()
 {
     qDeleteAll(m_creators);
-    m_creators.clear();
 }
 
 /**
@@ -252,7 +251,7 @@ void ThumbnailProtocol::get(const QUrl &url)
         }
 
         if (creator->handleSequences) {
-            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator->creator);
+            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator->creator.get());
             if (sequenceCreator) {
                 sequenceCreator->setSequenceIndex(sequenceIndex());
 
@@ -266,7 +265,7 @@ void ThumbnailProtocol::get(const QUrl &url)
         }
 
         if (creator->handleSequences) {
-            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator->creator);
+            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator->creator.get());
             // We MUST do this after calling create(), because the create() call itself might change it.
             const float wp = sequenceCreator->sequenceIndexWraparoundPoint();
             setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wp));
@@ -695,7 +694,7 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
             qCWarning(KIO_THUMBNAIL_LOG) << "Plugin not found:" << plugin;
         } else {
             thumbCreator = new ThumbCreatorWithMetadata{
-                creator,
+                std::unique_ptr<ThumbCreator>(creator),
                 data.value("CacheThumbnail", true),
                 data.value("DevicePixelRatioDependent", false),
                 data.value("HandleSequences", false),
@@ -847,7 +846,7 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, 
     if (thumbCreator->devicePixelRatioDependent) {
         KIO::ThumbDevicePixelRatioDependentCreator *dprDependentCreator =
                 static_cast<KIO::ThumbDevicePixelRatioDependentCreator *>(
-                    thumbCreator->creator);
+                    thumbCreator->creator.get());
 
         if (dprDependentCreator) {
             dprDependentCreator->setDevicePixelRatio(m_devicePixelRatio);

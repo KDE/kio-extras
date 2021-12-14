@@ -18,7 +18,7 @@ class ThumbCreator;
 class QImage;
 
 struct ThumbCreatorWithMetadata {
-    ThumbCreator *creator = nullptr;
+    std::unique_ptr<ThumbCreator> creator;
     bool cacheThumbnail = true;
     bool devicePixelRatioDependent = false;
     bool handleSequences = false;
