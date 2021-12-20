@@ -163,6 +163,10 @@ SMBUrlType SMBUrl::getType() const
         return m_type;
     }
 
+    if (QUrlQuery query(*this); query.queryItemValue("kio-printer") == "true") {
+        return m_type = SMBURLTYPE_PRINTER;
+    }
+
     if (path().isEmpty() || path(QUrl::FullyDecoded) == "/") {
         if (host().isEmpty() && !query().contains("kio-workgroup"))
             m_type = SMBURLTYPE_ENTIRE_NETWORK;

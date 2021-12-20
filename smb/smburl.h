@@ -39,11 +39,15 @@
  *   SMBURLTYPE_UNKNOWN  - Type could not be determined. Bad SMB Url.
  *   SMBURLTYPE_ENTIRE_NETWORK - "smb:/" is entire network
  *   SMBURLTYPE_WORKGROUP_OR_SERVER - "smb:/mygroup" or "smb:/myserver"
- *   URLTYPE_SHARE_OR_PATH - "smb:/mygroupe/mymachine/myshare/mydir"
+ *   SMBURLTYPE_SHARE_OR_PATH - "smb:/mygroupe/mymachine/myshare/mydir"
+ *   SMBURLTYPE_PRINTER - "smb://host/printer?kio-printer=true"
  */
 enum SMBUrlType {
-    SMBURLTYPE_UNKNOWN = 0, SMBURLTYPE_ENTIRE_NETWORK = 1,
-    SMBURLTYPE_WORKGROUP_OR_SERVER = 2, SMBURLTYPE_SHARE_OR_PATH = 3
+    SMBURLTYPE_UNKNOWN = 0,
+    SMBURLTYPE_ENTIRE_NETWORK = 1,
+    SMBURLTYPE_WORKGROUP_OR_SERVER = 2,
+    SMBURLTYPE_SHARE_OR_PATH = 3,
+    SMBURLTYPE_PRINTER,
 };
 
 /**

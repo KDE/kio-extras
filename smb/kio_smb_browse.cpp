@@ -1,7 +1,7 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
     SPDX-FileCopyrightText: 2000 Caldera Systems Inc.
-    SPDX-FileCopyrightText: 2018-2020 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2018-2021 Harald Sitter <sitter@kde.org>
     SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
 */
 
@@ -139,6 +139,10 @@ void SMBSlave::stat(const QUrl &kurl)
     switch (m_current_url.getType()) {
     case SMBURLTYPE_UNKNOWN:
         error(ERR_MALFORMED_URL, url.toDisplayString());
+        return;
+
+    case SMBURLTYPE_PRINTER:
+        error(ERR_UNSUPPORTED_ACTION, url.toDisplayString());
         return;
 
     case SMBURLTYPE_ENTIRE_NETWORK:

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SPDX-License-Identifier: CC0-1.0
+  SPDX-FileCopyrightText: 2021 Harald Sitter <sitter@kde.org>
+-->
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="inode/vnd.kde.kio.smb.printer">
+    <comment>Shared Network Printer (SMB)</comment>
+    <icon name="printer"/>
+  </mime-type>
+</mime-info>

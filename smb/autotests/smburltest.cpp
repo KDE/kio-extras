@@ -143,6 +143,12 @@ private Q_SLOTS:
         // Clearly not a file should not work
         QCOMPARE(QUrl(), SMBUrl(QUrl("file:///")).partUrl());
     }
+
+    void testPrinter()
+    {
+        // We tag printers as such cause otherwise we have no way of knowing it was a printer.
+        QCOMPARE(SMBUrl(QUrl("smb://host/printer?kio-printer=true")).getType(), SMBURLTYPE_PRINTER);
+    }
 };
 
 QTEST_GUILESS_MAIN(SMBUrlTest)

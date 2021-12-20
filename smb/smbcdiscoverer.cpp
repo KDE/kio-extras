@@ -1,6 +1,6 @@
 /*
     SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
 */
 
 #include <QCoreApplication>
@@ -70,6 +70,20 @@ public:
             u.setQuery(q);
         }
         return u.url();
+    }
+};
+
+class SMBCPrinterDiscovery : public SMBCDiscovery
+{
+public:
+    SMBCPrinterDiscovery(const UDSEntry &entry)
+        : SMBCDiscovery(entry)
+    {
+        m_entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0x0);
+        m_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/vnd.kde.kio.smb.printer"));
+        // Relative to parent, but need to set it so we can append a marker. Subsequent stat calls wouldn't know that this is a printer
+        // because libsmbc doesn't reflect that in the stat output.
+        m_entry.fastInsert(KIO::UDSEntry::UDS_URL, udsName() + QStringLiteral("?kio-printer=true"));
     }
 };
 
@@ -167,7 +181,9 @@ void SMBCDiscoverer::discoverNext()
         return;
     }
 
-    if (discoverNextFileInfo()) {
+    static bool printersOnly = qEnvironmentVariableIntValue("KIO_SMB_PRINTERS") > 0;
+
+    if (!printersOnly && discoverNextFileInfo()) {
         return;
     }
 
@@ -199,6 +215,13 @@ void SMBCDiscoverer::discoverNext()
     // Ensure system shares are marked hidden.
     if (name.endsWith(QLatin1Char('$'))) {
         entry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, 1);
+    }
+
+    if (printersOnly) {
+        if (dirp->smbc_type == SMBC_PRINTER_SHARE) {
+            Q_EMIT newDiscovery(Discovery::Ptr(new SMBCPrinterDiscovery(entry)));
+        }
+        return;
     }
 
 #if !defined(HAVE_READDIRPLUS2)

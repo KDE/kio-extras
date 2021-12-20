@@ -102,5 +102,15 @@ install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote)
 install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
 
+option(WITH_SHAREDMIMEINFO "Build with shared shared-mime-info and update mimetype database on install" ON)
+if(WITH_SHAREDMIMEINFO)
+    install(FILES org.kde.kio.smb.xml DESTINATION ${KDE_INSTALL_MIMEDIR})
+    find_package(SharedMimeInfo 1.3)
+    set_package_properties(SharedMimeInfo PROPERTIES
+        TYPE REQUIRED
+        PURPOSE "Used to update the mimetype database")
+    update_xdg_mimetypes(${KDE_INSTALL_MIMEDIR})
+endif()
+
 add_subdirectory(autotests)
 add_subdirectory(kded)
