@@ -1308,7 +1308,7 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
         }
 
         filedata.clear();
-        const size_t bytesread = request.readChunks(filedata);
+        const auto bytesread = request.readChunks(filedata);
         // Read pending get requests
         if (bytesread == -1) {
             return Result::fail(KIO::ERR_CANNOT_READ, url.toString());
