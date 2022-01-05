@@ -197,7 +197,7 @@ void MTPSlave::listDir(const QUrl &url)
     }
 
     // traverse into device
-    const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
+    KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
     if (mtpDevice) {
         // list storage media
         if (pathItems.size() == 1) {

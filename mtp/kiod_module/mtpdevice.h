@@ -40,6 +40,9 @@ public:
     QString udi() const;
     QString friendlyName() const;
 
+    bool devicesUpdated() const;
+    void setDevicesUpdatedStatus(bool value);
+
 private:
     const QString m_dbusObjectName;
     QList<MTPStorage *> m_storages;
@@ -50,12 +53,13 @@ private:
 
     QString m_udi;
     QString m_friendlyName;
+    bool m_devicesUpdated;
 
 public Q_SLOTS:
     // D-Bus methods
 
     int setFriendlyName(const QString &friendlyName);
-    QList<QDBusObjectPath> listStorages() const;
+    QList<QDBusObjectPath> listStorages();
 
 Q_SIGNALS:
     void friendlyNameChanged(const QString &friendlyName);

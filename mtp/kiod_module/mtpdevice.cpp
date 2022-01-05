@@ -34,7 +34,8 @@ MTPDevice::MTPDevice(const QString &dbusObjectPath, LIBMTP_mtpdevice_t *device, 
       m_timeout(timeout),
       m_mtpdevice(device),
       m_rawdevice(*rawdevice),
-      m_udi(udi)
+      m_udi(udi),
+      m_devicesUpdated(true)
 {
     const char *deviceName = LIBMTP_Get_Friendlyname(device);
     const char *deviceModel = LIBMTP_Get_Modelname(device);
@@ -61,6 +62,16 @@ MTPDevice::~MTPDevice()
 {
     qCDebug(LOG_KIOD_KMTPD) << "release device:" << m_friendlyName;
     LIBMTP_Release_Device(m_mtpdevice);
+}
+
+void MTPDevice::setDevicesUpdatedStatus(bool value)
+{
+    m_devicesUpdated = value;
+}
+
+bool MTPDevice::devicesUpdated() const
+{
+    return m_devicesUpdated;
 }
 
 LIBMTP_mtpdevice_t *MTPDevice::getDevice()
@@ -98,13 +109,17 @@ int MTPDevice::setFriendlyName(const QString &friendlyName)
     return result;
 }
 
-QList<QDBusObjectPath> MTPDevice::listStorages() const
+QList<QDBusObjectPath> MTPDevice::listStorages()
 {
     QList<QDBusObjectPath> list;
     list.reserve(m_storages.count());
     for (const MTPStorage *storage : m_storages) {
         list.append(QDBusObjectPath(storage->dbusObjectPath()));
     }
+
+    // New storages have been collected. No new changes anymore.
+    setDevicesUpdatedStatus(false);
+
     return list;
 }
 

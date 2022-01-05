@@ -44,5 +44,12 @@
             <arg direction="out" type="ao" name="storages" />
         </method>
 
+        <!-- devicesUpdated: Get status if any device was changed.
+            @deviceUpdated: Status of any device change.
+        -->
+        <method name="devicesUpdated">
+            <arg direction="out" type="b" name="devicesUpdated" />
+        </method>
+
 	</interface>
 </node>

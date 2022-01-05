@@ -32,8 +32,9 @@ public:
     QString udi() const;
     QString friendlyName() const;
 
-    QVector<KMTPStorageInterface *> storages() const;
+    QVector<KMTPStorageInterface *> storages();
     KMTPStorageInterface *storageFromDescription(const QString &description) const;
+    void updateStorages();
 
 private:
     org::kde::kmtp::Device *m_dbusInterface;

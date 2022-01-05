@@ -96,6 +96,12 @@ void KMTPd::checkDevice(const Solid::Device &solidDevice)
                     LIBMTP_mtpdevice_t *mtpDevice = LIBMTP_Open_Raw_Device_Uncached(rawDevice);
                     if (mtpDevice) {
                         MTPDevice *device = new MTPDevice(QStringLiteral("/modules/kmtpd/device%1").arg(m_devices.count()), mtpDevice, rawDevice, solidDevice.udi(), m_timeout);
+
+                        // Always let MTPDevice know any changes to devices. It might be helpful Daemon interfaces
+                        connect(this, &KMTPd::devicesChanged, device, [device] {
+                            device->setDevicesUpdatedStatus(true);
+                        });
+
                         m_devices.append(device);
                         Q_EMIT devicesChanged();
                     } else {

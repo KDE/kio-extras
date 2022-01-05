@@ -16,6 +16,13 @@ KMTPDeviceInterface::KMTPDeviceInterface(const QString &dbusObjectPath, QObject 
                                                  dbusObjectPath,
                                                  QDBusConnection::sessionBus(),
                                                  this);
+    updateStorages();
+}
+
+void KMTPDeviceInterface::updateStorages()
+{
+    qDeleteAll(m_storages);
+    m_storages.clear();
 
     const auto storageNames = m_dbusInterface->listStorages().value();
     m_storages.reserve(storageNames.count());
@@ -34,8 +41,13 @@ QString KMTPDeviceInterface::friendlyName() const
     return m_dbusInterface->friendlyName();
 }
 
-QVector<KMTPStorageInterface *> KMTPDeviceInterface::storages() const
+QVector<KMTPStorageInterface *> KMTPDeviceInterface::storages()
 {
+    // Devices may have changed?
+    if (m_dbusInterface->devicesUpdated()) {
+        updateStorages();
+    }
+
     return m_storages;
 }
 
