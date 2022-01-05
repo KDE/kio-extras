@@ -2,6 +2,7 @@
  *  Main implementation for KIO-MTP
  *  SPDX-FileCopyrightText: 2012 Philipp Schmidt <philschmidt@gmx.net>
  *  SPDX-FileCopyrightText: 2018 Andreas Krutzler <andreas.krutzler@gmx.net>
+ *  SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
  *
  *  SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -37,6 +38,13 @@ class MTPSlave : public QObject, public KIO::SlaveBase
 {
     Q_OBJECT
 
+    enum class Url {
+        Invalid = -1,
+        Valid = 0,
+        Redirected = 1,
+        NotFound = 2,
+    };
+
 public:
     /*
      * Overwritten KIO-functions, see "kio_mtp.cpp"
@@ -66,9 +74,9 @@ private:
      * Check if it is a valid url or an udi.
      *
      * @param url The url to checkUrl
-     * @return 0 if valid, 1 if udi and redirected, 2 if udi but invalid device, -1 else
+     * @return enum MTPSlave::Url
      */
-    int checkUrl(const QUrl &url);
+    enum MTPSlave::Url checkUrl(const QUrl &url);
 
     void fileSystemFreeSpace(const QUrl &url);
 

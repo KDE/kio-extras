@@ -2,6 +2,7 @@
  *  Main implementation for KIO-MTP
  *  SPDX-FileCopyrightText: 2012 Philipp Schmidt <philschmidt@gmx.net>
  *  SPDX-FileCopyrightText: 2018 Andreas Krutzler <andreas.krutzler@gmx.net>
+ *  SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
  *
  *  SPDX-License-Identifier: GPL-2.0-or-later
  */
@@ -129,7 +130,7 @@ MTPSlave::~MTPSlave()
     qCDebug(LOG_KIO_MTP) << "Slave destroyed";
 }
 
-int MTPSlave::checkUrl(const QUrl &url)
+enum MTPSlave::Url MTPSlave::checkUrl(const QUrl &url)
 {
     if (url.path().startsWith(QLatin1String("udi="))) {
         const QString udi = url.adjusted(QUrl::StripTrailingSlash).path().remove(0, 4);
@@ -137,35 +138,35 @@ int MTPSlave::checkUrl(const QUrl &url)
         qCDebug(LOG_KIO_MTP) << "udi = " << udi;
 
         const KMTPDeviceInterface *device = m_kmtpDaemon.deviceFromUdi(udi);
-        if (device) {
-            QUrl newUrl;
-            newUrl.setScheme(QStringLiteral("mtp"));
-            newUrl.setPath(QLatin1Char('/') + device->friendlyName());
-            redirection(newUrl);
-
-            return 1;
-        } else {
-            return 2;
+        if (!device) {
+            return Url::NotFound;
         }
-    } else if (url.path().startsWith(QLatin1Char('/'))) {
-        return 0;
+
+        QUrl newUrl;
+        newUrl.setScheme(QStringLiteral("mtp"));
+        newUrl.setPath(QLatin1Char('/') + device->friendlyName());
+        redirection(newUrl);
+
+        return Url::Redirected;
     }
-    return -1;
+    if (url.path().startsWith(QLatin1Char('/'))) {
+        return Url::Valid;
+    }
+    return Url::Invalid;
 }
 
 void MTPSlave::listDir(const QUrl &url)
 {
-    const int check = checkUrl(url);
-    switch (check) {
-    case 0:
+    switch (checkUrl(url)) {
+    case Url::Valid:
         break;
-    case 1:
+    case Url::Redirected:
         finished();
         return;
-    case 2:
+    case Url::NotFound:
         error(ERR_DOES_NOT_EXIST, url.path());
         return;
-    default:
+    case Url::Invalid:
         error(ERR_MALFORMED_URL, url.path());
         return;
     }
@@ -257,17 +258,16 @@ void MTPSlave::listDir(const QUrl &url)
 
 void MTPSlave::stat(const QUrl &url)
 {
-    const int check = checkUrl(url);
-    switch (check) {
-    case 0:
+    switch (checkUrl(url)) {
+    case Url::Valid:
         break;
-    case 1:
+    case Url::Redirected:
         finished();
         return;
-    case 2:
+    case Url::NotFound:
         error(ERR_DOES_NOT_EXIST, url.path());
         return;
-    default:
+    case Url::Invalid:
         error(ERR_MALFORMED_URL, url.path());
         return;
     }
@@ -323,17 +323,16 @@ void MTPSlave::stat(const QUrl &url)
 
 void MTPSlave::mimetype(const QUrl &url)
 {
-    const int check = checkUrl(url);
-    switch (check) {
-    case 0:
+    switch (checkUrl(url)) {
+    case Url::Valid:
         break;
-    case 1:
+    case Url::Redirected:
         finished();
         return;
-    case 2:
+    case Url::NotFound:
         error(ERR_DOES_NOT_EXIST, url.path());
         return;
-    default:
+    case Url::Invalid:
         error(ERR_MALFORMED_URL, url.path());
         return;
     }
@@ -362,11 +361,12 @@ void MTPSlave::mimetype(const QUrl &url)
 
 void MTPSlave::get(const QUrl &url)
 {
-    const int check = checkUrl(url);
-    switch (check) {
-    case 0:
+    switch (checkUrl(url)) {
+    case Url::Valid:
         break;
-    default:
+    case Url::Redirected:
+    case Url::NotFound:
+    case Url::Invalid:
         error(ERR_MALFORMED_URL, url.path());
         return;
     }
@@ -424,11 +424,12 @@ void MTPSlave::get(const QUrl &url)
 
 void MTPSlave::put(const QUrl &url, int, JobFlags flags)
 {
-    const int check = checkUrl(url);
-    switch (check) {
-    case 0:
+    switch (checkUrl(url)) {
+    case Url::Valid:
         break;
-    default:
+    case Url::Redirected:
+    case Url::NotFound:
+    case Url::Invalid:
         error(ERR_MALFORMED_URL, url.path());
         return;
     }
@@ -522,11 +523,12 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
     } else if (src.scheme() == QLatin1String("file") && dest.scheme() == QLatin1String("mtp")) {
         // copy from filesystem to the device
 
-        const int check = checkUrl(dest);
-        switch (check) {
-        case 0:
+        switch (checkUrl(dest)) {
+        case Url::Valid:
             break;
-        default:
+        case Url::Redirected:
+        case Url::NotFound:
+        case Url::Invalid:
             error(ERR_MALFORMED_URL, dest.path());
             return;
         }
@@ -599,11 +601,12 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
     } else if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("file")) {
         // copy from the device to filesystem
 
-        const int check = checkUrl(src);
-        switch (check) {
-        case 0:
+        switch (checkUrl(src)) {
+        case Url::Valid:
             break;
-        default:
+        case Url::Redirected:
+        case Url::NotFound:
+        case Url::Invalid:
             error(ERR_MALFORMED_URL, src.path());
             return;
         }
@@ -678,11 +681,12 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
 
 void MTPSlave::mkdir(const QUrl &url, int)
 {
-    const int check = checkUrl(url);
-    switch (check) {
-    case 0:
+    switch (checkUrl(url)) {
+    case Url::Valid:
         break;
-    default:
+    case Url::Redirected:
+    case Url::NotFound:
+    case Url::Invalid:
         error(ERR_MALFORMED_URL, url.path());
         return;
     }
@@ -707,11 +711,12 @@ void MTPSlave::mkdir(const QUrl &url, int)
 
 void MTPSlave::del(const QUrl &url, bool)
 {
-    const int check = checkUrl(url);
-    switch (check) {
-    case 0:
+    switch (checkUrl(url)) {
+    case Url::Valid:
         break;
-    default:
+    case Url::Redirected:
+    case Url::NotFound:
+    case Url::Invalid:
         error(ERR_MALFORMED_URL, url.path());
         return;
     }
@@ -735,19 +740,22 @@ void MTPSlave::del(const QUrl &url, bool)
 
 void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
 {
-    int check = checkUrl(src);
-    switch (check) {
-    case 0:
+    switch (checkUrl(src)) {
+    case Url::Valid:
         break;
-    default:
+    case Url::Redirected:
+    case Url::NotFound:
+    case Url::Invalid:
         error(ERR_MALFORMED_URL, src.path());
         return;
     }
-    check = checkUrl(dest);
-    switch (check) {
-    case 0:
+
+    switch (checkUrl(dest)) {
+    case Url::Valid:
         break;
-    default:
+    case Url::Redirected:
+    case Url::NotFound:
+    case Url::Invalid:
         error(ERR_MALFORMED_URL, dest.path());
         return;
     }
@@ -825,18 +833,17 @@ void MTPSlave::fileSystemFreeSpace(const QUrl &url)
 {
     qCDebug(LOG_KIO_MTP) << "fileSystemFreeSpace:" << url;
 
-    const int check = checkUrl(url);
-    switch (check) {
-    case 0:
+    switch (checkUrl(url)) {
+    case Url::Valid:
         break;
-    case 1:
+    case Url::Redirected:
         finished();
         return;
-    case 2:
-        error(ERR_DOES_NOT_EXIST, url.toDisplayString());
+    case Url::NotFound:
+        error(ERR_DOES_NOT_EXIST, url.path());
         return;
-    default:
-        error(ERR_MALFORMED_URL, url.toDisplayString());
+    case Url::Invalid:
+        error(ERR_MALFORMED_URL, url.path());
         return;
     }
 
