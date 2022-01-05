@@ -2,6 +2,7 @@
     This file is part of the MTP KIOD module, part of the KDE project.
 
     SPDX-FileCopyrightText: 2018 Andreas Krutzler <andreas.krutzler@gmx.net>
+    SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -42,6 +43,9 @@ public:
 
     bool devicesUpdated() const;
     void setDevicesUpdatedStatus(bool value);
+
+    /// The friendly name url of this device.
+    QUrl url() const;
 
 private:
     const QString m_dbusObjectName;

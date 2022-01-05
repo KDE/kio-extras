@@ -2,15 +2,19 @@
     This file is part of the MTP KIOD module, part of the KDE project.
 
     SPDX-FileCopyrightText: 2018 Andreas Krutzler <andreas.krutzler@gmx.net>
+    SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #include "kmtpd.h"
 
+#include <chrono>
+
 #include <QDBusConnection>
 #include <QDebug>
 
+#include <KDirNotify>
 #include <KPluginFactory>
 #include <Solid/GenericInterface>
 #include <Solid/DeviceNotifier>
@@ -18,6 +22,8 @@
 #include "daemonadaptor.h"
 #include "kiod_kmtpd_debug.h"
 #include "mtpdevice.h"
+
+using namespace std::chrono_literals;
 
 K_PLUGIN_CLASS_WITH_JSON(KMTPd, "kmtpd.json")
 
@@ -100,7 +106,9 @@ void KMTPd::checkDevice(const Solid::Device &solidDevice)
                         // Always let MTPDevice know any changes to devices. It might be helpful Daemon interfaces
                         connect(this, &KMTPd::devicesChanged, device, [device] {
                             device->setDevicesUpdatedStatus(true);
+                            org::kde::KDirNotify::emitFilesAdded(device->url());
                         });
+                        org::kde::KDirNotify::emitFilesAdded(device->url()); // notify for the current change as well
 
                         m_devices.append(device);
                         Q_EMIT devicesChanged();
@@ -147,6 +155,7 @@ void KMTPd::deviceAdded(const QString &udi)
     if (device.isDeviceInterface(Solid::DeviceInterface::PortableMediaPlayer)) {
         qCDebug(LOG_KIOD_KMTPD) << "SOLID: New Device with udi=" << udi;
 
+        org::kde::KDirNotify::emitFilesAdded(QUrl(QStringLiteral("mtp:/")));
         checkDevice(device);
     }
 }
@@ -156,6 +165,19 @@ void KMTPd::deviceRemoved(const QString &udi)
     MTPDevice *device = deviceFromUdi(udi);
     if (device) {
         qCDebug(LOG_KIOD_KMTPD) << "SOLID: Device with udi=" << udi << " removed.";
+
+        const QUrl url = device->url();
+
+        // When allowing access on the Device side the device is briefly removed and then added again.
+        // If we were to signal removal right away that would lead the KDirModel to leave the directory as it thinks
+        // the dir no longer exists. To mitigate we delay the removal and if it was a real removal, rather than a
+        // temporary remove-add dance, we'll emit it.
+        QTimer::singleShot(5s, this, [this, udi, url] {
+            if (!deviceFromUdi(udi)) {
+                qCDebug(LOG_KIOD_KMTPD) << "executing scheduled removal of " << udi;
+                org::kde::KDirNotify::emitFilesRemoved({url});
+            }
+        });
 
         m_devices.removeOne(device);
         delete device;

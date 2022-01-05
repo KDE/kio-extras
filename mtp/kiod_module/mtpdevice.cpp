@@ -2,6 +2,7 @@
     This file is part of the MTP KIOD module, part of the KDE project.
 
     SPDX-FileCopyrightText: 2018 Andreas Krutzler <andreas.krutzler@gmx.net>
+    SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -121,6 +122,14 @@ QList<QDBusObjectPath> MTPDevice::listStorages()
     setDevicesUpdatedStatus(false);
 
     return list;
+}
+
+QUrl MTPDevice::url() const
+{
+    QUrl friendlyUrl;
+    friendlyUrl.setScheme(QStringLiteral("mtp"));
+    friendlyUrl.setPath(QLatin1Char('/') + friendlyName());
+    return friendlyUrl;
 }
 
 #include "moc_mtpdevice.cpp"

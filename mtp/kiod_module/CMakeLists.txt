@@ -15,6 +15,7 @@ target_link_libraries(kmtpd
     KF5::CoreAddons
     KF5::DBusAddons
     KF5::Solid
+    KF5::KIOCore
     Qt5::Core
     Libmtp::Libmtp
 )
