@@ -129,9 +129,9 @@ MTPSlave::~MTPSlave()
     qCDebug(LOG_KIO_MTP) << "Slave destroyed";
 }
 
-int MTPSlave::checkUrl(const QUrl &url, bool redirect)
+int MTPSlave::checkUrl(const QUrl &url)
 {
-    if (url.path().startsWith(QLatin1String("udi=")) && redirect) {
+    if (url.path().startsWith(QLatin1String("udi="))) {
         const QString udi = url.adjusted(QUrl::StripTrailingSlash).path().remove(0, 4);
 
         qCDebug(LOG_KIO_MTP) << "udi = " << udi;

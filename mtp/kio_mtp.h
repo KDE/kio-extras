@@ -66,10 +66,9 @@ private:
      * Check if it is a valid url or an udi.
      *
      * @param url The url to checkUrl
-     * @param redirect If udi= should be redirected or just return false
      * @return 0 if valid, 1 if udi and redirected, 2 if udi but invalid device, -1 else
      */
-    int checkUrl(const QUrl &url, bool redirect = true);
+    int checkUrl(const QUrl &url);
 
     void fileSystemFreeSpace(const QUrl &url);
 
