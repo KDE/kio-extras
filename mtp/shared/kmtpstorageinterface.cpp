@@ -7,7 +7,12 @@
 */
 
 #include "kmtpstorageinterface.h"
+
+#include <chrono>
+
 #include "kmtpdeviceinterface.h"
+
+using namespace std::chrono_literals;
 
 KMTPStorageInterface::KMTPStorageInterface(const QString &dbusObjectPath, KMTPDeviceInterface *parent)
     : QObject(parent)
@@ -16,7 +21,7 @@ KMTPStorageInterface::KMTPStorageInterface(const QString &dbusObjectPath, KMTPDe
             dbusObjectPath,
             QDBusConnection::sessionBus(),
             this);
-    m_dbusInterface->setTimeout(5 * 60 * 1000); // TODO: listing folders with a huge amount of files may take a while
+    m_dbusInterface->setTimeout(std::chrono::milliseconds(5min).count()); // TODO: listing folders with a huge amount of files may take a while
 
     qDBusRegisterMetaType<KMTPFile>();
     qDBusRegisterMetaType<KMTPFileList>();
