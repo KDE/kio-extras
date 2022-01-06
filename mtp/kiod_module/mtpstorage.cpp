@@ -310,7 +310,7 @@ void MTPStorage::updateStorageInfo()
 
 LIBMTP_mtpdevice_t *MTPStorage::getDevice() const
 {
-    return static_cast<MTPDevice *>(parent())->getDevice();
+    return qobject_cast<MTPDevice *>(parent())->getDevice();
 }
 
 KMTPFile MTPStorage::getFileFromPath(const QString &path)
