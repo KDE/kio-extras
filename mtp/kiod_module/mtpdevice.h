@@ -30,7 +30,6 @@ public:
                        LIBMTP_mtpdevice_t *device,
                        LIBMTP_raw_device_t *rawdevice,
                        const QString &udi,
-                       qint32 timeout,
                        QObject *parent = nullptr);
     ~MTPDevice() override;
 
@@ -50,7 +49,6 @@ public:
 private:
     const QString m_dbusObjectName;
     QList<MTPStorage *> m_storages;
-    qint32 m_timeout;
 
     LIBMTP_mtpdevice_t *m_mtpdevice;
     LIBMTP_raw_device_t m_rawdevice;

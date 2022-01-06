@@ -29,10 +29,9 @@
  * @param device The LIBMTP_mtpdevice_t pointer to cache
  * @param udi The UDI of the new device to cache
  */
-MTPDevice::MTPDevice(const QString &dbusObjectPath, LIBMTP_mtpdevice_t *device, LIBMTP_raw_device_t *rawdevice, const QString &udi, qint32 timeout, QObject *parent)
+MTPDevice::MTPDevice(const QString &dbusObjectPath, LIBMTP_mtpdevice_t *device, LIBMTP_raw_device_t *rawdevice, const QString &udi, QObject *parent)
     : QObject(parent),
       m_dbusObjectName(dbusObjectPath),
-      m_timeout(timeout),
       m_mtpdevice(device),
       m_rawdevice(*rawdevice),
       m_udi(udi),
@@ -48,7 +47,7 @@ MTPDevice::MTPDevice(const QString &dbusObjectPath, LIBMTP_mtpdevice_t *device, 
         m_friendlyName = QString::fromUtf8(deviceName);
     }
 
-    qCDebug(LOG_KIOD_KMTPD) << "Created device " << m_friendlyName << "  with udi=" << udi << " and timeout " << timeout;
+    qCDebug(LOG_KIOD_KMTPD) << "Created device " << m_friendlyName << "  with udi=" << udi;
 
     new DeviceAdaptor(this);
     QDBusConnection::sessionBus().registerObject(m_dbusObjectName, this);

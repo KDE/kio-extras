@@ -32,7 +32,6 @@ private:
     MTPDevice *deviceFromUdi(const QString &udi) const;
 
     QList<MTPDevice *> m_devices;
-    qint32 m_timeout;
 
 public Q_SLOTS:
     // D-Bus methods
