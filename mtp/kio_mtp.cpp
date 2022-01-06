@@ -227,22 +227,21 @@ void MTPSlave::listDir(const QUrl &url)
 
                 switch (result) {
                 case 0:
-                    break;
+                    for (const KMTPFile &file : files) {
+                        listEntry(getEntry(file));
+                    }
+
+                    qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Files:" << files.count();
+                    finished();
+                    return;
                 case 2:
                     error(ERR_IS_FILE, url.path());
                     return;
-                default:
-                    // path not found
-                    error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
-                    return;
                 }
 
-                for (const KMTPFile &file : files) {
-                    listEntry(getEntry(file));
-                }
-
-                finished();
-                qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Files:" << files.count();
+                // path not found
+                error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
+                return;
             } else {
                 // storage not found
                 error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
@@ -493,17 +492,15 @@ void MTPSlave::put(const QUrl &url, int, JobFlags flags)
 
                 switch (result) {
                 case 0:
-                    break;
+                    qCDebug(LOG_KIO_MTP) << "data sent";
+                    finished();
+                    return;
                 case 2:
                     error(ERR_IS_FILE, urlDirectory(url));
                     return;
-                default:
-                    error(KIO::ERR_CANNOT_WRITE, urlFileName(url));
-                    return;
                 }
 
-                qCDebug(LOG_KIO_MTP) << "data sent";
-                finished();
+                error(KIO::ERR_CANNOT_WRITE, urlFileName(url));
                 return;
             }
         }

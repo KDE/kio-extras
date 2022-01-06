@@ -149,7 +149,6 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
     switch (filetype) {
     case LIBMTP_FILETYPE_FOLDER:
         return QStringLiteral("inode/directory");
-
     case LIBMTP_FILETYPE_WAV:
         return QStringLiteral("audio/wav");
     case LIBMTP_FILETYPE_MP3:
@@ -233,9 +232,9 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
     case LIBMTP_FILETYPE_JPX:
         return QStringLiteral("application/x-jbuilder-project");
     case LIBMTP_FILETYPE_UNKNOWN:
-    default:
-        return QString();
+        return {};
     }
+    return {};
 }
 
 /**
