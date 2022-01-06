@@ -55,6 +55,11 @@ static LIBMTP_filetype_t getFiletype(const QString &filename)
 
     const QString ptype = filename.split(QLatin1Char('.')).last();
 
+    // TODO: use QMimeDatabase and query the mimetype from there (still from the extension presumably)
+    // TODO: merge the mime mapping tables from this function and the reverse function
+    // TODO: map video/* and text/* and audio/* to the generic types (e.g. LIBMTP_FILETYPE_UNDEF_VIDEO) when not otherwise mapped
+    //   (NOTE: from glancing at the libmtp code mapping a file type isn't actually all that useful TBH, it only appears used when
+    //    no destination folder was given?)
     /* This need to be kept constantly updated as new file types arrive. */
     if (ptype == QLatin1String("wav")) {
         filetype = LIBMTP_FILETYPE_WAV;
