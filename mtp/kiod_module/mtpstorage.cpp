@@ -2,11 +2,14 @@
     This file is part of the MTP KIOD module, part of the KDE project.
 
     SPDX-FileCopyrightText: 2018 Andreas Krutzler <andreas.krutzler@gmx.net>
+    SPDX-FileCopyrightText: 2022 Andreas Krutzler <andreas.krutzler@gmx.net>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
 
 #include "mtpstorage.h"
+
+#include <memory>
 
 #include <QDateTime>
 #include <qplatformdefs.h>
@@ -14,6 +17,18 @@
 #include "kiod_kmtpd_debug.h"
 #include "mtpdevice.h"
 #include "storageadaptor.h"
+
+namespace std
+{
+// Add a default deleter for LIBMTP_file_t. Means we do not have to repeat the deleter all over the place.
+template<>
+struct default_delete<LIBMTP_file_t> {
+    void operator()(LIBMTP_file_t *ptr) const
+    {
+        LIBMTP_destroy_file_t(ptr);
+    }
+};
+} // namespace std
 
 /**
  * @brief MTPDataPutFunc callback function, "puts" data from the device somewhere else
@@ -247,8 +262,9 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
  *
  * @param file  Must not be a nullptr!
  */
-static KMTPFile createMTPFile(const LIBMTP_file_t *file)
+static KMTPFile createMTPFile(const std::unique_ptr<LIBMTP_file_t> &file)
 {
+    Q_ASSERT(file.get());
     return KMTPFile(file->item_id,
                     file->parent_id,
                     file->storage_id,
@@ -330,11 +346,10 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
         if (itemId) {
             qCDebug(LOG_KIOD_KMTPD) << "Match found in cache, checking device";
 
-            LIBMTP_file_t *file = LIBMTP_Get_Filemetadata(getDevice(), itemId);
+            std::unique_ptr<LIBMTP_file_t> file(LIBMTP_Get_Filemetadata(getDevice(), itemId));
             if (file) {
                 qCDebug(LOG_KIOD_KMTPD) << "Found file in cache";
                 const KMTPFile mtpFile = createMTPFile(file);
-                LIBMTP_destroy_file_t(file);
                 return mtpFile;
             }
         }
@@ -346,16 +361,15 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
 
             qCDebug(LOG_KIOD_KMTPD)  << "Match for parent found in cache, checking device. Parent id = " << parentId;
 
-            LIBMTP_file_t *parent = LIBMTP_Get_Filemetadata(getDevice(), parentId);
+            std::unique_ptr<LIBMTP_file_t> parent(LIBMTP_Get_Filemetadata(getDevice(), parentId));
             if (parent) {
                 qCDebug(LOG_KIOD_KMTPD) << "Found parent in cache";
 
                 const KMTPFileList list = getFilesAndFoldersCached(parentPath, parentId);
-                const auto it = std::find_if(list.constBegin(), list.constEnd(), [pathItems](const KMTPFile & file) {
+                const auto it = std::find_if(list.constBegin(), list.constEnd(), [pathItems](const KMTPFile &file) {
                     return file.filename() == pathItems.last();
                 });
 
-                LIBMTP_destroy_file_t(parent);
                 if (it != list.constEnd()) {
                     qCDebug(LOG_KIOD_KMTPD) << "Found file from cached parent";
                     return *it;
@@ -383,12 +397,11 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
         currentPath.append(QLatin1Char('/') + element);
     }
 
-    LIBMTP_file_t *file = LIBMTP_Get_Filemetadata(getDevice(), currentParent);
+    std::unique_ptr<LIBMTP_file_t> file(LIBMTP_Get_Filemetadata(getDevice(), currentParent));
     if (file) {
         qCDebug(LOG_KIOD_KMTPD) << "Found file using tree walk";
 
         const KMTPFile mtpFile = createMTPFile(file);
-        LIBMTP_destroy_file_t(file);
         return mtpFile;
     }
     return KMTPFile();
@@ -398,16 +411,13 @@ KMTPFileList MTPStorage::getFilesAndFoldersCached(const QString &path, quint32 p
 {
     KMTPFileList mtpFiles;
 
-    LIBMTP_file_t *tmp = nullptr;
-    LIBMTP_file_t *file = LIBMTP_Get_Files_And_Folders(getDevice(), m_id, parentId);
+    std::unique_ptr<LIBMTP_file_t> file(LIBMTP_Get_Files_And_Folders(getDevice(), m_id, parentId));
     while (file != nullptr) {
         const KMTPFile mtpFile = createMTPFile(file);
         addPath(path + QLatin1Char('/') + mtpFile.filename(), mtpFile.itemId());
         mtpFiles.append(mtpFile);
 
-        tmp = file;
-        file = file->next;
-        LIBMTP_destroy_file_t(tmp);
+        file.reset(file->next);
     }
     return mtpFiles;
 }
@@ -541,7 +551,7 @@ int MTPStorage::sendFileFromFileDescriptor(const QDBusUnixFileDescriptor &descri
         if (QT_FSTAT(descriptor.fileDescriptor(), &srcBuf) != -1) {
             const QDateTime lastModified = QDateTime::fromSecsSinceEpoch(srcBuf.st_mtim.tv_sec);
 
-            LIBMTP_file_t *file = LIBMTP_new_file_t();
+            std::unique_ptr<LIBMTP_file_t> file(LIBMTP_new_file_t());
             file->parent_id = parentId;
             file->filename = qstrdup(filename.toUtf8().data());
             file->filetype = getFiletype(filename);
@@ -549,8 +559,7 @@ int MTPStorage::sendFileFromFileDescriptor(const QDBusUnixFileDescriptor &descri
             file->modificationdate = lastModified.toSecsSinceEpoch();   // no matter what to set here, current time is taken
             file->storage_id = m_id;
 
-            result = LIBMTP_Send_File_From_File_Descriptor(getDevice(), descriptor.fileDescriptor(), file, onDataProgress, this);
-            LIBMTP_destroy_file_t(file);
+            result = LIBMTP_Send_File_From_File_Descriptor(getDevice(), descriptor.fileDescriptor(), file.get(), onDataProgress, this);
 
             if (result) {
                 LIBMTP_Dump_Errorstack(getDevice());
@@ -569,12 +578,11 @@ int MTPStorage::setFileName(const QString &path, const QString &newName)
 
     const KMTPFile file = getFileFromPath(path);
     if (file.isValid()) {
-        LIBMTP_file_t *source = LIBMTP_Get_Filemetadata(getDevice(), file.itemId());
+        std::unique_ptr<LIBMTP_file_t> source(LIBMTP_Get_Filemetadata(getDevice(), file.itemId()));
         if (source) {
-            const int result = LIBMTP_Set_File_Name(getDevice(), source, newName.toUtf8().constData());
+            const int result = LIBMTP_Set_File_Name(getDevice(), source.get(), newName.toUtf8().constData());
             if (!result) {
                 removePath(path);
-                LIBMTP_destroy_file_t(source);
             }
             return result;
         }
