@@ -49,4 +49,5 @@ X-KDE-ServiceTypes=ThumbCreator
 MimeType=application/x-krita;image/openraster;
 
 X-KDE-Library=kritathumbnail
+X-KDE-PluginInfo-Name=kraorathumbnail
 CacheThumbnail=true
