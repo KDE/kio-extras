@@ -200,7 +200,7 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
     }
 
     // Decode percent encoded URL
-    QByteArray encoded = itemHrefs[coverId].toUtf8();
+    QByteArray encoded = coverHref.toUtf8();
     coverHref = QUrl::fromPercentEncoding(encoded);
 
     // Make coverHref relative to OPF location
