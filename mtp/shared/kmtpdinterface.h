@@ -29,10 +29,10 @@ public:
 
     bool isValid() const;
 
-    KMTPDeviceInterface *deviceFromName(const QString &friendlyName) const;
-    KMTPDeviceInterface *deviceFromUdi(const QString &udi) const;
+    KMTPDeviceInterface *deviceFromName(const QString &friendlyName);
+    KMTPDeviceInterface *deviceFromUdi(const QString &udi);
 
-    QVector<KMTPDeviceInterface *> devices() const;
+    QVector<KMTPDeviceInterface *> devices();
 
     // D-Bus properties
     QString version() const;

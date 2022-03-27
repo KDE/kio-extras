@@ -179,9 +179,9 @@ void KMTPd::deviceRemoved(const QString &udi)
             }
         });
 
+        Q_EMIT devicesChanged();
         m_devices.removeOne(device);
         delete device;
-        Q_EMIT devicesChanged();
     }
 }
 

@@ -190,14 +190,14 @@ void MTPSlave::listDir(const QUrl &url)
     if (pathItems.isEmpty()) {
         qCDebug(LOG_KIO_MTP) << "Root directory, listing devices";
 
-        totalSize(filesize_t(m_kmtpDaemon.devices().size()));
-
         const auto devices = m_kmtpDaemon.devices();
+        totalSize(filesize_t(devices.size()));
+
         for (const KMTPDeviceInterface *device : devices) {
             listEntry(getEntry(device));
         }
 
-        qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Devices:" << m_kmtpDaemon.devices().size();
+        qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Devices:" << devices.size();
         finished();
         return;
     }

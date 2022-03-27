@@ -18,6 +18,8 @@ KMTPDInterface::KMTPDInterface(QObject *parent)
             QDBusConnection::sessionBus());
 
     updateDevices();
+    // sadly this isn't usable for device removal because we don't receive it then
+    // connect(m_dbusInterface, &org::kde::kmtp::Daemon::devicesChanged, this, &KMTPDInterface::updateDevices);
 }
 
 bool KMTPDInterface::isValid() const
@@ -25,8 +27,9 @@ bool KMTPDInterface::isValid() const
     return m_dbusInterface->isValid();
 }
 
-KMTPDeviceInterface *KMTPDInterface::deviceFromName(const QString &friendlyName) const
+KMTPDeviceInterface *KMTPDInterface::deviceFromName(const QString &friendlyName)
 {
+    updateDevices();
     auto deviceIt = std::find_if(m_devices.constBegin(), m_devices.constEnd(), [friendlyName] (const KMTPDeviceInterface *device) {
         return device->friendlyName() == friendlyName;
     });
@@ -34,8 +37,9 @@ KMTPDeviceInterface *KMTPDInterface::deviceFromName(const QString &friendlyName)
     return deviceIt == m_devices.constEnd() ? nullptr : *deviceIt;
 }
 
-KMTPDeviceInterface *KMTPDInterface::deviceFromUdi(const QString &udi) const
+KMTPDeviceInterface *KMTPDInterface::deviceFromUdi(const QString &udi)
 {
+    updateDevices();
     auto deviceIt = std::find_if(m_devices.constBegin(), m_devices.constEnd(), [udi] (const KMTPDeviceInterface *device) {
         return device->udi() == udi;
     });
@@ -43,8 +47,10 @@ KMTPDeviceInterface *KMTPDInterface::deviceFromUdi(const QString &udi) const
     return deviceIt == m_devices.constEnd() ? nullptr : *deviceIt;
 }
 
-QVector<KMTPDeviceInterface *> KMTPDInterface::devices() const
+QVector<KMTPDeviceInterface *> KMTPDInterface::devices()
 {
+    // have to always update because we don't receive signal for device removal
+    updateDevices();
     return m_devices;
 }
 
