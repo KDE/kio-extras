@@ -5,7 +5,6 @@
             "Icon": "document-open-recent",
             "X-DocPath": "kioslave5/recentdocuments/index.html",
             "deleting": true,
-            "exec": "kf5/kio/recentdocuments",
             "input": "none",
             "listing": [
                 "Name",

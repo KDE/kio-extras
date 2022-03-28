@@ -5,7 +5,6 @@
             "Icon": "edit-find",
             "deleting": true,
             "determineMimetypeFromExtension": false,
-            "exec": "kf5/kio/filenamesearch",
             "input": "none",
             "linking": false,
             "listing": [

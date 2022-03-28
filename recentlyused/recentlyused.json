@@ -8,7 +8,6 @@
             "copyFromFile": false,
             "copyToFile": false,
             "deleting": false,
-            "exec": "kf5/kio/recentlyused",
             "input": "none",
             "listing": [
                 "Name",

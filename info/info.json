@@ -6,7 +6,6 @@
             "X-DocPath": "kioslave5/info/index.html",
             "defaultMimetype": "text/html",
             "determineMimetypeFromExtension": false,
-            "exec": "kf5/kio/info",
             "input": "none",
             "output": "filesystem",
             "protocol": "info",

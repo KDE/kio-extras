@@ -7,7 +7,6 @@
             "copyFromFile": true,
             "copyToFile": true,
             "deleting": true,
-            "exec": "kf5/kio/nfs",
             "input": "none",
             "linking": true,
             "listing": [

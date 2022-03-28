@@ -4,7 +4,6 @@
             "Icon": "folder-remote",
             "X-DocPath": "kioslave5/fish/index.html",
             "deleting": true,
-            "exec": "kf5/kio/fish",
             "input": "none",
             "linking": true,
             "listing": [

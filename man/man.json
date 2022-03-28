@@ -6,7 +6,6 @@
             "X-DocPath": "kioslave5/man/index.html",
             "defaultMimetype": "text/html",
             "determineMimetypeFromExtension": false,
-            "exec": "kf5/kio/man",
             "input": "none",
             "listing": [
                 "Name"
