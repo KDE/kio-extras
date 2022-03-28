@@ -10,7 +10,6 @@
 #include <utils/d_ptr.h>
 #include <memory>
 #include <QSqlQuery>
-#include <QRegExp>
 
 namespace Common {
 
@@ -122,11 +121,6 @@ inline QString starPatternToLike(const QString &pattern)
     return parseStarPattern(pattern, QStringLiteral("%"), [] (QString str) {
         return str.replace(QLatin1String("%"), QLatin1String("\\%")).replace(QLatin1String("_"), QLatin1String("\\_"));
     });
-}
-
-inline QRegExp starPatternToRegex(const QString &pattern)
-{
-    return QRegExp(parseStarPattern(pattern, QStringLiteral(".*"), QRegExp::escape));
 }
 
 } // namespace Common
