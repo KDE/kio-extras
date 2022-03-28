@@ -89,11 +89,11 @@ target_link_libraries(imagethumbnail
     KF5::KIOWidgets
 )
 
-install(TARGETS imagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS imagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 ########### next target ###############
 
-install(FILES directorythumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICES5DIR})
+install(FILES directorythumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICESDIR})
 
 ########### next target ###############
 
@@ -103,8 +103,8 @@ kconfig_add_kcfg_files(jpegthumbnail jpegcreatorsettings5.kcfgc)
 kcoreaddons_desktop_to_json(jpegthumbnail jpegthumbnail.desktop)
 
 target_link_libraries(jpegthumbnail
-    Qt5::Core
-    Qt5::Gui
+    Qt::Core
+    Qt::Gui
     KF5::KIOCore
     KF5::KIOWidgets
     KF5::I18n
@@ -121,8 +121,8 @@ add_library(svgthumbnail MODULE svgcreator.cpp)
 
 kcoreaddons_desktop_to_json(svgthumbnail svgthumbnail.desktop)
 target_link_libraries(svgthumbnail
-    Qt5::Gui
-    Qt5::Svg
+    Qt::Gui
+    Qt::Svg
     KF5::KIOCore
     KF5::KIOWidgets
 )
@@ -135,7 +135,7 @@ add_library(textthumbnail MODULE textcreator.cpp)
 
 kcoreaddons_desktop_to_json(textthumbnail textthumbnail.desktop)
 target_link_libraries(textthumbnail
-    Qt5::Gui
+    Qt::Gui
     KF5::KIOWidgets
     KF5::SyntaxHighlighting
 )
@@ -252,7 +252,7 @@ ecm_qt_declare_logging_category(comicbookthumbnail
 
 kcoreaddons_desktop_to_json(comicbookthumbnail comicbookthumbnail.desktop)
 target_link_libraries(comicbookthumbnail
-    Qt5::Gui
+    Qt::Gui
     KF5::Archive
     KF5::KIOWidgets
 )
@@ -293,7 +293,7 @@ add_library(opendocumentthumbnail MODULE opendocumentcreator.cpp)
 
 kcoreaddons_desktop_to_json(opendocumentthumbnail opendocumentthumbnail.desktop)
 target_link_libraries(opendocumentthumbnail
-    Qt5::Gui
+    Qt::Gui
     KF5::KIOWidgets
     KF5::Archive
 )
@@ -308,12 +308,12 @@ if(libappimage_FOUND)
 
     target_link_libraries(appimagethumbnail
         KF5::KIOWidgets
-        Qt5::Gui
+        Qt::Gui
         libappimage
     )
     kcoreaddons_desktop_to_json(appimagethumbnail appimagethumbnail.desktop)
 
-    install(TARGETS appimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+    install(TARGETS appimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 endif()
 
@@ -323,13 +323,13 @@ add_library(ebookthumbnail MODULE ebookcreator.cpp)
 
 kcoreaddons_desktop_to_json(ebookthumbnail ebookthumbnail.desktop)
 target_link_libraries(ebookthumbnail
-    Qt5::Gui
+    Qt::Gui
     KF5::KIOWidgets
     KF5::Archive
 )
 
-install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 ########### install files ###############
 
-install(FILES thumbcreator.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPES5DIR})
+install(FILES thumbcreator.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPESDIR})

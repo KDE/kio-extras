@@ -25,7 +25,7 @@ endif()
 # intermediate target/library, also used by the tests
 add_library(kio_man_debug OBJECT)
 target_link_libraries(kio_man_debug
-    PRIVATE Qt5::Core
+    PRIVATE Qt::Core
 )
 ecm_qt_declare_logging_category(kio_man_debug
     HEADER kio_man_debug.h
@@ -57,7 +57,7 @@ if (AVOID_NULLPTR_WARNING_FLAG)
 endif()
 
 target_link_libraries(kio_man
-    PRIVATE KF5::KIOCore Qt5::Widgets KF5::Archive KF5::I18n KF5::Codecs Qt5::Network kio_man_debug
+    PRIVATE KF5::KIOCore Qt::Widgets KF5::Archive KF5::I18n KF5::Codecs Qt::Network kio_man_debug
 )
 
 install(TARGETS kio_man DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)

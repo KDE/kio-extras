@@ -20,7 +20,7 @@ target_sources(kio_man_test PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man.cpp 
 )
 
-target_link_libraries(kio_man_test Qt5::Widgets KF5::I18n KF5::KIOCore KF5::Archive KF5::Codecs Qt5::Network kio_man_debug)
+target_link_libraries(kio_man_test Qt::Widgets KF5::I18n KF5::KIOCore KF5::Archive KF5::Codecs Qt::Network kio_man_debug)
 if (AVOID_NULLPTR_WARNING_FLAG)
     target_compile_options(kio_man_test PRIVATE ${AVOID_NULLPTR_WARNING_FLAG})
 endif()
@@ -44,7 +44,7 @@ target_sources(man2html PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp 
 )
 
-target_link_libraries(man2html Qt5::Core KF5::Codecs KF5::Archive kio_man_debug)
+target_link_libraries(man2html Qt::Core KF5::Codecs KF5::Archive kio_man_debug)
 if (AVOID_NULLPTR_WARNING_FLAG)
     target_compile_options(man2html PRIVATE ${AVOID_NULLPTR_WARNING_FLAG})
 endif()

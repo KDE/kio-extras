@@ -7,7 +7,7 @@ target_sources(kio_about PRIVATE kio_about.cpp)
 
 target_link_libraries(kio_about
     KF5::KIOCore
-    Qt5::Network
+    Qt::Network
 )
 
-install(TARGETS kio_about  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio )
+install(TARGETS kio_about  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio )

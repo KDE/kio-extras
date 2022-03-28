@@ -10,8 +10,8 @@ target_sources(kactivitymanagerd_fileitem_linking_plugin PRIVATE
 
 target_link_libraries (
    kactivitymanagerd_fileitem_linking_plugin
-   Qt5::Core
-   Qt5::Sql
+   Qt::Core
+   Qt::Sql
    KF5::KIOFileWidgets
    KF5::I18n
    KF5::Activities
@@ -19,5 +19,5 @@ target_link_libraries (
 
 install (
    TARGETS kactivitymanagerd_fileitem_linking_plugin
-   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kfileitemaction
+   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kfileitemaction
    )

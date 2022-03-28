@@ -15,6 +15,6 @@ target_sources(kio_bookmarks PRIVATE
 
 target_link_libraries(kio_bookmarks KF5::KIOCore KF5::I18n KF5::Bookmarks KF5::Solid KF5::GuiAddons KF5::KIOFileWidgets)
 
-install(TARGETS kio_bookmarks DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
+install(TARGETS kio_bookmarks DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
 
 install( FILES kio_bookmarks.css DESTINATION  ${KDE_INSTALL_DATADIR}/kio_bookmarks )

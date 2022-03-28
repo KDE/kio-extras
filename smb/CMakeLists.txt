@@ -83,7 +83,7 @@ target_link_libraries(kio_smb_static
     KF5::I18n
     KF5::ConfigCore
     ${SAMBA_LIBRARIES}
-    Qt5::Network
+    Qt::Network
     KF5::DNSSD
     KDSoap::WSDiscoveryClient
     Threads::Threads # std::async

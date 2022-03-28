@@ -20,5 +20,5 @@ include(ECMAddTests)
 
 ecm_add_tests(
     test_wsdiscoveryclient.cpp
-    LINK_LIBRARIES Qt5::Network Qt5::Test KDSoap::WSDiscoveryClient
+    LINK_LIBRARIES Qt::Network Qt::Test KDSoap::WSDiscoveryClient
 )

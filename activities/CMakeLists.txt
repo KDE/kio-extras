@@ -27,15 +27,15 @@ target_sources(kio_activities PRIVATE
 
 target_link_libraries (
    kio_activities
-   Qt5::Sql
+   Qt::Sql
    KF5::KIOCore
    KF5::DBusAddons
    KF5::Activities
    KF5::I18n
-   Qt5::Network
+   Qt::Network
    )
 
 install (
    TARGETS kio_activities
-   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio
+   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio
    )

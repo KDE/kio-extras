@@ -6,7 +6,7 @@ add_library(kio_info MODULE info.cpp)
 target_link_libraries(kio_info
     KF5::I18n
     KF5::KIOCore
-    Qt5::Network
+    Qt::Network
 )
 set_target_properties(kio_info PROPERTIES OUTPUT_NAME "info")
 

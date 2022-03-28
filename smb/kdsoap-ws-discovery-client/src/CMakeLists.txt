@@ -49,7 +49,7 @@ target_include_directories(KDSoapWSDiscoveryClient
 
 target_link_libraries(KDSoapWSDiscoveryClient
     PUBLIC
-        Qt5::Core
+        Qt::Core
         KDSoap::kdsoap
     PRIVATE
 )

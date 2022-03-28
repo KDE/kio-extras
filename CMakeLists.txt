@@ -8,7 +8,7 @@ set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE
 project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
 
 set(QT_MIN_VERSION "5.15.0")
-set(KF5_MIN_VERSION "5.89.0")
+set(KF5_MIN_VERSION "5.90.0")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -28,15 +28,15 @@ include(CheckIncludeFile)
 include(CMakePackageConfigHelpers)
 include(FeatureSummary)
 
-find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
+find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
-find_package(Qt5Test ${QT_MIN_VERSION} CONFIG QUIET)
-set_package_properties(Qt5Test PROPERTIES
+find_package(Qt${QT_MAJOR_VERSION}Test ${QT_MIN_VERSION} CONFIG QUIET)
+set_package_properties(Qt${QT_MAJOR_VERSION}Test PROPERTIES
          PURPOSE "Required for tests"
          TYPE OPTIONAL
          )
-add_feature_info("Qt5Test" Qt5Test_FOUND "Required for building tests")
-if (NOT Qt5Test_FOUND)
+add_feature_info("Qt${QT_MAJOR_VERSION}Test" Qt${QT_MAJOR_VERSION}Test_FOUND "Required for building tests")
+if (NOT Qt${QT_MAJOR_VERSION}Test_FOUND)
     set(BUILD_TESTING OFF CACHE BOOL "Build the testing tree.")
 endif()
 
@@ -66,8 +66,8 @@ set_package_properties(KF5Activities PROPERTIES
     TYPE OPTIONAL
 )
 
-find_package(Qt5Sql QUIET)
-set_package_properties(Qt5Sql PROPERTIES
+find_package(Qt${QT_MAJOR_VERSION}Sql QUIET)
+set_package_properties(Qt${QT_MAJOR_VERSION}Sql PROPERTIES
     PURPOSE "Provides the activities:/ kioslave and fileitem plugin."
     TYPE OPTIONAL
 )
@@ -78,8 +78,8 @@ set_package_properties(KF5ActivitiesStats PROPERTIES
     TYPE OPTIONAL
 )
 
-find_package(Phonon4Qt5 4.6.60 NO_MODULE)
-set_package_properties(Phonon4Qt5 PROPERTIES
+find_package(Phonon4Qt${QT_MAJOR_VERSION} 4.6.60 NO_MODULE)
+set_package_properties(Phonon4Qt${QT_MAJOR_VERSION} PROPERTIES
    DESCRIPTION "Qt-based audio library"
    PURPOSE "Required for the audio preview plugin"
    TYPE OPTIONAL)
@@ -167,7 +167,7 @@ add_definitions(
 add_subdirectory( doc )
 
 add_subdirectory( about )
-if(TARGET KF5::Activities AND TARGET Qt5::Sql AND NOT WIN32)
+if(TARGET KF5::Activities AND TARGET Qt::Sql AND NOT WIN32)
   add_subdirectory( activities )
 endif()
 if(KF5ActivitiesStats_FOUND)
@@ -175,7 +175,7 @@ if(KF5ActivitiesStats_FOUND)
 endif()
 add_subdirectory( bookmarks )
 add_subdirectory( filter )
-if(Phonon4Qt5_FOUND)
+if(Phonon4Qt${QT_MAJOR_VERSION}_FOUND)
     add_subdirectory( kfileaudiopreview )
 endif()
 add_subdirectory( info )

@@ -55,7 +55,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_nfs\")
 include_directories(${TIRPC_INCLUDE_DIRS})
 
 add_library(kio_nfs MODULE kio_nfs.cpp nfsv2.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c rpc_nfs2_prot_xdr.c)
-target_link_libraries(kio_nfs KF5::KIOCore KF5::I18n Qt5::Network ${TIRPC_LIBRARIES})
+target_link_libraries(kio_nfs KF5::KIOCore KF5::I18n Qt::Network ${TIRPC_LIBRARIES})
 set_target_properties(kio_nfs PROPERTIES OUTPUT_NAME "nfs")
 
 if(AVOID_UNUSED_VARIABLE_WARNING_FLAG)

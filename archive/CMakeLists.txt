@@ -36,7 +36,7 @@ install(EXPORT KioArchiveTargets
 install(FILES
     kio_archivebase.h
     ${CMAKE_CURRENT_BINARY_DIR}/libkioarchive_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}
+    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}
     COMPONENT Devel
 )
 
@@ -67,8 +67,8 @@ target_link_libraries(kioarchive
     KF5::KIOCore
     PRIVATE
     KF5::I18n
-    Qt5::Network
-    Qt5::DBus
+    Qt::Network
+    Qt::DBus
 )
 
 set_target_properties(kioarchive PROPERTIES
@@ -82,6 +82,6 @@ install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KF5_
 ############### Archive KIOslave ######################
 
 add_library(kio_archive MODULE kio_archive.cpp ${kio_archive_debug_SRCS})
-target_link_libraries(kio_archive KF5::KIOCore KF5::Archive kioarchive Qt5::Network)
+target_link_libraries(kio_archive KF5::KIOCore KF5::Archive kioarchive Qt::Network)
 set_target_properties(kio_archive PROPERTIES OUTPUT_NAME "archive")
-install(TARGETS kio_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
+install(TARGETS kio_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
