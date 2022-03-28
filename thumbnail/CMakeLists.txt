@@ -78,7 +78,7 @@ target_link_libraries(kio_thumbnail
     KF5::I18n
 )
 
-install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
+install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
 
 ########### next target ###############
 
@@ -113,7 +113,7 @@ target_link_libraries(jpegthumbnail
 )
 
 install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
-install(TARGETS jpegthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS jpegthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 ########### next target ###############
 
@@ -127,7 +127,7 @@ target_link_libraries(svgthumbnail
     KF5::KIOWidgets
 )
 
-install(TARGETS svgthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS svgthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 ########### next target ###############
 
@@ -140,7 +140,7 @@ target_link_libraries(textthumbnail
     KF5::SyntaxHighlighting
 )
 
-install(TARGETS textthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS textthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 ########### next target ###############
 
@@ -160,7 +160,7 @@ if(NOT WIN32)
     kcoreaddons_desktop_to_json(djvuthumbnail djvuthumbnail.desktop)
     target_link_libraries(djvuthumbnail KF5::KIOWidgets)
 
-    install(TARGETS djvuthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+    install(TARGETS djvuthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 endif()
 
@@ -195,7 +195,7 @@ if(OpenEXR_FOUND)
     # when exceptions are not enabled.
     kde_source_files_enable_exceptions(exrcreator.cpp)
 
-    install(TARGETS exrthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+    install(TARGETS exrthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 endif()
 
@@ -212,7 +212,7 @@ if(X11_Xcursor_FOUND)
         ${X11_Xcursor_LIB}
     )
 
-    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 endif()
 
@@ -231,11 +231,11 @@ endif()
 
 kcoreaddons_desktop_to_json(windowsexethumbnail windowsexethumbnail.desktop)
 target_link_libraries(windowsexethumbnail KF5::KIOWidgets)
-install(TARGETS windowsexethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS windowsexethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 kcoreaddons_desktop_to_json(windowsimagethumbnail windowsimagethumbnail.desktop)
 target_link_libraries(windowsimagethumbnail KF5::KIOWidgets)
-install(TARGETS windowsimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS windowsimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 ########### next target ###############
 
@@ -257,7 +257,7 @@ target_link_libraries(comicbookthumbnail
     KF5::KIOWidgets
 )
 
-install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 # ########### next target ###############
 
@@ -269,7 +269,7 @@ target_link_libraries(kritathumbnail
     KF5::Archive
 )
 
-install(TARGETS kritathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS kritathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 ########### next target #################
 
@@ -283,7 +283,7 @@ if(Taglib_FOUND)
         KF5::KIOWidgets
     )
 
-    install(TARGETS audiothumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+    install(TARGETS audiothumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 endif()
 
@@ -298,7 +298,7 @@ target_link_libraries(opendocumentthumbnail
     KF5::Archive
 )
 
-install(TARGETS opendocumentthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
+install(TARGETS opendocumentthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 # ########### next target ###############
 

@@ -11,4 +11,4 @@ target_link_libraries(filenamesearchmodule
     KF5::KIOCore
 )
 
-install(TARGETS filenamesearchmodule DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kded)
+install(TARGETS filenamesearchmodule DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kded)

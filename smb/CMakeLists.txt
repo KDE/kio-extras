@@ -96,9 +96,9 @@ target_link_libraries(kio_smb
 )
 
 set_target_properties(kio_smb PROPERTIES OUTPUT_NAME "smb")
-set_target_properties(kio_smb PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio")
+set_target_properties(kio_smb PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf${QT_MAJOR_VERSION}/kio")
 
-install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
+install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
 install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote)
 install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
 

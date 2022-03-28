@@ -1,4 +1,4 @@
-kcoreaddons_add_plugin(kio_filenamesearch INSTALL_NAMESPACE "kf5/kio")
+kcoreaddons_add_plugin(kio_filenamesearch INSTALL_NAMESPACE "kf${QT_MAJOR_VERSION}/kio")
 
 target_link_libraries(kio_filenamesearch KF5::KIOCore KF5::DBusAddons Qt::Network KF5::KIOCore KF5::I18n)
 target_sources(kio_filenamesearch PRIVATE kio_filenamesearch.cpp)

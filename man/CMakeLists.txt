@@ -60,4 +60,4 @@ target_link_libraries(kio_man
     PRIVATE KF5::KIOCore Qt::Widgets KF5::Archive KF5::I18n KF5::Codecs Qt::Network kio_man_debug
 )
 
-install(TARGETS kio_man DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
+install(TARGETS kio_man DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)

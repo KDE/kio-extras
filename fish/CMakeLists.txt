@@ -71,6 +71,6 @@ if (MD5SUM_EXECUTABLE)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})
    endif ()
 
-   install(TARGETS kio_fish  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio )
+   install(TARGETS kio_fish  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio )
 
 endif ()

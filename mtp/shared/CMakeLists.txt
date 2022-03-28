@@ -18,5 +18,5 @@ target_sources(kmtp PRIVATE
     kmtpfile.cpp
     ${kmtp_dbus_SRCS}
 )
-
+set_property(TARGET kmtp PROPERTY POSITION_INDEPENDENT_CODE ON)
 target_link_libraries(kmtp Qt::Core Qt::DBus)

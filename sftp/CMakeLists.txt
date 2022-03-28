@@ -5,7 +5,7 @@ remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 add_library(kio_sftp MODULE)
 set_target_properties(kio_sftp PROPERTIES
     OUTPUT_NAME "sftp"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf${QT_MAJOR_VERSION}/kio"
 )
 
 target_sources(kio_sftp PRIVATE kio_sftp.cpp)
@@ -39,4 +39,4 @@ target_link_libraries(kio_sftp
    Qt::Network
    ssh)
 
-install(TARGETS kio_sftp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
+install(TARGETS kio_sftp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)

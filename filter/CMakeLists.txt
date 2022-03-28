@@ -19,4 +19,4 @@ ecm_qt_declare_logging_category(kio_filter
 
 target_link_libraries(kio_filter KF5::Archive KF5::KIOCore Qt::Network)
 
-install(TARGETS kio_filter DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
+install(TARGETS kio_filter DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)

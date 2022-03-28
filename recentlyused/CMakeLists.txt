@@ -3,7 +3,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_recentlyused\")
 add_library(recentlyused MODULE)
 set_target_properties(recentlyused PROPERTIES
     OUTPUT_NAME "recentlyused"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf${QT_MAJOR_VERSION}/kio"
 )
 target_sources(recentlyused PRIVATE
     recentlyused.cpp
@@ -35,4 +35,4 @@ target_link_libraries(recentlyused
     KF5::Activities
     KF5::ActivitiesStats)
 
-install(TARGETS recentlyused DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
+install(TARGETS recentlyused DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)

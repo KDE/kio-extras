@@ -8,7 +8,7 @@ qt_add_dbus_adaptor(kiod_kmtpd_SRCS ../shared/org.kde.kmtp.daemon.xml kmtpd.h KM
 qt_add_dbus_adaptor(kiod_kmtpd_SRCS ../shared/org.kde.kmtp.device.xml mtpdevice.h MTPDevice)
 qt_add_dbus_adaptor(kiod_kmtpd_SRCS ../shared/org.kde.kmtp.storage.xml mtpstorage.h MTPStorage)
 
-kcoreaddons_add_plugin(kmtpd INSTALL_NAMESPACE "kf5/kiod" SOURCES ${kiod_kmtpd_SRCS})
+kcoreaddons_add_plugin(kmtpd INSTALL_NAMESPACE "kf${QT_MAJOR_VERSION}/kiod" SOURCES ${kiod_kmtpd_SRCS})
 
 target_link_libraries(kmtpd
     kmtp
