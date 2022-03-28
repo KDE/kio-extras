@@ -338,7 +338,7 @@ void ThumbnailProtocol::get(const QUrl &url)
 
 static QVector<KPluginMetaData> availablePlugins()
 {
-    auto jsonMetaDataPlugins = KPluginMetaData::findPlugins(QStringLiteral("kf5/thumbcreator"));
+    auto jsonMetaDataPlugins = KPluginMetaData::findPlugins(QStringLiteral("kf" QT_STRINGIFY(QT_VERSION_MAJOR) "/thumbcreator"));
     QT_WARNING_PUSH
     QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
     QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
@@ -364,7 +364,7 @@ QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
         const QStringList mimeTypes = plugin.mimeTypes() + plugin.value(QStringLiteral("ServiceTypes"), QStringList());
         for (const QString& mime : mimeTypes) {
             if(mime.endsWith('*')) {
-                const auto mimeGroup = mime.leftRef(mime.length()-1);
+                const auto mimeGroup = QStringView(mime).left(mime.length()-1);
                 if(mimeType.startsWith(mimeGroup))
                     return plugin.fileName();
             }
