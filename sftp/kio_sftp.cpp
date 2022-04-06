@@ -1195,7 +1195,9 @@ Result SFTPInternal::truncate(KIO::filesize_t length)
 
 void SFTPInternal::close()
 {
-    sftp_close(mOpenFile);
+    if (mOpenFile) {
+        sftp_close(mOpenFile);
+    }
     mOpenFile = nullptr;
 }
 
@@ -1265,10 +1267,10 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 
     // Open file
     file = sftp_open(mSftp, path.constData(), O_RDONLY, 0);
-    const auto fileFree = qScopeGuard([file] { sftp_close(file); });
     if (file == nullptr) {
         return Result::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toString());
     }
+    const auto fileFree = qScopeGuard([file] { sftp_close(file); });
 
     if (const Result result = sftpSendMimetype(file, url); !result.success) {
         return result;
