@@ -55,15 +55,15 @@ public:
                       QString *filePath = nullptr) const
     {
         const auto fullPath = url.adjusted(QUrl::StripTrailingSlash).path();
-        const auto path = fullPath.midRef(fullPath.startsWith('/') ? 1 : 0);
+        const auto path = QStringView(fullPath).mid(fullPath.startsWith(QLatin1Char('/')) ? 1 : 0);
 
         if (activity) {
-            *activity = path.mid(0, path.indexOf("/") - 1).toString();
+            *activity = path.mid(0, path.indexOf(QStringLiteral("/")) - 1).toString();
         }
 
         if (filePath) {
-            auto strippedPath = path.mid(path.indexOf("/") + 1);
-            auto splitPosition = strippedPath.indexOf("/");
+            auto strippedPath = path.mid(path.indexOf(QStringLiteral("/")) + 1);
+            auto splitPosition = strippedPath.indexOf(QStringLiteral("/"));
 
             if (splitPosition == -1) {
                 // if we have only one path segment
@@ -79,7 +79,7 @@ public:
         }
 
         return path.length() == 0 ? RootItem
-               : path.contains("/") ? ActivityPathItem
+               : path.contains(QStringLiteral("/")) ? ActivityPathItem
                : ActivityRootItem;
     }
 
