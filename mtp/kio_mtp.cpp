@@ -152,8 +152,7 @@ enum MTPSlave::Url MTPSlave::checkUrl(const QUrl &url)
     if (url.path().startsWith(QLatin1Char('/'))) {
         return Url::Valid;
     } else if (url.scheme() == QLatin1String("mtp") && url.path().isEmpty()) {
-        QUrl newUrl;
-        newUrl.setScheme(url.scheme());
+        QUrl newUrl = url;
         newUrl.setPath(QLatin1String("/"));
         redirection(newUrl);
 
