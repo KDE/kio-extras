@@ -12,7 +12,7 @@
 #include <QUrl>
 
 #include <set>
-#include <vector>
+#include <queue>
 
 /**
  * @brief Lists files that match a specific search pattern.
@@ -47,7 +47,7 @@ private:
                    const QRegularExpression &regex,
                    bool searchContents,
                    std::set<QString> &iteratedDirs,
-                   std::vector<QUrl> &pendingDirs);
+                   std::queue<QUrl> &pendingDirs);
 };
 
 #endif

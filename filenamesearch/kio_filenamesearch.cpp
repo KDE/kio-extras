@@ -152,13 +152,13 @@ void FileNameSearchProtocol::listDir(const QUrl &url)
     const bool isContent = urlQuery.queryItemValue(QStringLiteral("checkContent")) == QLatin1String("yes");
 
     std::set<QString> iteratedDirs;
-    std::vector<QUrl> pendingDirs;
+    std::queue<QUrl> pendingDirs;
 
     searchDir(dirUrl, regex, isContent, iteratedDirs, pendingDirs);
 
-    for (auto it = pendingDirs.begin(); it != pendingDirs.end(); /* */) {
-        const QUrl pendingUrl = *it;
-        it = pendingDirs.erase(it);
+    while (!pendingDirs.empty()) {
+        const QUrl pendingUrl = pendingDirs.front();
+        pendingDirs.pop();
         searchDir(pendingUrl, regex, isContent, iteratedDirs, pendingDirs);
     }
 
@@ -169,7 +169,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                                        const QRegularExpression &regex,
                                        bool searchContents,
                                        std::set<QString> &iteratedDirs,
-                                       std::vector<QUrl> &pendingDirs)
+                                       std::queue<QUrl> &pendingDirs)
 {
     KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, false /* hidden */);
 
@@ -203,7 +203,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                 if (const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST); !linkDest.isEmpty()) {
                     // Remember the dir to prevent endless loops
                     if (const auto [it, isInserted] = iteratedDirs.insert(linkDest); isInserted) {
-                        pendingDirs.push_back(entryUrl.resolved(QUrl(linkDest)));
+                        pendingDirs.push(entryUrl.resolved(QUrl(linkDest)));
                     }
                 }
 
