@@ -202,7 +202,8 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                 // Also search the target of a dir symlink
                 if (const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST); !linkDest.isEmpty()) {
                     // Remember the dir to prevent endless loops
-                    if (const auto [it, isInserted] = iteratedDirs.insert(linkDest); isInserted) {
+                    const auto [it, isInserted] = iteratedDirs.insert(linkDest);
+                    if (isInserted) {
                         pendingDirs.push(entryUrl.resolved(QUrl(linkDest)));
                     }
                 }
