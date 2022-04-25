@@ -10,7 +10,9 @@
 
 #include <QMimeDatabase>
 #include <QMimeType>
+#include <QScopeGuard>
 #include <QVarLengthArray>
+
 #include <KLocalizedString>
 
 #include <future>
@@ -59,6 +61,9 @@ void SMBSlave::get(const QUrl &kurl)
         error(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toDisplayString());
         return;
     }
+    auto filefdClose = qScopeGuard([filefd] {
+        smbc_close(filefd);
+    });
 
     KIO::filesize_t totalbytesread = 0;
     QByteArray filedata;
@@ -106,9 +111,9 @@ void SMBSlave::get(const QUrl &kurl)
     }
     if (future.get() != KJob::NoError) { // check if read had an error
         error(future.get(), url.toDisplayString());
+        return;
     }
 
-    smbc_close(filefd);
     data(QByteArray());
     if (totalbytesread != static_cast<KIO::filesize_t>(st.st_size)) {
         qCWarning(KIO_SMB_LOG) << "Got" << totalbytesread << "bytes but expected" << st.st_size;
