@@ -1001,7 +1001,7 @@ void fishProtocol::manageConnection(const QString &l) {
                     }
                     // By default, the mimetype comes from the extension
                     // We'll use the file(1) result only as fallback [like the rest of KDE does]
-                    {
+                    if ( udsMime != "inode/directory" ) {
                         QUrl kurl("fish://host/"+thisFn);
                         QMimeDatabase db;
                         QMimeType mime = db.mimeTypeForUrl(kurl);
