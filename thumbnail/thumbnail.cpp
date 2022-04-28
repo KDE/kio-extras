@@ -676,7 +676,7 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
     ThumbCreatorWithMetadata *thumbCreator = nullptr;
     if (creator) {
         KPluginMetaData data;
-        if (plugin.contains(QLatin1String("kf5") + QDir::separator() + QLatin1String("thumbcreator"))) {
+        if (plugin.contains(QLatin1String("kf5/thumbcreator"))) {
             data = KPluginMetaData(plugin);
         } else {
             QT_WARNING_PUSH
