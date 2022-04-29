@@ -35,12 +35,12 @@
 #include <QLibrary>
 #include <QDebug>
 #include <QRandomGenerator>
+#include <QPluginLoader>
 
 #include <KConfigGroup>
 #include <KFileItem>
 #include <KLocalizedString>
 #include <KPluginInfo>
-#include <KPluginLoader>
 #include <KServiceTypeTrader>
 #include <KSharedConfig>
 
@@ -665,7 +665,7 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
     // Don't use KPluginFactory here, this is not a QObject and
     // neither is ThumbCreator
     ThumbCreator *creator = nullptr;
-    QLibrary library(KPluginLoader::findPlugin((plugin)));
+    QLibrary library(QPluginLoader(plugin).fileName());
     if (library.load()) {
         auto createFn = (newCreator)library.resolve("new_creator");
         if (createFn) {
