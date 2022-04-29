@@ -14,5 +14,5 @@ extern "C" \
 class KIOPluginForMetaData : public QObject\
 {\
     Q_OBJECT\
-    Q_PLUGIN_METADATA(IID "blaaa" FILE json)\
+    Q_PLUGIN_METADATA(IID "KIOPluginForMetaData" FILE json)\
 };\
