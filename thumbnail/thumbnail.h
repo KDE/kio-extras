@@ -12,14 +12,27 @@
 #include <QSet>
 #include <QRandomGenerator>
 
-#include <KPluginMetaData>
 #include <KIO/SlaveBase>
+#include <KPluginMetaData>
+
+#include <kio_version.h>
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+#include <KIO/ThumbnailCreator>
+#endif
 
 class ThumbCreator;
 class QImage;
 
+using LegacyThumbCreatorPtr = std::unique_ptr<ThumbCreator>;
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+using ThumbnailCreatorPtr = std::unique_ptr<KIO::ThumbnailCreator>;
+using Creator = std::variant<LegacyThumbCreatorPtr, ThumbnailCreatorPtr>;
+#else
+using Creator = std::variant<LegacyThumbCreatorPtr>;
+#endif
+
 struct ThumbCreatorWithMetadata {
-    std::unique_ptr<ThumbCreator> creator;
+    Creator creator;
     bool cacheThumbnail = true;
     bool devicePixelRatioDependent = false;
     bool handleSequences = false;
@@ -73,6 +86,7 @@ private:
     QString m_thumbBasePath;
     qint64 m_maxFileSize;
     QRandomGenerator m_randomGenerator;
+    float m_sequenceIndexWrapAroundPoint = -1;
 };
 
 #endif
