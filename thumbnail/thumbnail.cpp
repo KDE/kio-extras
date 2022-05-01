@@ -44,9 +44,12 @@
 #include <KIO/ThumbDevicePixelRatioDependentCreator>
 #include <KIO/ThumbSequenceCreator>
 #include <KIO/PreviewJob>
+#include <KPluginFactory>
+
+#include <QDirIterator>
 
 #include <limits>
-#include <QDirIterator>
+#include <variant>
 
 // Fix thumbnail: protocol
 #define THUMBNAIL_HACK (1)
@@ -245,10 +248,14 @@ void ThumbnailProtocol::get(const QUrl &url)
         }
 
         if (creator->handleSequences) {
-            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator->creator.get());
-            if (sequenceCreator) {
-                sequenceCreator->setSequenceIndex(sequenceIndex());
+            if (std::holds_alternative<LegacyThumbCreatorPtr>(creator->creator)) {
+                auto *sequenceCreator = dynamic_cast<ThumbSequenceCreator *>(std::get<LegacyThumbCreatorPtr>(creator->creator).get());
 
+                if (sequenceCreator) {
+                    sequenceCreator->setSequenceIndex(sequenceIndex());
+                    setMetaData("handlesSequences", QStringLiteral("1"));
+                }
+            } else {
                 setMetaData("handlesSequences", QStringLiteral("1"));
             }
         }
@@ -258,11 +265,9 @@ void ThumbnailProtocol::get(const QUrl &url)
             return;
         }
 
+        // We MUST do this after calling create(), because the create() call itself might change it.
         if (creator->handleSequences) {
-            ThumbSequenceCreator* sequenceCreator = dynamic_cast<ThumbSequenceCreator*>(creator->creator.get());
-            // We MUST do this after calling create(), because the create() call itself might change it.
-            const float wp = sequenceCreator->sequenceIndexWraparoundPoint();
-            setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wp));
+            setMetaData("sequenceIndexWraparoundPoint", QString::number(m_sequenceIndexWrapAroundPoint));
         }
     }
 
@@ -640,6 +645,23 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
         return *it;
     }
 
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    const KPluginMetaData md(plugin);
+    const KPluginFactory::Result result = KPluginFactory::instantiatePlugin<KIO::ThumbnailCreator>(md);
+
+    if (result) {
+        auto creator = new ThumbCreatorWithMetadata{
+            std::unique_ptr<ThumbnailCreator>(result.plugin),
+            md.value("CacheThumbnail", true),
+            true, // KIO::ThumbnailCreator are always dpr-aware
+            md.value("HandleSequences", false),
+        };
+
+        m_creators.insert(plugin, creator);
+        return creator;
+    }
+#endif
+
     // Don't use KPluginFactory here, this is not a QObject and
     // neither is ThumbCreator
     ThumbCreator *creator = nullptr;
@@ -811,31 +833,54 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
 
 bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, const QString& filePath, int width, int height, QImage& thumbnail)
 {
-    int scaleWidth = width;
-    int scaledHeight = height;
+    bool success = false;
 
-    if (thumbCreator->devicePixelRatioDependent) {
-        KIO::ThumbDevicePixelRatioDependentCreator *dprDependentCreator =
-                static_cast<KIO::ThumbDevicePixelRatioDependentCreator *>(
-                    thumbCreator->creator.get());
+    if (std::holds_alternative<LegacyThumbCreatorPtr>(thumbCreator->creator)) {
+        auto creator = std::get<LegacyThumbCreatorPtr>(thumbCreator->creator).get();
 
-        if (dprDependentCreator) {
-            dprDependentCreator->setDevicePixelRatio(m_devicePixelRatio);
-            scaleWidth /= m_devicePixelRatio;
+        int scaledWidth = width;
+        int scaledHeight = height;
+
+        if (thumbCreator->devicePixelRatioDependent) {
+            auto *dprDependentCreator = static_cast<KIO::ThumbDevicePixelRatioDependentCreator *>(creator);
+
+            if (dprDependentCreator) {
+                dprDependentCreator->setDevicePixelRatio(m_devicePixelRatio);
+            }
+
+            scaledWidth /= m_devicePixelRatio;
             scaledHeight /= m_devicePixelRatio;
         }
+
+        success = creator->create(filePath, scaledWidth, scaledHeight, thumbnail);
+
+        if (thumbCreator->handleSequences) {
+            auto *sequenceCreator = dynamic_cast<ThumbSequenceCreator *>(creator);
+            m_sequenceIndexWrapAroundPoint = sequenceCreator->sequenceIndexWraparoundPoint();
+        }
+
+    }
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 100, 0)
+    else {
+        auto result = std::get<ThumbnailCreatorPtr>(thumbCreator->creator)
+                          ->create(KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(width, height), m_mimeType, m_devicePixelRatio, sequenceIndex()));
+
+        success = result.isValid();
+        thumbnail = result.image();
+        m_sequenceIndexWrapAroundPoint = result.sequenceIndexWraparoundPoint();
+    }
+#endif
+
+    if (!success) {
+        return false;
     }
 
-    if (thumbCreator->creator->create(filePath, scaleWidth, scaledHeight, thumbnail)) {
-        // make sure the image is not bigger than the expected size
-        scaleDownImage(thumbnail, width, height);
+    // make sure the image is not bigger than the expected size
+    scaleDownImage(thumbnail, width, height);
 
-        thumbnail.setDevicePixelRatio(m_devicePixelRatio);
+    thumbnail.setDevicePixelRatio(m_devicePixelRatio);
 
-        return true;
-    }
-
-    return false;
+    return true;
 }
 
 void ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height, int xPos, int yPos, int borderStrokeWidth)
