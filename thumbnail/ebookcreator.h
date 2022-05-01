@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
 #include <QStringList>
 
@@ -14,17 +14,17 @@ class QIODevice;
 
 class KArchiveDirectory;
 
-class EbookCreator : public ThumbCreator
+class EbookCreator : public KIO::ThumbnailCreator
 {
 public:
-    EbookCreator();
+    EbookCreator(QObject *parent, const QVariantList &args);
     ~EbookCreator() override;
 
-    bool create(const QString &path, int width, int height, QImage &image) override;
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 
-    bool createEpub(const QString &path, QImage &image);
+    KIO::ThumbnailResult createEpub(const QString &path);
     // either a QFile or a KZipFileEntry
-    bool createFb2(QIODevice *device, QImage &image);
+    KIO::ThumbnailResult createFb2(QIODevice *device);
 
     static QStringList getEntryList(const KArchiveDirectory *dir, const QString &path);
 

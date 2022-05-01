@@ -10,16 +10,16 @@
 #ifndef _AUDIO_CREATOR_H_
 #define _AUDIO_CREATOR_H_
 
+#include <KIO/ThumbnailCreator>
 #include <QObject>
-#include <KIO/ThumbCreator>
 
-class AudioCreator : public QObject, public ThumbCreator
+class AudioCreator : public KIO::ThumbnailCreator
 {
     Q_OBJECT
 public:
-    AudioCreator();
+    AudioCreator(QObject *parent, const QVariantList &args);
     ~AudioCreator() override;
-    bool create(const QString &path, int w, int h, QImage &img) override;
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };
 
 #endif // _AUDIO_CREATOR_H_

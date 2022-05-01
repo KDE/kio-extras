@@ -6,24 +6,28 @@
 #include "djvucreator.h"
 #include "thumbnail-djvu-logsettings.h"
 
-#include "macros.h"
-
 #include <QProcess>
 #include <QString>
 #include <QImage>
 
-EXPORT_THUMBNAILER_WITH_JSON(DjVuCreator, "djvuthumbnail.json")
+#include <KPluginFactory>
 
-bool DjVuCreator::create(const QString &path, int width, int height, QImage &img)
+K_PLUGIN_CLASS_WITH_JSON(DjVuCreator, "djvuthumbnail.json")
+
+DjVuCreator::DjVuCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
+{
+}
+
+KIO::ThumbnailResult DjVuCreator::create(const KIO::ThumbnailRequest &request)
 {
     QProcess ddjvu;
 
-    const QStringList args{
-        QStringLiteral("-page=1"),
-        QStringLiteral("-size=") + QString::number(width) + QChar('x') + QString::number(height),
-        QStringLiteral("-format=ppm"),
-        path
-    };
+    const QStringList args{QStringLiteral("-page=1"),
+                           QStringLiteral("-size=") + QString::number(request.targetSize().width()) + QChar('x')
+                               + QString::number(request.targetSize().height()),
+                           QStringLiteral("-format=ppm"),
+                           request.url().toLocalFile()};
 
     ddjvu.start(QStringLiteral("ddjvu"), args);
     ddjvu.waitForFinished();
@@ -35,11 +39,12 @@ bool DjVuCreator::create(const QString &path, int width, int height, QImage &img
                                               << ddjvu.readAllStandardError();
             warnOnce = false;
         }
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
-    img.load(&ddjvu, "ppm");
-    return true;
+    QImage img;
+    bool okay = img.load(&ddjvu, "ppm");
+    return okay ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
 }
 
 #include "djvucreator.moc"

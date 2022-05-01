@@ -8,18 +8,19 @@
 #ifndef _JPEGCREATOR_H_
 #define _JPEGCREATOR_H_
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
 class QTransform;
 
-class JpegCreator : public ThumbCreator
+class JpegCreator : public KIO::ThumbnailCreator
 {
 public:
-    JpegCreator();
-    bool create(const QString &path, int, int, QImage &img) override;
+    JpegCreator(QObject *parent, const QVariantList &args);
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
+
 private:
-    bool exifThumbnail(const QString &path, QImage &image) const;
-    bool imageReaderThumbnail(const QString &path, int width, int height, QImage &image) const;
+    KIO::ThumbnailResult exifThumbnail(const KIO::ThumbnailRequest &request) const;
+    KIO::ThumbnailResult imageReaderThumbnail(const KIO::ThumbnailRequest &request) const;
 };
 
 #endif

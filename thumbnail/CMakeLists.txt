@@ -98,7 +98,7 @@ add_library(imagethumbnail MODULE imagecreator.cpp)
 
 target_link_libraries(imagethumbnail
     KF5::CoreAddons
-    KF5::KIOWidgets
+    KF5::KIOGui
 )
 
 install(TARGETS imagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
@@ -117,7 +117,7 @@ target_link_libraries(jpegthumbnail
     Qt::Core
     Qt::Gui
     KF5::KIOCore
-    KF5::KIOWidgets
+    KF5::KIOGui
     KF5::I18n
     KF5::ConfigCore
     KF5::ConfigGui
@@ -172,7 +172,7 @@ if(NOT WIN32)
         EXPORT KIO_EXTRAS
     )
 
-    target_link_libraries(djvuthumbnail KF5::KIOWidgets)
+    target_link_libraries(djvuthumbnail KF5::KIOGui)
 
     install(TARGETS djvuthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
@@ -273,7 +273,7 @@ install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_M
 add_library(kritathumbnail MODULE kritacreator.cpp)
 
 target_link_libraries(kritathumbnail
-    KF5::KIOWidgets
+    KF5::KIOGui
     KF5::Archive
 )
 
@@ -287,7 +287,7 @@ if(Taglib_FOUND)
 
     target_link_libraries(audiothumbnail
         Taglib::Taglib
-        KF5::KIOWidgets
+        KF5::KIOGui
     )
 
     install(TARGETS audiothumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
@@ -328,7 +328,7 @@ add_library(ebookthumbnail MODULE ebookcreator.cpp)
 
 target_link_libraries(ebookthumbnail
     Qt::Gui
-    KF5::KIOWidgets
+    KF5::KIOGui
     KF5::Archive
 )
 

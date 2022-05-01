@@ -11,63 +11,74 @@
 #include "jpegcreator.h"
 #include "jpegcreatorsettings5.h"
 
-#include "macros.h"
-
 #include <QImage>
 #include <QImageReader>
+
 #include <KLocalizedString>
+#include <KPluginFactory>
 
 #if HAVE_KEXIV2
 #include <KExiv2/KExiv2>
 #endif
 
-EXPORT_THUMBNAILER_WITH_JSON(JpegCreator, "jpegthumbnail.json")
+K_PLUGIN_CLASS_WITH_JSON(JpegCreator, "jpegthumbnail.json")
 
-JpegCreator::JpegCreator()
+JpegCreator::JpegCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
 {
 }
 
-bool JpegCreator::exifThumbnail(const QString &path, QImage &image) const
+KIO::ThumbnailResult JpegCreator::exifThumbnail(const KIO::ThumbnailRequest &request) const
 {
 #if HAVE_KEXIV2
-    KExiv2Iface::KExiv2 exiv2Image(path);
-    image = exiv2Image.getExifThumbnail(JpegCreatorSettings::self()->rotate());
-    return !image.isNull();
+    KExiv2Iface::KExiv2 exiv2Image(request.url().toLocalFile());
+    QImage image = exiv2Image.getExifThumbnail(JpegCreatorSettings::self()->rotate());
+
+    if (image.isNull()) {
+        return KIO::ThumbnailResult::fail();
+    }
+
+    return KIO::ThumbnailResult::pass(image);
 #else
-    Q_UNUSED(path)
-    Q_UNUSED(image)
-    return false;
+    Q_UNUSED(request)
+    return KIO::ThumbnailResult::fail();
 #endif // HAVE_KEXIV2
 }
 
-bool JpegCreator::imageReaderThumbnail(const QString &path, int width, int height, QImage &image) const
+KIO::ThumbnailResult JpegCreator::imageReaderThumbnail(const KIO::ThumbnailRequest &request) const
 {
-    QImageReader imageReader(path, "jpeg");
+    QImageReader imageReader(request.url().toLocalFile(), "jpeg");
     const QSize imageSize = imageReader.size();
-    if (imageSize.isValid() && (imageSize.width() > width || imageSize.height() > height)) {
-        const QSize thumbnailSize = imageSize.scaled(width, height, Qt::KeepAspectRatio);
+    if (imageSize.isValid() && (imageSize.width() > request.targetSize().width() || imageSize.height() > request.targetSize().height())) {
+        const QSize thumbnailSize = imageSize.scaled(request.targetSize(), Qt::KeepAspectRatio);
         imageReader.setScaledSize(thumbnailSize); // fast downscaling
     }
     imageReader.setQuality(75); // set quality so that the jpeg handler will use a high quality downscaler
 
     imageReader.setAutoTransform(JpegCreatorSettings::self()->rotate());
 
-    return imageReader.read(&image);
+    QImage image = imageReader.read();
+
+    if (image.isNull()) {
+        return KIO::ThumbnailResult::fail();
+    }
+
+    return KIO::ThumbnailResult::pass(image);
 }
 
-bool JpegCreator::create(const QString &path, int width, int height, QImage &image)
+KIO::ThumbnailResult JpegCreator::create(const KIO::ThumbnailRequest &request)
 {
     JpegCreatorSettings::self()->load();
 
-    if (exifThumbnail(path, image)) {
-        return true;
+    if (auto result = exifThumbnail(request); result.isValid()) {
+        return result;
     }
 
-    if (imageReaderThumbnail(path, width, height, image)) {
-        return true;
+    if (auto result = imageReaderThumbnail(request); result.isValid()) {
+        return result;
     }
 
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
 #include "jpegcreator.moc"

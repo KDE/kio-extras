@@ -11,8 +11,14 @@
 #include <QImageReader>
 
 #include <KMemoryInfo>
+#include <KPluginFactory>
 
-EXPORT_THUMBNAILER_WITH_JSON(ImageCreator, "imagethumbnail.json")
+K_PLUGIN_CLASS_WITH_JSON(ImageCreator, "imagethumbnail.json")
+
+ImageCreator::ImageCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
+{
+}
 
 #define MiB(bytes) ((bytes) * 1024ll * 1024ll)
 #define GiB(bytes) (MiB(bytes) * 1024ll)
@@ -52,10 +58,10 @@ qint64 maximumThumbnailRam()
     return std::max(MINIMUM_GUARANTEED_SIZE, freeRam / RAM_DIVISOR);
 }
 
-bool ImageCreator::create(const QString &path, int, int, QImage &img)
+KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
 {
     // create image preview
-    QImageReader ir(path);
+    QImageReader ir(request.url().toLocalFile());
 
     /* The idea is to read the free ram and try to avoid OS trashing when the
      * image is too big:
@@ -69,7 +75,7 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
         auto size = ir.size();
         // euristic way: we always calculate the size supposing a 16-bits RGBA image
         if (size == QSize() || (8ll * size.width() * size.height() > ram)) {
-            return false;
+            return KIO::ThumbnailResult::fail();
         }
     }
 #else
@@ -82,11 +88,18 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
         // make preview generation of raw files ~3 times faster (requires setDecideFormatFromContent(true))
         ir.setQuality(1);
     }
+
+    QImage img;
     ir.read(&img);
     if (!img.isNull() && img.depth() != 32) {
         img = img.convertToFormat(img.hasAlphaChannel() ? QImage::Format_ARGB32 : QImage::Format_RGB32);
     }
-    return !img.isNull();
+
+    if (!img.isNull()) {
+        return KIO::ThumbnailResult::pass(img);
+    }
+
+    return KIO::ThumbnailResult::fail();
 }
 
 #include "imagecreator.moc"

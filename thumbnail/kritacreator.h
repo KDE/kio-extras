@@ -10,18 +10,18 @@
 #include <QtGlobal>
 
 // KF
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
 /**
  * The Krita thumbnail creator can create thumbnails for krita and openraster images
  */
-class KritaCreator : public ThumbCreator
+class KritaCreator : public KIO::ThumbnailCreator
 {
 public:
-    KritaCreator();
+    KritaCreator(QObject *parent, const QVariantList &args);
     ~KritaCreator() override;
 
-    bool create(const QString &path, int width, int height, QImage &image) override;
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };
 
 #endif

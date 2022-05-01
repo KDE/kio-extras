@@ -9,12 +9,12 @@
 
 #include "audiocreator.h"
 
-#include "macros.h"
-
 #include <QFile>
 #include <QImage>
 #include <QMimeType>
 #include <QMimeDatabase>
+
+#include <KPluginFactory>
 
 #include <apetag.h>
 #include <mp4tag.h>
@@ -32,9 +32,10 @@
 #include <flacpicture.h>
 #include <attachedpictureframe.h>
 
-EXPORT_THUMBNAILER_WITH_JSON(AudioCreator, "audiothumbnail.json")
+K_PLUGIN_CLASS_WITH_JSON(AudioCreator, "audiothumbnail.json")
 
-AudioCreator::AudioCreator()
+AudioCreator::AudioCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
 {
 }
 
@@ -60,27 +61,28 @@ struct FileExt : public File
 }
 }
 
-template<class T> static
-bool parseID3v2Tag(T &file, QImage &img)
+template<class T>
+static KIO::ThumbnailResult parseID3v2Tag(T &file)
 {
     if (!file.hasID3v2Tag()) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
     const auto &map = file.ID3v2Tag()->frameListMap();
     if (map["APIC"].isEmpty()) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
     auto apicFrame = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame*>(map["APIC"].front());
     if (!apicFrame) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
     const auto coverData = apicFrame->picture();
-    img.loadFromData((uchar *)coverData.data(), coverData.size());
-    return true;
+    QImage img;
+    bool okay = img.loadFromData((uchar *)coverData.data(), coverData.size());
+    return okay ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
 }
 
-template<class T> static
-bool parseFlacTag(T &file, QImage &img)
+template<class T>
+static KIO::ThumbnailResult parseFlacTag(T &file)
 {
     const auto pictureList = file.pictureList();
     for (const auto &picture : pictureList) {
@@ -88,17 +90,18 @@ bool parseFlacTag(T &file, QImage &img)
             continue;
         }
         const auto coverData = picture->data();
-        img.loadFromData((uchar *)coverData.data(), coverData.size());
-        return true;
+        QImage img;
+        bool okay = img.loadFromData((uchar *)coverData.data(), coverData.size());
+        return okay ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
     }
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
-template<class T> static
-bool parseMP4Tag(T &file, QImage &img)
+template<class T>
+static KIO::ThumbnailResult parseMP4Tag(T &file)
 {
     if (!file.hasMP4Tag()) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
     const auto &map = file.tag()->itemMap();
     for (const auto &coverList : map) {
@@ -107,17 +110,18 @@ bool parseMP4Tag(T &file, QImage &img)
             continue;
         }
         const auto coverData = coverArtList[0].data();
-        img.loadFromData((uchar *)coverData.data(), coverData.size());
-        return true;
+        QImage img;
+        bool okay = img.loadFromData((uchar *)coverData.data(), coverData.size());
+        return okay ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
     }
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
-template<class T> static
-bool parseAPETag(T &file, QImage &img)
+template<class T>
+static KIO::ThumbnailResult parseAPETag(T &file)
 {
     if (!file.hasAPETag()) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
     const auto &map = file.APETag()->itemListMap();
     for (const auto &item : map) {
@@ -130,67 +134,82 @@ bool parseAPETag(T &file, QImage &img)
         for (size_t i=0; i<size; ++i) {
             if (data[i] == '\0' && (i+1) < size) {
                 const auto start = data+i+1;
-                img.loadFromData((uchar *)start, size-(start-data));
-                return true;
+                QImage img;
+                bool okay = img.loadFromData((uchar *)start, size - (start - data));
+                return okay ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
+                ;
             }
         }
     }
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
-bool AudioCreator::create(const QString &path, int, int, QImage &img)
+KIO::ThumbnailResult AudioCreator::create(const KIO::ThumbnailRequest &request)
 {
     QMimeDatabase db;
-    QMimeType type = db.mimeTypeForFile(path);
+    QMimeType type = db.mimeTypeForName(request.mimeType());
+
+    const char *fileName = QFile::encodeName(request.url().toLocalFile()).data();
+
     if (!type.isValid()) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     if (type.inherits("audio/mpeg")) {
-        TagLib::MPEG::File file(QFile::encodeName(path).data());
-        return parseID3v2Tag(file, img) || parseAPETag(file, img);
+        TagLib::MPEG::File file(fileName);
+
+        if (auto result = parseID3v2Tag(file); result.isValid()) {
+            return result;
+        }
+
+        return parseAPETag(file);
     }
     if (type.inherits("audio/x-flac") || type.inherits("audio/flac")) {
-        TagLib::FLAC::File file(QFile::encodeName(path).data());
-        return parseFlacTag(file, img) || parseID3v2Tag(file, img);
+        TagLib::FLAC::File file(fileName);
+
+        if (auto result = parseFlacTag(file); result.isValid()) {
+            return result;
+        }
+
+        return parseID3v2Tag(file);
     }
     if (type.inherits("audio/mp4") || type.inherits("audio/x-m4a") ||
             type.inherits("audio/vnd.audible.aax")) {
-        TagLib::MP4::File file(QFile::encodeName(path).data());
-        return parseMP4Tag(file, img);
+        TagLib::MP4::File file(fileName);
+        return parseMP4Tag(file);
     }
     if (type.inherits("audio/x-ape")) {
-        TagLib::APE::File file(QFile::encodeName(path).data());
-        return parseAPETag(file, img);
+        TagLib::APE::File file(fileName);
+        return parseAPETag(file);
     }
     if (type.inherits("audio/x-wavpack") || type.inherits("audio/x-vw")) {
-        TagLib::WavPack::File file(QFile::encodeName(path).data());
-        return parseAPETag(file, img);
+        TagLib::WavPack::File file(fileName);
+        return parseAPETag(file);
     }
     if (type.inherits("audio/x-musepack")) {
-        TagLib::MPC::File file(QFile::encodeName(path).data());
-        return parseAPETag(file, img);
+        TagLib::MPC::File file(fileName);
+        return parseAPETag(file);
     }
     if (type.inherits("audio/ogg") || type.inherits("audio/vorbis")) {
-        TagLib::FileRef fileRef(QFile::encodeName(path).data());
+        TagLib::FileRef fileRef(fileName);
         if (fileRef.isNull()) {
-            return false;
+            return KIO::ThumbnailResult::fail();
         }
         auto xiphComment = dynamic_cast<TagLib::Ogg::XiphComment*>(fileRef.tag());
         if (!xiphComment || xiphComment->isEmpty()) {
-            return false;
+            return KIO::ThumbnailResult::fail();
         }
-        return parseFlacTag(*xiphComment, img);
+        return parseFlacTag(*xiphComment);
     }
     if (type.inherits("audio/x-aiff") || type.inherits("audio/x-aifc")) {
-        TagLib::RIFF::AIFF::FileExt file(QFile::encodeName(path).data());
-        return parseID3v2Tag(file, img);
+        TagLib::RIFF::AIFF::FileExt file(fileName);
+        return parseID3v2Tag(file);
     }
     if (type.inherits("audio/x-wav")) {
-        TagLib::RIFF::WAV::File file(QFile::encodeName(path).data());
-        return parseID3v2Tag(file, img);
+        TagLib::RIFF::WAV::File file(fileName);
+        return parseID3v2Tag(file);
     }
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
 #include "audiocreator.moc"

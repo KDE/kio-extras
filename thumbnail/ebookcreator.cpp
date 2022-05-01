@@ -6,8 +6,6 @@
 
 #include "ebookcreator.h"
 
-#include "macros.h"
-
 #include <QFile>
 #include <QImage>
 #include <QMap>
@@ -15,36 +13,37 @@
 #include <QUrl>
 #include <QXmlStreamReader>
 
+#include <KPluginFactory>
 #include <KZip>
 
-EXPORT_THUMBNAILER_WITH_JSON(EbookCreator, "ebookthumbnail.json")
+K_PLUGIN_CLASS_WITH_JSON(EbookCreator, "ebookthumbnail.json")
 
-EbookCreator::EbookCreator() = default;
+EbookCreator::EbookCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
+{
+}
 
 EbookCreator::~EbookCreator() = default;
 
-bool EbookCreator::create(const QString &path, int width, int height, QImage &image)
+KIO::ThumbnailResult EbookCreator::create(const KIO::ThumbnailRequest &request)
 {
-    Q_UNUSED(width);
-    Q_UNUSED(height);
+    const QString path = request.url().toLocalFile();
 
-    QMimeType mimeType = QMimeDatabase().mimeTypeForFile(path);
+    if (request.mimeType() == QLatin1String("application/epub+zip")) {
+        return createEpub(path);
 
-    if (mimeType.name() == QLatin1String("application/epub+zip")) {
-        return createEpub(path, image);
-
-    } else if (mimeType.name() == QLatin1String("application/x-fictionbook+xml")) {
+    } else if (request.mimeType() == QLatin1String("application/x-fictionbook+xml")) {
         QFile file(path);
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            return false;
+            return KIO::ThumbnailResult::fail();
         }
 
-        return createFb2(&file, image);
+        return createFb2(&file);
 
-    } else if (mimeType.name() == QLatin1String("application/x-zip-compressed-fb2")) {
+    } else if (request.mimeType() == QLatin1String("application/x-zip-compressed-fb2")) {
         KZip zip(path);
         if (!zip.open(QIODevice::ReadOnly)) {
-            return false;
+            return KIO::ThumbnailResult::fail();
         }
 
         QScopedPointer<QIODevice> zipDevice;
@@ -57,23 +56,23 @@ bool EbookCreator::create(const QString &path, int width, int height, QImage &im
 
             const auto *entry = zip.directory()->file(entryPath);
             if (!entry) {
-                return false;
+                return KIO::ThumbnailResult::fail();
             }
 
             zipDevice.reset(entry->createDevice());
         }
 
-        return createFb2(zipDevice.data(), image);
+        return createFb2(zipDevice.data());
     }
 
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
-bool EbookCreator::createEpub(const QString &path, QImage &image)
+KIO::ThumbnailResult EbookCreator::createEpub(const QString &path)
 {
     KZip zip(path);
     if (!zip.open(QIODevice::ReadOnly)) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     QScopedPointer<QIODevice> zipDevice;
@@ -84,7 +83,7 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
     const auto *entry = zip.directory()->file(QStringLiteral("META-INF/container.xml"));
 
     if (!entry) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     zipDevice.reset(entry->createDevice());
@@ -100,13 +99,13 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
     }
 
     if (opfPath.isEmpty()) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     // Now read the OPF file and look for a <meta name="cover" content="...">
     entry = zip.directory()->file(opfPath);
     if (!entry) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     zipDevice.reset(entry->createDevice());
@@ -175,7 +174,11 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
         entry = zip.directory()->file(QStringLiteral("iTunesArtwork"));
         if (entry) {
             zipDevice.reset(entry->createDevice());
-            return image.load(zipDevice.data(), "");
+
+            QImage image;
+            bool okay = image.load(zipDevice.data(), "");
+
+            return okay ? KIO::ThumbnailResult::pass(image) : KIO::ThumbnailResult::fail();
         }
 
         // Maybe there's a file called "cover" somewhere
@@ -192,11 +195,15 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
             }
 
             zipDevice.reset(entry->createDevice());
-            if (image.load(zipDevice.data(), "")) {
-                return true;
+
+            QImage image;
+            bool success = image.load(zipDevice.data(), "");
+
+            if (success) {
+                return KIO::ThumbnailResult::pass(image);
             }
         }
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     // Decode percent encoded URL
@@ -214,13 +221,16 @@ bool EbookCreator::createEpub(const QString &path, QImage &image)
     entry = zip.directory()->file(coverHref);
     if (entry) {
         zipDevice.reset(entry->createDevice());
-        return image.load(zipDevice.data(), "");
+        QImage image;
+        image.load(zipDevice.data(), "");
+
+        return KIO::ThumbnailResult::pass(image);
     }
 
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
-bool EbookCreator::createFb2(QIODevice *device, QImage &image)
+KIO::ThumbnailResult EbookCreator::createFb2(QIODevice *device)
 {
     QString coverId;
 
@@ -283,13 +293,15 @@ bool EbookCreator::createFb2(QIODevice *device, QImage &image)
         } else {
             if (!coverId.isEmpty() && xml.isStartElement() && xml.name() == QLatin1String("binary")) {
                 if (xml.attributes().value(QStringLiteral("id")) == coverId) {
-                    return image.loadFromData(QByteArray::fromBase64(xml.readElementText().toLatin1()));
+                    QImage image;
+                    image.loadFromData(QByteArray::fromBase64(xml.readElementText().toLatin1()));
+                    return KIO::ThumbnailResult::pass(image);
                 }
             }
         }
     }
 
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
 QStringList EbookCreator::getEntryList(const KArchiveDirectory *dir, const QString &path)

@@ -6,13 +6,14 @@
 #ifndef DJVUCREATOR_H__
 #define DJVUCREATOR_H__
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
-class DjVuCreator : public ThumbCreator
+class DjVuCreator : public KIO::ThumbnailCreator
 {
 public:
-    DjVuCreator() {}
-    bool create(const QString &path, int, int, QImage &img) override;
+    DjVuCreator(QObject *parent, const QVariantList &args);
+
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };
 
 #endif

@@ -6,17 +6,17 @@
 
 #include "kritacreator.h"
 
-#include "macros.h"
-
+#include <KPluginFactory>
 #include <KZip>
 
 #include <memory>
 #include <QImage>
 #include <QIODevice>
 
-EXPORT_THUMBNAILER_WITH_JSON(KritaCreator, "kraorathumbnail.json")
+K_PLUGIN_CLASS_WITH_JSON(KritaCreator, "kraorathumbnail.json")
 
-KritaCreator::KritaCreator()
+KritaCreator::KritaCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
 {
 }
 
@@ -24,14 +24,14 @@ KritaCreator::~KritaCreator()
 {
 }
 
-bool KritaCreator::create(const QString &path, int width, int height, QImage &image)
+KIO::ThumbnailResult KritaCreator::create(const KIO::ThumbnailRequest &request)
 {
     // for now just rely on the rendered data inside the file,
     // do not load Krita code for rendering ourselves, as that currently (2.9)
     // means loading all plugins, resources etc.
-    KZip zip(path);
+    KZip zip(request.url().toLocalFile());
     if (!zip.open(QIODevice::ReadOnly)) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     // first check if normal thumbnail is good enough
@@ -43,14 +43,15 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
     }
 
     if (!entry) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     std::unique_ptr<QIODevice> fileDevice{entry->createDevice()};
+    QImage image;
     bool thumbLoaded = image.load(fileDevice.get(), "PNG");
     // The requested size is a boundingbox, so meeting one size is sufficient
-    if (thumbLoaded && ((image.width() >= width) || (image.height() >= height))) {
-        return true;
+    if (thumbLoaded && ((image.width() >= request.targetSize().width()) || (image.height() >= request.targetSize().height()))) {
+        return KIO::ThumbnailResult::pass(image);
     }
 
     entry = zip.directory()->file(QLatin1String("mergedimage.png"));
@@ -59,12 +60,11 @@ bool KritaCreator::create(const QString &path, int width, int height, QImage &im
         fileDevice.reset(entry->createDevice());
         thumbLoaded = thumbnail.load(fileDevice.get(), "PNG");
         if (thumbLoaded) {
-            image = thumbnail;
-            return true;
+            return KIO::ThumbnailResult::pass(thumbnail);
         }
     }
 
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
 #include "kritacreator.moc"

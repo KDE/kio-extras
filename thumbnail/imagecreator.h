@@ -9,13 +9,13 @@
 
 #include <QtGlobal>
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
-class ImageCreator : public ThumbCreator
+class ImageCreator : public KIO::ThumbnailCreator
 {
 public:
-    ImageCreator() {}
-    bool create(const QString &path, int, int, QImage &img) override;
+    ImageCreator(QObject *parent, const QVariantList &args);
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };
 
 #endif
