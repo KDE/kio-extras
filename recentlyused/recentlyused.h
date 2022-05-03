@@ -91,7 +91,7 @@ protected:
     void mimetype(const QUrl &url) override;
 
 private:
-    KIO::UDSEntry udsEntryFromResource(const QString &resource);
+    KIO::UDSEntry udsEntryFromResource(const QString &resource, const QString &mimeType);
     KIO::UDSEntry udsEntryForRoot(const QString &dirName, const QString &iconName);
 };
 

@@ -162,7 +162,7 @@ ResultModel *runQuery(const QUrl &url)
     return new ResultModel(query);
 }
 
-KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource)
+KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource, const QString &mimeType)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "udsEntryFromResource" << resource;
 
@@ -179,6 +179,7 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource)
         uds = job->statResult();
     }
     uds.fastInsert(KIO::UDSEntry::UDS_URL, resourceUrl.toString());
+    uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, mimeType);
     return uds;
 }
 
@@ -200,8 +201,9 @@ void RecentlyUsed::listDir(const QUrl &url)
     for (int r = 0; r < model->rowCount(); ++r) {
         QModelIndex index = model->index(r, 0);
         QString resource = model->data(index, ResultModel::ResourceRole).toString();
+        QString mimeType = model->data(index, ResultModel::MimeType).toString();
 
-        udslist << udsEntryFromResource(resource);
+        udslist << udsEntryFromResource(resource, mimeType);
     }
 
     listEntries(udslist);
