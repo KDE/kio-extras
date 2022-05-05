@@ -5,7 +5,6 @@
 */
 
 #include "kio_smb.h"
-#include "smburl.h"
 #include <QCoreApplication>
 #include <QVersionNumber>
 

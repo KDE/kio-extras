@@ -17,10 +17,8 @@
 #include <kshell.h>
 
 #include <KLocalizedString>
-#include <kconfig.h>
 #include <kconfiggroup.h>
 #include <kbookmark.h>
-#include <kbookmarkmanager.h>
 #include <kimagecache.h>
 #include <qdebug.h>
 #include <kfileplacesmodel.h>

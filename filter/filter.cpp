@@ -13,7 +13,6 @@ SPDX-License-Identifier: MIT
 #include <QFileInfo>
 #include <QFile>
 #include <QDebug>
-#include <QUrl>
 #include <QMimeType>
 #include <QMimeDatabase>
 

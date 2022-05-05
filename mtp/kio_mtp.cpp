@@ -17,7 +17,6 @@
 #include <QCoreApplication>
 #include <QTimer>
 
-#include <sys/stat.h>
 #include <sys/types.h>
 #include <utime.h>
 

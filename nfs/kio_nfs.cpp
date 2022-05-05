@@ -25,8 +25,6 @@
 
 #include <klocalizedstring.h>
 #include <ksharedconfig.h>
-#include <kconfiggroup.h>
-#include <kio/global.h>
 
 #include "kio_nfs_debug.h"
 #include "nfsv2.h"

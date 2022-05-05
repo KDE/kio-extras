@@ -7,9 +7,6 @@ To use this program, do
 */
 
 #include <copytester.h>
-#include <kio/scheduler.h>
-#include <kurl.h>
-#include <kio/jobclasses.h>
 #include <kdebug.h>
 #include <kio/copyjob.h>
 #include <kapplication.h>

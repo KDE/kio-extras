@@ -10,14 +10,12 @@
 #include <common/database/schema/ResourcesDatabaseSchema.h>
 
 #include <QSqlDatabase>
-#include <QSqlQuery>
 #include <QSqlField>
 #include <QSqlError>
 #include <QSqlDriver>
 #include <QThread>
 #include <QDebug>
 
-#include <memory>
 #include <mutex>
 #include <map>
 

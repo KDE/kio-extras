@@ -9,7 +9,6 @@
 
 #include <QFile>
 #include <QFontDatabase>
-#include <QPixmap>
 #include <QImage>
 #include <QPainter>
 #include <QPalette>

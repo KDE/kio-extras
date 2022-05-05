@@ -6,7 +6,6 @@
 
 #include "kio_archivebase.h"
 
-#include <sys/types.h>
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -23,7 +22,6 @@
 #include <kzip.h>
 #include <kar.h>
 #include <k7zip.h>
-#include <kio/global.h>
 #include <kio_archive_debug.h>
 #include <kuser.h>
 #include <KLocalizedString>

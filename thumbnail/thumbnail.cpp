@@ -27,14 +27,12 @@
 #include <QCryptographicHash>
 #include <QImage>
 #include <QIcon>
-#include <QPainter>
 #include <QPixmap>
 #include <QUrl>
 #include <QMimeType>
 #include <QMimeDatabase>
 #include <QLibrary>
 #include <QDebug>
-#include <QRandomGenerator>
 #include <QPluginLoader>
 
 #include <KConfigGroup>
