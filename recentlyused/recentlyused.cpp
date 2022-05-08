@@ -10,6 +10,7 @@
 #include <QCoreApplication>
 #include <QUrl>
 #include <QUrlQuery>
+#include <QDataStream>
 
 #include <KIO/Job>
 #include <KLocalizedString>
@@ -268,6 +269,42 @@ void RecentlyUsed::mimetype(const QUrl &url)
     } else {
         // only the root path is supported
         error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+    }
+}
+
+void RecentlyUsed::special(const QByteArray &data) {
+
+    int id;
+    QDataStream stream(data);
+    stream >> id;
+
+    switch (id) {
+    case 1: { // Forget
+        QList<QUrl> urls;
+        stream >> urls;
+
+        QList<QString> paths;
+        for (const auto &url: qAsConst(urls)) {
+            if (url.isLocalFile() || url.scheme().isEmpty()) {
+                paths.append(url.path());
+            } else {
+                paths.append(url.toString());
+            }
+        }
+
+        Query query = UsedResources
+                | Limit(paths.size());
+        query.setUrlFilters(Url(paths));
+        query.setAgents(Agent::any());
+        query.setActivities(Activity::any());
+
+        ResultModel model(query);
+        model.forgetResources(paths);
+
+        break;
+    }
+    default:
+        break;
     }
 }
 

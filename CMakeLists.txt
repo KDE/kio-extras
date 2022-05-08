@@ -8,7 +8,7 @@ set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE
 project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
 
 set(QT_MIN_VERSION "5.15.0")
-set(KF5_MIN_VERSION "5.90.0")
+set(KF5_MIN_VERSION "5.94.0")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -72,7 +72,7 @@ set_package_properties(Qt${QT_MAJOR_VERSION}Sql PROPERTIES
     TYPE OPTIONAL
 )
 
-find_package(KF5ActivitiesStats 5.62 QUIET)
+find_package(KF5ActivitiesStats ${KF5_MIN_VERSION} QUIET)
 set_package_properties(KF5ActivitiesStats PROPERTIES
     PURPOSE "Provides the recentlyused:/ kioslave."
     TYPE OPTIONAL

@@ -90,6 +90,21 @@ protected:
     void stat(const QUrl &url) override;
     void mimetype(const QUrl &url) override;
 
+    /**
+     * Implemention of the forget action
+     *
+     *  Use it like so:
+     *
+     *  QByteArray packedArgs;
+     *  QDataStream stream(&packedArgs, QIODevice::WriteOnly);
+     *  stream << int(1); // Forget
+     *  stream << urls;
+     *
+     *  auto job = KIO::special(QUrl("recentlyused:/"), packedArgs);
+     *  job->exec();
+     */
+    void special(const QByteArray &data) override;
+
 private:
     KIO::UDSEntry udsEntryFromResource(const QString &resource, const QString &mimeType);
     KIO::UDSEntry udsEntryForRoot(const QString &dirName, const QString &iconName);
