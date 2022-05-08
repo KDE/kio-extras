@@ -174,9 +174,9 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource, const 
 
     // we do not want to wait for the event loop to delete the job
     QScopedPointer<KIO::StatJob> sp(job);
-    job->setAutoDelete(false);
-    if (job->exec()) {
-        uds = job->statResult();
+    sp->setAutoDelete(false);
+    if (sp->exec()) {
+        uds = sp->statResult();
     }
     uds.fastInsert(KIO::UDSEntry::UDS_URL, resourceUrl.toString());
     uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, mimeType);
