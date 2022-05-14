@@ -12,6 +12,7 @@
 #include <QSet>
 #include <QRandomGenerator>
 
+#include <KPluginMetaData>
 #include <kio/slavebase.h>
 
 class ThumbCreator;
@@ -38,7 +39,7 @@ protected:
     void drawPictureFrame(QPainter *painter, const QPoint &pos, const QImage &image,
                           int frameWidth, QSize imageTargetSize, int rotationAngle) const;
     QImage thumbForDirectory(const QString& directory);
-    QString pluginForMimeType(const QString& mimeType);
+    KPluginMetaData pluginForMimeType(const QString& mimeType);
 
     float sequenceIndex() const;
 

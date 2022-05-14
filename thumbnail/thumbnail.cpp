@@ -232,7 +232,7 @@ void ThumbnailProtocol::get(const QUrl &url)
     } else {
 #ifdef THUMBNAIL_HACK
         if (plugin.isEmpty()) {
-            plugin = pluginForMimeType(m_mimeType);
+            plugin = pluginForMimeType(m_mimeType).fileName();
         }
 
         //qDebug() << "Guess plugin: " << plugin;
@@ -351,11 +351,11 @@ static QVector<KPluginMetaData> availablePlugins()
     return jsonMetaDataPlugins;
 }
 
-QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
-    const static auto plugins = availablePlugins();
-    for (const auto &plugin : plugins) {
+KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
+    const QVector<KPluginMetaData> plugins = availablePlugins();
+    for (const KPluginMetaData &plugin : plugins) {
         if (plugin.supportsMimeType(mimeType)) {
-            return plugin.fileName();
+            return plugin;
         }
     }
     for (const auto &plugin : plugins) {
@@ -363,13 +363,14 @@ QString ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
         for (const QString& mime : mimeTypes) {
             if(mime.endsWith('*')) {
                 const auto mimeGroup = QStringView(mime).left(mime.length()-1);
-                if(mimeType.startsWith(mimeGroup))
-                    return plugin.fileName();
+                if(mimeType.startsWith(mimeGroup)) {
+                    return plugin;
+                }
             }
         }
     }
 
-    return QString();
+    return {};
 }
 
 float ThumbnailProtocol::sequenceIndex() const {
@@ -730,11 +731,11 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
 {
     auto getSubCreator = [&filePath, this]() -> ThumbCreatorWithMetadata* {
         const QMimeDatabase db;
-        const QString subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
-        if (subPlugin.isEmpty() || !m_enabledPlugins.contains(subPlugin)) {
+        const KPluginMetaData  subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
+        if (!subPlugin.isValid() || !m_enabledPlugins.contains(subPlugin.pluginId())) {
             return nullptr;
         }
-        return getThumbCreator(subPlugin);
+        return getThumbCreator(subPlugin.fileName());
     };
 
     const auto maxDimension = qMin(1024, 512 * m_devicePixelRatio);
