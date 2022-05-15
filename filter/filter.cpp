@@ -18,11 +18,7 @@ SPDX-License-Identifier: MIT
 
 #include <kfilterbase.h>
 #include <karchive_version.h>
-#if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
 #include <KCompressionDevice>
-#else
-#include <KFilterDev>
-#endif
 
 #include "loggingcategory.h"
 
@@ -64,11 +60,7 @@ FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &p
         (protocol == "zstd") ? QStringLiteral("application/zstd") :
         QLatin1String("application/x-") + QLatin1String(protocol.constData());
 
-#if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
     filter = KCompressionDevice::filterForCompressionType(KCompressionDevice::compressionTypeForMimeType( mimetype ));
-#else
-    filter = KCompressionDevice::filterForCompressionType(KFilterDev::compressionTypeForMimeType( mimetype ));
-#endif
     Q_ASSERT(filter);
 }
 

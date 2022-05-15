@@ -9,13 +9,8 @@
 #include "smburl.h"
 
 #include <kdnssd_version.h>
-#if KDNSSD_VERSION >= QT_VERSION_CHECK(5, 84, 0)
 #include <KDNSSD/RemoteService>
 #include <KDNSSD/ServiceBrowser>
-#else
-#include <DNSSD/RemoteService>
-#include <DNSSD/ServiceBrowser>
-#endif
 #include <KIO/Job>
 #include <KLocalizedString>
 

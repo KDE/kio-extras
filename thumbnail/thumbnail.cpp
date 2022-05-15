@@ -784,11 +784,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
 
                 // The thumbnail has been created successfully. Check if we can store
                 // the thumbnail to the cache for future access.
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 83, 0)
                 if (subCreator->cacheThumbnail && metaData("cache").toInt() && !thumbnail.isNull()) {
-#else
-                if (subCreator->cacheThumbnail && !thumbnail.isNull()) {
-#endif
                     QString thumbPath;
                     const int wants = std::max(thumbnail.width(), thumbnail.height());
                     for (const auto &pool : pools) {

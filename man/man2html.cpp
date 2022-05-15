@@ -141,11 +141,7 @@
 # include <QFileInfo>
 # include <QDir>
 # include <karchive_version.h>
-# if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
 # include <KCompressionDevice>
-# else
-# include <KFilterDev>
-# endif
 # define BYTEARRAY(x) x.constData()
 #else
 # include <KLocalizedString>
@@ -6250,11 +6246,7 @@ void output_real(const char *insert)
 
 char *read_man_page(const char *filename)
 {
-#if KARCHIVE_VERSION >= QT_VERSION_CHECK(5, 85, 0)
     KCompressionDevice fd(QFile::decodeName(filename));
-#else
-    KFilterDev fd(QFile::decodeName(filename));
-#endif
     if ( !fd.open(QIODevice::ReadOnly) )
     {
         std::cerr << "read_man_page: can not open " << filename << std::endl;
