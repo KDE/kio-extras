@@ -33,7 +33,11 @@ void AboutProtocol::get( const QUrl& )
     QByteArray output;
 
     QTextStream os( &output, QIODevice::WriteOnly );
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     os.setCodec( "ISO-8859-1" ); // In fact ASCII
+#else
+    os.setEncoding(QStringConverter::Latin1);
+#endif
 
     os << "<html><head><title>about:blank</title></head><body></body></html>";
     os.flush();
