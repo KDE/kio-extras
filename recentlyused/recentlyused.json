@@ -3,7 +3,6 @@
         "recentlyused": {
             "Class": ":local",
             "Icon": "document-open-recent",
-            "ProxiedBy": "file",
             "X-DocPath": "kioslave5/recentlyused/index.html",
             "copyFromFile": false,
             "copyToFile": false,

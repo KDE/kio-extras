@@ -1,0 +1,15 @@
+{
+    "KPlugin": {
+        "Icon": "edit-clear-history",
+        "MimeTypes": [
+            "application/octet-stream",
+            "inode/directory"
+        ],
+        "Name": "Forget items from Recent Documents and Recent Locations",
+        "ServiceTypes": [
+            "KFileItemAction/Plugin"
+        ]
+    },
+    "X-KDE-Show-In-Submenu": "true",
+    "X-KDE-Protocol": "recentlyused"
+}

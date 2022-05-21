@@ -7,7 +7,7 @@
 #ifndef RECENTLYUSED_H
 #define RECENTLYUSED_H
 
-#include <kio/slavebase.h>
+#include <KIO/SlaveBase>
 
 /**
  * Implements recentlyused:/ ioslave
@@ -78,9 +78,8 @@
  *
  * @brief The RecentlyUsed implements an ioslave to access recently used files or directories
  */
-class RecentlyUsed : public QObject, public KIO::SlaveBase
+class RecentlyUsed : public KIO::SlaveBase
 {
-    Q_OBJECT
 public:
     RecentlyUsed(const QByteArray &pool, const QByteArray &app);
     ~RecentlyUsed() override;
@@ -106,7 +105,12 @@ protected:
     void special(const QByteArray &data) override;
 
 private:
-    KIO::UDSEntry udsEntryFromResource(const QString &resource, const QString &mimeType);
+    /*
+     * Creates a udsEntry for recentlyused:/
+     *
+     * row is the row number in the ResultModel for the recentlyused:/ url being queried
+     */
+    KIO::UDSEntry udsEntryFromResource(const QString &resource, const QString &mimeType, int row);
     KIO::UDSEntry udsEntryForRoot(const QString &dirName, const QString &iconName);
 };
 

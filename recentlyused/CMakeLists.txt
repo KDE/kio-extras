@@ -36,3 +36,12 @@ target_link_libraries(recentlyused
     KF5::ActivitiesStats)
 
 install(TARGETS recentlyused DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
+
+# forgetfileitemaction plugin
+kcoreaddons_add_plugin(forgetfileitemaction
+    SOURCES forgetfileitemaction.cpp
+    INSTALL_NAMESPACE "kf${QT_MAJOR_VERSION}/kfileitemaction")
+
+target_link_libraries(forgetfileitemaction
+    KF5::I18n
+    KF5::KIOWidgets)
