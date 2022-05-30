@@ -1373,9 +1373,9 @@ void MANProtocol::listDir(const QUrl &url)
             // Remove any preceding pathname components, just leave the base name
             int pos = name.lastIndexOf('/');
             if (pos>0) name = name.mid(pos+1);
-            // Reformat the section suffix into the standard form
+            // Remove the section suffix
             pos = name.lastIndexOf('.');
-            if (pos>0) name = name.left(pos)+" ("+name.mid(pos+1)+')';
+            if (pos>0) name.truncate(pos);
 
             uds_entry.clear();
             uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
