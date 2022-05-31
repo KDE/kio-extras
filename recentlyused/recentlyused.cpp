@@ -76,7 +76,7 @@ ResultModel *runQuery(const QUrl &url)
     const auto urlQuery = QUrlQuery(url);
 
     const auto path = url.path();
-    if (path == QStringLiteral("/locations")) {
+    if (path.startsWith(QStringLiteral("/locations"))) {
         query.setTypes(Type::directories());
     } else {
         if (urlQuery.hasQueryItem(QStringLiteral("type"))) {
@@ -194,8 +194,32 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 {
     if (!isRootUrl(url)) {
         const auto path = url.path();
-        if (path != QStringLiteral("/files") && path != QStringLiteral("/locations") ) {
-            return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+        if (!path.endsWith(QStringLiteral("/")) &&
+            path != QStringLiteral("/") &&
+            path != QStringLiteral("/files") &&
+            path != QStringLiteral("/locations") ) {
+
+            const auto splitted = url.fileName().splitRef(QStringLiteral("-"));
+            if (splitted.count() < 2) {
+                return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+            }
+            bool ok;
+            int id = splitted.last().toInt(&ok);
+            if (!ok) {
+                return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+            }
+
+            const auto model = runQuery(url);
+            const auto index = model->index(id, 0);
+
+            if (!index.isValid()) {
+                return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+            }
+
+            const QString resource = model->data(index, ResultModel::ResourceRole).toString();
+            qDebug() << "redirection to " << resource << url;
+            redirection(QUrl::fromUserInput(resource));
+            return KIO::WorkerResult::pass();
         }
     }
 
