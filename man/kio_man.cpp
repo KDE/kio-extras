@@ -1366,15 +1366,21 @@ void MANProtocol::listDir(const QUrl &url)
         {
             // Remove any compression suffix present
             QString name = stripCompression(page);
+            QString displayName;
             // Remove any preceding pathname components, just leave the base name
             int pos = name.lastIndexOf('/');
             if (pos>0) name = name.mid(pos+1);
             // Remove the section suffix
             pos = name.lastIndexOf('.');
-            if (pos>0) name.truncate(pos);
+            if (pos>0)
+            {
+                displayName = name.left(pos)+" ("+name.mid(pos+1)+')';
+                name.truncate(pos);
+            }
 
             uds_entry.clear();
             uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
+            if (!displayName.isEmpty()) uds_entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, displayName);
             uds_entry.fastInsert(KIO::UDSEntry::UDS_URL, ("man:" + page));
             uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
             uds_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html"));
