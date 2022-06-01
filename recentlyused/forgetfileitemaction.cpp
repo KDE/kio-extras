@@ -36,7 +36,8 @@ QList<QAction *> ForgetFileItemAction::actions(const KFileItemListProperties &fi
     if (fileItems.count() == 1) {
         const auto path = url.path();
         // exclude "root" folders of recentlyused:/
-        if (path == QStringLiteral("/") ||
+        if (path.endsWith(QStringLiteral("/")) ||
+            path == QStringLiteral("/") ||
             path == QStringLiteral("/files") ||
             path == QStringLiteral("/locations")) {
 
