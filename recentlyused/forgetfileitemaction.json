@@ -10,6 +10,6 @@
             "KFileItemAction/Plugin"
         ]
     },
-    "X-KDE-Show-In-Submenu": "true",
-    "X-KDE-Protocol": "recentlyused"
+    "X-KDE-Protocol": "recentlyused",
+    "X-KDE-Show-In-Submenu": "true"
 }
