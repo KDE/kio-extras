@@ -19,7 +19,7 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
     QImageReader ir(path);
     ir.setAutoTransform(true);
     ir.setDecideFormatFromContent(true);
-    img = ir.read();
+    ir.read(&img);
     if (img.isNull())
         return false;
     if (img.depth() != 32)
