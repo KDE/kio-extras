@@ -17,6 +17,7 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
 {
     // create image preview
     QImageReader ir(path);
+    ir.setAutoTransform(true);
     ir.setDecideFormatFromContent(true);
     img = ir.read();
     if (img.isNull())
