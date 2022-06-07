@@ -200,15 +200,15 @@ void RecentlyUsed::listDir(const QUrl &url)
         }
     }
 
-    auto model = runQuery(url);
+    const auto model = runQuery(url);
 
     KIO::UDSEntryList udslist;
     udslist.reserve(model->rowCount());
 
     for (int row = 0; row < model->rowCount(); ++row) {
-        QModelIndex index = model->index(row, 0);
-        QString resource = model->data(index, ResultModel::ResourceRole).toString();
-        QString mimeType = model->data(index, ResultModel::MimeType).toString();
+        const QModelIndex index = model->index(row, 0);
+        const QString resource = model->data(index, ResultModel::ResourceRole).toString();
+        const QString mimeType = model->data(index, ResultModel::MimeType).toString();
 
         udslist << udsEntryFromResource(resource, mimeType, row);
     }
