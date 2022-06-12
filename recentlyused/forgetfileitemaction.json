@@ -10,6 +10,7 @@
         "Name[ca]": "Oblida els elements dels documents recents i les ubicacions recents",
         "Name[es]": "Olvidar los elementos de los documentos recientes y de los lugares recientes",
         "Name[fr]": "Oublier les éléments à partir des documents ou des emplacements récents",
+        "Name[it]": "Dimentica elementi da Documenti recenti e Posizioni recenti",
         "Name[nl]": "Items uit recente documenten en recente locaties vergeten",
         "Name[pl]": "Zapomnij o rzeczach z ostatnich dokumentów i miejsc",
         "Name[pt]": "Esquecer os itens dos Documentos Recentes e Localizações Recentes",
@@ -20,6 +21,7 @@
         "Name[tr]": "Son Belgeler ve Son Konumlar'daki ögeleri unut",
         "Name[uk]": "Забути записи з «Недавніх документів» і «Недавніх місць»",
         "Name[x-test]": "xxForget items from Recent Documents and Recent Locationsxx",
+        "Name[zh_CN]": "忘记最新文档和最近位置中的项目",
         "ServiceTypes": [
             "KFileItemAction/Plugin"
         ]
