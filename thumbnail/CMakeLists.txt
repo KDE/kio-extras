@@ -86,6 +86,7 @@ add_library(imagethumbnail MODULE imagecreator.cpp)
 kcoreaddons_desktop_to_json(imagethumbnail imagethumbnail.desktop)
 
 target_link_libraries(imagethumbnail
+    KF5::CoreAddons
     KF5::KIOWidgets
 )
 
