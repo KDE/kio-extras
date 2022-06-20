@@ -88,8 +88,8 @@ extern "C"
             exit(-1);
         }
 
-        SFTPSlave slave(argv[2], argv[3]);
-        slave.dispatchLoop();
+        SFTPWorker worker(argv[2], argv[3]);
+        worker.dispatchLoop();
 
         qCDebug(KIO_SFTP_LOG) << "*** kio_sftp Done";
         return 0;
@@ -175,8 +175,8 @@ static int auth_callback(const char *prompt, char *buf, size_t len,
         return -1;
     }
 
-    auto *slave = static_cast<SFTPInternal *>(userdata);
-    if (slave->auth_callback(prompt, buf, len, echo, verify, userdata) < 0) {
+    auto *worker = static_cast<SFTPWorker *>(userdata);
+    if (worker->auth_callback(prompt, buf, len, echo, verify, userdata) < 0) {
         return -1;
     }
 
@@ -190,11 +190,29 @@ static void log_callback(int priority, const char *function, const char *buffer,
         return;
     }
 
-    auto *slave = static_cast<SFTPInternal *>(userdata);
-    slave->log_callback(priority, function, buffer, userdata);
+    auto *worker = static_cast<SFTPWorker *>(userdata);
+    worker->log_callback(priority, function, buffer, userdata);
 }
 
-int SFTPInternal::auth_callback(const char *prompt, char *buf, size_t len,
+SFTPWorker::SFTPWorker(const QByteArray &poolSocket, const QByteArray &appSocket)
+    : WorkerBase(QByteArrayLiteral("kio_sftp"), poolSocket, appSocket)
+{
+    const auto result = init();
+    Q_ASSERT(result.success());
+}
+
+SFTPWorker::~SFTPWorker() {
+    qCDebug(KIO_SFTP_LOG) << "pid = " << qApp->applicationPid();
+    closeConnection();
+
+    delete mCallbacks;
+    delete mPublicKeyAuthInfo; // for precaution
+
+    /* cleanup and shut down crypto stuff */
+    ssh_finalize();
+}
+
+int SFTPWorker::auth_callback(const char *prompt, char *buf, size_t len,
                                 int echo, int verify, void *userdata)
 {
     Q_UNUSED(echo)
@@ -227,7 +245,7 @@ int SFTPInternal::auth_callback(const char *prompt, char *buf, size_t len,
 
     qCDebug(KIO_SFTP_LOG) << "Entering authentication callback, prompt=" << mPublicKeyAuthInfo->prompt;
 
-    if (q->openPasswordDialogV2(*mPublicKeyAuthInfo, errMsg) != 0) {
+    if (openPasswordDialog(*mPublicKeyAuthInfo, errMsg) != 0) {
         qCDebug(KIO_SFTP_LOG) << "User canceled public key password dialog";
         return -1;
     }
@@ -240,14 +258,14 @@ int SFTPInternal::auth_callback(const char *prompt, char *buf, size_t len,
     return 0;
 }
 
-void SFTPInternal::log_callback(int priority, const char *function, const char *buffer,
+void SFTPWorker::log_callback(int priority, const char *function, const char *buffer,
                                 void *userdata)
 {
     Q_UNUSED(userdata)
     qCDebug(KIO_SFTP_LOG) << "[" << function << "] (" << priority << ") " << buffer;
 }
 
-Result SFTPInternal::init()
+Result SFTPWorker::init()
 {
     qCDebug(KIO_SFTP_LOG) << "pid = " << qApp->applicationPid();
     qCDebug(KIO_SFTP_LOG) << "debug = " << getenv("KIO_SFTP_LOG_VERBOSITY");
@@ -285,40 +303,7 @@ Result SFTPInternal::init()
     return Result::pass();
 }
 
-void SFTPSlave::virtual_hook(int id, void *data)
-{
-    switch(id) {
-    case SlaveBase::GetFileSystemFreeSpace: {
-        QUrl *url = static_cast<QUrl *>(data);
-        finalize(d->fileSystemFreeSpace(*url));
-        return;
-    }
-    case SlaveBase::Truncate: {
-        auto length = static_cast<KIO::filesize_t *>(data);
-        maybeError(d->truncate(*length));
-        return;
-    }
-    }
-    SlaveBase::virtual_hook(id, data);
-}
-
-void SFTPSlave::finalize(const Result &result)
-{
-    if (!result.success) {
-        error(result.error, result.errorString);
-        return;
-    }
-    finished();
-}
-
-void SFTPSlave::maybeError(const Result &result)
-{
-    if (!result.success) {
-        error(result.error, result.errorString);
-    }
-}
-
-int SFTPInternal::authenticateKeyboardInteractive(AuthInfo &info)
+int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
 {
     int err = ssh_userauth_kbdint(mSession, nullptr, nullptr);
 
@@ -364,7 +349,7 @@ int SFTPInternal::authenticateKeyboardInteractive(AuthInfo &info)
                 infoKbdInt.readOnly = false;
                 infoKbdInt.keepPassword = false;
 
-                if (q->openPasswordDialogV2(infoKbdInt, i18n("Use the username input field to answer this question.")) == KJob::NoError) {
+                if (openPasswordDialog(infoKbdInt, i18n("Use the username input field to answer this question.")) == KJob::NoError) {
                     qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
                     answer = info.username.toUtf8().constData();
                 }
@@ -385,7 +370,7 @@ int SFTPInternal::authenticateKeyboardInteractive(AuthInfo &info)
                 info.commentLabel = i18n("Site:");
                 info.setExtraField(QLatin1String("hide-username-line"), true);
 
-                if (q->openPasswordDialogV2(info) == KJob::NoError) {
+                if (openPasswordDialog(info) == KJob::NoError) {
                     qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
                     answer = info.password.toUtf8().constData();
                 }
@@ -403,7 +388,7 @@ int SFTPInternal::authenticateKeyboardInteractive(AuthInfo &info)
     return err;
 }
 
-Result SFTPInternal::reportError(const QUrl &url, const int err)
+Result SFTPWorker::reportError(const QUrl &url, const int err)
 {
     qCDebug(KIO_SFTP_LOG) << "url = " << url << " - err=" << err;
 
@@ -413,7 +398,7 @@ Result SFTPInternal::reportError(const QUrl &url, const int err)
     return Result::fail(kioError, url.toDisplayString());
 }
 
-Result SFTPInternal::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const QByteArray &path, const QString &name, int details)
+Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const QByteArray &path, const QString &name, int details)
 {
     // caller should make sure it is not null. behavior between stat on a file and listing a dir is different!
     // Also we consume the pointer, hence why it is a SFTPAttributesPtr
@@ -506,7 +491,7 @@ Result SFTPInternal::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const
     return Result::pass();
 }
 
-QString SFTPInternal::canonicalizePath(const QString &path)
+QString SFTPWorker::canonicalizePath(const QString &path)
 {
     qCDebug(KIO_SFTP_LOG) << "Path to canonicalize: " << path;
     QString cPath;
@@ -530,23 +515,7 @@ QString SFTPInternal::canonicalizePath(const QString &path)
     return cPath;
 }
 
-SFTPInternal::SFTPInternal(SFTPSlave *qptr)
-    : q(qptr)
-{
-}
-
-SFTPInternal::~SFTPInternal() {
-    qCDebug(KIO_SFTP_LOG) << "pid = " << qApp->applicationPid();
-    closeConnection();
-
-    delete mCallbacks;
-    delete mPublicKeyAuthInfo; // for precaution
-
-    /* cleanup and shut down crypto stuff */
-    ssh_finalize();
-}
-
-void SFTPInternal::setHost(const QString& host, quint16 port, const QString& user, const QString& pass) {
+void SFTPWorker::setHost(const QString& host, quint16 port, const QString& user, const QString& pass) {
     qCDebug(KIO_SFTP_LOG) << user << "@" << host << ":" << port;
 
     // Close connection if the request is to another server...
@@ -561,7 +530,7 @@ void SFTPInternal::setHost(const QString& host, quint16 port, const QString& use
     mPassword = pass;
 }
 
-Result SFTPInternal::sftpOpenConnection(const AuthInfo &info)
+Result SFTPWorker::sftpOpenConnection(const AuthInfo &info)
 {
     closeConnection(); // make sure a potential previous connection is closed. this function may get called to re-connect
 
@@ -644,7 +613,7 @@ Result SFTPInternal::sftpOpenConnection(const AuthInfo &info)
 
     qCDebug(KIO_SFTP_LOG) << "username=" << mUsername << ", host=" << mHost << ", port=" << effectivePort;
 
-    q->infoMessage(xi18n("Opening SFTP connection to host %1:%2", mHost, QString::number(effectivePort)));
+    infoMessage(xi18n("Opening SFTP connection to host %1:%2", mHost, QString::number(effectivePort)));
 
     /* try to connect */
     rc = ssh_connect(mSession);
@@ -660,7 +629,7 @@ Result SFTPInternal::sftpOpenConnection(const AuthInfo &info)
 struct ServerKeyInspection {
     QByteArray serverPublicKeyType;
     QByteArray fingerprint;
-    Result result;
+    Result result = Result::pass();
 
     ServerKeyInspection &withResult(const Result &result)
     {
@@ -714,7 +683,7 @@ Q_REQUIRED_RESULT ServerKeyInspection fingerpint(ssh_session session)
     return inspection.withResult(Result::pass());
 }
 
-Result SFTPInternal::openConnectionWithoutCloseOnError()
+Result SFTPWorker::openConnectionWithoutCloseOnError()
 {
     if (mConnected) {
         return Result::pass();
@@ -738,7 +707,7 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
     if (mPassword.isEmpty()) {
         qCDebug(KIO_SFTP_LOG) << "checking cache: info.username =" << info.username
                               << ", info.url =" << info.url.toDisplayString();
-        q->checkCachedAuthentication(info);
+        checkCachedAuthentication(info);
     } else {
         info.password = mPassword;
     }
@@ -747,14 +716,14 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
 
     // Attempt to start a ssh session and establish a connection with the server.
     const Result openResult = sftpOpenConnection(info);
-    if (!openResult.success) {
+    if (!openResult.success()) {
         return openResult;
     }
 
     // get the hash
     qCDebug(KIO_SFTP_LOG) << "Getting the SSH server hash";
     const ServerKeyInspection inspection = fingerpint(mSession);
-    if (!inspection.result.success) {
+    if (!inspection.result.success()) {
         return inspection.result;
     }
     const QString fingerprint = QString::fromUtf8(inspection.fingerprint);
@@ -800,7 +769,7 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
             serverPublicKeyType,
             fingerprint);
 
-        if (KMessageBox::Yes != q->messageBox(SlaveBase::WarningYesNo, msg, caption)) {
+        if (KMessageBox::Yes != messageBox(WorkerBase::WarningYesNo, msg, caption)) {
             return Result::fail(KIO::ERR_USER_CANCELED);
         }
 
@@ -895,7 +864,7 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
 
                 // Handle user canceled or dialog failed to open...
 
-                int errCode = q->openPasswordDialogV2(info, errMsg);
+                int errCode = openPasswordDialog(info, errMsg);
                 if (errCode != 0) {
                     qCDebug(KIO_SFTP_LOG) << "User canceled password/retry dialog";
                     return Result::fail(errCode, QString());
@@ -909,7 +878,7 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
                         info.url.setUserName(info.username);
                     }
                     const auto result = sftpOpenConnection(info);
-                    if (!result.success) {
+                    if (!result.success()) {
                         return result;
                     }
                 }
@@ -947,11 +916,11 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
     }
 
     // Login succeeded!
-    q->infoMessage(i18n("Successfully connected to %1", mHost));
+    infoMessage(i18n("Successfully connected to %1", mHost));
     if (info.keepPassword) {
         qCDebug(KIO_SFTP_LOG) << "Caching info.username = " << info.username
                               << ", info.url = " << info.url.toDisplayString();
-        q->cacheAuthentication(info);
+        cacheAuthentication(info);
     }
 
     // Update the original username in case it was changed!
@@ -959,10 +928,9 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
         mUsername = info.username;
     }
 
-    q->setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
+    setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
 
     mConnected = true;
-    q->connected();
 
     info.password.fill('x');
     info.password.clear();
@@ -970,16 +938,16 @@ Result SFTPInternal::openConnectionWithoutCloseOnError()
     return Result::pass();
 }
 
-Result SFTPInternal::openConnection()
+Result SFTPWorker::openConnection()
 {
     const Result result = openConnectionWithoutCloseOnError();
-    if (!result.success) {
+    if (!result.success()) {
         closeConnection();
     }
     return result;
 }
 
-void SFTPInternal::closeConnection() {
+void SFTPWorker::closeConnection() {
     qCDebug(KIO_SFTP_LOG);
 
     if (mSftp) {
@@ -996,7 +964,7 @@ void SFTPInternal::closeConnection() {
     mConnected = false;
 }
 
-Result SFTPInternal::special(const QByteArray &) {
+Result SFTPWorker::special(const QByteArray &) {
     qCDebug(KIO_SFTP_LOG) << "special(): polling";
 
     if (!mSftp) {
@@ -1025,16 +993,16 @@ Result SFTPInternal::special(const QByteArray &) {
         qCDebug(KIO_SFTP_LOG) << "ssh_channel_poll failed: " << ssh_get_error(mSession);
     }
 
-    q->setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
+    setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
 
     return Result::pass();
 }
 
-Result SFTPInternal::open(const QUrl &url, QIODevice::OpenMode mode) {
+Result SFTPWorker::open(const QUrl &url, QIODevice::OpenMode mode) {
     qCDebug(KIO_SFTP_LOG) << "open: " << url;
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -1092,8 +1060,8 @@ Result SFTPInternal::open(const QUrl &url, QIODevice::OpenMode mode) {
     // If we're not opening the file ReadOnly or ReadWrite, don't attempt to
     // read the file and send the mimetype.
     if (mode & QIODevice::ReadOnly) {
-        if (const Result result = sftpSendMimetype(mOpenFile, mOpenUrl); !result.success) {
-            close();
+        if (const Result result = sftpSendMimetype(mOpenFile, mOpenUrl); !result.success()) {
+            (void)close();
             return result;
         }
     }
@@ -1101,13 +1069,13 @@ Result SFTPInternal::open(const QUrl &url, QIODevice::OpenMode mode) {
     mOpenUrl = url;
 
     openOffset = 0;
-    q->totalSize(fileSize);
-    q->position(0);
+    totalSize(fileSize);
+    position(0);
 
     return Result::pass();
 }
 
-Result SFTPInternal::read(KIO::filesize_t bytes)
+Result SFTPWorker::read(KIO::filesize_t bytes)
 {
     qCDebug(KIO_SFTP_LOG) << "read, offset = " << openOffset << ", bytes = " << bytes;
 
@@ -1123,17 +1091,17 @@ Result SFTPInternal::read(KIO::filesize_t bytes)
                               << sftp_get_error(mSftp)
                               << ssh_get_error_code(mSession)
                               << ssh_get_error(mSession);
-        close();
+        (void)close();
         return Result::fail(KIO::ERR_CANNOT_READ, mOpenUrl.toDisplayString());
     }
 
     const QByteArray fileData = QByteArray::fromRawData(buffer.data(), bytesRead);
-    q->data(fileData);
+    data(fileData);
 
     return Result::pass();
 }
 
-Result SFTPInternal::write(const QByteArray &data)
+Result SFTPWorker::write(const QByteArray &data)
 {
     qCDebug(KIO_SFTP_LOG) << "write, offset = " << openOffset << ", bytes = " << data.size();
 
@@ -1141,32 +1109,32 @@ Result SFTPInternal::write(const QByteArray &data)
 
     if (!sftpWrite(mOpenFile, data, nullptr)) {
         qCDebug(KIO_SFTP_LOG) << "Could not write to " << mOpenUrl;
-        close();
+        (void)close();
         return Result::fail(KIO::ERR_CANNOT_WRITE, mOpenUrl.toDisplayString());
     }
 
-    q->written(data.size());
+    written(data.size());
 
     return Result::pass();
 }
 
-Result SFTPInternal::seek(KIO::filesize_t offset)
+Result SFTPWorker::seek(KIO::filesize_t offset)
 {
     qCDebug(KIO_SFTP_LOG) << "seek, offset = " << offset;
 
     Q_ASSERT(mOpenFile != nullptr);
 
     if (sftp_seek64(mOpenFile, static_cast<uint64_t>(offset)) < 0) {
-        close();
+        (void)close();
         return Result::fail(KIO::ERR_CANNOT_SEEK, mOpenUrl.path());
     }
 
-    q->position(sftp_tell64(mOpenFile));
+    position(sftp_tell64(mOpenFile));
 
     return Result::pass();
 }
 
-Result SFTPInternal::truncate(KIO::filesize_t length)
+Result SFTPWorker::truncate(KIO::filesize_t length)
 {
     qCDebug(KIO_SFTP_LOG) << "truncate, length =" << length;
 
@@ -1177,7 +1145,7 @@ Result SFTPInternal::truncate(KIO::filesize_t length)
     if (attr) {
         attr->size = length;
         if (sftp_setstat(mSftp, mOpenUrl.path().toUtf8().constData(), attr.data()) == 0) {
-            q->truncated(length);
+            truncated(length);
         } else {
             errorCode = toKIOError(sftp_get_error(mSftp));
         }
@@ -1186,34 +1154,35 @@ Result SFTPInternal::truncate(KIO::filesize_t length)
     }
 
     if (errorCode) {
-        close();
+        (void)close();
         return Result::fail(errorCode == KIO::ERR_INTERNAL ? KIO::ERR_CANNOT_TRUNCATE : errorCode, mOpenUrl.path());
     }
 
     return Result::pass();
 }
 
-void SFTPInternal::close()
+Result SFTPWorker::close()
 {
     if (mOpenFile) {
         sftp_close(mOpenFile);
     }
     mOpenFile = nullptr;
+    return Result::pass();
 }
 
-Result SFTPInternal::get(const QUrl& url)
+Result SFTPWorker::get(const QUrl& url)
 {
     qCDebug(KIO_SFTP_LOG) << url;
 
     const auto result = sftpGet(url);
-    if (!result.success) {
-        return Result::fail(result.error, url.toDisplayString());
+    if (!result.success()) {
+        return Result::fail(result.error(), url.toDisplayString());
     }
 
     return Result::pass();
 }
 
-Result SFTPInternal::sftpSendMimetype(sftp_file file, const QUrl &url)
+Result SFTPWorker::sftpSendMimetype(sftp_file file, const QUrl &url)
 {
     constexpr int readLimit = 1024; // entirely arbitrary
     std::array<char, readLimit> mimeTypeBuf{};
@@ -1225,21 +1194,21 @@ Result SFTPInternal::sftpSendMimetype(sftp_file file, const QUrl &url)
     QMimeDatabase db;
     const QMimeType mime = db.mimeTypeForFileNameAndData(url.fileName(), QByteArray(mimeTypeBuf.data(), bytesRead));
     if (!mime.isDefault()) {
-        q->mimeType(mime.name());
+        mimeType(mime.name());
     } else {
-        q->mimeType(db.mimeTypeForUrl(url).name());
+        mimeType(db.mimeTypeForUrl(url).name());
     }
     sftp_rewind(file);
 
     return Result::pass();
 }
 
-Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
+Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 {
     qCDebug(KIO_SFTP_LOG) << url;
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -1272,18 +1241,18 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
     }
     const auto fileFree = qScopeGuard([file] { sftp_close(file); });
 
-    if (const Result result = sftpSendMimetype(file, url); !result.success) {
+    if (const Result result = sftpSendMimetype(file, url); !result.success()) {
         return result;
     }
 
     // Set the total size
-    q->totalSize(sb->size);
+    totalSize(sb->size);
 
     // If offset is not specified, check the "resume" meta-data.
     if (offset < 0) {
-        const QString resumeOffsetStr = q->metaData(QLatin1String("resume"));
+        const QString resumeOffsetStr = metaData(QLatin1String("resume"));
         if (!resumeOffsetStr.isEmpty()) {
-            bool ok;
+            bool ok = false;
             qlonglong resumeOffset = resumeOffsetStr.toLongLong(&ok);
             if (ok) {
                 offset = resumeOffset;
@@ -1295,13 +1264,13 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
     if (offset > 0 && ((unsigned long long) offset < sb->size))
     {
         if (sftp_seek64(file, offset) == 0) {
-            q->canResume();
+            canResume();
             totalbytesread = offset;
             qCDebug(KIO_SFTP_LOG) << "Resume offset: " << QString::number(offset);
         }
     }
 
-    SFTPInternal::GetRequest request(file, sb->size);
+    SFTPWorker::GetRequest request(file, sb->size);
 
     for (;;) {
         // Enqueue get requests
@@ -1323,25 +1292,25 @@ Result SFTPInternal::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 
         int error = KJob::NoError;
         if (fd == -1) {
-            q->data(filedata);
+            data(filedata);
         } else if ((error = writeToFile(fd, filedata.constData(), filedata.size())) != KJob::NoError) {
             return Result::fail(error, url.toString());
         }
         // increment total bytes read
         totalbytesread += filedata.length();
 
-        q->processedSize(totalbytesread);
+        processedSize(totalbytesread);
     }
 
     if (fd == -1) {
-        q->data(QByteArray());
+        data(QByteArray());
     }
 
-    q->processedSize(static_cast<KIO::filesize_t>(sb->size));
+    processedSize(static_cast<KIO::filesize_t>(sb->size));
     return Result::pass();
 }
 
-Result SFTPInternal::put(const QUrl &url, int permissions, KIO::JobFlags flags)
+Result SFTPWorker::put(const QUrl &url, int permissions, KIO::JobFlags flags)
 {
     qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << permissions
                           << ", overwrite =" << (flags & KIO::Overwrite)
@@ -1352,14 +1321,14 @@ Result SFTPInternal::put(const QUrl &url, int permissions, KIO::JobFlags flags)
     return sftpPut(url, permissions, flags);
 }
 
-Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, int fd)
+Result SFTPWorker::sftpPut(const QUrl &url, int permissions, JobFlags flags, int fd)
 {
     qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << permissions
                           << ", overwrite =" << (flags & KIO::Overwrite)
                           << ", resume =" << (flags & KIO::Resume);
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -1373,7 +1342,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
     SFTPAttributesPtr sb(sftp_lstat(mSftp, dest_orig_c.constData()));
     const bool bOrigExists = (sb != nullptr);
     bool bPartExists = false;
-    const bool bMarkPartial = q->configValue(QStringLiteral("MarkPartial"), true);
+    const bool bMarkPartial = configValue(QStringLiteral("MarkPartial"), true);
 
     // Don't change permissions of the original file
     if (bOrigExists) {
@@ -1394,7 +1363,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
                 // Tell about the size we have, and the app will tell us
                 // if it's ok to resume or not.
                 qCDebug(KIO_SFTP_LOG) << "calling canResume with " << sbPart->size;
-                flags |= q->canResume(sbPart->size) ? KIO::Resume : KIO::DefaultFlags;
+                flags |= canResume(sbPart->size) ? KIO::Resume : KIO::DefaultFlags;
                 qCDebug(KIO_SFTP_LOG) << "put got answer " << (flags & KIO::Resume);
 
             } else {
@@ -1425,8 +1394,8 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
         QByteArray buffer;
 
         if (fd == -1) {
-            q->dataReq(); // Request for data
-            result = q->readData(buffer);
+            dataReq(); // Request for data
+            result = readData(buffer);
             if (result < 0) {
                 qCDebug(KIO_SFTP_LOG) << "unexpected error during readData";
             }
@@ -1509,7 +1478,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
 
             bool success = sftpWrite(file, buffer, [this,&totalBytesSent](int bytes) {
                 totalBytesSent += bytes;
-                q->processedSize(totalBytesSent);
+                processedSize(totalBytesSent);
             });
             if (!success) {
                 qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
@@ -1529,7 +1498,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
 
             SFTPAttributesPtr attr(sftp_stat(mSftp, dest.constData()));
             if (bMarkPartial && attr != nullptr) {
-                size_t size = q->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
+                size_t size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
                 if (attr->size < size) {
                     sftp_unlink(mSftp, dest.constData());
                 }
@@ -1567,7 +1536,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
     if (permissions != -1 && !(flags & KIO::Resume)) {
         qCDebug(KIO_SFTP_LOG) << "Trying to set final permissions of " << dest_orig << " to " << QString::number(permissions);
         if (sftp_chmod(mSftp, dest_orig_c.constData(), permissions) < 0) {
-            q->warning(i18n("Could not change permissions for\n%1", url.toString()));
+            warning(i18n("Could not change permissions for\n%1", url.toString()));
             return Result::pass();
         }
     }
@@ -1582,7 +1551,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
     }
 
     // set modification time
-    const QString mtimeStr = q->metaData("modified");
+    const QString mtimeStr = metaData("modified");
     if (!mtimeStr.isEmpty()) {
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
@@ -1606,7 +1575,7 @@ Result SFTPInternal::sftpPut(const QUrl &url, int permissions, JobFlags flags, i
     return Result::pass();
 }
 
-bool SFTPInternal::sftpWrite(sftp_file file,
+bool SFTPWorker::sftpWrite(sftp_file file,
                              const QByteArray &buffer,
                              const std::function<void(int bytes)> &onWritten)
 {
@@ -1638,7 +1607,7 @@ bool SFTPInternal::sftpWrite(sftp_file file,
     return true;
 }
 
-Result SFTPInternal::copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags)
+Result SFTPWorker::copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags)
 {
     qCDebug(KIO_SFTP_LOG) << src << " -> " << dest << " , permissions = " << QString::number(permissions)
                           << ", overwrite = " << (flags & KIO::Overwrite)
@@ -1656,7 +1625,7 @@ Result SFTPInternal::copy(const QUrl &src, const QUrl &dest, int permissions, KI
     return Result::fail(ERR_UNSUPPORTED_ACTION);
 }
 
-Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int permissions, KIO::JobFlags flags)
+Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int permissions, KIO::JobFlags flags)
 {
     qCDebug(KIO_SFTP_LOG) << url << "->" << sCopyFile << ", permissions=" << permissions;
 
@@ -1677,7 +1646,7 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
     const QString sPart = sCopyFile + QLatin1String(".part"); // do we have a ".part" file?
     QFileInfo partFile(sPart);
     const bool bPartExists = partFile.exists();
-    const bool bMarkPartial = q->configValue(QStringLiteral("MarkPartial"), true);
+    const bool bMarkPartial = configValue(QStringLiteral("MarkPartial"), true);
     const QString dest = (bMarkPartial ? sPart : sCopyFile);
 
     if (bMarkPartial && bPartExists) {
@@ -1685,7 +1654,7 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
             return Result::fail(ERR_FILE_ALREADY_EXIST, sCopyFile);
         }
         if (partFile.size() > 0) {
-            bResume = q->canResume(copyFile.size());
+            bResume = canResume(copyFile.size());
         }
     }
 
@@ -1730,17 +1699,17 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
 
     // The following is a bit awkward, we'll override the internal error
     // in cleanup conditions, so these are subject to change until we return.
-    int errorCode = getResult.error;
-    QString errorString = getResult.errorString;
+    int errorCode = getResult.error();
+    QString errorString = getResult.errorString();
 
-    if (::close(fd) && getResult.success) {
+    if (::close(fd) && getResult.success()) {
         errorCode = ERR_CANNOT_WRITE;
         errorString = sCopyFile;
     }
 
     // handle renaming or deletion of a partial file ...
     if (bMarkPartial) {
-        if (getResult.success) { // rename ".part" on success
+        if (getResult.success()) { // rename ".part" on success
             if (!QFile::rename(sPart, sCopyFile)) {
                 // If rename fails, try removing the destination first if it exists.
                 if (!bDestExists || !QFile::remove(sCopyFile) || !QFile::rename(sPart, sCopyFile)) {
@@ -1751,14 +1720,14 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
             }
         } else {
             partFile.refresh();
-            const int size = q->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
+            const int size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (partFile.exists() && partFile.size() <  size) { // should a very small ".part" be deleted?
                 QFile::remove(sPart);
             }
         }
     }
 
-    const QString mtimeStr = q->metaData("modified");
+    const QString mtimeStr = metaData("modified");
     if (!mtimeStr.isEmpty()) {
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
@@ -1777,7 +1746,7 @@ Result SFTPInternal::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int 
     return errorCode == KJob::NoError ? Result::pass() : Result::fail(errorCode, errorString);
 }
 
-Result SFTPInternal::sftpCopyPut(const QUrl &url, const QString &sCopyFile, int permissions, JobFlags flags)
+Result SFTPWorker::sftpCopyPut(const QUrl &url, const QString &sCopyFile, int permissions, JobFlags flags)
 {
     qCDebug(KIO_SFTP_LOG) << sCopyFile << "->" << url << ", permissions=" << permissions << ", flags" << flags;
 
@@ -1797,7 +1766,7 @@ Result SFTPInternal::sftpCopyPut(const QUrl &url, const QString &sCopyFile, int 
         return Result::fail(ERR_CANNOT_OPEN_FOR_READING, sCopyFile);
     }
 
-    q->totalSize(copyFile.size());
+    totalSize(copyFile.size());
 
     // delegate the real work (errorCode gets status) ...
     const auto result = sftpPut(url, permissions, flags, fd);
@@ -1805,12 +1774,12 @@ Result SFTPInternal::sftpCopyPut(const QUrl &url, const QString &sCopyFile, int 
     return result;
 }
 
-Result SFTPInternal::stat(const QUrl &url)
+Result SFTPWorker::stat(const QUrl &url)
 {
     qCDebug(KIO_SFTP_LOG) << url;
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -1829,7 +1798,7 @@ Result SFTPInternal::stat(const QUrl &url)
         }
         QUrl redir(url);
         redir.setPath(cPath);
-        q->redirection(redir);
+        redirection(redir);
 
         qCDebug(KIO_SFTP_LOG) << "redirecting to " << redir.url();
 
@@ -1838,7 +1807,7 @@ Result SFTPInternal::stat(const QUrl &url)
 
     QByteArray path = url.path().toUtf8();
 
-    const QString sDetails = q->metaData(QLatin1String("details"));
+    const QString sDetails = metaData(QLatin1String("details"));
     const int details = sDetails.isEmpty() ? 2 : sDetails.toInt();
 
     sftp_attributes_struct *attributes = sftp_lstat(mSftp, path.constData());
@@ -1848,36 +1817,36 @@ Result SFTPInternal::stat(const QUrl &url)
 
     UDSEntry entry;
     const Result result = createUDSEntry(SFTPAttributesPtr(attributes), entry, path, QFileInfo(path).fileName(), details);
-    if (!result.success) {
+    if (!result.success()) {
         return result;
     }
-    q->statEntry(entry);
+    statEntry(entry);
 
     return Result::pass();
 }
 
-Result SFTPInternal::mimetype(const QUrl &url)
+Result SFTPWorker::mimetype(const QUrl &url)
 {
     qCDebug(KIO_SFTP_LOG) << url;
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
     // open() feeds the mimetype
     const auto result = open(url, QIODevice::ReadOnly);
-    close();
+    (void)close();
 
     return result;
 }
 
-Result SFTPInternal::listDir(const QUrl &url)
+Result SFTPWorker::listDir(const QUrl &url)
 {
     qCDebug(KIO_SFTP_LOG) << "list directory: " << url;
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -1896,7 +1865,7 @@ Result SFTPInternal::listDir(const QUrl &url)
         }
         QUrl redir(url);
         redir.setPath(cPath);
-        q->redirection(redir);
+        redirection(redir);
 
         qCDebug(KIO_SFTP_LOG) << "redirecting to " << redir.url();
 
@@ -1910,7 +1879,7 @@ Result SFTPInternal::listDir(const QUrl &url)
         return reportError(url, sftp_get_error(mSftp));
     }
 
-    const QString sDetails = q->metaData(QLatin1String("details"));
+    const QString sDetails = metaData(QLatin1String("details"));
     const int details = sDetails.isEmpty() ? 2 : sDetails.toInt();
 
     qCDebug(KIO_SFTP_LOG) << "readdir: " << path << ", details: " << QString::number(details);
@@ -1925,24 +1894,24 @@ Result SFTPInternal::listDir(const QUrl &url)
         const QByteArray name = QFile::decodeName(attributes->name).toUtf8();
         const QByteArray filePath = path + '/' + name;
         const Result result = createUDSEntry(SFTPAttributesPtr(attributes), entry, filePath, QString::fromUtf8(name), details);
-        if (!result.success) {
+        if (!result.success()) {
             // Failing to list one entry in a directory is not a fatal problem. Log the problem and move on.
-            qCWarning(KIO_SFTP_LOG) << result.error << result.errorString;
+            qCWarning(KIO_SFTP_LOG) << result.error() << result.errorString();
             continue;
         }
 
-        q->listEntry(entry);
+        listEntry(entry);
     } // for ever
     sftp_closedir(dp);
     return Result::pass();
 }
 
-Result SFTPInternal::mkdir(const QUrl &url, int permissions)
+Result SFTPWorker::mkdir(const QUrl &url, int permissions)
 {
     qCDebug(KIO_SFTP_LOG) << "create directory: " << url;
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -1953,7 +1922,7 @@ Result SFTPInternal::mkdir(const QUrl &url, int permissions)
     const QByteArray path_c = path.toUtf8();
 
     // Remove existing file or symlink, if requested.
-    if (q->metaData(QLatin1String("overwrite")) == QLatin1String("true")) {
+    if (metaData(QLatin1String("overwrite")) == QLatin1String("true")) {
         qCDebug(KIO_SFTP_LOG) << "overwrite set, remove existing file or symlink: " << url;
         sftp_unlink(mSftp, path_c.constData());
     }
@@ -1968,7 +1937,7 @@ Result SFTPInternal::mkdir(const QUrl &url, int permissions)
         qCDebug(KIO_SFTP_LOG) << "Successfully created directory: " << url;
         if (permissions != -1) {
             const auto result = chmod(url, permissions);
-            if (!result.success) {
+            if (!result.success()) {
                 return result;
             }
         }
@@ -1980,12 +1949,12 @@ Result SFTPInternal::mkdir(const QUrl &url, int permissions)
     return Result::fail(err, path);
 }
 
-Result SFTPInternal::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
+Result SFTPWorker::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags)
 {
     qCDebug(KIO_SFTP_LOG) << "rename " << src << " to " << dest << flags;
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -2018,14 +1987,14 @@ Result SFTPInternal::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags fla
     return Result::pass();
 }
 
-Result SFTPInternal::symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags)
+Result SFTPWorker::symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags)
 {
     qCDebug(KIO_SFTP_LOG) << "link " << target << "->" << dest
                           << ", overwrite = " << (flags & KIO::Overwrite)
                           << ", resume = " << (flags & KIO::Resume);
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -2057,12 +2026,12 @@ Result SFTPInternal::symlink(const QString &target, const QUrl &dest, KIO::JobFl
     return Result::pass();
 }
 
-Result SFTPInternal::chmod(const QUrl& url, int permissions)
+Result SFTPWorker::chmod(const QUrl& url, int permissions)
 {
     qCDebug(KIO_SFTP_LOG) << "change permission of " << url << " to " << QString::number(permissions);
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -2075,12 +2044,12 @@ Result SFTPInternal::chmod(const QUrl& url, int permissions)
     return Result::pass();
 }
 
-Result SFTPInternal::del(const QUrl &url, bool isfile)
+Result SFTPWorker::del(const QUrl &url, bool isfile)
 {
     qCDebug(KIO_SFTP_LOG) << "deleting " << (isfile ? "file: " : "directory: ") << url;
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -2099,21 +2068,21 @@ Result SFTPInternal::del(const QUrl &url, bool isfile)
     return Result::pass();
 }
 
-void SFTPInternal::slave_status() {
+void SFTPWorker::worker_status() {
     qCDebug(KIO_SFTP_LOG) << "connected to " << mHost << "?: " << mConnected;
-    q->slaveStatus((mConnected ? mHost : QString()), mConnected);
+    workerStatus((mConnected ? mHost : QString()), mConnected);
 }
 
-SFTPInternal::GetRequest::GetRequest(sftp_file file, uint64_t size, ushort maxPendingRequests)
+SFTPWorker::GetRequest::GetRequest(sftp_file file, uint64_t size, ushort maxPendingRequests)
     : m_file(file)
     , m_size(size)
     , m_maxPendingRequests(maxPendingRequests)
 {
 }
 
-bool SFTPInternal::GetRequest::enqueueChunks()
+bool SFTPWorker::GetRequest::enqueueChunks()
 {
-    SFTPInternal::GetRequest::Request request;
+    SFTPWorker::GetRequest::Request request;
 
     qCDebug(KIO_SFTP_TRACE_LOG) << "enqueueChunks";
 
@@ -2144,14 +2113,14 @@ bool SFTPInternal::GetRequest::enqueueChunks()
     return true;
 }
 
-int SFTPInternal::GetRequest::readChunks(QByteArray &data)
+int SFTPWorker::GetRequest::readChunks(QByteArray &data)
 {
     int totalRead = 0;
     ssize_t bytesread = 0;
     const uint64_t initialOffset = m_file->offset;
 
     while (!m_pendingRequests.isEmpty()) {
-        SFTPInternal::GetRequest::Request &request = m_pendingRequests.head();
+        SFTPWorker::GetRequest::Request &request = m_pendingRequests.head();
         int dataSize = data.size() + request.expectedLength;
 
         data.resize(dataSize);
@@ -2223,9 +2192,9 @@ int SFTPInternal::GetRequest::readChunks(QByteArray &data)
     return totalRead;
 }
 
-SFTPInternal::GetRequest::~GetRequest()
+SFTPWorker::GetRequest::~GetRequest()
 {
-    SFTPInternal::GetRequest::Request request;
+    SFTPWorker::GetRequest::Request request{};
     char buf[MAX_XFER_BUF_SIZE];
 
     // Remove pending reads to avoid memory leaks
@@ -2235,7 +2204,7 @@ SFTPInternal::GetRequest::~GetRequest()
     }
 }
 
-void SFTPInternal::requiresUserNameRedirection()
+void SFTPWorker::requiresUserNameRedirection()
 {
     QUrl redirectUrl;
     redirectUrl.setScheme( QLatin1String("sftp") );
@@ -2246,14 +2215,14 @@ void SFTPInternal::requiresUserNameRedirection()
         redirectUrl.setPort( mPort );
     }
     qCDebug(KIO_SFTP_LOG) << "redirecting to" << redirectUrl;
-    q->redirection(redirectUrl);
+    redirection(redirectUrl);
 }
 
-Result SFTPInternal::sftpLogin()
+Result SFTPWorker::sftpLogin()
 {
     const QString origUsername = mUsername;
     const auto openResult = openConnection();
-    if (!openResult.success) {
+    if (!openResult.success()) {
         return openResult;
     }
     qCDebug(KIO_SFTP_LOG) << "connected ?" << mConnected << "username: old=" << origUsername << "new=" << mUsername;
@@ -2264,7 +2233,7 @@ Result SFTPInternal::sftpLogin()
     return mConnected ? Result::pass() : Result::fail();
 }
 
-void SFTPInternal::clearPubKeyAuthInfo()
+void SFTPWorker::clearPubKeyAuthInfo()
 {
     if (mPublicKeyAuthInfo) {
         delete mPublicKeyAuthInfo;
@@ -2272,12 +2241,12 @@ void SFTPInternal::clearPubKeyAuthInfo()
     }
 }
 
-Result SFTPInternal::fileSystemFreeSpace(const QUrl& url)
+Result SFTPWorker::fileSystemFreeSpace(const QUrl& url)
 {
     qCDebug(KIO_SFTP_LOG) << "file system free space of" << url;
 
     const auto loginResult = sftpLogin();
-    if (!loginResult.success) {
+    if (!loginResult.success()) {
         return loginResult;
     }
 
@@ -2292,138 +2261,12 @@ Result SFTPInternal::fileSystemFreeSpace(const QUrl& url)
         return reportError(url, sftp_get_error(mSftp));
     }
 
-    q->setMetaData(QString::fromLatin1("total"), QString::number(statvfs->f_frsize * statvfs->f_blocks));
-    q->setMetaData(QString::fromLatin1("available"), QString::number(statvfs->f_frsize * statvfs->f_bavail));
+    setMetaData(QString::fromLatin1("total"), QString::number(statvfs->f_frsize * statvfs->f_blocks));
+    setMetaData(QString::fromLatin1("available"), QString::number(statvfs->f_frsize * statvfs->f_bavail));
 
     sftp_statvfs_free(statvfs);
 
     return Result::pass();
-}
-
-SFTPSlave::SFTPSlave(const QByteArray &pool_socket, const QByteArray &app_socket)
-    : SlaveBase("kio_sftp", pool_socket, app_socket)
-    , d(new SFTPInternal(this))
-{
-    const auto result = d->init();
-    if (!result.success) {
-        error(result.error, result.errorString);
-    }
-}
-
-void SFTPSlave::setHost(const QString &host, quint16 port, const QString &user, const QString &pass)
-{
-    d->setHost(host, port, user, pass);
-}
-
-void SFTPSlave::get(const QUrl &url)
-{
-    finalize(d->get(url));
-}
-
-void SFTPSlave::listDir(const QUrl &url)
-{
-    finalize(d->listDir(url));
-}
-
-void SFTPSlave::mimetype(const QUrl &url)
-{
-    finalize(d->mimetype(url));
-}
-
-void SFTPSlave::stat(const QUrl &url)
-{
-    finalize(d->stat(url));
-}
-
-void SFTPSlave::copy(const QUrl &src, const QUrl &dest, int permissions, JobFlags flags)
-{
-    finalize(d->copy(src, dest, permissions, flags));
-}
-
-void SFTPSlave::put(const QUrl &url, int permissions, JobFlags flags)
-{
-    finalize(d->put(url, permissions, flags));
-}
-
-void SFTPSlave::slave_status()
-{
-    d->slave_status();
-}
-
-void SFTPSlave::del(const QUrl &url, bool isfile)
-{
-    finalize(d->del(url, isfile));
-}
-
-void SFTPSlave::chmod(const QUrl &url, int permissions)
-{
-    finalize(d->chmod(url, permissions));
-}
-
-void SFTPSlave::symlink(const QString &target, const QUrl &dest, JobFlags flags)
-{
-    finalize(d->symlink(target, dest, flags));
-}
-
-void SFTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
-{
-    finalize(d->rename(src, dest, flags));
-}
-
-void SFTPSlave::mkdir(const QUrl &url, int permissions)
-{
-    finalize(d->mkdir(url, permissions));
-}
-
-void SFTPSlave::openConnection()
-{
-    const auto result = d->openConnection();
-    if (!result.success) {
-        error(result.error, result.errorString);
-        return;
-    }
-    opened();
-}
-
-void SFTPSlave::closeConnection()
-{
-    d->closeConnection();
-}
-
-void SFTPSlave::open(const QUrl &url, QIODevice::OpenMode mode)
-{
-    const auto result = d->open(url, mode);
-    if (!result.success) {
-        error(result.error, result.errorString);
-        return;
-    }
-    opened();
-}
-
-void SFTPSlave::read(filesize_t size)
-{
-    maybeError(d->read(size));
-}
-
-void SFTPSlave::write(const QByteArray &data)
-{
-    maybeError(d->write(data));
-}
-
-void SFTPSlave::seek(filesize_t offset)
-{
-    maybeError(d->seek(offset));
-}
-
-void SFTPSlave::close()
-{
-    d->close(); // cannot error
-    finished();
-}
-
-void SFTPSlave::special(const QByteArray &data)
-{
-    maybeError(d->special(data));
 }
 
 #include "kio_sftp.moc"

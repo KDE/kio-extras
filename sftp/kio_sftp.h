@@ -10,7 +10,7 @@
 #define __kio_sftp_h__
 
 #include <kio/global.h>
-#include <kio/slavebase.h>
+#include <KIO/WorkerBase>
 
 #include <libssh/libssh.h>
 #include <libssh/sftp.h>
@@ -20,38 +20,9 @@
 
 namespace KIO {
 class AuthInfo;
-}
-
-/**
- * Result type for returning error context.
- *
- * This is meant to be returned by functions that do not have a simple
- * error conditions that could be represented by returning a bool, or
- * when the contextual error string can only be correctly constructed
- * inside the function. When using the Result type always mark the
- * function Q_REQUIRED_RESULT to enforce handling of the Result.
- *
- * The Result is forwarded all the way to the frontend API where it is
- * turned into an error() or finished() call.
- */
-struct Result
-{
-    bool success;
-    int error;
-    QString errorString;
-
-    Q_REQUIRED_RESULT inline static Result fail(int _error = KIO::ERR_UNKNOWN,
-            const QString &_errorString = QString())
-    {
-        return Result { false, _error, _errorString };
-    }
-
-    Q_REQUIRED_RESULT inline static Result pass()
-    {
-        return Result { true, 0, QString() };
-    }
 };
 
+using Result = KIO::WorkerResult;
 
 // sftp_attributes must be freed. Use this ScopedPtr to ensure they always are!
 struct ScopedPointerCustomDeleter
@@ -65,35 +36,35 @@ typedef QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter> SFTPA
 
 class SFTPSlave;
 
-class SFTPInternal
+class SFTPWorker : public KIO::WorkerBase
 {
 public:
-    explicit SFTPInternal(SFTPSlave *qptr);
-    ~SFTPInternal();
-    void setHost(const QString &h, quint16 port, const QString& user, const QString& pass);
-    Q_REQUIRED_RESULT Result get(const QUrl &url);
-    Q_REQUIRED_RESULT Result listDir(const QUrl &url);
-    Q_REQUIRED_RESULT Result mimetype(const QUrl &url);
-    Q_REQUIRED_RESULT Result stat(const QUrl &url);
-    Q_REQUIRED_RESULT Result copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags);
-    Q_REQUIRED_RESULT Result put(const QUrl &url, int permissions, KIO::JobFlags flags);
-    void closeConnection();
-    void slave_status();
-    Q_REQUIRED_RESULT Result del(const QUrl &url, bool isfile);
-    Q_REQUIRED_RESULT Result chmod(const QUrl &url, int permissions);
-    Q_REQUIRED_RESULT Result symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags);
-    Q_REQUIRED_RESULT Result rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags);
-    Q_REQUIRED_RESULT Result mkdir(const QUrl &url, int permissions);
-    Q_REQUIRED_RESULT Result openConnection();
+    explicit SFTPWorker(const QByteArray &poolSocket, const QByteArray &appSocket);
+    ~SFTPWorker() override;
+    void setHost(const QString &h, quint16 port, const QString &user, const QString &pass) override;
+    Q_REQUIRED_RESULT Result get(const QUrl &url) override;
+    Q_REQUIRED_RESULT Result listDir(const QUrl &url) override;
+    Q_REQUIRED_RESULT Result mimetype(const QUrl &url) override;
+    Q_REQUIRED_RESULT Result stat(const QUrl &url) override;
+    Q_REQUIRED_RESULT Result copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
+    Q_REQUIRED_RESULT Result put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
+    void closeConnection() override;
+    void worker_status() override;
+    Q_REQUIRED_RESULT Result del(const QUrl &url, bool isfile) override;
+    Q_REQUIRED_RESULT Result chmod(const QUrl &url, int permissions) override;
+    Q_REQUIRED_RESULT Result symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags) override;
+    Q_REQUIRED_RESULT Result rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
+    Q_REQUIRED_RESULT Result mkdir(const QUrl &url, int permissions) override;
+    Q_REQUIRED_RESULT Result openConnection() override;
 
     // KIO::FileJob interface
-    Q_REQUIRED_RESULT Result open(const QUrl &url, QIODevice::OpenMode mode);
-    Q_REQUIRED_RESULT Result read(KIO::filesize_t size);
-    Q_REQUIRED_RESULT Result write(const QByteArray &data);
-    Q_REQUIRED_RESULT Result seek(KIO::filesize_t offset);
-    Q_REQUIRED_RESULT Result truncate(KIO::filesize_t length);
-    void close();
-    Q_REQUIRED_RESULT Result special(const QByteArray &data);
+    Q_REQUIRED_RESULT Result open(const QUrl &url, QIODevice::OpenMode mode) override;
+    Q_REQUIRED_RESULT Result read(KIO::filesize_t size) override;
+    Q_REQUIRED_RESULT Result write(const QByteArray &data) override;
+    Q_REQUIRED_RESULT Result seek(KIO::filesize_t offset) override;
+    Q_REQUIRED_RESULT Result truncate(KIO::filesize_t length) override;
+    Q_REQUIRED_RESULT Result close() override;
+    Q_REQUIRED_RESULT Result special(const QByteArray &data) override;
 
     // libssh authentication callback (note that this is called by the
     // global ::auth_callback() call.
@@ -110,11 +81,8 @@ public:
     // Bit rubbish, but we need to return something on init.
     Q_REQUIRED_RESULT Result init();
 
-    Q_REQUIRED_RESULT Result fileSystemFreeSpace(const QUrl &url);  // KF6 TODO: Once a virtual fileSystemFreeSpace method in SlaveBase exists, override it
+    Q_REQUIRED_RESULT Result fileSystemFreeSpace(const QUrl &url) override;  // KF6 TODO: Once a virtual fileSystemFreeSpace method in SlaveBase exists, override it
 private: // Private variables
-    /** Fronting SlaveBase instance */
-    SFTPSlave *q = nullptr;
-
     /** True if ioslave is connected to sftp server. */
     bool mConnected = false;
 
@@ -235,14 +203,7 @@ private: // private methods
     Q_REQUIRED_RESULT Result openConnectionWithoutCloseOnError();
 };
 
-/**
- * Fronting class.
- * The purpose of this is to separate the slave interface from the slave logic and force state
- * convergence.
- * Specifically logic code must not call finalization API error()/finished() but instead move
- * a single Result object up the call chain. This is to prevent overwriting errors and/or finished
- * finality states and broken-state situations those can cause.
- */
+
 class SFTPSlave : public KIO::SlaveBase
 {
 public:
@@ -274,50 +235,7 @@ public:
     void special(const QByteArray &data) override;
     void virtual_hook(int id, void *data) override;
 
-private:
-    // WARNING: All members and all logic not confined to one of the public functions
-    //   must go into SftpInternal!
-
-    /**
-     * Overridden to prevent SftpInternal from easily calling
-     * q->opened(). Use a Result return type on error conditions
-     * instead. When there was no error Result the
-     * connection is considered opened.
-     *
-     * SftpInternal must not call any state-changing signals!
-     */
-    void opened()
-    {
-        SlaveBase::opened();
-    }
-
-    /**
-     * @see opened()
-     */
-    void error(int _errid, const QString &_text)
-    {
-        SlaveBase::error(_errid, _text);
-    }
-
-    /**
-     * @see opened()
-     */
-    void finished()
-    {
-        SlaveBase::finished();
-    }
-
-    /**
-     * Calls finished() or error() as appropriate
-     */
-    void finalize(const Result &result);
-
-    /**
-     * Calls error() if and only if the result is an error
-     */
-    void maybeError(const Result &result);
-
-    QScopedPointer<SFTPInternal> d { new SFTPInternal(this) };
 };
+
 
 #endif
