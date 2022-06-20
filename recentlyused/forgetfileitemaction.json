@@ -12,6 +12,7 @@
         "Name[fr]": "Oublier les éléments à partir des documents ou des emplacements récents",
         "Name[it]": "Dimentica elementi da Documenti recenti e Posizioni recenti",
         "Name[nl]": "Items uit recente documenten en recente locaties vergeten",
+        "Name[nn]": "Gløym element i nyleg brukte dokument/stadar",
         "Name[pl]": "Zapomnij o rzeczach z ostatnich dokumentów i miejsc",
         "Name[pt]": "Esquecer os itens dos Documentos Recentes e Localizações Recentes",
         "Name[ro]": "Uită elementele din documente recente și locuri recente",
@@ -20,6 +21,7 @@
         "Name[ta]": "சமீபத்திய அவணங்களிலிருந்தும் சமீபத்திய இடங்களிலிருந்தும் இவ்வுருப்படிகளை நீக்கு",
         "Name[tr]": "Son Belgeler ve Son Konumlar'daki ögeleri unut",
         "Name[uk]": "Забути записи з «Недавніх документів» і «Недавніх місць»",
+        "Name[vi]": "Quên các thứ trong \"Tài liệu gần đây\" và \"Địa điểm gần đây\"",
         "Name[x-test]": "xxForget items from Recent Documents and Recent Locationsxx",
         "Name[zh_CN]": "忘记最新文档和最近位置中的项目",
         "ServiceTypes": [
