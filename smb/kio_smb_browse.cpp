@@ -452,7 +452,7 @@ WorkerResult SMBWorker::listDir(const QUrl &kurl)
     if (m_current_url.getType() != SMBURLTYPE_ENTIRE_NETWORK && smbc->error() != 0) {
         // not smb:// and had an error -> handle it
         const int err = smbc->error();
-        if (err == EPERM || err == EACCES || workaroundEEXIST(err)) {
+        if (err == EPERM || err == EACCES || err == EINVAL || workaroundEEXIST(err)) {
             qCDebug(KIO_SMB_LOG) << "trying checkPassword";
             const int passwordError = checkPassword(m_current_url);
             if (passwordError == KJob::NoError) {
