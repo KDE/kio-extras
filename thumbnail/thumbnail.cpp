@@ -352,7 +352,7 @@ static QVector<KPluginMetaData> availablePlugins()
 }
 
 KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
-    const QVector<KPluginMetaData> plugins = availablePlugins();
+    const static QVector<KPluginMetaData> plugins = availablePlugins();
     for (const KPluginMetaData &plugin : plugins) {
         if (plugin.supportsMimeType(mimeType)) {
             return plugin;
