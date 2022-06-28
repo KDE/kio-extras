@@ -38,8 +38,6 @@
 #include <KConfigGroup>
 #include <KFileItem>
 #include <KLocalizedString>
-#include <KPluginInfo>
-#include <KServiceTypeTrader>
 #include <KSharedConfig>
 
 #include <kio/previewjob.h>
@@ -334,25 +332,8 @@ void ThumbnailProtocol::get(const QUrl &url)
     finished();
 }
 
-static QVector<KPluginMetaData> availablePlugins()
-{
-    auto jsonMetaDataPlugins = KPluginMetaData::findPlugins(QStringLiteral("kf" QT_STRINGIFY(QT_VERSION_MAJOR) "/thumbcreator"));
-    QT_WARNING_PUSH
-    QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
-    QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
-    // TODO KF6 remove this compat codepath
-    const KService::List plugins = KServiceTypeTrader::self()->query(QStringLiteral("ThumbCreator"));
-    for (const auto &plugin : plugins) {
-        if (KPluginInfo info(plugin); info.isValid()) {
-            jsonMetaDataPlugins << info.toMetaData();
-        }
-    }
-    QT_WARNING_POP
-    return jsonMetaDataPlugins;
-}
-
 KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
-    const static QVector<KPluginMetaData> plugins = availablePlugins();
+    const QVector<KPluginMetaData> plugins = KIO::PreviewJob::availableThumbnailerPlugins();
     for (const KPluginMetaData &plugin : plugins) {
         if (plugin.supportsMimeType(mimeType)) {
             return plugin;
@@ -678,16 +659,13 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
         if (plugin.contains(QLatin1String("kf5") + QDir::separator() + QLatin1String("thumbcreator"))) {
             data = KPluginMetaData(plugin);
         } else {
-            QT_WARNING_PUSH
-            QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
-            QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
-            // TODO KF6 remove this compat codepath
-            const QString constraint = QStringLiteral("Library == '%1'").arg(QFileInfo(plugin).fileName());
-            const KService::List plugins = KServiceTypeTrader::self()->query(QStringLiteral("ThumbCreator"), constraint);
-            if (!plugins.isEmpty()) {
-                data = KPluginInfo(plugins.first()).toMetaData();
+            const QVector<KPluginMetaData> plugins = KIO::PreviewJob::availableThumbnailerPlugins();
+            auto findPluginIt = std::find_if(plugins.begin(), plugins.end(), [&plugin](const KPluginMetaData &data) {
+                return data.pluginId() == plugin;
+            });
+            if (findPluginIt != plugins.end()) {
+                data = *findPluginIt;
             }
-            QT_WARNING_POP
         }
         if (!data.isValid()) {
             qCWarning(KIO_THUMBNAIL_LOG) << "Plugin not found:" << plugin;
