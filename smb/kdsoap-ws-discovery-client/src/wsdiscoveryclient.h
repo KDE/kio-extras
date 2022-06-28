@@ -46,7 +46,7 @@ public:
      * \param parent The QObject parent
      */
     explicit WSDiscoveryClient(QObject *parent = nullptr);
-    ~WSDiscoveryClient();
+    ~WSDiscoveryClient() override;
 
 signals:
     /*!

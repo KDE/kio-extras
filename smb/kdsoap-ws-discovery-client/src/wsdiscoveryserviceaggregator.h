@@ -45,7 +45,7 @@ public:
     /*!
      * Destructor
      */
-    ~WSDiscoveryServiceAggregator();
+    ~WSDiscoveryServiceAggregator() override;
 
 signals:
     /*!
