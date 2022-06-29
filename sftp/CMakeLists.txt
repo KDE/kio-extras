@@ -13,8 +13,8 @@ target_sources(kio_sftp PRIVATE kio_sftp.cpp)
 ecm_qt_declare_logging_category(kio_sftp
     HEADER kio_sftp_debug.h
     IDENTIFIER KIO_SFTP_LOG
-    CATEGORY_NAME kf.kio.slaves.sftp
-    OLD_CATEGORY_NAMES log_kio_sftp
+    CATEGORY_NAME kf.kio.workers.sftp
+    OLD_CATEGORY_NAMES log_kio_sftp kf.kio.slaves.sftp
     DESCRIPTION "KIO sftp"
     EXPORT KIO_EXTRAS
 )
@@ -22,8 +22,8 @@ ecm_qt_declare_logging_category(kio_sftp
 ecm_qt_declare_logging_category(kio_sftp
     HEADER kio_sftp_trace_debug.h
     IDENTIFIER KIO_SFTP_TRACE_LOG
-    CATEGORY_NAME kf.kio.slaves.sftp.trace
-    OLD_CATEGORY_NAMES log_kio_sftp.trace
+    CATEGORY_NAME kf.kio.workers.sftp.trace
+    OLD_CATEGORY_NAMES log_kio_sftp.trace kf.kio.slaves.sftp.trace
     DESCRIPTION "KIO sftp (trace)"
     EXPORT KIO_EXTRAS
 )

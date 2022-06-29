@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2001 Lucas Fisher <ljfisher@purdue.edu>
  * SPDX-FileCopyrightText: 2009 Andreas Schneider <mail@cynapses.org>
- * SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
+ * SPDX-FileCopyrightText: 2020-2022 Harald Sitter <sitter@kde.org>
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
@@ -70,7 +70,7 @@ using namespace std::filesystem;
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.sftp" FILE "sftp.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.sftp" FILE "sftp.json")
 };
 
 using namespace KIO;
@@ -1056,7 +1056,7 @@ Result SFTPWorker::open(const QUrl &url, QIODevice::OpenMode mode) {
     }
 
     // Determine the mimetype of the file to be retrieved, and emit it.
-    // This is mandatory in all slaves (for KRun/BrowserRun to work).
+    // This is mandatory in all workers (for KRun/BrowserRun to work).
     // If we're not opening the file ReadOnly or ReadWrite, don't attempt to
     // read the file and send the mimetype.
     if (mode & QIODevice::ReadOnly) {

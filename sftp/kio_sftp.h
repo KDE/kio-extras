@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2001 Lucas Fisher <ljfisher@purdue.edu>
  * SPDX-FileCopyrightText: 2009 Andreas Schneider <mail@cynapses.org>
- * SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
+ * SPDX-FileCopyrightText: 2020-2022 Harald Sitter <sitter@kde.org>
  *
  * SPDX-License-Identifier: LGPL-2.0-or-later
  */
@@ -33,8 +33,6 @@ struct ScopedPointerCustomDeleter
     }
 };
 typedef QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter> SFTPAttributesPtr;
-
-class SFTPSlave;
 
 class SFTPWorker : public KIO::WorkerBase
 {
@@ -83,7 +81,7 @@ public:
 
     Q_REQUIRED_RESULT Result fileSystemFreeSpace(const QUrl &url) override;  // KF6 TODO: Once a virtual fileSystemFreeSpace method in SlaveBase exists, override it
 private: // Private variables
-    /** True if ioslave is connected to sftp server. */
+    /** True if worker is connected to sftp server. */
     bool mConnected = false;
 
     /** Host we are connected to. */
@@ -202,40 +200,5 @@ private: // private methods
     Q_REQUIRED_RESULT Result sftpSendMimetype(sftp_file file, const QUrl &url);
     Q_REQUIRED_RESULT Result openConnectionWithoutCloseOnError();
 };
-
-
-class SFTPSlave : public KIO::SlaveBase
-{
-public:
-    SFTPSlave(const QByteArray &pool_socket, const QByteArray &app_socket);
-    ~SFTPSlave() override = default;
-    void setHost(const QString &host, quint16 port, const QString &user, const QString &pass) override;
-    void get(const QUrl &url) override;
-    void listDir(const QUrl &url) override ;
-    void mimetype(const QUrl &url) override;
-    void stat(const QUrl &url) override;
-    void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
-    void put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
-    void slave_status() override;
-    void del(const QUrl &url, bool isfile) override;
-    void chmod(const QUrl &url, int permissions) override;
-    void symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags) override;
-    void rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
-    void mkdir(const QUrl &url, int permissions) override;
-    void openConnection() override;
-    void closeConnection() override;
-
-    // KIO::FileJob interface
-    void open(const QUrl &url, QIODevice::OpenMode mode) override;
-    void read(KIO::filesize_t size) override;
-    void write(const QByteArray &data) override;
-    void seek(KIO::filesize_t offset) override;
-    void truncate(KIO::filesize_t length);
-    void close() override;
-    void special(const QByteArray &data) override;
-    void virtual_hook(int id, void *data) override;
-
-};
-
 
 #endif
