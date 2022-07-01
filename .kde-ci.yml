@@ -20,3 +20,4 @@ Dependencies:
     'frameworks/syntax-highlighting': '@stable'
     'frameworks/kactivities': '@stable'
     'libraries/phonon': '@stable'
+    'graphics/libkexiv2': '@same'
