@@ -35,6 +35,14 @@ set_package_properties(Taglib PROPERTIES
     PURPOSE "Provides support for audio thumbnails"
 )
 
+find_package(KF5KExiv2)
+set_package_properties(KF5KExiv2 PROPERTIES
+    TYPE OPTIONAL
+    PURPOSE "Provides support for extracting JPEG thumbnails")
+if (KF5KExiv2_FOUND)
+    set(HAVE_KEXIV2 TRUE)
+endif()
+
 include_directories(${CMAKE_BINARY_DIR})
 
 include(ECMSetupQtPluginMacroNames)
@@ -44,6 +52,8 @@ ecm_setup_qtplugin_macro_names(
     CONFIG_CODE_VARIABLE
         PACKAGE_SETUP_AUTOMOC_VARIABLES
 )
+
+configure_file(config-thumbnail.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-thumbnail.h)
 
 ########### next target ###############
 
@@ -107,6 +117,9 @@ target_link_libraries(jpegthumbnail
     KF5::ConfigCore
     KF5::ConfigGui
 )
+if (TARGET KF5::KExiv2)
+    target_link_libraries(jpegthumbnail KF5::KExiv2)
+endif()
 
 install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
 install(TARGETS jpegthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
