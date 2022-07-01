@@ -26,6 +26,8 @@
 #include <kuser.h>
 #include <KLocalizedString>
 
+#include <memory>
+
 #ifdef Q_OS_WIN
 #define S_ISDIR(m) (((m & S_IFMT) == S_IFDIR))
 #endif
@@ -495,7 +497,7 @@ void ArchiveProtocolBase::get( const QUrl & url )
      * - errors are skipped, resulting in an empty file
      */
 
-    QIODevice* io = archiveFileEntry->createDevice();
+    std::unique_ptr<QIODevice> io(archiveFileEntry->createDevice());
 
     if (!io)
     {
@@ -508,7 +510,6 @@ void ArchiveProtocolBase::get( const QUrl & url )
     if ( !io->open( QIODevice::ReadOnly ) )
     {
         error( KIO::ERR_CANNOT_OPEN_FOR_READING, url.toDisplayString() );
-        delete io;
         return;
     }
 
@@ -524,7 +525,6 @@ void ArchiveProtocolBase::get( const QUrl & url )
     {
         // Something went wrong
         error( KIO::ERR_OUT_OF_MEMORY, url.toDisplayString() );
-        delete io;
         return;
     }
 
@@ -546,7 +546,6 @@ void ArchiveProtocolBase::get( const QUrl & url )
         {
             qCWarning(KIO_ARCHIVE_LOG) << "Read" << read << "bytes but expected" << bufferSize ;
             error( KIO::ERR_CANNOT_READ, url.toDisplayString() );
-            delete io;
             return;
         }
         if ( firstRead )
@@ -565,7 +564,6 @@ void ArchiveProtocolBase::get( const QUrl & url )
         fileSize -= bufferSize;
     }
     io->close();
-    delete io;
 
     data( QByteArray() );
 
