@@ -10,7 +10,7 @@
 #include <sys/types.h>
 
 #include <KIO/Global>
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 
 #include "libkioarchive_export.h"
 
@@ -18,15 +18,15 @@ class KArchive;
 class KArchiveEntry;
 class KArchiveDirectory;
 
-class LIBKIOARCHIVE_EXPORT ArchiveProtocolBase : public KIO::SlaveBase
+class LIBKIOARCHIVE_EXPORT ArchiveProtocolBase : public KIO::WorkerBase
 {
 public:
     ArchiveProtocolBase( const QByteArray &proto, const QByteArray &pool, const QByteArray &app );
     ~ArchiveProtocolBase() override;
 
-    void listDir( const QUrl & url ) override;
-    void stat( const QUrl & url ) override;
-    void get( const QUrl & url ) override;
+    KIO::WorkerResult listDir( const QUrl & url ) override;
+    KIO::WorkerResult stat( const QUrl & url ) override;
+    KIO::WorkerResult get( const QUrl & url ) override;
 
 private:
     void createRootUDSEntry( KIO::UDSEntry & entry );

@@ -20,7 +20,7 @@
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.archive" FILE "archive.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.archive" FILE "archive.json")
 };
 
 using namespace KIO;
@@ -42,8 +42,8 @@ int kdemain( int argc, char **argv )
         exit(-1);
     }
 
-    ArchiveProtocol slave( argv[1], argv[2], argv[3]);
-    slave.dispatchLoop();
+    ArchiveProtocol worker( argv[1], argv[2], argv[3]);
+    worker.dispatchLoop();
 
     qCDebug(KIO_ARCHIVE_LOG) << "Done";
     return 0;
@@ -75,7 +75,7 @@ KArchive *ArchiveProtocol::createArchive( const QString & proto, const QString &
         qCDebug(KIO_ARCHIVE_LOG) << "Opening K7Zip on " << archiveFile;
         return new K7Zip( archiveFile );
     } else {
-        qCWarning(KIO_ARCHIVE_LOG) << "Protocol" << proto << "not supported by this IOSlave" ;
+        qCWarning(KIO_ARCHIVE_LOG) << "Protocol" << proto << "not supported by this IOWorker" ;
         return nullptr;
     }
 }

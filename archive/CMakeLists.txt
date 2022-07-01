@@ -43,8 +43,8 @@ install(FILES
 ecm_qt_declare_logging_category(kio_archive_debug_SRCS
     HEADER kio_archive_debug.h
     IDENTIFIER KIO_ARCHIVE_LOG
-    CATEGORY_NAME kf.kio.slaves.archive
-    OLD_CATEGORY_NAMES log_kio_archive
+    CATEGORY_NAME kf.kio.workers.archive
+    OLD_CATEGORY_NAMES log_kio_archive kf.kio.slaves.archive
     DESCRIPTION "KIO archive"
     EXPORT KIO_EXTRAS
 )
@@ -79,7 +79,7 @@ set_target_properties(kioarchive PROPERTIES
 
 install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
 
-############### Archive KIOslave ######################
+############### Archive Worker ######################
 
 add_library(kio_archive MODULE kio_archive.cpp ${kio_archive_debug_SRCS})
 target_link_libraries(kio_archive KF5::KIOCore KF5::Archive kioarchive Qt::Network)
