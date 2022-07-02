@@ -2,6 +2,7 @@
 Type=Service
 Name=Audio files
 Name[ar]=ملفات صوت
+Name[bg]=Аудио файлове
 Name[ca]=Fitxers d'àudio
 Name[ca@valencia]=Fitxers d'àudio
 Name[cs]=Audio soubory
