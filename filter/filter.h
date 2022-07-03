@@ -10,24 +10,23 @@ SPDX-License-Identifier: MIT
 #ifndef __filter_h__
 #define __filter_h__
 
-#include <KIO/SlaveBase>
-#include <QObject>
-#include <QUrl>
+#include <KIO/WorkerBase>
 
-class QUrl;
+#include <QObject>
+
 class KFilterBase;
 
-class FilterProtocol : /*public QObject, */ public KIO::SlaveBase
+class FilterProtocol : /*public QObject, */ public KIO::WorkerBase
 {
 //    Q_OBJECT
 
 public:
     FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
 
-    void get( const QUrl &url ) override;
+    KIO::WorkerResult get( const QUrl &url ) override;
 
 private:
-    QUrl subURL;
+    const QString m_protocol;
     KFilterBase * filter;
 };
 

@@ -25,7 +25,7 @@ SPDX-License-Identifier: MIT
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.filter" FILE "filter.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.filter" FILE "filter.json")
 };
 
 extern "C" {
@@ -45,15 +45,16 @@ int kdemain( int argc, char ** argv)
         exit(-1);
     }
 
-    FilterProtocol slave(argv[1], argv[2], argv[3]);
-    slave.dispatchLoop();
+    FilterProtocol worker(argv[1], argv[2], argv[3]);
+    worker.dispatchLoop();
 
     qDebug(KIO_FILTER_DEBUG) << "Done";
     return 0;
 }
 
 FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app )
-    : KIO::SlaveBase( protocol, pool, app )
+    : KIO::WorkerBase( protocol, pool, app )
+    , m_protocol(QString::fromLatin1(protocol))
 {
     const QString mimetype =
         (protocol == "zstd") ? QStringLiteral("application/zstd") :
@@ -63,28 +64,25 @@ FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &p
     Q_ASSERT(filter);
 }
 
-void FilterProtocol::get(const QUrl& url)
+KIO::WorkerResult FilterProtocol::get(const QUrl& url)
 {
     // In the old solution, subURL would be set by setSubURL.
     // KDE4: now I simply assume bzip2:/localpath/file.bz2 and set subURL to the local path.
-    subURL = url;
+    QUrl subURL = url;
     subURL.setScheme("file");
 
     if (subURL.isEmpty()) {
-        error(KIO::ERR_NO_SOURCE_PROTOCOL, QString::fromLatin1(mProtocol));
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_NO_SOURCE_PROTOCOL, m_protocol);
     }
 
     QFile localFile(url.path());
     if (!localFile.open(QIODevice::ReadOnly)) {
-        error(KIO::ERR_CANNOT_READ, QString::fromLatin1(mProtocol));
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_CANNOT_READ, m_protocol);
     }
 
     if (!filter) {
         // TODO better error message
-        error(KIO::ERR_INTERNAL, QString::fromLatin1(mProtocol));
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, m_protocol);
     }
 
     filter->init(QIODevice::ReadOnly);
@@ -166,11 +164,10 @@ void FilterProtocol::get(const QUrl& url)
     filter->terminate();
 
     if (bError) {
-        error(KIO::ERR_CANNOT_READ, subURL.url());
-    } else {
-        finished();
+        return KIO::WorkerResult::fail(KIO::ERR_CANNOT_READ, subURL.url());
     }
-    subURL = QUrl(); // Clear subURL
+
+    return KIO::WorkerResult::pass();
 }
 
 #include "filter.moc"

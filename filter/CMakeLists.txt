@@ -10,8 +10,8 @@ target_sources(kio_filter PRIVATE filter.cpp)
 ecm_qt_declare_logging_category(kio_filter
     HEADER loggingcategory.h
     IDENTIFIER KIO_FILTER_DEBUG
-    CATEGORY_NAME kf.kio.slaves.filter
-    OLD_CATEGORY_NAMES kio_filter
+    CATEGORY_NAME kf.kio.workers.filter
+    OLD_CATEGORY_NAMES kio_filter kf.kio.slaves.filter
     DEFAULT_SEVERITY Debug
     DESCRIPTION "KIO filter"
     EXPORT KIO_EXTRAS
