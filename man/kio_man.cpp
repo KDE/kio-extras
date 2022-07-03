@@ -30,7 +30,7 @@ using namespace KIO;
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.man" FILE "man.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.man" FILE "man.json")
 };
 
 MANProtocol *MANProtocol::s_self = nullptr;
@@ -108,7 +108,7 @@ static bool parseUrl(const QString &_url, QString &title, QString &section)
 
 
 MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket)
-    : QObject(), SlaveBase("man", pool_socket, app_socket)
+    : QObject(), WorkerBase("man", pool_socket, app_socket)
 {
     Q_ASSERT(s_self==nullptr);
     s_self = this;
@@ -420,7 +420,7 @@ extern void output_real(const char *insert)
 
 //---------------------------------------------------------------------
 
-void MANProtocol::get(const QUrl &url)
+KIO::WorkerResult MANProtocol::get(const QUrl &url)
 {
     qCDebug(KIO_MAN_LOG) << "GET " << url.url();
 
@@ -432,8 +432,7 @@ void MANProtocol::get(const QUrl &url)
     if (!parseUrl(url.path(), title, section))
     {
         showMainIndex();
-        finished();
-        return;
+        return KIO::WorkerResult::pass();
     }
 
     // see if an index was requested
@@ -443,8 +442,7 @@ void MANProtocol::get(const QUrl &url)
             showMainIndex();
         else
             showIndex(section);
-        finished();
-        return;
+        return KIO::WorkerResult::pass();
     }
 
     QStringList foundPages = findPages(section, title);
@@ -459,7 +457,7 @@ void MANProtocol::get(const QUrl &url)
                            "for man pages, either using the <envar>MANPATH</envar> environment "
                            "variable or a configuration file in the <filename>/etc</filename> "
                            "directory.", title.toHtmlEscaped()));
-        return;
+        return KIO::WorkerResult::pass();
     }
 
     // Sort the list of pages now, for display if required and for
@@ -482,8 +480,7 @@ void MANProtocol::get(const QUrl &url)
                 // allowing for a compression suffix.  Output the list of multiple
                 // pages only.
                 outputMatchingPages(foundPages);
-                finished();
-                return;
+                return KIO::WorkerResult::pass();
             }
         }
     }
@@ -492,7 +489,10 @@ void MANProtocol::get(const QUrl &url)
     m_outputBuffer.open(QIODevice::WriteOnly);
     const QByteArray filename = QFile::encodeName(pageFound);
     const char *buf = readManPage(filename);
-    if (buf==nullptr) return;
+    if (!buf) {
+        // readManPage emits an error page instead, so still passing
+        return KIO::WorkerResult::pass();;
+    }
 
     // will call output_real
     scan_man_page(buf);
@@ -506,7 +506,7 @@ void MANProtocol::get(const QUrl &url)
 
     // tell we are done
     data(QByteArray());
-    finished();
+    return KIO::WorkerResult::pass();
 }
 
 //---------------------------------------------------------------------
@@ -649,9 +649,9 @@ void MANProtocol::outputFooter(QTextStream &os)
 }
 
 
-// This calls SlaveBase::finished(), so do not call any other
-// SlaveBase functions afterwards.  It is assumed that mimeType()
-// has already been called at the start of get().
+// Do not call any other WorkerBase functions afterwards,
+// only return a KIO::WorkerResult::pass().
+// It is assumed that mimeType() has already been called at the start of get().
 void MANProtocol::outputError(const QString& errmsg)
 {
     QByteArray array;
@@ -663,7 +663,6 @@ void MANProtocol::outputError(const QString& errmsg)
 
     data(array);
     data(QByteArray());
-    finished();
 }
 
 
@@ -694,7 +693,7 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 }
 
 
-void MANProtocol::stat( const QUrl& url)
+KIO::WorkerResult MANProtocol::stat( const QUrl& url)
 {
     qCDebug(KIO_MAN_LOG) << "STAT " << url.url();
 
@@ -702,8 +701,7 @@ void MANProtocol::stat( const QUrl& url)
 
     if (!parseUrl(url.path(), title, section))
     {
-        error(KIO::ERR_MALFORMED_URL, url.url());
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_MALFORMED_URL, url.url());
     }
 
     qCDebug(KIO_MAN_LOG) << "URL" << url.url() << "parsed to title" << title << "section" << section;
@@ -715,7 +713,8 @@ void MANProtocol::stat( const QUrl& url)
     entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html"));
 
     statEntry(entry);
-    finished();
+
+    return KIO::WorkerResult::pass();
 }
 
 
@@ -735,8 +734,8 @@ extern "C"
             exit(-1);
         }
 
-        MANProtocol slave(argv[2], argv[3]);
-        slave.dispatchLoop();
+        MANProtocol worker(argv[2], argv[3]);
+        worker.dispatchLoop();
 
         qCDebug(KIO_MAN_LOG) << "Done";
 
@@ -745,10 +744,11 @@ extern "C"
 
 }
 
-void MANProtocol::mimetype(const QUrl & /*url*/)
+KIO::WorkerResult MANProtocol::mimetype(const QUrl & /*url*/)
 {
     mimeType("text/html");
-    finished();
+
+    return KIO::WorkerResult::pass();
 }
 
 //---------------------------------------------------------------------
@@ -1314,7 +1314,7 @@ void MANProtocol::showIndex(const QString& section)
     // Do not call finished(), the caller will do that
 }
 
-void MANProtocol::listDir(const QUrl &url)
+KIO::WorkerResult MANProtocol::listDir(const QUrl &url)
 {
     qCDebug(KIO_MAN_LOG) << url;
 
@@ -1322,8 +1322,7 @@ void MANProtocol::listDir(const QUrl &url)
     QString section;
 
     if ( !parseUrl(url.path(), title, section) ) {
-        error( KIO::ERR_MALFORMED_URL, url.url() );
-        return;
+        return KIO::WorkerResult::fail( KIO::ERR_MALFORMED_URL, url.url() );
     }
 
     // stat() and listDir() declared that everything is a HTML file.
@@ -1331,13 +1330,12 @@ void MANProtocol::listDir(const QUrl &url)
     // But we cannot list man:ls as a directory, this makes no sense (#154173).
 
     if (!title.isEmpty() && title != "/") {
-        error(KIO::ERR_IS_FILE, url.url());
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_IS_FILE, url.url());
     }
 
     // There is no need to accumulate a list of UDSEntry's and deliver
-    // them all in one block with SlaveBase::listEntries(), because
-    // SlaveBase::listEntry() batches the entries and delivers them
+    // them all in one block with WorkerBase::listEntries(), because
+    // WorkerBase::listEntry() batches the entries and delivers them
     // timed to maximise application performance.
 
     UDSEntry uds_entry;
@@ -1387,7 +1385,7 @@ void MANProtocol::listDir(const QUrl &url)
         }
     }
 
-    finished();
+    return KIO::WorkerResult::pass();
 }
 
 

@@ -10,9 +10,9 @@
 #include <QBuffer>
 
 #include <KIO/Global>
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 
-class MANProtocol : public QObject, public KIO::SlaveBase
+class MANProtocol : public QObject, public KIO::WorkerBase
 {
     Q_OBJECT
 
@@ -20,11 +20,11 @@ public:
     explicit MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     ~MANProtocol() override;
 
-    void get(const QUrl& url) override;
-    void stat(const QUrl& url) override;
+    KIO::WorkerResult get(const QUrl& url) override;
+    KIO::WorkerResult stat(const QUrl& url) override;
 
-    void mimetype(const QUrl &url) override;
-    void listDir(const QUrl &url) override;
+    KIO::WorkerResult mimetype(const QUrl &url) override;
+    KIO::WorkerResult listDir(const QUrl &url) override;
 
     // the following two functions are the interface to man2html
     void output(const char *insert);

@@ -1,7 +1,7 @@
 /**
  * \file man2html.h
  *
- * Converts man pages to HTML.  This kioslave is not part of kdelibs and is
+ * Converts man pages to HTML.  This KIO worker is not part of KDE Frameworks and is
  * not public API.
  * \internal
  */
