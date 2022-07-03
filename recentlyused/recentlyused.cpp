@@ -32,21 +32,21 @@ using namespace KAStats::Terms;
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.recentlyused" FILE "recentlyused.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.recentlyused" FILE "recentlyused.json")
 };
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
-    // necessary to use other kio slaves
+    // necessary to use other kio workers
     QCoreApplication app(argc, argv);
     app.setApplicationName(QStringLiteral("kio_recentlyused"));
     if (argc != 4) {
         fprintf(stderr, "Usage: kio_recentlyused protocol domain-socket1 domain-socket2\n");
         exit(-1);
     }
-    // start the slave
-    RecentlyUsed slave(argv[2], argv[3]);
-    slave.dispatchLoop();
+    // start the worker
+    RecentlyUsed worker(argv[2], argv[3]);
+    worker.dispatchLoop();
     return 0;
 }
 
@@ -57,7 +57,7 @@ static bool isRootUrl(const QUrl &url)
 }
 
 RecentlyUsed::RecentlyUsed(const QByteArray &pool, const QByteArray &app)
-    : SlaveBase("recentlyused", pool, app)
+    : WorkerBase("recentlyused", pool, app)
 {
 }
 
@@ -190,13 +190,12 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource, const 
     return uds;
 }
 
-void RecentlyUsed::listDir(const QUrl &url)
+KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 {
     if (!isRootUrl(url)) {
         const auto path = url.path();
         if (path != QStringLiteral("/files") && path != QStringLiteral("/locations") ) {
-            error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
-            return;
+            return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
         }
     }
 
@@ -214,7 +213,8 @@ void RecentlyUsed::listDir(const QUrl &url)
     }
 
     listEntries(udslist);
-    finished();
+
+    return KIO::WorkerResult::pass();
 }
 
 KIO::UDSEntry RecentlyUsed::udsEntryForRoot(const QString &dirName, const QString &iconName)
@@ -235,7 +235,7 @@ KIO::UDSEntry RecentlyUsed::udsEntryForRoot(const QString &dirName, const QStrin
     return uds;
 }
 
-void RecentlyUsed::stat(const QUrl &url)
+KIO::WorkerResult RecentlyUsed::stat(const QUrl &url)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "stating" << " " << url;
 
@@ -247,38 +247,36 @@ void RecentlyUsed::stat(const QUrl &url)
         const QString dirName = i18n("Recent Documents");
 
         statEntry(udsEntryForRoot(dirName, QStringLiteral("document-open-recent")));
-        finished();
-    } else {
-
-        const auto path = url.path();
-        if (path == QStringLiteral("/files")) {
-            const QString dirName = i18n("Recent Files");
-            statEntry(udsEntryForRoot(dirName, QStringLiteral("document-open-recent")));
-            finished();
-        } else if (path == QStringLiteral("/locations")) {
-            const QString dirName = i18n("Recent Locations");
-            statEntry(udsEntryForRoot(dirName, QStringLiteral("folder-open-recent")));
-            finished();
-        } else {
-            // only / /files and /locations paths are supported
-            error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
-        }
+        return KIO::WorkerResult::pass();
     }
+
+    const auto path = url.path();
+    if (path == QStringLiteral("/files")) {
+        const QString dirName = i18n("Recent Files");
+        statEntry(udsEntryForRoot(dirName, QStringLiteral("document-open-recent")));
+    } else if (path == QStringLiteral("/locations")) {
+        const QString dirName = i18n("Recent Locations");
+        statEntry(udsEntryForRoot(dirName, QStringLiteral("folder-open-recent")));
+    } else {
+        // only / /files and /locations paths are supported
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+    }
+    return KIO::WorkerResult::pass();
 }
 
-void RecentlyUsed::mimetype(const QUrl &url)
+KIO::WorkerResult RecentlyUsed::mimetype(const QUrl &url)
 {
     // the root url is always a folder
     if (isRootUrl(url)) {
         mimeType(QStringLiteral("inode/directory"));
-        finished();
-    } else {
-        // only the root path is supported
-        error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+        return KIO::WorkerResult::pass();
     }
+
+    // only the root path is supported
+    return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
 }
 
-void RecentlyUsed::special(const QByteArray &data) {
+KIO::WorkerResult RecentlyUsed::special(const QByteArray &data) {
 
     int id;
     QDataStream stream(data);
@@ -312,6 +310,8 @@ void RecentlyUsed::special(const QByteArray &data) {
     default:
         break;
     }
+
+    return KIO::WorkerResult::pass();
 }
 
 // needed for JSON file embedding

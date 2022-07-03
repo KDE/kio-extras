@@ -7,10 +7,10 @@
 #ifndef RECENTLYUSED_H
 #define RECENTLYUSED_H
 
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 
 /**
- * Implements recentlyused:/ ioslave
+ * Implements recentlyused:/ KIO worker
  * It uses KActivitiesStats as a backend (as kickoff/kicker do) to retrieve recently accessed
  * files or folders.
  * It supports filtering on mimetype (option type), path, date of access or date of access range, activity and agent (meaning application).
@@ -76,18 +76,18 @@
  * - recentlyused:/?type=video/*,audio/*&order=HighScoredFirst : recently used video or audio files ordered by their scoring descending
  * - recentlyused:/?url=/home/meven/kde/src/*&type=text/plain : recently used text files located in a subdir of /home/meven/kde/src/
  *
- * @brief The RecentlyUsed implements an ioslave to access recently used files or directories
+ * @brief The RecentlyUsed implements an KIO worker to access recently used files or directories
  */
-class RecentlyUsed : public KIO::SlaveBase
+class RecentlyUsed : public KIO::WorkerBase
 {
 public:
     RecentlyUsed(const QByteArray &pool, const QByteArray &app);
     ~RecentlyUsed() override;
 
 protected:
-    void listDir(const QUrl &url) override;
-    void stat(const QUrl &url) override;
-    void mimetype(const QUrl &url) override;
+    KIO::WorkerResult listDir(const QUrl &url) override;
+    KIO::WorkerResult stat(const QUrl &url) override;
+    KIO::WorkerResult mimetype(const QUrl &url) override;
 
     /**
      * Implemention of the forget action
@@ -102,7 +102,7 @@ protected:
      *  auto job = KIO::special(QUrl("recentlyused:/"), packedArgs);
      *  job->exec();
      */
-    void special(const QByteArray &data) override;
+    KIO::WorkerResult special(const QByteArray &data) override;
 
 private:
     /*

@@ -23,8 +23,8 @@ endif()
 ecm_qt_declare_logging_category(recentlyused
     HEADER recentlyused-logsettings.h
     IDENTIFIER KIO_RECENTLYUSED_LOG
-    CATEGORY_NAME kf.kio.slaves.recentlyused
-    OLD_CATEGORY_NAMES log_kio_recentlyused
+    CATEGORY_NAME kf.kio.workers.recentlyused
+    OLD_CATEGORY_NAMES log_kio_recentlyused kf.kio.slaves.recentlyused
     DESCRIPTION "KIO recentlyused"
     EXPORT KIO_EXTRAS
 )
