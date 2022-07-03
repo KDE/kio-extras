@@ -140,7 +140,6 @@
 # include <QFile>
 # include <QFileInfo>
 # include <QDir>
-# include <karchive_version.h>
 # include <KCompressionDevice>
 # define BYTEARRAY(x) x.constData()
 #else

@@ -14,7 +14,6 @@
 #include <qtextdocument.h>
 #include <qurlquery.h>
 
-#include <kio_version.h>
 #include <kshell.h>
 
 #include <KLocalizedString>
@@ -185,12 +184,7 @@ void BookmarksProtocol::get( const QUrl& url )
             auto job = new KIO::ApplicationLauncherJob(bookmarksKCM);
             job->start();
         } else {
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-            error(KIO::ERR_WORKER_DEFINED,
-#else
-            error(KIO::ERR_SLAVE_DEFINED,
-#endif
-                  i18n("Could not find bookmarks config"));
+            error(KIO::ERR_WORKER_DEFINED, i18n("Could not find bookmarks config"));
         }
         echoHead("bookmarks:/");
     } else if (path == "/editbookmarks") {
@@ -199,12 +193,7 @@ void BookmarksProtocol::get( const QUrl& url )
             auto job = new KIO::ApplicationLauncherJob(keditbookmarks);
             job->start();
         } else {
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-            error(KIO::ERR_WORKER_DEFINED,
-#else
-            error(KIO::ERR_SLAVE_DEFINED,
-#endif
-                  i18n("Could not find bookmarks editor"));
+            error(KIO::ERR_WORKER_DEFINED, i18n("Could not find bookmarks editor"));
         }
         echoHead("bookmarks:/");
     } else if (path.indexOf(regexp, 0, &rmatch) >= 0) {

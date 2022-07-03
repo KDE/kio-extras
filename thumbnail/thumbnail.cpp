@@ -45,7 +45,6 @@
 #include <kio/thumbdevicepixelratiodependentcreator.h>
 #include <kio/thumbsequencecreator.h>
 #include <kio/previewjob.h>
-#include <kio_version.h>
 
 #include <limits>
 #include <QDirIterator>

@@ -10,10 +10,7 @@
 
 #include <QImageReader>
 
-#include <kcoreaddons_version.h>
-#if KCOREADDONS_VERSION >= QT_VERSION_CHECK(5,95,0)
-    #include <kmemoryinfo.h>
-#endif
+#include <KMemoryInfo>
 
 EXPORT_THUMBNAILER_WITH_JSON(ImageCreator, "imagethumbnail.json")
 
@@ -40,12 +37,11 @@ qint64 maximumThumbnailRam()
 {
     // read available RAM (physical free ram only)
     auto freeRam = DEFAULT_FREE_RAM;
-#ifdef KMEMORYINFO_H
+
     KMemoryInfo m;
     if (!m.isNull()) {
         freeRam = qint64(m.availablePhysical());
     }
-#endif
 
     /*
      * NOTE 1: a minimal 64MiB image is always guaranteed (this small size should never cause OS thrashing).

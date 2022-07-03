@@ -21,7 +21,6 @@
 #include <KLocalizedString>
 
 #include "man2html.h"
-#include <karchive_version.h>
 #include <KCompressionDevice>
 
 
