@@ -15,4 +15,4 @@ class KIOPluginForMetaData : public QObject\
 {\
     Q_OBJECT\
     Q_PLUGIN_METADATA(IID "KIOPluginForMetaData" FILE json)\
-};\
+};
