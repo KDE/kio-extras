@@ -15,9 +15,9 @@ SPDX-License-Identifier: GPL-2.0-or-later
 #include <KConfig>
 #include <KConfigGroup>
 
-#include <qbuffer.h>
-#include <qpainter.h>
-#include <qpixmap.h>
+#include <QBuffer>
+#include <QPainter>
+#include <QPixmap>
 #include <QIcon>
 #include <KImageCache>
 

@@ -10,7 +10,7 @@
 #include <KIO/DeleteJob>
 #include <KTar>
 
-#include <qtest.h>
+#include <QTest>
 #include <QDebug>
 #include <QStandardPaths>
 #include <QFileInfo>
