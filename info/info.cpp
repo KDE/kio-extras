@@ -17,10 +17,10 @@
 #include <QCoreApplication>
 #include <QFile>
 #include <QStandardPaths>
+#include <QUrl>
 
 #include <KLocalizedString>
-#include <kshell.h>
-#include <QUrl>
+#include <KShell>
 
 using namespace KIO;
 

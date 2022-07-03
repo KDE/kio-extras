@@ -11,7 +11,7 @@
 #ifndef WINDOWS_EXE_CREATOR_H
 #define WINDOWS_EXE_CREATOR_H
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 class WindowsExeCreator : public ThumbCreator
 {

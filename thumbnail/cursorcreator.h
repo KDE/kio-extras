@@ -7,7 +7,7 @@
 #ifndef _CURSORCREATOR_H_
 #define _CURSORCREATOR_H_
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 class CursorCreator : public ThumbCreator
 {

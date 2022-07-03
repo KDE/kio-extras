@@ -5,10 +5,12 @@
 */
 
 #include "testkioarchive.h"
+
+#include <KIO/CopyJob>
+#include <KIO/DeleteJob>
+#include <KTar>
+
 #include <qtest.h>
-#include <kio/copyjob.h>
-#include <kio/deletejob.h>
-#include <ktar.h>
 #include <QDebug>
 #include <QStandardPaths>
 #include <QFileInfo>

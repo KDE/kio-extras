@@ -7,7 +7,8 @@
 #ifndef TESTKIOARCHIVE_H
 #define TESTKIOARCHIVE_H
 
-#include <kio/job.h>
+#include <KIO/Job>
+
 #include <QUrl>
 #include <QObject>
 

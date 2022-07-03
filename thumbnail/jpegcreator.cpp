@@ -15,7 +15,7 @@
 
 #include <QImage>
 #include <QImageReader>
-#include <klocalizedstring.h>
+#include <KLocalizedString>
 
 #if HAVE_KEXIV2
 #include <KExiv2/KExiv2>

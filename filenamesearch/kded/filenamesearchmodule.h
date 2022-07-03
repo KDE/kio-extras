@@ -10,7 +10,8 @@
 #define KDED_FILENAME_SEARCH_MODULE_H_
 
 #include <KDEDModule>
-#include <kdirnotify.h>
+#include <KDirNotify>
+
 #include <QUrl>
 
 class FileNameSearchModule : public KDEDModule

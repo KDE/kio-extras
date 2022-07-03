@@ -7,9 +7,9 @@
 #ifndef FISH_H
 #define FISH_H
 
-#include <kio/global.h>
-#include <kio/slavebase.h>
-#include <kio/authinfo.h>
+#include <KIO/Global>
+#include <KIO/SlaveBase>
+#include <KIO/AuthInfo>
 
 #define FISH_EXEC_CMD 'X'
 

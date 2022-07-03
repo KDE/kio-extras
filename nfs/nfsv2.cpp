@@ -38,7 +38,7 @@
 #include <QMimeType>
 
 #include <KLocalizedString>
-#include <kio/global.h>
+#include <KIO/Global>
 #include <kio/ioslave_defaults.h>
 
 // For the complete NFSv2 reference see http://tools.ietf.org/html/rfc1094

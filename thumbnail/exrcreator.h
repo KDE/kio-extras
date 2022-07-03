@@ -7,7 +7,7 @@
 #ifndef _EXRCREATOR_H_
 #define _EXRCREATOR_H_
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 class EXRCreator : public ThumbCreator
 {

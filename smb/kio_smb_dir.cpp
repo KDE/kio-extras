@@ -11,7 +11,7 @@
 #include <QFile>
 #include <QFileInfo>
 
-#include <kconfiggroup.h>
+#include <KConfigGroup>
 #include <kio/ioslave_defaults.h>
 
 #include <future>

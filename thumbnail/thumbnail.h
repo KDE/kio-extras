@@ -13,7 +13,7 @@
 #include <QRandomGenerator>
 
 #include <KPluginMetaData>
-#include <kio/slavebase.h>
+#include <KIO/SlaveBase>
 
 class ThumbCreator;
 class QImage;

@@ -6,13 +6,13 @@
 
 #include "kio_archive.h"
 
+#include <KAr>
+#include <KTar>
+#include <KZip>
+#include <K7Zip>
+
 #include <QCoreApplication>
 #include <QUrl>
-
-#include <kar.h>
-#include <ktar.h>
-#include <kzip.h>
-#include <k7zip.h>
 
 #include "kio_archive_debug.h"
 

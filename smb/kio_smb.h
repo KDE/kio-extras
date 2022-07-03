@@ -15,8 +15,8 @@
 //--------------
 // KF includes
 //--------------
-#include <kio/global.h>
-#include <kio/slavebase.h>
+#include <KIO/Global>
+#include <KIO/SlaveBase>
 
 //-----------------------------
 // Standard C library includes

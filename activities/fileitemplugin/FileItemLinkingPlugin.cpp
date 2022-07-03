@@ -8,7 +8,7 @@
 #include "FileItemLinkingPlugin_p.h"
 #include "FileItemLinkingPluginActionLoader.h"
 
-#include <kfileitemlistproperties.h>
+#include <KFileItemListProperties>
 #include <utils/d_ptr_implementation.h>
 #include <utils/qsqlquery_iterator.h>
 

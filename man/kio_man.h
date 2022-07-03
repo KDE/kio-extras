@@ -9,8 +9,8 @@
 
 #include <QBuffer>
 
-#include <kio/global.h>
-#include <kio/slavebase.h>
+#include <KIO/Global>
+#include <KIO/SlaveBase>
 
 class MANProtocol : public QObject, public KIO::SlaveBase
 {

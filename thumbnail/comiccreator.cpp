@@ -18,9 +18,9 @@
 
 #include "macros.h"
 
-#include <kzip.h>
-#include <ktar.h>
-#include <k7zip.h>
+#include <KZip>
+#include <KTar>
+#include <K7Zip>
 
 #include <memory>
 

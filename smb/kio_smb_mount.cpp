@@ -7,10 +7,11 @@
 
 #include <KLocalizedString>
 #include <KProcess>
+#include <KShell>
+
 #include <QByteArray>
 #include <QDataStream>
 #include <QDir>
-#include <kshell.h>
 #include <unistd.h>
 
 void SMBSlave::special(const QByteArray &data)

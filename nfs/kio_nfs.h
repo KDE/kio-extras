@@ -8,9 +8,9 @@
 #ifndef KIO_NFS_H
 #define KIO_NFS_H
 
-#include <kio/slavebase.h>
-#include <kio/global.h>
-#include <kconfiggroup.h>
+#include <KIO/SlaveBase>
+#include <KIO/Global>
+#include <KConfigGroup>
 
 #include <QHash>
 #include <QMap>

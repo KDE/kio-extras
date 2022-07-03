@@ -23,8 +23,8 @@
 #include <QHostInfo>
 #include <QCoreApplication>
 
-#include <klocalizedstring.h>
-#include <ksharedconfig.h>
+#include <KLocalizedString>
+#include <KSharedConfig>
 
 #include "kio_nfs_debug.h"
 #include "nfsv2.h"

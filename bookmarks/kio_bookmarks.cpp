@@ -7,25 +7,24 @@
 
 #include "kio_bookmarks.h"
 
+#include <KShell>
+#include <KLocalizedString>
+#include <KConfigGroup>
+#include <KBookmark>
+#include <KImageCache>
+#include <KFilePlacesModel>
+#include <Solid/Device>
+#include <Solid/DeviceInterface>
+#include <KIO/ApplicationLauncherJob>
+
+#include <QDebug>
+#include <QGuiApplication>
+#include <QRegularExpression>
+#include <QTextDocument>
+#include <QUrlQuery>
+
 #include <stdio.h>
 #include <stdlib.h>
-
-#include <QRegularExpression>
-#include <qtextdocument.h>
-#include <qurlquery.h>
-
-#include <kshell.h>
-
-#include <KLocalizedString>
-#include <kconfiggroup.h>
-#include <kbookmark.h>
-#include <kimagecache.h>
-#include <qdebug.h>
-#include <kfileplacesmodel.h>
-#include <solid/device.h>
-#include <solid/deviceinterface.h>
-#include <QGuiApplication>
-#include <KIO/ApplicationLauncherJob>
 
 using namespace KIO;
 

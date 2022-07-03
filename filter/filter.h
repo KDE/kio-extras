@@ -10,8 +10,8 @@ SPDX-License-Identifier: MIT
 #ifndef __filter_h__
 #define __filter_h__
 
+#include <KIO/SlaveBase>
 #include <QObject>
-#include <kio/slavebase.h>
 #include <QUrl>
 
 class QUrl;

@@ -5,7 +5,7 @@
 
 #include "kio_info_debug.h"
 
-#include <kio/slavebase.h>
+#include <KIO/SlaveBase>
 
 class InfoProtocol : public KIO::SlaveBase
 {

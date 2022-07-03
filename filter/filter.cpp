@@ -16,7 +16,7 @@ SPDX-License-Identifier: MIT
 #include <QMimeType>
 #include <QMimeDatabase>
 
-#include <kfilterbase.h>
+#include <KFilterBase>
 #include <KCompressionDevice>
 
 #include "loggingcategory.h"

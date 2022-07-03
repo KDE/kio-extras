@@ -21,7 +21,7 @@
 
 #include <KLocalizedString>
 #include <KUser>
-#include <kio/job.h>
+#include <KIO/Job>
 
 #include <utils/d_ptr_implementation.h>
 #include <utils/qsqlquery_iterator.h>

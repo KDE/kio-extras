@@ -9,7 +9,7 @@
 
 #include <QtGlobal>
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 class ImageCreator : public ThumbCreator
 {

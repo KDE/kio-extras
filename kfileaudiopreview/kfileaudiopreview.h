@@ -8,7 +8,7 @@
 #ifndef KFILEAUDIOPREVIEW_H
 #define KFILEAUDIOPREVIEW_H
 
-#include <kpreviewwidgetbase.h>
+#include <KPreviewWidgetBase>
 #include <phonon/phononnamespace.h>
 #include <QVariantList>
 

@@ -40,11 +40,10 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
-#include <kio/previewjob.h>
-#include <kio/thumbcreator.h>
-#include <kio/thumbdevicepixelratiodependentcreator.h>
-#include <kio/thumbsequencecreator.h>
-#include <kio/previewjob.h>
+#include <KIO/ThumbCreator>
+#include <KIO/ThumbDevicePixelRatioDependentCreator>
+#include <KIO/ThumbSequenceCreator>
+#include <KIO/PreviewJob>
 
 #include <limits>
 #include <QDirIterator>

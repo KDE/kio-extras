@@ -7,7 +7,7 @@
 #ifndef _SVGCREATOR_H_
 #define _SVGCREATOR_H_
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 class SvgCreator : public ThumbCreator
 {

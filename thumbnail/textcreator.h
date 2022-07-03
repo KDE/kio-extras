@@ -8,9 +8,10 @@
 #define _TEXTCREATOR_H_
 
 #include <KSyntaxHighlighting/Repository>
+#include <KIO/ThumbCreator>
+#include <KIO/ThumbDevicePixelRatioDependentCreator>
+
 #include <QPixmap>
-#include <kio/thumbcreator.h>
-#include <kio/thumbdevicepixelratiodependentcreator.h>
 
 class TextCreator : public KIO::ThumbDevicePixelRatioDependentCreator {
 public:

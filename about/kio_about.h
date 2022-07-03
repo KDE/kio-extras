@@ -10,8 +10,8 @@
 #include <QByteArray>
 #include <QUrl>
 
-#include <kio/global.h>
-#include <kio/slavebase.h>
+#include <KIO/Global>
+#include <KIO/SlaveBase>
 
 
 class AboutProtocol : public KIO::SlaveBase

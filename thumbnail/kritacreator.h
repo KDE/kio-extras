@@ -10,7 +10,7 @@
 #include <QtGlobal>
 
 // KF
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 /**
  * The Krita thumbnail creator can create thumbnails for krita and openraster images

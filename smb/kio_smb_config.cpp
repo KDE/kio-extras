@@ -6,8 +6,8 @@
 
 #include "kio_smb.h"
 #include "smburl.h"
-#include <kconfig.h>
-#include <kconfiggroup.h>
+#include <KConfig>
+#include <KConfigGroup>
 
 #include <QTextCodec>
 

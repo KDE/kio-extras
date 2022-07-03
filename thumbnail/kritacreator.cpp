@@ -8,7 +8,7 @@
 
 #include "macros.h"
 
-#include <kzip.h>
+#include <KZip>
 
 #include <memory>
 #include <QImage>

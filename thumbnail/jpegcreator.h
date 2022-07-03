@@ -8,7 +8,7 @@
 #ifndef _JPEGCREATOR_H_
 #define _JPEGCREATOR_H_
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 class QTransform;
 

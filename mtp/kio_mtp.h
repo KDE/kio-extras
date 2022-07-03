@@ -10,8 +10,8 @@
 #ifndef KIO_MTP_H
 #define KIO_MTP_H
 
-#include <kio/global.h>
-#include <kio/slavebase.h>
+#include <KIO/Global>
+#include <KIO/SlaveBase>
 #include <KLocalizedString>
 
 #include <stdlib.h>

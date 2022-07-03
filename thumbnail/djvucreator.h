@@ -6,7 +6,7 @@
 #ifndef DJVUCREATOR_H__
 #define DJVUCREATOR_H__
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 class DjVuCreator : public ThumbCreator
 {

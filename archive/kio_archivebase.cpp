@@ -5,26 +5,25 @@
 */
 
 #include "kio_archivebase.h"
+#include <kio_archive_debug.h>
 
 #include <errno.h>
 #include <stdlib.h>
 #include <sys/stat.h>
 
 #include <KIO/StatJob>
+#include <KTar>
+#include <KZip>
+#include <KAr>
+#include <K7Zip>
+#include <KUser>
+#include <KLocalizedString>
 
 #include <QFile>
 #include <QDir>
 #include <QMimeDatabase>
 #include <QMimeType>
-
 #include <QUrl>
-#include <ktar.h>
-#include <kzip.h>
-#include <kar.h>
-#include <k7zip.h>
-#include <kio_archive_debug.h>
-#include <kuser.h>
-#include <KLocalizedString>
 
 #include <memory>
 

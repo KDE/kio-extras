@@ -9,7 +9,7 @@
 #ifndef WINDOWS_IMAGE_CREATOR_H
 #define WINDOWS_IMAGE_CREATOR_H
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 class WindowsImageCreator : public ThumbCreator
 {

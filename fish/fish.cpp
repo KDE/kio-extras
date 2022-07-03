@@ -54,9 +54,9 @@
 #include <errno.h>
 #endif
 
-#include <kmessagebox.h>
-#include <klocalizedstring.h>
-#include <kremoteencoding.h>
+#include <KMessageBox>
+#include <KLocalizedString>
+#include <KRemoteEncoding>
 
 #include "fishcode.h"
 #include "loggingcategory.h"

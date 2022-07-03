@@ -16,7 +16,7 @@
 #ifndef COMIC_CREATOR_H
 #define COMIC_CREATOR_H
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 #include <QByteArray>
 #include <QStringList>

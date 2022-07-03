@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include <kio/thumbcreator.h>
+#include <KIO/ThumbCreator>
 
 #include <QStringList>
 

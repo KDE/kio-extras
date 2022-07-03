@@ -9,8 +9,8 @@
 
 #include <sys/types.h>
 
-#include <kio/global.h>
-#include <kio/slavebase.h>
+#include <KIO/Global>
+#include <KIO/SlaveBase>
 
 #include "libkioarchive_export.h"
 

@@ -9,7 +9,7 @@
 #ifndef __kio_sftp_h__
 #define __kio_sftp_h__
 
-#include <kio/global.h>
+#include <KIO/Global>
 #include <KIO/WorkerBase>
 
 #include <libssh/libssh.h>

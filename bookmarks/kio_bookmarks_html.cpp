@@ -9,15 +9,15 @@ SPDX-License-Identifier: GPL-2.0-or-later
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <kshell.h>
-
+#include <KShell>
 #include <KLocalizedString>
-#include <kconfig.h>
-#include <kconfiggroup.h>
-#include <kbookmark.h>
-#include <kbookmarkmanager.h>
-#include <kcolorscheme.h>
-#include <kcolorutils.h>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KBookmark>
+#include <KBookmarkManager>
+#include <KColorScheme>
+#include <KColorUtils>
+
 #include <QStandardPaths>
 #include <QFontDatabase>
 

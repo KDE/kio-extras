@@ -6,9 +6,9 @@
 #ifndef KIO_BOOKMARKS_H
 #define KIO_BOOKMARKS_H
 
-#include <kio/slavebase.h>
-#include <kbookmarkmanager.h>
-#include <kconfig.h>
+#include <KIO/SlaveBase>
+#include <KBookmarkManager>
+#include <KConfig>
 #include <KConfigGroup>
 #include <KImageCache>
 
