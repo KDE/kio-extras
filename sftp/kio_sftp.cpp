@@ -29,7 +29,7 @@
 
 #include <KConfigGroup>
 #include <KLocalizedString>
-#include <kio/ioslave_defaults.h>
+#include <kio/ioworker_defaults.h>
 
 #ifdef Q_OS_WIN
 #include <filesystem>  // for permissions

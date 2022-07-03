@@ -12,7 +12,7 @@
 #include <QFileInfo>
 
 #include <KConfigGroup>
-#include <kio/ioslave_defaults.h>
+#include <kio/ioworker_defaults.h>
 
 #include <future>
 

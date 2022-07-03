@@ -9,7 +9,7 @@
 
 #include <QFileInfo>
 
-#include <kio/ioslave_defaults.h>
+#include <kio/ioworker_defaults.h>
 
 #include "kio_smb.h"
 
