@@ -153,7 +153,7 @@ void NFSSlave::openConnection()
     {
         if (!connectionError)               // but connection was possible
         {
-            setError(KIO::ERR_SLAVE_DEFINED, i18n("Cannot find an NFS version that host '%1' supports", m_host));
+            setError(KIO::ERR_WORKER_DEFINED, i18n("Cannot find an NFS version that host '%1' supports", m_host));
         }
         else                        // connection failed
         {
@@ -333,7 +333,7 @@ bool NFSSlave::verifyProtocol(const QUrl &url)
         // KIO::ERR_UNKNOWN_HOST with a blank host name results in the
         // error message "No hostname specified", but Konqueror does not
         // report it properly.  Return our own message.
-        setError(KIO::ERR_SLAVE_DEFINED, i18n("The NFS protocol requires a server host name."));
+        setError(KIO::ERR_WORKER_DEFINED, i18n("The NFS protocol requires a server host name."));
         return (false);
     }
     else
