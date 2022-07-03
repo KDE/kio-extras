@@ -7,6 +7,7 @@
 
 #include "kio_smb.h"
 #include "smburl.h"
+#include <kio_version.h>
 
 #include <kdnssd_version.h>
 #include <KDNSSD/RemoteService>
@@ -277,18 +278,31 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
     switch (errNum) {
     case ENOENT:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK)
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+            return SMBError{ERR_WORKER_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall.")};
+#else
             return SMBError {ERR_SLAVE_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall.")};
+#endif
         else
             return SMBError {ERR_DOES_NOT_EXIST, url.toDisplayString()};
 #ifdef ENOMEDIUM
     case ENOMEDIUM:
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return SMBError{ERR_WORKER_DEFINED, i18n("No media in device for %1", url.toDisplayString())};
+#else
         return SMBError {ERR_SLAVE_DEFINED, i18n("No media in device for %1", url.toDisplayString())};
+#endif
+
 #endif
 #ifdef EHOSTDOWN
     case EHOSTDOWN:
 #endif
     case ECONNREFUSED:
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return SMBError{ERR_WORKER_DEFINED, i18n("Could not connect to host for %1", url.toDisplayString())};
+#else
         return SMBError {ERR_SLAVE_DEFINED, i18n("Could not connect to host for %1", url.toDisplayString())};
+#endif
     case ENOTDIR:
         return SMBError {ERR_CANNOT_ENTER_DIRECTORY, url.toDisplayString()};
     case EFAULT:
@@ -300,13 +314,21 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
     case EIO:
     case ENETUNREACH:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER)
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+            return SMBError{ERR_WORKER_DEFINED, i18n("Error while connecting to server responsible for %1", url.toDisplayString())};
+#else
             return SMBError {ERR_SLAVE_DEFINED, i18n("Error while connecting to server responsible for %1", url.toDisplayString())};
+#endif
         else
             return SMBError {ERR_CONNECTION_BROKEN, url.toDisplayString()};
     case ENOMEM:
         return SMBError {ERR_OUT_OF_MEMORY, url.toDisplayString()};
     case ENODEV:
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return SMBError{ERR_WORKER_DEFINED, i18n("Share could not be found on given server")};
+#else
         return SMBError {ERR_SLAVE_DEFINED, i18n("Share could not be found on given server")};
+#endif
     case EBADF:
         return SMBError {ERR_INTERNAL, i18n("Bad file descriptor")};
     case ETIMEDOUT:
@@ -315,10 +337,18 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
         return SMBError {ERR_CANNOT_RMDIR, url.toDisplayString()};
 #ifdef ENOTUNIQ
     case ENOTUNIQ:
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return SMBError
+        {
+            ERR_WORKER_DEFINED,
+#else
         return SMBError {ERR_SLAVE_DEFINED,
-                         i18n("The given name could not be resolved to a unique server. "
-                              "Make sure your network is setup without any name conflicts "
-                              "between names used by Windows and by UNIX name resolution.")};
+#endif
+                i18n(
+                    "The given name could not be resolved to a unique server. "
+                    "Make sure your network is setup without any name conflicts "
+                    "between names used by Windows and by UNIX name resolution.")
+        };
 #endif
     case ECONNABORTED:
         return SMBError {ERR_CONNECTION_BROKEN, url.host()};

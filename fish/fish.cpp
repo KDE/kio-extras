@@ -16,16 +16,17 @@
 
 #include "fish.h"
 
-#include <config-runtime.h>
-#include <config-fish.h>
-#include <QFile>
-#include <QDateTime>
-#include <QRegularExpression>
 #include <QCoreApplication>
+#include <QDateTime>
 #include <QDebug>
-#include <QStandardPaths>
-#include <QMimeType>
+#include <QFile>
 #include <QMimeDatabase>
+#include <QMimeType>
+#include <QRegularExpression>
+#include <QStandardPaths>
+#include <config-fish.h>
+#include <config-runtime.h>
+#include <kio_version.h>
 
 #include <stdlib.h>
 #include <sys/resource.h>
@@ -1127,7 +1128,11 @@ void fishProtocol::manageConnection(const QString &l) {
             break;
         case FISH_FISH:
         case FISH_VER:
-            error(ERR_SLAVE_DEFINED,line);
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+            error(KIO::ERR_WORKER_DEFINED, line);
+#else
+            error(KIO::ERR_SLAVE_DEFINED, line);
+#endif
             shutdownConnection();
             break;
         case FISH_PWD:

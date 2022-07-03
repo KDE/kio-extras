@@ -10,6 +10,7 @@
 #include "kio_mtp.h"
 #include "kio_mtp_debug.h"
 
+#include <kio_version.h>
 // #include <KComponentData>
 #include <QTemporaryFile>
 #include <QFileInfo>
@@ -220,7 +221,14 @@ void MTPSlave::listDir(const QUrl &url)
                 finished();
                 qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storage media:" << storages.count();
             } else {
-                error(ERR_SLAVE_DEFINED, i18nc("Message shown when attempting to access an MTP device that is not fully accessible yet", "Could not access device. Make sure it is unlocked, and tap \"Allow\" on the popup on its screen. If that does not work, make sure MTP is enabled in its USB connection settings."));
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+                error(KIO::ERR_WORKER_DEFINED,
+#else
+                error(KIO::ERR_SLAVE_DEFINED,
+#endif
+                      i18nc("Message shown when attempting to access an MTP device that is not fully accessible yet",
+                            "Could not access device. Make sure it is unlocked, and tap \"Allow\" on the popup on its screen. If that does not work, make sure "
+                            "MTP is enabled in its USB connection settings."));
             }
         } else {
             // list files and folders

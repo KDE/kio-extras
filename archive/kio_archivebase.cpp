@@ -6,9 +6,10 @@
 
 #include "kio_archivebase.h"
 
-#include <sys/stat.h>
-#include <stdlib.h>
 #include <errno.h>
+#include <kio_version.h>
+#include <stdlib.h>
+#include <sys/stat.h>
 
 #include <KIO/StatJob>
 
@@ -269,9 +270,12 @@ void ArchiveProtocolBase::listDir( const QUrl & url )
         {
             // If we cannot open, it might be a problem with the archive header (e.g. unsupported format)
             // Therefore give a more specific error message
-            error( KIO::ERR_SLAVE_DEFINED,
-                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
-                         url.toDisplayString() ) );
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+            error(KIO::ERR_WORKER_DEFINED,
+#else
+            error(KIO::ERR_SLAVE_DEFINED,
+#endif
+                  i18n("Could not open the file, probably due to an unsupported file format.\n%1", url.toDisplayString()));
             return;
         }
         else if ( errorNum != ERR_IS_DIRECTORY )
@@ -363,9 +367,12 @@ void ArchiveProtocolBase::stat( const QUrl & url )
         {
             // If we cannot open, it might be a problem with the archive header (e.g. unsupported format)
             // Therefore give a more specific error message
-            error( KIO::ERR_SLAVE_DEFINED,
-                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
-                         url.toDisplayString() ) );
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+            error(KIO::ERR_WORKER_DEFINED,
+#else
+            error(KIO::ERR_SLAVE_DEFINED,
+#endif
+                  i18n("Could not open the file, probably due to an unsupported file format.\n%1", url.toDisplayString()));
             return;
         }
         else if ( errorNum != ERR_IS_DIRECTORY )
@@ -450,9 +457,12 @@ void ArchiveProtocolBase::get( const QUrl & url )
         {
             // If we cannot open, it might be a problem with the archive header (e.g. unsupported format)
             // Therefore give a more specific error message
-            error( KIO::ERR_SLAVE_DEFINED,
-                   i18n( "Could not open the file, probably due to an unsupported file format.\n%1",
-                         url.toDisplayString() ) );
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+            error(KIO::ERR_WORKER_DEFINED,
+#else
+            error(KIO::ERR_SLAVE_DEFINED,
+#endif
+                  i18n("Could not open the file, probably due to an unsupported file format.\n%1", url.toDisplayString()));
             return;
         }
         else
@@ -501,9 +511,12 @@ void ArchiveProtocolBase::get( const QUrl & url )
 
     if (!io)
     {
-        error( KIO::ERR_SLAVE_DEFINED,
-               i18n( "The archive file could not be opened, perhaps because the format is unsupported.\n%1",
-                     url.toDisplayString() ) );
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        error(KIO::ERR_WORKER_DEFINED,
+#else
+        error(KIO::ERR_SLAVE_DEFINED,
+#endif
+              i18n("The archive file could not be opened, perhaps because the format is unsupported.\n%1", url.toDisplayString()));
         return;
     }
 

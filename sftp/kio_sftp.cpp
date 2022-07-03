@@ -7,12 +7,12 @@
  */
 
 #include "kio_sftp.h"
-#include <config-runtime.h>
-
-#include <cerrno>
-#include <cstring>
-#include <memory>
 #include <array>
+#include <cerrno>
+#include <config-runtime.h>
+#include <cstring>
+#include <kio_version.h>
+#include <memory>
 
 #include <QCoreApplication>
 #include <QDateTime>
@@ -620,7 +620,11 @@ Result SFTPWorker::sftpOpenConnection(const AuthInfo &info)
     if (rc < 0) {
         const QString errorString = QString::fromUtf8(ssh_get_error(mSession));
         closeConnection();
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return Result::fail(KIO::ERR_WORKER_DEFINED, errorString);
+#else
         return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
+#endif
     }
 
     return Result::pass();
@@ -648,12 +652,20 @@ Q_REQUIRED_RESULT ServerKeyInspection fingerpint(ssh_session session)
     });
     int rc = ssh_get_server_publickey(session, &srv_pubkey);
     if (rc < 0) {
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return inspection.withResult(Result::fail(KIO::ERR_WORKER_DEFINED, QString::fromUtf8(ssh_get_error(session))));
+#else
         return inspection.withResult(Result::fail(KIO::ERR_SLAVE_DEFINED, QString::fromUtf8(ssh_get_error(session))));
+#endif
     }
 
     const char *srv_pubkey_type = ssh_key_type_to_char(ssh_key_type(srv_pubkey));
     if (srv_pubkey_type == nullptr) {
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return inspection.withResult(Result::fail(KIO::ERR_WORKER_DEFINED, i18n("Could not get server public key type name")));
+#else
         return inspection.withResult(Result::fail(KIO::ERR_SLAVE_DEFINED, i18n("Could not get server public key type name")));
+#endif
     }
     inspection.serverPublicKeyType = QByteArray(srv_pubkey_type);
 
@@ -666,7 +678,11 @@ Q_REQUIRED_RESULT ServerKeyInspection fingerpint(ssh_session session)
                                 &hash,
                                 &hlen);
     if (rc != SSH_OK) {
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return inspection.withResult(Result::fail(KIO::ERR_WORKER_DEFINED, i18n("Could not create hash from server public key")));
+#else
         return inspection.withResult(Result::fail(KIO::ERR_SLAVE_DEFINED, i18n("Could not create hash from server public key")));
+#endif
     }
 
     char *fingerprint = ssh_get_fingerprint_hash(SSH_PUBLICKEY_HASH_SHA256, hash, hlen);
@@ -675,7 +691,12 @@ Q_REQUIRED_RESULT ServerKeyInspection fingerpint(ssh_session session)
     });
 
     if (fingerprint == nullptr) {
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return inspection.withResult(Result::fail(KIO::ERR_WORKER_DEFINED, i18n("Could not create hash from server public key")));
+        return inspection.withResult(Result::fail(KIO::ERR_WORKER_DEFINED, i18n("Could not create fingerprint for server public key")));
+#else
         return inspection.withResult(Result::fail(KIO::ERR_SLAVE_DEFINED, i18n("Could not create fingerprint for server public key")));
+#endif
     }
 
     inspection.fingerprint = fingerprint;
@@ -743,7 +764,11 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
                                          "%2",
                                          serverPublicKeyType,
                                          QString::fromUtf8(ssh_get_error(mSession)));
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return Result::fail(KIO::ERR_WORKER_DEFINED, errorString);
+#else
         return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
+#endif
     }
     case SSH_KNOWN_HOSTS_CHANGED: {
         const QString errorString = i18n("The host key for the server %1 has changed.\n"
@@ -756,7 +781,11 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
                                          serverPublicKeyType,
                                          fingerprint,
                                          QString::fromUtf8(ssh_get_error(mSession)));
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return Result::fail(KIO::ERR_WORKER_DEFINED, errorString);
+#else
         return Result::fail(KIO::ERR_SLAVE_DEFINED, errorString);
+#endif
     }
     case SSH_KNOWN_HOSTS_NOT_FOUND:
     case SSH_KNOWN_HOSTS_UNKNOWN: {
@@ -782,7 +811,12 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
         break;
     }
     case SSH_KNOWN_HOSTS_ERROR:
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        return Result::fail(KIO::ERR_WORKER_DEFINED, QString::fromUtf8(ssh_get_error(mSession)));
+#else
         return Result::fail(KIO::ERR_SLAVE_DEFINED, QString::fromUtf8(ssh_get_error(mSession)));
+#endif
+
     case SSH_KNOWN_HOSTS_OK:
         break;
     }

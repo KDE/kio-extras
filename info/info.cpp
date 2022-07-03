@@ -2,6 +2,7 @@
 
 #include "info.h"
 
+#include <kio_version.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
@@ -51,7 +52,11 @@ InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
         qCCritical(LOG_KIO_INFO) << "Cannot locate files for HTML conversion," << qPrintable(missingFiles.join(' '));
         QString errorStr = i18n("Unable to locate files which are necessary to run this service:<br>%1<br>"
                                 "Please check your software installation.", missingFiles.join(' '));
+#if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
+        error(KIO::ERR_WORKER_DEFINED, errorStr);
+#else
         error(KIO::ERR_SLAVE_DEFINED, errorStr);
+#endif
         exit();
     }
 
