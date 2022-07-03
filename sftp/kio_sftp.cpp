@@ -692,7 +692,6 @@ Q_REQUIRED_RESULT ServerKeyInspection fingerpint(ssh_session session)
 
     if (fingerprint == nullptr) {
 #if KIO_VERSION >= QT_VERSION_CHECK(5, 96, 0)
-        return inspection.withResult(Result::fail(KIO::ERR_WORKER_DEFINED, i18n("Could not create hash from server public key")));
         return inspection.withResult(Result::fail(KIO::ERR_WORKER_DEFINED, i18n("Could not create fingerprint for server public key")));
 #else
         return inspection.withResult(Result::fail(KIO::ERR_SLAVE_DEFINED, i18n("Could not create fingerprint for server public key")));
