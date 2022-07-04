@@ -104,10 +104,10 @@ KIO::UDSEntry SMBCDiscovery::toEntry() const
     return m_entry;
 }
 
-SMBCDiscoverer::SMBCDiscoverer(const SMBUrl &url, QEventLoop *loop, SMBSlave *slave)
+SMBCDiscoverer::SMBCDiscoverer(const SMBUrl &url, QEventLoop *loop, SMBWorker *worker)
     : m_url(url)
     , m_loop(loop)
-    , m_slave(slave)
+    , m_worker(worker)
 {
 }
 
@@ -146,7 +146,7 @@ bool SMBCDiscoverer::discoverNextFileInfo()
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
 
         m_url.addPath(name);
-        m_slave->statToUDSEntry(m_url, st, entry); // won't produce useful error
+        m_worker->statToUDSEntry(m_url, st, entry); // won't produce useful error
         Q_EMIT newDiscovery(Discovery::Ptr(new SMBCDiscovery(entry)));
         m_url.cdUp();
         return true;
@@ -235,7 +235,7 @@ void SMBCDiscoverer::discoverNext()
     } else if (dirp->smbc_type == SMBC_FILE || dirp->smbc_type == SMBC_DIR) {
         // Set stat information
         m_url.addPath(name);
-        const int statErr = m_slave->browse_stat_path(m_url, entry);
+        const int statErr = m_worker->browse_stat_path(m_url, entry);
         if (statErr != 0) {
             // The entry can disappear in the time span between
             // listing and the stat call. There's nothing we or the user

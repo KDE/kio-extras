@@ -1,7 +1,7 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
     SPDX-FileCopyrightText: 2000 Caldera Systems Inc.
-    SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2020-2022 Harald Sitter <sitter@kde.org>
     SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
 */
 
@@ -17,8 +17,8 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
         return -1;
     }
 
-    SMBSlave slave(argv[2], argv[3]);
-    slave.dispatchLoop();
+    SMBWorker worker(argv[2], argv[3]);
+    worker.dispatchLoop();
 
     return 0;
 }

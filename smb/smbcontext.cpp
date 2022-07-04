@@ -62,7 +62,7 @@ SMBContext::SMBContext(SMBAuthenticator *authenticator)
     // TODO: refactor; checkPassword should query this on
     // demand to not run into situations where we may have cached
     // the workgroup early on and it changed since. Needs context
-    // being held in the slave though, which opens us up to nullptr
+    // being held in the worker though, which opens us up to nullptr
     // problems should checkPassword be called without init first.
     authenticator->setDefaultWorkgroup(smbc_getWorkgroup(*this));
 

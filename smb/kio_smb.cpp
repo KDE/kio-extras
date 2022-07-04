@@ -12,7 +12,7 @@
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.smb" FILE "smb.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.smb" FILE "smb.json")
 };
 
 bool needsEEXISTWorkaround()
@@ -40,43 +40,21 @@ bool needsEEXISTWorkaround()
     return false;
 }
 
-SMBSlave::SMBSlave(const QByteArray &pool, const QByteArray &app)
-    : SlaveBase("smb", pool, app)
+SMBWorker::SMBWorker(const QByteArray &pool, const QByteArray &app)
+    : WorkerBase("smb", pool, app)
     , m_openFd(-1)
     , m_enableEEXISTWorkaround(needsEEXISTWorkaround())
 {
 }
 
-SMBSlave::~SMBSlave() = default;
-
-void SMBSlave::virtual_hook(int id, void *data)
-{
-    switch (id) {
-    case SlaveBase::GetFileSystemFreeSpace: {
-        QUrl *url = static_cast<QUrl *>(data);
-        fileSystemFreeSpace(*url);
-    }
-    break;
-    case SlaveBase::Truncate: {
-        auto length = static_cast<KIO::filesize_t *>(data);
-        truncate(*length);
-    }
-    break;
-    default: {
-        SlaveBase::virtual_hook(id, data);
-    }
-    break;
-    }
-}
-
-SlaveFrontend::SlaveFrontend(SMBSlave &slave)
-    : m_slave(slave)
+WorkerFrontend::WorkerFrontend(SMBWorker &worker)
+    : m_worker(worker)
 {
 }
 
-bool SlaveFrontend::checkCachedAuthentication(AuthInfo &info)
+bool WorkerFrontend::checkCachedAuthentication(AuthInfo &info)
 {
-    return m_slave.checkCachedAuthentication(info);
+    return m_worker.checkCachedAuthentication(info);
 }
 
 #include "kio_smb.moc"

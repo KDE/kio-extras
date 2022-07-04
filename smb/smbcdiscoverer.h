@@ -31,7 +31,7 @@ class SMBCDiscoverer : public QObject, public Discoverer
 {
     Q_OBJECT
 public:
-    SMBCDiscoverer(const SMBUrl &url, QEventLoop *discoverNext, SMBSlave *slave);
+    SMBCDiscoverer(const SMBUrl &url, QEventLoop *discoverNext, SMBWorker *worker);
     ~SMBCDiscoverer() override;
 
     void start() override;
@@ -72,7 +72,7 @@ private:
 
     SMBUrl m_url;
     QEventLoop *m_loop = nullptr;
-    SMBSlave *m_slave = nullptr;
+    SMBWorker *m_worker = nullptr;
     bool m_finished = false;
     int m_error = 0;
     bool m_dirWasRoot = true;

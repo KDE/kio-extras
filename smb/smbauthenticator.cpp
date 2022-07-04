@@ -32,7 +32,7 @@ void SMBAuthenticator::loadConfiguration()
     QString m_encoding = QTextCodec::codecForLocale()->name();
     m_defaultEncoding = group.readEntry("Encoding", m_encoding.toLower());
 
-    // unscramble, taken from Nicola Brodu's smb ioslave
+    // unscramble, taken from Nicola Brodu's smb ioworker
     // not really secure, but better than storing the plain password
     QString scrambled = group.readEntry("Password");
     m_defaultPassword = "";

@@ -21,7 +21,7 @@
 
 #include <errno.h>
 
-// Frontend implementation in place of slavebase
+// Frontend implementation in place of workerbase
 class Frontend : public SMBAbstractFrontend
 {
     KPasswdServerClient m_passwd;

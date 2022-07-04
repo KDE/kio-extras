@@ -1,12 +1,14 @@
 /*
     SPDX-License-Identifier: GPL-2.0-or-later
     SPDX-FileCopyrightText: 2000 Caldera Systems Inc.
-    SPDX-FileCopyrightText: 2018-2021 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2018-2022 Harald Sitter <sitter@kde.org>
     SPDX-FileContributor: Matthew Peterson <mpeterson@caldera.com>
 */
 
 #include "kio_smb.h"
 #include "smburl.h"
+
+#include <utility>
 
 #include <KDNSSD/RemoteService>
 #include <KDNSSD/ServiceBrowser>
@@ -26,7 +28,7 @@
 
 using namespace KIO;
 
-int SMBSlave::cache_stat(const SMBUrl &url, struct stat *st)
+int SMBWorker::cache_stat(const SMBUrl &url, struct stat *st)
 {
     int cacheStatErr = 0;
     int result = smbc_stat(url.toSmbcUrl(), st);
@@ -39,7 +41,7 @@ int SMBSlave::cache_stat(const SMBUrl &url, struct stat *st)
     return cacheStatErr;
 }
 
-int SMBSlave::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
+int SMBWorker::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
 {
     int cacheStatErr = cache_stat(url, &st);
     if (cacheStatErr == 0) {
@@ -49,7 +51,7 @@ int SMBSlave::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
     return cacheStatErr;
 }
 
-int SMBSlave::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry)
+int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry)
 {
     if (!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode)) {
         qCDebug(KIO_SMB_LOG) << "mode: "<< st.st_mode;
@@ -110,7 +112,7 @@ int SMBSlave::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEnt
     return 0;
 }
 
-void SMBSlave::stat(const QUrl &kurl)
+WorkerResult SMBWorker::stat(const QUrl &kurl)
 {
     qCDebug(KIO_SMB_LOG) << kurl;
     // make a valid URL
@@ -120,8 +122,7 @@ void SMBSlave::stat(const QUrl &kurl)
     if (url != kurl) {
         qCDebug(KIO_SMB_LOG) << "redirection " << url;
         redirection(url);
-        finished();
-        return;
+        return WorkerResult::pass();
     }
 
     m_current_url = url;
@@ -132,20 +133,14 @@ void SMBSlave::stat(const QUrl &kurl)
 
     switch (m_current_url.getType()) {
     case SMBURLTYPE_UNKNOWN:
-        error(ERR_MALFORMED_URL, url.toDisplayString());
-        return;
-
+        return WorkerResult::fail(ERR_MALFORMED_URL, url.toDisplayString());
     case SMBURLTYPE_PRINTER:
-        error(ERR_UNSUPPORTED_ACTION, url.toDisplayString());
-        return;
-
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, url.toDisplayString());
     case SMBURLTYPE_ENTIRE_NETWORK:
     case SMBURLTYPE_WORKGROUP_OR_SERVER:
         udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         statEntry(udsentry);
-        finished();
-        return;
-
+        return WorkerResult::pass();
     case SMBURLTYPE_SHARE_OR_PATH: {
         int ret = browse_stat_path(m_current_url, udsentry);
 
@@ -155,35 +150,32 @@ void SMBSlave::stat(const QUrl &kurl)
             const int passwordError = checkPassword(smbUrl);
             if (passwordError == KJob::NoError) {
                 redirection(smbUrl);
-                finished();
-            } else if (passwordError == KIO::ERR_USER_CANCELED) {
-                reportError(url, ret);
-            } else {
-                error(passwordError, url.toString());
+                return WorkerResult::pass();
             }
-
-            return;
-        } else if (ret != 0) {
+            if (passwordError == KIO::ERR_USER_CANCELED) {
+                return reportError(url, ret);
+            }
+            return WorkerResult::fail(passwordError, url.toString());
+        }
+        if (ret != 0) {
             qCDebug(KIO_SMB_LOG) << "stat() error" << ret << url;
-            reportError(url, ret);
-            return;
+            return reportError(url, ret);
         }
 
         statEntry(udsentry);
-        finished();
-        return;
+        return WorkerResult::pass();
     }
     }
 
     qCDebug(KIO_SMB_LOG) << "UNKNOWN " << url;
-    finished();
+    return WorkerResult::pass();
 }
 
 // TODO: complete checking <-- what does that even mean?
 // TODO: why is this not part of SMBUrl or at the very least URL validation should
 //    be 100% shared between this and SMBUrl. Notably SMBUrl has code that looks
 //    to do a similar thing but is much less complete.
-QUrl SMBSlave::checkURL(const QUrl &kurl_) const
+QUrl SMBWorker::checkURL(const QUrl &kurl_) const
 {
     qCDebug(KIO_SMB_LOG) << "checkURL " << kurl_;
 
@@ -262,23 +254,24 @@ QUrl SMBSlave::checkURL(const QUrl &kurl_) const
     // if there's a valid host, don't have an empty path
     QUrl url(kurl);
 
-    if (url.path().isEmpty())
+    if (url.path().isEmpty()) {
         url.setPath("/");
+    }
 
     qCDebug(KIO_SMB_LOG) << "checkURL return3 " << url;
     return url;
 }
 
-SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNum)
+SMBWorker::SMBError SMBWorker::errnumToKioError(const SMBUrl &url, const int errNum)
 {
     qCDebug(KIO_SMB_LOG) << "errNum" << errNum;
 
     switch (errNum) {
     case ENOENT:
-        if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK)
+        if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK) {
             return SMBError {ERR_WORKER_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall.")};
-        else
-            return SMBError {ERR_DOES_NOT_EXIST, url.toDisplayString()};
+        }
+        return SMBError {ERR_DOES_NOT_EXIST, url.toDisplayString()};
 #ifdef ENOMEDIUM
     case ENOMEDIUM:
         return SMBError {ERR_WORKER_DEFINED, i18n("No media in device for %1", url.toDisplayString())};
@@ -298,10 +291,10 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
         return SMBError {ERR_ACCESS_DENIED, url.toDisplayString()};
     case EIO:
     case ENETUNREACH:
-        if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER)
+        if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER) {
             return SMBError {ERR_WORKER_DEFINED, i18n("Error while connecting to server responsible for %1", url.toDisplayString())};
-        else
-            return SMBError {ERR_CONNECTION_BROKEN, url.toDisplayString()};
+        }
+        return SMBError {ERR_CONNECTION_BROKEN, url.toDisplayString()};
     case ENOMEM:
         return SMBError {ERR_OUT_OF_MEMORY, url.toDisplayString()};
     case ENODEV:
@@ -345,14 +338,13 @@ SMBSlave::SMBError SMBSlave::errnumToKioError(const SMBUrl &url, const int errNu
     }
 }
 
-void SMBSlave::reportError(const SMBUrl &url, const int errNum)
+WorkerResult SMBWorker::reportError(const SMBUrl &url, const int errNum)
 {
     const SMBError smbErr = errnumToKioError(url, errNum);
-
-    error(smbErr.kioErrorId, smbErr.errorString);
+    return WorkerResult::fail(smbErr.kioErrorId, smbErr.errorString);
 }
 
-void SMBSlave::reportWarning(const SMBUrl &url, const int errNum)
+void SMBWorker::reportWarning(const SMBUrl &url, const int errNum)
 {
     const SMBError smbErr = errnumToKioError(url, errNum);
     const QString errorString = buildErrorString(smbErr.kioErrorId, smbErr.errorString);
@@ -360,7 +352,7 @@ void SMBSlave::reportWarning(const SMBUrl &url, const int errNum)
     warning(xi18n("Error occurred while trying to access %1<nl/>%2", url.url(), errorString));
 }
 
-void SMBSlave::listDir(const QUrl &kurl)
+WorkerResult SMBWorker::listDir(const QUrl &kurl)
 {
     qCDebug(KIO_SMB_LOG) << kurl;
 
@@ -369,8 +361,7 @@ void SMBSlave::listDir(const QUrl &kurl)
     // if URL is not valid we have to redirect to correct URL
     if (url != kurl) {
         redirection(url);
-        finished();
-        return;
+        return WorkerResult::pass();
     }
 
     m_current_url = kurl;
@@ -388,7 +379,7 @@ void SMBSlave::listDir(const QUrl &kurl)
         list.clear();
     };
 
-    // Since slavebase has no eventloop it wont publish results
+    // Since WorkerBase has no eventloop it wont publish results
     // on a timer, since we do not know how long our discovery
     // will take this is super meh because we may appear
     // stuck for a while. Implement our own listing system
@@ -418,7 +409,7 @@ void SMBSlave::listDir(const QUrl &kurl)
 
     auto maybeFinished = [&] { // finishes if all discoveries finished
         bool allFinished = true;
-        for (const auto &discoverer : discoverers) {
+        for (const auto &discoverer : std::as_const(discoverers)) {
             allFinished = allFinished && discoverer->isFinished();
         }
         if (allFinished) {
@@ -466,21 +457,18 @@ void SMBSlave::listDir(const QUrl &kurl)
             const int passwordError = checkPassword(m_current_url);
             if (passwordError == KJob::NoError) {
                 redirection(m_current_url);
-                finished();
-            } else if (passwordError == KIO::ERR_USER_CANCELED) {
-                qCDebug(KIO_SMB_LOG) << "user cancelled password request";
-                reportError(m_current_url, err);
-            } else {
-                qCDebug(KIO_SMB_LOG) << "generic password error:" << passwordError;
-                error(passwordError, m_current_url.toString());
+                return WorkerResult::pass();
             }
-
-            return;
+            if (passwordError == KIO::ERR_USER_CANCELED) {
+                qCDebug(KIO_SMB_LOG) << "user cancelled password request";
+                return reportError(m_current_url, err);
+            }
+            qCDebug(KIO_SMB_LOG) << "generic password error:" << passwordError;
+            return WorkerResult::fail(passwordError, m_current_url.toString());
         }
 
         qCDebug(KIO_SMB_LOG) << "reporting generic error:" << err;
-        reportError(m_current_url, err);
-        return;
+        return reportError(m_current_url, err);
     }
 
     UDSEntry udsentry;
@@ -502,14 +490,13 @@ void SMBSlave::listDir(const QUrl &kurl)
     }
     listEntry(udsentry);
 
-    finished();
+    return WorkerResult::pass();
 }
 
-void SMBSlave::fileSystemFreeSpace(const QUrl &url)
+WorkerResult SMBWorker::fileSystemFreeSpace(const QUrl &url)
 {
     if (url.host().endsWith("kio-discovery-wsd")) {
-        error(KIO::ERR_UNKNOWN_HOST, url.url());
-        return;
+        return WorkerResult::fail(KIO::ERR_UNKNOWN_HOST, url.url());
     }
     qCDebug(KIO_SMB_LOG) << url;
 
@@ -517,19 +504,18 @@ void SMBSlave::fileSystemFreeSpace(const QUrl &url)
     // requesting free space for smb:// which doesn't
     // make sense to do to begin with
     if (url.host().isEmpty()) {
-        error(KIO::ERR_CANNOT_STAT, url.url());
-        return;
+        return WorkerResult::fail(KIO::ERR_CANNOT_STAT, url.url());
     }
 
-    SMBUrl smbcUrl = url;
+    SMBUrl smbUrl = url;
 
     struct statvfs dirStat {
     };
     memset(&dirStat, 0, sizeof(struct statvfs));
-    const int err = smbc_statvfs(smbcUrl.toSmbcUrl().data(), &dirStat);
+    auto smbcUrl = smbUrl.toSmbcUrl(); // do not use temporary in function call, makes clazy happy
+    const int err = smbc_statvfs(smbcUrl.data(), &dirStat);
     if (err < 0) {
-        error(KIO::ERR_CANNOT_STAT, url.url());
-        return;
+        return WorkerResult::fail(KIO::ERR_CANNOT_STAT, url.url());
     }
 
     // libsmb_stat.c has very awkward conditional branching that results
@@ -552,10 +538,10 @@ void SMBSlave::fileSystemFreeSpace(const QUrl &url)
     setMetaData("total", QString::number(total));
     setMetaData("available", QString::number(available));
 
-    finished();
+    return WorkerResult::pass();
 }
 
-bool SMBSlave::workaroundEEXIST(const int errNum) const
+bool SMBWorker::workaroundEEXIST(const int errNum) const
 {
     return (errNum == EEXIST) && m_enableEEXISTWorkaround;
 }

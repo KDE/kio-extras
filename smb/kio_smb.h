@@ -16,7 +16,7 @@
 // KF includes
 //--------------
 #include <KIO/Global>
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 
 //-----------------------------
 // Standard C library includes
@@ -56,24 +56,25 @@ extern "C" {
 #include "smbcontext.h"
 
 using namespace KIO;
-class SMBSlave;
+class SMBWorker;
 
-class SlaveFrontend : public SMBAbstractFrontend
+class WorkerFrontend : public SMBAbstractFrontend
 {
 public:
-    SlaveFrontend(SMBSlave &slave);
+    explicit WorkerFrontend(SMBWorker &worker);
     bool checkCachedAuthentication(AuthInfo &info) override;
 private:
-    SMBSlave &m_slave;
+    SMBWorker &m_worker;
 };
 
-class SMBSlave : public QObject, public KIO::SlaveBase
+class SMBWorker : public QObject, public KIO::WorkerBase
 {
     Q_OBJECT
     friend class SMBCDiscoverer;
     friend class SMBResumeIO;
-    SlaveFrontend m_frontend { *this };
-    SMBContext m_context { new SMBAuthenticator(m_frontend) };
+    WorkerFrontend m_frontend { *this };
+    SMBContext m_context{new SMBAuthenticator(m_frontend)};
+    Q_DISABLE_COPY(SMBWorker)
 
 private:
 
@@ -184,66 +185,51 @@ protected:
      */
     QUrl checkURL(const QUrl &kurl) const;
 
-    void reportError(const SMBUrl &url, const int errNum);
+    Q_REQUIRED_RESULT WorkerResult reportError(const SMBUrl &url, const int errNum);
     void reportWarning(const SMBUrl &url, const int errNum);
 
 public:
-    //-----------------------------------------------------------------------
-    // Overwritten functions from the base class that define the operation of
-    // this slave. (See the base class headerfile slavebase.h for more
-    // details)
-    //-----------------------------------------------------------------------
-
     // Functions overwritten in kio_smb.cpp
-    SMBSlave(const QByteArray &pool, const QByteArray &app);
-    ~SMBSlave() override;
+    SMBWorker(const QByteArray &pool, const QByteArray &app);
+    ~SMBWorker() override = default;
 
     // Functions overwritten in kio_smb_browse.cpp
-    void listDir(const QUrl &url) override;
-    void stat(const QUrl &url) override;
+    Q_REQUIRED_RESULT WorkerResult listDir(const QUrl &url) override;
+    Q_REQUIRED_RESULT WorkerResult stat(const QUrl &url) override;
 
     // Functions overwritten in kio_smb_config.cpp
     void reparseConfiguration() override;
 
     // Functions overwritten in kio_smb_dir.cpp
-    void copy(const QUrl &src, const QUrl &dst, int permissions, KIO::JobFlags flags) override;
-    void del(const QUrl &kurl, bool isfile) override;
-    void mkdir(const QUrl &kurl, int permissions) override;
-    void rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
+    Q_REQUIRED_RESULT WorkerResult copy(const QUrl &src, const QUrl &dst, int permissions, KIO::JobFlags flags) override;
+    Q_REQUIRED_RESULT WorkerResult del(const QUrl &kurl, bool isfile) override;
+    Q_REQUIRED_RESULT WorkerResult mkdir(const QUrl &kurl, int permissions) override;
+    Q_REQUIRED_RESULT WorkerResult rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
 
     // Functions overwritten in kio_smb_file.cpp
-    void get(const QUrl &kurl) override;
-    void put(const QUrl &kurl, int permissions, KIO::JobFlags flags) override;
-    void open(const QUrl &kurl, QIODevice::OpenMode mode) override;
-    void read(KIO::filesize_t bytesRequested) override;
-    void write(const QByteArray &fileData) override;
-    void seek(KIO::filesize_t offset) override;
-    void truncate(KIO::filesize_t length);
-    void close() override;
-
-    // Functions not implemented  (yet)
-    // virtual void setHost(const QString& host, int port, const QString& user, const QString& pass);
-    // virtual void openConnection();
-    // virtual void closeConnection();
-    // virtual void slave_status();
-    void special(const QByteArray &) override;
-
-protected:
-    void virtual_hook(int id, void *data) override;
+    Q_REQUIRED_RESULT WorkerResult get(const QUrl &kurl) override;
+    Q_REQUIRED_RESULT WorkerResult put(const QUrl &kurl, int permissions, KIO::JobFlags flags) override;
+    Q_REQUIRED_RESULT WorkerResult open(const QUrl &kurl, QIODevice::OpenMode mode) override;
+    Q_REQUIRED_RESULT WorkerResult read(KIO::filesize_t bytesRequested) override;
+    Q_REQUIRED_RESULT WorkerResult write(const QByteArray &fileData) override;
+    Q_REQUIRED_RESULT WorkerResult seek(KIO::filesize_t offset) override;
+    Q_REQUIRED_RESULT WorkerResult truncate(KIO::filesize_t size) override;
+    Q_REQUIRED_RESULT WorkerResult close() override;
+    Q_REQUIRED_RESULT WorkerResult fileSystemFreeSpace(const QUrl &url) override;
+    Q_REQUIRED_RESULT WorkerResult special(const QByteArray &) override;
 
 private:
     SMBError errnumToKioError(const SMBUrl &url, const int errNum);
-    void smbCopy(const QUrl &src, const QUrl &dst, int permissions, KIO::JobFlags flags);
-    void smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags);
-    void smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags);
+    Q_REQUIRED_RESULT WorkerResult smbCopy(const QUrl &src, const QUrl &dst, int permissions, KIO::JobFlags flags);
+    Q_REQUIRED_RESULT WorkerResult smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags);
+    Q_REQUIRED_RESULT WorkerResult smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags);
     bool workaroundEEXIST(const int errNum) const;
     int statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry);
-    void fileSystemFreeSpace(const QUrl &url);
 
     /**
      * Used in open(), read(), write(), and close()
      * FIXME Placing these in the private section above causes m_openUrl = kurl
-     * to fail in SMBSlave::open. Need to find out why this is.
+     * to fail in SMBWorker::open. Need to find out why this is.
      */
     int m_openFd;
     SMBUrl m_openUrl;
@@ -288,7 +274,7 @@ private:
 };
 
 //===========================================================================
-// Main slave entrypoint (see kio_smb.cpp)
+// Main worker entrypoint (see kio_smb.cpp)
 extern "C" {
     int kdemain(int argc, char **argv);
 }
