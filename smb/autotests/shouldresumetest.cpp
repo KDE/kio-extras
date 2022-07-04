@@ -79,18 +79,19 @@ private Q_SLOTS:
 
         auto url = tmpUrl("noResumeButPartial/thing");
         auto partUrl = tmpUrl("noResumeButPartial/thing.part");
-        auto resume = Transfer::shouldResume<QFileResumeIO>(url, KIO::JobFlags(), &worker);
-        QVERIFY(resume.has_value());
-        QCOMPARE(resume->resuming, false);
-        QCOMPARE(resume->destination, partUrl);
-        QCOMPARE(resume->completeDestination, url);
-        QCOMPARE(resume->partDestination, partUrl);
+        auto resumeVariant = Transfer::shouldResume<QFileResumeIO>(url, KIO::JobFlags(), &worker);
+        QVERIFY(std::holds_alternative<TransferContext>(resumeVariant));
+        auto resume = std::get<TransferContext>(resumeVariant);
+        QCOMPARE(resume.resuming, false);
+        QCOMPARE(resume.destination, partUrl);
+        QCOMPARE(resume.completeDestination, url);
+        QCOMPARE(resume.partDestination, partUrl);
 
         QDir().mkdir(tmpPath("noResumeButPartial"));
         QFile part(partUrl.toLocalFile());
         QVERIFY(part.open(QFile::WriteOnly));
         part.write("");
-        QCOMPARE(Transfer::concludeResumeHasError<QFileResumeIO>(false, resume.value(), &worker), false);
+        QVERIFY(Transfer::concludeResumeHasError<QFileResumeIO>(WorkerResult::pass(), resume, &worker).success());
         QVERIFY(QFileInfo::exists(url.toLocalFile()));
         QVERIFY(!QFileInfo::exists(partUrl.toLocalFile()));
     }
@@ -103,14 +104,15 @@ private Q_SLOTS:
 
 
         auto url = tmpUrl("noResumeAndNoPartial/thing");
-        auto resume = Transfer::shouldResume<QFileResumeIO>(url, KIO::JobFlags(), &worker);
+        auto resumeVariant = Transfer::shouldResume<QFileResumeIO>(url, KIO::JobFlags(), &worker);
         worker.debugErrors();
-        QVERIFY(resume.has_value());
-        QCOMPARE(resume->resuming, false);
-        QCOMPARE(resume->destination, url);
-        QCOMPARE(resume->completeDestination, url);
-        QCOMPARE(resume->partDestination, QUrl());
-        QCOMPARE(Transfer::concludeResumeHasError<QFileResumeIO>(false, resume.value(), &worker), false);
+        QVERIFY(std::holds_alternative<TransferContext>(resumeVariant));
+        auto resume = std::get<TransferContext>(resumeVariant);
+        QCOMPARE(resume.resuming, false);
+        QCOMPARE(resume.destination, url);
+        QCOMPARE(resume.completeDestination, url);
+        QCOMPARE(resume.partDestination, QUrl());
+        QVERIFY(Transfer::concludeResumeHasError<QFileResumeIO>(WorkerResult::pass(), resume, &worker).success());
     }
 
     void resume()
@@ -119,14 +121,15 @@ private Q_SLOTS:
 
         auto url = tmpUrl("resume/thing");
         auto partUrl = tmpUrl("resume/thing.part");
-        auto resume = Transfer::shouldResume<QFileResumeIO>(url, KIO::JobFlags(), &worker);
-        QVERIFY(resume.has_value());
-        QCOMPARE(resume->resuming, true);
-        QCOMPARE(resume->destination, partUrl);
-        QCOMPARE(resume->completeDestination, url);
-        QCOMPARE(resume->partDestination, partUrl);
+        auto resumeVariant = Transfer::shouldResume<QFileResumeIO>(url, KIO::JobFlags(), &worker);
+        QVERIFY(std::holds_alternative<TransferContext>(resumeVariant));
+        auto resume = std::get<TransferContext>(resumeVariant);
+        QCOMPARE(resume.resuming, true);
+        QCOMPARE(resume.destination, partUrl);
+        QCOMPARE(resume.completeDestination, url);
+        QCOMPARE(resume.partDestination, partUrl);
 
-        QCOMPARE(Transfer::concludeResumeHasError<QFileResumeIO>(false, resume.value(), &worker), false);
+        QVERIFY(Transfer::concludeResumeHasError<QFileResumeIO>(WorkerResult::pass(), resume, &worker).success());
         QVERIFY(QFileInfo::exists(url.toLocalFile()));
         QVERIFY(!QFileInfo::exists(partUrl.toLocalFile()));
     }
@@ -136,14 +139,15 @@ private Q_SLOTS:
         FakeWorker worker;
 
         auto url = tmpUrl("resumeInPlace/thing");
-        auto resume = Transfer::shouldResume<QFileResumeIO>(url, KIO::Resume, &worker);
-        QVERIFY(resume.has_value());
-        QCOMPARE(resume->resuming, true);
-        QCOMPARE(resume->destination, url);
-        QCOMPARE(resume->completeDestination, url);
-        QCOMPARE(resume->partDestination, url);
+        auto resumeVariant = Transfer::shouldResume<QFileResumeIO>(url, KIO::Resume, &worker);
+        QVERIFY(std::holds_alternative<TransferContext>(resumeVariant));
+        auto resume = std::get<TransferContext>(resumeVariant);
+        QCOMPARE(resume.resuming, true);
+        QCOMPARE(resume.destination, url);
+        QCOMPARE(resume.completeDestination, url);
+        QCOMPARE(resume.partDestination, url);
 
-        QCOMPARE(Transfer::concludeResumeHasError<QFileResumeIO>(false, resume.value(), &worker), false);
+        QVERIFY(Transfer::concludeResumeHasError<QFileResumeIO>(WorkerResult::pass(), resume, &worker).success());
         QVERIFY(QFileInfo::exists(url.toLocalFile()));
     }
 
@@ -152,10 +156,10 @@ private Q_SLOTS:
         FakeWorker worker;
 
         auto url = tmpUrl("resumeInPlace/thing"); // intentionally the same path this scenario errors out
-        auto resume = Transfer::shouldResume<QFileResumeIO>(url, KIO::JobFlags(), &worker);
-        QVERIFY(!resume.has_value());
-        QCOMPARE(worker.m_errors.size(), 1);
-        QCOMPARE(worker.m_errors.at(0).id, KIO::ERR_FILE_ALREADY_EXIST);
+        auto resumeVariant = Transfer::shouldResume<QFileResumeIO>(url, KIO::JobFlags(), &worker);
+        QVERIFY(std::holds_alternative<WorkerResult>(resumeVariant));
+        auto result = std::get<WorkerResult>(resumeVariant);
+        QCOMPARE(result.error(), KIO::ERR_FILE_ALREADY_EXIST);
     }
 };
 

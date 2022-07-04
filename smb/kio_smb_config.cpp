@@ -11,7 +11,7 @@
 
 #include <QTextCodec>
 
-void SMBSlave::reparseConfiguration()
+void SMBWorker::reparseConfiguration()
 {
     m_context.authenticator()->loadConfiguration();
 }

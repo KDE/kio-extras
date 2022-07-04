@@ -21,7 +21,7 @@ SMBUrl::SMBUrl(const QUrl &kurl)
     // https://bugs.kde.org/show_bug.cgi?id=327295
     // It's not IANA registered and also libsmbc internally expects
     // smb URIs so we do very broadly coerce cifs to smb.
-    // Also see SMBSlave::checkURL.
+    // Also see SMBWorker::checkURL.
     if (scheme() == "cifs") {
         setScheme("smb");
     }

@@ -1,10 +1,10 @@
 /////////////////////////////////////////////////////////////////////////////
 //
-// Project:     SMB kioslave for KDE2
+// Project:     SMB kioworker for KDE2
 //
 // File:        smburl.h
 //
-// Abstract:    Utility classes used by SMBSlave
+// Abstract:    Utility classes used by SMBWorker
 //
 // Author(s):   Matthew Peterson <mpeterson@caldera.com>
 //              Frank Schwanz <schwanz@fh-brandenburg.de>

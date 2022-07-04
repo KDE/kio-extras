@@ -13,7 +13,7 @@
 #include <KConfigGroup>
 #include <KLocalizedString>
 
-int SMBSlave::checkPassword(SMBUrl &url)
+int SMBWorker::checkPassword(SMBUrl &url)
 {
     qCDebug(KIO_SMB_LOG) << "checkPassword for " << url;
 
@@ -23,10 +23,12 @@ int SMBSlave::checkPassword(SMBUrl &url)
 
     QString share = url.path();
     int index = share.indexOf('/', 1);
-    if (index > 1)
+    if (index > 1) {
         share = share.left(index);
-    if (share.at(0) == '/')
+    }
+    if (share.at(0) == '/') {
         share = share.mid(1);
+    }
     info.url.setPath('/' + share);
     info.verifyPath = true;
     info.keepPassword = true;
@@ -44,20 +46,21 @@ int SMBSlave::checkPassword(SMBUrl &url)
                               "<para><placeholder>anonymous</placeholder>: Anonymous logins can be attempted using empty username and password. Depending on server configuration non-empty usernames may be required</para>"
                              ));
 
-    if (share.isEmpty())
+    if (share.isEmpty()) {
         info.prompt = i18n("<qt>Please enter authentication information for <b>%1</b></qt>", url.host());
-    else
+    } else {
         info.prompt = i18n(
-                          "Please enter authentication information for:\n"
-                          "Server = %1\n"
-                          "Share = %2",
-                          url.host(),
-                          share);
+            "Please enter authentication information for:\n"
+            "Server = %1\n"
+            "Share = %2",
+            url.host(),
+            share);
+    }
 
     info.username = url.userName();
     qCDebug(KIO_SMB_LOG) << "call openPasswordDialog for " << info.url;
 
-    const int passwordDialogErrorCode = openPasswordDialogV2(info);
+    const int passwordDialogErrorCode = openPasswordDialog(info);
     if (passwordDialogErrorCode == KJob::NoError) {
         qCDebug(KIO_SMB_LOG) << "openPasswordDialog returned " << info.username;
         url.setUser(info.username);

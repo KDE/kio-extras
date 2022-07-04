@@ -11,8 +11,8 @@ namespace KIO {
 class AuthInfo;
 }
 
-// Abstracts SlaveBase API so Authenticator may be used without
-// a SlaveBase for the KDirNotify implementation)
+// Abstracts WorkerBase API so Authenticator may be used without
+// a WorkerBase for the KDirNotify implementation)
 class SMBAbstractFrontend
 {
 public:

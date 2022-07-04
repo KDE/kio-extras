@@ -14,7 +14,7 @@
 #include <QDir>
 #include <unistd.h>
 
-void SMBSlave::special(const QByteArray &data)
+WorkerResult SMBWorker::special(const QByteArray &data)
 {
     qCDebug(KIO_SMB_LOG) << "Smb::special()";
     int tmp;
@@ -44,8 +44,7 @@ void SMBSlave::special(const QByteArray &data)
 
         if (tmp == 3) {
             if (!QDir().mkpath(mountPoint)) {
-                error(KIO::ERR_CANNOT_MKDIR, mountPoint);
-                return;
+                return WorkerResult::fail(KIO::ERR_CANNOT_MKDIR, mountPoint);
             }
         }
 
@@ -55,8 +54,7 @@ void SMBSlave::special(const QByteArray &data)
 
         const int passwordError = checkPassword(smburl);
         if (passwordError != KJob::NoError && passwordError != KIO::ERR_USER_CANCELED) {
-            error(passwordError, smburl.toString());
-            return;
+            return WorkerResult::fail(passwordError, smburl.toString());
         }
 
         // using smbmount instead of "mount -t smbfs", because mount does not allow a non-root
@@ -89,8 +87,7 @@ void SMBSlave::special(const QByteArray &data)
 
         proc.start();
         if (!proc.waitForFinished()) {
-            error(KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbmount" + i18n("\nMake sure that the samba package is installed properly on your system."));
-            return;
+            return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbmount" + i18n("\nMake sure that the samba package is installed properly on your system."));
         }
 
         QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());
@@ -99,8 +96,7 @@ void SMBSlave::special(const QByteArray &data)
         qCDebug(KIO_SMB_LOG) << "mount exit " << proc.exitCode() << "stdout:" << mybuf << "\nstderr:" << mystderr;
 
         if (proc.exitCode() != 0) {
-            error(KIO::ERR_CANNOT_MOUNT, i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4", share, host, user, mybuf + '\n' + mystderr));
-            return;
+            return WorkerResult::fail(KIO::ERR_CANNOT_MOUNT, i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4", share, host, user, mybuf + '\n' + mystderr));
         }
     }
     break;
@@ -116,8 +112,7 @@ void SMBSlave::special(const QByteArray &data)
 
         proc.start();
         if (!proc.waitForFinished()) {
-            error(KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbumount" + i18n("\nMake sure that the samba package is installed properly on your system."));
-            return;
+            return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbumount" + i18n("\nMake sure that the samba package is installed properly on your system."));
         }
 
         QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());
@@ -126,8 +121,7 @@ void SMBSlave::special(const QByteArray &data)
         qCDebug(KIO_SMB_LOG) << "smbumount exit " << proc.exitCode() << "stdout:" << mybuf << "\nstderr:" << mystderr;
 
         if (proc.exitCode() != 0) {
-            error(KIO::ERR_CANNOT_UNMOUNT, i18n("Unmounting of mountpoint \"%1\" failed.\n%2", mountPoint, mybuf + '\n' + mystderr));
-            return;
+            return WorkerResult::fail(KIO::ERR_CANNOT_UNMOUNT, i18n("Unmounting of mountpoint \"%1\" failed.\n%2", mountPoint, mybuf + '\n' + mystderr));
         }
 
         if (tmp == 4) {
@@ -143,8 +137,7 @@ void SMBSlave::special(const QByteArray &data)
             }
 
             if (!ok) {
-                error(KIO::ERR_CANNOT_RMDIR, mountPoint);
-                return;
+                return WorkerResult::fail(KIO::ERR_CANNOT_RMDIR, mountPoint);
             }
         }
     }
@@ -152,5 +145,5 @@ void SMBSlave::special(const QByteArray &data)
     default:
         break;
     }
-    finished();
+    return WorkerResult::pass();
 }

@@ -4,7 +4,7 @@
 <!ENTITY % addindex "IGNORE">
 <!ENTITY % English "INCLUDE" > <!-- change language only here -->
 ]>
-	
+
 <article lang="&language;" id="smb">
 <title>SMB</title>
 <articleinfo>
@@ -16,7 +16,7 @@
 <releaseinfo>Applications 16.12</releaseinfo>
 </articleinfo>
 <para>
-The smb ioslave enables you to browse the shares of a &Windows; (or Samba)
+The smb worker enables you to browse the shares of a &Windows; (or Samba)
 network.
 </para>
 
@@ -42,16 +42,16 @@ or
 </para>
 
 <para>
-The smb ioslave requires that you have libsmbclient to use this ioslave.
+The smb worker requires that you have libsmbclient to use this worker.
 </para>
 
 <para>
-You can set your default user name and password in the &systemsettings; 
+You can set your default user name and password in the &systemsettings;
 category <guilabel>Network</guilabel> in
 <menuchoice><guisubmenu>Connectivity</guisubmenu><guimenuitem>
 Windows Shares</guimenuitem></menuchoice>.  This is especially useful if you are a
 member of a &Windows; <acronym>NT</acronym> domain. There you can also set your
-workgroup name, but in most cases this is not required.  The kioslave will ask for your username and password if a default is not set.
+workgroup name, but in most cases this is not required.  The worker will ask for your username and password if a default is not set.
 </para>
 
 </article>

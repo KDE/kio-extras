@@ -1,6 +1,6 @@
 /*
     SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-    SPDX-FileCopyrightText: 2021 Harald Sitter <sitter@kde.org>
+    SPDX-FileCopyrightText: 2021-2022 Harald Sitter <sitter@kde.org>
 */
 
 #pragma once
@@ -12,6 +12,7 @@
 #include <kio/ioworker_defaults.h>
 
 #include "kio_smb.h"
+
 
 // Carries the context of a file transfer.
 struct TransferContext {
@@ -37,7 +38,7 @@ public:
     explicit SMBResumeIO(const SMBUrl &url)
         : m_url(url)
         // m_stat implicitly init'd by the stat for m_exists
-        , m_exists(SMBSlave::cache_stat(m_url, &m_stat) == 0)
+        , m_exists(SMBWorker::cache_stat(m_url, &m_stat) == 0)
     {
     }
 
@@ -113,11 +114,11 @@ namespace Transfer
 
 // Check if we should resume the upload to destination.
 // This returns nullopt when an error has ocurred. The error() function is called internally.
-// NB: WorkerInterface is intentionally duck-typed so we can unit test with a mock entity that looks like a SlaveBase but isn't one.
+// NB: WorkerInterface is intentionally duck-typed so we can unit test with a mock entity that looks like a WorkerBase but isn't one.
 //     Similarly ResumeIO is duck-typed so we can use QFileInfo as as base class in one implementation but not the other,
 //     allowing us to cut down on boilerplate call-forwarding code.
 template<typename ResumeIO, typename WorkerInterface>
-Q_REQUIRED_RESULT std::optional<TransferContext> shouldResume(const SMBUrl &destination, KIO::JobFlags flags, WorkerInterface *worker)
+Q_REQUIRED_RESULT std::variant<TransferContext, WorkerResult> shouldResume(const SMBUrl &destination, KIO::JobFlags flags, WorkerInterface *worker)
 {
     // Resumption has two presentations:
     // a) partial resumption - when a .part file is left behind and we pick up where that part left off
@@ -135,8 +136,7 @@ Q_REQUIRED_RESULT std::optional<TransferContext> shouldResume(const SMBUrl &dest
         // Not a resume operation -> if we also were not told to overwrite then we can't process this copy at all
         // because the ultimate destination already exists.
         if (!(flags & KIO::Overwrite)) {
-            worker->error(destIO.isDir() ? KIO::ERR_IS_DIRECTORY : KIO::ERR_FILE_ALREADY_EXIST, destination.toDisplayString());
-            return std::nullopt;
+            return WorkerResult::fail(destIO.isDir() ? KIO::ERR_IS_DIRECTORY : KIO::ERR_FILE_ALREADY_EXIST, destination.toDisplayString());
         }
     }
 
@@ -159,31 +159,30 @@ Q_REQUIRED_RESULT std::optional<TransferContext> shouldResume(const SMBUrl &dest
 // the partial file may get discarded (depending on it existing and having an insufficient size).
 // The return value is true when an error has occurred. When isError was true this can only ever return true.
 template<typename ResumeIO, typename WorkerInterface>
-Q_REQUIRED_RESULT bool concludeResumeHasError(bool isError, const TransferContext &resume, WorkerInterface *worker)
+Q_REQUIRED_RESULT WorkerResult concludeResumeHasError(const WorkerResult &result, const TransferContext &resume, WorkerInterface *worker)
 {
     qDebug() << "concluding" << resume.destination << resume.partDestination << resume.completeDestination;
 
     if (resume.destination == resume.completeDestination) {
-        return isError;
+        return result;
     }
 
     // Handle error condition.
-    if (isError) {
+    if (!result.success()) {
         const off_t minimumSize = worker->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
         // TODO should this be partdestination?
         if (ResumeIO destIO(resume.destination); destIO.exists() && destIO.size() < minimumSize) {
             destIO.remove();
         }
-        return true;
+        return result;
     }
 
     // Rename partial file to its original name. The ResumeIO takes care of potential removing of the destination.
     if (ResumeIO partIO(resume.partDestination); !partIO.renameTo(resume.completeDestination)) {
-        worker->error(ERR_CANNOT_RENAME_PARTIAL, resume.partDestination.toDisplayString());
-        return true;
+        return WorkerResult::fail(ERR_CANNOT_RENAME_PARTIAL, resume.partDestination.toDisplayString());
     }
 
-    return isError;
+    return result;
 }
 
 } // namespace Transfer
