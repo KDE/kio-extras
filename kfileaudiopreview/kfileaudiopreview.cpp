@@ -17,7 +17,6 @@
 #include <KConfigGroup>
 #include <KSharedConfig>
 #include <KPluginFactory>
-#include <KPluginLoader>
 
 #include <phonon/mediaobject.h>
 #include <phonon/audiooutput.h>
