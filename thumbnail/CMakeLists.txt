@@ -91,7 +91,6 @@ install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_
 ########### next target ###############
 
 add_library(imagethumbnail MODULE imagecreator.cpp)
-kcoreaddons_desktop_to_json(imagethumbnail imagethumbnail.desktop)
 
 target_link_libraries(imagethumbnail
     KF5::CoreAddons
@@ -109,7 +108,6 @@ install(FILES directorythumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICESDIR}
 add_library(jpegthumbnail MODULE jpegcreator.cpp)
 
 kconfig_add_kcfg_files(jpegthumbnail jpegcreatorsettings5.kcfgc)
-kcoreaddons_desktop_to_json(jpegthumbnail jpegthumbnail.desktop)
 
 target_link_libraries(jpegthumbnail
     Qt::Core
@@ -131,7 +129,6 @@ install(TARGETS jpegthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_
 
 add_library(svgthumbnail MODULE svgcreator.cpp)
 
-kcoreaddons_desktop_to_json(svgthumbnail svgthumbnail.desktop)
 target_link_libraries(svgthumbnail
     Qt::Gui
     Qt::Svg
@@ -145,7 +142,6 @@ install(TARGETS svgthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_V
 
 add_library(textthumbnail MODULE textcreator.cpp)
 
-kcoreaddons_desktop_to_json(textthumbnail textthumbnail.desktop)
 target_link_libraries(textthumbnail
     Qt::Gui
     KF5::KIOWidgets
@@ -169,7 +165,6 @@ if(NOT WIN32)
         EXPORT KIO_EXTRAS
     )
 
-    kcoreaddons_desktop_to_json(djvuthumbnail djvuthumbnail.desktop)
     target_link_libraries(djvuthumbnail KF5::KIOWidgets)
 
     install(TARGETS djvuthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
@@ -191,7 +186,6 @@ if(OpenEXR_FOUND)
         EXPORT KIO_EXTRAS
     )
 
-    kcoreaddons_desktop_to_json(exrthumbnail exrthumbnail.desktop)
     target_link_libraries(exrthumbnail
         KF5::KIOCore
         KF5::KIOWidgets
@@ -217,7 +211,6 @@ if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
 
     add_library(cursorthumbnail MODULE cursorcreator.cpp cursorcreatorplugin.cpp)
 
-    kcoreaddons_desktop_to_json(cursorthumbnail cursorthumbnail.desktop)
     target_link_libraries(cursorthumbnail
         KF5::KIOCore
         KF5::KIOWidgets
@@ -241,11 +234,9 @@ else()
     target_sources(windowsimagethumbnail PRIVATE icoutils_wrestool.cpp)
 endif()
 
-kcoreaddons_desktop_to_json(windowsexethumbnail windowsexethumbnail.desktop)
 target_link_libraries(windowsexethumbnail KF5::KIOWidgets)
 install(TARGETS windowsexethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
-kcoreaddons_desktop_to_json(windowsimagethumbnail windowsimagethumbnail.desktop)
 target_link_libraries(windowsimagethumbnail KF5::KIOWidgets)
 install(TARGETS windowsimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
@@ -262,7 +253,6 @@ ecm_qt_declare_logging_category(comicbookthumbnail
     EXPORT KIO_EXTRAS
 )
 
-kcoreaddons_desktop_to_json(comicbookthumbnail comicbookthumbnail.desktop)
 target_link_libraries(comicbookthumbnail
     Qt::Gui
     KF5::Archive
@@ -275,7 +265,6 @@ install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_M
 
 add_library(kritathumbnail MODULE kritacreator.cpp)
 
-kcoreaddons_desktop_to_json(kritathumbnail kraorathumbnail.desktop)
 target_link_libraries(kritathumbnail
     KF5::KIOWidgets
     KF5::Archive
@@ -289,7 +278,6 @@ if(Taglib_FOUND)
 
     add_library(audiothumbnail MODULE audiocreator.cpp)
 
-    kcoreaddons_desktop_to_json(audiothumbnail audiothumbnail.desktop)
     target_link_libraries(audiothumbnail
         Taglib::Taglib
         KF5::KIOWidgets
@@ -303,7 +291,6 @@ endif()
 
 add_library(opendocumentthumbnail MODULE opendocumentcreator.cpp)
 
-kcoreaddons_desktop_to_json(opendocumentthumbnail opendocumentthumbnail.desktop)
 target_link_libraries(opendocumentthumbnail
     Qt::Gui
     KF5::KIOWidgets
@@ -323,7 +310,6 @@ if(libappimage_FOUND)
         Qt::Gui
         libappimage
     )
-    kcoreaddons_desktop_to_json(appimagethumbnail appimagethumbnail.desktop)
 
     install(TARGETS appimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
@@ -333,7 +319,6 @@ endif()
 
 add_library(ebookthumbnail MODULE ebookcreator.cpp)
 
-kcoreaddons_desktop_to_json(ebookthumbnail ebookthumbnail.desktop)
 target_link_libraries(ebookthumbnail
     Qt::Gui
     KF5::KIOWidgets

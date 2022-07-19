@@ -11,7 +11,6 @@ install(TARGETS kio_recentdocuments DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_
 
 add_library(kded_recentdocumentsnotifier MODULE recentdocumentsnotifier.cpp)
 set_target_properties(kded_recentdocumentsnotifier PROPERTIES OUTPUT_NAME recentdocumentsnotifier)
-kcoreaddons_desktop_to_json(kded_recentdocumentsnotifier recentdocumentsnotifier.desktop)
 
 target_link_libraries(kded_recentdocumentsnotifier KF5::KIOCore KF5::DBusAddons)
 
