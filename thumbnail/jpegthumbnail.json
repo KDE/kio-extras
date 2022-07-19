@@ -75,11 +75,7 @@
         "Name[wa]": "Imådjes JPEG",
         "Name[x-test]": "xxJPEG Imagesxx",
         "Name[zh_CN]": "JPEG 图像",
-        "Name[zh_TW]": "JPEG 影像",
-        "ServiceTypes": [
-            "ThumbCreator"
-        ]
+        "Name[zh_TW]": "JPEG 影像"
     },
-    "MimeType": "image/jpeg;",
     "ThumbnailerVersion": "2"
 }

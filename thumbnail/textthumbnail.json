@@ -95,10 +95,6 @@
         "Name[x-test]": "xxText Filesxx",
         "Name[xh]": "Iifayile Zombhalo",
         "Name[zh_CN]": "文本文件",
-        "Name[zh_TW]": "文字檔案",
-        "ServiceTypes": [
-            "ThumbCreator"
-        ]
-    },
-    "MimeType": "text/plain;"
+        "Name[zh_TW]": "文字檔案"
+    }
 }

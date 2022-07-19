@@ -44,10 +44,6 @@
         "Name[vi]": "Sách điện tử",
         "Name[x-test]": "xxeBooksxx",
         "Name[zh_CN]": "电子书",
-        "Name[zh_TW]": "eBooks",
-        "ServiceTypes": [
-            "ThumbCreator"
-        ]
-    },
-    "MimeType": "application/epub+zip;application/x-fictionbook+xml;application/x-zip-compressed-fb2;"
+        "Name[zh_TW]": "eBooks"
+    }
 }

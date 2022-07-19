@@ -77,10 +77,6 @@
         "Name[wa]": "Imådjes Microsoft Windows",
         "Name[x-test]": "xxMicrosoft Windows Imagesxx",
         "Name[zh_CN]": "Microsoft Windows 图像",
-        "Name[zh_TW]": "Microsoft Windows 影像",
-        "ServiceTypes": [
-            "ThumbCreator"
-        ]
-    },
-    "MimeType": "image/x-ico;image/vnd.microsoft.icon;image/x-win-bitmap;application/x-navi-animation;"
+        "Name[zh_TW]": "Microsoft Windows 影像"
+    }
 }

@@ -73,10 +73,6 @@
         "Name[wa]": "Imådjes (GIF, PNG, BMP...)",
         "Name[x-test]": "xxImages (GIF, PNG, BMP, ...)xx",
         "Name[zh_CN]": "图像 (GIF、PNG、BMP 等)",
-        "Name[zh_TW]": "影像（GIF、PNG、BMP...）",
-        "ServiceTypes": [
-            "ThumbCreator"
-        ]
-    },
-    "MimeType": "image/*;video/x-mng;"
+        "Name[zh_TW]": "影像（GIF、PNG、BMP...）"
+    }
 }

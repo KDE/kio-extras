@@ -92,10 +92,6 @@
         "Name[wa]": "Imådjes EXR",
         "Name[x-test]": "xxEXR Imagesxx",
         "Name[zh_CN]": "EXR 图像",
-        "Name[zh_TW]": "EXR 影像",
-        "ServiceTypes": [
-            "ThumbCreator"
-        ]
-    },
-    "MimeType": "image/x-exr;"
+        "Name[zh_TW]": "EXR 影像"
+    }
 }
