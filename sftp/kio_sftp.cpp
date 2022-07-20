@@ -745,31 +745,36 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
                                          QString::fromUtf8(ssh_get_error(mSession)));
         return Result::fail(KIO::ERR_WORKER_DEFINED, errorString);
     }
-    case SSH_KNOWN_HOSTS_CHANGED: {
-        const QString errorString = i18n("The host key for the server %1 has changed.\n"
-                                         "This could either mean that DNS SPOOFING is happening or the IP "
-                                         "address for the host and its host key have changed at the same time.\n"
-                                         "The fingerprint for the %2 key sent by the remote host is:\n"
-                                         "  SHA256:%3\n"
-                                         "Please contact your system administrator.\n%4",
-                                         mHost,
-                                         serverPublicKeyType,
-                                         fingerprint,
-                                         QString::fromUtf8(ssh_get_error(mSession)));
-        return Result::fail(KIO::ERR_WORKER_DEFINED, errorString);
-    }
+    case SSH_KNOWN_HOSTS_CHANGED:
     case SSH_KNOWN_HOSTS_NOT_FOUND:
     case SSH_KNOWN_HOSTS_UNKNOWN: {
-        const QString caption = i18n("Warning: Cannot verify host's identity.");
-        const QString msg = i18n(
-            "The authenticity of host %1 cannot be established.\n"
-            "The %2 key fingerprint is: %3\n"
-            "Are you sure you want to continue connecting?",
-            mHost,
-            serverPublicKeyType,
-            fingerprint);
 
-        if (KMessageBox::Yes != messageBox(WorkerBase::WarningYesNo, msg, caption)) {
+        QString caption;
+        QString msg;
+
+        if (state == SSH_KNOWN_HOSTS_CHANGED) {
+            caption = i18nc("@title:window", "Host Identity Change");
+            msg = xi18nc("@info", "<para>The host key for the server <emphasis>%1</emphasis> has changed.</para>"
+                         "<para>This could either mean that DNS spoofing is happening or the IP "
+                         "address for the host and its host key have changed at the same time.</para>"
+                         "<para>The %2 key fingerprint sent by the remote host is:"
+                         "<bcode>%3</bcode>"
+                         "Are you sure you want to continue connecting?</para>",
+                         mHost,
+                         serverPublicKeyType,
+                         fingerprint);
+        } else {
+            caption = i18nc("@title:window", "Host Verification Failure");
+            msg = xi18nc("@info", "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established.</para>"
+                         "<para>The %2 key fingerprint is:"
+                         "<bcode>%3</bcode>"
+                         "Are you sure you want to continue connecting?</para>",
+                         mHost,
+                         serverPublicKeyType,
+                         fingerprint);
+        }
+
+        if (KMessageBox::Continue != messageBox(WorkerBase::WarningContinueCancel, msg, caption, i18nc("@action:button", "Connect Anyway"))) {
             return Result::fail(KIO::ERR_USER_CANCELED);
         }
 
