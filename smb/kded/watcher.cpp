@@ -187,6 +187,20 @@ private:
     QHash<QString, Notifier *> m_watches; // watcher is parent of procs
 };
 
+
+/*
+    In the json metadata we set:
+    X-KDE-Kded-phase=2
+    X-KDE-Kded-autoload=true
+
+    Because we need this module loaded all the time, lazy loading on worker use wouldn't
+    be sufficient as the kdirnotify signal is already out by the time the worker
+    is initalized so the first opened dir wouldn't be watched then.
+    It'd be better if we had a general monitor module that workers can register
+    with. The monitor would then listen to kdirnotify and check the schemes
+    to decide which watcher to load, and then simply forward the call to the watcher
+    in-process. Would also save us from having to connect to dbus in every watcher. 
+*/
 class SMBWatcherModule : public KDEDModule
 {
     Q_OBJECT
