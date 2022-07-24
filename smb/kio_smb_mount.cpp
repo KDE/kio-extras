@@ -15,8 +15,34 @@
 #include <QDir>
 #include <unistd.h>
 
+// Disable kerberos auth. For unknown reasons xattr queries fall on the face
+// when kerberos is enabled. So this class scope disables kerberos.
+// Ought to be created in a scope where xattr is requested. Will
+// restore the original kerberos state on destruction.
+struct KerberosDisabler
+{
+public:
+    explicit KerberosDisabler(SMBCCTX *context)
+        : m_context(context)
+        , m_originalState(smbc_getOptionUseKerberos(m_context))
+    {
+        smbc_setOptionUseKerberos(m_context, false);
+    }
+
+    ~KerberosDisabler()
+    {
+        smbc_setOptionUseKerberos(m_context, m_originalState);
+    }
+
+private:
+    SMBCCTX *m_context = nullptr;
+    const bool m_originalState = false;
+};
+
 WorkerResult SMBWorker::getACE(QDataStream &stream)
 {
+    KerberosDisabler kerberos(m_context.smbcctx());
+
     QUrl qurl;
     stream >> qurl;
     const SMBUrl url(qurl);
