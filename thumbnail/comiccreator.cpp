@@ -84,9 +84,13 @@ void ComicCreator::filterImages(QStringList& entries)
                 entry.startsWith(QLatin1String(".DS_Store"), Qt::CaseInsensitive)) {
             continue;
         }
-        if (entry.endsWith(QLatin1String(".gif"), Qt::CaseInsensitive) ||
+        if (entry.endsWith(QLatin1String(".avif"), Qt::CaseInsensitive) ||
+                entry.endsWith(QLatin1String(".bmp"), Qt::CaseInsensitive) ||
+                entry.endsWith(QLatin1String(".gif"), Qt::CaseInsensitive) ||
+                entry.endsWith(QLatin1String(".heif"), Qt::CaseInsensitive) ||
                 entry.endsWith(QLatin1String(".jpg"), Qt::CaseInsensitive) ||
                 entry.endsWith(QLatin1String(".jpeg"), Qt::CaseInsensitive) ||
+                entry.endsWith(QLatin1String(".jxl"), Qt::CaseInsensitive) ||
                 entry.endsWith(QLatin1String(".png"), Qt::CaseInsensitive) ||
                 entry.endsWith(QLatin1String(".webp"), Qt::CaseInsensitive)) {
             entryMap.insert(entry.toLower(), entry);
