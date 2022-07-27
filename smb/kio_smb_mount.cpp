@@ -41,6 +41,7 @@ private:
 
 WorkerResult SMBWorker::getACE(QDataStream &stream)
 {
+    qCDebug(KIO_SMB_LOG) << Q_FUNC_INFO;
     KerberosDisabler kerberos(m_context.smbcctx());
 
     QUrl qurl;
@@ -68,7 +69,7 @@ WorkerResult SMBWorker::getACE(QDataStream &stream)
                     value.resize(value.size() + pageSize);
                     continue;
                 }
-                qWarning() << xattr << strerror(error);
+                qCWarning(KIO_SMB_LOG) << xattr << strerror(error);
                 return WorkerResult::fail(ERR_INTERNAL, strerror(error));
             }
             qCDebug(KIO_SMB_LOG) << "XATTR" << xattr << value.data();
@@ -89,6 +90,7 @@ WorkerResult SMBWorker::getACE(QDataStream &stream)
 
 KIO::WorkerResult SMBWorker::setACE(QDataStream &stream)
 {
+    qCDebug(KIO_SMB_LOG) << Q_FUNC_INFO;
     QUrl qurl;
     stream >> qurl;
     const SMBUrl url(qurl);
