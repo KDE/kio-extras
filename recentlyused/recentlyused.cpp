@@ -226,14 +226,21 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
     const auto model = runQuery(url);
 
     KIO::UDSEntryList udslist;
-    udslist.reserve(model->rowCount());
+    bool canFetchMore = true;
+    int row = 0;
 
-    for (int row = 0; row < model->rowCount(); ++row) {
-        const QModelIndex index = model->index(row, 0);
-        const QString resource = model->data(index, ResultModel::ResourceRole).toString();
-        const QString mimeType = model->data(index, ResultModel::MimeType).toString();
+    while (canFetchMore) {
+        for (;row < model->rowCount(); ++row) {
+            const QModelIndex index = model->index(row, 0);
+            const QString resource = model->data(index, ResultModel::ResourceRole).toString();
+            const QString mimeType = model->data(index, ResultModel::MimeType).toString();
 
-        udslist << udsEntryFromResource(resource, mimeType, row);
+            udslist << udsEntryFromResource(resource, mimeType, row);
+        }
+        canFetchMore = model->canFetchMore(QModelIndex());
+        if (canFetchMore) {
+            model->fetchMore(QModelIndex());
+        }
     }
 
     listEntries(udslist);
