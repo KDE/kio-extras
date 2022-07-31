@@ -75,10 +75,7 @@
         "Name[vi]": "Trình nền MTP của KDE",
         "Name[x-test]": "xxKDE MTP daemonxx",
         "Name[zh_CN]": "KDE MTP 守护程序",
-        "Name[zh_TW]": "KDE MTP 守護程式",
-        "ServiceTypes": [
-            "KDEDModule"
-        ]
+        "Name[zh_TW]": "KDE MTP 守護程式"
     },
     "X-KDE-DBus-ServiceName": "org.kde.kmtpd5",
     "X-KDE-Kded-autoload": false,

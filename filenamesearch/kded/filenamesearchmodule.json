@@ -32,10 +32,7 @@
         "Name[ta]": "தேடல் அடைவு புதுப்பிப்பு சேவை",
         "Name[tr]": "Arama Klasörü Güncelleyici",
         "Name[uk]": "Засіб оновлення тек пошуку",
-        "Name[x-test]": "xxSearch Folder Updaterxx",
-        "ServiceTypes": [
-            "KDEDModule"
-        ]
+        "Name[x-test]": "xxSearch Folder Updaterxx"
     },
     "X-KDE-FactoryName": "filenamesearchmodule",
     "X-KDE-Kded-autoload": false,

@@ -32,10 +32,7 @@
         "Name[ta]": "SMB கண்காணிப்பி",
         "Name[tr]": "SMB İzleyici",
         "Name[uk]": "Наглядач SMB",
-        "Name[x-test]": "xxSMB Watcherxx",
-        "ServiceTypes": [
-            "KDEDModule"
-        ]
+        "Name[x-test]": "xxSMB Watcherxx"
     },
     "X-KDE-Kded-autoload": true,
     "X-KDE-Kded-load-on-demand": true,
