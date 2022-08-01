@@ -28,6 +28,16 @@
             "application/vnd.ms-xpsdocument",
             "application/vnd.ms-printing.printticket+xml"
         ],
-        "Name": "Office Documents"
+        "Name": "Office Documents",
+        "Name[ca@valencia]": "Documents de l'Office",
+        "Name[ca]": "Documents de l'Office",
+        "Name[es]": "Documentos de Office",
+        "Name[nl]": "Kantoordocumenten",
+        "Name[pl]": "Dokumenty biurowe",
+        "Name[pt]": "Documentos do Office",
+        "Name[ta]": "அலுவலக ஆவணங்கள்",
+        "Name[tr]": "Office Belgeleri",
+        "Name[uk]": "Офісні документи",
+        "Name[x-test]": "xxOffice Documentsxx"
     }
 }

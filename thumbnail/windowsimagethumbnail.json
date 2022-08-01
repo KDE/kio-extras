@@ -7,6 +7,16 @@
             "image/x-win-bitmap",
             "application/x-navi-animation"
         ],
-        "Name": "Microsoft Windows Images"
+        "Name": "Microsoft Windows Images",
+        "Name[ca@valencia]": "Imatges de Microsoft Windows",
+        "Name[ca]": "Imatges de Microsoft Windows",
+        "Name[es]": "Imágenes de Microsoft Windows",
+        "Name[nl]": "Afbeeldingen van Microsoft Windows",
+        "Name[pl]": "Obrazy Microsoft Windows",
+        "Name[pt]": "Imagens do Microsoft Windows",
+        "Name[ta]": "மைக்ரோசாப்ட் விண்டோஸ் படங்கள்",
+        "Name[tr]": "Microsoft Windows Görselleri",
+        "Name[uk]": "Зображення Microsoft Windows",
+        "Name[x-test]": "xxMicrosoft Windows Imagesxx"
     }
 }

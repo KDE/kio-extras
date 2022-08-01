@@ -5,6 +5,16 @@
             "image/svg+xml",
             "image/svg+xml-compressed"
         ],
-        "Name": "SVG Images"
+        "Name": "SVG Images",
+        "Name[ca@valencia]": "Imatges SVG",
+        "Name[ca]": "Imatges SVG",
+        "Name[es]": "Imágenes SVG",
+        "Name[nl]": "SVG-afbeeldingen",
+        "Name[pl]": "Obrazy SVG",
+        "Name[pt]": "Imagens SVG",
+        "Name[ta]": "SVG படங்கள்",
+        "Name[tr]": "SVG Görselleri",
+        "Name[uk]": "Зображення SVG",
+        "Name[x-test]": "xxSVG Imagesxx"
     }
 }

@@ -6,6 +6,16 @@
             "application/x-krita",
             "image/openraster"
         ],
-        "Name": "Krita Documents"
+        "Name": "Krita Documents",
+        "Name[ca@valencia]": "Documents de Krita",
+        "Name[ca]": "Documents del Krita",
+        "Name[es]": "Documentos de Krita",
+        "Name[nl]": "Krita-documenten",
+        "Name[pl]": "Dokumenty Krity",
+        "Name[pt]": "Documentos do Krita",
+        "Name[ta]": "Krita ஆவணங்கள்",
+        "Name[tr]": "Krita Belgeleri",
+        "Name[uk]": "Документи Krita",
+        "Name[x-test]": "xxKrita Documentsxx"
     }
 }

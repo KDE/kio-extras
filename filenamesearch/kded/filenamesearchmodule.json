@@ -1,8 +1,28 @@
 {
     "KPlugin": {
         "Description": "Allows automatic updates of Search Folders",
+        "Description[ca@valencia]": "Permet l'actualització automàtica de les carpetes de busca",
+        "Description[ca]": "Permet l'actualització automàtica de les carpetes de cerca",
+        "Description[es]": "Permite actualizaciones automáticas de carpetas de búsqueda",
+        "Description[nl]": "Staat automatisch bijwerken van zoekmappen toe",
+        "Description[pl]": "Umożliwia samoczynne uaktualnienia katalogów wyszukiwania",
+        "Description[pt]": "Permite as actualizações das Pastas de Pesquisa",
+        "Description[ta]": "தேடல் அடைவுகளை தானாக புதுப்பிக்கும்",
+        "Description[tr]": "Arama Klasörlerinin otomatik güncellenmesine izin ver",
+        "Description[uk]": "Надає змогу автоматично оновлювати теки пошуку",
+        "Description[x-test]": "xxAllows automatic updates of Search Foldersxx",
         "Icon": "edit-find",
         "Name": "Search Folder Updater",
+        "Name[ca@valencia]": "Actualitzador de les carpetes de busca",
+        "Name[ca]": "Actualitzador de les carpetes de cerca",
+        "Name[es]": "Actualizador de carpetas de búsqueda",
+        "Name[nl]": "Bijwerkprogramma van zoekmap",
+        "Name[pl]": "Uaktualnianie katalogów wyszukiwania",
+        "Name[pt]": "Actualização das Pastas de Pesquisa",
+        "Name[ta]": "தேடல் அடைவு புதுப்பிப்பு சேவை",
+        "Name[tr]": "Arama Klasörü Güncelleyici",
+        "Name[uk]": "Засіб оновлення тек пошуку",
+        "Name[x-test]": "xxSearch Folder Updaterxx",
         "ServiceTypes": [
             "KDEDModule"
         ]

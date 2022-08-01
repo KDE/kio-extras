@@ -5,6 +5,16 @@
         "MimeTypes": [
             "image/x-exr"
         ],
-        "Name": "EXR Images"
+        "Name": "EXR Images",
+        "Name[ca@valencia]": "Imatges EXR",
+        "Name[ca]": "Imatges EXR",
+        "Name[es]": "Imágenes EXR",
+        "Name[nl]": "EXR-afbeeldingen",
+        "Name[pl]": "Obrazy EXR",
+        "Name[pt]": "Imagens EXR",
+        "Name[ta]": "EXR படங்கள்",
+        "Name[tr]": "EXR Görselleri",
+        "Name[uk]": "Зображення EXR",
+        "Name[x-test]": "xxEXR Imagesxx"
     }
 }

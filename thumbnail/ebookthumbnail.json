@@ -6,6 +6,16 @@
             "application/x-fictionbook+xml",
             "application/x-zip-compressed-fb2"
         ],
-        "Name": "eBooks"
+        "Name": "eBooks",
+        "Name[ca@valencia]": "eBooks",
+        "Name[ca]": "eBooks",
+        "Name[es]": "Libros electrónicos",
+        "Name[nl]": "eBooks",
+        "Name[pl]": "eBooki",
+        "Name[pt]": "eBooks",
+        "Name[ta]": "மின்புத்தகங்கள்",
+        "Name[tr]": "eKitaplar",
+        "Name[uk]": "Електронні книги",
+        "Name[x-test]": "xxeBooksxx"
     }
 }

@@ -4,7 +4,17 @@
         "MimeTypes": [
             "image/jpeg"
         ],
-        "Name": "JPEG Images"
+        "Name": "JPEG Images",
+        "Name[ca@valencia]": "Imatges JPEG",
+        "Name[ca]": "Imatges JPEG",
+        "Name[es]": "Imágenes JPEG",
+        "Name[nl]": "JPEG-afbeeldingen",
+        "Name[pl]": "Obrazy JPEG",
+        "Name[pt]": "Imagens JPEG",
+        "Name[ta]": "JPEG படங்கள்",
+        "Name[tr]": "JPEG Görselleri",
+        "Name[uk]": "Зображення JPEG",
+        "Name[x-test]": "xxJPEG Imagesxx"
     },
     "ThumbnailerVersion": "2"
 }

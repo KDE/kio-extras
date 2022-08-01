@@ -5,6 +5,16 @@
             "image/*",
             "video/x-mng"
         ],
-        "Name": "Images (GIF, PNG, BMP, ...)"
+        "Name": "Images (GIF, PNG, BMP, ...)",
+        "Name[ca@valencia]": "Imatges (GIF, PNG, BMP...)",
+        "Name[ca]": "Imatges (GIF, PNG, BMP...)",
+        "Name[es]": "Imágenes (GIF, PNG, BMP...)",
+        "Name[nl]": "Afbeeldingen (GIF, PNG, BMP, ...)",
+        "Name[pl]": "Obrazy (GIF, PNG, BMP, ...)",
+        "Name[pt]": "Imagens (GIF, PNG, BMP, ...)",
+        "Name[ta]": "படங்கள் (GIF, PNG, BMP, ...)",
+        "Name[tr]": "Görseller (GIF, PNG, BMP, ...)",
+        "Name[uk]": "Зображення (GIF, PNG, BMP…)",
+        "Name[x-test]": "xxImages (GIF, PNG, BMP, ...)xx"
     }
 }

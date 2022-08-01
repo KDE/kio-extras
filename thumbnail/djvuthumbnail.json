@@ -7,6 +7,16 @@
             "image/x.djvu",
             "image/vnd.djvu"
         ],
-        "Name": "DjVu Files"
+        "Name": "DjVu Files",
+        "Name[ca@valencia]": "Fitxers DjVu",
+        "Name[ca]": "Fitxers DjVu",
+        "Name[es]": "Archivos DjVu",
+        "Name[nl]": "DjVu-bestanden",
+        "Name[pl]": "Pliki DjVu",
+        "Name[pt]": "Ficheiros do DjVu",
+        "Name[ta]": "DjVu கோப்புகள்",
+        "Name[tr]": "DjVu Dosyaları",
+        "Name[uk]": "Файли DjVu",
+        "Name[x-test]": "xxDjVu Filesxx"
     }
 }

@@ -4,6 +4,16 @@
         "MimeTypes": [
             "image/x-xcursor"
         ],
-        "Name": "Cursor Files"
+        "Name": "Cursor Files",
+        "Name[ca@valencia]": "Fitxers de cursor",
+        "Name[ca]": "Fitxers de cursor",
+        "Name[es]": "Archivos de cursores",
+        "Name[nl]": "Cursorbestanden",
+        "Name[pl]": "Pliki kursorów",
+        "Name[pt]": "Ficheiros de Cursores",
+        "Name[ta]": "சுட்டிக்குறி கோப்புகள்",
+        "Name[tr]": "İmleç Dosyaları",
+        "Name[uk]": "Файли курсорів",
+        "Name[x-test]": "xxCursor Filesxx"
     }
 }

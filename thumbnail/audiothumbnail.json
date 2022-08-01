@@ -4,6 +4,16 @@
         "MimeTypes": [
             "audio/*"
         ],
-        "Name": "Audio files"
+        "Name": "Audio files",
+        "Name[ca@valencia]": "Fitxers d'àudio",
+        "Name[ca]": "Fitxers d'àudio",
+        "Name[es]": "Archivos de sonido",
+        "Name[nl]": "Geluidsbestanden",
+        "Name[pl]": "Pliki dźwiękowe",
+        "Name[pt]": "Ficheiros de áudio",
+        "Name[ta]": "ஒலிக்கோப்புகள்",
+        "Name[tr]": "Ses Dosyaları",
+        "Name[uk]": "Звукові файли",
+        "Name[x-test]": "xxAudio filesxx"
     }
 }

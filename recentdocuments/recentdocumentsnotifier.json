@@ -1,7 +1,27 @@
 {
     "KPlugin": {
         "Description": "Monitors \"Recent Documents\" folder for changes",
+        "Description[ca@valencia]": "Controla els canvis a la carpeta «Documents recents»",
+        "Description[ca]": "Controla els canvis a la carpeta «Documents recents»",
+        "Description[es]": "Monitoriza los cambios de la carpeta «Documentos recientes»",
+        "Description[nl]": "Bewaakt map \"Recente documenten\" op wijzigingen",
+        "Description[pl]": "Monitoruje \"ostatnie dokumenty\" pod kątem zmian",
+        "Description[pt]": "Vigia alterações na pasta de \"Documentos Recentes\"",
+        "Description[ta]": "\"சமீப ஆவணங்கள்\" அடைவை மாற்றங்களுக்காக கண்காணிக்கும்.",
+        "Description[tr]": "\"Son Kullanılan Belgeler\" klasörünü değişiklikler için izler",
+        "Description[uk]": "Стежить за змінами у теці недавніх документів",
+        "Description[x-test]": "xxMonitors \"Recent Documents\" folder for changesxx",
         "Name": "Recent Document Watcher",
+        "Name[ca@valencia]": "Vigilant de documents recents",
+        "Name[ca]": "Vigilant de documents recents",
+        "Name[es]": "Vigilante de documentos recientes",
+        "Name[nl]": "Bewaker van recente documenten",
+        "Name[pl]": "Obserwator ostatnich dokumentów",
+        "Name[pt]": "Monitor de Documentos Recentes",
+        "Name[ta]": "சமீப ஆவண கண்காணிப்பி",
+        "Name[tr]": "Son Kullanılan Belge İzleyici",
+        "Name[uk]": "Наглядач за недавніми документами",
+        "Name[x-test]": "xxRecent Document Watcherxx",
         "ServiceTypes": [
             "KDEDModule"
         ]

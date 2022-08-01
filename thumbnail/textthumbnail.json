@@ -5,6 +5,16 @@
         "MimeTypes": [
             "text/plain"
         ],
-        "Name": "Text Files"
+        "Name": "Text Files",
+        "Name[ca@valencia]": "Fitxers de text",
+        "Name[ca]": "Fitxers de text",
+        "Name[es]": "Archivos de texto",
+        "Name[nl]": "Tekstbestanden",
+        "Name[pl]": "Pliki tekstowe",
+        "Name[pt]": "Ficheiros de Texto",
+        "Name[ta]": "உரை கோப்புகள்",
+        "Name[tr]": "Metin Dosyaları",
+        "Name[uk]": "Текстові файли",
+        "Name[x-test]": "xxText Filesxx"
     }
 }

@@ -5,6 +5,16 @@
             "application/x-iso9660-appimage",
             "application/vnd.appimage"
         ],
-        "Name": "AppImage"
+        "Name": "AppImage",
+        "Name[ca@valencia]": "AppImage",
+        "Name[ca]": "AppImage",
+        "Name[es]": "AppImage",
+        "Name[nl]": "AppImage",
+        "Name[pl]": "AppImage",
+        "Name[pt]": "AppImage",
+        "Name[ta]": "AppImage",
+        "Name[tr]": "AppImage",
+        "Name[uk]": "AppImage",
+        "Name[x-test]": "xxAppImagexx"
     }
 }
