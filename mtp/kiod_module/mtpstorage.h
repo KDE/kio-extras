@@ -95,10 +95,10 @@ private:
     const QString m_dbusObjectPath;
 
     // LIBMTP_devicestorage_t properties
-    quint32 m_id;                   /**< Unique ID for this storage */
-    quint64 m_maxCapacity;          /**< Maximum capability */
-    quint64 m_freeSpaceInBytes;     /**< Free space in bytes */
-    QString m_description;          /**< A brief description of this storage */
+    quint32 m_id = 0; /**< Unique ID for this storage */
+    quint64 m_maxCapacity = 0; /**< Maximum capability */
+    quint64 m_freeSpaceInBytes = 0; /**< Free space in bytes */
+    QString m_description; /**< A brief description of this storage */
 
     QHash<QString, QPair<QDateTime, uint32_t> > m_cache;
 
