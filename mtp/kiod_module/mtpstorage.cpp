@@ -506,22 +506,23 @@ int MTPStorage::getFileToFileDescriptor(const QDBusUnixFileDescriptor &descripto
     qCDebug(LOG_KIOD_KMTPD) << "getFileToFileDescriptor:" << sourcePath;
 
     const KMTPFile source = getFileMetadata(sourcePath);
-    if (source.isValid()) {
-        const quint32 itemId = source.itemId();
-
-        // big files take some time to copy, and this may lead into D-Bus timeouts.
-        // therefore the actual copying is not done within the D-Bus method itself but right after we return to the event loop
-        QTimer::singleShot(0, this, [this, itemId, descriptor] {
-            const int result = LIBMTP_Get_File_To_File_Descriptor(getDevice(), itemId, descriptor.fileDescriptor(), onDataProgress, this);
-            if (result) {
-                LIBMTP_Dump_Errorstack(getDevice());
-                LIBMTP_Clear_Errorstack(getDevice());
-            }
-            Q_EMIT copyFinished(result);
-        });
-        return 0;
+    if (!source.isValid()) {
+        return 1;
     }
-    return 1;
+
+    const quint32 itemId = source.itemId();
+
+    // big files take some time to copy, and this may lead into D-Bus timeouts.
+    // therefore the actual copying is not done within the D-Bus method itself but right after we return to the event loop
+    QTimer::singleShot(0, this, [this, itemId, descriptor] {
+        const int result = LIBMTP_Get_File_To_File_Descriptor(getDevice(), itemId, descriptor.fileDescriptor(), onDataProgress, this);
+        if (result) {
+            LIBMTP_Dump_Errorstack(getDevice());
+            LIBMTP_Clear_Errorstack(getDevice());
+        }
+        Q_EMIT copyFinished(result);
+    });
+    return 0;
 }
 
 int MTPStorage::sendFileFromFileDescriptor(const QDBusUnixFileDescriptor &descriptor, const QString &destinationPath)
