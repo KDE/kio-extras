@@ -180,7 +180,7 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
     case LIBMTP_FILETYPE_AUDIBLE:
         return QString();
     case LIBMTP_FILETYPE_MP4:
-        return QStringLiteral("audio/mp4");
+        return QStringLiteral("video/mp4");
     case LIBMTP_FILETYPE_UNDEF_AUDIO:
         return QString();
     case LIBMTP_FILETYPE_WMV:
