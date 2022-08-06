@@ -178,11 +178,11 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
     case LIBMTP_FILETYPE_OGG:
         return QStringLiteral("audio/x-vorbis+ogg");
     case LIBMTP_FILETYPE_AUDIBLE:
-        return QString();
+        return {};
     case LIBMTP_FILETYPE_MP4:
         return QStringLiteral("video/mp4");
     case LIBMTP_FILETYPE_UNDEF_AUDIO:
-        return QString();
+        return {};
     case LIBMTP_FILETYPE_WMV:
         return QStringLiteral("video/x-ms-wmv");
     case LIBMTP_FILETYPE_AVI:
@@ -194,11 +194,11 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
     case LIBMTP_FILETYPE_QT:
         return QStringLiteral("video/quicktime");
     case LIBMTP_FILETYPE_UNDEF_VIDEO:
-        return QString();
+        return {};
     case LIBMTP_FILETYPE_JPEG:
         return QStringLiteral("image/jpeg");
     case LIBMTP_FILETYPE_JFIF:
-        return QString();
+        return {};
     case LIBMTP_FILETYPE_TIFF:
         return QStringLiteral("image/tiff");
     case LIBMTP_FILETYPE_BMP:
@@ -226,11 +226,11 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
     case LIBMTP_FILETYPE_HTML:
         return QStringLiteral("text/html");
     case LIBMTP_FILETYPE_FIRMWARE:
-        return QString();
+        return {};
     case LIBMTP_FILETYPE_AAC:
         return QStringLiteral("audio/aac");
     case LIBMTP_FILETYPE_MEDIACARD:
-        return QString();
+        return {};
     case LIBMTP_FILETYPE_FLAC:
         return QStringLiteral("audio/flac");
     case LIBMTP_FILETYPE_MP2:
@@ -246,7 +246,7 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
     case LIBMTP_FILETYPE_PPT:
         return QStringLiteral("application/vnd.ms-powerpoint");
     case LIBMTP_FILETYPE_MHT:
-        return QString();
+        return {};
     case LIBMTP_FILETYPE_JP2:
         return QStringLiteral("image/jpeg2000");
     case LIBMTP_FILETYPE_JPX:
@@ -392,7 +392,7 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
             currentParent = it->itemId();
         } else {
             qCDebug(LOG_KIOD_KMTPD) << "File not found!";
-            return KMTPFile();
+            return {};
         }
         currentPath.append(QLatin1Char('/') + element);
     }
@@ -404,7 +404,7 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
         const KMTPFile mtpFile = createMTPFile(file);
         return mtpFile;
     }
-    return KMTPFile();
+    return {};
 }
 
 KMTPFileList MTPStorage::getFilesAndFoldersCached(const QString &path, quint32 parentId)
@@ -467,10 +467,10 @@ KMTPFileList MTPStorage::getFilesAndFolders(const QString &path, int &result)
     const KMTPFile file = getFileFromPath(path);
     if (!file.isValid()) {
         result = 1;     // not existing
-        return KMTPFileList();
+        return {};
     } else if (!file.isFolder()) {
         result = 2;     // is file
-        return KMTPFileList();
+        return {};
     }
     return getFilesAndFoldersCached(path, file.itemId());
 }
