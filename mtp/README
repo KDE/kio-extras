@@ -1,7 +1,7 @@
-kio-mtp: KIO slave to access MTP devices
+kio-mtp: KIO worker to access MTP devices
 ========================================
 
-This KIO slave enables KDE applications to access
+This KIO worker enables KDE applications to access
 files stored on devices that provide access to them
 via the MTP protocol.
 

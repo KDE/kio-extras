@@ -7,11 +7,10 @@
  *  SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-#ifndef KIO_MTP_H
-#define KIO_MTP_H
+#pragma once
 
 #include <KIO/Global>
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 #include <KLocalizedString>
 
 #include <stdlib.h>
@@ -34,7 +33,7 @@ class KMTPFile;
 
 using namespace KIO;
 
-class MTPSlave : public QObject, public KIO::SlaveBase
+class MTPWorker : public QObject, public KIO::WorkerBase
 {
     Q_OBJECT
 
@@ -49,36 +48,28 @@ public:
     /*
      * Overwritten KIO-functions, see "kio_mtp.cpp"
      */
-    MTPSlave(const QByteArray &pool, const QByteArray &app);
-    ~MTPSlave() override;
+    MTPWorker(const QByteArray &pool, const QByteArray &app);
+    ~MTPWorker() override;
 
-    void listDir(const QUrl &url) override;
-    void stat(const QUrl &url) override;
-    void mimetype(const QUrl &url) override;
-    void get(const QUrl &url) override;
-    void put(const QUrl &url, int, JobFlags flags) override;
-    void copy(const QUrl &src, const QUrl &dest, int, JobFlags flags) override;
-    void mkdir(const QUrl &url, int) override;
-    void del(const QUrl &url, bool) override;
-    void rename(const QUrl &src, const QUrl &dest, JobFlags flags) override;
-
-// private Q_SLOTS:
-//
-//     void test();
-
-protected:
-    void virtual_hook(int id, void *data) override;
+    WorkerResult listDir(const QUrl &url) override;
+    WorkerResult stat(const QUrl &url) override;
+    WorkerResult mimetype(const QUrl &url) override;
+    WorkerResult get(const QUrl &url) override;
+    WorkerResult put(const QUrl &url, int, JobFlags flags) override;
+    WorkerResult copy(const QUrl &src, const QUrl &dest, int, JobFlags flags) override;
+    WorkerResult mkdir(const QUrl &url, int) override;
+    WorkerResult del(const QUrl &url, bool) override;
+    WorkerResult rename(const QUrl &src, const QUrl &dest, JobFlags flags) override;
+    WorkerResult fileSystemFreeSpace(const QUrl &url) override;
 
 private:
     /**
      * Check if it is a valid url or an udi.
      *
      * @param url The url to checkUrl
-     * @return enum MTPSlave::Url
+     * @return enum MTPWorker::Url
      */
-    enum MTPSlave::Url checkUrl(const QUrl &url);
-
-    void fileSystemFreeSpace(const QUrl &url);
+    enum MTPWorker::Url checkUrl(const QUrl &url);
 
     /**
      * @brief Waits for a pending copy operation to finish while updating its progress.
@@ -89,5 +80,3 @@ private:
 
     KMTPDInterface m_kmtpDaemon;
 };
-
-#endif // KIO_MTP_H

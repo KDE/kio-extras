@@ -27,7 +27,7 @@
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.mtp" FILE "mtp.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.mtp" FILE "mtp.json")
 };
 
 static UDSEntry getEntry(const KMTPDeviceInterface *device)
@@ -88,13 +88,13 @@ static QString urlFileName(const QUrl &url)
     return url.fileName();
 }
 
-static QString convertPath(const QString &slavePath)
+static QString convertPath(const QString &workerPath)
 {
-    return slavePath.section(QLatin1Char('/'), 3, -1, QString::SectionIncludeLeadingSep);
+    return workerPath.section(QLatin1Char('/'), 3, -1, QString::SectionIncludeLeadingSep);
 }
 
 //////////////////////////////////////////////////////////////////////////////
-///////////////////////////// Slave Implementation ///////////////////////////
+///////////////////////////// Worker Implementation ///////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
 extern "C"
@@ -108,28 +108,28 @@ int Q_DECL_EXPORT kdemain(int argc, char **argv)
         exit(-1);
     }
 
-    MTPSlave slave(argv[2], argv[3]);
+    MTPWorker worker(argv[2], argv[3]);
 
-    slave.dispatchLoop();
+    worker.dispatchLoop();
 
-    qCDebug(LOG_KIO_MTP) << "Slave EventLoop ended";
+    qCDebug(LOG_KIO_MTP) << "Worker EventLoop ended";
 
     return 0;
 }
 
-MTPSlave::MTPSlave(const QByteArray &pool, const QByteArray &app)
-    : SlaveBase("mtp", pool, app)
+MTPWorker::MTPWorker(const QByteArray &pool, const QByteArray &app)
+    : WorkerBase("mtp", pool, app)
 {
-    qCDebug(LOG_KIO_MTP) << "Slave started";
+    qCDebug(LOG_KIO_MTP) << "Worker started";
     qCDebug(LOG_KIO_MTP) << "Connected to kiod5 module:" << m_kmtpDaemon.isValid();
 }
 
-MTPSlave::~MTPSlave()
+MTPWorker::~MTPWorker()
 {
-    qCDebug(LOG_KIO_MTP) << "Slave destroyed";
+    qCDebug(LOG_KIO_MTP) << "Worker destroyed";
 }
 
-enum MTPSlave::Url MTPSlave::checkUrl(const QUrl &url)
+enum MTPWorker::Url MTPWorker::checkUrl(const QUrl &url)
 {
     if (url.path().startsWith(QLatin1String("udi="))) {
         const QString udi = url.adjusted(QUrl::StripTrailingSlash).path().remove(0, 4);
@@ -160,20 +160,17 @@ enum MTPSlave::Url MTPSlave::checkUrl(const QUrl &url)
     return Url::Invalid;
 }
 
-void MTPSlave::listDir(const QUrl &url)
+WorkerResult MTPWorker::listDir(const QUrl &url)
 {
     switch (checkUrl(url)) {
     case Url::Valid:
         break;
     case Url::Redirected:
-        finished();
-        return;
+        return WorkerResult::pass();
     case Url::NotFound:
-        error(ERR_DOES_NOT_EXIST, url.path());
-        return;
+        return WorkerResult::fail(ERR_DOES_NOT_EXIST, url.path());
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, url.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, url.path());
     }
 
     // list '.' entry, otherwise files cannot be pasted to empty folders
@@ -198,8 +195,7 @@ void MTPSlave::listDir(const QUrl &url)
         }
 
         qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Devices:" << devices.size();
-        finished();
-        return;
+        return WorkerResult::pass();
     }
 
     // traverse into device
@@ -217,63 +213,53 @@ void MTPSlave::listDir(const QUrl &url)
                     listEntry(getEntry(storage));
                 }
 
-                finished();
                 qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storage media:" << storages.count();
-            } else {
-                error(ERR_WORKER_DEFINED, i18nc("Message shown when attempting to access an MTP device that is not fully accessible yet", "Could not access device. Make sure it is unlocked, and tap \"Allow\" on the popup on its screen. If that does not work, make sure MTP is enabled in its USB connection settings."));
+                return WorkerResult::pass();
             }
-        } else {
-            // list files and folders
-            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
-            if (storage) {
-                int result;
-                const QString path = convertPath(url.path());
-                const KMTPFileList files = storage->getFilesAndFolders(path, result);
+            return WorkerResult::fail(ERR_WORKER_DEFINED, i18nc("Message shown when attempting to access an MTP device that is not fully accessible yet", "Could not access device. Make sure it is unlocked, and tap \"Allow\" on the popup on its screen. If that does not work, make sure MTP is enabled in its USB connection settings."));
+        }
+        // list files and folders
+        const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
+        if (storage) {
+            int result;
+            const QString path = convertPath(url.path());
+            const KMTPFileList files = storage->getFilesAndFolders(path, result);
 
-                switch (result) {
-                case 0:
-                    for (const KMTPFile &file : files) {
-                        listEntry(getEntry(file));
-                    }
-
-                    qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Files:" << files.count();
-                    finished();
-                    return;
-                case 2:
-                    error(ERR_IS_FILE, url.path());
-                    return;
+            switch (result) {
+            case 0:
+                for (const KMTPFile &file : files) {
+                    listEntry(getEntry(file));
                 }
 
-                // path not found
-                error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
-                return;
-            } else {
-                // storage not found
-                error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
-                qCDebug(LOG_KIO_MTP) << "[ERROR] :: Storage";
+                qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Files:" << files.count();
+                return WorkerResult::pass();
+            case 2:
+                return WorkerResult::fail(ERR_IS_FILE, url.path());
             }
+
+            // path not found
+            return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, url.path());
         }
-    } else {
-        // device not found
-        error(ERR_CANNOT_ENTER_DIRECTORY, url.path());
-        qCDebug(LOG_KIO_MTP) << "[ERROR] :: Device";
+        // storage not found
+        qCDebug(LOG_KIO_MTP) << "[ERROR] :: Storage";
+        return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, url.path());
     }
+    // device not found
+    qCDebug(LOG_KIO_MTP) << "[ERROR] :: Device";
+    return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, url.path());
 }
 
-void MTPSlave::stat(const QUrl &url)
+WorkerResult MTPWorker::stat(const QUrl &url)
 {
     switch (checkUrl(url)) {
     case Url::Valid:
         break;
     case Url::Redirected:
-        finished();
-        return;
+        return WorkerResult::pass();
     case Url::NotFound:
-        error(ERR_DOES_NOT_EXIST, url.path());
-        return;
+        return WorkerResult::fail(ERR_DOES_NOT_EXIST, url.path());
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, url.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, url.path());
     }
 
     const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
@@ -306,39 +292,33 @@ void MTPSlave::stat(const QUrl &url)
                         if (file.isValid()) {
                             entry = getEntry(file);
                         } else {
-                            error(ERR_DOES_NOT_EXIST, url.path());
-                            return;
+                            return WorkerResult::fail(ERR_DOES_NOT_EXIST, url.path());
                         }
                     }
                 } else {
-                    error(ERR_DOES_NOT_EXIST, url.path());
-                    return;
+                    return WorkerResult::fail(ERR_DOES_NOT_EXIST, url.path());
                 }
             }
         } else {
-            error(ERR_DOES_NOT_EXIST, url.path());
-            return;
+            return WorkerResult::fail(ERR_DOES_NOT_EXIST, url.path());
         }
     }
 
     statEntry(entry);
-    finished();
+    return WorkerResult::pass();
 }
 
-void MTPSlave::mimetype(const QUrl &url)
+WorkerResult MTPWorker::mimetype(const QUrl &url)
 {
     switch (checkUrl(url)) {
     case Url::Valid:
         break;
     case Url::Redirected:
-        finished();
-        return;
+        return WorkerResult::pass();
     case Url::NotFound:
-        error(ERR_DOES_NOT_EXIST, url.path());
-        return;
+        return WorkerResult::fail(ERR_DOES_NOT_EXIST, url.path());
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, url.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, url.path());
     }
 
     const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
@@ -351,19 +331,19 @@ void MTPSlave::mimetype(const QUrl &url)
                 if (file.isValid()) {
                     // NOTE the difference between calling mimetype and mimeType
                     mimeType(file.filetype());
-                    return;
+                    return WorkerResult::pass();
                 }
             }
         }
     } else {
         mimeType(QStringLiteral("inode/directory"));
-        return;
+        return WorkerResult::pass();
     }
 
-    error(ERR_DOES_NOT_EXIST, url.path());
+    return WorkerResult::fail(ERR_DOES_NOT_EXIST, url.path());
 }
 
-void MTPSlave::get(const QUrl &url)
+WorkerResult MTPWorker::get(const QUrl &url)
 {
     switch (checkUrl(url)) {
     case Url::Valid:
@@ -371,8 +351,7 @@ void MTPSlave::get(const QUrl &url)
     case Url::Redirected:
     case Url::NotFound:
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, url.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, url.path());
     }
 
     const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
@@ -387,8 +366,7 @@ void MTPSlave::get(const QUrl &url)
                 const QString path = convertPath(url.path());
                 const KMTPFile source = storage->getFileMetadata(path);
                 if (!source.isValid()) {
-                    error(KIO::ERR_DOES_NOT_EXIST, url.path());
-                    return;
+                    return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.path());
                 }
 
                 mimeType(source.filetype());
@@ -396,13 +374,12 @@ void MTPSlave::get(const QUrl &url)
 
                 int result = storage->getFileToHandler(path);
                 if (result) {
-                    error(KIO::ERR_CANNOT_READ, url.path());
-                    return;
+                    return WorkerResult::fail(KIO::ERR_CANNOT_READ, url.path());
                 }
 
                 QEventLoop loop;
                 connect(storage, &KMTPStorageInterface::dataReady, &loop, [this] (const QByteArray &data) {
-                    MTPSlave::data(data);
+                    MTPWorker::data(data);
                 });
                 connect(storage, &KMTPStorageInterface::copyFinished, &loop, &QEventLoop::exit);
                 result = loop.exec();
@@ -410,23 +387,20 @@ void MTPSlave::get(const QUrl &url)
                 qCDebug(LOG_KIO_MTP) << "data received";
 
                 if (result) {
-                    error(ERR_CANNOT_READ, url.path());
-                    return;
+                    return WorkerResult::fail(ERR_CANNOT_READ, url.path());
                 }
 
                 data(QByteArray());
-                finished();
-                return;
+                return WorkerResult::pass();
             }
         }
     } else {
-        error(ERR_UNSUPPORTED_ACTION, url.path());
-        return;
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, url.path());
     }
-    error(ERR_CANNOT_READ, url.path());
+    return WorkerResult::fail(ERR_CANNOT_READ, url.path());
 }
 
-void MTPSlave::put(const QUrl &url, int, JobFlags flags)
+WorkerResult MTPWorker::put(const QUrl &url, int, JobFlags flags)
 {
     switch (checkUrl(url)) {
     case Url::Valid:
@@ -434,16 +408,14 @@ void MTPSlave::put(const QUrl &url, int, JobFlags flags)
     case Url::Redirected:
     case Url::NotFound:
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, url.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, url.path());
     }
 
     const QStringList destItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
     // can't copy to root or device, needs storage
     if (destItems.size() < 2) {
-        error(ERR_UNSUPPORTED_ACTION, url.path());
-        return;
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, url.path());
     }
 
     // we need to get the entire file first, then we can upload
@@ -473,12 +445,10 @@ void MTPSlave::put(const QUrl &url, int, JobFlags flags)
                         // delete existing file on the device
                         const int result = storage->deleteObject(destinationPath);
                         if (result) {
-                            error(ERR_CANNOT_DELETE, url.path());
-                            return;
+                            return WorkerResult::fail(ERR_CANNOT_DELETE, url.path());
                         }
                     } else {
-                        error(ERR_FILE_ALREADY_EXIST, url.path());
-                        return;
+                        return WorkerResult::fail(ERR_FILE_ALREADY_EXIST, url.path());
                     }
                 }
 
@@ -487,8 +457,7 @@ void MTPSlave::put(const QUrl &url, int, JobFlags flags)
                 QDBusUnixFileDescriptor descriptor(temp.handle());
                 int result = storage->sendFileFromFileDescriptor(descriptor, destinationPath);
                 if (result) {
-                    error(KIO::ERR_CANNOT_WRITE, urlFileName(url));
-                    return;
+                    return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, urlFileName(url));
                 }
 
                 result = waitForCopyOperation(storage);
@@ -498,30 +467,26 @@ void MTPSlave::put(const QUrl &url, int, JobFlags flags)
                 switch (result) {
                 case 0:
                     qCDebug(LOG_KIO_MTP) << "data sent";
-                    finished();
-                    return;
+                    return WorkerResult::pass();
                 case 2:
-                    error(ERR_IS_FILE, urlDirectory(url));
-                    return;
+                    return WorkerResult::fail(ERR_IS_FILE, urlDirectory(url));
                 }
 
-                error(KIO::ERR_CANNOT_WRITE, urlFileName(url));
-                return;
+                return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, urlFileName(url));
             }
         }
     }
 
-    error(KIO::ERR_CANNOT_WRITE, urlFileName(url));
+    return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, urlFileName(url));
 }
 
-void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
+WorkerResult MTPWorker::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
 {
     if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("mtp")) {
         qCDebug(LOG_KIO_MTP) << "Copy on device: Not supported";
         // MTP doesn't support moving files directly on the device, so we have to download and then upload...
 
-        error(ERR_UNSUPPORTED_ACTION, i18n("Cannot copy/move files on the device itself"));
-        return;
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Cannot copy/move files on the device itself"));
     } else if (src.scheme() == QLatin1String("file") && dest.scheme() == QLatin1String("mtp")) {
         // copy from filesystem to the device
 
@@ -529,20 +494,17 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
         case Url::Valid:
             break;
         case Url::NotFound:
-            error(ERR_DOES_NOT_EXIST, src.path());
-            return;
+            return WorkerResult::fail(ERR_DOES_NOT_EXIST, src.path());
         case Url::Redirected:
         case Url::Invalid:
-            error(ERR_MALFORMED_URL, dest.path());
-            return;
+            return WorkerResult::fail(ERR_MALFORMED_URL, dest.path());
         }
 
         QStringList destItems = dest.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
         // can't copy to root or device, needs storage
         if (destItems.size() < 2) {
-            error(ERR_UNSUPPORTED_ACTION, dest.path());
-            return;
+            return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, dest.path());
         }
 
         qCDebug(LOG_KIO_MTP) << "Copy file " << urlFileName(src) << "from filesystem to device" << urlDirectory(src, true) << urlDirectory(dest, true);
@@ -560,19 +522,16 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
                         // delete existing file on the device
                         const int result = storage->deleteObject(destinationPath);
                         if (result) {
-                            error(ERR_CANNOT_DELETE, dest.path());
-                            return;
+                            return WorkerResult::fail(ERR_CANNOT_DELETE, dest.path());
                         }
                     } else {
-                        error(ERR_FILE_ALREADY_EXIST, dest.path());
-                        return;
+                        return WorkerResult::fail(ERR_FILE_ALREADY_EXIST, dest.path());
                     }
                 }
 
                 QFile srcFile(src.path());
                 if (!srcFile.open(QIODevice::ReadOnly)) {
-                    error(KIO::ERR_CANNOT_OPEN_FOR_READING, src.path());
-                    return;
+                    return WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, src.path());
                 }
 
                 qCDebug(LOG_KIO_MTP) << "Sending file" << srcFile.fileName() << "with size" << srcFile.size();
@@ -582,8 +541,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
                 QDBusUnixFileDescriptor descriptor(srcFile.handle());
                 int result = storage->sendFileFromFileDescriptor(descriptor, destinationPath);
                 if (result) {
-                    error(KIO::ERR_CANNOT_WRITE, urlFileName(dest));
-                    return;
+                    return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, urlFileName(dest));
                 }
 
                 result = waitForCopyOperation(storage);
@@ -591,17 +549,14 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
                 srcFile.close();
 
                 if (result) {
-                    error(KIO::ERR_CANNOT_WRITE, urlFileName(dest));
-                    return;
+                    return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, urlFileName(dest));
                 }
 
                 qCDebug(LOG_KIO_MTP) << "Sent file";
-                finished();
-                return;
+                return WorkerResult::pass();
             }
         }
-        error(KIO::ERR_CANNOT_WRITE, urlFileName(src));
-
+        return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, urlFileName(src));
     } else if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("file")) {
         // copy from the device to filesystem
 
@@ -609,12 +564,10 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
         case Url::Valid:
             break;
         case Url::NotFound:
-            error(ERR_DOES_NOT_EXIST, src.toDisplayString());
-            return;
+            return WorkerResult::fail(ERR_DOES_NOT_EXIST, src.toDisplayString());
         case Url::Redirected:
         case Url::Invalid:
-            error(ERR_MALFORMED_URL, src.toDisplayString());
-            return;
+            return WorkerResult::fail(ERR_MALFORMED_URL, src.toDisplayString());
         }
 
         qCDebug(LOG_KIO_MTP) << "Copy file" << urlFileName(src) << "from device to filesystem" << urlDirectory(src, true) << urlDirectory(dest, true);
@@ -622,16 +575,14 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
         QFileInfo destination(dest.path());
 
         if (!(flags & KIO::Overwrite) && destination.exists()) {
-            error(ERR_FILE_ALREADY_EXIST, dest.path());
-            return;
+            return WorkerResult::fail(ERR_FILE_ALREADY_EXIST, dest.path());
         }
 
         const QStringList srcItems = src.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
 
         // can't copy to root or device, needs storage
         if (srcItems.size() < 2) {
-            error(ERR_UNSUPPORTED_ACTION, src.path());
-            return;
+            return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, src.path());
         }
 
         const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(srcItems.first());
@@ -641,14 +592,12 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
 
                 QFile destFile(dest.path());
                 if (!destFile.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
-                    error(KIO::ERR_WRITE_ACCESS_DENIED, dest.path());
-                    return;
+                    return WorkerResult::fail(KIO::ERR_WRITE_ACCESS_DENIED, dest.path());
                 }
 
                 const KMTPFile source = storage->getFileMetadata(convertPath(src.path()));
                 if (!source.isValid()) {
-                    error(KIO::ERR_DOES_NOT_EXIST, src.path());
-                    return;
+                    return WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, src.path());
                 }
 
                 totalSize(source.filesize());
@@ -656,8 +605,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
                 QDBusUnixFileDescriptor descriptor(destFile.handle());
                 int result = storage->getFileToFileDescriptor(descriptor, convertPath(src.path()));
                 if (result) {
-                    error(KIO::ERR_CANNOT_READ, urlFileName(src));
-                    return;
+                    return WorkerResult::fail(KIO::ERR_CANNOT_READ, urlFileName(src));
                 }
 
                 result = waitForCopyOperation(storage);
@@ -665,8 +613,7 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
                 destFile.close();
 
                 if (result) {
-                    error(KIO::ERR_CANNOT_READ, urlFileName(src));
-                    return;
+                    return WorkerResult::fail(KIO::ERR_CANNOT_READ, urlFileName(src));
                 }
 
                 // set correct modification time
@@ -677,15 +624,15 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
                 ::utime(dest.path().toUtf8().data(), &times);
 
                 qCDebug(LOG_KIO_MTP) << "Received file";
-                finished();
-                return;
+                return WorkerResult::pass();
             }
         }
-        error(KIO::ERR_CANNOT_READ, urlFileName(src));
+        return WorkerResult::fail(KIO::ERR_CANNOT_READ, urlFileName(src));
     }
+    return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, {});
 }
 
-void MTPSlave::mkdir(const QUrl &url, int)
+WorkerResult MTPWorker::mkdir(const QUrl &url, int)
 {
     switch (checkUrl(url)) {
     case Url::Valid:
@@ -693,8 +640,7 @@ void MTPSlave::mkdir(const QUrl &url, int)
     case Url::Redirected:
     case Url::NotFound:
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, url.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, url.path());
     }
 
     const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
@@ -706,16 +652,15 @@ void MTPSlave::mkdir(const QUrl &url, int)
                 // TODO: folder already exists
                 const quint32 itemId = storage->createFolder(convertPath(url.path()));
                 if (itemId) {
-                    finished();
-                    return;
+                    return WorkerResult::pass();
                 }
             }
         }
     }
-    error(ERR_CANNOT_MKDIR, url.path());
+    return WorkerResult::fail(ERR_CANNOT_MKDIR, url.path());
 }
 
-void MTPSlave::del(const QUrl &url, bool)
+WorkerResult MTPWorker::del(const QUrl &url, bool)
 {
     switch (checkUrl(url)) {
     case Url::Valid:
@@ -723,8 +668,7 @@ void MTPSlave::del(const QUrl &url, bool)
     case Url::Redirected:
     case Url::NotFound:
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, url.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, url.path());
     }
 
     const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
@@ -735,16 +679,15 @@ void MTPSlave::del(const QUrl &url, bool)
             if (storage) {
                 const int result = storage->deleteObject(convertPath(url.path()));
                 if (!result) {
-                    finished();
-                    return;
+                    return WorkerResult::pass();
                 }
             }
         }
     }
-    error(ERR_CANNOT_DELETE, url.path());
+    return WorkerResult::fail(ERR_CANNOT_DELETE, url.path());
 }
 
-void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
+WorkerResult MTPWorker::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
 {
     switch (checkUrl(src)) {
     case Url::Valid:
@@ -752,8 +695,7 @@ void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
     case Url::Redirected:
     case Url::NotFound:
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, src.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, src.path());
     }
 
     switch (checkUrl(dest)) {
@@ -762,16 +704,14 @@ void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
     case Url::Redirected:
     case Url::NotFound:
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, dest.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, dest.path());
     }
 
     if (src.scheme() != QLatin1String("mtp")) {
         // Kate: when editing files directly on the device and the user wants to save the changes,
         // Kate tries to move the file from /tmp/xxx to the MTP device which is not supported.
         // The ERR_UNSUPPORTED_ACTION error tells Kate to copy the file instead of moving.
-        error(ERR_UNSUPPORTED_ACTION, src.path());
-        return;
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, src.path());
     }
 
     const QStringList srcItems = src.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
@@ -781,14 +721,12 @@ void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
         if (srcItems.size() == 1) {
             const int result = mtpDevice->setFriendlyName(urlFileName(dest));
             if (!result) {
-                finished();
-                return;
+                return WorkerResult::pass();
             }
         }
         // rename Storage
         else if (srcItems.size() == 2) {
-            error(ERR_CANNOT_RENAME, src.path());
-            return;
+            return WorkerResult::fail(ERR_CANNOT_RENAME, src.path());
         } else {
             // rename file or folder
             const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(srcItems.at(1));
@@ -802,40 +740,24 @@ void MTPSlave::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
                         // delete existing file on the device
                         const int result = storage->deleteObject(destinationPath);
                         if (result) {
-                            error(ERR_CANNOT_DELETE, dest.path());
-                            return;
+                            return WorkerResult::fail(ERR_CANNOT_DELETE, dest.path());
                         }
                     } else {
-                        error(ERR_FILE_ALREADY_EXIST, dest.path());
-                        return;
+                        return WorkerResult::fail(ERR_FILE_ALREADY_EXIST, dest.path());
                     }
                 }
 
                 const int result = storage->setFileName(convertPath(src.path()), dest.fileName());
                 if (!result) {
-                    finished();
-                    return;
+                    return WorkerResult::pass();
                 }
             }
         }
     }
-    error(ERR_CANNOT_RENAME, src.path());
+    return WorkerResult::fail(ERR_CANNOT_RENAME, src.path());
 }
 
-void MTPSlave::virtual_hook(int id, void *data)
-{
-    switch(id) {
-    case SlaveBase::GetFileSystemFreeSpace: {
-        QUrl *url = static_cast<QUrl *>(data);
-        fileSystemFreeSpace(*url);
-    }
-    break;
-    default:
-        SlaveBase::virtual_hook(id, data);
-    }
-}
-
-void MTPSlave::fileSystemFreeSpace(const QUrl &url)
+WorkerResult MTPWorker::fileSystemFreeSpace(const QUrl &url)
 {
     qCDebug(LOG_KIO_MTP) << "fileSystemFreeSpace:" << url;
 
@@ -843,14 +765,11 @@ void MTPSlave::fileSystemFreeSpace(const QUrl &url)
     case Url::Valid:
         break;
     case Url::Redirected:
-        finished();
-        return;
+        return WorkerResult::pass();
     case Url::NotFound:
-        error(ERR_DOES_NOT_EXIST, url.path());
-        return;
+        return WorkerResult::fail(ERR_DOES_NOT_EXIST, url.path());
     case Url::Invalid:
-        error(ERR_MALFORMED_URL, url.path());
-        return;
+        return WorkerResult::fail(ERR_MALFORMED_URL, url.path());
     }
 
     const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
@@ -863,15 +782,14 @@ void MTPSlave::fileSystemFreeSpace(const QUrl &url)
             if (storage) {
                 setMetaData(QStringLiteral("total"), QString::number(storage->maxCapacity()));
                 setMetaData(QStringLiteral("available"), QString::number(storage->freeSpaceInBytes()));
-                finished();
-                return;
+                return WorkerResult::pass();
             }
         }
     }
-    error(KIO::ERR_CANNOT_STAT, url.toDisplayString());
+    return WorkerResult::fail(KIO::ERR_CANNOT_STAT, url.toDisplayString());
 }
 
-int MTPSlave::waitForCopyOperation(const KMTPStorageInterface *storage)
+int MTPWorker::waitForCopyOperation(const KMTPStorageInterface *storage)
 {
     QEventLoop loop;
     connect(storage, &KMTPStorageInterface::copyProgress, &loop, [this] (qulonglong sent, qulonglong total) {
@@ -879,7 +797,7 @@ int MTPSlave::waitForCopyOperation(const KMTPStorageInterface *storage)
         processedSize(sent);
     });
 
-    // any chance to 'miss' the copyFinished signal and dead lock the slave?
+    // any chance to 'miss' the copyFinished signal and dead lock the worker?
     connect(storage, &KMTPStorageInterface::copyFinished, &loop, &QEventLoop::exit);
     return loop.exec();
 }

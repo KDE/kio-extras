@@ -18,8 +18,8 @@ target_link_libraries(kio_mtp kmtp Qt::Core KF5::KIOCore KF5::I18n KF5::DBusAddo
 ecm_qt_declare_logging_category(kio_mtp
     HEADER kio_mtp_debug.h
     IDENTIFIER LOG_KIO_MTP
-    CATEGORY_NAME kf.kio.slaves.mtp
-    OLD_CATEGORY_NAMES kde.kio-mtp
+    CATEGORY_NAME kf.kio.workers.mtp
+    OLD_CATEGORY_NAMES kde.kio-mtp kf.kio.slaves.mtp
     DESCRIPTION "KIO mtp"
     EXPORT KIO_EXTRAS
 )
