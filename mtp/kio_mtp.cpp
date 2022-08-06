@@ -528,8 +528,10 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
         switch (checkUrl(dest)) {
         case Url::Valid:
             break;
-        case Url::Redirected:
         case Url::NotFound:
+            error(ERR_DOES_NOT_EXIST, src.path());
+            return;
+        case Url::Redirected:
         case Url::Invalid:
             error(ERR_MALFORMED_URL, dest.path());
             return;
@@ -606,10 +608,12 @@ void MTPSlave::copy(const QUrl &src, const QUrl &dest, int, JobFlags flags)
         switch (checkUrl(src)) {
         case Url::Valid:
             break;
-        case Url::Redirected:
         case Url::NotFound:
+            error(ERR_DOES_NOT_EXIST, src.toDisplayString());
+            return;
+        case Url::Redirected:
         case Url::Invalid:
-            error(ERR_MALFORMED_URL, src.path());
+            error(ERR_MALFORMED_URL, src.toDisplayString());
             return;
         }
 
