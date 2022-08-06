@@ -150,7 +150,8 @@ enum MTPWorker::Url MTPWorker::checkUrl(const QUrl &url)
     }
     if (url.path().startsWith(QLatin1Char('/'))) {
         return Url::Valid;
-    } else if (url.scheme() == QLatin1String("mtp") && url.path().isEmpty()) {
+    }
+    if (url.scheme() == QLatin1String("mtp") && url.path().isEmpty()) {
         QUrl newUrl = url;
         newUrl.setPath(QLatin1String("/"));
         redirection(newUrl);
@@ -487,7 +488,8 @@ WorkerResult MTPWorker::copy(const QUrl &src, const QUrl &dest, int, JobFlags fl
         // MTP doesn't support moving files directly on the device, so we have to download and then upload...
 
         return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, i18n("Cannot copy/move files on the device itself"));
-    } else if (src.scheme() == QLatin1String("file") && dest.scheme() == QLatin1String("mtp")) {
+    }
+    if (src.scheme() == QLatin1String("file") && dest.scheme() == QLatin1String("mtp")) {
         // copy from filesystem to the device
 
         switch (checkUrl(dest)) {
@@ -557,7 +559,8 @@ WorkerResult MTPWorker::copy(const QUrl &src, const QUrl &dest, int, JobFlags fl
             }
         }
         return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, urlFileName(src));
-    } else if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("file")) {
+    }
+    if (src.scheme() == QLatin1String("mtp") && dest.scheme() == QLatin1String("file")) {
         // copy from the device to filesystem
 
         switch (checkUrl(src)) {

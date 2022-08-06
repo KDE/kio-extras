@@ -433,10 +433,9 @@ quint32 MTPStorage::queryPath(const QString &path, int timeToLive)
             item.first = dateTime.addSecs(timeToLive);
             m_cache.insert(path, item);
             return item.second;
-        } else {
-            m_cache.remove(path);
-            return 0;
         }
+        m_cache.remove(path);
+        return 0;
     }
 
     return 0;
@@ -468,7 +467,8 @@ KMTPFileList MTPStorage::getFilesAndFolders(const QString &path, int &result)
     if (!file.isValid()) {
         result = 1;     // not existing
         return {};
-    } else if (!file.isFolder()) {
+    }
+    if (!file.isFolder()) {
         result = 2;     // is file
         return {};
     }
