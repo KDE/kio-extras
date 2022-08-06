@@ -251,6 +251,8 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
         return QStringLiteral("image/jpeg2000");
     case LIBMTP_FILETYPE_JPX:
         return QStringLiteral("application/x-jbuilder-project");
+    case LIBMTP_FILETYPE_ALBUM:
+    case LIBMTP_FILETYPE_PLAYLIST:
     case LIBMTP_FILETYPE_UNKNOWN:
         return {};
     }
