@@ -8,6 +8,7 @@
         "Name[bg]": "Аудио файлове",
         "Name[ca@valencia]": "Fitxers d'àudio",
         "Name[ca]": "Fitxers d'àudio",
+        "Name[en_GB]": "Audio files",
         "Name[es]": "Archivos de sonido",
         "Name[eu]": "Audio fitxategiak",
         "Name[fr]": "Fichiers audio",
@@ -19,6 +20,7 @@
         "Name[ta]": "ஒலிக்கோப்புகள்",
         "Name[tr]": "Ses Dosyaları",
         "Name[uk]": "Звукові файли",
-        "Name[x-test]": "xxAudio filesxx"
+        "Name[x-test]": "xxAudio filesxx",
+        "Name[zh_CN]": "音频文件"
     }
 }

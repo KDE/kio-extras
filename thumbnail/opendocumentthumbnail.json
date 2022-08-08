@@ -32,6 +32,7 @@
         "Name[bg]": "Офис документи",
         "Name[ca@valencia]": "Documents de l'Office",
         "Name[ca]": "Documents de l'Office",
+        "Name[en_GB]": "Office Documents",
         "Name[es]": "Documentos de Office",
         "Name[eu]": "Bulegotika dokumentuak",
         "Name[fr]": "Documents pour Office",
@@ -43,6 +44,7 @@
         "Name[ta]": "அலுவலக ஆவணங்கள்",
         "Name[tr]": "Office Belgeleri",
         "Name[uk]": "Офісні документи",
-        "Name[x-test]": "xxOffice Documentsxx"
+        "Name[x-test]": "xxOffice Documentsxx",
+        "Name[zh_CN]": "Office 文档"
     }
 }

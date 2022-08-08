@@ -10,6 +10,7 @@
         "Name[bg]": "Електронни книги",
         "Name[ca@valencia]": "eBooks",
         "Name[ca]": "eBooks",
+        "Name[en_GB]": "eBooks",
         "Name[es]": "Libros electrónicos",
         "Name[eu]": "eLiburukiak",
         "Name[fr]": "eBooks",
@@ -21,6 +22,7 @@
         "Name[ta]": "மின்புத்தகங்கள்",
         "Name[tr]": "eKitaplar",
         "Name[uk]": "Електронні книги",
-        "Name[x-test]": "xxeBooksxx"
+        "Name[x-test]": "xxeBooksxx",
+        "Name[zh_CN]": "eBooks 电子书"
     }
 }

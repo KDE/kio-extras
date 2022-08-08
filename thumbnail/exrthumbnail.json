@@ -9,6 +9,7 @@
         "Name[bg]": "EXR изображения",
         "Name[ca@valencia]": "Imatges EXR",
         "Name[ca]": "Imatges EXR",
+        "Name[en_GB]": "EXR Images",
         "Name[es]": "Imágenes EXR",
         "Name[eu]": "EXR irudiak",
         "Name[fr]": "Images « EXR »",
@@ -20,6 +21,7 @@
         "Name[ta]": "EXR படங்கள்",
         "Name[tr]": "EXR Görselleri",
         "Name[uk]": "Зображення EXR",
-        "Name[x-test]": "xxEXR Imagesxx"
+        "Name[x-test]": "xxEXR Imagesxx",
+        "Name[zh_CN]": "EXR 图像"
     }
 }

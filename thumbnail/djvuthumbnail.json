@@ -11,6 +11,7 @@
         "Name[bg]": "DjVu файлове",
         "Name[ca@valencia]": "Fitxers DjVu",
         "Name[ca]": "Fitxers DjVu",
+        "Name[en_GB]": "DjVu Files",
         "Name[es]": "Archivos DjVu",
         "Name[eu]": "DjVu fitxategiak",
         "Name[fr]": "Fichiers « DjVu »",
@@ -22,6 +23,7 @@
         "Name[ta]": "DjVu கோப்புகள்",
         "Name[tr]": "DjVu Dosyaları",
         "Name[uk]": "Файли DjVu",
-        "Name[x-test]": "xxDjVu Filesxx"
+        "Name[x-test]": "xxDjVu Filesxx",
+        "Name[zh_CN]": "DjVu 文件"
     }
 }

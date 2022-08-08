@@ -14,6 +14,7 @@
         "Name[bg]": "Комикси",
         "Name[ca@valencia]": "Llibres de còmics",
         "Name[ca]": "Llibres de còmics",
+        "Name[en_GB]": "Comic Books",
         "Name[es]": "Libros de cómic",
         "Name[eu]": "Komiki-liburuak",
         "Name[fr]": "Bandes dessinées",
@@ -25,6 +26,7 @@
         "Name[ta]": "வரைகதை புத்தகங்கள்",
         "Name[tr]": "Çizgi Romanlar",
         "Name[uk]": "Комікси",
-        "Name[x-test]": "xxComic Booksxx"
+        "Name[x-test]": "xxComic Booksxx",
+        "Name[zh_CN]": "Comic Books 漫画电子书文件"
     }
 }

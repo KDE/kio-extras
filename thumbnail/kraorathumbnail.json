@@ -10,6 +10,7 @@
         "Name[bg]": "Документи на Krita",
         "Name[ca@valencia]": "Documents de Krita",
         "Name[ca]": "Documents del Krita",
+        "Name[en_GB]": "Krita Documents",
         "Name[es]": "Documentos de Krita",
         "Name[eu]": "Krita dokumentuak",
         "Name[fr]": "Documents pour Krita",
@@ -21,6 +22,7 @@
         "Name[ta]": "Krita ஆவணங்கள்",
         "Name[tr]": "Krita Belgeleri",
         "Name[uk]": "Документи Krita",
-        "Name[x-test]": "xxKrita Documentsxx"
+        "Name[x-test]": "xxKrita Documentsxx",
+        "Name[zh_CN]": "Krita 图像"
     }
 }

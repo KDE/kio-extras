@@ -8,6 +8,7 @@
         "Name[bg]": "Изображения JPEG",
         "Name[ca@valencia]": "Imatges JPEG",
         "Name[ca]": "Imatges JPEG",
+        "Name[en_GB]": "JPEG Images",
         "Name[es]": "Imágenes JPEG",
         "Name[eu]": "JPEG irudiak",
         "Name[fr]": "Images « JPEG »",
@@ -19,7 +20,8 @@
         "Name[ta]": "JPEG படங்கள்",
         "Name[tr]": "JPEG Görselleri",
         "Name[uk]": "Зображення JPEG",
-        "Name[x-test]": "xxJPEG Imagesxx"
+        "Name[x-test]": "xxJPEG Imagesxx",
+        "Name[zh_CN]": "JPEG 图像"
     },
     "ThumbnailerVersion": "2"
 }
