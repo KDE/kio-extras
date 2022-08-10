@@ -14,6 +14,7 @@
         "Name[es]": "Libros electrónicos",
         "Name[eu]": "eLiburukiak",
         "Name[fr]": "eBooks",
+        "Name[ko]": "전자책",
         "Name[nl]": "eBooks",
         "Name[pl]": "eBooki",
         "Name[pt]": "eBooks",
@@ -22,6 +23,7 @@
         "Name[ta]": "மின்புத்தகங்கள்",
         "Name[tr]": "eKitaplar",
         "Name[uk]": "Електронні книги",
+        "Name[vi]": "Sách điện tử",
         "Name[x-test]": "xxeBooksxx",
         "Name[zh_CN]": "eBooks 电子书"
     }

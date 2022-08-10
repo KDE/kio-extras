@@ -12,6 +12,7 @@
         "Name[es]": "Archivos de cursores",
         "Name[eu]": "Kurtsore-fitxategiak",
         "Name[fr]": "Fichiers de curseur",
+        "Name[ko]": "커서 파일",
         "Name[nl]": "Cursorbestanden",
         "Name[pl]": "Pliki kursorów",
         "Name[pt]": "Ficheiros de Cursores",
@@ -20,6 +21,7 @@
         "Name[ta]": "சுட்டிக்குறி கோப்புகள்",
         "Name[tr]": "İmleç Dosyaları",
         "Name[uk]": "Файли курсорів",
+        "Name[vi]": "Tệp con trỏ",
         "Name[x-test]": "xxCursor Filesxx",
         "Name[zh_CN]": "光标文件"
     }

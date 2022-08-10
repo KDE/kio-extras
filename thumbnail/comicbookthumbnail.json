@@ -18,6 +18,7 @@
         "Name[es]": "Libros de cómic",
         "Name[eu]": "Komiki-liburuak",
         "Name[fr]": "Bandes dessinées",
+        "Name[ko]": "만화책",
         "Name[nl]": "Stripboeken",
         "Name[pl]": "Komiksy",
         "Name[pt]": "Bandas Desenhadas",
@@ -26,6 +27,7 @@
         "Name[ta]": "வரைகதை புத்தகங்கள்",
         "Name[tr]": "Çizgi Romanlar",
         "Name[uk]": "Комікси",
+        "Name[vi]": "Truyện tranh",
         "Name[x-test]": "xxComic Booksxx",
         "Name[zh_CN]": "Comic Books 漫画电子书文件"
     }

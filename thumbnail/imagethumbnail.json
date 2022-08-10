@@ -13,6 +13,7 @@
         "Name[es]": "Imágenes (GIF, PNG, BMP...)",
         "Name[eu]": "Irudiak (GIF, PNG, BMP, ...)",
         "Name[fr]": "Images (GIF, PNG, BMP, ...)",
+        "Name[ko]": "그림 (GIF, PNG, BMP, ...)",
         "Name[nl]": "Afbeeldingen (GIF, PNG, BMP, ...)",
         "Name[pl]": "Obrazy (GIF, PNG, BMP, ...)",
         "Name[pt]": "Imagens (GIF, PNG, BMP, ...)",
@@ -21,6 +22,7 @@
         "Name[ta]": "படங்கள் (GIF, PNG, BMP, ...)",
         "Name[tr]": "Görseller (GIF, PNG, BMP, ...)",
         "Name[uk]": "Зображення (GIF, PNG, BMP…)",
+        "Name[vi]": "Ảnh (GIF, PNG, BMP, ...)",
         "Name[x-test]": "xxImages (GIF, PNG, BMP, ...)xx",
         "Name[zh_CN]": "图像 (GIF、PNG、BMP 等)"
     }

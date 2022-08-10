@@ -14,6 +14,7 @@
         "Name[es]": "Ejecutables de Microsoft Windows",
         "Name[eu]": "Microsoft Windows-eko exekutagarriak",
         "Name[fr]": "Exécutables « Microsoft Windows »",
+        "Name[ko]": "Microsoft Windows 실행 파일",
         "Name[nl]": "Uitvoerbare programma's voor Microsoft Windows",
         "Name[pl]": "Pliki wykonywalne Microsoft Windows",
         "Name[pt]": "Executáveis do Microsoft Windows",
@@ -22,6 +23,7 @@
         "Name[ta]": "மைக்ரோசாப்ட் விண்டோஸில் இயக்கவல்ல நிரல்கள்",
         "Name[tr]": "Microsoft Windows Çalıştırılabilirleri",
         "Name[uk]": "Виконувані файли Microsoft Windows",
+        "Name[vi]": "Tệp thực thi Windows Microsoft",
         "Name[x-test]": "xxMicrosoft Windows Executablesxx",
         "Name[zh_CN]": "Microsoft Windows 可执行文件"
     }
