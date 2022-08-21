@@ -77,7 +77,7 @@ set_target_properties(kioarchive PROPERTIES
     EXPORT_NAME KioArchive
 )
 
-install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ############### Archive Worker ######################
 
