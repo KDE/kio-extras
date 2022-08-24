@@ -147,8 +147,8 @@ void scaleDownImage(QImage& img, int maxWidth, int maxHeight)
     }
 }
 
-void ThumbnailProtocol::get(const QUrl &url)
-{
+void ThumbnailProtocol::get(const QUrl &url) {
+  qDebug() << "get";
     m_mimeType = metaData("mimeType");
     m_enabledPlugins = metaData("enabledPlugins").split(QLatin1Char(','), Qt::SkipEmptyParts);
     if (m_enabledPlugins.isEmpty()) {
@@ -159,6 +159,7 @@ void ThumbnailProtocol::get(const QUrl &url)
     Q_ASSERT(url.scheme() == "thumbnail");
     QFileInfo info(url.path());
     Q_ASSERT(info.isAbsolute());
+    qDebug() << url << info;
 
     if (!info.exists()) {
         // The file does not exist
@@ -175,12 +176,13 @@ void ThumbnailProtocol::get(const QUrl &url)
     // ### HACK
     bool direct=false;
     if (m_mimeType.isEmpty()) {
-        //qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
+        qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
         if (info.isDir()) {
             m_mimeType = "inode/directory";
         } else {
             const QMimeDatabase db;
 
+            qDebug() << db.allMimeTypes() << "db.mimeTypeForFile(info).name()" << db.mimeTypeForFile(info).name();
             m_mimeType = db.mimeTypeForFile(info).name();
         }
 
