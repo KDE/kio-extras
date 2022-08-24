@@ -73,7 +73,7 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
         }
     }
 #else
-    QImageReader::setAllocationLimit(ram / 1024);
+    QImageReader::setAllocationLimit(ram / 1024 / 1024);
 #endif
 
     ir.setAutoTransform(true);
