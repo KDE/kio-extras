@@ -29,6 +29,7 @@
             "application/vnd.ms-printing.printticket+xml"
         ],
         "Name": "Office Documents",
+        "Name[ar]": "مستندات المكتب",
         "Name[bg]": "Офис документи",
         "Name[ca@valencia]": "Documents de l'Office",
         "Name[ca]": "Documents de l'Office",

@@ -6,6 +6,7 @@
             "application/vnd.appimage"
         ],
         "Name": "AppImage",
+        "Name[ar]": "صورة تطبيق AppImage",
         "Name[bg]": "AppImage",
         "Name[ca@valencia]": "AppImage",
         "Name[ca]": "AppImage",

@@ -1,6 +1,7 @@
 {
     "KPlugin": {
         "Description": "Monitors directories on the smb:/ protocol for changes",
+        "Description[ar]": "يراقب التّغييرات في ميفاق smb:/",
         "Description[bg]": "Наблюдение за промени на директории от smb:/  протокол",
         "Description[ca@valencia]": "Controla els canvis en els directoris en el protocol «smb:/»",
         "Description[ca]": "Controla els canvis als directoris en el protocol «smb:/»",
@@ -26,6 +27,7 @@
         "Description[zh_CN]": "监视 smb:/ 协议目录的更改",
         "Icon": "preferences-system-network-share-windows",
         "Name": "SMB Watcher",
+        "Name[ar]": "مراقب سامبا",
         "Name[bg]": "Наблюдение на SMB мрежа",
         "Name[ca@valencia]": "Vigilant de SMB",
         "Name[ca]": "Vigilant de SMB",

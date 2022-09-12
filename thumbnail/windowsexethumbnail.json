@@ -7,6 +7,7 @@
             "application/x-wine-extension-cpl"
         ],
         "Name": "Microsoft Windows Executables",
+        "Name[ar]": "تنفيذيّات مايكروسوفت وندوز",
         "Name[bg]": "Програми за Microsoft Windows",
         "Name[ca@valencia]": "Executables de Microsoft Windows",
         "Name[ca]": "Executables de Microsoft Windows",

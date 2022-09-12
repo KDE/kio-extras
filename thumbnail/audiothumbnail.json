@@ -5,6 +5,7 @@
             "audio/*"
         ],
         "Name": "Audio files",
+        "Name[ar]": "ملفات صوت",
         "Name[bg]": "Аудио файлове",
         "Name[ca@valencia]": "Fitxers d'àudio",
         "Name[ca]": "Fitxers d'àudio",
