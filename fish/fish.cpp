@@ -23,6 +23,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QFile>
+#include <QDataStream>
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QRegularExpression>
@@ -54,7 +55,6 @@
 #include <errno.h>
 #endif
 
-#include <KMessageBox>
 #include <KLocalizedString>
 #include <KRemoteEncoding>
 
@@ -666,7 +666,7 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
             return 0;
         } else if (buf.endsWith('?')) {
             int rc = messageBox(QuestionYesNo,thisFn+buf);
-            if (rc == KMessageBox::Yes) {
+            if (rc == KIO::SlaveBase::Yes) {
                 writeChild("yes\n",4);
             } else {
                 writeChild("no\n",3);
@@ -681,7 +681,7 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
 #ifdef Q_OS_WIN
         if (buf.endsWith(QLatin1String("(y/n)"))) {
             int rc = messageBox(QuestionYesNo,thisFn+buf);
-            if (rc == KMessageBox::Yes) {
+            if (rc == KIO::SlaveBase::Yes) {
                 writeChild("y\n",2);
             } else {
                 writeChild("n\n",2);
