@@ -1,0 +1,57 @@
+# translation of kio_fish.po to Maithili
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sangeeta Kumari <sangeeta09@gmail.com>, 2008.
+# Rajesh Ranjan <rajesh672@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2010-01-29 15:49+0530\n"
+"Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
+"Language-Team: Maithili <maithili.sf.net>\n"
+"Language: mai\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"\n"
+"\n"
+"\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "कनेक्ट कए रहल अछि...."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "प्रोटोकाल प्रारंभ कएल जाए रहल अछि..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "स्थानीय लागइन"
+
+#: fish.cpp:630
+#, fuzzy, kde-format
+#| msgid "SSH Authorization"
+msgid "SSH Authentication"
+msgstr "एसएसएच अनुमोदन"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "संबंधन नहि अछि"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "संगीता कुमारी"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "sangeeta09@gmail.com"

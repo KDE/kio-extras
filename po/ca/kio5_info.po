@@ -1,0 +1,31 @@
+# Translation of kio5_info.po to Catalan
+# Copyright (C) 2009-2021 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Josep M. Ferrer <txemaq@gmail.com>, 2009.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2016, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"PO-Revision-Date: 2021-02-20 21:55+0100\n"
+"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.12.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+
+#: info.cpp:52
+#, kde-format
+msgid ""
+"Unable to locate files which are necessary to run this service:<br>"
+"%1<br>Please check your software installation."
+msgstr ""
+"No s'han pogut trobar els fitxers necessaris per a executar aquest servei:"
+"<br>%1<br>Comproveu la vostra instal·lació del programari."

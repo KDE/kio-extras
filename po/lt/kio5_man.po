@@ -1,0 +1,236 @@
+# translation of kio_man.po to Lithuanian
+# Donatas Glodenis <dgvirtual@akl.lt>, 2005-2007.
+# Tomas Straupis <tomasstraupis@gmail.com>, 2011, 2015.
+# Liudas Ališauskas <liudas@akmc.lt>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2015-01-25 12:12+0200\n"
+"Last-Translator: Liudas Ališauskas <liudas@akmc.lt>\n"
+"Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"(n%100<10 || n%100>=20) ? 1: 2);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Check that you have "
+#| "typed the name using the correct upper and lower case characters.<br />If "
+#| "everything looks correct, then you may need to improve the search path "
+#| "for man pages; either using the environment variable MANPATH or using a "
+#| "matching file in the /etc directory."
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Nerastas „man“ puslapis, atitinkantis %1.<br /><br />Patikrinkite, ar "
+"netyčia neįvėlėte klaidos pageidaujamo puslapio pavadinime.<br />Atkreipkite "
+"dėmesį, kad turite skirti didžiąsias ir mažąsias raides!<br />Jei visgi "
+"klaidos nepadarėte, gali būti, kad turite nurodyti tikslesnį paieškos kelią "
+"„man“ puslapiams, ar tai būtų aplinkos kintamas MANPATH ar atitinkamas "
+"failas aplanke /etc ."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
+msgstr "<h1>KDE Man žiūriklio klaida</h1>"
+
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
+msgstr "Yra daugiau kaip vienas atitinkamas man puslapis."
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Jei skaitote „man“ puslapį savo kalba, atkreipkite dėmesį kad jame gali būti "
+"klaidų, arba jis gali būti pasenęs. Jei abejojate, turite pažiūrėti anglišką "
+"versiją."
+
+#: kio_man.cpp:758
+#, fuzzy, kde-format
+#| msgid "Header files"
+msgid "Header Files"
+msgstr "Antraštės failai"
+
+#: kio_man.cpp:759
+#, fuzzy, kde-format
+#| msgid "Header files (POSIX)"
+msgid "Header Files (POSIX)"
+msgstr "Antraštės failai (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Naudotojo komandos"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Naudotojo komandos (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Sistemos iškvietimai"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Paprogramės"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Perlo moduliai"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Tinklo funkcijos"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Įrengimai"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Failų formatai"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Žaidimai"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Įvairūs"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Sistemos administravimas"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Branduolys"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Vietinė dokumentacija"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Nauja"
+
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
+msgstr "UNIX vadovų (man) rodyklė"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Skyrius %1"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
+msgstr "Sekcijos indeksas %1: %2"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "UNIX vadovų (man) rodyklė"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Generuoju rodyklę"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Nepavyksta rasti sgml2roff komandos Jūsų sistemoje.  Prašome ją įdiegti, jei "
+"reikia, ir išplėskite paieškos kelią pakeisdami aplinkos kintamąjį PATH "
+"prieš paleidžiant KDE."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "Nepavyko atidaryti %1."
+
+#~ msgid "Man output"
+#~ msgstr "Man išvestis"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Ričardas Čepas, Donatas Glodenis, Valdas Jankūnas"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "rch@richard.eu.org, dgvirtual@akl.lt, skroblas@erdves.lt"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

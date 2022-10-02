@@ -1,0 +1,194 @@
+# translation of kio_smb.po to Latvian
+# Copyright (C) 2007, 2008 Free Software Foundation, Inc.
+#
+# Maris Nartiss <maris.kde@gmail.com>, 2007.
+# Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2007, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2008-07-04 17:19+0300\n"
+"Last-Translator: Viesturs Zarins <viesturs.zarins@mii.lu.lv>\n"
+"Language-Team: Latvian <locale@laka.lv>\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>Lūdzu ievadiet autentifikācijas informāciju priekš <b>%1</b></qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"Lūdzu ievadiet autentifikācijas informāciju:\n"
+"Serveris = %1\n"
+"Kopīgojums = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"Nezināms faila tips - nav ne mape, ne fails."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"Neizdevās atrast lokālā tīkla darba grupas. Tam par iemeslu var būt ieslēgts "
+"ugunsmūris."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "Nav datu nesēja ierīcē priekš %1"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "Neizdevās pieslēgties datoram priekš %1"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "Kļūda pieslēdzoties par %1 atbildīgajam datoram"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "Uz norādītā servera kopīgojums netika atrasts"
+
+#: kio_smb_browse.cpp:303
+#, fuzzy, kde-format
+#| msgid "BAD File descriptor"
+msgid "Bad file descriptor"
+msgstr "Nederīgs faila deskriptors"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"Ar doto vārdu neizdevās identificēt unikālu serveri. Pārliecinieties, ka "
+"jūsu tīklā nav datoru nosaukumu konfliktu starp Windows un UNIX nosaukumu "
+"atriti."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr ""
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"libsmbclient ziņoja par kļūdu, taču nenorādija kāda tā ir. Tas var norādīt "
+"uz problēmām ar tīklu, kā arī uz problēmu ar libsmbclient.\n"
+"Ja vēlaties mums palīdzēt, atsūtiet tcpdump programmas izvadi no "
+"pārlūkošanas laika. Uzmanību - šāda izvade var saturēt personīgus datus, "
+"tādēļ, ja neesat par to pārliecināti, sūtiet to izstrādātājiem privāti nevis "
+"izmantojot publisku telpu."
+
+#: kio_smb_browse.cpp:334
+#, fuzzy, kde-format
+#| msgid "Unknown error condition in stat: %1"
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "Nezināma kļūda iekš stat: %1"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr ""
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbclient nezidevās izveidot kontekstu"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"Pārliecinieties, ka jūsu sistēmā SAMBA ir korekti instalēta."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"Kopīgojuma \"%1\" no datora \"%2\" kā lietotājam \"%3\" montēšana bija "
+"nesekmīga.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"Montēšanas punkta \"%1\" atmontēšana neizdevās.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr ""
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "libsmbclient neizdevās inicializēt kontekstu"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "Fails neeksistē: %1"
+
+#~ msgid "libsmbclient failed to initialize"
+#~ msgstr "libsmbclient neizdevās inicializēties"

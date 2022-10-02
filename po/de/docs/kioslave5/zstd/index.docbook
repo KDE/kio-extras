@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % German "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="zstd">
+<title
+>zstd</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Friedrich</firstname
+><othername
+>W. H.</othername
+><surname
+>Kossebau</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Deutsches</firstname
+><surname
+>KDE-Übersetzerteam</surname
+><affiliation
+><address
+><email
+>kde-i18n-de@kde.org</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>zstd</command
+> ist ein Kompressionsprogramm.</para>
+
+<para
+>Das zstd-Modul ist nicht direkt nutzbar, es ist hauptsächlich zur Verwendung als Filter gedacht. Zum Beispiel kann das tar-Modul eine Datei durch das zstd-Modul filtern, um den Inhalt einer <literal role="extension"
+>.tar.zst</literal
+>-Datei direkt in einem &konqueror;-Fenster darzustellen.</para>
+
+<para
+>Wenn Sie im &konqueror; auf eine Datei mit der Erweiterung <literal role="extension"
+>.zst</literal
+> klicken, wird dieses Modul benutzt, um sie zu entpacken und als normale (unkomprimierte) Datei darzustellen.</para>
+
+<para
+>Wenn Sie ein Entwickler sind und den zstd-Filter nutzen möchten, können Sie die Dokumentation zur Nutzung der Ein-/Ausgabemodule hier finden: <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Schauen Sie auch in das Handbuch: <ulink url="man:/zstd"
+>zstd</ulink
+>. </para>
+
+</article>

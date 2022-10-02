@@ -1,0 +1,202 @@
+# translation of kio_smb.po to Slovak
+# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2001.
+# Stanislav Visnovsky <visnovsky@kde.org>, 2003, 2004.
+# Richard Fric <Richard.Fric@kdemail.net>, 2006, 2009.
+# Peter Mihalik <udavac@inmail.sk>, 2006.
+# Roman Paholik <wizzardsk@gmail.com>, 2017.
+# Matej Mrenica <matejm98mthw@gmail.com>, 2020, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2021-01-07 14:41+0100\n"
+"Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
+"Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.12.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+"<para>Existuje veľa možností autentifikácie na zdieľaniach SMB. </"
+"para><para> <placeholder>používateľské meno</placeholder>: Pri "
+"autentifikácii v domácej sieti postačuje na serveri používateľské meno</"
+"para><para><placeholder>username@domain.com </placeholder>: Moderné firemné "
+"prihlasovacie mená sú tvorené ako e-mailové adresy</para><para> "
+"<placeholder> DOMAIN\\username</placeholder>: Pre staršie podnikové siete "
+"alebo pracovné skupiny bude možno potrebná predpona názvu domény NetBIOS "
+"(pred Windows 2000).</para><para><placeholder>anonymné</placeholder>: O "
+"anonymné prihlásenia sa môžete pokúsiť pomocou prázdneho používateľského "
+"mena a hesla. V závislosti na konfigurácii servera môžu byť vyžadované "
+"neprázdne používateľské mená</para>"
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>Prosím, zadajte informácie pre prihlásenie k <b>%1</b></qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"Prosím, zadajte informácie pre prihlásenie k:\n"
+"Server = %1\n"
+"Disk = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"Neznámy typ súboru, ani priečinok ani súbor."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"Nepodarilo sa nájsť žiadnu pracovnú skupinu na vašej lokálnej sieti. Toto "
+"môže byť spôsobené použitím firewall."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "V zariadení pre %1 nenájdené médium"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "Nepodarilo sa pripojiť k hostiteľovi pre %1"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "Chyba počas pripájania k serveru zodpovednému za %1"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "Zdieľaný disk sa na zadanom serveri nepodarilo nájsť"
+
+#: kio_smb_browse.cpp:303
+#, kde-format
+msgid "Bad file descriptor"
+msgstr "Zlý deskriptor súboru"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"Zadané meno sa nepodarilo previesť na jednoznačný server. Overte, že máte "
+"sieťové nastavenie bez konfliktov v menách medzi systémami UNIX a Windows."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr "%1: Hostiteľ nedostupný"
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"libsmbclient oznámil chybu, ale neupresnil, v čom je problém. To môže "
+"naznačovať vážny problém s vašou sieťou, ale aj problém s knižnicou "
+"libsmbclient.\n"
+"Ak chcete, aby sme vám pomohli, prosím, pošlite nám výstup tcpdump sieťového "
+"rozhrania počas pokusu o prehliadanie siete (uvedomte si, že tento výpis "
+"môže obsahovať súkromné dáta, takže ho neposielajte, ak si nie ste istý, čo "
+"vlastne posielate. Môžete nám ho poslať neskôr, ak ho budú vývojári "
+"potrebovať.)"
+
+#: kio_smb_browse.cpp:334
+#, kde-format
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "Neznámy chybový stav: [%1] %2"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr "Chyba počas pokusu o prístup k %1<nl/>%2"
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbclient sa nepodarilo vytvoriť kontext"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"Overte, že máte správne nainštalovaný balík samba."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"Pripojenie zdieľaného disku \"%1\" z hostiteľa \"%2\" užívateľom \"%3\" "
+"zlyhalo.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"Odpojenie priečinku \"%1\" zlyhalo.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr "Neznáme zariadenie @ <resource>%1</resource>"
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "libsmbclient sa nepodarilo inicializovať kontext"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "Súbor neexistuje: %1"

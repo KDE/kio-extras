@@ -1,0 +1,37 @@
+# translation of kio_tar.po to Frysk
+#
+# Rinse de Vries <rinsedevries@kde.nl>, 2006.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_tar\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2006-02-22 09:11+0100\n"
+"Last-Translator: Berend Ytsma <berendy@bigfoot.com>\n"
+"Language-Team: Frysk <kde-i18n-fry@kde.org>\n"
+"Language: fy\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"Koe de triem net iepenje, mooglik om't in net-stipe triemformaat\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"De argyftriem koe net iepene wurde, mooglik om't it formaat net stipe "
+"wurdt.\n"
+"%1"

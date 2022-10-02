@@ -1,0 +1,48 @@
+# translation of kio_fish.po to Japanese
+# Copyright (C) 2003-2007 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kdebase package.
+# Taiki Komoda <kom@kde.gr.jp>, 2003, 2004.
+# ABE Masanori <maas_abb@ybb.ne.jp>, 2004.
+# Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2014-12-06 16:43-0800\n"
+"Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "接続中..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "プロトコルを初期化中..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "ローカルログイン"
+
+#: fish.cpp:630
+#, kde-format
+msgid "SSH Authentication"
+msgstr "SSH 認証"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "切断しました。"

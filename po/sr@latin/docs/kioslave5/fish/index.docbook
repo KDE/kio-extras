@@ -1,0 +1,159 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="fish">
+<title
+>FISH</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Jerg</firstname
+> <surname
+>Valter</surname
+></personname
+> &Joerg.Walter.mail;</author>
+<author
+><personname
+><firstname
+>Bred</firstname
+> <surname
+>Hards</surname
+></personname
+> &Brad.Hards.mail;</author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>27. 10. 2010.</date>
+<releaseinfo
+>KDE 4.5</releaseinfo>
+
+</articleinfo>
+
+<para
+>Omogućava vam pristup fajlovima na drugom računaru putem protokola „bezbedne školjke“ (SSH). Na udaljenom računaru mora da se izvršava SSH demon, ali ostatak protokola koristi standardne alatke komandne linije, kao što će biti navedeno niže.</para>
+
+<para
+>U/I zahvat FISH‑a možete koristiti ovako: <userinput
+>fish://<replaceable
+>domacin</replaceable
+></userinput
+> ili <userinput
+>fish://<replaceable
+>korisnik</replaceable
+>@<replaceable
+>domacin</replaceable
+></userinput
+>.</para>
+
+<note
+><para
+>Neophodne su dve obrnute kose crte.</para
+></note>
+
+<para
+>Ako vam je korisničko ime isto na oba računara, možete izostaviti <replaceable
+>korisnik</replaceable
+> i prateći znak @.</para>
+
+<para
+>Lozinku možete dodati u formatu <userinput
+>fish://<replaceable
+>korisnik</replaceable
+>:<replaceable
+>lozinka</replaceable
+>@<replaceable
+>domacin</replaceable
+></userinput
+>, ali nije neophodno, pošto će vam biti zatražena ako nije ovako navedena.</para>
+
+<para
+>Ako SSH demon osluškuje na nestandardnom portu, ciljni port možete zadati uobičajenom URL sintaksom: <userinput
+>fish://<replaceable
+>domacin</replaceable
+>:<replaceable
+>port</replaceable
+></userinput
+>.</para>
+
+<para
+>FISH bi trebalo da radi sa svakim približno s POSIX‑om saglasnim udaljenim Unix računarom. Koristi naredbe školjke <command
+>cat</command
+>, <command
+>chgrp</command
+>, <command
+>chmod</command
+>, <command
+>chown</command
+>, <command
+>cp</command
+>, <command
+>dd</command
+>, <command
+>env</command
+>, <command
+>expr</command
+>, <command
+>grep</command
+>, <command
+>ls</command
+>, <command
+>mkdir</command
+>, <command
+>mv</command
+>, <command
+>rm</command
+>, <command
+>rmdir</command
+>, <command
+>sed</command
+> i <command
+>wc</command
+>. FISH pokreće <command
+>/bin/sh</command
+> kao svoju školjku, očekujući da to bude Bourneova školjka (ili saglasna, poput <command
+>bash</command
+>). Ako su raspoložive naredbe <command
+>sed</command
+> i <command
+>file</command
+>, kao i fajl <filename
+>/etc/apache/magic</filename
+> sa obrisima MIME tipova, koristiće se zajedno za pogađanje MIME tipova. </para>
+
+<para
+>Ako je na udaljenom računaru dostupan Perl, koristiće se umesto naredbi školjke. Tada su potrebne samo <command
+>env</command
+> i <command
+>/bin/sh</command
+>. Perl dodatno omogućava veću brzinu saobraćanja.</para>
+
+<para
+>FISH bi mogao da radi čak i na windows mašinama, ako su instalirane alatke poput Cygwina. Sve gorepomenute alatke moraju biti u sistemskoj <envar
+>PATH</envar
+>, a početna školjka mora biti u stanju da ispravno obradi naredbu <command
+>echo FISH:;/bin/sh</command
+>.</para>
+
+</article>

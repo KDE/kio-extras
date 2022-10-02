@@ -1,0 +1,48 @@
+# translation of kio_fish.po to Tajik
+# translation of kio_fish.po to Тоҷикӣ
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# 2004, infoDev, a World Bank organization
+# 2004, Khujand Computer Technologies, Inc.
+# 2004, KCT1, NGO
+# Dilshod Marupov <dma165@hotmail.com>, 2004
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2009-01-11 15:31+0500\n"
+"Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
+"Language-Team: Tajik\n"
+"Language: tg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "Пайвастшавӣ..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "Роҳандозии Қарордод..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "Вориди маҳаллӣ"
+
+#: fish.cpp:630
+#, fuzzy, kde-format
+#| msgid "SSH Authorization"
+msgid "SSH Authentication"
+msgstr "SSH Аслшиносӣ"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "Қатъ шуд."

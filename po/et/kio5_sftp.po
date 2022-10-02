@@ -1,0 +1,475 @@
+# translation of kio_sftp.po to Estonian
+# Copyright (C) 2002, 2003 Free Software Foundation, Inc.
+#
+# Hasso Tepper <hasso@estpak.ee>, 2002.
+# Marek Laane <bald@smail.ee>, 2003-2004,2008, 2009, 2010, 2012, 2016, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2019-11-09 14:14+0200\n"
+"Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
+"Language-Team: Estonian <kde-et@lists.linux.ee>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 19.08.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Vale või vigane paroolifraas"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "Tagasiside eraldamine nurjus"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "Logi teaberohkuse määramine nurjus."
+
+#: kio_sftp.cpp:294
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "Kasutajaandmete logimine nurjus."
+
+#: kio_sftp.cpp:299
+#, kde-format
+msgid "Could not set log callback."
+msgstr "Tagasiside logimine nurjus"
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "SFTP kasutajanimi"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "Kasuta sellele küsimusele vastamiseks kasutajanime sisestamise välja."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "Palun sisesta parool."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "Sait:"
+
+#: kio_sftp.cpp:417
+#, fuzzy, kde-format
+#| msgid "Could not read link: %1"
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Lingi lugemine nurjus: %1"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "Uus SSH seansi loomine nurjus."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "Aegumise määramine nurjus"
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Nagle'i algoritmi keelamine nurjus."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "Tihenduse määramine nurjus."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "Masina määramine nurjus."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "Pordi määramine nurjus."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "Kasutajanime määramine nurjus."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "Seadistustefaili parsimine nurjus."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "SFTP ühenduse avamine masinasse %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr "Serveri avaliku võtme tüübi nime hankimine nurjus"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "Räsi loomine serveri avaliku võtme põhjal nurjus"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr "Sõrmejälje loomine serveri avaliku võtmele nurjus"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Serveri %1 masinavõtit ei leitud, kuid on olemas teist laadi võti.\n"
+"Ründaja võib muuta serveri vaikevõtit, et panna klient arvama, nagu poleks "
+"võtit olemaski.\n"
+"Palun võta ühendust oma süsteemiadministraatoriga.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+#| msgid "Warning: Host's identity changed."
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Hoiatus: masina identiteet on muutunud."
+
+#: kio_sftp.cpp:757
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"Serveri %1 masinavõti on muutunud.\n"
+"See tähendab, et toimub nimeserveri petmine või siis on korraga muutunud nii "
+"masina IP-aadress kui ka tema masinavõti.\n"
+"Masina saadetud võtme sõrmejälg on järgmine:\n"
+" %2\n"
+"Palun võta ühendust oma süsteemiadministraatoriga.\n"
+"%3"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The %2 key fingerprint is: %3\n"
+#| "Are you sure you want to continue connecting?"
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"Masina %1 autentsust pole võimalik määrata.\n"
+"%2 võtme sõrmejälg on järgmine: %3\n"
+"Kas kindlasti jätkata ühenduse loomisega?"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Autentimine nurjus."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr "Autentimine nurjus. Server ei saatnud ühtegi autentimisviisi"
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Palun sisesta kasutajanimi ja parool."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Vale kasutajanimi või parool"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"SFTP alamsüsteemi päring nurjus. Kontrolli, kas SFTP on serveris ikka "
+"lubatud."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "SFTP seansi initsialiseerimine nurjus."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Ühendus edukalt loodud masinasse %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr "Vigane sftp kontekst"
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"%1\n"
+"õiguste muutmine nurjus"
+
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "Serveri %1 masinavõti on muutunud.\n"
+#~ "See tähendab, et toimub nimeserveri petmine või siis on korraga muutunud "
+#~ "nii masina IP-aadress kui ka tema masinavõti.\n"
+#~ "Masina saadetud %2 võtme sõrmejälg on järgmine:\n"
+#~ "  SHA256:%3\n"
+#~ "Palun võta ühendust oma süsteemiadministraatoriga.\n"
+#~ "%4"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Hoiatus: masina identiteeti pole võimalik kontrollida."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Serveri masinavõtit ei leitud, kuid on olemas teist laadi võti.\n"
+#~ "Ründaja võib muuta serveri vaikevõtit, et panna klient arvama, nagu "
+#~ "poleks võtit olemaski.\n"
+#~ "Palun võta ühendust oma süsteemiadministraatoriga.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "Masina %1 autentsust pole võimalik määrata.\n"
+#~ "Võtme sõrmejälg on järgmine: %2\n"
+#~ "Kas kindlasti jätkata ühenduse loomisega?"
+
+#~ msgid "No hostname specified."
+#~ msgstr "Masinanime pole määratud."
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "Tekkis sisemine viga. Palun korda päringut."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "Palun sisesta kasutajanimi ja paroolifraas."
+
+#~ msgid "Connection failed."
+#~ msgstr "Ühenduse loomine nurjus."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "Ühendus suleti kaugmasina poolt."
+
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "ootamatu SFTP viga: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP versioon %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "Protokolli viga."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "Tekkis sisemine viga. Palun proovi uuesti."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "Tekkis tundmatu viga faili kopeerimisel asukohta '%1'. Palun proovi "
+#~ "uuesti."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "Kaugmasin ei toeta failide ümbernimetamist."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "Kaugmasin ei toeta nimeviitade loomist."
+
+#~ msgid "Connection closed"
+#~ msgstr "Ühendus suletud"
+
+#~ msgid "End of file."
+#~ msgstr "Faili lõpp."
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "SFTP käsu täitmine nurjus teadmata põhjusel."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "SFTP server sai vigase teate."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "Sa üritasid teha midagi niisugust, mida SFTP server ei toeta."
+
+#~ msgid "Error code: %1"
+#~ msgstr "Veakood: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "Alamsüsteemi ja käsku pole võimalik korraga määrata."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "Ssh käivitamiseks pole argumente antud."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "Ssh protsessi käivitamine nurjus."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "Viga ssh-ga suhtlemisel."
+
+#~ msgid "Please supply a password."
+#~ msgstr "Palun sisesta parool."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "Palun sisesta oma SSH salajase võtme paroolifraas."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "Autentimine masinas %1 nurjus"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "Masina '%1' identiteeti pole võimalik kontrollida, kuna masina võtit pole "
+#~ "\"tuntud masinate\" failis."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ " Lisa käsitsi masina võti \"tuntud masinate\" faili või võta ühendust "
+#~ "võrguadministraatoriga."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr ""
+#~ " Lisa käsitsi masina võti faili %1 või võta ühendust "
+#~ "võrguadministraatoriga."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "Masina \"%1\" identiteeti pole võimalik kontrollida. Masina võtme "
+#~ "sõrmejälg on:\n"
+#~ "%2\n"
+#~ "Enne ühenduse loomist peaksid sa koos masina administraatoriga "
+#~ "kontrollima sõrmejälje õigsust.\n"
+#~ "\n"
+#~ "Soovid sa masina võtme aktsepteerida ning luua ühenduse vaatamata kõigele?"
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "HOIATUS: Masina '%1' identiteet on muutunud!\n"
+#~ "\n"
+#~ "Keegi võib sinu ühendust pealt kuulata või on administraator lihtsalt "
+#~ "masina võtit vahetanud. Igal juhul peaksid sa enne ühenduse loomist "
+#~ "masina administraatoriga kontrollima masina võtme sõrmejälge. Võtme "
+#~ "sõrmejälg on:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Kui sa ei soovi seda teadet enam näha, lisa masina õige võti faili \"%3\"."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "HOIATUS: Masina '%1' identiteet on muutunud!\n"
+#~ "\n"
+#~ "Keegi võib sinu ühendust pealt kuulata või on administraator lihtsalt "
+#~ "masina võtit vahetanud. Igal juhul peaksid sa enne ühenduse loomist "
+#~ "masina administraatoriga kontrollima masina võtme sõrmejälge. Võtme "
+#~ "sõrmejälg on:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Soovid sa aktsepteerida masina uue võtme ning luua ühenduse vaatamata "
+#~ "kõigele?"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "Masina võti lükati tagasi."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "Palun sisesta kasutajanimi ja parool"
+
+#~ msgid "File does not exist."
+#~ msgstr "Faili ei ole olemas."
+
+#~ msgid "Access is denied."
+#~ msgstr "Juurdepääs keelati."

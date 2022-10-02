@@ -1,0 +1,355 @@
+# translation of kio_sftp.po to Hindi
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Ravishankar Shrivastava <raviratlami@yahoo.com>, 2007.
+# Ravishankar Shrivastava <raviratlami@aol.in>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2009-02-05 15:59+0530\n"
+"Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
+"Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
+"Language: hne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.2\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: kio_sftp.cpp:226
+#, fuzzy, kde-format
+#| msgid "Incorrect username or password"
+msgid "Incorrect or invalid passphrase"
+msgstr "गलत कमइया-नाम या पासवर्ड "
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr ""
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr ""
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log userdata."
+msgstr "एसएफटीपी पैकेट पढ़ नइ सकिस"
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log callback."
+msgstr "एसएफटीपी पैकेट पढ़ नइ सकिस"
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "एसएफटीपी लागइन"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr ""
+
+#: kio_sftp.cpp:365
+#, fuzzy, kde-format
+#| msgid "Please enter your username and password."
+msgid "Please enter your password."
+msgstr "किरपा करके, अपन कमइया-नाम अउ पासवर्ड भरव."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, fuzzy, kde-format
+#| msgid "site:"
+msgid "Site:"
+msgstr "साइटः"
+
+#: kio_sftp.cpp:417
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "एसएफटीपी पैकेट पढ़ नइ सकिस"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr ""
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set a timeout."
+msgstr "एसएफटीपी पैकेट पढ़ नइ सकिस"
+
+#: kio_sftp.cpp:561
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not disable Nagle's Algorithm."
+msgstr "एसएफटीपी पैकेट पढ़ नइ सकिस"
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr ""
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr ""
+
+#: kio_sftp.cpp:584
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set port."
+msgstr "एसएफटीपी पैकेट पढ़ नइ सकिस"
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr ""
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr ""
+
+#: kio_sftp.cpp:616
+#, fuzzy, kde-kuit-format
+#| msgid "Opening SFTP connection to host %1:%2"
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "होस्ट %1:%2 से एसएफटीपी कनेक्सन खोलत हे"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr ""
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+#| msgid "Warning: Host's identity changed."
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "चेतावनीः होस्ट के परिचय बदल दे गे हे."
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "प्रमानीकरन फेल"
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "किरपा करके, अपन कमइया-नाम अउ पासवर्ड भरव."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "गलत कमइया-नाम या पासवर्ड "
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr ""
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "%1 से सफलता से जुड़िस"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "चेतावनीः होस्ट के परिचय सत्यापित नइ कर सकिस."
+
+#, fuzzy
+#~| msgid "No hostname specified"
+#~ msgid "No hostname specified."
+#~ msgstr "कोई होस्टनाम निरधारित नइ हे"
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "एक अंदर के गलती होइस. किरपा करके, फिर से निवेदन करव."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "किरपा करके, अपन कमइया-नाम अउ कुंजी पासफ्रेस भरव"
+
+#~ msgid "Connection failed."
+#~ msgstr "कनेक्सन फेल."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "रिमोट होस्ट से कनेक्सन बन्द करिस."
+
+#, fuzzy
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "अप्रत्यासित एसएफटीपी गलती: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "एसएफटीपी संस्करन %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "प्रोटोकाल गलती."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "अंदर के गलती होइस. किरपा करके, फिर कोसिस करव."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "फाइल ल '%1' मं नकल करे के समय अग्यात गलती होइस. किरपा करके, फिर कोसिस करव."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "रिमोट होस्ट फाइल नाम बदले बर समर्थित नइ करे."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "रिमोट होस्ट सिंबालिक संकली तैयार करे बर समर्थन नइ करे."
+
+#~ msgid "Connection closed"
+#~ msgstr "कनेक्सन बन्द"
+
+#~ msgid "End of file."
+#~ msgstr "फाइल के आखरी."
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "अग्यात कारन से एसएफटीपी कमांड फेल."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "एसएफटीपी सर्वर ल खराब संदेस प्राप्त."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "आप मन के साथ एसएफटीपी सर्वर से असमर्थित आपरेसन चाहे गिस."
+
+#~ msgid "Error code: %1"
+#~ msgstr "गलती कोडः %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "एक ही समय मं एक सब-सिसटम अउ कमांड निरधारित नइ कर सके."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "एसएसएच चलाय बर कोनो विकल्प नइ दे गे हे."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "एसएसएच काम ल चलाय मं फेल."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "एसएसएच से बात करे मं गलती होइस."
+
+#~ msgid "Please supply a password."
+#~ msgstr "किरपा करके, पासवर्ड भरव."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "किरपा करके, अपन एसएसएच निजी कुंजी बर पासफ्रेस देव."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "%1 से प्रमानीकरन मं फेल"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "रिमोट होस्ट '%1' के पहिचान सत्यापित नइ कर सकिस काबर कि होस्ट कुंजी \"known hosts"
+#~ "\" फाइल मं नइ हे."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ "होस्ट कुंजी हाथ से ही \"known hosts\" फाइल मं जोड़व या अपन तंत्र प्रसासक से संपर्क "
+#~ "करव."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr "होस्ट कुंजी हाथ से ही %1 मं जोड़व या अपन तंत्र प्रसासक से संपर्क करव."
+
+#~ msgid "Host key was rejected."
+#~ msgstr "होस्ट कुंजी अस्वीकृत."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "किरपा करके, एक कमइया-नाम अउ पासवर्ड भरव."
+
+#~ msgid "File does not exist."
+#~ msgstr "फाइल मौजूद नइ हे."
+
+#~ msgid "Access is denied."
+#~ msgstr "पंहुच अस्वीकृत."

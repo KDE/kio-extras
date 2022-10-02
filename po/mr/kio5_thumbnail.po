@@ -1,0 +1,89 @@
+# translation of kio_thumbnail.po to marathi
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sandeep Shedmake <sandeep.shedmake@gmail.com>, 2009.
+# Chetan Khona <chetan@kompkin.com>, 2012, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2013-02-22 14:26+0530\n"
+"Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
+"Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
+"Language: mr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "MIME प्रकार निश्चित केले नाही."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "अवैध आकार निश्चित केले किंवा केले नाही."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "लघुप्रतिमा संचयीका बनवू शकत नाही"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "प्लगइन निश्चित केले नाही."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "ThumbCreator %1 दाखल करू शकत नाही"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "%1 करिता लघुप्रतिमा बनवू शकत नाही"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "लघुप्रतिमा बनविण्यास अपयशी."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "प्रतिमा लिहू शकत नाही."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "सहभागीय स्मृती भाग %1 शी जोडण्यास अपयशी ठरले"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "सहभागीय स्मृती भाग करिता प्रतिमा खूप मोठे आहे"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "प्रतिमा स्वयंचलितरित्या फिरवा "
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr ""
+#~ "संदिप शेडमाके, \n"
+#~ "चेतन खोना"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr ""
+#~ "sandeep.shedmake@gmail.com, \n"
+#~ "chetan@kompkin.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

@@ -1,0 +1,82 @@
+#
+# Tamas Szanto <tszanto@interware.hu>, 2005.
+# Kristóf Kiszel <ulysses@kubuntu.org>, 2010, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: KDE 4.0\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2011-07-28 22:30+0200\n"
+"Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
+"Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 1.2\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "Nincs megadva MIME-típus."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "Nincs megadva vagy érvénytelen a méret."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "Nem sikerült gyorsnézetet létrehozni a könyvtárhoz"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "Nincs megadva bővítmény."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "Nem sikerült betölteni: ThumbCreator %1"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "Nem sikerült gyorsnézetet létrehozni: %1"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "Nem sikerült gyorsnézetet létrehozni."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "Nem sikerült kiírni a képet."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "Nem sikerült kapcsolódni egy osztott memóriablokkhoz: %1"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "A kép túl nagy a megosztott memóriablokkhoz"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "A kép automatikus forgatása"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Kiszel Kristóf"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "ulysses@kubuntu.org"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

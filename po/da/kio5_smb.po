@@ -1,0 +1,202 @@
+# Danish translation of kio_smb
+# Copyright (C)
+# Erik Kjær Pedersen <erik@binghamton.edu>, 2001, 2003, 2004, 2005.
+# scootergrisen, 2017.
+# Martin Schlander <mschlander@opensuse.org>, 2020, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2022-02-08 19:58+0100\n"
+"Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
+"Language-Team: Danish <kde-i18n-doc@kde.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 20.04.2\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+"<para>Der er flere muligheder for at autentificere på SMB-ressourcer.</"
+"para><para><placeholder>brugernavn</placeholder>: Når du autenficerer inden "
+"for et  hjemmenetværk og brugernavnet på serveren er tilstrækkeligt</"
+"para><para><placeholder>brugernavn@domain.dk</placeholder>: Moderne "
+"erhvervs- logon-navne har samme form som en e-mailaddresse</"
+"para><para><placeholder>DOMAIN\\brugernavn</placeholder>: Ved meget gamle "
+"erhverrvsnetværk eller arbejdsgrupper skal du måske have et præfiks foran "
+"NetBIOS domænenavne (pre-Windows 2000)</para><para><placeholder>anonym</"
+"placeholder>: Anonyme logins kan  forsøges ved at bruge et tomt brugernavn "
+"og adgangskode. Afhængigt af serverens opsætning kan ikke-tomme brugernavne "
+"være påkrævet</para>"
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>Indtast venligst godkendelsesinformation for <b>%1</b></qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"Indtest venligst godkendelsesinformation for:\n"
+"Server = %1\n"
+"Share = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"Ukendt filtype, hverken mappe eller fil."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"Kunne ingen arbejdsgrupper finde på dit lokale netværk. Dette kan skyldes en "
+"aktiveret firewall."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "Intet medie i enheden for %1"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "Kunne ikke forbinde til værten for %1"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "Fejl ved forbindelse til serveren ansvarlig for %1"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "Share kunne ikke findes på givne server"
+
+#: kio_smb_browse.cpp:303
+#, kde-format
+msgid "Bad file descriptor"
+msgstr "Dårlig filbeskriver"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"Det givne navn kunne ikke resolveres til en entydig server. Sørg for at dit "
+"netværk er sat op uden navnekonflikter mellem navne brugt af Windows og af "
+"Unix navneresolution."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr "%1: Værten kan ikke nås"
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"libsmbclient rapporterede en fejl, men angav ikke hvad problemet er. Dette "
+"kunne indikere et alvorligt problem med dit netværk - men det kunne også "
+"være et problem med libsmbclient.\n"
+"Hvis du vil hjælpe os, så giv et tcpdump af netværkets grænseflade mens du "
+"prøver at søge på nettet (du skal være klar over at den kunne indeholde "
+"private data, så send den ikke ind hvis du er usikker på det - du kan sende "
+"det privat udviklerne hvis de beder om det)"
+
+#: kio_smb_browse.cpp:334
+#, kde-format
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "Ukendt fejltilstand: [%1] %2"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr "Fejl ved forsøg på at tilgå %1<nl/>%2"
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "mislykkedes at initialisere libsmbclient"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"Sørg for at samba-pakken er installeret rigtigt på dit system."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"Montering af share \"%1\" fra vært \"%2\" af brugeren \"%3\" mislykkedes.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"Afmontering af monteringspunktet \"%1\" mislykkedes.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr "Ukendt enhed @ <resource>%1</resource>"
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "mislykkedes at initialisere libsmbclient"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "Fil eksisterer ikke: %1"
+
+#~ msgid "libsmbclient failed to initialize"
+#~ msgstr "mislykkedes at initialisere libsmbclient"

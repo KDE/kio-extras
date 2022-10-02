@@ -1,0 +1,185 @@
+# Lithuanian translations for l package.
+# Copyright (C) 2012 This_file_is_part_of_KDE
+# This file is distributed under the same license as the l package.
+#
+# Automatically generated, 2012.
+# Liudas Alisauskas <liudas@akmc.lt>, 2013, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: l 10n\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2019-07-13 23:43+0300\n"
+"Last-Translator: Moo\n"
+"Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Generator: Poedit 2.2.1\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "Veiklos"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "Įkeliama..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "Veiklų tvarkytuvė neveikia"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "Susieti su dabartine veikla"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "Atsieti nuo dabartinės veiklos"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "Susieti su:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "Atsieti nuo:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "Veikla"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "Dabartinė veikla"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Liudas Ališauskas"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "liudas@akmc.lt"
+
+#~ msgid "Default"
+#~ msgstr "Numatyta"
+
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "Persijungti į veiklą „%1“"
+
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "Veikla"
+
+#, fuzzy
+#~| msgid "Current activity"
+#~ msgid "Delete activity"
+#~ msgstr "Dabartinė veikla"
+
+#, fuzzy
+#~| msgid "Current activity"
+#~ msgid "Create a new activity"
+#~ msgstr "Dabartinė veikla"
+
+#, fuzzy
+#~| msgid "Activity"
+#~ msgid "Activity settings"
+#~ msgstr "Veikla"
+
+#, fuzzy
+#~| msgid "Activity"
+#~ msgid "Activity information"
+#~ msgstr "Veikla"
+
+#~ msgid "Privacy"
+#~ msgstr "Privatumas"
+
+#~ msgctxt "unlimited number of months"
+#~ msgid "forever"
+#~ msgstr "visam laikui"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "Pamiršti paskutinę valandą"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "Pamiršti paskutines dvi valandas"
+
+#~ msgid "Forget a day"
+#~ msgstr "Pamiršti dieną"
+
+#~ msgid "Forget everything"
+#~ msgstr "Pamiršti viską"
+
+#~ msgctxt "unit of time. months to keep the history"
+#~ msgid " month"
+#~ msgid_plural " months"
+#~ msgstr[0] " mėnesį"
+#~ msgstr[1] " mėnesius"
+#~ msgstr[2] " mėnesių"
+#~ msgstr[3] " mėnesį"
+
+#~ msgctxt "for in 'keep history for 5 months'"
+#~ msgid "for "
+#~ msgstr " "
+
+#, fuzzy
+#~| msgid "Current activity"
+#~ msgid "Create activity..."
+#~ msgstr "Dabartinė veikla"
+
+#, fuzzy
+#~| msgid "Activity"
+#~ msgid "Activity switching"
+#~ msgstr "Veikla"
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "Prisiminti atvertus dokumentus:"
+
+#~ msgid "For a&ll applications"
+#~ msgstr "Visoms programos"
+
+#~ msgid "&Do not remember"
+#~ msgstr "&Neprisiminti"
+
+#~ msgid "O&nly for specific applications"
+#~ msgstr "Tik tam tikroms programoms"
+
+#~ msgid "Keep history"
+#~ msgstr "Išsaugoti istoriją"
+
+#~ msgid "Clear recent history"
+#~ msgstr "Išvalyti paskiausią istoriją"
+
+#~ msgid "Blacklist all applications not on this list"
+#~ msgstr "Įtraukti į juodą sąrašą visas šias programas"
+
+#, fuzzy
+#~| msgid "Activity"
+#~ msgid "Activity name"
+#~ msgstr "Veikla"
+
+#~ msgid "Available Features"
+#~ msgstr "Galimos funkcijos"
+
+#~ msgid "Plugins"
+#~ msgstr "Priedai"
+
+#~ msgid "Enable activities management"
+#~ msgstr "Įjungti veiklų valdymą"

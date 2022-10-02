@@ -1,0 +1,32 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Danishka Navin <danishka@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"PO-Revision-Date: 2009-11-09 22:31+0530\n"
+"Last-Translator: Danishka Navin <danishka@gmail.com>\n"
+"Language-Team: Sinhala <danishka@gmail.com>\n"
+"Language: si\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: info.cpp:52
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "Unable to locate file %1 which is necessary to run this service. Please "
+#| "check your software installation."
+msgid ""
+"Unable to locate files which are necessary to run this service:<br>"
+"%1<br>Please check your software installation."
+msgstr ""
+"\n"
+"මෙම සේවාව ක්‍රියාත්මක කිරීමට අවශ්‍ය  %1 ගොණුව සොයාගත නොහැක . කරුණාකර ඔබේ ස්ථාපනය පරීක්‍ෂා‍ "
+"කරන්න."

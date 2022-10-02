@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2022-08-25 16:43+0200\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr ""
+"ჰოსტზე %1 შეუძლებელია NFS-ის ვერსიის აღმოჩენა, რომელსაც აქვს მხარდაჭერა"
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "NFS პროტოკოლისთვის სერვერის ჰოსტის სახელი აუცილებელია."
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr "პროტოკოლის ინიციალიზაციის შეცდომა"
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "RPC-ის შეცდომა %1, %2"
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "ფაილის სახელი ძალიან გრძელია"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "დისკის კვოტა გადაცილებულია"
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "NFS-ის შეცდომა %1, %2"
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr "უცნობი სამიზნე"

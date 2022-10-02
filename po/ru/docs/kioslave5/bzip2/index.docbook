@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="bzip2">
+<title
+>bzip2 / bzip</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>bzip2</command
+> — это программа сжатия данных.</para>
+
+<para
+>Модуль bzip2 kioslave не используется непосредственно, он предназначен для работы в качестве фильтра. Например, протокол tar может пропустить файл через фильтр bzip2, чтобы можно было просмотреть содержимое файла <literal role="extension"
+>tar.bz2</literal
+> прямо в окне &konqueror;.</para>
+
+<para
+>При нажатии на файл с расширением <literal role="extension"
+>.bz2</literal
+> в &konqueror; этот модуль распакует файл и позволит работать ним как его как обычным (несжатым) файлом.</para>
+
+<para
+>Документация для разработчиков, описывающая использование модуля bzip2 и других модулей kioslaves, размещена на сайте <ulink url="https://techbase.kde.org"
+>https://techbase.kde.org</ulink
+>.</para>
+
+<para
+>Смотрите также руководство пользователя программы: <ulink url="man:/bzip2"
+>bzip2</ulink
+>. </para>
+
+<para
+>Программа <command
+>bzip</command
+> — более ранняя версия bzip2. Сейчас она редко используется, так как bzip2 предлагает лучшее сжатие данных.</para>
+
+</article>

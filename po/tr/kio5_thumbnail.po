@@ -1,0 +1,86 @@
+# translation of kio_thumbnail.po to
+#
+# Görkem Çetin <gorkem@gorkemcetin.com>, 2005.
+# Serdar Soytetir <tulliana@gmail.com>, 2008, 2009.
+# H. İbrahim Güngör <ibrahim@pardus.org.tr>, 2011.
+# Volkan Gezer <volkangezer@gmail.com>, 2014.
+# Emir SARI <emir_sari@icloud.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2022-04-11 11:23+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
+"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "MIME Türü belirtilmedi."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "Boyut belirtilmedi ya da geçersiz."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "Dizin için küçük görsel oluşturulamadı"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "Eklenti belirtilmedi."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "ThumbCreator %1 yüklenemedi"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "%1 için küçük görsel oluşturulamadı"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "Küçük görsel oluşturma işlemi başarısız oldu."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "Görsel yazılamadı."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "Paylaşılan bellek parçası %1'e eklenemedi"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "Görsel, paylaşılan bellek parçası için çok büyük"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "Resmi otomatik olarak döndür"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Serdar Soytetir"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "tulliana@gmail.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

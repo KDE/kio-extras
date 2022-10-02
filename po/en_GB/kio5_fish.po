@@ -1,0 +1,52 @@
+# translation of kio_fish.po to British English
+# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+#
+# Malcolm Hunter <malcolm.hunter@gmx.co.uk>, 2003, 2004.
+# Andrew Coles <andrew_coles@yahoo.co.uk>, 2009.
+# Steve Allewell <steve.allewell@gmail.com>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2014-06-28 18:37+0100\n"
+"Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
+"Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "Connecting..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "Initiating protocol..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "Local Login"
+
+#: fish.cpp:630
+#, kde-format
+msgid "SSH Authentication"
+msgstr "SSH Authentication"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "Disconnected."
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Andrew Coles"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "andrew_coles@yahoo.co.uk"

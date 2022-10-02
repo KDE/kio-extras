@@ -1,0 +1,182 @@
+# translation of kio_smb.po to Chinese (traditional)
+# translation of kio_smb.po to Chinese (traditional)
+# Copyright (C) 2003 Free Software Foundation, Inc.
+#
+# Keng-Tso Ou <jupiter@ocool.org>, 2003.
+# Jeff Huang <s8321414@gmail.com>, 2017.
+# Yi-Jyun Pan <pan93412@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2020-05-02 23:10+0800\n"
+"Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
+"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.04.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>請輸入下列的授權資訊：<b>%1</b></qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"請輸入下列的授權資訊：\n"
+"伺服器 = %1\n"
+"分享 = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"不明的檔案類別，不論是目錄或檔案。"
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr "無法在您的本地網路發現任何工作群組。這可能是由於使用了防火牆造成的。"
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "裝置中沒有 %1 的媒體"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "無法為 %1 連線至主機"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "當連線到伺服器回應 %1 時發生錯誤"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "所指定伺服器找不到分享"
+
+#: kio_smb_browse.cpp:303
+#, kde-format
+msgid "Bad file descriptor"
+msgstr "錯誤的檔案描述"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"無法將指定的名稱解析為特定的伺服器。請確定您的網路設定跟 Windows 與 UNIX 解析"
+"之間使用的名稱沒有衝突。"
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr "%1：無法連線至主機"
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"libsmbclient 報告了一個錯誤，但並未指出問題為何。這有可能是您網路中的伺服器出"
+"現問題─但是也可能是libsmbclient 的問題。\n"
+"如果您想協助我們，請您提供您嘗試瀏覽網路的 tcpdump 資料。(請注意其中可能包含"
+"私人資料，如果您不確定請勿公開散佈。如果程式開發者跟您要求相關資料，您可以私"
+"底下Email給他)"
+
+#: kio_smb_browse.cpp:334
+#, kde-format
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "未知錯誤狀態：[%1] %2"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr "在嘗試存取 %1 時遇到錯誤<nl/>%2"
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbclient 建立快顯選單失敗"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"請確認您的系統中已適當安裝samba套件。"
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"掛載使用者「%3」於主機「%2」分享的「%1」失敗。\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"卸載掛載點「%1」失敗。\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr "未知裝置 @ <resource>%1</resource>"
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "libsmbclient 初始化快顯選單失敗"

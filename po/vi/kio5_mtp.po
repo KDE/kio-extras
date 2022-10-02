@@ -1,0 +1,38 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# Phu Hung Nguyen <phu.nguyen@kdemail.net>, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-07 00:45+0000\n"
+"PO-Revision-Date: 2022-01-10 21:52+0100\n"
+"Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
+"Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 20.12.2\n"
+
+#: kio_mtp.cpp:220
+#, kde-format
+msgctxt ""
+"Message shown when attempting to access an MTP device that is not fully "
+"accessible yet"
+msgid ""
+"Could not access device. Make sure it is unlocked, and tap \"Allow\" on the "
+"popup on its screen. If that does not work, make sure MTP is enabled in its "
+"USB connection settings."
+msgstr ""
+"Không thể truy cập thiết bị. Hãy chắc chắn rằng nó được mở khoá, và chọn "
+"\"Cho phép\" (\"Allow\") trong ô bật lên trên màn hình thiết bị. Nếu làm vậy "
+"không được, hãy kiểm tra rằng MTP đã được bật trong thiết lập kết nối USB "
+"của thiết bị."
+
+#: kio_mtp.cpp:490
+#, kde-format
+msgid "Cannot copy/move files on the device itself"
+msgstr "Không thể chép/di chuyển tệp trên chính thiết bị"

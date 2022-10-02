@@ -1,0 +1,412 @@
+# translation of kio_sftp.po to
+# translation of kio_sftp.po to
+# translation of kio_sftp.po to Tamil
+# Copyright (C) 2004 Free Software Foundation, Inc.
+#
+# Vasee Vaseeharan <vasee@ieee.org>, 2004.
+# Ambalam <tamilpc@ambalam.com>, 2004.
+# root <root@localhost.localdomain>, 2004.
+# Kishore G <kishore96@gmail.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2022-07-26 21:26+0530\n"
+"Last-Translator: Kishore G <kishore96@gmail.com>\n"
+"Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.07.80\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "தவறான அல்லது செல்லுபடியாகாத கடவுச்சொல்"
+
+#: kio_sftp.cpp:276
+#, fuzzy, kde-format
+#| msgid "Could not allocate memory for SFTP packet."
+msgid "Could not allocate callbacks"
+msgstr " SFTP பொட்டலத்திர்க்கு நினைவகம் ஒதுக்க இயலாது"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr ""
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log userdata."
+msgstr " SFTP பொட்டலதை படிக்க இயலாது."
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not allocate memory for SFTP packet."
+msgid "Could not set log callback."
+msgstr " SFTP பொட்டலத்திர்க்கு நினைவகம் ஒதுக்க இயலாது"
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "SFTP நுழைவு "
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "இக்கேள்விக்கு பதிலளிக்க, பயனர் பெயருக்கான பலத்தை பயன்படுத்துங்கள்."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "உங்கள் கடவுச்சொல்லை உள்ளிடுங்கள்."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "தளம்:"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "இணைப்பை படிக்க முடியவில்லை: %1 [%2]"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "புதிய SSH அமர்வை உருவாக்க முடியவில்லை."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "காலாவதி நேரத்தை அமைக்க முடியவில்லை."
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Nagle படிமுறையை முடக்க முடியவில்லை."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "சுருக்கத்தை அமைக்க முடியவில்லை."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "புரவனை அமைக்க முடியவில்லை."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "புறையை அமைக்க முடியவில்லை."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "பயனர் பெயரை அமைக்க முடியவில்லை."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "விருப்பத்தேர்வுக்கோப்பை புரிந்துகொள்ள முடியவில்லை."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "%1 என்ற புரவனுக்கு SFTP இணைப்பு திறக்கப்படுகிறது: %2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr "புரவனின் பொது சாவியின் வகையின் பெயரை கண்டறிய முடியவில்லை"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "புரவனின் பொது சாவியிலிருந்து சரிகாண்தொகையை உருவாக்க முடியவில்லை"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr "புரவனின் பொது சாவியிலிருந்து கைரேகையை உருவாக்க முடியவில்லை"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"இச்செவையகத்திற்கான %1 அடையாளச்சாவி கண்டுபிடிக்கப்படவில்லை, ஆனால் இன்னொரு வகையான சாவி "
+"உள்ளது.\n"
+"வாங்கிகளை ஏமாற்ற, சேவையகத்தைத் தாக்கியோர் அதன் இயல்பிருப்பு சாவியை மாற்றலாம்.\n"
+"உங்கள் கணினியின் நிர்வாகியைத் தொடர்பு கொள்ளுங்கள்.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "புரவனின் அடையாளம் மாறியுள்ளது"
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"<para><emphasis>%1</emphasis> எனும் சேவையகத்திற்கான அடையாளச்சாவி மாறியுள்ளது.</"
+"para><para>இது DNS மோசடியின் விளைவாக இருக்கலாம், அல்லது சேவையகத்தின் IP முகவரியும் "
+"அதன் சாவியும் ஒரே நேரத்தில் மாறியிருக்கலாம்.</para><para>தொலை புரவன் அனுப்பிய %2 "
+"சாவியின் கைரேகை:<bcode>%3</bcode>உறுதியாக இணைவதைத் தொடர வேண்டுமா?</para>"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr "புரவன் உறுதிப்பாடு தோல்வியடைந்த‍து"
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"<para><emphasis>%1</emphasis> எனும் புரவினின் அடையாளத்தை உறுதிசெய்ய முடியவில்லை.</"
+"para><para>அதன் %2 சாவியின் கைரேகை:<bcode>%3</bcode>உறுதியாக இணைவதைத் தொடர "
+"வேண்டுமா?</para>"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr "இருப்பினும் இணை"
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "சான்றளித்தல் தோல்வியடைந்த‍து."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr "சான்றளித்தல் தோல்வியடைந்த‍து. சான்றளிக்க வேண்டிய முறையை சேவையகம் கூறவில்லை."
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "உங்கள் பயனர்பெயரையும் கடவுச்சொல்லையும் உள்ளிடுங்கள்."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "தவறான பயனர்பெயர் அல்லது கடவுச்சொல்"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"SFTP கூறை தொடர்புகொள்ள முடியவில்லை. சேவையகத்தில் SFTP இயக்கப்பட்டுள்ளதா என்பதை உறுதி "
+"செய்யுங்கள்."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "SFTP அமர்வை துவக்க முடியவில்லை."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "%1 என்பதற்கான இணைப்பு வெற்றிகரமாக உண்டாக்கப்பட்டுள்ளது"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"%1\n"
+"என்பதற்கு அனுமதிகளை மாற்ற முடியவில்லை"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "எச்சரிக்கை: புறவளரின் அடையாளம் சரிபார்க்க இயலாது."
+
+#, fuzzy
+#~| msgid "No hostname specified"
+#~ msgid "No hostname specified."
+#~ msgstr "எந்த புரவலர் பெயரும் குறிப்பிடவில்லை"
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "உள்ளுர பிழை ஏற்பட்டுள்ளது. தயவுசெய்து கோறிக்கையை மீண்டும் திரும்ப முயலவும்."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "தயவு செய்து பயனர்பெயரையும் நுழைசொல்லையும் பதிவு செய்யவும் "
+
+#~ msgid "Connection failed."
+#~ msgstr "இணைப்பு இயலவில்லை"
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "தொலை நிலை புறவளரால்  இணைப்பு  மூடியது"
+
+#, fuzzy
+#~| msgid "Unexpected SFTP error: %1"
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "எதிர்பாராத எஸ் எஃப் டி பி பிழை: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP  பதிப்பு %1"
+
+#~ msgid "Protocol error."
+#~ msgstr " நெறிமுறைகள் பிழை"
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "உள்ளுர பிழை ஏற்பட்டுள்ளது. தயவுசெய்து கோறிக்கையை மீண்டும்தி ரும்பவும் முயலவும்."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "%1 கோப்பையை நகலெடுக்குகையில் அறியாதப் பிழை ஏற்பட்டுள்ளது. தயவுச் செய்து மீண்டும் "
+#~ "முயற்சிக்கவும்."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "தொலைநிலை புறவளர்  கோப்பின் பெயர்மற்றுதளுக்கு துணை புரியாது. "
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "தொலைநிலை புறவளர்   குறியீட்டுத் தொடர்பு துணை புரியாது. "
+
+#~ msgid "Connection closed"
+#~ msgstr "இணைப்பு மூடியது"
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "தெரியாத ஒரு கரனத்திர்க்காக  SFTP கட்டளை தவரியது."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "SFTP வழங்கன் தவரான செய்தியை பெற்றது."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "நீங்கள் செய்த  செயல்பாடு, SFTP  வழங்கனால் துணைபுரியவில்லை. "
+
+#~ msgid "Error code: %1"
+#~ msgstr "%1பிழை  குறிப்பு:"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "துணைமுறைமையையும் கட்டளையையும் ஒரெ நேரத்தில் குறிக்க இயலாது."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "ssh  நிறைவேற்றுகைக்கு எந்த விருப்பத்தேர்வுகளும் வழங்கப்படவில்லை"
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "ssh செயலாக்கம் செயய  நிறைவேற்ற தவறியது"
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "ssh உடன் பேசும்போது  பிழை நேர்ந்தது."
+
+#~ msgid "Please supply a password."
+#~ msgstr "தயவு செய்து நுழைவுச்சொல்லை  வழங்கவும்."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "உங்கள் SSH  தனியார் விசைக்கு  தயவுசெய்து நுழைவுச்சொல்லை வழங்கவும்."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "Authentication to %1 failed"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "தொலைநிலை புறவளரின் அடையளம்'%1' சரிபார்க்கப்படாது ஏன் என்றால் புறவளரின் விசை "
+#~ "\"தெரிந்த புறவளரின் \"கோப்பில் இல்லை."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ "\" தெரிந்த புறவளருக்கு \" கையேடாக புறவளரின் விசையை இணைக்கவும் அல்லது நிர்வாகியை "
+#~ "தொடர்பு கொள்ளவும்."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr "கையேடாக புறவளரின் விசையைக்கு %1 அல்லது நிர்வாகியை தொடர்பு கொள்ளவும்."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ " தொலைநிலை புறவளரின் அடையளம்  '%1' மாறியது!\n"
+#~ "%2\n"
+#~ "இணைப்புக்கு முன்னால் புறவளரின் நிர்வாகியுடன் புறவளரின் கைறேகையை மாற்ற வேண்டும்.\n"
+#~ "\n"
+#~ "நீங்கள் புறவளரின் புதிய விசையை எற்றுக் கொண்டு வேறு விசையில் இணைக்க விரும்புகிரீர்களா?."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "எச்சரிக்கை: தொலைநிலை புறவளரின் அடையளம்  '%1' மாறியது!\n"
+#~ "\n"
+#~ "உங்கள் இணைபின் மேல் யரோ ஒருவர்  ஒட்டுக் கேட்டுக்கொண்டிருக்களாம், அல்லது நிர்வாகி "
+#~ "புறவலரின் விசையை மற்றலாம்.இல்லை என்றால் இணைப்புக்கு முன்னால் புறவளரின் நிர்வாகியுடன் "
+#~ "புறவளரின் கைறேகையை மாற்ற வேண்டும்.விசையின் கைறேகை :\n"
+#~ "%2\n"
+#~ "சரியான புறவளரின் விசையை இணைக்கவும்\"%3\"இந்த செய்தியில் இருந்து வெளியேர."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "எச்சரிக்கை: தொலைநிலை புறவளரின் அடையளம்  '%1' மாறியது!\n"
+#~ "\n"
+#~ "உங்கள் இணைபின் மேல் யரோ ஒருவர்  ஒட்டுக் கேட்டுக்கொண்டிருக்களாம், அல்லது நிர்வாகி "
+#~ "புறவலரின் விசையை மற்றலாம்.இல்லை என்றால் இணைப்புக்கு முன்னால் புறவளரின் நிர்வாகியுடன் "
+#~ "புறவளரின் கைறேகையை மாற்ற வேண்டும்.விசையின் கைறேகை :\n"
+#~ "%2\n"
+#~ "\n"
+#~ "நீங்கள் புறவளரின் புதிய விசையை எற்றுக் கொண்டு வேறு விசையில் இணைக்க விரும்புகிரீர்களா."
+
+#~ msgid "Host key was rejected."
+#~ msgstr "புறவளர் விசை எற்றுக்கொள்ளப்படவில்லை. "
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "தயவு செய்து பயனர்பெயரையும் கடவுச்சொல்லையும் பதிவு செய்யவும் "

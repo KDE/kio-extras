@@ -1,0 +1,69 @@
+# Translation of kio5_activities to Norwegian Bokmål
+#
+# Bjørn Steensrud <bjornst@skogkatt.homelinux.org>, 2012, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2014-09-09 12:52+0200\n"
+"Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
+"Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.5\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "Aktiviteter"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "Laster …"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "Aktivitetsbehandler kjører ikke."
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "Lenk til gjeldende aktivitet"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "Lenk fra gjeldende aktivitet"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "Lenk til:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "Lenk fra:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "Aktivitet"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "Gjeldende aktivitet"

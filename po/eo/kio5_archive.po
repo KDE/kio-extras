@@ -1,0 +1,37 @@
+#
+# Michael Moroni <michael.moroni@mailoo.org>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_tar\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2012-05-28 16:13+0200\n"
+"Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
+"Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Esperanto\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.4\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"La dosiero ne malfermeblas, eble pro nesubtenata dosieraranĝo.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"La arkivdosiero ne malfermeblas, eble ĉar la dosieraranĝo ne estas "
+"subtenata.\n"
+"%1"

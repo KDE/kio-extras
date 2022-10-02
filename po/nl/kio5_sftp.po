@@ -1,0 +1,295 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2015, 2018, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2022-07-23 13:44+0200\n"
+"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.04.3\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Onjuiste of ongeldige wachtwoordzin"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "Terugbellen kon niet worden toegekend"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "Hoeveelheid logging instellen lukt niet."
+
+#: kio_sftp.cpp:294
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "Gebruikergegevens loggen instellen lukt niet."
+
+#: kio_sftp.cpp:299
+#, kde-format
+msgid "Could not set log callback."
+msgstr "Instelling van loggen van terugbellen lukt niet."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "SFTP-login"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr ""
+"Het invoerveld voor de gebruikersnaam gebruiken om deze vraag te "
+"beantwoorden."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "Voer uw wachtwoord in."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "Site:"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Koppeling lezen lukt niet van: %1 [%2]"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "Kon geen nieuwe SSH-sessie aanmaken."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "Tijdslimiet instellen lukt niet."
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Kon Nagle's algoritme niet uitschakelen."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "Compressie instellen lukt niet."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "Host instellen lukt niet."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "Poort instellen lukt niet."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "Gebruikersnaam instellen lukt niet."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "Configuratiebestand ontleden lukt niet."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Bezig met maken van SFTP-verbinding naar host %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr "Kon typenaam van de publieke sleutel van de server niet ophalen"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "Kon geen hash maken van de publieke sleutel van de server"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr "Kon geen vingerafdruk maken van de publieke sleutel van de server"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Een %1 host-sleutel voor deze server is niet gevonden maar er bestaat een "
+"ander type sleutel.\n"
+"Een aanvaller zou de standaard serversleutel kunnen wijzigen om uw client te "
+"laten denken dat deze niet bestaat.\n"
+"Gaarne contact opnemen met uw systeembeheerder.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Wijziging in identiteit van host"
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"<para>De host-sleutel voor de server <emphasis>%1</emphasis> is gewijzigd.</"
+"para><para>Dit zou ofwel DNS-spoofing kunnen betekenen of het IP-adres van "
+"de host en zijn host-sleutel zijn op hetzelfde tijdstip gewijzigd.</"
+"para><para>De %2-vingerafdruksleutel verzonden door de host op afstand is:"
+"<bcode> %3</bcode>Wilt u echt verder gaan met de verbinding?</para>"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr "Verificatie van de hostsleutel is mislukt"
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"<para>De authenticiteit van host <emphasis>%1</emphasis> kan niet worden "
+"vastgesteld.</para><para>De %2 vingerafdruksleutel is:<bcode>%3</bcode>Bent "
+"u er zeker van dat u wilt doorgaan met verbinden?</para>"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr "Toch verbinden"
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Authenticatie is mislukt."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+"Authenticatie is mislukt. De server heeft geen authenticatiemethoden gezonden"
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Voer uw gebruikersnaam en wachtwoord in."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Onjuiste gebruikersnaam of wachtwoord"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"Het activeren van het SFTP-subsysteem lukt niet. Verzeker u ervan dat deze "
+"is ingeschakeld op de server."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "Kan de SFTP-sessie niet initialiseren."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Succesvol verbonden met %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr "Ongeldige sftp-context"
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"Kon de toegangsrechten niet wijzigen voor\n"
+"%1"
+
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "De host-sleutel voor de server %1 is gewijzigd.\n"
+#~ "Dit zou ofwel DNS SPOOFING kunnen betekenen of het IP-adres van de host "
+#~ "en zijn host-sleutel zijn op hetzelfde tijdstip gewijzigd.\n"
+#~ "De vingerafdruk van de door de host op afstand verzonden %2 sleutel is:\n"
+#~ "  SHA256:%3\n"
+#~ "Gaarne contact opnemen met uw systeembeheerder.\n"
+#~ "%4"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr ""
+#~ "Waarschuwing: de identiteit van de host kan niet worden geverifieerd."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "De host-sleutel voor deze server is niet gevonden maar er bestaat een "
+#~ "ander type sleutel.\n"
+#~ "Een aanvaller zou de standaard serversleutel kunnen wijzigen om uw client "
+#~ "te laten denken dat deze niet bestaat.\n"
+#~ "Gaarne contact opnemen met uw systeembeheerder.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "De authenticiteit van host %1 kan niet worden vastgesteld.\n"
+#~ "De vingerafdruk van de sleutel is: %2\n"
+#~ "Bent u er zeker van dat u wil doorgaan met verbinden?"

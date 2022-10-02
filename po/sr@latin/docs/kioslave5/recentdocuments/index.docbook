@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE">
+]>
+
+<article lang="&language;" id="recentdocument">
+<title
+>Nedavni dokumenti</title>
+
+<articleinfo>
+
+<authorgroup>
+  <author
+><personname
+><firstname
+>Burkhard</firstname
+> <surname
+>Lik</surname
+></personname
+> &Burkhard.Lueck.mail; </author>
+<othercredit role="translator"
+><firstname
+>Časlav</firstname
+><surname
+>Ilić</surname
+><affiliation
+><address
+><email
+>caslav.ilic@gmx.net</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>1. 12. 2016.</date>
+<releaseinfo
+>Programi KDE‑a 16.12</releaseinfo>
+
+</articleinfo>
+
+<para
+>U/I zahvat za prikazivanje nedavnih dokumenata ili URL‑ova u fajl dijalogu, menadžeru fajlova, u <application
+>K‑izvođaču</application
+> i meniju programa.</para>
+
+<para
+>U/I zahvat možete koristiti ovako:</para>
+
+<para
+>Unesite <userinput
+>recentdocuments:/</userinput
+> u traku lokacije <application
+>Dolphina</application
+>, <application
+>K‑osvajača</application
+> ili fajl dijaloga da dobijete spisak nedavno otvaranih dokumenata i URL‑ova.</para>
+
+<para
+>Možete dodati unos u bočnu traku mesta: kliknite desnim na bočnu traku, izaberite <guimenuitem
+>Dodaj stavku...</guimenuitem
+>, unesite <userinput
+>recentdocuments:/</userinput
+> u polje <guilabel
+>Lokacija:</guilabel
+> i sačuvajte ga. Potom bi trebalo da bude dostupan u svim fajl dijalozima (osim ako niste zadali da se unos vidi samo u trenutnom programu).</para>
+
+<para
+>U modulu <guilabel
+>Plasma pretraga</guilabel
+> Sistemskih postavki uključite priključak <guilabel
+>Nedavni dokumenti</guilabel
+> da bi ovaj U/I zahvat bio dostupan u <application
+>K‑izvođaču</application
+>.</para>
+
+<para
+>U <guilabel
+>meni programa</guilabel
+> dodajte stavku sa nedavnim dokumentima na vrh menija tako što uključite <guilabel
+>Prikaži nedavne dokumente</guilabel
+> na stranici postavki.</para>
+
+</article>

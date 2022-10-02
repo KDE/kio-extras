@@ -1,0 +1,424 @@
+# translation of kio_sftp.po to Kannada
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Umesh Rudrapatn <umesh@diabetix>, 2007.
+# Umesh Rudrapatna <urudrapatna@yahoo.com>, 2007.
+# Umesh Rudrapatna <umeshrs@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2008-08-10 12:33+0200\n"
+"Last-Translator: Umesh Rudrapatna <umeshrs@gmail.com>\n"
+"Language-Team: Kannada <kde-l10n-kn@kde.org>\n"
+"Language: kn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_sftp.cpp:226
+#, fuzzy, kde-format
+#| msgid "Incorrect username or password"
+msgid "Incorrect or invalid passphrase"
+msgstr "ತಪ್ಪು ವ್ಯವಹಾರಾಂಕಿತ (username) ಅಥವಾ ಗುಪ್ತಪದ (password)"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr ""
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr ""
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log userdata."
+msgstr "SFTP ಕಂತು (packet) ಅನ್ನು ಓದಲಾಗಲಿಲ್ಲ"
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log callback."
+msgstr "SFTP ಕಂತು (packet) ಅನ್ನು ಓದಲಾಗಲಿಲ್ಲ"
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "SFTP ಪ್ರವೇಶಪದ (login)"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr ""
+
+#: kio_sftp.cpp:365
+#, fuzzy, kde-format
+#| msgid "Please enter your username and password."
+msgid "Please enter your password."
+msgstr "ದಯವಿಟ್ಟು ನಿಮ್ಮ್ ವ್ಯವಹಾರಾಂಕಿತ (username) ಮತ್ತು ಗುಪ್ತಪದ (password) ನಮೂದಿಸಿ."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, fuzzy, kde-format
+#| msgid "site:"
+msgid "Site:"
+msgstr "ತಾಣ:"
+
+#: kio_sftp.cpp:417
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "SFTP ಕಂತು (packet) ಅನ್ನು ಓದಲಾಗಲಿಲ್ಲ"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr ""
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set a timeout."
+msgstr "SFTP ಕಂತು (packet) ಅನ್ನು ಓದಲಾಗಲಿಲ್ಲ"
+
+#: kio_sftp.cpp:561
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not disable Nagle's Algorithm."
+msgstr "SFTP ಕಂತು (packet) ಅನ್ನು ಓದಲಾಗಲಿಲ್ಲ"
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr ""
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr ""
+
+#: kio_sftp.cpp:584
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set port."
+msgstr "SFTP ಕಂತು (packet) ಅನ್ನು ಓದಲಾಗಲಿಲ್ಲ"
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr ""
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr ""
+
+#: kio_sftp.cpp:616
+#, fuzzy, kde-kuit-format
+#| msgid "Opening SFTP connection to host %1:%2"
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "ಆತಿಥೇಯಕ್ಕೆ (host) SFTP ಸಂಪರ್ಕವನ್ನು ತೆರೆ ಯಲಾಗುತ್ತಿದೆ%1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr ""
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+#| msgid "Warning: Host's identity changed."
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "ಎಚ್ಚರಿಕೆ: ಆತಿಥೇಯದ (host) ಅನನ್ಯತೆ ಬದಲಾಗಿದೆ."
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "ದೃಢೀಕರಣ ವಿಫಲವಾಯಿತು."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "ದಯವಿಟ್ಟು ನಿಮ್ಮ್ ವ್ಯವಹಾರಾಂಕಿತ (username) ಮತ್ತು ಗುಪ್ತಪದ (password) ನಮೂದಿಸಿ."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "ತಪ್ಪು ವ್ಯವಹಾರಾಂಕಿತ (username) ಅಥವಾ ಗುಪ್ತಪದ (password)"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr ""
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "ಯಶಸ್ವಿಯಾಗಿ %1 ಕ್ಕೆ ಸಂಪರ್ಕ ಏರ್ಪಟ್ಟಿತು"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "ಎಚ್ಚರಿಕೆ: ಆತಿಥೇಯದ (host) ಅನನ್ಯತೆಯನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ."
+
+#, fuzzy
+#~| msgid "No hostname specified"
+#~ msgid "No hostname specified."
+#~ msgstr "ಅತಿಥೇಯ (host) ಗಣಕದ ಹೆಸರನ್ನು ಸೂಚಿಸಲಾಗಿಲ್ಲ."
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "ಆಂತರಿಕ ದೋಷ ಉಂಟಾಗಿದೆ. ದಯವಿಟ್ಟು ಕೋರಿಕೆಯನ್ನು ಮರುಮಂಡಿಸಿ."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr ""
+#~ "ದಯವಿಟ್ಟು ನಿಮ್ಮ್ ವ್ಯವಹಾರಾಂಕಿತ (username) ಮತ್ತು ಗುಪ್ತನುಡಿಗಟ್ಟನ್ನು (key passphrase) "
+#~ "ನಮೂದಿಸಿ."
+
+#~ msgid "Connection failed."
+#~ msgstr "ಸಂಪರ್ಕ ಕಡಿದಿದೆ"
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "ಸಂಪರ್ಕ ದೂರಸ್ಥ ಆತಿಥೇಯದಿಂದ (host) ಮುಚ್ಚಲ್ಪಟ್ಟಿತು."
+
+#, fuzzy
+#~| msgid "Unexpected SFTP error: %1"
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "ಅನಿರೀಕ್ಷಿತ SFTP ದೋಷ: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP ಆವೃತ್ತಿ %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "ಪ್ರಕ್ರಮ (protocol) ದೋಷ."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "ಆಂತರಿಕ ದೋಷ ಉಂಟಾಗಿದೆ. ದಯವಿಟ್ಟು ಮರುಪ್ರಯತ್ನಿಸಿ."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "'%1' ಗೆ ಕಡತವನ್ನು ನಕಲಿಸುವಾಗ ಅಜ್ಞಾತ ದೋಷ ಕಂಡುಬಂದಿತು. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "ದೂರಸ್ಥ ಆತಿಥೇಯವು (host) ಕಡತಗಳನ್ನು ಮರುಹೆಸರಿಸುವುದನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr ""
+#~ "ದೂರಸ್ಥ ಆತಿಥೇಯವು (host) ಸಾಂಕೇತಿಕ ಕೊಂಡಿಗಳ (symbolic links) ರಚನೆಯನ್ನು "
+#~ "ಬೆಂಬಲಿಸುವುದಿಲ್ಲ."
+
+#~ msgid "Connection closed"
+#~ msgstr "ಸಂಪರ್ಕ ಮುಚ್ಚಲ್ಪಟ್ಟಿದೆ"
+
+#~ msgid "End of file."
+#~ msgstr "ಕಡತಾಂತ್ಯ"
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "ಅಜ್ಞಾತ ಕಾರಣಗಳಿಂದಾಗಿ SFTP ಆದೇಶ ವಿಫಲವಾಯಿತು."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "SFTP ಪರಿಚಾರಕವು ಒಂದು ಅಸಾಧುವಾದ ಸಂದೇಶವನ್ನು ಪಡೆಯಿತು."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "ನೀವು SFTP ಪರಿಚಾರಕವು (server) ಬೆಂಬಲಿಸದ ಕಾರ್ಯಾಚರಣೆಯನ್ನು ಪ್ರಯತ್ನಿಸಿದಿರಿ."
+
+#~ msgid "Error code: %1"
+#~ msgstr "ದೋಷ ಸಂಕೇತ: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr ""
+#~ "ಒಂದು ಉಪವ್ಯವಸ್ಥೆ (subsystem) ಹಾಗೂ ಆದೇಶವನ್ನು ಏಕಕಾಲಕ್ಕೆ ನಿಗದಿಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "ssh ನ ನಿರ್ವಹಣೆಗಾಗಿ ಯಾವುದೇ ಆಯ್ಕೆಗಳನ್ನು ನೀಡಲಾಗಿಲ್ಲ."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "ssh ಪ್ರಕ್ರಿಯೆಯನ್ನು ನಿರ್ವಹಿಸುವುದು ವಿಫಲವಾಯಿತು."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "ssh ನೊಡನೆ ಸಂಭಾಷಿಸುವಾಗ ದೋಷ ಕಂಡುಬಂದಿತು."
+
+#~ msgid "Please supply a password."
+#~ msgstr "ದಯವಿಟ್ಟು ಗುಪ್ತಪದವನ್ನು (password) ನೀಡಿ."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr ""
+#~ "ದಯವಿಟ್ಟು ನಿಮ್ಮ SSH ಖಾಸಗಿ ಕೀಲಿಕೈಗೆ (private key) ಗುಪ್ತನುಡಿಗಟ್ಟನ್ನು (passphrase) "
+#~ "ನೀಡಿ."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "%1 ಗೆ ದೃಢೀಕರಣ ವಿಫಲವಾಯಿತು"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "ದೂರಸ್ಥ ಆತಿಥೇಯ (host) '%1' ನ ಅನನ್ಯತೆಯನ್ನು ತಾರ್ಕಣೆ (verify) ಮಾಡಲಾಗಲಿಲ್ಲ, ಏಕೆಂದರೆ "
+#~ "ಆತಿಥೇಯದ ಕೀಲಿಕೈ \"known hosts\" ಕಡತದಲಿಲ್ಲ."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ "ಸ್ವಹಸ್ತದಿಂದ ಆತಿಥೇಯದ (host) ಕೀಲಿಕೈಯನ್ನು \"known hosts\" ಕಡತಕ್ಕೆ ಸೇರಿಸಿ, ಇಲ್ಲವೇ "
+#~ "ನಿಮ್ಮ ಗಣಕದ ನಿರ್ವಾಹಕರನ್ನು (administrator) ಸಂಪರ್ಕಿಸಿ."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr ""
+#~ "ಸ್ವಹಸ್ತದಿಂದ ಆತಿಥೇಯದ (host) ಕೀಲಿಕೈಯನ್ನು %1 ಗೆ ಸೇರಿಸಿ, ಇಲ್ಲವೇ ನಿಮ್ಮ ಗಣಕದ "
+#~ "ನಿರ್ವಾಹಕರನ್ನು (administrator) ಸಂಪರ್ಕಿಸಿ."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "ದೂರಸ್ಥ ಆತಿಥೇಯ (host) '%1' ನ ಅನನ್ಯತೆಯನ್ನು ತಾರ್ಕಣೆ (verify) ಮಾಡಲಾಗಲಿಲ್ಲ. ಆತಿಥೇಯದ "
+#~ "ಕೀಲಿಕೈನ ಬೆರಳುಗುರುತು (fingerprint):\n"
+#~ "%2\n"
+#~ "ಸಂಪರ್ಕವನ್ನು ಸ್ಥಾಪಿಸುವ ಮೊದಲು ನೀವು ಆತಿಥೇಯದ ನಿರ್ವಾಹಕರಿಂದ ಬೆರಳುಗುರುತನ್ನು ತಾರ್ಕಣೆ "
+#~ "(verify) ಮಾಡಿಸಬೇಕು.\n"
+#~ "\n"
+#~ "ನೀವು ಆತಿಥೇಯದ ಕೀಲಿಕೈಯನ್ನು ಸ್ವೀಕರಿಸಿ ಸಂಪರ್ಕವನ್ನು ಸಾಧಿಸಲಿಚ್ಛಿಸುವಿರೇನು?"
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "ಎಚ್ಚರಿಕೆ: ದೂರಸ್ಥ ಆತಿಥೇಯ (host) '%1' ರ ಅನನ್ಯತೆ ಬದಲಾಗಿದೆ!\n"
+#~ "\n"
+#~ "ಯಾರಾದರೂ ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಕದ್ದಾಲಿಸುತ್ತಿರಬಹುದು, ಅಥವಾ ಆತಿಥೇಯದ ನಿರ್ವಾಹಕ ಅದರ "
+#~ "ಕೀಲೀಕೈಯನ್ನು ಬದಲಾಯಿಸಿರಬಹುದು. ಎರಡೂ ಸಂದರ್ಭದಲ್ಲೂ ನೀವು ಆತಿಥೇಯದ ನಿರ್ವಾಹಕರಿಂದ "
+#~ "ಆತಿಥೇಯದ ಕೀಲಿಕೈನ ಬೆರಳುಗುರುತನ್ನು ತಾರ್ಕಣೆ (verify) ಮಾಡಿಸಬೇಕು. ಕೀಲಿಕೈನ "
+#~ "ಬೆರಳುಗುರುತು:\n"
+#~ "%2\n"
+#~ "ಈ ಸಂದೇಶವನ್ನು ತೊಲಗಿಸಲು ಸರಿಯಾದ ಆತಿಥೇಯದ ಕೀಲಿಕೈಯನ್ನು \"%3\" ಗೆ ಸೇರಿಸಿ."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "ಎಚ್ಚರಿಕೆ: ದೂರಸ್ಥ ಆತಿಥೇಯ (host) '%1' ರ ಅನನ್ಯತೆ ಬದಲಾಗಿದೆ!\n"
+#~ "\n"
+#~ "ಯಾರಾದರೂ ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಕದ್ದಾಲಿಸುತ್ತಿರಬಹುದು, ಅಥವಾ ಆತಿಥೇಯದ ನಿರ್ವಾಹಕ ಆತಿಥೇಯದ "
+#~ "ಕೀಲೀಕೈಯನ್ನು ಬದಲಾಯಿಸಿರಬಹುದು. ಎರಡೂ ಸಂದರ್ಭದಲ್ಲೂ ನೀವು ಆತಿಥೇಯದ ನಿರ್ವಾಹಕರಿಂದ "
+#~ "ಆತಿಥೇಯದ ಕೀಲಿಕೈನ ಬೆರಳುಗುರುತನ್ನು ತಾರ್ಕಣೆ (verify) ಮಾಡಿಸಬೇಕು. ಕೀಲಿಕೈನ "
+#~ "ಬೆರಳುಗುರುತು:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "ಹೇಗಾದರೂ ಸರಿ, ನೀವು ಆತಿಥೇಯದ ಹೊಸ ಕೀಲಿಕೈಯನ್ನು ಸ್ವೀಕರಿಸಿ ಸಂಪರ್ಕವನ್ನು "
+#~ "ಸಾಧಿಸಲಿಚ್ಛಿಸುವಿರೇನು?"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "ಆತಿಥೇಯದ (host) ಕೀಲಿಕೈ ನಿರಾಕರಿಸಲ್ಪಟ್ಟಿತು."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "ದಯವಿಟ್ಟು ಒಂದು ವ್ಯವಹಾರಾಂಕಿತ (username) ಮತ್ತು ಗುಪ್ತಪದ (password) ನಮೂದಿಸಿ"
+
+#~ msgid "File does not exist."
+#~ msgstr " ಕಡತ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ"
+
+#~ msgid "Access is denied."
+#~ msgstr "ನಿಲುಕಣೆಯನ್ನು ನಿರಾಕರಿಸಲಾಗಿದೆ."

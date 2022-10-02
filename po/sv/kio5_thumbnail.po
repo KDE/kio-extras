@@ -1,0 +1,72 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2015-07-20 12:40+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "Ingen MIME-typ angiven."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "Ingen eller felaktig storlek angiven."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "Kan inte skapa miniatyrbild för katalog"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "Inget insticksprogram angivet."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "Kan inte ladda miniatyrbildsskaparen %1"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "Kan inte skapa miniatyrbild för %1"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "Misslyckades skapa miniatyrbild."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "Kunde inte skriva bild."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "Misslyckades ansluta till delat minnessegment %1."
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "Bilden är för stor för det delade minnessegmentet"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "Rotera bilden automatiskt"

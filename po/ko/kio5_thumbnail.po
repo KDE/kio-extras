@@ -1,0 +1,84 @@
+# Translation of kio_thumbnail to Korean.
+# Copyright (C) 2007 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kdebase package.
+# Shinjo Park <kde@peremen.name>, 2007, 2009, 2011, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2020-10-04 18:18+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 19.12.3\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "MIME 형식이 지정되지 않았습니다."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "크기가 지정되지 않았거나 잘못되었습니다."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "디렉터리 축소판을 만들 수 없습니다"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "플러그인이 지정되지 않았습니다."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "축소판 생성기 %1을(를) 불러올 수 없습니다"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "%1의 축소판을 만들 수 없습니다"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "축소판을 만들 수 없습니다."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "그림을 쓸 수 없습니다."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "공유 메모리 조각 %1에 붙일 수 없습니다."
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "공유 메모리 조각보다 그림이 큽니다"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "그림 자동 회전"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Shinjo Park"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "kde@peremen.name"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

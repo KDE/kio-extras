@@ -1,0 +1,39 @@
+# Translation of kio_archive to Croatian
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_archive\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2009-08-17 13:27+0200\n"
+"Last-Translator: \n"
+"Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"Ne mogu otvoriti datoteku, vjerojatno zbog nepodržanog formata datoteke.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"Datoteka arhive ne može se otvoriti, vjerojatno zbog nepodržanog formata.\n"
+"%1"

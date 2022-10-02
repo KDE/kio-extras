@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Galician  "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="sftp">
+<title
+>sftp</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Ferdinand.Gassauer; &Ferdinand.Gassauer.mail;</author>
+<othercredit role="translator"
+><firstname
+>Marce</firstname
+><surname
+>Villarino</surname
+><affiliation
+><address
+><email
+>mvillarino@users.sourceforge.net</email
+></address
+></affiliation
+><contrib
+>Tradutor do proxecto Trasno</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+<para
+><acronym
+>SFTP</acronym
+> é un protocolo de transferencia segura de ficheiros. <command
+>sftp</command
+> é un programa de transferencia interactiva de ficheiros, similar a ftp, pero realiza todas as operacións sobre un transporte <command
+>ssh</command
+> cifrado. Pode utilizar moitas das funcionalidades de <command
+>ssh</command
+>, incluíndo a autenticación mediante chave pública e compresión.</para>
+
+<para
+>Consulte o manual: <ulink url="man:/sftp"
+>sftp</ulink
+>. </para>
+
+</article>

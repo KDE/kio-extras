@@ -1,0 +1,499 @@
+# translation of kio_sftp.po to Kaszëbsczi
+# Copyright (C) 2002, 2003, 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+#
+# Michôł Òstrowsczi <michol@linuxcsb.org>, 2007, 2008.
+# Mark Kwidzińśczi <mark@linuxcsb.org>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2009-12-17 22:44+0100\n"
+"Last-Translator: Mark Kwidzińśczi <mark@linuxcsb.org>\n"
+"Language-Team: Kaszëbsczi <i18n-csb@linuxcsb.org>\n"
+"Language: csb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2)\n"
+
+#: kio_sftp.cpp:226
+#, fuzzy, kde-format
+#| msgid "Incorrect username or password"
+msgid "Incorrect or invalid passphrase"
+msgstr "Lëché miono brëkòwnika abò parolã"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr ""
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr ""
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log userdata."
+msgstr "Nie mòżé òdczëtac paczétu SFTP"
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log callback."
+msgstr "Nie mòżé òdczëtac paczétu SFTP"
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "Logòwanié SFTP"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr ""
+"Brëkùjë miona brëkòwnika w pòlu weńdzeniô abë òdpòwiedzëc na zapëtanié."
+
+#: kio_sftp.cpp:365
+#, fuzzy, kde-format
+#| msgid "Please enter your username and password."
+msgid "Please enter your password."
+msgstr "Proszã pòdac miono brëkòwnika ë parolã."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, fuzzy, kde-format
+#| msgid "site:"
+msgid "Site:"
+msgstr "serwer:"
+
+#: kio_sftp.cpp:417
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Nie mòżé òdczëtac paczétu SFTP"
+
+#: kio_sftp.cpp:539
+#, fuzzy, kde-format
+#| msgid "Could not initialize the SFTP session."
+msgid "Could not create a new SSH session."
+msgstr "NIé mòże zrëszëc sesëji SFTP."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set a timeout."
+msgstr "Nie mòżé òdczëtac paczétu SFTP"
+
+#: kio_sftp.cpp:561
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Nie mòżé òdczëtac paczétu SFTP"
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, fuzzy, kde-format
+#| msgid "Could not initialize the SFTP session."
+msgid "Could not set compression."
+msgstr "NIé mòże zrëszëc sesëji SFTP."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr ""
+
+#: kio_sftp.cpp:584
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set port."
+msgstr "Nie mòżé òdczëtac paczétu SFTP"
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr ""
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr ""
+
+#: kio_sftp.cpp:616
+#, fuzzy, kde-kuit-format
+#| msgid "Opening SFTP connection to host %1:%2"
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Òtmëkanié spłãczenia SFTP z kòmpùtrã %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr ""
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+
+#: kio_sftp.cpp:738
+#, fuzzy, kde-format
+#| msgid ""
+#| "The host key for this server was not found, but another type of key "
+#| "exists.\n"
+#| "An attacker might change the default server key to confuse your client "
+#| "into thinking the key does not exist.\n"
+#| "Please contact your system administrator.\n"
+#| "%1"
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Klucz hòsta dlô negò serwera nié mòże bëc nalazłi, to dô równak jinszi ôrt "
+"klucza.\n"
+"Mòżlëwé je, że napôdôcz próbùje zmienic domëslny klucz serwera abë ùdôwac "
+"twòjemù klientowi to, że klucza nie dô.\n"
+"Proszã sparłãczë sã ze sprôwnikã systemë.\n"
+"%1"
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+#| msgid "Warning: Host's identity changed."
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Bôczënk: Identifikacëjô kòmpùtra òsta zmienionô."
+
+#: kio_sftp.cpp:757
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"Klucz hòsta dlô serwera %1 òstôł zmieniony .\n"
+"To mòże òznôczac, że je przeprowôdzany DNS SPOOFING abò adresa IP dlô negò "
+"hòsta ë jegò klucz zmienioné òstałé w tim samym czasu.\n"
+"Òdcësk pôlca dlô klucza, sélóny do daleczégò hòsta to:\n"
+" %2\n"
+"Proszã sparłãczë sã ze sprôwnikã systemë.\n"
+"%3"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The key fingerprint is: %2\n"
+#| "Are you sure you want to continue connecting?"
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"Aùtorizacëjô hòsta %1 nié mòże bëc ùstanowionô.\n"
+"Òdcësk pôlca dlô klucza to: %2\n"
+"Jes gwës tegò, że chcesz jisc dali ze sparłãczeniém?"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Aùtorizacëjô nie darzëła sã."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Proszã pòdac miono brëkòwnika ë parolã."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Lëché miono brëkòwnika abò parolã"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"Nié mòże òdwòłac pòdsystemë SFTP. Ùgwësni sã czë SFTP je właczony na "
+"serwerze."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "NIé mòże zrëszëc sesëji SFTP."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Ùdałé sparłãczenié z %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+
+#, fuzzy
+#~| msgid ""
+#~| "The host key for the server %1 has changed.\n"
+#~| "This could either mean that DNS SPOOFING is happening or the IP address "
+#~| "for the host and its host key have changed at the same time.\n"
+#~| "The fingerprint for the key sent by the remote host is:\n"
+#~| " %2\n"
+#~| "Please contact your system administrator.\n"
+#~| "%3"
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "Klucz hòsta dlô serwera %1 òstôł zmieniony .\n"
+#~ "To mòże òznôczac, że je przeprowôdzany DNS SPOOFING abò adresa IP dlô "
+#~ "negò hòsta ë jegò klucz zmienioné òstałé w tim samym czasu.\n"
+#~ "Òdcësk pôlca dlô klucza, sélóny do daleczégò hòsta to:\n"
+#~ " %2\n"
+#~ "Proszã sparłãczë sã ze sprôwnikã systemë.\n"
+#~ "%3"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Bôczënk: Nie mòże zwerifikòwac identifikacëji hòsta."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Klucz hòsta dlô negò serwera nié mòże bëc nalazłi, to dô równak jinszi "
+#~ "ôrt klucza.\n"
+#~ "Mòżlëwé je, że napôdôcz próbùje zmienic domëslny klucz serwera abë ùdôwac "
+#~ "twòjemù klientowi to, że klucza nie dô.\n"
+#~ "Proszã sparłãczë sã ze sprôwnikã systemë.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "Aùtorizacëjô hòsta %1 nié mòże bëc ùstanowionô.\n"
+#~ "Òdcësk pôlca dlô klucza to: %2\n"
+#~ "Jes gwës tegò, że chcesz jisc dali ze sparłãczeniém?"
+
+#, fuzzy
+#~| msgid "No hostname specified"
+#~ msgid "No hostname specified."
+#~ msgstr "Felëje miona hòsta"
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "Wëstãpiła bënowô fela. Proszã pòwtórzëc probã."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "Proszã pòdac miono brëkòwnika ë parolã klucza."
+
+#~ msgid "Connection failed."
+#~ msgstr "Pòłączenié nie darzëło sã."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "Pòłączenié zakùńczoné przez daleczi kòmpùtr."
+
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "nieżdónô fela SFTP: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "Wersëjô SFTP %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "Fela protokòłu."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "Wëstãpiła bënowô fela. Proszã spróbòwac znowa."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "Wëstãpiła nieznónô fela òbczas kòpijowaniô lopkù do'%1'. Proszã spróbòwac "
+#~ "znowa."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "Dalekô serwera nie òbsłëgùje zmiany mionóe lopków."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "Dalekô serwera nie òbsłëgùje robienia symbòlnych lënków."
+
+#~ msgid "Connection closed"
+#~ msgstr "Pòłączenié zamkniãté"
+
+#~ msgid "End of file."
+#~ msgstr "Kùńc lopka."
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "Pòlét SFTP zakùńczony z nieznónëch òrądzów."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "Serwera SFTP òbebra lëché wiadło."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "Chcesz zrëszëc òperacëjã, co nie je òbsłëdżiwónô bez serwerã SFTP."
+
+#~ msgid "Error code: %1"
+#~ msgstr "Kòd feli: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "Nie mòże òtaksowac w tim samym czasu pòdsystemë ë pòlétu."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "Felënk òptacëji do ssh."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "Fela òbczas zrëszaniô procesu ssh."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "Felô òbczas gôdczi z ssh."
+
+#~ msgid "Please supply a password."
+#~ msgstr "Proszã pòcwierdzëc parolã."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "Proszã pòcwierdzëc parolã dlô priwatnégò klucza SSH."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "Aùtorizacëjô do %1 zakùńczonô felą"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "Identifikacëjô daleczégò kòmpùtra '%1' nie mògłô òstac sprôwdzonô, bò "
+#~ "klucz kòmpùtra nie wëstãpùjë w lopkù \"known hosts\"."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ " Rãczno dodôj klucz kòmpùtra do lopkù \"known hosts\" abò skòntaktëjë sã "
+#~ "ze sprôwnikã."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr " Rãczno dodôj klucz kòmpùtra do %1 abò skòntaktëjë sã ze sprôwnikã."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "Nie mòże sprôwdzëc identifikacëji daleczégò kòmpùtra '%1'. Sztãplëna "
+#~ "klucza tegò kòmpùtra to:\n"
+#~ "%2\n"
+#~ "Zanim pòłączësz sã, nót je pòcwierdzëc ù sprôwnika ti serwerë, że "
+#~ "sztãplëna je proôwdzëwô.\n"
+#~ "\n"
+#~ "Chcesz akceptowac klucz kòmpùtra ë pòłączëc sã nimò tegò?"
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "ÒSTRZÉGA: Zmienionô je identifikacëjô daleczégò kòmpùtra '%1'\n"
+#~ "\n"
+#~ "Chtos mòże próbòwac pòdczëc Twòjé pòłączenié abò prosto sprôwnik serwerë "
+#~ "zmienił klucz kòmpùtra. W kòżdim razu, nót je pòcwierdzëc ù sprôwnika "
+#~ "serwerë, czë sztãplëna klucza je prôwdzëwô. Sztãplëna klucza to:\n"
+#~ "%2\n"
+#~ "Dodôj prôwdzëwi klucz kòmpùtra do lopkù \"%3\", abë wëłączëc ne wiadło."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "ÒSTRZÉGA: Zmienionô je identifikacëjô daleczégò kòmpùtra '%1'\n"
+#~ "\n"
+#~ "Chtos mòże próbòwac pòdczëc Twòjé pòłączenié abò prosto sprôwnik serwerë "
+#~ "zmienił klucz kòmpùtra. W kòżdim razu, nót je pòcwierdzëc ù sprôwnika "
+#~ "serwerë, czë sztãplëna klucza je prôwdzëwô. Sztãplëna klucza to:\n"
+#~ "%2\n"
+#~ "Czë chcesz akceptowac klucz kòmpùtra ë pòłączëc sã nimò tegò?"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "Klucz kòmpùtra òstôł òdcësniãti."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "Proszã pòdac miono brëkòwnika ë parolã"
+
+#~ msgid "File does not exist."
+#~ msgstr "Lopk nie òbstoji."
+
+#~ msgid "Access is denied."
+#~ msgstr "Przëstãp je zabroniony."

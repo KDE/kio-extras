@@ -1,0 +1,211 @@
+# translation of kio_smb.po to greek
+# translation of kio_smb.po to
+# Copyright (C) 2003, 2005, 2007 Free Software Foundation, Inc.
+#
+# Dimitris Kamenopoulos <d.kamenopoulos@mail.ntua.gr>, 2002.
+# Stergios Dramis <sdramis@egnatia.ee.auth.gr>, 2003.
+# Spiros Georgaras <sngeorgaras@otenet.gr>, 2005.
+# Toussis Manolis <koppermind@yahoo.com>, 2005.
+# Toussis Manolis <manolis@koppermind.homelinux.org>, 2005, 2007.
+# Spiros Georgaras <sng@hellug.gr>, 2007.
+# Stelios <sstavra@gmail.com>, 2017, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2020-11-05 08:23+0200\n"
+"Last-Translator: Stelios <sstavra@gmail.com>\n"
+"Language-Team: Greek <kde-i18n-el@kde.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.04.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+"<para>Υπάρχουν διάφορες επιλογές για ταυτοποίηση σε κοινούς πόρους SMB.</"
+"para><para><placeholder>username</placeholder>: Για ταυτοποίηση σε ένα "
+"οικιακό δίκτυο το όνομα χρήστη στον εξυπηρετητή επαρκεί</"
+"para><para><placeholder>username@domain.com</placeholder>: Τα μοντέρνα "
+"εταιρικά ονόματα σύνδεσης σχηματίζονται ως διευθύνσεις ηλ. αλληλογραφίας</"
+"para><para><placeholder>DOMAIN\\username</placeholder>: Για αρχαία εταιρικά "
+"δίκτυα ή ομάδες εργασίας ίσως απαιτηθεί πρόθεμα στο όνομα τομέα NetBIOS (προ-"
+"Windows 2000)</para><para><placeholder>anonymous</placeholder>: Ανώνυμες "
+"συνδέσεις επιχειρούνται με κενό όνομα χρήστη και κωδικό πρόσβασης. Ανάλογα "
+"με τη διαμόρφωση του εξυπηρετητή ίσως απαιτηθούν μη κενά ονόματα χρήστη</"
+"para>"
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>Παρακαλώ δώστε πληροφορίες ταυτοποίησης για <b>%1</b></qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"Παρακαλώ δώστε πληροφορίες ταυτοποίησης για:\n"
+"Εξυπηρετητή = %1\n"
+"Κοινόχρηστος πόρος = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"Άγνωστος τύπος αρχείου, ούτε κατάλογος ούτε αρχείο."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"Αδύνατο να βρεθεί κάποια ομάδα εργασίας στο τοπικό σας δίκτυο. Αυτό μπορεί "
+"να οφείλεται σε ένα ενεργοποιημένο firewall."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "Δεν υπάρχει μέσο στη συσκευή για το %1"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "Αδύνατη η σύνδεση με το διακομιστή για το %1"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr ""
+"Σφάλμα κατά τη σύνδεση με τον εξυπηρετητή που είναι υπεύθυνος για το %1"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "Ο κοινόχρηστος πόρος δεν ήταν δυνατό να βρεθεί στο δοθέν εξυπηρετητή"
+
+#: kio_smb_browse.cpp:303
+#, kde-format
+msgid "Bad file descriptor"
+msgstr "Εσφαλμενος περιγραφέας αρχείου"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"Το δοσμένο όνομα δεν μπορεί να αντιστοιχηθεί σε έναν μοναδικό εξυπηρετητή. "
+"Βεβαιωθείτε ότι το δίκτυο είναι εγκατεστημένο χωρίς κάποια σύγκρουση "
+"ονομάτων μεταξύ των ονομάτων που χρησιμοποιούνται από τα Windows και από την "
+"επίλυση ονομάτων του UNIX."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr "%1: Ο υπολογιστής δεν είναι προσβάσιμος"
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"To libsmbclient ανέφερε ένα σφάλμα, αλλά δε διευκρίνισε ποιό είναι το "
+"πρόβλημα. Αυτό μπορεί να σημαίνει κάποιο σοβαρό πρόβλημα με το δίκτυο σας - "
+"αλλά επίσης μπορεί να σημαίνει και κάποιο πρόβλημα με το libsmbclient. \n"
+"Αν θέλετε να μας βοηθήσετε, παρακαλώ προμηθεύστε μας με ένα tcpdump του "
+"δικτύου ενώ ταυτόχρονα περιηγείστε στο δίκτυο ( προσοχή γιατί μπορεί να "
+"περιέχει προσωπικά δεδομένα, έτσι μην το αποστέλλετε αν δεν είστε σίγουροι "
+"γι αυτό - μπορείτε  να το στείλετε ιδιωτικά στους δημιουργούς αν το ζητήσουν)"
+
+#: kio_smb_browse.cpp:334
+#, kde-format
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "Άγνωστη κατάσταση σφάλματος [%1] %2"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr "Παρουσιάστηκε σφάλμα κατά την πρόσβαση στο %1<nl/>%2"
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "Το libsmbclient απέτυχε να δημιουργήσει περιεχόμενο"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"Σιγουρευτείτε ότι το πακέτο samba είναι εγκατεστημένο σωστά στο σύστημά σας."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"Η προσάρτηση του κοινόχρηστου πόρου \"%1\" στον κόμβο \"%2\" από το χρήστη "
+"\"%3\" απέτυχε.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"Η αποπροσάρτηση του σημείου προσάρτησης \"%1\" απέτυχε.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr "Άγνωστη συσκευή @ <resource>%1</resource>"
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "η libsmbclient απέτυχε να αρχικοποιήσει περιεχόμενο"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "Το αρχείο δεν υπάρχει: %1"
+
+#~ msgid "libsmbclient failed to initialize"
+#~ msgstr "η libsmbclient απέτυχε να αρχικοποιηθεί"

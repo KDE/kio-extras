@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<article lang="&language;" id="smb">
+<title
+>SMB</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Alexander.Neundorf; &Alexander.Neundorf.mail;</author>
+&traducteurEquipeKDE;&traducteurXavierBesnard; 
+</authorgroup>
+<date
+>11-12-2016</date>
+<releaseinfo
+>Applications 16.12</releaseinfo>
+</articleinfo>
+<para
+>Le module d'entrées / sorties « smb » vous permet de naviguer dans les ressources partagés d'un réseau &Windows; (ou samba). </para>
+
+<para
+>Pour voir les groupes de travail, saisissez <userinput
+><command
+>smb:/</command
+></userinput
+>. </para>
+<para
+><userinput
+><command
+>smb://</command
+><replaceable
+>groupe_de_travail</replaceable
+></userinput
+> listera les hôtes du groupe de travail. </para>
+<para
+>Pour afficher les ressources partagées par un hôte, saisissez <userinput
+><command
+>smb://</command
+><replaceable
+>hôte</replaceable
+></userinput
+>. ou <userinput
+><command
+>smb:/</command
+><replaceable
+>groupe_de_travail</replaceable
+>/<replaceable
+>the_host</replaceable
+></userinput
+>. </para>
+<para
+>Pour accéder à une ressource directement, saisissez <userinput
+><command
+>smb://</command
+><replaceable
+>hôte/ressource</replaceable
+></userinput
+> ou <userinput
+><command
+>smb:/</command
+><replaceable
+>groupe_de_travail</replaceable
+>/<replaceable
+>hôte</replaceable
+>/<replaceable
+>ressource</replaceable
+></userinput
+> </para>
+
+<para
+>Le module « smb » a besoin de la bibliothèque « libsmbclient » pour fonctionner. </para>
+
+<para
+>Vous pouvez régler votre nom d'utilisateur et mot de passe par défaut dans le module &systemsettings; dans la catégorie <guilabel
+>Réseau</guilabel
+> dans <menuchoice
+><guisubmenu
+>Connectivité</guisubmenu
+><guimenuitem
+> Partages Windows</guimenuitem
+></menuchoice
+>. Cela est particulièrement utile si vous faites partie d'un domaine &Windows; <acronym
+>NT</acronym
+>. Vous pouvez également définir ici le nom de votre de groupe de travail, mais ceci n'est,en général, pas nécessaire. Le module « kioslave » vous demandera votre nom d'utilisateur et votre mot de passe si aucune valeur par défaut n'est configurée. </para>
+
+</article>
+

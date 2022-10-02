@@ -1,0 +1,86 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Jean Cayron <jean.cayron@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2010-12-17 16:59+0100\n"
+"Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
+"Language-Team: Walloon <linux@walon.org>\n"
+"Language: wa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, fuzzy, kde-format
+#| msgid "KDE Activity Manager"
+msgid "The Activity Manager is not running"
+msgstr "Manaedjeu di l' activité da KDE"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr ""
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr ""
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr ""
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Djan Cayron"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "jean.cayron@gmail.com"
+
+#, fuzzy
+#~| msgid "KDE Activity Management Service"
+#~ msgid "Enable activities management"
+#~ msgstr "Siervice di manaedjmint di l' activité da KDE"
+
+#, fuzzy
+#~| msgid "(c) 2010 Ivan Cukic, Sebastian Trueg"
+#~ msgid "(c) 2012 Ivan Cukic"
+#~ msgstr "© 2010 Ivan Cukic, Sebastian Trueg"

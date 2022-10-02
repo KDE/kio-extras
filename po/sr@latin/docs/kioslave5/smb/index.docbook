@@ -1,0 +1,112 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="smb">
+<title
+>SMB</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Aleksander</firstname
+> <surname
+>Nojndorf</surname
+></personname
+> &Alexander.Neundorf.mail;</author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+<date
+>11. 12. 2016.</date>
+<releaseinfo
+>Programi KDE‑a 16.12</releaseinfo>
+</articleinfo>
+<para
+>U/I zahvat SMB‑a omogućava vam da pregledate deljenja na windows (ili Samba) mreži. </para>
+
+<para
+>Unesite <userinput
+><command
+>smb:/</command
+></userinput
+> za pregled radnih grupa. </para>
+<para
+><userinput
+><command
+>smb://</command
+><replaceable
+>radnagrupa</replaceable
+> </userinput
+> nabrojaće sve domaćine unutar nje. </para>
+<para
+>Da biste videli domaćinova deljenja, unesite <userinput
+><command
+>smb://</command
+><replaceable
+>domacin</replaceable
+></userinput
+> ili <userinput
+><command
+>smb:/</command
+><replaceable
+>radnagrupa</replaceable
+><replaceable
+>domacin</replaceable
+></userinput
+>. </para>
+<para
+>Za direktan pristup deljenju, unesite <userinput
+><command
+>smb://</command
+><replaceable
+>domacin/deljenje</replaceable
+></userinput
+> ili <userinput
+><command
+>smb:/</command
+><replaceable
+>radnagrupa</replaceable
+><replaceable
+>domacin</replaceable
+><replaceable
+>deljenje</replaceable
+></userinput
+> </para>
+
+<para
+>Da bi se SMB U/I zahvat koristio, neophodno je da je instalirana <literal
+>libsmbclient</literal
+>. </para>
+
+<para
+>Svoje podrazumevano ime i lozinku možete postaviti u Sistemskim postavkama, u kategoriji <guilabel
+>Mreža</guilabel
+> pod <menuchoice
+><guisubmenu
+>Povezivost</guisubmenu
+><guimenuitem
+>Windowsova deljenja</guimenuitem
+></menuchoice
+>. Ovo je naročito korisno ako ste član domena pod Windowsom NT. Tamo takođe možete postaviti ime radne grupe, ali ono najčešće nije neophodno. Ako podrazumevano nije postavljeno, U/I zahvat će vam zatražiti korisničko ime i lozinku. </para>
+
+</article>
+

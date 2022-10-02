@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Galician  "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="xz">
+<title
+>xz / lzma</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Per Øyvind</firstname
+><surname
+> Karlsen</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Marce</firstname
+><surname
+>Villarino</surname
+><affiliation
+><address
+><email
+>mvillarino@kde-espana.es</email
+></address
+></affiliation
+><contrib
+>Proxecto Trasno</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Xz é un programa de compresión</para>
+
+<para
+>O kioslave xz non é utilizábel directamente, senón que se deseñou para usarse como un filtro. Por exemplo, o kioslave tar pode filtrar un ficheiro a través deste kioslave para mostrar o contido dun ficheiro <literal role="extension"
+>tar.lzma</literal
+> ou <literal role="extension"
+>tar.xz</literal
+> directamente nunha xanela de &konqueror;.</para>
+
+<para
+>Se en &konqueror; preme nun ficheiro comprimido con <literal role="extension"
+>.lzma</literal
+> ou <literal role="extension"
+>tar.xz</literal
+> úsase este kioslave para descomprimilo e mostralo como un ficheiro normal (sen comprimir).</para>
+
+<para
+>Se vde. é un desenvolvedor e desexa empregar o filtro xz, ha atopar máis documentación sobre o uso dos kioslaves en <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Consulte o manual: <ulink url="man:/xz"
+>xz</ulink
+>. </para>
+
+</article>

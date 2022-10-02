@@ -1,0 +1,209 @@
+# Translation of kio5_man.po to Catalan (Valencian)
+# Copyright (C) 2000-2022 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Sebastià Pla i Sanz <sps@sastia.com>, 2000, 2001, 2004, 2006.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2002, 2003, 2016, 2020, 2021.
+# Albert Astals Cid <aacid@kde.org>, 2005.
+# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2012, 2013, 2015, 2019, 2020, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2022-09-07 19:17+0200\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca@valencia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.12.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+
+#: kio_man.cpp:451
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"No s'ha trobat cap pàgina «man» coincident amb <resource>%1</resource>.<nl/"
+"><nl/>Comproveu que no hàgeu escrit malament el nom de la pàgina que voleu, "
+"i cal tindre en compte que els noms de les pàgines distingixen entre "
+"majúscules i minúscules.<nl/><nl/>Si el nom és correcte, potser cal ampliar "
+"el camí de busca per a les pàgines «man», bé siga amb la variable d'entorn "
+"<envar>MANPATH</envar> o amb un fitxer de configuració en el directori "
+"<filename>/etc</filename>."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"La pàgina «man» especificada referencia una altra pàgina <filename>%1</"
+"filename>,<nl/>però no s'ha pogut trobar la pàgina referenciada <filename>"
+"%2</filename>."
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr "La pàgina «man» <filename>%1</filename> no s'ha pogut llegir."
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr "La pàgina «man» <filename>%1</filename> no s'ha pogut convertir."
+
+#: kio_man.cpp:660
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "S'ha produït un error del visor de les pàgines de manual"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "Hi ha més d'una pàgina «man» coincident:"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "Múltiples pàgines de manual"
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Nota: si llegiu una pàgina «man» en el vostre idioma, heu de saber que pot "
+"contindre algunes errades o estar obsoleta. En cas de dubte, hauríeu de "
+"donar un colp d'ull a la versió anglesa."
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr "Fitxers de capçalera"
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr "Fitxers de capçalera (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Ordres d'usuari"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Ordres d'usuari (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Crides del sistema"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Subrutines"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Mòduls de Perl"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Funcions de xarxa"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Dispositius"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Formats de fitxer"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Jocs"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Miscelànea"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Administració del sistema"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Nucli"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Documentació local"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Nou"
+
+#: kio_man.cpp:805
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "Índex principal de pàgines de manual"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Secció %1"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "Índex per a la secció %1: %2"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Manual Page Index"
+msgstr "Índex de pàgines de manual"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "S'està generant l'índex"
+
+#: kio_man.cpp:1407
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"No s'ha pogut trobar el programa <command>%1</command> en el sistema. "
+"Instal·leu-lo si fora necessari, assegureu-vos que es pot trobar utilitzant "
+"la variable d'entorn <envar>PATH</envar>."

@@ -1,0 +1,199 @@
+# translation of kio_smb.po to Turkish
+# translation of kio_smb.po to
+# translation of kio_smb.po to
+# Copyright (C) 2003, 2005, 2008 Free Software Foundation, Inc.
+#
+# Görkem Çetin <gorkem@kde.org>, 2001, 2003.
+# Ömer Fadıl USTA <omer_fad@hotmail.com>, 2002.
+# Görkem Çetin <gorkem@kde.org.tr>, 2005.
+# Serdar Soytetir <tulliana@gmail.com>, 2008.
+# Emir SARI <emir_sari@icloud.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2022-04-10 13:17+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
+"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+"<para>SMB paylaşımlarında kimlik doğrulamak için çeşitli seçenekler vardır.</"
+"para><para><placeholder>kullanıcı adı</placeholder>: Bir ev ağında kimlik "
+"doğrularken kullanıcı adı yeterlidir</"
+"para><para><placeholder>kullanıcı@alanadı.com</placeholder>: Çağdaş kurumsal "
+"giriş yapma adları e-posta adresleri gibi oluşturulur</"
+"para><para><placeholder>ALANADI\\kullanıcıadı</placeholder>: Çağlar öncesi "
+"kurumsal ağlarında veya çalışma gruplarında NetBIOS alan adını öneklemeniz "
+"gerekebilir (Windows 2000 öncesi)</para><para><placeholder>anonim</"
+"placeholder>: Anonim girişler boş kullanıcı adı ve parola denenerek "
+"yapılabilir. Sunucu yapılandırmasına bağlı olarak boş olmayan kullanıcı "
+"adları gerekebilir</para>"
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>Lütfen <b>%1</b> için kimlik doğrulama bilgilerini girin</qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"Lütfen aşağıdaki kimlik denetim bilgilerini girin:\n"
+"Sunucu = %1\n"
+"Paylaşım = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1\n"
+"Bilinmeyen dosya türü."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"Yerel ağda hiç çalışma grubu bulunamadı. Buna etkin durumda bulunan bir "
+"güvenlik duvarı sebep olmuş olabilir."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "%1 için aygıtta medya yok"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "%1 için makineye bağlantı kurulamadı"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "%1 için sorumlu olan sunucuya bağlanılırken hata oluştu"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "Verilen sunucu üzerinde bu isimde bir paylaşım bulunamadı"
+
+#: kio_smb_browse.cpp:303
+#, kde-format
+msgid "Bad file descriptor"
+msgstr "Hatalı dosya belirteci"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"Verilen isim tek bir sunucu olarak çözümlenemedi. Ağınızın Windows ve UNIX "
+"isimlendirmeleri arasında çakışmaya sebep olmayacak şekilde ayarlandığından "
+"emin olun."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr "%1: Ana makineye erişilemiyor"
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"libsmbclient bir hata bildirdi, ancak hatanın ne olduğu belirtilmedi. Ağda "
+"bir sorun olabilir ancak bir libsmbclient hatası da olabilir.\n"
+"Eğer bize yardım etmek istiyorsanız bu işlemi yaparken kullandığınız ağ "
+"arayüzünün bir tcpdump çıktısını alın (bu komut çıktısının özel veriler "
+"içerebileceğini unutmayın, eğer özel verileriniz olup olmadığından emin "
+"değilseniz lütfen göndermeyin, eğer geliştiriciler özel bir kanal kullanarak "
+"isterse gönderebilirsiniz)"
+
+#: kio_smb_browse.cpp:334
+#, kde-format
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "Bilinmeyen hata koşulu: [%1] %2"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr "%1<nl/>%2 erişimi denenirken hata oluştu"
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbclient başlatılamadı"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"Lütfen sisteminizde Samba paketlerinin kurulu olduğunu kontrol edin."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"\"%3\" kullanıcısı tarafından \"%2\" makinesinden \"%1\" paylaşımının "
+"bağlanması işlemi başarısız oldu.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"\"%1\" bağlantı noktasının ayrılması işlemi başarısız oldu.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr "Bilinmeyen Aygıt, konum: <resource>%1</resource>"

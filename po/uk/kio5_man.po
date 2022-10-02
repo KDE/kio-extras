@@ -1,0 +1,228 @@
+# Translation of kio5_man.po to Ukrainian
+# Copyright (C) 2002-2020 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Andriy Rysin <rysin@kde.org>, 2002, 2003.
+# Eugene Onischenko <oneugene@ukr.net>, 2005.
+# Ivan Petrouchtchak <fr.ivan@ukrainian-orthodox.org>, 2007, 2008.
+# Yuri Chornoivan <yurchor@ukr.net>, 2008, 2009, 2012, 2019, 2020, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio5_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2021-09-03 08:02+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.12.0\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: kio_man.cpp:451
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Не знайдено сторінки підручника, що відповідає <resource>%1</resource>.<nl/"
+"><nl/>Перевірте чи назву сторінки введено правильно. Будьте уважні, слід "
+"відрізняти малі на великі літери у назві!<nl/><nl/>Якщо все виглядає "
+"правильно, можливо, потрібно розширити шлях для пошуку або за допомогою "
+"змінної середовища <envar>MANPATH</envar>, або за допомогою відповідного "
+"файла налаштувань у каталозі <filename>/etc</filename>."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"Вказана сторінка підручника посилається на іншу сторінку <filename>%1</"
+"filename>,<nl/>але програмі не вдалося знайти сторінку <filename>%2</"
+"filename>, на яку посилаються."
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+"Не вдалося прочитати сторінку підручника (man) <filename>%1</filename>."
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+"Не вдалося перетворити сторінку підручника (man) <filename>%1</filename>."
+
+#: kio_man.cpp:660
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "Помилка засобу перегляду сторінок підручника"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "Підходить одразу декілька сторінок:"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "Декілька сторінок підручника"
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Примітка: якщо ви читаєте перекладену сторінку довідки, пам'ятайте, що вона "
+"може містити помилки або бути застарілою. Якщо є сумніви, перегляньте "
+"англійську версію."
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr "Файли заголовків"
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr "Файл заголовків (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Команди користувача"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Команди користувача (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Системні виклики"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Підпрограми"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Модулі Perl"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Функції мережі"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Пристрої"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Формати файлів"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Ігри"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Різне"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Керування системою"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Ядро"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Локальна документація"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Створити"
+
+#: kio_man.cpp:805
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "Основний покажчик сторінок підручника"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Розділ %1"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "Індекс розділу %1: %2"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Manual Page Index"
+msgstr "Покажчик сторінок підручника"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Створюю індекс"
+
+#: kio_man.cpp:1407
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Не вдалося знайти програму <command>%1</command> у вашій системі. Будь "
+"ласка, встановіть її, якщо потрібно, та перевірте, чи адреса каталогу, де "
+"вона зберігається, є частиною значення змінної середовища <envar>PATH</"
+"envar>."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "Неможливо відкрити %1."
+
+#~ msgid "Man output"
+#~ msgstr "Вивід man"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Andriy Rysin"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "rysin@kde.org"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

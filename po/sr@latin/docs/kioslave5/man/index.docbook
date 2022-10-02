@@ -1,0 +1,163 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="man">
+<title
+>Uputne stranice</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Lori</firstname
+> <surname
+>Vots</surname
+></personname
+> &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nikola</firstname
+> <surname
+>Gut</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>U/I zahvatom uputnih stranica možete da čitate sve uputne stranice instalirane na sistemu. Lako se koristi: </para>
+
+<variablelist>
+<varlistentry>
+<term
+><userinput
+><command
+>man:</command
+></userinput
+></term>
+<listitem>
+<para
+>Pogledajte odeljke uputstava, kliknite da nađete ostalo. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Pogledajte uputnu stranicu za <command
+>fopen</command
+>. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Pogledajte uputnu stranicu za <command
+>fopen</command
+> u odeljku 3. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Pogledajte indeks odeljka 3. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+>intro<replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Pogledajte uvod odeljka 3. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note
+><para
+>Ako za ime koje ste uneli postoji više uputnih stranica, dobićete spisak sa kog možete izabrati tačno onu koju želite da vidite.</para
+></note>
+
+<para
+>Postoji i prečica: <userinput
+><command
+>#fopen</command
+></userinput
+>, istog dejstva kao iznad. </para>
+
+<para
+>Ako neke uputne stranice nedostaju, podesite postavni fajl <filename
+>/etc/manpath.config</filename
+> (ili sličnog imena, zavisno od vaše distribucije) ili promenljive okruženja <envar
+>MANPATH</envar
+> i <envar
+>MANSECT</envar
+>. </para>
+
+<para
+>Kao i sa svim drugim KDE‑ovim U/I zahvatom, u <emphasis
+>bilo koji</emphasis
+> KDE program možete uneti odgovarajući URL, poput <userinput
+><command
+>man:/socket</command
+></userinput
+>. Probajte to u <application
+>K‑pisanju</application
+>, i dobićete uputnu stranicu u HTML formatu. </para>
+
+<para
+>Poštanska lista za kontakt: <email
+>kde-devel@kde.org</email
+> </para>
+
+</article>

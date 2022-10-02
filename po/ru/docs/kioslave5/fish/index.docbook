@@ -1,0 +1,163 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="fish">
+<title
+>fish</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Joerg.Walter; &Joerg.Walter.mail;</author>
+<author
+>&Brad.Hards; &Brad.Hards.mail;</author>
+<othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>27 октября 2010 г.</date>
+<releaseinfo
+>&kde; 4.5</releaseinfo>
+
+</articleinfo>
+
+<para
+>Этот модуль позволяет получить доступ к файлам другого компьютера, используя протокол <emphasis
+>S</emphasis
+>ecure <emphasis
+>SH</emphasis
+>ell (<acronym
+>SSH</acronym
+>). </para>
+
+<para
+>Модуль fish запускается так: <userinput
+>fish://<replaceable
+>имя-хоста</replaceable
+></userinput
+> или <userinput
+>fish://<replaceable
+>имя-пользователя</replaceable
+>@<replaceable
+>имя-хоста</replaceable
+></userinput
+>.</para>
+
+<note
+><para
+>После указания используемого протокола (fish:) необходимо использовать две косые черты.</para
+></note>
+
+<para
+><replaceable
+>Имя пользователя</replaceable
+> (и следующий за ним символ @) можно не указывать, если на обоих компьютерах используется одно и тоже имя пользователя.</para>
+
+<para
+>Возможно указать пароль: <userinput
+>fish://<replaceable
+>имя-пользователя</replaceable
+>:<replaceable
+>пароль</replaceable
+>@<replaceable
+>имя-хоста</replaceable
+></userinput
+>, но это необязательно, так как система предложит ввести пароль, если он не указан.</para>
+
+<para
+>При использовании сервера протокола <acronym
+>SSH</acronym
+>, ожидающем соединения на нестандартном порту, номер порта возможно указать используя следующую структуру &URL;-записи: <userinput
+>fish://<replaceable
+>имя-хоста</replaceable
+>:<replaceable
+>номер-порта</replaceable
+></userinput
+>.</para>
+
+<para
+>Модуль Fish работает с любой системой &UNIX;, совместимой с <acronym
+>POSIX</acronym
+>. Для работы модуль использует следующие команды: <command
+>cat</command
+>, <command
+>chgrp</command
+>, <command
+>chmod</command
+>, <command
+>chown</command
+>, <command
+>cp</command
+>, <command
+>dd</command
+>, <command
+>env</command
+>, <command
+>expr</command
+>, <command
+>grep</command
+>, <command
+>ls</command
+>, <command
+>mkdir</command
+>, <command
+>mv</command
+>, <command
+>rm</command
+>, <command
+>rmdir</command
+>, <command
+>sed</command
+> и <command
+>wc</command
+>. Модуль Fish запускает в качестве оболочки <command
+>/bin/sh</command
+> и ожидает, что она будет оболочкой Борна (или совместимой с ним, например, <command
+>bash</command
+>). Если доступны команды <command
+>sed</command
+> и <command
+>file</command
+>, а также файл <filename
+>/etc/apache/magic</filename
+>, содержащий список типов &MIME;, все они будут использоваться во время попыток определить тип файлов. </para>
+
+<para
+>Если на удалённой машине доступен интерпретатор языка <application
+>Perl</application
+>, то для определения типов файлов будет использоваться он. При этом будут будут использоваться  только команды <command
+>env</command
+> и <command
+>/bin/sh</command
+>. При использовании <application
+>Perl</application
+> работа модуля Fish заметно ускоряется.</para>
+
+<para
+>Модуль Fish может работать даже на компьютерах под управлением ОС &Windows;, если там установлен, например, набор приложений <application
+>Cygwin</application
+>. Все указанные выше программы должны быть расположены в каталогах, перечисленных в системной переменной <envar
+>PATH</envar
+>, а исходная оболочка должна быть способна обрабатывать команду <command
+>echo FISH:;/bin/sh</command
+>.</para>
+
+</article>

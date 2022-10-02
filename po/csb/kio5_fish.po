@@ -1,0 +1,53 @@
+# translation of kio_fish.po to Kashubian
+#
+# Michôł Òstrowsczi <michol@linuxcsb.org>, 2006.
+# Mark Kwidzińśczi <mark@linuxcsb.org>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2009-12-17 22:47+0100\n"
+"Last-Translator: Mark Kwidzińśczi <mark@linuxcsb.org>\n"
+"Language-Team: Kaszëbsczi <i18n-csb@linuxcsb.org>\n"
+"Language: csb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2)\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "Sparłãczenié..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "Inicjalizacëjô protokòłu..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "Môlowé logòwanié"
+
+#: fish.cpp:630
+#, fuzzy, kde-format
+#| msgid "SSH Authorization"
+msgid "SSH Authentication"
+msgstr "Aùtorizacëjô SSH"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "Rozłączony."
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Mark Kwidzińsczi"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "mark@linuxcsb.org"

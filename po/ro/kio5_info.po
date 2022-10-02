@@ -1,0 +1,28 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Sergiu Bivol <sergiu@cip.md>, 2009, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_info\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"PO-Revision-Date: 2021-04-16 17:30+0100\n"
+"Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
+"Language-Team: Romanian\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Lokalize 19.12.3\n"
+
+#: info.cpp:52
+#, kde-format
+msgid ""
+"Unable to locate files which are necessary to run this service:<br>"
+"%1<br>Please check your software installation."
+msgstr ""
+"Nu s-au putut localiza fișiere necesare pentru a rula acest serviciu:<br>"
+"%1<br>Verificați instalarea programelor dumneavoastră."

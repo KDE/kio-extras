@@ -1,0 +1,38 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2015-07-20 12:30+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"Kunde inte behandla filen, troligen beroende på ett filformat som inte "
+"stöds.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"Arkivfilen kunde inte öppnas, kanske på grund av att formatet inte stöds.\n"
+"%1"

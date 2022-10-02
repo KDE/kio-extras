@@ -1,0 +1,72 @@
+# Thomas Diehl <thd@kde.org>, 2002, 2004.
+# Thomas Reitelbach <tr@erdfunkstelle.de>, 2006.
+# Burkhard Lück <lueck@hube-lueck.de>, 2012, 2014, 2017, 2021.
+# Frederik Schwarzer <schwarzer@kde.org>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2021-03-29 17:30+0200\n"
+"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr "Es wurde keine NFS-Version gefunden, die der Rechner „%1“ unterstützt"
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "Für das NFS-Protokoll ist der Name des Serverrechners erforderlich."
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr "Protokoll kann nicht initialisiert werden"
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "RPC-Fehler %1, %2"
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "Dateiname zu lang"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Speicherplatzkontingent überschritten"
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "NFS-Fehler %1, %2"
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr "Unbekanntes Ziel"
+
+#~ msgid "%1: Unsupported NFS version"
+#~ msgstr "%1: Nicht unterstützte NFS-Version"
+
+#~ msgid "No space left on device"
+#~ msgstr "Kein Speicherplatz mehr vorhanden"
+
+#~ msgid "Read only file system"
+#~ msgstr "Nur lesbares Dateisystem"
+
+#~ msgid "Failed to mount %1"
+#~ msgstr "Das Einhängen von %1 ist fehlgeschlagen"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "Es ist ein RPC-Fehler aufgetreten."

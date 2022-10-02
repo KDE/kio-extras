@@ -1,0 +1,181 @@
+# translation of kio_smb.po to Bengali INDIA
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Runa Bhattacharjee <runab@redhat.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2009-01-09 15:34+0530\n"
+"Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
+"Language-Team: Bengali INDIA <fedora-trans-bn_IN@redhat.com>\n"
+"Language: bn_IN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt><b>%1</b>-র জন্য, অনুগ্রহ করে অনুমোদন সংক্রান্ত তথ্য লিখুন</qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"অনুগ্রহ করে নিম্নলিখিত বস্তুর অনুমোদন সংক্রান্ত তথ্য লিখুন:\n"
+"সার্ভার = %1\n"
+"শেয়ার = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"এটি ফাইল অথবা ডিরেক্টরি নয় এবং ধরন জানা নয়।"
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"স্থানীয় নেটওয়ার্কের মধ্যে কোনো workgroup পাওয়া যায়নি। কোনো সক্রিয় ফায়ারওয়ালের "
+"ফলে এই সমস্যা দেখা দিতে পারে।"
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "%1-র জন্য ডিভাইসের মধ্যে কোনো মিডিয়া উপস্থিত নেই"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "%1-র জন্য হোস্টের সাথে সংযোগ স্থাপন করতে ব্যর্থ"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "%1-র জন্য ধার্য সার্ভারের সাথে সংযোগ স্থাপন করতে ত্রুটি।"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "চিহ্নিত সার্ভারে কোনো শেয়ার পাওয়া যায়নি"
+
+#: kio_smb_browse.cpp:303
+#, fuzzy, kde-format
+#| msgid "BAD File descriptor"
+msgid "Bad file descriptor"
+msgstr "BAD File descriptor"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr ""
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+
+#: kio_smb_browse.cpp:334
+#, fuzzy, kde-format
+#| msgid "Unknown error condition in stat: %1"
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "stat-র মধ্যে অজ্ঞাত ত্রুটির পরিস্থিতি: %1"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr ""
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbclient দ্বারা কনটেক্সট নির্মাণ করা যায়নি"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"অনুগ্রহ করে পরীক্ষা করুন, সিস্টেমের মধ্যে samba প্যাকেজ সঠিকরূপে ইনস্টল করা হয়েছে কি "
+"না।"
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"\"%1\" শেয়ারটি, \"%2\" হোস্ট থেকে \"%3\" ব্যবহারকারী দ্বারা মাউন্ট করতে ব্যর্থ।\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"\"%1\" মাউন্ট-পয়েন্ট আন-মাউন্ট করতে ব্যর্থ।\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr ""
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "libsmbclient দ্বারা কনটেক্সট আরম্ভ করতে ব্যর্থ"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "ফাইল উপস্থিত নেই: %1"

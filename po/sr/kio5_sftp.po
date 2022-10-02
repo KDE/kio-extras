@@ -1,0 +1,308 @@
+# Translation of kio_sftp.po into Serbian.
+# Toplica Tanaskovic <toptan@kde.org.yu>, 2003, 2004.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2005, 2007, 2008, 2009, 2010, 2012, 2013, 2014.
+# Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2009, 2010.
+# Dalibor Djuric <daliborddjuric@gmail.com>, 2010, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-05-15 03:32+0200\n"
+"PO-Revision-Date: 2014-12-06 16:12+0100\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+
+#: kio_sftp.cpp:212
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Нетачна или неважећа лозинка"
+
+#: kio_sftp.cpp:262
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "Не могу да резервишем контрапозиве."
+
+#: kio_sftp.cpp:275
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "Не могу да поставим опширност бележења."
+
+#: kio_sftp.cpp:280
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "Не могу да поставим корисничке податке бележења."
+
+#: kio_sftp.cpp:285
+#, kde-format
+msgid "Could not set log callback."
+msgstr "Не могу да поставим контрапозив бележења."
+
+#: kio_sftp.cpp:354 kio_sftp.cpp:356 kio_sftp.cpp:890 kio_sftp.cpp:1184
+#, kde-format
+msgid "SFTP Login"
+msgstr "СФТП пријављивање"
+
+#: kio_sftp.cpp:371
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "На ово питање одговорите у пољу за унос корисничког имена."
+
+#: kio_sftp.cpp:384
+#, kde-format
+msgid "Please enter your password."
+msgstr "Унесите лозинку."
+
+#: kio_sftp.cpp:389 kio_sftp.cpp:893 kio_sftp.cpp:1187
+#, kde-format
+msgid "Site:"
+msgstr "Сајт:"
+
+#: kio_sftp.cpp:580
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "Не могу да направим нову ССХ сесију."
+
+#: kio_sftp.cpp:590 kio_sftp.cpp:594
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "Не могу да поставим прековреме."
+
+#: kio_sftp.cpp:602
+#, fuzzy, kde-format
+#| msgid "Could not set port."
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Не могу да поставим порт."
+
+#: kio_sftp.cpp:609 kio_sftp.cpp:614
+#, kde-format
+msgid "Could not set compression."
+msgstr "Не могу да поставим компресију."
+
+#: kio_sftp.cpp:620
+#, kde-format
+msgid "Could not set host."
+msgstr "Не могу да поставим домаћин."
+
+#: kio_sftp.cpp:626
+#, kde-format
+msgid "Could not set port."
+msgstr "Не могу да поставим порт."
+
+#: kio_sftp.cpp:634
+#, kde-format
+msgid "Could not set username."
+msgstr "Не могу да поставим корисничко име."
+
+#: kio_sftp.cpp:641
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "Не могу да рашчланим поставни фајл."
+
+#: kio_sftp.cpp:658
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Отварам СФТП везу ка домаћину %1:%2"
+
+#: kio_sftp.cpp:733
+#, fuzzy, kde-format
+#| msgid "Could not create hash from server public key"
+msgid "Could not get server public key type name"
+msgstr "Не могу да направим дисперзију јавног кључа сервера"
+
+#: kio_sftp.cpp:744 kio_sftp.cpp:1052
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "Не могу да направим дисперзију јавног кључа сервера"
+
+#: kio_sftp.cpp:754
+#, fuzzy, kde-format
+#| msgid "Could not create hash from server public key"
+msgid "Could not create fingerprint for server public key"
+msgstr "Не могу да направим дисперзију јавног кључа сервера"
+
+#: kio_sftp.cpp:764
+#, fuzzy, kde-format
+#| msgid ""
+#| "The host key for this server was not found, but another type of key "
+#| "exists.\n"
+#| "An attacker might change the default server key to confuse your client "
+#| "into thinking the key does not exist.\n"
+#| "Please contact your system administrator.\n"
+#| "%1"
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Кључ домаћина за овај сервер није нађен, али постоји други тип кључа.\n"
+"Нападач би могао да промени подразумевани кључ сервера тако да ваш клијент "
+"помисли да кључ не постоји.\n"
+"Обратите се систем-администратору.\n"
+"%1"
+
+#: kio_sftp.cpp:776
+#, fuzzy, kde-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgid ""
+"The host key for the server %1 has changed.\n"
+"This could either mean that DNS SPOOFING is happening or the IP address for "
+"the host and its host key have changed at the same time.\n"
+"The fingerprint for the %2 key sent by the remote host is:\n"
+"  SHA256:%3\n"
+"Please contact your system administrator.\n"
+"%4"
+msgstr ""
+"Кључ домаћина за сервер %1 измењен је.\n"
+"Ово значи да је или дошло до ДНС варке, или су и ИП адреса и кључ домаћина "
+"истовремено промењени.\n"
+"Удаљени домаћин шаље кључ са отиском:\n"
+"%2\n"
+"Обратите се систем-администратору.\n"
+"%3"
+
+#: kio_sftp.cpp:792 kio_sftp.cpp:1093
+#, kde-format
+msgid "Warning: Cannot verify host's identity."
+msgstr "Упозорење: Не могу да проверим индентитет домаћина."
+
+#: kio_sftp.cpp:793
+#, fuzzy, kde-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The key fingerprint is: %2\n"
+#| "Are you sure you want to continue connecting?"
+msgid ""
+"The authenticity of host %1 cannot be established.\n"
+"The %2 key fingerprint is: %3\n"
+"Are you sure you want to continue connecting?"
+msgstr ""
+"Аутентичност домаћина %1 не може да се успостави.\n"
+"Отисак кључа је: %2\n"
+"Желите ли заиста да наставите с повезивањем?"
+
+#: kio_sftp.cpp:830 kio_sftp.cpp:851 kio_sftp.cpp:867 kio_sftp.cpp:882
+#: kio_sftp.cpp:938 kio_sftp.cpp:948 kio_sftp.cpp:1124 kio_sftp.cpp:1145
+#: kio_sftp.cpp:1161 kio_sftp.cpp:1176 kio_sftp.cpp:1232 kio_sftp.cpp:1242
+#, kde-format
+msgid "Authentication failed."
+msgstr "Аутентификација није успела."
+
+#: kio_sftp.cpp:837 kio_sftp.cpp:1131
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+"Аутентификација није успела. Сервер није послао ниједан метод "
+"аутентификације."
+
+#: kio_sftp.cpp:891 kio_sftp.cpp:1185
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Унесите своје корисничко име и лозинку."
+
+#: kio_sftp.cpp:902 kio_sftp.cpp:1196
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Погрешно корисничко име или лозинка"
+
+#: kio_sftp.cpp:956 kio_sftp.cpp:1250
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"Не могу да затражим СФТП подсистем. Постарајте се да је СФТП укључен на "
+"серверу."
+
+#: kio_sftp.cpp:963 kio_sftp.cpp:1257
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "Не могу да припремим СФТП сесију."
+
+#: kio_sftp.cpp:967 kio_sftp.cpp:1261
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Успешно успостављена веза са %1"
+
+#: kio_sftp.cpp:1064
+#, kde-format
+msgid ""
+"The host key for this server was not found, but another type of key exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%1"
+msgstr ""
+"Кључ домаћина за овај сервер није нађен, али постоји други тип кључа.\n"
+"Нападач би могао да промени подразумевани кључ сервера тако да ваш клијент "
+"помисли да кључ не постоји.\n"
+"Обратите се систем-администратору.\n"
+"%1"
+
+#: kio_sftp.cpp:1077
+#, kde-format
+msgid ""
+"The host key for the server %1 has changed.\n"
+"This could either mean that DNS SPOOFING is happening or the IP address for "
+"the host and its host key have changed at the same time.\n"
+"The fingerprint for the key sent by the remote host is:\n"
+" %2\n"
+"Please contact your system administrator.\n"
+"%3"
+msgstr ""
+"Кључ домаћина за сервер %1 измењен је.\n"
+"Ово значи да је или дошло до ДНС варке, или су и ИП адреса и кључ домаћина "
+"истовремено промењени.\n"
+"Удаљени домаћин шаље кључ са отиском:\n"
+"%2\n"
+"Обратите се систем-администратору.\n"
+"%3"
+
+#: kio_sftp.cpp:1094
+#, kde-format
+msgid ""
+"The authenticity of host %1 cannot be established.\n"
+"The key fingerprint is: %2\n"
+"Are you sure you want to continue connecting?"
+msgstr ""
+"Аутентичност домаћина %1 не може да се успостави.\n"
+"Отисак кључа је: %2\n"
+"Желите ли заиста да наставите с повезивањем?"
+
+#: kio_sftp.cpp:1304
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1886
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"Не могу да променим дозволе за\n"
+"%1"
+
+#: kio_sftp.cpp:2255
+#, kde-format
+msgid "Could not read link: %1"
+msgstr "Не могу да читам везу: %1"

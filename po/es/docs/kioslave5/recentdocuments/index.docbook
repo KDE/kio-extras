@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Spanish "INCLUDE">
+]>
+
+<article lang="&language;" id="recentdocument">
+<title
+>Documentos recientes</title>
+
+<articleinfo>
+
+<authorgroup>
+  <author
+>&Burkhard.Lueck;&Burkhard.Lueck.mail; </author>
+<othercredit role="translator"
+><firstname
+>Eloy</firstname
+><surname
+>Cuadra</surname
+><affiliation
+><address
+><email
+>ecuadra@eloihr.net</email
+></address
+></affiliation
+><contrib
+>Traductor</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>2016-12-01</date>
+<releaseinfo
+>Aplicaciones 16.12</releaseinfo>
+
+</articleinfo>
+
+<para
+>Un kioslave para mostrar los documentos o &URL; recientes en el diálogo de archivos, en el gestor de archivos, en &krunner; y en el menú de aplicaciones.</para>
+
+<para
+>Puede usar el kioslave de este modo:</para>
+
+<para
+>Escriba <userinput
+>recentdocuments:/</userinput
+> en la barra de ubicación de &dolphin;, &konqueror; y del diálogo de archivos para listar los documentos o &URL; que haya abierto recientemente.</para>
+
+<para
+>Puede añadir una entrada en la barra lateral de «Lugares»: haga clic con el botón derecho del ratón sobre la barra lateral y seleccione <guimenuitem
+>Añadir entrada</guimenuitem
+>, introduzca <userinput
+>recentdocuments:/</userinput
+> en el campo <guilabel
+>Ubicación</guilabel
+> y guárdelo. A partir de ese momento debería estar disponible en todos los diálogos de archivos a menos que haya elegido mostrar dicha entrada solo en la aplicación actual.</para>
+
+<para
+>En el módulo <guilabel
+>Búsqueda de Plasma</guilabel
+> de las &systemsettings;, active el complemento de búsqueda <guilabel
+>Documentos recientes</guilabel
+> para usar este kioslave en &krunner;.</para>
+
+<para
+>En el <guilabel
+>Menú de aplicaciones</guilabel
+>, añada un elemento de menú con los documentos recientes en la parte superior del menú activando <guilabel
+>Mostrar documentos recientes</guilabel
+> en la página de preferencias.</para>
+
+</article>

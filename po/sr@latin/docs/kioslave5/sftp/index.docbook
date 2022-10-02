@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="sftp">
+<title
+>SFTP</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Ferdinand</firstname
+> <surname
+>Gasauer</surname
+></personname
+> &Ferdinand.Gassauer.mail;</author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+<para
+>SFTP je protokol za bezbedan prenos fajlova. <command
+>sftp</command
+> je interaktivna naredba za prenos fajlova, nalik na <command
+>ftp</command
+>, ali tako da sve prenose šifruje kroz <command
+>ssh</command
+>. Može da koristi mnoge mogućnosti <command
+>ssh</command
+>, uključujući autentifikaciju javnim ključem i kompresovanje.</para>
+
+<para
+>Pogledajte <ulink url="man:/sftp"
+>uputnu stranicu <command
+>sftp</command
+></ulink
+>. </para>
+
+</article>

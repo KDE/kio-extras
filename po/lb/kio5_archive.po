@@ -1,0 +1,37 @@
+# translation of kio_tar.po to Luxembourgish
+# Michel Ludwig <michel.ludwig@kdemail.net>, 2005.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_tar\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2005-12-10 21:43+0100\n"
+"Last-Translator: Michel Ludwig <michel.ludwig@kdemail.net>\n"
+"Language-Team: Luxembourgish <kde-i18n-lb@kde.org>\n"
+"Language: lb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"Konnt d'Datei net opmaachen, wahrscheinlech wéinst engem net ënnerstëtzten "
+"Dateiformat.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"D'Archivdatei konnt net opgemat ginn, wahrscheinlech well d'Format net "
+"ënnerstëtzt gëtt.\n"
+"%1"

@@ -1,0 +1,27 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# g.sora <g.sora@tiscali.it>, 2010, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"PO-Revision-Date: 2021-03-23 22:52+0100\n"
+"Last-Translator: Giovanni Sora <g.sora@tiscali.it>\n"
+"Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: info.cpp:52
+#, kde-format
+msgid ""
+"Unable to locate files which are necessary to run this service:<br>"
+"%1<br>Please check your software installation."
+msgstr ""
+"Il non pote localisar file %1 que es necessari pro executar iste servicio:"
+"<br> %1<br>Pro favor tu verifica tu installation de software."

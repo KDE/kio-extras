@@ -1,0 +1,46 @@
+# translation of kio_fish.po to Occitan (lengadocian)
+# Occitan translation of kio_fish.po
+# Copyright (C) 2003, 2004, 2007, 2008 Free Software Foundation, Inc.
+#
+# Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay.org> - 2006-2007
+#
+# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2008-08-05 22:26+0200\n"
+"Last-Translator: Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>\n"
+"Language-Team: Occitan (lengadocian) <ubuntu-l10n-oci@lists.ubuntu.com>\n"
+"Language: oc\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "Connection..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr ""
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr ""
+
+#: fish.cpp:630
+#, kde-format
+msgid "SSH Authentication"
+msgstr ""
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "Desconnectat."

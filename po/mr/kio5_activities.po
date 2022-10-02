@@ -1,0 +1,194 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Chetan Khona <chetan@kompkin.com>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2013-01-14 22:14+0530\n"
+"Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
+"Language-Team: American English <kde-i18n-doc@kde.org>\n"
+"Language: mr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, fuzzy, kde-format
+#| msgid "Activities"
+msgid "Activities"
+msgstr "कार्यपध्दती"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, fuzzy, kde-format
+#| msgid "Activity manager is not running properly."
+msgid "The Activity Manager is not running"
+msgstr "कार्यपध्दती व्यवस्थापक नीट काम करत नाही."
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "वर्तमान कार्यपध्दतीस लिंक करा"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "वर्तमान कार्यपध्दती पासून अनलिंक करा"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "यास लिंक करा :"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "या पासून अनलिंक करा :"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, fuzzy, kde-format
+#| msgid "Activities"
+msgid "Activity"
+msgstr "कार्यपध्दती"
+
+#: KioActivities.cpp:223
+#, fuzzy, kde-format
+#| msgid "Link to the current activity"
+msgid "Current activity"
+msgstr "वर्तमान कार्यपध्दतीस लिंक करा"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "चेतन खोना"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "chetan@kompkin.com"
+
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "\"%1\" या कार्यपध्दतीप्रमाणे काम सुरु करा"
+
+#, fuzzy
+#~| msgid "Activities"
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "कार्यपध्दती"
+
+#, fuzzy
+#~| msgid "Link to the current activity"
+#~ msgid "Delete activity"
+#~ msgstr "वर्तमान कार्यपध्दतीस लिंक करा"
+
+#, fuzzy
+#~| msgid "Link to the current activity"
+#~ msgid "Create a new activity"
+#~ msgstr "वर्तमान कार्यपध्दतीस लिंक करा"
+
+#, fuzzy
+#~| msgid "Activities"
+#~ msgid "Activity settings"
+#~ msgstr "कार्यपध्दती"
+
+#, fuzzy
+#~| msgid "Activities"
+#~ msgid "Activity information"
+#~ msgstr "कार्यपध्दती"
+
+#~ msgid "Privacy"
+#~ msgstr "गुप्तता"
+
+#~ msgctxt "unlimited number of months"
+#~ msgid "forever"
+#~ msgstr "कायमचे"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "शेवटचा तास विसरा"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "शेवटचे दोन तास विसरा"
+
+#~ msgid "Forget a day"
+#~ msgstr "एक दिवस विसरा"
+
+#~ msgid "Forget everything"
+#~ msgstr "सर्वकाही विसरा"
+
+#~ msgctxt "for in 'keep history for 5 months'"
+#~ msgid "for "
+#~ msgstr "या करिता "
+
+#, fuzzy
+#~| msgid "Link to the current activity"
+#~ msgid "Create activity..."
+#~ msgstr "वर्तमान कार्यपध्दतीस लिंक करा"
+
+#, fuzzy
+#~| msgid "Activities"
+#~ msgid "Activity switching"
+#~ msgstr "कार्यपध्दती"
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "उघडलेले दस्तऐवज लक्षात ठेवा :"
+
+#, fuzzy
+#~| msgid "For all applications"
+#~ msgid "For a&ll applications"
+#~ msgstr "सर्व अनुप्रयोगांकरिता"
+
+#, fuzzy
+#~| msgid "Do not remember"
+#~ msgid "&Do not remember"
+#~ msgstr "लक्षात ठेवू नका"
+
+#, fuzzy
+#~| msgid "Only for specific applications"
+#~ msgid "O&nly for specific applications"
+#~ msgstr "फक्त ठराविक अनुप्रयोगांकरिता"
+
+#~ msgid "Keep history"
+#~ msgstr "इतिहास लक्षात ठेवा"
+
+#~ msgid "Clear recent history"
+#~ msgstr "ताजा इतिहास काढून टाका"
+
+#~ msgid "Blacklist all applications not on this list"
+#~ msgstr "या यादीत नसलेल्या सर्व अनुप्रयोगांना प्रतिबंध करा"
+
+#, fuzzy
+#~| msgid "Activities"
+#~ msgid "Activity name"
+#~ msgstr "कार्यपध्दती"
+
+#~ msgid "Available Features"
+#~ msgstr "उपलब्ध वैशिष्ठ्ये"
+
+#~ msgid "Plugins"
+#~ msgstr "प्लगइन्स"
+
+#~ msgid "Enable activities management"
+#~ msgstr "कार्यपध्दती व्यवस्थापन कार्यान्वित करा"
+
+#~ msgid "Activity manager is not running properly."
+#~ msgstr "कार्यपध्दती व्यवस्थापक नीट काम करत नाही."
+
+#, fuzzy
+#~| msgid "Activities"
+#~ msgid "Activities..."
+#~ msgstr "कार्यपध्दती"
+
+#~ msgid "(c) 2012 Ivan Cukic"
+#~ msgstr "(c) 2012 इव्हान क्युकिक"

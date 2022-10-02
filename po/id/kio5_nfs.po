@@ -1,0 +1,75 @@
+# Indonesian translations for kio_nfs package.
+# Copyright (C) 2010 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kio_nfs package.
+# Andhika Padmawan <andhika.padmawan@gmail.com>, 2010-2014.
+# Wantoyo <wantoyek@gmail.com>, 2017, 2018, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2022-03-29 07:53+0700\n"
+"Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
+"Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr "Tidak menemukan versi NFS yang mendukung host '%1'"
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "Protokol NFS memerlukan sebuah nama host server."
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr "Gagal mengisialisasi protokol"
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "Galat RPC %1, %2"
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "Nama file terlalu panjang"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Kuota cakram terlampaui"
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "Galat NFS %1, %2"
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr "Sasaran tak diketahui"
+
+#~ msgid "%1: Unsupported NFS version"
+#~ msgstr "%1: Versi NFS tak didukung"
+
+#~ msgid "No space left on device"
+#~ msgstr "Tak ada ruang kosong tersisa di perangkat"
+
+#~ msgid "Read only file system"
+#~ msgstr "Sistem file hanya baca"
+
+#~ msgid "Failed to mount %1"
+#~ msgstr "Gagal mengaitkan %1"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "Galat RPC terjadi."

@@ -1,0 +1,312 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# g.sora <g.sora@tiscali.it>, 2010, 2011, 2012, 2013, 2014, 2020, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2021-10-23 22:59+0200\n"
+"Last-Translator: giovanni <g.sora@tiscali.it>\n"
+"Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.08.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Phrase de contrasigno incorrecte o invalide"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "Il non pote trovar spatio pro callbacks"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "Il non pote fixar verbositate de registro."
+
+#: kio_sftp.cpp:294
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "Il non pote fixar registro de datops de usator (log userdata)."
+
+#: kio_sftp.cpp:299
+#, kde-format
+msgid "Could not set log callback."
+msgstr "Il non pote fixar registro de callback (log callback)."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "Accesso de Identification de SFTP"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr ""
+"Usa le campo de ingresso de nomine de usator pro responder a iste question."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "Pro favor tu inserta tu contrasigno."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "Sito:"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Il non pote leger ligamine: %1 [%2]"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "Il non pote crear un nove session de SSH."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "Il non pote fixar un tempore de expiration."
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Il non pote deactivar Algorithmo de Nagle."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "Il non pote fixar compression."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "Il non pote fixar hospite."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "Il non pote fixar porto."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "Il non pote fixar nomine de usator."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "Il non pote analysar le file de config."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Aperir connexion de SFTP pro host %1: %2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr "Non pote obtener nomine de typo de clave public del servitor"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "Non pote crear hash ex le clave public del servitor"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr "Non pote crear impression digital per le clave public del servitor"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Le clave de hospite %1 pro iste servitor non esseva trovate, sed altere typo "
+"de clave existe.\n"
+"Un attaccante poterea cambiar le clave de servitor predefinite pro confunder "
+"tu cliente facente creder que le clave non existe.\n"
+"Pro favor tu continge tu administrator de systema.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr ""
+
+#: kio_sftp.cpp:757
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"Le clave de hospite pro le servitor %1 ha cambiate.\n"
+"Isto poterea significar que un DNS SPOOFING es occurrente o que le adresse "
+"de IP pro le hospite ha cambiate al mesme tempore.\n"
+"Le signatura (fingerprint) pro le clave inviate per le remote hospite es:\n"
+"%2\n"
+"Pro favor tu continge tu administrator de systema.\n"
+"%3"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The %2 key fingerprint is: %3\n"
+#| "Are you sure you want to continue connecting?"
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"Le authenticitate del hospite %1 non pote esser stabilite.\n"
+"Le signatura (fingerprint) de clave %2 es:%3\n"
+"Tu es secur que tu vole continuar a connecter te?"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Il falleva authentication."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+"Authentication falleva. Le servitor non inviala ulle methodos de "
+"authentication"
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Pro favor tu inserta tu nomine de usator e contrasigno."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Nomine de usator o contrasigno incorrecte"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"Il non pote demandar le subsystema SFTP. Tu assecura te que SFTP es "
+"habilitate super le servitor."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "Il non pote initialisar le session de SFTP"
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Il connecteva con successo a %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr "Invalide contexto sftp"
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"Il non pote cambiar permissiones pro\n"
+"%1"
+
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "Le clave de hospite pro le servitor %1 ha cambiate.\n"
+#~ "Isto poterea significar que un DNS SPOOFING es occurrente o que le "
+#~ "adresse de IP pro le hospite ha cambiate al mesme tempore.\n"
+#~ "Le signatura de impression digital (fingerprint) pro le clave %2 inviate "
+#~ "per le remote hospite es:\n"
+#~ "SHA256:%3\n"
+#~ "Pro favor tu continge tu administrator de systema.\n"
+#~ "%4"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Aviso: Il non pote verificar identitate del hospite."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Le clave de hospite pro iste servitor non esseva trovate, sed altere typo "
+#~ "de clave existe.\n"
+#~ "Un attaccante poterea cambiar le clave de servitor predefinite pro "
+#~ "confunder tu cliente facente creder que le clave non existe.\n"
+#~ "Pro favor tu continge tu administrator de systema.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "Le authenticitate del hospite %1 non pote esser stabilite.\n"
+#~ "Le signatura (fingerprint) de clave es:%2\n"
+#~ "Tu es secur que tu vole continuar a connecter te?"
+
+#~ msgid "No hostname specified."
+#~ msgstr "Necun nomine de hospite specificate."

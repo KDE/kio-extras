@@ -1,0 +1,33 @@
+# Translation for kio_info.po to Euskara/Basque (eu).
+# Copyright (C) 2009-2014, Free Software Foundation, Inc.
+# Copyright (C) 2015-2021, This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
+#
+# Translators:
+# marcos <marcos@euskalgnu.org>, 2009.
+# Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2013.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2014, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_info\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"PO-Revision-Date: 2021-07-17 22:09+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.04.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: info.cpp:52
+#, kde-format
+msgid ""
+"Unable to locate files which are necessary to run this service:<br>"
+"%1<br>Please check your software installation."
+msgstr ""
+"Ezin ditu aurkitu zerbitzu hau exekutatzeko behar diren fitxategiak:<br> "
+"%1<br>Mesedez, egiaztatu zure software-instalazioa."

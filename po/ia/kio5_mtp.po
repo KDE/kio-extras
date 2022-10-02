@@ -1,0 +1,41 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# giovanni <g.sora@tiscali.it>, 2016, 2020, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-07 00:45+0000\n"
+"PO-Revision-Date: 2022-01-06 22:21+0100\n"
+"Last-Translator: giovanni <g.sora@tiscali.it>\n"
+"Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 21.12.0\n"
+
+#: kio_mtp.cpp:220
+#, kde-format
+msgctxt ""
+"Message shown when attempting to access an MTP device that is not fully "
+"accessible yet"
+msgid ""
+"Could not access device. Make sure it is unlocked, and tap \"Allow\" on the "
+"popup on its screen. If that does not work, make sure MTP is enabled in its "
+"USB connection settings."
+msgstr ""
+"Non poteva acceder a dispositivo. Tu assecura te que illo non es blocate, e "
+"tocca \"Permitte\" sur le popup sur su schermo. Si illo non functiona, tu "
+"assecura te que MTP es activate in su preferentias de connexion USB."
+
+#: kio_mtp.cpp:490
+#, kde-format
+msgid "Cannot copy/move files on the device itself"
+msgstr "Non pote copiar/mover files sur le dispositivo mesme"
+
+#~ msgid "No Storages found. Maybe you need to unlock your device?"
+#~ msgstr ""
+#~ "Il nonha alcun immagazinage. Forsan tu necessita disblocar tu dispositivo?"

@@ -1,0 +1,71 @@
+# translation of kio_nfs.po to Lithuanian
+#
+# Donatas Glodenis <dgvirtual@akl.lt>, 2005.
+# Liudas Ališauskas <liudas@aksioma.lt>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2021-08-26 13:38+0300\n"
+"Last-Translator: Moo\n"
+"Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Generator: Poedit 2.3\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr "Nepavyksta rasti NFS versijos, kurią palaikytų mazgas „%1“"
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "NFS protokolas reikalauja serverio mazgo pavadinimo."
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr "Nepavyko inicijuoti protokolo"
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "RPC klaida %1, %2"
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "Failo pavadinimas yra per ilgas"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Viršyta leidžiamo duomenų kiekio riba"
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "NFS klaida %1, %2"
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr "Nežinoma paskirtis"
+
+#~ msgid "%1: Unsupported NFS version"
+#~ msgstr "%1: Nepalaikoma NFS versija"
+
+#~ msgid "No space left on device"
+#~ msgstr "Įrenginyje nebeliko vietos"
+
+#~ msgid "Read only file system"
+#~ msgstr "Tik skaitymui skirta failų sistema"
+
+#~ msgid "Failed to mount %1"
+#~ msgstr "Nepavyko prijungti %1"

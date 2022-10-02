@@ -1,0 +1,41 @@
+# translation of kio_archive.po to galician
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# mvillarino <mvillarino@users.sourceforge.net>, 2007.
+# marce villarino <mvillarino@users.sourceforge.net>, 2009.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_archive\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2017-09-28 21:53+0100\n"
+"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
+"Language-Team: Galician <kde-i18n-doc@kde.org>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"Non se puido abrir o ficheiro, debido posibelmente a un formato de ficheiro "
+"non permitido.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"Non se puido abrir o ficheiro de arquivo, debido posibelmente a que o "
+"formato non estea permitido.\n"
+"%1"

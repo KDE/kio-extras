@@ -1,0 +1,71 @@
+# Translation of kio5_activities.po to Catalan
+# Copyright (C) 2014-2019 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Josep M. Ferrer <txemaq@gmail.com>, 2014, 2015, 2019.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2014, 2015, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2019-11-09 11:33+0100\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "Activitats"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "S'està carregant..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "El gestor d'activitats no s'està executant"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "Enllaça amb l'activitat actual"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "Separa de l'activitat actual"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "Enllaça amb:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "Separa de:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "Activitat"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "Activitat actual"

@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Galician  "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="nfs">
+<title
+>nfs</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Marce</firstname
+><surname
+>Villarino</surname
+><affiliation
+><address
+><email
+>mvillarino@users.sourceforge.net</email
+></address
+></affiliation
+><contrib
+>Tradutor do proxecto Trasno</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+<para
+>O protocolo <acronym
+>NFS</acronym
+> de Sun fornece de acceso remoto transparente a sistemas de ficheiros compartidos pola rede. O protocolo <acronym
+>NFS</acronym
+> está deseñado para ser independente da máquina, sistema operativo, arquitectura de rede e protocolo de transporte. Esta independencia acádase mediante a utilizacion de primitivas de Chamadas a Procedementos Remotos (<acronym
+>RPC</acronym
+>) construidas sobr unha Representación de Datos eXterna (<acronym
+>XDR</acronym
+>). </para>
+
+<para
+>O protocolo de apoio MOUNT realiza as funcións específicas do sistema operativo que permite que os clientes conecten coas árbores de cartafoles remotos nun punto do sistema de ficheiros local. O proceso de montaxe tamén permite que o servidor garante privilexios de acceso a un conxunto limitado de clientes mediante control da exportación.</para>
+
+<para
+>O Xestor de Bloqueos fornece a funcionalidade de bloquear ficheiros cando se emprega no ambiente <acronym
+>NFS</acronym
+>. O protocolo do Xestor de Bloqueo da Rede (<acronym
+>NLM</acronym
+>) illa os aspectos do bloqueo de ficheiros que implican a existencia dun estado nun protocolo á parte.</para>
+
+<para
+>Fonte: <ulink url="http://www.networksorcery.com/enp/protocol/nfs.htm"
+>http://www.networksorcery.com/enp/protocol/nfs.htm</ulink
+> </para>
+
+<para
+>Consulte o manual: <ulink url="man:/nfs"
+>nfs</ulink
+>. </para>
+</article>

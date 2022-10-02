@@ -1,0 +1,43 @@
+# translation of kio_fish.po to Slovak
+# Stanislav Visnovsky <visnovsky@kde.org>, 2004.
+# Michal Sulek <misurel@gmail.com>, 2009.
+# Roman Paholík <wizzardsk@gmail.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2012-08-21 00:00+0200\n"
+"Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "Pripájanie..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "Iniciovanie protokolu..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "Lokálne prihlásenie"
+
+#: fish.cpp:630
+#, kde-format
+msgid "SSH Authentication"
+msgstr "SSH overenie"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "Odpojený."

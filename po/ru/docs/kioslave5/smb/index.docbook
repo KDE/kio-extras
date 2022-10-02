@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="smb">
+<title
+>SMB</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Alexander.Neundorf; &Alexander.Neundorf.mail;</author>
+<othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский</contrib
+></othercredit
+> 
+</authorgroup>
+<date
+>11 декабря 2016 г.</date>
+<releaseinfo
+>Приложения KDE 16.12</releaseinfo>
+</articleinfo>
+<para
+>Протокол smb позволяет просматривать открытые для общего доступа ресурсы в сети &Windows; (или Samba). </para>
+
+<para
+>Чтобы просмотреть доступные рабочие группы, введите <userinput
+><command
+>smb:/</command
+></userinput
+>. </para>
+<para
+>Для того чтобы просмотреть список хостов рабочей группы, введите <userinput
+><command
+>smb:/</command
+><replaceable
+>имя-группы</replaceable
+></userinput
+>. </para>
+<para
+>Чтобы просмотреть доступные ресурсы на узле <userinput
+>the_host</userinput
+>, введите <userinput
+><command
+>smb://</command
+><replaceable
+>the_host</replaceable
+></userinput
+> или <userinput
+><command
+>smb:/</command
+><replaceable
+>a_workgroup</replaceable
+>/<replaceable
+>the_host</replaceable
+></userinput
+>. </para>
+<para
+>Чтобы получить доступ к ресурсу <userinput
+>the_share</userinput
+> напрямую, введите <userinput
+><command
+>smb://</command
+><replaceable
+>the_host/the_share</replaceable
+></userinput
+> или <userinput
+><command
+>smb:/</command
+><replaceable
+>a_workgroup</replaceable
+>/<replaceable
+>the_host</replaceable
+>/<replaceable
+>the_share</replaceable
+></userinput
+>. </para>
+
+<para
+>Обработчик протокола smb работает только при наличии библиотеки libsmbclient. </para>
+
+<para
+>В приложении Параметры системы возможно задать имя пользователя и пароль, используемые по умолчанию: выберите <menuchoice
+><guisubmenu
+>Сеть</guisubmenu
+><guimenuitem
+>Общие папки Windows</guimenuitem
+></menuchoice
+>. Это особенно полезно при входе в домен &Windows; <acronym
+>NT</acronym
+>. Здесь также возможно указать имя рабочей группы, но обычно это не требуется. Если имя пользователя и пароль по умолчанию не заданы, они будут запрошены при подключении. </para>
+
+</article>
+

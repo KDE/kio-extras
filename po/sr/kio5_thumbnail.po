@@ -1,0 +1,77 @@
+# Translation of kio5_thumbnail.po into Serbian.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2005, 2009, 2011, 2017.
+# Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio5_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2019-05-20 03:10+0200\n"
+"PO-Revision-Date: 2017-09-28 18:00+0200\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+
+#: jpegcreator.cpp:66
+#, kde-format
+msgctxt "@option:check"
+msgid "Rotate the image automatically"
+msgstr "Ротирај слику аутоматски"
+
+#: thumbnail.cpp:197
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "МИМЕ тип није задат."
+
+#: thumbnail.cpp:206
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "Величина није задата или није исправна."
+
+#: thumbnail.cpp:240
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "Не могу да направим сличицу за фасциклу"
+
+#: thumbnail.cpp:252
+#, kde-format
+msgid "No plugin specified."
+msgstr "Прикључак није задат."
+
+#: thumbnail.cpp:258
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "Не могу да учитам „ThumbCreator“ %1"
+
+#: thumbnail.cpp:267
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "Не могу да направим сличицу за %1"
+
+#: thumbnail.cpp:305
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "Неуспех стварања сличице."
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Could not write image."
+msgstr "Не могу да упишем слику."
+
+#: thumbnail.cpp:342
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "Не могу да се прикачим на сегмент дељене меморије %1"
+
+#: thumbnail.cpp:346
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "Слика је превелика за сегмент дељене меморије"

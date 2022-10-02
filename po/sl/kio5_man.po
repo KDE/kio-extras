@@ -1,0 +1,213 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# Marko Samastur <markos@elite.org>, 2000.
+# Gregor Rakar <gregor.rakar@kiss.si>, 2003.
+# Jure Repinc <jlp@holodeck1.com>, 2007, 2008, 2009, 2012.
+# Andrej Mernik <andrejm@ubuntu.si>, 2013.
+# Matjaž Jeran <matjaz.jeran@amis.net>, 2019, 2020, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2021-09-03 08:18+0200\n"
+"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
+"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
+"X-Generator: Lokalize 20.12.2\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
+
+#: kio_man.cpp:451
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Ni mogoče najti strani man, ki bi ustrezala <resource>%1</resource>.<nl/><nl/"
+">Prepričajte se, da se niste zatipkali pri imenu želene strani in "
+"upoštevajte, da so imena občutljiva na male/velike črke.<nl/><nl/>Če je vse "
+"pravilno, bo mogoče potrebno nastaviti pot za iskanje strani man. To lahko "
+"storite z okoljsko spremenljivko <envar>MANPATH</envar> ali pa z ustrezno "
+"nastavitveno datoteko v mapi <filename>/etc</filename>."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"Določena stran man se je sklicevala na drugo stran <filename>%1</filename>,"
+"<nl/>, a te strani <filename>%2</filename> ni bilo mogoče najti."
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr "Strani man <filename>%1</filename> ni bilo mogoče prebrati."
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr "Strani man <filename>%1</filename> ni bilo mogoče pretvoriti."
+
+#: kio_man.cpp:660
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "Napaka pri pregledovalniku strani man"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "Na voljo je več kot ena ujemajoča se stran man:"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "Več strani priročnika"
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Opomba: ko berete strani man v slovenščini, se morate zavedati, da lahko "
+"vsebujejo napake ali pa so zastarele. Če ste v dvomih, si oglejte različico "
+"v angleščini."
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr "Datoteke glav"
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr "Datoteke glav (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Uporabniški ukazi"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Uporabniški ukazi (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Sistemski klici"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Podprogrami"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Moduli Perl"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Omrežne funkcije"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Naprave"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Vrste datotek"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Igre"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Razno"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Skrbništvo sistema"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Jedro"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Krajevna dokumentacija"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Novo"
+
+#: kio_man.cpp:805
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "Glavno kazalo strani priročnika"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Odsek %1"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "Kazalo za odsek %1: %2"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Manual Page Index"
+msgstr "Kazalo strani priročnika"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Ustvarjanje kazala"
+
+#: kio_man.cpp:1407
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Na vašem sistemu ni bilo mogoče najti programa za ukaz <command>%1</"
+"command>. Namestite ga, če je potrebno, in razširite poti iskanja s "
+"prilagoditvijo okoljske spremenljivke <envar>PATH</envar>."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "Odpiranje %1 je spodletelo."
+
+#~ msgid "Man output"
+#~ msgstr "Izpis man"

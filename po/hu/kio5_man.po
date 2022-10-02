@@ -1,0 +1,218 @@
+# Copyright (C) 2012 Free Software Foundation, Inc.
+#
+# Tamas Szanto <tszanto@interware.hu>, 2000.
+# Balázs Úr <urbalazs@gmail.com>, 2012.
+# Kristof Kiszel <ulysses@fsf.hu>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: KDE 4.2\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2022-02-10 14:12+0100\n"
+"Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
+"Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 21.07.70\n"
+
+#: kio_man.cpp:451
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Nem található man oldal ehhez: <resource>%1</resource>.<nl/><nl/"
+">Ellenőrizze, hogy nem írta-e el az oldal nevét, és ügyeljen a kis- és "
+"nagybetűkre.<nl/><nl/>Ha a név helyes, vagy ki kell bővítenie a keresési "
+"útvonalat, vagy használnia a <envar>MANPATH</envar> környezeti változót, "
+"vagy egy konfigurációs fájlt az <filename>/etc/</filename> könyvtárban."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"A megadott man oldal egy másik oldalra (<filename>%1</filename>) hivatkozik,"
+"<nl/>de a hivatkozott oldal (<filename>%2</filename>) nem található."
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr "A(z) <filename>%1</filename> man oldal nem olvasható."
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr "A(z) <filename>%1</filename> man oldal nem konvertálható."
+
+#: kio_man.cpp:660
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "Man oldal megjelenítési hiba"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "Több oldal is eleget tesz a feltételnek:"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "Több man oldal"
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Megjegyzés: ha egy man oldal fordítását olvassa, előfordulhat, hogy az "
+"hibákat tartalmaz vagy már elavult. Ilyen esetben inkább az angol nyelvű "
+"verziót használja."
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr "Fejlécfájlok"
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr "Fejlécfájlok (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Felhasználói parancsok"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Felhasználói parancsok (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Rendszerhívások"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Eljárások"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Perl modulok"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Hálózati függvények"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Eszközök"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Fájlformátumok"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Játékok"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Egyéb"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Rendszeradminisztráció"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Kernel"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Helyi dokumentáció"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Új"
+
+#: kio_man.cpp:805
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "Fő man oldal tartalomjegyzéke"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "%1. szakasz"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "A(z) %1. szakasz tartalomjegyzéke: %2"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Manual Page Index"
+msgstr "Man oldal tartalomjegyzéke"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Tartalomjegyzék létrehozása"
+
+#: kio_man.cpp:1407
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"A(z) <command>%1</command> program nem található. Telepítse, ha szükséges, "
+"és bizonyosodjon meg arról, hogy a <envar>PATH</envar> környezeti változóban "
+"megtalálható."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "%1 megnyitása nem sikerült."
+
+#~ msgid "Man output"
+#~ msgstr "Man kimenet"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Szántó Tamás"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "tszanto@interware.hu"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

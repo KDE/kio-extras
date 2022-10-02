@@ -1,0 +1,38 @@
+# translation of kfileaudiopreview4.po to தமிழ்
+# Copyright (C) 2004, 2007 Free Software Foundation, Inc.
+#
+# Vasee Vaseeharan <vasee@ieee.org>, 2004.
+# ஆமாச்சு <amachu@ubuntu.com>, 2007.
+# Kishore G <kishore96@gmail.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kfileaudiopreview4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-14 00:45+0000\n"
+"PO-Revision-Date: 2022-04-14 19:38+0530\n"
+"Last-Translator: Kishore G <kishore96@gmail.com>\n"
+"Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.03.90\n"
+
+#: kfileaudiopreview.cpp:68
+#, kde-format
+msgid "Play &automatically"
+msgstr "&தானாகவே வாசி"
+
+#: mediacontrols_p.h:39
+#, kde-format
+msgid "start playback"
+msgstr "வாசிப்பதை துவக்கும்"
+
+#: mediacontrols_p.h:44
+#, kde-format
+msgid "pause playback"
+msgstr "வாசிப்பதை இடைநிறுத்தும்"
+
+#~ msgid "Media Player"
+#~ msgstr "ஊடக இயக்கி"

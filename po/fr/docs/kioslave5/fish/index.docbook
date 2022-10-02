@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="fish">
+<title
+>fish</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Joerg.Walter; &Joerg.Walter.mail;</author>
+<author
+>&Brad.Hards; &Brad.Hards.mail;</author>
+&traducteurEquipeKDE; 
+</authorgroup>
+
+<date
+>27/10/2010</date>
+<releaseinfo
+>&kde; 4.5</releaseinfo>
+
+</articleinfo>
+
+<para
+>Vous permet d'accéder à des fichiers présents sur d'autres ordinateurs en utilisant un protocole de shell sécurisé (<acronym
+>SSH</acronym
+>). Un démon <acronym
+>SSH</acronym
+> doit fonctionner sur l'ordinateur distant, mais le reste du protocole utilise des outils en ligne de commande standards, comme vous pouvez le voir ci-dessous.</para>
+
+<para
+>Utiliser le protocole « fish » comme ceci : <userinput
+>fish://<replaceable
+>nommachine</replaceable
+></userinput
+> ou <userinput
+>fish://<replaceable
+>utilisateur</replaceable
+>@<replaceable
+>nommachine</replaceable
+></userinput
+>.</para>
+
+<note
+><para
+>Vous devez utiliser le double slash.</para
+></note>
+
+<para
+>Vous pouvez ommettre le nom d'<replaceable
+>utilisateur</replaceable
+> (et le symbole suivant @) si le nom de l'utilisateur est le même sur les deux ordinateurs.</para>
+
+<para
+>Vous pouvez ajouter un mot de passe en utilisant le format suivant : <userinput
+>fish://<replaceable
+>utilisateur</replaceable
+>:<replaceable
+>motdepasse</replaceable
+>@<replaceable
+>nommachine</replaceable
+></userinput
+>, mais cela n'est pas obligatoire, puisqu'il vous sera tout de même demandé si vous ne l'insérez pas.</para>
+
+<para
+>Si vous exécutez le démon <acronym
+>SSH</acronym
+> sur un port non standard, vous pouvez spécifier ce port en utilisant une syntaxe d'&URL; normale comme ceci : <userinput
+>fish://<replaceable
+>nommachine</replaceable
+>:<replaceable
+>numéro_de_port</replaceable
+></userinput
+>.</para>
+
+<para
+>Fish devrait fonctionner avec à peu près tout ordinateur distant <acronym
+>POSIX</acronym
+> compatible &UNIX;. Il utilise les commandes de la console <command
+>cat</command
+>, <command
+>chgrp</command
+>, <command
+>chmod</command
+>, <command
+>chown</command
+>, <command
+>cp</command
+>, <command
+>dd</command
+>, <command
+>env</command
+>, <command
+>expr</command
+>, <command
+>grep</command
+>, <command
+>ls</command
+>, <command
+>mkdir</command
+>, <command
+>mv</command
+>, <command
+>rm</command
+>, <command
+>rmdir</command
+>, <command
+>sed</command
+>, et <command
+>wc</command
+>. Fish démarre <command
+>/bin/sh</command
+> dans une console et s'attend à ce que ce soit un <quote
+>Bourne shell</quote
+> (ou compatible, comme <command
+>bash</command
+>). Si les commandes <command
+>sed</command
+> et <command
+>file</command
+> sont disponibles, ainsi qu'un fichier <filename
+>/etc/apache/magic</filename
+> avec les signatures de types &MIME;, celles-ci seront utilisées pour deviner les types &MIME;. </para>
+
+<para
+>Si <application
+>Perl</application
+> est disponible sur la machine distante, il sera utilisé à la place. Ainsi, seuls <command
+>env</command
+> et <command
+>/bin/sh</command
+> sont requis. L'utilisation de <application
+>Perl</application
+> a également l'avantage d'être plus rapide.</para>
+
+<para
+>Fish devrait même fonctionner avec les machines &Windows;, si des outils comme <application
+>Cygwin</application
+> sont installés. Tous les utilitaires ci-dessus doivent se trouver dans le chemin (<envar
+>PATH</envar
+>) du système, et la console initiale doit être capable de traiter correctement la commande <command
+>echo FISH:;/bin/sh</command
+>.</para>
+
+</article>

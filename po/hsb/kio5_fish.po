@@ -1,0 +1,51 @@
+# translation of desktop_kdebase.po to Upper Sorbian
+# Prof. Dr. Eduard Werner <e.werner@rz.uni-leipzig.de>, 2003.
+# Eduard Werner <edi.werner@gmx.de>, 2005, 2008.
+# Bianka Šwejdźic <hertn@gmx.de>, 2005, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: desktop_kdebase\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2008-11-13 23:35+0100\n"
+"Last-Translator: Eduard Werner <edi.werner@gmx.de>\n"
+"Language-Team: en_US <kde-i18n-doc@lists.kde.org>\n"
+"Language: hsb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
+"%100==4 ? 2 : 3;\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "Nawjazuju kontakt..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "Inicializuju protokol..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "Lokalne přizjewjenje"
+
+#: fish.cpp:630
+#, fuzzy, kde-format
+#| msgid "SSH Authorization"
+msgid "SSH Authentication"
+msgstr "SHH-awtorizacija"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "Wotwjazany."
+
+#, fuzzy
+#~| msgctxt "Name"
+#~| msgid "Suriname"
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Surinam"

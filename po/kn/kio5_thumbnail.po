@@ -1,0 +1,84 @@
+# translation of kio_thumbnail.po to Kannada
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Umesh Rudrapatn <umesh@diabetix>, 2007.
+# Umesh Rudrapatna <urudrapatna@yahoo.com>, 2007.
+# Umesh Rudrapatna <umeshrs@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2008-08-10 12:35+0200\n"
+"Last-Translator: Umesh Rudrapatna <umeshrs@gmail.com>\n"
+"Language-Team: Kannada <kde-l10n-kn@kde.org>\n"
+"Language: kn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "MIME ಬಗೆ ನಿಗದಿಗೊಳಿಸಿಲ್ಲ."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "ಗಾತ್ರ ನಿಗದಿಗೊಳಿಸಿಲ್ಲ ಅಥವಾ ಅಮಾನ್ಯವಾದದ್ದಾಗಿದೆ."
+
+#: thumbnail.cpp:225
+#, fuzzy, kde-format
+#| msgid "Cannot create thumbnail for %1"
+msgid "Cannot create thumbnail for directory"
+msgstr "%1 ಗೆ ಚಿಕಣಿಚಿತ್ರವನ್ನು (thumbnail) ರಚಿಸಲಾಗುವುದಿಲ್ಲ"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "ಮಿಳಿತಾನ್ವಯ (plugin) ನಿಗದಿಗೊಳಿಸಿಲ್ಲ."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "ThumbCreator %1 ಅನ್ನು ಉತ್ಥಾಪಿಸಲಾಗುವುದಿಲ್ಲ"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "%1 ಗೆ ಚಿಕಣಿಚಿತ್ರವನ್ನು (thumbnail) ರಚಿಸಲಾಗುವುದಿಲ್ಲ"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "ಚಿಕಣಿಚಿತ್ರದ (thumbnail) ರಚನೆ ವಿಫಲವಾಯಿತು"
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "ಚಿತ್ರವನ್ನು ಬರೆಯಲಾಗಲಿಲ್ಲ."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "%1 ವಿಭಾಜ್ಯ ಸ್ಮೃತಿಖಂಡಕ್ಕೆ (shared memory segment) ಸೇರಿಸವುದು ವಿಫಲವಾಯಿತು"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr ""
+"ಚಿತ್ರವು ವಿಭಾಜ್ಯ ಸ್ಮೃತಿಖಂಡಕ್ಕೆ (shared memory segment) ಹಿಡಿಯಲಾರದಷ್ಟು ದೊಡ್ಡದಾಗಿದೆ"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "ಉಮೇಶ್ ರುದ್ರಪಟ್ಟಣ"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "umeshrs@gmail.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_ಸೂಚ್ಯಚಿತ್ರ"

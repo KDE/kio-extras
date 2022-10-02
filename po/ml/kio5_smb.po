@@ -1,0 +1,194 @@
+# Translation of file kio_smb.po
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kdebase package.
+# HARI VISHNU <harivishnu@gmail.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdebase\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2008-07-08 18:03+0530\n"
+"Last-Translator: Hari Vishnu <harivishnu@gmail.com>\n"
+"Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
+"discuss@googlegroups.com>\n"
+"Language: ml\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt><b>%1</b>ഇനുള്ള തിരിച്ചറിയലിനുള്ള വിവരങ്ങള്‍ ദയവായി അടിച്ചു തരിക</qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"തിരിച്ചറിയലിനുള്ള വിവരങ്ങള്‍ താഴെ പറഞ്ഞിരിക്കുന്ന സാധനങ്ങള്‍ക്കു അടിച്ചു തരിക : \n"
+"സര്‍വര്‍ = %1\n"
+"പങ്കുവെക്കല്‍ = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"തിരിച്ചറിയാത്ത തരം ഫയല്‍ , ഇതു തട്ടവുമല്ല ഫയലുമല്ല"
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"നിങ്ങളുടെ പ്രാദേശിക ശൃംഖലയില്‍ പണി-കൂട്ടങ്ങള്‍ കണ്ടു പിടിക്കാനായില്ല. ഇതൊരു പ്രാവര്‍ത്തികമായ ഫയര്‍-"
+"വോള്‍ കാരണം ആയേക്കാം"
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "%1-ഇനുള്ള ഉപകരണത്തിനു മീഡിയ ഇല്ല"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "%1-ഇനു വേണ്ടി ആഥിതേയനിലേക്കു ബന്ധപ്പെടാന്‍ കഴിജില്ല"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "%1 ഇനുത്തരവാദിയായ സറ്വറിലോട്ടു ബന്ധപ്പെടുന്നതില്‍ പിശക്"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "'പങ്കുവയ്ക്കല് ' തന്നിരിക്കുന്ന സര്‍വറേല്‍ കണ്ടു പിടിക്കാന്‍ കഴിഞ്ഞില്ല"
+
+#: kio_smb_browse.cpp:303
+#, fuzzy, kde-format
+#| msgid "BAD File descriptor"
+msgid "Bad file descriptor"
+msgstr "മോശമായ ഫയല്‍ ഡിസ്ക്രിപ്റ്റര്‍"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"തന്നിരിക്കുന്ന പേര് ഒരു വ്യത്യസ്ഥമായ സര്‍വറേലോട്ട് റിസോള്‍വ് ചെയ്യാന്‍ കഴിഞ്ഞില്ല തന്നിരിക്കുന്ന പേര് "
+"ഒരു വ്യത്യസ്ഥമായ സര്‍വറേലോട്ട് റിസോള്‍വ് ചെയ്യാന്‍ കഴിഞില്ല. നിങ്ങളുടെ ശ്രംഖലയുടെ സെറ്റപ്പ് "
+"വിന്റോസും യൂണിക്സും ഉപയോഗിക്കുന്ന പേരുകള്‍ തമ്മിലുള്ള പേരു-തര്‍ക്കങ്ങള്‍ ഇല്ലാതെയാണു ചെയ്തിരിക്കുന്നത് "
+"എന്ന് ഉറപ്പു വരുത്തു."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr ""
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"ലിബ്-എസ്-എം-ബി ക്ലയന്റ് (libsmbclient) ഒരു പിശക് റിപ്പോര്‍ട്ട് ചെയ്തു, പക്ഷെ അതെന്താണെന്നു "
+"വ്യക്തമാക്കിയില്ല. ഇത് ശൃംഖലയിലേ ഒരു പിശകാവാം, അല്ലെങ്കില്‍ ലിബ്-എസ്-എം-ബി ക്ലയന്റ്-ഇല്‍ ഒരു "
+"വലിയ പിശകുമാവാം. \n"
+"നിങ്ങള്‍ക്കു ഞങ്ങളെ സഹായിക്കണമെന്നുണ്ടെങ്കില്‍,  തരേണ്ടതാണ്, നിങ്ങള്‍ പരതുന്നതിനോടൊപ്പം തന്നെയുള്ള "
+"ശൃംഖല വിനിമയതലത്തിന്റെ ഒരു ടി.സി.പ്പി.ഡമ്പ് (tcpdump) (സൂക്ഷിക്കുക: ഇതില്‍ സ്വകാര്യമായ "
+"വിവരങ്ങള്‍ ഉണ്ടായേക്കാം, അതു കൊണ്ട് നിങ്ങള്‍ക്കുറപ്പില്ലെങ്കില്‍ പോസ്റ്റ് ചെയ്യരുത്. ഇത് നിങ്ങള്‍ക്ക് "
+"ഡെവെലപ്പേഴ്സിന് സ്വകാര്യമായി അയയ്ക്കാം അവരതാവശ്യപ്പെടുന്നെങ്കില്‍."
+
+#: kio_smb_browse.cpp:334
+#, fuzzy, kde-format
+#| msgid "Unknown error condition in stat: %1"
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "അറിഞ്ഞുകൂടാത്ത പിശകു നില സ്റ്റാറ്റ് : %1"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr ""
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "ലൈബ്-എസ്-എം-ബി ക്ലയന്റ്(libsmbclient) ഇനു കോണ്ടെക്സ്റ്റ് ഉണ്ടാക്കുവാന്‍ കഴിഞില്ല"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"സാമ്പ പാക്കേജ് നിങ്ങളുടെ സിസ്റ്റത്തേല്‍ ശരിയായി ഇന്‍സ്റ്റോള്‍ ചെയ്തിരിക്കുന്നു എന്ന് ഉറപ്പു വരുത്തുക"
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"ആതിഥേയന്‍ \"%2\"-ഇല്‍ നിന്നും \"%3\" ഉപയോക്താവ് മൗണ്ട് ചെയ്യുവാന്‍ ശ്രമിച്ച പങ്കുവെച്ച \"%1\" "
+"നടന്നില്ല.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"മൗണ്ട്-പോയിന്റ്  \"%1\"-ഇന്റെ അണ്‍മൗണ്ടിങ്ങ് പരാജയപ്പെട്ടു.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr ""
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "ലൈബ്-എസ്-എം-ബി ക്ലയന്റ്(libsmbclient) ഇനു കോണ്ടെക്സ്റ്റ് തുടങ്ങുവാന്‍ കഴിഞില്ല"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "ഫയല്‍ ഇവിടെ ഇല്ല : %1"
+
+#~ msgid "libsmbclient failed to initialize"
+#~ msgstr "ലൈബ്-എസ്-എം-ബി ക്ലയന്റ്(libsmbclient) തുടങ്ങുവാന്‍ കഴിഞ്ഞില്ല"

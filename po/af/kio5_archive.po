@@ -1,0 +1,38 @@
+# UTF-8 test:äëïöü
+# translation of kio_tar.po to Afrikaans
+# Kobus <kabousv@therugby.co.za>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_tar stable\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2005-11-23 22:59+0200\n"
+"Last-Translator: Kobus <kabousv@therugby.co.za>\n"
+"Language-Team: AFRIKAANS <translate-discuss-af@lists.sourceforge.net>\n"
+"Language: af\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"Kon lêer nie oopmaak, vermoedelik is dit 'n lêer formaat wat nie ondersteun "
+"word nie.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"Die argief kon nie oopgemaak word nie, miskien is die formaat nie "
+"geondersteun nie./n %1"

@@ -1,0 +1,41 @@
+# kfileaudiopreview4 Bahasa Melayu (Malay) (ms)
+# kfileaudipreview.po to Malay
+# Copyright (C)
+#
+# Muhammad Najmi Ahmad Zabidi <md_najmi@yahoo.com>,2003 .
+# Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kfileaudiopreview4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-14 00:45+0000\n"
+"PO-Revision-Date: 2010-06-28 23:36+0800\n"
+"Last-Translator: Sharuzzaman Ahmat Raslan <sharuzzaman@myrealbox.com>\n"
+"Language-Team: Malay <kedidiemas@yahoogroups.com>\n"
+"Language: ms\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=1;\n"
+
+#: kfileaudiopreview.cpp:68
+#, kde-format
+msgid "Play &automatically"
+msgstr "M&ain automatik"
+
+#: mediacontrols_p.h:39
+#, kde-format
+msgid "start playback"
+msgstr "mula mainbalik"
+
+#: mediacontrols_p.h:44
+#, kde-format
+msgid "pause playback"
+msgstr "jeda mainbalik"
+
+#~ msgid "stop playback"
+#~ msgstr "henti mainbalik"
+
+#~ msgid "Media Player"
+#~ msgstr "Pemain Media"

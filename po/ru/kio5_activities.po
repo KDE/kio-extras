@@ -1,0 +1,236 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Julia Dronova <juliette.tux@gmail.com>, 2013.
+# Yuri Efremov <yur.arh@gmail.com>, 2013.
+# Alexander Potashev <aspotashev@gmail.com>, 2014, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2015-09-01 10:30+0300\n"
+"Last-Translator: Alexander Potashev <aspotashev@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "Комнаты"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "Диспетчер комнат не запущен."
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "Привязать к текущей комнате"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "Снять привязку к текущей комнате"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "Привязать к:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "Снять привязку с:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "Комната"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "Текущая комната"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Александр Лахин"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "exclusion@gmail.com"
+
+#~ msgid "Default"
+#~ msgstr "Начальная комната"
+
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "Переключиться на комнату «%1»"
+
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "Комната"
+
+#, fuzzy
+#~| msgid "Create activity..."
+#~ msgid "Delete activity"
+#~ msgstr "Создать комнату..."
+
+#, fuzzy
+#~| msgid "Are you sure you want to delete this activity?"
+#~ msgid "Are you sure you want to delete '%1'?"
+#~ msgstr "Удалить эту комнату?"
+
+#, fuzzy
+#~| msgid "Create activity..."
+#~ msgid "Create a new activity"
+#~ msgstr "Создать комнату..."
+
+#, fuzzy
+#~| msgid "Activity switching"
+#~ msgid "Activity settings"
+#~ msgstr "Переключение комнат"
+
+#~ msgid "General"
+#~ msgstr "Общее"
+
+#~ msgid "Create"
+#~ msgstr "Создать"
+
+#~ msgid "Apply"
+#~ msgstr "Применить"
+
+#~ msgid "Cancel"
+#~ msgstr "Отмена"
+
+#~ msgid "Shortcut for switching to this activity:"
+#~ msgstr "Комбинация клавиш для переключения на эту комнату:"
+
+#, fuzzy
+#~| msgid "Activity switching"
+#~ msgid "Activity information"
+#~ msgstr "Переключение комнат"
+
+#~ msgid "Switching"
+#~ msgstr "Переключение"
+
+#~ msgid "Privacy"
+#~ msgstr "Конфиденциальность"
+
+#~ msgctxt "unlimited number of months"
+#~ msgid "forever"
+#~ msgstr "вечно"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "Стереть последний час"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "Стереть последние два часа"
+
+#~ msgid "Forget a day"
+#~ msgstr "Стереть день"
+
+#~ msgid "Forget everything"
+#~ msgstr "Стереть всё"
+
+# "Хранить историю в течение ... месяц(а/ев)" --aspotashev
+#~ msgctxt "unit of time. months to keep the history"
+#~ msgid " month"
+#~ msgid_plural " months"
+#~ msgstr[0] " месяца"
+#~ msgstr[1] " месяцев"
+#~ msgstr[2] " месяцев"
+#~ msgstr[3] " месяца"
+
+# "Хранить историю в течение ... месяц(а/ев)" --aspotashev
+#~ msgctxt "for in 'keep history for 5 months'"
+#~ msgid "for "
+#~ msgstr "в течение "
+
+#~ msgid "Create activity..."
+#~ msgstr "Создать комнату..."
+
+#~ msgid "Activity switching"
+#~ msgstr "Переключение комнат"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities"
+#~ msgstr "На одну комнату вперёд"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities (Reverse)"
+#~ msgstr "На одну комнату назад"
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "Запоминать открытые документы:"
+
+#~ msgid "For a&ll applications"
+#~ msgstr "Для &всех приложений"
+
+#~ msgid "&Do not remember"
+#~ msgstr "&Не запоминать"
+
+#~ msgid "O&nly for specific applications"
+#~ msgstr "Толь&ко для определённых приложений"
+
+#~ msgid "Keep history"
+#~ msgstr "Хранить историю"
+
+#~ msgid "Clear recent history"
+#~ msgstr "Очистить последнюю историю"
+
+#~ msgid "Blacklist all applications not on this list"
+#~ msgstr "Заблокировать все приложения, кроме перечисленных"
+
+#~ msgid ""
+#~ "Remember the current virtual desktop for each activity (needs restart)"
+#~ msgstr ""
+#~ "Запоминать текущий рабочий стол для каждой комнаты (потребуется "
+#~ "перезапуск)"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Комбинации клавиш"
+
+#~ msgid "Private - do not track usage for this activity"
+#~ msgstr "Конфиденциальная (не запоминать статистику использования)"
+
+#~ msgid "Delete"
+#~ msgstr "Удалить"
+
+#~ msgid "Activity name"
+#~ msgstr "Название комнаты"
+
+#~ msgid "Available Features"
+#~ msgstr "Доступные возможности"
+
+#~ msgid "Plugins"
+#~ msgstr "Модули"
+
+#~ msgid "Enable activities management"
+#~ msgstr "Включить управление комнатами"
+
+#~ msgid "Activity manager is not running properly."
+#~ msgstr "Диспетчер комнат не запущен правильно."
+
+#~ msgid "Activities..."
+#~ msgstr "Комнаты..."
+
+#~ msgid "(c) 2012 Ivan Cukic"
+#~ msgstr "© Ivan Cukic, 2012"

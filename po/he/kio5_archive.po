@@ -1,0 +1,38 @@
+# translation of kio_tar.po to hebrew
+#
+# Israel Berger <israelb@gmail.com>, 2005.
+# Diego Iastrubni <elcuco@kde.org>, 2012.
+# Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: kio5_archive\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2017-05-16 07:03-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Hebrew <kde-l10n-he@kde.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"לא יכול לפתוח את הקובץ. כנראה בגלל פורמט קובץ שאינו נתמך.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"קובץ הארכיב לא יכול להיפתח. כנראה בגלל שהפורמט לא נתמך.\n"
+"%1"

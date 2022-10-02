@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Italian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="zstd">
+<title
+>zstd</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Friedrich</firstname
+><othername
+>W. H.</othername
+><surname
+>Kossebau</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Vincenzo</firstname
+><surname
+>Reale</surname
+><affiliation
+><address
+><email
+>smart2128vr@gmail.com</email
+></address
+></affiliation
+><contrib
+>Traduzione italiana</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>zstd</command
+> è un programma di compressione.</para>
+
+<para
+>Lo zstd kioslave non è direttamente utilizzabile ed è destinato all'uso come filtro. Ad esempio, il kioslave tar può filtrare un file attraverso il kioslave zstd, per visualizzare il contenuto di un file <literal role="extension"
+>tar.zst</literal
+> direttamente in una finestra di &konqueror;.</para>
+
+<para
+>Facendo clic su un file compresso con un'estensione <literal role="extension"
+>zst</literal
+> in &konqueror;, questo kioslave viene utilizzato per decomprimerlo e visualizzarlo come un normale file (non compresso).</para>
+
+<para
+>Se sei uno sviluppatore e desideri utilizzare il filtro zstd, puoi trovare la documentazione sull'uso di kioslaves su <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Vedere il manuale: <ulink url="man:/zstd"
+>zstd</ulink
+>. </para>
+
+</article>

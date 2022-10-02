@@ -1,0 +1,199 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sairan Kikkarin <sairan@computer.org>, 2012, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2013-06-12 03:46+0600\n"
+"Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
+"Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, fuzzy, kde-format
+#| msgid "Activities..."
+msgid "Activities"
+msgstr "Белсенділіктер..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, fuzzy, kde-format
+#| msgid "Activity manager is not running properly."
+msgid "The Activity Manager is not running"
+msgstr "Белсенділік менеджері дұрыс істемейді."
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "Назардағы белсенділікпен байланыстыру"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "Назардағы белсенділіктен байланысын үзу"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "Мынамен байланыстыру:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "Мынадан байланысын үзу:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, fuzzy, kde-format
+#| msgid "Activities..."
+msgid "Activity"
+msgstr "Белсенділіктер..."
+
+#: KioActivities.cpp:223
+#, fuzzy, kde-format
+#| msgid "Link to the current activity"
+msgid "Current activity"
+msgstr "Назардағы белсенділікпен байланыстыру"
+
+#
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Сайран Киккарин"
+
+#
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "sairan@computer.org"
+
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "\"%1\" белсенділігіне ауысу"
+
+#, fuzzy
+#~| msgid "Activities..."
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "Белсенділіктер..."
+
+#, fuzzy
+#~| msgid "Link to the current activity"
+#~ msgid "Delete activity"
+#~ msgstr "Назардағы белсенділікпен байланыстыру"
+
+#, fuzzy
+#~| msgid "Link to the current activity"
+#~ msgid "Create a new activity"
+#~ msgstr "Назардағы белсенділікпен байланыстыру"
+
+#, fuzzy
+#~| msgid "Activities..."
+#~ msgid "Activity settings"
+#~ msgstr "Белсенділіктер..."
+
+#, fuzzy
+#~| msgid "Activities..."
+#~ msgid "Activity information"
+#~ msgstr "Белсенділіктер..."
+
+#~ msgid "Privacy"
+#~ msgstr "Дербестік"
+
+#~ msgctxt "unlimited number of months"
+#~ msgid "forever"
+#~ msgstr "мерзімі шексіз"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "Соңғы сағатын ұмыту"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "Соңғы екі сағатын ұмыту"
+
+#~ msgid "Forget a day"
+#~ msgstr "бір күнін ұмыту"
+
+#~ msgid "Forget everything"
+#~ msgstr "Бүкілін ұмыту"
+
+#~ msgctxt "unit of time. months to keep the history"
+#~ msgid " month"
+#~ msgid_plural " months"
+#~ msgstr[0] " ай"
+
+#~ msgctxt "for in 'keep history for 5 months'"
+#~ msgid "for "
+#~ msgstr "мерзімі "
+
+#, fuzzy
+#~| msgid "Link to the current activity"
+#~ msgid "Create activity..."
+#~ msgstr "Назардағы белсенділікпен байланыстыру"
+
+#, fuzzy
+#~| msgid "Activities..."
+#~ msgid "Activity switching"
+#~ msgstr "Белсенділіктер..."
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "Ашылған құжаттарды жаттап алуы"
+
+#, fuzzy
+#~| msgid "For all applications"
+#~ msgid "For a&ll applications"
+#~ msgstr "Бүкіл қолданбаларда"
+
+#, fuzzy
+#~| msgid "Do not remember"
+#~ msgid "&Do not remember"
+#~ msgstr "Жаттамау"
+
+#, fuzzy
+#~| msgid "Only for specific applications"
+#~ msgid "O&nly for specific applications"
+#~ msgstr "Тек белгілі қолданбаларда"
+
+#~ msgid "Keep history"
+#~ msgstr "Жадында сақтайтын"
+
+#~ msgid "Clear recent history"
+#~ msgstr "Жуырдағысын тазалау"
+
+#~ msgid "Blacklist all applications not on this list"
+#~ msgstr "Тізімде жоқ қолданбалар үшін ештеңе жатталмасын"
+
+#, fuzzy
+#~| msgid "Activities..."
+#~ msgid "Activity name"
+#~ msgstr "Белсенділіктер..."
+
+#~ msgid "Available Features"
+#~ msgstr "Қол жеткізер мүмкіндіктері"
+
+#~ msgid "Plugins"
+#~ msgstr "Плагиндер"
+
+#~ msgid "Enable activities management"
+#~ msgstr "Белсенділіктерді басқаруы болсын"
+
+#~ msgid "Activity manager is not running properly."
+#~ msgstr "Белсенділік менеджері дұрыс істемейді."
+
+#~ msgid "Activities..."
+#~ msgstr "Белсенділіктер..."
+
+#~ msgid "(c) 2012 Ivan Cukic"
+#~ msgstr "(c) 2012 Ivan Cukic"

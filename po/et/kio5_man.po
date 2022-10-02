@@ -1,0 +1,239 @@
+# translation of kio_man.po to Estonian
+# Copyright (C) 2002, 2003 Free Software Foundation, Inc.
+#
+# Hasso Tepper <hasso@estpak.ee>, 2002.
+# Marek Laane <bald@starman.ee>, 2003-2005,2007-2008, 2012, 2019.
+# Mihkel Tõnnov <mihhkel@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2020-10-07 12:17+0200\n"
+"Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
+"Language-Team: Estonian <>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.08.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_man.cpp:451
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Man-lehekülge nimega <resource>%1</resource> ei leitud.<nl/><nl/>Kontrolli, "
+"ega sa ei ole lehekülje nime valesti kirjutanud, ja arvesta, et vahet "
+"tehakse ka suurtel ja väikestel tähtedel.<nl/><nl/>Kui nimi on õige, tuleb "
+"võib-olla manuaalilehekülgede otsinguteed täiendada, kasutades kas "
+"keskkonnamuutujat <envar>MANPATH</envar> või seadistusfaili kataloogis "
+"<filename>/etc</filename>."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"Määratud manuaalilehekülg viitas teisele leheküljele <filename>%1</filename>,"
+"<nl/>kuid viidatud lehekülge <filename>%2</filename> ei leitud."
+
+#: kio_man.cpp:586
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The man page <filename>%1</filename> was found, but it could not be read "
+#| "or parsed."
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+"Manuaalilehekülg <filename>%1</filename> küll leiti, kuid selle lugemine või "
+"parsimine nurjus."
+
+#: kio_man.cpp:595
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "The man page <filename>%1</filename> was found, but it could not be read "
+#| "or parsed."
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+"Manuaalilehekülg <filename>%1</filename> küll leiti, kuid selle lugemine või "
+"parsimine nurjus."
+
+#: kio_man.cpp:660
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "Manuaalinäitaja viga"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "Kriteeriumile vastavaid man-lehekülgi on rohkem kui üks:"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "Mitu man-lehekülge"
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Märkus: kui loed man-lehekülge oma emakeeles, võib see sisaldada vigu või "
+"olla vananenud. Kui sul tekib mingeid kahtlusi, tasub kontrollida "
+"ingliskeelset versiooni."
+
+#: kio_man.cpp:758
+#, fuzzy, kde-format
+#| msgid "Header files"
+msgid "Header Files"
+msgstr "Päisefailid"
+
+#: kio_man.cpp:759
+#, fuzzy, kde-format
+#| msgid "Header files (POSIX)"
+msgid "Header Files (POSIX)"
+msgstr "Päisefailid (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Kasutaja käsud"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Kasutaja käsud (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Süsteemsed väljakutsed"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Alamfunktsioonid"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Perli moodulid"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Võrgufunktsioonid"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Seadmed"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Failide vormingud"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Mängud"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Muud"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Süsteemi haldamine"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Kernel"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Kohalik dokumentatsioon"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Uus"
+
+#: kio_man.cpp:805
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "Manuaalilehekülgede pearegister"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Sektsioon %1"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "Sektsiooni %1 register: %2"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Manual Page Index"
+msgstr "Manuaalilehekülgede register"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Registri genereerimine"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info"
+#| msgid ""
+#| "Could not find the <command>sgml2roff</command> program on your system. "
+#| "Please install it if necessary, and ensure that it can be found using the "
+#| "environment variable <envar>PATH</envar>."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Programmi <command>sgml2roff</command> ei leitud sinu süsteemist. Paigalda "
+"see, kui vaja, ning vaata, et see oleks leitav mõnest asukohast, millele "
+"viitab keskkonnamuutuja <envar>PATH</envar>."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "%1 avamine nurjus."
+
+#~ msgid "Man output"
+#~ msgstr "Manuaaliväljund"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Hasso Tepper, Marek Laane"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "hasso@linux.ee, bald@starman.ee"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

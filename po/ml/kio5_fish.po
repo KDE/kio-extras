@@ -1,0 +1,45 @@
+# Malayalam translation of kio_fish.
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kio_fish package.
+# Manu S Madhav <manusmad@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish trunk\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2008-07-07 01:03+0530\n"
+"Last-Translator: Manu|മനു S|എസ് Madhav|മാധവ് <manusmad@gmail.com>\n"
+"Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
+"discuss@googlegroups.com>\n"
+"Language: ml\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "ബന്ധപ്പെടുന്നു..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "നിയമാവലി ആരംഭിക്കുന്നു..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "പ്രാദേശിക ലോഗിന്‍"
+
+#: fish.cpp:630
+#, fuzzy, kde-format
+#| msgid "SSH Authorization"
+msgid "SSH Authentication"
+msgstr "എസ്.എസ്.എച്ച് അധികാരപ്പെടുത്തല്‍"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "ബന്ധം വിച്ഛേദിച്ചിരിക്കുന്നു."

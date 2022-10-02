@@ -1,0 +1,196 @@
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012.
+# Vit Pelcak <vit@pelcak.org>, 2013, 2014, 2019, 2020, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2021-09-07 15:23+0200\n"
+"Last-Translator: Vit Pelcak <vpelcak@suse.cz>\n"
+"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.08.1\n"
+
+#: kio_man.cpp:451
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"Zadaná manuálová stránka odkazuje na jinou stránku <filename>%1</filename>,"
+"<nl/> ale odkazovaná stránka <filename>%2</filename> nebyla nalezena."
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr "Manuálovou stránku <filename>%1</filename> nelze přečíst."
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr "Manuálovou stránku <filename>%1</filename> nelze převézt."
+
+#: kio_man.cpp:660
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "Chyba prohlížeče manuálových stránek"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "Nalezena více než jedna odpovídající manuálová stránka:"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "Vícero manuálových stránek"
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Poznámka: Lokalizované verze manuálových stránek mohou obsahovat chyby nebo "
+"mohou být zastaralé. Pokud máte jakékoliv pochybnosti, otevřete si anglickou "
+"verzi."
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr "Hlavičkové soubory"
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr "Hlavičkové soubory (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Uživatelské příkazy"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Uživatelské příkazy (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Systémová volání"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Funkce"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Moduly Perl"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Síťové funkce"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Zařízení"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Datové formáty"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Hry"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Různé"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Administrace systému"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Jádro"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Místní dokumentace"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Nové"
+
+#: kio_man.cpp:805
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "Hlavní index manuálových stránek"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Sekce %1"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "Index sekce %1: %2"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Manual Page Index"
+msgstr "Index manuálových stránek"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Vytvářím rejstřík"
+
+#: kio_man.cpp:1407
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Nebyl nalezen program <command>%1</command>. Prosím, nainstalujte jej pokud "
+"je potřeba a ujistěte se, že jej lze nají v proměnné prostředí <envar>PATH</"
+"envar>."

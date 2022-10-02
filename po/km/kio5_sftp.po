@@ -1,0 +1,327 @@
+# translation of kio_sftp.po to Khmer
+# Khoem Sokhem <khoemsokhem@khmeros.info>, 2005, 2007, 2008, 2009, 2010, 2012.
+# Eng Vannak <evannak@khmeros.info>, 2007.
+# Auk Piseth <piseth_dv@khmeros.info>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2012-07-11 09:43+0700\n"
+"Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
+"Language-Team: Khmer <support@khmeros.info>\n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kio_sftp.cpp:226
+#, fuzzy, kde-format
+#| msgid "Incorrect or invalid passpharse"
+msgid "Incorrect or invalid passphrase"
+msgstr "​ពាក្យ​សម្ងាត់​មិន​ត្រឹម​ត្រូវ"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "មិនអាច​បម្រុង​ការហៅ​ត្រឡប់​បាន​ទេ"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "មិនអាច​ចុះ​កំណត់​ហេតុរៀបរាប់​បានទេ ។​"
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not set log verbosity."
+msgid "Could not set log userdata."
+msgstr "មិនអាច​ចុះ​កំណត់​ហេតុរៀបរាប់​បានទេ ។​"
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not allocate callbacks"
+msgid "Could not set log callback."
+msgstr "មិនអាច​បម្រុង​ការហៅ​ត្រឡប់​បាន​ទេ"
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "ការ​ចូល SFTP"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "ប្រើ​វាល​បញ្ចូល​ឈ្មោះអ្នកប្រើ ដើម្បី​ឆ្លើយ​សំណួរ​នេះ ។"
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "សូម​បញ្ចូល​​ពាក្យ​សម្ងាត់​របស់​អ្នក ។"
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "តំបន់​បណ្ដាញ ៖​"
+
+#: kio_sftp.cpp:417
+#, fuzzy, kde-format
+#| msgid "Could not read link: %1"
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "មិនអាចអាន​តំណ​បានទេ ៖ %1"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "មិនអាច​បង្កើត​សម័យ SSH ថ្មី​បានទេ ។"
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "មិនអាច​កំណត់​រយៈពេល​អស់​ពេល​បានទេ ។"
+
+#: kio_sftp.cpp:561
+#, fuzzy, kde-format
+#| msgid "Could not set port."
+msgid "Could not disable Nagle's Algorithm."
+msgstr "មិនអាច​កំណត់​ច្រក​បានទេ ។"
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "មិនអាច​កំណត់​ការ​បង្ហាប់បានទេ ។"
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "មិនអាច​កំណត់ម៉ាស៊ីន​បាន​ទេ ។"
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "មិនអាច​កំណត់​ច្រក​បានទេ ។"
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "មិនអាច​កំណត់​ឈ្មោះ​អ្នកប្រើបានទេ ។"
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "មិន​អាច​ញែក​ឯកសារ​កំណត់​រចនាសម្ព័ន្ធ​បានទេ ។"
+
+#: kio_sftp.cpp:616
+#, fuzzy, kde-kuit-format
+#| msgid "Opening SFTP connection to host %1:%2"
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "បើក​ការ​តភ្ជាប់ SFTP ទៅ​ម៉ាស៊ីន %1:%2"
+
+#: kio_sftp.cpp:656
+#, fuzzy, kde-format
+#| msgid "Could not set username."
+msgid "Could not get server public key type name"
+msgstr "មិនអាច​កំណត់​ឈ្មោះ​អ្នកប្រើបានទេ ។"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+
+#: kio_sftp.cpp:738
+#, fuzzy, kde-format
+#| msgid ""
+#| "The host key for this server was not found, but another type of key "
+#| "exists.\n"
+#| "An attacker might change the default server key to confuse your client "
+#| "into thinking the key does not exist.\n"
+#| "Please contact your system administrator.\n"
+#| "%1"
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"រក​មិនឃើញ​គ្រាប់​ចុច​ម៉ាស៊ីន​សម្រាប់​ម៉ាស៊ីន​បម្រើនេះ​​ទេ ប៉ុន្តែ​មាន​ប្រភេទ​គ្រាប់​ចុច​ផ្សេង​ទៀត​ហើយ ។\n"
+"អ្នក​វាយ​ប្រហារ​អាច​ផ្លាស់ប្ដូរ​គ្រាប់ចុច​ម៉ាស៊ីន​បម្រើ​លំនាំដើម​ ដើម្បី​ធ្វើ​ឲ្យ​ម៉ាស៊ីន​របស់​អ្នក​ច្រឡំ​ក្នុងការ​គិត​អំពី​"
+"គ្រាប់​ចុច​ដែល​មិន​ទាន់​មាន ។\n"
+"សូម​ទាក់ទង​អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ​របស់​អ្នក ។\n"
+"%1"
+
+#: kio_sftp.cpp:756
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr ""
+
+#: kio_sftp.cpp:757
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"គ្រាប់​ចុច​ម៉ាស៊ីន​សម្រាប់​ម៉ាស៊ីន​បម្រើ %1 បាន​ផ្លាស់ប្ដូរ ។\n"
+"វាអាច​មានន័យ​ថា DNS SPOOFING កំពុង​កើត​ឡើង ឬ​អាសយដ្ឋាន IP សម្រាប់​ម៉ាស៊ីន​ និង​គ្រាប់ចុច​របស់​វា​"
+"បានផ្លាស់ប្ដូរ​នៅ​ពេល​តែ​មួយ ។\n"
+"ស្នាម​ម្រាមដៃ​សម្រាប់គ្រាប់ចុច​បាន​ផ្ញើ​ដោយ​ម៉ាស៊ីន​ពី​ចម្ងាយ​គឺ ៖\n"
+" %2\n"
+"សូម​ទាក់ទង​អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ​របស់​អ្នក ។\n"
+"%3"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The key fingerprint is: %2\n"
+#| "Are you sure you want to continue connecting?"
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ​របស់​ម៉ាស៊ីន %1 មិនអាច​ត្រូវ​បានបង្កើត​ទេ ។\n"
+"សោ​ស្នាម​ម្រាមដៃ​គឺ ៖ %2\n"
+"តើ​អ្នកប្រាកដ​ជា​ចង់​បន្ត​ការ​តភ្ជាប់​ដែរឬទេ ?"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "ការ​ផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ​បាន​បរាជ័យ ។"
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "សូម​បញ្ចូល​ឈ្មោះ​អ្នក​ប្រើ និង​ពាក្យ​សម្ងាត់​របស់​អ្នក ។"
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "ឈ្មោះ​អ្នក​ប្រើ ឬ​ពាក្យ​សម្ងាត់​មិន​ត្រឹម​ត្រូវ"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr "មិនអាច​ស្នើ​ប្រព័ន្ធ​រង​របស់ SFTP បាន​ទេ ។ សូម​ប្រាកដថា SFTP ត្រូវ​បានបើក​នៅ​លើ​ម៉ាស៊ីន​បម្រើ ។"
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "មិន​អាច​ចាប់ផ្ដើម​សម័យ SFTP បាន​ទេ ។"
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "បាន​ត​ភ្ជាប់​ទៅ %1 ដោយ​ជោគជ័យ"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"មិន​អាច​ផ្លាស់ប្ដូរ​សិទ្ធិ​សម្រាប់\n"
+"%1 បាន​ទេ"
+
+#, fuzzy
+#~| msgid ""
+#~| "The host key for the server %1 has changed.\n"
+#~| "This could either mean that DNS SPOOFING is happening or the IP address "
+#~| "for the host and its host key have changed at the same time.\n"
+#~| "The fingerprint for the key sent by the remote host is:\n"
+#~| " %2\n"
+#~| "Please contact your system administrator.\n"
+#~| "%3"
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "គ្រាប់​ចុច​ម៉ាស៊ីន​សម្រាប់​ម៉ាស៊ីន​បម្រើ %1 បាន​ផ្លាស់ប្ដូរ ។\n"
+#~ "វាអាច​មានន័យ​ថា DNS SPOOFING កំពុង​កើត​ឡើង ឬ​អាសយដ្ឋាន IP សម្រាប់​ម៉ាស៊ីន​ និង​គ្រាប់ចុច​របស់​វា​"
+#~ "បានផ្លាស់ប្ដូរ​នៅ​ពេល​តែ​មួយ ។\n"
+#~ "ស្នាម​ម្រាមដៃ​សម្រាប់គ្រាប់ចុច​បាន​ផ្ញើ​ដោយ​ម៉ាស៊ីន​ពី​ចម្ងាយ​គឺ ៖\n"
+#~ " %2\n"
+#~ "សូម​ទាក់ទង​អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ​របស់​អ្នក ។\n"
+#~ "%3"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "ព្រមាន ៖ មិន​អាច​ផ្ទៀត​ផ្ទាត់​អត្តសញ្ញាណ​របស់​ម៉ាស៊ីន ។"
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "រក​មិនឃើញ​គ្រាប់​ចុច​ម៉ាស៊ីន​សម្រាប់​ម៉ាស៊ីន​បម្រើនេះ​​ទេ ប៉ុន្តែ​មាន​ប្រភេទ​គ្រាប់​ចុច​ផ្សេង​ទៀត​ហើយ ។\n"
+#~ "អ្នក​វាយ​ប្រហារ​អាច​ផ្លាស់ប្ដូរ​គ្រាប់ចុច​ម៉ាស៊ីន​បម្រើ​លំនាំដើម​ ដើម្បី​ធ្វើ​ឲ្យ​ម៉ាស៊ីន​របស់​អ្នក​ច្រឡំ​ក្នុងការ​គិត​អំពី​"
+#~ "គ្រាប់​ចុច​ដែល​មិន​ទាន់​មាន ។\n"
+#~ "សូម​ទាក់ទង​អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ​របស់​អ្នក ។\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "កា​រផ្ទៀងផ្ទាត់​ភាព​ត្រឹមត្រូវ​របស់​ម៉ាស៊ីន %1 មិនអាច​ត្រូវ​បានបង្កើត​ទេ ។\n"
+#~ "សោ​ស្នាម​ម្រាមដៃ​គឺ ៖ %2\n"
+#~ "តើ​អ្នកប្រាកដ​ជា​ចង់​បន្ត​ការ​តភ្ជាប់​ដែរឬទេ ?"
+
+#~ msgid "No hostname specified."
+#~ msgstr "គ្មាន​ឈ្មោះ​ម៉ាស៊ីន​បាន​បញ្ជាក់​ទេ ។"

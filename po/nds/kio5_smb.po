@@ -1,0 +1,195 @@
+# Translation of kio_smb.po to Low Saxon
+# Copyright (C) 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Heiko Evermann <heiko@evermann.de>, 2004.
+# Sönke Dibbern <s_dibbern@web.de>, 2005, 2006, 2007, 2008.
+# Manfred Wiese <m.j.wiese@web.de>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2008-04-29 20:04+0200\n"
+"Last-Translator: Manfred Wiese <m.j.wiese@web.de>\n"
+"Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
+"Language: nds\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>Bitte giff de Identiteetprööv-Angaven för <b>%1</b> in.</qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"Bitte giff de Identiteetprööv-Angaven in för:\n"
+"Server = %1\n"
+"Freegaav = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"Dateityp nich begäng, is keen Orner oder Datei."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"Dor lett sik keen Arbeitkoppel binnen Dien Nettwark finnen. De Oorsaak "
+"dorför kunn en aktiv Nettdiek wesen."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "Keen Medium in Reedschap för %1"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "Keen Verbinnen na den Reekner för %1"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "Fehler bi't Tokoppeln na den Reekner, de %1 passt."
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "Freegaav lett sik op den angeven Server nich finnen"
+
+#: kio_smb_browse.cpp:303
+#, fuzzy, kde-format
+#| msgid "BAD File descriptor"
+msgid "Bad file descriptor"
+msgstr "Dateideskriptor nich bruukbor"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"De angeven Naam lett sik nich to en enkelten Server oplösen. Prööv bitte, "
+"wat dat Nettwark ahn all Naamkonflikten twischen Windows- un Unix-"
+"Naamoplösen inricht is."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr ""
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"De Perzess \"libsmbclient\" meldt en Fehler, man gifft dat Problem nich an. "
+"Dat kann en echt Problem mit Dien Nettwark bedüden - oder ok en Problem mit "
+"libsmbclient.\n"
+"Wenn Du us hölpen wullt, maak mit \"tcpdump\" en Log för de Nettwark-"
+"Koppelsteed, wielt Du versöchst, in't Nettwark to stövern. (Beacht bitte, "
+"dat dit Log private Daten bargen kunn - wenn Du dat nich nau weetst, "
+"schullst Du dat nich apen maken. Wenn dor de Schrieverslüüd na fraagt, "
+"kannst Du se dat jümmers noch privaat toschicken.)"
+
+#: kio_smb_browse.cpp:334
+#, fuzzy, kde-format
+#| msgid "Unknown error condition in stat: %1"
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "Nich begäng Fehlerbedingen in stat: %1"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr ""
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "\"libsmbclient\" sloog bi't Opstellen vun den Kontext fehl"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"Prööv, wat dat Samba-Paket richtig op Dien Systeem installeert is."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"Inhangen vun Freegaav \"%1\" op Reekner \"%2\" dör Bruker \"%3\" fehlslaan.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"Afhangen ut \"%1\" fehlslaan.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr ""
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "\"libsmbclient\" sloog bi't Torechtmaken vun den Kontext fehl"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "Dat gifft keen Datei \"%1\""
+
+#~ msgid "libsmbclient failed to initialize"
+#~ msgstr "\"libsmbclient\" sloog bi't Torechtmaken fehl"

@@ -1,0 +1,234 @@
+# kactivitymanagerd_fileitem_linking_plugin.po translation el
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Stelios <sstavra@gmail.com>, 2012.
+# Antonis Geralis <gaantonio@civil.auth.gr>, 2013, 2014.
+# Dimitris Kardarakos <dimkard@gmail.com>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: kactivitymanagerd_fileitem_linking_plugin\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2015-11-05 11:15+0200\n"
+"Last-Translator: Dimitris Kardarakos <dimkard@gmail.com>\n"
+"Language-Team: Greek <kde-i18n-el@kde.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "Δραστηριότητες"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "Φόρτωση..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "Ο διαχειριστής δραστηριοτήτων δεν εκτελείται"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "Σύνδεση στην τρέχουσα δραστηριότητα"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "Αποσύνδεση από την τρέχουσα δραστηριότητα"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "Σύνδεση σε:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "Αποσύνδεση από:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "Δραστηριότητα"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "Τρέχουσα δραστηριότητα"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Stelios"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "sstavra@gmail.com"
+
+#~ msgid "Default"
+#~ msgstr "Προκαθορισμένη"
+
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "Εναλλαγή στη δραστηριότητα \"%1\""
+
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "Δραστηριότητα"
+
+#~ msgid "Delete activity"
+#~ msgstr "Διαγραφή δραστηριότητας"
+
+#~ msgid "Are you sure you want to delete '%1'?"
+#~ msgstr "Επιθυμείτε σίγουρα τη διαγραφή του '%1';"
+
+#~ msgid "Create a new activity"
+#~ msgstr "Δημιουργία νέας δραστηριότητας"
+
+#~ msgid "Activity settings"
+#~ msgstr "Ρυθμίσεις δραστηριοτήτων"
+
+#~ msgid "General"
+#~ msgstr "Γενικά"
+
+#~ msgid "Create"
+#~ msgstr "Δημιουργία"
+
+#~ msgid "Apply"
+#~ msgstr "Εφαρμογή"
+
+#~ msgid "Cancel"
+#~ msgstr "Ακύρωση"
+
+#~ msgid "Shortcut for switching to this activity:"
+#~ msgstr "Συντόμευση για μετάβαση σε αυτή τη δραστηριότητα"
+
+#~ msgid "Activity information"
+#~ msgstr "Πληροφορίες δραστηριοτήτων"
+
+#~ msgid "Name"
+#~ msgstr "Όνομα"
+
+#~ msgid "Description"
+#~ msgstr "Περιγραφή"
+
+#~ msgid "Wallpaper"
+#~ msgstr "Ταπετσαρία"
+
+#~ msgid "Change..."
+#~ msgstr "Αλλαγή..."
+
+#~ msgid "Icon"
+#~ msgstr "Εικονίδιο"
+
+#~ msgid "Switching"
+#~ msgstr "Εναλλαγή"
+
+#~ msgid "Privacy"
+#~ msgstr "Ιδιωτικό απόρρητο"
+
+#~ msgctxt "unlimited number of months"
+#~ msgid "forever"
+#~ msgstr "για πάντα"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "Να ξεχαστεί η τελευταία ώρα"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "Να ξεχαστούν οι δύο τελευταίες ώρες"
+
+#~ msgid "Forget a day"
+#~ msgstr "Να ξεχαστεί η ημέρα"
+
+#~ msgid "Forget everything"
+#~ msgstr "Να ξεχαστούν όλα"
+
+#~ msgctxt "unit of time. months to keep the history"
+#~ msgid " month"
+#~ msgid_plural " months"
+#~ msgstr[0] " μήνας"
+#~ msgstr[1] "μήνες"
+
+#~ msgctxt "for in 'keep history for 5 months'"
+#~ msgid "for "
+#~ msgstr "για "
+
+#~ msgid "Create activity..."
+#~ msgstr "Δημιουργία δραστηριότητας..."
+
+#~ msgid "Activity switching"
+#~ msgstr "Εναλλαγή δραστηριοτήτων"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities"
+#~ msgstr "Διάσχιση δραστηριοτήτων "
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities (Reverse)"
+#~ msgstr "Διάσχιση δραστηριοτήτων (αντίστροφα)"
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "Απομνημόνευση ανοιχτών εγγράφων:"
+
+#~ msgid "For a&ll applications"
+#~ msgstr "Για όλες τις ε&φαρμογές"
+
+#~ msgid "&Do not remember"
+#~ msgstr "Να μη γίνει απο&μνημόνευση"
+
+#~ msgid "O&nly for specific applications"
+#~ msgstr "Μόνο για ο&ρισμένες εφαρμογές"
+
+#~ msgid "Keep history"
+#~ msgstr "Διατήρηση ιστορικού"
+
+#~ msgid "Clear recent history"
+#~ msgstr "Καθαρισμός πρόσφατου ιστορικού"
+
+#~ msgid "Blacklist all applications not on this list"
+#~ msgstr ""
+#~ "Να μπουν σε μαύρη λίστα όλες οι εφαρμογές που δεν είναι σε αυτήν τη λίστα"
+
+#~ msgid ""
+#~ "Remember the current virtual desktop for each activity (needs restart)"
+#~ msgstr ""
+#~ "Απομνημόνευση της τρέχουσας εικονικής επιφάνειας εργασίας για κάθε "
+#~ "δραστηριότητα (απαιτείται επανεκκίνηση)"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Συντομεύσεις"
+
+#, fuzzy
+#~| msgid "Activities..."
+#~ msgid "Activity name"
+#~ msgstr "Δραστηριότητες..."
+
+#~ msgid "Available Features"
+#~ msgstr "Διαθέσιμες λειτουργίες"
+
+#~ msgid "Plugins"
+#~ msgstr "Πρόσθετα"
+
+#~ msgid "Enable activities management"
+#~ msgstr "Ενεργοποίηση διαχείρισης δραστηριοτήτων"
+
+#~ msgid "Activity manager is not running properly."
+#~ msgstr "Ο διαχειριστής δραστηριοτήτων δεν εκτελείται κανονικά."
+
+#~ msgid "Activities..."
+#~ msgstr "Δραστηριότητες..."
+
+#~ msgid "(c) 2012 Ivan Cukic"
+#~ msgstr "(c) 2012 Ivan Cukic"

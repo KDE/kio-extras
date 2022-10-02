@@ -1,0 +1,58 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeorg\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2022-09-20 01:55\n"
+"Last-Translator: \n"
+"Language-Team: Chinese Simplified\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: kdeorg\n"
+"X-Crowdin-Project-ID: 269464\n"
+"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-File: /kf5-trunk/messages/kio-extras/kio5_nfs.pot\n"
+"X-Crowdin-File-ID: 5459\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr "无法找到主机“%1”支持的 NFS 版本"
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "NFS 协议必须填写服务器的主机名。"
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr "初始化协议失败"
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "RPC 错误 %1，%2"
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "文件名太长"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "超出磁盘配额"
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "NFS 错误 %1，%2"
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr "未知目标"

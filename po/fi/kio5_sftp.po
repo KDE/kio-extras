@@ -1,0 +1,467 @@
+# Finnish messages for kio_sftp.
+# Copyright © 2002, 2003, 2004, 2005, 2008 Free Software Foundation, Inc.
+# This file is distributed under the same license as the kdebase package.
+# Kim Enkovaara <kim.enkovaara@iki.fi>, 2002, 2003.
+# Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2003, 2008.
+# Tapio Kautto <eleknader@phnet.fi>, 2004.
+# Ilpo Kantonen <ilpo@iki.fi>, 2005.
+# Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2008.
+# Tommi Nieminen <translator@legisign.org>, 2010, 2011, 2018, 2022.
+# Jorma Karvonen <karvonen.jorma@gmail.com>, 2011.
+# Lasse Liehu <lasse.liehu@gmail.com>, 2012, 2013, 2014.
+# Copyright © 2011 This_file_is_part_of_KDE
+#
+# KDE Finnish translation sprint participants:
+# Author: Artnay
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2022-08-05 12:17+0300\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-POT-Import-Date: 2012-12-01 22:22:14+0000\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Virheellinen salasana"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "Ei voitu varata callback-funktioita"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "Lokin tarkkuutta ei voitu asettaa."
+
+#: kio_sftp.cpp:294
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "Lokin userdata-arvoa ei voitu asettaa."
+
+#: kio_sftp.cpp:299
+#, kde-format
+msgid "Could not set log callback."
+msgstr "Lokin callback-funktiota ei voitu asettaa."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "SFTP-kirjautuminen"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "Vastaa kysymykseen käyttäjätunnuskentän arvolla."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "Anna salasanasi."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "Palvelin:"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Linkkiä ei voitu lukea: %1 [%2]"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "SSH-istuntoa ei voitu luoda."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "Aikakatkaisua ei voitu asettaa."
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Naglen algoritmia ei voitu poistaa käytöstä."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "Pakkausta ei voitu asettaa."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "Palvelinta ei voitu asettaa."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "Porttia ei voitu asettaa."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "Käyttäjätunnusta ei voitu asettaa."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "Asetustiedostoa ei voitu jäsentää."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Avataan SFTP-yhteyttä palvelimeen %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr "Palvelimen julkisen avaimen tyyppinimeä ei saatu"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "Tiivistettä ei voitu luoda palvelimen julkisesta avaimesta"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr "Palvelimen julkisen avaimen sormenjäljen luominen epäonnistui"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Palvelimen %1-palvelinavainta ei löytynyt, mutta muun tyyppinen avain "
+"löytyi.\n"
+"Hyökkääjä voi muuttaa palvelimen oletusavainta saadakseen asiakasohjelman "
+"luulemaan, ettei avainta ole.\n"
+"Ota yhteyttä järjestelmän ylläpitäjään.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Koneen identiteetti on muuttunut"
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"<para>Palvelimen <emphasis>%1</emphasis> palvelinavain on muuttunut.</"
+"para><para>Tämä voi merkitä DNS spoofing -yritystä tai että palvelimen IP-"
+"osoite ja palvelinavain ovat muuttuneet yhtä aikaa.</"
+"para><para>Etäpalvelimen lähettämä %2-avaimen sormenjälki on: <bcode>%3</"
+"bcode> Haluatko varmasti jatkaa yhteydenottoa?</para>"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr "Koneen varmentaminen epäonnistui"
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"<para>Palvelimen <emphasis>%1</emphasis> oikeellisuutta ei voi vahvistaa.</"
+"para><para>%2-avaimen sormenjälki on: <bcode>%3</bcode> Haluatko varmasti "
+"jatkaa yhteydenottoa?</para>"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr "Yhdistä joka tapauksessa"
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Tunnistus epäonnistui."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+"Tunnistus epäonnistui. Palvelin ei lähettänyt yhtään tunnistautumistapaa"
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Anna käyttäjätunnuksesi ja salasanasi."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Virheellinen käyttäjätunnus tai salasana"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"SFTP-alijärjestelmään ei saatu yhteyttä. Varmista, että SFTP on käytössä "
+"palvelimessa."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "SFTP-istuntoa ei voitu alustaa."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Onnistunut yhteys palvelimelle %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr "Virheellinen sftp-konteksti"
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"Ei voitu muuttaa oikeuksia kohteelle\n"
+"%1"
+
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "Palvelimen %1 palvelinavain on muuttunut.\n"
+#~ "Tämä voi merkitä DNS-spoofing-yritystä tai että palvelimen IP-osoite ja "
+#~ "palvelinavain ovat muuttuneet yhtä aikaa.\n"
+#~ "Etäpalvelimen lähettämän %2-avaimen sormenjälki on:\n"
+#~ "  SHA256:%3\n"
+#~ "Ota yhteys järjestelmän ylläpitäjään.\n"
+#~ "%4"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Varoitus: Ei voitu varmistaa palvelimen identiteettiä."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Palvelimen palvelinavainta ei löytynyt, mutta muun tyyppinen avain "
+#~ "löytyi.\n"
+#~ "Hyökkääjä voi muuttaa palvelimen oletusavainta saadakseen asiakasohjelman "
+#~ "luulemaan, ettei avainta ole.\n"
+#~ "Ota yhteyttä järjestelmän ylläpitäjään.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "Palvelimen %1 oikeellisuutta ei voitu vahvistaa.\n"
+#~ "Avaimen sormenjälki on: %2\n"
+#~ "Haluatko varmasti jatkaa yhteydenottoa?"
+
+#~ msgid "No hostname specified."
+#~ msgstr "Palvelimen nimeä ei annettu."
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "Tapahtui sisäinen virhe. Tee palvelupyyntö uudelleen."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "Anna käyttäjätunnuksesi ja avaimen salasana."
+
+#~ msgid "Connection failed."
+#~ msgstr "Yhteys epäonnistui."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "Etäpalvelin sulki yhteyden."
+
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "odottamaton SFTP-virhe: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP versio %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "Protokollavirhe."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "Tapahtui sisäinen virhe. Yritä uudelleen."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "Tapahtui tuntematon virhe kopioinnissa tiedostoon '%1'. Yritä uudelleen."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "Etäpalvelin ei tue tiedostojen uudelleennimeämistä."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "Etäpalvelin ei tue symboolisten linkkien tekemistä."
+
+#~ msgid "Connection closed"
+#~ msgstr "Yhteys suljettiin"
+
+#~ msgid "End of file."
+#~ msgstr "Tiedoston loppu."
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "SFTP komento epäonnistui tuntemattoman syyn johdosta"
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "SFTP palvelin vastaanotti huonon viestin."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "SFTP palvelin ei tue yrittämääsi toimenpidettä."
+
+#~ msgid "Error code: %1"
+#~ msgstr "Virhekoodi: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "Ei voitu määritellä alijärjestelmää ja komentoa samalla."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "ssh:n suorittamiseen ei annettu optioita."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "ssh prosessin suorittaminen epäonnistui."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "ssh prosessille keskustelussa tapahtui virhe."
+
+#~ msgid "Please supply a password."
+#~ msgstr "Anna salasana."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "Anna salasana yksityiselle SSH avaimellesi."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "Tunnistus palvelimelle %1 epäonnistui"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "Etäpalvelimen '%1' identiteettiä ei voitu tarkistaa, koska sen avain ei "
+#~ "ole \"known hosts\"-tiedostossa."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ " Käsin, lisää palvelimen avain \"known hosts\"-tiedostoon tai ota "
+#~ "yhteyttä ylläpitoon."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr ""
+#~ " Käsin, lisää palvelimen avain tiedostoon %1 tai ota yhteyttä ylläpitoon."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "Palvelimen '%1' identiteettiä ei voitu varmistaa. Palvelimen "
+#~ "tunnistetiedot ovat seuraavat:\n"
+#~ "%2\n"
+#~ "Sinun tulee varmistaa tunnistetiedot palvelimen ylläpidolta ennen "
+#~ "yhteydenottoa.\n"
+#~ "\n"
+#~ "Haluatko hyväksyä palvelimen tunnistetiedot ja avata yhteyden? "
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "VAROITUS: Palvelimen '%1' tunnistetiedot ovat muuttuneet!\n"
+#~ "\n"
+#~ "Joku voi salakuunnella yhteyttäsi, tai ylläpito on vaihtanut palvelimen "
+#~ "avaimia. Molemmissa tapauksissa sinun tulee varmistaa palvelimen "
+#~ "tunnistetiedot palvelimen ylläpitäjältä. Avaimen tunnistetiedot ovat:\n"
+#~ "%2\n"
+#~ "Lisää oikeat tunnistetiedot tiedostoon \"%3\" ohittaaksesi tämän viestin."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "VAROITUS: Palvelimen '%1' tunnistetiedot ovat muuttuneet!\n"
+#~ "\n"
+#~ "Joku voi salakuunnella yhteyttäsi, tai ylläpito on vaihtanut palvelimen "
+#~ "avaimia. Molemmissa tapauksissa sinun tulee varmistaa palvelimen "
+#~ "tunnistetiedot palvelimen ylläpitäjältä ennen yhteyttä. Avaimen "
+#~ "tunnistetiedot ovat:\n"
+#~ "%2\n"
+#~ "Haluatko hyväksyä uudet tunnistetiedot ja avata yhteyden?"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "Palvelimen avain hylättiin."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "Anna käyttäjätunnus ja salasana"
+
+#~ msgid "File does not exist."
+#~ msgstr "Tiedostoa ei ole olemassa."
+
+#~ msgid "Access is denied."
+#~ msgstr "Pääsy estetty."

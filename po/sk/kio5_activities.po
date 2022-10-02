@@ -1,0 +1,250 @@
+# translation of kactivities5.po to Slovak
+# Roman Paholík <wizzardsk@gmail.com>, 2014, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: kactivities5\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2015-12-27 12:14+0100\n"
+"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
+"Language-Team: Slovak <kde-sk@linux.sk>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "Aktivity"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "Načítava sa..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "Správca aktivít nebeží"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "Odkaz na aktuálnu aktivitu"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "Odlinkovať z aktuálnej aktivity"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "Odkaz na:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "Odlinkovať z:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "Aktivita"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "Aktuálna aktivita"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Roman Paholík"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "wizzardsk@gmail.com"
+
+#~ msgid "Default"
+#~ msgstr "Predvolené"
+
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "Prepnúť na aktivitu \"%1\""
+
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "Aktivity"
+
+#~ msgid "Delete activity"
+#~ msgstr "Vymazať aktivitu"
+
+#~ msgid "Are you sure you want to delete '%1'?"
+#~ msgstr "Naozaj chcete vymazať '%1'?"
+
+#~ msgid ""
+#~ "Error loading the QML files. Check your installation.\n"
+#~ "Missing %1"
+#~ msgstr ""
+#~ "Chyba načítania QML súborov. Skontrolujte vašu inštaláciu.\n"
+#~ "Chýba %1"
+
+#~ msgid "Create a new activity"
+#~ msgstr "Vytvoriť novú aktivitu"
+
+#~ msgid "Activity settings"
+#~ msgstr "Nastavenie aktivity"
+
+#~ msgid "General"
+#~ msgstr "Všeobecné"
+
+#~ msgid "Other"
+#~ msgstr "Iné"
+
+#~ msgid "Create"
+#~ msgstr "Vytvoriť"
+
+#~ msgid "Apply"
+#~ msgstr "Použiť"
+
+#~ msgid "Cancel"
+#~ msgstr "Zrušiť"
+
+#~ msgid "Shortcut for switching to this activity:"
+#~ msgstr "Skratka na prepínanie na túto aktivitu"
+
+#~ msgid "Activity information"
+#~ msgstr "Informácia o aktivite"
+
+#~ msgid "Name"
+#~ msgstr "Názov"
+
+#~ msgid "Description"
+#~ msgstr "Popis"
+
+#~ msgid "Wallpaper"
+#~ msgstr "Tapeta"
+
+#~ msgid "Change..."
+#~ msgstr "Zmeniť..."
+
+#~ msgid "Icon"
+#~ msgstr "Ikona"
+
+#~ msgid "Switching"
+#~ msgstr "Prepínanie"
+
+#~ msgid "Privacy"
+#~ msgstr "Súkromie"
+
+#~ msgctxt "unlimited number of months"
+#~ msgid "forever"
+#~ msgstr "navždy"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "Zabudnúť poslednú hodinu"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "Zabudnúť posledné dve hodiny"
+
+#~ msgid "Forget a day"
+#~ msgstr "Zabudnúť deň"
+
+#~ msgid "Forget everything"
+#~ msgstr "Zabudnúť všetko"
+
+#~ msgctxt "unit of time. months to keep the history"
+#~ msgid " month"
+#~ msgid_plural " months"
+#~ msgstr[0] " mesiac"
+#~ msgstr[1] " mesiace"
+#~ msgstr[2] " mesiacov"
+
+#~ msgctxt "for in 'keep history for 5 months'"
+#~ msgid "for "
+#~ msgstr "pre "
+
+#~ msgid "Create activity..."
+#~ msgstr "Vytvoriť aktivitu..."
+
+#~ msgid "Activity switching"
+#~ msgstr "Prepínanie aktivít"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities"
+#~ msgstr "Prechádzať cez aktivity"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities (Reverse)"
+#~ msgstr "Prechádzať cez aktivity (spätne)"
+
+#~ msgid "Form"
+#~ msgstr "Formulár"
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "Zapamätať si otvorené dokumenty:"
+
+#~ msgid "For a&ll applications"
+#~ msgstr "Pre všetky aplikácie"
+
+#~ msgid "&Do not remember"
+#~ msgstr "Nezapamätať si"
+
+#~ msgid "O&nly for specific applications"
+#~ msgstr "Iba pre špecifické aplikácie"
+
+#~ msgid "Keep history"
+#~ msgstr "Ponechať históriu"
+
+#~ msgid "Clear recent history"
+#~ msgstr "Vyčistiť nedávnu históriu"
+
+#~ msgid "Blacklist all applications not on this list"
+#~ msgstr "Vylúčiť všetky aplikácie, ktoré nie sú na zozname"
+
+#~ msgid ""
+#~ "Remember the current virtual desktop for each activity (needs restart)"
+#~ msgstr ""
+#~ "Zapamätať si aktuálnu virtuálnu plochu pre každú aktivitu (potrebuje "
+#~ "reštart)"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Skratky"
+
+#~ msgid "Private - do not track usage for this activity"
+#~ msgstr "Súkromná - nesledovať používanie pre túto aktivitu"
+
+#~ msgid "Delete"
+#~ msgstr "Vymazať"
+
+#~ msgid "Activity name"
+#~ msgstr "Názov aktivity"
+
+#~ msgid "Available Features"
+#~ msgstr "Dostupné funkcie"
+
+#~ msgid "Plugins"
+#~ msgstr "Moduly"
+
+#~ msgid "Enable activities management"
+#~ msgstr "Povoliť správu aktivít"
+
+#~ msgid "Activity manager is not running properly."
+#~ msgstr "Správca aktivít nebeží správne."
+
+#~ msgid "Activities..."
+#~ msgstr "Aktivity..."
+
+#~ msgid "(c) 2012 Ivan Cukic"
+#~ msgstr "(c) 2012 Ivan Cukic"
+
+#~ msgctxt "Header title for resource data model"
+#~ msgid "Resource"
+#~ msgstr "Zdroj"

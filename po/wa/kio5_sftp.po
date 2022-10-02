@@ -1,0 +1,334 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Jean Cayron <jean.cayron@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2010-01-22 14:27+0100\n"
+"Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
+"Language-Team: Walloon <linux-wa@walon.org>\n"
+"Language: wa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_sftp.cpp:226
+#, fuzzy, kde-format
+#| msgid "Incorrect username or password"
+msgid "Incorrect or invalid passphrase"
+msgstr "Måva no d' uzeu ou scret"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr ""
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr ""
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not initialize the SFTP session."
+msgid "Could not set log userdata."
+msgstr "Dji n' a savou inicialijhî l' session SFTP."
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not initialize the SFTP session."
+msgid "Could not set log callback."
+msgstr "Dji n' a savou inicialijhî l' session SFTP."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "Login SFTP"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "Siervoz do tchamp d' intrêye no d' uzeu po responde a cisse kesse."
+
+#: kio_sftp.cpp:365
+#, fuzzy, kde-format
+#| msgid "Please enter your username and password."
+msgid "Please enter your password."
+msgstr "Intrez vosse no d' uzeu et vosse sicret, s' i vs plait."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, fuzzy, kde-format
+#| msgid "site:"
+msgid "Site:"
+msgstr "waibe :"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr ""
+
+#: kio_sftp.cpp:539
+#, fuzzy, kde-format
+#| msgid "Could not initialize the SFTP session."
+msgid "Could not create a new SSH session."
+msgstr "Dji n' a savou inicialijhî l' session SFTP."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr ""
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr ""
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, fuzzy, kde-format
+#| msgid "Could not initialize the SFTP session."
+msgid "Could not set compression."
+msgstr "Dji n' a savou inicialijhî l' session SFTP."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr ""
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr ""
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr ""
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr ""
+
+#: kio_sftp.cpp:616
+#, fuzzy, kde-kuit-format
+#| msgid "Opening SFTP connection to host %1:%2"
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Dji drove li raloyaedje SFTP å lodjoe %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr ""
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+
+#: kio_sftp.cpp:738
+#, fuzzy, kde-format
+#| msgid ""
+#| "The host key for this server was not found, but another type of key "
+#| "exists.\n"
+#| "An attacker might change the default server key to confuse your client "
+#| "into thinking the key does not exist.\n"
+#| "Please contact your system administrator.\n"
+#| "%1"
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Dji n' a nén trové l' clé do lodjoe po c' sierveu ci mins ene ôte sôre di "
+"clé egzistêye.\n"
+"En atakeu pôreut candjî l' prémetowe clé do sierveu po discatibuler vosse "
+"cliyint eyet pinser kel clé n' egzistêye nén.\n"
+"Houkîz l' manaedjeu d' vosse sistinme s' i vs plait.\n"
+"%1"
+
+#: kio_sftp.cpp:756
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr ""
+
+#: kio_sftp.cpp:757
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"Li clé do lodjoe pol sierveu %1 a candjî.\n"
+"Ça pôreut soeye-t i voleur dire k' on DNS SPOOFING si passe ou k' l' adresse "
+"IP pol lodjoe eyet s' clé d' lodjoe ont candjî sol minme tins.\n"
+"Li trace di doet pol clé evoyeye pal lodjoe då lon est:\n"
+" %2\n"
+"Houkîz l' manaedjeu d' vosse sistinme s' i vs plait.\n"
+"%3"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The key fingerprint is: %2\n"
+#| "Are you sure you want to continue connecting?"
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"Dji n' sai nén dire sel lodjoe %1 est otintike.\n"
+"Li trace di doet del clé est: %2\n"
+"Estoz seur ki vs voloz continouwer a vs raloyî?"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "L' otintifiaedje a fwait berwete."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Intrez vosse no d' uzeu et vosse sicret, s' i vs plait."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Måva no d' uzeu ou scret"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"Dji n' sai dmander l' sistinme efant SFTP. Waitîz bén k' SFTP est en alaedje "
+"sol sierveu."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "Dji n' a savou inicialijhî l' session SFTP."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Raloyî comifåt a %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"Dji n' a seu candjî les permissions po\n"
+"%1"
+
+#, fuzzy
+#~| msgid ""
+#~| "The host key for the server %1 has changed.\n"
+#~| "This could either mean that DNS SPOOFING is happening or the IP address "
+#~| "for the host and its host key have changed at the same time.\n"
+#~| "The fingerprint for the key sent by the remote host is:\n"
+#~| " %2\n"
+#~| "Please contact your system administrator.\n"
+#~| "%3"
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "Li clé do lodjoe pol sierveu %1 a candjî.\n"
+#~ "Ça pôreut soeye-t i voleur dire k' on DNS SPOOFING si passe ou k' l' "
+#~ "adresse IP pol lodjoe eyet s' clé d' lodjoe ont candjî sol minme tins.\n"
+#~ "Li trace di doet pol clé evoyeye pal lodjoe då lon est:\n"
+#~ " %2\n"
+#~ "Houkîz l' manaedjeu d' vosse sistinme s' i vs plait.\n"
+#~ "%3"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Adviertixhmint : dji n' sai verifyî l' idintité do lodjoe."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Dji n' a nén trové l' clé do lodjoe po c' sierveu ci mins ene ôte sôre di "
+#~ "clé egzistêye.\n"
+#~ "En atakeu pôreut candjî l' prémetowe clé do sierveu po discatibuler vosse "
+#~ "cliyint eyet pinser kel clé n' egzistêye nén.\n"
+#~ "Houkîz l' manaedjeu d' vosse sistinme s' i vs plait.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "Dji n' sai nén dire sel lodjoe %1 est otintike.\n"
+#~ "Li trace di doet del clé est: %2\n"
+#~ "Estoz seur ki vs voloz continouwer a vs raloyî?"
+
+#, fuzzy
+#~| msgid "No hostname specified"
+#~ msgid "No hostname specified."
+#~ msgstr "Vos n' avoz nén dné di no d' lodjoe"

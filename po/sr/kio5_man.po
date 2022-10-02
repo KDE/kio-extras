@@ -1,0 +1,188 @@
+# Translation of kio5_man.po into Serbian.
+# Toplica Tanaskovic <toptan@kde.org.yu>, 2003.
+# Chusslove Illich <caslav.ilic@gmx.net>, 2005, 2007, 2008, 2009, 2012, 2017.
+# Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2009, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio5_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2020-04-06 03:18+0200\n"
+"PO-Revision-Date: 2017-09-28 18:00+0200\n"
+"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+
+#: kio_man.cpp:480
+#, kde-format
+msgid ""
+"No man page matching to %1 found.<br /><br />Check that you have not "
+"mistyped the name of the page that you want.<br />Check that you have typed "
+"the name using the correct upper and lower case characters.<br />If "
+"everything looks correct, then you may need to improve the search path for "
+"man pages; either using the environment variable MANPATH or using a matching "
+"file in the /etc directory."
+msgstr ""
+"<html>Није нађена ниједна упутна страница која одговара %1.<br/><br/"
+">Проверите да ли сте исправно унели име странице коју желите.<br/>Не "
+"заборавите да морате пазити на разлику великих и малих слова.<br/>Ако све "
+"делује тачно, можда морате задати бољу путању тражења упутних страница, или "
+"у променљивој окружења <tt>$MANPATH</tt> или у одговарајућем фајлу у "
+"фасцикли <tt>/etc</tt>.</html>"
+
+#: kio_man.cpp:511
+#, kde-format
+msgid "Open of %1 failed."
+msgstr "Отварање %1 није успело."
+
+#: kio_man.cpp:581
+#, kde-format
+msgid ""
+"The specified man page referenced another page '%1',<br />but the referenced "
+"page '%2' could not be found."
+msgstr ""
+
+#: kio_man.cpp:617 kio_man.cpp:636
+#, kde-format
+msgid "Man output"
+msgstr "Излаз наредбе man"
+
+#: kio_man.cpp:621
+#, kde-format
+msgid "<h1>KDE Man Viewer Error</h1>"
+msgstr "<h1>Грешка КДЕ‑овог приказивача упутних страница</h1>"
+
+#: kio_man.cpp:640
+#, kde-format
+msgid "There is more than one matching man page."
+msgstr "Више од једне упутне странице одговара упиту."
+
+#: kio_man.cpp:651
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Напомена: Ако читате упутну страницу на свом језику, имајте на уму да може "
+"имати неке грешке или бити застарела. Ако посумњате, погледајте и енглеску "
+"верзију."
+
+#: kio_man.cpp:728
+#, kde-format
+msgid "Header files"
+msgstr "Фајлови заглавља"
+
+#: kio_man.cpp:729
+#, kde-format
+msgid "Header files (POSIX)"
+msgstr "Фајлови заглавља (ПОСИКС)"
+
+#: kio_man.cpp:730
+#, kde-format
+msgid "User Commands"
+msgstr "Корисничке наредбе"
+
+#: kio_man.cpp:731
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Корисничке наредбе (ПОСИКС)"
+
+#: kio_man.cpp:732
+#, kde-format
+msgid "System Calls"
+msgstr "Системски позиви"
+
+#: kio_man.cpp:733
+#, kde-format
+msgid "Subroutines"
+msgstr "Подрутине"
+
+#: kio_man.cpp:734
+#, kde-format
+msgid "Perl Modules"
+msgstr "Перловски модули"
+
+#: kio_man.cpp:735
+#, kde-format
+msgid "Network Functions"
+msgstr "Мрежне функције"
+
+#: kio_man.cpp:736
+#, kde-format
+msgid "Devices"
+msgstr "Уређаји"
+
+#: kio_man.cpp:737
+#, kde-format
+msgid "File Formats"
+msgstr "Формати фајлова"
+
+#: kio_man.cpp:738
+#, kde-format
+msgid "Games"
+msgstr "Игре"
+
+#: kio_man.cpp:739
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Разно"
+
+#: kio_man.cpp:740
+#, kde-format
+msgid "System Administration"
+msgstr "Администрација система"
+
+#: kio_man.cpp:741
+#, kde-format
+msgid "Kernel"
+msgstr "Језгро"
+
+#: kio_man.cpp:742
+#, kde-format
+msgid "Local Documentation"
+msgstr "Локална документација"
+
+# >> @title Section of man pages, as the several above
+#: kio_man.cpp:743
+#, kde-format
+msgid "New"
+msgstr "Ново"
+
+#: kio_man.cpp:778 kio_man.cpp:782 kio_man.cpp:1133
+#, kde-format
+msgid "UNIX Manual Index"
+msgstr "Индекс уникс упута"
+
+#: kio_man.cpp:808
+#, kde-format
+msgid "Section %1"
+msgstr "Одељак %1"
+
+#: kio_man.cpp:1142
+#, kde-format
+msgid "Index for Section %1: %2"
+msgstr "Индекс за одељак %1: %2"
+
+#: kio_man.cpp:1147
+#, kde-format
+msgid "Generating Index"
+msgstr "Стварам индекс"
+
+#: kio_man.cpp:1412
+#, kde-format
+msgid ""
+"Could not find the sgml2roff program on your system. Please install it, if "
+"necessary, and extend the search path by adjusting the environment variable "
+"PATH before starting KDE."
+msgstr ""
+"Не могу да нађем наредбу sgml2roff. Инсталирајте је уколико је потребно, и "
+"проширите путању претраге допуњавањем променљиве окружења $PATH (пре него "
+"што се КДЕ покрене)."

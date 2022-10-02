@@ -1,0 +1,52 @@
+# translation of kio_fish.po to Estonian
+# Copyright (C) 2003 Free Software Foundation, Inc.
+#
+# Marek Laane <bald@online.ee>, 2003.
+# Marek Laane <bald@smail.ee>, 2009, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2012-10-10 09:07+0300\n"
+"Last-Translator: Marek Laane <bald@smail.ee>\n"
+"Language-Team: Estonian <kde-et@linux.ee>\n"
+"Language: et\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "Ühendamine..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "Protokolli initsialiseerimine..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "Kohalik sisselogimine"
+
+#: fish.cpp:630
+#, kde-format
+msgid "SSH Authentication"
+msgstr "SSH autentimine"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "Ühendus katkestatud."
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Marek Laane"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "bald@smail.ee"

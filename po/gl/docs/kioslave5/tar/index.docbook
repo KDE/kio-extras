@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Galician  "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="tar">
+<title
+>tar</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Ferdinand.Gassauer; &Ferdinand.Gassauer.mail;</author>
+<othercredit role="translator"
+><firstname
+>Marce</firstname
+><surname
+>Villarino</surname
+><affiliation
+><address
+><email
+>mvillarino@users.sourceforge.net</email
+></address
+></affiliation
+><contrib
+>Tradutor do proxecto Trasno</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+<para
+>Un programa de arquivo deseñado para gardar e extrair ficheiron dun arquivo coñecido por ficheiro tar. Un ficheiro tar pode gardarse nunha unidade de cinta, porén, tamén é frecuente escribilo a ficheiros normais. </para>
+
+<para
+>Consulte o manual: <ulink url="man:/tar"
+>tar</ulink
+>. </para>
+
+</article>

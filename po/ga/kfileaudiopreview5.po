@@ -1,0 +1,43 @@
+# Translation of kfileaudiopreview4.po to Irish.
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# Séamus Ó Ciardhuáin <seoc at iolfree.ie>, 2004.
+# Kevin Scannell <kscanne@gmail.com>, 2009
+msgid ""
+msgstr ""
+"Project-Id-Version: kfileaudiopreview4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-14 00:45+0000\n"
+"PO-Revision-Date: 2004-12-03 14:52-0500\n"
+"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 0.9.6\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
+"3 : 4\n"
+
+#: kfileaudiopreview.cpp:68
+#, kde-format
+msgid "Play &automatically"
+msgstr "Seinn go h&uathoibríoch"
+
+#: mediacontrols_p.h:39
+#, kde-format
+msgid "start playback"
+msgstr "tosaigh athsheinm"
+
+#: mediacontrols_p.h:44
+#, kde-format
+msgid "pause playback"
+msgstr "cuir athsheinm ar shos"
+
+#~ msgid "stop playback"
+#~ msgstr "stop an athsheinm"
+
+#~ msgid "loop: restarts playback at end"
+#~ msgstr "lúb: atosaíonn sé athsheinm ag an deireadh"
+
+#~ msgid "Media Player"
+#~ msgstr "Seinnteoir Meán"

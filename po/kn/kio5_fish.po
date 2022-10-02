@@ -1,0 +1,45 @@
+# translation of kio_fish.po to Kannada
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Umesh Rudrapatna <urudrapatna@yahoo.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2007-07-09 11:28+0530\n"
+"Last-Translator: Umesh Rudrapatna <urudrapatna@yahoo.com>\n"
+"Language-Team: Kannada <kde-l10n-kn@kde.org>\n"
+"Language: kn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "ಸಂಪರ್ಕಗೊಳ್ಳುತ್ತಿದೆ..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "ಪ್ರಕ್ರಮವನ್ನು (protocol) ಮೊದಲುಗೊಳಿಸಲಾಗುತ್ತಿದೆ (Initiating)..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "ಸ್ಥಳೀಯ ಪ್ರವೇಶ (Login)"
+
+#: fish.cpp:630
+#, fuzzy, kde-format
+#| msgid "SSH Authorization"
+msgid "SSH Authentication"
+msgstr "SSH ದೃಢೀಕರಣ (Authorization)"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "ಸಂಪರ್ಕವನ್ನು ತೊರೆಯಲಾಗಿದೆ."

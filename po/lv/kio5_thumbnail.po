@@ -1,0 +1,86 @@
+# translation of kio_thumbnail.po to Latvian
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Oskars <osk@one.lv>, 2007.
+# Maris Nartiss <maris.kde@gmail.com>, 2009, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2011-12-02 07:31+0200\n"
+"Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
+"Language-Team: Latvian\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "Nav atrasts MIME tips"
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "Izmērs nav noteikts vai tas ir nekorekts."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "Nevar izveidot sīktēlu mapei"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "Nav norādīts spraudnis"
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "Nevar ielādēt ThumbCreator %1"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "Nevar izveidot sīktēlu %1"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "Sīktēla izveide nav izdevusies."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "Nevar ierakstīt attēlu."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "Neizdevās pievienoties koplietošanas atmiņas apgabalam %1"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "Attēls ir pālāk liels izdalītajam atmiņas segmentam"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "Automātiski rotēt attēlu"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Oskars"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "osk@one.lv"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

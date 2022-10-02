@@ -1,0 +1,194 @@
+# translation of kio_smb.po to galician
+# Copyright (C) 2002, 2003, 2006, 2007, 2009 Free Software Foundation, Inc.
+# Javier Jardón <javierjc@mundo-r.com>, 2002, 2003.
+# Xabi G. Feal <xabigf@gmx.net>, 2006.
+# mvillarino <mvillarino@users.sourceforge.net>, 2007, 2009.
+# marce villarino <mvillarino@users.sourceforge.net>, 2009.
+# Marce Villarino <mvillarino@kde-espana.es>, 2012.
+# Adrián Chaves <adrian@chaves.io>, 2017, 2018, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2020-03-07 17:53+0100\n"
+"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 19.08.3\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr ""
+"<qt>Por favor, insira a información de autenticación para <b>%1</b></qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"Por favor, insira a información de autenticación para:\n"
+"Servidor = %1\n"
+"Recurso compartido = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"Tipo de ficheiro descoñecido, nin directorio nin ficheiro."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"Non se pode atopar ningún grupo de traballo na rede local. Isto pode deberse "
+"a unha devasa activada."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "Non hai ningún medio no dispositivo para %1"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "Non se puido conectar co servidor para %1"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "Erro ao conectarse ao servidor responsábel para %1"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "Non se puido atopar o recurso compartido no servidor dado"
+
+#: kio_smb_browse.cpp:303
+#, kde-format
+msgid "Bad file descriptor"
+msgstr "Descritor de ficheiro incorrecto"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"Non se puido resolver o nome fornecido a un único servidor. Verifique que a "
+"rede está configurada sen conflitos de nomes entre os empregados pola "
+"resolución de nomes de Windows e de UNIX."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr "%1: non se pode alcanzar o servidor"
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"libsmbclient devolveu un erro, pero non indicou cal. Isto pode indicar un "
+"problema grave na rede pero tamén pode indicar un problema con "
+"libsmbclient.\n"
+"Se nos quere axudar, forneza un tcpdump da interface de rede cando intente "
+"navegar (atención: esta información pode conter datos confidenciais, por iso "
+"non a envíe se non ten a certeza de que non os conteña. Pode enviala de "
+"forma privada aos desenvolvedores se eles lla piden)"
+
+#: kio_smb_browse.cpp:334
+#, fuzzy, kde-format
+#| msgid "Unknown error condition in stat: %1"
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "Condición de erro descoñecida ao obter o estado: %1"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr "Produciuse un erro ao intentar acceder a %1<nl/>%2"
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbclient non puido crear o contexto"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"Asegúrese de que o paquete samba está axeitadamente instalado no sistema."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"Fallou a montaxe da compartición «%1» do servidor «%2» polo usuario «%3».\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"Fallou a desmontaxe do punto «%1».\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr "Dispositivo descoñecido @ <resource>%1</resource>"
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "libsmbclient non puido inicializar o contexto"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "O ficheiro non existe: %1"

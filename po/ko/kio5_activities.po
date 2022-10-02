@@ -1,0 +1,244 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Shinjo Park <kde@peremen.name>, 2013, 2014, 2015, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2016-02-14 15:11+0100\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "활동"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "불러오는 중..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "활동 관리자가 실행되고 있지 않습니다"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "현재 활동으로 연결"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "현재 활동에서 연결 해제"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "다음으로 연결:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "다음에서 연결 해제:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "활동"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "현재 활동"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Shinjo Park"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "kde@peremen.name"
+
+#~ msgid "Default"
+#~ msgstr "기본값"
+
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "활동 \"%1\"(으)로 전환"
+
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "활동"
+
+#~ msgid "Delete activity"
+#~ msgstr "활동 삭제"
+
+#~ msgid "Are you sure you want to delete '%1'?"
+#~ msgstr "'%1'을(를) 삭제하시겠습니까?"
+
+#~ msgid ""
+#~ "Error loading the QML files. Check your installation.\n"
+#~ "Missing %1"
+#~ msgstr ""
+#~ "QML 파일을 불러올 수 없습니다. 설치 상태를 확인하십시오.\n"
+#~ "%1이(가) 없음"
+
+#~ msgid "Create a new activity"
+#~ msgstr "새 활동 만들기"
+
+#~ msgid "Activity settings"
+#~ msgstr "활동 설정"
+
+#~ msgid "General"
+#~ msgstr "일반"
+
+#~ msgid "Other"
+#~ msgstr "기타"
+
+#~ msgid "Create"
+#~ msgstr "생성"
+
+#~ msgid "Apply"
+#~ msgstr "적용"
+
+#~ msgid "Cancel"
+#~ msgstr "취소"
+
+#~ msgid "Shortcut for switching to this activity:"
+#~ msgstr "이 활동으로 전환하는 단축키:"
+
+#~ msgid "Activity information"
+#~ msgstr "활동 정보"
+
+#~ msgid "Name"
+#~ msgstr "이름"
+
+#~ msgid "Description"
+#~ msgstr "설명"
+
+#~ msgid "Wallpaper"
+#~ msgstr "배경 그림"
+
+#~ msgid "Change..."
+#~ msgstr "변경..."
+
+#~ msgid "Icon"
+#~ msgstr "아이콘"
+
+#~ msgid "Switching"
+#~ msgstr "전환"
+
+#~ msgid "Privacy"
+#~ msgstr "개인 정보"
+
+#~ msgctxt "unlimited number of months"
+#~ msgid "forever"
+#~ msgstr "영구"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "마지막 1시간 삭제"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "마지막 2시간 삭제"
+
+#~ msgid "Forget a day"
+#~ msgstr "마지막 하루 삭제"
+
+#~ msgid "Forget everything"
+#~ msgstr "모두 삭제"
+
+#~ msgctxt "unit of time. months to keep the history"
+#~ msgid " month"
+#~ msgid_plural " months"
+#~ msgstr[0] "개월"
+
+#~ msgctxt "for in 'keep history for 5 months'"
+#~ msgid "for "
+#~ msgstr "시간:"
+
+#~ msgid "Create activity..."
+#~ msgstr "활동 만들기..."
+
+#~ msgid "Activity switching"
+#~ msgstr "활동 전환"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities"
+#~ msgstr "활동간 전환"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities (Reverse)"
+#~ msgstr "활동간 전환(거꾸로)"
+
+#~ msgid "Form"
+#~ msgstr "폼"
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "열었던 문서 기억:"
+
+#~ msgid "For a&ll applications"
+#~ msgstr "모든 프로그램에 대해서(&L)"
+
+#~ msgid "&Do not remember"
+#~ msgstr "기억하지 않음(&D)"
+
+#~ msgid "O&nly for specific applications"
+#~ msgstr "특정한 프로그램에 대해서(&N)"
+
+#~ msgid "Keep history"
+#~ msgstr "과거 기록 저장"
+
+#~ msgid "Clear recent history"
+#~ msgstr "최근 기록 삭제"
+
+#~ msgid "Blacklist all applications not on this list"
+#~ msgstr "이 목록에 없는 프로그램 차단"
+
+#~ msgid ""
+#~ "Remember the current virtual desktop for each activity (needs restart)"
+#~ msgstr "각 활동별 현재 가상 데스크톱 기억(다시 시작 필요)"
+
+#~ msgid "Shortcuts"
+#~ msgstr "단축키"
+
+#, fuzzy
+#~| msgid "Activity"
+#~ msgid "Activity name"
+#~ msgstr "활동"
+
+#~ msgid "Available Features"
+#~ msgstr "사용 가능한 기능"
+
+#~ msgid "Plugins"
+#~ msgstr "플러그인"
+
+#~ msgid "Enable activities management"
+#~ msgstr "활동 관리 사용"
+
+#~ msgid "Activity manager is not running properly."
+#~ msgstr "활동 관리자가 올바르게 실행되고 있지 않습니다."
+
+#~ msgid "Activities..."
+#~ msgstr "활동..."
+
+#~ msgid "(c) 2012 Ivan Cukic"
+#~ msgstr "(c) 2012 Ivan Cukic"
+
+#~ msgctxt "Header title for resource data model"
+#~ msgid "Resource"
+#~ msgstr "자원"

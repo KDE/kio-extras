@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="gzip">
+<title
+>gzip</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+&traducteurEquipeKDE; 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>gzip</command
+> est un programme de compression</para>
+
+<para
+>Le module d'entrée-sortie gzip n'est pas directement utilisable, et est conçu pour être utilisé comme filtre. Par exemple, le module d'entrée-sortie tar peut filtrer un fichier avec le module d'entrée-sortie gzip, de façon à afficher le contenu d'un fichier <literal role="extension"
+>tar.gz</literal
+> directement dans une fenêtre &konqueror;.</para>
+
+<para
+>Si vous cliquez sur un fichier compressé avec l'extension <literal role="extension"
+>gz</literal
+> dans &konqueror;, ce module d'entrée-sortie est utilisé pour le décompresser et l'afficher comme un fichier normal (non compressé).</para>
+
+<para
+>Si vous êtes développeur, et voulez utiliser le filtre gzip, vous pouvez trouver de la documentation sur l'utilisation des modules d'entrée-sortie à <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Voir le manuel de <ulink url="man:/gzip"
+>gzip</ulink
+>. </para>
+
+</article>

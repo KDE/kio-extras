@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="thumbnail">
+<title
+>vignettes</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Carsten.Pfeiffer; &Carsten.Pfeiffer.mail;</author>
+&traducteurEquipeKDE; 
+</authorgroup>
+<date
+>11-12-2016</date>
+<releaseinfo
+>Applications 16.12</releaseinfo>
+</articleinfo>
+<para
+>Le module d'entrées-sorties de vignettes est utilisé par &kde; au niveau de la transparence réseau et de la génération persistante des vignettes.</para>
+
+<para
+>Le module « kioslave » utilise des modules externes pour générer les vignettes courantes. Vous pouvez activer l'affichage de ces vignettes depuis le sous-menu <menuchoice
+><guimenu
+>Affichage</guimenu
+> <guisubmenu
+>Aperçu</guisubmenu
+></menuchoice
+>, accessible dans &dolphin; ou &konqueror; en mode gestionnaire de fichiers.</para>
+
+<para
+>Ce module n'est pas directement utile à l'utilisateur, mais si vous êtes développeur, vous pouvez l'utiliser dans votre application pour créer des vignettes de fichiers.</para>
+
+<para
+>Veuillez consulter la documentation dans les sources pour plus d'informations. Vous les trouverez dans la vignette du dossier source <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"
+>aperçu</ulink
+>. </para>
+
+</article>

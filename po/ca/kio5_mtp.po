@@ -1,0 +1,47 @@
+# Translation of kio5_mtp.po to Catalan
+# Copyright (C) 2014-2022 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Josep M. Ferrer <txemaq@gmail.com>, 2014, 2016, 2018, 2019, 2022.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-07 00:45+0000\n"
+"PO-Revision-Date: 2022-01-11 16:33+0100\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#: kio_mtp.cpp:220
+#, kde-format
+msgctxt ""
+"Message shown when attempting to access an MTP device that is not fully "
+"accessible yet"
+msgid ""
+"Could not access device. Make sure it is unlocked, and tap \"Allow\" on the "
+"popup on its screen. If that does not work, make sure MTP is enabled in its "
+"USB connection settings."
+msgstr ""
+"No s'ha pogut accedir al dispositiu. Comproveu que estigui desbloquejat, i "
+"toqueu «Permet» en la finestra emergent de la seva pantalla. Si això no "
+"funciona, comproveu que estigui activat el MTP en els seus paràmetres de "
+"connexió USB."
+
+#: kio_mtp.cpp:490
+#, kde-format
+msgid "Cannot copy/move files on the device itself"
+msgstr "No es poden copiar/moure fitxers sobre el mateix dispositiu"
+
+#~ msgid "No Storages found. Maybe you need to unlock your device?"
+#~ msgstr ""
+#~ "No s'ha trobat cap emmagatzemament. Potser cal que desbloquegeu el "
+#~ "dispositiu?"

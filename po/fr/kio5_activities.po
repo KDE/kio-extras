@@ -1,0 +1,257 @@
+# translation of kcm_activities.po to Français
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Joëlle Cornavin <jcorn@free.fr>, 2012, 2013.
+# xavier <ktranslator31@yahoo.fr>, 2013, 2014.
+# Maxime Corteel <mcorteel@gmail.com>, 2015.
+# Thomas Vergnaud <thomas.vergnaud@gmx.fr>, 2015, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kcm_activities\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2016-01-23 11:53+0100\n"
+"Last-Translator: Thomas Vergnaud <thomas.vergnaud@gmx.fr>\n"
+"Language-Team: French <kde-francophone@kde.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 2.0\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "Activités"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "Chargement…"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "Le gestionnaire d'activités n'est pas en cours d'exécution"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "Lier à l'activité en cours"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "Se détacher de l'activité en cours"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "Lier à:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "Se déconnecter de;"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "Activité"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "Activité en cours"
+
+#, fuzzy
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Joëlle Cornavin, Thomas Vergnaud"
+
+#, fuzzy
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "jcorn@free.fr, thomas.vergnaud@gmx.fr"
+
+#, fuzzy
+#~ msgid "Default"
+#~ msgstr "Défaut"
+
+#, fuzzy
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "Passer à l'activité « %1 »"
+
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "Activité"
+
+#~ msgid "Delete activity"
+#~ msgstr "Supprimer l'activité"
+
+#~ msgid "Are you sure you want to delete '%1'?"
+#~ msgstr "Souhaitez-vous vraiment supprimer « %1 » ?"
+
+#~ msgid ""
+#~ "Error loading the QML files. Check your installation.\n"
+#~ "Missing %1"
+#~ msgstr ""
+#~ "Erreur pendant le chargement des fichiers QML. Vérifiez votre "
+#~ "installation.\n"
+#~ "Il manque %1"
+
+#~ msgid "Create a new activity"
+#~ msgstr "Créer une nouvelle activité"
+
+#~ msgid "Activity settings"
+#~ msgstr "Configuration de l'activité"
+
+#~ msgid "General"
+#~ msgstr "Général"
+
+#~ msgid "Other"
+#~ msgstr "Autre"
+
+#~ msgid "Create"
+#~ msgstr "Créer"
+
+#~ msgid "Apply"
+#~ msgstr "Appliquer"
+
+#~ msgid "Cancel"
+#~ msgstr "Annuler"
+
+#~ msgid "Shortcut for switching to this activity:"
+#~ msgstr "Raccourcis pour basculer vers cette activité :"
+
+#~ msgid "Activity information"
+#~ msgstr "Informations sur l'activité"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgid "Description"
+#~ msgstr "Description"
+
+#~ msgid "Wallpaper"
+#~ msgstr "Papier peint"
+
+#~ msgid "Change..."
+#~ msgstr "Changer…"
+
+#~ msgid "Icon"
+#~ msgstr "Icône"
+
+#~ msgid "Switching"
+#~ msgstr "Basculement"
+
+#~ msgid "Privacy"
+#~ msgstr "Respect de la vie privée"
+
+#~ msgctxt "unlimited number of months"
+#~ msgid "forever"
+#~ msgstr "indéfiniment"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "Oublier la dernière heure"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "Oublier les deux dernières heures"
+
+#~ msgid "Forget a day"
+#~ msgstr "Oublier un jour"
+
+#~ msgid "Forget everything"
+#~ msgstr "Oublier tout"
+
+#~ msgctxt "unit of time. months to keep the history"
+#~ msgid " month"
+#~ msgid_plural " months"
+#~ msgstr[0] " mois"
+#~ msgstr[1] " mois"
+
+#~ msgctxt "for in 'keep history for 5 months'"
+#~ msgid "for "
+#~ msgstr "pendant"
+
+#~ msgid "Create activity..."
+#~ msgstr "Créer une activité…"
+
+#~ msgid "Activity switching"
+#~ msgstr "Basculement d'activité"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities"
+#~ msgstr "Parcourir les activités"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities (Reverse)"
+#~ msgstr "Parcourir les activités (en sens inverse)"
+
+#~ msgid "Form"
+#~ msgstr "Forme"
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "Mémoriser les documents ouverts :"
+
+#~ msgid "For a&ll applications"
+#~ msgstr "Pour toutes les applications"
+
+#~ msgid "&Do not remember"
+#~ msgstr "Ne pas mémoriser"
+
+#~ msgid "O&nly for specific applications"
+#~ msgstr "Uniquement pour des applications spécifiques"
+
+#~ msgid "Keep history"
+#~ msgstr "Conserver l'historique"
+
+#~ msgid "Clear recent history"
+#~ msgstr "Effacer l'historique récent"
+
+#~ msgid "Blacklist all applications not on this list"
+#~ msgstr ""
+#~ "Mettre en liste noire toutes les applications ne figurant pas sur cette "
+#~ "liste"
+
+#~ msgid ""
+#~ "Remember the current virtual desktop for each activity (needs restart)"
+#~ msgstr ""
+#~ "Mémoriser le bureau virtuel actuel pour chaque activité (nécessite un "
+#~ "redémarrage)"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Raccourcis"
+
+#, fuzzy
+#~| msgid "Activities"
+#~ msgid "Activity name"
+#~ msgstr "Activités"
+
+#~ msgid "Available Features"
+#~ msgstr "Fonctionnalités disponibles"
+
+#~ msgid "Plugins"
+#~ msgstr "Modules externes"
+
+#~ msgid "Enable activities management"
+#~ msgstr "Activer la gestion des activités"
+
+#~ msgid "Activity manager is not running properly."
+#~ msgstr "Le gestionnaire d'activités ne tourne pas correctement."
+
+#~ msgid "Activities..."
+#~ msgstr "Activités..."
+
+#~ msgid "(c) 2012 Ivan Cukic"
+#~ msgstr "(c) 2012 Ivan Cukic"

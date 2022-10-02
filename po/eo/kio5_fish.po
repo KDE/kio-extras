@@ -1,0 +1,51 @@
+#
+# Michael Moroni <michael.moroni@mailoo.org>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2012-05-24 10:36+0200\n"
+"Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
+"Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Esperanto\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 1.4\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "Konektanta..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "Pravalorizanta protokolon..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "Loka ensaluto"
+
+#: fish.cpp:630
+#, fuzzy, kde-format
+#| msgid "SSH Authorization"
+msgid "SSH Authentication"
+msgstr "SSH-rajtigado"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "Malkonektita."
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Axel Rousseau"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "axel@esperanto-jeunes.org"

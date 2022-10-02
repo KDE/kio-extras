@@ -1,0 +1,41 @@
+# Lithuanian translations for trunk-kf package.
+# Copyright (C) 2015 This_file_is_part_of_KDE
+# This file is distributed under the same license as the trunk-kf package.
+# Automatically generated, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: trunk-kf 5\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-07 00:45+0000\n"
+"PO-Revision-Date: 2019-10-11 23:08+0300\n"
+"Last-Translator: Moo\n"
+"Language-Team: lt\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: kio_mtp.cpp:220
+#, fuzzy, kde-format
+#| msgid ""
+#| "No storage media found. Make sure your device is unlocked and has MTP "
+#| "enabled in its USB connection settings."
+msgctxt ""
+"Message shown when attempting to access an MTP device that is not fully "
+"accessible yet"
+msgid ""
+"Could not access device. Make sure it is unlocked, and tap \"Allow\" on the "
+"popup on its screen. If that does not work, make sure MTP is enabled in its "
+"USB connection settings."
+msgstr ""
+"Nerasta jokios saugyklos laikmenos. Įsitikinkite, kad jūsų įrenginys yra "
+"atrakintas ir jo USB ryšio nuostatose yra įjungtas MTP."
+
+#: kio_mtp.cpp:490
+#, kde-format
+msgid "Cannot copy/move files on the device itself"
+msgstr "Negalima kopijuoti/perkelti failus į patį įrenginį"

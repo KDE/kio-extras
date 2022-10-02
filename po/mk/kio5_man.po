@@ -1,0 +1,234 @@
+# translation of kio_man.po to Macedonian
+# Copyright (C) 2002,2003, 2004, 2005, 2007, 2008 Free Software Foundation, Inc.
+#
+# Novica Nakov <novica@bagra.net.mk>, 2003.
+# Bozidar Proevski <bobibobi@freemail.com.mk>, 2004, 2005, 2007, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2008-12-21 16:36+0100\n"
+"Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
+"Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
+"Language: mk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: Plural-Forms: nplurals=3; plural=n%10==1 ? 0 : n%10==2 ? 1 : "
+"2;\n"
+
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Check that you have "
+#| "typed the name using the correct upper and lower case characters.<br />If "
+#| "everything looks correct, then you may need to improve the search path "
+#| "for man pages; either using the environment variable MANPATH or using a "
+#| "matching file in the /etc directory."
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Не е пронајдена man-страница што одговара на %1.<br /><br />Проверете дали "
+"сте го напишале правилно името на страницата што ја барате.<br />Внимавајте "
+"на употребата на мали и големи букви.<br />Ако е сѐ исправно, тогаш можеби "
+"треба да поставите подобра патека за пребарување на man-страници, дали преку "
+"променливата MANPATH или со соодветна датотека во папката /etc."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
+msgstr "<h1>Грешка во прегледувачот на man-страници на KDE</h1>"
+
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
+msgstr "Има повеќе од една man-страница што одговара."
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Забелешка: ако читате man-страница на вашиот јазик, можно е таа да содржи "
+"некои грешки или да е застарена. Ако се сомневате погледнете ја англиската "
+"верзија."
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr ""
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr ""
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Кориснички команди"
+
+#: kio_man.cpp:761
+#, fuzzy, kde-format
+#| msgid "User Commands"
+msgid "User Commands (POSIX)"
+msgstr "Кориснички команди"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Системски повици"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Потпрограми"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Perl-модули"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Мрежни функции"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Уреди"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Формати на датотеки"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Игри"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Разно"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Администрација на системот"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Кернел"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Локална документација"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Нови"
+
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
+msgstr "Индекс на UNIX-прирачници"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Оддел %1"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
+msgstr "Индекс за одделот %1: %2"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "Индекс на UNIX-прирачници"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Генерирам индекс"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Не можам да ја пронајдам програмата sgml2roff на вашиот систем. Инсталирајте "
+"ја, ако е потребно, и проширете ја патеката за пребарување со прилагодување "
+"на променливата на околина PATH пред да го стартувате KDE."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "Отворањето на %1 не успеа."
+
+#~ msgid "Man output"
+#~ msgstr "Излезот од man"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Божидар Проевски"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "bobibobi@freemail.com.mk"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

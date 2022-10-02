@@ -1,0 +1,329 @@
+# translation of kio_sftp.po to Hindi
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Ravishankar Shrivastava <raviratlami@yahoo.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2012-07-05 15:20+0530\n"
+"Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
+"Language-Team: Hindi <indlinux-hindi@lists.sourceforge.net>\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: kio_sftp.cpp:226
+#, fuzzy, kde-format
+#| msgid "Incorrect username or password"
+msgid "Incorrect or invalid passphrase"
+msgstr "गलत उपयोक्ता-नाम या पासवर्ड "
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "कालबैक आवंटित नहीं किया जा सकता."
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "लॉग वर्बोसिटी सेट नहीं कर सका।"
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not set log verbosity."
+msgid "Could not set log userdata."
+msgstr "लॉग वर्बोसिटी सेट नहीं कर सका।"
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not allocate callbacks"
+msgid "Could not set log callback."
+msgstr "कालबैक आवंटित नहीं किया जा सकता."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "एसएफटीपी लॉगइन"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "इस सवाल का जवाब देने के लिए उपयोगकर्ता नाम इनपुट क्षेत्र का उपयोग करें।"
+
+#: kio_sftp.cpp:365
+#, fuzzy, kde-format
+#| msgid "Please enter your username and password."
+msgid "Please enter your password."
+msgstr "कृपया अपना उपयोक्ता-नाम तथा पासवर्ड भरें."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, fuzzy, kde-format
+#| msgid "site:"
+msgid "Site:"
+msgstr "साइटः"
+
+#: kio_sftp.cpp:417
+#, fuzzy, kde-format
+#| msgid "Could not read link: %1"
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "लिंक: %1 पढ़ नहीं सका"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "नया एसएसएच सत्र तैयार नहीं कर सका."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "समयअवधि नही सेट पर पाए"
+
+#: kio_sftp.cpp:561
+#, fuzzy, kde-format
+#| msgid "Could not set port."
+msgid "Could not disable Nagle's Algorithm."
+msgstr "पोर्ट नहीं सेट कर पाए."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "सपीडन नहीं सेट कर पाए"
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "होस्ट नहीं सेट कर पाए"
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "पोर्ट नहीं सेट कर पाए."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "उपयोक्तानाम रहीं सेट कर पाए."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "कॉन्फ़िग फ़ाइल को पार्स नहीं कर सकता।"
+
+#: kio_sftp.cpp:616
+#, fuzzy, kde-kuit-format
+#| msgid "Opening SFTP connection to host %1:%2"
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "होस्ट %1:%2 से एसएफटीपी कनेक्शन खोला जा रहा है"
+
+#: kio_sftp.cpp:656
+#, fuzzy, kde-format
+#| msgid "Could not set username."
+msgid "Could not get server public key type name"
+msgstr "उपयोक्तानाम रहीं सेट कर पाए."
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+
+#: kio_sftp.cpp:738
+#, fuzzy, kde-format
+#| msgid ""
+#| "The host key for this server was not found, but another type of key "
+#| "exists.\n"
+#| "An attacker might change the default server key to confuse your client "
+#| "into thinking the key does not exist.\n"
+#| "Please contact your system administrator.\n"
+#| "%1"
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"इस सर्वर के लिए होस्ट कुंजी नहीं मिला, लेकिन एक भिन्न प्रकार की कुंजी मौजूद है. \n"
+"कोई हमलावर डिफ़ॉल्ट सर्वर कुंजी को बदल सकता है आपके क्लाएंट को भ्रमित करने के लिए कि कुंजी "
+"मौजूद नहीं है. \n"
+"कृपया अपने तंत्र प्रशासक से संपर्क करें.\n"
+" %1"
+
+#: kio_sftp.cpp:756
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr ""
+
+#: kio_sftp.cpp:757
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"सर्वर %1 के लिए होस्ट कुंजी बदल गया है.\n"
+"इसका यह भी अर्थ हो सकता है कि डीएनएस SPOOFING हो रहा है या IP पता मेजबान और अपने "
+"मेजबान कुंजी के लिए एक ही समय में बदल गया है. \n"
+"दूरस्थ होस्ट द्वारा भेजे गए कुंजी के लिए फिंगरप्रिंट है: \n"
+" %2\n"
+"कृपया अपने तंत्र प्रशासक से संपर्क करें.\n"
+"%3"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The key fingerprint is: %2\n"
+#| "Are you sure you want to continue connecting?"
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"होस्ट %1 की प्रामाणिकता स्थापित नहीं हो सकी.\n"
+"कुंजी फिंगरप्रिंट है: %2\n"
+"क्या आप निश्चित रूप से कनेक्ट करना जारी रखना चाहते हैं?"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "प्रमाणीकरण असफल"
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "कृपया अपना उपयोक्ता-नाम तथा पासवर्ड भरें."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "गलत उपयोक्ता-नाम या पासवर्ड "
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"SFTP उपतंत्र अनुरोध करने में असमर्थ। सुनिश्चित करें कि SFTP सर्वर पर सक्षम किया गया है।"
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "एसएफटीपी सत्र प्रारंभ नहीं कर सका।"
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "%1 से सफलता पूर्वक जुड़ा"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr "%1 के लिए अनुमति नहीं बदल पाए"
+
+#, fuzzy
+#~| msgid ""
+#~| "The host key for the server %1 has changed.\n"
+#~| "This could either mean that DNS SPOOFING is happening or the IP address "
+#~| "for the host and its host key have changed at the same time.\n"
+#~| "The fingerprint for the key sent by the remote host is:\n"
+#~| " %2\n"
+#~| "Please contact your system administrator.\n"
+#~| "%3"
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "सर्वर %1 के लिए होस्ट कुंजी बदल गया है.\n"
+#~ "इसका यह भी अर्थ हो सकता है कि डीएनएस SPOOFING हो रहा है या IP पता मेजबान और "
+#~ "अपने मेजबान कुंजी के लिए एक ही समय में बदल गया है. \n"
+#~ "दूरस्थ होस्ट द्वारा भेजे गए कुंजी के लिए फिंगरप्रिंट है: \n"
+#~ " %2\n"
+#~ "कृपया अपने तंत्र प्रशासक से संपर्क करें.\n"
+#~ "%3"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "चेतावनीः होस्ट का परिचय सत्यापित नहीं कर सका."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "इस सर्वर के लिए होस्ट कुंजी नहीं मिला, लेकिन एक भिन्न प्रकार की कुंजी मौजूद है. \n"
+#~ "कोई हमलावर डिफ़ॉल्ट सर्वर कुंजी को बदल सकता है आपके क्लाएंट को भ्रमित करने के लिए कि "
+#~ "कुंजी मौजूद नहीं है. \n"
+#~ "कृपया अपने तंत्र प्रशासक से संपर्क करें.\n"
+#~ " %1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "होस्ट %1 की प्रामाणिकता स्थापित नहीं हो सकी.\n"
+#~ "कुंजी फिंगरप्रिंट है: %2\n"
+#~ "क्या आप निश्चित रूप से कनेक्ट करना जारी रखना चाहते हैं?"
+
+#~ msgid "No hostname specified."
+#~ msgstr "कोई होस्टनाम उल्लेखित नहीं है."

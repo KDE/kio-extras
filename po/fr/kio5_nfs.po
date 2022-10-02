@@ -1,0 +1,82 @@
+# translation of kio_nfs.po to Français
+# translation of kio_nfs.po to Française
+# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# Gilles CAULIER <caulier.gilles@free.fr>, 2003.
+# Matthieu Robin <kde@macolu.org>, 2004.
+# xavier <ktranslator31@yahoo.fr>, 2013.
+# Vincent Pinon <vpinon@kde.org>, 2016.
+# Xavier Besnard <xavier.besnard@neuf.fr>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2021-02-19 21:29+0100\n"
+"Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
+"Language-Team: French <kde-francophone@kde.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 20.12.2\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr ""
+"Impossible de trouver une version « NFS » que l'hôte « %1 » prend en charge."
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "Le protocole « NFS » nécessite un nom de serveur hôte."
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr "Échec lors de l'initialisation du protocole"
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "Erreur « RPC » %1, %2"
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "Nom de fichier trop long"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Le quota sur le disque est dépassé."
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "Erreur NFS %1, %2"
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr "Cible inconnue"
+
+#~ msgid "%1: Unsupported NFS version"
+#~ msgstr "%1: Version NFS non prise en charge"
+
+#~ msgid "No space left on device"
+#~ msgstr "Aucun espace libre disponible sur le périphérique."
+
+#~ msgid "Read only file system"
+#~ msgstr "Système de fichiers en lecture seule."
+
+#~ msgid "Failed to mount %1"
+#~ msgstr "Impossible de monter %1"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "Un problème avec les RPC est survenu."

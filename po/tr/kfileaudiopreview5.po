@@ -1,0 +1,46 @@
+# translation of kfileaudiopreview4.po to Türkçe
+# translation of kfileaudiopreview4.po to Turkish
+# Copyright (C) 2003, 2005 Free Software Foundation, Inc.
+#
+# Rıdvan CAN <ridvan@geleceklinux.org>, 2003.
+# Görkem Çetin <gorkem@kde.org.tr>, 2005.
+# Serdar Soytetir <tulliana@gmail.com>, 2009.
+# Emir SARI <emir_sari@icloud.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kfileaudiopreview4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-14 00:45+0000\n"
+"PO-Revision-Date: 2022-04-10 12:54+0300\n"
+"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
+"Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 21.12.3\n"
+
+#: kfileaudiopreview.cpp:68
+#, kde-format
+msgid "Play &automatically"
+msgstr "Kendiliğinden ç&al"
+
+#: mediacontrols_p.h:39
+#, kde-format
+msgid "start playback"
+msgstr "çalmayı başlat"
+
+#: mediacontrols_p.h:44
+#, kde-format
+msgid "pause playback"
+msgstr "çalmayı duraklat"
+
+#~ msgid "stop playback"
+#~ msgstr "çalmayı durdur"
+
+#~ msgid "loop: restarts playback at end"
+#~ msgstr "döngü: Çalma görevi bitince baştan başlatır"
+
+#~ msgid "Media Player"
+#~ msgstr "Çoklu Ortam Oynatıcı"

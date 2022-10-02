@@ -1,0 +1,82 @@
+# translation of kio_thumbnail.po to Belarusian
+#
+# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
+# Darafei Praliaskouski <komzpa@licei2.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2007-07-27 15:10+0300\n"
+"Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
+"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language: be\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
+"%100>=11 && n%100<=14 ? 2 : 3);\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "Тып MIME нявызначаны."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "Памер нявызначаны ці вызначаны няправільна."
+
+#: thumbnail.cpp:225
+#, fuzzy, kde-format
+#| msgid "Cannot create thumbnail for %1"
+msgid "Cannot create thumbnail for directory"
+msgstr "Немагчыма стварыць мініяцюру для %1"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "Утулка нявызначаная."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "Немагчыма загрузіць ThumbCreator %1"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "Немагчыма стварыць мініяцюру для %1"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "Немагчыма стварыць мініяцюру."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "Немагчыма запісаць малюнак."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "Немагчыма далучыцца да сегмента агульнай памяці %1"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "Малюнак надта вялікі для сегмента агульнай памяці"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Дарафей Праляскоўскі"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "komzpa@licei2.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

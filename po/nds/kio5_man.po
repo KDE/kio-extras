@@ -1,0 +1,235 @@
+# Translation of kio_man.po to Low Saxon
+# Copyright (C) 2004, 2005, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Heiko Evermann <heiko@evermann.de>, 2004.
+# Sönke Dibbern <s_dibbern@web.de>, 2005, 2006, 2007, 2008, 2014.
+# Manfred Wiese <m.j.wiese@web.de>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2014-02-13 23:57+0100\n"
+"Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
+"Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
+"Language: nds\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Check that you have "
+#| "typed the name using the correct upper and lower case characters.<br />If "
+#| "everything looks correct, then you may need to improve the search path "
+#| "for man pages; either using the environment variable MANPATH or using a "
+#| "matching file in the /etc directory."
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"För \"%1\" lett sik keen Man-Siet finnen.<br /><br />Prööv bitte, wat Du den "
+"Naam vun de Siet richtig schreven hest.<br />Kiek bitte ok op Groot- un "
+"Lüttschrieven.<br />Wenn allens püük utsüht, muttst Du villicht Dien "
+"Söökpadd för Man-Sieden ännern. Dat kannst Du över de Ümgeven-Variabel "
+"\"MANPATH\" maken, oder över en Instellendatei binnen \"/etc\"."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
+msgstr "<h1>Fehler vun den Man-Sieden-Kieker vun KDE</h1>"
+
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
+msgstr "Dat gifft mehr as een passen Man-Siet."
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Beacht: Wenn Du en Man-Siet in Dien Spraak leest, kunnen dor Fehlers binnen "
+"wesen, oder se kunn al to oolt wesen. Wenn Du nich seker büst, kiek Di ok de "
+"engelsche Verschoon an."
+
+#: kio_man.cpp:758
+#, fuzzy, kde-format
+#| msgid "Header files"
+msgid "Header Files"
+msgstr "Koppdateien"
+
+#: kio_man.cpp:759
+#, fuzzy, kde-format
+#| msgid "Header files (POSIX)"
+msgid "Header Files (POSIX)"
+msgstr "Koppdateien (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Brukerbefehlen"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Brukerbefehlen (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Systeem-Oprööp"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Ünnerroutinen"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Perl-Modulen"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Nettwark-Funkschonen"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Reedschappen"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Dateiformaten"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Spelen"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Anner Saken"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Systeempleeg"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Kernel"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Lokaal Dokmentatschoon"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Nieg"
+
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
+msgstr "Man-Sieden-Index vun UNIX"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Afsnitt %1"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
+msgstr "Index för Afsnitt %1: %2"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "Man-Sieden-Index vun UNIX"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Index warrt opstellt"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Dat Programm \"sgml2roff\" lett sik op Dien Systeem nich finnen. Bitte "
+"installeer dat, wenn nödig, un pass den Söökpadd över de Ümgevenvariable "
+"\"PATH\" to, ehr Du KDE nieg startst."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "Opmaken vun \"%1\" fehlslaan"
+
+#~ msgid "Man output"
+#~ msgstr "Man-Utgaav"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Sönke Dibbern"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "s_dibbern@web.de"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

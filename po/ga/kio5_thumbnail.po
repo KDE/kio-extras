@@ -1,0 +1,83 @@
+# Irish translation of kio_thumbnail
+# Copyright (C) 2009 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kio_thumbnail package.
+# Kevin Scannell <kscanne@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kdebase/kio_thumbnail.po\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2005-05-20 15:03-0500\n"
+"Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
+"Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
+"Language: ga\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
+"3 : 4\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "Níor sonraíodh cineál MIME."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "Níor sonraíodh méid, nó sonraíodh méid neamhbhailí."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "Ní féidir mionsamhail a chruthú le haghaidh na comhadlainne"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "Níor sonraíodh breiseán."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "Ní féidir ThumbCreator %1 a luchtú"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "Ní féidir mionsamhail a chruthú le haghaidh %1"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "Theip ar chruthú na mionsamhla."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "Níorbh fhéidir an íomhá a scríobh."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "Theip ar cheangal le deighleán comhchuimhne %1"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "Tá an íomhá rómhór don deighleán comhchuimhne"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "Rothlaigh an íomhá go huathoibríoch"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Kevin Scannell"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "kscanne@gmail.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

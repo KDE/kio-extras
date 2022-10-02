@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="info">
+<title
+>Info</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+&traducteurEquipeKDE; 
+</authorgroup>
+</articleinfo>
+
+<para
+>Info est un type de documentation. Les documents sont dans un format de fichiers appelé texinfo, et peuvent être lus en ligne de commande avec le programme <ulink url="info:/info"
+><command
+>info</command
+></ulink
+>.</para>
+
+<para
+>Le module d'entrée-sortie info vous permet de lire les pages info installées sur votre système depuis &konqueror;. Il est très simple d'emploi : </para>
+
+<screen
+><userinput
+><command
+>info:</command
+><replaceable
+>gcc</replaceable
+></userinput
+></screen>
+
+<para
+>Ceci vous affiche normalement la première page de la documentation du compilateur &gcc;.</para>
+
+<para
+>Info est un remplacement &GNU; de la commande <command
+>man</command
+>, mais n'est pas trop utilisé en dehors des logiciels &GNU;.</para>
+
+<para
+>Vous pouvez facilement naviguer dans les pages de documentation Info installées depuis le &centreAide;, ou bien vous pouvez utiliser le module d'entrée-sortie directement depuis à la fois &konqueror;. et la boîte de dialogue « Exécuter une commande » (NdT : obtenue par la combinaison de touches &Alt;+F2).</para>
+
+</article>

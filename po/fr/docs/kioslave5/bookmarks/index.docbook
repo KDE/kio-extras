@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="bookmarks">
+<title
+>signets</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Xavier</firstname
+><surname
+>Vello</surname
+></personname
+> <email
+>xavier.vello@gmail.com</email
+> </author>
+&traducteurLudovicGrossard; 
+</authorgroup>
+
+<date
+>31/08/2008</date>
+<releaseinfo
+>0.2</releaseinfo>
+
+</articleinfo>
+
+<para
+>Ce module d'entrée / sortie (<acronym
+>KIO</acronym
+>) affiche vos signets comme une page &HTML; à la fois agréable et fonctionnelle. Vous pouvez y accéder en saisissant <userinput
+>bookmarks:/</userinput
+> dans la barre d'emplacement de &konqueror;.</para>
+
+<para
+>Le contenu et la mise en page de la page est configurable. Saisissez simplement <userinput
+>bookmarks:/config</userinput
+> pour lancer la boîte de dialogue de configuration.</para>
+
+</article>
+

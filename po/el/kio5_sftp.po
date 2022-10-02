@@ -1,0 +1,493 @@
+# translation of kio_sftp.po to greek
+# Copyright (C) 2003, 2005, 2007 Free Software Foundation, Inc.
+#
+# Stergios Dramis <sdramis@egnatia.ee.auth.gr>, 2002-2003.
+# Spiros Georgaras <sngeorgaras@otenet.gr>, 2005, 2007.
+# Toussis Manolis <manolis@koppermind.homelinux.org>, 2007, 2009.
+# Stelios <sstavra@gmail.com>, 2012, 2013, 2019, 2021.
+# Dimitrios Glentadakis <dglent@gmail.com>, 2012.
+# Antonis Geralis <gaantonio@civil.auth.gr>, 2014.
+# Dimitris Kardarakos <dimkard@gmail.com>, 2015.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2021-10-17 10:17+0300\n"
+"Last-Translator: Stelios <sstavra@gmail.com>\n"
+"Language-Team: Greek <kde-i18n-el@kde.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.04.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Εσφαλμένο όνομα χρήστη ή συνθηματικό"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "Αδυναμία καταχώρησης επανακλήσεων"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "Αδυναμία ρύθμισης λεπτομερειών καταγραφής."
+
+#: kio_sftp.cpp:294
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "Αδυναμία ρύθμισης καταγραφής πληροφοριών χρήστη."
+
+#: kio_sftp.cpp:299
+#, kde-format
+msgid "Could not set log callback."
+msgstr "Αδυναμία ρύθμισης καταγραφής επανακλήσεων."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "SFTP είσοδος"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr ""
+"Χρησιμοποιήστε το πεδίο ονόματος χρήστη για να απαντήσετε στην ερώτηση αυτή."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "Εισαγάγετε τον κωδικό πρόσβασης."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "Τοποθεσία:"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Αδυναμία ανάγνωσης του συνδέσμου: %1 (%2)"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "Αδυναμία δημιουργίας νέας SSH συνεδρίας."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "Αδυναμία ρύθμισης λήξης χρονικού περιθωρίου."
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Αδυναμία απενεργοποίησης του αλγορίθμου του Nagle."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "Αδυναμία ρύθμισης συμπίεσης."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "Αδυναμία ρύθμισης κόμβου."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "Αδυναμία ρύθμισης θύρας."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "Αδυναμία ρύθμισης ονόματος χρήστη."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "Αδυναμία συντακτικής ανάλυσης του αρχείου διαμόρφωσης."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Άνοιγμα σύνδεσης SFTP με τον κόμβο %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr ""
+"Αδυναμία ανάκτησης του ονόματος του τύπου δημόσιου κλειδιού του εξυπηρετητή"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+"Αδυναμία δημιουργίας αποτυπώματος από το δημόσιο κλειδί του εξυπηρετητή"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+"Αδυναμία δημιουργίας αποτυπώματος για το δημόσιο κλειδί του εξυπηρετητή"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Δεν βρέθηκε ένα %1 κλειδί υπολογιστή για τον εξυπηρετητή αυτόν, αλλά υπάρχει "
+"άλλος τύπος κλειδιού.\n"
+"Ένας εισβολέας μπορεί να αλλάξει το προκαθορισμένο κλειδί του εξυπηρετητή "
+"για να θεωρήσει ο υπολογιστής σας ότι το κλειδί δεν υπάρχει.\n"
+"Επικοινωνήστε με τον διαχειριστή του συστήματός σας.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+#| msgid "Warning: Host's identity changed."
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Προειδοποίηση: Η ταυτότητα του κόμβου άλλαξε."
+
+#: kio_sftp.cpp:757
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"Το κλειδί του υπολογιστή για τον εξυπηρετητή %1 έχει αλλάξει.\n"
+"Αυτό μπορεί να σημαίνει ότι DNS SPOOFING είναι σε εξέλιξη ή ότι η διεύθυνση "
+"IP του υπολογιστή και το κλειδί του υπολογιστή έχουν αλλάξει ταυτόχρονα.\n"
+"Το αποτύπωμα για το κλειδί που έστειλε ο απομακρυσμένος υπολογιστής είναι:\n"
+" %2\n"
+"Επικοινωνήστε με τη διαχείριση του συστήματός σας.\n"
+"%3"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The %2 key fingerprint is: %3\n"
+#| "Are you sure you want to continue connecting?"
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"Η αυθεντικότητα του υπολογιστή %1 δεν μπορεί να διαπιστωθεί.\n"
+"Το αποτύπωμα του %2 κλειδιού είναι: %3\n"
+"Είστε βέβαιοι ότι θέλετε να συνεχίσετε τη διαδικασία σύνδεσης;"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Η ταυτοποίηση απέτυχε."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+"Η ταυτοποίηση απέτυχε. Ο εξυπηρετητής δεν έστειλε καμία μέθοδο ταυτοποίησης"
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Δώστε το όνομα χρήστη και τον κωδικό πρόσβασης."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Εσφαλμένο όνομα χρήστη ή κωδικός πρόσβασης"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"Αδυναμία αίτησης για το υποσύστημα SFTP. Βεβαιωθείτε ότι το SFTP είναι "
+"ενεργό στον εξυπηρετητή."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "Αδυναμία αρχικοποίησης της SFTP συνεδρίας."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Επιτυχής σύνδεση στο %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr "Μη έγκυρο sftp πλαίσιο"
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"Αδυναμία αλλαγής δικαιωμάτων για\n"
+"%1"
+
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "Το κλειδί υπολογιστή για τον εξυπηρετητή %1 έχει αλλάξει.\n"
+#~ "Αυτό μπορεί να σημαίνει ότι DNS SPOOFING είναι σε εξέλιξη ή ότι η "
+#~ "διεύθυνση IP του υπολογιστή και το κλειδί του υπολογιστή έχουν αλλάξει "
+#~ "ταυτόχρονα.\n"
+#~ "Το αποτύπωμα για το %2 κλειδί που έστειλε ο απομακρυσμένος υπολογιστής "
+#~ "είναι:\n"
+#~ "  SHA256:%3\n"
+#~ "Επικοινωνήστε με τον διαχειριστή του συστήματός σας.\n"
+#~ "%4"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr ""
+#~ "Προειδοποίηση: Δεν είναι δυνατή η επαλήθευση της ταυτότητας του κόμβου."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "το κλειδί του υπολογιστή για τον εξυπηρετητή αυτόν δεν βρέθηκε, αλλά "
+#~ "υπάρχει άλλος τύπος κλειδιού.\n"
+#~ "Ένας εισβολέας μπορεί να αλλάξει το προκαθορισμένο κλειδί του εξυπηρετητή "
+#~ "για να θεωρήσει ο υπολογιστής σας ότι το κλειδί δεν υπάρχει.\n"
+#~ "Επικοινωνήστε με τη διαχείριση του συστήματός σας.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "Η αυθεντικότητα του υπολογιστή %1 δεν μπορεί να διαπιστωθεί.\n"
+#~ "Το αποτύπωμα του κλειδιού είναι: %2\n"
+#~ "Είστε βέβαιοι ότι θέλετε να συνεχίσετε τη διαδικασία σύνδεσης;"
+
+#~ msgid "No hostname specified."
+#~ msgstr "Δεν καθορίσθηκε όνομα κόμβου."
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "Σημειώθηκε ένα εσωτερικό σφάλμα. Παρακαλώ επαναλάβετε την αίτηση."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "Παρακαλώ δώστε το όνομα χρήστη και τη φράση πρόσβασης σας."
+
+#~ msgid "Connection failed."
+#~ msgstr "Η σύνδεση απέτυχε."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "Η σύνδεση έκλεισε από τον απομακρυσμένο κόμβο."
+
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "Μη αναμενόμενο σφάλμα SFTP: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP έκδοση %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "Σφάλμα πρωτοκόλλου."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "Σημειώθηκε ένα εσωτερικό σφάλμα. Παρακαλώ ξαναδοκιμάστε."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "Σημειώθηκε ένα άγνωστο σφάλμα κατά την αντιγραφή του αρχείου '%1'. "
+#~ "Παρακαλώ ξαναδοκιμάστε."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "Ο απομακρυσμένος κόμβος δεν υποστηρίζει μετονομασία αρχείων."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr ""
+#~ "Ο απομακρυσμένος κόμβος δεν υποστηρίζει δημιουργία συμβολικών δεσμών."
+
+#~ msgid "Connection closed"
+#~ msgstr "Η σύνδεση έκλεισε"
+
+#~ msgid "End of file."
+#~ msgstr "Τέλος αρχείου."
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "Η εντολή SFTP απέτυχε για άγνωστο λόγο."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "Ο εξυπηρετητής SFTP έλαβε ένα προβληματικό μήνυμα."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr ""
+#~ "Επιχειρήσατε μια ενέργεια που δεν υποστηρίζεται από τον εξυπηρετητή SFTP."
+
+#~ msgid "Error code: %1"
+#~ msgstr "Κωδικός σφάλματος: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr ""
+#~ "Δεν είναι δυνατό να οριστεί ένα υποσύστημα και μια εντολή την ίδια στιγμή."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "Δε δόθηκαν επιλογές για την εκτέλεση του ssh."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "Αποτυχία εκτέλεσης της διεργασίας ssh."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "Σφάλμα κατά την επικοινωνία με το ssh."
+
+#~ msgid "Please supply a password."
+#~ msgstr "Παρακαλώ δώστε έναν κωδικό πρόσβασης."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "Παρακαλώ δώστε τη φράση πρόσβασης για το ιδιωτικό SSH κλειδί σας."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "Η ταυτοποίηση στο %1 απέτυχε"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "Η ταυτότητα του απομακρυσμένου κόμβου '%1' δεν ήταν δυνατό να επαληθευτεί "
+#~ "γιατί το κλειδί του κόμβου δε βρίσκεται στο αρχείο \"γνωστοί κόμβοι\"."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ "Χειρωνακτικά, προσθέστε το κλειδί του κόμβου στο αρχείο \"γνωστοί κόμβοι"
+#~ "\" ή επικοινωνήστε με το διαχειριστή του συστήματός σας."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr ""
+#~ "Χειρωνακτικά, προσθέστε το κλειδί του κόμβου στο %1 ή επικοινωνήστε με το "
+#~ "διαχειριστή του συστήματός σας."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "Η ταυτότητα του απομακρυσμένου κόμβου '%1' δεν ήταν δυνατό να "
+#~ "επαληθευτεί. Το αποτύπωμα του κλειδιού του κόμβου είναι:\n"
+#~ "%2\n"
+#~ "Θα πρέπει να επαληθεύσετε το αποτύπωμα με το διαχειριστή του κόμβου πριν "
+#~ "συνδεθείτε.\n"
+#~ "\n"
+#~ "Θέλετε να αποδεχθείτε το κλειδί του κόμβου και να συνδεθείτε όπως και να "
+#~ "έχει;"
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η ταυτότητα του απομακρυσμένου κόμβου '%1' έχει αλλάξει!\n"
+#~ "\n"
+#~ "Κάποιος μπορεί να παρακολουθεί τη σύνδεσή σας ή ο διαχειριστής του "
+#~ "συστήματος σας μόλις έχει αλλάξει το κλειδί του κόμβου. Όπως και να έχει, "
+#~ "θα πρέπει να επαληθεύσετε το αποτύπωμα του κλειδιού του κόμβου με το "
+#~ "διαχειριστή του συστήματος σας. Το αποτύπωμα του κλειδιού είναι:\n"
+#~ "%2\n"
+#~ "Προσθέστε το σωστό κλειδί κόμβου στο \"%3\" για να απαλλαγείτε από αυτό "
+#~ "το μήνυμα."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "ΠΡΟΕΙΔΟΠΟΙΗΣΗ: Η ταυτότητα του απομακρυσμένου κόμβου '%1' έχει αλλάξει!\n"
+#~ "\n"
+#~ "Κάποιος μπορεί να παρακολουθεί τη σύνδεσή σας ή ο διαχειριστής του "
+#~ "συστήματος σας μόλις έχει αλλάξει το κλειδί του κόμβου. Όπως και να έχει, "
+#~ "θα πρέπει να επαληθεύσετε το αποτύπωμα του κλειδιού του κόμβου με το "
+#~ "διαχειριστή του συστήματος σας πριν συνδεθείτε. Το αποτύπωμα του κλειδιού "
+#~ "είναι:\n"
+#~ "%2\n"
+#~ "Θέλετε να αποδεχθείτε το νέο κλειδί του κόμβου και να συνδεθείτε όπως και "
+#~ "να έχει;"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "Το κλειδί του κόμβου απορρίφθηκε."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "Παρακαλώ δώστε ένα όνομα χρήστη και έναν κωδικό πρόσβασης"
+
+#~ msgid "File does not exist."
+#~ msgstr "Το αρχείο δεν υπάρχει."
+
+#~ msgid "Access is denied."
+#~ msgstr "Άρνηση πρόσβασης."

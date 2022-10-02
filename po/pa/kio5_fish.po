@@ -1,0 +1,52 @@
+# translation of kio_fish.po to Punjabi
+# Amanpreet Singh Alam <aalam@redhat.com>, 2004, 2005.
+# AP S Alam <aalam@users.sf.net>, 2007.
+# A S Alam <aalam@users.sf.net>, 2007, 2009, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2013-01-05 08:37+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
+"Language: pa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "...ਕੁਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "ਪਰੋਟੋਕਾਲ ਸ਼ੁਰੂ ਕੀਤਾ ਜਾਦਾ ਹੈ..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "ਲੋਕਲ ਲਾਗਇਨ"
+
+#: fish.cpp:630
+#, kde-format
+msgid "SSH Authentication"
+msgstr "SSH ਪਰਮਾਣਕਿਤਾ"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "ਕੁਨੈਕਸ਼ਨ ਬੰਦ ਹੈ।"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "aalam@users.sf.net"

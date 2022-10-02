@@ -1,0 +1,36 @@
+# Danish translation of kio_tar
+# Erik Kjær Pedersen <erik@binghamton.edu>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_tar\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2005-06-25 08:57+0200\n"
+"Last-Translator: Erik Kjær Pedersen <erik@binghamton.edu>\n"
+"Language-Team: Danish <dansk@klid.dk>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"Kunne ikke åbne filen, formodentlig fordi filformatet ikke er understøttet.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"Arkivfilen kunne ikke åbnes, måske fordi formatet ikke er understøttet.\n"
+"%1"

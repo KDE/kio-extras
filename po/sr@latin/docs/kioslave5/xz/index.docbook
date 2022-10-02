@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="xz">
+<title
+>XZ/LZMA</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Per Ejvind</firstname
+> <surname
+>Karlsen</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Časlav</firstname
+><surname
+>Ilić</surname
+><affiliation
+><address
+><email
+>caslav.ilic@gmx.net</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>xz</command
+> je naredba za kompresovanje.</para>
+
+<para
+>U/I zahvat za <command
+>xz</command
+> ne može se neposredno koristiti, već samo kao filter. Na primer, U/I zahvat za <command
+>tar</command
+> može da upotrebi ovaj U/I zahvat da bi prikazao sadržaj <literal role="extension"
+>.tar.lzma</literal
+> ili <literal role="extension"
+>.tar.xz</literal
+> fajla u prozoru <application
+>K‑osvajača</application
+>.</para>
+
+<para
+>Ako u <application
+>K‑osvajaču</application
+> kliknete na fajl arhive sa nastavkom <literal role="extension"
+>.lzma</literal
+> ili <literal role="extension"
+>.tar.xz</literal
+>, ovaj U/I zahvat se poziva da ga otpakuje i prikaže kao običan (nekompresovani) fajl.</para>
+
+<para
+>Ako ste programer i želite da upotrebite filter za <command
+>xz</command
+>, dokumentaciju o korišćenju U/I zahvata možete naći na <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+>.</para>
+
+<para
+>Pogledajte uputstvo: <ulink url="man:/xz"
+><command
+>xz</command
+></ulink
+>. </para>
+
+</article>

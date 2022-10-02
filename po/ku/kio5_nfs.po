@@ -1,0 +1,69 @@
+# translation of kio_nfs.po to Kurdish
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Erdal Ronahi <erdal.ronahi@nospam.gmail.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2008-12-20 19:51+0200\n"
+"Last-Translator: Omer Ensari <oensari@gmail.com>\n"
+"Language-Team: Kurdish <ubuntu-l10n-kur@lists.ubuntu.com>\n"
+"Language: ku\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Kurdish\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr ""
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr ""
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr ""
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr ""
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "Navê pelê gelek dirêj e"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Kota dîskê hate bihartin "
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr ""
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr ""
+
+#~ msgid "No space left on device"
+#~ msgstr "Cih li ser cîhazê nemaye"
+
+#~ msgid "Read only file system"
+#~ msgstr "Tenê pergala pelê bixîne"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "Çewtiya RPC çêbû."

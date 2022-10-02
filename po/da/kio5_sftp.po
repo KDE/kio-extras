@@ -1,0 +1,466 @@
+# Danish translation of kio_sftp
+# Copyright (C)
+# Erik Kjær Pedersen <erik@binghamton.edu>, 2001, 2002, 2003, 2004.
+# Martin Schlander <mschlander@opensuse.org>, 2008, 2009, 2010, 2012, 2013, 2014, 2015, 2022.
+# scootergrisen, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2022-02-08 19:59+0100\n"
+"Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
+"Language-Team: Danish <kde-i18n-doc@kde.org>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Project-Style: kde\n"
+"X-Generator: Lokalize 20.04.2\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Forkert eller ugyldig adgangsfrase"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "Kunne ikke allokere tilbagekald"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "Kunne ikke sætte detaljeringsgrad for log."
+
+#: kio_sftp.cpp:294
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "Kunne ikke sætte log-brugerdata."
+
+#: kio_sftp.cpp:299
+#, kde-format
+msgid "Could not set log callback."
+msgstr "Kunne ikke sætte log-tilbagekald."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "SFTP-login"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "Anvend input-feltet brugernavn til at besvare dette spørgsmål."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "Angiv din adgangskode."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "Sted:"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Kunne ikke læse link: %1 [%2]"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "Kunne ikke oprette en ny SSH-session."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "Kunne ikke sætte en timeout."
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Kunne ikke deaktivere Nagle's algoritme."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "Kunne ikke sætte komprimering."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "Kunne ikke sætte vært."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "Kunne ikke sætte port."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "Kunne ikke sætte brugernavn."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "Kunne ikke fortolke konfigurationsfilen."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Åbner SFTP-forbindelse til værten %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr "Kunne ikke hente typenavnet ud fra serverens offentlige nøgle"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "Kunne ikke oprette hash ud fra serverens offentlige nøgle"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr "Kunne ikke oprette fingeraftryk ud fra serverens offentlige nøgle"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"En %1 værtsnøglen for denne server blev ikke fundet, men en anden type af "
+"nøgle findes.\n"
+"En angriber kan måske ændre standard server-nøglen for at forvirre din "
+"klient til at tro at nøglen ikke findes.\n"
+"Kontakt din systemadministrator.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+#| msgid "Warning: Host's identity changed."
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Advarsel: Værtens identitet ændret."
+
+#: kio_sftp.cpp:757
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"Værtsnøglen for serveren %1 er blevet ændret.\n"
+"Dette kan enten betyde at DNS SPOOFING finder sted eller at IP-adressen for "
+"denne vært og dens værtsnøgle er blevet ændret på samme tid.\n"
+"Fingeraftrykket for nøglen sendt fra den eksterne vært er:\n"
+" %2\n"
+"Kontakt din systemadministrator.\n"
+"%3"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The %2 key fingerprint is: %3\n"
+#| "Are you sure you want to continue connecting?"
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"Autentiteten af værten %1 kan ikke fastslås.\n"
+"%2 nøglens fingeraftryk er: %3\n"
+"Er du sikker på, at du vil fortsætte med at forbinde?"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Godkendelse mislykkedes."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+"Godkendelse mislykkedes. Serveren sendte ikke nogen autentificeringsmetoder"
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Indtast venligst brugernavn og adgangskode."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Forkert brugernavn eller adgangskode"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"Kan ikke forespørge SFTP-undersystemet. Sørg for at SFTP er aktiveret på "
+"serveren."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "Kunne ikke initialisere SFTP-sessionen."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Det lykkedes at forbinde til %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr "Ugyldigt sftp-kontekst"
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"Kunne ikke ændre rettigheder for\n"
+"%1"
+
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "Værtsnøglen for serveren %1 er blevet ændret.\n"
+#~ "Dette kan enten betyde at DNS SPOOFING finder sted eller at IP-adressen "
+#~ "for denne vært og dens værtsnøgle er blevet ændret på samme tid.\n"
+#~ "Fingeraftrykket for %2 nøglen sendt fra den eksterne vært er:\n"
+#~ " SHA256:%3\n"
+#~ "Kontakt din systemadministrator.\n"
+#~ "%4"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Advarsel: Kan ikke verificere værtens identitet."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Værts nøglen for denne server blev ikke fundet, men en anden type af "
+#~ "nøgle findes.\n"
+#~ " En angriber kan måske ændre standard server-nøglen for at forvirre din "
+#~ "klient til at tro at nøglen ikke findes.\n"
+#~ "Kontakt din systemadministrator.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "Autentiteten af værten %1 kan ikke fastslås.\n"
+#~ "Nøglens fingeraftryk er: %2\n"
+#~ "Er du sikker på, at du vil fortsætte med at forbinde?"
+
+#~ msgid "No hostname specified."
+#~ msgstr "Intet værtsnavn angivet."
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "Der opstod en intern fejl. Prøv venligst forespørgslen igen."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "Indtast venligst dit brugernavn og nøgle-løsen."
+
+#~ msgid "Connection failed."
+#~ msgstr "Forbindelse mislykkedes."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "Forbindelse lukket af ekstern vært."
+
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "uventet SFTP-fejl: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP version %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "Protokolfejl."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "Der opstod en intern fejl. Prøv venligst igen."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "Ukendt fejl opstod under kopiering af filen til '%1'. Prøv venligst igen."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "Den eksterne vært understøtter ikke omdøbning af filer."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "Den eksterne vært understøtter ikke oprettelse af symbolske link."
+
+#~ msgid "Connection closed"
+#~ msgstr "Forbindelse lukket"
+
+#~ msgid "End of file."
+#~ msgstr "End of file."
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "SFTP-kommando mislykkedes af en ukendt grund."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "SFTP-serveren modtog en dårlig besked."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "Du forsøgte en operation der ikke er understøttet af SFTP-serveren."
+
+#~ msgid "Error code: %1"
+#~ msgstr "Fejl-kode: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "Kan ikke angive et undersystem og kommando samtidigt."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "Ingen valg gjort for ssh-udførsel."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "Mislykkedes at køre ssh-proces."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "Der opstod en fejl mens der blev talt til ssh."
+
+#~ msgid "Please supply a password."
+#~ msgstr "Angiv venligst en adgangskode"
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "Angiv venligst løsen for din SSH-privatnøgle."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "Godkendelse til %1 mislykkedes"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "Identiteten af den eksterne vært '%1' kunne ikke verificeres da værtens "
+#~ "nøgle ikke er i \"known hosts\"-filen."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ "Tilføj værtens nøgle manuelt til \"known hosts\"-filen eller kontakt din "
+#~ "administrator."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr ""
+#~ " Tilføj værtens nøgle manuelt til %1 eller kontakt din administrator."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "Identiteten af den eksterne vært '%1' kunne ikke verificeres. Værtens "
+#~ "nøglefingeraftryk er:\n"
+#~ "%2\n"
+#~ "Du bør verificere fingeraftrykket med værtens administrator før du "
+#~ "forbinder.\n"
+#~ "\n"
+#~ "Vil du acceptere værtens nøgle og forbinde alligevel? "
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "ADVARSEL: Identiteten af den eksterne vært '%1' er ændret!\n"
+#~ "\n"
+#~ "Nogen lytter muligvis med på din forbindelse, eller måske har "
+#~ "administratoren blot ændret værtens nøgle. Under alle omstændigheder bør "
+#~ "du verificere værtens nøgle-fingeraftryk med værtens administrator. Nøgle-"
+#~ "fingeraftrykket er:\n"
+#~ "%2\n"
+#~ "Tilføj den rigtige værtsnøgle til \"%3\" for at slippe af med denne "
+#~ "besked."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "ADVARSEL: Identiteten af den eksterne vært '%1' er ændret!\n"
+#~ "\n"
+#~ "Nogen lytter muligvis med på din forbindelse, eller måske har "
+#~ "administratoren blot ændret værtens nøgle. Under alle omstændigheder bør "
+#~ "du verificere værtens nøgle-fingeraftryk med værtens administrator. Nøgle-"
+#~ "fingeraftrykket er:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Vil du acceptere værtens nye nøgle og forbinde alligevel?"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "Værtsnøgle blev afslået"

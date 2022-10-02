@@ -1,0 +1,75 @@
+# translation of kio_nfs.po to Italian
+# Copyright (C) 2004 Free Software Foundation, Inc.
+# Andrea RIZZI <arizzi@pi.infn.it>, 2004.
+# Vincenzo Reale <smart2128vr@gmail.com>, 2015.
+# Luigi Toscano <luigi.toscano@tiscali.it>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2021-02-20 11:47+0100\n"
+"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"Language-Team: Italian <kde-i18n-it@kde.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr "Impossibile trovare una versione di NFS supportata dall'host «%1»"
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "Il protocollo NFS richiede un nome di host per il server."
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr "Inizializzazione del protocollo non riuscita"
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "Errore RPC %1, %2"
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "Nome file troppo lungo"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Quota disco superata"
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "Errore NFS %1, %2"
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr "Destinazione sconosciuta"
+
+#~ msgid "%1: Unsupported NFS version"
+#~ msgstr "%1: versione di NFS non supportata"
+
+#~ msgid "No space left on device"
+#~ msgstr "Spazio insufficiente sul dispositivo"
+
+#~ msgid "Read only file system"
+#~ msgstr "File system di sola lettura"
+
+#~ msgid "Failed to mount %1"
+#~ msgstr "Montaggio di %1 non riuscito"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "Si è verificato un errore di RPC."

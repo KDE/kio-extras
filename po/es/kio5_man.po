@@ -1,0 +1,220 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Eloy Cuadra <ecuadra@eloihr.net>, 2014, 2019, 2020, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2021-09-03 19:38+0200\n"
+"Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
+"Language-Team: Spanish <kde-l10n-es@kde.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 21.08.0\n"
+
+#: kio_man.cpp:451
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"No se ha podido encontrar ninguna página man que coincida con <resource>%1</"
+"resource>.<nl/><nl/>Compruebe que no ha escrito mal el nombre de la página, "
+"teniendo en cuenta el uso de mayúsculas y minúsculas en los nombres de las "
+"páginas man.<nl/><nl/>Si el nombre es correcto, es posible que necesite "
+"extender la ruta de búsqueda para páginas man; use para ello la variable de "
+"entorno <envar>MANPATH</envar> o un archivo de configuración en el "
+"directorio <filename>/etc</filename>."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"La página man indicada hace referencia a otra página <filename>%1</filename>,"
+"<nl/>pero no se ha podido encontrar la página <filename>%2</filename> a la "
+"que hace referencia."
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr "No se puede leer la página man <filename>%1</filename>."
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr "No se puede convertir la página man <filename>%1</filename>."
+
+#: kio_man.cpp:660
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "Error del visor de páginas de manual"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "Hay más de una página man coincidente:"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "Múltiples páginas de manual"
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Nota: tenga en cuenta que si lee una página man en su idioma cabe la "
+"posibilidad de que contenga errores o de que sea obsoleta. En caso de duda, "
+"debería consultar la versión en inglés."
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr "Archivos de cabecera"
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr "Archivos de cabecera (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Órdenes del usuario"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Órdenes de usuario (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Llamadas del sistema"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Subrutinas"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Módulos Perl"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Funciones de la red"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Dispositivos"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Formatos de archivos"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Juegos"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Varios"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Administración del sistema"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Kernel"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Documentación local"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Nuevo"
+
+#: kio_man.cpp:805
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "Índice de la página de manual principal"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Sección %1"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "Índice de la sección %1: %2"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Manual Page Index"
+msgstr "Índice de la página de manual"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Creando índice"
+
+#: kio_man.cpp:1407
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"No se ha podido encontrar el programa <command>%1</command> en su sistema. "
+"Instálelo si es necesario y asegúrese de que se puede encontrar usando la "
+"variable de entorno <envar>PATH</envar>."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "La apertura de %1 ha fallado."
+
+#~ msgid "Man output"
+#~ msgstr "Salida de man"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Eloy Cuadra"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "ecuadra@eloihr.net"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

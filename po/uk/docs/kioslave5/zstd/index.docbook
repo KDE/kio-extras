@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Ukrainian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="zstd">
+<title
+>zstd</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Friedrich</firstname
+><othername
+>W. H.</othername
+><surname
+>Kossebau</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Юрій</firstname
+><surname
+>Чорноіван</surname
+><affiliation
+><address
+><email
+>yurchor@ukr.net</email
+></address
+></affiliation
+><contrib
+>Переклад українською</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>zstd</command
+> — програма для стискання даних.</para>
+
+<para
+>Підлеглий засіб zstd типово не використовується безпосередньо, його використовують як фільтр. Наприклад, підлеглий tar може розпакувати файл за допомогою підлеглого zstd, для того щоб показати вміст файла <literal role="extension"
+>tar.zst</literal
+> в вікні &konqueror;.</para>
+
+<para
+>Коли ви натискаєте позначку файла з суфіксом назви <literal role="extension"
+>zst</literal
+>, у &konqueror;, цей підлеглий В/В використовується, щоб розпакувати цей файл і показати його, як звичайний (розпакований) файл.</para>
+
+<para
+>Розробники програм, які бажають використовувати підлеглий фільтр zstd, можуть знайти документацію про використання підлеглих В/В на <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Підручник: <ulink url="man:/zstd"
+>zstd</ulink
+>. </para>
+
+</article>

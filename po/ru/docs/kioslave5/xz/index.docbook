@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="xz">
+<title
+>xz / lzma</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Per Øyvind</firstname
+><surname
+> Karlsen</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Xz — это программа сжатия данных.</para>
+
+<para
+>Модуль xz kioslave не используется непосредственно, он предназначен для работы в качестве фильтра. Например, протокол tar может пропустить файл через фильтр xz, чтобы можно было просмотреть содержимое файла <literal role="extension"
+>tar.lzma</literal
+> или <literal role="extension"
+>tar.xz</literal
+> прямо в окне &konqueror;.</para>
+
+<para
+>При нажатии на файл с расширением <literal role="extension"
+>.lzma</literal
+> или <literal role="extension"
+>tar.xz</literal
+> в &konqueror; этот модуль распакует файл и позволит работать ним как его как обычным (несжатым) файлом.</para>
+
+<para
+>Документация для разработчиков, описывающая использование модуля xz и других модулей kioslaves, размещена на сайте <ulink url="https://techbase.kde.org"
+>https://techbase.kde.org</ulink
+>.</para>
+
+<para
+>Смотрите также руководство пользователя программы: <ulink url="man:/xz"
+>xz</ulink
+>. </para>
+
+</article>

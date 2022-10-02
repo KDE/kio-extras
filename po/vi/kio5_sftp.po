@@ -1,0 +1,291 @@
+# Vietnamese translation for kio_sftp.
+# Copyright © 2006 Free Software Foundation, Inc.
+#
+# Phan Vĩnh Thịnh <teppi82@gmail.com>, 2006.
+# Lê Hoàng Phương <herophuong93@gmail.com>, 2013.
+# Phu Hung Nguyen <phu.nguyen@kdemail.net>, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2022-08-09 21:56+0200\n"
+"Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
+"Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 22.04.1\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Mật tổ sai hoặc không hợp lệ"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "Không phân bố được lời gọi lại"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "Không đặt được độ chi tiết của nhật kí."
+
+#: kio_sftp.cpp:294
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "Không đặt được dữ liệu người dùng của nhật kí."
+
+#: kio_sftp.cpp:299
+#, kde-format
+msgid "Could not set log callback."
+msgstr "Không đặt được lời gọi lại của nhật kí."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "Đăng nhập SFTP"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "Sử dụng trường nhập tên người dùng để trả lời câu hỏi này."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "Vui lòng nhập mật khẩu của bạn."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "Địa điểm:"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Không đọc được liên kết: %1 [%2]"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "Không tạo được phiên SSH mới."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "Không đặt được thời hạn."
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Không tắt được thuật toán Nagle."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "Không đặt được chế độ nén."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "Không đặt được máy."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "Không đặt được cổng."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "Không đặt được tên người dùng."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "Không phân tách được tệp cấu hình."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Đang mở kết nối SFTP đến máy %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr "Không lấy được tên kiểu khoá công khai của máy chủ."
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "Không tạo được giá trị băm từ khoá công khai của máy chủ"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr "Không tạo được điểm chỉ cho khoá công khai của máy chủ"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Không tìm thấy khoá %1 cho máy chủ này, nhưng lại có một kiểu khoá khác.\n"
+"Một kẻ tấn công có thể thay đổi khoá máy chủ mặc định nhằm làm cho máy khách "
+"của bạn nghĩ rằng khoá không tồn tại.\n"
+"Vui lòng liên hệ với quản trị viên hệ thống của bạn.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Thay đổi danh tính máy"
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"<para>Khoá cho máy chủ <emphasis>%1</emphasis> đã thay đổi.</para><para>Điều "
+"này có thể có nghĩa là, hoặc việc đánh lừa bằng DNS đang diễn ra, hoặc địa "
+"chỉ IP cho máy đó và khoá của nó đã thay đổi cùng lúc.</para><para>Điểm chỉ "
+"của khoá %2 do máy ở xa gửi là:<bcode>%3</bcode>Bạn có chắc chắn muốn tiếp "
+"tục kết nối không?</para>"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr "Thất bại xác minh máy"
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"<para>Tính xác thực của máy <emphasis>%1</emphasis> không thể được chứng "
+"minh.</para><para>Điểm chỉ của khoá %2 là:<bcode>%3</bcode>Bạn có chắc chắn "
+"muốn tiếp tục kết nối không?</para>"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr "Cứ kết nối"
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Xác thực thất bại."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr "Xác thực thất bại. Máy chủ không gửi bất kì phương thức xác thực nào"
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Vui lòng nhập tên người dùng và mật khẩu."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Tên người dùng hoặc mật khẩu sai"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"Không thể yêu cầu hệ thống con SFTP. Hãy chắc chắn rằng SFTP được bật trên "
+"máy chủ."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "Không khởi tạo được phiên SFTP."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Đã kết nối thành công đến %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr "Ngữ cảnh SFTP không hợp lệ"
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"Không thay đổi được quyền cho\n"
+"%1"
+
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "Khoá cho máy chủ %1 đã thay đổi.\n"
+#~ "Điều này có thể có nghĩa là, hoặc việc đánh lừa bằng DNS đang diễn ra, "
+#~ "hoặc địa chỉ IP cho máy đó và khoá của nó đã thay đổi cùng lúc.\n"
+#~ "Điểm chỉ cho khoá %2 do máy ở xa gửi là:\n"
+#~ "  SHA256:%3\n"
+#~ "Vui lòng liên hệ với quản trị viên hệ thống của bạn.\n"
+#~ "%4"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Cảnh báo: Không thể xác minh danh tính của máy."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Không tìm thấy khoá cho máy chủ này, nhưng lại có một kiểu khoá khác.\n"
+#~ "Một kẻ tấn công có thể thay đổi khoá máy chủ mặc định nhằm làm cho máy "
+#~ "khách của bạn nghĩ rằng khoá không tồn tại.\n"
+#~ "Vui lòng liên hệ với quản trị viên hệ thống của bạn.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "Tính xác thực của máy %1 không thể được chứng minh.\n"
+#~ "Điểm chỉ của khoá là: %2\n"
+#~ "Bạn có chắc chắn muốn tiếp tục kết nối không?"

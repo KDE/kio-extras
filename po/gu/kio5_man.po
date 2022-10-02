@@ -1,0 +1,231 @@
+# translation of kio_man.po to Gujarati
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sweta Kothari <swkothar@redhat.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2008-11-04 08:24+0530\n"
+"Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
+"Language-Team: Gujarati\n"
+"Language: gu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Check that you have "
+#| "typed the name using the correct upper and lower case characters.<br />If "
+#| "everything looks correct, then you may need to improve the search path "
+#| "for man pages; either using the environment variable MANPATH or using a "
+#| "matching file in the /etc directory."
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"%1 ને બંધબેસતુ દસ્તાવેજ પાનું શોધાયુ નથી.<br /><br />ચકાસો કે જે તમે પાનાનાં નામ ને ખોટુ "
+"ટાઇપ નથી કર્યુ કે જે તમે ઇચ્છો છો.<br />ચકાસો કે જે તમે યોગ્ય કેપિટલ (મોટા) અને નીચેના "
+"અક્ષરોની મદદથી નામને ટાઇપ કરેલ છે.<br />જો બધુ જ યોગ્ય હોય તો, પછી તમે દસ્તાવેજ પાનાંઓ "
+"માટે માર્ગને શોધવા સુધારવા માટે જરૂરી હોઇ શકે છે; ક્યાંતો પર્યાવરણ ચલ MANPATH ની મદદથી "
+"અથવા /etc ડિરેક્ટરીમાં બંધબેસતી ફાઇલની મદદથી."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
+msgstr "<h1>KDE દસ્તાવેજ દેખનાર ભૂલ</h1>"
+
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
+msgstr "એક કરતા વધારે બંધબેસતા મેન પેજ છે."
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"નોંધો: જો તમે તમારી ભાષામાં દસ્તાવેજ પાનાંને વાંચો તો, સાવધાન રહેજો તે કેટલીક ભૂલો અથવા "
+"અપ્રચલિત હોઇ શકે છે, શંકાની આ પરિસ્થિતીમાં, તમારે એજ વખતે અંગ્રેજી આવૃતિને જોવી જોઇએ."
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr ""
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr ""
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "વપરાશકર્તા આદેશો"
+
+#: kio_man.cpp:761
+#, fuzzy, kde-format
+#| msgid "User Commands"
+msgid "User Commands (POSIX)"
+msgstr "વપરાશકર્તા આદેશો"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "સિસ્ટમ કોલ્સ"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "સબરુટીનો"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "પર્લ મોડ્યુલ્સ"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "નેટવર્ક વિધેયો"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "ઉપકરણો"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "ફાઇલ બંધારણો"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "રમતો"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "વિવિધ"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "સિસ્ટમ વહીવટ"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "કર્નલ"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "સ્થાનીય દસ્તાવેજ"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "નવું"
+
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
+msgstr "UNIX પુસ્તિકા અનુક્રમણિકા"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "વિભાગ %1"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
+msgstr "ભાગ %1 માટે અનુક્રમણિકા: %2"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "UNIX પુસ્તિકા અનુક્રમણિકા"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "અનુક્રમણિકા ઉત્પન્ન કરી રહ્યા છે"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"તમારી સિસ્ટમ પર sgml2roff પ્રક્રિયાને શોધી શકાતુ નથી. મહેરબાની કરીને તેને સ્થાપિત કરો, "
+"અને KDE શરૂઆત કરતા પહેલા પર્યાવરણ ચલ PATH ગોઠવી રહ્યા ત્યારે માર્ગને શોધવાનું લંબાવો."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "%1 ને ખોલવામાં નિષ્ફળતા."
+
+#~ msgid "Man output"
+#~ msgstr "દસ્તાવેજ આઉટપુટ"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "શ્ર્વેતા કોઠારી, કાર્તિક મિસ્ત્રી"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "swkothar@redhat.com, kartik.mistry@gmail.com"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

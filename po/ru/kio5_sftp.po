@@ -1,0 +1,483 @@
+# translation of kio_sftp.po into Russian
+# translation of kio_sftp.po to Russian
+#
+# KDE3 - kdebase/kio_sftp.pot Russian translation.
+# Copyright (C) 2002, KDE Russian translation Team.
+#
+# Gregory Mokhin <mok@kde.ru>, 2002, 2005.
+# Leonid Kanter <leon@asplinux.ru>, 2004.
+# Andrey Cherepanov <skull@kde.ru>, 2009, 2011.
+# Alexander Potashev <aspotashev@gmail.com>, 2010, 2015.
+# Yuri Efremov <yur.arh@gmail.com>, 2013.
+# Alexander Lakhin <exclusion@gmail.com>, 2013, 2014.
+# Alexander Yavorsky <kekcuha@gmail.com>, 2019, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2022-01-18 21:28+0300\n"
+"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.12.1\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Неверный или некорректный пароль"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "Не удалось выделить память под функции обработки"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "Не удалось установить уровень журналирования."
+
+#: kio_sftp.cpp:294
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "Не удалось задать доп. данные для журналирования."
+
+#: kio_sftp.cpp:299
+#, kde-format
+msgid "Could not set log callback."
+msgstr "Не удалось задать функцию обратного вызова для журналирования."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "Вход на сервер SFTP"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "Введите ответ на этот вопрос в поле для имени пользователя."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "Введите пароль."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "Сайт:"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Не удалось прочитать ссылку «%1», ошибка: %2"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "Не удалось открыть сеанс SSH."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "Не удалось установить время ожидания."
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Не удалось отключить использование алгоритма Нейгла."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "Не удалось установить сжатие."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "Не удалось установить имя сервера."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "Не удалось установить номер порта."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "Не удалось установить имя пользователя."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "Не удалось обработать конфигурационный файл."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Подключение к SFTP-серверу %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr "Не удалось получить имя типа открытого ключа сервера"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "Не удалось получить хэш из открытого ключа сервера"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr "Не удалось создать отпечаток из открытого ключа сервера"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"Для этого сервера не найден ключ узла %1, но присутствует другой тип ключа.\n"
+"Подобную ситуацию может вызывать подмена ключа сервера атакующим "
+"злоумышленником.\n"
+"Обратитесь к системному администратору.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+#| msgid "Warning: Host's identity changed."
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Внимание: идентификация узла изменилась."
+
+#: kio_sftp.cpp:757
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The host key for the server %1 has changed.\n"
+#| "This could either mean that DNS SPOOFING is happening or the IP address "
+#| "for the host and its host key have changed at the same time.\n"
+#| "The fingerprint for the key sent by the remote host is:\n"
+#| " %2\n"
+#| "Please contact your system administrator.\n"
+#| "%3"
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"Изменён ключ сервера %1.\n"
+"Это означает, что возможна подмена адреса сервера.\n"
+"Отпечаток ключа, полученный сейчас с сервера: %2\n"
+"Обратитесь к системному администратору.\n"
+"%3"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The authenticity of host %1 cannot be established.\n"
+#| "The %2 key fingerprint is: %3\n"
+#| "Are you sure you want to continue connecting?"
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"Не удалось установить подлинность сервера %1.\n"
+"Отпечаток ключа %2: %3\n"
+"Продолжить подключение к серверу?"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Проверка подлинности неудачна."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+"Проверка подлинности неудачна. Сервер не передал список доступных методов "
+"проверки"
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Введите имя пользователя и пароль."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Неверное имя пользователя или пароль"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+"Не удаётся использовать подсистему SFTP. Убедитесь, что сервер поддерживает "
+"SFTP."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "Не удалось инициализировать сеанс SFTP."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Успешное соединение с %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr "Неверный контекст sftp"
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"Невозможно изменить права доступа для\n"
+"%1"
+
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "Изменён ключ сервера %1.\n"
+#~ "Это означает, что возможна подмена адреса сервера.\n"
+#~ "Отпечаток ключа %2, полученный сейчас с сервера:\n"
+#~ "  SHA256:%3\n"
+#~ "Обратитесь к системному администратору.\n"
+#~ "%4"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Внимание: невозможно проверить подлинность узла."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Для этого сервера не найден ключ узла, но присутствует другой тип ключа.\n"
+#~ "Атакующий злоумышленник может подменить ключ сервера, что вызывает "
+#~ "подобную ситуацию.\n"
+#~ "Обратитесь к системному администратору.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "Не удалось установить подлинность сервера %1.\n"
+#~ "Отпечаток ключа: %2\n"
+#~ "Продолжить подключение к серверу?"
+
+#~ msgid "No hostname specified."
+#~ msgstr "Не указано имя сервера."
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "Произошла внутренняя ошибка. Повторите запрос ещё раз."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "Введите имя пользователя и ключевую фразу."
+
+#~ msgid "Connection failed."
+#~ msgstr "Ошибка при соединении."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "Соединение было закрыто сервером."
+
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "ошибка SFTP: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP версии %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "Ошибка протокола."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "Произошла внутренняя ошибка. Попробуйте ещё раз."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "Произошла неизвестная ошибка при копировании файла в «%1». Попробуйте ещё "
+#~ "раз."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "Удалённый узел не поддерживает переименование файлов."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "Удалённый узел не поддерживает создание символических ссылок."
+
+#~ msgid "Connection closed"
+#~ msgstr "Соединение закрыто."
+
+#~ msgid "End of file."
+#~ msgstr "Конец файла."
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "Сбой выполнения команды SFTP по неизвестной причине."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "Сервер SFTP прислал сообщение неверного формата."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "Попытка выполнить операцию, не поддерживаемую сервером SFTP."
+
+#~ msgid "Error code: %1"
+#~ msgstr "Код ошибки: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "Невозможно одновременно указать подсистему и команду."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "Не указаны параметры для запуска ssh."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "Ошибка запуска программы ssh."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "Произошла ошибка связи с ssh."
+
+#~ msgid "Please supply a password."
+#~ msgstr "Укажите пароль."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "Укажите пароль для вашего личного ключа SSH."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "Ошибка регистрации на %1"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "Идентификация удалённого сервера «%1» не может быть проверена, поскольку "
+#~ "ключ сервера не указан в файле известных серверов."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ "Добавьте ключ сервера в файл известных серверов вручную или обратитесь к "
+#~ "системному администратору."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr ""
+#~ "Добавьте ключ сервера в «%1» вручную или обратитесь к системному "
+#~ "администратору."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "Идентификация удалённого сервера «%1» не может быть проверена. Отпечаток "
+#~ "ключа сервера:\n"
+#~ "%2\n"
+#~ "Вы должны проверить отпечаток ключа сервера с администратором сервера "
+#~ "перед установлением соединения.\n"
+#~ "\n"
+#~ "Принять ключ сервера и продолжить соединение?"
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "ВНИМАНИЕ: идентификация сервера «%1» изменилась!\n"
+#~ "\n"
+#~ "Кто-то проник в ваше соединение или администратор сервера сменил ключ "
+#~ "сервера. В любом случае проверьте отпечаток ключа сервера с "
+#~ "администратором этого сервера. Отпечаток:\n"
+#~ "%2\n"
+#~ "Добавьте правильный ключ сервера в «%3», чтобы это сообщение больше не "
+#~ "показывалось."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: идентификация сервера «%1» изменилась!\n"
+#~ "\n"
+#~ "Кто-то проник в ваше соединение или администратор сервера сменил ключ "
+#~ "сервера. В любом случае проверьте отпечаток ключа сервера с "
+#~ "администратором этого сервера перед установлением соединения. Отпечаток:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Принять ключ сервера и продолжить соединение?"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "Ключ сервера был отвергнут."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "Введите имя пользователя и пароль"
+
+#~ msgid "File does not exist."
+#~ msgstr "Файл не найден."
+
+#~ msgid "Access is denied."
+#~ msgstr "Доступ запрещён."

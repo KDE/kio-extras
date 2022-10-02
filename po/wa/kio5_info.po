@@ -1,0 +1,32 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Jean Cayron <jean.cayron@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"PO-Revision-Date: 2009-12-26 18:50+0100\n"
+"Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
+"Language-Team: Walloon <linux-wa@walon.org>\n"
+"Language: wa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: info.cpp:52
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "Unable to locate file %1 which is necessary to run this service. Please "
+#| "check your software installation."
+msgid ""
+"Unable to locate files which are necessary to run this service:<br>"
+"%1<br>Please check your software installation."
+msgstr ""
+"\n"
+"Dji n' sai trover l' eplaeçmint do fitchî %1 k' ons a mezåjhe pos enonder ci "
+"siervice. Waitîz l' astalaedje di vos programes s' i vos plait."

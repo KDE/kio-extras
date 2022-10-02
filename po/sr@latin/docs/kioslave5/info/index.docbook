@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="info">
+<title
+>Info stranice</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Lori</firstname
+> <surname
+>Vots</surname
+></personname
+> &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nikola</firstname
+> <surname
+>Gut</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Info stranice su vrsta dokumentacije. Njeni dokumenti su u formatu po imenu TeXinfo, a mogu se čitati kroz komandnu liniju naredbom <ulink url="info:/info"
+><command
+>info</command
+></ulink
+>.</para>
+
+<para
+>U/I zahvat info stranica omogućava vam da iz <application
+>K‑osvajača</application
+> čitate sve info stranice instalirane na sistemu. Lako se koristi:</para>
+
+<screen
+><userinput
+><command
+>info:</command
+><replaceable
+>gcc</replaceable
+></userinput
+></screen>
+
+<para
+>Ovim biste dobili čvor na vrhu info stranica za kompilator GCC.</para>
+
+<para
+>Info stranice su GNU‑ova zamena za <command
+>man</command
+>, ali nisu stekle širu primenu izvan GNU‑ovog softvera.</para>
+
+<para
+>Instalirane info stranice vrlo lako možete pregledati u <application
+>K‑centru-pomoći</application
+>, a možete i koristiti U/I zahvat neposredno, npr. u <application
+>K‑osvajaču</application
+>.</para>
+
+</article>

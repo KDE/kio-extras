@@ -1,0 +1,141 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="man">
+<title
+>Man</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+&traducteurEquipeKDE; 
+</authorgroup>
+</articleinfo>
+
+<para
+>L'utilisation du module d'entrée-sortie man vous permet de consulter les pages man installées sur votre système. Son utilisation est simple : </para>
+
+<variablelist>
+<varlistentry>
+<term
+><userinput
+><command
+>man:</command
+></userinput
+></term>
+<listitem>
+<para
+>Affiche les différentes sections du manuel, cliquez pour accéder au reste. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Affiche la page man de <command
+>fopen</command
+> </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Affiche la page man de <command
+>fopen</command
+> de la section 3 </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Voir l'index de la section 3 </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+>intro<replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Voir l'introduction de la section 3 </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note
+><para
+>S'il y a plus d'une page de man du nom que vous avez donné, vous obtiendrez une liste où vous pouvez choisir la page que vous voulez voir.</para
+></note>
+
+<para
+>Il y a aussi le raccourci <userinput
+><command
+>#fopen</command
+></userinput
+>, qui a le même effet que précédemment. </para>
+
+<para
+>Si vous ne trouvez pas toutes vos pages man, ajustez le fichier de configuration <filename
+>/etc/manpath.config</filename
+> (ou un fichier semblable, selon votre distribution), ou ajustez les variables d'environnement <envar
+>MANPATH</envar
+> et <envar
+>MANSECT</envar
+>. </para>
+
+<para
+>Comme avec tous les autres modules d'entrée-sortie de &kde;, il est possible de saisir une &URL; comme <userinput
+><command
+>man:/socket</command
+></userinput
+> dans <emphasis
+>toute</emphasis
+> application &kde;. Essayez dans &kwrite;, et vous verrez la page de man au format &HTML;. </para>
+
+<para
+>Liste de discussion pour tout contact : <email
+>kde-devel@kde.org</email
+> </para>
+
+</article>

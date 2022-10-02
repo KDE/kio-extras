@@ -1,0 +1,208 @@
+# Translation for kio5_smb.po to Euskara/Basque (eu).
+# Copyright (C) 2002-2014, Free Software Foundation, Inc.
+# Copyright (C) 2015-2020, This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# KDE euskaratzeko proiektuko arduraduna <xalba@euskalnet.net>.
+#
+# Translators:
+# Marcos  <marcos@euskalgnu.org>, 2002, 2006, 2010.
+# Juan Irigoien <juanirigoien@yahoo.es>, 2004, 2005.
+# Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2013.
+# Iñigo Salvador Azurmendi <xalba@euskalnet.net>, 2014, 2019, 2020.
+# Gontzal M. Pujana <juchuf@gmail.com>, 2018.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2020-11-15 18:03+0100\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.08.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+"<para>SMB partekatzeetan autentifikatzeko hainbat aukera dago.</"
+"para><para><placeholder>erabiltzaile-izena</placeholder>: etxeko sare batean "
+"autentifikatzeko, zerbitzariko erabiltzaile-izena nahikoa da</"
+"para><para><placeholder>erabiltzaile-izena@domeinua.com</placeholder>: "
+"Korporazioetako saio-hasteko egungo izenak e-posten antzera osatuta daude</"
+"para><para><placeholder>DOMEINUA\\erabiltzaile-izena</placeholder>: "
+"Korporazioetako sare edo lantalde zaharretarako agian aurrizki gisa NetBIOS "
+"domeinu-izena ipini beharko duzu (Windows 2000 aurrekoak)</"
+"para><para><placeholder>anonimoa</placeholder>: Saio-hasiera anonimoak "
+"egiten saia daiteke erabiltzaile-izen eta pasahitzak hutsik utzita. "
+"Zerbitzariko konfigurazioen arabera beharrezkoak izan daitezke hutsik ez "
+"dauden erabiltzaile-izenak.</para>"
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>Sartu honentzako autentifikazio-informazioa: <b>%1</b></qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"Sartu honentzako autentifikazio-informazioa:\n"
+"Zerbitzaria = %1\n"
+"Baliabide partekatua = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"Fitxategi mota ezezaguna, direktorioa nahiz fitxategia."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"Ezin da lantalderik aurkitu zure sare lokalean. Suhesi bat gaitu delako izan "
+"liteke."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "Gailuan ez dago euskarririk honentzat: %1"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "Ezin izan da konektatu ostalariarekin honentzat: %1"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "Errorea gertatu da %1 eragin duen zerbitzariarekin konektatzean"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "Baliabide partekatua ezin izan da aurkitu zerbitzari horretan"
+
+#: kio_smb_browse.cpp:303
+#, kde-format
+msgid "Bad file descriptor"
+msgstr "Fitxategi-deskriptore akastuna"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"Emandako izena ezin izan zaio zerbitzari bakar bati lotu. Ziurtatu zure "
+"sareak ez duela gatazkarik Windows-ek eta UNIXek erabiltzen dituzten izenen "
+"artean."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr "%1: Ostalari eskuraezina"
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"libsmbclient-ek errore baten berri eman du, baina ez du zehaztu zein den "
+"arazoa. Sareko arazo larri bat izan liteke, baina baita libsmbclient-ekiko "
+"arazo bat ere.\n"
+"Lagundu nahi badiguzu, bidali sare-interfazearen tcpdump bat, nabigatzen "
+"saiatzen ari zaren bitartean (kontuan izan datu pribatuak izan ditzakeela, "
+"eta, beraz, ez argitaratu, ziur ez bazaude; modu pribatuan bidal diezaiekezu "
+"garatzaileei, halakorik eskatzen badizute)"
+
+#: kio_smb_browse.cpp:334
+#, kde-format
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "Errore-baldintza ezezaguna: [%1] %2"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr "Error bat gertatu da %1 atzitzean<nl/>%2"
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbclient-ek huts egin du testuingurua sortzean"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"Ziurtatu samba paketea behar bezala instalatuta dagoela zure sisteman."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"Huts egin du \"%3\" erabiltzaileak \"%1\" baliabide partekatua \"%2\" "
+"ostalaritik muntatzean.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"Huts egin du \"%1\" muntatze-puntua desmuntatzean.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr "Gailu ezezaguna @ <resource>%1</resource>"
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "libsmbclient-ek huts egin du testuingurua hasieratzean"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "Fitxategia ez dago: %1"

@@ -1,0 +1,40 @@
+# Thomas Diehl <thd@kde.org>, 2003.
+# Thomas Reitelbach <tr@erdfunkstelle.de>, 2008.
+# Frederik Schwarzer <schwarzer@kde.org>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kfileaudiopreview4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-14 00:45+0000\n"
+"PO-Revision-Date: 2009-04-30 12:49+0200\n"
+"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kfileaudiopreview.cpp:68
+#, kde-format
+msgid "Play &automatically"
+msgstr "&Automatische Wiedergabe"
+
+#: mediacontrols_p.h:39
+#, kde-format
+msgid "start playback"
+msgstr "Wiedergabe starten"
+
+#: mediacontrols_p.h:44
+#, kde-format
+msgid "pause playback"
+msgstr "Wiedergabe pausieren"
+
+#~ msgid "stop playback"
+#~ msgstr "Wiedergabe anhalten"
+
+#~ msgid "loop: restarts playback at end"
+#~ msgstr "Wiederholen: startet die Wiedergabe am Ende neu"
+
+#~ msgid "Media Player"
+#~ msgstr "Medienwiedergabe"

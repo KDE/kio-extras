@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="tar">
+<title
+>tar</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Ferdinand.Gassauer; &Ferdinand.Gassauer.mail;</author>
+&traducteurEquipeKDE; 
+</authorgroup>
+</articleinfo>
+<para
+>Un programme d'archivage conçu pour stocker des fichiers dans des fichiers d'archive connus sous le nom de fichiers tar, et pour extraire les fichiers desdits fichiers archive. Un fichier tar peut être stocké sur une bande magnétique, mais il est toutefois courant d'écrire les fichiers tar comme des fichiers normaux. </para>
+
+<para
+>Consultez le manuel : <ulink url="man:/tar"
+>tar</ulink
+>. </para>
+
+</article>

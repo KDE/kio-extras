@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Galician  "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="bzip2">
+<title
+>bzip2 / bzip</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Marce</firstname
+><surname
+>Villarino</surname
+><affiliation
+><address
+><email
+>mvillarino@users.sourceforge.net</email
+></address
+></affiliation
+><contrib
+>Tradución do proxecto Trasno</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>bzip2</command
+> é un programa de compresión.</para>
+
+<para
+>O kioslave bzip2 non é utilizábel directamente, o seu propósito é empregarse como un filtro. Por exemplo, o kioslave tar pode filtrar un ficheiro mediante o kioslave bzip2, para poder mostrar os contidos dun ficheiro <literal role="extension"
+>tab.bz2</literal
+> nunha xanela de &konqueror;.</para>
+
+<para
+>Se preme &konqueror; nun ficheiro comprimido mediante <literal role="extension"
+>.bz2</literal
+> empregaráse este kioslave para descomprimilo e mostralo como un ficheiro normal (non comprimido).</para>
+
+<para
+>Se vde. é un desenvolvedor, e desexa empregar o filtro bzip2, pode atopar documentación sobre a utilización de kioslaves en <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Consulte o manual: <ulink url="man:/bzip2"
+>bzip2</ulink
+>. </para>
+
+<para
+><command
+>bzip</command
+> é o antecedente de bzip2. Na actualizade úsase moi raras veces, substituído por bzip2, que ten moita mellor compresión.</para>
+
+</article>

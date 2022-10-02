@@ -1,0 +1,175 @@
+# Language  translations for PACKAGE package.
+# Copyright (C) 2013 This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Safa Alfulaij <safaalfulaij@hotmail.con>, 2013, 2017.
+# Automatically generated, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2017-01-30 23:51+0300\n"
+"Last-Translator: Safa Alfulaij <safa1996alfulaij@gmail.com>\n"
+"Language-Team: Arabic <doc@arabeyes.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 2.0\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "الأنشطة"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "يحمّل..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "مدير الأنشطة لا يعمل"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "اربط بالنّشاط الحاليّ"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "افصل عن النّشاط الحاليّ"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "اربط ب‍:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "افصل عن:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "النّشاط"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "النّشاط الحاليّ"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "صفا الفليج"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "safaalfulaij@hotmail.com"
+
+#, fuzzy
+#~ msgid "Default"
+#~ msgstr "الافتراضي"
+
+#, fuzzy
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "بدِّل إلى النشاط \"%1\""
+
+#, fuzzy
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "النشاط"
+
+#, fuzzy
+#~ msgid "Delete activity"
+#~ msgstr "النشاط الحاليّ"
+
+#, fuzzy
+#~ msgid "Create a new activity"
+#~ msgstr "النشاط الحاليّ"
+
+#, fuzzy
+#~ msgid "Activity settings"
+#~ msgstr "النشاط"
+
+#, fuzzy
+#~ msgid "Activity information"
+#~ msgstr "النشاط"
+
+#~ msgid "Privacy"
+#~ msgstr "الخصوصية"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "أنسَ الساعة الأخيرة"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "أنسَ الساعتان الأخيرتان"
+
+#~ msgid "Forget a day"
+#~ msgstr "أنسَ يوم"
+
+#~ msgid "Forget everything"
+#~ msgstr "أنسَ كل شيء"
+
+#, fuzzy
+#~ msgid "Create activity..."
+#~ msgstr "النشاط الحاليّ"
+
+#, fuzzy
+#~ msgid "Activity switching"
+#~ msgstr "النشاط"
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "المستندات المفتوحة لتذكرها:"
+
+#, fuzzy
+#~| msgid "For all applications"
+#~ msgid "For a&ll applications"
+#~ msgstr "لكل التطبيقات"
+
+#, fuzzy
+#~| msgid "Do not remember"
+#~ msgid "&Do not remember"
+#~ msgstr "لا تتذكر"
+
+#, fuzzy
+#~| msgid "Only for specific applications"
+#~ msgid "O&nly for specific applications"
+#~ msgstr "فقط لتطبيقات معيّنة"
+
+#~ msgid "Keep history"
+#~ msgstr "أبقِ التأريخ"
+
+#~ msgid "Clear recent history"
+#~ msgstr "أمح التأريخ الأخير"
+
+#, fuzzy
+#~ msgid "Activity name"
+#~ msgstr "النشاط"
+
+#~ msgid "Available Features"
+#~ msgstr "المميزات الموجودة"
+
+#~ msgid "Plugins"
+#~ msgstr "الملحقات"
+
+#~ msgid "Enable activities management"
+#~ msgstr "مكّن إدارة الأنشطة"
+
+#, fuzzy
+#~ msgid "Activity manager is not running properly."
+#~ msgstr "مدير الأنشطة لا يعمل بشكل صحيح."
+
+#, fuzzy
+#~ msgid "Activities..."
+#~ msgstr "الأنشطة..."

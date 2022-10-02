@@ -1,0 +1,79 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Danishka Navin <danishka@gmail.com>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2009-12-12 18:43+0530\n"
+"Last-Translator: Danishka Navin <danishka@gmail.com>\n"
+"Language-Team: Sinhala <danishka@gmail.com>\n"
+"Language: si\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "කිසිඳු MIME වර්ගයක් සපයා නොමැත."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "කිසිඳු අගයක් සපයා නොමැති හෝ වලංගු නොවන අගයක් සපයා ඇත."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "බහාළුම සඳහා කුඩාරූපයක් සැකසිය නොහැක"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "ප්ලගිනයක් ලබාදී නොමැත."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "ThumbCreator %1 පූර්ණය කල නොහැක"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "%1 සඳහා කුඩාරූපය සැකසිය නොහැක"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "කුඩාරූපය සැකසීමේ වරදක්."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "පිලිඹිබුව ලිවිය නොහැක."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "%1 හවුල් මතක කොටසට ඈඳිමේ වරදක්"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "හවුල් මතක කොටස සඳහා පිළිඹිබුව ඉතා විශාලයි"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "ඩනිෂ්ක නවින්"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "danishka@gmail.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

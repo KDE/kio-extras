@@ -1,0 +1,43 @@
+# Translation of kio_fish to Korean.
+# Copyright (C) 2007 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kdebase package.
+#
+# Shinjo Park <kde@peremen.name>, 2007, 2009, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2012-10-14 02:21+0900\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "연결 중..."
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "프로토콜 초기화 중..."
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "로컬 로그인"
+
+#: fish.cpp:630
+#, kde-format
+msgid "SSH Authentication"
+msgstr "SSH 인증"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "연결이 해제되었습니다."

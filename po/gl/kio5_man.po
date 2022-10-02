@@ -1,0 +1,253 @@
+# translation of kio_man.po to galician
+# Galician translation of kio_man.
+# Copyright (C) 2000 Jesús Bravo Álvarez.
+# Jesús Bravo Álvarez <jba@pobox.com>, 2000.
+# Xabi García <xabigf@gmx.net>, 2004.
+# Xabi G. Feal <xabigf@gmx.net>, 2006.
+# mvillarino <mvillarino@users.sourceforge.net>, 2007, 2008, 2009.
+# marce villarino <mvillarino@users.sourceforge.net>, 2009.
+# Marce Villarino <mvillarino@kde-espana.es>, 2009, 2011.
+# Marce Villarino <mvillarino@kde-espana.es>, 2012.
+# Adrián Chaves Fernández (Gallaecio) <adriyetichaves@gmail.com>, 2017.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2019.
+#
+# Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
+# colaborar connosco, podes atopar máis información en http://trasno.gpul.org
+#
+# First Version: 2000-09-30 11:13+0200
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2019-07-28 11:17+0200\n"
+"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 19.04.1\n"
+
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Check that you have "
+#| "typed the name using the correct upper and lower case characters.<br />If "
+#| "everything looks correct, then you may need to improve the search path "
+#| "for man pages; either using the environment variable MANPATH or using a "
+#| "matching file in the /etc directory."
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Non se atopou ningunha páxina de manual de %1.<br /><br />Comprobe que non "
+"escribiu mal o nome da páxina.<br />Comprobe que escribiu o nome coas "
+"maiúsculas e minúsculas correctamente.<br />Se todo semella correcto, entón "
+"poida que precise mellorar a ruta de busca mellor para as páxinas de manual, "
+"sexa mediante a variábel de contorno MANPATH ou mediante un ficheiro no "
+"directorio /etc que corresponda."
+
+#: kio_man.cpp:569
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The specified man page referenced another page '%1',<br />but the "
+#| "referenced page '%2' could not be found."
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"A páxina de manual indicada facía referencia a outra páxina, «%1»,<br />pero "
+"non puido atoparse a páxina «%2» á que se facía referencia."
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
+msgstr "<h1>Erro do Visor de páxinas de manual de KDE</h1>"
+
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
+msgstr "Hai máis dunha páxina man coincidente."
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Nota: se le unha páxina de manual no seu idioma, sexa consciente de que pode "
+"conter algúns erros ou estar obsoleta. No caso de dúbida, debería botar unha "
+"ollada á versión en inglés."
+
+#: kio_man.cpp:758
+#, fuzzy, kde-format
+#| msgid "Header files"
+msgid "Header Files"
+msgstr "Ficheiros de cabeceira"
+
+#: kio_man.cpp:759
+#, fuzzy, kde-format
+#| msgid "Header files (POSIX)"
+msgid "Header Files (POSIX)"
+msgstr "Ficheiros de cabeceira (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Ordes de usuario"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Ordes de usuario (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Chamadas ao sistema"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Sub-rutinas"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Módulos de Perl"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Funcións de rede"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Dispositivos"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Formatos de ficheiro"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Xogos"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Diversos"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Administración do sistema"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Kernel"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Documentación local"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Novo"
+
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
+msgstr "Índice do manual de Unix"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Sección %1"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
+msgstr "Índice da sección %1: %2"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "Índice do manual de Unix"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Estase a xerar o índice"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Non se puido atopar o programa sgml2roff no sistema. Por favor, instáleo, se "
+"é preciso, e corrixa a ruta da busca axustando a variábel de contorno PATH "
+"antes de iniciar KDE."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "Fallou a apertura de %1."
+
+#~ msgid "Man output"
+#~ msgstr "Saída de man"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Jesús Bravo, Xabi García, Marce Villarino"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "jba@pobox.com, xabigf@gmx.net, mvillarino@users.sourceforge.net"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

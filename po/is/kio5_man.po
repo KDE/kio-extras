@@ -1,0 +1,237 @@
+# translation of kio_man.po to icelandic
+# Íslensk þýðing kio_man.po
+# Copyright (C) 2000, 2005, 2009 Free Software Foundation, Inc.
+#
+# Kristinn Rúnar Kristinsson <kiddi@breakbeat.is>, 2000.
+# Sveinn í Felli <sveinki@nett.is>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2012-09-07 06:50+0000\n"
+"Last-Translator: Sveinn í Felli <sveinki@nett.is>\n"
+"Language-Team: Icelandic <kde-isl@molar.is>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
+"\n"
+"\n"
+
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Check that you have "
+#| "typed the name using the correct upper and lower case characters.<br />If "
+#| "everything looks correct, then you may need to improve the search path "
+#| "for man pages; either using the environment variable MANPATH or using a "
+#| "matching file in the /etc directory."
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Engin hjálparsíða fannst fyrir %1.<br /><br />Athugaðu að þú hafir slegið "
+"inn rétt heiti síðunnar sem þú vilt.<br />Athugaðu einnig að það er munur á "
+"há- og lágstöfum.<br />Ef allt stemmir, þarftu kannski að bæta úr "
+"leitarslóðinni fyrir hjálparsíðurnar, annað hvort með umhverfisbreytunni "
+"MANPATH eða passandi skrá í /etc möppunni."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
+msgstr "<h1>Villa í KDE hjálparsíðurýni</h1>"
+
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
+msgstr "Fleiri en ein hjálparsíða sem passar fannst."
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Athugaðu: ef þú lest hjálparsíðu á þínu tungumáli, að hún getur innihaldið "
+"einhverjar villur eða verið úreld. Ef þú ert í vafa ættir þú að skoða ensku "
+"útgáfuna."
+
+#: kio_man.cpp:758
+#, fuzzy, kde-format
+#| msgid "Header files"
+msgid "Header Files"
+msgstr "Höfuðskrár"
+
+#: kio_man.cpp:759
+#, fuzzy, kde-format
+#| msgid "Header files (POSIX)"
+msgid "Header Files (POSIX)"
+msgstr "Höfuðskrár (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Notandaskipanir"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Notandaskipanir (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Kerfisköll"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Stefjur"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Perleiningar"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Netstefjur"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Tæki"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Skráasnið"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Leikir"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Ýmislegt"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Kerfisstjórnun"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Kjarni"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Staðbundnar upplýsingar"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Nýtt"
+
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
+msgstr "Efnisyfirlit UNIX hjálparsíðna"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Kafli %1"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
+msgstr "Efnisyfirlit yfir kafla %1: %2"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "Efnisyfirlit UNIX hjálparsíðna"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Bý til efnisyfirlit"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Gat ekki fundið sgml2roff forritið á þinni vél.  Vinsamlega settu það inn, "
+"ef þörf er á, eða bættu við leitarslóðina með því að breyta "
+"umhverfisbreytunni PATH áður en þú ræsir KDE."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "Ekki tókst að opna %1."
+
+#~ msgid "Man output"
+#~ msgstr "Úttak hjálparsíðu"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Kristinn Rúnar Kristinsson, Richard Allen, Pjetur G. Hjaltason"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "kde-isl@molar.is, ra@ra.is, pjetur@pjetur.net"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

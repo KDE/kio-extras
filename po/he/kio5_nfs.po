@@ -1,0 +1,73 @@
+# translation of kio_nfs.po to Hebrew
+# KDE Hebrew Localization Project
+# Translation of kio_nfs.po into Hebrew
+#
+# In addition to the copyright owners of the program
+# which this translation accompanies, this translation is
+# Copyright (C) 2001-2002 Meni Livne <livne@kde.org>
+#
+# This translation is subject to the same Open Source
+# license as the program which it accompanies.
+#
+# Diego Iastrubni <elcuco@kdemail.net>, 2004, 2012.
+# Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: kio5_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2017-05-16 07:03-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Hebrew <kde-l10n-he@kde.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr ""
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr ""
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr ""
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr ""
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "שם הקובץ ארוך מדיי"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "חריגה ממכסת הדיסק"
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr ""
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr ""
+
+#~ msgid "No space left on device"
+#~ msgstr "לא נשאר מקום על ההתקן."
+
+#~ msgid "Read only file system"
+#~ msgstr "מערכת קבצים לקריאה בלבד"

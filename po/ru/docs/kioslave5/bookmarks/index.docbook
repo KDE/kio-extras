@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="bookmarks">
+<title
+>закладки</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+> Xavier</firstname
+><surname
+>Vello</surname
+></personname
+> <email
+>xavier.vello@gmail.com</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>31 августа 2008 г.</date>
+<releaseinfo
+>0.2</releaseinfo>
+
+</articleinfo>
+
+<para
+>KIO отображает список закладок как красивую и функциональную &HTML;-страницу. Наберите в адресной строке &konqueror; <userinput
+>bookmarks:/</userinput
+>, чтобы получить к ним доступ.</para>
+
+<para
+>Содержимое и оформление страницы возможно настроить. Просто введите в адресной строке &konqueror; <userinput
+>bookmarks:/config</userinput
+>, чтобы открыть окно с настройками.</para>
+
+</article>
+

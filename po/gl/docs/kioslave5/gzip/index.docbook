@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Galician  "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="gzip">
+<title
+>gzip</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Marce</firstname
+><surname
+>Villarino</surname
+><affiliation
+><address
+><email
+>mvillarino@users.sourceforge.net</email
+></address
+></affiliation
+><contrib
+>Tradutor do proxecto Trasno</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>gzip</command
+> é un programa de compresión</para>
+
+<para
+>O kioslave gzip non é utilizábel directamente, sendo o seu propósito o empregarse como un filtro. Por exemplo o kioslave tar pode filtrar un ficheiros através do kioslave gzip, para poder mostrar os contidos dun arquivo <literal role="extension"
+>tar.gz</literal
+> directamente na xanela de &konqueror;.</para>
+
+<para
+>Se preme desde &konqueror; nun ficheiro comprimido con extenxión <literal role="extension"
+>gz</literal
+>, este kioslave empregarase para descomprimilo e mostralo como un ficheiro normal (non comprimido).</para>
+
+<para
+>Se vde. é un desenvolvedor e desexa empregar o filtro gzip, ha atopar máis documentación sobre o uso dos kioslaves en <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Consulte o manual: <ulink url="man:/gzip"
+>gzip</ulink
+>. </para>
+
+</article>

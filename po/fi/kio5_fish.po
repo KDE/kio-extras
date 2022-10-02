@@ -1,0 +1,57 @@
+# Translation of kio_fish.po into Finnish
+# Copyright (C) 2003, 2004 Free Software Foundation, Inc.
+# Mikko Ikola <kola@netikka.fi>, 2003.
+# Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2003.
+# Tapio Kautto <eleknader@phnet.fi>, 2004.
+# Tommi Nieminen <translator@legisign.org>, 2010, 2012.
+# Lasse Liehu <lasse.liehu@gmail.com>, 2013.
+#
+# KDE Finnish translation sprint participants:
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_fish\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2013-12-22 13:56+0200\n"
+"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
+"Language-Team: Finnish <lokalisointi@lists.coss.fi>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-POT-Import-Date: 2012-12-01 22:22:13+0000\n"
+"X-Generator: Lokalize 1.5\n"
+
+#: fish.cpp:290
+#, kde-format
+msgid "Connecting..."
+msgstr "Yhdistetään…"
+
+#: fish.cpp:592
+#, kde-format
+msgid "Initiating protocol..."
+msgstr "Alustetaan yhteyskäytäntöä…"
+
+#: fish.cpp:628
+#, kde-format
+msgid "Local Login"
+msgstr "Paikallinen kirjautuminen"
+
+#: fish.cpp:630
+#, kde-format
+msgid "SSH Authentication"
+msgstr "SSH-tunnistautuminen"
+
+#: fish.cpp:760
+#, kde-format
+msgid "Disconnected."
+msgstr "Yhteys katkaistiin."
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Tommi Nieminen"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "translator@legisign.org"

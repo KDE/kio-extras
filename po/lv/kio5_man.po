@@ -1,0 +1,233 @@
+# translation of kio_man.po to Latvian
+# Copyright (C) 2007, 2008 Free Software Foundation, Inc.
+#
+# Viesturs Zarins <viesturs.zarins@mii.lu.lv>, 2007, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2008-11-18 11:27+0200\n"
+"Last-Translator: Viesturs Zarins <viesturs.zarins@mii.lu.lv>\n"
+"Language-Team: Latvian <locale@laka.lv>\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 0.2\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Check that you have "
+#| "typed the name using the correct upper and lower case characters.<br />If "
+#| "everything looks correct, then you may need to improve the search path "
+#| "for man pages; either using the environment variable MANPATH or using a "
+#| "matching file in the /etc directory."
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Nav atrodama \"man\" lapa, kas atbilst %1.<br /><br />Pārbaudiet, vai "
+"ievadītajā lapas nosaukumā nav kļūda.<br />Arī lielajiem un mazajiem burtiem "
+"ir nozīme!<br />Ja viss tomēr ir pareizi, tad, varbūt, ir jāmaina \"man\" "
+"meklēšanas ceļš - to var izdarīt gan ar vides mainīgo MANPATH, gan ar "
+"atbilstošo failu /etc mapē."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
+msgstr "<h1>KDE Man skatītāja kļūda</h1>"
+
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
+msgstr "Ir vairāk nekā viena atbilstoša \"man\" lapa."
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Piezīme. Ja lasāt \"man\" lapu valodā, kas nav angļu valoda, tad ņemiet "
+"vērā, ka tajā var būt kļūdas un novecojušas ziņas. Ja ir šaubas, jāskatās "
+"angliski!"
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr ""
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr ""
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Lietotāja komandas"
+
+#: kio_man.cpp:761
+#, fuzzy, kde-format
+#| msgid "User Commands"
+msgid "User Commands (POSIX)"
+msgstr "Lietotāja komandas"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Sistēmas izsaukumi"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Subrutīnas"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "\"Perl\" moduļi"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Tīkla funkcijas"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Ierīces"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Failu formāti"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Spēles"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Dažādi"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Sistēmas administrēšana"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Kodols"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Vietēja dokumentācija"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Jauns"
+
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
+msgstr "UNIX rokasgrāmatas satura rādītājs"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "Sekcija %1"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
+msgstr "Sekcijas %1: %2 indekss"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "UNIX rokasgrāmatas satura rādītājs"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Ģenerēju indeksu"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Jūsu sistēmā nav atrodama programma sgml2roff. Lūdzu, uzstādiet to, ja "
+"nepieciešams, paplašiniet pārmeklējamo ceļu (vietu), mainot vides mainīgo "
+"PATH, un tad no jauna iedarbiniet KDE."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "Nevar atvērt %1."
+
+#~ msgid "Man output"
+#~ msgstr "\"Man\" izvade"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Valters,Māris Nartišs"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr ",maris.kde@gmail.com"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

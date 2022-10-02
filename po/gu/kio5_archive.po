@@ -1,0 +1,38 @@
+# translation of kio_archive.po to Gujarati
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Sweta Kothari <swkothar@redhat.com>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_archive\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2008-07-08 12:46+0530\n"
+"Last-Translator: Sweta Kothari <swkothar@redhat.com>\n"
+"Language-Team: Gujarati\n"
+"Language: gu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"ફાઇલ ખોલી શકાતી નથી, કદાચ બિનઆધારિત ફાઇલ બંધારણ ને કારણે.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"આર્ચીવ ફાઇલ ખોલી શકાતી નથી, કારણ કે કદાચ બંધારણ બિનઆધારિત છે.\n"
+"%1"

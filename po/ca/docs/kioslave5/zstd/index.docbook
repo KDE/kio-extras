@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Catalan  "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="zstd">
+<title
+>zstd</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Friedrich</firstname
+><othername
+>W. H.</othername
+><surname
+>Kossebau</surname
+></author>
+&traductor.Antoni.Bella; 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>zstd</command
+> és un programa de compressió.</para>
+
+<para
+>El kioslave «zstd» no es pot emprar directament, i s'intenta utilitzar com a un filtre. Per exemple, el kioslave «tar» pot filtrar un fitxer a través del kioslave «zstd», per a poder mostrar els continguts d'un fitxer <literal role="extension"
+>tar.zst</literal
+> directament en una finestra del &konqueror;.</para>
+
+<para
+>Si feu clic sobre un fitxer comprimit amb una extensió <literal role="extension"
+>zst</literal
+> en el &konqueror;, s'utilitzarà aquest kioslave per a descomprimir-lo i mostrar-lo com a un fitxer normal (sense comprimir).</para>
+
+<para
+>Si sou un desenvolupador i desitgeu emprar el filtre zstd, trobareu la documentació sobre l'ús dels kioslaves a <ulink url="https://techbase.kde.org/Welcome_to_KDE_TechBase/ca"
+>https://techbase.kde.org</ulink
+>.</para>
+
+<para
+>Vegeu el manual: <ulink url="man:/zstd"
+>zstd</ulink
+>. </para>
+
+</article>

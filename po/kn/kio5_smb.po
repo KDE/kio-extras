@@ -1,0 +1,188 @@
+# translation of kio_smb.po to Kannada
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Umesh Rudrapatn <umesh@diabetix>, 2007.
+# Umesh Rudrapatna <urudrapatna@yahoo.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2007-07-09 12:17+0530\n"
+"Last-Translator: Umesh Rudrapatna <urudrapatna@yahoo.com>\n"
+"Language-Team: Kannada <kde-l10n-kn@kde.org>\n"
+"Language: kn\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.1\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>ದಯವಿಟ್ಟು <b>%1</b></qt> ಗೆ ದೃಢೀಕರಣ ಮಾಹಿತಿಯನ್ನು ನಮೂದಿಸಿ"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"ದಯವಿಟ್ಟು ಇವುಗಳಿಗೆ ದೃಢೀಕರಣ ಮಾಹಿತಿಯನ್ನು ನಮೂದಿಸಿ:\n"
+"ಪರಿಚಾರಕ (server)= %1\n"
+"ಹಂಚಿಕೆ (share)= %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"ತಿಳಿಯದ ಕಡತದ ಬಗೆ, ಕಡತವೂ ಅಲ್ಲ, ಕಡತಕೋಶವೂ ಅಲ್ಲ."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"ನಿಮ್ಮ ಸ್ಥಳೀಯ ಜಾಲದಲ್ಲಿ ಯಾವುದೇ ಕಾರ್ಯತಂಡಗಳು (workgroups) ಕಾಣಬರಲಿಲ್ಲ. ಇದು ಕ್ರಿಯಾಶೀಲ "
+"ಅಗ್ನಿರೇಖೆಯ (firewall) ಕಾರಣದಿಂದಿರಬಹುದು."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "%1 ಸಾಧನದಲ್ಲಿ ಯಾವುದೇ ಮಾಧ್ಯಮವಿಲ್ಲ"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "%1 ಗಾಗಿ ಆತಿಥೇಯ (host) ಗಣಕಕ್ಕೆ ಸಂಪರ್ಕ ಕಲ್ಪಿಸಲಾಗಲಿಲ್ಲ"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "%1 ಗೆ ಕಾರಣವಾದ ಪರಿಚಾರಕಕ್ಕೆ (server) ಸಂಪರ್ಕ ಕಲ್ಪಿಸುವಾಗ ದೋಷ ಕಂಡುಬಂದಿತು"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "ನಿರ್ದೇಶಿಸಿದ ಪರಿಚಾರಕದಲ್ಲಿ ಹಂಚಿಕೆ (share) ಕಂಡುಬರಲಿಲ್ಲ"
+
+#: kio_smb_browse.cpp:303
+#, fuzzy, kde-format
+#| msgid "BAD File descriptor"
+msgid "Bad file descriptor"
+msgstr "ಕೆಟ್ಟ ಕಡತ ವಿವರಕ (file descriptor)"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"ನೀವು ನೀಡಿದ ಹೆಸರನ್ನು ಯಾವುದೇ ಪ್ರತ್ಯೇಕ ಪರಿಚಾರಕಕ್ಕೆ (server) ಹೊಂದಿಸಲಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಜಾಲ "
+"ವ್ಯವಸ್ಥೆಯು UNIX ಹಾಗೂ Windows ನ ನಾಮನಿರ್ಣಯ ವ್ಯವಸ್ಥೆಗಳು ಬಳಸುವ ಹೆಸರುಗಳ ನಡುವೆ ಯಾವುದೇ "
+"ಘರ್ಷಣೆ ಇಲ್ಲದಂತೆ ಸಿದ್ಧಗೊಂಡಿದೆಯೆಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr ""
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+
+#: kio_smb_browse.cpp:334
+#, fuzzy, kde-format
+#| msgid "Unknown error condition in stat: %1"
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "stat ನಲ್ಲಿ ಗೊತ್ತಿಲ್ಲದ ದೋಷ ಸ್ಥಿತಿ: %1"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr ""
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbclient ಸನ್ನಿವೇಶವನ್ನು ರಚಿಸುವುದರಲ್ಲಿ ವಿಫಲವಾಯಿತು"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"samba ಸಂಗ್ರಹ ನಿಮ್ಮ ಗಣಕದಲ್ಲಿ ಸರಿಯಾಗಿ ಅನುಸ್ಥಾಪನೆಗೊಂಡಿದೆಯೆಂದ ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"ಆತಿಥೇಯ (host) \"%2\" ರಿಂದ ಬಳಕೆದಾರ \"%3\" ನಿಂದ ಹಂಚಿಕೆ (share) \"%1\" ರ ಆರೋಪಣ "
+"(mount) ವಿಫಲವಾಯಿತು.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"\"%1\" ರೋಪಣಾತಾಣದ (mountpoint) ಅವರೋಪಣ (unmount) ವಿಫಲವಾಯಿತು.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr ""
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "libsmbclient ಸನ್ನಿವೇಶವನ್ನು ಮೊದಲುಗೊಳಿಸುವುದರಲ್ಲಿ ವಿಫಲವಾಯಿತು"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "ಕಡತ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ: %1"
+
+#~ msgid "libsmbclient failed to initialize"
+#~ msgstr "libsmbclient ಮೊದಲುಗೊಳ್ಳುವುದರಲ್ಲಿ ವಿಫಲವಾಯಿತು"

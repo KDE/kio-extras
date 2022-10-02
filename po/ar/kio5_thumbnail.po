@@ -1,0 +1,86 @@
+# translation of kio_thumbnail.po to Arabic
+# translation of kio_thumbnail.po to
+# محمد سعد  Mohamed SAAD <metehyi@free.fr>, 2006.
+# Youssef Chahibi <chahibi@gmail.com>, 2007.
+# zayed <zayed.alsaidi@gmail.com>, 2008.
+# Abdalrahim Fakhouri <abdilra7eem@yahoo.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2012-02-09 14:44+0200\n"
+"Last-Translator: Abdalrahim Fakhouri <abdilra7eem@yahoo.com>\n"
+"Language-Team: Arabic <linuxac-kde-arabic-team@googlegroups.com>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Translate Toolkit 1.10.0\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "لم تحدد نوع امتدادات بريد الإنترنت متعددة الأغراض."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "حجم غير موجود أو غير سليم محدّد."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "غير قادر على إنشاء مصغّرة للدليل"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "لا يوجد ملحق محدّد."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "غير قادر على تحميل منشئ المصغّرة  %1"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "غير قادر على إنشاء مصغّرة لـِ %1"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "فشل في إنشاء مصغّرة."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "لم أتمكن من كتابة الصورة."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "فشل في الإرفاق إلى قسم الذاكرة المشتركة %1"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "الصورة كبيرة جداً لقسم الذاكرة المشتركة"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "أدِر الصورة تلقائيًّا"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Mohamed SAAD محمد سعد, عبدالرحيم الفاخوري"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "metehyi@free.fr,abdilra7eem@yahoo.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

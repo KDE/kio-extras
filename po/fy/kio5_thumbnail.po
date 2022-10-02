@@ -1,0 +1,79 @@
+# translation of kio_thumbnail.po to Frysk
+#
+# Rinse de Vries <rinsedevries@kde.nl>, 2006, 2007, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2009-08-15 22:34+0100\n"
+"Last-Translator: Berend Ytsma <berendy@gmail.com>\n"
+"Language-Team: Frysk <kde-i18n-fry@kde.org>\n"
+"Language: fy\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "Gjin MIME-triemtype oantsjutte"
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "Gjin of in ûnjildige grutte oantsjutte."
+
+#: thumbnail.cpp:225
+#, fuzzy, kde-format
+#| msgid "Cannot create thumbnail for directory"
+msgid "Cannot create thumbnail for directory"
+msgstr "Koe gjin miniatuer oanmeitsje foar %1"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "Gjin plugin oantsjutte."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "Koe ThumbCreator %1 net lade"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "Koe gjin miniatuer oanmeitsje foar %1"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "Oanmeitsjen fan miniatuer is mislearre."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "Ofbylding koe net skreaun wurde."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "Ferbining mei dieldûnthâldsegmint %1 is mislearre"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "Ofbylding is te grut foar it dieldûnthâldsegmint."
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Rinse de Vries,Berend Ytsma"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "rinsedevries@kde.nl,berendy@gmail.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbnail"

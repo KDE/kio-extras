@@ -1,0 +1,85 @@
+# tradução do kio_thumbnail.po para Brazilian Portuguese
+#
+# Lisiane Sztoltz Teixeira <lisiane@kdemail.net>, 2005.
+# Diniz Bortolotto <diniz.bortolotto@gmail.com>, 2007.
+# André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2009, 2010, 2011.
+# Marcus Gama <marcus.gama@gmail.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2012-05-09 19:48-0300\n"
+"Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.4\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "Nenhum tipo MIME foi especificado."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "Tamanho inválido ou não especificado."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "Não foi possível criar a miniatura para a pasta"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "Nenhum plugin foi especificado."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "Não foi possível carregar o ThumbCreator %1"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "Não foi possível criar a miniatura de %1"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "Falha ao criar uma miniatura."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "Não foi possível gravar a imagem."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "Falha ao anexar ao segmento de memória compartilhado %1"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "A imagem é muito grande para o segmento de memória compartilhado"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "Girar a imagem automaticamente"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Diniz Bortolotto"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "diniz.bortolotto@gmail.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

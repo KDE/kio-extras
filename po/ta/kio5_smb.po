@@ -1,0 +1,190 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2004-08-09 04:29-0800\n"
+"Last-Translator: Tamil PC <tamilpc@ambalam.com>\n"
+"Language-Team: தமிழ் <tamilinix@yahoogroups.com>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt><b>%1</b></qt>க்கான அணுகல் தகவலை உள்ளிடவும்"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"இதற்கான அணுகல் தகவலை உள்ளிடவும்:\n"
+"சேவகன்= %1\n"
+"பங்கு= %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"அடைவா அல்லது கோப்பா என்று தெரியாத கோப்பு வகை"
+
+#: kio_smb_browse.cpp:272
+#, fuzzy, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"உங்களுடைய உள்ளமைப்பு வலைப்பின்னலில் எந்த பணிக்குழுக்களையும் கண்டுபிடிக்க முடியவில்லை."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "%1க்கு சாதனத்தில் ஊடகம் இல்லை"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "%1ஐ புரவலனுக்கு இணைக்க இயலவில்லல"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "%1க்கு சேவ்கணை இணைக்கும்போது பிழை"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "கொடுக்கப்பட்ட சேவகனில் பங்கீடு இல்லை"
+
+#: kio_smb_browse.cpp:303
+#, fuzzy, kde-format
+#| msgid "BAD File descriptor"
+msgid "Bad file descriptor"
+msgstr "தவறான கோப்பு விவரிப்பான்"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"குறிப்பிட்ட சேவகனுக்கு கொடுக்கப்பட்ட பெயர் பொருத்தமானதல்ல. உங்கள் வலைப்பின்னல் விண்டோஸ் "
+"மற்றும் யுனிட்ஸ் தெளிவுத்திறனால் பயன்படுத்தப்பட்ட பெயர்களுக்கிடைன முரண்பாடு இல்லாத அமைப்பாக "
+"உள்ளதா என்று உறுதிப்படுத்தவும்."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr ""
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"எல் ஐ பி எஸ் எம் பி கிளையன் ஒரு பிழையை கண்டறிந்துள்ளது ஆனால் என்ன பிரச்சனை என்பதை "
+"சொல்லவில்லை. உங்கள் வலைப்பின்னலில் பிரச்சனை இருக்கலாம்.எல் ஐ பி எஸ் எம் பி கிளையனுடன் "
+"பிரச்சனை என்றால் அதை குறிப்பிடவேண்டும்.  எங்களுக்கு உதவ வேண்டும் என்றால் நீங்கள் உலாவும்போது "
+"வலைப்பின்னல் இடைமுகத்தின் tcpdumpஐ உருவாக்கவும். (அதில் தனிப்பட்ட தகவல் இருக்கலாம், அதைப் "
+"பற்றி உறுதியாக தெரியாதபோது அஞ்சலிடவேண்டாம் - மேம்பாட்டாளர்கள் கேட்கும்போது அதை "
+"அவர்களுக்கு தனியாக அனுப்பலாம்)."
+
+#: kio_smb_browse.cpp:334
+#, fuzzy, kde-format
+#| msgid "Unknown error condition in stat: %1"
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "புள்ளிவிவரப் பட்டியலில் தெரியாத பிழை: %1"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr ""
+
+#: kio_smb_file.cpp:35
+#, fuzzy, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbகிளையனால் துவக்க இயலவில்லை."
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"உங்கள் கணினியில் சம்பா தொகுப்பு நிறுவப்பட்டுள்ளதா என்பதை உறுதி செய்துக் கொள்ளவும்."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"\"%3\" பயனரால் \"%2\" புரவலனில் இருந்து \"%1\"ன் பங்கை ஏற்ற இயலவில்லை.\n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"\"%1\" ஏற்றப்புள்ளியை வெளியேற்ற முடியவில்லை.\n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr ""
+
+#, fuzzy
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "libsmbகிளையனால் துவக்க இயலவில்லை."
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "கோப்பு இல்லை: %1"
+
+#~ msgid "libsmbclient failed to initialize"
+#~ msgstr "libsmbகிளையனால் துவக்க இயலவில்லை."

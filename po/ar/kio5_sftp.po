@@ -1,0 +1,457 @@
+# translation of kio_sftp.po to Arabic
+# translation of kio_sftp.po to
+# Copyright (C) 2002, 2004, 2006, 2007, 2008 Free Software Foundation, Inc.
+# Sayed Jaffer Al-Mosawi <mosawi@arabeyes.org>, 2002.
+# Isam Bayazidi <bayazidi@arabeyes.org>, 2002.
+# Ahmad M. Zawawi <azawawi@emirates.net.ae>, 2004.
+# محمد سعد  Mohamed SAAD <metehyi@free.fr>, 2006.
+# AbdulAziz AlSharif <a.a-a.s@hotmail.com>, 2007.
+# Youssef Chahibi <chahibi@gmail.com>, 2007.
+# zayed <zayed.alsaidi@gmail.com>, 2008, 2022.
+# Ahmed M. Araby <egydev@fedoraproject.org>, 2012.
+# Abderrahim Kitouni <a.kitouni@gmail.com>, 2012.
+# Abdalrahim Fakhouri <abdilra7eem@yahoo.com>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2022-08-16 22:24+0400\n"
+"Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
+"Language-Team: Arabic <kde-l10n-ar@kde.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Lokalize 21.07.70\n"
+
+#: kio_sftp.cpp:226
+#, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "عبارة المرور غير صحيحة أو غير صالحة"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "تعذّر تخصيص ردود النداء"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "تعذر ضبط إسهاب السّجِل."
+
+#: kio_sftp.cpp:294
+#, kde-format
+msgid "Could not set log userdata."
+msgstr "تعذر تعيين سجل بيانات المستخدم."
+
+#: kio_sftp.cpp:299
+#, kde-format
+msgid "Could not set log callback."
+msgstr "تعذّر سجل رد النداء"
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "ولوج SFTP"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "استعمل حقل اسم المستخدم للإجابة على هذا السؤال."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "من فضلك أدخل كلمة السر."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "الموقع:"
+
+#: kio_sftp.cpp:417
+#, kde-format
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "تعذر قراءة الرابط: %1 [%2]"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "تعذر إنشاء جلسة SSH جديدة."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "تعذر ضبط زمن المٌهلَة."
+
+#: kio_sftp.cpp:561
+#, kde-format
+msgid "Could not disable Nagle's Algorithm."
+msgstr "تعذر تعطيل خوارزمية Nagle."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "تعذر ضبط ضغط البيانات."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "تعذر ضبط المٌضيف."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "تعذر ضبط المنفذ."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "تعذر ضبط اسم المستخدم."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "تعذر تفسير ملف الإعدادات."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "يفتح اتصال SFTP مع المضيف %1:%2"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr "تعذر الحصول على اسم نوع المفتاح العام للخادم"
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr "تعذر إنشاء تلبيدة من المفتاح العمومي للخادم"
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr "تعذر إنشاء بصمة لمفتاح العمومي للخادم"
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+"مفتاح المٌضيف %1 لهذا الخادم لم يٌعثَر عليه، لكن نوعا آخر من المفاتيح موجود.\n"
+"ربما غيّر مٌخترِق مفتاح الخادم الافتراضي لإرباك عميلك وجعله يظن أن المفتاح غير "
+"موجود.\n"
+"من فضلك اتصل بمديرك للنظام.\n"
+"%2"
+
+#: kio_sftp.cpp:756
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "هوية المضيف تغيرت"
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+"<para>مفتاح المٌضيف للخادم <emphasis>%1</emphasis> قد تغيّر.</para><para>هذا "
+"قد يعني إما أن هجمة احتيال علي أسماء النطاقات تحدث وإما أن عنوان الإنترنت "
+"للمُضيف ومفتاح المضيف الخاص به غيرا في نفس لوقت. </para><para>بصمة مفتاح %2 "
+"التي أرسلها المُضيف البعيد:<bcode>%3</bcode> هل تريد المتابعة؟</para>"
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr "فشل تحقق المضيف"
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+"<para>لا يمكن التحقق من هوية المٌضِيف <emphasis>%1</emphasis> .</"
+"para><para>بصمة المفتاح%2: <bcode>%3</bcode>هل انت واثق أنك تريد إكمال "
+"الاتصال؟</para>"
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr "اتصل على أي حال"
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "فشل التوثيق."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr "المصادقة فشلت. لم يرسل الخادم أي طرق مصادقة"
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "من فضلك أدخل اسم المستخدم و كلمة السر الخاصة بك."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "اسم المستخدم أو كلمة السر غير صحيحة"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr "تعذر طلب نظام SFTP المساعد. تأكد أنّ SFTP مٌفعَّل علي المٌضِيف."
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "تعذر بدء جلسة SFTP."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "تم الاتصال بنجاح ب‍ %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr "سياق sftp غير صالح"
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"تعذر تغيير صلاحيات\n"
+"%1"
+
+#~ msgid ""
+#~ "The host key for the server %1 has changed.\n"
+#~ "This could either mean that DNS SPOOFING is happening or the IP address "
+#~ "for the host and its host key have changed at the same time.\n"
+#~ "The fingerprint for the %2 key sent by the remote host is:\n"
+#~ "  SHA256:%3\n"
+#~ "Please contact your system administrator.\n"
+#~ "%4"
+#~ msgstr ""
+#~ "مفتاح المٌضيف للخادم %1 قد تغيّر.\n"
+#~ "هذا قد يعني إما أن هجمة احتيال علي أسماء النطاقات تحدث وإما أن عنوان "
+#~ "الإنترنت للمُضيف ومفتاح المضيف الخاص به تم تغييرهما في نفس الوقت.\n"
+#~ "بصمة المفتاح %2 التي أرسلها المُضيف البعيد:\n"
+#~ "  SHA256:%3\n"
+#~ "من فضلك اتصل بمديرك للنظام.\n"
+#~ "%4"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "إنذار: لا يمكن التحقق من هوية المضيف."
+
+#~ msgid ""
+#~ "The host key for this server was not found, but another type of key "
+#~ "exists.\n"
+#~ "An attacker might change the default server key to confuse your client "
+#~ "into thinking the key does not exist.\n"
+#~ "Please contact your system administrator.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "مفتاح المٌضيف لهذا الخادم لم يٌعثَر عليه، لكن نوعا آخر من المفاتيح موجود.\n"
+#~ "ربما غيّر مٌخترِق مفتاح الخادم الافتراضي لإرباك عميلك وجعله يظن أن المفتاح "
+#~ "غير موجود.\n"
+#~ "من فضلك اتصل بمديرك للنظام.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The authenticity of host %1 cannot be established.\n"
+#~ "The key fingerprint is: %2\n"
+#~ "Are you sure you want to continue connecting?"
+#~ msgstr ""
+#~ "لا يمكن التحقق من هوية المٌضِيف %1 .\n"
+#~ "بصمة المفتاح: %2\n"
+#~ "هل انت واثق انك تريد إكمال الاتصال؟"
+
+#~ msgid "No hostname specified."
+#~ msgstr "لم يٌحدّد اسم مضيف."
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "حصل خطأ داخلي. من فضلك أعد الطلب مرة ثانية."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "من فضلك أدخل اسم المستخدم و كلمة السر الخاصة بمفتاحك."
+
+#~ msgid "Connection failed."
+#~ msgstr "فشل الاتصال."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "إغلق الاتصال من المضيف البعيد"
+
+#, fuzzy
+#~| msgid "Unexpected SFTP error: %1"
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "خطأ SFTP غير متوقع: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP إصدار %1 "
+
+#~ msgid "Protocol error."
+#~ msgstr "خطأ في البروتوكول."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "حصل خطأ داخلي. من فضلك حاول مرة ثانية"
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr "خطأ مجهول صادف عملية نسخ الملف إلى '%1'. من فضلك حاول مرة ثانية."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "المضيف البعيد لا يدعم تغيير أسماء الملفات."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "المضيف البعيد لا يدعم إنشاء الوصلات الرمزية."
+
+#~ msgid "Connection closed"
+#~ msgstr "تم إغلاق الاتصال."
+
+#~ msgid "End of file."
+#~ msgstr "نهاية الملف"
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "فشل أمر SFTP لسبب مجهول."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "استلم خادم SFTP رسالة سيئة."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "لقد حاولت القيام بعملية غير مدعومة من خادم SFTP."
+
+#~ msgid "Error code: %1"
+#~ msgstr "رمز الخطأ: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "لا يمكن تحديد نظام فرعي و أمر في نفس الوقت"
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "لا خيارات متوفرة لــ ssh التنفيذية"
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "فشل أثناء تنفيذ عملية ssh"
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "حدث خطأ أثناء التحدث إلى ssh"
+
+#~ msgid "Please supply a password."
+#~ msgstr "من فضلك أدخل كلمة السر."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "من فضلك قم بتوفير كلمة السر لمفتاح SSH الخاص بك."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "التوثيق لـ %1 فشل"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "تعذر التحقق من هوية المضيف البعيد '%1' لأن مفتاح المضيف ليس موجوداً في ملف "
+#~ "\"known hosts\"."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ " بشكل يدوي, قم بإضافة مفتاح المضيف الى ملف \"known hosts\" أو اتصل بمدير "
+#~ "النظام."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr " بشكل يدوي, أضف مفتاح المضيف إلى %1 أو اتصل بمدير النظام."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "تعذر التحقق من هوية المضيف البعيد '%1'. بصمة مفتاح المضيف هي:\n"
+#~ "%2\n"
+#~ "يجب عليك التحقق من البصمة مع مدير المضيف قبل الاتصال.\n"
+#~ "\n"
+#~ "هل تود قبول مفتاح المضيف و الاتصال على أي حال؟  "
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "إنذار: هوية المضيف البعيد '%1' قد تغيرت!\n"
+#~ "\n"
+#~ "قد يكون هناك من يتجسس على اتصالك, أو ربما أن مدير المضيف قد غير المفتاح. "
+#~ "على أي حال, يجب عليك التحقق من بصمة مفتاح المضيف مع مدير المضيف. بصمة "
+#~ "المفتاح هي:\n"
+#~ "%2\n"
+#~ "أضف مفتاح المضيف الصحيح \"%3\" للتخلص من هذه الرسالة."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "إنذار: هوية المضيف البعيد '%1' قد تغيرت!\n"
+#~ "\n"
+#~ "قد يكون هناك من يتجسس على اتصالك, أو ربما أن مدير المضيف قد غير المفتاح. "
+#~ "على أي حال, يجب عليك التحقق من بصمة مفتاح المضيف مع مدير المضيف. بصمة "
+#~ "المفتاح هي:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "هل تود قبول مفتاح المضيف الجديد و الاتصال على أي حال؟"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "مفتاح المضيف تم رفضه."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "من فضلك أدخل اسم المستخدم و كلمة السر."
+
+#~ msgid "File does not exist."
+#~ msgstr "الملف غير موجود"
+
+#~ msgid "Access is denied."
+#~ msgstr "النفاذ ممنوع"

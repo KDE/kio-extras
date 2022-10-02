@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="tar">
+<title
+>Tar</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Ferdinand</firstname
+> <surname
+>Gasauer</surname
+></personname
+> &Ferdinand.Gassauer.mail;</author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+<para
+>Program za arhiviranje namenjen skladištenju i izvlačenju fajlova iz arhiva poznatih kao tar-fajlovi. Tar-fajlovi su tradicionalno zapisivani na magnetnim trakama, dok je danas vrlo uobičajeno stvarati ih kao normalne fajlove. </para>
+
+<para
+>Pogledajte <ulink url="man:/tar"
+>uputnu stranicu <command
+>tar</command
+></ulink
+>. </para>
+
+</article>

@@ -1,0 +1,76 @@
+# translation of kio_nfs.po to Polish
+# Version: $Revision: 1624017 $
+# translation of kio_nfs.po to
+# Norbert Popiołek <norbert@kde.com.pl>
+# Michal Rudolf <mrudolf@kdewebdev.org>, 2004.
+# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2014, 2016, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"PO-Revision-Date: 2021-03-20 07:28+0100\n"
+"Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
+"Language-Team: Polish <kde-i18n-doc@kde.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.12.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+
+#: kio_nfs.cpp:156
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr "Nie można znaleźć wersji NFS, którą obsługuje gospodarz '%1'"
+
+#: kio_nfs.cpp:336
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "Protokół NFS wymaga nazwy gospodarza serwera."
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr "Nie udało się rozpocząć protokołu"
+
+#: kio_nfs.cpp:852
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "Błąd RPC %1, %2"
+
+#: kio_nfs.cpp:902
+#, kde-format
+msgid "Filename too long"
+msgstr "Za długa nazwa pliku"
+
+#: kio_nfs.cpp:909
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Przekroczone dostępne miejsce na dysku"
+
+#: kio_nfs.cpp:915
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "Błąd NFS %1, %2"
+
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#, kde-format
+msgid "Unknown target"
+msgstr "Nieznany cel"
+
+#~ msgid "%1: Unsupported NFS version"
+#~ msgstr "%1: Nieobsługiwana wersja NFS"
+
+#~ msgid "No space left on device"
+#~ msgstr "Brak wolnego miejsca na tym urządzeniu"
+
+#~ msgid "Read only file system"
+#~ msgstr "System plików tylko do odczytu"
+
+#~ msgid "Failed to mount %1"
+#~ msgstr "Nieudane podpinanie %1"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "Wystąpił błąd RPC."

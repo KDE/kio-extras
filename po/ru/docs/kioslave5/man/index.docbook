@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="man">
+<title
+>man</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Перевод на русский язык</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Олеся</firstname
+><surname
+>Герасименко</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Редактирование перевода</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Протокол man позволяет пользователю читать man-страницы, доступные в его системе. Это делается так: </para>
+
+<variablelist>
+<varlistentry>
+<term
+><userinput
+><command
+>man:</command
+></userinput
+></term>
+<listitem>
+<para
+>Просмотрите список разделов и выберите нужный. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Посмотреть man-страницу к <command
+>fopen</command
+>. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Посмотреть man-страницу к <command
+>fopen</command
+> в разделе 3. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Посмотреть алфавитный указатель раздела 3. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+>intro<replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>Посмотреть введение раздела 3. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note
+><para
+>Если введённым именем названо более одной man-страницы, будет отображён список, в котором возможно выбрать нужную.</para
+></note>
+
+<para
+>Возможно также использовать укороченный вариант команды: <userinput
+><command
+>#fopen</command
+></userinput
+> (работает так же, как команда выше). </para>
+
+<para
+>Если показано меньше man-страниц, чем должно быть, проверьте файл конфигурации <filename
+>/etc/manpath.config</filename
+> (или файл с похожим именем, так как оно зависит от дистрибутива) или убедитесь в правильности значений переменных среды <envar
+>MANPATH</envar
+> и <envar
+>MANSECT</envar
+>. </para>
+
+<para
+>Как и при использовании любого &kde;-протокола, возможно ввести &URL;-адрес (например, <userinput
+><command
+>man:/socket</command
+></userinput
+>) в <emphasis
+>любом</emphasis
+> приложении &kde;. Попробуйте сделать это в &kwrite; для просмотра man-страницы в формате &HTML;. </para>
+
+<para
+>Список рассылки для вопросов: <email
+>kde-devel@kde.org</email
+>. </para>
+
+</article>

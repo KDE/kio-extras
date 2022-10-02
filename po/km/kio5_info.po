@@ -1,0 +1,32 @@
+# translation of kio_info.po to Khmer
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Khoem Sokhem <khoemsokhem@khmeros.info>, 2009.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_info\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"PO-Revision-Date: 2009-04-09 14:27+0700\n"
+"Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
+"Language-Team: Khmer <support@khmeros.info>\n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: info.cpp:52
+#, fuzzy, kde-format
+#| msgid ""
+#| "\n"
+#| "Unable to locate file %1 which is necessary to run this service. Please "
+#| "check your software installation."
+msgid ""
+"Unable to locate files which are necessary to run this service:<br>"
+"%1<br>Please check your software installation."
+msgstr ""
+"\n"
+"មិន​អាច​បម្រុង​ទុក​​ឯកសារ %1 ដែល​ចាំបាច់​ដើម្បី​រត់​សេវា​នេះ ។ សូម​ពិនិត្យ​ការ​ដំឡើង​កម្មវិធី​របស់​អ្នក ។"

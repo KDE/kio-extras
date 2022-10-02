@@ -1,0 +1,225 @@
+# Translation for kio5_man.po to Euskara/Basque (eu).
+# Copyright (C) 2002-2014, Free Software Foundation, Inc.
+# Copyright (C) 2015-2021, This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# KDE euskaratzeko proiektuko arduraduna <xalba@ni.eus>.
+#
+# Translators:
+# marcos  <marcos@euskalgnu.org>, 2002, 2003, 2006, 2007, 2008.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2013, 2019, 2020, 2021.
+# Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2021-09-05 00:30+0200\n"
+"Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
+"Language-Team: Basque <kde-i18n-eu@kde.org>\n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.08.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: kio_man.cpp:451
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"Ez da aurkitu <resource>%1</resource>(e)rekin bat datorren man orririk.<nl/"
+"><nl/>Egiaztatu izena ongi idatzi duzun, eta kontuan izan man orrietan "
+"maius./minus. bereizten direla.<nl/><nl/>Izena zuzen badago, orduan, "
+"baliteke man orrien bilaketa bide-izenak hedatu behar izatea, "
+"<envar>MANPATH</envar> ingurune-aldagaia edo <filename>/etc</filename> "
+"direktorioko konfiguratzeko fitxategia erabiliz."
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"Zehaztutako eskuliburu orriak, <filename>%1</filename>, beste orri bati "
+"aipamen egiten dio,<nl/>baina aipatutako orria, <filename>%2</filename>, "
+"ezin izan da aurkitu."
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr "<filename>%1</filename> man orria ezin izan du irakurri."
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr "<filename>%1</filename> man orria ezin izan du bihurtu."
+
+#: kio_man.cpp:660
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "Eskuliburu-orri ikustailearen errorea"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "Bat datorren man orri bat baino gehiago dago:"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "Eskuliburu-orri anizkoitzak"
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"Oharra: Man orri bat zure hizkuntzan behar baduzu, ohar zaitez zaharkitua "
+"egon daitekeela edo erroreak izan ditzakeela. Zalantzak izanez gero, "
+"ingelesezko bertsioari begiradatxoa bota beharko zenioke."
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr "Goiburu fitxategiak"
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr "Goiburu fitxategiak (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "Erabiltzailearen komandoak"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "Erabiltzailearen komandoak (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "Sistemaren deiak"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "Azpirutinak"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Perl moduluak"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "Sareko funtzioak"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "Gailuak"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "Fitxategi formatuak"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "Jokoak"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "Bestelakoa"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "Sistemaren kudeaketa"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "Nukleoa"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "Dokumentazio lokala"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "Berria"
+
+#: kio_man.cpp:805
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "Eskuliburu-orrien indize nagusia"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "%1 atala"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "%1 atalaren Indizea: %2"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Manual Page Index"
+msgstr "Eskuliburu-orrien indizea"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "Indizea sortzen"
+
+#: kio_man.cpp:1407
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"Ezin izan du <command>%1</command> programa zure sisteman aurkitu. Mesedez, "
+"instalatu beharrezkoa bada, eta ziurtatu <envar>PATH</envar> ingurune-"
+"aldagaia erabiliz aurki daitekeela."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "%1 irekitzeak huts egin du."
+
+#~ msgid "Man output"
+#~ msgstr "Man irteera"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Marcos Goyenetxe,Iñigo Salvador Azurmendi"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "marcos@euskalgnu.org,xalba@euskalnet.net"
+
+#~ msgid "KMan"
+#~ msgstr "KMan"

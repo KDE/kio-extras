@@ -1,0 +1,43 @@
+# translation of kfileaudiopreview4.po to Kazakh
+#
+# Sairan Kikkarin <sairan@computer.org>, 2005.
+# Sairan Kikkarin <sairan@computer.org>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: kfileaudiopreview4\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-14 00:45+0000\n"
+"PO-Revision-Date: 2010-04-08 07:25+0600\n"
+"Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
+"Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"\n"
+
+#: kfileaudiopreview.cpp:68
+#, kde-format
+msgid "Play &automatically"
+msgstr "&Автоматы түрде орындалсын"
+
+#: mediacontrols_p.h:39
+#, kde-format
+msgid "start playback"
+msgstr "орындауын бастау"
+
+#: mediacontrols_p.h:44
+#, kde-format
+msgid "pause playback"
+msgstr "орындауын аялдату"
+
+#~ msgid "stop playback"
+#~ msgstr "орындауын тоқтату"
+
+#~ msgid "loop: restarts playback at end"
+#~ msgstr "тұйық: біткен соң қайталау"
+
+#~ msgid "Media Player"
+#~ msgstr "Ойнатқыш"

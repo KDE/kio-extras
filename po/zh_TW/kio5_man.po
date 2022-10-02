@@ -1,0 +1,227 @@
+# translation of kio_man.po to Chinese Traditional
+# Traditional Chinese Translation of kio_man.
+# Copyright (C) 2002, 2007, 2008 Free Software Foundation, Inc.
+#
+# Chen Yang <chenyang@elsewhere.idv.tw>, 2002.
+# Kenduest Lee <kenduest@i18n.linux.org.tw>, 2002.
+# Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2007, 2008.
+# Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007, 2008, 2012.
+# pan93412 <pan93412@gmail.com>, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2019-07-24 22:59+0800\n"
+"Last-Translator: pan93412 <pan93412@gmail.com>\n"
+"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 19.07.80\n"
+
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Check that you have "
+#| "typed the name using the correct upper and lower case characters.<br />If "
+#| "everything looks correct, then you may need to improve the search path "
+#| "for man pages; either using the environment variable MANPATH or using a "
+#| "matching file in the /etc directory."
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"找不到符合 %1 的 man page。<br /><br />請檢查您是否打錯您所要頁面的名稱。"
+"<br />請注意您必須確認大寫與小寫字母！<br />如果一切看來都正確，可能您得設定"
+"一個更好的 man page 搜尋路徑，可用 MANPATH 環境變數或在 /etc 目錄中符合的檔案"
+"來設定。"
+
+#: kio_man.cpp:569
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "The specified man page referenced another page '%1',<br />but the "
+#| "referenced page '%2' could not be found."
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr "指定的 man 頁面參考到另一個頁面「%1」，<br/>但找不到「%2」參考頁面。"
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
+msgstr "<h1>KDE Man 檢視器錯誤</h1>"
+
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
+msgstr "符合的 man page 不只一項。"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"注意：如果您以您的語言來閱讀 man page，請小心它可能包含一些錯誤和缺漏。如果對"
+"此有疑慮，您應該使用英語版本。"
+
+#: kio_man.cpp:758
+#, fuzzy, kde-format
+#| msgid "Header files"
+msgid "Header Files"
+msgstr "標頭檔"
+
+#: kio_man.cpp:759
+#, fuzzy, kde-format
+#| msgid "Header files (POSIX)"
+msgid "Header Files (POSIX)"
+msgstr "標頭檔 (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "使用者命令"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "使用者命令 (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "系統呼叫"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "函式呼叫"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Perl 模組"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "網路功能"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "裝置"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "檔案格式"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "遊戲"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "雜項"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "系統管理"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "核心"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "本地端文件"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "新項目"
+
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
+msgstr "UNIX 手冊索引"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "第 %1 區"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
+msgstr "章節索引 %1：%2"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "UNIX 手冊索引"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "產生索引中"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"抱歉，您的系統並未安裝 sgm2roff。請確認您有正確安裝上該程式，並確認 PATH 環境"
+"變數內能夠找到該程式項目。"
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "開啟 %1 失敗。"
+
+#~ msgid "Man output"
+#~ msgstr "Man 輸出"

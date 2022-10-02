@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Galician  "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="info">
+<title
+>Info</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Marce</firstname
+><surname
+>Villarino</surname
+><affiliation
+><address
+><email
+>mvillarino@users.sourceforge.net</email
+></address
+></affiliation
+><contrib
+>Tradutor do proxecto Trasno</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Info é un tipo de documentación. Os documentos están nun formato de ficheiro chamado textinfo, e poden lerse na liña de ordes mediante o programa <ulink url="info:/info"
+><command
+>info</command
+></ulink
+>.</para>
+
+<para
+>O ioslave Info permítelle ler desde &konqueror; as páxinas de información instaladas no sistema. Utilizalo é moi fácil:</para>
+
+<screen
+><userinput
+><command
+>info:</command
+><replaceable
+>gcc</replaceable
+></userinput
+></screen>
+
+<para
+>Isto mostraralle o nodo superior da documentación Info do compilador &gcc;.</para>
+
+<para
+>Info é o substituto de &GNU; de <command
+>man</command
+>, pero non é empregado habitualmente fora do software &GNU;.</para>
+
+<para
+>Pode navegar dun xeito sinxelo pola documentación de Info que teña instalada mediante o aplicativo &khelpcenter;, ou pode empregar o ioslave info directamente tanto desde &konqueror; como desde o mini-cli.</para>
+
+</article>

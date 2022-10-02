@@ -1,0 +1,83 @@
+# Uyghur translation for kio_thumbnail.
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# Sahran <sahran.ug@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_thumbnail\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"PO-Revision-Date: 2013-09-08 07:05+0900\n"
+"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language: ug\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: thumbnail.cpp:193
+#, kde-format
+msgid "No MIME Type specified."
+msgstr "MIME تىپى كۆرسىتىلمىگەن."
+
+#: thumbnail.cpp:201
+#, kde-format
+msgid "No or invalid size specified."
+msgstr "چوڭلۇقى ئىناۋەتسىز ۋە كۆرسىتىلمىگەن."
+
+#: thumbnail.cpp:225
+#, kde-format
+msgid "Cannot create thumbnail for directory"
+msgstr "مۇندەرىجىنىڭ كىچىك سۈرىتىنى قۇرغىلى بولمىدى"
+
+#: thumbnail.cpp:237
+#, kde-format
+msgid "No plugin specified."
+msgstr "قىستۇرما كۆرسىتىلمىگەن."
+
+#: thumbnail.cpp:243
+#, kde-format
+msgid "Cannot load ThumbCreator %1"
+msgstr "ThumbCreator نى ئوقۇغىلى بولمىدى %1"
+
+#: thumbnail.cpp:257
+#, kde-format
+msgid "Cannot create thumbnail for %1"
+msgstr "%1 ئۈچۈن كىچىك سۈرەت قۇرغىلى بولمىدى"
+
+#: thumbnail.cpp:272
+#, kde-format
+msgid "Failed to create a thumbnail."
+msgstr "كىچىك سۈرەت قۇرۇش مەغلۇپ بولدى."
+
+#: thumbnail.cpp:284
+#, kde-format
+msgid "Could not write image."
+msgstr "سۈرەتنى يازغىلى بولمىدى."
+
+#: thumbnail.cpp:309
+#, kde-format
+msgid "Failed to attach to shared memory segment %1"
+msgstr "ھەمبەھىرلەنگەن ئەسلەك بۆلىكى %1 گە قېتىلىش مەغلۇپ بولدى"
+
+#: thumbnail.cpp:317
+#, kde-format
+msgid "Image is too big for the shared memory segment"
+msgstr "ھەمبەھىرلەنگەن ئەسلەك بۆلىكىگە نىسبەتەن سۈرەت بەك چوڭ"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "سۈرەتنى ئاپتوماتىك چۆرگىلىتىدۇ"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "ئابدۇقادىر ئابلىز, غەيرەت كەنجى"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "sahran.ug@gmail.com,  gheyret@gmail.com"
+
+#~ msgid "kio_thumbmail"
+#~ msgstr "kio_thumbmail"

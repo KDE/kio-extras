@@ -1,0 +1,404 @@
+# translation of kio_sftp.po to Persian
+# Nazanin Kazemi <kazemi@itland.ir>, 2006, 2007.
+# MaryamSadat Razavi <razavi@itland.ir>, 2006.
+# Tahereh Dadkhahfar <dadkhahfar@itland.ir>, 2006.
+# Nasim Daniarzadeh <daniarzadeh@itland.ir>, 2006.
+# Mohammad Reza Mirdamadi <mohi@linuxshop.ir>, 2011, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2013-01-10 23:10+0330\n"
+"Last-Translator: Mohammad Reza Mirdamadi <mohi@linuxshop.ir>\n"
+"Language-Team: Farsi (Persian) <kde-i18n-fa@kde.org>\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kio_sftp.cpp:226
+#, fuzzy, kde-format
+#| msgid "Incorrect username or password"
+msgid "Incorrect or invalid passphrase"
+msgstr "نام کاربر یا اسم رمز نادرست"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr "نتوانست callbackها را اختصاص دهد"
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr "نتوانست طول واقعه نگاری را تنظیم کند."
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not set log verbosity."
+msgid "Could not set log userdata."
+msgstr "نتوانست طول واقعه نگاری را تنظیم کند."
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not allocate callbacks"
+msgid "Could not set log callback."
+msgstr "نتوانست callbackها را اختصاص دهد"
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "ورود SFTP"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr "از جای خالی نام کاربری برای پاسخ به این سوال استفاده کنید."
+
+#: kio_sftp.cpp:365
+#, kde-format
+msgid "Please enter your password."
+msgstr "لطفاً نام کاربر و اسم رمز خود را وارد کنید."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, kde-format
+msgid "Site:"
+msgstr "پایگاه:"
+
+#: kio_sftp.cpp:417
+#, fuzzy, kde-format
+#| msgid "Could not read link: %1"
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "نتوانست این پیوند را بخواند: %1"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr "نتوانست نشست SSH جدیدی ایجاد کند."
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, kde-format
+msgid "Could not set a timeout."
+msgstr "نتوانست timeout را تنظیم کند."
+
+#: kio_sftp.cpp:561
+#, fuzzy, kde-format
+#| msgid "Could not set port."
+msgid "Could not disable Nagle's Algorithm."
+msgstr "نتوانست درگاه را تنظیم کند."
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr "نتوانست فشرده‌سازی را تنظیم کند."
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr "نتوانست میزبان را تنظیم کند."
+
+#: kio_sftp.cpp:584
+#, kde-format
+msgid "Could not set port."
+msgstr "نتوانست درگاه را تنظیم کند."
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr "نتوانست نام کاربری را تنظیم کند."
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr "نتوانست پرونده‌ی تنظیمات را تجزیه و تحلیل کند."
+
+#: kio_sftp.cpp:616
+#, kde-kuit-format
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "باز کردن اتصال SFTP به میزبان %1:%2"
+
+#: kio_sftp.cpp:656
+#, fuzzy, kde-format
+#| msgid "Could not set username."
+msgid "Could not get server public key type name"
+msgstr "نتوانست نام کاربری را تنظیم کند."
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+#| msgid "Warning: Host's identity changed."
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "اخطار: هویت میزبان تغییر کرد."
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "خرابی در احراز هویت."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "لطفاً، نام کاربر و اسم رمز خود را وارد کنید."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "نام کاربر یا اسم رمز نادرست"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr "نتوانست نشست SFTP جدیدی را شروع کند."
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "با موفقیت به %1 متصل شد"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+"نتوانست مجوزها را برای\n"
+"%1 تغییر دهد"
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "اخطار: هویت میزبان را نمی‌توان وارسی کرد."
+
+#, fuzzy
+#~| msgid "Opening SFTP connection to host <b>%1:%2</b>"
+#~ msgid "Opening SFTP connection to host %1:<numid>%2</numid>"
+#~ msgstr "باز کردن اتصال SFTP به میزبان <b>%1:%2</b>"
+
+#~ msgid "No hostname specified."
+#~ msgstr "هیچ نام میزبانی مشخص نشده است."
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "یک خطای درونی رخ داد. لطفاً، درخواست را دوباره امتحان کنید."
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "لطفاً، نام کاربر و عبارت عبور کلیدی خود را وارد کنید."
+
+#~ msgid "Connection failed."
+#~ msgstr "خرابی در اتصال."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "اتصال توسط میزبان دور بسته شد."
+
+#, fuzzy
+#~| msgid "Unexpected SFTP error: %1"
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "خطای SFTP غیرمنتظره: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "نسخه SFTP %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "خطای قرارداد."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "یک خطای درونی رخ داد. لطفاً، دوباره سعی کنید."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "هنگام رونوشت پرونده به »%1«، خطایی ناشناخته رخ داد. لطفاً، دوباره سعی کنید."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "میزبان دور، پرونده‌های تغییر نام را پشتیبانی نمی‌کند."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "میزبان دور، ایجاد پیوندهای نمادی را پشتیبانی نمی‌کند."
+
+#~ msgid "Connection closed"
+#~ msgstr "اتصال بسته شد"
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "خرابی در فرمان SFTP، به دلیلی ناشناخته."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "کارساز SFTP پیام بدی دریافت کرد."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "اقدام به عملی کردید که توسط کارساز SFTP پشتیبانی نشده است."
+
+#~ msgid "Error code: %1"
+#~ msgstr "کد خطا: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "هم زمان، نمی‌توان یک زیرسیستم و فرمان مشخص کرد."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "برای اجرای ssh، گزینه‌ای فراهم نشده است."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "خرابی در اجرای فرآیند ssh."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "هنگام صحبت با ssh با خطا مواجه شد."
+
+#~ msgid "Please supply a password."
+#~ msgstr "لطفاً، یک اسم رمز فراهم کنید."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "لطفاً، برای کلید خصوصی SSH خود، عبارت عبور را فراهم کنید."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "خرابی در احراز هویت %1"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "هویت میزبان دور »%1« را نتوانست وارسی کند، زیرا کلید میزبان در پرونده "
+#~ "»میزبانهای شناخته‌شده« نیست."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ " کلید میزبان را به طور دستی به پرونده »میزبانهای شناخته‌شده « اضافه کنید، "
+#~ "یا با سرپرست خود تماس بگیرید."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr ""
+#~ " کلید میزبان را به طور دستی به %1 اضافه کنید، یا با سرپرست خود تماس "
+#~ "بگیرید."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "هویت میزبان دور »%1« را نمی‌توان وارسی کرد. اثر انگشت کلید میزبان عبارت "
+#~ "است از:\n"
+#~ "%2\n"
+#~ "باید قبل از اتصال، اثر انگشت را توسط سرپرست میزبان وارسی کنید.\n"
+#~ "\n"
+#~ "می‌خواهید کلید میزبان را پذیرفته و در هر صورت ادامه دهید؟"
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "اخطار: هویت میزبان دور »%1« تغییر یافته است!\n"
+#~ "\n"
+#~ "کسی اتصال شما را شنیده، یا ممکن است سرپرست کلید میزبان را تغییر داده "
+#~ "باشد. به هرحال، باید اثر انگشت کلید میزبان را توسط سرپرست وارسی کنید. اثر "
+#~ "انگشت کلید عبارت است از:\n"
+#~ "%2\n"
+#~ "کلید میزبان صحیح را به »%3« برای خلاصی از این پیام، اضافه کنید."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "اخطار: هویت میزبان دور »%1« تغییر یافته است! \n"
+#~ "\n"
+#~ "کسی اتصال شما را شنیده، یا شاید سرپرست کلید میزبان را تغییر داده است. به "
+#~ "هر حال، باید قبل از اتصال، اثر انگشت کلید میزبان را توسط سرپرست وارسی "
+#~ "کنید. اثر انگشت کلید عبارت است از:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "می‌خواهید کلید میزبان جدید را پذیرفته و در هر صورت ادامه دهید؟"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "کلید میزبان رد شد."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "لطفاً، یک نام کاربر و اسم رمز وارد کنید"

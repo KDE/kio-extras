@@ -1,0 +1,38 @@
+# Vietnamese translation for kio_tar.
+# Copyright © 2006 Free Software Foundation, Inc.
+#
+# Phan Vinh Thinh <teppi82@gmail.com>, 2006.
+# Phu Hung Nguyen <phu.nguyen@kdemail.net>, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_tar\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"PO-Revision-Date: 2022-05-12 12:08+0200\n"
+"Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
+"Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.12.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#, kde-format
+msgid ""
+"Could not open the file, probably due to an unsupported file format.\n"
+"%1"
+msgstr ""
+"Không mở được tệp, có thể do định dạng tệp không được hỗ trợ.\n"
+"%1"
+
+#: kio_archivebase.cpp:486
+#, kde-format
+msgid ""
+"The archive file could not be opened, perhaps because the format is "
+"unsupported.\n"
+"%1"
+msgstr ""
+"Không mở được tệp kho trữ, có thể do định dạng không được hỗ trợ.\n"
+"%1"

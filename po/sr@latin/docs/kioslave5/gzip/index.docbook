@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="gzip">
+<title
+>Gzip</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Lori</firstname
+> <surname
+>Vots</surname
+></personname
+> &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>gzip</command
+> je naredba za kompresovanje</para>
+
+<para
+>U/I zahvat gzipa ne može se koristiti neposredno, već je zamišljen kao filter. Na primer, U/I zahvat tara može da filtrira fajl kroz U/I zahvat gzipa, kako bi prikazao sadržaje <literal role="extension"
+>.tar.gz</literal
+> fajlova na licu mesta u prozoru <application
+>K‑osvajača</application
+>.</para>
+
+<para
+>Ako u <application
+>K‑osvajaču</application
+> kliknete na kompresovan fajl sa nastavkom <literal role="extension"
+>.gz</literal
+>, ovaj U/I zahvat će ga raspakovati i prikazati kao običan (nekompresovan) fajl.</para>
+
+<para
+>Ako ste programer i treba vam gzip filter, dokumentaciju o upotrebi ovog U/I zahvata možete naći na <ulink url="http://techbase.kde.org"
+>Techbasi</ulink
+>.</para>
+
+<para
+>Pogledajte <ulink url="man:/gzip"
+>uputnu stranicu <command
+>gzip</command
+></ulink
+>. </para>
+
+</article>

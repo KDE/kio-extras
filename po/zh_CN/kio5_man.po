@@ -1,0 +1,197 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kdeorg\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2022-09-20 01:55\n"
+"Last-Translator: \n"
+"Language-Team: Chinese Simplified\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: kdeorg\n"
+"X-Crowdin-Project-ID: 269464\n"
+"X-Crowdin-Language: zh-CN\n"
+"X-Crowdin-File: /kf5-trunk/messages/kio-extras/kio5_man.pot\n"
+"X-Crowdin-File-ID: 5457\n"
+
+#: kio_man.cpp:451
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"找不到 <resource>%1</resource> 的 man 手册。<nl/><nl/>请确认您没有输错页面的"
+"名字，并注意 man 手册页面名应区分大小写。<nl/><nl/>如果名字准确无误，那么您可"
+"能需要拓展 man 手册的搜索路径，或者使用 <envar>MANPATH</envar> 环境变量，或者"
+"需要在 <filename>/etc</filename> 文件夹中创建配置文件。"
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+"指定的 man 手册页面引用了另一个页面 <filename>%1</filename>，<nl/>但无法找到"
+"被引用的页面 <filename>%2</filename>。"
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr "无法读取 man 页面 <filename>%1</filename>。"
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr "无法转换 man 页面 <filename>%1</filename>。"
+
+#: kio_man.cpp:660
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "手册页面查看器出错"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "有多个匹配的 man 手册页面："
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "多个手册页面"
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"提示：如果您正在阅读的是非英文版的使用手册，它可能会包含过时或者错误的信息。"
+"如果您对其内容抱有疑问，请以英文版为准。"
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr "头文件"
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr "头文件 (POSIX)"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "用户命令"
+
+#: kio_man.cpp:761
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "用户命令 (POSIX)"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "系统调用"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "子程序"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "Perl 模块"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "网络函数"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "设备"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "文件格式"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "游戏"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "杂项"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "系统管理"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "内核"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "本机文档"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "新增"
+
+#: kio_man.cpp:805
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "主要手册页面的索引"
+
+#: kio_man.cpp:830
+#, kde-format
+msgid "Section %1"
+msgstr "章节 %1"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "章节索引 %1：%2"
+
+#: kio_man.cpp:1117
+#, kde-format
+msgid "Manual Page Index"
+msgstr "手册页面的索引"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "正在生成索引"
+
+#: kio_man.cpp:1407
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"无法在系统中找到 <command>%1</command> 程序。如需使用此功能，请安装该程序，并"
+"确保可以通过 <envar>PATH</envar> 环境变量对其进行定位。"

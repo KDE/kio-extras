@@ -1,0 +1,236 @@
+# translation of kio_man.po to Nepali
+# Nabin Gautam <nabin@mpp.org.np>, 2006, 2007.
+# Ishwor sharma <sharmabeeshwar@gmail.com>, 2006.
+# Mahesh Subedi <submanesh@gmail.com>, 2007.
+# shyam krishna bal <shyamkrishna_bal@yahoo.com>, 2007.
+# Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_man\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"PO-Revision-Date: 2007-11-01 18:40+0545\n"
+"Last-Translator: Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>\n"
+"Language-Team: Nepali <info@mpp.org.np>\n"
+"Language: ne\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n !=1\n"
+"\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Be careful that you "
+#| "must take care about upper case and lower case characters!<br />If "
+#| "everything looks correct, then perhaps you need to set a better search "
+#| "path for man pages, be it by the environment variable MANPATH or a "
+#| "matching file in the directory /etc ."
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+"%1 मा मिल्दो म्यान पृष्ठ फेला परेन ।<br /><br /> तपाईँले चाहनुभएको पृष्ठको नाम गलत टाइप "
+"गर्नुभएको छ की जाँच गर्नुहोस् ।\n"
+"तपाईँले क्यारेक्टरको केसमा ध्यान पुर्र्याउनुहोस् !<br /> यदि सबैकुरा ठीक छ भने, तपाईँले म्यान "
+"पृष्ठका लागि अझ राम्रो खोजी मार्ग प्रविष्ट गर्न आवश्यक हुन्छ, यो वातावरण चल MANPATH वा "
+"डाइरेकटरी आदीमा मिल्ने फाइलद्वारा गर्नुहोस् । "
+
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<body><h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
+msgstr "<body><h1> केडीई म्यान दर्शक त्रुटि</h1>"
+
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
+msgstr "त्यहाँ एउटा भन्दा बढी मिल्ने म्यान पृष्ठ छ ।"
+
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"द्रष्टव्य: यदि तपाईँ आफ्नै भाषामा म्यान पृष्ठ पढ्नु हुन्छ भने, सावधान हुनुहोस् यसमा केही "
+"गल्तिहरू र केही असुविधा हुन सक्दछ । विरोधाभास भएमा, तपाईँले अङ्ग्रेजी संस्करणमा हेर्न "
+"सक्नुहुन्छ ।"
+
+#: kio_man.cpp:758
+#, kde-format
+msgid "Header Files"
+msgstr ""
+
+#: kio_man.cpp:759
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr ""
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "User Commands"
+msgstr "प्रयोगकर्ता आदेश "
+
+#: kio_man.cpp:761
+#, fuzzy, kde-format
+#| msgid "User Commands"
+msgid "User Commands (POSIX)"
+msgstr "प्रयोगकर्ता आदेश "
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "System Calls"
+msgstr "प्रणाली बोलवट"
+
+#: kio_man.cpp:763
+#, kde-format
+msgid "Subroutines"
+msgstr "उप कार्यतालिका"
+
+#: kio_man.cpp:765
+#, kde-format
+msgid "Perl Modules"
+msgstr "पर्ल मोड्युल"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "Network Functions"
+msgstr "सञ्जाल प्रकार्य"
+
+#: kio_man.cpp:767
+#, kde-format
+msgid "Devices"
+msgstr "यन्त्र"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "File Formats"
+msgstr "फाइल ढाँचा"
+
+#: kio_man.cpp:769
+#, kde-format
+msgid "Games"
+msgstr "खेल"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "विविध"
+
+#: kio_man.cpp:771
+#, kde-format
+msgid "System Administration"
+msgstr "प्रणाली प्रशासन"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "Kernel"
+msgstr "कर्नेल"
+
+#: kio_man.cpp:773
+#, kde-format
+msgid "Local Documentation"
+msgstr "स्थानीय मिसिलीकरण"
+
+#: kio_man.cpp:775
+#, kde-format
+msgid "New"
+msgstr "नयाँ"
+
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
+msgstr "युनिक्स म्यानुअल अनुक्रमणिका"
+
+#: kio_man.cpp:830
+#, fuzzy, kde-format
+#| msgid "Section "
+msgid "Section %1"
+msgstr "सेक्सन "
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
+msgstr "%1 सेक्सनका लागि अनुक्रमणिका: %2"
+
+#: kio_man.cpp:1117
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "युनिक्स म्यानुअल अनुक्रमणिका"
+
+#: kio_man.cpp:1129
+#, kde-format
+msgid "Generating Index"
+msgstr "अनुक्रमणिका उत्पन्न गर्दैछ"
+
+#: kio_man.cpp:1407
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""
+"तपाईँ को प्रणालीमा sgml2roff कार्यक्रम फेला पर्न सकेन । यदि आवश्यक भए कृपया यसलाई "
+"स्थापना गर्नुहोस् र केडीई सुरु गर्नु अघि परिवेश चल PATH संयोजनद्वारा खोजि कार्य विस्तार "
+"गर्नुहोस् ।"
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "%1 खोल्न असफल"
+
+#~ msgid "Man output"
+#~ msgstr "म्यान निर्गत"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "इश्वर शर्मा, श्यामकृष्ण बल"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "sharmabeeshwar@gmail.com,shyamkrishna_bal@yahoo.com"
+
+#~ msgid "KMan"
+#~ msgstr "केडीई म्यान"

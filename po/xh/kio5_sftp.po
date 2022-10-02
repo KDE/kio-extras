@@ -1,0 +1,436 @@
+# translation of kio_sftp.po to
+# translation of kio_sftp.po to
+# translation of kio_sftp.po to
+# translation of kio_sftp.po to
+# translation of kio_sftp.po to
+# translation of kio_sftp.po to Xhosa
+# Copyright (C) 2002 Free Software Foundation, Inc.
+# Lwandle Mgidlana <lwandle@translate.org.za>, 2002
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2002-10-25 13:35SAST\n"
+"Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
+"Language-Team: Xhosa <xhosa@translate.org.za>\n"
+"Language: xh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.0beta2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_sftp.cpp:226
+#, fuzzy, kde-format
+msgid "Incorrect or invalid passphrase"
+msgstr "Igama lomsebenzisi elingalunganga okanye igama lokugqitha"
+
+#: kio_sftp.cpp:276
+#, fuzzy, kde-format
+#| msgid "Could not allocate memory for SFTP packet."
+msgid "Could not allocate callbacks"
+msgstr "Ayikwazanga ukunikela ngenkumbulo yepaketi ye SFTP."
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr ""
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log userdata."
+msgstr "Ayikwazanga ukufunda SFTP ipacketi"
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not allocate memory for SFTP packet."
+msgid "Could not set log callback."
+msgstr "Ayikwazanga ukunikela ngenkumbulo yepaketi ye SFTP."
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "SFTP Igama elithile"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr ""
+
+#: kio_sftp.cpp:365
+#, fuzzy, kde-format
+msgid "Please enter your password."
+msgstr "Nceda ngenisa igama lomsebenzisi negama lokugqitha."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, fuzzy, kde-format
+#| msgid "site:"
+msgid "Site:"
+msgstr "inxuwa:"
+
+#: kio_sftp.cpp:417
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Ayikwazanga ukufunda SFTP ipacketi"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr ""
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set a timeout."
+msgstr "Ayikwazanga ukufunda SFTP ipacketi"
+
+#: kio_sftp.cpp:561
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Ayikwazanga ukufunda SFTP ipacketi"
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr ""
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr ""
+
+#: kio_sftp.cpp:584
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set port."
+msgstr "Ayikwazanga ukufunda SFTP ipacketi"
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr ""
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr ""
+
+#: kio_sftp.cpp:616
+#, fuzzy, kde-kuit-format
+#| msgid "Opening SFTP connection to host <b>%1:%2</b>"
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Ivula indibaniso ye SFTP kumamkeli <b>%1:%2</b>"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr ""
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Isilumkiso: Isitshixo somamkeli sitshintshile!"
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Ububhali abuphumelelanga."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+
+#: kio_sftp.cpp:855
+#, fuzzy, kde-format
+msgid "Please enter your username and password."
+msgstr "Nceda ngenisa igama lomsebenzisi negama lokugqitha."
+
+#: kio_sftp.cpp:866
+#, fuzzy, kde-format
+msgid "Incorrect username or password"
+msgstr "Igama lomsebenzisi elingalunganga okanye igama lokugqitha"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr ""
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Idibene ngempumeleleo ku %1"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+
+#, fuzzy
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Isilumkiso: Ayikwazi ukuqinisekisa uchazo lomamkeli!"
+
+#, fuzzy
+#~ msgid "No hostname specified."
+#~ msgstr "Akukho gama lomamkeli okhankanyiweyo"
+
+#, fuzzy
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "Nceda ngenisa igama lomsebenzisi negama eligqithisiweyo."
+
+#~ msgid "Connection failed."
+#~ msgstr "Udibaniso aluphumelelanga."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "Uxulkumano luvaliwe ngumamkeli osendaweni ekude."
+
+#, fuzzy
+#~| msgid "Unexpected SFTP error: %1"
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "Engalindelekanga imposiso ye SFTP: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP uguqulelo lomsebenzi lwe %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "Imposiso yomthetho olandelwayo."
+
+#~ msgid "Connection closed"
+#~ msgstr "Udibaniso luvaliwe"
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "SFTP umyalelo akaphumelelanga ngenxa yezizathu ezingaziwayo."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "Umncedisi we SFTP ufumene umyalezo ongalunganga."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "Uzame umsebenzi womncedisi we SFTP ongaxhaswanga."
+
+#, fuzzy
+#~ msgid "Error code: %1"
+#~ msgstr "Ikhowudi yemposiso:"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "Ayikwazi ukukhankanya indlela esezantsi nomyalelo ngexesha elinye."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "Azikho iinketho ezinikelweyo kuphumezo olunje."
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "Ayiphumelelanga ukuphumeza uqhubeko lwe ssh."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "Imposiso iboniwe ngexesha lokuthetha ne ssh."
+
+#~ msgid "Please supply a password."
+#~ msgstr "Nceda nikezela ngegama lokugqitha."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr "Nceda nikela nebinzana lokudlula yesitshixo sakho se SSH."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "Ububhali ku %1 abuphumelelanga"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "Uchazo lwe nginginya esendaweni ekude '%1' alukwazanga ukuqinisekiswa "
+#~ "ngokuba isitshixo senginginya asikho kwi \"inginginya eyaziwayo\" fayile."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ "Ngesandla, dibanisa isitshixo senginginya kwi \"iinginginya ezaziwayo\" "
+#~ "fayile okanye uxhumane nomphathi wakho."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr ""
+#~ " Ngesandla, yongeza isitshixo somamkeli kwi %1 okanye xhumana nomphathi."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "Uchazo lwenginginya yakho esendaweni ekude '%1' ayikwazanga "
+#~ "ukuqinisekiswa. Isitshixo somfanekiso womnwe yeminwe yi:\n"
+#~ "%2\n"
+#~ "Kufuneka uqinisekise ukuba umfanekiso womwe onomphathi  wenginginya "
+#~ "womphathi phambi kokuxhuma.\n"
+#~ "\n"
+#~ "Ungathanda ukwamkela isithsixo senginginya udibanise?"
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "Isilumkiso: Uchazo lwenginginya esendawei ekude  '%1' itshintshiwe!\n"
+#~ "\n"
+#~ "Inokuba kukho umntu omamele indibaniselwano yakho ngokungekosemthethweni, "
+#~ "okanye umphathi utshintshe izitshixho zenginginya. Nokuba kunjalo, "
+#~ "kufuneka uqinisekise i fingerprint nomphathi wenginginya. Fingerprints "
+#~ "iyi:\n"
+#~ "%2\n"
+#~ "Yongeza isitshixo senginginya esilungileyo \"%3\" ukulahla lomyalezo."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "Isilumkiso: Uchazo lwenginginya esendawei ekude  '%1' itshintshiwe!\n"
+#~ "\n"
+#~ "Inokuba kukho umntu omamele indibaniselwano yakho ngokungekosemthethweni, "
+#~ "okanye umphathi utshintshe izitshixho zenginginya. Nokuba kunjalo, "
+#~ "kufuneka uqinisekise i fingerprint nomphathi wenginginya. Fingerprints "
+#~ "iyi:\n"
+#~ "%2\n"
+#~ "Ungathanda ukwamkela isitshixho esitsha senginginya nodibaniso nokuba "
+#~ "kunjalo?"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "Isitshixo somamkeli sikhutshwe ngaphandle."
+
+#, fuzzy
+#~ msgid "Please enter a username and password"
+#~ msgstr "Nceda ngenisa igama lomsebenzisi nelokugqitha"
+
+#~ msgid "SFTP slave unexpectedly killed"
+#~ msgstr "SFTP ibanjwa libulelwe ngokungalindelekanga"
+
+#~ msgid "Sftp Login"
+#~ msgstr "Sftp Igama elithile"
+
+#~ msgid "Login failed. Retrying..."
+#~ msgstr "Igama elithile aliphumelelanga. Iyazama kwakhona..."
+
+#~ msgid ""
+#~ "Login failed.\n"
+#~ "Please confirm your username and password, and enter them again."
+#~ msgstr ""
+#~ "Igama elithile aliphumelelanga.\n"
+#~ "Nceda qinisekisa igama lomsebenzisi neligqithisiweyo, kwaye wangenise "
+#~ "kwakhona."
+
+#~ msgid "Warning: Host key not found!"
+#~ msgstr "Isilumkiso: Isitshixo Senginginya asifumaneki!"
+
+#~ msgid "Warning: Host key has changed!"
+#~ msgstr "Isilumkiso: Isitshixo senginginya sitshintshile!"
+
+#~ msgid "Shall we continue connecting to %1?"
+#~ msgstr "Singaqhubeka ukudibanisa ku %1?"
+
+#~ msgid "Connected to "
+#~ msgstr "Idityaniswe ku "
+
+#~ msgid "Timed out waiting for a response from the server."
+#~ msgstr "Iphelelwe lixesha kwimpendulo kumncedisi."
+
+#~ msgid "Login failed."
+#~ msgstr "Igama elithile aliphumeleli."
+
+#~ msgid ""
+#~ "Could not login to %1.\n"
+#~ "Maximum number of retries exceeded."
+#~ msgstr ""
+#~ "Ayinakufaka igama elithile ku %1.\n"
+#~ "Inani elikhulu labazami kwakhona libelikhulu kunamanye ."
+
+#~ msgid "Login OK"
+#~ msgstr "Igama elithile LILUNGILE"

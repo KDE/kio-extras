@@ -1,0 +1,411 @@
+# translation of kio_sftp.po to Kurdish
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Erdal Ronahi <erdal.ronahi@nospam.gmail.com>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_sftp\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2009-01-08 22:58+0200\n"
+"Last-Translator: Omer Ensari <oensari@gmail.com>\n"
+"Language-Team: Kurdish <ubuntu-l10n-kur@lists.ubuntu.com>\n"
+"Language: ku\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Kurdish\n"
+
+#: kio_sftp.cpp:226
+#, fuzzy, kde-format
+#| msgid "Incorrect username or password"
+msgid "Incorrect or invalid passphrase"
+msgstr "Navê bikarhêner an jî nasnav şaşî ye"
+
+#: kio_sftp.cpp:276
+#, kde-format
+msgid "Could not allocate callbacks"
+msgstr ""
+
+#: kio_sftp.cpp:289
+#, kde-format
+msgid "Could not set log verbosity."
+msgstr ""
+
+#: kio_sftp.cpp:294
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log userdata."
+msgstr "Nikare pakêta SFTP bixwîne"
+
+#: kio_sftp.cpp:299
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set log callback."
+msgstr "Nikare pakêta SFTP bixwîne"
+
+#: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
+#, kde-format
+msgid "SFTP Login"
+msgstr "Têketina SFTP"
+
+#: kio_sftp.cpp:352
+#, kde-format
+msgid "Use the username input field to answer this question."
+msgstr ""
+
+#: kio_sftp.cpp:365
+#, fuzzy, kde-format
+#| msgid "Please enter your username and password."
+msgid "Please enter your password."
+msgstr "Jê kerema xwe navê bikarhêner û nasnavê têkevê."
+
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
+#, fuzzy, kde-format
+#| msgid "site:"
+msgid "Site:"
+msgstr "malper:"
+
+#: kio_sftp.cpp:417
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgctxt "error message. %1 is a path, %2 is a numeric error code"
+msgid "Could not read link: %1 [%2]"
+msgstr "Nikare pakêta SFTP bixwîne"
+
+#: kio_sftp.cpp:539
+#, kde-format
+msgid "Could not create a new SSH session."
+msgstr ""
+
+#: kio_sftp.cpp:550 kio_sftp.cpp:554
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set a timeout."
+msgstr "Nikare pakêta SFTP bixwîne"
+
+#: kio_sftp.cpp:561
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not disable Nagle's Algorithm."
+msgstr "Nikare pakêta SFTP bixwîne"
+
+#: kio_sftp.cpp:567 kio_sftp.cpp:572
+#, kde-format
+msgid "Could not set compression."
+msgstr ""
+
+#: kio_sftp.cpp:578
+#, kde-format
+msgid "Could not set host."
+msgstr ""
+
+#: kio_sftp.cpp:584
+#, fuzzy, kde-format
+#| msgid "Could not read SFTP packet"
+msgid "Could not set port."
+msgstr "Nikare pakêta SFTP bixwîne"
+
+#: kio_sftp.cpp:592
+#, kde-format
+msgid "Could not set username."
+msgstr ""
+
+#: kio_sftp.cpp:599
+#, kde-format
+msgid "Could not parse the config file."
+msgstr ""
+
+#: kio_sftp.cpp:616
+#, fuzzy, kde-kuit-format
+#| msgid "Opening SFTP connection to host %1:%2"
+msgid "Opening SFTP connection to host %1:%2"
+msgstr "Girêdana SFTP bi mêvandara %1:%2 re tê vekirin"
+
+#: kio_sftp.cpp:656
+#, kde-format
+msgid "Could not get server public key type name"
+msgstr ""
+
+#: kio_sftp.cpp:669
+#, kde-format
+msgid "Could not create hash from server public key"
+msgstr ""
+
+#: kio_sftp.cpp:678
+#, kde-format
+msgid "Could not create fingerprint for server public key"
+msgstr ""
+
+#: kio_sftp.cpp:738
+#, kde-format
+msgid ""
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"Please contact your system administrator.\n"
+"%2"
+msgstr ""
+
+#: kio_sftp.cpp:756
+#, fuzzy, kde-format
+#| msgid "Warning: Host's identity changed."
+msgctxt "@title:window"
+msgid "Host Identity Change"
+msgstr "Hişyarî: Nasname ya pêşkêşkerê hat guherandin."
+
+#: kio_sftp.cpp:757
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
+"para><para>This could either mean that DNS spoofing is happening or the IP "
+"address for the host and its host key have changed at the same time.</"
+"para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
+"bcode>Are you sure you want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:767
+#, kde-format
+msgctxt "@title:window"
+msgid "Host Verification Failure"
+msgstr ""
+
+#: kio_sftp.cpp:768
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
+"</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
+"want to continue connecting?</para>"
+msgstr ""
+
+#: kio_sftp.cpp:777
+#, kde-format
+msgctxt "@action:button"
+msgid "Connect Anyway"
+msgstr ""
+
+#: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
+#, kde-format
+msgid "Authentication failed."
+msgstr "Erêkirin pêk nehat."
+
+#: kio_sftp.cpp:806
+#, kde-format
+msgid ""
+"Authentication failed. The server didn't send any authentication methods"
+msgstr ""
+
+#: kio_sftp.cpp:855
+#, kde-format
+msgid "Please enter your username and password."
+msgstr "Jê kerema xwe navê bikarhêner û nasnavê têkevê."
+
+#: kio_sftp.cpp:866
+#, kde-format
+msgid "Incorrect username or password"
+msgstr "Navê bikarhêner an jî nasnav şaşî ye"
+
+#: kio_sftp.cpp:915
+#, kde-format
+msgid ""
+"Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
+"server."
+msgstr ""
+
+#: kio_sftp.cpp:920
+#, kde-format
+msgid "Could not initialize the SFTP session."
+msgstr ""
+
+#: kio_sftp.cpp:924
+#, kde-format
+msgid "Successfully connected to %1"
+msgstr "Bi serfiraz bi %1 re hat girêdan"
+
+#: kio_sftp.cpp:976
+#, kde-format
+msgid "Invalid sftp context"
+msgstr ""
+
+#: kio_sftp.cpp:1544
+#, kde-format
+msgid ""
+"Could not change permissions for\n"
+"%1"
+msgstr ""
+
+#~ msgid "Warning: Cannot verify host's identity."
+#~ msgstr "Hişyarî: Nikare nasname ya pêşkêşkerê piştrast bike."
+
+#, fuzzy
+#~| msgid "No hostname specified"
+#~ msgid "No hostname specified."
+#~ msgstr "Tu nav ji bo pêşkêşkerê nehatiye dîyar kirin"
+
+#~ msgid "An internal error occurred. Please retry the request again."
+#~ msgstr "Çewtiya hûndirîn çêbû. Jê kerema xwe daxwazê cardin biceribîne. "
+
+#~ msgid "Please enter your username and key passphrase."
+#~ msgstr "Jê kerema xwe navê bikarhêner û hevoka nasnavê têkevê."
+
+#~ msgid "Connection failed."
+#~ msgstr "Girêdan pêk nehat."
+
+#~ msgid "Connection closed by remote host."
+#~ msgstr "Girêdan alî yê mêvandara dûr ve hat girtin."
+
+#, fuzzy
+#~| msgid "Unexpected SFTP error: %1"
+#~ msgid "unexpected SFTP error: %1"
+#~ msgstr "Çewtiya SFTP yê ne li bendê: %1"
+
+#~ msgid "SFTP version %1"
+#~ msgstr "SFTP guherto %1"
+
+#~ msgid "Protocol error."
+#~ msgstr "Çewtiya protokolê."
+
+#~ msgid "An internal error occurred. Please try again."
+#~ msgstr "Çewtiya hûndirîn çêbû. Jê kerema xwe cardin biceribîne."
+
+#~ msgid ""
+#~ "Unknown error was encountered while copying the file to '%1'. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "Demê ji ber girtina pelê ji '%1' re çewtiya nenas çêbû. Jê kerema xwe "
+#~ "cardin biceribîne."
+
+#~ msgid "The remote host does not support renaming files."
+#~ msgstr "Mêvandara dûr piştgirî nade nû ve nav-dana pelan."
+
+#~ msgid "The remote host does not support creating symbolic links."
+#~ msgstr "Mêvandara dûr piştgirî nade afirandina gehînekên sembolîk."
+
+#~ msgid "Connection closed"
+#~ msgstr "Girêdan hate girtin"
+
+#~ msgid "End of file."
+#~ msgstr "Dawiya pelê."
+
+#~ msgid "SFTP command failed for an unknown reason."
+#~ msgstr "Fermana SFTP ji ber sedema nayê zanîn pêk nehat."
+
+#~ msgid "The SFTP server received a bad message."
+#~ msgstr "Pêşkêşkera SFTP peyama xêrab hilgirt."
+
+#~ msgid "You attempted an operation unsupported by the SFTP server."
+#~ msgstr "Te xebata yê alî yê pêşkêşkera SFTP nayê piştgirî dan ceriband."
+
+#~ msgid "Error code: %1"
+#~ msgstr "Koda Çewtiyê: %1"
+
+#~ msgid "Cannot specify a subsystem and command at the same time."
+#~ msgstr "Nikare bin-pergal û fermanê hemdemî dîyar bike."
+
+#~ msgid "No options provided for ssh execution."
+#~ msgstr "Tu bijare ji bo xebitandina ssh tune ye"
+
+#~ msgid "Failed to execute ssh process."
+#~ msgstr "Xebitandina pêvajoya ssh pêk nehat."
+
+#~ msgid "Error encountered while talking to ssh."
+#~ msgstr "Di demê vekirina ssh de çewtî çêbû."
+
+#~ msgid "Please supply a password."
+#~ msgstr "Jê kerema xwe nasnav dîyar bike."
+
+#~ msgid "Please supply the passphrase for your SSH private key."
+#~ msgstr ""
+#~ "Jê kerema xwe ji bo mifte ya SSH yê şexsî hevoka nasnavê dîyar bike."
+
+#~ msgid "Authentication to %1 failed"
+#~ msgstr "Erêkirina %1 pêk nehat"
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified because the "
+#~ "host's key is not in the \"known hosts\" file."
+#~ msgstr ""
+#~ "Nasnameya mêvandara '%1' nayê rastandin lewre ku mifte ye mêvandarê di "
+#~ "pela \"mêvandarên nas\" de nîn e."
+
+#~ msgid ""
+#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
+#~ "administrator."
+#~ msgstr ""
+#~ " Bi destan, mifte ya mêvandarê lê pela \"mêvandarên nas\" zêde bike an jî "
+#~ "bi rêveberê xwe re bikeve têkilî yê."
+
+#~ msgid " Manually, add the host's key to %1 or contact your administrator."
+#~ msgstr ""
+#~ " Bi destan, mifte ya mêvandarê lê %1 zêde bike an jî bi rêveberê xwe re "
+#~ "bikeve têkilî yê."
+
+#~ msgid ""
+#~ "The identity of the remote host '%1' could not be verified. The host's "
+#~ "key fingerprint is:\n"
+#~ "%2\n"
+#~ "You should verify the fingerprint with the host's administrator before "
+#~ "connecting.\n"
+#~ "\n"
+#~ "Would you like to accept the host's key and connect anyway? "
+#~ msgstr ""
+#~ "Nasname ya mêvandara dûr '%1' nayê rastandin. Mifte ya rêçtilî ya "
+#~ "mêvandarê:\n"
+#~ "%2\n"
+#~ "Berî ya girêdanê tu divê rêçtilî yê bi rêveberê mêvandarê re bidî "
+#~ "rastandin.\n"
+#~ "\n"
+#~ "Tu dîsa jî dixwazî rêçtilî ya mêvandarê bipejirînî û bidî girêdan? "
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator. The key fingerprint "
+#~ "is:\n"
+#~ "%2\n"
+#~ "Add the correct host key to \"%3\" to get rid of this message."
+#~ msgstr ""
+#~ "HIŞYARÎ: Nasnameya mêvandarê dûr '%1' hatiye guherandin!\n"
+#~ "\n"
+#~ "Di be ku kesekî veşartî di girêdanê de hebe, an jî rêveberê mêvandarê "
+#~ "mifte ya mêvandarê hêj de guherandî be. Her çawa be jî, tu divê rêçtilî "
+#~ "ya mifte ya mêvandarê bi rêveberê mêvandarê re bidî rastandin. Mifte ya "
+#~ "rêçtilî:\n"
+#~ "%2\n"
+#~ "Mifte ya rast lê \"%3\" zêde bike ku cardin vê peyamê nestînî."
+
+#~ msgid ""
+#~ "WARNING: The identity of the remote host '%1' has changed!\n"
+#~ "\n"
+#~ "Someone could be eavesdropping on your connection, or the administrator "
+#~ "may have just changed the host's key. Either way, you should verify the "
+#~ "host's key fingerprint with the host's administrator before connecting. "
+#~ "The key fingerprint is:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Would you like to accept the host's new key and connect anyway?"
+#~ msgstr ""
+#~ "HIŞYARÎ: Nasnameya mêvandarê dûr '%1' hatiye guherandin!\n"
+#~ "\n"
+#~ "Di be ku kesekî veşartî di girêdanê de hebe, an jî rêveberê mêvandarê "
+#~ "mifte ya mêvandarê hêj de guherandî be. Her çawa be jî, tu divê rêçtilî "
+#~ "ya mifte ya mêvandarê bi rêveberê mêvandarê re bidî rastandin. Mifte ya "
+#~ "rêçtilî:\n"
+#~ "%2\n"
+#~ "\n"
+#~ "Tu dîsa jî dixwazî mifte ya mêvandarê yê nû bipejirînî û bidî girêdan?"
+
+#~ msgid "Host key was rejected."
+#~ msgstr "Kurterê nehat pejirandin."
+
+#~ msgid "Please enter a username and password"
+#~ msgstr "Jê kerema xwe navê bikarhêner û nasnavê têkevê"

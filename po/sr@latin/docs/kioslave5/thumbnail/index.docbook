@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="thumbnail">
+<title
+>Sličice</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Karsten</firstname
+> <surname
+>Pfajfer</surname
+></personname
+> &Carsten.Pfeiffer.mail;</author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+<date
+>11. 12. 2016.</date>
+<releaseinfo
+>Programi KDE‑a 16.12</releaseinfo>
+</articleinfo>
+<para
+>KDE koristi U/I zahvat sličica za mrežno prozirno i trajno stvaranje sličica.</para>
+
+<para
+>U/I zahvata sličica koristi priključke za neposredno stvaranje sličica. U <application
+>Dolphinu</application
+> i u <application
+>K‑osvajaču</application
+> u režimu menadžera fajlova, prikaz sličica možete uključiti kroz podmeni <menuchoice
+><guimenu
+>Prikaz</guimenu
+> <guisubmenu
+>Pregled</guisubmenu
+></menuchoice
+>.</para>
+
+<para
+>U/I zahvat sličica nije od neposredne važnosti korisnicima, ali ako ste programer, možete ga koristiti u svojim programima za stvaranje pregleda fajlova.</para>
+
+<para
+>Za više informacija pogledajte dokumentaciju u izvoru. Naći ćete je u izvornoj fascikli <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"
+><filename class="directory"
+>thumbnail</filename
+></ulink
+>. </para>
+
+</article>

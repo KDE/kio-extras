@@ -1,0 +1,217 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kactivities5\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"PO-Revision-Date: 2015-12-28 13:58+0000\n"
+"Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
+"Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-POFile-SpellExtra: Cukic QML\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#, kde-format
+msgid "Activities"
+msgstr "Actividades"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "Loading..."
+msgstr "A carregar..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "O gestor de actividades não está em execução"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#, kde-format
+msgid "Link to the current activity"
+msgstr "Associar à actividade actual"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "Dissociar da actividade actual"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#, kde-format
+msgid "Link to:"
+msgstr "Associar a:"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#, kde-format
+msgid "Unlink from:"
+msgstr "Dissociar de:"
+
+#: KioActivities.cpp:101 KioActivities.cpp:224
+#, kde-format
+msgid "Activity"
+msgstr "Actividade"
+
+#: KioActivities.cpp:223
+#, kde-format
+msgid "Current activity"
+msgstr "Actividade actual"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "José Nuno Pires"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "zepires@gmail.com"
+
+#~ msgid "Default"
+#~ msgstr "Predefinição"
+
+#~ msgctxt "@action"
+#~ msgid "Switch to activity \"%1\""
+#~ msgstr "Mudar para a actividade \"%1\""
+
+#~ msgctxt "Header title for activity data model"
+#~ msgid "Activity"
+#~ msgstr "Actividade"
+
+#~ msgid "Delete activity"
+#~ msgstr "Apagar a actividade"
+
+#~ msgid "Are you sure you want to delete '%1'?"
+#~ msgstr "Tem a certeza que deseja apagar a '%1'?"
+
+#~ msgid ""
+#~ "Error loading the QML files. Check your installation.\n"
+#~ "Missing %1"
+#~ msgstr ""
+#~ "Ocorreu um erro ao carregar os ficheiros QML. Verifique a sua "
+#~ "instalação.\n"
+#~ "Falta o %1"
+
+#~ msgid "Create a new activity"
+#~ msgstr "Criar uma nova actividade"
+
+#~ msgid "Activity settings"
+#~ msgstr "Configuração da actividade"
+
+#~ msgid "General"
+#~ msgstr "Geral"
+
+#~ msgid "Other"
+#~ msgstr "Outro"
+
+#~ msgid "Create"
+#~ msgstr "Criar"
+
+#~ msgid "Apply"
+#~ msgstr "Aplicar"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgid "Shortcut for switching to this activity:"
+#~ msgstr "Atalho para mudar para esta actividade:"
+
+#~ msgid "Activity information"
+#~ msgstr "Informação da actividade"
+
+#~ msgid "Name"
+#~ msgstr "Nome"
+
+#~ msgid "Description"
+#~ msgstr "Descrição"
+
+#~ msgid "Wallpaper"
+#~ msgstr "Papel de Parede"
+
+#~ msgid "Change..."
+#~ msgstr "Modificar..."
+
+#~ msgid "Icon"
+#~ msgstr "Ícone"
+
+#~ msgid "Switching"
+#~ msgstr "Mudança"
+
+#~ msgid "Privacy"
+#~ msgstr "Privacidade"
+
+#~ msgctxt "unlimited number of months"
+#~ msgid "forever"
+#~ msgstr "para sempre"
+
+#~ msgid "Forget the last hour"
+#~ msgstr "Esquecer a última hora"
+
+#~ msgid "Forget the last two hours"
+#~ msgstr "Esquecer as duas últimas horas"
+
+#~ msgid "Forget a day"
+#~ msgstr "Esquecer um dia"
+
+#~ msgid "Forget everything"
+#~ msgstr "Esquecer tudo"
+
+#~ msgctxt "unit of time. months to keep the history"
+#~ msgid " month"
+#~ msgid_plural " months"
+#~ msgstr[0] " mês"
+#~ msgstr[1] " meses"
+
+#~ msgctxt "for in 'keep history for 5 months'"
+#~ msgid "for "
+#~ msgstr "durante "
+
+#~ msgid "Create activity..."
+#~ msgstr "Criar uma actividade..."
+
+#~ msgid "Activity switching"
+#~ msgstr "Mudança de actividade"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities"
+#~ msgstr "Percorrer as actividades"
+
+#~ msgctxt "@action"
+#~ msgid "Walk through activities (Reverse)"
+#~ msgstr "Percorrer as actividades (inverso)"
+
+#~ msgid "Form"
+#~ msgstr "Formulário"
+
+#~ msgid "Remember opened documents:"
+#~ msgstr "Recordar os documentos abertos:"
+
+#~ msgid "For a&ll applications"
+#~ msgstr "Para &todas as aplicações"
+
+#~ msgid "&Do not remember"
+#~ msgstr "&Não recordar"
+
+#~ msgid "O&nly for specific applications"
+#~ msgstr "&Apenas em aplicações específicas"
+
+#~ msgid "Keep history"
+#~ msgstr "Manter o histórico"
+
+#~ msgid "Clear recent history"
+#~ msgstr "Limpar o histórico recente"
+
+#~ msgid "Blacklist all applications not on this list"
+#~ msgstr "Excluir todas as aplicações fora desta lista"
+
+#~ msgid ""
+#~ "Remember the current virtual desktop for each activity (needs restart)"
+#~ msgstr ""
+#~ "Recordar o ecrã virtual actual para cada actividade (necessita de "
+#~ "reiniciar)"
+
+#~ msgid "Shortcuts"
+#~ msgstr "Atalhos"

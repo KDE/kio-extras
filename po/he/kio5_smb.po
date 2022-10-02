@@ -1,0 +1,198 @@
+# translation of kio_smb.po to hebrew
+# KDE Hebrew Localization Project
+# Translation of kio_smb.po into Hebrew
+#
+# In addition to the copyright owners of the program
+# which this translation accompanies, this translation is
+# Copyright (C) 2001-2002 Meni Livne <livne@kde.org>
+#
+# This translation is subject to the same Open Source
+# license as the program which it accompanies.
+#
+# Dror Levin <spatz@012.net.il>, 2003.
+# Shlomi Loubaton <shlomil@hotmail.com>, 2003.
+# Diego Iastrubni <elcuco@kde.org>, 2005, 2008.
+# tahmar1900 <tahmar1900@gmail.com>, 2006.
+# Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: kio5_smb\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"PO-Revision-Date: 2017-05-16 07:03-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Hebrew <kde-l10n-he@kde.org>\n"
+"Language: he\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>הזן מידע אימות עבור <b>%1</b></qt>"
+
+#: kio_smb_auth.cpp:53
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"הזן מידע אימות עבור:\n"
+"שרת = %1\n"
+"שיתוף = %2"
+
+#: kio_smb_browse.cpp:58
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1:\n"
+"סוג קובץ לא ידוע, אינו קובץ או תיקייה."
+
+#: kio_smb_browse.cpp:272
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"לא ניתן למצוא קבוצות עבודה ברשת המקומית שלך. דבר זה יכול להיגרם בגלל חומת־אש "
+"פתוחה."
+
+#: kio_smb_browse.cpp:277
+#, kde-format
+msgid "No media in device for %1"
+msgstr "אין מדיה בכונן בשביל %1"
+
+#: kio_smb_browse.cpp:283
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "אין אפשרות להתחבר לשרת עבור %1"
+
+#: kio_smb_browse.cpp:295
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "שגיאה במהלך התחברות לשרת האחראי ל־%1"
+
+#: kio_smb_browse.cpp:301
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "אין אפשרות למצוא את השיתוף בשרת הנתון"
+
+#: kio_smb_browse.cpp:303
+#, fuzzy, kde-format
+#| msgid "BAD File descriptor"
+msgid "Bad file descriptor"
+msgstr "מתאר קובץ פגום"
+
+#: kio_smb_browse.cpp:311
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"אין אפשרות לפענח את השם הנתון לשרת מסויים. אנא בדוק שהרשת שלך מוגדרת ללא "
+"התנגשויות שמות בשימוש על ידי מערכות Windows ו־UNIX."
+
+#: kio_smb_browse.cpp:318
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr ""
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"הספרייה libsmbclient דיווחה על שגיאה, אך לא ציין מה היא. דבר זה עלול להעיד "
+"על בעיה חמורה עם הרשת שלך - אך עלול גם להעיד על בעיה עם libsmbclient.\n"
+" אם ברצונך לעזור לנו, בבקשה צרף tcpdump של ממשק הרשת שלך בזמן שאתה מנסה "
+"לעיין (שים לה כי זה עלול להכיל מידע אישי, לכן אל תשלח את זה אם אינך בטוח "
+"לגבי זה - אתה יכול לשלוח את זה בפרטיות למפתח אם הוא \tמבקש ממך)"
+
+#: kio_smb_browse.cpp:334
+#, fuzzy, kde-format
+#| msgid "Unknown error condition in stat: %1"
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr "מצב שגיאה לא ידוע ב־stat: %1"
+
+#: kio_smb_browse.cpp:352
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr ""
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "הספרייה libsmbclient נכשלה ביצירת הקשר"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"וודא כי החבילה samba מותקנת כראוי במערכת שלך."
+
+#: kio_smb_mount.cpp:171
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"עגינה של השיתוף \"%1\" מהשרת \"%2\" על ידי המשתמש \"%3\" נכשלה. \n"
+"%4"
+
+#: kio_smb_mount.cpp:196
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"הפסקת עגינה של נקודת העגינה \"%1\" נכשלה. \n"
+"%2"
+
+#: wsdiscoverer.cpp:173
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr ""
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "הספרייה libsmbclient נחכשלה באיתחול הקשר"
+
+#~ msgid "File does not exist: %1"
+#~ msgstr "קובץ לא קיים: %1"

@@ -1,0 +1,37 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# Kishore G <kishore96@gmail.com>, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-08-07 00:45+0000\n"
+"PO-Revision-Date: 2022-04-14 19:44+0530\n"
+"Last-Translator: Kishore G <kishore96@gmail.com>\n"
+"Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.03.90\n"
+
+#: kio_mtp.cpp:220
+#, kde-format
+msgctxt ""
+"Message shown when attempting to access an MTP device that is not fully "
+"accessible yet"
+msgid ""
+"Could not access device. Make sure it is unlocked, and tap \"Allow\" on the "
+"popup on its screen. If that does not work, make sure MTP is enabled in its "
+"USB connection settings."
+msgstr ""
+"சாதனத்தை அணுக முடியவில்லை. அதன் திரை பூட்டப்படாத‍தை உறுதிசெய்து, அதில் அனுமதிகோரும் "
+"அறிவிப்பு ஏதேனும் இருந்தால் அனுமதியளியுங்கள். அவ்வாறு செய்தபின்பும் மாற்றம் இல்லையேல், அதன் "
+"USB இணைப்பு விருப்பங்களில் MTP இயக்கப்பட்டுள்ளதா என்பதை உறுதி செய்யுங்கள்."
+
+#: kio_mtp.cpp:490
+#, kde-format
+msgid "Cannot copy/move files on the device itself"
+msgstr "சாதனத்திலிருந்து அதற்கே கோப்புகளை நகலெடுக்கவோ நகர்த்தவோ முடியாது"
