@@ -8,19 +8,20 @@
 # Andrey Cherepanov <skull@kde.ru>, 2009.
 # Yuri Efremov <yur.arh@gmail.com>, 2013.
 # Alexander Yavorsky <kekcuha@gmail.com>, 2022.
+# Olesya Gerasimenko <translation-team@basealt.ru>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-07 00:44+0000\n"
-"PO-Revision-Date: 2022-01-18 21:37+0300\n"
-"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
-"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"PO-Revision-Date: 2022-10-04 16:47+0300\n"
+"Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
+"Language-Team: Basealt Translation Team\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.1\n"
+"X-Generator: Lokalize 22.04.3\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Environment: kde\n"
@@ -28,14 +29,7 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 
 #: kio_man.cpp:451
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "No man page matching to %1 found.<br /><br />Check that you have not "
-#| "mistyped the name of the page that you want.<br />Check that you have "
-#| "typed the name using the correct upper and lower case characters.<br />If "
-#| "everything looks correct, then you may need to improve the search path "
-#| "for man pages; either using the environment variable MANPATH or using a "
-#| "matching file in the /etc directory."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
@@ -45,11 +39,12 @@ msgid ""
 "envar> environment variable or a configuration file in the <filename>/etc</"
 "filename> directory."
 msgstr ""
-"Страница «%1» не найдена.<br /><br />Проверьте, правильно ли указано имя "
-"страницы.\n"
-"Учтите, что оно указывается с учётом регистра.<br />Если в написании нет "
-"ошибок, то проверьте правильность пути к страницам man, который задан в "
-"переменной среды окружения MANPATH или в соответствующем файле в /etc."
+"Не удалось найти man-страницу, которая соответствует <resource>%1</"
+"resource>. <nl/><nl/>Проверьте, правильно ли указано имя страницы. Обратите "
+"внимание, что оно указывается с учётом регистра.<nl/><nl/>Если в написании "
+"нет ошибок, то проверьте правильность пути к man-страницам, который задан в "
+"переменной среды <envar>MANPATH</envar> или в файле конфигурации в каталоге "
+"<filename>/etc</filename>."
 
 #: kio_man.cpp:569
 #, kde-kuit-format
@@ -58,6 +53,8 @@ msgid ""
 "The specified man page references another page <filename>%1</filename>,<nl/"
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
+"Указанная man-страница ссылается на другую страницу, <filename>%1</filename>,"
+"<nl/>но страницу <filename>%2</filename> найти не удалось."
 
 #: kio_man.cpp:586
 #, kde-kuit-format
@@ -84,7 +81,7 @@ msgstr "Найдено более одной man-страницы:"
 #: kio_man.cpp:674
 #, kde-format
 msgid "Multiple Manual Pages"
-msgstr ""
+msgstr "Несколько man-страниц"
 
 #: kio_man.cpp:686
 #, kde-format
@@ -177,10 +174,9 @@ msgid "New"
 msgstr "Новые"
 
 #: kio_man.cpp:805
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Main Manual Page Index"
-msgstr "Индекс руководства UNIX"
+msgstr "Главный индекс man-страниц"
 
 #: kio_man.cpp:830
 #, kde-format
@@ -193,10 +189,9 @@ msgid "Index for section %1: %2"
 msgstr "Индекс раздела %1: %2"
 
 #: kio_man.cpp:1117
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Manual Page Index"
-msgstr "Индекс руководства UNIX"
+msgstr "Индекс man-страниц"
 
 #: kio_man.cpp:1129
 #, kde-format
@@ -204,20 +199,16 @@ msgid "Generating Index"
 msgstr "Создание индекса"
 
 #: kio_man.cpp:1407
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "Could not find the sgml2roff program on your system. Please install it, "
-#| "if necessary, and extend the search path by adjusting the environment "
-#| "variable PATH before starting KDE."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Could not find the <command>%1</command> program on your system. Please "
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
-"Невозможно найти программу «sgml2roff» в вашей системе. Установите её и при "
-"необходимости расширьте путь поиска, изменив переменную PATH перед запуском "
-"KDE."
+"Не удалось найти программу <command>%1</command> в системе. Установите её, "
+"если она ещё не установлена, и укажите путь к ней с помощью переменной среды "
+"<envar>PATH</envar>."
 
 #~ msgid "Open of %1 failed."
 #~ msgstr "Ошибка открытия %1."
