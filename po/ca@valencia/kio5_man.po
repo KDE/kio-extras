@@ -149,7 +149,7 @@ msgstr "Jocs"
 #: kio_man.cpp:770
 #, kde-format
 msgid "Miscellaneous"
-msgstr "Miscelànea"
+msgstr "Miscel·lània"
 
 #: kio_man.cpp:771
 #, kde-format
