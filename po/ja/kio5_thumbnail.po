@@ -68,7 +68,3 @@ msgstr "共有メモリセグメント %1 への添付に失敗"
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "共有メモリセグメントへの画像が大きすぎます"
-
-#~ msgctxt "@option:check"
-#~ msgid "Rotate the image automatically"
-#~ msgstr "自動的に画像を回転する"
