@@ -871,8 +871,6 @@ void MANProtocol::constructPath(QStringList& constr_path, QStringList constr_cat
     if (mc.open(QIODevice::ReadOnly))
     {
         QTextStream is(&mc);
-        is.setCodec( QTextCodec::codecForLocale () );
-
         while (!is.atEnd())
         {
             const QString line = is.readLine();

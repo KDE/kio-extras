@@ -27,6 +27,9 @@ include(CMakePackageConfigHelpers)
 include(FeatureSummary)
 
 find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
+if (QT_MAJOR_VERSION EQUAL "6")
+    find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core5Compat)
+endif()
 
 find_package(Qt${QT_MAJOR_VERSION}Test ${QT_MIN_VERSION} CONFIG QUIET)
 set_package_properties(Qt${QT_MAJOR_VERSION}Test PROPERTIES
