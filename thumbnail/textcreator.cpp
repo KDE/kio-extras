@@ -124,10 +124,10 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
 
             // If the text contains tabs or consecutive spaces, it is probably
             // formatted using white space. Use a fixed pitch font in this case.
-            const auto textLines = text.splitRef(QLatin1Char('\n'));
+            const auto textLines = QStringView(text).split(QLatin1Char('\n'));
             for (const auto& line : textLines) {
                 const auto trimmedLine = line.trimmed();
-                if ( trimmedLine.contains( '\t' ) || trimmedLine.contains( "  " ) ) {
+                if ( trimmedLine.contains( '\t' ) || trimmedLine.contains( QLatin1String("  ") ) ) {
                     font.setFamily( QFontDatabase::systemFont(QFontDatabase::FixedFont).family());
                     break;
                 }

@@ -199,7 +199,7 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
             path != QStringLiteral("/files") &&
             path != QStringLiteral("/locations") ) {
 
-            const auto splitted = url.fileName().splitRef(QStringLiteral("-"));
+            const auto splitted = QStringView(url.fileName()).split(QLatin1Char('-'));
             if (splitted.count() < 2) {
                 return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
             }
