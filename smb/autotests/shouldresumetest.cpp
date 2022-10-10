@@ -14,8 +14,8 @@
 
 struct FakeWorker {
     struct FakeError {
-        const int id;
-        const QString message;
+        int id;
+        QString message;
     };
 
     void error(int id, const QString &message)
