@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"POT-Creation-Date: 2022-10-10 00:45+0000\n"
 "PO-Revision-Date: 2022-06-10 00:02+0200\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -188,22 +188,22 @@ msgstr "Hauptindex für Handbücher"
 msgid "Section %1"
 msgstr "Abschnitt %1"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Index für Abschnitt %1: %2"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Index für Handbücher"
 
-#: kio_man.cpp:1129
+#: kio_man.cpp:1127
 #, kde-format
 msgid "Generating Index"
 msgstr "Index wird erstellt"
 
-#: kio_man.cpp:1407
+#: kio_man.cpp:1405
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""

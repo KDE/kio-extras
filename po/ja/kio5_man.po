@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"POT-Creation-Date: 2022-10-10 00:45+0000\n"
 "PO-Revision-Date: 2014-12-06 16:43-0800\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -187,24 +187,24 @@ msgstr "UNIX マニュアルインデックス"
 msgid "Section %1"
 msgstr "セクション %1"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "セクション %1 のインデックス: %2"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "UNIX マニュアルインデックス"
 
-#: kio_man.cpp:1129
+#: kio_man.cpp:1127
 #, kde-format
 msgid "Generating Index"
 msgstr "インデックス生成中"
 
-#: kio_man.cpp:1407
+#: kio_man.cpp:1405
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

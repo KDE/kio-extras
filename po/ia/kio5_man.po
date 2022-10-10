@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"POT-Creation-Date: 2022-10-10 00:45+0000\n"
 "PO-Revision-Date: 2021-09-23 22:46+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -175,22 +175,22 @@ msgstr "Indice de pagina de manual  principal"
 msgid "Section %1"
 msgstr "Section %1"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Indice pro Ssction %1:%2"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Indice de pagina de manual"
 
-#: kio_man.cpp:1129
+#: kio_man.cpp:1127
 #, kde-format
 msgid "Generating Index"
 msgstr "Generar Indice"
 
-#: kio_man.cpp:1407
+#: kio_man.cpp:1405
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"POT-Creation-Date: 2022-10-10 00:45+0000\n"
 "PO-Revision-Date: 2004-07-30 12:32-0500\n"
 "Last-Translator: Khandakar Mujahidul Islam <suzan@bengalinux.org>\n"
 "Language-Team: Bengali <kde-translation@bengalinux.org>\n"
@@ -162,22 +162,22 @@ msgstr "UNIX এর ম্যানুয়াল সূচী"
 msgid "Section %1"
 msgstr "অংশন"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, fuzzy, kde-format
 msgid "Index for section %1: %2"
 msgstr "<body bgcolor=#ffffff><h1>%1 অংশের সূচী: %2</h1>"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, fuzzy, kde-format
 msgid "Manual Page Index"
 msgstr "UNIX এর ম্যানুয়াল সূচী"
 
-#: kio_man.cpp:1129
+#: kio_man.cpp:1127
 #, kde-format
 msgid "Generating Index"
 msgstr "সূচী উত্‍পাদন করা হচ্ছে"
 
-#: kio_man.cpp:1407
+#: kio_man.cpp:1405
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

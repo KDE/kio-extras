@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"POT-Creation-Date: 2022-10-10 00:45+0000\n"
 "PO-Revision-Date: 2022-09-07 19:17+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -181,22 +181,22 @@ msgstr "Índex principal de pàgines de manual"
 msgid "Section %1"
 msgstr "Secció %1"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Índex per a la secció %1: %2"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Índex de pàgines de manual"
 
-#: kio_man.cpp:1129
+#: kio_man.cpp:1127
 #, kde-format
 msgid "Generating Index"
 msgstr "S'està generant l'índex"
 
-#: kio_man.cpp:1407
+#: kio_man.cpp:1405
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

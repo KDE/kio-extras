@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"POT-Creation-Date: 2022-10-10 00:45+0000\n"
 "PO-Revision-Date: 2020-10-07 12:17+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -189,22 +189,22 @@ msgstr "Manuaalilehekülgede pearegister"
 msgid "Section %1"
 msgstr "Sektsioon %1"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Sektsiooni %1 register: %2"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Manuaalilehekülgede register"
 
-#: kio_man.cpp:1129
+#: kio_man.cpp:1127
 #, kde-format
 msgid "Generating Index"
 msgstr "Registri genereerimine"
 
-#: kio_man.cpp:1407
+#: kio_man.cpp:1405
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info"
 #| msgid ""
