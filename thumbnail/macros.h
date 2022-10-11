@@ -1,6 +1,8 @@
 // SPDX-FileCopyrightText: 2021 Alexander Lohnau <alexander.lohnau@gmx.de>
 // SPDX-License-Identifier: LGPL-2.0-or-later
 
+#include <QObject>
+
 // clang-format off
 #define EXPORT_THUMBNAILER_WITH_JSON(className, json) \
 extern "C" \

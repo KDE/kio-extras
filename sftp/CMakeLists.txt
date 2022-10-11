@@ -35,6 +35,7 @@ endif()
 target_link_libraries(kio_sftp
    KF5::KIOCore
    KF5::WidgetsAddons # KMessageBox
+   KF5::ConfigCore
    KF5::I18n
    Qt::Network
    ssh)

@@ -88,6 +88,9 @@ target_link_libraries(kio_smb_static
     KDSoap::WSDiscoveryClient
     Threads::Threads # std::async
 )
+if (QT_MAJOR_VERSION EQUAL "6")
+    target_link_libraries(kio_smb_static Qt6::Core5Compat)
+endif()
 
 # Final plugin target.
 add_library(kio_smb MODULE main.cpp)

@@ -9,8 +9,6 @@
 #include <KConfig>
 #include <KConfigGroup>
 
-#include <QTextCodec>
-
 void SMBWorker::reparseConfiguration()
 {
     m_context.authenticator()->loadConfiguration();

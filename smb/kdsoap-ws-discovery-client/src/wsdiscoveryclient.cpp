@@ -161,3 +161,4 @@ void WSDiscoveryClient::receivedMessage(const KDSoapMessage &replyMessage, const
     }
 }
 
+#include "moc_wsdiscoveryclient.cpp"

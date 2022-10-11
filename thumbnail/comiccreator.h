@@ -21,6 +21,7 @@
 #include <QByteArray>
 #include <QStringList>
 #include <QImage>
+#include <QObject>
 
 class KArchiveDirectory;
 class QEventLoop;
