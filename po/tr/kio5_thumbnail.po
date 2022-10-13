@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-04 00:45+0000\n"
-"PO-Revision-Date: 2022-04-11 11:23+0300\n"
+"PO-Revision-Date: 2022-10-12 14:57+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.08.1\n"
 
 #: thumbnail.cpp:193
 #, kde-format
@@ -63,12 +63,12 @@ msgstr "Görsel yazılamadı."
 #: thumbnail.cpp:309
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
-msgstr "Paylaşılan bellek parçası %1'e eklenemedi"
+msgstr "Paylaşılan bellek bölütü %1 eklenemedi"
 
 #: thumbnail.cpp:317
 #, kde-format
 msgid "Image is too big for the shared memory segment"
-msgstr "Görsel, paylaşılan bellek parçası için çok büyük"
+msgstr "Görsel, paylaşılan bellek bölütü için pek büyük"
 
 #~ msgctxt "@option:check"
 #~ msgid "Rotate the image automatically"
