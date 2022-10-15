@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-07 00:44+0000\n"
+"POT-Creation-Date: 2022-10-10 00:45+0000\n"
 "PO-Revision-Date: 2022-06-19 13:44+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -176,22 +176,22 @@ msgstr "Sideindeks for hovudmanual"
 msgid "Section %1"
 msgstr "Kapittel %1"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Oversikt for bolk %1: %2"
 
-#: kio_man.cpp:1117
+#: kio_man.cpp:1115
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Sideindeks for manual"
 
-#: kio_man.cpp:1129
+#: kio_man.cpp:1127
 #, kde-format
 msgid "Generating Index"
 msgstr "Byggjer opp indeks"
 
-#: kio_man.cpp:1407
+#: kio_man.cpp:1405
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
