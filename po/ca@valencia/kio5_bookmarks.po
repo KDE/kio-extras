@@ -48,7 +48,7 @@ msgstr "Sol·licitud incorrecta: %1"
 #: kio_bookmarks_html.cpp:85
 #, kde-format
 msgid "There are no bookmarks to display yet."
-msgstr "Encara no hi ha adreces d'interés a mostrar."
+msgstr "Encara no hi ha adreces d'interés que s'hagen de mostrar."
 
 #: kio_bookmarks_html.cpp:124
 #, kde-format
