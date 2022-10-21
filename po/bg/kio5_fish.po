@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2022-10-21 00:46+0000\n"
 "PO-Revision-Date: 2022-05-21 08:19+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <dict@ludost.net>\n"
@@ -18,27 +18,39 @@ msgstr ""
 "X-Generator: Lokalize 22.04.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: fish.cpp:290
+#: fish.cpp:291
 #, kde-format
 msgid "Connecting..."
 msgstr "Свързване..."
 
-#: fish.cpp:592
+#: fish.cpp:593
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Инициализиране на протокола..."
 
-#: fish.cpp:628
+#: fish.cpp:629
 #, kde-format
 msgid "Local Login"
 msgstr "Локално включване"
 
-#: fish.cpp:630
+#: fish.cpp:631
 #, kde-format
 msgid "SSH Authentication"
 msgstr "Автентикация в SSH"
 
-#: fish.cpp:760
+#: fish.cpp:670 fish.cpp:690
+#, kde-format
+msgctxt "@action:button"
+msgid "Yes"
+msgstr ""
+
+#: fish.cpp:670 fish.cpp:690
+#, kde-format
+msgctxt "@action:button"
+msgid "No"
+msgstr ""
+
+#: fish.cpp:771
 #, kde-format
 msgid "Disconnected."
 msgstr "Прекъсната връзка"

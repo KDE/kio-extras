@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2022-10-21 00:46+0000\n"
 "PO-Revision-Date: 2009-02-05 16:06+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -19,28 +19,40 @@ msgstr ""
 "X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: fish.cpp:290
+#: fish.cpp:291
 #, kde-format
 msgid "Connecting..."
 msgstr "जुड़त हे..."
 
-#: fish.cpp:592
+#: fish.cpp:593
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "प्रोटोकाल चालू करत हे..."
 
-#: fish.cpp:628
+#: fish.cpp:629
 #, kde-format
 msgid "Local Login"
 msgstr "लोकल लागइन"
 
-#: fish.cpp:630
+#: fish.cpp:631
 #, fuzzy, kde-format
 #| msgid "SSH Authorization"
 msgid "SSH Authentication"
 msgstr "एसएसएच अनुमोदन"
 
-#: fish.cpp:760
+#: fish.cpp:670 fish.cpp:690
+#, kde-format
+msgctxt "@action:button"
+msgid "Yes"
+msgstr ""
+
+#: fish.cpp:670 fish.cpp:690
+#, kde-format
+msgctxt "@action:button"
+msgid "No"
+msgstr ""
+
+#: fish.cpp:771
 #, kde-format
 msgid "Disconnected."
 msgstr "डिस्कनेक्टेड."

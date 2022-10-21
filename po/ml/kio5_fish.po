@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish trunk\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2022-10-21 00:46+0000\n"
 "PO-Revision-Date: 2008-07-07 01:03+0530\n"
 "Last-Translator: Manu|മനു S|എസ് Madhav|മാധവ് <manusmad@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
@@ -18,28 +18,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: fish.cpp:290
+#: fish.cpp:291
 #, kde-format
 msgid "Connecting..."
 msgstr "ബന്ധപ്പെടുന്നു..."
 
-#: fish.cpp:592
+#: fish.cpp:593
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "നിയമാവലി ആരംഭിക്കുന്നു..."
 
-#: fish.cpp:628
+#: fish.cpp:629
 #, kde-format
 msgid "Local Login"
 msgstr "പ്രാദേശിക ലോഗിന്‍"
 
-#: fish.cpp:630
+#: fish.cpp:631
 #, fuzzy, kde-format
 #| msgid "SSH Authorization"
 msgid "SSH Authentication"
 msgstr "എസ്.എസ്.എച്ച് അധികാരപ്പെടുത്തല്‍"
 
-#: fish.cpp:760
+#: fish.cpp:670 fish.cpp:690
+#, kde-format
+msgctxt "@action:button"
+msgid "Yes"
+msgstr ""
+
+#: fish.cpp:670 fish.cpp:690
+#, kde-format
+msgctxt "@action:button"
+msgid "No"
+msgstr ""
+
+#: fish.cpp:771
 #, kde-format
 msgid "Disconnected."
 msgstr "ബന്ധം വിച്ഛേദിച്ചിരിക്കുന്നു."
