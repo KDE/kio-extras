@@ -37,13 +37,13 @@ msgstr "Autenticação de SSH"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "Sim"
 
 #: fish.cpp:670 fish.cpp:690
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "Não"
 
 #: fish.cpp:771
 #, kde-format
