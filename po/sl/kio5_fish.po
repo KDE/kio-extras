@@ -5,26 +5,27 @@
 # Gregor Rakar <gregor.rakar@kiss.si>, 2003, 2004.
 # Jure Repinc <jlp@holodeck1.com>, 2009, 2012.
 # Andrej Mernik <andrejm@ubuntu.si>, 2013.
+# Matjaž Jeran <matjaz.jeran@amis.net>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-21 00:46+0000\n"
-"PO-Revision-Date: 2013-06-03 17:26+0200\n"
-"Last-Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
+"PO-Revision-Date: 2022-10-22 08:21+0200\n"
+"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 22.08.1\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 
 #: fish.cpp:291
 #, kde-format
 msgid "Connecting..."
-msgstr "Povezovanje ..."
+msgstr "Povezovanje..."
 
 #: fish.cpp:593
 #, kde-format
@@ -45,13 +46,13 @@ msgstr "Overitev SSH"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: fish.cpp:670 fish.cpp:690
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: fish.cpp:771
 #, kde-format
