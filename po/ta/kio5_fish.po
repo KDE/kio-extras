@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-21 00:46+0000\n"
-"PO-Revision-Date: 2022-04-14 19:40+0530\n"
+"PO-Revision-Date: 2022-10-25 21:34+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.03.90\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: fish.cpp:291
 #, kde-format
@@ -40,13 +40,13 @@ msgstr "SSH சான்றளிப்பு"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "ஆம்"
 
 #: fish.cpp:670 fish.cpp:690
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "இல்லை"
 
 #: fish.cpp:771
 #, kde-format
