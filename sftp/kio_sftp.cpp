@@ -638,7 +638,7 @@ struct ServerKeyInspection {
     }
 };
 
-Q_REQUIRED_RESULT ServerKeyInspection fingerpint(ssh_session session)
+Q_REQUIRED_RESULT ServerKeyInspection fingerprint(ssh_session session)
 {
     ServerKeyInspection inspection;
 
@@ -722,7 +722,7 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
 
     // get the hash
     qCDebug(KIO_SFTP_LOG) << "Getting the SSH server hash";
-    const ServerKeyInspection inspection = fingerpint(mSession);
+    const ServerKeyInspection inspection = fingerprint(mSession);
     if (!inspection.result.success()) {
         return inspection.result;
     }
