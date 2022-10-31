@@ -46,6 +46,16 @@ if (KF5KExiv2_FOUND)
     set(HAVE_KEXIV2 TRUE)
 endif()
 
+find_package(QMobipocket "2" CONFIG)
+set_package_properties(QMobipocket PROPERTIES
+    TYPE OPTIONAL
+    DESCRIPTION "A library for reading Mobipocket documents"
+    URL "https://invent.kde.org/graphics/kdegraphics-mobipocket"
+    PURPOSE "Provides support for Mobipocket thumbnails")
+if (QMobipocket_FOUND)
+    set(HAVE_QMOBIPOCKET2 TRUE)
+endif()
+
 include_directories(${CMAKE_BINARY_DIR})
 
 include(ECMSetupQtPluginMacroNames)
@@ -327,6 +337,10 @@ target_link_libraries(ebookthumbnail
     KF5::KIOWidgets
     KF5::Archive
 )
+
+if (HAVE_QMOBIPOCKET2)
+    target_link_libraries(ebookthumbnail qmobipocket)
+endif()
 
 install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 

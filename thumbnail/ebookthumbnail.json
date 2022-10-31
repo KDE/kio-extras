@@ -4,6 +4,7 @@
         "MimeTypes": [
             "application/epub+zip",
             "application/x-fictionbook+xml",
+            "application/x-mobipocket-ebook",
             "application/x-zip-compressed-fb2"
         ],
         "Name": "eBooks",

@@ -25,6 +25,7 @@ public:
     bool createEpub(const QString &path, QImage &image);
     // either a QFile or a KZipFileEntry
     bool createFb2(QIODevice *device, QImage &image);
+    bool createMobi(const QString &path, QImage &image);
 
     static QStringList getEntryList(const KArchiveDirectory *dir, const QString &path);
 

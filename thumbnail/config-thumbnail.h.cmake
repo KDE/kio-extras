@@ -4,3 +4,4 @@
 */
 
 #cmakedefine01 HAVE_KEXIV2
+#cmakedefine01 HAVE_QMOBIPOCKET2

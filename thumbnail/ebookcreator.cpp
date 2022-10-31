@@ -6,6 +6,7 @@
 
 #include "ebookcreator.h"
 
+#include "config-thumbnail.h"
 #include "macros.h"
 
 #include <QFile>
@@ -16,6 +17,11 @@
 #include <QXmlStreamReader>
 
 #include <KZip>
+
+#if HAVE_QMOBIPOCKET2
+#include <qmobipocket/mobipocket.h>
+#include <qmobipocket/qfilestream.h>
+#endif
 
 EXPORT_THUMBNAILER_WITH_JSON(EbookCreator, "ebookthumbnail.json")
 
@@ -40,6 +46,9 @@ bool EbookCreator::create(const QString &path, int width, int height, QImage &im
         }
 
         return createFb2(&file, image);
+
+    } else if (mimeType.name() == QLatin1String("application/x-mobipocket-ebook")) {
+        return createMobi(path, image);
 
     } else if (mimeType.name() == QLatin1String("application/x-zip-compressed-fb2")) {
         KZip zip(path);
@@ -315,6 +324,25 @@ QStringList EbookCreator::getEntryList(const KArchiveDirectory *dir, const QStri
     }
 
     return list;
+}
+
+bool EbookCreator::createMobi(const QString &path, QImage &image)
+{
+#if HAVE_QMOBIPOCKET2
+    Mobipocket::QFileStream file(path);
+    Mobipocket::Document document(&file);
+
+    if (!document.isValid()) {
+        return false;
+    }
+
+    image = document.thumbnail();
+    return !image.isNull();
+#else
+    Q_UNUSED(path)
+    Q_UNUSED(image)
+    return false;
+#endif
 }
 
 #include "ebookcreator.moc"
