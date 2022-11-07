@@ -39,7 +39,7 @@
 
 #include <KLocalizedString>
 #include <KIO/Global>
-#include <kio/ioslave_defaults.h>
+#include <kio/ioworker_defaults.h>
 
 // For the complete NFSv2 reference see http://tools.ietf.org/html/rfc1094
 
