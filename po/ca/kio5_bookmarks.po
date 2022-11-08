@@ -63,12 +63,3 @@ msgstr ""
 #, kde-format
 msgid "My Bookmarks"
 msgstr "Les meves adreces d'interès"
-
-#~ msgid "My bookmarks"
-#~ msgstr "Les meves adreces d'interès"
-
-#~ msgid "Xavier Vello"
-#~ msgstr "Xavier Vello"
-
-#~ msgid "Initial developer"
-#~ msgstr "Desenvolupador inicial"
