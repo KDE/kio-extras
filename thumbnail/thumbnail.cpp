@@ -72,13 +72,13 @@
 // devicePixelRatio - the devicePixelRatio to use for the output,
 //                     the dimensions of the output is multiplied by it and output pixmap will have devicePixelRatio
 // enabledPlugins - a list of enabled thumbnailer plugins. PreviewJob does not call
-//                  this thumbnail slave when a given plugin isn't enabled. However,
+//                  this thumbnail worker when a given plugin isn't enabled. However,
 //                  for directory thumbnails it doesn't know that the thumbnailer
 //                  internally also loads the plugins.
 // shmid        - the shared memory segment id to write the image's data to.
 //                The segment is assumed to provide enough space for a 32-bit
 //                image sized width x height pixels.
-//                If this is given, the data returned by the slave will be:
+//                If this is given, the data returned by the worker will be:
 //                    int width
 //                    int height
 //                    int depth
@@ -90,7 +90,7 @@ using namespace KIO;
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.thumbnail" FILE "thumbnail.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.thumbnail" FILE "thumbnail.json")
 };
 
 extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
@@ -101,10 +101,10 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
 
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
-    // creating KApplication in a slave in not a very good idea,
+    // Creating a QApplication in a worker in not a very good idea,
     // as dispatchLoop() doesn't allow it to process its messages,
     // so it for example wouldn't reply to ksmserver - on the other
-    // hand, this slave uses QPixmaps for some reason, and they
+    // hand, this worker uses QPixmaps for some reason, and they
     // need QGuiApplication
     qunsetenv("SESSION_MANAGER");
 
@@ -117,15 +117,15 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
         exit(-1);
     }
 
-    ThumbnailProtocol slave(argv[2], argv[3]);
-    slave.dispatchLoop();
+    ThumbnailProtocol worker(argv[2], argv[3]);
+    worker.dispatchLoop();
 
     return 0;
 }
 
 
 ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &app)
-    : SlaveBase("thumbnail", pool, app),
+    : WorkerBase("thumbnail", pool, app),
       m_width(0),
       m_height(0),
       m_devicePixelRatio(1),
@@ -150,7 +150,7 @@ void scaleDownImage(QImage& img, int maxWidth, int maxHeight)
     }
 }
 
-void ThumbnailProtocol::get(const QUrl &url)
+KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 {
     m_mimeType = metaData("mimeType");
     m_enabledPlugins = metaData("enabledPlugins").split(QLatin1Char(','), Qt::SkipEmptyParts);
@@ -165,12 +165,10 @@ void ThumbnailProtocol::get(const QUrl &url)
 
     if (!info.exists()) {
         // The file does not exist
-        error(KIO::ERR_DOES_NOT_EXIST, url.path());
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.path());
     } else if (!info.isReadable()) {
         // The file is not readable!
-        error(KIO::ERR_CANNOT_READ, url.path());
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_CANNOT_READ, url.path());
     }
 
     //qDebug() << "Wanting MIME Type:" << m_mimeType;
@@ -193,16 +191,14 @@ void ThumbnailProtocol::get(const QUrl &url)
 #endif
 
     if (m_mimeType.isEmpty()) {
-        error(KIO::ERR_INTERNAL, i18n("No MIME Type specified."));
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("No MIME Type specified."));
     }
 
     m_width = metaData("width").toInt();
     m_height = metaData("height").toInt();
 
     if (m_width < 0 || m_height < 0) {
-        error(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
     }
 #ifdef THUMBNAIL_HACK
     else if (!m_width || !m_height) {
@@ -225,8 +221,7 @@ void ThumbnailProtocol::get(const QUrl &url)
     if ((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
         img = thumbForDirectory(info.canonicalFilePath());
         if (img.isNull()) {
-            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
-            return;
+            return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
         }
     } else {
 #ifdef THUMBNAIL_HACK
@@ -237,14 +232,12 @@ void ThumbnailProtocol::get(const QUrl &url)
         //qDebug() << "Guess plugin: " << plugin;
 #endif
         if (plugin.isEmpty()) {
-            error(KIO::ERR_INTERNAL, i18n("No plugin specified."));
-            return;
+            return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("No plugin specified."));
         }
 
         ThumbCreatorWithMetadata* creator = getThumbCreator(plugin);
         if (!creator) {
-            error(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
-            return;
+            return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
         }
 
         if (creator->handleSequences) {
@@ -261,8 +254,7 @@ void ThumbnailProtocol::get(const QUrl &url)
         }
 
         if (!createThumbnail(creator, info.canonicalFilePath(), m_width, m_height, img)) {
-            error(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
-            return;
+            return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
         }
 
         // We MUST do this after calling create(), because the create() call itself might change it.
@@ -274,8 +266,7 @@ void ThumbnailProtocol::get(const QUrl &url)
     scaleDownImage(img, m_width, m_height);
 
     if (img.isNull()) {
-        error(KIO::ERR_INTERNAL, i18n("Failed to create a thumbnail."));
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Failed to create a thumbnail."));
     }
 
     const QString shmid = metaData("shmid");
@@ -286,8 +277,7 @@ void ThumbnailProtocol::get(const QUrl &url)
             //qDebug() << "RAW IMAGE TO STREAM";
             QBuffer buf;
             if (!buf.open(QIODevice::WriteOnly)) {
-                error(KIO::ERR_INTERNAL, i18n("Could not write image."));
-                return;
+                return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Could not write image."));
             }
             img.save(&buf,"PNG");
             buf.close();
@@ -311,17 +301,15 @@ void ThumbnailProtocol::get(const QUrl &url)
         //qDebug() << "IMAGE TO SHMID";
         void *shmaddr = shmat(shmid.toInt(), nullptr, 0);
         if (shmaddr == (void *)-1) {
-            error(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
-            return;
+            return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
         }
         if( img.format() != QImage::Format_ARGB32 ) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
             img = img.convertToFormat(QImage::Format_ARGB32); //  so make sure there is none
         }
         struct shmid_ds shmStat;
         if (shmctl(shmid.toInt(), IPC_STAT, &shmStat) == -1 || shmStat.shm_segsz < (uint)img.sizeInBytes()) {
-            error(KIO::ERR_INTERNAL, i18n("Image is too big for the shared memory segment"));
+            return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Image is too big for the shared memory segment"));
             shmdt((char*)shmaddr);
-            return;
         }
         // Keep in sync with kio/src/previewjob.cpp
         const quint8 format = img.format() | 0x80;
@@ -332,7 +320,7 @@ void ThumbnailProtocol::get(const QUrl &url)
         data(imgData);
 #endif
     }
-    finished();
+    return KIO::WorkerResult::pass();
 }
 
 KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {

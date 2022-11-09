@@ -14,7 +14,7 @@ set_package_properties(OpenEXR PROPERTIES
     DESCRIPTION "A library for handling OpenEXR high dynamic-range image files"
     URL "https://www.openexr.com/"
     TYPE OPTIONAL
-    PURPOSE "Provides support for OpenEXR formatted images in the thumbnail kioslave"
+    PURPOSE "Provides support for OpenEXR formatted images in the thumbnail KIO worker"
 )
 
 find_package(libappimage 0.1.10 CONFIG)

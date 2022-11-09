@@ -43,7 +43,7 @@ private Q_SLOTS:
         QFETCH(qreal, dpr);
 
         QStandardPaths::setTestModeEnabled(true);
-        qputenv("KIOSLAVE_ENABLE_TESTMODE", "1"); // ensure the ioslaves call QStandardPaths::setTestModeEnabled too
+        qputenv("KIOSLAVE_ENABLE_TESTMODE", "1"); // ensure the worker call QStandardPaths::setTestModeEnabled too
 
         // wipe thumbnail cache so we always start clean
         QDir cacheDir(QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation));
