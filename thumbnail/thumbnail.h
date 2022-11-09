@@ -12,7 +12,7 @@
 #include <QSet>
 #include <QRandomGenerator>
 
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 #include <KPluginMetaData>
 
 #include <kio_version.h>
@@ -38,13 +38,13 @@ struct ThumbCreatorWithMetadata {
     bool handleSequences = false;
 };
 
-class ThumbnailProtocol : public KIO::SlaveBase
+class ThumbnailProtocol : public KIO::WorkerBase
 {
 public:
     ThumbnailProtocol(const QByteArray &pool, const QByteArray &app);
     ~ThumbnailProtocol() override;
 
-    void get(const QUrl &url) override;
+    KIO::WorkerResult get(const QUrl &url) override;
 
 protected:
     ThumbCreatorWithMetadata* getThumbCreator(const QString& plugin);
