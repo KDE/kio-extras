@@ -1,0 +1,9 @@
+[Desktop Entry]
+X-KDE-Solid-Predicate=PortableMediaPlayer.supportedProtocols == 'afc'
+Type=Service
+Actions=open;
+
+[Desktop Action open]
+Exec=kioclient5 exec afc:udi=%i/
+Icon=system-file-manager
+Name=Browse Files with File Manager

@@ -112,6 +112,18 @@ set_package_properties(Libmtp PROPERTIES
                        PURPOSE "Needed to build the MTP KIO worker"
                        )
 
+find_package(IMobileDevice)
+set_package_properties(IMobileDevice PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build the AFC (Apple File Conduit) KIO worker"
+                      )
+
+find_package(PList)
+set_package_properties(PList PROPERTIES
+                       TYPE OPTIONAL
+                       PURPOSE "Needed to build the AFC (Apple File Conduit) KIO worker"
+                      )
+
 check_include_file(utime.h HAVE_UTIME_H)
 
 # ECM's KDECompilerSettings.cmake should take care of enabling supporting on
@@ -198,6 +210,10 @@ endif()
 
 if(SAMBA_FOUND)
     add_subdirectory(smb)
+endif()
+
+if(IMobileDevice_FOUND AND PList_FOUND)
+    add_subdirectory(afc)
 endif()
 
 configure_file (config-runtime.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-runtime.h )
