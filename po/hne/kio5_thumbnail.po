@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2022-11-10 02:29+0000\n"
 "PO-Revision-Date: 2009-02-05 15:49+0530\n"
 "Last-Translator: Ravishankar Shrivastava <raviratlami@aol.in>\n"
 "Language-Team: Hindi <kde-i18n-doc@lists.kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: thumbnail.cpp:193
+#: thumbnail.cpp:194
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "कोई माइम किसिम निरधारित नइ हे."
@@ -29,17 +29,17 @@ msgstr "कोई माइम किसिम निरधारित नइ �
 msgid "No or invalid size specified."
 msgstr "आकार अवैध हे या नइ दे गे हे."
 
-#: thumbnail.cpp:225
+#: thumbnail.cpp:224
 #, fuzzy, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "%1 बर छोटेफोटू बनाय नइ जा सके"
 
-#: thumbnail.cpp:237
+#: thumbnail.cpp:235
 #, kde-format
 msgid "No plugin specified."
 msgstr "कोई प्लगइन निरधारित नइ हे."
 
-#: thumbnail.cpp:243
+#: thumbnail.cpp:240
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "थम्बक्रिएटर %1 ल लोड नइ कर सकिस"
@@ -49,22 +49,22 @@ msgstr "थम्बक्रिएटर %1 ल लोड नइ कर सक�
 msgid "Cannot create thumbnail for %1"
 msgstr "%1 बर छोटेफोटू बनाय नइ जा सके"
 
-#: thumbnail.cpp:272
+#: thumbnail.cpp:269
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "छोटेफोटू बनाए मं फेल"
 
-#: thumbnail.cpp:284
+#: thumbnail.cpp:280
 #, kde-format
 msgid "Could not write image."
 msgstr "चित्र ल लिख नइ सकिस."
 
-#: thumbnail.cpp:309
+#: thumbnail.cpp:304
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "साझा मेमोरी खन्ड %1 मं जुड़े मं फेल"
 
-#: thumbnail.cpp:317
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "साझा मेमोरी खन्ड बर ए फोटू बहुत बड़े हे"

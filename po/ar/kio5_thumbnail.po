@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2022-11-10 02:29+0000\n"
 "PO-Revision-Date: 2012-02-09 14:44+0200\n"
 "Last-Translator: Abdalrahim Fakhouri <abdilra7eem@yahoo.com>\n"
 "Language-Team: Arabic <linuxac-kde-arabic-team@googlegroups.com>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: Translate Toolkit 1.10.0\n"
 
-#: thumbnail.cpp:193
+#: thumbnail.cpp:194
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "لم تحدد نوع امتدادات بريد الإنترنت متعددة الأغراض."
@@ -30,17 +30,17 @@ msgstr "لم تحدد نوع امتدادات بريد الإنترنت متعد
 msgid "No or invalid size specified."
 msgstr "حجم غير موجود أو غير سليم محدّد."
 
-#: thumbnail.cpp:225
+#: thumbnail.cpp:224
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "غير قادر على إنشاء مصغّرة للدليل"
 
-#: thumbnail.cpp:237
+#: thumbnail.cpp:235
 #, kde-format
 msgid "No plugin specified."
 msgstr "لا يوجد ملحق محدّد."
 
-#: thumbnail.cpp:243
+#: thumbnail.cpp:240
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "غير قادر على تحميل منشئ المصغّرة  %1"
@@ -50,22 +50,22 @@ msgstr "غير قادر على تحميل منشئ المصغّرة  %1"
 msgid "Cannot create thumbnail for %1"
 msgstr "غير قادر على إنشاء مصغّرة لـِ %1"
 
-#: thumbnail.cpp:272
+#: thumbnail.cpp:269
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "فشل في إنشاء مصغّرة."
 
-#: thumbnail.cpp:284
+#: thumbnail.cpp:280
 #, kde-format
 msgid "Could not write image."
 msgstr "لم أتمكن من كتابة الصورة."
 
-#: thumbnail.cpp:309
+#: thumbnail.cpp:304
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "فشل في الإرفاق إلى قسم الذاكرة المشتركة %1"
 
-#: thumbnail.cpp:317
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "الصورة كبيرة جداً لقسم الذاكرة المشتركة"

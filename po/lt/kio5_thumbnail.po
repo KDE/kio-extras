@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2022-11-10 02:29+0000\n"
 "PO-Revision-Date: 2021-08-21 18:59+0300\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: lt <kde-i18n-lt@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: thumbnail.cpp:193
+#: thumbnail.cpp:194
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Nenurodytas MIME tipas."
@@ -29,17 +29,17 @@ msgstr "Nenurodytas MIME tipas."
 msgid "No or invalid size specified."
 msgstr "Dydis nenurodytas arba nurodytas neteisingai."
 
-#: thumbnail.cpp:225
+#: thumbnail.cpp:224
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Nepavyksta sukurti miniatiūros aplankui"
 
-#: thumbnail.cpp:237
+#: thumbnail.cpp:235
 #, kde-format
 msgid "No plugin specified."
 msgstr "Nenurodytas papildinys."
 
-#: thumbnail.cpp:243
+#: thumbnail.cpp:240
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Nepavyksta įkelti ThumbCreator %1"
@@ -49,22 +49,22 @@ msgstr "Nepavyksta įkelti ThumbCreator %1"
 msgid "Cannot create thumbnail for %1"
 msgstr "Nepavyksta sukurti miniatiūros %1"
 
-#: thumbnail.cpp:272
+#: thumbnail.cpp:269
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Nepavyko sukurti miniatiūros."
 
-#: thumbnail.cpp:284
+#: thumbnail.cpp:280
 #, kde-format
 msgid "Could not write image."
 msgstr "Nepavyko įrašyti atvaizdo."
 
-#: thumbnail.cpp:309
+#: thumbnail.cpp:304
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Nepavyko prisijungti prie dalinamo atminties segmento %1"
 
-#: thumbnail.cpp:317
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Atvaizdas per didelis dalinamam atminties segmentui"

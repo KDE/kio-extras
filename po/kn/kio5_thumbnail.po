@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2022-11-10 02:29+0000\n"
 "PO-Revision-Date: 2008-08-10 12:35+0200\n"
 "Last-Translator: Umesh Rudrapatna <umeshrs@gmail.com>\n"
 "Language-Team: Kannada <kde-l10n-kn@kde.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: thumbnail.cpp:193
+#: thumbnail.cpp:194
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "MIME ಬಗೆ ನಿಗದಿಗೊಳಿಸಿಲ್ಲ."
@@ -30,18 +30,18 @@ msgstr "MIME ಬಗೆ ನಿಗದಿಗೊಳಿಸಿಲ್ಲ."
 msgid "No or invalid size specified."
 msgstr "ಗಾತ್ರ ನಿಗದಿಗೊಳಿಸಿಲ್ಲ ಅಥವಾ ಅಮಾನ್ಯವಾದದ್ದಾಗಿದೆ."
 
-#: thumbnail.cpp:225
+#: thumbnail.cpp:224
 #, fuzzy, kde-format
 #| msgid "Cannot create thumbnail for %1"
 msgid "Cannot create thumbnail for directory"
 msgstr "%1 ಗೆ ಚಿಕಣಿಚಿತ್ರವನ್ನು (thumbnail) ರಚಿಸಲಾಗುವುದಿಲ್ಲ"
 
-#: thumbnail.cpp:237
+#: thumbnail.cpp:235
 #, kde-format
 msgid "No plugin specified."
 msgstr "ಮಿಳಿತಾನ್ವಯ (plugin) ನಿಗದಿಗೊಳಿಸಿಲ್ಲ."
 
-#: thumbnail.cpp:243
+#: thumbnail.cpp:240
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "ThumbCreator %1 ಅನ್ನು ಉತ್ಥಾಪಿಸಲಾಗುವುದಿಲ್ಲ"
@@ -51,22 +51,22 @@ msgstr "ThumbCreator %1 ಅನ್ನು ಉತ್ಥಾಪಿಸಲಾಗುವ�
 msgid "Cannot create thumbnail for %1"
 msgstr "%1 ಗೆ ಚಿಕಣಿಚಿತ್ರವನ್ನು (thumbnail) ರಚಿಸಲಾಗುವುದಿಲ್ಲ"
 
-#: thumbnail.cpp:272
+#: thumbnail.cpp:269
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "ಚಿಕಣಿಚಿತ್ರದ (thumbnail) ರಚನೆ ವಿಫಲವಾಯಿತು"
 
-#: thumbnail.cpp:284
+#: thumbnail.cpp:280
 #, kde-format
 msgid "Could not write image."
 msgstr "ಚಿತ್ರವನ್ನು ಬರೆಯಲಾಗಲಿಲ್ಲ."
 
-#: thumbnail.cpp:309
+#: thumbnail.cpp:304
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "%1 ವಿಭಾಜ್ಯ ಸ್ಮೃತಿಖಂಡಕ್ಕೆ (shared memory segment) ಸೇರಿಸವುದು ವಿಫಲವಾಯಿತು"
 
-#: thumbnail.cpp:317
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr ""
