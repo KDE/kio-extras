@@ -633,7 +633,6 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
         return *it;
     }
 
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     const KPluginMetaData md(plugin);
     const KPluginFactory::Result result = KPluginFactory::instantiatePlugin<KIO::ThumbnailCreator>(md);
 
@@ -648,7 +647,6 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
         m_creators.insert(plugin, creator);
         return creator;
     }
-#endif
 
     // Don't use KPluginFactory here, this is not a QObject and
     // neither is ThumbCreator
@@ -848,7 +846,6 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, 
         }
 
     }
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 100, 0)
     else {
         auto result = std::get<ThumbnailCreatorPtr>(thumbCreator->creator)
                           ->create(KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(width, height), m_mimeType, m_devicePixelRatio, sequenceIndex()));
@@ -857,7 +854,6 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, 
         thumbnail = result.image();
         m_sequenceIndexWrapAroundPoint = result.sequenceIndexWraparoundPoint();
     }
-#endif
 
     if (!success) {
         return false;

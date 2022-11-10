@@ -55,7 +55,6 @@
 #include <errno.h>
 #endif
 
-#include <kio_version.h>
 #include <KLocalizedString>
 #include <KRemoteEncoding>
 
@@ -666,13 +665,8 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
 #else
             return 0;
         } else if (buf.endsWith('?')) {
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 100, 0)
             int rc = messageBox(QuestionTwoActions, thisFn+buf, QString(), i18nc("@action:button", "Yes"), i18nc("@action:button", "No"));
             if (rc == KIO::SlaveBase::PrimaryAction) {
-#else
-            int rc = messageBox(QuestionYesNo,thisFn+buf);
-            if (rc == KIO::SlaveBase::Yes) {
-#endif
                 writeChild("yes\n",4);
             } else {
                 writeChild("no\n",3);
@@ -686,13 +680,8 @@ int fishProtocol::establishConnection(const QByteArray &buffer) {
         }
 #ifdef Q_OS_WIN
         if (buf.endsWith(QLatin1String("(y/n)"))) {
-#if KIO_VERSION >= QT_VERSION_CHECK(5, 100, 0)
             int rc = messageBox(QuestionTwoActions, thisFn+buf, QString(), i18nc("@action:button", "Yes"), i18nc("@action:button", "No"));
             if (rc == KIO::SlaveBase::PrimaryAction) {
-#else
-            int rc = messageBox(QuestionYesNo,thisFn+buf);
-            if (rc == KIO::SlaveBase::Yes) {
-#endif
                 writeChild("y\n",2);
             } else {
                 writeChild("n\n",2);
