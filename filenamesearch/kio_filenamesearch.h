@@ -7,7 +7,7 @@
 #ifndef KIO_FILENAMESEARCH_H
 #define KIO_FILENAMESEARCH_H
 
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 
 #include <QUrl>
 
@@ -30,7 +30,7 @@
  * of files with a text MimeType will be searched for the given pattern and
  * the matching files will be listed.
  */
-class FileNameSearchProtocol : public QObject, public KIO::SlaveBase
+class FileNameSearchProtocol : public QObject, public KIO::WorkerBase
 {
     Q_OBJECT
 
@@ -38,8 +38,8 @@ public:
     FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app);
     ~FileNameSearchProtocol() override;
 
-    void stat(const QUrl &url) override;
-    void listDir(const QUrl &url) override;
+    KIO::WorkerResult stat(const QUrl &url) override;
+    KIO::WorkerResult listDir(const QUrl &url) override;
 
 private:
     void listRootEntry();

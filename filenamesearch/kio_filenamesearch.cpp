@@ -24,7 +24,7 @@
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.filenamesearch" FILE "filenamesearch.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.filenamesearch" FILE "filenamesearch.json")
 };
 
 static bool contentContainsPattern(const QUrl &url, const QRegularExpression &regex)
@@ -81,7 +81,7 @@ static bool match(const KIO::UDSEntry &entry, const QRegularExpression &regex, b
 
 FileNameSearchProtocol::FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app)
     : QObject()
-    , SlaveBase("search", pool, app)
+    , WorkerBase("search", pool, app)
 {
     QDBusInterface kded(QStringLiteral("org.kde.kded5"), QStringLiteral("/kded"), QStringLiteral("org.kde.kded5"));
     kded.call(QStringLiteral("loadModule"), QStringLiteral("filenamesearchmodule"));
@@ -89,7 +89,7 @@ FileNameSearchProtocol::FileNameSearchProtocol(const QByteArray &pool, const QBy
 
 FileNameSearchProtocol::~FileNameSearchProtocol() = default;
 
-void FileNameSearchProtocol::stat(const QUrl &url)
+KIO::WorkerResult FileNameSearchProtocol::stat(const QUrl &url)
 {
     KIO::UDSEntry uds;
     uds.reserve(9);
@@ -108,7 +108,7 @@ void FileNameSearchProtocol::stat(const QUrl &url)
     }
 
     statEntry(uds);
-    finished();
+    return KIO::WorkerResult::pass();
 }
 
 // Create a UDSEntry for "."
@@ -123,30 +123,27 @@ void FileNameSearchProtocol::listRootEntry()
     listEntry(entry);
 }
 
-void FileNameSearchProtocol::listDir(const QUrl &url)
+KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 {
     listRootEntry();
 
     const QUrlQuery urlQuery(url);
     const QString search = urlQuery.queryItemValue(QStringLiteral("search"));
     if (search.isEmpty()) {
-        finished();
-        return;
+        return KIO::WorkerResult::pass();
     }
 
     const QRegularExpression regex(search, QRegularExpression::CaseInsensitiveOption);
     if (!regex.isValid()) {
         qCWarning(KIO_FILENAMESEARCH) << "Invalid QRegularExpression/PCRE search pattern:" << search;
-        finished();
-        return;
+        return KIO::WorkerResult::pass();
     }
 
     const QUrl dirUrl = QUrl(urlQuery.queryItemValue(QStringLiteral("url")));
 
     // Don't try to iterate the /proc directory of Linux
     if (dirUrl.isLocalFile() && dirUrl.toLocalFile() == QLatin1String("/proc")) {
-        finished();
-        return;
+        return KIO::WorkerResult::pass();
     }
 
     const bool isContent = urlQuery.queryItemValue(QStringLiteral("checkContent")) == QLatin1String("yes");
@@ -162,7 +159,7 @@ void FileNameSearchProtocol::listDir(const QUrl &url)
         searchDir(pendingUrl, regex, isContent, iteratedDirs, pendingDirs);
     }
 
-    finished();
+    return KIO::WorkerResult::pass();
 }
 
 void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
@@ -231,8 +228,8 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
         return -1;
     }
 
-    FileNameSearchProtocol slave(argv[2], argv[3]);
-    slave.dispatchLoop();
+    FileNameSearchProtocol worker(argv[2], argv[3]);
+    worker.dispatchLoop();
 
     return 0;
 }

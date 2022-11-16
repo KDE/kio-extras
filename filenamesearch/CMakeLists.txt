@@ -6,8 +6,8 @@ target_sources(kio_filenamesearch PRIVATE kio_filenamesearch.cpp)
 ecm_qt_declare_logging_category(kio_filenamesearch
     HEADER kio_filenamesearch_debug.h
     IDENTIFIER KIO_FILENAMESEARCH
-    CATEGORY_NAME kf.kio.slaves.filenamesearch
-    OLD_CATEGORY_NAMES kio_filenamesearch
+    CATEGORY_NAME kf.kio.workers.filenamesearch
+    OLD_CATEGORY_NAMES kio_filenamesearch kf.kio.slaves.filenamesearch
     DESCRIPTION "KIO filenamesearch"
     EXPORT KIO_EXTRAS
 )
