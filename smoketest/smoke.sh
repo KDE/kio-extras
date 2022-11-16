@@ -6,8 +6,6 @@
 
 set -e
 
-export KDE_FORK_SLAVES=1
-
 # enter a valid localhost login here
 host=$1
 if [ "$host" = "" ]; then
