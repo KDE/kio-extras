@@ -63,19 +63,19 @@ kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
 find_package(KF5Activities QUIET)
 set_package_properties(KF5Activities PROPERTIES
-    PURPOSE "Provides the activities:/ kioslave and fileitem plugin."
+    PURPOSE "Provides the activities:/ KIO worker and fileitem plugin."
     TYPE OPTIONAL
 )
 
 find_package(Qt${QT_MAJOR_VERSION}Sql QUIET)
 set_package_properties(Qt${QT_MAJOR_VERSION}Sql PROPERTIES
-    PURPOSE "Provides the activities:/ kioslave and fileitem plugin."
+    PURPOSE "Provides the activities:/ KIO worker and fileitem plugin."
     TYPE OPTIONAL
 )
 
 find_package(KF5ActivitiesStats ${KF5_MIN_VERSION} QUIET)
 set_package_properties(KF5ActivitiesStats PROPERTIES
-    PURPOSE "Provides the recentlyused:/ kioslave."
+    PURPOSE "Provides the recentlyused:/ KIO worker"
     TYPE OPTIONAL
 )
 
@@ -95,7 +95,7 @@ if(NOT WIN32)
     set_package_properties(Samba PROPERTIES DESCRIPTION "the SMB client library, a version with smbc_set_context() and smbc_option_set()"
                         URL "https://www.samba.org/"
                         TYPE OPTIONAL
-                        PURPOSE "Needed to build the SMB kioslave"
+                        PURPOSE "Needed to build the SMB KIO worker"
                         )
 endif()
 
@@ -103,13 +103,13 @@ find_package(libssh 0.8.3 MODULE)
 set_package_properties(libssh PROPERTIES DESCRIPTION "the SSH library with SFTP support"
                        URL "https://www.libssh.org/"
                        TYPE OPTIONAL
-                       PURPOSE "Needed to build the SFTP kioslave"
+                       PURPOSE "Needed to build the SFTP KIO worker"
                       )
 
 find_package(Libmtp 1.1.2)
 set_package_properties(Libmtp PROPERTIES
                        TYPE OPTIONAL
-                       PURPOSE "Needed to build the MTP kioslave"
+                       PURPOSE "Needed to build the MTP KIO worker"
                        )
 
 check_include_file(utime.h HAVE_UTIME_H)
@@ -139,12 +139,12 @@ if(UNIX)
 
     find_package(Gperf)
     set_package_properties(Gperf PROPERTIES TYPE OPTIONAL
-                           PURPOSE "Needed to build the man kioslave"
+                           PURPOSE "Needed to build the man KIO worker"
                            )
 
     find_package(TIRPC)
     set_package_properties(TIRPC PROPERTIES TYPE OPTIONAL
-                           PURPOSE "Needed to build the NFS kioslave"
+                           PURPOSE "Needed to build the NFS KIO worker"
                            )
 else()
     # FIXME: on windows we ignore support until trash gets integrated
