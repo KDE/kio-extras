@@ -20,7 +20,7 @@
 </articleinfo>
 
 <para>
-Using the man ioslave you are able to read the man pages installed
+Using the man KIO worker you are able to read the man pages installed
 on your system. It is easy to use:
 </para>
 
@@ -80,7 +80,7 @@ or adjust the environment variables
 </para>
 
 <para>
-As with any other &kde; ioslave, it is possible to enter a &URL;, like
+As with any other KIO worker, it is possible to enter a &URL;, like
 <userinput><command>man:/socket</command></userinput> in <emphasis>any</emphasis>
 &kde; application.  Try it in &kwrite; and you will see the man page in
 &HTML; format.

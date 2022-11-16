@@ -21,7 +21,7 @@
 
 <para>Allows you to access another computer's files using the <emphasis>S</emphasis>ecure <emphasis>SH</emphasis>ell (<acronym>SSH</acronym>) protocol.  The remote computer needs to be running the <acronym>SSH</acronym> daemon, but the remainder of the protocol uses standard commandline tools as discussed below.</para>
 
-<para>You can use the fish kioslave like this:
+<para>You can use the fish KIO worker like this:
 <userinput>fish://<replaceable>hostname</replaceable></userinput> or <userinput>fish://<replaceable>username</replaceable>@<replaceable>hostname</replaceable></userinput>.</para>
 
 <note><para>You need to use double forward slashes.</para></note>
