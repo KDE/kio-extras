@@ -995,7 +995,9 @@ Result SFTPWorker::special(const QByteArray &) {
     }
 
     if (rc < 0) { // first or second poll failed
-        qCDebug(KIO_SFTP_LOG) << "ssh_channel_poll failed: " << ssh_get_error(mSession);
+        qCDebug(KIO_SFTP_LOG) << "ssh_channel_poll failed: "
+                              << "- SFTP error:" << sftp_get_error(mSftp) << "- SSH error:" << ssh_get_error_code(mSession)
+                              << "- SSH errorString:" << ssh_get_error(mSession);
     }
 
     setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
