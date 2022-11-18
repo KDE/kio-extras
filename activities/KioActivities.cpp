@@ -57,8 +57,8 @@ public:
         const auto fullPath = url.adjusted(QUrl::StripTrailingSlash).path();
         const auto path = QStringView(fullPath).mid(fullPath.startsWith(QLatin1Char('/')) ? 1 : 0);
 
-        if (activity) {
-            *activity = path.mid(0, path.indexOf(QStringLiteral("/")) - 1).toString();
+        if (activity && !path.isEmpty()) {
+           *activity = path.mid(0, path.indexOf(QStringLiteral("/"))).toString();
         }
 
         if (filePath) {
