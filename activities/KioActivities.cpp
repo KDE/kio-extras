@@ -1,5 +1,6 @@
 /*
  *   SPDX-FileCopyrightText: 2012-2016 Ivan Cukic <ivan.cukic@kde.org>
+ *   SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
  *
  *   SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
@@ -167,13 +168,11 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 
 ActivitiesProtocol::ActivitiesProtocol(const QByteArray &poolSocket,
                                        const QByteArray &appSocket)
-    : KIO::ForwardingSlaveBase("activities", poolSocket, appSocket)
+    : KIO::ForwardingWorkerBase("activities", poolSocket, appSocket)
 {
 }
 
-ActivitiesProtocol::~ActivitiesProtocol()
-{
-}
+ActivitiesProtocol::~ActivitiesProtocol() = default;
 
 bool ActivitiesProtocol::rewriteUrl(const QUrl &url, QUrl &newUrl)
 {
@@ -206,7 +205,7 @@ bool ActivitiesProtocol::rewriteUrl(const QUrl &url, QUrl &newUrl)
     }
 }
 
-void ActivitiesProtocol::listDir(const QUrl &url)
+KIO::WorkerResult ActivitiesProtocol::listDir(const QUrl &url)
 {
     KActivities::Consumer activities;
     d->syncActivities(activities);
@@ -235,8 +234,7 @@ void ActivitiesProtocol::listDir(const QUrl &url)
         }
 
         listEntries(udslist);
-        finished();
-        break;
+        return KIO::WorkerResult::pass();
     }
 
     case Private::ActivityRootItem:
@@ -248,8 +246,7 @@ void ActivitiesProtocol::listDir(const QUrl &url)
                             Common::Database::ReadOnly);
 
         if (!database) {
-            finished();
-            break;
+            return KIO::WorkerResult::pass();
         }
 
         if (activity == "current") {
@@ -276,17 +273,19 @@ void ActivitiesProtocol::listDir(const QUrl &url)
         }
 
         listEntries(udslist);
-        finished();
-        break;
+        return KIO::WorkerResult::pass();
     }
 
     case Private::ActivityPathItem:
-        ForwardingSlaveBase::listDir(QUrl::fromLocalFile(path));
-        break;
+        return ForwardingWorkerBase::listDir(QUrl::fromLocalFile(path));
     }
+
+    Q_UNREACHABLE();
+    return KIO::WorkerResult::fail();
 }
 
-void ActivitiesProtocol::stat(const QUrl& url)
+
+KIO::WorkerResult ActivitiesProtocol::stat(const QUrl& url)
 {
     QString activity;
 
@@ -304,8 +303,8 @@ void ActivitiesProtocol::stat(const QUrl& url)
         uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
 
         statEntry(uds);
-        finished();
-        break;
+
+        return KIO::WorkerResult::pass();
     }
 
     case Private::ActivityRootItem:
@@ -318,36 +317,39 @@ void ActivitiesProtocol::stat(const QUrl& url)
         }
 
         statEntry(d->activityEntry(activity));
-        finished();
-        break;
+
+        return KIO::WorkerResult::pass();
     }
 
     case Private::ActivityPathItem:
-        ForwardingSlaveBase::stat(url);
-        break;
+        return ForwardingWorkerBase::stat(url);
     }
+
+    Q_UNREACHABLE();
+    return KIO::WorkerResult::fail();
 }
 
-void ActivitiesProtocol::mimetype(const QUrl& url)
+KIO::WorkerResult ActivitiesProtocol::mimetype(const QUrl& url)
 {
     switch (d->pathType(url)) {
     case Private::RootItem:
     case Private::ActivityRootItem:
         mimeType(QStringLiteral("inode/directory"));
-        finished();
-        break;
+        return KIO::WorkerResult::pass();
 
     case Private::ActivityPathItem:
-        ForwardingSlaveBase::mimetype(url);
-        break;
+        return ForwardingWorkerBase::mimetype(url);
     }
 
+    Q_UNREACHABLE();
+    return KIO::WorkerResult::fail();
 }
 
-void ActivitiesProtocol::del(const QUrl& url, bool isfile)
+KIO::WorkerResult ActivitiesProtocol::del(const QUrl& url, bool isfile)
 {
     Q_UNUSED(url);
     Q_UNUSED(isfile);
+    return KIO::WorkerResult::pass();
 }
 
 #include "KioActivities.moc"

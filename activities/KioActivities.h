@@ -1,5 +1,6 @@
 /*
  *   SPDX-FileCopyrightText: 2012-2016 Ivan Cukic <ivan.cukic@kde.org>
+ *   SPDX-FileCopyrightText: 2022 Harald Sitter <sitter@kde.org>
  *
  *   SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
@@ -7,11 +8,11 @@
 #ifndef KIO_ACTIVITIES_H
 #define KIO_ACTIVITIES_H
 
-#include <KIO/ForwardingSlaveBase>
+#include <KIO/ForwardingWorkerBase>
 
 #include <utils/d_ptr.h>
 
-class ActivitiesProtocol : public KIO::ForwardingSlaveBase {
+class ActivitiesProtocol : public KIO::ForwardingWorkerBase {
     Q_OBJECT
 
 public:
@@ -20,10 +21,10 @@ public:
 
 protected:
     bool rewriteUrl(const QUrl &url, QUrl &newUrl) override;
-    void listDir(const QUrl &url) override;
-    void stat(const QUrl& url) override;
-    void mimetype(const QUrl& url) override;
-    void del(const QUrl& url, bool isfile) override;
+    KIO::WorkerResult listDir(const QUrl &url) override;
+    KIO::WorkerResult stat(const QUrl& url) override;
+    KIO::WorkerResult mimetype(const QUrl& url) override;
+    KIO::WorkerResult del(const QUrl& url, bool isfile) override;
 
 private:
     D_PTR;
