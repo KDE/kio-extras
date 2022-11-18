@@ -1,5 +1,5 @@
 # translation of kio_sftp.po to
-# Version: $Revision: 1630251 $
+# Version: $Revision: 1638446 $
 # Copyright (C) 2002, 2003, 2004, 2005, 2006, 2008, 2009 Free Software Foundation, Inc.
 #
 # Michał Rudolf <mrudolf@kdewebdev.org>, 2002.
@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2022-11-18 00:44+0000\n"
 "PO-Revision-Date: 2022-07-31 09:22+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -247,7 +247,7 @@ msgstr "Pomyślnie podłączono do %1"
 msgid "Invalid sftp context"
 msgstr "Nieprawidłowy kontekst sftp"
 
-#: kio_sftp.cpp:1544
+#: kio_sftp.cpp:1546
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

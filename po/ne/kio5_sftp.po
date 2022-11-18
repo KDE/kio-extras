@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2022-11-18 00:44+0000\n"
 "PO-Revision-Date: 2007-08-20 10:57+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -233,7 +233,7 @@ msgstr "%1 मा सफलतापूर्वक जडान भयो"
 msgid "Invalid sftp context"
 msgstr ""
 
-#: kio_sftp.cpp:1544
+#: kio_sftp.cpp:1546
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

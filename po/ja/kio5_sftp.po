@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2022-11-18 00:44+0000\n"
 "PO-Revision-Date: 2014-12-06 16:44-0800\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -269,7 +269,7 @@ msgstr "%1 への接続に成功"
 msgid "Invalid sftp context"
 msgstr ""
 
-#: kio_sftp.cpp:1544
+#: kio_sftp.cpp:1546
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
