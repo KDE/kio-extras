@@ -33,15 +33,15 @@
 > doit fonctionner sur l'ordinateur distant, mais le reste du protocole utilise des outils en ligne de commande standards, comme vous pouvez le voir ci-dessous.</para>
 
 <para
->Utiliser le protocole « fish » comme ceci : <userinput
+>You can use the fish KIO worker like this: <userinput
 >fish://<replaceable
->nommachine</replaceable
+>hostname</replaceable
 ></userinput
-> ou <userinput
+> or <userinput
 >fish://<replaceable
->utilisateur</replaceable
+>username</replaceable
 >@<replaceable
->nommachine</replaceable
+>hostname</replaceable
 ></userinput
 >.</para>
 

@@ -26,7 +26,7 @@
 </articleinfo>
 
 <para
->L'utilisation du module d'entrée-sortie man vous permet de consulter les pages man installées sur votre système. Son utilisation est simple : </para>
+>Using the man KIO worker you are able to read the man pages installed on your system. It is easy to use: </para>
 
 <variablelist>
 <varlistentry>
@@ -125,13 +125,13 @@
 >. </para>
 
 <para
->Comme avec tous les autres modules d'entrée-sortie de &kde;, il est possible de saisir une &URL; comme <userinput
+>As with any other KIO worker, it is possible to enter a &URL;, like <userinput
 ><command
 >man:/socket</command
 ></userinput
-> dans <emphasis
->toute</emphasis
-> application &kde;. Essayez dans &kwrite;, et vous verrez la page de man au format &HTML;. </para>
+> in <emphasis
+>any</emphasis
+> &kde; application. Try it in &kwrite; and you will see the man page in &HTML; format. </para>
 
 <para
 >Liste de discussion pour tout contact : <email

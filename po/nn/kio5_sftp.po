@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2022-11-18 00:44+0000\n"
 "PO-Revision-Date: 2022-07-27 20:10+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -243,7 +243,7 @@ msgstr "Vellukka tilkopling til %1"
 msgid "Invalid sftp context"
 msgstr "Ugyldig SFTP-kontekst"
 
-#: kio_sftp.cpp:1544
+#: kio_sftp.cpp:1546
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

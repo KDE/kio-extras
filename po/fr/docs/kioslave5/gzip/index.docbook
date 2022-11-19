@@ -23,17 +23,17 @@
 > est un programme de compression</para>
 
 <para
->Le module d'entrée-sortie gzip n'est pas directement utilisable, et est conçu pour être utilisé comme filtre. Par exemple, le module d'entrée-sortie tar peut filtrer un fichier avec le module d'entrée-sortie gzip, de façon à afficher le contenu d'un fichier <literal role="extension"
+>The gzip KIO worker is not directly usable, and is intended for use as a filter. For example, the tar KIO worker can filter a file through the gzip KIO worker, in order to display the contents of a <literal role="extension"
 >tar.gz</literal
-> directement dans une fenêtre &konqueror;.</para>
+> file directly in a &konqueror; window.</para>
 
 <para
->Si vous cliquez sur un fichier compressé avec l'extension <literal role="extension"
+>If you click on a file compressed with a <literal role="extension"
 >gz</literal
-> dans &konqueror;, ce module d'entrée-sortie est utilisé pour le décompresser et l'afficher comme un fichier normal (non compressé).</para>
+> extension in &konqueror;, this KIO worker is used to uncompress it and display it as a normal (uncompressed) file.</para>
 
 <para
->Si vous êtes développeur, et voulez utiliser le filtre gzip, vous pouvez trouver de la documentation sur l'utilisation des modules d'entrée-sortie à <ulink url="http://techbase.kde.org"
+>If you are a developer, and would like to use the gzip filter, you can find documentation on using KIO workers at <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 ></para>
 
