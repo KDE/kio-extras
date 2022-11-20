@@ -2,20 +2,21 @@
 # Thomas Reitelbach <tr@erdfunkstelle.de>, 2005, 2006, 2007, 2008.
 # Frederik Schwarzer <schwarzer@kde.org>, 2010, 2011, 2022.
 # Burkhard Lück <lueck@hube-lueck.de>, 2012, 2019, 2020.
+# Alois Spitzbart <spitz234@hotmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-10 00:45+0000\n"
-"PO-Revision-Date: 2022-06-10 00:02+0200\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"PO-Revision-Date: 2022-11-10 13:12+0100\n"
+"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.2\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: kio_man.cpp:451
 #, kde-kuit-format
@@ -49,28 +50,17 @@ msgstr ""
 "nicht gefunden."
 
 #: kio_man.cpp:586
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "The man page <filename>%1</filename> was found, but it could not be read "
-#| "or parsed."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
-msgstr ""
-"Die Handbuchseite <filename>%1</filename> wurde gefunden, aber sie kann "
-"nicht gelesen oder verarbeitet werden."
+msgstr "Die Handbuchseite <filename>%1</filename> kann nicht gelesen werden."
 
 #: kio_man.cpp:595
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "The man page <filename>%1</filename> was found, but it could not be read "
-#| "or parsed."
+#, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
-"Die Handbuchseite <filename>%1</filename> wurde gefunden, aber sie kann "
-"nicht gelesen oder verarbeitet werden."
+"Die Handbuchseite <filename>%1</filename> kann nicht umgewandelt werden."
 
 #: kio_man.cpp:660
 #, kde-format
@@ -204,21 +194,16 @@ msgid "Generating Index"
 msgstr "Index wird erstellt"
 
 #: kio_man.cpp:1405
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Could not find the <command>sgml2roff</command> program on your system. "
-#| "Please install it if necessary, and ensure that it can be found using the "
-#| "environment variable <envar>PATH</envar>."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Could not find the <command>%1</command> program on your system. Please "
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
-"Das Programm <command>sgml2roff</command> wurde auf Ihrem System nicht "
-"gefunden. Bitte installieren Sie es gegebenenfalls und erweitern Sie den "
-"Suchpfad erweitern durch Ändern der Umgebungsvariablen <envar>PATH</envar>."
+"Das Programm <command>%1</command> wurde auf Ihrem System nicht gefunden. "
+"Bitte installieren Sie es gegebenenfalls und erweitern Sie den Suchpfad "
+"erweitern durch Ändern der Umgebungsvariablen <envar>PATH</envar>."
 
 #~ msgid "Open of %1 failed."
 #~ msgstr "Öffnen von %1 fehlgeschlagen"

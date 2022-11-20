@@ -26,7 +26,7 @@
 </articleinfo>
 
 <para
->Emprant el kioslave «man» podreu llegir les pàgines man instal·lades al vostre sistema. És molt fàcil d'utilitzar: </para>
+>Emprant el procés de treball KIO «man» podreu llegir les pàgines man instal·lades al vostre sistema. És molt fàcil d'utilitzar: </para>
 
 <variablelist>
 <varlistentry>
@@ -125,7 +125,7 @@
 > (o a un fitxer de nom similar depenent de la vostra distribució). </para>
 
 <para
->Com amb qualsevol altre kioslave del &kde;, és possible introduir un &URL;, com ara <userinput
+>Com amb qualsevol altre procés de treball KIO del &kde;, és possible introduir un &URL;, com ara <userinput
 ><command
 >man:/socket</command
 ></userinput

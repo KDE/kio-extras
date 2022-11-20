@@ -37,7 +37,7 @@
 >-daemon draaien. Verder maakt de rest van het protocol gebruik van de standaard commandoregelprogramma's zoals hieronder beschreven.</para>
 
 <para
->U gebruikt de kioslave fish als volgt: <userinput
+>U gebruikt de KIO-worker fish als volgt: <userinput
 >fish://<replaceable
 >hostnaam</replaceable
 ></userinput

@@ -33,7 +33,7 @@
 >.</para>
 
 <para
->El kioslave «info» permet llegir les pàgines info instal·lades al vostre sistema, des del mateix &konqueror;. El podeu emprar fàcilment:</para>
+>El procés de treball KIO «info» permet llegir les pàgines info instal·lades al vostre sistema, des del mateix &konqueror;. El podeu emprar fàcilment:</para>
 
 <screen
 ><userinput
@@ -53,6 +53,6 @@
 >, però no està estès fora del programari &GNU;.</para>
 
 <para
->Podeu explorar amb facilitat la documentació info que teniu instal·lada des de l'aplicació &khelpcenter;, o podeu emprar el kioslave «info» directament des del &konqueror; i el mini-cli.</para>
+>Podeu explorar amb facilitat la documentació info que teniu instal·lada des de l'aplicació &khelpcenter;, o podeu emprar el procés de treball KIO «info» directament des del &konqueror; i el mini-cli.</para>
 
 </article>

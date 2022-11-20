@@ -23,17 +23,17 @@
 > és un programa de compressió</para>
 
 <para
->El kioslave «gzip» no es pot emprar directament, i s'intenta utilitzar com a un filtre. Per exemple, el kioslave «tar» pot filtrar un fitxer a través del kioslave «gzip», per a poder mostrar els continguts d'un fitxer <literal role="extension"
+>El procés de treball KIO «gzip» no es pot emprar directament, i s'intenta utilitzar com a un filtre. Per exemple, el procés de treball KIO «tar» pot filtrar un fitxer a través del procés de treball KIO «gzip», per a poder mostrar els continguts d'un fitxer <literal role="extension"
 >tar.gz</literal
 > directament en una finestra del &konqueror;.</para>
 
 <para
 >Si feu clic sobre un fitxer comprimit amb una extensió <literal role="extension"
 >gz</literal
-> en el &konqueror;, s'utilitzarà aquest kioslave per a descomprimir-lo i mostrar-lo com a un fitxer normal (sense comprimir).</para>
+> en el &konqueror;, s'utilitzarà aquest procés de treball KIO per a descomprimir-lo i mostrar-lo com a un fitxer normal (sense comprimir).</para>
 
 <para
->Si sou un desenvolupador i desitgeu emprar el filtre gzip, trobareu la documentació sobre l'ús dels kioslaves a <ulink url="https://techbase.kde.org/Welcome_to_KDE_TechBase/ca"
+>Si sou un desenvolupador i desitgeu emprar el filtre gzip, trobareu la documentació sobre l'ús dels processos de treball KIO a <ulink url="https://techbase.kde.org/Welcome_to_KDE_TechBase/ca"
 >https://techbase.kde.org</ulink
 >.</para>
 

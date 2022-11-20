@@ -21,10 +21,10 @@
 >Applications 16.12</releaseinfo>
 </articleinfo>
 <para
->De io-slave thumbnail wordt door &kde; gebruikt voor de netwerktransparante en persistente generatie van voorbeeldpictogrammen.</para>
+>De KIO-worker thumbnail wordt door &kde; gebruikt voor de netwerktransparante en persistente generatie van voorbeeldpictogrammen.</para>
 
 <para
->Deze io-slave maakt gebruik van plugins om de eigenlijke voorbeeldpictogrammen te genereren. U kunt het weergeven van voorbeeldpictogrammen activeren vanuit het submenu <menuchoice
+>Deze KIO-worker maakt gebruik van plugins om de eigenlijke voorbeeldpictogrammen te genereren. U kunt het weergeven van voorbeeldpictogrammen activeren vanuit het submenu <menuchoice
 ><guimenu
 >Beeld</guimenu
 > <guisubmenu
@@ -33,7 +33,7 @@
 > dat beschikbaar is in &dolphin; of &konqueror; in modus bestandsbeheerder.</para>
 
 <para
->De io-slave thumbnail is niet direct geschikt voor de gebruiker, maar als u een ontwikkelaar bent kunt u het gebruiken in uw eigen toepassing om voorbeeldpictogrammen van verschillende typen bestanden te maken.</para>
+>De KIO-worker thumbnail is niet direct geschikt voor de gebruiker, maar als u een ontwikkelaar bent kunt u het gebruiken in uw eigen toepassing om voorbeeldpictogrammen van verschillende typen bestanden te maken.</para>
 
 <para
 >Zie de documentatie in de broncode voor meer informatie. U vindt deze in de broncodemap <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"

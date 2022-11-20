@@ -33,7 +33,7 @@
 > programma.</para>
 
 <para
->De io-slave info geeft u de mogelijkheid om de info-pagina's die op uw systeem zijn geïnstalleerd vanuit &konqueror; in te zien. U kunt het heel gemakkelijk gebruiken:</para>
+>De KIO-worker info geeft u de mogelijkheid om de info-pagina's die op uw systeem zijn geïnstalleerd vanuit &konqueror; in te zien. U kunt het heel gemakkelijk gebruiken:</para>
 
 <screen
 ><userinput
@@ -53,6 +53,6 @@
 >, maar is niet erg ver verspreid buiten de &GNU;-software.</para>
 
 <para
->U kunt heel erg gemakkelijk de op uw systeem geïnstalleerde info-documentatie doorbladeren vanuit &khelpcenter;, of u kunt de info io-slave direct vanuit &konqueror; of de mini-cli gebruiken.</para>
+>U kunt heel erg gemakkelijk de op uw systeem geïnstalleerde info-documentatie doorbladeren vanuit &khelpcenter;, of u kunt de KIO-worker info direct vanuit &konqueror; of de mini-cli gebruiken.</para>
 
 </article>

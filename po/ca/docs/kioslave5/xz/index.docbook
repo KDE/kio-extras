@@ -25,7 +25,7 @@
 >El Xz és un programa de compressió</para>
 
 <para
->El kioslave «xz» no es pot emprar directament, i s'intenta utilitzar com a un filtre. Per exemple, el kioslave «tar» pot filtrar un fitxer a través del kioslave «xz» per a mostrar els continguts d'un fitxer <literal role="extension"
+>El procés de treball KIO «xz» no es pot emprar directament, i s'intenta utilitzar com a un filtre. Per exemple, el procés de treball KIO «tar» pot filtrar un fitxer a través del procés de treball KIO «xz» per a mostrar els continguts d'un fitxer <literal role="extension"
 >tar.lzma</literal
 > o <literal role="extension"
 >tar.xz</literal
@@ -36,10 +36,10 @@
 >.lzma</literal
 > o <literal role="extension"
 >tar.xz</literal
-> en el &konqueror;, s'utilitzarà aquest kioslave per a descomprimir-lo i mostrar-lo com a un fitxer normal (sense comprimir).</para>
+> en el &konqueror;, s'utilitzarà aquest procés de treball KIO per a descomprimir-lo i mostrar-lo com a un fitxer normal (sense comprimir).</para>
 
 <para
->Si sou un desenvolupador i desitgeu emprar el filtre xz, trobareu la documentació sobre l'ús dels kioslaves a <ulink url="https://techbase.kde.org/Welcome_to_KDE_TechBase/ca"
+>Si sou un desenvolupador i desitgeu emprar el filtre xz, trobareu la documentació sobre l'ús dels processos de treball KIO a <ulink url="https://techbase.kde.org/Welcome_to_KDE_TechBase/ca"
 >https://techbase.kde.org</ulink
 >.</para>
 

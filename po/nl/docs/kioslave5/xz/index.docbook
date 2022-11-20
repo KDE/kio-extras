@@ -25,7 +25,7 @@
 >Xz is een compressieprogramma</para>
 
 <para
->De kioslave xz is niet direct bruikbaar. Deze is bedoeld om als een filter te gebruiken. De kioslave tar kan bijvoorbeeld een bestand door de kioslave xz filteren om de inhoud van een <literal role="extension"
+>De KIO-worker xz is niet direct bruikbaar. Deze is bedoeld om als een filter te gebruiken. De KIO-worker tar kan bijvoorbeeld een bestand door de KIO-worker xz filteren om de inhoud van een <literal role="extension"
 >tar.lzma</literal
 >- of <literal role="extension"
 >tar.xz</literal
@@ -36,10 +36,10 @@
 >.lzma</literal
 > of <literal role="extension"
 >tar.xz</literal
-> in &konqueror;, dan zal deze kioslave gebruikt worden om het uit te pakken en te tonen als een normaal (niet gecomprimeerd) bestand.</para>
+> in &konqueror;, dan zal deze KIO-worker gebruikt worden om het uit te pakken en te tonen als een normaal (niet gecomprimeerd) bestand.</para>
 
 <para
->Als u een ontwikkelaar bent en u wilt graag het xz-filter gebruiken, dan kunt u informatie over het gebruik van kioslaves vinden op <ulink url="http://techbase.kde.org"
+>Als u een ontwikkelaar bent en u wilt graag het xz-filter gebruiken, dan kunt u informatie over het gebruik van KIO-workers vinden op <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 ></para>
 

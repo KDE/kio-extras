@@ -37,7 +37,7 @@
 >, però la resta del protocol utilitza eines de la línia d'ordres estàndard, tal com es comentarà a continuació.</para>
 
 <para
->Utilitzeu el kioslave «fish» de la següent manera: <userinput
+>Utilitzeu el procés de treball KIO «fish» de la manera següent: <userinput
 >fish://<replaceable
 >nom_màquina</replaceable
 ></userinput

@@ -26,7 +26,7 @@
 </articleinfo>
 
 <para
->Met de io-slave man ikunt u de man-documentatie die op uw systeem is geïnstalleerd lezen. Het is zeer eenvoudig in gebruik: </para>
+>Met de KIO-worker man kunt u de man-documentatie die op uw systeem is geïnstalleerd lezen. Het is zeer eenvoudig in gebruik: </para>
 
 <variablelist>
 <varlistentry>
@@ -125,13 +125,13 @@
 >. </para>
 
 <para
->Zoals met elke andere &kde; io-slave is het mogelijk om een &URL;-adres in te voeren, zoals <userinput
+>Zoals met elke andere KIO-worker is het mogelijk om een &URL;-adres in te voeren, zoals <userinput
 ><command
 >man:/socket</command
 ></userinput
 >, in <emphasis
 >elk </emphasis
->&kde;-programma. Probeer dit eens in &kwrite; en u zult de man-pagina in  &HTML;-opmaak zien. </para>
+>&kde;-programma. Probeer dit eens in &kwrite; en u zult de man-pagina in &HTML;-opmaak zien. </para>
 
 <para
 >Contact-mailinglijst: <email

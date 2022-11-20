@@ -23,17 +23,17 @@
 > is een comprimeerprogramma.</para>
 
 <para
->De io-slave gzip is niet direct bruikbaar. Deze is bedoeld om als een filter te geburiken. De io-slave tar kan bijvoorbeeld een bestand door deze io-slave filteren om de inhoud van een <literal role="extension"
+>De KIO-worker gzip is niet direct bruikbaar. Deze is bedoeld om als een filter te gebruiken. De KIO-worker tar kan bijvoorbeeld een bestand door deze KIO-worker te filteren om de inhoud van een <literal role="extension"
 >tar.gz</literal
 >-archief direct in een &konqueror;-venster te tonen.</para>
 
 <para
 >Als u in &konqueror; op een bestand klikt met de extensie <literal role="extension"
 >gz</literal
->, dan zal de gzip io-slave worden gebruikt om het uit te pakken en als een normaal ongecomprimeerd bestand tonen.</para>
+>, dan zal de KIO-worker gzip worden gebruikt om het uit te pakken en als een normaal niet gecomprimeerd bestand tonen.</para>
 
 <para
->Als u een ontwikkelaar bent en graag het gzip-filter zou willen gebruiken, dan kunt u informatie over het gebruik van io-slaves vinden op  <ulink url="http://techbase.kde.org"
+>Als u een ontwikkelaar bent en graag het gzip-filter zou willen gebruiken, dan kunt u informatie over het gebruik van KIO-workers vinden op <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 >.</para>
 
