@@ -129,11 +129,6 @@ void RecentDocuments::listDir(const QUrl& url)
         error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
 }
 
-void RecentDocuments::prepareUDSEntry(KIO::UDSEntry& entry, bool listing) const
-{
-    ForwardingSlaveBase::prepareUDSEntry(entry, listing);
-}
-
 QString RecentDocuments::desktopFile(KIO::UDSEntry& entry) const
 {
     const QString name = entry.stringValue(KIO::UDSEntry::UDS_NAME);
@@ -194,11 +189,6 @@ void RecentDocuments::mimetype(const QUrl& url)
     else {
         ForwardingSlaveBase::mimetype(url);
     }
-}
-
-void RecentDocuments::del(const QUrl& url, bool isFile)
-{
-    ForwardingSlaveBase::del(url, isFile);
 }
 
 #include "recentdocuments.moc"
