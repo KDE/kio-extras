@@ -79,7 +79,8 @@ public:
     // Bit rubbish, but we need to return something on init.
     Q_REQUIRED_RESULT Result init();
 
-    Q_REQUIRED_RESULT Result fileSystemFreeSpace(const QUrl &url) override;  // KF6 TODO: Once a virtual fileSystemFreeSpace method in SlaveBase exists, override it
+    Q_REQUIRED_RESULT Result fileSystemFreeSpace(const QUrl &url) override;
+
 private: // Private variables
     /** True if worker is connected to sftp server. */
     bool mConnected = false;
