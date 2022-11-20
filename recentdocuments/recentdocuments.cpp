@@ -23,21 +23,21 @@
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.recentdocuments" FILE "recentdocuments.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.recentdocuments" FILE "recentdocuments.json")
 };
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
-    // necessary to use other kio slaves
+    // necessary to use other kio worker
     QCoreApplication app(argc, argv);
     app.setApplicationName("kio_recentdocuments");
     if (argc != 4) {
         fprintf(stderr, "Usage: kio_recentdocuments protocol domain-socket1 domain-socket2\n");
         exit(-1);
     }
-    // start the slave
-    RecentDocuments slave(argv[2], argv[3]);
-    slave.dispatchLoop();
+    // start the worker
+    RecentDocuments worker(argv[2], argv[3]);
+    worker.dispatchLoop();
     return 0;
 }
 
@@ -49,7 +49,7 @@ bool isRootUrl(const QUrl &url)
 }
 
 RecentDocuments::RecentDocuments(const QByteArray& pool, const QByteArray& app):
-    ForwardingSlaveBase("recentdocuments", pool, app)
+    ForwardingWorkerBase("recentdocuments", pool, app)
 {
     QDBusInterface kded("org.kde.kded5", "/kded", "org.kde.kded5");
     kded.call("loadModule", "recentdocumentsnotifier");
@@ -76,7 +76,7 @@ bool RecentDocuments::rewriteUrl(const QUrl& url, QUrl& newUrl)
     }
 }
 
-void RecentDocuments::listDir(const QUrl& url)
+KIO::WorkerResult RecentDocuments::listDir(const QUrl& url)
 {
     if (isRootUrl(url)) {
         const QStringList list = KRecentDocument::recentDocuments();
@@ -123,10 +123,10 @@ void RecentDocuments::listDir(const QUrl& url)
             }
         }
         listEntries(udslist);
-        finished();
+        return KIO::WorkerResult::pass();
     }
-    else
-        error(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+
+    return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
 }
 
 QString RecentDocuments::desktopFile(KIO::UDSEntry& entry) const
@@ -145,7 +145,7 @@ QString RecentDocuments::desktopFile(KIO::UDSEntry& entry) const
     return QString();
 }
 
-void RecentDocuments::stat(const QUrl& url)
+KIO::WorkerResult RecentDocuments::stat(const QUrl& url)
 {
     if (isRootUrl(url)) {
         qCDebug(LOG_RECENTDOCUMENTS) << "Stat root" << url;
@@ -167,28 +167,26 @@ void RecentDocuments::stat(const QUrl& url)
         uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR );
 #endif
         statEntry(uds);
-        finished();
+        return KIO::WorkerResult::pass();
     }
     // results are forwarded
-    else {
-        qCDebug(LOG_RECENTDOCUMENTS) << "Stat forward" << url;
-        ForwardingSlaveBase::stat(url);
-    }
+
+    qCDebug(LOG_RECENTDOCUMENTS) << "Stat forward" << url;
+    return ForwardingWorkerBase::stat(url);
 }
 
-void RecentDocuments::mimetype(const QUrl& url)
+KIO::WorkerResult RecentDocuments::mimetype(const QUrl& url)
 {
     qCDebug(LOG_RECENTDOCUMENTS) << url;
 
     // the root url is always a folder
     if (isRootUrl(url)) {
         mimeType(QString::fromLatin1("inode/directory"));
-        finished();
+        return KIO::WorkerResult::pass();
     }
     // results are forwarded
-    else {
-        ForwardingSlaveBase::mimetype(url);
-    }
+
+    return ForwardingWorkerBase::mimetype(url);
 }
 
 #include "recentdocuments.moc"
