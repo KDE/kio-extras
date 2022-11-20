@@ -3,6 +3,13 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_recentdocuments\")
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 add_library(kio_recentdocuments MODULE recentdocuments.cpp)
+ecm_qt_declare_logging_category(kio_recentdocuments
+    HEADER recentdocuemnts_log.h
+    IDENTIFIER LOG_RECENTDOCUMENTS
+    CATEGORY_NAME kf.kio.slaves.recentdocuments
+    DESCRIPTION "KIO recentdocuments"
+    EXPORT KIO_EXTRAS
+)
 target_link_libraries(kio_recentdocuments KF5::KIOCore KF5::I18n KF5::ConfigCore Qt::DBus Qt::Network)
 set_target_properties(kio_recentdocuments PROPERTIES OUTPUT_NAME "recentdocuments")
 install(TARGETS kio_recentdocuments DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)

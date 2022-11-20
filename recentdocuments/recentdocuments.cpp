@@ -1,9 +1,9 @@
 #include "recentdocuments.h"
+#include "recentdocuemnts_log.h"
 
 #include <QCoreApplication>
 #include <QDBusInterface>
 #include <QFileInfo>
-#include <QDebug>
 #include <QUrl>
 
 #include <KRecentDocument>
@@ -148,7 +148,7 @@ QString RecentDocuments::desktopFile(KIO::UDSEntry& entry) const
 void RecentDocuments::stat(const QUrl& url)
 {
     if (isRootUrl(url)) {
-        qDebug() << "Stat root" << url;
+        qCDebug(LOG_RECENTDOCUMENTS) << "Stat root" << url;
         //
         // stat the root path
         //
@@ -171,14 +171,14 @@ void RecentDocuments::stat(const QUrl& url)
     }
     // results are forwarded
     else {
-        qDebug() << "Stat forward" << url;
+        qCDebug(LOG_RECENTDOCUMENTS) << "Stat forward" << url;
         ForwardingSlaveBase::stat(url);
     }
 }
 
 void RecentDocuments::mimetype(const QUrl& url)
 {
-    qDebug() << url;
+    qCDebug(LOG_RECENTDOCUMENTS) << url;
 
     // the root url is always a folder
     if (isRootUrl(url)) {
