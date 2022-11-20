@@ -1,19 +1,21 @@
 # Thomas Reitelbach <tr@erdfunkstelle.de>, 2005, 2006, 2007.
 # Burkhard Lück <lueck@hube-lueck.de>, 2009.
 # Frederik Schwarzer <schwarzer@kde.org>, 2011.
+# Alois Spitzbart <spitz234@hotmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-10 02:29+0000\n"
-"PO-Revision-Date: 2011-04-24 13:01+0200\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"PO-Revision-Date: 2022-11-10 13:33+0100\n"
+"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: thumbnail.cpp:194
 #, kde-format
@@ -36,9 +38,9 @@ msgid "No plugin specified."
 msgstr "Kein Modul angegeben"
 
 #: thumbnail.cpp:240
-#, fuzzy, kde-format
+#, kde-format
 msgid "Cannot load ThumbCreator %1"
-msgstr "ThumbCreator %1 lässt sich nicht laden"
+msgstr "Vorschauersteller „%1“ kann nicht geladen werden"
 
 #: thumbnail.cpp:257
 #, kde-format

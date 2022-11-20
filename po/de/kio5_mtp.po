@@ -1,23 +1,22 @@
 # Burkhard Lück <lueck@hube-lueck.de>, 2014, 2017, 2018, 2019.
+# Alois Spitzbart <spitz234@hotmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-07 00:45+0000\n"
-"PO-Revision-Date: 2019-04-11 07:31+0100\n"
-"Last-Translator: Burkhard Lück <lueck@hube-lueck.de>\n"
+"PO-Revision-Date: 2022-11-10 13:29+0100\n"
+"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.08.2\n"
 
 #: kio_mtp.cpp:220
-#, fuzzy, kde-format
-#| msgid ""
-#| "No storage media found. Make sure your device is unlocked and has MTP "
-#| "enabled in its USB connection settings."
+#, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
 "accessible yet"
@@ -26,9 +25,10 @@ msgid ""
 "popup on its screen. If that does not work, make sure MTP is enabled in its "
 "USB connection settings."
 msgstr ""
-"Es wurden keine Speichermedien gefunden. Überprüfen Sie, ob Ihr Gerät "
-"entsperrt ist und ob MTP in den USB-Verbindungseinstellungen eingeschaltet "
-"ist."
+"Der Zugriff auf das Gerät ist nicht möglich. Es ist sicherzustellen, dass "
+"das Gerät entsperrt ist, und dass im Aufklappfenster auf „Zulassen“ getippt "
+"wurde. Wenn das nicht funktioniert, ist sicherzustellen, dass MTP in den USB-"
+"Verbindungseinstellungen aktiviert ist."
 
 #: kio_mtp.cpp:490
 #, kde-format
