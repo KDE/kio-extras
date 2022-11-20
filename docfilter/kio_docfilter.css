@@ -1,6 +1,6 @@
 /*
  * This is the common CSS styling for the various documentation filter
- * KIO Slaves (incl. kio_man, kio_info, kio_perldoc, etc.)
+ * KIO workers (incl. kio_man, kio_info, kio_perldoc, etc.)
  *
  * It is designed to mimic the look of the kde.org website (although the css
  * for the website has since drifted itself...)

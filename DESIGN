@@ -1,8 +1,8 @@
-What is a kioslave you ask yourself?
+What is a KIO worker you ask yourself?
 
-A kioslave is a program designed to be intimately familiar with a certian
+A KIO worker is a program designed to be intimately familiar with a certian
 protocol, so that a standardized interface can be used to get at data from
-any number of places.  A few examples are the http and ftp kioslaves,
+any number of places.  A few examples are the http and ftp KIO workers,
 which using nearly identical methods will retrieve data from an http or
 ftp server respectively.
 
@@ -11,13 +11,13 @@ Well, that's nice.  How do they work?
 To understand it, you'll need two ice cubes, a pair of handcuffs, and a
 ferret.  Some Crisco (or other shortening) is optional.  Well, that aside,
 this document focuses on the business end of the whole kio library.  The
-ioslave. See the documentation of the SlaveBase class for the methods
+KIO worker. See the documentation of the KIO::WorkerBase class for the methods
 you need to reimplement.
 
 That's nice, but how can I use it?
 
 Any time you'd like to use non blocking IO over a high level protocol
-(such as HTTP or FTP) a kioslave is for you.
+(such as HTTP or FTP) a KIO worker is for you.
 
 That's nice, but how do I use it?
 
