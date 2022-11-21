@@ -38,10 +38,10 @@
 </articleinfo>
 
 <para
->Un kioslave para mostrar los documentos o &URL; recientes en el diálogo de archivos, en el gestor de archivos, en &krunner; y en el menú de aplicaciones.</para>
+>Un módulo de trabajo KIO para mostrar los documentos o &URL; recientes en el diálogo de archivos, en el gestor de archivos, en &krunner; y en el menú de aplicaciones.</para>
 
 <para
->Puede usar el kioslave de este modo:</para>
+>Puede usar el módulo de trabajo KIO de este modo:</para>
 
 <para
 >Escriba <userinput
@@ -62,7 +62,7 @@
 >Búsqueda de Plasma</guilabel
 > de las &systemsettings;, active el complemento de búsqueda <guilabel
 >Documentos recientes</guilabel
-> para usar este kioslave en &krunner;.</para>
+> para usar este módulo de trabajo KIO en &krunner;.</para>
 
 <para
 >En el <guilabel

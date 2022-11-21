@@ -43,17 +43,17 @@
 > es un programa de compresión.</para>
 
 <para
->El kioslave zstd no se puede usar directamente, ya que está pensado para usar como filtro. Por ejemplo, el kioslave tar puede filtrar un archivo mediante el kioslave zstd para poder mostrar el contenido de un archivo <literal role="extension"
+>El módulo de trabajo KIO zstd no se puede usar directamente, ya que está pensado para usar como filtro. Por ejemplo, el módulo de trabajo KIO tar puede filtrar un archivo mediante el módulo de trabajo KIO zstd para poder mostrar el contenido de un archivo <literal role="extension"
 >tar.zst</literal
 > directamente en una ventana de &konqueror;.</para>
 
 <para
 >Si pulsa sobre un archivo comprimido con la extensión <literal role="extension"
 >zst</literal
-> en &konqueror;, se usa este kioslave para descomprimirlo y mostrarlo como un archivo normal (no comprimido).</para>
+> en &konqueror;, se usa este módulo de trabajo KIO para descomprimirlo y mostrarlo como un archivo normal (no comprimido).</para>
 
 <para
->Si usted es desarrollador y desea usar el filtro zstd, puede encontrar información sobre el uso de kioslaves en <ulink url="http://techbase.kde.org"
+>Si usted es desarrollador y desea usar el filtro zstd, puede encontrar información sobre el uso de módulos de trabajo KIO en <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 >.</para>
 

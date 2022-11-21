@@ -40,7 +40,7 @@
 </articleinfo>
 
 <para
->Utilizando el ioslave man usted puede leer las páginas man instaladas en su sistema. Es fácil de usar: </para>
+>Usando el módulo de trabajo KIO man puede leer las páginas man instaladas en su sistema. Es fácil de usar: </para>
 
 <variablelist>
 <varlistentry>
@@ -139,13 +139,13 @@
 >. </para>
 
 <para
->Como con cualquier otro ioslave de &kde; es posible introducir un &URL;, como <userinput
+>Como con cualquier otro módulo de trabajo KIO, se puede introducir una &URL;, como <userinput
 ><command
 >man:/socket</command
 ></userinput
-> en <emphasis
+>, en <emphasis
 >cualquier</emphasis
-> aplicación de &kde;. Inténtelo en &kwrite; y verá la página de manual en formato &HTML;. </para>
+> aplicación de &kde;. Pruébelo en &kwrite; y verá la página de manual en formato &HTML;. </para>
 
 <para
 >Contacte con la lista de correo: <email

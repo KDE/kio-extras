@@ -51,7 +51,7 @@
 >, pero el resto del protocolo utiliza herramientas estándar de la línea de órdenes, tal y como se comentará a continuación.</para>
 
 <para
->Utilice este kioslave de la siguiente manera: <userinput
+>Puede usar este módulo de trabajo KIO de la siguiente manera: <userinput
 >fish://<replaceable
 >nombreservidor</replaceable
 ></userinput

@@ -37,17 +37,17 @@
 > es un programa de compresión.</para>
 
 <para
->El kioslave bzip2 no se puede utilizar directamente y se utiliza como filtro. Por ejemplo, el kioslave tar puede filtrar un archivo a través del kioslave de bzip2 para poder mostrar los contenidos de un archivo <literal role="extension"
+>El módulo de trabajo KIO bzip2 no se puede utilizar directamente y se usa como filtro. Por ejemplo, el módulo de trabajo KIO tar puede filtrar un archivo a través del módulo de trabajo KIO de bzip2 para poder mostrar los contenidos de un archivo <literal role="extension"
 >tar.bz2</literal
 > directamente en una ventana de &konqueror;.</para>
 
 <para
 >Si pulsa en un archivo comprimido con extensión <literal role="extension"
 >bz2</literal
-> en &konqueror;, este kioslave se utilizará para descomprimirlo y mostrarlo como archivo normal (sin comprimir).</para>
+> en &konqueror;, este módulo de trabajo KIO se usará para descomprimirlo y mostrarlo como archivo normal (sin comprimir).</para>
 
 <para
->Si usted es un desarrollador y desea utilizar el filtro bzip2, puede encontrar documentación sobre el uso de kioslaves en <ulink url="http://techbase.kde.org"
+>Si usted es un desarrollador y desea utilizar el filtro bzip2, puede encontrar documentación sobre el uso de módulo de trabajo KIO en <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 >.</para>
 

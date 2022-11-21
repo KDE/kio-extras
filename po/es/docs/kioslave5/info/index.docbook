@@ -47,7 +47,7 @@
 >.</para>
 
 <para
->El ioslave Info le permite leer las páginas de info instaladas en su sistema, desde dentro de &konqueror;. Lo puede utilizar fácilmente:</para>
+>El módulo de trabajo KIO Info le permite leer las páginas de info instaladas en su sistema, desde dentro de &konqueror;. Lo puede utilizar fácilmente:</para>
 
 <screen
 ><userinput
@@ -67,6 +67,6 @@
 >, pero no está extendido fuera del software &GNU;.</para>
 
 <para
->Usted puede explorar fácilmente la documentación info que ha instalado desde la aplicación &khelpcenter; o puede utilizar el ioslave info directamente desde &konqueror; y desde el mini-cliente.</para>
+>Puede explorar fácilmente la documentación info que ha instalado desde la aplicación &khelpcenter; o puede usar el módulo de trabajo KIO info directamente desde &konqueror; y desde la miniconsola.</para>
 
 </article>
