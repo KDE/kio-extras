@@ -286,11 +286,6 @@ void ActivitiesProtocol::listDir(const QUrl &url)
     }
 }
 
-void ActivitiesProtocol::prepareUDSEntry(KIO::UDSEntry &entry, bool listing) const
-{
-    ForwardingSlaveBase::prepareUDSEntry(entry, listing);
-}
-
 void ActivitiesProtocol::stat(const QUrl& url)
 {
     QString activity;
