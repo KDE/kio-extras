@@ -6,7 +6,8 @@ add_library(kio_recentdocuments MODULE recentdocuments.cpp)
 ecm_qt_declare_logging_category(kio_recentdocuments
     HEADER recentdocuemnts_log.h
     IDENTIFIER LOG_RECENTDOCUMENTS
-    CATEGORY_NAME kf.kio.slaves.recentdocuments
+    CATEGORY_NAME kf.kio.workers.recentdocuments
+    OLD_CATEGORY_NAMES kf.kio.slaves.recentdocuments
     DESCRIPTION "KIO recentdocuments"
     EXPORT KIO_EXTRAS
 )
