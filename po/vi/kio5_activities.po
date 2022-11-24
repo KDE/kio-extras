@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"POT-Creation-Date: 2022-11-24 00:45+0000\n"
 "PO-Revision-Date: 2021-08-01 18:14+0200\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 20.12.2\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:296
 #, kde-format
 msgid "Activities"
 msgstr "Hoạt động"

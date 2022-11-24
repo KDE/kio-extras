@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kactivities5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"POT-Creation-Date: 2022-11-24 00:45+0000\n"
 "PO-Revision-Date: 2015-11-04 15:11+0000\n"
 "Last-Translator: Michael Bauer <fios@akerbeltz.org>\n"
 "Language-Team: Fòram na Gàidhlig\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.4\n"
 "X-Project-Style: kde\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:296
 #, kde-format
 msgid "Activities"
 msgstr "Gnìomhachdan"

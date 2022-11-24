@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-09-24 00:16+0000\n"
+"POT-Creation-Date: 2022-11-24 00:45+0000\n"
 "PO-Revision-Date: 2015-12-27 17:19+0200\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Lokalize 2.0\n"
 "X-POT-Import-Date: 2012-12-01 22:24:16+0000\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:301
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:296
 #, kde-format
 msgid "Activities"
 msgstr "Aktiviteetit"
