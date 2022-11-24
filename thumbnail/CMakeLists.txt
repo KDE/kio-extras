@@ -77,8 +77,8 @@ target_sources(kio_thumbnail PRIVATE
 ecm_qt_declare_logging_category(kio_thumbnail
     HEADER thumbnail-logsettings.h
     IDENTIFIER KIO_THUMBNAIL_LOG
-    CATEGORY_NAME kf.kio.slaves.thumbnail
-    OLD_CATEGORY_NAMES log_kio_thumbnail
+    CATEGORY_NAME kf.kio.workers.thumbnail
+    OLD_CATEGORY_NAMES log_kio_thumbnail kf.kio.slaves.thumbnail
     DESCRIPTION "KIO thumbnail"
     EXPORT KIO_EXTRAS
 )
@@ -166,8 +166,8 @@ if(NOT WIN32)
     ecm_qt_declare_logging_category(djvuthumbnail
         HEADER thumbnail-djvu-logsettings.h
         IDENTIFIER KIO_THUMBNAIL_DJVU_LOG
-        CATEGORY_NAME kf.kio.slaves.thumbnail.djvu
-        OLD_CATEGORY_NAMES log_kio_thumbnail.djvu
+        CATEGORY_NAME kf.kio.workers.thumbnail.djvu
+        OLD_CATEGORY_NAMES log_kio_thumbnail.djvu kf.kio.slaves.thumbnail.djvu
         DESCRIPTION "DjVu files thumbnailer"
         EXPORT KIO_EXTRAS
     )
@@ -187,8 +187,8 @@ if(OpenEXR_FOUND)
     ecm_qt_declare_logging_category(exrthumbnail
         HEADER thumbnail-exr-logsettings.h
         IDENTIFIER KIO_THUMBNAIL_EXR_LOG
-        CATEGORY_NAME kf.kio.slaves.thumbnail.exr
-        OLD_CATEGORY_NAMES log_kio_thumbnail.exr
+        CATEGORY_NAME kf.kio.workers.thumbnail.exr
+        OLD_CATEGORY_NAMES log_kio_thumbnail.exr kf.kio.slaves.thumbnail.exr
         DESCRIPTION "EXR images thumbnailer"
         EXPORT KIO_EXTRAS
     )
@@ -254,8 +254,8 @@ add_library(comicbookthumbnail MODULE comiccreator.cpp)
 ecm_qt_declare_logging_category(comicbookthumbnail
     HEADER thumbnail-comic-logsettings.h
     IDENTIFIER KIO_THUMBNAIL_COMIC_LOG
-    CATEGORY_NAME kf.kio.slaves.thumbnail.comic
-    OLD_CATEGORY_NAMES log_kio_thumbnail.comic
+    CATEGORY_NAME kf.kio.workers.thumbnail.comic
+    OLD_CATEGORY_NAMES log_kio_thumbnail.comic kf.kio.slaves.thumbnail.comic
     DESCRIPTION "Comic books thumbnailer"
     EXPORT KIO_EXTRAS
 )

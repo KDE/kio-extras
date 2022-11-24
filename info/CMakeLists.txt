@@ -13,8 +13,8 @@ set_target_properties(kio_info PROPERTIES OUTPUT_NAME "info")
 ecm_qt_declare_logging_category(kio_info
     HEADER kio_info_debug.h
     IDENTIFIER LOG_KIO_INFO
-    CATEGORY_NAME kf.kio.slaves.info
-    OLD_CATEGORY_NAMES kio_info
+    CATEGORY_NAME kf.kio.workers.info
+    OLD_CATEGORY_NAMES kio_info kf.kio.slaves.info
     DESCRIPTION "KIO info"
     EXPORT KIO_EXTRAS
 )

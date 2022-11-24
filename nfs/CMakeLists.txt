@@ -73,8 +73,8 @@ endif()
 ecm_qt_declare_logging_category(kio_nfs
     HEADER kio_nfs_debug.h
     IDENTIFIER LOG_KIO_NFS
-    CATEGORY_NAME kf.kio.slaves.nfs
-    OLD_CATEGORY_NAMES kde.kio_nfs
+    CATEGORY_NAME kf.kio.workers.nfs
+    OLD_CATEGORY_NAMES kde.kio_nfs kf.kio.slaves.nfs
     DESCRIPTION "KIO nfs"
     EXPORT KIO_EXTRAS
 )
