@@ -13,8 +13,8 @@
 #include <KLocalizedString>
 #include <QTextCodec>
 
-#include "smburl.h"
 #include "smb-logsettings.h"
+#include "smburl.h"
 
 SMBAuthenticator::SMBAuthenticator(SMBAbstractFrontend &frontend)
     : m_frontend(frontend)
@@ -23,6 +23,8 @@ SMBAuthenticator::SMBAuthenticator(SMBAbstractFrontend &frontend)
 
 void SMBAuthenticator::loadConfiguration()
 {
+// NOTE: the entire configuration group (or rather: it's KCM) is bound to go away in KF6.
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     KConfig cfg("kioslaverc", KConfig::NoGlobals);
     const KConfigGroup group = cfg.group("Browser Settings/SMBro");
     m_defaultUser = group.readEntry("User");
@@ -46,6 +48,7 @@ void SMBAuthenticator::loadConfiguration()
         unsigned int num = ((a1 & 0x3F) << 10) | ((a2 & 0x1F) << 5) | (a3 & 0x1F);
         m_defaultPassword[i] = QChar((uchar)((num - 17) ^ 173)); // restore
     }
+#endif
 }
 
 QString SMBAuthenticator::defaultWorkgroup() const
@@ -60,8 +63,7 @@ void SMBAuthenticator::setDefaultWorkgroup(const QString &workGroup)
 
 void SMBAuthenticator::auth(const char *server, const char *share, char *workgroup, int wgmaxlen, char *username, int unmaxlen, char *password, int pwmaxlen)
 {
-    qCDebug(KIO_SMB_LOG) << "auth_smbc_get_dat: set user=" << username << ", workgroup=" << workgroup
-                         << " server=" << server << ", share=" << share;
+    qCDebug(KIO_SMB_LOG) << "auth_smbc_get_dat: set user=" << username << ", workgroup=" << workgroup << " server=" << server << ", share=" << share;
 
     QString s_server = QString::fromUtf8(server);
     QString s_share = QString::fromUtf8(share);
