@@ -124,7 +124,7 @@ WorkerResult AfcUtils::Result::from(const lockdownd_error_t lockdownError, const
     case LOCKDOWN_E_INVALID_HOST_ID: {
         QString text = errorText;
         if (text.isEmpty()) {
-            text = i18n("Cannot acces the device. Make sure it is unlocked and allows this computer to access it.");
+            text = i18n("Cannot access the device. Make sure it is unlocked and allows this computer to access it.");
         }
         return WorkerResult::fail(ERR_WORKER_DEFINED, text);
     }
