@@ -3,13 +3,13 @@
 #
 # Malcolm Hunter <malcolm.hunter@gmx.co.uk>, 2003, 2004.
 # Andrew Coles <andrew_coles@yahoo.co.uk>, 2009.
-# Steve Allewell <steve.allewell@gmail.com>, 2014.
+# Steve Allewell <steve.allewell@gmail.com>, 2014, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-21 00:46+0000\n"
-"PO-Revision-Date: 2014-06-28 18:37+0100\n"
+"PO-Revision-Date: 2022-11-26 15:07+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
 "Language: en_GB\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #: fish.cpp:291
 #, kde-format
@@ -42,13 +43,13 @@ msgstr "SSH Authentication"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "Yes"
 
 #: fish.cpp:670 fish.cpp:690
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: fish.cpp:771
 #, kde-format
