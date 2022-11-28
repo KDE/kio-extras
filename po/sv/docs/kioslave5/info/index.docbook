@@ -47,7 +47,7 @@
 >-programmet.</para>
 
 <para
->I/O-slaven info låter dig läsa info-sidorna installerade på systemet inne i &konqueror;. Den är mycket lätt att använda:</para>
+>The Info KIO worker allows you to read the info pages installed on your system, from within &konqueror;. You can use it very easily:</para>
 
 <screen
 ><userinput
@@ -67,6 +67,6 @@
 > inom &GNU;, men används inte mycket utanför &GNU;-programvara.</para>
 
 <para
->Det är lättast att bläddra i info-dokumentationen som du har installerad inne i Hjälpcentralen, eller så kan du använda I/O-slaven direkt från både &konqueror; och mini-kommandoraden.</para>
+>You can quite easily browse the info documentation you have installed from within the &khelpcenter; application, or you can use the info KIO worker directly from within both &konqueror; and the mini-cli.</para>
 
 </article>

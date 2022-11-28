@@ -37,19 +37,19 @@
 > är ett kompressionsprogram.</para>
 
 <para
->I/O-slaven bzip2 är inte användbar direkt, utan är avsedd att användas som ett filter. I/O-slaven tar kan till exempel filtrera en fil genom I/O-slaven bzip2, för att visa innehållet i en <literal role="extension"
-> tar.bz2</literal
->-fil direkt i ett &konqueror;-fönster.</para>
+>The bzip2 KIO worker is not directly usable, and is intended for use as a filter. For example, the tar KIO worker can filter a file through the bzip2 KIO worker, in order to display the contents of a <literal role="extension"
+>tar.bz2</literal
+> file directly in a &konqueror; window.</para>
 
 <para
->Om du klickar på en fil som är komprimerad med en <literal role="extension"
->bz2</literal
->-filändelse i &konqueror;, används den här I/O-slaven för att packa upp filen och visa den som en normal (okomprimerad) fil.</para>
+>If you click on a file compressed with a <literal role="extension"
+>.bz2</literal
+> in &konqueror;, this KIO worker is used to uncompress it and display it as a normal (uncompressed) file.</para>
 
 <para
->Om du är en utvecklare och vill använda bzip2-filtret, hittar du dokumentation om hur I/O-slavar används på <ulink url="http://techbase.kde.org"
+>If you are a developer, and would like to use the bzip2 filter, you can find documentation on using KIO workers at <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
->.</para>
+></para>
 
 <para
 >Se manualen: <ulink url="man:/bzip2"

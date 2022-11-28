@@ -40,7 +40,7 @@
 </articleinfo>
 
 <para
->Genom att använda I/O-slaven man kan du läsa manualsidorna som är installerade på systemet. Den är lätt att använda: </para>
+>Using the man KIO worker you are able to read the man pages installed on your system. It is easy to use: </para>
 
 <variablelist>
 <varlistentry>
@@ -139,13 +139,13 @@
 >. </para>
 
 <para
->Precis som med vilken annan I/O-slav som helst i &kde;, är det möjligt att skriva in en webbadress som <userinput
+>As with any other KIO worker, it is possible to enter a &URL;, like <userinput
 ><command
->man:/socket </command
+>man:/socket</command
 ></userinput
-> i vilket &kde;-program <emphasis
->som helst</emphasis
->. Försök med det i &kwrite;, och du får se manualsidan med &HTML;-format. </para>
+> in <emphasis
+>any</emphasis
+> &kde; application. Try it in &kwrite; and you will see the man page in &HTML; format. </para>
 
 <para
 >E-postlista att kontakta: <email

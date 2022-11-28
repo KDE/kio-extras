@@ -39,23 +39,23 @@
 >Xz är ett kompressionsprogram</para>
 
 <para
->I/O-slaven Xz är inte direkt användbar, utan är avsedd att användas som ett filter. I/O-slaven Tar kan till exempel filtrera en fil genom I/O-slaven xz, för att visa innehållet i en <literal role="extension"
+>The xz KIO worker is not directly usable, and is intended for use as a filter. For example, the tar KIO worker can filter a file through the xz KIO worker, in order to display the contents of a <literal role="extension"
 >tar.lzma</literal
->-fil eller <literal role="extension"
+> or <literal role="extension"
 >tar.xz</literal
->-fil direkt i ett &konqueror;-fönster.</para>
+> file directly in a &konqueror; window.</para>
 
 <para
->Om du klickar på en fil komprimerad med <literal role="extension"
->lzma</literal
-> eller <literal role="extension"
+>If you click on a file compressed with a <literal role="extension"
+>.lzma</literal
+> or <literal role="extension"
 >tar.xz</literal
-> i &konqueror;, används den här I/O-slaven för att packa upp den och visa den som en vanlig (okomprimerad) fil.</para>
+> in &konqueror;, this KIO worker is used to uncompress it and display it as a normal (uncompressed) file.</para>
 
 <para
->Om du är en utvecklare och vill använda xz-filtret, hittar du dokumentation om hur I/O-slavar används på <ulink url="http://techbase.kde.org"
+>If you are a developer, and would like to use the xz filter, you can find documentation on using KIO workers at <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
->.</para>
+></para>
 
 <para
 >Se manualen: <ulink url="man:/xz"

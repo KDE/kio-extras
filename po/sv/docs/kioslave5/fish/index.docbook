@@ -47,17 +47,17 @@
 >-demonen, men resten av protokollet använder vanliga kommandoradverktyg, som beskrivs nedan.</para>
 
 <para
->Du kan använda I/O-slaven fish så här: <userinput
+>You can use the fish KIO worker like this: <userinput
 >fish://<replaceable
->värddatornamn</replaceable
+>hostname</replaceable
 ></userinput
-> eller <userinput
+> or <userinput
 >fish://<replaceable
->användarnamn</replaceable
+>username</replaceable
 >@<replaceable
->värddatornamn</replaceable
+>hostname</replaceable
 ></userinput
-></para>
+>.</para>
 
 <note
 ><para
