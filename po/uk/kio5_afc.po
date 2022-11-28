@@ -1,0 +1,109 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# Fracture dept <yurchor@ukr.net>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-11-28 00:48+0000\n"
+"PO-Revision-Date: 2022-11-27 09:40+0200\n"
+"Last-Translator: Fracture dept <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#: afcutils.cpp:60
+#, kde-format
+msgid "Unhandled AFC error code '%1'"
+msgstr "Непридатний до обробки код помилки AFC «%1»"
+
+#: afcutils.cpp:73
+#, kde-format
+msgid "Unhandled housearrest error code '%1'"
+msgstr "Непридатний до обробки код помилки housearrest «%1»"
+
+#: afcutils.cpp:89
+#, kde-format
+msgid "Unhandled instproxy error code '%1'"
+msgstr "Непридатний до обробки код помилки instproxy «%1»"
+
+#: afcutils.cpp:105
+#, kde-format
+msgid ""
+"The device is locked. Please enter the passcode on the device and try again."
+msgstr ""
+"Пристрій заблоковано. Будь ласка, введіть код на пристрої і повторіть спробу."
+
+#: afcutils.cpp:112
+#, kde-format
+msgid "You have denied this computer access to the device."
+msgstr "Відмовлено у доступі до пристрою з цього комп'ютера."
+
+#: afcutils.cpp:119
+#, kde-format
+msgid ""
+"You need to allow this computer to access the device. Please accept the "
+"prompt on the device and try again."
+msgstr ""
+"Вам слід дозволити цьому комп'ютеру доступ до пристрою. Будь ласка, "
+"підтвердьте запит на пристрої і повторіть спробу."
+
+#: afcutils.cpp:127
+#, fuzzy, kde-format
+#| msgid ""
+#| "Cannot acces the device. Make sure it is unlocked and allows this "
+#| "computer to access it."
+msgid ""
+"Cannot access the device. Make sure it is unlocked and allows this computer "
+"to access it."
+msgstr ""
+"Не вдалося отримати доступ до пристрою. Переконайтеся, що пристрій "
+"розблоковано і дозвольте цьому комп'ютеру доступ до пристрою."
+
+#: afcutils.cpp:134
+#, kde-format
+msgid "Unhandled lockdownd code '%1'"
+msgstr "Непридатний до обробки код блокування «%1»"
+
+#: kio_afc.cpp:174
+#, kde-format
+msgid "Apple Devices"
+msgstr "Пристрої Apple"
+
+#: kio_afc.cpp:230
+#, kde-format
+msgctxt "Link to folder with files stored inside apps"
+msgid "Apps"
+msgstr "Програми"
+
+#: kio_afc.cpp:473
+#, kde-format
+msgctxt "Placeholder is device name"
+msgid "%1 (Apps)"
+msgstr "%1 (Програми)"
+
+#: kio_afc.cpp:679
+#, kde-format
+msgid "Cannot read without opening file first"
+msgstr "Читання неможливе без початкового відкриття файла"
+
+#: kio_afc.cpp:699
+#, kde-format
+msgid "Cannot seek without opening file first"
+msgstr "Позиціювання неможливе без початкового відкриття файла"
+
+#: kio_afc.cpp:727
+#, kde-format
+msgid "Cannot write without opening file first"
+msgstr "Запис неможливий без початкового відкриття файла"
+
+#: kio_afc.cpp:879
+#, kde-format
+msgid "Cannot rename between devices."
+msgstr "Неможливе перейменування між пристроями."
