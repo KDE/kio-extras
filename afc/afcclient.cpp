@@ -100,8 +100,11 @@ WorkerResult AfcClient::init(lockdownd_client_t lockdowndClient, const QString &
             plist_get_string_val(errorItem, &errorString);
             QScopedPointer<char, QScopedPointerPodDeleter> errorStringPtr(errorString);
 
-            // The app either does not exist or does not have UIFileSharingEnabled enabled
-            if (strcmp(errorStringPtr.data(), "InstallationLookupFailed") == 0) {
+            // The app does not exist.
+            if (strcmp(errorStringPtr.data(), "ApplicationLookupFailed") == 0) {
+                return WorkerResult::fail(ERR_DOES_NOT_EXIST, appId);
+            // The app does not have UIFileSharingEnabled enabled.
+            } else if (strcmp(errorStringPtr.data(), "InstallationLookupFailed") == 0) {
                 return WorkerResult::fail(ERR_ACCESS_DENIED, appId);
             }
 
