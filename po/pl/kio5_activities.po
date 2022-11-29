@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-24 00:45+0000\n"
+"POT-Creation-Date: 2022-11-29 00:46+0000\n"
 "PO-Revision-Date: 2016-05-07 08:02+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Lokalize 2.0\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:296
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
 #, kde-format
 msgid "Activities"
 msgstr "Aktywności"
@@ -57,12 +57,12 @@ msgstr "Dowiąż do:"
 msgid "Unlink from:"
 msgstr "Usuń dowiązanie z:"
 
-#: KioActivities.cpp:101 KioActivities.cpp:224
+#: KioActivities.cpp:102 KioActivities.cpp:223
 #, kde-format
 msgid "Activity"
 msgstr "Aktywność"
 
-#: KioActivities.cpp:223
+#: KioActivities.cpp:222
 #, kde-format
 msgid "Current activity"
 msgstr "Bieżąca aktywność"

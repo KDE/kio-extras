@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-24 00:45+0000\n"
+"POT-Creation-Date: 2022-11-29 00:46+0000\n"
 "PO-Revision-Date: 2019-11-09 11:33+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Generator: Lokalize 2.0\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:296
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
 #, kde-format
 msgid "Activities"
 msgstr "Activitats"
@@ -60,12 +60,12 @@ msgstr "Enllaça amb:"
 msgid "Unlink from:"
 msgstr "Separa de:"
 
-#: KioActivities.cpp:101 KioActivities.cpp:224
+#: KioActivities.cpp:102 KioActivities.cpp:223
 #, kde-format
 msgid "Activity"
 msgstr "Activitat"
 
-#: KioActivities.cpp:223
+#: KioActivities.cpp:222
 #, kde-format
 msgid "Current activity"
 msgstr "Activitat actual"

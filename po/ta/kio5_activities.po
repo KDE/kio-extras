@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-24 00:45+0000\n"
+"POT-Creation-Date: 2022-11-29 00:46+0000\n"
 "PO-Revision-Date: 2021-09-19 15:28+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 21.08.1\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:296
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
 #, kde-format
 msgid "Activities"
 msgstr "செயல்பாடுகள்"
@@ -56,12 +56,12 @@ msgstr "இதற்கு இணை:"
 msgid "Unlink from:"
 msgstr "இதனுடனான இணைப்பை துண்டி:"
 
-#: KioActivities.cpp:101 KioActivities.cpp:224
+#: KioActivities.cpp:102 KioActivities.cpp:223
 #, kde-format
 msgid "Activity"
 msgstr "செயல்பாடு"
 
-#: KioActivities.cpp:223
+#: KioActivities.cpp:222
 #, kde-format
 msgid "Current activity"
 msgstr "தற்போதைய செயல்பாடு"

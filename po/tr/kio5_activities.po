@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-24 00:45+0000\n"
+"POT-Creation-Date: 2022-11-29 00:46+0000\n"
 "PO-Revision-Date: 2022-10-08 12:33+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Lokalize 22.08.1\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:296
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
 #, kde-format
 msgid "Activities"
 msgstr "Etkinlikler"
@@ -58,12 +58,12 @@ msgstr "Şuraya bağla:"
 msgid "Unlink from:"
 msgstr "Şuradan bağlantısını kes:"
 
-#: KioActivities.cpp:101 KioActivities.cpp:224
+#: KioActivities.cpp:102 KioActivities.cpp:223
 #, kde-format
 msgid "Activity"
 msgstr "Etkinlik"
 
-#: KioActivities.cpp:223
+#: KioActivities.cpp:222
 #, kde-format
 msgid "Current activity"
 msgstr "Geçerli etkinlik"

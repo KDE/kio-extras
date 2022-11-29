@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-24 00:45+0000\n"
+"POT-Creation-Date: 2022-11-29 00:46+0000\n"
 "PO-Revision-Date: 2013-06-12 03:46+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Lokalize 1.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:296
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
 #, fuzzy, kde-format
 #| msgid "Activities..."
 msgid "Activities"
@@ -58,13 +58,13 @@ msgstr "Мынамен байланыстыру:"
 msgid "Unlink from:"
 msgstr "Мынадан байланысын үзу:"
 
-#: KioActivities.cpp:101 KioActivities.cpp:224
+#: KioActivities.cpp:102 KioActivities.cpp:223
 #, fuzzy, kde-format
 #| msgid "Activities..."
 msgid "Activity"
 msgstr "Белсенділіктер..."
 
-#: KioActivities.cpp:223
+#: KioActivities.cpp:222
 #, fuzzy, kde-format
 #| msgid "Link to the current activity"
 msgid "Current activity"

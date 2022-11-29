@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio5_afc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-28 00:48+0000\n"
-"PO-Revision-Date: 2022-11-27 03:12+0100\n"
+"PO-Revision-Date: 2022-11-28 05:15+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -57,10 +57,7 @@ msgstr ""
 "petición en el dispositivo y vuelva a intentarlo."
 
 #: afcutils.cpp:127
-#, fuzzy, kde-format
-#| msgid ""
-#| "Cannot acces the device. Make sure it is unlocked and allows this "
-#| "computer to access it."
+#, kde-format
 msgid ""
 "Cannot access the device. Make sure it is unlocked and allows this computer "
 "to access it."
