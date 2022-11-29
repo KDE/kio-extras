@@ -19,6 +19,7 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QMutexLocker>
+#include <QRegularExpression>
 #include <QScopeGuard>
 
 #include <KFileUtils>
@@ -273,13 +274,15 @@ bool AfcWorker::addDevice(const QString &id)
 
     Q_ASSERT(!device->name().isEmpty());
 
-    // HACK URL host cannot contain spaces or non-ascii, and has to be lowercase.
+    // HACK URL host cannot contain certain special or non-ascii characters, and has to be lowercase.
     auto normalizeHost = [](const QString &name) {
-        return QString::fromLatin1(name.toLatin1()).toLower().replace(QLatin1Char(' '), QLatin1Char('_'));
+        return QString::fromLatin1(name.toLatin1()).toLower()
+                .replace(QLatin1Char(' '), QLatin1Char('_'))
+                // Remove any special characters.
+                .remove(QRegularExpression(QStringLiteral(R"([^\w])")));
     };
 
     QString friendlyName = normalizeHost(device->name());
-    // FIXME FIXME FIXME (my KCoreAddons is too old for KFileUtils::makeSuggestedName :)
     while (m_friendlyNames.contains(friendlyName)) {
         friendlyName = normalizeHost(KFileUtils::makeSuggestedName(friendlyName));
     }
