@@ -71,6 +71,7 @@ WorkerResult AfcClient::init(lockdownd_client_t lockdowndClient, const QString &
 
         auto cleanupHouseArrest = qScopeGuard([this] {
             house_arrest_client_free(m_houseArrestClient);
+            m_houseArrestClient = nullptr;
         });
 
         const char houseArrestCommand[] = "VendDocuments";
