@@ -1,20 +1,20 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# g.sora <g.sora@tiscali.it>, 2010, 2011, 2012, 2013, 2014, 2020, 2021.
+# g.sora <g.sora@tiscali.it>, 2010, 2011, 2012, 2013, 2014, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-22 00:44+0000\n"
-"PO-Revision-Date: 2021-10-23 22:59+0200\n"
+"PO-Revision-Date: 2022-11-28 15:27+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.08.2\n"
+"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: kio_sftp.cpp:226
@@ -150,18 +150,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr ""
+msgstr "Modifica de identitate de Hospite"
 
 #: kio_sftp.cpp:757
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The host key for the server %1 has changed.\n"
-#| "This could either mean that DNS SPOOFING is happening or the IP address "
-#| "for the host and its host key have changed at the same time.\n"
-#| "The fingerprint for the key sent by the remote host is:\n"
-#| " %2\n"
-#| "Please contact your system administrator.\n"
-#| "%3"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
@@ -170,41 +162,36 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"Le clave de hospite pro le servitor %1 ha cambiate.\n"
-"Isto poterea significar que un DNS SPOOFING es occurrente o que le adresse "
-"de IP pro le hospite ha cambiate al mesme tempore.\n"
-"Le signatura (fingerprint) pro le clave inviate per le remote hospite es:\n"
-"%2\n"
-"Pro favor tu continge tu administrator de systema.\n"
-"%3"
+"<para>Le clave de hospite pro le servitor <emphasis>%1</emphasis> ha "
+"cambiate.</para><para>Isto poterea significar que un DNS SPOOFING es "
+"occurrente o que le adresse de IP pro le hospite e su clave de hospite ha "
+"cambiate al mesme tempore.</para><para>Le clave de signatura (fingerprint) "
+"%2  inviate per le hospite remote es:<bcode>%3</bcode> Tu es secur que tu "
+"vole continuar a connecter?</para>"
 
 #: kio_sftp.cpp:767
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "Fallimento a verificar hospite"
 
 #: kio_sftp.cpp:768
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The authenticity of host %1 cannot be established.\n"
-#| "The %2 key fingerprint is: %3\n"
-#| "Are you sure you want to continue connecting?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"Le authenticitate del hospite %1 non pote esser stabilite.\n"
-"Le signatura (fingerprint) de clave %2 es:%3\n"
-"Tu es secur que tu vole continuar a connecter te?"
+"<para>Le authenticitate del hospite <emphasis>%1</emphasis> non pote esser "
+"stabilite.</para><para>Le signatura (fingerprint) de clave %2 es:<bcode>%3</"
+"bcode>Tu es secur que tu vole continuar a connecter te?</para>"
 
 #: kio_sftp.cpp:777
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
-msgstr ""
+msgstr "Connecte malgrado isto"
 
 #: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
 #: kio_sftp.cpp:898 kio_sftp.cpp:908
