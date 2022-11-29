@@ -2,9 +2,12 @@
 Icon=phone-apple-iphone
 Name=Apple Devices
 Name[ca]=Dispositius d'Apple
+Name[ca@valencia]=Dispositius d'Apple
 Name[es]=Dispositivos Apple
 Name[eu]=Apple gailuak
+Name[ia]=Dispositivos de Apple
 Name[nl]=Apple-apparaten
+Name[pt]=Dispositivos Apple
 Name[tr]=Apple Aygıtları
 Name[uk]=Пристрої Apple
 Name[x-test]=xxApple Devicesxx
