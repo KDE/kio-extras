@@ -72,6 +72,8 @@ ecm_qt_declare_logging_category(kio_smb_static
     EXPORT KIO_EXTRAS
 )
 
+set_property(TARGET kio_smb_static PROPERTY POSITION_INDEPENDENT_CODE ON)
+
 include_directories(${SAMBA_INCLUDE_DIR})
 
 target_include_directories(kio_smb_static

@@ -36,6 +36,8 @@ ecm_qt_declare_logging_category(kio_man_debug
     EXPORT KIO_EXTRAS
 )
 
+set_property(TARGET kio_man_debug PROPERTY POSITION_INDEPENDENT_CODE ON)
+
 ########### next target ###############
 
 add_library(kio_man MODULE)
