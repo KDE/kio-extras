@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-28 00:48+0000\n"
-"PO-Revision-Date: 2022-11-27 08:56+0100\n"
+"PO-Revision-Date: 2022-11-29 05:23+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -57,16 +57,13 @@ msgstr ""
 "gailuan eta saiatu berriz."
 
 #: afcutils.cpp:127
-#, fuzzy, kde-format
-#| msgid ""
-#| "Cannot acces the device. Make sure it is unlocked and allows this "
-#| "computer to access it."
+#, kde-format
 msgid ""
 "Cannot access the device. Make sure it is unlocked and allows this computer "
 "to access it."
 msgstr ""
-"Ezin da gailura sartu. Ziurtatu giltzapetik askatuta dagoela eta ordenagailu "
-"horri sartzen uzten diola."
+"Ezin du gailua atzitu. Ziurtatu giltzapetik askatuta dagoela eta ordenagailu "
+"horri atzitzen uzten diola."
 
 #: afcutils.cpp:134
 #, kde-format
