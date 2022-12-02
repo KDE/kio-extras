@@ -1,6 +1,7 @@
 [Desktop Entry]
 Icon=phone-apple-iphone
 Name=Apple Devices
+Name[bg]=Устройства на Apple
 Name[ca]=Dispositius d'Apple
 Name[ca@valencia]=Dispositius d'Apple
 Name[es]=Dispositivos Apple
@@ -11,6 +12,7 @@ Name[ka]=Apple -ის მოწყობილობები
 Name[nl]=Apple-apparaten
 Name[pt]=Dispositivos Apple
 Name[sl]=Applove naprave
+Name[ta]=ஆப்பிள் சாதனங்கள்
 Name[tr]=Apple Aygıtları
 Name[uk]=Пристрої Apple
 Name[x-test]=xxApple Devicesxx
