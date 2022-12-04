@@ -2,7 +2,7 @@
 # Copyright (C) 2012 This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sveinki@nett.is>, 2012.
+# Sveinn í Felli <sv1@fellsnet.is>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_recentdocuments\n"
