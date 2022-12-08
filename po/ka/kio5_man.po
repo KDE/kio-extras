@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-10 00:45+0000\n"
-"PO-Revision-Date: 2022-11-27 22:37+0100\n"
+"PO-Revision-Date: 2022-12-07 07:14+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: kio_man.cpp:451
 #, kde-kuit-format
@@ -37,6 +37,8 @@ msgid ""
 "The specified man page references another page <filename>%1</filename>,<nl/"
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
+"მითითებული გვერდი მიუთითებს სხვა გვერდზე <filename>%1</filename>,<nl/> "
+"მაგრამ მიმართული გვერდი <filename>%2</filename> ვერ ვიპოვე."
 
 #: kio_man.cpp:586
 #, kde-kuit-format
@@ -72,6 +74,9 @@ msgid ""
 "mistakes or be obsolete. In case of doubt, you should have a look at the "
 "English version."
 msgstr ""
+"შენიშნვა: თუ სახელმძღვანელოს თქვენს ენაზე კითხულობთ, გაითვალისწინეთ, რომ მის "
+"შეიძლება შეცდომებს შეიცავდეს, ან არასწორი იყოს. თუ რამეში ეჭვი გეპარებათ, "
+"ინგლისურ ვერსიას გადახედეთ."
 
 #: kio_man.cpp:758
 #, kde-format
@@ -186,3 +191,6 @@ msgid ""
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
+"თქვენს კომპიუტერზე დაყენებული <command>%1</command> ვერ ვიპოვე. დააყენეთ, თუ "
+"საჭიროა და დარწმუნდით, რომ მისი პოვნა გარემოს ცვლადის, <envar>PATH</envar>-"
+"ის საშუალებით შესაძლებელია."
