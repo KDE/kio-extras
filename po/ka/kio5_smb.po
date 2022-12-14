@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-22 00:44+0000\n"
-"PO-Revision-Date: 2022-08-25 16:54+0200\n"
+"PO-Revision-Date: 2022-12-13 02:12+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
@@ -33,6 +33,17 @@ msgid ""
 "attempted using empty username and password. Depending on server "
 "configuration non-empty usernames may be required</para>"
 msgstr ""
+"<para>SMB გაზიარებულებზე ავთენტიკაციისთვის სხვადასხვა პარამეტრები არსებობს. "
+"</para><para><placeholder>username</placeholder>: სახლის ქსელში "
+"ავთენტიკაციისას მომხმარებელი და სერვერი საკმარისია</"
+"para><para><placeholder>username@domain.com</placeholder>: თანამედროვე "
+"კორპორატიული მომხმარებლის სახელები ელფოსტის მისამართებს წააგავს </"
+"para><para><placeholder>DOMAIN\\username</placeholder>: მოძველებული "
+"კორპორატიული ქსელები ან სამუშაო ჯგუფები ასევე შეიძლება NetBIOS-ის დომელის "
+"სახელსაც ითხოვდეს. (Windows 2000-მდე) </para><para><placeholder>anonymous</"
+"placeholder>: ანონიმურად შესვლა შეგიძლიათ ცარიელი მომხმარებლითა და პაროლით "
+"სცადოთ. სერვერის კონფიგურაციაზე დამოკიდებულებით, შეიძლება მომხმარებლის "
+"სახელის არა-სიცარიელეც იყოს მოთხოვნილი.</para>"
 
 #: kio_smb_auth.cpp:50
 #, kde-format
@@ -100,6 +111,8 @@ msgid ""
 "network is setup without any name conflicts between names used by Windows "
 "and by UNIX name resolution."
 msgstr ""
+"მითითებული სახელის უნიკალურ სერვერად ამოხსნა შეიძლებელია. დარწმუნდით, რომ "
+"ქსელში Windows-ის და UNIX-ის სახელებს ამოხსნის კონფლიქტი არ ხდება."
 
 #: kio_smb_browse.cpp:318
 #, kde-format
@@ -120,6 +133,13 @@ msgid ""
 "not post it if you are unsure about that - you can send it privately to the "
 "developers if they ask for it)"
 msgstr ""
+"დაფიქსირდა libsmbclient -ის შეცდომა, მაგრამ შეცდომის ტიპი მოწოდებული არ "
+"ყოფილა. ეს შეიძლება ქსელში მძიმე პრობლემების არსებობაზე მიუთითებდეს - ასევე "
+"შეიძლება ნიშნავდეს libsmbclient -ის პრობლემებსაც.\n"
+"თუ გნებავთ, დაგეხმაროთ, გადმოგვიგზავნეთ ბრაუზინგისთვის გამოყენებული "
+"ინტერფეისის tcpdump (გაითვალისწინეთ, რომ ის ასევე შეიძლება კონფიდენციალურ "
+"ინფორმაციასაც შეიცავდეს, ასე რომ, ღია წვდომით ნუ გამოდებთ. შეგიძლიათ "
+"გაუგზავნოთ პროგრამისტებს, თუ ისინი გთხოვენ ამას)"
 
 #: kio_smb_browse.cpp:334
 #, kde-format

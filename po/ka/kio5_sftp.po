@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-18 00:44+0000\n"
-"PO-Revision-Date: 2022-08-25 16:49+0200\n"
+"PO-Revision-Date: 2022-12-13 02:06+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: kio_sftp.cpp:226
 #, kde-format
@@ -139,6 +139,12 @@ msgid ""
 "Please contact your system administrator.\n"
 "%2"
 msgstr ""
+"%1 ჰოსტის გასაღები ამ სერვერისთვის ვერ ვიპოვე, მაგრამ არსებობს გასაღების "
+"სხვა ტიპი.\n"
+"შემტევმა შეიძლება შეცვალოს სერვერის ნაგულისხმები გასაღები, რათა დააბნიოს "
+"მომხმარებელი და დაარწმუნოს, რომ გასაღები არ არსებობს.\n"
+"დაუკავშირდით სისტემურ ადმინისტრატორს.\n"
+"%2"
 
 #: kio_sftp.cpp:756
 #, kde-format
@@ -156,6 +162,11 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
+"<para>ჰოსტის გასაღები სერვერისთვის <emphasis>%1</emphasis> შეიცვალა.</"
+"para><para>ეს ან DNS Spoofing ტიპის შეტევას ნიშნავს, ან ჰოსტის IP მისამართი "
+"და გასაღებ ერთდროულად შეიცცვალა.</para><para>%2 გასაღების ანაბეჭდი, რომელიც "
+"დაშორებულმა ჰოსტმა გამოგვიგზავნა:<bcode>%3</bcode>დარწმუნებული ბრძანდებით, "
+"რომ გნებავთ, გააგრძელოთ დაკავშირება?</para>"
 
 #: kio_sftp.cpp:767
 #, kde-format
@@ -171,6 +182,9 @@ msgid ""
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
+"<para>ჰოსტის <emphasis>%1</emphasis> ნამდვილობის დადასურება შეუძლებელია.</"
+"para><para>%2 გასაღების ანაბეჭდია:<bcode>%3</bcode>დარწმუნებული ბრძანდებით, "
+"რომ გნებავთ, გააგრძელოთ მიერთება?</para>"
 
 #: kio_sftp.cpp:777
 #, kde-format
