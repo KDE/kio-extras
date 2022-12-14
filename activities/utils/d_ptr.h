@@ -33,6 +33,10 @@ public:
     friend class Private; \
     const ::kamd::utils::d_ptr<Private> d
 
+#define D_PTRC(cls)       \
+    friend class cls;     \
+    const ::kamd::utils::d_ptr<cls> d
+
 } // namespace utils
 } // namespace kamd
 

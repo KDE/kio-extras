@@ -9,8 +9,10 @@
 #define KIO_ACTIVITIES_H
 
 #include <KIO/ForwardingWorkerBase>
-
+#include <KActivities/Consumer>
 #include <utils/d_ptr.h>
+
+class ActivitiesProtocolApi;
 
 class ActivitiesProtocol : public KIO::ForwardingWorkerBase {
     Q_OBJECT
@@ -27,7 +29,7 @@ protected:
     KIO::WorkerResult del(const QUrl& url, bool isfile) override;
 
 private:
-    D_PTR;
+    D_PTRC(ActivitiesProtocolApi);
 };
 
 #endif // KIO_ACTIVITIES_H

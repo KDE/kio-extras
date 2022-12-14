@@ -5,33 +5,35 @@
  *   SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
 
+#include "KioActivitiesApi.h"
 #include "KioActivities.h"
 
 #include <QCoreApplication>
 
-#include <QDebug>
-#include <QFile>
-#include <QDir>
-#include <QStandardPaths>
-#include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlField>
-#include <QSqlError>
-#include <QSqlDriver>
 #include <QByteArray>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QSqlDatabase>
+#include <QSqlDriver>
+#include <QSqlError>
+#include <QSqlField>
+#include <QSqlQuery>
+#include <QStandardPaths>
 
+#include <KIO/Job>
 #include <KLocalizedString>
 #include <KUser>
-#include <KIO/Job>
 
+#include <common/database/Database.h>
 #include <utils/d_ptr_implementation.h>
 #include <utils/qsqlquery_iterator.h>
-#include <common/database/Database.h>
 
-#include <KActivities/Info>
 #include <KActivities/Consumer>
+#include <KActivities/Info>
 
 #include <QProcess>
+#include "KioActivitiesApi.h"
 
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
@@ -39,117 +41,6 @@ class KIOPluginForMetaData : public QObject
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.kde.kio.slave.activities" FILE "activities.json")
 };
-
-class ActivitiesProtocol::Private {
-public:
-    Private()
-    {
-    }
-
-    enum PathType {
-        RootItem,
-        ActivityRootItem,
-        ActivityPathItem
-    };
-
-    PathType pathType(const QUrl &url, QString *activity = nullptr,
-                      QString *filePath = nullptr) const
-    {
-        const auto fullPath = url.adjusted(QUrl::StripTrailingSlash).path();
-        const auto path = QStringView(fullPath).mid(fullPath.startsWith(QLatin1Char('/')) ? 1 : 0);
-
-        if (activity && !path.isEmpty()) {
-           *activity = path.mid(0, path.indexOf(QStringLiteral("/"))).toString();
-        }
-
-        if (filePath) {
-            auto strippedPath = path.mid(path.indexOf(QStringLiteral("/")) + 1);
-            auto splitPosition = strippedPath.indexOf(QStringLiteral("/"));
-
-            if (splitPosition == -1) {
-                // if we have only one path segment
-                *filePath = demangledPath(strippedPath.toString());
-
-            } else {
-                // if we have sub-paths
-                auto head = strippedPath.mid(0, splitPosition);
-                auto tail = strippedPath.mid(splitPosition);
-
-                *filePath = demangledPath(head.toString()) + tail.toString();
-            }
-        }
-
-        return path.length() == 0 ? RootItem
-               : path.contains(QStringLiteral("/")) ? ActivityPathItem
-               : ActivityRootItem;
-    }
-
-    void syncActivities(KActivities::Consumer &activities)
-    {
-        // We need to use the consumer in a synchronized way
-        while (activities.serviceStatus() == KActivities::Consumer::Unknown) {
-            QCoreApplication::processEvents();
-        }
-    }
-
-    KIO::UDSEntry activityEntry(const QString &activity)
-    {
-        KIO::UDSEntry uds;
-        uds.reserve(8);
-        KActivities::Info activityInfo(activity);
-        uds.fastInsert(KIO::UDSEntry::UDS_NAME, activity);
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, activityInfo.name());
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Activity"));
-        uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, activityInfo.icon());
-        uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
-        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0500);
-        uds.fastInsert(KIO::UDSEntry::UDS_USER, KUser().loginName());
-        return uds;
-    }
-
-    KIO::UDSEntry filesystemEntry(const QString &path)
-    {
-        KIO::UDSEntry uds;
-        auto url = QUrl::fromLocalFile(path);
-
-        if (KIO::StatJob* job = KIO::stat(url, KIO::HideProgressInfo)) {
-            QScopedPointer<KIO::StatJob> sp(job);
-            job->setAutoDelete(false);
-            if (job->exec()) {
-                uds = job->statResult();
-            }
-        }
-
-        auto mangled = mangledPath(path);
-        // QProcess::execute("kdialog", { "--passivepopup", mangled });
-
-        uds.replace(KIO::UDSEntry::UDS_NAME, mangled);
-        uds.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, url.fileName());
-        uds.replace(KIO::UDSEntry::UDS_TARGET_URL, url.url());
-        uds.replace(KIO::UDSEntry::UDS_LOCAL_PATH, path);
-
-        return uds;
-    }
-
-    QString mangledPath(const QString &path) const
-    {
-        // return QString::fromUtf8(QUrl::toPercentEncoding(path));
-        return QString::fromLatin1(path.toUtf8().toBase64(
-                                       QByteArray::Base64UrlEncoding | QByteArray::OmitTrailingEquals));
-    }
-
-    QString demangledPath(const QString &mangled) const
-    {
-        // return QUrl::fromPercentEncoding(mangled.toUtf8());
-        return QString::fromUtf8(QByteArray::fromBase64(mangled.toLatin1(),
-                                 QByteArray::Base64UrlEncoding | QByteArray::OmitTrailingEquals));
-    }
-
-    // KActivities::Consumer activities;
-};
-
-
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
@@ -178,19 +69,17 @@ bool ActivitiesProtocol::rewriteUrl(const QUrl &url, QUrl &newUrl)
 {
     QString activity, path;
     switch (d->pathType(url, &activity, &path)) {
-    case Private::RootItem:
-    case Private::ActivityRootItem:
+    case ActivitiesProtocolApi::RootItem:
+    case ActivitiesProtocolApi::ActivityRootItem:
         if (activity == "current") {
             KActivities::Consumer activities;
             d->syncActivities(activities);
-            newUrl = QUrl(QStringLiteral("activities:/")
-                          + activities.currentActivity());
+            newUrl = QUrl(QStringLiteral("activities:/") + activities.currentActivity());
             return true;
         }
         return false;
 
-    case Private::ActivityPathItem:
-    {
+    case ActivitiesProtocolApi::ActivityPathItem: {
         // auto demangled = d->demangledPath(path);
         // QProcess::execute("kdialog",
         //                   { "--passivepopup",
@@ -212,8 +101,7 @@ KIO::WorkerResult ActivitiesProtocol::listDir(const QUrl &url)
 
     QString activity, path;
     switch (d->pathType(url, &activity, &path)) {
-    case Private::RootItem:
-    {
+    case ActivitiesProtocolApi::RootItem: {
         KIO::UDSEntryList udslist;
 
         KIO::UDSEntry uds;
@@ -229,7 +117,7 @@ KIO::WorkerResult ActivitiesProtocol::listDir(const QUrl &url)
         uds.fastInsert(KIO::UDSEntry::UDS_TARGET_URL, QStringLiteral("activities:/") + activities.currentActivity());
         udslist << uds;
 
-        for (const auto& activity: activities.activities()) {
+        for (const auto &activity : activities.activities()) {
             udslist << d->activityEntry(activity);
         }
 
@@ -237,13 +125,10 @@ KIO::WorkerResult ActivitiesProtocol::listDir(const QUrl &url)
         return KIO::WorkerResult::pass();
     }
 
-    case Private::ActivityRootItem:
-    {
+    case ActivitiesProtocolApi::ActivityRootItem: {
         KIO::UDSEntryList udslist;
 
-        auto database = Common::Database::instance(
-                            Common::Database::ResourcesDatabase,
-                            Common::Database::ReadOnly);
+        auto database = Common::Database::instance(Common::Database::ResourcesDatabase, Common::Database::ReadOnly);
 
         if (!database) {
             return KIO::WorkerResult::pass();
@@ -254,18 +139,18 @@ KIO::WorkerResult ActivitiesProtocol::listDir(const QUrl &url)
         }
 
         static const auto queryString = QStringLiteral(
-                                            "SELECT targettedResource "
-                                            "FROM ResourceLink "
-                                            "WHERE usedActivity = '%1' "
-                                            "AND initiatingAgent = \":global\" "
-                                        );
+            "SELECT targettedResource "
+            "FROM ResourceLink "
+            "WHERE usedActivity = '%1' "
+            "AND initiatingAgent = \":global\" ");
 
         auto query = database->execQuery(queryString.arg(activity));
 
-        for (const auto& result: query) {
+        for (const auto &result : query) {
             auto path = result[0].toString();
 
-            if (!QFile(path).exists()) continue;
+            if (!QFile(path).exists())
+                continue;
 
             KIO::UDSEntry uds;
 
@@ -276,7 +161,7 @@ KIO::WorkerResult ActivitiesProtocol::listDir(const QUrl &url)
         return KIO::WorkerResult::pass();
     }
 
-    case Private::ActivityPathItem:
+    case ActivitiesProtocolApi::ActivityPathItem:
         return ForwardingWorkerBase::listDir(QUrl::fromLocalFile(path));
     }
 
@@ -290,8 +175,7 @@ KIO::WorkerResult ActivitiesProtocol::stat(const QUrl& url)
     QString activity;
 
     switch (d->pathType(url, &activity)) {
-    case Private::RootItem:
-    {
+    case ActivitiesProtocolApi::RootItem: {
         QString dirName = i18n("Activities");
         KIO::UDSEntry uds;
         uds.reserve(6);
@@ -307,8 +191,7 @@ KIO::WorkerResult ActivitiesProtocol::stat(const QUrl& url)
         return KIO::WorkerResult::pass();
     }
 
-    case Private::ActivityRootItem:
-    {
+    case ActivitiesProtocolApi::ActivityRootItem: {
         KActivities::Consumer activities;
         d->syncActivities(activities);
 
@@ -321,7 +204,7 @@ KIO::WorkerResult ActivitiesProtocol::stat(const QUrl& url)
         return KIO::WorkerResult::pass();
     }
 
-    case Private::ActivityPathItem:
+    case ActivitiesProtocolApi::ActivityPathItem:
         return ForwardingWorkerBase::stat(url);
     }
 
@@ -332,12 +215,12 @@ KIO::WorkerResult ActivitiesProtocol::stat(const QUrl& url)
 KIO::WorkerResult ActivitiesProtocol::mimetype(const QUrl& url)
 {
     switch (d->pathType(url)) {
-    case Private::RootItem:
-    case Private::ActivityRootItem:
+    case ActivitiesProtocolApi::RootItem:
+    case ActivitiesProtocolApi::ActivityRootItem:
         mimeType(QStringLiteral("inode/directory"));
         return KIO::WorkerResult::pass();
 
-    case Private::ActivityPathItem:
+    case ActivitiesProtocolApi::ActivityPathItem:
         return ForwardingWorkerBase::mimetype(url);
     }
 
