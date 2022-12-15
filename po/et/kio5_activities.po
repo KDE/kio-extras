@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-29 00:46+0000\n"
+"POT-Creation-Date: 2022-12-15 00:47+0000\n"
 "PO-Revision-Date: 2016-07-27 19:59+0300\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@linux.ee>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:179
 #, kde-format
 msgid "Activities"
 msgstr "Tegevused"
@@ -56,15 +56,15 @@ msgstr "Linkimine:"
 msgid "Unlink from:"
 msgstr "Lingi eemaldamine:"
 
-#: KioActivities.cpp:102 KioActivities.cpp:223
-#, kde-format
-msgid "Activity"
-msgstr "Tegevus"
-
-#: KioActivities.cpp:222
+#: KioActivities.cpp:110
 #, kde-format
 msgid "Current activity"
 msgstr "Aktiivne tegevus"
+
+#: KioActivities.cpp:111 KioActivitiesApi.cpp:85
+#, kde-format
+msgid "Activity"
+msgstr "Tegevus"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

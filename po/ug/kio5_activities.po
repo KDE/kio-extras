@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kactivitymanagerd_fileitem_linking_plugin\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-29 00:46+0000\n"
+"POT-Creation-Date: 2022-12-15 00:47+0000\n"
 "PO-Revision-Date: 2013-09-08 07:05+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: \n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:179
 #, fuzzy, kde-format
 #| msgid "Activities..."
 msgid "Activities"
@@ -59,17 +59,17 @@ msgstr "ئۇلايدىغىنى:"
 msgid "Unlink from:"
 msgstr "ئۇلانمىنى ئۈزىدىغىنى:"
 
-#: KioActivities.cpp:102 KioActivities.cpp:223
-#, fuzzy, kde-format
-#| msgid "Activities..."
-msgid "Activity"
-msgstr "پائالىيەتلەر…"
-
-#: KioActivities.cpp:222
+#: KioActivities.cpp:110
 #, fuzzy, kde-format
 #| msgid "Link to the current activity"
 msgid "Current activity"
 msgstr "نۆۋەتتىكى پائالىيەتكە ئۇلا"
+
+#: KioActivities.cpp:111 KioActivitiesApi.cpp:85
+#, fuzzy, kde-format
+#| msgid "Activities..."
+msgid "Activity"
+msgstr "پائالىيەتلەر…"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

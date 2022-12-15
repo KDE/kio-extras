@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-29 00:46+0000\n"
+"POT-Creation-Date: 2022-12-15 00:47+0000\n"
 "PO-Revision-Date: 2016-03-09 10:20+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:179
 #, kde-format
 msgid "Activities"
 msgstr "Activiteiten"
@@ -56,15 +56,15 @@ msgstr "Aankoppelen aan:"
 msgid "Unlink from:"
 msgstr "Afkoppelen van:"
 
-#: KioActivities.cpp:102 KioActivities.cpp:223
-#, kde-format
-msgid "Activity"
-msgstr "Activiteit"
-
-#: KioActivities.cpp:222
+#: KioActivities.cpp:110
 #, kde-format
 msgid "Current activity"
 msgstr "Huidige activiteit"
+
+#: KioActivities.cpp:111 KioActivitiesApi.cpp:85
+#, kde-format
+msgid "Activity"
+msgstr "Activiteit"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

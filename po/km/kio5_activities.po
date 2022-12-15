@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kactivitymanagerd\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-29 00:46+0000\n"
+"POT-Creation-Date: 2022-12-15 00:47+0000\n"
 "PO-Revision-Date: 2012-06-07 16:10+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:179
 #, fuzzy, kde-format
 #| msgid "Unlock Activity"
 msgid "Activities"
@@ -61,17 +61,17 @@ msgstr ""
 msgid "Unlink from:"
 msgstr ""
 
-#: KioActivities.cpp:102 KioActivities.cpp:223
-#, fuzzy, kde-format
-#| msgid "Unlock Activity"
-msgid "Activity"
-msgstr "ដោះសោ​សកម្មភាព"
-
-#: KioActivities.cpp:222
+#: KioActivities.cpp:110
 #, fuzzy, kde-format
 #| msgid "Unprotect Activity"
 msgid "Current activity"
 msgstr "សកម្មភាព​ដែល​មិន​បានការពារ"
+
+#: KioActivities.cpp:111 KioActivitiesApi.cpp:85
+#, fuzzy, kde-format
+#| msgid "Unlock Activity"
+msgid "Activity"
+msgstr "ដោះសោ​សកម្មភាព"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

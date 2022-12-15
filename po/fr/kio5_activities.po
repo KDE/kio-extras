@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcm_activities\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-29 00:46+0000\n"
+"POT-Creation-Date: 2022-12-15 00:47+0000\n"
 "PO-Revision-Date: 2016-01-23 11:53+0100\n"
 "Last-Translator: Thomas Vergnaud <thomas.vergnaud@gmx.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:179
 #, kde-format
 msgid "Activities"
 msgstr "Activités"
@@ -63,15 +63,15 @@ msgstr "Lier à:"
 msgid "Unlink from:"
 msgstr "Se déconnecter de;"
 
-#: KioActivities.cpp:102 KioActivities.cpp:223
-#, kde-format
-msgid "Activity"
-msgstr "Activité"
-
-#: KioActivities.cpp:222
+#: KioActivities.cpp:110
 #, kde-format
 msgid "Current activity"
 msgstr "Activité en cours"
+
+#: KioActivities.cpp:111 KioActivitiesApi.cpp:85
+#, kde-format
+msgid "Activity"
+msgstr "Activité"
 
 #, fuzzy
 #~ msgctxt "NAME OF TRANSLATORS"

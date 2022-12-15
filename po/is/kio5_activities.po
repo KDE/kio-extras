@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-29 00:46+0000\n"
+"POT-Creation-Date: 2022-12-15 00:47+0000\n"
 "PO-Revision-Date: 2022-10-31 21:57+0000\n"
 "Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Lokalize 22.08.2\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:179
 #, kde-format
 msgid "Activities"
 msgstr "Athafnir"
@@ -57,15 +57,15 @@ msgstr "Tengja við:"
 msgid "Unlink from:"
 msgstr "Aftengja frá:"
 
-#: KioActivities.cpp:102 KioActivities.cpp:223
-#, kde-format
-msgid "Activity"
-msgstr "Athöfn"
-
-#: KioActivities.cpp:222
+#: KioActivities.cpp:110
 #, kde-format
 msgid "Current activity"
 msgstr "Núverandi athöfn"
+
+#: KioActivities.cpp:111 KioActivitiesApi.cpp:85
+#, kde-format
+msgid "Activity"
+msgstr "Athöfn"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

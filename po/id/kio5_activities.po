@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-29 00:46+0000\n"
+"POT-Creation-Date: 2022-12-15 00:47+0000\n"
 "PO-Revision-Date: 2022-03-29 07:39+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 21.12.3\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:179
 #, kde-format
 msgid "Activities"
 msgstr "Aktivitas"
@@ -56,12 +56,12 @@ msgstr "Tautkan ke:"
 msgid "Unlink from:"
 msgstr "Hapus tautan dari:"
 
-#: KioActivities.cpp:102 KioActivities.cpp:223
-#, kde-format
-msgid "Activity"
-msgstr "Aktivitas"
-
-#: KioActivities.cpp:222
+#: KioActivities.cpp:110
 #, kde-format
 msgid "Current activity"
 msgstr "Aktivitas saat ini"
+
+#: KioActivities.cpp:111 KioActivitiesApi.cpp:85
+#, kde-format
+msgid "Activity"
+msgstr "Aktivitas"

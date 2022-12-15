@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kde 49i410\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-29 00:46+0000\n"
+"POT-Creation-Date: 2022-12-15 00:47+0000\n"
 "PO-Revision-Date: 2013-10-18 20:18+0000\n"
 "Last-Translator: Samir Ribić <Unknown>\n"
 "Language-Team: Bosnian\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:295
+#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:179
 #, fuzzy, kde-format
 #| msgid "Activities..."
 msgid "Activities"
@@ -61,17 +61,17 @@ msgstr "Poveži na:"
 msgid "Unlink from:"
 msgstr "Odspoji od:"
 
-#: KioActivities.cpp:102 KioActivities.cpp:223
-#, fuzzy, kde-format
-#| msgid "Activities..."
-msgid "Activity"
-msgstr "Aktivnosti..."
-
-#: KioActivities.cpp:222
+#: KioActivities.cpp:110
 #, fuzzy, kde-format
 #| msgid "Link to the current activity"
 msgid "Current activity"
 msgstr "Poveći na trenutnu aktivnost"
+
+#: KioActivities.cpp:111 KioActivitiesApi.cpp:85
+#, fuzzy, kde-format
+#| msgid "Activities..."
+msgid "Activity"
+msgstr "Aktivnosti..."
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"
