@@ -6,13 +6,13 @@
 # Lisiane Sztoltz Teixeira <lisiane@conectiva.com.br>, 2004.
 # Marcus Gama <marcus_gama@uol.com.br>, 2004.
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018.
-# Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2009, 2012, 2018, 2021.
+# Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2009, 2012, 2018, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio5_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-22 00:44+0000\n"
-"PO-Revision-Date: 2021-10-26 11:56-0300\n"
+"PO-Revision-Date: 2022-12-20 11:04-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 20.04.2\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #: kio_sftp.cpp:226
 #, kde-format
@@ -212,7 +212,7 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
-msgstr ""
+msgstr "Conectar mesmo assim"
 
 #: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
 #: kio_sftp.cpp:898 kio_sftp.cpp:908
