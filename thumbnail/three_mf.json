@@ -1,0 +1,12 @@
+{
+    "CacheThumbnail": true,
+    "KPlugin": {
+        "MimeTypes": [
+            "application/3mf",
+            "model/3mf"
+        ],
+        "Name": "3mf Files",
+        "Name[en_GB]": "3mf Files",
+        "Name[fr]": "Fichiers 3mf"
+        }
+}

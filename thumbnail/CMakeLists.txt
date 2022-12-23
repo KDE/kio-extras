@@ -334,6 +334,18 @@ target_link_libraries(ebookthumbnail
 
 install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
+# ########### next target ###############
+
+add_library(three_mf MODULE three_mf.cpp)
+
+target_link_libraries(three_mf
+    Qt::Gui
+    KF5::KIOWidgets
+    KF5::Archive
+)
+
+install(TARGETS three_mf DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
+
 ########### install files ###############
 
 install(FILES thumbcreator.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPESDIR})
