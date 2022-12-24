@@ -8,9 +8,14 @@
 #include "afc_debug.h"
 
 #include "afcapp.h"
+#include "afcspringboard.h"
 #include "afcutils.h"
 
+#include <QDir>
+#include <QFileInfo>
+#include <QSaveFile>
 #include <QScopeGuard>
+#include <QStandardPaths>
 
 #include <libimobiledevice/installation_proxy.h>
 
@@ -93,6 +98,16 @@ QString AfcDevice::name() const
 QString AfcDevice::deviceClass() const
 {
     return m_deviceClass;
+}
+
+QString AfcDevice::cacheLocation() const
+{
+    return QStandardPaths::writableLocation(QStandardPaths::GenericCacheLocation) + QLatin1String("/kio_afc/") + m_id;
+}
+
+QString AfcDevice::appIconCachePath(const QString &bundleId) const
+{
+    return cacheLocation() + QLatin1String("/%1.png").arg(bundleId);
 }
 
 WorkerResult AfcDevice::handshake()
@@ -179,12 +194,16 @@ WorkerResult AfcDevice::apps(QVector<AfcApp> &apps)
         lockdownd_service_descriptor_free(service);
     });
 
-    instproxy_client_t instProxyClient;
+    instproxy_client_t instProxyClient = nullptr;
     auto instRet = instproxy_client_new(m_device, service, &instProxyClient);
     if (instRet != INSTPROXY_E_SUCCESS) {
-        qCWarning(KIO_AFC_LOG) << "Failed to create instproxy instance" << ret;
-        return WorkerResult::fail(ERR_OUT_OF_MEMORY);
+        qCWarning(KIO_AFC_LOG) << "Failed to create instproxy instance" << instRet;
+        return AfcUtils::Result::from(instRet);
     }
+
+    auto instProxyCleanup = qScopeGuard([instProxyClient] {
+        instproxy_client_free(instProxyClient);
+    });
 
     auto opts = instproxy_client_options_new();
     auto optsCleanup = qScopeGuard([opts] {
@@ -192,6 +211,7 @@ WorkerResult AfcDevice::apps(QVector<AfcApp> &apps)
     });
     instproxy_client_options_add(opts, "ApplicationType", "User", nullptr);
 
+    // Browse apps.
     plist_t appsPlist = nullptr;
     instRet = instproxy_browse(instProxyClient, opts, &appsPlist);
     if (instRet != INSTPROXY_E_SUCCESS) {
@@ -199,23 +219,126 @@ WorkerResult AfcDevice::apps(QVector<AfcApp> &apps)
         return AfcUtils::Result::from(instRet);
     }
 
-    auto instCleanup = qScopeGuard([appsPlist, instProxyClient] {
+    auto appsPlistCleanup = qScopeGuard([appsPlist] {
         plist_free(appsPlist);
-        instproxy_client_free(instProxyClient);
     });
 
+    m_apps.clear();
     apps.clear();
 
     const int count = plist_array_get_size(appsPlist);
+    m_apps.reserve(count);
+    apps.reserve(count);
     for (int i = 0; i < count; ++i) {
         plist_t appPlist = plist_array_get_item(appsPlist, i);
         AfcApp app(appPlist);
         if (!app.isValid()) {
             continue;
         }
-        apps.append(app);
+
+        const QString iconPath = appIconCachePath(app.bundleId());
+        if (QFileInfo::exists(iconPath)) {
+            app.m_iconPath = iconPath;
+        }
+
         m_apps.insert(app.bundleId(), app);
+        apps.append(app);
     }
 
     return WorkerResult::pass();
+}
+
+WorkerResult AfcDevice::fetchAppIcon(AfcApp &app)
+{
+    QVector<AfcApp> apps{app};
+
+    const auto result = fetchAppIcons(apps);
+    if (!result.success()) {
+        return result;
+    }
+
+    app.m_iconPath = apps.first().m_iconPath;
+    return result;
+}
+
+WorkerResult AfcDevice::fetchAppIcons(QVector<AfcApp> &apps)
+{
+    QStringList appIconsToFetch;
+
+    for (const AfcApp &app : std::as_const(apps)) {
+        if (app.iconPath().isEmpty()) {
+            appIconsToFetch.append(app.bundleId());
+        }
+    }
+
+    if (appIconsToFetch.isEmpty()) {
+        // Nothing to do.
+        return WorkerResult::pass();
+    }
+
+    qCDebug(KIO_AFC_LOG) << "About to fetch app icons for" << appIconsToFetch;
+
+    AfcSpringBoard springBoard(m_device, m_lockdowndClient.data());
+    if (!springBoard.result().success()) {
+        return springBoard.result();
+    }
+
+    QDir cacheDir(cacheLocation());
+    if (!cacheDir.mkpath(QStringLiteral("."))) { // Returns true if it already exists.
+        qCWarning(KIO_AFC_LOG) << "Failed to create icon cache directory" << cacheLocation();
+        return WorkerResult::fail(ERR_CANNOT_MKDIR, cacheLocation());
+    }
+
+    WorkerResult result = WorkerResult::pass();
+    for (const QString &bundleId : appIconsToFetch) {
+        QByteArray data;
+
+        const auto fetchIconResult = springBoard.fetchAppIconData(bundleId, data);
+        if (!fetchIconResult.success()) {
+            result = fetchIconResult;
+            continue;
+        }
+
+        if (data.isEmpty()) {
+            result = WorkerResult::fail(ERR_CANNOT_READ); // NO_CONTENT is "success, but no content"
+            continue;
+        }
+
+        // Basic sanity check whether we got a PNG file.
+        if (!data.startsWith(QByteArrayLiteral("\x89PNG\x0d\x0a\x1a\x0a"))) {
+            qCWarning(KIO_AFC_LOG) << "Got bogus app icon data for" << bundleId << data.left(20) << "...";
+            result = WorkerResult::fail(ERR_CANNOT_READ);
+            continue;
+        }
+
+        const QString path = appIconCachePath(bundleId);
+
+        QSaveFile iconFile(path);
+        if (!iconFile.open(QIODevice::WriteOnly)) {
+            qCWarning(KIO_AFC_LOG) << "Failed to open icon cache file for writing" << path << iconFile.errorString();
+            result = WorkerResult::fail(ERR_CANNOT_OPEN_FOR_WRITING, path);
+            continue;
+        }
+
+        iconFile.write(data);
+
+        if (!iconFile.commit()) {
+            qCWarning(KIO_AFC_LOG) << "Failed to save icon cache of size" << data.count() << "to" << path;
+            result = WorkerResult::fail(ERR_CANNOT_WRITE, path);
+            continue;
+        }
+
+        // Update internal cache.
+        auto &app = m_apps[bundleId];
+        app.m_iconPath = path;
+
+        // Update app list argument.
+        auto it = std::find_if(apps.begin(), apps.end(), [&bundleId](const AfcApp &app) {
+            return app.bundleId() == bundleId;
+        });
+        Q_ASSERT(it != apps.end());
+        it->m_iconPath = path;
+    }
+
+    return result;
 }

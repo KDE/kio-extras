@@ -373,10 +373,17 @@ Result AfcWorker::listDir(const QUrl &url)
             return result;
         }
 
+        // Cannot browse apps without sharing enabled, don't list them.
+        apps.erase(std::remove_if(apps.begin(),
+                                  apps.end(),
+                                  [](const AfcApp &app) {
+                                      return !app.sharingEnabled();
+                                  }),
+                   apps.end());
+
+        device->fetchAppIcons(apps);
+
         for (const auto &app : apps) {
-            if (!app.sharingEnabled()) {
-                continue;
-            }
             listEntry(app.entry());
         }
 
@@ -481,6 +488,8 @@ Result AfcWorker::stat(const QUrl &url)
         if (!app.isValid()) {
             return Result::fail(KIO::ERR_DOES_NOT_EXIST, afcUrl.appId());
         }
+
+        device->fetchAppIcon(app);
 
         UDSEntry appEntry = app.entry();
         statEntry(appEntry);

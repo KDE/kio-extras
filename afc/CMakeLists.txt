@@ -16,6 +16,7 @@ target_sources(kio_afc PRIVATE
     afcapp.cpp
     afcdiskusage.cpp
     afcfilereader.cpp
+    afcspringboard.cpp
 )
 
 ecm_qt_declare_logging_category(kio_afc

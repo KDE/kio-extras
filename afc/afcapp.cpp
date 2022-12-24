@@ -73,11 +73,19 @@ bool AfcApp::sharingEnabled() const
     return m_sharingEnabled;
 }
 
+QString AfcApp::iconPath() const
+{
+    return m_iconPath;
+}
+
 UDSEntry AfcApp::entry(const QString &name) const
 {
     UDSEntry entry;
     entry.fastInsert(UDSEntry::UDS_NAME, !name.isEmpty() ? name : m_bundleId);
     entry.fastInsert(UDSEntry::UDS_DISPLAY_NAME, m_displayName);
     entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    if (!m_iconPath.isEmpty()) {
+        entry.fastInsert(UDSEntry::UDS_ICON_NAME, m_iconPath);
+    }
     return entry;
 }

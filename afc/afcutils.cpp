@@ -134,3 +134,16 @@ WorkerResult AfcUtils::Result::from(const lockdownd_error_t lockdownError, const
         return WorkerResult::fail(ERR_INTERNAL, i18n("Unhandled lockdownd code '%1'", lockdownError));
     }
 }
+
+WorkerResult AfcUtils::Result::from(const sbservices_error_t springBoardError, const QString &errorText)
+{
+    switch (springBoardError) {
+    case SBSERVICES_E_SUCCESS:
+        return WorkerResult::pass();
+    case SBSERVICES_E_CONN_FAILED:
+        return WorkerResult::fail(ERR_CANNOT_CONNECT, errorText);
+    default:
+        qCWarning(KIO_AFC_LOG) << "Unhandled sbservices_error_t" << springBoardError;
+        return WorkerResult::fail(ERR_INTERNAL, i18n("Unhandled sbservices code '%1'", springBoardError));
+    }
+}

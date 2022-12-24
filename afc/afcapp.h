@@ -23,12 +23,16 @@ public:
     QString bundleId() const;
     QString displayName() const;
     bool sharingEnabled() const;
-    // TODO add a way to fetch the app icon, cache it, and use it as folder icon overlay
+
+    QString iconPath() const;
 
     KIO::UDSEntry entry(const QString &name = QString()) const;
 
 private:
+    friend class AfcDevice;
+
     QString m_bundleId;
     QString m_displayName;
+    QString m_iconPath;
     bool m_sharingEnabled = false;
 };

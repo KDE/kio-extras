@@ -48,13 +48,20 @@ public:
     QString name() const;
     QString deviceClass() const;
 
+    QString cacheLocation() const;
+
     KIO::WorkerResult client(const QString &appId, AfcClient::Ptr &client);
 
     AfcApp app(const QString &bundleId);
     KIO::WorkerResult apps(QVector<AfcApp> &apps);
 
+    KIO::WorkerResult fetchAppIcon(AfcApp &app);
+    // Fetches app icons for the list of apps provided.
+    KIO::WorkerResult fetchAppIcons(QVector<AfcApp> &apps);
+
 private:
     KIO::WorkerResult handshake();
+    QString appIconCachePath(const QString &bundleId) const;
 
     idevice_t m_device = nullptr;
 
