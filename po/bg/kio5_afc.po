@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-28 00:48+0000\n"
+"POT-Creation-Date: 2022-12-27 00:48+0000\n"
 "PO-Revision-Date: 2022-12-08 22:52+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -70,6 +70,12 @@ msgstr ""
 msgid "Unhandled lockdownd code '%1'"
 msgstr "Необработен lockdownd код '%1'"
 
+#: afcutils.cpp:147
+#, fuzzy, kde-format
+#| msgid "Unhandled housearrest error code '%1'"
+msgid "Unhandled sbservices code '%1'"
+msgstr "Необработен код за грешка при housearrest '%1'"
+
 #: kio_afc.cpp:174
 #, kde-format
 msgid "Apple Devices"
@@ -81,28 +87,28 @@ msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Приложения"
 
-#: kio_afc.cpp:473
+#: kio_afc.cpp:480
 #, kde-format
 msgctxt "Placeholder is device name"
 msgid "%1 (Apps)"
 msgstr "%1 (Приложения)"
 
-#: kio_afc.cpp:679
+#: kio_afc.cpp:688
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Не може да се чете, без първо да се отвори файл"
 
-#: kio_afc.cpp:699
+#: kio_afc.cpp:708
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Не може да се търси, без първо да се отвори файл"
 
-#: kio_afc.cpp:727
+#: kio_afc.cpp:736
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Не може да се записва, без първо да се отвори файл"
 
-#: kio_afc.cpp:879
+#: kio_afc.cpp:888
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Не може да се преименува между устройствата."
