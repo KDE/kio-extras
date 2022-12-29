@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-27 00:48+0000\n"
-"PO-Revision-Date: 2022-11-28 09:01+0100\n"
+"PO-Revision-Date: 2022-12-27 08:03+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -71,10 +71,9 @@ msgid "Unhandled lockdownd code '%1'"
 msgstr "Codi «lockdownd» no gestionat «%1»"
 
 #: afcutils.cpp:147
-#, fuzzy, kde-format
-#| msgid "Unhandled housearrest error code '%1'"
+#, kde-format
 msgid "Unhandled sbservices code '%1'"
-msgstr "Codi d'error «horsearrest» no gestionat «%1»"
+msgstr "Codi «sbservices» no gestionat «%1»"
 
 #: kio_afc.cpp:174
 #, kde-format
