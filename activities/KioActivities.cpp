@@ -228,11 +228,4 @@ KIO::WorkerResult ActivitiesProtocol::mimetype(const QUrl& url)
     return KIO::WorkerResult::fail();
 }
 
-KIO::WorkerResult ActivitiesProtocol::del(const QUrl& url, bool isfile)
-{
-    Q_UNUSED(url);
-    Q_UNUSED(isfile);
-    return KIO::WorkerResult::pass();
-}
-
 #include "KioActivities.moc"

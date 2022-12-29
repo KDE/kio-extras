@@ -3,7 +3,7 @@
         "activities": {
             "Class": ":local",
             "Icon": "folder-activities",
-            "deleting": true,
+            "deleting": false,
             "input": "none",
             "linking": false,
             "listing": [

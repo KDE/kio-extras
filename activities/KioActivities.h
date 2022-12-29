@@ -26,7 +26,6 @@ protected:
     KIO::WorkerResult listDir(const QUrl &url) override;
     KIO::WorkerResult stat(const QUrl& url) override;
     KIO::WorkerResult mimetype(const QUrl& url) override;
-    KIO::WorkerResult del(const QUrl& url, bool isfile) override;
 
 private:
     D_PTRC(ActivitiesProtocolApi);
