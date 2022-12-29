@@ -24,7 +24,7 @@
             "protocol": "activities",
             "reading": true,
             "source": false,
-            "writing": true
+            "writing": false
         }
     }
 }
