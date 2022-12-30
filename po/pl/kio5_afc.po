@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-27 00:48+0000\n"
-"PO-Revision-Date: 2022-12-03 09:46+0100\n"
+"PO-Revision-Date: 2022-12-29 10:56+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #: afcutils.cpp:60
 #, kde-format
@@ -69,10 +69,9 @@ msgid "Unhandled lockdownd code '%1'"
 msgstr "Nieobsługiwany kod lockdownd '%1'"
 
 #: afcutils.cpp:147
-#, fuzzy, kde-format
-#| msgid "Unhandled housearrest error code '%1'"
+#, kde-format
 msgid "Unhandled sbservices code '%1'"
-msgstr "Nieobsługiwany kod błędu housearrest '%1'"
+msgstr "Nieobsługiwany kod sbservices '%1'"
 
 #: kio_afc.cpp:174
 #, kde-format
