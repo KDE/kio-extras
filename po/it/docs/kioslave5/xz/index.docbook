@@ -53,7 +53,7 @@
 > da &konqueror;, questo kioslave è usato per decomprimerlo e mostrarlo come se fosse un file normale (non compresso).</para>
 
 <para
->Gli sviluppatori che volessero usare il filtro xz possono trovare la documentazione sull'uso dei kioslave presso <ulink url="http://techbase.kde.org"
+>Se sei uno sviluppatore e desideri utilizzare il filtro xz, puoi trovare la documentazione sull'uso dei kioslave su <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 ></para>
 
