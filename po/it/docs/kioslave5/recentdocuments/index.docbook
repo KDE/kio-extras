@@ -38,10 +38,10 @@
 </articleinfo>
 
 <para
->Un kioslave per mostrare i documenti o &URL; recenti nella finestra di dialogo dei file, nel gestore dei file, in &krunner; e nel menu delle applicazioni.</para>
+>Un worker KIO per mostrare i documenti o &URL; recenti nella finestra dei file, nel gestore dei file, in &krunner; e nel menu delle applicazioni.</para>
 
 <para
->Puoi usare il kioslave in questo modo:</para>
+>Puoi usare il worker KIO in questo modo:</para>
 
 <para
 >Digita <userinput
@@ -62,7 +62,7 @@
 >Ricerca di Plasma</guilabel
 > abilita l'estensione di ricerca <guilabel
 >Documenti recenti</guilabel
-> per usare questo kioslave in &krunner;.</para>
+> per usare questo worker KIO in &krunner;.</para>
 
 <para
 >Nel <guilabel

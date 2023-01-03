@@ -47,7 +47,7 @@
 > in esecuzione, ma il resto del protocollo usa strumenti standard della riga di comando, come descritto di seguito.</para>
 
 <para
->Usa l'ioslave fish in questo modo: <userinput
+>Puoi utilizzare il worker KIO fish in questo modo: <userinput
 >fish://<replaceable
 >nomehost</replaceable
 ></userinput

@@ -1,16 +1,14 @@
-# translation of kio_smb.po to Belarusian
-#
 # Darafei Praliaskouski <symbol@akeeri.tk>, 2006.
 # Pavel Piatruk <berserker@neolocation.com>, 2007.
 # Darafei Praliaskouski <komzpa@licei2.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: kio_smb\n"
+"Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-22 00:44+0000\n"
-"PO-Revision-Date: 2007-10-28 14:26+0200\n"
+"PO-Revision-Date: 2022-12-30 10:31\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
-"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language-Team: Belarusian\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,6 +17,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
+"X-Crowdin-Project: 86ff119b1606fcaa910d6b44fc14b611\n"
+"X-Crowdin-Project-ID: 127\n"
+"X-Crowdin-Language: be\n"
+"X-Crowdin-File: /main/be/kio-extras/kio5_smb.po\n"
+"X-Crowdin-File-ID: 8013\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
@@ -35,11 +38,22 @@ msgid ""
 "attempted using empty username and password. Depending on server "
 "configuration non-empty usernames may be required</para>"
 msgstr ""
+"<para>Існуюць розныя варыянты аўтэнтыфікацыі SMB.</"
+"para><para><placeholder>імя карыстальніка</placeholder>: пры аўтэнтыфікацыі "
+"ў хатняй сетцы дастаткова імя карыстальніка на серверы</"
+"para><para><placeholder>username@domain.com</placeholder>: Сучасныя "
+"карпаратыўныя імёны для ўваходу робяцца як адрасы электроннай пошты</"
+"para><para><placeholder>ДАМЕН\\імя карыстальніка</placeholder>: для старых "
+"карпаратыўных сетак або працоўных групаў вам могуць спатрэбіцца прэфікса "
+"даменнай назвы NetBIOS (да Windows 2000)</para><para><placeholder>ананімны "
+"ўваход</placeholder>: пры ананімным ўваходзе можна ўваходзіць з пустым імем "
+"карыстальніка і паролем; у залежнасці ад канфігурацыі сервера могуць "
+"спатрэбіцца непустыя імёны карыстальнікаў</para>"
 
 #: kio_smb_auth.cpp:50
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
-msgstr "<qt>Увядзіце спраўджвальныя звесткі для <b>%1</b></qt>"
+msgstr "<qt>Увядзіце звесткі аўтэнтыфікацыі для <b>%1</b></qt>"
 
 #: kio_smb_auth.cpp:53
 #, kde-format
@@ -48,9 +62,9 @@ msgid ""
 "Server = %1\n"
 "Share = %2"
 msgstr ""
-"Калі ласка, увядзіце спраўджвальныя звесткі для:\n"
+"Калі ласка, увядзіце звесткі аўтэнтыфікацыі для:\n"
 "Сервер = %1\n"
-"Рэсурс = %2"
+"Агульны рэсурс = %2"
 
 #: kio_smb_browse.cpp:58
 #, kde-format
@@ -59,7 +73,7 @@ msgid ""
 "Unknown file type, neither directory or file."
 msgstr ""
 "%1:\n"
-"Невядомы тып дырэкторыі або файла."
+"Невядомы тып каталога або файла."
 
 #: kio_smb_browse.cpp:272
 #, kde-format
@@ -67,34 +81,33 @@ msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
 "an enabled firewall."
 msgstr ""
-"Немагчыма знайсці якія-небудзь працоўныя групы ў вашым лакальным сеціве. "
-"Гэтаму можа быць прычынай задзейнічаны файрвол."
+"Не ўдалося знайсці працоўныя групы ў лакальнай сетцы. На гэта можа ўплываць "
+"ўключаны файрвол."
 
 #: kio_smb_browse.cpp:277
 #, kde-format
 msgid "No media in device for %1"
-msgstr "Няма носьбіта ў прыладзе для %1"
+msgstr "Няма носьбіта ў прыладзе %1"
 
 #: kio_smb_browse.cpp:283
 #, kde-format
 msgid "Could not connect to host for %1"
-msgstr "Немагчыма злучыцца з вузлом для %1"
+msgstr "Не ўдалося злучыцца з хостам %1"
 
 #: kio_smb_browse.cpp:295
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
-msgstr "Памылка падчас злучэння з серверам, прычына %1"
+msgstr "Падчас злучэння з серверам адбылася памылка %1"
 
 #: kio_smb_browse.cpp:301
 #, kde-format
 msgid "Share could not be found on given server"
-msgstr "Рэсурс не знойдзены на дадзеным серверы"
+msgstr "Не ўдалося знайсці рэсурс на дадзеным серверы"
 
 #: kio_smb_browse.cpp:303
-#, fuzzy, kde-format
-#| msgid "BAD File descriptor"
+#, kde-format
 msgid "Bad file descriptor"
-msgstr "Кепскі файлавы дэскрыптар"
+msgstr "Дрэнны дэскрыптар файла"
 
 #: kio_smb_browse.cpp:311
 #, kde-format
@@ -103,9 +116,9 @@ msgid ""
 "network is setup without any name conflicts between names used by Windows "
 "and by UNIX name resolution."
 msgstr ""
-"Сервер не можа быць вызначаны паводле дадзенага імя. Упэўніцеся, што вашае "
-"сеціва наладжана без канфліктаў імёнаў паміж імёнамі, ужытымі ў сістэмах "
-"пераўтварэння імёнаў Windows і UNIX."
+"Сервер не можа быць вызначаны паводле дадзенай назвы. Пераканайцеся, што "
+"ваша сетка наладжаная без канфліктаў назваў, якія выкарыстоўваюцца ў Windows "
+"і UNIX."
 
 #: kio_smb_browse.cpp:318
 #, kde-format
@@ -113,7 +126,7 @@ msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
 "failure). %1 is an ip address or hostname"
 msgid "%1: Host unreachable"
-msgstr ""
+msgstr "%1: хост недасягальны"
 
 #: kio_smb_browse.cpp:321
 #, kde-format
@@ -126,30 +139,30 @@ msgid ""
 "not post it if you are unsure about that - you can send it privately to the "
 "developers if they ask for it)"
 msgstr ""
-"libsmbclient паведаміла пра памылку, але не вызначыла, што за праблема "
-"ўзнікла. Гэта сведчыць пра праблемы у вашым сеціве - аднак таксама можа "
-"сведчыць пра праблемы з libsmbclient.\n"
-"Калі хочаце дапамагчы нам, калі ласка, прадастаўце лог tcpdump сеціўнага "
-"інтэрфейса падчас спробы прагляду (будзьце ўважлівы, ён можа змяшчаць "
-"сакрэтныя звесткі, таму не дасылайце яго, калі не ўпэўнены ў гэтым - вы "
-"можаце даслаць лог распрацоўшчыкам, калі яны запытаюць яго)."
+"libsmbclient была адпраўленая справаздача пра памылку, але не было "
+"вызначана, што за праблема ўзнікла. Гэта можа сведчыць пра праблемы з "
+"серверам у вашай сетцы - аднак таксама можа сведчыць пра праблемы з "
+"libsmbclient.\n"
+"Калі хочаце дапамагчы нам, калі ласка, падайце журнал tcpdump са звесткамі "
+"пра сеткавы інтэрфейс падчас спробы агляду (будзьце ўважлівыя, ён можа "
+"змяшчаць асабістыя звесткі, таму не адпраўляйце яго, калі не ўпэўненыя ў "
+"гэтым - вы можаце адправіць журанал распрацоўнікам, калі яны запытаюць яго)"
 
 #: kio_smb_browse.cpp:334
-#, fuzzy, kde-format
-#| msgid "Unknown error condition in stat: %1"
+#, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
-msgstr "Невядомая памылка падчас stat: %1"
+msgstr "Невядомая памылка: [%1] %2"
 
 #: kio_smb_browse.cpp:352
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
-msgstr ""
+msgstr "Падчас спробы атрымаць доступ адбылася памылка %1<nl/>%2"
 
 #: kio_smb_file.cpp:35
 #, kde-format
 msgid "libsmbclient failed to create context"
-msgstr "libsmbclient не стварыў кантэкст"
+msgstr "libsmbclient не ўдалося стварыць кантэкст"
 
 #: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
 #, kde-format
@@ -158,7 +171,7 @@ msgid ""
 "Make sure that the samba package is installed properly on your system."
 msgstr ""
 "\n"
-"Упэўніцеся, што пакет samba ўсталяваны правільна ў вашай сістэме."
+"Пераканайцеся, што пакунак samba правільна ўсталяваны ў вашай сістэме."
 
 #: kio_smb_mount.cpp:171
 #, kde-format
@@ -166,8 +179,7 @@ msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
 "%4"
 msgstr ""
-"Размацаванне рэсурсу \"%1\" з вузла \"%2\" карыстальнікам \"%3\" не "
-"атрымалася.\n"
+"Карыстальніку \"%3\" не ўдалося прымантаваць рэсурс \"%1\" з хоста \"%2\".\n"
 "%4"
 
 #: kio_smb_mount.cpp:196
@@ -176,7 +188,7 @@ msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
 "%2"
 msgstr ""
-"Размацаванне пункту мацавання \"%1\" не атрымалася.\n"
+"Не ўдалося адмантаваць пункт мантавання \"%1\".\n"
 "%2"
 
 #: wsdiscoverer.cpp:173
@@ -184,7 +196,7 @@ msgstr ""
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
-msgstr ""
+msgstr "Невядомая прылада @ <resource>%1</resource>"
 
 #~ msgid "libsmbclient failed to initialize context"
 #~ msgstr "libsmbclient не ініцыялізаваў кантэкст"

@@ -37,17 +37,17 @@
 > è un programma di compressione</para>
 
 <para
->Il kioslave gzip non è usabile direttamente, essendo pensato per essere usato come filtro. Ad esempio, il kioslave tar può far filtrare un file attraverso il kioslave gzip per mostrare il contenuto di un file <literal role="extension"
+>Il worker KIO gzip non è usabile direttamente, perché è fatto per essere usato come filtro. Per esempio, il worker KIO tar può far filtrare un file attraverso il worker KIO gzip per poter mostrare il contenuto di un archivio<literal role="extension"
 >tar.gz</literal
-> direttamente all'interno di una finestra di &konqueror;.</para>
+> direttamente in una finestra di &konqueror;.</para>
 
 <para
->Facendo clic su un file compresso con estensione <literal role="extension"
+>Se fai clic su un file compresso con un'estensione <literal role="extension"
 >gz</literal
-> da &konqueror;, questo KIOSlave è usato per decomprimerlo e mostrarlo come se fosse un file normale (non compresso).</para>
+> in &konqueror;, questo worker KIO viene utilizzato per decomprimerlo e visualizzarlo come un normale file (non compresso).</para>
 
 <para
->Gli sviluppatori che volessero usare il filtro gzip possono trovare la documentazione sull'uso dei kioslave presso <ulink url="http://techbase.kde.org"
+>Se sei uno sviluppatore e desideri utilizzare il filtro gzip, puoi trovare la documentazione sull'uso dei worker KIO su <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 ></para>
 

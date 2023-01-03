@@ -35,10 +35,10 @@
 >Applications 16.12</releaseinfo>
 </articleinfo>
 <para
->Il kioslave thumbnail è usato da &kde; per la gestione trasparente alla rete delle miniature ed alla loro generazione persistente.</para>
+>Il worker KIO thumbnail è usato da &kde; per la gestione trasparente alla rete delle miniature ed alla loro generazione persistente.</para>
 
 <para
->Il kioslave thumbnail usa delle estensioni per generare le miniature. Puoi abilitare la visualizzazione di queste miniature dalla voce di menu <menuchoice
+>Il worker KIO thumbnail usa delle estensioni per generare le miniature. Puoi abilitare la visualizzazione di queste miniature dalla voce di menu <menuchoice
 ><guimenu
 >Visualizza</guimenu
 > <guisubmenu
@@ -47,7 +47,7 @@
 > disponibile in &dolphin; o nella modalità di gestione file di &konqueror;.</para>
 
 <para
->Il kioslave thumbnail non è direttamente utile per l'utente, ma gli sviluppatori possono usarlo all'interno delle applicazioni per creare le anteprime.</para>
+>Il worker KIO thumbnail non è direttamente utile per l'utente, ma gli sviluppatori possono usarlo all'interno delle applicazioni per creare le anteprime.</para>
 
 <para
 >Vedi la documentazione nei sorgenti per maggiori informazioni. La puoi trovare nella cartella dei sorgenti <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"

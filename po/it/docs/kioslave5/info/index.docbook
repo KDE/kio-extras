@@ -47,7 +47,7 @@
 >.</para>
 
 <para
->Il kioslave info permette di leggere le pagine info installate sul sistema dall'interno di &konqueror;. Si può fare molto facilmente:</para>
+>Il worker KIO info ti consente di leggere le pagine info installate sul sistema dall'interno di &konqueror;. Si può utilizzare molto facilmente:</para>
 
 <screen
 ><userinput
@@ -67,6 +67,6 @@
 >, ma non è usato molto al di fuori dei programmi &GNU;.</para>
 
 <para
->La documentazione Info installata può essere letta semplicemente dall'applicazione &khelpcenter;, o, in alternativa, puoi usare il kioslave info direttamente da &konqueror; o dalla minicli.</para>
+>La documentazione info installata può essere letta semplicemente dall'applicazione &khelpcenter;, o, in alternativa, puoi usare il worker KIO info direttamente da &konqueror; o dalla minicli.</para>
 
 </article>

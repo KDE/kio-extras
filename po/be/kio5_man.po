@@ -1,18 +1,14 @@
-# translation of kio_man.po to Belarusian
-# Belarusian (classic spelling) translation of kio_man.pot
-# Copyright (C) 2002 KDE Team.
-#
 # Eugene Zelenko <greendeath@mail.ru>, 2002.
 # Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2006.
 # Darafei Praliaskouski <komzpa@licei2.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: kio_man\n"
+"Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-10 00:45+0000\n"
-"PO-Revision-Date: 2007-08-22 09:25+0000\n"
+"PO-Revision-Date: 2022-12-28 16:16\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
-"Language-Team: Belarusian <i18n@mova.org>\n"
+"Language-Team: Belarusian\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,16 +17,14 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
+"X-Crowdin-Project: 86ff119b1606fcaa910d6b44fc14b611\n"
+"X-Crowdin-Project-ID: 127\n"
+"X-Crowdin-Language: be\n"
+"X-Crowdin-File: /main/be/kio-extras/kio5_man.po\n"
+"X-Crowdin-File-ID: 8007\n"
 
 #: kio_man.cpp:451
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "No man page matching to %1 found.<br /><br />Check that you have not "
-#| "mistyped the name of the page that you want.<br />Be careful that you "
-#| "must take care about upper case and lower case characters!<br />If "
-#| "everything looks correct, then perhaps you need to set a better search "
-#| "path for man pages, be it by the environment variable MANPATH or a "
-#| "matching file in the directory /etc ."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
@@ -40,10 +34,12 @@ msgid ""
 "envar> environment variable or a configuration file in the <filename>/etc</"
 "filename> directory."
 msgstr ""
-"Старонка man для %1 не знойдзена.<br><br>Праверце, ці правільна вы напісалі "
-"назву старонкі man<br />Праверце, ці не памыліліся вы ў рэгістры назвы!"
-"<br>Калі ўсё вызначана правільна, вы павінны змяніць шлях пошуку старонак "
-"man, ці праз пераменную MANPATH, ці праз адпаведны файл у тэчцы /etc ."
+"Не ўдалося знайсці ніводнай старонкі man, якая адпавядае <resource>%1</"
+"resource>.<nl/><nl/>Праверце, ці не памыліліся вы ў назве старонкі, і "
+"звярніце ўвагу, што падчас пошуку старонак даведкі трэба зважаць на рэгістр."
+"<nl/><nl/>Калі назва правільная, магчыма, вам спатрэбіцца пашырыць шлях "
+"пошуку для старонак даведкі з дапамогай зменнай <envar>MANPATH</envar> або "
+"файла канфігурацыі ў <filename>/etc</filename>."
 
 #: kio_man.cpp:569
 #, kde-kuit-format
@@ -52,35 +48,36 @@ msgid ""
 "The specified man page references another page <filename>%1</filename>,<nl/"
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
+"Пазначаная старонка man спасылаецца на іншую старонку <filename>%1</"
+"filename>,<nl/>але старонку <filename>%2</filename>, на якую яна "
+"спасылаецца, не ўдалося знайсці."
 
 #: kio_man.cpp:586
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
-msgstr ""
+msgstr "Не ўдалося прачытаць старонку man <filename>%1</filename>."
 
 #: kio_man.cpp:595
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
-msgstr ""
+msgstr "Не ўдалося пераўтварыць старонку man <filename>%1</filename>."
 
 #: kio_man.cpp:660
-#, fuzzy, kde-format
-#| msgid "<body><h1>KDE Man Viewer Error</h1>"
+#, kde-format
 msgid "Manual Page Viewer Error"
-msgstr "<body><h1>Памылка праглядальніка man для KDE</h1>"
+msgstr "Не ўдалося праглядзець старонку дапаможніка"
 
 #: kio_man.cpp:674
-#, fuzzy, kde-format
-#| msgid "There is more than one matching man page."
+#, kde-format
 msgid "There is more than one matching man page:"
-msgstr "Знойдзена некалькі падыходзячых старонак man."
+msgstr "Існуе больш за адну старонку man:"
 
 #: kio_man.cpp:674
 #, kde-format
 msgid "Multiple Manual Pages"
-msgstr ""
+msgstr "Некалькі старонак дапаможніка"
 
 #: kio_man.cpp:686
 #, kde-format
@@ -89,30 +86,29 @@ msgid ""
 "mistakes or be obsolete. In case of doubt, you should have a look at the "
 "English version."
 msgstr ""
-"Заўвага: калі вы чытаеце лакалізаваную старонку man, тэкст можа змяшчаць "
-"памылкі ці быць надта старым. Калі вы не ўпэўнены, паглядзіце ў ангельскую "
-"версію старонкі man."
+"Заўвага: калі вы чытаеце старонку man на сваёй мове, то звярніце ўвагу, што "
+"тэкст можа змяшчаць памылкі ці быць састарэлым. Калі ў вас няма ўпэўненасці, "
+"што звесткі актуальныя, паглядзіце англійскую версію старонкі man."
 
 #: kio_man.cpp:758
 #, kde-format
 msgid "Header Files"
-msgstr ""
+msgstr "Загаловачныя файлы"
 
 #: kio_man.cpp:759
 #, kde-format
 msgid "Header Files (POSIX)"
-msgstr ""
+msgstr "Загаловачныя файлы (POSIX)"
 
 #: kio_man.cpp:760
 #, kde-format
 msgid "User Commands"
-msgstr "Каманды карыстальніка"
+msgstr "Загады карыстальніка"
 
 #: kio_man.cpp:761
-#, fuzzy, kde-format
-#| msgid "User Commands"
+#, kde-format
 msgid "User Commands (POSIX)"
-msgstr "Каманды карыстальніка"
+msgstr "Загады карыстальнікаў (POSIX)"
 
 #: kio_man.cpp:762
 #, kde-format
@@ -167,56 +163,49 @@ msgstr "Ядро"
 #: kio_man.cpp:773
 #, kde-format
 msgid "Local Documentation"
-msgstr "Мясцовая дакументацыя"
+msgstr "Лакальная дакументацыя"
 
 #: kio_man.cpp:775
 #, kde-format
 msgid "New"
-msgstr "Новы"
+msgstr "Стварыць"
 
 #: kio_man.cpp:805
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Main Manual Page Index"
-msgstr "Індэкс дапаможнікаў UNIX"
+msgstr "Індэкс старонак галоўнага дапаможніка"
 
 #: kio_man.cpp:830
-#, fuzzy, kde-format
-#| msgid "Section "
+#, kde-format
 msgid "Section %1"
-msgstr "Раздзел "
+msgstr "Раздзел %1"
 
 #: kio_man.cpp:1115
-#, fuzzy, kde-format
-#| msgid "Index for Section %1: %2"
+#, kde-format
 msgid "Index for section %1: %2"
-msgstr "Індэкс для раздзела %1: %2"
+msgstr "Індэкс раздзела %1: %2"
 
 #: kio_man.cpp:1115
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Manual Page Index"
-msgstr "Індэкс дапаможнікаў UNIX"
+msgstr "Індэкс старонкі дапаможніка"
 
 #: kio_man.cpp:1127
 #, kde-format
 msgid "Generating Index"
-msgstr "Стварэнне індэксу"
+msgstr "Стварэнне індэкса"
 
 #: kio_man.cpp:1405
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "Could not find the sgml2roff program on your system. Please install it, "
-#| "if necessary, and extend the search path by adjusting the environment "
-#| "variable PATH before starting KDE."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Could not find the <command>%1</command> program on your system. Please "
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
-"Немагчыма знайсці праграму sgml2roff. Калі ласка, усталюйце яе і пашырце "
-"шлях пошуку праз пераменную PATH перад запускам KDE."
+"Не ўдалося знайсці праграму <command>%1</command> у вашай сістэме. Усталюйце "
+"яе, калі неабходна, і пераканайцеся, што яе можна знайсці з дапамогай "
+"зменнай асяроддзя <envar>PATH</envar>."
 
 #~ msgid "Open of %1 failed."
 #~ msgstr "Немагчыма адкрыць %1."
