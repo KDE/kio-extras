@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "Monitors \"Recent Documents\" folder for changes",
         "Description[ar]": "يراقب تغييرات مجلّد \"المستندات الحديثة\"",
+        "Description[be]": "Назіранне за каталогам \"Нядаўнія дакументы\"",
         "Description[bg]": "Следене за промени в скорошните документи",
         "Description[ca@valencia]": "Controla els canvis en la carpeta «Documents recents»",
         "Description[ca]": "Controla els canvis a la carpeta «Documents recents»",
@@ -31,6 +32,7 @@
         "Description[zh_CN]": "监视“最近文档”文件夹的更改",
         "Name": "Recent Document Watcher",
         "Name[ar]": "مراقب المستندات الحديثة",
+        "Name[be]": "Назіральнік за нядаўнімі дакументамі",
         "Name[bg]": "Следене на скорошни документи",
         "Name[ca@valencia]": "Vigilant de documents recents",
         "Name[ca]": "Vigilant de documents recents",

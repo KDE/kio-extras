@@ -2,6 +2,7 @@
     "KPlugin": {
         "Description": "TODO",
         "Description[ar]": "مَهمّة",
+        "Description[be]": "Спіс задач",
         "Description[bg]": "ЗАДАЧИ",
         "Description[ca@valencia]": "Per fer",
         "Description[ca]": "Per fer",
@@ -42,6 +43,7 @@
         "Description[zh_TW]": "待做",
         "Name": "KDE MTP daemon",
         "Name[ar]": "مراقب MTP لكدي",
+        "Name[be]": "Дэман KDE MTP",
         "Name[bg]": "MTP демон на KDE",
         "Name[ca@valencia]": "Dimoni MTP de KDE",
         "Name[ca]": "Dimoni MTP del KDE",

@@ -8,6 +8,7 @@ Exec=kioclient5 exec afc:udi=%i/
 Icon=system-file-manager
 Name=Browse Files with File Manager
 Name[ar]=تصفح الملفات بمدير الملفّات
+Name[be]=Паглядзець у кіраўніку файлаў
 Name[bg]=Преглеждане на файлове с файлов мениджър
 Name[ca]=Navega pels fitxers amb el gestor de fitxers
 Name[ca@valencia]=Navega pels fitxers amb el gestor de fitxers
