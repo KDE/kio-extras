@@ -41,13 +41,13 @@ msgstr "SSH ověření"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "Ano"
 
 #: fish.cpp:670 fish.cpp:690
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: fish.cpp:771
 #, kde-format
