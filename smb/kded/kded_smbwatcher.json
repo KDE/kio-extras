@@ -5,6 +5,7 @@
         "Description[bg]": "Наблюдение за промени на директории от smb:/  протокол",
         "Description[ca@valencia]": "Controla els canvis en els directoris en el protocol «smb:/»",
         "Description[ca]": "Controla els canvis als directoris en el protocol «smb:/»",
+        "Description[cs]": "Monitoruje změny v adresáři protokolu smb:/",
         "Description[de]": "Überwacht Ordner für das Protokoll „smb:/“ auf Änderungen",
         "Description[en_GB]": "Monitors directories on the smb:/ protocol for changes",
         "Description[es]": "Monitoriza los cambios en directorios sobre el protocolo «smb:/»",
