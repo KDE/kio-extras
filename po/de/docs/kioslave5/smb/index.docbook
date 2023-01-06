@@ -2,105 +2,57 @@
 <!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
 "dtd/kdedbx45.dtd" [
 <!ENTITY % addindex "IGNORE">
-<!ENTITY % German "INCLUDE"
-> <!-- change language only here -->
+<!ENTITY % English "INCLUDE" > <!-- change language only here -->
 ]>
 
 <article lang="&language;" id="smb">
-<title
->SMB</title>
+<title>SMB</title>
 <articleinfo>
 <authorgroup>
-<author
->&Alexander.Neundorf; &Alexander.Neundorf.mail;</author>
-<othercredit role="translator"
-><firstname
->Marco</firstname
-><surname
->Wegner</surname
-><affiliation
-><address
-><email
->mail@marcowegner.de</email
-></address
-></affiliation
-><contrib
->Übersetzer</contrib
-></othercredit
-> 
+<author>&Alexander.Neundorf; &Alexander.Neundorf.mail;</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
-<date
->2016-12-11</date>
-<releaseinfo
->Anwendungen 16.12</releaseinfo>
+<date>2016-12-11</date>
+<releaseinfo>Applications 16.12</releaseinfo>
 </articleinfo>
-<para
->Das smb-Modul ermöglicht es Ihnen, auf Freigaben in &Windows;- (oder Samba-) Netzwerken zuzugreifen. </para>
+<para>
+The smb worker enables you to browse the shares of a &Windows; (or Samba)
+network.
+</para>
 
-<para
->Um die Arbeitsgruppen anzuzeigen, geben Sie <userinput
-><command
->smb:/</command
-></userinput
-> ein. </para>
-<para
-><userinput
-><command
->smb://</command
-><replaceable
->arbeitsgruppe</replaceable
-></userinput
-> listet alle Rechner in der Arbeitsgruppe auf. </para>
-<para
->Um die Freigaben eines Rechners sehen zu können, geben Sie entweder <userinput
-><command
->smb://</command
-><replaceable
->rechnername</replaceable
-></userinput
-> oder <userinput
-><command
->smb://</command
-><replaceable
->arbeitsgruppe</replaceable
->/<replaceable
->rechnername</replaceable
-></userinput
-> ein. </para>
-<para
->Um direkt auf die Freigaben eines Rechners zuzugreifen, geben Sie <userinput
-><command
->smb://</command
-><replaceable
->rechnername/freigabe</replaceable
-></userinput
-> oder <userinput
-><command
->smb://</command
-><replaceable
->arbeitsgruppe</replaceable
->/<replaceable
->rechnername</replaceable
->/<replaceable
->freigabe</replaceable
-></userinput
-> ein. </para>
+<para>
+To see the workgroups, enter
+<userinput><command>smb:/</command></userinput>.
+</para>
+<para>
+<userinput><command>smb://</command><replaceable>a_workgroup</replaceable></userinput>
+will list the hosts in this workgroup.
+</para>
+<para>
+To see the shares of a host, enter
+<userinput><command>smb://</command><replaceable>the_host</replaceable></userinput>
+or
+<userinput><command>smb:/</command><replaceable>a_workgroup</replaceable>/<replaceable>the_host</replaceable></userinput>.
+</para>
+<para>
+To access a share directly enter
+<userinput><command>smb://</command><replaceable>the_host/the_share</replaceable></userinput>
+or
+<userinput><command>smb:/</command><replaceable>a_workgroup</replaceable>/<replaceable>the_host</replaceable>/<replaceable>the_share</replaceable></userinput>
+</para>
 
-<para
->Das Ein-/Ausgabemodul für smb benötigt die Bibliothek libsmbclient. </para>
+<para>
+The smb worker requires that you have libsmbclient to use this worker.
+</para>
 
-<para
->Sie können Ihren Benutzernamen und das Passwort in den &systemsettings; in der Kategorie <guilabel
->Netzwerk</guilabel
-> auf der Seite <menuchoice
-><guisubmenu
->Verbindungen</guisubmenu
-><guimenuitem
->Windows-Freigaben</guimenuitem
-></menuchoice
-> festlegen. Dies ist besonders nützlich, falls Sie Mitglied einer &Windows; <acronym
->NT</acronym
->-Domäne sind. Dort können Sie auch den Namen der Arbeitsgruppe festlegen, dies ist jedoch in den meisten Fällen nicht notwendig. Das Ein-/Ausgabemodul fragt Sie nach Benutzernamen und Passwort, falls keine Voreinstellungen festgelegt sind. </para>
+<para>
+You can set your default user name and password in the &systemsettings;
+category <guilabel>Network</guilabel> in
+<menuchoice><guisubmenu>Connectivity</guisubmenu><guimenuitem>
+Windows Shares</guimenuitem></menuchoice>.  This is especially useful if you are a
+member of a &Windows; <acronym>NT</acronym> domain. There you can also set your
+workgroup name, but in most cases this is not required.  The worker will ask for your username and password if a default is not set.
+</para>
 
 </article>
 

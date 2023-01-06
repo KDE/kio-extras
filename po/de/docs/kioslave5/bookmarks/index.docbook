@@ -2,58 +2,28 @@
 <!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
 "dtd/kdedbx45.dtd" [
 <!ENTITY % addindex "IGNORE">
-<!ENTITY % German "INCLUDE"
-> <!-- change language only here -->
+<!ENTITY % English "INCLUDE" > <!-- change language only here -->
 ]>
 	
 <article lang="&language;" id="bookmarks">
-<title
->Lesezeichen</title>
+<title>bookmarks</title>
 <articleinfo>
 <authorgroup>
-<author
-><personname
-><firstname
->Xavier</firstname
-><surname
->Vello</surname
-></personname
-> <email
->xavier.vello@gmail.com</email
-> </author>
-<othercredit role="translator"
-><firstname
->Burkhard</firstname
-><surname
->Lück</surname
-><affiliation
-><address
-><email
->lueck@hube-lueck.de</email
-></address
-></affiliation
-><contrib
->Übersetzung</contrib
-></othercredit
-> 
+<author>
+<personname><firstname>Xavier</firstname><surname>Vello</surname></personname>
+<email>xavier.vello@gmail.com</email>
+</author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
-<date
->2008-08-31</date>
-<releaseinfo
->0.2</releaseinfo>
+<date>2008-08-31</date>
+<releaseinfo>0.2</releaseinfo>
 
 </articleinfo>
 
-<para
->Dieses Ein-/Ausgabemodul zeigt Ihre Lesezeichen als &HTML;-Seite an. Geben Sie <userinput
->bookmarks:/</userinput
-> in die Adressleiste von &konqueror; ein, um die Seite mit den Lesezeichen zu öffnen.</para>
+<para>This <acronym>KIO</acronym> displays your bookmarks as a nice and functional &HTML; page. You access it typing <userinput>bookmarks:/</userinput> in the &konqueror; location bar.</para>
 
-<para
->Der Inhalt und das Layout dieser Seite kann angepasst werden. Den Einrichtungsdialog öffnen Sie mit der Eingabe von <userinput
->bookmarks:/config</userinput
-> in &konqueror;.</para>
+<para>The content and layout of the page is configurable. Just point &konqueror; to <userinput>bookmarks:/config</userinput> to launch the configuration dialog.</para>
 
 </article>
 
