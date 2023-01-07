@@ -35,7 +35,8 @@
         "Name[uk]": "Зображення JPEG",
         "Name[vi]": "Ảnh JPEG",
         "Name[x-test]": "xxJPEG Imagesxx",
-        "Name[zh_CN]": "JPEG 图像"
+        "Name[zh_CN]": "JPEG 图像",
+        "Name[zh_TW]": "JPEG 影像"
     },
     "ThumbnailerVersion": "2"
 }

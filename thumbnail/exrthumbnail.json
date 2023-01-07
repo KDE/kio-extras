@@ -36,6 +36,7 @@
         "Name[uk]": "Зображення EXR",
         "Name[vi]": "Ảnh EXR",
         "Name[x-test]": "xxEXR Imagesxx",
-        "Name[zh_CN]": "EXR 图像"
+        "Name[zh_CN]": "EXR 图像",
+        "Name[zh_TW]": "EXR 影像"
     }
 }
