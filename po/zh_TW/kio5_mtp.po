@@ -4,26 +4,24 @@
 # Franklin, 2015.
 # Jeff Huang <s8321414@gmail.com>, 2016.
 # pan93412 <pan93412@gmail.com>, 2018, 2019.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-08-07 00:45+0000\n"
-"PO-Revision-Date: 2019-02-16 21:24+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-01-06 23:09+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 18.12.2\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #: kio_mtp.cpp:220
-#, fuzzy, kde-format
-#| msgid ""
-#| "No storage media found. Make sure your device is unlocked and has MTP "
-#| "enabled in its USB connection settings."
+#, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
 "accessible yet"
@@ -32,9 +30,10 @@ msgid ""
 "popup on its screen. If that does not work, make sure MTP is enabled in its "
 "USB connection settings."
 msgstr ""
-"找不到儲存媒體。請確定您的裝置已解鎖，並已在其 USB 連線設定中啟用 MTP。"
+"無法存取裝置。請確定它已解鎖，並在螢幕上的彈出式視窗點選「允許」。如果這還是"
+"沒有用，請確定它的 USB 連線設定中已啟用 MTP。"
 
 #: kio_mtp.cpp:490
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
-msgstr "無法複製或移動檔案至裝置本身"
+msgstr "無法在裝置自身上複製或移動檔案"

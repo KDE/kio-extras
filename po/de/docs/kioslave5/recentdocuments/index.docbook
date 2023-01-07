@@ -1,35 +1,74 @@
 <?xml version="1.0" ?>
 <!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
 <!ENTITY % addindex "IGNORE">
-<!ENTITY % English "INCLUDE" >
+<!ENTITY % German "INCLUDE">
 ]>
 
 <article lang="&language;" id="recentdocument">
-<title>Recent Documents</title>
+<title
+>Zuletzt geöffnete Dokumente</title>
 
 <articleinfo>
 
 <authorgroup>
-  <author>&Burkhard.Lueck;&Burkhard.Lueck.mail;
-  </author>
-<!-- TRANS:ROLES_OF_TRANSLATORS -->
+  <author
+>&Burkhard.Lueck;&Burkhard.Lueck.mail; </author>
+<othercredit role="translator"
+><firstname
+>Burkhard</firstname
+><surname
+>Lück</surname
+><affiliation
+><address
+><email
+>lueck@hube-lueck.de</email
+></address
+></affiliation
+><contrib
+>Übersetzung</contrib
+></othercredit
+> 
 </authorgroup>
 
-<date>2016-12-01</date>
-<releaseinfo>Applications 16.12</releaseinfo>
+<date
+>2016-12-01</date>
+<releaseinfo
+>Anwendungen 16.12</releaseinfo>
 
 </articleinfo>
 
-<para>A KIO worker to display recent documents or &URL;s in the file dialog, in the file manager, in &krunner; and in the Application Menu.</para>
+<para
+>Ein Ein-/Ausgabemodul zur Anzeige zuletzt geöffneter Dokumente oder &URL;s im Dateidialog, in der Dateiverwaltung, in &krunner; und im Anwendungsmenü.</para>
 
-<para>You can use the KIO worker like this:</para>
+<para
+>Nutzen Sie das Ein-/Ausgabemodul folgendermaßen:</para>
 
-<para>Type <userinput>recentdocuments:/</userinput> in the location bar of &dolphin;, &konqueror; and the file dialog to list the recently opened documents or &URL;s.</para>
+<para
+>Geben Sie <userinput
+>recentdocuments:/</userinput
+> in der Adressleiste von &dolphin;, &konqueror; oder dem Dateidialog ein, um die zuletzt geöffneten Dokumente oder &URL;s anzuzeigen.</para>
 
-<para>You can add an entry to the Places sidebar: right click on the sidebar, choose <guimenuitem>Add Entry</guimenuitem>, enter <userinput>recentdocuments:/</userinput> in the <guilabel>Location</guilabel> field and save it. It should be available now in all file dialogs unless you check to show the entry only in this application.</para>
+<para
+>Sie können einen Eintrag zur Seitenleiste Orte hinzufügen: Klicken Sie mit der rechten Maustaste auf die Seitenleiste, wählen Sie <guimenuitem
+>Eintrag hinzufügen</guimenuitem
+> und geben Sie <userinput
+>recentdocuments:/</userinput
+> im Feld <guilabel
+>Ort</guilabel
+> ein und speichern Sie diese Einstellung. Dann sind die zuletzt geöffneten Dokumente in allen Dateidialogen verfügbar, wenn Sie diese Einstellung nicht auf diese Anwendung beschränkt haben.</para>
 
-<para>In the &systemsettings; module <guilabel>Plasma Search</guilabel> enable the search plugin <guilabel>Recent Documents</guilabel> to use this KIO worker in &krunner;.</para>
+<para
+>Im &systemsettings;-Modul <guilabel
+>Plasma-Suche</guilabel
+> aktivieren Sie das Suchmodul <guilabel
+>Zuletzt geöffnete Dokumente</guilabel
+>, um diese Ein-/Ausgabemodul in &krunner; zu benutzen.</para>
 
-<para>In the <guilabel>Application Menu</guilabel> add a menu item with recent documents at the top of the menu by enabling <guilabel>Show recent documents</guilabel> on the settings page.</para>
+<para
+>Fügen Sie im <guilabel
+>Anwendungsmenü</guilabel
+> ganz oben einen Eintrag für zuletzt geöffnete Dokumente hinzu, indem Sie <guilabel
+>Zuletzt geöffnete Dokumente anzeigen</guilabel
+> auf der Einstellungsseite aktivieren.</para>
 
 </article>

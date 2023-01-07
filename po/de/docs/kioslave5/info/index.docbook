@@ -2,42 +2,75 @@
 <!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
 "dtd/kdedbx45.dtd" [
 <!ENTITY % addindex "IGNORE">
-<!ENTITY % English "INCLUDE" > <!-- change language only here -->
+<!ENTITY % German "INCLUDE"
+> <!-- change language only here -->
 ]>
 	
 <article lang="&language;" id="info">
-<title>Info</title>
+<title
+>Info</title>
 <articleinfo>
 <authorgroup>
-<author>&Lauri.Watts; &Lauri.Watts.mail;</author>
-<author>
-  <firstname>Nicolas</firstname>
-  <surname>Goutte</surname>
-  <email>goutte@kde.org</email>
-</author>
-<!-- TRANS:ROLES_OF_TRANSLATORS -->
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Marco</firstname
+><surname
+>Wegner</surname
+><affiliation
+><address
+><email
+>mail@marcowegner.de</email
+></address
+></affiliation
+><contrib
+>Übersetzer</contrib
+></othercredit
+> 
 </authorgroup>
 </articleinfo>
 
-<para>Info is a type of documentation.  The documents are in a file
-format called texinfo, and can be read on the command line with the
-<ulink url="info:/info"><command>info</command></ulink> program.</para>
+<para
+>Info ist eine Dokumentationsart. Die Dokumente haben ein Format namens texinfo und können in der Befehlszeile mit dem Programm <ulink url="info:/info"
+><command
+>info</command
+></ulink
+> gelesen werden. </para>
 
-<para>The Info KIO worker allows you to read the info pages installed on
-your system, from within &konqueror;.  You can use it very easily:</para>
+<para
+>Das info-Modul ermöglicht Ihnen, die auf Ihrem System installierten Info-Dokumente direkt im &konqueror; zu lesen. Sie können es ganz einfach nutzen:</para>
 
-<screen><userinput><command>info:</command><replaceable>gcc</replaceable></userinput></screen>
+<screen
+><userinput
+><command
+>info:</command
+><replaceable
+>gcc</replaceable
+></userinput
+></screen>
 
-<para>This would show you the top level node of the Info documentation
-for the &gcc; compiler.</para>
+<para
+>Dies würde Ihnen die Hauptseite der Info-Dokumentation zum Compiler <command
+>&gcc;</command
+> anzeigen.</para>
 
-<para>Info is a &GNU; replacement for
-<command>man</command>, but is not widely used outside of
-&GNU; software.</para>
+<para
+>Info ist ein <acronym
+>GNU</acronym
+>-Ersatz für <command
+>man</command
+>, wird aber außerhalb der GNU-Software seltener genutzt.</para>
 
-<para>You can quite easily browse the info documentation you have
-installed from within the &khelpcenter; application, or you can use the
-info KIO worker directly from within both &konqueror; and the
-mini-cli.</para>
+<para
+>Sie können die installierten Info-Dokumente ganz einfach im &khelpcenter; anschauen, oder Sie nutzen das Info-Modul direkt im &konqueror; oder der Mini-Eingabezeile.</para>
 
 </article>

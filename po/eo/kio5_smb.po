@@ -1,15 +1,17 @@
 # translation of kio_smb.po to Esperanto
 # Copyright (C) 2004 Free Software Foundation, Inc.
-#
+# This file is distributed under the same license as the kio-extras package.
 # Matthias Peick <matthias@peick.de>, 2004.
 # Michael Moroni <michael.moroni@mailoo.org>, 2012.
+# Oliver Kellogg <okellogg@users.sourceforge.net>, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-22 00:44+0000\n"
-"PO-Revision-Date: 2012-06-05 14:57+0200\n"
-"Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
+"PO-Revision-Date: 2023-01-07 01:00+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-it@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -89,10 +91,9 @@ msgid "Share could not be found on given server"
 msgstr "Kunhavigo ne troveblas en donita servilo"
 
 #: kio_smb_browse.cpp:303
-#, fuzzy, kde-format
-#| msgid "BAD File descriptor"
+#, kde-format
 msgid "Bad file descriptor"
-msgstr "MALBONA priskribanto de dosiero"
+msgstr "Malbona priskribanto de dosiero"
 
 #: kio_smb_browse.cpp:311
 #, kde-format
@@ -133,16 +134,15 @@ msgstr ""
 "demadas pri tio)"
 
 #: kio_smb_browse.cpp:334
-#, fuzzy, kde-format
-#| msgid "Unknown error condition in stat: %1"
+#, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
-msgstr "Nekonata erarkondiĉo en stat: %1"
+msgstr "Nekonata erarkondiĉo: [%1] %2"
 
 #: kio_smb_browse.cpp:352
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
-msgstr ""
+msgstr "Eraro okazis provante aliri al %1<nl/>%2"
 
 #: kio_smb_file.cpp:35
 #, kde-format
@@ -181,13 +181,4 @@ msgstr ""
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
-msgstr ""
-
-#~ msgid "libsmbclient failed to initialize context"
-#~ msgstr "libsmbclient fiaskis dum pravalorizado de kunteksto"
-
-#~ msgid "File does not exist: %1"
-#~ msgstr "Dosiero ne ekzistas: %1"
-
-#~ msgid "libsmbclient failed to initialize"
-#~ msgstr "libsmbclient ne povis pravaloriziĝi"
+msgstr "Nekonata aparato @ <resource>%1</resource>"

@@ -2,24 +2,46 @@
 <!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
 "dtd/kdedbx45.dtd" [
 <!ENTITY % addindex "IGNORE">
-<!ENTITY % English "INCLUDE" > <!-- change language only here -->
+<!ENTITY % German "INCLUDE"
+> <!-- change language only here -->
 ]>
 	
 <article lang="&language;" id="tar">
-<title>tar</title>
+<title
+>tar</title>
 <articleinfo>
 <authorgroup>
-<author>&Ferdinand.Gassauer; &Ferdinand.Gassauer.mail;</author>
-<!-- TRANS:ROLES_OF_TRANSLATORS -->
+<author
+>&Ferdinand.Gassauer; &Ferdinand.Gassauer.mail;</author>
+<othercredit role="translator"
+><firstname
+>Marco</firstname
+><surname
+>Wegner</surname
+><affiliation
+><address
+><email
+>mail@marcowegner.de</email
+></address
+></affiliation
+><contrib
+>Übersetzer</contrib
+></othercredit
+> 
 </authorgroup>
 </articleinfo>
-<para>
-An archiving program designed to store and extract files from an archive 
-file known as a tarfile. A tarfile may be made on a tape drive, however, it 
-is also common to write a tarfile to a normal file.
-</para>
+<para
+>Ein Archivierungsprogramm, das entworfen wurde, um Dateien in einer <quote
+>tarfile</quote
+> genannten Archivdatei speichern und von dort auch wieder entpacken zu können. Ein <quote
+>tarfile</quote
+> kann sich auf &eg; einem Bandlaufwerk befinden, es ist aber sehr gebräuchlich, solch ein <quote
+>tarfile</quote
+> auch als normale Datei auf der Festplatte zu speichern. </para>
 
-<para> See the manual: <ulink url="man:/tar">tar</ulink>.
-</para>
+<para
+>Schauen Sie auch in das Handbuch: <ulink url="man:/tar"
+>tar</ulink
+>. </para>
 
 </article>
