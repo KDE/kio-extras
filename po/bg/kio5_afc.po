@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the kio-extras package.
 #
 # Automatically generated, 2022.
-# Mincho Kondarev <mkondarev@yahoo.de>, 2022.
+# Mincho Kondarev <mkondarev@yahoo.de>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-27 00:48+0000\n"
-"PO-Revision-Date: 2022-12-08 22:52+0100\n"
+"PO-Revision-Date: 2023-01-07 17:43+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.08.3\n"
+"X-Generator: Lokalize 22.12.0\n"
 
 #: afcutils.cpp:60
 #, kde-format
@@ -71,10 +71,9 @@ msgid "Unhandled lockdownd code '%1'"
 msgstr "Необработен lockdownd код '%1'"
 
 #: afcutils.cpp:147
-#, fuzzy, kde-format
-#| msgid "Unhandled housearrest error code '%1'"
+#, kde-format
 msgid "Unhandled sbservices code '%1'"
-msgstr "Необработен код за грешка при housearrest '%1'"
+msgstr "Необработен sbservices код '%1'"
 
 #: kio_afc.cpp:174
 #, kde-format
