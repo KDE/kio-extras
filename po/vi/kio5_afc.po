@@ -1,0 +1,109 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# Phu Hung Nguyen <phu.nguyen@kdemail.net>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-12-27 00:48+0000\n"
+"PO-Revision-Date: 2023-01-08 09:24+0100\n"
+"Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
+"Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 22.12.0\n"
+
+#: afcutils.cpp:60
+#, kde-format
+msgid "Unhandled AFC error code '%1'"
+msgstr "Mã lỗi AFC chưa được xử lí '%1'"
+
+#: afcutils.cpp:73
+#, kde-format
+msgid "Unhandled housearrest error code '%1'"
+msgstr "Mã lỗi housearrest chưa được xử lí '%1'"
+
+#: afcutils.cpp:89
+#, kde-format
+msgid "Unhandled instproxy error code '%1'"
+msgstr "Mã lỗi instproxy chưa được xử lí '%1'"
+
+#: afcutils.cpp:105
+#, kde-format
+msgid ""
+"The device is locked. Please enter the passcode on the device and try again."
+msgstr "Thiết bị bị khoá. Vui lòng nhập mật mã trên thiết bị và thử lại."
+
+#: afcutils.cpp:112
+#, kde-format
+msgid "You have denied this computer access to the device."
+msgstr "Bạn đã từ chối quyền truy cập của máy tính này vào thiết bị."
+
+#: afcutils.cpp:119
+#, kde-format
+msgid ""
+"You need to allow this computer to access the device. Please accept the "
+"prompt on the device and try again."
+msgstr ""
+"Bạn cần cho phép máy tính này truy cập vào thiết bị. Vui lòng chấp nhận lời "
+"nhắc trên thiết bị và thử lại."
+
+#: afcutils.cpp:127
+#, kde-format
+msgid ""
+"Cannot access the device. Make sure it is unlocked and allows this computer "
+"to access it."
+msgstr ""
+"Không thể truy cập thiết bị. Hãy đảm bảo rằng nó đã được mở khoá và cho phép "
+"máy tính này truy cập nó."
+
+#: afcutils.cpp:134
+#, kde-format
+msgid "Unhandled lockdownd code '%1'"
+msgstr "Mã lockdownd chưa được xử lí '%1'"
+
+#: afcutils.cpp:147
+#, kde-format
+msgid "Unhandled sbservices code '%1'"
+msgstr "Mã sbservices chưa được xử lí '%1'"
+
+#: kio_afc.cpp:174
+#, kde-format
+msgid "Apple Devices"
+msgstr "Thiết bị Apple"
+
+#: kio_afc.cpp:230
+#, kde-format
+msgctxt "Link to folder with files stored inside apps"
+msgid "Apps"
+msgstr "Ứng dụng"
+
+#: kio_afc.cpp:480
+#, kde-format
+msgctxt "Placeholder is device name"
+msgid "%1 (Apps)"
+msgstr "%1 (Ứng dụng)"
+
+#: kio_afc.cpp:688
+#, kde-format
+msgid "Cannot read without opening file first"
+msgstr "Không thể đọc mà không mở tệp trước"
+
+#: kio_afc.cpp:708
+#, kde-format
+msgid "Cannot seek without opening file first"
+msgstr "Không thể tìm mà không mở tệp trước"
+
+#: kio_afc.cpp:736
+#, kde-format
+msgid "Cannot write without opening file first"
+msgstr "Không thể ghi mà không mở tệp trước"
+
+#: kio_afc.cpp:888
+#, kde-format
+msgid "Cannot rename between devices."
+msgstr "Không thể đổi tên giữa các thiết bị."
