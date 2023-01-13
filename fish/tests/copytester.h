@@ -5,7 +5,6 @@ It was written to verify KDE bug 147948: https://bugs.kde.org/show_bug.cgi?id=14
 #define KDE4START_H__
 
 #include <kmainwindow.h>
-#include <kio/scheduler.h>
 #include <kurl.h>
 #include <kio/jobclasses.h>
 
