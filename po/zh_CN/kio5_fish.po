@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-21 00:46+0000\n"
-"PO-Revision-Date: 2023-01-02 07:11\n"
+"PO-Revision-Date: 2023-01-12 10:30\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -41,13 +41,13 @@ msgstr "SSH 身份验证"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 #: fish.cpp:670 fish.cpp:690
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "否"
 
 #: fish.cpp:771
 #, kde-format
