@@ -68,7 +68,7 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
     if (ir.supportsOption(QImageIOHandler::Size)) {
         auto size = ir.size();
         // euristic way: we always calculate the size supposing a 16-bits RGBA image
-        if (size == QSize() || (size.width() * size.height() * 8ll > ram)) {
+        if (size == QSize() || (8ll * size.width() * size.height() > ram)) {
             return false;
         }
     }
