@@ -1,0 +1,111 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# giovanni <g.sora@tiscali.it>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-12-27 00:48+0000\n"
+"PO-Revision-Date: 2023-01-16 22:46+0100\n"
+"Last-Translator: giovanni <g.sora@tiscali.it>\n"
+"Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
+"Language: ia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 22.12.1\n"
+
+#: afcutils.cpp:60
+#, kde-format
+msgid "Unhandled AFC error code '%1'"
+msgstr "Codice de error non maneate: '%1'"
+
+#: afcutils.cpp:73
+#, kde-format
+msgid "Unhandled housearrest error code '%1'"
+msgstr "Codice de error housearrest non maneate: '%1'"
+
+#: afcutils.cpp:89
+#, kde-format
+msgid "Unhandled instproxy error code '%1'"
+msgstr "Codice de error instproxy non maneate: '%1'"
+
+#: afcutils.cpp:105
+#, kde-format
+msgid ""
+"The device is locked. Please enter the passcode on the device and try again."
+msgstr ""
+"Le dispositivo es blocate. Pro favor inserta le passcode (codice de "
+"contrasigno) sur le dispositivo e essaya novemente."
+
+#: afcutils.cpp:112
+#, kde-format
+msgid "You have denied this computer access to the device."
+msgstr "Tu ha negate accesso de iste computator a iste dispositivo."
+
+#: afcutils.cpp:119
+#, kde-format
+msgid ""
+"You need to allow this computer to access the device. Please accept the "
+"prompt on the device and try again."
+msgstr ""
+"Tu necessita permitter le accesso de iste computator al dispositivo. Pro "
+"favor accepta le demnda (prompt) sur le dispositivo e essya novemente."
+
+#: afcutils.cpp:127
+#, kde-format
+msgid ""
+"Cannot access the device. Make sure it is unlocked and allows this computer "
+"to access it."
+msgstr ""
+"Non pote acceder  al dispositivo. Assecura te que illo es blocate e permitte "
+"que iste computator accede a illo."
+
+#: afcutils.cpp:134
+#, kde-format
+msgid "Unhandled lockdownd code '%1'"
+msgstr "Codice de error lockdownd on maneate: '%1'"
+
+#: afcutils.cpp:147
+#, kde-format
+msgid "Unhandled sbservices code '%1'"
+msgstr "Codice de error sbservices non maneate: '%1'"
+
+#: kio_afc.cpp:174
+#, kde-format
+msgid "Apple Devices"
+msgstr "Dispositivos de Apple"
+
+#: kio_afc.cpp:230
+#, kde-format
+msgctxt "Link to folder with files stored inside apps"
+msgid "Apps"
+msgstr "Apps"
+
+#: kio_afc.cpp:480
+#, kde-format
+msgctxt "Placeholder is device name"
+msgid "%1 (Apps)"
+msgstr "%1 (Apps)"
+
+#: kio_afc.cpp:688
+#, kde-format
+msgid "Cannot read without opening file first"
+msgstr "Non poteva leger sin aperir file in le initio."
+
+#: kio_afc.cpp:708
+#, kde-format
+msgid "Cannot seek without opening file first"
+msgstr "Non poteva cercar sin aperir file in le initio."
+
+#: kio_afc.cpp:736
+#, kde-format
+msgid "Cannot write without opening file first"
+msgstr "Non poteva scriber sin aperir file in le initio."
+
+#: kio_afc.cpp:888
+#, kde-format
+msgid "Cannot rename between devices."
+msgstr "Non pote renominar inter dispositivos."
