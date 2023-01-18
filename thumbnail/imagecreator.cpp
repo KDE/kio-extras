@@ -78,6 +78,10 @@ bool ImageCreator::create(const QString &path, int, int, QImage &img)
 
     ir.setAutoTransform(true);
     ir.setDecideFormatFromContent(true);
+    if (ir.format() == QByteArray("raw")) {
+        // make preview generation of raw files ~3 times faster (requires setDecideFormatFromContent(true))
+        ir.setQuality(1);
+    }
     ir.read(&img);
     if (!img.isNull() && img.depth() != 32) {
         img = img.convertToFormat(img.hasAlphaChannel() ? QImage::Format_ARGB32 : QImage::Format_RGB32);
