@@ -141,6 +141,9 @@ WorkerResult SMBWorker::open(const QUrl &kurl, QIODevice::OpenMode mode)
     // or else this assignment fails
     m_openUrl = kurl;
 
+    // FIXME authentication is missing here. when starting a FileJob without first otherwise accessing the path
+    // to cache credentials this results in failure to open the file... should do the auth dance from browse here
+
     // Stat
     errNum = cache_stat(m_openUrl, &st);
     if (errNum != 0) {
