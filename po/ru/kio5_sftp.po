@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-18 00:44+0000\n"
-"PO-Revision-Date: 2023-01-08 17:24+0300\n"
+"PO-Revision-Date: 2023-01-28 11:01+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
@@ -165,15 +165,7 @@ msgid "Host Identity Change"
 msgstr "Изменился идентификатор хоста"
 
 #: kio_sftp.cpp:757
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The host key for the server %1 has changed.\n"
-#| "This could either mean that DNS SPOOFING is happening or the IP address "
-#| "for the host and its host key have changed at the same time.\n"
-#| "The fingerprint for the key sent by the remote host is:\n"
-#| " %2\n"
-#| "Please contact your system administrator.\n"
-#| "%3"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
@@ -182,11 +174,11 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"Изменён ключ сервера %1.\n"
-"Это означает, что возможна подмена адреса сервера.\n"
-"Отпечаток ключа, полученный сейчас с сервера: %2\n"
-"Обратитесь к системному администратору.\n"
-"%3"
+"<para>Изменён ключ сервера <emphasis>%1</emphasis>.</para><para>Это "
+"означает, что возможна подмена адреса сервера либо были одновременно были "
+"изменены изменены IP-адрес сервера и его ключ.</para> <para>Отпечаток ключа, "
+"полученный сейчас с сервера %2: <bcode>%3</bcode>Продолжить подключение к "
+"серверу?</para>"
 
 #: kio_sftp.cpp:767
 #, kde-format
@@ -195,20 +187,16 @@ msgid "Host Verification Failure"
 msgstr "Ошибка проверки подлинности хоста"
 
 #: kio_sftp.cpp:768
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The authenticity of host %1 cannot be established.\n"
-#| "The %2 key fingerprint is: %3\n"
-#| "Are you sure you want to continue connecting?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"Не удалось установить подлинность сервера %1.\n"
-"Отпечаток ключа %2: %3\n"
-"Продолжить подключение к серверу?"
+"<para>Не удалось установить подлинность сервера <emphasis>%1</emphasis>.</"
+"para><para>Отпечаток ключа %2: <bcode>%3</bcode>Продолжить подключение к "
+"серверу?</para>"
 
 #: kio_sftp.cpp:777
 #, kde-format
