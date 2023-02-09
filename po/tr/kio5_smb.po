@@ -7,13 +7,13 @@
 # Ömer Fadıl USTA <omer_fad@hotmail.com>, 2002.
 # Görkem Çetin <gorkem@kde.org.tr>, 2005.
 # Serdar Soytetir <tulliana@gmail.com>, 2008.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-22 00:44+0000\n"
-"PO-Revision-Date: 2022-04-10 13:17+0300\n"
+"PO-Revision-Date: 2023-02-08 19:49+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
@@ -42,13 +42,13 @@ msgstr ""
 "para><para><placeholder>kullanıcı adı</placeholder>: Bir ev ağında kimlik "
 "doğrularken kullanıcı adı yeterlidir</"
 "para><para><placeholder>kullanıcı@alanadı.com</placeholder>: Çağdaş kurumsal "
-"giriş yapma adları e-posta adresleri gibi oluşturulur</"
+"oturum açma adları e-posta adresleri gibi oluşturulur</"
 "para><para><placeholder>ALANADI\\kullanıcıadı</placeholder>: Çağlar öncesi "
 "kurumsal ağlarında veya çalışma gruplarında NetBIOS alan adını öneklemeniz "
 "gerekebilir (Windows 2000 öncesi)</para><para><placeholder>anonim</"
-"placeholder>: Anonim girişler boş kullanıcı adı ve parola denenerek "
-"yapılabilir. Sunucu yapılandırmasına bağlı olarak boş olmayan kullanıcı "
-"adları gerekebilir</para>"
+"placeholder>: Anonim oturum açılışları, boş kullanıcı adı ve parola "
+"denenerek yapılabilir. Sunucu yapılandırmasına bağlı olarak boş olmayan "
+"kullanıcı adları gerekebilir</para>"
 
 #: kio_smb_auth.cpp:50
 #, kde-format
