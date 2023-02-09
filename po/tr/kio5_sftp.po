@@ -11,13 +11,13 @@
 # Serdar Soytetir <tulliana@gmail.com>, 2008, 2009, 2010, 2012.
 # Onur Küçük <onur@pardus.org.tr>, 2010.
 # Volkan Gezer <volkangezer@gmail.com>, 2013, 2014.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-18 00:44+0000\n"
-"PO-Revision-Date: 2022-07-22 10:39+0300\n"
+"PO-Revision-Date: 2023-02-08 19:40+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.04.2\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #: kio_sftp.cpp:226
 #, kde-format
@@ -55,7 +55,7 @@ msgstr "Günlük geri çağırımı ayarlanamadı."
 #: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
 #, kde-format
 msgid "SFTP Login"
-msgstr "SFTP Girişi"
+msgstr "SFTP Oturumu Açma"
 
 #: kio_sftp.cpp:352
 #, kde-format
