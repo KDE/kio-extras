@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 
+#include <kio_version.h>
 #include <KIO/StatJob>
 #include <KTar>
 #include <KZip>
@@ -197,12 +198,12 @@ KIO::StatDetails ArchiveProtocolBase::getStatDetails()
     // takes care of converting old metadata details to new StatDetails
     // TODO KF6 : remove legacy "details" code path
     KIO::StatDetails details;
-#if KIOCORE_BUILD_DEPRECATED_SINCE(5, 69)
+#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
     if (hasMetaData(QStringLiteral("statDetails"))) {
 #endif
         const QString statDetails = metaData(QStringLiteral("statDetails"));
         details = statDetails.isEmpty() ? KIO::StatDefaultDetails : static_cast<KIO::StatDetails>(statDetails.toInt());
-#if KIOCORE_BUILD_DEPRECATED_SINCE(5, 69)
+#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
     } else {
         const QString sDetails = metaData(QStringLiteral("details"));
         // silence deprecation warning for KIO::detailsToStatDetails
