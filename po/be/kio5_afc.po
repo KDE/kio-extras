@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-27 00:48+0000\n"
-"PO-Revision-Date: 2022-12-30 10:31\n"
+"PO-Revision-Date: 2023-02-09 08:31\n"
 "Last-Translator: Zmicier <zmicerturok@gmail.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be\n"
@@ -71,10 +71,9 @@ msgid "Unhandled lockdownd code '%1'"
 msgstr "Неапрацаваны код lockdownd \"%1\""
 
 #: afcutils.cpp:147
-#, fuzzy, kde-format
-#| msgid "Unhandled housearrest error code '%1'"
+#, kde-format
 msgid "Unhandled sbservices code '%1'"
-msgstr "Неапрацаваны код памылкі housearrest \"%1\""
+msgstr "Неапрацаваны код sbservices \"%1\""
 
 #: kio_afc.cpp:174
 #, kde-format
