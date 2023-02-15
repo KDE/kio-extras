@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-05 00:44+0000\n"
+"POT-Creation-Date: 2023-02-15 00:58+0000\n"
 "PO-Revision-Date: 2022-12-27 16:01\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Crowdin-File: /main/be/kio-extras/kio5_archive.po\n"
 "X-Crowdin-File-ID: 8003\n"
 
-#: kio_archivebase.cpp:272 kio_archivebase.cpp:359 kio_archivebase.cpp:440
+#: kio_archivebase.cpp:273 kio_archivebase.cpp:360 kio_archivebase.cpp:441
 #, kde-format
 msgid ""
 "Could not open the file, probably due to an unsupported file format.\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Не ўдалося адкрыць файл. Магчыма таму, што яго фармат не падтрымліваецца.\n"
 "%1"
 
-#: kio_archivebase.cpp:486
+#: kio_archivebase.cpp:487
 #, kde-format
 msgid ""
 "The archive file could not be opened, perhaps because the format is "
