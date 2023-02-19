@@ -67,7 +67,6 @@
         "Name[zh_CN]": "搜索文件夹更新程序",
         "Name[zh_TW]": "搜尋資料夾更新器"
     },
-    "X-KDE-FactoryName": "filenamesearchmodule",
     "X-KDE-Kded-autoload": false,
     "X-KDE-Kded-load-on-demand": true
 }

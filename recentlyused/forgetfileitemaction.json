@@ -40,10 +40,7 @@
         "Name[vi]": "Quên các thứ trong \"Tài liệu gần đây\" và \"Địa điểm gần đây\"",
         "Name[x-test]": "xxForget items from Recent Documents and Recent Locationsxx",
         "Name[zh_CN]": "忘记最新文档和最近位置中的项目",
-        "Name[zh_TW]": "忘記最近文件和最近位置的項目",
-        "ServiceTypes": [
-            "KFileItemAction/Plugin"
-        ]
+        "Name[zh_TW]": "忘記最近文件和最近位置的項目"
     },
     "X-KDE-Protocol": "recentlyused",
     "X-KDE-Show-In-Submenu": "true"

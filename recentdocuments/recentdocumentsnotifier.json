@@ -64,12 +64,8 @@
         "Name[vi]": "Trình theo dõi tài liệu gần đây",
         "Name[x-test]": "xxRecent Document Watcherxx",
         "Name[zh_CN]": "最近文档监视程序",
-        "Name[zh_TW]": "最近文件監控器",
-        "ServiceTypes": [
-            "KDEDModule"
-        ]
+        "Name[zh_TW]": "最近文件監控器"
     },
-    "X-KDE-FactoryName": "recentdocumentsnotifier",
     "X-KDE-Kded-autoload": false,
     "X-KDE-Kded-load-on-demand": true
 }
