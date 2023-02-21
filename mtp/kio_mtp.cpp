@@ -201,52 +201,55 @@ WorkerResult MTPWorker::listDir(const QUrl &url)
 
     // traverse into device
     KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
-    if (mtpDevice) {
-        // list storage media
-        if (pathItems.size() == 1) {
-            qCDebug(LOG_KIO_MTP) << "Listing storage media for device " << pathItems.first();
+    if (!mtpDevice) {
+        // device not found
+        qCDebug(LOG_KIO_MTP) << "[ERROR] :: Device";
+        return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, url.path());
+    }
 
-            const auto storages = mtpDevice->storages();
-            totalSize(filesize_t(storages.size()));
+    // list storage media
+    if (pathItems.size() == 1) {
+        qCDebug(LOG_KIO_MTP) << "Listing storage media for device " << pathItems.first();
 
-            if (storages.count() > 0) {
-                for (KMTPStorageInterface *storage : storages) {
-                    listEntry(getEntry(storage));
-                }
+        const auto storages = mtpDevice->storages();
+        totalSize(filesize_t(storages.size()));
 
-                qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storage media:" << storages.count();
-                return WorkerResult::pass();
-            }
+        if (storages.count() <= 0) {
             return WorkerResult::fail(ERR_WORKER_DEFINED, i18nc("Message shown when attempting to access an MTP device that is not fully accessible yet", "Could not access device. Make sure it is unlocked, and tap \"Allow\" on the popup on its screen. If that does not work, make sure MTP is enabled in its USB connection settings."));
         }
-        // list files and folders
-        const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
-        if (storage) {
-            int result;
-            const QString path = convertPath(url.path());
-            const KMTPFileList files = storage->getFilesAndFolders(path, result);
 
-            switch (result) {
-            case 0:
-                for (const KMTPFile &file : files) {
-                    listEntry(getEntry(file));
-                }
-
-                qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Files:" << files.count();
-                return WorkerResult::pass();
-            case 2:
-                return WorkerResult::fail(ERR_IS_FILE, url.path());
-            }
-
-            // path not found
-            return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, url.path());
+        for (KMTPStorageInterface *storage : storages) {
+            listEntry(getEntry(storage));
         }
+        qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Storage media:" << storages.count();
+        return WorkerResult::pass();
+    }
+
+    // list files and folders
+    const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
+    if (!storage) {
         // storage not found
         qCDebug(LOG_KIO_MTP) << "[ERROR] :: Storage";
         return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, url.path());
     }
-    // device not found
-    qCDebug(LOG_KIO_MTP) << "[ERROR] :: Device";
+
+    int result = 0;
+    const QString path = convertPath(url.path());
+    const KMTPFileList files = storage->getFilesAndFolders(path, result);
+
+    switch (result) {
+    case 0:
+        for (const KMTPFile &file : files) {
+            listEntry(getEntry(file));
+        }
+
+        qCDebug(LOG_KIO_MTP) << "[SUCCESS] :: Files:" << files.count();
+        return WorkerResult::pass();
+    case 2:
+        return WorkerResult::fail(ERR_IS_FILE, url.path());
+    }
+
+    // path not found
     return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, url.path());
 }
 
