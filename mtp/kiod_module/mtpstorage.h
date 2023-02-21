@@ -42,8 +42,6 @@ public:
     quint64 freeSpaceInBytes();
 
 private:
-    Q_DISABLE_COPY(MTPStorage)
-
     void setStorageProperties(const LIBMTP_devicestorage_t *storage);
     void updateStorageInfo();
 
