@@ -1,0 +1,22 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<!--
+  SPDX-License-Identifier: CC0-1.0
+  SPDX-FileCopyrightText: None
+-->
+<node>
+  <interface name="org.kde.kmtp.Lister">
+    <signal name="finished">
+    </signal>
+
+    <signal name="entry">
+      <arg direction="out" type="(uuustxs)"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="KMTPFile"/>
+    </signal>
+
+    <method name="run">
+    </method>
+
+    <method name="abort">
+    </method>
+  </interface>
+</node>

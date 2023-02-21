@@ -1,5 +1,11 @@
 add_definitions(-DTRANSLATION_DOMAIN=\"kio5_mtp\")
 
+cmake_push_check_state()
+list(APPEND CMAKE_REQUIRED_INCLUDES Libmtp::Libmtp)
+list(APPEND CMAKE_REQUIRED_LIBRARIES Libmtp::Libmtp)
+check_symbol_exists(LIBMTP_Get_Children "libmtp.h" HAVE_LIBMTP_Get_Children)
+cmake_pop_check_state()
+
 add_subdirectory(shared)
 add_subdirectory(kiod_module)
 

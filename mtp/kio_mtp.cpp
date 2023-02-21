@@ -20,8 +20,10 @@
 #include <sys/types.h>
 #include <utime.h>
 
+#include "config-mtp.h"
 #include "kmtpdeviceinterface.h"
 #include "kmtpstorageinterface.h"
+#include "listerinterface.h"
 
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
@@ -233,8 +235,34 @@ WorkerResult MTPWorker::listDir(const QUrl &url)
         return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, url.path());
     }
 
-    int result = 0;
     const QString path = convertPath(url.path());
+
+#ifdef HAVE_LIBMTP_Get_Children
+    const auto pathVariant = storage->getFilesAndFolders2(path);
+    if (std::holds_alternative<QDBusError>(pathVariant)) {
+        qCWarning(LOG_KIO_MTP) << "[ERROR] :: Failed to get lister dbus path" << std::get<QDBusError>(pathVariant);
+        return WorkerResult::fail();
+    }
+    Q_ASSERT(std::holds_alternative<QDBusObjectPath>(pathVariant));
+
+    OrgKdeKmtpListerInterface lister(QStringLiteral("org.kde.kmtpd5"), std::get<QDBusObjectPath>(pathVariant).path(), QDBusConnection::sessionBus(), this);
+
+    QEventLoop loop;
+    connect(&lister, &OrgKdeKmtpListerInterface::entry, this, [this, &lister](const KMTPFile &file) {
+        listEntries({getEntry(file)});
+        if (wasKilled()) {
+            lister.abort(); // issues finished which causes the loop to quit
+        }
+    });
+    connect(&lister, &OrgKdeKmtpListerInterface::finished, &loop, &QEventLoop::quit);
+
+    lister.run();
+    loop.exec();
+
+    qCDebug(LOG_KIO_MTP) << "[SUCCESS]";
+    return WorkerResult::pass();
+#else
+    int result = 0;
     const KMTPFileList files = storage->getFilesAndFolders(path, result);
 
     switch (result) {
@@ -248,9 +276,9 @@ WorkerResult MTPWorker::listDir(const QUrl &url)
     case 2:
         return WorkerResult::fail(ERR_IS_FILE, url.path());
     }
-
     // path not found
     return WorkerResult::fail(ERR_CANNOT_ENTER_DIRECTORY, url.path());
+#endif
 }
 
 WorkerResult MTPWorker::stat(const QUrl &url)

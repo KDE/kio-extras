@@ -34,6 +34,11 @@
             <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="KMTPFileList"/>
         </method>
 
+        <method name="getFilesAndFolders2">
+            <arg type="o" direction="out"/>
+            <arg name="path" type="s" direction="in"/>
+        </method>
+
         <!-- getFileMetadata
         -->
         <method name="getFileMetadata">

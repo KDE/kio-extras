@@ -2,6 +2,7 @@
     This file is part of the MTP KIOD module, part of the KDE project.
 
     SPDX-FileCopyrightText: 2018 Andreas Krutzler <andreas.krutzler@gmx.net>
+    SPDX-FileCopyrightText: 2023 Harald Sitter <sitter@kde.org>
 
     SPDX-License-Identifier: GPL-2.0-or-later
 */
@@ -9,10 +10,13 @@
 #ifndef MTPSTORAGE_H
 #define MTPSTORAGE_H
 
+#include <optional>
+
+#include <QDBusContext>
 #include <QObject>
 
-#include <libmtp.h>
 #include <kmtpfile.h>
+#include <libmtp.h>
 
 class MTPDevice;
 
@@ -24,7 +28,7 @@ class MTPDevice;
  * As a performance optimization to reduce hardware interaction,
  * a time based cache for file ids, mapping their path to their ID is used.
  */
-class MTPStorage : public QObject
+class MTPStorage : public QObject, protected QDBusContext
 {
     Q_OBJECT
     Q_PROPERTY(QString description READ description)
@@ -63,6 +67,16 @@ private:
      * @return
      */
     KMTPFileList getFilesAndFoldersCached(const QString &path, quint32 parentId);
+
+    /**
+     * @brief Find a given filename in the parentId's children
+     *
+     * @param fileNeedle
+     * @param parentPath
+     * @param parentId
+     * @return std::optional<KMTPFile>
+     */
+    std::optional<KMTPFile> findEntry(const QString &fileNeedle, const QString &parentPath, quint32 parentId);
 
     /**
      * @brief Returns the ID of the item at the given path, else 0.
@@ -105,6 +119,7 @@ public Q_SLOTS:
 
     // file management
     KMTPFileList getFilesAndFolders(const QString &path, int &result);
+    QDBusObjectPath getFilesAndFolders2(const QString &path);
     KMTPFile getFileMetadata(const QString &path);
 
     int getFileToHandler(const QString &path);

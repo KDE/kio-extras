@@ -39,6 +39,7 @@ private:
 public Q_SLOTS:
     // file management
     KMTPFileList getFilesAndFolders(const QString &path, int &result) const;
+    std::variant<QDBusObjectPath, QDBusError> getFilesAndFolders2(const QString &path) const;
     KMTPFile getFileMetadata(const QString &path) const;
 
     int getFileToHandler(const QString &path) const;

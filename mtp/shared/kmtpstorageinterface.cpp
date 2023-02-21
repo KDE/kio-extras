@@ -54,6 +54,16 @@ KMTPFileList KMTPStorageInterface::getFilesAndFolders(const QString &path, int &
     return m_dbusInterface->getFilesAndFolders(path, result);
 }
 
+std::variant<QDBusObjectPath, QDBusError> KMTPStorageInterface::getFilesAndFolders2(const QString &path) const
+{
+    auto reply = m_dbusInterface->getFilesAndFolders2(path);
+    reply.waitForFinished();
+    if (reply.error().isValid()) {
+        return reply.error();
+    }
+    return reply;
+}
+
 KMTPFile KMTPStorageInterface::getFileMetadata(const QString &path) const
 {
     return m_dbusInterface->getFileMetadata(path);
