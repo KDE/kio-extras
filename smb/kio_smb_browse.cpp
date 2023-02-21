@@ -535,6 +535,13 @@ WorkerResult SMBWorker::fileSystemFreeSpace(const QUrl &url)
     const auto total = blockSize * dirStat.f_blocks;
     const auto available = blockSize * ((dirStat.f_bavail != 0) ? dirStat.f_bavail : dirStat.f_bfree);
 
+    // If total is 0 don't bother reporting it, it just makes dolphin misbehave. And is indicative of
+    // us not having any viable data.
+    // https://bugs.kde.org/show_bug.cgi?id=431050
+    if (total <= 0) {
+        return WorkerResult::fail(KIO::ERR_UNSUPPORTED_ACTION, url.url());
+    }
+
     setMetaData("total", QString::number(total));
     setMetaData("available", QString::number(available));
 
