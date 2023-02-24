@@ -21,7 +21,10 @@ KMTPStorageInterface::KMTPStorageInterface(const QString &dbusObjectPath, KMTPDe
             dbusObjectPath,
             QDBusConnection::sessionBus(),
             this);
-    m_dbusInterface->setTimeout(std::chrono::milliseconds(5min).count()); // TODO: listing folders with a huge amount of files may take a while
+    // Arbitrarily large number to prevent timeouts on file listing.
+    // https://bugs.kde.org/show_bug.cgi?id=462059
+    // https://github.com/libmtp/libmtp/issues/144
+    m_dbusInterface->setTimeout(std::chrono::milliseconds(60min).count());
 
     qDBusRegisterMetaType<KMTPFile>();
     qDBusRegisterMetaType<KMTPFileList>();
