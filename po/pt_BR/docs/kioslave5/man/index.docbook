@@ -40,7 +40,7 @@
 </articleinfo>
 
 <para
->Usando o escravo do 'man' você conseguirá ler as páginas de manual instaladas em seu sistema. É fácil de usar: </para>
+>Using the man KIO worker you are able to read the man pages installed on your system. It is easy to use: </para>
 
 <variablelist>
 <varlistentry>
@@ -139,13 +139,13 @@
 >. </para>
 
 <para
->Como em qualquer outro escravo do &kde;, é possível indicar uma &URL; como <userinput
+>As with any other KIO worker, it is possible to enter a &URL;, like <userinput
 ><command
 >man:/socket</command
 ></userinput
-> em <emphasis
->qualquer</emphasis
-> aplicativo do &kde;. Tente no &kwrite;, para poder ver a página do manual no formato &HTML;. </para>
+> in <emphasis
+>any</emphasis
+> &kde; application. Try it in &kwrite; and you will see the man page in &HTML; format. </para>
 
 <para
 >Lista de discussão para contato: <email

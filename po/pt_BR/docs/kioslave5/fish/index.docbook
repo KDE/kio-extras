@@ -65,15 +65,15 @@
 >, mas o resto do protocolo usa ferramentas normais da linha de comando, como descrito abaixo.</para>
 
 <para
->Use o 'kioslave' do 'fish' da seguinte forma: <userinput
+>You can use the fish KIO worker like this: <userinput
 >fish://<replaceable
->máquina</replaceable
+>hostname</replaceable
 ></userinput
-> ou <userinput
+> or <userinput
 >fish://<replaceable
->usuário</replaceable
+>username</replaceable
 >@<replaceable
->máquina</replaceable
+>hostname</replaceable
 ></userinput
 >.</para>
 

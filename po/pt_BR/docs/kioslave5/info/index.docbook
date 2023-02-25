@@ -47,7 +47,7 @@
 >.</para>
 
 <para
->O escravo do 'Info' permite a você ler as páginas 'info' instaladas em seu sistema, de dentro do &konqueror;. Você pode usá-lo muito facilmente:</para>
+>The Info KIO worker allows you to read the info pages installed on your system, from within &konqueror;. You can use it very easily:</para>
 
 <screen
 ><userinput
@@ -67,6 +67,6 @@
 >, mas não é usado, em larga escala, fora do software da &GNU;.</para>
 
 <para
->Você pode navegar facilmente por uma documentação 'info' que você tem instalada de dentro do aplicativo do &khelpcenter;, ou pode usar o escravo do 'info' diretamente de dentro do &konqueror;.</para>
+>You can quite easily browse the info documentation you have installed from within the &khelpcenter; application, or you can use the info KIO worker directly from within both &konqueror; and the mini-cli.</para>
 
 </article>

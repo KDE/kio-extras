@@ -29,29 +29,29 @@
 ></othercredit
 > 
 </authorgroup>
+<date
+>11/12/2016</date>
+<releaseinfo
+>Applications 16.12</releaseinfo>
 </articleinfo>
 <para
->O 'kioslave' do 'thumbnail' é usado pelo &kde; para transparência de rede e geração persistente de miniaturas.</para>
+>The thumbnail KIO worker is used by &kde; for network transparent and persistent generation of thumbnails.</para>
 
 <para
->Este 'kioslave' usa plugins para gerar as miniaturas reais. Você pode habilitar a visualização destas miniaturas do submenu <menuchoice
+>The thumbnail KIO worker uses plugins to generate the actual thumbnails. You can enable viewing of these thumbnails from the <menuchoice
 ><guimenu
->Exibir</guimenu
+>View</guimenu
 > <guisubmenu
->Visualizar</guisubmenu
+>Preview</guisubmenu
 ></menuchoice
->, disponível no modo de gerenciador de arquivos do &konqueror;.</para>
+> submenu, available in &dolphin; or in &konqueror; in file manager mode.</para>
 
 <para
->O 'kioslave' do 'thumbnail' não é útil diretamente para um usuário, mas se você for um desenvolvedor, pode usá-lo dentro de seus próprios aplicativos para criar visualizações de arquivos.</para>
+>The thumbnail KIO worker is not directly useful to a user, but if you are a developer, you can use it within your own applications to create file previews.</para>
 
 <para
->Veja a documentação dos arquivos fonte para mais informações. Você encontrará isto em <filename
->$<envar
->KDEDIR</envar
->/include/kio/thumbcreator.h </filename
-> ou no arquivo fonte <filename class="directory"
->kdebase/runtime/kioslave/thumbnail</filename
-></para>
+>Veja a documentação nos arquivos fonte para mais informações. Você encontrará isto na pastas <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"
+>thumbnail</ulink
+> </para>
 
 </article>
