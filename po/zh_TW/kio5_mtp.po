@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-07 00:45+0000\n"
+"POT-Creation-Date: 2023-02-25 01:00+0000\n"
 "PO-Revision-Date: 2023-01-06 23:09+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 22.12.0\n"
 
-#: kio_mtp.cpp:220
+#: kio_mtp.cpp:218
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -33,7 +33,7 @@ msgstr ""
 "無法存取裝置。請確定它已解鎖，並在螢幕上的彈出式視窗點選「允許」。如果這還是"
 "沒有用，請確定它的 USB 連線設定中已啟用 MTP。"
 
-#: kio_mtp.cpp:490
+#: kio_mtp.cpp:493
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "無法在裝置自身上複製或移動檔案"

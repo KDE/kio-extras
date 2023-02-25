@@ -53,7 +53,7 @@
 > na barra de localização do &konqueror;.</para>
 
 <para
->O conteúdo e disposição da página é configurável. Basta apontar o &konqueror; para <userinput
+>O conteúdo e layout da página é configurável. Basta apontar o &konqueror; para <userinput
 >bookmarks:/config</userinput
 >, de modo a invocar a janela de configuração.</para>
 

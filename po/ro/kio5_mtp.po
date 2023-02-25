@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-07 00:45+0000\n"
+"POT-Creation-Date: 2023-02-25 01:00+0000\n"
 "PO-Revision-Date: 2022-02-04 13:27+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian\n"
@@ -18,7 +18,7 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Lokalize 21.12.2\n"
 
-#: kio_mtp.cpp:220
+#: kio_mtp.cpp:218
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -32,7 +32,7 @@ msgstr ""
 "„Permite” în notificarea de pe ecran. Dacă aceasta nu funcționează, "
 "asigurați-vă că MTP e activat în configurările conexiunii sale USB."
 
-#: kio_mtp.cpp:490
+#: kio_mtp.cpp:493
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Fișierele nu pot fi copiate/mutate pe dispozitivul în sine"

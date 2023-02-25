@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-08-07 00:45+0000\n"
+"POT-Creation-Date: 2023-02-25 01:00+0000\n"
 "PO-Revision-Date: 2023-02-08 13:49\n"
 "Last-Translator: Zmicier <zmicerturok@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Crowdin-File: /main/be/kio-extras/kio5_mtp.po\n"
 "X-Crowdin-File-ID: 8926\n"
 
-#: kio_mtp.cpp:220
+#: kio_mtp.cpp:218
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -35,7 +35,7 @@ msgstr ""
 "і націсніце \"Дазволіць\" у выплыўным акне на экране прылады. Калі не "
 "дапаможа, пераканайцеся, што ў наладах USB-злучэння ўключаны MTP."
 
-#: kio_mtp.cpp:490
+#: kio_mtp.cpp:493
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Немагчыма скапіяваць/перамясціць файлы на самой прыладзе"
