@@ -1,23 +1,22 @@
-# German translations for kio-extras package.
-# Copyright (C) 2022 This file is copyright:
+# Lithuanian translations for kio-extras package.
+# Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
-# Frederik Schwarzer <schwarzer@kde.org>, 2022.
+# Automatically generated, 2023.
 #
-# Automatically generated, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-27 00:48+0000\n"
-"PO-Revision-Date: 2022-12-19 09:37+0100\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
-"Language-Team: English <kde-i18n-de@kde.org>\n"
-"Language: de\n"
+"PO-Revision-Date: 2022-12-27 00:48+0000\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: afcutils.cpp:60
 #, kde-format
@@ -72,19 +71,19 @@ msgstr ""
 #: kio_afc.cpp:174
 #, kde-format
 msgid "Apple Devices"
-msgstr "Apple-Geräte"
+msgstr ""
 
 #: kio_afc.cpp:230
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
-msgstr "Anwendungen"
+msgstr ""
 
 #: kio_afc.cpp:480
 #, kde-format
 msgctxt "Placeholder is device name"
 msgid "%1 (Apps)"
-msgstr "%1 (Anwendungen)"
+msgstr ""
 
 #: kio_afc.cpp:688
 #, kde-format
