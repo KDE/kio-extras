@@ -10,7 +10,7 @@
 
 #include <QString>
 #include <KActivities/Consumer>
-#include <KIO/ForwardingSlaveBase>
+#include <KIO/UDSEntry>
 
 class ActivitiesProtocolApi {
 public:
