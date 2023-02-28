@@ -126,5 +126,3 @@ QString ActivitiesProtocolApi::demangledPath(const QString &mangled) const
     // return QUrl::fromPercentEncoding(mangled.toUtf8());
     return QString::fromUtf8(QByteArray::fromBase64(mangled.toLatin1(), QByteArray::Base64UrlEncoding | QByteArray::OmitTrailingEquals));
 }
-
-#include "KioActivitiesApi.moc"
