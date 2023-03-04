@@ -21,6 +21,7 @@ Dependencies:
     'frameworks/kactivities': '@stable'
     'libraries/phonon': '@stable'
     'graphics/libkexiv2': '@same'
+    'third-party/kdsoap': '@latest'
 
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
