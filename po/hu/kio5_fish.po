@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:46+0000\n"
+"POT-Creation-Date: 2023-03-05 00:50+0000\n"
 "PO-Revision-Date: 2012-08-23 10:36+0200\n"
 "Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -17,39 +17,39 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.4\n"
 
-#: fish.cpp:291
+#: fish.cpp:290
 #, kde-format
 msgid "Connecting..."
 msgstr "Csatlakozás..."
 
-#: fish.cpp:593
+#: fish.cpp:592
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "A protokoll inicializálása..."
 
-#: fish.cpp:629
+#: fish.cpp:628
 #, kde-format
 msgid "Local Login"
 msgstr "Helyi bejelentkezés"
 
-#: fish.cpp:631
+#: fish.cpp:630
 #, kde-format
 msgid "SSH Authentication"
 msgstr "SSH hitelesítés"
 
-#: fish.cpp:670 fish.cpp:690
+#: fish.cpp:668 fish.cpp:683
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:670 fish.cpp:690
+#: fish.cpp:668 fish.cpp:683
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:771
+#: fish.cpp:760
 #, kde-format
 msgid "Disconnected."
 msgstr "A kapcsolat megszakadt."

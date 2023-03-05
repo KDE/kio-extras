@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:46+0000\n"
+"POT-Creation-Date: 2023-03-05 00:50+0000\n"
 "PO-Revision-Date: 2012-12-10 07:05+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -17,39 +17,39 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "\n"
 
-#: fish.cpp:291
+#: fish.cpp:290
 #, kde-format
 msgid "Connecting..."
 msgstr "Байланысты құру..."
 
-#: fish.cpp:593
+#: fish.cpp:592
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Протоколды бастау күйіне келтіру..."
 
-#: fish.cpp:629
+#: fish.cpp:628
 #, kde-format
 msgid "Local Login"
 msgstr "Жергілікті жүйеге кіру"
 
-#: fish.cpp:631
+#: fish.cpp:630
 #, kde-format
 msgid "SSH Authentication"
 msgstr "SSH аутентификациясы"
 
-#: fish.cpp:670 fish.cpp:690
+#: fish.cpp:668 fish.cpp:683
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:670 fish.cpp:690
+#: fish.cpp:668 fish.cpp:683
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:771
+#: fish.cpp:760
 #, kde-format
 msgid "Disconnected."
 msgstr "Байланыс жоғалды."

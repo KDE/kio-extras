@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish stable\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:46+0000\n"
+"POT-Creation-Date: 2023-03-05 00:50+0000\n"
 "PO-Revision-Date: 2005-06-08 01:39+0200\n"
 "Last-Translator: Juanita Franz <juanita.franz@vr-web.de>\n"
 "Language-Team: AFRIKAANS <translate-discuss-af@lists.sourceforge.net>\n"
@@ -16,40 +16,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: fish.cpp:291
+#: fish.cpp:290
 #, kde-format
 msgid "Connecting..."
 msgstr "Besig om te koppel..."
 
-#: fish.cpp:593
+#: fish.cpp:592
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Inisialiseer protokol..."
 
-#: fish.cpp:629
+#: fish.cpp:628
 #, kde-format
 msgid "Local Login"
 msgstr "Plaaslike Aanteken"
 
-#: fish.cpp:631
+#: fish.cpp:630
 #, fuzzy, kde-format
 #| msgid "SSH Authorization"
 msgid "SSH Authentication"
 msgstr "SSH Magtiging"
 
-#: fish.cpp:670 fish.cpp:690
+#: fish.cpp:668 fish.cpp:683
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:670 fish.cpp:690
+#: fish.cpp:668 fish.cpp:683
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:771
+#: fish.cpp:760
 #, kde-format
 msgid "Disconnected."
 msgstr "Ontkoppel."

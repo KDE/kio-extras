@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="nfs">
+<title
+>nfs</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+<para
+>Sun <acronym
+>NFS</acronym
+> protokolü, ağlar arasında dosya sistemini paylaştırmak için şeffaf bir uzaktak erişim sağlar. <acronym
+>NFS</acronym
+> protokü, bir makine, işletim sistemi, ağ mimarisi ve aktarım protokolünden bağımsız olmak için tasarlanmıştır. Bu bağımsızlık, Harici Veri Sunumu (<acronym
+>XDR</acronym
+>) üzerine inşa edilmiş olan Uzak Yordam Çağrısı (<acronym
+>RPC</acronym
+>) ilkelerinin kullanımını sağlar. </para>
+
+<para
+>Destekleyen MOUNT protokolü, istemcilerin uzak dosya ağaçlarını, yerel dosya sistemi içindeki bir noktaya bağlamasına olanak tanıyan işletim sistemine özgü işlevleri gerçekleştirir. Bağlama işlemi, sunucunun dışa aktarmalı denetim kısıtlı bir gruba uzaktan erişim ayrıcalıkları tanımasına da izin verir.</para>
+
+<para
+>Kilit Yöneticisi, <acronym
+>NFS</acronym
+> ortamında kullanıldığında, dosya kilitleme için destek sağlar. Ağ Kilit Yöneticisi (<acronym
+>NLM</acronym
+>) protokolü, dosya kilitlemesinin doğal olarak durumsal özelliklerini ayrı bir protokole ayıracaktır.</para>
+
+<para
+>Kaynak: <ulink url="http://www.networksorcery.com/enp/protocol/nfs.htm"
+> http://www.networksorcery.com/enp/protocol/nfs.htm</ulink
+> </para>
+
+<para
+>Kılavuza bakın: <ulink url="man:/nfs"
+>nfs</ulink
+>. </para>
+</article>
