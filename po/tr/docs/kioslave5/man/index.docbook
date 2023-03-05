@@ -1,0 +1,155 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="man">
+<title
+>Man</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Sistemdeki kılavuz sayfalarını okumak için man ioslave'i kullananabilirsiniz. Kullanımı da oldukça kolaydır: </para>
+
+<variablelist>
+<varlistentry>
+<term
+><userinput
+><command
+>man:</command
+></userinput
+></term>
+<listitem>
+<para
+>El kitabının bölümlerine bakın, diğerlerini bulmak için tıklayın. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen</replaceable
+></userinput
+></term>
+<listitem>
+<para
+><command
+>fopen</command
+> kılavuz dosyasına bakın. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+><command
+>fopen</command
+> 3. bölümdeki kılavuz dosyasına bakın. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>3. bölümün dizinine bakın. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+>intro<replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>3. bölümün girişine bakın. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note
+><para
+>Eğer girdiğiniz isimle ilgili birden fazla el kitabı sayfası varsa, görüntülemek istediğiniz sayfayı seçemenizi sağlayacak bir liste gösterilir.</para
+></note>
+
+<para
+>Yukarıdaki ile aynı işlevi görecek bir kısayol da vardır: <userinput
+><command
+>#fopen</command
+></userinput
+>. </para>
+
+<para
+>Eğer hiçbir el kitabı sayfası bulamıyorsanız, <filename
+>/etc/manpath.config</filename
+> (bu dosyanın adı dağıtımınıza göre değişebilir ancak isimleri çok benzerdir) dosyasını ve/veya ortam değişkenleri <envar
+>MANPATH</envar
+> ve <envar
+>MANSECT</envar
+> değerlerini ayarlayın. </para>
+
+<para
+>Diğer &kde; girdi/çıktı yardımcılarında (ioslave) olduğu gibi, <userinput
+><command
+>man:/socket</command
+></userinput
+> şeklinde, <emphasis
+>tüm</emphasis
+> &kde; uygulamalarında, bir &URL; girerek de kullanabilirsiniz. </para>
+
+<para
+>İletişim için kullanılacak e-posta listesi: <email
+>kde-devel@kde.org</email
+> </para>
+
+</article>

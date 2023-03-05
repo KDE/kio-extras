@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="gzip">
+<title
+>gzip</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>gzip</command
+> bir sıkıştırma uygulamasıdır</para>
+
+<para
+>gzip kioslave doğrudan doğruya kullanılabilir değildir, genellikle bir filtre üzerinden kullanılmaya daha uygundur. Örneğin, tar kioslave programı gzip kioslave üzerinden <literal role="extension"
+>tar.gz</literal
+> uzantılı bir dosyayı &konqueror; içinde açmaya yarar.</para>
+
+<para
+>&konqueror; içinde uzantısı <literal role="extension"
+>gz</literal
+>  olan bir dosyaya tıklamanız halinde, kioslave bunu açacak ve normal (sıkıştırılamamış) bir dosya olarak görüntüleyecektir.</para>
+
+<para
+>Eğer bir geliştirici iseniz, ve gzip filtresini kullanmak istiyorsanız, kioslave'lerin kullanımını anlatan belgelendirmeyi <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+> adresinde bulabilirsiniz</para>
+
+<para
+>Kılavuza bakın: <ulink url="man:/gzip"
+>gzip</ulink
+>. </para>
+
+</article>

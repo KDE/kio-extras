@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="bzip2">
+<title
+>bzip2 / bzip</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>bzip2</command
+> bir sıkıştırma uygulamasıdır.</para>
+
+<para
+><command
+>bzip2</command
+> bir sıkıştırma programıdır. Örneğin, bir <literal role="extension"
+>tar.bz2</literal
+> dosyasını &konqueror; altında açmak için bzip2 kioslave'e ihtiyaç duyarsınız.</para>
+
+<para
+>&konqueror; altında <literal role="extension"
+>.bz2</literal
+> uzantısı bulunan sıkıştırılmış bir dosyaya tıklarsanız, kioslave bunu açacak ve normal (sıkıştırılmamış) bir dosya gibi görüntüleyecektir.</para>
+
+<para
+>Eğer bir geliştirici iseniz, ve bzip2 filtresini kullanmak istiyorsanız, kioslave'lerin kullanımını anlatan belgelendirmeyi <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+> adresinde bulabilirsiniz</para>
+
+<para
+>Kılavuza bakın: <ulink url="man:/bzip2"
+>bzip2</ulink
+>. </para>
+
+<para
+><command
+>bzip</command
+>, bzip2'nin atasıdır ve günümüzde çok az kullanılır, daha iyi sıkıştırma sağlayan bzip2 onun yerini almıştır.</para>
+
+</article>

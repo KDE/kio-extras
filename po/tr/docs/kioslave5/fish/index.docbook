@@ -1,0 +1,165 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="fish">
+<title
+>fish</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Joerg.Walter; &Joerg.Walter.mail;</author>
+<author
+>&Brad.Hards; &Brad.Hards.mail;</author>
+<othercredit role="translator"
+><firstname
+>Volkan</firstname
+><surname
+>Gezer</surname
+><affiliation
+><address
+><email
+>volkangezer@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>2010-10-27</date>
+<releaseinfo
+>&kde; 4.5</releaseinfo>
+
+</articleinfo>
+
+<para
+>Başka bir bilgisayarın dosyalarına <emphasis
+>S</emphasis
+>ecure <emphasis
+>SH</emphasis
+>ell (<acronym
+>SSH</acronym
+> - Güvenli Kabuk) protokolü ile erişmenizi sağlar. Uzak bilgisayar <acronym
+>SSH</acronym
+> yardımcısını çalıştırmalıdır, ancak protokolün geri kalan kısmı aşağıda anlatılan standart komut satırı araçlarını kullanır.</para>
+
+<para
+>fish kioslave'ini şu şekilde kullanabilirsiniz: <userinput
+>fish://<replaceable
+>sunucuadı</replaceable
+></userinput
+> veya <userinput
+>fish://<replaceable
+>kullanıcıadı</replaceable
+>@<replaceable
+>sunucuadı</replaceable
+></userinput
+>.</para>
+
+<note
+><para
+>İki bölü işareti kullanmanız gerekir.</para
+></note>
+
+<para
+>Eğer iki bilgisayarda da aynı kullanıcı adına sahipseniz <replaceable
+>kullanıcıadı</replaceable
+> (ve @ sembol ekini) kullanmayabilirsiniz.</para>
+
+<para
+>Parolayı da şu biçimde ekleyebilirsiniz: <userinput
+>fish://<replaceable
+>kullanıcıadı</replaceable
+>:<replaceable
+>parola</replaceable
+>@<replaceable
+>sunucu</replaceable
+></userinput
+>, fakat belirtilmediğinde bir parola için sorulacağınızdan, bu gerekli değildir.</para>
+
+<para
+>Eğer <acronym
+>SSH</acronym
+> yardımcısını standart dışı bir portta (bağlantı noktası) çalıştırıyorsanız, aşağıda gösterilen sözdizim ile normal &URL; kullanan portu belirtebilisiniz:<userinput
+>fish://<replaceable
+>sunucuadı</replaceable
+>:<replaceable
+>portnumarası</replaceable
+></userinput
+>.</para>
+
+<para
+>Fish herhangi bir <acronym
+>POSIX</acronym
+> uyumlu &UNIX; tabanlı uzak bilgisayarda çalışmalıdır. Bu; <command
+>cat</command
+>, <command
+>chgrp</command
+>, <command
+>chmod</command
+>, <command
+>chown</command
+>, <command
+>cp</command
+>, <command
+>dd</command
+>, <command
+>env</command
+>, <command
+>expr</command
+>, <command
+>grep</command
+>, <command
+>ls</command
+>, <command
+>mkdir</command
+>, <command
+>mv</command
+>, <command
+>rm</command
+>, <command
+>rmdir</command
+>, <command
+>sed</command
+> ve <command
+>wc</command
+> kabuk komutlarını kullanır. Fish <command
+>/bin/sh</command
+> içerisinde başlar ve bir Bourne kabuk (veya <command
+>bash</command
+> benzeri uyumlu bir kabuk) olmayı bekler. Eğer <command
+>sed</command
+> ve <command
+>dosya</command
+> komutları ve bununla birlikte &MIME; türü imzalarla <filename
+>/etc/apache/magic</filename
+> dosyası mevcutsa, bunlar &MIME; türlerini tahmin etmekte kullanılacaktır. </para>
+
+<para
+>Eğer uzak makinede <application
+>Perl</application
+> kullanılabilirse, yerine bu kullanılacaktır. Ardından sadece <command
+>env</command
+> ve <command
+>/bin/sh</command
+> gerekli olacaktır. <application
+>Perl</application
+> kullanmanın ek faydası daha hızlı olmasıdır.</para>
+
+<para
+>Fish <application
+>Cygwin</application
+> benzeri araçlar kurulu ise &Windows; makinelerinde de çalışır. Yukarıdaki yardımcı araçların tümü sistem <envar
+>PATH</envar
+> değişkeninde olmalı ve tüm başlangıç kabuğu <command
+>echo FISH:;/bin/sh</command
+> komutunu doğru bir biçimde çalıştırmalıdır.</para>
+
+</article>

@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="info">
+<title
+>Info</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Info, bir belge türüdür. Belgeler texinfo adı verilen bir dosya biçimindedirler, ve komut satırından  <ulink url="info:/info"
+><command
+>info</command
+></ulink
+> uygulaması ile okunabilirler.</para>
+
+<para
+>Info ioslave'i, &konqueror; üzerinden sisteme kurulu info dosyalarınıza erişmenize olanak verir. Kullanımı çok kolaydır:</para>
+
+<screen
+><userinput
+><command
+>info:</command
+><replaceable
+>gcc</replaceable
+></userinput
+></screen>
+
+<para
+>Bu, &gcc; derleyicisine ait info belgelendirmelerinin en üst başlığını gösterir.</para>
+
+<para
+>Info <command
+>man</command
+> komutunun yerine geçen &GNU; uygulamasıdır ancak &GNU; yazılımları dışında yaygın olarak kullanılmamaktadır.</para>
+
+<para
+>&khelpcenter; uygulamasını kurmuşsanız info belgelendirmelerine kolayca göz atabilirsiniz. Ayrıca info girdi/çıktı yardımcısını (ioslave) &konqueror;  ile kullanarak ya da info komutu ile (mini-cli) de kullanabilirsiniz.</para>
+
+</article>

@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="thumbnail">
+<title
+>thumbnail</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Carsten.Pfeiffer; &Carsten.Pfeiffer.mail;</author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+><firstname
+>Volkan</firstname
+><surname
+>Gezer</surname
+><affiliation
+><address
+><email
+>volkangezer@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+<date
+>2016-12-11</date>
+<releaseinfo
+>Uygulamalar 16.12</releaseinfo>
+</articleinfo>
+<para
+>Küçük resim ioslave sistemi &kde; tarafından görüntülerin küçük biçimlerini oluşturmak için kullanılır.</para>
+
+<para
+>thumbnail kioslave, gerçek küçük resimler (thumbnail) oluşturmak için eklentiler kullanır. Bu küçük resimleri &dolphin; veya &konqueror; dosya yöneticisi kipinde iken <menuchoice
+><guimenu
+>Görünüm</guimenu
+> <guisubmenu
+>Önizleme</guisubmenu
+></menuchoice
+> alt menüsünü kullanabilirsiniz.</para>
+
+<para
+>thumbnail kioslave'i, doğrudan kullanıcıya yardımcı olmaz ancak bir geliştiriciyseniz, dosya önizlemeleri oluşturmak için kendi uygulamalarınız içerisinde kullanabilirsiniz.</para>
+
+<para
+>Daha fazla bilgi için kaynaklardaki belgelere bakın. Bunları, kaynak klasörün <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"
+>küçük resminde</ulink
+> bulacaksınız </para>
+
+</article>
