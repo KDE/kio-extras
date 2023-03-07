@@ -1,25 +1,26 @@
 # translation of kio_sftp.po to Chinese Traditional
 # Copyright (C) 2008 Free Software Foundation, Inc.
+#
 # Paladin Liu <paladin@ms1.hinet.net>, 2002.
 # Kenduest Lee <kenduest@i18n.linux.org.tw>, 2002.
 # Franklin Weng <franklin@goodhorse.idv.tw>, 2012, 2013, 2014, 2015.
 # pan93412 <pan93412@gmail.com>, 2018.
-#
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2008, 2009, 2010.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-22 00:44+0000\n"
-"PO-Revision-Date: 2018-12-02 17:33+0800\n"
-"Last-Translator: pan93412 <pan93412@gmail.com>\n"
-"Language-Team: Chinese <zh-l10n@lists.linux.org.tw>\n"
+"PO-Revision-Date: 2023-03-07 03:02+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #: kio_sftp.cpp:226
 #, kde-format
@@ -67,11 +68,10 @@ msgid "Site:"
 msgstr "主機："
 
 #: kio_sftp.cpp:417
-#, fuzzy, kde-format
-#| msgid "Could not read link: %1"
+#, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
-msgstr "無法讀取連結：%1"
+msgstr "無法讀取連結：%1 [%2]"
 
 #: kio_sftp.cpp:539
 #, kde-format
@@ -152,18 +152,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr ""
+msgstr "主機身份變更"
 
 #: kio_sftp.cpp:757
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The host key for the server %1 has changed.\n"
-#| "This could either mean that DNS SPOOFING is happening or the IP address "
-#| "for the host and its host key have changed at the same time.\n"
-#| "The fingerprint for the key sent by the remote host is:\n"
-#| " %2\n"
-#| "Please contact your system administrator.\n"
-#| "%3"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
@@ -172,40 +164,33 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"伺服器 %1 的主機金鑰已變更。\n"
-"有可能是 DNS SPOOFING 正在發生，或是此主機的 IP 與主機金鑰同時變更。\n"
-"遠端主機傳送過來的金鑰指紋為：\n"
-"%2\n"
-"請聯絡連的系統管理員。\n"
-"%3"
+"<para>伺服器 <emphasis>%1</emphasis> 的主機金鑰已變更。</para><para>有可能是 "
+"DNS Spoofing (DNS 欺騙) 正在發生，或是此主機的 IP 與主機金鑰同時變更。</"
+"para><para>遠端主機傳送過來的 %2 金鑰指紋為：<bcode>%3</bcode>您確定要繼續連"
+"線嗎？</para>"
 
 #: kio_sftp.cpp:767
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "主機認證失敗"
 
 #: kio_sftp.cpp:768
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The authenticity of host %1 cannot be established.\n"
-#| "The %2 key fingerprint is: %3\n"
-#| "Are you sure you want to continue connecting?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"無法與主機 %1 建立認證。\n"
-"%2 的金鑰指紋為 %3。\n"
-"您確定要繼續連線嗎？"
+"<para>無法與主機 <emphasis>%1</emphasis> 建立認證。</para><para>%2 的金鑰指紋"
+"為：<bcode>%3</bcode>您確定要繼續連線嗎？</para>"
 
 #: kio_sftp.cpp:777
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
-msgstr ""
+msgstr "還是要連線"
 
 #: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
 #: kio_sftp.cpp:898 kio_sftp.cpp:908
