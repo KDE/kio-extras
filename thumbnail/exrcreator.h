@@ -7,13 +7,14 @@
 #ifndef _EXRCREATOR_H_
 #define _EXRCREATOR_H_
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
-class EXRCreator : public ThumbCreator
+class EXRCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
-    EXRCreator() {};
-    bool create(const QString &path, int, int, QImage &img) override;
+    EXRCreator(QObject *parent, const QVariantList &args);
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };
 
 #endif

@@ -7,13 +7,14 @@
 #ifndef _CURSORCREATOR_H_
 #define _CURSORCREATOR_H_
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
-class CursorCreator : public ThumbCreator
+class CursorCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
-    CursorCreator() {}
-    bool create( const QString &path, int, int, QImage &img ) override;
+    CursorCreator(QObject *parent, const QVariantList &args);
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };
 
 #endif

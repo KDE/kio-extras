@@ -10,6 +10,7 @@
 
 class DjVuCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
     DjVuCreator(QObject *parent, const QVariantList &args);
 

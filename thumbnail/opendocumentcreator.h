@@ -6,14 +6,14 @@
 
 #pragma once
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
-class OpenDocumentCreator : public ThumbCreator
+class OpenDocumentCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
-    OpenDocumentCreator();
+    OpenDocumentCreator(QObject *parent, const QVariantList &args);
     ~OpenDocumentCreator() override;
 
-    bool create(const QString &path, int width, int height, QImage &image) override;
-
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };

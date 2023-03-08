@@ -7,8 +7,6 @@
 #include "exrcreator.h"
 #include "thumbnail-exr-logsettings.h"
 
-#include "macros.h"
-
 #include <QImage>
 #include <QFile>
 
@@ -16,16 +14,22 @@
 #include <ImfInputFile.h>
 #include <ImfPreviewImage.h>
 
-#include <KSharedConfig>
 #include <KConfigGroup>
+#include <KPluginFactory>
+#include <KSharedConfig>
 
 #include <limits>
 
-EXPORT_THUMBNAILER_WITH_JSON(EXRCreator, "exrthumbnail.json")
+K_PLUGIN_CLASS_WITH_JSON(EXRCreator, "exrthumbnail.json")
 
-bool EXRCreator::create(const QString &path, int, int, QImage &img)
+EXRCreator::EXRCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
 {
-    const QByteArray encodedPath = QFile::encodeName(path);
+}
+
+KIO::ThumbnailResult EXRCreator::create(const KIO::ThumbnailRequest &request)
+{
+    const QByteArray encodedPath = QFile::encodeName(request.url().toLocalFile());
     Imf::InputFile in (encodedPath.constData());
     const Imf::Header &h = in.header();
 
@@ -39,8 +43,7 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
                 qpreview.setPixel( x, y, qRgba(q.r, q.g, q.b, q.a) );
             }
         }
-        img = qpreview;
-        return true;
+        return KIO::ThumbnailResult::pass(qpreview);
     } else {
         // do it the hard way
         // We ignore maximum size when just extracting the thumbnail
@@ -51,17 +54,18 @@ bool EXRCreator::create(const QString &path, int, int, QImage &img)
         KSharedConfig::Ptr config = KSharedConfig::openConfig();
         KConfigGroup configGroup( config, "PreviewSettings" );
         const qint64 maxSize = configGroup.readEntry( "MaximumSize", std::numeric_limits<qint64>::max() );
-        const qint64 fileSize = QFile( path ).size();
+        const qint64 fileSize = QFile(request.url().toLocalFile()).size();
         if ( (fileSize > 0) && (fileSize < maxSize) ) {
-            if (!img.load( path )) {
-                return false;
+            QImage img;
+            if (!img.load(request.url().toLocalFile())) {
+                return KIO::ThumbnailResult::fail();
             }
             if (img.depth() != 32) {
                 img = img.convertToFormat( QImage::Format_RGB32 );
             }
-            return true;
+            return KIO::ThumbnailResult::pass(img);
         } else {
-            return false;
+            return KIO::ThumbnailResult::fail();
         }
     }
 }

@@ -9,25 +9,35 @@
 #include <QImage>
 #include <QFile>
 
+#include <KPluginFactory>
+
 #include <X11/Xlib.h>
 #include <X11/Xcursor/Xcursor.h>
 
-bool CursorCreator::create( const QString &path, int width, int height, QImage &img )
+K_PLUGIN_CLASS_WITH_JSON(CursorCreator, "cursorthumbnail.json")
+
+CursorCreator::CursorCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
 {
-    XcursorImage *cursor = XcursorFilenameLoadImage(
-                               QFile::encodeName( path ).data(),
-                               width > height ? height : width );
+}
+
+KIO::ThumbnailResult CursorCreator::create(const KIO::ThumbnailRequest &request)
+{
+    const int width = request.targetSize().width();
+    const int height = request.targetSize().height();
+
+    XcursorImage *cursor = XcursorFilenameLoadImage(QFile::encodeName(request.url().toLocalFile()).data(), width > height ? height : width);
 
     if ( cursor ) {
-        img = QImage( reinterpret_cast<uchar *>( cursor->pixels ),
-                      cursor->width, cursor->height, QImage::Format_ARGB32_Premultiplied );
+        QImage img(reinterpret_cast<uchar *>(cursor->pixels), cursor->width, cursor->height, QImage::Format_ARGB32_Premultiplied);
 
         // Create a deep copy of the image so the image data is preserved
         img = img.copy();
         XcursorImageDestroy( cursor );
-        return true;
+        return KIO::ThumbnailResult::pass(img);
     }
 
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
+#include "cursorcreator.moc"

@@ -1,6 +1,5 @@
 {
     "CacheThumbnail": false,
-    "DevicePixelRatioDependent": true,
     "KPlugin": {
         "MimeTypes": [
             "text/plain"

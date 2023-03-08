@@ -7,17 +7,18 @@
 #ifndef _TEXTCREATOR_H_
 #define _TEXTCREATOR_H_
 
+#include <KIO/ThumbnailCreator>
 #include <KSyntaxHighlighting/Repository>
-#include <KIO/ThumbCreator>
-#include <KIO/ThumbDevicePixelRatioDependentCreator>
 
 #include <QPixmap>
 
-class TextCreator : public KIO::ThumbDevicePixelRatioDependentCreator {
+class TextCreator : public KIO::ThumbnailCreator
+{
+    Q_OBJECT
 public:
-    TextCreator();
+    TextCreator(QObject *parent, const QVariantList &args);
     ~TextCreator() override;
-    bool create(const QString &path, int width, int height, QImage &img) override;
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 
 private:
     char *m_data;

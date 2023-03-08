@@ -6,23 +6,32 @@
 
 #include "svgcreator.h"
 
-#include "macros.h"
-
 #include <QImage>
 #include <QPainter>
 #include <QSvgRenderer>
 
-EXPORT_THUMBNAILER_WITH_JSON(SvgCreator, "svgthumbnail.json")
+#include <KPluginFactory>
 
-bool SvgCreator::create(const QString &path, int w, int h, QImage &img)
+K_PLUGIN_CLASS_WITH_JSON(SvgCreator, "svgthumbnail.json")
+
+SvgCreator::SvgCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
 {
-    QSvgRenderer r(path);
+}
+
+KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
+{
+    QSvgRenderer r(request.url().toLocalFile());
     if ( !r.isValid() )
-        return false;
+        return KIO::ThumbnailResult::fail();
 
     // render using the correct ratio
     const double ratio = static_cast<double>(r.defaultSize().height()) /
                          static_cast<double>(r.defaultSize().width());
+
+    int w = request.targetSize().width();
+    int h = request.targetSize().height();
+
     if (w < h)
         h = qRound(ratio * w);
     else
@@ -32,8 +41,8 @@ bool SvgCreator::create(const QString &path, int w, int h, QImage &img)
     i.fill(0);
     QPainter p(&i);
     r.render(&p);
-    img = i;
-    return true;
+
+    return KIO::ThumbnailResult::pass(i);
 }
 
 #include "svgcreator.moc"

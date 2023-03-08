@@ -16,11 +16,10 @@
 #include "comiccreator.h"
 #include "thumbnail-comic-logsettings.h"
 
-#include "macros.h"
-
-#include <KZip>
-#include <KTar>
 #include <K7Zip>
+#include <KPluginFactory>
+#include <KTar>
+#include <KZip>
 
 #include <memory>
 
@@ -32,15 +31,16 @@
 #include <QStandardPaths>
 #include <QTemporaryDir>
 
-EXPORT_THUMBNAILER_WITH_JSON(ComicCreator, "comicbookthumbnail.json")
+K_PLUGIN_CLASS_WITH_JSON(ComicCreator, "comicbookthumbnail.json")
 
-ComicCreator::ComicCreator() {}
-
-bool ComicCreator::create(const QString& path, int width, int height, QImage& img)
+ComicCreator::ComicCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
 {
-    Q_UNUSED(width);
-    Q_UNUSED(height);
+}
 
+KIO::ThumbnailResult ComicCreator::create(const KIO::ThumbnailRequest &request)
+{
+    const QString path = request.url().toLocalFile();
     QImage cover;
 
     // Detect mime type.
@@ -65,13 +65,10 @@ bool ComicCreator::create(const QString& path, int width, int height, QImage& im
 
     if (cover.isNull()) {
         qCDebug(KIO_THUMBNAIL_COMIC_LOG) << "Error creating the comic book thumbnail for" << path;
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
-    // Copy the extracted cover to KIO::ThumbCreator's img reference.
-    img = cover;
-
-    return true;
+    return KIO::ThumbnailResult::pass(cover);
 }
 
 void ComicCreator::filterImages(QStringList& entries)

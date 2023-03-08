@@ -15,32 +15,23 @@
 #include <QTextCodec>
 #include <QTextDocument>
 
+#include <KDesktopFile>
+#include <KPluginFactory>
+#include <KSyntaxHighlighting/Definition>
 #include <KSyntaxHighlighting/SyntaxHighlighter>
 #include <KSyntaxHighlighting/Theme>
-#include <KSyntaxHighlighting/Definition>
-#include <KDesktopFile>
 
 // TODO Fix or remove kencodingprober code
 // #include <kencodingprober.h>
 
-class KIOPluginForMetaData : public QObject
-{
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.thumbcreator" FILE "textthumbnail.json")
-};
+K_PLUGIN_CLASS_WITH_JSON(TextCreator, "textthumbnail.json")
 
-extern "C"
+TextCreator::TextCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
+    , m_data(nullptr)
+    , m_dataSize(0)
 {
-Q_DECL_EXPORT KIO::ThumbDevicePixelRatioDependentCreator *new_creator()
-{
-    return new TextCreator;
 }
-}
-
-TextCreator::TextCreator()
-    : KIO::ThumbDevicePixelRatioDependentCreator(),
-      m_data(nullptr),
-      m_dataSize(0) {}
 
 TextCreator::~TextCreator()
 {
@@ -60,44 +51,52 @@ static QTextCodec *codecFromContent(const char *data, int dataSize)
 #endif
 }
 
-bool TextCreator::create(const QString &path, int width, int height, QImage &img)
+KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
 {
+    const QString path = request.url().toLocalFile();
     // Desktop files, .directory files, and flatpakrefs aren't traditional
     // text files, so their icons should be shown instead
     if (KDesktopFile::isDesktopFile(path)
             || path.endsWith(QStringLiteral(".directory"))
             || path.endsWith(QStringLiteral(".flatpakref"))
        ) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     bool ok = false;
 
     // determine some sizes...
     // example: width: 60, height: 64
-    QSize pixmapSize( width * devicePixelRatio(), height * devicePixelRatio() );
+
+    const int width = request.targetSize().width();
+    const int height = request.targetSize().height();
+    const qreal dpr = request.devicePixelRatio();
+
+    QImage img;
+
+    QSize pixmapSize(width, height);
     if (height * 3 > width * 4)
-        pixmapSize.setHeight( width * 4 / 3 * devicePixelRatio());
+        pixmapSize.setHeight(width * 4 / 3);
     else
-        pixmapSize.setWidth( height * 3 / 4 * devicePixelRatio());
+        pixmapSize.setWidth(height * 3 / 4);
 
     if ( pixmapSize != m_pixmap.size() ) {
         m_pixmap = QPixmap( pixmapSize );
-        m_pixmap.setDevicePixelRatio(devicePixelRatio());
+        m_pixmap.setDevicePixelRatio(dpr);
     }
 
     // one pixel for the rectangle, the rest. whitespace
-    int xborder = 1 + pixmapSize.width()/16 / devicePixelRatio();  // minimum x-border
-    int yborder = 1 + pixmapSize.height()/16 / devicePixelRatio(); // minimum y-border
+    int xborder = 1 + pixmapSize.width() / 16 / dpr; // minimum x-border
+    int yborder = 1 + pixmapSize.height() / 16 / dpr; // minimum y-border
 
     // this font is supposed to look good at small sizes
     QFont font = QFontDatabase::systemFont(QFontDatabase::SmallestReadableFont);
 
-    font.setPixelSize( qMax(7, qMin( 10, ( pixmapSize.height()/ devicePixelRatio() - 2 * yborder ) / 16 ) ) );
+    font.setPixelSize(qMax(7.0, qMin(10.0, (pixmapSize.height() / dpr - 2 * yborder) / 16)));
     QFontMetrics fm( font );
 
     // calculate a better border so that the text is centered
-    const QSizeF canvasSize(pixmapSize.width() / devicePixelRatio() - 2 * xborder, pixmapSize.height() / devicePixelRatio() - 2 * yborder);
+    const QSizeF canvasSize(pixmapSize.width() / dpr - 2 * xborder, pixmapSize.height() / dpr - 2 * yborder);
     const int numLines = (int) (canvasSize.height() / fm.height());
 
     // assumes an average line length of <= 120 chars
@@ -169,7 +168,7 @@ bool TextCreator::create(const QString &path, int width, int height, QImage &img
 
         file.close();
     }
-    return ok;
+    return ok ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
 }
 
 #include "textcreator.moc"

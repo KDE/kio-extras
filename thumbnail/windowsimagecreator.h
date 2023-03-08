@@ -9,13 +9,14 @@
 #ifndef WINDOWS_IMAGE_CREATOR_H
 #define WINDOWS_IMAGE_CREATOR_H
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
-class WindowsImageCreator : public ThumbCreator
+class WindowsImageCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
-    WindowsImageCreator() {}
-    bool create(const QString &path, int width, int height, QImage &img) override;
+    WindowsImageCreator(QObject *parent, const QVariantList &args);
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };
 
 #endif // WINDOWS_IMAGE_CREATOR_H

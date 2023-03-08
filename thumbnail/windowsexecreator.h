@@ -11,13 +11,16 @@
 #ifndef WINDOWS_EXE_CREATOR_H
 #define WINDOWS_EXE_CREATOR_H
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
+#include <KPluginMetaData>
 
-class WindowsExeCreator : public ThumbCreator
+class WindowsExeCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
-    WindowsExeCreator() {}
-    bool create(const QString &path, int width, int height, QImage &img) override;
+    WindowsExeCreator(QObject *parent, const QVariantList &args);
+
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };
 
 #endif // WINDOWS_EXE_CREATOR_H

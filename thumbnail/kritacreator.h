@@ -17,6 +17,7 @@
  */
 class KritaCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
     KritaCreator(QObject *parent, const QVariantList &args);
     ~KritaCreator() override;

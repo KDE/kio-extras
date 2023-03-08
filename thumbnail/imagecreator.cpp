@@ -6,7 +6,6 @@
 */
 
 #include "imagecreator.h"
-#include "macros.h"
 
 #include <QImageReader>
 

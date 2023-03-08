@@ -7,13 +7,14 @@
 #ifndef _SVGCREATOR_H_
 #define _SVGCREATOR_H_
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
-class SvgCreator : public ThumbCreator
+class SvgCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
-    SvgCreator() {}
-    bool create(const QString &path, int w, int h, QImage &img) override;
+    SvgCreator(QObject *parent, const QVariantList &args);
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };
 
 #endif

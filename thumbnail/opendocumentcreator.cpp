@@ -6,28 +6,27 @@
 
 #include "opendocumentcreator.h"
 
-#include "macros.h"
-
 #include <QImage>
 #include <QScopedPointer>
 #include <QXmlStreamReader>
 
+#include <KPluginFactory>
 #include <KZip>
 
-EXPORT_THUMBNAILER_WITH_JSON(OpenDocumentCreator, "opendocumentthumbnail.json")
+K_PLUGIN_CLASS_WITH_JSON(OpenDocumentCreator, "opendocumentthumbnail.json")
 
-OpenDocumentCreator::OpenDocumentCreator() = default;
+OpenDocumentCreator::OpenDocumentCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
+{
+}
 
 OpenDocumentCreator::~OpenDocumentCreator() = default;
 
-bool OpenDocumentCreator::create(const QString &path, int width, int height, QImage &image)
+KIO::ThumbnailResult OpenDocumentCreator::create(const KIO::ThumbnailRequest &request)
 {
-    Q_UNUSED(width);
-    Q_UNUSED(height);
-
-    KZip zip(path);
+    KZip zip(request.url().toLocalFile());
     if (!zip.open(QIODevice::ReadOnly)) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
     // Open Document
@@ -35,9 +34,9 @@ bool OpenDocumentCreator::create(const QString &path, int width, int height, QIm
 
     if (entry && entry->isFile()) {
         const KZipFileEntry *zipFileEntry = static_cast<const KZipFileEntry *>(entry);
-
+        QImage image;
         if (image.loadFromData(zipFileEntry->data(), "PNG")) {
-            return true;
+            return KIO::ThumbnailResult::pass(image);
         }
     }
 
@@ -65,12 +64,14 @@ bool OpenDocumentCreator::create(const QString &path, int width, int height, QIm
         if (!thumbnailPath.isEmpty()) {
             const auto *thumbnailEntry = zip.directory()->entry(thumbnailPath);
             if (thumbnailEntry && thumbnailEntry->isFile()) {
-                return image.loadFromData(static_cast<const KZipFileEntry *>(thumbnailEntry)->data());
+                QImage image;
+                image.loadFromData(static_cast<const KZipFileEntry *>(thumbnailEntry)->data());
+                return KIO::ThumbnailResult::pass(image);
             }
         }
     }
 
-    return false;
+    return KIO::ThumbnailResult::fail();
 }
 
 #include "opendocumentcreator.moc"

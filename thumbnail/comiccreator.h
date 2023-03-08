@@ -16,7 +16,7 @@
 #ifndef COMIC_CREATOR_H
 #define COMIC_CREATOR_H
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
 #include <QByteArray>
 #include <QStringList>
@@ -26,12 +26,12 @@
 class KArchiveDirectory;
 class QEventLoop;
 
-class ComicCreator : public QObject, public ThumbCreator
+class ComicCreator : public KIO::ThumbnailCreator
 {
     Q_OBJECT
 public:
-    ComicCreator();
-    bool create(const QString& path, int width, int height, QImage& img) override;
+    ComicCreator(QObject *parent, const QVariantList &args);
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 
 private:
     enum Type {

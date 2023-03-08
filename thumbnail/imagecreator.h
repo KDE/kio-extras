@@ -13,6 +13,7 @@
 
 class ImageCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
     ImageCreator(QObject *parent, const QVariantList &args);
     KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;

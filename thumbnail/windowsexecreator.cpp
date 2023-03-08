@@ -8,18 +8,24 @@
 
 #include "windowsexecreator.h"
 #include "icoutils.h"
-#include "macros.h"
 
 #include <QString>
 #include <QImage>
 
-EXPORT_THUMBNAILER_WITH_JSON(WindowsExeCreator, "windowsexethumbnail.json")
+#include <KPluginFactory>
 
-bool WindowsExeCreator::create(const QString &path, int width, int height, QImage &img)
+K_PLUGIN_CLASS_WITH_JSON(WindowsExeCreator, "windowsexethumbnail.json")
+
+WindowsExeCreator::WindowsExeCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
 {
+}
 
-    return IcoUtils::loadIcoImageFromExe(path, img, width, height);
-
+KIO::ThumbnailResult WindowsExeCreator::create(const KIO::ThumbnailRequest &request)
+{
+    QImage img;
+    IcoUtils::loadIcoImageFromExe(request.url().toLocalFile(), img, request.targetSize().width(), request.targetSize().height());
+    return !img.isNull() ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
 }
 
 #include "windowsexecreator.moc"

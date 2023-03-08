@@ -16,6 +16,7 @@ class KArchiveDirectory;
 
 class EbookCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
     EbookCreator(QObject *parent, const QVariantList &args);
     ~EbookCreator() override;

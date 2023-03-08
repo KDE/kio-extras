@@ -6,40 +6,39 @@
 
 #include "appimagecreator.h"
 
-#include "macros.h"
-
 #include <QImage>
 #include <QScopedPointer>
 
 #include <appimage/appimage.h>
 
-EXPORT_THUMBNAILER_WITH_JSON(AppImageCreator, "appimagethumbnail.json")
+#include <KPluginFactory>
 
-AppImageCreator::AppImageCreator() = default;
+K_PLUGIN_CLASS_WITH_JSON(AppImageCreator, "appimagethumbnail.json")
+
+AppImageCreator::AppImageCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
+{
+}
+
 AppImageCreator::~AppImageCreator() = default;
 
-bool AppImageCreator::create(const QString &path, int width, int height, QImage &image)
+KIO::ThumbnailResult AppImageCreator::create(const KIO::ThumbnailRequest &request)
 {
-    // We just load the .DirIcon verbatim and let the PreviewJob figure out scaling to required size if needed
-    Q_UNUSED(width);
-    Q_UNUSED(height);
-
     unsigned long size = 0L;
     char *buf = nullptr;
 
-    bool ok = appimage_read_file_into_buffer_following_symlinks(qUtf8Printable(path),
-              ".DirIcon",
-              &buf,
-              &size);
+    bool ok = appimage_read_file_into_buffer_following_symlinks(qUtf8Printable(request.url().toLocalFile()), ".DirIcon", &buf, &size);
 
     QScopedPointer<char, QScopedPointerPodDeleter> cleanup(buf);
     Q_UNUSED(cleanup);
 
     if (!ok) {
-        return false;
+        return KIO::ThumbnailResult::fail();
     }
 
-    return image.loadFromData(reinterpret_cast<uchar*>(buf), size);
+    QImage image;
+    image.loadFromData(reinterpret_cast<uchar *>(buf), size);
+    return KIO::ThumbnailResult::pass(image);
 }
 
 #include "appimagecreator.moc"

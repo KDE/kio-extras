@@ -6,13 +6,14 @@
 
 #pragma once
 
-#include <KIO/ThumbCreator>
+#include <KIO/ThumbnailCreator>
 
-class AppImageCreator : public ThumbCreator
+class AppImageCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
-    AppImageCreator();
+    AppImageCreator(QObject *parent, const QVariantList &args);
     ~AppImageCreator() override;
 
-    bool create(const QString &path, int width, int height, QImage &image) override;
+    KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
 };

@@ -8,28 +8,36 @@
 
 #include "windowsimagecreator.h"
 #include "icoutils.h"
-#include "macros.h"
 
 #include <QString>
 #include <QImage>
 #include <QImageReader>
 #include <QMimeDatabase>
 
-EXPORT_THUMBNAILER_WITH_JSON(WindowsImageCreator, "windowsimagethumbnail.json")
+#include <KPluginFactory>
 
-bool WindowsImageCreator::create(const QString &path, int width, int height, QImage &img)
+K_PLUGIN_CLASS_WITH_JSON(WindowsImageCreator, "windowsimagethumbnail.json")
+
+WindowsImageCreator::WindowsImageCreator(QObject *parent, const QVariantList &args)
+    : KIO::ThumbnailCreator(parent, args)
 {
-    if (IcoUtils::loadIcoImage(path, img, width, height)) {
-        return true;
+}
+
+KIO::ThumbnailResult WindowsImageCreator::create(const KIO::ThumbnailRequest &request)
+{
+    const QString path = request.url().toLocalFile();
+    QImage img;
+    if (IcoUtils::loadIcoImage(path, img, request.targetSize().width(), request.targetSize().height())) {
+        return KIO::ThumbnailResult::pass(img);
     }
 
     // Maybe it's an animated cursor
     if (QMimeDatabase().mimeTypeForFile(path).name() == QLatin1String("application/x-navi-animation")) {
         QImageReader reader(path, "ani");
-        return reader.read(&img);
+        reader.read(&img);
+        return KIO::ThumbnailResult::pass(img);
     }
 
-    return false;
-
+    return KIO::ThumbnailResult::fail();
 }
 #include "windowsimagecreator.moc"

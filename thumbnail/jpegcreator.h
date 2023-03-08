@@ -14,6 +14,7 @@ class QTransform;
 
 class JpegCreator : public KIO::ThumbnailCreator
 {
+    Q_OBJECT
 public:
     JpegCreator(QObject *parent, const QVariantList &args);
     KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
