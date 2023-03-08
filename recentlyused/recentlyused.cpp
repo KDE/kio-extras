@@ -192,59 +192,73 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource, const 
 
 KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 {
-    if (!isRootUrl(url)) {
-        const auto path = url.path();
-        if (!path.endsWith(QStringLiteral("/")) &&
-            path != QStringLiteral("/") &&
-            path != QStringLiteral("/files") &&
-            path != QStringLiteral("/locations") ) {
+    // / /files and /locations
+    const auto path = url.path();
+    if (path == QStringLiteral("/") ||
+        path == QStringLiteral("/files") ||
+        path == QStringLiteral("/locations") ) {
 
-            const auto splitted = QStringView(url.fileName()).split(QLatin1Char('-'));
-            if (splitted.count() < 2) {
-                return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+        KIO::UDSEntryList udslist;
+
+        // add "." to transmit permissions for current directory
+        KIO::UDSEntry uds;
+        uds.reserve(4);
+        uds.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
+        uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+        uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+        #ifdef Q_OS_WIN
+            uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD );
+        #else
+            uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR );
+        #endif
+        udslist << uds;
+
+        const auto model = runQuery(url);
+
+        bool canFetchMore = true;
+        int row = 0;
+
+        while (canFetchMore) {
+            for (;row < model->rowCount(); ++row) {
+                const QModelIndex index = model->index(row, 0);
+                const QString resource = model->data(index, ResultModel::ResourceRole).toString();
+                const QString mimeType = model->data(index, ResultModel::MimeType).toString();
+
+                udslist << udsEntryFromResource(resource, mimeType, row);
             }
-            bool ok;
-            int id = splitted.last().toInt(&ok);
-            if (!ok) {
-                return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+            canFetchMore = model->canFetchMore(QModelIndex());
+            if (canFetchMore) {
+                model->fetchMore(QModelIndex());
             }
-
-            const auto model = runQuery(url);
-            const auto index = model->index(id, 0);
-
-            if (!index.isValid()) {
-                return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
-            }
-
-            const QString resource = model->data(index, ResultModel::ResourceRole).toString();
-            qDebug() << "redirection to " << resource << url;
-            redirection(QUrl::fromUserInput(resource));
-            return KIO::WorkerResult::pass();
         }
+
+        listEntries(udslist);
+
+        return KIO::WorkerResult::pass();
+    }
+
+    // subdirs
+
+    const auto splitted = QStringView(url.fileName()).split(QLatin1Char('-'));
+    if (splitted.count() < 2) {
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+    }
+    bool ok;
+    int id = splitted.last().toInt(&ok);
+    if (!ok) {
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
     }
 
     const auto model = runQuery(url);
+    const auto index = model->index(id, 0);
 
-    KIO::UDSEntryList udslist;
-    bool canFetchMore = true;
-    int row = 0;
-
-    while (canFetchMore) {
-        for (;row < model->rowCount(); ++row) {
-            const QModelIndex index = model->index(row, 0);
-            const QString resource = model->data(index, ResultModel::ResourceRole).toString();
-            const QString mimeType = model->data(index, ResultModel::MimeType).toString();
-
-            udslist << udsEntryFromResource(resource, mimeType, row);
-        }
-        canFetchMore = model->canFetchMore(QModelIndex());
-        if (canFetchMore) {
-            model->fetchMore(QModelIndex());
-        }
+    if (!index.isValid()) {
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
     }
 
-    listEntries(udslist);
-
+    const QString resource = model->data(index, ResultModel::ResourceRole).toString();
+    qCDebug(KIO_RECENTLYUSED_LOG) << "redirection to " << resource << url;
+    redirection(QUrl::fromUserInput(resource));
     return KIO::WorkerResult::pass();
 }
 

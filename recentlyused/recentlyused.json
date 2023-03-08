@@ -26,7 +26,7 @@
             "output": "filesystem",
             "protocol": "recentlyused",
             "reading": false,
-            "writing": false
+            "writing": true
         }
     }
 }
