@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-21 00:46+0000\n"
+"POT-Creation-Date: 2023-03-05 00:50+0000\n"
 "PO-Revision-Date: 2006-01-10 20:23+0100\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
@@ -19,39 +19,39 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: fish.cpp:291
+#: fish.cpp:290
 #, kde-format
 msgid "Connecting..."
 msgstr "Váldimin oktavuođa …"
 
-#: fish.cpp:593
+#: fish.cpp:592
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Álggaheamen protokolla …"
 
-#: fish.cpp:629
+#: fish.cpp:628
 #, kde-format
 msgid "Local Login"
 msgstr "Báikkálaš sisačáliheapmi"
 
-#: fish.cpp:631
+#: fish.cpp:630
 #, kde-format
 msgid "SSH Authentication"
 msgstr ""
 
-#: fish.cpp:670 fish.cpp:690
+#: fish.cpp:668 fish.cpp:683
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:670 fish.cpp:690
+#: fish.cpp:668 fish.cpp:683
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:771
+#: fish.cpp:760
 #, kde-format
 msgid "Disconnected."
 msgstr "Oktavuohta botkejuvvon."
