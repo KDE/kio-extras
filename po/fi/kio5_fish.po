@@ -3,7 +3,7 @@
 # Mikko Ikola <kola@netikka.fi>, 2003.
 # Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2003.
 # Tapio Kautto <eleknader@phnet.fi>, 2004.
-# Tommi Nieminen <translator@legisign.org>, 2010, 2012.
+# Tommi Nieminen <translator@legisign.org>, 2010, 2012, 2022.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2013.
 #
 # KDE Finnish translation sprint participants:
@@ -12,16 +12,16 @@ msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-03-05 00:50+0000\n"
-"PO-Revision-Date: 2013-12-22 13:56+0200\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
-"Language-Team: Finnish <lokalisointi@lists.coss.fi>\n"
+"PO-Revision-Date: 2022-12-03 09:57+0200\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-POT-Import-Date: 2012-12-01 22:22:13+0000\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #: fish.cpp:290
 #, kde-format
@@ -47,13 +47,13 @@ msgstr "SSH-tunnistautuminen"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "Kyllä"
 
 #: fish.cpp:668 fish.cpp:683
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "Ei"
 
 #: fish.cpp:760
 #, kde-format
