@@ -65,7 +65,22 @@ RecentlyUsed::~RecentlyUsed()
 {
 }
 
-ResultModel *runQuery(const QUrl &url)
+int queryLimit(QUrl url)
+{
+    const auto urlQuery = QUrlQuery(url);
+    // limit parameter
+    if (urlQuery.hasQueryItem(QStringLiteral("limit"))) {
+        const auto limitValue = urlQuery.queryItemValue(QStringLiteral("limit"));
+        bool parseOk;
+        const auto limitInt = limitValue.toInt(&parseOk);
+        if (parseOk) {
+            return limitInt;
+        }
+    }
+    return 30;
+}
+
+ResultModel *runQuery(const QUrl &url, int limit)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "runQuery for url" << url.toString();
 
@@ -85,16 +100,6 @@ ResultModel *runQuery(const QUrl &url)
             query.setTypes(types);
         } else if (path == QStringLiteral("/files")) {
             query.setTypes(Type::files());
-        }
-    }
-
-    // limit parameter
-    if (urlQuery.hasQueryItem(QStringLiteral("limit"))) {
-        const auto limitValue = urlQuery.queryItemValue(QStringLiteral("limit"));
-        bool parseOk;
-        const auto limitInt = limitValue.toInt(&parseOk);
-        if (parseOk) {
-            query.setLimit(limitInt);
         }
     }
 
@@ -162,12 +167,12 @@ ResultModel *runQuery(const QUrl &url)
     return new ResultModel(query);
 }
 
-KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource, const QString &mimeType, int row)
+KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resource, const QString &mimeType, int lastUpdateTime)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "udsEntryFromResource" << resource;
 
     // the query only returns files and folders
-    QUrl resourceUrl = QUrl::fromLocalFile(resource);
+    QUrl resourceUrl = QUrl::fromUserInput(resource);
 
     KIO::UDSEntry uds;
     KIO::StatJob *job = KIO::stat(resourceUrl, KIO::HideProgressInfo);
@@ -177,15 +182,28 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource, const 
     sp->setAutoDelete(false);
     if (sp->exec()) {
         uds = sp->statResult();
+    } else {
+        // not found / not existing anymore
+        return uds;
     }
     // replace name with a technical unique name
     const auto name = uds.stringValue(KIO::UDSEntry::UDS_NAME);
     uds.replace(KIO::UDSEntry::UDS_NAME, QStringLiteral("%1-%2").arg(name).arg(row));
     uds.reserve(uds.count() + 4);
-    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, name);
+    if (name.isEmpty()) {
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, resource);
+    } else {
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, name);
+    }
     uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, mimeType);
     uds.fastInsert(KIO::UDSEntry::UDS_TARGET_URL, resourceUrl.toString());
-    uds.fastInsert(KIO::UDSEntry::UDS_LOCAL_PATH, resource);
+    if (resourceUrl.isLocalFile()) {
+        uds.fastInsert(KIO::UDSEntry::UDS_LOCAL_PATH, resource);
+    }
+    if (!uds.contains(KIO::UDSEntry::UDS_ACCESS_TIME)) {
+        // default access time
+        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, lastUpdateTime);
+    }
     return uds;
 }
 
@@ -209,20 +227,26 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 #endif
         udslist << uds;
 
-        const auto model = runQuery(url);
+        int limit = queryLimit(url);
+        // query twice the limit size to be able to pass not existing files
+        const auto model = runQuery(url, limit * 2);
 
         bool canFetchMore = true;
         int row = 0;
 
         while (canFetchMore) {
-            for (; row < model->rowCount(); ++row) {
+            for (;udslist.count() != limit + 1 && row < model->rowCount(); ++row) {
                 const QModelIndex index = model->index(row, 0);
                 const QString resource = model->data(index, ResultModel::ResourceRole).toString();
                 const QString mimeType = model->data(index, ResultModel::MimeType).toString();
+                const int lastUpdate = model->data(index, ResultModel::LastUpdateRole).toInt();
 
-                udslist << udsEntryFromResource(resource, mimeType, row);
+                const auto entry = udsEntryFromResource(row, resource, mimeType, lastUpdate);
+                if (entry.count() > 0) {
+                    udslist << entry;
+                }
             }
-            canFetchMore = model->canFetchMore(QModelIndex());
+            canFetchMore = udslist.count() != limit + 1 && model->canFetchMore(QModelIndex());
             if (canFetchMore) {
                 model->fetchMore(QModelIndex());
             }
@@ -235,6 +259,7 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 
     // subdirs
 
+    // parse the technical id: filename-id, id being an index in the model
     const auto splitted = QStringView(url.fileName()).split(QLatin1Char('-'));
     if (splitted.count() < 2) {
         return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
@@ -245,7 +270,8 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
         return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
     }
 
-    const auto model = runQuery(url);
+    // query twice the limit size to be able to pass not existing files
+    const auto model = runQuery(url, queryLimit(url) * 2);
     const auto index = model->index(id, 0);
 
     if (!index.isValid()) {

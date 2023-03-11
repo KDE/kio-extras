@@ -110,7 +110,7 @@ private:
      *
      * row is the row number in the ResultModel for the recentlyused:/ url being queried
      */
-    KIO::UDSEntry udsEntryFromResource(const QString &resource, const QString &mimeType, int row);
+    KIO::UDSEntry udsEntryFromResource(int row, const QString &resource, const QString &mimeType, int lastUpdateTime);
     KIO::UDSEntry udsEntryForRoot(const QString &dirName, const QString &iconName);
 };
 
