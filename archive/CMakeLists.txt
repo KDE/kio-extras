@@ -37,6 +37,7 @@ install(EXPORT KioArchiveTargets
 install(FILES
     kio_archivebase.h
     ${CMAKE_CURRENT_BINARY_DIR}/libkioarchive_export.h
+    ${CMAKE_CURRENT_BINARY_DIR}/kioarchive_version.h
     DESTINATION ${LIBKIOARCHIVE_INSTALL_INCLUDEDIR}
     COMPONENT Devel
 )
