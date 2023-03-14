@@ -6,6 +6,7 @@ endif()
 
 set(LIBKIOARCHIVE_VERSION "5.97.0")
 set(LIBKIOARCHIVE_SOVERSION "5")
+set(LIBKIOARCHIVE_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR}/KioArchive")
 
 include(ECMSetupVersion)
 ecm_setup_version(${LIBKIOARCHIVE_VERSION} VARIABLE_PREFIX "KIOARCHIVE"
@@ -36,7 +37,7 @@ install(EXPORT KioArchiveTargets
 install(FILES
     kio_archivebase.h
     ${CMAKE_CURRENT_BINARY_DIR}/libkioarchive_export.h
-    DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}
+    DESTINATION ${LIBKIOARCHIVE_INSTALL_INCLUDEDIR}
     COMPONENT Devel
 )
 
@@ -77,7 +78,11 @@ set_target_properties(kioarchive PROPERTIES
     EXPORT_NAME KioArchive
 )
 
-install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
+target_include_directories(kioarchive
+    INTERFACE "$<INSTALL_INTERFACE:${LIBKIOARCHIVE_INSTALL_INCLUDEDIR}>"
+)
+
+install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ############### Archive Worker ######################
 
