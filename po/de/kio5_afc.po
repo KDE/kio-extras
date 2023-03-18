@@ -1,7 +1,7 @@
 # German translations for kio-extras package.
 # Copyright (C) 2022 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
-# Frederik Schwarzer <schwarzer@kde.org>, 2022.
+# Frederik Schwarzer <schwarzer@kde.org>, 2022, 2023.
 #
 # Automatically generated, 2022.
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-27 00:48+0000\n"
-"PO-Revision-Date: 2022-12-19 09:37+0100\n"
+"PO-Revision-Date: 2023-03-17 23:23+0100\n"
 "Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
 "Language-Team: English <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.0\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: afcutils.cpp:60
 #, kde-format
@@ -89,7 +89,7 @@ msgstr "%1 (Anwendungen)"
 #: kio_afc.cpp:688
 #, kde-format
 msgid "Cannot read without opening file first"
-msgstr ""
+msgstr "Datei kann nicht gelesen werden ohne sie zu öffnen"
 
 #: kio_afc.cpp:708
 #, kde-format
@@ -99,7 +99,7 @@ msgstr ""
 #: kio_afc.cpp:736
 #, kde-format
 msgid "Cannot write without opening file first"
-msgstr ""
+msgstr "Datei kann nicht geschrieben werden ohne sie zu öffnen"
 
 #: kio_afc.cpp:888
 #, kde-format
