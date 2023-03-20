@@ -16,12 +16,19 @@
 #include <KPluginMetaData>
 #include <KIO/ThumbnailCreator>
 
+#include <kio_version.h>
+
 class ThumbCreator;
 class QImage;
 
+#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
 using LegacyThumbCreatorPtr = std::unique_ptr<ThumbCreator>;
 using ThumbnailCreatorPtr = std::unique_ptr<KIO::ThumbnailCreator>;
 using Creator = std::variant<LegacyThumbCreatorPtr, ThumbnailCreatorPtr>;
+#else
+using ThumbnailCreatorPtr = std::unique_ptr<KIO::ThumbnailCreator>;
+using Creator = std::variant<ThumbnailCreatorPtr>;
+#endif
 
 struct ThumbCreatorWithMetadata {
     Creator creator;

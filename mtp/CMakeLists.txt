@@ -13,7 +13,7 @@ target_sources(kio_mtp PRIVATE
 )
 
 target_include_directories(kio_mtp PRIVATE shared)
-target_link_libraries(kio_mtp kmtp Qt::Core KF5::KIOCore KF5::I18n KF5::DBusAddons)
+target_link_libraries(kio_mtp kmtp Qt::Core KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::I18n KF${QT_MAJOR_VERSION}::DBusAddons)
 
 ecm_qt_declare_logging_category(kio_mtp
     HEADER kio_mtp_debug.h

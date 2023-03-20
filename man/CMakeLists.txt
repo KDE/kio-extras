@@ -6,7 +6,7 @@ remove_definitions(
     -DQT_USE_QSTRINGBUILDER
 )
 
-find_package(KF5 REQUIRED COMPONENTS Codecs)
+find_package(KF${QT_MAJOR_VERSION} REQUIRED COMPONENTS Codecs)
 
 # silence warnings for gperf generating code with 0 for null pointers
 set(AVOID_NULLPTR_WARNING_FLAG)
@@ -59,7 +59,11 @@ if (AVOID_NULLPTR_WARNING_FLAG)
 endif()
 
 target_link_libraries(kio_man
-    PRIVATE KF5::KIOCore Qt::Widgets KF5::Archive KF5::I18n KF5::Codecs Qt::Network kio_man_debug
+    PRIVATE KF${QT_MAJOR_VERSION}::KIOCore Qt::Widgets KF${QT_MAJOR_VERSION}::Archive KF${QT_MAJOR_VERSION}::I18n KF${QT_MAJOR_VERSION}::Codecs Qt::Network kio_man_debug
 )
+
+if (QT_MAJOR_VERSION STREQUAL "6")
+    target_link_libraries(kio_man PRIVATE Qt::Core5Compat)
+endif()
 
 install(TARGETS kio_man DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)

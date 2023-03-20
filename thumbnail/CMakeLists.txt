@@ -42,11 +42,11 @@ set_package_properties(Taglib PROPERTIES
     PURPOSE "Provides support for audio thumbnails"
 )
 
-find_package(KF5KExiv2)
-set_package_properties(KF5KExiv2 PROPERTIES
+find_package(KF${QT_MAJOR_VERSION}KExiv2)
+set_package_properties(KF${QT_MAJOR_VERSION}KExiv2 PROPERTIES
     TYPE OPTIONAL
     PURPOSE "Provides support for extracting JPEG thumbnails")
-if (KF5KExiv2_FOUND)
+if (KF${QT_MAJOR_VERSION}KExiv2_FOUND)
     set(HAVE_KEXIV2 TRUE)
 endif()
 
@@ -84,10 +84,10 @@ ecm_qt_declare_logging_category(kio_thumbnail
 )
 
 target_link_libraries(kio_thumbnail
-    KF5::CoreAddons
-    KF5::KIOCore
-    KF5::KIOWidgets
-    KF5::I18n
+    KF${QT_MAJOR_VERSION}::CoreAddons
+    KF${QT_MAJOR_VERSION}::KIOCore
+    KF${QT_MAJOR_VERSION}::KIOWidgets
+    KF${QT_MAJOR_VERSION}::I18n
 )
 
 install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
@@ -97,8 +97,8 @@ install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_
 add_library(imagethumbnail MODULE imagecreator.cpp)
 
 target_link_libraries(imagethumbnail
-    KF5::CoreAddons
-    KF5::KIOGui
+    KF${QT_MAJOR_VERSION}::CoreAddons
+    KF${QT_MAJOR_VERSION}::KIOGui
 )
 
 install(TARGETS imagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
@@ -116,14 +116,14 @@ kconfig_add_kcfg_files(jpegthumbnail jpegcreatorsettings5.kcfgc)
 target_link_libraries(jpegthumbnail
     Qt::Core
     Qt::Gui
-    KF5::KIOCore
-    KF5::KIOGui
-    KF5::I18n
-    KF5::ConfigCore
-    KF5::ConfigGui
+    KF${QT_MAJOR_VERSION}::KIOCore
+    KF${QT_MAJOR_VERSION}::KIOGui
+    KF${QT_MAJOR_VERSION}::I18n
+    KF${QT_MAJOR_VERSION}::ConfigCore
+    KF${QT_MAJOR_VERSION}::ConfigGui
 )
-if (TARGET KF5::KExiv2)
-    target_link_libraries(jpegthumbnail KF5::KExiv2)
+if (TARGET KF${QT_MAJOR_VERSION}::KExiv2)
+    target_link_libraries(jpegthumbnail KF${QT_MAJOR_VERSION}::KExiv2)
 endif()
 
 install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
@@ -136,8 +136,8 @@ add_library(svgthumbnail MODULE svgcreator.cpp)
 target_link_libraries(svgthumbnail
     Qt::Gui
     Qt::Svg
-    KF5::KIOCore
-    KF5::KIOGui
+    KF${QT_MAJOR_VERSION}::KIOCore
+    KF${QT_MAJOR_VERSION}::KIOGui
 )
 
 install(TARGETS svgthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
@@ -148,8 +148,8 @@ add_library(textthumbnail MODULE textcreator.cpp)
 
 target_link_libraries(textthumbnail
     Qt::Gui
-    KF5::KIOGui
-    KF5::SyntaxHighlighting
+    KF${QT_MAJOR_VERSION}::KIOGui
+    KF${QT_MAJOR_VERSION}::SyntaxHighlighting
 )
 if (QT_MAJOR_VERSION EQUAL "6")
     target_link_libraries(textthumbnail Qt6::Core5Compat)
@@ -172,7 +172,7 @@ if(NOT WIN32)
         EXPORT KIO_EXTRAS
     )
 
-    target_link_libraries(djvuthumbnail KF5::KIOGui)
+    target_link_libraries(djvuthumbnail KF${QT_MAJOR_VERSION}::KIOGui)
 
     install(TARGETS djvuthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
@@ -194,8 +194,8 @@ if(OpenEXR_FOUND)
     )
 
     target_link_libraries(exrthumbnail
-        KF5::KIOCore
-        KF5::KIOGui
+        KF${QT_MAJOR_VERSION}::KIOCore
+        KF${QT_MAJOR_VERSION}::KIOGui
     )
     if(TARGET OpenEXR::OpenEXR)
         target_link_libraries(exrthumbnail OpenEXR::OpenEXR)
@@ -219,9 +219,9 @@ if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
     add_library(cursorthumbnail MODULE cursorcreator.cpp)
 
     target_link_libraries(cursorthumbnail
-        KF5::KIOCore
-        KF5::KIOGui
-        KF5::CoreAddons
+        KF${QT_MAJOR_VERSION}::KIOCore
+        KF${QT_MAJOR_VERSION}::KIOGui
+        KF${QT_MAJOR_VERSION}::CoreAddons
         ${X11_Xcursor_LIB}
     )
 
@@ -242,10 +242,10 @@ else()
     target_sources(windowsimagethumbnail PRIVATE icoutils_wrestool.cpp)
 endif()
 
-target_link_libraries(windowsexethumbnail KF5::KIOGui)
+target_link_libraries(windowsexethumbnail KF${QT_MAJOR_VERSION}::KIOGui)
 install(TARGETS windowsexethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
-target_link_libraries(windowsimagethumbnail KF5::KIOGui)
+target_link_libraries(windowsimagethumbnail KF${QT_MAJOR_VERSION}::KIOGui)
 install(TARGETS windowsimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 ########### next target ###############
@@ -263,8 +263,8 @@ ecm_qt_declare_logging_category(comicbookthumbnail
 
 target_link_libraries(comicbookthumbnail
     Qt::Gui
-    KF5::Archive
-    KF5::KIOGui
+    KF${QT_MAJOR_VERSION}::Archive
+    KF${QT_MAJOR_VERSION}::KIOGui
 )
 
 install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
@@ -274,8 +274,8 @@ install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_M
 add_library(kritathumbnail MODULE kritacreator.cpp)
 
 target_link_libraries(kritathumbnail
-    KF5::KIOGui
-    KF5::Archive
+    KF${QT_MAJOR_VERSION}::KIOGui
+    KF${QT_MAJOR_VERSION}::Archive
 )
 
 install(TARGETS kritathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
@@ -288,7 +288,7 @@ if(Taglib_FOUND)
 
     target_link_libraries(audiothumbnail
         Taglib::Taglib
-        KF5::KIOGui
+        KF${QT_MAJOR_VERSION}::KIOGui
     )
 
     install(TARGETS audiothumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
@@ -301,8 +301,8 @@ add_library(opendocumentthumbnail MODULE opendocumentcreator.cpp)
 
 target_link_libraries(opendocumentthumbnail
     Qt::Gui
-    KF5::KIOGui
-    KF5::Archive
+    KF${QT_MAJOR_VERSION}::KIOGui
+    KF${QT_MAJOR_VERSION}::Archive
 )
 
 install(TARGETS opendocumentthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
@@ -314,7 +314,7 @@ if(libappimage_FOUND)
     add_library(appimagethumbnail MODULE appimagecreator.cpp)
 
     target_link_libraries(appimagethumbnail
-        KF5::KIOGui
+        KF${QT_MAJOR_VERSION}::KIOGui
         Qt::Gui
         libappimage
     )
@@ -329,8 +329,8 @@ add_library(ebookthumbnail MODULE ebookcreator.cpp)
 
 target_link_libraries(ebookthumbnail
     Qt::Gui
-    KF5::KIOGui
-    KF5::Archive
+    KF${QT_MAJOR_VERSION}::KIOGui
+    KF${QT_MAJOR_VERSION}::Archive
 )
 
 install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)

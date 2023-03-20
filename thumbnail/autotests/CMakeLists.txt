@@ -9,5 +9,5 @@ ecm_add_tests(
     thumbnailtest.cpp
     LINK_LIBRARIES
         Qt::Test
-        KF5::KIOWidgets
+        KF${QT_MAJOR_VERSION}::KIOWidgets
 )

@@ -12,10 +12,10 @@ kcoreaddons_add_plugin(kmtpd INSTALL_NAMESPACE "kf${QT_MAJOR_VERSION}/kiod" SOUR
 
 target_link_libraries(kmtpd
     kmtp
-    KF5::CoreAddons
-    KF5::DBusAddons
-    KF5::Solid
-    KF5::KIOCore
+    KF${QT_MAJOR_VERSION}::CoreAddons
+    KF${QT_MAJOR_VERSION}::DBusAddons
+    KF${QT_MAJOR_VERSION}::Solid
+    KF${QT_MAJOR_VERSION}::KIOCore
     Qt::Core
     Libmtp::Libmtp
 )

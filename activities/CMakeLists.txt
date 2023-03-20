@@ -28,10 +28,10 @@ target_sources(kio_activities PRIVATE
 target_link_libraries(
    kio_activities
    Qt::Sql
-   KF5::KIOCore
-   KF5::DBusAddons
-   KF5::Activities
-   KF5::I18n
+   KF${QT_MAJOR_VERSION}::KIOCore
+   KF${QT_MAJOR_VERSION}::DBusAddons
+   KF${QT_MAJOR_VERSION}::Activities
+   KF${QT_MAJOR_VERSION}::I18n
    Qt::Network
 )
 
@@ -49,10 +49,10 @@ target_sources(kio_activities_a PRIVATE
 target_link_libraries(
    kio_activities_a
    Qt::Sql
-   KF5::KIOCore
-   KF5::DBusAddons
-   KF5::Activities
-   KF5::I18n
+   KF${QT_MAJOR_VERSION}::KIOCore
+   KF${QT_MAJOR_VERSION}::DBusAddons
+   KF${QT_MAJOR_VERSION}::Activities
+   KF${QT_MAJOR_VERSION}::I18n
    Qt::Network
 )
 

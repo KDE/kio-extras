@@ -8,9 +8,9 @@ set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE
 project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
 
 set(QT_MIN_VERSION "5.15.2")
-set(KF5_MIN_VERSION "5.101.0")
+set(KF_MIN_VERSION "5.101.0")
 
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
@@ -41,7 +41,7 @@ if (NOT Qt${QT_MAJOR_VERSION}Test_FOUND)
     set(BUILD_TESTING OFF CACHE BOOL "Build the testing tree.")
 endif()
 
-find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Archive
     Config
     ConfigWidgets
@@ -61,8 +61,8 @@ include(KDEClangFormat)
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
-find_package(KF5Activities QUIET)
-set_package_properties(KF5Activities PROPERTIES
+find_package(KF${QT_MAJOR_VERSION}Activities QUIET)
+set_package_properties(KF${QT_MAJOR_VERSION}Activities PROPERTIES
     PURPOSE "Provides the activities:/ KIO worker and fileitem plugin."
     TYPE OPTIONAL
 )
@@ -73,8 +73,8 @@ set_package_properties(Qt${QT_MAJOR_VERSION}Sql PROPERTIES
     TYPE OPTIONAL
 )
 
-find_package(KF5ActivitiesStats ${KF5_MIN_VERSION} QUIET)
-set_package_properties(KF5ActivitiesStats PROPERTIES
+find_package(KF${QT_MAJOR_VERSION}ActivitiesStats ${KF_MIN_VERSION} QUIET)
+set_package_properties(KF${QT_MAJOR_VERSION}ActivitiesStats PROPERTIES
     PURPOSE "Provides the recentlyused:/ KIO worker"
     TYPE OPTIONAL
 )
@@ -170,10 +170,10 @@ ecm_set_disabled_deprecation_versions(
 add_subdirectory( doc )
 
 add_subdirectory( about )
-if(TARGET KF5::Activities AND TARGET Qt::Sql AND NOT WIN32)
+if(TARGET KF${QT_MAJOR_VERSION}::Activities AND TARGET Qt::Sql AND NOT WIN32)
   add_subdirectory( activities )
 endif()
-if(KF5ActivitiesStats_FOUND)
+if(KF${QT_MAJOR_VERSION}ActivitiesStats_FOUND)
     add_subdirectory( recentlyused )
 endif()
 add_subdirectory( bookmarks )

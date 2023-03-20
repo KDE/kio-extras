@@ -33,10 +33,10 @@ if(WIN32)
 endif()
 
 target_link_libraries(kio_sftp
-   KF5::KIOCore
-   KF5::WidgetsAddons # KMessageBox
-   KF5::ConfigCore
-   KF5::I18n
+   KF${QT_MAJOR_VERSION}::KIOCore
+   KF${QT_MAJOR_VERSION}::WidgetsAddons # KMessageBox
+   KF${QT_MAJOR_VERSION}::ConfigCore
+   KF${QT_MAJOR_VERSION}::I18n
    Qt::Network
    ssh)
 

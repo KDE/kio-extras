@@ -12,9 +12,9 @@ target_link_libraries (
    kactivitymanagerd_fileitem_linking_plugin
    Qt::Core
    Qt::Sql
-   KF5::KIOFileWidgets
-   KF5::I18n
-   KF5::Activities
+   KF${QT_MAJOR_VERSION}::KIOFileWidgets
+   KF${QT_MAJOR_VERSION}::I18n
+   KF${QT_MAJOR_VERSION}::Activities
    )
 
 install (

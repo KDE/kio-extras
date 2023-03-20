@@ -63,7 +63,7 @@ public Q_SLOTS:
         // https://bugzilla.samba.org/show_bug.cgi?id=11413
         m_proc = new QProcess(this);
         m_proc->setProcessChannelMode(QProcess::ForwardedChannels);
-        m_proc->setProgram(QStringLiteral(KDE_INSTALL_FULL_LIBEXECDIR_KF5 "/smbnotifier"));
+        m_proc->setProgram(QStringLiteral(KDE_INSTALL_FULL_LIBEXECDIR_KF "/smbnotifier"));
         m_proc->setArguments({m_url});
         connect(m_proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
                 this, &Notifier::maybeRestart);

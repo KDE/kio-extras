@@ -81,12 +81,12 @@ target_include_directories(kio_smb_static
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..;${CMAKE_CURRENT_BINARY_DIR}/..>"
 )
 target_link_libraries(kio_smb_static
-    KF5::KIOCore
-    KF5::I18n
-    KF5::ConfigCore
+    KF${QT_MAJOR_VERSION}::KIOCore
+    KF${QT_MAJOR_VERSION}::I18n
+    KF${QT_MAJOR_VERSION}::ConfigCore
     ${SAMBA_LIBRARIES}
     Qt::Network
-    KF5::DNSSD
+    KF${QT_MAJOR_VERSION}::DNSSD
     KDSoap::WSDiscoveryClient
     Threads::Threads # std::async
 )

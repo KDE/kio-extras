@@ -6,7 +6,7 @@ set_target_properties(kio_about PROPERTIES
 target_sources(kio_about PRIVATE kio_about.cpp)
 
 target_link_libraries(kio_about
-    KF5::KIOCore
+    KF${QT_MAJOR_VERSION}::KIOCore
     Qt::Network
 )
 

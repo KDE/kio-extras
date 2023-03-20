@@ -30,10 +30,10 @@ ecm_qt_declare_logging_category(recentlyused
 )
 
 target_link_libraries(recentlyused
-    KF5::KIOCore
-    KF5::I18n
-    KF5::Activities
-    KF5::ActivitiesStats)
+    KF${QT_MAJOR_VERSION}::KIOCore
+    KF${QT_MAJOR_VERSION}::I18n
+    KF${QT_MAJOR_VERSION}::Activities
+    KF${QT_MAJOR_VERSION}::ActivitiesStats)
 
 install(TARGETS recentlyused DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
 
@@ -43,5 +43,5 @@ kcoreaddons_add_plugin(forgetfileitemaction
     INSTALL_NAMESPACE "kf${QT_MAJOR_VERSION}/kfileitemaction")
 
 target_link_libraries(forgetfileitemaction
-    KF5::I18n
-    KF5::KIOWidgets)
+    KF${QT_MAJOR_VERSION}::I18n
+    KF${QT_MAJOR_VERSION}::KIOWidgets)

@@ -40,11 +40,15 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 
+#include <KIO/PreviewJob>
+#include <KPluginFactory>
+
+#include <kio_version.h>
+#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
 #include <KIO/ThumbCreator>
 #include <KIO/ThumbDevicePixelRatioDependentCreator>
 #include <KIO/ThumbSequenceCreator>
-#include <KIO/PreviewJob>
-#include <KPluginFactory>
+#endif
 
 #include <QDirIterator>
 
@@ -241,6 +245,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         }
 
         if (creator->handleSequences) {
+#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
             if (std::holds_alternative<LegacyThumbCreatorPtr>(creator->creator)) {
                 auto *sequenceCreator = dynamic_cast<ThumbSequenceCreator *>(std::get<LegacyThumbCreatorPtr>(creator->creator).get());
 
@@ -251,6 +256,9 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
             } else {
                 setMetaData("handlesSequences", QStringLiteral("1"));
             }
+#else
+            setMetaData("handlesSequences", QStringLiteral("1"));
+#endif
         }
 
         if (!createThumbnail(creator, info.canonicalFilePath(), m_width, m_height, img)) {
@@ -648,6 +656,7 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
         return creator;
     }
 
+#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
     // Don't use KPluginFactory here, this is not a QObject and
     // neither is ThumbCreator
     ThumbCreator *creator = nullptr;
@@ -690,6 +699,9 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
     m_creators.insert(plugin, thumbCreator);
 
     return thumbCreator;
+#endif
+
+    return nullptr;
 }
 
 void ThumbnailProtocol::ensureDirsCreated()
@@ -821,6 +833,7 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, 
 {
     bool success = false;
 
+#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
     if (std::holds_alternative<LegacyThumbCreatorPtr>(thumbCreator->creator)) {
         auto creator = std::get<LegacyThumbCreatorPtr>(thumbCreator->creator).get();
 
@@ -847,13 +860,17 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, 
 
     }
     else {
+#endif
         auto result = std::get<ThumbnailCreatorPtr>(thumbCreator->creator)
                           ->create(KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(width, height), m_mimeType, m_devicePixelRatio, sequenceIndex()));
 
         success = result.isValid();
         thumbnail = result.image();
         m_sequenceIndexWrapAroundPoint = result.sequenceIndexWraparoundPoint();
+
+#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
     }
+#endif
 
     if (!success) {
         return false;

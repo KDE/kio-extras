@@ -28,10 +28,10 @@ ecm_qt_declare_logging_category(kio_afc
 )
 
 target_link_libraries(kio_afc
-    KF5::KIOCore
+    KF${QT_MAJOR_VERSION}::KIOCore
     IMobileDevice::IMobileDevice
     PList::PList
-    KF5::I18n
+    KF${QT_MAJOR_VERSION}::I18n
 )
 
 install(TARGETS kio_afc DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)

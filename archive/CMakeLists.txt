@@ -65,10 +65,10 @@ target_compile_definitions(kioarchive
 
 target_link_libraries(kioarchive
     PUBLIC
-    KF5::Archive
-    KF5::KIOCore
+    KF${QT_MAJOR_VERSION}::Archive
+    KF${QT_MAJOR_VERSION}::KIOCore
     PRIVATE
-    KF5::I18n
+    KF${QT_MAJOR_VERSION}::I18n
     Qt::Network
     Qt::DBus
 )
@@ -88,6 +88,6 @@ install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KDE_
 ############### Archive Worker ######################
 
 add_library(kio_archive MODULE kio_archive.cpp ${kio_archive_debug_SRCS})
-target_link_libraries(kio_archive KF5::KIOCore KF5::Archive kioarchive Qt::Network)
+target_link_libraries(kio_archive KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::Archive kioarchive Qt::Network)
 set_target_properties(kio_archive PROPERTIES OUTPUT_NAME "archive")
 install(TARGETS kio_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
