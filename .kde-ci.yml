@@ -23,7 +23,7 @@ Dependencies:
     'graphics/libkexiv2': '@same'
     'third-party/kdsoap': '@latest'
 
-- 'on': ['Linux']
+- 'on': ['Linux', 'FreeBSD']
   'require':
     'libraries/kdsoap-ws-discovery-client': '@stable'
 
