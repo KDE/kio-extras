@@ -239,11 +239,11 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
     if (!pathItems.isEmpty()) {
 
         // 1. check if the file is in the cache
-        const quint32 itemId = queryPath(path);
-        if (itemId) {
+        const auto itemId = queryPath(path);
+        if (itemId.has_value()) {
             qCDebug(LOG_KIOD_KMTPD) << "Match found in cache, checking device";
 
-            std::unique_ptr<LIBMTP_file_t> file(LIBMTP_Get_Filemetadata(getDevice(), itemId));
+            std::unique_ptr<LIBMTP_file_t> file(LIBMTP_Get_Filemetadata(getDevice(), itemId.value()));
             if (file) {
                 qCDebug(LOG_KIOD_KMTPD) << "Found file in cache";
                 return createKMTPFile(file);
@@ -253,22 +253,24 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
         // 2. query cache for parent
         else if (pathItems.size() > 1) {
             QString parentPath = convertToPath(pathItems, pathItems.size() - 1);
-            quint32 parentId = queryPath(parentPath);
+            const auto parentId = queryPath(parentPath);
 
-            qCDebug(LOG_KIOD_KMTPD)  << "Match for parent found in cache, checking device. Parent id = " << parentId;
+            if (parentId.has_value()) {
+                qCDebug(LOG_KIOD_KMTPD)  << "Match for parent found in cache, checking device. Parent id = " << parentId.value();
 
-            std::unique_ptr<LIBMTP_file_t> parent(LIBMTP_Get_Filemetadata(getDevice(), parentId));
-            if (parent) {
-                qCDebug(LOG_KIOD_KMTPD) << "Found parent in cache";
+                std::unique_ptr<LIBMTP_file_t> parent(LIBMTP_Get_Filemetadata(getDevice(), parentId.value()));
+                if (parent) {
+                    qCDebug(LOG_KIOD_KMTPD) << "Found parent in cache";
 
-                const KMTPFileList list = getFilesAndFoldersCached(parentPath, parentId);
-                const auto it = std::find_if(list.constBegin(), list.constEnd(), [pathItems](const KMTPFile &file) {
-                    return file.filename() == pathItems.last();
-                });
+                    const KMTPFileList list = getFilesAndFoldersCached(parentPath, parentId.value());
+                    const auto it = std::find_if(list.constBegin(), list.constEnd(), [pathItems](const KMTPFile &file) {
+                        return file.filename() == pathItems.last();
+                    });
 
-                if (it != list.constEnd()) {
-                    qCDebug(LOG_KIOD_KMTPD) << "Found file from cached parent";
-                    return *it;
+                    if (it != list.constEnd()) {
+                        qCDebug(LOG_KIOD_KMTPD) << "Found file from cached parent";
+                        return *it;
+                    }
                 }
             }
         }
@@ -351,7 +353,7 @@ std::optional<KMTPFile> MTPStorage::findEntry(const QString &fileNeedle, const Q
 }
 #endif
 
-quint32 MTPStorage::queryPath(const QString &path, int timeToLive)
+std::optional<quint32> MTPStorage::queryPath(const QString &path, int timeToLive)
 {
     QPair< QDateTime, uint32_t > item = m_cache.value(path);
 
@@ -364,10 +366,10 @@ quint32 MTPStorage::queryPath(const QString &path, int timeToLive)
             return item.second;
         }
         m_cache.remove(path);
-        return 0;
+        return std::nullopt;
     }
 
-    return 0;
+    return std::nullopt;
 }
 
 void MTPStorage::addPath(const QString &path, quint32 id, int timeToLive)
@@ -526,9 +528,9 @@ quint32 MTPStorage::createFolder(const QString &path)
 
     quint32 folderId = 0;
     const QStringList pathItems = path.split(QLatin1Char('/'), Qt::SkipEmptyParts);
-    const quint32 destinationId = queryPath(path);
+    const auto destinationId = queryPath(path);
 
-    if (!pathItems.isEmpty() && !destinationId) {
+    if (!pathItems.isEmpty() && !destinationId.has_value()) {
         QByteArray dirName = pathItems.last().toUtf8();
 
         if (pathItems.size() == 1) {

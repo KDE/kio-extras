@@ -86,7 +86,7 @@ private:
      * @param path The Path to query the cache for
      * @return The ID of the Item if it exists, else 0
      */
-    quint32 queryPath(const QString &path, int timeToLive = 60);
+    std::optional<quint32> queryPath(const QString &path, int timeToLive = 60);
 
     /**
      * @brief Adds a Path to the Cache with the given id and ttl.
