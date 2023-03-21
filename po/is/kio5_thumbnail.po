@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-10 00:46+0000\n"
+"POT-Creation-Date: 2023-03-21 00:47+0000\n"
 "PO-Revision-Date: 2022-10-10 16:02+0000\n"
 "Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -19,52 +19,52 @@ msgstr ""
 "\n"
 "\n"
 
-#: thumbnail.cpp:194
+#: thumbnail.cpp:198
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Engin MIME-gerð skilgreind."
 
-#: thumbnail.cpp:201
+#: thumbnail.cpp:205
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Engin eða ógild stærð gefin upp."
 
-#: thumbnail.cpp:224
+#: thumbnail.cpp:228
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Tókst ekki að búa til smámynd fyrir möppuna"
 
-#: thumbnail.cpp:235
+#: thumbnail.cpp:239
 #, kde-format
 msgid "No plugin specified."
 msgstr "Engin tengiviðbót skilgreind."
 
-#: thumbnail.cpp:240
+#: thumbnail.cpp:244
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Get ekki hlaðið inn ThumbCreator %1"
 
-#: thumbnail.cpp:257
+#: thumbnail.cpp:265
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Get ekki búið til smámynd fyrir %1"
 
-#: thumbnail.cpp:269
+#: thumbnail.cpp:277
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Mistókst að búa til smámynd."
 
-#: thumbnail.cpp:280
+#: thumbnail.cpp:288
 #, kde-format
 msgid "Could not write image."
 msgstr "Gat ekki skrifað mynd."
 
-#: thumbnail.cpp:304
+#: thumbnail.cpp:312
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Mistókst að tengjast minnishluta %1"
 
-#: thumbnail.cpp:311
+#: thumbnail.cpp:319
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Myndin er of stór fyrir samnýtta minnishlutann"

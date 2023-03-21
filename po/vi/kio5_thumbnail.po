@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-11-10 00:46+0000\n"
+"POT-Creation-Date: 2023-03-21 00:47+0000\n"
 "PO-Revision-Date: 2021-08-03 11:40+0200\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -19,52 +19,52 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 20.12.2\n"
 
-#: thumbnail.cpp:194
+#: thumbnail.cpp:198
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Chưa chỉ ra kiểu MIME."
 
-#: thumbnail.cpp:201
+#: thumbnail.cpp:205
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Chưa chỉ ra kích thước, hoặc chỉ ra kích thước sai."
 
-#: thumbnail.cpp:224
+#: thumbnail.cpp:228
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Không thể tạo hình nhỏ cho thư mục"
 
-#: thumbnail.cpp:235
+#: thumbnail.cpp:239
 #, kde-format
 msgid "No plugin specified."
 msgstr "Chưa chỉ ra phần cài cắm."
 
-#: thumbnail.cpp:240
+#: thumbnail.cpp:244
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Không thể tải ThumbCreator %1"
 
-#: thumbnail.cpp:257
+#: thumbnail.cpp:265
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Không thể tạo hình nhỏ cho %1"
 
-#: thumbnail.cpp:269
+#: thumbnail.cpp:277
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Tạo hình nhỏ thất bại."
 
-#: thumbnail.cpp:280
+#: thumbnail.cpp:288
 #, kde-format
 msgid "Could not write image."
 msgstr "Không ghi được ảnh."
 
-#: thumbnail.cpp:304
+#: thumbnail.cpp:312
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Gắn vào vùng nhớ dùng chung %1 thất bại"
 
-#: thumbnail.cpp:311
+#: thumbnail.cpp:319
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Ảnh quá lớn đối với vùng nhớ dùng chung"
