@@ -323,6 +323,7 @@ std::optional<KMTPFile> MTPStorage::findEntry(const QString &fileNeedle, const Q
     if (childrenSize == -1) {
         return std::nullopt;
     }
+    const std::unique_ptr<uint32_t> childrenOwner(children);
 
     for (const auto &child : std::span<uint32_t>(children, childrenSize)) {
         const KMTPFile mtpFile = createKMTPFile(std::unique_ptr<LIBMTP_file_t>(LIBMTP_Get_Filemetadata(getDevice(), child)));
