@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-25 01:00+0000\n"
+"POT-Creation-Date: 2023-03-22 00:47+0000\n"
 "PO-Revision-Date: 2015-02-01 03:22-0600\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@list.sf.net>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: kio_mtp.cpp:218
+#: kio_mtp.cpp:220
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -28,7 +28,7 @@ msgid ""
 "USB connection settings."
 msgstr ""
 
-#: kio_mtp.cpp:493
+#: kio_mtp.cpp:521
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "ਫਾਇਲਾਂ ਨੂੰ ਯੰਤਰ ਨੂੰ ਖੁਦ ਉੱਤੇ ਕਾਪੀ/ਭੇਜਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ"

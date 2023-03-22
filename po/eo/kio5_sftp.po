@@ -1,5 +1,6 @@
-# translation of kio_sftp.po to esperanto
+# translation of kio5_sftp.pot to esperanto
 # Copyright (C) 2007 Free Software Foundation, Inc.
+# This file is distributed under the same license as the kio-extras package.
 # Wolfram Diestel <wolfram@steloj.de>, 2002.
 # Pierre-Marie Pédrot <pedrotpmx@wanadoo.fr>, 2007.
 #
@@ -8,8 +9,8 @@ msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-18 00:44+0000\n"
-"PO-Revision-Date: 2007-11-25 12:30+0100\n"
-"Last-Translator: Pierre-Marie Pédrot <pedrotpmx@wanadoo.fr>\n"
+"PO-Revision-Date: 2023-03-20 22:43+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -19,10 +20,9 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: kio_sftp.cpp:226
-#, fuzzy, kde-format
-#| msgid "Incorrect username or password"
+#, kde-format
 msgid "Incorrect or invalid passphrase"
-msgstr "Nevalida salutnomo aŭ pasvorto"
+msgstr ""
 
 #: kio_sftp.cpp:276
 #, kde-format
@@ -35,16 +35,14 @@ msgid "Could not set log verbosity."
 msgstr ""
 
 #: kio_sftp.cpp:294
-#, fuzzy, kde-format
-#| msgid "Could not read SFTP packet"
+#, kde-format
 msgid "Could not set log userdata."
-msgstr "Ne eblis legi la SFTP paketon"
+msgstr ""
 
 #: kio_sftp.cpp:299
-#, fuzzy, kde-format
-#| msgid "Could not read SFTP packet"
+#, kde-format
 msgid "Could not set log callback."
-msgstr "Ne eblis legi la SFTP paketon"
+msgstr ""
 
 #: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
 #, kde-format
@@ -57,23 +55,20 @@ msgid "Use the username input field to answer this question."
 msgstr ""
 
 #: kio_sftp.cpp:365
-#, fuzzy, kde-format
-#| msgid "Please enter your username and password."
+#, kde-format
 msgid "Please enter your password."
-msgstr "Bonvolu tajpi vian salutnomon kaj pasvorton."
+msgstr ""
 
 #: kio_sftp.cpp:370 kio_sftp.cpp:857
-#, fuzzy, kde-format
-#| msgid "site:"
+#, kde-format
 msgid "Site:"
-msgstr "retejo:"
+msgstr ""
 
 #: kio_sftp.cpp:417
-#, fuzzy, kde-format
-#| msgid "Could not read SFTP packet"
+#, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
-msgstr "Ne eblis legi la SFTP paketon"
+msgstr ""
 
 #: kio_sftp.cpp:539
 #, kde-format
@@ -81,16 +76,14 @@ msgid "Could not create a new SSH session."
 msgstr ""
 
 #: kio_sftp.cpp:550 kio_sftp.cpp:554
-#, fuzzy, kde-format
-#| msgid "Could not read SFTP packet"
+#, kde-format
 msgid "Could not set a timeout."
-msgstr "Ne eblis legi la SFTP paketon"
+msgstr ""
 
 #: kio_sftp.cpp:561
-#, fuzzy, kde-format
-#| msgid "Could not read SFTP packet"
+#, kde-format
 msgid "Could not disable Nagle's Algorithm."
-msgstr "Ne eblis legi la SFTP paketon"
+msgstr ""
 
 #: kio_sftp.cpp:567 kio_sftp.cpp:572
 #, kde-format
@@ -103,10 +96,9 @@ msgid "Could not set host."
 msgstr ""
 
 #: kio_sftp.cpp:584
-#, fuzzy, kde-format
-#| msgid "Could not read SFTP packet"
+#, kde-format
 msgid "Could not set port."
-msgstr "Ne eblis legi la SFTP paketon"
+msgstr ""
 
 #: kio_sftp.cpp:592
 #, kde-format
@@ -119,10 +111,9 @@ msgid "Could not parse the config file."
 msgstr ""
 
 #: kio_sftp.cpp:616
-#, fuzzy, kde-kuit-format
-#| msgid "Opening SFTP connection to host <b>%1:%2</b>"
+#, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
-msgstr "Malfermante SFTP konekton al la gastiganto <b>%1:%2</b>"
+msgstr ""
 
 #: kio_sftp.cpp:656
 #, kde-format
@@ -151,11 +142,10 @@ msgid ""
 msgstr ""
 
 #: kio_sftp.cpp:756
-#, fuzzy, kde-format
-#| msgid "Warning: Host's identity changed."
+#, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr "Averto: La gastiganta identeco ŝanĝiĝis!"
+msgstr ""
 
 #: kio_sftp.cpp:757
 #, kde-kuit-format
@@ -241,167 +231,3 @@ msgid ""
 msgstr ""
 "Ne eblis ŝanĝi la permesojn por\n"
 "%1"
-
-#~ msgid "Warning: Cannot verify host's identity."
-#~ msgstr "Averto: Ne eblas kontroli la gastigantan identecon."
-
-#, fuzzy
-#~| msgid "No hostname specified"
-#~ msgid "No hostname specified."
-#~ msgstr "Neniu gastiga nomo specifita"
-
-#~ msgid "An internal error occurred. Please retry the request again."
-#~ msgstr "Interna eraro okazis. Bonvolu reprovi la peton denove."
-
-#~ msgid "Please enter your username and key passphrase."
-#~ msgstr "Bonvolu tajpi vian salutnomon kaj ŝlosilan pasfrazon."
-
-#~ msgid "Connection failed."
-#~ msgstr "La konekto fiaskis."
-
-#~ msgid "Connection closed by remote host."
-#~ msgstr "La konekto malfermitis de la defora gastiganto."
-
-#, fuzzy
-#~| msgid "Unexpected SFTP error: %1"
-#~ msgid "unexpected SFTP error: %1"
-#~ msgstr "Neatendita SFTP eraro: %1"
-
-#~ msgid "SFTP version %1"
-#~ msgstr "SFTP versio %1"
-
-#~ msgid "Protocol error."
-#~ msgstr "Protokola eraro:"
-
-#~ msgid "An internal error occurred. Please try again."
-#~ msgstr "Interna eraro okazis. Bonvolu reprovi."
-
-#~ msgid ""
-#~ "Unknown error was encountered while copying the file to '%1'. Please try "
-#~ "again."
-#~ msgstr ""
-#~ "Nekonata eraro okazis kopiante la dosieron al '%1'. Bonvolu reprovi."
-
-#~ msgid "The remote host does not support renaming files."
-#~ msgstr "La fora gastiganto ne permesas alinomi dosierojn."
-
-#~ msgid "The remote host does not support creating symbolic links."
-#~ msgstr "La fora gastiganto ne permesas krei simbolajn ligojn."
-
-#~ msgid "Connection closed"
-#~ msgstr "Konekto fermiĝis"
-
-#~ msgid "SFTP command failed for an unknown reason."
-#~ msgstr "La SFTP komando fiaskis pro nekonata kaŭzo."
-
-#~ msgid "The SFTP server received a bad message."
-#~ msgstr "La SFTP servilo ricevis malbonan mesaĝon."
-
-#~ msgid "You attempted an operation unsupported by the SFTP server."
-#~ msgstr "Vi elprovis operacion kiun ne permesas la SFTP servilo."
-
-#~ msgid "Error code: %1"
-#~ msgstr "Erara kodo: %1"
-
-#~ msgid "Cannot specify a subsystem and command at the same time."
-#~ msgstr "Ne eblas specifi subsistemon kaj komandon samtempe."
-
-#~ msgid "No options provided for ssh execution."
-#~ msgstr "Neniu opcio donita por la ssh rulado."
-
-#~ msgid "Failed to execute ssh process."
-#~ msgstr "La rulado de la ssh procezo fiaskis."
-
-#~ msgid "Error encountered while talking to ssh."
-#~ msgstr "Eraro okazis parolante al ssh."
-
-#~ msgid "Please supply a password."
-#~ msgstr "Bonvolu doni pasvorton"
-
-#~ msgid "Please supply the passphrase for your SSH private key."
-#~ msgstr "Bonvolu doni la pasfrazon de via SSH privata ŝlosilo."
-
-#~ msgid "Authentication to %1 failed"
-#~ msgstr "Aŭtentigo al %1 fiaskis"
-
-#~ msgid ""
-#~ "The identity of the remote host '%1' could not be verified because the "
-#~ "host's key is not in the \"known hosts\" file."
-#~ msgstr ""
-#~ "La identeco de la defora gastiganto '%1' ne kontroleblis pro la "
-#~ "gastiganta ŝlosilo ne estas en la \"konataj gastigantoj\" dosiero."
-
-#~ msgid ""
-#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
-#~ "administrator."
-#~ msgstr ""
-#~ " Mane aldonu la gastigantan ŝlosilon al la \"konataj gastigantoj\" "
-#~ "dosiero aŭ kontakti vian sistemestron."
-
-#~ msgid " Manually, add the host's key to %1 or contact your administrator."
-#~ msgstr ""
-#~ " Mane aldonu la gastigantan ŝlosilon al %1 aŭ kontakti vian sistemestron."
-
-#~ msgid ""
-#~ "The identity of the remote host '%1' could not be verified. The host's "
-#~ "key fingerprint is:\n"
-#~ "%2\n"
-#~ "You should verify the fingerprint with the host's administrator before "
-#~ "connecting.\n"
-#~ "\n"
-#~ "Would you like to accept the host's key and connect anyway? "
-#~ msgstr ""
-#~ "La identeco de la defora gastiganto '%1' ne kontroleblis. La ŝlosila "
-#~ "fingropremo estas:\n"
-#~ "%2\n"
-#~ "Vi devus kontroli la gastigantan ŝlosilan fingropremon kun la gastiganta "
-#~ "sistemestro antaŭ ol konektiĝi.\n"
-#~ "\n"
-#~ "Ĉu vi volas akcepti la gastigantan ŝlosilon kaj konektiĝi malgraŭe?"
-
-#~ msgid ""
-#~ "WARNING: The identity of the remote host '%1' has changed!\n"
-#~ "\n"
-#~ "Someone could be eavesdropping on your connection, or the administrator "
-#~ "may have just changed the host's key. Either way, you should verify the "
-#~ "host's key fingerprint with the host's administrator. The key fingerprint "
-#~ "is:\n"
-#~ "%2\n"
-#~ "Add the correct host key to \"%3\" to get rid of this message."
-#~ msgstr ""
-#~ "Averto: La identeco de la defora gastiganto '%1' ŝanĝiĝis!\n"
-#~ "\n"
-#~ "Iu eble aŭskultas sur via konekto, aŭ simple la sistemestro ŝanĝis la "
-#~ "gastigantan ŝlosilon. Dumaniere, vi devus kontroli la gastigantan "
-#~ "ŝlosilan fingropremon kun la gastiganta sistemestro. La ŝlosila "
-#~ "fingropremo estas:\n"
-#~ "%2\n"
-#~ "\n"
-#~ "Aldonu la korektan gastigantan ŝlosilon al \"%3\" por forigi tiun mesaĝon."
-
-#~ msgid ""
-#~ "WARNING: The identity of the remote host '%1' has changed!\n"
-#~ "\n"
-#~ "Someone could be eavesdropping on your connection, or the administrator "
-#~ "may have just changed the host's key. Either way, you should verify the "
-#~ "host's key fingerprint with the host's administrator before connecting. "
-#~ "The key fingerprint is:\n"
-#~ "%2\n"
-#~ "\n"
-#~ "Would you like to accept the host's new key and connect anyway?"
-#~ msgstr ""
-#~ "Averto: La identeco de la defora gastiganto '%1' ŝanĝiĝis!\n"
-#~ "\n"
-#~ "Iu eble aŭskultas sur via konekto, aŭ simple la sistemestro ŝanĝis la "
-#~ "gastigantan ŝlosilon. Dumaniere, vi devus kontroli la gastigantan "
-#~ "ŝlosilan fingropremon kun la gastiganta sistemestro antaŭ ol konektiĝi. "
-#~ "La ŝlosila fingropremo estas:\n"
-#~ "%2\n"
-#~ "\n"
-#~ "Ĉu vi volas akcepti la novan gastigantan ŝlosilon kaj konektiĝi malgraŭe?"
-
-#~ msgid "Host key was rejected."
-#~ msgstr "La gastiganta ŝlosilo malakceptiĝis."
-
-#~ msgid "Please enter a username and password"
-#~ msgstr "Bonvolu tajpi salutnomon kaj pasvorton"
