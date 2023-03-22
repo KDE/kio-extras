@@ -723,22 +723,15 @@ WorkerResult MTPWorker::del(const QUrl &url, bool)
 
 WorkerResult MTPWorker::rename(const QUrl &src, const QUrl &dest, JobFlags flags)
 {
-    switch (checkUrl(src)) {
-    case Url::Valid:
-        break;
-    case Url::Redirected:
-    case Url::NotFound:
-    case Url::Invalid:
-        return WorkerResult::fail(ERR_MALFORMED_URL, src.path());
-    }
-
-    switch (checkUrl(dest)) {
-    case Url::Valid:
-        break;
-    case Url::Redirected:
-    case Url::NotFound:
-    case Url::Invalid:
-        return WorkerResult::fail(ERR_MALFORMED_URL, dest.path());
+    for (const auto &url : {src, dest}) {
+        switch (checkUrl(src)) {
+        case Url::Valid:
+            break;
+        case Url::Redirected:
+        case Url::NotFound:
+        case Url::Invalid:
+            return WorkerResult::fail(ERR_MALFORMED_URL, url.path());
+        }
     }
 
     if (src.scheme() != QLatin1String("mtp")) {
@@ -750,45 +743,47 @@ WorkerResult MTPWorker::rename(const QUrl &src, const QUrl &dest, JobFlags flags
 
     const QStringList srcItems = src.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
     KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(srcItems.first());
-    if (mtpDevice) {
-        // rename Device
-        if (srcItems.size() == 1) {
-            const int result = mtpDevice->setFriendlyName(urlFileName(dest));
-            if (!result) {
-                return WorkerResult::pass();
-            }
-        }
-        // rename Storage
-        else if (srcItems.size() == 2) {
+    if (!mtpDevice) {
+        return WorkerResult::fail(ERR_CANNOT_RENAME, src.path());
+    }
+
+    // rename Device
+    if (srcItems.size() == 1) {
+        if (mtpDevice->setFriendlyName(urlFileName(dest)) != 0) {
             return WorkerResult::fail(ERR_CANNOT_RENAME, src.path());
-        } else {
-            // rename file or folder
-            const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(srcItems.at(1));
-            if (storage) {
+        }
+        return WorkerResult::pass();
+    }
 
-                // check if the file already exists on the device
-                const QString destinationPath = convertPath(dest.path());
-                const KMTPFile destinationFile = storage->getFileMetadata(destinationPath);
-                if (destinationFile.isValid()) {
-                    if (flags & KIO::Overwrite) {
-                        // delete existing file on the device
-                        const int result = storage->deleteObject(destinationPath);
-                        if (result) {
-                            return WorkerResult::fail(ERR_CANNOT_DELETE, dest.path());
-                        }
-                    } else {
-                        return WorkerResult::fail(ERR_FILE_ALREADY_EXIST, dest.path());
-                    }
-                }
+    // rename Storage
+    if (srcItems.size() == 2) {
+        return WorkerResult::fail(ERR_CANNOT_RENAME, src.path());
+    }
 
-                const int result = storage->setFileName(convertPath(src.path()), dest.fileName());
-                if (!result) {
-                    return WorkerResult::pass();
-                }
+    // rename file or folder
+    const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(srcItems.at(1));
+    if (!storage) {
+        return WorkerResult::fail(ERR_CANNOT_RENAME, src.path());
+    }
+
+    // check if the file already exists on the device
+    const QString destinationPath = convertPath(dest.path());
+    const KMTPFile destinationFile = storage->getFileMetadata(destinationPath);
+    if (destinationFile.isValid()) {
+        if (flags & KIO::Overwrite) {
+            // delete existing file on the device
+            if (storage->deleteObject(destinationPath) != 0) {
+                return WorkerResult::fail(ERR_CANNOT_DELETE, dest.path());
             }
+        } else {
+            return WorkerResult::fail(ERR_FILE_ALREADY_EXIST, dest.path());
         }
     }
-    return WorkerResult::fail(ERR_CANNOT_RENAME, src.path());
+
+    if (storage->setFileName(convertPath(src.path()), dest.fileName()) != 0) {
+        return WorkerResult::fail(ERR_CANNOT_RENAME, src.path());
+    }
+    return WorkerResult::pass();
 }
 
 WorkerResult MTPWorker::fileSystemFreeSpace(const QUrl &url)

@@ -509,17 +509,20 @@ int MTPStorage::setFileName(const QString &path, const QString &newName)
     qCDebug(LOG_KIOD_KMTPD) << "setFileName:" << path << newName;
 
     const KMTPFile file = getFileFromPath(path);
-    if (file.isValid()) {
-        std::unique_ptr<LIBMTP_file_t> source(LIBMTP_Get_Filemetadata(getDevice(), file.itemId()));
-        if (source) {
-            const int result = LIBMTP_Set_File_Name(getDevice(), source.get(), newName.toUtf8().constData());
-            if (!result) {
-                removePath(path);
-            }
-            return result;
-        }
+    if (!file.isValid()) {
+        return 1;
     }
-    return 1;
+
+    std::unique_ptr<LIBMTP_file_t> source(LIBMTP_Get_Filemetadata(getDevice(), file.itemId()));
+    if (!source) {
+        return 1;
+    }
+
+    const int result = LIBMTP_Set_File_Name(getDevice(), source.get(), newName.toUtf8().constData());
+    if (result == 0) {
+        removePath(path);
+    }
+    return result;
 }
 
 quint32 MTPStorage::createFolder(const QString &path)
