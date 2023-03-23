@@ -491,6 +491,7 @@ int MTPStorage::sendFileFromFileDescriptor(const QDBusUnixFileDescriptor &descri
             file->modificationdate = lastModified.toSecsSinceEpoch();   // no matter what to set here, current time is taken
             file->storage_id = m_id;
 
+            QT_LSEEK(descriptor.fileDescriptor(), 0, SEEK_SET); // make sure we are at the beginning of the file, the worker may leave it sitting at the end
             result = LIBMTP_Send_File_From_File_Descriptor(getDevice(), descriptor.fileDescriptor(), file.get(), onDataProgress, this);
 
             if (result) {
