@@ -14,8 +14,8 @@
                 "Access"
             ],
             "makedir": true,
-            "maxInstances": 1,
-            "moving": false,
+            "maxInstances": 2,
+            "moving": true,
             "opening": true,
             "output": "filesystem",
             "protocol": "mtp",

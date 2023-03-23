@@ -760,6 +760,14 @@ WorkerResult MTPWorker::rename(const QUrl &src, const QUrl &dest, JobFlags flags
         return WorkerResult::fail(ERR_CANNOT_RENAME, src.path());
     }
 
+    // rename across folder boundary -> let KIO fall back to get-put instead.
+    // There is LIBMTP_Move_Object but it's supposedly not supported on all devices. Plus get-put requires no extra code.
+    const auto srcDir = QFileInfo(src.path()).dir().path();
+    const auto dstDir = QFileInfo(dest.path()).dir().path();
+    if (srcDir != dstDir) {
+        return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, src.path());
+    }
+
     // rename file or folder
     const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(srcItems.at(1));
     if (!storage) {
