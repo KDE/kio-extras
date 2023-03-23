@@ -61,6 +61,8 @@ public:
     WorkerResult del(const QUrl &url, bool) override;
     WorkerResult rename(const QUrl &src, const QUrl &dest, JobFlags flags) override;
     WorkerResult fileSystemFreeSpace(const QUrl &url) override;
+    WorkerResult chmod(const QUrl &url, int permissions) override;
+    WorkerResult chown(const QUrl &url, const QString &owner, const QString &group) override;
 
 private:
     /**

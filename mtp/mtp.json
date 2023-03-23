@@ -20,7 +20,8 @@
             "output": "filesystem",
             "protocol": "mtp",
             "reading": true,
-            "writing": true
+            "writing": true,
+            "permissions": false
         }
     }
 }

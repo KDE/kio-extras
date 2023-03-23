@@ -831,4 +831,14 @@ int MTPWorker::waitForCopyOperation(const KMTPStorageInterface *storage)
     return loop.exec();
 }
 
+KIO::WorkerResult MTPWorker::chmod(const QUrl &url, int permissions)
+{
+    return WorkerResult::pass();
+}
+
+KIO::WorkerResult MTPWorker::chown(const QUrl &url, const QString &owner, const QString &group)
+{
+    return WorkerResult::pass();
+}
+
 #include "kio_mtp.moc"
