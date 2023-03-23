@@ -479,7 +479,7 @@ int MTPStorage::sendFileFromFileDescriptor(const QDBusUnixFileDescriptor &descri
 
     QTimer::singleShot(0, this, [this, parentId, descriptor, filename] {
         int result = 1;
-        QT_STATBUF srcBuf;
+        QT_STATBUF srcBuf{};
         if (QT_FSTAT(descriptor.fileDescriptor(), &srcBuf) != -1) {
             const QDateTime lastModified = QDateTime::fromSecsSinceEpoch(srcBuf.st_mtim.tv_sec);
 
@@ -488,7 +488,7 @@ int MTPStorage::sendFileFromFileDescriptor(const QDBusUnixFileDescriptor &descri
             file->filename = qstrdup(filename.toUtf8().data());
             file->filetype = getFiletype(filename);
             file->filesize = quint64(srcBuf.st_size);
-            file->modificationdate = lastModified.toSecsSinceEpoch();   // no matter what to set here, current time is taken
+            file->modificationdate = lastModified.toSecsSinceEpoch(); // no matter what to set here, current time is taken
             file->storage_id = m_id;
 
             QT_LSEEK(descriptor.fileDescriptor(), 0, SEEK_SET); // make sure we are at the beginning of the file, the worker may leave it sitting at the end
