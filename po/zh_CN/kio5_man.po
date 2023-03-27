@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-10 00:45+0000\n"
-"PO-Revision-Date: 2023-03-11 04:55\n"
+"PO-Revision-Date: 2023-03-26 02:20\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -153,7 +153,7 @@ msgstr "内核"
 #: kio_man.cpp:773
 #, kde-format
 msgid "Local Documentation"
-msgstr "本机文档"
+msgstr "本地文档"
 
 #: kio_man.cpp:775
 #, kde-format
