@@ -33,11 +33,11 @@
 <para
 >Sun <acronym
 >NFS</acronym
-> protokolü, ağlar arasında dosya sistemini paylaştırmak için şeffaf bir uzaktak erişim sağlar. <acronym
+> protokolü, ağlar arasında dosya sistemini paylaştırmak için saydam bir uzaktan erişim sağlar. <acronym
 >NFS</acronym
-> protokü, bir makine, işletim sistemi, ağ mimarisi ve aktarım protokolünden bağımsız olmak için tasarlanmıştır. Bu bağımsızlık, Harici Veri Sunumu (<acronym
+> protokü; bir makine, işletim sistemi, ağ mimarisi ve aktarım protokolünden bağımsız olmak için tasarlanmıştır. Bu bağımsızlık, Dış Veri Temsili (<acronym
 >XDR</acronym
->) üzerine inşa edilmiş olan Uzak Yordam Çağrısı (<acronym
+>) üzerine yapılmış olan Uzak Yordam Çağrısı (<acronym
 >RPC</acronym
 >) ilkelerinin kullanımını sağlar. </para>
 

@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<article lang="&language;" id="smb">
+<title
+>SMB</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Alexander.Neundorf; &Alexander.Neundorf.mail;</author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+><firstname
+>Volkan</firstname
+><surname
+>Gezer</surname
+><affiliation
+><address
+><email
+>volkangezer@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+<date
+>2016-12-11</date>
+<releaseinfo
+>Uygulamalar 16.12</releaseinfo>
+</articleinfo>
+<para
+>smb işçisi, bir &Windows; (veya Samba) ağındaki paylaşımları tarayabilmenizi sağlar. </para>
+
+<para
+>Çalışma gruplarını görmek için <userinput
+><command
+>smb:/</command
+></userinput
+> yazın. </para>
+<para
+><userinput
+><command
+>smb://</command
+><replaceable
+>bir_çalışmagrubu</replaceable
+></userinput
+>, bu çalışma grubundaki makineleri listeler. </para>
+<para
+>Bir makinenin paylaşımlarını görmek için <userinput
+><command
+>smb://</command
+><replaceable
+>makine</replaceable
+></userinput
+> veya <userinput
+><command
+>smb:/</command
+><replaceable
+>bir_çalışmagrubu</replaceable
+>/<replaceable
+>makine</replaceable
+></userinput
+> yazın. </para>
+<para
+>Bir paylaşıma doğrudan erişmek için <userinput
+><command
+>smb://</command
+><replaceable
+>makine/paylaşım</replaceable
+></userinput
+> veya <userinput
+><command
+>smb:/</command
+><replaceable
+>bir_çalışmagrubu</replaceable
+>/<replaceable
+>makine</replaceable
+>/<replaceable
+>paylaşım</replaceable
+></userinput
+> yazın. </para>
+
+<para
+>smb işçisi, bu işçiyi kullanmak için libsmbclient'e sahip olmanızı gerektirir. </para>
+
+<para
+>&systemsettings;'nın <guilabel
+>Ağ</guilabel
+> <menuchoice
+><guisubmenu
+>Ayarlar</guisubmenu
+><guimenuitem
+> Windows Paylaşımları</guimenuitem
+></menuchoice
+> bölümünde öntanımlı kullanıcı adı ve parolanızı ayarlayabilirsiniz. Bu özellikle bir &Windows; <acronym
+>NT</acronym
+> alan adının üyesiyseniz yararlıdır. Buradan ayrıca çalışma grubu adınızı ayarlayabilirsiniz; ancak çoğu durumda bu gerekli değildir. İşçi, bir öntanımlı kullanıcı adı ve parola ayarlanmamışsa size soracaktır. </para>
+
+</article>
+

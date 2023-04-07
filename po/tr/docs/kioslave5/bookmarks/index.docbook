@@ -48,12 +48,12 @@
 <para
 >Bu <acronym
 >KIO</acronym
-> yer imlerinizi güzel ve işlevsel bir &HTML; sayfasında göstermeye yarar. &konqueror; konum çubuğuna <userinput
+>, yer imlerinizi güzel ve işlevsel bir &HTML; sayfasında göstermeye yarar. &konqueror; konum çubuğuna <userinput
 >bookmarks:/</userinput
->  yazarak erişebilirsiniz.</para>
+> yazarak erişebilirsiniz.</para>
 
 <para
->Sayfanın içeriği ve düzeni yapılandırılabilir. &konqueror;  konum çubuğuna <userinput
+>Sayfanın içeriği ve yerleşimi yapılandırılabilir. &konqueror; konum çubuğuna <userinput
 >bookmarks:/config</userinput
 > yazarak yapılandırma penceresini açabilirsiniz.</para>
 
