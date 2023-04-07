@@ -1,0 +1,155 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="man">
+<title
+>Man</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>man KIO işçisini kullanarak, sisteminizde kurulu olan man sayfalarını okuyabilirsiniz. Kullanımı kolaydır: </para>
+
+<variablelist>
+<varlistentry>
+<term
+><userinput
+><command
+>man:</command
+></userinput
+></term>
+<listitem>
+<para
+>Kılavuzun bölümlerine bakın, gerisini bulmak için tıklayın. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen</replaceable
+></userinput
+></term>
+<listitem>
+<para
+><command
+>fopen</command
+>'ın man sayfasına bakın. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+><command
+>fopen</command
+>'ın 3. bölümdeki man sayfasına bakın. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>3. bölümün indeksine bakın. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+>intro<replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>3. bölümün girişine bakın. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note
+><para
+>Girdiğiniz adın birden fazla man sayfası varsa görmek istediğiniz man sayfasını seçebileceğiniz bir liste göreceksiniz.</para
+></note>
+
+<para
+>Yukarıdaki ile aynı işi yapan bir <userinput
+><command
+>#fopen</command
+></userinput
+> kısayolu da vardır. </para>
+
+<para
+>Eğer hiçbir man sayfasını bulamıyorsanız <filename
+>/etc/manpath.config</filename
+> dosyasını (veya dağıtımınıza bağlı olarak benzer bir ad) <envar
+>MANPATH</envar
+> ve <envar
+>MANSECT</envar
+> çevre değişkenlerini ayarlayın. </para>
+
+<para
+>Her bir diğer KIO işçisi gibi, <emphasis
+>herhangi bir</emphasis
+> &kde; uygulamasında <userinput
+><command
+>man:/socket</command
+></userinput
+> girebilirsiniz. &kwrite;'da deneyin, man sayfasını &HTML; biçiminde göreceksiniz. </para>
+
+<para
+>İletişim posta listesi: <email
+>kde-devel@kde.org</email
+> </para>
+
+</article>

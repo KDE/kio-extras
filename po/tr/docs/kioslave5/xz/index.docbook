@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="xz">
+<title
+>xz / lzma</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Per Øyvind</firstname
+><surname
+> Karlsen</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Xz, bir sıkıştırma uygulamasıdır</para>
+
+<para
+>xz KIO işçisi doğrudan kullanılamaz ve süzgeç olarak kullanılması amaçlanmıştır. Örneğin, tar KIO işçisi, bir <literal role="extension"
+>tar.lzma</literal
+> veya <literal role="extension"
+>tar.xz</literal
+> dosyasının içeriğini doğrudan bir &konqueror; penceresinde görüntülemek için bir dosyayı xz KIO işçisi aracılığıyla süzebilir.</para>
+
+<para
+>&konqueror; içinde <literal role="extension"
+>.lzma</literal
+> veya <literal role="extension"
+>tar.xz</literal
+> ile sıkıştırılmış bir dosyaya tıklarsanız bu KIO işçisi onun sıkıştırmasını açmak ve normal (sıkıştırılmamış) bir dosya olarak görüntülemekte kullanılır.</para>
+
+<para
+>Bir geliştiriciyseniz ve xz süzgecini kullanmak istiyorsanız KIO işçilerini kullanma üzerine belgelendirmeyi <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+> adresinde bulabilirsiniz.</para>
+
+<para
+>Kılavuza bakın: <ulink url="man:/xz"
+>xz</ulink
+>. </para>
+
+</article>

@@ -1,0 +1,69 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="thumbnail">
+<title
+>thumbnail</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Carsten.Pfeiffer; &Carsten.Pfeiffer.mail;</author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+><firstname
+>Volkan</firstname
+><surname
+>Gezer</surname
+><affiliation
+><address
+><email
+>volkangezer@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+<date
+>2016-12-11</date>
+<releaseinfo
+>Uygulamalar 16.12</releaseinfo>
+</articleinfo>
+<para
+>KIO küçük görsel işçisi, &kde; tarafından ağ saydam ve kalıcı küçük görsel üretimi için.kullanılır.</para>
+
+<para
+>KIO küçük görsel işçisi, gerçek küçük görselleri oluşturmak için eklentiler kullanır. Küçük görsellerin görüntülenmesini, &dolphin;'de veya &konqueror; dosya yöneticisi kipinde bulunan <menuchoice
+><guimenu
+>Görünüm</guimenu
+> <guisubmenu
+>Önizleme</guisubmenu
+></menuchoice
+> alt menüsünden etkinleştirebilirsiniz.</para>
+
+<para
+>KIO küçük görsel işçisi, bir kullanıcı için doğrudan yararlı değildir; ancak bir geliştiriciyseniz dosya önizlemeleri oluşturmak için kendi uygulamalarınızda kullanabilirsiniz.</para>
+
+<para
+>Daha fazla bilgi için kaynaklardaki belgelere bakın. Bunları <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"
+>thumbnail</ulink
+> kaynak klasöründe bulacaksınız. </para>
+
+</article>

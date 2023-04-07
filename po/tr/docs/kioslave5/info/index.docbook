@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="info">
+<title
+>Info</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Info, bir belgelendirme türüdür. Belgeler texinfo adı verilen bir dosya biçimindedirler ve komut satırından <ulink url="info:/info"
+><command
+>info</command
+></ulink
+> programıyla okunabilirler.</para>
+
+<para
+>Info KIO işçisi, sisteminizde kurulu olan bilgi sayfalarını &konqueror; içinden okumanıza olanak tanır. Çok kolay kullanabilirsiniz:</para>
+
+<screen
+><userinput
+><command
+>info:</command
+><replaceable
+>gcc</replaceable
+></userinput
+></screen>
+
+<para
+>Bu size, &gcc; derleyicisi için olan info belgelendirmesinin en üst düzey düğümünü gösterir.</para>
+
+<para
+>Info, <command
+>man</command
+> komutunun yerine geçmesi için tasarlanan bir &GNU; uygulamasıdır; ancak &GNU; yazılımları dışında yaygın olarak kullanılmamaktadır.</para>
+
+<para
+>Kurduğunuz info belgelendirmelerine &khelpcenter;, KIO işçisiyle &konqueror;'dan ve mini-cli ile kolayca göz atabilirsiniz.</para>
+
+</article>

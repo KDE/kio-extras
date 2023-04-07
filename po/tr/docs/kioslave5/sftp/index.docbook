@@ -33,13 +33,13 @@
 <para
 ><acronym
 >SFTP</acronym
-> Güvenli dosya aktarım (Secure file transfer) protokolüdür. <command
+>, bir güvenli dosya aktarım (Secure File Transfer) protokolüdür. <command
 >sftp</command
->, etkileşimli bir dosya aktarım komutudur. Ftp ile birbirlerine çok benzerler ancak, sftp tüm işlemleri şifreleyerek <command
+>, etkileşimli bir dosya aktarım komutudur. ftp ile birbirlerine çok benzerler; ancak sftp tüm işlemleri şifreleyerek <command
 >ssh</command
 > üzerinden aktarım yapar. <command
 >ssh</command
-> komutunun, açık anahtar doğrulaması ve sıkıştırma gibi birçok özelliğini kullanabilir.</para>
+> komutunun açık anahtar doğrulaması ve sıkıştırma gibi birçok özelliğini kullanabilir.</para>
 
 <para
 >Kılavuza bakın: <ulink url="man:/sftp"

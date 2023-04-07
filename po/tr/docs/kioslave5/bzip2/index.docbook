@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Turkish "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="bzip2">
+<title
+>bzip2 / bzip</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Serdar</firstname
+><surname
+>Soytetir</surname
+><affiliation
+><address
+><email
+>tulliana@gmail.com</email
+></address
+></affiliation
+><contrib
+>Çeviri</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>bzip2</command
+>, bir sıkıştırma uygulamasıdır.</para>
+
+<para
+>bzip2 KIO işçisi doğrudan kullanılamaz ve süzgeç olarak kullanılması amaçlanmıştır. Örneğin, tar KIO işçisi, bir <literal role="extension"
+>tar.bz2</literal
+> dosyasının içeriğini doğrudan &konqueror; penceresi içinde görüntülemek için bir dosyayı bzip2 KIO işçisi aracılığıyla süzebilir.</para>
+
+<para
+>&konqueror; içinde <literal role="extension"
+>.bz2</literal
+> ile sıkıştırılmış bir dosyaya tıklarsanız bu KIO işçisi onun sıkıştırmasını açmak ve normal (sıkıştırılmamış) bir dosya olarak görüntülemekte kullanılır.</para>
+
+<para
+>Bir geliştiriciyseniz ve bzip2 süzgecini kullanmak istiyorsanız KIO işçilerini kullanma üzerine belgelendirmeyi <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+> adresinde bulabilirsiniz.</para>
+
+<para
+>Kılavuza bakın: <ulink url="man:/bzip2"
+>bzip2</ulink
+>. </para>
+
+<para
+><command
+>bzip</command
+>, bzip2'nin atasıdır ve günümüzde çok az kullanılır; daha iyi sıkıştırma sağlayan bzip2 onun yerini almıştır.</para>
+
+</article>

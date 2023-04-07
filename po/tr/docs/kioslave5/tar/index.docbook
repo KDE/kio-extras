@@ -31,7 +31,7 @@
 </authorgroup>
 </articleinfo>
 <para
->Tar dosyası adı ile bilinen arşiv dosyasını saklamak veya açmak için dizayn edilen bir arşivleme uygulamasıdır. Bir tar dosyası bir teyp sürücüsü üzerinde yapılmış olabilir ama genellikle tar dosyası normal bir dosyaya yazılır. </para>
+>tar dosyası adı ile bilinen arşiv dosyasını saklamak veya açmak için tasarlanan bir arşivleme uygulamasıdır. Bir tar dosyası, bir teyp sürücüsü üzerinde yapılmış olabilir; ancak genellikle tar dosyalarını normal bir dosyaya yazmak da yaygındır. </para>
 
 <para
 >Kılavuza bakın: <ulink url="man:/tar"
