@@ -29,17 +29,17 @@
 > is een compressieprogramma.</para>
 
 <para
->De KIO-worker zstd is niet direct bruikbaar en is bedoeld voor gebruik als een filter. De KIO-worker tar kan, bijvoorbeeld, een bestand filteren via de KIO-worker zstd, Om de inhoud van een bestand <literal role="extension"
+>The zstd kioslave is not directly usable, and is intended for use as a filter. For example, the tar kioslave can filter a file through the zstd kioslave, in order to display the contents of a <literal role="extension"
 >tar.zst</literal
-> direct in een &konqueror;-venster te tonen.</para>
+> file directly in a &konqueror; window.</para>
 
 <para
->Als u in &konqueror; op een bestand klikt met de extensie <literal role="extension"
+>If you click on a file compressed with a <literal role="extension"
 >zst</literal
->, dan zal deze KIO-worker worden gebruikt om het uit te pakken en als een normaal niet gecomprimeerd bestand tonen.</para>
+> extension in &konqueror;, this kioslave is used to uncompress it and display it as a normal (uncompressed) file.</para>
 
 <para
->Als u een ontwikkelaar bent en u wilt graag het zstd-filter gebruiken, dan kunt u informatie over het gebruik van KIO-workers vinden op <ulink url="http://techbase.kde.org"
+>If you are a developer, and would like to use the zstd filter, you can find documentation on using kioslaves at <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 ></para>
 
