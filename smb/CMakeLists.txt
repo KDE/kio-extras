@@ -116,5 +116,7 @@ if(WITH_SHAREDMIMEINFO)
     update_xdg_mimetypes(${KDE_INSTALL_MIMEDIR})
 endif()
 
-add_subdirectory(autotests)
+if (BUILD_TESTING)
+    add_subdirectory(autotests)
+endif()
 add_subdirectory(kded)
