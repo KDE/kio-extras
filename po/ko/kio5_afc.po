@@ -1,0 +1,109 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# Shinjo Park <kde@peremen.name>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-12-27 00:48+0000\n"
+"PO-Revision-Date: 2023-04-22 01:00+0200\n"
+"Last-Translator: Shinjo Park <kde@peremen.name>\n"
+"Language-Team: Korean <kde-kr@kde.org>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 22.12.3\n"
+
+#: afcutils.cpp:60
+#, kde-format
+msgid "Unhandled AFC error code '%1'"
+msgstr "처리되지 않은 AFC 오류 코드 '%1'"
+
+#: afcutils.cpp:73
+#, kde-format
+msgid "Unhandled housearrest error code '%1'"
+msgstr "처리되지 않은 housearrest 오류 코드 '%1'"
+
+#: afcutils.cpp:89
+#, kde-format
+msgid "Unhandled instproxy error code '%1'"
+msgstr "처리되지 않은 instproxy 오류 코드 '%1'"
+
+#: afcutils.cpp:105
+#, kde-format
+msgid ""
+"The device is locked. Please enter the passcode on the device and try again."
+msgstr "장치가 잠겨 있습니다. 암호를 입력한 후 다시 시도하십시오."
+
+#: afcutils.cpp:112
+#, kde-format
+msgid "You have denied this computer access to the device."
+msgstr "이 컴퓨터에서 장치에 접근하는 것을 거부했습니다."
+
+#: afcutils.cpp:119
+#, kde-format
+msgid ""
+"You need to allow this computer to access the device. Please accept the "
+"prompt on the device and try again."
+msgstr ""
+"이 컴퓨터에서 장치에 접근할 수 있도록 허용해야 합니다. 장치의 프롬프트를 확인"
+"한 후 다시 시도하십시오."
+
+#: afcutils.cpp:127
+#, kde-format
+msgid ""
+"Cannot access the device. Make sure it is unlocked and allows this computer "
+"to access it."
+msgstr ""
+"장치에 접근할 수 없습니다. 잠금이 해제되어 있고 컴퓨터에서 접근이 허용되어 있"
+"는지 확인하십시오."
+
+#: afcutils.cpp:134
+#, kde-format
+msgid "Unhandled lockdownd code '%1'"
+msgstr "처리되지 않은 lockdownd 코드 '%1'"
+
+#: afcutils.cpp:147
+#, kde-format
+msgid "Unhandled sbservices code '%1'"
+msgstr "처리되지 않은 sbservices 코드 '%1'"
+
+#: kio_afc.cpp:174
+#, kde-format
+msgid "Apple Devices"
+msgstr "Apple 장치"
+
+#: kio_afc.cpp:230
+#, kde-format
+msgctxt "Link to folder with files stored inside apps"
+msgid "Apps"
+msgstr "앱"
+
+#: kio_afc.cpp:480
+#, kde-format
+msgctxt "Placeholder is device name"
+msgid "%1 (Apps)"
+msgstr "%1(앱)"
+
+#: kio_afc.cpp:688
+#, kde-format
+msgid "Cannot read without opening file first"
+msgstr "파일을 열기 전에 읽을 수 없음"
+
+#: kio_afc.cpp:708
+#, kde-format
+msgid "Cannot seek without opening file first"
+msgstr "파일을 열기 전에 검색할 수 없음"
+
+#: kio_afc.cpp:736
+#, kde-format
+msgid "Cannot write without opening file first"
+msgstr "파일을 열기 전에 기록할 수 없음"
+
+#: kio_afc.cpp:888
+#, kde-format
+msgid "Cannot rename between devices."
+msgstr "장치를 뛰어넘어서 이름을 바꿀 수 없습니다."
