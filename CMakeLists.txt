@@ -59,7 +59,7 @@ find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     GuiAddons
     SyntaxHighlighting
     KCMUtils
-    TestWidgets
+    TextWidgets
 )
 
 include(KDEClangFormat)
