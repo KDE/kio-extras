@@ -7,10 +7,7 @@ target_sources(kcm_proxy PRIVATE
     ../ksaveioconfig.cpp
 )
 
-ki18n_wrap_ui(kcm_proxy
-    kproxydlg.ui
-)
-
+ki18n_wrap_ui(kcm_proxy kproxydlg.ui)
 target_link_libraries(kcm_proxy PRIVATE
     Qt6::Widgets
     KF6::CoreAddons
@@ -19,7 +16,3 @@ target_link_libraries(kcm_proxy PRIVATE
     KF6::KCMUtils
     KF6::KIOWidgets
 )
-
-if (ENABLE_PCH)
-    target_precompile_headers(kcm_proxy REUSE_FROM KIOPchWidgets)
-endif()

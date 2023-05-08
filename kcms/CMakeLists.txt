@@ -1,4 +1,6 @@
-add_subdirectory(trash)
+if(NOT WIN32)
+    add_subdirectory(trash)
+endif()
 add_subdirectory(webshortcuts)
 add_subdirectory(cookies)
 add_subdirectory(smb)
