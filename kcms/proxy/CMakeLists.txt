@@ -1,6 +1,6 @@
 kcoreaddons_add_plugin(kcm_proxy INSTALL_NAMESPACE "plasma/kcms/systemsettings_qwidgets")
 
-kcmutils_generate_desktop_file(kcm_smb)
+kcmutils_generate_desktop_file(kcm_proxy)
 
 target_sources(kcm_proxy PRIVATE
     kproxydlg.cpp
