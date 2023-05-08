@@ -5,8 +5,6 @@
 */
 
 #include "kcmtrash.h"
-#include "discspaceutil.h"
-#include "trashimpl.h"
 
 #include <QCheckBox>
 #include <QComboBox>
@@ -19,11 +17,13 @@
 #include <KConfig>
 #include <KConfigGroup>
 #include <KFormat>
+#include <KIO/SpecialJob>
 #include <KLocalizedString>
 #include <KPluginFactory>
 #include <QDialog>
 #include <QIcon>
 #include <QSpinBox>
+#include <kio/simplejob.h>
 
 K_PLUGIN_CLASS_WITH_JSON(TrashConfigModule, "kcm_trash.json")
 
@@ -31,26 +31,34 @@ TrashConfigModule::TrashConfigModule(QObject *parent, const KPluginMetaData &dat
     : KCModule(parent, data, args)
     , trashInitialize(false)
 {
-    mTrashImpl = new TrashImpl();
-    mTrashImpl->init();
+    QByteArray specialData;
+    QDataStream stream(&specialData, QIODevice::WriteOnly);
+    stream << 4;
+    auto job = KIO::special(QUrl(QStringLiteral("trash:")), specialData);
 
     readConfig();
 
-    setupGui();
+    connect(job, &KJob::finished, [job, this]() {
+        auto doc = QJsonDocument::fromJson(job->metaData().value(QStringLiteral("TRASH_DIRECTORIES")).toLocal8Bit());
+        const auto map = doc.object().toVariantMap();
+        for (auto it = map.begin(); it != map.end(); it++) {
+            m_trashMap.insert(it.key().toInt(), it.value().toString());
+        }
+        setupGui();
+        useTypeChanged();
 
-    useTypeChanged();
+        connect(mUseTimeLimit, &QAbstractButton::toggled, this, &TrashConfigModule::markAsChanged);
+        connect(mUseTimeLimit, &QAbstractButton::toggled, this, &TrashConfigModule::useTypeChanged);
+        connect(mDays, qOverload<int>(&QSpinBox::valueChanged), this, &TrashConfigModule::markAsChanged);
+        connect(mUseSizeLimit, &QAbstractButton::toggled, this, &TrashConfigModule::markAsChanged);
+        connect(mUseSizeLimit, &QAbstractButton::toggled, this, &TrashConfigModule::useTypeChanged);
+        connect(mPercent, qOverload<double>(&QDoubleSpinBox::valueChanged), this, &TrashConfigModule::percentChanged);
+        connect(mPercent, qOverload<double>(&QDoubleSpinBox::valueChanged), this, &TrashConfigModule::markAsChanged);
+        connect(mLimitReachedAction, qOverload<int>(&QComboBox::currentIndexChanged), this, &TrashConfigModule::markAsChanged);
 
-    connect(mUseTimeLimit, &QAbstractButton::toggled, this, &TrashConfigModule::markAsChanged);
-    connect(mUseTimeLimit, &QAbstractButton::toggled, this, &TrashConfigModule::useTypeChanged);
-    connect(mDays, qOverload<int>(&QSpinBox::valueChanged), this, &TrashConfigModule::markAsChanged);
-    connect(mUseSizeLimit, &QAbstractButton::toggled, this, &TrashConfigModule::markAsChanged);
-    connect(mUseSizeLimit, &QAbstractButton::toggled, this, &TrashConfigModule::useTypeChanged);
-    connect(mPercent, qOverload<double>(&QDoubleSpinBox::valueChanged), this, &TrashConfigModule::percentChanged);
-    connect(mPercent, qOverload<double>(&QDoubleSpinBox::valueChanged), this, &TrashConfigModule::markAsChanged);
-    connect(mLimitReachedAction, qOverload<int>(&QComboBox::currentIndexChanged), this, &TrashConfigModule::markAsChanged);
-
-    trashChanged(0);
-    trashInitialize = true;
+        trashChanged(0);
+        trashInitialize = true;
+    });
 }
 
 TrashConfigModule::~TrashConfigModule()
@@ -86,24 +94,20 @@ void TrashConfigModule::defaults()
 
 void TrashConfigModule::percentChanged(double percent)
 {
-    DiscSpaceUtil util(mCurrentTrash);
+    qint64 fullSize = 0;
+    QStorageInfo storageInfo(mCurrentTrash);
+    if (storageInfo.isValid() && storageInfo.isReady()) {
+        fullSize = storageInfo.bytesTotal();
+    }
 
-    qint64 partitionSize = util.size();
-    double size = static_cast<double>(partitionSize / 100) * percent;
+    double size = static_cast<double>(fullSize / 100) * percent;
 
     KFormat format;
     mSizeLabel->setText(QLatin1Char('(') + format.formatByteSize(size, 2) + QLatin1Char(')'));
 }
 
-void TrashConfigModule::trashChanged(QListWidgetItem *item)
-{
-    trashChanged(item->data(Qt::UserRole).toInt());
-}
-
 void TrashConfigModule::trashChanged(int value)
 {
-    const TrashImpl::TrashDirMap map = mTrashImpl->trashDirectories();
-
     if (!mCurrentTrash.isEmpty() && trashInitialize) {
         ConfigEntry entry;
         entry.useTimeLimit = mUseTimeLimit->isChecked();
@@ -113,7 +117,7 @@ void TrashConfigModule::trashChanged(int value)
         mConfigMap.insert(mCurrentTrash, entry);
     }
 
-    mCurrentTrash = map[value];
+    mCurrentTrash = m_trashMap[value];
     const auto currentTrashIt = mConfigMap.constFind(mCurrentTrash);
     if (currentTrashIt != mConfigMap.constEnd()) {
         const ConfigEntry &entry = *currentTrashIt;
@@ -202,18 +206,22 @@ void TrashConfigModule::setupGui()
     layout->addWidget(infoText);
 #endif
 
-    TrashImpl::TrashDirMap map = mTrashImpl->trashDirectories();
-    if (map.count() != 1) {
+    if (m_trashMap.count() != 1) {
         // If we have multiple trashes, we setup a widget to choose
         // which trash to configure
         QListWidget *mountPoints = new QListWidget(widget());
         layout->addWidget(mountPoints);
 
-        QMapIterator<int, QString> it(map);
+        QMapIterator<int, QString> it(m_trashMap);
         while (it.hasNext()) {
             it.next();
-            DiscSpaceUtil util(it.value());
-            QListWidgetItem *item = new QListWidgetItem(QIcon(QStringLiteral("folder")), util.mountPoint());
+
+            QString mountPoint;
+            QStorageInfo storageInfo(it.value());
+            if (storageInfo.isValid() && storageInfo.isReady()) {
+                mountPoint = storageInfo.rootPath();
+            }
+            QListWidgetItem *item = new QListWidgetItem(QIcon(QStringLiteral("folder")), mountPoint);
             item->setData(Qt::UserRole, it.key());
 
             mountPoints->addItem(item);
@@ -221,9 +229,11 @@ void TrashConfigModule::setupGui()
 
         mountPoints->setCurrentRow(0);
 
-        connect(mountPoints, &QListWidget::currentItemChanged, this, qOverload<QListWidgetItem *>(&TrashConfigModule::trashChanged));
+        connect(mountPoints, &QListWidget::currentItemChanged, this, [this](QListWidgetItem *item) {
+            trashChanged(item->data(Qt::UserRole).toInt());
+        });
     } else {
-        mCurrentTrash = map.value(0);
+        mCurrentTrash = m_trashMap.value(0);
     }
 
     QFormLayout *formLayout = new QFormLayout();

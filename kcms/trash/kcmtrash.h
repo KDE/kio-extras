@@ -16,7 +16,6 @@ class QFrame;
 class QLabel;
 class QListWidgetItem;
 class QSpinBox;
-class TrashImpl;
 
 /**
  * @brief Allow to configure the trash.
@@ -34,7 +33,6 @@ public:
 
 private Q_SLOTS:
     void percentChanged(double);
-    void trashChanged(QListWidgetItem *);
     void trashChanged(int);
     void useTypeChanged();
 
@@ -51,7 +49,6 @@ private:
     QLabel *mSizeLabel;
     QComboBox *mLimitReachedAction;
 
-    TrashImpl *mTrashImpl;
     QString mCurrentTrash;
     bool trashInitialize;
     typedef struct {
@@ -64,6 +61,7 @@ private:
 
     typedef QMap<QString, ConfigEntry> ConfigMap;
     ConfigMap mConfigMap;
+    QMap<int, QString> m_trashMap;
 };
 
 #endif // KCMTRASH_H
