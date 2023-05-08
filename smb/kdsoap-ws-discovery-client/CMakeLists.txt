@@ -34,7 +34,7 @@ include(GenerateExportHeader)
 set(REQUIRED_QT_VERSION 5.9.0)
 find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED NO_MODULE COMPONENTS Core Network Xml)
 
-find_package(KDSoap 1.9.0 REQUIRED)
+find_package(KDSoap-qt6 1.9.0 REQUIRED)
 set_package_properties(KDSoap PROPERTIES
     DESCRIPTION "A Qt-based client-side and server-side SOAP component"
     URL "http://www.kdab.com/products/kd-soap"

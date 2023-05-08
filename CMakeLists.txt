@@ -58,6 +58,7 @@ find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Bookmarks
     GuiAddons
     SyntaxHighlighting
+    KCMUtils
 )
 
 include(KDEClangFormat)
@@ -170,7 +171,8 @@ ecm_set_disabled_deprecation_versions(
     KF 5.96
 )
 
-add_subdirectory( doc )
+add_subdirectory(doc)
+add_subdirectory(kcms)
 
 add_subdirectory( about )
 if(TARGET KF${QT_MAJOR_VERSION}::Activities AND TARGET Qt::Sql AND NOT WIN32)

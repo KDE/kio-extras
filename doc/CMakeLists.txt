@@ -1,1 +1,2 @@
 ecm_optional_add_subdirectory(kioslave)
+add_subdirectory(kcontrol6)
