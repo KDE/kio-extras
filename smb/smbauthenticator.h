@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "smbcontext.h"
+
 #include <QString>
 
 namespace KIO {
@@ -33,7 +35,8 @@ public:
     void loadConfiguration();
 
     // Callback for authentication requests.
-    void auth(const char *server, const char *share,
+    void auth(SMBCCTX *context,
+              const char *server, const char *share,
               char *workgroup, int wgmaxlen,
               char *username, int unmaxlen,
               char *password, int pwmaxlen);

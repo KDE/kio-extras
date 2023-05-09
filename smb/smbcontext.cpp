@@ -85,7 +85,7 @@ void SMBContext::auth_cb(SMBCCTX *context, const char *server, const char *share
 #else
         auto *that = static_cast<SMBCContext *>(smbc_option_get(context, "user_data"));
 #endif
-        that->m_authenticator->auth(server, share,
+        that->m_authenticator->auth(context, server, share,
                                     workgroup,wgmaxlen,
                                     username, unmaxlen,
                                     password, pwmaxlen);

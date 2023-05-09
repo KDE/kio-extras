@@ -61,7 +61,7 @@ void SMBAuthenticator::setDefaultWorkgroup(const QString &workGroup)
     m_defaultWorkgroup = workGroup;
 }
 
-void SMBAuthenticator::auth(const char *server, const char *share, char *workgroup, int wgmaxlen, char *username, int unmaxlen, char *password, int pwmaxlen)
+void SMBAuthenticator::auth(SMBCCTX *context, const char *server, const char *share, char *workgroup, int wgmaxlen, char *username, int unmaxlen, char *password, int pwmaxlen)
 {
     qCDebug(KIO_SMB_LOG) << "auth_smbc_get_dat: set user=" << username << ", workgroup=" << workgroup << " server=" << server << ", share=" << share;
 
@@ -110,4 +110,6 @@ void SMBAuthenticator::auth(const char *server, const char *share, char *workgro
 
     strncpy(username, info.username.toUtf8(), static_cast<size_t>(unmaxlen - 1));
     strncpy(password, info.password.toUtf8(), static_cast<size_t>(pwmaxlen - 1));
+
+    smbc_set_credentials_with_fallback(context, workgroup, username, password);
 }
