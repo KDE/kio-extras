@@ -27,13 +27,15 @@
 
 K_PLUGIN_CLASS_WITH_JSON(TrashConfigModule, "kcm_trash.json")
 
+static constexpr int SPECIAL_TRASH_DIRECTORIES = 4;
+
 TrashConfigModule::TrashConfigModule(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
     : KCModule(parent, data, args)
     , trashInitialize(false)
 {
     QByteArray specialData;
     QDataStream stream(&specialData, QIODevice::WriteOnly);
-    stream << 4;
+    stream << SPECIAL_TRASH_DIRECTORIES;
     auto job = KIO::special(QUrl(QStringLiteral("trash:")), specialData);
 
     readConfig();
@@ -221,7 +223,7 @@ void TrashConfigModule::setupGui()
             if (storageInfo.isValid() && storageInfo.isReady()) {
                 mountPoint = storageInfo.rootPath();
             }
-            QListWidgetItem *item = new QListWidgetItem(QIcon(QStringLiteral("folder")), mountPoint);
+            auto item = new QListWidgetItem(QIcon(QStringLiteral("folder")), mountPoint);
             item->setData(Qt::UserRole, it.key());
 
             mountPoints->addItem(item);
