@@ -1,3 +1,5 @@
+add_definitions(-DTRANSLATION_DOMAIN=\"kio-extras_kcms\")
+
 if(NOT WIN32)
     add_subdirectory(trash)
 endif()
