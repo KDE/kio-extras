@@ -2,30 +2,9 @@
 # SPDX-License-Identifier: CC0-1.0
 
 Dependencies:
-- 'on': ['Linux/Qt5', 'FreeBSD/Qt5', 'Windows/Qt5']
+- 'on': ['Linux/Qt6', 'FreeBSD/Qt6']
   'require':
-    'frameworks/extra-cmake-modules': '@stable'
-    'frameworks/karchive': '@stable'
-    'frameworks/kconfig': '@stable'
-    'frameworks/kconfigwidgets': '@stable'
-    'frameworks/kcoreaddons': '@stable'
-    'frameworks/kdbusaddons': '@stable'
-    'frameworks/kdoctools': '@stable'
-    'frameworks/kdnssd': '@stable'
-    'frameworks/ki18n': '@stable'
-    'frameworks/kio': '@stable'
-    'frameworks/solid': '@stable'
-    'frameworks/kbookmarks': '@stable'
-    'frameworks/kguiaddons': '@stable'
-    'frameworks/syntax-highlighting': '@stable'
-    'frameworks/kactivities': '@stable'
-    'libraries/phonon': '@stable'
-    'graphics/libkexiv2': '@same'
-    'third-party/kdsoap': '@latest'
-
-- 'on': ['Linux', 'FreeBSD']
-  'require':
-    'libraries/kdsoap-ws-discovery-client': '@stable'
+    'libraries/kdsoap-ws-discovery-client': '@latest-kf6'
 
 - 'on': ['Linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6']
   'require':
@@ -45,7 +24,7 @@ Dependencies:
     'frameworks/syntax-highlighting': '@latest-kf6'
     'frameworks/kactivities': '@latest-kf6'
     'libraries/phonon': '@latest-kf6'
-    'graphics/libkexiv2': '@same'
+    'graphics/libkexiv2': '@latest'
     'third-party/kdsoap': '@latest'
 
 Options:
