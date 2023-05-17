@@ -64,7 +64,7 @@ struct FileExt : public File
 template<class T>
 static KIO::ThumbnailResult parseID3v2Tag(T &file)
 {
-    if (!file.hasID3v2Tag()) {
+    if (!file.hasID3v2Tag() || !file.ID3v2Tag()) {
         return KIO::ThumbnailResult::fail();
     }
     const auto &map = file.ID3v2Tag()->frameListMap();
@@ -100,7 +100,7 @@ static KIO::ThumbnailResult parseFlacTag(T &file)
 template<class T>
 static KIO::ThumbnailResult parseMP4Tag(T &file)
 {
-    if (!file.hasMP4Tag()) {
+    if (!file.hasMP4Tag() || !file.tag()) {
         return KIO::ThumbnailResult::fail();
     }
     const auto &map = file.tag()->itemMap();
@@ -120,7 +120,7 @@ static KIO::ThumbnailResult parseMP4Tag(T &file)
 template<class T>
 static KIO::ThumbnailResult parseAPETag(T &file)
 {
-    if (!file.hasAPETag()) {
+    if (!file.hasAPETag() || !file.APETag()) {
         return KIO::ThumbnailResult::fail();
     }
     const auto &map = file.APETag()->itemListMap();
