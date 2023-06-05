@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kfileaudiopreview5\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kfileaudiopreview6\")
 
 add_library(kfileaudiopreview MODULE)
 

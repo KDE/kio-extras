@@ -11,7 +11,7 @@
 #include <QLayout>
 #include <QGroupBox>
 
-#define TRANSLATION_DOMAIN "kfileaudiopreview5"
+#define TRANSLATION_DOMAIN "kfileaudiopreview6"
 #include <KLocalizedString>
 #include <KConfig>
 #include <KConfigGroup>
