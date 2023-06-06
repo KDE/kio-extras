@@ -334,7 +334,3 @@ target_link_libraries(ebookthumbnail
 )
 
 install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
-
-########### install files ###############
-
-install(FILES thumbcreator.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPESDIR})
