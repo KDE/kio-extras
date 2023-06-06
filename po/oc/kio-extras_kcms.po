@@ -1,0 +1,3030 @@
+# translation of kcmkio.po to Occitan
+# Occitan translation of kcmkio.po
+# Copyright (C) 2002, 2003, 2004, 2007, 2008 Free Software Foundation, Inc.
+#
+# Yannig MARCHEGAY (Kokoyaya) <yannig@marchegay.org> - 2006-2007
+#
+# Yannig Marchegay (Kokoyaya) <yannig@marchegay.org>, 2007, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: kcmkio\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"PO-Revision-Date: 2008-08-06 00:02+0200\n"
+"Last-Translator: \n"
+"Language-Team: Occitan <oc@li.org>\n"
+"Language: oc\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: cookies/kcookiesmain.cpp:37
+#, kde-format
+msgid "&Policy"
+msgstr ""
+
+#: cookies/kcookiesmain.cpp:44
+#, fuzzy, kde-format
+#| msgid "Comment"
+msgid "&Management"
+msgstr "Comentari"
+
+#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
+#, kde-format
+msgid "D-Bus Communication Error"
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:127
+#, kde-format
+msgid "Unable to delete all the cookies as requested."
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:144
+#, kde-format
+msgid "Unable to delete cookies as requested."
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:223
+#, kde-format
+msgid "Information Lookup Failure"
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:225
+#, kde-format
+msgid ""
+"Unable to retrieve information about the cookies stored on your computer."
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:316
+#, kde-format
+msgid "End of session"
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:323
+#, kde-format
+msgid "Yes"
+msgstr "Òc"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
+#: cookies/kcookiesmanagement.ui:20
+#, kde-format
+msgid "Search"
+msgstr "Recercar"
+
+#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:27
+#, kde-format
+msgid "Search interactively for domains and hosts"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:43
+#, fuzzy, kde-format
+#| msgid "Site:"
+msgid "Site"
+msgstr "Sit :"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:48
+#, fuzzy, kde-format
+#| msgid "Username:"
+msgid "Cookie Name"
+msgstr "Nom d'utilizaire :"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
+#, fuzzy, kde-format
+#| msgid "De&lete"
+msgid "D&elete"
+msgstr "&Suprimir"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
+#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
+#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
+#, fuzzy, kde-format
+#| msgid "De&lete"
+msgid "Delete A&ll"
+msgstr "&Suprimir"
+
+#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
+#: cookies/kcookiesmanagement.ui:70
+#, fuzzy, kde-format
+#| msgid "Calculating..."
+msgid "Configure &Policy..."
+msgstr "A calcular..."
+
+#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
+#: cookies/kcookiesmanagement.ui:77
+#, fuzzy, kde-format
+#| msgid "Reload"
+msgid "&Reload List"
+msgstr "Tornar cargar"
+
+#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
+#: cookies/kcookiesmanagement.ui:97
+#, kde-format
+msgid "Details"
+msgstr "Detalhs"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: cookies/kcookiesmanagement.ui:106
+#, kde-format
+msgid "Name:"
+msgstr "Nom :"
+
+#. i18n: ectx: property (text), widget (QLabel, valueLabel)
+#: cookies/kcookiesmanagement.ui:129
+#, kde-format
+msgid "Value:"
+msgstr "Valor :"
+
+#. i18n: ectx: property (text), widget (QLabel, domainLabel)
+#: cookies/kcookiesmanagement.ui:152
+#, fuzzy, kde-format
+#| msgid "Domain"
+msgid "Domain:"
+msgstr "Domeni"
+
+#. i18n: ectx: property (text), widget (QLabel, patchLabel)
+#: cookies/kcookiesmanagement.ui:175
+#, kde-format
+msgid "Path:"
+msgstr "Camin:"
+
+#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
+#: cookies/kcookiesmanagement.ui:198
+#, kde-format
+msgid "Expires:"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, secureLabel)
+#: cookies/kcookiesmanagement.ui:221
+#, kde-format
+msgid "Secure:"
+msgstr ""
+
+#: cookies/kcookiespolicies.cpp:154
+#, kde-format
+msgctxt "@title:window"
+msgid "Change Cookie Policy"
+msgstr ""
+
+#: cookies/kcookiespolicies.cpp:173
+#, kde-format
+msgctxt "@title:window"
+msgid "New Cookie Policy"
+msgstr ""
+
+#: cookies/kcookiespolicies.cpp:206
+#, kde-format
+msgid ""
+"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+"replace it?</qt>"
+msgstr ""
+
+#: cookies/kcookiespolicies.cpp:210
+#, kde-format
+msgctxt "@title:window"
+msgid "Duplicate Policy"
+msgstr ""
+
+#: cookies/kcookiespolicies.cpp:211
+#, kde-format
+msgid "Replace"
+msgstr "Remplaçar"
+
+#: cookies/kcookiespolicies.cpp:387
+#, kde-format
+msgid ""
+"Unable to communicate with the cookie handler service.\n"
+"Any changes you made will not take effect until the service is restarted."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enable cookie support. Normally you will want to have cookie support "
+"enabled and customize it to suit your privacy needs.</p><p>\n"
+"Please note that disabling cookie support might make many web sites "
+"unbrowsable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:23
+#, kde-format
+msgid "Enable coo&kies"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:35
+#, kde-format
+msgid ""
+"<qt>\n"
+"Reject the so called third-party cookies. These are cookies that originate "
+"from a site other than the one you are currently browsing. For example, if "
+"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
+"originate from www.foobar.com will be processed per your settings. Cookies "
+"from any other site will be rejected. This reduces the chances of site "
+"operators compiling a profile about your daily browsing habits.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:38
+#, kde-format
+msgid "Only acce&pt cookies from originating server"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:46
+#, kde-format
+msgid ""
+"<p>\n"
+"Automatically accept temporary cookies meant to expire at the end of the "
+"current session. Such cookies will not be stored in your computer's hard "
+"drive or storage device. Instead, they are deleted when you close all "
+"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
+"this option overrides your default as well as site specific cookie policies "
+"for session cookies.</p>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:49
+#, kde-format
+msgid "Automaticall&y accept session cookies"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:68
+#, kde-format
+msgid ""
+"<qt>\n"
+"Determines how cookies received from a remote machine will be handled: \n"
+"<ul>\n"
+"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
+"wants to set a cookie.</li>\n"
+"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
+"li>\n"
+"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
+"</li>\n"
+"</ul><p>\n"
+"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
+"precedence over the default policy.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:71
+#, fuzzy, kde-format
+#| msgid "Default"
+msgid "Default Policy"
+msgstr "Defaut"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
+#: cookies/kcookiespolicies.ui:77
+#, kde-format
+msgid "Accep&t all cookies"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
+#: cookies/kcookiespolicies.ui:84
+#, kde-format
+msgid "Accept &until end of session"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
+#: cookies/kcookiespolicies.ui:91
+#, kde-format
+msgid "Ask &for confirmation"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
+#: cookies/kcookiespolicies.ui:98
+#, kde-format
+msgid "Re&ject all cookies"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:123
+#, kde-format
+msgid ""
+"<qt>\n"
+"To add a new policy, simply click on the <b>Add...</b> button and supply the "
+"necessary information. To change an existing policy, use the <b>Change...</"
+"b> button and choose the new policy from the policy dialog box. Clicking on "
+"the <b>Delete</b> button will remove the currently selected policy causing "
+"the default policy setting to be used for that domain, whereas <b>Delete "
+"All</b> will remove all the site specific policies.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:126
+#, fuzzy, kde-format
+#| msgid "Default"
+msgid "Site Policy"
+msgstr "Defaut"
+
+#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:135
+#, kde-format
+msgid "Search interactively for domains"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:138
+#, fuzzy, kde-format
+#| msgid "Search"
+msgid "Search..."
+msgstr "Recercar"
+
+#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:147
+#, kde-format
+msgid ""
+"<qt>\n"
+"List of sites for which you have set a specific cookie policy. Specific "
+"policies override the default policy setting for these sites.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:163
+#, kde-format
+msgid "Domain"
+msgstr "Domeni"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:168
+#, fuzzy, kde-format
+#| msgid "Default"
+msgid "Policy"
+msgstr "Defaut"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Novèl..."
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
+#, fuzzy, kde-format
+#| msgid "Calculating..."
+msgid "Chan&ge..."
+msgstr "A calcular..."
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:26
+#: cookies/kcookiespolicyselectiondlg.ui:81
+#, kde-format
+msgid "Accept"
+msgstr "Acceptar"
+
+#: cookies/kcookiespolicyselectiondlg.h:28
+msgid "Accept For Session"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:30
+#: cookies/kcookiespolicyselectiondlg.ui:91
+#, fuzzy, kde-format
+#| msgid "Eject"
+msgid "Reject"
+msgstr "Ejectar"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:32
+#: cookies/kcookiespolicyselectiondlg.ui:96
+#, kde-format
+msgid "Ask"
+msgstr "Demandar"
+
+#: cookies/kcookiespolicyselectiondlg.h:34
+#, fuzzy
+#| msgid "Do Not Store"
+msgid "Do Not Know"
+msgstr "Conservar pas"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:22
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
+"b> or <b>.kde.org</b>.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:25
+#, fuzzy, kde-format
+#| msgid "Username:"
+msgid "Site name:"
+msgstr "Nom d'utilizaire :"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:38
+#, kde-format
+msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:53
+#: cookies/kcookiespolicyselectiondlg.ui:77
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the desired policy:\n"
+"<ul>\n"
+"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+"</ul>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:56
+#, kde-format
+msgid "Policy:"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:86
+#, kde-format
+msgid "Accept until end of session"
+msgstr ""
+
+#: ksaveioconfig.cpp:212
+#, kde-format
+msgid ""
+"You have to restart the running applications for these changes to take "
+"effect."
+msgstr ""
+
+#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#, fuzzy, kde-format
+#| msgid "Trash"
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "Banasta"
+
+#: ksaveioconfig.cpp:225
+#, kde-format
+msgid "You have to restart KDE for these changes to take effect."
+msgstr ""
+
+#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:10
+#, kde-format
+msgid "Disable Passive FTP"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:11
+#, kde-format
+msgid ""
+"When FTP connections are passive the client connects to the server, instead "
+"of the other way round, so firewalls do not block the connection; old FTP "
+"servers may not support Passive FTP though."
+msgstr ""
+
+#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#, kde-format
+msgid "Mark partially uploaded files"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#, kde-format
+msgid ""
+"While a file is being uploaded its extension is \".part\". When fully "
+"uploaded it is renamed to its real name."
+msgstr ""
+
+#: netpref/netpref.cpp:30
+#, kde-format
+msgid "Timeout Values"
+msgstr ""
+
+#: netpref/netpref.cpp:32
+#, kde-format
+msgid ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is 1 second."
+msgid_plural ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is %1 seconds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
+#: netpref/netpref.cpp:63
+#, fuzzy, kde-format
+#| msgid " sec"
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " seg"
+msgstr[1] " seg"
+
+#: netpref/netpref.cpp:47
+#, kde-format
+msgid "Soc&ket read:"
+msgstr ""
+
+#: netpref/netpref.cpp:53
+#, fuzzy, kde-format
+#| msgid "Not connected."
+msgid "Pro&xy connect:"
+msgstr "Pas connectat."
+
+#: netpref/netpref.cpp:59
+#, kde-format
+msgid "Server co&nnect:"
+msgstr ""
+
+#: netpref/netpref.cpp:65
+#, kde-format
+msgid "&Server response:"
+msgstr ""
+
+#: netpref/netpref.cpp:67
+#, fuzzy, kde-format
+#| msgid "Options"
+msgid "Global Options"
+msgstr "Opcions"
+
+#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#, kde-format
+msgid "Mark &partially uploaded files"
+msgstr ""
+
+#: netpref/netpref.cpp:73
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+"p><p>When this option is enabled, partially uploaded files will have a \"."
+"part\" extension. This extension will be removed once the transfer is "
+"complete.</p>"
+msgstr ""
+
+#: netpref/netpref.cpp:90
+#, kde-format
+msgid " byte"
+msgid_plural " bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: netpref/netpref.cpp:92
+#, kde-format
+msgctxt "@label:spinbox"
+msgid ""
+"If cancelled, automatically delete partially uploaded files smaller than:"
+msgstr ""
+
+#: netpref/netpref.cpp:94
+#, kde-format
+msgid "FTP Options"
+msgstr "Opcions FTP"
+
+#: netpref/netpref.cpp:98
+#, kde-format
+msgid "Enable passive &mode (PASV)"
+msgstr ""
+
+#: netpref/netpref.cpp:100
+#, kde-format
+msgid ""
+"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
+"behind firewalls."
+msgstr ""
+
+#: netpref/netpref.cpp:108
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+"partially uploaded files will have a \".part\" extension. This extension "
+"will be removed once the transfer is complete.</p>"
+msgstr ""
+
+#: proxy/kproxydlg.cpp:193
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Not all applications will use this proxy setting. In particular, "
+"<application>Firefox</application> and <application>Chromium</application> "
+"or anything derived from them, or anything using <application>QtWebEngine</"
+"application>&nbsp;- which includes <application>Konqueror</application> "
+"using the <application>WebEnginePart</application>, <application>Akregator</"
+"application> and <application>Falkon</application>&nbsp;- will not use these "
+"settings. Some applications may allow the proxy to be configured in their "
+"own settings."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
+#: proxy/kproxydlg.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"Setup proxy configuration.\n"
+"<p>\n"
+"A proxy server is an intermediate machine that sits between your computer "
+"and the Internet and provides services such as web page caching and "
+"filtering. Caching proxy servers give you faster access to web sites you "
+"have already visited by locally storing or caching those pages; filtering "
+"proxy servers usually provide the ability to block out requests for ads, "
+"spam, or anything else you want to block.\n"
+"<p>\n"
+"If you are uncertain whether or not you need to use a proxy server to "
+"connect to the Internet, consult your Internet service provider's setup "
+"guide or your system administrator.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:26
+#, kde-format
+msgid "Connect to the Internet directly."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:29
+#, fuzzy, kde-format
+#| msgid "Link"
+msgid "No Proxy"
+msgstr "Ligam"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:46
+#, kde-format
+msgid ""
+"<qt>\n"
+"Automatically detect and configure the proxy settings.<p>\n"
+"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
+"<b>NOTE:</b> This option might not work properly or not work at all in some "
+"UNIX/Linux distributions.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:49
+#, kde-format
+msgid "Detect proxy configuration automatically"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:59
+#, kde-format
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:62
+#, kde-format
+msgid "Use proxy auto configuration URL:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
+#: proxy/kproxydlg.ui:93
+#, kde-format
+msgid "Enter the address for the proxy configuration script."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:117
+#, kde-format
+msgid ""
+"<qt><p>Use proxy settings defined on the system.</p>\n"
+"<p>Some platforms offer system wide proxy configuration information and "
+"selecting this option allows you to use those settings.</p>\n"
+"<p>On Mac platforms</p>\n"
+"<p>On Windows platforms</p>\n"
+"<p>On Unix and Linux platforms, such system proxy settings are usually "
+"defined through environment variables. The following environment variables "
+"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:120
+#, kde-format
+msgid "Use system proxy configuration:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:127
+#, kde-format
+msgid ""
+"<qt>Attempt automatic discovery of the environment variables used for "
+"setting system wide proxy information.<p> This feature works by searching "
+"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:130
+#, kde-format
+msgid "Auto D&etect"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
+#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
+#, fuzzy, kde-format
+#| msgid "Link"
+msgid "HTTP Proxy:"
+msgstr "Ligam"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
+#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
+#, fuzzy, kde-format
+#| msgid "Link"
+msgid "SSL Proxy:"
+msgstr "Ligam"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
+#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
+#, fuzzy, kde-format
+#| msgid "Link"
+msgid "FTP Proxy:"
+msgstr "Ligam"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:263
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
+#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
+#, fuzzy, kde-format
+#| msgid "Link"
+msgid "SOCKS Proxy:"
+msgstr "Ligam"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:285
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the proxy server should not be used.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
+#, fuzzy, kde-format
+#| msgid "O&ptions"
+msgid "Exceptions:"
+msgstr "O&pcions"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:317
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:324
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:343
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:346
+#, kde-format
+msgid "Use manually specified proxy configuration:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:398
+#, kde-format
+msgid "Enter the address of the HTTP proxy server."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
+#: proxy/kproxydlg.ui:574
+#, kde-format
+msgid "Port:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:421
+#, kde-format
+msgid "Enter the port number of the HTTP proxy server."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:436
+#, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:464
+#, kde-format
+msgid "Enter the address of the HTTPS proxy server."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:481
+#, kde-format
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:517
+#, kde-format
+msgid "Enter the address of the FTP proxy server."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:534
+#, kde-format
+msgid "Enter the port number of the FTP proxy server."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:567
+#, kde-format
+msgid "Enter the address of the SOCKS proxy server."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:584
+#, kde-format
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
+#: proxy/kproxydlg.ui:628
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enter a comma separated list of hostnames or ip addresses that should be "
+"excluded from using the above proxy settings.</p>\n"
+"<p>If you want to exclude all hosts for a given domain, then simply enter "
+"the domain name preceded by a dot. For example, to exclude all hostnames for "
+"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
+"'?' are not supported and will have no effect.</p>\n"
+"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:639
+#, kde-format
+msgid ""
+"<qt>\n"
+"Check this box if you want the above proxy settings to apply only to the "
+"addresses listed in the <i>Exceptions</i> list.</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:642
+#, kde-format
+msgid "Use proxy settings only for addresses in the Exceptions list"
+msgstr ""
+
+#: smb/smbrodlg.cpp:27
+#, kde-format
+msgid "These settings apply to network browsing only."
+msgstr ""
+
+#: smb/smbrodlg.cpp:31
+#, kde-format
+msgid "Default user name:"
+msgstr ""
+
+#: smb/smbrodlg.cpp:39
+#, fuzzy, kde-format
+#| msgid "Verify password:"
+msgid "Default password:"
+msgstr "Verificacion del mot de pas :"
+
+#: trash/kcmtrash.cpp:138
+#, kde-format
+msgid " days"
+msgstr ""
+
+#: trash/kcmtrash.cpp:203
+#, kde-format
+msgid ""
+"<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
+"para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:205
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Emptying KDE's wastebin will remove only KDE's trash items, "
+"while<br>emptying the Trash through the Finder will delete everything.</"
+"para><para>KDE's trash items will show up in a folder called KDE.trash, in "
+"the Trash can.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:246
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgid "Delete files older than"
+msgstr "Suprimir lo repertòri"
+
+#: trash/kcmtrash.cpp:249
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to allow <emphasis strong='true'>automatic deletion</"
+"emphasis> of files that are older than the value specified. Leave this "
+"disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
+"items after a certain timespan</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:256
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: trash/kcmtrash.cpp:258
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Set the number of days that files can remain in the trash. Any files "
+"older than this will be automatically deleted.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:262
+#, kde-format
+msgid "Cleanup:"
+msgstr ""
+
+#: trash/kcmtrash.cpp:265
+#, kde-format
+msgid "Limit to"
+msgstr ""
+
+#: trash/kcmtrash.cpp:267
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to limit the trash to the maximum amount of disk space "
+"that you specify below. Otherwise, it will be unlimited.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:270
+#, kde-format
+msgid "Size:"
+msgstr "Talha :"
+
+#: trash/kcmtrash.cpp:277
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the maximum percent of disk space that will be used for the "
+"trash.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:282
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the calculated amount of disk space that will be allowed for "
+"the trash, the maximum.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:286
+#, kde-format
+msgid "Show a Warning"
+msgstr ""
+
+#: trash/kcmtrash.cpp:287
+#, kde-format
+msgid "Delete Oldest Files From Trash"
+msgstr ""
+
+#: trash/kcmtrash.cpp:288
+#, kde-format
+msgid "Delete Biggest Files From Trash"
+msgstr ""
+
+#: trash/kcmtrash.cpp:290
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>When the size limit is reached, it will prefer to delete the type of "
+"files that you specify, first. If this is set to warn you, it will do so "
+"instead of automatically deleting files.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:292
+#, fuzzy, kde-format
+#| msgid "Trash"
+msgid "Full Trash:"
+msgstr "Banasta"
+
+#: webshortcuts/ikwsopts.cpp:38
+#, fuzzy, kde-format
+#| msgid "Name"
+msgctxt "@title:column Name label from web search keyword column"
+msgid "Name"
+msgstr "Nom"
+
+#: webshortcuts/ikwsopts.cpp:40
+#, kde-format
+msgctxt "@title:column"
+msgid "Keywords"
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Preferred"
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:101
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this box to select the highlighted web search keyword as preferred.<nl/"
+">Preferred web search keywords are used in places where only a few select "
+"keywords can be shown at one time."
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:202
+#, fuzzy, kde-format
+#| msgid "None"
+msgctxt "@item:inlistbox No default web search keyword"
+msgid "None"
+msgstr "Pas cap"
+
+#: webshortcuts/ikwsopts.cpp:246
+#, kde-format
+msgid "Search F&ilters"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:17
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"search keywords allow you to quickly access or search for information "
+"located online or on your hard drive. </p><p>KDE comes with many predefined "
+"keywords. One such keyword can be used to perform a the Google (TM) search; "
+"to use it, you simply type the keyword 'gg' followed by the keyword "
+"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
+"KDE</span>.</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:20
+#, fuzzy, kde-format
+#| msgid "Verify password:"
+msgid "&Enable Web search keywords"
+msgstr "Verificacion del mot de pas :"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:30
+#, kde-format
+msgid "&Use preferred keywords only"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
+#: webshortcuts/ikwsopts_ui.ui:37
+#, fuzzy, kde-format
+#| msgid "Verify password:"
+msgid "Search for web search keywords"
+msgstr "Verificacion del mot de pas :"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:71
+#, fuzzy, kde-format
+#| msgid "Verify password:"
+msgid "Add a new Web search keyword"
+msgstr "Verificacion del mot de pas :"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:84
+#, fuzzy, kde-format
+#| msgid "Verify password:"
+msgid "Modify the highlighted Web search keyword"
+msgstr "Verificacion del mot de pas :"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:97
+#, fuzzy, kde-format
+#| msgid "Verify password:"
+msgid "Delete the highlighted Web search keyword"
+msgstr "Verificacion del mot de pas :"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:100
+#, fuzzy, kde-format
+#| msgid "Delete"
+msgid "De&lete"
+msgstr "Suprimir"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:138
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the search engine to use for input boxes that provide automatic "
+"lookup services when you type in normal words and phrases instead of a URL. "
+"To disable this feature select <b>None</b> from the list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:141
+#, fuzzy, kde-format
+#| msgid "Verify password:"
+msgid "Default Web &search keyword:"
+msgstr "Verificacion del mot de pas :"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:166
+#, kde-format
+msgid ""
+"<html><head/><body><p>Select a default web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to web "
+"search keyword queries when they cannot be filtered into a proper URL. </"
+"p><p>To disable this functionality select <span style=\" font-weight:600;"
+"\">None</span> from the list. </p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:182
+#, kde-format
+msgid ""
+"Choose the delimiter that separates the keyword from the phrase or word to "
+"be searched."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:185
+#, kde-format
+msgid "&Keyword delimiter:"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:204
+#, kde-format
+msgid "Choose a delimiter to mark the Web search keyword."
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:208
+#, kde-format
+msgctxt "Colon as keyword delimiter"
+msgid "Colon"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:213
+#, kde-format
+msgctxt "Space as keyword delimiter"
+msgid "Space"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:49
+#, fuzzy, kde-format
+#| msgid "Default"
+msgctxt "@item:inlistbox The default character set"
+msgid "Default"
+msgstr "Defaut"
+
+#: webshortcuts/searchproviderdlg.cpp:52
+#, kde-format
+msgid "Modify Web Shortcut"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:60
+#, kde-format
+msgid "New Web Shortcut"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:121
+#, kde-format
+msgid ""
+"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"one."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:126
+#, fuzzy, kde-format
+#| msgid "%1 (%2)"
+msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
+msgid "- %1: \"%2\""
+msgstr "%1 (%2)"
+
+#: webshortcuts/searchproviderdlg.cpp:130
+#, kde-format
+msgid ""
+"The following shortcuts are already assigned. Please choose different ones.\n"
+"%1"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:143
+#, kde-format
+msgid ""
+"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"This means that the same page is always going to be visited, regardless of "
+"the text typed in with the shortcut."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:147
+#, kde-format
+msgid "Keep It"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:17
+#, kde-format
+msgid "Enter the human-readable name of the search provider here."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:23
+#, fuzzy, kde-format
+#| msgid "Username:"
+msgid "Shortcut &name:"
+msgstr "Nom d'utilizaire :"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:42
+#: webshortcuts/searchproviderdlg_ui.ui:64
+#: webshortcuts/searchproviderdlg_ui.ui:70
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the URI that is used to perform a search on the search engine here.<br/"
+">The whole text to be searched for can be specified as \\{@} or \\{0}.<br/>\n"
+"Recommended is \\{@}, since it removes all query variables (name=value) from "
+"the resulting string, whereas \\{0} will be substituted with the unmodified "
+"query string.<br/>You can use \\{1} ... \\{n} to specify certain words from "
+"the query and \\{name} to specify a value given by 'name=value' in the user "
+"query.<br/>In addition it is possible to specify multiple references (names, "
+"numbers and strings) at once (\\{name1,name2,...,\"string\"}).<br/>The first "
+"matching value (from the left) will be used as the substitution value for "
+"the resulting URI.<br/>A quoted string can be used as the default value if "
+"nothing matches from the left of the reference list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:48
+#, kde-format
+msgid "Shortcut &URL:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:83
+#, kde-format
+msgid "Select the character set that will be used to encode your search query."
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:92
+#: webshortcuts/searchproviderdlg_ui.ui:97
+#: webshortcuts/searchproviderdlg_ui.ui:116
+#, kde-format
+msgid ""
+"<qt>\n"
+"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+"b>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:104
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
+"</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:119
+#, kde-format
+msgid "&Shortcuts:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:132
+#, kde-format
+msgid "Select the character set that will be used to encode your search query"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:135
+#, kde-format
+msgid "&Charset:"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
+#: webshortcuts/searchproviderdlg_ui.ui:158
+#, kde-format
+msgid "Insert query placeholder"
+msgstr ""
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Yannig Marchegay (Kokoyaya)"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "yannig@marchegay.org"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Unable to create KIO worker: %1"
+#~ msgstr "Banasta"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Trash"
+#~ msgstr "Banasta"
+
+#, fuzzy
+#~| msgctxt "Items in a folder"
+#~| msgid "1 item"
+#~| msgid_plural "%1 items"
+#~ msgid "%1 Item"
+#~ msgid_plural "%1 Items"
+#~ msgstr[0] "1 element"
+#~ msgstr[1] "%1 elements"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgid "1 Folder"
+#~ msgid_plural "%1 Folders"
+#~ msgstr[0] "Repertòri novèl"
+#~ msgstr[1] "Repertòri novèl"
+
+#, fuzzy
+#~| msgid "File"
+#~ msgid "1 File"
+#~ msgid_plural "%1 Files"
+#~ msgstr[0] "Fichièr"
+#~ msgstr[1] "Fichièr"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "folders, files (size)"
+#~ msgid "%1, %2 (%3)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "folders, files"
+#~ msgid "%1, %2"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "files (size)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "items: folders, files (size)"
+#~ msgid "%1: %2"
+#~ msgstr "%1 (%2)"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "Desplaçament"
+
+#, fuzzy
+#~| msgid "Source"
+#~ msgctxt "The source of a file operation"
+#~ msgid "Source"
+#~ msgstr "Sorga"
+
+#, fuzzy
+#~| msgid "Destination"
+#~ msgctxt "The destination of a file operation"
+#~ msgid "Destination"
+#~ msgstr "Destinacion"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@title job"
+#~ msgid "Renaming"
+#~ msgstr "&Tornar nomenar"
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "Còpia"
+
+#~ msgid "Directory"
+#~ msgstr "Repertòri"
+
+#~ msgid "File"
+#~ msgstr "Fichièr"
+
+#~ msgid "Device"
+#~ msgstr "Periferic"
+
+#~ msgid "Mountpoint"
+#~ msgstr "Punt de montatge"
+
+#, fuzzy
+#~| msgid "File"
+#~ msgid "Copy Files"
+#~ msgstr "Fichièr"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Create Folder"
+#~ msgstr "Banasta"
+
+#, fuzzy
+#~| msgid "Move to Trash"
+#~ msgid "Move Items"
+#~ msgstr "Desplaçar dins la banasta"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Rename"
+#~ msgstr "&Tornar nomenar"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Unable to create KIO worker. %1"
+#~ msgstr "Banasta"
+
+#~ msgctxt "@info url"
+#~ msgid "(unknown)"
+#~ msgstr "(desconegut)"
+
+#~ msgctxt "@info protocol"
+#~ msgid "(unknown)"
+#~ msgstr "(desconegut)"
+
+#~ msgid "Internal Error"
+#~ msgstr "Error intèrna"
+
+#~ msgid "Out of Memory"
+#~ msgstr "Memòria insufisenta"
+
+#~ msgid "Unknown Error"
+#~ msgstr "Error desconeguda"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Unable to Create KIO Worker"
+#~ msgstr "Banasta"
+
+#~ msgid "Server Authentication"
+#~ msgstr "Servidor d'autenticacion"
+
+#~ msgid "&Details"
+#~ msgstr "&Detalhs"
+
+#~ msgid "Nothing to Delete"
+#~ msgstr "Res a suprimir"
+
+#~ msgid "Menu"
+#~ msgstr "Menut"
+
+#~ msgid "Home Folder"
+#~ msgstr "Repertòri personal"
+
+#~ msgid "Reload"
+#~ msgstr "Tornar cargar"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Desplaçar dins la banasta"
+
+#~ msgid "Delete"
+#~ msgstr "Suprimir"
+
+#~ msgid "Sorting"
+#~ msgstr "A s'ordenar"
+
+#, fuzzy
+#~| msgid "Username:"
+#~ msgid "Sort by Name"
+#~ msgstr "Nom d'utilizaire :"
+
+#, fuzzy
+#~| msgid "By Size"
+#~ msgid "Sort by Size"
+#~ msgstr "Per talha"
+
+#, fuzzy
+#~| msgid "By Date"
+#~ msgid "Sort by Date"
+#~ msgstr "Per data"
+
+#, fuzzy
+#~| msgid "By Type"
+#~ msgid "Sort by Type"
+#~ msgstr "Per tipe"
+
+#, fuzzy
+#~| msgid "Descending"
+#~ msgid "Ascending"
+#~ msgstr "Descreissent"
+
+#~ msgid "Descending"
+#~ msgstr "Descreissent"
+
+#, fuzzy
+#~| msgid "Details"
+#~ msgid "Details View"
+#~ msgstr "Detalhs"
+
+#~ msgid "Properties"
+#~ msgstr "Propietats"
+
+#, fuzzy
+#~| msgid "&View"
+#~ msgid "&View Mode"
+#~ msgstr "Aficha&tge"
+
+#~ msgid "Open"
+#~ msgstr "Dobrir"
+
+#~ msgid "Save As"
+#~ msgstr "Enregistrar coma"
+
+#, fuzzy
+#~| msgid "Copy"
+#~ msgctxt "@title:menu"
+#~ msgid "Copy To"
+#~ msgstr "Copiar"
+
+#, fuzzy
+#~| msgid "Move to Trash"
+#~ msgctxt "@title:menu"
+#~ msgid "Move To"
+#~ msgstr "Desplaçar dins la banasta"
+
+#, fuzzy
+#~| msgid "Home Folder"
+#~ msgctxt "@title:menu"
+#~ msgid "Home Folder"
+#~ msgstr "Repertòri personal"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgctxt "@title:menu"
+#~ msgid "Root Folder"
+#~ msgstr "Repertòri novèl"
+
+#, fuzzy
+#~| msgid "&Browse..."
+#~ msgctxt "@title:menu in Copy To or Move To submenu"
+#~ msgid "Browse..."
+#~ msgstr "&Examinar..."
+
+#, fuzzy
+#~| msgid "Copy"
+#~ msgctxt "@title:menu"
+#~ msgid "Copy Here"
+#~ msgstr "Copiar"
+
+#, fuzzy
+#~| msgid "File"
+#~ msgctxt "Default mime type filter that shows all file types"
+#~ msgid "*|All Files"
+#~ msgstr "Fichièr"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "%1 is the mimetype name, %2 is the extensions"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "File"
+#~ msgid "All Files"
+#~ msgstr "Fichièr"
+
+#, fuzzy
+#~| msgid "&Name:"
+#~ msgid "L&abel:"
+#~ msgstr "&Nom :"
+
+#, fuzzy
+#~| msgid "Description"
+#~ msgid "Enter descriptive label here"
+#~ msgstr "Descripcion"
+
+#, fuzzy
+#~| msgid "Places"
+#~ msgctxt "@item"
+#~ msgid "Places"
+#~ msgstr "Acorchis"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@item"
+#~ msgid "Remote"
+#~ msgstr "Suprimir"
+
+#, fuzzy
+#~| msgid "Search"
+#~ msgctxt "@item"
+#~ msgid "Search For"
+#~ msgstr "Recercar"
+
+#, fuzzy
+#~| msgid "Devices"
+#~ msgctxt "@item"
+#~ msgid "Devices"
+#~ msgstr "Periferics"
+
+#, fuzzy
+#~| msgctxt "Home Directory"
+#~| msgid "Home"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Home"
+#~ msgstr "Repertòri personal"
+
+#, fuzzy
+#~| msgid "Network"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Network"
+#~ msgstr "Ret"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Trash"
+#~ msgstr "Banasta"
+
+#, fuzzy
+#~| msgid "Location:"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Locations"
+#~ msgstr "Emplaçament :"
+
+#, fuzzy
+#~| msgid "Modified:"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Today"
+#~ msgstr "Modificat :"
+
+#, fuzzy
+#~| msgid "Reload"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Releasing…"
+#~ msgstr "Tornar cargar"
+
+#, fuzzy
+#~| msgid "Reload"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Release"
+#~ msgstr "Tornar cargar"
+
+#, fuzzy
+#~| msgid "&Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Safely Removing…"
+#~ msgstr "&Suprimir "
+
+#, fuzzy
+#~| msgid "&Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Safely Remove"
+#~ msgstr "&Suprimir "
+
+#, fuzzy
+#~| msgid "Unmount"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Unmounting…"
+#~ msgstr "Desmontar"
+
+#, fuzzy
+#~| msgid "Unmount"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Unmount"
+#~ msgstr "Desmontar"
+
+#, fuzzy
+#~| msgid "Eject"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Eject"
+#~ msgstr "Ejectar"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Empty Trash"
+#~ msgstr "Voidar la banasta"
+
+#, fuzzy
+#~| msgid "Mount"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Mount"
+#~ msgstr "Montar"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open in New Tab"
+#~ msgstr "Dobrir amb"
+
+#, fuzzy
+#~| msgid "Edit"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Edit…"
+#~ msgstr "Edicion"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Remove"
+#~ msgstr "Suprimir"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Size"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Icon Size"
+#~ msgstr "Talha"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Date"
+#~ msgctxt "Large icon size"
+#~ msgid "Large (%1x%1)"
+#~ msgstr "Data"
+
+#, fuzzy
+#~| msgid "Bookmarks"
+#~ msgid "Show Bookmarks Button"
+#~ msgstr "Marca-paginas"
+
+#~ msgid "Options"
+#~ msgstr "Opcions"
+
+#~ msgid "Bookmarks"
+#~ msgstr "Marca-paginas"
+
+#~ msgid "&Name:"
+#~ msgstr "&Nom :"
+
+#, fuzzy
+#~| msgid "Places"
+#~ msgctxt "@title:window"
+#~ msgid "Places"
+#~ msgstr "Acorchis"
+
+#, fuzzy
+#~| msgid "Delete File"
+#~ msgid "Overwrite File?"
+#~ msgstr "Remplaçar lo fichièr ?"
+
+#~ msgid "&Open"
+#~ msgstr "&Dobrir"
+
+#, fuzzy
+#~| msgid "File system:"
+#~ msgid "&File type:"
+#~ msgstr "Sistèma de fichièrs :"
+
+#, fuzzy
+#~| msgid "Store"
+#~ msgid "Sorry"
+#~ msgstr "Store"
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgid "Create link to URL"
+#~ msgstr "Creat :"
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgid "Create New"
+#~ msgstr "Creat :"
+
+#, fuzzy
+#~| msgid "Device"
+#~ msgid "Link to Device"
+#~ msgstr "Periferic"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgctxt "Default name for a new folder"
+#~ msgid "New Folder"
+#~ msgstr "Repertòri novèl"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgctxt "@title:window"
+#~ msgid "New Folder"
+#~ msgstr "Repertòri novèl"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Create new folder in %1:"
+#~ msgstr "Banasta"
+
+#~ msgid "Copy"
+#~ msgstr "Copiar"
+
+#~ msgid "Paste"
+#~ msgstr "Pegar"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Tab"
+#~ msgstr "Dobrir amb"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Window"
+#~ msgstr "Dobrir amb"
+
+#~ msgid "Edit"
+#~ msgstr "Edicion"
+
+#~ msgid "Navigate"
+#~ msgstr "Navigar"
+
+#, fuzzy
+#~| msgid "Store"
+#~ msgctxt "@action:inmenu"
+#~ msgid "More"
+#~ msgstr "Store"
+
+#, fuzzy
+#~| msgid "Devices"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Devices"
+#~ msgstr "Periferics"
+
+#, fuzzy
+#~| msgid "Others"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Other"
+#~ msgstr "Autres"
+
+#, fuzzy
+#~| msgid "Edit"
+#~ msgid "Edit mode"
+#~ msgstr "Edicion"
+
+#, fuzzy
+#~| msgid "Launching %1"
+#~ msgctxt "Launching application"
+#~ msgid "Launching %1"
+#~ msgstr "Aviada de %1"
+
+#~ msgid "Launching %1"
+#~ msgstr "Aviada de %1"
+
+#, fuzzy
+#~| msgid "File system:"
+#~ msgid "File Changed"
+#~ msgstr "Sistèma de fichièrs :"
+
+#, fuzzy
+#~| msgid "Reload"
+#~ msgid "Upload"
+#~ msgstr "Tornar cargar"
+
+#, fuzzy
+#~| msgid "Do Not Store"
+#~ msgid "Do Not Upload"
+#~ msgstr "Conservar pas"
+
+#, fuzzy
+#~| msgid "Do Not Store"
+#~ msgid "Do Not Delete"
+#~ msgstr "Conservar pas"
+
+#~ msgid "Stephan Kulow"
+#~ msgstr "Stephan Kulow"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Permissions"
+#~ msgid "Change File Permissions"
+#~ msgstr "Permissions"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Permissions"
+#~ msgid "New Permissions: %1"
+#~ msgstr "Permissions"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgid "Remove File"
+#~ msgstr "Suprimir"
+
+#, fuzzy
+#~| msgid "Directory"
+#~ msgid "Remove Directory"
+#~ msgstr "Repertòri"
+
+#, fuzzy
+#~| msgid "Directory"
+#~ msgid "Create Directory"
+#~ msgstr "Repertòri"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Permissions"
+#~ msgid "Directory Permissions: %1"
+#~ msgstr "Permissions"
+
+#, fuzzy
+#~| msgid "File"
+#~ msgid "Open File"
+#~ msgstr "Fichièr"
+
+#, fuzzy
+#~| msgid "Directory"
+#~ msgid "Open Directory"
+#~ msgstr "Repertòri"
+
+#, fuzzy
+#~| msgid "File system:"
+#~ msgid "New Filename: %1"
+#~ msgstr "Sistèma de fichièrs :"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Date"
+#~ msgid "Target: %1"
+#~ msgstr "Data"
+
+#, fuzzy
+#~| msgctxt "@info mimetype"
+#~| msgid "Unknown"
+#~ msgid "Unknown Action"
+#~ msgstr "Desconegut"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgid "%1 (Error %2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "Site:"
+#~ msgstr "Sit :"
+
+#, fuzzy
+#~| msgid "Launching %1"
+#~ msgid ""
+#~ "\n"
+#~ "The server said: \"%1\""
+#~ msgstr "Aviada de %1"
+
+#, fuzzy
+#~| msgid "Directory"
+#~ msgid "Could not create directory %1"
+#~ msgstr "Repertòri"
+
+#~ msgid "&Accept"
+#~ msgstr "&Acceptar"
+
+#, fuzzy
+#~| msgid "Not specified"
+#~ msgctxt "@label cookie has no explicit 'Domain' value specified"
+#~ msgid "Not specified"
+#~ msgstr "Non especificat"
+
+#, fuzzy
+#~| msgid "Servers"
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by http servers"
+#~ msgid "Servers"
+#~ msgstr "Servidors"
+
+#, fuzzy
+#~| msgid "Details"
+#~ msgctxt ""
+#~ "@action:button show details about a cookie that needs approval. This "
+#~ "string gets >> and << appended, to visualize if the dialog expands or "
+#~ "compacts!"
+#~ msgid "Details"
+#~ msgstr "Detalhs"
+
+#, fuzzy
+#~| msgid "Network"
+#~ msgid "Network"
+#~ msgstr "Ret"
+
+#, fuzzy
+#~| msgid "Server Authentication"
+#~ msgid "Retry Authentication"
+#~ msgstr "Servidor d'autenticacion"
+
+#, fuzzy
+#~| msgid "Server Authentication"
+#~ msgid "Authentication Dialog"
+#~ msgstr "Servidor d'autenticacion"
+
+#, fuzzy
+#~| msgid "Accessed:"
+#~ msgid "Access denied"
+#~ msgstr "Darrièr accès :"
+
+#, fuzzy
+#~| msgid "Authentication"
+#~ msgid "Organization:"
+#~ msgstr "Orientacion"
+
+#, fuzzy
+#~| msgid "Authentication"
+#~ msgid "Organizational unit:"
+#~ msgstr "Orientacion"
+
+#~ msgid "Country:"
+#~ msgstr "Païs :"
+
+#~ msgid "Canada"
+#~ msgstr "Canadà"
+
+#~ msgid "State:"
+#~ msgstr "Estat :"
+
+#~ msgid "City:"
+#~ msgstr "Ciutat :"
+
+#~ msgid "Calculate"
+#~ msgstr "Calculs"
+
+#, fuzzy
+#~| msgctxt "@title job"
+#~| msgid "Moving"
+#~ msgid "Moving"
+#~ msgstr "Desplaçament"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Renaming"
+#~ msgstr "&Tornar nomenar"
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgid "Deleting"
+#~ msgstr "Suprimir"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Und&o: Trash"
+#~ msgstr "Banasta"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Und&o: Create Folder(s)"
+#~ msgstr "Banasta"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Und&o: Create File"
+#~ msgstr "Banasta"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgctxt "@action:button"
+#~ msgid "Empty Trash"
+#~ msgstr "Voidar la banasta"
+
+#~ msgid "SSL"
+#~ msgstr "SSL"
+
+#, fuzzy
+#~| msgid "Add..."
+#~ msgctxt "@action:button"
+#~ msgid "Add..."
+#~ msgstr "Apondre..."
+
+#, fuzzy
+#~| msgid "Edit"
+#~ msgctxt "@action:button"
+#~ msgid "Edit..."
+#~ msgstr "Edicion"
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action:button"
+#~ msgid "Delete"
+#~ msgstr "Suprimir"
+
+#, fuzzy
+#~| msgid "Owner"
+#~ msgctxt "Unix permissions"
+#~ msgid "Owner"
+#~ msgstr "Propietari"
+
+#, fuzzy
+#~| msgid "Others"
+#~ msgctxt "UNIX permissions"
+#~ msgid "Others"
+#~ msgstr "Autres"
+
+#, fuzzy
+#~| msgid "Default"
+#~ msgid "Owner (Default)"
+#~ msgstr "Defaut"
+
+#~ msgid "Owner"
+#~ msgstr "Propietari"
+
+#~ msgid "Others"
+#~ msgstr "Autres"
+
+#~ msgid "User: "
+#~ msgstr "Utilizaire : "
+
+#~ msgid "Type"
+#~ msgstr "Tipe"
+
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgctxt "read permission"
+#~ msgid "r"
+#~ msgstr "r"
+
+#~ msgctxt "write permission"
+#~ msgid "w"
+#~ msgstr "w"
+
+#~ msgctxt "execute permission"
+#~ msgid "x"
+#~ msgstr "x"
+
+#~ msgctxt "@title:column"
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#~ msgctxt "@title:column"
+#~ msgid "Size"
+#~ msgstr "Talha"
+
+#~ msgctxt "@title:column"
+#~ msgid "Date"
+#~ msgstr "Data"
+
+#~ msgctxt "@title:column"
+#~ msgid "Permissions"
+#~ msgstr "Permissions"
+
+#~ msgctxt "@title:column"
+#~ msgid "Owner"
+#~ msgstr "Propietari"
+
+#~ msgctxt "@title:column"
+#~ msgid "Group"
+#~ msgstr "Grop"
+
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "Tipe"
+
+#, fuzzy
+#~| msgid "Open with:"
+#~ msgid "Open &with %1"
+#~ msgstr "Dobrir amb :"
+
+#, fuzzy
+#~| msgid "Actions"
+#~ msgctxt "@title:menu"
+#~ msgid "&Actions"
+#~ msgstr "Accions"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With..."
+#~ msgstr "Dobrir amb"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With..."
+#~ msgstr "Dobrir amb"
+
+#, fuzzy
+#~| msgid "Open with:"
+#~ msgid "&Open folder with %1"
+#~ msgstr "Dobrir amb :"
+
+#, fuzzy
+#~| msgid "Open with:"
+#~ msgid "&Open with %1"
+#~ msgstr "Dobrir amb :"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With"
+#~ msgstr "Dobrir amb"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With"
+#~ msgstr "Dobrir amb"
+
+#, fuzzy
+#~| msgid "Choose Application"
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other Application..."
+#~ msgstr "Causissètz una aplicacion"
+
+#~ msgctxt "Items in a folder"
+#~ msgid "1 item"
+#~ msgid_plural "%1 items"
+#~ msgstr[0] "1 element"
+#~ msgstr[1] "%1 elements"
+
+#~ msgctxt "@info mimetype"
+#~ msgid "Unknown"
+#~ msgstr "Desconegut"
+
+#~ msgid "Stop"
+#~ msgstr "Arrestar"
+
+#, fuzzy
+#~| msgid "Mount point:"
+#~ msgid "Mounted From:"
+#~ msgstr "Punt de montatge :"
+
+#~ msgid "Type:"
+#~ msgstr "Mena :"
+
+#~ msgid "Location:"
+#~ msgstr "Emplaçament :"
+
+#, fuzzy
+#~| msgid "Calculating..."
+#~ msgid "Change..."
+#~ msgstr "A calcular..."
+
+#, fuzzy
+#~| msgid "Contents:"
+#~ msgid "Content:"
+#~ msgstr "Ensenhador :"
+
+#~ msgid "Modified:"
+#~ msgstr "Modificat :"
+
+#~ msgid "Created:"
+#~ msgstr "Creat :"
+
+#, fuzzy
+#~| msgid "File system:"
+#~ msgid "File System:"
+#~ msgstr "Sistèma de fichièrs :"
+
+#, fuzzy
+#~| msgctxt "@info mimetype"
+#~| msgid "Unknown"
+#~ msgid "Unknown size"
+#~ msgstr "Desconegut"
+
+#, fuzzy
+#~| msgid "Mount point:"
+#~ msgid "Mounted On:"
+#~ msgstr "Punt de montatge :"
+
+#~ msgid "Accessed:"
+#~ msgstr "Darrièr accès :"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgid "Open With:"
+#~ msgstr "Dobrir amb"
+
+#~ msgid "Open With"
+#~ msgstr "Dobrir amb"
+
+#~ msgid "Choose Application"
+#~ msgstr "Causissètz una aplicacion"
+
+#, fuzzy
+#~| msgid "&Terminal options:"
+#~ msgid "Terminal options"
+#~ msgstr "O&pcions del terminal :"
+
+#, fuzzy
+#~| msgid "Terminal"
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options about the "
+#~ "terminal when launching a program"
+#~ msgid "Terminal"
+#~ msgstr "Terminal"
+
+#, fuzzy
+#~| msgid "&Run in terminal"
+#~ msgid "Run in terminal"
+#~ msgstr "&Executar dins un terminal"
+
+#, fuzzy
+#~| msgid "&Terminal options:"
+#~ msgid "Terminal options:"
+#~ msgstr "O&pcions del terminal :"
+
+#, fuzzy
+#~| msgid "User"
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose which user to use "
+#~ "when launching a program"
+#~ msgid "User"
+#~ msgstr "Utilizaire"
+
+#~ msgid "Username:"
+#~ msgstr "Nom d'utilizaire :"
+
+#, fuzzy
+#~| msgid "Status"
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options regarding "
+#~ "program startup"
+#~ msgid "Startup"
+#~ msgstr "Aviada"
+
+#~ msgid "&Description:"
+#~ msgstr "&Descripcion :"
+
+#~ msgid "Comm&ent:"
+#~ msgstr "Com&entari :"
+
+#~ msgid "&Browse..."
+#~ msgstr "&Examinar..."
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgid "&Supported file types:"
+#~ msgstr "Creat :"
+
+#~ msgid "Mimetype"
+#~ msgstr "Tipe MIME"
+
+#~ msgid "Description"
+#~ msgstr "Descripcion"
+
+#~ msgid "Add..."
+#~ msgstr "Apondre..."
+
+#~ msgid "Remove"
+#~ msgstr "Suprimir"
+
+#~ msgid "Ad&vanced Options"
+#~ msgstr "Opcions a&vançadas"
+
+#, fuzzy
+#~| msgid "&General"
+#~ msgctxt "@title:tab File properties"
+#~ msgid "&General"
+#~ msgstr "&General"
+
+#~ msgid "Refresh"
+#~ msgstr "Actualizar"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgid "%1:"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgctxt "@info mimetype"
+#~| msgid "Unknown"
+#~ msgctxt "@info:status"
+#~ msgid "Unknown size"
+#~ msgstr "Desconegut"
+
+#, fuzzy
+#~| msgid "Calculating..."
+#~ msgid "Calculating...\n"
+#~ msgstr "A calcular..."
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgid "No registered file type"
+#~ msgstr "Creat :"
+
+#, fuzzy
+#~| msgid "Choose Application"
+#~ msgid "No associated application"
+#~ msgstr "Causissètz una aplicacion"
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgctxt "@action:button Create new file type"
+#~ msgid "Create…"
+#~ msgstr "Creat :"
+
+#, fuzzy
+#~| msgid "Calculating..."
+#~ msgctxt "@action:button"
+#~ msgid "Change…"
+#~ msgstr "A calcular..."
+
+#, fuzzy
+#~| msgid "Accessed:"
+#~ msgid "No Access"
+#~ msgstr "Darrièr accès :"
+
+#~ msgid "User:"
+#~ msgstr "Utilizaire :"
+
+#~ msgid "Group:"
+#~ msgstr "Grop :"
+
+#~ msgid "Class"
+#~ msgstr "Classa"
+
+#~ msgid "Read"
+#~ msgstr "Lectura"
+
+#~ msgid "Write"
+#~ msgstr "Escritura"
+
+#~ msgid "Special"
+#~ msgstr "Especial"
+
+#~ msgid "User"
+#~ msgstr "Utilizaire"
+
+#~ msgid "Group"
+#~ msgstr "Grop"
+
+#~ msgid "Link"
+#~ msgstr "Ligam"
+
+#, fuzzy
+#~| msgid "Calculating..."
+#~ msgctxt "@action:button"
+#~ msgid "Calculating..."
+#~ msgstr "A calcular..."
+
+#~ msgid "URL:"
+#~ msgstr "URL :"
+
+#, fuzzy
+#~| msgid "Subject"
+#~ msgctxt "The receiver of the SSL certificate"
+#~ msgid "Subject"
+#~ msgstr "Subjècte"
+
+#, fuzzy
+#~| msgid "Issuer"
+#~ msgctxt "The authority that issued the SSL certificate"
+#~ msgid "Issuer"
+#~ msgstr "Emissor"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "%1, using %2 bits of a %3 bit key"
+#~ msgid "%1, %2 %3"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "&Yes"
+#~ msgctxt "The certificate is trusted"
+#~ msgid "Yes"
+#~ msgstr "&Òc"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "%1 is the effective date of the certificate, %2 is the expiry date"
+#~ msgid "%1 to %2"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "Calculating..."
+#~ msgid "Configure Web Shortcuts..."
+#~ msgstr "A calcular..."
+
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "Select Folder"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Folder"
+#~ msgstr "Seleccionar un repertòri"
+
+#, fuzzy
+#~| msgid "Paste"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste"
+#~ msgstr "Pegar"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Date"
+#~ msgid "Date: %1"
+#~ msgstr "Data"
+
+#, fuzzy
+#~| msgid "Size:"
+#~ msgid "Size: %1"
+#~ msgstr "Talha :"
+
+#~ msgid "&Rename"
+#~ msgstr "&Tornar nomenar"
+
+#~ msgid "&Skip"
+#~ msgstr "&Ignorar"
+
+#, fuzzy
+#~| msgid "Write"
+#~ msgctxt "Write files into an existing folder"
+#~ msgid "&Write Into"
+#~ msgstr "Escritura"
+
+#, fuzzy
+#~| msgid "Delete File"
+#~ msgctxt "Overwrite files into an existing folder when files are older"
+#~ msgid "&Overwrite older files"
+#~ msgstr "Remplaçar lo fichièr ?"
+
+#~ msgid "C&ontinue"
+#~ msgstr "C&ontunhar"
+
+#, fuzzy
+#~| msgid "Source"
+#~ msgid "Source"
+#~ msgstr "Sorga"
+
+#, fuzzy
+#~| msgid "Destination"
+#~ msgid "Destination"
+#~ msgstr "Destinacion"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Rename:"
+#~ msgstr "&Tornar nomenar"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@title:window"
+#~ msgid "Rename Item"
+#~ msgstr "&Tornar nomenar"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@title:window"
+#~ msgid "Rename Items"
+#~ msgstr "&Tornar nomenar"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@action:button"
+#~ msgid "&Rename"
+#~ msgstr "&Tornar nomenar"
+
+#, fuzzy
+#~| msgid "File system:"
+#~ msgctxt ""
+#~ "This a template for new filenames, # is replaced by a number later, must "
+#~ "be the end character"
+#~ msgid "New name #"
+#~ msgstr "Sistèma de fichièrs :"
+
+#~ msgid "Information"
+#~ msgstr "Entresenhas"
+
+#, fuzzy
+#~| msgid "Replace"
+#~ msgid "Replace All"
+#~ msgstr "Remplaçar"
+
+#~ msgid "Skip"
+#~ msgstr "Sautar"
+
+#, fuzzy
+#~| msgid "Skip"
+#~ msgid "Skip All"
+#~ msgstr "Sautar"
+
+#, fuzzy
+#~| msgid "Address:"
+#~ msgctxt "Web page address"
+#~ msgid "Address:"
+#~ msgstr "Adreça :"
+
+#, fuzzy
+#~| msgid "IP Address:"
+#~ msgid "IP address:"
+#~ msgstr "Adreça IP :"
+
+#, fuzzy
+#~| msgid "&Description:"
+#~ msgid "Encryption:"
+#~ msgstr "&Descripcion :"
+
+#, fuzzy
+#~| msgid "&Details"
+#~ msgid "Details:"
+#~ msgstr "&Detalhs"
+
+#, fuzzy
+#~| msgid "Link"
+#~ msgid "SSL version:"
+#~ msgstr "Ligam"
+
+#, fuzzy
+#~| msgid "Certificate"
+#~ msgid "Certificate chain:"
+#~ msgstr "Certificat"
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgid "Trusted:"
+#~ msgstr "Creat :"
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgid "Unknown HTTP verb."
+#~ msgstr "Error desconeguda"
+
+#, fuzzy
+#~| msgid "Search"
+#~ msgid "Web Search Keywords"
+#~ msgstr "Recercar"
+
+#~ msgid "&Yes"
+#~ msgstr "&Òc"
+
+#~ msgid "&No"
+#~ msgstr "&Non"
+
+#~ msgid "Mount"
+#~ msgstr "Montar"
+
+#~ msgid "Unmount"
+#~ msgstr "Desmontar"
+
+#~ msgid "None"
+#~ msgstr "Pas cap"
+
+#, fuzzy
+#~| msgid "&Description:"
+#~ msgid "D-Bus registration:"
+#~ msgstr "&Descripcion :"
+
+#, fuzzy
+#~| msgid "File"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Audio"
+#~ msgstr "Fichièr"
+
+#~ msgid "Co&mmand:"
+#~ msgstr "&Comanda :"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgid "Open %1 in tab"
+#~ msgstr "Dobrir amb"
+
+#, fuzzy
+#~| msgid "Launching %1"
+#~ msgid "klauncher said: %1"
+#~ msgstr "Aviada de %1"
+
+#, fuzzy
+#~| msgid "File system:"
+#~ msgid "File name:"
+#~ msgstr "Sistèma de fichièrs :"
+
+#, fuzzy
+#~| msgid "&Search:"
+#~ msgid "&Use cache"
+#~ msgstr "&Recercar :"
+
+#, fuzzy
+#~| msgid "&Search:"
+#~ msgid "C&lear Cache"
+#~ msgstr "&Recercar :"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgctxt "@title:window"
+#~ msgid "Add Identification"
+#~ msgstr "Identificacion"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgctxt "@title:window"
+#~ msgid "Modify Identification"
+#~ msgstr "Identificacion"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Identification"
+#~ msgstr "Identificacion"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgid "&Send identification"
+#~ msgstr "Identificacion"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgid "Default Identification"
+#~ msgstr "Identificacion"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgid "Site Specific Identification"
+#~ msgstr "Identificacion"
+
+#~ msgid "Identification"
+#~ msgstr "Identificacion"
+
+#, fuzzy
+#~| msgid "User: "
+#~ msgid "User Agent"
+#~ msgstr "Utilizaire : "
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgid "Real identification:"
+#~ msgstr "Identificacion"
+
+#~ msgid "Device:"
+#~ msgstr "Periferic :"
+
+#~ msgid "Read only"
+#~ msgstr "Lectura sola"
+
+#~ msgid "File system:"
+#~ msgstr "Sistèma de fichièrs :"
+
+#~ msgid "Mount point:"
+#~ msgstr "Punt de montatge :"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgid "Add Network Folder"
+#~ msgstr "Repertòri novèl"
+
+#, fuzzy
+#~| msgid "Name"
+#~ msgctxt "@title:column Name label from web shortcuts column"
+#~ msgid "Name"
+#~ msgstr "Nom"
+
+#, fuzzy
+#~| msgid "None"
+#~ msgctxt "@item:inlistbox No default web shortcut"
+#~ msgid "None"
+#~ msgstr "Pas cap"
+
+#~ msgid "&Overwrite"
+#~ msgstr "&Espotir"
+
+#, fuzzy
+#~| msgid "Connection timed out."
+#~ msgid "Connection refused"
+#~ msgstr "Connectat"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Permissions"
+#~ msgid "Permission denied"
+#~ msgstr "Permissions"
+
+#, fuzzy
+#~| msgid "Connection timed out."
+#~ msgid "Connection timed out"
+#~ msgstr "Connectat"
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgid "Unknown error"
+#~ msgstr "Error desconeguda"
+
+#, fuzzy
+#~| msgid "Directory"
+#~ msgid "Not a directory"
+#~ msgstr "Repertòri"
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgid "Unknown socket error"
+#~ msgstr "Error desconeguda"
+
+#, fuzzy
+#~| msgid "Certificate"
+#~ msgctxt "SSL error"
+#~ msgid "The certificate has expired"
+#~ msgstr "Certificat"
+
+#, fuzzy
+#~| msgid "Certificate"
+#~ msgctxt "SSL error"
+#~ msgid "The certificate is invalid"
+#~ msgstr "Certificat"
+
+#, fuzzy
+#~| msgid "Certificate"
+#~ msgctxt "SSL error"
+#~ msgid "The certificate chain is too long"
+#~ msgstr "Certificat"
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgctxt "SSL error"
+#~ msgid "Unknown error"
+#~ msgstr "Error desconeguda"
+
+#, fuzzy
+#~| msgid "Root"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Root"
+#~ msgstr "Raiç"
+
+#, fuzzy
+#~| msgid "Directory"
+#~ msgid "Could not change permissions for '%1'"
+#~ msgstr "Repertòri"
+
+#, fuzzy
+#~| msgid "Devices"
+#~ msgid "Device usage:"
+#~ msgstr "Periferics"
+
+#~ msgid "By Name"
+#~ msgstr "Per nom"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgctxt "Verb"
+#~ msgid "&Trash"
+#~ msgstr "Banasta"
+
+#, fuzzy
+#~| msgid "Others"
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other..."
+#~ msgstr "Autres"
+
+#, fuzzy
+#~| msgid "C&ontinue"
+#~ msgid "Continue"
+#~ msgstr "C&ontunhar"
+
+#, fuzzy
+#~| msgid "Ad&vanced Options"
+#~ msgid "Advanced options"
+#~ msgstr "Opcions a&vançadas"
+
+#~ msgid "&Username:"
+#~ msgstr "&Nom d'usuari :"
+
+#~ msgid "Open with:"
+#~ msgstr "Dobrir amb :"
+
+#, fuzzy
+#~| msgid "&Search:"
+#~ msgid "&Clear Cache"
+#~ msgstr "&Recercar :"
+
+#~ msgid "H&TTP:"
+#~ msgstr "H&TTP :"
+
+#~ msgid "HTTP&S:"
+#~ msgstr "HTTP&S :"
+
+#~ msgid "&FTP:"
+#~ msgstr "&FTP :"
+
+#~ msgid "Password:"
+#~ msgstr "Mot de pas :"
+
+#~ msgid "Ser&vers"
+#~ msgstr "Ser&vidors"
+
+#~ msgid "&Search:"
+#~ msgstr "&Recercar :"
+
+#~ msgid "&Test"
+#~ msgstr "&Tèst"
+
+#~ msgid "(c) 2001 George Staikos"
+#~ msgstr "(c) 2001 George Staikos"
+
+#~ msgid "George Staikos"
+#~ msgstr "George Staikos"
+
+#~ msgid "&Path:"
+#~ msgstr "&Camin :"
+
+#~ msgid "Path"
+#~ msgstr "Camin"
+
+#~ msgid "&Add"
+#~ msgstr "&Apondre"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_bookmarks\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2020-04-06 03:18+0200\n"
+"POT-Creation-Date: 2022-07-04 00:45+0000\n"
 "PO-Revision-Date: 2010-04-26 14:43+0200\n"
 "Last-Translator: Dalibor Djuric <daliborddjuric@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -20,27 +20,37 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: kio_bookmarks.cpp:87
+#: kio_bookmarks.cpp:80
 #, kde-format
 msgid "Root"
 msgstr "Корен"
 
-#: kio_bookmarks.cpp:120
+#: kio_bookmarks.cpp:113
 #, kde-format
 msgid "Places"
 msgstr "Места"
 
-#: kio_bookmarks.cpp:199
+#: kio_bookmarks.cpp:186
+#, kde-format
+msgid "Could not find bookmarks config"
+msgstr ""
+
+#: kio_bookmarks.cpp:195
+#, kde-format
+msgid "Could not find bookmarks editor"
+msgstr ""
+
+#: kio_bookmarks.cpp:202
 #, kde-format
 msgid "Wrong request: %1"
 msgstr "Погрешан захтев: %1"
 
-#: kio_bookmarks_html.cpp:97
+#: kio_bookmarks_html.cpp:85
 #, kde-format
 msgid "There are no bookmarks to display yet."
 msgstr "Још увек нема обележивача за приказ."
 
-#: kio_bookmarks_html.cpp:136
+#: kio_bookmarks_html.cpp:124
 #, kde-format
 msgid ""
 "kio_bookmarks CSS file not found. Output will look ugly.\n"
@@ -49,7 +59,7 @@ msgstr ""
 "ЦСС фајл није нађен. Излаз ће бити ружан.\n"
 "Проверите инсталацију."
 
-#: kio_bookmarks_html.cpp:145
+#: kio_bookmarks_html.cpp:133
 #, kde-format
 msgid "My Bookmarks"
 msgstr "Моји обележивачи"

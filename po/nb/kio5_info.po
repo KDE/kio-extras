@@ -22,6 +22,6 @@ msgstr ""
 #: info.cpp:52
 #, kde-format
 msgid ""
-"Unable to locate files which are necessary to run this service:"
-"<br>%1<br>Please check your software installation."
+"Unable to locate files which are necessary to run this service:<br>"
+"%1<br>Please check your software installation."
 msgstr ""

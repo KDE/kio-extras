@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2019-05-20 03:10+0200\n"
+"POT-Creation-Date: 2023-03-21 00:47+0000\n"
 "PO-Revision-Date: 2017-09-28 18:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -20,58 +20,56 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: jpegcreator.cpp:66
-#, kde-format
-msgctxt "@option:check"
-msgid "Rotate the image automatically"
-msgstr "Rotiraj sliku automatski"
-
-#: thumbnail.cpp:197
+#: thumbnail.cpp:198
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "MIME tip nije zadat."
 
-#: thumbnail.cpp:206
+#: thumbnail.cpp:205
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Veličina nije zadata ili nije ispravna."
 
-#: thumbnail.cpp:240
+#: thumbnail.cpp:228
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Ne mogu da napravim sličicu za fasciklu"
 
-#: thumbnail.cpp:252
+#: thumbnail.cpp:239
 #, kde-format
 msgid "No plugin specified."
 msgstr "Priključak nije zadat."
 
-#: thumbnail.cpp:258
+#: thumbnail.cpp:244
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Ne mogu da učitam „ThumbCreator“ %1"
 
-#: thumbnail.cpp:267
+#: thumbnail.cpp:265
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Ne mogu da napravim sličicu za %1"
 
-#: thumbnail.cpp:305
+#: thumbnail.cpp:277
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Neuspjeh stvaranja sličice."
 
-#: thumbnail.cpp:317
+#: thumbnail.cpp:288
 #, kde-format
 msgid "Could not write image."
 msgstr "Ne mogu da upišem sliku."
 
-#: thumbnail.cpp:342
+#: thumbnail.cpp:312
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Ne mogu da se prikačim na segment dijeljene memorije %1"
 
-#: thumbnail.cpp:346
+#: thumbnail.cpp:319
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Slika je prevelika za segment dijeljene memorije"
+
+#~ msgctxt "@option:check"
+#~ msgid "Rotate the image automatically"
+#~ msgstr "Rotiraj sliku automatski"

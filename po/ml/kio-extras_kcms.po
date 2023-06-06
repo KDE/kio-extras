@@ -1,0 +1,4980 @@
+# Malayalam translation of kcmkio.
+# Copyright (C) 2008 This_file_is_part_of_KDE
+# This file is distributed under the same license as the kcmkio package.
+# Manu S Madhav <manusmad@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kcmkio trunk\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"PO-Revision-Date: 2021-08-26 06:59+0000\n"
+"Last-Translator: Vivek K J <vivekkj2004@gmail.com>\n"
+"Language-Team: Malayalam <https://kde.smc.org.in/projects/kde/kiokio5/ml/>\n"
+"Language: ml\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Weblate 4.7.2\n"
+
+#: cookies/kcookiesmain.cpp:37
+#, kde-format
+msgid "&Policy"
+msgstr "&നയം"
+
+#: cookies/kcookiesmain.cpp:44
+#, kde-format
+msgid "&Management"
+msgstr "&നടത്തിപ്പു്"
+
+#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
+#, kde-format
+msgid "D-Bus Communication Error"
+msgstr "D-Bus ആശയവിനിമയ തെറ്റ്"
+
+#: cookies/kcookiesmanagement.cpp:127
+#, kde-format
+msgid "Unable to delete all the cookies as requested."
+msgstr "ആവശ്യപ്പെട്ടതുപോലെ എല്ലാ കുക്കികളും നീക്കം ചെയ്യാന്‍ കഴിഞ്ഞില്ല."
+
+#: cookies/kcookiesmanagement.cpp:144
+#, kde-format
+msgid "Unable to delete cookies as requested."
+msgstr "ആവശ്യപ്പെട്ടതുപോലെ കുക്കികള്‍ നീക്കം ചെയ്യാന്‍ കഴിഞ്ഞില്ല."
+
+#: cookies/kcookiesmanagement.cpp:223
+#, kde-format
+msgid "Information Lookup Failure"
+msgstr "വിവരം വായിക്കുന്നതില്‍ പരാജയം"
+
+#: cookies/kcookiesmanagement.cpp:225
+#, kde-format
+msgid ""
+"Unable to retrieve information about the cookies stored on your computer."
+msgstr ""
+"നിങ്ങളുടെ കമ്പ്യൂട്ടറില്‍ സൂക്ഷിച്ചിട്ടുള്ള കുക്കികളെക്കുറിച്ചുള്ള വിവരങ്ങള്‍ കണ്ടെത്താന്‍ സാധിച്ചില്ല."
+
+#: cookies/kcookiesmanagement.cpp:316
+#, kde-format
+msgid "End of session"
+msgstr "സെഷനിന്റെ അന്ത്യം"
+
+#: cookies/kcookiesmanagement.cpp:323
+#, kde-format
+msgid "Yes"
+msgstr "അതെ"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
+#: cookies/kcookiesmanagement.ui:20
+#, kde-format
+msgid "Search"
+msgstr "തിരയുക"
+
+#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:27
+#, kde-format
+msgid "Search interactively for domains and hosts"
+msgstr "ഡൊമെയ്നുകള്‍ക്കും ഹോസ്റ്റുകള്‍ക്കുമായി ഇന്ററാക്ടീവായി തെരയുക."
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:43
+#, fuzzy, kde-format
+msgid "Site"
+msgstr "സൈറ്റിന്റെ പേരു്"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:48
+#, fuzzy, kde-format
+msgid "Cookie Name"
+msgstr "സൈറ്റിന്റെ പേരു്"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
+#, kde-format
+msgid "D&elete"
+msgstr "&നീക്കം ചെയ്യുക"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
+#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
+#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
+#, kde-format
+msgid "Delete A&ll"
+msgstr "എ&ല്ലാം നീക്കം ചെയ്യുക"
+
+#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
+#: cookies/kcookiesmanagement.ui:70
+#, fuzzy, kde-format
+msgid "Configure &Policy..."
+msgstr "നയം മാറ്റുക..."
+
+#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
+#: cookies/kcookiesmanagement.ui:77
+#, kde-format
+msgid "&Reload List"
+msgstr "പട്ടിക &വീണ്ടും ലോഡ് ചെയ്യുക"
+
+#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
+#: cookies/kcookiesmanagement.ui:97
+#, kde-format
+msgid "Details"
+msgstr "വിശദാംശങ്ങള്‍"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: cookies/kcookiesmanagement.ui:106
+#, kde-format
+msgid "Name:"
+msgstr "പേരു്:"
+
+#. i18n: ectx: property (text), widget (QLabel, valueLabel)
+#: cookies/kcookiesmanagement.ui:129
+#, kde-format
+msgid "Value:"
+msgstr "മൂല്യം:"
+
+#. i18n: ectx: property (text), widget (QLabel, domainLabel)
+#: cookies/kcookiesmanagement.ui:152
+#, kde-format
+msgid "Domain:"
+msgstr "ഡൊമെയ്നു്:"
+
+#. i18n: ectx: property (text), widget (QLabel, patchLabel)
+#: cookies/kcookiesmanagement.ui:175
+#, kde-format
+msgid "Path:"
+msgstr "വഴി:"
+
+#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
+#: cookies/kcookiesmanagement.ui:198
+#, kde-format
+msgid "Expires:"
+msgstr "കാലഹരണപ്പെടുന്നു:"
+
+#. i18n: ectx: property (text), widget (QLabel, secureLabel)
+#: cookies/kcookiesmanagement.ui:221
+#, kde-format
+msgid "Secure:"
+msgstr "സുരക്ഷിതമായ:"
+
+#: cookies/kcookiespolicies.cpp:154
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Change Cookie Policy"
+msgstr "കുക്കി നയം മാറ്റുക"
+
+#: cookies/kcookiespolicies.cpp:173
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "New Cookie Policy"
+msgstr "പുതിയ കുക്കി നയം"
+
+#: cookies/kcookiespolicies.cpp:206
+#, kde-format
+msgid ""
+"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+"replace it?</qt>"
+msgstr ""
+"<qt><center><b>%1</b></center>എന്നതിനായി ഒരു നയം ഇപ്പോഴേയുണ്ട്. നിങ്ങള്‍ക്കിത് മാറ്റണോ?</"
+"qt>"
+
+#: cookies/kcookiespolicies.cpp:210
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Duplicate Policy"
+msgstr "ഡ്യൂപ്ളിക്കേറ്റ് നയം"
+
+#: cookies/kcookiespolicies.cpp:211
+#, kde-format
+msgid "Replace"
+msgstr "മാറ്റുക"
+
+#: cookies/kcookiespolicies.cpp:387
+#, kde-format
+msgid ""
+"Unable to communicate with the cookie handler service.\n"
+"Any changes you made will not take effect until the service is restarted."
+msgstr ""
+"കുക്കി കൈകാര്യസേവനവുമായി ആശയവിനിമയം നടത്താന്‍ സാധിച്ചില്ല.\n"
+"സേവനം പുനരാരംഭിക്കുന്നതുവരെ ഉണ്ടാക്കിയ ഒരു മാറ്റങ്ങളും ഫലവത്താകില്ല."
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enable cookie support. Normally you will want to have cookie support "
+"enabled and customize it to suit your privacy needs.</p><p>\n"
+"Please note that disabling cookie support might make many web sites "
+"unbrowsable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:23
+#, kde-format
+msgid "Enable coo&kies"
+msgstr "കുക്കികള്‍ &പ്രാവര്‍ത്തികമാക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:35
+#, kde-format
+msgid ""
+"<qt>\n"
+"Reject the so called third-party cookies. These are cookies that originate "
+"from a site other than the one you are currently browsing. For example, if "
+"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
+"originate from www.foobar.com will be processed per your settings. Cookies "
+"from any other site will be rejected. This reduces the chances of site "
+"operators compiling a profile about your daily browsing habits.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:38
+#, kde-format
+msgid "Only acce&pt cookies from originating server"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:46
+#, kde-format
+msgid ""
+"<p>\n"
+"Automatically accept temporary cookies meant to expire at the end of the "
+"current session. Such cookies will not be stored in your computer's hard "
+"drive or storage device. Instead, they are deleted when you close all "
+"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
+"this option overrides your default as well as site specific cookie policies "
+"for session cookies.</p>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:49
+#, kde-format
+msgid "Automaticall&y accept session cookies"
+msgstr "സെഷന്‍ കുക്കികള്‍ &തനിയെ സ്വീകരിക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:68
+#, kde-format
+msgid ""
+"<qt>\n"
+"Determines how cookies received from a remote machine will be handled: \n"
+"<ul>\n"
+"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
+"wants to set a cookie.</li>\n"
+"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
+"li>\n"
+"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
+"</li>\n"
+"</ul><p>\n"
+"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
+"precedence over the default policy.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:71
+#, kde-format
+msgid "Default Policy"
+msgstr "സഹജമായ നയം"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
+#: cookies/kcookiespolicies.ui:77
+#, kde-format
+msgid "Accep&t all cookies"
+msgstr "കുക്കികളെല്ലാം സ്വീകരിക്കുക"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
+#: cookies/kcookiespolicies.ui:84
+#, fuzzy, kde-format
+msgid "Accept &until end of session"
+msgstr "സെഷനിന്റെ അന്ത്യം"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
+#: cookies/kcookiespolicies.ui:91
+#, kde-format
+msgid "Ask &for confirmation"
+msgstr "രണ്ടാമതും ചോദിയ്ക്കുക:"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
+#: cookies/kcookiespolicies.ui:98
+#, kde-format
+msgid "Re&ject all cookies"
+msgstr "കുക്കികളെല്ലാം നിരാകരിക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:123
+#, kde-format
+msgid ""
+"<qt>\n"
+"To add a new policy, simply click on the <b>Add...</b> button and supply the "
+"necessary information. To change an existing policy, use the <b>Change...</"
+"b> button and choose the new policy from the policy dialog box. Clicking on "
+"the <b>Delete</b> button will remove the currently selected policy causing "
+"the default policy setting to be used for that domain, whereas <b>Delete "
+"All</b> will remove all the site specific policies.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:126
+#, kde-format
+msgid "Site Policy"
+msgstr "സൈറ്റിന്റെ നയം"
+
+#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:135
+#, kde-format
+msgid "Search interactively for domains"
+msgstr "ഡൊമെയ്നുകള്‍ക്കായി ഇന്ററാക്ടീവായി തെരയുക."
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:138
+#, fuzzy, kde-format
+msgid "Search..."
+msgstr "തിരയുക"
+
+#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:147
+#, kde-format
+msgid ""
+"<qt>\n"
+"List of sites for which you have set a specific cookie policy. Specific "
+"policies override the default policy setting for these sites.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:163
+#, kde-format
+msgid "Domain"
+msgstr "ഡൊമെയ്നു്"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:168
+#, kde-format
+msgid "Policy"
+msgstr "നയം"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&പുതിയ..."
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&മാറ്റുക..."
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:26
+#: cookies/kcookiespolicyselectiondlg.ui:81
+#, kde-format
+msgid "Accept"
+msgstr "അംഗീകരിക്കുക"
+
+#: cookies/kcookiespolicyselectiondlg.h:28
+msgid "Accept For Session"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:30
+#: cookies/kcookiespolicyselectiondlg.ui:91
+#, kde-format
+msgid "Reject"
+msgstr "നിരാകരിക്കുക"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:32
+#: cookies/kcookiespolicyselectiondlg.ui:96
+#, kde-format
+msgid "Ask"
+msgstr "ചോദിക്കുക"
+
+#: cookies/kcookiespolicyselectiondlg.h:34
+msgid "Do Not Know"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:22
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
+"b> or <b>.kde.org</b>.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:25
+#, fuzzy, kde-format
+msgid "Site name:"
+msgstr "സൈറ്റിന്റെ പേരു്"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:38
+#, kde-format
+msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:53
+#: cookies/kcookiespolicyselectiondlg.ui:77
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the desired policy:\n"
+"<ul>\n"
+"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+"</ul>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:56
+#, fuzzy, kde-format
+msgid "Policy:"
+msgstr "&നയം:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:86
+#, fuzzy, kde-format
+msgid "Accept until end of session"
+msgstr "സെഷനിന്റെ അന്ത്യം"
+
+#: ksaveioconfig.cpp:212
+#, kde-format
+msgid ""
+"You have to restart the running applications for these changes to take "
+"effect."
+msgstr "ഈ മാറ്റങ്ങള്‍ ഫലവത്താകാന്‍ ഓടിക്കൊണ്ടിരിക്കുന്ന പ്രയോഗങ്ങള്‍ പുനരാരംഭിക്കേണ്ടിയിരിക്കുന്നു."
+
+#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#, fuzzy, kde-format
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "%s: പ്രവര്‍ത്തിപ്പിക്കുന്നതില്‍ പിഴവ്: %s"
+
+#: ksaveioconfig.cpp:225
+#, kde-format
+msgid "You have to restart KDE for these changes to take effect."
+msgstr "ഈ മാറ്റങ്ങള്‍ ഫലവത്താകാന്‍ കെഡിഇ പുനരാരംഭിക്കേണ്ടിയിരിക്കുന്നു."
+
+#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:10
+#, kde-format
+msgid "Disable Passive FTP"
+msgstr "നിര്‍ജ്ജീവ എഫ്‌ടിപി പ്രാവര്‍ത്തികമല്ലാതാക്കുക"
+
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:11
+#, kde-format
+msgid ""
+"When FTP connections are passive the client connects to the server, instead "
+"of the other way round, so firewalls do not block the connection; old FTP "
+"servers may not support Passive FTP though."
+msgstr ""
+
+#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#, kde-format
+msgid "Mark partially uploaded files"
+msgstr "ഭാഗികമായി അപ്ലോഡ് ചെയ്ത ഫയലുകള്‍ അടയാളപ്പെടുത്തുക"
+
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#, kde-format
+msgid ""
+"While a file is being uploaded its extension is \".part\". When fully "
+"uploaded it is renamed to its real name."
+msgstr ""
+
+#: netpref/netpref.cpp:30
+#, kde-format
+msgid "Timeout Values"
+msgstr "ടൈമൌട്ട് മൂല്യങ്ങള്‍"
+
+#: netpref/netpref.cpp:32
+#, kde-format
+msgid ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is 1 second."
+msgid_plural ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is %1 seconds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
+#: netpref/netpref.cpp:63
+#, fuzzy, kde-format
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " sec"
+msgstr[1] " sec"
+
+#: netpref/netpref.cpp:47
+#, kde-format
+msgid "Soc&ket read:"
+msgstr "സോ&ക്കറ്റ് വായന:"
+
+#: netpref/netpref.cpp:53
+#, kde-format
+msgid "Pro&xy connect:"
+msgstr "പ്രോക്സി ബന്ധം"
+
+#: netpref/netpref.cpp:59
+#, kde-format
+msgid "Server co&nnect:"
+msgstr "സെര്‍വര്‍ ബന്ധം:"
+
+#: netpref/netpref.cpp:65
+#, fuzzy, kde-format
+msgid "&Server response:"
+msgstr "എക്സ് സേവക പ്രവര്‍ത്തകം:"
+
+#: netpref/netpref.cpp:67
+#, fuzzy, kde-format
+msgid "Global Options"
+msgstr "എഫ്‌ടിപി ഐച്ഛികങ്ങള്‍"
+
+#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#, kde-format
+msgid "Mark &partially uploaded files"
+msgstr "&ഭാഗികമായി അപ്ലോഡ് ചെയ്ത ഫയലുകള്‍ അടയാളപ്പെടുത്തുക"
+
+#: netpref/netpref.cpp:73
+#, fuzzy, kde-format
+msgid ""
+"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+"p><p>When this option is enabled, partially uploaded files will have a \"."
+"part\" extension. This extension will be removed once the transfer is "
+"complete.</p>"
+msgstr ""
+"ഭാഗികമായി അപ്ലോഡ് ചെയ്ത എഫ്‌ടിപി ഫയലുകള്‍ അടയാളപ്പെടുത്തുക. ഈ ഐച്ഛികം പ്രാവര്‍ത്തികമാക്കുമ്പോള്‍ "
+"ഭാഗികമായി അപ്ലോഡ് ചെയ്ത ഫയലുകള്‍ക്ക് ഒരു \".part\" എക്സ്റ്റന്‍ഷനുണ്ടാകും. ഈ എക്സ്റ്റന്‍ഷന്‍ മാറ്റം പൂര്‍"
+"ത്തിയാകുന്നതോടെ നീക്കം ചെയ്യപ്പെടും."
+
+#: netpref/netpref.cpp:90
+#, kde-format
+msgid " byte"
+msgid_plural " bytes"
+msgstr[0] " ബൈറ്റ്"
+msgstr[1] " ബൈറ്റുകൾ"
+
+#: netpref/netpref.cpp:92
+#, kde-format
+msgctxt "@label:spinbox"
+msgid ""
+"If cancelled, automatically delete partially uploaded files smaller than:"
+msgstr ""
+
+#: netpref/netpref.cpp:94
+#, kde-format
+msgid "FTP Options"
+msgstr "എഫ്‌ടിപി ഐച്ഛികങ്ങള്‍"
+
+#: netpref/netpref.cpp:98
+#, kde-format
+msgid "Enable passive &mode (PASV)"
+msgstr "&നിര്‍ജ്ജീവാവസ്ഥ (PASV) പ്രാവര്‍ത്തികമാക്കുക"
+
+#: netpref/netpref.cpp:100
+#, kde-format
+msgid ""
+"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
+"behind firewalls."
+msgstr ""
+"എഫ്‌ടിപിയുടെ \"നിര്‍ജ്ജീവം\" (\"passive\") എന്ന അവസ്ഥ പ്രാവര്‍ത്തികമാക്കുന്നു. എഫ്‌ടിപി ഫയര്‍"
+"വാളുകളുടെ പിറകില്‍നിന്നു പ്രവര്‍ത്തിക്കാന്‍ ഇതാവശ്യമാണ്."
+
+#: netpref/netpref.cpp:108
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+"partially uploaded files will have a \".part\" extension. This extension "
+"will be removed once the transfer is complete.</p>"
+msgstr ""
+"ഭാഗികമായി അപ്ലോഡ് ചെയ്ത എഫ്‌ടിപി ഫയലുകള്‍ അടയാളപ്പെടുത്തുക. ഈ ഐച്ഛികം പ്രാവര്‍ത്തികമാക്കുമ്പോള്‍ "
+"ഭാഗികമായി അപ്ലോഡ് ചെയ്ത ഫയലുകള്‍ക്ക് ഒരു \".part\" എക്സ്റ്റന്‍ഷനുണ്ടാകും. ഈ എക്സ്റ്റന്‍ഷന്‍ മാറ്റം പൂര്‍"
+"ത്തിയാകുന്നതോടെ നീക്കം ചെയ്യപ്പെടും."
+
+#: proxy/kproxydlg.cpp:193
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Not all applications will use this proxy setting. In particular, "
+"<application>Firefox</application> and <application>Chromium</application> "
+"or anything derived from them, or anything using <application>QtWebEngine</"
+"application>&nbsp;- which includes <application>Konqueror</application> "
+"using the <application>WebEnginePart</application>, <application>Akregator</"
+"application> and <application>Falkon</application>&nbsp;- will not use these "
+"settings. Some applications may allow the proxy to be configured in their "
+"own settings."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
+#: proxy/kproxydlg.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"Setup proxy configuration.\n"
+"<p>\n"
+"A proxy server is an intermediate machine that sits between your computer "
+"and the Internet and provides services such as web page caching and "
+"filtering. Caching proxy servers give you faster access to web sites you "
+"have already visited by locally storing or caching those pages; filtering "
+"proxy servers usually provide the ability to block out requests for ads, "
+"spam, or anything else you want to block.\n"
+"<p>\n"
+"If you are uncertain whether or not you need to use a proxy server to "
+"connect to the Internet, consult your Internet service provider's setup "
+"guide or your system administrator.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:26
+#, kde-format
+msgid "Connect to the Internet directly."
+msgstr "ഇന്റര്‍നെറ്റിലേക്ക് നേരിട്ട് ബന്ധപ്പെടുക."
+
+#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:29
+#, fuzzy, kde-format
+msgid "No Proxy"
+msgstr "&പ്രോക്സി"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:46
+#, fuzzy, kde-format
+msgid ""
+"<qt>\n"
+"Automatically detect and configure the proxy settings.<p>\n"
+"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
+"<b>NOTE:</b> This option might not work properly or not work at all in some "
+"UNIX/Linux distributions.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"തനിയെ പ്രോക്സി സജ്ജീകരണങ്ങള്‍ കണ്ടുപിടിക്കുകയും ക്രമീകരിക്കുകയും ചെയ്യുക.<p>\n"
+"തനിയെ കണ്ടുപിടിത്തം <b>വെബ്ബ് പ്രോക്സി ഓട്ടോ-ഡിസ്കവറി പ്രോട്ടോക്കോള്‍ (WPAD)</b> ഉപയോഗിച്ച് "
+"നിര്‍വഹിക്കുന്നു.<p>\n"
+"<b>കുറിപ്പ്:</b> ഈ ഐച്ഛികം ചില യൂണിക്സ്/ലിനക്സ് വിതരണങ്ങളില്‍ ശരിയായി പ്രവര്‍"
+"ത്തിക്കാതിരിക്കുകയോ ഒട്ടും പ്രവര്‍ത്തിക്കാതിരിക്കുകയോ ചെയ്തേക്കാം. ഈ ഐച്ഛികം ഉപയോഗിക്കുമ്പോള്‍ "
+"പ്രശ്നം നേരിടുകയാണെങ്കില്‍ http://konqueror.kde.org എന്നയിടത്തെ FAQ ഭാഗം നോക്കുക.\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:49
+#, fuzzy, kde-format
+msgid "Detect proxy configuration automatically"
+msgstr "ഇനി പറയുന്ന പ്രോക്സി ക്രമീകരണ യുആര്‍എല്‍ ഉപയോഗിക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:59
+#, fuzzy, kde-format
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr "&തനിയെ പ്രോക്സി ക്രമീകരണം കണ്ടുപിടിക്കുക"
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:62
+#, fuzzy, kde-format
+msgid "Use proxy auto configuration URL:"
+msgstr "ഇനി പറയുന്ന പ്രോക്സി ക്രമീകരണ യുആര്‍എല്‍ ഉപയോഗിക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
+#: proxy/kproxydlg.ui:93
+#, kde-format
+msgid "Enter the address for the proxy configuration script."
+msgstr "പ്രോക്സി ക്രമീകരണ സ്ക്രിപ്റ്റിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:117
+#, kde-format
+msgid ""
+"<qt><p>Use proxy settings defined on the system.</p>\n"
+"<p>Some platforms offer system wide proxy configuration information and "
+"selecting this option allows you to use those settings.</p>\n"
+"<p>On Mac platforms</p>\n"
+"<p>On Windows platforms</p>\n"
+"<p>On Unix and Linux platforms, such system proxy settings are usually "
+"defined through environment variables. The following environment variables "
+"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:120
+#, fuzzy, kde-format
+msgid "Use system proxy configuration:"
+msgstr "ഇനി പറയുന്ന പ്രോക്സി ക്രമീകരണ യുആര്‍എല്‍ ഉപയോഗിക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:127
+#, kde-format
+msgid ""
+"<qt>Attempt automatic discovery of the environment variables used for "
+"setting system wide proxy information.<p> This feature works by searching "
+"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:130
+#, fuzzy, kde-format
+msgid "Auto D&etect"
+msgstr "തനിയെ &കണ്ടുപിടിക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
+#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
+#, fuzzy, kde-format
+msgid "HTTP Proxy:"
+msgstr "&പ്രോക്സി"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
+#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
+#, fuzzy, kde-format
+msgid "SSL Proxy:"
+msgstr "&പ്രോക്സി"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
+#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
+#, fuzzy, kde-format
+msgid "FTP Proxy:"
+msgstr "&പ്രോക്സി"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:263
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
+#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
+#, fuzzy, kde-format
+msgid "SOCKS Proxy:"
+msgstr "&പ്രോക്സി"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:285
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the proxy server should not be used.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
+#, fuzzy, kde-format
+msgid "Exceptions:"
+msgstr "എ&ക്സപ്ഷനുകള്‍"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:317
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:324
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr "പരിസ്ഥിതി വേരിയബിളുകളുടെ &മൂല്യം കാണിയ്ക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:343
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr "സ്വയം പ്രോക്സി ക്രമീകരണ വിവരം നല്‍കുക."
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:346
+#, fuzzy, kde-format
+msgid "Use manually specified proxy configuration:"
+msgstr "&തനിയെ പ്രോക്സി ക്രമീകരണം കണ്ടുപിടിക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:398
+#, kde-format
+msgid "Enter the address of the HTTP proxy server."
+msgstr "എച്ച്ടിടിപി പ്രോക്സി സെര്‍വറിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
+#: proxy/kproxydlg.ui:574
+#, kde-format
+msgid "Port:"
+msgstr "പോർട്ട്"
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:421
+#, fuzzy, kde-format
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "എച്ച്ടിടിപി പ്രോക്സി സെര്‍വറിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:436
+#, fuzzy, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr "എല്ലാ നിയമാവലികള്‍ക്കും ഒരേ പ്രോക്സി സെര്‍വര്‍ &ഉപയോഗിക്കുക"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:464
+#, kde-format
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "എച്ച്ടിടിപിഎസ് പ്രോക്സി സെര്‍വറിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:481
+#, fuzzy, kde-format
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "എച്ച്ടിടിപിഎസ് പ്രോക്സി സെര്‍വറിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:517
+#, kde-format
+msgid "Enter the address of the FTP proxy server."
+msgstr "എഫ്‌ടിപി പ്രോക്സി സെര്‍വറിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:534
+#, fuzzy, kde-format
+msgid "Enter the port number of the FTP proxy server."
+msgstr "എഫ്‌ടിപി പ്രോക്സി സെര്‍വറിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:567
+#, fuzzy, kde-format
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "എച്ച്ടിടിപിഎസ് പ്രോക്സി സെര്‍വറിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:584
+#, fuzzy, kde-format
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "എച്ച്ടിടിപിഎസ് പ്രോക്സി സെര്‍വറിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
+#: proxy/kproxydlg.ui:628
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enter a comma separated list of hostnames or ip addresses that should be "
+"excluded from using the above proxy settings.</p>\n"
+"<p>If you want to exclude all hosts for a given domain, then simply enter "
+"the domain name preceded by a dot. For example, to exclude all hostnames for "
+"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
+"'?' are not supported and will have no effect.</p>\n"
+"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:639
+#, fuzzy, kde-format
+msgid ""
+"<qt>\n"
+"Check this box if you want the above proxy settings to apply only to the "
+"addresses listed in the <i>Exceptions</i> list.</qt>"
+msgstr "പട്ടികയിലുള്ളവയ്ക്ക് പ്രോക്സി മാത്രം ഉപയോഗിക്കുക"
+
+#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:642
+#, fuzzy, kde-format
+msgid "Use proxy settings only for addresses in the Exceptions list"
+msgstr "പട്ടികയിലുള്ളവയ്ക്ക് പ്രോക്സി മാത്രം ഉപയോഗിക്കുക"
+
+#: smb/smbrodlg.cpp:27
+#, kde-format
+msgid "These settings apply to network browsing only."
+msgstr "ഈ സജ്ജീകരണങ്ങള്‍ ശൃംഖലാ തിരച്ചിലിനേ ബാധകമാവൂ."
+
+#: smb/smbrodlg.cpp:31
+#, kde-format
+msgid "Default user name:"
+msgstr "സഹജമായ ഉപയോക്താവിന്റെ പേരു്:"
+
+#: smb/smbrodlg.cpp:39
+#, kde-format
+msgid "Default password:"
+msgstr "സഹജമായ അടയാളവാക്കു്:"
+
+#: trash/kcmtrash.cpp:138
+#, kde-format
+msgid " days"
+msgstr " ദിവസങ്ങൾ"
+
+#: trash/kcmtrash.cpp:203
+#, kde-format
+msgid ""
+"<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
+"para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:205
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Emptying KDE's wastebin will remove only KDE's trash items, "
+"while<br>emptying the Trash through the Finder will delete everything.</"
+"para><para>KDE's trash items will show up in a folder called KDE.trash, in "
+"the Trash can.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:246
+#, fuzzy, kde-format
+msgid "Delete files older than"
+msgstr "ഫയലുകള്‍ വെട്ടിമാറ്റുക"
+
+#: trash/kcmtrash.cpp:249
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to allow <emphasis strong='true'>automatic deletion</"
+"emphasis> of files that are older than the value specified. Leave this "
+"disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
+"items after a certain timespan</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:256
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] " ദിവസം"
+msgstr[1] " ദിവസങ്ങൾ"
+
+#: trash/kcmtrash.cpp:258
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Set the number of days that files can remain in the trash. Any files "
+"older than this will be automatically deleted.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:262
+#, kde-format
+msgid "Cleanup:"
+msgstr ""
+
+#: trash/kcmtrash.cpp:265
+#, kde-format
+msgid "Limit to"
+msgstr ""
+
+#: trash/kcmtrash.cpp:267
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to limit the trash to the maximum amount of disk space "
+"that you specify below. Otherwise, it will be unlimited.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:270
+#, kde-format
+msgid "Size:"
+msgstr "വലുപ്പം:"
+
+#: trash/kcmtrash.cpp:277
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the maximum percent of disk space that will be used for the "
+"trash.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:282
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the calculated amount of disk space that will be allowed for "
+"the trash, the maximum.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:286
+#, kde-format
+msgid "Show a Warning"
+msgstr ""
+
+#: trash/kcmtrash.cpp:287
+#, kde-format
+msgid "Delete Oldest Files From Trash"
+msgstr ""
+
+#: trash/kcmtrash.cpp:288
+#, kde-format
+msgid "Delete Biggest Files From Trash"
+msgstr ""
+
+#: trash/kcmtrash.cpp:290
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>When the size limit is reached, it will prefer to delete the type of "
+"files that you specify, first. If this is set to warn you, it will do so "
+"instead of automatically deleting files.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:292
+#, fuzzy, kde-format
+msgid "Full Trash:"
+msgstr "ചവറ്റുകുട്ട"
+
+#: webshortcuts/ikwsopts.cpp:38
+#, fuzzy, kde-format
+msgctxt "@title:column Name label from web search keyword column"
+msgid "Name"
+msgstr "പേരനുസരിച്ചു്"
+
+#: webshortcuts/ikwsopts.cpp:40
+#, kde-format
+msgctxt "@title:column"
+msgid "Keywords"
+msgstr "കീവേഡുകൾ"
+
+#: webshortcuts/ikwsopts.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Preferred"
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:101
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this box to select the highlighted web search keyword as preferred.<nl/"
+">Preferred web search keywords are used in places where only a few select "
+"keywords can be shown at one time."
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:202
+#, kde-format
+msgctxt "@item:inlistbox No default web search keyword"
+msgid "None"
+msgstr "ഒന്നുമില്ല"
+
+#: webshortcuts/ikwsopts.cpp:246
+#, kde-format
+msgid "Search F&ilters"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:17
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"search keywords allow you to quickly access or search for information "
+"located online or on your hard drive. </p><p>KDE comes with many predefined "
+"keywords. One such keyword can be used to perform a the Google (TM) search; "
+"to use it, you simply type the keyword 'gg' followed by the keyword "
+"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
+"KDE</span>.</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:20
+#, fuzzy, kde-format
+msgid "&Enable Web search keywords"
+msgstr "സഹജമായ അടയാളവാക്കു്:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:30
+#, kde-format
+msgid "&Use preferred keywords only"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
+#: webshortcuts/ikwsopts_ui.ui:37
+#, fuzzy, kde-format
+msgid "Search for web search keywords"
+msgstr "സഹജമായ അടയാളവാക്കു്:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:71
+#, fuzzy, kde-format
+msgid "Add a new Web search keyword"
+msgstr "സഹജമായ അടയാളവാക്കു്:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:84
+#, fuzzy, kde-format
+msgid "Modify the highlighted Web search keyword"
+msgstr "സഹജമായ അടയാളവാക്കു്:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:97
+#, fuzzy, kde-format
+msgid "Delete the highlighted Web search keyword"
+msgstr "സഹജമായ അടയാളവാക്കു്:"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:100
+#, kde-format
+msgid "De&lete"
+msgstr "&നീക്കം ചെയ്യുക"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:138
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the search engine to use for input boxes that provide automatic "
+"lookup services when you type in normal words and phrases instead of a URL. "
+"To disable this feature select <b>None</b> from the list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:141
+#, fuzzy, kde-format
+msgid "Default Web &search keyword:"
+msgstr "സഹജമായ അടയാളവാക്കു്:"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:166
+#, kde-format
+msgid ""
+"<html><head/><body><p>Select a default web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to web "
+"search keyword queries when they cannot be filtered into a proper URL. </"
+"p><p>To disable this functionality select <span style=\" font-weight:600;"
+"\">None</span> from the list. </p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:182
+#, kde-format
+msgid ""
+"Choose the delimiter that separates the keyword from the phrase or word to "
+"be searched."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:185
+#, kde-format
+msgid "&Keyword delimiter:"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:204
+#, kde-format
+msgid "Choose a delimiter to mark the Web search keyword."
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:208
+#, kde-format
+msgctxt "Colon as keyword delimiter"
+msgid "Colon"
+msgstr "കോളൻ"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:213
+#, kde-format
+msgctxt "Space as keyword delimiter"
+msgid "Space"
+msgstr "സ്പേസ്"
+
+#: webshortcuts/searchproviderdlg.cpp:49
+#, kde-format
+msgctxt "@item:inlistbox The default character set"
+msgid "Default"
+msgstr "സ്വതവേയുള്ള"
+
+#: webshortcuts/searchproviderdlg.cpp:52
+#, kde-format
+msgid "Modify Web Shortcut"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:60
+#, kde-format
+msgid "New Web Shortcut"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:121
+#, kde-format
+msgid ""
+"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"one."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:126
+#, fuzzy, kde-format
+msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
+msgid "- %1: \"%2\""
+msgstr "%1 (%2)"
+
+#: webshortcuts/searchproviderdlg.cpp:130
+#, kde-format
+msgid ""
+"The following shortcuts are already assigned. Please choose different ones.\n"
+"%1"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:143
+#, kde-format
+msgid ""
+"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"This means that the same page is always going to be visited, regardless of "
+"the text typed in with the shortcut."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:147
+#, kde-format
+msgid "Keep It"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:17
+#, fuzzy, kde-format
+msgid "Enter the human-readable name of the search provider here."
+msgstr "എഫ്‌ടിപി പ്രോക്സി സെര്‍വറിന്റെ വിലാസം നല്‍കുക."
+
+#. i18n: ectx: property (text), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:23
+#, fuzzy, kde-format
+#| msgid "&Shortcuts:"
+msgid "Shortcut &name:"
+msgstr "കുറുക്കുവഴികൾ: (&S)"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:42
+#: webshortcuts/searchproviderdlg_ui.ui:64
+#: webshortcuts/searchproviderdlg_ui.ui:70
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the URI that is used to perform a search on the search engine here.<br/"
+">The whole text to be searched for can be specified as \\{@} or \\{0}.<br/>\n"
+"Recommended is \\{@}, since it removes all query variables (name=value) from "
+"the resulting string, whereas \\{0} will be substituted with the unmodified "
+"query string.<br/>You can use \\{1} ... \\{n} to specify certain words from "
+"the query and \\{name} to specify a value given by 'name=value' in the user "
+"query.<br/>In addition it is possible to specify multiple references (names, "
+"numbers and strings) at once (\\{name1,name2,...,\"string\"}).<br/>The first "
+"matching value (from the left) will be used as the substitution value for "
+"the resulting URI.<br/>A quoted string can be used as the default value if "
+"nothing matches from the left of the reference list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:48
+#, fuzzy, kde-format
+#| msgid "&Shortcuts:"
+msgid "Shortcut &URL:"
+msgstr "കുറുക്കുവഴികൾ: (&S)"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:83
+#, kde-format
+msgid "Select the character set that will be used to encode your search query."
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:92
+#: webshortcuts/searchproviderdlg_ui.ui:97
+#: webshortcuts/searchproviderdlg_ui.ui:116
+#, kde-format
+msgid ""
+"<qt>\n"
+"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+"b>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:104
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
+"</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:119
+#, kde-format
+msgid "&Shortcuts:"
+msgstr "കുറുക്കുവഴികൾ: (&S)"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:132
+#, kde-format
+msgid "Select the character set that will be used to encode your search query"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:135
+#, kde-format
+msgid "&Charset:"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
+#: webshortcuts/searchproviderdlg_ui.ui:158
+#, kde-format
+msgid "Insert query placeholder"
+msgstr ""
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Manu S Madhav | മനു എസ് മാധവ്,സുബിൻ സിബി"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "manusmad@gmail.com,mail@subinsb.com"
+
+#~ msgid "Could not modify the ownership of file %1"
+#~ msgstr "%1 ഫയലിന്റെ ഉടമസ്ഥാവകാശം പരിഷ്‌ക്കരിക്കാനായില്ല"
+
+#~ msgid ""
+#~ "Could not modify the ownership of file <filename>%1</filename>. You have "
+#~ "insufficient access to the file to perform the change."
+#~ msgstr ""
+#~ "ഫയൽ <filename>%1</filename> എന്നതിന്റെ ഉടമസ്ഥാവകാശം പരിഷ്‌ക്കരിക്കാനായില്ല. മാറ്റം "
+#~ "വരുത്താൻ നിങ്ങൾക്ക് ഫയലിലേക്ക് മതിയായ ആക്സസ് ഇല്ല."
+
+#, fuzzy
+#~| msgid "Unable to create io-slave: %1"
+#~ msgid "Unable to create KIO worker: %1"
+#~ msgstr "%1 ഐഒ സ്ലേവ് നിര്‍മ്മിക്കാന്‍ സാധ്യമല്ല"
+
+#, fuzzy
+#~| msgid ""
+#~| "Could not create symlink %1.\n"
+#~| "Please check permissions."
+#~ msgctxt ""
+#~ "The first arg is the path to the symlink that couldn't be created, the "
+#~ "secondarg is the filesystem type (e.g. vfat, exfat)"
+#~ msgid ""
+#~ "Could not create symlink \"%1\".\n"
+#~ "The destination filesystem (%2) doesn't support symlinks."
+#~ msgstr ""
+#~ "%1 സിംകണ്ണി നിര്‍മ്മിക്കാന്‍ സാധ്യമല്ല.\n"
+#~ "ദയവായി അനുമതികള്‍ പരിശോധിക്കുക."
+
+#~ msgid "Folder Already Exists"
+#~ msgstr "ഫോള്‍ഡര്‍ നിലവിലുണ്ടു്"
+
+#~ msgid "File Already Exists"
+#~ msgstr "ഫയല്‍ നിലവിലുണ്ടു്"
+
+#~ msgid "Already Exists as Folder"
+#~ msgstr "ഫോള്‍ഡറായി നിലവിലുണ്ടു്"
+
+#~ msgid "Trash"
+#~ msgstr "ചവറ്റുകുട്ട"
+
+#~ msgid "No Exec field in %1"
+#~ msgstr "%1-ൽ \"Exec\" ഫീൽഡ് ഇല്ല"
+
+#~ msgid "Could not find the program '%1'"
+#~ msgstr "'%1' പ്രമേയം കണ്ടെത്താനായില്ല"
+
+#~ msgid ""
+#~ "The program '%1' was found at '%2' but it is missing executable "
+#~ "permissions."
+#~ msgstr ""
+#~ "'%1' എന്ന പ്രോഗ്രാം '%2' ൽ കണ്ടെത്തി, എന്നാൽ അതിൽ എക്സിക്യൂട്ടബിൾ അനുമതികൾ കാണുന്നില്ല."
+
+#~ msgid "The program '%1' is missing executable permissions."
+#~ msgstr "പ്രോഗ്രാം '%1' എക്സിക്യൂട്ടബിൾ അനുമതികൾ കാണുന്നില്ല."
+
+#~ msgid "Syntax error in command %1 coming from %2"
+#~ msgstr "%2 ൽ നിന്നും വരുന്ന %1 കമാൻഡിൽ വാക്യഘടന പിശക് കാണുന്നു"
+
+#~ msgid "Terminal %1 not found while trying to run %2"
+#~ msgstr "%2 പ്രവർത്തിപ്പിക്കാൻ ശ്രമിക്കുമ്പോൾ %1 ടെർമിനൽ കണ്ടെത്തിയില്ല"
+
+#~ msgid "Syntax error in command %1 while trying to run %2"
+#~ msgstr "%2 പ്രവർത്തിപ്പിക്കാൻ ശ്രമിക്കുമ്പോൾ %1 കമാൻഡിലെ വാക്യഘടന പിശക്"
+
+#~ msgid "1 day %2"
+#~ msgid_plural "%1 days %2"
+#~ msgstr[0] "1 ദിവസം %2"
+#~ msgstr[1] "%1 ദിവസങ്ങള്‍ %2"
+
+#~ msgid "%1 Item"
+#~ msgid_plural "%1 Items"
+#~ msgstr[0] "1 വസ്തു"
+#~ msgstr[1] "%1 വസ്തുക്കള്‍"
+
+#~ msgid "1 Folder"
+#~ msgid_plural "%1 Folders"
+#~ msgstr[0] "1 അറ"
+#~ msgstr[1] "%1 അറകള്‍"
+
+#~ msgid "1 File"
+#~ msgid_plural "%1 Files"
+#~ msgstr[0] "1 ഫയല്‍"
+#~ msgstr[1] "%1 ഫയലുകള്‍"
+
+#~ msgctxt "folders, files (size)"
+#~ msgid "%1, %2 (%3)"
+#~ msgstr "%1 (%2, %3)"
+
+#~ msgctxt "folders, files"
+#~ msgid "%1, %2"
+#~ msgstr "%1, %2"
+
+#~ msgctxt "files (size)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgctxt "items: folders, files (size)"
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "നീക്കുന്നു"
+
+#~ msgctxt "The source of a file operation"
+#~ msgid "Source"
+#~ msgstr "സ്രോതസ്സ്"
+
+#~ msgctxt "The destination of a file operation"
+#~ msgid "Destination"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#, fuzzy
+#~| msgid "Rename"
+#~ msgctxt "@title job"
+#~ msgid "Renaming"
+#~ msgstr "പേരു് മാറ്റുക"
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "പകര്‍ത്തുന്നു"
+
+#~ msgctxt "@title job"
+#~ msgid "Creating directory"
+#~ msgstr "ഡയറക്ടി ഉണ്ടാക്കുന്നു"
+
+#~ msgid "Directory"
+#~ msgstr "ഡയറക്ടറി"
+
+#~ msgctxt "@title job"
+#~ msgid "Deleting"
+#~ msgstr "വെട്ടി മാറ്റുന്നു"
+
+#~ msgid "File"
+#~ msgstr "ഫയല്‍"
+
+#~ msgctxt "@title job"
+#~ msgid "Examining"
+#~ msgstr "പരിശോധിക്കുന്നു"
+
+#~ msgctxt "@title job"
+#~ msgid "Transferring"
+#~ msgstr "മറ്റൊരിടത്തേക്കു് മാറ്റുന്നു"
+
+#~ msgctxt "@title job"
+#~ msgid "Mounting"
+#~ msgstr "മൌണ്ടു് ചെയ്യുന്നു"
+
+#~ msgid "Device"
+#~ msgstr "ഡിവൈസ്"
+
+#~ msgid "Mountpoint"
+#~ msgstr "മൌണ്ടു് പോയിന്റ്"
+
+#~ msgctxt "@title job"
+#~ msgid "Unmounting"
+#~ msgstr "അണ്‍മൌണ്ടു് ചെയ്യുന്നു"
+
+#~ msgid "Change Attribute"
+#~ msgstr "ആട്രിബ്യൂട്ട് മാറ്റുക"
+
+#~ msgid ""
+#~ "Root privileges are required to change file attributes. Do you want to "
+#~ "continue?"
+#~ msgstr ""
+#~ "ഫയൽ ആട്രിബ്യൂട്ടുകൾ മാറ്റുന്നതിന് റൂട്ട് അവകാശങ്ങൾ ആവശ്യമാണ്. നിങ്ങൾ തുടരാൻ ആഗ്രഹിക്കുന്നുവോ?"
+
+#~ msgid "Copy Files"
+#~ msgstr "ഫയലുകൾ പകർത്തുക"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the copy operation. Do you want "
+#~ "to continue?"
+#~ msgstr ""
+#~ "പകർപ്പ് പ്രവർത്തനം പൂർത്തിയാക്കാൻ റൂട്ട് പ്രത്യേകാവകാശങ്ങൾ ആവശ്യമാണ്.നിങ്ങൾ തുടരാൻ "
+#~ "ആഗ്രഹിക്കുന്നുവോ?"
+
+#~ msgid "Delete Files"
+#~ msgstr "ഫയലുകള്‍ വെട്ടിമാറ്റുക"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the delete operation. However, "
+#~ "doing so may damage your system. Do you want to continue?"
+#~ msgstr ""
+#~ "ഇല്ലാതാക്കൽ പ്രവർത്തനം പൂർത്തിയാക്കാൻ റൂട്ട് അധികാരങ്ങൾ ആവശ്യമാണ്. എന്നിരുന്നാലും, അങ്ങനെ "
+#~ "ചെയ്യുന്നത് നിങ്ങളുടെ സിസ്റ്റത്തിന് കേടുവരുത്തിയേക്കാം. നിങ്ങൾ തുടരാൻ ആഗ്രഹിക്കുന്നുവോ?"
+
+#~ msgid "Create Folder"
+#~ msgstr "അറ ഉണ്ടാക്കുക"
+
+#~ msgid ""
+#~ "Root privileges are required to create this folder. Do you want to "
+#~ "continue?"
+#~ msgstr "ഈ അറ സൃഷ്ടിക്കാൻ റൂട്ട് അധികാരങ്ങൾ ആവശ്യമാണ്. നിങ്ങൾ തുടരാൻ ആഗ്രഹിക്കുന്നുവോ?"
+
+#~ msgid "Move Items"
+#~ msgstr "ഇനങ്ങൾ നീക്കുക"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the move operation. Do you want "
+#~ "to continue?"
+#~ msgstr ""
+#~ "നീക്കൽ പ്രവർത്തനം പൂർത്തിയാക്കാൻ റൂട്ട് അവകാശങ്ങൾ ആവശ്യമാണ്. നിങ്ങൾ തുടരാൻ ആഗ്രഹിക്കുന്നുവോ?"
+
+#~ msgid "Rename"
+#~ msgstr "പേരു് മാറ്റുക"
+
+#~ msgid ""
+#~ "Root privileges are required to complete renaming. Do you want to "
+#~ "continue?"
+#~ msgstr ""
+#~ "പുനർനാമകരണം പൂർത്തിയാക്കാൻ റൂട്ട് അധികാരങ്ങൾ ആവശ്യമാണ്. നിങ്ങൾ തുടരാൻ ആഗ്രഹിക്കുന്നുവോ?"
+
+#~ msgid "Create Symlink"
+#~ msgstr "സിംലിങ്ക് സൃഷ്ടിക്കുക"
+
+#~ msgid ""
+#~ "Root privileges are required to create a symlink. Do you want to continue?"
+#~ msgstr "ഒരു സിംലിങ്ക് സൃഷ്ടിക്കാൻ റൂട്ട് അവകാശങ്ങൾ ആവശ്യമാണ്. നിങ്ങൾ തുടരാൻ ആഗ്രഹിക്കുന്നുവോ?"
+
+#~ msgid "Transfer data"
+#~ msgstr "ഡാറ്റ കൈമാറുക"
+
+#~ msgid ""
+#~ "Root privileges are required to complete transferring data. Do you want "
+#~ "to continue?"
+#~ msgstr ""
+#~ "ഡാറ്റ കൈമാറ്റം പൂർത്തിയാക്കാൻ റൂട്ട് അധികാരങ്ങൾ ആവശ്യമാണ്. നിങ്ങൾ തുടരാൻ ആഗ്രഹിക്കുന്നുവോ?"
+
+#~ msgid "Could not read %1."
+#~ msgstr "%1 ലഭ്യമാക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not write to %1."
+#~ msgstr "%1 തുറക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not start process %1."
+#~ msgstr "%1 പ്രവര്‍ത്തനം തുടങ്ങാന്‍ സാധ്യമായില്ല."
+
+#~ msgid ""
+#~ "Internal Error\n"
+#~ "Please send a full bug report at https://bugs.kde.org\n"
+#~ "%1"
+#~ msgstr ""
+#~ "ആന്തരിക പിശകു്\n"
+#~ "ദയവായി http://bugs.kde.org-ലേക്കു് ഒരു ബഗ് റിപോര്‍ട്ട് അയയ്ക്കുക\n"
+#~ "%1"
+
+#~ msgid "Malformed URL %1."
+#~ msgstr "തെറ്റായ യുആര്‍എല്‍ %1."
+
+#~ msgid "The protocol %1 is not supported."
+#~ msgstr "%1 സംമ്പ്രദായത്തിനുള്ള പിന്തുണ ലഭ്യമല്ല."
+
+#~ msgid "The protocol %1 is only a filter protocol."
+#~ msgstr "%1 സമ്പ്രദായം ഒരു ഫില്‍‌റ്റര്‍ സമ്പ്രദായം മാത്രമാണു്."
+
+#~ msgid "%1 is a folder, but a file was expected."
+#~ msgstr "പ്രതീക്ഷിച്ചതു് ഒരു ഫയലായിരുന്നു, എന്നാല്‍ %1 ഒരു ഫോള്‍ഡറാണു്."
+
+#~ msgid "%1 is a file, but a folder was expected."
+#~ msgstr "പ്രതീക്ഷിച്ചതു് ഒരു ഫോള്‍ഡറായിരുന്നു, എന്നാല്‍ %1 ഒരു ഫയലാണു്."
+
+#~ msgid "The file or folder %1 does not exist."
+#~ msgstr "%1 ഫയല്‍ അല്ലെങ്കില്‍ ഫോള്‍ഡര്‍ നിലവിലില്ല."
+
+#~ msgid "A file named %1 already exists."
+#~ msgstr "%1 എന്ന പേരില്‍ ഫയല്‍ നിലവിലുണ്ടു്."
+
+#~ msgid "A folder named %1 already exists."
+#~ msgstr "%1 എന്ന പേരില്‍ ഫോള്‍ഡര്‍ നിലവിലുണ്ടു്."
+
+#~ msgid "No hostname specified."
+#~ msgstr "ഹോസ്റ്റ്നാമം നല്‍കിയിട്ടില്ല."
+
+#~ msgid "Unknown host %1"
+#~ msgstr "അപരിചിതമായ ഹോസ്റ്റ് %1"
+
+#~ msgid "Access denied to %1."
+#~ msgstr "%1-ലേക്കുള്ള പ്രവേശനം നിഷേധിച്ചിരിക്കുന്നു."
+
+#~ msgid ""
+#~ "Access denied.\n"
+#~ "Could not write to %1."
+#~ msgstr ""
+#~ "പ്രവേശനം നിഷേധിച്ചിരിക്കുന്നു.\n"
+#~ "%1 തുറക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not enter folder %1."
+#~ msgstr "%1 അറയിലേയ്ക്കു് പ്രവേശിക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "The protocol %1 does not implement a folder service."
+#~ msgstr "%1 സമ്പ്രദായം അറ വഴിയുള്ള സേവനം നല്‍കുന്നില്ല."
+
+#~ msgid "Found a cyclic link in %1."
+#~ msgstr "ഒരു ചാക്രികമായ കണ്ണി  %1-ല്‍ കണ്ടു."
+
+#~ msgid "Found a cyclic link while copying %1."
+#~ msgstr "%1 പകര്‍ത്തുന്നതിനിടയില്‍ ഒരു ചാക്രികമായ കണ്ണി കണ്ടു."
+
+#~ msgid "Could not create socket for accessing %1."
+#~ msgstr "%1-ല്‍ പ്രവേശിക്കുവാന്‍ സോക്കറ്റ് നിര്‍മ്മിക്കാന്‍ സാധ്യമല്ല."
+
+#~ msgid "Could not connect to host %1."
+#~ msgstr "ഹോസ്റ്റ് %1-മായി ബന്ധപ്പെടുവാന്‍ സാധ്യമല്ല."
+
+#~ msgid "Connection to host %1 is broken."
+#~ msgstr "ഹോസ്റ്റ് %1-ലേക്കുള്ള ബന്ധം തകര്‍ന്നിരിക്കുന്നു."
+
+#~ msgid "The protocol %1 is not a filter protocol."
+#~ msgstr "%1 സമ്പ്രദായം ഒരു ഫില്‍‌റ്റര്‍ സമ്പ്രദായമല്ല."
+
+#~ msgid ""
+#~ "Could not mount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "ഡിവൈസ് മൌണ്ടു് ചെയ്യുവാന്‍ സാധ്യമല്ല.\n"
+#~ "രേഖപ്പെടുത്തിയിരിക്കുന്ന പിശകു്:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not unmount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "ഡിവൈസ് അണ്‍മൌണ്ടു് ചെയ്യുവാന്‍ സാധ്യമല്ല.\n"
+#~ "രേഖപ്പെടുത്തിയിരിക്കുന്ന പിശകു്:\n"
+#~ "%1"
+
+#~ msgid "Could not read file %1."
+#~ msgstr "%1 ഫയല്‍ ലഭ്യമാക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not write to file %1."
+#~ msgstr "%1 ഫയല്‍ തുറക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not bind %1."
+#~ msgstr "%1 കൂട്ടി ചേ൪ക്കാന്‍  സാധ്യമായില്ല"
+
+#~ msgid "Could not listen %1."
+#~ msgstr "%1-നെ ശ്രദ്ധിക്കാന്‍ സാധ്യമായില്ല"
+
+#~ msgid "Could not accept %1."
+#~ msgstr "%1 സ്വീകരിക്കാന്‍ സാധ്യമല്ല"
+
+#~ msgid "Could not access %1."
+#~ msgstr "%1-ലേക്കു് പ്രവേശിക്കുവാനായില്ല."
+
+#~ msgid "Could not terminate listing %1."
+#~ msgstr "%1-ന്റെ ക്രമീകരണം നിര്‍ത്തിവക്കാന്‍ സാധ്യമല്ല"
+
+#~ msgid "Could not make folder %1."
+#~ msgstr "%1 ഫോള്‍ഡറുണ്ടാക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not remove folder %1."
+#~ msgstr "%1 ഫോള്‍ഡര്‍ നീക്കം ചെയ്യുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not resume file %1."
+#~ msgstr "%1 ഫയല്‍ വീണ്ടും ആരംഭിക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not rename file %1."
+#~ msgstr "%1 ഫയലിന്റെ പേരു് മാറ്റുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not change permissions for %1."
+#~ msgstr "%1-ലേക്കുള്ള അനുമതികള്‍ മാറ്റുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not change ownership for %1."
+#~ msgstr "%1-നുള്ള ഉടമസ്ഥാവകാശം മാറ്റുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Could not delete file %1."
+#~ msgstr "%1 ഫയല്‍ വെട്ടിമാറ്റുവാനായില്ല."
+
+#~ msgid "The process for the %1 protocol died unexpectedly."
+#~ msgstr "%1 സമ്പ്രദായത്തിനോടനുബന്ധിച്ച പ്രവര്‍ത്തനം അപ്രതീക്ഷിതമായി കൊല്ലപ്പെട്ടു"
+
+#~ msgid ""
+#~ "Error. Out of memory.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "പിശകു്. മെമ്മറി ലഭ്യമല്ല.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown proxy host\n"
+#~ "%1"
+#~ msgstr ""
+#~ "അപരിചിതമായ പ്രോക്സി ഹോസ്റ്റ്\n"
+#~ "%1"
+
+#~ msgid "Authorization failed, %1 authentication not supported"
+#~ msgstr "ആധികാരികത പരാജയപ്പെട്ടു, %1 ഉപയോഗിച്ചു് തിരിച്ചറിയുന്നതു് പിന്തുണയ്ക്കുന്നില്ല"
+
+#~ msgid ""
+#~ "User canceled action\n"
+#~ "%1"
+#~ msgstr ""
+#~ "ഉപയോക്താവ് പ്രവര്‍ത്തനം റദ്ദാക്കി\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Internal error in server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "സര്‍വറില്‍ ആന്തരിക പിശകു്\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Timeout on server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "സര്‍വറില്‍ സമയം കഴിഞ്ഞിരിക്കുന്നു\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown error\n"
+#~ "%1"
+#~ msgstr ""
+#~ "അപരിചിതമായ പിശകു്\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown interrupt\n"
+#~ "%1"
+#~ msgstr ""
+#~ "അപരിചിതമായ ഇന്ററപ്റ്റ്\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not delete original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "യഥാര്‍ത്ഥ ഫയല്‍ %1 വെട്ടിമാറ്റുവാന്‍ സാധ്യമായില്ല.\n"
+#~ "ദയവായി അനുമതികള്‍ പരിശോധിക്കുക."
+
+#~ msgid ""
+#~ "Could not delete partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "അപൂര്‍ണ്ണമായ ഫയല്‍ %1 നീക്കംചെയ്യവാന്‍ സാധ്യമായില്ല.\n"
+#~ "ദയവായി അനുമതികള്‍ പരിശോധിക്കുക."
+
+#~ msgid ""
+#~ "Could not rename original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "യഥാര്‍ത്ഥ ഫയല്‍ %1-ന്റെ പേരു് മാറ്റുവാന്‍ സാധ്യമായില്ല.\n"
+#~ "ദയവായി അനുമതികള്‍ പരിശോധിക്കുക."
+
+#~ msgid ""
+#~ "Could not rename partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "അപൂര്‍ണ്ണമായ ഫയല്‍ %1-ന്റെ പേരു് മാറ്റുവാന്‍ സാധ്യമായില്ല.\n"
+#~ "ദയവായി അനുമതികള്‍ പരിശോധിക്കുക."
+
+#~ msgid ""
+#~ "Could not create symlink %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "%1 സിംകണ്ണി നിര്‍മ്മിക്കാന്‍ സാധ്യമല്ല.\n"
+#~ "ദയവായി അനുമതികള്‍ പരിശോധിക്കുക."
+
+#, fuzzy
+#~| msgid ""
+#~| "Could not create symlink %1.\n"
+#~| "Please check permissions."
+#~ msgid ""
+#~ "Cannot create symlinks at %1.\n"
+#~ "The destination filesystem doesn't support symlinks."
+#~ msgstr ""
+#~ "%1 സിംകണ്ണി നിര്‍മ്മിക്കാന്‍ സാധ്യമല്ല.\n"
+#~ "ദയവായി അനുമതികള്‍ പരിശോധിക്കുക."
+
+#~ msgid "There is not enough space on the disk to write %1."
+#~ msgstr "%1 എഴുതാൻ ഡിസ്കിൽ മതിയായ ഇടമില്ല."
+
+#~ msgid ""
+#~ "The source and destination are the same file.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "ശ്രോതസ്സും ലക്ഷ്യവും ഒരേ ഫയലുകളാകുന്നു.\n"
+#~ "%1"
+
+#~ msgid "%1 is required by the server, but is not available."
+#~ msgstr "സര്‍വറിനു് %1 ആവശ്യമുണ്ടു്, പക്ഷേ ലഭ്യമല്ല."
+
+#~ msgid "Access to restricted port in POST denied."
+#~ msgstr "POST ലെ നിയന്ത്രിത പോർട്ടിലേക്കുള്ള ആക്സസ് നിരസിച്ചു."
+
+#~ msgid ""
+#~ "The required content size information was not provided for a POST "
+#~ "operation."
+#~ msgstr "ഒരു POST പ്രവർത്തനത്തിന് ആവശ്യമായ ഉള്ളടക്ക വലുപ്പ വിവരങ്ങൾ നൽകിയിട്ടില്ല."
+
+#~ msgid "A file or folder cannot be dropped onto itself"
+#~ msgstr "ഒരു ഫയലോ അറയോ സ്വയം ഡ്രോപ്പ് ചെയ്യാൻ കഴിയില്ല"
+
+#~ msgid "A folder cannot be moved into itself"
+#~ msgstr "ഒരു അറ അതിലേക്ക് നീക്കാൻ കഴിയില്ല"
+
+#~ msgid "Communication with the local password server failed"
+#~ msgstr "പ്രാദേശിക പാസ്‌വേഡ് സെർവറുമായുള്ള ആശയവിനിമയം പരാജയപ്പെട്ടു"
+
+#, fuzzy
+#~| msgid "Unable to create io-slave. %1"
+#~ msgid "Unable to create KIO worker. %1"
+#~ msgstr "ഐഒ സ്ലേവ് സൃഷ്ടിക്കാനായില്ല. %1"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Cannot transfer <filename>%1</filename> because it is too large. The "
+#~ "destination filesystem only supports files up to 4GiB"
+#~ msgstr ""
+#~ "ഇത് വളരെ വലുതായതിനാൽ <filename>%1</filename> കൈമാറാൻ കഴിയില്ല. 4GiB വരെയുള്ള "
+#~ "ഫയലുകളെ മാത്രമേ ലക്ഷ്യസ്ഥാന ഫയൽ സിസ്റ്റം പിന്തുണയ്ക്കുന്നുള്ളൂ"
+
+#~ msgid ""
+#~ "Privilege escalation is not necessary because \n"
+#~ "'%1' is owned by the current user.\n"
+#~ "Please retry after changing permissions."
+#~ msgstr ""
+#~ "പ്രത്യേകാവകാശ വർദ്ധനവ് ആവശ്യമില്ല കാരണം\n"
+#~ "നിലവിലെ ഉപയോക്താവിന്റെ ഉടമസ്ഥതയിലുള്ളതാണ് '%1'.\n"
+#~ "അനുമതികൾ മാറ്റിയ ശേഷം വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid ""
+#~ "Unknown error code %1\n"
+#~ "%2\n"
+#~ "Please send a full bug report at https://bugs.kde.org."
+#~ msgstr ""
+#~ "അപരിചിതമായ പിശകു് കോഡ് %1\n"
+#~ "%2\n"
+#~ "ദയവായി http://bugs.kde.org-ലേക്കു് പൂര്‍ണ്ണ ബഗ് റിപോര്‍ട്ട് സമര്‍പ്പിക്കുക."
+
+#~ msgctxt "@info url"
+#~ msgid "(unknown)"
+#~ msgstr "(അപരിചിതം)"
+
+#~ msgctxt "@info %1 error name, %2 description"
+#~ msgid "<qt><p><b>%1</b></p><p>%2</p></qt>"
+#~ msgstr "<qt><p><b>%1</b></p><p>%2</p></qt>"
+
+#~ msgid "<b>Technical reason</b>: "
+#~ msgstr "<b>സാങ്കേതിക കാരണം</b>: "
+
+#~ msgid "<b>Details of the request</b>:"
+#~ msgstr "<b>ആവശ്യത്തിന്റെ വിശദാംശങ്ങള്‍</b>:"
+
+#~ msgid "<li>URL: %1</li>"
+#~ msgstr "<li>യുആര്‍എല്‍: %1</li>"
+
+#~ msgid "<li>Protocol: %1</li>"
+#~ msgstr "<li>സംമ്പ്രദായം: %1</li>"
+
+#~ msgid "<li>Date and time: %1</li>"
+#~ msgstr "<li>തീയതിയും സമയവും: %1</li>"
+
+#~ msgid "<li>Additional information: %1</li>"
+#~ msgstr "<li>കൂടുതല്‍ വിവരം: %1</li>"
+
+#~ msgid "<b>Possible causes</b>:"
+#~ msgstr "<b>സാധ്യതയുള്ള കാരണങ്ങള്‍</b>:"
+
+#~ msgid "<b>Possible solutions</b>:"
+#~ msgstr "<b>സാധ്യതയുള്ള ഉത്തരങ്ങള്‍</b>:"
+
+#~ msgctxt "@info protocol"
+#~ msgid "(unknown)"
+#~ msgstr "(അപരിചിതം)"
+
+#~ msgid ""
+#~ "Contact your appropriate computer support system, whether the system "
+#~ "administrator, or technical support group for further assistance."
+#~ msgstr ""
+#~ "കൂടുതല്‍ സഹായങ്ങള്‍ക്കായി നിങ്ങളുടെ സിസ്റ്റം ഭരണാധികാരിയുമായോ സിസ്റ്റത്തിനു് സാങ്കേതിക പിന്തുണ "
+#~ "നല്‍കുന്ന സംഘവുമായോ ബന്ധപ്പെടുക."
+
+#~ msgid "Contact the administrator of the server for further assistance."
+#~ msgstr "കൂടുതല്‍ സഹായങ്ങള്‍ക്കായി സര്‍വറിന്റെ അഡ്മിനിസ്ട്രേറ്ററുമായി ബന്ധപ്പെടുക."
+
+#~ msgid "Check your access permissions on this resource."
+#~ msgstr "ഈ ശ്രോതസ്സില്‍ നിങ്ങള്‍ക്കുള്ള അനുമതികള്‍ പരിശോധിക്കുക."
+
+#~ msgid ""
+#~ "Your access permissions may be inadequate to perform the requested "
+#~ "operation on this resource."
+#~ msgstr ""
+#~ "ഈ ഉറവിടത്തിൽ അഭ്യർത്ഥിച്ച പ്രവർത്തനം നടത്താൻ നിങ്ങളുടെ ആക്സസ് അനുമതികൾ "
+#~ "അപര്യാപ്തമായിരിക്കാം."
+
+#~ msgid ""
+#~ "The file may be in use (and thus locked) by another user or application."
+#~ msgstr ""
+#~ "ഫയല്‍ വേറെ ഉപയോക്താവോ അല്ലെങ്കില്‍ പ്രയോഗമോ ഉപയോഗിക്കുകയാവാം (അതിനാല്‍ പൂട്ടിയിരിയ്ക്കുന്നു)."
+
+#~ msgid ""
+#~ "Check to make sure that no other application or user is using the file or "
+#~ "has locked the file."
+#~ msgstr ""
+#~ "മറ്റേതെങ്കിലും പ്രയോഗങ്ങളോ ഉപയോക്താവോ ഫയൽ ഉപയോഗിക്കുന്നുണ്ടോ അല്ലെങ്കിൽ ഫയൽ ലോക്ക് "
+#~ "ചെയ്തിട്ടില്ലെന്ന് ഉറപ്പാക്കാൻ പരിശോധിക്കുക."
+
+#~ msgid "Although unlikely, a hardware error may have occurred."
+#~ msgstr "സാധ്യതയില്ലെങ്കിലും, ഒരു ഹാർഡ്‌വെയർ പിശക് സംഭവിച്ചിരിക്കാം."
+
+#~ msgid "You may have encountered a bug in the program."
+#~ msgstr "പ്രോഗ്രാമിൽ നിങ്ങൾ ഒരു പിശക് നേരിട്ടിരിക്കാം."
+
+#~ msgid ""
+#~ "This is most likely to be caused by a bug in the program. Please consider "
+#~ "submitting a full bug report as detailed below."
+#~ msgstr ""
+#~ "പ്രോഗ്രാമിലെ ഒരു പിശക് മൂലമാണ് ഇത് മിക്കവാറും സംഭവിക്കുന്നത്. ചുവടെ "
+#~ "വിശദീകരിച്ചിരിക്കുന്നതുപോലെ ഒരു പൂർണ്ണ ബഗ് റിപ്പോർട്ട് സമർപ്പിക്കുന്നത് പരിഗണിക്കുക."
+
+#~ msgid ""
+#~ "Update your software to the latest version. Your distribution should "
+#~ "provide tools to update your software."
+#~ msgstr ""
+#~ "നിങ്ങളുടെ സോഫ്റ്റ്‌വെയർ ഏറ്റവും പുതിയ പതിപ്പിലേക്ക് അപ്‌ഡേറ്റ് ചെയ്യുക. നിങ്ങളുടെ സോഫ്റ്റ്‌വെയർ "
+#~ "അപ്‌ഡേറ്റ് ചെയ്യുന്നതിനുള്ള ഉപകരണങ്ങൾ നിങ്ങളുടെ ലിനക്സ് വിതരണം നൽകണം."
+
+#~ msgid ""
+#~ "When all else fails, please consider helping the KDE team or the third "
+#~ "party maintainer of this software by submitting a high quality bug "
+#~ "report. If the software is provided by a third party, please contact them "
+#~ "directly. Otherwise, first look to see if the same bug has been submitted "
+#~ "by someone else by searching at the <a href=\"https://bugs.kde.org/\">KDE "
+#~ "bug reporting website</a>. If not, take note of the details given above, "
+#~ "and include them in your bug report, along with as many other details as "
+#~ "you think might help."
+#~ msgstr ""
+#~ "മറ്റെല്ലാം പരാജയപ്പെടുമ്പോൾ, ഉയർന്ന നിലവാരമുള്ള ബഗ് റിപ്പോർട്ട് സമർപ്പിച്ച് ഈ സോഫ്റ്റ്‍"
+#~ "വെയറിന്റെ കെഡിഇ ടീമിനേയോ മൂന്നാം കക്ഷി പരിപാലകനേയോ സഹായിക്കാൻ ദയവായി "
+#~ "പരിഗണിക്കുക. സോഫ്റ്റ്‌വെയർ ഒരു മൂന്നാം കക്ഷി നൽകിയിട്ടുള്ളതാണെങ്കിൽ, അവരെ നേരിട്ട് "
+#~ "ബന്ധപ്പെടുക. അല്ലാത്തപക്ഷം, <a href=\"https://bugs.kde.org/\">KDE ബഗ് "
+#~ "റിപ്പോർട്ടിംഗ് വെബ്‌സൈറ്റിൽ</a> തിരഞ്ഞ് അതേ ബഗ് മറ്റാരെങ്കിലും സമർപ്പിച്ചിട്ടുണ്ടോ എന്ന് "
+#~ "ആദ്യം നോക്കുക. ഇല്ലെങ്കിൽ, മുകളിൽ കൊടുത്തിരിക്കുന്ന വിശദാംശങ്ങൾ ശ്രദ്ധിക്കുക, നിങ്ങളുടെ ബഗ് "
+#~ "റിപ്പോർട്ടിൽ ഉൾപ്പെടുത്തുക, സഹായകമാകുമെന്ന് നിങ്ങൾ കരുതുന്ന മറ്റ് വിശദാംശങ്ങൾക്കൊപ്പം."
+
+#~ msgid "There may have been a problem with your network connection."
+#~ msgstr "നിങ്ങളുടെ നെറ്റ്‌വര്‍ക്ക് കണക്ഷനില്‍ എന്തേലും പ്രശ്നമുണ്ടാവാം."
+
+#~ msgid ""
+#~ "There may have been a problem with your network configuration. If you "
+#~ "have been accessing the Internet with no problems recently, this is "
+#~ "unlikely."
+#~ msgstr ""
+#~ "നിങ്ങളുടെ നെറ്റ്‌വർക്ക് ക്രമീകരണത്തിൽ ഒരു പ്രശ്നം ഉണ്ടായിരിക്കാം. അടുത്തിടെ "
+#~ "പ്രശ്നങ്ങളൊന്നുമില്ലാതെ നിങ്ങൾ ഇന്റർനെറ്റ് ആക്‌സസ് ചെയ്തിട്ടുണ്ടായിരിന്നെങ്കിൽ, ഇത് സാധ്യതയില്ല."
+
+#~ msgid ""
+#~ "There may have been a problem at some point along the network path "
+#~ "between the server and this computer."
+#~ msgstr ""
+#~ "സെർവറിനും ഈ കമ്പ്യൂട്ടറിനും ഇടയിലുള്ള നെറ്റ്‌വർക്ക് പാതയിൽ ചില ഘട്ടങ്ങളിൽ ഒരു പ്രശ്നം "
+#~ "ഉണ്ടായിരിക്കാം."
+
+#~ msgid "Try again, either now or at a later time."
+#~ msgstr "ഇപ്പോള്‍ അല്ലെങ്കില്‍ പിന്നീടെപ്പോഴെങ്കിലും വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "A protocol error or incompatibility may have occurred."
+#~ msgstr "ഒരു പ്രോട്ടോക്കോൾ പിശക് അല്ലെങ്കിൽ പൊരുത്തക്കേട് സംഭവിച്ചിരിക്കാം."
+
+#~ msgid "Ensure that the resource exists, and try again."
+#~ msgstr "ഉറവിടം ഉണ്ടെന്ന് ഉറപ്പുവരുത്തി, വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "The specified resource may not exist."
+#~ msgstr "നിർദ്ദിഷ്ട ഉറവിടം ചിലപ്പോൾ നിലവിലുണ്ടാവില്ല."
+
+#~ msgid ""
+#~ "Double-check that you have entered the correct location and try again."
+#~ msgstr ""
+#~ "നിങ്ങൾ ശരിയായ ലൊക്കേഷൻ നൽകിയിട്ടുണ്ടോ എന്ന് രണ്ടുതവണ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Check your network connection status."
+#~ msgstr "നിങ്ങളുടെ നെറ്റ്‌വർക്ക് കണക്ഷൻ നില പരിശോധിക്കുക."
+
+#~ msgid "Cannot Open Resource For Reading"
+#~ msgstr "വായനയ്ക്കായി ഉറവിടം തുറക്കാനാകില്ല"
+
+#~ msgid ""
+#~ "This means that the contents of the requested file or folder <strong>%1</"
+#~ "strong> could not be retrieved, as read access could not be obtained."
+#~ msgstr ""
+#~ "ഇതിനർത്ഥം അഭ്യർത്ഥിച്ച ഫയലിന്റെയോ <strong>%1</strong> അറയുടെയോ ഉള്ളടക്കം "
+#~ "വീണ്ടെടുക്കാനാകില്ല, കാരണം വായനാനുമതി ലഭിച്ചിട്ടില്ല."
+
+#~ msgid "You may not have permissions to read the file or open the folder."
+#~ msgstr "ഫയൽ വായിക്കാനോ അറ തുറക്കാനോ നിങ്ങൾക്ക് അനുമതിയില്ലായിരിക്കാം."
+
+#~ msgid "Cannot Open Resource For Writing"
+#~ msgstr "എഴുത്തിനായുള്ള ഉറവിടം തുറക്കാനായില്ല"
+
+#~ msgid ""
+#~ "This means that the file, <strong>%1</strong>, could not be written to as "
+#~ "requested, because access with permission to write could not be obtained."
+#~ msgstr ""
+#~ "ഇതിനർത്ഥം, <strong>%1</strong> എന്ന ഫയൽ അഭ്യർത്ഥിച്ചതുപോലെ എഴുതാൻ കഴിയില്ല, കാരണം "
+#~ "എഴുതാനുള്ള അനുമതിയോടെയുള്ള ആക്സസ് ലഭിച്ചിട്ടില്ല."
+
+#~ msgid "Cannot Launch Process required by the %1 Protocol"
+#~ msgstr "%1 പ്രോട്ടോക്കോൾ ആവശ്യപ്പെടുന്ന പ്രക്രിയ ആരംഭിക്കാൻ കഴിയില്ല"
+
+#~ msgid "Unable to Launch Process"
+#~ msgstr "പ്രക്രിയ ആരംഭിക്കാനായില്ല"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol could not be found or started. This is usually due to "
+#~ "technical reasons."
+#~ msgstr ""
+#~ "നിങ്ങളുടെ കമ്പ്യൂട്ടറിലെ <strong>%1</strong> പ്രോട്ടോക്കോളിലേക്ക് പ്രവേശനം നൽകുന്ന "
+#~ "പ്രോഗ്രാം കണ്ടെത്താനോ ആരംഭിക്കാനോ കഴിഞ്ഞില്ല. ഇത് സാധാരണയായി സാങ്കേതിക കാരണങ്ങളാൽ "
+#~ "സംഭവിക്കുന്നു."
+
+#~ msgid ""
+#~ "The program which provides compatibility with this protocol may not have "
+#~ "been updated with your last update of KDE. This can cause the program to "
+#~ "be incompatible with the current version and thus not start."
+#~ msgstr ""
+#~ "ഈ പ്രോട്ടോക്കോളുമായി പൊരുത്തം നൽകുന്ന പ്രോഗ്രാം നിങ്ങളുടെ അവസാന കെഡിഇ അപ്‌ഡേറ്റിൽ അപ്‌ഡേറ്റ് "
+#~ "ചെയ്‌തിരിക്കില്ല. പ്രോഗ്രാം നിലവിലെ പതിപ്പുമായി പൊരുത്തപ്പെടാത്തതും അങ്ങനെ "
+#~ "ആരംഭിക്കാതിരിക്കുന്നതിനും ഇത് കാരണമാകും."
+
+#~ msgid "Internal Error"
+#~ msgstr "ആന്തരിക പിശക്"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol has reported an internal error."
+#~ msgstr ""
+#~ "നിങ്ങളുടെ <strong>%1</strong> പ്രോട്ടോക്കോളിലേക്ക് ആക്സസ് നൽകുന്ന കമ്പ്യൂട്ടറിലെ "
+#~ "പ്രോഗ്രാമിൽ ഒരു ആന്തരിക പിശക് റിപ്പോർട്ട് ചെയ്തിട്ടുണ്ട്."
+
+#~ msgid "Improperly Formatted URL"
+#~ msgstr "തെറ്റായി എഴുതിയ യുആര്‍എല്‍"
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered was not properly formatted. The "
+#~ "format of a URL is generally as follows:<blockquote><strong>protocol://"
+#~ "user:password@www.example.org:port/folder/filename.extension?query=value</"
+#~ "strong></blockquote>"
+#~ msgstr ""
+#~ "നിങ്ങൾ നൽകിയ <strong>യൂ</strong> ണിഫോം <strong>റി</strong>സോഴ്സ് <strong>ലൊ</"
+#~ "strong> ക്കേറ്റർ(യുആർഎൽ) ശരിയായി ഫോർമാറ്റ് ചെയ്തിട്ടുള്ളതല്ല. ഒരു യു‌ആർ‌എല്ലിന്റെ ഫോർമാറ്റ് "
+#~ "സാധാരണയായി ഇപ്രകാരമാണ്: <blockquote><strong>പ്രോട്ടോക്കോൾ: // ഉപയോക്താവ്:"
+#~ "password@www.example.org:പോർട്ട്/അറ/ഫയൽനാമം.എക്സ്റ്റെൻഷൻ?query = value</"
+#~ "strong></blockquote>"
+
+#~ msgid "Unsupported Protocol %1"
+#~ msgstr "%1 സമ്പ്രദായത്തിനു് പിന്തുണയില്ല."
+
+#~ msgid ""
+#~ "The protocol <strong>%1</strong> is not supported by the KDE programs "
+#~ "currently installed on this computer."
+#~ msgstr ""
+#~ "ഈ കമ്പ്യൂട്ടറിൽ നിലവിൽ ഇൻസ്റ്റാൾ ചെയ്തിട്ടുള്ള കെഡിഇ പ്രോഗ്രാമുകൾ പ്രോട്ടോക്കോൾ <strong>"
+#~ "%1</strong> പിന്തുണയ്ക്കുന്നില്ല."
+
+#~ msgid "The requested protocol may not be supported."
+#~ msgstr "അപേക്ഷിച്ച സമ്പ്രദായത്തിനു് പിന്തുണയുണ്ടാകണമെന്നില്ല."
+
+#~ msgid ""
+#~ "The versions of the %1 protocol supported by this computer and the server "
+#~ "may be incompatible."
+#~ msgstr ""
+#~ "ഈ കമ്പ്യൂട്ടറും സെർവറും പിന്തുണയ്ക്കുന്ന %1 പ്രോട്ടോക്കോളിന്റെ പതിപ്പുകൾ പൊരുത്തപ്പെടുന്നില്ല."
+
+#, fuzzy
+#~| msgid ""
+#~| "You may perform a search on the Internet for a KDE program (called a "
+#~| "kioslave or ioslave) which supports this protocol. Places to search "
+#~| "include <a href=\"https://kde-apps.org/\">https://kde-apps.org/</a> and "
+#~| "<a href=\"http://freshmeat.net/\">http://freshmeat.net/</a>."
+#~ msgid ""
+#~ "You may perform a search on the Internet for a software plugin (called a "
+#~ "\"KIO worker\") which supports this protocol. Places to search include <a "
+#~ "href=\"https://store.kde.org/\">https://store.kde.org</a>."
+#~ msgstr ""
+#~ "ഈ പ്രോട്ടോക്കോളിനെ പിന്തുണയ്ക്കുന്ന ഒരു KDE പ്രോഗ്രാമിനായി (ഒരു കിയോസ്ലേവ് അല്ലെങ്കിൽ "
+#~ "ഐഒസ്ലേവ് എന്ന് വിളിക്കുന്നു) നിങ്ങൾക്ക് ഇന്റർനെറ്റിൽ ഒരു തിരയൽ നടത്താം. തിരയാനുള്ള "
+#~ "സ്ഥലങ്ങളിൽ <a href=\"https://kde-apps.org/\">https://kde-apps.org/</a> "
+#~ "കൂടാതെ <a href = \"http://freshmeat.net/\"> http://freshmeat.net/ </a> "
+#~ "എന്നിവ ഉൾപ്പെടുന്നു."
+
+#~ msgid "URL Does Not Refer to a Resource."
+#~ msgstr "URL ഒരു ഉറവിടത്തെ പരാമർശിക്കുന്നില്ല."
+
+#~ msgid "Protocol is a Filter Protocol"
+#~ msgstr "സമ്പ്രദായം ഒരു ഫില്‍ട്ടര്‍ സമ്പ്രദായമാണ്."
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered did not refer to a specific resource."
+#~ msgstr ""
+#~ "നിങ്ങൾ നൽകിയ <strong>യൂ</strong>ണിഫോം <strong>റി</strong>സോഴ്സ് <strong>ലൊ</"
+#~ "strong>ക്കേറ്റർ (URL) ഒരു നിർദ്ദിഷ്ട ഉറവിടത്തെ പരാമർശിക്കുന്നില്ല."
+
+#~ msgid ""
+#~ "KDE is able to communicate through a protocol within a protocol; the "
+#~ "protocol specified is only for use in such situations, however this is "
+#~ "not one of these situations. This is a rare event, and is likely to "
+#~ "indicate a programming error."
+#~ msgstr ""
+#~ "ഒരു പ്രോട്ടോക്കോളിനുള്ളിൽ ഒരു പ്രോട്ടോക്കോളിലൂടെ ആശയവിനിമയം നടത്താൻ കെഡിഇക്ക് കഴിയും; "
+#~ "നിർദ്ദിഷ്ട പ്രോട്ടോക്കോൾ അത്തരം സാഹചര്യങ്ങളിൽ ഉപയോഗിക്കുന്നതിന് മാത്രമാണ്, എന്നിരുന്നാലും "
+#~ "ഇത് ഈ സാഹചര്യങ്ങളിൽ ഒന്നല്ല. ഇതൊരു അപൂർവ സംഭവമാണ്, ഇത് ഒരു പ്രോഗ്രാമിംഗ് പിശക് "
+#~ "സൂചിപ്പിക്കാൻ സാധ്യതയുണ്ട്."
+
+#~ msgid "Unsupported Action: %1"
+#~ msgstr "പിന്തുണ നല്‍കാത്ത പ്രവര്‍ത്തനം: %1 "
+
+#~ msgid ""
+#~ "The requested action is not supported by the KDE program which is "
+#~ "implementing the <strong>%1</strong> protocol."
+#~ msgstr ""
+#~ "അഭ്യർത്ഥിച്ച പ്രവർത്തനത്തെ <strong>%1</strong> പ്രോട്ടോക്കോൾ നടപ്പിലാക്കുന്ന കെഡിഇ "
+#~ "പ്രോഗ്രാം പിന്തുണയ്ക്കുന്നില്ല."
+
+#~ msgid ""
+#~ "This error is very much dependent on the KDE program. The additional "
+#~ "information should give you more information than is available to the KDE "
+#~ "input/output architecture."
+#~ msgstr ""
+#~ "ഈ പിശക് കെഡിഇ പ്രോഗ്രാമിനെ വളരെയധികം ആശ്രയിച്ചിരിക്കുന്നു. കെഡിഇ ഇൻപുട്ട്/ഔട്പുട്ട് "
+#~ "ആർക്കിടെക്ചറിൽ ലഭ്യമായതിനേക്കാൾ കൂടുതൽ വിവരങ്ങൾ അധിക വിവരങ്ങൾ നിങ്ങൾക്ക് നൽകും."
+
+#~ msgid "Attempt to find another way to accomplish the same outcome."
+#~ msgstr "സമാന ഫലം നേടാൻ മറ്റൊരു വഴി കണ്ടെത്താൻ ശ്രമിക്കുക."
+
+#~ msgid "File Expected"
+#~ msgstr "കാത്തിരുന്ന ഫയല്‍"
+
+#~ msgid ""
+#~ "The request expected a file, however the folder <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr ""
+#~ "ഈ അഭ്യർത്ഥന ഒരു ഫയൽ ആണ് പ്രതീക്ഷിച്ചതു. പക്ഷെ <strong>%1</strong> എന്ന അറ ആണ് ലഭിച്ചത്."
+
+#~ msgid "This may be an error on the server side."
+#~ msgstr "ഇത് സര്‍വര്‍ ഭാഗത്തുനിന്നുള്ള പിശകായിരിക്കാം."
+
+#~ msgid "Folder Expected"
+#~ msgstr "കാത്തിരുന്ന അറ"
+
+#~ msgid ""
+#~ "The request expected a folder, however the file <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr ""
+#~ "ഈ അഭ്യർത്ഥന ഒരു അറ ആണ് പ്രതീക്ഷിച്ചതു. പക്ഷെ <strong>%1</strong> എന്ന ഫയൽ ആണ് ലഭിച്ചത്."
+
+#~ msgid "File or Folder Does Not Exist"
+#~ msgstr "ഫയലോ അറയോ നിലവിലില്ല."
+
+#~ msgid "The specified file or folder <strong>%1</strong> does not exist."
+#~ msgstr "നിര്‍ദ്ദിഷ്‌ടമായ ഫയൽ അല്ലെങ്കിൽ അറ <strong>%1</strong> നിലവിൽ ഇല്ല."
+
+#~ msgid ""
+#~ "The requested file could not be created because a file with the same name "
+#~ "already exists."
+#~ msgstr ""
+#~ "അഭ്യർത്ഥിച്ച ഫയൽ ഉണ്ടാക്കാൻ സാധിച്ചില്ല കാരണം ആ പേര് ഉള്ള ഒരു ഫയൽ മുൻപേതന്നെ നിലവിൽ "
+#~ "ഉണ്ട്."
+
+#~ msgid ""
+#~ "Try moving the current file out of the way first, and then try again."
+#~ msgstr "നിലവിലെ ഫയൽ ആദ്യം വഴിയിൽ നിന്ന് നീക്കാൻ ശ്രമിക്കുക, തുടർന്ന് വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Delete the current file and try again."
+#~ msgstr "നിലവിലുള്ള ഫയൽ ഡിലീറ്റ് ചെയ്തു വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Choose an alternate filename for the new file."
+#~ msgstr "പുതിയ ഫയലിന് വേറെ ഒരു നാമം തിരയുക."
+
+#~ msgid ""
+#~ "The requested folder could not be created because a folder with the same "
+#~ "name already exists."
+#~ msgstr "അഭ്യർത്ഥിച്ച അറ സൃഷ്ടിക്കാനായില്ല, കാരണം അതേ പേരിൽ ഒരു അറ ഇതിനകം നിലവിലുണ്ട്."
+
+#~ msgid ""
+#~ "Try moving the current folder out of the way first, and then try again."
+#~ msgstr "നിലവിലെ അറ ആദ്യം വഴിയിൽ നിന്ന് നീക്കാൻ ശ്രമിക്കുക, തുടർന്ന് വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Delete the current folder and try again."
+#~ msgstr "നിലവിലെ അറ ഇല്ലാതാക്കി വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Choose an alternate name for the new folder."
+#~ msgstr "പുതിയ അറയ്ക്ക് ഒരു ഇതര നാമം തിരഞ്ഞെടുക്കുക."
+
+#~ msgid "Unknown Host"
+#~ msgstr "അപരിചിതമായ ഹോസ്റ്റ്"
+
+#~ msgid ""
+#~ "An unknown host error indicates that the server with the requested name, "
+#~ "<strong>%1</strong>, could not be located on the Internet."
+#~ msgstr ""
+#~ "ഒരു അജ്ഞാത ഹോസ്റ്റ് പിശക്, <strong>%1</strong> എന്ന അഭ്യർത്ഥിച്ച പേരുള്ള സെർവർ "
+#~ "ഇന്റർനെറ്റിൽ കണ്ടെത്താനായില്ലെന്ന് സൂചിപ്പിക്കുന്നു."
+
+#~ msgid ""
+#~ "The name that you typed, %1, may not exist: it may be incorrectly typed."
+#~ msgstr ""
+#~ "നിങ്ങൾ ടൈപ്പ് ചെയ്ത പേര്, %1 നിലവിലില്ലായിരിക്കാം: അത് തെറ്റായി ടൈപ്പ് ചെയ്തേക്കാം."
+
+#~ msgid "Access Denied"
+#~ msgstr "പ്രവേശനം തടയപ്പെട്ടു"
+
+#~ msgid "Access was denied to the specified resource, <strong>%1</strong>."
+#~ msgstr "നിർദ്ദിഷ്ട ഉറവിടത്തിലേക്കുള്ള പ്രവേശനം നിഷേധിച്ചു, <strong>%1</strong>."
+
+#~ msgid ""
+#~ "You may have supplied incorrect authentication details or none at all."
+#~ msgstr ""
+#~ "നിങ്ങൾ തെറ്റായ പ്രാമാണീകരണ വിശദാംശങ്ങൾ നൽകിയിരിക്കാം അല്ലെങ്കിൽ ഒന്നും "
+#~ "നൽകിയിട്ടുണ്ടാവില്ല."
+
+#~ msgid ""
+#~ "Your account may not have permission to access the specified resource."
+#~ msgstr ""
+#~ "നിർദ്ദിഷ്ട ഉറവിടം ആക്സസ് ചെയ്യുന്നതിന് നിങ്ങളുടെ അക്കൗണ്ടിന് അനുമതി ഉണ്ടായിരിക്കില്ല."
+
+#~ msgid ""
+#~ "Retry the request and ensure your authentication details are entered "
+#~ "correctly."
+#~ msgstr ""
+#~ "അഭ്യർത്ഥന വീണ്ടും പരിശോധിച്ച് നിങ്ങളുടെ പ്രാമാണീകരണ വിശദാംശങ്ങൾ ശരിയായി "
+#~ "നൽകിയിട്ടുണ്ടെന്ന് ഉറപ്പുവരുത്തുക."
+
+#~ msgid "Write Access Denied"
+#~ msgstr "എഴുതാനുള്ള അനുമതി നിഷേധിച്ചിരിയ്ക്കുന്നു"
+
+#~ msgid ""
+#~ "This means that an attempt to write to the file <strong>%1</strong> was "
+#~ "rejected."
+#~ msgstr "ഇതിനർത്ഥം <strong>%1</strong> ഫയലിലേക്ക് എഴുതാനുള്ള ശ്രമം നിരസിച്ചു എന്നാണ്."
+
+#~ msgid "Unable to Enter Folder"
+#~ msgstr "അറയിലേയ്ക്കു് കടക്കാന്‍ സാധ്യമല്ല"
+
+#~ msgid ""
+#~ "This means that an attempt to enter (in other words, to open) the "
+#~ "requested folder <strong>%1</strong> was rejected."
+#~ msgstr ""
+#~ "ഇതിനർത്ഥം അഭ്യർത്ഥിച്ച അറ <strong>%1</strong>യിൽ പ്രവേശിക്കാനുള്ള (മറ്റൊരു വിധത്തിൽ "
+#~ "പറഞ്ഞാൽ, തുറക്കാനുള്ള) ശ്രമം നിരസിച്ചു എന്നാണ്."
+
+#~ msgid "Folder Listing Unavailable"
+#~ msgstr "ഫോൾഡർ പട്ടികപ്പെടുത്തൽ ലഭ്യമല്ല"
+
+#~ msgid "Protocol %1 is not a Filesystem"
+#~ msgstr "പ്രോട്ടോക്കോൾ %1 ഒരു ഫയൽസിസ്റ്റം അല്ല"
+
+#~ msgid ""
+#~ "This means that a request was made which requires determining the "
+#~ "contents of the folder, and the KDE program supporting this protocol is "
+#~ "unable to do so."
+#~ msgstr ""
+#~ "ഇതിനർത്ഥം അറയിലെ ഉള്ളടക്കങ്ങൾ നിർണ്ണയിക്കേണ്ട ഒരു അഭ്യർത്ഥന നടത്തി എന്നാണ്, കൂടാതെ ഈ "
+#~ "പ്രോട്ടോക്കോളിനെ പിന്തുണയ്ക്കുന്ന കെഡിഇ പ്രോഗ്രാമിന് അത് ചെയ്യാൻ കഴിയില്ല."
+
+#~ msgid "Cyclic Link Detected"
+#~ msgstr "ചാക്രികമായ കണ്ണി കണ്ടെത്തിയിരിക്കുന്നു"
+
+#~ msgid ""
+#~ "UNIX environments are commonly able to link a file or folder to a "
+#~ "separate name and/or location. KDE detected a link or series of links "
+#~ "that results in an infinite loop - i.e. the file was (perhaps in a "
+#~ "roundabout way) linked to itself."
+#~ msgstr ""
+#~ "യുണിക്സ് പരിതസ്ഥിതികൾക്ക് സാധാരണയായി ഒരു ഫയലോ അറയോ ഒരു പ്രത്യേക നാമത്തിലേക്കും/"
+#~ "അല്ലെങ്കിൽ സ്ഥലത്തിലേക്കും ബന്ധിപ്പിക്കാൻ കഴിയും. അനന്തമായ ലൂപ്പിന് കാരണമാകുന്ന ഒരു ലിങ്ക് "
+#~ "അല്ലെങ്കിൽ ലിങ്കുകളുടെ ഒരു പരമ്പര കെഡിഇ കണ്ടെത്തി - അതായത് ഫയൽ അതിലേക്ക് (ഒരുപക്ഷേ ഒരു "
+#~ "റൗണ്ട് എബൗട്ട് വഴി) തന്നെ ബന്ധിപ്പിച്ചിരിക്കുന്നു."
+
+#~ msgid ""
+#~ "Delete one part of the loop in order that it does not cause an infinite "
+#~ "loop, and try again."
+#~ msgstr ""
+#~ "അനന്തമായ ലൂപ്പിന് കാരണമാകാത്തവിധം ലൂപ്പിന്റെ ഒരു ഭാഗം ഇല്ലാതാക്കുക, വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Request Aborted By User"
+#~ msgstr "അഭ്യർത്ഥന ഉപയോക്താവ് ഉപേക്ഷിച്ചു"
+
+#~ msgid "The request was not completed because it was aborted."
+#~ msgstr "അഭ്യർത്ഥന ഉപേക്ഷിച്ചതിനാൽ പൂർത്തിയായില്ല."
+
+#~ msgid "Retry the request."
+#~ msgstr "അഭ്യർത്ഥന വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Cyclic Link Detected During Copy"
+#~ msgstr "പകര്‍ത്തുന്നതിനിടയില്‍ ചാക്രികമായ കണ്ണി കണ്ടെത്തിയിരിക്കുന്നു."
+
+#~ msgid ""
+#~ "UNIX environments are commonly able to link a file or folder to a "
+#~ "separate name and/or location. During the requested copy operation, KDE "
+#~ "detected a link or series of links that results in an infinite loop - i."
+#~ "e. the file was (perhaps in a roundabout way) linked to itself."
+#~ msgstr ""
+#~ "യുണിക്സ് പരിതസ്ഥിതികൾക്ക് സാധാരണയായി ഒരു ഫയലോ അറയോ ഒരു പ്രത്യേക നാമത്തിലേക്കും/"
+#~ "അല്ലെങ്കിൽ ലൊക്കേഷനിലേക്കും ബന്ധിപ്പിക്കാൻ കഴിയും. അഭ്യർത്ഥിച്ച കോപ്പി ഓപ്പറേഷൻ സമയത്ത്, "
+#~ "അനന്തമായ ലൂപ്പിന് കാരണമാകുന്ന ഒരു ലിങ്ക് അല്ലെങ്കിൽ ലിങ്കുകളുടെ ഒരു പരമ്പര കെഡിഇ കണ്ടെത്തി "
+#~ "- അതായത് ഫയൽ (ഒരുപക്ഷേ ഒരു റൗണ്ട് എബൗട്ട് വഴി) തന്നെ ബന്ധിപ്പിച്ചിരിക്കുന്നു."
+
+#~ msgid "Could Not Create Network Connection"
+#~ msgstr "നെറ്റ്‌വർക്ക് കണക്ഷൻ സൃഷ്ടിക്കാനായില്ല"
+
+#~ msgid "Could Not Create Socket"
+#~ msgstr "സോക്കറ്റ് ഉണ്ടാക്കാന്‍ സാധ്യമല്ല"
+
+#~ msgid ""
+#~ "This is a fairly technical error in which a required device for network "
+#~ "communications (a socket) could not be created."
+#~ msgstr ""
+#~ "നെറ്റ്‌വർക്ക് ആശയവിനിമയത്തിന് ആവശ്യമായ ഒരു ഉപകരണം (ഒരു സോക്കറ്റ്) സൃഷ്ടിക്കാൻ കഴിയാത്ത ഒരു "
+#~ "സാങ്കേതിക പിഴവാണ് ഇത്."
+
+#~ msgid ""
+#~ "The network connection may be incorrectly configured, or the network "
+#~ "interface may not be enabled."
+#~ msgstr ""
+#~ "നെറ്റ്‌വർക്ക് കണക്ഷൻ തെറ്റായി ക്രമീകരിച്ചിരിക്കാം, അല്ലെങ്കിൽ നെറ്റ്‌വർക്ക് ഇന്റർഫേസ് "
+#~ "പ്രവർത്തനക്ഷമമാക്കിയിരിക്കില്ല."
+
+#~ msgid "Connection to Server Refused"
+#~ msgstr "സെർവറിലേക്കുള്ള കണക്ഷൻ നിരസിച്ചു"
+
+#~ msgid ""
+#~ "The server <strong>%1</strong> refused to allow this computer to make a "
+#~ "connection."
+#~ msgstr "സെർവർ <strong>%1</strong> ഈ കമ്പ്യൂട്ടറിനെ ബന്ധിപ്പിക്കാൻ വിസമ്മതിച്ചു."
+
+#~ msgid ""
+#~ "The server, while currently connected to the Internet, may not be "
+#~ "configured to allow requests."
+#~ msgstr ""
+#~ "സെർവർ, നിലവിൽ ഇന്റർനെറ്റിലേക്ക് കണക്റ്റുചെയ്തിരിക്കുമ്പോൾ, അഭ്യർത്ഥനകൾ അനുവദിക്കുന്നതിനായി "
+#~ "ക്രമീകരിച്ചിരിക്കില്ല."
+
+#~ msgid ""
+#~ "The server, while currently connected to the Internet, may not be running "
+#~ "the requested service (%1)."
+#~ msgstr ""
+#~ "സെർവർ, നിലവിൽ ഇന്റർനെറ്റിലേക്ക് കണക്റ്റുചെയ്തിരിക്കുമ്പോൾ, അഭ്യർത്ഥിച്ച സേവനം "
+#~ "പ്രവർത്തിച്ചേക്കില്ല (%1)."
+
+#~ msgid ""
+#~ "A network firewall (a device which restricts Internet requests), either "
+#~ "protecting your network or the network of the server, may have "
+#~ "intervened, preventing this request."
+#~ msgstr ""
+#~ "നിങ്ങളുടെ നെറ്റ്‌വർക്കിനെ അല്ലെങ്കിൽ സെർവറിന്റെ നെറ്റ്‌വർക്കിനെ പരിരക്ഷിക്കുന്ന ഒരു "
+#~ "നെറ്റ്‌വർക്ക് ഫയർവാൾ (ഇന്റർനെറ്റ് അഭ്യർത്ഥനകൾ നിയന്ത്രിക്കുന്ന ഒരു ഉപകരണം), ഈ അഭ്യർത്ഥന "
+#~ "തടഞ്ഞുകൊണ്ട് ഇടപെട്ടിരിക്കാം."
+
+#~ msgid "Connection to Server Closed Unexpectedly"
+#~ msgstr "സെർവറിലേക്കുള്ള കണക്ഷൻ അപ്രതീക്ഷിതമായി അടച്ചു"
+
+#~ msgid ""
+#~ "Although a connection was established to <strong>%1</strong>, the "
+#~ "connection was closed at an unexpected point in the communication."
+#~ msgstr ""
+#~ "<strong>%1</strong> ലേക്ക് ഒരു കണക്ഷൻ സ്ഥാപിച്ചിട്ടുണ്ടെങ്കിലും, ആശയവിനിമയത്തിലെ "
+#~ "അപ്രതീക്ഷിത ഘട്ടത്തിൽ കണക്ഷൻ അടച്ചു."
+
+#~ msgid ""
+#~ "A protocol error may have occurred, causing the server to close the "
+#~ "connection as a response to the error."
+#~ msgstr ""
+#~ "ഒരു പ്രോട്ടോക്കോൾ പിശക് സംഭവിച്ചിരിക്കാം, ഇത് പിശകിനുള്ള പ്രതികരണമായി കണക്ഷൻ അടയാൻ "
+#~ "കാരണമാകുന്നു."
+
+#~ msgid "URL Resource Invalid"
+#~ msgstr "യുആർഎൽ ഉറവിടം അസാധുവാണ്"
+
+#~ msgid "Protocol %1 is not a Filter Protocol"
+#~ msgstr "%1 സമ്പ്രദായം ഫില്‍ട്ടര്‍ സമ്പ്രദായം അല്ല."
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered did not refer to a valid mechanism "
+#~ "of accessing the specific resource, <strong>%1%2</strong>."
+#~ msgstr ""
+#~ "നിങ്ങൾ നൽകിയ <strong>യൂ</strong>ണിഫോം <strong>റി</strong>സോഴ്സ് <strong>ലൊ</"
+#~ "strong> ക്കേറ്റർ (URL) നിർദ്ദിഷ്ട ഉറവിടം ആക്സസ് ചെയ്യുന്നതിനുള്ള ഒരു സാധുവായ "
+#~ "സംവിധാനത്തെ പരാമർശിക്കുന്നില്ല, <strong> %1%2 </strong>."
+
+#~ msgid ""
+#~ "KDE is able to communicate through a protocol within a protocol. This "
+#~ "request specified a protocol be used as such, however this protocol is "
+#~ "not capable of such an action. This is a rare event, and is likely to "
+#~ "indicate a programming error."
+#~ msgstr ""
+#~ "ഒരു പ്രോട്ടോക്കോളിനുള്ളിൽ ഒരു പ്രോട്ടോക്കോളിലൂടെ ആശയവിനിമയം നടത്താൻ കെഡിഇക്ക് കഴിയും. ഈ "
+#~ "അഭ്യർത്ഥന ഒരു പ്രോട്ടോക്കോൾ അങ്ങനെ തന്നെ ഉപയോഗിക്കണമെന്ന് വ്യക്തമാക്കിയിട്ടുണ്ട്, "
+#~ "എന്നിരുന്നാലും ഈ പ്രോട്ടോക്കോളിന് അത്തരമൊരു പ്രവർത്തനത്തിന് കഴിവില്ല. ഇതൊരു അപൂർവ സംഭവമാണ്, "
+#~ "ഇത് ഒരു പ്രോഗ്രാമിംഗ് പിശക് സൂചിപ്പിക്കാൻ സാധ്യതയുണ്ട്."
+
+#~ msgid "Unable to Initialize Input/Output Device"
+#~ msgstr "ഇൻപുട്ട്/ഔട്ട്പുട്ട് ഉപകരണം ആരംഭിക്കാൻ കഴിയുന്നില്ല"
+
+#~ msgid "Could Not Mount Device"
+#~ msgstr "ഉപകരണം ഘടിപ്പിയ്ക്കാനായില്ല"
+
+#~ msgid ""
+#~ "The requested device could not be initialized (\"mounted\"). The reported "
+#~ "error was: <strong>%1</strong>"
+#~ msgstr ""
+#~ "അഭ്യർത്ഥിച്ച ഉപകരണം ആരംഭിക്കാൻ കഴിഞ്ഞില്ല (\"ഘടിപ്പിച്ചിട്ടുണ്ട്\"). റിപ്പോർട്ടുചെയ്‌ത "
+#~ "പിശക്: <strong>%1 </strong>"
+
+#~ msgid ""
+#~ "The device may not be ready, for example there may be no media in a "
+#~ "removable media device (i.e. no CD-ROM in a CD drive), or in the case of "
+#~ "a peripheral/portable device, the device may not be correctly connected."
+#~ msgstr ""
+#~ "ഉപകരണം തയ്യാറാകണമെന്നില്ല, ഉദാഹരണത്തിന് നീക്കം ചെയ്യാവുന്ന മീഡിയ ഉപകരണത്തിൽ മീഡിയ "
+#~ "ഇല്ലായിരിക്കാം (അതായത് ഒരു സിഡി-ഡ്രൈവിൽ സിഡി-റോം ഇല്ല), അല്ലെങ്കിൽ ഒരു പെരിഫറൽ/"
+#~ "പോർട്ടബിൾ ഉപകരണത്തിന്റെ കാര്യത്തിൽ, ഉപകരണം ശരിയായി കണക്റ്റുചെയ്‌തിരിക്കില്ല."
+
+#~ msgid ""
+#~ "You may not have permissions to initialize (\"mount\") the device. On "
+#~ "UNIX systems, often system administrator privileges are required to "
+#~ "initialize a device."
+#~ msgstr ""
+#~ "ഉപകരണം ആരംഭിക്കാൻ (\"മൗണ്ട്\") നിങ്ങൾക്ക് അനുമതികൾ ഉണ്ടാകണമെന്നില്ല. യുണിക്സ് "
+#~ "സിസ്റ്റങ്ങളിൽ, ഒരു ഉപകരണം ആരംഭിക്കുന്നതിന് പലപ്പോഴും സിസ്റ്റം അഡ്മിനിസ്ട്രേറ്റർ അധികാരങ്ങൾ "
+#~ "ആവശ്യമാണ്."
+
+#~ msgid ""
+#~ "Check that the device is ready; removable drives must contain media, and "
+#~ "portable devices must be connected and powered on.; and try again."
+#~ msgstr ""
+#~ "ഉപകരണം തയ്യാറാണോയെന്ന് പരിശോധിക്കുക; നീക്കം ചെയ്യാവുന്ന ഡ്രൈവുകളിൽ മീഡിയ "
+#~ "അടങ്ങിയിരിക്കണം, കൂടാതെ പോർട്ടബിൾ ഉപകരണങ്ങൾ കണക്റ്റുചെയ്ത് പവർ ചെയ്യണം .; വീണ്ടും "
+#~ "ശ്രമിക്കുക."
+
+#~ msgid "Unable to Uninitialize Input/Output Device"
+#~ msgstr "ഇൻപുട്ട്/ഔട്ട്പുട്ട് ഉപകരണം ആരംഭിക്കാൻ കഴിയില്ല"
+
+#~ msgid "Could Not Unmount Device"
+#~ msgstr "ഉപകരണം നീക്കം ചെയ്യാനായില്ല"
+
+#~ msgid ""
+#~ "The requested device could not be uninitialized (\"unmounted\"). The "
+#~ "reported error was: <strong>%1</strong>"
+#~ msgstr ""
+#~ "അഭ്യർത്ഥിച്ച ഉപകരണം ആരംഭിക്കാനാകില്ല (\"നീക്കം ചെയ്തിരിക്കുന്നു\"). റിപ്പോർട്ടുചെയ്‌ത "
+#~ "പിശക്: <strong>%1</strong>"
+
+#~ msgid ""
+#~ "The device may be busy, that is, still in use by another application or "
+#~ "user. Even such things as having an open browser window on a location on "
+#~ "this device may cause the device to remain in use."
+#~ msgstr ""
+#~ "ഉപകരണം തിരക്കിലായിരിക്കാം, അതായത്, മറ്റൊരു പ്രയോഗമോ ഉപയോക്താവോ ഇപ്പോഴും "
+#~ "ഉപയോഗിക്കുന്നു. ഈ ഉപകരണത്തിലെ ഒരു ലൊക്കേഷനിൽ ഒരു തുറന്ന ബ്രൗസർ ജാലകം ഉള്ളത് പോലെയുള്ള "
+#~ "കാര്യങ്ങൾ പോലും ഉപകരണം ഉപയോഗത്തിൽ തുടരാൻ ഇടയാക്കും."
+
+#~ msgid "Check that no applications are accessing the device, and try again."
+#~ msgstr ""
+#~ "ആപ്ലിക്കേഷനുകളൊന്നും ഉപകരണത്തിലേക്ക് പ്രവേശിക്കുന്നില്ലെന്ന് പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Cannot Read From Resource"
+#~ msgstr "വിഭവത്തില്‍ നിന്നും വായിയ്ക്കാന്‍ സാധ്യമല്ല"
+
+#~ msgid ""
+#~ "This means that although the resource, <strong>%1</strong>, was able to "
+#~ "be opened, an error occurred while reading the contents of the resource."
+#~ msgstr ""
+#~ "ഇതിനർത്ഥം, ഉറവിടം <strong>%1</strong> തുറക്കാൻ കഴിഞ്ഞെങ്കിലും, ഉറവിടത്തിന്റെ "
+#~ "ഉള്ളടക്കങ്ങൾ വായിക്കുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു എന്നാണ്."
+
+#~ msgid "You may not have permissions to read from the resource."
+#~ msgstr "നിങ്ങള്‍ക്ക് ഈ വിഭവത്തില്‍ നിന്നും വായിയ്ക്കാനുള്ള അധികാരമില്ലായിരിക്കാം."
+
+#~ msgid "Cannot Write to Resource"
+#~ msgstr "വിഭവത്തിലേയ്ക്ക് എഴുതുവാന്‍ സാധ്യമല്ല"
+
+#~ msgid ""
+#~ "This means that although the resource, <strong>%1</strong>, was able to "
+#~ "be opened, an error occurred while writing to the resource."
+#~ msgstr ""
+#~ "ഇതിനർത്ഥം, ഉറവിടം <strong>%1</strong> തുറക്കാൻ കഴിഞ്ഞെങ്കിലും, ഉറവിടത്തിലേക്ക് "
+#~ "എഴുതുമ്പോൾ ഒരു പിശക് സംഭവിച്ചു എന്നാണ്."
+
+#~ msgid "You may not have permissions to write to the resource."
+#~ msgstr "ഉറവിടത്തിലേക്ക് എഴുതാൻ നിങ്ങൾക്ക് അനുമതിയില്ലായിരിക്കാം."
+
+#~ msgid "Could Not Bind"
+#~ msgstr "ബന്ധിപ്പിക്കാൻ കഴിഞ്ഞില്ല"
+
+#~ msgid "Could Not Accept Network Connection"
+#~ msgstr "നെറ്റ്‌വർക്ക് കണക്ഷൻ സ്വീകരിക്കാൻ കഴിഞ്ഞില്ല"
+
+#~ msgid ""
+#~ "This is a fairly technical error in which an error occurred while "
+#~ "attempting to accept an incoming network connection."
+#~ msgstr ""
+#~ "ഇൻകമിംഗ് നെറ്റ്‌വർക്ക് കണക്ഷൻ സ്വീകരിക്കാൻ ശ്രമിക്കുമ്പോൾ സംഭവിച്ച തികച്ചും സാങ്കേതികമായ "
+#~ "പിഴവാണിത്."
+
+#~ msgid "You may not have permissions to accept the connection."
+#~ msgstr "കണക്ഷൻ സ്വീകരിക്കാൻ നിങ്ങൾക്ക് അനുമതിയില്ലായിരിക്കാം."
+
+#~ msgid "Could Not Login: %1"
+#~ msgstr "ലോഗിൻ ചെയ്യാനായില്ല: %1"
+
+#~ msgid ""
+#~ "An attempt to login to perform the requested operation was unsuccessful."
+#~ msgstr "അഭ്യർത്ഥിച്ച പ്രവർത്തനം നടത്താൻ ലോഗിൻ ചെയ്യാനുള്ള ശ്രമം വിജയിച്ചില്ല."
+
+#~ msgid "Could Not Determine Resource Status"
+#~ msgstr "ഉറവിട അവസ്ഥ നിർണ്ണയിക്കാൻ കഴിഞ്ഞില്ല"
+
+#~ msgid ""
+#~ "The specified resource may not have existed or may not be accessible."
+#~ msgstr "നിർദ്ദിഷ്ട ഉറവിടം ഉണ്ടായിരിക്കില്ല അല്ലെങ്കിൽ ആക്സസ് ചെയ്യാനാകില്ല."
+
+#~ msgid "Could Not Create Folder"
+#~ msgstr "അറ സൃഷ്ടിക്കാനായില്ല"
+
+#~ msgid "An attempt to create the requested folder failed."
+#~ msgstr "അഭ്യർത്ഥിച്ച അറ സൃഷ്ടിക്കാനുള്ള ശ്രമം പരാജയപ്പെട്ടു."
+
+#~ msgid "The location where the folder was to be created may not exist."
+#~ msgstr "അറ സൃഷ്ടിക്കേണ്ട സ്ഥലം നിലവിലില്ലായിരിക്കാം."
+
+#~ msgid "Could Not Remove Folder"
+#~ msgstr "അറ നീക്കം ചെയ്യാനായില്ല"
+
+#~ msgid ""
+#~ "An attempt to remove the specified folder, <strong>%1</strong>, failed."
+#~ msgstr "നിർദ്ദിഷ്ട അറ, <strong>%1</strong> നീക്കം ചെയ്യാനുള്ള ശ്രമം പരാജയപ്പെട്ടു."
+
+#~ msgid "The specified folder may not exist."
+#~ msgstr "നിർദ്ദിഷ്ട അറ നിലവിലില്ലായിരിക്കാം."
+
+#~ msgid "The specified folder may not be empty."
+#~ msgstr "നിർദ്ദിഷ്ട അറ ശൂന്യമായിരിക്കില്ല."
+
+#~ msgid "Ensure that the folder exists and is empty, and try again."
+#~ msgstr "അറ നിലവിലുണ്ടെന്നും ശൂന്യമാണെന്നും ഉറപ്പുവരുത്തി, വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Could Not Resume File Transfer"
+#~ msgstr "ഫയൽ കൈമാറ്റം പുനരാരംഭിക്കാനായില്ല"
+
+#~ msgid "The protocol, or the server, may not support file resuming."
+#~ msgstr "ഫയൽ പുനരാരംഭിക്കുന്നതിനെ പ്രോട്ടോക്കോൾ അല്ലെങ്കിൽ സെർവർ പിന്തുണച്ചേക്കില്ല."
+
+#~ msgid "Retry the request without attempting to resume transfer."
+#~ msgstr "കൈമാറ്റം പുനരാരംഭിക്കാൻ ശ്രമിക്കാതെ അഭ്യർത്ഥന വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Could Not Rename Resource"
+#~ msgstr "ഉറവിടത്തിന്റെ പേരുമാറ്റാൻ കഴിഞ്ഞില്ല"
+
+#~ msgid ""
+#~ "An attempt to rename the specified resource <strong>%1</strong> failed."
+#~ msgstr ""
+#~ "നിർദ്ദിഷ്ട ഉറവിടത്തിന്റെ പേരുമാറ്റാനുള്ള ശ്രമം പരാജയപ്പെട്ടു <strong>%1</strong>."
+
+#~ msgid "Could Not Alter Permissions of Resource"
+#~ msgstr "ഉറവിടത്തിന്റെ അനുമതികൾ മാറ്റാൻ കഴിഞ്ഞില്ല"
+
+#~ msgid ""
+#~ "An attempt to alter the permissions on the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "നിർദ്ദിഷ്ട ഉറവിടത്തിലെ അനുമതികൾ മാറ്റാനുള്ള ശ്രമം <strong>%1</strong> പരാജയപ്പെട്ടു."
+
+#~ msgid "Could Not Change Ownership of Resource"
+#~ msgstr "ഉറവിടത്തിന്റെ ഉടമസ്ഥാവകാശം മാറ്റാൻ കഴിഞ്ഞില്ല"
+
+#~ msgid ""
+#~ "An attempt to change the ownership of the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "നിർദ്ദിഷ്ട ഉറവിടത്തിന്റെ ഉടമസ്ഥാവകാശം മാറ്റാനുള്ള ശ്രമം <strong>%1</strong> "
+#~ "പരാജയപ്പെട്ടു."
+
+#~ msgid "Could Not Delete Resource"
+#~ msgstr "ഉറവിടം ഇല്ലാതാക്കാനായില്ല"
+
+#~ msgid ""
+#~ "An attempt to delete the specified resource <strong>%1</strong> failed."
+#~ msgstr "നിർദ്ദിഷ്ട ഉറവിടം <strong>%1</strong> ഇല്ലാതാക്കാനുള്ള ശ്രമം പരാജയപ്പെട്ടു."
+
+#~ msgid "Unexpected Program Termination"
+#~ msgstr "അപ്രതീക്ഷിത പ്രോഗ്രാം അവസാനിപ്പിക്കൽ"
+
+#~ msgid "Unknown Proxy Host"
+#~ msgstr "അജ്ഞാത പ്രോക്സി ഹോസ്റ്റ്"
+
+#~ msgid ""
+#~ "While retrieving information about the specified proxy host, <strong>%1</"
+#~ "strong>, an Unknown Host error was encountered. An unknown host error "
+#~ "indicates that the requested name could not be located on the Internet."
+#~ msgstr ""
+#~ "നിർദ്ദിഷ്ട പ്രോക്സി ഹോസ്റ്റിനെക്കുറിച്ചുള്ള വിവരങ്ങൾ വീണ്ടെടുക്കുമ്പോൾ, <strong>%1</"
+#~ "strong>, ഒരു അജ്ഞാത ഹോസ്റ്റ് പിശക് നേരിട്ടു. അഭ്യർത്ഥിച്ച പേര് ഇന്റർനെറ്റിൽ "
+#~ "കണ്ടെത്താനായില്ലെന്നത് ഒരു അജ്ഞാത ഹോസ്റ്റ് പിശക് സൂചിപ്പിക്കുന്നു."
+
+#~ msgid ""
+#~ "There may have been a problem with your network configuration, "
+#~ "specifically your proxy's hostname. If you have been accessing the "
+#~ "Internet with no problems recently, this is unlikely."
+#~ msgstr ""
+#~ "നിങ്ങളുടെ നെറ്റ്‌വർക്ക് ക്രമീകരണത്തിൽ, പ്രത്യേകിച്ച് നിങ്ങളുടെ പ്രോക്‌സിയുടെ ഹോസ്റ്റ് നെയിമിൽ "
+#~ "ഒരു പ്രശ്നം ഉണ്ടായിരിക്കാം. അടുത്തിടെ പ്രശ്നങ്ങളൊന്നുമില്ലാതെ നിങ്ങൾ ഇന്റർനെറ്റ് ആക്‌സസ് "
+#~ "ചെയ്യാൻ കഴിഞ്ഞെങ്കിൽ, ഇതിന് സാധ്യതയില്ല."
+
+#~ msgid "Double-check your proxy settings and try again."
+#~ msgstr "നിങ്ങളുടെ പ്രോക്സി ക്രമീകരണങ്ങൾ രണ്ടുതവണ പരിശോധിച്ച് വീണ്ടും ശ്രമിക്കുക."
+
+#~ msgid "Authentication Failed: Method %1 Not Supported"
+#~ msgstr "പ്രാമാണീകരണം പരാജയപ്പെട്ടു: രീതി %1 പിന്തുണയ്ക്കുന്നില്ല"
+
+#~ msgid ""
+#~ "Although you may have supplied the correct authentication details, the "
+#~ "authentication failed because the method that the server is using is not "
+#~ "supported by the KDE program implementing the protocol %1."
+#~ msgstr ""
+#~ "നിങ്ങൾ ശരിയായ പ്രാമാണീകരണ വിശദാംശങ്ങൾ നൽകിയിട്ടുണ്ടെങ്കിലും, പ്രാമാണീകരണം "
+#~ "പരാജയപ്പെട്ടു കാരണം സെർവർ ഉപയോഗിക്കുന്ന രീതിയെ പ്രോട്ടോക്കോൾ %1 നടപ്പിലാക്കുന്ന KDE "
+#~ "പ്രോഗ്രാം പിന്തുണയ്ക്കുന്നില്ല."
+
+#~ msgid ""
+#~ "Please file a bug at <a href=\"https://bugs.kde.org/\">https://bugs.kde."
+#~ "org/</a> to inform the KDE team of the unsupported authentication method."
+#~ msgstr ""
+#~ "പിന്തുണയ്ക്കാത്ത പ്രമാണീകരണ രീതി KDE ടീമിനെ അറിയിക്കാൻ ദയവായി <a href=\"https://"
+#~ "bugs.kde.org/\">https://bugs.kde.org/</a> എന്നതിൽ ഒരു ബഗ് ഫയൽ ചെയ്യുക."
+
+#~ msgid "Request Aborted"
+#~ msgstr "അഭ്യർത്ഥന ഉപേക്ഷിച്ചു"
+
+#~ msgid "Internal Error in Server"
+#~ msgstr "സെർവറിലെ ആന്തരിക പിശക്"
+
+#~ msgid ""
+#~ "The program on the server which provides access to the <strong>%1</"
+#~ "strong> protocol has reported an internal error: %2."
+#~ msgstr ""
+#~ "<strong>%1</strong> പ്രോട്ടോക്കോളിലേക്ക് ആക്സസ് നൽകുന്ന സെർവറിലെ പ്രോഗ്രാം ഒരു ആന്തരിക "
+#~ "പിശക് റിപ്പോർട്ട് ചെയ്തു: %2."
+
+#~ msgid ""
+#~ "This is most likely to be caused by a bug in the server program. Please "
+#~ "consider submitting a full bug report as detailed below."
+#~ msgstr ""
+#~ "സെർവർ പ്രോഗ്രാമിലെ ഒരു പിശക് മൂലമാണ് ഇത് സംഭവിക്കുന്നത്. ചുവടെ വിശദീകരിച്ചിരിക്കുന്നതുപോലെ "
+#~ "ഒരു പൂർണ്ണ പിശക് റിപ്പോർട്ട് സമർപ്പിക്കുന്നത് പരിഗണിക്കുക."
+
+#~ msgid ""
+#~ "Contact the administrator of the server to advise them of the problem."
+#~ msgstr "പ്രശ്നത്തെക്കുറിച്ച് ഉപദേശിക്കാൻ സെർവറിന്റെ അഡ്മിനിസ്ട്രേറ്ററെ ബന്ധപ്പെടുക."
+
+#~ msgid ""
+#~ "If you know who the authors of the server software are, submit the bug "
+#~ "report directly to them."
+#~ msgstr ""
+#~ "സെർവർ സോഫ്റ്റ്‍വെയറിന്റെ രചയിതാക്കൾ ആരാണെന്ന് നിങ്ങൾക്കറിയാമെങ്കിൽ, പിശക് റിപ്പോർട്ട് "
+#~ "അവർക്ക് നേരിട്ട് സമർപ്പിക്കുക."
+
+#~ msgid "Timeout Error"
+#~ msgstr "കാലഹരണപ്പെടൽ പിശക്"
+
+#~ msgid "Unknown Error"
+#~ msgstr "അജ്ഞാത പിശക്"
+
+#~ msgid "Unknown Interruption"
+#~ msgstr "അജ്ഞാതമായ തടസ്സം"
+
+#~ msgid "Could Not Delete Original File"
+#~ msgstr "യഥാർത്ഥ ഫയൽ ഇല്ലാതാക്കാനായില്ല"
+
+#~ msgid "Could Not Delete Temporary File"
+#~ msgstr "താൽക്കാലിക ഫയൽ ഇല്ലാതാക്കാനായില്ല"
+
+#~ msgid "Could Not Rename Original File"
+#~ msgstr "യഥാർത്ഥ ഫയലിന്റെ പേരുമാറ്റാൻ കഴിഞ്ഞില്ല"
+
+#~ msgid "Could Not Rename Temporary File"
+#~ msgstr "താൽക്കാലിക ഫയലിന്റെ പേരുമാറ്റാൻ കഴിഞ്ഞില്ല"
+
+#~ msgid "Could Not Create Link"
+#~ msgstr "കണ്ണി സൃഷ്ടിക്കാനായില്ല"
+
+#~ msgid "Could Not Create Symbolic Link"
+#~ msgstr "പ്രതീകാത്മക കണ്ണി സൃഷ്ടിക്കാനായില്ല"
+
+#~ msgid "The requested symbolic link %1 could not be created."
+#~ msgstr "അഭ്യർത്ഥിച്ച പ്രതീകാത്മക കണ്ണി %1 സൃഷ്ടിക്കാനായില്ല."
+
+#~ msgid "No Content"
+#~ msgstr "ഉള്ളടക്കം ഇല്ല"
+
+#~ msgid "Disk Full"
+#~ msgstr "ഡിസ്ക് നിറഞ്ഞു"
+
+#~ msgid ""
+#~ "The requested file <strong>%1</strong> could not be written to as there "
+#~ "is inadequate disk space."
+#~ msgstr ""
+#~ "ആവശ്യപ്പെട്ട ഫയൽ <strong>%1</strong> അപര്യാപ്തമായ ഡിസ്ക് സ്ഥലം ഉള്ളതിനാൽ എഴുതാൻ "
+#~ "കഴിഞ്ഞില്ല."
+
+#~ msgid "Source and Destination Files Identical"
+#~ msgstr "ഉറവിടവും ലക്ഷ്യസ്ഥാന ഫയലുകളും ഒരേപോലെ"
+
+#~ msgid ""
+#~ "The operation could not be completed because the source and destination "
+#~ "files are the same file."
+#~ msgstr "ഉറവിടവും ലക്ഷ്യസ്ഥാന ഫയലുകളും ഒരേ ഫയലായതിനാൽ പ്രവർത്തനം പൂർത്തിയാക്കാനായില്ല."
+
+#~ msgid "Choose a different filename for the destination file."
+#~ msgstr "ലക്ഷ്യസ്ഥാന ഫയലിനായി മറ്റൊരു ഫയൽ നാമം തിരഞ്ഞെടുക്കുക."
+
+#, fuzzy
+#~ msgid "File or Folder dropped onto itself"
+#~ msgstr "ഫയലോ അറയോ നിലവിലില്ല."
+
+#~ msgid ""
+#~ "The operation could not be completed because the source and destination "
+#~ "file or folder are the same."
+#~ msgstr ""
+#~ "ഉറവിടവും ലക്ഷ്യസ്ഥാന ഫയലോ അറയോ ഒന്നുതന്നെയായതിനാൽ പ്രവർത്തനം പൂർത്തിയാക്കാനായില്ല."
+
+#, fuzzy
+#~ msgid "Folder moved into itself"
+#~ msgstr "ഫയലോ അറയോ നിലവിലില്ല."
+
+#~ msgid "Move the item into a different folder."
+#~ msgstr "ഇനം മറ്റൊരു അറയിലേക്ക് നീക്കുക."
+
+#~ msgid "Could not communicate with password server"
+#~ msgstr "പാസ്‌വേഡ് സെർവറുമായി ആശയവിനിമയം നടത്താനായില്ല"
+
+#~ msgid ""
+#~ "The operation could not be completed because the service for requesting "
+#~ "passwords (kpasswdserver) couldn't be contacted"
+#~ msgstr ""
+#~ "പാസ്‌വേഡുകൾ അഭ്യർത്ഥിക്കുന്നതിനുള്ള സേവനം (kpasswdserver) ബന്ധപ്പെടാൻ കഴിയാത്തതിനാൽ "
+#~ "പ്രവർത്തനം പൂർത്തിയാക്കാനായില്ല"
+
+#~ msgid ""
+#~ "Try restarting your session, or look in the logs for errors from kiod."
+#~ msgstr ""
+#~ "നിങ്ങളുടെ സെഷൻ പുനരാരംഭിക്കാൻ ശ്രമിക്കുക, അല്ലെങ്കിൽ kiod- ൽ നിന്നുള്ള പിശകുകൾക്കായി "
+#~ "ലോഗുകൾ നോക്കുക."
+
+#~ msgid "Cannot Initiate the %1 Protocol"
+#~ msgstr "%1 പ്രോട്ടോക്കോൾ ആരംഭിക്കാൻ കഴിഞ്ഞില്ല"
+
+#, fuzzy
+#~| msgid "Unable to Create io-slave"
+#~ msgid "Unable to Create KIO Worker"
+#~ msgstr "ഐഒ സ്ലേവ് നിര്‍മ്മിക്കാന്‍ കഴിഞ്ഞില്ല"
+
+#, fuzzy
+#~| msgid ""
+#~| "The program on your computer which provides access to the <strong>%1</"
+#~| "strong> protocol could not be found or started. This is usually due to "
+#~| "technical reasons."
+#~ msgid ""
+#~ "The KIO worker which provides access to the <strong>%1</strong> protocol "
+#~ "could not be started. This is usually due to technical reasons."
+#~ msgstr ""
+#~ "നിങ്ങളുടെ കമ്പ്യൂട്ടറിലെ <strong>%1</strong> പ്രോട്ടോക്കോളിലേക്ക് പ്രവേശനം നൽകുന്ന "
+#~ "പ്രോഗ്രാം കണ്ടെത്താനോ ആരംഭിക്കാനോ കഴിഞ്ഞില്ല. ഇത് സാധാരണയായി സാങ്കേതിക കാരണങ്ങളാൽ "
+#~ "സംഭവിക്കുന്നു."
+
+#~ msgctxt "@info"
+#~ msgid "Cannot transfer <filename>%1</filename>"
+#~ msgstr "<filename>%1</filename> കൈമാറാൻ കഴിഞ്ഞില്ല"
+
+#~ msgid "Undocumented Error"
+#~ msgstr "രേഖപ്പെടുത്താത്ത പിശക്"
+
+#~ msgid ""
+#~ "Malformed URL\n"
+#~ "%1"
+#~ msgstr ""
+#~ "തെറ്റായ URL\n"
+#~ "%1"
+
+#~ msgid "Opening connections is not supported with the protocol %1."
+#~ msgstr "സമ്പ്രദായം %1 ബന്ധം തുടങ്ങുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "Closing connections is not supported with the protocol %1."
+#~ msgstr "സമ്പ്രദായം %1 ബന്ധം അടക്കുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "Accessing files is not supported with the protocol %1."
+#~ msgstr "സമ്പ്രദായം %1 ഫയലുകള്‍ സ്വീകരിക്കുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "Writing to %1 is not supported."
+#~ msgstr "%1-ലേക്ക് എഴുതുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "There are no special actions available for protocol %1."
+#~ msgstr "%1 സമ്പ്രദായത്തിനു് പ്രത്യേക നടപടികളൊന്നും ലഭ്യമല്ല."
+
+#~ msgid "Listing folders is not supported for protocol %1."
+#~ msgstr "അറകള്‍ കാണിയ്ക്കുന്നതു് %1 സമ്പ്രദായം പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "Retrieving data from %1 is not supported."
+#~ msgstr "%1-ല്‍ നിന്നും വിവരങ്ങള്‍ വീണ്ടെടുക്കല്‍ പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "Retrieving mime type information from %1 is not supported."
+#~ msgstr "%1-ല്‍ നിന്നും മൈം പോലുള്ള വിവരങ്ങള്‍ വീണ്ടെടുക്കല്‍ പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "Renaming or moving files within %1 is not supported."
+#~ msgstr "ഫയലുകളുടെ പേര് മാറ്റുവാനോ %1 നകത്തു് ഫയലുകള്‍ നീക്കുന്നതിനോ പിന്തുണയില്ല."
+
+#~ msgid "Creating symlinks is not supported with protocol %1."
+#~ msgstr "%1 സമ്പ്രദായം സിംകണ്ണി നിര്‍മ്മിക്കുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "Copying files within %1 is not supported."
+#~ msgstr "%1-നുള്ളില്‍ ഫയലുകള്‍ പകര്‍ത്തുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "Deleting files from %1 is not supported."
+#~ msgstr "%1-ല്‍ നിന്നും ഫയലുകള്‍ വെട്ടിമാറ്റുവാനുള്ള പിന്തുണ ലഭ്യമല്ല."
+
+#~ msgid "Creating folders is not supported with protocol %1."
+#~ msgstr "ഫോള്‍ഡറുകള്‍ ഉണ്ടാക്കുന്നതിനുള്ള പിന്തുണ %1 സമ്പ്രദായം നല്‍കുന്നതല്ല."
+
+#~ msgid "Changing the attributes of files is not supported with protocol %1."
+#~ msgstr "ഫയലുകളുടെ വിശേഷണങ്ങള്‍ മാറ്റുന്നതിനെ %1 സമ്പ്രദായം പിന്തുണക്കുന്നില്ല."
+
+#~ msgid "Changing the ownership of files is not supported with protocol %1."
+#~ msgstr "ഫയലുകളുടെ ഉടമസ്ഥാവകാശം മാറ്റുന്നതിനെ %1 സമ്പ്രദായം പിന്തുണക്കുന്നില്ല."
+
+#~ msgid "Multiple get is not supported with protocol %1."
+#~ msgstr "ഒന്നിലധികം എടുക്കുന്നതിനുള്ള പിന്തുണ %1 സമ്പ്രദായം നല്‍കുന്നില്ല."
+
+#~ msgid "Opening files is not supported with protocol %1."
+#~ msgstr "ഫയലുകള്‍ തുറക്കുന്നതിനുള്ള പിന്തുണ %1 സമ്പ്രദായം നല്‍കുന്നതല്ല."
+
+#~ msgid "Protocol %1 does not support action %2."
+#~ msgstr "%2 നടപടി %1 സമ്പ്രദായം പിന്തുണക്കുന്നില്ല."
+
+#~ msgid ""
+#~ "You are about to leave secure mode. Transmissions will no longer be "
+#~ "encrypted.\n"
+#~ "This means that a third party could observe your data in transit."
+#~ msgstr ""
+#~ "നിങ്ങൾ സുരക്ഷിത രീതി ഉപേക്ഷിക്കാൻ പോവുകയാണ്. ട്രാൻസ്മിഷനുകൾ ഇനി എൻക്രിപ്റ്റ് ചെയ്യില്ല.\n"
+#~ "ഇതിനർത്ഥം ഒരു മൂന്നാം കക്ഷിക്ക് നിങ്ങളുടെ ഡാറ്റ ട്രാൻസിറ്റിൽ നിരീക്ഷിക്കാനാകുമെന്നാണ്."
+
+#~ msgid "Security Information"
+#~ msgstr "സുരക്ഷാ വിവരങ്ങള്‍"
+
+#~ msgid "C&ontinue Loading"
+#~ msgstr "ലോഡുചെയ്യുന്നത് തുടരുക (&O)"
+
+#~ msgctxt "%1 is a host name"
+#~ msgid "%1: SSL negotiation failed"
+#~ msgstr "%1: SSL ചർച്ച പരാജയപ്പെട്ടു"
+
+#~ msgid ""
+#~ "You are about to enter secure mode. All transmissions will be encrypted "
+#~ "unless otherwise noted.\n"
+#~ "This means that no third party will be able to easily observe your data "
+#~ "in transit."
+#~ msgstr ""
+#~ "നിങ്ങൾ സുരക്ഷിത മോഡിൽ പ്രവേശിക്കാൻ പോവുകയാണ്. മറ്റു സംപ്രേഷണങ്ങൾ മറ്റെന്തെങ്കിലും "
+#~ "സൂചിപ്പിച്ചില്ലെങ്കിൽ എൻക്രിപ്റ്റ് ചെയ്യും.\n"
+#~ "നിങ്ങളുടെ ഡാറ്റ ട്രാൻസിറ്റിൽ എളുപ്പത്തിൽ നിരീക്ഷിക്കാൻ ഒരു മൂന്നാം കക്ഷിക്കും കഴിയില്ല "
+#~ "എന്നാണ് ഇതിനർത്ഥം."
+
+#~ msgid "C&onnect"
+#~ msgstr "ബ&ന്ധിക്കുക"
+
+#~ msgid "Server Authentication"
+#~ msgstr "സര്‍വര്‍ ഉറപ്പാക്കല്‍"
+
+#~ msgid "&Details"
+#~ msgstr "&വിശദാംശങ്ങള്‍"
+
+#~ msgid "Co&ntinue"
+#~ msgstr "തു&ടരുക"
+
+#~ msgid "&Forever"
+#~ msgstr "&എന്നേക്കും"
+
+#~ msgid "&Current Session only"
+#~ msgstr "നിലവിലെ സെഷന് മാത്രം(&C)"
+
+#~ msgid "Unknown protocol '%1'."
+#~ msgstr "അജ്ഞാത പ്രോട്ടോക്കോൾ '%1'."
+
+#, fuzzy
+#~ msgid "Can not find a KIO worker for protocol '%1'."
+#~ msgstr "%1-ല്‍ പ്രവേശിക്കുവാന്‍ സോക്കറ്റ് നിര്‍മ്മിക്കാന്‍ സാധ്യമല്ല."
+
+#, fuzzy
+#~ msgid ""
+#~ "Can not create a socket for launching a KIO worker for protocol '%1'."
+#~ msgstr "%1-ല്‍ പ്രവേശിക്കുവാന്‍ സോക്കറ്റ് നിര്‍മ്മിക്കാന്‍ സാധ്യമല്ല."
+
+#, fuzzy
+#~ msgid "Can not find 'kioworker' executable at '%1'"
+#~ msgstr "%1-ല്‍ പ്രവേശിക്കുവാന്‍ സോക്കറ്റ് നിര്‍മ്മിക്കാന്‍ സാധ്യമല്ല."
+
+#~ msgid "You did not select a file to delete."
+#~ msgstr "വെട്ടിമാറ്റാനുള്ള ഫയല്‍ നിങ്ങള്‍ തിരഞ്ഞെടുത്തിട്ടില്ല."
+
+#~ msgid "Nothing to Delete"
+#~ msgstr "വെട്ടിമാറ്റാനൊന്നുമില്ല"
+
+#~ msgid "You did not select a file to trash."
+#~ msgstr "ചവറ്റുകുട്ടയിലിടാനുള്ള ഫയല്‍ നിങ്ങള്‍ തിരഞ്ഞെടുത്തിട്ടില്ല."
+
+#~ msgid "Nothing to Trash"
+#~ msgstr "ചവറ്റുകുട്ടയിലിടാന്‍ ഒന്നുമില്ല"
+
+#~ msgid "The specified folder does not exist or was not readable."
+#~ msgstr "പറഞ്ഞിരിക്കുന്ന ഫോള്‍ഡര്‍ നിലവിലില്ല അല്ലെങ്കില്‍ ലഭ്യമല്ല."
+
+#~ msgid "Menu"
+#~ msgstr "മെനു"
+
+#~ msgid "Parent Folder"
+#~ msgstr "പേരന്റ് ഫോള്‍ഡര്‍"
+
+#~ msgctxt "@info"
+#~ msgid "Go back"
+#~ msgstr "തിരികെ പോകുക"
+
+#~ msgctxt "@info"
+#~ msgid "Go forward"
+#~ msgstr "മുന്നോട്ട് പോകുക"
+
+#~ msgid "Home Folder"
+#~ msgstr "ഹോം ഫോള്‍ഡര്‍"
+
+#~ msgid "Reload"
+#~ msgstr "വീണ്ടും ലഭ്യമാക്കുക"
+
+#~ msgid "New Folder..."
+#~ msgstr "പുതിയ ഫോള്‍ഡര്‍..."
+
+#~ msgid "Move to Trash"
+#~ msgstr "ചവറ്റുകുട്ടയിലേക്കു് നീക്കുക"
+
+#~ msgid "Delete"
+#~ msgstr "വെട്ടിമാറ്റുക"
+
+#~ msgid "Sorting"
+#~ msgstr "ക്രമത്തിലാക്കുക"
+
+#~ msgid "Sort by Name"
+#~ msgstr "പേര് പ്രകാരം അടുക്കുക"
+
+#~ msgid "Sort by Size"
+#~ msgstr "വലുപ്പം പ്രകാരം അടുക്കുക"
+
+#~ msgid "Sort by Date"
+#~ msgstr "തീയതി പ്രകാരം അടുക്കുക"
+
+#~ msgid "Sort by Type"
+#~ msgstr "തരം പ്രകാരം അടുക്കുക"
+
+#~ msgid "Ascending"
+#~ msgstr "ആരോഹണം"
+
+#~ msgid "Descending"
+#~ msgstr "അവരോഹണം"
+
+#~ msgid "Folders First"
+#~ msgstr "അറകൾ ആദ്യം"
+
+#, fuzzy
+#~| msgid "Show Hidden Files"
+#~ msgid "Hidden Files Last"
+#~ msgstr "അദൃശ്യമായ ഫയലുകള്‍ കാണിക്കുക"
+
+#~ msgid "Icons View"
+#~ msgstr "ചിഹ്ന കാഴ്ച"
+
+#~ msgid "Compact View"
+#~ msgstr "ഒതുക്കമിള്ള കാഴ്ച"
+
+#~ msgid "Details View"
+#~ msgstr "വിശദമായ കാഴ്ച"
+
+#~ msgid "Icon Position"
+#~ msgstr "ചിഹ്ന സ്ഥാനം"
+
+#~ msgid "Next to File Name"
+#~ msgstr "ഫയലിന്റെ പേരിന് അടുത്തായി"
+
+#~ msgid "Above File Name"
+#~ msgstr "ഫയലിന്റെ പേരിന് മുകളിൽ"
+
+#~ msgid "Short View"
+#~ msgstr "ലഘുകാഴ്ച"
+
+#~ msgid "Detailed View"
+#~ msgstr "വിശദമായ കാഴ്ച"
+
+#~ msgid "Tree View"
+#~ msgstr "ട്രീ കാഴ്ച"
+
+#~ msgid "Detailed Tree View"
+#~ msgstr "വിശദമായ ട്രീ കാഴ്ച"
+
+#~ msgid "Allow Expansion in Details View"
+#~ msgstr "വിശദാംശ കാഴ്ചയിൽ വിപുലീകരണം അനുവദിക്കുക"
+
+#~ msgid "Show Hidden Files"
+#~ msgstr "അദൃശ്യമായ ഫയലുകള്‍ കാണിക്കുക"
+
+#~ msgid "Show Preview Panel"
+#~ msgstr "പൂർവ്വദൃശ്യ പാനൽ കാണിക്കുക"
+
+#~ msgid "Show Preview"
+#~ msgstr "അച്ചടിക്കുന്നതിനുമുമ്പ് കണ്ടുനോക്കുക"
+
+#~ msgid "Open Containing Folder"
+#~ msgstr "അടങ്ങുന്ന അറ തുറക്കുക"
+
+#~ msgid "Properties"
+#~ msgstr "ഗുണഗണങ്ങൾ"
+
+#, fuzzy
+#~| msgid "&View"
+#~ msgid "&View Mode"
+#~ msgstr "കാഴ്ച (&V)"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Z-A"
+#~ msgstr "Z-A"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "A-Z"
+#~ msgstr "A-Z"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Newest First"
+#~ msgstr "പുതിയവ ആദ്യം"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "Oldest First"
+#~ msgstr "പഴയവ ആദ്യം"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Largest First"
+#~ msgstr "വലുത് ആദ്യം"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "Smallest First"
+#~ msgstr "ചെറുത് ആദ്യം"
+
+#~ msgid "Encoding:"
+#~ msgstr "എൻകോഡിംഗ്:"
+
+#~ msgid "Open"
+#~ msgstr "തുറക്കുക"
+
+#~ msgid "Save As"
+#~ msgstr "സേവ് ആസ്"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Copy To"
+#~ msgstr "ഇതിലേക്ക് പകർത്തുക"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Move To"
+#~ msgstr "ഇതിലേക്ക് നീക്കുക"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Home Folder"
+#~ msgstr "ഹോം അറ"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Root Folder"
+#~ msgstr "റൂട്ട് അറ"
+
+#~ msgctxt "@title:menu in Copy To or Move To submenu"
+#~ msgid "Browse..."
+#~ msgstr "ബ്രൗസ് ചെയ്യുക..."
+
+#~ msgctxt "@title:menu"
+#~ msgid "Copy Here"
+#~ msgstr "ഇവിടെ പകർത്തുക"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Move Here"
+#~ msgstr "ഇവിടെ നീക്കുക"
+
+#~ msgctxt "Default mime type filter that shows all file types"
+#~ msgid "*|All Files"
+#~ msgstr "*|എല്ലാ ഫയലുകളും"
+
+#~ msgctxt "%1 is the mimetype name, %2 is the extensions"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "All Supported Files"
+#~ msgstr "പിന്തുണയ്ക്കുന്ന എല്ലാ ഫയലുകളും"
+
+#~ msgid "All Files"
+#~ msgstr "എല്ലാ ഫയലുകളും"
+
+#~ msgid "Add Places Entry"
+#~ msgstr "സ്ഥലങ്ങള്‍ക്കുള്ള എന്‍ട്രിയില്‍ ചേർക്കുക"
+
+#~ msgid "Edit Places Entry"
+#~ msgstr "സ്ഥലങ്ങള്‍ക്കുള്ള എന്‍ട്രിയില്‍ മാറ്റം വരുത്തുക"
+
+#~ msgid "L&abel:"
+#~ msgstr "ലേബൽ: (&A)"
+
+#~ msgid "Enter descriptive label here"
+#~ msgstr "വിവരണാത്മക ലേബൽ ഇവിടെ നൽകുക"
+
+#~ msgid "&Location:"
+#~ msgstr "സ്ഥാനം: (&L)"
+
+#~ msgid "Choose an &icon:"
+#~ msgstr "ഒരു &ചിഹ്നം തിരഞ്ഞെടുക്കുക:"
+
+#~ msgid "&Only show when using this application (%1)"
+#~ msgstr "ഈ പ്രയോഗം ഉപയോഗിക്കുമ്പോള്‍ &മാത്രം കാണിക്കുക (%1)"
+
+#~ msgctxt "@item"
+#~ msgid "Places"
+#~ msgstr "സ്ഥലങ്ങൾ"
+
+#~ msgctxt "@item"
+#~ msgid "Remote"
+#~ msgstr "വിദൂരം"
+
+#~ msgctxt "@item The place group section name for recent dynamic lists"
+#~ msgid "Recent"
+#~ msgstr "സമീപകാല"
+
+#~ msgctxt "@item"
+#~ msgid "Search For"
+#~ msgstr "ഇതിനായി തിരയുക"
+
+#~ msgctxt "@item"
+#~ msgid "Devices"
+#~ msgstr "ഉപകരണങ്ങൾ"
+
+#~ msgctxt "@item"
+#~ msgid "Removable Devices"
+#~ msgstr "നീക്കം ചെയ്യാവുന്ന ഉപകരണങ്ങൾ"
+
+#~ msgctxt "@item"
+#~ msgid "Tags"
+#~ msgstr "ടാഗുകൾ"
+
+#, fuzzy
+#~| msgid "All tags"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "All tags"
+#~ msgstr "എല്ലാ ടാഗുകളും"
+
+#, fuzzy
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Home"
+#~ msgstr "ഹോം"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Desktop"
+#~ msgstr "ഡെസ്ക്ടോപ്പ്"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Documents"
+#~ msgstr "രേഖകൾ"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Downloads"
+#~ msgstr "ഡൗൺലോഡുകൾ"
+
+#, fuzzy
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Network"
+#~ msgstr "നെറ്റ്‌വര്‍ക്ക്"
+
+#, fuzzy
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Trash"
+#~ msgstr "ചവറ്റുകുട്ട"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Music"
+#~ msgstr "സംഗീതം"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Pictures"
+#~ msgstr "ചിത്രങ്ങൾ"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Videos"
+#~ msgstr "വീഡിയോകൾ"
+
+#, fuzzy
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Files"
+#~ msgstr "ഫയലുകള്‍ വെട്ടിമാറ്റുക"
+
+#, fuzzy
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Locations"
+#~ msgstr "ശരിയായ തിരിച്ചറിയല്‍:"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Today"
+#~ msgstr "ഇന്ന് പരിഷ്ക്കരിച്ചു"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Yesterday"
+#~ msgstr "ഇന്നലെ പരിഷ്ക്കരിച്ചു"
+
+#, fuzzy
+#~| msgid "Could not find the program '%1'"
+#~ msgctxt "Placeholder is error message"
+#~ msgid "Could not add to the Places panel: %1"
+#~ msgstr "'%1' പ്രമേയം കണ്ടെത്താനായില്ല"
+
+#, fuzzy
+#~| msgid "A folder cannot be moved into itself"
+#~ msgid "Only folders can be added to the Places panel."
+#~ msgstr "ഒരു അറ അതിലേക്ക് നീക്കാൻ കഴിയില്ല"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "Releasing…"
+#~ msgstr "'%1' &സുരക്ഷിതമായി നീക്കം ചെയ്യുക"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Release"
+#~ msgstr "'%1' &സുരക്ഷിതമായി നീക്കം ചെയ്യുക"
+
+#, fuzzy
+#~| msgid "&Safely Remove '%1'"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Safely Removing…"
+#~ msgstr "'%1' &സുരക്ഷിതമായി നീക്കം ചെയ്യുക"
+
+#, fuzzy
+#~| msgid "&Safely Remove '%1'"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Safely Remove"
+#~ msgstr "'%1' &സുരക്ഷിതമായി നീക്കം ചെയ്യുക"
+
+#, fuzzy
+#~| msgctxt "@title job"
+#~| msgid "Unmounting"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Unmounting…"
+#~ msgstr "അണ്‍മൌണ്ടു് ചെയ്യുന്നു"
+
+#, fuzzy
+#~| msgctxt "@title job"
+#~| msgid "Unmounting"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Unmount"
+#~ msgstr "അണ്‍മൌണ്ടു് ചെയ്യുന്നു"
+
+#, fuzzy
+#~| msgid "&Reject"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Eject"
+#~ msgstr "നിരസിക്കുക (&R)"
+
+#~ msgid "The device '%1' is not a disk and cannot be ejected."
+#~ msgstr "'%1' ഉപകരണം ഒരു ഡിസ്ക് അല്ല, അതുകൊണ്ട് പുറന്തള്ളാൻ കഴിയില്ല."
+
+#~ msgid "An error occurred while accessing '%1'"
+#~ msgstr "'%1' ലഭ്യമാക്കുമ്പോള്‍ ഒരു പിശകു് സംഭവിച്ചിരിക്കുന്നു"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Empty Trash"
+#~ msgstr "ചവറ്റുക്കുട്ട ശൂന്യമാക്കുക"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "Mount"
+#~ msgstr "മൌണ്ടു് ചെയ്യുന്നു"
+
+#, fuzzy
+#~| msgid "Add Places Entry"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Add Entry…"
+#~ msgstr "സ്ഥലങ്ങള്‍ക്കുള്ള എന്‍ട്രിയില്‍ ചേർക്കുക"
+
+#, fuzzy
+#~| msgid "Edit"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Edit…"
+#~ msgstr "മാറ്റം വരുത്തുക"
+
+#, fuzzy
+#~| msgctxt "@item"
+#~| msgid "Remote"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Remove"
+#~ msgstr "വിദൂരം"
+
+#, fuzzy
+#~| msgid "Hide Section"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section '%1'"
+#~ msgstr "വിഭാഗം മറയ്ക്കുക"
+
+#, fuzzy
+#~| msgid "Hide Section"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section"
+#~ msgstr "വിഭാഗം മറയ്ക്കുക"
+
+#, fuzzy
+#~ msgctxt "@item:inmenu"
+#~ msgid "Icon Size"
+#~ msgstr "ലഘുകാഴ്ച"
+
+#, fuzzy
+#~ msgctxt ""
+#~ "@item:inmenu Auto set icon size based on available space inthe Places "
+#~ "side-panel"
+#~ msgid "Auto Resize"
+#~ msgstr "തനിയെ &കണ്ടുപിടിക്കുക"
+
+#~ msgctxt "Small icon size"
+#~ msgid "Small (%1x%1)"
+#~ msgstr "ചെറുത് (%1x%1)"
+
+#~ msgctxt "Medium icon size"
+#~ msgid "Medium (%1x%1)"
+#~ msgstr "ഇടത്തരം (%1x%1)"
+
+#~ msgctxt "Large icon size"
+#~ msgid "Large (%1x%1)"
+#~ msgstr "വലുത് (%1x%1)"
+
+#~ msgctxt "Huge icon size"
+#~ msgid "Huge (%1x%1)"
+#~ msgstr "വളരെ വലുത് (%1x%1)"
+
+#, fuzzy
+#~ msgid "You can only select one file"
+#~ msgstr "%1 ഫയല്‍ വെട്ടിമാറ്റുവാനായില്ല."
+
+#, fuzzy
+#~ msgid "You can only select local files"
+#~ msgstr "ചവറ്റുകുട്ടയിലിടാനുള്ള ഫയല്‍ നിങ്ങള്‍ തിരഞ്ഞെടുത്തിട്ടില്ല."
+
+#, fuzzy
+#~ msgid "Files and folders selected"
+#~ msgstr "പ്രതീക്ഷിച്ചതു് ഒരു ഫോള്‍ഡറായിരുന്നു, എന്നാല്‍ %1 ഒരു ഫയലാണു്."
+
+#~ msgid "Options"
+#~ msgstr "ഓപ്ഷനുകൾ"
+
+#~ msgid "Bookmarks"
+#~ msgstr "ബുക്ക്മാർക്കുകൾ"
+
+#~ msgid "&Name:"
+#~ msgstr "പേര്: (&N)"
+
+#~ msgid "This is the name of the file to open."
+#~ msgstr "ഇതാണു് തുറക്കുവാനുള്ള ഫയല്‍."
+
+#~ msgctxt "@title:window"
+#~ msgid "Places"
+#~ msgstr "സ്ഥലങ്ങൾ"
+
+#~ msgid "Overwrite File?"
+#~ msgstr "ഫയൽ തിരുത്തിഎഴുത്തുക ?"
+
+#~ msgid "&Open"
+#~ msgstr "തുറക്കുക (&O)"
+
+#, fuzzy
+#~ msgid "&File type:"
+#~ msgstr "സ്ഥലങ്ങള്‍ക്കുള്ള എന്‍ട്രിയില്‍ മാറ്റം വരുത്തുക"
+
+#~ msgid "&Filter:"
+#~ msgstr "അരിപ്പ: (&F)"
+
+#~ msgid "Sorry"
+#~ msgstr "ക്ഷമിക്കണം"
+
+#, fuzzy
+#~ msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
+#~ msgstr "%1 ഫയല്‍ അല്ലെങ്കില്‍ ഫോള്‍ഡര്‍ നിലവിലില്ല."
+
+#, fuzzy
+#~ msgid "Create link to URL"
+#~ msgstr "വിശദമായ കാഴ്ച"
+
+#~ msgctxt "@item:inmenu Create New"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#, fuzzy
+#~| msgid "An older item named '%1' already exists."
+#~ msgctxt "@info"
+#~ msgid "A directory with name <filename>%1</filename> already exists."
+#~ msgstr "'%1' എന്ന പേരില്‍ പഴയൊരു വസ്തു നിലവിലുണ്ടു്."
+
+#, fuzzy
+#~| msgid "A file named %1 already exists."
+#~ msgctxt "@info"
+#~ msgid "A file with name <filename>%1</filename> already exists."
+#~ msgstr "%1 എന്ന പേരില്‍ ഫയല്‍ നിലവിലുണ്ടു്."
+
+#, fuzzy
+#~ msgid "Create New"
+#~ msgstr "വിശദമായ കാഴ്ച"
+
+#, fuzzy
+#~ msgid "Link to Device"
+#~ msgstr "ഡിവൈസ്"
+
+#, fuzzy
+#~ msgctxt "Default name for a new folder"
+#~ msgid "New Folder"
+#~ msgstr "പുതിയ ഫോള്‍ഡര്‍"
+
+#, fuzzy
+#~ msgid "Create new folder in %1:"
+#~ msgstr ""
+#~ "ഇവിടെ പുതിയ ഫോള്‍ഡര്‍ ഉണ്ടാക്കുക:\n"
+#~ "%1"
+
+#~ msgid "Copy"
+#~ msgstr "പകര്‍ത്തുക"
+
+#~ msgid "Paste"
+#~ msgstr "ഒട്ടിക്കുക"
+
+#~ msgid "Edit"
+#~ msgstr "മാറ്റം വരുത്തുക"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "More"
+#~ msgstr "കൂടുതൽ"
+
+#, fuzzy
+#~ msgctxt "@item:inmenu"
+#~ msgid "Devices"
+#~ msgstr "ഡിവൈസ്"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Subversion"
+#~ msgstr "അട്ടിമറിക്കൽ"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Other"
+#~ msgstr "മറ്റുള്ളവ"
+
+#, fuzzy
+#~ msgid "Edit mode"
+#~ msgstr "മാറ്റം വരുത്തുക"
+
+#~ msgid "Click to Edit Location"
+#~ msgstr "സ്ഥാനത്തില്‍ മാറ്റം വരുത്തുന്നതിനായി ക്ലിക്കു് ചെയ്യുക"
+
+#, fuzzy
+#~ msgid ""
+#~ "Unable to make file \"%1\" executable.\n"
+#~ "%2."
+#~ msgstr "%1 ഫയല്‍ അല്ലെങ്കില്‍ ഫോള്‍ഡര്‍ നിലവിലില്ല."
+
+#, fuzzy
+#~ msgid "Upload"
+#~ msgstr "വീണ്ടും ലഭ്യമാക്കുക"
+
+#, fuzzy
+#~ msgid "Invalid URL: %1"
+#~ msgstr "തെറ്റായ യുആര്‍എല്‍ %1."
+
+#, fuzzy
+#~ msgid "File not found: %1"
+#~ msgstr "%1 കൂട്ടി ചേ൪ക്കാന്‍  സാധ്യമായില്ല"
+
+#, fuzzy
+#~ msgid "Do Not Delete"
+#~ msgstr "വെട്ടിമാറ്റാനൊന്നുമില്ല"
+
+#, fuzzy
+#~ msgid "Remove File"
+#~ msgstr "ഫയലുകള്‍ വെട്ടിമാറ്റുക"
+
+#, fuzzy
+#~ msgid "Remove Directory"
+#~ msgstr "ഡയറക്ടറി"
+
+#, fuzzy
+#~ msgid "Create Directory"
+#~ msgstr "ഡയറക്ടി ഉണ്ടാക്കുന്നു"
+
+#, fuzzy
+#~ msgid "Open File"
+#~ msgstr "1 ഫയല്‍"
+
+#, fuzzy
+#~ msgid "Open Directory"
+#~ msgstr "ഡയറക്ടറി"
+
+#, fuzzy
+#~ msgid "Unknown Action"
+#~ msgstr "അപരിചിതമായ ഹോസ്റ്റ്"
+
+#, fuzzy
+#~ msgid "%1 (Error %2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "Site:"
+#~ msgstr "സൈറ്റ്:"
+
+#~ msgid "<b>%1</b>"
+#~ msgstr "<b>%1</b>"
+
+#~ msgid "Proxy:"
+#~ msgstr "പ്രോക്സി:"
+
+#, fuzzy
+#~ msgid "There is no documentation available for %1."
+#~ msgstr "%1 സമ്പ്രദായത്തിനു് പ്രത്യേക നടപടികളൊന്നും ലഭ്യമല്ല."
+
+#, fuzzy
+#~ msgid "The requested help file could not be parsed:<br />%1"
+#~ msgstr "അപേക്ഷിച്ച സമ്പ്രദായത്തിനു് പിന്തുണയുണ്ടാകണമെന്നില്ല."
+
+#, fuzzy
+#~ msgid "Could not find filename %1 in %2."
+#~ msgstr "%1 ഫയല്‍ ലഭ്യമാക്കുവാന്‍ സാധ്യമായില്ല."
+
+#, fuzzy
+#~ msgctxt "%1: code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "'%1' ലഭ്യമാക്കുമ്പോള്‍ ഒരു പിശകു് സംഭവിച്ചിരിക്കുന്നു"
+
+#, fuzzy
+#~ msgid "Could not remove %1, check permissions"
+#~ msgstr ""
+#~ "%1 സിംകണ്ണി നിര്‍മ്മിക്കാന്‍ സാധ്യമല്ല.\n"
+#~ "ദയവായി അനുമതികള്‍ പരിശോധിക്കുക."
+
+#, fuzzy
+#~ msgid "Could not create directory %1"
+#~ msgstr "%1 തുറക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "&Accept"
+#~ msgstr "സ്വീകരിക്കുക (&A)"
+
+#~ msgid "&Reject"
+#~ msgstr "നിരസിക്കുക (&R)"
+
+#~ msgctxt ""
+#~ "@label a description string of how 'accessible' the cookie is (e.g. see "
+#~ "exposure string in this file)"
+#~ msgid "Exposure:"
+#~ msgstr "പ്രകാശനം:"
+
+#, fuzzy
+#~| msgid "No hostname specified."
+#~ msgctxt "@label cookie has no explicit 'Domain' value specified"
+#~ msgid "Not specified"
+#~ msgstr "ഹോസ്റ്റ്നാമം നല്‍കിയിട്ടില്ല."
+
+#, fuzzy
+#~| msgid "End of session"
+#~ msgctxt "@label the cookie expires when the browser session ends"
+#~ msgid "End of Session"
+#~ msgstr "സെഷനിന്റെ അന്ത്യം"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by http servers"
+#~ msgid "Servers"
+#~ msgstr "സെർവറുകൾ"
+
+#, fuzzy
+#~| msgid "Details"
+#~ msgctxt ""
+#~ "@action:button show details about a cookie that needs approval. This "
+#~ "string gets >> and << appended, to visualize if the dialog expands or "
+#~ "compacts!"
+#~ msgid "Details"
+#~ msgstr "വിശദാംശങ്ങള്‍"
+
+#, fuzzy
+#~ msgid "Network"
+#~ msgstr "നെറ്റ്‌വര്‍ക്ക്"
+
+#, fuzzy
+#~ msgid "Malformed URL %1"
+#~ msgstr "തെറ്റായ യുആര്‍എല്‍ %1."
+
+#, fuzzy
+#~ msgid "not supported"
+#~ msgstr "%1-ലേക്ക് എഴുതുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#, fuzzy
+#~ msgid "Internal error in copyOrMove, should never happen"
+#~ msgstr ""
+#~ "സര്‍വറില്‍ ആന്തരിക പിശകു്\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgid "Do you want to retry?"
+#~ msgstr "നിങ്ങള്‍ക്കു് ഈ വസ്തു വെട്ടിമാറ്റണമോ?"
+
+#, fuzzy
+#~ msgid "Retry Authentication"
+#~ msgstr "സര്‍വര്‍ ഉറപ്പാക്കല്‍"
+
+#~ msgctxt "@action:button filter-continue"
+#~ msgid "Retry"
+#~ msgstr "വീണ്ടും ശ്രമിക്കുക"
+
+#, fuzzy
+#~ msgid "Authentication Dialog"
+#~ msgstr "സര്‍വര്‍ ഉറപ്പാക്കല്‍"
+
+#, fuzzy
+#~ msgid "Access denied"
+#~ msgstr "%1-ലേക്കുള്ള പ്രവേശനം നിഷേധിച്ചിരിക്കുന്നു."
+
+#, fuzzy
+#~ msgid "<qt><b>%1</b> does not have a home folder.</qt>"
+#~ msgstr "%1 ഫയല്‍ അല്ലെങ്കില്‍ ഫോള്‍ഡര്‍ നിലവിലില്ല."
+
+#, fuzzy
+#~| msgid "&Domain name:"
+#~ msgid "Common name:"
+#~ msgstr "&ഡൊമെയ്നു് പേരു്:"
+
+#, fuzzy
+#~ msgid "Organization:"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#, fuzzy
+#~ msgid "Organizational unit:"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#~ msgid "Country:"
+#~ msgstr "രാജ്യം:"
+
+#~ msgid "Canada"
+#~ msgstr "കാനഡ"
+
+#~ msgid "State:"
+#~ msgstr "സംസ്ഥാനം:"
+
+#~ msgid "Quebec"
+#~ msgstr "ക്യൂബെക്ക്"
+
+#~ msgid "City:"
+#~ msgstr "നഗരം:"
+
+#~ msgid "MD5:"
+#~ msgstr "MD5:"
+
+#~ msgid "SHA1:"
+#~ msgstr "SHA1:"
+
+#~ msgid "SHA256:"
+#~ msgstr "SHA256:"
+
+#~ msgid "SHA512:"
+#~ msgstr "SHA512:"
+
+#~ msgid "Calculate"
+#~ msgstr "കണക്കുകൂട്ടുക"
+
+#~ msgid "C&ancel"
+#~ msgstr "റദ്ദാക്കുക (&A)"
+
+#~ msgid "&Execute"
+#~ msgstr "പ്രവർത്തിപ്പിക്കുക (&E)"
+
+#~ msgid "Moving"
+#~ msgstr "നീക്കുന്നു"
+
+#, fuzzy
+#~| msgid "Rename"
+#~ msgid "Renaming"
+#~ msgstr "പേരു് മാറ്റുക"
+
+#~ msgid "Deleting"
+#~ msgstr "നീക്കം ചെയ്യുന്നു"
+
+#, fuzzy
+#~ msgid "Und&o: Create Folder(s)"
+#~ msgstr "ഫയല്‍ &ഒട്ടിക്കുക"
+
+#, fuzzy
+#~ msgid "Und&o: Create File"
+#~ msgstr "ഫയല്‍ &ഒട്ടിക്കുക"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to move this item to the Trash?<nl/><filename>%1</"
+#~ "filename>"
+#~ msgstr ""
+#~ "ഈ ഫയൽ ചവറ്റുകുട്ടയിലേക്കു് നീക്കാൻ നിങ്ങൾ ശരിക്കും ആഗ്രഹിക്കുന്നുണ്ടോ?<nl/><filename>%1</"
+#~ "filename>"
+
+#, fuzzy
+#~ msgid "Do you really want to move this item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] "നിങ്ങള്‍ക്കു് ഈ വസ്തു ചവറ്റുകുട്ടയിലേക്കു് നീക്കണമോ?"
+#~ msgstr[1] "നിങ്ങള്‍ക്കു് ഈ വസ്തു ചവറ്റുകുട്ടയിലേക്കു് നീക്കണമോ?"
+
+#~ msgid "SSL"
+#~ msgstr "എസ്എസ്എല്‍"
+
+#, fuzzy
+#~| msgid "Edit"
+#~ msgctxt "@action:button"
+#~ msgid "Edit..."
+#~ msgstr "മാറ്റം വരുത്തുക"
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action:button"
+#~ msgid "Delete"
+#~ msgstr "വെട്ടിമാറ്റുക"
+
+#~ msgctxt "Unix permissions"
+#~ msgid "Owner"
+#~ msgstr "ഉടമ"
+
+#, fuzzy
+#~ msgctxt "UNIX permissions"
+#~ msgid "Owning Group"
+#~ msgstr "ഡൊമെയ്നു് [കൂട്ടം]"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Others"
+#~ msgstr "മറ്റുള്ളവർ"
+
+#~ msgid "Owner"
+#~ msgstr "ഉടമ"
+
+#~ msgid "Others"
+#~ msgstr "മറ്റുള്ളവർ"
+
+#~ msgid "User: "
+#~ msgstr "ഉപയോക്താവ്: "
+
+#~ msgid "Group: "
+#~ msgstr "കൂട്ടം: "
+
+#~ msgid "Type"
+#~ msgstr "തരം"
+
+#~ msgid "Name"
+#~ msgstr "പേര്"
+
+#~ msgctxt "read permission"
+#~ msgid "r"
+#~ msgstr "r"
+
+#~ msgctxt "write permission"
+#~ msgid "w"
+#~ msgstr "w"
+
+#~ msgctxt "execute permission"
+#~ msgid "x"
+#~ msgstr "x"
+
+#~ msgid "Updating System Configuration"
+#~ msgstr "സിസ്റ്റത്തിന്റെ ക്രമീകരണം പരിഷ്കരിക്കുന്നു"
+
+#~ msgid "Updating system configuration."
+#~ msgstr "സിസ്റ്റത്തിന്റെ ക്രമീകരണം പരിഷ്കരിക്കുന്നു."
+
+#~ msgctxt "@title:column"
+#~ msgid "Name"
+#~ msgstr "പേര്"
+
+#~ msgctxt "@title:column"
+#~ msgid "Size"
+#~ msgstr "വലുപ്പം"
+
+#~ msgctxt "@title:column"
+#~ msgid "Date"
+#~ msgstr "തീയതി"
+
+#~ msgctxt "@title:column"
+#~ msgid "Permissions"
+#~ msgstr "അനുമതികൾ"
+
+#~ msgctxt "@title:column"
+#~ msgid "Owner"
+#~ msgstr "ഉടമ"
+
+#~ msgctxt "@title:column"
+#~ msgid "Group"
+#~ msgstr "കൂട്ടം"
+
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "തരം"
+
+#~ msgctxt "@item:inmenu Open With, %1 is application name"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#, fuzzy
+#~| msgid "New Folder..."
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With..."
+#~ msgstr "പുതിയ ഫോള്‍ഡര്‍..."
+
+#, fuzzy
+#~ msgid "&Open folder with %1"
+#~ msgstr ""
+#~ "ഇവിടെ പുതിയ ഫോള്‍ഡര്‍ ഉണ്ടാക്കുക:\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With"
+#~ msgstr "1 ഫയല്‍"
+
+#~ msgctxt "Items in a folder"
+#~ msgid "1 item"
+#~ msgid_plural "%1 items"
+#~ msgstr[0] "1 വസ്തു"
+#~ msgstr[1] "%1 വസ്തുക്കള്‍"
+
+#~ msgctxt "@info mimetype"
+#~ msgid "Unknown"
+#~ msgstr "അപരിചിതം"
+
+#, fuzzy
+#~| msgctxt "@title job"
+#~| msgid "Mounting"
+#~ msgid "Mounted From:"
+#~ msgstr "മൌണ്ടു് ചെയ്യുന്നു"
+
+#, fuzzy
+#~| msgctxt "Space as keyword delimiter"
+#~| msgid "Space"
+#~ msgid "Free Space:"
+#~ msgstr "സ്പേസ്"
+
+#, fuzzy
+#~| msgid "Type"
+#~ msgid "Type:"
+#~ msgstr "തരം"
+
+#, fuzzy
+#~| msgid "C&hange..."
+#~ msgid "Change..."
+#~ msgstr "&മാറ്റുക..."
+
+#, fuzzy
+#~ msgid "Content:"
+#~ msgstr "തു&ടരുക"
+
+#, fuzzy
+#~| msgctxt "KFile System Bookmarks"
+#~| msgid "Modified Today"
+#~ msgid "Modified:"
+#~ msgstr "ഇന്ന് പരിഷ്ക്കരിച്ചു"
+
+#, fuzzy
+#~ msgid "Created:"
+#~ msgstr "വിശദമായ കാഴ്ച"
+
+#, fuzzy
+#~ msgid "File System:"
+#~ msgstr "സ്ഥലങ്ങള്‍ക്കുള്ള എന്‍ട്രിയില്‍ മാറ്റം വരുത്തുക"
+
+#, fuzzy
+#~ msgid "Unknown size"
+#~ msgstr "അപരിചിതമായ ഹോസ്റ്റ്"
+
+#, fuzzy
+#~| msgctxt "@title job"
+#~| msgid "Mounting"
+#~ msgid "Mounted On:"
+#~ msgstr "മൌണ്ടു് ചെയ്യുന്നു"
+
+#, fuzzy
+#~| msgid "Access Denied"
+#~ msgid "Accessed:"
+#~ msgstr "പ്രവേശനം തടയപ്പെട്ടു"
+
+#, fuzzy
+#~ msgid "Open With:"
+#~ msgstr "1 ഫയല്‍"
+
+#, fuzzy
+#~ msgid "Terminal options"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#, fuzzy
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options about the "
+#~ "terminal when launching a program"
+#~ msgid "Terminal"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#, fuzzy
+#~ msgid "Terminal options:"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#, fuzzy
+#~| msgid "User: "
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose which user to use "
+#~ "when launching a program"
+#~ msgid "User"
+#~ msgstr "ഉപയോക്താവ്: "
+
+#~ msgid "Username:"
+#~ msgstr "ഉപയോക്താവിന്റെ പേരു്:"
+
+#, fuzzy
+#~ msgid "&Description:"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#, fuzzy
+#~ msgid "Comm&ent:"
+#~ msgstr "തു&ടരുക"
+
+#, fuzzy
+#~| msgid "Use preset proxy environment &variables"
+#~ msgid "Environment Variables:"
+#~ msgstr "നേരത്തേ സജ്ജീകരിച്ച പ്രോക്സി പരിസ്ഥിതി വേരിയബിളുകള്‍ ഉപയോഗിക്കുക"
+
+#, fuzzy
+#~| msgctxt "@title:menu in Copy To or Move To submenu"
+#~| msgid "Browse..."
+#~ msgid "&Browse..."
+#~ msgstr "ബ്രൗസ് ചെയ്യുക..."
+
+#, fuzzy
+#~| msgctxt "KFile System Bookmarks"
+#~| msgid "Documents"
+#~ msgid "&Arguments:"
+#~ msgstr "രേഖകൾ"
+
+#, fuzzy
+#~ msgid "&Supported file types:"
+#~ msgstr "സ്ഥലങ്ങള്‍ക്കുള്ള എന്‍ട്രിയില്‍ മാറ്റം വരുത്തുക"
+
+#, fuzzy
+#~ msgid "Mimetype"
+#~ msgstr "സ്ഥലങ്ങള്‍ക്കുള്ള എന്‍ട്രിയില്‍ മാറ്റം വരുത്തുക"
+
+#, fuzzy
+#~ msgid "Description"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#, fuzzy
+#~| msgctxt "@item"
+#~| msgid "Remote"
+#~ msgid "Remove"
+#~ msgstr "വിദൂരം"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not save properties due to insufficient write access to:<nl/"
+#~ "><filename>%1</filename>."
+#~ msgstr ""
+#~ "<nl/><filename>%1</filename> ലേക്ക് എഴുത്ത് അനുവാദം ഇല്ലാത്തത് കൊണ്ട് വരുത്തിയ മാറ്റം "
+#~ "സംരക്ഷിക്കാൻ കഴിഞ്ഞില്ല."
+
+#, fuzzy
+#~ msgid "%1:"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~ msgctxt "@info:status"
+#~ msgid "Unknown size"
+#~ msgstr "അപരിചിതമായ ഹോസ്റ്റ്"
+
+#, fuzzy
+#~ msgid "No registered file type"
+#~ msgstr "സ്ഥലങ്ങള്‍ക്കുള്ള എന്‍ട്രിയില്‍ മാറ്റം വരുത്തുക"
+
+#, fuzzy
+#~ msgctxt "@action:button Create new file type"
+#~ msgid "Create…"
+#~ msgstr "വിശദമായ കാഴ്ച"
+
+#, fuzzy
+#~| msgid "C&hange..."
+#~ msgctxt "@action:button"
+#~ msgid "Change…"
+#~ msgstr "&മാറ്റുക..."
+
+#, fuzzy
+#~ msgctxt "%1, using %2 bits of a %3 bit key"
+#~ msgid "%1, %2 %3"
+#~ msgstr "%1 (%2, %3)"
+
+#, fuzzy
+#~ msgctxt "The certificate is trusted"
+#~ msgid "Yes"
+#~ msgstr "&ഉവ്വു്"
+
+#, fuzzy
+#~ msgctxt "%1 is the effective date of the certificate, %2 is the expiry date"
+#~ msgid "%1 to %2"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~ msgid "Configure Web Shortcuts..."
+#~ msgstr "നയം മാറ്റുക..."
+
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Folder"
+#~ msgstr "ഒരു ഫോള്‍ഡര്‍"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One File"
+#~ msgstr "ഫയല്‍ &ഒട്ടിക്കുക"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Item"
+#~ msgid_plural "Paste %1 Items"
+#~ msgstr[0] "ഒരു വസ്തു"
+#~ msgstr[1] "%1 വസ്തുക്കള്‍"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste Clipboard Contents..."
+#~ msgstr "ക്ലിപ്ബോര്‍ഡിലുള്ളവ &ഒട്ടിക്കുക"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste"
+#~ msgstr "ഒട്ടിക്കുക"
+
+#~ msgid "Data format:"
+#~ msgstr "ഡേറ്റാ രീതി:"
+
+#~ msgid "&Rename"
+#~ msgstr "&പേരു് മാറ്റുക"
+
+#~ msgid "Suggest New &Name"
+#~ msgstr "പുതിയ &പേരു് നിര്‍ദ്ദേശിക്കുക"
+
+#, fuzzy
+#~ msgctxt "Overwrite files into an existing folder when files are older"
+#~ msgid "&Overwrite older files"
+#~ msgstr "എല്ലാം മാറ്റി&യെഴുതുക"
+
+#~ msgid "&Resume"
+#~ msgstr "&വീണ്ടും ആരംഭിക്കുക"
+
+#~ msgid ""
+#~ "This action would overwrite '%1' with itself.\n"
+#~ "Please enter a new file name:"
+#~ msgstr ""
+#~ "ഇങ്ങനെ ചെയ്താല്‍ '%1' ഉപയോഗിച്ചു തന്നെ അതിനെ മാറ്റിയെഴുതുന്നു.\n"
+#~ "ദയവായി ഫയലിനു് പുതിയ പേരു് നല്‍കുക:"
+
+#~ msgid "C&ontinue"
+#~ msgstr "തു&ടരുക"
+
+#, fuzzy
+#~ msgid "This action will overwrite the destination."
+#~ msgstr ""
+#~ "ഇങ്ങനെ ചെയ്താല്‍ '%1' ഉപയോഗിച്ചു തന്നെ അതിനെ മാറ്റിയെഴുതുന്നു.\n"
+#~ "ദയവായി ഫയലിനു് പുതിയ പേരു് നല്‍കുക:"
+
+#, fuzzy
+#~ msgid "Source"
+#~ msgstr "ശ്രോതസ്സ്"
+
+#, fuzzy
+#~ msgid "Destination"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#~ msgid "An older item named '%1' already exists."
+#~ msgstr "'%1' എന്ന പേരില്‍ പഴയൊരു വസ്തു നിലവിലുണ്ടു്."
+
+#~ msgid "A similar file named '%1' already exists."
+#~ msgstr "'%1' എന്ന പേരില്‍ മറ്റൊരു വസ്തു നിലവിലുണ്ടു്."
+
+#, fuzzy
+#~ msgid "A more recent item named '%1' already exists."
+#~ msgstr "'%1' എന്ന പേരില്‍ പഴയൊരു വസ്തു നിലവിലുണ്ടു്."
+
+#, fuzzy
+#~ msgid "Rename:"
+#~ msgstr "&പേരു് മാറ്റുക"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Rename Item"
+#~ msgstr "&പേരു് മാറ്റുക"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Rename Items"
+#~ msgstr "&പേരു് മാറ്റുക"
+
+#, fuzzy
+#~ msgctxt "@action:button"
+#~ msgid "&Rename"
+#~ msgstr "&പേരു് മാറ്റുക"
+
+#, fuzzy
+#~ msgctxt ""
+#~ "This a template for new filenames, # is replaced by a number later, must "
+#~ "be the end character"
+#~ msgid "New name #"
+#~ msgstr "&പേരു് മാറ്റുക"
+
+#, fuzzy
+#~ msgctxt "@label:textbox"
+#~ msgid "Rename the %1 selected item to:"
+#~ msgid_plural "Rename the %1 selected items to:"
+#~ msgstr[0] "സെലക്ട് ചെയ്ത തിരിച്ചറിയല്‍ പദാവലിയില്‍ മാറ്റം വരുത്തുക."
+#~ msgstr[1] "സെലക്ട് ചെയ്ത തിരിച്ചറിയല്‍ പദാവലിയില്‍ മാറ്റം വരുത്തുക."
+
+#~ msgid "Information"
+#~ msgstr "വിവരം"
+
+#, fuzzy
+#~| msgid "Replace"
+#~ msgid "Replace All"
+#~ msgstr "മാറ്റുക"
+
+#~ msgid "[padlock]"
+#~ msgstr "[padlock]"
+
+#, fuzzy
+#~ msgid "Encryption:"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#, fuzzy
+#~ msgid "Details:"
+#~ msgstr "&വിശദാംശങ്ങള്‍"
+
+#, fuzzy
+#~| msgctxt "@item:inmenu"
+#~| msgid "Subversion"
+#~ msgid "SSL version:"
+#~ msgstr "അട്ടിമറിക്കൽ"
+
+#, fuzzy
+#~ msgid "Certificate chain:"
+#~ msgstr "എസ്എസ്എല്‍ സര്‍ട്ടിഫിക്കേറ്റ് പാസ്‌വേര്‍ഡ്"
+
+#, fuzzy
+#~ msgctxt "@info"
+#~ msgid "Do you really want to move this %1 item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] "നിങ്ങള്‍ക്കു് ഈ വസ്തു ചവറ്റുകുട്ടയിലേക്കു് നീക്കണമോ?"
+#~ msgstr[1] "നിങ്ങള്‍ക്കു് ഈ വസ്തു ചവറ്റുകുട്ടയിലേക്കു് നീക്കണമോ?"
+
+#~ msgid "If you do not trust this program, click Cancel"
+#~ msgstr "ഈ പ്രോഗ്രാമിനെ വിശ്വാസമില്ലെങ്കിൽ, റദ്ദാക്കുക്ക ക്ലിക്ക് ചെയ്യുക"
+
+#, fuzzy
+#~ msgid "Unknown HTTP verb."
+#~ msgstr ""
+#~ "അപരിചിതമായ പിശകു്\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgid "<h1>Cookie Management Quick Help</h1>"
+#~ msgstr "<h1>കുക്കികളുടെ പാലനത്തിനായുള്ള ദ്രുതസഹായം</h1>"
+
+#, fuzzy
+#~ msgid "Web Search Keywords"
+#~ msgstr "തിരയുക"
+
+#~ msgid "Using sub-URLs with %1 is not supported."
+#~ msgstr "%1-നൊപ്പം സബ്-യുആര്‍എല്ലുകളുടെ ഉപയോഗം പിന്തുണയ്ക്കുന്നില്ല."
+
+#~ msgid "&Yes"
+#~ msgstr "&ഉവ്വു്"
+
+#~ msgid "&No"
+#~ msgstr "&ഇല്ല"
+
+#~ msgid "A file or folder named %1 already exists."
+#~ msgstr "%1 എന്ന പേരില്‍ ഒരു ഫയല്‍ അല്ലെങ്കില്‍ ഫോള്‍ഡര്‍ നിലവിലുണ്ടു്."
+
+#~ msgid "You do not have permission to create that folder."
+#~ msgstr "നിങ്ങള്‍ക്കു് ആ ഫോള്‍ഡറുണ്ടാക്കുവാനുള്ള അനുമതിയില്ല."
+
+#~ msgid "The desktop is offline"
+#~ msgstr "ഡസ്ക്ടോപ്പ് ഓഫ് ലൈന്‍ ആകുന്നു"
+
+#, fuzzy
+#~ msgid "mounting is not supported by Windows CE."
+#~ msgstr "%1-ലേക്ക് എഴുതുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#, fuzzy
+#~ msgid "unmounting is not supported by Windows CE."
+#~ msgstr "%1-ലേക്ക് എഴുതുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#~ msgid "Mount"
+#~ msgstr "ഘടിപ്പിയ്ക്കുക"
+
+#, fuzzy
+#~ msgid "Could not find any application or handler for %1"
+#~ msgstr "%1-നുള്ള ഉടമസ്ഥാവകാശം മാറ്റുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "&Paste File"
+#~ msgid_plural "&Paste %1 Files"
+#~ msgstr[0] "ഫയല്‍ &ഒട്ടിക്കുക"
+#~ msgstr[1] "%1 ഫയലുകള്‍ &ഒട്ടിക്കുക"
+
+#~ msgid "&Paste URL"
+#~ msgid_plural "&Paste %1 URLs"
+#~ msgstr[0] "യുആര്‍എല്‍ &ഒട്ടിക്കുക"
+#~ msgstr[1] "%1 യുആര്‍എല്‍സ് &ഒട്ടിക്കുക"
+
+#~ msgid "&Paste Clipboard Contents"
+#~ msgstr "ക്ലിപ്ബോര്‍ഡിലുള്ളവ &ഒട്ടിക്കുക"
+
+#, fuzzy
+#~ msgid "D-Bus registration:"
+#~ msgstr "ലക്ഷ്യസ്ഥാനം"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Images"
+#~ msgstr "ചിത്രങ്ങൾ"
+
+#, fuzzy
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Audio"
+#~ msgstr "ഫയലുകള്‍ ലഭ്യമല്ല"
+
+#, fuzzy
+#~ msgid "KSqueezedTextLabel"
+#~ msgstr "KSqueezedTextLabel"
+
+#~ msgid "&Unmount '%1'"
+#~ msgstr "'%1' &അണ്‍മൌണ്ടു് ചെയ്യുക"
+
+#~ msgid "&Eject '%1'"
+#~ msgstr "'%1' &പുറത്തെടുക്കുക"
+
+#, fuzzy
+#~ msgid "&Remove Entry '%1'"
+#~ msgstr "'%1' &സുരക്ഷിതമായി നീക്കം ചെയ്യുക"
+
+#, fuzzy
+#~ msgid "Invalid Directory Name"
+#~ msgstr "അസാധുവായ പ്രോക്സി സജ്ജീകരണം"
+
+#, fuzzy
+#~ msgid "Create New File Type"
+#~ msgstr "വിശദമായ കാഴ്ച"
+
+#, fuzzy
+#~ msgid "unmounting is not supported by wince."
+#~ msgstr "%1-ലേക്ക് എഴുതുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#, fuzzy
+#~ msgid ""
+#~ "<h1>Cache</h1><p>This module lets you configure your cache settings.</"
+#~ "p><p>This specific cache is an area on the disk where recently read web "
+#~ "pages are stored. If you want to retrieve a web page again that you have "
+#~ "recently read, it will not be downloaded from the Internet, but rather "
+#~ "retrieved from the cache, which is a lot faster.</p>"
+#~ msgstr ""
+#~ "<h1>കാഷ്</h1><p>ഈ മോഡ്യൂള്‍ നിങ്ങളെ കാഷ് സജ്ജീകരണങ്ങള്‍ ക്രമീകരിക്കാന്‍ അനുവദിക്കും.</"
+#~ "p><p>അടുത്തയിടെ വായിച്ച വെബ്ബ് പേജുകള്‍ സൂക്ഷിക്കുന്ന കോണ്‍കററിലെ ഒരു ആന്തരിക മെമ്മറിയാണ് "
+#~ "കാഷ്. അടുത്തയിടെ വായിച്ച ഒരു വെബ്ബ് പേജ് നിങ്ങള്‍ക്ക് തിരിച്ചെടുക്കണമെന്നുണ്ടെങ്കില്‍, അത് ഇന്റര്‍"
+#~ "നെറ്റില്‍ നിന്നു ഡൌണ്‍ലോഡ് ചെയ്യുന്നതിനുപകരം വളരെ വേഗത്തില്‍ കാഷില്‍ നിന്നു തിരിച്ചെടുക്കുന്നു.</p>"
+
+#~ msgid "&Use cache"
+#~ msgstr "കാഷ് &ഉപയോഗിക്കുക"
+
+#~ msgid "&Keep cache in sync"
+#~ msgstr "&കാഷ് പൊരുത്തപ്പെടുത്തിക്കൊണ്ടുപോകുക"
+
+#~ msgid ""
+#~ "Always use documents from the cache when available. You can still use the "
+#~ "reload button to synchronize the cache with the remote host."
+#~ msgstr ""
+#~ "ലഭ്യമായിടത്തെല്ലാം കാഷില്‍ നിന്നുള്ള ഡോക്യുമെന്റുകള്‍ ഉപയോഗിക്കുക. ഇപ്പോഴും നിങ്ങള്‍ക്ക് റീലോഡ് "
+#~ "ബട്ടണുപയോഗിച്ച് ദൂരെയുള്ള ഹോസ്റ്റും കാഷുമായി പൊരുത്തപ്പെടുത്താം."
+
+#~ msgid "Use cache whenever &possible"
+#~ msgstr "കാഷ് &സാധിക്കുന്നയിടത്തെല്ലാം ഉപയോഗിക്കുക"
+
+#~ msgid "O&ffline browsing mode"
+#~ msgstr "&ഓഫ്‌ലൈന്‍ തെരച്ചില്‍ അവസ്ഥ"
+
+#~ msgid "Disk cache &size:"
+#~ msgstr "ഡിസ്ക്ക് കാഷ് &വലിപ്പം:"
+
+#~ msgid "C&lear Cache"
+#~ msgstr "കാഷ് &വൃത്തിയാക്കുക"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Add Identification"
+#~ msgstr "തിരിച്ചറിയല്‍ കൂട്ടിച്ചേര്‍ക്കുക"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Modify Identification"
+#~ msgstr "തിരിച്ചറിയല്‍ മാറ്റം വരുത്തുക"
+
+#~ msgid ""
+#~ "<qt><center>Found an existing identification for<br/><b>%1</b><br/>Do you "
+#~ "want to replace it?</center></qt>"
+#~ msgstr ""
+#~ "<qt><center><br/><b>%1</b><br/>എന്നതിനായി നിലവിലുള്ള ഒരു തിരിച്ചറിയല്‍ കണ്ടെത്തി. "
+#~ "നിങ്ങള്‍ക്കിത് മാറ്റണമെന്നുണ്ടോ?</center></qt>"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Identification"
+#~ msgstr "ഡ്യൂപ്ളിക്കേറ്റ് തിരിച്ചറിയല്‍"
+
+#~ msgid "&Send identification"
+#~ msgstr "തിരിച്ചറിയല്‍ &അയയ്ക്കുക"
+
+#~ msgid ""
+#~ "The browser identification text sent to the sites you visit. Use the "
+#~ "provided options to customize it."
+#~ msgstr ""
+#~ "നിങ്ങള്‍ സന്ദര്‍ശിച്ച സൈറ്റുകളിലേക്കയച്ച ബ്രൌസര്‍ തിരിച്ചറിയല്‍ പദാവലി. തന്നിരിക്കുന്ന "
+#~ "ഐച്ഛികങ്ങളുപയോഗിച്ച് അത് ഇഷ്ടപ്രകാരമാക്കിയെടുക്കുക."
+
+#~ msgid "Default Identification"
+#~ msgstr "സഹജമായ തിരിച്ചറിയല്‍"
+
+#, fuzzy
+#~ msgid ""
+#~ "The browser identification text sent to the sites you visit. You can "
+#~ "customize it using the options provided below."
+#~ msgstr ""
+#~ "നിങ്ങള്‍ സന്ദര്‍ശിച്ച സൈറ്റുകളിലേക്കയച്ച ബ്രൌസര്‍ തിരിച്ചറിയല്‍ പദാവലി. തന്നിരിക്കുന്ന "
+#~ "ഐച്ഛികങ്ങളുപയോഗിച്ച് അത് ഇഷ്ടപ്രകാരമാക്കിയെടുക്കുക."
+
+#, fuzzy
+#~ msgid ""
+#~ "Includes your operating system's name in the browser identification text."
+#~ msgstr ""
+#~ "ബ്രൌസര്‍ തിരിച്ചറിയല്‍ പദാവലിയില്‍ നിങ്ങളുടെ ഓപ്പറേറ്റിങ് സിസ്റ്റം പതിപ്പു് നംബര്‍ ഉള്‍പ്പെടുത്തുന്നു."
+
+#~ msgid "Add operating s&ystem name"
+#~ msgstr "ഓപ്പറേറ്റിങ് &സിസ്റ്റം പേരു് കൂട്ടിച്ചേര്‍ക്കുക"
+
+#~ msgid ""
+#~ "Includes your operating system's version number in the browser "
+#~ "identification text."
+#~ msgstr ""
+#~ "ബ്രൌസര്‍ തിരിച്ചറിയല്‍ പദാവലിയില്‍ നിങ്ങളുടെ ഓപ്പറേറ്റിങ് സിസ്റ്റം പതിപ്പു് നംബര്‍ ഉള്‍പ്പെടുത്തുന്നു."
+
+#~ msgid "Add operating system &version"
+#~ msgstr "ഓപ്പറേറ്റിങ് &സിസ്റ്റം പതിപ്പു് കൂട്ടിച്ചേര്‍ക്കുക"
+
+#~ msgid "Includes your machine's CPU type in the browser identification text."
+#~ msgstr "ബ്രൌസര്‍ തിരിച്ചറിയല്‍ പദാവലിയില്‍ നിങ്ങളുടെ യന്ത്രത്തിന്റെ സിപിയു തരം ഉള്‍പ്പെടുത്തുന്നു"
+
+#~ msgid "Add &machine (processor) type"
+#~ msgstr "&യന്ത്രം (പ്രൊസസര്‍) തരം കൂട്ടിച്ചേര്‍ക്കുക"
+
+#~ msgid ""
+#~ "Includes your language settings in the browser identification text to "
+#~ "obtain localized versions of the page."
+#~ msgstr ""
+#~ "ബ്രൌസര്‍ തിരിച്ചറിയല്‍ പദാവലിയില്‍ താളിന്റെ പ്രാദേശികവല്‍ക്കരിച്ച പകര്‍പ്പുകള്‍ ലഭിക്കാനായി "
+#~ "നിങ്ങളുടെ ഭാഷാസജ്ജീകരണങ്ങള്‍ ഉള്‍പ്പെടുത്തുന്നു"
+
+#~ msgid "Add lang&uage information"
+#~ msgstr "&ഭാഷാവിവരങ്ങള്‍ കൂട്ടിച്ചേര്‍ക്കുക"
+
+#~ msgid "Site Specific Identification"
+#~ msgstr "സൈറ്റിനു് പ്രത്യേകമായ തിരിച്ചറിയല്‍"
+
+#~ msgid "Site Name"
+#~ msgstr "സൈറ്റിന്റെ പേരു്"
+
+#~ msgid "Identification"
+#~ msgstr "തിരിച്ചറിയല്‍"
+
+#~ msgid "User Agent"
+#~ msgstr "ഉപയോക്താവിനുളള ഏജന്റ്"
+
+#~ msgid "Add new identification text for a site."
+#~ msgstr "ഒരു സൈറ്റിനായി പുതിയ തിരിച്ചറിയല്‍ വാക്യം കൂട്ടിച്ചേര്‍ക്കുക."
+
+#~ msgid "Change the selected identifier text."
+#~ msgstr "സെലക്ട് ചെയ്ത തിരിച്ചറിയല്‍ പദാവലിയില്‍ മാറ്റം വരുത്തുക."
+
+#~ msgid "Delete the selected identifier text."
+#~ msgstr "സെലക്ട് ചെയ്ത തിരിച്ചറിയല്‍ പദാവലി നീക്കം ചെയ്യുക."
+
+#~ msgid "Delete all identifiers."
+#~ msgstr "തിരിച്ചറിയാനുതകുന്നവയെല്ലാം നീക്കം ചെയ്യുക."
+
+#~ msgid "&When browsing the following site:"
+#~ msgstr "&ഇനിപ്പറയുന്ന സൈറ്റ് തിരയുമ്പോള്‍:"
+
+#~ msgid "&Use the following identification:"
+#~ msgstr "ഇനി പറയുന്ന തിരിച്ചറിയല്‍ &ഉപയോഗിക്കുക:"
+
+#~ msgid "Real identification:"
+#~ msgstr "ശരിയായ തിരിച്ചറിയല്‍:"
+
+#, fuzzy
+#~ msgid "Invalid link target"
+#~ msgstr "അസാധുവായ എന്‍ട്രി"
+
+#, fuzzy
+#~ msgid "Add Network Folder"
+#~ msgstr "പുതിയ ഫോള്‍ഡര്‍"
+
+#, fuzzy
+#~ msgctxt "@info"
+#~ msgid "Do you really want to move these %1 items to the Trash?"
+#~ msgstr "നിങ്ങള്‍ക്കു് ഈ വസ്തു ചവറ്റുകുട്ടയിലേക്കു് നീക്കണമോ?"
+
+#~ msgid "Enter the certificate password:"
+#~ msgstr "സര്‍ട്ടിഫിക്കേറ്റിനുള്ള പാസ്‌വേര്‍ഡ് നല്‍കുക:"
+
+#~ msgid "SSL Certificate Password"
+#~ msgstr "എസ്എസ്എല്‍ സര്‍ട്ടിഫിക്കേറ്റ് പാസ്‌വേര്‍ഡ്"
+
+#~ msgid "Unable to open the certificate. Try a new password?"
+#~ msgstr "സര്‍ട്ടിഫിക്കേറ്റ് തുറക്കുവാന്‍ സാധ്യമല്ല. പുതിയ പാസ്‌വേര്‍ഡുപയോഗിച്ചു് ശ്രമിക്കണമോ?"
+
+#, fuzzy
+#~| msgid "A folder named %1 already exists."
+#~ msgid "A folder named \"%1\" already exists."
+#~ msgstr "%1 എന്ന പേരില്‍ ഫോള്‍ഡര്‍ നിലവിലുണ്ടു്."
+
+#~ msgid "&Overwrite"
+#~ msgstr "&മാറ്റിയെഴുതുക"
+
+#, fuzzy
+#~ msgid "The socket operation is not supported"
+#~ msgstr "%1 സംമ്പ്രദായത്തിനുള്ള പിന്തുണ ലഭ്യമല്ല."
+
+#, fuzzy
+#~ msgid "Unknown error"
+#~ msgstr ""
+#~ "അപരിചിതമായ പിശകു്\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgid "Not a directory"
+#~ msgstr "ഡയറക്ടി ഉണ്ടാക്കുന്നു"
+
+#, fuzzy
+#~ msgid "Unknown socket error"
+#~ msgstr ""
+#~ "അപരിചിതമായ പിശകു്\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgid "Operation not supported"
+#~ msgstr "%1-ലേക്ക് എഴുതുന്നതിനെ പിന്താങ്ങുന്നില്ല."
+
+#, fuzzy
+#~ msgctxt "SSL error"
+#~ msgid "The certificate has expired"
+#~ msgstr "സര്‍ട്ടിഫിക്കേറ്റിനുള്ള പാസ്‌വേര്‍ഡ് നല്‍കുക:"
+
+#, fuzzy
+#~ msgctxt "SSL error"
+#~ msgid "The certificate is invalid"
+#~ msgstr "എസ്എസ്എല്‍ സര്‍ട്ടിഫിക്കേറ്റ് പാസ്‌വേര്‍ഡ്"
+
+#, fuzzy
+#~ msgctxt "SSL error"
+#~ msgid "The certificate has been revoked"
+#~ msgstr "സര്‍ട്ടിഫിക്കേറ്റിനുള്ള പാസ്‌വേര്‍ഡ് നല്‍കുക:"
+
+#, fuzzy
+#~ msgctxt "SSL error"
+#~ msgid "The certificate chain is too long"
+#~ msgstr "എസ്എസ്എല്‍ സര്‍ട്ടിഫിക്കേറ്റ് പാസ്‌വേര്‍ഡ്"
+
+#, fuzzy
+#~ msgctxt "SSL error"
+#~ msgid "Unknown error"
+#~ msgstr ""
+#~ "അപരിചിതമായ പിശകു്\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Root"
+#~ msgstr "റൂട്ട്"
+
+#, fuzzy
+#~ msgid "Could not change permissions for '%1'"
+#~ msgstr "%1-ലേക്കുള്ള അനുമതികള്‍ മാറ്റുവാന്‍ സാധ്യമായില്ല."
+
+#, fuzzy
+#~ msgid "Create hidden directory?"
+#~ msgstr "ഡയറക്ടി ഉണ്ടാക്കുന്നു"
+
+#, fuzzy
+#~ msgid "Show Aside Preview"
+#~ msgstr "അച്ചടിക്കുന്നതിനുമുമ്പ് കണ്ടുനോക്കുക"
+
+#, fuzzy
+#~ msgid "Device usage:"
+#~ msgstr "ഡിവൈസ്"
+
+#~ msgid "By Name"
+#~ msgstr "പേരനുസരിച്ചു്"
+
+#~ msgid "By Size"
+#~ msgstr "വലിപ്പമനുസരിച്ചു്"
+
+#~ msgid ""
+#~ "Could not write file %1.\n"
+#~ "Disk full."
+#~ msgstr ""
+#~ "ഡിസ്കില്‍ സ്ഥലം ലഭ്യമല്ല\n"
+#~ "അതിനാല്‍ ഫയല്‍ %1 തുറക്കുവാന്‍ സാധ്യമായില്ല."
+
+#~ msgid "Do you really want to delete this item?"
+#~ msgid_plural "Do you really want to delete these %1 items?"
+#~ msgstr[0] "നിങ്ങള്‍ക്കു് ഈ വസ്തു വെട്ടിമാറ്റണമോ?"
+#~ msgstr[1] "നിങ്ങള്‍ക്കു് ഈ %1 വസ്തുക്കള്‍ വെട്ടിമാറ്റണമോ?"
+
+#~ msgctxt "Verb"
+#~ msgid "&Trash"
+#~ msgstr "&ചവറ്റുകുട്ടയിലിടുക"
+
+#, fuzzy
+#~ msgid "<qt>The file or folder <b>%1</b> does not exist.</qt>"
+#~ msgstr "%1 ഫയല്‍ അല്ലെങ്കില്‍ ഫോള്‍ഡര്‍ നിലവിലില്ല."
+
+#, fuzzy
+#~ msgid "&Username:"
+#~ msgstr "&പേരു് മാറ്റുക"
+
+#~ msgid ""
+#~ "Unable to start the cookie handler service.\n"
+#~ "You will not be able to manage the cookies that are stored on your "
+#~ "computer."
+#~ msgstr ""
+#~ "കുക്കി കൈകാര്യസേവനം തുടങ്ങാന്‍ സാധിച്ചില്ല.\n"
+#~ "നിങ്ങളുടെ കമ്പ്യൂട്ടറില്‍ സൂക്ഷിച്ചിട്ടുള്ള കുക്കികളുടെ പാലനം നിങ്ങള്‍ക്ക് ചെയ്യാന്‍ സാധിക്കില്ല."
+
+#, fuzzy
+#~ msgid "Disk cache size:"
+#~ msgstr "ഡിസ്ക്ക് കാഷ് &വലിപ്പം:"
+
+#, fuzzy
+#~ msgid "&Clear Cache"
+#~ msgstr "കാഷ് &വൃത്തിയാക്കുക"
+
+#~ msgid "Treat &all cookies as session cookies"
+#~ msgstr "&എല്ലാ കുക്കികളും സെഷന്‍ കുക്കികളായി കണക്കാക്കുക"
+
+#~ msgid ""
+#~ "Enter the port number of the HTTP proxy server. Default is 8080. Another "
+#~ "common value is 3128."
+#~ msgstr ""
+#~ "എച്ച്ടിടിപി പ്രോക്സി സെര്‍വറിന്റെ പോര്‍ട്ട് സംഖ്യ നല്‍കുക. സഹജമായി 8080 ആണു്. വേറൊരു സാധാരണ "
+#~ "മൂല്യം 3128 ആണു്."
+
+#~ msgid ""
+#~ "Enter the port number of the FTP proxy server. Default 8080. Another "
+#~ "common value is 3128."
+#~ msgstr ""
+#~ "എഫ്‌ടിപി പ്രോക്സി സെര്‍വറിന്റെ പോര്‍ട്ട് സംഖ്യ നല്‍കുക. സഹജമായി 8080 ആണു്. വേറൊരു സാധാരണ "
+#~ "മൂല്യം 3128 ആണു്."
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Variable Proxy Configuration"
+#~ msgstr "പ്രോക്സിയുടെ മാറ്റാവുന്ന ക്രമീകരണം"
+
+#~ msgid "You must specify at least one valid proxy environment variable."
+#~ msgstr "ഒരു സാധുവായ പ്രോക്സി പരിസ്ഥിതി വേരിയബിളെങ്കിലും നിങ്ങള്‍ വ്യക്തമാക്കണം."
+
+#~ msgid ""
+#~ "<qt>Make sure you entered the actual environment variable name rather "
+#~ "than its value. For example, if the environment variable is <br /"
+#~ "><b>HTTP_PROXY=http://localhost:3128</b><br /> you need to enter "
+#~ "<b>HTTP_PROXY</b> here instead of the actual value http://localhost:3128."
+#~ "</qt>"
+#~ msgstr ""
+#~ "നിങ്ങള്‍ പരിസ്ഥിതി വേരിയബിളിന്റെ പേരാണ്, മൂല്യമല്ല നല്‍കിയിട്ടുള്ളതെന്നുറപ്പാക്കുക. "
+#~ "ഉദാഹരണത്തിന്, പരിസ്ഥിതി വേരിയബിള്‍ <br /><b>HTTP_PROXY=http://localhost:3128</"
+#~ "b><br /> ആണെങ്കില്‍, നിങ്ങള്‍ ഇവിടെ ശരിയായ മൂല്യമായ http://localhost:3128 "
+#~ "എന്നതിനുപകരം <b>HTTP_PROXY</b> എന്നാണ് നല്‍കേണ്ടത്."
+
+#~ msgid "Successfully verified."
+#~ msgstr "വിജയകരമായി ഉറപ്പാക്കിയിരിയ്ക്കുന്നു."
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Proxy Setup"
+#~ msgstr "പ്രോക്സി സജ്ജീകരണം"
+
+#~ msgid ""
+#~ "Did not detect any environment variables commonly used to set system wide "
+#~ "proxy information."
+#~ msgstr ""
+#~ "സിസ്റ്റമൊട്ടാകെയുള്ള പ്രോക്സി വിവരം സാധാരണ സജ്ജീകരിക്കാനുപയോഗിക്കുന്ന പരിസ്ഥിതി "
+#~ "വേരിയബിളുകളൊന്നും കണ്ടുപിടിക്കാനായില്ല."
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Automatic Proxy Variable Detection"
+#~ msgstr "തനിയെയുള്ള പ്രോക്സി വേരിയബിള്‍ കണ്ടുപിടിത്തം"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Manual Proxy Configuration"
+#~ msgstr "പ്രോക്സിയുടെ സ്വയം ക്രമീകരണം"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Invalid Proxy Setting"
+#~ msgstr "അസാധുവായ പ്രോക്സി സജ്ജീകരണം"
+
+#~ msgid ""
+#~ "One or more of the specified proxy settings are invalid. The incorrect "
+#~ "entries are highlighted."
+#~ msgstr ""
+#~ "നല്‍കിയവയില്‍ ഒന്നോ അതിലേറെയോ പ്രോക്സി സജ്ജീകരണങ്ങള്‍ അസാധുവാണ്. തെറ്റായ എന്‍ട്രികള്‍ "
+#~ "എടുത്തുകാണിച്ചിരിക്കുന്നു."
+
+#~ msgid "You entered a duplicate address. Please try again."
+#~ msgstr "നിങ്ങള്‍ ഡ്യൂപ്ളിക്കേറ്റ് വിലാസമാണ് നല്‍കിയത്. ദയവായി വീണ്ടും ശ്രമിയ്ക്കുക."
+
+#~ msgid "<qt><center><b>%1</b></center> is already in the list.</qt>"
+#~ msgstr "<qt><center><b>%1</b></center> ഇപ്പോഴേ പട്ടികയിലുണ്ട്.</qt>"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Entry"
+#~ msgstr "ഡ്യൂപ്ളിക്കേറ്റ് എന്‍ട്രി"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "New Exception"
+#~ msgstr "പുതിയ എക്സപ്ഷന്‍"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Change Exception"
+#~ msgstr "എക്സപ്ഷന്‍ മാറ്റുക"
+
+#~ msgid "The address you have entered is not valid."
+#~ msgstr "നിങ്ങള്‍ നല്‍കിയ വിലാസം അസാധുവാണ്."
+
+#~ msgid "Enter the URL or address that should use the above proxy settings:"
+#~ msgstr "മേല്‍പ്പറഞ്ഞ പ്രോക്സി സജ്ജീകരണങ്ങള്‍ ഉപയോഗിക്കേണ്ട URL അഥവാ വിലാസം നല്‍കുക:"
+
+#~ msgid ""
+#~ "Enter the address or URL that should be excluded from using the above "
+#~ "proxy settings:"
+#~ msgstr ""
+#~ "മേല്‍പ്പറഞ്ഞ പ്രോക്സി സജ്ജീകരണങ്ങള്‍ ഉപയോഗിക്കുന്നതില്‍ നിന്നൊഴിവാക്കപ്പെടേണ്ട URL അഥവാ "
+#~ "വിലാസം നല്‍കുക:"
+
+#~ msgid "H&TTP:"
+#~ msgstr "&എച്ച്ടിടിപി:"
+
+#~ msgid "HTTP&S:"
+#~ msgstr "എച്ച്ടിടിപി&എസ്:"
+
+#~ msgid "&FTP:"
+#~ msgstr "&എഫ്‌ടിപി:"
+
+#~ msgid "NO &PROXY:"
+#~ msgstr "&പ്രോക്സി ഇല്ല:"
+
+#~ msgid "&Verify"
+#~ msgstr "&ഉറപ്പാക്കുക"
+
+#~ msgid "Connect to the &Internet directly"
+#~ msgstr "&ഇന്റര്‍നെറ്റിലേക്ക് നേരിട്ട് ബന്ധപ്പെടുക"
+
+#~ msgid "Show the proxy environment variable configuration dialog."
+#~ msgstr "പ്രോക്സി പരിസ്ഥിതി വേരിയബിള്‍ ക്രമീകരണ ലഘുജാലകം കാണിക്കുക."
+
+#~ msgid "Setup..."
+#~ msgstr "സജ്ജീകരണം..."
+
+#~ msgid "&Manually specify the proxy settings"
+#~ msgstr "&സ്വയം പ്രോക്സി സജ്ജീകരണങ്ങള്‍ വ്യക്തമാക്കുക"
+
+#~ msgid "Show the manual proxy configuration dialog."
+#~ msgstr "സ്വയം പ്രോക്സി ക്രമീകരണ ലഘുജാലകം കാണിക്കുക."
+
+#~ msgid "Authori&zation"
+#~ msgstr "അധികാരപ്പെടുത്തല്‍"
+
+#~ msgid "Prompt for login information whenever it is required."
+#~ msgstr "ആവശ്യമുള്ളപ്പോളെല്ലാം ലോഗിന്‍ വിവരം ചോദിയ്ക്കുക."
+
+#~ msgid "Prompt as &needed"
+#~ msgstr "&ആവശ്യമുണ്ടാകുമ്പോള്‍ ചോദിക്കുക"
+
+#, fuzzy
+#~ msgid "Use this login information."
+#~ msgstr "ഇനിപ്പറയുന്ന ലോ&ഗിന്‍ വിവരം ഉപയോഗിക്കുക."
+
+#, fuzzy
+#~ msgid ""
+#~ "Use information specified here to login into proxy servers as needed."
+#~ msgstr ""
+#~ "താഴെക്കൊടുത്തിരിക്കുന്ന വിവരങ്ങള്‍ പ്രോക്സി സര്‍വറുകളിലേക്ക് ആവശ്യാനുസരണം ലോഗിന്‍ "
+#~ "ചെയ്യാനുപയോഗിക്കുക."
+
+#~ msgid "Login name."
+#~ msgstr "ലോഗിന്‍ പേരു്."
+
+#~ msgid "Login password."
+#~ msgstr "ലോഗിന്‍ അടയാളവാക്കു്."
+
+#~ msgid "Password:"
+#~ msgstr "അടയാളവാക്കു്:"
+
+#~ msgid "O&ptions"
+#~ msgstr "ഐ&ച്ഛികങ്ങള്‍"
+
+#~ msgid "Remove all proxy exception addresses from the list."
+#~ msgstr "എല്ലാ പ്രോക്സി എക്സപ്ഷന്‍ വിലാസങ്ങളും പട്ടികയില്‍ നിന്നു നീക്കം ചെയ്യുക."
+
+#~ msgid "D&elete All"
+#~ msgstr "എ&ല്ലാം നീക്കം ചെയ്യുക"
+
+#~ msgid "Remove the selected proxy exception address from the list."
+#~ msgstr "സെലക്ട് ചെയ്ത പ്രോക്സി എക്സപ്ഷന്‍ വിലാസം പട്ടികയില്‍ നിന്നു നീക്കം ചെയ്യുക."
+
+#~ msgid "Add new proxy exception address to the list."
+#~ msgstr "പുതിയ പ്രോക്സി എക്സപ്ഷന്‍ വിലാസം പട്ടികയിലേക്ക് കൂട്ടിച്ചേര്‍ക്കുക."
+
+#~ msgid "Change the selected proxy exception address."
+#~ msgstr "സെലക്ട് ചെയ്ത പ്രോക്സി എക്സപ്ഷന്‍ വിലാസം മാറ്റുക."
+
+#~ msgid "Includes your platform type in the browser identification text"
+#~ msgstr "ബ്രൌസര്‍ തിരിച്ചറിയല്‍ പദാവലിയില്‍ നിങ്ങളുടെ പ്ലാറ്റ്ഫോം തരം ഉള്‍പ്പെടുത്തുന്നു"
+
+#~ msgid "Add &platform name"
+#~ msgstr "&പ്ലാറ്റ്ഫോം പേരു് കൂട്ടിച്ചേര്‍ക്കുക"
+
+#~ msgid "Host [Set By]"
+#~ msgstr "ഹോസ്റ്റ് [സജ്ജീകരിച്ചത്]"
+
+#~ msgid "&Windows Shares"
+#~ msgstr "&വിന്‍ഡോസില്‍ നിന്നും പങ്കിട്ടവ"
+
+#~ msgid "&LISa Daemon"
+#~ msgstr "&LISa ഡെമണ്‍"
+
+#~ msgid "lan:/ Iosla&ve"
+#~ msgstr "lan:/ Iosla&ve"
+
+#~ msgid "&Search:"
+#~ msgstr "&തിരയുക:"
+
+#~ msgid "&SOCKS"
+#~ msgstr "&സോക്സ്"
+
+#~ msgid "SOCKS"
+#~ msgstr "സോക്സ്"
+
+#~ msgid ""
+#~ "Check this to enable SOCKS4 and SOCKS5 support in KDE applications and I/"
+#~ "O subsystems."
+#~ msgstr ""
+#~ "കെഡിഇ പ്രയോഗങ്ങളിലും I/O സബ്സിസ്റ്റങ്ങളിലും സോക്സ്4, സോക്സ്5 പിന്തുണ പ്രാവര്‍ത്തികമാക്കാന്‍ ഇത് "
+#~ "ചെക്ക് ചെയ്യുക."
+
+#~ msgid "&Enable SOCKS support"
+#~ msgstr "സോക്സ് പിന്തുണ &പ്രാവര്‍ത്തികമാക്കുക"
+
+#~ msgid "Click here to test SOCKS support."
+#~ msgstr "സോക്സ് പിന്തുണ പരീക്ഷിക്കാനായി ഇവിടെ ക്ലിക്ക് ചെയ്യുക."
+
+#~ msgid "&Test"
+#~ msgstr "&പരീക്ഷിക്കുക"
+
+#~ msgid "SOCKS Implementation"
+#~ msgstr "സോക്സ് പ്രവര്‍ത്തിപ്പിക്കുക"
+
+#~ msgid "Use &custom library"
+#~ msgstr "&ഇഷ്ടപ്പെട്ട ലൈബ്രറി ഉപയോഗിക്കുക"
+
+#~ msgid "Enter the path to an unsupported SOCKS library."
+#~ msgstr "പിന്തുണയില്ലാത്ത സോക്സ് ലൈബ്രറിയിലേക്കുള്ള വഴി നല്‍കുക."
+
+#~ msgid "A&uto detect"
+#~ msgstr "&തനിയെ കണ്ടെത്തുക"
+
+#~ msgid "This will force KDE to use NEC SOCKS if it can be found."
+#~ msgstr "NEC സോക്സ് കണ്ടുപിടിക്കുകയാണെങ്കില്‍ അതുപയോഗിക്കാന്‍ കെഡിഇയെ ഇതു പ്രേരിപ്പിക്കും."
+
+#~ msgid "&NEC SOCKS"
+#~ msgstr "&NEC സോക്സ്"
+
+#~ msgid "This will force KDE to use Dante if it can be found."
+#~ msgstr "ഡാന്റെ കണ്ടുപിടിക്കുകയാണെങ്കില്‍ അതുപയോഗിക്കാന്‍ കെഡിഇയെ ഇതു പ്രേരിപ്പിക്കും."
+
+#~ msgid "&Dante"
+#~ msgstr "&ഡാന്റെ"
+
+#~ msgid ""
+#~ "Here you can specify additional directories to search for the SOCKS "
+#~ "libraries. /usr/lib, /usr/local/lib, /usr/local/socks5/lib and /opt/"
+#~ "socks5/lib are already searched by default."
+#~ msgstr ""
+#~ "സോക്സ് ലൈബ്രറികള്‍ തിരയാന്‍ കൂടുതല്‍ തട്ടുകള്‍ ഇവിടെ നിങ്ങള്‍ക്ക് നല്‍കാം. /usr/lib, /usr/local/"
+#~ "lib, /usr/local/socks5/lib, /opt/socks5/lib എന്നിവ സഹജമായി തിരയപ്പെടുന്നു."
+
+#~ msgid "Additional Library Search Paths"
+#~ msgstr "കൂടുതലായുള്ള ലൈബ്രറി തിരച്ചില്‍ വഴികള്‍"
+
+#~ msgid "kcmsocks"
+#~ msgstr "kcmsocks"
+
+#~ msgid "KDE SOCKS Control Module"
+#~ msgstr "കെഡിഇ സോക്സ് നിയന്ത്രണ മൊഡ്യൂള്‍"
+
+#~ msgid "(c) 2001 George Staikos"
+#~ msgstr "(c) 2001 ജോര്‍ജ്ജ് സ്റ്റൈക്കോസ്"
+
+#~ msgid "George Staikos"
+#~ msgstr "ജോര്‍ജ്ജ് സ്റ്റൈക്കോസ്"
+
+#~ msgid "These changes will only apply to newly started applications."
+#~ msgstr "ഈ മാറ്റങ്ങള്‍ പുതുതായി തുടങ്ങുന്ന പ്രയോഗങ്ങള്‍ക്കേ ബാധകമാവൂ."
+
+#~ msgid "SOCKS Support"
+#~ msgstr "സോക്സ് പിന്തുണ"
+
+#~ msgid "Success: SOCKS was found and initialized."
+#~ msgstr "വിജയം: സോക്സ് കണ്ടുപിടിക്കുകയും തുടക്കമിടുകയും ചെയ്തു."
+
+#~ msgid "SOCKS could not be loaded."
+#~ msgstr "സോക്സ് ലോഡ് ചെയ്യാന്‍ കഴിഞ്ഞില്ല."
+
+#~ msgid "&Path:"
+#~ msgstr "&വഴി:"
+
+#~ msgid "This is the list of additional paths that will be searched."
+#~ msgstr "പുതുതായി തിരയുന്ന വഴികളുടെ പട്ടിക ഇതാണ്."
+
+#~ msgid "Path"
+#~ msgstr "വഴി"
+
+#~ msgid "&Add"
+#~ msgstr "&കൂട്ടിച്ചേര്‍ക്കുക"

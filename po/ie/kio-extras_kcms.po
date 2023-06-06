@@ -1,0 +1,5776 @@
+# Interlingue translation of kio.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio package.
+# OIS <mistressslivara@hotmail.com>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"PO-Revision-Date: 2022-10-23 00:30+0700\n"
+"Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
+"Language-Team: kde-i18n-doc@kde.org\n"
+"Language: ie\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.12\n"
+
+#: cookies/kcookiesmain.cpp:37
+#, kde-format
+msgid "&Policy"
+msgstr "&Politica"
+
+#: cookies/kcookiesmain.cpp:44
+#, kde-format
+msgid "&Management"
+msgstr "&Gerentie"
+
+#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
+#, kde-format
+msgid "D-Bus Communication Error"
+msgstr "Errore de communication de D-Bus"
+
+#: cookies/kcookiesmanagement.cpp:127
+#, kde-format
+msgid "Unable to delete all the cookies as requested."
+msgstr "Ne successat remover omni cookie, quo esset demandat."
+
+#: cookies/kcookiesmanagement.cpp:144
+#, kde-format
+msgid "Unable to delete cookies as requested."
+msgstr "Ne successat remover li demandat cookies."
+
+#: cookies/kcookiesmanagement.cpp:223
+#, kde-format
+msgid "Information Lookup Failure"
+msgstr "Ne successat trovar information"
+
+#: cookies/kcookiesmanagement.cpp:225
+#, kde-format
+msgid ""
+"Unable to retrieve information about the cookies stored on your computer."
+msgstr ""
+"Ne successat obtener li information pri li cookies magasinat in vor "
+"computator."
+
+#: cookies/kcookiesmanagement.cpp:316
+#, kde-format
+msgid "End of session"
+msgstr "Fin del session"
+
+#: cookies/kcookiesmanagement.cpp:323
+#, kde-format
+msgid "Yes"
+msgstr "Yes"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
+#: cookies/kcookiesmanagement.ui:20
+#, kde-format
+msgid "Search"
+msgstr "Sercha"
+
+#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:27
+#, kde-format
+msgid "Search interactively for domains and hosts"
+msgstr "Serchar por dominias e hostes"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:43
+#, kde-format
+msgid "Site"
+msgstr "Site"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:48
+#, kde-format
+msgid "Cookie Name"
+msgstr "Nómine del cookie"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
+#, kde-format
+msgid "D&elete"
+msgstr "R&emover"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
+#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
+#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
+#, kde-format
+msgid "Delete A&ll"
+msgstr "Remover o&mni"
+
+#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
+#: cookies/kcookiesmanagement.ui:70
+#, kde-format
+msgid "Configure &Policy..."
+msgstr "Configurar li &politica..."
+
+#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
+#: cookies/kcookiesmanagement.ui:77
+#, kde-format
+msgid "&Reload List"
+msgstr "&Recargar li liste"
+
+#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
+#: cookies/kcookiesmanagement.ui:97
+#, kde-format
+msgid "Details"
+msgstr "Detallies"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: cookies/kcookiesmanagement.ui:106
+#, kde-format
+msgid "Name:"
+msgstr "Nómine:"
+
+#. i18n: ectx: property (text), widget (QLabel, valueLabel)
+#: cookies/kcookiesmanagement.ui:129
+#, kde-format
+msgid "Value:"
+msgstr "Valore:"
+
+#. i18n: ectx: property (text), widget (QLabel, domainLabel)
+#: cookies/kcookiesmanagement.ui:152
+#, kde-format
+msgid "Domain:"
+msgstr "Dominia:"
+
+#. i18n: ectx: property (text), widget (QLabel, patchLabel)
+#: cookies/kcookiesmanagement.ui:175
+#, kde-format
+msgid "Path:"
+msgstr "Rute:"
+
+#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
+#: cookies/kcookiesmanagement.ui:198
+#, kde-format
+msgid "Expires:"
+msgstr "Expira:"
+
+#. i18n: ectx: property (text), widget (QLabel, secureLabel)
+#: cookies/kcookiesmanagement.ui:221
+#, kde-format
+msgid "Secure:"
+msgstr "Secur:"
+
+#: cookies/kcookiespolicies.cpp:154
+#, kde-format
+msgctxt "@title:window"
+msgid "Change Cookie Policy"
+msgstr "Modificar un politica de cookies"
+
+#: cookies/kcookiespolicies.cpp:173
+#, kde-format
+msgctxt "@title:window"
+msgid "New Cookie Policy"
+msgstr "Nov politica de cookies"
+
+#: cookies/kcookiespolicies.cpp:206
+#, kde-format
+msgid ""
+"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+"replace it?</qt>"
+msgstr ""
+"<qt>Un politica ja existe por<center><b>%1</b></center>Esque vu vole "
+"substituer it?</qt>"
+
+#: cookies/kcookiespolicies.cpp:210
+#, kde-format
+msgctxt "@title:window"
+msgid "Duplicate Policy"
+msgstr "Politica duplicat"
+
+#: cookies/kcookiespolicies.cpp:211
+#, kde-format
+msgid "Replace"
+msgstr "Substituer"
+
+#: cookies/kcookiespolicies.cpp:387
+#, kde-format
+msgid ""
+"Unable to communicate with the cookie handler service.\n"
+"Any changes you made will not take effect until the service is restarted."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enable cookie support. Normally you will want to have cookie support "
+"enabled and customize it to suit your privacy needs.</p><p>\n"
+"Please note that disabling cookie support might make many web sites "
+"unbrowsable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:23
+#, kde-format
+msgid "Enable coo&kies"
+msgstr "Permisser coo&kies"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:35
+#, kde-format
+msgid ""
+"<qt>\n"
+"Reject the so called third-party cookies. These are cookies that originate "
+"from a site other than the one you are currently browsing. For example, if "
+"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
+"originate from www.foobar.com will be processed per your settings. Cookies "
+"from any other site will be rejected. This reduces the chances of site "
+"operators compiling a profile about your daily browsing habits.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:38
+#, kde-format
+msgid "Only acce&pt cookies from originating server"
+msgstr "Solmen acce&ptar li cookies del servitor de orígine"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:46
+#, kde-format
+msgid ""
+"<p>\n"
+"Automatically accept temporary cookies meant to expire at the end of the "
+"current session. Such cookies will not be stored in your computer's hard "
+"drive or storage device. Instead, they are deleted when you close all "
+"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
+"this option overrides your default as well as site specific cookie policies "
+"for session cookies.</p>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:49
+#, kde-format
+msgid "Automaticall&y accept session cookies"
+msgstr "Acceptar cook&ies del session automaticmen"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:68
+#, kde-format
+msgid ""
+"<qt>\n"
+"Determines how cookies received from a remote machine will be handled: \n"
+"<ul>\n"
+"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
+"wants to set a cookie.</li>\n"
+"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
+"li>\n"
+"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
+"</li>\n"
+"</ul><p>\n"
+"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
+"precedence over the default policy.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:71
+#, kde-format
+msgid "Default Policy"
+msgstr "Politica predefinit"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
+#: cookies/kcookiespolicies.ui:77
+#, kde-format
+msgid "Accep&t all cookies"
+msgstr "Accep&tar omni cookies"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
+#: cookies/kcookiespolicies.ui:84
+#, kde-format
+msgid "Accept &until end of session"
+msgstr "Acceptar ante li &fin del session"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
+#: cookies/kcookiespolicies.ui:91
+#, kde-format
+msgid "Ask &for confirmation"
+msgstr "&Petir confirmation"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
+#: cookies/kcookiespolicies.ui:98
+#, kde-format
+msgid "Re&ject all cookies"
+msgstr "Re&jecter omni cookies"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:123
+#, kde-format
+msgid ""
+"<qt>\n"
+"To add a new policy, simply click on the <b>Add...</b> button and supply the "
+"necessary information. To change an existing policy, use the <b>Change...</"
+"b> button and choose the new policy from the policy dialog box. Clicking on "
+"the <b>Delete</b> button will remove the currently selected policy causing "
+"the default policy setting to be used for that domain, whereas <b>Delete "
+"All</b> will remove all the site specific policies.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:126
+#, kde-format
+msgid "Site Policy"
+msgstr "Politica del site"
+
+#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:135
+#, kde-format
+msgid "Search interactively for domains"
+msgstr "Serchar por dominias"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:138
+#, kde-format
+msgid "Search..."
+msgstr "Sercha…"
+
+#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:147
+#, kde-format
+msgid ""
+"<qt>\n"
+"List of sites for which you have set a specific cookie policy. Specific "
+"policies override the default policy setting for these sites.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:163
+#, kde-format
+msgid "Domain"
+msgstr "Dominia"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:168
+#, kde-format
+msgid "Policy"
+msgstr "Politica"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Crear…"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&Modificar..."
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:26
+#: cookies/kcookiespolicyselectiondlg.ui:81
+#, kde-format
+msgid "Accept"
+msgstr "Acceptar"
+
+#: cookies/kcookiespolicyselectiondlg.h:28
+msgid "Accept For Session"
+msgstr "Acceptar por li session"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:30
+#: cookies/kcookiespolicyselectiondlg.ui:91
+#, kde-format
+msgid "Reject"
+msgstr "Rejecter"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:32
+#: cookies/kcookiespolicyselectiondlg.ui:96
+#, kde-format
+msgid "Ask"
+msgstr "Questionar"
+
+#: cookies/kcookiespolicyselectiondlg.h:34
+msgid "Do Not Know"
+msgstr "Yo ne save"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:22
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
+"b> or <b>.kde.org</b>.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Provide li host o dominia al quel ti politica es applicat, p.ex. <b>www.kde."
+"org</b> o <b>.kde.org</b>.\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:25
+#, kde-format
+msgid "Site name:"
+msgstr "Nómine de site:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:38
+#, kde-format
+msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+msgstr ""
+"Li nómine de host o dominia, p.ex. .kde.org, al quel ti politica es applicat."
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:53
+#: cookies/kcookiespolicyselectiondlg.ui:77
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the desired policy:\n"
+"<ul>\n"
+"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+"</ul>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:56
+#, kde-format
+msgid "Policy:"
+msgstr "Politica:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:86
+#, kde-format
+msgid "Accept until end of session"
+msgstr "Acceptar ante li fin del session"
+
+#: ksaveioconfig.cpp:212
+#, kde-format
+msgid ""
+"You have to restart the running applications for these changes to take "
+"effect."
+msgstr ""
+"Vu deve relansar li executent applicationes por efectuar ti modificationes."
+
+#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#, kde-format
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "Actualisation ne successat"
+
+#: ksaveioconfig.cpp:225
+#, kde-format
+msgid "You have to restart KDE for these changes to take effect."
+msgstr "Vu deve relansar KDE por efectuar ti modificationes."
+
+#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:10
+#, kde-format
+msgid "Disable Passive FTP"
+msgstr "Desactivar passiv FTP"
+
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:11
+#, kde-format
+msgid ""
+"When FTP connections are passive the client connects to the server, instead "
+"of the other way round, so firewalls do not block the connection; old FTP "
+"servers may not support Passive FTP though."
+msgstr ""
+
+#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#, kde-format
+msgid "Mark partially uploaded files"
+msgstr "Marcar partialmen cargat files"
+
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#, kde-format
+msgid ""
+"While a file is being uploaded its extension is \".part\". When fully "
+"uploaded it is renamed to its real name."
+msgstr ""
+"Quande li file ea cargat, su extension es «.part». Quande it es cargat "
+"completmen, it es renominat a su propri nómine."
+
+#: netpref/netpref.cpp:30
+#, kde-format
+msgid "Timeout Values"
+msgstr "Valores de timeout"
+
+#: netpref/netpref.cpp:32
+#, kde-format
+msgid ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is 1 second."
+msgid_plural ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is %1 seconds."
+msgstr[0] ""
+"Ci on posse selecter valores de timeout. Vu posse ajustar les si vor "
+"conexion es tre lent. Li max permissibil valore es 1 seconde."
+msgstr[1] ""
+"Ci on posse selecter valores de timeout. Vu posse ajustar les si vor "
+"conexion es tre lent. Li max permissibil valore es %1 secondes."
+
+#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
+#: netpref/netpref.cpp:63
+#, kde-format
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " seconde"
+msgstr[1] " secondes"
+
+#: netpref/netpref.cpp:47
+#, kde-format
+msgid "Soc&ket read:"
+msgstr "Letion de soc&ket:"
+
+#: netpref/netpref.cpp:53
+#, kde-format
+msgid "Pro&xy connect:"
+msgstr "Conexion a pro&xy:"
+
+#: netpref/netpref.cpp:59
+#, kde-format
+msgid "Server co&nnect:"
+msgstr "Co&nexion a servitor:"
+
+#: netpref/netpref.cpp:65
+#, kde-format
+msgid "&Server response:"
+msgstr "Re&sponse de servitor:"
+
+#: netpref/netpref.cpp:67
+#, kde-format
+msgid "Global Options"
+msgstr "Global parametres"
+
+#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#, kde-format
+msgid "Mark &partially uploaded files"
+msgstr "Marcar &partialmen cargat files"
+
+#: netpref/netpref.cpp:73
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+"p><p>When this option is enabled, partially uploaded files will have a \"."
+"part\" extension. This extension will be removed once the transfer is "
+"complete.</p>"
+msgstr ""
+
+#: netpref/netpref.cpp:90
+#, kde-format
+msgid " byte"
+msgid_plural " bytes"
+msgstr[0] " octete"
+msgstr[1] " octetes"
+
+#: netpref/netpref.cpp:92
+#, kde-format
+msgctxt "@label:spinbox"
+msgid ""
+"If cancelled, automatically delete partially uploaded files smaller than:"
+msgstr "Si interruptet, remover li partialmen cargat files minu grand quam:"
+
+#: netpref/netpref.cpp:94
+#, kde-format
+msgid "FTP Options"
+msgstr "Parametres de FTP"
+
+#: netpref/netpref.cpp:98
+#, kde-format
+msgid "Enable passive &mode (PASV)"
+msgstr "Activar &passiv mode (PASV)"
+
+#: netpref/netpref.cpp:100
+#, kde-format
+msgid ""
+"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
+"behind firewalls."
+msgstr ""
+"Activar li «passiv» mode de FTP. To es besonat por permisser a FTP operar "
+"tra firewalles."
+
+#: netpref/netpref.cpp:108
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+"partially uploaded files will have a \".part\" extension. This extension "
+"will be removed once the transfer is complete.</p>"
+msgstr ""
+
+#: proxy/kproxydlg.cpp:193
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Not all applications will use this proxy setting. In particular, "
+"<application>Firefox</application> and <application>Chromium</application> "
+"or anything derived from them, or anything using <application>QtWebEngine</"
+"application>&nbsp;- which includes <application>Konqueror</application> "
+"using the <application>WebEnginePart</application>, <application>Akregator</"
+"application> and <application>Falkon</application>&nbsp;- will not use these "
+"settings. Some applications may allow the proxy to be configured in their "
+"own settings."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
+#: proxy/kproxydlg.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"Setup proxy configuration.\n"
+"<p>\n"
+"A proxy server is an intermediate machine that sits between your computer "
+"and the Internet and provides services such as web page caching and "
+"filtering. Caching proxy servers give you faster access to web sites you "
+"have already visited by locally storing or caching those pages; filtering "
+"proxy servers usually provide the ability to block out requests for ads, "
+"spam, or anything else you want to block.\n"
+"<p>\n"
+"If you are uncertain whether or not you need to use a proxy server to "
+"connect to the Internet, consult your Internet service provider's setup "
+"guide or your system administrator.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:26
+#, kde-format
+msgid "Connect to the Internet directly."
+msgstr "Conexer directment al Internet."
+
+#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:29
+#, kde-format
+msgid "No Proxy"
+msgstr "Sin proxy"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:46
+#, kde-format
+msgid ""
+"<qt>\n"
+"Automatically detect and configure the proxy settings.<p>\n"
+"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
+"<b>NOTE:</b> This option might not work properly or not work at all in some "
+"UNIX/Linux distributions.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:49
+#, kde-format
+msgid "Detect proxy configuration automatically"
+msgstr "Detecter li configuration de proxy automaticmen"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:59
+#, kde-format
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr ""
+"Usar li providet scripte de proxy por configurar li parametres del proxy."
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:62
+#, kde-format
+msgid "Use proxy auto configuration URL:"
+msgstr "Usar adresse de automatic configuration:"
+
+#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
+#: proxy/kproxydlg.ui:93
+#, kde-format
+msgid "Enter the address for the proxy configuration script."
+msgstr "Li adresse del scripte de configuration de proxy."
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:117
+#, kde-format
+msgid ""
+"<qt><p>Use proxy settings defined on the system.</p>\n"
+"<p>Some platforms offer system wide proxy configuration information and "
+"selecting this option allows you to use those settings.</p>\n"
+"<p>On Mac platforms</p>\n"
+"<p>On Windows platforms</p>\n"
+"<p>On Unix and Linux platforms, such system proxy settings are usually "
+"defined through environment variables. The following environment variables "
+"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:120
+#, kde-format
+msgid "Use system proxy configuration:"
+msgstr "Usar li configuration del proxy del sistema:"
+
+#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:127
+#, kde-format
+msgid ""
+"<qt>Attempt automatic discovery of the environment variables used for "
+"setting system wide proxy information.<p> This feature works by searching "
+"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
+"</qt>"
+msgstr ""
+"<qt>Provar trovar automaticmen li variabile de ambiente quel contene li "
+"information pri li proxy del sistema.</p> Ti function sercha li nómines de "
+"variabiles in usa comun, quam HTTP_PROXY, FTP_PROXY e NO_PROXY.</qt>"
+
+#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:130
+#, kde-format
+msgid "Auto D&etect"
+msgstr "D&etecter automaticmen"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Provide li nómine del variabile de ambiente, p.ex. <b>HTTP_PROXY</b>, quel "
+"contene li adresse del servitor proxy HTTP.<p>\n"
+"Vu anc posse fa un clic sur <b>«Detecter automaticmen»</b> por provar trovar "
+"ti variabile automaticmen.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
+#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
+#, kde-format
+msgid "HTTP Proxy:"
+msgstr "Proxy HTTP:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Provide li nómine del variabile de ambiente, p.ex. <b>HTTPS_PROXY</b>, quel "
+"contene li adresse del servitor proxy HTTPS.<p>\n"
+"Vu anc posse fa un clic sur <b>«Detecter automaticmen»</b> por provar trovar "
+"ti variabile automaticmen.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
+#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
+#, kde-format
+msgid "SSL Proxy:"
+msgstr "Proxy SSL:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Provide li nómine del variabile de ambiente, p.ex. <b>FTP_PROXY</b>, quel "
+"contene li adresse del servitor proxy FTP.<p>\n"
+"Vu anc posse fa un clic sur <b>«Detecter automaticmen»</b> por provar trovar "
+"ti variabile automaticmen.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
+#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
+#, kde-format
+msgid "FTP Proxy:"
+msgstr "Proxy FTP:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:263
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Provide li nómine del variabile de ambiente, p.ex. <b>SOCKS_PROXY</b>, quel "
+"contene li adresse del servitor proxy SOCKS.<p>\n"
+"Vu anc posse fa un clic sur <b>«Detecter automaticmen»</b> por provar trovar "
+"ti variabile automaticmen.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
+#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
+#, kde-format
+msgid "SOCKS Proxy:"
+msgstr "Proxy SOCKS:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:285
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt>Provide li nómine del variabile de ambiente, p.ex. <b>SOCKS_PROXY</b>, "
+"quel contene li adresse del servitor proxy SOCKS.<p>Vu anc posse fa un clic "
+"sur buton <b>«Detecter automaticmen»</b> por provar trovar ti variabile "
+"automaticmen.</p></qt>"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the proxy server should not be used.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Provide li variabile de ambiente, p.ex. <b>NO_PROXY</b>, quel contene li "
+"adresses de sites quel deve ne usar li servitor proxy.<p>\n"
+"Vu anc posse fa un clic sur buton <b>«Detecter automaticmen»</b> por provar "
+"trovar ti variabile automaticmen.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
+#, kde-format
+msgid "Exceptions:"
+msgstr "Exceptiones:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:317
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt>Provide li variabile de ambiente, p.ex. <b>NO_PROXY</b>, quel contene li "
+"adresses de sites quel deve ne usar li servitor proxy.<p>Vu anc posse fa un "
+"clic sur buton <b>«Detecter automaticmen»</b> por provar trovar ti variabile "
+"automaticmen.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:324
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr "Monstrar li &valore del variabile de ambiente"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:343
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr "Provide li configuration de proxy manualmen."
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:346
+#, kde-format
+msgid "Use manually specified proxy configuration:"
+msgstr "Usar li manual configuration de proxy:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:398
+#, kde-format
+msgid "Enter the address of the HTTP proxy server."
+msgstr "Provide li adresse del servitor proxy HTTP."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
+#: proxy/kproxydlg.ui:574
+#, kde-format
+msgid "Port:"
+msgstr "Portu:"
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:421
+#, kde-format
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "Provide li numeró de portu del servitor proxy HTTP."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:436
+#, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr "Usar ti servitor proxy por &omni protocoles"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:464
+#, kde-format
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "Provide li adresse del servitor proxy HTTPS."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:481
+#, kde-format
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "Provide li numeró de portu del servitor proxy HTTPS."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:517
+#, kde-format
+msgid "Enter the address of the FTP proxy server."
+msgstr "Provide li adresse del servitor proxy FTP."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:534
+#, kde-format
+msgid "Enter the port number of the FTP proxy server."
+msgstr "Provide li numeró de portu del servitor proxy FTP."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:567
+#, kde-format
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "Provide li adresse del servitor proxy SOCKS."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:584
+#, kde-format
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "Provide li numeró de portu del servitor proxy SOCKS."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
+#: proxy/kproxydlg.ui:628
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enter a comma separated list of hostnames or ip addresses that should be "
+"excluded from using the above proxy settings.</p>\n"
+"<p>If you want to exclude all hosts for a given domain, then simply enter "
+"the domain name preceded by a dot. For example, to exclude all hostnames for "
+"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
+"'?' are not supported and will have no effect.</p>\n"
+"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:639
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgid ""
+"<qt>\n"
+"Check this box if you want the above proxy settings to apply only to the "
+"addresses listed in the <i>Exceptions</i> list.</qt>"
+msgstr ""
+"Usar li configuration de proxy solmen por adresses in li liste de exceptiones"
+
+#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:642
+#, kde-format
+msgid "Use proxy settings only for addresses in the Exceptions list"
+msgstr ""
+"Usar li configuration de proxy solmen por adresses in li liste de exceptiones"
+
+#: smb/smbrodlg.cpp:27
+#, kde-format
+msgid "These settings apply to network browsing only."
+msgstr "Ti parametres applica solmen a navigation de rete."
+
+#: smb/smbrodlg.cpp:31
+#, kde-format
+msgid "Default user name:"
+msgstr "Predefinit nómine de usator:"
+
+#: smb/smbrodlg.cpp:39
+#, kde-format
+msgid "Default password:"
+msgstr "Predefinit contrasigne:"
+
+#: trash/kcmtrash.cpp:138
+#, kde-format
+msgid " days"
+msgstr " dies"
+
+#: trash/kcmtrash.cpp:203
+#, kde-format
+msgid ""
+"<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
+"para>"
+msgstr ""
+"<para>Paper-corbe de KDE es configurat por usar li Trash del <b>Finder</b>."
+"<br></para>"
+
+#: trash/kcmtrash.cpp:205
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Emptying KDE's wastebin will remove only KDE's trash items, "
+"while<br>emptying the Trash through the Finder will delete everything.</"
+"para><para>KDE's trash items will show up in a folder called KDE.trash, in "
+"the Trash can.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:246
+#, kde-format
+msgid "Delete files older than"
+msgstr "Remover files plu old quam"
+
+#: trash/kcmtrash.cpp:249
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to allow <emphasis strong='true'>automatic deletion</"
+"emphasis> of files that are older than the value specified. Leave this "
+"disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
+"items after a certain timespan</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:256
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] " die"
+msgstr[1] " dies"
+
+#: trash/kcmtrash.cpp:258
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Set the number of days that files can remain in the trash. Any files "
+"older than this will be automatically deleted.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:262
+#, kde-format
+msgid "Cleanup:"
+msgstr "Nettation:"
+
+#: trash/kcmtrash.cpp:265
+#, kde-format
+msgid "Limit to"
+msgstr "Limitar a"
+
+#: trash/kcmtrash.cpp:267
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to limit the trash to the maximum amount of disk space "
+"that you specify below. Otherwise, it will be unlimited.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:270
+#, kde-format
+msgid "Size:"
+msgstr "Grandore:"
+
+#: trash/kcmtrash.cpp:277
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the maximum percent of disk space that will be used for the "
+"trash.</para>"
+msgstr ""
+"<para>Li max percentage del spacie de disco quel es usat por li Paper-corb.</"
+"para>"
+
+#: trash/kcmtrash.cpp:282
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the calculated amount of disk space that will be allowed for "
+"the trash, the maximum.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:286
+#, kde-format
+msgid "Show a Warning"
+msgstr "Monstrar un avise"
+
+#: trash/kcmtrash.cpp:287
+#, kde-format
+msgid "Delete Oldest Files From Trash"
+msgstr "Remover li plu old files ex li Paper-corb"
+
+#: trash/kcmtrash.cpp:288
+#, kde-format
+msgid "Delete Biggest Files From Trash"
+msgstr "Remover li plu grand files ex li Paper-corb"
+
+#: trash/kcmtrash.cpp:290
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>When the size limit is reached, it will prefer to delete the type of "
+"files that you specify, first. If this is set to warn you, it will do so "
+"instead of automatically deleting files.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:292
+#, kde-format
+msgid "Full Trash:"
+msgstr "Paper-corb es plen:"
+
+#: webshortcuts/ikwsopts.cpp:38
+#, kde-format
+msgctxt "@title:column Name label from web search keyword column"
+msgid "Name"
+msgstr "Nómine"
+
+#: webshortcuts/ikwsopts.cpp:40
+#, kde-format
+msgctxt "@title:column"
+msgid "Keywords"
+msgstr "Clav-paroles"
+
+#: webshortcuts/ikwsopts.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Preferred"
+msgstr "Preferet"
+
+#: webshortcuts/ikwsopts.cpp:101
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this box to select the highlighted web search keyword as preferred.<nl/"
+">Preferred web search keywords are used in places where only a few select "
+"keywords can be shown at one time."
+msgstr ""
+"Ti bux selecte li selectet clav-parole de sercha web quam preferet.<nl/>Li "
+"preferet clav-paroles es usat quande solmen quelc selectet clav-paroles "
+"posse esser monstrat simultanmen."
+
+#: webshortcuts/ikwsopts.cpp:202
+#, kde-format
+msgctxt "@item:inlistbox No default web search keyword"
+msgid "None"
+msgstr "Null"
+
+#: webshortcuts/ikwsopts.cpp:246
+#, kde-format
+msgid "Search F&ilters"
+msgstr "F&iltres de sercha"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:17
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"search keywords allow you to quickly access or search for information "
+"located online or on your hard drive. </p><p>KDE comes with many predefined "
+"keywords. One such keyword can be used to perform a the Google (TM) search; "
+"to use it, you simply type the keyword 'gg' followed by the keyword "
+"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
+"KDE</span>.</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:20
+#, kde-format
+msgid "&Enable Web search keywords"
+msgstr "&Activar li clav-paroles del sercha web"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:30
+#, kde-format
+msgid "&Use preferred keywords only"
+msgstr "&Usar solmen li preferet clav-paroles"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
+#: webshortcuts/ikwsopts_ui.ui:37
+#, kde-format
+msgid "Search for web search keywords"
+msgstr "Serchar clav-paroles del sercha web"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:71
+#, kde-format
+msgid "Add a new Web search keyword"
+msgstr "Adjunter un nov clav-parole de sercha web"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:84
+#, kde-format
+msgid "Modify the highlighted Web search keyword"
+msgstr "Modificar li selectet clav-parole de sercha web"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:97
+#, kde-format
+msgid "Delete the highlighted Web search keyword"
+msgstr "Remover li selectet clav-parole de sercha web"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:100
+#, kde-format
+msgid "De&lete"
+msgstr "Remo&ver"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:138
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the search engine to use for input boxes that provide automatic "
+"lookup services when you type in normal words and phrases instead of a URL. "
+"To disable this feature select <b>None</b> from the list.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Selecte li provisor de sercha que es usat in camps quel provide sercha "
+"quande on intra normal paroles in vice de un URL. Por descativar li sercha "
+"ples selecter <b>Null</b> in li liste.\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:141
+#, kde-format
+msgid "Default Web &search keyword:"
+msgstr "Predefinit clav-parole de &sercha web:"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:166
+#, kde-format
+msgid ""
+"<html><head/><body><p>Select a default web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to web "
+"search keyword queries when they cannot be filtered into a proper URL. </"
+"p><p>To disable this functionality select <span style=\" font-weight:600;"
+"\">None</span> from the list. </p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:182
+#, kde-format
+msgid ""
+"Choose the delimiter that separates the keyword from the phrase or word to "
+"be searched."
+msgstr "Selecte li separator inter li clav-parole e li serchat paroles."
+
+#. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:185
+#, kde-format
+msgid "&Keyword delimiter:"
+msgstr "Separator de &clav-parole:"
+
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:204
+#, kde-format
+msgid "Choose a delimiter to mark the Web search keyword."
+msgstr "Selecte un separator pos li clav-parole de sercha web."
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:208
+#, kde-format
+msgctxt "Colon as keyword delimiter"
+msgid "Colon"
+msgstr "Cólon"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:213
+#, kde-format
+msgctxt "Space as keyword delimiter"
+msgid "Space"
+msgstr "Spacie"
+
+#: webshortcuts/searchproviderdlg.cpp:49
+#, kde-format
+msgctxt "@item:inlistbox The default character set"
+msgid "Default"
+msgstr "Predefinit"
+
+#: webshortcuts/searchproviderdlg.cpp:52
+#, kde-format
+msgid "Modify Web Shortcut"
+msgstr "Modificar un abreviation de web"
+
+#: webshortcuts/searchproviderdlg.cpp:60
+#, kde-format
+msgid "New Web Shortcut"
+msgstr "Nov abreviation de web"
+
+#: webshortcuts/searchproviderdlg.cpp:121
+#, kde-format
+msgid ""
+"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"one."
+msgstr "Li clav-parol «%1» es ja assignat a «%2». Ples selecter un altri."
+
+#: webshortcuts/searchproviderdlg.cpp:126
+#, kde-format
+msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
+msgid "- %1: \"%2\""
+msgstr "- %1: \"%2\""
+
+#: webshortcuts/searchproviderdlg.cpp:130
+#, kde-format
+msgid ""
+"The following shortcuts are already assigned. Please choose different ones.\n"
+"%1"
+msgstr ""
+"Li sequent clav-paroles es ja assignat. Ples selecter altris.\n"
+"%1"
+
+#: webshortcuts/searchproviderdlg.cpp:143
+#, kde-format
+msgid ""
+"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"This means that the same page is always going to be visited, regardless of "
+"the text typed in with the shortcut."
+msgstr ""
+"Li adresse del clav-parole ne contene un variabile \\{...} por li demanda "
+"del usator.\n"
+"To significa que li sam págine va esser visitat, sin egard al textu del "
+"demanda de sercha."
+
+#: webshortcuts/searchproviderdlg.cpp:147
+#, kde-format
+msgid "Keep It"
+msgstr "Retener"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:17
+#, kde-format
+msgid "Enter the human-readable name of the search provider here."
+msgstr "Provide ci un comprensibil nómine del provisor de sercha."
+
+#. i18n: ectx: property (text), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:23
+#, kde-format
+msgid "Shortcut &name:"
+msgstr "&Nomine de abreviation:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:42
+#: webshortcuts/searchproviderdlg_ui.ui:64
+#: webshortcuts/searchproviderdlg_ui.ui:70
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the URI that is used to perform a search on the search engine here.<br/"
+">The whole text to be searched for can be specified as \\{@} or \\{0}.<br/>\n"
+"Recommended is \\{@}, since it removes all query variables (name=value) from "
+"the resulting string, whereas \\{0} will be substituted with the unmodified "
+"query string.<br/>You can use \\{1} ... \\{n} to specify certain words from "
+"the query and \\{name} to specify a value given by 'name=value' in the user "
+"query.<br/>In addition it is possible to specify multiple references (names, "
+"numbers and strings) at once (\\{name1,name2,...,\"string\"}).<br/>The first "
+"matching value (from the left) will be used as the substitution value for "
+"the resulting URI.<br/>A quoted string can be used as the default value if "
+"nothing matches from the left of the reference list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:48
+#, kde-format
+msgid "Shortcut &URL:"
+msgstr "&URL de abreviation:"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:83
+#, kde-format
+msgid "Select the character set that will be used to encode your search query."
+msgstr "Selecte li codification por codificar vor demanda de sercha."
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:92
+#: webshortcuts/searchproviderdlg_ui.ui:97
+#: webshortcuts/searchproviderdlg_ui.ui:116
+#, kde-format
+msgid ""
+"<qt>\n"
+"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+"b>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Li abreviationes providet ci posse esset usat quam un schema de pseudo-URI "
+"in KDE. P.ex. li abreviation <b>av</b> posse esser usat quam <b>av</b>:<b>mi "
+"sercha</b>\n"
+"</qt>"
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:104
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
+"</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Provide ci un comprensibil nómine del abreviation de "
+"web.</p></body></html>"
+
+#. i18n: ectx: property (text), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:119
+#, kde-format
+msgid "&Shortcuts:"
+msgstr "&Abreviationes:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:132
+#, kde-format
+msgid "Select the character set that will be used to encode your search query"
+msgstr "Selecte li codification por vor demandas de sercha"
+
+#. i18n: ectx: property (text), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:135
+#, kde-format
+msgid "&Charset:"
+msgstr "&Codification:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
+#: webshortcuts/searchproviderdlg_ui.ui:158
+#, kde-format
+msgid "Insert query placeholder"
+msgstr "Inserter li variabile del demande"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "OIS"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "mistresssilvara@hotmail.com"
+
+#~ msgid "Could not modify the ownership of file %1"
+#~ msgstr "Ne successat reposseder li file %1"
+
+#~ msgid ""
+#~ "Could not modify the ownership of file <filename>%1</filename>. You have "
+#~ "insufficient access to the file to perform the change."
+#~ msgstr ""
+#~ "Ne successat reposseder li file <filename>%1</filename>. Vu non have "
+#~ "sufficent accesse al file por far ti modification."
+
+#, fuzzy
+#~| msgid "Unable to create io-slave: %1"
+#~ msgid "Unable to create KIO worker: %1"
+#~ msgstr "Ne successat crear io-slave: %1"
+
+#~ msgctxt ""
+#~ "The first arg is the path to the symlink that couldn't be created, the "
+#~ "secondarg is the filesystem type (e.g. vfat, exfat)"
+#~ msgid ""
+#~ "Could not create symlink \"%1\".\n"
+#~ "The destination filesystem (%2) doesn't support symlinks."
+#~ msgstr ""
+#~ "Ne successat crear li simbolic ligament «%1».\n"
+#~ "Li sistema de files del destination (%2) ne suporta simbolic ligamentes."
+
+#~ msgid ""
+#~ "Could not create \"%1\".\n"
+#~ "The destination filesystem (%2) disallows the following characters in "
+#~ "folder names: %3\n"
+#~ "Selecting Replace will replace any invalid characters (in the destination "
+#~ "folder name) with an underscore \"_\"."
+#~ msgstr ""
+#~ "Ne successat crear «%1».\n"
+#~ "Li sistema de files del destination (%2) depermisse li sequent caracteres "
+#~ "in nómines de fólderes: %3\n"
+#~ "Si on va selecter «Remplazzar» omni ínvalid caracteres in li nómine de "
+#~ "destination va esser remplazzat per un substrec «_»."
+
+#~ msgid ""
+#~ "Could not create \"%1\".\n"
+#~ "The destination filesystem (%2) disallows the following characters in "
+#~ "file names: %3\n"
+#~ "Selecting Replace will replace any invalid characters (in the destination "
+#~ "file name) with an underscore \"_\"."
+#~ msgstr ""
+#~ "Ne successat crear «%1».\n"
+#~ "Li sistema de files del destination (%2) depermisse li sequent caracteres "
+#~ "in nómines de files: %3\n"
+#~ "Si on va selecter «Remplazzar» omni ínvalid caracteres in li nómine de "
+#~ "destination va esser remplazzat per un substrec «_»."
+
+#~ msgid "Folder Already Exists"
+#~ msgstr "Li fólder ja existe"
+
+#~ msgid "File Already Exists"
+#~ msgstr "Li file ja existe"
+
+#~ msgid "Already Exists as Folder"
+#~ msgstr "Ja existe quam un fólder"
+
+#~ msgid "Trash"
+#~ msgstr "Paper-corb"
+
+#~ msgid "No Exec field in %1"
+#~ msgstr "Null camp Exec in %1"
+
+#~ msgid "Could not find the program '%1'"
+#~ msgstr "Ne successat trovar li programma «%1»"
+
+#~ msgid ""
+#~ "The program '%1' was found at '%2' but it is missing executable "
+#~ "permissions."
+#~ msgstr ""
+#~ "Li programma «%1» esset trovat in %2 ma it manca permissiones de "
+#~ "execution."
+
+#~ msgid "The program '%1' is missing executable permissions."
+#~ msgstr "Li programma «%1» manca permissiones de execution."
+
+#~ msgid "Syntax error in command %1 coming from %2"
+#~ msgstr "Errore de sintaxe in comande %1 quel venit de %2"
+
+#~ msgid "Terminal %1 not found while trying to run %2"
+#~ msgstr "Li terminal %1 ne esset trovat quande %2 esset lansat"
+
+#~ msgid "Syntax error in command %1 while trying to run %2"
+#~ msgstr "Errore de sintaxe in comande %1 quande on prova lansar %2"
+
+#~ msgid "1 day %2"
+#~ msgid_plural "%1 days %2"
+#~ msgstr[0] "1 die %2"
+#~ msgstr[1] "%1 dies %2"
+
+#~ msgid "%1 Item"
+#~ msgid_plural "%1 Items"
+#~ msgstr[0] "%1 element"
+#~ msgstr[1] "%1 elementes"
+
+#~ msgid "1 Folder"
+#~ msgid_plural "%1 Folders"
+#~ msgstr[0] "1 fólder"
+#~ msgstr[1] "%1 fólderes"
+
+#~ msgid "1 File"
+#~ msgid_plural "%1 Files"
+#~ msgstr[0] "1 file"
+#~ msgstr[1] "%1 files"
+
+#~ msgctxt "folders, files (size)"
+#~ msgid "%1, %2 (%3)"
+#~ msgstr "%1, %2 (%3)"
+
+#~ msgctxt "folders, files"
+#~ msgid "%1, %2"
+#~ msgstr "%1, %2"
+
+#~ msgctxt "files (size)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgctxt "items: folders, files (size)"
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "Motion"
+
+#~ msgctxt "The source of a file operation"
+#~ msgid "Source"
+#~ msgstr "Orígin"
+
+#~ msgctxt "The destination of a file operation"
+#~ msgid "Destination"
+#~ msgstr "Destination"
+
+#~ msgctxt "@title job"
+#~ msgid "Renaming"
+#~ msgstr "Renomination"
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "Copiation"
+
+#~ msgctxt "@title job"
+#~ msgid "Creating directory"
+#~ msgstr "Creation de un fólder"
+
+#~ msgid "Directory"
+#~ msgstr "Fólder"
+
+#~ msgctxt "@title job"
+#~ msgid "Deleting"
+#~ msgstr "Remotion"
+
+#~ msgid "File"
+#~ msgstr "File"
+
+#~ msgctxt "@title job"
+#~ msgid "Examining"
+#~ msgstr "Examinante"
+
+#~ msgctxt "@title job"
+#~ msgid "Transferring"
+#~ msgstr "Transferte"
+
+#~ msgctxt "@title job"
+#~ msgid "Mounting"
+#~ msgstr "Montage"
+
+#~ msgid "Device"
+#~ msgstr "Aparate"
+
+#~ msgid "Mountpoint"
+#~ msgstr "Punctu de montage"
+
+#~ msgctxt "@title job"
+#~ msgid "Unmounting"
+#~ msgstr "Demontage"
+
+#~ msgid "Change Attribute"
+#~ msgstr "Modificar li atribute"
+
+#~ msgid ""
+#~ "Root privileges are required to change file attributes. Do you want to "
+#~ "continue?"
+#~ msgstr ""
+#~ "Li privilegies del superusator es besonat por modificar attributes de "
+#~ "files. Continuar?"
+
+#~ msgid "Copy Files"
+#~ msgstr "Copiar li files"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the copy operation. Do you want "
+#~ "to continue?"
+#~ msgstr ""
+#~ "Li privilegies del superusator es besonat por compleer li copiation. "
+#~ "Continuar?"
+
+#~ msgid "Delete Files"
+#~ msgstr "Remover li files"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the delete operation. However, "
+#~ "doing so may damage your system. Do you want to continue?"
+#~ msgstr ""
+#~ "Li privilegies del superusator es besonat por compleer li remotion. Támen "
+#~ "to posse damagear vor sistema. Continuar?"
+
+#~ msgid "Create Folder"
+#~ msgstr "Crear un fólder"
+
+#~ msgid ""
+#~ "Root privileges are required to create this folder. Do you want to "
+#~ "continue?"
+#~ msgstr ""
+#~ "Li privilegies del superusator es besonat por crear ti fólder. Continuar?"
+
+#~ msgid "Move Items"
+#~ msgstr "Mover elementes"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the move operation. Do you want "
+#~ "to continue?"
+#~ msgstr ""
+#~ "Li privilegies del superusator es besonat por compleer li motion. "
+#~ "Continuar?"
+
+#~ msgid "Rename"
+#~ msgstr "Renominar"
+
+#~ msgid ""
+#~ "Root privileges are required to complete renaming. Do you want to "
+#~ "continue?"
+#~ msgstr ""
+#~ "Li privilegies del superusator es besonat por compleer li renomination. "
+#~ "Continuar?"
+
+#~ msgid "Create Symlink"
+#~ msgstr "Crear un sim. ligament"
+
+#~ msgid ""
+#~ "Root privileges are required to create a symlink. Do you want to continue?"
+#~ msgstr ""
+#~ "Li privilegies del superusator es besonat por crear un sim. ligament. "
+#~ "Continuar?"
+
+#~ msgid "Transfer data"
+#~ msgstr "Transferte de data"
+
+#~ msgid ""
+#~ "Root privileges are required to complete transferring data. Do you want "
+#~ "to continue?"
+#~ msgstr ""
+#~ "Li privilegies del superusator es besonat por compleer li transferte. "
+#~ "Continuar?"
+
+#~ msgid "Could not read %1."
+#~ msgstr "Ne successat leer %1."
+
+#~ msgid "Could not write to %1."
+#~ msgstr "Ne successat scrir a %1."
+
+#~ msgid "Could not start process %1."
+#~ msgstr "Ne successat lansar li processu %1."
+
+#~ msgid ""
+#~ "Internal Error\n"
+#~ "Please send a full bug report at https://bugs.kde.org\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Errore intern\n"
+#~ "Ples inviar un complet raporte de defecte che https://bugs.kde.org\n"
+#~ "%1"
+
+#~ msgid "Malformed URL %1."
+#~ msgstr "Ínvalid URL %1."
+
+#~ msgid "The protocol %1 is not supported."
+#~ msgstr "Li protocol %1 ne es supportat."
+
+#~ msgid "The protocol %1 is only a filter protocol."
+#~ msgstr "Li protocol %1 es solmen un protocol de filtre."
+
+#~ msgid "%1 is a folder, but a file was expected."
+#~ msgstr "%1 es un fólder, ma un file esset expectet."
+
+#~ msgid "%1 is a file, but a folder was expected."
+#~ msgstr "%1 es un file, ma un fólder esset expectet."
+
+#~ msgid "The file or folder %1 does not exist."
+#~ msgstr "Li file o fólder %1 ne existe."
+
+#~ msgid "A file named %1 already exists."
+#~ msgstr "Un file nominat %1 ja existe."
+
+#~ msgid "A folder named %1 already exists."
+#~ msgstr "Un fólder nominat %1 ja existe."
+
+#~ msgid "No hostname specified."
+#~ msgstr "Null nómine de host providet."
+
+#~ msgid "Unknown host %1"
+#~ msgstr "Ínconosset host %1"
+
+#~ msgid "Access denied to %1."
+#~ msgstr "Accesse a %1 es refusat."
+
+#~ msgid ""
+#~ "Access denied.\n"
+#~ "Could not write to %1."
+#~ msgstr ""
+#~ "Accesse refusat.\n"
+#~ "Ne successat scrir a %1."
+
+#~ msgid "Could not enter folder %1."
+#~ msgstr "Ne successat intrar li fólder %1."
+
+#~ msgid "The protocol %1 does not implement a folder service."
+#~ msgstr "Li protocol %1 ne implementa un servicie de fólder."
+
+#~ msgid "Found a cyclic link in %1."
+#~ msgstr "Un ciclic ligament es trovat in %1."
+
+#~ msgid "Found a cyclic link while copying %1."
+#~ msgstr "Un ciclic ligament es trovat durante de copiation de %1."
+
+#~ msgid "Could not create socket for accessing %1."
+#~ msgstr "Ne successat crear un socket por accesse a %1."
+
+#~ msgid "Could not connect to host %1."
+#~ msgstr "Ne successat conexer al host %1."
+
+#~ msgid "Connection to host %1 is broken."
+#~ msgstr "Conexion con host %1 esset interruptet."
+
+#~ msgid "The protocol %1 is not a filter protocol."
+#~ msgstr "Li protocol %1 ne es un protocol de filtre."
+
+#~ msgid ""
+#~ "Could not mount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ne successat monter li aparate.\n"
+#~ "Li raportat errore esset:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not unmount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ne successat desmonter li aparate.\n"
+#~ "Li raportat errore esset:\n"
+#~ "%1"
+
+#~ msgid "Could not read file %1."
+#~ msgstr "Ne successat leer li file %1."
+
+#~ msgid "Could not write to file %1."
+#~ msgstr "Ne successat scrir al file %1."
+
+#~ msgid "Could not bind %1."
+#~ msgstr "bind ne successat por %1."
+
+#~ msgid "Could not listen %1."
+#~ msgstr "listen ne successat por %1."
+
+#~ msgid "Could not accept %1."
+#~ msgstr "accept ne successat por %1."
+
+#~ msgid "Could not access %1."
+#~ msgstr "Ne successat acceder a %1."
+
+#~ msgid "Could not terminate listing %1."
+#~ msgstr "Ne successat cessar obtener un liste de %1."
+
+#~ msgid "Could not make folder %1."
+#~ msgstr "Ne successat crear li fólder %1."
+
+#~ msgid "Could not remove folder %1."
+#~ msgstr "Ne successat remover li fólder %1."
+
+#~ msgid "Could not resume file %1."
+#~ msgstr "Ne successat reprender li file %1."
+
+#~ msgid "Could not rename file %1."
+#~ msgstr "Ne successat renominar li file %1."
+
+#~ msgid "Could not change permissions for %1."
+#~ msgstr "Ne successat alterar li permissiones por %1."
+
+#~ msgid "Could not change ownership for %1."
+#~ msgstr "Ne successat reposseder %1."
+
+#~ msgid "Could not delete file %1."
+#~ msgstr "Ne successat remover li file %1."
+
+#~ msgid "The process for the %1 protocol died unexpectedly."
+#~ msgstr "Li processe del protocol %1 terminat se ínexpectatmen."
+
+#~ msgid ""
+#~ "Error. Out of memory.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Errore. Memorie exhaustet.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown proxy host\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ínconosset host de proxy\n"
+#~ "%1"
+
+#~ msgid "Authorization failed, %1 authentication not supported"
+#~ msgstr "Autorisation ne successat, autentification %1 es ínsupportat"
+
+#~ msgid ""
+#~ "User canceled action\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Li usator anullat li action\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Internal error in server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Errore intern in li servitor\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Timeout on server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Timeout de servitor\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown error\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ínconosset errore\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown interrupt\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ínconosset interruption\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not delete original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne successat remover li file del orígine %1.\n"
+#~ "Ples controlar li permissiones."
+
+#~ msgid ""
+#~ "Could not delete partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne successat remover li file de parte %1.\n"
+#~ "Ples controlar li permissiones."
+
+#~ msgid ""
+#~ "Could not rename original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne successat renominar li file del orígine %1.\n"
+#~ "Ples controlar li permissiones."
+
+#~ msgid ""
+#~ "Could not rename partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne successat renominar li file de parte %1.\n"
+#~ "Ples controlar li permissiones."
+
+#~ msgid ""
+#~ "Could not create symlink %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne successat crear li simbolic ligament %1.\n"
+#~ "Ples controlar li permissiones."
+
+#~ msgid ""
+#~ "Cannot create symlinks at %1.\n"
+#~ "The destination filesystem doesn't support symlinks."
+#~ msgstr ""
+#~ "Ne successat crear simbolic ligamentes in %1\n"
+#~ "Li sistema de files del destination ne supporta sim. ligamentes."
+
+#~ msgid "There is not enough space on the disk to write %1."
+#~ msgstr "Li spacie de disco es ínsufficent por scrir %1."
+
+#~ msgid ""
+#~ "The source and destination are the same file.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Li orígine e li destination es li sam file.\n"
+#~ "%1"
+
+#~ msgid "%1 is required by the server, but is not available."
+#~ msgstr "%1 es besonat per li servitor, ma it es índisponibil."
+
+#~ msgid "Access to restricted port in POST denied."
+#~ msgstr "Accesse a un restrictet portu in POST esset refusat."
+
+#~ msgid ""
+#~ "The required content size information was not provided for a POST "
+#~ "operation."
+#~ msgstr ""
+#~ "Li besonat grandore del contenete ne esset providet por un operation POST."
+
+#~ msgid "A file or folder cannot be dropped onto itself"
+#~ msgstr "It es impossibil far cader un file o fólder sur se self"
+
+#~ msgid "A folder cannot be moved into itself"
+#~ msgstr "It es ínpossibil mover un fólder a se self"
+
+#~ msgid "Communication with the local password server failed"
+#~ msgstr "Comunication con li local servitor de contrasignes ne successat"
+
+#, fuzzy
+#~| msgid "Unable to create io-slave. %1"
+#~ msgid "Unable to create KIO worker. %1"
+#~ msgstr "Ne successar crear io-slave. %1"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Cannot transfer <filename>%1</filename> because it is too large. The "
+#~ "destination filesystem only supports files up to 4GiB"
+#~ msgstr ""
+#~ "Ne successat transferter <filename>%1</filename> pro que it es tro grand. "
+#~ "Li sistema de files del destination supporta solmen files minu grand quam "
+#~ "4Gio"
+
+#~ msgid "File is too large to be trashed."
+#~ msgstr "Li file es tro grand por li Paper-corb."
+
+#~ msgid ""
+#~ "Unknown error code %1\n"
+#~ "%2\n"
+#~ "Please send a full bug report at https://bugs.kde.org."
+#~ msgstr ""
+#~ "Ínconosset code de errore %1\n"
+#~ "%2\n"
+#~ "Ples inviar un complet raporte de defecte che https://bugs.kde.org."
+
+#~ msgctxt "@info url"
+#~ msgid "(unknown)"
+#~ msgstr "(ínconosset)"
+
+#~ msgctxt "@info %1 error name, %2 description"
+#~ msgid "<qt><p><b>%1</b></p><p>%2</p></qt>"
+#~ msgstr "<qt><p><b>%1</b></p><p>%2</p></qt>"
+
+#~ msgid "<b>Technical reason</b>: "
+#~ msgstr "<b>Technic cause</b>: "
+
+#~ msgid "<b>Details of the request</b>:"
+#~ msgstr "<b>Detallies del demanda</b>:"
+
+#~ msgid "<li>URL: %1</li>"
+#~ msgstr "<li>URL: %1</li>"
+
+#~ msgid "<li>Protocol: %1</li>"
+#~ msgstr "<li>Protocol: %1</li>"
+
+#~ msgid "<li>Date and time: %1</li>"
+#~ msgstr "<li>Date e hora: %1</li>"
+
+#~ msgid "<li>Additional information: %1</li>"
+#~ msgstr "<li>Extra information: %1</li>"
+
+#~ msgid "<b>Possible causes</b>:"
+#~ msgstr "<b>Possibil causes</b>:"
+
+#~ msgid "<b>Possible solutions</b>:"
+#~ msgstr "<b>Possibil solutiones</b>:"
+
+#~ msgctxt "@info protocol"
+#~ msgid "(unknown)"
+#~ msgstr "(ínconosset)"
+
+#~ msgid "Check your access permissions on this resource."
+#~ msgstr "Controla vor permissiones por ti-ci ressurse."
+
+#~ msgid "Ensure that the resource exists, and try again."
+#~ msgstr "Ples controlar que li ressurse existe e repenar denov."
+
+#~ msgid "The specified resource may not exist."
+#~ msgstr "Forsan li providet ressurse ne existe."
+
+#~ msgid "Cannot Open Resource For Reading"
+#~ msgstr "Ne successat aperter un ressurse por letion"
+
+#~ msgid "You may not have permissions to read the file or open the folder."
+#~ msgstr "Forsan vu ne have permissiones leer li file o aperter li fólder."
+
+#~ msgid "Cannot Open Resource For Writing"
+#~ msgstr "Ne successat aperter un ressurse por scrition"
+
+#~ msgid "Unable to Launch Process"
+#~ msgstr "Ne successat lansar un processe"
+
+#~ msgid "Internal Error"
+#~ msgstr "Errore intern"
+
+#~ msgid "Improperly Formatted URL"
+#~ msgstr "Ínvalid URL"
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered was not properly formatted. The "
+#~ "format of a URL is generally as follows:<blockquote><strong>protocol://"
+#~ "user:password@www.example.org:port/folder/filename.extension?query=value</"
+#~ "strong></blockquote>"
+#~ msgstr ""
+#~ "Li adresse URL quel vu providet ne es format corectmen. Li formate de un "
+#~ "URL es usualmen tal quam ti:<blockquote><strong>protocol://usator:"
+#~ "contrasigne@www.exemple.org:portu/fílder/file-nómine.extension?"
+#~ "demanda=valore</strong></blockquote>"
+
+#~ msgid "Unsupported Protocol %1"
+#~ msgstr "Ínsuportat protocol %1"
+
+#~ msgid ""
+#~ "The protocol <strong>%1</strong> is not supported by the KDE programs "
+#~ "currently installed on this computer."
+#~ msgstr ""
+#~ "Li protocol <strong>%1</strong> ne es suportat por programmas de KDE quel "
+#~ "es installat in vor computator."
+
+#~ msgid "The requested protocol may not be supported."
+#~ msgstr "Li demandat protocol forsan ne es supportat."
+
+#~ msgid ""
+#~ "The versions of the %1 protocol supported by this computer and the server "
+#~ "may be incompatible."
+#~ msgstr ""
+#~ "Li versiones del protocol %1 quel es supportat per ti computator e li "
+#~ "servitor posse esser íncompatibil."
+
+#~ msgid "URL Does Not Refer to a Resource."
+#~ msgstr "Li URL ne refere un ressurse."
+
+#~ msgid "Protocol is a Filter Protocol"
+#~ msgstr "Protocol es un protocol de filtre"
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered did not refer to a specific resource."
+#~ msgstr ""
+#~ "Li adresse URL quel vu providet ne corresponde a un specific ressurse."
+
+#~ msgid "Unsupported Action: %1"
+#~ msgstr "Ínsuportat action: %1"
+
+#~ msgid "File Expected"
+#~ msgstr "Un file esset expectet"
+
+#~ msgid ""
+#~ "The request expected a file, however the folder <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr ""
+#~ "Li demande expectet un file, ma li fólder <strong>%1</strong> esset "
+#~ "trovat."
+
+#, fuzzy
+#~ msgid "This may be an error on the server side."
+#~ msgstr "Forsan li protocol o li servitor ne supporta reprension de files."
+
+#~ msgid "Folder Expected"
+#~ msgstr "Un fólder es expectet"
+
+#~ msgid ""
+#~ "The request expected a folder, however the file <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr ""
+#~ "Li demande expectet un fólder, ma li file <strong>%1</strong> esset "
+#~ "trovat."
+
+#~ msgid "File or Folder Does Not Exist"
+#~ msgstr "Un file o fólder ne existe"
+
+#~ msgid "The specified file or folder <strong>%1</strong> does not exist."
+#~ msgstr "Li providet file o fólder <strong>%1</strong> ne existe."
+
+#~ msgid ""
+#~ "The requested file could not be created because a file with the same name "
+#~ "already exists."
+#~ msgstr ""
+#~ "Ne successat crear li besonat file pro que un file con li sam nómine ja "
+#~ "existe."
+
+#~ msgid "Delete the current file and try again."
+#~ msgstr "Remover li actual file e repenar denov."
+
+#~ msgid "Choose an alternate filename for the new file."
+#~ msgstr "Selecte un altri nómine por li nov file."
+
+#~ msgid ""
+#~ "The requested folder could not be created because a folder with the same "
+#~ "name already exists."
+#~ msgstr ""
+#~ "Ne successat crear li besonat fólder pro que un fólder con li sam nómine "
+#~ "ja existe."
+
+#~ msgid "Delete the current folder and try again."
+#~ msgstr "Remover li actual fólder e repenar denov."
+
+#~ msgid "Choose an alternate name for the new folder."
+#~ msgstr "Provide un altri nómine por li nov fólder."
+
+#~ msgid "Unknown Host"
+#~ msgstr "Ínconosset host"
+
+#~ msgid ""
+#~ "The name that you typed, %1, may not exist: it may be incorrectly typed."
+#~ msgstr "Forsan li nómine %1 ne existe; fórsat it esset tippar íncorrectmen."
+
+#~ msgid "Access Denied"
+#~ msgstr "Accesse refusat"
+
+#~ msgid "Access was denied to the specified resource, <strong>%1</strong>."
+#~ msgstr "Accesse al besonat ressurse <strong>%1</strong> esset refusat."
+
+#~ msgid "Write Access Denied"
+#~ msgstr "Accesse de scrition refusat"
+
+#~ msgid ""
+#~ "This means that an attempt to write to the file <strong>%1</strong> was "
+#~ "rejected."
+#~ msgstr ""
+#~ "To significa que un prova de scrir al file <strong>%1</strong> esset "
+#~ "refusat."
+
+#~ msgid "Unable to Enter Folder"
+#~ msgstr "Ne successat intrar un fólder"
+
+#~ msgid ""
+#~ "This means that an attempt to enter (in other words, to open) the "
+#~ "requested folder <strong>%1</strong> was rejected."
+#~ msgstr ""
+#~ "To significa que un prova de intrar (t.e. aperter) li fólder <strong>%1</"
+#~ "strong> esset refusat."
+
+#~ msgid "Folder Listing Unavailable"
+#~ msgstr "Li liste de fólder es índisponibil"
+
+#~ msgid "Protocol %1 is not a Filesystem"
+#~ msgstr "Protocol %1 ne es un sistema de files"
+
+#~ msgid "Cyclic Link Detected"
+#~ msgstr "Un ciclic ligament trovat"
+
+#~ msgid "Request Aborted By User"
+#~ msgstr "Demande annulat per li usator"
+
+#~ msgid "The request was not completed because it was aborted."
+#~ msgstr "Li demande ne esset completat pro que it esset annulat."
+
+#~ msgid "Retry the request."
+#~ msgstr "Repenar li demande."
+
+#~ msgid "Cyclic Link Detected During Copy"
+#~ msgstr "Un ciclic ligament trovat durante de copiation"
+
+#~ msgid "Could Not Create Network Connection"
+#~ msgstr "Ne successat crear un conexion de rete"
+
+#~ msgid "Could Not Create Socket"
+#~ msgstr "Ne successat crear un socket"
+
+#~ msgid "Connection to Server Refused"
+#~ msgstr "Conexion a un servitor esset refusat"
+
+#~ msgid "Connection to Server Closed Unexpectedly"
+#~ msgstr "Conexion a un servitor ha cludet ínexpectatmen"
+
+#~ msgid "URL Resource Invalid"
+#~ msgstr "Ressurse URL es ínvalid"
+
+#~ msgid "Protocol %1 is not a Filter Protocol"
+#~ msgstr "Protocol %1 ne es un protocol de filtre"
+
+#~ msgid "Could Not Mount Device"
+#~ msgstr "Ne successat monter un aparate"
+
+#~ msgid "Could Not Unmount Device"
+#~ msgstr "Ne successat desmonter li aparate"
+
+#~ msgid "Cannot Read From Resource"
+#~ msgstr "Ne successat leer un ressurse"
+
+#~ msgid "You may not have permissions to read from the resource."
+#~ msgstr "Forsan vu ne have permissiones leer del ressurse."
+
+#~ msgid "Cannot Write to Resource"
+#~ msgstr "Ne successat scrir un ressurse"
+
+#, fuzzy
+#~ msgid "You may not have permissions to write to the resource."
+#~ msgstr "Forsan vu ne have permissiones leer del ressurse."
+
+#, fuzzy
+#~ msgid "Could Not Listen for Network Connections"
+#~ msgstr "listen ne successat"
+
+#~ msgid "Could Not Bind"
+#~ msgstr "bind ne successat"
+
+#~ msgid "Could Not Listen"
+#~ msgstr "listen ne successat"
+
+#, fuzzy
+#~ msgid "Could Not Accept Network Connection"
+#~ msgstr "Ne successat crear un conexion de rete"
+
+#, fuzzy
+#~ msgid "You may not have permissions to accept the connection."
+#~ msgstr "Forsan vu ne have permissiones leer del ressurse."
+
+#~ msgid "Could Not Login: %1"
+#~ msgstr "Ne successat inregistrar: %1"
+
+#~ msgid "Could Not Determine Resource Status"
+#~ msgstr "Ne successat trovar li statu de un ressurse"
+
+#~ msgid "Could Not Stat Resource"
+#~ msgstr "stat ne successat obtener por un ressurse"
+
+#~ msgid ""
+#~ "An attempt to determine information about the status of the resource "
+#~ "<strong>%1</strong>, such as the resource name, type, size, etc., was "
+#~ "unsuccessful."
+#~ msgstr ""
+#~ "Un prova de obtener information pri li statu del ressurse <strong>%1</"
+#~ "strong>, quam li nómine, tip, grandor, etc. ne successat."
+
+#~ msgid ""
+#~ "The specified resource may not have existed or may not be accessible."
+#~ msgstr "Li besonat ressurse ne existe o es ínaccessibil."
+
+#~ msgid "Could Not Cancel Listing"
+#~ msgstr "Ne successat cessar obtener un liste"
+
+#, fuzzy
+#~ msgid "FIXME: Document this"
+#~ msgstr "document"
+
+#~ msgid "Could Not Create Folder"
+#~ msgstr "Ne successat crear un fólder"
+
+#~ msgid "An attempt to create the requested folder failed."
+#~ msgstr "Un prova de crear li besonat fólder ne successat."
+
+#~ msgid "The location where the folder was to be created may not exist."
+#~ msgstr "Li localisation u li fólder vell esser creat forsan ne existe."
+
+#~ msgid "Could Not Remove Folder"
+#~ msgstr "Ne successat remover un fólder"
+
+#~ msgid ""
+#~ "An attempt to remove the specified folder, <strong>%1</strong>, failed."
+#~ msgstr ""
+#~ "Un prova de remover li besonat fólder, <strong>%1</strong>, ne successat."
+
+#~ msgid "The specified folder may not exist."
+#~ msgstr "Forsan li file o fólder ne existe."
+
+#~ msgid "The specified folder may not be empty."
+#~ msgstr "Forsan li fólder ne es vacui."
+
+#~ msgid "Ensure that the folder exists and is empty, and try again."
+#~ msgstr "Ples controlar que li fólder existe e es vacui, e repenar denov."
+
+#~ msgid "Could Not Resume File Transfer"
+#~ msgstr "Ne successat reprender un transferte de un file"
+
+#~ msgid "The protocol, or the server, may not support file resuming."
+#~ msgstr "Forsan li protocol o li servitor ne supporta reprension de files."
+
+#~ msgid "Could Not Rename Resource"
+#~ msgstr "Ne successat renominar un ressurse"
+
+#~ msgid ""
+#~ "An attempt to rename the specified resource <strong>%1</strong> failed."
+#~ msgstr ""
+#~ "Un prova de renominar li besonat ressurse, <strong>%1</strong>, ne "
+#~ "successat."
+
+#~ msgid "Could Not Alter Permissions of Resource"
+#~ msgstr "Ne successat alterar li permissiones de un ressurse"
+
+#~ msgid ""
+#~ "An attempt to alter the permissions on the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "Un prova de alterar permissiones del besonat ressurse, <strong>%1</"
+#~ "strong>, ne successat."
+
+#~ msgid "Could Not Change Ownership of Resource"
+#~ msgstr "Ne successat reposseder un ressurse"
+
+#~ msgid ""
+#~ "An attempt to change the ownership of the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "Un prova de reposseder li besonat ressurse, <strong>%1</strong>, ne "
+#~ "successat."
+
+#~ msgid "Could Not Delete Resource"
+#~ msgstr "Ne successat remover un ressurse"
+
+#~ msgid ""
+#~ "An attempt to delete the specified resource <strong>%1</strong> failed."
+#~ msgstr ""
+#~ "Un prova de remover li besonat ressurse, <strong>%1</strong>, ne "
+#~ "successat."
+
+#, fuzzy
+#~ msgid "Unexpected Program Termination"
+#~ msgstr "Programma:"
+
+#~ msgid "Out of Memory"
+#~ msgstr "Memorie exhaustet"
+
+#~ msgid "Unknown Proxy Host"
+#~ msgstr "Ínconosset host de proxy"
+
+#~ msgid "Authentication Failed: Method %1 Not Supported"
+#~ msgstr "Autentification ne successat: li metode %1 es ínsupportat"
+
+#~ msgid ""
+#~ "Please file a bug at <a href=\"https://bugs.kde.org/\">https://bugs.kde."
+#~ "org/</a> to inform the KDE team of the unsupported authentication method."
+#~ msgstr ""
+#~ "Ples raportar un defecte che <a href=\"https://bugs.kde.org/\">https://"
+#~ "bugs.kde.org/</a> por informar li equipe de KDE pri li ínsupportat metode "
+#~ "de authentification."
+
+#~ msgid "Request Aborted"
+#~ msgstr "Demande annulat"
+
+#~ msgid "Internal Error in Server"
+#~ msgstr "Errore intern del servitor"
+
+#~ msgid "Timeout Error"
+#~ msgstr "Errore de timeout"
+
+#~ msgid "Unknown Error"
+#~ msgstr "Ínconosset errore"
+
+#~ msgid "Unknown Interruption"
+#~ msgstr "Ínconosset interruption"
+
+#~ msgid "Could Not Delete Original File"
+#~ msgstr "Ne successat remover li file del orígine"
+
+#~ msgid "Could Not Delete Temporary File"
+#~ msgstr "Ne successat remover li temporari file"
+
+#~ msgid "Could Not Rename Original File"
+#~ msgstr "Ne posset renominar li original file"
+
+#~ msgid "Could Not Rename Temporary File"
+#~ msgstr "Ne successat renominar li temporari file"
+
+#~ msgid "Could Not Create Link"
+#~ msgstr "Ne successat crear un ligament"
+
+#~ msgid "Could Not Create Symbolic Link"
+#~ msgstr "Ne successat crear un simbolic ligament"
+
+#~ msgid "The requested symbolic link %1 could not be created."
+#~ msgstr "Ne successat crear li simbolic ligament %1."
+
+#~ msgid "No Content"
+#~ msgstr "Null contenete"
+
+#~ msgid "Disk Full"
+#~ msgstr "Disco es plen"
+
+#~ msgid "Source and Destination Files Identical"
+#~ msgstr "Li orígine e li destination es identic"
+
+#~ msgid ""
+#~ "The operation could not be completed because the source and destination "
+#~ "files are the same file."
+#~ msgstr ""
+#~ "Ne successat compleer li operation pro que li files de orígine e "
+#~ "destination es li sam file."
+
+#~ msgid "Choose a different filename for the destination file."
+#~ msgstr "Selecte un altri nómine por li file de destination."
+
+#~ msgid "File or Folder dropped onto itself"
+#~ msgstr "Un file o fólder fat cader sur se self"
+
+#~ msgid ""
+#~ "The operation could not be completed because the source and destination "
+#~ "file or folder are the same."
+#~ msgstr ""
+#~ "Ne successat compleer li operation pro que li file o fólder de orígine e "
+#~ "destination es li sam file."
+
+#~ msgid "Drop the item into a different file or folder."
+#~ msgstr "Far cader li element in un altri file o fólder."
+
+#~ msgid "Folder moved into itself"
+#~ msgstr "Un fólder movet a se self"
+
+#~ msgid ""
+#~ "The operation could not be completed because the source can not be moved "
+#~ "into itself."
+#~ msgstr ""
+#~ "Ne successat compleer li operation pro que li orígine ne posse esser "
+#~ "movet a se self."
+
+#~ msgid "Move the item into a different folder."
+#~ msgstr "Mover li element a un altri fólder."
+
+#~ msgid "Could not communicate with password server"
+#~ msgstr "Comunication con li servitor de contrasignes ne successat"
+
+#~ msgid "Cannot Initiate the %1 Protocol"
+#~ msgstr "Ne successat iniciar li protocol %1"
+
+#, fuzzy
+#~| msgid "Unable to Create io-slave"
+#~ msgid "Unable to Create KIO Worker"
+#~ msgstr "Ne successat crear io-slave"
+
+#~ msgctxt "@info"
+#~ msgid "Cannot transfer <filename>%1</filename>"
+#~ msgstr "Ne successat transferter <filename>%1</filename>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The file <filename>%1</filename> cannot be transferred, because the "
+#~ "destination filesystem does not support files that large"
+#~ msgstr ""
+#~ "Li file <filename>%1</filename> ne posse esser transfertet, pro que li "
+#~ "sistema de files del destination ne supporta tant grand files"
+
+#~ msgid ""
+#~ "Reformat the destination drive to use a filesystem that supports files "
+#~ "that large."
+#~ msgstr ""
+#~ "On posse reformatar li unité de destination por usar un sistema de files "
+#~ "quel supporta tant grand files."
+
+#~ msgid "Undocumented Error"
+#~ msgstr "Índocumentat errore"
+
+#~ msgid "(Symbolic Link to %1)"
+#~ msgstr "(simbolic ligament a %1)"
+
+#~ msgid "(%1, Link to %2)"
+#~ msgstr "(%1, ligament a %2)"
+
+#~ msgid " (Points to %1)"
+#~ msgstr " (destination: %1)"
+
+#~ msgid ""
+#~ "Malformed URL\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Invalid URL\n"
+#~ "%1"
+
+#~ msgid "Unable to determine the type of file for %1"
+#~ msgstr "Ne successat resoluer li tip de file por %1"
+
+#~ msgid "Opening connections is not supported with the protocol %1."
+#~ msgstr "Apertion de conexiones ne es supportat per protocol %1."
+
+#~ msgid "Closing connections is not supported with the protocol %1."
+#~ msgstr "Clusion de conexiones ne es supportat per protocol %1."
+
+#~ msgid "Accessing files is not supported with the protocol %1."
+#~ msgstr "Accesse a files ne es supportat per protocol %1."
+
+#~ msgid "Writing to %1 is not supported."
+#~ msgstr "Scrition a %1 es ínsupportat."
+
+#~ msgid "There are no special actions available for protocol %1."
+#~ msgstr "Null special actiones es disponibil por protocol %1."
+
+#~ msgid "Listing folders is not supported for protocol %1."
+#~ msgstr "Liste de fólderes ne es supportat per protocol %1."
+
+#~ msgid "Retrieving data from %1 is not supported."
+#~ msgstr "Obtenente data de %1 es ínsupportat."
+
+#~ msgid "Retrieving mime type information from %1 is not supported."
+#~ msgstr "Obtenente information pri un tip MIME de %1 es ínsupportat."
+
+#~ msgid "Renaming or moving files within %1 is not supported."
+#~ msgstr "Renomination o motion de files in %1 es ínsupportat."
+
+#~ msgid "Creating symlinks is not supported with protocol %1."
+#~ msgstr "Creation de sim. ligamentes ne es supportat per protocol %1."
+
+#~ msgid "Copying files within %1 is not supported."
+#~ msgstr "Copiation de files de %1 es ínsupportat."
+
+#~ msgid "Deleting files from %1 is not supported."
+#~ msgstr "Remotion de files de %1 es ínsupportat."
+
+#~ msgid "Creating folders is not supported with protocol %1."
+#~ msgstr "Creation de fólderes ne es supportat per protocol %1."
+
+#~ msgid "Changing the attributes of files is not supported with protocol %1."
+#~ msgstr ""
+#~ "Modification del atributes de files ne es supportat per protocol %1."
+
+#~ msgid "Changing the ownership of files is not supported with protocol %1."
+#~ msgstr ""
+#~ "Modification del possessor de files ne es supportat per protocol %1."
+
+#~ msgid "Multiple get is not supported with protocol %1."
+#~ msgstr "MGET ne es supportat per protocol %1."
+
+#~ msgid "Opening files is not supported with protocol %1."
+#~ msgstr "Apertion de files ne es supportat per protocol %1."
+
+#~ msgid "Protocol %1 does not support action %2."
+#~ msgstr "Protocol %1 ne supporta li action %2."
+
+#~ msgid "Security Information"
+#~ msgstr "Information de securitá"
+
+#~ msgid "C&ontinue Loading"
+#~ msgstr "C&ontinuar cargar"
+
+#~ msgctxt "%1 is a host name"
+#~ msgid "%1: SSL negotiation failed"
+#~ msgstr "%1: negociation SSL ne successat"
+
+#~ msgid "Display SSL &Information"
+#~ msgstr "Monstrar &information pri SSL"
+
+#~ msgid "C&onnect"
+#~ msgstr "C&onexer"
+
+#~ msgid ""
+#~ "The server failed the authenticity check (%1).\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Li servitor fallit li control de autenticitá (%1).\n"
+#~ "\n"
+
+#~ msgid "Server Authentication"
+#~ msgstr "Autentication de servitor"
+
+#~ msgid "&Details"
+#~ msgstr "&Detallies"
+
+#~ msgid "Co&ntinue"
+#~ msgstr "Co&ntinuar"
+
+#~ msgid ""
+#~ "Would you like to accept this certificate forever without being prompted?"
+#~ msgstr ""
+#~ "Esque vu vole acceptar ti certificate por sempre sin subsequent demandas?"
+
+#~ msgid "&Forever"
+#~ msgstr "&Permanentmen"
+
+#~ msgid "&Current Session only"
+#~ msgstr "Solmen li a&ctual session"
+
+#~ msgid "Unknown protocol '%1'."
+#~ msgstr "Ínconosset protocol «%1»."
+
+#, fuzzy
+#~| msgid "Can not find io-slave for protocol '%1'."
+#~ msgid "Can not find a KIO worker for protocol '%1'."
+#~ msgstr "Ne successat trovar un io-slave por protocol «%1»."
+
+#, fuzzy
+#~| msgid "Can not create socket for launching io-slave for protocol '%1'."
+#~ msgid ""
+#~ "Can not create a socket for launching a KIO worker for protocol '%1'."
+#~ msgstr "Ne successat crear un socket por lansar io-slave por protocol «%1»."
+
+#, fuzzy
+#~| msgid "Can not find 'kioslave5' executable at '%1'"
+#~ msgid "Can not find 'kioworker' executable at '%1'"
+#~ msgstr "Ne successat trovar li executibile «kioslave5» in «%1»."
+
+#~ msgid "You did not select a file to delete."
+#~ msgstr "Vu ne selectet un file por remover."
+
+#~ msgid "Nothing to Delete"
+#~ msgstr "Ne hay alquo por remover"
+
+#~ msgid "You did not select a file to trash."
+#~ msgstr "Vu ne selectet un file por mover al Paper-corb."
+
+#~ msgid "Nothing to Trash"
+#~ msgstr "Ne hay alquo por mover al Paper-corb"
+
+#~ msgid "The specified folder does not exist or was not readable."
+#~ msgstr "Li selectet fólder ne existe o es ínleibil."
+
+#~ msgid "Menu"
+#~ msgstr "Menú"
+
+#~ msgid "Parent Folder"
+#~ msgstr "Fólder superior"
+
+#~ msgctxt "@info"
+#~ msgid "Go back"
+#~ msgstr "Ear retro"
+
+#~ msgctxt "@info"
+#~ msgid "Go forward"
+#~ msgstr "Ear avan"
+
+#~ msgid "Home Folder"
+#~ msgstr "Hem-fólder"
+
+#~ msgid "Reload"
+#~ msgstr "Recargar"
+
+#~ msgid "New Folder..."
+#~ msgstr "Crear un fólder…"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Mover al Paper-corb"
+
+#~ msgid "Delete"
+#~ msgstr "Remover"
+
+#~ msgid "Sorting"
+#~ msgstr "Órdine"
+
+#~ msgid "Sort by Name"
+#~ msgstr "Ordinar secun nómine"
+
+#~ msgid "Sort by Size"
+#~ msgstr "Ordinar secun grandore"
+
+#~ msgid "Sort by Date"
+#~ msgstr "Ordinar secun li date"
+
+#~ msgid "Sort by Type"
+#~ msgstr "Ordinar secun tip"
+
+#~ msgid "Ascending"
+#~ msgstr "Secun ascension"
+
+#~ msgid "Descending"
+#~ msgstr "Secun descension"
+
+#~ msgid "Folders First"
+#~ msgstr "Fólderes unesimmen"
+
+#~ msgid "Hidden Files Last"
+#~ msgstr "Celat files finalmen"
+
+#~ msgid "Icons View"
+#~ msgstr "Vise de icones"
+
+#~ msgid "Compact View"
+#~ msgstr "Vise compact"
+
+#~ msgid "Details View"
+#~ msgstr "Vise detalliat"
+
+#~ msgid "Icon Position"
+#~ msgstr "Position del icone"
+
+#~ msgid "Next to File Name"
+#~ msgstr "Apu li nómine"
+
+#~ msgid "Above File Name"
+#~ msgstr "Sur li nómine"
+
+#~ msgid "Short View"
+#~ msgstr "Vise curt"
+
+#~ msgid "Detailed View"
+#~ msgstr "Vise detalliat"
+
+#~ msgid "Tree View"
+#~ msgstr "Vise de árbor"
+
+#~ msgid "Detailed Tree View"
+#~ msgstr "Vise detalliat de árbor"
+
+#~ msgid "Allow Expansion in Details View"
+#~ msgstr "Usar expansion in li vise detalliat"
+
+#~ msgid "Show Hidden Files"
+#~ msgstr "Revelar celat files"
+
+#~ msgid "Show Preview Panel"
+#~ msgstr "Monstrar li panel de previder"
+
+#~ msgid "Show Preview"
+#~ msgstr "Previder"
+
+#~ msgid "Open Containing Folder"
+#~ msgstr "Aperter li contenent fólder"
+
+#~ msgid "Properties"
+#~ msgstr "Proprietás"
+
+#~ msgid "&View Mode"
+#~ msgstr "Mode de &vise"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Z-A"
+#~ msgstr "Z-A"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "A-Z"
+#~ msgstr "A-Z"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Newest First"
+#~ msgstr "Max nov al inicie"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "Oldest First"
+#~ msgstr "Max old al inicie"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Largest First"
+#~ msgstr "Max grand al inicie"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "Smallest First"
+#~ msgstr "Max micri al inicie"
+
+#~ msgid "Encoding:"
+#~ msgstr "Codification:"
+
+#~ msgid "Open"
+#~ msgstr "Aperter"
+
+#~ msgid "Save As"
+#~ msgstr "Gardar quam"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Copy To"
+#~ msgstr "Copiar a"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Move To"
+#~ msgstr "Mover a"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Home Folder"
+#~ msgstr "Hem fólder"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Root Folder"
+#~ msgstr "Fólder original"
+
+#~ msgctxt "@title:menu in Copy To or Move To submenu"
+#~ msgid "Browse..."
+#~ msgstr "Trovar…"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Copy Here"
+#~ msgstr "Copiar ad ci"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Move Here"
+#~ msgstr "Mover ad ci"
+
+#~ msgctxt "Default mime type filter that shows all file types"
+#~ msgid "*|All Files"
+#~ msgstr "*|Omni files"
+
+#~ msgctxt "%1 is the mimetype name, %2 is the extensions"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "All Supported Files"
+#~ msgstr "Omni suportat files"
+
+#~ msgid "All Files"
+#~ msgstr "Omni files"
+
+#~ msgid "Add Places Entry"
+#~ msgstr "Adjunter un element del Locs"
+
+#~ msgid "Edit Places Entry"
+#~ msgstr "Modificar un element del Locs"
+
+#~ msgid "L&abel:"
+#~ msgstr "&Etiquette:"
+
+#~ msgid "Enter descriptive label here"
+#~ msgstr "Provider un descritiv etiquette"
+
+#~ msgid "&Location:"
+#~ msgstr "&Localisation:"
+
+#~ msgid "Choose an &icon:"
+#~ msgstr "Selecte un &icone:"
+
+#~ msgid "&Only show when using this application (%1)"
+#~ msgstr "M&onstra solmen in ti-ci application (%1)"
+
+#~ msgctxt "@item"
+#~ msgid "Places"
+#~ msgstr "Locs"
+
+#~ msgctxt "@item"
+#~ msgid "Remote"
+#~ msgstr "Lontan"
+
+#~ msgctxt "@item The place group section name for recent dynamic lists"
+#~ msgid "Recent"
+#~ msgstr "Recent"
+
+#~ msgctxt "@item"
+#~ msgid "Search For"
+#~ msgstr "Serchar por"
+
+#~ msgctxt "@item"
+#~ msgid "Devices"
+#~ msgstr "Aparates"
+
+#~ msgctxt "@item"
+#~ msgid "Removable Devices"
+#~ msgstr "Aparates removibil"
+
+#~ msgctxt "@item"
+#~ msgid "Tags"
+#~ msgstr "Etiquettes"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "All tags"
+#~ msgstr "Omni etiquettes"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Home"
+#~ msgstr "Hem"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Desktop"
+#~ msgstr "Pupitre"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Documents"
+#~ msgstr "Documentes"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Downloads"
+#~ msgstr "Descargates"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Network"
+#~ msgstr "Rete"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Trash"
+#~ msgstr "Paper-corb"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Music"
+#~ msgstr "Musica"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Pictures"
+#~ msgstr "Images"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Videos"
+#~ msgstr "Videos"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Files"
+#~ msgstr "Recent files"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Locations"
+#~ msgstr "Recent localisationes"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Today"
+#~ msgstr "Modificat hodie"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Yesterday"
+#~ msgstr "Modificat yeri"
+
+#~ msgctxt "Placeholder is error message"
+#~ msgid "Could not add to the Places panel: %1"
+#~ msgstr "Ne successat adjunter al panel Locs: %1"
+
+#~ msgid "Only folders can be added to the Places panel."
+#~ msgstr "Solmen fólderes posse esser adjuntet al panel Locs."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Releasing…"
+#~ msgstr "Liberante…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Release"
+#~ msgstr "&Liberar"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Safely Removing…"
+#~ msgstr "Removente securmen…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Safely Remove"
+#~ msgstr "Remover &securmen"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Unmounting…"
+#~ msgstr "Desmontente…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Unmount"
+#~ msgstr "&Desmonter"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Eject"
+#~ msgstr "&Ejecter"
+
+#~ msgid "The device '%1' is not a disk and cannot be ejected."
+#~ msgstr "Li aparate «%1» ne es un disco e ne posse esser ejectet."
+
+#~ msgid "An error occurred while accessing '%1', the system responded: %2"
+#~ msgstr "Un errore evenit accessante «%1», li sistema respondet: %2"
+
+#~ msgid "An error occurred while accessing '%1'"
+#~ msgstr "Un errore evenit accessante «%1»"
+
+#~ msgid "%1 (hidden)"
+#~ msgstr "%1 (celat)"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Empty Trash"
+#~ msgstr "Vacuar li Paper-corb"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Mount"
+#~ msgstr "Monter"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open in New Tab"
+#~ msgstr "Aperter in un nov carte"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open in New Window"
+#~ msgstr "Aperter in un nov fenestre"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Add Entry…"
+#~ msgstr "Adjunter un element..."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Edit…"
+#~ msgstr "&Modificar…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Remove"
+#~ msgstr "Remover"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Hide"
+#~ msgstr "Ce&lar"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section '%1'"
+#~ msgstr "Celar li section «%1»"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section"
+#~ msgstr "Celar li section"
+
+#~ msgid "&Show All Entries"
+#~ msgstr "&Monstrar omni elementes"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Icon Size"
+#~ msgstr "Dimension del icone"
+
+#~ msgctxt ""
+#~ "@item:inmenu Auto set icon size based on available space inthe Places "
+#~ "side-panel"
+#~ msgid "Auto Resize"
+#~ msgstr "Redimensionar automaticmen"
+
+#~ msgctxt "Small icon size"
+#~ msgid "Small (%1x%1)"
+#~ msgstr "Micri (%1x%1)"
+
+#~ msgctxt "Medium icon size"
+#~ msgid "Medium (%1x%1)"
+#~ msgstr "Medie (%1x%1)"
+
+#~ msgctxt "Large icon size"
+#~ msgid "Large (%1x%1)"
+#~ msgstr "Grand (%1x%1)"
+
+#~ msgctxt "Huge icon size"
+#~ msgid "Huge (%1x%1)"
+#~ msgstr "Grandissim (%1x%1)"
+
+#~ msgid "You can only select one file"
+#~ msgstr "On posse selecter solmen ún file"
+
+#~ msgid "More than one file provided"
+#~ msgstr "Plu quam ún file es providet"
+
+#~ msgid "You can only select local files"
+#~ msgstr "On posse selecter solmen local files"
+
+#~ msgid "Remote files not accepted"
+#~ msgstr "Lontan files es ínacceptabil"
+
+#~ msgid ""
+#~ "The selected URL uses an unsupported scheme. Please use the following "
+#~ "scheme: %2"
+#~ msgid_plural ""
+#~ "The selected URL uses an unsupported scheme. Please use one of the "
+#~ "following schemes: %2"
+#~ msgstr[0] ""
+#~ "Li selectet URL usa un ínsupportat schema. Ples usar li sequent schema: %2"
+#~ msgstr[1] ""
+#~ "Li selectet URL usa un ínsupportat schema. Ples usar ún del sequent "
+#~ "schemas: %2"
+
+#~ msgid "Unsupported URL scheme"
+#~ msgstr "Ínsupportat schema de URL"
+
+#~ msgid ""
+#~ "More than one folder has been selected and this dialog does not accept "
+#~ "folders, so it is not possible to decide which one to enter. Please "
+#~ "select only one folder to list it."
+#~ msgstr ""
+#~ "Plu quam ún fólder esset selectet e ti dialog ne accepta fólderes. "
+#~ "Selecte solmen ún fólder por listar it."
+
+#~ msgid "More than one folder provided"
+#~ msgstr "Plu quam ún fólder es providet"
+
+#~ msgid ""
+#~ "At least one folder and one file has been selected. Selected files will "
+#~ "be ignored and the selected folder will be listed"
+#~ msgstr ""
+#~ "Adminim ún fólder e ún file esset selectet. Li selectet files va esset "
+#~ "ignorat e li selectet fólder va esser listat"
+
+#~ msgid "Files and folders selected"
+#~ msgstr "Selectet files e fólderes"
+
+#~ msgid "The file \"%1\" could not be found"
+#~ msgstr "Ne successat trovar li file «%1»"
+
+#~ msgid "Cannot open file"
+#~ msgstr "Ne successat aperter li file"
+
+#~ msgid ""
+#~ "<qt>Click this button to enter the parent folder.<br /><br />For "
+#~ "instance, if the current location is file:/home/konqi clicking this "
+#~ "button will take you to file:/home.</qt>"
+#~ msgstr ""
+#~ "<qt>Ti buton intra li superiori fólder.<br /><br />P.ex. si li actual "
+#~ "localisation es file:/home/konqi ti buton va navigar a file:/home.</qt>"
+
+#~ msgid ""
+#~ "Click this button to move backwards one step in the browsing history."
+#~ msgstr "Ti buton ea un passu a retro in li diarium de navigation."
+
+#~ msgid "Click this button to move forward one step in the browsing history."
+#~ msgstr "Ti buton ea un passu ad avan in li diarium de navigation."
+
+#~ msgid "Click this button to reload the contents of the current location."
+#~ msgstr "Ti buton recarga li contenete del actual localisation."
+
+#~ msgid "Click this button to create a new folder."
+#~ msgstr "Crear un nov fólder."
+
+#~ msgid "Show Places Panel"
+#~ msgstr "Monstrar li panel «Locs»"
+
+#~ msgid "Show Bookmarks Button"
+#~ msgstr "Monstrar li buton «Marca-págines»"
+
+#~ msgid "Options"
+#~ msgstr "Parametres"
+
+#~ msgid "Bookmarks"
+#~ msgstr "Marca-págines"
+
+#~ msgid "&Name:"
+#~ msgstr "&Nómine:"
+
+#~ msgid "This is the name to save the file as."
+#~ msgstr "Li nómine por gardar li file."
+
+#~ msgid ""
+#~ "This is the list of files to open. More than one file can be specified by "
+#~ "listing several files, separated by spaces."
+#~ msgstr ""
+#~ "To es li liste de files a aperter. On posse specificar plu quam ún file, "
+#~ "si on separa su nómines con spacies."
+
+#~ msgid "This is the name of the file to open."
+#~ msgstr "Li nómine del file por aperter."
+
+#~ msgctxt "@title:window"
+#~ msgid "Places"
+#~ msgstr "Locs"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "Un file «%1» ja existe. Esque vu vole substituer it?"
+
+#~ msgid "Overwrite File?"
+#~ msgstr "Substituer li file?"
+
+#~ msgid "You can only select local files."
+#~ msgstr "On posse selecter solmen local files."
+
+#~ msgid "Remote Files Not Accepted"
+#~ msgstr "Lontan files es ínacceptabil"
+
+#~ msgid "*|All Folders"
+#~ msgstr "*|Omni fólderes"
+
+#~ msgid "*|All Files"
+#~ msgstr "*|Omni files"
+
+#~ msgid "&Open"
+#~ msgstr "&Aperter"
+
+#~ msgid "Icon size: %1 pixels"
+#~ msgstr "Dimension de icone: %1 px"
+
+#~ msgid "Automatically select filename e&xtension (%1)"
+#~ msgstr "Automaticmen selecter li e&xtension de file (%1)"
+
+#~ msgid "the extension <b>%1</b>"
+#~ msgstr "li extension <b>%1</b>"
+
+#~ msgid "Automatically select filename e&xtension"
+#~ msgstr "Automaticmen selecter li e&xtension de file"
+
+#~ msgid "a suitable extension"
+#~ msgstr "un convenent extension"
+
+#~ msgid "&File type:"
+#~ msgstr "Tip de &file:"
+
+#~ msgid ""
+#~ "<qt>This is the file type selector. It is used to select the format that "
+#~ "the file will be saved as.</qt>"
+#~ msgstr ""
+#~ "<qt>To es li selector del tip de file. It es usat por selecter li formate "
+#~ "in quel li file va esser gardat.</qt>"
+
+#~ msgid "&Filter:"
+#~ msgstr "&Filtre:"
+
+#~ msgid "Sorry"
+#~ msgstr "Avise"
+
+#~ msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
+#~ msgstr "<qt>Li file de modelle <b>%1</b> ne existe.</qt>"
+
+#~ msgid "Name for new link:"
+#~ msgstr "Nómine del nov ligament:"
+
+#~ msgid "Create link to URL"
+#~ msgstr "Crear un ligament a un URL"
+
+#~ msgctxt "@item:inmenu Create New"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The name <filename>%1</filename> cannot be used because it is reserved "
+#~ "for use by the operating system."
+#~ msgstr ""
+#~ "On ne posse usar li nómine <filename>%1</filename> pro que it es reservat "
+#~ "per li sistema operativ."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The name <filename>%1</filename> starts with a dot, so it will be hidden "
+#~ "by default."
+#~ msgstr ""
+#~ "Li nómine <filename>%1</filename> comensa con un punctu, dunc it va esser "
+#~ "celat con parametres predefinit."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The name <filename>%1</filename> starts with a space, which will result "
+#~ "in it being shown before other items when sorting alphabetically, among "
+#~ "other potential oddities."
+#~ msgstr ""
+#~ "Li nómine <filename>%1</filename> comensa con un spacie, que posse metter "
+#~ "it ante altri elementes in li ordíne e causar altri bizarritás."
+
+#~ msgid "Using slashes in folder names will create sub-folders, like so:"
+#~ msgstr "Oblique strecs in nómines de fólder va crear sub-fólderes, quam:"
+
+#~ msgid "Using slashes in folder names will create sub-folders."
+#~ msgstr "Oblique strecs in nómines de fólder va crear sub-fólderes."
+
+#~ msgid "Slashes cannot be used in file and folder names."
+#~ msgstr "On ne posse usar obliqui strecs (/) in nómines de files e fólderes."
+
+#~ msgid "Backslashes cannot be used in file and folder names."
+#~ msgstr ""
+#~ "On ne posse usar revesat obliqui strecs (\\) in nómines de files e "
+#~ "fólderes."
+
+#~ msgid ""
+#~ "Starting a file or folder name with a tilde is not recommended because it "
+#~ "may be confusing or dangerous when using the terminal to delete things."
+#~ msgstr ""
+#~ "On ne recomanda usar un nómine file o fólder quel comensa con un tilde, "
+#~ "pro que to posse esser confusente o dangerosi quande on usa li terminal "
+#~ "por remover alcós."
+
+#~ msgctxt "@info"
+#~ msgid "A directory with name <filename>%1</filename> already exists."
+#~ msgstr "Un fólder nominat <filename>%1</filename> ja existe."
+
+#~ msgctxt "@info"
+#~ msgid "A file with name <filename>%1</filename> already exists."
+#~ msgstr "Un file nominat <filename>%1</filename> ja existe."
+
+#~ msgid "Create New"
+#~ msgstr "Crear nov"
+
+#~ msgid "Link to Device"
+#~ msgstr "Ligament a un aparate"
+
+#~ msgctxt "Default name for a new folder"
+#~ msgid "New Folder"
+#~ msgstr "Nov fólder"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Folder"
+#~ msgstr "Nov fólder"
+
+#~ msgid "Create new folder in %1:"
+#~ msgstr "Crear un nov fólder in %1:"
+
+#~ msgid "Copy"
+#~ msgstr "Copiar"
+
+#~ msgid "Paste"
+#~ msgstr "Collar"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Tab"
+#~ msgstr "Aperter «%1» in un nov carte"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Window"
+#~ msgstr "Aperter «%1» in un nov fenestre"
+
+#~ msgid "Edit"
+#~ msgstr "Modificar"
+
+#~ msgid "Navigate"
+#~ msgstr "Navigar"
+
+#~ msgid "Show Full Path"
+#~ msgstr "Monstrar un complet rute"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "More"
+#~ msgstr "Plu"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Devices"
+#~ msgstr "Aparates"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Subversion"
+#~ msgstr "Subversion"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Other"
+#~ msgstr "Altris"
+
+#~ msgid "Edit mode"
+#~ msgstr "Mode de modification"
+
+#~ msgid "Click for Location Navigation"
+#~ msgstr "Navigation per localisationes"
+
+#~ msgid "Click to Edit Location"
+#~ msgstr "Modificar li localisation"
+
+#~ msgid "You are not authorized to execute this file."
+#~ msgstr "Vu ne have autorisation de executer ti file."
+
+#~ msgctxt "Launching application"
+#~ msgid "Launching %1"
+#~ msgstr "Lansante %1"
+
+#~ msgid ""
+#~ "Unable to make the service %1 executable, aborting execution.\n"
+#~ "%2."
+#~ msgstr ""
+#~ "Ne successat far li servicie %1 executibil, interrupte li execution.\n"
+#~ "%2"
+
+#~ msgid "You are not authorized to select an application to open this file."
+#~ msgstr ""
+#~ "Vu ne have autorisation de selecter un application por aperter ti file."
+
+#~ msgid "No favicon found for %1"
+#~ msgstr "Null favicon trovat por %1"
+
+#~ msgid "Error saving image to %1"
+#~ msgstr "Un errore evenit gardante un image a %1"
+
+#~ msgid "Icon file too big, download aborted"
+#~ msgstr "File de icone es tro grand, descarga anullat"
+
+#~ msgid "No mail client found"
+#~ msgstr "Null cliente de e-postage es trovat"
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is not valid."
+#~ msgstr ""
+#~ "Li file desktop\n"
+#~ "%1\n"
+#~ "es ínvalid."
+
+#~ msgid "Launching %1"
+#~ msgstr "Lansante %1"
+
+#, fuzzy
+#~| msgid "The file \"%1\" could not be found"
+#~ msgctxt "@info"
+#~ msgid "The command <command>%1</command> could not be found."
+#~ msgstr "Ne successat trovar li file «%1»"
+
+#~ msgid "No terminal emulator found"
+#~ msgstr "Null emulator de terminal trovat"
+
+#~ msgid "Failed to open %1"
+#~ msgstr "Ne successat aperter %1"
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is of type Link but has no URL=... entry."
+#~ msgstr ""
+#~ "Li file desktop\n"
+#~ "%1\n"
+#~ "have li tip Link ma ne have li camp URL=…"
+
+#~ msgid ""
+#~ "The executable file \"%1\" is located on a remote filesystem. For safety "
+#~ "reasons it will not be started."
+#~ msgstr ""
+#~ "Li executibile «%1» es situat in un lontan sistema de files. Por motive "
+#~ "de securitá it ne va esser executet."
+
+#~ msgid ""
+#~ "For security reasons, launching executables is not allowed in this "
+#~ "context."
+#~ msgstr ""
+#~ "Por motive de securitá, on ne es permisset lansar executibiles in ti "
+#~ "contextu."
+
+#~ msgid ""
+#~ "The program \"%1\" needs to have executable permission before it can be "
+#~ "launched."
+#~ msgstr ""
+#~ "Li programma «%1» deve haver li permission de executer ante que it posse "
+#~ "esser lansat."
+
+#~ msgid ""
+#~ "Unable to make file \"%1\" executable.\n"
+#~ "%2."
+#~ msgstr ""
+#~ "Ne successat far li file «%1» executibil.\n"
+#~ "%2."
+
+#~ msgid "The desktop entry file %1 has no Type=... entry."
+#~ msgstr "Li file desktop %1 ne have li camp Type=…"
+
+#~ msgid "Failed to open the file."
+#~ msgstr "Ne successat aperter li file."
+
+#~ msgid "The program \"%1\" could not be launched."
+#~ msgstr "Ne successat lansar li programma «%1»."
+
+#~ msgid ""
+#~ "The file %1\n"
+#~ "has been modified. Do you want to upload the changes?"
+#~ msgstr ""
+#~ "Li file %1\n"
+#~ "esset modificat. Esque vu vole cargar li modificationes?"
+
+#~ msgid "File Changed"
+#~ msgstr "Un file sta modificat"
+
+#~ msgid "Upload"
+#~ msgstr "Cargar"
+
+#~ msgid "Do Not Upload"
+#~ msgstr "Ne cargar"
+
+#~ msgid "Invalid URL: %1"
+#~ msgstr "Ínvalid URL: %1"
+
+#~ msgid "File not found: %1"
+#~ msgstr "File ne es trovat: %1"
+
+#~ msgid ""
+#~ "The URL %1\n"
+#~ "is malformed"
+#~ msgstr ""
+#~ "Li URL %1\n"
+#~ "is ínvalid"
+
+#~ msgid ""
+#~ "Remote URL %1\n"
+#~ "not allowed with --tempfiles switch"
+#~ msgstr ""
+#~ "Lontan URL %1\n"
+#~ "ne es permisset con li option --tempfiles"
+
+#~ msgid ""
+#~ "The supposedly temporary file\n"
+#~ "%1\n"
+#~ "has been modified.\n"
+#~ "Do you still want to delete it?"
+#~ msgstr ""
+#~ "Li file quel es supposit esser temporari\n"
+#~ "%1\n"
+#~ "esset modificat.\n"
+#~ "Esque vu vole remover it malgré to?"
+
+#~ msgid "Do Not Delete"
+#~ msgstr "Ne remover"
+
+#~ msgid ""
+#~ "The file\n"
+#~ "%1\n"
+#~ "has been modified.\n"
+#~ "Do you want to upload the changes?"
+#~ msgstr ""
+#~ "Li file\n"
+#~ "%1\n"
+#~ "esset modificat.\n"
+#~ "Esque vu vole cargar li modificationes?"
+
+#~ msgid "KIOExec"
+#~ msgstr "KIOExec"
+
+#~ msgid ""
+#~ "KIO Exec - Opens remote files, watches modifications, asks for upload"
+#~ msgstr ""
+#~ "KIO Exec - Aperte lontan files, observa modificationes, suggeste li carga"
+
+#~ msgid "(c) 1998-2000,2003 The KFM/Konqueror Developers"
+#~ msgstr "(c) 1998-2000,2003 Li developatores de KFM/Konqueror"
+
+#~ msgid "David Faure"
+#~ msgstr "David Faure"
+
+#~ msgid "Stephan Kulow"
+#~ msgstr "Stephan Kulow"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "Bernhard Rosenkraenzer"
+
+#~ msgid "Waldo Bastian"
+#~ msgstr "Waldo Bastian"
+
+#~ msgid "Oswald Buddenhagen"
+#~ msgstr "Oswald Buddenhagen"
+
+#~ msgid "Suggested file name for the downloaded file"
+#~ msgstr "Un proposit nómine del descargat file"
+
+#~ msgid "Command to execute"
+#~ msgstr "Comande por executer"
+
+#~ msgid "URL(s) or local file(s) used for 'command'"
+#~ msgstr "URL(s) o local file(s) usat por li «comande»"
+
+#~ msgid "Setting ACL for %1"
+#~ msgstr "Assignante ACL por %1"
+
+#~ msgid ""
+#~ "Could not change permissions for\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ne successat alterar li permissiones por\n"
+#~ "%1"
+
+#~ msgid "Could not find program \"mount\""
+#~ msgstr "Ne successat trovar li programma «mount»"
+
+#~ msgid "Could not find program \"umount\""
+#~ msgstr "Ne successat trovar li programma «umount»"
+
+#~ msgid "Change File Permissions"
+#~ msgstr "Modificar li permissiones del file"
+
+#~ msgid "New Permissions: %1"
+#~ msgstr "Nov permissiones: %1"
+
+#~ msgid "Change File Owner"
+#~ msgstr "Modificar li possessor del file"
+
+#~ msgid "New Owner: UID=%1, GID=%2"
+#~ msgstr "Nov possessor: UID=%1, GID=%2"
+
+#~ msgid "Remove File"
+#~ msgstr "Remover li file"
+
+#~ msgid "Remove Directory"
+#~ msgstr "Remover li fólder"
+
+#~ msgid "Create Directory"
+#~ msgstr "Crear un fólder"
+
+#~ msgid "Directory Permissions: %1"
+#~ msgstr "Permissiones de fólder: %1"
+
+#~ msgid "Open File"
+#~ msgstr "Aperter un file"
+
+#~ msgid "Open Directory"
+#~ msgstr "Aperter un fólder"
+
+#~ msgid "New Filename: %1"
+#~ msgstr "Nov nómine de file: %1"
+
+#~ msgid "Target: %1"
+#~ msgstr "Destination: %1"
+
+#~ msgid "Change Timestamp"
+#~ msgstr "Modificar li témpor-marca"
+
+#~ msgid "From: %1, To: %2"
+#~ msgstr "De: %1, A: %2"
+
+#~ msgid "Unknown Action"
+#~ msgstr "Ínconosset action"
+
+#~ msgid ""
+#~ "Action: %1\n"
+#~ "Source: %2\n"
+#~ "%3"
+#~ msgstr ""
+#~ "Action: %1\n"
+#~ "Orígine: %2\n"
+#~ "%3"
+
+#~ msgid "Cannot copy file from %1 to %2. (Errno: %3)"
+#~ msgstr "Ne successat copiar un file de %1 a %2. (Errore nró %3)"
+
+#~ msgid "No media in device for %1"
+#~ msgstr "Null medium in li unité por %1"
+
+#~ msgid "Could not get user id for given user name %1"
+#~ msgstr "Ne successat obtener li id de usator por li providet nómine %1"
+
+#~ msgid "Could not get group id for given group name %1"
+#~ msgstr "Ne successat obtener li id de gruppe por li providet nómine %1"
+
+#~ msgid "Opening connection to host %1"
+#~ msgstr "Apertente conexion con host %1"
+
+#~ msgid "Connected to host %1"
+#~ msgstr "Conosset al host %1"
+
+#~ msgid "%1 (Error %2)"
+#~ msgstr "%1 (Errore %2)"
+
+#~ msgid "Sending login information"
+#~ msgstr "Inviante information de registration"
+
+#~ msgid ""
+#~ "Message sent:\n"
+#~ "Login using username=%1 and password=[hidden]\n"
+#~ "\n"
+#~ "Server replied:\n"
+#~ "%2\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Inviat missage:\n"
+#~ "Aperter un session con li nómine=%1 e contrasigne=[celat]\n"
+#~ "\n"
+#~ "Response del servitor:\n"
+#~ "%2\n"
+#~ "\n"
+
+#~ msgid "You need to supply a username and a password to access this site."
+#~ msgstr ""
+#~ "Vu deve provider un nómine de usator e un contrasigne por accesse a ti "
+#~ "site."
+
+#~ msgid "Site:"
+#~ msgstr "Site:"
+
+#~ msgid "<b>%1</b>"
+#~ msgstr "<b>%1</b>"
+
+#~ msgid "Login OK"
+#~ msgstr "Session apertet successosimen"
+
+#~ msgid "Could not login to %1."
+#~ msgstr "Ne successat inregistrar a %1."
+
+#~ msgid ""
+#~ "\n"
+#~ "The server said: \"%1\""
+#~ msgstr ""
+#~ "\n"
+#~ "Li servitor respondet: «%1»"
+
+#~ msgid ""
+#~ "You need to supply a username and a password for the proxy server listed "
+#~ "below before you are allowed to access any sites."
+#~ msgstr ""
+#~ "Vu deve provider un nómine de usator e un contrasigne por li servitor "
+#~ "proxy ad-infra ante que vu posse acceder quelcunc site."
+
+#~ msgid "Proxy:"
+#~ msgstr "Proxy:"
+
+#~ msgid "Proxy Authentication Failed."
+#~ msgstr "Autentication del proxy ne successat."
+
+#~ msgid "There is no documentation available for %1."
+#~ msgstr "Null documentation disponibil por %1."
+
+#~ msgid "Looking up correct file"
+#~ msgstr "Trovante li correct file"
+
+#~ msgid "Preparing document"
+#~ msgstr "Preparante li document"
+
+#~ msgid "The requested help file could not be parsed:<br />%1"
+#~ msgstr "Li besonat file de auxilie ne posse esser analisat:<br />%1"
+
+#~ msgid "Saving to cache"
+#~ msgstr "Gardante al cache"
+
+#~ msgid "Using cached version"
+#~ msgstr "Usante li version in li cache"
+
+#~ msgid "Looking up section"
+#~ msgstr "Trovante li section"
+
+#~ msgid "Could not find filename %1 in %2."
+#~ msgstr "Ne successat trovar li nómine %1 in %2."
+
+#~ msgid "No host specified."
+#~ msgstr "Null host providet."
+
+#~ msgid "Otherwise, the request would have succeeded."
+#~ msgstr "Altrimen li demande vell esser successosi."
+
+#~ msgctxt "request type"
+#~ msgid "retrieve property values"
+#~ msgstr "obtener valores de proprietás"
+
+#~ msgctxt "request type"
+#~ msgid "set property values"
+#~ msgstr "assignar valores de proprietás"
+
+#~ msgctxt "request type"
+#~ msgid "create the requested folder"
+#~ msgstr "crear li besonat fólder"
+
+#~ msgctxt "request type"
+#~ msgid "copy the specified file or folder"
+#~ msgstr "copiar li besonat file o fólder"
+
+#~ msgctxt "request type"
+#~ msgid "move the specified file or folder"
+#~ msgstr "mover li besonat file o fólder"
+
+#~ msgctxt "request type"
+#~ msgid "search in the specified folder"
+#~ msgstr "serchar in li besonat fólder"
+
+#~ msgctxt "request type"
+#~ msgid "lock the specified file or folder"
+#~ msgstr "blocar li besonat file o fólder"
+
+#~ msgctxt "request type"
+#~ msgid "unlock the specified file or folder"
+#~ msgstr "deblocar li besonat file o fólder"
+
+#~ msgctxt "request type"
+#~ msgid "delete the specified file or folder"
+#~ msgstr "remover li besonat file o fólder"
+
+#~ msgctxt "request type"
+#~ msgid "query the server's capabilities"
+#~ msgstr "demandar capabilitás del servitor"
+
+#~ msgctxt "request type"
+#~ msgid "retrieve the contents of the specified file or folder"
+#~ msgstr "obtener li contenete del besonat file o fólder"
+
+#~ msgctxt "request type"
+#~ msgid "run a report in the specified folder"
+#~ msgstr "lansar un raporte in li besonat fólder"
+
+#~ msgctxt "%1: code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "Un ínexpectat errore (%1) evenit quande on provat %2."
+
+#~ msgid "The server does not support the WebDAV protocol."
+#~ msgstr "Li servitor ne supporta li protocol WebDAV."
+
+#~ msgctxt "%1: request type, %2: url"
+#~ msgid ""
+#~ "An error occurred while attempting to %1, %2. A summary of the reasons is "
+#~ "below."
+#~ msgstr ""
+#~ "Un errore evenit quande on provat %1, %2. Un compendie del causes es ad-"
+#~ "infra."
+
+#~ msgctxt "%1: request type"
+#~ msgid "Access was denied while attempting to %1."
+#~ msgstr "Accesse esset refusat quande on provat %1."
+
+#~ msgid "The requested lock could not be granted. %1"
+#~ msgstr "Ne successat obtener li besonat bloc. %1"
+
+#~ msgid "The server does not support the request type of the body."
+#~ msgstr "Li servitor ne supporte li tip de demanda del córpor."
+
+#~ msgctxt "%1: request type"
+#~ msgid "Unable to %1 because the resource is locked."
+#~ msgstr "Ne successat %1 pro que li ressurse es blocat."
+
+#~ msgid "This action was prevented by another error."
+#~ msgstr "Ti action esset impedit de un altri errore."
+
+#~ msgctxt "%1: request type"
+#~ msgid ""
+#~ "Unable to %1 because the destination server refuses to accept the file or "
+#~ "folder."
+#~ msgstr ""
+#~ "Ne successat %1 pro que li servitor del destination ne accepta li file o "
+#~ "fólder."
+
+#~ msgid "The resource cannot be deleted."
+#~ msgstr "Ne successat remover un ressurse."
+
+#~ msgctxt "request type"
+#~ msgid "upload %1"
+#~ msgstr "cargar %1"
+
+#~ msgctxt "%1: response code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "Un ínexpectat errore (%1) evenit quande on provat %2."
+
+#~ msgctxt "@info Security check on url being accessed"
+#~ msgid ""
+#~ "<p>You are about to log in to the site \"%1\" with the username \"%2\", "
+#~ "but the website does not require authentication. This may be an attempt "
+#~ "to trick you.</p><p>Is \"%1\" the site you want to visit?</p>"
+#~ msgstr ""
+#~ "<p>Vu es sur punctu de inregistrar vos al site «%1» con li nómine de "
+#~ "usator «%2», ma li site ne besona autentification. Forsan to es un prova "
+#~ "dupar vos.</p><p>Esque li site «%1» es ti quel vu vole visitar?</p>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Confirm Website Access"
+#~ msgstr "Confirmar accesse a un site web"
+
+#~ msgid "Server processing request, please wait..."
+#~ msgstr "Li servitor processa li demande, ples atender…"
+
+#~ msgid "Sending data to %1"
+#~ msgstr "Inviante data a %1"
+
+#~ msgid "Retrieving %1 from %2..."
+#~ msgstr "Obtenente %1 de %2…"
+
+#~ msgid "<b>%1</b> at <b>%2</b>"
+#~ msgstr "<b>%1</b> sur <b>%2</b>"
+
+#~ msgid "Authentication Failed."
+#~ msgstr "Autentication ne successat."
+
+#~ msgid "Authorization failed."
+#~ msgstr "Autorisation ne successat."
+
+#~ msgid "Unknown Authorization method."
+#~ msgstr "Ínconosset metode de autorisation."
+
+#~ msgid "Receiving corrupt data."
+#~ msgstr "Recivente corruptet data."
+
+#~ msgid "Cannot Save Cookies"
+#~ msgstr "Ne successat gardar cookies"
+
+#~ msgid "Could not remove %1, check permissions"
+#~ msgstr "Ne successat remover %1, ples controlar li permissiones"
+
+#~ msgid "Could not create directory %1"
+#~ msgstr "Ne successat crear un fólder %1"
+
+#~ msgid "Cookie Alert"
+#~ msgstr "Avise de cookie"
+
+#~ msgctxt "%2 hostname, %3 optional cross domain suffix (translated below)"
+#~ msgid ""
+#~ "<p>You received a cookie from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject this cookie?</p>"
+#~ msgid_plural ""
+#~ "<p>You received %1 cookies from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject these cookies?</p>"
+#~ msgstr[0] ""
+#~ "<p>Vu recivet un cookie de<br/><b>%2%3</b><br/>Esque vu vole refusar or "
+#~ "acceptar ti cookie?</p>"
+#~ msgstr[1] ""
+#~ "<p>Vu recivet %1 cookies de<br/><b>%2%3</b><br/>Esque vu vole refusar or "
+#~ "acceptar ti cookies?</p>"
+
+#~ msgctxt "@item:intext cross domain cookie"
+#~ msgid " [Cross Domain]"
+#~ msgstr " [Traversa dominias]"
+
+#~ msgid "See or modify the cookie information"
+#~ msgstr "Vider o modificar li information pri li cookie"
+
+#~ msgid "Accept for this &session"
+#~ msgstr "Acceptar por ti &session"
+
+#~ msgid "Accept cookie(s) until the end of the current session"
+#~ msgstr "Acceptar cookie(s) til li fin del actual session"
+
+#~ msgid "&Accept"
+#~ msgstr "&Acceptar"
+
+#~ msgid "&Reject"
+#~ msgstr "&Rejecter"
+
+#~ msgid "Apply Choice To"
+#~ msgstr "Applicar li selection"
+
+#~ msgid "&Only this cookie"
+#~ msgstr "S&olmen a ti-ci cookie"
+
+#~ msgid "&Only these cookies"
+#~ msgstr "S&olmen a ti-ci cookies"
+
+#~ msgid "All cookies from this do&main"
+#~ msgstr "Omni cookies de ti do&minia"
+
+#~ msgid "All &cookies"
+#~ msgstr "Omni &cookies"
+
+#~ msgid "Cookie Details"
+#~ msgstr "Detallies del cookie"
+
+#~ msgctxt ""
+#~ "@label a description string of how 'accessible' the cookie is (e.g. see "
+#~ "exposure string in this file)"
+#~ msgid "Exposure:"
+#~ msgstr "Exposition:"
+
+#~ msgctxt "Next cookie"
+#~ msgid "&Next >>"
+#~ msgstr "&Seq >>"
+
+#~ msgid "Show details of the next cookie"
+#~ msgstr "Monstrar detallies del sequent cookie"
+
+#~ msgctxt "@label cookie has no explicit 'Domain' value specified"
+#~ msgid "Not specified"
+#~ msgstr "Ínspecificat"
+
+#~ msgctxt "@label the cookie expires when the browser session ends"
+#~ msgid "End of Session"
+#~ msgstr "Fin del session"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by https servers"
+#~ msgid "Secure servers only"
+#~ msgstr "Solmen secur servitores"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may be used by https servers AND "
+#~ "client-side javascripts"
+#~ msgid "Secure servers, page scripts"
+#~ msgstr "Secur servitores, scriptes de págine"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by http servers"
+#~ msgid "Servers"
+#~ msgstr "Servitores"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may be used by http servers AND "
+#~ "client-side javascripts"
+#~ msgid "Servers, page scripts"
+#~ msgstr "Servitores, scriptes de págine"
+
+#~ msgctxt ""
+#~ "@action:button show details about a cookie that needs approval. This "
+#~ "string gets >> and << appended, to visualize if the dialog expands or "
+#~ "compacts!"
+#~ msgid "Details"
+#~ msgstr "Detallies"
+
+#~ msgid "Network"
+#~ msgstr "Rete"
+
+#~ msgid "Malformed URL %1"
+#~ msgstr "Invalid URL %1"
+
+#~ msgid ""
+#~ "The directory %1 does not exist anymore, so it is not possible to restore "
+#~ "this item to its original location. You can either recreate that "
+#~ "directory and use the restore operation again, or drag the item anywhere "
+#~ "else to restore it."
+#~ msgstr ""
+#~ "Li fólder %1 ne existe plu, dunc ti element ne posse esser restituet al "
+#~ "su original localisation. Vu posse sive recrear ti fólder e restituer it "
+#~ "denov, sive tirar li element a quelcunc loc por restituer it."
+
+#~ msgid "Invalid combination of protocols."
+#~ msgstr "Ínvalid combination de protocoles."
+
+#~ msgid "This file is already in the trash bin."
+#~ msgstr "Ti file ja es in li Paper-corb."
+
+#~ msgid "not supported"
+#~ msgstr "ne es suportat"
+
+#~ msgid "Internal error in copyOrMove, should never happen"
+#~ msgstr "Un errore intern in copyOrMove, ne deve eveni aliquande"
+
+#~ msgid ""
+#~ "Helper program to handle the KDE trash can\n"
+#~ "Note: to move files to the trash, do not use ktrash, but \"kioclient move "
+#~ "'url' trash:/\""
+#~ msgstr ""
+#~ "Programma auxiliari por manupular li Paper-corb de KDE\n"
+#~ "Note: por mover files al Paper-corb usa ne ktrash, ma \"kioclient move "
+#~ "'url' trash:/\""
+
+#~ msgid "Empty the contents of the trash"
+#~ msgstr "Vacuar li Paper-corb"
+
+#~ msgid "Restore a trashed file to its original location"
+#~ msgstr "Restituer un file in li Paper-corb a su original localisation"
+
+#~ msgid "The trash is full. Empty it or remove items manually."
+#~ msgstr "Li Paper-corb es plen. Vacua it o remover li elementes manualmen."
+
+#~ msgid "Could not find a usable proxy configuration script"
+#~ msgstr "Ne successat trovar un usabil scripte de configuration de proxy"
+
+#~ msgid ""
+#~ "Could not download the proxy configuration script:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ne successat descargar li scripte de configuration de proxy:\n"
+#~ "%1"
+
+#~ msgid "Could not download the proxy configuration script"
+#~ msgstr "Ne successat descargar li scripte de configuration de proxy"
+
+#~ msgid ""
+#~ "The proxy configuration script is invalid:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Li scripte de configuration de proxy es ínvalid:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The proxy configuration script returned an error:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Li scripte de configuration de proxy retrodat un errore:\n"
+#~ "%1"
+
+#~ msgid "Could not find 'FindProxyForURL' or 'FindProxyForURLEx'"
+#~ msgstr "Ne successat trovar «FindProxyForURL» o «FindProxyForURLEx»"
+
+#~ msgid "Got an invalid reply when calling %1 -> %2"
+#~ msgstr "Obtened un ínvalid response pos invocation de %1 -> %2"
+
+#~ msgid "Do you want to retry?"
+#~ msgstr "Esque vu vole repenar?"
+
+#~ msgid "Retry Authentication"
+#~ msgstr "Repenar li autentification"
+
+#~ msgctxt "@action:button filter-continue"
+#~ msgid "Retry"
+#~ msgstr "Repenar"
+
+#~ msgid "Authentication Dialog"
+#~ msgstr "Dialog de autentification"
+
+#~ msgid "Access denied"
+#~ msgstr "Accesse refusat"
+
+#~ msgid "You do not have permission to access the %1 protocol."
+#~ msgstr "Vu ne have permissiones de accesse al protocol %1."
+
+#~ msgid "No preferred search providers were found."
+#~ msgstr "Null preferet provisores de sercha esset trovat."
+
+#~ msgid "No search providers were found."
+#~ msgstr "Null provisores de sercha esset trovat."
+
+#~ msgid "<qt><b>%1</b> does not have a home folder.</qt>"
+#~ msgstr "<qt><b>%1</b> ne have un hem-fólder.</qt>"
+
+#~ msgid "<qt>There is no user called <b>%1</b>.</qt>"
+#~ msgstr "<qt>Li usator <b>%1</b> ne existe.</qt>"
+
+#~ msgid "Common name:"
+#~ msgstr "Comun nómine:"
+
+#~ msgid "Acme Co."
+#~ msgstr "Acme Co."
+
+#~ msgid "Organization:"
+#~ msgstr "Organisation:"
+
+#~ msgid "Acme Sundry Products Company"
+#~ msgstr "Acme Sundry Products Company"
+
+#~ msgid "Organizational unit:"
+#~ msgstr "Unité de organisation:"
+
+#~ msgid "Fraud Department"
+#~ msgstr "Departement de fraude"
+
+#~ msgid "Country:"
+#~ msgstr "Land:"
+
+#~ msgid "Canada"
+#~ msgstr "Canada"
+
+#~ msgid "State:"
+#~ msgstr "State:"
+
+#~ msgid "Quebec"
+#~ msgstr "Quebec"
+
+#~ msgid "City:"
+#~ msgstr "Cité:"
+
+#~ msgid "Lakeridge Meadows"
+#~ msgstr "Lakeridge Meadows"
+
+#~ msgid ""
+#~ "Copy and paste a checksum in the field below.<br/>A checksum is usually "
+#~ "provided by the website you downloaded this file from."
+#~ msgstr ""
+#~ "Copiar e collar un summa de control al camp ad-infra.<br/>Un summa de "
+#~ "control es usualmen obtenet del site web de quel on descarga li file."
+
+#~ msgid "Expected checksum (MD5, SHA1, SHA256 or SHA512)..."
+#~ msgstr "Expectat summa (MD5, SHA1, SHA256 o SHA512)…"
+
+#~ msgid "Click to paste the checksum from the clipboard to the input field."
+#~ msgstr "Fa un clic por por collar li summa de control al li camp."
+
+#~ msgid "MD5:"
+#~ msgstr "MD5:"
+
+#~ msgid "SHA1:"
+#~ msgstr "SHA1:"
+
+#~ msgid "SHA256:"
+#~ msgstr "SHA256:"
+
+#~ msgid "SHA512:"
+#~ msgstr "SHA512:"
+
+#~ msgid "Calculate"
+#~ msgstr "Calcular"
+
+#~ msgid "Click to copy the checksum to the clipboard."
+#~ msgstr "Fa un clic por copiar li summa al Paperiere."
+
+#~ msgid "C&ancel"
+#~ msgstr "&Anullar"
+
+#~ msgid "&Move Here"
+#~ msgstr "&Mover ad ci"
+
+#~ msgid "&Copy Here"
+#~ msgstr "&Copiar ad ci"
+
+#~ msgid "&Link Here"
+#~ msgstr "&Ligar ad ci"
+
+#~ msgid "What do you wish to do with this file?"
+#~ msgstr "Quo far con ti file?"
+
+#~ msgid "Do not ask again"
+#~ msgstr "Ne questionar denov"
+
+#~ msgid "&Execute"
+#~ msgstr "&Executer"
+
+#~ msgid "Undo Changes"
+#~ msgstr "Defar modificationes"
+
+#~ msgid ""
+#~ "Undoing this operation requires root privileges. Do you want to continue?"
+#~ msgstr ""
+#~ "Li privilegies del superusator es besonat por defar ti operation. "
+#~ "Continuar?"
+
+#~ msgid "Creating directory"
+#~ msgstr "Creation de un fólder"
+
+#~ msgid "Moving"
+#~ msgstr "Motion"
+
+#~ msgid "Renaming"
+#~ msgstr "Renomination"
+
+#~ msgid "Deleting"
+#~ msgstr "Remotion"
+
+#~ msgid "Und&o"
+#~ msgstr "&Defar"
+
+#~ msgid "Und&o: Copy"
+#~ msgstr "&Defar: copiar"
+
+#~ msgid "Und&o: Link"
+#~ msgstr "&Defar: ligar"
+
+#~ msgid "Und&o: Move"
+#~ msgstr "&Defar: mover"
+
+#~ msgid "Und&o: Rename"
+#~ msgstr "&Defar: renominar"
+
+#~ msgid "Und&o: Trash"
+#~ msgstr "&Defar: mover al Paper-corb"
+
+#~ msgid "Und&o: Create Folder"
+#~ msgstr "&Defar: crear un fólder"
+
+#~ msgid "Und&o: Create Folder(s)"
+#~ msgstr "&Defar: crear fólder(es)"
+
+#~ msgid "Und&o: Create File"
+#~ msgstr "&Defar: crear un file"
+
+#~ msgid "Und&o: Batch Rename"
+#~ msgstr "&Defar: renominar in masse"
+
+#~ msgid ""
+#~ "The file %1 was copied from %2, but since then it has apparently been "
+#~ "modified at %3.\n"
+#~ "Undoing the copy will delete the file, and all modifications will be "
+#~ "lost.\n"
+#~ "Are you sure you want to delete %4?"
+#~ msgstr ""
+#~ "Li file %1 esset copiat de %2, ma esset modificat in %3 de tande.\n"
+#~ "Si on va defar li copiation, li file va esser removet e su modificationes "
+#~ "va esser perdet.\n"
+#~ "Esque vu vole remover %4?"
+
+#~ msgid "Undo File Copy Confirmation"
+#~ msgstr "Defar un copiation de file"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to permanently delete this item?<nl/><filename>%1</"
+#~ "filename><nl/><nl/><emphasis strong='true'>This action cannot be undone.</"
+#~ "emphasis>"
+#~ msgstr ""
+#~ "Esque vu vole deleter ti element permanentmen?<nl/><nl/><filename>%1</"
+#~ "filename><nl/><nl/><emphasis strong='true'>Ti action ne posse esser defat."
+#~ "</emphasis>"
+
+#~ msgid "Delete Permanently"
+#~ msgstr "Deleter permanentmen"
+
+#, fuzzy
+#~| msgid "Delete Permanently"
+#~ msgctxt "@action:button"
+#~ msgid "Delete Permanently"
+#~ msgstr "Deleter permanentmen"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to permanently delete this item?<nl/><nl/><emphasis "
+#~ "strong='true'>This action cannot be undone.</emphasis>"
+#~ msgid_plural ""
+#~ "Do you really want to permanently delete these %1 items?<nl/><nl/"
+#~ "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~ msgstr[0] ""
+#~ "Esque vu vole deleter ti element permanentmen?<nl/><nl/><emphasis "
+#~ "strong='true'>Ti action ne posse esser defat.</emphasis>"
+#~ msgstr[1] ""
+#~ "Esque vu vole deleter ti %1 elementes permanentmen?<nl/><nl/><emphasis "
+#~ "strong='true'>Ti action ne posse esser defat.</emphasis>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you want to permanently delete all items from the Trash?<nl/><nl/"
+#~ "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~ msgstr ""
+#~ "Esque vu vole deleter permanentmen omni elementes in li Paper-corb?<nl/"
+#~ "><nl/><emphasis strong='true'>Ti action ne posse esser defat.</emphasis>"
+
+#~ msgctxt "@action:button"
+#~ msgid "Empty Trash"
+#~ msgstr "Vacuar li Paper-corb"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to move this item to the Trash?<nl/><filename>%1</"
+#~ "filename>"
+#~ msgstr ""
+#~ "Esque vu vole mover ti element al Paper-corb?<nl/><filename>%1</filename>"
+
+#~ msgid "Do you really want to move this item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] "Esque vu vole mover ti element al Paper-corb?"
+#~ msgstr[1] "Esque vu vole mover ti %1 element al Paper-corb?"
+
+#~ msgid "SSL"
+#~ msgstr "SSL"
+
+#~ msgctxt "@action:button"
+#~ msgid "Add..."
+#~ msgstr "Adjunter…"
+
+#~ msgctxt "@action:button"
+#~ msgid "Edit..."
+#~ msgstr "Modificar…"
+
+#~ msgctxt "@action:button"
+#~ msgid "Delete"
+#~ msgstr "Remover"
+
+#~ msgctxt "Unix permissions"
+#~ msgid "Owner"
+#~ msgstr "Possessor"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Owning Group"
+#~ msgstr "Gruppe possedent"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Others"
+#~ msgstr "Altris"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Mask"
+#~ msgstr "Masca"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Named User"
+#~ msgstr "Nominat usator"
+
+#~ msgid "Owner (Default)"
+#~ msgstr "Possessor (predefinit)"
+
+#~ msgid "Edit ACL Entry"
+#~ msgstr "Modificar li element de ACL"
+
+#~ msgid "Entry Type"
+#~ msgstr "Tip de element"
+
+#~ msgid "Default for new files in this folder"
+#~ msgstr "Predefinit por nov files in ti fólder"
+
+#~ msgid "Owner"
+#~ msgstr "Possessor"
+
+#~ msgid "Owning Group"
+#~ msgstr "Gruppe possedent"
+
+#~ msgid "Others"
+#~ msgstr "Altris"
+
+#~ msgid "Mask"
+#~ msgstr "Masca"
+
+#~ msgid "Named user"
+#~ msgstr "Nominat usator"
+
+#~ msgid "Named group"
+#~ msgstr "Nominat gruppe"
+
+#~ msgid "User: "
+#~ msgstr "Usator: "
+
+#~ msgid "Group: "
+#~ msgstr "Gruppe: "
+
+#~ msgid "Type"
+#~ msgstr "Tip"
+
+#~ msgid "Name"
+#~ msgstr "Nómine"
+
+#~ msgctxt "read permission"
+#~ msgid "r"
+#~ msgstr "r"
+
+#~ msgctxt "write permission"
+#~ msgid "w"
+#~ msgstr "w"
+
+#~ msgctxt "execute permission"
+#~ msgid "x"
+#~ msgstr "x"
+
+#~ msgid "Effective"
+#~ msgstr "Efectiv"
+
+#~ msgid "Updating System Configuration"
+#~ msgstr "Actualisante li configuration del sistema"
+
+#~ msgid "Updating system configuration."
+#~ msgstr "Actualisante li configuration del sistema."
+
+#~ msgctxt "@title:column"
+#~ msgid "Name"
+#~ msgstr "Nómine"
+
+#~ msgctxt "@title:column"
+#~ msgid "Size"
+#~ msgstr "Grandore"
+
+#~ msgctxt "@title:column"
+#~ msgid "Date"
+#~ msgstr "Date"
+
+#~ msgctxt "@title:column"
+#~ msgid "Permissions"
+#~ msgstr "Permissiones"
+
+#~ msgctxt "@title:column"
+#~ msgid "Owner"
+#~ msgstr "Possessor"
+
+#~ msgctxt "@title:column"
+#~ msgid "Group"
+#~ msgstr "Gruppe"
+
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "Tip"
+
+#~ msgid "Open &with %1"
+#~ msgstr "Ap&erter per %1"
+
+#~ msgctxt "@item:inmenu Open With, %1 is application name"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Actions"
+#~ msgstr "&Actiones"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With..."
+#~ msgstr "&Aperter li fólder per…"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With..."
+#~ msgstr "&Aperter per…"
+
+#~ msgid "&Open folder with %1"
+#~ msgstr "&Aperter li fólder per %1"
+
+#~ msgid "&Open with %1"
+#~ msgstr "&Aperter per %1"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With"
+#~ msgstr "&Aperter li fólder per"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With"
+#~ msgstr "&Aperter per"
+
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other Application..."
+#~ msgstr "&Altri application..."
+
+#~ msgctxt "Items in a folder"
+#~ msgid "1 item"
+#~ msgid_plural "%1 items"
+#~ msgstr[0] "1 element"
+#~ msgstr[1] "%1 elementes"
+
+#~ msgctxt "@info mimetype"
+#~ msgid "Unknown"
+#~ msgstr "Ínconosset"
+
+#~ msgid "Stop"
+#~ msgstr "Stoppar"
+
+#~ msgid "Explore in Filelight"
+#~ msgstr "Navigar per Filelight"
+
+#~ msgid "Mounted From:"
+#~ msgstr "Montet de:"
+
+#~ msgid "Free Space:"
+#~ msgstr "Spacie líber:"
+
+#~ msgid "Type:"
+#~ msgstr "Tip:"
+
+#~ msgid "Location:"
+#~ msgstr "Localisation:"
+
+#~ msgid "Change..."
+#~ msgstr "Modificar..."
+
+#~ msgid "Content:"
+#~ msgstr "Contenete:"
+
+#~ msgid "Points to:"
+#~ msgstr "Adresse:"
+
+#~ msgid "Modified:"
+#~ msgstr "Modificat:"
+
+#~ msgid "Created:"
+#~ msgstr "Creat:"
+
+#~ msgid "File System:"
+#~ msgstr "Sistema de files:"
+
+#~ msgid "Unknown size"
+#~ msgstr "Ínconosset grandore"
+
+#~ msgid "Mounted On:"
+#~ msgstr "Montet che:"
+
+#~ msgid "Accessed:"
+#~ msgstr "Accesset:"
+
+#~ msgid "Open With:"
+#~ msgstr "Aperter per:"
+
+#~ msgid "Known Applications"
+#~ msgstr "Conosset applicationes"
+
+#~ msgid "Open With"
+#~ msgstr "Aperter per"
+
+#~ msgid ""
+#~ "<qt>Select the program that should be used to open <b>%1</b>. If the "
+#~ "program is not listed, enter the name or click the browse button.</qt>"
+#~ msgstr ""
+#~ "<qt>Selecte li programma por aperter <b>%1</b>. Si li programma ne es in "
+#~ "li liste, provide li nómine o fa clic sur li buton Trovar.</qt>"
+
+#~ msgid ""
+#~ "Choose the name of the program with which to open the selected files."
+#~ msgstr "Selecter un nómine de programma per que aperter li selectet files."
+
+#~ msgid "<qt>Select the program you want to use to open the file<br/>%1</qt>"
+#~ msgstr ""
+#~ "<qt>Selecte li programma quel vu vole usar por aperter li file<br/>%1</qt>"
+
+#~ msgid "<qt>Select the program you want to use to open the file.</qt>"
+#~ msgid_plural ""
+#~ "<qt>Select the program you want to use to open the %1 files.</qt>"
+#~ msgstr[0] ""
+#~ "<qt>Selecte li programma quel vu vole usar por aperter li file.</qt>"
+#~ msgstr[1] ""
+#~ "<qt>Selecte li programma quel vu vole usar por aperter li %1 files.</qt>"
+
+#~ msgid "Choose Application"
+#~ msgstr "Selecter un application"
+
+#~ msgid "Choose Application for %1"
+#~ msgstr "Selecter un application por %1"
+
+#~ msgid ""
+#~ "<qt>Select the program for the file type: <b>%1</b>. If the program is "
+#~ "not listed, enter the name or click the browse button.</qt>"
+#~ msgstr ""
+#~ "<qt>Selecte li programma por li files del tip: <b>%1</b>. Si li programma "
+#~ "ne es in li liste, provide li nómine o fa clic sur li buton Trovar.</qt>"
+
+#~ msgid ""
+#~ "<qt>Select a program. If the program is not listed, enter the name or "
+#~ "click the browse button.</qt>"
+#~ msgstr ""
+#~ "<qt>Selecte un programma. Si li programma ne es in li liste, provide li "
+#~ "nómine o fa clic sur li buton Trovar.</qt>"
+
+#~ msgid ""
+#~ "Type to filter the applications below, or specify the name of a command.\n"
+#~ "Press down arrow to navigate the results."
+#~ msgstr ""
+#~ "Tippa por filtrar li liste de applicationes ad-infra o provide li nómine "
+#~ "de un comande.\n"
+#~ "Tippa ↓ por navigar li resultates."
+
+#~ msgid ""
+#~ "Following the command, you can have several place holders which will be "
+#~ "replaced with the actual values when the actual program is run:\n"
+#~ "%f - a single file name\n"
+#~ "%F - a list of files; use for applications that can open several local "
+#~ "files at once\n"
+#~ "%u - a single URL\n"
+#~ "%U - a list of URLs\n"
+#~ "%d - the directory of the file to open\n"
+#~ "%D - a list of directories\n"
+#~ "%i - the icon\n"
+#~ "%m - the mini-icon\n"
+#~ "%c - the comment"
+#~ msgstr ""
+#~ "Pos li comande on posse usa quelc variabiles quel va esser remplazzat per "
+#~ "li actual valores ante que lansar li programma:\n"
+#~ "%f - un singul nómine de file\n"
+#~ "%F - un liste de files (por programmas quel posse aperter multiplic "
+#~ "files)\n"
+#~ "%u - un singul URL\n"
+#~ "%U - un liste de URLs\n"
+#~ "%d - li fólder del file essente apertet\n"
+#~ "%D - un liste de fólderes\n"
+#~ "%i - li icone\n"
+#~ "%m - li micri icone\n"
+#~ "%c - li comenta"
+
+#~ msgid ""
+#~ "&Remember application association for all files of type\n"
+#~ "\"%1\" (%2)"
+#~ msgstr ""
+#~ "&Memorar li association de application por omni files del tip\n"
+#~ "«%1» (%2)"
+
+#~ msgid ""
+#~ "&Remember application association for all files of type\n"
+#~ "\"%1\""
+#~ msgstr ""
+#~ "&Memorar li association de application por omni files del tip\n"
+#~ "«%1»"
+
+#~ msgid "Terminal options"
+#~ msgstr "Parametres del terminal"
+
+#~ msgid "Run in &terminal"
+#~ msgstr "Lansar in li &terminal"
+
+#~ msgid "&Do not close when command exits"
+#~ msgstr "Ne clu&der quande li comande fini se"
+
+#~ msgid "Get more Apps from Discover"
+#~ msgstr "Obtener plu applicationes ex Discover"
+
+#~ msgid ""
+#~ "Could not extract executable name from '%1', please type a valid program "
+#~ "name."
+#~ msgstr ""
+#~ "Ne successat extraer un nómine de executibile de «%1», ples provider un "
+#~ "valid nómine de un programma."
+
+#~ msgctxt "@info"
+#~ msgid "<filename>%1</filename> does not appear to be an executable program."
+#~ msgstr "<filename>%1</filename> ne sembla un executibil programma."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "<filename>%1</filename> was not found; please enter a valid path to an "
+#~ "executable program."
+#~ msgstr ""
+#~ "<filename>%1</filename> ne esset trovat; ples provider un valid rute a un "
+#~ "executibil programma."
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options about the "
+#~ "terminal when launching a program"
+#~ msgid "Terminal"
+#~ msgstr "Terminal"
+
+#~ msgid "Run in terminal"
+#~ msgstr "Lansar in li terminal"
+
+#~ msgid "Terminal options:"
+#~ msgstr "Parametres del terminal:"
+
+#~ msgid "Do not close when command exits"
+#~ msgstr "Ne cluder quande li comande fini se"
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose which user to use "
+#~ "when launching a program"
+#~ msgid "User"
+#~ msgstr "Usator"
+
+#~ msgid "Run as a different user"
+#~ msgstr "Lansar quam un altri usator"
+
+#~ msgid "Enter the user name you want to run the application as."
+#~ msgstr "Li nómine de usator de qui vu vole lansar li application."
+
+#~ msgid "Username:"
+#~ msgstr "Nómine de usator:"
+
+#~ msgid "Enter the user name you want to run the application as here."
+#~ msgstr "Li nómine de usator de qui vu vole lansar li application."
+
+#~ msgid "Discrete GPU"
+#~ msgstr "Separat GPU"
+
+#~ msgid "Run using dedicated graphics card"
+#~ msgstr "Lansar usante li separat grafic carte"
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options regarding "
+#~ "program startup"
+#~ msgid "Startup"
+#~ msgstr "Al inicie"
+
+#, fuzzy
+#~ msgid "Enable launch feedback"
+#~ msgstr "_Audio-retroaction..."
+
+#~ msgid ""
+#~ "Type the name you want to give to this application here. This application "
+#~ "will appear under this name in the applications menu and in the panel."
+#~ msgstr ""
+#~ "Provide li nómine quel vu vole usa por ti application ci. Ti application "
+#~ "va aparir con ti-ci nómine in li menú de applicationes e in li panel."
+
+#~ msgid ""
+#~ "Type the description of this application, based on its use, here. "
+#~ "Examples: a dial up application (KPPP) would be \"Dial up tool\"."
+#~ msgstr ""
+#~ "Provide li descrition de ti application quel reflecta su usage ci. "
+#~ "Exemple: un application de dial-up (KPPP) vell usar «Utensile de dial-up»."
+
+#~ msgid "&Description:"
+#~ msgstr "&Descrition:"
+
+#~ msgid "Type any comment you think is useful here."
+#~ msgstr "Provide ci alcun comenta quel vu trova util."
+
+#~ msgid "Comm&ent:"
+#~ msgstr "Com&enta:"
+
+#, fuzzy
+#~| msgid "Enter the user name you want to run the application as here."
+#~ msgid "Type the command to start this application here."
+#~ msgstr "Li nómine de usator de qui vu vole lansar li application."
+
+#~ msgid "Program:"
+#~ msgstr "Programma:"
+
+#~ msgid ""
+#~ "Click here to browse your file system in order to find the desired "
+#~ "executable."
+#~ msgstr "Navigar vor sistema de files por trovar li besonat executibile."
+
+#~ msgid "&Browse..."
+#~ msgstr "&Trovar…"
+
+#, fuzzy
+#~| msgid ""
+#~| "Type the command to start this application here.\n"
+#~| "\n"
+#~| "Following the command, you can have several placeholders which will be "
+#~| "replaced with the actual values when the actual program is run:\n"
+#~| "\n"
+#~| "%f - a single filename\n"
+#~| "%F - a list of files (for apps that can open several files at once)\n"
+#~| "%u - a single URL\n"
+#~| "%U - a list of URLs\n"
+#~| "%i - the icon of the .desktop file\n"
+#~| "%c - the name of the .desktop file\n"
+#~| "%k - the location of the .desktop file"
+#~ msgid ""
+#~ "Type the arguments to use when starting this application here.\n"
+#~ "\n"
+#~ "You can have several placeholders which will be replaced with the actual "
+#~ "values when the actual program is run:\n"
+#~ "\n"
+#~ "%f - a single filename\n"
+#~ "%F - a list of files (for apps that can open several files at once)\n"
+#~ "%u - a single URL\n"
+#~ "%U - a list of URLs\n"
+#~ "%i - the icon of the .desktop file\n"
+#~ "%c - the name of the .desktop file\n"
+#~ "%k - the location of the .desktop file"
+#~ msgstr ""
+#~ "Provide ci li comande por lansar li application.\n"
+#~ "\n"
+#~ "Pos li comande on posse usa quelc variabiles quel va esser remplazzat per "
+#~ "li actual valores ante que lansar li programma:\n"
+#~ "\n"
+#~ "%f - un singul nómine de file\n"
+#~ "%F - un liste de files (por programmas quel posse aperter multiplic "
+#~ "files)\n"
+#~ "%u - un singul URL\n"
+#~ "%U - un liste de URLs\n"
+#~ "%i - li icone del file .desktop\n"
+#~ "%c - li nómine del file .desktop\n"
+#~ "%k - li localisation del file .desktop"
+
+#, fuzzy
+#~| msgid "Arguments:"
+#~ msgid "&Arguments:"
+#~ msgstr "Argumentes:"
+
+#~ msgid "Sets the working directory for your application."
+#~ msgstr "Assignar li fólder de labor por vor application."
+
+#~ msgid "&Work path:"
+#~ msgstr "&Labor-rute:"
+
+#~ msgid "&Supported file types:"
+#~ msgstr "&Suportat tipes de file:"
+
+#~ msgid "Mimetype"
+#~ msgstr "Tip MIME"
+
+#~ msgid "Description"
+#~ msgstr "Descrition"
+
+#~ msgid ""
+#~ "Click on this button if you want to add a type of file (mimetype) that "
+#~ "your application can handle."
+#~ msgstr ""
+#~ "Adjunter un tip MIME de file quel posse esser processet per vor "
+#~ "application."
+
+#~ msgid "Add..."
+#~ msgstr "Adjunter…"
+
+#~ msgid "Remove"
+#~ msgstr "Remover"
+
+#~ msgid "Ad&vanced Options"
+#~ msgstr "Parametres a&vansat"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not save properties due to insufficient write access to:<nl/"
+#~ "><filename>%1</filename>."
+#~ msgstr ""
+#~ "Ne successat gardar li proprietás pro manca de accesse de scrition a:<nl/"
+#~ "><filename>%1</filename>."
+
+#~ msgid "Properties for %1"
+#~ msgstr "Proprietás de %1"
+
+#~ msgid "Properties for 1 item"
+#~ msgid_plural "Properties for %1 Selected Items"
+#~ msgstr[0] "Proprietás de 1 element"
+#~ msgstr[1] "Proprietás de %1 selectet elementes"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Share"
+#~ msgstr "Partir"
+
+#~ msgctxt "@title:tab File properties"
+#~ msgid "&General"
+#~ msgstr "&General"
+
+#~ msgctxt "@action:button"
+#~ msgid "Explore in %1"
+#~ msgstr "Navigar per %1"
+
+#~ msgid "Refresh"
+#~ msgstr "Refriscar"
+
+#~ msgid "%1:"
+#~ msgstr "%1:"
+
+#~ msgctxt "Available space out of total partition size (percent used)"
+#~ msgid "%1 free of %2 (%3% used)"
+#~ msgstr "%1 líber ex %2 (%3% usat)"
+
+#~ msgctxt "@info:status"
+#~ msgid "Unknown size"
+#~ msgstr "Ínconosset grandore"
+
+#~ msgid ""
+#~ "Calculating... %1 (%2)\n"
+#~ "%3, %4"
+#~ msgstr ""
+#~ "Calculante… %1 (%2)\n"
+#~ "%3, %4"
+
+#~ msgid "1 file"
+#~ msgid_plural "%1 files"
+#~ msgstr[0] "1 file"
+#~ msgstr[1] "%1 files"
+
+#~ msgid "1 sub-folder"
+#~ msgid_plural "%1 sub-folders"
+#~ msgstr[0] "1 sub-fólder"
+#~ msgstr[1] "%1 sub-fólderes"
+
+#~ msgid "Calculating...\n"
+#~ msgstr "Calculante…\n"
+
+#~ msgid "At least %1\n"
+#~ msgstr "Adminim %1\n"
+
+#~ msgid "The new file name is empty."
+#~ msgstr "Li nov nómine de file es vacui."
+
+#~ msgid "No registered file type"
+#~ msgstr "Sin registrat tip de file"
+
+#~ msgid "No associated application"
+#~ msgstr "Sin associat application"
+
+#~ msgctxt "@action:button Create new file type"
+#~ msgid "Create…"
+#~ msgstr "Crear…"
+
+#~ msgctxt "@action:button"
+#~ msgid "Change…"
+#~ msgstr "Modificar…"
+
+#~ msgid "No Access"
+#~ msgstr "Sin accesse"
+
+#~ msgid "Can Only View"
+#~ msgstr "Posse solmen vider"
+
+#~ msgid "Can View & Modify"
+#~ msgstr "Posse vider e modificar"
+
+#~ msgid "Can Only View Content"
+#~ msgstr "Posse solmen vider li contenete"
+
+#~ msgid "Can View & Modify Content"
+#~ msgstr "Posse vider e modificar li contenete"
+
+#~ msgid "Can Only View/Read Content"
+#~ msgstr "Posse solmen vider e leer li contenete"
+
+#~ msgid "Can View/Read & Modify/Write"
+#~ msgstr "Posse vider/leer e modificar/scrir"
+
+#~ msgid "&Permissions"
+#~ msgstr "&Permissiones"
+
+#~ msgid "Access Permissions"
+#~ msgstr "Permissiones de accesse"
+
+#~ msgid "This file is a link and does not have permissions."
+#~ msgid_plural "All files are links and do not have permissions."
+#~ msgstr[0] "Ti file es un ligament e ne have permissiones."
+#~ msgstr[1] "Ti files es ligamentes e ne have permissiones."
+
+#~ msgid "Only the owner can change permissions."
+#~ msgstr "Solmen li possessor posse modificar li permissiones."
+
+#~ msgid "O&wner:"
+#~ msgstr "Po&ssessor:"
+
+#~ msgid "Specifies the actions that the owner is allowed to do."
+#~ msgstr "Defini li actiones quel li possessor permisset far."
+
+#~ msgid "Gro&up:"
+#~ msgstr "Gr&uppe:"
+
+#~ msgid ""
+#~ "Specifies the actions that the members of the group are allowed to do."
+#~ msgstr "Defini li actiones quel li membres del gruppe permisset far."
+
+#~ msgid "O&thers:"
+#~ msgstr "Al&tri:"
+
+#~ msgid ""
+#~ "Specifies the actions that all users, who are neither owner nor in the "
+#~ "group, are allowed to do."
+#~ msgstr ""
+#~ "Defini li actiones quel omni usatores, except li possessor e gruppe, "
+#~ "permisset far."
+
+#~ msgid "Only own&er can rename and delete folder content"
+#~ msgstr ""
+#~ "Solm&en li possessor posse renominar e remover li contenete del fólder"
+
+#~ msgid "Is &executable"
+#~ msgstr "&Es executibil"
+
+#~ msgid "A&dvanced Permissions"
+#~ msgstr "Avansat &permissiones"
+
+#~ msgid "Ownership"
+#~ msgstr "Possessor"
+
+#~ msgid "User:"
+#~ msgstr "Usator:"
+
+#~ msgid "Group:"
+#~ msgstr "Gruppe:"
+
+#~ msgid "Apply changes to all subfolders and their contents"
+#~ msgstr "Applicar modificationes a omni subfólderes e lor contenete"
+
+#~ msgid "Advanced Permissions"
+#~ msgstr "Avansat permissiones"
+
+#~ msgid "Class"
+#~ msgstr "Classe"
+
+#~ msgid ""
+#~ "Show\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "Monstrar\n"
+#~ "elementes"
+
+#~ msgid "This flag allows viewing the content of the folder."
+#~ msgstr "Ti flagga permisse vider li contenete del fólder."
+
+#~ msgid "Read"
+#~ msgstr "Leer"
+
+#~ msgid "The Read flag allows viewing the content of the file."
+#~ msgstr "Li flagga Leer permisse vider li contenete del file."
+
+#~ msgid ""
+#~ "Write\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "Scrir\n"
+#~ "elementes"
+
+#~ msgid ""
+#~ "This flag allows adding, renaming and deleting of files. Note that "
+#~ "deleting and renaming can be limited using the Sticky flag."
+#~ msgstr ""
+#~ "Ti flagga permisse adjunter, renominar e remover files. Ples atenter que "
+#~ "li flagga Sticky posse prohibir remover o renominar files."
+
+#~ msgid "Write"
+#~ msgstr "Scrir"
+
+#~ msgid "The Write flag allows modifying the content of the file."
+#~ msgstr "Li flagga Scrir permisse modification del contenete del file."
+
+#~ msgctxt "Enter folder"
+#~ msgid "Enter"
+#~ msgstr "Intrar"
+
+#~ msgid "Enable this flag to allow entering the folder."
+#~ msgstr "Activa ti flagga por permisser intrar li fólder."
+
+#~ msgid "Exec"
+#~ msgstr "Executer"
+
+#~ msgid "Enable this flag to allow executing the file as a program."
+#~ msgstr "Activa ti flagga por permisser executer li file quam un programma."
+
+#~ msgid "Special"
+#~ msgstr "Special"
+
+#~ msgid ""
+#~ "Special flag. Valid for the whole folder, the exact meaning of the flag "
+#~ "can be seen in the right hand column."
+#~ msgstr ""
+#~ "Un special flagga. It es valid por li tot fólder, e on posse vider su "
+#~ "exact signification in li dextri columne."
+
+#~ msgid ""
+#~ "Special flag. The exact meaning of the flag can be seen in the right hand "
+#~ "column."
+#~ msgstr ""
+#~ "Un special flagga. On posse vider su exact signification in li dextri "
+#~ "columne."
+
+#~ msgid "User"
+#~ msgstr "Usator"
+
+#~ msgid "Group"
+#~ msgstr "Gruppe"
+
+#~ msgid ""
+#~ "If this flag is set, the owner of this folder will be the owner of all "
+#~ "new files."
+#~ msgstr ""
+#~ "Li possessor de ti fólder va esser li possessor de chascun nov file."
+
+#~ msgid ""
+#~ "If this file is an executable and the flag is set, it will be executed "
+#~ "with the permissions of the owner."
+#~ msgstr ""
+#~ "Si ti file es executibil, it va esser executet con li permissiones del "
+#~ "possessor."
+
+#~ msgid ""
+#~ "If this flag is set, the group of this folder will be set for all new "
+#~ "files."
+#~ msgstr "Li gruppe de ti folder va esser li gruppe de chascun nov file."
+
+#~ msgid ""
+#~ "If this file is an executable and the flag is set, it will be executed "
+#~ "with the permissions of the group."
+#~ msgstr ""
+#~ "Si ti file es executibil, it va esser executet con li permissiones de su "
+#~ "gruppe."
+
+#~ msgid ""
+#~ "If the Sticky flag is set on a folder, only the owner and root can delete "
+#~ "or rename files. Otherwise everybody with write permissions can do this."
+#~ msgstr ""
+#~ "Si un fólder have li flagga Sticky, solmen li possessor e li superusator "
+#~ "posse remover o renominar files. Altrimen, alqui quel have li permission "
+#~ "de scrir posse far to."
+
+#~ msgid "Set UID"
+#~ msgstr "Assignar UID"
+
+#~ msgid "Set GID"
+#~ msgstr "Assignar GID"
+
+#~ msgctxt "File permission"
+#~ msgid "Sticky"
+#~ msgstr "Sticky"
+
+#~ msgid "Link"
+#~ msgstr "Ligament"
+
+#~ msgid "Varying (No Change)"
+#~ msgstr "Varie (ne changear)"
+
+#~ msgid "This file uses advanced permissions"
+#~ msgid_plural "These files use advanced permissions."
+#~ msgstr[0] "Ti-ci file usa li avansat permissiones."
+#~ msgstr[1] "Ti-ci files usa li avansat permissiones."
+
+#~ msgid "This folder uses advanced permissions."
+#~ msgid_plural "These folders use advanced permissions."
+#~ msgstr[0] "Ti-ci fólder usa li avansat permissiones."
+#~ msgstr[1] "Ti-ci fólderes usa li avansat permissiones."
+
+#~ msgid "These files use advanced permissions."
+#~ msgstr "Ti-ci files usa li avansat permissiones."
+
+#~ msgctxt "@title:tab"
+#~ msgid "C&hecksums"
+#~ msgstr "Su&mmas de control"
+
+#~ msgctxt "@action:button"
+#~ msgid "Calculating..."
+#~ msgstr "Calculante…"
+
+#~ msgid "Invalid checksum."
+#~ msgstr "Summa de control ínvalid."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "The given input is not a valid MD5, SHA1 or SHA256 checksum."
+#~ msgstr ""
+#~ "Li providet intrada ne es un valid summa de control MD5, SHA1 o SHA256."
+
+#~ msgid "Checksums match."
+#~ msgstr "Summas de control corresponde."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "The computed checksum and the expected checksum match."
+#~ msgstr "Li computat summa corresponde al expectat."
+
+#~ msgid ""
+#~ "<p>Checksums do not match.</p>This may be due to a faulty download. Try "
+#~ "re-downloading the file.<br/>If the verification still fails, contact the "
+#~ "source of the file."
+#~ msgstr ""
+#~ "<p>Li summas de control ne corresponde.</p>Forsan li descarga es "
+#~ "corruptet. Prova re-descargar li file.<br/>Si li verification va ne "
+#~ "successar ancor, contacta li orígine del file."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "The computed checksum and the expected checksum differ."
+#~ msgstr "Li computat summa difere del expectat."
+
+#~ msgctxt "notify the user about a computation in the background"
+#~ msgid "Verifying checksum..."
+#~ msgstr "Verificante li summa de control…"
+
+#~ msgid "U&RL"
+#~ msgstr "Ad&resse"
+
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid ""
+#~ "Could not save properties. Only entries on local file systems are "
+#~ "supported."
+#~ msgstr ""
+#~ "Ne successat gardar li proprietás. Solmen elementes sur local sistemas de "
+#~ "file es ínsuportat."
+
+#~ msgid "&Application"
+#~ msgstr "&Application"
+
+#~ msgid "Add File Type for %1"
+#~ msgstr "Adjunter un tip de file por %1"
+
+#~ msgid "Select one or more file types to add:"
+#~ msgstr "Selecte ún o plu tipes de file por adjunter:"
+
+#~ msgid "Only executables on local file systems are supported."
+#~ msgstr "Solmen executibiles sur local sistemas de files es suportat."
+
+#~ msgid "Advanced Options for %1"
+#~ msgstr "Parametres avansat por %1"
+
+#~ msgid "KDE SSL Information"
+#~ msgstr "Information pri SSL de KDE"
+
+#~ msgctxt "The receiver of the SSL certificate"
+#~ msgid "Subject"
+#~ msgstr "Subjecte"
+
+#~ msgctxt "The authority that issued the SSL certificate"
+#~ msgid "Issuer"
+#~ msgstr "Emissor"
+
+#~ msgid "Current connection is secured with SSL."
+#~ msgstr "Li actual conexion es securat per SSL."
+
+#~ msgid ""
+#~ "The main part of this document is secured with SSL, but some parts are "
+#~ "not."
+#~ msgstr ""
+#~ "Li primari parte de ti document es securat per SSL, ma alcun partes ne es."
+
+#~ msgid "Some of this document is secured with SSL, but the main part is not."
+#~ msgstr ""
+#~ "Quelc partes de ti document es securat per SSL, ma li primari parte ne es."
+
+#~ msgid "Current connection is not secured with SSL."
+#~ msgstr "Li actual conexion ne es securat per SSL."
+
+#~ msgctxt "%1, using %2 bits of a %3 bit key"
+#~ msgid "%1, %2 %3"
+#~ msgstr "%1, %2 %3"
+
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "using %1 bit"
+#~ msgid_plural "using %1 bits"
+#~ msgstr[0] "usante %1 bit"
+#~ msgstr[1] "usante %1 bits"
+
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "of a %1 bit key"
+#~ msgid_plural "of a %1 bit key"
+#~ msgstr[0] "de un clave de %1 bit"
+#~ msgstr[1] "de un clave de %1 bit"
+
+#~ msgctxt "The certificate is not trusted"
+#~ msgid "NO, there were errors:"
+#~ msgstr "NO, errores evenit:"
+
+#~ msgctxt "The certificate is trusted"
+#~ msgid "Yes"
+#~ msgstr "Yes"
+
+#~ msgctxt "%1 is the effective date of the certificate, %2 is the expiry date"
+#~ msgid "%1 to %2"
+#~ msgstr "de %1 til %2"
+
+#~ msgid "Search for '%1' with"
+#~ msgstr "Serchar por «%1» med"
+
+#~ msgctxt "@action:inmenu Search for <text> with"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgid "Configure Web Shortcuts..."
+#~ msgstr "Configurar abreviationes de web..."
+
+#~ msgid "Open file dialog"
+#~ msgstr "Aperter li dialog de file"
+
+#~ msgid "Filename for clipboard content:"
+#~ msgstr "Nómine de file por li contenete del Paperiere:"
+
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid ""
+#~ "The clipboard has changed since you used 'paste': the chosen data format "
+#~ "is no longer applicable. Please copy again what you wanted to paste."
+#~ msgstr ""
+#~ "Li Paperiere esset modificat desde vu ha selectet «Collar» e li selectet "
+#~ "formate de data ne es plu disponibil. Ples copiar quo vu vole collar "
+#~ "denov."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Folder"
+#~ msgstr "Collar ún fólder"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One File"
+#~ msgstr "Collar ún file"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Item"
+#~ msgid_plural "Paste %1 Items"
+#~ msgstr[0] "Collar ún element"
+#~ msgstr[1] "Collar %1 elementes"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste Clipboard Contents..."
+#~ msgstr "Collar li contenete del Paperiere…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste"
+#~ msgstr "Collar"
+
+#~ msgid "Data format:"
+#~ msgstr "Formate de data:"
+
+#~ msgid "Filename for dropped contents:"
+#~ msgstr "Nómine de file por li cadet contenete:"
+
+#~ msgid "Date: %1"
+#~ msgstr "Date: %1"
+
+#~ msgid "Size: %1"
+#~ msgstr "Grandore: %1"
+
+#~ msgid "Appl&y to All"
+#~ msgstr "Appl&icar a omni"
+
+#~ msgid "&Rename"
+#~ msgstr "&Renominar"
+
+#~ msgid "Suggest New &Name"
+#~ msgstr "Proposir un &nov nómine"
+
+#~ msgid "&Skip"
+#~ msgstr "&Omisser"
+
+#~ msgid "Do not copy or move this folder, skip to the next item instead"
+#~ msgstr "Ne copiar o mover ti fólder, processar li sequent element"
+
+#~ msgid "Do not copy or move this file, skip to the next item instead"
+#~ msgstr "Ne copiar o mover ti file, processar li sequent element"
+
+#~ msgctxt "Write files into an existing folder"
+#~ msgid "&Write Into"
+#~ msgstr "&Coalescer"
+
+#~ msgid ""
+#~ "Files and folders will be copied into the existing directory, alongside "
+#~ "its existing contents.\n"
+#~ "You will be prompted again in case of a conflict with an existing file in "
+#~ "the directory."
+#~ msgstr ""
+#~ "Files e fólders va esser copiat al existent fólder in addition a su "
+#~ "existent contenete.\n"
+#~ "On va questionar vos denov si un conflicte con un existent file in ti "
+#~ "fólder va evenir."
+
+#~ msgctxt "Overwrite files into an existing folder when files are older"
+#~ msgid "&Overwrite older files"
+#~ msgstr "&Superscrir plu old files"
+
+#~ msgid ""
+#~ "Destination files which have older modification times will be overwritten "
+#~ "by the source, skipped otherwise."
+#~ msgstr ""
+#~ "Li files del destination quel have plu old dates de modification va esser "
+#~ "superscrit per tis del orígine, o lassat íntuchat altrimen."
+
+#~ msgid "&Resume"
+#~ msgstr "&Reprender"
+
+#~ msgid ""
+#~ "This action would overwrite '%1' with itself.\n"
+#~ "Please enter a new file name:"
+#~ msgstr ""
+#~ "Ti action va superscrir «%1» per se self.\n"
+#~ "Ples provider un nov nómine:"
+
+#~ msgid "C&ontinue"
+#~ msgstr "C&ontinuar"
+
+#~ msgid "This action will overwrite the destination."
+#~ msgstr "Ti action va superscrir li destination."
+
+#~ msgid "Source"
+#~ msgstr "Orígin"
+
+#~ msgid "Destination"
+#~ msgstr "Destination"
+
+#~ msgid "Differences"
+#~ msgstr "Diferenties"
+
+#~ msgid "The destination is <b>smaller by %1</b>"
+#~ msgstr "Li destination is <b>minu grand por %1</b>"
+
+#~ msgid "The destination is <b>bigger by %1</b>"
+#~ msgstr "Li destination is <b>plu grand por %1</b>"
+
+#~ msgid "The files are identical."
+#~ msgstr "Li files es identic."
+
+#~ msgid "The files seem identical."
+#~ msgstr "Li files sembla identic."
+
+#~ msgid "The files are different."
+#~ msgstr "Li files es diferent."
+
+#~ msgid ""
+#~ "The files are likely to be identical: they have the same size and their "
+#~ "contents are the same at the beginning, middle and end."
+#~ msgstr ""
+#~ "Li files sembla identic: ili have li sam grandore e lor contenete es "
+#~ "identic in li inicie, medie e fin."
+
+#~ msgid "An older item named '%1' already exists."
+#~ msgstr "Un plu old element nominat «%1» ja existe."
+
+#~ msgid "A similar file named '%1' already exists."
+#~ msgstr "Un simil file nominat «%1» ja existe."
+
+#~ msgid "A more recent item named '%1' already exists."
+#~ msgstr "Un plu recent element nominat «%1» ja existe."
+
+#~ msgid "Rename:"
+#~ msgstr "Renominar:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Rename Item"
+#~ msgstr "Renominar un element"
+
+#~ msgctxt "@title:window"
+#~ msgid "Rename Items"
+#~ msgstr "Renominar elementes"
+
+#~ msgctxt "@action:button"
+#~ msgid "&Rename"
+#~ msgstr "&Renominar"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Rename the item <filename>%1</filename> to:"
+#~ msgstr "Renominar li element <filename>%1</filename> a:"
+
+#~ msgctxt ""
+#~ "This a template for new filenames, # is replaced by a number later, must "
+#~ "be the end character"
+#~ msgid "New name #"
+#~ msgstr "Nov nómine #"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Rename the %1 selected item to:"
+#~ msgid_plural "Rename the %1 selected items to:"
+#~ msgstr[0] "Renominar li %1 selectet element a:"
+#~ msgstr[1] "Renominar li %1 selectet elementes a:"
+
+#~ msgctxt "@info"
+#~ msgid "# will be replaced by ascending numbers starting with:"
+#~ msgstr "# va esser remplazzat per incremental numerós comensante con:"
+
+#~ msgid "Information"
+#~ msgstr "Information"
+
+#~ msgid "Retry"
+#~ msgstr "Repenar"
+
+#~ msgid "Replace All"
+#~ msgstr "Substituer omni"
+
+#~ msgid "Skip"
+#~ msgstr "Omisser"
+
+#~ msgid "Skip All"
+#~ msgstr "Omisser omni"
+
+#~ msgid "[padlock]"
+#~ msgstr "[serrure]"
+
+#~ msgctxt "Web page address"
+#~ msgid "Address:"
+#~ msgstr "Adresse:"
+
+#~ msgid "IP address:"
+#~ msgstr "Adresse IP:"
+
+#~ msgid "Encryption:"
+#~ msgstr "Ciffration:"
+
+#~ msgid "Details:"
+#~ msgstr "Detallies:"
+
+#~ msgid "SSL version:"
+#~ msgstr "Version de SSL:"
+
+#~ msgid "Certificate chain:"
+#~ msgstr "Catene de certificates:"
+
+#~ msgid "Trusted:"
+#~ msgstr "Fidet:"
+
+#~ msgid "Validity period:"
+#~ msgstr "Periode de validitá:"
+
+#~ msgid "Serial number:"
+#~ msgstr "Nró serial:"
+
+#~ msgid "MD5 digest:"
+#~ msgstr "Summa MD5:"
+
+#~ msgid "SHA1 digest:"
+#~ msgstr "Summa SHA1:"
+
+#~ msgid ""
+#~ "The remote host did not send any SSL certificates.\n"
+#~ "Aborting because the identity of the host cannot be established."
+#~ msgstr ""
+#~ "Li lontan host ne ha inviat alcun certificate SSL.\n"
+#~ "Cessat li operation pro que li identitá del host ne posse esser trovat."
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid ""
+#~| "Do you really want to permanently delete this item?<nl/><filename>%1</"
+#~| "filename><nl/><nl/><emphasis strong='true'>This action cannot be undone."
+#~| "</emphasis>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to permanently delete this item?<nl/><nl/><filename>"
+#~ "%1</filename><nl/><nl/><emphasis strong='true'>This action cannot be "
+#~ "undone.</emphasis>"
+#~ msgstr ""
+#~ "Esque vu vole deleter ti element permanentmen?<nl/><nl/><filename>%1</"
+#~ "filename><nl/><nl/><emphasis strong='true'>Ti action ne posse esser defat."
+#~ "</emphasis>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to permanently delete this %1 item?<nl/><nl/><emphasis "
+#~ "strong='true'>This action cannot be undone.</emphasis>"
+#~ msgid_plural ""
+#~ "Do you really want to permanently delete these %1 items?<nl/><nl/"
+#~ "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~ msgstr[0] ""
+#~ "Esque vu vole deleter ti %1 element permanentmen?<nl/><nl/><emphasis "
+#~ "strong='true'>Ti action ne posse esser defat.</emphasis>"
+#~ msgstr[1] ""
+#~ "Esque vu vole deleter ti %1 elementes permanentmen?<nl/><nl/><emphasis "
+#~ "strong='true'>Ti action ne posse esser defat.</emphasis>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Moving this item to Trash failed as it is too large. Permanently delete "
+#~ "it instead?<nl/><nl/><filename>%1</filename><nl/><nl/><emphasis "
+#~ "strong='true'>This action cannot be undone.</emphasis>"
+#~ msgstr ""
+#~ "Ne successat mover ti element al Paper-corb pro que it es tro grand. "
+#~ "Deleter it permanentmen in vice de to?<nl/><nl/><filename>%1</"
+#~ "filename><nl/><nl/><emphasis strong='true'>Ti action ne posse esser defat."
+#~ "</emphasis>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Moving this %1 item to Trash failed as it is too large. Permanently "
+#~ "delete it instead?<nl/><emphasis strong='true'>This action cannot be "
+#~ "undone.</emphasis>"
+#~ msgid_plural ""
+#~ "Moving these %1 items to Trash failed as they are too large. Permanently "
+#~ "delete them instead?<nl/><nl/><emphasis strong='true'>This action cannot "
+#~ "be undone.</emphasis>"
+#~ msgstr[0] ""
+#~ "Ne successat mover %1 element al Paper-corb pro que it es tro grand. "
+#~ "Deleter it permanentmen in vice de to?<nl/><nl/><emphasis "
+#~ "strong='true'>Ti action ne posse esser defat.</emphasis>"
+#~ msgstr[1] ""
+#~ "Ne successat mover %1 elementes al Paper-corb pro que ili es tro grand. "
+#~ "Deleter les permanentmen in vice de to?<nl/><nl/><emphasis "
+#~ "strong='true'>Ti action ne posse esser defat.</emphasis>"
+
+#~ msgctxt "@info"
+#~ msgid "Do you really want to move this %1 item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] "Esque vu vole mover ti %1 element al Paper-corb?"
+#~ msgstr[1] "Esque vu vole mover ti %1 elementes al Paper-corb?"
+
+#~ msgctxt "@option:checkbox"
+#~ msgid "Do not ask again"
+#~ msgstr "Ne questionar denov"
+
+#~ msgctxt "@option:check"
+#~ msgid "Do not ask again"
+#~ msgstr "Ne questionar denov"
+
+#~ msgctxt "@option:check"
+#~ msgid "Do not show this message again"
+#~ msgstr "Ne monstrar ti missage denov"
+
+#~ msgctxt "Warning about executing unknown program"
+#~ msgid "Warning"
+#~ msgstr "Avise"
+
+#~ msgctxt "program name follows in a line edit below"
+#~ msgid "This will start the program:"
+#~ msgstr "To va lansar li programma:"
+
+#~ msgid "If you do not trust this program, click Cancel"
+#~ msgstr "Se vu ne fide a ti-ci programma, selecte Anullar"
+
+#~ msgid "Blocked request."
+#~ msgstr "Blocat demande."
+
+#~ msgid "Unknown HTTP verb."
+#~ msgstr "Ínconosset verbe de HTTP."
+
+#~ msgid "<h1>Cookie Management Quick Help</h1>"
+#~ msgstr "<h1>Rapid auxilie del gerentie de cookies</h1>"
+
+#~ msgid ""
+#~ "<h1>Network Preferences</h1>Here you can define the behavior of KDE "
+#~ "programs when using Internet and network connections. If you experience "
+#~ "timeouts or use a modem to connect to the Internet, you might want to "
+#~ "adjust these settings."
+#~ msgstr ""
+#~ "<h1>Preferenties del rete</h1>Ci vu posse controlar li conduida de "
+#~ "programmas KDE quel usa li Internet e conexe a retes. Si vu recive "
+#~ "timeouts o usa un modem por conexer al Internet, vu posse ajustar ti "
+#~ "parametres."
+
+#, fuzzy
+#~| msgid ""
+#~| "<h1>Windows Shares</h1><p>Applications using the SMB kioslave (like "
+#~| "Konqueror) are able to access shared Microsoft Windows file systems, if "
+#~| "properly configured.</p><p>You can specify here the credentials used to "
+#~| "access the shared resources. Passwords will be stored locally, and "
+#~| "scrambled so as to render them unreadable to the human eye. For security "
+#~| "reasons, you may not want to do that, as entries with passwords are "
+#~| "clearly indicated as such.</p>"
+#~ msgid ""
+#~ "<h1>Windows Shares</h1><p>Applications using the SMB KIO worker (like "
+#~ "Konqueror) are able to access shared Microsoft Windows file systems, if "
+#~ "properly configured.</p><p>You can specify here the credentials used to "
+#~ "access the shared resources. Passwords will be stored locally, and "
+#~ "scrambled so as to render them unreadable to the human eye. For security "
+#~ "reasons, you may not want to do that, as entries with passwords are "
+#~ "clearly indicated as such.</p>"
+#~ msgstr ""
+#~ "<h1>Partites de Windows</h1><p>Applicationes quel usa li kioslave SMB "
+#~ "(quam Konqueror) posse acceder partit sistemas de files del Microsoft "
+#~ "Windows, si it es configurat corectmen.</p><p>Vu posse provider ci li "
+#~ "identification por obtener li accesse a partit ressurses. Contrasignes va "
+#~ "esser gardat localmen e fat ínleibil por li ocul homan. Pro securitá vu "
+#~ "posse ne far to, proque li intradas con contrasignes es clarmen marcat.</"
+#~ "p>"
+
+#~ msgid "Web Search Keywords"
+#~ msgstr "Sercha web per clav-paroles"
+
+#~ msgid "Configure enhanced browsing features"
+#~ msgstr "Configurar li avansat functiones de navigation"
+
+#~ msgid "Using sub-URLs with %1 is not supported."
+#~ msgstr "Usa de sub-URLs con %1 es ínsupportat."
+
+#~ msgid "&Yes"
+#~ msgstr "&Yes"
+
+#~ msgid "&No"
+#~ msgstr "&No"
+
+#~ msgid "A file or folder named %1 already exists."
+#~ msgstr "Un file o fólder nominat %1 ja existe."
+
+#~ msgid "You do not have permission to create that folder."
+#~ msgstr "Vu ne have permissiones por creation de ti fólder."
+
+#, fuzzy
+#~ msgid "The desktop is offline"
+#~ msgstr "sur li Pupitre"
+
+#~ msgid "mounting is not supported by Windows CE."
+#~ msgstr "montage es ínsupportat in Windows CE."
+
+#~ msgid "unmounting is not supported by Windows CE."
+#~ msgstr "desmontage es ínsupportat in Windows CE."
+
+#~ msgid ""
+#~ "The desktop entry of type\n"
+#~ "%1\n"
+#~ "is unknown."
+#~ msgstr ""
+#~ "Li tip del file desktop\n"
+#~ "%1\n"
+#~ "es ínconosset."
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is of type FSDevice but has no Dev=... entry."
+#~ msgstr ""
+#~ "Li file desktop\n"
+#~ "%1\n"
+#~ "have li tip FSDevice ma ne have li camp Dev=…"
+
+#~ msgid "Mount"
+#~ msgstr "Monter"
+
+#~ msgid "Unmount"
+#~ msgstr "Desmonter"
+
+#~ msgid ""
+#~ "<qt>Unable to run the command specified. The file or folder <b>%1</b> "
+#~ "does not exist.</qt>"
+#~ msgstr ""
+#~ "<qt>Ne successat lansar li providet comande. Li file o fólder <b>%1</b> "
+#~ "ne existe.</qt>"
+
+#~ msgid "Could not find any application or handler for %1"
+#~ msgstr "Ne successat trovar alcun application o processor por %1"
+
+#~ msgid "&Paste File"
+#~ msgid_plural "&Paste %1 Files"
+#~ msgstr[0] "Coll&ar li file"
+#~ msgstr[1] "Coll&ar %1 files"
+
+#~ msgid "&Paste URL"
+#~ msgid_plural "&Paste %1 URLs"
+#~ msgstr[0] "Coll&ar li URL"
+#~ msgstr[1] "Coll&ar %1 URLs"
+
+#~ msgid "&Paste Clipboard Contents"
+#~ msgstr "Coll&ar li contenete del Paperiere"
+
+#~ msgid "None"
+#~ msgstr "Null"
+
+#~ msgid "Multiple Instances"
+#~ msgstr "Multiplic instanties"
+
+#~ msgid "Single Instance"
+#~ msgstr "Singul instantie"
+
+#~ msgid "Run Until Finished"
+#~ msgstr "Lansar til li fin"
+
+#~ msgid "D-Bus registration:"
+#~ msgstr "Registration D-Bus:"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Images"
+#~ msgstr "Images"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Audio"
+#~ msgstr "Audio"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to permanently delete this item?<nl/><filename>%1</"
+#~ "filename><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~ msgstr ""
+#~ "Esque vu vole deleter ti element permanentmen?<nl/><nl/><filename>%1</"
+#~ "filename><nl/><nl/><emphasis strong='true'>Ti action ne posse esser defat."
+#~ "</emphasis>"

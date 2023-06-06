@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_mtp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2020-04-04 03:36+0200\n"
+"POT-Creation-Date: 2023-03-22 00:47+0000\n"
 "PO-Revision-Date: 2016-11-28 01:33+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -18,19 +18,23 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: kio_mtp.cpp:223
+#: kio_mtp.cpp:220
 #, fuzzy, kde-format
 #| msgid ""
 #| "No Storages found. Make sure your device is unlocked and has MTP enabled "
 #| "in its USB connection settings."
+msgctxt ""
+"Message shown when attempting to access an MTP device that is not fully "
+"accessible yet"
 msgid ""
-"No storage media found. Make sure your device is unlocked and has MTP "
-"enabled in its USB connection settings."
+"Could not access device. Make sure it is unlocked, and tap \"Allow\" on the "
+"popup on its screen. If that does not work, make sure MTP is enabled in its "
+"USB connection settings."
 msgstr ""
 "Није нађено ниједно складиште. Проверите да ли је уређај откључан и да ли је "
 "активиран МТП у његовим поставкама УСБ повезивања."
 
-#: kio_mtp.cpp:526
+#: kio_mtp.cpp:521
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Фајлови не могу да се копирају/премештају на самом уређају"

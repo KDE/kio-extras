@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2020-04-06 03:18+0200\n"
+"POT-Creation-Date: 2022-10-10 00:45+0000\n"
 "PO-Revision-Date: 2017-09-28 18:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -20,15 +20,23 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: kio_man.cpp:480
-#, kde-format
+#: kio_man.cpp:451
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "No man page matching to %1 found.<br /><br />Check that you have not "
+#| "mistyped the name of the page that you want.<br />Check that you have "
+#| "typed the name using the correct upper and lower case characters.<br />If "
+#| "everything looks correct, then you may need to improve the search path "
+#| "for man pages; either using the environment variable MANPATH or using a "
+#| "matching file in the /etc directory."
+msgctxt "@info"
 msgid ""
-"No man page matching to %1 found.<br /><br />Check that you have not "
-"mistyped the name of the page that you want.<br />Check that you have typed "
-"the name using the correct upper and lower case characters.<br />If "
-"everything looks correct, then you may need to improve the search path for "
-"man pages; either using the environment variable MANPATH or using a matching "
-"file in the /etc directory."
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
 msgstr ""
 "<html>Nije nađena nijedna uputna stranica koja odgovara %1.<br/><br/"
 ">Proverite da li ste ispravno uneli ime stranice koju želite.<br/>Ne "
@@ -37,34 +45,44 @@ msgstr ""
 "ili u promenljivoj okruženja <tt>$MANPATH</tt> ili u odgovarajućem fajlu u "
 "fascikli <tt>/etc</tt>.</html>"
 
-#: kio_man.cpp:511
-#, kde-format
-msgid "Open of %1 failed."
-msgstr "Otvaranje %1 nije uspelo."
-
-#: kio_man.cpp:581
-#, kde-format
+#: kio_man.cpp:569
+#, kde-kuit-format
+msgctxt "@info"
 msgid ""
-"The specified man page referenced another page '%1',<br />but the referenced "
-"page '%2' could not be found."
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
 
-#: kio_man.cpp:617 kio_man.cpp:636
-#, kde-format
-msgid "Man output"
-msgstr "Izlaz naredbe man"
+#: kio_man.cpp:586
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
 
-#: kio_man.cpp:621
-#, kde-format
-msgid "<h1>KDE Man Viewer Error</h1>"
+#: kio_man.cpp:595
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:660
+#, fuzzy, kde-format
+#| msgid "<h1>KDE Man Viewer Error</h1>"
+msgid "Manual Page Viewer Error"
 msgstr "<h1>Greška KDE‑ovog prikazivača uputnih stranica</h1>"
 
-#: kio_man.cpp:640
-#, kde-format
-msgid "There is more than one matching man page."
+#: kio_man.cpp:674
+#, fuzzy, kde-format
+#| msgid "There is more than one matching man page."
+msgid "There is more than one matching man page:"
 msgstr "Više od jedne uputne stranice odgovara upitu."
 
-#: kio_man.cpp:651
+#: kio_man.cpp:674
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr ""
+
+#: kio_man.cpp:686
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -75,114 +93,135 @@ msgstr ""
 "imati neke greške ili biti zastarela. Ako posumnjate, pogledajte i englesku "
 "verziju."
 
-#: kio_man.cpp:728
-#, kde-format
-msgid "Header files"
+#: kio_man.cpp:758
+#, fuzzy, kde-format
+#| msgid "Header files"
+msgid "Header Files"
 msgstr "Fajlovi zaglavlja"
 
-#: kio_man.cpp:729
-#, kde-format
-msgid "Header files (POSIX)"
+#: kio_man.cpp:759
+#, fuzzy, kde-format
+#| msgid "Header files (POSIX)"
+msgid "Header Files (POSIX)"
 msgstr "Fajlovi zaglavlja (POSIX)"
 
-#: kio_man.cpp:730
+#: kio_man.cpp:760
 #, kde-format
 msgid "User Commands"
 msgstr "Korisničke naredbe"
 
-#: kio_man.cpp:731
+#: kio_man.cpp:761
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "Korisničke naredbe (POSIX)"
 
-#: kio_man.cpp:732
+#: kio_man.cpp:762
 #, kde-format
 msgid "System Calls"
 msgstr "Sistemski pozivi"
 
-#: kio_man.cpp:733
+#: kio_man.cpp:763
 #, kde-format
 msgid "Subroutines"
 msgstr "Podrutine"
 
-#: kio_man.cpp:734
+#: kio_man.cpp:765
 #, kde-format
 msgid "Perl Modules"
 msgstr "Perl moduli"
 
-#: kio_man.cpp:735
+#: kio_man.cpp:766
 #, kde-format
 msgid "Network Functions"
 msgstr "Mrežne funkcije"
 
-#: kio_man.cpp:736
+#: kio_man.cpp:767
 #, kde-format
 msgid "Devices"
 msgstr "Uređaji"
 
-#: kio_man.cpp:737
+#: kio_man.cpp:768
 #, kde-format
 msgid "File Formats"
 msgstr "Formati fajlova"
 
-#: kio_man.cpp:738
+#: kio_man.cpp:769
 #, kde-format
 msgid "Games"
 msgstr "Igre"
 
-#: kio_man.cpp:739
+#: kio_man.cpp:770
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Razno"
 
-#: kio_man.cpp:740
+#: kio_man.cpp:771
 #, kde-format
 msgid "System Administration"
 msgstr "Administracija sistema"
 
-#: kio_man.cpp:741
+#: kio_man.cpp:772
 #, kde-format
 msgid "Kernel"
 msgstr "Jezgro"
 
-#: kio_man.cpp:742
+#: kio_man.cpp:773
 #, kde-format
 msgid "Local Documentation"
 msgstr "Lokalna dokumentacija"
 
 # >> @title Section of man pages, as the several above
-#: kio_man.cpp:743
+#: kio_man.cpp:775
 #, kde-format
 msgid "New"
 msgstr "Novo"
 
-#: kio_man.cpp:778 kio_man.cpp:782 kio_man.cpp:1133
-#, kde-format
-msgid "UNIX Manual Index"
+#: kio_man.cpp:805
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Main Manual Page Index"
 msgstr "Indeks Unix uputa"
 
-#: kio_man.cpp:808
+#: kio_man.cpp:830
 #, kde-format
 msgid "Section %1"
 msgstr "Odeljak %1"
 
-#: kio_man.cpp:1142
-#, kde-format
-msgid "Index for Section %1: %2"
+#: kio_man.cpp:1115
+#, fuzzy, kde-format
+#| msgid "Index for Section %1: %2"
+msgid "Index for section %1: %2"
 msgstr "Indeks za odeljak %1: %2"
 
-#: kio_man.cpp:1147
+#: kio_man.cpp:1115
+#, fuzzy, kde-format
+#| msgid "UNIX Manual Index"
+msgid "Manual Page Index"
+msgstr "Indeks Unix uputa"
+
+#: kio_man.cpp:1127
 #, kde-format
 msgid "Generating Index"
 msgstr "Stvaram indeks"
 
-#: kio_man.cpp:1412
-#, kde-format
+#: kio_man.cpp:1405
+#, fuzzy, kde-kuit-format
+#| msgid ""
+#| "Could not find the sgml2roff program on your system. Please install it, "
+#| "if necessary, and extend the search path by adjusting the environment "
+#| "variable PATH before starting KDE."
+msgctxt "@info"
 msgid ""
-"Could not find the sgml2roff program on your system. Please install it, if "
-"necessary, and extend the search path by adjusting the environment variable "
-"PATH before starting KDE."
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
 msgstr ""
 "Ne mogu da nađem naredbu sgml2roff. Instalirajte je ukoliko je potrebno, i "
 "proširite putanju pretrage dopunjavanjem promenljive okruženja $PATH (pre "
 "nego što se KDE pokrene)."
+
+#~ msgid "Open of %1 failed."
+#~ msgstr "Otvaranje %1 nije uspelo."
+
+#~ msgid "Man output"
+#~ msgstr "Izlaz naredbe man"

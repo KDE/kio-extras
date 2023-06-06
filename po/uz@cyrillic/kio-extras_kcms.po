@@ -1,0 +1,5955 @@
+# translation of kcmkio.po to Uzbek
+# Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
+# Mashrab Kuvatov <kmashrab@uni-bremen.de>, 2003, 2004, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kcmkio\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"PO-Revision-Date: 2005-10-13 21:27+0200\n"
+"Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
+"Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
+"Language: uz@cyrillic\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10.2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: cookies/kcookiesmain.cpp:37
+#, kde-format
+msgid "&Policy"
+msgstr "Қ&оида"
+
+#: cookies/kcookiesmain.cpp:44
+#, kde-format
+msgid "&Management"
+msgstr "&Бошқарув"
+
+#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
+#, fuzzy, kde-format
+msgid "D-Bus Communication Error"
+msgstr "DCOP алоқа хатоси"
+
+#: cookies/kcookiesmanagement.cpp:127
+#, kde-format
+msgid "Unable to delete all the cookies as requested."
+msgstr "Ҳамма кукиларни ўчириб бўлмади."
+
+#: cookies/kcookiesmanagement.cpp:144
+#, kde-format
+msgid "Unable to delete cookies as requested."
+msgstr "Кукиларни ўчириб бўлмади."
+
+#: cookies/kcookiesmanagement.cpp:223
+#, kde-format
+msgid "Information Lookup Failure"
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:225
+#, kde-format
+msgid ""
+"Unable to retrieve information about the cookies stored on your computer."
+msgstr "Компьютерда сақланган кукилар ҳақида маълумотни аниқлаб бўлмади."
+
+#: cookies/kcookiesmanagement.cpp:316
+#, kde-format
+msgid "End of session"
+msgstr "Сеанс якуни"
+
+#: cookies/kcookiesmanagement.cpp:323
+#, fuzzy, kde-format
+#| msgid "&Reset"
+msgid "Yes"
+msgstr "&Тиклаш"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
+#: cookies/kcookiesmanagement.ui:20
+#, fuzzy, kde-format
+#| msgid "&Search:"
+msgid "Search"
+msgstr "Қ&идириш:"
+
+#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:27
+#, kde-format
+msgid "Search interactively for domains and hosts"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:43
+#, fuzzy, kde-format
+#| msgid "Site Name"
+msgid "Site"
+msgstr "Сайтнинг номи"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:48
+#, fuzzy, kde-format
+#| msgid "Site Name"
+msgid "Cookie Name"
+msgstr "Сайтнинг номи"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
+#, kde-format
+msgid "D&elete"
+msgstr "Ў&чириш"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
+#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
+#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
+#, kde-format
+msgid "Delete A&ll"
+msgstr "Ҳам&масини ўчириш"
+
+#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
+#: cookies/kcookiesmanagement.ui:70
+#, fuzzy, kde-format
+#| msgid "Change &Policy..."
+msgid "Configure &Policy..."
+msgstr "Қоидани ў&згартириш"
+
+#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
+#: cookies/kcookiesmanagement.ui:77
+#, kde-format
+msgid "&Reload List"
+msgstr "&Рўйхатни қайтадан юклаш"
+
+#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
+#: cookies/kcookiesmanagement.ui:97
+#, kde-format
+msgid "Details"
+msgstr "Тафсилотлар"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: cookies/kcookiesmanagement.ui:106
+#, kde-format
+msgid "Name:"
+msgstr "Номи:"
+
+#. i18n: ectx: property (text), widget (QLabel, valueLabel)
+#: cookies/kcookiesmanagement.ui:129
+#, kde-format
+msgid "Value:"
+msgstr "Қиймати:"
+
+#. i18n: ectx: property (text), widget (QLabel, domainLabel)
+#: cookies/kcookiesmanagement.ui:152
+#, kde-format
+msgid "Domain:"
+msgstr "Домен:"
+
+#. i18n: ectx: property (text), widget (QLabel, patchLabel)
+#: cookies/kcookiesmanagement.ui:175
+#, kde-format
+msgid "Path:"
+msgstr "Йўл:"
+
+#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
+#: cookies/kcookiesmanagement.ui:198
+#, kde-format
+msgid "Expires:"
+msgstr "Тугайди:"
+
+#. i18n: ectx: property (text), widget (QLabel, secureLabel)
+#: cookies/kcookiesmanagement.ui:221
+#, kde-format
+msgid "Secure:"
+msgstr "Хавфсиз:"
+
+#: cookies/kcookiespolicies.cpp:154
+#, fuzzy, kde-format
+#| msgid "Change Cookie Policy"
+msgctxt "@title:window"
+msgid "Change Cookie Policy"
+msgstr "Қоидани ўзгартириш"
+
+#: cookies/kcookiespolicies.cpp:173
+#, fuzzy, kde-format
+#| msgid "New Cookie Policy"
+msgctxt "@title:window"
+msgid "New Cookie Policy"
+msgstr "Янги қоида"
+
+#: cookies/kcookiespolicies.cpp:206
+#, kde-format
+msgid ""
+"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+"replace it?</qt>"
+msgstr ""
+"<qt>Қоида<center><b>%1</b></center> учун аллақачон мавжуд. Уни алмаштиришни "
+"истайсизми?</qt>"
+
+#: cookies/kcookiespolicies.cpp:210
+#, fuzzy, kde-format
+#| msgid "Duplicate Policy"
+msgctxt "@title:window"
+msgid "Duplicate Policy"
+msgstr "Қоида нусхасини яратиш"
+
+#: cookies/kcookiespolicies.cpp:211
+#, fuzzy, kde-format
+#| msgid "Places"
+msgid "Replace"
+msgstr "Жойлар"
+
+#: cookies/kcookiespolicies.cpp:387
+#, kde-format
+msgid ""
+"Unable to communicate with the cookie handler service.\n"
+"Any changes you made will not take effect until the service is restarted."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enable cookie support. Normally you will want to have cookie support "
+"enabled and customize it to suit your privacy needs.</p><p>\n"
+"Please note that disabling cookie support might make many web sites "
+"unbrowsable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:23
+#, kde-format
+msgid "Enable coo&kies"
+msgstr "К&укиларни ёқиш"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:35
+#, kde-format
+msgid ""
+"<qt>\n"
+"Reject the so called third-party cookies. These are cookies that originate "
+"from a site other than the one you are currently browsing. For example, if "
+"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
+"originate from www.foobar.com will be processed per your settings. Cookies "
+"from any other site will be rejected. This reduces the chances of site "
+"operators compiling a profile about your daily browsing habits.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:38
+#, kde-format
+msgid "Only acce&pt cookies from originating server"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:46
+#, kde-format
+msgid ""
+"<p>\n"
+"Automatically accept temporary cookies meant to expire at the end of the "
+"current session. Such cookies will not be stored in your computer's hard "
+"drive or storage device. Instead, they are deleted when you close all "
+"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
+"this option overrides your default as well as site specific cookie policies "
+"for session cookies.</p>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:49
+#, kde-format
+msgid "Automaticall&y accept session cookies"
+msgstr "Сеанс кукиларини &авто-қабул қилиш"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:68
+#, kde-format
+msgid ""
+"<qt>\n"
+"Determines how cookies received from a remote machine will be handled: \n"
+"<ul>\n"
+"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
+"wants to set a cookie.</li>\n"
+"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
+"li>\n"
+"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
+"</li>\n"
+"</ul><p>\n"
+"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
+"precedence over the default policy.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:71
+#, kde-format
+msgid "Default Policy"
+msgstr "Андоза қоида"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
+#: cookies/kcookiespolicies.ui:77
+#, kde-format
+msgid "Accep&t all cookies"
+msgstr "Ҳамма кукиларни қа&бул қилиш"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
+#: cookies/kcookiespolicies.ui:84
+#, fuzzy, kde-format
+#| msgid "End of session"
+msgid "Accept &until end of session"
+msgstr "Сеанс якуни"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
+#: cookies/kcookiespolicies.ui:91
+#, kde-format
+msgid "Ask &for confirmation"
+msgstr "Тасд&иқлаш учун сўраш"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
+#: cookies/kcookiespolicies.ui:98
+#, kde-format
+msgid "Re&ject all cookies"
+msgstr "Ҳамма кукиларни &рад этиш"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:123
+#, kde-format
+msgid ""
+"<qt>\n"
+"To add a new policy, simply click on the <b>Add...</b> button and supply the "
+"necessary information. To change an existing policy, use the <b>Change...</"
+"b> button and choose the new policy from the policy dialog box. Clicking on "
+"the <b>Delete</b> button will remove the currently selected policy causing "
+"the default policy setting to be used for that domain, whereas <b>Delete "
+"All</b> will remove all the site specific policies.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:126
+#, kde-format
+msgid "Site Policy"
+msgstr "Сайт қоидаси"
+
+#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:135
+#, kde-format
+msgid "Search interactively for domains"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:138
+#, fuzzy, kde-format
+#| msgid "&Search:"
+msgid "Search..."
+msgstr "Қ&идириш:"
+
+#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:147
+#, kde-format
+msgid ""
+"<qt>\n"
+"List of sites for which you have set a specific cookie policy. Specific "
+"policies override the default policy setting for these sites.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:163
+#, kde-format
+msgid "Domain"
+msgstr "Домен"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:168
+#, kde-format
+msgid "Policy"
+msgstr "Қоида"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "Я&нги"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Ўз&гартириш"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:26
+#: cookies/kcookiespolicyselectiondlg.ui:81
+#, kde-format
+msgid "Accept"
+msgstr "Қабул қилиш"
+
+#: cookies/kcookiespolicyselectiondlg.h:28
+#, fuzzy
+#| msgid "End of Session"
+msgid "Accept For Session"
+msgstr "Сеанс якуни"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:30
+#: cookies/kcookiespolicyselectiondlg.ui:91
+#, kde-format
+msgid "Reject"
+msgstr "Рад этиш"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:32
+#: cookies/kcookiespolicyselectiondlg.ui:96
+#, kde-format
+msgid "Ask"
+msgstr "Сўраш"
+
+#: cookies/kcookiespolicyselectiondlg.h:34
+#, fuzzy
+#| msgid "Do Not Store"
+msgid "Do Not Know"
+msgstr "Сақланмасин"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:22
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
+"b> or <b>.kde.org</b>.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Ушбу қоида қўлланадиган хост ёки доменнинг номини киритинг. Масалан, <b>www."
+"kde.org</b> ёки <b>.kde.org</b>.\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:25
+#, fuzzy, kde-format
+#| msgid "Site Name"
+msgid "Site name:"
+msgstr "Сайтнинг номи"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:38
+#, kde-format
+msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:53
+#: cookies/kcookiespolicyselectiondlg.ui:77
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>\n"
+#| "Select the desired policy:\n"
+#| "<ul>\n"
+#| "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#| "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#| "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#| "</ul>\n"
+#| "</qt>"
+msgid ""
+"<qt>\n"
+"Select the desired policy:\n"
+"<ul>\n"
+"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+"</ul>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Истаган қоидани танланг:\n"
+"<ul>\n"
+"<li><b>Қабул қилиш</b> - Сайтдан ҳамма кукиларни қабул қилиш</li>\n"
+"<li><b>Рад этиш</b> - Сайтдан ҳамма кукиларни рад этиш</li>\n"
+"<li><b>Сўраш</b> - Сайтдан куки келганида сўраш</li>\n"
+"</ul>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:56
+#, fuzzy, kde-format
+#| msgid "&Policy:"
+msgid "Policy:"
+msgstr "Қ&оида:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:86
+#, fuzzy, kde-format
+#| msgid "End of session"
+msgid "Accept until end of session"
+msgstr "Сеанс якуни"
+
+#: ksaveioconfig.cpp:212
+#, kde-format
+msgid ""
+"You have to restart the running applications for these changes to take "
+"effect."
+msgstr ""
+"Ўзгаришлар кучга кириши учун ишлаётган дастурларни қайтадан ишга "
+"туширишингиз керак."
+
+#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#, fuzzy, kde-format
+#| msgid "Update Failed"
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "Янгилаш муваффақиятсиз тугади"
+
+#: ksaveioconfig.cpp:225
+#, kde-format
+msgid "You have to restart KDE for these changes to take effect."
+msgstr "Ўзгаришлар кучга кириши учун KDE'ни қайтадан ишга туширишингиз керак."
+
+#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:10
+#, kde-format
+msgid "Disable Passive FTP"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:11
+#, kde-format
+msgid ""
+"When FTP connections are passive the client connects to the server, instead "
+"of the other way round, so firewalls do not block the connection; old FTP "
+"servers may not support Passive FTP though."
+msgstr ""
+
+#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#, kde-format
+msgid "Mark partially uploaded files"
+msgstr "Қисман ёзиб олинган файлларни белгилаш"
+
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#, kde-format
+msgid ""
+"While a file is being uploaded its extension is \".part\". When fully "
+"uploaded it is renamed to its real name."
+msgstr ""
+
+#: netpref/netpref.cpp:30
+#, kde-format
+msgid "Timeout Values"
+msgstr "Таймаут қийматлари"
+
+#: netpref/netpref.cpp:32
+#, kde-format
+msgid ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is 1 second."
+msgid_plural ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is %1 seconds."
+msgstr[0] ""
+
+#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
+#: netpref/netpref.cpp:63
+#, fuzzy, kde-format
+#| msgid " sec"
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " сония"
+
+#: netpref/netpref.cpp:47
+#, kde-format
+msgid "Soc&ket read:"
+msgstr "Ўқ&иш сокети:"
+
+#: netpref/netpref.cpp:53
+#, kde-format
+msgid "Pro&xy connect:"
+msgstr "Уланиш &проксиси:"
+
+#: netpref/netpref.cpp:59
+#, kde-format
+msgid "Server co&nnect:"
+msgstr "Уланиш &сервери:"
+
+#: netpref/netpref.cpp:65
+#, kde-format
+msgid "&Server response:"
+msgstr ""
+
+#: netpref/netpref.cpp:67
+#, fuzzy, kde-format
+#| msgid "Options"
+msgid "Global Options"
+msgstr "Мосламалар"
+
+#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#, kde-format
+msgid "Mark &partially uploaded files"
+msgstr "Қисман ёзиб олинган файлларни &белгилаш"
+
+#: netpref/netpref.cpp:73
+#, fuzzy, kde-format
+#| msgid ""
+#| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#| "partially uploaded files will have a \".part\" extension. This extension "
+#| "will be removed once the transfer is complete.</p>"
+msgid ""
+"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+"p><p>When this option is enabled, partially uploaded files will have a \"."
+"part\" extension. This extension will be removed once the transfer is "
+"complete.</p>"
+msgstr ""
+"<p>Қисман ёзиб олинган FTP файлларни белгилайди.</p><p>Агар бу параметр "
+"ёқилган бўлса, қисман ёзиб олинган файлларга \".part\" кенгайтмаси қўшилади. "
+"Файл тўлиқ ёзиб олингач бу кенгайтма олиб ташланади.</p>"
+
+#: netpref/netpref.cpp:90
+#, kde-format
+msgid " byte"
+msgid_plural " bytes"
+msgstr[0] ""
+
+#: netpref/netpref.cpp:92
+#, kde-format
+msgctxt "@label:spinbox"
+msgid ""
+"If cancelled, automatically delete partially uploaded files smaller than:"
+msgstr ""
+
+#: netpref/netpref.cpp:94
+#, kde-format
+msgid "FTP Options"
+msgstr "FTP параметрлари"
+
+#: netpref/netpref.cpp:98
+#, kde-format
+msgid "Enable passive &mode (PASV)"
+msgstr "Пассив &усулини (PASV) ёқиш"
+
+#: netpref/netpref.cpp:100
+#, kde-format
+msgid ""
+"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
+"behind firewalls."
+msgstr ""
+
+#: netpref/netpref.cpp:108
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+"partially uploaded files will have a \".part\" extension. This extension "
+"will be removed once the transfer is complete.</p>"
+msgstr ""
+"<p>Қисман ёзиб олинган FTP файлларни белгилайди.</p><p>Агар бу параметр "
+"ёқилган бўлса, қисман ёзиб олинган файлларга \".part\" кенгайтмаси қўшилади. "
+"Файл тўлиқ ёзиб олингач бу кенгайтма олиб ташланади.</p>"
+
+#: proxy/kproxydlg.cpp:193
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Not all applications will use this proxy setting. In particular, "
+"<application>Firefox</application> and <application>Chromium</application> "
+"or anything derived from them, or anything using <application>QtWebEngine</"
+"application>&nbsp;- which includes <application>Konqueror</application> "
+"using the <application>WebEnginePart</application>, <application>Akregator</"
+"application> and <application>Falkon</application>&nbsp;- will not use these "
+"settings. Some applications may allow the proxy to be configured in their "
+"own settings."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
+#: proxy/kproxydlg.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"Setup proxy configuration.\n"
+"<p>\n"
+"A proxy server is an intermediate machine that sits between your computer "
+"and the Internet and provides services such as web page caching and "
+"filtering. Caching proxy servers give you faster access to web sites you "
+"have already visited by locally storing or caching those pages; filtering "
+"proxy servers usually provide the ability to block out requests for ads, "
+"spam, or anything else you want to block.\n"
+"<p>\n"
+"If you are uncertain whether or not you need to use a proxy server to "
+"connect to the Internet, consult your Internet service provider's setup "
+"guide or your system administrator.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:26
+#, kde-format
+msgid "Connect to the Internet directly."
+msgstr "Интернетга тўғридан-тўғри уланиш."
+
+#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:29
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "No Proxy"
+msgstr "&Прокси"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:46
+#, kde-format
+msgid ""
+"<qt>\n"
+"Automatically detect and configure the proxy settings.<p>\n"
+"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
+"<b>NOTE:</b> This option might not work properly or not work at all in some "
+"UNIX/Linux distributions.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:49
+#, fuzzy, kde-format
+#| msgid "U&se the following proxy configuration URL"
+msgid "Detect proxy configuration automatically"
+msgstr "Қуйида&ги прокси мослама URL'дан фойдаланиш"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:59
+#, fuzzy, kde-format
+#| msgid "Use the specified proxy script URL to configure the proxy settings."
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr ""
+"Прокси серверининг мосламаларини мослаш учун кўрсатилган скрипт URL'дан "
+"фойдаланиш."
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:62
+#, fuzzy, kde-format
+#| msgid "U&se the following proxy configuration URL"
+msgid "Use proxy auto configuration URL:"
+msgstr "Қуйида&ги прокси мослама URL'дан фойдаланиш"
+
+#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
+#: proxy/kproxydlg.ui:93
+#, kde-format
+msgid "Enter the address for the proxy configuration script."
+msgstr "Прокси мослама скрипти жойлашган манзилни киритинг."
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:117
+#, kde-format
+msgid ""
+"<qt><p>Use proxy settings defined on the system.</p>\n"
+"<p>Some platforms offer system wide proxy configuration information and "
+"selecting this option allows you to use those settings.</p>\n"
+"<p>On Mac platforms</p>\n"
+"<p>On Windows platforms</p>\n"
+"<p>On Unix and Linux platforms, such system proxy settings are usually "
+"defined through environment variables. The following environment variables "
+"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:120
+#, fuzzy, kde-format
+#| msgid "U&se the following proxy configuration URL"
+msgid "Use system proxy configuration:"
+msgstr "Қуйида&ги прокси мослама URL'дан фойдаланиш"
+
+#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:127
+#, kde-format
+msgid ""
+"<qt>Attempt automatic discovery of the environment variables used for "
+"setting system wide proxy information.<p> This feature works by searching "
+"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:130
+#, fuzzy, kde-format
+#| msgid "Auto &Detect"
+msgid "Auto D&etect"
+msgstr "&Авто-аниқлаш"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
+#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "HTTP Proxy:"
+msgstr "&Прокси"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
+#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "SSL Proxy:"
+msgstr "&Прокси"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
+#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "FTP Proxy:"
+msgstr "&Прокси"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:263
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
+#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "SOCKS Proxy:"
+msgstr "&Прокси"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:285
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the proxy server should not be used.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
+#, fuzzy, kde-format
+#| msgid "E&xceptions"
+msgid "Exceptions:"
+msgstr "Қоидадан т&ашқари ҳолатлар"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:317
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:324
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr "Муҳит ўзгарувчиларнинг қийматини &кўрсатиш"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:343
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr "Прокси серверни мослаш учун маълумотни қўлбола киритиш."
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:346
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgid "Use manually specified proxy configuration:"
+msgstr "Прокси &мосламасини авто-аниқлаш"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:398
+#, kde-format
+msgid "Enter the address of the HTTP proxy server."
+msgstr "HTTP прокси серверининг манзилини киритинг."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
+#: proxy/kproxydlg.ui:574
+#, kde-format
+msgid "Port:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:421
+#, fuzzy, kde-format
+#| msgid "Enter the address of the HTTP proxy server."
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "HTTP прокси серверининг манзилини киритинг."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:436
+#, fuzzy, kde-format
+#| msgid "&Use the same proxy server for all protocols"
+msgid "Use this proxy server for a&ll protocols"
+msgstr "Ҳамма про&токоллар учун битта прокси серверини ишлатиш"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:464
+#, kde-format
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "HTTPS прокси серверининг манзилини киритинг."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:481
+#, fuzzy, kde-format
+#| msgid "Enter the address of the HTTPS proxy server."
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "HTTPS прокси серверининг манзилини киритинг."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:517
+#, kde-format
+msgid "Enter the address of the FTP proxy server."
+msgstr "FTP прокси серверининг манзилини киритинг."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:534
+#, fuzzy, kde-format
+#| msgid "Enter the address of the FTP proxy server."
+msgid "Enter the port number of the FTP proxy server."
+msgstr "FTP прокси серверининг манзилини киритинг."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:567
+#, fuzzy, kde-format
+#| msgid "Enter the address of the HTTPS proxy server."
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "HTTPS прокси серверининг манзилини киритинг."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:584
+#, fuzzy, kde-format
+#| msgid "Enter the address of the HTTPS proxy server."
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "HTTPS прокси серверининг манзилини киритинг."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
+#: proxy/kproxydlg.ui:628
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enter a comma separated list of hostnames or ip addresses that should be "
+"excluded from using the above proxy settings.</p>\n"
+"<p>If you want to exclude all hosts for a given domain, then simply enter "
+"the domain name preceded by a dot. For example, to exclude all hostnames for "
+"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
+"'?' are not supported and will have no effect.</p>\n"
+"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:639
+#, fuzzy, kde-format
+#| msgid "Use proxy only for entries in this list"
+msgid ""
+"<qt>\n"
+"Check this box if you want the above proxy settings to apply only to the "
+"addresses listed in the <i>Exceptions</i> list.</qt>"
+msgstr "Рўйхатдагилар учун проксини ишлатиш"
+
+#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:642
+#, fuzzy, kde-format
+#| msgid "Use proxy only for entries in this list"
+msgid "Use proxy settings only for addresses in the Exceptions list"
+msgstr "Рўйхатдагилар учун проксини ишлатиш"
+
+#: smb/smbrodlg.cpp:27
+#, kde-format
+msgid "These settings apply to network browsing only."
+msgstr ""
+
+#: smb/smbrodlg.cpp:31
+#, kde-format
+msgid "Default user name:"
+msgstr "Андоза фойдаланувчи:"
+
+#: smb/smbrodlg.cpp:39
+#, kde-format
+msgid "Default password:"
+msgstr "Андоза махфий сўз:"
+
+#: trash/kcmtrash.cpp:138
+#, kde-format
+msgid " days"
+msgstr ""
+
+#: trash/kcmtrash.cpp:203
+#, kde-format
+msgid ""
+"<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
+"para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:205
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Emptying KDE's wastebin will remove only KDE's trash items, "
+"while<br>emptying the Trash through the Finder will delete everything.</"
+"para><para>KDE's trash items will show up in a folder called KDE.trash, in "
+"the Trash can.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:246
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgid "Delete files older than"
+msgstr "Жилдни ўчириш"
+
+#: trash/kcmtrash.cpp:249
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to allow <emphasis strong='true'>automatic deletion</"
+"emphasis> of files that are older than the value specified. Leave this "
+"disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
+"items after a certain timespan</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:256
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] ""
+
+#: trash/kcmtrash.cpp:258
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Set the number of days that files can remain in the trash. Any files "
+"older than this will be automatically deleted.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:262
+#, kde-format
+msgid "Cleanup:"
+msgstr ""
+
+#: trash/kcmtrash.cpp:265
+#, kde-format
+msgid "Limit to"
+msgstr ""
+
+#: trash/kcmtrash.cpp:267
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to limit the trash to the maximum amount of disk space "
+"that you specify below. Otherwise, it will be unlimited.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:270
+#, kde-format
+msgid "Size:"
+msgstr "Ҳажми:"
+
+#: trash/kcmtrash.cpp:277
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the maximum percent of disk space that will be used for the "
+"trash.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:282
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the calculated amount of disk space that will be allowed for "
+"the trash, the maximum.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:286
+#, fuzzy, kde-format
+#| msgid "Examining"
+msgid "Show a Warning"
+msgstr "Текширилмоқда"
+
+#: trash/kcmtrash.cpp:287
+#, fuzzy, kde-format
+#| msgid "Delete File(s) Progress"
+msgid "Delete Oldest Files From Trash"
+msgstr "Файл(лар)ни ўчириш"
+
+#: trash/kcmtrash.cpp:288
+#, fuzzy, kde-format
+#| msgid "Delete File(s) Progress"
+msgid "Delete Biggest Files From Trash"
+msgstr "Файл(лар)ни ўчириш"
+
+#: trash/kcmtrash.cpp:290
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>When the size limit is reached, it will prefer to delete the type of "
+"files that you specify, first. If this is set to warn you, it will do so "
+"instead of automatically deleting files.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:292
+#, fuzzy, kde-format
+#| msgctxt "KFile System Bookmarks"
+#| msgid "Trash"
+msgid "Full Trash:"
+msgstr "Чиқиндилар қутиси"
+
+#: webshortcuts/ikwsopts.cpp:38
+#, fuzzy, kde-format
+#| msgid "Name"
+msgctxt "@title:column Name label from web search keyword column"
+msgid "Name"
+msgstr "Номи"
+
+#: webshortcuts/ikwsopts.cpp:40
+#, kde-format
+msgctxt "@title:column"
+msgid "Keywords"
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Preferred"
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:101
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this box to select the highlighted web search keyword as preferred.<nl/"
+">Preferred web search keywords are used in places where only a few select "
+"keywords can be shown at one time."
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:202
+#, fuzzy, kde-format
+#| msgid "None"
+msgctxt "@item:inlistbox No default web search keyword"
+msgid "None"
+msgstr "Йўқ"
+
+#: webshortcuts/ikwsopts.cpp:246
+#, kde-format
+msgid "Search F&ilters"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:17
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"search keywords allow you to quickly access or search for information "
+"located online or on your hard drive. </p><p>KDE comes with many predefined "
+"keywords. One such keyword can be used to perform a the Google (TM) search; "
+"to use it, you simply type the keyword 'gg' followed by the keyword "
+"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
+"KDE</span>.</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:20
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "&Enable Web search keywords"
+msgstr "Андоза махфий сўз:"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:30
+#, kde-format
+msgid "&Use preferred keywords only"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
+#: webshortcuts/ikwsopts_ui.ui:37
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Search for web search keywords"
+msgstr "Андоза махфий сўз:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:71
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Add a new Web search keyword"
+msgstr "Андоза махфий сўз:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:84
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Modify the highlighted Web search keyword"
+msgstr "Андоза махфий сўз:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:97
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Delete the highlighted Web search keyword"
+msgstr "Андоза махфий сўз:"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:100
+#, kde-format
+msgid "De&lete"
+msgstr "Ўч&ириш"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:138
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the search engine to use for input boxes that provide automatic "
+"lookup services when you type in normal words and phrases instead of a URL. "
+"To disable this feature select <b>None</b> from the list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:141
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Default Web &search keyword:"
+msgstr "Андоза махфий сўз:"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:166
+#, kde-format
+msgid ""
+"<html><head/><body><p>Select a default web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to web "
+"search keyword queries when they cannot be filtered into a proper URL. </"
+"p><p>To disable this functionality select <span style=\" font-weight:600;"
+"\">None</span> from the list. </p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:182
+#, kde-format
+msgid ""
+"Choose the delimiter that separates the keyword from the phrase or word to "
+"be searched."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:185
+#, kde-format
+msgid "&Keyword delimiter:"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:204
+#, kde-format
+msgid "Choose a delimiter to mark the Web search keyword."
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:208
+#, kde-format
+msgctxt "Colon as keyword delimiter"
+msgid "Colon"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:213
+#, kde-format
+msgctxt "Space as keyword delimiter"
+msgid "Space"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:49
+#, fuzzy, kde-format
+#| msgid "Default"
+msgctxt "@item:inlistbox The default character set"
+msgid "Default"
+msgstr "Андоза"
+
+#: webshortcuts/searchproviderdlg.cpp:52
+#, kde-format
+msgid "Modify Web Shortcut"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:60
+#, kde-format
+msgid "New Web Shortcut"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:121
+#, kde-format
+msgid ""
+"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"one."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:126
+#, fuzzy, kde-format
+#| msgid "%1 %"
+msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
+msgid "- %1: \"%2\""
+msgstr "%1 %"
+
+#: webshortcuts/searchproviderdlg.cpp:130
+#, kde-format
+msgid ""
+"The following shortcuts are already assigned. Please choose different ones.\n"
+"%1"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:143
+#, kde-format
+msgid ""
+"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"This means that the same page is always going to be visited, regardless of "
+"the text typed in with the shortcut."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:147
+#, kde-format
+msgid "Keep It"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:17
+#, fuzzy, kde-format
+#| msgid "Enter the address of the FTP proxy server."
+msgid "Enter the human-readable name of the search provider here."
+msgstr "FTP прокси серверининг манзилини киритинг."
+
+#. i18n: ectx: property (text), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:23
+#, fuzzy, kde-format
+#| msgid "Site Name"
+msgid "Shortcut &name:"
+msgstr "Сайтнинг номи"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:42
+#: webshortcuts/searchproviderdlg_ui.ui:64
+#: webshortcuts/searchproviderdlg_ui.ui:70
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the URI that is used to perform a search on the search engine here.<br/"
+">The whole text to be searched for can be specified as \\{@} or \\{0}.<br/>\n"
+"Recommended is \\{@}, since it removes all query variables (name=value) from "
+"the resulting string, whereas \\{0} will be substituted with the unmodified "
+"query string.<br/>You can use \\{1} ... \\{n} to specify certain words from "
+"the query and \\{name} to specify a value given by 'name=value' in the user "
+"query.<br/>In addition it is possible to specify multiple references (names, "
+"numbers and strings) at once (\\{name1,name2,...,\"string\"}).<br/>The first "
+"matching value (from the left) will be used as the substitution value for "
+"the resulting URI.<br/>A quoted string can be used as the default value if "
+"nothing matches from the left of the reference list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:48
+#, kde-format
+msgid "Shortcut &URL:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:83
+#, kde-format
+msgid "Select the character set that will be used to encode your search query."
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:92
+#: webshortcuts/searchproviderdlg_ui.ui:97
+#: webshortcuts/searchproviderdlg_ui.ui:116
+#, kde-format
+msgid ""
+"<qt>\n"
+"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+"b>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:104
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
+"</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:119
+#, kde-format
+msgid "&Shortcuts:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:132
+#, kde-format
+msgid "Select the character set that will be used to encode your search query"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:135
+#, kde-format
+msgid "&Charset:"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
+#: webshortcuts/searchproviderdlg_ui.ui:158
+#, kde-format
+msgid "Insert query placeholder"
+msgstr ""
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Машраб Қуватов"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "kmashrab@uni-bremen.de"
+
+#, fuzzy
+#~| msgid "Could not change permissions for %1."
+#~ msgid "Could not modify the ownership of file %1"
+#~ msgstr "%1 учун ҳуқуқларни ўзгартириб бўлмади."
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Could not modify the ownership of file <b>%1</b>. You have "
+#~| "insufficient access to the file to perform the change.</qt>"
+#~ msgid ""
+#~ "Could not modify the ownership of file <filename>%1</filename>. You have "
+#~ "insufficient access to the file to perform the change."
+#~ msgstr ""
+#~ "<qt><b>%1</b> файлнинг эгасини ўзгартириб бўлмади. Бу амални бажариш учун "
+#~ "сиз етарли ҳуқуқга эга эмассиз.</qt>"
+
+#, fuzzy
+#~| msgid "Unable to create io-slave: %1"
+#~ msgid "Unable to create KIO worker: %1"
+#~ msgstr "КЧ-слейвни (%1) яратиб бўлмади"
+
+#, fuzzy
+#~| msgid ""
+#~| "Could not create symlink %1.\n"
+#~| "Please check permissions."
+#~ msgctxt ""
+#~ "The first arg is the path to the symlink that couldn't be created, the "
+#~ "secondarg is the filesystem type (e.g. vfat, exfat)"
+#~ msgid ""
+#~ "Could not create symlink \"%1\".\n"
+#~ "The destination filesystem (%2) doesn't support symlinks."
+#~ msgstr ""
+#~ "Рамзий боғни (%1) яратиб бўлмади.\n"
+#~ "Илтимос ҳуқуқларни текширинг."
+
+#~ msgid "Folder Already Exists"
+#~ msgstr "Жилд аллақачон мавжуд"
+
+#~ msgid "File Already Exists"
+#~ msgstr "Файл аллақачон мавжуд"
+
+#~ msgid "Already Exists as Folder"
+#~ msgstr "Жилд сифатида аллақачон мавжуд"
+
+#, fuzzy
+#~| msgctxt "KFile System Bookmarks"
+#~| msgid "Trash"
+#~ msgid "Trash"
+#~ msgstr "Чиқиндилар қутиси"
+
+#~ msgid "Could not find the program '%1'"
+#~ msgstr "'%1' дастурини топиб бўлмади."
+
+#, fuzzy
+#~| msgid "No Items"
+#~ msgid "%1 Item"
+#~ msgid_plural "%1 Items"
+#~ msgstr[0] "Ҳеч нарса йўқ"
+
+#~ msgid "1 Folder"
+#~ msgid_plural "%1 Folders"
+#~ msgstr[0] "%1 жилд"
+
+#~ msgid "1 File"
+#~ msgid_plural "%1 Files"
+#~ msgstr[0] "%1 файл"
+
+#, fuzzy
+#~ msgctxt "folders, files (size)"
+#~ msgid "%1, %2 (%3)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "%1 %"
+#~ msgctxt "folders, files"
+#~ msgid "%1, %2"
+#~ msgstr "%1 %"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "files (size)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "%1 %"
+#~ msgctxt "items: folders, files (size)"
+#~ msgid "%1: %2"
+#~ msgstr "%1 %"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "Кўчирилмоқда"
+
+#, fuzzy
+#~| msgid "Source"
+#~ msgctxt "The source of a file operation"
+#~ msgid "Source"
+#~ msgstr "Манба"
+
+#, fuzzy
+#~| msgid "Destination"
+#~ msgctxt "The destination of a file operation"
+#~ msgid "Destination"
+#~ msgstr "Манзил"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@title job"
+#~ msgid "Renaming"
+#~ msgstr "&Номини ўзгартириш"
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "Нусха олинмоқда"
+
+#~ msgctxt "@title job"
+#~ msgid "Creating directory"
+#~ msgstr "Жилд яратилмоқда"
+
+#~ msgctxt "@title job"
+#~ msgid "Deleting"
+#~ msgstr "Ўчирилмоқда"
+
+#~ msgid "File"
+#~ msgstr "Файл"
+
+#, fuzzy
+#~| msgid "Examining"
+#~ msgctxt "@title job"
+#~ msgid "Examining"
+#~ msgstr "Текширилмоқда"
+
+#~ msgctxt "@title job"
+#~ msgid "Mounting"
+#~ msgstr "Уланмоқда"
+
+#~ msgid "Device"
+#~ msgstr "Ускуна"
+
+#~ msgid "Mountpoint"
+#~ msgstr "Улаш нуқтаси"
+
+#~ msgctxt "@title job"
+#~ msgid "Unmounting"
+#~ msgstr "Ажратилмоқда"
+
+#, fuzzy
+#~| msgid "*|All Files"
+#~ msgid "Copy Files"
+#~ msgstr "*|Ҳамма файллар"
+
+#~ msgid "Delete Files"
+#~ msgstr "Файлларни ўчириш"
+
+#, fuzzy
+#~| msgid "Could Not Create Folder"
+#~ msgid "Create Folder"
+#~ msgstr "Жилдни яратиб бўлмади"
+
+#, fuzzy
+#~| msgid "Move to Trash"
+#~ msgid "Move Items"
+#~ msgstr "Чиқиндилар қутисига кўчириш"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Rename"
+#~ msgstr "&Номини ўзгартириш"
+
+#, fuzzy
+#~| msgid "Could Not Create Symbolic Link"
+#~ msgid "Create Symlink"
+#~ msgstr "Рамзий боғ яратиб бўлмади"
+
+#~ msgid "Could not read %1."
+#~ msgstr "%1'ни ўқиб бўлмади."
+
+#~ msgid "Could not write to %1."
+#~ msgstr "%1'га ёзиб бўлмади."
+
+#~ msgid "Could not start process %1."
+#~ msgstr "%1 жараёнини ишга тушириб бўлмади."
+
+#, fuzzy
+#~| msgid ""
+#~| "Internal Error\n"
+#~| "Please send a full bug report at http://bugs.kde.org\n"
+#~| "%1"
+#~ msgid ""
+#~ "Internal Error\n"
+#~ "Please send a full bug report at https://bugs.kde.org\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ички хато\n"
+#~ "Илтимос хато ҳақида тўлиқ маълумотни http://bugs.kde.org'га жўнатинг\n"
+#~ "%1"
+
+#~ msgid "Malformed URL %1."
+#~ msgstr "Хато URL %1."
+
+#~ msgid "The protocol %1 is not supported."
+#~ msgstr "Протокол %1 қўлланмаган."
+
+#~ msgid "The protocol %1 is only a filter protocol."
+#~ msgstr "Протокол %1 фақат филтер протоколи."
+
+#~ msgid "%1 is a folder, but a file was expected."
+#~ msgstr "%1 жилд, аммо файл кутилган эди."
+
+#~ msgid "%1 is a file, but a folder was expected."
+#~ msgstr "%1 файл, аммо жилд кутилган эди."
+
+#~ msgid "The file or folder %1 does not exist."
+#~ msgstr "Файл ёки жилд %1 мавжуд эмас."
+
+#~ msgid "A file named %1 already exists."
+#~ msgstr "%1 номли файл аллақачон мавжуд."
+
+#~ msgid "A folder named %1 already exists."
+#~ msgstr "%1 номли жилд аллақачон мавжуд."
+
+#~ msgid "No hostname specified."
+#~ msgstr "Ҳеч қандай компьютернинг номи кўрсатилмаган."
+
+#~ msgid "Unknown host %1"
+#~ msgstr "Компьютернинг номи (%1) номаълум"
+
+#~ msgid "Access denied to %1."
+#~ msgstr "%1'га мурожаат рад этилди."
+
+#~ msgid ""
+#~ "Access denied.\n"
+#~ "Could not write to %1."
+#~ msgstr ""
+#~ "Мурожаат рад этилди.\n"
+#~ "%1'га ёзиб бўлмади."
+
+#~ msgid "Could not enter folder %1."
+#~ msgstr "%1 жилдига ўтиб бўлмади."
+
+#~ msgid "Found a cyclic link in %1."
+#~ msgstr "%1'да чексиз боғ топилди."
+
+#~ msgid "Found a cyclic link while copying %1."
+#~ msgstr "%1'дан нусха олаётганда чексиз боғ топилди."
+
+#~ msgid "Could not create socket for accessing %1."
+#~ msgstr "%1'га мурожаат қилиш учун сокетни яратиб бўлмади."
+
+#~ msgid "Could not connect to host %1."
+#~ msgstr "%1 билан алоқа ўрнатиб бўлмади."
+
+#~ msgid "Connection to host %1 is broken."
+#~ msgstr "%1 билан алоқа узилди."
+
+#~ msgid "The protocol %1 is not a filter protocol."
+#~ msgstr "Протокол %1 филтер протоколи эмас."
+
+#~ msgid ""
+#~ "Could not mount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ускунани улаб бўлмади.\n"
+#~ "Хато ҳақида хабар:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not unmount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ускунани ажратиб бўлмади.\n"
+#~ "Хато ҳақида хабар:\n"
+#~ "%1"
+
+#~ msgid "Could not read file %1."
+#~ msgstr "%1 файлни ўқиб бўлмади."
+
+#~ msgid "Could not write to file %1."
+#~ msgstr "%1 файлга ёзиб бўлмади."
+
+#~ msgid "Could not listen %1."
+#~ msgstr "%1'га қулоқ солиб бўлмади."
+
+#~ msgid "Could not accept %1."
+#~ msgstr "%1'ни қабул қилиб бўлмади."
+
+#~ msgid "Could not access %1."
+#~ msgstr "%1'га мурожаат қилиб бўлмади."
+
+#~ msgid "Could not terminate listing %1."
+#~ msgstr "%1'га қулоқ солишни тўхтатиб бўлмади."
+
+#~ msgid "Could not make folder %1."
+#~ msgstr "%1 жилдини яратиб бўлмади."
+
+#~ msgid "Could not remove folder %1."
+#~ msgstr "%1 жилдини ўчириб бўлмади."
+
+#~ msgid "Could not resume file %1."
+#~ msgstr "%1 файлини олишни давом этиб бўлмади."
+
+#~ msgid "Could not rename file %1."
+#~ msgstr "%1 файлининг номини ўзгартириб бўлмади."
+
+#~ msgid "Could not change permissions for %1."
+#~ msgstr "%1 учун ҳуқуқларни ўзгартириб бўлмади."
+
+#, fuzzy
+#~| msgid "Could not change permissions for %1."
+#~ msgid "Could not change ownership for %1."
+#~ msgstr "%1 учун ҳуқуқларни ўзгартириб бўлмади."
+
+#~ msgid "Could not delete file %1."
+#~ msgstr "%1 файлни ўчириб бўлмади."
+
+#~ msgid "The process for the %1 protocol died unexpectedly."
+#~ msgstr "Протокол %1 учун жараён кутилмаганда тугади."
+
+#~ msgid ""
+#~ "Error. Out of memory.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Хато. Хотирада жой қолмади.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown proxy host\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Проксининг хости номаълум\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "User canceled action\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Фойдаланувчи амални бекор қилди\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Internal error in server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Сервернинг ички хатоси\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Timeout on server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Серверда таймаут\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown error\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Номаълум хато\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown interrupt\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Номаълум тўхталиш\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not delete original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "%1 асл файлни ўчириб бўлмади.\n"
+#~ "Илтимос ҳуқуқларни текширинг."
+
+#~ msgid ""
+#~ "Could not delete partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Оралиқ файлни (%1) ўчириб бўлмади.\n"
+#~ "Илтимос ҳуқуқларни текширинг."
+
+#~ msgid ""
+#~ "Could not rename original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "%1 асл файлнинг номини ўзгартириб бўлмади.\n"
+#~ "Илтимос ҳуқуқларни текширинг."
+
+#~ msgid ""
+#~ "Could not rename partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "%1 оралиқ файлнинг номини ўзгартириб бўлмади.\n"
+#~ "Илтимос ҳуқуқларни текширинг."
+
+#~ msgid ""
+#~ "Could not create symlink %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Рамзий боғни (%1) яратиб бўлмади.\n"
+#~ "Илтимос ҳуқуқларни текширинг."
+
+#, fuzzy
+#~| msgid ""
+#~| "Could not create symlink %1.\n"
+#~| "Please check permissions."
+#~ msgid ""
+#~ "Cannot create symlinks at %1.\n"
+#~ "The destination filesystem doesn't support symlinks."
+#~ msgstr ""
+#~ "Рамзий боғни (%1) яратиб бўлмади.\n"
+#~ "Илтимос ҳуқуқларни текширинг."
+
+#~ msgid ""
+#~ "The source and destination are the same file.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Манба ва манзил файл номлари бир ҳил.\n"
+#~ "%1"
+
+#~ msgid "%1 is required by the server, but is not available."
+#~ msgstr "Сервер %1'ни талаб қилади, аммо у мавжуд эмас."
+
+#, fuzzy
+#~| msgid "The file or folder %1 does not exist."
+#~ msgid "A file or folder cannot be dropped onto itself"
+#~ msgstr "Файл ёки жилд %1 мавжуд эмас."
+
+#, fuzzy
+#~| msgid "The file or folder %1 does not exist."
+#~ msgid "A folder cannot be moved into itself"
+#~ msgstr "Файл ёки жилд %1 мавжуд эмас."
+
+#, fuzzy
+#~| msgid "Unable to create io-slave: %1"
+#~ msgid "Unable to create KIO worker. %1"
+#~ msgstr "КЧ-слейвни (%1) яратиб бўлмади"
+
+#, fuzzy
+#~| msgid ""
+#~| "Unknown error code %1\n"
+#~| "%2\n"
+#~| "Please send a full bug report at http://bugs.kde.org."
+#~ msgid ""
+#~ "Unknown error code %1\n"
+#~ "%2\n"
+#~ "Please send a full bug report at https://bugs.kde.org."
+#~ msgstr ""
+#~ "Хато коди %1 номаълум\n"
+#~ "%2\n"
+#~ "Илтимос хато ҳақида тўлиқ маълумотни http://bugs.kde.org'га жўнатинг."
+
+#~ msgctxt "@info url"
+#~ msgid "(unknown)"
+#~ msgstr "(номаълум)"
+
+#~ msgid "<b>Technical reason</b>: "
+#~ msgstr "<b>Техник сабаб</b>: "
+
+#, fuzzy
+#~| msgid "</p><p><b>Details of the request</b>:"
+#~ msgid "<b>Details of the request</b>:"
+#~ msgstr "</p><p><b>Талаб тафсилотлари</b>:"
+
+#, fuzzy
+#~| msgid "</p><ul><li>URL: %1</li>"
+#~ msgid "<li>URL: %1</li>"
+#~ msgstr "</p><ul><li>URL: %1</li>"
+
+#~ msgid "<li>Protocol: %1</li>"
+#~ msgstr "<li>Протокол: %1</li>"
+
+#~ msgid "<li>Date and time: %1</li>"
+#~ msgstr "<li>Сана ва вақт: %1</li>"
+
+#~ msgid "<li>Additional information: %1</li>"
+#~ msgstr "<li>Қўшимча маълумот: %1</li>"
+
+#~ msgid "<b>Possible causes</b>:"
+#~ msgstr "<b>Эхтимол сабаблар</b>:"
+
+#~ msgid "<b>Possible solutions</b>:"
+#~ msgstr "<b>Эхтимол ечимлар</b>:"
+
+#~ msgctxt "@info protocol"
+#~ msgid "(unknown)"
+#~ msgstr "(номаълум)"
+
+#~ msgid ""
+#~ "Contact your appropriate computer support system, whether the system "
+#~ "administrator, or technical support group for further assistance."
+#~ msgstr ""
+#~ "Ёрдам учун тизим бошқарувчисига ёки муҳандис ҳодимга мурожаат қилинг."
+
+#~ msgid "Contact the administrator of the server for further assistance."
+#~ msgstr "Ёрдам учун сервер бошқарувчисига мурожаат қилинг."
+
+#~ msgid "Check your access permissions on this resource."
+#~ msgstr "Бу манба учун ҳуқуқларингизни текширинг."
+
+#~ msgid ""
+#~ "Your access permissions may be inadequate to perform the requested "
+#~ "operation on this resource."
+#~ msgstr ""
+#~ "Бу манба устида амал бажариш учун сизни ҳуқуқларингиз етарли бўлмаслиги "
+#~ "мумкин."
+
+#~ msgid ""
+#~ "The file may be in use (and thus locked) by another user or application."
+#~ msgstr "Файлни бошқа фойдаланувчи ёки дастур ишлатаётган бўлиши мумкин."
+
+#~ msgid ""
+#~ "Check to make sure that no other application or user is using the file or "
+#~ "has locked the file."
+#~ msgstr ""
+#~ "Ишонч ҳосил қилиш учун файлни бошқа дастур ёки фойдаланувчи "
+#~ "ишлатмаётганини ёки уни қулфламаганини текширинг."
+
+#~ msgid "Although unlikely, a hardware error may have occurred."
+#~ msgstr "Эҳтимоли жуда кам бўлса ҳам, асбобда хато рўй берган бўлиши мумкин."
+
+#~ msgid "You may have encountered a bug in the program."
+#~ msgstr "Балки сиз дастурдаги хатога дуч келдингиз."
+
+#~ msgid ""
+#~ "This is most likely to be caused by a bug in the program. Please consider "
+#~ "submitting a full bug report as detailed below."
+#~ msgstr ""
+#~ "Бунга дастурдаги хато сабабчи бўлишини эхтимоли катта. Илтимос, қуйида "
+#~ "кўрсатилгандек хато ҳақида хабар қилинг."
+
+#~ msgid "There may have been a problem with your network connection."
+#~ msgstr "Муаммо тармоқга уланишингизда бўлиши мумкин."
+
+#~ msgid ""
+#~ "There may have been a problem at some point along the network path "
+#~ "between the server and this computer."
+#~ msgstr ""
+#~ "Муаммо сервер ва шу компьютерни орасидаги тармоқнинг бир нуқтасида бўлиши "
+#~ "мумкин."
+
+#~ msgid "Try again, either now or at a later time."
+#~ msgstr "Ҳозир ёки кейинроқ яна уриниб кўринг."
+
+#~ msgid "A protocol error or incompatibility may have occurred."
+#~ msgstr "Протокол хатоси ёки тўғри келмаслиги рўй берган бўлиши мумкин."
+
+#~ msgid "Ensure that the resource exists, and try again."
+#~ msgstr "Манба мавжудлигида ишонч ҳосил қилинг ва яна уриниб кўринг."
+
+#~ msgid "The specified resource may not exist."
+#~ msgstr "Кўрсатилган манба балки мавжуд эмас."
+
+#~ msgid ""
+#~ "Double-check that you have entered the correct location and try again."
+#~ msgstr ""
+#~ "Тўғри манзилни киритганингизни яна бир бор текширинг ва яна уриниб кўринг."
+
+#~ msgid "Check your network connection status."
+#~ msgstr "Тармоқга уланганингизни текшириб кўринг."
+
+#~ msgid "Cannot Open Resource For Reading"
+#~ msgstr "Ўқиш учун манбани очиб бўлмади"
+
+#~ msgid "Cannot Open Resource For Writing"
+#~ msgstr "Ёзиш учун манбани очиб бўлмади"
+
+#, fuzzy
+#~| msgid "Cannot Initiate the %1 Protocol"
+#~ msgid "Cannot Launch Process required by the %1 Protocol"
+#~ msgstr "%1 протоколини ишга тайёрлаб бўлмади"
+
+#~ msgid "Unable to Launch Process"
+#~ msgstr "Жараённи ишга тушириб бўлмади"
+
+#~ msgid "Internal Error"
+#~ msgstr "Ички хато"
+
+#~ msgid "Improperly Formatted URL"
+#~ msgstr "URL хато шаклда"
+
+#~ msgid "Unsupported Protocol %1"
+#~ msgstr "%1 протоколи қўлланмаган"
+
+#~ msgid ""
+#~ "The protocol <strong>%1</strong> is not supported by the KDE programs "
+#~ "currently installed on this computer."
+#~ msgstr ""
+#~ "<strong>%1</strong> протоколи бу компьютерга ўрнатилган KDE дастурлари "
+#~ "билан ишламайди."
+
+#~ msgid "The requested protocol may not be supported."
+#~ msgstr "Талаб қилинган протокол бу дастур билан ишламаслиги мумкин."
+
+#~ msgid "URL Does Not Refer to a Resource."
+#~ msgstr "URL манбага тегишли эмас."
+
+#~ msgid "Protocol is a Filter Protocol"
+#~ msgstr "Бу протокол филтер протоколи"
+
+#~ msgid "Unsupported Action: %1"
+#~ msgstr "%1 амали қўлланмаган"
+
+#~ msgid "File Expected"
+#~ msgstr "Файл кутилмоқда"
+
+#~ msgid ""
+#~ "The request expected a file, however the folder <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr ""
+#~ "Талаб натижасида файл кутилган эди, аммо <strong>%1</strong> жилди "
+#~ "топилди."
+
+#~ msgid "This may be an error on the server side."
+#~ msgstr "Хато сервер томонида бўлиши мумкин."
+
+#~ msgid "Folder Expected"
+#~ msgstr "Жилд кутилмоқда"
+
+#~ msgid ""
+#~ "The request expected a folder, however the file <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr ""
+#~ "Талаб натижасида жилд кутилган эди, аммо <strong>%1</strong> файли "
+#~ "топилди."
+
+#~ msgid "File or Folder Does Not Exist"
+#~ msgstr "Файл ёки жилд мавжуд эмас"
+
+#~ msgid "The specified file or folder <strong>%1</strong> does not exist."
+#~ msgstr "Кўрсатилган файл ёки жилд <strong>%1</strong> мавжуд эмас."
+
+#~ msgid ""
+#~ "The requested file could not be created because a file with the same name "
+#~ "already exists."
+#~ msgstr ""
+#~ "Талаб қилинган файл яратилмади. Чунки шу номли файл аллақачон мавжуд."
+
+#~ msgid ""
+#~ "Try moving the current file out of the way first, and then try again."
+#~ msgstr "Файлни бошқа жойга кўчириб яна уриниб кўринг."
+
+#~ msgid "Delete the current file and try again."
+#~ msgstr "Файлни ўчириб яна уриниб кўринг."
+
+#~ msgid "Choose an alternate filename for the new file."
+#~ msgstr "Янги файлга бошқа ном бериб кўринг."
+
+#~ msgid ""
+#~ "The requested folder could not be created because a folder with the same "
+#~ "name already exists."
+#~ msgstr ""
+#~ "Талаб қилинган жилд яратилмади. Чунки шу номли жилд аллақачон мавжуд."
+
+#~ msgid ""
+#~ "Try moving the current folder out of the way first, and then try again."
+#~ msgstr "Жилдни бошқа жойга кўчириб яна уриниб кўринг."
+
+#~ msgid "Delete the current folder and try again."
+#~ msgstr "Жилдни ўчириб яна уриниб кўринг."
+
+#~ msgid "Choose an alternate name for the new folder."
+#~ msgstr "Янги жилдга бошқа ном бериб кўринг."
+
+#~ msgid "Unknown Host"
+#~ msgstr "Компьютернинг номи номаълум"
+
+#~ msgid ""
+#~ "The name that you typed, %1, may not exist: it may be incorrectly typed."
+#~ msgstr ""
+#~ "Сиз киритган ном, %1, балки мавжуд эмас. У нотўғри ёзилган бўлиши мумкин."
+
+#~ msgid "Access Denied"
+#~ msgstr "Рухсат йўқ"
+
+#~ msgid "Access was denied to the specified resource, <strong>%1</strong>."
+#~ msgstr "Кўрсатилган манбага, <strong>%1</strong>, рухсат йўқ."
+
+#~ msgid ""
+#~ "You may have supplied incorrect authentication details or none at all."
+#~ msgstr ""
+#~ "Тасдиқлаш учун сиз нотўғри ёки ҳеч қандай маълумотни киритмаган "
+#~ "бўлишингиз мумкин."
+
+#~ msgid "Write Access Denied"
+#~ msgstr "Ёзишга рухсат йўқ"
+
+#~ msgid ""
+#~ "This means that an attempt to write to the file <strong>%1</strong> was "
+#~ "rejected."
+#~ msgstr "Бу <strong>%1</strong> файлига ёзиш рад этилганлигини билдиради."
+
+#~ msgid "Unable to Enter Folder"
+#~ msgstr "Жилдга ўтиб бўлмади"
+
+#~ msgid "Protocol %1 is not a Filesystem"
+#~ msgstr "Протокол %1 файл тизими эмас"
+
+#~ msgid "Cyclic Link Detected"
+#~ msgstr "Чексиз боғ топилди"
+
+#~ msgid "Request Aborted By User"
+#~ msgstr "Талаб фойдаланувчи томонидан тўхтатилди"
+
+#~ msgid "The request was not completed because it was aborted."
+#~ msgstr "Талаб охирига етказилмади. Чунки у тўхтатилди."
+
+#~ msgid "Cyclic Link Detected During Copy"
+#~ msgstr "Нусха олаётганда чексиз боғ топилди"
+
+#~ msgid "Could Not Create Network Connection"
+#~ msgstr "Тармоқ орқали уланишни яратиб бўлмади"
+
+#~ msgid "Could Not Create Socket"
+#~ msgstr "Сокетни яратиб бўлмади"
+
+#~ msgid ""
+#~ "This is a fairly technical error in which a required device for network "
+#~ "communications (a socket) could not be created."
+#~ msgstr ""
+#~ "Бу техник хато. Тармоқ орқали алоқа учун воситани (сокет) яратиб бўлмади."
+
+#~ msgid ""
+#~ "The network connection may be incorrectly configured, or the network "
+#~ "interface may not be enabled."
+#~ msgstr ""
+#~ "Тармоқ нотўғри мосланган ёки тармоқ интерфейси ёқилмаган бўлиши мумкин."
+
+#~ msgid "Connection to Server Refused"
+#~ msgstr "Боғланиш сервер томонидан рад этилди"
+
+#~ msgid "Connection to Server Closed Unexpectedly"
+#~ msgstr "Сервер билан алоқа кутилмаганда узилди"
+
+#~ msgid "URL Resource Invalid"
+#~ msgstr "URL манбаси хато"
+
+#~ msgid "Protocol %1 is not a Filter Protocol"
+#~ msgstr "Протокол %1 филтер протоколи эмас"
+
+#~ msgid "Could Not Mount Device"
+#~ msgstr "Ускунани улаб бўлмади"
+
+#~ msgid "Could Not Unmount Device"
+#~ msgstr "Ускунани ажратиб бўлмади"
+
+#~ msgid "Cannot Read From Resource"
+#~ msgstr "Манбадан ўқиб бўлмади"
+
+#~ msgid "You may not have permissions to read from the resource."
+#~ msgstr "Манбадан ўқишга ҳуқуқингиз йўқ бўлиши мумкин."
+
+#~ msgid "Cannot Write to Resource"
+#~ msgstr "Манбага ёзиб бўлмади"
+
+#~ msgid "You may not have permissions to write to the resource."
+#~ msgstr "Манбага ёзишга ҳуқуқингиз йўқ бўлиши мумкин."
+
+#~ msgid "Could Not Listen"
+#~ msgstr "Қулоқ солиб бўлмади"
+
+#~ msgid "Could Not Accept Network Connection"
+#~ msgstr "Тармоқ орқали алоқани қабул қилиб бўлмади"
+
+#~ msgid "Could Not Login: %1"
+#~ msgstr "%1'га кириб бўлмади"
+
+#~ msgid ""
+#~ "An attempt to login to perform the requested operation was unsuccessful."
+#~ msgstr ""
+#~ "Талаб қилинган операцияни бажариш учун тизимга кириш муваффақиятсиз "
+#~ "тугади."
+
+#~ msgid "Could Not Determine Resource Status"
+#~ msgstr "Манбанинг ҳолатини аниқлаб бўлмади"
+
+#~ msgid "Could Not Cancel Listing"
+#~ msgstr "Қулоқ солишни бекор қилиб бўлмади"
+
+#~ msgid "FIXME: Document this"
+#~ msgstr "Бу учун ҳеч қандай қўлланма йўқ"
+
+#~ msgid "Could Not Create Folder"
+#~ msgstr "Жилдни яратиб бўлмади"
+
+#~ msgid "An attempt to create the requested folder failed."
+#~ msgstr "Талаб қилинган жилдни яратиш муваффақиятсиз тугади."
+
+#~ msgid "Could Not Remove Folder"
+#~ msgstr "Жилдни ўчириб бўлмади"
+
+#~ msgid ""
+#~ "An attempt to remove the specified folder, <strong>%1</strong>, failed."
+#~ msgstr ""
+#~ "Кўрсатилган жилдни, <strong>%1</strong>, ўчириш муваффақиятсиз тугади."
+
+#~ msgid "The specified folder may not exist."
+#~ msgstr "Кўрсатилган жилд балки мавжуд эмас."
+
+#~ msgid "The specified folder may not be empty."
+#~ msgstr "Кўрсатилган жилд балки бўш эмас."
+
+#~ msgid "Ensure that the folder exists and is empty, and try again."
+#~ msgstr ""
+#~ "Жилд мавжудлигига ва бўшлигига ишонч ҳосил қилинг ва яна уриниб кўринг."
+
+#~ msgid "Could Not Resume File Transfer"
+#~ msgstr "Файлни кўчиришни давом этиб бўлмади"
+
+#~ msgid "Could Not Rename Resource"
+#~ msgstr "Манбанинг номини ўзгартириб бўлмади"
+
+#~ msgid ""
+#~ "An attempt to rename the specified resource <strong>%1</strong> failed."
+#~ msgstr ""
+#~ "Кўрсатилган, <strong>%1</strong>, манбанинг номини ўзгартириш "
+#~ "муваффақиятсиз тугади."
+
+#~ msgid "Could Not Alter Permissions of Resource"
+#~ msgstr "Манбанинг ҳуқуқларини ўзгартириб бўлмади"
+
+#~ msgid ""
+#~ "An attempt to alter the permissions on the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "Кўрсатилган манбанинг, <strong>%1</strong>, ҳуқуқларини ўзгартириш "
+#~ "муваффақиятсиз тугади."
+
+#, fuzzy
+#~| msgid "Could Not Alter Permissions of Resource"
+#~ msgid "Could Not Change Ownership of Resource"
+#~ msgstr "Манбанинг ҳуқуқларини ўзгартириб бўлмади"
+
+#, fuzzy
+#~| msgid ""
+#~| "An attempt to alter the permissions on the specified resource <strong>"
+#~| "%1</strong> failed."
+#~ msgid ""
+#~ "An attempt to change the ownership of the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "Кўрсатилган манбанинг, <strong>%1</strong>, ҳуқуқларини ўзгартириш "
+#~ "муваффақиятсиз тугади."
+
+#~ msgid "Could Not Delete Resource"
+#~ msgstr "Манбани ўчириб бўлмади"
+
+#~ msgid ""
+#~ "An attempt to delete the specified resource <strong>%1</strong> failed."
+#~ msgstr ""
+#~ "Кўрсатилган, <strong>%1</strong>, манбани ўчириш муваффақиятсиз тугади."
+
+#~ msgid "Unexpected Program Termination"
+#~ msgstr "Дастур кутилмаганда ишини тўхтатди"
+
+#~ msgid "Out of Memory"
+#~ msgstr "Хотира етишмаяпти"
+
+#~ msgid "Unknown Proxy Host"
+#~ msgstr "Прокси хостнинг номи номаълум"
+
+#~ msgid "Double-check your proxy settings and try again."
+#~ msgstr "Прокси мосламаларингизни текширинг ва яна бир бор уриниб кўринг."
+
+#~ msgid "Authentication Failed: Method %1 Not Supported"
+#~ msgstr "Тасдиқлаш муваффақиятсиз тугади. %1 усули қўлланмаган."
+
+#~ msgid "Request Aborted"
+#~ msgstr "Талаб тўхтатилди"
+
+#~ msgid "Internal Error in Server"
+#~ msgstr "Сервернинг ички хатоси"
+
+#~ msgid ""
+#~ "This is most likely to be caused by a bug in the server program. Please "
+#~ "consider submitting a full bug report as detailed below."
+#~ msgstr ""
+#~ "Бунга сервер дастуридаги хато сабабчи бўлишини эхтимоли катта. Илтимос, "
+#~ "қуйида кўрсатилгандек хато ҳақида хабар қилинг."
+
+#~ msgid ""
+#~ "Contact the administrator of the server to advise them of the problem."
+#~ msgstr "Муаммо ҳақида сервернинг бошқарувчисига хабар қилинг."
+
+#~ msgid ""
+#~ "If you know who the authors of the server software are, submit the bug "
+#~ "report directly to them."
+#~ msgstr ""
+#~ "Агар сервер дастурининг муаллифлари кимлигини билсангиз, тўғридан-тўғри "
+#~ "уларга хато ҳақида хабар қилинг."
+
+#~ msgid "Timeout Error"
+#~ msgstr "Таймаут хатоси"
+
+#~ msgid "The server was too busy responding to other requests to respond."
+#~ msgstr "Сервер бошқа талабларга жавоб бериш билан жуда банд эди."
+
+#~ msgid "Unknown Error"
+#~ msgstr "Номаълум хато"
+
+#~ msgid "Unknown Interruption"
+#~ msgstr "Номаълум тўхталиш"
+
+#~ msgid "Could Not Delete Original File"
+#~ msgstr "Асл файлни ўчириб бўлмади"
+
+#~ msgid "Could Not Delete Temporary File"
+#~ msgstr "Вақтинчалик файлни ўчириб бўлмади"
+
+#~ msgid "Could Not Rename Original File"
+#~ msgstr "Асл файлнинг номини ўзгартириб бўлмади"
+
+#~ msgid "Could Not Rename Temporary File"
+#~ msgstr "Вақтинчалик файлнинг номини ўзгартириб бўлмади"
+
+#~ msgid "Could Not Create Link"
+#~ msgstr "Боғни яратиб бўлмади"
+
+#~ msgid "Could Not Create Symbolic Link"
+#~ msgstr "Рамзий боғ яратиб бўлмади"
+
+#~ msgid "Disk Full"
+#~ msgstr "Дискда бўш жой йўқ"
+
+#~ msgid "Source and Destination Files Identical"
+#~ msgstr "Манба ва манзил файллар бир хил"
+
+#~ msgid ""
+#~ "The operation could not be completed because the source and destination "
+#~ "files are the same file."
+#~ msgstr ""
+#~ "Амални бажариб бўлмади, чунки манба ва манзил файлларининг номлари бир "
+#~ "хил."
+
+#~ msgid "Choose a different filename for the destination file."
+#~ msgstr "Манзил файлининг номини ўзгартиринг."
+
+#, fuzzy
+#~| msgid "File or Folder Does Not Exist"
+#~ msgid "File or Folder dropped onto itself"
+#~ msgstr "Файл ёки жилд мавжуд эмас"
+
+#, fuzzy
+#~| msgid ""
+#~| "The operation could not be completed because the source and destination "
+#~| "files are the same file."
+#~ msgid ""
+#~ "The operation could not be completed because the source and destination "
+#~ "file or folder are the same."
+#~ msgstr ""
+#~ "Амални бажариб бўлмади, чунки манба ва манзил файлларининг номлари бир "
+#~ "хил."
+
+#, fuzzy
+#~| msgid "copy the specified file or folder"
+#~ msgid "Drop the item into a different file or folder."
+#~ msgstr "кўрсатилган файл ёки жилддан нусха олиш"
+
+#, fuzzy
+#~| msgid "File or Folder Does Not Exist"
+#~ msgid "Folder moved into itself"
+#~ msgstr "Файл ёки жилд мавжуд эмас"
+
+#, fuzzy
+#~| msgid ""
+#~| "The operation could not be completed because the source and destination "
+#~| "files are the same file."
+#~ msgid ""
+#~ "The operation could not be completed because the source can not be moved "
+#~ "into itself."
+#~ msgstr ""
+#~ "Амални бажариб бўлмади, чунки манба ва манзил файлларининг номлари бир "
+#~ "хил."
+
+#, fuzzy
+#~| msgid "copy the specified file or folder"
+#~ msgid "Move the item into a different folder."
+#~ msgstr "кўрсатилган файл ёки жилддан нусха олиш"
+
+#, fuzzy
+#~| msgid ""
+#~| "The operation could not be completed because the source and destination "
+#~| "files are the same file."
+#~ msgid ""
+#~ "The operation could not be completed because the service for requesting "
+#~ "passwords (kpasswdserver) couldn't be contacted"
+#~ msgstr ""
+#~ "Амални бажариб бўлмади, чунки манба ва манзил файлларининг номлари бир "
+#~ "хил."
+
+#~ msgid "Cannot Initiate the %1 Protocol"
+#~ msgstr "%1 протоколини ишга тайёрлаб бўлмади"
+
+#, fuzzy
+#~| msgid "Unable to create io-slave: %1"
+#~ msgid "Unable to Create KIO Worker"
+#~ msgstr "КЧ-слейвни (%1) яратиб бўлмади"
+
+#~ msgid "Undocumented Error"
+#~ msgstr "Бу хато учун кўлланма йўқ."
+
+#, fuzzy
+#~| msgid "Symbolic Link"
+#~ msgid "(Symbolic Link to %1)"
+#~ msgstr "Рамзий боғ"
+
+#, fuzzy
+#~| msgid "Link to %1 (%2)"
+#~ msgid "(%1, Link to %2)"
+#~ msgstr "%1 билан боғланган (%2)"
+
+#, fuzzy
+#~| msgid "Points to:"
+#~ msgid " (Points to %1)"
+#~ msgstr "Билан боғланган:"
+
+#~ msgid ""
+#~ "Malformed URL\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Нотўгри URL\n"
+#~ "%1"
+
+#~ msgid "Opening connections is not supported with the protocol %1."
+#~ msgstr "%1 протоколи билан алоқа ўрнатиб бўлмайди."
+
+#~ msgid "Closing connections is not supported with the protocol %1."
+#~ msgstr "%1 протоколи билан алоқани узиб бўлмайди."
+
+#~ msgid "Accessing files is not supported with the protocol %1."
+#~ msgstr "%1 протоколи билан файлларга мурожаат қилиб бўлмайди."
+
+#~ msgid "Writing to %1 is not supported."
+#~ msgstr "'%1'га ёзиш қўлланмаган."
+
+#~ msgid "There are no special actions available for protocol %1."
+#~ msgstr "%1 протоколи учун махсус амаллар мавжуд эмас."
+
+#~ msgid "Listing folders is not supported for protocol %1."
+#~ msgstr "%1 протоколи билан жилдлар рўйхатини кўриб бўлмайди."
+
+#~ msgid "Retrieving data from %1 is not supported."
+#~ msgstr "'%1'дан маълумотни олиш қўлланмаган."
+
+#~ msgid "Retrieving mime type information from %1 is not supported."
+#~ msgstr "'%1'дан MIME тури ҳақида маълумотни олиш қўлланмаган."
+
+#~ msgid "Renaming or moving files within %1 is not supported."
+#~ msgstr "%1 билан файлнинг номини ўзгартириш ёки уни кўчириш қўлланмаган."
+
+#~ msgid "Creating symlinks is not supported with protocol %1."
+#~ msgstr "%1 протоколи билан рамзий боғ яратиш қўлланмаган."
+
+#~ msgid "Copying files within %1 is not supported."
+#~ msgstr "%1 билан файлдан нусха олиш қўлланмаган."
+
+#~ msgid "Deleting files from %1 is not supported."
+#~ msgstr "%1 билан файлни ўчириш қўлланмаган."
+
+#~ msgid "Creating folders is not supported with protocol %1."
+#~ msgstr "%1 протоколи билан жилдни яратиш қўлланмаган."
+
+#~ msgid "Changing the attributes of files is not supported with protocol %1."
+#~ msgstr "%1 протоколи билан файлларнинг атрибутини ўзгартириш қўлланмаган."
+
+#, fuzzy
+#~| msgid "Changing the attributes of files is not supported with protocol %1."
+#~ msgid "Changing the ownership of files is not supported with protocol %1."
+#~ msgstr "%1 протоколи билан файлларнинг атрибутини ўзгартириш қўлланмаган."
+
+#, fuzzy
+#~ msgid "Opening files is not supported with protocol %1."
+#~ msgstr "%1 протоколи билан жилдни яратиш қўлланмаган."
+
+#~ msgid "Protocol %1 does not support action %2."
+#~ msgstr "%1 протоколи %2 амалини қўлламайди."
+
+#~ msgid "Security Information"
+#~ msgstr "Хавфсизлик маълумоти"
+
+#~ msgid "C&ontinue Loading"
+#~ msgstr "&Юклашни давом этиш"
+
+#, fuzzy
+#~| msgid "Authentication Failed."
+#~ msgctxt "%1 is a host name"
+#~ msgid "%1: SSL negotiation failed"
+#~ msgstr "Тасдиқлаш муваффақиятсиз тугади."
+
+#~ msgid "Display SSL &Information"
+#~ msgstr "SSL &маълумотини кўрсатиш"
+
+#~ msgid "C&onnect"
+#~ msgstr "У&ланиш"
+
+#~ msgid "Server Authentication"
+#~ msgstr "Сервер тасдиқлаши"
+
+#~ msgid "&Details"
+#~ msgstr "&Тафсилотлар"
+
+#~ msgid "Co&ntinue"
+#~ msgstr "&Давом этиш"
+
+#~ msgid "&Forever"
+#~ msgstr "&Ҳамиша"
+
+#, fuzzy
+#~| msgid "&Current Sessions Only"
+#~ msgid "&Current Session only"
+#~ msgstr "&Фақат жорий сеанслар"
+
+#~ msgid "Unknown protocol '%1'."
+#~ msgstr "Номаълум протокол '%1'."
+
+#, fuzzy
+#~| msgid "Can not find io-slave for protocol '%1'."
+#~ msgid "Can not find a KIO worker for protocol '%1'."
+#~ msgstr "%1 протоколи учун КЧ-слейв топилмади."
+
+#, fuzzy
+#~| msgid "Can not find io-slave for protocol '%1'."
+#~ msgid ""
+#~ "Can not create a socket for launching a KIO worker for protocol '%1'."
+#~ msgstr "%1 протоколи учун КЧ-слейв топилмади."
+
+#, fuzzy
+#~| msgid "Can not find io-slave for protocol '%1'."
+#~ msgid "Can not find 'kioworker' executable at '%1'"
+#~ msgstr "%1 протоколи учун КЧ-слейв топилмади."
+
+#~ msgid "You did not select a file to delete."
+#~ msgstr "Ўчириш учун файлни танламадингиз."
+
+#~ msgid "Nothing to Delete"
+#~ msgstr "Ўчириш учун ҳеч нарса йўқ"
+
+#~ msgid "You did not select a file to trash."
+#~ msgstr "Чиқиндилар қутисига жўнатиш учун файл танланмаган."
+
+#~ msgid "Nothing to Trash"
+#~ msgstr "Чиқиндилар қутисига жўнатиш учун ҳеч нарса йўқ"
+
+#~ msgid "The specified folder does not exist or was not readable."
+#~ msgstr "Кўрсатилган жилд мавжуд эмас ёки уни ўқиб бўлмайди."
+
+#~ msgid "Menu"
+#~ msgstr "Меню"
+
+#~ msgid "Parent Folder"
+#~ msgstr "Юқори жилд"
+
+#~ msgid "Home Folder"
+#~ msgstr "Уй жилди"
+
+#~ msgid "Reload"
+#~ msgstr "Қайтадан юклаш"
+
+#~ msgid "New Folder..."
+#~ msgstr "Янги жилд"
+
+#~ msgid "Move to Trash"
+#~ msgstr "Чиқиндилар қутисига кўчириш"
+
+#~ msgid "Delete"
+#~ msgstr "Ўчириш"
+
+#~ msgid "Sorting"
+#~ msgstr "Саралаш"
+
+#, fuzzy
+#~| msgid "Site Name"
+#~ msgid "Sort by Name"
+#~ msgstr "Сайтнинг номи"
+
+#, fuzzy
+#~| msgid "Short View"
+#~ msgid "Sort by Size"
+#~ msgstr "Қисқа кўриниш"
+
+#, fuzzy
+#~| msgid "By Date"
+#~ msgid "Sort by Date"
+#~ msgstr "Сана бўйича"
+
+#, fuzzy
+#~| msgid "By Type"
+#~ msgid "Sort by Type"
+#~ msgstr "Тури бўйича"
+
+#, fuzzy
+#~| msgid "Descending"
+#~ msgid "Ascending"
+#~ msgstr "Камайиш бўйича"
+
+#~ msgid "Descending"
+#~ msgstr "Камайиш бўйича"
+
+#~ msgid "Folders First"
+#~ msgstr "Олдин жилдлар"
+
+#, fuzzy
+#~| msgid "Show Hidden Files"
+#~ msgid "Hidden Files Last"
+#~ msgstr "Яширилган файлларни кўрсатиш"
+
+#, fuzzy
+#~| msgid "Short View"
+#~ msgid "Icons View"
+#~ msgstr "Қисқа кўриниш"
+
+#, fuzzy
+#~| msgid "Short View"
+#~ msgid "Compact View"
+#~ msgstr "Қисқа кўриниш"
+
+#, fuzzy
+#~| msgid "Detailed View"
+#~ msgid "Details View"
+#~ msgstr "Батафсил кўриниш"
+
+#, fuzzy
+#~| msgid "Local Filename"
+#~ msgid "Above File Name"
+#~ msgstr "Локал файлнинг номи"
+
+#~ msgid "Short View"
+#~ msgstr "Қисқа кўриниш"
+
+#~ msgid "Detailed View"
+#~ msgstr "Батафсил кўриниш"
+
+#, fuzzy
+#~| msgid "Detailed View"
+#~ msgid "Tree View"
+#~ msgstr "Батафсил кўриниш"
+
+#, fuzzy
+#~| msgid "Detailed View"
+#~ msgid "Detailed Tree View"
+#~ msgstr "Батафсил кўриниш"
+
+#~ msgid "Show Hidden Files"
+#~ msgstr "Яширилган файлларни кўрсатиш"
+
+#, fuzzy
+#~| msgid "Show Preview"
+#~ msgid "Show Preview Panel"
+#~ msgstr "Кўриб чиқишни кўрсатиш"
+
+#~ msgid "Show Preview"
+#~ msgstr "Кўриб чиқишни кўрсатиш"
+
+#~ msgid "Properties"
+#~ msgstr "Хоссалари"
+
+#, fuzzy
+#~ msgid "&View Mode"
+#~ msgstr "&Кўриб чиқиш"
+
+#, fuzzy
+#~| msgid "Folders First"
+#~ msgctxt "Sort descending"
+#~ msgid "Newest First"
+#~ msgstr "Олдин жилдлар"
+
+#, fuzzy
+#~| msgid "Folders First"
+#~ msgctxt "Sort ascending"
+#~ msgid "Oldest First"
+#~ msgstr "Олдин жилдлар"
+
+#, fuzzy
+#~| msgid "Folders First"
+#~ msgctxt "Sort descending"
+#~ msgid "Largest First"
+#~ msgstr "Олдин жилдлар"
+
+#, fuzzy
+#~| msgid "Folders First"
+#~ msgctxt "Sort ascending"
+#~ msgid "Smallest First"
+#~ msgstr "Олдин жилдлар"
+
+#, fuzzy
+#~| msgid "Loading"
+#~ msgid "Encoding:"
+#~ msgstr "Юкланмоқда"
+
+#~ msgid "Open"
+#~ msgstr "Очиш"
+
+#, fuzzy
+#~| msgid "Copy"
+#~ msgctxt "@title:menu"
+#~ msgid "Copy To"
+#~ msgstr "Нусха олиш"
+
+#, fuzzy
+#~| msgid "Move to Trash"
+#~ msgctxt "@title:menu"
+#~ msgid "Move To"
+#~ msgstr "Чиқиндилар қутисига кўчириш"
+
+#, fuzzy
+#~| msgid "Home Folder"
+#~ msgctxt "@title:menu"
+#~ msgid "Home Folder"
+#~ msgstr "Уй жилди"
+
+#, fuzzy
+#~| msgid "1 Folder"
+#~| msgid_plural "%1 Folders"
+#~ msgctxt "@title:menu"
+#~ msgid "Root Folder"
+#~ msgstr "%1 жилд"
+
+#, fuzzy
+#~| msgid "&Browse..."
+#~ msgctxt "@title:menu in Copy To or Move To submenu"
+#~ msgid "Browse..."
+#~ msgstr "&Танлаш"
+
+#, fuzzy
+#~| msgid "Copy"
+#~ msgctxt "@title:menu"
+#~ msgid "Copy Here"
+#~ msgstr "Нусха олиш"
+
+#, fuzzy
+#~| msgid "*|All Files"
+#~ msgctxt "Default mime type filter that shows all file types"
+#~ msgid "*|All Files"
+#~ msgstr "*|Ҳамма файллар"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "%1 is the mimetype name, %2 is the extensions"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "All Supported Files"
+#~ msgstr "Ҳамма қўлланган файллар"
+
+#, fuzzy
+#~| msgid "*|All Files"
+#~ msgid "All Files"
+#~ msgstr "*|Ҳамма файллар"
+
+#, fuzzy
+#~| msgid "Edit Entry..."
+#~ msgid "Add Places Entry"
+#~ msgstr "Таҳрирлаш"
+
+#, fuzzy
+#~| msgid "Edit Entry..."
+#~ msgid "Edit Places Entry"
+#~ msgstr "Таҳрирлаш"
+
+#, fuzzy
+#~| msgid "&Name:"
+#~ msgid "L&abel:"
+#~ msgstr "&Номи:"
+
+#, fuzzy
+#~| msgid "Enter a description"
+#~ msgid "Enter descriptive label here"
+#~ msgstr "Таърифни киритинг"
+
+#~ msgid "&Location:"
+#~ msgstr "&Манзил:"
+
+#~ msgid "Choose an &icon:"
+#~ msgstr "&Нишончани танлаш:"
+
+#~ msgid "&Only show when using this application (%1)"
+#~ msgstr "Фақат %1 &дастурини ишлатганда кўрсатиш"
+
+#, fuzzy
+#~| msgid "Places"
+#~ msgctxt "@item"
+#~ msgid "Places"
+#~ msgstr "Жойлар"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@item"
+#~ msgid "Remote"
+#~ msgstr "Олиб ташлаш"
+
+#, fuzzy
+#~| msgid "&Search:"
+#~ msgctxt "@item"
+#~ msgid "Search For"
+#~ msgstr "Қ&идириш:"
+
+#, fuzzy
+#~| msgid "Devices"
+#~ msgctxt "@item"
+#~ msgid "Devices"
+#~ msgstr "Ускуналар"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Home"
+#~ msgstr "Уй"
+
+#, fuzzy
+#~| msgid "FIXME: Document this"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Documents"
+#~ msgstr "Бу учун ҳеч қандай қўлланма йўқ"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Network"
+#~ msgstr "Тармоқ"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Trash"
+#~ msgstr "Чиқиндилар қутиси"
+
+#, fuzzy
+#~| msgid "Delete Files"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Files"
+#~ msgstr "Файлларни ўчириш"
+
+#, fuzzy
+#~| msgid "Location:"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Locations"
+#~ msgstr "Манзили:"
+
+#, fuzzy
+#~| msgid "Modified:"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Today"
+#~ msgstr "Ўзгарган:"
+
+#, fuzzy
+#~| msgid "Could not find the program '%1'"
+#~ msgctxt "Placeholder is error message"
+#~ msgid "Could not add to the Places panel: %1"
+#~ msgstr "'%1' дастурини топиб бўлмади."
+
+#, fuzzy
+#~| msgid "The file or folder %1 does not exist."
+#~ msgid "Only folders can be added to the Places panel."
+#~ msgstr "Файл ёки жилд %1 мавжуд эмас."
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "Releasing…"
+#~ msgstr "Элементни ў&чириш"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Release"
+#~ msgstr "Элементни ў&чириш"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "Safely Removing…"
+#~ msgstr "Элементни ў&чириш"
+
+#, fuzzy
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Safely Remove"
+#~ msgstr "Элементни ў&чириш"
+
+#, fuzzy
+#~| msgctxt "@title job"
+#~| msgid "Unmounting"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Unmounting…"
+#~ msgstr "Ажратилмоқда"
+
+#, fuzzy
+#~| msgid "Unmount"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Unmount"
+#~ msgstr "Ажратиш"
+
+#, fuzzy
+#~| msgid "Eject"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Eject"
+#~ msgstr "Чиқариш"
+
+#, fuzzy
+#~| msgid "The specified resource may not exist."
+#~ msgid "The device '%1' is not a disk and cannot be ejected."
+#~ msgstr "Кўрсатилган манба балки мавжуд эмас."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Empty Trash"
+#~ msgstr "Чиқиндилар қутисини бўшатиш"
+
+#, fuzzy
+#~| msgid "Mount"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Mount"
+#~ msgstr "Улаш"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open in New Tab"
+#~ msgstr "Дастур билан очиш"
+
+#, fuzzy
+#~| msgid "Add Entry..."
+#~ msgctxt "@action:inmenu"
+#~ msgid "Add Entry…"
+#~ msgstr "Қўшиш"
+
+#, fuzzy
+#~| msgid "Edit"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Edit…"
+#~ msgstr "Таҳрирлаш"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Remove"
+#~ msgstr "Олиб ташлаш"
+
+#, fuzzy
+#~| msgid "&Add Entry..."
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section '%1'"
+#~ msgstr "&Элементни қўшиш"
+
+#, fuzzy
+#~| msgid "&Add Entry..."
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section"
+#~ msgstr "&Элементни қўшиш"
+
+#, fuzzy
+#~| msgid ""
+#~| "Show\n"
+#~| "Entries"
+#~ msgid "&Show All Entries"
+#~ msgstr ""
+#~ "Элементларни\n"
+#~ "кўрсатиш"
+
+#, fuzzy
+#~| msgid "Short View"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Icon Size"
+#~ msgstr "Қисқа кўриниш"
+
+#, fuzzy
+#~| msgid "Auto &Detect"
+#~ msgctxt ""
+#~ "@item:inmenu Auto set icon size based on available space inthe Places "
+#~ "side-panel"
+#~ msgid "Auto Resize"
+#~ msgstr "&Авто-аниқлаш"
+
+#, fuzzy
+#~ msgctxt "Large icon size"
+#~ msgid "Large (%1x%1)"
+#~ msgstr "ҳажми %1"
+
+#, fuzzy
+#~| msgid "You can only select local files."
+#~ msgid "You can only select one file"
+#~ msgstr "Сиз фақат локал файлларни танлашингиз мумкин."
+
+#, fuzzy
+#~| msgid "You can only select local files."
+#~ msgid "You can only select local files"
+#~ msgstr "Сиз фақат локал файлларни танлашингиз мумкин."
+
+#, fuzzy
+#~| msgid "Remote Files Not Accepted"
+#~ msgid "Remote files not accepted"
+#~ msgstr "Масофдаги файллар қабул қилинмайди"
+
+#, fuzzy
+#~| msgid "%1 is a file, but a folder was expected."
+#~ msgid "Files and folders selected"
+#~ msgstr "%1 файл, аммо жилд кутилган эди."
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Click this button to enter the parent folder.<p>For instance, if the "
+#~| "current location is file:/home/%1 clicking this button will take you to "
+#~| "file:/home.</qt>"
+#~ msgid ""
+#~ "<qt>Click this button to enter the parent folder.<br /><br />For "
+#~ "instance, if the current location is file:/home/konqi clicking this "
+#~ "button will take you to file:/home.</qt>"
+#~ msgstr ""
+#~ "<qt>Юқори жилдга ўтиш.<p>Масалан, агар жорий жилд file:/home/%1 бўлса, бу "
+#~ "тугмани боссангиз file:/home жилдига ўтасиз.</qt>"
+
+#~ msgid ""
+#~ "Click this button to move backwards one step in the browsing history."
+#~ msgstr "Кўриш тарихида бир қадам орқага ўтиш учун шу тугмани босинг."
+
+#~ msgid "Click this button to move forward one step in the browsing history."
+#~ msgstr "Кўриш тарихида бир қадам олдинга ўтиш учун шу тугмани босинг."
+
+#~ msgid "Click this button to create a new folder."
+#~ msgstr "Янги жилдни яратиш учун бу тугмани босинг"
+
+#, fuzzy
+#~| msgid "Show Bookmarks"
+#~ msgid "Show Bookmarks Button"
+#~ msgstr "Хатчўпларни кўрсатиш"
+
+#~ msgid "Options"
+#~ msgstr "Мосламалар"
+
+#~ msgid "Bookmarks"
+#~ msgstr "Хатчўплар"
+
+#~ msgid "&Name:"
+#~ msgstr "&Номи:"
+
+#~ msgid "This is the name to save the file as."
+#~ msgstr "Cақлаш учун файлнинг номи."
+
+#~ msgid ""
+#~ "This is the list of files to open. More than one file can be specified by "
+#~ "listing several files, separated by spaces."
+#~ msgstr ""
+#~ "Очиш учун файллар рўйхати. Бўш жой билан ажратилган бир қанча файлларнинг "
+#~ "номини кўрсатиш мумкин."
+
+#~ msgid "This is the name of the file to open."
+#~ msgstr "Очиш учун файлнинг номи."
+
+#, fuzzy
+#~| msgid "Places"
+#~ msgctxt "@title:window"
+#~ msgid "Places"
+#~ msgstr "Жойлар"
+
+#, fuzzy
+#~| msgid "O&verwrite All"
+#~ msgid "Overwrite File?"
+#~ msgstr "Ҳаммасини а&лмаштириш"
+
+#~ msgid "You can only select local files."
+#~ msgstr "Сиз фақат локал файлларни танлашингиз мумкин."
+
+#~ msgid "Remote Files Not Accepted"
+#~ msgstr "Масофдаги файллар қабул қилинмайди"
+
+#~ msgid "*|All Folders"
+#~ msgstr "*|Ҳамма жилдлар"
+
+#~ msgid "*|All Files"
+#~ msgstr "*|Ҳамма файллар"
+
+#~ msgid "&Open"
+#~ msgstr "&Очиш"
+
+#~ msgid "Automatically select filename e&xtension (%1)"
+#~ msgstr "Файлнинг кенгайтмасини (%1) &авто-танлаш"
+
+#~ msgid "the extension <b>%1</b>"
+#~ msgstr "кенгайтма <b>%1</b>"
+
+#~ msgid "Automatically select filename e&xtension"
+#~ msgstr "Файлнинг кенгайтмасини &авто-танлаш"
+
+#~ msgid "a suitable extension"
+#~ msgstr "мос келадиган кенгайтма"
+
+#, fuzzy
+#~| msgid "&Filter:"
+#~ msgid "&File type:"
+#~ msgstr "&Филтер:"
+
+#~ msgid "&Filter:"
+#~ msgstr "&Филтер:"
+
+#, fuzzy
+#~| msgid "Store"
+#~ msgid "Sorry"
+#~ msgstr "Сақлаш"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Unable to run the command specified. The file or folder <b>%1</b> "
+#~| "does not exist.</qt>"
+#~ msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
+#~ msgstr ""
+#~ "<qt>Кўрсатилган буйруқни бажариб бўлмади. Файл ёки жилд (<b>%1</b>) "
+#~ "мавжуд эмас.</qt>"
+
+#, fuzzy
+#~ msgid "Create link to URL"
+#~ msgstr "Манзил:"
+
+#, fuzzy
+#~| msgid "%1 B"
+#~ msgctxt "@item:inmenu Create New"
+#~ msgid "%1"
+#~ msgstr "%1 Б"
+
+#, fuzzy
+#~| msgid "An older item named '%1' already exists."
+#~ msgctxt "@info"
+#~ msgid "A directory with name <filename>%1</filename> already exists."
+#~ msgstr "\"%1\" номли эски элемент аллақачон мавжуд."
+
+#, fuzzy
+#~| msgid "A file named %1 already exists."
+#~ msgctxt "@info"
+#~ msgid "A file with name <filename>%1</filename> already exists."
+#~ msgstr "%1 номли файл аллақачон мавжуд."
+
+#, fuzzy
+#~| msgid "C&reate"
+#~ msgid "Create New"
+#~ msgstr "&Яратиш"
+
+#, fuzzy
+#~| msgid "Device"
+#~ msgid "Link to Device"
+#~ msgstr "Ускуна"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgctxt "Default name for a new folder"
+#~ msgid "New Folder"
+#~ msgstr "Янги жилд"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Folder"
+#~ msgstr "Янги жилд"
+
+#, fuzzy
+#~| msgid ""
+#~| "Create new folder in:\n"
+#~| "%1"
+#~ msgid "Create new folder in %1:"
+#~ msgstr ""
+#~ "Қуйидаги манзилда янги жилдни яратиш:\n"
+#~ "%1"
+
+#~ msgid "Copy"
+#~ msgstr "Нусха олиш"
+
+#~ msgid "Paste"
+#~ msgstr "Қўйиш"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Tab"
+#~ msgstr "Дастур билан очиш"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Window"
+#~ msgstr "Дастур билан очиш"
+
+#~ msgid "Edit"
+#~ msgstr "Таҳрирлаш"
+
+#, fuzzy
+#~| msgid "Store"
+#~ msgctxt "@action:inmenu"
+#~ msgid "More"
+#~ msgstr "Сақлаш"
+
+#, fuzzy
+#~| msgid "Devices"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Devices"
+#~ msgstr "Ускуналар"
+
+#, fuzzy
+#~| msgid "SSL version:"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Subversion"
+#~ msgstr "SSL версияси:"
+
+#, fuzzy
+#~| msgid "Others"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Other"
+#~ msgstr "Бошқалар"
+
+#, fuzzy
+#~| msgid "Edit"
+#~ msgid "Edit mode"
+#~ msgstr "Таҳрирлаш"
+
+#~ msgid "You are not authorized to execute this file."
+#~ msgstr "Бу файлни бажаришга сизда етарли ҳуқуқлар йўқ."
+
+#, fuzzy
+#~| msgid "Launching %1"
+#~ msgctxt "Launching application"
+#~ msgid "Launching %1"
+#~ msgstr "%1'ни ишга тушириш"
+
+#, fuzzy
+#~ msgid "You are not authorized to select an application to open this file."
+#~ msgstr "Бу файлни очишга сизда етарли ҳуқуқлар йўқ."
+
+#, fuzzy
+#~| msgid ""
+#~| "The desktop entry of type\n"
+#~| "%1\n"
+#~| "is unknown."
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is not valid."
+#~ msgstr ""
+#~ ".desktop файлида\n"
+#~ "номаълум ёзув (%1)."
+
+#~ msgid "Launching %1"
+#~ msgstr "%1'ни ишга тушириш"
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is of type Link but has no URL=... entry."
+#~ msgstr ""
+#~ ".desktop файлининг (%1) тури\n"
+#~ "боғ, аммо \"URL=...\" ёзуви йўқ."
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Unable to run the command specified. The file or folder <b>%1</b> "
+#~| "does not exist.</qt>"
+#~ msgid ""
+#~ "Unable to make file \"%1\" executable.\n"
+#~ "%2."
+#~ msgstr ""
+#~ "<qt>Кўрсатилган буйруқни бажариб бўлмади. Файл ёки жилд (<b>%1</b>) "
+#~ "мавжуд эмас.</qt>"
+
+#~ msgid "The desktop entry file %1 has no Type=... entry."
+#~ msgstr "Файлда (%1) \"Type=...\" ёзуви йўқ."
+
+#~ msgid "File Changed"
+#~ msgstr "Файл ўзгарган"
+
+#~ msgid "Upload"
+#~ msgstr "Ёзиб қўйиш"
+
+#, fuzzy
+#~| msgid "Do Not Store"
+#~ msgid "Do Not Upload"
+#~ msgstr "Сақланмасин"
+
+#, fuzzy
+#~| msgid "Malformed URL %1."
+#~ msgid "Invalid URL: %1"
+#~ msgstr "Хато URL %1."
+
+#~ msgid ""
+#~ "The URL %1\n"
+#~ "is malformed"
+#~ msgstr ""
+#~ "URL %1\n"
+#~ "хато шаклда"
+
+#~ msgid "Do Not Delete"
+#~ msgstr "Ўчирилмасин"
+
+#~ msgid "KIOExec"
+#~ msgstr "KIOExec"
+
+#~ msgid "Suggested file name for the downloaded file"
+#~ msgstr "Ёзиб олинган файлга таклиф қилинган ном"
+
+#~ msgid "Command to execute"
+#~ msgstr "Бажариш учун буйруқ"
+
+#, fuzzy
+#~ msgid "Setting ACL for %1"
+#~ msgstr "%1'га маълумот жўнатилмоқда"
+
+#~ msgid ""
+#~ "Could not change permissions for\n"
+#~ "%1"
+#~ msgstr ""
+#~ "%1\n"
+#~ "учун ҳуқуқларни ўзгартириб бўлмади"
+
+#~ msgid "Could not find program \"mount\""
+#~ msgstr "'mount' дастурини топиб бўлмади."
+
+#~ msgid "Could not find program \"umount\""
+#~ msgstr "'umount' дастурини топиб бўлмади."
+
+#, fuzzy
+#~| msgid "Advanced Permissions"
+#~ msgid "Change File Permissions"
+#~ msgstr "Қўшимча ҳуқуқлар"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Permissions"
+#~ msgid "New Permissions: %1"
+#~ msgstr "Ҳуқуқлар"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgid "Remove File"
+#~ msgstr "Олиб ташлаш"
+
+#, fuzzy
+#~ msgid "Remove Directory"
+#~ msgstr "Жилд яратиш"
+
+#, fuzzy
+#~ msgid "Create Directory"
+#~ msgstr "Жилд яратиш"
+
+#, fuzzy
+#~| msgctxt "@title:column"
+#~| msgid "Permissions"
+#~ msgid "Directory Permissions: %1"
+#~ msgstr "Ҳуқуқлар"
+
+#, fuzzy
+#~| msgid "Open file dialog"
+#~ msgid "Open File"
+#~ msgstr "Файлни танлаш ойнасини очиш"
+
+#, fuzzy
+#~ msgid "Open Directory"
+#~ msgstr "Жилд яратиш"
+
+#, fuzzy
+#~ msgid "New Filename: %1"
+#~ msgstr "Ускуна:"
+
+#, fuzzy
+#~ msgid "Target: %1"
+#~ msgstr "ҳажми %1"
+
+#, fuzzy
+#~| msgid "Unknown Interruption"
+#~ msgid "Unknown Action"
+#~ msgstr "Номаълум тўхталиш"
+
+#, fuzzy
+#~| msgid "Could not enter folder %1."
+#~ msgid "Could not get user id for given user name %1"
+#~ msgstr "%1 жилдига ўтиб бўлмади."
+
+#~ msgid "Opening connection to host %1"
+#~ msgstr "%1 билан алоқа ўрнатилмоқда"
+
+#~ msgid "Connected to host %1"
+#~ msgstr "%1 билан алоқа ўрнатилди"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgid "%1 (Error %2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "Sending login information"
+#~ msgstr "Кириш учун маълумот жўнатилмоқда"
+
+#~ msgid "You need to supply a username and a password to access this site."
+#~ msgstr "Бу сайтга кириш учун фойдаланувчи ва махфий сўзни кўрсатиш керак."
+
+#~ msgid "Site:"
+#~ msgstr "Сайт:"
+
+#~ msgid "<b>%1</b>"
+#~ msgstr "<b>%1</b>"
+
+#~ msgid "Login OK"
+#~ msgstr "Кириш ОК"
+
+#~ msgid "Could not login to %1."
+#~ msgstr "%1'га кириб бўлмади."
+
+#, fuzzy
+#~| msgid "Launching %1"
+#~ msgid ""
+#~ "\n"
+#~ "The server said: \"%1\""
+#~ msgstr "%1'ни ишга тушириш"
+
+#~ msgid ""
+#~ "You need to supply a username and a password for the proxy server listed "
+#~ "below before you are allowed to access any sites."
+#~ msgstr ""
+#~ "Қуйида кўрсатилган прокси серверга кириш учун фойдаланувчи ва махфий "
+#~ "сўзни кўрсатиш керак."
+
+#~ msgid "Proxy:"
+#~ msgstr "Прокси:"
+
+#~ msgid "Proxy Authentication Failed."
+#~ msgstr "Прокси ёрдамида тасдиқлаш муваффақиятсиз тугади."
+
+#, fuzzy
+#~| msgid "There are no special actions available for protocol %1."
+#~ msgid "There is no documentation available for %1."
+#~ msgstr "%1 протоколи учун махсус амаллар мавжуд эмас."
+
+#, fuzzy
+#~| msgid "The requested protocol may not be supported."
+#~ msgid "The requested help file could not be parsed:<br />%1"
+#~ msgstr "Талаб қилинган протокол бу дастур билан ишламаслиги мумкин."
+
+#, fuzzy
+#~| msgid "Could not read file %1."
+#~ msgid "Could not find filename %1 in %2."
+#~ msgstr "%1 файлни ўқиб бўлмади."
+
+#~ msgid "No host specified."
+#~ msgstr "Хост кўрсатилмаган."
+
+#, fuzzy
+#~| msgid "create the requested folder"
+#~ msgctxt "request type"
+#~ msgid "create the requested folder"
+#~ msgstr "талаб қилинган жилдни яратиш"
+
+#, fuzzy
+#~| msgid "copy the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "copy the specified file or folder"
+#~ msgstr "кўрсатилган файл ёки жилддан нусха олиш"
+
+#, fuzzy
+#~| msgid "move the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "move the specified file or folder"
+#~ msgstr "кўрсатилган файл ёки жилдни кўчириш"
+
+#, fuzzy
+#~| msgid "search in the specified folder"
+#~ msgctxt "request type"
+#~ msgid "search in the specified folder"
+#~ msgstr "кўрсатилган жилдда қидириш"
+
+#, fuzzy
+#~| msgid "lock the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "lock the specified file or folder"
+#~ msgstr "кўрсатилган файл ёки жилдни қулфлаш"
+
+#, fuzzy
+#~| msgid "lock the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "unlock the specified file or folder"
+#~ msgstr "кўрсатилган файл ёки жилдни қулфлаш"
+
+#, fuzzy
+#~| msgid "delete the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "delete the specified file or folder"
+#~ msgstr "кўрсатилган файл ёки жилдни ўчириш"
+
+#, fuzzy
+#~| msgid "retrieve the contents of the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "retrieve the contents of the specified file or folder"
+#~ msgstr "кўрсатилган файл ёки жилднинг таркибини аниқлаш"
+
+#, fuzzy
+#~| msgid "search in the specified folder"
+#~ msgctxt "request type"
+#~ msgid "run a report in the specified folder"
+#~ msgstr "кўрсатилган жилдда қидириш"
+
+#, fuzzy
+#~| msgid "Access was denied while attempting to %1."
+#~ msgctxt "%1: code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "%1га рухсат этилмади."
+
+#~ msgid "The server does not support the WebDAV protocol."
+#~ msgstr "Сервер WebDAV протоколини қўлламайди."
+
+#, fuzzy
+#~| msgid "Access was denied while attempting to %1."
+#~ msgctxt "%1: request type"
+#~ msgid "Access was denied while attempting to %1."
+#~ msgstr "%1га рухсат этилмади."
+
+#, fuzzy
+#~| msgid "The specified resource may not exist."
+#~ msgid "The resource cannot be deleted."
+#~ msgstr "Кўрсатилган манба балки мавжуд эмас."
+
+#, fuzzy
+#~| msgid "upload %1"
+#~ msgctxt "request type"
+#~ msgid "upload %1"
+#~ msgstr "%1'ни ёзиб қўйиш"
+
+#, fuzzy
+#~| msgid "Access was denied while attempting to %1."
+#~ msgctxt "%1: response code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "%1га рухсат этилмади."
+
+#~ msgid "%1 contacted. Waiting for reply..."
+#~ msgstr "%1 билан алоқа ўрнатилди. Жавоб кутилмоқда..."
+
+#~ msgid "Sending data to %1"
+#~ msgstr "%1'га маълумот жўнатилмоқда"
+
+#~ msgid "Retrieving %1 from %2..."
+#~ msgstr "%1 %2'дан аниқланмоқда..."
+
+#~ msgid "Authentication Failed."
+#~ msgstr "Тасдиқлаш муваффақиятсиз тугади."
+
+#, fuzzy
+#~| msgid "Authorization Dialog"
+#~ msgid "Authorization failed."
+#~ msgstr "Тасдиқлаш диалоги"
+
+#, fuzzy
+#~| msgid "Authorization Dialog"
+#~ msgid "Unknown Authorization method."
+#~ msgstr "Тасдиқлаш диалоги"
+
+#, fuzzy
+#~| msgid ""
+#~| "Could not create symlink %1.\n"
+#~| "Please check permissions."
+#~ msgid "Could not remove %1, check permissions"
+#~ msgstr ""
+#~ "Рамзий боғни (%1) яратиб бўлмади.\n"
+#~ "Илтимос ҳуқуқларни текширинг."
+
+#, fuzzy
+#~| msgid "Could not write to %1."
+#~ msgid "Could not create directory %1"
+#~ msgstr "%1'га ёзиб бўлмади."
+
+#~ msgid "Cookie Alert"
+#~ msgstr "Куки хабарномаси"
+
+#, fuzzy
+#~| msgid "Do you want to accept or reject?"
+#~ msgctxt "%2 hostname, %3 optional cross domain suffix (translated below)"
+#~ msgid ""
+#~ "<p>You received a cookie from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject this cookie?</p>"
+#~ msgid_plural ""
+#~ "<p>You received %1 cookies from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject these cookies?</p>"
+#~ msgstr[0] "Қабул қилиш ёки рад этишни истайсизми?"
+
+#~ msgid "&Accept"
+#~ msgstr "&Қабул қилиш"
+
+#~ msgid "&Reject"
+#~ msgstr "Рад &этиш"
+
+#~ msgid "Apply Choice To"
+#~ msgstr "Танловни қўллаш"
+
+#~ msgid "&Only this cookie"
+#~ msgstr "&Фақат шу куки"
+
+#~ msgid "&Only these cookies"
+#~ msgstr "&Фақат шу кукилар"
+
+#~ msgid "All cookies from this do&main"
+#~ msgstr "Шу до&мендан ҳамма куки"
+
+#~ msgid "All &cookies"
+#~ msgstr "&Ҳамма кукилар"
+
+#~ msgid "Cookie Details"
+#~ msgstr "Тафсилотлар:"
+
+#~ msgctxt "Next cookie"
+#~ msgid "&Next >>"
+#~ msgstr "&Кейинги >>"
+
+#~ msgid "Show details of the next cookie"
+#~ msgstr "Кейинги кукининг тафсилотларини кўрсатиш"
+
+#, fuzzy
+#~| msgid "Not specified"
+#~ msgctxt "@label cookie has no explicit 'Domain' value specified"
+#~ msgid "Not specified"
+#~ msgstr "Аниқланмаган"
+
+#, fuzzy
+#~| msgid "End of Session"
+#~ msgctxt "@label the cookie expires when the browser session ends"
+#~ msgid "End of Session"
+#~ msgstr "Сеанс якуни"
+
+#, fuzzy
+#~| msgid "Secure servers only"
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by https servers"
+#~ msgid "Secure servers only"
+#~ msgstr "Фақат хавфсиз серверлар"
+
+#, fuzzy
+#~| msgid "Secure servers, page scripts"
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may be used by https servers AND "
+#~ "client-side javascripts"
+#~ msgid "Secure servers, page scripts"
+#~ msgstr "Фақат хавфсиз серверлар, саҳифа скриптлари"
+
+#, fuzzy
+#~| msgid "Servers"
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by http servers"
+#~ msgid "Servers"
+#~ msgstr "Серверлар"
+
+#, fuzzy
+#~| msgid "Servers, page scripts"
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may be used by http servers AND "
+#~ "client-side javascripts"
+#~ msgid "Servers, page scripts"
+#~ msgstr "Серверлар, саҳифа скриптлари"
+
+#, fuzzy
+#~| msgid "Details"
+#~ msgctxt ""
+#~ "@action:button show details about a cookie that needs approval. This "
+#~ "string gets >> and << appended, to visualize if the dialog expands or "
+#~ "compacts!"
+#~ msgid "Details"
+#~ msgstr "Тафсилотлар"
+
+#, fuzzy
+#~| msgctxt "KFile System Bookmarks"
+#~| msgid "Network"
+#~ msgid "Network"
+#~ msgstr "Тармоқ"
+
+#, fuzzy
+#~| msgid "Malformed URL %1."
+#~ msgid "Malformed URL %1"
+#~ msgstr "Хато URL %1."
+
+#, fuzzy
+#~| msgid "This file is a link and does not have permissions."
+#~| msgid_plural "All files are links and do not have permissions."
+#~ msgid "This file is already in the trash bin."
+#~ msgstr "Ушбу файл боғ ва ҳеч қандай ҳуқуқларга эга эмас."
+
+#, fuzzy
+#~| msgid "Writing to %1 is not supported."
+#~ msgid "not supported"
+#~ msgstr "'%1'га ёзиш қўлланмаган."
+
+#, fuzzy
+#~| msgid ""
+#~| "Internal error in server\n"
+#~| "%1"
+#~ msgid "Internal error in copyOrMove, should never happen"
+#~ msgstr ""
+#~ "Сервернинг ички хатоси\n"
+#~ "%1"
+
+#, fuzzy
+#~| msgid "  Do you want to retry?"
+#~ msgid "Do you want to retry?"
+#~ msgstr "  Қайтадан уриниб кўрасизми?"
+
+#, fuzzy
+#~| msgid "Server Authentication"
+#~ msgid "Retry Authentication"
+#~ msgstr "Сервер тасдиқлаши"
+
+#, fuzzy
+#~| msgid "Retry"
+#~ msgctxt "@action:button filter-continue"
+#~ msgid "Retry"
+#~ msgstr "Қайтадан уриниш"
+
+#, fuzzy
+#~| msgid "Authorization Dialog"
+#~ msgid "Authentication Dialog"
+#~ msgstr "Тасдиқлаш диалоги"
+
+#, fuzzy
+#~| msgid "Access Denied"
+#~ msgid "Access denied"
+#~ msgstr "Рухсат йўқ"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Unable to run the command specified. The file or folder <b>%1</b> "
+#~| "does not exist.</qt>"
+#~ msgid "<qt><b>%1</b> does not have a home folder.</qt>"
+#~ msgstr ""
+#~ "<qt>Кўрсатилган буйруқни бажариб бўлмади. Файл ёки жилд (<b>%1</b>) "
+#~ "мавжуд эмас.</qt>"
+
+#, fuzzy
+#~| msgid "<qt>You do not have permission to run <b>%1</b>.</qt>"
+#~ msgid "<qt>There is no user called <b>%1</b>.</qt>"
+#~ msgstr "<qt>Сизга <b>%1</b>'ни ишга туширишга рухсат йўқ.</qt>"
+
+#~ msgid "Common name:"
+#~ msgstr "Умумий номи:"
+
+#~ msgid "Organization:"
+#~ msgstr "Ташкилот:"
+
+#~ msgid "Organizational unit:"
+#~ msgstr "Бўлим:"
+
+#~ msgid "Country:"
+#~ msgstr "Давлат:"
+
+#~ msgid "Canada"
+#~ msgstr "Канада"
+
+#, fuzzy
+#~| msgid "Site:"
+#~ msgid "State:"
+#~ msgstr "Сайт:"
+
+#~ msgid "City:"
+#~ msgstr "Шаҳар:"
+
+#~ msgid "Calculate"
+#~ msgstr "Ҳисоблаш"
+
+#, fuzzy
+#~| msgid "Cancel Job"
+#~ msgid "C&ancel"
+#~ msgstr "Бекор қилиш"
+
+#, fuzzy
+#~| msgid "E&xecute"
+#~ msgid "&Execute"
+#~ msgstr "&Бажариш"
+
+#, fuzzy
+#~ msgid "Creating directory"
+#~ msgstr "Жилд яратиш"
+
+#, fuzzy
+#~| msgid "Moving"
+#~ msgid "Moving"
+#~ msgstr "Кўчирилмоқда"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Renaming"
+#~ msgstr "&Номини ўзгартириш"
+
+#, fuzzy
+#~ msgid "Deleting"
+#~ msgstr " (Ўчирилмоқда)"
+
+#~ msgid "Und&o"
+#~ msgstr "&Бекор қилиш"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Und&o: Rename"
+#~ msgstr "&Номини ўзгартириш"
+
+#, fuzzy
+#~| msgctxt "to trash"
+#~| msgid "&Trash"
+#~ msgid "Und&o: Trash"
+#~ msgstr "&Чиқиндилар қутисига"
+
+#, fuzzy
+#~| msgid "Could Not Create Folder"
+#~ msgid "Und&o: Create Folder"
+#~ msgstr "Жилдни яратиб бўлмади"
+
+#, fuzzy
+#~| msgid "Could Not Create Folder"
+#~ msgid "Und&o: Create Folder(s)"
+#~ msgstr "Жилдни яратиб бўлмади"
+
+#, fuzzy
+#~| msgid "Could Not Create Folder"
+#~ msgid "Und&o: Create File"
+#~ msgstr "Жилдни яратиб бўлмади"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Und&o: Batch Rename"
+#~ msgstr "&Номини ўзгартириш"
+
+#, fuzzy
+#~| msgid "Updating System Configuration"
+#~ msgid "Undo File Copy Confirmation"
+#~ msgstr "Тизимнинг мосламаси янгиланмоқда"
+
+#, fuzzy
+#~| msgid "Delete Entry"
+#~ msgid "Delete Permanently"
+#~ msgstr "Ўчириш"
+
+#, fuzzy
+#~| msgid "Delete Entry"
+#~ msgctxt "@action:button"
+#~ msgid "Delete Permanently"
+#~ msgstr "Ўчириш"
+
+#~ msgctxt "@action:button"
+#~ msgid "Empty Trash"
+#~ msgstr "Чиқиндилар қутисини бўшатиш"
+
+#, fuzzy
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to move this item to the Trash?<nl/><filename>%1</"
+#~ "filename>"
+#~ msgstr "Ростдан бу элементни ўчиришни истайсизми?"
+
+#, fuzzy
+#~ msgid "Do you really want to move this item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] "Ростдан бу элементни ўчиришни истайсизми?"
+
+#~ msgid "SSL"
+#~ msgstr "SSL"
+
+#, fuzzy
+#~| msgid "Add..."
+#~ msgctxt "@action:button"
+#~ msgid "Add..."
+#~ msgstr "Қўшиш..."
+
+#, fuzzy
+#~| msgid "Edit"
+#~ msgctxt "@action:button"
+#~ msgid "Edit..."
+#~ msgstr "Таҳрирлаш"
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action:button"
+#~ msgid "Delete"
+#~ msgstr "Ўчириш"
+
+#, fuzzy
+#~| msgid "Owner"
+#~ msgctxt "Unix permissions"
+#~ msgid "Owner"
+#~ msgstr "Эгаси"
+
+#, fuzzy
+#~| msgid "Domain [Group]"
+#~ msgctxt "UNIX permissions"
+#~ msgid "Owning Group"
+#~ msgstr "Домен [Гуруҳ]"
+
+#, fuzzy
+#~| msgid "Others"
+#~ msgctxt "UNIX permissions"
+#~ msgid "Others"
+#~ msgstr "Бошқалар"
+
+#, fuzzy
+#~| msgid " (Default)"
+#~ msgid "Owner (Default)"
+#~ msgstr " (Андоза)"
+
+#~ msgid "Owner"
+#~ msgstr "Эгаси"
+
+#~ msgid "Others"
+#~ msgstr "Бошқалар"
+
+#~ msgid "User: "
+#~ msgstr "Фойдаланувчи: "
+
+#~ msgid "Group: "
+#~ msgstr "Гуруҳ: "
+
+#~ msgid "Type"
+#~ msgstr "Тури"
+
+#~ msgid "Name"
+#~ msgstr "Номи"
+
+#~ msgctxt "read permission"
+#~ msgid "r"
+#~ msgstr "ў"
+
+#~ msgctxt "write permission"
+#~ msgid "w"
+#~ msgstr "ё"
+
+#~ msgctxt "execute permission"
+#~ msgid "x"
+#~ msgstr "б"
+
+#~ msgid "Updating System Configuration"
+#~ msgstr "Тизимнинг мосламаси янгиланмоқда"
+
+#~ msgid "Updating system configuration."
+#~ msgstr "Тизимнинг мосламаси янгиланмоқда."
+
+#~ msgctxt "@title:column"
+#~ msgid "Name"
+#~ msgstr "Номи"
+
+#~ msgctxt "@title:column"
+#~ msgid "Size"
+#~ msgstr "Ҳажми"
+
+#~ msgctxt "@title:column"
+#~ msgid "Date"
+#~ msgstr "Сана"
+
+#~ msgctxt "@title:column"
+#~ msgid "Permissions"
+#~ msgstr "Ҳуқуқлар"
+
+#~ msgctxt "@title:column"
+#~ msgid "Owner"
+#~ msgstr "Эгаси"
+
+#~ msgctxt "@title:column"
+#~ msgid "Group"
+#~ msgstr "Гуруҳ"
+
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "Тури"
+
+#, fuzzy
+#~| msgid "Open with:"
+#~ msgid "Open &with %1"
+#~ msgstr "Дастур билан очиш:"
+
+#, fuzzy
+#~| msgid "%1 B"
+#~ msgctxt "@item:inmenu Open With, %1 is application name"
+#~ msgid "%1"
+#~ msgstr "%1 Б"
+
+#, fuzzy
+#~| msgid "Actions"
+#~ msgctxt "@title:menu"
+#~ msgid "&Actions"
+#~ msgstr "Амаллар"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With..."
+#~ msgstr "Дастур билан очиш"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With..."
+#~ msgstr "Дастур билан очиш"
+
+#, fuzzy
+#~| msgid "Open with:"
+#~ msgid "&Open folder with %1"
+#~ msgstr "Дастур билан очиш:"
+
+#, fuzzy
+#~| msgid "Open with:"
+#~ msgid "&Open with %1"
+#~ msgstr "Дастур билан очиш:"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With"
+#~ msgstr "Дастур билан очиш"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With"
+#~ msgstr "Дастур билан очиш"
+
+#, fuzzy
+#~| msgid "&Application"
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other Application..."
+#~ msgstr "&Дастур"
+
+#~ msgctxt "@info mimetype"
+#~ msgid "Unknown"
+#~ msgstr "Номаълум"
+
+#, fuzzy
+#~ msgid "Stop"
+#~ msgstr "Тўхтатилди"
+
+#, fuzzy
+#~| msgid "Mounted on:"
+#~ msgid "Mounted From:"
+#~ msgstr "Уланган:"
+
+#~ msgid "Type:"
+#~ msgstr "Тури:"
+
+#~ msgid "Location:"
+#~ msgstr "Манзили:"
+
+#, fuzzy
+#~| msgid "C&hange..."
+#~ msgid "Change..."
+#~ msgstr "Ўз&гартириш"
+
+#, fuzzy
+#~| msgid "Contents:"
+#~ msgid "Content:"
+#~ msgstr "Таркиби:"
+
+#~ msgid "Points to:"
+#~ msgstr "Билан боғланган:"
+
+#~ msgid "Modified:"
+#~ msgstr "Ўзгарган:"
+
+#~ msgid "Created:"
+#~ msgstr "Яратилган:"
+
+#, fuzzy
+#~| msgid "File system:"
+#~ msgid "File System:"
+#~ msgstr "Файл тизими:"
+
+#, fuzzy
+#~| msgid "Unknown Host"
+#~ msgid "Unknown size"
+#~ msgstr "Компьютернинг номи номаълум"
+
+#, fuzzy
+#~| msgid "Mounted on:"
+#~ msgid "Mounted On:"
+#~ msgstr "Уланган:"
+
+#~ msgid "Accessed:"
+#~ msgstr "Фойдаланилган:"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgid "Open With:"
+#~ msgstr "Дастур билан очиш"
+
+#~ msgid "Known Applications"
+#~ msgstr "Маълум бўлган дастурлар"
+
+#~ msgid "Open With"
+#~ msgstr "Дастур билан очиш"
+
+#~ msgid ""
+#~ "<qt>Select the program that should be used to open <b>%1</b>. If the "
+#~ "program is not listed, enter the name or click the browse button.</qt>"
+#~ msgstr ""
+#~ "<qt><b>%1</b> файлини очиш учун дастурни танланг. Агар дастур рўйхатда "
+#~ "бўлмаса, унинг номини киритинг ёки \"Танлаш\"тугмасини босинг.</qt>"
+
+#~ msgid ""
+#~ "Choose the name of the program with which to open the selected files."
+#~ msgstr "Танланган файлларни очиш учун дастурни танланг."
+
+#~ msgid "Choose Application"
+#~ msgstr "Дастурни танланг"
+
+#~ msgid "Choose Application for %1"
+#~ msgstr "%1 учун дастурни танланг"
+
+#~ msgid ""
+#~ "<qt>Select the program for the file type: <b>%1</b>. If the program is "
+#~ "not listed, enter the name or click the browse button.</qt>"
+#~ msgstr ""
+#~ "<qt><b>%1</b> файл тури учун дастурни танланг. Агар дастур рўйхатда "
+#~ "бўлмаса, унинг номини киритинг ёки \"Танлаш\"тугмасини босинг.</qt>"
+
+#~ msgid ""
+#~ "<qt>Select a program. If the program is not listed, enter the name or "
+#~ "click the browse button.</qt>"
+#~ msgstr ""
+#~ "<qt>Дастурни танланг. Агар дастур рўйхатда бўлмаса, унинг номини киритинг "
+#~ "ёки \"Танлаш\"тугмасини босинг.</qt>"
+
+#, fuzzy
+#~| msgid "&Remember application association for this type of file"
+#~ msgid ""
+#~ "&Remember application association for all files of type\n"
+#~ "\"%1\" (%2)"
+#~ msgstr "Шу файл тури билан боғлиқ дастурни &эслаб қолиш"
+
+#, fuzzy
+#~| msgid "&Remember application association for this type of file"
+#~ msgid ""
+#~ "&Remember application association for all files of type\n"
+#~ "\"%1\""
+#~ msgstr "Шу файл тури билан боғлиқ дастурни &эслаб қолиш"
+
+#, fuzzy
+#~| msgid "&Terminal options:"
+#~ msgid "Terminal options"
+#~ msgstr "Терминалнинг &параметрлари:"
+
+#~ msgid "Run in &terminal"
+#~ msgstr "&Терминалда бажариш"
+
+#, fuzzy
+#~| msgid "Terminal"
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options about the "
+#~ "terminal when launching a program"
+#~ msgid "Terminal"
+#~ msgstr "Терминал"
+
+#, fuzzy
+#~| msgid "&Run in terminal"
+#~ msgid "Run in terminal"
+#~ msgstr "&Терминалда бажариш"
+
+#, fuzzy
+#~| msgid "&Terminal options:"
+#~ msgid "Terminal options:"
+#~ msgstr "Терминалнинг &параметрлари:"
+
+#, fuzzy
+#~| msgid "User"
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose which user to use "
+#~ "when launching a program"
+#~ msgid "User"
+#~ msgstr "Фойдаланувчи"
+
+#, fuzzy
+#~| msgid "Ru&n as a different user"
+#~ msgid "Run as a different user"
+#~ msgstr "Бошқа ф&ойдаланувчи сифатида бажариш"
+
+#~ msgid "Username:"
+#~ msgstr "Фойдаланувчи:"
+
+#, fuzzy
+#~| msgid "Startup"
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options regarding "
+#~ "program startup"
+#~ msgid "Startup"
+#~ msgstr "Ишга тушиши"
+
+#~ msgid "&Description:"
+#~ msgstr "&Таърифи:"
+
+#~ msgid "Comm&ent:"
+#~ msgstr "&Изоҳ:"
+
+#, fuzzy
+#~| msgid "Use preset proxy environment &variables"
+#~ msgid "Environment Variables:"
+#~ msgstr "&Олдиндан аниқланган прокси муҳит ўзгарувчиларини ишлатиш"
+
+#~ msgid "&Browse..."
+#~ msgstr "&Танлаш"
+
+#, fuzzy
+#~| msgid "FIXME: Document this"
+#~ msgid "&Arguments:"
+#~ msgstr "Бу учун ҳеч қандай қўлланма йўқ"
+
+#~ msgid "&Supported file types:"
+#~ msgstr "Қў&лланган файл турлари:"
+
+#~ msgid "Mimetype"
+#~ msgstr "MIME тури"
+
+#~ msgid "Description"
+#~ msgstr "Таърифи"
+
+#~ msgid "Add..."
+#~ msgstr "Қўшиш..."
+
+#~ msgid "Remove"
+#~ msgstr "Олиб ташлаш"
+
+#~ msgid "Ad&vanced Options"
+#~ msgstr "Қўшимча &параметрлар"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Could not save properties. You do not have sufficient access to "
+#~| "write to <b>%1</b>.</qt>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not save properties due to insufficient write access to:<nl/"
+#~ "><filename>%1</filename>."
+#~ msgstr ""
+#~ "<qt>Хоссаларни сақлаб бўлмади. Сиз <b>%1</b>'га ёзиш учун етарли "
+#~ "ҳуқуқларга эга эмассиз.</qt>"
+
+#~ msgid "Properties for %1"
+#~ msgstr "%1 хоссалари"
+
+#, fuzzy
+#~ msgid "Properties for 1 item"
+#~ msgid_plural "Properties for %1 Selected Items"
+#~ msgstr[0] "%1 хоссалари"
+
+#, fuzzy
+#~| msgid "&General"
+#~ msgctxt "@title:tab File properties"
+#~ msgid "&General"
+#~ msgstr "&Умумий"
+
+#~ msgid "Refresh"
+#~ msgstr "Янгилаш"
+
+#, fuzzy
+#~| msgid "%1 B"
+#~ msgid "%1:"
+#~ msgstr "%1 Б"
+
+#, fuzzy
+#~| msgctxt "Available space out of total partition size (percent used)"
+#~| msgid "%1 out of %2 (%3% used)"
+#~ msgctxt "Available space out of total partition size (percent used)"
+#~ msgid "%1 free of %2 (%3% used)"
+#~ msgstr "%2'дан %1 (%3% ишлатилган)"
+
+#, fuzzy
+#~| msgid "Unknown Host"
+#~ msgctxt "@info:status"
+#~ msgid "Unknown size"
+#~ msgstr "Компьютернинг номи номаълум"
+
+#~ msgid ""
+#~ "Calculating... %1 (%2)\n"
+#~ "%3, %4"
+#~ msgstr ""
+#~ "Ҳисобланмоқда...%1 (%2)\n"
+#~ "%3, %4"
+
+#~ msgid "1 file"
+#~ msgid_plural "%1 files"
+#~ msgstr[0] "%1 файл"
+
+#, fuzzy
+#~ msgid "1 sub-folder"
+#~ msgid_plural "%1 sub-folders"
+#~ msgstr[0] "1 қуйи жилд"
+
+#, fuzzy
+#~| msgid "Calculating..."
+#~ msgid "Calculating...\n"
+#~ msgstr "Ҳисобланмоқда..."
+
+#, fuzzy
+#~| msgid " Files: %1 "
+#~ msgid "At least %1\n"
+#~ msgstr " Файллар: %1 "
+
+#~ msgid "The new file name is empty."
+#~ msgstr "Янги файлнинг номи кўрсатилмаган."
+
+#, fuzzy
+#~| msgid "&Supported file types:"
+#~ msgid "No registered file type"
+#~ msgstr "Қў&лланган файл турлари:"
+
+#, fuzzy
+#~| msgid "Choose Application"
+#~ msgid "No associated application"
+#~ msgstr "Дастурни танланг"
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgctxt "@action:button Create new file type"
+#~ msgid "Create…"
+#~ msgstr "Яратилган:"
+
+#, fuzzy
+#~| msgid "C&hange..."
+#~ msgctxt "@action:button"
+#~ msgid "Change…"
+#~ msgstr "Ўз&гартириш"
+
+#, fuzzy
+#~| msgid "Accessed:"
+#~ msgid "No Access"
+#~ msgstr "Фойдаланилган:"
+
+#, fuzzy
+#~| msgid "Can View & Modify Content"
+#~ msgid "Can View & Modify"
+#~ msgstr "Таркибини кўриши ва ўзгартириши мумкин"
+
+#, fuzzy
+#~| msgid "Can View Content"
+#~ msgid "Can Only View Content"
+#~ msgstr "Таркибини кўриши мумкин"
+
+#~ msgid "Can View & Modify Content"
+#~ msgstr "Таркибини кўриши ва ўзгартириши мумкин"
+
+#, fuzzy
+#~| msgid "Can View Content"
+#~ msgid "Can Only View/Read Content"
+#~ msgstr "Таркибини кўриши мумкин"
+
+#~ msgid "Can View/Read & Modify/Write"
+#~ msgstr "Кўриши/ўқиши ва ўзгартириши/ёзиши мумкин"
+
+#~ msgid "&Permissions"
+#~ msgstr "&Ҳуқуқлар"
+
+#~ msgid "Access Permissions"
+#~ msgstr "Мурожаат ҳуқуқлари"
+
+#~ msgid "This file is a link and does not have permissions."
+#~ msgid_plural "All files are links and do not have permissions."
+#~ msgstr[0] "Ушбу файл боғ ва ҳеч қандай ҳуқуқларга эга эмас."
+
+#~ msgid "Only the owner can change permissions."
+#~ msgstr "Ҳуқуқларни фақат эгаси ўзгартириши мумкин."
+
+#~ msgid "O&wner:"
+#~ msgstr "&Эгаси:"
+
+#~ msgid "Specifies the actions that the owner is allowed to do."
+#~ msgstr "Эгаси бажариши мумкин бўлган амалларни кўрсатади."
+
+#~ msgid "Gro&up:"
+#~ msgstr "&Гуруҳ:"
+
+#~ msgid ""
+#~ "Specifies the actions that the members of the group are allowed to do."
+#~ msgstr "Гуруҳ аъзолари бажариши мумкин бўлган амалларни кўрсатади."
+
+#~ msgid "O&thers:"
+#~ msgstr "Б&ошқалар:"
+
+#~ msgid ""
+#~ "Specifies the actions that all users, who are neither owner nor in the "
+#~ "group, are allowed to do."
+#~ msgstr "Ҳамма фойдаланувчилар бажариши мумкин бўлган амалларни кўрсатади."
+
+#~ msgid "Only own&er can rename and delete folder content"
+#~ msgstr ""
+#~ "Жилднинг таркибини фақат э&гаси ўчириши ва номини ўзгартириши мумкин"
+
+#~ msgid "Is &executable"
+#~ msgstr "&Бажариб бўлади"
+
+#~ msgid ""
+#~ "Enable this option to allow only the folder's owner to delete or rename "
+#~ "the contained files and folders. Other users can only add new files, "
+#~ "which requires the 'Modify Content' permission."
+#~ msgstr ""
+#~ "Жилднинг таркибини ўчириш ва номини ўзгартириш ҳуқуқини унинг эгасига "
+#~ "бериш учун шу ерни белгиланг. Агар 'Таркибини кўриши ва ўзгартириши "
+#~ "мумкин' ҳуқуқи кўрсатилган бўлса, бошқа фойдаланувчилар жилдга янги "
+#~ "файлларни кўшиши мумкин."
+
+#~ msgid ""
+#~ "Enable this option to mark the file as executable. This only makes sense "
+#~ "for programs and scripts. It is required when you want to execute them."
+#~ msgstr ""
+#~ "Файлни бажариб бўладиган деб белгилаш учун шу ерни белгиланг. Бу фақат "
+#~ "дастур ва скриптлар учун маънога эга, бу уларни ишга тушириш учун керак."
+
+#~ msgid "A&dvanced Permissions"
+#~ msgstr "Қўши&мча ҳуқуқлар"
+
+#~ msgid "Ownership"
+#~ msgstr "Эгалик"
+
+#~ msgid "User:"
+#~ msgstr "Фойдаланувчи:"
+
+#~ msgid "Group:"
+#~ msgstr "Гуруҳ:"
+
+#~ msgid "Apply changes to all subfolders and their contents"
+#~ msgstr "Ўзгаришларни шу жилддаги барча элементларга қўллаш"
+
+#~ msgid "Advanced Permissions"
+#~ msgstr "Қўшимча ҳуқуқлар"
+
+#~ msgid "Class"
+#~ msgstr "Синф"
+
+#~ msgid ""
+#~ "Show\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "Элементларни\n"
+#~ "кўрсатиш"
+
+#~ msgid "This flag allows viewing the content of the folder."
+#~ msgstr "Бу байроқ жилднинг таркибини кўришга рухсат беради."
+
+#~ msgid "Read"
+#~ msgstr "Ўқиш"
+
+#~ msgid "The Read flag allows viewing the content of the file."
+#~ msgstr "Бу байроқ файлнинг таркибини кўришга рухсат беради."
+
+#~ msgid ""
+#~ "Write\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "Элементларни\n"
+#~ "ёзиш"
+
+#~ msgid ""
+#~ "This flag allows adding, renaming and deleting of files. Note that "
+#~ "deleting and renaming can be limited using the Sticky flag."
+#~ msgstr ""
+#~ "Бу байроқ файлни қўшиш, ўчириш ва номини ўзгартиришга рухсат беради. "
+#~ "Ўчириш ва номини ўзгартиришни 'Ёпишқоқ' байроғи билан чегаралаш мумкин."
+
+#~ msgid "Write"
+#~ msgstr "Ёзиш"
+
+#~ msgid "The Write flag allows modifying the content of the file."
+#~ msgstr "Бу байроқ файлнинг таркибини ўзгартиришга рухсат беради."
+
+#~ msgctxt "Enter folder"
+#~ msgid "Enter"
+#~ msgstr "Ўтиш"
+
+#~ msgid "Enable this flag to allow entering the folder."
+#~ msgstr "Бу байроқ жилдга ўтишга рухсат беради."
+
+#~ msgid "Exec"
+#~ msgstr "Бажариш"
+
+#~ msgid "Enable this flag to allow executing the file as a program."
+#~ msgstr "Бу байроқ файлни ишга туширишга рухсат беради."
+
+#~ msgid "Special"
+#~ msgstr "Махсус"
+
+#~ msgid "User"
+#~ msgstr "Фойдаланувчи"
+
+#~ msgid "Group"
+#~ msgstr "Гуруҳ"
+
+#~ msgid "Set UID"
+#~ msgstr "UID'ни ўрнатиш"
+
+#~ msgid "Set GID"
+#~ msgstr "GID'ни ўрнатиш"
+
+#~ msgctxt "File permission"
+#~ msgid "Sticky"
+#~ msgstr "Ёпишқоқ"
+
+#~ msgid "Link"
+#~ msgstr "Боғ"
+
+#~ msgid "This file uses advanced permissions"
+#~ msgid_plural "These files use advanced permissions."
+#~ msgstr[0] "Бу файл кўшимча ҳуқуқларга эга"
+
+#~ msgid "This folder uses advanced permissions."
+#~ msgid_plural "These folders use advanced permissions."
+#~ msgstr[0] "Бу жилд кўшимча ҳуқуқларга эга"
+
+#~ msgid "These files use advanced permissions."
+#~ msgstr "Бу файллар кўшимча ҳуқуқларга эга"
+
+#, fuzzy
+#~| msgid "Calculating..."
+#~ msgctxt "@action:button"
+#~ msgid "Calculating..."
+#~ msgstr "Ҳисобланмоқда..."
+
+#~ msgid "U&RL"
+#~ msgstr "U&RL"
+
+#~ msgid "URL:"
+#~ msgstr "URL:"
+
+#~ msgid "&Application"
+#~ msgstr "&Дастур"
+
+#~ msgid "Advanced Options for %1"
+#~ msgstr "%1 учун қўшимча параметрлар"
+
+#~ msgid "KDE SSL Information"
+#~ msgstr "KDE SSL ҳақида маълумот"
+
+#, fuzzy
+#~| msgid "Subject"
+#~ msgctxt "The receiver of the SSL certificate"
+#~ msgid "Subject"
+#~ msgstr "Мавзу"
+
+#, fuzzy
+#~| msgid "Issuer"
+#~ msgctxt "The authority that issued the SSL certificate"
+#~ msgid "Issuer"
+#~ msgstr "Ким томонидан берилган"
+
+#~ msgid "Current connection is secured with SSL."
+#~ msgstr "Жорий алоқа SSL билан ҳимояланган."
+
+#~ msgid ""
+#~ "The main part of this document is secured with SSL, but some parts are "
+#~ "not."
+#~ msgstr ""
+#~ "Бу ҳужжатнинг асосий қисми SSL билан ҳимояланган, аммо баъзи бир қисмлари "
+#~ "ҳимояланмаган."
+
+#~ msgid "Some of this document is secured with SSL, but the main part is not."
+#~ msgstr ""
+#~ "Бу ҳужжатнинг баъзи бир қисмлари SSL билан ҳимояланган, аммо асосий қисми "
+#~ "ҳимояланмаган."
+
+#~ msgid "Current connection is not secured with SSL."
+#~ msgstr "Жорий алоқа SSL билан ҳимояланмаган."
+
+#, fuzzy
+#~ msgctxt "%1, using %2 bits of a %3 bit key"
+#~ msgid "%1, %2 %3"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "Mounting %1"
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "using %1 bit"
+#~ msgid_plural "using %1 bits"
+#~ msgstr[0] "%1 уланмоқда"
+
+#, fuzzy
+#~| msgid "%1 bits used of a %2 bit cipher"
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "of a %1 bit key"
+#~ msgid_plural "of a %1 bit key"
+#~ msgstr[0] "%2 битли шифрнинг %1 бити ишлатилган"
+
+#, fuzzy
+#~| msgid "&Reset"
+#~ msgctxt "The certificate is trusted"
+#~ msgid "Yes"
+#~ msgstr "&Тиклаш"
+
+#, fuzzy
+#~| msgid "%1 / %2"
+#~ msgctxt "%1 is the effective date of the certificate, %2 is the expiry date"
+#~ msgid "%1 to %2"
+#~ msgstr "%1 / %2"
+
+#, fuzzy
+#~| msgid "%1 B"
+#~ msgctxt "@action:inmenu Search for <text> with"
+#~ msgid "%1"
+#~ msgstr "%1 Б"
+
+#, fuzzy
+#~| msgid "Change &Policy..."
+#~ msgid "Configure Web Shortcuts..."
+#~ msgstr "Қоидани ў&згартириш"
+
+#~ msgid "Open file dialog"
+#~ msgstr "Файлни танлаш ойнасини очиш"
+
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "One Folder"
+#~| msgid_plural "%1 Folders"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Folder"
+#~ msgstr "%1-та жилд"
+
+#, fuzzy
+#~| msgid "&Paste File"
+#~| msgid_plural "&Paste %1 Files"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One File"
+#~ msgstr "%1-та фай&лни қўйиш"
+
+#, fuzzy
+#~| msgid "One Item"
+#~| msgid_plural "%1 Items"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Item"
+#~ msgid_plural "Paste %1 Items"
+#~ msgstr[0] "%1-та банд"
+
+#, fuzzy
+#~| msgid "&Paste Clipboard Contents"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste Clipboard Contents..."
+#~ msgstr "&Хотирадан қўйиш"
+
+#, fuzzy
+#~| msgid "Paste"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste"
+#~ msgstr "Қўйиш"
+
+#, fuzzy
+#~ msgid "Date: %1"
+#~ msgstr "ҳажми %1"
+
+#, fuzzy
+#~| msgid "Size:"
+#~ msgid "Size: %1"
+#~ msgstr "Ҳажми:"
+
+#~ msgid "&Rename"
+#~ msgstr "&Номини ўзгартириш"
+
+#~ msgid "Suggest New &Name"
+#~ msgstr "Бошқа номни &таклиф қилиш"
+
+#~ msgid "&Skip"
+#~ msgstr "Ў&тказиб юбориш"
+
+#, fuzzy
+#~| msgid "Write"
+#~ msgctxt "Write files into an existing folder"
+#~ msgid "&Write Into"
+#~ msgstr "Ёзиш"
+
+#, fuzzy
+#~| msgid "O&verwrite All"
+#~ msgctxt "Overwrite files into an existing folder when files are older"
+#~ msgid "&Overwrite older files"
+#~ msgstr "Ҳаммасини а&лмаштириш"
+
+#~ msgid "&Resume"
+#~ msgstr "&Давом этиш"
+
+#~ msgid "C&ontinue"
+#~ msgstr "&Давом этиш"
+
+#, fuzzy
+#~| msgid "Choose a different filename for the destination file."
+#~ msgid "This action will overwrite the destination."
+#~ msgstr "Манзил файлининг номини ўзгартиринг."
+
+#, fuzzy
+#~| msgid "Source"
+#~ msgid "Source"
+#~ msgstr "Манба"
+
+#, fuzzy
+#~| msgid "Destination"
+#~ msgid "Destination"
+#~ msgstr "Манзил"
+
+#, fuzzy
+#~| msgid "the extension <b>%1</b>"
+#~ msgid "The destination is <b>smaller by %1</b>"
+#~ msgstr "кенгайтма <b>%1</b>"
+
+#, fuzzy
+#~| msgid "the extension <b>%1</b>"
+#~ msgid "The destination is <b>bigger by %1</b>"
+#~ msgstr "кенгайтма <b>%1</b>"
+
+#, fuzzy
+#~| msgid "The new file name is empty."
+#~ msgid "The files are identical."
+#~ msgstr "Янги файлнинг номи кўрсатилмаган."
+
+#, fuzzy
+#~| msgid "The new file name is empty."
+#~ msgid "The files are different."
+#~ msgstr "Янги файлнинг номи кўрсатилмаган."
+
+#~ msgid "An older item named '%1' already exists."
+#~ msgstr "\"%1\" номли эски элемент аллақачон мавжуд."
+
+#~ msgid "A similar file named '%1' already exists."
+#~ msgstr "\"%1\" номли ўхшаш файл аллақачон мавжуд."
+
+#, fuzzy
+#~| msgid "An older item named '%1' already exists."
+#~ msgid "A more recent item named '%1' already exists."
+#~ msgstr "\"%1\" номли эски элемент аллақачон мавжуд."
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Rename:"
+#~ msgstr "&Номини ўзгартириш"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@title:window"
+#~ msgid "Rename Item"
+#~ msgstr "&Номини ўзгартириш"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@title:window"
+#~ msgid "Rename Items"
+#~ msgstr "&Номини ўзгартириш"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@action:button"
+#~ msgid "&Rename"
+#~ msgstr "&Номини ўзгартириш"
+
+#, fuzzy
+#~ msgctxt ""
+#~ "This a template for new filenames, # is replaced by a number later, must "
+#~ "be the end character"
+#~ msgid "New name #"
+#~ msgstr "Ускуна:"
+
+#, fuzzy
+#~| msgid "Change the selected proxy exception address."
+#~ msgctxt "@label:textbox"
+#~ msgid "Rename the %1 selected item to:"
+#~ msgid_plural "Rename the %1 selected items to:"
+#~ msgstr[0] "Қоидадан ташқари танланган прокси манзилини ўзгартириш."
+
+#~ msgid "Information"
+#~ msgstr "Маълумот"
+
+#~ msgid "Retry"
+#~ msgstr "Қайтадан уриниш"
+
+#, fuzzy
+#~| msgid "Places"
+#~ msgid "Replace All"
+#~ msgstr "Жойлар"
+
+#~ msgid "Skip"
+#~ msgstr "Ўтказиб юбориш"
+
+#, fuzzy
+#~| msgid "Skip"
+#~ msgid "Skip All"
+#~ msgstr "Ўтказиб юбориш"
+
+#, fuzzy
+#~| msgid "IP address:"
+#~ msgctxt "Web page address"
+#~ msgid "Address:"
+#~ msgstr "IP рақами:"
+
+#, fuzzy
+#~| msgid "IP address:"
+#~ msgid "IP address:"
+#~ msgstr "IP рақами:"
+
+#, fuzzy
+#~| msgid "Description:"
+#~ msgid "Encryption:"
+#~ msgstr "Таърифи:"
+
+#~ msgid "Details:"
+#~ msgstr "Тафсилотлар:"
+
+#, fuzzy
+#~| msgid "SSL version:"
+#~ msgid "SSL version:"
+#~ msgstr "SSL версияси:"
+
+#, fuzzy
+#~| msgid "Certificate"
+#~ msgid "Certificate chain:"
+#~ msgstr "Сертификат"
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgid "Trusted:"
+#~ msgstr "Яратилган:"
+
+#, fuzzy
+#~| msgid "Valid from:"
+#~ msgid "Validity period:"
+#~ msgstr "Дан ҳақиқий:"
+
+#, fuzzy
+#~| msgid "Serial number:"
+#~ msgid "Serial number:"
+#~ msgstr "Серия рақами:"
+
+#, fuzzy
+#~| msgid "MD5 digest:"
+#~ msgid "MD5 digest:"
+#~ msgstr "MD5 дайжест:"
+
+#, fuzzy
+#~| msgid "MD5 digest:"
+#~ msgid "SHA1 digest:"
+#~ msgstr "MD5 дайжест:"
+
+#, fuzzy
+#~ msgctxt "@info"
+#~ msgid "Do you really want to move this %1 item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] "Ростдан бу элементни ўчиришни истайсизми?"
+
+#, fuzzy
+#~| msgid "Examining"
+#~ msgctxt "Warning about executing unknown program"
+#~ msgid "Warning"
+#~ msgstr "Текширилмоқда"
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgid "Unknown HTTP verb."
+#~ msgstr "Номаълум хато"
+
+#, fuzzy
+#~| msgid "<h1>Cookies Management Quick Help</h1>"
+#~ msgid "<h1>Cookie Management Quick Help</h1>"
+#~ msgstr "<h1>Кукиларни бошқариш бўйича тез ёрдам</h1>"
+
+#, fuzzy
+#~| msgid "&Search:"
+#~ msgid "Web Search Keywords"
+#~ msgstr "Қ&идириш:"
+
+#, fuzzy
+#~ msgid "Configure enhanced browsing features"
+#~ msgstr "&Давом этиш"
+
+#~ msgid "&Yes"
+#~ msgstr "&Ҳа"
+
+#~ msgid "&No"
+#~ msgstr "&Йўқ"
+
+#~ msgid "A file or folder named %1 already exists."
+#~ msgstr "%1 номли файл ёки жилд аллақачон мавжуд."
+
+#~ msgid "You do not have permission to create that folder."
+#~ msgstr "Бу жилдни яратишга сизга рухсат йўқ."
+
+#, fuzzy
+#~| msgid "Writing to %1 is not supported."
+#~ msgid "mounting is not supported by Windows CE."
+#~ msgstr "'%1'га ёзиш қўлланмаган."
+
+#, fuzzy
+#~| msgid "Writing to %1 is not supported."
+#~ msgid "unmounting is not supported by Windows CE."
+#~ msgstr "'%1'га ёзиш қўлланмаган."
+
+#~ msgid ""
+#~ "The desktop entry of type\n"
+#~ "%1\n"
+#~ "is unknown."
+#~ msgstr ""
+#~ ".desktop файлида\n"
+#~ "номаълум ёзув (%1)."
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is of type FSDevice but has no Dev=... entry."
+#~ msgstr ""
+#~ ".desktop файлининг (%1) тури\n"
+#~ "FSDevice, аммо \"Dev=...\" ёзуви йўқ."
+
+#~ msgid "Mount"
+#~ msgstr "Улаш"
+
+#~ msgid "Unmount"
+#~ msgstr "Ажратиш"
+
+#~ msgid ""
+#~ "<qt>Unable to run the command specified. The file or folder <b>%1</b> "
+#~ "does not exist.</qt>"
+#~ msgstr ""
+#~ "<qt>Кўрсатилган буйруқни бажариб бўлмади. Файл ёки жилд (<b>%1</b>) "
+#~ "мавжуд эмас.</qt>"
+
+#, fuzzy
+#~| msgid "Could not change permissions for %1."
+#~ msgid "Could not find any application or handler for %1"
+#~ msgstr "%1 учун ҳуқуқларни ўзгартириб бўлмади."
+
+#~ msgid "&Paste File"
+#~ msgid_plural "&Paste %1 Files"
+#~ msgstr[0] "%1-та фай&лни қўйиш"
+
+#~ msgid "&Paste Clipboard Contents"
+#~ msgstr "&Хотирадан қўйиш"
+
+#~ msgid "None"
+#~ msgstr "Йўқ"
+
+#, fuzzy
+#~ msgid "D-Bus registration:"
+#~ msgstr "DCOP &рўйхатидан ўтиш:"
+
+#, fuzzy
+#~| msgid "*|All Files"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Audio"
+#~ msgstr "*|Ҳамма файллар"
+
+#~ msgid "Co&mmand:"
+#~ msgstr "&Буйруқ:"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgid "Open %1 in tab"
+#~ msgstr "Дастур билан очиш"
+
+#, fuzzy
+#~| msgid "You are not authorized to execute this file."
+#~ msgid "Authentication is required to delete this file."
+#~ msgstr "Бу файлни бажаришга сизда етарли ҳуқуқлар йўқ."
+
+#, fuzzy
+#~| msgid "Click this button to create a new folder."
+#~ msgid "Authentication is required to create a folder."
+#~ msgstr "Янги жилдни яратиш учун бу тугмани босинг"
+
+#, fuzzy
+#~| msgid "You are not authorized to execute this file."
+#~ msgid "Authentication is required to open this file."
+#~ msgstr "Бу файлни бажаришга сизда етарли ҳуқуқлар йўқ."
+
+#, fuzzy
+#~| msgid "You are not authorized to execute this file."
+#~ msgid "Authentication is required to rename this file."
+#~ msgstr "Бу файлни бажаришга сизда етарли ҳуқуқлар йўқ."
+
+#, fuzzy
+#~| msgid "You are not authorized to execute this file."
+#~ msgid "Authentication is required to delete this folder."
+#~ msgstr "Бу файлни бажаришга сизда етарли ҳуқуқлар йўқ."
+
+#, fuzzy
+#~| msgid "Unmount"
+#~ msgid "&Unmount '%1'"
+#~ msgstr "Ажратиш"
+
+#, fuzzy
+#~| msgid "Eject"
+#~ msgid "&Eject '%1'"
+#~ msgstr "Чиқариш"
+
+#, fuzzy
+#~| msgid "&Edit Entry..."
+#~ msgid "&Edit Entry '%1'..."
+#~ msgstr "Элементни &таҳрирлаш"
+
+#, fuzzy
+#~| msgid "&Remove Entry"
+#~ msgid "&Remove Entry '%1'"
+#~ msgstr "Элементни ў&чириш"
+
+#, fuzzy
+#~| msgid "Ru&n as a different user"
+#~ msgctxt "@action:button"
+#~ msgid "Enter a Different Name"
+#~ msgstr "Бошқа ф&ойдаланувчи сифатида бажариш"
+
+#, fuzzy
+#~| msgid "Invalid Filenames"
+#~ msgid "Invalid Directory Name"
+#~ msgstr "Файл номлари нотўғри"
+
+#, fuzzy
+#~| msgid "C&reate"
+#~ msgid "Create New File Type"
+#~ msgstr "&Яратиш"
+
+#, fuzzy
+#~| msgid "File types:"
+#~ msgid "File Type Options"
+#~ msgstr "Файл турлари:"
+
+#~ msgid "Edit Entry..."
+#~ msgstr "Таҳрирлаш"
+
+#~ msgid "Delete Entry"
+#~ msgstr "Ўчириш"
+
+#, fuzzy
+#~ msgid "Cannot talk to klauncher: %1"
+#~ msgstr "Klauncher билан боғланиб бўлмади"
+
+#, fuzzy
+#~| msgid "Launching %1"
+#~ msgid "klauncher said: %1"
+#~ msgstr "%1'ни ишга тушириш"
+
+#, fuzzy
+#~| msgid "Writing to %1 is not supported."
+#~ msgid "unmounting is not supported by wince."
+#~ msgstr "'%1'га ёзиш қўлланмаган."
+
+#, fuzzy
+#~ msgid "File name:"
+#~ msgstr "Ускуна:"
+
+#~ msgid "&Use cache"
+#~ msgstr "Кэшдан &фойдаланиш"
+
+#~ msgid "Use cache whenever &possible"
+#~ msgstr "Иложи бў&лса кэшдан фойдаланиш"
+
+#~ msgid "Disk cache &size:"
+#~ msgstr "Кэшнинг ҳа&жми:"
+
+#, fuzzy
+#~| msgid "%1 KB"
+#~ msgid " KiB"
+#~ msgstr "%1 Кб"
+
+#~ msgid "C&lear Cache"
+#~ msgstr "Кэшни &тозалаш"
+
+#, fuzzy
+#~| msgid "Authentication"
+#~ msgctxt "@title:window"
+#~ msgid "Add Identification"
+#~ msgstr "Тасдиқлаш"
+
+#, fuzzy
+#~| msgid "Duplicate Entry"
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Identification"
+#~ msgstr "Бир хил маълумот"
+
+#, fuzzy
+#~| msgid "Duplicate Entry"
+#~ msgid "&Send identification"
+#~ msgstr "Бир хил маълумот"
+
+#, fuzzy
+#~| msgid "Duplicate Entry"
+#~ msgid "Default Identification"
+#~ msgstr "Бир хил маълумот"
+
+#~ msgid "Add operating s&ystem name"
+#~ msgstr "Операцион &тизимнинг номини қўшиш"
+
+#~ msgid "Add operating system &version"
+#~ msgstr "Операцион тизимнинг &версиясини қўшиш"
+
+#~ msgid "Add &machine (processor) type"
+#~ msgstr "П&роцессорнинг турини қўшиш"
+
+#~ msgid "Add lang&uage information"
+#~ msgstr "&Тил ҳақида маълумотни қўшиш"
+
+#, fuzzy
+#~| msgid "Duplicate Entry"
+#~ msgid "Site Specific Identification"
+#~ msgstr "Бир хил маълумот"
+
+#~ msgid "Site Name"
+#~ msgstr "Сайтнинг номи"
+
+#, fuzzy
+#~| msgid "Duplicate Entry"
+#~ msgid "Identification"
+#~ msgstr "Бир хил маълумот"
+
+#, fuzzy
+#~| msgid "User: "
+#~ msgid "User Agent"
+#~ msgstr "Фойдаланувчи: "
+
+#, fuzzy
+#~| msgid "Change the selected proxy exception address."
+#~ msgid "Change the selected identifier text."
+#~ msgstr "Қоидадан ташқари танланган прокси манзилини ўзгартириш."
+
+#, fuzzy
+#~| msgid "delete the specified file or folder"
+#~ msgid "Delete the selected identifier text."
+#~ msgstr "кўрсатилган файл ёки жилдни ўчириш"
+
+#~ msgid "&When browsing the following site:"
+#~ msgstr "Қуйидаги &сайтлар учун:"
+
+#, fuzzy
+#~| msgid "Use the following lo&gin information."
+#~ msgid "&Use the following identification:"
+#~ msgstr "Уланиш учун қуйидаги маъ&лумотдан фойдаланиш"
+
+#, fuzzy
+#~| msgid "Duplicate Entry"
+#~ msgid "Real identification:"
+#~ msgstr "Бир хил маълумот"
+
+#~ msgid "De&vice"
+#~ msgstr "&Ускуна"
+
+#~ msgid "Device (/dev/fd0):"
+#~ msgstr "Ускуна (/dev/fd0):"
+
+#~ msgid "Device:"
+#~ msgstr "Ускуна:"
+
+#~ msgid "Read only"
+#~ msgstr "Фақат ўқишга"
+
+#~ msgid "File system:"
+#~ msgstr "Файл тизими:"
+
+#~ msgid "Mount point (/mnt/floppy):"
+#~ msgstr "Улаш нуқтаси (/mnt/floppy):"
+
+#~ msgid "Mount point:"
+#~ msgstr "Улаш нуқтаси:"
+
+#, fuzzy
+#~| msgid "Invalid Entry"
+#~ msgid "Invalid link target"
+#~ msgstr "Хато маълумот"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgid "Add Network Folder"
+#~ msgstr "Янги жилд"
+
+#, fuzzy
+#~ msgctxt "@info"
+#~ msgid "Do you really want to move these %1 items to the Trash?"
+#~ msgstr "Ростдан бу элементни ўчиришни истайсизми?"
+
+#~ msgid "Enter the certificate password:"
+#~ msgstr "Сертификатнинг махфий сўзини киритинг:"
+
+#~ msgid "SSL Certificate Password"
+#~ msgstr "SSL сертификати учун махфий сўз"
+
+#~ msgid "Unable to open the certificate. Try a new password?"
+#~ msgstr ""
+#~ "Сертификатни очиб бўлмади. Бошқа махфий сўзни синаб кўришни истайсизми?"
+
+#~ msgid "The procedure to set the client certificate for the session failed."
+#~ msgstr "Сеанс учун клиент сертификатини ўрнатиш муваффақиятсиз тугади."
+
+#, fuzzy
+#~| msgid ""
+#~| "SSL certificate is being rejected as requested. You can disable this in "
+#~| "the KDE Control Center."
+#~ msgid ""
+#~ "SSL certificate is being rejected as requested. You can disable this in "
+#~ "the KDE System Settings."
+#~ msgstr ""
+#~ "SSL сертификати талабга биноан қабул қилинмади. Буни KDE бошқарув "
+#~ "марказида ўчиришингиз мумкин."
+
+#, fuzzy
+#~| msgid "A folder named %1 already exists."
+#~ msgid "A folder named \"%1\" already exists."
+#~ msgstr "%1 номли жилд аллақачон мавжуд."
+
+#, fuzzy
+#~| msgid "Name"
+#~ msgctxt "@title:column Name label from web shortcuts column"
+#~ msgid "Name"
+#~ msgstr "Номи"
+
+#, fuzzy
+#~| msgid "None"
+#~ msgctxt "@item:inlistbox No default web shortcut"
+#~ msgid "None"
+#~ msgstr "Йўқ"
+
+#, fuzzy
+#~ msgid "Drive: %1"
+#~ msgstr "ҳажми %1"
+
+#, fuzzy
+#~| msgid "The new file name is empty."
+#~ msgid "The source file is bigger."
+#~ msgstr "Янги файлнинг номи кўрсатилмаган."
+
+#~ msgid ""
+#~ "The chosen filenames do not\n"
+#~ "appear to be valid."
+#~ msgstr ""
+#~ "Танланган файл номлари\n"
+#~ "тўғрига ўхшамайди."
+
+#~ msgid "Invalid Filenames"
+#~ msgstr "Файл номлари нотўғри"
+
+#~ msgid "&Overwrite"
+#~ msgstr "&Алмаштириш"
+
+#~ msgid "<qt>You do not have permission to run <b>%1</b>.</qt>"
+#~ msgstr "<qt>Сизга <b>%1</b>'ни ишга туширишга рухсат йўқ.</qt>"
+
+#~ msgid ""
+#~ "<qt>Unable to enter <b>%1</b>.\n"
+#~ "You do not have access rights to this location.</qt>"
+#~ msgstr ""
+#~ "<qt><b>%1</b>'га ўтиб бўлмади.\n"
+#~ "Сизда бу манзил учун етарли ҳуқуқлар йўқ.</qt>"
+
+#~ msgid "You are not authorized to execute this service."
+#~ msgstr "Бу хизматни бажаришга сизда етарли ҳуқуқлар йўқ."
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgid "Specified socket path is invalid"
+#~ msgstr "Сертификат ҳақиқий эмас."
+
+#, fuzzy
+#~| msgid "The protocol %1 is not supported."
+#~ msgid "The socket operation is not supported"
+#~ msgstr "Протокол %1 қўлланмаган."
+
+#, fuzzy
+#~| msgid "Connection to Server Refused"
+#~ msgid "Connection refused"
+#~ msgstr "Боғланиш сервер томонидан рад этилди"
+
+#, fuzzy
+#~| msgid "Permissions"
+#~ msgid "Permission denied"
+#~ msgstr "Ҳуқуқлар"
+
+#, fuzzy
+#~| msgid "Connection timed out."
+#~ msgid "Connection timed out"
+#~ msgstr "Алоқа ўрнатиш учун вақт тугади."
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgid "Unknown error"
+#~ msgstr "Номаълум хато"
+
+#, fuzzy
+#~| msgid "Could not login to %1."
+#~ msgid "Could not set non-blocking mode"
+#~ msgstr "%1'га кириб бўлмади."
+
+#, fuzzy
+#~ msgid "Not a directory"
+#~ msgstr "Жилд яратиш"
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgid "Unknown socket error"
+#~ msgstr "Номаълум хато"
+
+#, fuzzy
+#~| msgid "Writing to %1 is not supported."
+#~ msgid "Operation not supported"
+#~ msgstr "'%1'га ёзиш қўлланмаган."
+
+#~ msgid "AutoSkip"
+#~ msgstr "Авто-ўтказиб юбориш"
+
+#~ msgid "SSL support is not available in this build of KDE."
+#~ msgstr "Жорий KDE'да SSL қўлланмаган."
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate authority's certificate is invalid"
+#~ msgstr "Сертификат ҳақиқий эмас."
+
+#, fuzzy
+#~| msgid "Certificate has expired."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate has expired"
+#~ msgstr "Сертификатнинг муддати ўтиб кетган."
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate is invalid"
+#~ msgstr "Сертификат ҳақиқий эмас."
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate is not signed by any trusted certificate authority"
+#~ msgstr "Сертификат ҳақиқий эмас."
+
+#, fuzzy
+#~| msgid "Certificate has been revoked."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate has been revoked"
+#~ msgstr "Сертификат бекор қилинган."
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate is unsuitable for this purpose"
+#~ msgstr "Сертификат ҳақиқий эмас."
+
+#, fuzzy
+#~| msgid ""
+#~| "The IP address of the host %1 does not match the one the certificate was "
+#~| "issued to."
+#~ msgctxt "SSL error"
+#~ msgid ""
+#~ "The certificate authority's certificate is marked to reject this "
+#~ "certificate's purpose"
+#~ msgstr "Хостнинг (%1) IP рақами сертификат берилган IP рақамга мос келмади."
+
+#, fuzzy
+#~| msgid "Do not send a certificate"
+#~ msgctxt "SSL error"
+#~ msgid "The peer did not present any certificate"
+#~ msgstr "Сертификат жўнатилмасин"
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate does not apply to the given host"
+#~ msgstr "Сертификат ҳақиқий эмас."
+
+#, fuzzy
+#~| msgid "The certificate is valid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate chain is too long"
+#~ msgstr "Ҳақиқий сертификат."
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgctxt "SSL error"
+#~ msgid "Unknown error"
+#~ msgstr "Номаълум хато"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Root"
+#~ msgstr "Туб"
+
+#, fuzzy
+#~| msgid "Could not change permissions for %1."
+#~ msgid "Could not change permissions for '%1'"
+#~ msgstr "%1 учун ҳуқуқларни ўзгартириб бўлмади."
+
+#, fuzzy
+#~ msgid "Create hidden directory?"
+#~ msgstr "Жилд яратиш"
+
+#, fuzzy
+#~| msgid "Show Preview"
+#~ msgid "Show Aside Preview"
+#~ msgstr "Кўриб чиқишни кўрсатиш"
+
+#, fuzzy
+#~ msgid "Device usage:"
+#~ msgstr "Ускуна:"
+
+#~ msgid "By Name"
+#~ msgstr "Номи бўйича"
+
+#~ msgid "By Size"
+#~ msgstr "Ҳажми бўйича"
+
+#~ msgid "You may have incorrectly typed the location."
+#~ msgstr "Балки сиз манзилни нотўғри киритдингиз."
+
+#~ msgid ""
+#~ "Could not write file %1.\n"
+#~ "Disk full."
+#~ msgstr ""
+#~ "%1 файлини ёзиб бўлмади.\n"
+#~ "Дискда бўш жой йўқ."
+
+#, fuzzy
+#~| msgid " %1 kB/s "
+#~ msgctxt "size in 1000 bytes"
+#~ msgid "%1 kB"
+#~ msgstr " %1 Кб/с "
+
+#, fuzzy
+#~| msgid "%1 MB"
+#~ msgctxt "size in 10^6 bytes"
+#~ msgid "%1 MB"
+#~ msgstr "%1 Мб"
+
+#, fuzzy
+#~| msgid "%1 GB"
+#~ msgctxt "size in 10^9 bytes"
+#~ msgid "%1 GB"
+#~ msgstr "%1 Гб"
+
+#, fuzzy
+#~| msgid "%1 TB"
+#~ msgctxt "size in 10^12 bytes"
+#~ msgid "%1 TB"
+#~ msgstr "%1 Тб"
+
+#, fuzzy
+#~| msgid "%1 KB"
+#~ msgctxt "memory size in 1024 bytes"
+#~ msgid "%1 KB"
+#~ msgstr "%1 Кб"
+
+#, fuzzy
+#~| msgid "%1 MB"
+#~ msgctxt "memory size in 2^20 bytes"
+#~ msgid "%1 MB"
+#~ msgstr "%1 Мб"
+
+#, fuzzy
+#~| msgid "%1 GB"
+#~ msgctxt "memory size in 2^30 bytes"
+#~ msgid "%1 GB"
+#~ msgstr "%1 Гб"
+
+#, fuzzy
+#~| msgid "%1 TB"
+#~ msgctxt "memory size in 2^40 bytes"
+#~ msgid "%1 TB"
+#~ msgstr "%1 Тб"
+
+#, fuzzy
+#~| msgid "%1 KB"
+#~ msgctxt "size in 1024 bytes"
+#~ msgid "%1 KiB"
+#~ msgstr "%1 Кб"
+
+#, fuzzy
+#~| msgid "%1 MB"
+#~ msgctxt "size in 2^20 bytes"
+#~ msgid "%1 MiB"
+#~ msgstr "%1 Мб"
+
+#, fuzzy
+#~| msgid "%1 GB"
+#~ msgctxt "size in 2^30 bytes"
+#~ msgid "%1 GiB"
+#~ msgstr "%1 Гб"
+
+#, fuzzy
+#~| msgid "%1 TB"
+#~ msgctxt "size in 2^40 bytes"
+#~ msgid "%1 TiB"
+#~ msgstr "%1 Тб"
+
+#~ msgid "Forbidden"
+#~ msgstr "Тақиқланган"
+
+#~ msgid "Can Read"
+#~ msgstr "Ўқиши мумкин"
+
+#~ msgid "Can Read & Write"
+#~ msgstr "Ўқиши ва ёзиши мумкин"
+
+#~ msgid "Can View Content & Read"
+#~ msgstr "Таркибини кўриши ва ўқиши мумкин"
+
+#, fuzzy
+#~ msgid "Do you really want to delete this item?"
+#~ msgid_plural "Do you really want to delete these %1 items?"
+#~ msgstr[0] "Ростдан бу элементни ўчиришни истайсизми?"
+
+#~ msgctxt "Verb"
+#~ msgid "&Trash"
+#~ msgstr "&Чиқиндилар қутисига"
+
+#, fuzzy
+#~| msgid "Others"
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other..."
+#~ msgstr "Бошқалар"
+
+#, fuzzy
+#~| msgid "C&ontinue"
+#~ msgid "Continue"
+#~ msgstr "&Давом этиш"
+
+#, fuzzy
+#~ msgid "Cancel"
+#~ msgstr "&Dante"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Unable to run the command specified. The file or folder <b>%1</b> "
+#~| "does not exist.</qt>"
+#~ msgid "<qt>The file or folder <b>%1</b> does not exist.</qt>"
+#~ msgstr ""
+#~ "<qt>Кўрсатилган буйруқни бажариб бўлмади. Файл ёки жилд (<b>%1</b>) "
+#~ "мавжуд эмас.</qt>"
+
+#, fuzzy
+#~| msgid "Ad&vanced Options"
+#~ msgid "Advanced options"
+#~ msgstr "Қўшимча &параметрлар"
+
+#~ msgid "&Username:"
+#~ msgstr "Ф&ойдаланувчи:"
+
+#~ msgid ""
+#~ "Unable to create io-slave:\n"
+#~ "klauncher said: %1"
+#~ msgstr ""
+#~ "io-slave яратиб бўлмади.\n"
+#~ "Klauncher'дан олинган хабар: %1"
+
+#~ msgid "Open with:"
+#~ msgstr "Дастур билан очиш:"
+
+#~ msgid ""
+#~ "%1.\n"
+#~ "\n"
+#~ "Reason: %2"
+#~ msgstr ""
+#~ "%1.\n"
+#~ "\n"
+#~ "Сабаб: %2"
+
+#, fuzzy
+#~| msgid "Disk cache &size:"
+#~ msgid "Disk cache size:"
+#~ msgstr "Кэшнинг ҳа&жми:"
+
+#, fuzzy
+#~| msgid " KB"
+#~ msgid " kB"
+#~ msgstr " Кб"
+
+#, fuzzy
+#~| msgid "C&lear Cache"
+#~ msgid "&Clear Cache"
+#~ msgstr "Кэшни &тозалаш"
+
+#~ msgid ""
+#~ "Enter the port number of the HTTP proxy server. Default is 8080. Another "
+#~ "common value is 3128."
+#~ msgstr ""
+#~ "HTTP прокси серверининг портини киритинг. Андоза - 8080. Бошқа кенг "
+#~ "ишлатиладиган порт - 3128."
+
+#~ msgid ""
+#~ "Enter the port number of the FTP proxy server. Default 8080. Another "
+#~ "common value is 3128."
+#~ msgstr ""
+#~ "FTP прокси серверининг портини киритинг. Андоза - 8080. Бошқа кенг "
+#~ "ишлатиладиган порт - 3128."
+
+#, fuzzy
+#~| msgid "Variable Proxy Configuration"
+#~ msgctxt "@title:window"
+#~ msgid "Variable Proxy Configuration"
+#~ msgstr "Проксининг хар ҳил мосламалари"
+
+#~ msgid "You must specify at least one valid proxy environment variable."
+#~ msgstr "Камида битта прокси муҳит ўзгарувчисини аниқлашингиз керак."
+
+#, fuzzy
+#~| msgid "Invalid Proxy Setup"
+#~ msgctxt "@title:window"
+#~ msgid "Invalid Proxy Setup"
+#~ msgstr "Прокси мосламаси нотўғри"
+
+#~ msgid "Successfully verified."
+#~ msgstr "Текшириш муваффақиятли тугади."
+
+#, fuzzy
+#~| msgid "Proxy Setup"
+#~ msgctxt "@title:window"
+#~ msgid "Proxy Setup"
+#~ msgstr "Проксини мослаш"
+
+#, fuzzy
+#~| msgid "Automatic Proxy Variable Detection"
+#~ msgctxt "@title:window"
+#~ msgid "Automatic Proxy Variable Detection"
+#~ msgstr "Прокси ўзгарувчиларни авто-аниқлаш"
+
+#, fuzzy
+#~| msgid "Manual Proxy Configuration"
+#~ msgctxt "@title:window"
+#~ msgid "Manual Proxy Configuration"
+#~ msgstr "Проксини қўлбола мослаш"
+
+#, fuzzy
+#~| msgid "Invalid Proxy Setting"
+#~ msgctxt "@title:window"
+#~ msgid "Invalid Proxy Setting"
+#~ msgstr "Проксининг мосламаси нотўғри"
+
+#~ msgid ""
+#~ "One or more of the specified proxy settings are invalid. The incorrect "
+#~ "entries are highlighted."
+#~ msgstr ""
+#~ "Проксининг битта ёки бир нечта мосламалари хато. Хатолар мосламалар "
+#~ "белгиланган."
+
+#~ msgid "You entered a duplicate address. Please try again."
+#~ msgstr "Иккита бир хил манзил киритилди. Илтимос қайтадан уриниб кўринг."
+
+#~ msgid "<qt><center><b>%1</b></center> is already in the list.</qt>"
+#~ msgstr "<qt><center><b>%1</b></center> рўйхатда аллақачон мавжуд.</qt>"
+
+#, fuzzy
+#~| msgid "Duplicate Entry"
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Entry"
+#~ msgstr "Бир хил маълумот"
+
+#, fuzzy
+#~| msgid "E&xceptions"
+#~ msgctxt "@title:window"
+#~ msgid "New Exception"
+#~ msgstr "Қоидадан т&ашқари ҳолатлар"
+
+#, fuzzy
+#~| msgid "E&xceptions"
+#~ msgctxt "@title:window"
+#~ msgid "Change Exception"
+#~ msgstr "Қоидадан т&ашқари ҳолатлар"
+
+#~ msgid "The address you have entered is not valid."
+#~ msgstr "Киритилган манзил ҳақиқий эмас."
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Make sure none of the addresses or URLs you specified contain "
+#~| "invalid or wildcard characters such as spaces, asterisks (*), or "
+#~| "question marks(?).<p><u>Examples of VALID entries:</u><br/><code>http://"
+#~| "mycompany.com, 192.168.10.1, mycompany.com, localhost, http://localhost</"
+#~| "code><p><u>Examples of INVALID entries:</u><br/><code>http://my company."
+#~| "com, http:/mycompany,com file:/localhost</code></qt>"
+#~ msgid ""
+#~ "<qt>Make sure none of the addresses or URLs you specified contain invalid "
+#~ "or wildcard characters such as spaces, asterisks (*), or question "
+#~ "marks(?).<br /><br /><u>Examples of VALID entries:</u><br /><code>http://"
+#~ "mycompany.com, 192.168.10.1, mycompany.com, localhost, http://localhost</"
+#~ "code><br /><br /><u>Examples of INVALID entries:</u><br /><code>http://my "
+#~ "company.com, http:/mycompany,com file:/localhost</code></qt>"
+#~ msgstr ""
+#~ "<qt>Кўрсатилган манзил ёки URL'да бош жой, юлдузча (*), ёки савол (?) "
+#~ "белгисига ўхшаган белгилар бўлмаслигига ишонч ҳосил қилинг.<p><u>Тўғри "
+#~ "маълумот мисоллари:</u><br/><code>http://mycompany.com, 192.168.10.1, "
+#~ "mycompany,com, localhost, http://localhost</code><p><u>Нотўғри маълумот "
+#~ "мисоллари:</u><br/><code>http://my company.com, http:/mycompany,com file:/"
+#~ "localhost</code>"
+
+#, fuzzy
+#~ msgid ""
+#~ "The address of the automatic proxy configuration script is invalid. "
+#~ "Please correct this problem before proceeding. Otherwise, your changes "
+#~ "will be ignored."
+#~ msgstr ""
+#~ "<qt>Проксини автоматик равишда мослаш скриптининг манзили ҳақиқий эмас."
+#~ "<p>Илтимос давом этишдан олдин муаммони ҳал қилинг. Акс ҳолда, сиз "
+#~ "киритган ўзгаришлар эътиборга олинмайди.</qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>The proxy settings you specified are invalid.<p>Please click on the "
+#~| "<b>Setup...</b> button and correct the problem before proceeding; "
+#~| "otherwise your changes will be ignored.</qt>"
+#~ msgid ""
+#~ "<qt>The proxy settings you specified are invalid.<br /><br />Please click "
+#~ "on the <b>Setup...</b> button and correct the problem before proceeding; "
+#~ "otherwise your changes will be ignored.</qt>"
+#~ msgstr ""
+#~ "<qt>Проксининг кўрсатилган мосламалари хато.<p>Илтимос давом этишдан "
+#~ "олдин <b>Мослаш</b> тугмасини босиб бу муаммони ҳал қилинг. Акс ҳолда, "
+#~ "сиз киритган ўзгаришлар эътиборга олинмайди.</qt>"
+
+#~ msgid "H&TTP:"
+#~ msgstr "H&TTP:"
+
+#~ msgid "HTTP&S:"
+#~ msgstr "HTTP&S:"
+
+#~ msgid "&FTP:"
+#~ msgstr "&FTP:"
+
+#~ msgid "&Verify"
+#~ msgstr "&Текшириш"
+
+#~ msgid "Connect to the &Internet directly"
+#~ msgstr "Интернетга тўғридан-тўғри &уланиш"
+
+#~ msgid "Setup..."
+#~ msgstr "Мослаш"
+
+#~ msgid "&Manually specify the proxy settings"
+#~ msgstr "Прокси мосламаларини қўл&бола кўрсатиш"
+
+#~ msgid "Authori&zation"
+#~ msgstr "&Тасдиқлаш"
+
+#~ msgid "Prompt for login information whenever it is required."
+#~ msgstr "Талаб қилинганда тасдиқлаш маълумотини сўраш."
+
+#~ msgid "Prompt as &needed"
+#~ msgstr "Керагида сў&раш"
+
+#, fuzzy
+#~| msgid "Use the information below to login into proxy servers as needed."
+#~ msgid ""
+#~ "Use information specified here to login into proxy servers as needed."
+#~ msgstr ""
+#~ "Прокси серверига уланишда талаб қилинганда қуйидаги маълумотни ишлатиш."
+
+#~ msgid "Login name."
+#~ msgstr "Фойдаланувчи."
+
+#~ msgid "Login password."
+#~ msgstr "Махфий сўз."
+
+#~ msgid "Password:"
+#~ msgstr "Махфий сўз:"
+
+#~ msgid "O&ptions"
+#~ msgstr "&Параметрлар"
+
+#~ msgid "Ser&vers"
+#~ msgstr "&Серверлар"
+
+#~ msgid "Remove all proxy exception addresses from the list."
+#~ msgstr "Қоидадан ташқари ҳамма прокси манзилларини рўйхатдан олиб ташлаш."
+
+#~ msgid "D&elete All"
+#~ msgstr "Ҳам&масини ўчириш"
+
+#~ msgid "Remove the selected proxy exception address from the list."
+#~ msgstr "Қоидадан ташқари танланган прокси манзилини рўйхатдан олиб ташлаш."
+
+#~ msgid "Add new proxy exception address to the list."
+#~ msgstr "Қоидадан ташқари янги прокси манзилини рўйхатга қўшиш."
+
+#~ msgid "&Domain name:"
+#~ msgstr "&Доменнинг номи:"
+
+#~ msgid "Add &platform name"
+#~ msgstr "&Платформанинг номини қўшиш"
+
+#~ msgid "&LISa Daemon"
+#~ msgstr "LISa д&емони"
+
+#~ msgid "lan:/ Iosla&ve"
+#~ msgstr "lan:/ &КЧ-слейви"
+
+#~ msgid "&Search:"
+#~ msgstr "Қ&идириш:"
+
+#~ msgid "&SOCKS"
+#~ msgstr "&SOCKS"
+
+#~ msgid "SOCKS"
+#~ msgstr "SOCKS"
+
+#~ msgid "&Enable SOCKS support"
+#~ msgstr "SOCKS &қўллашни ёқиш"
+
+#~ msgid "Click here to test SOCKS support."
+#~ msgstr "SOCKS қўлланганини текшириш учун шу ерни босинг."
+
+#~ msgid "&Test"
+#~ msgstr "&Синаш"
+
+#~ msgid "SOCKS Implementation"
+#~ msgstr "SOCKS амалга оширилиши"
+
+#~ msgid "Use &custom library"
+#~ msgstr "&Бошқа кутубхонани ишлатиш"
+
+#~ msgid "Enter the path to an unsupported SOCKS library."
+#~ msgstr "Қўлланмаган SOCKS кутубхонасига йўллни киритинг."
+
+#~ msgid ""
+#~ "If you select Autodetect, then KDE will automatically search for an "
+#~ "implementation of SOCKS on your computer."
+#~ msgstr ""
+#~ "\"Авто-аниқлаш\" танланса, KDE компютеда SOCKS қандай амалга оширилганини "
+#~ "автоматик равишда аниқлайди."
+
+#~ msgid "A&uto detect"
+#~ msgstr "&Авто-аниқлаш"
+
+#~ msgid "This will force KDE to use NEC SOCKS if it can be found."
+#~ msgstr "Агар топилса, KDE NEC SOCKS кутубхонасидан фойдаланади."
+
+#~ msgid "&NEC SOCKS"
+#~ msgstr "&NEC SOCKS"
+
+#~ msgid "This will force KDE to use Dante if it can be found."
+#~ msgstr "Агар топилса, KDE Dante кутубхонасидан фойдаланади."
+
+#~ msgid "&Dante"
+#~ msgstr "&Dante"
+
+#~ msgid ""
+#~ "Here you can specify additional directories to search for the SOCKS "
+#~ "libraries. /usr/lib, /usr/local/lib, /usr/local/socks5/lib and /opt/"
+#~ "socks5/lib are already searched by default."
+#~ msgstr ""
+#~ "Бу ерда, қўшимча кутубхоналарини қидириш учун директорияларни "
+#~ "кўрсатишингиз мумкин. Қуйидаги йўллардан андоза бўйича фойдаланилади.\n"
+#~ "/usr/lib, /usr/local/lib, /usr/local/socks5/lib, /opt/socks5/lib"
+
+#~ msgid "Additional Library Search Paths"
+#~ msgstr "Қўшимча кутубхоналарни қидириш учун йўллар"
+
+#~ msgid "kcmsocks"
+#~ msgstr "kcmsocks"
+
+#~ msgid "KDE SOCKS Control Module"
+#~ msgstr "KDE SOCKS бошқарув модули"
+
+#~ msgid "(c) 2001 George Staikos"
+#~ msgstr "(c) 2001 George Staikos"
+
+#, fuzzy
+#~| msgid "(c) 2001 George Staikos"
+#~ msgid "George Staikos"
+#~ msgstr "(c) 2001 George Staikos"
+
+#~ msgid "These changes will only apply to newly started applications."
+#~ msgstr ""
+#~ "Киритилган ўзгаришлар фақат янгидан ишга туширилган дастурларга қўлланади."
+
+#~ msgid "SOCKS Support"
+#~ msgstr "SOCKS'ни қўллаш"
+
+#~ msgid "Success: SOCKS was found and initialized."
+#~ msgstr "SOCKS'ни ишга тайёрлаш муваффақиятли тугади."
+
+#~ msgid "SOCKS could not be loaded."
+#~ msgstr "SOCKS'ни юклаб бўлмади."
+
+#~ msgid "&Path:"
+#~ msgstr "Йў&л:"
+
+#~ msgid "This is the list of additional paths that will be searched."
+#~ msgstr "Қўшимча кутубхоналарни қидириш учун йўллар рўйхати."
+
+#~ msgid "Path"
+#~ msgstr "Йўл"
+
+#~ msgid "&Add"
+#~ msgstr "&Қўшиш"
+
+#~ msgid "This is the configuration for the samba client only, not the server."
+#~ msgstr "Бу мослама фақат SAMBA клиенти учун, сервер учун эмас."
+
+#, fuzzy
+#~ msgid "&OK"
+#~ msgstr "&SOCKS"
+
+#~ msgid "..."
+#~ msgstr "Танлаш"
+
+#~ msgid "Clear Search"
+#~ msgstr "Қидирувни тозалаш"

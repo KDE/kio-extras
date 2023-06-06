@@ -1,0 +1,5809 @@
+# Janet Blackquill <uhhadd@gmail.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: ante-toki-pi-ilo-kde\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"PO-Revision-Date: 2022-06-20 03:30+0000\n"
+"Last-Translator: Weblate Admin <admin@example.com>\n"
+"Language-Team: Toki Pona <http://weblate.blackquill.cc/projects/ante-toki-pi-"
+"ilo-kde/base/tok/>\n"
+"Language: tok\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
+"%100>=11 && n%100<=14 ? 2 : 3;\n"
+"X-Generator: Weblate 4.10.1\n"
+
+#: cookies/kcookiesmain.cpp:37
+#, kde-format
+msgid "&Policy"
+msgstr "&lawa"
+
+#: cookies/kcookiesmain.cpp:44
+#, kde-format
+msgid "&Management"
+msgstr "&lawa"
+
+#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
+#, kde-format
+msgid "D-Bus Communication Error"
+msgstr "toki pakala pi ilo D-Bus"
+
+#: cookies/kcookiesmanagement.cpp:127
+#, kde-format
+msgid "Unable to delete all the cookies as requested."
+msgstr "mi ken ala weka e sona lili ale."
+
+#: cookies/kcookiesmanagement.cpp:144
+#, kde-format
+msgid "Unable to delete cookies as requested."
+msgstr "mi ken ala weka e sona lili."
+
+#: cookies/kcookiesmanagement.cpp:223
+#, kde-format
+msgid "Information Lookup Failure"
+msgstr "pakala pi alasa sona"
+
+#: cookies/kcookiesmanagement.cpp:225
+#, kde-format
+msgid ""
+"Unable to retrieve information about the cookies stored on your computer."
+msgstr "mi ken ala kama sona e sona lili lon ilo sina."
+
+#: cookies/kcookiesmanagement.cpp:316
+#, kde-format
+msgid "End of session"
+msgstr "tenpo ni li pini"
+
+#: cookies/kcookiesmanagement.cpp:323
+#, kde-format
+msgid "Yes"
+msgstr "pona"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
+#: cookies/kcookiesmanagement.ui:20
+#, kde-format
+msgid "Search"
+msgstr "o alasa"
+
+#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:27
+#, kde-format
+msgid "Search interactively for domains and hosts"
+msgstr "o alasa kepeken jan tawa nimi ilo"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:43
+#, kde-format
+msgid "Site"
+msgstr "tomo linluwi"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:48
+#, kde-format
+msgid "Cookie Name"
+msgstr "nimi pi sona awen"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
+#, kde-format
+msgid "D&elete"
+msgstr "o &weka"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
+#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
+#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
+#, kde-format
+msgid "Delete A&ll"
+msgstr "o weka e &ale"
+
+#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
+#: cookies/kcookiesmanagement.ui:70
+#, kde-format
+msgid "Configure &Policy..."
+msgstr "o ante e &lawa..."
+
+#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
+#: cookies/kcookiesmanagement.ui:77
+#, kde-format
+msgid "&Reload List"
+msgstr "o &sin e lipu"
+
+#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
+#: cookies/kcookiesmanagement.ui:97
+#, kde-format
+msgid "Details"
+msgstr "sona namako"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: cookies/kcookiesmanagement.ui:106
+#, kde-format
+msgid "Name:"
+msgstr "nimi:"
+
+#. i18n: ectx: property (text), widget (QLabel, valueLabel)
+#: cookies/kcookiesmanagement.ui:129
+#, kde-format
+msgid "Value:"
+msgstr "insa:"
+
+#. i18n: ectx: property (text), widget (QLabel, domainLabel)
+#: cookies/kcookiesmanagement.ui:152
+#, kde-format
+msgid "Domain:"
+msgstr "nimi linluwi:"
+
+#. i18n: ectx: property (text), widget (QLabel, patchLabel)
+#: cookies/kcookiesmanagement.ui:175
+#, kde-format
+msgid "Path:"
+msgstr "nasin:"
+
+#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
+#: cookies/kcookiesmanagement.ui:198
+#, kde-format
+msgid "Expires:"
+msgstr "tenpo pini:"
+
+#. i18n: ectx: property (text), widget (QLabel, secureLabel)
+#: cookies/kcookiesmanagement.ui:221
+#, kde-format
+msgid "Secure:"
+msgstr "kiwen:"
+
+#: cookies/kcookiespolicies.cpp:154
+#, kde-format
+msgctxt "@title:window"
+msgid "Change Cookie Policy"
+msgstr "o ante e nasin pi sona lili awen"
+
+#: cookies/kcookiespolicies.cpp:173
+#, kde-format
+msgctxt "@title:window"
+msgid "New Cookie Policy"
+msgstr "nasin sin pi sona lili awen"
+
+#: cookies/kcookiespolicies.cpp:206
+#, kde-format
+msgid ""
+"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+"replace it?</qt>"
+msgstr ""
+
+#: cookies/kcookiespolicies.cpp:210
+#, kde-format
+msgctxt "@title:window"
+msgid "Duplicate Policy"
+msgstr "lawa mute sama"
+
+#: cookies/kcookiespolicies.cpp:211
+#, kde-format
+msgid "Replace"
+msgstr "o ante"
+
+#: cookies/kcookiespolicies.cpp:387
+#, kde-format
+msgid ""
+"Unable to communicate with the cookie handler service.\n"
+"Any changes you made will not take effect until the service is restarted."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enable cookie support. Normally you will want to have cookie support "
+"enabled and customize it to suit your privacy needs.</p><p>\n"
+"Please note that disabling cookie support might make many web sites "
+"unbrowsable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:23
+#, kde-format
+msgid "Enable coo&kies"
+msgstr "lipu pi kulupu ilo li ken awen e sona lili lon ilo sina"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:35
+#, kde-format
+msgid ""
+"<qt>\n"
+"Reject the so called third-party cookies. These are cookies that originate "
+"from a site other than the one you are currently browsing. For example, if "
+"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
+"originate from www.foobar.com will be processed per your settings. Cookies "
+"from any other site will be rejected. This reduces the chances of site "
+"operators compiling a profile about your daily browsing habits.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"o weka e sona lili awen tan lipu ante. ni li lon la sina lon lipu <b>www."
+"foobar.com</b> la sona lili awen tan lipu www.foobar.com taso li awen. sona "
+"lili awen tan lipu ante li weka. ni li len e tawa sina lon linluwi.\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:38
+#, kde-format
+msgid "Only acce&pt cookies from originating server"
+msgstr "o kepeken sona lili tan ilo lipu taso."
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:46
+#, kde-format
+msgid ""
+"<p>\n"
+"Automatically accept temporary cookies meant to expire at the end of the "
+"current session. Such cookies will not be stored in your computer's hard "
+"drive or storage device. Instead, they are deleted when you close all "
+"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
+"this option overrides your default as well as site specific cookie policies "
+"for session cookies.</p>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:49
+#, kde-format
+msgid "Automaticall&y accept session cookies"
+msgstr "o kepeken sona lili &ale"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:68
+#, kde-format
+msgid ""
+"<qt>\n"
+"Determines how cookies received from a remote machine will be handled: \n"
+"<ul>\n"
+"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
+"wants to set a cookie.</li>\n"
+"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
+"li>\n"
+"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
+"</li>\n"
+"</ul><p>\n"
+"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
+"precedence over the default policy.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"ni li lawa e sona awen lili.\n"
+"<ul>\n"
+"<li><b>o toki</b> li lon e ni: ilo KDE li wile e toki sina lon wile pi ilo "
+"linluwi ante tawa sona awen lili.</li>\n"
+"<li><b>o ken</b> li lon e ni: ilo KDE li kepeken e sona awen lili ale.</li>\n"
+"<li><b>o ken pi tenpo lili</b> li lon e ni: ilo KDE li kepeken e sona awen "
+"lili ale. taso sina weka tan ilo la, sona awen lili li weka kin.</li>\n"
+"<li><b>o weka</b> li lon e ni: ilo KDE li weka e sona awen lili ale.</li>\n"
+"</ul>\n"
+"\n"
+"<p><u>O SONA E NI:</u> ni la lawa pi lipu wan li suli. wile ona li lawa. mi "
+"lawa ala e lipu ona.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:71
+#, kde-format
+msgid "Default Policy"
+msgstr "lawa nanpa wan"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
+#: cookies/kcookiespolicies.ui:77
+#, kde-format
+msgid "Accep&t all cookies"
+msgstr "o kepeken sona lili &ale"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
+#: cookies/kcookiespolicies.ui:84
+#, kde-format
+msgid "Accept &until end of session"
+msgstr "o awen lon tenpo pali o weka lon &pini pi tenpo pali"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
+#: cookies/kcookiespolicies.ui:91
+#, kde-format
+msgid "Ask &for confirmation"
+msgstr "o toki wile tawa wile sina"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
+#: cookies/kcookiespolicies.ui:98
+#, kde-format
+msgid "Re&ject all cookies"
+msgstr "o &weka e sona lili ale"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:123
+#, kde-format
+msgid ""
+"<qt>\n"
+"To add a new policy, simply click on the <b>Add...</b> button and supply the "
+"necessary information. To change an existing policy, use the <b>Change...</"
+"b> button and choose the new policy from the policy dialog box. Clicking on "
+"the <b>Delete</b> button will remove the currently selected policy causing "
+"the default policy setting to be used for that domain, whereas <b>Delete "
+"All</b> will remove all the site specific policies.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:126
+#, kde-format
+msgid "Site Policy"
+msgstr "lawa lipu"
+
+#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:135
+#, kde-format
+msgid "Search interactively for domains"
+msgstr "o alasa kepeken jan tawa nimi ilo"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:138
+#, kde-format
+msgid "Search..."
+msgstr "alasa..."
+
+#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:147
+#, kde-format
+msgid ""
+"<qt>\n"
+"List of sites for which you have set a specific cookie policy. Specific "
+"policies override the default policy setting for these sites.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:163
+#, kde-format
+msgid "Domain"
+msgstr "nimi linluwi"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:168
+#, kde-format
+msgid "Policy"
+msgstr "lawa"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&sin..."
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "o a&nte..."
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:26
+#: cookies/kcookiespolicyselectiondlg.ui:81
+#, kde-format
+msgid "Accept"
+msgstr "pona"
+
+#: cookies/kcookiespolicyselectiondlg.h:28
+msgid "Accept For Session"
+msgstr "tenpo ni taso la, pona"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:30
+#: cookies/kcookiespolicyselectiondlg.ui:91
+#, kde-format
+msgid "Reject"
+msgstr "ala"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:32
+#: cookies/kcookiespolicyselectiondlg.ui:96
+#, kde-format
+msgid "Ask"
+msgstr "o toki wile tawa wile sina"
+
+#: cookies/kcookiespolicyselectiondlg.h:34
+msgid "Do Not Know"
+msgstr "sona ala"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:22
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
+"b> or <b>.kde.org</b>.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:25
+#, kde-format
+msgid "Site name:"
+msgstr "nimi pi tomo linluwi:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:38
+#, kde-format
+msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+msgstr "o sitelen e nimi ilo (sama .kde.org) tawa lawa ni."
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:53
+#: cookies/kcookiespolicyselectiondlg.ui:77
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the desired policy:\n"
+"<ul>\n"
+"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+"</ul>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:56
+#, kde-format
+msgid "Policy:"
+msgstr "lawa:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:86
+#, kde-format
+msgid "Accept until end of session"
+msgstr "o awen lon tenpo pali o weka lon pini pi tenpo pali"
+
+#: ksaveioconfig.cpp:212
+#, kde-format
+msgid ""
+"You have to restart the running applications for these changes to take "
+"effect."
+msgstr ""
+
+#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#, kde-format
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "sin li pakala"
+
+#: ksaveioconfig.cpp:225
+#, kde-format
+msgid "You have to restart KDE for these changes to take effect."
+msgstr "lawa ni li awen e open sin pi ilo KDE sina tawa open pali."
+
+#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:10
+#, kde-format
+msgid "Disable Passive FTP"
+msgstr "o kepeken ala ilo FTP pi lawa ala"
+
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:11
+#, kde-format
+msgid ""
+"When FTP connections are passive the client connects to the server, instead "
+"of the other way round, so firewalls do not block the connection; old FTP "
+"servers may not support Passive FTP though."
+msgstr ""
+
+#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#, kde-format
+msgid "Mark partially uploaded files"
+msgstr "o sitelen e lipu pi pana ale ala."
+
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#, kde-format
+msgid ""
+"While a file is being uploaded its extension is \".part\". When fully "
+"uploaded it is renamed to its real name."
+msgstr ""
+
+#: netpref/netpref.cpp:30
+#, kde-format
+msgid "Timeout Values"
+msgstr "nanpa tenpo weka"
+
+#: netpref/netpref.cpp:32
+#, kde-format
+msgid ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is 1 second."
+msgid_plural ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is %1 seconds."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
+#: netpref/netpref.cpp:63
+#, kde-format
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " tenpo lili wan"
+msgstr[1] " tenpo lili luka"
+msgstr[2] " tenpo lili mute"
+msgstr[3] " tenpo lili mute"
+
+#: netpref/netpref.cpp:47
+#, kde-format
+msgid "Soc&ket read:"
+msgstr "lukin nasin &toki:"
+
+#: netpref/netpref.cpp:53
+#, kde-format
+msgid "Pro&xy connect:"
+msgstr "open kepeken ilo pi nasin &linluwi:"
+
+#: netpref/netpref.cpp:59
+#, kde-format
+msgid "Server co&nnect:"
+msgstr "open kepeken ilo pi &linluwi:"
+
+#: netpref/netpref.cpp:65
+#, kde-format
+msgid "&Server response:"
+msgstr "toki pi ilo &ante:"
+
+#: netpref/netpref.cpp:67
+#, kde-format
+msgid "Global Options"
+msgstr "lawa pi ijo ale"
+
+#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#, kde-format
+msgid "Mark &partially uploaded files"
+msgstr "o sitelen e lipu pi pana ale ala."
+
+#: netpref/netpref.cpp:73
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+"p><p>When this option is enabled, partially uploaded files will have a \"."
+"part\" extension. This extension will be removed once the transfer is "
+"complete.</p>"
+msgstr ""
+
+#: netpref/netpref.cpp:90
+#, kde-format
+msgid " byte"
+msgid_plural " bytes"
+msgstr[0] " suli Byte wan"
+msgstr[1] " suli Byte luka"
+msgstr[2] " suli Byte mute"
+msgstr[3] " suli Byte mute"
+
+#: netpref/netpref.cpp:92
+#, kde-format
+msgctxt "@label:spinbox"
+msgid ""
+"If cancelled, automatically delete partially uploaded files smaller than:"
+msgstr "pana lipu li pini lon insa pana la, o weka e lipu meso pi lili:"
+
+#: netpref/netpref.cpp:94
+#, kde-format
+msgid "FTP Options"
+msgstr "lawa FTP"
+
+#: netpref/netpref.cpp:98
+#, kde-format
+msgid "Enable passive &mode (PASV)"
+msgstr "o kepeken &nasin pi lawa ala (PASV)"
+
+#: netpref/netpref.cpp:100
+#, kde-format
+msgid ""
+"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
+"behind firewalls."
+msgstr ""
+
+#: netpref/netpref.cpp:108
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+"partially uploaded files will have a \".part\" extension. This extension "
+"will be removed once the transfer is complete.</p>"
+msgstr ""
+
+#: proxy/kproxydlg.cpp:193
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Not all applications will use this proxy setting. In particular, "
+"<application>Firefox</application> and <application>Chromium</application> "
+"or anything derived from them, or anything using <application>QtWebEngine</"
+"application>&nbsp;- which includes <application>Konqueror</application> "
+"using the <application>WebEnginePart</application>, <application>Akregator</"
+"application> and <application>Falkon</application>&nbsp;- will not use these "
+"settings. Some applications may allow the proxy to be configured in their "
+"own settings."
+msgstr ""
+"ni li lawa ala e ilo mute, sama ni: ilo <application>Firefox</application>, "
+"ilo <application>Chromium</application>, ilo <application>Konqueror</"
+"application> (pi kepeken ilo lili <application>WebEnginePart</application>), "
+"ilo <application>Akregator</application>, en ilo <application>Falkon</"
+"application>.\n"
+"\n"
+"ken la ilo li jo e lawa ona."
+
+#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
+#: proxy/kproxydlg.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"Setup proxy configuration.\n"
+"<p>\n"
+"A proxy server is an intermediate machine that sits between your computer "
+"and the Internet and provides services such as web page caching and "
+"filtering. Caching proxy servers give you faster access to web sites you "
+"have already visited by locally storing or caching those pages; filtering "
+"proxy servers usually provide the ability to block out requests for ads, "
+"spam, or anything else you want to block.\n"
+"<p>\n"
+"If you are uncertain whether or not you need to use a proxy server to "
+"connect to the Internet, consult your Internet service provider's setup "
+"guide or your system administrator.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"o toki e wile sina pi nasin linluwi.\n"
+"<p>\n"
+"ilo pi nasin linluwi li lon meso ilo sina en ilo linluwi ante ale. ona li "
+"ken pana e ken pi awen sona e ken pi weka ike.\n"
+"sina lukin mute e lipu wan la ilo pi nasin linluwi pi awen sona li lili e "
+"tenpo alasa ona.\n"
+"ilo pi nasin linluwi pi weka ike li ken weka e sitelen mani e sitelen jaki e "
+"ijo pi wile sina.\n"
+"</p>\n"
+"sina sona ala e wile ilo linluwi la, o toki e jan ilo e kulupu ilo sina.\n"
+"</qt>"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:26
+#, kde-format
+msgid "Connect to the Internet directly."
+msgstr "o toki tawa linluwi kepeken ala ijo ante."
+
+#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:29
+#, kde-format
+msgid "No Proxy"
+msgstr "ilo pi nasin linluwi li lon ala"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:46
+#, kde-format
+msgid ""
+"<qt>\n"
+"Automatically detect and configure the proxy settings.<p>\n"
+"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
+"<b>NOTE:</b> This option might not work properly or not work at all in some "
+"UNIX/Linux distributions.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:49
+#, kde-format
+msgid "Detect proxy configuration automatically"
+msgstr "o kepeken e sona ilo tawa lawa pi ilo nasin linluwi"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:59
+#, kde-format
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr "o kepeken e sitelen ilo tawa ilo pi nasin linluwi."
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:62
+#, kde-format
+msgid "Use proxy auto configuration URL:"
+msgstr "o kepeken e lawa pana tawa ilo pi nasin linluwi:"
+
+#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
+#: proxy/kproxydlg.ui:93
+#, kde-format
+msgid "Enter the address for the proxy configuration script."
+msgstr "o sitelen e nimi nasin tawa sitelen ilo pi ilo pi nasin linluwi."
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:117
+#, kde-format
+msgid ""
+"<qt><p>Use proxy settings defined on the system.</p>\n"
+"<p>Some platforms offer system wide proxy configuration information and "
+"selecting this option allows you to use those settings.</p>\n"
+"<p>On Mac platforms</p>\n"
+"<p>On Windows platforms</p>\n"
+"<p>On Unix and Linux platforms, such system proxy settings are usually "
+"defined through environment variables. The following environment variables "
+"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"<p>ni li kepeken e lawa ilo suli</p>\n"
+"<p>ilo suli li ken jo e lawa tawa ilo pi nasin linluwi</p>\n"
+"<p>lon ilo Mac</p>\n"
+"<p>lon ilo Windows</p>\n"
+"<p>ilo Unix en ilo Linux la, ilo suli li kepeken e nimi sona <b>HTTP_PROXY</"
+"b>, <b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:120
+#, kde-format
+msgid "Use system proxy configuration:"
+msgstr "o kepeken e lawa ilo tawa ilo pi nasin linluwi:"
+
+#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:127
+#, kde-format
+msgid ""
+"<qt>Attempt automatic discovery of the environment variables used for "
+"setting system wide proxy information.<p> This feature works by searching "
+"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:130
+#, kde-format
+msgid "Auto D&etect"
+msgstr "alasa &sona"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
+#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
+#, kde-format
+msgid "HTTP Proxy:"
+msgstr "ilo pi nasin linluwi pi toki HTTP:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
+#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
+#, kde-format
+msgid "SSL Proxy:"
+msgstr "ilo pi nasin linluwi pi toki SSL:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
+#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
+#, kde-format
+msgid "FTP Proxy:"
+msgstr "ilo pi nasin linluwi pi toki FTP:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:263
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
+#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
+#, kde-format
+msgid "SOCKS Proxy:"
+msgstr "ilo pi nasin linluwi pi toki SOCKS:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:285
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the proxy server should not be used.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
+#, kde-format
+msgid "Exceptions:"
+msgstr "lawa ante:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:317
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:324
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr "o sitelen e &insa pi sona ma"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:343
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr "o sitelen e lawa pi ilo pi nasin linluwi."
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:346
+#, kde-format
+msgid "Use manually specified proxy configuration:"
+msgstr "o kepeken e lawa pana tawa ilo pi nasin linluwi:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:398
+#, kde-format
+msgid "Enter the address of the HTTP proxy server."
+msgstr "o pana e nimi linluwi pi ilo pi nasin linluwi HTTP."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
+#: proxy/kproxydlg.ui:574
+#, kde-format
+msgid "Port:"
+msgstr "nanpa:"
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:421
+#, kde-format
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "o pana e nanpa lupa pi ilo pi nasin linluwi HTTP."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:436
+#, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr "o kepeken e ilo ni tawa toki &ale"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:464
+#, kde-format
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "o pana e nimi linluwi pi ilo pi nasin linluwi HTTPS."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:481
+#, kde-format
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "o pana e nanpa lupa pi ilo pi nasin linluwi HTTPS."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:517
+#, kde-format
+msgid "Enter the address of the FTP proxy server."
+msgstr "o pana e nimi linluwi pi ilo pi nasin linluwi FTP."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:534
+#, kde-format
+msgid "Enter the port number of the FTP proxy server."
+msgstr "o pana e nanpa lupa pi ilo pi nasin linluwi FTP."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:567
+#, kde-format
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "o pana e nimi linluwi pi ilo pi nasin linluwi SOCKS."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:584
+#, kde-format
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "o pana e nanpa lupa pi ilo pi nasin linluwi SOCKS."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
+#: proxy/kproxydlg.ui:628
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enter a comma separated list of hostnames or ip addresses that should be "
+"excluded from using the above proxy settings.</p>\n"
+"<p>If you want to exclude all hosts for a given domain, then simply enter "
+"the domain name preceded by a dot. For example, to exclude all hostnames for "
+"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
+"'?' are not supported and will have no effect.</p>\n"
+"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"<p>o sitelen e kulupu (sama ni: \"ijo #1,ijo #2,ijo #3\") pi nimi linluwi. "
+"ilo pi nasin linluwi li lawa ala e ilo pi nimi linluwi pi pana sina.</p>\n"
+"<p>sina wile weka e lawa tawa nimi ale lon nimi suli la, o sitelen e sike "
+"pini (.) lon open nimi linluwi sama ni: <i>.kde.org</i> li weka e lawa tawa "
+"ijo ale pi pini <i>kde.org</i> sama ni: apps.kde.org en invent.kde.org. sike "
+"* en nimi ? li pali ala.</p>\n"
+"<p>sina ken sitelen e nanpa linluwi kin. sama ni: 127.0.0.1 en "
+"192.168.0.1/24</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:639
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgid ""
+"<qt>\n"
+"Check this box if you want the above proxy settings to apply only to the "
+"addresses listed in the <i>Exceptions</i> list.</qt>"
+msgstr "o kepeken e lawa ni tawa nimi lon kulupu ante taso."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:642
+#, kde-format
+msgid "Use proxy settings only for addresses in the Exceptions list"
+msgstr "o kepeken e lawa ni tawa nimi lon kulupu ante taso."
+
+#: smb/smbrodlg.cpp:27
+#, kde-format
+msgid "These settings apply to network browsing only."
+msgstr "lawa ni li tawa alasa linluwi taso."
+
+#: smb/smbrodlg.cpp:31
+#, kde-format
+msgid "Default user name:"
+msgstr "nimi jan nanpa wan:"
+
+#: smb/smbrodlg.cpp:39
+#, kde-format
+msgid "Default password:"
+msgstr "nimi len nanpa wan:"
+
+#: trash/kcmtrash.cpp:138
+#, kde-format
+msgid " days"
+msgstr " tenpo suno"
+
+#: trash/kcmtrash.cpp:203
+#, kde-format
+msgid ""
+"<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
+"para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:205
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Emptying KDE's wastebin will remove only KDE's trash items, "
+"while<br>emptying the Trash through the Finder will delete everything.</"
+"para><para>KDE's trash items will show up in a folder called KDE.trash, in "
+"the Trash can.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:246
+#, kde-format
+msgid "Delete files older than"
+msgstr "o weka e lipu pi sin ala"
+
+#: trash/kcmtrash.cpp:249
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to allow <emphasis strong='true'>automatic deletion</"
+"emphasis> of files that are older than the value specified. Leave this "
+"disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
+"items after a certain timespan</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:256
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] " tenpo suno"
+msgstr[1] " tenpo suno"
+msgstr[2] " tenpo suno"
+msgstr[3] " tenpo suno"
+
+#: trash/kcmtrash.cpp:258
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Set the number of days that files can remain in the trash. Any files "
+"older than this will be automatically deleted.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:262
+#, kde-format
+msgid "Cleanup:"
+msgstr "weka jaki:"
+
+#: trash/kcmtrash.cpp:265
+#, kde-format
+msgid "Limit to"
+msgstr "o awen e lili"
+
+#: trash/kcmtrash.cpp:267
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to limit the trash to the maximum amount of disk space "
+"that you specify below. Otherwise, it will be unlimited.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:270
+#, kde-format
+msgid "Size:"
+msgstr "suli:"
+
+#: trash/kcmtrash.cpp:277
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the maximum percent of disk space that will be used for the "
+"trash.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:282
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the calculated amount of disk space that will be allowed for "
+"the trash, the maximum.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:286
+#, kde-format
+msgid "Show a Warning"
+msgstr "o pana e toki pi ken pakala"
+
+#: trash/kcmtrash.cpp:287
+#, kde-format
+msgid "Delete Oldest Files From Trash"
+msgstr "o weka e lipu majuna tan poki jaki"
+
+#: trash/kcmtrash.cpp:288
+#, kde-format
+msgid "Delete Biggest Files From Trash"
+msgstr "o weka e lipu suli tan poki jaki"
+
+#: trash/kcmtrash.cpp:290
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>When the size limit is reached, it will prefer to delete the type of "
+"files that you specify, first. If this is set to warn you, it will do so "
+"instead of automatically deleting files.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:292
+#, kde-format
+msgid "Full Trash:"
+msgstr "jaki suli:"
+
+#: webshortcuts/ikwsopts.cpp:38
+#, kde-format
+msgctxt "@title:column Name label from web search keyword column"
+msgid "Name"
+msgstr "nimi"
+
+#: webshortcuts/ikwsopts.cpp:40
+#, kde-format
+msgctxt "@title:column"
+msgid "Keywords"
+msgstr "nimi suli"
+
+#: webshortcuts/ikwsopts.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Preferred"
+msgstr "wile nanpa wan"
+
+#: webshortcuts/ikwsopts.cpp:101
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this box to select the highlighted web search keyword as preferred.<nl/"
+">Preferred web search keywords are used in places where only a few select "
+"keywords can be shown at one time."
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:202
+#, kde-format
+msgctxt "@item:inlistbox No default web search keyword"
+msgid "None"
+msgstr "ala"
+
+#: webshortcuts/ikwsopts.cpp:246
+#, kde-format
+msgid "Search F&ilters"
+msgstr "&nasin alasa"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:17
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"search keywords allow you to quickly access or search for information "
+"located online or on your hard drive. </p><p>KDE comes with many predefined "
+"keywords. One such keyword can be used to perform a the Google (TM) search; "
+"to use it, you simply type the keyword 'gg' followed by the keyword "
+"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
+"KDE</span>.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>o ken o ken ala e nimi pi ilo alasa. </p><p>nimi pi "
+"ilo alasa li ken e alasa lon tenpo pi lili mute. </p><p>ilo KDE li jo e nimi "
+"mute sama ni: sina sitelen e nimi 'gg': e toki pi wile sina sama ni: <span "
+"style=\" font-weight:600;\">gg:KDE</span>.</p></body></html>"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:20
+#, kde-format
+msgid "&Enable Web search keywords"
+msgstr "o &kepeken e nasin lili pi ilo alasa"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:30
+#, kde-format
+msgid "&Use preferred keywords only"
+msgstr "o kepeken e nimi pi wile nanpa wan taso"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
+#: webshortcuts/ikwsopts_ui.ui:37
+#, kde-format
+msgid "Search for web search keywords"
+msgstr "o alasa tawa nimi lili pi ilo alasa"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:71
+#, kde-format
+msgid "Add a new Web search keyword"
+msgstr "o lon e nimi lili pi ilo alasa sin"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:84
+#, kde-format
+msgid "Modify the highlighted Web search keyword"
+msgstr "o ante e nimi pi kule ante"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:97
+#, kde-format
+msgid "Delete the highlighted Web search keyword"
+msgstr "o weka e nimi pi kule ante"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:100
+#, kde-format
+msgid "De&lete"
+msgstr "o &weka"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:138
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the search engine to use for input boxes that provide automatic "
+"lookup services when you type in normal words and phrases instead of a URL. "
+"To disable this feature select <b>None</b> from the list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:141
+#, kde-format
+msgid "Default Web &search keyword:"
+msgstr "nimi &alasa nanpa wan:"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:166
+#, kde-format
+msgid ""
+"<html><head/><body><p>Select a default web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to web "
+"search keyword queries when they cannot be filtered into a proper URL. </"
+"p><p>To disable this functionality select <span style=\" font-weight:600;"
+"\">None</span> from the list. </p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:182
+#, kde-format
+msgid ""
+"Choose the delimiter that separates the keyword from the phrase or word to "
+"be searched."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:185
+#, kde-format
+msgid "&Keyword delimiter:"
+msgstr "sitelen pi insa tu &nimi:"
+
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:204
+#, kde-format
+msgid "Choose a delimiter to mark the Web search keyword."
+msgstr "o pana e nimi pi insa tu tawa nimi pi ilo alasa"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:208
+#, kde-format
+msgctxt "Colon as keyword delimiter"
+msgid "Colon"
+msgstr "sike tu (:)"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:213
+#, kde-format
+msgctxt "Space as keyword delimiter"
+msgid "Space"
+msgstr "sitelen ala ( )"
+
+#: webshortcuts/searchproviderdlg.cpp:49
+#, kde-format
+msgctxt "@item:inlistbox The default character set"
+msgid "Default"
+msgstr "ijo tan jan pana pi ilo sina"
+
+#: webshortcuts/searchproviderdlg.cpp:52
+#, kde-format
+msgid "Modify Web Shortcut"
+msgstr "o ante e nasin lili linluwi"
+
+#: webshortcuts/searchproviderdlg.cpp:60
+#, kde-format
+msgid "New Web Shortcut"
+msgstr "o lon e nasin lili linluwi"
+
+#: webshortcuts/searchproviderdlg.cpp:121
+#, kde-format
+msgid ""
+"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"one."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:126
+#, kde-format
+msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
+msgid "- %1: \"%2\""
+msgstr "- %1: \"%2\""
+
+#: webshortcuts/searchproviderdlg.cpp:130
+#, kde-format
+msgid ""
+"The following shortcuts are already assigned. Please choose different ones.\n"
+"%1"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:143
+#, kde-format
+msgid ""
+"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"This means that the same page is always going to be visited, regardless of "
+"the text typed in with the shortcut."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:147
+#, kde-format
+msgid "Keep It"
+msgstr "o awen e ona"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:17
+#, kde-format
+msgid "Enter the human-readable name of the search provider here."
+msgstr "o sitelen e nimi tawa jan pi ilo alasa lon poki ni."
+
+#. i18n: ectx: property (text), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:23
+#, kde-format
+msgid "Shortcut &name:"
+msgstr "&nimi pi nasin lili:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:42
+#: webshortcuts/searchproviderdlg_ui.ui:64
+#: webshortcuts/searchproviderdlg_ui.ui:70
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the URI that is used to perform a search on the search engine here.<br/"
+">The whole text to be searched for can be specified as \\{@} or \\{0}.<br/>\n"
+"Recommended is \\{@}, since it removes all query variables (name=value) from "
+"the resulting string, whereas \\{0} will be substituted with the unmodified "
+"query string.<br/>You can use \\{1} ... \\{n} to specify certain words from "
+"the query and \\{name} to specify a value given by 'name=value' in the user "
+"query.<br/>In addition it is possible to specify multiple references (names, "
+"numbers and strings) at once (\\{name1,name2,...,\"string\"}).<br/>The first "
+"matching value (from the left) will be used as the substitution value for "
+"the resulting URI.<br/>A quoted string can be used as the default value if "
+"nothing matches from the left of the reference list.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"o sitelen e nimi URL pi ilo alasa lon poki ni.<br/>\n"
+"sitelen \\{@} en sitelen \\{0} li jo e sitelen alasa.<br/>\n"
+"o kepeken e \\{@} tan ni: ona li weka e nimi sona (nimi=ijo) tan nimi "
+"alasa.\n"
+"\\{0} li weka ala e nimi sona.<br/>\n"
+"sina ken kepeken \\{1} ... \\{nanpa} tawa sitelen e nimi pi nanpa ona.\n"
+"sina ken kepeken \\{nimi} tawa sitelen e nimi pi nimi sona (nimi=ijo) sama."
+"<br/>\n"
+"kin la, \\{} li ken jo e nimi mute sama ni: \\{nimi1, nimi2, ... \"nimi\"}."
+"<br/>\n"
+"ijo lon nanpa wan li kepeken tawa nimi URL.<br/>\n"
+"ijo ale li lon ala la sitelen lon poki (\"\") li ken kepeken.\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, lbQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:48
+#, kde-format
+msgid "Shortcut &URL:"
+msgstr "nasin lili &URL:"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:83
+#, kde-format
+msgid "Select the character set that will be used to encode your search query."
+msgstr "o pana e nasin sitelen tawa wile alasa sina.."
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:92
+#: webshortcuts/searchproviderdlg_ui.ui:97
+#: webshortcuts/searchproviderdlg_ui.ui:116
+#, kde-format
+msgid ""
+"<qt>\n"
+"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+"b>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:104
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, fuzzy, kde-format
+#| msgid "Enter the human-readable name of the search provider here."
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
+"</p></body></html>"
+msgstr "o sitelen e nimi tawa jan pi ilo alasa lon poki ni."
+
+#. i18n: ectx: property (text), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:119
+#, kde-format
+msgid "&Shortcuts:"
+msgstr "nasin &lili:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:132
+#, kde-format
+msgid "Select the character set that will be used to encode your search query"
+msgstr "o pana e nasin sitelen tawa wile alasa sina."
+
+#. i18n: ectx: property (text), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:135
+#, kde-format
+msgid "&Charset:"
+msgstr "kulupu &sitelen:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
+#: webshortcuts/searchproviderdlg_ui.ui:158
+#, kde-format
+msgid "Insert query placeholder"
+msgstr "o sitelen e nimi poki"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "kulupu pi ante toki pi toki pona"
+
+#~ msgid "Could not modify the ownership of file %1"
+#~ msgstr "mi ken ala ante e jan lawa pi lipu %1"
+
+#~ msgid ""
+#~ "Could not modify the ownership of file <filename>%1</filename>. You have "
+#~ "insufficient access to the file to perform the change."
+#~ msgstr ""
+#~ "mi ken ala ante e jan lawa pi lipu <filename>%1</filename>. sina jo ala e "
+#~ "ken ante tawa lipu."
+
+#, fuzzy
+#~| msgid "Unable to create io-slave: %1"
+#~ msgid "Unable to create KIO worker: %1"
+#~ msgstr "mi ken ala lon e ilo pi pali lipu: %1"
+
+#~ msgctxt ""
+#~ "The first arg is the path to the symlink that couldn't be created, the "
+#~ "secondarg is the filesystem type (e.g. vfat, exfat)"
+#~ msgid ""
+#~ "Could not create symlink \"%1\".\n"
+#~ "The destination filesystem (%2) doesn't support symlinks."
+#~ msgstr ""
+#~ "mi ken ala lon e nimi nanpa tu \"%1\".\n"
+#~ "poki poki (%2) li ken ala jo e nimi mute tawa ijo wan."
+
+#~ msgid ""
+#~ "Could not create \"%1\".\n"
+#~ "The destination filesystem (%2) disallows the following characters in "
+#~ "folder names: %3\n"
+#~ "Selecting Replace will replace any invalid characters (in the destination "
+#~ "folder name) with an underscore \"_\"."
+#~ msgstr ""
+#~ "mi ken ala lon e lipu \"%1\".\n"
+#~ "poki poki (%2) li wile ala e nimi lili ni: %3\n"
+#~ "sina kepeken \"ante\" li weka e nimi pi wile ala li lon e nimi \"_\"."
+
+#~ msgid ""
+#~ "Could not create \"%1\".\n"
+#~ "The destination filesystem (%2) disallows the following characters in "
+#~ "file names: %3\n"
+#~ "Selecting Replace will replace any invalid characters (in the destination "
+#~ "file name) with an underscore \"_\"."
+#~ msgstr ""
+#~ "mi ken ala lon e lipu \"%1\".\n"
+#~ "poki poki (%2) li wile ala e nimi lili ni: %3\n"
+#~ "sina kepeken \"ante\" li weka e nimi pi wile ala li lon e nimi \"_\"."
+
+#~ msgid "Folder Already Exists"
+#~ msgstr "poki li lon awen"
+
+#~ msgid "File Already Exists"
+#~ msgstr "ijo li lon awen"
+
+#~ msgid "Already Exists as Folder"
+#~ msgstr "ona li lon li poki"
+
+#~ msgid "Trash"
+#~ msgstr "ilo wile ala"
+
+#~ msgid "No Exec field in %1"
+#~ msgstr "lipu %1 li jo ala e poki \"Exec\""
+
+#~ msgid "Could not find the program '%1'"
+#~ msgstr "mi ken ala alasa e ilo '%1'"
+
+#~ msgid ""
+#~ "The program '%1' was found at '%2' but it is missing executable "
+#~ "permissions."
+#~ msgstr "ilo '%1' li lon '%2'. taso ona li ken ala kepeken."
+
+#~ msgid "The program '%1' is missing executable permissions."
+#~ msgstr "ilo '%1' li ken ala kepeken."
+
+#~ msgid "Syntax error in command %1 coming from %2"
+#~ msgstr "pakala sitelen lon %1 tan %2"
+
+#~ msgid "Terminal %1 not found while trying to run %2"
+#~ msgstr "mi wile kepeken %2 la mi ken ala alasa e ilo %1"
+
+#~ msgid "Syntax error in command %1 while trying to run %2"
+#~ msgstr "ilo %1 li wile kepeken e ilo %2, taso toki li ike lon ilo %1"
+
+#~ msgid "1 day %2"
+#~ msgid_plural "%1 days %2"
+#~ msgstr[0] "suno %1 %2"
+#~ msgstr[1] "suno pi luka %1 %2"
+#~ msgstr[2] "suno pi mute %1 %2"
+#~ msgstr[3] "suno %1 %2"
+
+#~ msgid "%1 Item"
+#~ msgid_plural "%1 Items"
+#~ msgstr[0] "ijo %1"
+#~ msgstr[1] "ijo pi luka %1"
+#~ msgstr[2] "ijo pi mute %1"
+#~ msgstr[3] "ijo %1"
+
+#~ msgid "1 Folder"
+#~ msgid_plural "%1 Folders"
+#~ msgstr[0] "poki %1"
+#~ msgstr[1] "poki pi luka %1"
+#~ msgstr[2] "poka pi mute %1"
+#~ msgstr[3] "poka %1"
+
+#~ msgid "1 File"
+#~ msgid_plural "%1 Files"
+#~ msgstr[0] "lipu %1"
+#~ msgstr[1] "lipu pi luka %1"
+#~ msgstr[2] "lipu pi mute %1"
+#~ msgstr[3] "lipu %1"
+
+#~ msgctxt "folders, files (size)"
+#~ msgid "%1, %2 (%3)"
+#~ msgstr "poki %1, lipu %2 (suli %3)"
+
+#~ msgctxt "folders, files"
+#~ msgid "%1, %2"
+#~ msgstr "poki %1, lipu %2"
+
+#~ msgctxt "files (size)"
+#~ msgid "%1 (%2)"
+#~ msgstr "lipu %1 (%2)"
+
+#~ msgctxt "items: folders, files (size)"
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "ilo li tawa e ijo"
+
+#~ msgctxt "The source of a file operation"
+#~ msgid "Source"
+#~ msgstr "tan ijo"
+
+#~ msgctxt "The destination of a file operation"
+#~ msgid "Destination"
+#~ msgstr "pini ijo"
+
+#, fuzzy
+#~| msgid "Rename"
+#~ msgctxt "@title job"
+#~ msgid "Renaming"
+#~ msgstr "o ante e nimi"
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "mi lon e lipu sama lipu ante"
+
+#~ msgctxt "@title job"
+#~ msgid "Creating directory"
+#~ msgstr "mi lon e poki sin"
+
+#~ msgid "Directory"
+#~ msgstr "poki"
+
+#~ msgctxt "@title job"
+#~ msgid "Deleting"
+#~ msgstr "mi weka e lipu"
+
+#~ msgid "File"
+#~ msgstr "lipu"
+
+#~ msgctxt "@title job"
+#~ msgid "Examining"
+#~ msgstr "mi lukin e lipu"
+
+#~ msgctxt "@title job"
+#~ msgid "Transferring"
+#~ msgstr "mi tawa e lipu"
+
+#~ msgctxt "@title job"
+#~ msgid "Mounting"
+#~ msgstr "mi kama ken kepeken tawa poki poki"
+
+#~ msgid "Device"
+#~ msgstr "ilo"
+
+#~ msgid "Mountpoint"
+#~ msgstr "nimi pi poki poki"
+
+#~ msgctxt "@title job"
+#~ msgid "Unmounting"
+#~ msgstr "mi weka e ken kepeken tawa poki poki"
+
+#~ msgid "Change Attribute"
+#~ msgstr "ni la o ante e ijo"
+
+#~ msgid ""
+#~ "Root privileges are required to change file attributes. Do you want to "
+#~ "continue?"
+#~ msgstr "wawa li wile tawa ante ijo poki. sina wile ala wile awen pali?"
+
+#~ msgid "Copy Files"
+#~ msgstr "o lon e lipu sama lipu ante"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the copy operation. Do you want "
+#~ "to continue?"
+#~ msgstr "wawa li wile tawa lon pi ijo sama tu. sina wile ala wile awen pali?"
+
+#~ msgid "Delete Files"
+#~ msgstr "o weka e lipu"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the delete operation. However, "
+#~ "doing so may damage your system. Do you want to continue?"
+#~ msgstr ""
+#~ "wawa li wile tawa weka ijo. ni li ken pakala e ilo sina. sina wile ala "
+#~ "wile awen pali?"
+
+#~ msgid "Create Folder"
+#~ msgstr "o pali e poki"
+
+#~ msgid ""
+#~ "Root privileges are required to create this folder. Do you want to "
+#~ "continue?"
+#~ msgstr "wawa li wile tawa lon pi poki poki. sina wile ala wile awen?"
+
+#~ msgid "Move Items"
+#~ msgstr "o tawa e ijo"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the move operation. Do you want "
+#~ "to continue?"
+#~ msgstr "wawa li wile tawa tawa ijo. sina wile ala wile awen pali?"
+
+#~ msgid "Rename"
+#~ msgstr "o ante e nimi"
+
+#~ msgid ""
+#~ "Root privileges are required to complete renaming. Do you want to "
+#~ "continue?"
+#~ msgstr "wawa li wile tawa ante nimi. sina wile ala wile awen pali?"
+
+#~ msgid "Create Symlink"
+#~ msgstr "o lon e nimi nanpa tu tawa ijo"
+
+#~ msgid ""
+#~ "Root privileges are required to create a symlink. Do you want to continue?"
+#~ msgstr "wawa li wile tawa lon pi nimi ante ijo. sina wile ala wile awen?"
+
+#~ msgid "Transfer data"
+#~ msgstr "o tawa e sona"
+
+#~ msgid ""
+#~ "Root privileges are required to complete transferring data. Do you want "
+#~ "to continue?"
+#~ msgstr "wawa li wile tawa tawa sona. sina wile ala wile awen pali?"
+
+#~ msgid "Could not read %1."
+#~ msgstr "ilo li ken ala lukin e ijo %1."
+
+#~ msgid "Could not write to %1."
+#~ msgstr "ilo li ken ala pana e sona tawa %1."
+
+#~ msgid "Could not start process %1."
+#~ msgstr "ilo li ken ala open e pali %1."
+
+#~ msgid ""
+#~ "Internal Error\n"
+#~ "Please send a full bug report at https://bugs.kde.org\n"
+#~ "%1"
+#~ msgstr ""
+#~ "pakala tan insa ilo\n"
+#~ "o pana e lipu pi pakala ilo lon https://bugs.kde.org\n"
+#~ "%1"
+
+#~ msgid "Malformed URL %1."
+#~ msgstr "nimi URL pakala %1."
+
+#~ msgid "The protocol %1 is not supported."
+#~ msgstr "mi ken ala toki ilo %1."
+
+#~ msgid "The protocol %1 is only a filter protocol."
+#~ msgstr "toki ilo %1 li toki weka taso."
+
+#~ msgid "%1 is a folder, but a file was expected."
+#~ msgstr "%1 li poki. taso, ilo li wile e lipu."
+
+#~ msgid "%1 is a file, but a folder was expected."
+#~ msgstr "%1 li lipu. taso, ilo li wile e poki."
+
+#~ msgid "The file or folder %1 does not exist."
+#~ msgstr "lipu pi nimi %1 anu poki pi nimi %1 li lon ala."
+
+#~ msgid "A file named %1 already exists."
+#~ msgstr "lipu pi nimi %1 li lon kin."
+
+#~ msgid "A folder named %1 already exists."
+#~ msgstr "poki pi nimi %1 li lon kin."
+
+#~ msgid "No hostname specified."
+#~ msgstr "ni la nimi pana ala."
+
+#~ msgid "Unknown host %1"
+#~ msgstr "ilo ni li sona ala e ilo pana %1"
+
+#~ msgid "Access denied to %1."
+#~ msgstr "sina ken ala lukin e lipu %1."
+
+#~ msgid ""
+#~ "Access denied.\n"
+#~ "Could not write to %1."
+#~ msgstr "sina ken ala sitelen e lipu %1."
+
+#~ msgid "Could not enter folder %1."
+#~ msgstr "ilo li ken ala kama lon insa pi poki %1."
+
+#~ msgid "The protocol %1 does not implement a folder service."
+#~ msgstr "toki ilo %1 li jo ala e poki lipu."
+
+#~ msgid "Found a cyclic link in %1."
+#~ msgstr "nasin sike li lon %1."
+
+#~ msgid "Found a cyclic link while copying %1."
+#~ msgstr "mi lon e ijo sama ijo %1 la mi lukin e nasin sike."
+
+#~ msgid "Could not create socket for accessing %1."
+#~ msgstr "mi ken ala lon e nasin toki tawa lukin %1."
+
+#~ msgid "Could not connect to host %1."
+#~ msgstr "ilo li ken ala toki tawa ilo pana %1."
+
+#~ msgid "Connection to host %1 is broken."
+#~ msgstr "linluwi tawa ilo pana %1 li pakala."
+
+#~ msgid "The protocol %1 is not a filter protocol."
+#~ msgstr "toki linluwi %1 li toki weka ala."
+
+#~ msgid ""
+#~ "Could not mount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "ilo li ken ala kama insa.\n"
+#~ "pakala li ni:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not unmount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "ilo li ken ala weka.\n"
+#~ "pakala li ni:\n"
+#~ "%1"
+
+#~ msgid "Could not read file %1."
+#~ msgstr "ilo li ken ala lukin e lipu %1."
+
+#~ msgid "Could not write to file %1."
+#~ msgstr "ilo li ken ala pana e sona tawa lipu %1."
+
+#~ msgid "Could not bind %1."
+#~ msgstr "ijo %1 li ken ala pali linja."
+
+#~ msgid "Could not listen %1."
+#~ msgstr "ilo li ken ala kute e ijo %1."
+
+#~ msgid "Could not accept %1."
+#~ msgstr "ilo li ken ala kama jo e ijo %1."
+
+#~ msgid "Could not access %1."
+#~ msgstr "ilo li ken ala lukin e ijo %1."
+
+#~ msgid "Could not terminate listing %1."
+#~ msgstr "ilo li ken ala weka e ijo %1 tan lipu."
+
+#~ msgid "Could not make folder %1."
+#~ msgstr "ilo li ken ala pali e poki %1."
+
+#~ msgid "Could not remove folder %1."
+#~ msgstr "ilo li ken ala weka e poki %1."
+
+#~ msgid "Could not resume file %1."
+#~ msgstr "ilo li ken ala open pali sin e lipu %1."
+
+#~ msgid "Could not rename file %1."
+#~ msgstr "ilo li ken ala pana e nimi sin tawa lipu %1."
+
+#~ msgid "Could not change permissions for %1."
+#~ msgstr "ilo li ken ala ante e lawa kepeken pi ijo %1."
+
+#~ msgid "Could not change ownership for %1."
+#~ msgstr "ilo li ken ala ante e jo pi ijo %1."
+
+#~ msgid "Could not delete file %1."
+#~ msgstr "ilo li ken ala weka e lipu %1."
+
+#~ msgid "The process for the %1 protocol died unexpectedly."
+#~ msgstr "pali pi toki linluwi %1 li moli."
+
+#~ msgid ""
+#~ "Error. Out of memory.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "pakala. poki nanpa li ken ala jo e ijo sin.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown proxy host\n"
+#~ "%1"
+#~ msgstr ""
+#~ "ilo li sona ala e ilo pana pi nasin linluwi\n"
+#~ "%1"
+
+#~ msgid "Authorization failed, %1 authentication not supported"
+#~ msgstr "pana pi sona jan li pakala. sona jan %1 li ken ala"
+
+#~ msgid ""
+#~ "User canceled action\n"
+#~ "%1"
+#~ msgstr "jan li pini e pali %1"
+
+#~ msgid ""
+#~ "Internal error in server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "pakala lon insa ilo linluwi\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Timeout on server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "tenpo li pini lon ilo linluwi\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown error\n"
+#~ "%1"
+#~ msgstr ""
+#~ "pakala pi sona ala\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown interrupt\n"
+#~ "%1"
+#~ msgstr ""
+#~ "mi sona ala e pini\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not delete original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "mi ken ala weka e lipu tan %1.\n"
+#~ "o lukin tawa ken jan."
+
+#~ msgid ""
+#~ "Could not delete partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "mi ken ala weka e leko lipu %1.\n"
+#~ "o lukin tawa ken jan."
+
+#~ msgid ""
+#~ "Could not rename original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "mi ken ala ante nimi e lipu tan %1.\n"
+#~ "o lukin tawa ken jan."
+
+#~ msgid ""
+#~ "Could not rename partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "mi ken ala ante nimi e leko lipu %1.\n"
+#~ "o lukin tawa ken jan."
+
+#~ msgid ""
+#~ "Could not create symlink %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "mi ken ala lon e nimi nanpa tu %1.\n"
+#~ "o lukin tawa ken jan."
+
+#~ msgid ""
+#~ "Cannot create symlinks at %1.\n"
+#~ "The destination filesystem doesn't support symlinks."
+#~ msgstr ""
+#~ "mi ken ala lon e nimi nanpa tu lon %1.\n"
+#~ "poki poki li ken ala jo e nimi mute tawa ijo wan."
+
+#~ msgid "There is not enough space on the disk to write %1."
+#~ msgstr "poki sona li jo ala e ma pi sitelen e ijo %1."
+
+#~ msgid ""
+#~ "The source and destination are the same file.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "lipu tan en lipu pini li sama.\n"
+#~ "%1"
+
+#~ msgid "%1 is required by the server, but is not available."
+#~ msgstr "ilo linluwi li wile e ijo %1. taso ona li lon ala."
+
+#~ msgid "Access to restricted port in POST denied."
+#~ msgstr "wile ilo POST la ilo li pana ala e ken tawa nanpa lupa."
+
+#~ msgid ""
+#~ "The required content size information was not provided for a POST "
+#~ "operation."
+#~ msgstr "wile ilo POST la ilo li sona ala e suli ijo."
+
+#~ msgid "A file or folder cannot be dropped onto itself"
+#~ msgstr "lipu anu poki li ken ala tawa ma pi lon ona"
+
+#~ msgid "A folder cannot be moved into itself"
+#~ msgstr "poki li ken ala tawa ma sama"
+
+#~ msgid "Communication with the local password server failed"
+#~ msgstr "toki tawa ilo linluwi pi nimi len li pakala"
+
+#, fuzzy
+#~| msgid "Unable to create io-slave. %1"
+#~ msgid "Unable to create KIO worker. %1"
+#~ msgstr "mi ken ala lon e ilo pi pali lipu. %1"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Cannot transfer <filename>%1</filename> because it is too large. The "
+#~ "destination filesystem only supports files up to 4GiB"
+#~ msgstr ""
+#~ "mi ken ala pana e lipu <filename>%1</filename> tawa poki tan ni: ona li "
+#~ "suli. poki li ken jo taso e lipu pi suli 4GiB"
+
+#~ msgid ""
+#~ "Privilege escalation is not necessary because \n"
+#~ "'%1' is owned by the current user.\n"
+#~ "Please retry after changing permissions."
+#~ msgstr ""
+#~ "wawa li wile ala tan ni:\n"
+#~ "'%1' li lipu sina\n"
+#~ "o weka e wawa o pali sin e ni."
+
+#, fuzzy
+#~| msgid "The file is too large to be trashed."
+#~ msgid "File is too large to be trashed."
+#~ msgstr "lipu li ken ala lon poki jaki tan suli ona."
+
+#~ msgid ""
+#~ "Unknown error code %1\n"
+#~ "%2\n"
+#~ "Please send a full bug report at https://bugs.kde.org."
+#~ msgstr ""
+#~ "nanpa pakala %1\n"
+#~ "%2\n"
+#~ "o pana e nanpa ni tawa lipu pi ilo pakala lon https://bugs.kde.org."
+
+#~ msgctxt "@info url"
+#~ msgid "(unknown)"
+#~ msgstr "(sona ala)"
+
+#~ msgctxt "@info %1 error name, %2 description"
+#~ msgid "<qt><p><b>%1</b></p><p>%2</p></qt>"
+#~ msgstr "<qt><p><b>%1</b></p><p>%2</p></qt>"
+
+#~ msgid "<b>Technical reason</b>: "
+#~ msgstr "<b>tan wile</b>: "
+
+#~ msgid "<b>Details of the request</b>:"
+#~ msgstr "<b>ijo wile</b>:"
+
+#~ msgid "<li>URL: %1</li>"
+#~ msgstr "<li>nimi URL: %1</li>"
+
+#~ msgid "<li>Protocol: %1</li>"
+#~ msgstr "<li>toki linluwi: %1</li>"
+
+#~ msgid "<li>Date and time: %1</li>"
+#~ msgstr "<li>tenpo: %1</li>"
+
+#~ msgid "<li>Additional information: %1</li>"
+#~ msgstr "<li>sona namako: %1</li>"
+
+#~ msgid "<b>Possible causes</b>:"
+#~ msgstr "<b>ike li ken tan ni</b>:"
+
+#~ msgid "<b>Possible solutions</b>:"
+#~ msgstr "<b>ni li ken pona e ike</b>:"
+
+#~ msgctxt "@info protocol"
+#~ msgid "(unknown)"
+#~ msgstr "(sona ala)"
+
+#~ msgid ""
+#~ "Contact your appropriate computer support system, whether the system "
+#~ "administrator, or technical support group for further assistance."
+#~ msgstr "sina wile pona la o toki e ni tawa jan ilo sina."
+
+#~ msgid "Contact the administrator of the server for further assistance."
+#~ msgstr "sina wile pona la o toki e ni tawa jan lawa pi ilo linluwi."
+
+#~ msgid "Check your access permissions on this resource."
+#~ msgstr "o lukin e ken sina lon ijo ni."
+
+#~ msgid ""
+#~ "Your access permissions may be inadequate to perform the requested "
+#~ "operation on this resource."
+#~ msgstr "ken la sina jo ala e wawa pi pali wile tawa lipu ni."
+
+#~ msgid ""
+#~ "The file may be in use (and thus locked) by another user or application."
+#~ msgstr ""
+#~ "ken la jan ante anu ilo ante li kepeken lipu ni. tenpo sama la wan taso "
+#~ "li ken kepeken e lipu ni."
+
+#~ msgid ""
+#~ "Check to make sure that no other application or user is using the file or "
+#~ "has locked the file."
+#~ msgstr "o lukin e ni: ilo anu jan li kepeken ala e lipu ni li len e lipu."
+
+#~ msgid "Although unlikely, a hardware error may have occurred."
+#~ msgstr "ken pi lili mute la ilo kiwen li pakala."
+
+#~ msgid "You may have encountered a bug in the program."
+#~ msgstr "ken la ilo li pakala."
+
+#~ msgid ""
+#~ "This is most likely to be caused by a bug in the program. Please consider "
+#~ "submitting a full bug report as detailed below."
+#~ msgstr "ken mute la ni li tan pakala ilo. o pana e ijo sama toki anpa."
+
+#~ msgid ""
+#~ "Update your software to the latest version. Your distribution should "
+#~ "provide tools to update your software."
+#~ msgstr "o sin e ilo sina. kulupu pi pana ilo sina li jo e ilo sin."
+
+#~ msgid ""
+#~ "When all else fails, please consider helping the KDE team or the third "
+#~ "party maintainer of this software by submitting a high quality bug "
+#~ "report. If the software is provided by a third party, please contact them "
+#~ "directly. Otherwise, first look to see if the same bug has been submitted "
+#~ "by someone else by searching at the <a href=\"https://bugs.kde.org/\">KDE "
+#~ "bug reporting website</a>. If not, take note of the details given above, "
+#~ "and include them in your bug report, along with as many other details as "
+#~ "you think might help."
+#~ msgstr ""
+#~ "ante ale li pakala la o pana e lipu pi toki pakala tawa jan pali pi ilo "
+#~ "ni.\n"
+#~ "jan pali pi ilo ni li kulupu KDE la o alasa e lipu pi pakala sama lon <a "
+#~ "href=\"https://bugs.kde.org/\">https://bugs.kde.org</a>.\n"
+#~ "lipu pi pakala sama li lon ala la o lon e lipu pi pakala sina.\n"
+#~ "lipu pakala li wile e toki lon sewi toki ni."
+
+#~ msgid "There may have been a problem with your network connection."
+#~ msgstr "ken la linluwi sina li pakala."
+
+#~ msgid ""
+#~ "There may have been a problem with your network configuration. If you "
+#~ "have been accessing the Internet with no problems recently, this is "
+#~ "unlikely."
+#~ msgstr ""
+#~ "ken la linluwi sina li pakala. tenpo pi pini lili la sina kepeken pona "
+#~ "linluwi la ken ni li lili."
+
+#~ msgid ""
+#~ "There may have been a problem at some point along the network path "
+#~ "between the server and this computer."
+#~ msgstr "ken la pakala li lon nasin linluwi tan ilo sina tawa ilo ante."
+
+#~ msgid "Try again, either now or at a later time."
+#~ msgstr "o pali e ni lon tenpo ni anu lon tenpo kama."
+
+#~ msgid "A protocol error or incompatibility may have occurred."
+#~ msgstr "ken la toki ilo li pakala anu ilo li toki ala sama."
+
+#~ msgid "Ensure that the resource exists, and try again."
+#~ msgstr "o sona e ni: lipu li lon ala lon. ona li lon la o pali sin e ni."
+
+#~ msgid "The specified resource may not exist."
+#~ msgstr "ijo pi wile sina li ken lon ala."
+
+#~ msgid ""
+#~ "Double-check that you have entered the correct location and try again."
+#~ msgstr "o lukin sin tan ni: nasin lon li pona."
+
+#~ msgid "Check your network connection status."
+#~ msgstr "o lukin e ??? pi linja kon sina."
+
+#~ msgid "Cannot Open Resource For Reading"
+#~ msgstr "ken kepeken ala tawa lukin ni"
+
+#~ msgid ""
+#~ "This means that the contents of the requested file or folder <strong>%1</"
+#~ "strong> could not be retrieved, as read access could not be obtained."
+#~ msgstr ""
+#~ "ni li toki e ni: insa pi lipu anu poki <strong>%1</strong> li ken ala "
+#~ "lukin tan ni: mi ken ala kama jo e wawa lukin."
+
+#~ msgid "You may not have permissions to read the file or open the folder."
+#~ msgstr "ken la sina jo ala e wawa lukin."
+
+#~ msgid "Cannot Open Resource For Writing"
+#~ msgstr "ken kepeken ala tawa sitelen ni"
+
+#~ msgid ""
+#~ "This means that the file, <strong>%1</strong>, could not be written to as "
+#~ "requested, because access with permission to write could not be obtained."
+#~ msgstr ""
+#~ "ni li toki e ni: lipu <strong>%1</strong> li ken ala kama sitelen tan ni: "
+#~ "mi ken ala kama jo e wawa sitelen."
+
+#~ msgid "Cannot Launch Process required by the %1 Protocol"
+#~ msgstr "mi ken ala open e ilo wile pi nasin toki ilo %1"
+
+#~ msgid "Unable to Launch Process"
+#~ msgstr "ken ala li open e pali lon ilo nanpa"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol could not be found or started. This is usually due to "
+#~ "technical reasons."
+#~ msgstr ""
+#~ "mi ken ala alasa anu open e ilo pi nasin toki <strong>%1</strong>. mute "
+#~ "la ni li tan ijo ilo."
+
+#~ msgid ""
+#~ "The program which provides compatibility with this protocol may not have "
+#~ "been updated with your last update of KDE. This can cause the program to "
+#~ "be incompatible with the current version and thus not start."
+#~ msgstr ""
+#~ "ken la ilo pi nasin toki ilo ni li sin pi sama ala KDE. ni li ken pakala "
+#~ "e pali ilo."
+
+#~ msgid "Internal Error"
+#~ msgstr "pakala tan insa ilo"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol has reported an internal error."
+#~ msgstr "ilo pi nasin toki ilo <strong>%1</strong> li toki e pakala insa."
+
+#~ msgid "Improperly Formatted URL"
+#~ msgstr "nimi URL li pakala nasin"
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered was not properly formatted. The "
+#~ "format of a URL is generally as follows:<blockquote><strong>protocol://"
+#~ "user:password@www.example.org:port/folder/filename.extension?query=value</"
+#~ "strong></blockquote>"
+#~ msgstr ""
+#~ "nimi URL pi pana sina li pakala lukin. ona li wile lukin sama ni:\n"
+#~ "<blockquote><strong>nasin://jan:nimilen@www.lipu.org:nanpa/poki/lipu.nimi?"
+#~ "nimi=sona</strong></blockquote>"
+
+#~ msgid "Unsupported Protocol %1"
+#~ msgstr "toki linluwi %1 li ken ala"
+
+#~ msgid ""
+#~ "The protocol <strong>%1</strong> is not supported by the KDE programs "
+#~ "currently installed on this computer."
+#~ msgstr "mi ken ala toki e nasin toki ilo <strong>%1</strong>."
+
+#~ msgid "The requested protocol may not be supported."
+#~ msgstr "ken la mi sona ala e nasin toki ilo."
+
+#~ msgid ""
+#~ "The versions of the %1 protocol supported by this computer and the server "
+#~ "may be incompatible."
+#~ msgstr ""
+#~ "ken la nanpa tenpo pi nasin toki ilo %1 pi ilo sina li ante tawa nanpa "
+#~ "tenpo pi ilo linluwi ante."
+
+#~ msgid "URL Does Not Refer to a Resource."
+#~ msgstr "nasin URL li toki ala e ijo."
+
+#~ msgid "Protocol is a Filter Protocol"
+#~ msgstr "nasin toki li nasin weka"
+
+#~ msgid ""
+#~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
+#~ "strong>ocator (URL) that you entered did not refer to a specific resource."
+#~ msgstr "nimi URL pi pana sina li tawa ala lipu wan."
+
+#~ msgid "Unsupported Action: %1"
+#~ msgstr "pali ni li ken ala: %1"
+
+#~ msgid ""
+#~ "The requested action is not supported by the KDE program which is "
+#~ "implementing the <strong>%1</strong> protocol."
+#~ msgstr ""
+#~ "ilo KDE pi nasin toki <strong>%1</strong> li ken ala pali pi wile sina."
+
+#~ msgid "Attempt to find another way to accomplish the same outcome."
+#~ msgstr "o alasa e nasin ante tawa wile sama."
+
+#~ msgid "File Expected"
+#~ msgstr "ilo li wile e lipu"
+
+#~ msgid "This may be an error on the server side."
+#~ msgstr "ken la ilo linluwi ante li pakala."
+
+#~ msgid "Folder Expected"
+#~ msgstr "ilo li wile e poki lipu"
+
+#~ msgid "File or Folder Does Not Exist"
+#~ msgstr "lipu anu poki lipu lo lon ala"
+
+#~ msgid "The specified file or folder <strong>%1</strong> does not exist."
+#~ msgstr ""
+#~ "lipu wile <strong>%1</strong> anu poki wile <strong>%1</strong> li lon "
+#~ "ala."
+
+#~ msgid ""
+#~ "The requested file could not be created because a file with the same name "
+#~ "already exists."
+#~ msgstr "lipu wile li ken ala kama lon tan ni: lipu pi nimi sama li lon."
+
+#~ msgid ""
+#~ "Try moving the current file out of the way first, and then try again."
+#~ msgstr "ken la o weka e lipu o pali sin e ni."
+
+#~ msgid "Delete the current file and try again."
+#~ msgstr "o ala e lipu ni. ni li pini la o sin e pali ni."
+
+#~ msgid "Choose an alternate filename for the new file."
+#~ msgstr "o pana e nimi ante tawa lipu sin ni."
+
+#~ msgid ""
+#~ "The requested folder could not be created because a folder with the same "
+#~ "name already exists."
+#~ msgstr "poki wile li ken ala kama lon tan ni: poki pi nimi sama li lon."
+
+#~ msgid ""
+#~ "Try moving the current folder out of the way first, and then try again."
+#~ msgstr "ken la o weka e poki o pali sin e ni."
+
+#~ msgid "Delete the current folder and try again."
+#~ msgstr "o ala e poki ni. ni li pini la o sin e pali ni."
+
+#~ msgid "Choose an alternate name for the new folder."
+#~ msgstr "o pana e nimi ante tawa poki sin ni."
+
+#~ msgid "Unknown Host"
+#~ msgstr "ilo ni li sona ala e ilo pana"
+
+#~ msgid ""
+#~ "The name that you typed, %1, may not exist: it may be incorrectly typed."
+#~ msgstr "ken la lipu %1 li lon ala li sitelen pakala."
+
+#~ msgid "Access Denied"
+#~ msgstr "sina ken ala lukin e lipu"
+
+#~ msgid "Access was denied to the specified resource, <strong>%1</strong>."
+#~ msgstr "ilo li pana ala e ken sina tawa ijo wile, <strong>%1</strong>"
+
+#~ msgid ""
+#~ "You may have supplied incorrect authentication details or none at all."
+#~ msgstr "ken la nimi len sina li pakala anu lon ala."
+
+#~ msgid ""
+#~ "Your account may not have permission to access the specified resource."
+#~ msgstr "ken la sina li jo ala e wawa tawa kepeken ijo."
+
+#~ msgid "Write Access Denied"
+#~ msgstr "e ante ken li ken ala"
+
+#~ msgid "Unable to Enter Folder"
+#~ msgstr "ken ala li tawa e ijo sitelen"
+
+#~ msgid "Folder Listing Unavailable"
+#~ msgstr "mi ken ala kama jo e lipu poki"
+
+#~ msgid "Protocol %1 is not a Filesystem"
+#~ msgstr "toki linluwi %1 li poki poki ala"
+
+#~ msgid "Cyclic Link Detected"
+#~ msgstr "nasin sike li lon"
+
+#~ msgid ""
+#~ "Delete one part of the loop in order that it does not cause an infinite "
+#~ "loop, and try again."
+#~ msgstr ""
+#~ "o weka e nasin lon sike la sike li kama pakala. ni la o pali sin e ni."
+
+#~ msgid "Request Aborted By User"
+#~ msgstr "jan li weka e wile"
+
+#~ msgid "The request was not completed because it was aborted."
+#~ msgstr "pali li pini ala tan ni: jan li weka e ona."
+
+#~ msgid "Retry the request."
+#~ msgstr "o pali sin e ijo pi wile sina."
+
+#~ msgid "Cyclic Link Detected During Copy"
+#~ msgstr "sama lipu la nasin sike li lon"
+
+#~ msgid "Could Not Create Network Connection"
+#~ msgstr "mi ken ala open e nasin linluwi"
+
+#~ msgid "Could Not Create Socket"
+#~ msgstr "mi ken ala lon e nasin toki"
+
+#~ msgid "Connection to Server Refused"
+#~ msgstr "linja kon tawa mama li ike tawa ona"
+
+#~ msgid ""
+#~ "A network firewall (a device which restricts Internet requests), either "
+#~ "protecting your network or the network of the server, may have "
+#~ "intervened, preventing this request."
+#~ msgstr ""
+#~ "ken la sinpin linluwi (pi ilo sina anu ilo linluwi) li weka e toki ilo."
+
+#~ msgid "Connection to Server Closed Unexpectedly"
+#~ msgstr "wile mi ala la toki pi ilo linluwi ante li pini"
+
+#~ msgid "URL Resource Invalid"
+#~ msgstr "ijo lon pini nasin URL li ike"
+
+#~ msgid "Protocol %1 is not a Filter Protocol"
+#~ msgstr "nasin toki %1 li nasin weka ala"
+
+#~ msgid "Unable to Initialize Input/Output Device"
+#~ msgstr "mi ken ala open e ilo I/O."
+
+#~ msgid "Could Not Mount Device"
+#~ msgstr "ilo li ken ala kama insa"
+
+#~ msgid ""
+#~ "The requested device could not be initialized (\"mounted\"). The reported "
+#~ "error was: <strong>%1</strong>"
+#~ msgstr ""
+#~ "ilo pi wile sina li ken ala open (kama insa). pakala li <strong>%1</"
+#~ "strong>"
+
+#~ msgid "Unable to Uninitialize Input/Output Device"
+#~ msgstr "mi ken ala pini e ilo I/O."
+
+#~ msgid "Could Not Unmount Device"
+#~ msgstr "ilo li ken ala weka"
+
+#~ msgid ""
+#~ "The requested device could not be uninitialized (\"unmounted\"). The "
+#~ "reported error was: <strong>%1</strong>"
+#~ msgstr ""
+#~ "ilo pi wile sina li ken ala pini (weka). pakala li <strong>%1</strong>"
+
+#~ msgid ""
+#~ "The device may be busy, that is, still in use by another application or "
+#~ "user. Even such things as having an open browser window on a location on "
+#~ "this device may cause the device to remain in use."
+#~ msgstr ""
+#~ "ken la jan ante anu ilo ante li kepeken e ilo ni. supa pi ilo linluwi li "
+#~ "lon la kepeken li ken lon."
+
+#~ msgid "Check that no applications are accessing the device, and try again."
+#~ msgstr ""
+#~ "o lon e ni: ilo ante ala li kepeken e ilo. ni li lon la, o pali sin."
+
+#~ msgid "Cannot Read From Resource"
+#~ msgstr "mi ken ala lukin e ijo"
+
+#~ msgid "You may not have permissions to read from the resource."
+#~ msgstr "ken la sina jo ala e ken lukin tawa ijo ni."
+
+#~ msgid "Cannot Write to Resource"
+#~ msgstr "mi ken ala sitelen e ijo"
+
+#~ msgid "You may not have permissions to write to the resource."
+#~ msgstr "ken la sina jo ala e ken sitelen tawa ijo ni."
+
+#~ msgid "Could Not Listen for Network Connections"
+#~ msgstr "mi ken ala kute e toki linluwi sin."
+
+#~ msgid "Could Not Bind"
+#~ msgstr "mi ken ala open e nasin toki"
+
+#~ msgid "Could Not Listen"
+#~ msgstr "mi ken ala kute"
+
+#~ msgid "Could Not Accept Network Connection"
+#~ msgstr "mi ken ala kepeken e toki linluwi kama"
+
+#~ msgid "You may not have permissions to accept the connection."
+#~ msgstr "ken la sina jo ala e ken tawa kute pi toki sin."
+
+#~ msgid "Could Not Login: %1"
+#~ msgstr "mi ken ala toki e lon mi: %1"
+
+#~ msgid ""
+#~ "An attempt to login to perform the requested operation was unsuccessful."
+#~ msgstr ""
+#~ "mi alasa kama jo e ken mi lon ilo ante tawa pali sina. taso mi pakala li "
+#~ "kama jo ala."
+
+#~ msgid "Could Not Determine Resource Status"
+#~ msgstr "mi ken ala alasa e lon ijo"
+
+#~ msgid "Could Not Stat Resource"
+#~ msgstr "mi ken ala kama sona e ijo"
+
+#~ msgid ""
+#~ "The specified resource may not have existed or may not be accessible."
+#~ msgstr "ken la ijo wile li lon ala li jo ala e ken lukin."
+
+#~ msgid "Could Not Cancel Listing"
+#~ msgstr "mi ken ala pini e kama sona lipu"
+
+#~ msgid "FIXME: Document this"
+#~ msgstr "li pona ni: li sona pali e ni"
+
+#~ msgid "Could Not Create Folder"
+#~ msgstr "ilo li ken ala pali e poki lipu sin"
+
+#~ msgid "An attempt to create the requested folder failed."
+#~ msgstr "pali pi lon poki li pakala."
+
+#~ msgid "The location where the folder was to be created may not exist."
+#~ msgstr "ken la lon wile pi poki sin li lon ala."
+
+#~ msgid "Could Not Remove Folder"
+#~ msgstr "ilo li ken ala weka e poki"
+
+#~ msgid ""
+#~ "An attempt to remove the specified folder, <strong>%1</strong>, failed."
+#~ msgstr "alasa mi tawa weka e poki <strong>%1</strong> li pakala."
+
+#~ msgid "The specified folder may not exist."
+#~ msgstr "poki pi wile sona li ken lon ala."
+
+#~ msgid "The specified folder may not be empty."
+#~ msgstr "ijo li ken lon poki pi wile sina."
+
+#~ msgid "Ensure that the folder exists and is empty, and try again."
+#~ msgstr ""
+#~ "o lon e ni: poki li lon. poki li jo ala e insa. ni la o pali sin e ni."
+
+#~ msgid "Could Not Resume File Transfer"
+#~ msgstr "mi ken ala open sin e pana lipu"
+
+#~ msgid "The protocol, or the server, may not support file resuming."
+#~ msgstr "ken la ilo ante li ken ala open sin e pali pana pini."
+
+#~ msgid "Retry the request without attempting to resume transfer."
+#~ msgstr "o pali sin e wile. o open sin ala e pali nanpa wan."
+
+#~ msgid "Could Not Rename Resource"
+#~ msgstr "mi ken ala ante e nimi ijo"
+
+#~ msgid ""
+#~ "An attempt to rename the specified resource <strong>%1</strong> failed."
+#~ msgstr "alasa mi tawa weka e ijo <strong>%1</strong> li pakala."
+
+#~ msgid "Could Not Alter Permissions of Resource"
+#~ msgstr "mi ken ala ante e lawa ijo"
+
+#~ msgid "Could Not Change Ownership of Resource"
+#~ msgstr "mi ken ala ante e jan jo ijo"
+
+#~ msgid "Could Not Delete Resource"
+#~ msgstr "mi ken ala weka e ijo"
+
+#~ msgid ""
+#~ "An attempt to delete the specified resource <strong>%1</strong> failed."
+#~ msgstr ""
+#~ "mi alasa weka e lipu <strong>%1</strong>. taso mi pakala li weka ala."
+
+#~ msgid "Unexpected Program Termination"
+#~ msgstr "sona mi ala la ilo li moli"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol has unexpectedly terminated."
+#~ msgstr ""
+#~ "ilo pi pana ken tawa toki linluwi <strong>%1</strong> li moli lon weka "
+#~ "sona mi."
+
+#~ msgid "Out of Memory"
+#~ msgstr "ala e sona lon tenpo lili lon ijo nanpa"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol could not obtain the memory required to continue."
+#~ msgstr ""
+#~ "ilo pi pana ken tawa toki linluwi <strong>%1</strong> li jo ala e ijo RAM "
+#~ "wile."
+
+#~ msgid "Unknown Proxy Host"
+#~ msgstr "nimi pi sona ala pi ilo nasin linluwi"
+
+#~ msgid ""
+#~ "While retrieving information about the specified proxy host, <strong>%1</"
+#~ "strong>, an Unknown Host error was encountered. An unknown host error "
+#~ "indicates that the requested name could not be located on the Internet."
+#~ msgstr ""
+#~ "mi kama sona e ilo pi nasin linluwi <strong>%1</strong> la, ilo li ken "
+#~ "ala kama sona e nimi ona. ona li ken ala alasa e nimi lon linluwi."
+
+#~ msgid ""
+#~ "There may have been a problem with your network configuration, "
+#~ "specifically your proxy's hostname. If you have been accessing the "
+#~ "Internet with no problems recently, this is unlikely."
+#~ msgstr ""
+#~ "ken la linluwi sina li pakala. ni la nimi ilo pi nasin linluwi li suli. "
+#~ "sina kepeken pona e linluwi la, ken ni li lili. "
+
+#~ msgid "Double-check your proxy settings and try again."
+#~ msgstr "o lukin tawa lawa pi ilo pi nasin linluwi o pali sin e ni."
+
+#~ msgid "Authentication Failed: Method %1 Not Supported"
+#~ msgstr "mi ken ala pana e sona pi lon mi: nasin %1 li sona ala"
+
+#~ msgid ""
+#~ "Although you may have supplied the correct authentication details, the "
+#~ "authentication failed because the method that the server is using is not "
+#~ "supported by the KDE program implementing the protocol %1."
+#~ msgstr ""
+#~ "ken la sina li pana e nimi len pona. taso ilo li awen pakala tan ni: ilo "
+#~ "KDE pi toki linluwi %1 li sona ala e nasin toki."
+
+#~ msgid ""
+#~ "Please file a bug at <a href=\"https://bugs.kde.org/\">https://bugs.kde."
+#~ "org/</a> to inform the KDE team of the unsupported authentication method."
+#~ msgstr ""
+#~ "o pana e lipu pi ilo pakala tawa <a href=\"https://bugs.kde.org/"
+#~ "\">https://bugs.kde.org/</a> o toki e nasin pi sona ala."
+
+#~ msgid "Request Aborted"
+#~ msgstr "nasin li weka"
+
+#~ msgid "Internal Error in Server"
+#~ msgstr "ilo ante li pakala lon insa"
+
+#~ msgid ""
+#~ "The program on the server which provides access to the <strong>%1</"
+#~ "strong> protocol has reported an internal error: %2."
+#~ msgstr ""
+#~ "ilo linluwi pi toki ilo <strong>%1</strong> li toki e pakala tan ni: %2"
+
+#~ msgid ""
+#~ "This is most likely to be caused by a bug in the server program. Please "
+#~ "consider submitting a full bug report as detailed below."
+#~ msgstr ""
+#~ "ken li suli la ilo lon ilo linluwi li pakala. o pana e lipu pi ilo pakala "
+#~ "sama nasin lon anpa ni."
+
+#~ msgid ""
+#~ "Contact the administrator of the server to advise them of the problem."
+#~ msgstr "o toki e pakala ni tawa lawa pi ilo linluwi sina."
+
+#~ msgid ""
+#~ "If you know who the authors of the server software are, submit the bug "
+#~ "report directly to them."
+#~ msgstr "sina sona e jan pali ilo la o pana e lipu pi ilo pakala tawa ona."
+
+#~ msgid "Timeout Error"
+#~ msgstr "pakala la, tenpo li kama pini"
+
+#~ msgid "The server was too busy responding to other requests to respond."
+#~ msgstr "ilo linluwi li toki tawa ilo ante mute li jo ala e tenpo tawa sina."
+
+#~ msgid "Unknown Error"
+#~ msgstr "pakala pi sona ala"
+
+#~ msgid "Unknown Interruption"
+#~ msgstr "weka pali pi sona ala"
+
+#~ msgid "Could Not Delete Original File"
+#~ msgstr "mi ken ala weka e lipu tan"
+
+#~ msgid "Could Not Delete Temporary File"
+#~ msgstr "mi ken ala weka e lipu pali"
+
+#~ msgid "Could Not Rename Original File"
+#~ msgstr "mi ken ala ante e nimi pi lipu tan"
+
+#~ msgid "Could Not Rename Temporary File"
+#~ msgstr "mi ken ala ante e nimi pi lipu pali"
+
+#~ msgid "Could Not Create Link"
+#~ msgstr "mi ken ala lon e nasin"
+
+#~ msgid "Could Not Create Symbolic Link"
+#~ msgstr "mi ken ala lon e nasin"
+
+#~ msgid "The requested symbolic link %1 could not be created."
+#~ msgstr "nasin lipu wile %1 li ken ala kama lon."
+
+#~ msgid "No Content"
+#~ msgstr "ijo ala li lon insa"
+
+#~ msgid "Disk Full"
+#~ msgstr "e poki suli lon ijo nanpa li pini"
+
+#~ msgid "Source and Destination Files Identical"
+#~ msgstr "lipu tan en lipu pini li sama"
+
+#~ msgid "Choose a different filename for the destination file."
+#~ msgstr "o ante e nimi pi lipu wile"
+
+#~ msgid "File or Folder dropped onto itself"
+#~ msgstr "lipu anu poki li tawa ijo sama"
+
+#~ msgid ""
+#~ "The operation could not be completed because the source and destination "
+#~ "file or folder are the same."
+#~ msgstr "mi ken ala pali e ni tan ni: tan en pini li sama."
+
+#~ msgid "Drop the item into a different file or folder."
+#~ msgstr "o tawa e ni tawa poki ante."
+
+#~ msgid "Folder moved into itself"
+#~ msgstr "poki li ken ala tawa ona"
+
+#~ msgid ""
+#~ "The operation could not be completed because the source can not be moved "
+#~ "into itself."
+#~ msgstr "wile li ken ala kama lon tan ni: poki li ken ala lon ona."
+
+#~ msgid "Move the item into a different folder."
+#~ msgstr "o tawa e ni tawa poki ante."
+
+#~ msgid "Could not communicate with password server"
+#~ msgstr "mi ken ala toki e ilo linluwi pi nimi len"
+
+#~ msgid ""
+#~ "Try restarting your session, or look in the logs for errors from kiod."
+#~ msgstr ""
+#~ "o open sin e ilo sina. anu o alasa lon lipu ilo tawa toki pakala tan ilo "
+#~ "kiod."
+
+#~ msgid "Cannot Initiate the %1 Protocol"
+#~ msgstr "mi ken ala open toki %1"
+
+#, fuzzy
+#~| msgid "Unable to Create io-slave"
+#~ msgid "Unable to Create KIO Worker"
+#~ msgstr "mi ken ala open kepeken e ilo lili"
+
+#, fuzzy
+#~| msgid ""
+#~| "The program on your computer which provides access to the <strong>%1</"
+#~| "strong> protocol could not be found or started. This is usually due to "
+#~| "technical reasons."
+#~ msgid ""
+#~ "The KIO worker which provides access to the <strong>%1</strong> protocol "
+#~ "could not be started. This is usually due to technical reasons."
+#~ msgstr ""
+#~ "mi ken ala alasa anu open e ilo pi nasin toki <strong>%1</strong>. mute "
+#~ "la ni li tan ijo ilo."
+
+#~ msgctxt "@info"
+#~ msgid "Cannot transfer <filename>%1</filename>"
+#~ msgstr "ilo li ken ala tawa e lipu <filename>%1</filename>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The file <filename>%1</filename> cannot be transferred, because the "
+#~ "destination filesystem does not support files that large"
+#~ msgstr ""
+#~ "ilo li ken ala tawa e lipu <filename>%1</filename> tan ni: lipu pi suli "
+#~ "ni li ken ala lon insa pi poki wile"
+
+#~ msgid "Undocumented Error"
+#~ msgstr "pakala pi sona ala"
+
+#~ msgid "(Symbolic Link to %1)"
+#~ msgstr "(nasin tawa %1)"
+
+#~ msgid "(%1, Link to %2)"
+#~ msgstr "(%1, nasin tawa %2)"
+
+#~ msgid " (Points to %1)"
+#~ msgstr " (li tawa %1)"
+
+#~ msgid ""
+#~ "Malformed URL\n"
+#~ "%1"
+#~ msgstr ""
+#~ "nimi URL pakala\n"
+#~ "%1"
+
+#~ msgid "Unable to determine the type of file for %1"
+#~ msgstr "mi ken ala sona e kule lipu tawa lipu %1"
+
+#~ msgid "Opening connections is not supported with the protocol %1."
+#~ msgstr "mi ken ala open e linluwi kepeken nasin toki ilo %1."
+
+#~ msgid "Closing connections is not supported with the protocol %1."
+#~ msgstr "mi ken ala pini e linluwi kepeken nasin toki ilo %1."
+
+#~ msgid "Accessing files is not supported with the protocol %1."
+#~ msgstr "mi ken ala lukin e lipu kepeken nasin toki ilo %1."
+
+#~ msgid "Writing to %1 is not supported."
+#~ msgstr "mi ken ala sitelen e %1."
+
+#~ msgid "There are no special actions available for protocol %1."
+#~ msgstr "pali ante li lon ala tawa nasin toki ilo %1."
+
+#~ msgid "Listing folders is not supported for protocol %1."
+#~ msgstr "mi ken ala lukin e poki kepeken nasin toki ilo %1."
+
+#~ msgid "Retrieving data from %1 is not supported."
+#~ msgstr "mi ken ala kama jo e sona tan %1."
+
+#~ msgid "Retrieving mime type information from %1 is not supported."
+#~ msgstr "mi ken ala kama sona e kule lipu tan %1."
+
+#~ msgid "Renaming or moving files within %1 is not supported."
+#~ msgstr "mi ken ala ante li ken ala tawa e lipu lon %1."
+
+#~ msgid "Creating symlinks is not supported with protocol %1."
+#~ msgstr "ilo %1 li ken ala lon e nasin lipu."
+
+#~ msgid "Copying files within %1 is not supported."
+#~ msgstr "ilo li ken ala sama e lipu lon insa pi poki %1."
+
+#~ msgid "Deleting files from %1 is not supported."
+#~ msgstr "weka lipu tan %1 li ken ala."
+
+#~ msgid "Creating folders is not supported with protocol %1."
+#~ msgstr "ilo %1 li ken ala lon e poki."
+
+#~ msgid "Changing the attributes of files is not supported with protocol %1."
+#~ msgstr "ilo %1 li ken ala ante e ijo lipu."
+
+#~ msgid "Changing the ownership of files is not supported with protocol %1."
+#~ msgstr "ilo %1 li ken ala ante e jan jo lipu."
+
+#~ msgid "Multiple get is not supported with protocol %1."
+#~ msgstr "ilo %1 li ken ala kama jo e lipu mute."
+
+#~ msgid "Opening files is not supported with protocol %1."
+#~ msgstr "ilo %1 li ken ala open e lipu."
+
+#~ msgid "Protocol %1 does not support action %2."
+#~ msgstr "toki ilo %1 li ken ala pali %2."
+
+#~ msgid "Security Information"
+#~ msgstr "sona kiwen"
+
+#~ msgid "C&ontinue Loading"
+#~ msgstr "o &awen kama jo"
+
+#~ msgctxt "%1 is a host name"
+#~ msgid "%1: SSL negotiation failed"
+#~ msgstr "%1: kama jo SSL li pakala"
+
+#~ msgid "Display SSL &Information"
+#~ msgstr "o sitelen e &sona SSL:"
+
+#~ msgid "C&onnect"
+#~ msgstr "o &open toki"
+
+#~ msgid ""
+#~ "The server failed the authenticity check (%1).\n"
+#~ "\n"
+#~ msgstr ""
+#~ "ilo ante li pakala e sona pi pona ona (%1).\n"
+#~ "\n"
+
+#~ msgid "Server Authentication"
+#~ msgstr "pana sona lon pi ilo linluwi"
+
+#~ msgid "&Details"
+#~ msgstr "&sona namako"
+
+#~ msgid "Co&ntinue"
+#~ msgstr "o a&wen"
+
+#~ msgid ""
+#~ "Would you like to accept this certificate forever without being prompted?"
+#~ msgstr "lipu ni li pona ala pon tawa sina lon tenpo ale?"
+
+#~ msgid "&Forever"
+#~ msgstr "lon &tenpo ale"
+
+#~ msgid "&Current Session only"
+#~ msgstr "tenpo &ni taso"
+
+#~ msgid "Unknown protocol '%1'."
+#~ msgstr "mi sona ala e nasin toki ilo '%1'."
+
+#, fuzzy
+#~| msgid "Can not find io-slave for protocol '%1'."
+#~ msgid "Can not find a KIO worker for protocol '%1'."
+#~ msgstr "mi ken ala alasa e ilo lili pi nasin toki ilo '%1'."
+
+#, fuzzy
+#~| msgid "Can not create socket for launching io-slave for protocol '%1'."
+#~ msgid ""
+#~ "Can not create a socket for launching a KIO worker for protocol '%1'."
+#~ msgstr "mi ken ala open e nasin toki tawa ilo tawa toki ilo '%1'."
+
+#, fuzzy
+#~| msgid "Can not find 'kioslave5' executable at '%1'"
+#~ msgid "Can not find 'kioworker' executable at '%1'"
+#~ msgstr "mi ken ala alasa e ilo 'kioslave5' lon '%1'"
+
+#~ msgid "You did not select a file to delete."
+#~ msgstr "sina toki ala e lipu tawa weka."
+
+#~ msgid "Nothing to Delete"
+#~ msgstr "ijo ala li ken kama weka"
+
+#~ msgid "You did not select a file to trash."
+#~ msgstr "sina toki ala e lipu pi wile sina tawa poki jaki."
+
+#~ msgid "Nothing to Trash"
+#~ msgstr "ijo ala li ken tawa poki jaki"
+
+#~ msgid "The specified folder does not exist or was not readable."
+#~ msgstr "poki wile li lon ala anu ken lukin ala."
+
+#~ msgid "Menu"
+#~ msgstr "ilo mute"
+
+#~ msgid "Parent Folder"
+#~ msgstr "poki mama"
+
+#~ msgctxt "@info"
+#~ msgid "Go back"
+#~ msgstr "o tawa tenpo pini"
+
+#~ msgctxt "@info"
+#~ msgid "Go forward"
+#~ msgstr "o tawa tenpo kama"
+
+#~ msgid "Home Folder"
+#~ msgstr "poki pi tomo sina"
+
+#~ msgid "Reload"
+#~ msgstr "o sin e ni"
+
+#~ msgid "New Folder..."
+#~ msgstr "poki lipu sin..."
+
+#~ msgid "Move to Trash"
+#~ msgstr "o weka e ni tawa poki jaki"
+
+#~ msgid "Delete"
+#~ msgstr "o weka"
+
+#~ msgid "Sorting"
+#~ msgstr "nasin pana"
+
+#~ msgid "Sort by Name"
+#~ msgstr "o nasin tan nimi"
+
+#~ msgid "Sort by Size"
+#~ msgstr "o nasin tan suli"
+
+#~ msgid "Sort by Date"
+#~ msgstr "o nasin tan tenpo"
+
+#~ msgid "Sort by Type"
+#~ msgstr "o nasin tan kule"
+
+#~ msgid "Ascending"
+#~ msgstr "tan lili tawa suli"
+
+#~ msgid "Descending"
+#~ msgstr "tan suli tawa lili"
+
+#~ msgid "Folders First"
+#~ msgstr "poki o lon open"
+
+#, fuzzy
+#~| msgid "Show Hidden Files"
+#~ msgid "Hidden Files Last"
+#~ msgstr "o ken e lipu len tawa lukin"
+
+#~ msgid "Icons View"
+#~ msgstr "lukin pi sitelen lili"
+
+#~ msgid "Compact View"
+#~ msgstr "lukin pi lipu lili"
+
+#~ msgid "Details View"
+#~ msgstr "lukin pi lipu suli"
+
+#~ msgid "Icon Position"
+#~ msgstr "poka pi sitelen lili"
+
+#~ msgid "Next to File Name"
+#~ msgstr "lon poka pi nimi lipu"
+
+#~ msgid "Above File Name"
+#~ msgstr "lon sewi pi nimi lipu"
+
+#~ msgid "Short View"
+#~ msgstr "lukin lili"
+
+#~ msgid "Detailed View"
+#~ msgstr "lukin pi toki mute"
+
+#~ msgid "Tree View"
+#~ msgstr "lukin pi kasi lukin"
+
+#~ msgid "Detailed Tree View"
+#~ msgstr "lukin pi kasin lukin suli"
+
+#~ msgid "Allow Expansion in Details View"
+#~ msgstr "o ken e open poki lon lipu wan lon lukin pi sona mute"
+
+#~ msgid "Show Hidden Files"
+#~ msgstr "o ken e lipu len tawa lukin"
+
+#~ msgid "Show Preview Panel"
+#~ msgstr "o sitelen e ilo lukin lili"
+
+#~ msgid "Show Preview"
+#~ msgstr "o sitelen e lukin lipu"
+
+#~ msgid "Open Containing Folder"
+#~ msgstr "o open e poki pi jo lipu ni"
+
+#~ msgid "Properties"
+#~ msgstr "ijo lipu"
+
+#, fuzzy
+#~| msgid "&View"
+#~ msgid "&View Mode"
+#~ msgstr "&lukin"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Z-A"
+#~ msgstr "W-A"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "A-Z"
+#~ msgstr "A-W"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Newest First"
+#~ msgstr "sin li nanpa wan"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "Oldest First"
+#~ msgstr "sin li lon pini"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Largest First"
+#~ msgstr "suli li nanpa wa"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "Smallest First"
+#~ msgstr "suli li lon pini"
+
+#~ msgid "Encoding:"
+#~ msgstr "nasin sitelen:"
+
+#~ msgid "Open"
+#~ msgstr "o open"
+
+#~ msgid "Save As"
+#~ msgstr "kama awen kepeken nimi"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Copy To"
+#~ msgstr "lipu sama tawa ma ante"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Move To"
+#~ msgstr "o tawa e ni"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Home Folder"
+#~ msgstr "poki tomo"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Root Folder"
+#~ msgstr "poki open"
+
+#~ msgctxt "@title:menu in Copy To or Move To submenu"
+#~ msgid "Browse..."
+#~ msgstr "lukin..."
+
+#~ msgctxt "@title:menu"
+#~ msgid "Copy Here"
+#~ msgstr "sina o pana e lipu sama tawa ni"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Move Here"
+#~ msgstr "o tawa ni"
+
+#~ msgctxt "Default mime type filter that shows all file types"
+#~ msgid "*|All Files"
+#~ msgstr "*|lipu ale"
+
+#~ msgctxt "%1 is the mimetype name, %2 is the extensions"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (nimi pini %2)"
+
+#~ msgid "All Supported Files"
+#~ msgstr "lipu ale pi nasin ken"
+
+#~ msgid "All Files"
+#~ msgstr "lipu ale"
+
+#~ msgid "Add Places Entry"
+#~ msgstr "o lon e nasin poka tawa ni"
+
+#~ msgid "Edit Places Entry"
+#~ msgstr "o ante e nasin poka tawa ni"
+
+#~ msgid "L&abel:"
+#~ msgstr "&nimi:"
+
+#~ msgid "Enter descriptive label here"
+#~ msgstr "sina o pana e nimi toki tawa ni"
+
+#~ msgid "&Location:"
+#~ msgstr "&lon:"
+
+#~ msgid ""
+#~ "<qt>This is the icon that will appear in the Places panel.<br /><br /"
+#~ ">Click on the button to select a different icon.</qt>"
+#~ msgstr ""
+#~ "<qt>ni li sitelen. ona li kama lon ilo poka pi nasin tawa ma suli.<br /"
+#~ "><br />sina wile ante e sitelen la o pilin e nana.</qt>"
+
+#~ msgid "Choose an &icon:"
+#~ msgstr "o wile e &sitelen lili:"
+
+#~ msgid "&Only show when using this application (%1)"
+#~ msgstr "&o lukin lon ilo ni (%1) taso"
+
+#~ msgctxt "@item"
+#~ msgid "Places"
+#~ msgstr "ma mute"
+
+#~ msgctxt "@item"
+#~ msgid "Remote"
+#~ msgstr "lon ala"
+
+#~ msgctxt "@item The place group section name for recent dynamic lists"
+#~ msgid "Recent"
+#~ msgstr "ijo pi tenpo poka"
+
+#~ msgctxt "@item"
+#~ msgid "Search For"
+#~ msgstr "o alasa"
+
+#~ msgctxt "@item"
+#~ msgid "Devices"
+#~ msgstr "ilo ale"
+
+#~ msgctxt "@item"
+#~ msgid "Removable Devices"
+#~ msgstr "ilo pi ken weka"
+
+#~ msgctxt "@item"
+#~ msgid "Tags"
+#~ msgstr "nimi lili"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "All tags"
+#~ msgstr "nimi lili ale"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Home"
+#~ msgstr "tomo"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Desktop"
+#~ msgstr "supa pali"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Documents"
+#~ msgstr "lipu pali"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Downloads"
+#~ msgstr "tan ilo ante"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Network"
+#~ msgstr "ilo kulupu"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Trash"
+#~ msgstr "poki jaki"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Music"
+#~ msgstr "kalama musi"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Pictures"
+#~ msgstr "sitelen"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Videos"
+#~ msgstr "sitelen tawa"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Files"
+#~ msgstr "lipu pi tenpo poka"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Locations"
+#~ msgstr "ma pi tenpo poka"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Today"
+#~ msgstr "ante li lon tenpo suno ni"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Yesterday"
+#~ msgstr "ante li lon tenpo suno pini"
+
+#, fuzzy
+#~| msgid "Could not find the program '%1'"
+#~ msgctxt "Placeholder is error message"
+#~ msgid "Could not add to the Places panel: %1"
+#~ msgstr "mi ken ala alasa e ilo '%1'"
+
+#, fuzzy
+#~| msgid "A folder cannot be moved into itself"
+#~ msgid "Only folders can be added to the Places panel."
+#~ msgstr "poki li ken ala tawa ma sama"
+
+#, fuzzy
+#~| msgctxt "@action:inmenu"
+#~| msgid "&Release"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Releasing…"
+#~ msgstr "o pini &pilin"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Release"
+#~ msgstr "o pini &pilin"
+
+#, fuzzy
+#~| msgctxt "@action:inmenu"
+#~| msgid "&Safely Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Safely Removing…"
+#~ msgstr "o weka kepeken $nasin pona"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Safely Remove"
+#~ msgstr "o weka kepeken $nasin pona"
+
+#, fuzzy
+#~| msgctxt "@title job"
+#~| msgid "Unmounting"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Unmounting…"
+#~ msgstr "mi weka e ken kepeken tawa poki poki"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Unmount"
+#~ msgstr "&o weka e ilo"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Eject"
+#~ msgstr "o &weka"
+
+#~ msgid "The device '%1' is not a disk and cannot be ejected."
+#~ msgstr "ilo '%1' li poki sona ala li ken ala weka."
+
+#~ msgid "An error occurred while accessing '%1', the system responded: %2"
+#~ msgstr "kepeken '%1' la ilo li pakala. ona li toki e ni: %2"
+
+#~ msgid "An error occurred while accessing '%1'"
+#~ msgstr "kepeken '%1' la ilo li pakala"
+
+#~ msgid "%1 (hidden)"
+#~ msgstr "%1 (len tawa oko)"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Empty Trash"
+#~ msgstr "poki jaki o jo e ala"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Mount"
+#~ msgstr "o kama insa e ilo"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open in New Tab"
+#~ msgstr "o open lon nena sin"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open in New Window"
+#~ msgstr "o open lon lupa sin"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Add Entry…"
+#~ msgstr "o namako e ijo…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Edit…"
+#~ msgstr "&o ante…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Remove"
+#~ msgstr "o weka e ni"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Hide"
+#~ msgstr "o &len e ni"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section '%1'"
+#~ msgstr "o len e ijo '%1'"
+
+#, fuzzy
+#~| msgctxt "@item:inmenu"
+#~| msgid "Hide Section '%1'"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section"
+#~ msgstr "o len e ijo '%1'"
+
+#~ msgid "&Show All Entries"
+#~ msgstr "o &ken e lukin tawa ijo ale"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Icon Size"
+#~ msgstr "suli pi sitelen lili"
+
+#~ msgctxt ""
+#~ "@item:inmenu Auto set icon size based on available space inthe Places "
+#~ "side-panel"
+#~ msgid "Auto Resize"
+#~ msgstr "ilo o pona e suli"
+
+#~ msgctxt "Small icon size"
+#~ msgid "Small (%1x%1)"
+#~ msgstr "lili (%1x%1)"
+
+#~ msgctxt "Medium icon size"
+#~ msgid "Medium (%1x%1)"
+#~ msgstr "lili ala (%1x%1)"
+
+#~ msgctxt "Large icon size"
+#~ msgid "Large (%1x%1)"
+#~ msgstr "suli (%1x%1)"
+
+#~ msgctxt "Huge icon size"
+#~ msgid "Huge (%1x%1)"
+#~ msgstr "suli mute (%1x%1)"
+
+#~ msgid "You can only select one file"
+#~ msgstr "sina ken wile e lipu wan taso"
+
+#~ msgid "More than one file provided"
+#~ msgstr "sina wile e lipu mute"
+
+#~ msgid "You can only select local files"
+#~ msgstr "sina ken wile e lipu lon ilo sina taso"
+
+#~ msgid "Remote files not accepted"
+#~ msgstr "lipu lon ilo ante li pona ala"
+
+#~ msgid ""
+#~ "The selected URL uses an unsupported scheme. Please use the following "
+#~ "scheme: %2"
+#~ msgid_plural ""
+#~ "The selected URL uses an unsupported scheme. Please use one of the "
+#~ "following schemes: %2"
+#~ msgstr[0] ""
+#~ "nimi URL wile li kepeken e nasin toki ilo pi sona ala. o kepeken e nasin "
+#~ "toki ilo ni: %2"
+#~ msgstr[1] ""
+#~ "nimi URL wile li kepeken e nasin toki ilo pi sona ala. o kepeken e nasin "
+#~ "toki ilo luka ni: %2"
+#~ msgstr[2] ""
+#~ "nimi URL wile li kepeken e nasin toki ilo pi sona ala. o kepeken e nasin "
+#~ "toki ilo mute ni: %2"
+#~ msgstr[3] ""
+#~ "nimi URL wile li kepeken e nasin toki ilo pi sona ala. o kepeken e nasin "
+#~ "toki ilo mute ni: %2"
+
+#~ msgid "Unsupported URL scheme"
+#~ msgstr "nimi \"URL\" sina li pali ala tawa mi"
+
+#~ msgid ""
+#~ "More than one folder has been selected and this dialog does not accept "
+#~ "folders, so it is not possible to decide which one to enter. Please "
+#~ "select only one folder to list it."
+#~ msgstr ""
+#~ "sina pana e poki mute. taso mi wile poki wan taso. o pali sin e pana wile."
+
+#~ msgid "More than one folder provided"
+#~ msgstr "sina pana e poki mute"
+
+#~ msgid "Files and folders selected"
+#~ msgstr "sina wile e lipu e poki"
+
+#~ msgid "The file \"%1\" could not be found"
+#~ msgstr "ilo li sona ala e lon pi lipu \"%1\""
+
+#~ msgid "Cannot open file"
+#~ msgstr "lipu li ken ala kama open"
+
+#~ msgid ""
+#~ "Click this button to move backwards one step in the browsing history."
+#~ msgstr "sina wile tawa weka la o pilin e nena ni."
+
+#~ msgid "Click this button to move forward one step in the browsing history."
+#~ msgstr "sina wile tawa kama la o pilin e nena ni."
+
+#~ msgid "Click this button to reload the contents of the current location."
+#~ msgstr "sina wile sin e lukin ilo la o pilin e nena ni."
+
+#~ msgid "Click this button to create a new folder."
+#~ msgstr "sina luka e nena ni la, poki sin li kama."
+
+#~ msgid "Show Places Panel"
+#~ msgstr "o sitelen e ilo poka nasin"
+
+#~ msgid "Show Bookmarks Button"
+#~ msgstr "o sitelen e nena pi ijo suli"
+
+#~ msgid "Options"
+#~ msgstr "wile ilo"
+
+#~ msgid "Bookmarks"
+#~ msgstr "ijo suli"
+
+#~ msgid "&Name:"
+#~ msgstr "&nimi:"
+
+#~ msgid "This is the name to save the file as."
+#~ msgstr "lipu li kama awen kepeken nimi ni."
+
+#~ msgid "This is the name of the file to open."
+#~ msgstr "ni li nimi pi lipu wile."
+
+#~ msgctxt "@title:window"
+#~ msgid "Places"
+#~ msgstr "ma mute"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr ""
+#~ "lipu \"%1\" li lon awen li jo e ijo. sina wile ala wile sitelen e ona?"
+
+#~ msgid "Overwrite File?"
+#~ msgstr "o weka e lipu pini la, o pana e sona tawa lipu ni?"
+
+#~ msgid "You can only select local files."
+#~ msgstr "sina ken wile e lipu lon tomo sina taso."
+
+#~ msgid "Remote Files Not Accepted"
+#~ msgstr "lipu lon ilo ante li pona ala"
+
+#~ msgid "*|All Folders"
+#~ msgstr "*|poki ale"
+
+#~ msgid "*|All Files"
+#~ msgstr "*|lipu ale"
+
+#~ msgid "&Open"
+#~ msgstr "o kama e &lipu"
+
+#~ msgid "Icon size: %1 pixels"
+#~ msgstr "suli pi sitelen lili: %1 pixels"
+
+#~ msgid "Automatically select filename e&xtension (%1)"
+#~ msgstr "pini nimi lipu o tan kule insa lipu (%1)"
+
+#~ msgid "the extension <b>%1</b>"
+#~ msgstr "ilo lili <b>%1</b>"
+
+#~ msgid "Automatically select filename e&xtension"
+#~ msgstr "pini nimi lipu o tan kule insa lipu"
+
+#~ msgid "a suitable extension"
+#~ msgstr "ilo lili pona"
+
+#~ msgid ""
+#~ "This option enables some convenient features for saving files with "
+#~ "extensions:<br /><ol><li>Any extension specified in the <b>%1</b> text "
+#~ "area will be updated if you change the file type to save in.<br /><br /></"
+#~ "li><li>If no extension is specified in the <b>%2</b> text area when you "
+#~ "click <b>Save</b>, %3 will be added to the end of the filename (if the "
+#~ "filename does not already exist). This extension is based on the file "
+#~ "type that you have chosen to save in.<br /><br />If you do not want KDE "
+#~ "to supply an extension for the filename, you can either turn this option "
+#~ "off or you can suppress it by adding a period (.) to the end of the "
+#~ "filename (the period will be automatically removed).</li></ol>If unsure, "
+#~ "keep this option enabled as it makes your files more manageable."
+#~ msgstr ""
+#~ "ijo ni li lon e ilo pona tawa nimi lipu:<br />\n"
+#~ "<ol>\n"
+#~ "<li>sina ante e kule lipu la nimi pini lipu lon poki sitelen <b>%1</b> li "
+#~ "ante kin.<br /><br /></li>\n"
+#~ "<li>sina sitelen ala e nimi pini lipu lon poki sitelen <b>%2</b> la, mi "
+#~ "pana e nimi pini \"%3\" tawa lipu. nimi pini ni li tan kule lipu.<br /"
+#~ "><br />\n"
+#~ "sina wile ala e nimi pini lipu la, o weka e ijo ni. sina ken kin pana e "
+#~ "sike pini (.) tawa nimi lipu (mi weka e sike pini).</li></ol>\n"
+#~ "sina sona ala la, o awen e ijo ni tan ni: ona li pona e nasin lipu."
+
+#~ msgid "&File type:"
+#~ msgstr "poki &lipu:"
+
+#~ msgid "&Filter:"
+#~ msgstr "sitelen pi &lukin ante:"
+
+#~ msgid "Sorry"
+#~ msgstr "ike mi"
+
+#~ msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
+#~ msgstr "<qt>lipu tan <b>%1</b> li lon ala.</qt>"
+
+#~ msgid "Name for new link:"
+#~ msgstr "nimi pi nasin tawa sin:"
+
+#~ msgid "Create link to URL"
+#~ msgstr "o pana nasin tawa nimi URL"
+
+#~ msgctxt "@item:inmenu Create New"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The name <filename>%1</filename> starts with a space, which will result "
+#~ "in it being shown before other items when sorting alphabetically, among "
+#~ "other potential oddities."
+#~ msgstr ""
+#~ "weka wan li lon open pi nimi lipu <filename>%1</filename>. ni li ken kama "
+#~ "e nasa: sina nasin e ijo tan nimi la, lipu ni li lon open. nasa ante li "
+#~ "ken kin."
+
+#~ msgid "Using slashes in folder names will create sub-folders, like so:"
+#~ msgstr ""
+#~ "sitelen palisa (/) lon nimi poki li lon e poki sin lon insa ona sama ni:"
+
+#~ msgid "Using slashes in folder names will create sub-folders."
+#~ msgstr "sitelen palisa (/) lon nimi poki li lon e poki sin lon insa ona."
+
+#~ msgid "Slashes cannot be used in file and folder names."
+#~ msgstr "sitelen palisa (/) li ken ala lon nimi poki en nimi lipu."
+
+#~ msgid "Backslashes cannot be used in file and folder names."
+#~ msgstr "sitelen palisa (\\) li ken ala lon nimi lipu en nimi poki."
+
+#~ msgctxt "@info"
+#~ msgid "A directory with name <filename>%1</filename> already exists."
+#~ msgstr "poki pi nimi <filename>%1</filename> li lon kin."
+
+#~ msgctxt "@info"
+#~ msgid "A file with name <filename>%1</filename> already exists."
+#~ msgstr "lipu pi nimi <filename>%1</filename> li awen lon."
+
+#~ msgid "Create New"
+#~ msgstr "o lon e lipu sin"
+
+#~ msgid "Link to Device"
+#~ msgstr "o lon e nasin tawa ilo"
+
+#~ msgctxt "Default name for a new folder"
+#~ msgid "New Folder"
+#~ msgstr "poki sin"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Folder"
+#~ msgstr "poki sin"
+
+#~ msgid "Create new folder in %1:"
+#~ msgstr "o lon e poki sin lon %1:"
+
+#~ msgid "Copy"
+#~ msgstr "o tu e lipu tawa lipu jo"
+
+#~ msgid "Paste"
+#~ msgstr "o pana e lipu tan lipu jo"
+
+#, fuzzy
+#~| msgctxt "@item:inmenu"
+#~| msgid "Open in New Tab"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Tab"
+#~ msgstr "o open lon nena sin"
+
+#, fuzzy
+#~| msgctxt "@item:inmenu"
+#~| msgid "Open in New Window"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Window"
+#~ msgstr "o open lon lupa sin"
+
+#~ msgid "Edit"
+#~ msgstr "ante"
+
+#~ msgid "Navigate"
+#~ msgstr "o tawa"
+
+#~ msgid "Show Full Path"
+#~ msgstr "o lukin e nasin tawa suli"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "More"
+#~ msgstr "ijo ante"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Devices"
+#~ msgstr "ilo ale"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Subversion"
+#~ msgstr "ilo Subversion"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Other"
+#~ msgstr "ijo ante"
+
+#~ msgid "Edit mode"
+#~ msgstr "nasin ante"
+
+#~ msgid "Click for Location Navigation"
+#~ msgstr "sina wile tawa la o pilin e ni"
+
+#~ msgid "Click to Edit Location"
+#~ msgstr "o pilin tawa ante ma"
+
+#~ msgid "You are not authorized to execute this file."
+#~ msgstr "sina ken ala kepeken e lipu ni sama ilo."
+
+#~ msgctxt "Launching application"
+#~ msgid "Launching %1"
+#~ msgstr "mi open e ilo %1"
+
+#~ msgid ""
+#~ "Unable to make the service %1 executable, aborting execution.\n"
+#~ "%2."
+#~ msgstr ""
+#~ "mi ken ala kepeken e %1 sama ilo, mi pini a!\n"
+#~ "%2"
+
+#~ msgid "You are not authorized to select an application to open this file."
+#~ msgstr "sina jo ala e ken ni: sina ken ala toki e ilo tawa open lipu."
+
+#~ msgid ""
+#~ "Internal error: could not prompt the user for which application to start"
+#~ msgstr ""
+#~ "pakala insa: mi ken ala toki e ni tawa jan: \"sina wile e ilo seme?\""
+
+#~ msgid "No favicon found for %1"
+#~ msgstr "mi ken ala alasa e sitelen lili tawa lipu %1"
+
+#~ msgid "Error saving image to %1"
+#~ msgstr "mi ken ala awen e sitelen lon %1"
+
+#~ msgid "Icon file too big, download aborted"
+#~ msgstr "suli sitelen li ike la mi kama ala jo e ona."
+
+#~ msgid "No mail client found"
+#~ msgstr "mi ken ala alasa e ilo pi linluwi Email"
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is not valid."
+#~ msgstr ""
+#~ "lipu pi nimi ilo\n"
+#~ "%1\n"
+#~ "li pakala."
+
+#~ msgid "Launching %1"
+#~ msgstr "mi open e ilo %1"
+
+#, fuzzy
+#~| msgid "The file \"%1\" could not be found"
+#~ msgctxt "@info"
+#~ msgid "The command <command>%1</command> could not be found."
+#~ msgstr "ilo li sona ala e lon pi lipu \"%1\""
+
+#~ msgid "No terminal emulator found"
+#~ msgstr "ilo pi toki taso li lon ala"
+
+#~ msgid "Failed to open %1"
+#~ msgstr "mi ken ala open e nimi %1"
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is of type Link but has no URL=... entry."
+#~ msgstr ""
+#~ "lipu ilo\n"
+#~ "%1\n"
+#~ "li kule Link. taso ona li jo ala e sitelen \"URL=...\"."
+
+#~ msgid ""
+#~ "For security reasons, launching executables is not allowed in this "
+#~ "context."
+#~ msgstr "awen pi pona ilo la mi ken ala open e ilo lon ni."
+
+#~ msgid ""
+#~ "Unable to make file \"%1\" executable.\n"
+#~ "%2."
+#~ msgstr ""
+#~ "mi ken ala ken e kepeken \"%1\".\n"
+#~ "%2."
+
+#~ msgid "The desktop entry file %1 has no Type=... entry."
+#~ msgstr "lipu ilo %1 li jo ala e sitelen \"Type=...\"."
+
+#~ msgid "Failed to open the file."
+#~ msgstr "ilo li ken ala open e lipu."
+
+#~ msgid "The program \"%1\" could not be launched."
+#~ msgstr "ilo \"%1\" li ken ala kama open."
+
+#~ msgid ""
+#~ "The file %1\n"
+#~ "has been modified. Do you want to upload the changes?"
+#~ msgstr ""
+#~ "lipu %1\n"
+#~ "li ante. sina wile ala wile pana e ante?"
+
+#~ msgid "File Changed"
+#~ msgstr "lipu li kama ante"
+
+#~ msgid "Upload"
+#~ msgstr "o pana tawa linluwi"
+
+#~ msgid "Do Not Upload"
+#~ msgstr "o pana ala"
+
+#~ msgid "Invalid URL: %1"
+#~ msgstr "nimi URL pakala: %1"
+
+#~ msgid "File not found: %1"
+#~ msgstr "mi ken ala alasa e lipu: %1"
+
+#~ msgid ""
+#~ "The URL %1\n"
+#~ "is malformed"
+#~ msgstr ""
+#~ "nimi URL %1\n"
+#~ "li pakala"
+
+#~ msgid ""
+#~ "Remote URL %1\n"
+#~ "not allowed with --tempfiles switch"
+#~ msgstr ""
+#~ "nasin tawa ilo ante %1\n"
+#~ "li ken ala kepeken e nimi \"--tempfiles\""
+
+#~ msgid "Do Not Delete"
+#~ msgstr "o weka ala e ni"
+
+#~ msgid ""
+#~ "The file\n"
+#~ "%1\n"
+#~ "has been modified.\n"
+#~ "Do you want to upload the changes?"
+#~ msgstr ""
+#~ "lipu\n"
+#~ "%1\n"
+#~ "li ante.\n"
+#~ "sina wile ala wile pana e ante?"
+
+#~ msgid "KIOExec"
+#~ msgstr "ilo KIOExec"
+
+#~ msgid ""
+#~ "KIO Exec - Opens remote files, watches modifications, asks for upload"
+#~ msgstr ""
+#~ "ilo KIO Exec - mi open e lipu lon ilo ante. mi oko e ante lipu. mi alasa "
+#~ "e wile sina tawa pana lipu."
+
+#~ msgid "(c) 1998-2000,2003 The KFM/Konqueror Developers"
+#~ msgstr "(c) 1998-200,2003 jan pali pi ilo KFM/Konqueror"
+
+#~ msgid "David Faure"
+#~ msgstr "jan David Faure"
+
+#~ msgid "Stephan Kulow"
+#~ msgstr "jan Stephan Kulow"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "jan Bernhard Rosenkraenzer"
+
+#~ msgid "Waldo Bastian"
+#~ msgstr "jan Waldo Bastian"
+
+#~ msgid "Oswald Buddenhagen"
+#~ msgstr "jan Oswald Buddenhagen"
+
+#~ msgid "Treat URLs as local files and delete them afterwards"
+#~ msgstr ""
+#~ "o pali kepeken nimi URLs kepeken nasin sama lipu lon ilo sina. o weka e "
+#~ "ona lon pini"
+
+#~ msgid "Suggested file name for the downloaded file"
+#~ msgstr "nimi ken tawa lipu tan linluwi"
+
+#~ msgid "Command to execute"
+#~ msgstr "ilo tawa kepeken"
+
+#~ msgid "URL(s) or local file(s) used for 'command'"
+#~ msgstr "nimi URL anu lipu li kepeken tawa 'ilo'"
+
+#~ msgid "Setting ACL for %1"
+#~ msgstr "mi lon e lawa sin ACL tawa %1"
+
+#~ msgid ""
+#~ "Could not change permissions for\n"
+#~ "%1"
+#~ msgstr ""
+#~ "mi ken ala ante e lawa tawa\n"
+#~ "%1"
+
+#~ msgid "Could not find program \"mount\""
+#~ msgstr "mi ken ala alasa e ilo \"mount\""
+
+#~ msgid "Could not find program \"umount\""
+#~ msgstr "mi ken ala alasa e ilo \"umount\""
+
+#~ msgid "Change File Permissions"
+#~ msgstr "o ante e lawa lipu"
+
+#~ msgid "New Permissions: %1"
+#~ msgstr "lawa sin: %1"
+
+#~ msgid "Change File Owner"
+#~ msgstr "o ante e jan jo"
+
+#~ msgid "New Owner: UID=%1, GID=%2"
+#~ msgstr "jan lawa sin: nimi UID=%1, nimi GID=%2"
+
+#~ msgid "Remove File"
+#~ msgstr "o weka e lipu"
+
+#~ msgid "Remove Directory"
+#~ msgstr "o weka e poki"
+
+#~ msgid "Create Directory"
+#~ msgstr "o pali e poki"
+
+#~ msgid "Directory Permissions: %1"
+#~ msgstr "ken poki: %1"
+
+#~ msgid "Open File"
+#~ msgstr "o open e lipu"
+
+#~ msgid "Open Directory"
+#~ msgstr "o open e poki lipu"
+
+#~ msgid "New Filename: %1"
+#~ msgstr "nimi lipu sin li %1"
+
+#~ msgid "Target: %1"
+#~ msgstr "pini tawa: %1"
+
+#~ msgid "Change Timestamp"
+#~ msgstr "o pana e tenpo ante"
+
+#~ msgid "From: %1, To: %2"
+#~ msgstr "tan: %1, tawa: %2"
+
+#~ msgid "Unknown Action"
+#~ msgstr "mi sona ala e pali ni"
+
+#~ msgid ""
+#~ "Action: %1\n"
+#~ "Source: %2\n"
+#~ "%3"
+#~ msgstr ""
+#~ "pali: %1\n"
+#~ "tan: %2\n"
+#~ "%3"
+
+#~ msgid "Cannot copy file from %1 to %2. (Errno: %3)"
+#~ msgstr ""
+#~ "ilo li ken ala sama e lipu tan poki %1 tawa poki %2. (nanpa pakala: %3)"
+
+#~ msgid "No media in device for %1"
+#~ msgstr "ijo li lon ala ilo tawa %1"
+
+#~ msgid "Could not get user id for given user name %1"
+#~ msgstr "mi ken ala kama jo e nanpa jan tan nimi jan %1"
+
+#~ msgid "Could not get group id for given group name %1"
+#~ msgstr "mi ken ala kama jo e nanpa kulupu tan nimi kulupu %1"
+
+#~ msgid "Opening connection to host %1"
+#~ msgstr "mi open e toki tawa ilo %1"
+
+#~ msgid "Connected to host %1"
+#~ msgstr "mi toki kepeken ilo %1"
+
+#~ msgid "%1 (Error %2)"
+#~ msgstr "%1 (pakala %2)"
+
+#~ msgid "Sending login information"
+#~ msgstr "mi pana e nimi len"
+
+#~ msgid "You need to supply a username and a password to access this site."
+#~ msgstr "lipu ni li wile e nimi e nimi len."
+
+#~ msgid "Site:"
+#~ msgstr "lipu:"
+
+#~ msgid "<b>%1</b>"
+#~ msgstr "<b>%1</b>"
+
+#~ msgid "Login OK"
+#~ msgstr "toki sina li pona"
+
+#~ msgid "Could not login to %1."
+#~ msgstr "toki sina li ike. sina ken ala jo e %1."
+
+#~ msgid ""
+#~ "\n"
+#~ "The server said: \"%1\""
+#~ msgstr ""
+#~ "\n"
+#~ "ilo linluwi li toki e ni: \"%1\""
+
+#~ msgid "Proxy:"
+#~ msgstr "nasin linluwi:"
+
+#~ msgid "Proxy Authentication Failed."
+#~ msgstr "toki sina tawa nasin linluwi li ike."
+
+#~ msgid "There is no documentation available for %1."
+#~ msgstr "%1 la, lipu pali li lon ala."
+
+#~ msgid "Looking up correct file"
+#~ msgstr "mi lanpan e lipu pona"
+
+#~ msgid "Preparing document"
+#~ msgstr "mi pona e lipu ni"
+
+#~ msgid "The requested help file could not be parsed:<br />%1"
+#~ msgstr "mi ken ala lukin e lipu sona wile:<br />%1"
+
+#~ msgid "Saving to cache"
+#~ msgstr "mi awen e sona lon lipu pali"
+
+#~ msgid "Using cached version"
+#~ msgstr "mi kepeken e ijo tan supa pali mi"
+
+#~ msgid "Looking up section"
+#~ msgstr "mi alasa e sitelen"
+
+#~ msgid "Could not find filename %1 in %2."
+#~ msgstr "mi ken ala alasa e lipu %1 lon %2."
+
+#~ msgid "No host specified."
+#~ msgstr "tenpo pini la, sina pana ala e ilo pana."
+
+#~ msgid "Otherwise, the request would have succeeded."
+#~ msgstr "ante la, toki sina li pona."
+
+#~ msgctxt "request type"
+#~ msgid "retrieve property values"
+#~ msgstr "kama jo e ijo"
+
+#~ msgctxt "request type"
+#~ msgid "set property values"
+#~ msgstr "o ante e ijo"
+
+#~ msgctxt "request type"
+#~ msgid "create the requested folder"
+#~ msgstr "o lon e poki wile"
+
+#~ msgctxt "request type"
+#~ msgid "copy the specified file or folder"
+#~ msgstr "o lon e ijo sama poki wile anu lipu wile"
+
+#~ msgctxt "request type"
+#~ msgid "move the specified file or folder"
+#~ msgstr "o tawa e lipu wile anu poki wile"
+
+#~ msgctxt "request type"
+#~ msgid "search in the specified folder"
+#~ msgstr "o alasa lon poki wile"
+
+#~ msgctxt "request type"
+#~ msgid "lock the specified file or folder"
+#~ msgstr "o kiwen e poki wile anu lipu wile"
+
+#~ msgctxt "request type"
+#~ msgid "unlock the specified file or folder"
+#~ msgstr "o weka e kiwen lon poki wile anu lipu wile"
+
+#~ msgctxt "request type"
+#~ msgid "delete the specified file or folder"
+#~ msgstr "weka e lipu anu poki wile"
+
+#~ msgctxt "request type"
+#~ msgid "query the server's capabilities"
+#~ msgstr "kama sona e ken pi ilo ante"
+
+#~ msgctxt "request type"
+#~ msgid "retrieve the contents of the specified file or folder"
+#~ msgstr "kama jo e insa poki anu insa lipu"
+
+#~ msgctxt "request type"
+#~ msgid "run a report in the specified folder"
+#~ msgstr "pali e lipu sona lon poki wile"
+
+#~ msgctxt "%1: code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "mi %2 la pakala (%1) li kama lon."
+
+#~ msgid "The server does not support the WebDAV protocol."
+#~ msgstr "ilo ante li sona ala e ilo WebDAV."
+
+#~ msgctxt "%1: request type, %2: url"
+#~ msgid ""
+#~ "An error occurred while attempting to %1, %2. A summary of the reasons is "
+#~ "below."
+#~ msgstr "mi ken ala %1, %2. tan li lon anpa ni."
+
+#~ msgctxt "%1: request type"
+#~ msgid "Access was denied while attempting to %1."
+#~ msgstr "ken ala li lon tawa %1."
+
+#~ msgid "The requested lock could not be granted. %1"
+#~ msgstr "wile kiwen li ken ala kama jo. %1"
+
+#~ msgid "The server does not support the request type of the body."
+#~ msgstr "ilo linluwi ante li sona ala e kule pi lipu pana."
+
+#~ msgctxt "%1: request type"
+#~ msgid "Unable to %1 because the resource is locked."
+#~ msgstr "mi ken ala %1 tan ni: ijo li kiwen."
+
+#~ msgid "This action was prevented by another error."
+#~ msgstr "pali ni li pini tan pakala ante."
+
+#~ msgid "The resource cannot be deleted."
+#~ msgstr "ijo li ken ala weka"
+
+#~ msgctxt "request type"
+#~ msgid "upload %1"
+#~ msgstr "o pana e %1 tawa linluwi"
+
+#~ msgctxt "%1: response code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "mi %2 la pakala (%1) li kama lon."
+
+#~ msgid "%1 contacted. Waiting for reply..."
+#~ msgstr "mi toki tawa %1. mi awen toki tan ona..."
+
+#~ msgctxt "@title:window"
+#~ msgid "Confirm Website Access"
+#~ msgstr "o pana e ken tawa wile lipu"
+
+#~ msgid "Server processing request, please wait..."
+#~ msgstr "ilo ante li pali, o awen..."
+
+#~ msgid "Sending data to %1"
+#~ msgstr "mi pana e sona tawa %1"
+
+#~ msgid "Retrieving %1 from %2..."
+#~ msgstr "mi kama jo e %1 tan %2..."
+
+#~ msgid "<b>%1</b> at <b>%2</b>"
+#~ msgstr "<b>%1</b> lon <b>%2</b>"
+
+#~ msgid "Authentication Failed."
+#~ msgstr "mi ken ala pana e sona pi lon mi."
+
+#~ msgid "Authorization failed."
+#~ msgstr "mi ken ala pana e sona pi lon mi."
+
+#~ msgid "Unknown Authorization method."
+#~ msgstr "mi sona ala e nasin pana lawa ni."
+
+#~ msgid "Receiving corrupt data."
+#~ msgstr "mi kama jo e sona pakala."
+
+#~ msgid "Cannot Save Cookies"
+#~ msgstr "mi ken ala awen e sona lili"
+
+#~ msgid "Could not remove %1, check permissions"
+#~ msgstr "mi ken ala weka e ijo %1. o lukin e lawa"
+
+#~ msgid "Could not create directory %1"
+#~ msgstr "ilo li ken ala pali e poki %1"
+
+#~ msgid "Cookie Alert"
+#~ msgstr "kalama pi sona awen lili"
+
+#~ msgctxt "%2 hostname, %3 optional cross domain suffix (translated below)"
+#~ msgid ""
+#~ "<p>You received a cookie from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject this cookie?</p>"
+#~ msgid_plural ""
+#~ "<p>You received %1 cookies from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject these cookies?</p>"
+#~ msgstr[0] ""
+#~ "<p>lipu ni li wile awen e sona lili %1 lon ilo sina:<br/><b>%2%3</b><br/"
+#~ ">sina wile ala wile e ni?</p>"
+#~ msgstr[1] ""
+#~ "<p>lipu ni li wile awen e sona lili %1 lon ilo sina:<br/><b>%2%3</b><br/"
+#~ ">sina wile ala wile e ni?</p>"
+#~ msgstr[2] ""
+#~ "<p>lipu ni li wile awen e sona lili %1 lon ilo sina:<br/><b>%2%3</b><br/"
+#~ ">sina wile ala wile e ni?</p>"
+#~ msgstr[3] ""
+#~ "<p>lipu ni li wile awen e sona lili %1 lon ilo sina:<br/><b>%2%3</b><br/"
+#~ ">sina wile ala wile e ni?</p>"
+
+#~ msgctxt "@item:intext cross domain cookie"
+#~ msgid " [Cross Domain]"
+#~ msgstr " [ona li tawa tomo ilo ante]"
+
+#~ msgid "See or modify the cookie information"
+#~ msgstr "o lukin anu ante e sona lili awen ilo"
+
+#~ msgid "Accept for this &session"
+#~ msgstr "tenpo ni taso la, pona"
+
+#~ msgid "Accept cookie(s) until the end of the current session"
+#~ msgstr "o awen lon tenpo pali o weka lon pini pi tenpo pali"
+
+#~ msgid "&Accept"
+#~ msgstr "&pona"
+
+#~ msgid "&Reject"
+#~ msgstr "&ala"
+
+#~ msgid "Apply Choice To"
+#~ msgstr "wile ni o tawa"
+
+#~ msgid "&Only this cookie"
+#~ msgstr "sona lili ni &taso"
+
+#~ msgid "&Only these cookies"
+#~ msgstr "sona lili ni &taso"
+
+#~ msgid ""
+#~ "Select this option to only accept or reject this cookie. You will be "
+#~ "prompted again if you receive another cookie."
+#~ msgstr ""
+#~ "sina wile ala wile e sona lili ni? o pana e wile sina tawa ona taso. sona "
+#~ "lili ante la, sina o pana e wile sin."
+
+#~ msgid "All cookies from this do&main"
+#~ msgstr "sona lili ale tan &ma lipu ni"
+
+#~ msgid "All &cookies"
+#~ msgstr "s&uwi linluwi ale"
+
+#~ msgid "Cookie Details"
+#~ msgstr "insa pi sona lili wan"
+
+#~ msgctxt ""
+#~ "@label a description string of how 'accessible' the cookie is (e.g. see "
+#~ "exposure string in this file)"
+#~ msgid "Exposure:"
+#~ msgstr "ken lukin:"
+
+#~ msgctxt "Next cookie"
+#~ msgid "&Next >>"
+#~ msgstr "&kama >>"
+
+#~ msgid "Show details of the next cookie"
+#~ msgstr "o sitelen e insa pi sona awen sin"
+
+#~ msgctxt "@label cookie has no explicit 'Domain' value specified"
+#~ msgid "Not specified"
+#~ msgstr "ala"
+
+#~ msgctxt "@label the cookie expires when the browser session ends"
+#~ msgid "End of Session"
+#~ msgstr "pini pi tenpo ni"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by https servers"
+#~ msgid "Secure servers only"
+#~ msgstr "ilo weka pi nasin HTTPS"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may be used by https servers AND "
+#~ "client-side javascripts"
+#~ msgid "Secure servers, page scripts"
+#~ msgstr "ilo weka pi nasin HTTPS en ilo sina"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by http servers"
+#~ msgid "Servers"
+#~ msgstr "ilo weka"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may be used by http servers AND "
+#~ "client-side javascripts"
+#~ msgid "Servers, page scripts"
+#~ msgstr "ilo weka en ilo sina"
+
+#~ msgctxt ""
+#~ "@action:button show details about a cookie that needs approval. This "
+#~ "string gets >> and << appended, to visualize if the dialog expands or "
+#~ "compacts!"
+#~ msgid "Details"
+#~ msgstr "sona namako"
+
+#~ msgid "Network"
+#~ msgstr "kulupu ilo"
+
+#~ msgid "Malformed URL %1"
+#~ msgstr "nimi \"URL\" li ike %1"
+
+#~ msgid ""
+#~ "The directory %1 does not exist anymore, so it is not possible to restore "
+#~ "this item to its original location. You can either recreate that "
+#~ "directory and use the restore operation again, or drag the item anywhere "
+#~ "else to restore it."
+#~ msgstr ""
+#~ "poki lipu %1 li kama weka la, sina ken ala lon e ijo ni tawa poki ona pi "
+#~ "tenpo pini. sina sin e poki ni la sina ken lon e ijo tawa poki ni. sina "
+#~ "pana e ijo ni tawa poki ante la, ijo ni li ken kama lon sin lon poki ante "
+#~ "ni."
+
+#~ msgid "Invalid combination of protocols."
+#~ msgstr "kulupu ike pi nasin toki ilo."
+
+#~ msgid "This file is already in the trash bin."
+#~ msgstr "tenpo ni la, lipu li lon jaki."
+
+#~ msgid "not supported"
+#~ msgstr "ni li ken ala"
+
+#~ msgid "Internal error in copyOrMove, should never happen"
+#~ msgstr "pakala insa lon \"copyOrMove.\" ni li sitelen lon tenpo ala."
+
+#~ msgid "Empty the contents of the trash"
+#~ msgstr "o weka e insa pi poki jaki"
+
+#~ msgid "Restore a trashed file to its original location"
+#~ msgstr "o pana sin e lipu lon poki jaki tawa tan ona"
+
+#~ msgid "The trash is full. Empty it or remove items manually."
+#~ msgstr "poki jaki li ken ala jo e ijo sin. o weka e insa ona."
+
+#~ msgid "Could not find a usable proxy configuration script"
+#~ msgstr "mi ken ala alasa e sitelen ilo pi nasin linluwi"
+
+#~ msgid ""
+#~ "Could not download the proxy configuration script:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "mi ken ala kama jo e sitelen ilo pi ilo pi nasin linluwi:\n"
+#~ "%1"
+
+#~ msgid "Could not download the proxy configuration script"
+#~ msgstr "mi ken ala kama jo e sitelen ilo pi ilo pi nasin linluwi"
+
+#~ msgid ""
+#~ "The proxy configuration script is invalid:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "sitelen ilo pi ilo pi nasin linluwi li pakala:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The proxy configuration script returned an error:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "sitelen ilo pi ilo pi nasin linluwi li pana e pakala:\n"
+#~ "%1"
+
+#~ msgid "Could not find 'FindProxyForURL' or 'FindProxyForURLEx'"
+#~ msgstr ""
+#~ "mi ken ala alasa e ilo lili 'FindProxyForURL' anu 'FindProxyForURLEx'"
+
+#~ msgid "Got an invalid reply when calling %1 -> %2"
+#~ msgstr "mi kepeken e %1 -> %2 la toki pakala li kama."
+
+#~ msgid "Do you want to retry?"
+#~ msgstr "sina wile ala wile pali sin e ni?"
+
+#~ msgid "Retry Authentication"
+#~ msgstr "o pali sin e pana sona pi lon mi"
+
+#~ msgctxt "@action:button filter-continue"
+#~ msgid "Retry"
+#~ msgstr "o pali sin"
+
+#~ msgid "Authentication Dialog"
+#~ msgstr "leko pi wile nimi len"
+
+#~ msgid "Access denied"
+#~ msgstr "sina ken ala lukin e lipu"
+
+#~ msgid "You do not have permission to access the %1 protocol."
+#~ msgstr "sina jo ala e ken kepeken tawa toki ilo %1."
+
+#~ msgid "No preferred search providers were found."
+#~ msgstr "ilo alasa wile li lon ala."
+
+#~ msgid "No search providers were found."
+#~ msgstr "alasa mi li kama jo e ilo alasa ala."
+
+#~ msgid "<qt><b>%1</b> does not have a home folder.</qt>"
+#~ msgstr "<qt><b>%1</b> li jo ala e poki.</qt>"
+
+#~ msgid "<qt>There is no user called <b>%1</b>.</qt>"
+#~ msgstr "<qt>jan pi nimi <b>%1</b> li lon ala.</qt>"
+
+#~ msgid "Common name:"
+#~ msgstr "nimi pi sona mute:"
+
+#~ msgid "Acme Co."
+#~ msgstr "kulupu Acme Co."
+
+#~ msgid "Organization:"
+#~ msgstr "kulupu:"
+
+#~ msgid "Acme Sundry Products Company"
+#~ msgstr "kulupu Acme Sundry Products Company"
+
+#~ msgid "Organizational unit:"
+#~ msgstr "kulupu kulupu:"
+
+#~ msgid "Fraud Department"
+#~ msgstr "tomo lawa pi weka jan pi toki lon ala"
+
+#~ msgid "Country:"
+#~ msgstr "ma lawa:"
+
+#~ msgid "Canada"
+#~ msgstr "ma Kanata"
+
+#~ msgid "State:"
+#~ msgstr "ma:"
+
+#~ msgid "Quebec"
+#~ msgstr "ma Kepeka"
+
+#~ msgid "City:"
+#~ msgstr "ma tomo:"
+
+#~ msgid "Lakeridge Meadows"
+#~ msgstr "kulupu Lakeridge Meadows"
+
+#~ msgid "Expected checksum (MD5, SHA1, SHA256 or SHA512)..."
+#~ msgstr "mi wile e sitelen pimeja sama ni: MD5, SHA1, SHA256, anu SHA512..."
+
+#~ msgid "Click to paste the checksum from the clipboard to the input field."
+#~ msgstr "sina pilin e ni la sitelen pimeja li kama tan supa pali."
+
+#~ msgid "MD5:"
+#~ msgstr "toki pimeja \"MD5\":"
+
+#~ msgid "SHA1:"
+#~ msgstr "toki pimeja \"SHA1\":"
+
+#~ msgid "SHA256:"
+#~ msgstr "toki pimeja \"SHA256\":"
+
+#~ msgid "SHA512:"
+#~ msgstr "toki pimeja \"SHA512\":"
+
+#~ msgid "Calculate"
+#~ msgstr "o nanpa e ni"
+
+#~ msgid "Click to copy the checksum to the clipboard."
+#~ msgstr "sina pilin e ni la sitelen pimeja li tawa supa pali."
+
+#~ msgid "C&ancel"
+#~ msgstr "o &pini"
+
+#~ msgid "&Move Here"
+#~ msgstr "o &tawa ni"
+
+#~ msgid "&Copy Here"
+#~ msgstr "o &pana e ijo sama lon ni"
+
+#~ msgid "&Link Here"
+#~ msgstr "o lon e &nasin"
+
+#~ msgid "What do you wish to do with this file?"
+#~ msgstr "sina wile pali e seme lon lipu ni?"
+
+#~ msgid "Do not ask again"
+#~ msgstr "o toki sin ala e ni"
+
+#~ msgid "&Execute"
+#~ msgstr "o &kepeken"
+
+#~ msgid "Undo Changes"
+#~ msgstr "o weka e ante"
+
+#~ msgid ""
+#~ "Undoing this operation requires root privileges. Do you want to continue?"
+#~ msgstr "weka pi pali ni li wile ken wawa. sina wile ala wile awen?"
+
+#~ msgid "Creating directory"
+#~ msgstr "poki lipu li kama lon"
+
+#~ msgid "Moving"
+#~ msgstr "ilo li tawa e ijo"
+
+#, fuzzy
+#~| msgid "Rename"
+#~ msgid "Renaming"
+#~ msgstr "o ante e nimi"
+
+#~ msgid "Deleting"
+#~ msgstr "ilo li weka e ni"
+
+#~ msgid "Und&o"
+#~ msgstr "o weka e pali"
+
+#~ msgid "Und&o: Copy"
+#~ msgstr "o &weka e sama lipu"
+
+#~ msgid "Und&o: Link"
+#~ msgstr "o &weka e lon nasin"
+
+#~ msgid "Und&o: Move"
+#~ msgstr "o &weka e tawa"
+
+#~ msgid "Und&o: Rename"
+#~ msgstr "o &weka e ante nimi"
+
+#~ msgid "Und&o: Trash"
+#~ msgstr "o &weka e tawa jaki"
+
+#~ msgid "Und&o: Create Folder"
+#~ msgstr "o &weka e lon poki"
+
+#~ msgid "Und&o: Create Folder(s)"
+#~ msgstr "o &weka e lon poki"
+
+#~ msgid "Und&o: Create File"
+#~ msgstr "o &weka e lon lipu"
+
+#~ msgid "Und&o: Batch Rename"
+#~ msgstr "o &weka e ante pi nimi mute"
+
+#~ msgid ""
+#~ "The file %1 was copied from %2, but since then it has apparently been "
+#~ "modified at %3.\n"
+#~ "Undoing the copy will delete the file, and all modifications will be "
+#~ "lost.\n"
+#~ "Are you sure you want to delete %4?"
+#~ msgstr ""
+#~ "sama pi lipu %1 li kama tan poki %2, taso ni li pini la, ona li kama ante "
+#~ "lon poki %3.\n"
+#~ "sina wile weka e sama lipu la, ante ni li kama weka kin.\n"
+#~ "sina wile ala wile weka e lipu %4?"
+
+#~ msgid "Undo File Copy Confirmation"
+#~ msgstr "o weka e wile pona pi sama lipu"
+
+#~ msgid "Delete Permanently"
+#~ msgstr "o weka lon tenpo ale"
+
+#, fuzzy
+#~| msgid "Delete Permanently"
+#~ msgctxt "@action:button"
+#~ msgid "Delete Permanently"
+#~ msgstr "o weka lon tenpo ale"
+
+#~ msgctxt "@action:button"
+#~ msgid "Empty Trash"
+#~ msgstr "poki jaki o jo e ala"
+
+#~ msgid "The peer SSL certificate chain appears to be corrupt."
+#~ msgstr "linja pi sitelen SSL li pakala lukin."
+
+#~ msgid "SSL"
+#~ msgstr "ilo SSL"
+
+#~ msgctxt "@action:button"
+#~ msgid "Add..."
+#~ msgstr "o namako..."
+
+#~ msgctxt "@action:button"
+#~ msgid "Edit..."
+#~ msgstr "o ante e ni..."
+
+#~ msgctxt "@action:button"
+#~ msgid "Delete"
+#~ msgstr "o weka"
+
+#~ msgctxt "Unix permissions"
+#~ msgid "Owner"
+#~ msgstr "jan lawa"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Owning Group"
+#~ msgstr "kulupu lawa"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Others"
+#~ msgstr "ijo ante"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Mask"
+#~ msgstr "tan pi lawa sin"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Named User"
+#~ msgstr "jan pi nimi ni"
+
+#~ msgid "Owner (Default)"
+#~ msgstr "jan lawa"
+
+#~ msgid "Edit ACL Entry"
+#~ msgstr "o ante e lipu ACL"
+
+#~ msgid "Entry Type"
+#~ msgstr "kule"
+
+#~ msgid "Default for new files in this folder"
+#~ msgstr "lawa tawa lipu sin lon poki ni"
+
+#~ msgid "Owner"
+#~ msgstr "jan lawa"
+
+#~ msgid "Owning Group"
+#~ msgstr "kulupu lawa"
+
+#~ msgid "Others"
+#~ msgstr "ijo ante"
+
+#~ msgid "Mask"
+#~ msgstr "tan pi lawa sin"
+
+#~ msgid "Named user"
+#~ msgstr "jan pi nimi kepeken"
+
+#~ msgid "Named group"
+#~ msgstr "kulupu pi nimi kepeken"
+
+#~ msgid "User: "
+#~ msgstr "jan: "
+
+#~ msgid "Group: "
+#~ msgstr "kulupu: "
+
+#~ msgid "Type"
+#~ msgstr "poki"
+
+#~ msgid "Name"
+#~ msgstr "nimi"
+
+#~ msgctxt "read permission"
+#~ msgid "r"
+#~ msgstr "l"
+
+#~ msgctxt "write permission"
+#~ msgid "w"
+#~ msgstr "s"
+
+#~ msgctxt "execute permission"
+#~ msgid "x"
+#~ msgstr "p"
+
+#~ msgid "Effective"
+#~ msgstr "lon"
+
+#~ msgid "Updating System Configuration"
+#~ msgstr "mi sin e lawa ilo"
+
+#~ msgid "Updating system configuration."
+#~ msgstr "mi sin e lawa ilo."
+
+#~ msgctxt "@title:column"
+#~ msgid "Name"
+#~ msgstr "nimi"
+
+#~ msgctxt "@title:column"
+#~ msgid "Size"
+#~ msgstr "suli"
+
+#~ msgctxt "@title:column"
+#~ msgid "Date"
+#~ msgstr "tenpo"
+
+#~ msgctxt "@title:column"
+#~ msgid "Permissions"
+#~ msgstr "lawa wile"
+
+#~ msgctxt "@title:column"
+#~ msgid "Owner"
+#~ msgstr "jan lawa"
+
+#~ msgctxt "@title:column"
+#~ msgid "Group"
+#~ msgstr "kulupu"
+
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "poki"
+
+#~ msgid "Open &with %1"
+#~ msgstr "o open &kepeken %1"
+
+#~ msgctxt "@item:inmenu Open With, %1 is application name"
+#~ msgid "%1"
+#~ msgstr "ilo %1"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Actions"
+#~ msgstr "&ken pali"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With..."
+#~ msgstr "o &open e poki kepeken..."
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With..."
+#~ msgstr "o &open kepeken..."
+
+#~ msgid "&Open folder with %1"
+#~ msgstr "o &open e poki kepeken %1"
+
+#~ msgid "&Open with %1"
+#~ msgstr "o &open kepeken %1"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With"
+#~ msgstr "o &open e poki kepeken"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With"
+#~ msgstr "o &lukin e ni kepeken"
+
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other Application..."
+#~ msgstr "ilo &ante..."
+
+#~ msgctxt "Items in a folder"
+#~ msgid "1 item"
+#~ msgid_plural "%1 items"
+#~ msgstr[0] "ijo %1"
+#~ msgstr[1] "ijo pi mute %1"
+#~ msgstr[2] "ijo pi mute %1"
+#~ msgstr[3] "ijo pi mute %1"
+
+#~ msgctxt "@info mimetype"
+#~ msgid "Unknown"
+#~ msgstr "kule pi sona ala"
+
+#~ msgid "Stop"
+#~ msgstr "o pini"
+
+#~ msgid "Explore in Filelight"
+#~ msgstr "o lukin kepeken ilo Filelight"
+
+#~ msgid "Mounted From:"
+#~ msgstr "ni li insa tan:"
+
+#~ msgid "Free Space:"
+#~ msgstr "suli pi ken kepeken:"
+
+#~ msgid "Type:"
+#~ msgstr "poki:"
+
+#~ msgid "Location:"
+#~ msgstr "lon:"
+
+#~ msgid "Change..."
+#~ msgstr "o ante..."
+
+#~ msgid "Content:"
+#~ msgstr "insa:"
+
+#~ msgid "Points to:"
+#~ msgstr "ona li tawa:"
+
+#~ msgid "Modified:"
+#~ msgstr "tenpo pi ante pali:"
+
+#~ msgid "Created:"
+#~ msgstr "tenpo open:"
+
+#~ msgid "File System:"
+#~ msgstr "nasin poki:"
+
+#~ msgid "Unknown size"
+#~ msgstr "suli pi sona ala"
+
+#~ msgid "Mounted On:"
+#~ msgstr "ni li insa lon:"
+
+#~ msgid "Accessed:"
+#~ msgstr "tenpo lukin:"
+
+#~ msgid "Open With:"
+#~ msgstr "o lukin e ni kepeken:"
+
+#~ msgid "Known Applications"
+#~ msgstr "ilo sona"
+
+#~ msgid "Open With"
+#~ msgstr "o lukin e ni kepeken"
+
+#~ msgid ""
+#~ "Choose the name of the program with which to open the selected files."
+#~ msgstr "o pana e nimi ilo tawa open pi lipu ni."
+
+#~ msgid "<qt>Select the program you want to use to open the file<br/>%1</qt>"
+#~ msgstr "<qt>o pilin e ilo pi wile sina tawa open pi lipu<br/>%1</qt>"
+
+#~ msgid "Choose Application"
+#~ msgstr "o toki e wile sina tawa ilo"
+
+#~ msgid "Choose Application for %1"
+#~ msgstr "o toki e wile ilo sina tawa %1"
+
+#~ msgid ""
+#~ "&Remember application association for all files of type\n"
+#~ "\"%1\" (%2)"
+#~ msgstr ""
+#~ "o &kepeken e ilo ni tawa lipu ale pi kule\n"
+#~ "\"%1\" (%2)"
+
+#, fuzzy
+#~| msgid ""
+#~| "&Remember application association for all files of type\n"
+#~| "\"%1\" (%2)"
+#~ msgid ""
+#~ "&Remember application association for all files of type\n"
+#~ "\"%1\""
+#~ msgstr ""
+#~ "o &kepeken e ilo ni tawa lipu ale pi kule\n"
+#~ "\"%1\" (%2)"
+
+#~ msgid "Terminal options"
+#~ msgstr "lawa pi ilo pi toki taso"
+
+#~ msgid "Run in &terminal"
+#~ msgstr "o kepeken lon ilo pi &toki taso"
+
+#~ msgid "&Do not close when command exits"
+#~ msgstr "&ilo li pini la o weka ala"
+
+#~ msgctxt "@info"
+#~ msgid "<filename>%1</filename> does not appear to be an executable program."
+#~ msgstr "lipu <filename>%1</filename> li ilo ala."
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options about the "
+#~ "terminal when launching a program"
+#~ msgid "Terminal"
+#~ msgstr "ilo pi toki taso:"
+
+#~ msgid "Run in terminal"
+#~ msgstr "o kepeken lon ilo pi toki taso"
+
+#~ msgid "Terminal options:"
+#~ msgstr "lawa pi ilo pi toki taso:"
+
+#~ msgid "Do not close when command exits"
+#~ msgstr "ilo li pini la o weka ala"
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose which user to use "
+#~ "when launching a program"
+#~ msgid "User"
+#~ msgstr "jan"
+
+#~ msgid "Run as a different user"
+#~ msgstr "jan ante la o kepeken"
+
+#~ msgid "Enter the user name you want to run the application as."
+#~ msgstr "o sitelen e nimi jan. sina sama jan ni la ilo li kepeken."
+
+#~ msgid "Username:"
+#~ msgstr "nimi jan:"
+
+#~ msgid "Enter the user name you want to run the application as here."
+#~ msgstr "o sitelen e nimi jan. sina sama jan ni la ilo li kepeken."
+
+#~ msgid "Discrete GPU"
+#~ msgstr "ilo GPU"
+
+#~ msgid "Run using dedicated graphics card"
+#~ msgstr "ilo ni li o kepeken ilo GPU suli"
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options regarding "
+#~ "program startup"
+#~ msgid "Startup"
+#~ msgstr "open ilo"
+
+#~ msgid "Enable launch feedback"
+#~ msgstr "ilo ni li open la o sitelen e open ona"
+
+#~ msgid "&Description:"
+#~ msgstr "&sitelen:"
+
+#~ msgid "Type any comment you think is useful here."
+#~ msgstr "o sitelen e ijo lon poki ni."
+
+#~ msgid "Comm&ent:"
+#~ msgstr "&sitelen:"
+
+#, fuzzy
+#~| msgid "Enter the user name you want to run the application as here."
+#~ msgid "Type the command to start this application here."
+#~ msgstr "o sitelen e nimi jan. sina sama jan ni la ilo li kepeken."
+
+#~ msgid "&Browse..."
+#~ msgstr "o &lukin..."
+
+#, fuzzy
+#~| msgctxt "KFile System Bookmarks"
+#~| msgid "Documents"
+#~ msgid "&Arguments:"
+#~ msgstr "lipu pali"
+
+#~ msgid "Sets the working directory for your application."
+#~ msgstr "ni li poki open pi ilo sina."
+
+#~ msgid "&Work path:"
+#~ msgstr "poki &pali:"
+
+#~ msgid ""
+#~ "<qt><p>This list should show the types of file that your application can "
+#~ "handle. This list is organized by <u>mimetypes</u>.</p>\n"
+#~ "<p>MIME, Multipurpose Internet (e)Mail Extension, is a standard protocol "
+#~ "for identifying the type of data based on filename extensions and "
+#~ "correspondent <u>mimetypes</u>. Example: the \"bmp\" part that comes "
+#~ "after the dot in flower.bmp indicates that it is a specific kind of "
+#~ "image, <u>image/x-bmp</u>. To know which application should open each "
+#~ "type of file, the system should be informed about the abilities of each "
+#~ "application to handle these extensions and mimetypes.</p>\n"
+#~ "<p>If you want to associate this application with one or more mimetypes "
+#~ "that are not in this list, click on the button <b>Add</b> below. If there "
+#~ "are one or more filetypes that this application cannot handle, you may "
+#~ "want to remove them from the list clicking on the button <b>Remove</b> "
+#~ "below.</p></qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>\n"
+#~ "toki ni li sitelen e kule lipu pi sona tawa ilo sina. nasin sitelen li "
+#~ "kepeken kule <u>MIME Types</u>.</p>\n"
+#~ "<p>kule MIME (Multipurpose Internet Email Extension) li kulupu pi nimi "
+#~ "mute tawa kule lipu. ona li sama ni: nimi \".bmp\" lon pini nimi \"kasi."
+#~ "bmp\" li toki e ni: ona li kule MIME <u>image/x-bmp</u>. mi wile sona e "
+#~ "ilo tawa lipu la, mi wile sona kin e ken ilo tawa kule lipu.</p>\n"
+#~ "<p>sina wile toki e ni tawa mi la, o pilin e nena \"o sin\" lon anpa. "
+#~ "kule pi ken ala tawa ilo ni li lon la, o pilin e nena \"o weka\" anpa.</"
+#~ "p>\n"
+#~ "</qt>"
+
+#~ msgid "&Supported file types:"
+#~ msgstr "kule &sona:"
+
+#~ msgid "Mimetype"
+#~ msgstr "kule lipu"
+
+#~ msgid "Description"
+#~ msgstr "sitelen"
+
+#~ msgid "Add..."
+#~ msgstr "o namako..."
+
+#~ msgid "Remove"
+#~ msgstr "o weka e ni"
+
+#~ msgid "Ad&vanced Options"
+#~ msgstr "lawa &kiwen"
+
+#~ msgid "Properties for %1"
+#~ msgstr "ijo tawa %1"
+
+#~ msgid "Properties for 1 item"
+#~ msgid_plural "Properties for %1 Selected Items"
+#~ msgstr[0] "ijo pi ijo %1"
+#~ msgstr[1] "ijo pi ijo %1"
+#~ msgstr[2] "ijo pi ijo %1"
+#~ msgstr[3] "ijo pi ijo %1"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Share"
+#~ msgstr "pana"
+
+#~ msgctxt "@title:tab File properties"
+#~ msgid "&General"
+#~ msgstr "&ale"
+
+#~ msgctxt "@action:button"
+#~ msgid "Explore in %1"
+#~ msgstr "o lukin lon %1"
+
+#~ msgid "Refresh"
+#~ msgstr "o sin e lipu"
+
+#~ msgid "%1:"
+#~ msgstr ":%1:"
+
+#~ msgctxt "Available space out of total partition size (percent used)"
+#~ msgid "%1 free of %2 (%3% used)"
+#~ msgstr "suli %1 li ken kepeken pi suli %2. (ni li %3%)"
+
+#~ msgctxt "@info:status"
+#~ msgid "Unknown size"
+#~ msgstr "suli pi sona ala"
+
+#~ msgid ""
+#~ "Calculating... %1 (%2)\n"
+#~ "%3, %4"
+#~ msgstr ""
+#~ "mi pali nanpa... %1 (%2)\n"
+#~ "%3, %4"
+
+#~ msgid "1 file"
+#~ msgid_plural "%1 files"
+#~ msgstr[0] "lipu %1"
+#~ msgstr[1] "lipu pi mute %1"
+#~ msgstr[2] "lipu pi mute %1"
+#~ msgstr[3] "lipu pi mute %1"
+
+#~ msgid "1 sub-folder"
+#~ msgid_plural "%1 sub-folders"
+#~ msgstr[0] "poki insa %1"
+#~ msgstr[1] "poki insa luka %1"
+#~ msgstr[2] "poki insa mute %1"
+#~ msgstr[3] "poki insa %1"
+
+#~ msgid "Calculating...\n"
+#~ msgstr "mi pali nanpa...\n"
+
+#, fuzzy
+#~| msgid "At least %1"
+#~ msgid "At least %1\n"
+#~ msgstr "lili la ni li wile e %1"
+
+#~ msgid "The new file name is empty."
+#~ msgstr "nimi sin li jo ala e sitelen."
+
+#, fuzzy
+#~| msgid "&Supported file types:"
+#~ msgid "No registered file type"
+#~ msgstr "kule &sona:"
+
+#~ msgid "No associated application"
+#~ msgstr "ilo pi kule ni ala"
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgctxt "@action:button Create new file type"
+#~ msgid "Create…"
+#~ msgstr "tenpo open:"
+
+#, fuzzy
+#~| msgid "Change..."
+#~ msgctxt "@action:button"
+#~ msgid "Change…"
+#~ msgstr "o ante..."
+
+#~ msgid "No Access"
+#~ msgstr "ken ala"
+
+#~ msgid "Can Only View"
+#~ msgstr "ken pi lukin taso"
+
+#~ msgid "Can View & Modify"
+#~ msgstr "ken lukin en ken ante"
+
+#~ msgid "Can Only View Content"
+#~ msgstr "ken pi lukin taso"
+
+#~ msgid "Can View & Modify Content"
+#~ msgstr "ken lukin en ken ante"
+
+#~ msgid "Can Only View/Read Content"
+#~ msgstr "ken pi lukin taso"
+
+#~ msgid "Can View/Read & Modify/Write"
+#~ msgstr "ken lukin en ken ante"
+
+#~ msgid "&Permissions"
+#~ msgstr "&lawa"
+
+#~ msgid "Access Permissions"
+#~ msgstr "&lawa kepeken"
+
+#~ msgid "Only the owner can change permissions."
+#~ msgstr "jan jo taso li ken ante e lawa."
+
+#~ msgid "O&wner:"
+#~ msgstr "jan &jo:"
+
+#~ msgid "Specifies the actions that the owner is allowed to do."
+#~ msgstr "ni li toki e ken pali pi jan jo."
+
+#~ msgid "Gro&up:"
+#~ msgstr "&kulupu:"
+
+#~ msgid ""
+#~ "Specifies the actions that the members of the group are allowed to do."
+#~ msgstr "ni li toki e ken pi jan kulupu."
+
+#~ msgid "O&thers:"
+#~ msgstr "&ante:"
+
+#~ msgid "Only own&er can rename and delete folder content"
+#~ msgstr "jan jo taso li ken ante e nimi li ken weka e insa poki."
+
+#~ msgid "Is &executable"
+#~ msgstr "ken &kepeken"
+
+#~ msgid "A&dvanced Permissions"
+#~ msgstr "lawa kiwen"
+
+#~ msgid "Ownership"
+#~ msgstr "jo"
+
+#~ msgid "User:"
+#~ msgstr "jan:"
+
+#~ msgid "Group:"
+#~ msgstr "kulupu:"
+
+#~ msgid "Apply changes to all subfolders and their contents"
+#~ msgstr "o pana e ante tawa poki insa ale tawa lipu insa ale"
+
+#~ msgid "Advanced Permissions"
+#~ msgstr "kawa kiwen"
+
+#~ msgid "Class"
+#~ msgstr "kule"
+
+#~ msgid ""
+#~ "Show\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "o sitelen\n"
+#~ "e ijo"
+
+#~ msgid "This flag allows viewing the content of the folder."
+#~ msgstr "ni li ken e lukin insa poki"
+
+#~ msgid "Read"
+#~ msgstr "ken lukin"
+
+#~ msgid "The Read flag allows viewing the content of the file."
+#~ msgstr "ni li ken e lukin insa lipu."
+
+#~ msgid ""
+#~ "Write\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "o sitelen\n"
+#~ "e ijo"
+
+#~ msgid "Write"
+#~ msgstr "ken sitelen"
+
+#~ msgid "The Write flag allows modifying the content of the file."
+#~ msgstr "ni li ken e sitelen lipu."
+
+#~ msgctxt "Enter folder"
+#~ msgid "Enter"
+#~ msgstr "o pana"
+
+#~ msgid "Enable this flag to allow entering the folder."
+#~ msgstr "o lon e ken ni tawa lukin insa poki."
+
+#~ msgid "Exec"
+#~ msgstr "ken kepeken"
+
+#~ msgid "Enable this flag to allow executing the file as a program."
+#~ msgstr "o lon e ken ni tawa kepeken lipu sama ilo."
+
+#~ msgid "Special"
+#~ msgstr "ante"
+
+#~ msgid "User"
+#~ msgstr "jan"
+
+#~ msgid "Group"
+#~ msgstr "kulupu"
+
+#~ msgid ""
+#~ "If this flag is set, the group of this folder will be set for all new "
+#~ "files."
+#~ msgstr ""
+#~ "ni li lon la kulupu jo pi poki ni li jo e lipu sin ale ni lon poki ni."
+
+#~ msgid "Set UID"
+#~ msgstr "o ante e nanpa jan (UID)"
+
+#~ msgid "Set GID"
+#~ msgstr "o ante e nanpa kulupu (GID)"
+
+#~ msgctxt "File permission"
+#~ msgid "Sticky"
+#~ msgstr "ken UNIX \"Sticky\""
+
+#~ msgid "Link"
+#~ msgstr "ken nasin"
+
+#~ msgid "Varying (No Change)"
+#~ msgstr "ken ante (ante ala)"
+
+#~ msgid "This file uses advanced permissions"
+#~ msgid_plural "These files use advanced permissions."
+#~ msgstr[0] "lipu ni li kepeken e lawa kiwen."
+#~ msgstr[1] "lipu luka ni li kepeken e lawa kiwen."
+#~ msgstr[2] "lipu mute ni li kepeken e lawa kiwen."
+#~ msgstr[3] "lipu mute ni li kepeken e lawa kiwen."
+
+#~ msgid "These files use advanced permissions."
+#~ msgstr "lipu ni li kepeken e lawa kiwen"
+
+#~ msgctxt "@title:tab"
+#~ msgid "C&hecksums"
+#~ msgstr "sitelen pimeja pi lipu &pona"
+
+#~ msgctxt "@action:button"
+#~ msgid "Calculating..."
+#~ msgstr "mi pali nanpa..."
+
+#~ msgid "Invalid checksum."
+#~ msgstr "sitelen pimeja li pakala."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "The given input is not a valid MD5, SHA1 or SHA256 checksum."
+#~ msgstr ""
+#~ "sitelen pimeja li sitelen MD5 ala li sitelen SHA1 ala li sitelen SHA256 "
+#~ "ala."
+
+#~ msgid "Checksums match."
+#~ msgstr "sitelen pimeja li sama."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "The computed checksum and the expected checksum match."
+#~ msgstr "sitelen pimeja lon en sitelen pimeja pana li ante."
+
+#~ msgctxt "@info:tooltip"
+#~ msgid "The computed checksum and the expected checksum differ."
+#~ msgstr "sitelen pimeja lon en sitelen pimeja pana li ante."
+
+#~ msgctxt "notify the user about a computation in the background"
+#~ msgid "Verifying checksum..."
+#~ msgstr "mi pali nanpa pi sitelen pimeja..."
+
+#~ msgid "U&RL"
+#~ msgstr "nasin U&RL"
+
+#~ msgid "URL:"
+#~ msgstr "nasin URL:"
+
+#~ msgid ""
+#~ "Could not save properties. Only entries on local file systems are "
+#~ "supported."
+#~ msgstr "mi ken ala awen e ijo. lipu lon ilo sina taso li ken awen."
+
+#~ msgid "&Application"
+#~ msgstr "&ilo"
+
+#~ msgid "Add File Type for %1"
+#~ msgstr "o toki e ken pali kepeken kule tawa %1"
+
+#~ msgid "Select one or more file types to add:"
+#~ msgstr "o pilin e kule lipu tawa pana:"
+
+#~ msgid "Only executables on local file systems are supported."
+#~ msgstr "ilo lon ilo sina taso li ken kepeken."
+
+#~ msgid "Advanced Options for %1"
+#~ msgstr "lawa kiwen tawa %1"
+
+#~ msgid "KDE SSL Information"
+#~ msgstr "sona SSL pi kulupu KDE"
+
+#~ msgctxt "The receiver of the SSL certificate"
+#~ msgid "Subject"
+#~ msgstr "jan pi kama jo"
+
+#~ msgctxt "The authority that issued the SSL certificate"
+#~ msgid "Issuer"
+#~ msgstr "jan lawa anu kulupu lawa pi lipu \"SSL\" ni"
+
+#~ msgid "Current connection is secured with SSL."
+#~ msgstr "ilo SSL li len e linluwi."
+
+#~ msgid ""
+#~ "The main part of this document is secured with SSL, but some parts are "
+#~ "not."
+#~ msgstr "ilo SSL li len e lipu. taso ijo lon insa ona li len ala."
+
+#~ msgid "Some of this document is secured with SSL, but the main part is not."
+#~ msgstr "ilo SSL li len e ijo lon insa lipu. taso ona li len ala e lipu."
+
+#~ msgid "Current connection is not secured with SSL."
+#~ msgstr "ilo SSL li len ala e linluwi."
+
+#~ msgctxt "%1, using %2 bits of a %3 bit key"
+#~ msgid "%1, %2 %3"
+#~ msgstr "%1, %2, %3"
+
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "using %1 bit"
+#~ msgid_plural "using %1 bits"
+#~ msgstr[0] "li kepeken nanpa %1"
+#~ msgstr[1] "li kepeken nanpa %1"
+#~ msgstr[2] "li kepeken nanpa %1"
+#~ msgstr[3] "li kepeken nanpa %1"
+
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "of a %1 bit key"
+#~ msgid_plural "of a %1 bit key"
+#~ msgstr[0] "pi sitelen pi nanpa %1"
+#~ msgstr[1] "pi sitelen pi nanpa %1"
+#~ msgstr[2] "pi sitelen pi nanpa %1"
+#~ msgstr[3] "pi sitelen pi nanpa %1"
+
+#~ msgctxt "The certificate is not trusted"
+#~ msgid "NO, there were errors:"
+#~ msgstr "ala a! pakala li lon:"
+
+#~ msgctxt "The certificate is trusted"
+#~ msgid "Yes"
+#~ msgstr "ni li pona tawa mi"
+
+#~ msgctxt "%1 is the effective date of the certificate, %2 is the expiry date"
+#~ msgid "%1 to %2"
+#~ msgstr "open %1 pini %2"
+
+#~ msgid "Search for '%1' with"
+#~ msgstr "o alasa e '%1' kepeken"
+
+#~ msgctxt "@action:inmenu Search for <text> with"
+#~ msgid "%1"
+#~ msgstr "ilo %1"
+
+#~ msgid "Configure Web Shortcuts..."
+#~ msgstr "o ante e nasin lili linluwi..."
+
+#~ msgid "Open file dialog"
+#~ msgstr "o open e ilo pi open lipu"
+
+#~ msgid "Filename for clipboard content:"
+#~ msgstr "nimi pi ijo tan supa pali:"
+
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid ""
+#~ "The clipboard has changed since you used 'paste': the chosen data format "
+#~ "is no longer applicable. Please copy again what you wanted to paste."
+#~ msgstr ""
+#~ "supa pali li ante. kule wile li ante li kama lon ala. o lon sin e ijo pi "
+#~ "wile sina lon supa pali."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Folder"
+#~ msgstr "o lon e poki wan"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One File"
+#~ msgstr "o lon e lipu wan"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Item"
+#~ msgid_plural "Paste %1 Items"
+#~ msgstr[0] "o lon e ijo %1"
+#~ msgstr[1] "o lon e ijo luka %1"
+#~ msgstr[2] "o lon e ijo mute %1"
+#~ msgstr[3] "o lon e ijo %1"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste Clipboard Contents..."
+#~ msgstr "o &lon e insa supa pali..."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste"
+#~ msgstr "o lon e lipu lon ni"
+
+#~ msgid "Data format:"
+#~ msgstr "kule sona:"
+
+#~ msgid "Filename for dropped contents:"
+#~ msgstr "nimi lipu pi ijo pana:"
+
+#~ msgid "Date: %1"
+#~ msgstr "tenpo: %1"
+
+#~ msgid "Size: %1"
+#~ msgstr "suli: %1"
+
+#~ msgid "Appl&y to All"
+#~ msgstr "o &ni e ale"
+
+#~ msgid "&Rename"
+#~ msgstr "o ante e &nimi"
+
+#~ msgid "Suggest New &Name"
+#~ msgstr "o pana e wile sina tawa &nimi sin"
+
+#~ msgid "&Skip"
+#~ msgstr "o ala tawa lipu ni"
+
+#~ msgid "Do not copy or move this folder, skip to the next item instead"
+#~ msgstr ""
+#~ "o sama ala e poki ni. o tawa ala e poki ni. o pali lon ijo kama taso"
+
+#~ msgid "Do not copy or move this file, skip to the next item instead"
+#~ msgstr ""
+#~ "o sama ala e lipu ni. o tawa ala e lipu ni. o pali lon ijo kama taso"
+
+#~ msgctxt "Write files into an existing folder"
+#~ msgid "&Write Into"
+#~ msgstr "o &sitelen lon insa"
+
+#~ msgctxt "Overwrite files into an existing folder when files are older"
+#~ msgid "&Overwrite older files"
+#~ msgstr "o &weka e lipu pi sin ala"
+
+#~ msgid "&Resume"
+#~ msgstr "o $awen pali"
+
+#~ msgid "C&ontinue"
+#~ msgstr "o awen"
+
+#~ msgid "This action will overwrite the destination."
+#~ msgstr "pali ni li weka e lipu lon pini tawa."
+
+#~ msgid "Source"
+#~ msgstr "tan ijo"
+
+#~ msgid "Destination"
+#~ msgstr "pini ijo"
+
+#~ msgid "Differences"
+#~ msgstr "ante"
+
+#~ msgid "The destination is <b>smaller by %1</b>"
+#~ msgstr "lipu lon pini tawa li lili. <b>ante suli li %1</b>"
+
+#~ msgid "The destination is <b>bigger by %1</b>"
+#~ msgstr "lipu lon pini tawa li suli. <b>ante suli li %1</b>"
+
+#~ msgid "The files are identical."
+#~ msgstr "lipu ni li sama."
+
+#~ msgid "The files seem identical."
+#~ msgstr "ken la, lipu ni li sama."
+
+#~ msgid "The files are different."
+#~ msgstr "lipu li ante."
+
+#~ msgid "An older item named '%1' already exists."
+#~ msgstr "ijo pi sin ala '%1' li awen lon."
+
+#~ msgid "A similar file named '%1' already exists."
+#~ msgstr "lipu sama '%1' li awen lon."
+
+#~ msgid "A more recent item named '%1' already exists."
+#~ msgstr "ijo sin '%1' li awen lon."
+
+#~ msgid "Rename:"
+#~ msgstr "o ante e nimi:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Rename Item"
+#~ msgstr "o ante e nimi pi ijo ni"
+
+#~ msgctxt "@title:window"
+#~ msgid "Rename Items"
+#~ msgstr "o ante e nimi ijo"
+
+#~ msgctxt "@action:button"
+#~ msgid "&Rename"
+#~ msgstr "&o ante e nimi"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Rename the item <filename>%1</filename> to:"
+#~ msgstr "o ante e nimi pi ijo <filename>%1</filename> tawa:"
+
+#~ msgctxt ""
+#~ "This a template for new filenames, # is replaced by a number later, must "
+#~ "be the end character"
+#~ msgid "New name #"
+#~ msgstr "nimi sin #"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Rename the %1 selected item to:"
+#~ msgid_plural "Rename the %1 selected items to:"
+#~ msgstr[0] "o ante e nimi pi ijo wile %1 tawa:"
+#~ msgstr[1] "o ante e nimi pi ijo wile %1 tawa:"
+#~ msgstr[2] "o ante e nimi pi ijo wile %1 tawa:"
+#~ msgstr[3] "o ante e nimi pi ijo wile %1 tawa:"
+
+#~ msgctxt "@info"
+#~ msgid "# will be replaced by ascending numbers starting with:"
+#~ msgstr "nanpa pi kama suli li kama lon #. nanpa wan:"
+
+#~ msgid "Information"
+#~ msgstr "sona pona"
+
+#~ msgid "Retry"
+#~ msgstr "o pali sin"
+
+#~ msgid "Replace All"
+#~ msgstr "o ante e ale"
+
+#~ msgid "Skip"
+#~ msgstr "o pali ala lon ijo ni"
+
+#~ msgid "Skip All"
+#~ msgstr "o pali ala lon ijo ale"
+
+#~ msgid "[padlock]"
+#~ msgstr "[ilo kiwen]"
+
+#~ msgctxt "Web page address"
+#~ msgid "Address:"
+#~ msgstr "nimi ma:"
+
+#~ msgid "IP address:"
+#~ msgstr "nimi ma IP:"
+
+#~ msgid "Encryption:"
+#~ msgstr "nasin len:"
+
+#~ msgid "Details:"
+#~ msgstr "sona namako:"
+
+#~ msgid "SSL version:"
+#~ msgstr "nanpa pi toki SSL:"
+
+#~ msgid "Certificate chain:"
+#~ msgstr "linja pi sitelen lawa:"
+
+#~ msgid "Trusted:"
+#~ msgstr "pona tawa sina:"
+
+#~ msgid "Validity period:"
+#~ msgstr "tenpo pona:"
+
+#~ msgid "Serial number:"
+#~ msgstr "nanpa:"
+
+#~ msgid "MD5 digest:"
+#~ msgstr "sitelen pimeja MD5:"
+
+#~ msgid "SHA1 digest:"
+#~ msgstr "sitelen pimeja SHA1:"
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid ""
+#~| "Do you really want to permanently delete this %1 item?<nl/><nl/"
+#~| "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~| msgid_plural ""
+#~| "Do you really want to permanently delete these %1 items?<nl/><nl/"
+#~| "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to permanently delete this item?<nl/><nl/><filename>"
+#~ "%1</filename><nl/><nl/><emphasis strong='true'>This action cannot be "
+#~ "undone.</emphasis>"
+#~ msgstr ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to permanently delete this %1 item?<nl/><nl/><emphasis "
+#~ "strong='true'>This action cannot be undone.</emphasis>"
+#~ msgid_plural ""
+#~ "Do you really want to permanently delete these %1 items?<nl/><nl/"
+#~ "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~ msgstr[0] ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+#~ msgstr[1] ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+#~ msgstr[2] ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+#~ msgstr[3] ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid ""
+#~| "Do you really want to permanently delete this %1 item?<nl/><nl/"
+#~| "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~| msgid_plural ""
+#~| "Do you really want to permanently delete these %1 items?<nl/><nl/"
+#~| "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Moving this item to Trash failed as it is too large. Permanently delete "
+#~ "it instead?<nl/><nl/><filename>%1</filename><nl/><nl/><emphasis "
+#~ "strong='true'>This action cannot be undone.</emphasis>"
+#~ msgstr ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+
+#, fuzzy
+#~| msgctxt "@info"
+#~| msgid ""
+#~| "Do you really want to permanently delete this %1 item?<nl/><nl/"
+#~| "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~| msgid_plural ""
+#~| "Do you really want to permanently delete these %1 items?<nl/><nl/"
+#~| "><emphasis strong='true'>This action cannot be undone.</emphasis>"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Moving this %1 item to Trash failed as it is too large. Permanently "
+#~ "delete it instead?<nl/><emphasis strong='true'>This action cannot be "
+#~ "undone.</emphasis>"
+#~ msgid_plural ""
+#~ "Moving these %1 items to Trash failed as they are too large. Permanently "
+#~ "delete them instead?<nl/><nl/><emphasis strong='true'>This action cannot "
+#~ "be undone.</emphasis>"
+#~ msgstr[0] ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+#~ msgstr[1] ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+#~ msgstr[2] ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+#~ msgstr[3] ""
+#~ "sina wile ala wile weka pi tenpo ale e ijo %1?<nl/><nl/><emphasis "
+#~ "strong='true'>sina ken ala weka e pali ni.</emphasis>"
+
+#~ msgctxt "@info"
+#~ msgid "Do you really want to move this %1 item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] "sina wile ala wile tawa poki jaki e ijo %1?"
+#~ msgstr[1] "sina wile ala wile tawa poki jaki e ijo %1?"
+#~ msgstr[2] "sina wile ala wile tawa poki jaki e ijo %1?"
+#~ msgstr[3] "sina wile ala wile tawa poki jaki e ijo %1?"
+
+#~ msgctxt "@option:checkbox"
+#~ msgid "Do not ask again"
+#~ msgstr "o wile sona sin ala"
+
+#~ msgctxt "@option:check"
+#~ msgid "Do not ask again"
+#~ msgstr "o wile sona sin ala"
+
+#~ msgctxt "@option:check"
+#~ msgid "Do not show this message again"
+#~ msgstr "o pana sin ala e toki ni"
+
+#~ msgctxt "Warning about executing unknown program"
+#~ msgid "Warning"
+#~ msgstr "o lukin"
+
+#~ msgctxt "program name follows in a line edit below"
+#~ msgid "This will start the program:"
+#~ msgstr "ni li open e ilo:"
+
+#~ msgid "If you do not trust this program, click Cancel"
+#~ msgstr "sina pilin ike tan ilo ni la o pilin lon \"pini\""
+
+#~ msgid "Blocked request."
+#~ msgstr "mi weka e wile"
+
+#~ msgid "Unknown HTTP verb."
+#~ msgstr "nimi HTTP pi sona ala"
+
+#, fuzzy
+#~| msgid ""
+#~| "<h1>Cookies</h1><p>Cookies contain information that KDE applications "
+#~| "using the HTTP protocol (like Konqueror) store on your computer, "
+#~| "initiated by a remote Internet server. This means that a web server can "
+#~| "store information about you and your browsing activities on your machine "
+#~| "for later use. You might consider this an invasion of privacy.</p><p> "
+#~| "However, cookies are useful in certain situations. For example, they are "
+#~| "often used by Internet shops, so you can 'put things into a shopping "
+#~| "basket'. Some sites require you have a browser that supports cookies.</"
+#~| "p><p> Because most people want a compromise between privacy and the "
+#~| "benefits cookies offer, the HTTP kioslave offers you the ability to "
+#~| "customize the way it handles cookies. So you might want to set the "
+#~| "default policy to ask you whenever a server wants to set a cookie, "
+#~| "allowing you to decide. For your favorite shopping web sites that you "
+#~| "trust, you might want to set the policy to accept, then you can access "
+#~| "the web sites without being prompted every time a cookie is received.</p>"
+#~ msgid ""
+#~ "<h1>Cookies</h1><p>Cookies contain information that KDE applications "
+#~ "using the HTTP protocol (like Konqueror) store on your computer, "
+#~ "initiated by a remote Internet server. This means that a web server can "
+#~ "store information about you and your browsing activities on your machine "
+#~ "for later use. You might consider this an invasion of privacy.</p><p> "
+#~ "However, cookies are useful in certain situations. For example, they are "
+#~ "often used by Internet shops, so you can 'put things into a shopping "
+#~ "basket'. Some sites require you have a browser that supports cookies.</"
+#~ "p><p> Because most people want a compromise between privacy and the "
+#~ "benefits cookies offer, the HTTP KIO worker offers you the ability to "
+#~ "customize the way it handles cookies. So you might want to set the "
+#~ "default policy to ask you whenever a server wants to set a cookie, "
+#~ "allowing you to decide. For your favorite shopping web sites that you "
+#~ "trust, you might want to set the policy to accept, then you can access "
+#~ "the web sites without being prompted every time a cookie is received.</p>"
+#~ msgstr ""
+#~ "<h1>sona awen lili</h1>\n"
+#~ "<p>\n"
+#~ "sona awen lili li jo e sona. ilo KDE li kepeken e ona tawa awen e sona "
+#~ "tan ilo lon linluwi ante. ni li ken e ni: ilo ante li ken awen e sona lon "
+#~ "ilo sina. ken la ni li ike tawa sina.\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "taso sona awen lili li jo e kepeken. lipu esun mute li kepeken e ona tawa "
+#~ "awen sona e wile esun sina. lipu li ken wile e sona awen lili lon ilo "
+#~ "sina.\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "jan mute li wile e len e pona pi sona awen lili kin. ni la, ilo KDE li "
+#~ "pana e ken ni tawa sina: sina ken ante e nasin pali pi sona awen lili. "
+#~ "ken la sina wile e ni: ilo KDE li toki e ni: \"sina wile seme tawa sona "
+#~ "awen lili ni?\" ken la sina wile e ni: sona awen lili ale li weka. ken la "
+#~ "sina wile e ni: sona awen lili ale li awen. ken la sina wile e ni: sona "
+#~ "awen lili tan lipu linluwi esun pona li awen. ni la o tawa lipu ona o "
+#~ "toki e wile sina lon ona. ni li ken e ni: sona awen lili ale tan lipu "
+#~ "pona li awen. taso sona awen lili ale tan lipu ante li awen e toki sina.\n"
+#~ "</p>"
+
+#~ msgid "<h1>Cookie Management Quick Help</h1>"
+#~ msgstr "<h1>sona lili pi lawa pi sona lili</h1>"
+
+#~ msgid ""
+#~ "<h1>Cookies</h1><p>Cookies contain information that KDE application using "
+#~ "the HTTP protocol (like Konqueror) stores on your computer from a remote "
+#~ "Internet server. This means that a web server can store information about "
+#~ "you and your browsing activities on your machine for later use. You might "
+#~ "consider this an invasion of privacy.</p><p>However, cookies are useful "
+#~ "in certain situations. For example, they are often used by Internet "
+#~ "shops, so you can 'put things into a shopping basket'. Some sites require "
+#~ "you have a browser that supports cookies.</p><p>Because most people want "
+#~ "a compromise between privacy and the benefits cookies offer, KDE offers "
+#~ "you the ability to customize the way it handles cookies. You might, for "
+#~ "example want to set KDE's default policy to ask you whenever a server "
+#~ "wants to set a cookie or simply reject or accept everything. For example, "
+#~ "you might choose to accept all cookies from your favorite shopping web "
+#~ "site. For this all you have to do is either browse to that particular "
+#~ "site and when you are presented with the cookie dialog box, click on <i> "
+#~ "This domain </i> under the 'apply to' tab and choose accept or simply "
+#~ "specify the name of the site in the <i> Domain Specific Policy </i> tab "
+#~ "and set it to accept. This enables you to receive cookies from trusted "
+#~ "web sites without being asked every time KDE receives a cookie.</p>"
+#~ msgstr ""
+#~ "<h1>sona awen lili</h1>\n"
+#~ "<p>\n"
+#~ "sona awen lili li jo e sona. ilo KDE li kepeken e ona tawa awen e sona "
+#~ "tan ilo lon linluwi ante. ni li ken e ni: ilo ante li ken awen e sona lon "
+#~ "ilo sina. ken la ni li ike tawa sina.\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "taso sona awen lili li jo e kepeken. lipu esun mute li kepeken e ona tawa "
+#~ "awen sona e wile esun sina. lipu li ken wile e sona awen lili lon ilo "
+#~ "sina.\n"
+#~ "</p>\n"
+#~ "<p>\n"
+#~ "jan mute li wile e len e pona pi sona awen lili kin. ni la, ilo KDE li "
+#~ "pana e ken ni tawa sina: sina ken ante e nasin pali pi sona awen lili. "
+#~ "ken la sina wile e ni: ilo KDE li toki e ni: \"sina wile seme tawa sona "
+#~ "awen lili ni?\" ken la sina wile e ni: sona awen lili ale li weka. ken la "
+#~ "sina wile e ni: sona awen lili ale li awen. ken la sina wile e ni: sona "
+#~ "awen lili tan lipu linluwi esun pona li awen. ni la o tawa lipu ona o "
+#~ "toki e wile sina lon ona. ni li ken e ni: sona awen lili ale tan lipu "
+#~ "pona li awen. taso sona awen lili ale tan lipu ante li awen e toki sina.\n"
+#~ "</p>"
+
+#~ msgid ""
+#~ "<h1>Proxy</h1><p>A proxy server is an intermediate program that sits "
+#~ "between your machine and the Internet and provides services such as web "
+#~ "page caching and/or filtering.</p><p>Caching proxy servers give you "
+#~ "faster access to sites you have already visited by locally storing or "
+#~ "caching the content of those pages; filtering proxy servers, on the other "
+#~ "hand, provide the ability to block out requests for ads, spam, or "
+#~ "anything else you want to block.</p><p><u>Note:</u> Some proxy servers "
+#~ "provide both services.</p>"
+#~ msgstr ""
+#~ "<h1>ilo pi nasin linluwi</h1>\n"
+#~ "<p>\n"
+#~ "ilo pi nasin linluwi li lon meso ilo sina en ilo linluwi ante ale. ona li "
+#~ "ken pana e ken pi awen sona e ken pi weka ike.\n"
+#~ "sina lukin mute e lipu wan la ilo pi nasin linluwi pi awen sona li lili e "
+#~ "tenpo alasa ona.\n"
+#~ "ilo pi nasin linluwi pi weka ike li ken weka e sitelen mani e sitelen "
+#~ "jaki e ijo pi wile sina.\n"
+#~ "</p>\n"
+#~ "\n"
+#~ "<p><u>o sona:</u> ilo li ken pana e ijo tu ni.</p>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<h1>Windows Shares</h1><p>Applications using the SMB kioslave (like "
+#~| "Konqueror) are able to access shared Microsoft Windows file systems, if "
+#~| "properly configured.</p><p>You can specify here the credentials used to "
+#~| "access the shared resources. Passwords will be stored locally, and "
+#~| "scrambled so as to render them unreadable to the human eye. For security "
+#~| "reasons, you may not want to do that, as entries with passwords are "
+#~| "clearly indicated as such.</p>"
+#~ msgid ""
+#~ "<h1>Windows Shares</h1><p>Applications using the SMB KIO worker (like "
+#~ "Konqueror) are able to access shared Microsoft Windows file systems, if "
+#~ "properly configured.</p><p>You can specify here the credentials used to "
+#~ "access the shared resources. Passwords will be stored locally, and "
+#~ "scrambled so as to render them unreadable to the human eye. For security "
+#~ "reasons, you may not want to do that, as entries with passwords are "
+#~ "clearly indicated as such.</p>"
+#~ msgstr ""
+#~ "<h1>pana pi ilo Windows</h1><p>ilo li kepeken e ilo SMB la ona li ken "
+#~ "alasa lon poki tan ilo Windows. ni li wile kin e lawa pona.</p><p>ilo ni "
+#~ "li ken e lawa pona pi wile sina. nimi len li lon ilo sina li pakala lukin "
+#~ "tawa jan. ken la sina wile ala e ni.</p>"
+
+#~ msgid "Web Search Keywords"
+#~ msgstr "nimi lili pi ilo alasa"
+
+#~ msgid "Configure enhanced browsing features"
+#~ msgstr "o lawa e ilo alasa namako"
+
+#~ msgctxt "@info:whatsthis"
+#~ msgid ""
+#~ "<para>In this module you can configure the web search keywords feature. "
+#~ "Web search keywords allow you to quickly search or lookup words on the "
+#~ "Internet. For example, to search for information about the KDE project "
+#~ "using the Google engine, you simply type <emphasis>gg:KDE</emphasis> or "
+#~ "<emphasis>google:KDE</emphasis>.</para><para>If you select a default "
+#~ "search engine, then you can search for normal words or phrases by simply "
+#~ "typing them into the input widget of applications that have built-in "
+#~ "support for such a feature, e.g Konqueror.</para>"
+#~ msgstr ""
+#~ "<para>ilo ni li lawa e nimi alasa. nimi alasa li ken e ni: sina ken alasa "
+#~ "lon linluwi kepeken tenpo lili. ijo li sama ni: sina wile alasa e sona "
+#~ "KDE tan ilo Google la, sina ken sitelen e <emphasis>gg:KDE</emphasis> anu "
+#~ "<emphasis>google:KDE</emphasis>.</para>\n"
+#~ "<para>sina pana e wile sina tawa ilo alasa nanpa wan, ilo alasa li ken "
+#~ "kepeken nimi open ala. sina ken sitelen e nimi wile taso li wile ala nimi "
+#~ "open.</para>"
+
+#~ msgid "Using sub-URLs with %1 is not supported."
+#~ msgstr "ilo %1 li ken ala kepeken e nimi URL lon insa nimi URL ante."
+
+#~ msgid "&Yes"
+#~ msgstr "&lon"
+
+#~ msgid "&No"
+#~ msgstr "&ala"
+
+#~ msgid "A file or folder named %1 already exists."
+#~ msgstr "lipu pi nimi %1 anu poki pi nimi %1 li lon kin."
+
+#~ msgid "You do not have permission to create that folder."
+#~ msgstr "sina jo ala e wawa tawa lon pi poki wile."
+
+#~ msgid "The desktop is offline"
+#~ msgstr "ilo li lon ala linluwi"
+
+#~ msgid "mounting is not supported by Windows CE."
+#~ msgstr "ilo Windows CE li ken ala insa e poki."
+
+#~ msgid "unmounting is not supported by Windows CE."
+#~ msgstr "ilo Windows CE li ken ala weka e poki insa."
+
+#~ msgid ""
+#~ "The desktop entry of type\n"
+#~ "%1\n"
+#~ "is unknown."
+#~ msgstr ""
+#~ "ilo pi kule\n"
+#~ "%1\n"
+#~ "li sona ala."
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is of type FSDevice but has no Dev=... entry."
+#~ msgstr ""
+#~ "sitelen ilo\n"
+#~ "%1\n"
+#~ "li kule FSDevice. taso ona li jo ala e sitelen \"Dev=...\". "
+
+#~ msgid "Mount"
+#~ msgstr "o kama insa e ilo"
+
+#~ msgid "Unmount"
+#~ msgstr "o weka tan insa ilo"
+
+#~ msgid "Could not find any application or handler for %1"
+#~ msgstr "mi ken ala alasa e ilo tawa %1"
+
+#~ msgid "&Paste File"
+#~ msgid_plural "&Paste %1 Files"
+#~ msgstr[0] "&o lon e lipu %1"
+#~ msgstr[1] "&o lon e lipu luka %1"
+#~ msgstr[2] "&o lon e lipu mute %1"
+#~ msgstr[3] "&o lon e lipu %1"
+
+#~ msgid "&Paste URL"
+#~ msgid_plural "&Paste %1 URLs"
+#~ msgstr[0] "o lon e nimi URL %1"
+#~ msgstr[1] "o lon e nimi URL pi luka %1"
+#~ msgstr[2] "o lon e nimi URL pi mute %1"
+#~ msgstr[3] "o lon e nimi URL %1"
+
+#~ msgid "&Paste Clipboard Contents"
+#~ msgstr "o &lon e insa supa pali"
+
+#~ msgid "None"
+#~ msgstr "ala"
+
+#~ msgid "Multiple Instances"
+#~ msgstr "lon mute"
+
+#~ msgid "Single Instance"
+#~ msgstr "lon wan taso"
+
+#~ msgid "Run Until Finished"
+#~ msgstr "o awen lon pali"
+
+#~ msgid "D-Bus registration:"
+#~ msgstr "pana toki pi ilo D-Bus:"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Images"
+#~ msgstr "sitelen"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Audio"
+#~ msgstr "kalama"
+
+#~ msgid "Co&mmand:"
+#~ msgstr "&ilo:"
+
+#~ msgid "Zoom out"
+#~ msgstr "tawa suli"
+
+#~ msgid "Zoom in"
+#~ msgstr "tawa lili"
+
+#~ msgid "Icon size: %1 pixels (standard size)"
+#~ msgstr "suli pi sitelen lili: %1 pixels (suli pona)"
+
+#~ msgid "Open %1 in tab"
+#~ msgstr "o open e %1 lon nena sin"

@@ -1,0 +1,4996 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"PO-Revision-Date: 2023-05-04 05:59+0200\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: cookies/kcookiesmain.cpp:37
+#, kde-format
+msgid "&Policy"
+msgstr "&წესები"
+
+#: cookies/kcookiesmain.cpp:44
+#, kde-format
+msgid "&Management"
+msgstr "&მართვა"
+
+#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
+#, kde-format
+msgid "D-Bus Communication Error"
+msgstr "D-Bus-თან კავშირის შეცდომა"
+
+#: cookies/kcookiesmanagement.cpp:127
+#, kde-format
+msgid "Unable to delete all the cookies as requested."
+msgstr "მოთხოვნის მიხედვით ყველა ქუქის წაშლის შეცდომა."
+
+#: cookies/kcookiesmanagement.cpp:144
+#, kde-format
+msgid "Unable to delete cookies as requested."
+msgstr "მოთხოვნის მიხედვით ქუქიების წაშლის შეცდომა."
+
+#: cookies/kcookiesmanagement.cpp:223
+#, kde-format
+msgid "Information Lookup Failure"
+msgstr "ინფორმაციის ძიების შეცდომა"
+
+#: cookies/kcookiesmanagement.cpp:225
+#, kde-format
+msgid ""
+"Unable to retrieve information about the cookies stored on your computer."
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:316
+#, kde-format
+msgid "End of session"
+msgstr "სესიის დასრულება"
+
+#: cookies/kcookiesmanagement.cpp:323
+#, kde-format
+msgid "Yes"
+msgstr "დიახ"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
+#: cookies/kcookiesmanagement.ui:20
+#, kde-format
+msgid "Search"
+msgstr "ძებნა"
+
+#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:27
+#, kde-format
+msgid "Search interactively for domains and hosts"
+msgstr "დომენების და ჰოსტების ინტერაქტიული ძებნა"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:43
+#, kde-format
+msgid "Site"
+msgstr "საიტი"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:48
+#, kde-format
+msgid "Cookie Name"
+msgstr "ქუქის სახელი"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
+#, kde-format
+msgid "D&elete"
+msgstr "&წაშლა"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
+#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
+#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
+#, kde-format
+msgid "Delete A&ll"
+msgstr "ყვე&ლაფრის წაშლა"
+
+#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
+#: cookies/kcookiesmanagement.ui:70
+#, kde-format
+msgid "Configure &Policy..."
+msgstr "წესების მო&რგება..."
+
+#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
+#: cookies/kcookiesmanagement.ui:77
+#, kde-format
+msgid "&Reload List"
+msgstr "სიის &თავიდან ჩატვირთვა"
+
+#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
+#: cookies/kcookiesmanagement.ui:97
+#, kde-format
+msgid "Details"
+msgstr "დეტალები"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: cookies/kcookiesmanagement.ui:106
+#, kde-format
+msgid "Name:"
+msgstr "სახელი:"
+
+#. i18n: ectx: property (text), widget (QLabel, valueLabel)
+#: cookies/kcookiesmanagement.ui:129
+#, kde-format
+msgid "Value:"
+msgstr "მნიშვნელობა:"
+
+#. i18n: ectx: property (text), widget (QLabel, domainLabel)
+#: cookies/kcookiesmanagement.ui:152
+#, kde-format
+msgid "Domain:"
+msgstr "დომენი:"
+
+#. i18n: ectx: property (text), widget (QLabel, patchLabel)
+#: cookies/kcookiesmanagement.ui:175
+#, kde-format
+msgid "Path:"
+msgstr "ბილიკი:"
+
+#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
+#: cookies/kcookiesmanagement.ui:198
+#, kde-format
+msgid "Expires:"
+msgstr "იწურება:"
+
+#. i18n: ectx: property (text), widget (QLabel, secureLabel)
+#: cookies/kcookiesmanagement.ui:221
+#, kde-format
+msgid "Secure:"
+msgstr "დაცული:"
+
+#: cookies/kcookiespolicies.cpp:154
+#, kde-format
+msgctxt "@title:window"
+msgid "Change Cookie Policy"
+msgstr "ქუქიების პოლიტიკის შეცვლა"
+
+#: cookies/kcookiespolicies.cpp:173
+#, kde-format
+msgctxt "@title:window"
+msgid "New Cookie Policy"
+msgstr "ქუქიების ახალი პოლიტიკა"
+
+#: cookies/kcookiespolicies.cpp:206
+#, kde-format
+msgid ""
+"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+"replace it?</qt>"
+msgstr ""
+
+#: cookies/kcookiespolicies.cpp:210
+#, kde-format
+msgctxt "@title:window"
+msgid "Duplicate Policy"
+msgstr "დუბლირებული პოლიტიკა"
+
+#: cookies/kcookiespolicies.cpp:211
+#, kde-format
+msgid "Replace"
+msgstr "ჩანაცვლება"
+
+#: cookies/kcookiespolicies.cpp:387
+#, kde-format
+msgid ""
+"Unable to communicate with the cookie handler service.\n"
+"Any changes you made will not take effect until the service is restarted."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enable cookie support. Normally you will want to have cookie support "
+"enabled and customize it to suit your privacy needs.</p><p>\n"
+"Please note that disabling cookie support might make many web sites "
+"unbrowsable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:23
+#, kde-format
+msgid "Enable coo&kies"
+msgstr "&ქუქიების ჩართვა"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:35
+#, kde-format
+msgid ""
+"<qt>\n"
+"Reject the so called third-party cookies. These are cookies that originate "
+"from a site other than the one you are currently browsing. For example, if "
+"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
+"originate from www.foobar.com will be processed per your settings. Cookies "
+"from any other site will be rejected. This reduces the chances of site "
+"operators compiling a profile about your daily browsing habits.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:38
+#, kde-format
+msgid "Only acce&pt cookies from originating server"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:46
+#, kde-format
+msgid ""
+"<p>\n"
+"Automatically accept temporary cookies meant to expire at the end of the "
+"current session. Such cookies will not be stored in your computer's hard "
+"drive or storage device. Instead, they are deleted when you close all "
+"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
+"this option overrides your default as well as site specific cookie policies "
+"for session cookies.</p>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:49
+#, kde-format
+msgid "Automaticall&y accept session cookies"
+msgstr "&სესიის ქუქიების ავტომატური მიღება"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:68
+#, kde-format
+msgid ""
+"<qt>\n"
+"Determines how cookies received from a remote machine will be handled: \n"
+"<ul>\n"
+"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
+"wants to set a cookie.</li>\n"
+"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
+"li>\n"
+"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
+"</li>\n"
+"</ul><p>\n"
+"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
+"precedence over the default policy.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:71
+#, kde-format
+msgid "Default Policy"
+msgstr "ნაგულისხმევი წესები"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
+#: cookies/kcookiespolicies.ui:77
+#, kde-format
+msgid "Accep&t all cookies"
+msgstr "ყველა ქუქის მიღება"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
+#: cookies/kcookiespolicies.ui:84
+#, kde-format
+msgid "Accept &until end of session"
+msgstr "ყველა ქუქის მიღება ამ სესიის ბოლომდე"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
+#: cookies/kcookiespolicies.ui:91
+#, kde-format
+msgid "Ask &for confirmation"
+msgstr "დადასტურების მოთხოვნა"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
+#: cookies/kcookiespolicies.ui:98
+#, kde-format
+msgid "Re&ject all cookies"
+msgstr "ყველა ქუქის უარყოფა"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:123
+#, kde-format
+msgid ""
+"<qt>\n"
+"To add a new policy, simply click on the <b>Add...</b> button and supply the "
+"necessary information. To change an existing policy, use the <b>Change...</"
+"b> button and choose the new policy from the policy dialog box. Clicking on "
+"the <b>Delete</b> button will remove the currently selected policy causing "
+"the default policy setting to be used for that domain, whereas <b>Delete "
+"All</b> will remove all the site specific policies.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:126
+#, kde-format
+msgid "Site Policy"
+msgstr "საიტის წესები"
+
+#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:135
+#, kde-format
+msgid "Search interactively for domains"
+msgstr "დომენების ინტერაქტიული ძებნა"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:138
+#, kde-format
+msgid "Search..."
+msgstr "ძებნა..."
+
+#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:147
+#, kde-format
+msgid ""
+"<qt>\n"
+"List of sites for which you have set a specific cookie policy. Specific "
+"policies override the default policy setting for these sites.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:163
+#, kde-format
+msgid "Domain"
+msgstr "დომენი"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:168
+#, kde-format
+msgid "Policy"
+msgstr "წესები"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&ახალი..."
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&შეცვლა..."
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:26
+#: cookies/kcookiespolicyselectiondlg.ui:81
+#, kde-format
+msgid "Accept"
+msgstr "დასტური"
+
+#: cookies/kcookiespolicyselectiondlg.h:28
+msgid "Accept For Session"
+msgstr "ამ სესიისთვის ნების დართვა"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:30
+#: cookies/kcookiespolicyselectiondlg.ui:91
+#, kde-format
+msgid "Reject"
+msgstr "უარყოფა"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:32
+#: cookies/kcookiespolicyselectiondlg.ui:96
+#, kde-format
+msgid "Ask"
+msgstr "კითხვა"
+
+#: cookies/kcookiespolicyselectiondlg.h:34
+msgid "Do Not Know"
+msgstr "არ ვიცი"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:22
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
+"b> or <b>.kde.org</b>.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:25
+#, kde-format
+msgid "Site name:"
+msgstr "საიტის სახელი:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:38
+#, kde-format
+msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+msgstr ""
+"შეიყვანეთ ჰოსტის ან დომენის სახელი (მაგ: .kde.org) , რომელზეც ეს წესი "
+"ვრცელდება."
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:53
+#: cookies/kcookiespolicyselectiondlg.ui:77
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the desired policy:\n"
+"<ul>\n"
+"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+"</ul>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:56
+#, kde-format
+msgid "Policy:"
+msgstr "წესები:"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:86
+#, kde-format
+msgid "Accept until end of session"
+msgstr "ყველა ქუქის მიღება ამ სესიის ბოლომდე"
+
+#: ksaveioconfig.cpp:212
+#, kde-format
+msgid ""
+"You have to restart the running applications for these changes to take "
+"effect."
+msgstr ""
+
+#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#, kde-format
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "განახლების შეცდომა"
+
+#: ksaveioconfig.cpp:225
+#, kde-format
+msgid "You have to restart KDE for these changes to take effect."
+msgstr "ცვლილებების ძალაში შესასვლელად საჭიროა KDE-ის სესიის გადატვირთვა."
+
+#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:10
+#, kde-format
+msgid "Disable Passive FTP"
+msgstr "პასიური FTP-ის გათიშვა"
+
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:11
+#, kde-format
+msgid ""
+"When FTP connections are passive the client connects to the server, instead "
+"of the other way round, so firewalls do not block the connection; old FTP "
+"servers may not support Passive FTP though."
+msgstr ""
+
+#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#, kde-format
+msgid "Mark partially uploaded files"
+msgstr "ნაწილობრივ ატვირთული ფაილის დანიშვნა"
+
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#, kde-format
+msgid ""
+"While a file is being uploaded its extension is \".part\". When fully "
+"uploaded it is renamed to its real name."
+msgstr ""
+
+#: netpref/netpref.cpp:30
+#, kde-format
+msgid "Timeout Values"
+msgstr "ვადის მნიშვნელობები"
+
+#: netpref/netpref.cpp:32
+#, kde-format
+msgid ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is 1 second."
+msgid_plural ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is %1 seconds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
+#: netpref/netpref.cpp:63
+#, kde-format
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " წამი"
+msgstr[1] " წამი"
+
+#: netpref/netpref.cpp:47
+#, kde-format
+msgid "Soc&ket read:"
+msgstr "სოკეტის კითხვა:"
+
+#: netpref/netpref.cpp:53
+#, kde-format
+msgid "Pro&xy connect:"
+msgstr "პროქსისთან კავშირი:"
+
+#: netpref/netpref.cpp:59
+#, kde-format
+msgid "Server co&nnect:"
+msgstr "სერვერთან კავშირი:"
+
+#: netpref/netpref.cpp:65
+#, kde-format
+msgid "&Server response:"
+msgstr "&სერვერის პასუხი:"
+
+#: netpref/netpref.cpp:67
+#, kde-format
+msgid "Global Options"
+msgstr "გლობალური პარამეტრები"
+
+#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#, kde-format
+msgid "Mark &partially uploaded files"
+msgstr "ნაწილობრივ გადმოწერილი ფაილის დანიშვნა"
+
+#: netpref/netpref.cpp:73
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+"p><p>When this option is enabled, partially uploaded files will have a \"."
+"part\" extension. This extension will be removed once the transfer is "
+"complete.</p>"
+msgstr ""
+
+#: netpref/netpref.cpp:90
+#, kde-format
+msgid " byte"
+msgid_plural " bytes"
+msgstr[0] " ბაიტი"
+msgstr[1] " ბაიტი"
+
+#: netpref/netpref.cpp:92
+#, kde-format
+msgctxt "@label:spinbox"
+msgid ""
+"If cancelled, automatically delete partially uploaded files smaller than:"
+msgstr ""
+"გაუქმების შემთხვევაში ნაწილობრივ ატვირთული ფაილები წაიშლება, თუ ისინი "
+"მცირეა, ვიდრე:"
+
+#: netpref/netpref.cpp:94
+#, kde-format
+msgid "FTP Options"
+msgstr "FTP-ის პარამეტრები"
+
+#: netpref/netpref.cpp:98
+#, kde-format
+msgid "Enable passive &mode (PASV)"
+msgstr "პასიური რეჟიმის (PASV) ჩართვა"
+
+#: netpref/netpref.cpp:100
+#, kde-format
+msgid ""
+"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
+"behind firewalls."
+msgstr ""
+"FTP-ის პასიური რეჟიმის ჩართვა. ეს აუცილებელია FTP-ის ბრანდმაუერის მიღმა "
+"სამუშაოდ."
+
+#: netpref/netpref.cpp:108
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+"partially uploaded files will have a \".part\" extension. This extension "
+"will be removed once the transfer is complete.</p>"
+msgstr ""
+
+#: proxy/kproxydlg.cpp:193
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Not all applications will use this proxy setting. In particular, "
+"<application>Firefox</application> and <application>Chromium</application> "
+"or anything derived from them, or anything using <application>QtWebEngine</"
+"application>&nbsp;- which includes <application>Konqueror</application> "
+"using the <application>WebEnginePart</application>, <application>Akregator</"
+"application> and <application>Falkon</application>&nbsp;- will not use these "
+"settings. Some applications may allow the proxy to be configured in their "
+"own settings."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
+#: proxy/kproxydlg.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"Setup proxy configuration.\n"
+"<p>\n"
+"A proxy server is an intermediate machine that sits between your computer "
+"and the Internet and provides services such as web page caching and "
+"filtering. Caching proxy servers give you faster access to web sites you "
+"have already visited by locally storing or caching those pages; filtering "
+"proxy servers usually provide the ability to block out requests for ads, "
+"spam, or anything else you want to block.\n"
+"<p>\n"
+"If you are uncertain whether or not you need to use a proxy server to "
+"connect to the Internet, consult your Internet service provider's setup "
+"guide or your system administrator.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:26
+#, kde-format
+msgid "Connect to the Internet directly."
+msgstr "ინტერენტთან პირდაპირ მიერთება."
+
+#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:29
+#, kde-format
+msgid "No Proxy"
+msgstr "პროქსის გარეშე"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:46
+#, kde-format
+msgid ""
+"<qt>\n"
+"Automatically detect and configure the proxy settings.<p>\n"
+"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
+"<b>NOTE:</b> This option might not work properly or not work at all in some "
+"UNIX/Linux distributions.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:49
+#, kde-format
+msgid "Detect proxy configuration automatically"
+msgstr "პროქსის პარამეტრების ავტომატური მორგება"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:59
+#, kde-format
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr "პროქსის მორგების მითითებული სკრიპტის გამოყენება."
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:62
+#, kde-format
+msgid "Use proxy auto configuration URL:"
+msgstr "პროქსის ავტომატური გამართვის სკრიპტის URL:"
+
+#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
+#: proxy/kproxydlg.ui:93
+#, kde-format
+msgid "Enter the address for the proxy configuration script."
+msgstr "შეიყვანეთ პროქსის კონფიგურაცის სკრიპტის მისამართი."
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:117
+#, kde-format
+msgid ""
+"<qt><p>Use proxy settings defined on the system.</p>\n"
+"<p>Some platforms offer system wide proxy configuration information and "
+"selecting this option allows you to use those settings.</p>\n"
+"<p>On Mac platforms</p>\n"
+"<p>On Windows platforms</p>\n"
+"<p>On Unix and Linux platforms, such system proxy settings are usually "
+"defined through environment variables. The following environment variables "
+"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:120
+#, kde-format
+msgid "Use system proxy configuration:"
+msgstr "პროქსის სისტემური კონფიგურაციის გამოეყენაბა:"
+
+#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:127
+#, kde-format
+msgid ""
+"<qt>Attempt automatic discovery of the environment variables used for "
+"setting system wide proxy information.<p> This feature works by searching "
+"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:130
+#, kde-format
+msgid "Auto D&etect"
+msgstr "ავტომტურად გამოცნობა"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
+#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
+#, kde-format
+msgid "HTTP Proxy:"
+msgstr "HTTP პროქსი:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
+#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
+#, kde-format
+msgid "SSL Proxy:"
+msgstr "SSL პროქსი:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
+#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
+#, kde-format
+msgid "FTP Proxy:"
+msgstr "FTP პროქსი:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:263
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
+#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
+#, kde-format
+msgid "SOCKS Proxy:"
+msgstr "SOCKS პროქსი:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:285
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the proxy server should not be used.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
+#, kde-format
+msgid "Exceptions:"
+msgstr "გამონაკლისები:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:317
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:324
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr "გარემოს ცვლადების მნიშვნელობების ჩვენება"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:343
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr "პროქსი სერვერის კონფიგურაციის პარამეტრების ხელით შეყვანა."
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:346
+#, kde-format
+msgid "Use manually specified proxy configuration:"
+msgstr "პროქსის ხელით მითითებული კონფიგურაციის გამოყენება:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:398
+#, kde-format
+msgid "Enter the address of the HTTP proxy server."
+msgstr "შეიყვანეთ HTTP პროქსი სერვერის მისამართი."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
+#: proxy/kproxydlg.ui:574
+#, kde-format
+msgid "Port:"
+msgstr "პორტი:"
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:421
+#, kde-format
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "შეიყვანეთ HTTP პროქსი სერვერის პორტი."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:436
+#, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr "ამ პროქსი სერვერის ყველა პროტოკოლისთვის გამოყენება"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:464
+#, kde-format
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "შეიყვანეთ HTTPS პროქსი სერვერის მისამართი."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:481
+#, kde-format
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "შეიყვანეთ HTTPS პროქსი სერვერის პორტი."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:517
+#, kde-format
+msgid "Enter the address of the FTP proxy server."
+msgstr "შეიყვანეთ FTP პროქსი სერვერის მისამართი."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:534
+#, kde-format
+msgid "Enter the port number of the FTP proxy server."
+msgstr "შეიყვანეთ FTP პროქსი სერვერის პორტი."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:567
+#, kde-format
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "შეიყვანეთ SOCKS პროქსი სერვერის მისამართი."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:584
+#, kde-format
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "შეიყვანეთ SOCKS პროქსი სერვერის პორტი."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
+#: proxy/kproxydlg.ui:628
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enter a comma separated list of hostnames or ip addresses that should be "
+"excluded from using the above proxy settings.</p>\n"
+"<p>If you want to exclude all hosts for a given domain, then simply enter "
+"the domain name preceded by a dot. For example, to exclude all hostnames for "
+"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
+"'?' are not supported and will have no effect.</p>\n"
+"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:639
+#, kde-format
+msgid ""
+"<qt>\n"
+"Check this box if you want the above proxy settings to apply only to the "
+"addresses listed in the <i>Exceptions</i> list.</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:642
+#, kde-format
+msgid "Use proxy settings only for addresses in the Exceptions list"
+msgstr ""
+
+#: smb/smbrodlg.cpp:27
+#, kde-format
+msgid "These settings apply to network browsing only."
+msgstr "ეს პარამეტრები მხოლოდ ქსელში ძებნას ეხება."
+
+#: smb/smbrodlg.cpp:31
+#, kde-format
+msgid "Default user name:"
+msgstr "ნაგულისხმევი მომხმარებლის სახელი:"
+
+#: smb/smbrodlg.cpp:39
+#, kde-format
+msgid "Default password:"
+msgstr "ნაგულისხმები პაროლი:"
+
+#: trash/kcmtrash.cpp:138
+#, kde-format
+msgid " days"
+msgstr " დღე"
+
+#: trash/kcmtrash.cpp:203
+#, kde-format
+msgid ""
+"<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
+"para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:205
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Emptying KDE's wastebin will remove only KDE's trash items, "
+"while<br>emptying the Trash through the Finder will delete everything.</"
+"para><para>KDE's trash items will show up in a folder called KDE.trash, in "
+"the Trash can.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:246
+#, kde-format
+msgid "Delete files older than"
+msgstr "თარიღზე ძველი ფაილების წაშლა"
+
+#: trash/kcmtrash.cpp:249
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to allow <emphasis strong='true'>automatic deletion</"
+"emphasis> of files that are older than the value specified. Leave this "
+"disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
+"items after a certain timespan</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:256
+#, kde-format
+msgid " day"
+msgid_plural " days"
+msgstr[0] " დღე"
+msgstr[1] " დღე"
+
+#: trash/kcmtrash.cpp:258
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Set the number of days that files can remain in the trash. Any files "
+"older than this will be automatically deleted.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:262
+#, kde-format
+msgid "Cleanup:"
+msgstr "გაწმენდა:"
+
+#: trash/kcmtrash.cpp:265
+#, kde-format
+msgid "Limit to"
+msgstr "ზღვარი"
+
+#: trash/kcmtrash.cpp:267
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to limit the trash to the maximum amount of disk space "
+"that you specify below. Otherwise, it will be unlimited.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:270
+#, kde-format
+msgid "Size:"
+msgstr "ზომა:"
+
+#: trash/kcmtrash.cpp:277
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the maximum percent of disk space that will be used for the "
+"trash.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:282
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the calculated amount of disk space that will be allowed for "
+"the trash, the maximum.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:286
+#, kde-format
+msgid "Show a Warning"
+msgstr "გაფრთხილების ჩვენება"
+
+#: trash/kcmtrash.cpp:287
+#, kde-format
+msgid "Delete Oldest Files From Trash"
+msgstr "ნაგვიდან უძველესი ფაილების წაშლა"
+
+#: trash/kcmtrash.cpp:288
+#, kde-format
+msgid "Delete Biggest Files From Trash"
+msgstr "ნაგვიდან უდიდესი ფაილების წაშლა"
+
+#: trash/kcmtrash.cpp:290
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>When the size limit is reached, it will prefer to delete the type of "
+"files that you specify, first. If this is set to warn you, it will do so "
+"instead of automatically deleting files.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:292
+#, kde-format
+msgid "Full Trash:"
+msgstr "სანაგვე სავსეა:"
+
+#: webshortcuts/ikwsopts.cpp:38
+#, kde-format
+msgctxt "@title:column Name label from web search keyword column"
+msgid "Name"
+msgstr "სახელი"
+
+#: webshortcuts/ikwsopts.cpp:40
+#, kde-format
+msgctxt "@title:column"
+msgid "Keywords"
+msgstr "საკვანძო სიტყვები"
+
+#: webshortcuts/ikwsopts.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Preferred"
+msgstr "მირჩევნია"
+
+#: webshortcuts/ikwsopts.cpp:101
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this box to select the highlighted web search keyword as preferred.<nl/"
+">Preferred web search keywords are used in places where only a few select "
+"keywords can be shown at one time."
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:202
+#, kde-format
+msgctxt "@item:inlistbox No default web search keyword"
+msgid "None"
+msgstr "არაფერი"
+
+#: webshortcuts/ikwsopts.cpp:246
+#, kde-format
+msgid "Search F&ilters"
+msgstr "&ფილტრების ძებნა"
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:17
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"search keywords allow you to quickly access or search for information "
+"located online or on your hard drive. </p><p>KDE comes with many predefined "
+"keywords. One such keyword can be used to perform a the Google (TM) search; "
+"to use it, you simply type the keyword 'gg' followed by the keyword "
+"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
+"KDE</span>.</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:20
+#, kde-format
+msgid "&Enable Web search keywords"
+msgstr "ვებ-ძებნის საკვანძო სიტყვების &ჩართვა"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:30
+#, kde-format
+msgid "&Use preferred keywords only"
+msgstr "&მხოლოდ სასურველი საკვანძო სიტყვების გამოყენება"
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
+#: webshortcuts/ikwsopts_ui.ui:37
+#, kde-format
+msgid "Search for web search keywords"
+msgstr "ვებ-ძებნის საკვანძო სიტყვის ძებნა"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:71
+#, kde-format
+msgid "Add a new Web search keyword"
+msgstr "ვებ-ძებნის საკვანძო სიტყვის დამატება"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:84
+#, kde-format
+msgid "Modify the highlighted Web search keyword"
+msgstr "ვებ-ძებნის საკვანძო სიტყვის ჩასწორება"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:97
+#, kde-format
+msgid "Delete the highlighted Web search keyword"
+msgstr "ვებ-ძებნის საკვანძო სიტყვის წაშლა"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:100
+#, kde-format
+msgid "De&lete"
+msgstr "წა&შლა"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:138
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the search engine to use for input boxes that provide automatic "
+"lookup services when you type in normal words and phrases instead of a URL. "
+"To disable this feature select <b>None</b> from the list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:141
+#, kde-format
+msgid "Default Web &search keyword:"
+msgstr "ნაგულისხმები ვებ-&ძებნის საკვანძო სიტყვა:"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:166
+#, kde-format
+msgid ""
+"<html><head/><body><p>Select a default web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to web "
+"search keyword queries when they cannot be filtered into a proper URL. </"
+"p><p>To disable this functionality select <span style=\" font-weight:600;"
+"\">None</span> from the list. </p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:182
+#, kde-format
+msgid ""
+"Choose the delimiter that separates the keyword from the phrase or word to "
+"be searched."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:185
+#, kde-format
+msgid "&Keyword delimiter:"
+msgstr "საკვანძო სიტყვის &გამყოფი:"
+
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:204
+#, kde-format
+msgid "Choose a delimiter to mark the Web search keyword."
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:208
+#, kde-format
+msgctxt "Colon as keyword delimiter"
+msgid "Colon"
+msgstr "ორი წერტილი"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:213
+#, kde-format
+msgctxt "Space as keyword delimiter"
+msgid "Space"
+msgstr "გამოტოვება"
+
+#: webshortcuts/searchproviderdlg.cpp:49
+#, kde-format
+msgctxt "@item:inlistbox The default character set"
+msgid "Default"
+msgstr "ნაგულისხმები"
+
+#: webshortcuts/searchproviderdlg.cpp:52
+#, kde-format
+msgid "Modify Web Shortcut"
+msgstr "ვების მალსახმობის ჩასწორება"
+
+#: webshortcuts/searchproviderdlg.cpp:60
+#, kde-format
+msgid "New Web Shortcut"
+msgstr "ახალი ვების მალსახმობი"
+
+#: webshortcuts/searchproviderdlg.cpp:121
+#, kde-format
+msgid ""
+"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"one."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:126
+#, kde-format
+msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
+msgid "- %1: \"%2\""
+msgstr "- %1: \"%2\""
+
+#: webshortcuts/searchproviderdlg.cpp:130
+#, kde-format
+msgid ""
+"The following shortcuts are already assigned. Please choose different ones.\n"
+"%1"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:143
+#, kde-format
+msgid ""
+"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"This means that the same page is always going to be visited, regardless of "
+"the text typed in with the shortcut."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:147
+#, kde-format
+msgid "Keep It"
+msgstr "შენარჩუნება"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:17
+#, kde-format
+msgid "Enter the human-readable name of the search provider here."
+msgstr "აქ შეიყვანეთ საძიებო სისტემის ადამიანისთვის გასაგები სახელი."
+
+#. i18n: ectx: property (text), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:23
+#, kde-format
+msgid "Shortcut &name:"
+msgstr "მალსახმობის &სახელი:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:42
+#: webshortcuts/searchproviderdlg_ui.ui:64
+#: webshortcuts/searchproviderdlg_ui.ui:70
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the URI that is used to perform a search on the search engine here.<br/"
+">The whole text to be searched for can be specified as \\{@} or \\{0}.<br/>\n"
+"Recommended is \\{@}, since it removes all query variables (name=value) from "
+"the resulting string, whereas \\{0} will be substituted with the unmodified "
+"query string.<br/>You can use \\{1} ... \\{n} to specify certain words from "
+"the query and \\{name} to specify a value given by 'name=value' in the user "
+"query.<br/>In addition it is possible to specify multiple references (names, "
+"numbers and strings) at once (\\{name1,name2,...,\"string\"}).<br/>The first "
+"matching value (from the left) will be used as the substitution value for "
+"the resulting URI.<br/>A quoted string can be used as the default value if "
+"nothing matches from the left of the reference list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:48
+#, kde-format
+msgid "Shortcut &URL:"
+msgstr "მალსახმობის &URL:"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:83
+#, kde-format
+msgid "Select the character set that will be used to encode your search query."
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:92
+#: webshortcuts/searchproviderdlg_ui.ui:97
+#: webshortcuts/searchproviderdlg_ui.ui:116
+#, kde-format
+msgid ""
+"<qt>\n"
+"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+"b>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:104
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
+"</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:119
+#, kde-format
+msgid "&Shortcuts:"
+msgstr "&მალსახმობები:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:132
+#, kde-format
+msgid "Select the character set that will be used to encode your search query"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:135
+#, kde-format
+msgid "&Charset:"
+msgstr "&კოდირება:"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
+#: webshortcuts/searchproviderdlg_ui.ui:158
+#, kde-format
+msgid "Insert query placeholder"
+msgstr "შეიყვანეთ მოთხოვნის ადგილმჭერი"
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Temuri Doghonadze"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "Temuri.doghonadze@gmail.com"
+
+#~ msgid "Could not modify the ownership of file %1"
+#~ msgstr "ფაილ %1-ის მფლობელის შეცვლის შეცდომა"
+
+#~ msgid ""
+#~ "Could not modify the ownership of file <filename>%1</filename>. You have "
+#~ "insufficient access to the file to perform the change."
+#~ msgstr ""
+#~ "ფაილის <filename>%1</filename> მფლობელის ჩასწორების შეცდომა. თქვენ არ "
+#~ "გაქვთ ამ ცვლილებისთვის საკმარისი წვდომა."
+
+#~ msgid "Unable to create KIO worker: %1"
+#~ msgstr "KIO დამხმარე პროცესის შექმნის შეცდომა: %1"
+
+#~ msgctxt ""
+#~ "The first arg is the path to the symlink that couldn't be created, the "
+#~ "secondarg is the filesystem type (e.g. vfat, exfat)"
+#~ msgid ""
+#~ "Could not create symlink \"%1\".\n"
+#~ "The destination filesystem (%2) doesn't support symlinks."
+#~ msgstr ""
+#~ "%1 სიმბმულის შექმნის შეცდომა.\n"
+#~ "სამიზნე ფაილურ სისტემას(%2) არ გააჩნია სიმბმულების მხარდაჭერა."
+
+#~ msgid ""
+#~ "Could not create \"%1\".\n"
+#~ "The destination filesystem (%2) disallows the following characters in "
+#~ "folder names: %3\n"
+#~ "Selecting Replace will replace any invalid characters (in the destination "
+#~ "folder name) with an underscore \"_\"."
+#~ msgstr ""
+#~ "%1-ის შექმნის შეცდომა.\n"
+#~ "სამიზნე ფაილურ სისტემას (%2) არ გააჩნია შემდეგი სიმბოლოების მხარდაჭერა "
+#~ "საქაღალდის სახელებში: %3\n"
+#~ "\"შეცვლის\" მონიშვნით დანიშნულების წერტილამდე საქაღალდეების სახელებში "
+#~ "დაუშვებელი სიმბოლოები შეიცვლება ქვედახაზით \"_\"."
+
+#~ msgid ""
+#~ "Could not create \"%1\".\n"
+#~ "The destination filesystem (%2) disallows the following characters in "
+#~ "file names: %3\n"
+#~ "Selecting Replace will replace any invalid characters (in the destination "
+#~ "file name) with an underscore \"_\"."
+#~ msgstr ""
+#~ "%1-ის შექმნის შეცდომა.\n"
+#~ "სამიზნე ფაილურ სისტემას (%2) არ გააჩნია შემდეგი სიმბოლოების მხარდაჭერა "
+#~ "ფაილის სახელებში: %3\n"
+#~ "\"შეცვლის\" მონიშვნით სამიზნე ფაილის სახელებში დაუშვებელი სიმბოლოები "
+#~ "შეიცვლება ქვედახაზით \"_\"."
+
+#~ msgid "Folder Already Exists"
+#~ msgstr "საქაღალდე უკვე არსებობს"
+
+#~ msgid "File Already Exists"
+#~ msgstr "ფაილი უკვე არსებობს"
+
+#~ msgid "Already Exists as Folder"
+#~ msgstr "უკვე არსებობს საქაღალდეში"
+
+#~ msgid "Trash"
+#~ msgstr "ნაგავი"
+
+#~ msgid "No Exec field in %1"
+#~ msgstr "%1-ს არ გააჩნია Exec ველი"
+
+#~ msgid "Could not find the program '%1'"
+#~ msgstr "'%1' პროგრამა PATH-ში ვერ მოიძებნა."
+
+#~ msgid ""
+#~ "The program '%1' was found at '%2' but it is missing executable "
+#~ "permissions."
+#~ msgstr ""
+#~ "პროგრამა \"%1\" ნაპოვნია \"%2\"-ში, მაგრამ არ აქვს გაშვების წვდომები."
+
+#~ msgid "The program '%1' is missing executable permissions."
+#~ msgstr "პროგრამა %1-ს არ აქვს გაშვებს წვდომები."
+
+#~ msgid "Syntax error in command %1 coming from %2"
+#~ msgstr "სინტაქსური შეცდომა %1-ში მოდის %2-დან"
+
+#~ msgid "Terminal %1 not found while trying to run %2"
+#~ msgstr "%2-ის გაშვების მცდელობისას ვერ ვიპოვე ტერმინალი %1"
+
+#~ msgid "Syntax error in command %1 while trying to run %2"
+#~ msgstr "სინტაქსური შეცდომა %1-ში %2-ის გაშვების დროს"
+
+#~ msgid "1 day %2"
+#~ msgid_plural "%1 days %2"
+#~ msgstr[0] "%1 დღე %2"
+#~ msgstr[1] "%1 დღე %2"
+
+#~ msgid "%1 Item"
+#~ msgid_plural "%1 Items"
+#~ msgstr[0] "%1 ელემენტი"
+#~ msgstr[1] "%1 ელემენტი"
+
+#~ msgid "1 Folder"
+#~ msgid_plural "%1 Folders"
+#~ msgstr[0] "1 საქაღალდე"
+#~ msgstr[1] "%1 საქაღალდე"
+
+#~ msgid "1 File"
+#~ msgid_plural "%1 Files"
+#~ msgstr[0] "1 ფაილი"
+#~ msgstr[1] "%1 ფაილი"
+
+#~ msgctxt "folders, files (size)"
+#~ msgid "%1, %2 (%3)"
+#~ msgstr "%1, %2 (%3)"
+
+#~ msgctxt "folders, files"
+#~ msgid "%1, %2"
+#~ msgstr "%1, %2"
+
+#~ msgctxt "files (size)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgctxt "items: folders, files (size)"
+#~ msgid "%1: %2"
+#~ msgstr "%1: %2"
+
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "გადატანა"
+
+#~ msgctxt "The source of a file operation"
+#~ msgid "Source"
+#~ msgstr "წყარო"
+
+#~ msgctxt "The destination of a file operation"
+#~ msgid "Destination"
+#~ msgstr "დანიშნულება"
+
+#~ msgctxt "@title job"
+#~ msgid "Renaming"
+#~ msgstr "გადარქმევა"
+
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "კოპირება"
+
+#~ msgctxt "@title job"
+#~ msgid "Creating directory"
+#~ msgstr "საქაღალდის შექმნა"
+
+#~ msgid "Directory"
+#~ msgstr "საქაღალდე"
+
+#~ msgctxt "@title job"
+#~ msgid "Deleting"
+#~ msgstr "წაშლა"
+
+#~ msgid "File"
+#~ msgstr "ფაილი"
+
+#~ msgctxt "@title job"
+#~ msgid "Examining"
+#~ msgstr "გამოკვლევა"
+
+#~ msgctxt "@title job"
+#~ msgid "Transferring"
+#~ msgstr "გადაგზავნა"
+
+#~ msgctxt "@title job"
+#~ msgid "Mounting"
+#~ msgstr "მიმაგრება"
+
+#~ msgid "Device"
+#~ msgstr "მოწყობილობა"
+
+#~ msgid "Mountpoint"
+#~ msgstr "მიმაგრების წერტილი"
+
+#~ msgctxt "@title job"
+#~ msgid "Unmounting"
+#~ msgstr "მიმაგრების მოხსნა"
+
+#~ msgid "Change Attribute"
+#~ msgstr "ატრიბუტის შეცვლა"
+
+#~ msgid ""
+#~ "Root privileges are required to change file attributes. Do you want to "
+#~ "continue?"
+#~ msgstr "ფაილის ატრიბუტების შესაცვლელად საჭიროა Root წვდომა. გააგრძელებთ?"
+
+#~ msgid "Copy Files"
+#~ msgstr "ფაილების კოპირება"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the copy operation. Do you want "
+#~ "to continue?"
+#~ msgstr "ფაილების კოპირების დასასრულებლად საჭიროა Root წვდოა. გააგრძელებთ?"
+
+#~ msgid "Delete Files"
+#~ msgstr "ფაილების წაშლა"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the delete operation. However, "
+#~ "doing so may damage your system. Do you want to continue?"
+#~ msgstr ""
+#~ "ფაილების წაშლის დასასრულებლად საჭიროა Root წვდომა. მაგრამ ასე მოქცევამ "
+#~ "შეიძლება დააზიანოს თქვენი სისტემა. გააგრძელებთ?"
+
+#~ msgid "Create Folder"
+#~ msgstr "საქაღალდის შექმნა"
+
+#~ msgid ""
+#~ "Root privileges are required to create this folder. Do you want to "
+#~ "continue?"
+#~ msgstr "ამ საქაღალდის შესაქმნელად საჭიროა Root წვდომა. გააგრძელებთ?"
+
+#~ msgid "Move Items"
+#~ msgstr "ელემენტების გადატანა"
+
+#~ msgid ""
+#~ "Root privileges are required to complete the move operation. Do you want "
+#~ "to continue?"
+#~ msgstr "გადატანის დასასრულებლად საჭიროა Root წვდომა. გააგრძელებთ?"
+
+#~ msgid "Rename"
+#~ msgstr "გადარქმევა"
+
+#~ msgid ""
+#~ "Root privileges are required to complete renaming. Do you want to "
+#~ "continue?"
+#~ msgstr "სახელის გადარქმევის დასასრულებლად საჭიროა Root წვდომა. გააგრძელებთ?"
+
+#~ msgid "Create Symlink"
+#~ msgstr "სიმბმულის შექმნა"
+
+#~ msgid ""
+#~ "Root privileges are required to create a symlink. Do you want to continue?"
+#~ msgstr "სიმბმულის შესაქმნელად საჭიროა Root წვდომა. გააგრძელებთ?"
+
+#~ msgid "Transfer data"
+#~ msgstr "მონაცემების გადატანა"
+
+#~ msgid ""
+#~ "Root privileges are required to complete transferring data. Do you want "
+#~ "to continue?"
+#~ msgstr ""
+#~ "მონაცემების გადატანის დასასრულებლად საჭიროა Root წვდომა. გააგრძელებთ?"
+
+#~ msgid "Could not read %1."
+#~ msgstr "%1-ის კითხვის შეცდომა."
+
+#~ msgid "Could not write to %1."
+#~ msgstr "%1-ში ჩაწერის შეცდომა."
+
+#~ msgid "Could not start process %1."
+#~ msgstr "პროცესის გაშვების შეცდომა: %1."
+
+#~ msgid ""
+#~ "Internal Error\n"
+#~ "Please send a full bug report at https://bugs.kde.org\n"
+#~ "%1"
+#~ msgstr ""
+#~ "შიდა შეცდომა\n"
+#~ "გთხოვთ ატვირთოთ შეცდომის სრული ანგარიში https://bugs.kde.org-ზე\n"
+#~ "%1"
+
+#~ msgid "Malformed URL %1."
+#~ msgstr "არასწორი URL %1."
+
+#~ msgid "The protocol %1 is not supported."
+#~ msgstr "მხარდაუჭერელი პროტოკოლი %1."
+
+#~ msgid "The protocol %1 is only a filter protocol."
+#~ msgstr "პროტოკოლი %1 წარმოადგენს მხოლოდ ფილტრის პროტოკოლს."
+
+#~ msgid "%1 is a folder, but a file was expected."
+#~ msgstr "%1 საქაღალდეა. მოველოდით ფაილს."
+
+#~ msgid "%1 is a file, but a folder was expected."
+#~ msgstr "%1 ფაილია. მოველოდით საქაღალდეს."
+
+#~ msgid "The file or folder %1 does not exist."
+#~ msgstr "ფაილი ან საქაღალდე %1 არ არსებობს."
+
+#~ msgid "A file named %1 already exists."
+#~ msgstr "ფაილი სახელით %1 უკვე არსებობს."
+
+#~ msgid "A folder named %1 already exists."
+#~ msgstr "საქაღალდე სახელით %1 უკვე არსებობს."
+
+#~ msgid "No hostname specified."
+#~ msgstr "ჰოსტი მითითებული არაა."
+
+#~ msgid "Unknown host %1"
+#~ msgstr "უცნობი ჰოსტი %1"
+
+#~ msgid "Access denied to %1."
+#~ msgstr "წვდომა %1-თან აკრძალულია."
+
+#~ msgid ""
+#~ "Access denied.\n"
+#~ "Could not write to %1."
+#~ msgstr ""
+#~ "წვდომა აკრძალულია.\n"
+#~ "%1-ში ჩაწერის შეცდომა."
+
+#~ msgid "Could not enter folder %1."
+#~ msgstr "საქაღალდე %1-ში შესვლის შეცდომა."
+
+#~ msgid "The protocol %1 does not implement a folder service."
+#~ msgstr "პროტოკოლ %1-ს არ აქვს საქაღალდის სერვისი."
+
+#~ msgid "Found a cyclic link in %1."
+#~ msgstr "%1-ში ნაპოვნია ციკლური ბმული."
+
+#~ msgid "Found a cyclic link while copying %1."
+#~ msgstr "%1-ის კოპირებისას ნაპოვნია ციკლური ბმული."
+
+#~ msgid "Could not create socket for accessing %1."
+#~ msgstr "%1-თან წვდომისთვის საჭირო სოკეტის შექმნის შეცდომა."
+
+#~ msgid "Could not connect to host %1."
+#~ msgstr "ჰოსტ %1-თან კავშირის შეცდომა."
+
+#~ msgid "Connection to host %1 is broken."
+#~ msgstr "%1-თან კავშირი გაფუჭებულია."
+
+#~ msgid "The protocol %1 is not a filter protocol."
+#~ msgstr "პროტოკოლი %1 არ წარმოადგენს ფილტრის პროტოკოლს."
+
+#~ msgid ""
+#~ "Could not mount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "მოწყობილობის მიმაგრების შეცდომა.\n"
+#~ "შეცდომის ტექსტი:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not unmount device.\n"
+#~ "The reported error was:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "მოწყობილობის მიმაგრების მოხსნის შეცდომა.\n"
+#~ "შეცდომის ტექსტი:\n"
+#~ "%1"
+
+#~ msgid "Could not read file %1."
+#~ msgstr "ფაილ %1-ის წაკითხვის შეცდომა."
+
+#~ msgid "Could not write to file %1."
+#~ msgstr "ფაილ %1-ში ჩაწერის შეცდომა."
+
+#~ msgid "Could not bind %1."
+#~ msgstr "%1-ზე მიბმის შეცდომა."
+
+#~ msgid "Could not listen %1."
+#~ msgstr "%1-ზე მოსმენის შეცდომა."
+
+#~ msgid "Could not accept %1."
+#~ msgstr "%1-ის თანხმობის შეცდომა."
+
+#~ msgid "Could not access %1."
+#~ msgstr "%1-ზე წვდომის შეცდომა."
+
+#~ msgid "Could not terminate listing %1."
+#~ msgstr "%1 სიის დასრულების შეცდომა."
+
+#~ msgid "Could not make folder %1."
+#~ msgstr "საქაღალდე %1-ის შექმნის შეცდომა."
+
+#~ msgid "Could not remove folder %1."
+#~ msgstr "საქაღალდე %1-ის წაშლის შეცდომა."
+
+#~ msgid "Could not resume file %1."
+#~ msgstr "ფაილ %1-ის გაგრძელების შეცდომა."
+
+#~ msgid "Could not rename file %1."
+#~ msgstr "ფაილ %1-ის სახელის გადარქმევის შეცდომა."
+
+#~ msgid "Could not change permissions for %1."
+#~ msgstr "%1-ზე წვდომის შეცვლის შეცდომა."
+
+#~ msgid "Could not change ownership for %1."
+#~ msgstr "ფაილ %1-ის მფლობელის შეცვლის შეცდომა."
+
+#~ msgid "Could not delete file %1."
+#~ msgstr "ფაილ %1-ის წაშლის შეცდომა."
+
+#~ msgid "The process for the %1 protocol died unexpectedly."
+#~ msgstr "პროცესი პროტოკოლისთვის \"%1\" მოულოდნელად მოკტა."
+
+#~ msgid ""
+#~ "Error. Out of memory.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "შეცდომა: არასაკმარისი მეხსიერება.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown proxy host\n"
+#~ "%1"
+#~ msgstr ""
+#~ "პროქსის უცნობი ჰოსტი\n"
+#~ "%1"
+
+#~ msgid "Authorization failed, %1 authentication not supported"
+#~ msgstr "ავთენტიკაციის შეცდომა. ტიპი %1 მხარდაუჭერელია"
+
+#~ msgid ""
+#~ "User canceled action\n"
+#~ "%1"
+#~ msgstr ""
+#~ "მომხმარებელმა გააუქმა ქმედება\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Internal error in server\n"
+#~ "%1"
+#~ msgstr "სერვერში %1 შიდა შეცდომაა"
+
+#~ msgid ""
+#~ "Timeout on server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "სერვერ %1-მდე კავშირის დრო გავიდა\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown error\n"
+#~ "%1"
+#~ msgstr ""
+#~ "უცნობი შეცდომა\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown interrupt\n"
+#~ "%1"
+#~ msgstr ""
+#~ "უცნობი წყვეტა\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Could not delete original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "საწყისი ფაილი %1-ის წაშლის შეცდომა.\n"
+#~ "გადაამოწმეთ წვდომები."
+
+#~ msgid ""
+#~ "Could not delete partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "ნაწილობრივი ფაილი %1-ის წაშლის შეცდომა.\n"
+#~ "გადაამოწმეთ წვდომები."
+
+#~ msgid ""
+#~ "Could not rename original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "საწყისი ფაილი %1-ის სახელის გადარქმევის შეცდომა.\n"
+#~ "გადაამოწმეთ წვდომები."
+
+#~ msgid ""
+#~ "Could not rename partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "ნაწილობრივი ფაილი %1-ის სახელის გადარქმევის შეცდომა.\n"
+#~ "გადაამოწმეთ წვდომები."
+
+#~ msgid ""
+#~ "Could not create symlink %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "სიმბმულ %1-ის შექმნის შეცდომა.\n"
+#~ "გადაამოწმეთ წვდომები."
+
+#~ msgid ""
+#~ "Cannot create symlinks at %1.\n"
+#~ "The destination filesystem doesn't support symlinks."
+#~ msgstr ""
+#~ "სიმბმულ %1-ის შექმნის შეცდომა.\n"
+#~ "სამიზნე ფაილურ სისტემას არ აქვს სიმბმულების მხარდაჭერა."
+
+#~ msgid "There is not enough space on the disk to write %1."
+#~ msgstr "%1-ის ჩაწერის შეცდომა. დისკი გადავსებულია."
+
+#~ msgid ""
+#~ "The source and destination are the same file.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "წყარო და სამიზნე ფაილი ერთი და იგივეა.\n"
+#~ "%1"
+
+#~ msgid "%1 is required by the server, but is not available."
+#~ msgstr "სერვერის მოთხნოვილია %1, მაგრამ ის ხელმიუწვდომელია."
+
+#~ msgid "Access to restricted port in POST denied."
+#~ msgstr "POST-ში მითითებულ შეზღუდულ პორტთან წვდომა აკრძალულია."
+
+#~ msgid ""
+#~ "The required content size information was not provided for a POST "
+#~ "operation."
+#~ msgstr ""
+#~ "POST ოპერაციისთვის აუცილებელი შემცველობის ზომის ინფორმაცია მოწოდებული არ "
+#~ "ყოფილა."
+
+#~ msgid "A file or folder cannot be dropped onto itself"
+#~ msgstr "ფაილი ან საქაღალდე არ შეიძლება საკუთარ თავში ჩავაგდოთ"
+
+#~ msgid "A folder cannot be moved into itself"
+#~ msgstr "საქაღალდე საკუთარ თავში ვერ გადავა"
+
+#~ msgid "Communication with the local password server failed"
+#~ msgstr "პაროლების ლოკალურ სერვერთან კავშირის შეცდომა"
+
+#~ msgid "Unable to create KIO worker. %1"
+#~ msgstr "KIO დამხმარე პროცესის შექმნის შეცდომა. %1"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Cannot transfer <filename>%1</filename> because it is too large. The "
+#~ "destination filesystem only supports files up to 4GiB"
+#~ msgstr ""
+#~ "<filename>%1</filename>-ის გადატანა შეუძლებელია მისი ზომის გამო. სამიზნე "
+#~ "ფაილური სისტემის ფაილის მაქსიმალური ზომაა 4გიბ"
+
+#~ msgid ""
+#~ "Privilege escalation is not necessary because \n"
+#~ "'%1' is owned by the current user.\n"
+#~ "Please retry after changing permissions."
+#~ msgstr ""
+#~ "საჭიროა წვდომის დონის ამაღლება საჭირო არაა\n"
+#~ "იმიტომ, რომ %1-ის მფლობელი მიმდინარე მომხმარებელია.\n"
+#~ "სცადეთ თავიდან წვდომების შეცვლის შემდეგ."
+
+#~ msgid "File is too large to be trashed."
+#~ msgstr "ფაილი მეტისმეტად დიდია ნაგავში ჩასაგდებად."
+
+#~ msgid ""
+#~ "Unknown error code %1\n"
+#~ "%2\n"
+#~ "Please send a full bug report at https://bugs.kde.org."
+#~ msgstr ""
+#~ "შეცდომის უცნობი კოდი %1\n"
+#~ "%2\n"
+#~ "გააგზავნეთ შეცდომის სრული ანგარიში https://bugs.kde.org-ზე."
+
+#~ msgctxt "@info url"
+#~ msgid "(unknown)"
+#~ msgstr "(უცნობი)"
+
+#~ msgctxt "@info %1 error name, %2 description"
+#~ msgid "<qt><p><b>%1</b></p><p>%2</p></qt>"
+#~ msgstr "<qt><p><b>%1</b></p><p>%2</p></qt>"
+
+#~ msgid "<b>Technical reason</b>: "
+#~ msgstr "<b>ტექნიკური მიზეზი</b>: "
+
+#~ msgid "<b>Details of the request</b>:"
+#~ msgstr "<b>მოთხოვნის დეტალები</b>:"
+
+#~ msgid "<li>URL: %1</li>"
+#~ msgstr "<li>URL: %1</li>"
+
+#~ msgid "<li>Protocol: %1</li>"
+#~ msgstr "<li>პროტოკოლი: %1</li>"
+
+#~ msgid "<li>Date and time: %1</li>"
+#~ msgstr "<li>თარიღი და დრო: %1 </li>"
+
+#~ msgid "<li>Additional information: %1</li>"
+#~ msgstr "<li>დამატებითი ინფორმაცია: %1</li>"
+
+#~ msgid "<b>Possible causes</b>:"
+#~ msgstr "<b>შესაძლო მიზეზები</b>:"
+
+#~ msgid "<b>Possible solutions</b>:"
+#~ msgstr "<b>შესაძლო გადაწყვეტილებები</b>:"
+
+#~ msgctxt "@info protocol"
+#~ msgid "(unknown)"
+#~ msgstr "(უცნობი)"
+
+#~ msgid ""
+#~ "Contact your appropriate computer support system, whether the system "
+#~ "administrator, or technical support group for further assistance."
+#~ msgstr ""
+#~ "შემდგომი ნაბიჯებისთვის დაუკავშირდით თქვენი კომპიუტერის მომწოდებელს ან "
+#~ "ტექნიკური მხარდაჭერის გუნდს."
+
+#~ msgid "Contact the administrator of the server for further assistance."
+#~ msgstr "შემდგომი ნაბიჯებისთვის დაუკავშირდით ადმინისტრატორს."
+
+#~ msgid "Check your access permissions on this resource."
+#~ msgstr "შეამოწმეთ რესურსზე წვდომის უფლებები."
+
+#~ msgid ""
+#~ "Your access permissions may be inadequate to perform the requested "
+#~ "operation on this resource."
+#~ msgstr ""
+#~ "წვდომის თქვენი უფლებები შეიძლება არასაკმარისი აღმოჩნდეს რესურსზე "
+#~ "მოთხოვნილი ოპერაციების განსახორციელებლად."
+
+#~ msgid ""
+#~ "The file may be in use (and thus locked) by another user or application."
+#~ msgstr ""
+#~ "შეიძლება ფაილი გამოიყენება (ამიტომ იყოს დაბლოკილიც) სხვა მომხმარებლის ან "
+#~ "აპლიკაციის მიერ."
+
+#~ msgid ""
+#~ "Check to make sure that no other application or user is using the file or "
+#~ "has locked the file."
+#~ msgstr ""
+#~ "ჩართეთ, რომ დარწმუნდეთ, რომ სხვა აპლიკაცია და მომხმარებელი ამ ფაილს არც "
+#~ "იყენებენ და არც ჩაუკეტავთ ის."
+
+#~ msgid "Although unlikely, a hardware error may have occurred."
+#~ msgstr "ძალიან პატარა შანსით, მაგრამ შეიძლება ეს იყოს აპარატურული პრობლემა."
+
+#~ msgid "You may have encountered a bug in the program."
+#~ msgstr "შეიძლება შეეჩეხეთ შეცდომას პროგრამაში."
+
+#~ msgid ""
+#~ "This is most likely to be caused by a bug in the program. Please consider "
+#~ "submitting a full bug report as detailed below."
+#~ msgstr ""
+#~ "დიდი ალბათობით ეს გამოიწვია შეცდომამ პროგრამაში. გთხოვთ ატვირთოთ შეცდომის "
+#~ "სრული ანგარიში, როგორც ქვემოთაა აღწერილი."
+
+#~ msgid ""
+#~ "Update your software to the latest version. Your distribution should "
+#~ "provide tools to update your software."
+#~ msgstr ""
+#~ "განაახლეთ თქვენი პროგრამული უზრუნველყოფა ბოლო ვერსიამდე. თქვენს "
+#~ "დისტრიბუტივს უნდა ჰქონდეს საშუალება, განაახლოს ის."
+
+#~ msgid "There may have been a problem with your network connection."
+#~ msgstr "თქვენს ქსელთან მიერთებას შეიძლება პრობლემები აქვს."
+
+#~ msgid "Try again, either now or at a later time."
+#~ msgstr "კიდევ სცადეთ. ახლავე, ან ცოტა ხანში."
+
+#~ msgid "A protocol error or incompatibility may have occurred."
+#~ msgstr "პროტოკოლის შეცდომა ან შეუთავსებლობა."
+
+#~ msgid "Ensure that the resource exists, and try again."
+#~ msgstr "დარწმუნდით, რომ რესურსი არსებობს და სცადეთ თავიდან."
+
+#~ msgid "The specified resource may not exist."
+#~ msgstr "შეიძლება მითითებული რესურსი არ არსებობს."
+
+#~ msgid ""
+#~ "Double-check that you have entered the correct location and try again."
+#~ msgstr "გადაამოწმეთ შეყვანილი მდებარეობის სისწორე და სცადეთ თავიდან."
+
+#~ msgid "Check your network connection status."
+#~ msgstr "გადაამოწმეთ ქსელთან კავშირის მდგომარეობა."
+
+#~ msgid "Cannot Open Resource For Reading"
+#~ msgstr "რესურსის წასაკითხად გახსნის შეცდომა"
+
+#~ msgid ""
+#~ "This means that the contents of the requested file or folder <strong>%1</"
+#~ "strong> could not be retrieved, as read access could not be obtained."
+#~ msgstr ""
+#~ "ეს ნიშნავს, რომ ფაილის ან საქაღალდის, <strong>%1</strong>, შიგთავსის "
+#~ "ნახვა შეუძლებელია, ან არ გაქვთ წაკითხვის უფლება."
+
+#~ msgid "You may not have permissions to read the file or open the folder."
+#~ msgstr ""
+#~ "თქვენ შეიძლება არ გაქვთ უფლება წაიკითხოთ ფაილი ან გახსნათ საქაღალდე."
+
+#~ msgid "Cannot Open Resource For Writing"
+#~ msgstr "რესურსის ჩასაწერად გახსნის შეცდომა"
+
+#~ msgid "Cannot Launch Process required by the %1 Protocol"
+#~ msgstr "%1 პროტოკოლის მიერ მოთხოვნილი პროცესის გაშვების შეცდომა"
+
+#~ msgid "Unable to Launch Process"
+#~ msgstr "პროცესის გაშვების შეცდომა"
+
+#~ msgid "Internal Error"
+#~ msgstr "შიდა შეცდომა"
+
+#~ msgid "Improperly Formatted URL"
+#~ msgstr "არასწორად შედგენილი URL"
+
+#~ msgid "Unsupported Protocol %1"
+#~ msgstr "პროტოკოლი %1 მხარდაუჭერელია"
+
+#~ msgid "The requested protocol may not be supported."
+#~ msgstr "მოთხოვნილი პროტოკოლის მხარდაჭერა შეიძლება არ არსებობდეს."
+
+#~ msgid "URL Does Not Refer to a Resource."
+#~ msgstr "URL რესურსზე მიბმული არაა."
+
+#~ msgid "Protocol is a Filter Protocol"
+#~ msgstr "პროტოკოლი ფილტრის პროტოკოლია"
+
+#~ msgid "Unsupported Action: %1"
+#~ msgstr "მხარდაუჭერელი ქმედება: %1"
+
+#~ msgid "Attempt to find another way to accomplish the same outcome."
+#~ msgstr "მცდელობა, მოვძებნოთ სხვა გზა, რათა იგივე შედეგს მივაღწიოთ."
+
+#~ msgid "File Expected"
+#~ msgstr "მოველოდით ფაილს"
+
+#~ msgid "This may be an error on the server side."
+#~ msgstr "შეცდომა სერვერის მხარეს."
+
+#~ msgid "Folder Expected"
+#~ msgstr "მოველოდით საქაღლდეს"
+
+#~ msgid "File or Folder Does Not Exist"
+#~ msgstr "ფაილი ან საქაღალდე არ არსებობს"
+
+#~ msgid "The specified file or folder <strong>%1</strong> does not exist."
+#~ msgstr "მითითებული ფაილი ან საქაღალდე <strong>%1</strong> არ არსებობს."
+
+#~ msgid ""
+#~ "Try moving the current file out of the way first, and then try again."
+#~ msgstr "სცადეთ, ჯერ მიმდინარე ფაილი მოიშოროთ, შემდეგ კი თავიდან სცადეთ."
+
+#~ msgid "Delete the current file and try again."
+#~ msgstr "წაშალეთ მიმდინარე ფაილი და თავიდან სცადეთ."
+
+#~ msgid "Choose an alternate filename for the new file."
+#~ msgstr "ახალი ფაილისთვის სხვა სახელი შეარჩიეთ."
+
+#~ msgid ""
+#~ "Try moving the current folder out of the way first, and then try again."
+#~ msgstr "სცადეთ, ჯერ მიმდინარე საქაღალდე მოიშოროთ, შემდეგ კი თავიდან სცადეთ."
+
+#~ msgid "Delete the current folder and try again."
+#~ msgstr "წაშალეთ მიმდინარე საქაღალდე და თავიდან სცადეთ."
+
+#~ msgid "Choose an alternate name for the new folder."
+#~ msgstr "ახალი საქაღალდის ალტერნატიული სახელი."
+
+#~ msgid "Unknown Host"
+#~ msgstr "უცნობი ჰოსტი"
+
+#~ msgid "Access Denied"
+#~ msgstr "წვდომა აკრძალულია"
+
+#~ msgid "Access was denied to the specified resource, <strong>%1</strong>."
+#~ msgstr "მითითებულ რესურსთან წვდომა აკრძალულია. <strong>%1</strong>."
+
+#~ msgid "Write Access Denied"
+#~ msgstr "ჩაწერის წვდომა აკრძალულია"
+
+#~ msgid "Unable to Enter Folder"
+#~ msgstr "საქაღალდეში შესვლის შეცდომა"
+
+#~ msgid "Folder Listing Unavailable"
+#~ msgstr "საქაღალდის  ჩამონათვალი მიუწვდომელია"
+
+#~ msgid "Protocol %1 is not a Filesystem"
+#~ msgstr "პროტოკოლი %1 ფაილური სისტემა არაა"
+
+#~ msgid "Cyclic Link Detected"
+#~ msgstr "ნაპოვნია ციკლური ბმული"
+
+#~ msgid "Request Aborted By User"
+#~ msgstr "გაუქმდა მომხმარებლის მოთხოვნით"
+
+#~ msgid "The request was not completed because it was aborted."
+#~ msgstr "მოთხოვნა არ დასრულებულა, რადგან გაუქმდა."
+
+#~ msgid "Retry the request."
+#~ msgstr "მოთხოვნის თავიდან ცდა."
+
+#~ msgid "Cyclic Link Detected During Copy"
+#~ msgstr "კოპირებისას ნაპოვნია ციკლური ბმული"
+
+#~ msgid "Could Not Create Network Connection"
+#~ msgstr "ქსელური შეერთების შექმნის შეცდომა"
+
+#~ msgid "Could Not Create Socket"
+#~ msgstr "სოკეტის შექმნის შეცდომა"
+
+#~ msgid "Connection to Server Refused"
+#~ msgstr "დაკავშირება უარყოფილია სერვერის მიერ"
+
+#~ msgid "Connection to Server Closed Unexpectedly"
+#~ msgstr "სერვერთან შეერთება მოულოდნელად დაიხურა"
+
+#~ msgid "URL Resource Invalid"
+#~ msgstr "URL-ის რესურსი არასწორია"
+
+#~ msgid "Protocol %1 is not a Filter Protocol"
+#~ msgstr "პროტოკოლი %1 ფილტრის პროტოკოლს არ წარმოადგენს"
+
+#~ msgid "Unable to Initialize Input/Output Device"
+#~ msgstr "შეტანის/გამოტანის მოწყობილობის ინიციალიზაციის შეცდომა"
+
+#~ msgid "Could Not Mount Device"
+#~ msgstr "მოწყობილობის მიმაგრების შეცდომა"
+
+#~ msgid "Unable to Uninitialize Input/Output Device"
+#~ msgstr "შეტანის/გამოტანის მოწყობილობის ინიციალიზაციის გაუქმების შეცდომა"
+
+#~ msgid "Could Not Unmount Device"
+#~ msgstr "მოწყობილობის მიმაგრების მოხსნის შეცდომა"
+
+#~ msgid "Check that no applications are accessing the device, and try again."
+#~ msgstr ""
+#~ "დარწმუნდით, რომ სხვა აპლიკაცია ამ მოწყობილობას არ იყენებს და თავიდან "
+#~ "სცადეთ."
+
+#~ msgid "Cannot Read From Resource"
+#~ msgstr "რესურსიდან წაკითხვის შეცდომა"
+
+#~ msgid "You may not have permissions to read from the resource."
+#~ msgstr "თქვენ შეიძლება არ გაქვთ უფლება წაიკითხოთ რესურსი."
+
+#~ msgid "Cannot Write to Resource"
+#~ msgstr "რესურსში ჩაწერის შეცდომა"
+
+#~ msgid "You may not have permissions to write to the resource."
+#~ msgstr "თქვენ შეიძლება არ გაქვთ უფლება, ჩაწეროთ ამ რესურსში."
+
+#~ msgid "Could Not Listen for Network Connections"
+#~ msgstr "ვერ ვუსმენ ქსელურ კავშირებს"
+
+#~ msgid "Could Not Bind"
+#~ msgstr "მიბმის შეცდომა"
+
+#~ msgid "Could Not Listen"
+#~ msgstr "მოსმენის შეცდომა"
+
+#~ msgid "Could Not Accept Network Connection"
+#~ msgstr "ვერ ვიღებ ქსელურ ტრაფიკს"
+
+#~ msgid "You may not have permissions to accept the connection."
+#~ msgstr "შეიძლება არ აქვთ უფლება, მიიღოთ ეს ქსელური ტრაფიკი."
+
+#~ msgid "Could Not Login: %1"
+#~ msgstr "%1-ზე შესვლა წარუმატებელია"
+
+#~ msgid ""
+#~ "An attempt to login to perform the requested operation was unsuccessful."
+#~ msgstr ""
+#~ "მოთხოვნილი ოპერაციის შესასრულებლად შესვლის მცდელობა წარუმატებლად დასრულდა."
+
+#~ msgid "Could Not Determine Resource Status"
+#~ msgstr "რესურსის სტატუსის განსაზღვრა შეუძლებელია"
+
+#~ msgid "Could Not Stat Resource"
+#~ msgstr "რესურსის აღმოჩენის შეცდომა"
+
+#~ msgid ""
+#~ "The specified resource may not have existed or may not be accessible."
+#~ msgstr "მითითებული რესურსი არ არსებობს ან მიუწვდომელია."
+
+#~ msgid "Could Not Cancel Listing"
+#~ msgstr "სიის გაუქმება შეუძლებელია"
+
+#~ msgid "FIXME: Document this"
+#~ msgstr "FIXME: საჭიროა დოკუმენტირება"
+
+#~ msgid "Could Not Create Folder"
+#~ msgstr "საქაღალდის შექმნის შეცდომა"
+
+#~ msgid "An attempt to create the requested folder failed."
+#~ msgstr "მოთხოვნილი საქაღალდის შექმნის მცდელობა ავარიულად დასრულდა."
+
+#~ msgid "The location where the folder was to be created may not exist."
+#~ msgstr ""
+#~ "საქაღალდის შესაქმნელად მითითებული მდებარეობა შეიძლება არ არსებობდეს."
+
+#~ msgid "Could Not Remove Folder"
+#~ msgstr "საქაღალდის წაშლა შეუძლებელია"
+
+#~ msgid ""
+#~ "An attempt to remove the specified folder, <strong>%1</strong>, failed."
+#~ msgstr ""
+#~ "მცდელობა, წაგვეშალა მითითებული საქაღალდე, <strong>%1</strong>, "
+#~ "წარუმატებელია."
+
+#~ msgid "The specified folder may not exist."
+#~ msgstr "მითითებული საქაღალდე შეიძლება არ არსებობს."
+
+#~ msgid "The specified folder may not be empty."
+#~ msgstr "მითითებული საქაღალდე შეიძლება ცარიელი არაა."
+
+#~ msgid "Ensure that the folder exists and is empty, and try again."
+#~ msgstr "დარწმუნდით, რომ საქაღალდე არსებობს და ის ცარიელია და სცადეთ კიდევ."
+
+#~ msgid "Could Not Resume File Transfer"
+#~ msgstr "ფაილის გადმოწერის გაგრძელება შეუძლებელია"
+
+#~ msgid ""
+#~ "The specified request asked that the transfer of file <strong>%1</strong> "
+#~ "be resumed at a certain point of the transfer. This was not possible."
+#~ msgstr ""
+#~ "მითითებულმა მოთხოვნამ მოითხოვა, რომ ფაილი <strong>%1</strong>გადაცემა "
+#~ "უნდა გაგრძელდეს რაღაც დროის შემდეგ. ეს შეუძლებელი იყო."
+
+#~ msgid "The protocol, or the server, may not support file resuming."
+#~ msgstr ""
+#~ "პროტოკოლს ან სერვერს არ გააჩნიათ ფაილის გადაცემის გაგრძელების მხარდაჭერა."
+
+#~ msgid "Retry the request without attempting to resume transfer."
+#~ msgstr "თავიდან ცდა გადაცემის გაგრძელების ცდის გარეშე."
+
+#~ msgid "Could Not Rename Resource"
+#~ msgstr "რესურსისთვის სახელის გადარქმევის შეცდომა"
+
+#~ msgid ""
+#~ "An attempt to rename the specified resource <strong>%1</strong> failed."
+#~ msgstr ""
+#~ "მცდელობა, მითითებული რესურსისთვის, <strong>%1</strong> სახელი "
+#~ "გადაგვერქმია, წარუმატებლად დასრულდა."
+
+#~ msgid "Could Not Alter Permissions of Resource"
+#~ msgstr "რესურსის წვდომების ჩასწორების შეცდომა"
+
+#~ msgid ""
+#~ "An attempt to alter the permissions on the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "მცდელობა, მითითებული რესურსისთვის, <strong>%1</strong>, შეგვეცვალა "
+#~ "წვდომის უფლებები, წარუმატებელია."
+
+#~ msgid "Could Not Change Ownership of Resource"
+#~ msgstr "რესურსის მფლობელის შეცვლის შეცდომა"
+
+#~ msgid ""
+#~ "An attempt to change the ownership of the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr ""
+#~ "მცდელობა, მითითებული რესურსისთვის, <strong>%1</strong>, შეგვეცვალა "
+#~ "მფლობელი, წარუმატებელია."
+
+#~ msgid "Could Not Delete Resource"
+#~ msgstr "რესურსის წაშლის შეცდომა"
+
+#~ msgid ""
+#~ "An attempt to delete the specified resource <strong>%1</strong> failed."
+#~ msgstr ""
+#~ "მცდელობა, მითითებული რესურსი, <strong>%1</strong>, წაგვეშალა, "
+#~ "წარუმატებელია."
+
+#~ msgid "Unexpected Program Termination"
+#~ msgstr "პროგრამის გაუთვალისწინებელი დასასრული"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol has unexpectedly terminated."
+#~ msgstr ""
+#~ "პროგრამა, რომელიც თქვენს კომპიუტერზე პასუხს აგებს <strong>%1</strong> "
+#~ "პროტოკოლთან წვდომაზე, გაუთვალისწინებლად დასრულდა."
+
+#~ msgid "Out of Memory"
+#~ msgstr "არასაკმარისი მეხსიერება"
+
+#~ msgid ""
+#~ "The program on your computer which provides access to the <strong>%1</"
+#~ "strong> protocol could not obtain the memory required to continue."
+#~ msgstr ""
+#~ "პროგრამა, რომელიც თქვენს კომპიუტერზე პასუხს აგებს <strong>%1</strong> "
+#~ "პროტოკოლთან წვდომაზე, გაუთვალისწინებლად დასრულდა მეხსიერების არასაკმარისი "
+#~ "რაოდენობის გამო."
+
+#~ msgid "Unknown Proxy Host"
+#~ msgstr "პროქსის უცნობი ჰოსტი"
+
+#~ msgid "Double-check your proxy settings and try again."
+#~ msgstr "დაამოწმეთ პროქსის პარამეტრები და თავიდან სცადეთ."
+
+#~ msgid "Authentication Failed: Method %1 Not Supported"
+#~ msgstr "ავთენტიკაციის შეცდომა: მეთოდი %1 მხარდაჭერილი არაა"
+
+#~ msgid "Request Aborted"
+#~ msgstr "მოთხოვნა შეწყვეტილია"
+
+#~ msgid "Internal Error in Server"
+#~ msgstr "სერვერის შიდა შეცდომა"
+
+#~ msgid ""
+#~ "Contact the administrator of the server to advise them of the problem."
+#~ msgstr "დაუკავშირდით სერვერის ადმინისტრატორს და ჰკითხეთ პრობლემის შესახებ."
+
+#~ msgid "Timeout Error"
+#~ msgstr "დროის გასვლის შეცდომა"
+
+#~ msgid "The server was too busy responding to other requests to respond."
+#~ msgstr "სერვერს საპასუხოდ არ სცალია."
+
+#~ msgid "Unknown Error"
+#~ msgstr "უცნობი შეცდომა"
+
+#~ msgid "Unknown Interruption"
+#~ msgstr "უცნობი წყვეტა"
+
+#~ msgid "Could Not Delete Original File"
+#~ msgstr "საწყისი ფაილის წაშლის შეცდომა"
+
+#~ msgid "Could Not Delete Temporary File"
+#~ msgstr "დროებითი ფაილის წაშლის შეცდომა"
+
+#~ msgid "Could Not Rename Original File"
+#~ msgstr "საწყისი ფაილისთვის სახელის გადარქმევის შეცდომა"
+
+#~ msgid "Could Not Rename Temporary File"
+#~ msgstr "დროებითი ფაილისთვის სახელის გადარქმევის შეცდომა"
+
+#~ msgid "Could Not Create Link"
+#~ msgstr "ბმულის შექმნის შეცდომა"
+
+#~ msgid "Could Not Create Symbolic Link"
+#~ msgstr "სიმბმულის შექმნის შეცდომა"
+
+#~ msgid "The requested symbolic link %1 could not be created."
+#~ msgstr "მოთხოვნილი სიმბმულის შექმნა ფაილამდე %1 შეუძლებელია."
+
+#~ msgid "No Content"
+#~ msgstr "შიგთავსის გარეშე"
+
+#~ msgid "Disk Full"
+#~ msgstr "დისკი გადავსებულია"
+
+#~ msgid ""
+#~ "The requested file <strong>%1</strong> could not be written to as there "
+#~ "is inadequate disk space."
+#~ msgstr ""
+#~ "მოთხოვნილი ფაილის, <strong>%1</strong>, ჩაწერის შეცდომა. დისკზე "
+#~ "არასაკმარისი ადგილია."
+
+#~ msgid "Source and Destination Files Identical"
+#~ msgstr "წყარო და სამიზნე ფაილი ერთი და იგივეა"
+
+#~ msgid "Choose a different filename for the destination file."
+#~ msgstr "წყაროსა და სამიზნე ფაილებისთვის აირჩიეთ სხვადასხვა სახელები."
+
+#~ msgid "File or Folder dropped onto itself"
+#~ msgstr "ფაილი ან საქაღალდე საკუთარ თავზე დააგდეთ"
+
+#~ msgid "Drop the item into a different file or folder."
+#~ msgstr "ჩააგდეთ სხვა ფაილში ან საქაღალდეში."
+
+#~ msgid "Folder moved into itself"
+#~ msgstr "საქაღალდე საკუთარ თავში ვერ გადავა"
+
+#~ msgid ""
+#~ "The operation could not be completed because the source can not be moved "
+#~ "into itself."
+#~ msgstr ""
+#~ "ოპერაციის დასრულება შეუძლებელია. რესურსები ვერ იქნება გადატანილი საკუთარ "
+#~ "თავში."
+
+#~ msgid "Move the item into a different folder."
+#~ msgstr "გადაიტანეთ სხვა საქაღალდეში."
+
+#~ msgid "Could not communicate with password server"
+#~ msgstr "პაროლების სერვერთან კავშირის შეცდომა"
+
+#~ msgid ""
+#~ "Try restarting your session, or look in the logs for errors from kiod."
+#~ msgstr "სცადეთ თქვენი ვერსიის თავიდან გაშვება ან kiod-ის ჟურნალში ჩაიხედეთ."
+
+#~ msgid "Cannot Initiate the %1 Protocol"
+#~ msgstr "პროტოკოლის %1 დაწყების შეცდომა"
+
+#~ msgid "Unable to Create KIO Worker"
+#~ msgstr "KIO დამხმარე პროცესის შექმნის შეცდომა"
+
+#~ msgid ""
+#~ "The KIO worker which provides access to the <strong>%1</strong> protocol "
+#~ "could not be started. This is usually due to technical reasons."
+#~ msgstr ""
+#~ "პროგრამა, რომელიც თქვენს კომპიუტერზე პასუხს აგებს <strong>%1</strong> "
+#~ "პროტოკოლთან წვდომაზე, გაუთვალისწინებლად დასრულდა მეხსიერების არასაკმარისი "
+#~ "რაოდენობის გამო."
+
+#~ msgctxt "@info"
+#~ msgid "Cannot transfer <filename>%1</filename>"
+#~ msgstr "<filename>%1</filename>-ის გადატანის შეცდომა"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The file <filename>%1</filename> cannot be transferred, because the "
+#~ "destination filesystem does not support files that large"
+#~ msgstr ""
+#~ "ფაილის, <filename>%1</filename>, გადატანა შეუძლებელია. სამიზნე ფაილურ "
+#~ "სისტემას არ გააჩნია ასეთი დიდი ფაილების მხარდაჭერა"
+
+#~ msgid ""
+#~ "Reformat the destination drive to use a filesystem that supports files "
+#~ "that large."
+#~ msgstr ""
+#~ "თავიდან დააფორმატეთ სამიზნე დისკი ფაილური სისტემით, რომელსაც ამხელა "
+#~ "ფაილების მხარდაჭერა გააჩნია."
+
+#~ msgid "Undocumented Error"
+#~ msgstr "არადოკუმენტირებული შეცდომა"
+
+#~ msgid "(Symbolic Link to %1)"
+#~ msgstr "(სიმბმული %1-მდე)"
+
+#~ msgid "(%1, Link to %2)"
+#~ msgstr "(%1, ბმული %2-მდე)"
+
+#~ msgid " (Points to %1)"
+#~ msgstr " (მიუთითებს %1-ზე)"
+
+#~ msgid ""
+#~ "Malformed URL\n"
+#~ "%1"
+#~ msgstr ""
+#~ "არასწორი URL\n"
+#~ "%1"
+
+#~ msgid "Unable to determine the type of file for %1"
+#~ msgstr "%1-ის ფაილის ტიპის გამოცნობა შეუძლებელია"
+
+#~ msgid "Opening connections is not supported with the protocol %1."
+#~ msgstr "შეერთებების გახსნა მხარდაუჭერელია პროტოკოლით %1."
+
+#~ msgid "Closing connections is not supported with the protocol %1."
+#~ msgstr "შეერთებების დახურვა მხარდაუჭერელია პროტოკოლით %1."
+
+#~ msgid "Accessing files is not supported with the protocol %1."
+#~ msgstr "ფაილებთან წვდომა მხარდაუჭერელია პროტოკოლით %1."
+
+#~ msgid "Writing to %1 is not supported."
+#~ msgstr "%1-ში ჩაწერა მხარდაუჭერელია."
+
+#~ msgid "There are no special actions available for protocol %1."
+#~ msgstr "პროტოკოლისთვის %1 სპეციალური ქმედებები ხელმიუწვდომელია."
+
+#~ msgid "Listing folders is not supported for protocol %1."
+#~ msgstr "საქაღალდეების სიის მღება პროტოკოლისთვის %1 მხარდაუჭერელია."
+
+#~ msgid "Retrieving data from %1 is not supported."
+#~ msgstr "%1-დან მონაცემების მიღება მხარდაჭერილი არაა."
+
+#~ msgid "Retrieving mime type information from %1 is not supported."
+#~ msgstr "%1-დან mime ტიპის ინფორმაციის მიღება მხარდაჭერილი არაა."
+
+#~ msgid "Renaming or moving files within %1 is not supported."
+#~ msgstr ""
+#~ "%1-ში ფაილების გადაადგილება ან სახელის გადარქმევა მხარდაჭერილი არაა."
+
+#~ msgid "Creating symlinks is not supported with protocol %1."
+#~ msgstr "პროტოკოლით %1 სიმბმულების შექმნა მხარდაჭერილი არაა."
+
+#~ msgid "Copying files within %1 is not supported."
+#~ msgstr "%1-ში ფაილების კოპირება მხარდაჭერილი არაა."
+
+#~ msgid "Deleting files from %1 is not supported."
+#~ msgstr "%1-დან ფაილების წაშლა მხარდაჭერილი არაა."
+
+#~ msgid "Creating folders is not supported with protocol %1."
+#~ msgstr "პროტოკოლით %1 საქაღალდეების შექმნა მხარდაჭერილი არაა."
+
+#~ msgid "Changing the attributes of files is not supported with protocol %1."
+#~ msgstr "ფაილების ატრიბუტების შეცვლა მხარდაუჭერელია პროტოკოლისთვის %1."
+
+#~ msgid "Changing the ownership of files is not supported with protocol %1."
+#~ msgstr "ფაილების მფლობელის შეცვლა მხარდაუჭერელია პროტოკოლით %1."
+
+#~ msgid "Multiple get is not supported with protocol %1."
+#~ msgstr "მრავალი მიღება მხარდაუჭერელია პროტოკოლით %1."
+
+#~ msgid "Opening files is not supported with protocol %1."
+#~ msgstr "ფაილების გახსნა მხარდაუჭერელია პროტოკოლით %1."
+
+#~ msgid "Protocol %1 does not support action %2."
+#~ msgstr "პროტოკოლს %1 ქმედების (%2) მხარდაჭერა არ გააჩნია."
+
+#~ msgid "Security Information"
+#~ msgstr "უსაფრთხოების ინფორმაცია"
+
+#~ msgid "C&ontinue Loading"
+#~ msgstr "ჩატვირთვის გაგრძელება"
+
+#~ msgctxt "%1 is a host name"
+#~ msgid "%1: SSL negotiation failed"
+#~ msgstr "%1: SSL მიმოცვლის შეცდომა"
+
+#~ msgid "Display SSL &Information"
+#~ msgstr "SSL-ის &ინფორმაციის გამოტანა"
+
+#~ msgid "C&onnect"
+#~ msgstr "&მიერთება"
+
+#~ msgid ""
+#~ "The server failed the authenticity check (%1).\n"
+#~ "\n"
+#~ msgstr ""
+#~ "სერვერის სინამდვილის შემოწმების შეცდომა (%1).\n"
+#~ "\n"
+
+#~ msgid "Server Authentication"
+#~ msgstr "სერვერის ავთენტიკაცია"
+
+#~ msgid "&Details"
+#~ msgstr "&დეტალები"
+
+#~ msgid "Co&ntinue"
+#~ msgstr "&გაგრძელება"
+
+#~ msgid ""
+#~ "Would you like to accept this certificate forever without being prompted?"
+#~ msgstr "გნებავთ სერტიფიკატთან სამუდამო წვდომა კითხვის გარეშე?"
+
+#~ msgid "&Forever"
+#~ msgstr "&სამუდამოდ"
+
+#~ msgid "&Current Session only"
+#~ msgstr "&მხოლოდ მიმდინარე სესიაში"
+
+#~ msgid "Unknown protocol '%1'."
+#~ msgstr "უცნობი პროტოკოლი %1."
+
+#~ msgid "Can not find a KIO worker for protocol '%1'."
+#~ msgstr "პროტოკოლისთვის '%1' KIO -ის დამხმარე პროგრამა ვერ ვიპოვე."
+
+#~ msgid ""
+#~ "Can not create a socket for launching a KIO worker for protocol '%1'."
+#~ msgstr ""
+#~ "სოკეტის შექმნის შეცდომა KIO-ის დამხმარე პროცესის გასაშვებად "
+#~ "პროტოკოლისთვის '%1'."
+
+#~ msgid "Can not find 'kioworker' executable at '%1'"
+#~ msgstr "'%1'-ზე 'kioworker' გამშვები ფაილი ვერ ვიპოვე."
+
+#~ msgid "You did not select a file to delete."
+#~ msgstr "წასაშლელად არაფერი მოგინიშნავთ."
+
+#~ msgid "Nothing to Delete"
+#~ msgstr "წასაშლელი არაფერია"
+
+#~ msgid "You did not select a file to trash."
+#~ msgstr "სანაგვე ყუთში გადასატანად არაფერი მოგინიშნავთ."
+
+#~ msgid "Nothing to Trash"
+#~ msgstr "წასაშლელი არაფერია"
+
+#~ msgid "The specified folder does not exist or was not readable."
+#~ msgstr "მითითებული საქაღალდე არ არსებობს, ან წაკითხვადი არაა."
+
+#~ msgid "Menu"
+#~ msgstr "მენიუ"
+
+#~ msgid "Parent Folder"
+#~ msgstr "მშობელი საქაღალდე"
+
+#~ msgctxt "@info"
+#~ msgid "Go back"
+#~ msgstr "უკან დაბრუნება"
+
+#~ msgctxt "@info"
+#~ msgid "Go forward"
+#~ msgstr "წინ გადასვლა"
+
+#~ msgid "Home Folder"
+#~ msgstr "საწყისი საქაღალდე"
+
+#~ msgid "Reload"
+#~ msgstr "თავიდან ჩატვირთვა"
+
+#~ msgid "New Folder..."
+#~ msgstr "ახალი საქაღალდე..."
+
+#~ msgid "Move to Trash"
+#~ msgstr "ნაგავში გადატანა"
+
+#~ msgid "Delete"
+#~ msgstr "წაშლა"
+
+#~ msgid "Sorting"
+#~ msgstr "დალაგება"
+
+#~ msgid "Sort by Name"
+#~ msgstr "სახელის მიხედვით დალაგება"
+
+#~ msgid "Sort by Size"
+#~ msgstr "ზომის მიხედვით დალაგება"
+
+#~ msgid "Sort by Date"
+#~ msgstr "თარიღის მიხედვით დალაგება"
+
+#~ msgid "Sort by Type"
+#~ msgstr "ტიპის მიხედვით დალაგება"
+
+#~ msgid "Ascending"
+#~ msgstr "ზრდის მიხედვით"
+
+#~ msgid "Descending"
+#~ msgstr "Დაღმავალი"
+
+#~ msgid "Folders First"
+#~ msgstr "ჯერ საქაღალდეები"
+
+#~ msgid "Hidden Files Last"
+#~ msgstr "დამალული ფაილების ბოლოში ჩვენება"
+
+#~ msgid "Icons View"
+#~ msgstr "ხატულების ხედი"
+
+#~ msgid "Compact View"
+#~ msgstr "შემჭიდროებული ხედი"
+
+#~ msgid "Details View"
+#~ msgstr "დეტალური ხედი"
+
+#~ msgid "Icon Position"
+#~ msgstr "ხატულების მდებარეობა"
+
+#~ msgid "Next to File Name"
+#~ msgstr "ფაილის სახელის შემდეგ"
+
+#~ msgid "Above File Name"
+#~ msgstr "ფაილის სახელის ზემოდან"
+
+#~ msgid "Short View"
+#~ msgstr "მოკლე ხედი"
+
+#~ msgid "Detailed View"
+#~ msgstr "დეტალური ხედი"
+
+#~ msgid "Tree View"
+#~ msgstr "ხისმაგვარი ხედი"
+
+#~ msgid "Detailed Tree View"
+#~ msgstr "ხისმაგვარი დეტალური ხედი"
+
+#~ msgid "Allow Expansion in Details View"
+#~ msgstr "დეტალების ხედის გაშლის ჩართვა"
+
+#~ msgid "Show Hidden Files"
+#~ msgstr "დამალული ფაილების ჩვენება"
+
+#~ msgid "Show Preview Panel"
+#~ msgstr "გადახედვის ზოლის ჩვენება"
+
+#~ msgid "Show Preview"
+#~ msgstr "გადახედვის ჩვენება"
+
+#~ msgid "Open Containing Folder"
+#~ msgstr "შემცველი საქაღალდის გახსნა"
+
+#~ msgid "Properties"
+#~ msgstr "პარამეტრები"
+
+#~ msgid "&View Mode"
+#~ msgstr "&ხედის რეჟიმი"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Z-A"
+#~ msgstr "Z-A"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "A-Z"
+#~ msgstr "A-Z"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Newest First"
+#~ msgstr "ჯერ ახლები"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "Oldest First"
+#~ msgstr "ჯერ ძველები"
+
+#~ msgctxt "Sort descending"
+#~ msgid "Largest First"
+#~ msgstr "ჯერ დიდები"
+
+#~ msgctxt "Sort ascending"
+#~ msgid "Smallest First"
+#~ msgstr "ჯერ პატარები"
+
+#~ msgid "Encoding:"
+#~ msgstr "კოდირება:"
+
+#~ msgid "Open"
+#~ msgstr "გახსნა"
+
+#~ msgid "Save As"
+#~ msgstr "შენახვა როგორც"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Copy To"
+#~ msgstr "გადაკოპირება"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Move To"
+#~ msgstr "გადატანა"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Home Folder"
+#~ msgstr "საწყისი საქაღალდე"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Root Folder"
+#~ msgstr "Root საქაღალდე"
+
+#~ msgctxt "@title:menu in Copy To or Move To submenu"
+#~ msgid "Browse..."
+#~ msgstr "მოძებნა..."
+
+#~ msgctxt "@title:menu"
+#~ msgid "Copy Here"
+#~ msgstr "აქ ჩაკოპირება"
+
+#~ msgctxt "@title:menu"
+#~ msgid "Move Here"
+#~ msgstr "აქ გადმოტანა"
+
+#~ msgctxt "Default mime type filter that shows all file types"
+#~ msgid "*|All Files"
+#~ msgstr "*|ყველა ფაილი"
+
+#~ msgctxt "%1 is the mimetype name, %2 is the extensions"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "All Supported Files"
+#~ msgstr "ყველა მხარდაჭერილი ფაილი"
+
+#~ msgid "All Files"
+#~ msgstr "ყველა ფაილი"
+
+#~ msgid "Add Places Entry"
+#~ msgstr "მდებარეობის ელემენტის დამატება"
+
+#~ msgid "Edit Places Entry"
+#~ msgstr "მდებარეობის ელემენტის ჩასწორება"
+
+#~ msgid "L&abel:"
+#~ msgstr "&ჭდე:"
+
+#~ msgid "Enter descriptive label here"
+#~ msgstr "შეიყვანეთ აღმწერი ჭდე"
+
+#~ msgid "&Location:"
+#~ msgstr "&მდებარეობა:"
+
+#~ msgid "Choose an &icon:"
+#~ msgstr "აირჩიეთ ხა&ტულა:"
+
+#~ msgid "&Only show when using this application (%1)"
+#~ msgstr "მხოლოდ ამ აპლიკაციის (%1) &გამოყენების დროს"
+
+#~ msgctxt "@item"
+#~ msgid "Places"
+#~ msgstr "ადგილები"
+
+#~ msgctxt "@item"
+#~ msgid "Remote"
+#~ msgstr "დაშორებული"
+
+#~ msgctxt "@item The place group section name for recent dynamic lists"
+#~ msgid "Recent"
+#~ msgstr "Ბოლო"
+
+#~ msgctxt "@item"
+#~ msgid "Search For"
+#~ msgstr "ძებნა"
+
+#~ msgctxt "@item"
+#~ msgid "Devices"
+#~ msgstr "მოწყობილობები"
+
+#~ msgctxt "@item"
+#~ msgid "Removable Devices"
+#~ msgstr "მოხსნადი მოწყობილობები"
+
+#~ msgctxt "@item"
+#~ msgid "Tags"
+#~ msgstr "ჭდეები"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "All tags"
+#~ msgstr "ყველა ჭდე"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Home"
+#~ msgstr "სახლი"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Desktop"
+#~ msgstr "სამუშაო მაგიდა"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Documents"
+#~ msgstr "დოკუმენტები"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Downloads"
+#~ msgstr "გადმოწერები"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Network"
+#~ msgstr "ქსელი"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Trash"
+#~ msgstr "ნაგავი"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Music"
+#~ msgstr "მუსიკა"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Pictures"
+#~ msgstr "სურათები"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Videos"
+#~ msgstr "ვიდეო"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Files"
+#~ msgstr "ბოლო ფაილები"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Locations"
+#~ msgstr "ბოლო მდებარეობები"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Today"
+#~ msgstr "შეცვლილია დღეს"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Yesterday"
+#~ msgstr "შეცვლილია გუშინ"
+
+#~ msgctxt "Placeholder is error message"
+#~ msgid "Could not add to the Places panel: %1"
+#~ msgstr "Places პანელის დამატების შეცდომა: %1"
+
+#~ msgid "Only folders can be added to the Places panel."
+#~ msgstr "ადგილების პანელზე მხოლოდ საქაღალდეების დამატება შეგიძლიათ."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Releasing…"
+#~ msgstr "გათავისუფლება…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Release"
+#~ msgstr "&გათავისუფლება"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Safely Removing…"
+#~ msgstr "უსაფრთხოდ მოცილება…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Safely Remove"
+#~ msgstr "&უსაფრთხოდ მოცილება"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Unmounting…"
+#~ msgstr "მოხსნა…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Unmount"
+#~ msgstr "&მიმაგრების მოხსნა (unmount)"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Eject"
+#~ msgstr "&გამოღება"
+
+#~ msgid "The device '%1' is not a disk and cannot be ejected."
+#~ msgstr "მოწყობილობა '%1' დისკი არაა და მისი გამოღება შეუძლებელია."
+
+#~ msgid "An error occurred while accessing '%1', the system responded: %2"
+#~ msgstr "შეცდომა \"%1\"-სთან წვდომისას. სისტემის პასუხია: %2"
+
+#~ msgid "An error occurred while accessing '%1'"
+#~ msgstr "შეცდომა \"%1\"-სთან წვდომისას"
+
+#~ msgid "One or more files on this device are open within an application."
+#~ msgstr ""
+#~ "აპლიკაციას ამ მოწყობილობაზე მდებარე ერთი ან მეტი ფაილი აქვს გახსნილი."
+
+#~ msgctxt "separator in list of apps blocking device unmount"
+#~ msgid ", "
+#~ msgstr ", "
+
+#~ msgid "%1 (hidden)"
+#~ msgstr "%1 (დამალული)"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Empty Trash"
+#~ msgstr "ნაგვის დაცარიელება"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Mount"
+#~ msgstr "მიმაგრება"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open in New Tab"
+#~ msgstr "ახალ ჩანართში გახსნა"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open in New Window"
+#~ msgstr "ახალ ფანჯარაში გახსნა"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Add Entry…"
+#~ msgstr "ელემენტის დამატება…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Edit…"
+#~ msgstr "&ჩასწორება…"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Remove"
+#~ msgstr "წაშლა"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Hide"
+#~ msgstr "&დამალვა"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section '%1'"
+#~ msgstr "სექციის დამალვა %1"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section"
+#~ msgstr "სექციის დამალვა"
+
+#~ msgid "&Show All Entries"
+#~ msgstr "&ყველა ელემენტის ჩვენება"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Icon Size"
+#~ msgstr "ხატულების ზომა"
+
+#~ msgctxt ""
+#~ "@item:inmenu Auto set icon size based on available space inthe Places "
+#~ "side-panel"
+#~ msgid "Auto Resize"
+#~ msgstr "ზომის ავტომატური შეცვლა"
+
+#~ msgctxt "Small icon size"
+#~ msgid "Small (%1x%1)"
+#~ msgstr "პატარა (%1x%1)"
+
+#~ msgctxt "Medium icon size"
+#~ msgid "Medium (%1x%1)"
+#~ msgstr "საშუალო (%1x%1)"
+
+#~ msgctxt "Large icon size"
+#~ msgid "Large (%1x%1)"
+#~ msgstr "დიდი (%1x%1)"
+
+#~ msgctxt "Huge icon size"
+#~ msgid "Huge (%1x%1)"
+#~ msgstr "უზარმაზარი (%1x%1)"
+
+#~ msgid "You can only select one file"
+#~ msgstr "შეგიძლიათ მონიშნოთ მხოლოდ ერთი ფაილი"
+
+#~ msgid "More than one file provided"
+#~ msgstr "მითითებულია ერთზე მეტი ფაილი"
+
+#~ msgid "You can only select local files"
+#~ msgstr "შეგიძლიათ მონიშნოთ მხოლოდ ადგილობრივი ფაილები"
+
+#~ msgid "Remote files not accepted"
+#~ msgstr "დაშორებული ფაილები მიუღებელია"
+
+#~ msgid ""
+#~ "The selected URL uses an unsupported scheme. Please use the following "
+#~ "scheme: %2"
+#~ msgid_plural ""
+#~ "The selected URL uses an unsupported scheme. Please use one of the "
+#~ "following schemes: %2"
+#~ msgstr[0] ""
+#~ "მონიშნული ბმული მხარდაუჭერელ სქემას იყენებს. გამოიყენეთ შემდეგი სქემა: %2"
+#~ msgstr[1] ""
+#~ "მონიშნული ბმული მხარდაუჭერელ სქემას იყენებს. გამოიყენეთ შემდეგი სქემა: %2"
+
+#~ msgid "Unsupported URL scheme"
+#~ msgstr "URL-ის მხარდაუჭერელი სქემა"
+
+#~ msgid "More than one folder provided"
+#~ msgstr "მითითებულია ერთზე მეტი საქაღალდე"
+
+#~ msgid "Files and folders selected"
+#~ msgstr "მონიშნული ფაილები და საქაღალდეები"
+
+#~ msgid "The file \"%1\" could not be found"
+#~ msgstr "ფაილი %1 ნაპოვნი არაა"
+
+#~ msgid "Cannot open file"
+#~ msgstr "ფაილის გახსნის შეცდომა"
+
+#~ msgid ""
+#~ "Click this button to move backwards one step in the browsing history."
+#~ msgstr ""
+#~ "ბრაუზერის ისტორიაში ერთი ნაბიჯით უკან გადასასვლელად დააწკაპუნეთ ამ ღილაკს."
+
+#~ msgid "Click this button to move forward one step in the browsing history."
+#~ msgstr ""
+#~ "ბრაუზერის ისტორიაში ერთი ნაბიჯით წინ გადასასვლელად დააწკაპუნეთ ამ ღილაკს."
+
+#~ msgid "Click this button to reload the contents of the current location."
+#~ msgstr ""
+#~ "დააწკაპუნეთ ამ ღილაკზე მიმდინარე მდებარეობის შემცველობის თავიდან "
+#~ "ჩასატვირთად."
+
+#~ msgid "Click this button to create a new folder."
+#~ msgstr "ახალი საქაღალდის შესაქმნელად ამ ღილაკზე დააწკაპუნეთ."
+
+#~ msgid "Show Places Panel"
+#~ msgstr "მდებარეობის პანელის ჩვენება"
+
+#~ msgid "Show Bookmarks Button"
+#~ msgstr "სანიშნეების პანელის ჩვენება"
+
+#~ msgid "Options"
+#~ msgstr "პარამეტრები"
+
+#~ msgid "Bookmarks"
+#~ msgstr "სანიშნები"
+
+#~ msgid "&Name:"
+#~ msgstr "&სახელი:"
+
+#~ msgid "This is the name to save the file as."
+#~ msgstr "ეს არის შესანახი ფაილის სახელი."
+
+#~ msgid "This is the name of the file to open."
+#~ msgstr "ეს არის გასახსნელი ფაილის სახელი."
+
+#~ msgctxt "@title:window"
+#~ msgid "Places"
+#~ msgstr "ადგილები"
+
+#~ msgid "The file \"%1\" already exists. Do you wish to overwrite it?"
+#~ msgstr "ფაილ %1 უკვე არსებობს. გნებავთ გადავაწეროთ?"
+
+#~ msgid "Overwrite File?"
+#~ msgstr "ჩავანაცვლო ფაილი?"
+
+#~ msgid "You can only select local files."
+#~ msgstr "შეგიძლიათ მონიშნოთ მხოლოდ ადგილობრივი ფაილები."
+
+#~ msgid "Remote Files Not Accepted"
+#~ msgstr "დაშორებული ფაილები მიუღებელია"
+
+#~ msgid "*|All Folders"
+#~ msgstr "*|ყველა საქაღალდე"
+
+#~ msgid "*|All Files"
+#~ msgstr "*|ყველა ფაილი"
+
+#~ msgid "&Open"
+#~ msgstr "&გახსნა"
+
+#~ msgid "Icon size: %1 pixels"
+#~ msgstr "ხატულის ზომა: %1 პიქსელი"
+
+#~ msgid "Automatically select filename e&xtension (%1)"
+#~ msgstr "ფაილის გაფართოების ავტომატური მითითება (%1)"
+
+#~ msgid "the extension <b>%1</b>"
+#~ msgstr "გაფართოება <b>%1</b>"
+
+#~ msgid "Automatically select filename e&xtension"
+#~ msgstr "ფაილის გაფართოების ავტომატური მითითება"
+
+#~ msgid "a suitable extension"
+#~ msgstr "შესატყვისი გაფართოება"
+
+#~ msgid "&File type:"
+#~ msgstr "&ფაილის ტიპი:"
+
+#~ msgid "&Filter:"
+#~ msgstr "&ფილტრი:"
+
+#~ msgid "Sorry"
+#~ msgstr "უკაცრავად"
+
+#~ msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
+#~ msgstr "<qt>ნიმუშის ფაილი <b>%1</b> არ არსებობს.</qt>"
+
+#~ msgid "Name for new link:"
+#~ msgstr "ახალი ბმულის სახელი:"
+
+#~ msgid "Create link to URL"
+#~ msgstr "URL-მდე ბმულის შექმნა"
+
+#~ msgctxt "@item:inmenu Create New"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The name <filename>%1</filename> cannot be used because it is reserved "
+#~ "for use by the operating system."
+#~ msgstr ""
+#~ "სახელის: <filename>%1</filename> გამოყენება შეუძლებელია; ის ოპერაციული "
+#~ "სისტემის მიერაა დარეზერვებულია."
+
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "The name <filename>%1</filename> starts with a dot, so it will be hidden "
+#~ "by default."
+#~ msgstr ""
+#~ "სახელი: <filename>%1</filename> წერტილით იწყება, რაც ნიშნავს, რომ "
+#~ "ნაგულისხმებად ის დამალული იქნება."
+
+#~ msgid "Using slashes in folder names will create sub-folders, like so:"
+#~ msgstr ""
+#~ "საქაღალდის სახელში დახრილი ხაზის გამოყენება ქვესაქაღალდეებს შექმნის. მაგ:"
+
+#~ msgid "Using slashes in folder names will create sub-folders."
+#~ msgstr ""
+#~ "საქაღალდის სახელში დახრილი ხაზის გამოყენება ქვესაქაღალდეებს შექმნის."
+
+#~ msgid "Slashes cannot be used in file and folder names."
+#~ msgstr "ფაილისა და საქაღალდის სახელებში დახრილ ხაზს ვერ გამოიყენებთ."
+
+#~ msgid "Backslashes cannot be used in file and folder names."
+#~ msgstr "ფაილისა და საქაღალდის სახელებში უკუღმა დახრილ ხაზს ვერ გამოიყენებთ."
+
+#~ msgctxt "@info"
+#~ msgid "A directory with name <filename>%1</filename> already exists."
+#~ msgstr "საქაღალდე სახელით <filename>%1</filename> უკვე არსებობს."
+
+#~ msgctxt "@info"
+#~ msgid "A file with name <filename>%1</filename> already exists."
+#~ msgstr "ფაილი სახელით<filename>%1</filename> უკვე არსებობს."
+
+#~ msgid "Create New"
+#~ msgstr "ახლის შექმნა"
+
+#~ msgid "Link to Device"
+#~ msgstr "კავშირი მოწყობილობასთან"
+
+#~ msgctxt "Default name for a new folder"
+#~ msgid "New Folder"
+#~ msgstr "ახალი საქაღალდე"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Folder"
+#~ msgstr "ახალი საქაღალდე"
+
+#~ msgid "Create new folder in %1:"
+#~ msgstr "ახალი საქაღალდის შექმნა %1-ში:"
+
+#~ msgid "Copy"
+#~ msgstr "კოპირება"
+
+#~ msgid "Paste"
+#~ msgstr "ჩასმა"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Tab"
+#~ msgstr "%1-ის ახალ ჩანართში გახსნა"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Window"
+#~ msgstr "%1-ის ახალ ფანჯარაში გახსნა"
+
+#~ msgid "Edit"
+#~ msgstr "ჩასწორება"
+
+#~ msgid "Navigate"
+#~ msgstr "ნავიგაცია"
+
+#~ msgid "Show Full Path"
+#~ msgstr "მთლიანი ბილიკის ჩვენება"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "More"
+#~ msgstr "მეტი"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Devices"
+#~ msgstr "მოწყობილობები"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Subversion"
+#~ msgstr "ქვევერსია"
+
+#~ msgctxt "@item:inmenu"
+#~ msgid "Other"
+#~ msgstr "სხვები"
+
+#~ msgid "Edit mode"
+#~ msgstr "რედაქტირების რეჟიმი"
+
+#~ msgid "Click for Location Navigation"
+#~ msgstr "მდებარეობის ნავიგაციისთვის დააწკაპუნეთ"
+
+#~ msgid "Click to Edit Location"
+#~ msgstr "დააწკაპუნეთ მდებარეობის ჩასასწორებლად"
+
+#~ msgid "You are not authorized to execute this file."
+#~ msgstr "ამ ფაილის შესრულების წვდომები არ გაგაჩნიათ."
+
+#~ msgctxt "Launching application"
+#~ msgid "Launching %1"
+#~ msgstr "%1-ის გაშვება"
+
+#~ msgid "You are not authorized to select an application to open this file."
+#~ msgstr "ამ ფაილის გასახსნელი აპლიკაციის არჩევის ავტორიზაცია არ გაგაჩნიათ."
+
+#~ msgid ""
+#~ "Internal error: could not prompt the user for which application to start"
+#~ msgstr ""
+#~ "შიდა შეცდომა: მომხმარებლისთვის აპლიკაციის არჩევანის მოთხოვნის ჩვენება "
+#~ "შეუძლებელია"
+
+#~ msgid "No favicon found for %1"
+#~ msgstr "%1-ის favicon ნაპოვნი არაა"
+
+#~ msgid "Error saving image to %1"
+#~ msgstr "გამოსახულების %1-ში ჩაწერის შეცდომა"
+
+#~ msgid "Icon file too big, download aborted"
+#~ msgstr "ხატულის ფაილი მეტისმეტად დიდია. გადმოწერა შეწყვეტილია"
+
+#~ msgid "No mail client found"
+#~ msgstr "ელ-ფოსტის კლიენტი ნაპოვნი არაა"
+
+#~ msgid ""
+#~ "The desktop entry file\n"
+#~ "%1\n"
+#~ "is not valid."
+#~ msgstr ""
+#~ "სამუშაო დაფის ფაილი\n"
+#~ "%1\n"
+#~ "არასწორია."
+
+#~ msgid "Launching %1"
+#~ msgstr "%1-ის გაშვება"
+
+#~ msgctxt "@info"
+#~ msgid "The command <command>%1</command> could not be found."
+#~ msgstr "ბრძანება <command>%1</command> ნაპოვნი არაა."
+
+#~ msgid "No terminal emulator found"
+#~ msgstr "ტერმინალის ემულატორი ნაპოვნი არაა"
+
+#~ msgid "Failed to open %1"
+#~ msgstr "%1-ის გახსნის შეცდომა"
+
+#~ msgid ""
+#~ "For security reasons, launching executables is not allowed in this "
+#~ "context."
+#~ msgstr ""
+#~ "უსაფრთხოებისთვის გამშვები ფაილების შესრულება ამ კონტექსტში დაშვებული არაა."
+
+#~ msgid ""
+#~ "Unable to make file \"%1\" executable.\n"
+#~ "%2."
+#~ msgstr ""
+#~ "\"%1\"-ის გამშვებ ფაილად გადაკეთების შეცდომა.\n"
+#~ "%2."
+
+#~ msgid "The desktop entry file %1 has no Type=... entry."
+#~ msgstr "სამუშაო მაგიდის ფაილს %1 Type= ჩანაწერი არ გააჩნია."
+
+#~ msgid "Failed to open the file."
+#~ msgstr "ფაილის გახსნის შეცდომა."
+
+#~ msgid "The program \"%1\" could not be launched."
+#~ msgstr "პროგრამა %1-ის გაშების შეცდომა."
+
+#~ msgid "File Changed"
+#~ msgstr "ფაილი შეცვლილია"
+
+#~ msgid "Upload"
+#~ msgstr "ატვირთვა"
+
+#~ msgid "Do Not Upload"
+#~ msgstr "არ ატვირთო"
+
+#~ msgid "Invalid URL: %1"
+#~ msgstr "არასწორი URL: %1"
+
+#~ msgid "File not found: %1"
+#~ msgstr "ფაილი %1 ნაპოვნი არაა"
+
+#~ msgid ""
+#~ "The URL %1\n"
+#~ "is malformed"
+#~ msgstr "არასწორი URL %1"
+
+#~ msgid "Do Not Delete"
+#~ msgstr "არ წაშალო"
+
+#~ msgid ""
+#~ "The file\n"
+#~ "%1\n"
+#~ "has been modified.\n"
+#~ "Do you want to upload the changes?"
+#~ msgstr ""
+#~ "ფაილი\n"
+#~ "%1\n"
+#~ "შეიცვალა.\n"
+#~ "გნებავთ ცვლილებების ატვირთვა?"
+
+#~ msgid "KIOExec"
+#~ msgstr "KIOExec"
+
+#~ msgid "(c) 1998-2000,2003 The KFM/Konqueror Developers"
+#~ msgstr "(c) 1998-2000,2003 The KFM/Konqueror-შემქმნელთაგან"
+
+#~ msgid "David Faure"
+#~ msgstr "David Faure"
+
+#~ msgid "Stephan Kulow"
+#~ msgstr "Stephan Kulow"
+
+#~ msgid "Bernhard Rosenkraenzer"
+#~ msgstr "Bernhard Rosenkraenzer"
+
+#~ msgid "Waldo Bastian"
+#~ msgstr "Waldo Bastian"
+
+#~ msgid "Oswald Buddenhagen"
+#~ msgstr "Oswald Buddenhagen"
+
+#~ msgid "Treat URLs as local files and delete them afterwards"
+#~ msgstr "URL-ებთან, როგორც ლოკალურ ფაილებთან მუშაობა და შემდეგ მათი წაშლა"
+
+#~ msgid "Suggested file name for the downloaded file"
+#~ msgstr "გადმოწერილი ფაილის ნარჩევი სახელი"
+
+#~ msgid "Command to execute"
+#~ msgstr "შესასრულებელი ბრძანება"
+
+#~ msgid "URL(s) or local file(s) used for 'command'"
+#~ msgstr "ბრძანების URL-ები ან ადგილობრივი ფაილები"
+
+#~ msgid "Setting ACL for %1"
+#~ msgstr "%1-ზე ACL-ის დაყენება"
+
+#~ msgid ""
+#~ "Could not change permissions for\n"
+#~ "%1"
+#~ msgstr ""
+#~ "%1-ზე\n"
+#~ "წვდომის ცვლილების შეცდომა"
+
+#~ msgid "Could not find program \"mount\""
+#~ msgstr "ვერ ვიპოვე პროგრამა \"mount\""
+
+#~ msgid "Could not find program \"umount\""
+#~ msgstr "ვერ ვიპოვე პროგრამა \"umount\""
+
+#~ msgid "Change File Permissions"
+#~ msgstr "ფაილის წვდომების შეცვლა"
+
+#~ msgid "New Permissions: %1"
+#~ msgstr "ახალი წვდომები: %1"
+
+#~ msgid "Change File Owner"
+#~ msgstr "ფაილის მფლობელის შეცვლა"
+
+#~ msgid "New Owner: UID=%1, GID=%2"
+#~ msgstr "ახალი მფლობელი: UID=%1, GID=%2"
+
+#~ msgid "Remove File"
+#~ msgstr "ფაილის წაშლა"
+
+#~ msgid "Remove Directory"
+#~ msgstr "საქაღალდის წაშლა"
+
+#~ msgid "Create Directory"
+#~ msgstr "საქაღალდის შექმნა"
+
+#~ msgid "Directory Permissions: %1"
+#~ msgstr "საქაღალდის წვდომები: %1"
+
+#~ msgid "Open File"
+#~ msgstr "ფაილის გახსნა"
+
+#~ msgid "Open Directory"
+#~ msgstr "საქაღალდის გახსნა"
+
+#~ msgid "New Filename: %1"
+#~ msgstr "ახალი ფაილის სახელი: %1"
+
+#~ msgid "Target: %1"
+#~ msgstr "დანიშნულება: %1"
+
+#~ msgid "Change Timestamp"
+#~ msgstr "Timestamp-ის შეცვლა"
+
+#~ msgid "From: %1, To: %2"
+#~ msgstr "%1-დან %2-მდე"
+
+#~ msgid "Unknown Action"
+#~ msgstr "უცნობი ქმედება"
+
+#~ msgid ""
+#~ "Action: %1\n"
+#~ "Source: %2\n"
+#~ "%3"
+#~ msgstr ""
+#~ "მოქმედება: %1\n"
+#~ "წყარო: %2\n"
+#~ "%3"
+
+#~ msgid "Cannot copy file from %1 to %2. (Errno: %3)"
+#~ msgstr "%1-ის %2-ში კოპირების შეცდომა. (შეცდომის კოდი: %3)"
+
+#~ msgid "No media in device for %1"
+#~ msgstr "მოწყობილობაში მედია არ დევს %1-თვის"
+
+#~ msgid "Could not get user id for given user name %1"
+#~ msgstr "მომხმარებლის, %1, uid-ის მოძებნის შეცდომა"
+
+#~ msgid "Could not get group id for given group name %1"
+#~ msgstr "ჯგუფის, %1, gid-ის მოძებნის შეცდომა"
+
+#~ msgid "Opening connection to host %1"
+#~ msgstr "ვუკავშირდები %1-ს"
+
+#~ msgid "Connected to host %1"
+#~ msgstr "დავუკავშირდი %1-ს"
+
+#~ msgid "%1 (Error %2)"
+#~ msgstr "%1 (შეცდომა %2)"
+
+#~ msgid "Sending login information"
+#~ msgstr "შესვლის ინფორმაციის გაგზავნა"
+
+#~ msgid ""
+#~ "Message sent:\n"
+#~ "Login using username=%1 and password=[hidden]\n"
+#~ "\n"
+#~ "Server replied:\n"
+#~ "%2\n"
+#~ "\n"
+#~ msgstr ""
+#~ "გაგზავნილი შეტყობინება:\n"
+#~ "შედი მომხმარებლით %1 და პაროლით [დამალულია]\n"
+#~ "\n"
+#~ "სერვერმა გვიპასუხა:\n"
+#~ "%2\n"
+#~ "\n"
+
+#~ msgid "You need to supply a username and a password to access this site."
+#~ msgstr "ამ ადგილის სანახავად საჭიროა მომხმარებლისა და პაროლის მითითება."
+
+#~ msgid "Site:"
+#~ msgstr "საიტი:"
+
+#~ msgid "<b>%1</b>"
+#~ msgstr "<b>%1</b>"
+
+#~ msgid "Login OK"
+#~ msgstr "შესვლა წარმატებულია"
+
+#~ msgid "Could not login to %1."
+#~ msgstr "%1-ზე შესვლა წარუმატებელია."
+
+#~ msgid ""
+#~ "\n"
+#~ "The server said: \"%1\""
+#~ msgstr ""
+#~ "\n"
+#~ "სერვერმა სთქო: \"%1\""
+
+#~ msgid "Proxy:"
+#~ msgstr "პროქსი:"
+
+#~ msgid "Proxy Authentication Failed."
+#~ msgstr "პროქსის ავთენტიკაციის შეცდომა."
+
+#~ msgid "There is no documentation available for %1."
+#~ msgstr "%1-ს არ გააჩნია დოკუმენტაცია."
+
+#~ msgid "Looking up correct file"
+#~ msgstr "სწორი ფაილის მოძებნა"
+
+#~ msgid "Preparing document"
+#~ msgstr "დოკუმენტის მომზადება"
+
+#~ msgid "The requested help file could not be parsed:<br />%1"
+#~ msgstr "მოთხოვნილი ფაილის დამუშავების შეცდომა:<br />%1"
+
+#~ msgid "Saving to cache"
+#~ msgstr "ქეშში შენახვა"
+
+#~ msgid "Using cached version"
+#~ msgstr "ვიყენებ დაქეშილ ვერსიას"
+
+#~ msgid "Looking up section"
+#~ msgstr "სექციის მოძებნა"
+
+#~ msgid "Could not find filename %1 in %2."
+#~ msgstr "%2-ში ფაილი %1 ვერ ვიპოვე."
+
+#~ msgid "No host specified."
+#~ msgstr "ჰოსტი მითითებული არაა."
+
+#~ msgid "Otherwise, the request would have succeeded."
+#~ msgstr "არადა მოთხოვნა წარმატებული იქნებოდა."
+
+#~ msgctxt "request type"
+#~ msgid "retrieve property values"
+#~ msgstr "თვისების მნიშვნელობების მიღება"
+
+#~ msgctxt "request type"
+#~ msgid "set property values"
+#~ msgstr "თვისების მნიშვნელობების დაყენება"
+
+#~ msgctxt "request type"
+#~ msgid "create the requested folder"
+#~ msgstr "მოთხოვილი საქაღალდის შექმნა"
+
+#~ msgctxt "request type"
+#~ msgid "copy the specified file or folder"
+#~ msgstr "მოთხოვილი საქაღალდის ან ფაილის კოპირება"
+
+#~ msgctxt "request type"
+#~ msgid "move the specified file or folder"
+#~ msgstr "მოთხოვილი საქაღალდის ან ფაილის გადატანა"
+
+#~ msgctxt "request type"
+#~ msgid "search in the specified folder"
+#~ msgstr "მოთხოვილი საქაღალდის ან ფაილის მოძებნა"
+
+#~ msgctxt "request type"
+#~ msgid "lock the specified file or folder"
+#~ msgstr "მოთხოვილი საქაღალდის ან ფაილის ჩაკეტვა"
+
+#~ msgctxt "request type"
+#~ msgid "unlock the specified file or folder"
+#~ msgstr "მოთხოვილი საქაღალდის ან ფაილის განბლოკვა"
+
+#~ msgctxt "request type"
+#~ msgid "delete the specified file or folder"
+#~ msgstr "მოთხოვილი საქაღალდის ან ფაილის წაშლა"
+
+#~ msgctxt "request type"
+#~ msgid "query the server's capabilities"
+#~ msgstr "სერვერის შესაძლებლობების გადამოწმება"
+
+#~ msgctxt "request type"
+#~ msgid "retrieve the contents of the specified file or folder"
+#~ msgstr "მოთხოვილი საქაღალდის ან ფაილის შიგთავსის მიღება"
+
+#~ msgctxt "request type"
+#~ msgid "run a report in the specified folder"
+#~ msgstr "მოთხოვილი საქაღალდის ან ფაილის ანგარიშის შექმნა"
+
+#~ msgctxt "%1: code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "უცნობი შეცდომა(%1) %2-ის მცდელობის დროს."
+
+#~ msgid "The server does not support the WebDAV protocol."
+#~ msgstr "სერვერს არ აქვს WebDAV პროტოკოლის მხარდაჭერა."
+
+#~ msgctxt "%1: request type"
+#~ msgid "Access was denied while attempting to %1."
+#~ msgstr "%1-ის მცდელობისას წვდომა აკრძალულია."
+
+#~ msgid "The requested lock could not be granted. %1"
+#~ msgstr "მოთხოვნილი ბლოკის მიღების შეცდომა. %1"
+
+#~ msgid "The server does not support the request type of the body."
+#~ msgstr "სერვერს სხეულის ტიპის მოთხოვნის მხარდაჭერა არ გააჩნია."
+
+#~ msgctxt "%1: request type"
+#~ msgid "Unable to %1 because the resource is locked."
+#~ msgstr "%1-ის შეცდომა. რესურსი დაბლოკილია."
+
+#~ msgid "This action was prevented by another error."
+#~ msgstr "ქმედება გაუქმებულია სხვა შეცდომის მიერ."
+
+#~ msgid "The resource cannot be deleted."
+#~ msgstr "რესურსის წაშლა შეუძლებელია."
+
+#~ msgctxt "request type"
+#~ msgid "upload %1"
+#~ msgstr "%1-ის ატვირთვა"
+
+#~ msgctxt "%1: response code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "უცნობი შეცდომა(%1) %2-ის მცდელობის დროს."
+
+#~ msgid "%1 contacted. Waiting for reply..."
+#~ msgstr "დავუკავშირდით %1-ს. ველოდები პასუხს..."
+
+#~ msgctxt "@title:window"
+#~ msgid "Confirm Website Access"
+#~ msgstr "დაადასტურეთ ვებგვერდთან წვდომა"
+
+#~ msgid "Server processing request, please wait..."
+#~ msgstr "სერვერი ამუშავებს მოთხოვნას. გთხოვთ მოითმიმოთ..."
+
+#~ msgid "Sending data to %1"
+#~ msgstr "%1-თვის მონაცემებს გაგზავნა"
+
+#~ msgid "Retrieving %1 from %2..."
+#~ msgstr "%2-დან %1-ის მიღება..."
+
+#~ msgid "<b>%1</b> at <b>%2</b>"
+#~ msgstr "<b>%1</b> <b>%2</b>"
+
+#~ msgid "Authentication Failed."
+#~ msgstr "ავთენტიკაციის შეცდომა."
+
+#~ msgid "Authorization failed."
+#~ msgstr "ავტორიზაციის შეცდომა."
+
+#~ msgid "Unknown Authorization method."
+#~ msgstr "ავტორიზაციის უცნობი მეთოდი."
+
+#~ msgid "Receiving corrupt data."
+#~ msgstr "მიღებულია დაზიანებული მონაცემები."
+
+#~ msgid "Cannot Save Cookies"
+#~ msgstr "ქუქიების შენახვის შეცდომა"
+
+#~ msgid "Could not remove %1, check permissions"
+#~ msgstr "%1-ის წაშლის შეცდომა. გადაამოწმეთ წვდომები"
+
+#~ msgid "Could not create directory %1"
+#~ msgstr "საქაღალდე %1-ის შექმნის შეცდომა"
+
+#~ msgid "Cookie Alert"
+#~ msgstr "ქუქის გაფრთხილება"
+
+#~ msgctxt "@item:intext cross domain cookie"
+#~ msgid " [Cross Domain]"
+#~ msgstr " [დომენებს შორის]"
+
+#~ msgid "See or modify the cookie information"
+#~ msgstr "ქუქიების ინფორმაციის ნახვა ან ჩასწორება"
+
+#~ msgid "Accept for this &session"
+#~ msgstr "ამ &სესიისთვის ნების დართვა"
+
+#~ msgid "Accept cookie(s) until the end of the current session"
+#~ msgstr "ქუქიების მიღება ამ სესიის დასრულებამდე"
+
+#~ msgid "&Accept"
+#~ msgstr "&დათანხმება"
+
+#~ msgid "&Reject"
+#~ msgstr "&უარყოფა"
+
+#~ msgid "Apply Choice To"
+#~ msgstr "ცვლილებების გადატარება"
+
+#~ msgid "&Only this cookie"
+#~ msgstr "&მხოლოდ ეს ქუქი"
+
+#~ msgid "&Only these cookies"
+#~ msgstr "მ&ხოლოდ ეს ქუქიები"
+
+#~ msgid "All cookies from this do&main"
+#~ msgstr "ამ დომენი&ს ყველა ქუქი"
+
+#~ msgid "All &cookies"
+#~ msgstr "ყველა &ქუქი"
+
+#~ msgid "Cookie Details"
+#~ msgstr "ქუქის დეტალები"
+
+#~ msgctxt ""
+#~ "@label a description string of how 'accessible' the cookie is (e.g. see "
+#~ "exposure string in this file)"
+#~ msgid "Exposure:"
+#~ msgstr "ექსპოზიცია:"
+
+#~ msgctxt "Next cookie"
+#~ msgid "&Next >>"
+#~ msgstr "&შემდეგი >>"
+
+#~ msgid "Show details of the next cookie"
+#~ msgstr "შემდეგი ქუქის დეტალების ჩვენება"
+
+#~ msgctxt "@label cookie has no explicit 'Domain' value specified"
+#~ msgid "Not specified"
+#~ msgstr "მითითებული არაა"
+
+#~ msgctxt "@label the cookie expires when the browser session ends"
+#~ msgid "End of Session"
+#~ msgstr "სესიის დასასრული"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by https servers"
+#~ msgid "Secure servers only"
+#~ msgstr "მხოლოდ დაცული სერვერები"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may be used by https servers AND "
+#~ "client-side javascripts"
+#~ msgid "Secure servers, page scripts"
+#~ msgstr "დაცული სერვერები, გვერდების სკრიპტები"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by http servers"
+#~ msgid "Servers"
+#~ msgstr "სერვერები"
+
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may be used by http servers AND "
+#~ "client-side javascripts"
+#~ msgid "Servers, page scripts"
+#~ msgstr "დაცული სერვერები, გვერდების სკრიპტები"
+
+#~ msgctxt ""
+#~ "@action:button show details about a cookie that needs approval. This "
+#~ "string gets >> and << appended, to visualize if the dialog expands or "
+#~ "compacts!"
+#~ msgid "Details"
+#~ msgstr "დეტალები"
+
+#~ msgid "Network"
+#~ msgstr "ქსელი"
+
+#~ msgid "Malformed URL %1"
+#~ msgstr "%1 არასწორი URL-ა"
+
+#~ msgid "Invalid combination of protocols."
+#~ msgstr "პროტოკოლების არასწორი კომბინაცია."
+
+#~ msgid "This file is already in the trash bin."
+#~ msgstr "ეს ფაილი უკვე სანაგვეშია."
+
+#~ msgid "not supported"
+#~ msgstr "მხარდაუჭერელია"
+
+#~ msgid "Internal error in copyOrMove, should never happen"
+#~ msgstr "შიდა შეცდომა copyOrMove-ში. არ უნდა მოხდეს"
+
+#~ msgid "Empty the contents of the trash"
+#~ msgstr "ნაგვის დაცარიელება"
+
+#~ msgid "Restore a trashed file to its original location"
+#~ msgstr "ნაგავში ჩაგდებული ფაილის საწყის მდებარეობაზე აღდგენა"
+
+#~ msgid "The trash is full. Empty it or remove items manually."
+#~ msgstr "ნაგავი გადავსებულია. დააცარიელეთ ან ხელით გადაიტანეთ ელემენტები."
+
+#~ msgid "Could not find a usable proxy configuration script"
+#~ msgstr "პროქსის მორგების სკრიპტის გადმოწერის შეცდომა"
+
+#~ msgid ""
+#~ "Could not download the proxy configuration script:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "პროქსის კონფიგურაცის სკრიპტის გადმოწერის შეცდომა:\n"
+#~ "%1"
+
+#~ msgid "Could not download the proxy configuration script"
+#~ msgstr "პროქსის კონფიგურაცის სკრიპტის გადმოწერის შეცდომა"
+
+#~ msgid ""
+#~ "The proxy configuration script is invalid:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "პროქსის კონფიგურაციის სკრიპტი არასწორია:\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "The proxy configuration script returned an error:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "პროქსის კონფიგურაციის სკრიპტმა დააბრუნა შეცდომა:\n"
+#~ "%1"
+
+#~ msgid "Got an invalid reply when calling %1 -> %2"
+#~ msgstr "არასწორი პასუხი %1 -> %2 გამოძახებისას"
+
+#~ msgid "Do you want to retry?"
+#~ msgstr "გნებავთ, თავიდან სცადოთ?"
+
+#~ msgid "Retry Authentication"
+#~ msgstr "ავთენტიკაციის თავიდან ცდა"
+
+#~ msgctxt "@action:button filter-continue"
+#~ msgid "Retry"
+#~ msgstr "გამეორება"
+
+#~ msgid "Authentication Dialog"
+#~ msgstr "ავთენტიკაციის ფანჯარა"
+
+#~ msgid "Access denied"
+#~ msgstr "წვდომა აკრძალულია"
+
+#~ msgid "You do not have permission to access the %1 protocol."
+#~ msgstr "თქვენ არ გაქვთ %1-თან წვდომის უფლება."
+
+#~ msgid "No search providers were found."
+#~ msgstr "საძიებო სისტემა აღმოჩენილი არაა."
+
+#~ msgid "<qt><b>%1</b> does not have a home folder.</qt>"
+#~ msgstr "<qt><b>%1</b>-ს საწყისი საქაღალდე არ გააჩნია.</qt>"
+
+#~ msgid "<qt>There is no user called <b>%1</b>.</qt>"
+#~ msgstr "<qt>მომხმარებელი არ არსებობს: <b>%1</b>.</qt>"
+
+#~ msgid "Common name:"
+#~ msgstr "საერთო სახელი:"
+
+#~ msgid "Acme Co."
+#~ msgstr "Acme Co."
+
+#~ msgid "Organization:"
+#~ msgstr "ორგანიზაცია:"
+
+#~ msgid "Acme Sundry Products Company"
+#~ msgstr "Acme Sundry Products Company"
+
+#~ msgid "Organizational unit:"
+#~ msgstr "ორგანიზაციული ერთეული:"
+
+#~ msgid "Fraud Department"
+#~ msgstr "ფროდის განყოფილება"
+
+#~ msgid "Country:"
+#~ msgstr "ქვეყანა:"
+
+#~ msgid "Canada"
+#~ msgstr "კანადა"
+
+#~ msgid "State:"
+#~ msgstr "მდგომარეობა:"
+
+#~ msgid "Quebec"
+#~ msgstr "კვებეკი"
+
+#~ msgid "City:"
+#~ msgstr "ქალაქი:"
+
+#~ msgid "MD5:"
+#~ msgstr "MD5:"
+
+#~ msgid "SHA1:"
+#~ msgstr "SHA1:"
+
+#~ msgid "SHA256:"
+#~ msgstr "SHA256:"
+
+#~ msgid "SHA512:"
+#~ msgstr "SHA512:"
+
+#~ msgid "Calculate"
+#~ msgstr "გამოთვლა"
+
+#~ msgid "C&ancel"
+#~ msgstr "გაუქმება"
+
+#~ msgid "&Move Here"
+#~ msgstr "აქ გადმოტანა"
+
+#~ msgid "&Copy Here"
+#~ msgstr "აქ ჩაკოპირება"
+
+#~ msgid "&Link Here"
+#~ msgstr "&აქ ბმული"
+
+#~ msgid "What do you wish to do with this file?"
+#~ msgstr "რა გნებავთ, ამ ფაილს უქნათ?"
+
+#~ msgid "Do not ask again"
+#~ msgstr "აღარ მკითხო"
+
+#~ msgid "&Execute"
+#~ msgstr "&შესრულება"
+
+#~ msgid "Undo Changes"
+#~ msgstr "ცვლილებების გაუქმება"
+
+#~ msgid "Creating directory"
+#~ msgstr "საქაღალდის შექმნა"
+
+#~ msgid "Moving"
+#~ msgstr "გადატანა"
+
+#~ msgid "Renaming"
+#~ msgstr "გადარქმევა"
+
+#~ msgid "Deleting"
+#~ msgstr "წაშლა"
+
+#~ msgid "Und&o"
+#~ msgstr "&გაუქმება"
+
+#~ msgid "Und&o: Copy"
+#~ msgstr "&გაუქმება: კოპირება"
+
+#~ msgid "Und&o: Link"
+#~ msgstr "&გაუქმება: ბმული"
+
+#~ msgid "Und&o: Move"
+#~ msgstr "&გაუქმება: გადატანა"
+
+#~ msgid "Und&o: Rename"
+#~ msgstr "&გაუქმება: გადარქმევა"
+
+#~ msgid "Und&o: Trash"
+#~ msgstr "&გაუქმება: ნაგავში გადატანა"
+
+#~ msgid "Und&o: Create Folder"
+#~ msgstr "&გაუქმება: საქაღალდის შექმნა"
+
+#~ msgid "Und&o: Create Folder(s)"
+#~ msgstr "&გაუქმება: საქაღალდეების შექმნა"
+
+#~ msgid "Und&o: Create File"
+#~ msgstr "&გაუქმება: ფაილის შექმნა"
+
+#~ msgid "Und&o: Batch Rename"
+#~ msgstr "&გაუქმება: ერთდროული გადარქმევა"
+
+#~ msgid "Undo File Copy Confirmation"
+#~ msgstr "ფაილის კოპირების დაბრუნების დადასტურება"
+
+#~ msgid "Delete Permanently"
+#~ msgstr "სამუდამოდ წაშლა"
+
+#~ msgctxt "@action:button"
+#~ msgid "Delete Permanently"
+#~ msgstr "სამუდამოდ წაშლა"
+
+#~ msgctxt "@action:button"
+#~ msgid "Empty Trash"
+#~ msgstr "ნაგვის დაცარიელება"
+
+#~ msgid "Do you really want to move this item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] ""
+#~ "დარწმუნებული ბრძანდებით, რომ გნებავთ, ეს ჩანაწერი ნაგავში გადაიტანოთ?"
+#~ msgstr[1] ""
+#~ "დარწმუნებული ბრძანდებით, რომ გნებავთ, ეს %1 ჩანაწერი ნაგავში გადაიტანოთ?"
+
+#~ msgid "The peer SSL certificate chain appears to be corrupt."
+#~ msgstr ""
+#~ "თქვენი პარტნიორის SSL სერტიფიკატის ჯაჭვი, როგორც ჩანს, დაზიანებულია."
+
+#~ msgid "SSL"
+#~ msgstr "SSL"
+
+#~ msgctxt "@action:button"
+#~ msgid "Add..."
+#~ msgstr "დამატება..."
+
+#~ msgctxt "@action:button"
+#~ msgid "Edit..."
+#~ msgstr "ჩასწორება..."
+
+#~ msgctxt "@action:button"
+#~ msgid "Delete"
+#~ msgstr "წაშლა"
+
+#~ msgctxt "Unix permissions"
+#~ msgid "Owner"
+#~ msgstr "მფლობელი"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Owning Group"
+#~ msgstr "მფლობელი ჯგუფი"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Others"
+#~ msgstr "სხვები"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Mask"
+#~ msgstr "ნიღაბი"
+
+#~ msgctxt "UNIX permissions"
+#~ msgid "Named User"
+#~ msgstr "მომხმარებელი"
+
+#~ msgid "Owner (Default)"
+#~ msgstr "მფლობელი (ნაგულისხმები)"
+
+#~ msgid "Edit ACL Entry"
+#~ msgstr "ACL ჩანაწერის ჩასწორება"
+
+#~ msgid "Entry Type"
+#~ msgstr "ჩანაწერის ტიპი"
+
+#~ msgid "Default for new files in this folder"
+#~ msgstr "ამ საქაღალდეში ახალი ფაილების ნაგულისხმები ტიპი"
+
+#~ msgid "Owner"
+#~ msgstr "მფლობელი"
+
+#~ msgid "Owning Group"
+#~ msgstr "მფლობელი ჯგუფი"
+
+#~ msgid "Others"
+#~ msgstr "სხვები"
+
+#~ msgid "Mask"
+#~ msgstr "ნიღაბი"
+
+#~ msgid "Named user"
+#~ msgstr "მომხმარებელი"
+
+#~ msgid "Named group"
+#~ msgstr "მითითებული ჯგუფი"
+
+#~ msgid "User: "
+#~ msgstr "მომხმარებელი: "
+
+#~ msgid "Group: "
+#~ msgstr "დაჯგუფება: "
+
+#~ msgid "Type"
+#~ msgstr "ტიპი"
+
+#~ msgid "Name"
+#~ msgstr "სახელი"
+
+#~ msgctxt "read permission"
+#~ msgid "r"
+#~ msgstr "r"
+
+#~ msgctxt "write permission"
+#~ msgid "w"
+#~ msgstr "w"
+
+#~ msgctxt "execute permission"
+#~ msgid "x"
+#~ msgstr "x"
+
+#~ msgid "Effective"
+#~ msgstr "ეფექტური"
+
+#~ msgid "Updating System Configuration"
+#~ msgstr "სისტემის კონფიგურაციის განახლება"
+
+#~ msgid "Updating system configuration."
+#~ msgstr "სისტემის კონფიგურაციის განახლება."
+
+#~ msgctxt "@title:column"
+#~ msgid "Name"
+#~ msgstr "სახელი"
+
+#~ msgctxt "@title:column"
+#~ msgid "Size"
+#~ msgstr "ზომა"
+
+#~ msgctxt "@title:column"
+#~ msgid "Date"
+#~ msgstr "თარიღი"
+
+#~ msgctxt "@title:column"
+#~ msgid "Permissions"
+#~ msgstr "წვდომები"
+
+#~ msgctxt "@title:column"
+#~ msgid "Owner"
+#~ msgstr "მფლობელი"
+
+#~ msgctxt "@title:column"
+#~ msgid "Group"
+#~ msgstr "ფენათა მენიუჯგუფი"
+
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "ტიპი"
+
+#~ msgid "Open &with %1"
+#~ msgstr "%1-ით &გახსნა"
+
+#~ msgctxt "@item:inmenu Open With, %1 is application name"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Actions"
+#~ msgstr "&ქმედებები"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With..."
+#~ msgstr "&საქაღალდის პროგრამით გახსნა..."
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With..."
+#~ msgstr "&გამხსნელი პროგრამა..."
+
+#~ msgid "&Open folder with %1"
+#~ msgstr "&საქაღალდის %1-ით გახსნა"
+
+#~ msgid "&Open with %1"
+#~ msgstr "%1-ით &გახსნა"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With"
+#~ msgstr "&საქაღალდის პროგრამით გახსნა"
+
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With"
+#~ msgstr "&გამხსნელი პროგრამა"
+
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other Application..."
+#~ msgstr "&სხვა აპლიკაცია..."
+
+#~ msgctxt "Items in a folder"
+#~ msgid "1 item"
+#~ msgid_plural "%1 items"
+#~ msgstr[0] "1 ელემენტი"
+#~ msgstr[1] "%1 ელემენტი"
+
+#~ msgctxt "@info mimetype"
+#~ msgid "Unknown"
+#~ msgstr "უცნობი"
+
+#~ msgid "Stop"
+#~ msgstr "შეჩერება"
+
+#~ msgid "Explore in Filelight"
+#~ msgstr "Filelight-ში გახსნა"
+
+#~ msgid "Mounted From:"
+#~ msgstr "დამაგრების წყარო:"
+
+#~ msgid "Free Space:"
+#~ msgstr "თავისუფალი ადგილი:"
+
+#~ msgid "Type:"
+#~ msgstr "ტიპი:"
+
+#~ msgid "Location:"
+#~ msgstr "მდებარეობა:"
+
+#~ msgid "Change..."
+#~ msgstr "შეცვლა..."
+
+#~ msgid "Content:"
+#~ msgstr "შემცველობა:"
+
+#~ msgid "Points to:"
+#~ msgstr "მიუთითებს:"
+
+#~ msgid "Modified:"
+#~ msgstr "შეცვლილია:"
+
+#~ msgid "Created:"
+#~ msgstr "შექმნილია:"
+
+#~ msgid "File System:"
+#~ msgstr "ფაილური სისტემა:"
+
+#~ msgid "Unknown size"
+#~ msgstr "უცნობი ზომა"
+
+#~ msgid "Mounted On:"
+#~ msgstr "მიმაგრებულია:"
+
+#~ msgid "Accessed:"
+#~ msgstr "ბოლო წვდომა:"
+
+#~ msgid "Open With:"
+#~ msgstr "გამხსნელი პროგრამა:"
+
+#~ msgid "Known Applications"
+#~ msgstr "ცნობილი აპლიკაციები"
+
+#~ msgid "Open With"
+#~ msgstr "გამხსნელი პროგრამა"
+
+#~ msgid "Choose Application"
+#~ msgstr "აირჩიეთ აპლიკაცია"
+
+#~ msgid "Choose Application for %1"
+#~ msgstr "აირჩიეთ აპლიკაცია %1-სთვის"
+
+#~ msgid "Terminal options"
+#~ msgstr "ტერმინალის პარამეტრები"
+
+#~ msgid "Run in &terminal"
+#~ msgstr "ტერმინალ&ში გაშვება"
+
+#~ msgid "&Do not close when command exits"
+#~ msgstr "&არ დახურო ბრძანების დასრულებისას"
+
+#~ msgid "Get more Apps from Discover"
+#~ msgstr "მიიღეთ მეტი აპი Discover-დან"
+
+#~ msgctxt "@info"
+#~ msgid "<filename>%1</filename> does not appear to be an executable program."
+#~ msgstr "<filename>%1</filename> გამშვებ ფაილს არ გავს."
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options about the "
+#~ "terminal when launching a program"
+#~ msgid "Terminal"
+#~ msgstr "ტერმინალი"
+
+#~ msgid "Run in terminal"
+#~ msgstr "ტერმინალში გაშვება"
+
+#~ msgid "Terminal options:"
+#~ msgstr "ტერმინალის პარამეტრები:"
+
+#~ msgid "Do not close when command exits"
+#~ msgstr "არ დახურო ბრძანების დასრულებისას"
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose which user to use "
+#~ "when launching a program"
+#~ msgid "User"
+#~ msgstr "მომხმარებელი"
+
+#~ msgid "Run as a different user"
+#~ msgstr "სხვა მომხმარებლით გაშვება"
+
+#~ msgid "Enter the user name you want to run the application as."
+#~ msgstr "შეიყვანეთ მომხმარებლის სახელი, რომლითაც გნებავთ აპლიკაციის გაშვება."
+
+#~ msgid "Username:"
+#~ msgstr "მომხმარებელი:"
+
+#~ msgid "Enter the user name you want to run the application as here."
+#~ msgstr ""
+#~ "შეიყვანეთ მომხმარებლის სახელი, რომლითაც გნებავთ აპლიკაციის გაშვება ამ "
+#~ "საქაღალდიდან."
+
+#~ msgid "Discrete GPU"
+#~ msgstr "დისკრეტული GPU"
+
+#~ msgid "Run using dedicated graphics card"
+#~ msgstr "დისკრეტული ვიდეობარათით გაშვება"
+
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options regarding "
+#~ "program startup"
+#~ msgid "Startup"
+#~ msgstr "გაშვება"
+
+#~ msgid "Enable launch feedback"
+#~ msgstr "გაშვების უკუკავშირის ჩართვა"
+
+#~ msgid "&Description:"
+#~ msgstr "&აღწერა:"
+
+#~ msgid "Type any comment you think is useful here."
+#~ msgstr "აქ ნებისმიერი თქვენი აზრით სასარგებლო კომენტარი შეგიძლიათ, ჩაწეროთ."
+
+#~ msgid "Comm&ent:"
+#~ msgstr "&კომენტარი:"
+
+#~ msgid "Environment Variables:"
+#~ msgstr "გარემოს ცვლადები:"
+
+#~ msgid "Type the command to start this application here."
+#~ msgstr "შეიყვანეთ ბრძანება აპლიკაციის აქედან გასაშვებად."
+
+#~ msgid "Program:"
+#~ msgstr "პროგრამა:"
+
+#~ msgid "&Browse..."
+#~ msgstr "არჩევა..."
+
+#~ msgid "&Arguments:"
+#~ msgstr "&არგუმენტები:"
+
+#~ msgid "Sets the working directory for your application."
+#~ msgstr "აყენებს სამუშაო საქაღალდეს თქვენი აპლიკაციისთვის."
+
+#~ msgid "&Work path:"
+#~ msgstr "&სამუშაო ბილიკი:"
+
+#~ msgid "&Supported file types:"
+#~ msgstr "&მხარდაჭერილი ფაილის ტიპები:"
+
+#~ msgid "Mimetype"
+#~ msgstr "Mimetype"
+
+#~ msgid "Description"
+#~ msgstr "დახასიათება"
+
+#~ msgid "Add..."
+#~ msgstr "დამატება..."
+
+#~ msgid "Remove"
+#~ msgstr "წაშლა"
+
+#~ msgid "Ad&vanced Options"
+#~ msgstr "&დამატებით პარამეტრები"
+
+#~ msgid "Properties for %1"
+#~ msgstr "%1-ის თვისებები"
+
+#~ msgid "Properties for 1 item"
+#~ msgid_plural "Properties for %1 Selected Items"
+#~ msgstr[0] "1 ჩანაწერის თვისებები"
+#~ msgstr[1] "%1 ჩანაწერის თვისებები"
+
+#~ msgctxt "@title:tab"
+#~ msgid "Share"
+#~ msgstr "გაზიარება"
+
+#~ msgctxt "@title:tab File properties"
+#~ msgid "&General"
+#~ msgstr "&ზოგადი"
+
+#~ msgctxt "@action:button"
+#~ msgid "Explore in %1"
+#~ msgstr "%1-ში დათვალიერება"
+
+#~ msgid "Refresh"
+#~ msgstr "განახლება"
+
+#~ msgid "%1:"
+#~ msgstr "%1:"
+
+#~ msgctxt "Available space out of total partition size (percent used)"
+#~ msgid "%1 free of %2 (%3% used)"
+#~ msgstr "%2-დან %1 თავისუფალია (გამოყენებულია %3%)"
+
+#~ msgctxt "@info:status"
+#~ msgid "Unknown size"
+#~ msgstr "უცნობი ზომა"
+
+#~ msgid ""
+#~ "Calculating... %1 (%2)\n"
+#~ "%3, %4"
+#~ msgstr ""
+#~ "გამოთვლა... %1 (%2)\n"
+#~ "%3, %4"
+
+#~ msgid "1 file"
+#~ msgid_plural "%1 files"
+#~ msgstr[0] "1 ფაილი"
+#~ msgstr[1] "%1 ფაილი"
+
+#~ msgid "1 sub-folder"
+#~ msgid_plural "%1 sub-folders"
+#~ msgstr[0] "1 ქვესაქაღალდე"
+#~ msgstr[1] "%1 ქვესაქაღალდე"
+
+#~ msgid "Calculating...\n"
+#~ msgstr "გამოთვლა...\n"
+
+#~ msgid "At least %1\n"
+#~ msgstr "%1 მაინც\n"
+
+#~ msgid "The new file name is empty."
+#~ msgstr "ახალი ფაილის სახელი ცარიელია."
+
+#~ msgid "No registered file type"
+#~ msgstr "ფაილის ტიპი რეგისტრირებული არაა"
+
+#~ msgid "No associated application"
+#~ msgstr "ასოცირებული აპლიკაციის გარეშე"
+
+#~ msgctxt "@action:button Create new file type"
+#~ msgid "Create…"
+#~ msgstr "&შექმნა...…"
+
+#~ msgctxt "@action:button"
+#~ msgid "Change…"
+#~ msgstr "ცვლილება…"
+
+#~ msgid "No Access"
+#~ msgstr "წვდომის გარეშე"
+
+#~ msgid "Can Only View"
+#~ msgstr "მხოლოდ ნახვის უფლებით"
+
+#~ msgid "Can View & Modify"
+#~ msgstr "ნახვისა და ჩასწორების უფლებით"
+
+#~ msgid "Can Only View Content"
+#~ msgstr "შემცველობის ხოლოდ ნახვის უფლებით"
+
+#~ msgid "Can View & Modify Content"
+#~ msgstr "შემცველობის ნახვისა და ჩასწორების უფლებით"
+
+#~ msgid "Can Only View/Read Content"
+#~ msgstr "შემცველობი მხოლოდ ნახვის/წაკითხვის უფლებით"
+
+#~ msgid "Can View/Read & Modify/Write"
+#~ msgstr "შემცველობის ნახვის/წაკითხვისა და ჩაწერა/შეცვლის უფლებით"
+
+#~ msgid "&Permissions"
+#~ msgstr "უ&ფლებები"
+
+#~ msgid "Access Permissions"
+#~ msgstr "წვდომის უფლებები"
+
+#~ msgid "This file is a link and does not have permissions."
+#~ msgid_plural "All files are links and do not have permissions."
+#~ msgstr[0] "ეს ფაილი ბმულია და წვდომები არ აქვს."
+#~ msgstr[1] "ეს ფაილები ბმულებია და წვდომები არ აქვს."
+
+#~ msgid "Only the owner can change permissions."
+#~ msgstr "წვდომების შეცვლა მხოლოდ მფლობელს შეუძლია."
+
+#~ msgid "O&wner:"
+#~ msgstr "&მფლობელი:"
+
+#~ msgid "Gro&up:"
+#~ msgstr "&ჯგუფი:"
+
+#~ msgid "O&thers:"
+#~ msgstr "&სხვები:"
+
+#~ msgid "Is &executable"
+#~ msgstr "&გაშვებადია"
+
+#~ msgid "A&dvanced Permissions"
+#~ msgstr "&დამატებითი წვდომები"
+
+#~ msgid "Ownership"
+#~ msgstr "მფლობელობა"
+
+#~ msgid "User:"
+#~ msgstr "მომხმარებელი:"
+
+#~ msgid "Group:"
+#~ msgstr "ჯგუფი:"
+
+#~ msgid "Apply changes to all subfolders and their contents"
+#~ msgstr "ცვლილებების გადატარება ყველა ქვესაქაღალდეზე და მათ შემცველობაზე"
+
+#~ msgid "Advanced Permissions"
+#~ msgstr "დამატებითი წვდომები"
+
+#~ msgid "Class"
+#~ msgstr "კლასი"
+
+#~ msgid ""
+#~ "Show\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "ჩანაწერების\n"
+#~ "ჩვენება"
+
+#~ msgid "This flag allows viewing the content of the folder."
+#~ msgstr "ეს ალამი საქაღალდის შემცველობის ნახვის უფლებას გაძლევთ."
+
+#~ msgid "Read"
+#~ msgstr "წაკითხვა"
+
+#~ msgid "The Read flag allows viewing the content of the file."
+#~ msgstr "ეს ალამი ფაილის შემცველობის ნახვის უფლებას გაძლევთ."
+
+#~ msgid ""
+#~ "Write\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "ჩანაწერების\n"
+#~ "ჩაწერა"
+
+#~ msgid ""
+#~ "This flag allows adding, renaming and deleting of files. Note that "
+#~ "deleting and renaming can be limited using the Sticky flag."
+#~ msgstr ""
+#~ "ეს ალამი ფაილის დამატების, სახელის გადარქმევის და წაშლის უფლებას გალევთ. "
+#~ "დაიმახსოვრეთ, რომ წაშლისა და სახელის გადარქმევის შეზღუდვა წებოვანი ალმით "
+#~ "შეგიძლიათ."
+
+#~ msgid "Write"
+#~ msgstr "ჩასწორება"
+
+#~ msgid "The Write flag allows modifying the content of the file."
+#~ msgstr "ეს ალამი ფაილის შემცველობაში ჩაწერის უფლებას გაძლევთ."
+
+#~ msgctxt "Enter folder"
+#~ msgid "Enter"
+#~ msgstr "Enter"
+
+#~ msgid "Enable this flag to allow entering the folder."
+#~ msgstr "ეს ალამი საქაღალდეში შესვლის უფლებას გაძლევთ."
+
+#~ msgid "Exec"
+#~ msgstr "გაშვ"
+
+#~ msgid "Enable this flag to allow executing the file as a program."
+#~ msgstr "ფაილის პროგრამის სახით გასაშვებად ჩაერთეთ ეს სალამი."
+
+#~ msgid "Special"
+#~ msgstr "სპეციალური"
+
+#~ msgid "User"
+#~ msgstr "მომხმარებელი"
+
+#~ msgid "Group"
+#~ msgstr "ფენათა მენიუჯგუფი"
+
+#~ msgid "Set UID"
+#~ msgstr "UID-ის დაყენება"
+
+#~ msgid "Set GID"
+#~ msgstr "GID-ის დაყენება"
+
+#~ msgctxt "File permission"
+#~ msgid "Sticky"
+#~ msgstr "Sticky"
+
+#~ msgid "Link"
+#~ msgstr "Ბმული"
+
+#~ msgid "Varying (No Change)"
+#~ msgstr "ცვალებადი (ცვლილების გარეშე)"
+
+#~ msgid "This file uses advanced permissions"
+#~ msgid_plural "These files use advanced permissions."
+#~ msgstr[0] "ეს ფაილი დამატებით წვდომებს იყენებს"
+#~ msgstr[1] "ეს ფაილები დამატებით წვდომებს იყენებენ."
+
+#~ msgid "This folder uses advanced permissions."
+#~ msgid_plural "These folders use advanced permissions."
+#~ msgstr[0] "ეს საქაღალდეები დამატებით წვდომებს იყენებენ."
+#~ msgstr[1] "ეს საქაღალდეები დამატებით წვდომებს იყენებენ."
+
+#~ msgid "These files use advanced permissions."
+#~ msgstr "ეს ფაილები დამატებით წვდომებს იყენებენ."
+
+#~ msgctxt "@title:tab"
+#~ msgid "C&hecksums"
+#~ msgstr "&საკონტროლო ჯამები"
+
+#~ msgctxt "@action:button"
+#~ msgid "Calculating..."
+#~ msgstr "გაანგარიშება..."
+
+#~ msgid "Invalid checksum."
+#~ msgstr "საკონტროლო ჯამი არასწორია."
+
+#~ msgid "Checksums match."
+#~ msgstr "საკონტროლო ჯამი ემთხვევა."
+
+#~ msgctxt "notify the user about a computation in the background"
+#~ msgid "Verifying checksum..."
+#~ msgstr "საკონტროლო ჯამის შემოწმება..."
+
+#~ msgid "U&RL"
+#~ msgstr "U&RL"
+
+#~ msgid "URL:"
+#~ msgstr "მისამართი:"
+
+#~ msgid "&Application"
+#~ msgstr "&აპლიკაცია"
+
+#~ msgid "Add File Type for %1"
+#~ msgstr "%1-სთვის ფაილის ტიპის დამატება"
+
+#~ msgid "Select one or more file types to add:"
+#~ msgstr "დასამატებლად აირჩიეთ ერთი ან მეტი ფაილის ტიპი:"
+
+#~ msgid "Advanced Options for %1"
+#~ msgstr "%1-ის დამატებითი პარამეტრები"
+
+#~ msgid "KDE SSL Information"
+#~ msgstr "KDE SSL ინფორმაცია"
+
+#~ msgctxt "The receiver of the SSL certificate"
+#~ msgid "Subject"
+#~ msgstr "შინაარსი"
+
+#~ msgctxt "The authority that issued the SSL certificate"
+#~ msgid "Issuer"
+#~ msgstr "გამომცემელი"
+
+#~ msgid "Current connection is secured with SSL."
+#~ msgstr "მიმდინარე კავშირი SSL-ითაა დაცული."
+
+#~ msgid "Current connection is not secured with SSL."
+#~ msgstr "მიმდინარე კავშირი SSL-ით დაცული არაა."
+
+#~ msgctxt "%1, using %2 bits of a %3 bit key"
+#~ msgid "%1, %2 %3"
+#~ msgstr "%1, %2 %3"
+
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "using %1 bit"
+#~ msgid_plural "using %1 bits"
+#~ msgstr[0] "%1 ბიტის გამოყენება"
+#~ msgstr[1] "%1 ბიტის გამოყენება"
+
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "of a %1 bit key"
+#~ msgid_plural "of a %1 bit key"
+#~ msgstr[0] "%1-ბიტიანი გასაღების"
+#~ msgstr[1] "%1-ბიტიანი გასაღების"
+
+#~ msgctxt "The certificate is not trusted"
+#~ msgid "NO, there were errors:"
+#~ msgstr "არა. აღმოჩენილია შეცდომები:"
+
+#~ msgctxt "The certificate is trusted"
+#~ msgid "Yes"
+#~ msgstr "დიახ"
+
+#~ msgctxt "%1 is the effective date of the certificate, %2 is the expiry date"
+#~ msgid "%1 to %2"
+#~ msgstr "%1 %2-მდე"
+
+#~ msgid "Search for '%1' with"
+#~ msgstr "'%1'-ის მოძებნა მოხდება"
+
+#~ msgctxt "@action:inmenu Search for <text> with"
+#~ msgid "%1"
+#~ msgstr "%1"
+
+#~ msgid "Configure Web Shortcuts..."
+#~ msgstr "ვებ მალსახმობების მორგება..."
+
+#~ msgid "Open file dialog"
+#~ msgstr "ფაილის გახსნის დიალოგი"
+
+#~ msgid "Filename for clipboard content:"
+#~ msgstr "ბუფერის შემცველობის ფაილის სახელი:"
+
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Folder"
+#~ msgstr "ერთი საქაღალდის ჩასმა"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One File"
+#~ msgstr "ერთი ფაილის ჩასმა"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Item"
+#~ msgid_plural "Paste %1 Items"
+#~ msgstr[0] "ჩანაწერის ჩასმა"
+#~ msgstr[1] "%1 ჩანაწერის ჩასმა"
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste Clipboard Contents..."
+#~ msgstr "მიმოცვლის ბაფერის შემცველობის ჩასმა..."
+
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste"
+#~ msgstr "ჩასმა"
+
+#~ msgid "Data format:"
+#~ msgstr "მონაცემების ფორმატი:"
+
+#~ msgid "Filename for dropped contents:"
+#~ msgstr "მოცილებული შემცველობის ფაილის სახელი:"
+
+#~ msgid "Date: %1"
+#~ msgstr "თარიღი: %1"
+
+#~ msgid "Size: %1"
+#~ msgstr "ზომა: %1"
+
+#~ msgid "Appl&y to All"
+#~ msgstr "ყველაზე &გადატარება"
+
+#~ msgid "&Rename"
+#~ msgstr "&გადარქმევა"
+
+#~ msgid "Suggest New &Name"
+#~ msgstr "ახალი &სახელი"
+
+#~ msgid "&Skip"
+#~ msgstr "გამო&ტოვება"
+
+#~ msgctxt "Write files into an existing folder"
+#~ msgid "&Write Into"
+#~ msgstr "&ჩაწერა"
+
+#~ msgctxt "Overwrite files into an existing folder when files are older"
+#~ msgid "&Overwrite older files"
+#~ msgstr "&ძველი ფაილების თავზე გადაწერა"
+
+#~ msgid "&Resume"
+#~ msgstr "გაგრძელება"
+
+#~ msgid "C&ontinue"
+#~ msgstr "გაგრ&ძელება"
+
+#~ msgid "This action will overwrite the destination."
+#~ msgstr "ეს ქმედება სამიზნეს თავზე გადააწერს."
+
+#~ msgid "Source"
+#~ msgstr "წყარო"
+
+#~ msgid "Destination"
+#~ msgstr "დანიშნულება"
+
+#~ msgid "Differences"
+#~ msgstr "განსხვავებები"
+
+#~ msgid "The destination is <b>smaller by %1</b>"
+#~ msgstr "სამიზნე <b>%1-ით პატარაა</b>"
+
+#~ msgid "The destination is <b>bigger by %1</b>"
+#~ msgstr "სამიზნე <b>%1-ით დიდია</b>"
+
+#~ msgid "The files are identical."
+#~ msgstr "ფაილები ერთნაირია."
+
+#~ msgid "The files seem identical."
+#~ msgstr "ფაილები ერთნაირია."
+
+#~ msgid "The files are different."
+#~ msgstr "ფაილები განსხვავდება."
+
+#~ msgid "An older item named '%1' already exists."
+#~ msgstr "ძველი ჩანაწერი სახელით '%1' უკვე არსებობს."
+
+#~ msgid "A similar file named '%1' already exists."
+#~ msgstr "მსგავსი ფაილი სახელით '%1' უკვე არსებობს."
+
+#~ msgid "A more recent item named '%1' already exists."
+#~ msgstr "უფრო ახალი ჩანაწერი სახელით '%1' უკვე არსებობს."
+
+#~ msgid "Rename:"
+#~ msgstr "სახელის შეცვლა:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Rename Item"
+#~ msgstr "ჩანაწერის სახელის გადარქმევა"
+
+#~ msgctxt "@title:window"
+#~ msgid "Rename Items"
+#~ msgstr "ჩანაწერების სახელის გადარქმევა"
+
+#~ msgctxt "@action:button"
+#~ msgid "&Rename"
+#~ msgstr "&გადარქმევა"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Rename the item <filename>%1</filename> to:"
+#~ msgstr "მიუთითეთ <filename>%1</filename> -ის ახალი სახელი:"
+
+#~ msgctxt ""
+#~ "This a template for new filenames, # is replaced by a number later, must "
+#~ "be the end character"
+#~ msgid "New name #"
+#~ msgstr "ახალი სახელი #"
+
+#~ msgctxt "@label:textbox"
+#~ msgid "Rename the %1 selected item to:"
+#~ msgid_plural "Rename the %1 selected items to:"
+#~ msgstr[0] "მიუთითეთ %1 მონიშნული ჩანაწერის ახალი სახელი:"
+#~ msgstr[1] "მიუთითეთ %1 მონიშნული ჩანაწერის ახალი სახელი:"
+
+#~ msgid "Information"
+#~ msgstr "ინფორმაცია"
+
+#~ msgid "Retry"
+#~ msgstr "გამეორება"
+
+#~ msgid "Replace All"
+#~ msgstr "ყველას ჩანაცვლება"
+
+#~ msgid "Skip"
+#~ msgstr "გამოტოვება"
+
+#~ msgid "Skip All"
+#~ msgstr "ყველას გამოტოვება"
+
+#~ msgctxt "Web page address"
+#~ msgid "Address:"
+#~ msgstr "მისამართი:"
+
+#~ msgid "IP address:"
+#~ msgstr "IP მისამართი:"
+
+#~ msgid "Encryption:"
+#~ msgstr "შიფრაცია:"
+
+#~ msgid "Details:"
+#~ msgstr "დეტალები:"
+
+#~ msgid "SSL version:"
+#~ msgstr "SSL-ის ვერსია:"
+
+#~ msgid "Certificate chain:"
+#~ msgstr "სერტიფიკატების ჯაჭვი:"
+
+#~ msgid "Trusted:"
+#~ msgstr "სანდო:"
+
+#~ msgid "Validity period:"
+#~ msgstr "ვადა:"
+
+#~ msgid "Serial number:"
+#~ msgstr "სერიული ნომერი:"
+
+#~ msgid "MD5 digest:"
+#~ msgstr "MD5 digest:"
+
+#~ msgid "SHA1 digest:"
+#~ msgstr "SHA1 digest:"
+
+#~ msgctxt "@option:checkbox"
+#~ msgid "Do not ask again"
+#~ msgstr "აღარ მკითხო"
+
+#~ msgctxt "@option:check"
+#~ msgid "Do not ask again"
+#~ msgstr "აღარ მკითხო"
+
+#~ msgctxt "@option:check"
+#~ msgid "Do not show this message again"
+#~ msgstr "მეტჯერ აღარ აჩვენო ეს გაფრთხილება"
+
+#~ msgctxt "Warning about executing unknown program"
+#~ msgid "Warning"
+#~ msgstr "გაფრთხილება"
+
+#~ msgctxt "program name follows in a line edit below"
+#~ msgid "This will start the program:"
+#~ msgstr "ეს გაუშვებს პროგრამას:"
+
+#~ msgid "If you do not trust this program, click Cancel"
+#~ msgstr "თუ ამ პროგრამას არ ენდობით, გაუქმებას დააწექით"
+
+#~ msgid "Blocked request."
+#~ msgstr "დაბლოკილი მოთხოვნა."
+
+#~ msgid "Unknown HTTP verb."
+#~ msgstr "უცნობი HTTP ზმნა."
+
+#~ msgid "<h1>Cookie Management Quick Help</h1>"
+#~ msgstr "<h1>ქუქიების მართვის სწრაფი დახმარება</h1>"
+
+#~ msgid "Web Search Keywords"
+#~ msgstr "ვებში ძებნის საკვანძო სიტყვები"
+
+#~ msgid "Configure enhanced browsing features"
+#~ msgstr "ბრაუზერის დამატებითი პარამეტრების მორგება"
+
+#~ msgid "Using sub-URLs with %1 is not supported."
+#~ msgstr "ქვებმულების გამოყენება %1-თან ერთად მხარდაჭერილი არაა."
+
+#~ msgid "&Yes"
+#~ msgstr "&დიახ"
+
+#~ msgid "&No"
+#~ msgstr "&არა"
+
+#~ msgid "A file or folder named %1 already exists."
+#~ msgstr "საქაღალდე ფაილი სახელით %1 უკვე არსებობს."
+
+#~ msgid "You do not have permission to create that folder."
+#~ msgstr "საქაღალდის შექმნის უფლება არ გაქვთ."
+
+#~ msgid "The desktop is offline"
+#~ msgstr "სამუშაო მაგიდა გათიშულია"
+
+#~ msgid "mounting is not supported by Windows CE."
+#~ msgstr "windows CE-ზე მიმაგრება მხარდაჭერილი არაა."
+
+#~ msgid "unmounting is not supported by Windows CE."
+#~ msgstr "windows CE-ზე მიმაგრების მოხსნა მხარდაჭერილი არაა."
+
+#~ msgid "Mount"
+#~ msgstr "მიმაგრება"
+
+#~ msgid "Unmount"
+#~ msgstr "მოხსნა"
+
+#~ msgid "&Paste File"
+#~ msgid_plural "&Paste %1 Files"
+#~ msgstr[0] "&ფაილის ჩასმა"
+#~ msgstr[1] "%1 &ფაილის ჩასმა"
+
+#~ msgid "&Paste URL"
+#~ msgid_plural "&Paste %1 URLs"
+#~ msgstr[0] "URL-ის ჩასმა"
+#~ msgstr[1] "%1 URL-ის ჩასმა"
+
+#~ msgid "&Paste Clipboard Contents"
+#~ msgstr "&მიმოცვლის ბაფერის შემცველობის ჩასმა"
+
+#~ msgid "None"
+#~ msgstr "არაფერი"
+
+#~ msgid "Multiple Instances"
+#~ msgstr "მრავალი გაშვებული ასლი"
+
+#~ msgid "Single Instance"
+#~ msgstr "ერთი გაშვებული ასლი"
+
+#~ msgid "D-Bus registration:"
+#~ msgstr "D-Bus რეგისტრაცია:"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Images"
+#~ msgstr "გამოსახულებები"
+
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Audio"
+#~ msgstr "აუდიო"
+
+#~ msgid "Co&mmand:"
+#~ msgstr "&ბრძანება:"

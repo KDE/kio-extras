@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2020-06-09 02:09+0200\n"
+"POT-Creation-Date: 2022-07-22 00:44+0000\n"
 "PO-Revision-Date: 2017-07-24 00:24+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -21,12 +21,28 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: kio_smb_auth.cpp:123
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:50
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>Unesite autentifikacione podatke za <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:126
+#: kio_smb_auth.cpp:53
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
@@ -37,17 +53,7 @@ msgstr ""
 "server = %1\n"
 "deljenje = %2"
 
-#: kio_smb_auth.cpp:165
-#, kde-format
-msgid "libsmbclient failed to create context"
-msgstr "Biblioteka SMB klijenta nije uspela da napravi kontekst"
-
-#: kio_smb_auth.cpp:193
-#, kde-format
-msgid "libsmbclient failed to initialize context"
-msgstr "Biblioteka SMB klijenta nije uspela da pripremi kontekst"
-
-#: kio_smb_browse.cpp:56
+#: kio_smb_browse.cpp:58
 #, kde-format
 msgid ""
 "%1:\n"
@@ -56,7 +62,7 @@ msgstr ""
 "%1:\n"
 "Nepoznat format fajla, nije ni fajl ni fascikla."
 
-#: kio_smb_browse.cpp:275
+#: kio_smb_browse.cpp:272
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -65,32 +71,32 @@ msgstr ""
 "Ne mogu da nađem nijednu radnu grupu u lokalnoj mreži. Ovo može biti usled "
 "uključenog zaštitnog zida."
 
-#: kio_smb_browse.cpp:280
+#: kio_smb_browse.cpp:277
 #, kde-format
 msgid "No media in device for %1"
 msgstr "Nema medijuma u uređaju za %1"
 
-#: kio_smb_browse.cpp:286
+#: kio_smb_browse.cpp:283
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "Ne mogu da se povežem sa domaćinom za %1"
 
-#: kio_smb_browse.cpp:298
+#: kio_smb_browse.cpp:295
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "Greška prilikom povezivanja na server odgovoran za %1"
 
-#: kio_smb_browse.cpp:304
+#: kio_smb_browse.cpp:301
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "Deljeni resursi nisu pronađeni na datom serveru"
 
-#: kio_smb_browse.cpp:306
+#: kio_smb_browse.cpp:303
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "Loš opisnik fajla"
 
-#: kio_smb_browse.cpp:314
+#: kio_smb_browse.cpp:311
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -101,7 +107,7 @@ msgstr ""
 "mrežnim podešavanjima nema sukobljenih imena, prema načinima razrešavanja "
 "Windowsa i Unixa."
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:318
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -109,7 +115,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr ""
 
-#: kio_smb_browse.cpp:324
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -128,19 +134,24 @@ msgstr ""
 "želite da iznesete, popis možete poslati privatno programerima ako ga "
 "zatraže)."
 
-#: kio_smb_browse.cpp:337
+#: kio_smb_browse.cpp:334
 #, fuzzy, kde-format
 #| msgid "Unknown error condition in stat: %1"
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Nepoznato stanje greške u ispitu: %1"
 
-#: kio_smb_browse.cpp:356
+#: kio_smb_browse.cpp:352
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "Greška pri pokušaju pristupa %1:<nl/>%2"
 
-#: kio_smb_mount.cpp:91 kio_smb_mount.cpp:117
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "Biblioteka SMB klijenta nije uspela da napravi kontekst"
+
+#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
 #, kde-format
 msgid ""
 "\n"
@@ -149,7 +160,7 @@ msgstr ""
 "\n"
 "Proverite da li je Samba pravilno instalirana na sistemu."
 
-#: kio_smb_mount.cpp:101
+#: kio_smb_mount.cpp:171
 #, kde-format
 msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
@@ -159,7 +170,7 @@ msgstr ""
 "nije uspelo.\n"
 "%4"
 
-#: kio_smb_mount.cpp:127
+#: kio_smb_mount.cpp:196
 #, kde-format
 msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
@@ -168,9 +179,12 @@ msgstr ""
 "Demontiranje „%1“ nije uspelo.\n"
 "%2"
 
-#: wsdiscoverer.cpp:158
+#: wsdiscoverer.cpp:173
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
 msgstr ""
+
+#~ msgid "libsmbclient failed to initialize context"
+#~ msgstr "Biblioteka SMB klijenta nije uspela da pripremi kontekst"

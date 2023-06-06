@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2019-05-20 03:10+0200\n"
+"POT-Creation-Date: 2022-05-06 00:45+0000\n"
 "PO-Revision-Date: 2014-10-18 19:34+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -19,47 +19,56 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: kio_nfs.cpp:131
+#: kio_nfs.cpp:156
 #, kde-format
-msgid "%1: Unsupported NFS version"
-msgstr "%1: неподржана верзија НФС‑а"
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr ""
 
-#: kio_nfs.cpp:654
+#: kio_nfs.cpp:336
 #, kde-format
-msgid "RPC error %1"
+msgid "The NFS protocol requires a server host name."
+msgstr ""
+
+#: kio_nfs.cpp:369
+#, kde-format
+msgid "Failed to initialise protocol"
+msgstr ""
+
+#: kio_nfs.cpp:852
+#, fuzzy, kde-format
+#| msgid "RPC error %1"
+msgid "RPC error %1, %2"
 msgstr "РПЦ грешка %1"
 
-#: kio_nfs.cpp:697
-#, kde-format
-msgid "No space left on device"
-msgstr "Нема простора на уређају"
-
-#: kio_nfs.cpp:700
-#, kde-format
-msgid "Read only file system"
-msgstr "Фајл систем само‑за‑читање"
-
-#: kio_nfs.cpp:703
+#: kio_nfs.cpp:902
 #, kde-format
 msgid "Filename too long"
 msgstr "Предугачко име фајла"
 
-#: kio_nfs.cpp:710
+#: kio_nfs.cpp:909
 #, kde-format
 msgid "Disk quota exceeded"
 msgstr "Прекорачена квота диска"
 
-#: kio_nfs.cpp:716
-#, kde-format
-msgid "NFS error %1 - %2"
+#: kio_nfs.cpp:915
+#, fuzzy, kde-format
+#| msgid "NFS error %1 - %2"
+msgid "NFS error %1, %2"
 msgstr "НФС грешка %1 — %2"
 
-#: nfsv2.cpp:260 nfsv3.cpp:275
-#, kde-format
-msgid "Failed to mount %1"
-msgstr "Не могу да монтирам %1"
-
-#: nfsv2.cpp:431 nfsv2.cpp:492 nfsv3.cpp:447 nfsv3.cpp:612
+#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
 #, kde-format
 msgid "Unknown target"
 msgstr "Непознат циљ"
+
+#~ msgid "%1: Unsupported NFS version"
+#~ msgstr "%1: неподржана верзија НФС‑а"
+
+#~ msgid "No space left on device"
+#~ msgstr "Нема простора на уређају"
+
+#~ msgid "Read only file system"
+#~ msgstr "Фајл систем само‑за‑читање"
+
+#~ msgid "Failed to mount %1"
+#~ msgstr "Не могу да монтирам %1"

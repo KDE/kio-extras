@@ -1,0 +1,5424 @@
+# KDE breton translation
+# Thierry Vignaud <tvignaud@mandriva.com>, 2004-2005
+msgid ""
+msgstr ""
+"Project-Id-Version: kcmkio\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"PO-Revision-Date: 2004-09-19 18:24+0200\n"
+"Last-Translator: Thierry Vignaud <tvignaud.com>\n"
+"Language-Team: Brezhoneg <Suav.Icb.fr>\n"
+"Language: br\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: cookies/kcookiesmain.cpp:37
+#, kde-format
+msgid "&Policy"
+msgstr "&Politikerez"
+
+#: cookies/kcookiesmain.cpp:44
+#, kde-format
+msgid "&Management"
+msgstr "&Mererezh"
+
+#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
+#, kde-format
+msgid "D-Bus Communication Error"
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:127
+#, kde-format
+msgid "Unable to delete all the cookies as requested."
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:144
+#, kde-format
+msgid "Unable to delete cookies as requested."
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:223
+#, kde-format
+msgid "Information Lookup Failure"
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:225
+#, kde-format
+msgid ""
+"Unable to retrieve information about the cookies stored on your computer."
+msgstr ""
+
+#: cookies/kcookiesmanagement.cpp:316
+#, kde-format
+msgid "End of session"
+msgstr "Echu eo an dalc'h"
+
+#: cookies/kcookiesmanagement.cpp:323
+#, kde-format
+msgid "Yes"
+msgstr "Ya"
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
+#: cookies/kcookiesmanagement.ui:20
+#, fuzzy, kde-format
+#| msgid "&Search:"
+msgid "Search"
+msgstr "&Klask :"
+
+#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:27
+#, kde-format
+msgid "Search interactively for domains and hosts"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:43
+#, fuzzy, kde-format
+#| msgid "Site Name"
+msgid "Site"
+msgstr "Anv al lec'hienn"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
+#: cookies/kcookiesmanagement.ui:48
+#, fuzzy, kde-format
+#| msgid "Site Name"
+msgid "Cookie Name"
+msgstr "Anv al lec'hienn"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
+#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
+#, kde-format
+msgid "D&elete"
+msgstr "&Dilemel"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
+#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
+#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
+#, kde-format
+msgid "Delete A&ll"
+msgstr "Dilemel an &holl re"
+
+#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
+#: cookies/kcookiesmanagement.ui:70
+#, fuzzy, kde-format
+#| msgid "Change &Policy..."
+msgid "Configure &Policy..."
+msgstr "Kemmañ ar &politikerez ..."
+
+#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
+#: cookies/kcookiesmanagement.ui:77
+#, kde-format
+msgid "&Reload List"
+msgstr "&Adkargañ ar roll"
+
+#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
+#: cookies/kcookiesmanagement.ui:97
+#, kde-format
+msgid "Details"
+msgstr "Munudoù"
+
+#. i18n: ectx: property (text), widget (QLabel, nameLabel)
+#: cookies/kcookiesmanagement.ui:106
+#, kde-format
+msgid "Name:"
+msgstr "Anv :"
+
+#. i18n: ectx: property (text), widget (QLabel, valueLabel)
+#: cookies/kcookiesmanagement.ui:129
+#, kde-format
+msgid "Value:"
+msgstr "Gwerzh :"
+
+#. i18n: ectx: property (text), widget (QLabel, domainLabel)
+#: cookies/kcookiesmanagement.ui:152
+#, kde-format
+msgid "Domain:"
+msgstr "Domani :"
+
+#. i18n: ectx: property (text), widget (QLabel, patchLabel)
+#: cookies/kcookiesmanagement.ui:175
+#, kde-format
+msgid "Path:"
+msgstr "Hent :"
+
+#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
+#: cookies/kcookiesmanagement.ui:198
+#, fuzzy, kde-format
+msgid "Expires:"
+msgstr "Ment :"
+
+#. i18n: ectx: property (text), widget (QLabel, secureLabel)
+#: cookies/kcookiesmanagement.ui:221
+#, kde-format
+msgid "Secure:"
+msgstr ""
+
+#: cookies/kcookiespolicies.cpp:154
+#, fuzzy, kde-format
+#| msgid "Change Cookie Policy"
+msgctxt "@title:window"
+msgid "Change Cookie Policy"
+msgstr "Kemmañ politikerez an toupinoù"
+
+#: cookies/kcookiespolicies.cpp:173
+#, fuzzy, kde-format
+#| msgid "New Cookie Policy"
+msgctxt "@title:window"
+msgid "New Cookie Policy"
+msgstr "Politikerez nevez evit an toupinoù"
+
+#: cookies/kcookiespolicies.cpp:206
+#, kde-format
+msgid ""
+"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+"replace it?</qt>"
+msgstr ""
+"<qt>Ur bolitikerez a zo c'hoazh evit <center><b>%1</b></center>. Fellout a "
+"ra deoc'h resklañ anezhi ?</qt>"
+
+#: cookies/kcookiespolicies.cpp:210
+#, fuzzy, kde-format
+#| msgid "Duplicate Policy"
+msgctxt "@title:window"
+msgid "Duplicate Policy"
+msgstr "Eilañ ar politikerez"
+
+#: cookies/kcookiespolicies.cpp:211
+#, kde-format
+msgid "Replace"
+msgstr "Erlec'hiañ"
+
+#: cookies/kcookiespolicies.cpp:387
+#, kde-format
+msgid ""
+"Unable to communicate with the cookie handler service.\n"
+"Any changes you made will not take effect until the service is restarted."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enable cookie support. Normally you will want to have cookie support "
+"enabled and customize it to suit your privacy needs.</p><p>\n"
+"Please note that disabling cookie support might make many web sites "
+"unbrowsable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
+#: cookies/kcookiespolicies.ui:23
+#, kde-format
+msgid "Enable coo&kies"
+msgstr "Bevaat an tou&pinoù"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:35
+#, kde-format
+msgid ""
+"<qt>\n"
+"Reject the so called third-party cookies. These are cookies that originate "
+"from a site other than the one you are currently browsing. For example, if "
+"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
+"originate from www.foobar.com will be processed per your settings. Cookies "
+"from any other site will be rejected. This reduces the chances of site "
+"operators compiling a profile about your daily browsing habits.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
+#: cookies/kcookiespolicies.ui:38
+#, kde-format
+msgid "Only acce&pt cookies from originating server"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:46
+#, kde-format
+msgid ""
+"<p>\n"
+"Automatically accept temporary cookies meant to expire at the end of the "
+"current session. Such cookies will not be stored in your computer's hard "
+"drive or storage device. Instead, they are deleted when you close all "
+"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
+"this option overrides your default as well as site specific cookie policies "
+"for session cookies.</p>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
+#: cookies/kcookiespolicies.ui:49
+#, kde-format
+msgid "Automaticall&y accept session cookies"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:68
+#, kde-format
+msgid ""
+"<qt>\n"
+"Determines how cookies received from a remote machine will be handled: \n"
+"<ul>\n"
+"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
+"wants to set a cookie.</li>\n"
+"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
+"li>\n"
+"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
+"</li>\n"
+"</ul><p>\n"
+"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
+"precedence over the default policy.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
+#: cookies/kcookiespolicies.ui:71
+#, kde-format
+msgid "Default Policy"
+msgstr "Politikerez dre ziouer"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
+#: cookies/kcookiespolicies.ui:77
+#, kde-format
+msgid "Accep&t all cookies"
+msgstr "Aotren an holl doupinoù"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
+#: cookies/kcookiespolicies.ui:84
+#, fuzzy, kde-format
+#| msgid "End of session"
+msgid "Accept &until end of session"
+msgstr "Echu eo an dalc'h"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
+#: cookies/kcookiespolicies.ui:91
+#, kde-format
+msgid "Ask &for confirmation"
+msgstr "Goulenn &evit ar gadarnadur"
+
+#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
+#: cookies/kcookiespolicies.ui:98
+#, kde-format
+msgid "Re&ject all cookies"
+msgstr "&Nac'h an holl doupinoù"
+
+#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:123
+#, kde-format
+msgid ""
+"<qt>\n"
+"To add a new policy, simply click on the <b>Add...</b> button and supply the "
+"necessary information. To change an existing policy, use the <b>Change...</"
+"b> button and choose the new policy from the policy dialog box. Clicking on "
+"the <b>Delete</b> button will remove the currently selected policy causing "
+"the default policy setting to be used for that domain, whereas <b>Delete "
+"All</b> will remove all the site specific policies.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
+#: cookies/kcookiespolicies.ui:126
+#, kde-format
+msgid "Site Policy"
+msgstr "Politikerez evait al lec'hienn"
+
+#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:135
+#, kde-format
+msgid "Search interactively for domains"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
+#: cookies/kcookiespolicies.ui:138
+#, fuzzy, kde-format
+#| msgid "&Search:"
+msgid "Search..."
+msgstr "&Klask :"
+
+#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:147
+#, kde-format
+msgid ""
+"<qt>\n"
+"List of sites for which you have set a specific cookie policy. Specific "
+"policies override the default policy setting for these sites.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:163
+#, kde-format
+msgid "Domain"
+msgstr "Domani"
+
+#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
+#: cookies/kcookiespolicies.ui:168
+#, kde-format
+msgid "Policy"
+msgstr "Politikerez"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Nevez ..."
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Kemmañ ..."
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:26
+#: cookies/kcookiespolicyselectiondlg.ui:81
+#, kde-format
+msgid "Accept"
+msgstr "Aotren"
+
+#: cookies/kcookiespolicyselectiondlg.h:28
+#, fuzzy
+#| msgid "End of Session"
+msgid "Accept For Session"
+msgstr "Echu eo an dalc'h"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:30
+#: cookies/kcookiespolicyselectiondlg.ui:91
+#, kde-format
+msgid "Reject"
+msgstr "Nac'h"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.h:32
+#: cookies/kcookiespolicyselectiondlg.ui:96
+#, kde-format
+msgid "Ask"
+msgstr "Goulenn"
+
+#: cookies/kcookiespolicyselectiondlg.h:34
+#, fuzzy
+#| msgid "Do Not Store"
+msgid "Do Not Know"
+msgstr "Ne enrollit ket"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:22
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
+"b> or <b>.kde.org</b>.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:25
+#, fuzzy, kde-format
+#| msgid "Site Name"
+msgid "Site name:"
+msgstr "Anv al lec'hienn"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
+#: cookies/kcookiespolicyselectiondlg.ui:38
+#, kde-format
+msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:53
+#: cookies/kcookiespolicyselectiondlg.ui:77
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the desired policy:\n"
+"<ul>\n"
+"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
+"they will expire at the end of the session.</li>\n"
+"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+"</ul>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:56
+#, fuzzy, kde-format
+#| msgid "&Policy:"
+msgid "Policy:"
+msgstr "&Politikerez :"
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
+#: cookies/kcookiespolicyselectiondlg.ui:86
+#, fuzzy, kde-format
+#| msgid "End of session"
+msgid "Accept until end of session"
+msgstr "Echu eo an dalc'h"
+
+#: ksaveioconfig.cpp:212
+#, kde-format
+msgid ""
+"You have to restart the running applications for these changes to take "
+"effect."
+msgstr ""
+
+#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#, fuzzy, kde-format
+#| msgid "&Paste File"
+#| msgid_plural "&Paste %1 Files"
+msgctxt "@title:window"
+msgid "Update Failed"
+msgstr "&Pegañ %1 restr"
+
+#: ksaveioconfig.cpp:225
+#, kde-format
+msgid "You have to restart KDE for these changes to take effect."
+msgstr "Red eo deoc'h da adloc'hañ KDE evit arloañ ar c'hemmoù."
+
+#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:10
+#, kde-format
+msgid "Disable Passive FTP"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
+#: netpref/kio_ftprc.kcfg:11
+#, kde-format
+msgid ""
+"When FTP connections are passive the client connects to the server, instead "
+"of the other way round, so firewalls do not block the connection; old FTP "
+"servers may not support Passive FTP though."
+msgstr ""
+
+#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#, kde-format
+msgid "Mark partially uploaded files"
+msgstr ""
+
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#, kde-format
+msgid ""
+"While a file is being uploaded its extension is \".part\". When fully "
+"uploaded it is renamed to its real name."
+msgstr ""
+
+#: netpref/netpref.cpp:30
+#, kde-format
+msgid "Timeout Values"
+msgstr "Gwerzhioù an amzer-hont"
+
+#: netpref/netpref.cpp:32
+#, kde-format
+msgid ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is 1 second."
+msgid_plural ""
+"Here you can set timeout values. You might want to tweak them if your "
+"connection is very slow. The maximum allowed value is %1 seconds."
+msgstr[0] ""
+msgstr[1] ""
+
+#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
+#: netpref/netpref.cpp:63
+#, fuzzy, kde-format
+#| msgid " sec"
+msgid " second"
+msgid_plural " seconds"
+msgstr[0] " eil"
+msgstr[1] ""
+
+#: netpref/netpref.cpp:47
+#, kde-format
+msgid "Soc&ket read:"
+msgstr "Lenn ur so&ket :"
+
+#: netpref/netpref.cpp:53
+#, kde-format
+msgid "Pro&xy connect:"
+msgstr "Kevreadenn ouzh ur servijer prok&si :"
+
+#: netpref/netpref.cpp:59
+#, kde-format
+msgid "Server co&nnect:"
+msgstr "Ke&vreadenn ouzh ur servijer :"
+
+#: netpref/netpref.cpp:65
+#, kde-format
+msgid "&Server response:"
+msgstr "Respont ar &servijer :"
+
+#: netpref/netpref.cpp:67
+#, fuzzy, kde-format
+#| msgid "Operation"
+msgid "Global Options"
+msgstr "Ober"
+
+#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#, kde-format
+msgid "Mark &partially uploaded files"
+msgstr ""
+
+#: netpref/netpref.cpp:73
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+"p><p>When this option is enabled, partially uploaded files will have a \"."
+"part\" extension. This extension will be removed once the transfer is "
+"complete.</p>"
+msgstr ""
+
+#: netpref/netpref.cpp:90
+#, kde-format
+msgid " byte"
+msgid_plural " bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: netpref/netpref.cpp:92
+#, kde-format
+msgctxt "@label:spinbox"
+msgid ""
+"If cancelled, automatically delete partially uploaded files smaller than:"
+msgstr ""
+
+#: netpref/netpref.cpp:94
+#, kde-format
+msgid "FTP Options"
+msgstr "Dibaboù FTP"
+
+#: netpref/netpref.cpp:98
+#, kde-format
+msgid "Enable passive &mode (PASV)"
+msgstr ""
+
+#: netpref/netpref.cpp:100
+#, kde-format
+msgid ""
+"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
+"behind firewalls."
+msgstr ""
+
+#: netpref/netpref.cpp:108
+#, kde-format
+msgid ""
+"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+"partially uploaded files will have a \".part\" extension. This extension "
+"will be removed once the transfer is complete.</p>"
+msgstr ""
+
+#: proxy/kproxydlg.cpp:193
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Not all applications will use this proxy setting. In particular, "
+"<application>Firefox</application> and <application>Chromium</application> "
+"or anything derived from them, or anything using <application>QtWebEngine</"
+"application>&nbsp;- which includes <application>Konqueror</application> "
+"using the <application>WebEnginePart</application>, <application>Akregator</"
+"application> and <application>Falkon</application>&nbsp;- will not use these "
+"settings. Some applications may allow the proxy to be configured in their "
+"own settings."
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
+#: proxy/kproxydlg.ui:20
+#, kde-format
+msgid ""
+"<qt>\n"
+"Setup proxy configuration.\n"
+"<p>\n"
+"A proxy server is an intermediate machine that sits between your computer "
+"and the Internet and provides services such as web page caching and "
+"filtering. Caching proxy servers give you faster access to web sites you "
+"have already visited by locally storing or caching those pages; filtering "
+"proxy servers usually provide the ability to block out requests for ads, "
+"spam, or anything else you want to block.\n"
+"<p>\n"
+"If you are uncertain whether or not you need to use a proxy server to "
+"connect to the Internet, consult your Internet service provider's setup "
+"guide or your system administrator.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:26
+#, kde-format
+msgid "Connect to the Internet directly."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:29
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "No Proxy"
+msgstr "&Proksi"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:46
+#, kde-format
+msgid ""
+"<qt>\n"
+"Automatically detect and configure the proxy settings.<p>\n"
+"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
+"<b>NOTE:</b> This option might not work properly or not work at all in some "
+"UNIX/Linux distributions.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:49
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgid "Detect proxy configuration automatically"
+msgstr "Dinoiñ kefluniadur ar proksi dre a&rdivink"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:59
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr "Dinoiñ kefluniadur ar proksi dre a&rdivink"
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:62
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgid "Use proxy auto configuration URL:"
+msgstr "Dinoiñ kefluniadur ar proksi dre a&rdivink"
+
+#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
+#: proxy/kproxydlg.ui:93
+#, kde-format
+msgid "Enter the address for the proxy configuration script."
+msgstr "Roit chomlec'h uzhiaoueg gefluniadur ar proksi."
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:117
+#, kde-format
+msgid ""
+"<qt><p>Use proxy settings defined on the system.</p>\n"
+"<p>Some platforms offer system wide proxy configuration information and "
+"selecting this option allows you to use those settings.</p>\n"
+"<p>On Mac platforms</p>\n"
+"<p>On Windows platforms</p>\n"
+"<p>On Unix and Linux platforms, such system proxy settings are usually "
+"defined through environment variables. The following environment variables "
+"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:120
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgid "Use system proxy configuration:"
+msgstr "Dinoiñ kefluniadur ar proksi dre a&rdivink"
+
+#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:127
+#, kde-format
+msgid ""
+"<qt>Attempt automatic discovery of the environment variables used for "
+"setting system wide proxy information.<p> This feature works by searching "
+"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:130
+#, fuzzy, kde-format
+#| msgid "Auto &Detect"
+msgid "Auto D&etect"
+msgstr "&Dinoiñ dre ardivink"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
+#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "HTTP Proxy:"
+msgstr "&Proksi"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
+#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "SSL Proxy:"
+msgstr "&Proksi"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
+#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "FTP Proxy:"
+msgstr "&Proksi"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:263
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
+#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgid "SOCKS Proxy:"
+msgstr "&Proksi"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:285
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the proxy server should not be used.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
+#, fuzzy, kde-format
+#| msgid "E&xceptions"
+msgid "Exceptions:"
+msgstr "D&ireolderoù"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:317
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:324
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:343
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgid "Manually enter proxy server configuration information."
+msgstr "Dinoiñ kefluniadur ar proksi dre a&rdivink"
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:346
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgid "Use manually specified proxy configuration:"
+msgstr "Dinoiñ kefluniadur ar proksi dre a&rdivink"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:398
+#, kde-format
+msgid "Enter the address of the HTTP proxy server."
+msgstr "Roit chomlec'h ar servijer proksi HTTP."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
+#: proxy/kproxydlg.ui:574
+#, kde-format
+msgid "Port:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:421
+#, fuzzy, kde-format
+#| msgid "Enter the address of the HTTP proxy server."
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "Roit chomlec'h ar servijer proksi HTTP."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:436
+#, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:464
+#, kde-format
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "Roit chomlec'h ar servijer proksi HTTPS."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:481
+#, fuzzy, kde-format
+#| msgid "Enter the address of the HTTPS proxy server."
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "Roit chomlec'h ar servijer proksi HTTPS."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:517
+#, kde-format
+msgid "Enter the address of the FTP proxy server."
+msgstr "Roit chomlec'h ar servijer proksi FTP."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:534
+#, fuzzy, kde-format
+#| msgid "Enter the address of the FTP proxy server."
+msgid "Enter the port number of the FTP proxy server."
+msgstr "Roit chomlec'h ar servijer proksi FTP."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:567
+#, fuzzy, kde-format
+#| msgid "Enter the address of the HTTPS proxy server."
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "Roit chomlec'h ar servijer proksi HTTPS."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:584
+#, fuzzy, kde-format
+#| msgid "Enter the address of the HTTPS proxy server."
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "Roit chomlec'h ar servijer proksi HTTPS."
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
+#: proxy/kproxydlg.ui:628
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enter a comma separated list of hostnames or ip addresses that should be "
+"excluded from using the above proxy settings.</p>\n"
+"<p>If you want to exclude all hosts for a given domain, then simply enter "
+"the domain name preceded by a dot. For example, to exclude all hostnames for "
+"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
+"'?' are not supported and will have no effect.</p>\n"
+"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:639
+#, kde-format
+msgid ""
+"<qt>\n"
+"Check this box if you want the above proxy settings to apply only to the "
+"addresses listed in the <i>Exceptions</i> list.</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:642
+#, kde-format
+msgid "Use proxy settings only for addresses in the Exceptions list"
+msgstr ""
+
+#: smb/smbrodlg.cpp:27
+#, kde-format
+msgid "These settings apply to network browsing only."
+msgstr ""
+
+#: smb/smbrodlg.cpp:31
+#, kde-format
+msgid "Default user name:"
+msgstr "Anv an arveriad dre ziouer :"
+
+#: smb/smbrodlg.cpp:39
+#, kde-format
+msgid "Default password:"
+msgstr "Tremenger dre ziouer :"
+
+#: trash/kcmtrash.cpp:138
+#, fuzzy, kde-format
+#| msgid "1 day %2"
+#| msgid_plural "%1 days %2"
+msgid " days"
+msgstr "%1 deiz %2"
+
+#: trash/kcmtrash.cpp:203
+#, kde-format
+msgid ""
+"<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
+"para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:205
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Emptying KDE's wastebin will remove only KDE's trash items, "
+"while<br>emptying the Trash through the Finder will delete everything.</"
+"para><para>KDE's trash items will show up in a folder called KDE.trash, in "
+"the Trash can.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:246
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgid "Delete files older than"
+msgstr "Distruj renkell"
+
+#: trash/kcmtrash.cpp:249
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to allow <emphasis strong='true'>automatic deletion</"
+"emphasis> of files that are older than the value specified. Leave this "
+"disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
+"items after a certain timespan</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:256
+#, fuzzy, kde-format
+#| msgid "1 day %2"
+#| msgid_plural "%1 days %2"
+msgid " day"
+msgid_plural " days"
+msgstr[0] "%1 deiz %2"
+msgstr[1] ""
+
+#: trash/kcmtrash.cpp:258
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Set the number of days that files can remain in the trash. Any files "
+"older than this will be automatically deleted.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:262
+#, kde-format
+msgid "Cleanup:"
+msgstr ""
+
+#: trash/kcmtrash.cpp:265
+#, kde-format
+msgid "Limit to"
+msgstr ""
+
+#: trash/kcmtrash.cpp:267
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Check this box to limit the trash to the maximum amount of disk space "
+"that you specify below. Otherwise, it will be unlimited.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:270
+#, kde-format
+msgid "Size:"
+msgstr "Ment :"
+
+#: trash/kcmtrash.cpp:277
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the maximum percent of disk space that will be used for the "
+"trash.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:282
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>This is the calculated amount of disk space that will be allowed for "
+"the trash, the maximum.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:286
+#, fuzzy, kde-format
+msgid "Show a Warning"
+msgstr "Diwallit"
+
+#: trash/kcmtrash.cpp:287
+#, fuzzy, kde-format
+msgid "Delete Oldest Files From Trash"
+msgstr "Distruj restroù"
+
+#: trash/kcmtrash.cpp:288
+#, fuzzy, kde-format
+msgid "Delete Biggest Files From Trash"
+msgstr "Distruj restroù"
+
+#: trash/kcmtrash.cpp:290
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>When the size limit is reached, it will prefer to delete the type of "
+"files that you specify, first. If this is set to warn you, it will do so "
+"instead of automatically deleting files.</para>"
+msgstr ""
+
+#: trash/kcmtrash.cpp:292
+#, fuzzy, kde-format
+#| msgid "Trash"
+msgid "Full Trash:"
+msgstr "Pod-lastez"
+
+#: webshortcuts/ikwsopts.cpp:38
+#, fuzzy, kde-format
+#| msgid "Name"
+msgctxt "@title:column Name label from web search keyword column"
+msgid "Name"
+msgstr "Anv"
+
+#: webshortcuts/ikwsopts.cpp:40
+#, kde-format
+msgctxt "@title:column"
+msgid "Keywords"
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:42
+#, kde-format
+msgctxt "@title:column"
+msgid "Preferred"
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:101
+#, kde-kuit-format
+msgctxt "@info:tooltip"
+msgid ""
+"Check this box to select the highlighted web search keyword as preferred.<nl/"
+">Preferred web search keywords are used in places where only a few select "
+"keywords can be shown at one time."
+msgstr ""
+
+#: webshortcuts/ikwsopts.cpp:202
+#, fuzzy, kde-format
+#| msgid "None"
+msgctxt "@item:inlistbox No default web search keyword"
+msgid "None"
+msgstr "Ebet"
+
+#: webshortcuts/ikwsopts.cpp:246
+#, kde-format
+msgid "Search F&ilters"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:17
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"search keywords allow you to quickly access or search for information "
+"located online or on your hard drive. </p><p>KDE comes with many predefined "
+"keywords. One such keyword can be used to perform a the Google (TM) search; "
+"to use it, you simply type the keyword 'gg' followed by the keyword "
+"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
+"KDE</span>.</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
+#: webshortcuts/ikwsopts_ui.ui:20
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "&Enable Web search keywords"
+msgstr "Tremenger dre ziouer :"
+
+#. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:30
+#, kde-format
+msgid "&Use preferred keywords only"
+msgstr ""
+
+#. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
+#: webshortcuts/ikwsopts_ui.ui:37
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Search for web search keywords"
+msgstr "Tremenger dre ziouer :"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:71
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Add a new Web search keyword"
+msgstr "Tremenger dre ziouer :"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:84
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Modify the highlighted Web search keyword"
+msgstr "Tremenger dre ziouer :"
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:97
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Delete the highlighted Web search keyword"
+msgstr "Tremenger dre ziouer :"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
+#: webshortcuts/ikwsopts_ui.ui:100
+#, kde-format
+msgid "De&lete"
+msgstr "&Dilemel"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:138
+#, kde-format
+msgid ""
+"<qt>\n"
+"Select the search engine to use for input boxes that provide automatic "
+"lookup services when you type in normal words and phrases instead of a URL. "
+"To disable this feature select <b>None</b> from the list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:141
+#, fuzzy, kde-format
+#| msgid "Default password:"
+msgid "Default Web &search keyword:"
+msgstr "Tremenger dre ziouer :"
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:166
+#, kde-format
+msgid ""
+"<html><head/><body><p>Select a default web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to web "
+"search keyword queries when they cannot be filtered into a proper URL. </"
+"p><p>To disable this functionality select <span style=\" font-weight:600;"
+"\">None</span> from the list. </p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:182
+#, kde-format
+msgid ""
+"Choose the delimiter that separates the keyword from the phrase or word to "
+"be searched."
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:185
+#, kde-format
+msgid "&Keyword delimiter:"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:204
+#, kde-format
+msgid "Choose a delimiter to mark the Web search keyword."
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:208
+#, kde-format
+msgctxt "Colon as keyword delimiter"
+msgid "Colon"
+msgstr ""
+
+#. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
+#: webshortcuts/ikwsopts_ui.ui:213
+#, kde-format
+msgctxt "Space as keyword delimiter"
+msgid "Space"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:49
+#, fuzzy, kde-format
+#| msgid "Default"
+msgctxt "@item:inlistbox The default character set"
+msgid "Default"
+msgstr "Dre ziouer"
+
+#: webshortcuts/searchproviderdlg.cpp:52
+#, kde-format
+msgid "Modify Web Shortcut"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:60
+#, kde-format
+msgid "New Web Shortcut"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:121
+#, kde-format
+msgid ""
+"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"one."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:126
+#, fuzzy, kde-format
+#| msgid "%1 %"
+msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
+msgid "- %1: \"%2\""
+msgstr "%1 %"
+
+#: webshortcuts/searchproviderdlg.cpp:130
+#, kde-format
+msgid ""
+"The following shortcuts are already assigned. Please choose different ones.\n"
+"%1"
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:143
+#, kde-format
+msgid ""
+"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"This means that the same page is always going to be visited, regardless of "
+"the text typed in with the shortcut."
+msgstr ""
+
+#: webshortcuts/searchproviderdlg.cpp:147
+#, kde-format
+msgid "Keep It"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:17
+#, fuzzy, kde-format
+#| msgid "Enter the address of the FTP proxy server."
+msgid "Enter the human-readable name of the search provider here."
+msgstr "Roit chomlec'h ar servijer proksi FTP."
+
+#. i18n: ectx: property (text), widget (QLabel, lbName)
+#: webshortcuts/searchproviderdlg_ui.ui:23
+#, fuzzy, kde-format
+#| msgid "Site Name"
+msgid "Shortcut &name:"
+msgstr "Anv al lec'hienn"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:42
+#: webshortcuts/searchproviderdlg_ui.ui:64
+#: webshortcuts/searchproviderdlg_ui.ui:70
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the URI that is used to perform a search on the search engine here.<br/"
+">The whole text to be searched for can be specified as \\{@} or \\{0}.<br/>\n"
+"Recommended is \\{@}, since it removes all query variables (name=value) from "
+"the resulting string, whereas \\{0} will be substituted with the unmodified "
+"query string.<br/>You can use \\{1} ... \\{n} to specify certain words from "
+"the query and \\{name} to specify a value given by 'name=value' in the user "
+"query.<br/>In addition it is possible to specify multiple references (names, "
+"numbers and strings) at once (\\{name1,name2,...,\"string\"}).<br/>The first "
+"matching value (from the left) will be used as the substitution value for "
+"the resulting URI.<br/>A quoted string can be used as the default value if "
+"nothing matches from the left of the reference list.\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbQuery)
+#: webshortcuts/searchproviderdlg_ui.ui:48
+#, kde-format
+msgid "Shortcut &URL:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:83
+#, kde-format
+msgid "Select the character set that will be used to encode your search query."
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:92
+#: webshortcuts/searchproviderdlg_ui.ui:97
+#: webshortcuts/searchproviderdlg_ui.ui:116
+#, kde-format
+msgid ""
+"<qt>\n"
+"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+"b>\n"
+"</qt>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:104
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, kde-format
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
+"</p></body></html>"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbShortcut)
+#: webshortcuts/searchproviderdlg_ui.ui:119
+#, kde-format
+msgid "&Shortcuts:"
+msgstr ""
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:132
+#, kde-format
+msgid "Select the character set that will be used to encode your search query"
+msgstr ""
+
+#. i18n: ectx: property (text), widget (QLabel, lbCharset)
+#: webshortcuts/searchproviderdlg_ui.ui:135
+#, kde-format
+msgid "&Charset:"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
+#: webshortcuts/searchproviderdlg_ui.ui:158
+#, kde-format
+msgid "Insert query placeholder"
+msgstr ""
+
+#~ msgctxt "NAME OF TRANSLATORS"
+#~ msgid "Your names"
+#~ msgstr "Thierry Vignaud, Jañ-Mai Drapier"
+
+#~ msgctxt "EMAIL OF TRANSLATORS"
+#~ msgid "Your emails"
+#~ msgstr "tvignaud@mandriva.com, jdrapier@club-internet.fr"
+
+#, fuzzy
+#~| msgid "Could not change permissions for %1."
+#~ msgid "Could not modify the ownership of file %1"
+#~ msgstr "Ne m'eus ket gallet kemmañ aotreoù evit %1."
+
+#, fuzzy
+#~ msgid "Unable to create KIO worker: %1"
+#~ msgstr "Divarrek da grouiñ restr gwareziñ"
+
+#, fuzzy
+#~| msgid ""
+#~| "Could not create symlink %1.\n"
+#~| "Please check permissions."
+#~ msgctxt ""
+#~ "The first arg is the path to the symlink that couldn't be created, the "
+#~ "secondarg is the filesystem type (e.g. vfat, exfat)"
+#~ msgid ""
+#~ "Could not create symlink \"%1\".\n"
+#~ "The destination filesystem (%2) doesn't support symlinks."
+#~ msgstr ""
+#~ "Ne m'eus ket gallet oberiañ an arouezere %1\n"
+#~ ".Gwiriit aotreoù mar plij."
+
+#~ msgid "Folder Already Exists"
+#~ msgstr "Ar renkell a zo endeo"
+
+#~ msgid "File Already Exists"
+#~ msgstr "Ar restr a zo endeo"
+
+#~ msgid "Already Exists as Folder"
+#~ msgstr "Endeo eo; Ur renkell eo"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgid "Trash"
+#~ msgstr "Pod-lastez"
+
+#~ msgid "Could not find the program '%1'"
+#~ msgstr "N'hellan ket kavout ar program '%1'"
+
+#, fuzzy
+#~ msgid "1 day %2"
+#~ msgid_plural "%1 days %2"
+#~ msgstr[0] "%1 deiz %2"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~| msgctxt "Items in a folder"
+#~| msgid "1 item"
+#~| msgid_plural "%1 items"
+#~ msgid "%1 Item"
+#~ msgid_plural "%1 Items"
+#~ msgstr[0] "%1 restr"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~| msgid "%1 folder"
+#~| msgid_plural "%1 folders"
+#~ msgid "1 Folder"
+#~ msgid_plural "%1 Folders"
+#~ msgstr[0] "%1 renkell"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~| msgid "1 file"
+#~| msgid_plural "%1 files"
+#~ msgid "1 File"
+#~ msgid_plural "%1 Files"
+#~ msgstr[0] "%1 restr"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~ msgctxt "folders, files (size)"
+#~ msgid "%1, %2 (%3)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "%1 %"
+#~ msgctxt "folders, files"
+#~ msgid "%1, %2"
+#~ msgstr "%1 %"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "files (size)"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "%1 %"
+#~ msgctxt "items: folders, files (size)"
+#~ msgid "%1: %2"
+#~ msgstr "%1 %"
+
+#, fuzzy
+#~| msgid "Moving"
+#~ msgctxt "@title job"
+#~ msgid "Moving"
+#~ msgstr "Emaon o tilec'hiañ"
+
+#, fuzzy
+#~| msgid "Source"
+#~ msgctxt "The source of a file operation"
+#~ msgid "Source"
+#~ msgstr "Tarzh"
+
+#, fuzzy
+#~| msgid "Destination"
+#~ msgctxt "The destination of a file operation"
+#~ msgid "Destination"
+#~ msgstr "Dehaezadur"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@title job"
+#~ msgid "Renaming"
+#~ msgstr "&Adenvel"
+
+#, fuzzy
+#~| msgid "Copying"
+#~ msgctxt "@title job"
+#~ msgid "Copying"
+#~ msgstr "Emaon oc'h eilañ"
+
+#, fuzzy
+#~ msgctxt "@title job"
+#~ msgid "Creating directory"
+#~ msgstr "Emaon o krouiñ ar renkell"
+
+#~ msgid "Directory"
+#~ msgstr "Renkell"
+
+#, fuzzy
+#~| msgid "Deleting"
+#~ msgctxt "@title job"
+#~ msgid "Deleting"
+#~ msgstr "Emaon o tistruj"
+
+#~ msgid "File"
+#~ msgstr "Restr"
+
+#, fuzzy
+#~ msgctxt "@title job"
+#~ msgid "Examining"
+#~ msgstr "Diwallit"
+
+#, fuzzy
+#~| msgid "Transferring"
+#~ msgctxt "@title job"
+#~ msgid "Transferring"
+#~ msgstr "O treuzkas"
+
+#, fuzzy
+#~| msgid "Mounting"
+#~ msgctxt "@title job"
+#~ msgid "Mounting"
+#~ msgstr "Emaon o vountañ"
+
+#~ msgid "Device"
+#~ msgstr "Trobarzhell"
+
+#~ msgid "Mountpoint"
+#~ msgstr "Poent marc'hañ"
+
+#, fuzzy
+#~| msgid "Unmounting"
+#~ msgctxt "@title job"
+#~ msgid "Unmounting"
+#~ msgstr "Emaon o tivarc'hañ"
+
+#, fuzzy
+#~| msgid "*|All Files"
+#~ msgid "Copy Files"
+#~ msgstr "*|Pep restr"
+
+#~ msgid "Delete Files"
+#~ msgstr "Distruj restroù"
+
+#, fuzzy
+#~| msgid "Could Not Create Folder"
+#~ msgid "Create Folder"
+#~ msgstr "Ne m'eus ket krouet ar renkell"
+
+#, fuzzy
+#~| msgid "Move to Trash"
+#~ msgid "Move Items"
+#~ msgstr "Fiñval d'ar pod-lastez"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Rename"
+#~ msgstr "&Adenvel"
+
+#, fuzzy
+#~| msgid "Could Not Create Symbolic Link"
+#~ msgid "Create Symlink"
+#~ msgstr "Ne m'eus ket gallet oberiañ un arouezere"
+
+#, fuzzy
+#~| msgid "Transferring"
+#~ msgid "Transfer data"
+#~ msgstr "O treuzkas"
+
+#~ msgid "Could not read %1."
+#~ msgstr "Ne m'eus ket gallet lenn %1."
+
+#~ msgid "Could not write to %1."
+#~ msgstr "Ne m'eus ket gallet skrivañ %1."
+
+#~ msgid "Could not start process %1."
+#~ msgstr "N'em eus ket loc'hañ ar meziant %1."
+
+#~ msgid "Malformed URL %1."
+#~ msgstr "URL siek %1."
+
+#~ msgid "The file or folder %1 does not exist."
+#~ msgstr "N'eus ket ur restr pe ur renkell %1."
+
+#~ msgid "A file named %1 already exists."
+#~ msgstr "Bez' ez eus un restr gant an anv %1 endeo."
+
+#~ msgid "A folder named %1 already exists."
+#~ msgstr "Ur renkell a vez graet %1 dioutañ a zo c'hoazh."
+
+#~ msgid "No hostname specified."
+#~ msgstr "N'eus ket anv ostiz spisaet ebet."
+
+#~ msgid "Unknown host %1"
+#~ msgstr "Ostiz dianav eo %1"
+
+#~ msgid "Access denied to %1."
+#~ msgstr "Digor nac'het evit %1."
+
+#~ msgid ""
+#~ "Access denied.\n"
+#~ "Could not write to %1."
+#~ msgstr ""
+#~ "N'hell ket net tizhet.\n"
+#~ "Ne m'eus ket gallet skrivañ e %1."
+
+#~ msgid "Could not enter folder %1."
+#~ msgstr "N'hellan ket mont er renkell %1."
+
+#, fuzzy
+#~ msgid "Could not create socket for accessing %1."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#~ msgid "Could not connect to host %1."
+#~ msgstr "N'hellan ket kevreañ ouzh an ostiz %1."
+
+#~ msgid "Connection to host %1 is broken."
+#~ msgstr "Sac'het eo ar gevreadenn ouzh an ostiz %1."
+
+#~ msgid "Could not read file %1."
+#~ msgstr "Ne m'eus ket gallet lenn ar restr %1."
+
+#~ msgid "Could not write to file %1."
+#~ msgstr "Ne m'eus ket gallet skrivañ ar restr %1."
+
+#, fuzzy
+#~ msgid "Could not bind %1."
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#, fuzzy
+#~ msgid "Could not listen %1."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "Could not accept %1."
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#~ msgid "Could not access %1."
+#~ msgstr "Ne m'eus ket gallet tizhout %1."
+
+#, fuzzy
+#~ msgid "Could not terminate listing %1."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#~ msgid "Could not make folder %1."
+#~ msgstr "Ne m'eus ket krouet ar renkell %1."
+
+#~ msgid "Could not remove folder %1."
+#~ msgstr "Ne m'eus ket dilemelet ar renkell %1."
+
+#, fuzzy
+#~ msgid "Could not resume file %1."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#~ msgid "Could not rename file %1."
+#~ msgstr "Ne m'eus ket gallet adenvel ar restr %1."
+
+#~ msgid "Could not change permissions for %1."
+#~ msgstr "Ne m'eus ket gallet kemmañ aotreoù evit %1."
+
+#, fuzzy
+#~| msgid "Could not change permissions for %1."
+#~ msgid "Could not change ownership for %1."
+#~ msgstr "Ne m'eus ket gallet kemmañ aotreoù evit %1."
+
+#~ msgid "Could not delete file %1."
+#~ msgstr "Ne m'eus ket dilemelet ar restr %1."
+
+#~ msgid ""
+#~ "Error. Out of memory.\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Fazi. Memor ebet.\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown proxy host\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ostiz dianav eo ar proksi\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Internal error in server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Fazi diabarzh e-barzh ar servijer\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Timeout on server\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Amzer-hont gant ar servijer\n"
+#~ "%1"
+
+#~ msgid ""
+#~ "Unknown error\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Fazi dianav\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgid ""
+#~ "Unknown interrupt\n"
+#~ "%1"
+#~ msgstr "Dianav"
+
+#~ msgid ""
+#~ "Could not delete original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne m'eus ket gallet dilemel ar restr kentañ %1.\n"
+#~ "Gwiriit aotreoù mar plij."
+
+#~ msgid ""
+#~ "Could not delete partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne m'eus ket gallet dilemel ar restr padennek %1.\n"
+#~ "Gwiriit aotreoù mar plij."
+
+#~ msgid ""
+#~ "Could not rename original file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne m'eus ket gallet adenvel an restr kentañ %1.\n"
+#~ "Gwiriit aotreoù mar plij."
+
+#~ msgid ""
+#~ "Could not rename partial file %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne m'eus ket gallet adenvel an restr padennek %1.\n"
+#~ "Gwiriit aotreoù mar plij."
+
+#~ msgid ""
+#~ "Could not create symlink %1.\n"
+#~ "Please check permissions."
+#~ msgstr ""
+#~ "Ne m'eus ket gallet oberiañ an arouezere %1\n"
+#~ ".Gwiriit aotreoù mar plij."
+
+#, fuzzy
+#~| msgid ""
+#~| "Could not create symlink %1.\n"
+#~| "Please check permissions."
+#~ msgid ""
+#~ "Cannot create symlinks at %1.\n"
+#~ "The destination filesystem doesn't support symlinks."
+#~ msgstr ""
+#~ "Ne m'eus ket gallet oberiañ an arouezere %1\n"
+#~ ".Gwiriit aotreoù mar plij."
+
+#, fuzzy
+#~| msgid "The file or folder %1 does not exist."
+#~ msgid "A file or folder cannot be dropped onto itself"
+#~ msgstr "N'eus ket ur restr pe ur renkell %1."
+
+#, fuzzy
+#~| msgid "The file or folder %1 does not exist."
+#~ msgid "A folder cannot be moved into itself"
+#~ msgstr "N'eus ket ur restr pe ur renkell %1."
+
+#, fuzzy
+#~ msgid "Unable to create KIO worker. %1"
+#~ msgstr "Divarrek da grouiñ restr gwareziñ"
+
+#, fuzzy
+#~| msgid "(unknown)"
+#~ msgctxt "@info url"
+#~ msgid "(unknown)"
+#~ msgstr "(dianav)"
+
+#, fuzzy
+#~| msgid "</p><p><b>Details of the request</b>:"
+#~ msgid "<b>Details of the request</b>:"
+#~ msgstr "</p><p><b>Munudoù ar c'houlenn</b> :"
+
+#, fuzzy
+#~| msgid "</p><ul><li>URL: %1</li>"
+#~ msgid "<li>URL: %1</li>"
+#~ msgstr "</p><ul><li>URL : %1</li>"
+
+#~ msgid "<li>Protocol: %1</li>"
+#~ msgstr "<li>Komenad : %1</li>"
+
+#~ msgid "<li>Date and time: %1</li>"
+#~ msgstr "<li>Deiziad hag eur : %1</li>"
+
+#, fuzzy
+#~| msgid "<li>Additional information: %1</li></ul>"
+#~ msgid "<li>Additional information: %1</li>"
+#~ msgstr "<li>Titouroù ouzhpenn : %1</li></ul>"
+
+#, fuzzy
+#~ msgid "<b>Possible causes</b>:"
+#~ msgstr "Gwerzhioù possubl :"
+
+#, fuzzy
+#~ msgid "<b>Possible solutions</b>:"
+#~ msgstr "Gwerzhioù possubl :"
+
+#, fuzzy
+#~| msgid "(unknown)"
+#~ msgctxt "@info protocol"
+#~ msgid "(unknown)"
+#~ msgstr "(dianav)"
+
+#, fuzzy
+#~ msgid "You may have encountered a bug in the program."
+#~ msgstr "Un draen oc'h eus kavet e"
+
+#, fuzzy
+#~ msgid "Ensure that the resource exists, and try again."
+#~ msgstr "Aozit an enmont-red"
+
+#, fuzzy
+#~ msgid "The specified resource may not exist."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#, fuzzy
+#~ msgid "Cannot Open Resource For Reading"
+#~ msgstr "Divarrek da adsevel anv ar restr goude krouiñ gwarezadur"
+
+#, fuzzy
+#~ msgid "You may not have permissions to read the file or open the folder."
+#~ msgstr "N'oc'h ket aotreet da lenn ar restr-mañ."
+
+#, fuzzy
+#~ msgid "Cannot Open Resource For Writing"
+#~ msgstr "Divarrek da adsevel anv ar restr goude krouiñ gwarezadur"
+
+#~ msgid "Unable to Launch Process"
+#~ msgstr "N'em eus ket lañsañ an argerzh"
+
+#~ msgid "Internal Error"
+#~ msgstr "Fazi diabarzh"
+
+#~ msgid "Unsupported Protocol %1"
+#~ msgstr "Komenad anskoraet %1"
+
+#~ msgid "Unsupported Action: %1"
+#~ msgstr "Gwezhiad anskoraet : %1"
+
+#~ msgid "File Expected"
+#~ msgstr "Gortozeg eo ur restr"
+
+#, fuzzy
+#~ msgid ""
+#~ "The request expected a file, however the folder <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#~ msgid "Folder Expected"
+#~ msgstr "Gortozeg eo ur renkell"
+
+#, fuzzy
+#~ msgid ""
+#~ "The request expected a folder, however the file <strong>%1</strong> was "
+#~ "found instead."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#~ msgid "File or Folder Does Not Exist"
+#~ msgstr "N'eus ket ur restr pe ur renkell"
+
+#, fuzzy
+#~ msgid "The specified file or folder <strong>%1</strong> does not exist."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#~ msgid "Delete the current file and try again."
+#~ msgstr "Lemel ar restr red ha klask adarre."
+
+#~ msgid "Choose an alternate filename for the new file."
+#~ msgstr "Dibabit un anv all evit ar restr nevez."
+
+#~ msgid "Delete the current folder and try again."
+#~ msgstr "Lemel ar renkell red ha klaskit adarre."
+
+#~ msgid "Choose an alternate name for the new folder."
+#~ msgstr "Dibabit un anv all evit ar renkell nevez."
+
+#~ msgid "Unknown Host"
+#~ msgstr "Ostiz dianav"
+
+#~ msgid "Access Denied"
+#~ msgstr "Digor nac'het"
+
+#, fuzzy
+#~ msgid "Access was denied to the specified resource, <strong>%1</strong>."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Your account may not have permission to access the specified resource."
+#~ msgstr "N'oc'h ket aotreet da skrivañ war ar restr-mañ.\n"
+
+#~ msgid "Write Access Denied"
+#~ msgstr "Skrivañ nac'het"
+
+#~ msgid "Unable to Enter Folder"
+#~ msgstr "N'hellan ket mont er renkell"
+
+#, fuzzy
+#~ msgid "Folder Listing Unavailable"
+#~ msgstr "Kinnigoù :"
+
+#, fuzzy
+#~ msgid "Retry the request."
+#~ msgstr "&Lec'hiadur"
+
+#~ msgid "Could Not Create Network Connection"
+#~ msgstr "Ne m'eus ket gallet krouiñ ur gevreadenn rouedad"
+
+#~ msgid "Could Not Create Socket"
+#~ msgstr "Ne m'eus ket krouiñ ul lugell"
+
+#~ msgid "Connection to Server Refused"
+#~ msgstr "Kevreadenn disteuleret ouzh ar servijer"
+
+#~ msgid "Connection to Server Closed Unexpectedly"
+#~ msgstr "Kevreadur ouzh an ostiz a zo serret ent dic'hortoz"
+
+#, fuzzy
+#~ msgid "URL Resource Invalid"
+#~ msgstr "Kefluniadur mail"
+
+#~ msgid "Could Not Mount Device"
+#~ msgstr "Ne m'eus ket mountañ an drobarzhell"
+
+#~ msgid "Could Not Unmount Device"
+#~ msgstr "Ne m'eus ket divarc'hañ an drobarzhell"
+
+#, fuzzy
+#~ msgid "You may not have permissions to read from the resource."
+#~ msgstr "N'oc'h ket aotreet da skrivañ war ar restr-mañ.\n"
+
+#, fuzzy
+#~ msgid "You may not have permissions to write to the resource."
+#~ msgstr "N'oc'h ket aotreet da skrivañ war ar restr-mañ.\n"
+
+#, fuzzy
+#~ msgid "Could Not Listen for Network Connections"
+#~ msgstr "Ne m'eus ket gallet enrollañ an diaz."
+
+#, fuzzy
+#~ msgid "Could Not Bind"
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#, fuzzy
+#~ msgid "Could Not Listen"
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "Could Not Accept Network Connection"
+#~ msgstr "Ne m'eus ket gallet enrollañ an diaz."
+
+#, fuzzy
+#~ msgid "You may not have permissions to accept the connection."
+#~ msgstr "N'oc'h ket aotreet da skrivañ war ar restr-mañ.\n"
+
+#~ msgid "Could Not Login: %1"
+#~ msgstr "N'em eus ket ereañ : %1"
+
+#, fuzzy
+#~ msgid "Could Not Stat Resource"
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "The specified resource may not have existed or may not be accessible."
+#~ msgstr "Ar renkell resisaet n'eus ket anezhi pe a oa anlennadus."
+
+#, fuzzy
+#~ msgid "Could Not Cancel Listing"
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "FIXME: Document this"
+#~ msgstr "Askelenn"
+
+#~ msgid "Could Not Create Folder"
+#~ msgstr "Ne m'eus ket krouet ar renkell"
+
+#, fuzzy
+#~ msgid "An attempt to create the requested folder failed."
+#~ msgstr "Krouiñ ur renkell nevez e :"
+
+#, fuzzy
+#~ msgid "The location where the folder was to be created may not exist."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#~ msgid "Could Not Remove Folder"
+#~ msgstr "Ne m'eus ket gallet lemel ar renkell"
+
+#, fuzzy
+#~ msgid ""
+#~ "An attempt to remove the specified folder, <strong>%1</strong>, failed."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "The specified folder may not exist."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#~ msgid "The specified folder may not be empty."
+#~ msgstr "N'hell ket bezañ goullo ar renkell dibabet."
+
+#, fuzzy
+#~ msgid "Ensure that the folder exists and is empty, and try again."
+#~ msgstr "Aozit an enmont-red"
+
+#, fuzzy
+#~ msgid "Could Not Resume File Transfer"
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#~ msgid "Could Not Rename Resource"
+#~ msgstr "N'hell ket bet adenvelet an danvez"
+
+#, fuzzy
+#~ msgid "Could Not Alter Permissions of Resource"
+#~ msgstr "N'oc'h ket aotreet da skrivañ war ar restr-mañ.\n"
+
+#, fuzzy
+#~ msgid "Could Not Change Ownership of Resource"
+#~ msgstr "N'oc'h ket aotreet da skrivañ war ar restr-mañ.\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "An attempt to change the ownership of the specified resource <strong>%1</"
+#~ "strong> failed."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#~ msgid "Could Not Delete Resource"
+#~ msgstr "N'hell ket bet lemet an danvez"
+
+#~ msgid "Out of Memory"
+#~ msgstr "Memor ebet"
+
+#~ msgid "Unknown Proxy Host"
+#~ msgstr "Dianav eo ostiz ar proksi"
+
+#, fuzzy
+#~ msgid "Double-check your proxy settings and try again."
+#~ msgstr "Aozit an enmont-red"
+
+#, fuzzy
+#~ msgid "Request Aborted"
+#~ msgstr "Nodrezh goulennet"
+
+#~ msgid "Internal Error in Server"
+#~ msgstr "Fazi diabarzh e-barzh ar servijer"
+
+#~ msgid "Timeout Error"
+#~ msgstr "Fazi amzer-hont"
+
+#~ msgid "Unknown Error"
+#~ msgstr "Fazi dianav"
+
+#, fuzzy
+#~ msgid "Unknown Interruption"
+#~ msgstr "Dianav"
+
+#~ msgid "Could Not Delete Original File"
+#~ msgstr "Ne m'eus ket gallet dilemel ar restr kentañ"
+
+#~ msgid "Could Not Delete Temporary File"
+#~ msgstr "Ne m'eus ket dilemelet ar restr padennek"
+
+#~ msgid "Could Not Rename Original File"
+#~ msgstr "Ne m'eus ket gallet adenvel an restr kentañ"
+
+#~ msgid "Could Not Rename Temporary File"
+#~ msgstr "Ne m'eus ket adenvel ar restr padennek"
+
+#, fuzzy
+#~ msgid ""
+#~ "The requested operation required the creation of a temporary file <strong>"
+#~ "%1</strong>, however it could not be created."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#~ msgid "Could Not Create Link"
+#~ msgstr "Ne m'eus ket gallet oberiañ ul liamm"
+
+#~ msgid "Could Not Create Symbolic Link"
+#~ msgstr "Ne m'eus ket gallet oberiañ un arouezere"
+
+#~ msgid "No Content"
+#~ msgstr "Endalc'had ebet"
+
+#~ msgid "Disk Full"
+#~ msgstr "Leun eo ar bladenn"
+
+#~ msgid "Choose a different filename for the destination file."
+#~ msgstr "Dibabit un anv all evit ar restr dehaezadur."
+
+#, fuzzy
+#~| msgid "File or Folder Does Not Exist"
+#~ msgid "File or Folder dropped onto itself"
+#~ msgstr "N'eus ket ur restr pe ur renkell"
+
+#, fuzzy
+#~ msgid "Drop the item into a different file or folder."
+#~ msgstr "Goulennet oc'h eus ur renkell"
+
+#, fuzzy
+#~| msgid "File or Folder Does Not Exist"
+#~ msgid "Folder moved into itself"
+#~ msgstr "N'eus ket ur restr pe ur renkell"
+
+#, fuzzy
+#~ msgid "Move the item into a different folder."
+#~ msgstr "Goulennet oc'h eus ur renkell"
+
+#, fuzzy
+#~ msgid "Unable to Create KIO Worker"
+#~ msgstr "Divarrek da grouiñ restr gwareziñ"
+
+#, fuzzy
+#~ msgid "Undocumented Error"
+#~ msgstr "War-nij"
+
+#, fuzzy
+#~| msgid "Symbolic Link"
+#~ msgid "(Symbolic Link to %1)"
+#~ msgstr "Arouezere"
+
+#, fuzzy
+#~| msgid "Link to %1 (%2)"
+#~ msgid "(%1, Link to %2)"
+#~ msgstr "Liammañ ouzh %1 (%2)"
+
+#, fuzzy
+#~| msgid "Points to:"
+#~ msgid " (Points to %1)"
+#~ msgstr "A vuk ouzh :"
+
+#~ msgid ""
+#~ "Malformed URL\n"
+#~ "%1"
+#~ msgstr ""
+#~ "URL siek\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgid "Opening connections is not supported with the protocol %1."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "Closing connections is not supported with the protocol %1."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "Accessing files is not supported with the protocol %1."
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~ msgid "Writing to %1 is not supported."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "There are no special actions available for protocol %1."
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#, fuzzy
+#~ msgid "Listing folders is not supported for protocol %1."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "Retrieving data from %1 is not supported."
+#~ msgstr "War-nij"
+
+#, fuzzy
+#~ msgid "Creating symlinks is not supported with protocol %1."
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~ msgid "Deleting files from %1 is not supported."
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~ msgid "Creating folders is not supported with protocol %1."
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~ msgid "Changing the attributes of files is not supported with protocol %1."
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~ msgid "Changing the ownership of files is not supported with protocol %1."
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~ msgid "Multiple get is not supported with protocol %1."
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~ msgid "Opening files is not supported with protocol %1."
+#~ msgstr "Dibaboù"
+
+#~ msgid "Security Information"
+#~ msgstr "Titouroù diwar ar surentez"
+
+#, fuzzy
+#~ msgid "C&ontinue Loading"
+#~ msgstr "Kenderc'hel"
+
+#, fuzzy
+#~| msgid "Authentication Failed."
+#~ msgctxt "%1 is a host name"
+#~ msgid "%1: SSL negotiation failed"
+#~ msgstr "Dilesadur sac'het."
+
+#~ msgid "Display SSL &Information"
+#~ msgstr "Diskouez &titouroù diwar SSL"
+
+#~ msgid "C&onnect"
+#~ msgstr "K&evreañ"
+
+#, fuzzy
+#~ msgid "Server Authentication"
+#~ msgstr "Dibaboù"
+
+#~ msgid "&Details"
+#~ msgstr "&Munudoù"
+
+#~ msgid "Co&ntinue"
+#~ msgstr "&Kenderc'hel"
+
+#~ msgid "&Forever"
+#~ msgstr "&Da viken"
+
+#, fuzzy
+#~ msgid "&Current Session only"
+#~ msgstr "Stokell war implij"
+
+#~ msgid "Unknown protocol '%1'."
+#~ msgstr "Komenad dianav '%1'."
+
+#, fuzzy
+#~ msgid "Can not find a KIO worker for protocol '%1'."
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#, fuzzy
+#~ msgid ""
+#~ "Can not create a socket for launching a KIO worker for protocol '%1'."
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#, fuzzy
+#~ msgid "Can not find 'kioworker' executable at '%1'"
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#, fuzzy
+#~ msgid "You did not select a file to delete."
+#~ msgstr ""
+#~ "Bez' ez eus un teul gant an anv-se endeo\n"
+#~ "Ha fellout a ra deoc'h e rasklañ ?"
+
+#~ msgid "Nothing to Delete"
+#~ msgstr "N'eus tra ebet da lemel"
+
+#, fuzzy
+#~ msgid "You did not select a file to trash."
+#~ msgstr ""
+#~ "Bez' ez eus un teul gant an anv-se endeo\n"
+#~ "Ha fellout a ra deoc'h e rasklañ ?"
+
+#, fuzzy
+#~ msgid "Nothing to Trash"
+#~ msgstr "Netra da voulañ"
+
+#, fuzzy
+#~ msgid "The specified folder does not exist or was not readable."
+#~ msgstr "Ar renkell resisaet n'eus ket anezhi pe a oa anlennadus."
+
+#~ msgid "Menu"
+#~ msgstr "Meuziad"
+
+#, fuzzy
+#~ msgid "Parent Folder"
+#~ msgstr "Distruj Restr"
+
+#~ msgid "Home Folder"
+#~ msgstr "Renkell ar gêr"
+
+#~ msgid "Reload"
+#~ msgstr "Adkargañ"
+
+#~ msgid "New Folder..."
+#~ msgstr "Renkell nevez ..."
+
+#~ msgid "Move to Trash"
+#~ msgstr "Fiñval d'ar pod-lastez"
+
+#~ msgid "Delete"
+#~ msgstr "Dilemel"
+
+#~ msgid "Sorting"
+#~ msgstr "Emaon o rummañ"
+
+#, fuzzy
+#~| msgid "Site Name"
+#~ msgid "Sort by Name"
+#~ msgstr "Anv al lec'hienn"
+
+#, fuzzy
+#~| msgid "Short View"
+#~ msgid "Sort by Size"
+#~ msgstr "Gwell berr"
+
+#, fuzzy
+#~| msgid "By Date"
+#~ msgid "Sort by Date"
+#~ msgstr "Evit Deiziad"
+
+#, fuzzy
+#~ msgid "Sort by Type"
+#~ msgstr "Moulañ"
+
+#, fuzzy
+#~| msgid "Deleting"
+#~ msgid "Ascending"
+#~ msgstr "Emaon o tistruj"
+
+#, fuzzy
+#~| msgid "Deleting"
+#~ msgid "Descending"
+#~ msgstr "Emaon o tistruj"
+
+#~ msgid "Folders First"
+#~ msgstr "Renkelloù da gentañ"
+
+#, fuzzy
+#~| msgid "Show Hidden Files"
+#~ msgid "Hidden Files Last"
+#~ msgstr "Diskouez ar restroù kuzhet"
+
+#, fuzzy
+#~| msgid "Short View"
+#~ msgid "Icons View"
+#~ msgstr "Gwell berr"
+
+#, fuzzy
+#~| msgid "Short View"
+#~ msgid "Compact View"
+#~ msgstr "Gwell berr"
+
+#, fuzzy
+#~| msgid "Detailed View"
+#~ msgid "Details View"
+#~ msgstr "Gwell munut"
+
+#, fuzzy
+#~| msgid "Local Filename"
+#~ msgid "Above File Name"
+#~ msgstr "Anv ar restr lec'hel"
+
+#~ msgid "Short View"
+#~ msgstr "Gwell berr"
+
+#~ msgid "Detailed View"
+#~ msgstr "Gwell munut"
+
+#, fuzzy
+#~| msgid "Detailed View"
+#~ msgid "Tree View"
+#~ msgstr "Gwell munut"
+
+#, fuzzy
+#~| msgid "Detailed View"
+#~ msgid "Detailed Tree View"
+#~ msgstr "Gwell munut"
+
+#~ msgid "Show Hidden Files"
+#~ msgstr "Diskouez ar restroù kuzhet"
+
+#, fuzzy
+#~| msgid "Show Preview"
+#~ msgid "Show Preview Panel"
+#~ msgstr "Diskouez ar rakgwell"
+
+#~ msgid "Show Preview"
+#~ msgstr "Diskouez ar rakgwell"
+
+#~ msgid "Properties"
+#~ msgstr "Perzhioù"
+
+#, fuzzy
+#~| msgid "&View"
+#~ msgid "&View Mode"
+#~ msgstr "&Gwel"
+
+#, fuzzy
+#~| msgid "Folders First"
+#~ msgctxt "Sort descending"
+#~ msgid "Newest First"
+#~ msgstr "Renkelloù da gentañ"
+
+#, fuzzy
+#~| msgid "Folders First"
+#~ msgctxt "Sort ascending"
+#~ msgid "Oldest First"
+#~ msgstr "Renkelloù da gentañ"
+
+#, fuzzy
+#~| msgid "Folders First"
+#~ msgctxt "Sort descending"
+#~ msgid "Largest First"
+#~ msgstr "Renkelloù da gentañ"
+
+#, fuzzy
+#~| msgid "Folders First"
+#~ msgctxt "Sort ascending"
+#~ msgid "Smallest First"
+#~ msgstr "Renkelloù da gentañ"
+
+#, fuzzy
+#~| msgid "Loading"
+#~ msgid "Encoding:"
+#~ msgstr "Emaon o kargañ"
+
+#~ msgid "Open"
+#~ msgstr "Digeriñ"
+
+#~ msgid "Save As"
+#~ msgstr "Enrollañ e"
+
+#, fuzzy
+#~| msgid "Copying"
+#~ msgctxt "@title:menu"
+#~ msgid "Copy To"
+#~ msgstr "Emaon oc'h eilañ"
+
+#, fuzzy
+#~| msgid "Move to Trash"
+#~ msgctxt "@title:menu"
+#~ msgid "Move To"
+#~ msgstr "Fiñval d'ar pod-lastez"
+
+#, fuzzy
+#~| msgid "Home Folder"
+#~ msgctxt "@title:menu"
+#~ msgid "Home Folder"
+#~ msgstr "Renkell ar gêr"
+
+#, fuzzy
+#~| msgid "%1 folder"
+#~| msgid_plural "%1 folders"
+#~ msgctxt "@title:menu"
+#~ msgid "Root Folder"
+#~ msgstr "%1 renkell"
+
+#, fuzzy
+#~| msgid "&Browse..."
+#~ msgctxt "@title:menu in Copy To or Move To submenu"
+#~ msgid "Browse..."
+#~ msgstr "&Furchañ ..."
+
+#, fuzzy
+#~| msgid "Copying"
+#~ msgctxt "@title:menu"
+#~ msgid "Copy Here"
+#~ msgstr "Emaon oc'h eilañ"
+
+#, fuzzy
+#~| msgid "*|All Files"
+#~ msgctxt "Default mime type filter that shows all file types"
+#~ msgid "*|All Files"
+#~ msgstr "*|Pep restr"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgctxt "%1 is the mimetype name, %2 is the extensions"
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#~ msgid "All Supported Files"
+#~ msgstr "An holl restroù skoraet"
+
+#, fuzzy
+#~| msgid "*|All Files"
+#~ msgid "All Files"
+#~ msgstr "*|Pep restr"
+
+#, fuzzy
+#~| msgid "Edit ACL Entry"
+#~ msgid "Add Places Entry"
+#~ msgstr "Aozañ ar vouetadur ACL"
+
+#, fuzzy
+#~| msgid "Edit ACL Entry"
+#~ msgid "Edit Places Entry"
+#~ msgstr "Aozañ ar vouetadur ACL"
+
+#, fuzzy
+#~| msgid "&Name:"
+#~ msgid "L&abel:"
+#~ msgstr "&Anv :"
+
+#, fuzzy
+#~| msgid "Enter a description"
+#~ msgid "Enter descriptive label here"
+#~ msgstr "Roit un deskrivadur"
+
+#~ msgid "&Location:"
+#~ msgstr "&Lec'hiadur :"
+
+#~ msgid "Choose an &icon:"
+#~ msgstr "Diuzit an &arlun :"
+
+#, fuzzy
+#~| msgid "Places"
+#~ msgctxt "@item"
+#~ msgid "Places"
+#~ msgstr "Lec'hiadurioù"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@item"
+#~ msgid "Remote"
+#~ msgstr "Lemel"
+
+#, fuzzy
+#~| msgid "&Search:"
+#~ msgctxt "@item"
+#~ msgid "Search For"
+#~ msgstr "&Klask :"
+
+#, fuzzy
+#~| msgid "Devices"
+#~ msgctxt "@item"
+#~ msgid "Devices"
+#~ msgstr "Trobarzhelloù"
+
+#, fuzzy
+#~| msgid "Home"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Home"
+#~ msgstr "Er-gêr"
+
+#, fuzzy
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Documents"
+#~ msgstr "Askelenn"
+
+#, fuzzy
+#~| msgid "Network"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Network"
+#~ msgstr "Rouedad"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Trash"
+#~ msgstr "Pod-lastez"
+
+#, fuzzy
+#~| msgid "Delete Files"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Files"
+#~ msgstr "Distruj restroù"
+
+#, fuzzy
+#~| msgid "Location:"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Recent Locations"
+#~ msgstr "Lec'hiadur :"
+
+#, fuzzy
+#~| msgid "Modified:"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Modified Today"
+#~ msgstr "Kemmet :"
+
+#, fuzzy
+#~| msgid "Could not find the program '%1'"
+#~ msgctxt "Placeholder is error message"
+#~ msgid "Could not add to the Places panel: %1"
+#~ msgstr "N'hellan ket kavout ar program '%1'"
+
+#, fuzzy
+#~| msgid "The file or folder %1 does not exist."
+#~ msgid "Only folders can be added to the Places panel."
+#~ msgstr "N'eus ket ur restr pe ur renkell %1."
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Releasing…"
+#~ msgstr "Lemel"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Release"
+#~ msgstr "Lemel"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Safely Removing…"
+#~ msgstr "Lemel"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Safely Remove"
+#~ msgstr "Lemel"
+
+#, fuzzy
+#~| msgid "Unmounting"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Unmounting…"
+#~ msgstr "Emaon o tivarc'hañ"
+
+#, fuzzy
+#~| msgid "Unmount"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Unmount"
+#~ msgstr "Divarc'hañ"
+
+#, fuzzy
+#~| msgid "Eject"
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Eject"
+#~ msgstr "Stlepel kuit"
+
+#, fuzzy
+#~ msgid "The device '%1' is not a disk and cannot be ejected."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#, fuzzy
+#~ msgid "An error occurred while accessing '%1', the system responded: %2"
+#~ msgstr "Bez' ez eus bet ur c'hammad en ur glask digeriñ an teul-mañ"
+
+#, fuzzy
+#~ msgid "An error occurred while accessing '%1'"
+#~ msgstr "Bez' ez eus bet ur c'hammad en ur glask digeriñ an teul-mañ"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Empty Trash"
+#~ msgstr "Pod-lastez"
+
+#, fuzzy
+#~| msgid "Mount"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Mount"
+#~ msgstr "Marc'hañ"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open in New Tab"
+#~ msgstr "Digeriñ gant"
+
+#, fuzzy
+#~| msgid "Add Entry..."
+#~ msgctxt "@action:inmenu"
+#~ msgid "Add Entry…"
+#~ msgstr "Ouzhpennañ ur bouetadur ..."
+
+#, fuzzy
+#~| msgid "&Edit..."
+#~ msgctxt "@action:inmenu"
+#~ msgid "&Edit…"
+#~ msgstr "&Aozañ ..."
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Remove"
+#~ msgstr "Lemel"
+
+#, fuzzy
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section '%1'"
+#~ msgstr "&Ouzhpennañ ur bouetadur ..."
+
+#, fuzzy
+#~ msgctxt "@item:inmenu"
+#~ msgid "Hide Section"
+#~ msgstr "&Ouzhpennañ ur bouetadur ..."
+
+#, fuzzy
+#~ msgid "&Show All Entries"
+#~ msgstr ""
+#~ "Diskouez\n"
+#~ "ar bouetaduroù"
+
+#, fuzzy
+#~| msgid "Short View"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Icon Size"
+#~ msgstr "Gwell berr"
+
+#, fuzzy
+#~| msgid "Auto &Detect"
+#~ msgctxt ""
+#~ "@item:inmenu Auto set icon size based on available space inthe Places "
+#~ "side-panel"
+#~ msgid "Auto Resize"
+#~ msgstr "&Dinoiñ dre ardivink"
+
+#, fuzzy
+#~ msgctxt "Large icon size"
+#~ msgid "Large (%1x%1)"
+#~ msgstr "ment %1"
+
+#, fuzzy
+#~ msgid "You can only select one file"
+#~ msgstr "Goulennet oc'h eus ur renkell"
+
+#, fuzzy
+#~ msgid "You can only select local files"
+#~ msgstr "Goulennet oc'h eus ur renkell"
+
+#, fuzzy
+#~ msgid "Click this button to create a new folder."
+#~ msgstr "N'oc'h ket aotreet da lenn ar restr-mañ."
+
+#, fuzzy
+#~ msgid "Show Places Panel"
+#~ msgstr "Diskouez linenn a stad"
+
+#, fuzzy
+#~| msgid "Show Bookmarks"
+#~ msgid "Show Bookmarks Button"
+#~ msgstr "Diskouez ar sinedoù"
+
+#, fuzzy
+#~| msgid "Operation"
+#~ msgid "Options"
+#~ msgstr "Ober"
+
+#~ msgid "Bookmarks"
+#~ msgstr "Sinedoù"
+
+#~ msgid "&Name:"
+#~ msgstr "&Anv :"
+
+#, fuzzy
+#~ msgid "This is the name to save the file as."
+#~ msgstr "Divarrek da grouiñ restr gwareziñ"
+
+#~ msgid "This is the name of the file to open."
+#~ msgstr "Se a zo anv ar restr da zigeriñ."
+
+#, fuzzy
+#~| msgid "Places"
+#~ msgctxt "@title:window"
+#~ msgid "Places"
+#~ msgstr "Lec'hiadurioù"
+
+#, fuzzy
+#~| msgid "O&verwrite All"
+#~ msgid "Overwrite File?"
+#~ msgstr "&Rasklañ an holl re"
+
+#, fuzzy
+#~ msgid "You can only select local files."
+#~ msgstr "Goulennet oc'h eus ur renkell"
+
+#~ msgid "*|All Folders"
+#~ msgstr "*|Pep renkell"
+
+#~ msgid "*|All Files"
+#~ msgstr "*|Pep restr"
+
+#, fuzzy
+#~| msgid "Open"
+#~ msgid "&Open"
+#~ msgstr "Digeriñ"
+
+#~ msgid "the extension <b>%1</b>"
+#~ msgstr "an astenn <b>%1</b>"
+
+#, fuzzy
+#~ msgid "Automatically select filename e&xtension"
+#~ msgstr "Moulañ sac'het"
+
+#, fuzzy
+#~ msgid "a suitable extension"
+#~ msgstr "Moulañ sac'het"
+
+#, fuzzy
+#~| msgid "&Filter:"
+#~ msgid "&File type:"
+#~ msgstr "&Sil :"
+
+#~ msgid "&Filter:"
+#~ msgstr "&Sil :"
+
+#, fuzzy
+#~| msgid "Store"
+#~ msgid "Sorry"
+#~ msgstr "Enrollit"
+
+#, fuzzy
+#~ msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#, fuzzy
+#~| msgid "Destination"
+#~ msgid "Create link to URL"
+#~ msgstr "Dehaezadur"
+
+#, fuzzy
+#~| msgid "%1 B"
+#~ msgctxt "@item:inmenu Create New"
+#~ msgid "%1"
+#~ msgstr "%1 O"
+
+#, fuzzy
+#~| msgid "An older item named '%1' already exists."
+#~ msgctxt "@info"
+#~ msgid "A directory with name <filename>%1</filename> already exists."
+#~ msgstr "Un dra goshoc'h hag a vez graet '%1' a zo endeo."
+
+#, fuzzy
+#~| msgid "A file named %1 already exists."
+#~ msgctxt "@info"
+#~ msgid "A file with name <filename>%1</filename> already exists."
+#~ msgstr "Bez' ez eus un restr gant an anv %1 endeo."
+
+#, fuzzy
+#~| msgid "C&reate"
+#~ msgid "Create New"
+#~ msgstr "K&rouiñ"
+
+#, fuzzy
+#~| msgid "Device"
+#~ msgid "Link to Device"
+#~ msgstr "Trobarzhell"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgctxt "Default name for a new folder"
+#~ msgid "New Folder"
+#~ msgstr "Renkell nevez"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgctxt "@title:window"
+#~ msgid "New Folder"
+#~ msgstr "Renkell nevez"
+
+#, fuzzy
+#~| msgid ""
+#~| "Create new folder in:\n"
+#~| "%1"
+#~ msgid "Create new folder in %1:"
+#~ msgstr ""
+#~ "Krouiñ ur renkell nevez e :\n"
+#~ "%1"
+
+#, fuzzy
+#~| msgid "Copying"
+#~ msgid "Copy"
+#~ msgstr "Emaon oc'h eilañ"
+
+#, fuzzy
+#~| msgid "&Paste URL"
+#~| msgid_plural "&Paste %1 URLs"
+#~ msgid "Paste"
+#~ msgstr "&Pegañ %1 URL"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Tab"
+#~ msgstr "Digeriñ gant"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Open \"%1\" in New Window"
+#~ msgstr "Digeriñ gant"
+
+#, fuzzy
+#~| msgid "&Edit..."
+#~ msgid "Edit"
+#~ msgstr "&Aozañ ..."
+
+#, fuzzy
+#~| msgid "Store"
+#~ msgctxt "@action:inmenu"
+#~ msgid "More"
+#~ msgstr "Enrollit"
+
+#, fuzzy
+#~| msgid "Devices"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Devices"
+#~ msgstr "Trobarzhelloù"
+
+#, fuzzy
+#~| msgid "SSL version:"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Subversion"
+#~ msgstr "Doare SSL :"
+
+#, fuzzy
+#~| msgid "Others"
+#~ msgctxt "@item:inmenu"
+#~ msgid "Other"
+#~ msgstr "Ar re all"
+
+#, fuzzy
+#~| msgid "&Edit..."
+#~ msgid "Edit mode"
+#~ msgstr "&Aozañ ..."
+
+#~ msgid "You are not authorized to execute this file."
+#~ msgstr "N'helles ket seveniñ lemel ar restr-mañ."
+
+#, fuzzy
+#~| msgid "Launching %1"
+#~ msgctxt "Launching application"
+#~ msgid "Launching %1"
+#~ msgstr "Emaon o lañsañ %1"
+
+#, fuzzy
+#~ msgid "You are not authorized to select an application to open this file."
+#~ msgstr "N'helles ket gallet lemel ar restr-mañ."
+
+#, fuzzy
+#~| msgid "No media in device for %1"
+#~ msgid "No favicon found for %1"
+#~ msgstr "N'eus media ebet en trobarzhell evit %1"
+
+#, fuzzy
+#~| msgid "No media in device for %1"
+#~ msgid "No mail client found"
+#~ msgstr "N'eus media ebet en trobarzhell evit %1"
+
+#~ msgid "Launching %1"
+#~ msgstr "Emaon o lañsañ %1"
+
+#, fuzzy
+#~ msgid ""
+#~ "Unable to make file \"%1\" executable.\n"
+#~ "%2."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#, fuzzy
+#~| msgid ""
+#~| "The file\n"
+#~| "%1\n"
+#~| "has been modified.\n"
+#~| "Do you want to upload the changes?"
+#~ msgid ""
+#~ "The file %1\n"
+#~ "has been modified. Do you want to upload the changes?"
+#~ msgstr ""
+#~ ">Kemmet eo bet\n"
+#~ "ar restr\n"
+#~ "%1\n"
+#~ "Hag e fell deoc'h ezkargañ ar c'hemmoù ?"
+
+#~ msgid "File Changed"
+#~ msgstr "Restr kemmet"
+
+#~ msgid "Upload"
+#~ msgstr "Ezkargañ"
+
+#~ msgid "Do Not Upload"
+#~ msgstr "Ne ezkargit ket"
+
+#, fuzzy
+#~| msgid "Malformed URL %1."
+#~ msgid "Invalid URL: %1"
+#~ msgstr "URL siek %1."
+
+#, fuzzy
+#~ msgid "File not found: %1"
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#~ msgid ""
+#~ "The URL %1\n"
+#~ "is malformed"
+#~ msgstr ""
+#~ "An URL %1\n"
+#~ "zo siek"
+
+#, fuzzy
+#~ msgid ""
+#~ "The supposedly temporary file\n"
+#~ "%1\n"
+#~ "has been modified.\n"
+#~ "Do you still want to delete it?"
+#~ msgstr ""
+#~ "Kemmet eo bet an teul-red.\n"
+#~ "Ha fellout a ra deoc'h e enrollañ ?"
+
+#~ msgid "Do Not Delete"
+#~ msgstr "Ne lemel ket"
+
+#~ msgid ""
+#~ "The file\n"
+#~ "%1\n"
+#~ "has been modified.\n"
+#~ "Do you want to upload the changes?"
+#~ msgstr ""
+#~ ">Kemmet eo bet\n"
+#~ "ar restr\n"
+#~ "%1\n"
+#~ "Hag e fell deoc'h ezkargañ ar c'hemmoù ?"
+
+#~ msgid "KIOExec"
+#~ msgstr "KIOExec"
+
+#~ msgid "Stephan Kulow"
+#~ msgstr "Stephan Kulow"
+
+#, fuzzy
+#~ msgid "Suggested file name for the downloaded file"
+#~ msgstr "Dibabit un anv all evit ar restr nevez."
+
+#~ msgid "Command to execute"
+#~ msgstr "Goulev da seveniñ"
+
+#, fuzzy
+#~ msgid "Setting ACL for %1"
+#~ msgstr "Emaon o kas ar roadoù da %1 ..."
+
+#~ msgid ""
+#~ "Could not change permissions for\n"
+#~ "%1"
+#~ msgstr ""
+#~ "Ne m'eus ket kemmañ an aotroù evit\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgid "Could not find program \"mount\""
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#, fuzzy
+#~ msgid "Could not find program \"umount\""
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#, fuzzy
+#~| msgid "Advanced Permissions"
+#~ msgid "Change File Permissions"
+#~ msgstr "Aotroù barek"
+
+#, fuzzy
+#~| msgid "Permissions"
+#~ msgid "New Permissions: %1"
+#~ msgstr "Aotreoù"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgid "Remove File"
+#~ msgstr "Lemel"
+
+#, fuzzy
+#~| msgid "Directory"
+#~ msgid "Remove Directory"
+#~ msgstr "Renkell"
+
+#, fuzzy
+#~ msgid "Create Directory"
+#~ msgstr "Emaon o krouiñ ar renkell"
+
+#, fuzzy
+#~| msgid "Permissions"
+#~ msgid "Directory Permissions: %1"
+#~ msgstr "Aotreoù"
+
+#, fuzzy
+#~| msgid "Open file dialog"
+#~ msgid "Open File"
+#~ msgstr "Prenestr digeriñ ur restr"
+
+#, fuzzy
+#~| msgid "Directory"
+#~ msgid "Open Directory"
+#~ msgstr "Renkell"
+
+#, fuzzy
+#~| msgid "Device name"
+#~ msgid "New Filename: %1"
+#~ msgstr "Anv an drobarzhell"
+
+#, fuzzy
+#~ msgid "Target: %1"
+#~ msgstr "ment %1"
+
+#, fuzzy
+#~ msgid "Unknown Action"
+#~ msgstr "Dianav"
+
+#~ msgid "No media in device for %1"
+#~ msgstr "N'eus media ebet en trobarzhell evit %1"
+
+#, fuzzy
+#~| msgid "Could not enter folder %1."
+#~ msgid "Could not get user id for given user name %1"
+#~ msgstr "N'hellan ket mont er renkell %1."
+
+#~ msgid "Opening connection to host %1"
+#~ msgstr "Emaon o tigeriñ ur gevreadenn ouzh an ostiz %1"
+
+#~ msgid "Connected to host %1"
+#~ msgstr "Kevreet ouzh an ostiz %1"
+
+#, fuzzy
+#~| msgid "%1 (%2)"
+#~ msgid "%1 (Error %2)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~ msgid "Sending login information"
+#~ msgstr "Titouroù"
+
+#~ msgid "You need to supply a username and a password to access this site."
+#~ msgstr ""
+#~ "Ret eo deoc'h reiñ un anv arveriad hag un tremenger evit moned al "
+#~ "lec'hienn-mañ."
+
+#~ msgid "Site:"
+#~ msgstr "Lec'hienn :"
+
+#~ msgid "<b>%1</b>"
+#~ msgstr "<b>%1</b>"
+
+#~ msgid "Login OK"
+#~ msgstr "Mat eo an ereañ"
+
+#~ msgid "Could not login to %1."
+#~ msgstr "Ne 'meus ket ereañ ouzh %1."
+
+#, fuzzy
+#~| msgid "Launching %1"
+#~ msgid ""
+#~ "\n"
+#~ "The server said: \"%1\""
+#~ msgstr "Emaon o lañsañ %1"
+
+#~ msgid "Proxy:"
+#~ msgstr "Proksi :"
+
+#, fuzzy
+#~ msgid "Proxy Authentication Failed."
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~ msgid "There is no documentation available for %1."
+#~ msgstr "Ne m'eus ket gallet kas ar c'hemennad."
+
+#, fuzzy
+#~| msgid "Could not read file %1."
+#~ msgid "Could not find filename %1 in %2."
+#~ msgstr "Ne m'eus ket gallet lenn ar restr %1."
+
+#~ msgid "No host specified."
+#~ msgstr "N'eus ostiz spisaet ebet."
+
+#, fuzzy
+#~| msgid "create the requested folder"
+#~ msgctxt "request type"
+#~ msgid "create the requested folder"
+#~ msgstr "krouiñ ar renkell goulennet"
+
+#, fuzzy
+#~ msgctxt "request type"
+#~ msgid "copy the specified file or folder"
+#~ msgstr "Goulennet oc'h eus ur renkell"
+
+#, fuzzy
+#~| msgid "move the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "move the specified file or folder"
+#~ msgstr "fiñval ar restr pe ar renkell spisaet"
+
+#, fuzzy
+#~| msgid "search in the specified folder"
+#~ msgctxt "request type"
+#~ msgid "search in the specified folder"
+#~ msgstr "klask er renkell dibabet"
+
+#, fuzzy
+#~| msgid "lock the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "lock the specified file or folder"
+#~ msgstr "krouilhiñ ar restr pe ar renkell spisaet"
+
+#, fuzzy
+#~| msgid "unlock the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "unlock the specified file or folder"
+#~ msgstr "dikrouilhiñ ar restr pe ar renkell spisaet"
+
+#, fuzzy
+#~| msgid "delete the specified file or folder"
+#~ msgctxt "request type"
+#~ msgid "delete the specified file or folder"
+#~ msgstr "dilemel ar restr pe ar renkell spisaet"
+
+#, fuzzy
+#~ msgctxt "request type"
+#~ msgid "retrieve the contents of the specified file or folder"
+#~ msgstr "Goulennet oc'h eus ur renkell"
+
+#, fuzzy
+#~| msgid "search in the specified folder"
+#~ msgctxt "request type"
+#~ msgid "run a report in the specified folder"
+#~ msgstr "klask er renkell dibabet"
+
+#, fuzzy
+#~ msgctxt "%1: code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "Bez' ez eus bet ur c'hammad en ur glask digeriñ an teul-mañ"
+
+#, fuzzy
+#~ msgid "The server does not support the WebDAV protocol."
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~ msgctxt "%1: request type, %2: url"
+#~ msgid ""
+#~ "An error occurred while attempting to %1, %2. A summary of the reasons is "
+#~ "below."
+#~ msgstr "Bez' ez eus bet ur c'hammad en ur glask digeriñ an teul-mañ"
+
+#, fuzzy
+#~ msgctxt "%1: request type"
+#~ msgid "Access was denied while attempting to %1."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgctxt "%1: request type"
+#~ msgid "Unable to %1 because the resource is locked."
+#~ msgstr "Kefluniadur talk"
+
+#, fuzzy
+#~ msgctxt "%1: request type"
+#~ msgid ""
+#~ "Unable to %1 because the destination server refuses to accept the file or "
+#~ "folder."
+#~ msgstr "ha renkañ an holl restroù lec'hell er renkell-se"
+
+#, fuzzy
+#~ msgid "The resource cannot be deleted."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#, fuzzy
+#~| msgid "upload %1"
+#~ msgctxt "request type"
+#~ msgid "upload %1"
+#~ msgstr "ezkargañ %1"
+
+#, fuzzy
+#~ msgctxt "%1: response code, %2: request type"
+#~ msgid "An unexpected error (%1) occurred while attempting to %2."
+#~ msgstr "Bez' ez eus bet ur c'hammad en ur glask digeriñ an teul-mañ"
+
+#~ msgid "Sending data to %1"
+#~ msgstr "Emaon o kas ar roadoù da %1 ..."
+
+#~ msgid "Retrieving %1 from %2..."
+#~ msgstr "Emaon o tegas %1 eus %2 ..."
+
+#~ msgid "<b>%1</b> at <b>%2</b>"
+#~ msgstr "<b>%1</b> war <b>%2</b>"
+
+#~ msgid "Authentication Failed."
+#~ msgstr "Dilesadur sac'het."
+
+#, fuzzy
+#~ msgid "Authorization failed."
+#~ msgstr "&Lec'hiadur"
+
+#, fuzzy
+#~ msgid "Unknown Authorization method."
+#~ msgstr "&Lec'hiadur"
+
+#, fuzzy
+#~| msgid ""
+#~| "Could not create symlink %1.\n"
+#~| "Please check permissions."
+#~ msgid "Could not remove %1, check permissions"
+#~ msgstr ""
+#~ "Ne m'eus ket gallet oberiañ an arouezere %1\n"
+#~ ".Gwiriit aotreoù mar plij."
+
+#, fuzzy
+#~| msgid "Could not write to %1."
+#~ msgid "Could not create directory %1"
+#~ msgstr "Ne m'eus ket gallet skrivañ %1."
+
+#~ msgid "Cookie Alert"
+#~ msgstr "Kemenn d'an toupin !"
+
+#, fuzzy
+#~ msgctxt "%2 hostname, %3 optional cross domain suffix (translated below)"
+#~ msgid ""
+#~ "<p>You received a cookie from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject this cookie?</p>"
+#~ msgid_plural ""
+#~ "<p>You received %1 cookies from<br/><b>%2%3</b><br/>Do you want to accept "
+#~ "or reject these cookies?</p>"
+#~ msgstr[0] ""
+#~ "Bez' ez eus un teul gant an anv-se endeo\n"
+#~ "Ha fellout a ra deoc'h e rasklañ ?"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~ msgid "See or modify the cookie information"
+#~ msgstr "Kefluniadur mail"
+
+#~ msgid "&Accept"
+#~ msgstr "&Aotren"
+
+#~ msgid "&Reject"
+#~ msgstr "&Nac'h"
+
+#~ msgid "Apply Choice To"
+#~ msgstr "Arloañ ar choazh da"
+
+#~ msgid "&Only this cookie"
+#~ msgstr "An toupin-mañ &hepken"
+
+#~ msgid "&Only these cookies"
+#~ msgstr "An toupinoù-mañ &hepken"
+
+#~ msgid "All cookies from this do&main"
+#~ msgstr "An holl doupinoù eus an do&mani-se"
+
+#~ msgid "All &cookies"
+#~ msgstr "&An holl doupinoù"
+
+#~ msgid "Cookie Details"
+#~ msgstr "Mududoù an toupin"
+
+#, fuzzy
+#~ msgctxt ""
+#~ "@label a description string of how 'accessible' the cookie is (e.g. see "
+#~ "exposure string in this file)"
+#~ msgid "Exposure:"
+#~ msgstr "Ment :"
+
+#~ msgctxt "Next cookie"
+#~ msgid "&Next >>"
+#~ msgstr "&A heul >>"
+
+#, fuzzy
+#~| msgid "Not specified"
+#~ msgctxt "@label cookie has no explicit 'Domain' value specified"
+#~ msgid "Not specified"
+#~ msgstr "N'eo ket spisaet"
+
+#, fuzzy
+#~| msgid "End of Session"
+#~ msgctxt "@label the cookie expires when the browser session ends"
+#~ msgid "End of Session"
+#~ msgstr "Echu eo an dalc'h"
+
+#, fuzzy
+#~| msgid "Servers"
+#~ msgctxt ""
+#~ "@label exposure string - the cookie may only be used by http servers"
+#~ msgid "Servers"
+#~ msgstr "Servijerien"
+
+#, fuzzy
+#~| msgid "Details"
+#~ msgctxt ""
+#~ "@action:button show details about a cookie that needs approval. This "
+#~ "string gets >> and << appended, to visualize if the dialog expands or "
+#~ "compacts!"
+#~ msgid "Details"
+#~ msgstr "Munudoù"
+
+#, fuzzy
+#~| msgid "Network"
+#~ msgid "Network"
+#~ msgstr "Rouedad"
+
+#, fuzzy
+#~| msgid "Malformed URL %1."
+#~ msgid "Malformed URL %1"
+#~ msgstr "URL siek %1."
+
+#, fuzzy
+#~ msgid "not supported"
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~| msgid ""
+#~| "Internal error in server\n"
+#~| "%1"
+#~ msgid "Internal error in copyOrMove, should never happen"
+#~ msgstr ""
+#~ "Fazi diabarzh e-barzh ar servijer\n"
+#~ "%1"
+
+#, fuzzy
+#~ msgid "Could not find a usable proxy configuration script"
+#~ msgstr "N'hell ket krouiñ rann ar gefluniadur, o kuitaat."
+
+#~ msgid ""
+#~ "Could not download the proxy configuration script:\n"
+#~ "%1"
+#~ msgstr ""
+#~ "N'hell ket enporzhñ an urzhiaoueg kefluniadur proksi :\n"
+#~ "%1"
+
+#~ msgid "Could not download the proxy configuration script"
+#~ msgstr "N'hell ket enporzhñ an urzhiaoueg kefluniadur proksi."
+
+#~ msgid ""
+#~ "The proxy configuration script is invalid:\n"
+#~ "%1"
+#~ msgstr "Sac'het eo an urzhiaoueg kefluniadur proksi :%1"
+
+#, fuzzy
+#~| msgid "  Do you want to retry?"
+#~ msgid "Do you want to retry?"
+#~ msgstr "  C'hoant peus da glask adarre ?"
+
+#, fuzzy
+#~ msgid "Retry Authentication"
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~| msgid "Retry"
+#~ msgctxt "@action:button filter-continue"
+#~ msgid "Retry"
+#~ msgstr "Klask adarre"
+
+#, fuzzy
+#~ msgid "Authentication Dialog"
+#~ msgstr "&Lec'hiadur"
+
+#, fuzzy
+#~| msgid "Access Denied"
+#~ msgid "Access denied"
+#~ msgstr "Digor nac'het"
+
+#, fuzzy
+#~ msgid "You do not have permission to access the %1 protocol."
+#~ msgstr "N'oc'h ket aotreet da skrivañ war ar restr-mañ.\n"
+
+#, fuzzy
+#~ msgid "<qt><b>%1</b> does not have a home folder.</qt>"
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#, fuzzy
+#~| msgid "<qt>Please choose a new password for the wallet '<b>%1</b>'."
+#~ msgid "<qt>There is no user called <b>%1</b>.</qt>"
+#~ msgstr "<qt>Dibabit un tremenger nevez evit an doug-paperoù '<b>%1</b>'."
+
+#~ msgid "Common name:"
+#~ msgstr "Anv boutin :"
+
+#~ msgid "Organization:"
+#~ msgstr "Aozadur :"
+
+#, fuzzy
+#~ msgid "Organizational unit:"
+#~ msgstr "Aozadur :"
+
+#~ msgid "Country:"
+#~ msgstr "Bro :"
+
+#, fuzzy
+#~ msgid "Canada"
+#~ msgstr "Adkargañ"
+
+#, fuzzy
+#~| msgctxt "Federal State"
+#~| msgid "State:"
+#~ msgid "State:"
+#~ msgstr "Rannvro :"
+
+#, fuzzy
+#~| msgid "Country:"
+#~ msgid "City:"
+#~ msgstr "Bro :"
+
+#~ msgid "Calculate"
+#~ msgstr "Jediñ"
+
+#, fuzzy
+#~| msgid "Cancel Job"
+#~ msgid "C&ancel"
+#~ msgstr "Nullañ an implij"
+
+#, fuzzy
+#~| msgid "E&xecute"
+#~ msgid "&Execute"
+#~ msgstr "&Seveniñ"
+
+#, fuzzy
+#~ msgid "Creating directory"
+#~ msgstr "Emaon o krouiñ ar renkell"
+
+#, fuzzy
+#~| msgid "Moving"
+#~ msgid "Moving"
+#~ msgstr "Emaon o tilec'hiañ"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Renaming"
+#~ msgstr "&Adenvel"
+
+#, fuzzy
+#~| msgid "Deleting"
+#~ msgid "Deleting"
+#~ msgstr "Emaon o tistruj"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Und&o: Rename"
+#~ msgstr "&Adenvel"
+
+#, fuzzy
+#~| msgctxt "to trash"
+#~| msgid "&Trash"
+#~ msgid "Und&o: Trash"
+#~ msgstr "&Pod-lastez"
+
+#, fuzzy
+#~| msgid "Could Not Create Folder"
+#~ msgid "Und&o: Create Folder"
+#~ msgstr "Ne m'eus ket krouet ar renkell"
+
+#, fuzzy
+#~| msgid "Could Not Create Folder"
+#~ msgid "Und&o: Create Folder(s)"
+#~ msgstr "Ne m'eus ket krouet ar renkell"
+
+#, fuzzy
+#~| msgid "Could Not Create Folder"
+#~ msgid "Und&o: Create File"
+#~ msgstr "Ne m'eus ket krouet ar renkell"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Und&o: Batch Rename"
+#~ msgstr "&Adenvel"
+
+#, fuzzy
+#~| msgid "Updating System Configuration"
+#~ msgid "Undo File Copy Confirmation"
+#~ msgstr "Emaon o bremañaat kefluniadur ar reizhiad"
+
+#, fuzzy
+#~| msgid "Delete Entry"
+#~ msgid "Delete Permanently"
+#~ msgstr "Lemel ar bouetadur"
+
+#, fuzzy
+#~| msgid "Delete Entry"
+#~ msgctxt "@action:button"
+#~ msgid "Delete Permanently"
+#~ msgstr "Lemel ar bouetadur"
+
+#, fuzzy
+#~| msgid "Trash"
+#~ msgctxt "@action:button"
+#~ msgid "Empty Trash"
+#~ msgstr "Pod-lastez"
+
+#, fuzzy
+#~| msgid "Do you really want to delete this item?"
+#~| msgid_plural "Do you really want to delete these %1 items?"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Do you really want to move this item to the Trash?<nl/><filename>%1</"
+#~ "filename>"
+#~ msgstr "Ha fellout a ra deoc'h da vat lemel an %1 dra dibabet ?"
+
+#, fuzzy
+#~| msgid "Do you really want to delete this item?"
+#~| msgid_plural "Do you really want to delete these %1 items?"
+#~ msgid "Do you really want to move this item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] "Ha fellout a ra deoc'h da vat lemel an %1 dra dibabet ?"
+#~ msgstr[1] ""
+
+#~ msgid "SSL"
+#~ msgstr "SSL"
+
+#, fuzzy
+#~| msgid "Add..."
+#~ msgctxt "@action:button"
+#~ msgid "Add..."
+#~ msgstr "Ouzhpennañ ..."
+
+#, fuzzy
+#~| msgid "&Edit..."
+#~ msgctxt "@action:button"
+#~ msgid "Edit..."
+#~ msgstr "&Aozañ ..."
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgctxt "@action:button"
+#~ msgid "Delete"
+#~ msgstr "Dilemel"
+
+#, fuzzy
+#~| msgid "Owner"
+#~ msgctxt "Unix permissions"
+#~ msgid "Owner"
+#~ msgstr "Perc'henn"
+
+#, fuzzy
+#~ msgctxt "UNIX permissions"
+#~ msgid "Owning Group"
+#~ msgstr "Strollad"
+
+#, fuzzy
+#~| msgid "Others"
+#~ msgctxt "UNIX permissions"
+#~ msgid "Others"
+#~ msgstr "Ar re all"
+
+#, fuzzy
+#~| msgid "Mask"
+#~ msgctxt "UNIX permissions"
+#~ msgid "Mask"
+#~ msgstr "Maskl..."
+
+#, fuzzy
+#~| msgid "Named User"
+#~ msgctxt "UNIX permissions"
+#~ msgid "Named User"
+#~ msgstr "Arveriad gant un anv"
+
+#, fuzzy
+#~| msgid " (Default)"
+#~ msgid "Owner (Default)"
+#~ msgstr " (Dre ziouer)"
+
+#~ msgid "Edit ACL Entry"
+#~ msgstr "Aozañ ar vouetadur ACL"
+
+#, fuzzy
+#~ msgid "Entry Type"
+#~ msgstr "Moulañ"
+
+#~ msgid "Owner"
+#~ msgstr "Perc'henn"
+
+#, fuzzy
+#~ msgid "Owning Group"
+#~ msgstr "Strollad"
+
+#~ msgid "Others"
+#~ msgstr "Ar re all"
+
+#~ msgid "Mask"
+#~ msgstr "Maskl..."
+
+#, fuzzy
+#~| msgid "Named User"
+#~ msgid "Named user"
+#~ msgstr "Arveriad gant un anv"
+
+#, fuzzy
+#~| msgid "Named Group"
+#~ msgid "Named group"
+#~ msgstr "Strollad gant un anv"
+
+#~ msgid "User: "
+#~ msgstr "Arveriad : "
+
+#~ msgid "Group: "
+#~ msgstr "Strollad : "
+
+#~ msgid "Type"
+#~ msgstr "Seurt"
+
+#~ msgid "Name"
+#~ msgstr "Anv"
+
+#~ msgctxt "read permission"
+#~ msgid "r"
+#~ msgstr "l"
+
+#~ msgctxt "write permission"
+#~ msgid "w"
+#~ msgstr "s"
+
+#~ msgctxt "execute permission"
+#~ msgid "x"
+#~ msgstr "s"
+
+#, fuzzy
+#~ msgid "Effective"
+#~ msgstr "&Er-maez"
+
+#~ msgid "Updating System Configuration"
+#~ msgstr "Emaon o bremañaat kefluniadur ar reizhiad"
+
+#~ msgid "Updating system configuration."
+#~ msgstr "Emaon o bremañaat kefluniadur ar reizhiad."
+
+#, fuzzy
+#~| msgid "Name"
+#~ msgctxt "@title:column"
+#~ msgid "Name"
+#~ msgstr "Anv"
+
+#, fuzzy
+#~| msgid "Size"
+#~ msgctxt "@title:column"
+#~ msgid "Size"
+#~ msgstr "Ment"
+
+#, fuzzy
+#~| msgid "Date"
+#~ msgctxt "@title:column"
+#~ msgid "Date"
+#~ msgstr "Deiziad"
+
+#, fuzzy
+#~| msgid "Permissions"
+#~ msgctxt "@title:column"
+#~ msgid "Permissions"
+#~ msgstr "Aotreoù"
+
+#, fuzzy
+#~| msgid "Owner"
+#~ msgctxt "@title:column"
+#~ msgid "Owner"
+#~ msgstr "Perc'henn"
+
+#, fuzzy
+#~| msgid "Group"
+#~ msgctxt "@title:column"
+#~ msgid "Group"
+#~ msgstr "Strollad"
+
+#, fuzzy
+#~| msgid "Type"
+#~ msgctxt "@title:column"
+#~ msgid "Type"
+#~ msgstr "Seurt"
+
+#, fuzzy
+#~| msgid "Open with:"
+#~ msgid "Open &with %1"
+#~ msgstr "Digeriñ gant :"
+
+#, fuzzy
+#~| msgid "%1 B"
+#~ msgctxt "@item:inmenu Open With, %1 is application name"
+#~ msgid "%1"
+#~ msgstr "%1 O"
+
+#, fuzzy
+#~| msgid "Actions"
+#~ msgctxt "@title:menu"
+#~ msgid "&Actions"
+#~ msgstr "Oberoù"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With..."
+#~ msgstr "Digeriñ gant"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With..."
+#~ msgstr "Digeriñ gant"
+
+#, fuzzy
+#~| msgid "Open with:"
+#~ msgid "&Open folder with %1"
+#~ msgstr "Digeriñ gant :"
+
+#, fuzzy
+#~| msgid "Open with:"
+#~ msgid "&Open with %1"
+#~ msgstr "Digeriñ gant :"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open Folder With"
+#~ msgstr "Digeriñ gant"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgctxt "@title:menu"
+#~ msgid "&Open With"
+#~ msgstr "Digeriñ gant"
+
+#, fuzzy
+#~| msgid "&Application"
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other Application..."
+#~ msgstr "&Meziant"
+
+#, fuzzy
+#~ msgctxt "Items in a folder"
+#~ msgid "1 item"
+#~ msgid_plural "%1 items"
+#~ msgstr[0] "%1 restr"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~| msgid "Unknown"
+#~ msgctxt "@info mimetype"
+#~ msgid "Unknown"
+#~ msgstr "Dianav"
+
+#~ msgid "Stop"
+#~ msgstr "Paouez"
+
+#, fuzzy
+#~| msgid "Mounted on:"
+#~ msgid "Mounted From:"
+#~ msgstr "Marc'het war :"
+
+#~ msgid "Type:"
+#~ msgstr "Seurt :"
+
+#~ msgid "Location:"
+#~ msgstr "Lec'hiadur :"
+
+#, fuzzy
+#~| msgid "C&hange..."
+#~ msgid "Change..."
+#~ msgstr "&Kemmañ ..."
+
+#, fuzzy
+#~| msgid "Contents:"
+#~ msgid "Content:"
+#~ msgstr "Endalc'had :"
+
+#~ msgid "Points to:"
+#~ msgstr "A vuk ouzh :"
+
+#~ msgid "Modified:"
+#~ msgstr "Kemmet :"
+
+#~ msgid "Created:"
+#~ msgstr "Krouet :"
+
+#, fuzzy
+#~| msgid "File system:"
+#~ msgid "File System:"
+#~ msgstr "Reizhiad restroù :"
+
+#, fuzzy
+#~| msgid "Unknown Host"
+#~ msgid "Unknown size"
+#~ msgstr "Ostiz dianav"
+
+#, fuzzy
+#~| msgid "Mounted on:"
+#~ msgid "Mounted On:"
+#~ msgstr "Marc'het war :"
+
+#~ msgid "Accessed:"
+#~ msgstr "Diwezhañ :"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgid "Open With:"
+#~ msgstr "Digeriñ gant"
+
+#~ msgid "Known Applications"
+#~ msgstr "Arloadoù anavet"
+
+#~ msgid "Open With"
+#~ msgstr "Digeriñ gant"
+
+#~ msgid "Choose Application"
+#~ msgstr "Dibabit ur meziant"
+
+#~ msgid "Choose Application for %1"
+#~ msgstr "Dibabit ur meziant evit %1"
+
+#, fuzzy
+#~| msgid "&Terminal options:"
+#~ msgid "Terminal options"
+#~ msgstr "Dibarzhoù an &termenell :"
+
+#~ msgid "Run in &terminal"
+#~ msgstr "Seveniñ en er &termenell"
+
+#, fuzzy
+#~| msgid "Terminal"
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options about the "
+#~ "terminal when launching a program"
+#~ msgid "Terminal"
+#~ msgstr "Termenell"
+
+#, fuzzy
+#~| msgid "&Run in terminal"
+#~ msgid "Run in terminal"
+#~ msgstr "&Seveniñ e-barzh un termenell"
+
+#, fuzzy
+#~| msgid "&Terminal options:"
+#~ msgid "Terminal options:"
+#~ msgstr "Dibarzhoù an &termenell :"
+
+#, fuzzy
+#~| msgid "User"
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose which user to use "
+#~ "when launching a program"
+#~ msgid "User"
+#~ msgstr "Arveriad"
+
+#~ msgid "Username:"
+#~ msgstr "Anv an arveriad :"
+
+#, fuzzy
+#~| msgid "Startup"
+#~ msgctxt ""
+#~ "@title:group Title of a group that lets the user choose options regarding "
+#~ "program startup"
+#~ msgid "Startup"
+#~ msgstr "Loc'hadur"
+
+#~ msgid "&Description:"
+#~ msgstr "&Deskrivadur :"
+
+#~ msgid "Comm&ent:"
+#~ msgstr "Aske&lenn :"
+
+#~ msgid "&Browse..."
+#~ msgstr "&Furchañ ..."
+
+#, fuzzy
+#~ msgid "&Arguments:"
+#~ msgstr "Askelenn"
+
+#~ msgid "Sets the working directory for your application."
+#~ msgstr "Lakaat a ra ar renkell labour evit ho program."
+
+#~ msgid "&Work path:"
+#~ msgstr "Hent &labour :"
+
+#, fuzzy
+#~ msgid "&Supported file types:"
+#~ msgstr "*|Pep restr"
+
+#~ msgid "Mimetype"
+#~ msgstr "RizhMime"
+
+#~ msgid "Description"
+#~ msgstr "Deskrivadur"
+
+#~ msgid "Add..."
+#~ msgstr "Ouzhpennañ ..."
+
+#~ msgid "Remove"
+#~ msgstr "Lemel"
+
+#~ msgid "Ad&vanced Options"
+#~ msgstr "Dibaboù ba&rek"
+
+#, fuzzy
+#~| msgid "Do you really want to delete this item?"
+#~| msgid_plural "Do you really want to delete these %1 items?"
+#~ msgctxt "@info"
+#~ msgid ""
+#~ "Could not save properties due to insufficient write access to:<nl/"
+#~ "><filename>%1</filename>."
+#~ msgstr "Ha fellout a ra deoc'h da vat lemel an %1 dra dibabet ?"
+
+#~ msgid "Properties for %1"
+#~ msgstr "Dibarzhoù evit %1"
+
+#, fuzzy
+#~ msgid "Properties for 1 item"
+#~ msgid_plural "Properties for %1 Selected Items"
+#~ msgstr[0] "Dibarzhoù evit %1"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~| msgid "&General"
+#~ msgctxt "@title:tab File properties"
+#~ msgid "&General"
+#~ msgstr "&Pennañ"
+
+#~ msgid "Refresh"
+#~ msgstr "Adtresañ"
+
+#, fuzzy
+#~| msgid "%1 B"
+#~ msgid "%1:"
+#~ msgstr "%1 O"
+
+#, fuzzy
+#~| msgid "Unknown Host"
+#~ msgctxt "@info:status"
+#~ msgid "Unknown size"
+#~ msgstr "Ostiz dianav"
+
+#~ msgid ""
+#~ "Calculating... %1 (%2)\n"
+#~ "%3, %4"
+#~ msgstr ""
+#~ "Emaon o jediñ ... %1 (%2)\n"
+#~ "%3, %4"
+
+#, fuzzy
+#~ msgid "1 file"
+#~ msgid_plural "%1 files"
+#~ msgstr[0] "%1 restr"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~ msgid "1 sub-folder"
+#~ msgid_plural "%1 sub-folders"
+#~ msgstr[0] "%1 is-renkell"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~| msgid "Calculating..."
+#~ msgid "Calculating...\n"
+#~ msgstr "Emaon o jediñ ..."
+
+#, fuzzy
+#~| msgid " Files: %1 "
+#~ msgid "At least %1\n"
+#~ msgstr "Restroù : %1 "
+
+#~ msgid "The new file name is empty."
+#~ msgstr "Goullo eo an anv restr nevez."
+
+#, fuzzy
+#~ msgid "No registered file type"
+#~ msgstr "*|Pep restr"
+
+#, fuzzy
+#~| msgid "Choose Application"
+#~ msgid "No associated application"
+#~ msgstr "Dibabit ur meziant"
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgctxt "@action:button Create new file type"
+#~ msgid "Create…"
+#~ msgstr "Krouet :"
+
+#, fuzzy
+#~| msgid "C&hange..."
+#~ msgctxt "@action:button"
+#~ msgid "Change…"
+#~ msgstr "&Kemmañ ..."
+
+#, fuzzy
+#~| msgid "Accessed:"
+#~ msgid "No Access"
+#~ msgstr "Diwezhañ :"
+
+#, fuzzy
+#~ msgid "Can View & Modify"
+#~ msgstr "Endalc'had"
+
+#, fuzzy
+#~ msgid "Can Only View Content"
+#~ msgstr "Endalc'had"
+
+#, fuzzy
+#~ msgid "Can Only View/Read Content"
+#~ msgstr "Endalc'had"
+
+#~ msgid "&Permissions"
+#~ msgstr "&Aotreoù"
+
+#~ msgid "Access Permissions"
+#~ msgstr "Aotreoù moned"
+
+#, fuzzy
+#~ msgid "Only the owner can change permissions."
+#~ msgstr "N'oc'h ket aotreet da skrivañ war ar restr-mañ.\n"
+
+#~ msgid "O&wner:"
+#~ msgstr "&Perc'henn :"
+
+#~ msgid "Gro&up:"
+#~ msgstr "Str&ollad :"
+
+#~ msgid "O&thers:"
+#~ msgstr "Ar re a&ll :"
+
+#, fuzzy
+#~ msgid "Is &executable"
+#~ msgstr "&Er-maez"
+
+#~ msgid "A&dvanced Permissions"
+#~ msgstr "Ao&troù barek"
+
+#~ msgid "Ownership"
+#~ msgstr "Perc'henniezh"
+
+#~ msgid "User:"
+#~ msgstr "Arveriad :"
+
+#~ msgid "Group:"
+#~ msgstr "Strollad :"
+
+#~ msgid "Advanced Permissions"
+#~ msgstr "Aotroù barek"
+
+#~ msgid "Class"
+#~ msgstr "Renkad"
+
+#~ msgid ""
+#~ "Show\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "Diskouez\n"
+#~ "ar bouetaduroù"
+
+#~ msgid "Read"
+#~ msgstr "Lenn"
+
+#~ msgid ""
+#~ "Write\n"
+#~ "Entries"
+#~ msgstr ""
+#~ "Skrivañ\n"
+#~ "enmontoù"
+
+#~ msgid "Write"
+#~ msgstr "Skrivañ"
+
+#~ msgctxt "Enter folder"
+#~ msgid "Enter"
+#~ msgstr "Mont"
+
+#, fuzzy
+#~ msgid "Enable this flag to allow entering the folder."
+#~ msgstr "N'oc'h ket aotreet da lenn ar restr-mañ."
+
+#~ msgid "Exec"
+#~ msgstr "Seveniñ"
+
+#~ msgid "Special"
+#~ msgstr "Dibar"
+
+#~ msgid "User"
+#~ msgstr "Arveriad"
+
+#~ msgid "Group"
+#~ msgstr "Strollad"
+
+#~ msgid "Set UID"
+#~ msgstr "Lakaat an UID"
+
+#~ msgid "Set GID"
+#~ msgstr "Lakaat ar GID"
+
+#~ msgctxt "File permission"
+#~ msgid "Sticky"
+#~ msgstr "Peget"
+
+#~ msgid "Link"
+#~ msgstr "Liamm"
+
+#, fuzzy
+#~| msgid "Calculating..."
+#~ msgctxt "@action:button"
+#~ msgid "Calculating..."
+#~ msgstr "Emaon o jediñ ..."
+
+#~ msgid "U&RL"
+#~ msgstr "U&RL"
+
+#~ msgid "URL:"
+#~ msgstr "URL :"
+
+#~ msgid "&Application"
+#~ msgstr "&Meziant"
+
+#~ msgid "Add File Type for %1"
+#~ msgstr "Ouzhpennañ ur seurt restr evit %1"
+
+#, fuzzy
+#~ msgid "Select one or more file types to add:"
+#~ msgstr "Diuzit an teul da enlakaat"
+
+#~ msgid "Advanced Options for %1"
+#~ msgstr "Dibaboù barek evit %1"
+
+#~ msgid "KDE SSL Information"
+#~ msgstr "Titouroù SSL KDE"
+
+#, fuzzy
+#~| msgid "Subject line"
+#~ msgctxt "The receiver of the SSL certificate"
+#~ msgid "Subject"
+#~ msgstr "Linenn an dodenn"
+
+#, fuzzy
+#~ msgctxt "The authority that issued the SSL certificate"
+#~ msgid "Issuer"
+#~ msgstr "Enlakaat"
+
+#, fuzzy
+#~ msgid "Current connection is not secured with SSL."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgctxt "%1, using %2 bits of a %3 bit key"
+#~ msgid "%1, %2 %3"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "Mounting %1"
+#~ msgctxt "Part of: %1, using %2 bits of a %3 bit key"
+#~ msgid "using %1 bit"
+#~ msgid_plural "using %1 bits"
+#~ msgstr[0] "Emaon o marc'hañ %1"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~| msgid "&Reset"
+#~ msgctxt "The certificate is trusted"
+#~ msgid "Yes"
+#~ msgstr "&Adkorañ"
+
+#, fuzzy
+#~| msgid "%1 / %2"
+#~ msgctxt "%1 is the effective date of the certificate, %2 is the expiry date"
+#~ msgid "%1 to %2"
+#~ msgstr "%1 / %2"
+
+#, fuzzy
+#~| msgid "%1 B"
+#~ msgctxt "@action:inmenu Search for <text> with"
+#~ msgid "%1"
+#~ msgstr "%1 O"
+
+#, fuzzy
+#~| msgid "Change &Policy..."
+#~ msgid "Configure Web Shortcuts..."
+#~ msgstr "Kemmañ ar &politikerez ..."
+
+#~ msgid "Open file dialog"
+#~ msgstr "Prenestr digeriñ ur restr"
+
+#~ msgid "%1 (%2)"
+#~ msgstr "%1 (%2)"
+
+#, fuzzy
+#~| msgid "One Folder"
+#~| msgid_plural "%1 Folders"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Folder"
+#~ msgstr "%1 renkell"
+
+#, fuzzy
+#~| msgid "&Paste File"
+#~| msgid_plural "&Paste %1 Files"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One File"
+#~ msgstr "&Pegañ %1 restr"
+
+#, fuzzy
+#~| msgid "One Item"
+#~| msgid_plural "%1 Items"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste One Item"
+#~ msgid_plural "Paste %1 Items"
+#~ msgstr[0] "%1 tra"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~| msgid "&Paste Clipboard Contents"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste Clipboard Contents..."
+#~ msgstr "&Pegañ endalc'had ar golver"
+
+#, fuzzy
+#~| msgid "&Paste URL"
+#~| msgid_plural "&Paste %1 URLs"
+#~ msgctxt "@action:inmenu"
+#~ msgid "Paste"
+#~ msgstr "&Pegañ %1 URL"
+
+#~ msgid "Data format:"
+#~ msgstr "Furmad ar roadoù :"
+
+#, fuzzy
+#~ msgid "Date: %1"
+#~ msgstr "ment %1"
+
+#, fuzzy
+#~| msgid "Size:"
+#~ msgid "Size: %1"
+#~ msgstr "Ment :"
+
+#~ msgid "&Rename"
+#~ msgstr "&Adenvel"
+
+#~ msgid "Suggest New &Name"
+#~ msgstr "Kinnigit un &anv nevez"
+
+#~ msgid "&Skip"
+#~ msgstr "&Tremen e-biou"
+
+#, fuzzy
+#~| msgid "Write"
+#~ msgctxt "Write files into an existing folder"
+#~ msgid "&Write Into"
+#~ msgstr "Skrivañ"
+
+#, fuzzy
+#~| msgid "O&verwrite All"
+#~ msgctxt "Overwrite files into an existing folder when files are older"
+#~ msgid "&Overwrite older files"
+#~ msgstr "&Rasklañ an holl re"
+
+#~ msgid "&Resume"
+#~ msgstr "&Kenderc'hel"
+
+#~ msgid "C&ontinue"
+#~ msgstr "&Kenderc'hel"
+
+#, fuzzy
+#~| msgid "Choose a different filename for the destination file."
+#~ msgid "This action will overwrite the destination."
+#~ msgstr "Dibabit un anv all evit ar restr dehaezadur."
+
+#, fuzzy
+#~| msgid "Source"
+#~ msgid "Source"
+#~ msgstr "Tarzh"
+
+#, fuzzy
+#~| msgid "Destination"
+#~ msgid "Destination"
+#~ msgstr "Dehaezadur"
+
+#, fuzzy
+#~| msgid "the extension <b>%1</b>"
+#~ msgid "The destination is <b>smaller by %1</b>"
+#~ msgstr "an astenn <b>%1</b>"
+
+#, fuzzy
+#~| msgid "the extension <b>%1</b>"
+#~ msgid "The destination is <b>bigger by %1</b>"
+#~ msgstr "an astenn <b>%1</b>"
+
+#, fuzzy
+#~| msgid "The new file name is empty."
+#~ msgid "The files are identical."
+#~ msgstr "Goullo eo an anv restr nevez."
+
+#, fuzzy
+#~| msgid "The new file name is empty."
+#~ msgid "The files are different."
+#~ msgstr "Goullo eo an anv restr nevez."
+
+#~ msgid "An older item named '%1' already exists."
+#~ msgstr "Un dra goshoc'h hag a vez graet '%1' a zo endeo."
+
+#, fuzzy
+#~ msgid "A similar file named '%1' already exists."
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#, fuzzy
+#~| msgid "An older item named '%1' already exists."
+#~ msgid "A more recent item named '%1' already exists."
+#~ msgstr "Un dra goshoc'h hag a vez graet '%1' a zo endeo."
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgid "Rename:"
+#~ msgstr "&Adenvel"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@title:window"
+#~ msgid "Rename Item"
+#~ msgstr "&Adenvel"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@title:window"
+#~ msgid "Rename Items"
+#~ msgstr "&Adenvel"
+
+#, fuzzy
+#~| msgid "&Rename"
+#~ msgctxt "@action:button"
+#~ msgid "&Rename"
+#~ msgstr "&Adenvel"
+
+#, fuzzy
+#~| msgid "Device name"
+#~ msgctxt ""
+#~ "This a template for new filenames, # is replaced by a number later, must "
+#~ "be the end character"
+#~ msgid "New name #"
+#~ msgstr "Anv an drobarzhell"
+
+#, fuzzy
+#~| msgid "delete the specified file or folder"
+#~ msgctxt "@label:textbox"
+#~ msgid "Rename the %1 selected item to:"
+#~ msgid_plural "Rename the %1 selected items to:"
+#~ msgstr[0] "dilemel ar restr pe ar renkell spisaet"
+#~ msgstr[1] "dilemel ar restr pe ar renkell spisaet"
+
+#~ msgid "Information"
+#~ msgstr "Titouroù"
+
+#~ msgid "Retry"
+#~ msgstr "Klask adarre"
+
+#, fuzzy
+#~| msgid "Replace"
+#~ msgid "Replace All"
+#~ msgstr "Erlec'hiañ"
+
+#~ msgid "Skip"
+#~ msgstr "Tremen e-biou"
+
+#, fuzzy
+#~| msgid "Skip"
+#~ msgid "Skip All"
+#~ msgstr "Tremen e-biou"
+
+#, fuzzy
+#~| msgid "IP address:"
+#~ msgctxt "Web page address"
+#~ msgid "Address:"
+#~ msgstr "Chomlec'h IP :"
+
+#, fuzzy
+#~| msgid "IP address:"
+#~ msgid "IP address:"
+#~ msgstr "Chomlec'h IP :"
+
+#, fuzzy
+#~| msgid "Description:"
+#~ msgid "Encryption:"
+#~ msgstr "Deskrivadur :"
+
+#~ msgid "Details:"
+#~ msgstr "Munudoù :"
+
+#, fuzzy
+#~| msgid "SSL version:"
+#~ msgid "SSL version:"
+#~ msgstr "Doare SSL :"
+
+#, fuzzy
+#~| msgid "Certificate"
+#~ msgid "Certificate chain:"
+#~ msgstr "Testeni"
+
+#, fuzzy
+#~| msgid "Created:"
+#~ msgid "Trusted:"
+#~ msgstr "Krouet :"
+
+#, fuzzy
+#~ msgid "Validity period:"
+#~ msgstr "Seurt :"
+
+#, fuzzy
+#~ msgid "Serial number:"
+#~ msgstr "Lemel"
+
+#, fuzzy
+#~ msgid "MD5 digest:"
+#~ msgstr "Ker"
+
+#, fuzzy
+#~ msgid "SHA1 digest:"
+#~ msgstr "Ker"
+
+#, fuzzy
+#~| msgid "Do you really want to delete this item?"
+#~| msgid_plural "Do you really want to delete these %1 items?"
+#~ msgctxt "@info"
+#~ msgid "Do you really want to move this %1 item to the Trash?"
+#~ msgid_plural "Do you really want to move these %1 items to the Trash?"
+#~ msgstr[0] "Ha fellout a ra deoc'h da vat lemel an %1 dra dibabet ?"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~ msgctxt "Warning about executing unknown program"
+#~ msgid "Warning"
+#~ msgstr "Diwallit"
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgid "Unknown HTTP verb."
+#~ msgstr "Fazi dianav"
+
+#, fuzzy
+#~| msgid "<h1>Cookies Management Quick Help</h1>"
+#~ msgid "<h1>Cookie Management Quick Help</h1>"
+#~ msgstr "<h1>Skoazell gant mererezh ar topinoù</h1"
+
+#, fuzzy
+#~| msgid "&Search:"
+#~ msgid "Web Search Keywords"
+#~ msgstr "&Klask :"
+
+#, fuzzy
+#~| msgid "Configure"
+#~ msgid "Configure enhanced browsing features"
+#~ msgstr "Kefluniañ"
+
+#, fuzzy
+#~| msgid "&Reset"
+#~ msgid "&Yes"
+#~ msgstr "&Adkorañ"
+
+#, fuzzy
+#~ msgid "&No"
+#~ msgstr "Ebet"
+
+#~ msgid "A file or folder named %1 already exists."
+#~ msgstr "Un teul pe ur renkell a vez graet %1 dioutañ a zo c'hoazh."
+
+#~ msgid "You do not have permission to create that folder."
+#~ msgstr "N'oc'h ket aotreet da grouiñ ar renkell-mañ."
+
+#, fuzzy
+#~ msgid "mounting is not supported by Windows CE."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "unmounting is not supported by Windows CE."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#~ msgid "Mount"
+#~ msgstr "Marc'hañ"
+
+#~ msgid "Unmount"
+#~ msgstr "Divarc'hañ"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>Unable to run the command specified. The file or folder <b>%1</b> "
+#~ "does not exist.</qt>"
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#, fuzzy
+#~| msgid "Could not change permissions for %1."
+#~ msgid "Could not find any application or handler for %1"
+#~ msgstr "Ne m'eus ket gallet kemmañ aotreoù evit %1."
+
+#, fuzzy
+#~ msgid "&Paste File"
+#~ msgid_plural "&Paste %1 Files"
+#~ msgstr[0] "&Pegañ %1 restr"
+#~ msgstr[1] ""
+
+#, fuzzy
+#~ msgid "&Paste URL"
+#~ msgid_plural "&Paste %1 URLs"
+#~ msgstr[0] "&Pegañ %1 URL"
+#~ msgstr[1] ""
+
+#~ msgid "&Paste Clipboard Contents"
+#~ msgstr "&Pegañ endalc'had ar golver"
+
+#~ msgid "None"
+#~ msgstr "Ebet"
+
+#, fuzzy
+#~ msgid "Multiple Instances"
+#~ msgstr "Diskouez mod hir"
+
+#, fuzzy
+#~ msgid "Single Instance"
+#~ msgstr "Diskouez mod hir"
+
+#, fuzzy
+#~ msgid "Run Until Finished"
+#~ msgstr "Saozneg"
+
+#, fuzzy
+#~ msgid "D-Bus registration:"
+#~ msgstr "Aozadur"
+
+#, fuzzy
+#~| msgid "*|All Files"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Audio"
+#~ msgstr "*|Pep restr"
+
+#~ msgid "Co&mmand:"
+#~ msgstr "&Urzhiad :"
+
+#, fuzzy
+#~| msgid "Open With"
+#~ msgid "Open %1 in tab"
+#~ msgstr "Digeriñ gant"
+
+#, fuzzy
+#~| msgid "You are not authorized to execute this file."
+#~ msgid "Authentication is required to delete this file."
+#~ msgstr "N'helles ket seveniñ lemel ar restr-mañ."
+
+#, fuzzy
+#~ msgid "Authentication is required to create a folder."
+#~ msgstr "N'oc'h ket aotreet da lenn ar restr-mañ."
+
+#, fuzzy
+#~| msgid "You are not authorized to execute this file."
+#~ msgid "Authentication is required to open this file."
+#~ msgstr "N'helles ket seveniñ lemel ar restr-mañ."
+
+#, fuzzy
+#~| msgid "You are not authorized to execute this file."
+#~ msgid "Authentication is required to rename this file."
+#~ msgstr "N'helles ket seveniñ lemel ar restr-mañ."
+
+#, fuzzy
+#~| msgid "You are not authorized to execute this file."
+#~ msgid "Authentication is required to delete this folder."
+#~ msgstr "N'helles ket seveniñ lemel ar restr-mañ."
+
+#, fuzzy
+#~| msgid "Unmount"
+#~ msgid "&Unmount '%1'"
+#~ msgstr "Divarc'hañ"
+
+#, fuzzy
+#~| msgid "Eject"
+#~ msgid "&Eject '%1'"
+#~ msgstr "Stlepel kuit"
+
+#, fuzzy
+#~| msgid "&Edit Entry..."
+#~ msgid "&Edit Entry '%1'..."
+#~ msgstr "&Aozañ ar bouetadur ..."
+
+#, fuzzy
+#~| msgid "&Remove Entry"
+#~ msgid "&Remove Entry '%1'"
+#~ msgstr "&Dilemel ar bouetadur"
+
+#, fuzzy
+#~| msgid "Invalid Filenames"
+#~ msgid "Invalid Directory Name"
+#~ msgstr "Anvioù sac'het"
+
+#, fuzzy
+#~| msgid "Create new file type"
+#~ msgid "Create New File Type"
+#~ msgstr "Krouiñ ur seurt restr nevez"
+
+#, fuzzy
+#~| msgid "File types:"
+#~ msgid "File Type Options"
+#~ msgstr "Rizhioù ar restr :"
+
+#~ msgid "Edit Entry..."
+#~ msgstr "Aozañ ar vouetadur ..."
+
+#~ msgid "Delete Entry"
+#~ msgstr "Lemel ar bouetadur"
+
+#, fuzzy
+#~| msgid "Launching %1"
+#~ msgid "klauncher said: %1"
+#~ msgstr "Emaon o lañsañ %1"
+
+#, fuzzy
+#~ msgid "unmounting is not supported by wince."
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~| msgid "Device name"
+#~ msgid "File name:"
+#~ msgstr "Anv an drobarzhell"
+
+#~ msgid "&Use cache"
+#~ msgstr "&Implijit ar grubuilh"
+
+#~ msgid "Disk cache &size:"
+#~ msgstr "Ment krubuilh ar bladenn :"
+
+#, fuzzy
+#~| msgid "%1 KB"
+#~ msgid " KiB"
+#~ msgstr "%1 Ko"
+
+#~ msgid "C&lear Cache"
+#~ msgstr "&Goullonderiñ ar grubuilh"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgctxt "@title:window"
+#~ msgid "Add Identification"
+#~ msgstr "Dilesadur"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgctxt "@title:window"
+#~ msgid "Modify Identification"
+#~ msgstr "Dilesadur"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Identification"
+#~ msgstr "Dilesadur"
+
+#~ msgid "&Send identification"
+#~ msgstr "&Kas an anvelezh"
+
+#, fuzzy
+#~| msgid "Identification"
+#~ msgid "Default Identification"
+#~ msgstr "Dilesadur"
+
+#~ msgid "Add operating s&ystem name"
+#~ msgstr "Ouzhpennañ anv ar r&eizhiad korvoiñ"
+
+#~ msgid "Add operating system &version"
+#~ msgstr "Ouzhpennañ doare ar r&eizhiad korvoiñ"
+
+#~ msgid "Add lang&uage information"
+#~ msgstr "Ouzhpennañ titouroù diwar-benn ar y&ezh"
+
+#, fuzzy
+#~| msgid "&Send identification"
+#~ msgid "Site Specific Identification"
+#~ msgstr "&Kas an anvelezh"
+
+#~ msgid "Site Name"
+#~ msgstr "Anv al lec'hienn"
+
+#~ msgid "Identification"
+#~ msgstr "Dilesadur"
+
+#~ msgid "User Agent"
+#~ msgstr "Gwazour arveriad"
+
+#, fuzzy
+#~| msgid "delete the specified file or folder"
+#~ msgid "Delete the selected identifier text."
+#~ msgstr "dilemel ar restr pe ar renkell spisaet"
+
+#, fuzzy
+#~| msgid "&Send identification"
+#~ msgid "&Use the following identification:"
+#~ msgstr "&Kas an anvelezh"
+
+#, fuzzy
+#~| msgid "&Send identification"
+#~ msgid "Real identification:"
+#~ msgstr "&Kas an anvelezh"
+
+#~ msgid "De&vice"
+#~ msgstr "&Trobarzhell"
+
+#~ msgid "Device (/dev/fd0):"
+#~ msgstr "Trobarzhell (/dev/fd0) :"
+
+#~ msgid "Device:"
+#~ msgstr "Trobarzhell :"
+
+#~ msgid "Read only"
+#~ msgstr "Lenn-hepken"
+
+#~ msgid "File system:"
+#~ msgstr "Reizhiad restroù :"
+
+#~ msgid "Mount point (/mnt/floppy):"
+#~ msgstr "Poent marc'hañ (/mnt/floppy) :"
+
+#~ msgid "Mount point:"
+#~ msgstr "Poent marc'hañ :"
+
+#, fuzzy
+#~| msgid "Invalid Entry"
+#~ msgid "Invalid link target"
+#~ msgstr "Siek eo ar bouetadur"
+
+#, fuzzy
+#~| msgid "New Folder"
+#~ msgid "Add Network Folder"
+#~ msgstr "Renkell nevez"
+
+#, fuzzy
+#~| msgid "Do you really want to delete this item?"
+#~| msgid_plural "Do you really want to delete these %1 items?"
+#~ msgctxt "@info"
+#~ msgid "Do you really want to move these %1 items to the Trash?"
+#~ msgstr "Ha fellout a ra deoc'h da vat lemel an %1 dra dibabet ?"
+
+#~ msgid "Enter the certificate password:"
+#~ msgstr "Roit tremenger an testeni :"
+
+#~ msgid "SSL Certificate Password"
+#~ msgstr "Tremenger an testeni SLL"
+
+#~ msgid "Unable to open the certificate. Try a new password?"
+#~ msgstr "N'hellan ket digeriñ an testeni. Klask gant un tremenger nevez :"
+
+#, fuzzy
+#~ msgid "The procedure to set the client certificate for the session failed."
+#~ msgstr "Ne m'eus ket gallet kavout renkell du-mañ an arveriaded"
+
+#, fuzzy
+#~| msgid "A folder named %1 already exists."
+#~ msgid "A folder named \"%1\" already exists."
+#~ msgstr "Ur renkell a vez graet %1 dioutañ a zo c'hoazh."
+
+#, fuzzy
+#~| msgid "Name"
+#~ msgctxt "@title:column Name label from web shortcuts column"
+#~ msgid "Name"
+#~ msgstr "Anv"
+
+#, fuzzy
+#~| msgid "None"
+#~ msgctxt "@item:inlistbox No default web shortcut"
+#~ msgid "None"
+#~ msgstr "Ebet"
+
+#, fuzzy
+#~ msgid "Drive: %1"
+#~ msgstr "ment %1"
+
+#, fuzzy
+#~| msgid "The new file name is empty."
+#~ msgid "The source file is bigger."
+#~ msgstr "Goullo eo an anv restr nevez."
+
+#~ msgid "Invalid Filenames"
+#~ msgstr "Anvioù sac'het"
+
+#~ msgid "&Overwrite"
+#~ msgstr "&Rasklañ"
+
+#~ msgid "<qt>You do not have permission to run <b>%1</b>.</qt>"
+#~ msgstr "<qt>N'oc'h ket aotreet da seveniñ <b>%1</b>.</qt>."
+
+#~ msgid "You are not authorized to execute this service."
+#~ msgstr "N'helles ket seveniñ lemel ar servij-mañ."
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgid "Specified socket path is invalid"
+#~ msgstr "Sac'het eo an testeni."
+
+#, fuzzy
+#~ msgid "The socket operation is not supported"
+#~ msgstr "Dibaboù"
+
+#, fuzzy
+#~| msgid "Connection to Server Refused"
+#~ msgid "Connection refused"
+#~ msgstr "Kevreadenn disteuleret ouzh ar servijer"
+
+#, fuzzy
+#~| msgid "Permissions"
+#~ msgid "Permission denied"
+#~ msgstr "Aotreoù"
+
+#, fuzzy
+#~| msgid "Connection timed out."
+#~ msgid "Connection timed out"
+#~ msgstr "Kouezhet eo ar gevreadenn."
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgid "Unknown error"
+#~ msgstr "Fazi dianav"
+
+#, fuzzy
+#~| msgid "Could not login to %1."
+#~ msgid "Could not set non-blocking mode"
+#~ msgstr "Ne 'meus ket ereañ ouzh %1."
+
+#, fuzzy
+#~ msgid "Not a directory"
+#~ msgstr "Emaon o krouiñ ar renkell"
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgid "Unknown socket error"
+#~ msgstr "Fazi dianav"
+
+#, fuzzy
+#~ msgid "Operation not supported"
+#~ msgstr "Ne m'eus ket gallet enrollañ an teul\n"
+
+#, fuzzy
+#~ msgid "AutoSkip"
+#~ msgstr "Diwar-benn"
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate authority's certificate is invalid"
+#~ msgstr "Sac'het eo an testeni."
+
+#, fuzzy
+#~| msgid "Certificate has expired."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate has expired"
+#~ msgstr "Kabac'het eo an testeni."
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate is invalid"
+#~ msgstr "Sac'het eo an testeni."
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate is not signed by any trusted certificate authority"
+#~ msgstr "Sac'het eo an testeni."
+
+#, fuzzy
+#~ msgctxt "SSL error"
+#~ msgid "The certificate has been revoked"
+#~ msgstr "Krouet eo bet ar renkell.\n"
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate is unsuitable for this purpose"
+#~ msgstr "Sac'het eo an testeni."
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid ""
+#~ "The certificate authority's certificate is marked to reject this "
+#~ "certificate's purpose"
+#~ msgstr "Sac'het eo an testeni."
+
+#, fuzzy
+#~| msgid "Do not send a certificate"
+#~ msgctxt "SSL error"
+#~ msgid "The peer did not present any certificate"
+#~ msgstr "Ne gasit ket un testeni"
+
+#, fuzzy
+#~| msgid "The certificate is invalid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate does not apply to the given host"
+#~ msgstr "Sac'het eo an testeni."
+
+#, fuzzy
+#~| msgid "The certificate is valid."
+#~ msgctxt "SSL error"
+#~ msgid "The certificate chain is too long"
+#~ msgstr "Mad eo an testeni."
+
+#, fuzzy
+#~| msgid "Unknown Error"
+#~ msgctxt "SSL error"
+#~ msgid "Unknown error"
+#~ msgstr "Fazi dianav"
+
+#~ msgid "Named Group"
+#~ msgstr "Strollad gant un anv"
+
+#, fuzzy
+#~| msgid "Root"
+#~ msgctxt "KFile System Bookmarks"
+#~ msgid "Root"
+#~ msgstr "Gwrizienn"
+
+#, fuzzy
+#~| msgid "Could not change permissions for %1."
+#~ msgid "Could not change permissions for '%1'"
+#~ msgstr "Ne m'eus ket gallet kemmañ aotreoù evit %1."
+
+#, fuzzy
+#~ msgid "Create hidden directory?"
+#~ msgstr "Emaon o krouiñ ar renkell"
+
+#, fuzzy
+#~| msgid "Show Preview"
+#~ msgid "Show Aside Preview"
+#~ msgstr "Diskouez ar rakgwell"
+
+#, fuzzy
+#~| msgid "Device name"
+#~ msgid "Device usage:"
+#~ msgstr "Anv an drobarzhell"
+
+#~ msgid "By Name"
+#~ msgstr "Evit Anv"
+
+#~ msgid "By Size"
+#~ msgstr "Evit Ment"
+
+#, fuzzy
+#~| msgid "Type"
+#~ msgid "By Type"
+#~ msgstr "Seurt"
+
+#, fuzzy
+#~ msgid "You may have incorrectly typed the location."
+#~ msgstr "Un draen oc'h eus kavet e"
+
+#~ msgid ""
+#~ "Could not write file %1.\n"
+#~ "Disk full."
+#~ msgstr ""
+#~ "N'em eus ket skrivañ ar restr %1.\n"
+#~ "Leun eo ar bladenn."
+
+#, fuzzy
+#~| msgid " %1 kB/s "
+#~ msgctxt "size in 1000 bytes"
+#~ msgid "%1 kB"
+#~ msgstr " %1 ko/s "
+
+#, fuzzy
+#~| msgid "%1 MB"
+#~ msgctxt "size in 10^6 bytes"
+#~ msgid "%1 MB"
+#~ msgstr "%1 Mo"
+
+#, fuzzy
+#~| msgid "%1 GB"
+#~ msgctxt "size in 10^9 bytes"
+#~ msgid "%1 GB"
+#~ msgstr "%1 Go"
+
+#, fuzzy
+#~| msgid "%1 TB"
+#~ msgctxt "size in 10^12 bytes"
+#~ msgid "%1 TB"
+#~ msgstr "%1 To"
+
+#, fuzzy
+#~| msgid "%1 KB"
+#~ msgctxt "memory size in 1024 bytes"
+#~ msgid "%1 KB"
+#~ msgstr "%1 Ko"
+
+#, fuzzy
+#~| msgid "%1 MB"
+#~ msgctxt "memory size in 2^20 bytes"
+#~ msgid "%1 MB"
+#~ msgstr "%1 Mo"
+
+#, fuzzy
+#~| msgid "%1 GB"
+#~ msgctxt "memory size in 2^30 bytes"
+#~ msgid "%1 GB"
+#~ msgstr "%1 Go"
+
+#, fuzzy
+#~| msgid "%1 TB"
+#~ msgctxt "memory size in 2^40 bytes"
+#~ msgid "%1 TB"
+#~ msgstr "%1 To"
+
+#, fuzzy
+#~| msgid "%1 KB"
+#~ msgctxt "size in 1024 bytes"
+#~ msgid "%1 KiB"
+#~ msgstr "%1 Ko"
+
+#, fuzzy
+#~| msgid "%1 MB"
+#~ msgctxt "size in 2^20 bytes"
+#~ msgid "%1 MiB"
+#~ msgstr "%1 Mo"
+
+#, fuzzy
+#~| msgid "%1 GB"
+#~ msgctxt "size in 2^30 bytes"
+#~ msgid "%1 GiB"
+#~ msgstr "%1 Go"
+
+#, fuzzy
+#~| msgid "%1 TB"
+#~ msgctxt "size in 2^40 bytes"
+#~ msgid "%1 TiB"
+#~ msgstr "%1 To"
+
+#~ msgid "Forbidden"
+#~ msgstr "Arrabat eo"
+
+#, fuzzy
+#~ msgid "Can Read"
+#~ msgstr "Adkargañ"
+
+#, fuzzy
+#~ msgid "Can Read & Write"
+#~ msgstr "Diwallit :"
+
+#~ msgid "Do you really want to delete this item?"
+#~ msgid_plural "Do you really want to delete these %1 items?"
+#~ msgstr[0] "Ha fellout a ra deoc'h da vat lemel an %1 dra dibabet ?"
+
+#, fuzzy
+#~| msgctxt "to trash"
+#~| msgid "&Trash"
+#~ msgctxt "Verb"
+#~ msgid "&Trash"
+#~ msgstr "&Pod-lastez"
+
+#, fuzzy
+#~| msgid "Others"
+#~ msgctxt "@action:inmenu Open With"
+#~ msgid "&Other..."
+#~ msgstr "Ar re all"
+
+#, fuzzy
+#~| msgid "C&ontinue"
+#~ msgid "Continue"
+#~ msgstr "&Kenderc'hel"
+
+#, fuzzy
+#~| msgid "&Cancel"
+#~ msgid "Cancel"
+#~ msgstr "&Nullañ"
+
+#, fuzzy
+#~ msgid "<qt>The file or folder <b>%1</b> does not exist.</qt>"
+#~ msgstr "Ar restr goulennet n'eus ket anezhañ"
+
+#, fuzzy
+#~| msgid "Ad&vanced Options"
+#~ msgid "Advanced options"
+#~ msgstr "Dibaboù ba&rek"
+
+#, fuzzy
+#~ msgid "Place in system tray"
+#~ msgstr "Sil :"
+
+#~ msgid "&Username:"
+#~ msgstr "Anv &arveriad :"
+
+#, fuzzy
+#~ msgid ""
+#~ "Unable to create io-slave:\n"
+#~ "klauncher said: %1"
+#~ msgstr "Divarrek da grouiñ restr gwareziñ"
+
+#~ msgid "Open with:"
+#~ msgstr "Digeriñ gant :"
+
+#, fuzzy
+#~| msgid "Disk cache &size:"
+#~ msgid "Disk cache size:"
+#~ msgstr "Ment krubuilh ar bladenn :"
+
+#, fuzzy
+#~| msgid " KB"
+#~ msgid " kB"
+#~ msgstr " Ko"
+
+#, fuzzy
+#~| msgid "C&lear Cache"
+#~ msgid "&Clear Cache"
+#~ msgstr "&Goullonderiñ ar grubuilh"
+
+#, fuzzy
+#~| msgid "A&utomatically detect proxy configuration"
+#~ msgctxt "@title:window"
+#~ msgid "Variable Proxy Configuration"
+#~ msgstr "Dinoiñ kefluniadur ar proksi dre a&rdivink"
+
+#, fuzzy
+#~| msgid "Invalid Proxy Setup"
+#~ msgctxt "@title:window"
+#~ msgid "Invalid Proxy Setup"
+#~ msgstr "N'eo ket mat kefluniadur ar proksi"
+
+#, fuzzy
+#~| msgid "Proxy Setup"
+#~ msgctxt "@title:window"
+#~ msgid "Proxy Setup"
+#~ msgstr "Kefluniañ ar proksi"
+
+#, fuzzy
+#~| msgid "A&utomatically detect proxy configuration"
+#~ msgctxt "@title:window"
+#~ msgid "Manual Proxy Configuration"
+#~ msgstr "Dinoiñ kefluniadur ar proksi dre a&rdivink"
+
+#, fuzzy
+#~| msgid "Invalid Proxy Setting"
+#~ msgctxt "@title:window"
+#~ msgid "Invalid Proxy Setting"
+#~ msgstr "N'eo ket mat kefluniadur ar proksi"
+
+#~ msgid "<qt><center><b>%1</b></center> is already in the list.</qt>"
+#~ msgstr "<qt><center><b>%1</b></center> a zo c'hoazh er roll</qt>"
+
+#, fuzzy
+#~| msgid "Duplicate Entry"
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Entry"
+#~ msgstr "Eilañ ar vouetadur"
+
+#, fuzzy
+#~| msgid "E&xceptions"
+#~ msgctxt "@title:window"
+#~ msgid "New Exception"
+#~ msgstr "D&ireolderoù"
+
+#, fuzzy
+#~| msgid "E&xceptions"
+#~ msgctxt "@title:window"
+#~ msgid "Change Exception"
+#~ msgstr "D&ireolderoù"
+
+#~ msgid "H&TTP:"
+#~ msgstr "H&TTP :"
+
+#~ msgid "HTTP&S:"
+#~ msgstr "HTTP&S :"
+
+#~ msgid "&FTP:"
+#~ msgstr "&FTP :"
+
+#~ msgid "NO &PROXY:"
+#~ msgstr "&PROKSI EBET :"
+
+#~ msgid "&Verify"
+#~ msgstr "&Gwiriekaat"
+
+#~ msgid "Setup..."
+#~ msgstr "Kefluniañ ..."
+
+#~ msgid "Login name."
+#~ msgstr "Anv ereañ."
+
+#~ msgid "Login password."
+#~ msgstr "Tremenger ereañ."
+
+#~ msgid "Password:"
+#~ msgstr "Tremenger :"
+
+#~ msgid "O&ptions"
+#~ msgstr "&Dibaboù"
+
+#~ msgid "Ser&vers"
+#~ msgstr "Ser&vijeroù"
+
+#~ msgid "D&elete All"
+#~ msgstr "Dilemel an &holl re"
+
+#~ msgid "&Domain name:"
+#~ msgstr "Anv an &domani :"
+
+#~ msgid "Domain [Group]"
+#~ msgstr "Domani [Strollad]"
+
+#~ msgid "Host [Set By]"
+#~ msgstr "Ostiz [Lakaet gant]"
+
+#~ msgid "&Windows Shares"
+#~ msgstr "Rannadur prenestrer"
+
+#~ msgid "&LISa Daemon"
+#~ msgstr "Diaoul &LISa"
+
+#~ msgid "&Search:"
+#~ msgstr "&Klask :"
+
+#~ msgid "&SOCKS"
+#~ msgstr "&SOCKS"
+
+#~ msgid "SOCKS"
+#~ msgstr "SOCKS"
+
+#~ msgid "&Enable SOCKS support"
+#~ msgstr "&Implijit SOCKS"
+
+#~ msgid "&Test"
+#~ msgstr "&Arnodiñ"
+
+#~ msgid "Use &custom library"
+#~ msgstr "Implijit al levraoueg &diouzhoc'h"
+
+#~ msgid "&NEC SOCKS"
+#~ msgstr "&NEC SOCKS"
+
+#~ msgid "&Dante"
+#~ msgstr "&Dante"
+
+#~ msgid "Additional Library Search Paths"
+#~ msgstr "Hentoù klask levraoueg ouzhpenn :"
+
+#~ msgid "kcmsocks"
+#~ msgstr "kcmsocks"
+
+#~ msgid "KDE SOCKS Control Module"
+#~ msgstr "Mollad SOCKS evit KDE"
+
+#~ msgid "(c) 2001 George Staikos"
+#~ msgstr "(c) 2001 George Staikos"
+
+#~ msgid "George Staikos"
+#~ msgstr "George Staikos"
+
+#~ msgid "SOCKS could not be loaded."
+#~ msgstr "Ne ket possubl da kargañ SOCKS."
+
+#~ msgid "&Path:"
+#~ msgstr "&Hent :"
+
+#~ msgid "Path"
+#~ msgstr "Hent"
+
+#~ msgid "&Add"
+#~ msgstr "&Ouzhpennañ"
+
+#~ msgid "&Remove"
+#~ msgstr "&Lemel"
+
+#~ msgid "&OK"
+#~ msgstr "&Mat eo"
+
+#~ msgid "MS Windows encoding:"
+#~ msgstr "Kodadur MS Windows :"
+
+#~ msgid "..."
+#~ msgstr " ..."
+
+#~ msgid "Clear Search"
+#~ msgstr "Goullonderiñ ar glask"
