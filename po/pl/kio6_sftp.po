@@ -1,5 +1,5 @@
 # translation of kio_sftp.po to
-# Version: $Revision: 1638446 $
+# Version: $Revision: 1653337 $
 # Copyright (C) 2002, 2003, 2004, 2005, 2006, 2008, 2009 Free Software Foundation, Inc.
 #
 # Michał Rudolf <mrudolf@kdewebdev.org>, 2002.

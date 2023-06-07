@@ -1,7 +1,7 @@
 # translation of kio_smb.po to Slovenian
 # Translation of kio_smb.po to Slovenian
 # SLOVENIAN TRANSLATION OF K DESKTOP ENVIRONMENT.
-# $Id: kio5_smb.po 1629645 2022-07-22 01:29:06Z scripty $
+# $Id: kio6_smb.po 1653337 2023-06-07 00:18:36Z ltoscano $
 # $Source$
 #
 # Copyright (C) 2001, 2003, 2004, 2005 Free Software Foundation, Inc.

@@ -1,5 +1,5 @@
 # translation of kio_nfs.po to Polish
-# Version: $Revision: 1624017 $
+# Version: $Revision: 1653337 $
 # translation of kio_nfs.po to
 # Norbert Popiołek <norbert@kde.com.pl>
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2004.
