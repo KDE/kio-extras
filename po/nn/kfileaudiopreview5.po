@@ -1,4 +1,4 @@
-# Translation of kfileaudiopreview5 to Norwegian Nynorsk
+# Translation of kfileaudiopreview6 to Norwegian Nynorsk
 #
 # Gaute Hvoslef Kvalnes <gaute@verdsveven.com>, 2003.
 # Karl Ove Hufthammer <karl@huftis.org>, 2007, 2008, 2009.

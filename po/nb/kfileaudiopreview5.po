@@ -1,4 +1,4 @@
-# Translation of kfileaudiopreview5 to Norwegian Bokmål
+# Translation of kfileaudiopreview6 to Norwegian Bokmål
 #
 # Knut Yrvin <knut.yrvin@gmail.com>, 2003.
 # Bjørn Steensrud <bjornst@skogkatt.homelinux.org>, 2009.
