@@ -2,7 +2,7 @@
     "KDE-KIO-Protocols": {
         "bzip": {
             "Icon": "package-x-generic",
-            "X-DocPath": "kioslave5/bzip2/index.html",
+            "X-DocPath": "kioworker6/bzip2/index.html",
             "archiveMimetype": [
                 "application/x-bzip"
             ],
@@ -15,7 +15,7 @@
         },
         "bzip2": {
             "Icon": "package-x-generic",
-            "X-DocPath": "kioslave5/bzip2/index.html",
+            "X-DocPath": "kioworker6/bzip2/index.html",
             "archiveMimetype": [
                 "application/x-bzip2"
             ],
@@ -28,7 +28,7 @@
         },
         "gzip": {
             "Icon": "package-x-generic",
-            "X-DocPath": "kioslave5/gzip/index.html",
+            "X-DocPath": "kioworker6/gzip/index.html",
             "archiveMimetype": [
                 "application/gzip"
             ],
@@ -41,7 +41,7 @@
         },
         "lzma": {
             "Icon": "package-x-generic",
-            "X-DocPath": "kioslave5/xz/index.html",
+            "X-DocPath": "kioworker6/xz/index.html",
             "archiveMimetype": [
                 "application/x-lzma"
             ],
@@ -54,7 +54,7 @@
         },
         "xz": {
             "Icon": "package-x-generic",
-            "X-DocPath": "kioslave5/xz/index.html",
+            "X-DocPath": "kioworker6/xz/index.html",
             "archiveMimetype": [
                 "application/x-xz"
             ],
@@ -67,7 +67,7 @@
         },
         "zstd": {
             "Icon": "package-x-generic",
-            "X-DocPath": "kioslave5/zstd/index.html",
+            "X-DocPath": "kioworker6/zstd/index.html",
             "archiveMimetype": [
                 "application/zstd"
             ],

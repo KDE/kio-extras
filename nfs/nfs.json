@@ -3,7 +3,7 @@
         "nfs": {
             "Class": ":internet",
             "Icon": "folder-remote",
-            "X-DocPath": "kioslave5/nfs/index.html",
+            "X-DocPath": "kioworker6/nfs/index.html",
             "copyFromFile": true,
             "copyToFile": true,
             "deleting": true,

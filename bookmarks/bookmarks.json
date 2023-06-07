@@ -3,7 +3,7 @@
         "bookmarks": {
             "Class": ":local",
             "Icon": "bookmarks",
-            "X-DocPath": "kioslave5/bookmarks/index.html",
+            "X-DocPath": "kioworker6/bookmarks/index.html",
             "input": "none",
             "output": "stream",
             "protocol": "bookmarks",

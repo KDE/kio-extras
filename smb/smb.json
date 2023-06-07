@@ -3,7 +3,7 @@
         "smb": {
             "Class": ":internet",
             "Icon": "network-workgroup",
-            "X-DocPath": "kioslave5/smb/index.html",
+            "X-DocPath": "kioworker6/smb/index.html",
             "copyFromFile": true,
             "copyToFile": true,
             "deleting": true,
@@ -32,7 +32,7 @@
         "cifs": {
             "Class": ":internet",
             "Icon": "network-workgroup",
-            "X-DocPath": "kioslave5/smb/index.html",
+            "X-DocPath": "kioworker6/smb/index.html",
             "copyFromFile": true,
             "copyToFile": true,
             "deleting": true,

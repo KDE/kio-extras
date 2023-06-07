@@ -2,7 +2,7 @@
     "KDE-KIO-Protocols": {
         "fish": {
             "Icon": "folder-remote",
-            "X-DocPath": "kioslave5/fish/index.html",
+            "X-DocPath": "kioworker6/fish/index.html",
             "deleting": true,
             "input": "none",
             "linking": true,

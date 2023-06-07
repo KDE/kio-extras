@@ -3,7 +3,7 @@
         "man": {
             "Class": ":local",
             "Icon": "help-contents",
-            "X-DocPath": "kioslave5/man/index.html",
+            "X-DocPath": "kioworker6/man/index.html",
             "defaultMimetype": "text/html",
             "determineMimetypeFromExtension": false,
             "input": "none",

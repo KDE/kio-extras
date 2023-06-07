@@ -146,7 +146,7 @@ void BookmarksProtocol::echoHead(const QString &redirect)
     indent++;
     echo("<a title=\"" + i18n("Configuration") + "\" href=\"/config\"><img src=\"/icon/preferences-system?size=32\"/></a>");
     echo("<a title=\"" + i18n("Edit bookmarks") + "\" href=\"/editbookmarks\"><img src=\"/icon/bookmarks-organize?size=32\"/></a>");
-    echo("<a title=\"" + i18n("Help") + "\" href=\"help:/kioslave/bookmarks.html\"><img src=\"/icon/help-contents?size=32\"/></a>");
+    echo("<a title=\"" + i18n("Help") + "\" href=\"help:/kioworker6/bookmarks.html\"><img src=\"/icon/help-contents?size=32\"/></a>");
     indent--;
     echo("</div>");*/
 

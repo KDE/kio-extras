@@ -3,7 +3,7 @@
         "info": {
             "Class": ":local",
             "Icon": "help-contents",
-            "X-DocPath": "kioslave5/info/index.html",
+            "X-DocPath": "kioworker6/info/index.html",
             "defaultMimetype": "text/html",
             "determineMimetypeFromExtension": false,
             "input": "none",

@@ -38,7 +38,7 @@
                 "application/x-xz-compressed-tar",
                 "application/x-zstd-compressed-tar"
                 ],
-            "X-DocPath": "kioslave5/tar/index.html",
+            "X-DocPath": "kioworker6/tar/index.html",
             "source": true,
             "Icon": "package-x-generic",
             "Class":"local",
