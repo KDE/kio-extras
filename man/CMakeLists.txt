@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_man\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_man\")
 
 remove_definitions(
     -DQT_NO_CAST_FROM_ASCII

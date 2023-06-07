@@ -2,7 +2,7 @@ if (BUILD_TESTING)
     add_subdirectory(autotests)
 endif()
 
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_thumbnail\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_thumbnail\")
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 

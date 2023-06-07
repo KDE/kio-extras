@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_mtp\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_mtp\")
 
 cmake_push_check_state()
 list(APPEND CMAKE_REQUIRED_INCLUDES Libmtp::Libmtp)

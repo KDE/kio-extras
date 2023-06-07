@@ -1,6 +1,6 @@
 # vim:set softtabstop=3 shiftwidth=3 tabstop=3 expandtab:
 
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_activities\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_activities\")
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 

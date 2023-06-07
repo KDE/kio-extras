@@ -51,7 +51,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang
     endif()
 endif()
 
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_nfs\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_nfs\")
 include_directories(${TIRPC_INCLUDE_DIRS})
 
 add_library(kio_nfs MODULE kio_nfs.cpp nfsv2.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c rpc_nfs2_prot_xdr.c)

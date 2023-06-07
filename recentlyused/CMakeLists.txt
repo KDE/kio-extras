@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_recentlyused\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_recentlyused\")
 
 add_library(recentlyused MODULE)
 set_target_properties(recentlyused PROPERTIES

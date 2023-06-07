@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_fish\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_fish\")
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 

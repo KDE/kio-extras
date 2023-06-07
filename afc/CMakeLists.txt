@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_afc\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_afc\")
 
 add_library(kio_afc MODULE)
 set_target_properties(kio_afc PROPERTIES

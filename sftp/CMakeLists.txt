@@ -1,4 +1,4 @@
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_sftp\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_sftp\")
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 

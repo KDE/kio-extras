@@ -26,7 +26,7 @@ add_feature_info("Internal KDSoapWSDiscoveryClient" INTERNAL_WSDCLIENT
 
 find_package(Threads REQUIRED)
 
-add_definitions(-DTRANSLATION_DOMAIN=\"kio5_smb\")
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_smb\")
 
 include(CheckIncludeFile)
 include(CheckSymbolExists)
