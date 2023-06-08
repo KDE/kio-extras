@@ -2,6 +2,7 @@
     "KPlugin": {
         "BugReportUrl": "https://bugs.kde.org/enter_bug.cgi?product=systemsettings&component=kcm_netpref",
         "Description": "Configure generic network preferences, like timeout values",
+        "Description[ca@valencia]": "Configura les preferències genèriques de la xarxa, com ara els valors dels temps d'espera",
         "Description[ca]": "Configura les preferències genèriques de la xarxa, com ara els valors dels temps d'espera",
         "Description[cs]": "Nastavení obecných předvoleb sítě, např. časových limitů",
         "Description[de]": "Einfache Netzwerkeinstellungen vornehmen wie z. B. Zeitüberschreitungen",
@@ -15,6 +16,7 @@
         "Description[x-test]": "xxConfigure generic network preferences, like timeout valuesxx",
         "Icon": "preferences-system-network-connection",
         "Name": "Connection Preferences",
+        "Name[ca@valencia]": "Preferències de connexió",
         "Name[ca]": "Preferències de connexió",
         "Name[cs]": "Předvolby připojení",
         "Name[de]": "Verbindungseinstellungen",

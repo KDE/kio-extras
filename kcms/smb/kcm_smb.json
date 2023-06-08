@@ -2,6 +2,7 @@
     "KPlugin": {
         "BugReportUrl": "https://bugs.kde.org/enter_bug.cgi?product=systemsettings&component=kcm_smb",
         "Description": "Credentials used to access SMB shares",
+        "Description[ca@valencia]": "Credencials utilitzades per a accedir a les comparticions SMB",
         "Description[ca]": "Credencials usades per a accedir a les comparticions SMB",
         "Description[cs]": "Přihlašovací údaje pro přístup k úložišti SMB",
         "Description[de]": "Anmeldungsdaten für den Zugriff auf SMB-Freigaben",
@@ -15,6 +16,7 @@
         "Description[x-test]": "xxCredentials used to access SMB sharesxx",
         "Icon": "preferences-system-network-share-windows",
         "Name": "Windows Shares",
+        "Name[ca@valencia]": "Recursos compartits de Windows",
         "Name[ca]": "Recursos compartits de Windows",
         "Name[cs]": "Sdílené disky systému Microsoft Windows",
         "Name[de]": "Windows-Freigaben",

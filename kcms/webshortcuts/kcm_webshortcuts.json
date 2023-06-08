@@ -3,6 +3,7 @@
     "KPlugin": {
         "BugReportUrl": "https://bugs.kde.org/enter_bug.cgi?product=systemsettings&component=kcm_webshortcuts",
         "Description": "Configure web search keywords",
+        "Description[ca@valencia]": "Configura les paraules clau de busca en la web",
         "Description[ca]": "Configura les paraules clau de cerca a la web",
         "Description[cs]": "Nastavit klíčová slova pro hledání na webu",
         "Description[de]": "Web-Kürzel einrichten",
@@ -16,6 +17,7 @@
         "Description[x-test]": "xxConfigure web search keywordsxx",
         "Icon": "preferences-web-browser-shortcuts",
         "Name": "Web Search Keywords",
+        "Name[ca@valencia]": "Paraules clau de busca en la web",
         "Name[ca]": "Paraules clau de cerca a la web",
         "Name[cs]": "Klíčová slova pro hledání na webu",
         "Name[de]": "Web-Kürzel",
