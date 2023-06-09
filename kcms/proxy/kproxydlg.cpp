@@ -166,8 +166,8 @@ static void setProxyInformation(const QString &value,
     manEdit->setText(value); // Manual proxy exception...
 }
 
-KProxyDialog::KProxyDialog(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KProxyDialog::KProxyDialog(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     mUi.setupUi(widget());
 

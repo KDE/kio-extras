@@ -20,7 +20,7 @@ class KCookiesMain : public KCModule
 {
     Q_OBJECT
 public:
-    KCookiesMain(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+    KCookiesMain(QObject *parent, const KPluginMetaData &data);
     ~KCookiesMain() override;
 
     KCookiesPolicies *policyDlg()

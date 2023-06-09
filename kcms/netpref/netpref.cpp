@@ -22,8 +22,8 @@ static constexpr int s_maxTimeoutValue = 3600;
 
 K_PLUGIN_CLASS_WITH_JSON(KIOPreferences, "kcm_netpref.json")
 
-KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout(widget());
     mainLayout->setContentsMargins(0, 0, 0, 0);

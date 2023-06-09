@@ -20,8 +20,8 @@
 
 K_PLUGIN_CLASS_WITH_JSON(SMBRoOptions, "kcm_smb.json")
 
-SMBRoOptions::SMBRoOptions(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+SMBRoOptions::SMBRoOptions(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     QGridLayout *layout = new QGridLayout(widget());
     QLabel *label = new QLabel(i18n("These settings apply to network browsing only."), widget());

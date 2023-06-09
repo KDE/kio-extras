@@ -23,8 +23,8 @@
 
 K_PLUGIN_CLASS_WITH_JSON(KCookiesMain, "kcm_cookies.json")
 
-KCookiesMain::KCookiesMain(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+KCookiesMain::KCookiesMain(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
 {
     management = nullptr;
     bool managerOK = true;
@@ -33,14 +33,14 @@ KCookiesMain::KCookiesMain(QObject *parent, const KPluginMetaData &data, const Q
     tab = new QTabWidget(widget());
     layout->addWidget(tab);
 
-    policies = new KCookiesPolicies(widget(), data, args);
+    policies = new KCookiesPolicies(widget(), data);
     tab->addTab(policies->widget(), i18n("&Policy"));
     connect(policies, &KCModule::needsSaveChanged, this, [this]() {
         setNeedsSave(policies->needsSave());
     });
 
     if (managerOK) {
-        management = new KCookiesManagement(widget(), data, args);
+        management = new KCookiesManagement(widget(), data);
         tab->addTab(management->widget(), i18n("&Management"));
         connect(management, &KCModule::needsSaveChanged, this, [this]() {
             setNeedsSave(management->needsSave());

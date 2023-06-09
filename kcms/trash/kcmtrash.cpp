@@ -29,8 +29,8 @@ K_PLUGIN_CLASS_WITH_JSON(TrashConfigModule, "kcm_trash.json")
 
 static constexpr int SPECIAL_TRASH_DIRECTORIES = 4;
 
-TrashConfigModule::TrashConfigModule(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+TrashConfigModule::TrashConfigModule(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
     , trashInitialize(false)
 {
     QByteArray specialData;

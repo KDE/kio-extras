@@ -25,7 +25,7 @@ public:
     };
     Q_DECLARE_FLAGS(DisplayUrlFlags, DisplayUrlFlag)
 
-    KProxyDialog(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+    KProxyDialog(QObject *parent, const KPluginMetaData &data);
     ~KProxyDialog() override;
 
     void load() override;

@@ -13,7 +13,7 @@ class KIOPreferences : public KCModule
     Q_OBJECT
 
 public:
-    KIOPreferences(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+    KIOPreferences(QObject *parent, const KPluginMetaData &data);
     ~KIOPreferences() override;
 
     void load() override;

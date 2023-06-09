@@ -238,8 +238,8 @@ static QSortFilterProxyModel *wrapInProxyModel(QAbstractItemModel *model)
     return proxyModel;
 }
 
-FilterOptions::FilterOptions(QObject *parent, const KPluginMetaData &data, const QVariantList &args)
-    : KCModule(parent, data, args)
+FilterOptions::FilterOptions(QObject *parent, const KPluginMetaData &data)
+    : KCModule(parent, data)
     , m_providersModel(new ProvidersModel(this))
 {
     // Used for tab text in the KCM

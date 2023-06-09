@@ -20,7 +20,7 @@ class SMBRoOptions : public KCModule
 {
     Q_OBJECT
 public:
-    SMBRoOptions(QObject *parent, const KPluginMetaData &data, const QVariantList &args);
+    SMBRoOptions(QObject *parent, const KPluginMetaData &data);
     ~SMBRoOptions() override;
 
     void load() override;
