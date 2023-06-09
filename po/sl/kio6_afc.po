@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-27 00:48+0000\n"
-"PO-Revision-Date: 2023-01-03 16:38+0100\n"
+"PO-Revision-Date: 2023-06-08 05:53+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
-"X-Generator: Lokalize 22.12.0\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #: afcutils.cpp:60
 #, kde-format
@@ -108,4 +108,4 @@ msgstr "Ni mogoče pisati, ne da bi datoteko najprej odprl"
 #: kio_afc.cpp:888
 #, kde-format
 msgid "Cannot rename between devices."
-msgstr "Ni mogoče preimenovanje med napravami"
+msgstr "Ni mogoče preimenovanje med napravami."
