@@ -1,14 +1,17 @@
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
-#
+# Translation of kio5_bookmarks.pot into esperanto.
+# Copyright (C) 2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the kio-extras package.
+# Axel Rousseau <axel@esperanto-jeunes.org>, 2009.
 # Michael Moroni <michael.moroni@mailoo.org>, 2012.
+# Oliver Kellogg <okellogg@users.sourceforge.net>, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_bookmarks\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-04 00:45+0000\n"
-"PO-Revision-Date: 2012-05-28 16:21+0200\n"
-"Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
+"PO-Revision-Date: 2023-06-08 19:23+0100\n"
+"Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
@@ -31,12 +34,12 @@ msgstr "Lokoj"
 #: kio_bookmarks.cpp:186
 #, kde-format
 msgid "Could not find bookmarks config"
-msgstr ""
+msgstr "Ne eblis trovi agordon de legosignoj"
 
 #: kio_bookmarks.cpp:195
 #, kde-format
 msgid "Could not find bookmarks editor"
-msgstr ""
+msgstr "Ne eblis trovi redaktilon de legosignoj"
 
 #: kio_bookmarks.cpp:202
 #, kde-format
@@ -61,20 +64,3 @@ msgstr ""
 #, kde-format
 msgid "My Bookmarks"
 msgstr "Miaj legosignoj"
-
-#~ msgid "My bookmarks"
-#~ msgstr "Miaj legosignoj"
-
-#~ msgid "Xavier Vello"
-#~ msgstr "Xavier VELLO"
-
-#~ msgid "Initial developer"
-#~ msgstr "Komenca programisto"
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Axel Rousseau, Michael Moroni"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "axel@esperanto-jeunes.org, michael.moroni@mailoo.org"
