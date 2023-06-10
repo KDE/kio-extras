@@ -1,4 +1,4 @@
-# Translation of kio5_smb to Norwegian Nynorsk
+# Translation of kio6_smb to Norwegian Nynorsk
 #
 # Gaute Hvoslef Kvalnes <gaute@verdsveven.com>, 1999, 2000, 2001, 2003, 2004, 2005.
 # Karl Ove Hufthammer <karl@huftis.org>, 2007, 2008, 2018, 2020.

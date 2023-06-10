@@ -1,4 +1,4 @@
-# Translation of kio5_archive to Norwegian Nynorsk
+# Translation of kio6_archive to Norwegian Nynorsk
 #
 # Karl Ove Hufthammer <karl@huftis.org>, 2007, 2008.
 msgid ""
