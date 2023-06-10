@@ -1,4 +1,4 @@
-# Translation of kio5_mtp to Norwegian Nynorsk
+# Translation of kio6_mtp to Norwegian Nynorsk
 #
 # Karl Ove Hufthammer <karl@huftis.org>, 2016, 2018, 2019.
 # Øystein Steffensen-Alværvik <oysteins.omsetting@protonmail.com>, 2022.

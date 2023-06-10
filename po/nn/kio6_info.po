@@ -1,4 +1,4 @@
-# Translation of kio5_info to Norwegian Nynorsk
+# Translation of kio6_info to Norwegian Nynorsk
 #
 # Eirik U. Birkeland <eirbir@gmail.com>, 2009.
 # Karl Ove Hufthammer <karl@huftis.org>, 2021.

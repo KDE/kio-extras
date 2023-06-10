@@ -1,4 +1,4 @@
-# Translation of kio5_activities to Northern Sami
+# Translation of kio6_activities to Northern Sami
 #
 # Børre Gaup <boerre@skolelinux.no>, 2011.
 msgid ""
