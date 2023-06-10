@@ -1,4 +1,4 @@
-# Translation of kio5_nfs to Northern Sami
+# Translation of kio6_nfs to Northern Sami
 #
 # Børre Gaup <boerre@skolelinux.no>, 2002, 2003.
 msgid ""

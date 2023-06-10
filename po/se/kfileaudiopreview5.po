@@ -1,4 +1,4 @@
-# Translation of kfileaudiopreview5 to Northern Sami
+# Translation of kfileaudiopreview6 to Northern Sami
 #
 # Børre Gaup <boerre@skolelinux.no>, 2003, 2007, 2009.
 msgid ""

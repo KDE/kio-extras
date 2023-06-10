@@ -1,4 +1,4 @@
-# Translation of kio5_fish to Norwegian Bokmål
+# Translation of kio6_fish to Norwegian Bokmål
 #
 # Andreas D. Landmark <andreas.landmark@skolelinux.no>, 2003.
 # Knut Yrvin <knut.yrvin@gmail.com>, 2003.

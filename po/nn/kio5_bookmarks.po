@@ -1,4 +1,4 @@
-# Translation of kio5_bookmarks to Norwegian Nynorsk
+# Translation of kio6_bookmarks to Norwegian Nynorsk
 #
 # Eirik U. Birkeland <eirbir@gmail.com>, 2008.
 # Karl Ove Hufthammer <karl@huftis.org>, 2015, 2020.

@@ -1,4 +1,4 @@
-# Translation of kio5_sftp to Northern Sami
+# Translation of kio6_sftp to Northern Sami
 #
 # Børre Gaup <boerre@skolelinux.no>, 2003, 2004, 2005.
 msgid ""

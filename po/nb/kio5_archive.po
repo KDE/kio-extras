@@ -1,4 +1,4 @@
-# Translation of kio5_archive to Norwegian Bokmål
+# Translation of kio6_archive to Norwegian Bokmål
 #
 # Bjørn Steensrud <bjornst@skogkatt.homelinux.org>, 2007.
 msgid ""

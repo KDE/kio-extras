@@ -1,4 +1,4 @@
-# Translation of kio5_nfs to Norwegian Nynorsk
+# Translation of kio6_nfs to Norwegian Nynorsk
 #
 # Gaute Hvoslef Kvalnes <gaute@verdsveven.com>, 1999, 2000, 2001.
 # Karl Ove Hufthammer <karl@huftis.org>, 2007, 2008, 2015, 2021.
