@@ -5,14 +5,14 @@
 # mvillarino <mvillarino@users.sourceforge.net>, 2007, 2009.
 # marce villarino <mvillarino@users.sourceforge.net>, 2009.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012.
-# Adrián Chaves <adrian@chaves.io>, 2017, 2018, 2020.
+# Adrián Chaves <adrian@chaves.io>, 2017, 2018, 2020, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-22 00:44+0000\n"
-"PO-Revision-Date: 2020-03-07 17:53+0100\n"
+"PO-Revision-Date: 2023-06-11 16:06+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.08.3\n"
+"X-Generator: Lokalize 23.04.2\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
@@ -37,6 +37,18 @@ msgid ""
 "attempted using empty username and password. Depending on server "
 "configuration non-empty usernames may be required</para>"
 msgstr ""
+"<para>Hai varias opcións para autenticarse en comparticións de SMB.</"
+"para><para><placeholder>usuaria</placeholder>: Cando se autentique nunha "
+"rede persoal o nome de persoa usuaria no servidor abonda.</"
+"para><para><placeholder>usuaria@dominio.example</placeholder>: Os nomes de "
+"acceso empresariais modernos teñen o formato dun enderezo de correo "
+"electrónico.</para><para><placeholder>DOMINIO\\usuaria</placeholder>: En "
+"redes empresariais e grupos de traballo antigos pode que teña que prefixar o "
+"nome de dominio de NetBIOS (anterior a Windows 2000)</"
+"para><para><placeholder>anónimo</placeholder>: Pode intentarse acceder "
+"anonimamente usando un nome de persoa usuaria e contrasinal baleiras. A "
+"configuración dalgúns servidores pode requirir que o nome de persoa usuaria "
+"non estea baleiro.</para>"
 
 #: kio_smb_auth.cpp:50
 #, kde-format
@@ -137,11 +149,10 @@ msgstr ""
 "forma privada aos desenvolvedores se eles lla piden)"
 
 #: kio_smb_browse.cpp:334
-#, fuzzy, kde-format
-#| msgid "Unknown error condition in stat: %1"
+#, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
-msgstr "Condición de erro descoñecida ao obter o estado: %1"
+msgstr "Condición de erro descoñecida: [%1] %2"
 
 #: kio_smb_browse.cpp:352
 #, kde-kuit-format

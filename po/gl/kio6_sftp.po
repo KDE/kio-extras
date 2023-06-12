@@ -1,6 +1,5 @@
 # translation of kio_sftp.po to galician
 # Copyright (C) 2002, 2003, 2006, 2007, 2008, 2009 Free Software Foundation, Inc.
-#
 # Javier Jardón <javierjc@mundo-r.com>, 2002, 2003.
 # Xabi G. Feal <xabigf@gmx.net>, 2006.
 # mvillarino <mvillarino@users.sourceforge.net>, 2007, 2008, 2009.
@@ -8,20 +7,22 @@
 # Marce Villarino <mvillarino@kde-espana.es>, 2009.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012, 2013, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2023.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-18 00:44+0000\n"
-"PO-Revision-Date: 2019-03-15 23:03+0100\n"
+"PO-Revision-Date: 2023-06-11 16:12+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
-"Language-Team: Galician <kde-i18n-doc@kde.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.04.2\n"
 
 #: kio_sftp.cpp:226
 #, kde-format
@@ -70,11 +71,10 @@ msgid "Site:"
 msgstr "Sitio:"
 
 #: kio_sftp.cpp:417
-#, fuzzy, kde-format
-#| msgid "Could not read link: %1"
+#, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
-msgstr "Non se puido ler a ligazón: %1"
+msgstr "Non se puido ler a ligazón: %1 [%2]"
 
 #: kio_sftp.cpp:539
 #, kde-format
@@ -157,18 +157,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr ""
+msgstr "Cambio de identidade de servidor"
 
 #: kio_sftp.cpp:757
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The host key for the server %1 has changed.\n"
-#| "This could either mean that DNS SPOOFING is happening or the IP address "
-#| "for the host and its host key have changed at the same time.\n"
-#| "The fingerprint for the key sent by the remote host is:\n"
-#| " %2\n"
-#| "Please contact your system administrator.\n"
-#| "%3"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
@@ -177,41 +169,35 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"Cambiouse a chave do servidor %1.\n"
-"Isto pode significar ou que se está producindo DNS SPOOFING ou que se "
-"cambiaron o enderezo IP do servidor e a súa chave á vez.\n"
-"A pegada dixital da chave enviada polo servidor remoto é:\n"
-" %2\n"
-"Contacte co administrador do sistema.\n"
-"%3"
+"<para>Cambiouse a chave do servidor <emphasis>%1</emphasis>.</"
+"para><para>Isto pode indicar ou que se está facendo «spoofing» do DNS ou que "
+"o enderezo IP do servidor e a súa chave cambiaron á vez.</para> <para>A "
+"pegada dixital da chave %2 enviada polo servidor remoto é:<bcode>%3</"
+"bcode>Seguro que quere continuar?</para>"
 
 #: kio_sftp.cpp:767
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "Fallo de verificación do servidor"
 
 #: kio_sftp.cpp:768
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The authenticity of host %1 cannot be established.\n"
-#| "The %2 key fingerprint is: %3\n"
-#| "Are you sure you want to continue connecting?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"Non se pode estabelecer a autenticidade do servidor %1.\n"
-"A pegada dixital da chave %2 é: %3\n"
-"Seguro que quere continuar a conectar?"
+"<para>Non se pode estabelecer a autenticidade do servidor <emphasis>%1</"
+"emphasis>.</para><para>A pegada dixital da chave %2 é:<bcode>%3</"
+"bcode>Seguro que quere continuar conectando?</para>"
 
 #: kio_sftp.cpp:777
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
-msgstr ""
+msgstr "Conectar aínda así"
 
 #: kio_sftp.cpp:800 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
 #: kio_sftp.cpp:898 kio_sftp.cpp:908

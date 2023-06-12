@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-06 02:08+0000\n"
-"PO-Revision-Date: 2023-06-08 05:53+0200\n"
+"PO-Revision-Date: 2023-06-11 06:00+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1316,7 +1316,7 @@ msgstr "ახალი ვების მალსახმობი"
 msgid ""
 "The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr ""
+msgstr "მალსახმობი \"%1\" უკვე მინიჭებულია \"%2\"-ზე. აირჩიეთ სხვა მალსახმობი."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -1330,6 +1330,8 @@ msgid ""
 "The following shortcuts are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
+"შემდეგი მალსახმობები უკვე მინიჭებულია. აირჩიეთ სხვა მალსახმობები.\n"
+"%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
 #, kde-format
@@ -1390,6 +1392,8 @@ msgstr "მალსახმობის &URL:"
 #, kde-format
 msgid "Select the character set that will be used to encode your search query."
 msgstr ""
+"აირჩეთ სიმბოლოების კოდირება, რომელიც თქვენი ძებნის მოთხოვნის კოდირებისთვის "
+"იქნება გამოყენებული."
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
