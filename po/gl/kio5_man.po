@@ -9,7 +9,7 @@
 # Marce Villarino <mvillarino@kde-espana.es>, 2009, 2011.
 # Marce Villarino <mvillarino@kde-espana.es>, 2012.
 # Adrián Chaves Fernández (Gallaecio) <adriyetichaves@gmail.com>, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2019.
+# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2019, 2023.
 #
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en http://trasno.gpul.org
@@ -21,7 +21,7 @@ msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-10 00:45+0000\n"
-"PO-Revision-Date: 2019-07-28 11:17+0200\n"
+"PO-Revision-Date: 2023-06-11 21:36+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -29,17 +29,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 19.04.1\n"
+"X-Generator: Lokalize 23.04.1\n"
 
 #: kio_man.cpp:451
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "No man page matching to %1 found.<br /><br />Check that you have not "
-#| "mistyped the name of the page that you want.<br />Check that you have "
-#| "typed the name using the correct upper and lower case characters.<br />If "
-#| "everything looks correct, then you may need to improve the search path "
-#| "for man pages; either using the environment variable MANPATH or using a "
-#| "matching file in the /etc directory."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
@@ -49,54 +42,50 @@ msgid ""
 "envar> environment variable or a configuration file in the <filename>/etc</"
 "filename> directory."
 msgstr ""
-"Non se atopou ningunha páxina de manual de %1.<br /><br />Comprobe que non "
-"escribiu mal o nome da páxina.<br />Comprobe que escribiu o nome coas "
-"maiúsculas e minúsculas correctamente.<br />Se todo semella correcto, entón "
-"poida que precise mellorar a ruta de busca mellor para as páxinas de manual, "
-"sexa mediante a variábel de contorno MANPATH ou mediante un ficheiro no "
-"directorio /etc que corresponda."
+"Non se atopou ningunha páxina de manual que coincida con <resource>%1</"
+"resource>.<nl/><nl/>Verifique que escribiu ben o nome da páxina, e teña en "
+"conta que os nomes de páxina de manual distinguen maiúsculas.<nl/><nl/>Se o "
+"nome está ben, pode que teña que estender a ruta de busca de páxinas de "
+"manual, ou mediante a variábel de ambiente <envar>MANPATH</envar> ou "
+"mediante un ficheiro de configuración no cartafol <filename>/etc</filename>."
 
 #: kio_man.cpp:569
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The specified man page referenced another page '%1',<br />but the "
-#| "referenced page '%2' could not be found."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "The specified man page references another page <filename>%1</filename>,<nl/"
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
-"A páxina de manual indicada facía referencia a outra páxina, «%1»,<br />pero "
-"non puido atoparse a páxina «%2» á que se facía referencia."
+"A páxina de manual indicada facía referencia a outra páxina, <filename>%1</"
+"filename>,<nl/>pero non puido atoparse a páxina <filename>%2</filename> á "
+"que se facía referencia."
 
 #: kio_man.cpp:586
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
-msgstr ""
+msgstr "Non puido lerse a páxina de manual <filename>%1</filename>."
 
 #: kio_man.cpp:595
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
-msgstr ""
+msgstr "Non puido converterse a páxina de manual <filename>%1</filename>."
 
 #: kio_man.cpp:660
-#, fuzzy, kde-format
-#| msgid "<h1>KDE Man Viewer Error</h1>"
+#, kde-format
 msgid "Manual Page Viewer Error"
-msgstr "<h1>Erro do Visor de páxinas de manual de KDE</h1>"
+msgstr "Erro do visor de páxinas de manual"
 
 #: kio_man.cpp:674
-#, fuzzy, kde-format
-#| msgid "There is more than one matching man page."
+#, kde-format
 msgid "There is more than one matching man page:"
-msgstr "Hai máis dunha páxina man coincidente."
+msgstr "Hai máis dunha páxina man coincidente:"
 
 #: kio_man.cpp:674
 #, kde-format
 msgid "Multiple Manual Pages"
-msgstr ""
+msgstr "Varias páxinas de manual"
 
 #: kio_man.cpp:686
 #, kde-format
@@ -110,14 +99,12 @@ msgstr ""
 "ollada á versión en inglés."
 
 #: kio_man.cpp:758
-#, fuzzy, kde-format
-#| msgid "Header files"
+#, kde-format
 msgid "Header Files"
 msgstr "Ficheiros de cabeceira"
 
 #: kio_man.cpp:759
-#, fuzzy, kde-format
-#| msgid "Header files (POSIX)"
+#, kde-format
 msgid "Header Files (POSIX)"
 msgstr "Ficheiros de cabeceira (POSIX)"
 
@@ -139,7 +126,7 @@ msgstr "Chamadas ao sistema"
 #: kio_man.cpp:763
 #, kde-format
 msgid "Subroutines"
-msgstr "Sub-rutinas"
+msgstr "Subrutinas"
 
 #: kio_man.cpp:765
 #, kde-format
@@ -192,10 +179,9 @@ msgid "New"
 msgstr "Novo"
 
 #: kio_man.cpp:805
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Main Manual Page Index"
-msgstr "Índice do manual de Unix"
+msgstr "Índice principal de páxinas de manual"
 
 #: kio_man.cpp:830
 #, kde-format
@@ -203,16 +189,14 @@ msgid "Section %1"
 msgstr "Sección %1"
 
 #: kio_man.cpp:1115
-#, fuzzy, kde-format
-#| msgid "Index for Section %1: %2"
+#, kde-format
 msgid "Index for section %1: %2"
 msgstr "Índice da sección %1: %2"
 
 #: kio_man.cpp:1115
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Manual Page Index"
-msgstr "Índice do manual de Unix"
+msgstr "Índice de páxinas de manual"
 
 #: kio_man.cpp:1127
 #, kde-format
@@ -220,20 +204,15 @@ msgid "Generating Index"
 msgstr "Estase a xerar o índice"
 
 #: kio_man.cpp:1405
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "Could not find the sgml2roff program on your system. Please install it, "
-#| "if necessary, and extend the search path by adjusting the environment "
-#| "variable PATH before starting KDE."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Could not find the <command>%1</command> program on your system. Please "
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
-"Non se puido atopar o programa sgml2roff no sistema. Por favor, instáleo, se "
-"é preciso, e corrixa a ruta da busca axustando a variábel de contorno PATH "
-"antes de iniciar KDE."
+"Non se atopou o programa <command>%1</command>. Instáleo ou, se xa o ten "
+"instalado, asegúrese de que está na variábel de ambiente <envar>PATH</envar>."
 
 #~ msgid "Open of %1 failed."
 #~ msgstr "Fallou a apertura de %1."
