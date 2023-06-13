@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-06 02:08+0000\n"
-"PO-Revision-Date: 2023-06-11 06:00+0200\n"
+"PO-Revision-Date: 2023-06-12 05:29+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -410,6 +410,10 @@ msgid ""
 "b> or <b>.kde.org</b>.\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"შეიყვანეთ ჰოსტი ან დომენი, რომელზედაც ეს პოლიტიკა ვრცელდება. მაგ: <b>www.kde."
+"org</b> ან <b>.kde.org</b>.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDomain)
 #: cookies/kcookiespolicyselectiondlg.ui:25
@@ -461,6 +465,8 @@ msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr ""
+"ცვლილებების ძალაში შესასვლელად აუცილებელია გაშვებული აპლიკაციების "
+"გადატვირთვა."
 
 #: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
 #, kde-format
@@ -1004,6 +1010,8 @@ msgstr ""
 #, kde-format
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
+"პროქსის პარამეტრების მხოლოდ გამონაკლისების სიაში ჩამოთვლილი მისამართებისთვის "
+"გამოყენება"
 
 #: smb/smbrodlg.cpp:27
 #, kde-format
@@ -1031,6 +1039,7 @@ msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
+"<para>KDE-ის wastebin <b>Finder</b>ის სანაგვე ყუთს გამოიყენებს.<br></para>"
 
 #: trash/kcmtrash.cpp:205
 #, kde-format
@@ -1268,6 +1277,8 @@ msgid ""
 "Choose the delimiter that separates the keyword from the phrase or word to "
 "be searched."
 msgstr ""
+"აირჩიეთ გამყოფი სიმბოლო, რომელიც საძებნ ფრაზას ან სიტყვას საკვანძო "
+"სიტყვისგან გამოყოფს."
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:185
@@ -1279,7 +1290,7 @@ msgstr "საკვანძო სიტყვის &გამყოფი:"
 #: webshortcuts/ikwsopts_ui.ui:204
 #, kde-format
 msgid "Choose a delimiter to mark the Web search keyword."
-msgstr ""
+msgstr "აირჩიეთ გამოყოფი ვებში ძებნის საკვანძო სიტყვის გამოსაყოფად."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:208
@@ -1419,6 +1430,8 @@ msgid ""
 "<html><head/><body><p>Enter the human-readable name of the web shortcut here."
 "</p></body></html>"
 msgstr ""
+"<html><head/><body><p>შეიყვანეთ ვების მალსახმობის ადამიანის მიერ წაკითხვადი "
+"სახელი.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
