@@ -341,7 +341,7 @@ void FilterOptions::save()
     group.writeEntry("UsePreferredWebShortcutsOnly", m_dlg.cbUseSelectedShortcutsOnly->isChecked());
 
     const QList<SearchProvider *> providers = m_providersModel->providers();
-    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/kservices6/searchproviders/");
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/kf6/searchproviders/");
 
     for (SearchProvider *provider : providers) {
         if (!provider->isDirty()) {
@@ -359,7 +359,7 @@ void FilterOptions::save()
     }
 
     const QStringList servicesDirs =
-        QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("kservices6/searchproviders/"), QStandardPaths::LocateDirectory);
+        QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("kf6/searchproviders/"), QStandardPaths::LocateDirectory);
     for (const QString &providerName : std::as_const(m_deletedProviders)) {
         QStringList matches;
         for (const QString &dir : servicesDirs) {
