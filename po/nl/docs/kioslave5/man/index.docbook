@@ -26,7 +26,7 @@
 </articleinfo>
 
 <para
->Using the man ioslave you are able to read the man pages installed on your system. It is easy to use: </para>
+>Met de KIO-worker man kunt u de man-documentatie die op uw systeem is geïnstalleerd lezen. Het is zeer eenvoudig in gebruik: </para>
 
 <variablelist>
 <varlistentry>
@@ -125,13 +125,13 @@
 >. </para>
 
 <para
->As with any other &kde; ioslave, it is possible to enter a &URL;, like <userinput
+>Zoals met elke andere KIO-worker is het mogelijk om een &URL;-adres in te voeren, zoals <userinput
 ><command
 >man:/socket</command
 ></userinput
-> in <emphasis
->any</emphasis
-> &kde; application. Try it in &kwrite; and you will see the man page in &HTML; format. </para>
+>, in <emphasis
+>elk </emphasis
+>&kde;-programma. Probeer dit eens in &kwrite; en u zult de man-pagina in &HTML;-opmaak zien. </para>
 
 <para
 >Contact-mailinglijst: <email

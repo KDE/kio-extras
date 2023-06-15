@@ -24,10 +24,10 @@
 </articleinfo>
 
 <para
->A kioslave to display recent documents or &URL;s in the file dialog, in the file manager, in &krunner; and in the Application Menu.</para>
+>Een KIO-worker om recente documenten of &URL;'s in de bestandsdialoog weer te geven, in de bestandsbeheerder, in &krunner; en in het menu Toepassingen.</para>
 
 <para
->You can use the kioslave like this:</para>
+>U kunt de KIO-worker als volgt gebruiken:</para>
 
 <para
 >Typ <userinput
@@ -44,11 +44,11 @@
 > en sla het op. Het zou nu beschikbaar moeten zijn in alle bestandsdialogen tenzij u in het item activeert om het alleen weer te geven in deze toepassing.</para>
 
 <para
->In the &systemsettings; module <guilabel
->Plasma Search</guilabel
-> enable the search plugin <guilabel
->Recent Documents</guilabel
-> to use this kioslave in &krunner;.</para>
+>In de module &systemsettings; <guilabel
+>Plasma-zoeken</guilabel
+> schakel de zoekplug-in in <guilabel
+>Recente documenten</guilabel
+> om deze KIO-worker in &krunner; te gebruiken.</para>
 
 <para
 >In het <guilabel

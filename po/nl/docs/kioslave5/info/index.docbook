@@ -33,7 +33,7 @@
 > programma.</para>
 
 <para
->The Info ioslave allows you to read the info pages installed on your system, from within &konqueror;. You can use it very easily:</para>
+>De KIO-worker info geeft u de mogelijkheid om de info-pagina's die op uw systeem zijn geïnstalleerd vanuit &konqueror; in te zien. U kunt het heel gemakkelijk gebruiken:</para>
 
 <screen
 ><userinput
@@ -53,6 +53,6 @@
 >, maar is niet erg ver verspreid buiten de &GNU;-software.</para>
 
 <para
->You can quite easily browse the info documentation you have installed from within the &khelpcenter; application, or you can use the info ioslave directly from within both &konqueror; and the mini-cli.</para>
+>U kunt heel erg gemakkelijk de op uw systeem geïnstalleerde info-documentatie doorbladeren vanuit &khelpcenter;, of u kunt de KIO-worker info direct vanuit &konqueror; of de mini-cli gebruiken.</para>
 
 </article>

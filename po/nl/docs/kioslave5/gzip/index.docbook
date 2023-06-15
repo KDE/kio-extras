@@ -23,19 +23,19 @@
 > is een comprimeerprogramma.</para>
 
 <para
->The gzip kioslave is not directly usable, and is intended for use as a filter. For example, the tar kioslave can filter a file through the gzip kioslave, in order to display the contents of a <literal role="extension"
+>De KIO-worker gzip is niet direct bruikbaar. Deze is bedoeld om als een filter te gebruiken. De KIO-worker tar kan bijvoorbeeld een bestand door deze KIO-worker te filteren om de inhoud van een <literal role="extension"
 >tar.gz</literal
-> file directly in a &konqueror; window.</para>
+>-archief direct in een &konqueror;-venster te tonen.</para>
 
 <para
->If you click on a file compressed with a <literal role="extension"
+>Als u in &konqueror; op een bestand klikt met de extensie <literal role="extension"
 >gz</literal
-> extension in &konqueror;, this kioslave is used to uncompress it and display it as a normal (uncompressed) file.</para>
+>, dan zal de KIO-worker gzip worden gebruikt om het uit te pakken en als een normaal niet gecomprimeerd bestand tonen.</para>
 
 <para
->If you are a developer, and would like to use the gzip filter, you can find documentation on using kioslaves at <ulink url="http://techbase.kde.org"
+>Als u een ontwikkelaar bent en graag het gzip-filter zou willen gebruiken, dan kunt u informatie over het gebruik van KIO-workers vinden op <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
-></para>
+>.</para>
 
 <para
 >Zie ook de man-pagina: <ulink url="man:/gzip"
