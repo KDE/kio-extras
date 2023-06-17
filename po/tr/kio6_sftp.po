@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-11-18 00:44+0000\n"
-"PO-Revision-Date: 2023-02-08 19:40+0300\n"
+"PO-Revision-Date: 2023-06-16 12:36+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.12.2\n"
+"X-Generator: Lokalize 23.07.70\n"
 
 #: kio_sftp.cpp:226
 #, kde-format
@@ -205,14 +205,14 @@ msgstr "Yine de Bağlan"
 #: kio_sftp.cpp:898 kio_sftp.cpp:908
 #, kde-format
 msgid "Authentication failed."
-msgstr "Kimlik sınaması başarısız oldu."
+msgstr "Kimlik doğrulaması başarısız oldu."
 
 #: kio_sftp.cpp:806
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr ""
-"Kimlik doğrulama başarısız. Sunucu herhangi bir kimlik sınama yöntemi "
+"Kimlik doğrulaması başarısız. Sunucu herhangi bir kimlik doğrulama yöntemi "
 "göndermedi"
 
 #: kio_sftp.cpp:855
