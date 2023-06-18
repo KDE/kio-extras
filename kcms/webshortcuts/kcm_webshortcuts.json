@@ -9,6 +9,7 @@
         "Description[ca]": "Configura les paraules clau de cerca a la web",
         "Description[cs]": "Nastavit klíčová slova pro hledání na webu",
         "Description[de]": "Web-Kürzel einrichten",
+        "Description[en_GB]": "Configure web search keywords",
         "Description[eo]": "Agordi retserĉajn ŝlosilvortojn",
         "Description[es]": "Configurar las palabras clave de búsqueda web",
         "Description[fr]": "Configurer les mots clé de recherche sur Internet",
@@ -22,6 +23,7 @@
         "Description[tr]": "Web araması anahtar sözcüklerini yapılandır",
         "Description[uk]": "Налаштування ключових слів пошуку в інтернеті",
         "Description[x-test]": "xxConfigure web search keywordsxx",
+        "Description[zh_CN]": "配置网页搜索关键词",
         "Icon": "preferences-web-browser-shortcuts",
         "Name": "Web Search Keywords",
         "Name[ar]": "كلمات بحث الويب",
@@ -30,6 +32,7 @@
         "Name[ca]": "Paraules clau de cerca a la web",
         "Name[cs]": "Klíčová slova pro hledání na webu",
         "Name[de]": "Web-Kürzel",
+        "Name[en_GB]": "Web Search Keywords",
         "Name[eo]": "Retaj Serĉaj Ŝlosilvortoj",
         "Name[es]": "Palabras clave de búsqueda web",
         "Name[fr]": "Mots clé de recherche sur Internet",
@@ -42,7 +45,8 @@
         "Name[sl]": "Ključne besede spletnega iskanja",
         "Name[tr]": "Web Araması Anahtar Sözcükleri",
         "Name[uk]": "Ключові слова пошуку в інтернеті",
-        "Name[x-test]": "xxWeb Search Keywordsxx"
+        "Name[x-test]": "xxWeb Search Keywordsxx",
+        "Name[zh_CN]": "网页搜索关键词"
     },
     "X-DocPath": "kcontrol6/webshortcuts/index.html",
     "X-KDE-Keywords": "Web Search Keywords,Web Search,Search,Keyword,Web Shortcuts,Browsing,WWW,Internet,Internet Filters,Network,Search Engines,Shortcuts",

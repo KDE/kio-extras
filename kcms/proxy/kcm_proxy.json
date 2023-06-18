@@ -8,6 +8,7 @@
         "Description[ca]": "Configura els servidors intermediaris emprats",
         "Description[cs]": "Nastavení proxy serverů",
         "Description[de]": "Proxy-Server einrichten",
+        "Description[en_GB]": "Configure the proxy servers used",
         "Description[eo]": "Agordi la uzatajn prokurajn servilojn",
         "Description[es]": "Configurar los servidores proxy que se usan",
         "Description[fr]": "Configurer les serveurs mandataires utilisés",
@@ -21,6 +22,7 @@
         "Description[tr]": "Vekil sunucuların kullanımını yapılandır",
         "Description[uk]": "Налаштування проксі-сервера",
         "Description[x-test]": "xxConfigure the proxy servers usedxx",
+        "Description[zh_CN]": "配置使用的代理服务器",
         "Icon": "preferences-system-network-proxy",
         "Name": "Proxy",
         "Name[ar]": "الوسيط",
@@ -29,6 +31,7 @@
         "Name[ca]": "Servidor intermediari",
         "Name[cs]": "Proxy",
         "Name[de]": "Proxy",
+        "Name[en_GB]": "Proxy",
         "Name[eo]": "Prokurilo",
         "Name[es]": "Proxy",
         "Name[fr]": "Serveur mandataire",
@@ -41,7 +44,8 @@
         "Name[sl]": "Posrednik",
         "Name[tr]": "Vekil",
         "Name[uk]": "Проксі",
-        "Name[x-test]": "xxProxyxx"
+        "Name[x-test]": "xxProxyxx",
+        "Name[zh_CN]": "代理服务器"
     },
     "X-DocPath": "kcontrol6/proxy/index.html",
     "X-KDE-Keywords": "Proxy,Proxy server,Firewall,Squid",

@@ -8,6 +8,7 @@
         "Description[ca]": "Credencials usades per a accedir a les comparticions SMB",
         "Description[cs]": "Přihlašovací údaje pro přístup k úložišti SMB",
         "Description[de]": "Anmeldungsdaten für den Zugriff auf SMB-Freigaben",
+        "Description[en_GB]": "Credentials used to access SMB shares",
         "Description[eo]": "Akreditaĵoj uzataj por aliri SMB-komunaĵojn",
         "Description[es]": "Credenciales que se usan para acceder a los recursos compartidos SMB",
         "Description[fr]": "Identifiants utilisés pour accéder aux partages « SMB »",
@@ -21,6 +22,7 @@
         "Description[tr]": "SMB paylaşımlarına erişim için kullanılan kimlik bilgileri",
         "Description[uk]": "Реєстраційні дані для доступу до спільних ресурсів SMB",
         "Description[x-test]": "xxCredentials used to access SMB sharesxx",
+        "Description[zh_CN]": "用于访问 SMB 共享的身份验证信息",
         "Icon": "preferences-system-network-share-windows",
         "Name": "Windows Shares",
         "Name[ar]": "مشاركات وندوز",
@@ -29,6 +31,7 @@
         "Name[ca]": "Recursos compartits de Windows",
         "Name[cs]": "Sdílené disky systému Microsoft Windows",
         "Name[de]": "Windows-Freigaben",
+        "Name[en_GB]": "Windows Shares",
         "Name[eo]": "Vindozaj Komunaĵoj",
         "Name[es]": "Recursos compartidos de Windows",
         "Name[fr]": "Partages sous Windows",
@@ -41,7 +44,8 @@
         "Name[sl]": "Skupni viri Windows",
         "Name[tr]": "Windows Paylaşımları",
         "Name[uk]": "Спільні ресурси Windows",
-        "Name[x-test]": "xxWindows Sharesxx"
+        "Name[x-test]": "xxWindows Sharesxx",
+        "Name[zh_CN]": "Windows 共享"
     },
     "X-DocPath": "kcontrol6/smb/index.html",
     "X-KDE-Keywords": "SMB,SAMBA,SMB client,Windows network,LAN,Network,neighborhood,Server,Broadcast,WINS,Share,Login,Passwords",

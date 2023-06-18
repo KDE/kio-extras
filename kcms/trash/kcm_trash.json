@@ -7,6 +7,7 @@
         "Description[ca]": "Configura les opcions de la paperera",
         "Description[cs]": "Nastavení koše",
         "Description[de]": "Papierkorb-Einstellungen festlegen",
+        "Description[en_GB]": "Configure waste settings",
         "Description[eo]": "Agordi rubo-agordojn",
         "Description[es]": "Configurar las preferencias de la papelera",
         "Description[fr]": "Configurer la corbeille",
@@ -20,6 +21,7 @@
         "Description[tr]": "Çöp kutusu ayarlarını yapılandır",
         "Description[uk]": "Налаштування параметрів смітника",
         "Description[x-test]": "xxConfigure trash settingsxx",
+        "Description[zh_CN]": "配置回收站设置",
         "Icon": "user-trash",
         "Name": "Trash",
         "Name[ar]": "المهملات",
@@ -28,6 +30,7 @@
         "Name[ca]": "Paperera",
         "Name[cs]": "Koš",
         "Name[de]": "Papierkorb",
+        "Name[en_GB]": "Wastebin",
         "Name[eo]": "Rubujo",
         "Name[es]": "Papelera",
         "Name[fr]": "Corbeille",
@@ -40,7 +43,8 @@
         "Name[sl]": "Smeti",
         "Name[tr]": "Çöp Kutusu",
         "Name[uk]": "Смітник",
-        "Name[x-test]": "xxTrashxx"
+        "Name[x-test]": "xxTrashxx",
+        "Name[zh_CN]": "回收站"
     },
     "X-DocPath": "kcontrol6/trash/index.html",
     "X-KDE-Keywords": "trash",
