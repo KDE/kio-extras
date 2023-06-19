@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-06 02:08+0000\n"
-"PO-Revision-Date: 2023-06-14 05:53+0200\n"
+"PO-Revision-Date: 2023-06-18 09:39+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -509,6 +509,8 @@ msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
 "uploaded it is renamed to its real name."
 msgstr ""
+"ფაილის ატვირთვისას ფაილის გაფართოებაა \".part\". ატვირთვის დასრულებისას "
+"ფაილს ნამდვილი სახელი ერქმევა."
 
 #: netpref/netpref.cpp:30
 #, kde-format
