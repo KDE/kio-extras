@@ -1,4 +1,4 @@
-# Translation of kio6_recentdocuments to Norwegian Nynorsk
+# Translation of kio5_recentdocuments to Norwegian Nynorsk
 #
 # Karl Ove Hufthammer <karl@huftis.org>, 2013.
 msgid ""

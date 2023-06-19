@@ -1,4 +1,4 @@
-# Translation of kio6_recentdocuments to Norwegian Bokmål
+# Translation of kio5_recentdocuments to Norwegian Bokmål
 #
 # Bjørn Steensrud <bjornst@skogkatt.homelinux.org>, 2012.
 msgid ""
