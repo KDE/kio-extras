@@ -46,7 +46,7 @@ msgstr ""
 "resource>.<nl/><nl/>Comprobe que escribiu ben o nome da páxina, e teña en "
 "conta que os nomes de páxina de manual distinguen maiúsculas.<nl/><nl/>Se o "
 "nome está ben, pode que teña que estender a ruta de busca de páxinas de "
-"manual, ou mediante a variábel de ambiente <envar>MANPATH</envar> ou "
+"manual, ou mediante a variábel de contorno <envar>MANPATH</envar> ou "
 "mediante un ficheiro de configuración no cartafol <filename>/etc</filename>."
 
 #: kio_man.cpp:569
@@ -212,7 +212,7 @@ msgid ""
 "environment variable <envar>PATH</envar>."
 msgstr ""
 "Non se atopou o programa <command>%1</command>. Instáleo ou, se xa o ten "
-"instalado, asegúrese de que está na variábel de ambiente <envar>PATH</envar>."
+"instalado, asegúrese de que está na variábel de contorno <envar>PATH</envar>."
 
 #~ msgid "Open of %1 failed."
 #~ msgstr "Fallou a apertura de %1."

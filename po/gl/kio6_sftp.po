@@ -37,17 +37,17 @@ msgstr "Non se puido asignar memoria ás chamadas"
 #: kio_sftp.cpp:289
 #, kde-format
 msgid "Could not set log verbosity."
-msgstr "Non se puido estabelecer o nivel de detalle do rexistro."
+msgstr "Non se puido definir o nivel de detalle do rexistro."
 
 #: kio_sftp.cpp:294
 #, kde-format
 msgid "Could not set log userdata."
-msgstr "Non se puido estabelecer o rexistro dos datos do usuario."
+msgstr "Non se puido definir o rexistro dos datos do usuario."
 
 #: kio_sftp.cpp:299
 #, kde-format
 msgid "Could not set log callback."
-msgstr "Non se puido estabelecer a resposta do rexistro."
+msgstr "Non se puido definir a resposta do rexistro."
 
 #: kio_sftp.cpp:335 kio_sftp.cpp:337 kio_sftp.cpp:854
 #, kde-format
@@ -58,7 +58,7 @@ msgstr "Acceso por SFTP"
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr ""
-"Empregue o campo de entrada do nome de usuario para responder esta pregunta."
+"Use o campo de entrada do nome de usuario para responder esta pregunta."
 
 #: kio_sftp.cpp:365
 #, kde-format
@@ -99,17 +99,17 @@ msgstr "Non se puido definir a compresión."
 #: kio_sftp.cpp:578
 #, kde-format
 msgid "Could not set host."
-msgstr "Non se puido estabelecer o servidor."
+msgstr "Non se puido definir o servidor."
 
 #: kio_sftp.cpp:584
 #, kde-format
 msgid "Could not set port."
-msgstr "Non se puido estabelecer o porto."
+msgstr "Non se puido definir o porto."
 
 #: kio_sftp.cpp:592
 #, kde-format
 msgid "Could not set username."
-msgstr "Non se puido estabelecer o nome de usuario."
+msgstr "Non se puido definir o nome de usuario."
 
 #: kio_sftp.cpp:599
 #, kde-format
