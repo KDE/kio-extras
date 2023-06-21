@@ -1,45 +1,48 @@
 # translation of kio5_afc.po to Slovak
 # Roman Paholik <wizzardsk@gmail.com>, 2023.
+# Ferdinand Galko <galko.ferdinand@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio5_afc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-12-27 00:48+0000\n"
-"PO-Revision-Date: 2023-03-12 09:38+0100\n"
-"Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
-"Language-Team: Slovak <kde-sk@linux.sk>\n"
+"PO-Revision-Date: 2023-06-17 11:42+0200\n"
+"Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
+"Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: afcutils.cpp:60
 #, kde-format
 msgid "Unhandled AFC error code '%1'"
-msgstr ""
+msgstr "Neošetrený kód chyby AFC '%1'"
 
 #: afcutils.cpp:73
 #, kde-format
 msgid "Unhandled housearrest error code '%1'"
-msgstr ""
+msgstr "Neošetrený kód chyby housearrest '%1'"
 
 #: afcutils.cpp:89
 #, kde-format
 msgid "Unhandled instproxy error code '%1'"
-msgstr ""
+msgstr "Neošetrený kód chyby instproxy '%1'"
 
 #: afcutils.cpp:105
 #, kde-format
 msgid ""
 "The device is locked. Please enter the passcode on the device and try again."
 msgstr ""
+"Zariadenie je uzamknuté. Zadajte prístupový kód na zariadení a skúste to "
+"znova."
 
 #: afcutils.cpp:112
 #, kde-format
 msgid "You have denied this computer access to the device."
-msgstr ""
+msgstr "Tomuto počítaču ste zakázali prístup k zariadeniu."
 
 #: afcutils.cpp:119
 #, kde-format
@@ -47,6 +50,8 @@ msgid ""
 "You need to allow this computer to access the device. Please accept the "
 "prompt on the device and try again."
 msgstr ""
+"Tomuto počítaču je potrebné povoliť prístup k zariadeniu. Akceptujte výzvu "
+"na zariadení a skúste to znova."
 
 #: afcutils.cpp:127
 #, kde-format
@@ -54,21 +59,23 @@ msgid ""
 "Cannot access the device. Make sure it is unlocked and allows this computer "
 "to access it."
 msgstr ""
+"Nemožno získať prístup k zariadeniu. Uistite sa, že je odomknuté a umožňuje "
+"tomuto počítaču prístup k nemu."
 
 #: afcutils.cpp:134
 #, kde-format
 msgid "Unhandled lockdownd code '%1'"
-msgstr ""
+msgstr "Neošetrený kód lockdownd '%1'"
 
 #: afcutils.cpp:147
 #, kde-format
 msgid "Unhandled sbservices code '%1'"
-msgstr ""
+msgstr "Neošetrený kód sbservices '%1'"
 
 #: kio_afc.cpp:174
 #, kde-format
 msgid "Apple Devices"
-msgstr ""
+msgstr "Zariadenia Apple"
 
 #: kio_afc.cpp:230
 #, kde-format
@@ -85,19 +92,19 @@ msgstr "%1 (aplikácie)"
 #: kio_afc.cpp:688
 #, kde-format
 msgid "Cannot read without opening file first"
-msgstr ""
+msgstr "Nemožno čítať bez predchádzajúceho otvorenia súboru"
 
 #: kio_afc.cpp:708
 #, kde-format
 msgid "Cannot seek without opening file first"
-msgstr ""
+msgstr "Nemožno hľadať bez predchádzajúceho otvorenia súboru"
 
 #: kio_afc.cpp:736
 #, kde-format
 msgid "Cannot write without opening file first"
-msgstr ""
+msgstr "Nemožno zapisovať bez predchádzajúceho otvorenia súboru"
 
 #: kio_afc.cpp:888
 #, kde-format
 msgid "Cannot rename between devices."
-msgstr ""
+msgstr "Nemožno premenovať medzi zariadeniami."

@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-06 02:08+0000\n"
-"PO-Revision-Date: 2023-06-18 09:39+0200\n"
+"PO-Revision-Date: 2023-06-20 06:27+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1100,6 +1100,8 @@ msgid ""
 "<para>Check this box to limit the trash to the maximum amount of disk space "
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
+"<para>ჩართეთ ეს ნაგვის ყუთის მაქსიმალური ზომის მისათითებლად. წინააღმდეგ "
+"შემთხვევაში ის შეუზღუდავი იქნება.</para>"
 
 #: trash/kcmtrash.cpp:270
 #, kde-format
@@ -1113,6 +1115,8 @@ msgid ""
 "<para>This is the maximum percent of disk space that will be used for the "
 "trash.</para>"
 msgstr ""
+"<para>დისკზე ნაგვის ყუთისთვის გამოყენებული ადგილის მაქსიმალური პროცენტული "
+"რაოდენობა.</para>"
 
 #: trash/kcmtrash.cpp:282
 #, kde-kuit-format
@@ -1121,6 +1125,8 @@ msgid ""
 "<para>This is the calculated amount of disk space that will be allowed for "
 "the trash, the maximum.</para>"
 msgstr ""
+"<para>ეს გამოთვლილი ადგილის მაქსიმუმია დისკზე, რომელიც ნაგვის ყუთისთვის "
+"იქნება გამოყენებული.</para>"
 
 #: trash/kcmtrash.cpp:286
 #, kde-format
