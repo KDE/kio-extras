@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-06 02:08+0000\n"
-"PO-Revision-Date: 2023-06-17 08:56+0200\n"
+"PO-Revision-Date: 2023-06-23 23:03+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -402,7 +402,7 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Lista de sitios nos que estabeleceu unha política de cookies específica. As "
+"Lista de sitios nos que definiu unha política de rastros específica. As "
 "políticas específicas sobrepoñen a política predeterminada no caso destes "
 "sitios.\n"
 "</qt>"
@@ -582,7 +582,7 @@ msgid ""
 "uploaded it is renamed to its real name."
 msgstr ""
 "Mentres se está a enviar un ficheiro a súa extensión é «*.part». Cando se "
-"remata de enviar cámbiase de nome, ao seu nome real."
+"remata de enviar renoméase co seu nome real."
 
 #: netpref/netpref.cpp:30
 #, kde-format
@@ -620,7 +620,7 @@ msgstr "Lectura do soc&ket:"
 #: netpref/netpref.cpp:53
 #, kde-format
 msgid "Pro&xy connect:"
-msgstr "Conexión co pro&xy:"
+msgstr "Cone&xión co mandatario:"
 
 #: netpref/netpref.cpp:59
 #, kde-format
@@ -714,14 +714,14 @@ msgid ""
 "settings. Some applications may allow the proxy to be configured in their "
 "own settings."
 msgstr ""
-"Non todas as aplicacións usarán esta configuración de proxy. Concretamente, "
-"<application>Firefox</application> e <application>Chromium</application>, "
-"así como aplicacións derivadas, ou aplicacións que usen "
+"Non todas as aplicacións usarán esta configuración de mandatario. "
+"Concretamente, <application>Firefox</application> e <application>Chromium</"
+"application>, así como aplicacións derivadas, ou aplicacións que usen "
 "<application>QtWebEngine</application> (entre elas <application>Konqueror</"
 "application> ao usar <application>WebEnginePart</application>, "
 "<application>Akregator</application> e<application>Falkon</application>) non "
 "usarán esta configuración. Algunhas aplicacións pode que permitan definir un "
-"proxy na súa propia configuración."
+"mandatario na súa propia configuración."
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -743,7 +743,7 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Configuración do proxy.\n"
+"Configuración do mandatario.\n"
 "<p>\n"
 "Un servidor mandatario é unha máquina intermediaria posta entre o seu "
 "computador e Internet que fornece servizos como cacheado de páxinas e "
@@ -768,7 +768,7 @@ msgstr "Conectar a Internet directamente."
 #: proxy/kproxydlg.ui:29
 #, kde-format
 msgid "No Proxy"
-msgstr "Sen proxy"
+msgstr "Sen mandatario"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:46
@@ -783,9 +783,9 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Detectar e configurar automaticamente as opcións do proxy.<p>\n"
-"A detección automática realízase usando o <b>Protocolo de descubrimento "
-"automático de Proxys Web (WPAD)</b>.<p>\n"
+"Detectar e configurar automaticamente as opcións do mandatario.<p>\n"
+"A detección automática realízase usando o <b>protocolo de descubrimento "
+"automático de mandatarios web (WPAD)</b>.<p>\n"
 "<b>NOTA:</b> Esta opción podería non funcionar axeitadamente ou non "
 "funcionar para nada nalgunhas distribucións Linux/Unix.\n"
 "</qt>"
@@ -794,26 +794,25 @@ msgstr ""
 #: proxy/kproxydlg.ui:49
 #, kde-format
 msgid "Detect proxy configuration automatically"
-msgstr "Detectar automaticamente a configuración do proxy"
+msgstr "Detectar automaticamente a configuración do mandatario"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:59
 #, kde-format
 msgid "Use the specified proxy script to configure the proxy settings."
-msgstr ""
-"Usar o script de proxy especificado para estabelecer as opcións do proxy."
+msgstr "Usar o guión de mandatario indicado para configurar o mandatario."
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:62
 #, kde-format
 msgid "Use proxy auto configuration URL:"
-msgstr "Usar un URL para configurar automaticamente o proxy:"
+msgstr "Usar un URL para configurar automaticamente o mandatario:"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:93
 #, kde-format
 msgid "Enter the address for the proxy configuration script."
-msgstr "Insira o enderezo do script de configuración do proxy."
+msgstr "Escriba o enderezo do guión de configuración do mandatario."
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:117
@@ -830,8 +829,8 @@ msgid ""
 "<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
 "</qt>"
 msgstr ""
-"<qt><p>Usar a configuración de proxy definida no sistema.</p>\n"
-"<p>Algunhas plataformas ofrecen unha configuración de proxy para todo o "
+"<qt><p>Usar a configuración de mandatario definida no sistema.</p>\n"
+"<p>Algunhas plataformas ofrecen unha configuración de mandatario para todo o "
 "sistema e escoller esta opción permítelle usala.</p>\n"
 "<p>En plataformas Mac</p>\n"
 "<p>En plataformas Windows</p>\n"
@@ -845,7 +844,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:120
 #, kde-format
 msgid "Use system proxy configuration:"
-msgstr "Usar a configuración do proxy fornecida polo sistema:"
+msgstr "Usar a configuración do mandatario fornecida polo sistema:"
 
 #. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
 #: proxy/kproxydlg.ui:127
@@ -856,8 +855,8 @@ msgid ""
 "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
 "</qt>"
 msgstr ""
-"<qt>Intenta descubrir automaticamente as variábeis de contorno empregadas "
-"para estabelecer a información do proxy para todo o sistema.<p>Esta "
+"<qt>Intenta descubrir automaticamente as variábeis de contorno usadas para "
+"definir a información do mandatario para todo o sistema.<p>Esta "
 "característica funciona buscando os nomes de variábeis máis comúns, como "
 "HTTP_PROXY, FTP_PROXY e NO_PROXY.</qt>"
 
@@ -880,8 +879,8 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Insira o nome da variábel de contorno, p.ex. <b>HTTP_PROXY</b>, empregada "
-"para almacenar o enderezo do servidor mandatario HTTP.<p>\n"
+"Insira o nome da variábel de contorno, p.ex. <b>HTTP_PROXY</b>, usada para "
+"almacenar o enderezo do servidor mandatario HTTP.<p>\n"
 "Outra alternativa é premer o botón <b>«Detectar automaticamente»</b> para "
 "que se intente descubrir automaticamente esta variábel.</p>\n"
 "</qt>"
@@ -891,7 +890,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
 #, kde-format
 msgid "HTTP Proxy:"
-msgstr "Proxy HTTP:"
+msgstr "Mandatario de HTTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -917,7 +916,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
 #, kde-format
 msgid "SSL Proxy:"
-msgstr "Proxy SSL:"
+msgstr "Mandatario de SSL:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -943,7 +942,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
 #, kde-format
 msgid "FTP Proxy:"
-msgstr "Proxy FTP:"
+msgstr "Mandatario de FTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:263
@@ -968,7 +967,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
 #, kde-format
 msgid "SOCKS Proxy:"
-msgstr "Proxy de SOCKS:"
+msgstr "Mandatario de SOCKS:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:285
@@ -1045,7 +1044,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:346
 #, kde-format
 msgid "Use manually specified proxy configuration:"
-msgstr "Usar a configuración de proxy indicada manualmente:"
+msgstr "Usar a configuración de mandatario indicada manualmente:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
 #: proxy/kproxydlg.ui:398
@@ -1128,7 +1127,7 @@ msgid ""
 msgstr ""
 "<qt>\n"
 "<p>Insira unha lista separada por comas de nomes de servidor ou enderezos ip "
-"que se deben excluír da configuración do proxy.</p>\n"
+"que se deben excluír da configuración do mandatario.</p>\n"
 "<p>Se quere excluír todos os servidores dun determinado dominio simplemente "
 "insira o nome do dominio precedido por un punto. Por exemplo, para excluír "
 "todos os servidores de <i>kde.org</i>, insira <i>.kde.org</i>. Non se "
@@ -1146,15 +1145,16 @@ msgid ""
 "addresses listed in the <i>Exceptions</i> list.</qt>"
 msgstr ""
 "<qt>\n"
-"Marque esta opción se quere que a configuración do proxy se aplique só aos "
-"enderezos que aparecen na lista <i>Excepcións</i>.</qt>"
+"Marque esta opción se quere que a configuración do mandatario se aplique só "
+"aos enderezos que aparecen na lista <i>Excepcións</i>.</qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
 #, kde-format
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
-"Usar a configuración do proxy só para os enderezos na lista de excepcións."
+"Usar a configuración do mandatario só para os enderezos na lista de "
+"excepcións."
 
 #: smb/smbrodlg.cpp:27
 #, kde-format
@@ -1214,8 +1214,8 @@ msgid ""
 "items after a certain timespan</para>"
 msgstr ""
 "<para>Marque esta opción para permitir a <emphasis strong='true'>eliminación "
-"automática</emphasis> dos ficheiros máis vellos que o valor especificado. "
-"Déixea desactivada para <emphasis strong='true'>non</emphasis> eliminar "
+"automática</emphasis> dos ficheiros máis vellos que o valor indicado. Déixea "
+"desactivada para <emphasis strong='true'>non</emphasis> eliminar "
 "automaticamente os elementos despois dun certo tempo.</para>"
 
 #: trash/kcmtrash.cpp:256
@@ -1232,7 +1232,7 @@ msgid ""
 "<para>Set the number of days that files can remain in the trash. Any files "
 "older than this will be automatically deleted.</para>"
 msgstr ""
-"<para>Estabelece cantos días poden quedar no lixo os ficheiros. Os que sexan "
+"<para>Define cantos días poden quedar no lixo os ficheiros. Os que sexan "
 "máis vellos diso han eliminarse automaticamente.</para>"
 
 #: trash/kcmtrash.cpp:262
@@ -1253,8 +1253,7 @@ msgid ""
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
 "<para>Marque esta opción para limitar o espazo máximo que pode ocupar o lixo "
-"á cantidade que especifique en baixo. En caso contrario non terá límite.</"
-"para>"
+"á cantidade que indique embaixo. En caso contrario non terá límite.</para>"
 
 #: trash/kcmtrash.cpp:270
 #, kde-format
@@ -1305,8 +1304,8 @@ msgid ""
 "instead of automatically deleting files.</para>"
 msgstr ""
 "<para>Cando se acada o límite do tamaño, preferirá eliminar primeiro os "
-"ficheiros do tipo que especifique. Se indica que o avise, fará iso no canto "
-"de eliminar automaticamente os ficheiros.</para>"
+"ficheiros do tipo que indique. Se indica que o avise, fará iso no canto de "
+"eliminar automaticamente os ficheiros.</para>"
 
 #: trash/kcmtrash.cpp:292
 #, kde-format
@@ -1579,16 +1578,16 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>Insira aquí o URI que se usará para facer a busca.<br/>O texto que se "
-"vai buscar pode especificarse como \\{@} ou \\{0}.<br/>\n"
+"vai buscar pode indicarse como \\{@} ou \\{0}.<br/>\n"
 "Recoméndase usar \\{@}, xa que retira todas as variábeis de busca "
 "(nome=valor) da cadea resultante mentres que \\{0} ha substituírse pola "
-"cadea sen modificar.<br/>Pode usar \\{1} … \\{n} para especificar certas "
-"palabras na busca e \\{nome} para especificar un valor dado por «nome=valor»."
-"<br/>Ademais é posíbel especificar múltiplas referencias dunha vez (nomes, "
-"números e cadeas), \\{nome1,nome2,…,«cadea»}.<br/> O primeiro valor "
-"concordante (desde a esquerda) ha usarse como valor de substitución para o "
-"URI resultante.<br/>Pode usar unha cadea entre aspas como valor "
-"predeterminado se nada concorda.</qt>"
+"cadea sen modificar.<br/>Pode usar \\{1} … \\{n} para indicar certas "
+"palabras na busca e \\{nome} para indicar un valor dado por «nome=valor».<br/"
+">Ademais é posíbel indicar múltiplas referencias dunha vez (nomes, números e "
+"cadeas), \\{nome1,nome2,…,«cadea»}.<br/> O primeiro valor concordante (desde "
+"a esquerda) ha usarse como valor de substitución para o URI resultante.<br/"
+">Pode usar unha cadea entre comiñas como valor predeterminado se nada "
+"concorda.</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
