@@ -105,10 +105,6 @@ install(TARGETS imagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR
 
 ########### next target ###############
 
-install(FILES directorythumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICESDIR})
-
-########### next target ###############
-
 add_library(jpegthumbnail MODULE jpegcreator.cpp)
 
 kconfig_add_kcfg_files(jpegthumbnail jpegcreatorsettings5.kcfgc)
@@ -334,3 +330,15 @@ target_link_libraries(ebookthumbnail
 )
 
 install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
+
+# ########### next target ###############
+
+add_library(directorythumbnail MODULE directorycreator.cpp)
+
+target_link_libraries(directorythumbnail
+    Qt::Gui
+    KF6::CoreAddons
+    KF6::KIOGui
+)
+
+install(TARGETS directorythumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)

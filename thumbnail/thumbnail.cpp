@@ -222,7 +222,8 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 
     QImage img;
     QString plugin = metaData("plugin");
-    if ((plugin.isEmpty() || plugin == "directorythumbnail") && m_mimeType == "inode/directory") {
+
+    if ((plugin.isEmpty() || plugin.contains("directorythumbnail")) && m_mimeType == "inode/directory") {
         img = thumbForDirectory(info.canonicalFilePath());
         if (img.isNull()) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
