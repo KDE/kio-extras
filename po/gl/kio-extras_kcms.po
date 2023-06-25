@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-06 02:08+0000\n"
-"PO-Revision-Date: 2023-06-23 23:03+0200\n"
+"PO-Revision-Date: 2023-06-24 12:31+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
 "Language: gl\n"
@@ -83,7 +83,7 @@ msgstr "Buscar"
 #: cookies/kcookiesmanagement.ui:27
 #, kde-format
 msgid "Search interactively for domains and hosts"
-msgstr "Buscar interactivamente dominios e servidores"
+msgstr "Buscar interactivamente dominios e servidores."
 
 #. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
 #: cookies/kcookiesmanagement.ui:43
@@ -218,11 +218,11 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Activa a compatibilidade con cookies. Normalmente quererá ter a "
-"compatibilidade con cookies activado e personalizalo para axeitalo ás súas "
-"necesidades de intimidade.<p>\n"
-"Por favor, lembre que desactivar a compatibilidade con cookies podería facer "
-"de moitos sitios non navegábeis.</p>\n"
+"Activa a compatibilidade con rastros. Normalmente quererá ter a "
+"compatibilidade con rastros activada e personalizala para axeitala ás súas "
+"necesidades de privacidade.<p>\n"
+"Desactivar a compatibilidade con rastros podería impedir navegar moitos "
+"sitios web.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
@@ -272,11 +272,11 @@ msgid ""
 "for session cookies.</p>"
 msgstr ""
 "<p>\n"
-"Acepta automaticamente as cookies temporais que expiran ao remate da sesión. "
-"As cookies non se almacenarán no disco duro ou dispositivo de almacenamento "
+"Acepta automaticamente os rastros temporais que caducan ao remate da sesión. "
+"Os rastros non se almacenarán no disco duro ou dispositivo de almacenamento "
 "do seu computador, senón que se han eliminar cando se pechen todas as "
-"aplicacións que as estiveran a usar (p.ex. o seu navegador).</p><p><u>NOTA</"
-"u> Se marca esta opción sobreporase á predeterminada así como a política "
+"aplicacións que os estivesen a usar (p. ex. o seu navegador).</p><p><u>Nota:"
+"</u> Se marca esta opción sobredefinirá a predeterminada e a política "
 "específica do sitio.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
@@ -384,7 +384,7 @@ msgstr "Política do sitio"
 #: cookies/kcookiespolicies.ui:135
 #, kde-format
 msgid "Search interactively for domains"
-msgstr "Buscar interactivamente dominios"
+msgstr "Buscar interactivamente dominios."
 
 #. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
 #: cookies/kcookiespolicies.ui:138
@@ -403,7 +403,7 @@ msgid ""
 msgstr ""
 "<qt>\n"
 "Lista de sitios nos que definiu unha política de rastros específica. As "
-"políticas específicas sobrepoñen a política predeterminada no caso destes "
+"políticas específicas sobredefinen a política predeterminada no caso destes "
 "sitios.\n"
 "</qt>"
 
@@ -615,7 +615,7 @@ msgstr[1] " segundos"
 #: netpref/netpref.cpp:47
 #, kde-format
 msgid "Soc&ket read:"
-msgstr "Lectura do soc&ket:"
+msgstr "Lectura da &toma:"
 
 #: netpref/netpref.cpp:53
 #, kde-format
@@ -750,7 +750,7 @@ msgstr ""
 "filtro. Os servidores mandatarios de caché fornécenlle un acceso máis rápido "
 "a sitios que xa visitou almacenando localmente ou cacheando o contido desas "
 "páxinas. Os servidores mandatarios de filtro posibilitan o bloqueo de "
-"pedidos de publicidade, correo lixo ou calquera outra cousa que queira "
+"solicitudes de publicidade, correo lixo ou calquera outra cousa que queira "
 "bloquear.\n"
 "<p>\n"
 "Se non está seguro de se precisa ou non un servidor mandatario para "
@@ -1164,7 +1164,7 @@ msgstr "Estes parámetros só se aplican á navegación pola rede."
 #: smb/smbrodlg.cpp:31
 #, kde-format
 msgid "Default user name:"
-msgstr "Nome de usuario predeterminado:"
+msgstr "Nome predeterminado de persoa usuaria:"
 
 #: smb/smbrodlg.cpp:39
 #, kde-format
@@ -1395,19 +1395,19 @@ msgstr "Buscar palabras clave de busca web"
 #: webshortcuts/ikwsopts_ui.ui:71
 #, kde-format
 msgid "Add a new Web search keyword"
-msgstr "Engadir unha nova palabra clave de busca web"
+msgstr "Engadir unha nova palabra clave de busca web."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
-msgstr "Modificar a palabra clave de busca web realzada"
+msgstr "Modificar a palabra clave de busca web realzada."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
-msgstr "Eliminar a palabra clave de busca web realzada"
+msgstr "Eliminar a palabra clave de busca web realzada."
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:100
@@ -1536,7 +1536,7 @@ msgid ""
 msgstr ""
 "O URI non contén unha marca de substitución \\{…} para a consulta.\n"
 "Isto significa que sempre se visitará a mesma páxina, independentemente do "
-"que escriba o usuario."
+"que escriba a persoa usuaria."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1617,7 +1617,8 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>Os atallos que insira aquí poden usarse como un pseudo-URI en KDE. Por "
-"exemplo, o atallo <b>av</b> pode usarse en <b>av</b>:<b>a miña busca</b></qt>"
+"exemplo, o atallo <b>av</b> pode usarse en <b>av</b>:<b>a miña busca</b>.</"
+"qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
@@ -1628,8 +1629,8 @@ msgid ""
 "<html><head/><body><p>Enter the human-readable name of the web shortcut here."
 "</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Insira aquí o nome lexíbel polo usuario do atallo web."
-"</p></body></html>"
+"<html><head/><body><p>Insira aquí o nome lexíbel do atallo web.</p></body></"
+"html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
@@ -1654,7 +1655,7 @@ msgstr "&Conxunto de caracteres:"
 #: webshortcuts/searchproviderdlg_ui.ui:158
 #, kde-format
 msgid "Insert query placeholder"
-msgstr "Insire unha marca de posición de consulta"
+msgstr "Insire unha marca de posición de consulta."
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"
