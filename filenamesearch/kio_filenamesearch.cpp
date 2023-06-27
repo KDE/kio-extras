@@ -84,7 +84,7 @@ FileNameSearchProtocol::FileNameSearchProtocol(const QByteArray &pool, const QBy
     : QObject()
     , WorkerBase("search", pool, app)
 {
-    QDBusInterface kded(QStringLiteral("org.kde.kded5"), QStringLiteral("/kded"), QStringLiteral("org.kde.kded5"));
+    QDBusInterface kded(QStringLiteral("org.kde.kded6"), QStringLiteral("/kded"), QStringLiteral("org.kde.kded6"));
     kded.call(QStringLiteral("loadModule"), QStringLiteral("filenamesearchmodule"));
 }
 
