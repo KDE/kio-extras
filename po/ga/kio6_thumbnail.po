@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase/kio_thumbnail.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-21 00:47+0000\n"
+"POT-Creation-Date: 2023-06-28 02:09+0000\n"
 "PO-Revision-Date: 2005-05-20 15:03-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -27,42 +27,42 @@ msgstr "Níor sonraíodh cineál MIME."
 msgid "No or invalid size specified."
 msgstr "Níor sonraíodh méid, nó sonraíodh méid neamhbhailí."
 
-#: thumbnail.cpp:228
+#: thumbnail.cpp:229
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Ní féidir mionsamhail a chruthú le haghaidh na comhadlainne"
 
-#: thumbnail.cpp:239
+#: thumbnail.cpp:240
 #, kde-format
 msgid "No plugin specified."
 msgstr "Níor sonraíodh breiseán."
 
-#: thumbnail.cpp:244
+#: thumbnail.cpp:245
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Ní féidir ThumbCreator %1 a luchtú"
 
-#: thumbnail.cpp:265
+#: thumbnail.cpp:266
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Ní féidir mionsamhail a chruthú le haghaidh %1"
 
-#: thumbnail.cpp:277
+#: thumbnail.cpp:278
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Theip ar chruthú na mionsamhla."
 
-#: thumbnail.cpp:288
+#: thumbnail.cpp:289
 #, kde-format
 msgid "Could not write image."
 msgstr "Níorbh fhéidir an íomhá a scríobh."
 
-#: thumbnail.cpp:312
+#: thumbnail.cpp:313
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Theip ar cheangal le deighleán comhchuimhne %1"
 
-#: thumbnail.cpp:319
+#: thumbnail.cpp:320
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Tá an íomhá rómhór don deighleán comhchuimhne"

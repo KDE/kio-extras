@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-21 00:47+0000\n"
+"POT-Creation-Date: 2023-06-28 02:09+0000\n"
 "PO-Revision-Date: 2009-12-12 18:43+0530\n"
 "Last-Translator: Danishka Navin <danishka@gmail.com>\n"
 "Language-Team: Sinhala <danishka@gmail.com>\n"
@@ -27,42 +27,42 @@ msgstr "කිසිඳු MIME වර්ගයක් සපයා නොමැ�
 msgid "No or invalid size specified."
 msgstr "කිසිඳු අගයක් සපයා නොමැති හෝ වලංගු නොවන අගයක් සපයා ඇත."
 
-#: thumbnail.cpp:228
+#: thumbnail.cpp:229
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "බහාළුම සඳහා කුඩාරූපයක් සැකසිය නොහැක"
 
-#: thumbnail.cpp:239
+#: thumbnail.cpp:240
 #, kde-format
 msgid "No plugin specified."
 msgstr "ප්ලගිනයක් ලබාදී නොමැත."
 
-#: thumbnail.cpp:244
+#: thumbnail.cpp:245
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "ThumbCreator %1 පූර්ණය කල නොහැක"
 
-#: thumbnail.cpp:265
+#: thumbnail.cpp:266
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "%1 සඳහා කුඩාරූපය සැකසිය නොහැක"
 
-#: thumbnail.cpp:277
+#: thumbnail.cpp:278
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "කුඩාරූපය සැකසීමේ වරදක්."
 
-#: thumbnail.cpp:288
+#: thumbnail.cpp:289
 #, kde-format
 msgid "Could not write image."
 msgstr "පිලිඹිබුව ලිවිය නොහැක."
 
-#: thumbnail.cpp:312
+#: thumbnail.cpp:313
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "%1 හවුල් මතක කොටසට ඈඳිමේ වරදක්"
 
-#: thumbnail.cpp:319
+#: thumbnail.cpp:320
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "හවුල් මතක කොටස සඳහා පිළිඹිබුව ඉතා විශාලයි"

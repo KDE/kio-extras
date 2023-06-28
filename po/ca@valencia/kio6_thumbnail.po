@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-21 00:47+0000\n"
+"POT-Creation-Date: 2023-06-28 02:09+0000\n"
 "PO-Revision-Date: 2020-07-20 23:04+0200\n"
 "Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -32,42 +32,42 @@ msgstr "No s'ha especificat cap tipus MIME."
 msgid "No or invalid size specified."
 msgstr "Mida no especificada o no vàlida."
 
-#: thumbnail.cpp:228
+#: thumbnail.cpp:229
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "No s'ha pogut crear la miniatura per al directori"
 
-#: thumbnail.cpp:239
+#: thumbnail.cpp:240
 #, kde-format
 msgid "No plugin specified."
 msgstr "No s'ha especificat cap connector."
 
-#: thumbnail.cpp:244
+#: thumbnail.cpp:245
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "No s'ha pogut carregar ThumbCreator %1"
 
-#: thumbnail.cpp:265
+#: thumbnail.cpp:266
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "No s'ha pogut crear la miniatura per a %1"
 
-#: thumbnail.cpp:277
+#: thumbnail.cpp:278
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "No s'ha pogut crear una vista en miniatura."
 
-#: thumbnail.cpp:288
+#: thumbnail.cpp:289
 #, kde-format
 msgid "Could not write image."
 msgstr "No s'ha pogut escriure la imatge."
 
-#: thumbnail.cpp:312
+#: thumbnail.cpp:313
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "No s'ha pogut annexar al segment de la memòria compartida %1"
 
-#: thumbnail.cpp:319
+#: thumbnail.cpp:320
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "La imatge és massa gran per al segment de la memòria compartida"

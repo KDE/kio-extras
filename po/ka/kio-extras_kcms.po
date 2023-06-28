@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-06 02:08+0000\n"
-"PO-Revision-Date: 2023-06-25 09:34+0200\n"
+"PO-Revision-Date: 2023-06-27 09:13+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: cookies/kcookiesmain.cpp:37
 #, kde-format
@@ -254,6 +254,12 @@ msgid ""
 "this option overrides your default as well as site specific cookie policies "
 "for session cookies.</p>"
 msgstr ""
+"<p>\n"
+"დროებითი ქუქიების, რომლებიც მიმდინარე სესიის ბოლოს იწურებიან, ავტომატური "
+"მიღება. ასეთი ქუქიები კომპიუტერში დამახსოვრებული არა. ისინი წაიშლება, როცა "
+"დახურავთ აპლიკაციას (ბრაუზერს), რომელიც მათ იყენებს.</p><p><u>შენიშვნა</u>ამ "
+"პარამეტრის ჩართვა გადაფარავს როგორც ნაგულისხმებ პარამეტრებს, ისე საიტისთვის "
+"მითითებულ ქუქიების პოლიტიკას.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
 #: cookies/kcookiespolicies.ui:49
@@ -603,6 +609,10 @@ msgid ""
 "part\" extension. This extension will be removed once the transfer is "
 "complete.</p>"
 msgstr ""
+"<p>SMB, SFTP და სხვა პროტოკოლებით ნაწილობრივ ატვირთული ფაილების დანიშვნა.</"
+"p><p>როცა ეს პარამეტრ ჩართულია, ნაწილობრივ ატვირთულ ფაილებს \".part\" "
+"გაფართოება ემატება. ეს გაფართოება ავტომატურად მოცილდება, როცა ატვირთვა "
+"დასრულდება.</p>"
 
 #: netpref/netpref.cpp:90
 #, kde-format
