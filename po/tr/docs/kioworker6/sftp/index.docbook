@@ -39,7 +39,7 @@
 >ssh</command
 > üzerinden aktarım yapar. <command
 >ssh</command
-> komutunun açık anahtar doğrulaması ve sıkıştırma gibi birçok özelliğini kullanabilir.</para>
+> komutunun açık anahtar kimlik doğrulaması ve sıkıştırma gibi birçok özelliğini kullanabilir.</para>
 
 <para
 >Kılavuza bakın: <ulink url="man:/sftp"
