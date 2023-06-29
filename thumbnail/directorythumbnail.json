@@ -5,7 +5,18 @@
         "MimeTypes": [
             "inode/directory"
         ],
-        "Name": "Folders"
+        "Name": "Folders",
+        "Name[ca@valencia]": "Carpetes",
+        "Name[ca]": "Carpetes",
+        "Name[cs]": "Složky",
+        "Name[eo]": "Dosierujoj",
+        "Name[es]": "Carpetas",
+        "Name[ia]": "Dossieres",
+        "Name[nl]": "Mappen",
+        "Name[sl]": "Mape",
+        "Name[tr]": "Klasörler",
+        "Name[uk]": "Теки",
+        "Name[x-test]": "xxFoldersxx"
     },
     "MimeType": "inode/directory;"
 }
