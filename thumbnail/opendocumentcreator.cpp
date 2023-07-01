@@ -74,4 +74,5 @@ KIO::ThumbnailResult OpenDocumentCreator::create(const KIO::ThumbnailRequest &re
     return KIO::ThumbnailResult::fail();
 }
 
+#include "moc_opendocumentcreator.cpp"
 #include "opendocumentcreator.moc"

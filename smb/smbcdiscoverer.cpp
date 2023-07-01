@@ -322,3 +322,5 @@ void SMBCDiscoverer::queue()
     // SMBC is running on the loop and so the priority has no negative impact.
     QCoreApplication::postEvent(this, new QEvent(LoopEvent), Qt::LowEventPriority);
 }
+
+#include "moc_smbcdiscoverer.cpp"

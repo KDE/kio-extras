@@ -68,3 +68,4 @@ KIO::ThumbnailResult KritaCreator::create(const KIO::ThumbnailRequest &request)
 }
 
 #include "kritacreator.moc"
+#include "moc_kritacreator.cpp"

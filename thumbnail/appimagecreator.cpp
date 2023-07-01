@@ -42,3 +42,4 @@ KIO::ThumbnailResult AppImageCreator::create(const KIO::ThumbnailRequest &reques
 }
 
 #include "appimagecreator.moc"
+#include "moc_appimagecreator.cpp"

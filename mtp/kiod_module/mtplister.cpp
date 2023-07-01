@@ -40,3 +40,5 @@ void MTPLister::abort()
     m_it = m_children.end();
     QMetaObject::invokeMethod(this, &MTPLister::run, Qt::QueuedConnection);
 }
+
+#include "moc_mtplister.cpp"

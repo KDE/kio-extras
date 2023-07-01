@@ -30,4 +30,5 @@ void RecentDocumentsNotifier::dirty(const QString &path)
     }
 }
 
+#include "moc_recentdocumentsnotifier.cpp"
 #include "recentdocumentsnotifier.moc"

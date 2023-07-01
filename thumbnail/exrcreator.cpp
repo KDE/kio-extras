@@ -71,3 +71,4 @@ KIO::ThumbnailResult EXRCreator::create(const KIO::ThumbnailRequest &request)
 }
 
 #include "exrcreator.moc"
+#include "moc_exrcreator.cpp"

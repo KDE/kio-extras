@@ -161,3 +161,5 @@ void TestKioArchive::testExtractSymlinkFromTar()
     // -> ### TODO
     QVERIFY(QFileInfo(destPath).isSymLink());
 }
+
+#include "moc_testkioarchive.cpp"

@@ -28,4 +28,5 @@ KIO::ThumbnailResult WindowsExeCreator::create(const KIO::ThumbnailRequest &requ
     return !img.isNull() ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
 }
 
+#include "moc_windowsexecreator.cpp"
 #include "windowsexecreator.moc"

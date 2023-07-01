@@ -45,4 +45,5 @@ KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
     return KIO::ThumbnailResult::pass(i);
 }
 
+#include "moc_svgcreator.cpp"
 #include "svgcreator.moc"

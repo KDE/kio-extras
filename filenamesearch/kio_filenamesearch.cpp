@@ -241,3 +241,4 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 }
 
 #include "kio_filenamesearch.moc"
+#include "moc_kio_filenamesearch.cpp"

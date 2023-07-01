@@ -1116,3 +1116,4 @@ void NFSProtocol::createVirtualDirEntry(UDSEntry& entry)
 }
 
 #include "kio_nfs.moc"
+#include "moc_kio_nfs.cpp"

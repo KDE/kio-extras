@@ -229,3 +229,4 @@ KIO::WorkerResult ActivitiesProtocol::mimetype(const QUrl& url)
 }
 
 #include "KioActivities.moc"
+#include "moc_KioActivities.cpp"

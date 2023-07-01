@@ -248,3 +248,4 @@ int ComicCreator::runProcess(const QString& processPath, const QStringList& args
 }
 
 #include "comiccreator.moc"
+#include "moc_comiccreator.cpp"

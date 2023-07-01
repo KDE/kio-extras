@@ -107,3 +107,5 @@ void DNSSDDiscoverer::maybeFinish()
         Q_EMIT finished();
     }
 }
+
+#include "moc_dnssddiscoverer.cpp"

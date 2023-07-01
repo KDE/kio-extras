@@ -44,3 +44,5 @@ void Browser::dataishere(KIO::Job *,const QByteArray & data )
     kDebug() << data;
     kapp->quit();
 }
+
+#include "moc_copytester.cpp"

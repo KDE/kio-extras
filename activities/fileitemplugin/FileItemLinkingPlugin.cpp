@@ -205,4 +205,4 @@ QList<QAction *> FileItemLinkingPlugin::actions(const KFileItemListProperties &f
 }
 
 #include "FileItemLinkingPlugin.moc"
-
+#include "moc_FileItemLinkingPlugin_p.cpp"

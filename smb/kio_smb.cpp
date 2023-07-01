@@ -58,3 +58,4 @@ bool WorkerFrontend::checkCachedAuthentication(AuthInfo &info)
 }
 
 #include "kio_smb.moc"
+#include "moc_kio_smb.cpp"

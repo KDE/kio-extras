@@ -171,4 +171,5 @@ KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
     return ok ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
 }
 
+#include "moc_textcreator.cpp"
 #include "textcreator.moc"
