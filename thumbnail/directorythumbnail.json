@@ -16,13 +16,15 @@
         "Name[gl]": "Cartafoles",
         "Name[ia]": "Dossieres",
         "Name[it]": "Cartelle",
+        "Name[ka]": "საქაღალდეები",
         "Name[nl]": "Mappen",
         "Name[pl]": "Katalogi",
         "Name[sl]": "Mape",
         "Name[ta]": "அடைவுகள்",
         "Name[tr]": "Klasörler",
         "Name[uk]": "Теки",
-        "Name[x-test]": "xxFoldersxx"
+        "Name[x-test]": "xxFoldersxx",
+        "Name[zh_CN]": "文件夹"
     },
     "MimeType": "inode/directory;"
 }
