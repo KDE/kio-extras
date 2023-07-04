@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-06-06 02:08+0000\n"
-"PO-Revision-Date: 2023-06-30 06:04+0200\n"
+"PO-Revision-Date: 2023-07-03 05:43+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -1241,6 +1241,8 @@ msgid ""
 "files that you specify, first. If this is set to warn you, it will do so "
 "instead of automatically deleting files.</para>"
 msgstr ""
+"<para>როცა ზომის ზღვარი მიიღწევა, მითითებული ფაილის ტიპი წაიშლება. თუ "
+"დაყენებულია, რომ შეგატყობინოთ, ფაილის წაშლის მაგიერ ის ამას ჩაიდენს.</para>"
 
 #: trash/kcmtrash.cpp:292
 #, kde-format
