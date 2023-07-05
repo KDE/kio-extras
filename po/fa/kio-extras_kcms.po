@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: cookies/kcookiesmain.cpp:37
 #, kde-format
@@ -648,6 +648,7 @@ msgstr[0] ""
 "در اینجا می‌توانید مقادیر اتمام وقت را تنظیم کنید. اگر اتصال خیلی کند باشد، "
 "ممکن است بخواهید مقادیر اتمام وقت را اصلاح کنید. بیشینه مقدار مجاز، %1 ثانیه "
 "می‌باشد."
+msgstr[1] ""
 
 #: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
 #: netpref/netpref.cpp:63
@@ -656,6 +657,7 @@ msgstr[0] ""
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " ثانیه"
+msgstr[1] ""
 
 #: netpref/netpref.cpp:47
 #, kde-format
@@ -709,6 +711,7 @@ msgstr ""
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
+msgstr[1] ""
 
 #: netpref/netpref.cpp:92
 #, kde-format
@@ -1303,6 +1306,7 @@ msgstr ""
 msgid " day"
 msgid_plural " days"
 msgstr[0] "%1 روز %2"
+msgstr[1] ""
 
 #: trash/kcmtrash.cpp:258
 #, kde-kuit-format
