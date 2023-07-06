@@ -105,7 +105,9 @@ install(TARGETS imagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR
 
 ########### next target ###############
 
+if (QT_MAJOR_VERSION STREQUAL "5")
 install(FILES directorythumbnail.desktop DESTINATION ${KDE_INSTALL_KSERVICESDIR})
+endif()
 
 ########### next target ###############
 
@@ -337,4 +339,6 @@ install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR
 
 ########### install files ###############
 
+if (QT_MAJOR_VERSION STREQUAL "5")
 install(FILES thumbcreator.desktop DESTINATION ${KDE_INSTALL_KSERVICETYPESDIR})
+endif()
