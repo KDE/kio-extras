@@ -330,3 +330,4 @@ QStringList EbookCreator::getEntryList(const KArchiveDirectory *dir, const QStri
 }
 
 #include "ebookcreator.moc"
+#include "moc_ebookcreator.cpp"

@@ -267,14 +267,14 @@ install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_M
 
 # ########### next target ###############
 
-add_library(kritathumbnail MODULE kritacreator.cpp)
+add_library(kraorathumbnail MODULE kritacreator.cpp)
 
-target_link_libraries(kritathumbnail
+target_link_libraries(kraorathumbnail
     KF${QT_MAJOR_VERSION}::KIOGui
     KF${QT_MAJOR_VERSION}::Archive
 )
 
-install(TARGETS kritathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
+install(TARGETS kraorathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/thumbcreator)
 
 ########### next target #################
 

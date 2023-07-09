@@ -40,4 +40,6 @@ KIO::ThumbnailResult WindowsImageCreator::create(const KIO::ThumbnailRequest &re
 
     return KIO::ThumbnailResult::fail();
 }
+
+#include "moc_windowsimagecreator.cpp"
 #include "windowsimagecreator.moc"

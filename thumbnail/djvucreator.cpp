@@ -48,3 +48,4 @@ KIO::ThumbnailResult DjVuCreator::create(const KIO::ThumbnailRequest &request)
 }
 
 #include "djvucreator.moc"
+#include "moc_djvucreator.cpp"

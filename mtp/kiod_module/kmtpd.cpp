@@ -186,3 +186,4 @@ void KMTPd::deviceRemoved(const QString &udi)
 }
 
 #include "kmtpd.moc"
+#include "moc_kmtpd.cpp"

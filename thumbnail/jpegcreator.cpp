@@ -82,3 +82,4 @@ KIO::ThumbnailResult JpegCreator::create(const KIO::ThumbnailRequest &request)
 }
 
 #include "jpegcreator.moc"
+#include "moc_jpegcreator.cpp"

@@ -135,3 +135,4 @@ void KFileAudioPreview::toggleAuto(bool on)
 }
 
 #include "kfileaudiopreview.moc"
+#include "moc_kfileaudiopreview.cpp"

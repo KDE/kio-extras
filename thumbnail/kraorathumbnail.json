@@ -1,7 +1,6 @@
 {
     "CacheThumbnail": true,
     "KPlugin": {
-        "Id": "kraorathumbnail",
         "MimeTypes": [
             "application/x-krita",
             "image/openraster"

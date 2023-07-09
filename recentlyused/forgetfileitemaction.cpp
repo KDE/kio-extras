@@ -79,3 +79,4 @@ QList<QAction *> ForgetFileItemAction::actions(const KFileItemListProperties &fi
 }
 
 #include "forgetfileitemaction.moc"
+#include "moc_forgetfileitemaction.cpp"

@@ -850,3 +850,4 @@ KIO::WorkerResult MTPWorker::chown(const QUrl &url, const QString &owner, const 
 }
 
 #include "kio_mtp.moc"
+#include "moc_kio_mtp.cpp"

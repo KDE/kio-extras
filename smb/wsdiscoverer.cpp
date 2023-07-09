@@ -394,4 +394,5 @@ KIO::UDSEntry WSDiscovery::toEntry() const
     return entry;
 }
 
+#include "moc_wsdiscoverer.cpp"
 #include "wsdiscoverer.moc"

@@ -102,3 +102,4 @@ KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
 }
 
 #include "imagecreator.moc"
+#include "moc_imagecreator.cpp"

@@ -1409,3 +1409,4 @@ bool MANProtocol::getProgramPath()
 }
 
 #include "kio_man.moc"
+#include "moc_kio_man.cpp"

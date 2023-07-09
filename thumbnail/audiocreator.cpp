@@ -213,3 +213,4 @@ KIO::ThumbnailResult AudioCreator::create(const KIO::ThumbnailRequest &request)
 }
 
 #include "audiocreator.moc"
+#include "moc_audiocreator.cpp"

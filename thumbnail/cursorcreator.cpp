@@ -41,3 +41,4 @@ KIO::ThumbnailResult CursorCreator::create(const KIO::ThumbnailRequest &request)
 }
 
 #include "cursorcreator.moc"
+#include "moc_cursorcreator.cpp"

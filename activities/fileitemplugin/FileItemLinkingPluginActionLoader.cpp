@@ -193,3 +193,4 @@ FileItemLinkingPluginActionLoader::createSeparator(const QString &title) const
     return action;
 }
 
+#include "moc_FileItemLinkingPluginActionLoader.cpp"

@@ -102,3 +102,4 @@ void FileNameSearchModule::slotFilesRemoved(const QStringList &files)
 K_PLUGIN_CLASS_WITH_JSON(FileNameSearchModule, "filenamesearchmodule.json")
 
 #include "filenamesearchmodule.moc"
+#include "moc_filenamesearchmodule.cpp"
