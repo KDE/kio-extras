@@ -173,7 +173,6 @@ ecm_set_disabled_deprecation_versions(
 
 add_subdirectory( doc )
 
-add_subdirectory( about )
 if(TARGET KF${QT_MAJOR_VERSION}::Activities AND TARGET Qt::Sql AND NOT WIN32)
   add_subdirectory( activities )
 endif()
