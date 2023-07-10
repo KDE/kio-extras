@@ -117,7 +117,7 @@ void BookmarksProtocol::echoIndex()
 
 void BookmarksProtocol::echoHead(const QString &redirect)
 {
-    SlaveBase::mimeType("text/html");
+    WorkerBase::mimeType("text/html");
 
     QString css(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_bookmarks/kio_bookmarks.css"));
     if (css.isEmpty())

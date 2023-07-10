@@ -60,6 +60,6 @@ void BookmarksProtocol::echoImage( const QString &type, const QString &string, c
     buffer.open(QIODevice::WriteOnly);
     image.save(&buffer, "PNG");
 
-    SlaveBase::mimeType("image/png");
+    WorkerBase::mimeType("image/png");
     data(buffer.buffer());
 }

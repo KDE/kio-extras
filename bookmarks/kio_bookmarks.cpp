@@ -32,11 +32,11 @@ using namespace KIO;
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.bookmarks" FILE "bookmarks.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.bookmarks" FILE "bookmarks.json")
 };
 
 BookmarksProtocol::BookmarksProtocol( const QByteArray &pool, const QByteArray &app )
-    : SlaveBase( "bookmarks", pool, app )
+    : WorkerBase( "bookmarks", pool, app )
 {
     manager = KBookmarkManager::userBookmarksManager();
     cfg = new KConfig( "kiobookmarksrc" );
@@ -169,7 +169,7 @@ int BookmarksProtocol::sizeOfGroup( const KBookmarkGroup &folder, bool real )
     return size;
 }
 
-void BookmarksProtocol::get( const QUrl& url )
+KIO::WorkerResult BookmarksProtocol::get( const QUrl& url )
 {
     QString path = url.path();
     const QRegularExpression regexp(QStringLiteral("^/(background|icon)/([\\S]+)"));
@@ -178,30 +178,33 @@ void BookmarksProtocol::get( const QUrl& url )
     if (path.isEmpty() || path == "/") {
         echoIndex();
     } else if (path == "/config") {
+        // TODO: seems service bookmarks.desktop is gone?
         const KService::Ptr bookmarksKCM = KService::serviceByDesktopName(QStringLiteral("bookmarks"));
         if (bookmarksKCM) {
             auto job = new KIO::ApplicationLauncherJob(bookmarksKCM);
             job->start();
-        } else {
-            error(KIO::ERR_WORKER_DEFINED, i18n("Could not find bookmarks config"));
         }
         echoHead("bookmarks:/");
+        if (!bookmarksKCM) {
+            return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED, i18n("Could not find bookmarks config"));
+        }
     } else if (path == "/editbookmarks") {
-        const KService::Ptr keditbookmarks = KService::serviceByDesktopName(QStringLiteral("org.kde.keditbookmarks"));
+        const KService::Ptr keditbookmarks = KService::serviceByDesktopName(QStringLiteral("org.kde.keditbookmarks.nope"));
         if (keditbookmarks) {
             auto job = new KIO::ApplicationLauncherJob(keditbookmarks);
             job->start();
-        } else {
-            error(KIO::ERR_WORKER_DEFINED, i18n("Could not find bookmarks editor"));
         }
         echoHead("bookmarks:/");
+        if (!keditbookmarks) {
+            return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED, i18n("Could not find bookmarks editor"));
+        }
     } else if (path.indexOf(regexp, 0, &rmatch) >= 0) {
         echoImage(rmatch.captured(1), rmatch.captured(2), QUrlQuery(url).queryItemValue("size"));
     } else {
         echoHead();
         echo("<p class=\"message\">" + i18n("Wrong request: %1", url.toDisplayString().toHtmlEscaped()) + "</p>");
     }
-    finished();
+    return KIO::WorkerResult::pass();;
 }
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
@@ -214,8 +217,8 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
         exit(-1);
     }
 
-    BookmarksProtocol slave(argv[2], argv[3]);
-    slave.dispatchLoop();
+    BookmarksProtocol worker(argv[2], argv[3]);
+    worker.dispatchLoop();
 
     return 0;
 }
