@@ -30,7 +30,6 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_smb\")
 
 include(CheckIncludeFile)
 include(CheckSymbolExists)
-include(CMakePushCheckState)
 set(CMAKE_AUTOMAKE ON)
 
 cmake_push_check_state()
