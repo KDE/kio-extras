@@ -26,6 +26,7 @@ include(ECMOptionalAddSubdirectory)
 include(ECMQtDeclareLoggingCategory)
 include(ECMDeprecationSettings)
 include(CheckIncludeFile)
+include(CMakePushCheckState)
 include(CMakePackageConfigHelpers)
 include(FeatureSummary)
 
