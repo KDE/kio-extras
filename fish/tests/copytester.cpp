@@ -1,4 +1,4 @@
-/* Copytester is a test case for the fish kioslave. It copies 100 files from /tmp to /tmp/test using fish's functions.
+/* Copytester is a test case for the fish KIO worker. It copies 100 files from /tmp to /tmp/test using fish's functions.
 It was written to verify KDE bug 147948: https://bugs.kde.org/show_bug.cgi?id=147948
 
 To use this program, do
@@ -21,7 +21,7 @@ Browser::Browser() : QWidget(NULL)
 void Browser::slotButtonClicked()
 {
     kDebug() << "entering function";
-    // creating a kioslave
+    // creating a KIO worker
     kDebug() << "getting via fish*************************************************************";
     KUrl::List selectedUrls;
 

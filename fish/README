@@ -10,7 +10,7 @@ Overview of kio_fish
   This is a complete client implementation using his original version
   0.0.2 protocol, extending it with 2 commands (which are only optional -
   should a real FISH server exist on server side that doesn't understand
-  them, this ioslave still works, only slower). Moreover, this client does
+  them, this KIO worker still works, only slower). Moreover, this client does
   complete shell metacharacter quoting on all arguments, a fact that is
   neccessary but missing from the specs.
   Extensions used are: append (APPEND command), copy (COPY command),
