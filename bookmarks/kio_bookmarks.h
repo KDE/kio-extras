@@ -6,19 +6,19 @@
 #ifndef KIO_BOOKMARKS_H
 #define KIO_BOOKMARKS_H
 
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 #include <KBookmarkManager>
 #include <KConfig>
 #include <KConfigGroup>
 #include <KImageCache>
 
-class BookmarksProtocol : public KIO::SlaveBase
+class BookmarksProtocol : public KIO::WorkerBase
 {
 public:
     BookmarksProtocol( const QByteArray &pool, const QByteArray &app );
     ~BookmarksProtocol() override;
 
-    void get( const QUrl& url ) override;
+    KIO::WorkerResult get( const QUrl& url ) override;
 
 private:
     int columns;

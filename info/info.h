@@ -5,23 +5,26 @@
 
 #include "kio_info_debug.h"
 
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 
-class InfoProtocol : public KIO::SlaveBase
+class InfoProtocol : public KIO::WorkerBase
 {
 public:
 
     InfoProtocol( const QByteArray &pool, const QByteArray &app );
     ~InfoProtocol() override = default;
 
-    void get( const QUrl& url ) override;
-    void stat( const QUrl& url ) override;
-    void mimetype( const QUrl& url ) override;
+    KIO::WorkerResult get( const QUrl& url ) override;
+    KIO::WorkerResult stat( const QUrl& url ) override;
+    KIO::WorkerResult mimetype( const QUrl& url ) override;
 
 protected:
 
     void decodeURL( const QUrl &url );
     void decodePath( QString path );
+
+private:
+    KIO::WorkerResult missingFilesReult() const;
 
 private:
 
@@ -32,6 +35,8 @@ private:
     QString   m_infoScript;
     QString   m_infoConf;
     QString   m_cssLocation;
+
+    QStringList m_missingFiles;
 };
 
 #endif // __info_h__

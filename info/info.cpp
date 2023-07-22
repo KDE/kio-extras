@@ -28,47 +28,50 @@ using namespace KIO;
 class KIOPluginForMetaData : public QObject
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.slave.info" FILE "info.json")
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.info" FILE "info.json")
 };
 
 InfoProtocol::InfoProtocol( const QByteArray &pool, const QByteArray &app )
-    : SlaveBase( "info", pool, app )
+    : WorkerBase( "info", pool, app )
 {
     qCDebug(LOG_KIO_INFO);
 
-    QStringList missingFiles;
     m_cssLocation = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css");
-    if (m_cssLocation.isEmpty()) missingFiles.append("kio_docfilter/kio_docfilter.css");
+    if (m_cssLocation.isEmpty()) m_missingFiles.append("kio_docfilter/kio_docfilter.css");
     m_perl = QStandardPaths::findExecutable( "perl" );
-    if (m_perl.isEmpty()) missingFiles.append("perl");
+    if (m_perl.isEmpty()) m_missingFiles.append("perl");
     m_infoScript = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html" );
-    if (m_infoScript.isEmpty()) missingFiles.append("kio_info/kde-info2html");
+    if (m_infoScript.isEmpty()) m_missingFiles.append("kio_info/kde-info2html");
     m_infoConf = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_info/kde-info2html.conf");
-    if (m_infoConf.isEmpty()) missingFiles.append("kio_info/kde-info2html.conf");
+    if (m_infoConf.isEmpty()) m_missingFiles.append("kio_info/kde-info2html.conf");
 
-    if (!missingFiles.isEmpty())
-    {
-        qCCritical(LOG_KIO_INFO) << "Cannot locate files for HTML conversion," << qPrintable(missingFiles.join(' '));
-        QString errorStr = i18n("Unable to locate files which are necessary to run this service:<br>%1<br>"
-                                "Please check your software installation.", missingFiles.join(' '));
-        error(KIO::ERR_WORKER_DEFINED, errorStr);
-        exit();
+    if (!m_missingFiles.isEmpty()) {
+        qCCritical(LOG_KIO_INFO) << "Cannot locate files for HTML conversion," << qPrintable(m_missingFiles.join(' '));
     }
 
     qCDebug(LOG_KIO_INFO) << "done";
 }
 
+KIO::WorkerResult InfoProtocol::missingFilesReult() const
+{
+    const QString errorStr = i18n("Unable to locate files which are necessary to run this service:<br>%1<br>"
+                                  "Please check your software installation.", m_missingFiles.join(' '));
+    return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED, errorStr);
+}
 
-void InfoProtocol::get( const QUrl& url )
+KIO::WorkerResult InfoProtocol::get( const QUrl& url )
 {
     qCDebug(LOG_KIO_INFO) << "URL" << url.toDisplayString() << "path" << url.path();
+
+    if (!m_missingFiles.isEmpty()) {
+        return missingFilesReult();
+    }
 
     if (url.path()=="/")
     {
         QUrl newUrl("info:/dir");
         redirection(newUrl);
-        finished();
-        return;
+        return KIO::WorkerResult::pass();;
     };
 
     // some people write info://autoconf instead of info:/autoconf
@@ -77,8 +80,7 @@ void InfoProtocol::get( const QUrl& url )
         newURl.setPath(url.host()+url.path());
         newURl.setHost(QString());
         redirection(newURl);
-        finished();
-        return;
+        return KIO::WorkerResult::pass();;
     }
 
     if ( url.path().right(1) == "/" )
@@ -89,15 +91,13 @@ void InfoProtocol::get( const QUrl& url )
         newPath.chop( 1 );
         newUrl.setPath( newPath );
         redirection( newUrl );
-        finished();
-        return;
+        return KIO::WorkerResult::pass();;
     }
 
     // '<' in the path looks suspicious, someone is trying info:/dir/<script>alert('xss')</script>
     if (url.path().contains('<'))
     {
-        error(KIO::ERR_MALFORMED_URL, url.url());
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_MALFORMED_URL, url.url());
     }
 
     mimeType("text/html");
@@ -121,8 +121,7 @@ void InfoProtocol::get( const QUrl& url )
     FILE *file = popen( QFile::encodeName(cmd).constData(), "r" );
     if ( !file ) {
         qCDebug(LOG_KIO_INFO) << "popen failed";
-        error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
-        return;
+        return KIO::WorkerResult::fail( ERR_CANNOT_LAUNCH_PROCESS, cmd );
     }
 
     char buffer[ 4096 ];
@@ -132,15 +131,14 @@ void InfoProtocol::get( const QUrl& url )
     {
         int n = fread( buffer, 1, sizeof( buffer ), file );
         if ( !n && feof( file ) && empty ) {
-            error( ERR_CANNOT_LAUNCH_PROCESS, cmd );
-            return;
+            return KIO::WorkerResult::fail( ERR_CANNOT_LAUNCH_PROCESS, cmd );
         }
         if ( n < 0 )
         {
             // ERROR
             qCWarning(LOG_KIO_INFO) << "read error!";
             pclose( file );
-            return;
+            return KIO::WorkerResult::fail();
         }
 
         empty = false;
@@ -149,20 +147,24 @@ void InfoProtocol::get( const QUrl& url )
 
     pclose( file );
 
-    finished();
-
     qCDebug(LOG_KIO_INFO) << "done";
+
+    return KIO::WorkerResult::pass();
 }
 
-void InfoProtocol::mimetype( const QUrl& /* url */ )
+KIO::WorkerResult InfoProtocol::mimetype( const QUrl& /* url */ )
 {
     qCDebug(LOG_KIO_INFO);
+
+    if (!m_missingFiles.isEmpty()) {
+        return missingFilesReult();
+    }
 
     // to get rid of those "Open with" dialogs...
     mimeType( "text/html" );
 
     // finish action
-    finished();
+    return KIO::WorkerResult::pass();
 }
 
 void InfoProtocol::decodeURL( const QUrl &url )
@@ -225,8 +227,12 @@ void InfoProtocol::decodePath( QString path )
 
 // A minimalistic stat with only the file type
 // This seems to be enough for konqueror
-void InfoProtocol::stat( const QUrl & )
+KIO::WorkerResult InfoProtocol::stat( const QUrl & )
 {
+    if (!m_missingFiles.isEmpty()) {
+        return missingFilesReult();
+    }
+
     UDSEntry uds_entry;
 
 #ifdef Q_OS_WIN
@@ -238,7 +244,7 @@ void InfoProtocol::stat( const QUrl & )
 #endif
 
     statEntry( uds_entry );
-    finished();
+    return KIO::WorkerResult::pass();
 }
 
 
@@ -259,8 +265,8 @@ int kdemain( int argc, char **argv )
         exit(-1);
     }
 
-    InfoProtocol slave( argv[2], argv[3] );
-    slave.dispatchLoop();
+    InfoProtocol worker( argv[2], argv[3] );
+    worker.dispatchLoop();
 
     return 0;
 }

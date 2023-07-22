@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 
 # KDE Applications Version, managed by release script
 set (RELEASE_SERVICE_VERSION_MAJOR "23")
-set (RELEASE_SERVICE_VERSION_MINOR "07")
+set (RELEASE_SERVICE_VERSION_MINOR "11")
 set (RELEASE_SERVICE_VERSION_MICRO "70")
 set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
@@ -176,7 +176,6 @@ ecm_set_disabled_deprecation_versions(
 add_subdirectory(doc)
 add_subdirectory(kcms)
 
-add_subdirectory( about )
 if(TARGET KF${QT_MAJOR_VERSION}::Activities AND TARGET Qt::Sql AND NOT WIN32)
   add_subdirectory( activities )
 endif()

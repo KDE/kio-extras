@@ -112,7 +112,7 @@ EOF
 #---------------------------------------------------------
 #                     Redirect
 #---------------------------------------------------------
-# Since we can't do a kioslave redirection from here, we resort to an HTML
+# Since we can't do a kioworker redirection from here, we resort to an HTML
 # redirection.
 #
 # It could be simpler to just output the correct page, but that would leave the
@@ -659,7 +659,7 @@ $DOCTYPE
       <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
       <title>Info: ($BaseInfoFile) $LinkList[1]</title>
       $STYLESHEET_KDE
-      <!-- These can't be in the .css file due to the help KIOSlave not being
+      <!-- These can't be in the .css file due to the help KIO worker not being
            followed. -->
       <style type="text/css">
       #header_top { background-image: url("help:/kdoctools5-common/top.jpg"); }
