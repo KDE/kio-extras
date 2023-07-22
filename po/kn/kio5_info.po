@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"POT-Creation-Date: 2023-07-22 00:50+0000\n"
 "PO-Revision-Date: 2010-12-22 12:31+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: kn-l10n <kde-kn-l10n@kde.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: info.cpp:52
+#: info.cpp:57
 #, fuzzy, kde-format
 #| msgid ""
 #| "\n"

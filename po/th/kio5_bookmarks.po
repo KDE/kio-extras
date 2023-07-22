@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_bookmarks\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2023-07-22 00:50+0000\n"
 "PO-Revision-Date: 2008-11-24 19:06+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -27,17 +27,17 @@ msgstr "โฟลเดอร์ราก"
 msgid "Places"
 msgstr "ที่หลัก ๆ"
 
-#: kio_bookmarks.cpp:186
+#: kio_bookmarks.cpp:189
 #, kde-format
 msgid "Could not find bookmarks config"
 msgstr ""
 
-#: kio_bookmarks.cpp:195
+#: kio_bookmarks.cpp:199
 #, kde-format
 msgid "Could not find bookmarks editor"
 msgstr ""
 
-#: kio_bookmarks.cpp:202
+#: kio_bookmarks.cpp:205
 #, kde-format
 msgid "Wrong request: %1"
 msgstr "ร้องขอผิด: %1"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_info\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"POT-Creation-Date: 2023-07-22 00:50+0000\n"
 "PO-Revision-Date: 2023-06-17 08:45+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 23.04.2\n"
 
-#: info.cpp:52
+#: info.cpp:57
 #, kde-format
 msgid ""
 "Unable to locate files which are necessary to run this service:<br>"

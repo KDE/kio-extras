@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_info\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2021-07-10 00:16+0000\n"
+"POT-Creation-Date: 2023-07-22 00:50+0000\n"
 "PO-Revision-Date: 2021-07-14 22:47+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -17,7 +17,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: Lokalize 21.07.70\n"
 
-#: info.cpp:52
+#: info.cpp:57
 #, kde-format
 msgid ""
 "Unable to locate files which are necessary to run this service:<br>"
