@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_bookmarks\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2023-07-22 02:10+0000\n"
 "PO-Revision-Date: 2008-11-25 23:08+0300\n"
 "Last-Translator: Marek Laane <bald@smail.ee>\n"
 "Language-Team: Estonian <kde-et@linux.ee>\n"
@@ -28,17 +28,17 @@ msgstr "Juurkataloog"
 msgid "Places"
 msgstr "Asukohad"
 
-#: kio_bookmarks.cpp:186
+#: kio_bookmarks.cpp:189
 #, kde-format
 msgid "Could not find bookmarks config"
 msgstr ""
 
-#: kio_bookmarks.cpp:195
+#: kio_bookmarks.cpp:199
 #, kde-format
 msgid "Could not find bookmarks editor"
 msgstr ""
 
-#: kio_bookmarks.cpp:202
+#: kio_bookmarks.cpp:205
 #, kde-format
 msgid "Wrong request: %1"
 msgstr "Vale päring: %1"

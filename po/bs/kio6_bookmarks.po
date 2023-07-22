@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase-runtime\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2023-07-22 02:10+0000\n"
 "PO-Revision-Date: 2015-02-04 16:01+0000\n"
 "Last-Translator: Samir Ribić <Unknown>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -30,17 +30,17 @@ msgstr "Korijen"
 msgid "Places"
 msgstr "Mjesta"
 
-#: kio_bookmarks.cpp:186
+#: kio_bookmarks.cpp:189
 #, kde-format
 msgid "Could not find bookmarks config"
 msgstr ""
 
-#: kio_bookmarks.cpp:195
+#: kio_bookmarks.cpp:199
 #, kde-format
 msgid "Could not find bookmarks editor"
 msgstr ""
 
-#: kio_bookmarks.cpp:202
+#: kio_bookmarks.cpp:205
 #, kde-format
 msgid "Wrong request: %1"
 msgstr "Pogrešan zahtjev: %1"

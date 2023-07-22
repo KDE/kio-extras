@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-04 00:45+0000\n"
+"POT-Creation-Date: 2023-07-22 02:10+0000\n"
 "PO-Revision-Date: 2023-07-18 11:08\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -27,17 +27,17 @@ msgstr "根目录"
 msgid "Places"
 msgstr "常用位置"
 
-#: kio_bookmarks.cpp:186
+#: kio_bookmarks.cpp:189
 #, kde-format
 msgid "Could not find bookmarks config"
 msgstr "无法找到书签配置"
 
-#: kio_bookmarks.cpp:195
+#: kio_bookmarks.cpp:199
 #, kde-format
 msgid "Could not find bookmarks editor"
 msgstr "无法找到书签编辑器"
 
-#: kio_bookmarks.cpp:202
+#: kio_bookmarks.cpp:205
 #, kde-format
 msgid "Wrong request: %1"
 msgstr "错误请求：%1"
