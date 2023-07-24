@@ -31,7 +31,7 @@ msgstr "크기가 지정되지 않았거나 잘못되었습니다."
 #: thumbnail.cpp:229
 #, kde-format
 msgid "Cannot create thumbnail for directory"
-msgstr "디렉터리 축소판을 만들 수 없습니다"
+msgstr "디렉터리 섬네일을 만들 수 없습니다"
 
 #: thumbnail.cpp:240
 #, kde-format
@@ -41,17 +41,17 @@ msgstr "플러그인이 지정되지 않았습니다."
 #: thumbnail.cpp:245
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
-msgstr "축소판 생성기 %1을(를) 불러올 수 없습니다"
+msgstr "섬네일 생성기 %1을(를) 불러올 수 없습니다"
 
 #: thumbnail.cpp:266
 #, kde-format
 msgid "Cannot create thumbnail for %1"
-msgstr "%1의 축소판을 만들 수 없습니다"
+msgstr "%1의 섬네일을 만들 수 없습니다"
 
 #: thumbnail.cpp:278
 #, kde-format
 msgid "Failed to create a thumbnail."
-msgstr "축소판을 만들 수 없습니다."
+msgstr "섬네일을 만들 수 없습니다."
 
 #: thumbnail.cpp:289
 #, kde-format
