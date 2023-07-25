@@ -1,5 +1,5 @@
 /*
-    fish.h  -  a FISH kioslave
+    fish.h  -  a FISH KIO worker
     SPDX-FileCopyrightText: 2001 Jörg Walter <trouble@garni.ch>
     SPDX-License-Identifier: GPL-2.0-only
 */
@@ -8,12 +8,24 @@
 #define FISH_H
 
 #include <KIO/Global>
-#include <KIO/SlaveBase>
+#include <KIO/WorkerBase>
 #include <KIO/AuthInfo>
 
 #define FISH_EXEC_CMD 'X'
 
-class fishProtocol : public KIO::SlaveBase
+using Result = KIO::WorkerResult;
+
+struct ReceivedResult {
+    KIO::fileoffset_t remainingBufferSize;
+    KIO::WorkerResult result;
+};
+
+struct ConnectedResult {
+    int remainingBufferSize;
+    KIO::WorkerResult result;
+};
+
+class fishProtocol : public KIO::WorkerBase
 {
 public:
     fishProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
@@ -25,46 +37,46 @@ public:
     It is set to false if the connection becomes closed.
 
     */
-    void openConnection() override;
+    KIO::WorkerResult openConnection() override;
 
-    /**
-     Clean up connection
-    */
-    void shutdownConnection(bool forced=false);
     /** sets connection information for subsequent commands */
     void setHost(const QString & host, quint16 port, const QString & user, const QString & pass) override;
     /** Forced close of the connection */
     void closeConnection() override;
     /** get a file */
-    void get(const QUrl& url) override;
+    KIO::WorkerResult get(const QUrl &url) override;
     /** put a file */
-    void put(const QUrl& url, int permissions, KIO::JobFlags flags ) override;
+    KIO::WorkerResult put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
+    /** stat a file */
+    KIO::WorkerResult stat(const QUrl &url) override;
+    /** find mimetype for a file */
+    KIO::WorkerResult mimetype(const QUrl &url) override;
+    /** list a directory */
+    KIO::WorkerResult listDir(const QUrl &url) override;
+    /** create a directory */
+    KIO::WorkerResult mkdir(const QUrl &url, int permissions) override;
+    /** rename a file */
+    KIO::WorkerResult rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
+    /** create a symlink */
+    KIO::WorkerResult symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags) override;
+    /** change file permissions */
+    KIO::WorkerResult chmod(const QUrl &url, int permissions) override;
+    /** copies a file */
+    KIO::WorkerResult copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
+    /** report status */
+    void worker_status() override;
+    /** removes a file or directory */
+    KIO::WorkerResult del(const QUrl &u, bool isfile) override;
+    /** special like background execute */
+    KIO::WorkerResult special( const QByteArray &data ) override;
+
+private: // Private methods
+    /** Clean up connection */
+    void shutdownConnection(bool forced = false);
     /** aborts command sequence and calls error() */
-    void error(int type, const QString &detail);
+    Q_REQUIRED_RESULT KIO::WorkerResult error(int type, const QString &detail);
     /** executes next command in sequence or calls finished() if all is done */
     void finished();
-    /** stat a file */
-    void stat(const QUrl& url) override;
-    /** find mimetype for a file */
-    void mimetype(const QUrl& url) override;
-    /** list a directory */
-    void listDir(const QUrl& url) override;
-    /** create a directory */
-    void mkdir(const QUrl&url, int permissions) override;
-    /** rename a file */
-    void rename(const QUrl& src, const QUrl& dest, KIO::JobFlags flags) override;
-    /** create a symlink */
-    void symlink(const QString& target, const QUrl& dest, KIO::JobFlags flags) override;
-    /** change file permissions */
-    void chmod(const QUrl& url, int permissions) override;
-    /** copies a file */
-    void copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
-    /** report status */
-    void slave_status() override;
-    /** removes a file or directory */
-    void del(const QUrl &u, bool isfile) override;
-    /** special like background execute */
-    void special( const QByteArray &data ) override;
 
 private: // Private attributes
     /** fd for reading and writing to the process */
@@ -174,11 +186,11 @@ protected: // Protected attributes
 protected: // Protected methods
     /** manages initial communication setup including password queries */
 #ifndef Q_OS_WIN
-    int establishConnection(char *buffer, KIO::fileoffset_t buflen);
+    ConnectedResult establishConnection(char *buffer, KIO::fileoffset_t buflen);
 #else
-    int establishConnection(const QByteArray &buffer);
+    ConnectedResult establishConnection(const QByteArray &buffer);
 #endif
-    int received(const char *buffer, KIO::fileoffset_t buflen);
+    ReceivedResult received(const char *buffer, KIO::fileoffset_t buflen);
     void sent();
     /** builds each FISH request and sets the error counter */
     bool sendCommand(fish_command_type cmd, ...);
@@ -187,9 +199,9 @@ protected: // Protected methods
     /** parses a ls -l time spec */
     int makeTimeFromLs(const QString &dayStr, const QString &monthStr, const QString &timeyearStr);
     /** executes a chain of commands */
-    void run();
+    KIO::WorkerResult run();
     /** creates the subprocess */
-    bool connectionStart();
+    KIO::WorkerResult connectionStart();
     /** writes one chunk of data to stdin of child process */
 #ifndef Q_OS_WIN
     void writeChild(const char *buf, KIO::fileoffset_t len);
@@ -197,7 +209,7 @@ protected: // Protected methods
     void writeChild(const QByteArray &buf, KIO::fileoffset_t len);
 #endif
     /** parses response from server and acts accordingly */
-    void manageConnection(const QString &line);
+    KIO::WorkerResult manageConnection(const QString &line);
     /** writes to process */
     void writeStdin(const QString &line);
     /** Verify port **/
