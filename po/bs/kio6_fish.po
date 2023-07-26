@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase-runtime\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-05 00:50+0000\n"
+"POT-Creation-Date: 2023-07-26 02:01+0000\n"
 "PO-Revision-Date: 2013-01-14 19:19+0000\n"
 "Last-Translator: Samir Ribić <Unknown>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
@@ -20,39 +20,39 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: fish.cpp:290
+#: fish.cpp:289
 #, kde-format
 msgid "Connecting..."
 msgstr "Povezivanje..."
 
-#: fish.cpp:592
+#: fish.cpp:600
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Pokrećem protokol..."
 
-#: fish.cpp:628
+#: fish.cpp:637
 #, kde-format
 msgid "Local Login"
 msgstr "Lokalna prijava"
 
-#: fish.cpp:630
+#: fish.cpp:639
 #, kde-format
 msgid "SSH Authentication"
 msgstr "SSH autorizacija"
 
-#: fish.cpp:668 fish.cpp:683
+#: fish.cpp:676 fish.cpp:691
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:668 fish.cpp:683
+#: fish.cpp:676 fish.cpp:691
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:760
+#: fish.cpp:768
 #, kde-format
 msgid "Disconnected."
 msgstr "Nepovezan."
