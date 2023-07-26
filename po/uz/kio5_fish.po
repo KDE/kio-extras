@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-05 00:50+0000\n"
+"POT-Creation-Date: 2023-07-26 00:46+0000\n"
 "PO-Revision-Date: 2004-06-14 23:37+0200\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -18,40 +18,40 @@ msgstr ""
 "X-Generator: KBabel 1.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: fish.cpp:290
+#: fish.cpp:289
 #, kde-format
 msgid "Connecting..."
 msgstr "Aloqa oʻrnatilmoqda..."
 
-#: fish.cpp:592
+#: fish.cpp:600
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Protokol ishga tayyorlanmoqda..."
 
-#: fish.cpp:628
+#: fish.cpp:637
 #, kde-format
 msgid "Local Login"
 msgstr "Lokal kirish"
 
-#: fish.cpp:630
+#: fish.cpp:639
 #, fuzzy, kde-format
 #| msgid "SSH Authorization"
 msgid "SSH Authentication"
 msgstr "SSH boʻyicha tasdiqlash"
 
-#: fish.cpp:668 fish.cpp:683
+#: fish.cpp:676 fish.cpp:691
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:668 fish.cpp:683
+#: fish.cpp:676 fish.cpp:691
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:760
+#: fish.cpp:768
 #, kde-format
 msgid "Disconnected."
 msgstr "Aloqa uzilgan."

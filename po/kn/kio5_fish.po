@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-05 00:50+0000\n"
+"POT-Creation-Date: 2023-07-26 00:46+0000\n"
 "PO-Revision-Date: 2007-07-09 11:28+0530\n"
 "Last-Translator: Umesh Rudrapatna <urudrapatna@yahoo.com>\n"
 "Language-Team: Kannada <kde-l10n-kn@kde.org>\n"
@@ -18,40 +18,40 @@ msgstr ""
 "X-Generator: KBabel 1.11.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: fish.cpp:290
+#: fish.cpp:289
 #, kde-format
 msgid "Connecting..."
 msgstr "ಸಂಪರ್ಕಗೊಳ್ಳುತ್ತಿದೆ..."
 
-#: fish.cpp:592
+#: fish.cpp:600
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "ಪ್ರಕ್ರಮವನ್ನು (protocol) ಮೊದಲುಗೊಳಿಸಲಾಗುತ್ತಿದೆ (Initiating)..."
 
-#: fish.cpp:628
+#: fish.cpp:637
 #, kde-format
 msgid "Local Login"
 msgstr "ಸ್ಥಳೀಯ ಪ್ರವೇಶ (Login)"
 
-#: fish.cpp:630
+#: fish.cpp:639
 #, fuzzy, kde-format
 #| msgid "SSH Authorization"
 msgid "SSH Authentication"
 msgstr "SSH ದೃಢೀಕರಣ (Authorization)"
 
-#: fish.cpp:668 fish.cpp:683
+#: fish.cpp:676 fish.cpp:691
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:668 fish.cpp:683
+#: fish.cpp:676 fish.cpp:691
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:760
+#: fish.cpp:768
 #, kde-format
 msgid "Disconnected."
 msgstr "ಸಂಪರ್ಕವನ್ನು ತೊರೆಯಲಾಗಿದೆ."
