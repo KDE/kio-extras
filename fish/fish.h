@@ -21,7 +21,7 @@ struct ReceivedResult {
 };
 
 struct ConnectedResult {
-    int remainingBufferSize;
+    qsizetype remainingBufferSize;
     KIO::WorkerResult result;
 };
 
