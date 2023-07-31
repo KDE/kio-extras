@@ -122,7 +122,7 @@ void TestKioArchive::copyFromTar(const QUrl &src, const QString& destPath)
     QUrl dest = QUrl::fromLocalFile(destPath);
     qDebug() << src << "->" << dest;
     // Check that src exists
-    KIO::StatJob* statJob = KIO::statDetails(src, KIO::StatJob::SourceSide, KIO::StatNoDetails, KIO::HideProgressInfo);
+    KIO::StatJob* statJob = KIO::stat(src, KIO::StatJob::SourceSide, KIO::StatNoDetails, KIO::HideProgressInfo);
     bool ok = statJob->exec();
     QVERIFY( ok );
 
