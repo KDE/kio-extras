@@ -1,4 +1,3 @@
-add_subdirectory(bookmarks)
 if(KArchive_HAVE_BZIP2)
   add_subdirectory(bzip2)
 endif()
