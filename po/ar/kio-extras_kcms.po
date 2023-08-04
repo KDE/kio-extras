@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2023-04-27 12:15+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -26,491 +26,6 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: Lokalize 21.12.3\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "ال&سّياسة"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "الإ&دارة"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "خطأ في التّواصل مع D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "تعذّر حذف كلّ الكعكات كما طُلِب."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "تعذّر حذف الكعكات كما طُلِب."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "فشل البحث عن المعلومات"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "تعذّر جلب المعلومات عن الكعكات المخزّنة على الحاسوب."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "نهاية الجلسة"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "نعم"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "ابحث عن"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "ابحث بشكل تفاعلي عن المجالات والمضيفين"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "الموقع"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "اسم الكعكة"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "ا&حذف"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "احذف ال&كلّ"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "اضبط ال&سّياسة..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "أ&عِد تحميل القائمة"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "التفاصيل"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "الاسم:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "القيمة:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "المجال:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "المسار:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "تنقضي في:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "الأمن:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "غيّر سياسة الكعكات"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "سياسة كعكات جديدة"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>هناك سياسة موجودة بالفعل لِـ<center><b>%1</b></center>أتريد استبدالها؟</"
-"qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "سياسة مكرّرة"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "استبدل"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"تعذّر التّواصل مع خدمة التّعامل مع الكعكات.\n"
-"لن تأخذ أيّ تعديلات مفعولها حتّى يُعاد تشغيل الخدمة."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>فعّل دعم الكعكات. غالبًا ما تريد تفعيل دعم الكعكات وتخصيصها لتناسب احتياجات "
-"الخصوصيّك لديك.</p><p>\n"
-"رجاءً لاحظ بأنّ تعطيل دعم الكعكات قد يجعل من الصّعب تصفّح العديد من المواقع على "
-"الشّبكة.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "فعّل ال&كعكات"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"ارفض كعكات الطّرف الثّالث. هذه الكعكات تأتي من موقع يختلف عن الذي تتصفّحه. "
-"فمثلًا إن كنت تتصفّح <b>www.foobar.com</b> وهذا الخيار مفعّل، فستُعالج الكعكات "
-"من www.foobar.com فقط، وستُرفض الكعكات القادمة من أيّ موقع آخر. يقلّل هذا من "
-"احتمال تجميع ملّاك المواقع معلومات عن عادات التّصفّح لديك وتجميعها في لاحة.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "ا&قبل الكعكات من الخادوم الأصليّ فقط"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>اقبل آليًّا الكعكات المؤقّتة التي ستنقضي في نهاية الجلسة الحاليّة. لن تُخزّن "
-"هذه الكعكات في قرص الحاسوب الصّلب أو على جهاز خارجيّ، بل ستُحذف ما إن تُغلق كلّ "
-"التّطبيقات (مثل المتصفّح) التي تستخدمها.</p><p><u>لاحظ</u> يتجاوز تأشير هذا "
-"الخيار مبدئيّاتك كما وسياسات الكعكات الخاصّة بالمواقع لكعكات الجلسات.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "اقبل كعكات الجلسة آ&ليًّا"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"يحدد كيفية معالجة الكعكات المستلمة من جهاز بعيد: \n"
-"<ul>\n"
-"<li>سيتسبب <b>السؤال</b>  في أن تطلب كِيدِي تأكيدك متى أراد الخادم تثبيت "
-"الكعكات.</li>\n"
-"<li>سيتسبب <b>القبول</b> إلى قبول ملفات كعكات دون إخبارك. .</li>\n"
-"<li>سيتسبب <b>القبول حتى نهاية الجلسة</b>  إلى قبول الكعكات لكنها ستنتهي في "
-"نهاية الجلسة.</li>\n"
-"<li>سيتسبب <b>الرفض</b> رفض جميع الكعكات مطلقا.</li>\n"
-"</ul><p>\n"
-"<u>ملاحظة:</u> السياسات الخاصة بالمجال ، والتي يمكن تعيينها أدناه ، لها "
-"الأسبقية دائمًا على النهج المبدئي.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "السّياسة المبدئيّة"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "ا&قبل كلّ الكعكات"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "اقبل حتّى &تنتهي الجلسة"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "اطلب ال&تّأكيد"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "ار&فض كلّ الكعكات"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"لإضافة سياسة جديدة، انقر زرّ <b>أضف...</b> وأدخِل المعلومات الضّرورية. ولتغيير "
-"سياسة موجودة، استخدم زرّ <b>غيّر...</b> واختر السّياسة الجديدة من حواريّ "
-"السّياسات. نقر الزّرّ <b>احذف</b> سيزيل السّياسة المحدّدة حاليًا ما سيفرض استخدام "
-"السّياسة المبدئيّة لذاك المجال. بينما الزّرّ <b>احذف الكلّ</b> يزيل كلّ السّياسات "
-"الخاصّة بهذا المجال.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "سياسة الموقع"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "ابحث بشكل تفاعلي عن المجالات"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "ابحث..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"قائمة المواقع التي وُضعت لها سياسة كعكات محدّدة. تتجاوز السّياسات المحدّدة "
-"إعدادات السّياسة المبدئيّة لهذه المواقع.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "المجال"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "السّياسة"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&جديد..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "&غيّر..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "اقبل"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "اقبل للجلسة"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "ارفض"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "اسألني"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "لا أعلم"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"أدخِل اسم المضيف أو المجال الذي ستُطبَّق السّياسة عليه، مثل <b>www.kde.org</b> أو "
-"<b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "اسم الموقع:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr "أدخِل اسم المضيف أو المجال (مثل ”‎.kde.org“) والذي سيتُطبّق السّياسة عليه."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"اختر السياسة التي ترغب بها:\n"
-"<ul>\n"
-"<li><b>اقبل</b> - السماح لهذا الموقع بتعيين كعكات</li>\n"
-"<li><b>ارفض</b> - رفض كلّ الكعكات التي يرسلها هذا الموقع</li>\n"
-"<li><b>اسألني</b> - السؤال كلّما استُقبِلت كعكات من هذا الموقع</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "السّياسة:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "اقبل حتّى تنتهي الجلسة"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1383,11 +898,23 @@ msgstr "ابحث عن كلمات بحث الويب"
 msgid "Add a new Web search keyword"
 msgstr "أضف كلمة بحث وبّ جديد"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&جديد..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "عدل في كلمة البحث المميزة"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&غيّر..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1643,6 +1170,317 @@ msgstr "&طقم المحارف:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "أدرج عنصر نائب للاستعلام"
+
+#~ msgid "&Policy"
+#~ msgstr "ال&سّياسة"
+
+#~ msgid "&Management"
+#~ msgstr "الإ&دارة"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "خطأ في التّواصل مع D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "تعذّر حذف كلّ الكعكات كما طُلِب."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "تعذّر حذف الكعكات كما طُلِب."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "فشل البحث عن المعلومات"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr "تعذّر جلب المعلومات عن الكعكات المخزّنة على الحاسوب."
+
+#~ msgid "End of session"
+#~ msgstr "نهاية الجلسة"
+
+#~ msgid "Yes"
+#~ msgstr "نعم"
+
+#~ msgid "Search"
+#~ msgstr "ابحث عن"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "ابحث بشكل تفاعلي عن المجالات والمضيفين"
+
+#~ msgid "Site"
+#~ msgstr "الموقع"
+
+#~ msgid "Cookie Name"
+#~ msgstr "اسم الكعكة"
+
+#~ msgid "D&elete"
+#~ msgstr "ا&حذف"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "احذف ال&كلّ"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "اضبط ال&سّياسة..."
+
+#~ msgid "&Reload List"
+#~ msgstr "أ&عِد تحميل القائمة"
+
+#~ msgid "Details"
+#~ msgstr "التفاصيل"
+
+#~ msgid "Name:"
+#~ msgstr "الاسم:"
+
+#~ msgid "Value:"
+#~ msgstr "القيمة:"
+
+#~ msgid "Domain:"
+#~ msgstr "المجال:"
+
+#~ msgid "Path:"
+#~ msgstr "المسار:"
+
+#~ msgid "Expires:"
+#~ msgstr "تنقضي في:"
+
+#~ msgid "Secure:"
+#~ msgstr "الأمن:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "غيّر سياسة الكعكات"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "سياسة كعكات جديدة"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>هناك سياسة موجودة بالفعل لِـ<center><b>%1</b></center>أتريد استبدالها؟"
+#~ "</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "سياسة مكرّرة"
+
+#~ msgid "Replace"
+#~ msgstr "استبدل"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "تعذّر التّواصل مع خدمة التّعامل مع الكعكات.\n"
+#~ "لن تأخذ أيّ تعديلات مفعولها حتّى يُعاد تشغيل الخدمة."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>فعّل دعم الكعكات. غالبًا ما تريد تفعيل دعم الكعكات وتخصيصها لتناسب "
+#~ "احتياجات الخصوصيّك لديك.</p><p>\n"
+#~ "رجاءً لاحظ بأنّ تعطيل دعم الكعكات قد يجعل من الصّعب تصفّح العديد من المواقع "
+#~ "على الشّبكة.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "فعّل ال&كعكات"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "ارفض كعكات الطّرف الثّالث. هذه الكعكات تأتي من موقع يختلف عن الذي تتصفّحه. "
+#~ "فمثلًا إن كنت تتصفّح <b>www.foobar.com</b> وهذا الخيار مفعّل، فستُعالج "
+#~ "الكعكات من www.foobar.com فقط، وستُرفض الكعكات القادمة من أيّ موقع آخر. "
+#~ "يقلّل هذا من احتمال تجميع ملّاك المواقع معلومات عن عادات التّصفّح لديك "
+#~ "وتجميعها في لاحة.</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "ا&قبل الكعكات من الخادوم الأصليّ فقط"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>اقبل آليًّا الكعكات المؤقّتة التي ستنقضي في نهاية الجلسة الحاليّة. لن تُخزّن "
+#~ "هذه الكعكات في قرص الحاسوب الصّلب أو على جهاز خارجيّ، بل ستُحذف ما إن تُغلق "
+#~ "كلّ التّطبيقات (مثل المتصفّح) التي تستخدمها.</p><p><u>لاحظ</u> يتجاوز تأشير "
+#~ "هذا الخيار مبدئيّاتك كما وسياسات الكعكات الخاصّة بالمواقع لكعكات الجلسات.</"
+#~ "p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "اقبل كعكات الجلسة آ&ليًّا"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "يحدد كيفية معالجة الكعكات المستلمة من جهاز بعيد: \n"
+#~ "<ul>\n"
+#~ "<li>سيتسبب <b>السؤال</b>  في أن تطلب كِيدِي تأكيدك متى أراد الخادم تثبيت "
+#~ "الكعكات.</li>\n"
+#~ "<li>سيتسبب <b>القبول</b> إلى قبول ملفات كعكات دون إخبارك. .</li>\n"
+#~ "<li>سيتسبب <b>القبول حتى نهاية الجلسة</b>  إلى قبول الكعكات لكنها ستنتهي "
+#~ "في نهاية الجلسة.</li>\n"
+#~ "<li>سيتسبب <b>الرفض</b> رفض جميع الكعكات مطلقا.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>ملاحظة:</u> السياسات الخاصة بالمجال ، والتي يمكن تعيينها أدناه ، لها "
+#~ "الأسبقية دائمًا على النهج المبدئي.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "السّياسة المبدئيّة"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "ا&قبل كلّ الكعكات"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "اقبل حتّى &تنتهي الجلسة"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "اطلب ال&تّأكيد"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "ار&فض كلّ الكعكات"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "لإضافة سياسة جديدة، انقر زرّ <b>أضف...</b> وأدخِل المعلومات الضّرورية. "
+#~ "ولتغيير سياسة موجودة، استخدم زرّ <b>غيّر...</b> واختر السّياسة الجديدة من "
+#~ "حواريّ السّياسات. نقر الزّرّ <b>احذف</b> سيزيل السّياسة المحدّدة حاليًا ما سيفرض "
+#~ "استخدام السّياسة المبدئيّة لذاك المجال. بينما الزّرّ <b>احذف الكلّ</b> يزيل كلّ "
+#~ "السّياسات الخاصّة بهذا المجال.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "سياسة الموقع"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "ابحث بشكل تفاعلي عن المجالات"
+
+#~ msgid "Search..."
+#~ msgstr "ابحث..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "قائمة المواقع التي وُضعت لها سياسة كعكات محدّدة. تتجاوز السّياسات المحدّدة "
+#~ "إعدادات السّياسة المبدئيّة لهذه المواقع.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "المجال"
+
+#~ msgid "Policy"
+#~ msgstr "السّياسة"
+
+#~ msgid "Accept"
+#~ msgstr "اقبل"
+
+#~ msgid "Accept For Session"
+#~ msgstr "اقبل للجلسة"
+
+#~ msgid "Reject"
+#~ msgstr "ارفض"
+
+#~ msgid "Ask"
+#~ msgstr "اسألني"
+
+#~ msgid "Do Not Know"
+#~ msgstr "لا أعلم"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "أدخِل اسم المضيف أو المجال الذي ستُطبَّق السّياسة عليه، مثل <b>www.kde.org</b> "
+#~ "أو <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "اسم الموقع:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "أدخِل اسم المضيف أو المجال (مثل ”‎.kde.org“) والذي سيتُطبّق السّياسة عليه."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "اختر السياسة التي ترغب بها:\n"
+#~ "<ul>\n"
+#~ "<li><b>اقبل</b> - السماح لهذا الموقع بتعيين كعكات</li>\n"
+#~ "<li><b>ارفض</b> - رفض كلّ الكعكات التي يرسلها هذا الموقع</li>\n"
+#~ "<li><b>اسألني</b> - السؤال كلّما استُقبِلت كعكات من هذا الموقع</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "السّياسة:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "اقبل حتّى تنتهي الجلسة"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2016-12-09 15:05+0200\n"
 "Last-Translator: Dimitris Kardarakos <dimkard@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -26,514 +26,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 2.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Πολιτική"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Διαχείριση"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Σφάλμα επικοινωνίας D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Αδύνατη η διαγραφή όλων των cookies, όπως ζητήθηκε."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Αδύνατη η διαγραφή cookies, όπως ζητήθηκε."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Αποτυχία αναζήτησης πληροφοριών"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr ""
-"Αδύνατη η ανάκτηση πληροφοριών για τα cookies που είναι αποθηκευμένα στον "
-"υπολογιστή σας."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Τέλος συνεδρίας"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Ναι"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Αναζήτηση"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Αλληλεπιδραστική αναζήτηση για τομείς και υπολογιστές"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Ιστοσελίδα"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Όνομα cookie"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "Δια&γραφή"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Διαγραφή ό&λων"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Διαμόρφωση &πολιτικής..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "Επαναφό&ρτωση λίστας"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Λεπτομέρειες"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Όνομα:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Τιμή:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Τομέας:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Διαδρομή:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Λήγει:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Ασφαλές:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Αλλαγή πολιτικής Cookie"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Νέα πολιτική Cookie"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Υπάρχει ήδη μια πολιτική για το <center><b>%1</b></center> Θέλετε να "
-"αντικατασταθεί;</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Διπλή πολιτική"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Αντικατάσταση"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Αδύνατη η επικοινωνία με την υπηρεσία διαχείρισης των cookies.\n"
-"Οι αλλαγές που κάνατε θα ενεργοποιηθούν μετά την επανεκκίνηση της υπηρεσίας."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Ενεργοποίηση υποστήριξης cookies. Κανονικά θα θέλετε να έχετε υποστήριξη "
-"cookies και να την προσαρμόσετε στις δικές σας ανάγκες.</p><p>\n"
-"Παρακαλώ σημειώστε ότι η απενεργοποίηση της υποστήριξης cookies μπορεί να "
-"κάνει πολλές ιστοσελίδες αδύνατο να εμφανιστούν σωστά.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Ενεργοποίηση των coo&kies"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Απόρριψη των cookies τρίτων. Αυτά τα cookies προέρχονται από μία τοποθεσία "
-"διαφορετική από αυτή που εξερευνάτε. Για παράδειγμα, αν επισκεφθείτε την "
-"<b>www.foobar.com</b> όσο αυτή η επιλογή είναι ενεργοποιημένη, μόνο τα "
-"cookies που προέρχονται από τη www.foobar.com θα επεξεργαστούν με βάση τις "
-"ρυθμίσεις σας. Τα cookies από οποιαδήποτε άλλη τοποθεσία θα απορριφθούν. "
-"Αυτό μειώνει την πιθανότητα διαχειριστές μιας τοποθεσίας να μπορούν να "
-"φτιάξουν κάποιο προφίλ για τις καθημερινές συνήθειές σας κατά την πλοήγηση "
-"σε σελίδες.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "&Αποδοχή των cookies μόνο από τον εξυπηρετητή πηγής"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Αυτόματη αποδοχή των προσωρινών cookies που είναι φτιαγμένα με προθεσμία "
-"λήξης το τέλος της τρέχουσας συνεδρίας σας. Τέτοια cookies δε θα "
-"αποθηκευτούν στον σκληρό δίσκο του υπολογιστή σας αλλά διαγράφονται όταν "
-"κλείσετε όλες τις εφαρμογές που τα χρησιμοποιεί. (π.χ. το πρόγραμμα "
-"πλοήγησής σας)</p><p><u>ΣΗΜΕΙΩΣΗ</u> Ενεργοποιώντας αυτήν την επιλογή θα "
-"αντικαταστήσει την προεπιλογή σας καθώς επίσης και τις ειδικές πολιτικές "
-"διαχείρισης των cookies για τις συνεδρίες.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Α&υτόματη αποδοχή των cookies συνεδρίας"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Καθορίζει τον τρόπο χειρισμού των cookies που παραλήφθηκαν από έναν "
-"απομακρυσμένο υπολογιστή: \n"
-"<ul>\n"
-"<li>Με το <b>Να ζητείται επιβεβαίωση</b> το KDE θα ζητήσει την επιβεβαίωσή "
-"σας όποτε ένας εξυπηρετητής θέλει να ορίσει ένα cookie.</li>\n"
-"<li>Η <b>Αποδοχή</b> θα ορίσει την αποδοχή όλων των cookies χωρίς προτροπή.</"
-"li>\n"
-"<li>Με την <b>Αποδοχή μέχρι το τέλος της συνεδρίας</b> τα cookies θα "
-"γίνονται αποδεκτά αλλά θα λήγουν στο τέλος της συνεδρίας.</li>\n"
-"<li>Με την <b>Απόρριψη</b> το cookiejar θα αρνηθεί όλα τα cookies που "
-"λαμβάνει.</li>\n"
-"</ul><p>\n"
-"<u>ΣΗΜΕΙΩΣΗ:</u> Οι ειδικές πολιτικές τομέα που μπορούν να ορισθούν "
-"παρακάτω, προηγούνται πάντα της προκαθορισμένης πολιτικής.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Προκαθορισμένη πολιτική"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Α&ποδοχή όλων των cookies"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Αποδοχή &μέχρι το τέλος της συνεδρίας"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "Να &ζητείται επιβεβαίωση"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "Από&ρριψη όλων των cookies"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Για την προσθήκη νέας πολιτικής, απλά κάντε κλικ στο <b>Προσθήκη...</b>και "
-"δώστε τις απαραίτητες πληροφορίες. Για αλλαγή μιας υπάρχουσας πολιτικής, "
-"χρησιμοποιήστε το κουμπί <b>Αλλαγή...</b> και επιλέξτε τη νέα πολιτική από "
-"το διάλογο πολιτικών. Κάνοντας κλικ στο <b>Διαγραφή</b> θα διαγράφει η "
-"επιλεγμένη πολιτική ενεργοποιώντας τη χρήση της προεπιλεγμένης πολιτικής για "
-"το συγκεκριμένο τομέα, και τέλος η <b>Διαγραφή όλων</b> θα διαγράψει όλες "
-"τις ειδικές πολιτικές για τοποθεσίες.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Πολιτική ιστοσελίδας"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Αλληλεπιδραστική αναζήτηση τομέων"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, fuzzy, kde-format
-#| msgid "Search"
-msgid "Search..."
-msgstr "Αναζήτηση"
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Λίστα με τις τοποθεσίας που ορίσατε ειδική πολιτική για τα cookies. Οι "
-"ειδικές πολιτικές αντικατασταθούν την προεπιλεγμένη ρύθμιση πολιτικής για "
-"αυτές τις τοποθεσίες.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Τομέας"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Πολιτική"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Νέο..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Αλ&λαγή..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Αποδοχή"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Αποδοχή για αυτήν τη συνεδρία"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Απόρριψη"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Ερώτηση"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "Δε γνωρίζω"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Δώστε τον υπολογιστή ή τον τομέα που ισχύει αυτή η πολιτική, π.χ. <b>www.kde."
-"org</b> ή <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Όνομα ιστοσελίδας:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"Εισάγετε το όνομα υπολογιστή ή τομέα, π.χ. .kde.org, που θα έχει εφαρμογή "
-"αυτή η πολιτική."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Επιλέξτε την επιθυμητή πολιτική:\n"
-"<ul>\n"
-"<li><b>Αποδοχή</b> - Επιτρέπει στον ιστοχώρο αυτόν να ορίζει cookies</li>\n"
-"<li><b>Αποδοχή μέχρι το τέλος της συνεδρίας</b> - Επιτρέπει στον ιστοχώρο "
-"αυτόν να ορίζει cookies τα οποία θα λήξουν στο τέλος της συνεδρίας.</li>\n"
-"<li><b>Απόρριψη</b> - Απορρίπτει όλα τα cookies από αυτόν τον ιστοχώρο</li>\n"
-"<li><b>Ερώτηση</b> - Προτροπή όταν λαμβάνονται cookies από αυτόν τον "
-"ιστοχώρο</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Πολιτική:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Αποδοχή μέχρι το τέλος της συνεδρίας"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1457,12 +949,24 @@ msgstr "Αναζήτηση συντόμευσης"
 msgid "Add a new Web search keyword"
 msgstr "Προσθήκη νέας συντόμευσης ιστού"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Νέο..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, fuzzy, kde-format
 #| msgid "Modify the highlighted Web shortcut"
 msgid "Modify the highlighted Web search keyword"
 msgstr "Να τροποποιηθεί η τονισμένη συντόμευση ιστού"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Αλ&λαγή..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1740,6 +1244,343 @@ msgstr "&Σύνολο χαρακτήρων:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Εισαγωγή αντικαταστάτη αναζήτησης"
+
+#~ msgid "&Policy"
+#~ msgstr "&Πολιτική"
+
+#~ msgid "&Management"
+#~ msgstr "&Διαχείριση"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Σφάλμα επικοινωνίας D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Αδύνατη η διαγραφή όλων των cookies, όπως ζητήθηκε."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Αδύνατη η διαγραφή cookies, όπως ζητήθηκε."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Αποτυχία αναζήτησης πληροφοριών"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Αδύνατη η ανάκτηση πληροφοριών για τα cookies που είναι αποθηκευμένα στον "
+#~ "υπολογιστή σας."
+
+#~ msgid "End of session"
+#~ msgstr "Τέλος συνεδρίας"
+
+#~ msgid "Yes"
+#~ msgstr "Ναι"
+
+#~ msgid "Search"
+#~ msgstr "Αναζήτηση"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Αλληλεπιδραστική αναζήτηση για τομείς και υπολογιστές"
+
+#~ msgid "Site"
+#~ msgstr "Ιστοσελίδα"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Όνομα cookie"
+
+#~ msgid "D&elete"
+#~ msgstr "Δια&γραφή"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Διαγραφή ό&λων"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Διαμόρφωση &πολιτικής..."
+
+#~ msgid "&Reload List"
+#~ msgstr "Επαναφό&ρτωση λίστας"
+
+#~ msgid "Details"
+#~ msgstr "Λεπτομέρειες"
+
+#~ msgid "Name:"
+#~ msgstr "Όνομα:"
+
+#~ msgid "Value:"
+#~ msgstr "Τιμή:"
+
+#~ msgid "Domain:"
+#~ msgstr "Τομέας:"
+
+#~ msgid "Path:"
+#~ msgstr "Διαδρομή:"
+
+#~ msgid "Expires:"
+#~ msgstr "Λήγει:"
+
+#~ msgid "Secure:"
+#~ msgstr "Ασφαλές:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Αλλαγή πολιτικής Cookie"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Νέα πολιτική Cookie"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Υπάρχει ήδη μια πολιτική για το <center><b>%1</b></center> Θέλετε να "
+#~ "αντικατασταθεί;</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Διπλή πολιτική"
+
+#~ msgid "Replace"
+#~ msgstr "Αντικατάσταση"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Αδύνατη η επικοινωνία με την υπηρεσία διαχείρισης των cookies.\n"
+#~ "Οι αλλαγές που κάνατε θα ενεργοποιηθούν μετά την επανεκκίνηση της "
+#~ "υπηρεσίας."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Ενεργοποίηση υποστήριξης cookies. Κανονικά θα θέλετε να έχετε "
+#~ "υποστήριξη cookies και να την προσαρμόσετε στις δικές σας ανάγκες.</"
+#~ "p><p>\n"
+#~ "Παρακαλώ σημειώστε ότι η απενεργοποίηση της υποστήριξης cookies μπορεί να "
+#~ "κάνει πολλές ιστοσελίδες αδύνατο να εμφανιστούν σωστά.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Ενεργοποίηση των coo&kies"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Απόρριψη των cookies τρίτων. Αυτά τα cookies προέρχονται από μία "
+#~ "τοποθεσία διαφορετική από αυτή που εξερευνάτε. Για παράδειγμα, αν "
+#~ "επισκεφθείτε την <b>www.foobar.com</b> όσο αυτή η επιλογή είναι "
+#~ "ενεργοποιημένη, μόνο τα cookies που προέρχονται από τη www.foobar.com θα "
+#~ "επεξεργαστούν με βάση τις ρυθμίσεις σας. Τα cookies από οποιαδήποτε άλλη "
+#~ "τοποθεσία θα απορριφθούν. Αυτό μειώνει την πιθανότητα διαχειριστές μιας "
+#~ "τοποθεσίας να μπορούν να φτιάξουν κάποιο προφίλ για τις καθημερινές "
+#~ "συνήθειές σας κατά την πλοήγηση σε σελίδες.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "&Αποδοχή των cookies μόνο από τον εξυπηρετητή πηγής"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Αυτόματη αποδοχή των προσωρινών cookies που είναι φτιαγμένα με προθεσμία "
+#~ "λήξης το τέλος της τρέχουσας συνεδρίας σας. Τέτοια cookies δε θα "
+#~ "αποθηκευτούν στον σκληρό δίσκο του υπολογιστή σας αλλά διαγράφονται όταν "
+#~ "κλείσετε όλες τις εφαρμογές που τα χρησιμοποιεί. (π.χ. το πρόγραμμα "
+#~ "πλοήγησής σας)</p><p><u>ΣΗΜΕΙΩΣΗ</u> Ενεργοποιώντας αυτήν την επιλογή θα "
+#~ "αντικαταστήσει την προεπιλογή σας καθώς επίσης και τις ειδικές πολιτικές "
+#~ "διαχείρισης των cookies για τις συνεδρίες.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Α&υτόματη αποδοχή των cookies συνεδρίας"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Καθορίζει τον τρόπο χειρισμού των cookies που παραλήφθηκαν από έναν "
+#~ "απομακρυσμένο υπολογιστή: \n"
+#~ "<ul>\n"
+#~ "<li>Με το <b>Να ζητείται επιβεβαίωση</b> το KDE θα ζητήσει την "
+#~ "επιβεβαίωσή σας όποτε ένας εξυπηρετητής θέλει να ορίσει ένα cookie.</li>\n"
+#~ "<li>Η <b>Αποδοχή</b> θα ορίσει την αποδοχή όλων των cookies χωρίς "
+#~ "προτροπή.</li>\n"
+#~ "<li>Με την <b>Αποδοχή μέχρι το τέλος της συνεδρίας</b> τα cookies θα "
+#~ "γίνονται αποδεκτά αλλά θα λήγουν στο τέλος της συνεδρίας.</li>\n"
+#~ "<li>Με την <b>Απόρριψη</b> το cookiejar θα αρνηθεί όλα τα cookies που "
+#~ "λαμβάνει.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>ΣΗΜΕΙΩΣΗ:</u> Οι ειδικές πολιτικές τομέα που μπορούν να ορισθούν "
+#~ "παρακάτω, προηγούνται πάντα της προκαθορισμένης πολιτικής.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Προκαθορισμένη πολιτική"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Α&ποδοχή όλων των cookies"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Αποδοχή &μέχρι το τέλος της συνεδρίας"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "Να &ζητείται επιβεβαίωση"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "Από&ρριψη όλων των cookies"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Για την προσθήκη νέας πολιτικής, απλά κάντε κλικ στο <b>Προσθήκη...</"
+#~ "b>και δώστε τις απαραίτητες πληροφορίες. Για αλλαγή μιας υπάρχουσας "
+#~ "πολιτικής, χρησιμοποιήστε το κουμπί <b>Αλλαγή...</b> και επιλέξτε τη νέα "
+#~ "πολιτική από το διάλογο πολιτικών. Κάνοντας κλικ στο <b>Διαγραφή</b> θα "
+#~ "διαγράφει η επιλεγμένη πολιτική ενεργοποιώντας τη χρήση της "
+#~ "προεπιλεγμένης πολιτικής για το συγκεκριμένο τομέα, και τέλος η "
+#~ "<b>Διαγραφή όλων</b> θα διαγράψει όλες τις ειδικές πολιτικές για "
+#~ "τοποθεσίες.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Πολιτική ιστοσελίδας"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Αλληλεπιδραστική αναζήτηση τομέων"
+
+#, fuzzy
+#~| msgid "Search"
+#~ msgid "Search..."
+#~ msgstr "Αναζήτηση"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Λίστα με τις τοποθεσίας που ορίσατε ειδική πολιτική για τα cookies. Οι "
+#~ "ειδικές πολιτικές αντικατασταθούν την προεπιλεγμένη ρύθμιση πολιτικής για "
+#~ "αυτές τις τοποθεσίες.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Τομέας"
+
+#~ msgid "Policy"
+#~ msgstr "Πολιτική"
+
+#~ msgid "Accept"
+#~ msgstr "Αποδοχή"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Αποδοχή για αυτήν τη συνεδρία"
+
+#~ msgid "Reject"
+#~ msgstr "Απόρριψη"
+
+#~ msgid "Ask"
+#~ msgstr "Ερώτηση"
+
+#~ msgid "Do Not Know"
+#~ msgstr "Δε γνωρίζω"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Δώστε τον υπολογιστή ή τον τομέα που ισχύει αυτή η πολιτική, π.χ. <b>www."
+#~ "kde.org</b> ή <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Όνομα ιστοσελίδας:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Εισάγετε το όνομα υπολογιστή ή τομέα, π.χ. .kde.org, που θα έχει εφαρμογή "
+#~ "αυτή η πολιτική."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Επιλέξτε την επιθυμητή πολιτική:\n"
+#~ "<ul>\n"
+#~ "<li><b>Αποδοχή</b> - Επιτρέπει στον ιστοχώρο αυτόν να ορίζει cookies</"
+#~ "li>\n"
+#~ "<li><b>Αποδοχή μέχρι το τέλος της συνεδρίας</b> - Επιτρέπει στον ιστοχώρο "
+#~ "αυτόν να ορίζει cookies τα οποία θα λήξουν στο τέλος της συνεδρίας.</li>\n"
+#~ "<li><b>Απόρριψη</b> - Απορρίπτει όλα τα cookies από αυτόν τον ιστοχώρο</"
+#~ "li>\n"
+#~ "<li><b>Ερώτηση</b> - Προτροπή όταν λαμβάνονται cookies από αυτόν τον "
+#~ "ιστοχώρο</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Πολιτική:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Αποδοχή μέχρι το τέλος της συνεδρίας"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

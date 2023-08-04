@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2023-04-27 06:28+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -27,504 +27,6 @@ msgstr ""
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.2.2\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Pravilnik"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Upravljanje"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Napaka sporazumevanja prek D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Ni mogoče izbrisati vseh zahtevanih piškotkov."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Ni mogoče izbrisati zahtevanih piškotkov."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Napaka med iskanjem podrobnosti"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr ""
-"Ni mogoče pridobiti podrobnosti o piškotkih shranjenih na vašem računalniku."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Konec seje"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Da"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Poišči"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Interaktivno poišči domene in gostitelje"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Mesto"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Ime piškotka"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "Iz&briši"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Izbriši &vse"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Nastavi &pravilnik ..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Znova naloži seznam"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Podrobnosti"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Ime:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Vrednost:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Domena:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Pot:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Preteče:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Je varen:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Spremeni pravilnik za piškotke"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Nov pravilnik za piškotke"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Pravilnik za <center><b>%1</b></center> že obstaja. Ali ga želite "
-"zamenjati?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Podvoji pravilnik"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Zamenjaj"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Ni se bilo mogoče sporazumeti s storitvijo ravnanja s piškotki.\n"
-"Kakršnekoli spremembe, ki ste jih naredili, bodo stopile v veljavo šele po "
-"vnovičnem zagonu storitve."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Vključi podporo piškotkov. Običajno jo boste želeli imeti vklopljeno, "
-"lahko pa jo tudi prilagodite svojim željam po zasebnosti.</p><p>\n"
-"Zapomnite si, da se po nekaterih straneh morda ne bo dalo brskati, če "
-"onemogočite podporo piškotkom.</p>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Omogoči pi&škote"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Zavrni piškotke tretjih oseb. To so piškotki, ki izvirajo iz drugih strani, "
-"in ne s strani po kateri brskate. Če imate izbrano to možnost in obiščete "
-"npr. <b>www.nekaj.si</b>, potem bodo obdelani samo piškotki, ki izhajajo s "
-"strani www.nekaj.si. Vsi ostali piškotki bodo samodejno zavrnjeni. To "
-"zmanjša možnosti, da bi upravljavci strani zbirali podatke o vaših dnevnih "
-"navadah pri brskanju po spletu.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Sprejmi le piškotke iz &izvirnega strežnika"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Samodejno sprejmi začasne piškotke, ki pretečejo ob koncu trenutne seje. "
-"Taki piškotki se ne shranijo na računalnikovem trdem disku ali shranjevalni "
-"napravi, ampak se izbrišejo, ko zaprete vse programe, ki jih uporabljajo "
-"(npr. vaš brskalnik).</p><p><u>OPOMBA:</u> Izbor te možnosti bo prepisal "
-"vaše privzete in za vsako stran prilagojene pravilnike za piškotke seje.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Sam&odejno sprejmi piškotke seje"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Določa, kako naj se ravna s piškotki, prejetimi od oddaljenih računalnikov:\n"
-"<ul>\n"
-"<li><b>Vprašaj</b> zahteva, da ste vsakič, ko strežnik želi poslati "
-"piškotek, vprašani za dovoljenje, ali se ga lahko sprejme.</li>\n"
-"<li><b>Sprejmi</b> določa, da se molče sprejme vse piškotke.</li>\n"
-"<li><b>Sprejmi do konca seje</b> določa, da bodo piškotki sprejeti, vendar "
-"bodo na koncu seje pretekli.</li>\n"
-"<li><b>Zavrni</b> pa določa, naj se ne sprejema piškotkov.</li>\n"
-"</ul><p>\n"
-"<u>OPOMBA:</u>  Pravilniki, prilagojeni za domene, ki jih nastavite spodaj, "
-"vedno prevladajo nad privzetim pravilnikom.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Privzet pravilnik"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Spre&jmi vse piškotke"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Sprejmi &do konca seje"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "&Vprašaj za potrditev"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "&Zavrni vse piškotke"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Če želite dodati nov pravilnik, preprosto kliknite gumb <b>Dodaj ...</b> in "
-"v pogovornem oknu podajte zahtevane podatke. Obstoječ pravilnik spremenite "
-"tako, da pritisnete na gumb <b>Spremeni ...</b> in v pogovornem oknu "
-"izberete nov pravilnik. Če boste kliknili <b>Izbriši</b>, boste odstranili "
-"izbrani pravilnik, zato bo za to domeno v veljavi privzet pravilnik, "
-"<b>Izbriši vse</b> pa bo odstranilo vse pravilnike prilagojene za strani.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Pravilnik strani"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Interaktivno išči domene"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Poišči..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Seznam strani, za katere imate nastavljeno prilagojen pravilnik za piškotke. "
-"Prilagojeni pravilniki prepišejo nastavitve v privzetem pravilniku za te "
-"strani.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Domena"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Pravilnik"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Nov ..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Sp&remeni ..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Sprejmi"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Sprejmi za sejo"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Zavrni"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Vprašaj"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "Ne vem"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Vnesite ime mesta ali domene, na katero se nanaša ta pravilnik. Npr. <b>www."
-"kde.org</b> ali <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Ime strani:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"Vnesite ime gostitelja ali domene, npr. kde.org, za katerega bo uveljavljen "
-"ta pravilnik."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Izberite želen pravilnik:\n"
-"<ul>\n"
-"<li><b>Sprejmi</b> – dovoli, da ta stran nastavlja piškotke</li>\n"
-"<li><b>Sprejmi do konca seje</b> – dovoli, da stran nastavlja piškotke, "
-"vendar bodo ti pretekli ob koncu seje.</li>\n"
-"<li><b>Zavrni</b> – zavrne vse piškotke, poslane s te strani</li>\n"
-"<li><b>Vprašaj</b> – vas vpraša, ko prejmete piškote s te strani</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Pravilnik:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Sprejmi do konca seje"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1404,11 +906,23 @@ msgstr "Išči ključne besede spletnega iskanja"
 msgid "Add a new Web search keyword"
 msgstr "Dodaj novo ključno besedo spletnega iskanja"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Nov ..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Spremeni označeno ključno besedo spletnega iskanja"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Sp&remeni ..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1668,6 +1182,331 @@ msgstr "&Nabor znakov:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Vstavite vsebnik poizvedbe"
+
+#~ msgid "&Policy"
+#~ msgstr "&Pravilnik"
+
+#~ msgid "&Management"
+#~ msgstr "&Upravljanje"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Napaka sporazumevanja prek D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Ni mogoče izbrisati vseh zahtevanih piškotkov."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Ni mogoče izbrisati zahtevanih piškotkov."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Napaka med iskanjem podrobnosti"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Ni mogoče pridobiti podrobnosti o piškotkih shranjenih na vašem "
+#~ "računalniku."
+
+#~ msgid "End of session"
+#~ msgstr "Konec seje"
+
+#~ msgid "Yes"
+#~ msgstr "Da"
+
+#~ msgid "Search"
+#~ msgstr "Poišči"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Interaktivno poišči domene in gostitelje"
+
+#~ msgid "Site"
+#~ msgstr "Mesto"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Ime piškotka"
+
+#~ msgid "D&elete"
+#~ msgstr "Iz&briši"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Izbriši &vse"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Nastavi &pravilnik ..."
+
+#~ msgid "&Reload List"
+#~ msgstr "&Znova naloži seznam"
+
+#~ msgid "Details"
+#~ msgstr "Podrobnosti"
+
+#~ msgid "Name:"
+#~ msgstr "Ime:"
+
+#~ msgid "Value:"
+#~ msgstr "Vrednost:"
+
+#~ msgid "Domain:"
+#~ msgstr "Domena:"
+
+#~ msgid "Path:"
+#~ msgstr "Pot:"
+
+#~ msgid "Expires:"
+#~ msgstr "Preteče:"
+
+#~ msgid "Secure:"
+#~ msgstr "Je varen:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Spremeni pravilnik za piškotke"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Nov pravilnik za piškotke"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Pravilnik za <center><b>%1</b></center> že obstaja. Ali ga želite "
+#~ "zamenjati?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Podvoji pravilnik"
+
+#~ msgid "Replace"
+#~ msgstr "Zamenjaj"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Ni se bilo mogoče sporazumeti s storitvijo ravnanja s piškotki.\n"
+#~ "Kakršnekoli spremembe, ki ste jih naredili, bodo stopile v veljavo šele "
+#~ "po vnovičnem zagonu storitve."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Vključi podporo piškotkov. Običajno jo boste želeli imeti vklopljeno, "
+#~ "lahko pa jo tudi prilagodite svojim željam po zasebnosti.</p><p>\n"
+#~ "Zapomnite si, da se po nekaterih straneh morda ne bo dalo brskati, če "
+#~ "onemogočite podporo piškotkom.</p>.\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Omogoči pi&škote"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Zavrni piškotke tretjih oseb. To so piškotki, ki izvirajo iz drugih "
+#~ "strani, in ne s strani po kateri brskate. Če imate izbrano to možnost in "
+#~ "obiščete npr. <b>www.nekaj.si</b>, potem bodo obdelani samo piškotki, ki "
+#~ "izhajajo s strani www.nekaj.si. Vsi ostali piškotki bodo samodejno "
+#~ "zavrnjeni. To zmanjša možnosti, da bi upravljavci strani zbirali podatke "
+#~ "o vaših dnevnih navadah pri brskanju po spletu.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Sprejmi le piškotke iz &izvirnega strežnika"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Samodejno sprejmi začasne piškotke, ki pretečejo ob koncu trenutne seje. "
+#~ "Taki piškotki se ne shranijo na računalnikovem trdem disku ali "
+#~ "shranjevalni napravi, ampak se izbrišejo, ko zaprete vse programe, ki jih "
+#~ "uporabljajo (npr. vaš brskalnik).</p><p><u>OPOMBA:</u> Izbor te možnosti "
+#~ "bo prepisal vaše privzete in za vsako stran prilagojene pravilnike za "
+#~ "piškotke seje.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Sam&odejno sprejmi piškotke seje"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Določa, kako naj se ravna s piškotki, prejetimi od oddaljenih "
+#~ "računalnikov:\n"
+#~ "<ul>\n"
+#~ "<li><b>Vprašaj</b> zahteva, da ste vsakič, ko strežnik želi poslati "
+#~ "piškotek, vprašani za dovoljenje, ali se ga lahko sprejme.</li>\n"
+#~ "<li><b>Sprejmi</b> določa, da se molče sprejme vse piškotke.</li>\n"
+#~ "<li><b>Sprejmi do konca seje</b> določa, da bodo piškotki sprejeti, "
+#~ "vendar bodo na koncu seje pretekli.</li>\n"
+#~ "<li><b>Zavrni</b> pa določa, naj se ne sprejema piškotkov.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>OPOMBA:</u>  Pravilniki, prilagojeni za domene, ki jih nastavite "
+#~ "spodaj, vedno prevladajo nad privzetim pravilnikom.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Privzet pravilnik"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Spre&jmi vse piškotke"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Sprejmi &do konca seje"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "&Vprašaj za potrditev"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "&Zavrni vse piškotke"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Če želite dodati nov pravilnik, preprosto kliknite gumb <b>Dodaj ...</b> "
+#~ "in v pogovornem oknu podajte zahtevane podatke. Obstoječ pravilnik "
+#~ "spremenite tako, da pritisnete na gumb <b>Spremeni ...</b> in v "
+#~ "pogovornem oknu izberete nov pravilnik. Če boste kliknili <b>Izbriši</b>, "
+#~ "boste odstranili izbrani pravilnik, zato bo za to domeno v veljavi "
+#~ "privzet pravilnik, <b>Izbriši vse</b> pa bo odstranilo vse pravilnike "
+#~ "prilagojene za strani.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Pravilnik strani"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Interaktivno išči domene"
+
+#~ msgid "Search..."
+#~ msgstr "Poišči..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Seznam strani, za katere imate nastavljeno prilagojen pravilnik za "
+#~ "piškotke. Prilagojeni pravilniki prepišejo nastavitve v privzetem "
+#~ "pravilniku za te strani.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Domena"
+
+#~ msgid "Policy"
+#~ msgstr "Pravilnik"
+
+#~ msgid "Accept"
+#~ msgstr "Sprejmi"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Sprejmi za sejo"
+
+#~ msgid "Reject"
+#~ msgstr "Zavrni"
+
+#~ msgid "Ask"
+#~ msgstr "Vprašaj"
+
+#~ msgid "Do Not Know"
+#~ msgstr "Ne vem"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Vnesite ime mesta ali domene, na katero se nanaša ta pravilnik. Npr. "
+#~ "<b>www.kde.org</b> ali <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Ime strani:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Vnesite ime gostitelja ali domene, npr. kde.org, za katerega bo "
+#~ "uveljavljen ta pravilnik."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Izberite želen pravilnik:\n"
+#~ "<ul>\n"
+#~ "<li><b>Sprejmi</b> – dovoli, da ta stran nastavlja piškotke</li>\n"
+#~ "<li><b>Sprejmi do konca seje</b> – dovoli, da stran nastavlja piškotke, "
+#~ "vendar bodo ti pretekli ob koncu seje.</li>\n"
+#~ "<li><b>Zavrni</b> – zavrne vse piškotke, poslane s te strani</li>\n"
+#~ "<li><b>Vprašaj</b> – vas vpraša, ko prejmete piškote s te strani</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Pravilnik:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Sprejmi do konca seje"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2004-12-14 15:11-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -17,510 +17,6 @@ msgstr ""
 "X-Generator: KBabel 1.9.1\n"
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
 "3 : 4\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Polasaí"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Bainisteoireacht"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Earráid Chumarsáide D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Ní féidir gach fianán a scriosadh mar a iarradh."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Ní féidir fianáin a scriosadh mar a iarradh."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Theip ar Chuardach ar Eolas"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "Ní féidir eolas a fháil faoina fianáin atá sábháilte ar do ríomhaire."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Deireadh an tseisiúin"
-
-# boolean - "secure?"
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Tá"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Cuardach"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Déan cuardach go hidirghníomhach ar fhearainn agus ar óstríomhairí"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Suíomh"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Ainm an Fhianáin"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "S&crios"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Scrios Ui&le"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Cumraigh &Polasaí..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Athluchtaigh Liosta"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Mionsonraí"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Ainm:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Luach:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Fearann:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Conair:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Le síothlú:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Daingean:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Athraigh Polasaí Fianán"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Polasaí Nua Fianán"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Tá polasaí ann cheana le haghaidh<center><b>%1</b></center>An bhfuil "
-"fonn ort an ceann nua a chur ina ionad?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Polasaí Dúblach"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Ionadaigh"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Ní féidir dul i dteagmháil le seirbhís láimhseáil na bhfianán.\n"
-"Ní chuirfear do chuid athruithe i bhfeidhm go dtí go n-atosófar an tseirbhís."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Cumasaigh fianáin. De ghnáth, ba chóir duit fianáin a chumasú agus iad a "
-"chumrú a bheith in oiriúint do do riachtanais slándála.</p><p>\n"
-"Tabhair faoi deara nach mbeidh tú in ann suímh Ghréasáin áirithe a "
-"bhrabhsáil gan fianáin a bheith chumasaithe.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Cumasaigh na &fianáin"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Diúltaigh fianáin \"tríú páirtí\". Fianáin a thagann as suíomh seachas an "
-"suíomh atá tú ag brabhsáil faoi láthair. Mar shampla, má thugann tú cuairt "
-"ar <b>www.foobar.com</b> agus an rogha seo cumasaithe, ní phróiseálfar ach "
-"fianáin a thagann as www.foobar.com de réir do shocruithe. Diúltófar fianáin "
-"ó aon suíomh eile. Laghdaíonn sé seo seansanna go mbeadh riarthóir suímh "
-"éigin in ann próifíl a thiomsú maidir le do bhrabhsáil laethúil.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "&Glac fianáin ón fhreastalaí bunaidh amháin"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Glac le fianáin a rachaidh as feidhm ag deireadh an tseisiúin reatha go "
-"huathoibríoch. Ní stóráiltear a leithéid fianáin ar do dhiosca crua nó ar "
-"mheán stórais eile. Ina áit sin, scriosfar iad nuair a dhúnfaidh tú na "
-"feidhmchláir atá ag baint úsáide astu (m.sh. do bhrabhsálaí).</p><p><u>NÓTA:"
-"</u> Má chuireann tú tic sa bhosca seo agus an chéad cheann eile, sáróidh sé "
-"an polasaí réamhshocraithe fianán in éineacht le haon pholasaithe atá agat "
-"do shuímh ar leith.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Glac le fianáin seisiúin go &huathoibríoch"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Socraigh conas a dhéileálfar le fianáin a fhaightear ó chianóstach: \n"
-"<ul>\n"
-"<li><b>Fiafraigh díom</b>: fiafróidh KDE díot gach uair a dhéanann "
-"freastalaí iarracht ar fhianán a shocrú.</li>\n"
-"<li><b>Glac Leo</b>: glacfar gach fianán gan ceist a chur ort.</li>\n"
-"<li><b>Glac leo go dtí deireadh an tseisiúin</b>: glacfar gach fianán ach "
-"rachaidh siad as feidhm ag deireadh an tseisiúin.</li>\n"
-"<li><b>Diúltaigh</b>: diúltófar gach fianán.</li>\n"
-"</ul><p>\n"
-"<u>NÓTA:</u> Baineann polasaithe atá sainiúil d'fhearann (is féidir iad seo "
-"a shocrú thíos) an tosach den pholasaí réamhshocraithe i gcónaí.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Polasaí Réamhshocraithe"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "&Glac le gach fianán"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Glac &leo go dtí deireadh an tseisiúin"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "Fia&fraigh díom"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "&Diúltaigh gach fianán"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Chun polasaí nua a chur leis, cliceáil an cnaipe <b>Cuir Leis...</b> agus "
-"tabhair uait an fhaisnéis a iarrann an bosca dialóige. Chun polasaí atá ann "
-"a athrú, cliceáil an cnaipe <b>Athraigh...</b> agus roghnaigh an polasaí ón "
-"bhosca dialóige. Cliceáil an cnaipe <b>Scrios</b> chun an polasaí roghnaithe "
-"a scriosadh; sa chás seo úsáidfear an polasaí réamhshocraithe le haghaidh an "
-"fhearainn seo. Scriosfar na polasaithe go léir atá sainiúil do shuímh má "
-"chliceálann tú <b>Scrios Uile</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Polasaí Suímh"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Déan cuardach go hidirghníomhach ar fhearainn"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, fuzzy, kde-format
-#| msgid "Search"
-msgid "Search..."
-msgstr "Cuardach"
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Liosta de shuímh a bhfuil polasaí fianáin ar leith acu. Úsáidfear na "
-"polasaithe seo in ionad an pholasaí réamhshocraithe le haghaidh na suíomh "
-"seo.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Fearann"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Polasaí"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Nua..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Athr&aigh..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Glac Leo"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-#, fuzzy
-#| msgid "End of Session"
-msgid "Accept For Session"
-msgstr "Deireadh an tSeisiúin"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Diúltaigh"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Fiafraigh díom"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-#, fuzzy
-#| msgid "Do Not Store"
-msgid "Do Not Know"
-msgstr "Ná Stóráil"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Iontráil óstríomhaire nó fearann ar chóir an polasaí seo a chur i bhfeidhm "
-"air, m.sh. <b>www.kde.org</b> nó <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Ainm an tsuímh:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Roghnaigh an polasaí atá uait:\n"
-"<ul>\n"
-"<li><b>Glac Leo</b> - Ceadaigh don suíomh seo fianáin a shocrú</li>\n"
-"<li><b>Glac leo go dtí deireadh an tseisiúin</b> - Ceadaigh don suíomh seo "
-"fianáin a shocrú ach rachaidh siad as feidhm ag deireadh an tseisiúin.</li>\n"
-"<li><b>Diúltaigh</b> - Diúltaigh don suíomh seo fianáin a shocrú</li>\n"
-"<li><b>Fiafraigh díom</b> - Fiafraigh díom nuair a fhaighim fianán ón suíomh "
-"seo</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Polasaí:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Glac leo go dtí deireadh an tseisiúin"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1395,12 +891,24 @@ msgstr "Focal faire réamhshocraithe:"
 msgid "Add a new Web search keyword"
 msgstr "Focal faire réamhshocraithe:"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Nua..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, fuzzy, kde-format
 #| msgid "Default password:"
 msgid "Modify the highlighted Web search keyword"
 msgstr "Focal faire réamhshocraithe:"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Athr&aigh..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1629,6 +1137,334 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "Mód Crosfhite"
+
+#~ msgid "&Policy"
+#~ msgstr "&Polasaí"
+
+#~ msgid "&Management"
+#~ msgstr "&Bainisteoireacht"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Earráid Chumarsáide D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Ní féidir gach fianán a scriosadh mar a iarradh."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Ní féidir fianáin a scriosadh mar a iarradh."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Theip ar Chuardach ar Eolas"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Ní féidir eolas a fháil faoina fianáin atá sábháilte ar do ríomhaire."
+
+#~ msgid "End of session"
+#~ msgstr "Deireadh an tseisiúin"
+
+# boolean - "secure?"
+#~ msgid "Yes"
+#~ msgstr "Tá"
+
+#~ msgid "Search"
+#~ msgstr "Cuardach"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Déan cuardach go hidirghníomhach ar fhearainn agus ar óstríomhairí"
+
+#~ msgid "Site"
+#~ msgstr "Suíomh"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Ainm an Fhianáin"
+
+#~ msgid "D&elete"
+#~ msgstr "S&crios"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Scrios Ui&le"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Cumraigh &Polasaí..."
+
+#~ msgid "&Reload List"
+#~ msgstr "&Athluchtaigh Liosta"
+
+#~ msgid "Details"
+#~ msgstr "Mionsonraí"
+
+#~ msgid "Name:"
+#~ msgstr "Ainm:"
+
+#~ msgid "Value:"
+#~ msgstr "Luach:"
+
+#~ msgid "Domain:"
+#~ msgstr "Fearann:"
+
+#~ msgid "Path:"
+#~ msgstr "Conair:"
+
+#~ msgid "Expires:"
+#~ msgstr "Le síothlú:"
+
+#~ msgid "Secure:"
+#~ msgstr "Daingean:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Athraigh Polasaí Fianán"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Polasaí Nua Fianán"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Tá polasaí ann cheana le haghaidh<center><b>%1</b></center>An bhfuil "
+#~ "fonn ort an ceann nua a chur ina ionad?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Polasaí Dúblach"
+
+#~ msgid "Replace"
+#~ msgstr "Ionadaigh"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Ní féidir dul i dteagmháil le seirbhís láimhseáil na bhfianán.\n"
+#~ "Ní chuirfear do chuid athruithe i bhfeidhm go dtí go n-atosófar an "
+#~ "tseirbhís."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Cumasaigh fianáin. De ghnáth, ba chóir duit fianáin a chumasú agus iad "
+#~ "a chumrú a bheith in oiriúint do do riachtanais slándála.</p><p>\n"
+#~ "Tabhair faoi deara nach mbeidh tú in ann suímh Ghréasáin áirithe a "
+#~ "bhrabhsáil gan fianáin a bheith chumasaithe.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Cumasaigh na &fianáin"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Diúltaigh fianáin \"tríú páirtí\". Fianáin a thagann as suíomh seachas an "
+#~ "suíomh atá tú ag brabhsáil faoi láthair. Mar shampla, má thugann tú "
+#~ "cuairt ar <b>www.foobar.com</b> agus an rogha seo cumasaithe, ní "
+#~ "phróiseálfar ach fianáin a thagann as www.foobar.com de réir do "
+#~ "shocruithe. Diúltófar fianáin ó aon suíomh eile. Laghdaíonn sé seo "
+#~ "seansanna go mbeadh riarthóir suímh éigin in ann próifíl a thiomsú maidir "
+#~ "le do bhrabhsáil laethúil.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "&Glac fianáin ón fhreastalaí bunaidh amháin"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Glac le fianáin a rachaidh as feidhm ag deireadh an tseisiúin reatha go "
+#~ "huathoibríoch. Ní stóráiltear a leithéid fianáin ar do dhiosca crua nó ar "
+#~ "mheán stórais eile. Ina áit sin, scriosfar iad nuair a dhúnfaidh tú na "
+#~ "feidhmchláir atá ag baint úsáide astu (m.sh. do bhrabhsálaí).</"
+#~ "p><p><u>NÓTA:</u> Má chuireann tú tic sa bhosca seo agus an chéad cheann "
+#~ "eile, sáróidh sé an polasaí réamhshocraithe fianán in éineacht le haon "
+#~ "pholasaithe atá agat do shuímh ar leith.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Glac le fianáin seisiúin go &huathoibríoch"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Socraigh conas a dhéileálfar le fianáin a fhaightear ó chianóstach: \n"
+#~ "<ul>\n"
+#~ "<li><b>Fiafraigh díom</b>: fiafróidh KDE díot gach uair a dhéanann "
+#~ "freastalaí iarracht ar fhianán a shocrú.</li>\n"
+#~ "<li><b>Glac Leo</b>: glacfar gach fianán gan ceist a chur ort.</li>\n"
+#~ "<li><b>Glac leo go dtí deireadh an tseisiúin</b>: glacfar gach fianán ach "
+#~ "rachaidh siad as feidhm ag deireadh an tseisiúin.</li>\n"
+#~ "<li><b>Diúltaigh</b>: diúltófar gach fianán.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NÓTA:</u> Baineann polasaithe atá sainiúil d'fhearann (is féidir iad "
+#~ "seo a shocrú thíos) an tosach den pholasaí réamhshocraithe i gcónaí.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Polasaí Réamhshocraithe"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "&Glac le gach fianán"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Glac &leo go dtí deireadh an tseisiúin"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "Fia&fraigh díom"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "&Diúltaigh gach fianán"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Chun polasaí nua a chur leis, cliceáil an cnaipe <b>Cuir Leis...</b> agus "
+#~ "tabhair uait an fhaisnéis a iarrann an bosca dialóige. Chun polasaí atá "
+#~ "ann a athrú, cliceáil an cnaipe <b>Athraigh...</b> agus roghnaigh an "
+#~ "polasaí ón bhosca dialóige. Cliceáil an cnaipe <b>Scrios</b> chun an "
+#~ "polasaí roghnaithe a scriosadh; sa chás seo úsáidfear an polasaí "
+#~ "réamhshocraithe le haghaidh an fhearainn seo. Scriosfar na polasaithe go "
+#~ "léir atá sainiúil do shuímh má chliceálann tú <b>Scrios Uile</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Polasaí Suímh"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Déan cuardach go hidirghníomhach ar fhearainn"
+
+#, fuzzy
+#~| msgid "Search"
+#~ msgid "Search..."
+#~ msgstr "Cuardach"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Liosta de shuímh a bhfuil polasaí fianáin ar leith acu. Úsáidfear na "
+#~ "polasaithe seo in ionad an pholasaí réamhshocraithe le haghaidh na suíomh "
+#~ "seo.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Fearann"
+
+#~ msgid "Policy"
+#~ msgstr "Polasaí"
+
+#~ msgid "Accept"
+#~ msgstr "Glac Leo"
+
+#, fuzzy
+#~| msgid "End of Session"
+#~ msgid "Accept For Session"
+#~ msgstr "Deireadh an tSeisiúin"
+
+#~ msgid "Reject"
+#~ msgstr "Diúltaigh"
+
+#~ msgid "Ask"
+#~ msgstr "Fiafraigh díom"
+
+#, fuzzy
+#~| msgid "Do Not Store"
+#~ msgid "Do Not Know"
+#~ msgstr "Ná Stóráil"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Iontráil óstríomhaire nó fearann ar chóir an polasaí seo a chur i "
+#~ "bhfeidhm air, m.sh. <b>www.kde.org</b> nó <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Ainm an tsuímh:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Roghnaigh an polasaí atá uait:\n"
+#~ "<ul>\n"
+#~ "<li><b>Glac Leo</b> - Ceadaigh don suíomh seo fianáin a shocrú</li>\n"
+#~ "<li><b>Glac leo go dtí deireadh an tseisiúin</b> - Ceadaigh don suíomh "
+#~ "seo fianáin a shocrú ach rachaidh siad as feidhm ag deireadh an tseisiúin."
+#~ "</li>\n"
+#~ "<li><b>Diúltaigh</b> - Diúltaigh don suíomh seo fianáin a shocrú</li>\n"
+#~ "<li><b>Fiafraigh díom</b> - Fiafraigh díom nuair a fhaighim fianán ón "
+#~ "suíomh seo</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Polasaí:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Glac leo go dtí deireadh an tseisiúin"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

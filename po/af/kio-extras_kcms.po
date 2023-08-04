@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio stable\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2005-11-26 17:02+0200\n"
 "Last-Translator: Kobus <kabousv@therugby.co.za>\n"
 "Language-Team: AFRIKAANS <translate-discuss-af@lists.sourceforge.net>\n"
@@ -17,545 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "Beleid"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "Bestuuring"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, fuzzy, kde-format
-msgid "D-Bus Communication Error"
-msgstr "DHOP Komminikasie fout"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Kon nie al die koekies geskrap het, soos versoek nie."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Kon nie die koekies geskrap, soos versoek nie."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Inligting Soek Gefaal"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "Kon nie inligting terugkry van die koekies op jou rekenaar gestoor."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Einde van sessie"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, fuzzy, kde-format
-#| msgid "&Reset"
-msgid "Yes"
-msgstr "Herstel"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, fuzzy, kde-format
-#| msgid "&Search:"
-msgid "Search"
-msgstr "Soek:"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Soek interaktief na domaine en bedieners"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, fuzzy, kde-format
-#| msgid "Site Name"
-msgid "Site"
-msgstr "Tuiste Naam"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, fuzzy, kde-format
-#| msgid "Site Name"
-msgid "Cookie Name"
-msgstr "Tuiste Naam"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "Skrap"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Skrap als"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, fuzzy, kde-format
-#| msgid "Change &Policy..."
-msgid "Configure &Policy..."
-msgstr "Verander Beleid"
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "Herlaai Lys"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Besonderhede"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Naam:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Waarde:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Domein:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Gids soeklys:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Verval:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Beveilig:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, fuzzy, kde-format
-#| msgid "Change Cookie Policy"
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Verander Koekie Beleid"
-
-#: cookies/kcookiespolicies.cpp:173
-#, fuzzy, kde-format
-#| msgid "New Cookie Policy"
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Nuwe Koekie Beleid"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>'n beleid alreeds bestaan vir<center><b>%1</b></center>Doen jy wil hê na "
-"vervang dit?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, fuzzy, kde-format
-#| msgid "Duplicate Policy"
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Duplikaat Beleid"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr ""
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Kon nie met die koekies beheer diens kommunikeer.\n"
-"Enige veranderinge aangebring sal slegs effektief wees wanneer die diens "
-"herbegin."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enable cookie support. Normally you will want to have cookie support "
-#| "enabled and customize it to suit your privacy needs.<p>\n"
-#| "Please note that disabling cookie support might make many web sites "
-#| "unbrowsable.\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Skakel koekie ondersteuning aan. Gewoonlik wil jy koekie ondersteuning "
-"geaktiveer hê en pasmaak dit soos jy dit verlang. <p>\n"
-"Let daarop dat deur koekies af te skakel jy nie daartoe in staat sal wees om "
-"baie web bladsy deur te blaai nie.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Aktiveer koekies"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Verwerp die sogenaamde derde-party koekies. Hierdie koekies word aangebied "
-"vanaf 'n ander tuiste as die een wat jy huidig besoek. terwyl y byvoorbeeld "
-"<b>www.foobar.com</b> besoek en die opsie is aan, sal slegs koekies wat "
-"vanaf www.foobar.com kom, aanvaar word volgens jou stellings. Koekies van "
-"ander tuistes sal verwerp word. Dit verminder die kans dat tuiste operateurs "
-"'n profiel kan opstel rakende jou daaglikse blaaiing gebruik.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Aanvaar koekie alleen vanaf uitgewende bediener"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Automatically accept temporary cookies meant to expire at the end of the "
-#| "current session. Such cookies will not be stored in your computer's hard "
-#| "drive or storage device. Instead, they are deleted when you close all "
-#| "applications (e.g. your browser) that use them.<p>\n"
-#| "<u>NOTE:</u> Checking this option along with the next one will override "
-#| "your default as well as site specific cookie policies. However, doing so "
-#| "also increases your privacy since all cookies will be removed when the "
-#| "current session ends.\n"
-#| "</qt>"
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<qt>\n"
-"Aanvaar tydelike koekies automaties meen dat koekies teen die einde van die "
-"huidige sessie verval. Sulke koekies word nie op die hardeskyf gestoor nie. "
-"Inteendeel word dit geskrap die oomblik wanneer jy die programme wat dit "
-"verlang (bv. jou web-blaaier) toemaak.<p>\n"
-" <u>NOTA:</u> Deur hierdie opsie te kies sowel as die volgende oorskryf jou "
-"verstek sowel as tuiste spesifieke beleid stellings. Deur dit te doen "
-"verhoog jy egter jou privaatheid deurdat alle koekies geskrap word wanneer "
-"die huidige sessie ten einde loop.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Aanvaar sessie koekies automaties"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, fuzzy, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-" Bepaal hoe koekies van 'n afgeleë masjien ontvang hanteer word.: \n"
-"<ul>\n"
-" <li><b>Vra</b> Kde sal elke keer wanneer 'n koekie ontvang word vra of dit "
-"aanvaarbaar is.\"</li>\n"
-"<li><b>Aanvaar</b> Koekies sal aanvaar word sonder om weer te vra.</li>\n"
-"<li><b>Weier</b> Alle koekies sal geweier word.</li>\n"
-" </ul> <p>\n"
-" <u>NOTA:</u> Domein spesifieke stellings wat hieronder gestel kan word, het "
-"altyd hoër waarde as die verstek beleid.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Verstek Beleid"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Aanvaar alle koekies"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, fuzzy, kde-format
-#| msgid "End of session"
-msgid "Accept &until end of session"
-msgstr "Einde van sessie"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "Vra vir bevestiging"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "Verwerp alle koekies"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, fuzzy, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Om 'n nuwe beleid by te voeg, kliek op die <b>Voeg By...</b> knoppie en "
-"verskaf die nodige inligting. Om 'n bestaande beleid te verander, gebruik "
-"die <b>Verander...</b> knoppie en kies die nuwe beleid van die beleid "
-"dialoog boks. Deur op die <b>Skrap</b> knoppie te kliek sal die huidige "
-"beleid verwyder word, wat sal veroorsaak dat die verstek beleid gebruik sal "
-"word vir die domein. Die <b>Skrap Alle</b> sal al die tuiste spesifiek "
-"beleid verwyder.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Tuiste Beleid"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Soek interaktief vir domeins"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, fuzzy, kde-format
-#| msgid "&Search:"
-msgid "Search..."
-msgstr "Soek:"
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-":ys van tuistes waarvoor jy 'n spesifieke koekie beleid het. Spesifike "
-"beleid oorskryf die verstek beleid stelling vir hierdie tuistes.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Domein"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Beleid"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "Nuwe..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Verander..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Aanvaar"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-#, fuzzy
-#| msgid "End of Session"
-msgid "Accept For Session"
-msgstr "Einde van Sessie"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Verwerp"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Vra"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-#, fuzzy
-#| msgid "Do Not Store"
-msgid "Do Not Know"
-msgstr "Kon nie stoor"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Voer die bediener of domein in op wie die beleid van toepassing is, bv. "
-"<b>www.kde.org</b> of <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, fuzzy, kde-format
-#| msgid "Site Name"
-msgid "Site name:"
-msgstr "Tuiste Naam"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Select the desired policy:\n"
-#| "<ul>\n"
-#| "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-#| "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-#| "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-#| "</ul>\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Kies die verlangde beleid:\n"
-"<ul>\n"
-"<li><b>Aanvaar</b> - Laat koekie vanaf hierdie tuiste toe</li>\n"
-"<li><b>Verwerp</b> - Weier alle koekies vanaf hierdie tuiste</li>\n"
-"<li><b>Vra</b> - Por wanneer koekies ontvang word vanaf hierdie tuiste</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, fuzzy, kde-format
-#| msgid "&Policy:"
-msgid "Policy:"
-msgstr "Beleid"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, fuzzy, kde-format
-#| msgid "End of session"
-msgid "Accept until end of session"
-msgstr "Einde van sessie"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1450,12 +911,24 @@ msgstr "Verstek wagwoord:"
 msgid "Add a new Web search keyword"
 msgstr "Verstek wagwoord:"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "Nuwe..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, fuzzy, kde-format
 #| msgid "Default password:"
 msgid "Modify the highlighted Web search keyword"
 msgstr "Verstek wagwoord:"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Verander..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1680,6 +1153,382 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "&Policy"
+#~ msgstr "Beleid"
+
+#~ msgid "&Management"
+#~ msgstr "Bestuuring"
+
+#, fuzzy
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "DHOP Komminikasie fout"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Kon nie al die koekies geskrap het, soos versoek nie."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Kon nie die koekies geskrap, soos versoek nie."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Inligting Soek Gefaal"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr "Kon nie inligting terugkry van die koekies op jou rekenaar gestoor."
+
+#~ msgid "End of session"
+#~ msgstr "Einde van sessie"
+
+#, fuzzy
+#~| msgid "&Reset"
+#~ msgid "Yes"
+#~ msgstr "Herstel"
+
+#, fuzzy
+#~| msgid "&Search:"
+#~ msgid "Search"
+#~ msgstr "Soek:"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Soek interaktief na domaine en bedieners"
+
+#, fuzzy
+#~| msgid "Site Name"
+#~ msgid "Site"
+#~ msgstr "Tuiste Naam"
+
+#, fuzzy
+#~| msgid "Site Name"
+#~ msgid "Cookie Name"
+#~ msgstr "Tuiste Naam"
+
+#~ msgid "D&elete"
+#~ msgstr "Skrap"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Skrap als"
+
+#, fuzzy
+#~| msgid "Change &Policy..."
+#~ msgid "Configure &Policy..."
+#~ msgstr "Verander Beleid"
+
+#~ msgid "&Reload List"
+#~ msgstr "Herlaai Lys"
+
+#~ msgid "Details"
+#~ msgstr "Besonderhede"
+
+#~ msgid "Name:"
+#~ msgstr "Naam:"
+
+#~ msgid "Value:"
+#~ msgstr "Waarde:"
+
+#~ msgid "Domain:"
+#~ msgstr "Domein:"
+
+#~ msgid "Path:"
+#~ msgstr "Gids soeklys:"
+
+#~ msgid "Expires:"
+#~ msgstr "Verval:"
+
+#~ msgid "Secure:"
+#~ msgstr "Beveilig:"
+
+#, fuzzy
+#~| msgid "Change Cookie Policy"
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Verander Koekie Beleid"
+
+#, fuzzy
+#~| msgid "New Cookie Policy"
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Nuwe Koekie Beleid"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>'n beleid alreeds bestaan vir<center><b>%1</b></center>Doen jy wil hê "
+#~ "na vervang dit?</qt>"
+
+#, fuzzy
+#~| msgid "Duplicate Policy"
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Duplikaat Beleid"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Kon nie met die koekies beheer diens kommunikeer.\n"
+#~ "Enige veranderinge aangebring sal slegs effektief wees wanneer die diens "
+#~ "herbegin."
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Enable cookie support. Normally you will want to have cookie support "
+#~| "enabled and customize it to suit your privacy needs.<p>\n"
+#~| "Please note that disabling cookie support might make many web sites "
+#~| "unbrowsable.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Skakel koekie ondersteuning aan. Gewoonlik wil jy koekie ondersteuning "
+#~ "geaktiveer hê en pasmaak dit soos jy dit verlang. <p>\n"
+#~ "Let daarop dat deur koekies af te skakel jy nie daartoe in staat sal wees "
+#~ "om baie web bladsy deur te blaai nie.\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Aktiveer koekies"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Verwerp die sogenaamde derde-party koekies. Hierdie koekies word "
+#~ "aangebied vanaf 'n ander tuiste as die een wat jy huidig besoek. terwyl y "
+#~ "byvoorbeeld <b>www.foobar.com</b> besoek en die opsie is aan, sal slegs "
+#~ "koekies wat vanaf www.foobar.com kom, aanvaar word volgens jou stellings. "
+#~ "Koekies van ander tuistes sal verwerp word. Dit verminder die kans dat "
+#~ "tuiste operateurs 'n profiel kan opstel rakende jou daaglikse blaaiing "
+#~ "gebruik.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Aanvaar koekie alleen vanaf uitgewende bediener"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Automatically accept temporary cookies meant to expire at the end of the "
+#~| "current session. Such cookies will not be stored in your computer's hard "
+#~| "drive or storage device. Instead, they are deleted when you close all "
+#~| "applications (e.g. your browser) that use them.<p>\n"
+#~| "<u>NOTE:</u> Checking this option along with the next one will override "
+#~| "your default as well as site specific cookie policies. However, doing so "
+#~| "also increases your privacy since all cookies will be removed when the "
+#~| "current session ends.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Aanvaar tydelike koekies automaties meen dat koekies teen die einde van "
+#~ "die huidige sessie verval. Sulke koekies word nie op die hardeskyf "
+#~ "gestoor nie. Inteendeel word dit geskrap die oomblik wanneer jy die "
+#~ "programme wat dit verlang (bv. jou web-blaaier) toemaak.<p>\n"
+#~ " <u>NOTA:</u> Deur hierdie opsie te kies sowel as die volgende oorskryf "
+#~ "jou verstek sowel as tuiste spesifieke beleid stellings. Deur dit te doen "
+#~ "verhoog jy egter jou privaatheid deurdat alle koekies geskrap word "
+#~ "wanneer die huidige sessie ten einde loop.\n"
+#~ "</qt>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Aanvaar sessie koekies automaties"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ " Bepaal hoe koekies van 'n afgeleë masjien ontvang hanteer word.: \n"
+#~ "<ul>\n"
+#~ " <li><b>Vra</b> Kde sal elke keer wanneer 'n koekie ontvang word vra of "
+#~ "dit aanvaarbaar is.\"</li>\n"
+#~ "<li><b>Aanvaar</b> Koekies sal aanvaar word sonder om weer te vra.</li>\n"
+#~ "<li><b>Weier</b> Alle koekies sal geweier word.</li>\n"
+#~ " </ul> <p>\n"
+#~ " <u>NOTA:</u> Domein spesifieke stellings wat hieronder gestel kan word, "
+#~ "het altyd hoër waarde as die verstek beleid.\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Verstek Beleid"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Aanvaar alle koekies"
+
+#, fuzzy
+#~| msgid "End of session"
+#~ msgid "Accept &until end of session"
+#~ msgstr "Einde van sessie"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "Vra vir bevestiging"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "Verwerp alle koekies"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Om 'n nuwe beleid by te voeg, kliek op die <b>Voeg By...</b> knoppie en "
+#~ "verskaf die nodige inligting. Om 'n bestaande beleid te verander, gebruik "
+#~ "die <b>Verander...</b> knoppie en kies die nuwe beleid van die beleid "
+#~ "dialoog boks. Deur op die <b>Skrap</b> knoppie te kliek sal die huidige "
+#~ "beleid verwyder word, wat sal veroorsaak dat die verstek beleid gebruik "
+#~ "sal word vir die domein. Die <b>Skrap Alle</b> sal al die tuiste "
+#~ "spesifiek beleid verwyder.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Tuiste Beleid"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Soek interaktief vir domeins"
+
+#, fuzzy
+#~| msgid "&Search:"
+#~ msgid "Search..."
+#~ msgstr "Soek:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ ":ys van tuistes waarvoor jy 'n spesifieke koekie beleid het. Spesifike "
+#~ "beleid oorskryf die verstek beleid stelling vir hierdie tuistes.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Domein"
+
+#~ msgid "Policy"
+#~ msgstr "Beleid"
+
+#~ msgid "Accept"
+#~ msgstr "Aanvaar"
+
+#, fuzzy
+#~| msgid "End of Session"
+#~ msgid "Accept For Session"
+#~ msgstr "Einde van Sessie"
+
+#~ msgid "Reject"
+#~ msgstr "Verwerp"
+
+#~ msgid "Ask"
+#~ msgstr "Vra"
+
+#, fuzzy
+#~| msgid "Do Not Store"
+#~ msgid "Do Not Know"
+#~ msgstr "Kon nie stoor"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Voer die bediener of domein in op wie die beleid van toepassing is, bv. "
+#~ "<b>www.kde.org</b> of <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "Site Name"
+#~ msgid "Site name:"
+#~ msgstr "Tuiste Naam"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Select the desired policy:\n"
+#~| "<ul>\n"
+#~| "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~| "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~| "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~| "</ul>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Kies die verlangde beleid:\n"
+#~ "<ul>\n"
+#~ "<li><b>Aanvaar</b> - Laat koekie vanaf hierdie tuiste toe</li>\n"
+#~ "<li><b>Verwerp</b> - Weier alle koekies vanaf hierdie tuiste</li>\n"
+#~ "<li><b>Vra</b> - Por wanneer koekies ontvang word vanaf hierdie tuiste</"
+#~ "li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "&Policy:"
+#~ msgid "Policy:"
+#~ msgstr "Beleid"
+
+#, fuzzy
+#~| msgid "End of session"
+#~ msgid "Accept until end of session"
+#~ msgstr "Einde van sessie"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

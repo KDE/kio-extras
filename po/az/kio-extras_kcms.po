@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2023-02-18 20:42+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -16,501 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 22.12.2\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Qayda"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&İdarəetmə"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "D-Bus Vasitəsilə Bağlantıda Xəta"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Bütün kuku fayllarını silmək mümkün deyil."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Kuki fayllarını silmək mümkün deyil."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Məlumat Axtarışında Xəta"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "Bu kompyutrdə saxlanılan kukilər barəsində məlumat almaq mümkün deyil."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Sessiyanın sonu"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Bəli"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Axtar"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Domenlər və host-larda interaktiv axtarış"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Sayt"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Kuki Adları"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "S&il"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Ha&mısını Sil"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Qa&ydaları Tənzimlə..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "Səhifəni &Yenilə"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Təfərrüatlar"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Ad:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Miqdar:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Domen:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Yol:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Bitmə vaxtı:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Təhlükəsizlik:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Kuki Qaydalarını Dəyiş"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Yeni Kuki Qaydaları"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt> <center><b>%1</b></center>üçün qaydalar artıq mövcuddur. Siz onları "
-"əvəzləmək istəyirsiniz?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Qaydalar Artıq Mövcuddur"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Əvəz etmək"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Kuki yaradan serverlə əlaqə qurula bilmir.\n"
-"Server yenidən başlanılandək etdiyiniz dəyişikliklər effekt verməyəvək."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Kuki dəstəklənməsini aktiv edin. Adi halda siz kukilər dəstəyini aktiv "
-"etmək və şəxsi ehtiyaclarınıza uyğunlaşdırmaq istəyəcəksiniz.</p><p>\n"
-"Nəzərə alın ki, kukiləri söndürsəniz bəzi saytlardan istifadə edə "
-"bilməyəcəksiniz.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Ku&kiləri qktiv et"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Kənar kuki kimi adlanan kukiləri ləğv edin. Bu kukilər hal-hazırda "
-"baxdığınız aytdakılardan fərqlənən kukilərdir. Məsələn, bu seçim işlədiyi "
-"müddətdə <b>www.foobar.com</b> a daxil olsanız, yalnız parametrlərinizə görə "
-"www.foobar.com-dan gələn kukilər işlənəcəkdir. Digər saytın kukiləri isə "
-"rədd ediləcək. Bu saytın sizin hər dəfəki fəaliyyətinizə görə profil "
-"yaratçaq şansını azaldır.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Yalnız orijinal serverdən kukiləri qəb&ul et"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Cari sessiyanın sonunda başa çatması üçün nəzərdə tutulmuş müvəqqəti "
-"kukiləri avtomatik olaraq qəbul edin. Belə kukilər kompüterinizin sabit "
-"diskində və ya saxlama cihazında saxlanılmayacaqdır. Bunun əvəzinə, onlardan "
-"istifadə edən bütün tətbiqləri (məsələn, brauzerinizi) bağladığınız zaman "
-"kukilər  silinəcək. </p><p><u>Qeyd</u> Bu seçimi seçsəniz, həm də sessiya "
-"kukiləri üçün sayt xüsusi kuki qaydalarını ləğv edir.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Sesiyanın kukilərini &avtomatik qəbul et"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Uzaqdakı komputerdən alınan kukilərin necə idarə olunacağını "
-"müəyyənləşdirir:\n"
-"<ul>\n"
-"<li><b>Soruşmaq</b> hər dəfə server kuki faylını qurmağa çalışdığı zaman "
-"soruşmaq.</li>\n"
-"<li><b>İcazə vermək</b> susmaya görə bütün kuki faylları qəbul edilir.</li>\n"
-"<li><b>Seansın sonunadək icazə vermək</b> Kuki faylları qəbul edilir, ancaq "
-"seansın sonunda fəaliyyətini dayandırır.</li>\n"
-"<li><b>Rədd etmək</b>heç bir kuki faylı qəbul edilmir.</li>\n"
-"</ul><p>\n"
-"<u>QEYD:</u>xüsusi demonlar üçün aşağıda ayarlanması mümkün olan qaydalar "
-"susmaya görə olan qaydalardan üstün sayılır.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Standart Qayda"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Bütün kukiləri qəbu&l et"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Sesiya başa çatanadək &qəbul et"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "Təsdiqləmək &sorğusu"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "Bü&tün kukiləri rədd et"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"yeni qaydanı qəbul etmək üçün sadəcə <b>Əlavə Et</b> düyməsinə vur və vacib "
-"məlumatları daxil edin. Mövcud olan qaydanı dəyişmək üçün, <b>Dəyiş</b> "
-"düyməsindən istifadə et və yeni qaydanı qayda dialoqu pəncərəsindən seç. "
-"<b>Sil</b> düyməsinə vuraraq göstərilən demon üçün qaydanı silin. Əgər "
-"<b>Hamısını Sil</b> deyməsinə vursanız domen üçün bütün xüsusi qaydalar "
-"silinəcək.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Hər Sayt üçün Qayda"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Demonların interaktiv axtarışı"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Axtar..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Xüsusi kuki qaydaları qurduğunuz saytların siyahısı. .Xüsusi qaydalar "
-"saytlar üçün standart qaydalardan üstündür.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Domen"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Qayda"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Yeni..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Dəy&iş..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Qəbul et"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Sesiya üçün qəbul Et"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Rədd Et"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Soruş"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "Naməlum"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Bu qaydanın qəbul etdiyi host vı domeni dail edin, məs. <b>www.kde.org</b> "
-"və ya <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Saytın adı:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr "Host və domen adını daxil edin, məs. .kde.org, this policy applies to."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"İstıdiyiniz qaydanı seçin:\n"
-"<ul>\n"
-"<li><b>Qəbul et</b> - Bu sayta kukiləri təyin etməyə icazə verin</li>\n"
-"<li><b>Sesiyanın sonunadək qəbul edin</b> - Bu sayta kukiləri təyin etməyə "
-"icazə verin, ancaq bunlar sesiyanın sonunadək etibarlı olacaq.</li>\n"
-"<li><b>Rədd et</b> - kukiləri bu saytdan qəbul etməyin</li>\n"
-"<li><b>Sorğu</b> - Bu saytdan kuki aldıqda soruşun</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Qayda:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Sesiyanın sonunadək qəbul edin"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1379,11 +884,23 @@ msgstr "Açar sözünə görə axtarmaq"
 msgid "Add a new Web search keyword"
 msgstr "Yeni veb qısaltma əlavə edin"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Yeni..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Seçilmiş veb-qısaltmanı dəyişdirin"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Dəy&iş..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1643,6 +1160,329 @@ msgstr "&Kodlaşma:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sorğunun nümunəsini yerləşdirin"
+
+#~ msgid "&Policy"
+#~ msgstr "&Qayda"
+
+#~ msgid "&Management"
+#~ msgstr "&İdarəetmə"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "D-Bus Vasitəsilə Bağlantıda Xəta"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Bütün kuku fayllarını silmək mümkün deyil."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Kuki fayllarını silmək mümkün deyil."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Məlumat Axtarışında Xəta"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Bu kompyutrdə saxlanılan kukilər barəsində məlumat almaq mümkün deyil."
+
+#~ msgid "End of session"
+#~ msgstr "Sessiyanın sonu"
+
+#~ msgid "Yes"
+#~ msgstr "Bəli"
+
+#~ msgid "Search"
+#~ msgstr "Axtar"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Domenlər və host-larda interaktiv axtarış"
+
+#~ msgid "Site"
+#~ msgstr "Sayt"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Kuki Adları"
+
+#~ msgid "D&elete"
+#~ msgstr "S&il"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Ha&mısını Sil"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Qa&ydaları Tənzimlə..."
+
+#~ msgid "&Reload List"
+#~ msgstr "Səhifəni &Yenilə"
+
+#~ msgid "Details"
+#~ msgstr "Təfərrüatlar"
+
+#~ msgid "Name:"
+#~ msgstr "Ad:"
+
+#~ msgid "Value:"
+#~ msgstr "Miqdar:"
+
+#~ msgid "Domain:"
+#~ msgstr "Domen:"
+
+#~ msgid "Path:"
+#~ msgstr "Yol:"
+
+#~ msgid "Expires:"
+#~ msgstr "Bitmə vaxtı:"
+
+#~ msgid "Secure:"
+#~ msgstr "Təhlükəsizlik:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Kuki Qaydalarını Dəyiş"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Yeni Kuki Qaydaları"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt> <center><b>%1</b></center>üçün qaydalar artıq mövcuddur. Siz onları "
+#~ "əvəzləmək istəyirsiniz?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Qaydalar Artıq Mövcuddur"
+
+#~ msgid "Replace"
+#~ msgstr "Əvəz etmək"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Kuki yaradan serverlə əlaqə qurula bilmir.\n"
+#~ "Server yenidən başlanılandək etdiyiniz dəyişikliklər effekt verməyəvək."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Kuki dəstəklənməsini aktiv edin. Adi halda siz kukilər dəstəyini aktiv "
+#~ "etmək və şəxsi ehtiyaclarınıza uyğunlaşdırmaq istəyəcəksiniz.</p><p>\n"
+#~ "Nəzərə alın ki, kukiləri söndürsəniz bəzi saytlardan istifadə edə "
+#~ "bilməyəcəksiniz.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Ku&kiləri qktiv et"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Kənar kuki kimi adlanan kukiləri ləğv edin. Bu kukilər hal-hazırda "
+#~ "baxdığınız aytdakılardan fərqlənən kukilərdir. Məsələn, bu seçim işlədiyi "
+#~ "müddətdə <b>www.foobar.com</b> a daxil olsanız, yalnız parametrlərinizə "
+#~ "görə www.foobar.com-dan gələn kukilər işlənəcəkdir. Digər saytın kukiləri "
+#~ "isə rədd ediləcək. Bu saytın sizin hər dəfəki fəaliyyətinizə görə profil "
+#~ "yaratçaq şansını azaldır.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Yalnız orijinal serverdən kukiləri qəb&ul et"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Cari sessiyanın sonunda başa çatması üçün nəzərdə tutulmuş müvəqqəti "
+#~ "kukiləri avtomatik olaraq qəbul edin. Belə kukilər kompüterinizin sabit "
+#~ "diskində və ya saxlama cihazında saxlanılmayacaqdır. Bunun əvəzinə, "
+#~ "onlardan istifadə edən bütün tətbiqləri (məsələn, brauzerinizi) "
+#~ "bağladığınız zaman kukilər  silinəcək. </p><p><u>Qeyd</u> Bu seçimi "
+#~ "seçsəniz, həm də sessiya kukiləri üçün sayt xüsusi kuki qaydalarını ləğv "
+#~ "edir.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Sesiyanın kukilərini &avtomatik qəbul et"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Uzaqdakı komputerdən alınan kukilərin necə idarə olunacağını "
+#~ "müəyyənləşdirir:\n"
+#~ "<ul>\n"
+#~ "<li><b>Soruşmaq</b> hər dəfə server kuki faylını qurmağa çalışdığı zaman "
+#~ "soruşmaq.</li>\n"
+#~ "<li><b>İcazə vermək</b> susmaya görə bütün kuki faylları qəbul edilir.</"
+#~ "li>\n"
+#~ "<li><b>Seansın sonunadək icazə vermək</b> Kuki faylları qəbul edilir, "
+#~ "ancaq seansın sonunda fəaliyyətini dayandırır.</li>\n"
+#~ "<li><b>Rədd etmək</b>heç bir kuki faylı qəbul edilmir.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>QEYD:</u>xüsusi demonlar üçün aşağıda ayarlanması mümkün olan qaydalar "
+#~ "susmaya görə olan qaydalardan üstün sayılır.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Standart Qayda"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Bütün kukiləri qəbu&l et"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Sesiya başa çatanadək &qəbul et"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "Təsdiqləmək &sorğusu"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "Bü&tün kukiləri rədd et"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "yeni qaydanı qəbul etmək üçün sadəcə <b>Əlavə Et</b> düyməsinə vur və "
+#~ "vacib məlumatları daxil edin. Mövcud olan qaydanı dəyişmək üçün, "
+#~ "<b>Dəyiş</b> düyməsindən istifadə et və yeni qaydanı qayda dialoqu "
+#~ "pəncərəsindən seç. <b>Sil</b> düyməsinə vuraraq göstərilən demon üçün "
+#~ "qaydanı silin. Əgər <b>Hamısını Sil</b> deyməsinə vursanız domen üçün "
+#~ "bütün xüsusi qaydalar silinəcək.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Hər Sayt üçün Qayda"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Demonların interaktiv axtarışı"
+
+#~ msgid "Search..."
+#~ msgstr "Axtar..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Xüsusi kuki qaydaları qurduğunuz saytların siyahısı. .Xüsusi qaydalar "
+#~ "saytlar üçün standart qaydalardan üstündür.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Domen"
+
+#~ msgid "Policy"
+#~ msgstr "Qayda"
+
+#~ msgid "Accept"
+#~ msgstr "Qəbul et"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Sesiya üçün qəbul Et"
+
+#~ msgid "Reject"
+#~ msgstr "Rədd Et"
+
+#~ msgid "Ask"
+#~ msgstr "Soruş"
+
+#~ msgid "Do Not Know"
+#~ msgstr "Naməlum"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Bu qaydanın qəbul etdiyi host vı domeni dail edin, məs. <b>www.kde.org</"
+#~ "b> və ya <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Saytın adı:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Host və domen adını daxil edin, məs. .kde.org, this policy applies to."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "İstıdiyiniz qaydanı seçin:\n"
+#~ "<ul>\n"
+#~ "<li><b>Qəbul et</b> - Bu sayta kukiləri təyin etməyə icazə verin</li>\n"
+#~ "<li><b>Sesiyanın sonunadək qəbul edin</b> - Bu sayta kukiləri təyin "
+#~ "etməyə icazə verin, ancaq bunlar sesiyanın sonunadək etibarlı olacaq.</"
+#~ "li>\n"
+#~ "<li><b>Rədd et</b> - kukiləri bu saytdan qəbul etməyin</li>\n"
+#~ "<li><b>Sorğu</b> - Bu saytdan kuki aldıqda soruşun</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Qayda:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Sesiyanın sonunadək qəbul edin"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2022-08-28 20:43-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -26,539 +26,6 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 "X-Generator: Lokalize 22.04.1\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "ポリシー(&P)"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "管理(&M)"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "D-Bus コミュニケーションエラー"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "指定されたすべてのクッキーを削除できません。"
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "指定されたクッキーを削除できません。"
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "情報の参照に失敗"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "コンピュータに保存されているクッキーについての情報を取得できません。"
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "セッション終了"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "はい"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "検索"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "ドメインやホストを対話的に検索"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "サイト"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "クッキー名"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "削除(&E)"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "すべて削除(&L)"
-
-# ACCELERATOR changed by translator
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, fuzzy, kde-format
-#| msgid "Change &Policy..."
-msgid "Configure &Policy..."
-msgstr "ポリシーを変更(&G)..."
-
-# ACCELERATOR changed by translator
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "リストを再読み込み(&Y)"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "詳細"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "名前:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "値:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "ドメイン:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "パス:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "有効期限:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "安全性:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "クッキーポリシーを変更"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "新しいクッキーポリシー"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt><center><b>%1</b></center> には既にポリシーが設定されています。新しいもの"
-"に置き換えますか？</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "重複ポリシー"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "置換"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"クッキーハンドラサービスと通信できません。\n"
-"すべての変更はサービスを再起動するまで反映されません。"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>クッキーのサポートを有効にします。通常はクッキーのサポートを有効にしておい"
-"て、必要に応じてカスタマイズするとよいでしょう。</p>\n"
-"<p>クッキーのサポートを無効にすると、多くのサイトで自由に閲覧できなくなりま"
-"す。</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "クッキーを有効にする(&K)"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"いわゆるサードパーティのクッキーを拒否します。サードパーティのクッキーとは、"
-"あなたが現在見ているサイト以外から送られてくるクッキーです。例えばこのオプ"
-"ションをチェックして www.foobar.com を見ているときは、www.foobar.com からの"
-"クッキーのみをあなたの設定に従って処理します。他のサイトからのクッキーは拒否"
-"します。これによりサイト運営者があなたのブラウジング情報を集める機会を減らす"
-"ことができます。\n"
-"</qt>"
-
-# ACCELERATOR changed by translator
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "元のサーバからのクッキーのみ受け入れる(&U)"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "<p>Automatically accept temporary cookies meant to expire at the end of "
-#| "the current session. Such cookies will not be stored in your computer's "
-#| "hard drive or storage device. Instead, they are deleted when you close "
-#| "all applications (e.g. your browser) that use them.</p><p>\n"
-#| "<u>NOTE:</u> Checking this option along with the next one will override "
-#| "your default as well as site specific cookie policies. However, doing so "
-#| "also increases your privacy since all cookies will be removed when the "
-#| "current session ends.</p>\n"
-#| "</qt>"
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<qt>\n"
-"<p>セッションの終了と同時に期限切れになるセッションクッキーを自動的に受け入れ"
-"ます。このようなクッキーは、コンピュータのハードディスクや他のストレージデバ"
-"イスに保存されることはありません。セッションクッキーはそれらのクッキーを使用"
-"しているブラウザなどのアプリケーションを終了すると消滅します。</p>\n"
-"<p><note>このオプションを次のオプションと一緒に選択すると、サイトごとに設定し"
-"たポリシーだけでなくデフォルトのポリシーも無効になります。しかし、セッション"
-"終了時にすべてのクッキーが削除されるので、プライバシーはより保護されます。</"
-"note></p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "セッションクッキーを自動的に受け入れる(&Y)"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Determines how cookies received from a remote machine will be handled: \n"
-#| "<ul>\n"
-#| "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
-#| "server wants to set a cookie.</li>\n"
-#| "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
-#| "</li>\n"
-#| "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
-#| "receives.</li>\n"
-#| "</ul><p>\n"
-#| "<u>NOTE:</u> Domain specific policies, which can be set below, always "
-#| "take precedence over the default policy.</p>\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"リモートマシンから受け取ったクッキーをどのように扱うかを決定します。<ul>\n"
-"<li>確認する: サーバがクッキーを送ってくるたびに確認を求めます。</li>\n"
-"<li>許可する: 確認せずにクッキーを受け入れます。</li>\n"
-"<li>拒否する: すべてのクッキーを拒否します。</li>\n"
-"</ul>\n"
-"<p><note>ドメインごとに設定されたサイトポリシーは、常にデフォルトのポリシーよ"
-"り優先されます。</note></p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "デフォルトのポリシー"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "すべてのクッキーを受け入れる(&T)"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "セッション終了まで許可"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "確認を求める(&F)"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "すべてのクッキーを拒否する(&J)"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"新しいポリシーを追加するには「新規」ボタンをクリックして、ダイアログボックス"
-"に必要な情報を入力してください。既存のポリシーを変更するには「変更」ボタンを"
-"クリックし、ダイアログで新しいポリシーを選んでください。「削除」ボタンをク"
-"リックすると、選択されたポリシーを削除します。削除した場合、そのドメインに対"
-"してはデフォルトのポリシーが適用されます。「すべて削除」はサイト別のポリシー"
-"をすべて削除します。\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "サイトポリシー"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "ドメインを対話的に検索"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "検索..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"個別にクッキーポリシーを指定したサイトのリストです。これらのサイトでは、デ"
-"フォルトのポリシーを無視して、それぞれのサイトポリシーが適用されます。\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "ドメイン"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "ポリシー"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "新規(&N)..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "変更(&G)..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "許可する"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-#, fuzzy
-#| msgid "End of Session"
-msgid "Accept For Session"
-msgstr "セッションの最後"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "拒否する"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "確認する"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-#, fuzzy
-#| msgid "Do Not Store"
-msgid "Do Not Know"
-msgstr "保存しない"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"ポリシーを適用するホストあるいはドメインを <code>www.kde.org</code> または "
-"<code>.kde.org</code> のように入力してください。\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "サイト名:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Select the desired policy:\n"
-#| "<ul>\n"
-#| "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-#| "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-#| "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-#| "</ul>\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"適用するポリシーを選んでください:<ul>\n"
-"<li>許可する: このサイトからのすべてのクッキーを受け入れます。</li>\n"
-"<li>拒否する: このサイトからのすべてのクッキーを拒否します。</li>\n"
-"<li>確認する: このサイトからクッキーが来たら確認を求めます。</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "ポリシー:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, fuzzy, kde-format
-#| msgid "End of session"
-msgid "Accept until end of session"
-msgstr "セッション終了"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1436,12 +903,24 @@ msgstr "ショートカットを検索"
 msgid "Add a new Web search keyword"
 msgstr "新しいウェブショートカットを追加する"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "新規(&N)..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, fuzzy, kde-format
 #| msgid "Add a new Web shortcut"
 msgid "Modify the highlighted Web search keyword"
 msgstr "新しいウェブショートカットを追加する"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "変更(&G)..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1694,6 +1173,365 @@ msgstr "文字セット(&T):"
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "インターレースモード"
+
+#~ msgid "&Policy"
+#~ msgstr "ポリシー(&P)"
+
+#~ msgid "&Management"
+#~ msgstr "管理(&M)"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "D-Bus コミュニケーションエラー"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "指定されたすべてのクッキーを削除できません。"
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "指定されたクッキーを削除できません。"
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "情報の参照に失敗"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "コンピュータに保存されているクッキーについての情報を取得できません。"
+
+#~ msgid "End of session"
+#~ msgstr "セッション終了"
+
+#~ msgid "Yes"
+#~ msgstr "はい"
+
+#~ msgid "Search"
+#~ msgstr "検索"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "ドメインやホストを対話的に検索"
+
+#~ msgid "Site"
+#~ msgstr "サイト"
+
+#~ msgid "Cookie Name"
+#~ msgstr "クッキー名"
+
+#~ msgid "D&elete"
+#~ msgstr "削除(&E)"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "すべて削除(&L)"
+
+# ACCELERATOR changed by translator
+#, fuzzy
+#~| msgid "Change &Policy..."
+#~ msgid "Configure &Policy..."
+#~ msgstr "ポリシーを変更(&G)..."
+
+# ACCELERATOR changed by translator
+#~ msgid "&Reload List"
+#~ msgstr "リストを再読み込み(&Y)"
+
+#~ msgid "Details"
+#~ msgstr "詳細"
+
+#~ msgid "Name:"
+#~ msgstr "名前:"
+
+#~ msgid "Value:"
+#~ msgstr "値:"
+
+#~ msgid "Domain:"
+#~ msgstr "ドメイン:"
+
+#~ msgid "Path:"
+#~ msgstr "パス:"
+
+#~ msgid "Expires:"
+#~ msgstr "有効期限:"
+
+#~ msgid "Secure:"
+#~ msgstr "安全性:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "クッキーポリシーを変更"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "新しいクッキーポリシー"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt><center><b>%1</b></center> には既にポリシーが設定されています。新しい"
+#~ "ものに置き換えますか？</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "重複ポリシー"
+
+#~ msgid "Replace"
+#~ msgstr "置換"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "クッキーハンドラサービスと通信できません。\n"
+#~ "すべての変更はサービスを再起動するまで反映されません。"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>クッキーのサポートを有効にします。通常はクッキーのサポートを有効にして"
+#~ "おいて、必要に応じてカスタマイズするとよいでしょう。</p>\n"
+#~ "<p>クッキーのサポートを無効にすると、多くのサイトで自由に閲覧できなくなり"
+#~ "ます。</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "クッキーを有効にする(&K)"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "いわゆるサードパーティのクッキーを拒否します。サードパーティのクッキーと"
+#~ "は、あなたが現在見ているサイト以外から送られてくるクッキーです。例えばこの"
+#~ "オプションをチェックして www.foobar.com を見ているときは、www.foobar.com "
+#~ "からのクッキーのみをあなたの設定に従って処理します。他のサイトからのクッ"
+#~ "キーは拒否します。これによりサイト運営者があなたのブラウジング情報を集める"
+#~ "機会を減らすことができます。\n"
+#~ "</qt>"
+
+# ACCELERATOR changed by translator
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "元のサーバからのクッキーのみ受け入れる(&U)"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "<p>Automatically accept temporary cookies meant to expire at the end of "
+#~| "the current session. Such cookies will not be stored in your computer's "
+#~| "hard drive or storage device. Instead, they are deleted when you close "
+#~| "all applications (e.g. your browser) that use them.</p><p>\n"
+#~| "<u>NOTE:</u> Checking this option along with the next one will override "
+#~| "your default as well as site specific cookie policies. However, doing so "
+#~| "also increases your privacy since all cookies will be removed when the "
+#~| "current session ends.</p>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>セッションの終了と同時に期限切れになるセッションクッキーを自動的に受け"
+#~ "入れます。このようなクッキーは、コンピュータのハードディスクや他のストレー"
+#~ "ジデバイスに保存されることはありません。セッションクッキーはそれらのクッ"
+#~ "キーを使用しているブラウザなどのアプリケーションを終了すると消滅します。</"
+#~ "p>\n"
+#~ "<p><note>このオプションを次のオプションと一緒に選択すると、サイトごとに設"
+#~ "定したポリシーだけでなくデフォルトのポリシーも無効になります。しかし、セッ"
+#~ "ション終了時にすべてのクッキーが削除されるので、プライバシーはより保護され"
+#~ "ます。</note></p>\n"
+#~ "</qt>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "セッションクッキーを自動的に受け入れる(&Y)"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Determines how cookies received from a remote machine will be handled: \n"
+#~| "<ul>\n"
+#~| "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~| "server wants to set a cookie.</li>\n"
+#~| "<li><b>Accept</b> will cause cookies to be accepted without prompting "
+#~| "you.</li>\n"
+#~| "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~| "receives.</li>\n"
+#~| "</ul><p>\n"
+#~| "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~| "take precedence over the default policy.</p>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "リモートマシンから受け取ったクッキーをどのように扱うかを決定します。<ul>\n"
+#~ "<li>確認する: サーバがクッキーを送ってくるたびに確認を求めます。</li>\n"
+#~ "<li>許可する: 確認せずにクッキーを受け入れます。</li>\n"
+#~ "<li>拒否する: すべてのクッキーを拒否します。</li>\n"
+#~ "</ul>\n"
+#~ "<p><note>ドメインごとに設定されたサイトポリシーは、常にデフォルトのポリ"
+#~ "シーより優先されます。</note></p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "デフォルトのポリシー"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "すべてのクッキーを受け入れる(&T)"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "セッション終了まで許可"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "確認を求める(&F)"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "すべてのクッキーを拒否する(&J)"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "新しいポリシーを追加するには「新規」ボタンをクリックして、ダイアログボック"
+#~ "スに必要な情報を入力してください。既存のポリシーを変更するには「変更」ボタ"
+#~ "ンをクリックし、ダイアログで新しいポリシーを選んでください。「削除」ボタン"
+#~ "をクリックすると、選択されたポリシーを削除します。削除した場合、そのドメイ"
+#~ "ンに対してはデフォルトのポリシーが適用されます。「すべて削除」はサイト別の"
+#~ "ポリシーをすべて削除します。\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "サイトポリシー"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "ドメインを対話的に検索"
+
+#~ msgid "Search..."
+#~ msgstr "検索..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "個別にクッキーポリシーを指定したサイトのリストです。これらのサイトでは、デ"
+#~ "フォルトのポリシーを無視して、それぞれのサイトポリシーが適用されます。\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "ドメイン"
+
+#~ msgid "Policy"
+#~ msgstr "ポリシー"
+
+#~ msgid "Accept"
+#~ msgstr "許可する"
+
+#, fuzzy
+#~| msgid "End of Session"
+#~ msgid "Accept For Session"
+#~ msgstr "セッションの最後"
+
+#~ msgid "Reject"
+#~ msgstr "拒否する"
+
+#~ msgid "Ask"
+#~ msgstr "確認する"
+
+#, fuzzy
+#~| msgid "Do Not Store"
+#~ msgid "Do Not Know"
+#~ msgstr "保存しない"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "ポリシーを適用するホストあるいはドメインを <code>www.kde.org</code> また"
+#~ "は <code>.kde.org</code> のように入力してください。\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "サイト名:"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Select the desired policy:\n"
+#~| "<ul>\n"
+#~| "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~| "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~| "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~| "</ul>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "適用するポリシーを選んでください:<ul>\n"
+#~ "<li>許可する: このサイトからのすべてのクッキーを受け入れます。</li>\n"
+#~ "<li>拒否する: このサイトからのすべてのクッキーを拒否します。</li>\n"
+#~ "<li>確認する: このサイトからクッキーが来たら確認を求めます。</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "ポリシー:"
+
+#, fuzzy
+#~| msgid "End of session"
+#~ msgid "Accept until end of session"
+#~ msgstr "セッション終了"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

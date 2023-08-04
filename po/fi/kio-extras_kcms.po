@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2023-03-14 21:58+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -29,502 +29,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 23.04.1\n"
 "X-POT-Import-Date: 2013-01-13 20:43:21+0000\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Käytänteet"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Hallinta"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "D-Bus-viestintävirhe"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Kaikkia evästeitä ei saatu poistetuksi, kuten pyydettiin."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Evästeitä ei voitu poistaa kuten pyydettiin."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Tietojen hakuvirhe"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "Ei voitu hakea tietoja tietokoneella sijaitsevista evästeistä."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Istunnon päätös"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Kyllä"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Etsi"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Etsi verkkoalueita ja koneita vuorovaikutteisesti"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Sivusto"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Evästeen nimi"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "&Poista"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Poista k&aikki"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Muokkaa &käytännettä…"
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Lataa luettelo uudelleen"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Yksityiskohdat"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Nimi:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Arvo:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Verkkoalue:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Polku:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Vanhenee:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "On turvallinen:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Muuta evästekäytännettä"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Uusi evästekäytänne"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Palvelimelle <center><b>%1</b></center> on jo käytänne. Haluatko korvata "
-"sen?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Päällekkäinen asetus"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Korvaa"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Evästepalvelun kanssa ei voitu viestiä.\n"
-"Tehdyt muutokset tulevat käyttöön vasta, kun palvelu on käynnistetty "
-"uudelleen."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Tämä asetus ottaa evästetuen käyttöön. Tavallisesti evästetuen tulisi "
-"olla olla käytössä. Voit muokata asetuksia siten, että yksityisyytesi säilyy."
-"</p><p>\n"
-"Huomaa, että evästetuen poistaminen käytöstä saattaa estää joidenkin "
-"verkkosivujen käytön.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "&Käytä evästeitä"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Valitse tämä kohta, jos haluat jättää hyväksymättä kaikki evästeet, jotka "
-"tulevat muilta palvelimilta kuin pyytämäsi sivu. Jos olet esimerkiksi "
-"osoitteessa <b>www.jotakin.com</b>, vain osoitteesta <b>www.jotakin.com</b> "
-"tulevat evästeet hyväksytään. Kaikki muut evästeet hylätään automaattisesti. "
-"Tämä asetus estää verkkopalvelinten ylläpitäjiä tekemästä profiilia "
-"sivuista, joilla vierailet.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Hy&väksy evästeet vain alkuperäiseltä palvelimelta"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Hyväksy automaattisesti väliaikaiset evästeet, jotka vanhenevat istunnon "
-"lopuksi. Näitä evästeitä ei tallenneta tietokoneesi kiintolevylle vaan ne "
-"poistetaan sulkiessasi sovelluksen (esim. selaimen), jossa niitä käytät.</"
-"p><p><u>HUOM!</u> Tämän asetuksen valinta ohittaa oletuksesi samoin kuin "
-"sivustokohtaiset istuntoevästeiden käytänteet.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Hyväksy istunto&evästeet automaattisesti"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Määrittää, kuinka etäpalvelimelta vastaanottamiasi evästeitä käsitellään:\n"
-"<ul>\n"
-"<li><b>Kysy</b> tarkoittaa, että KDE kysyy aina vahvistuksen palvelimen "
-"halutessa asettaa evästeen.</li>\n"
-"<li><b>Hyväksy</b> tarkoittaa, että evästeet hyväksytään kysymättä.</li> \n"
-"<li><b>Hyväksy istunnon ajaksi</b> hyväksyy evästeet, mutta ne vanhenevat "
-"istunnon lopuksi.</li>\n"
-"<li><b>Hylkää</b> estää evästeiden asettamisen kokonaan.</li>\n"
-"</ul>\n"
-"<p>\n"
-"<u>HUOM!</u> Alla määritettävät verkkoaluekohtaiset käytänteet ohittavat "
-"oletukset.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Oletuskäytänne"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "&Hyväksy kaikki evästeet"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Hyväksy istunnon &ajaksi"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "&Kysy vahvistus"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "H&ylkää kaikki evästeet"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Tässä voit määrittää evästeiden asetuksia valitsemillesi verkkoalueille. "
-"Lisää uusi käytänne painamalla <b>Lisää</b>-painiketta. Muuttaaksesi "
-"olemassa olevaa käytännettä napsauta <b>Muokkaa</b>-painiketta ja valitse "
-"käytänne ikkunasta. Napsauttamalla <b>Poista</b>-painiketta voit tuhota "
-"valitun alueen erityiskäytänteet, minkä jälkeen asetetulle verkkoalueelle "
-"käytetään oletuskäytänteitä. <b>Poista kaikki</b> poistaa kaikki "
-"verkkoaluekohtaiset käytänteet.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Sivustokäytänne"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Etsi verkkoalueita vuorovaikutteisesti"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Etsi…"
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Luettelo verkkoalueista, joille on määritetty oma evästekäytänne. Asetukset "
-"ohittavat oletuskäytänteet.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Verkkoalue"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Käytänteet"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Uusi…"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "&Muuta…"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Hyväksy"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Hyväksy istunnon ajaksi"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Hylkää"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Kysy"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "En tiedä"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Syötä palvelimen tai verkkoalueen nimi, jota käytänne koskee, esim <i>www."
-"kde.org</i> tai <i>.kde.org</i>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Sivuston nimi:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr "Anna sen koneen tai alueen nimi, jota käytänne koskee, esim. .kde.org."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Valitse haluamasi käytänne:<ul>\n"
-"<li><b>Hyväksy</b> – sallii evästeet tältä sivustolta</li> \n"
-"<li><b>Hyväksy istunnon ajaksi</b> – sallii evästeet tältä sivustolta, mutta "
-"ne vanhenevat istunnon lopuksi.</li> \n"
-"<li><b>Hylkää</b> – tältä sivustolta ei oteta vastaan evästeitä</li> \n"
-"<li><b>Kysy</b> – varmista, hyväksytäänkö evästeet tältä sivustolta.</li> \n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Käytänne:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Hyväksy istunnon ajaksi"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1383,11 +887,23 @@ msgstr "Etsi verkkohaun hakusanoja"
 msgid "Add a new Web search keyword"
 msgstr "Lisää uusi verkkohaun hakusana"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Uusi…"
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Muuta korostettua verkkohaun hakusanaa"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&Muuta…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1648,6 +1164,329 @@ msgstr "&Merkistö:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Aseta kyselyn paikanvaraus"
+
+#~ msgid "&Policy"
+#~ msgstr "&Käytänteet"
+
+#~ msgid "&Management"
+#~ msgstr "&Hallinta"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "D-Bus-viestintävirhe"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Kaikkia evästeitä ei saatu poistetuksi, kuten pyydettiin."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Evästeitä ei voitu poistaa kuten pyydettiin."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Tietojen hakuvirhe"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr "Ei voitu hakea tietoja tietokoneella sijaitsevista evästeistä."
+
+#~ msgid "End of session"
+#~ msgstr "Istunnon päätös"
+
+#~ msgid "Yes"
+#~ msgstr "Kyllä"
+
+#~ msgid "Search"
+#~ msgstr "Etsi"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Etsi verkkoalueita ja koneita vuorovaikutteisesti"
+
+#~ msgid "Site"
+#~ msgstr "Sivusto"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Evästeen nimi"
+
+#~ msgid "D&elete"
+#~ msgstr "&Poista"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Poista k&aikki"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Muokkaa &käytännettä…"
+
+#~ msgid "&Reload List"
+#~ msgstr "&Lataa luettelo uudelleen"
+
+#~ msgid "Details"
+#~ msgstr "Yksityiskohdat"
+
+#~ msgid "Name:"
+#~ msgstr "Nimi:"
+
+#~ msgid "Value:"
+#~ msgstr "Arvo:"
+
+#~ msgid "Domain:"
+#~ msgstr "Verkkoalue:"
+
+#~ msgid "Path:"
+#~ msgstr "Polku:"
+
+#~ msgid "Expires:"
+#~ msgstr "Vanhenee:"
+
+#~ msgid "Secure:"
+#~ msgstr "On turvallinen:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Muuta evästekäytännettä"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Uusi evästekäytänne"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Palvelimelle <center><b>%1</b></center> on jo käytänne. Haluatko "
+#~ "korvata sen?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Päällekkäinen asetus"
+
+#~ msgid "Replace"
+#~ msgstr "Korvaa"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Evästepalvelun kanssa ei voitu viestiä.\n"
+#~ "Tehdyt muutokset tulevat käyttöön vasta, kun palvelu on käynnistetty "
+#~ "uudelleen."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Tämä asetus ottaa evästetuen käyttöön. Tavallisesti evästetuen tulisi "
+#~ "olla olla käytössä. Voit muokata asetuksia siten, että yksityisyytesi "
+#~ "säilyy.</p><p>\n"
+#~ "Huomaa, että evästetuen poistaminen käytöstä saattaa estää joidenkin "
+#~ "verkkosivujen käytön.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "&Käytä evästeitä"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Valitse tämä kohta, jos haluat jättää hyväksymättä kaikki evästeet, jotka "
+#~ "tulevat muilta palvelimilta kuin pyytämäsi sivu. Jos olet esimerkiksi "
+#~ "osoitteessa <b>www.jotakin.com</b>, vain osoitteesta <b>www.jotakin.com</"
+#~ "b> tulevat evästeet hyväksytään. Kaikki muut evästeet hylätään "
+#~ "automaattisesti. Tämä asetus estää verkkopalvelinten ylläpitäjiä "
+#~ "tekemästä profiilia sivuista, joilla vierailet.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Hy&väksy evästeet vain alkuperäiseltä palvelimelta"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Hyväksy automaattisesti väliaikaiset evästeet, jotka vanhenevat istunnon "
+#~ "lopuksi. Näitä evästeitä ei tallenneta tietokoneesi kiintolevylle vaan ne "
+#~ "poistetaan sulkiessasi sovelluksen (esim. selaimen), jossa niitä käytät.</"
+#~ "p><p><u>HUOM!</u> Tämän asetuksen valinta ohittaa oletuksesi samoin kuin "
+#~ "sivustokohtaiset istuntoevästeiden käytänteet.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Hyväksy istunto&evästeet automaattisesti"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Määrittää, kuinka etäpalvelimelta vastaanottamiasi evästeitä "
+#~ "käsitellään:\n"
+#~ "<ul>\n"
+#~ "<li><b>Kysy</b> tarkoittaa, että KDE kysyy aina vahvistuksen palvelimen "
+#~ "halutessa asettaa evästeen.</li>\n"
+#~ "<li><b>Hyväksy</b> tarkoittaa, että evästeet hyväksytään kysymättä.</"
+#~ "li> \n"
+#~ "<li><b>Hyväksy istunnon ajaksi</b> hyväksyy evästeet, mutta ne vanhenevat "
+#~ "istunnon lopuksi.</li>\n"
+#~ "<li><b>Hylkää</b> estää evästeiden asettamisen kokonaan.</li>\n"
+#~ "</ul>\n"
+#~ "<p>\n"
+#~ "<u>HUOM!</u> Alla määritettävät verkkoaluekohtaiset käytänteet ohittavat "
+#~ "oletukset.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Oletuskäytänne"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "&Hyväksy kaikki evästeet"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Hyväksy istunnon &ajaksi"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "&Kysy vahvistus"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "H&ylkää kaikki evästeet"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Tässä voit määrittää evästeiden asetuksia valitsemillesi verkkoalueille. "
+#~ "Lisää uusi käytänne painamalla <b>Lisää</b>-painiketta. Muuttaaksesi "
+#~ "olemassa olevaa käytännettä napsauta <b>Muokkaa</b>-painiketta ja valitse "
+#~ "käytänne ikkunasta. Napsauttamalla <b>Poista</b>-painiketta voit tuhota "
+#~ "valitun alueen erityiskäytänteet, minkä jälkeen asetetulle verkkoalueelle "
+#~ "käytetään oletuskäytänteitä. <b>Poista kaikki</b> poistaa kaikki "
+#~ "verkkoaluekohtaiset käytänteet.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Sivustokäytänne"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Etsi verkkoalueita vuorovaikutteisesti"
+
+#~ msgid "Search..."
+#~ msgstr "Etsi…"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Luettelo verkkoalueista, joille on määritetty oma evästekäytänne. "
+#~ "Asetukset ohittavat oletuskäytänteet.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Verkkoalue"
+
+#~ msgid "Policy"
+#~ msgstr "Käytänteet"
+
+#~ msgid "Accept"
+#~ msgstr "Hyväksy"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Hyväksy istunnon ajaksi"
+
+#~ msgid "Reject"
+#~ msgstr "Hylkää"
+
+#~ msgid "Ask"
+#~ msgstr "Kysy"
+
+#~ msgid "Do Not Know"
+#~ msgstr "En tiedä"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Syötä palvelimen tai verkkoalueen nimi, jota käytänne koskee, esim <i>www."
+#~ "kde.org</i> tai <i>.kde.org</i>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Sivuston nimi:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Anna sen koneen tai alueen nimi, jota käytänne koskee, esim. .kde.org."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Valitse haluamasi käytänne:<ul>\n"
+#~ "<li><b>Hyväksy</b> – sallii evästeet tältä sivustolta</li> \n"
+#~ "<li><b>Hyväksy istunnon ajaksi</b> – sallii evästeet tältä sivustolta, "
+#~ "mutta ne vanhenevat istunnon lopuksi.</li> \n"
+#~ "<li><b>Hylkää</b> – tältä sivustolta ei oteta vastaan evästeitä</li> \n"
+#~ "<li><b>Kysy</b> – varmista, hyväksytäänkö evästeet tältä sivustolta.</"
+#~ "li> \n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Käytänne:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Hyväksy istunnon ajaksi"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2019-12-03 17:51+0200\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -22,539 +22,6 @@ msgstr ""
 "X-Generator: Lokalize 19.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Noteikumi"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "Pā&rvaldība"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "D-Bus sakaru kļūda"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Neizdevās izdzēst visas sīkdatnes."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Neizdevās izdzēst sīkdatnes."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Informācijas uzmeklēšanas kļūda"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "Neizdevās iegūt informāciju par jūsu datorā esošajām sīkdatnēm."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Sesijas beigas"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Jā"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Meklēt"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Interaktīvi meklēt domēnus un resursdatorus"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Vietne"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Sīkdatnes nosaukums"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "&Dzēst"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Dzēst v&isu"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, fuzzy, kde-format
-#| msgid "Change &Policy..."
-msgid "Configure &Policy..."
-msgstr "Mainīt &noteikumus..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "Pā&rlādēt sarakstu"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Detaļas"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Nosaukums:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Vērtība:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Domēns:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Ceļš:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Derīgs līdz:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Drošs:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Mainīt sīkdatņu noteikumus"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Jauns sīkdatņu noteikums"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Jau eksistē noteikumi priekš <center><b>%1</b></center> Vai jūs vēlaties "
-"tos aizvietot?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Dublēt noteikumus"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Aizvietot"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Neizdevās sazināties ar sīkdatņu apstrādes servisu.\n"
-"Jebkuras veiktās izmaiņas nestāsies spēkā līdz servisa pārstartēšanai."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Ieslēdz sīkdatņu atblastu. Parasti jūs vēlēsieties to ieslēgtu un "
-"pielāgosiet savām privātuma vajadzībām.</p><p>\n"
-"Ņemiet vērā, ka, atslēdzot sīkdatņu atbalstu, daudzas tīmekļa lapas nebūs "
-"lietojamas.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Atļaut sī&kdatnes"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Noraidīt tā sauktās trešo pušu sīkdatnes. Tās ir sīkdatnes, ko uzstāda cits "
-"serveris, ne tas no kura ielādēta apskatāmā lapa. Piemēram, ja jūs esat "
-"atvēris <b>www.foobar.com</b> un šī iespēja ir ieslēgta, tiks atļautas tikai "
-"sīkdatnes no www.foobar.com. Sīkdatnes no citām lapām tiks noraidītas. Tas "
-"samazina iespēju, ka lapu uzturētāji var savākt informāciju par jūsu "
-"ikdienas tīmekļa lietošanas ieradumiem.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "&Pieņemt sīkdatnes tikai no to izcelsmes servera"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "<p>Automatically accept temporary cookies meant to expire at the end of "
-#| "the current session. Such cookies will not be stored in your computer's "
-#| "hard drive or storage device. Instead, they are deleted when you close "
-#| "all applications (e.g. your browser) that use them.</p><p>\n"
-#| "<u>NOTE:</u> Checking this option along with the next one will override "
-#| "your default as well as site specific cookie policies. However, doing so "
-#| "also increases your privacy since all cookies will be removed when the "
-#| "current session ends.</p>\n"
-#| "</qt>"
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<qt>\n"
-"<p>Atuomātiski pieņemt sīkdatnes, kuru saglabāšanas teriņš ir aktīvās "
-"sesijas beigas. Šādas sīkdatnes netiek glabātas uz jūsu datora cietā diska. "
-"Tā vietā tās tiek izdzēstas, tilkīdz jūs aizverat visas sīkdatnes lietojošās "
-"programmas (piem. jūsu pārlūku).</p><p>\n"
-"<u>PIEZĪME:</u> Ieslēdzot šo iespēju kopā ar nākamo iespēju, mainīs dan "
-"noklusēto, gan vietnes specifiskos noteikumus. Bet šāda konfigurācija "
-"palielina jūsu privātumu, jo, beidzoties sesijai, visas sīkdatnes tiek "
-"izdzēstas.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Automātiski pieņemt &sesijas sīkdatnes"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Determines how cookies received from a remote machine will be handled: \n"
-#| "<ul>\n"
-#| "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
-#| "server wants to set a cookie.</li>\n"
-#| "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
-#| "</li>\n"
-#| "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
-#| "receives.</li>\n"
-#| "</ul><p>\n"
-#| "<u>NOTE:</u> Domain specific policies, which can be set below, always "
-#| "take precedence over the default policy.</p>\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>Noklusējuma noteikumi nosaka veidu, kā tiks apstrādātas sīkdatnes, kas "
-"nosūtītas no attālinātas datora, kurš nav piesaistīta specifiskiem "
-"noteikumiem (skatīt zemāk): <ul><li><b>Pieņemt</b> liks klusējot pieņemt "
-"visas sīkdatnes, bez brīdinājuma </li><li><b>Atmest</b> liks cookiejar "
-"atmest visas saņemtās sīkdatnes</li><li><b>Jautāt</b> liks KDE prasīt jums "
-"apstiprinājumu katru reizi, kad serveris vēlēsies saglabāt sīkdatni</li></"
-"ul><p>\n"
-"<u>PIEZĪME:</u> Domēna specifikie noteikumi, kurus var konfigurēt zemāk, "
-"vienmēr ir pārākas par noklusētajiem noteikumiem.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Noklusējuma noteikumi"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Pieņemt &visas sīkdatnes"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, fuzzy, kde-format
-#| msgid "End of session"
-msgid "Accept &until end of session"
-msgstr "Sesijas beigas"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "Pra&sīt apstiprinājumu"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "&Noraidīt visas sīkdatnes"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Lai pievienotu jaunu noteikumu, vienkārši nospiediet <b>Pievienot...</b> "
-"pogu un norādīet nepieciešamo informāciju . Lai mainītu esošu noteikumu, "
-"nospiediet uz <b>Mainīt...</b> pogas un izvēlieties jaunus noteikumus no "
-"noteikumu loga. Nospiežot <b>Dzēst</b> pogu izvēlētie noteikumi tiks noņemti "
-"un šim domēnam tiks piemēroti noklusētie noteikumi.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Lapas noteikumi"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Interaktīvi meklēt domēnus"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Meklēt..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Vietņu saraksts, kurām iestatīti īpaši sīkdatņu noteikumi. Šī vietnēm tiek "
-"lietoti pielāgoti noteikumi noklusēto vietā.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Domēns"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Noteikumi"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Jauns..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "&Mainīt..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Pieņemt"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-#, fuzzy
-#| msgid "End of Session"
-msgid "Accept For Session"
-msgstr "Sesijas beigas"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Noraidīt"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Jautāt"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-#, fuzzy
-#| msgid "Do Not Store"
-msgid "Do Not Know"
-msgstr "Neglabāt"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>Ievadiet resursdatora vai domēna nosaukumu, uz kuru šie noteikumi "
-"attiecas. Piem. <b>www.kde.org</b> vai <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Vietnes nosaukums:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"Ievadiet resursdatora vai domēna nosaukumu, piem., kde.org, uz kuru šī "
-"politika attiecas."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Select the desired policy:\n"
-#| "<ul>\n"
-#| "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-#| "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-#| "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-#| "</ul>\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Izvēlieties vēlamos noteikumus:\n"
-"<ul>\n"
-"<li><b>Pieņemt</b> - Atļaut šai vietai atsūtīt sīkdatni</li>\n"
-"<li><b>Noraidīt</b> - Noraidīt visas šīs vietas sūtītās sīkdatnes</li>\n"
-"<li><b>Jautāt</b> - Jautāt par katru no šīs vietas saņemto sīkdatni</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Politika:7"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, fuzzy, kde-format
-#| msgid "End of session"
-msgid "Accept until end of session"
-msgstr "Sesijas beigas"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1412,12 +879,24 @@ msgstr "Noklusētā parole:"
 msgid "Add a new Web search keyword"
 msgstr "Noklusētā parole:"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Jauns..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, fuzzy, kde-format
 #| msgid "Default password:"
 msgid "Modify the highlighted Web search keyword"
 msgstr "Noklusētā parole:"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&Mainīt..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1646,6 +1125,368 @@ msgstr "&Rakstzīmju kopa:"
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "Rindpārlēces izvērse"
+
+#~ msgid "&Policy"
+#~ msgstr "&Noteikumi"
+
+#~ msgid "&Management"
+#~ msgstr "Pā&rvaldība"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "D-Bus sakaru kļūda"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Neizdevās izdzēst visas sīkdatnes."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Neizdevās izdzēst sīkdatnes."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Informācijas uzmeklēšanas kļūda"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr "Neizdevās iegūt informāciju par jūsu datorā esošajām sīkdatnēm."
+
+#~ msgid "End of session"
+#~ msgstr "Sesijas beigas"
+
+#~ msgid "Yes"
+#~ msgstr "Jā"
+
+#~ msgid "Search"
+#~ msgstr "Meklēt"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Interaktīvi meklēt domēnus un resursdatorus"
+
+#~ msgid "Site"
+#~ msgstr "Vietne"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Sīkdatnes nosaukums"
+
+#~ msgid "D&elete"
+#~ msgstr "&Dzēst"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Dzēst v&isu"
+
+#, fuzzy
+#~| msgid "Change &Policy..."
+#~ msgid "Configure &Policy..."
+#~ msgstr "Mainīt &noteikumus..."
+
+#~ msgid "&Reload List"
+#~ msgstr "Pā&rlādēt sarakstu"
+
+#~ msgid "Details"
+#~ msgstr "Detaļas"
+
+#~ msgid "Name:"
+#~ msgstr "Nosaukums:"
+
+#~ msgid "Value:"
+#~ msgstr "Vērtība:"
+
+#~ msgid "Domain:"
+#~ msgstr "Domēns:"
+
+#~ msgid "Path:"
+#~ msgstr "Ceļš:"
+
+#~ msgid "Expires:"
+#~ msgstr "Derīgs līdz:"
+
+#~ msgid "Secure:"
+#~ msgstr "Drošs:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Mainīt sīkdatņu noteikumus"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Jauns sīkdatņu noteikums"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Jau eksistē noteikumi priekš <center><b>%1</b></center> Vai jūs "
+#~ "vēlaties tos aizvietot?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Dublēt noteikumus"
+
+#~ msgid "Replace"
+#~ msgstr "Aizvietot"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Neizdevās sazināties ar sīkdatņu apstrādes servisu.\n"
+#~ "Jebkuras veiktās izmaiņas nestāsies spēkā līdz servisa pārstartēšanai."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Ieslēdz sīkdatņu atblastu. Parasti jūs vēlēsieties to ieslēgtu un "
+#~ "pielāgosiet savām privātuma vajadzībām.</p><p>\n"
+#~ "Ņemiet vērā, ka, atslēdzot sīkdatņu atbalstu, daudzas tīmekļa lapas nebūs "
+#~ "lietojamas.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Atļaut sī&kdatnes"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Noraidīt tā sauktās trešo pušu sīkdatnes. Tās ir sīkdatnes, ko uzstāda "
+#~ "cits serveris, ne tas no kura ielādēta apskatāmā lapa. Piemēram, ja jūs "
+#~ "esat atvēris <b>www.foobar.com</b> un šī iespēja ir ieslēgta, tiks "
+#~ "atļautas tikai sīkdatnes no www.foobar.com. Sīkdatnes no citām lapām tiks "
+#~ "noraidītas. Tas samazina iespēju, ka lapu uzturētāji var savākt "
+#~ "informāciju par jūsu ikdienas tīmekļa lietošanas ieradumiem.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "&Pieņemt sīkdatnes tikai no to izcelsmes servera"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "<p>Automatically accept temporary cookies meant to expire at the end of "
+#~| "the current session. Such cookies will not be stored in your computer's "
+#~| "hard drive or storage device. Instead, they are deleted when you close "
+#~| "all applications (e.g. your browser) that use them.</p><p>\n"
+#~| "<u>NOTE:</u> Checking this option along with the next one will override "
+#~| "your default as well as site specific cookie policies. However, doing so "
+#~| "also increases your privacy since all cookies will be removed when the "
+#~| "current session ends.</p>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Atuomātiski pieņemt sīkdatnes, kuru saglabāšanas teriņš ir aktīvās "
+#~ "sesijas beigas. Šādas sīkdatnes netiek glabātas uz jūsu datora cietā "
+#~ "diska. Tā vietā tās tiek izdzēstas, tilkīdz jūs aizverat visas sīkdatnes "
+#~ "lietojošās programmas (piem. jūsu pārlūku).</p><p>\n"
+#~ "<u>PIEZĪME:</u> Ieslēdzot šo iespēju kopā ar nākamo iespēju, mainīs dan "
+#~ "noklusēto, gan vietnes specifiskos noteikumus. Bet šāda konfigurācija "
+#~ "palielina jūsu privātumu, jo, beidzoties sesijai, visas sīkdatnes tiek "
+#~ "izdzēstas.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Automātiski pieņemt &sesijas sīkdatnes"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Determines how cookies received from a remote machine will be handled: \n"
+#~| "<ul>\n"
+#~| "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~| "server wants to set a cookie.</li>\n"
+#~| "<li><b>Accept</b> will cause cookies to be accepted without prompting "
+#~| "you.</li>\n"
+#~| "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~| "receives.</li>\n"
+#~| "</ul><p>\n"
+#~| "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~| "take precedence over the default policy.</p>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>Noklusējuma noteikumi nosaka veidu, kā tiks apstrādātas sīkdatnes, "
+#~ "kas nosūtītas no attālinātas datora, kurš nav piesaistīta specifiskiem "
+#~ "noteikumiem (skatīt zemāk): <ul><li><b>Pieņemt</b> liks klusējot pieņemt "
+#~ "visas sīkdatnes, bez brīdinājuma </li><li><b>Atmest</b> liks cookiejar "
+#~ "atmest visas saņemtās sīkdatnes</li><li><b>Jautāt</b> liks KDE prasīt "
+#~ "jums apstiprinājumu katru reizi, kad serveris vēlēsies saglabāt sīkdatni</"
+#~ "li></ul><p>\n"
+#~ "<u>PIEZĪME:</u> Domēna specifikie noteikumi, kurus var konfigurēt zemāk, "
+#~ "vienmēr ir pārākas par noklusētajiem noteikumiem.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Noklusējuma noteikumi"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Pieņemt &visas sīkdatnes"
+
+#, fuzzy
+#~| msgid "End of session"
+#~ msgid "Accept &until end of session"
+#~ msgstr "Sesijas beigas"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "Pra&sīt apstiprinājumu"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "&Noraidīt visas sīkdatnes"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Lai pievienotu jaunu noteikumu, vienkārši nospiediet <b>Pievienot...</b> "
+#~ "pogu un norādīet nepieciešamo informāciju . Lai mainītu esošu noteikumu, "
+#~ "nospiediet uz <b>Mainīt...</b> pogas un izvēlieties jaunus noteikumus no "
+#~ "noteikumu loga. Nospiežot <b>Dzēst</b> pogu izvēlētie noteikumi tiks "
+#~ "noņemti un šim domēnam tiks piemēroti noklusētie noteikumi.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Lapas noteikumi"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Interaktīvi meklēt domēnus"
+
+#~ msgid "Search..."
+#~ msgstr "Meklēt..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Vietņu saraksts, kurām iestatīti īpaši sīkdatņu noteikumi. Šī vietnēm "
+#~ "tiek lietoti pielāgoti noteikumi noklusēto vietā.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Domēns"
+
+#~ msgid "Policy"
+#~ msgstr "Noteikumi"
+
+#~ msgid "Accept"
+#~ msgstr "Pieņemt"
+
+#, fuzzy
+#~| msgid "End of Session"
+#~ msgid "Accept For Session"
+#~ msgstr "Sesijas beigas"
+
+#~ msgid "Reject"
+#~ msgstr "Noraidīt"
+
+#~ msgid "Ask"
+#~ msgstr "Jautāt"
+
+#, fuzzy
+#~| msgid "Do Not Store"
+#~ msgid "Do Not Know"
+#~ msgstr "Neglabāt"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>Ievadiet resursdatora vai domēna nosaukumu, uz kuru šie noteikumi "
+#~ "attiecas. Piem. <b>www.kde.org</b> vai <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Vietnes nosaukums:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Ievadiet resursdatora vai domēna nosaukumu, piem., kde.org, uz kuru šī "
+#~ "politika attiecas."
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Select the desired policy:\n"
+#~| "<ul>\n"
+#~| "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~| "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~| "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~| "</ul>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Izvēlieties vēlamos noteikumus:\n"
+#~ "<ul>\n"
+#~ "<li><b>Pieņemt</b> - Atļaut šai vietai atsūtīt sīkdatni</li>\n"
+#~ "<li><b>Noraidīt</b> - Noraidīt visas šīs vietas sūtītās sīkdatnes</li>\n"
+#~ "<li><b>Jautāt</b> - Jautāt par katru no šīs vietas saņemto sīkdatni</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Politika:7"
+
+#, fuzzy
+#~| msgid "End of session"
+#~ msgid "Accept until end of session"
+#~ msgstr "Sesijas beigas"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

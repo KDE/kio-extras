@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2012-12-31 04:15+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -24,504 +24,6 @@ msgstr ""
 "\n"
 "\n"
 "\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Cясаты"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Басқару"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "D-Bus байланыс қатесі"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Барлық cookie файлдарды өшіру талабы орындалмады."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Cookie файлдарды талап етілгендей өшіру орындалмады."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Мәліметті іздеу қатесі"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "Компьютеріңізде сақталған cookie файлдар туралы мәлімет алынбады."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Сеанстың соңы"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Иә"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Іздеу"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Домен мен хосттарды интерактивті түрде іздеу"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Сайт"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Cookie-нің атауы"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "Ж&ою"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Бар&лығын жою"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "&Саясатын баптау..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "Тізімін &жаңарту"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Егжей-тегжейлері"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Атауы:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Мәні:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Домені:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Жолы:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Жарамдылық мерзімі:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Қауіпсіздігі:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Cookie саясатын өзгерту"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Жаңа cookie саясаты"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt><center><b>%1</b></center> үшін саясат орнатылған ғой. Оны ауыстырасыз "
-"ба?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Саясатын көшіріп алу"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Ауыстыру"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Cookie файлдарымен айналысатын қызметпен байланыс жоқ.\n"
-"Бұл қызмет жұмысын бастамай жасалған өзгерістер күшіне енбейді."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Cookie файлдарды қолдану. Әдетте cookie файлдарды қолдануын рұқсат етіп, "
-"дербестігіңізді керек деңгейінде қорғайтын қылып орнатқан жөн.</p><p>\n"
-"Мүлдем рұқсат етпегенде кейбір веб-сайттарға кіруге болмайтыны мүмкін.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Coo&kie файлдарды рұқсат ету"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Үшінші жақтан cookie файлдарды қабылдамау. Cookies файлдарды тек қарап "
-"жатқан серверінен қабылданады. Мысалы, егер <b>www.foobar.com</b> деген "
-"сайтты қараймын деп ашқанда, тек осы сайттан cookie файлдар қабылданады. "
-"Басқа сайттардан қайсыбір cookie қабылданбайды. Бұл басқа сайт "
-"операторларына Сіз туралы мәлімет жинақтауға бөгет болады.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Cookie тек қарап жатқан серверінен қа&былдансын"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Автоматты түрде уақытша cookie файлдар қабылдау, cookie файлдар бір ғана "
-"сеанс бойы жарамды дегені. Бұндай cookie компьютеріңіздің дискіңізде "
-"сақталмай, оны қабылдаған қолданба (яғни браузеріңіз) жабылғанда, өшіріледі."
-"</p><p><u>ЕСКЕРТУ:</u> Бұны таңдағаны әдеттегі не сайт үшін орнатылған "
-"саясаттарды басып тастайды.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Автоматт&ы түрде сеанстық cookie қабылдансын"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Қашықтағы серверден келген cookie файлдармен айналасу тәртібін анықтайды: \n"
-"<ul>\n"
-"<li><b>Сұрау</b> - cookie файл келген сайын құптауын сұрайтын қылады.</li>\n"
-"<li><b>Қабылдау</b> - келген cookie файлдарды сұраусыз қабылдайтын қылады.</"
-"li>\n"
-"<li><b>Сеанс біткенше қабылдау</b> - келген cookie файлдарды қабылдайтын "
-"қылады, бірақ олар сеанс бітуімен ескіреді.</li>\n"
-"<li><b>Қабылдамау</b> - келген cookie файлдарды қабылдаудан бас тартқызады.</"
-"li>\n"
-"</ul><p>\n"
-"<u>ЕСКЕРТУ:</u> Төменде орнатылатын доменге байланысты саясаттар, әрқашанда "
-"әдеттегі саясат алдында басымды болады .</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Әдеттегі саясат"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "&Барлық cookie қабылдансын"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Сеанс біткен&ше қабылдау"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "Құптауды &сұрау"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "Барлық cookie қ&абылданбасын"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Жаңа саясатты қосу үшін <b>Жаңа...</b> батырмасын басып, керек мәліметтерді "
-"келтіріңіз. Бар саясатты өзгерту үшін <b>Өзгерту...</b> батырманы басып, "
-"шыққан диалогта керегін таңдаңыз. <b>Өшіру</b> деген батырма - таңдаған "
-"саясатты өшіріп әдеттегі саясатты күшке енгізеді, ал <b>Барлығын өшіру</b> "
-"деген бүкіл сайт саясаттарын әдетті саясаттарға ауыстырады.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Сайт саясаты"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Интерактивті домендерді іздеу"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, fuzzy, kde-format
-#| msgid "Search"
-msgid "Search..."
-msgstr "Іздеу"
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Ерекше cookie саясаттарға ие сайттар тізімі. Ерекше саясаттар, әрқашанда "
-"әдетті саясат алдында басымды болады.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Домен"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Саясат"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Жаңа..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Өз&герту..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Қабылдау"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-#, fuzzy
-#| msgid "Accept for this &session"
-msgid "Accept For Session"
-msgstr "Осы &сеанс үшін қабылдау"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Қабылдамау"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Сұрау"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-#, fuzzy
-#| msgid "Do Not Store"
-msgid "Do Not Know"
-msgstr "Сақталмасын"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Осы саясатты қолданатын хост не доменді атау, мысалы<b>www.kde.org</b> "
-"немесе <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Сайттың атауы:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-" Бұл саясатты қай хост не домен үшін ұстануы керегін келтіріңіз, мысалы: ."
-"kde.org"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Керек саясатты таңдаңыз:\n"
-"<ul>\n"
-"<li><b>Қабылдау</b> - бұл сайттан келген cookie файлдарды қабылдау</li>\n"
-"<li><b>Сеанс біткенше қабылдау</b> - бұл сайттан келген cookie файлдарды "
-"қабылдау, бірақ олар сеанс біттуімен ескіреді.</li>\n"
-"<li><b>Қабылдамау</b> - бұл сайттан келген cookie файлдарды қабылдамау</li>\n"
-"<li><b>Сұрау</b> - бұл сайттан cookie файл келгенде құптауын сұрау</li>\n"
-"</ul>\n"
-"</qt> "
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Саясат:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Сеанс біткенше қабылдау"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1373,12 +875,24 @@ msgstr "Әдетті паролі:"
 msgid "Add a new Web search keyword"
 msgstr "Әдетті паролі:"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Жаңа..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, fuzzy, kde-format
 #| msgid "Default password:"
 msgid "Modify the highlighted Web search keyword"
 msgstr "Әдетті паролі:"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Өз&герту..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1607,6 +1121,334 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "Ішінаралау режімі"
+
+#~ msgid "&Policy"
+#~ msgstr "&Cясаты"
+
+#~ msgid "&Management"
+#~ msgstr "&Басқару"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "D-Bus байланыс қатесі"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Барлық cookie файлдарды өшіру талабы орындалмады."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Cookie файлдарды талап етілгендей өшіру орындалмады."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Мәліметті іздеу қатесі"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr "Компьютеріңізде сақталған cookie файлдар туралы мәлімет алынбады."
+
+#~ msgid "End of session"
+#~ msgstr "Сеанстың соңы"
+
+#~ msgid "Yes"
+#~ msgstr "Иә"
+
+#~ msgid "Search"
+#~ msgstr "Іздеу"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Домен мен хосттарды интерактивті түрде іздеу"
+
+#~ msgid "Site"
+#~ msgstr "Сайт"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Cookie-нің атауы"
+
+#~ msgid "D&elete"
+#~ msgstr "Ж&ою"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Бар&лығын жою"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "&Саясатын баптау..."
+
+#~ msgid "&Reload List"
+#~ msgstr "Тізімін &жаңарту"
+
+#~ msgid "Details"
+#~ msgstr "Егжей-тегжейлері"
+
+#~ msgid "Name:"
+#~ msgstr "Атауы:"
+
+#~ msgid "Value:"
+#~ msgstr "Мәні:"
+
+#~ msgid "Domain:"
+#~ msgstr "Домені:"
+
+#~ msgid "Path:"
+#~ msgstr "Жолы:"
+
+#~ msgid "Expires:"
+#~ msgstr "Жарамдылық мерзімі:"
+
+#~ msgid "Secure:"
+#~ msgstr "Қауіпсіздігі:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Cookie саясатын өзгерту"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Жаңа cookie саясаты"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt><center><b>%1</b></center> үшін саясат орнатылған ғой. Оны "
+#~ "ауыстырасыз ба?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Саясатын көшіріп алу"
+
+#~ msgid "Replace"
+#~ msgstr "Ауыстыру"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Cookie файлдарымен айналысатын қызметпен байланыс жоқ.\n"
+#~ "Бұл қызмет жұмысын бастамай жасалған өзгерістер күшіне енбейді."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Cookie файлдарды қолдану. Әдетте cookie файлдарды қолдануын рұқсат "
+#~ "етіп, дербестігіңізді керек деңгейінде қорғайтын қылып орнатқан жөн.</"
+#~ "p><p>\n"
+#~ "Мүлдем рұқсат етпегенде кейбір веб-сайттарға кіруге болмайтыны мүмкін.</"
+#~ "p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Coo&kie файлдарды рұқсат ету"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Үшінші жақтан cookie файлдарды қабылдамау. Cookies файлдарды тек қарап "
+#~ "жатқан серверінен қабылданады. Мысалы, егер <b>www.foobar.com</b> деген "
+#~ "сайтты қараймын деп ашқанда, тек осы сайттан cookie файлдар қабылданады. "
+#~ "Басқа сайттардан қайсыбір cookie қабылданбайды. Бұл басқа сайт "
+#~ "операторларына Сіз туралы мәлімет жинақтауға бөгет болады.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Cookie тек қарап жатқан серверінен қа&былдансын"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Автоматты түрде уақытша cookie файлдар қабылдау, cookie файлдар бір ғана "
+#~ "сеанс бойы жарамды дегені. Бұндай cookie компьютеріңіздің дискіңізде "
+#~ "сақталмай, оны қабылдаған қолданба (яғни браузеріңіз) жабылғанда, "
+#~ "өшіріледі.</p><p><u>ЕСКЕРТУ:</u> Бұны таңдағаны әдеттегі не сайт үшін "
+#~ "орнатылған саясаттарды басып тастайды.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Автоматт&ы түрде сеанстық cookie қабылдансын"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Қашықтағы серверден келген cookie файлдармен айналасу тәртібін "
+#~ "анықтайды: \n"
+#~ "<ul>\n"
+#~ "<li><b>Сұрау</b> - cookie файл келген сайын құптауын сұрайтын қылады.</"
+#~ "li>\n"
+#~ "<li><b>Қабылдау</b> - келген cookie файлдарды сұраусыз қабылдайтын қылады."
+#~ "</li>\n"
+#~ "<li><b>Сеанс біткенше қабылдау</b> - келген cookie файлдарды қабылдайтын "
+#~ "қылады, бірақ олар сеанс бітуімен ескіреді.</li>\n"
+#~ "<li><b>Қабылдамау</b> - келген cookie файлдарды қабылдаудан бас "
+#~ "тартқызады.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>ЕСКЕРТУ:</u> Төменде орнатылатын доменге байланысты саясаттар, "
+#~ "әрқашанда әдеттегі саясат алдында басымды болады .</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Әдеттегі саясат"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "&Барлық cookie қабылдансын"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Сеанс біткен&ше қабылдау"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "Құптауды &сұрау"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "Барлық cookie қ&абылданбасын"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Жаңа саясатты қосу үшін <b>Жаңа...</b> батырмасын басып, керек "
+#~ "мәліметтерді келтіріңіз. Бар саясатты өзгерту үшін <b>Өзгерту...</b> "
+#~ "батырманы басып, шыққан диалогта керегін таңдаңыз. <b>Өшіру</b> деген "
+#~ "батырма - таңдаған саясатты өшіріп әдеттегі саясатты күшке енгізеді, ал "
+#~ "<b>Барлығын өшіру</b> деген бүкіл сайт саясаттарын әдетті саясаттарға "
+#~ "ауыстырады.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Сайт саясаты"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Интерактивті домендерді іздеу"
+
+#, fuzzy
+#~| msgid "Search"
+#~ msgid "Search..."
+#~ msgstr "Іздеу"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Ерекше cookie саясаттарға ие сайттар тізімі. Ерекше саясаттар, әрқашанда "
+#~ "әдетті саясат алдында басымды болады.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Домен"
+
+#~ msgid "Policy"
+#~ msgstr "Саясат"
+
+#~ msgid "Accept"
+#~ msgstr "Қабылдау"
+
+#, fuzzy
+#~| msgid "Accept for this &session"
+#~ msgid "Accept For Session"
+#~ msgstr "Осы &сеанс үшін қабылдау"
+
+#~ msgid "Reject"
+#~ msgstr "Қабылдамау"
+
+#~ msgid "Ask"
+#~ msgstr "Сұрау"
+
+#, fuzzy
+#~| msgid "Do Not Store"
+#~ msgid "Do Not Know"
+#~ msgstr "Сақталмасын"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Осы саясатты қолданатын хост не доменді атау, мысалы<b>www.kde.org</b> "
+#~ "немесе <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Сайттың атауы:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ " Бұл саясатты қай хост не домен үшін ұстануы керегін келтіріңіз, мысалы: ."
+#~ "kde.org"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Керек саясатты таңдаңыз:\n"
+#~ "<ul>\n"
+#~ "<li><b>Қабылдау</b> - бұл сайттан келген cookie файлдарды қабылдау</li>\n"
+#~ "<li><b>Сеанс біткенше қабылдау</b> - бұл сайттан келген cookie файлдарды "
+#~ "қабылдау, бірақ олар сеанс біттуімен ескіреді.</li>\n"
+#~ "<li><b>Қабылдамау</b> - бұл сайттан келген cookie файлдарды қабылдамау</"
+#~ "li>\n"
+#~ "<li><b>Сұрау</b> - бұл сайттан cookie файл келгенде құптауын сұрау</li>\n"
+#~ "</ul>\n"
+#~ "</qt> "
+
+#~ msgid "Policy:"
+#~ msgstr "Саясат:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Сеанс біткенше қабылдау"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

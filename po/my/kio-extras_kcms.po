@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2022-10-05 21:57+0630\n"
 "Last-Translator: ဇေယျာလွင် <lw1nzayar@yandex.com>\n"
 "Language-Team: Burmese <kde-i18n-doc@kde.org>\n"
@@ -17,496 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.1.1\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Pပေါ်လစီ"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Mစီမံမှု"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "ဒီ-ဘက်စ် ဆက်သွယ်မှုဆိုင်ရာအမှား"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "ကွတ်ကီးများအားလုံးကို တောင်းဆိုထားသလို မဖျက်နိုင်ပါ။"
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "ကွတ်ကီးများအား တောင်းဆိုထားသလို မဖျက်နိုင်ပါ။"
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "သတင်းအချက်အလက်ရယူခြင်းမအောင်မြင်မှု"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "သင်၏ကွန်ပြူတာပေါ်တွင် သိမ်းဆည်းထားသော ကွတ်ကီးများအချက်အလက်ကို မရယူနိုင်ခဲ့ပါ။"
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "ဆက်ရှင်၏အဆုံးသတ်"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "အွန်း"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "ရှာရန်"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "ဒိုမန်းနှင့်အိမ်ရှင်များကို တစ်ဆင့်ချင်းရှာရန်"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "ဆိုက်"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "ကွတ်ကီးအမည်"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "&eဖျက်မည်"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "&lအားလုံးဖျက်မည်"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "&Pပေါ်လစီ ပြင်ဆင်မည်…"
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Rစာရင်းပြန်တွန်းတင်"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "အသေးစိတ်"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "အမည် -"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "တန်ဖိုး -"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "ဒိုမိန်း -"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "လမ်းကြောင်း -"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "သက်တမ်းကုန် -"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "လုံခြုံ -"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "ကွတ်ကီးဆိုင်ရာပေါ်လစီ ပြောင်းမည်"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "ကွတ်ကီးဆိုင်ရာပေါ်လစီအသစ်"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt><center><b>%1</b></center> အတွက် ပေါ်လစီ ရှိနှင့်ပြီးဖြစ်သည်။ ၎င်းကို အစားထိုးချင်ပါသလား။</"
-"qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "ပေါ်လစီ ပုံတူပွားမည်"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "အစားထိုး"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"ကွတ်ကီးကိုင်တွယ်သောဝန်ဆောင်မှုနှင့် ဆက်သွယ်မရပါ။\n"
-"ဝန်ဆောင်မှုကို ပြန်မစတင်မီထိ သင်လုပ်ခဲ့သော ပြောင်းလဲမှုများ သက်ဝင်မည်မဟုတ်ပါ။"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>ကွတ်ကီးဆိုင်ရာလုပ်ဆောင်ချက်များထောက်ပံမှု ဖွင့်မည်။ ပုံမှန်အားဖြင့် ၎င်းထောက်ပံမှုဖွင့်ထားပြီး "
-"သင်၏အတွင်းရေးလျှိုဝှက်ခွင့်လိုလားမှုနှင့် ကိုက်ညီရန် စိတ်ကြိုက်ပြင်ဆင်ချင်လိမ့်မည်</p><p>\n"
-"မှတ်ထားသင့်သည်ကတော့ ကွတ်ကီးဆိုင်ရာလုပ်ဆောင်ချက်များထောက်ပံမှု ပိတ်ထားလျှင် ဆိုက်အများအပြားသို့ "
-"သွားရောက်၍မရဖြစ်မည်။</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "&kကွတ်ကီးအသုံးပြု"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"တတိယလူ-ကွတ်ကီးများကို ငြင်းပယ်မည်။ ၎င်းကွတ်ကီးများသည် သင်လက်ရှိရောက်ရှိနေသော ဆိုက်ထက် အခြားဆိုက်များက "
-"လာခြင်းဖြစ်သည်။ သာဓက။ ။သင်သည် ဤအချက်ကို ဖွင့်ပြီး <b>www.foobar.com</b>ကို သွားရောက်မည်ဆိုပါက "
-"www.foobar.comအားရေသောက်မြစ်ခံသော ကွတ်ကီးများကိုသာ သင်၏သတ်မှတ်ချက်များ အတိုင်းဆောင်ရွက်မည်။ "
-"အခြားဆိုက်များမှ ကွတ်ကီးအားလုံးကို ငြင်းပယ်မည်။ ဤသို့ပြုခြင်းအားဖြင့် ဆိုက်အော်ပရေတာများက "
-"သင်၏နေစဥ်အင်တာနက်သုံးစွဲမှုအလေ့အထားများကို စာရင်းပြုစုခံရခြင်းအား လျော့နည်းစေသည်။\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "&pမူလဆာဗာမှကွတ်ကီးများသာ လက်ခံရန်"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"ယခု ဆက်ရှင် ပြီးသည်နှင့် သက်တမ်းကုန်မည့် ယာယီကွတ်ကီးများကို အလိုအလျောက်လက်ခံမည်။ ထိုကွတ်ကီးများကို သင်၏ "
-"မှတ်ဉာဏ်စက်များတွင် မသိမ်းဆည်းပါ။ ယင်းတို့ကို အသုံးပြုသော အပ္ပလီကေးရှင်းများ(သာဓက။ ။ဘရောက်ဇာ)အားလုံးကို "
-"သင်ပိတ်ပစ်ပါက ယင်းတို့အား ဖျက်ဆီးပစ်မည်။</p><p><u>သတိပြုပါ</u> ဤရွေးချယ်မှုပြုထားလျှင် "
-"မူလသတ်မှတ်ချက်များသာမက ဆက်ရှင်နှင့်သက်ဆိုင်သောကွတ်ကီးများအတွက် ဆိုက်တစ်ခုချင်းဆိုင်ရာ ကွတ်ကီးပေါ်လစီများကိုပါ "
-"ကျော်၍လုပ်ဆောင်မည်။</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "&yဆက်ရှင်အတွက် အလိုအလျောက်လက်ခံရန်"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"အဝေးစက်မှ လက်ခံရရှိသော ကွတ်ကီးများကို မည်ကဲ့သို့ ကိုင်တွယ်မည်ကို ဆုံးဖြတ်ရန် -\n"
-"<ul>\n"
-"<li><b>မေးရန်</b> ရွေးပါက ကေဒီအီးသည် ဆာဗာမှကွတ်ကီးသုံးချင်သည့်အခါတိုင်း သင်၏အတည်ပြုချက် "
-"တောင်းခံလိမ့်မည်။</li>\n"
-"<li><b>လက်ခံရန်</b> ရွေးပါက သင့်အားမမေးတော့ပဲ အားလုံးလက်ခံမည်။</li>\n"
-"<li><b>ဆက်ရှင်ပြီးသည်ထိလက်ခံရန်</b> ရွေးပါက ကွတ်ကီးများကို ဆက်ရှင်ပြီးသည်နှင့်ဖျက်ပစ်မည်။</li>\n"
-"<li><b>ငြင်းပယ်ရန်</b> ရွေးပါက ကွတ်ကီးဘူးသည် ၎င်းလက်ခံရရှိသော ကွတ်ကီးများကို ငြင်းပယ်မည်။</li>\n"
-"</ul><p>\n"
-"<u>သတိပြုရန် -</u> အောက်တွင် သတ်မှတ်နိုင်သော ဒိုမန်းတစ်ခုချင်းဆိုင်ရာပေါ်လစီသည် မူလသတ်မှတ်-ပေါ်လစီထက် "
-"ပိုဦးစားပေးခံရသည်။</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "မူလသတ်မှတ်-ပေါ်လစီ"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "&tကွတ်ကီးများအားလုံးလက်ခံ"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "&uဆက်ရှင် မပြီးခင်ထိလက်ခံရန်"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "&fအတည်ပြုချက်တောင်းရန်"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "&jကွတ်ကီးများအားလုံးငြင်းပယ်မည်"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"ပေါ်လစီအသစ်ထည့်ရန်၊ <b>ထည့်မည်…</b>ခလုတ်ကို နှိပ်၍ လိုအပ်သော အချက်အလက်များ ထည့်ရုံနှင့် ရသည်။ ရှိနှင့်ပြီးသား "
-"ပေါ်လစီကို ပြောင်းရန် <b>ပြောင်းမည်…</b>ခလုတ်ကိုနှိပ်၍ ပေါ်လစီ ဒိုင်ယာလော့အတုံးမှ ပေါ်လစီအသစ် ရွေးချယ်ပါ။ "
-"<b>ဖျက်မည်</b> ကိုနှိပ်လျှင် လက်ရှိရွေးချယ်ထားသော ပေါ်လစီကို ဖယ်ရှားပစ်မည်။ ယင်းပေါ်လစီကို သုံးသော "
-"ဒိုမိန်းများတွင် မူလသတ်မှတ်ထားသော ပေါ်လစီကို သုံးသွားမည်။ <b>အားလုံးဖျက်မည်</b>ကို နှိပ်လျှင် "
-"ဆိုက်တစ်ခုချင်းဆိုင်ရာပေါ်လစီ အားလုံးဖျက်ပစ်မည်။\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "ဆိုက်ပေါ်လစိ"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "ဒိုမန်းများကို တစ်ဆင့်ချင်းရှာရန်"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "ရှာရန်…"
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"ဆိုက်တစ်ခုချင်းဆီအတွက် ကွတ်ကီးပေါ်လစီသတ်မှတ်ထားသော ဆိုက်များ၏စာရင်း။ ယင်းဆိုက်များတွင် မူလသတ်မှတ်-ပေါ်လစီထက် "
-"တစ်ဦးတည်းပေါ်လစီများကို ဦးစားပေးလိုက်နာသည်။\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "ဒိုမိန်း"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "ပေါ်လစီ"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Nအသစ်…"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "&gပြောင်းမည်…"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "လက်ခံ"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "ဆက်ရှင်အတွက် လက်ခံရန်"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "ငြင်းပယ်မည်"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "မေး"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "မသိ"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"ဤပေါ်လစီ သုံးသော အိမ်ရှင် သို့ ဒိုမိန်း ရေးသွင်းပါ။ သာဓက။ ။<b>www.kde.org</b>၊ <b>.kde.org</"
-"b>။\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "ဆိုက်အမည် -"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr "ဤပေါ်လစီ သုံးမည့် အိမ်ရှင် သို့မဟုတ် ဒိုမိန်း အမည် ရေးပါ။ သာဓက။ ။ .kde.org။"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"လိုချင်သော ပေါ်လစီ သတ်မှတ်ပါ -\n"
-"<ul>\n"
-"<li><b>လက်ခံမည်</b> - ဤဆိုက်ကို ကွတ်ကီးသတ်မှတ်ခွင့်ပြုသည်။</li>\n"
-"<li><b>ဆက်ရှင်ပြီးသည်ထိ လက်ခံမည်</b> - ဤဆိုက်ကို ကွတ်ကီးသတ်မှတ်ခွင့်ပြုသည်။ သို့သော် ယင်းကွတ်ကီးများသည် ဆက်ရှင် "
-"ပြီးသည်နှင့် သက်တမ်းကုန်မည်။</li>\n"
-"<li><b>ငြင်းပယ်မည်</b> - ဤဆိုက်မှ ကွတ်ကီးများအားလုံးငြင်းပယ်မည်။</li>\n"
-"<li><b>မေးမည်</b> - ဤဆိုက်မှ ကွတ်ကီးများ လက်ခံရရှိသည်အခါ ခွင့်ပြုချက်တောင်းမည်။</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "ပေါ်လစီ -"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "ဆက်ရှင် မပြီးခင်ထိလက်ခံရန်"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1347,11 +857,23 @@ msgstr "ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလု�
 msgid "Add a new Web search keyword"
 msgstr "ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးသစ်ထည့်မည်"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Nအသစ်…"
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "အလင်းတင်ထားသော ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံး မွမ်းမံမည်"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&gပြောင်းမည်…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1600,6 +1122,320 @@ msgstr "&Cအက္ခရာအစု -"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "မေးမြန်းချက်ဆိုင်ရာနေရာယူထားမှု ထည့်သွင်း"
+
+#~ msgid "&Policy"
+#~ msgstr "&Pပေါ်လစီ"
+
+#~ msgid "&Management"
+#~ msgstr "&Mစီမံမှု"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "ဒီ-ဘက်စ် ဆက်သွယ်မှုဆိုင်ရာအမှား"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "ကွတ်ကီးများအားလုံးကို တောင်းဆိုထားသလို မဖျက်နိုင်ပါ။"
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "ကွတ်ကီးများအား တောင်းဆိုထားသလို မဖျက်နိုင်ပါ။"
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "သတင်းအချက်အလက်ရယူခြင်းမအောင်မြင်မှု"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr "သင်၏ကွန်ပြူတာပေါ်တွင် သိမ်းဆည်းထားသော ကွတ်ကီးများအချက်အလက်ကို မရယူနိုင်ခဲ့ပါ။"
+
+#~ msgid "End of session"
+#~ msgstr "ဆက်ရှင်၏အဆုံးသတ်"
+
+#~ msgid "Yes"
+#~ msgstr "အွန်း"
+
+#~ msgid "Search"
+#~ msgstr "ရှာရန်"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "ဒိုမန်းနှင့်အိမ်ရှင်များကို တစ်ဆင့်ချင်းရှာရန်"
+
+#~ msgid "Site"
+#~ msgstr "ဆိုက်"
+
+#~ msgid "Cookie Name"
+#~ msgstr "ကွတ်ကီးအမည်"
+
+#~ msgid "D&elete"
+#~ msgstr "&eဖျက်မည်"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "&lအားလုံးဖျက်မည်"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "&Pပေါ်လစီ ပြင်ဆင်မည်…"
+
+#~ msgid "&Reload List"
+#~ msgstr "&Rစာရင်းပြန်တွန်းတင်"
+
+#~ msgid "Details"
+#~ msgstr "အသေးစိတ်"
+
+#~ msgid "Name:"
+#~ msgstr "အမည် -"
+
+#~ msgid "Value:"
+#~ msgstr "တန်ဖိုး -"
+
+#~ msgid "Domain:"
+#~ msgstr "ဒိုမိန်း -"
+
+#~ msgid "Path:"
+#~ msgstr "လမ်းကြောင်း -"
+
+#~ msgid "Expires:"
+#~ msgstr "သက်တမ်းကုန် -"
+
+#~ msgid "Secure:"
+#~ msgstr "လုံခြုံ -"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "ကွတ်ကီးဆိုင်ရာပေါ်လစီ ပြောင်းမည်"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "ကွတ်ကီးဆိုင်ရာပေါ်လစီအသစ်"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt><center><b>%1</b></center> အတွက် ပေါ်လစီ ရှိနှင့်ပြီးဖြစ်သည်။ ၎င်းကို "
+#~ "အစားထိုးချင်ပါသလား။</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "ပေါ်လစီ ပုံတူပွားမည်"
+
+#~ msgid "Replace"
+#~ msgstr "အစားထိုး"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "ကွတ်ကီးကိုင်တွယ်သောဝန်ဆောင်မှုနှင့် ဆက်သွယ်မရပါ။\n"
+#~ "ဝန်ဆောင်မှုကို ပြန်မစတင်မီထိ သင်လုပ်ခဲ့သော ပြောင်းလဲမှုများ သက်ဝင်မည်မဟုတ်ပါ။"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>ကွတ်ကီးဆိုင်ရာလုပ်ဆောင်ချက်များထောက်ပံမှု ဖွင့်မည်။ ပုံမှန်အားဖြင့် ၎င်းထောက်ပံမှုဖွင့်ထားပြီး "
+#~ "သင်၏အတွင်းရေးလျှိုဝှက်ခွင့်လိုလားမှုနှင့် ကိုက်ညီရန် စိတ်ကြိုက်ပြင်ဆင်ချင်လိမ့်မည်</p><p>\n"
+#~ "မှတ်ထားသင့်သည်ကတော့ ကွတ်ကီးဆိုင်ရာလုပ်ဆောင်ချက်များထောက်ပံမှု ပိတ်ထားလျှင် ဆိုက်အများအပြားသို့ "
+#~ "သွားရောက်၍မရဖြစ်မည်။</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "&kကွတ်ကီးအသုံးပြု"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "တတိယလူ-ကွတ်ကီးများကို ငြင်းပယ်မည်။ ၎င်းကွတ်ကီးများသည် သင်လက်ရှိရောက်ရှိနေသော ဆိုက်ထက် အခြားဆိုက်များက "
+#~ "လာခြင်းဖြစ်သည်။ သာဓက။ ။သင်သည် ဤအချက်ကို ဖွင့်ပြီး <b>www.foobar.com</b>ကို "
+#~ "သွားရောက်မည်ဆိုပါက www.foobar.comအားရေသောက်မြစ်ခံသော ကွတ်ကီးများကိုသာ သင်၏သတ်မှတ်ချက်များ "
+#~ "အတိုင်းဆောင်ရွက်မည်။ အခြားဆိုက်များမှ ကွတ်ကီးအားလုံးကို ငြင်းပယ်မည်။ ဤသို့ပြုခြင်းအားဖြင့် "
+#~ "ဆိုက်အော်ပရေတာများက သင်၏နေစဥ်အင်တာနက်သုံးစွဲမှုအလေ့အထားများကို စာရင်းပြုစုခံရခြင်းအား "
+#~ "လျော့နည်းစေသည်။\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "&pမူလဆာဗာမှကွတ်ကီးများသာ လက်ခံရန်"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "ယခု ဆက်ရှင် ပြီးသည်နှင့် သက်တမ်းကုန်မည့် ယာယီကွတ်ကီးများကို အလိုအလျောက်လက်ခံမည်။ ထိုကွတ်ကီးများကို သင်၏ "
+#~ "မှတ်ဉာဏ်စက်များတွင် မသိမ်းဆည်းပါ။ ယင်းတို့ကို အသုံးပြုသော အပ္ပလီကေးရှင်းများ(သာဓက။ ။"
+#~ "ဘရောက်ဇာ)အားလုံးကို သင်ပိတ်ပစ်ပါက ယင်းတို့အား ဖျက်ဆီးပစ်မည်။</p><p><u>သတိပြုပါ</u> "
+#~ "ဤရွေးချယ်မှုပြုထားလျှင် မူလသတ်မှတ်ချက်များသာမက ဆက်ရှင်နှင့်သက်ဆိုင်သောကွတ်ကီးများအတွက် ဆိုက်တစ်ခုချင်းဆိုင်ရာ "
+#~ "ကွတ်ကီးပေါ်လစီများကိုပါ ကျော်၍လုပ်ဆောင်မည်။</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "&yဆက်ရှင်အတွက် အလိုအလျောက်လက်ခံရန်"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "အဝေးစက်မှ လက်ခံရရှိသော ကွတ်ကီးများကို မည်ကဲ့သို့ ကိုင်တွယ်မည်ကို ဆုံးဖြတ်ရန် -\n"
+#~ "<ul>\n"
+#~ "<li><b>မေးရန်</b> ရွေးပါက ကေဒီအီးသည် ဆာဗာမှကွတ်ကီးသုံးချင်သည့်အခါတိုင်း သင်၏အတည်ပြုချက် "
+#~ "တောင်းခံလိမ့်မည်။</li>\n"
+#~ "<li><b>လက်ခံရန်</b> ရွေးပါက သင့်အားမမေးတော့ပဲ အားလုံးလက်ခံမည်။</li>\n"
+#~ "<li><b>ဆက်ရှင်ပြီးသည်ထိလက်ခံရန်</b> ရွေးပါက ကွတ်ကီးများကို ဆက်ရှင်ပြီးသည်နှင့်ဖျက်ပစ်မည်။</li>\n"
+#~ "<li><b>ငြင်းပယ်ရန်</b> ရွေးပါက ကွတ်ကီးဘူးသည် ၎င်းလက်ခံရရှိသော ကွတ်ကီးများကို ငြင်းပယ်မည်။</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>သတိပြုရန် -</u> အောက်တွင် သတ်မှတ်နိုင်သော ဒိုမန်းတစ်ခုချင်းဆိုင်ရာပေါ်လစီသည် မူလသတ်မှတ်-ပေါ်လစီထက် "
+#~ "ပိုဦးစားပေးခံရသည်။</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "မူလသတ်မှတ်-ပေါ်လစီ"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "&tကွတ်ကီးများအားလုံးလက်ခံ"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "&uဆက်ရှင် မပြီးခင်ထိလက်ခံရန်"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "&fအတည်ပြုချက်တောင်းရန်"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "&jကွတ်ကီးများအားလုံးငြင်းပယ်မည်"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "ပေါ်လစီအသစ်ထည့်ရန်၊ <b>ထည့်မည်…</b>ခလုတ်ကို နှိပ်၍ လိုအပ်သော အချက်အလက်များ ထည့်ရုံနှင့် ရသည်။ "
+#~ "ရှိနှင့်ပြီးသား ပေါ်လစီကို ပြောင်းရန် <b>ပြောင်းမည်…</b>ခလုတ်ကိုနှိပ်၍ ပေါ်လစီ ဒိုင်ယာလော့အတုံးမှ "
+#~ "ပေါ်လစီအသစ် ရွေးချယ်ပါ။ <b>ဖျက်မည်</b> ကိုနှိပ်လျှင် လက်ရှိရွေးချယ်ထားသော ပေါ်လစီကို ဖယ်ရှားပစ်မည်။ "
+#~ "ယင်းပေါ်လစီကို သုံးသော ဒိုမိန်းများတွင် မူလသတ်မှတ်ထားသော ပေါ်လစီကို သုံးသွားမည်။ <b>အားလုံးဖျက်မည်</"
+#~ "b>ကို နှိပ်လျှင် ဆိုက်တစ်ခုချင်းဆိုင်ရာပေါ်လစီ အားလုံးဖျက်ပစ်မည်။\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "ဆိုက်ပေါ်လစိ"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "ဒိုမန်းများကို တစ်ဆင့်ချင်းရှာရန်"
+
+#~ msgid "Search..."
+#~ msgstr "ရှာရန်…"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "ဆိုက်တစ်ခုချင်းဆီအတွက် ကွတ်ကီးပေါ်လစီသတ်မှတ်ထားသော ဆိုက်များ၏စာရင်း။ ယင်းဆိုက်များတွင် မူလသတ်မှတ်-"
+#~ "ပေါ်လစီထက် တစ်ဦးတည်းပေါ်လစီများကို ဦးစားပေးလိုက်နာသည်။\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "ဒိုမိန်း"
+
+#~ msgid "Policy"
+#~ msgstr "ပေါ်လစီ"
+
+#~ msgid "Accept"
+#~ msgstr "လက်ခံ"
+
+#~ msgid "Accept For Session"
+#~ msgstr "ဆက်ရှင်အတွက် လက်ခံရန်"
+
+#~ msgid "Reject"
+#~ msgstr "ငြင်းပယ်မည်"
+
+#~ msgid "Ask"
+#~ msgstr "မေး"
+
+#~ msgid "Do Not Know"
+#~ msgstr "မသိ"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "ဤပေါ်လစီ သုံးသော အိမ်ရှင် သို့ ဒိုမိန်း ရေးသွင်းပါ။ သာဓက။ ။<b>www.kde.org</b>၊ <b>.kde."
+#~ "org</b>။\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "ဆိုက်အမည် -"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr "ဤပေါ်လစီ သုံးမည့် အိမ်ရှင် သို့မဟုတ် ဒိုမိန်း အမည် ရေးပါ။ သာဓက။ ။ .kde.org။"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "လိုချင်သော ပေါ်လစီ သတ်မှတ်ပါ -\n"
+#~ "<ul>\n"
+#~ "<li><b>လက်ခံမည်</b> - ဤဆိုက်ကို ကွတ်ကီးသတ်မှတ်ခွင့်ပြုသည်။</li>\n"
+#~ "<li><b>ဆက်ရှင်ပြီးသည်ထိ လက်ခံမည်</b> - ဤဆိုက်ကို ကွတ်ကီးသတ်မှတ်ခွင့်ပြုသည်။ သို့သော် ယင်းကွတ်ကီးများသည် "
+#~ "ဆက်ရှင် ပြီးသည်နှင့် သက်တမ်းကုန်မည်။</li>\n"
+#~ "<li><b>ငြင်းပယ်မည်</b> - ဤဆိုက်မှ ကွတ်ကီးများအားလုံးငြင်းပယ်မည်။</li>\n"
+#~ "<li><b>မေးမည်</b> - ဤဆိုက်မှ ကွတ်ကီးများ လက်ခံရရှိသည်အခါ ခွင့်ပြုချက်တောင်းမည်။</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "ပေါ်လစီ -"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "ဆက်ရှင် မပြီးခင်ထိလက်ခံရန်"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2023-04-30 21:43+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -24,499 +24,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 23.04.0\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&கொள்கை"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&மேலாண்மை"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "D-Bus தொடர்பு சிக்கல்"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "கோரியவாறு அனைத்து நினைவிகளையும் அழிக்க முடியவில்லை."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "கோரியவாறு நினைவிகளை அழிக்க முடியவில்லை."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "விவரங்களை மீட்டல் தோல்வியடைந்தது"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr ""
-"உங்களுடைய கணினியில் சேமிக்கப்பட்டுள்ள நினைவிகளைப் பற்றிய விவரங்களை பெற முடியவில்லை."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "அமர்வின் முடிவு"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "ஆம்"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "தேடுங்கள்"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "இடங்கள் மற்றும் புரவன்களுக்கான ஊடாடும் தேடல்"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "இணையதளம்"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "நினைவியின் பெயர்"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "&நீக்கு"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "&அனைத்தையும் நீக்கு"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "&கொள்கையை அமை"
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "பட்டியலை &மீளேற்று"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "விவரங்கள்"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "பெயர்: "
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "உட்பொருள்:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "ஆள்களம்:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "பாதை:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "காலாவதி ஆவது:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "பாதுகாப்பானது:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "நினைவி கொள்கையை மாற்றுதல்"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "புதிய நினைவி கொள்கை"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt><center><b>%1</b></center>-க்கு ஏற்கனவே ஒரு கொள்கை உள்ளது. அதனை மாற்ற "
-"விரும்புகிறீர்களா?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "ஏற்கனவே உள்ள கொள்கை"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "மாற்று"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"நினைவிகளை கையாளும் சேவையை தொடர்பு கொள்ள முடியவில்லை.\n"
-"அந்த சேவையை மீள்துவக்கும் வரை நீங்கள் செய்யும் மாற்றங்கள் செயல்படாது."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>நினைவி ஆதரவை இயக்கு. சாதாரணமாக, நினைவி ஆதரவை இயக்கி, தங்களது தேவைக்கேற்ப அதை "
-"மாற்றியமைக்க பயனர்கள் விரும்புவர்.</p><p>\n"
-"நினைவி ஆதரவை முடக்கினால், பல இணையதளங்களை நீங்கள் பயன்படுத்த முடியாமல் போகலாம்.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "நினைவிகளை செயல்படுத்து"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"மூன்றாம் தரப்பு நினைவிகளை மறு.இவை, நீங்கள் பார்க்கும் இணையதளத்திலிருந்து இல்லாமல் வேறு "
-"தளங்களிலிருந்து வரும் நினைவிகள் ஆகும். எடுத்துக்காட்டாக, இந்த விருப்பத்தை தேர்வு செய்த "
-"பின் நீங்கள் <b>www.foobar.com</b> என்ற இணையதளத்துக்கு பயணித்தால், www.foobar.com "
-"இருந்து வரும் நினைவிகள் மட்டுமே உங்கள் விருப்பத்துக்கேற்ப கையாளப்படும். மற்ற "
-"தளங்களிலிருந்து வரும் நினைவிகள் மறுக்கப்படும். உங்கள் உலாவல் பழக்கங்களைப் பற்றி இணையதளங்கள் "
-"அறிவதன் வாய்ப்புகளை இது குறைக்கும்.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "மூல சேவையகத்திலிருந்து மட்டும் நினைவிகளை &ஏற்றுக்கொள்"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"தற்போதைய அமர்வு முடியும்போது காலவதியாகும் தற்காலிக நினைவிகளை ஏற்றுக்கொள்.இவ்வாறுள்ள "
-"நினைவிகள், உங்கள் வட்டில் சேமிக்கப்படாது.மாறாக, அவற்றை பயன்படுத்தும் அனைத்து செயலிகளையும் "
-"(எ.கா. உங்கள் உலாவியை) மூடும்போது இவை அகற்றப் படும்.</p><p> <u>குறிப்பு</u> இந்த "
-"விருப்பத்தை குறித்தல், உங்கள் இயல்பிருப்பு மற்றும் தள நினைவிக் கொள்கைகளை புறக்கணிக்கும்.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "&அமர்வு நினைவிகளை தானாக ஏற்றுக்கொள்"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"தொலை சேவையகத்திலிருந்து வரும் நினைவிகளை எவ்வாறு கையாள வேண்டும் என்பதை தீர்மானிக்கும்: \n"
-"<ul>\n"
-"<li><b>கேள்</b> சேவையகம் ஒரு நினைவியை அமைக்க விரும்பும்போது என்ன செய்வதென்று கே.டீ.யீ. "
-"ஒவ்வொரு முறையும் உங்களிடம் கேட்கும்.</li>\n"
-"<li><b>ஏற்றுக்கொள்</b> உங்களிடம் கேட்காமல் நினைவிகள் ஏற்கப்படும்.</li>\n"
-"<li><b>அமர்வு முடியும் வரை ஏற்றுக்கொள்</b> நினைவிகள் ஏற்றுக்கொள்ளப் படும், ஆனால் அமர்வு "
-"முடியும்போது காலாவதி ஆகும்.</li>\n"
-"<li><b>மறு</b> பெறப்படும் அனைத்து நினைவிகளும் மறுக்கப்படும்.</li>\n"
-"</ul><p>\n"
-"<u>குறிப்பு:</u> கீழே அமைக்கக்கூடிய தனிப்பட்ட ஆள்களங்களுக்கான கொள்கைகள், இயல்பிருப்பு "
-"கொள்கையை விட முன்னிலை பெறும்.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "இயல்பிருப்பு கொள்கை"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "&எல்லா நினைவிகளையும் ஏற்றுக்கொள்"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "அமர்வு முடியும் &வரை ஏற்றுக்கொள்"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "&உறுதிப்படுத்து"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "எல்லா நினைவிகளையும் &மறு"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"புதிய கொள்கையை சேர்க்க, <b>சேர்...</b> பட்டனை அழுத்தி தேவையான விவரங்களை உள்ளிடுங்கள். "
-"ஏற்கனவே உள்ள கொள்கையை மாற்ற, <b>மாற்று...</b> பட்டனை அழுத்தி, வரும் சாளரத்தில் புதிய "
-"கொள்கையை தேர்ந்தெடுங்கள். <b>நீக்கு</b> அழுத்தினால், தேர்வு செய்த கொள்கை நீக்கப்பட்டு, அந்த "
-"ஆள்களத்துக்கு இயல்பிருப்பு கொள்கையே பயன்படுத்தப்படும். <b>அனைத்தையும் நீக்கு</b> பட்டனை "
-"அழுத்துதல், எல்லா தனிப்பட்ட ஆள்கள கொள்கைகளை நீக்கும்.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "தளக் கொள்கை"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "ஆள்களங்களுக்கான ஊடாடும் தேடல்"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "தேடு..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"இப்பட்டியலில் உள்ள ஆள்களங்களுக்கு நீங்கள் தனிப்பட்ட நினைவி கொள்கைகளை அமைத்துள்ளீர்கள். இந்த "
-"ஆள்களங்களில், இயல்பிருப்பு கொள்கைக்கு பதிலாக தனிப்பட்ட கொள்கைகள் பயன்படுத்தப்படும்.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "ஆள்களம்"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "கொள்கை"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&புதியது..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "&மாற்று..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "ஏற்றுக்கொள்"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "இந்த அமர்வுக்கு ஏற்றுக்கொள்"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "மறு"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "கேள்"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "தெரியாது"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"எந்த புரவனுக்கு அல்லது இணையதளத்துக்கு இந்த கொள்கை பொருந்தும் என்று உள்ளிடுங்கள், எ.கா. "
-"<b>www.kde.org</b> அல்லது <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "இணையதளத்தின் பெயர்:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"இந்த கொள்கை எந்த புரவனுக்கு அல்லது ஆள்களத்துக்கு  பொருந்தும் என்று குறிப்பிடுங்கள் "
-"(உதாரணத்துக்கு .kde.org)."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"நீங்கள் விரும்பும் கொள்கையை தேர்ந்தெடுங்கள்:\n"
-"<ul>\n"
-"<li><b>ஏற்றுக்கொள்</b> - நினைவிகளை அமைக்க இந்த இணையதளத்தை அனுமதிக்கும்</li>\n"
-"<li><b>அமர்வு முடியும் வரை ஏற்றுக்கொள்</b> - இந்த இணையதளத்துக்கு நினைவிகளை அமைக்கும் "
-"அனுமதி தரப்படும், ஆனால் அவை அமர்வு முடியும்போது காலாவதி ஆகும்.</li>\n"
-"<li><b>மறு</b> - இந்த இணையதளம் அனுப்பும் அனைத்து நினைவிகளையும் மறு</li>\n"
-"<li><b>கேள்</b> - இந்த இணையதளம் நினைவிகளை அனுப்பும்போது என்ன செய்வதென்று கேள்</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "கொள்கை:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "அமர்வு முடியும் வரை ஏற்றுக்கொள்"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1367,11 +874,23 @@ msgstr "இணையத் தேடல் முதன்மைச்சொற�
 msgid "Add a new Web search keyword"
 msgstr "புதிய இணையத் தேடல் முதன்மைச்சொல்லை சேர்"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&புதியது..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "குறிக்கப்பட்ட இணையத் தேடல் முதன்மைச்சொல்லை திருத்து"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&மாற்று..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1632,6 +1151,325 @@ msgstr "&உருத்தொகுதி:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "கேள்விக்கான கொள்ளிடத்தை உள்ளிடு"
+
+#~ msgid "&Policy"
+#~ msgstr "&கொள்கை"
+
+#~ msgid "&Management"
+#~ msgstr "&மேலாண்மை"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "D-Bus தொடர்பு சிக்கல்"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "கோரியவாறு அனைத்து நினைவிகளையும் அழிக்க முடியவில்லை."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "கோரியவாறு நினைவிகளை அழிக்க முடியவில்லை."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "விவரங்களை மீட்டல் தோல்வியடைந்தது"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "உங்களுடைய கணினியில் சேமிக்கப்பட்டுள்ள நினைவிகளைப் பற்றிய விவரங்களை பெற முடியவில்லை."
+
+#~ msgid "End of session"
+#~ msgstr "அமர்வின் முடிவு"
+
+#~ msgid "Yes"
+#~ msgstr "ஆம்"
+
+#~ msgid "Search"
+#~ msgstr "தேடுங்கள்"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "இடங்கள் மற்றும் புரவன்களுக்கான ஊடாடும் தேடல்"
+
+#~ msgid "Site"
+#~ msgstr "இணையதளம்"
+
+#~ msgid "Cookie Name"
+#~ msgstr "நினைவியின் பெயர்"
+
+#~ msgid "D&elete"
+#~ msgstr "&நீக்கு"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "&அனைத்தையும் நீக்கு"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "&கொள்கையை அமை"
+
+#~ msgid "&Reload List"
+#~ msgstr "பட்டியலை &மீளேற்று"
+
+#~ msgid "Details"
+#~ msgstr "விவரங்கள்"
+
+#~ msgid "Name:"
+#~ msgstr "பெயர்: "
+
+#~ msgid "Value:"
+#~ msgstr "உட்பொருள்:"
+
+#~ msgid "Domain:"
+#~ msgstr "ஆள்களம்:"
+
+#~ msgid "Path:"
+#~ msgstr "பாதை:"
+
+#~ msgid "Expires:"
+#~ msgstr "காலாவதி ஆவது:"
+
+#~ msgid "Secure:"
+#~ msgstr "பாதுகாப்பானது:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "நினைவி கொள்கையை மாற்றுதல்"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "புதிய நினைவி கொள்கை"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt><center><b>%1</b></center>-க்கு ஏற்கனவே ஒரு கொள்கை உள்ளது. அதனை மாற்ற "
+#~ "விரும்புகிறீர்களா?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "ஏற்கனவே உள்ள கொள்கை"
+
+#~ msgid "Replace"
+#~ msgstr "மாற்று"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "நினைவிகளை கையாளும் சேவையை தொடர்பு கொள்ள முடியவில்லை.\n"
+#~ "அந்த சேவையை மீள்துவக்கும் வரை நீங்கள் செய்யும் மாற்றங்கள் செயல்படாது."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>நினைவி ஆதரவை இயக்கு. சாதாரணமாக, நினைவி ஆதரவை இயக்கி, தங்களது தேவைக்கேற்ப "
+#~ "அதை மாற்றியமைக்க பயனர்கள் விரும்புவர்.</p><p>\n"
+#~ "நினைவி ஆதரவை முடக்கினால், பல இணையதளங்களை நீங்கள் பயன்படுத்த முடியாமல் போகலாம்.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "நினைவிகளை செயல்படுத்து"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "மூன்றாம் தரப்பு நினைவிகளை மறு.இவை, நீங்கள் பார்க்கும் இணையதளத்திலிருந்து இல்லாமல் வேறு "
+#~ "தளங்களிலிருந்து வரும் நினைவிகள் ஆகும். எடுத்துக்காட்டாக, இந்த விருப்பத்தை தேர்வு செய்த "
+#~ "பின் நீங்கள் <b>www.foobar.com</b> என்ற இணையதளத்துக்கு பயணித்தால், www.foobar.com "
+#~ "இருந்து வரும் நினைவிகள் மட்டுமே உங்கள் விருப்பத்துக்கேற்ப கையாளப்படும். மற்ற "
+#~ "தளங்களிலிருந்து வரும் நினைவிகள் மறுக்கப்படும். உங்கள் உலாவல் பழக்கங்களைப் பற்றி "
+#~ "இணையதளங்கள் அறிவதன் வாய்ப்புகளை இது குறைக்கும்.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "மூல சேவையகத்திலிருந்து மட்டும் நினைவிகளை &ஏற்றுக்கொள்"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "தற்போதைய அமர்வு முடியும்போது காலவதியாகும் தற்காலிக நினைவிகளை ஏற்றுக்கொள்.இவ்வாறுள்ள "
+#~ "நினைவிகள், உங்கள் வட்டில் சேமிக்கப்படாது.மாறாக, அவற்றை பயன்படுத்தும் அனைத்து "
+#~ "செயலிகளையும் (எ.கா. உங்கள் உலாவியை) மூடும்போது இவை அகற்றப் படும்.</p><p> "
+#~ "<u>குறிப்பு</u> இந்த விருப்பத்தை குறித்தல், உங்கள் இயல்பிருப்பு மற்றும் தள நினைவிக் "
+#~ "கொள்கைகளை புறக்கணிக்கும்.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "&அமர்வு நினைவிகளை தானாக ஏற்றுக்கொள்"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "தொலை சேவையகத்திலிருந்து வரும் நினைவிகளை எவ்வாறு கையாள வேண்டும் என்பதை "
+#~ "தீர்மானிக்கும்: \n"
+#~ "<ul>\n"
+#~ "<li><b>கேள்</b> சேவையகம் ஒரு நினைவியை அமைக்க விரும்பும்போது என்ன செய்வதென்று கே.டீ."
+#~ "யீ. ஒவ்வொரு முறையும் உங்களிடம் கேட்கும்.</li>\n"
+#~ "<li><b>ஏற்றுக்கொள்</b> உங்களிடம் கேட்காமல் நினைவிகள் ஏற்கப்படும்.</li>\n"
+#~ "<li><b>அமர்வு முடியும் வரை ஏற்றுக்கொள்</b> நினைவிகள் ஏற்றுக்கொள்ளப் படும், ஆனால் "
+#~ "அமர்வு முடியும்போது காலாவதி ஆகும்.</li>\n"
+#~ "<li><b>மறு</b> பெறப்படும் அனைத்து நினைவிகளும் மறுக்கப்படும்.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>குறிப்பு:</u> கீழே அமைக்கக்கூடிய தனிப்பட்ட ஆள்களங்களுக்கான கொள்கைகள், இயல்பிருப்பு "
+#~ "கொள்கையை விட முன்னிலை பெறும்.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "இயல்பிருப்பு கொள்கை"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "&எல்லா நினைவிகளையும் ஏற்றுக்கொள்"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "அமர்வு முடியும் &வரை ஏற்றுக்கொள்"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "&உறுதிப்படுத்து"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "எல்லா நினைவிகளையும் &மறு"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "புதிய கொள்கையை சேர்க்க, <b>சேர்...</b> பட்டனை அழுத்தி தேவையான விவரங்களை "
+#~ "உள்ளிடுங்கள். ஏற்கனவே உள்ள கொள்கையை மாற்ற, <b>மாற்று...</b> பட்டனை அழுத்தி, வரும் "
+#~ "சாளரத்தில் புதிய கொள்கையை தேர்ந்தெடுங்கள். <b>நீக்கு</b> அழுத்தினால், தேர்வு செய்த "
+#~ "கொள்கை நீக்கப்பட்டு, அந்த ஆள்களத்துக்கு இயல்பிருப்பு கொள்கையே பயன்படுத்தப்படும். "
+#~ "<b>அனைத்தையும் நீக்கு</b> பட்டனை அழுத்துதல், எல்லா தனிப்பட்ட ஆள்கள கொள்கைகளை நீக்கும்.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "தளக் கொள்கை"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "ஆள்களங்களுக்கான ஊடாடும் தேடல்"
+
+#~ msgid "Search..."
+#~ msgstr "தேடு..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "இப்பட்டியலில் உள்ள ஆள்களங்களுக்கு நீங்கள் தனிப்பட்ட நினைவி கொள்கைகளை அமைத்துள்ளீர்கள். இந்த "
+#~ "ஆள்களங்களில், இயல்பிருப்பு கொள்கைக்கு பதிலாக தனிப்பட்ட கொள்கைகள் பயன்படுத்தப்படும்.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "ஆள்களம்"
+
+#~ msgid "Policy"
+#~ msgstr "கொள்கை"
+
+#~ msgid "Accept"
+#~ msgstr "ஏற்றுக்கொள்"
+
+#~ msgid "Accept For Session"
+#~ msgstr "இந்த அமர்வுக்கு ஏற்றுக்கொள்"
+
+#~ msgid "Reject"
+#~ msgstr "மறு"
+
+#~ msgid "Ask"
+#~ msgstr "கேள்"
+
+#~ msgid "Do Not Know"
+#~ msgstr "தெரியாது"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "எந்த புரவனுக்கு அல்லது இணையதளத்துக்கு இந்த கொள்கை பொருந்தும் என்று உள்ளிடுங்கள், எ.கா. "
+#~ "<b>www.kde.org</b> அல்லது <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "இணையதளத்தின் பெயர்:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "இந்த கொள்கை எந்த புரவனுக்கு அல்லது ஆள்களத்துக்கு  பொருந்தும் என்று குறிப்பிடுங்கள் "
+#~ "(உதாரணத்துக்கு .kde.org)."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "நீங்கள் விரும்பும் கொள்கையை தேர்ந்தெடுங்கள்:\n"
+#~ "<ul>\n"
+#~ "<li><b>ஏற்றுக்கொள்</b> - நினைவிகளை அமைக்க இந்த இணையதளத்தை அனுமதிக்கும்</li>\n"
+#~ "<li><b>அமர்வு முடியும் வரை ஏற்றுக்கொள்</b> - இந்த இணையதளத்துக்கு நினைவிகளை "
+#~ "அமைக்கும் அனுமதி தரப்படும், ஆனால் அவை அமர்வு முடியும்போது காலாவதி ஆகும்.</li>\n"
+#~ "<li><b>மறு</b> - இந்த இணையதளம் அனுப்பும் அனைத்து நினைவிகளையும் மறு</li>\n"
+#~ "<li><b>கேள்</b> - இந்த இணையதளம் நினைவிகளை அனுப்பும்போது என்ன செய்வதென்று கேள்</"
+#~ "li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "கொள்கை:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "அமர்வு முடியும் வரை ஏற்றுக்கொள்"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

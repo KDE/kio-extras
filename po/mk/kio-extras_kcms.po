@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2009-06-22 11:48+0200\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -19,556 +19,6 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: Plural-Forms: nplurals=3; plural=n%10==1 ? 0 : n%10==2 ? 1 : "
 "2;\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Политика"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Управување"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Грешка во комуникацијата на D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Не може да се избришат сите колачиња како што е барано."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Не може да се избришат колачињата како што е барано."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Неуспех при барање на информација"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr ""
-"Не беше пронајдена информација за колачињата зачувани на вашиот компјутер."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Крај на сесија"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Да"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Барај"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Бара интерактивно за домени и компјутери"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, fuzzy, kde-format
-#| msgid "Site Name"
-msgid "Site"
-msgstr "Име на страница"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, fuzzy, kde-format
-#| msgid "Site Name"
-msgid "Cookie Name"
-msgstr "Име на страница"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "И&збриши"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Избриши ги &сите"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, fuzzy, kde-format
-#| msgid "Change &Policy..."
-msgid "Configure &Policy..."
-msgstr "&Промени ја политиката..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "Превчитај ја листа&та"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Детали"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Име:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Вредност:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Домен:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Патека:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Истекува: "
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Безбедно:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, fuzzy, kde-format
-#| msgid "Change Cookie Policy"
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Променете ја политиката за колачиња"
-
-#: cookies/kcookiespolicies.cpp:173
-#, fuzzy, kde-format
-#| msgid "New Cookie Policy"
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Нова политика за колачиња"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Веќе постои политика за<center><b>%1</b></center>Дали сакате да ја "
-"промените?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, fuzzy, kde-format
-#| msgid "Duplicate Policy"
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Двојна политика"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Замени"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Нема комуникација со сервисот за ракување на колачиња.\n"
-"Промените што сте ги направиле нема да се применат сѐ додека сервисот не се "
-"рестартира."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Овозможува поддршка за колачиња. Обично ќе сакате да ја овозможите "
-"поддршката на колачиња и да ја прилагодите да одговара на вашите потреби за "
-"приватност.</p><p>\n"
-"Оневозможувањето на поддршката за колачиња може да направи повеќе веб-"
-"локации да не можат да се прелистуваат.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Овозможи &колачиња"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Ги одбива т.н. колачиња од трета страна. Овие се колачиња кои не потекнуваат "
-"од страницата која што моментално ја прелистувате. На пример, ако ја "
-"посетите <b>www.foobar.com</b> додека е оваа опција вклучена, само "
-"колачињата кои потекнуваат од www.foobar.com ќе бидат обработени според "
-"вашите поставувања. Колачињата од било која друга страница ќе бидат одбиени. "
-"Ова ги намалува шансите операторите на страницата да направат профил на "
-"вашите прелистувачки навики.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Прифаќај &колачиња само од оригиналниот сервер"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "<p>Automatically accept temporary cookies meant to expire at the end of "
-#| "the current session. Such cookies will not be stored in your computer's "
-#| "hard drive or storage device. Instead, they are deleted when you close "
-#| "all applications (e.g. your browser) that use them.</p><p>\n"
-#| "<u>NOTE:</u> Checking this option along with the next one will override "
-#| "your default as well as site specific cookie policies. However, doing so "
-#| "also increases your privacy since all cookies will be removed when the "
-#| "current session ends.</p>\n"
-#| "</qt>"
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<qt>\n"
-"<p>Автоматско прифаќање на привремените колачиња што истекуваат на крајот на "
-"тековната сесија. Ваквите колачиња нема да бидат снимени на вашиот тврд "
-"диск. Наместо тоа тие се бришат кога ќе ги затворите сите апликации што ги "
-"користат (пр. вашиот прелистувач.).</p><p>\n"
-"<u>ЗАБЕЛЕШКА:</u> Избирањето на оваа опција заедно со следната ќе ги "
-"прескокне вашите почетни поставувања како и поставувањата специфични за "
-"страниците. Но вака се зголемува и вашата приватност затоа што сите колачиња "
-"ќе бидат избришани кога ќе заврши тековната сесија.</p>\n"
-"</qt> "
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Автоматск&и прифаќај колачиња за сесија"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Determines how cookies received from a remote machine will be handled: \n"
-#| "<ul>\n"
-#| "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
-#| "server wants to set a cookie.</li>\n"
-#| "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
-#| "</li>\n"
-#| "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
-#| "receives.</li>\n"
-#| "</ul><p>\n"
-#| "<u>NOTE:</u> Domain specific policies, which can be set below, always "
-#| "take precedence over the default policy.</p>\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Определува како ќе се ракува со колачињата примени од оддалечена машина: \n"
-"<ul>\n"
-"<li><b>Прашај</b> KDE ќе ве прашува за потврда секогаш кога некој сервер ќе "
-"сака да постави колаче.</li>\n"
-"<li><b>Прифати</b> колачињата ќе се прифаќаат без ваша потврда.</li>\n"
-"<li><b>Одбиј</b> сите колачиња ќе бидат одбиени.</li>\n"
-"</ul><p>\n"
-"<u>ЗАБЕЛЕШКА:</u> Политиките што се специфични за домен и кои може да се "
-"постават долу, секогаш имаат приоритет пред почетната политика.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Почетна политика"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Прифа&ти ги сите колачиња"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, fuzzy, kde-format
-#| msgid "End of session"
-msgid "Accept &until end of session"
-msgstr "Крај на сесија"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "П&рашај за потврда"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "Одбиј ги сите ко&лачиња"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"За да додадете нова политика, само кликнете на копчето <b>Додај...</b> и "
-"наведете ги неопходните информации. За да измените постоечка политика "
-"искористете го копчето <b>Промени...</b> и изберете ја новата политика од "
-"дијалогот за политика. Со кликање на копчето <b>Избриши</b> ќе биде "
-"избришана избраната политика со што ќе се применува почетната политика за "
-"тој домен, а со кликање на копчето <b>Избриши ги сите</b> ќе се избришат "
-"сите политики специфични за веб-локациите.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Политика за веб-локација"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Бара интерактивно за домени"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, fuzzy, kde-format
-#| msgid "Search"
-msgid "Search..."
-msgstr "Барај"
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Листа на веб-локациите за кои имате поставено специфична политика за "
-"колачиња. Специфичните политики за овие веб-локации имаат приоритет пред "
-"стандардните поставувања.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Домен"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Политика"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Нова..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Промен&и..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Прифати"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-#, fuzzy
-#| msgid "End of Session"
-msgid "Accept For Session"
-msgstr "Крај на сесија"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Одбиј"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Прашај"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-#, fuzzy
-#| msgid "Do Not Store"
-msgid "Do Not Know"
-msgstr "Не зачувувај"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Внесете го компјутерот или доменот за кој ќе важи оваа политика, на пр. "
-"<b>www.kde.org</b> или <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, fuzzy, kde-format
-#| msgid "Site Name"
-msgid "Site name:"
-msgstr "Име на страница"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Select the desired policy:\n"
-#| "<ul>\n"
-#| "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-#| "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-#| "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-#| "</ul>\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Изберете ја саканата политика:\n"
-"<ul>\n"
-"<li><b>Прифати</b> - Ѝ дозволува на оваа страница да поставува колачиња</"
-"li>\n"
-"<li><b>Одбиј</b> - Ги одбива сите колачиња испратени од оваа страница</li>\n"
-"<li><b>Прашај</b> - Прашува кога ќе се примат колачиња од оваа страница</"
-"li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, fuzzy, kde-format
-#| msgid "&Policy:"
-msgid "Policy:"
-msgstr "&Политика:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, fuzzy, kde-format
-#| msgid "End of session"
-msgid "Accept until end of session"
-msgstr "Крај на сесија"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1476,12 +926,24 @@ msgstr "Стандардна лозинка:"
 msgid "Add a new Web search keyword"
 msgstr "Стандардна лозинка:"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Нова..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, fuzzy, kde-format
 #| msgid "Default password:"
 msgid "Modify the highlighted Web search keyword"
 msgstr "Стандардна лозинка:"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Промен&и..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1708,6 +1170,391 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "&Policy"
+#~ msgstr "&Политика"
+
+#~ msgid "&Management"
+#~ msgstr "&Управување"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Грешка во комуникацијата на D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Не може да се избришат сите колачиња како што е барано."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Не може да се избришат колачињата како што е барано."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Неуспех при барање на информација"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Не беше пронајдена информација за колачињата зачувани на вашиот компјутер."
+
+#~ msgid "End of session"
+#~ msgstr "Крај на сесија"
+
+#~ msgid "Yes"
+#~ msgstr "Да"
+
+#~ msgid "Search"
+#~ msgstr "Барај"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Бара интерактивно за домени и компјутери"
+
+#, fuzzy
+#~| msgid "Site Name"
+#~ msgid "Site"
+#~ msgstr "Име на страница"
+
+#, fuzzy
+#~| msgid "Site Name"
+#~ msgid "Cookie Name"
+#~ msgstr "Име на страница"
+
+#~ msgid "D&elete"
+#~ msgstr "И&збриши"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Избриши ги &сите"
+
+#, fuzzy
+#~| msgid "Change &Policy..."
+#~ msgid "Configure &Policy..."
+#~ msgstr "&Промени ја политиката..."
+
+#~ msgid "&Reload List"
+#~ msgstr "Превчитај ја листа&та"
+
+#~ msgid "Details"
+#~ msgstr "Детали"
+
+#~ msgid "Name:"
+#~ msgstr "Име:"
+
+#~ msgid "Value:"
+#~ msgstr "Вредност:"
+
+#~ msgid "Domain:"
+#~ msgstr "Домен:"
+
+#~ msgid "Path:"
+#~ msgstr "Патека:"
+
+#~ msgid "Expires:"
+#~ msgstr "Истекува: "
+
+#~ msgid "Secure:"
+#~ msgstr "Безбедно:"
+
+#, fuzzy
+#~| msgid "Change Cookie Policy"
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Променете ја политиката за колачиња"
+
+#, fuzzy
+#~| msgid "New Cookie Policy"
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Нова политика за колачиња"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Веќе постои политика за<center><b>%1</b></center>Дали сакате да ја "
+#~ "промените?</qt>"
+
+#, fuzzy
+#~| msgid "Duplicate Policy"
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Двојна политика"
+
+#~ msgid "Replace"
+#~ msgstr "Замени"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Нема комуникација со сервисот за ракување на колачиња.\n"
+#~ "Промените што сте ги направиле нема да се применат сѐ додека сервисот не "
+#~ "се рестартира."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Овозможува поддршка за колачиња. Обично ќе сакате да ја овозможите "
+#~ "поддршката на колачиња и да ја прилагодите да одговара на вашите потреби "
+#~ "за приватност.</p><p>\n"
+#~ "Оневозможувањето на поддршката за колачиња може да направи повеќе веб-"
+#~ "локации да не можат да се прелистуваат.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Овозможи &колачиња"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Ги одбива т.н. колачиња од трета страна. Овие се колачиња кои не "
+#~ "потекнуваат од страницата која што моментално ја прелистувате. На пример, "
+#~ "ако ја посетите <b>www.foobar.com</b> додека е оваа опција вклучена, само "
+#~ "колачињата кои потекнуваат од www.foobar.com ќе бидат обработени според "
+#~ "вашите поставувања. Колачињата од било која друга страница ќе бидат "
+#~ "одбиени. Ова ги намалува шансите операторите на страницата да направат "
+#~ "профил на вашите прелистувачки навики.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Прифаќај &колачиња само од оригиналниот сервер"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "<p>Automatically accept temporary cookies meant to expire at the end of "
+#~| "the current session. Such cookies will not be stored in your computer's "
+#~| "hard drive or storage device. Instead, they are deleted when you close "
+#~| "all applications (e.g. your browser) that use them.</p><p>\n"
+#~| "<u>NOTE:</u> Checking this option along with the next one will override "
+#~| "your default as well as site specific cookie policies. However, doing so "
+#~| "also increases your privacy since all cookies will be removed when the "
+#~| "current session ends.</p>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Автоматско прифаќање на привремените колачиња што истекуваат на крајот "
+#~ "на тековната сесија. Ваквите колачиња нема да бидат снимени на вашиот "
+#~ "тврд диск. Наместо тоа тие се бришат кога ќе ги затворите сите апликации "
+#~ "што ги користат (пр. вашиот прелистувач.).</p><p>\n"
+#~ "<u>ЗАБЕЛЕШКА:</u> Избирањето на оваа опција заедно со следната ќе ги "
+#~ "прескокне вашите почетни поставувања како и поставувањата специфични за "
+#~ "страниците. Но вака се зголемува и вашата приватност затоа што сите "
+#~ "колачиња ќе бидат избришани кога ќе заврши тековната сесија.</p>\n"
+#~ "</qt> "
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Автоматск&и прифаќај колачиња за сесија"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Determines how cookies received from a remote machine will be handled: \n"
+#~| "<ul>\n"
+#~| "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~| "server wants to set a cookie.</li>\n"
+#~| "<li><b>Accept</b> will cause cookies to be accepted without prompting "
+#~| "you.</li>\n"
+#~| "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~| "receives.</li>\n"
+#~| "</ul><p>\n"
+#~| "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~| "take precedence over the default policy.</p>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Определува како ќе се ракува со колачињата примени од оддалечена "
+#~ "машина: \n"
+#~ "<ul>\n"
+#~ "<li><b>Прашај</b> KDE ќе ве прашува за потврда секогаш кога некој сервер "
+#~ "ќе сака да постави колаче.</li>\n"
+#~ "<li><b>Прифати</b> колачињата ќе се прифаќаат без ваша потврда.</li>\n"
+#~ "<li><b>Одбиј</b> сите колачиња ќе бидат одбиени.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>ЗАБЕЛЕШКА:</u> Политиките што се специфични за домен и кои може да се "
+#~ "постават долу, секогаш имаат приоритет пред почетната политика.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Почетна политика"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Прифа&ти ги сите колачиња"
+
+#, fuzzy
+#~| msgid "End of session"
+#~ msgid "Accept &until end of session"
+#~ msgstr "Крај на сесија"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "П&рашај за потврда"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "Одбиј ги сите ко&лачиња"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "За да додадете нова политика, само кликнете на копчето <b>Додај...</b> и "
+#~ "наведете ги неопходните информации. За да измените постоечка политика "
+#~ "искористете го копчето <b>Промени...</b> и изберете ја новата политика од "
+#~ "дијалогот за политика. Со кликање на копчето <b>Избриши</b> ќе биде "
+#~ "избришана избраната политика со што ќе се применува почетната политика за "
+#~ "тој домен, а со кликање на копчето <b>Избриши ги сите</b> ќе се избришат "
+#~ "сите политики специфични за веб-локациите.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Политика за веб-локација"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Бара интерактивно за домени"
+
+#, fuzzy
+#~| msgid "Search"
+#~ msgid "Search..."
+#~ msgstr "Барај"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Листа на веб-локациите за кои имате поставено специфична политика за "
+#~ "колачиња. Специфичните политики за овие веб-локации имаат приоритет пред "
+#~ "стандардните поставувања.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Домен"
+
+#~ msgid "Policy"
+#~ msgstr "Политика"
+
+#~ msgid "Accept"
+#~ msgstr "Прифати"
+
+#, fuzzy
+#~| msgid "End of Session"
+#~ msgid "Accept For Session"
+#~ msgstr "Крај на сесија"
+
+#~ msgid "Reject"
+#~ msgstr "Одбиј"
+
+#~ msgid "Ask"
+#~ msgstr "Прашај"
+
+#, fuzzy
+#~| msgid "Do Not Store"
+#~ msgid "Do Not Know"
+#~ msgstr "Не зачувувај"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Внесете го компјутерот или доменот за кој ќе важи оваа политика, на пр. "
+#~ "<b>www.kde.org</b> или <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "Site Name"
+#~ msgid "Site name:"
+#~ msgstr "Име на страница"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Select the desired policy:\n"
+#~| "<ul>\n"
+#~| "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~| "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~| "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~| "</ul>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Изберете ја саканата политика:\n"
+#~ "<ul>\n"
+#~ "<li><b>Прифати</b> - Ѝ дозволува на оваа страница да поставува колачиња</"
+#~ "li>\n"
+#~ "<li><b>Одбиј</b> - Ги одбива сите колачиња испратени од оваа страница</"
+#~ "li>\n"
+#~ "<li><b>Прашај</b> - Прашува кога ќе се примат колачиња од оваа страница</"
+#~ "li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "&Policy:"
+#~ msgid "Policy:"
+#~ msgstr "&Политика:"
+
+#, fuzzy
+#~| msgid "End of session"
+#~ msgid "Accept until end of session"
+#~ msgstr "Крај на сесија"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

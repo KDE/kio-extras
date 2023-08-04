@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2022-07-10 22:32+0100\n"
 "Last-Translator: KD at KGyfieithu <kyfieithu@dotmon.com>\n"
 "Language-Team: Cymraeg <cy@li.org>\n"
@@ -21,501 +21,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Polisi"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Rheolaeth"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Gwall Cyfathrebu D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Methwyd dileu pob bisgïen fel gofynnwyd."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Methwyd dileu bisgedi fel gofynnwyd."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Methiant Chwiliad Gwybodaeth"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "Methwyd nôl gwybodaeth am y bisgedi a gedwid ar eich cyfrifiadur."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Diwedd sesiwn"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Ie"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Chwilio"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Chwilio yn rhyngweithrediadol am diriogaeth a gwesteiwyr"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Safwe"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Enw Coginiaid"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "Dil&eu"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Dileu i &Gyd"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Newid &Polisi..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Ail-lwytho Rhestr"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Manylion"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Enw:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Gwerth:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Parth:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Llwybr:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Darfoda:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Diogel:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Newid Polisi Bisgedi"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Polisi Bisgedi Newydd"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Mae polisi ar gyfer <center><b>%1</b></center> yn bodoli eisioes. A "
-"ydych am ei amnewid?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Dyblygu Polisi"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Cyfnewid"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Methu cyfathrebu â'r gwasanaeth trin bisgedi.\n"
-"Ni fydd unrhyw newidiadau y wnaethoch yn dod i rym tan i'r gwasanaeth gael "
-"ei ailgychwyn."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, fuzzy, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Galluogi cynhaliaeth bisgedi. Fel arfer, byddwch am alluogi cynhaliaeth "
-"bisgedi a'i addasu at eich anghenion preifatrwydd.</p><p>\n"
-"Noder bod analluogi cynhaliaeth bisgedi yn gwneud llawer o safweoedd "
-"heddiw'n amhoradwy.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Galluogi bis&gedi"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Gwrthod y bisgedi trydydd plaid fel y'i gelwir. Bisgedi yw'r rhain sy'n "
-"tarddu o safwe arall na'r un yr ydych yn ei bori'n gyfredol. Er enghraifft, "
-"os ymwelwch â <b>www.foobar.com</b> tra bo'r dewisiad yma ymlaen, dim ond "
-"bisgedi sy'n tarddu o www.foobar.com gaiff eu trin yn ôl eich gosodiadau. "
-"Gwrthodir bisgedi o unrhyw safwe arall. Mae hyn yn lleihau'r tebygolrwydd "
-"bod gweithredwyr safweodd yn gallu crynhoi proffil am eich pori dyddiol.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Der&byn bisgedi o'r gweinydd cychwynnol yn unig"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, fuzzy, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Derbyn bisgedi dros dro sy'n darfod ar ddiwedd y sesiwn cyfredol yn "
-"ymysgogol. Ni gedwir y fath fisgedi ar ddisg galed neu ddyfais gadw eich "
-"cyfrifiadur. Yn lle hyn, fe'u dilëir pan geuwch pob cymhwysiad (h.y. eich "
-"porwr) sy'n eu defnyddio.</p><p><u>NODER:</u> Bydd dewis y dewisiad yma "
-"ynghŷd â'r un nesaf yn cymeryd blaenoriaeth dros eich polisi rhagosod a'ch "
-"polisïau ar gyfer safweoedd penodol hefyd. </p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Derbyn bisgedi sesiwn yn &ymysgogol"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, fuzzy, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Penna sut i drin bisgedi a dderbynnir o beiriant pell: \n"
-"<ul>\n"
-"<li>Achosa <b>Gofyn</b> i KDE ofyn am wiriad oddi wrthych bob tro mae "
-"gweinydd am osod bisgïen.</li>\n"
-"<li>Achosa <b>Derbyn</b> i KDE dderbyn pob bisgïen heb wiriad.</li>\n"
-"<li>Achosa <b>Gwrthod</b> i'r pot bisgedi wrthod pob bisgïen y derbynia.</"
-"li>\n"
-"</ul><p> <u>NODER:</u>Cymera polisïau parthau penodol, a ellir eu gosod "
-"isod, flaenoriaeth dros y polisi rhagosod bob amser.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Polisi Rhagosodedig"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Derbyn p&ob bisgïen"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Derbyn &hyd at diwedd y sesiwn"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "Gofy&n am wiriad"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "G&wrthod pob bisgïen"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"I ychwanegu polisi newydd, cliciwch ar y botwm <b>Ychwanegu...</b> a rhowch "
-"y wybodaeth angenrheidiol. I newid polisi sy'n bodoli eisioes, cliciwch ar y "
-"botwm <b>Newid...</b> a dewiswch y polisi newydd o'r blwch ymgom polisïau. "
-"Bydd clicio ar y botwm <b>Dileu</b> yn gwaredu'r polisi dewisiedig gan "
-"achosi defnyddio'r polisi rhagosod ar gyfer y parth yna.  Bydd <b>Dileu "
-"Popeth</b> yn gwaredu pob polisi sy'n benodol i safwe.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Polisi Safwe"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Chwilio yn rhyngweithrediadol am diriogaethau"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Chwilio..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Rhestr o safweoedd rydych wedi gosod polisi bisgedi penodol iddynt. Cymera'r "
-"polisïau yma flaenoriaeth dros y polisi rhagosod ar gyfer y safweoedd yma.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Parth"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Polisi"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Newydd..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "New&id..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Derbyn"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Derbyn Am Gyfeistedd"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Gwrthod"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Gofyn"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "Ni Wybyddir"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Rhowch y gwesteiwr neu'r parth y  gweithreda'r polisi hwn arno, e.e. <b>www."
-"kde.org</b> neu <b>.kde.org</b>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Enw Safwe:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"Mewnbynnwch yr enw gwesteiwr neu diriogaeth, e.e. .kde.org, lle mae'r "
-"ardwyaeth hon yn ei chymhwyso."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Dewiswch y polisi yr hoffech:\n"
-"<ul>\n"
-"<li><b>Derbyn</b> - Caniatâ i'r safwe yma osod bisgïen</li>\n"
-"<li><b>Derbyn hyd at ddiwedd o gyfeistedd</b> - Caniatâ i'r safwe yma osod "
-"bisgïen ond fe fydd hi'n amseru maes ar y diwedd o'r cyfeistedd.</li>\n"
-"<li><b>Gwrthod</b> - Gwrthodir pob bisgïen o'r safwe yma</li>\n"
-"<li><b>Gofyn</b> - Anogir pan dderbynnir bisgedi o'r safwe yma</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Polisi:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Derbyn hyd at ddiwedd o gyfeistedd"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1403,11 +908,23 @@ msgstr "Chwilio am allweddeiriau chwilio gwe"
 msgid "Add a new Web search keyword"
 msgstr "Ychwanegwch allweddair chwilio Gwe newydd"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Newydd..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Amnewidwch yr allweddair chwilio Gwe aroleuwyd"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "New&id..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1676,6 +1193,330 @@ msgstr "&Charset:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Mewnbynnwch safleddaliwr holiad"
+
+#~ msgid "&Policy"
+#~ msgstr "&Polisi"
+
+#~ msgid "&Management"
+#~ msgstr "&Rheolaeth"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Gwall Cyfathrebu D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Methwyd dileu pob bisgïen fel gofynnwyd."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Methwyd dileu bisgedi fel gofynnwyd."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Methiant Chwiliad Gwybodaeth"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr "Methwyd nôl gwybodaeth am y bisgedi a gedwid ar eich cyfrifiadur."
+
+#~ msgid "End of session"
+#~ msgstr "Diwedd sesiwn"
+
+#~ msgid "Yes"
+#~ msgstr "Ie"
+
+#~ msgid "Search"
+#~ msgstr "Chwilio"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Chwilio yn rhyngweithrediadol am diriogaeth a gwesteiwyr"
+
+#~ msgid "Site"
+#~ msgstr "Safwe"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Enw Coginiaid"
+
+#~ msgid "D&elete"
+#~ msgstr "Dil&eu"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Dileu i &Gyd"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Newid &Polisi..."
+
+#~ msgid "&Reload List"
+#~ msgstr "&Ail-lwytho Rhestr"
+
+#~ msgid "Details"
+#~ msgstr "Manylion"
+
+#~ msgid "Name:"
+#~ msgstr "Enw:"
+
+#~ msgid "Value:"
+#~ msgstr "Gwerth:"
+
+#~ msgid "Domain:"
+#~ msgstr "Parth:"
+
+#~ msgid "Path:"
+#~ msgstr "Llwybr:"
+
+#~ msgid "Expires:"
+#~ msgstr "Darfoda:"
+
+#~ msgid "Secure:"
+#~ msgstr "Diogel:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Newid Polisi Bisgedi"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Polisi Bisgedi Newydd"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Mae polisi ar gyfer <center><b>%1</b></center> yn bodoli eisioes. A "
+#~ "ydych am ei amnewid?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Dyblygu Polisi"
+
+#~ msgid "Replace"
+#~ msgstr "Cyfnewid"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Methu cyfathrebu â'r gwasanaeth trin bisgedi.\n"
+#~ "Ni fydd unrhyw newidiadau y wnaethoch yn dod i rym tan i'r gwasanaeth "
+#~ "gael ei ailgychwyn."
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Galluogi cynhaliaeth bisgedi. Fel arfer, byddwch am alluogi "
+#~ "cynhaliaeth bisgedi a'i addasu at eich anghenion preifatrwydd.</p><p>\n"
+#~ "Noder bod analluogi cynhaliaeth bisgedi yn gwneud llawer o safweoedd "
+#~ "heddiw'n amhoradwy.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Galluogi bis&gedi"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Gwrthod y bisgedi trydydd plaid fel y'i gelwir. Bisgedi yw'r rhain sy'n "
+#~ "tarddu o safwe arall na'r un yr ydych yn ei bori'n gyfredol. Er "
+#~ "enghraifft, os ymwelwch â <b>www.foobar.com</b> tra bo'r dewisiad yma "
+#~ "ymlaen, dim ond bisgedi sy'n tarddu o www.foobar.com gaiff eu trin yn ôl "
+#~ "eich gosodiadau. Gwrthodir bisgedi o unrhyw safwe arall. Mae hyn yn "
+#~ "lleihau'r tebygolrwydd bod gweithredwyr safweodd yn gallu crynhoi proffil "
+#~ "am eich pori dyddiol.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Der&byn bisgedi o'r gweinydd cychwynnol yn unig"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Derbyn bisgedi dros dro sy'n darfod ar ddiwedd y sesiwn cyfredol yn "
+#~ "ymysgogol. Ni gedwir y fath fisgedi ar ddisg galed neu ddyfais gadw eich "
+#~ "cyfrifiadur. Yn lle hyn, fe'u dilëir pan geuwch pob cymhwysiad (h.y. eich "
+#~ "porwr) sy'n eu defnyddio.</p><p><u>NODER:</u> Bydd dewis y dewisiad yma "
+#~ "ynghŷd â'r un nesaf yn cymeryd blaenoriaeth dros eich polisi rhagosod "
+#~ "a'ch polisïau ar gyfer safweoedd penodol hefyd. </p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Derbyn bisgedi sesiwn yn &ymysgogol"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Penna sut i drin bisgedi a dderbynnir o beiriant pell: \n"
+#~ "<ul>\n"
+#~ "<li>Achosa <b>Gofyn</b> i KDE ofyn am wiriad oddi wrthych bob tro mae "
+#~ "gweinydd am osod bisgïen.</li>\n"
+#~ "<li>Achosa <b>Derbyn</b> i KDE dderbyn pob bisgïen heb wiriad.</li>\n"
+#~ "<li>Achosa <b>Gwrthod</b> i'r pot bisgedi wrthod pob bisgïen y derbynia.</"
+#~ "li>\n"
+#~ "</ul><p> <u>NODER:</u>Cymera polisïau parthau penodol, a ellir eu gosod "
+#~ "isod, flaenoriaeth dros y polisi rhagosod bob amser.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Polisi Rhagosodedig"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Derbyn p&ob bisgïen"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Derbyn &hyd at diwedd y sesiwn"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "Gofy&n am wiriad"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "G&wrthod pob bisgïen"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "I ychwanegu polisi newydd, cliciwch ar y botwm <b>Ychwanegu...</b> a "
+#~ "rhowch y wybodaeth angenrheidiol. I newid polisi sy'n bodoli eisioes, "
+#~ "cliciwch ar y botwm <b>Newid...</b> a dewiswch y polisi newydd o'r blwch "
+#~ "ymgom polisïau. Bydd clicio ar y botwm <b>Dileu</b> yn gwaredu'r polisi "
+#~ "dewisiedig gan achosi defnyddio'r polisi rhagosod ar gyfer y parth yna.  "
+#~ "Bydd <b>Dileu Popeth</b> yn gwaredu pob polisi sy'n benodol i safwe.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Polisi Safwe"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Chwilio yn rhyngweithrediadol am diriogaethau"
+
+#~ msgid "Search..."
+#~ msgstr "Chwilio..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Rhestr o safweoedd rydych wedi gosod polisi bisgedi penodol iddynt. "
+#~ "Cymera'r polisïau yma flaenoriaeth dros y polisi rhagosod ar gyfer y "
+#~ "safweoedd yma.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Parth"
+
+#~ msgid "Policy"
+#~ msgstr "Polisi"
+
+#~ msgid "Accept"
+#~ msgstr "Derbyn"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Derbyn Am Gyfeistedd"
+
+#~ msgid "Reject"
+#~ msgstr "Gwrthod"
+
+#~ msgid "Ask"
+#~ msgstr "Gofyn"
+
+#~ msgid "Do Not Know"
+#~ msgstr "Ni Wybyddir"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Rhowch y gwesteiwr neu'r parth y  gweithreda'r polisi hwn arno, e.e. "
+#~ "<b>www.kde.org</b> neu <b>.kde.org</b>\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Enw Safwe:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Mewnbynnwch yr enw gwesteiwr neu diriogaeth, e.e. .kde.org, lle mae'r "
+#~ "ardwyaeth hon yn ei chymhwyso."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Dewiswch y polisi yr hoffech:\n"
+#~ "<ul>\n"
+#~ "<li><b>Derbyn</b> - Caniatâ i'r safwe yma osod bisgïen</li>\n"
+#~ "<li><b>Derbyn hyd at ddiwedd o gyfeistedd</b> - Caniatâ i'r safwe yma "
+#~ "osod bisgïen ond fe fydd hi'n amseru maes ar y diwedd o'r cyfeistedd.</"
+#~ "li>\n"
+#~ "<li><b>Gwrthod</b> - Gwrthodir pob bisgïen o'r safwe yma</li>\n"
+#~ "<li><b>Gofyn</b> - Anogir pan dderbynnir bisgedi o'r safwe yma</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Polisi:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Derbyn hyd at ddiwedd o gyfeistedd"
 
 # Owain Green drwy KGyfieithu
 #~ msgctxt "NAME OF TRANSLATORS"

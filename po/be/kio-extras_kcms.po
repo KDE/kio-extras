@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2023-02-09 08:31\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -21,510 +21,6 @@ msgstr ""
 "X-Crowdin-Language: be\n"
 "X-Crowdin-File: /main/be/kio/kio5.po\n"
 "X-Crowdin-File-ID: 8027\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Палітыка"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Кіраванне"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Памылка сувязі D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Не ўдалося выдаліць усе файлы cookie."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Не ўдалося выдаліць усе файлы cookie."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Памылка пошуку інфармацыі"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr ""
-"Не ўдалося атрымаць звесткі пра cookies, захаваныя на вашым камп'ютары."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Завяршэнне сеанса"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Так"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Пошук"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Інтэрактыўны пошук даменаў і хостаў"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Сайт"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Назва файла cookie"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "&Выдаліць"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Выдаліць ус&е"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Наладжванне &палітыкі..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Перазагрузіць спіс"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Падрабязнасці"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Назва:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Значэнне:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Дамен:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Шлях:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Тэрмін дзеяння:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Бяспека:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Змяніць правіла палітыкі для файлаў cookie"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Новае правіла палітыкі для файлаў cookie"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Палітыка ўжо існуе для <center><b>%1</b></center>Хочаце замяніць яе?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Стварыць дублікат правіла палітыкі для файлаў cookie"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Замяніць"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Не ўдалося звязацца са службай апрацоўвання файлаў cookie.\n"
-"Любыя зробленыя вамі змены не набудуць моц, пакуль служба не будзе "
-"перазапушчаная."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-" <p>Уключыць падтрымку файлаў cookie. Звычайна людзі ўключыць падтрымку "
-"файлаў cookie і наладжваюць у адпаведнасці са сваімі пажаданнямі палітыкі "
-"прыватнасці.</p><p>\n"
-"Калі ласка, звярніце ўвагу, што калі адключыць падтрымку cookie, то будзе "
-"немагчыма нармальным чынам карыстацца вялікай колькасцю вэб-сайтаў.</p>\n"
-" </qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Уключыць coo&kie"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Адхіляць файлы cookie з пабочных сайтаў. Гэта файлы cookie, якія паходзяць "
-"не з таго сайта, які вы праглядаеце. Напрыклад, калі вы наведваеце <b>www."
-"foobar.com</b> пры ўключаным параметры будуць апрацоўвацца толькі файлы "
-"cookie, якія паходзяць з www.foobar.com. Файлы cookie з любога іншага сайта "
-"будуць адхіляцца. Гэта памяншае імавернасць таго, што аператары сайта "
-"створаць профіль на падставе вашых даных.\n"
-" </qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Ухваляць файлы cookie толькі з &першапачатковага сервера"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Аўтаматычна ўхваляць часовыя файлы cookie, тэрмін дзеяння якіх заканчваецца "
-"ў канцы бягучага сеанса. Такія файлы cookie не будуць захоўвацца на цвёрдым "
-"дыску вашага камп'ютара або іншым носьбіце. Замест гэтага яны будуць "
-"выдаляцца пры закрыцці праграм, якія іх выкарыстоўваюць (напрыклад, ваш "
-"браўзер).</p><p><u>УВАГА</u> Вызначэнне гэтага параметра скасоўвае вашу "
-"прадвызначаную палітыку, а таксама палітыку адносна файлаў cookie для сеанса."
-"</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "&Аўтаматычна ўхваляць файлы cookie сеанса"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-" Вызначае, як будуць апрацоўвацца файлы cookie, атрыманыя з адлеглай "
-"машыны:\n"
-" <ul>\n"
-" <li><b>Пытацца</b> KDE будзе пытацца кожны раз, калі сервер захоча стварыць "
-"файл cookie.</li>\n"
-" <li><b>Ухваляць</b> файлы cookie будуць ухваляцца без пацвярджэння.</li>\n"
-" <li><b>Ухваляць да канца сеанса</b> файлы cookie будуць ухваляцца, але "
-"тэрмін іх дзеяння скончыцца ў канцы сеанса.</li>\n"
-" <li><b>Адхіляць</b> усе файлы cookie будуць адхіляцца.</li>\n"
-" </ul><p>\n"
-" <u>ЗАЎВАГА:</u> Асобныя для кожнага дамена палітыкі, якія можна вызначыць "
-"ніжэй, заўсёды маюць прыярытэт над прадвызначанай палітыкай.</p>\n"
-" </qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Прадвызначаная палітыка"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Ухваля&ць усе cookie"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Ухваляць да &канца сеанса"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "&Пытацца пацвярджэння"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "Ад&хіляць усе cookie"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Каб дадаць новую палітыку, проста націсніце кнопку <b>Дадаць...</b> і "
-"ўвядзіце неабходныя звесткі. Каб змяніць наяўную палітыку, скарыстайцеся "
-"кнопкай <b>Змяніць...</b> і абярыце новую палітыку ў дыялогавым акне "
-"палітыкі. Пры націсканні кнопкі <b>Выдаліць</b> абраная палітыка выдаліцца, "
-"у выніку чаго для гэтага дамена будзе выкарыстоўвацца прадвызначаная "
-"палітыка. Пры націсканні кнопкі <b>Выдаліць усё</b> будуць выдаленыя ўсе "
-"асобныя палітыкі.\n"
-" </qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Палітыка для сайтаў"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Інтэрактыўны пошук даменаў"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Пошук..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Спіс сайтаў, для якіх вы вызначылі асобную палітыку для файлаў cookie. "
-"Асобныя палітыкі перакрываюць для гэтых сайтаў налады прадвызначанай "
-"палітыкі.\n"
-" </qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Дамен"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Палітыка"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Новы..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Змян&іць..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Ухваліць"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Ухваліць для сеанса"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Адхіліць"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Пытацца"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "Не ведаю"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Увядзіце хост або дамен, да якога ўжываецца гэтая палітыка, напр. <b>www.kde."
-"org</b> або <b>.kde.org</b>.\n"
-" </qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Назва сайта:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"Увядзіце хост або назву дамена, напр. .kde.org, да якога ўжываецца гэтая "
-"палітыка."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-" Абярыце патрэбную палітыку:\n"
-" <ul>\n"
-" <li><b>Ухваляць</b> - дазваляе гэтаму сайту ствараць файлы cookie</li>\n"
-" <li><b>Ухваляць да канца сеанса</b> - дазваляе гэтаму сайту ствараць файлы "
-"cookie, але іх тэрмін дзеяння заканчваецца ў канцы сеанса.</li>\n"
-" <li><b>Адхіляць</b> - адхіляе усе файлы cookie, адпраўленыя з гэтага сайта</"
-"li>\n"
-" <li><b>Пытацца</b> - пытацца, калі з гэтага сайта атрымліваюцца файлы "
-"cookie</li>\n"
-" </ul>\n"
-" </qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Палітыка:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Ухваліць да канца сеанса"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1412,11 +908,23 @@ msgstr "Пошук па ключавых словах"
 msgid "Add a new Web search keyword"
 msgstr "Дадаць новае ключавое слова"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Новы..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Змяніць падсветленае ключавое слова"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Змян&іць..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1676,6 +1184,336 @@ msgstr "&Кадаванне:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Уставіць запаўняльнік запыту"
+
+#~ msgid "&Policy"
+#~ msgstr "&Палітыка"
+
+#~ msgid "&Management"
+#~ msgstr "&Кіраванне"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Памылка сувязі D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Не ўдалося выдаліць усе файлы cookie."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Не ўдалося выдаліць усе файлы cookie."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Памылка пошуку інфармацыі"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Не ўдалося атрымаць звесткі пра cookies, захаваныя на вашым камп'ютары."
+
+#~ msgid "End of session"
+#~ msgstr "Завяршэнне сеанса"
+
+#~ msgid "Yes"
+#~ msgstr "Так"
+
+#~ msgid "Search"
+#~ msgstr "Пошук"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Інтэрактыўны пошук даменаў і хостаў"
+
+#~ msgid "Site"
+#~ msgstr "Сайт"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Назва файла cookie"
+
+#~ msgid "D&elete"
+#~ msgstr "&Выдаліць"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Выдаліць ус&е"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Наладжванне &палітыкі..."
+
+#~ msgid "&Reload List"
+#~ msgstr "&Перазагрузіць спіс"
+
+#~ msgid "Details"
+#~ msgstr "Падрабязнасці"
+
+#~ msgid "Name:"
+#~ msgstr "Назва:"
+
+#~ msgid "Value:"
+#~ msgstr "Значэнне:"
+
+#~ msgid "Domain:"
+#~ msgstr "Дамен:"
+
+#~ msgid "Path:"
+#~ msgstr "Шлях:"
+
+#~ msgid "Expires:"
+#~ msgstr "Тэрмін дзеяння:"
+
+#~ msgid "Secure:"
+#~ msgstr "Бяспека:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Змяніць правіла палітыкі для файлаў cookie"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Новае правіла палітыкі для файлаў cookie"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Палітыка ўжо існуе для <center><b>%1</b></center>Хочаце замяніць яе?</"
+#~ "qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Стварыць дублікат правіла палітыкі для файлаў cookie"
+
+#~ msgid "Replace"
+#~ msgstr "Замяніць"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Не ўдалося звязацца са службай апрацоўвання файлаў cookie.\n"
+#~ "Любыя зробленыя вамі змены не набудуць моц, пакуль служба не будзе "
+#~ "перазапушчаная."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ " <p>Уключыць падтрымку файлаў cookie. Звычайна людзі ўключыць падтрымку "
+#~ "файлаў cookie і наладжваюць у адпаведнасці са сваімі пажаданнямі палітыкі "
+#~ "прыватнасці.</p><p>\n"
+#~ "Калі ласка, звярніце ўвагу, што калі адключыць падтрымку cookie, то будзе "
+#~ "немагчыма нармальным чынам карыстацца вялікай колькасцю вэб-сайтаў.</p>\n"
+#~ " </qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Уключыць coo&kie"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Адхіляць файлы cookie з пабочных сайтаў. Гэта файлы cookie, якія "
+#~ "паходзяць не з таго сайта, які вы праглядаеце. Напрыклад, калі вы "
+#~ "наведваеце <b>www.foobar.com</b> пры ўключаным параметры будуць "
+#~ "апрацоўвацца толькі файлы cookie, якія паходзяць з www.foobar.com. Файлы "
+#~ "cookie з любога іншага сайта будуць адхіляцца. Гэта памяншае імавернасць "
+#~ "таго, што аператары сайта створаць профіль на падставе вашых даных.\n"
+#~ " </qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Ухваляць файлы cookie толькі з &першапачатковага сервера"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Аўтаматычна ўхваляць часовыя файлы cookie, тэрмін дзеяння якіх "
+#~ "заканчваецца ў канцы бягучага сеанса. Такія файлы cookie не будуць "
+#~ "захоўвацца на цвёрдым дыску вашага камп'ютара або іншым носьбіце. Замест "
+#~ "гэтага яны будуць выдаляцца пры закрыцці праграм, якія іх выкарыстоўваюць "
+#~ "(напрыклад, ваш браўзер).</p><p><u>УВАГА</u> Вызначэнне гэтага параметра "
+#~ "скасоўвае вашу прадвызначаную палітыку, а таксама палітыку адносна файлаў "
+#~ "cookie для сеанса.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "&Аўтаматычна ўхваляць файлы cookie сеанса"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ " Вызначае, як будуць апрацоўвацца файлы cookie, атрыманыя з адлеглай "
+#~ "машыны:\n"
+#~ " <ul>\n"
+#~ " <li><b>Пытацца</b> KDE будзе пытацца кожны раз, калі сервер захоча "
+#~ "стварыць файл cookie.</li>\n"
+#~ " <li><b>Ухваляць</b> файлы cookie будуць ухваляцца без пацвярджэння.</"
+#~ "li>\n"
+#~ " <li><b>Ухваляць да канца сеанса</b> файлы cookie будуць ухваляцца, але "
+#~ "тэрмін іх дзеяння скончыцца ў канцы сеанса.</li>\n"
+#~ " <li><b>Адхіляць</b> усе файлы cookie будуць адхіляцца.</li>\n"
+#~ " </ul><p>\n"
+#~ " <u>ЗАЎВАГА:</u> Асобныя для кожнага дамена палітыкі, якія можна "
+#~ "вызначыць ніжэй, заўсёды маюць прыярытэт над прадвызначанай палітыкай.</"
+#~ "p>\n"
+#~ " </qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Прадвызначаная палітыка"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Ухваля&ць усе cookie"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Ухваляць да &канца сеанса"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "&Пытацца пацвярджэння"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "Ад&хіляць усе cookie"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Каб дадаць новую палітыку, проста націсніце кнопку <b>Дадаць...</b> і "
+#~ "ўвядзіце неабходныя звесткі. Каб змяніць наяўную палітыку, скарыстайцеся "
+#~ "кнопкай <b>Змяніць...</b> і абярыце новую палітыку ў дыялогавым акне "
+#~ "палітыкі. Пры націсканні кнопкі <b>Выдаліць</b> абраная палітыка "
+#~ "выдаліцца, у выніку чаго для гэтага дамена будзе выкарыстоўвацца "
+#~ "прадвызначаная палітыка. Пры націсканні кнопкі <b>Выдаліць усё</b> будуць "
+#~ "выдаленыя ўсе асобныя палітыкі.\n"
+#~ " </qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Палітыка для сайтаў"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Інтэрактыўны пошук даменаў"
+
+#~ msgid "Search..."
+#~ msgstr "Пошук..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Спіс сайтаў, для якіх вы вызначылі асобную палітыку для файлаў cookie. "
+#~ "Асобныя палітыкі перакрываюць для гэтых сайтаў налады прадвызначанай "
+#~ "палітыкі.\n"
+#~ " </qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Дамен"
+
+#~ msgid "Policy"
+#~ msgstr "Палітыка"
+
+#~ msgid "Accept"
+#~ msgstr "Ухваліць"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Ухваліць для сеанса"
+
+#~ msgid "Reject"
+#~ msgstr "Адхіліць"
+
+#~ msgid "Ask"
+#~ msgstr "Пытацца"
+
+#~ msgid "Do Not Know"
+#~ msgstr "Не ведаю"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Увядзіце хост або дамен, да якога ўжываецца гэтая палітыка, напр. <b>www."
+#~ "kde.org</b> або <b>.kde.org</b>.\n"
+#~ " </qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Назва сайта:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Увядзіце хост або назву дамена, напр. .kde.org, да якога ўжываецца гэтая "
+#~ "палітыка."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ " Абярыце патрэбную палітыку:\n"
+#~ " <ul>\n"
+#~ " <li><b>Ухваляць</b> - дазваляе гэтаму сайту ствараць файлы cookie</li>\n"
+#~ " <li><b>Ухваляць да канца сеанса</b> - дазваляе гэтаму сайту ствараць "
+#~ "файлы cookie, але іх тэрмін дзеяння заканчваецца ў канцы сеанса.</li>\n"
+#~ " <li><b>Адхіляць</b> - адхіляе усе файлы cookie, адпраўленыя з гэтага "
+#~ "сайта</li>\n"
+#~ " <li><b>Пытацца</b> - пытацца, калі з гэтага сайта атрымліваюцца файлы "
+#~ "cookie</li>\n"
+#~ " </ul>\n"
+#~ " </qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Палітыка:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Ухваліць да канца сеанса"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

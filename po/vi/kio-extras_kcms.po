@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2023-02-20 10:53+0100\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -18,506 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 22.12.0\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "Chính &sách"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Quản lí"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Lỗi giao tiếp D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Không thể xoá tất cả bánh quy theo yêu cầu."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Không thể xoá bánh quy theo yêu cầu."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Tra cứu thông tin thất bại"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "Không thể lấy thông tin về bánh quy được lưu trên máy tính của bạn."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Hết phiên"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Có"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Tìm kiếm"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Tìm kiếm một cách tương tác các miền và các máy"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Địa điểm"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Tên bánh quy"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "&Xoá"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Xoá tất &cả"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Cấu hình chính &sách..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "Tải lạ&i danh sách"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Chi tiết"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Tên:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Giá trị:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Miền:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Đường dẫn:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Hết hạn:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "An toàn:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Thay đổi chính sách bánh quy"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Chính sách bánh quy mới"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Một chính sách đã tồn tại cho<center><b>%1</b></center>Bạn có muốn thay "
-"thế nó không?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Chính sách trùng lặp"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Thay thế"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Không thể liên lạc với dịch vụ xử lí bánh quy.\n"
-"Mọi thay đổi bạn đã tạo ra sẽ không có hiệu lực cho đến khi dịch vụ đó được "
-"khởi động lại."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Bật hỗ trợ bánh quy. Thường thì bạn sẽ muốn hỗ trợ bánh quy được bật và "
-"tuỳ biến nó cho phù hợp với yêu cầu về sự riêng tư của bạn.</p><p>\n"
-"Vui lòng lưu ý rằng việc tắt hỗ trợ bánh quy có thể khiến nhiều địa điểm web "
-"không duyệt được.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Bật bánh &quy"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Từ chối các miếng bánh quy được gọi là \"của bên thứ ba\". Đây là những "
-"miếng bánh quy khởi nguồn từ một địa điểm khác với địa điểm mà bạn hiện đang "
-"duyệt. Ví dụ, nếu bạn mở <b>www.foobar.com</b> khi lựa chọn này đang bật, "
-"thì chỉ những miếng bánh quy khởi nguồn từ www.foobar.com mới được xử lí "
-"theo các thiết lập của bạn. Bánh quy từ bất kì địa điểm nào khác đều sẽ bị "
-"từ chối. Việc này làm giảm khả năng các nhà vận hành địa điểm có thể tập hợp "
-"được một hồ sơ về các thói quen duyệt hằng ngày của bạn.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Chỉ chấ&p nhận bánh quy từ máy chủ khởi nguồn"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Tự động chấp nhận các miếng bánh quy tạm, sẽ hết hạn vào cuối phiên hiện "
-"tại. Những miếng bánh quy như vậy sẽ không được lưu ở ổ cứng hay thiết bị "
-"lưu trữ trên máy tính của bạn, mà sẽ bị xoá khi bạn đóng tất cả các ứng dụng "
-"(vd. trình duyệt) sử dụng chúng.</p><p><u>LƯU Ý</u> Việc chọn lựa chọn này "
-"sẽ vượt hiệu lực của lựa chọn mặc định cũng như các chính sách bánh quy "
-"riêng theo địa điểm của bạn dành cho bánh quy của phiên.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Tự độn&g chấp nhận bánh quy của phiên"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Xác định cách xử lí bánh quy nhận được từ một máy ở xa: \n"
-"<ul>\n"
-"<li><b>Hỏi</b> sẽ khiến KDE yêu cầu bạn xác nhận mỗi khi một máy chủ muốn để "
-"lại một miếng bánh quy.</li>\n"
-"<li><b>Chấp nhận</b> sẽ khiến bánh quy được chấp nhận mà không cần hỏi bạn.</"
-"li>\n"
-"<li><b>Chấp nhận cho đến hết phiên</b> sẽ khiến bánh quy được chấp nhận "
-"nhưng chúng sẽ hết hạn khi hết phiên.</li>\n"
-"<li><b>Từ chối</b> sẽ khiến hũ bánh quy từ chối tất cả bánh quy mà nó nhận "
-"được.</li>\n"
-"</ul><p>\n"
-"<u>LƯU Ý:</u> Các chính sách riêng theo miền, có thể được đặt ra ở bên dưới, "
-"luôn được ưu tiên hơn chính sách mặc định.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Chính sách mặc định"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Chấp nhận &tất cả bánh quy"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Chấp nhận cho đến hết &phiên"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "Yêu cầu &xác nhận"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "Từ c&hối tất cả bánh quy"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Để thêm một chính sách mới, chỉ cần bấm vào nút <b>Thêm...</b> và cung cấp "
-"thông tin cần thiết. Để thay đổi một chính sách đã có, dùng nút <b>Đổi...</"
-"b> và chọn chính sách mới trong hộp thoại chính sách. Nút <b>Xoá</b> dùng để "
-"xoá chính sách đang được chọn, khiến thiết lập chính sách mặc định sẽ được "
-"dùng cho miền đó, còn nút <b>Xoá tất cả</b> sẽ xoá tất cả các chính sách "
-"riêng theo địa điểm.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Chính sách theo địa điểm"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Tìm kiếm một cách tương tác các miền"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Tìm kiếm..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Danh sách các địa điểm mà bạn đã đặt chính sách bánh quy riêng. Các chính "
-"sách riêng sẽ vượt hiệu lực của thiết lập chính sách mặc định dành cho các "
-"địa điểm này.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Miền"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Chính sách"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Tạo..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Đổ&i..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Chấp nhận"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Chấp nhận cho phiên"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Từ chối"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Hỏi"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "Không biết"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Nhập máy hoặc miền mà chính sách này áp dụng cho, vd. <b>www.kde.org</b> "
-"hoặc <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Tên địa điểm:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"Nhập tên máy hoặc miền, vd. .kde.org, mà chính sách này sẽ áp dụng cho."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Chọn chính sách mong muốn:\n"
-"<ul>\n"
-"<li><b>Chấp nhận</b> - Cho phép địa điểm này để lại bánh quy</li>\n"
-"<li><b>Chấp nhận cho đến hết phiên</b> - Cho phép địa điểm này để lại bánh "
-"quy nhưng chúng sẽ hết hạn khi hết phiên.</li>\n"
-"<li><b>Từ chối</b> - Từ chối tất cả bánh quy gửi từ địa điểm này</li>\n"
-"<li><b>Hỏi</b> - Hỏi khi nhận được bánh quy từ địa điểm này</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Chính sách:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Chấp nhận cho đến hết phiên"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1372,11 +872,23 @@ msgstr "Tìm từ khoá tìm kiếm web"
 msgid "Add a new Web search keyword"
 msgstr "Thêm một từ khoá tìm kiếm web"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Tạo..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Chỉnh sửa từ khoá tìm kiếm web được tô sáng"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Đổ&i..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1633,6 +1145,329 @@ msgstr "&Bộ mã tự:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Chèn phần giữ chỗ truy vấn"
+
+#~ msgid "&Policy"
+#~ msgstr "Chính &sách"
+
+#~ msgid "&Management"
+#~ msgstr "&Quản lí"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Lỗi giao tiếp D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Không thể xoá tất cả bánh quy theo yêu cầu."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Không thể xoá bánh quy theo yêu cầu."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Tra cứu thông tin thất bại"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr "Không thể lấy thông tin về bánh quy được lưu trên máy tính của bạn."
+
+#~ msgid "End of session"
+#~ msgstr "Hết phiên"
+
+#~ msgid "Yes"
+#~ msgstr "Có"
+
+#~ msgid "Search"
+#~ msgstr "Tìm kiếm"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Tìm kiếm một cách tương tác các miền và các máy"
+
+#~ msgid "Site"
+#~ msgstr "Địa điểm"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Tên bánh quy"
+
+#~ msgid "D&elete"
+#~ msgstr "&Xoá"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Xoá tất &cả"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Cấu hình chính &sách..."
+
+#~ msgid "&Reload List"
+#~ msgstr "Tải lạ&i danh sách"
+
+#~ msgid "Details"
+#~ msgstr "Chi tiết"
+
+#~ msgid "Name:"
+#~ msgstr "Tên:"
+
+#~ msgid "Value:"
+#~ msgstr "Giá trị:"
+
+#~ msgid "Domain:"
+#~ msgstr "Miền:"
+
+#~ msgid "Path:"
+#~ msgstr "Đường dẫn:"
+
+#~ msgid "Expires:"
+#~ msgstr "Hết hạn:"
+
+#~ msgid "Secure:"
+#~ msgstr "An toàn:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Thay đổi chính sách bánh quy"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Chính sách bánh quy mới"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Một chính sách đã tồn tại cho<center><b>%1</b></center>Bạn có muốn "
+#~ "thay thế nó không?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Chính sách trùng lặp"
+
+#~ msgid "Replace"
+#~ msgstr "Thay thế"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Không thể liên lạc với dịch vụ xử lí bánh quy.\n"
+#~ "Mọi thay đổi bạn đã tạo ra sẽ không có hiệu lực cho đến khi dịch vụ đó "
+#~ "được khởi động lại."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Bật hỗ trợ bánh quy. Thường thì bạn sẽ muốn hỗ trợ bánh quy được bật "
+#~ "và tuỳ biến nó cho phù hợp với yêu cầu về sự riêng tư của bạn.</p><p>\n"
+#~ "Vui lòng lưu ý rằng việc tắt hỗ trợ bánh quy có thể khiến nhiều địa điểm "
+#~ "web không duyệt được.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Bật bánh &quy"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Từ chối các miếng bánh quy được gọi là \"của bên thứ ba\". Đây là những "
+#~ "miếng bánh quy khởi nguồn từ một địa điểm khác với địa điểm mà bạn hiện "
+#~ "đang duyệt. Ví dụ, nếu bạn mở <b>www.foobar.com</b> khi lựa chọn này đang "
+#~ "bật, thì chỉ những miếng bánh quy khởi nguồn từ www.foobar.com mới được "
+#~ "xử lí theo các thiết lập của bạn. Bánh quy từ bất kì địa điểm nào khác "
+#~ "đều sẽ bị từ chối. Việc này làm giảm khả năng các nhà vận hành địa điểm "
+#~ "có thể tập hợp được một hồ sơ về các thói quen duyệt hằng ngày của bạn.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Chỉ chấ&p nhận bánh quy từ máy chủ khởi nguồn"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Tự động chấp nhận các miếng bánh quy tạm, sẽ hết hạn vào cuối phiên hiện "
+#~ "tại. Những miếng bánh quy như vậy sẽ không được lưu ở ổ cứng hay thiết bị "
+#~ "lưu trữ trên máy tính của bạn, mà sẽ bị xoá khi bạn đóng tất cả các ứng "
+#~ "dụng (vd. trình duyệt) sử dụng chúng.</p><p><u>LƯU Ý</u> Việc chọn lựa "
+#~ "chọn này sẽ vượt hiệu lực của lựa chọn mặc định cũng như các chính sách "
+#~ "bánh quy riêng theo địa điểm của bạn dành cho bánh quy của phiên.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Tự độn&g chấp nhận bánh quy của phiên"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Xác định cách xử lí bánh quy nhận được từ một máy ở xa: \n"
+#~ "<ul>\n"
+#~ "<li><b>Hỏi</b> sẽ khiến KDE yêu cầu bạn xác nhận mỗi khi một máy chủ muốn "
+#~ "để lại một miếng bánh quy.</li>\n"
+#~ "<li><b>Chấp nhận</b> sẽ khiến bánh quy được chấp nhận mà không cần hỏi "
+#~ "bạn.</li>\n"
+#~ "<li><b>Chấp nhận cho đến hết phiên</b> sẽ khiến bánh quy được chấp nhận "
+#~ "nhưng chúng sẽ hết hạn khi hết phiên.</li>\n"
+#~ "<li><b>Từ chối</b> sẽ khiến hũ bánh quy từ chối tất cả bánh quy mà nó "
+#~ "nhận được.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>LƯU Ý:</u> Các chính sách riêng theo miền, có thể được đặt ra ở bên "
+#~ "dưới, luôn được ưu tiên hơn chính sách mặc định.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Chính sách mặc định"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Chấp nhận &tất cả bánh quy"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Chấp nhận cho đến hết &phiên"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "Yêu cầu &xác nhận"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "Từ c&hối tất cả bánh quy"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Để thêm một chính sách mới, chỉ cần bấm vào nút <b>Thêm...</b> và cung "
+#~ "cấp thông tin cần thiết. Để thay đổi một chính sách đã có, dùng nút "
+#~ "<b>Đổi...</b> và chọn chính sách mới trong hộp thoại chính sách. Nút "
+#~ "<b>Xoá</b> dùng để xoá chính sách đang được chọn, khiến thiết lập chính "
+#~ "sách mặc định sẽ được dùng cho miền đó, còn nút <b>Xoá tất cả</b> sẽ xoá "
+#~ "tất cả các chính sách riêng theo địa điểm.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Chính sách theo địa điểm"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Tìm kiếm một cách tương tác các miền"
+
+#~ msgid "Search..."
+#~ msgstr "Tìm kiếm..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Danh sách các địa điểm mà bạn đã đặt chính sách bánh quy riêng. Các chính "
+#~ "sách riêng sẽ vượt hiệu lực của thiết lập chính sách mặc định dành cho "
+#~ "các địa điểm này.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Miền"
+
+#~ msgid "Policy"
+#~ msgstr "Chính sách"
+
+#~ msgid "Accept"
+#~ msgstr "Chấp nhận"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Chấp nhận cho phiên"
+
+#~ msgid "Reject"
+#~ msgstr "Từ chối"
+
+#~ msgid "Ask"
+#~ msgstr "Hỏi"
+
+#~ msgid "Do Not Know"
+#~ msgstr "Không biết"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Nhập máy hoặc miền mà chính sách này áp dụng cho, vd. <b>www.kde.org</b> "
+#~ "hoặc <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Tên địa điểm:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Nhập tên máy hoặc miền, vd. .kde.org, mà chính sách này sẽ áp dụng cho."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Chọn chính sách mong muốn:\n"
+#~ "<ul>\n"
+#~ "<li><b>Chấp nhận</b> - Cho phép địa điểm này để lại bánh quy</li>\n"
+#~ "<li><b>Chấp nhận cho đến hết phiên</b> - Cho phép địa điểm này để lại "
+#~ "bánh quy nhưng chúng sẽ hết hạn khi hết phiên.</li>\n"
+#~ "<li><b>Từ chối</b> - Từ chối tất cả bánh quy gửi từ địa điểm này</li>\n"
+#~ "<li><b>Hỏi</b> - Hỏi khi nhận được bánh quy từ địa điểm này</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Chính sách:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Chấp nhận cho đến hết phiên"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

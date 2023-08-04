@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2023-06-03 21:00+0200\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
@@ -18,506 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Politika"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Správa"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Chyba komunikácie D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Nie je možné odstrániť všetky požadované cookies."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Nie je možné odstrániť požadované cookies."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Nepodarilo sa nájsť informáciu"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr "Nie je možné získať informácie o cookies uložených vo vašom počítači."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Koniec sedenia"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Áno"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Hľadať"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Interaktívne hľadanie domén a počítačov"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Stránka"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Názov cookie"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "O&dstrániť"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Odstrániť &všetky"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Nastaviť politiku..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Znovu načítať zoznam"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Podrobnosti"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Názov:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Hodnota:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Doména:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Cesta:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Vyprší:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Bezpečný:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Zmeniť politiku cookue"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Nová politika cookie"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Už existuje politika pre <center><b>%1</b></center>Chcete ju nahradiť?</"
-"qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Politika duplikácie"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Nahradiť"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Nie je možné komunikovať so službou správy cookies.\n"
-"Zmeny, ktoré se urobili, sa neprejavia, kým nebude táto služba reštartovaná."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Zapnutie podpory cookies. Zvyčajne budete chcieť mať podporu cookies "
-"zapnutú a manipulovať s nimi tak, aby to vyhovelo potrebe vášho zabezpečenia."
-"</p><p>\n"
-"Prosím pamätajte, že po zakázaní cookies nebude možné pristupovať k "
-"niektorým stránkam.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Povoliť &cookies"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Zamietnutie tzv. third-party cookies. Zvoľte si túto možnosť, ak chcete "
-"zamietnuť všetky cookies zo iných stránok než z tej, ktorú ste si vyžiadali. "
-"Napríklad, ak navštíivte <b>www.foobar.com</b> s touto voľbou zapnutou, iba "
-"cookies pochádzajúce z www.foobar.com budú spracované podľa vašich "
-"nastavení. Cookies zo všetých ostatných serverov budú automaticky "
-"odmietnuté. Toto redukuje možnosť operátorov stránok vytvárať si profil o "
-"vašich prehliadacích zvykoch.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "A&kceptovať cookies iba z pôvodného serveru"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Automaticky prijať dočasné cookies určené na vypršanie pri ukončení "
-"aktuálneho sedenia. Tieto cookies nebudú uložené na vašom disku alebo "
-"úložnom zariadení.Namiesto toho budú odstránené pri ukončení všetkých "
-"aplikácií, ktoré ich používajú (prehliadač). </p><p><u>POZNÁMKA</u> "
-"Zaškrtnutie tejto voľby prepíše vaše predvolené nastavenia ako aj špecifické "
-"nastavenie podľa serverov pre cookies sedení.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "&Automaticky akceptovať cookies sedenia"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Určuje spôsob, ako sa bude manipulovať s cookies prijatými zo vzdialeného "
-"serveru: \n"
-"<ul>\n"
-"<li><b>Pýtať sa</b> spôsobí, že KDE sa vás opýta na prijatie cookie, "
-"kedykoľvek chce server nastaviť cookie.</li>\n"
-"<li><b>Prijať</b> spôsobí, že všetky cookies budú v tichosti a bez opýtania "
-"prijaté.</li>\n"
-"<li><b>Prijať do konca sedenia</b> spôsobí, že cookies budú prijaté ale "
-"vypršia pri ukončení sedenia.</li>\n"
-"<li><b>Odmietnuť</b> spôsobí, že všetky prijaté cookies budú odmietnuté.</"
-"li>\n"
-"</ul><p>\n"
-"<u>POZNÁMKA:</u> Politiky definované pre jednotlivé domény, ktoré môžete "
-"nastaviť nižšie, budú mať vždy prednosť pred štandardnou politikou.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Implicitná politika"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "Akcep&tovať všetky cookies"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Prijať do konca sedenia"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "&Pýtať sa na potvrdenie"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "&Odmietnuť všetky cookies"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Ak chcete pridať novú politiku, jednoducho kliknite na tlačidlo <b>Pridať..."
-"</b> a vyplňte požadované informácie. Ak chcete zmeniť existujúcu politiku, "
-"kliknite na tlačidlo <b>Zmeniť...</b> a zvoľte v dialógovom okne novú "
-"politiku. Kliknutím na tlačidlo <b>Odstrániť</b> sa odstráni vybraná "
-"politika a pre túto doménu sa bude ďalej používať štandardná politika. "
-"<b>Odstrániť všetky</b> odstráni všetky politiky.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Politika stránky"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Interaktívne hľadanie domén"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Hľadať..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Zoznam serverov, pre ktoré máte nastavenú špecifickú politiku pre cookies. "
-"Tá má pre tieto servery prednosť pred štandardnou politikou.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Doména"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Politika"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Nový..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "Zmeniť..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Akceptovať"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Prijať pre sedenie"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Odmietnuť"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Pýtať sa"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "Neviem"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Zadajte meno hostiteľa alebo domény, pre ktorý má politika platiť. Napríklad "
-"<b>www.kde.org</b> alebo <b>.kde.org</b>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Názov stránky:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"Zadajte názov hostiteľa alebo domény, napr. .kde.org, pre ktoré platí táto "
-"politika."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Vyberte požadovanú politiku:\n"
-"<ul>\n"
-"<li><b>Prijať</b> - Povolí tomuto serveru nastavovať cookies.</li>\n"
-"<li><b>Prijať do konca sedenia</b> - Povolí tomuto serveru nastaviť cookies "
-"ale vypršia pri ukončení sedenia.</li>\n"
-"<li><b>Pýtať sa</b> - Vyzve pri prijatí cookie z tohto serveru.</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Politika:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Prijať do konca sedenia"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1379,11 +879,23 @@ msgstr "Hľadať kľúčové slová na webe"
 msgid "Add a new Web search keyword"
 msgstr "Pridať nové kľúčové slovo pre vyhľadávanie na webe"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Nový..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Upravte zvýraznené kľúčové slovo vyhľadávania na webe"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "Zmeniť..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1641,6 +1153,331 @@ msgstr "Z&naková sada:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Vložiť zástupný znak dotazu"
+
+#~ msgid "&Policy"
+#~ msgstr "&Politika"
+
+#~ msgid "&Management"
+#~ msgstr "&Správa"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Chyba komunikácie D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Nie je možné odstrániť všetky požadované cookies."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Nie je možné odstrániť požadované cookies."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Nepodarilo sa nájsť informáciu"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Nie je možné získať informácie o cookies uložených vo vašom počítači."
+
+#~ msgid "End of session"
+#~ msgstr "Koniec sedenia"
+
+#~ msgid "Yes"
+#~ msgstr "Áno"
+
+#~ msgid "Search"
+#~ msgstr "Hľadať"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Interaktívne hľadanie domén a počítačov"
+
+#~ msgid "Site"
+#~ msgstr "Stránka"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Názov cookie"
+
+#~ msgid "D&elete"
+#~ msgstr "O&dstrániť"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Odstrániť &všetky"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Nastaviť politiku..."
+
+#~ msgid "&Reload List"
+#~ msgstr "&Znovu načítať zoznam"
+
+#~ msgid "Details"
+#~ msgstr "Podrobnosti"
+
+#~ msgid "Name:"
+#~ msgstr "Názov:"
+
+#~ msgid "Value:"
+#~ msgstr "Hodnota:"
+
+#~ msgid "Domain:"
+#~ msgstr "Doména:"
+
+#~ msgid "Path:"
+#~ msgstr "Cesta:"
+
+#~ msgid "Expires:"
+#~ msgstr "Vyprší:"
+
+#~ msgid "Secure:"
+#~ msgstr "Bezpečný:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Zmeniť politiku cookue"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Nová politika cookie"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Už existuje politika pre <center><b>%1</b></center>Chcete ju nahradiť?"
+#~ "</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Politika duplikácie"
+
+#~ msgid "Replace"
+#~ msgstr "Nahradiť"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Nie je možné komunikovať so službou správy cookies.\n"
+#~ "Zmeny, ktoré se urobili, sa neprejavia, kým nebude táto služba "
+#~ "reštartovaná."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Zapnutie podpory cookies. Zvyčajne budete chcieť mať podporu cookies "
+#~ "zapnutú a manipulovať s nimi tak, aby to vyhovelo potrebe vášho "
+#~ "zabezpečenia.</p><p>\n"
+#~ "Prosím pamätajte, že po zakázaní cookies nebude možné pristupovať k "
+#~ "niektorým stránkam.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Povoliť &cookies"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Zamietnutie tzv. third-party cookies. Zvoľte si túto možnosť, ak chcete "
+#~ "zamietnuť všetky cookies zo iných stránok než z tej, ktorú ste si "
+#~ "vyžiadali. Napríklad, ak navštíivte <b>www.foobar.com</b> s touto voľbou "
+#~ "zapnutou, iba cookies pochádzajúce z www.foobar.com budú spracované podľa "
+#~ "vašich nastavení. Cookies zo všetých ostatných serverov budú automaticky "
+#~ "odmietnuté. Toto redukuje možnosť operátorov stránok vytvárať si profil o "
+#~ "vašich prehliadacích zvykoch.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "A&kceptovať cookies iba z pôvodného serveru"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Automaticky prijať dočasné cookies určené na vypršanie pri ukončení "
+#~ "aktuálneho sedenia. Tieto cookies nebudú uložené na vašom disku alebo "
+#~ "úložnom zariadení.Namiesto toho budú odstránené pri ukončení všetkých "
+#~ "aplikácií, ktoré ich používajú (prehliadač). </p><p><u>POZNÁMKA</u> "
+#~ "Zaškrtnutie tejto voľby prepíše vaše predvolené nastavenia ako aj "
+#~ "špecifické nastavenie podľa serverov pre cookies sedení.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "&Automaticky akceptovať cookies sedenia"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Určuje spôsob, ako sa bude manipulovať s cookies prijatými zo vzdialeného "
+#~ "serveru: \n"
+#~ "<ul>\n"
+#~ "<li><b>Pýtať sa</b> spôsobí, že KDE sa vás opýta na prijatie cookie, "
+#~ "kedykoľvek chce server nastaviť cookie.</li>\n"
+#~ "<li><b>Prijať</b> spôsobí, že všetky cookies budú v tichosti a bez "
+#~ "opýtania prijaté.</li>\n"
+#~ "<li><b>Prijať do konca sedenia</b> spôsobí, že cookies budú prijaté ale "
+#~ "vypršia pri ukončení sedenia.</li>\n"
+#~ "<li><b>Odmietnuť</b> spôsobí, že všetky prijaté cookies budú odmietnuté.</"
+#~ "li>\n"
+#~ "</ul><p>\n"
+#~ "<u>POZNÁMKA:</u> Politiky definované pre jednotlivé domény, ktoré môžete "
+#~ "nastaviť nižšie, budú mať vždy prednosť pred štandardnou politikou.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Implicitná politika"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "Akcep&tovať všetky cookies"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Prijať do konca sedenia"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "&Pýtať sa na potvrdenie"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "&Odmietnuť všetky cookies"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Ak chcete pridať novú politiku, jednoducho kliknite na tlačidlo "
+#~ "<b>Pridať...</b> a vyplňte požadované informácie. Ak chcete zmeniť "
+#~ "existujúcu politiku, kliknite na tlačidlo <b>Zmeniť...</b> a zvoľte v "
+#~ "dialógovom okne novú politiku. Kliknutím na tlačidlo <b>Odstrániť</b> sa "
+#~ "odstráni vybraná politika a pre túto doménu sa bude ďalej používať "
+#~ "štandardná politika. <b>Odstrániť všetky</b> odstráni všetky politiky.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Politika stránky"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Interaktívne hľadanie domén"
+
+#~ msgid "Search..."
+#~ msgstr "Hľadať..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Zoznam serverov, pre ktoré máte nastavenú špecifickú politiku pre "
+#~ "cookies. Tá má pre tieto servery prednosť pred štandardnou politikou.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Doména"
+
+#~ msgid "Policy"
+#~ msgstr "Politika"
+
+#~ msgid "Accept"
+#~ msgstr "Akceptovať"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Prijať pre sedenie"
+
+#~ msgid "Reject"
+#~ msgstr "Odmietnuť"
+
+#~ msgid "Ask"
+#~ msgstr "Pýtať sa"
+
+#~ msgid "Do Not Know"
+#~ msgstr "Neviem"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Zadajte meno hostiteľa alebo domény, pre ktorý má politika platiť. "
+#~ "Napríklad <b>www.kde.org</b> alebo <b>.kde.org</b>\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Názov stránky:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Zadajte názov hostiteľa alebo domény, napr. .kde.org, pre ktoré platí "
+#~ "táto politika."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Vyberte požadovanú politiku:\n"
+#~ "<ul>\n"
+#~ "<li><b>Prijať</b> - Povolí tomuto serveru nastavovať cookies.</li>\n"
+#~ "<li><b>Prijať do konca sedenia</b> - Povolí tomuto serveru nastaviť "
+#~ "cookies ale vypršia pri ukončení sedenia.</li>\n"
+#~ "<li><b>Pýtať sa</b> - Vyzve pri prijatí cookie z tohto serveru.</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Politika:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Prijať do konca sedenia"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

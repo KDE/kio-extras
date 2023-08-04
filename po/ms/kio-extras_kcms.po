@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2021-02-09 09:02+0800\n"
 "Last-Translator: ye-yu <rafolwen98@gmail.com>\n"
 "Language-Team: Malay <kde-i18n-doc@kde.org>\n"
@@ -16,507 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 20.12.1\n"
 "Plural-Forms: nplurals=2; plural=1;\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Polisi"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Pengurusan"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Ralat Komunikasi D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Tidak dapat memadam semua cecikut seperti diminta."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Tidak dapat memadam cecikut seperti diminta."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Gagal Mendapatkan Maklumat"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr ""
-"Tidak boleh mendapatkan maklumat mengenai cecikut yang disimpan dalam "
-"komputer anda."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Tamat sessi"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Ya"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Cari"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Cari domain dan hos secara interaktif"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, fuzzy, kde-format
-msgid "Site"
-msgstr "Nama Laman Web"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, fuzzy, kde-format
-msgid "Cookie Name"
-msgstr "Nama Laman Web"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "&Padam"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Hapuskan &Semua"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, fuzzy, kde-format
-msgid "Configure &Policy..."
-msgstr "Ubah &Dasar..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Muat Semula Senarai"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Terperinci"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Nama:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Nilai:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Domain:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Laluan:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Luput:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Selamat:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, fuzzy, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Tukar Polisi Cecikut"
-
-#: cookies/kcookiespolicies.cpp:173
-#, fuzzy, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Polisi Cecikut Baru"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Dasar sudah wujud bagi<center><b>%1</b></center>Anda ingin "
-"menggantikannya?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, fuzzy, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Salin Polisi"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Ganti"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Tidak dapat berkomunikasi dengan servis pengendali cookies.\n"
-"Sebarang perubahan yang anda buat tidak akan berkesan sehingga servis "
-"dimulakan semula."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, fuzzy, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Aktifkan sokongan cookies. Biasanya anda ingin sokongan cookies diaktifkan "
-"dan disuaikan mengikut keperluan privasi anda.<p>\n"
-"Ambil perhatian bahawa menyahaktifkan sokongan cookies akan mengakibatkan "
-"banyak laman web tak boleh dilayari.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Aktifkan &cookies"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Tolak cookies pihak ketiga. Ini adalah cookies yang berasal dari laman web "
-"selain dari laman web yang anda layari masa ini. Sebagai contoh, jika anda "
-"lawati <b>www.foobar.com</b> semasa opsyen ini buka, hanya cookies yang "
-"berasal dari www.foobar.com akan diproses mengikut seting anda. Cookies dari "
-"mana-mana laman web lain akan ditolak. Ini mengurangkan peluang pengendali "
-"laman web mengkompil profil tentang tabiat melayar harian anda.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Hanya &terima cookies dari pelayan asal"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, fuzzy, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<qt>\n"
-"Secara automatik menerima cookies sementara yang bertujuan untuk luput di "
-"penghujung sesi semasa. Cookies tersebut tidak akan disimpan dalam pemacu "
-"perkakasan atau peranti storan komputer anda , ia dihapuskan apabila anda "
-"menutup semua aplikasi (misalnya, pelayar anda) yang menggunakannya.<p>\n"
-"<u>PERHATIAN:</u> Menyemak opsyen ini bersama dengan opsyen berikutnya akan "
-"mengganti tindih piawaian anda serta dasar cookies khusus laman web. "
-"Bagaimanapun, ini juga akan meningkatkan privasi anda kerana semua cookies "
-"akan dibuang apabila sesi semasa berakhir.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "&terima cookies sesi secara automatik"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, fuzzy, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Menentukan bagaimana cookies diterima dari mesin jauh akan dikendalikan: \n"
-"<ul>\n"
-"<li><b>Tanya</b> akan menyebabkan KDE meminta pengesahan anda apabila "
-"pelayan ingin mengeset cookies.\"</li>\n"
-"<li><b>Terima</b> akan menyebabkan cookies diterima tanpa menggesa anda.</"
-"li>\n"
-"<li><b>Tolak</b> akan menyebabkan balang cookies menolak semua cookies yang "
-"ia terima.</li>\n"
-"</ul><p>\n"
-"<u>PERHATIAN:</u> Dasar khusus domain, yang boleh diset di bawah, sentiasa "
-"mendahului dasar piawai.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Dasar Piawai"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "&Terima semua cookies"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, fuzzy, kde-format
-msgid "Accept &until end of session"
-msgstr "Tamat sessi"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "&Minta pengesahan"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "&Tolak semua cookies"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, fuzzy, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Untuk menambah dasar baru, hanya klik butang <b>Tambah...</b> dan bekalkan "
-"maklumat yang perlu. Untuk mengubah dasar sedia ada, guna butang <b>Ubah...</"
-"b> dan pilih dasar baru dari kotak dialog dasar. Mengklik butang <b>Hapus</"
-"b> akan membuang dasar yang dipilih masa ini menyebabkan seting dasar piawai "
-"yang akan digunakan untuk domain itu manakala <b>Hapus Semua</b> akan "
-"membuang semua dasar khusus laman web.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Dasar Laman"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Cari domain secara interaktif"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, fuzzy, kde-format
-msgid "Search..."
-msgstr "Cari"
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Senarai laman web yang anda telah setkan dasar cookies khusus. Dasar khusus "
-"menindih ganti dasar piawai bagi laman web ini.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Domain"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Polisi"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Baru..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "&Ubah..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Terima"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-#, fuzzy
-msgid "Accept For Session"
-msgstr "Tamat sudah sessi"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Tolak"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Minta"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-#, fuzzy
-msgid "Do Not Know"
-msgstr "_Jangan Format"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Masukkan hos atau domain yang dasar ini terpakai untuknya, misalnya. <b>www."
-"kde.org</b> or <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, fuzzy, kde-format
-msgid "Site name:"
-msgstr "Nama Laman Web"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, fuzzy, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Pilih dasar yang dikehendaki:\n"
-"<ul>\n"
-"<li><b>Terima</b> - Membenarkan  laman web ini mengeset cookies</li>\n"
-"<li><b>Tolak</b> - Tolak semua cookies yang dihantar dari laman web ini</"
-"li>\n"
-"<li><b>Minta</b> - Gesa apabila cookies diterima dari laman web ini</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, fuzzy, kde-format
-msgid "Policy:"
-msgstr "&Polisi:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, fuzzy, kde-format
-msgid "Accept until end of session"
-msgstr "Tamat sessi"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1325,11 +824,23 @@ msgstr "Kata laluan piawai:"
 msgid "Add a new Web search keyword"
 msgstr "Kata laluan piawai:"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Baru..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, fuzzy, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Kata laluan piawai:"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&Ubah..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1549,6 +1060,344 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "&Policy"
+#~ msgstr "&Polisi"
+
+#~ msgid "&Management"
+#~ msgstr "&Pengurusan"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Ralat Komunikasi D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Tidak dapat memadam semua cecikut seperti diminta."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Tidak dapat memadam cecikut seperti diminta."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Gagal Mendapatkan Maklumat"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Tidak boleh mendapatkan maklumat mengenai cecikut yang disimpan dalam "
+#~ "komputer anda."
+
+#~ msgid "End of session"
+#~ msgstr "Tamat sessi"
+
+#~ msgid "Yes"
+#~ msgstr "Ya"
+
+#~ msgid "Search"
+#~ msgstr "Cari"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Cari domain dan hos secara interaktif"
+
+#, fuzzy
+#~ msgid "Site"
+#~ msgstr "Nama Laman Web"
+
+#, fuzzy
+#~ msgid "Cookie Name"
+#~ msgstr "Nama Laman Web"
+
+#~ msgid "D&elete"
+#~ msgstr "&Padam"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Hapuskan &Semua"
+
+#, fuzzy
+#~ msgid "Configure &Policy..."
+#~ msgstr "Ubah &Dasar..."
+
+#~ msgid "&Reload List"
+#~ msgstr "&Muat Semula Senarai"
+
+#~ msgid "Details"
+#~ msgstr "Terperinci"
+
+#~ msgid "Name:"
+#~ msgstr "Nama:"
+
+#~ msgid "Value:"
+#~ msgstr "Nilai:"
+
+#~ msgid "Domain:"
+#~ msgstr "Domain:"
+
+#~ msgid "Path:"
+#~ msgstr "Laluan:"
+
+#~ msgid "Expires:"
+#~ msgstr "Luput:"
+
+#~ msgid "Secure:"
+#~ msgstr "Selamat:"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Tukar Polisi Cecikut"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Polisi Cecikut Baru"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Dasar sudah wujud bagi<center><b>%1</b></center>Anda ingin "
+#~ "menggantikannya?</qt>"
+
+#, fuzzy
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Salin Polisi"
+
+#~ msgid "Replace"
+#~ msgstr "Ganti"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Tidak dapat berkomunikasi dengan servis pengendali cookies.\n"
+#~ "Sebarang perubahan yang anda buat tidak akan berkesan sehingga servis "
+#~ "dimulakan semula."
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Aktifkan sokongan cookies. Biasanya anda ingin sokongan cookies "
+#~ "diaktifkan dan disuaikan mengikut keperluan privasi anda.<p>\n"
+#~ "Ambil perhatian bahawa menyahaktifkan sokongan cookies akan mengakibatkan "
+#~ "banyak laman web tak boleh dilayari.\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Aktifkan &cookies"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Tolak cookies pihak ketiga. Ini adalah cookies yang berasal dari laman "
+#~ "web selain dari laman web yang anda layari masa ini. Sebagai contoh, jika "
+#~ "anda lawati <b>www.foobar.com</b> semasa opsyen ini buka, hanya cookies "
+#~ "yang berasal dari www.foobar.com akan diproses mengikut seting anda. "
+#~ "Cookies dari mana-mana laman web lain akan ditolak. Ini mengurangkan "
+#~ "peluang pengendali laman web mengkompil profil tentang tabiat melayar "
+#~ "harian anda.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Hanya &terima cookies dari pelayan asal"
+
+#, fuzzy
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Secara automatik menerima cookies sementara yang bertujuan untuk luput di "
+#~ "penghujung sesi semasa. Cookies tersebut tidak akan disimpan dalam pemacu "
+#~ "perkakasan atau peranti storan komputer anda , ia dihapuskan apabila anda "
+#~ "menutup semua aplikasi (misalnya, pelayar anda) yang menggunakannya.<p>\n"
+#~ "<u>PERHATIAN:</u> Menyemak opsyen ini bersama dengan opsyen berikutnya "
+#~ "akan mengganti tindih piawaian anda serta dasar cookies khusus laman web. "
+#~ "Bagaimanapun, ini juga akan meningkatkan privasi anda kerana semua "
+#~ "cookies akan dibuang apabila sesi semasa berakhir.\n"
+#~ "</qt>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "&terima cookies sesi secara automatik"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Menentukan bagaimana cookies diterima dari mesin jauh akan "
+#~ "dikendalikan: \n"
+#~ "<ul>\n"
+#~ "<li><b>Tanya</b> akan menyebabkan KDE meminta pengesahan anda apabila "
+#~ "pelayan ingin mengeset cookies.\"</li>\n"
+#~ "<li><b>Terima</b> akan menyebabkan cookies diterima tanpa menggesa anda.</"
+#~ "li>\n"
+#~ "<li><b>Tolak</b> akan menyebabkan balang cookies menolak semua cookies "
+#~ "yang ia terima.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>PERHATIAN:</u> Dasar khusus domain, yang boleh diset di bawah, "
+#~ "sentiasa mendahului dasar piawai.\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Dasar Piawai"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "&Terima semua cookies"
+
+#, fuzzy
+#~ msgid "Accept &until end of session"
+#~ msgstr "Tamat sessi"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "&Minta pengesahan"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "&Tolak semua cookies"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Untuk menambah dasar baru, hanya klik butang <b>Tambah...</b> dan "
+#~ "bekalkan maklumat yang perlu. Untuk mengubah dasar sedia ada, guna butang "
+#~ "<b>Ubah...</b> dan pilih dasar baru dari kotak dialog dasar. Mengklik "
+#~ "butang <b>Hapus</b> akan membuang dasar yang dipilih masa ini menyebabkan "
+#~ "seting dasar piawai yang akan digunakan untuk domain itu manakala "
+#~ "<b>Hapus Semua</b> akan membuang semua dasar khusus laman web.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Dasar Laman"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Cari domain secara interaktif"
+
+#, fuzzy
+#~ msgid "Search..."
+#~ msgstr "Cari"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Senarai laman web yang anda telah setkan dasar cookies khusus. Dasar "
+#~ "khusus menindih ganti dasar piawai bagi laman web ini.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Domain"
+
+#~ msgid "Policy"
+#~ msgstr "Polisi"
+
+#~ msgid "Accept"
+#~ msgstr "Terima"
+
+#, fuzzy
+#~ msgid "Accept For Session"
+#~ msgstr "Tamat sudah sessi"
+
+#~ msgid "Reject"
+#~ msgstr "Tolak"
+
+#~ msgid "Ask"
+#~ msgstr "Minta"
+
+#, fuzzy
+#~ msgid "Do Not Know"
+#~ msgstr "_Jangan Format"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Masukkan hos atau domain yang dasar ini terpakai untuknya, misalnya. "
+#~ "<b>www.kde.org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#, fuzzy
+#~ msgid "Site name:"
+#~ msgstr "Nama Laman Web"
+
+#, fuzzy
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Pilih dasar yang dikehendaki:\n"
+#~ "<ul>\n"
+#~ "<li><b>Terima</b> - Membenarkan  laman web ini mengeset cookies</li>\n"
+#~ "<li><b>Tolak</b> - Tolak semua cookies yang dihantar dari laman web ini</"
+#~ "li>\n"
+#~ "<li><b>Minta</b> - Gesa apabila cookies diterima dari laman web ini</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~ msgid "Policy:"
+#~ msgstr "&Polisi:"
+
+#, fuzzy
+#~ msgid "Accept until end of session"
+#~ msgstr "Tamat sessi"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

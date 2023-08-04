@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2022-12-28 20:58+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -22,518 +22,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
 "X-Generator: Lokalize 21.12.3\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Politică"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "Ad&ministrare"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "Eroare de comunicație D-Bus"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Nu se pot șterge toate cookie-urile după cum a fost cerut."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Nu se pot șterge cookie-urile după cum a fost cerut."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Eșec la căutarea informațiilor"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr ""
-"Nu s-au pot obține informații despre cookie-urile stocate pe calculator."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Sfârșitul sesiunii"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Da"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Caută"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Caută interactiv domenii și mașini"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Sait"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Denumire cookie"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "Șt&erge"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Șterge t&ot"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Configurare &politică..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Reîncarcă lista"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Detalii"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Denumire:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Valoare:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Domeniu:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Cale:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Expiră la:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Securizat:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Modifică politica de cookie"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Politică nouă de cookie"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Există deja o politică pentru <center><b>%1</b></center>Doriți să o "
-"înlocuiesc?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Politică duplicată"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Înlocuiește"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Nu pot comunica  cu serviciul de administrat cookie-uri.\n"
-"Orice modificări pe care le faceți nu vor avea efect până când serviciul nu "
-"este repornit."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Activează suportul pentru cookie. În mod normal este nevoie să-l aveți "
-"activat și să îl configurați astfel încât să corespundă nevoilor "
-"dumneavoastră de intimitate.</p><p>\n"
-"Dacă dezactivați cookie-urile s-ar putea să nu mai puteți naviga prin unele "
-"saituri.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Activează utilizarea &cookie-urilor"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>Respinge toate cookie-urile de la saituri, altele decât cel pe care l-"
-"ați cerut. Dacă, spre exemplu, vizitați <b>www.domeniu.com</b> în timp ce "
-"această opțiune este setată, numai cookie-urile de la www.domeniu.com vor fi "
-"procesate pentru această setare. Toate celelalte cookie-uri vor fi automat "
-"respinse. Acest lucru reduce posibilitatea ca operatorii sait-urilor să "
-"construiască un profil despre obiceiurile dumneavoastră de navigare.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "&Acceptă cookie-uri numai de la serverul care le-a generat"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>Acceptă automat cookie-uri temporare, care vor expira la sfârșitul "
-"sesiunii curente. Astfel de cookie-uri nu vor fi stocate pe discul "
-"calculatorului sau pe un alt dispozitiv de stocare. În schimb, vor fi șterse "
-"când închideți toate aplicațiile (de exemplu navigatorul web) care le "
-"utilizează.</p><p><u>OBSERVAȚIE</u> Dacă alegeți această opțiune, veți "
-"suprascrie politica implicită de cookie-uri de sesiune, precum și politicile "
-"specifice saiturilor.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Acceptă a&utomat cookie-uri de sesiune"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Determines how cookies received from a remote machine will be handled: \n"
-#| "<ul>\n"
-#| "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
-#| "server wants to set a cookie.</li>\n"
-#| "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
-#| "</li>\n"
-#| "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
-#| "receives.</li>\n"
-#| "</ul><p>\n"
-#| "<u>NOTE:</u> Domain specific policies, which can be set below, always "
-#| "take precedence over the default policy.</p>\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Determină modul în care KDE va procesa cookie-urile primite de la un server "
-"distant:\n"
-"<ul>\n"
-"<li><b>Întreabă</b> va determina KDE să vă ceară confirmarea de fiecare dată "
-"când un server dorește să vă trimită un cookie.</li>\n"
-"<li><b>Acceptă</b> va determina acceptarea cookie-urilor fără confirmare.</"
-"li>\n"
-"<li><b>Respinge</b> va determina respingerea tuturor cookie-urilor primite.</"
-"li>\n"
-"</ul><p>\n"
-"<u>NOTĂ:</u> Politicele specifice domeniului, care pot fi stabilite mai jos, "
-"întotdeauna au prioritate în fața politicii globale.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Politica implicită"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "&Acceptă toate cookie-urile"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Acceptă până la sfârșitul sesi&unii"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "&Cere confirmarea"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "&Respinge toate cookie-urile"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Pentru a adăuga o politică nouă, dați clic pe butonul <b>Adaugă...</b> și "
-"introduceți informațiile necesare în căsuța de dialog. Pentru a modifica o "
-"politică existentă, dați clic pe butonul <b>Modifică...</b> și alegeți noua "
-"politică din căsuța de dialog pentru politică. Dacă dați clic pe <b>Șterge</"
-"b>, veți șterge politica selectată, indicând utilizarea politicii implicite "
-"pentru acel domeniu, iar <b>Șterge tot</b> determină ștergerea tuturor "
-"politicilor specifice sait-ului.</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Politică sait"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Caută interactiv domenii"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Caută…"
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Lista sait-urilor pentru care ați setat o politică de cookie specifică. "
-"Politicile specifice suprascriu politica implicită pentru aceste sait-uri.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Domeniu"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Politică"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Nou..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "&Modifică..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Acceptă"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Acceptă pentru sesiune"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Respinge"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Întreabă"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "Nu știu"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>Introduceți numele sait-ului sau domeniului pentru care doriți să "
-"aplicați această politică. De exemplu <b>www.kde.org</b> sau <b>.kde.org</b>."
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Denumire sait:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"Introduceți numele gazdei sau domeniului căruia i se aplică această politică."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Alegeți politica dorită:\n"
-"<ul>\n"
-"<li><b>Acceptă</b> – Permite acestui sait să stabilească cookie-uri.</li>\n"
-"<li><b>Acceptă până la sfârșitul sesiunii</b> – Permite acestui sait să "
-"stabilească cookie-uri care vor expira la sfârșitul sesiunii.</li>\n"
-"<li><b>Respinge</b> – Refuză toate cookie-urile trimise de la acest sait</"
-"li>\n"
-"<li><b>Întreabă</b> – Întreabă când sunt primite cookie-uri de la acest "
-"sait</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Politică:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Acceptă până la sfârșitul sesiunii"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1400,11 +888,23 @@ msgstr "Caută cuvinte-cheie de căutare web"
 msgid "Add a new Web search keyword"
 msgstr "Adaugă cuvânt-cheie de căutare web nou"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Nou..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Modifică cuvântul-cheie de căutare web evidențiat"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&Modifică..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1639,6 +1139,346 @@ msgstr "Set de &caractere:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserează substituent pentru interogare"
+
+#~ msgid "&Policy"
+#~ msgstr "&Politică"
+
+#~ msgid "&Management"
+#~ msgstr "Ad&ministrare"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "Eroare de comunicație D-Bus"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Nu se pot șterge toate cookie-urile după cum a fost cerut."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Nu se pot șterge cookie-urile după cum a fost cerut."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Eșec la căutarea informațiilor"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Nu s-au pot obține informații despre cookie-urile stocate pe calculator."
+
+#~ msgid "End of session"
+#~ msgstr "Sfârșitul sesiunii"
+
+#~ msgid "Yes"
+#~ msgstr "Da"
+
+#~ msgid "Search"
+#~ msgstr "Caută"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Caută interactiv domenii și mașini"
+
+#~ msgid "Site"
+#~ msgstr "Sait"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Denumire cookie"
+
+#~ msgid "D&elete"
+#~ msgstr "Șt&erge"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Șterge t&ot"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Configurare &politică..."
+
+#~ msgid "&Reload List"
+#~ msgstr "&Reîncarcă lista"
+
+#~ msgid "Details"
+#~ msgstr "Detalii"
+
+#~ msgid "Name:"
+#~ msgstr "Denumire:"
+
+#~ msgid "Value:"
+#~ msgstr "Valoare:"
+
+#~ msgid "Domain:"
+#~ msgstr "Domeniu:"
+
+#~ msgid "Path:"
+#~ msgstr "Cale:"
+
+#~ msgid "Expires:"
+#~ msgstr "Expiră la:"
+
+#~ msgid "Secure:"
+#~ msgstr "Securizat:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Modifică politica de cookie"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Politică nouă de cookie"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Există deja o politică pentru <center><b>%1</b></center>Doriți să o "
+#~ "înlocuiesc?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Politică duplicată"
+
+#~ msgid "Replace"
+#~ msgstr "Înlocuiește"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Nu pot comunica  cu serviciul de administrat cookie-uri.\n"
+#~ "Orice modificări pe care le faceți nu vor avea efect până când serviciul "
+#~ "nu este repornit."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Activează suportul pentru cookie. În mod normal este nevoie să-l aveți "
+#~ "activat și să îl configurați astfel încât să corespundă nevoilor "
+#~ "dumneavoastră de intimitate.</p><p>\n"
+#~ "Dacă dezactivați cookie-urile s-ar putea să nu mai puteți naviga prin "
+#~ "unele saituri.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Activează utilizarea &cookie-urilor"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>Respinge toate cookie-urile de la saituri, altele decât cel pe care l-"
+#~ "ați cerut. Dacă, spre exemplu, vizitați <b>www.domeniu.com</b> în timp ce "
+#~ "această opțiune este setată, numai cookie-urile de la www.domeniu.com vor "
+#~ "fi procesate pentru această setare. Toate celelalte cookie-uri vor fi "
+#~ "automat respinse. Acest lucru reduce posibilitatea ca operatorii sait-"
+#~ "urilor să construiască un profil despre obiceiurile dumneavoastră de "
+#~ "navigare.</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "&Acceptă cookie-uri numai de la serverul care le-a generat"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>Acceptă automat cookie-uri temporare, care vor expira la sfârșitul "
+#~ "sesiunii curente. Astfel de cookie-uri nu vor fi stocate pe discul "
+#~ "calculatorului sau pe un alt dispozitiv de stocare. În schimb, vor fi "
+#~ "șterse când închideți toate aplicațiile (de exemplu navigatorul web) care "
+#~ "le utilizează.</p><p><u>OBSERVAȚIE</u> Dacă alegeți această opțiune, veți "
+#~ "suprascrie politica implicită de cookie-uri de sesiune, precum și "
+#~ "politicile specifice saiturilor.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Acceptă a&utomat cookie-uri de sesiune"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Determines how cookies received from a remote machine will be handled: \n"
+#~| "<ul>\n"
+#~| "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~| "server wants to set a cookie.</li>\n"
+#~| "<li><b>Accept</b> will cause cookies to be accepted without prompting "
+#~| "you.</li>\n"
+#~| "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~| "receives.</li>\n"
+#~| "</ul><p>\n"
+#~| "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~| "take precedence over the default policy.</p>\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Determină modul în care KDE va procesa cookie-urile primite de la un "
+#~ "server distant:\n"
+#~ "<ul>\n"
+#~ "<li><b>Întreabă</b> va determina KDE să vă ceară confirmarea de fiecare "
+#~ "dată când un server dorește să vă trimită un cookie.</li>\n"
+#~ "<li><b>Acceptă</b> va determina acceptarea cookie-urilor fără confirmare."
+#~ "</li>\n"
+#~ "<li><b>Respinge</b> va determina respingerea tuturor cookie-urilor "
+#~ "primite.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTĂ:</u> Politicele specifice domeniului, care pot fi stabilite mai "
+#~ "jos, întotdeauna au prioritate în fața politicii globale.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Politica implicită"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "&Acceptă toate cookie-urile"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Acceptă până la sfârșitul sesi&unii"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "&Cere confirmarea"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "&Respinge toate cookie-urile"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Pentru a adăuga o politică nouă, dați clic pe butonul <b>Adaugă...</b> și "
+#~ "introduceți informațiile necesare în căsuța de dialog. Pentru a modifica "
+#~ "o politică existentă, dați clic pe butonul <b>Modifică...</b> și alegeți "
+#~ "noua politică din căsuța de dialog pentru politică. Dacă dați clic pe "
+#~ "<b>Șterge</b>, veți șterge politica selectată, indicând utilizarea "
+#~ "politicii implicite pentru acel domeniu, iar <b>Șterge tot</b> determină "
+#~ "ștergerea tuturor politicilor specifice sait-ului.</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Politică sait"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Caută interactiv domenii"
+
+#~ msgid "Search..."
+#~ msgstr "Caută…"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Lista sait-urilor pentru care ați setat o politică de cookie specifică. "
+#~ "Politicile specifice suprascriu politica implicită pentru aceste sait-"
+#~ "uri.\n"
+#~ "</qt>"
+
+#~ msgid "Domain"
+#~ msgstr "Domeniu"
+
+#~ msgid "Policy"
+#~ msgstr "Politică"
+
+#~ msgid "Accept"
+#~ msgstr "Acceptă"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Acceptă pentru sesiune"
+
+#~ msgid "Reject"
+#~ msgstr "Respinge"
+
+#~ msgid "Ask"
+#~ msgstr "Întreabă"
+
+#~ msgid "Do Not Know"
+#~ msgstr "Nu știu"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>Introduceți numele sait-ului sau domeniului pentru care doriți să "
+#~ "aplicați această politică. De exemplu <b>www.kde.org</b> sau <b>.kde.org</"
+#~ "b>.</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Denumire sait:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Introduceți numele gazdei sau domeniului căruia i se aplică această "
+#~ "politică."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Alegeți politica dorită:\n"
+#~ "<ul>\n"
+#~ "<li><b>Acceptă</b> – Permite acestui sait să stabilească cookie-uri.</"
+#~ "li>\n"
+#~ "<li><b>Acceptă până la sfârșitul sesiunii</b> – Permite acestui sait să "
+#~ "stabilească cookie-uri care vor expira la sfârșitul sesiunii.</li>\n"
+#~ "<li><b>Respinge</b> – Refuză toate cookie-urile trimise de la acest sait</"
+#~ "li>\n"
+#~ "<li><b>Întreabă</b> – Întreabă când sunt primite cookie-uri de la acest "
+#~ "sait</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Politică:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Acceptă până la sfârșitul sesiunii"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

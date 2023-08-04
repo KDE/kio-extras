@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-06 02:08+0000\n"
+"POT-Creation-Date: 2023-08-04 01:59+0000\n"
 "PO-Revision-Date: 2023-04-27 22:54+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -24,510 +24,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 23.04.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: cookies/kcookiesmain.cpp:37
-#, kde-format
-msgid "&Policy"
-msgstr "&Gidalerroa"
-
-#: cookies/kcookiesmain.cpp:44
-#, kde-format
-msgid "&Management"
-msgstr "&Kudeaketa"
-
-#: cookies/kcookiesmanagement.cpp:126 cookies/kcookiesmanagement.cpp:143
-#, kde-format
-msgid "D-Bus Communication Error"
-msgstr "D-Bus komunikazioko errorea"
-
-#: cookies/kcookiesmanagement.cpp:127
-#, kde-format
-msgid "Unable to delete all the cookies as requested."
-msgstr "Ezin dira cookie guztiak ezabatu eskatu bezala."
-
-#: cookies/kcookiesmanagement.cpp:144
-#, kde-format
-msgid "Unable to delete cookies as requested."
-msgstr "Ezin dira cookie-ak ezabatu eskatu bezala."
-
-#: cookies/kcookiesmanagement.cpp:223
-#, kde-format
-msgid "Information Lookup Failure"
-msgstr "Informazio bilaketak huts egin du"
-
-#: cookies/kcookiesmanagement.cpp:225
-#, kde-format
-msgid ""
-"Unable to retrieve information about the cookies stored on your computer."
-msgstr ""
-"Ezin da zure ordenagailuan gordetako cookie-ei buruzko informazioa "
-"berreskuratu."
-
-#: cookies/kcookiesmanagement.cpp:316
-#, kde-format
-msgid "End of session"
-msgstr "Saioaren amaiera"
-
-#: cookies/kcookiesmanagement.cpp:323
-#, kde-format
-msgid "Yes"
-msgstr "Bai"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, searchLineEdit)
-#: cookies/kcookiesmanagement.ui:20
-#, kde-format
-msgid "Search"
-msgstr "Bilatu"
-
-#. i18n: ectx: property (toolTip), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:27
-#, kde-format
-msgid "Search interactively for domains and hosts"
-msgstr "Bilatu interaktiboki domeinu eta ostalariak"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:43
-#, kde-format
-msgid "Site"
-msgstr "Lekua"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, cookiesTreeWidget)
-#: cookies/kcookiesmanagement.ui:48
-#, kde-format
-msgid "Cookie Name"
-msgstr "Cookie-aren izena"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#. i18n: ectx: property (text), widget (QPushButton, deleteButton)
-#: cookies/kcookiesmanagement.ui:56 cookies/kcookiespolicies.ui:190
-#, kde-format
-msgid "D&elete"
-msgstr "&Ezabatu"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbDeleteAll)
-#. i18n: ectx: property (text), widget (QPushButton, deleteAllButton)
-#: cookies/kcookiesmanagement.ui:63 cookies/kcookiespolicies.ui:197
-#, kde-format
-msgid "Delete A&ll"
-msgstr "Ezabatu &denak"
-
-#. i18n: ectx: property (text), widget (QPushButton, configPolicyButton)
-#: cookies/kcookiesmanagement.ui:70
-#, kde-format
-msgid "Configure &Policy..."
-msgstr "Konfiguratu &gidalerroak..."
-
-#. i18n: ectx: property (text), widget (QPushButton, reloadButton)
-#: cookies/kcookiesmanagement.ui:77
-#, kde-format
-msgid "&Reload List"
-msgstr "&Birkargatu zerrenda"
-
-#. i18n: ectx: property (title), widget (QGroupBox, detailsGroupBox)
-#: cookies/kcookiesmanagement.ui:97
-#, kde-format
-msgid "Details"
-msgstr "Xehetasunak"
-
-#. i18n: ectx: property (text), widget (QLabel, nameLabel)
-#: cookies/kcookiesmanagement.ui:106
-#, kde-format
-msgid "Name:"
-msgstr "Izena:"
-
-#. i18n: ectx: property (text), widget (QLabel, valueLabel)
-#: cookies/kcookiesmanagement.ui:129
-#, kde-format
-msgid "Value:"
-msgstr "Balioa:"
-
-#. i18n: ectx: property (text), widget (QLabel, domainLabel)
-#: cookies/kcookiesmanagement.ui:152
-#, kde-format
-msgid "Domain:"
-msgstr "Domeinua:"
-
-#. i18n: ectx: property (text), widget (QLabel, patchLabel)
-#: cookies/kcookiesmanagement.ui:175
-#, kde-format
-msgid "Path:"
-msgstr "Bide-izena:"
-
-#. i18n: ectx: property (text), widget (QLabel, expiresLabel)
-#: cookies/kcookiesmanagement.ui:198
-#, kde-format
-msgid "Expires:"
-msgstr "Iraungitzea:"
-
-#. i18n: ectx: property (text), widget (QLabel, secureLabel)
-#: cookies/kcookiesmanagement.ui:221
-#, kde-format
-msgid "Secure:"
-msgstr "Segurua:"
-
-#: cookies/kcookiespolicies.cpp:154
-#, kde-format
-msgctxt "@title:window"
-msgid "Change Cookie Policy"
-msgstr "Aldatu cookie-n gidalerroa"
-
-#: cookies/kcookiespolicies.cpp:173
-#, kde-format
-msgctxt "@title:window"
-msgid "New Cookie Policy"
-msgstr "Cookie-n gidalerro berria"
-
-#: cookies/kcookiespolicies.cpp:206
-#, kde-format
-msgid ""
-"<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-"replace it?</qt>"
-msgstr ""
-"<qt>Jadanik badago <center><b>%1</b></center>(r)en gidalerro bat. Ordeztu "
-"nahi duzu?</qt>"
-
-#: cookies/kcookiespolicies.cpp:210
-#, kde-format
-msgctxt "@title:window"
-msgid "Duplicate Policy"
-msgstr "Bikoiztu gidalerroa"
-
-#: cookies/kcookiespolicies.cpp:211
-#, kde-format
-msgid "Replace"
-msgstr "Ordeztu"
-
-#: cookies/kcookiespolicies.cpp:387
-#, kde-format
-msgid ""
-"Unable to communicate with the cookie handler service.\n"
-"Any changes you made will not take effect until the service is restarted."
-msgstr ""
-"Ezin da cookie-n kudeaketaren zerbitzuarekin komunikatu.\n"
-"Egindako aldaketak ez dira erabilgarriak izango zerbitzua berrabiarazi arte."
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enable cookie support. Normally you will want to have cookie support "
-"enabled and customize it to suit your privacy needs.</p><p>\n"
-"Please note that disabling cookie support might make many web sites "
-"unbrowsable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Gaitu cookie-n euskarria. Normalean cookie-n euskarria gaituta izan "
-"nahiko duzu eta zure pribatutasun beharretara egokitzeko finkatzea.</p><p>\n"
-"Kontuan izan cookie-n euskarria ezgaitzeak webgune asko arakaezin bilaka "
-"ditzakeela.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbEnableCookies)
-#: cookies/kcookiespolicies.ui:23
-#, kde-format
-msgid "Enable coo&kies"
-msgstr "Gaitu coo&kie-ak"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:35
-#, kde-format
-msgid ""
-"<qt>\n"
-"Reject the so called third-party cookies. These are cookies that originate "
-"from a site other than the one you are currently browsing. For example, if "
-"you visit <b>www.foobar.com</b> while this option is on, only cookies that "
-"originate from www.foobar.com will be processed per your settings. Cookies "
-"from any other site will be rejected. This reduces the chances of site "
-"operators compiling a profile about your daily browsing habits.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Ukatu hirugarrengoen cookie deritzenak. Hauek zu arakatzen ari zaren ez "
-"beste gune batean sortutako cookie-ak dira. Adibidez, <b>www.foobar.com</b> "
-"bisitatzen baduzu aukera hau hautatuta dagoelarik, zure ezarpenek www.foobar."
-"com-en sortutako cookie-ak baino ez ditu prozesatuko. Beste edonongo cookie-"
-"ak ezetsiko dira. Honek murrizten ditu gune operatzaileek zure eguneroko "
-"arakatze ohiturei buruzko profila eraikitzeko aukerak.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbRejectCrossDomainCookies)
-#: cookies/kcookiespolicies.ui:38
-#, kde-format
-msgid "Only acce&pt cookies from originating server"
-msgstr "Cookie-ak &jatorrizko zerbitzaritik baino ez onartu"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:46
-#, kde-format
-msgid ""
-"<p>\n"
-"Automatically accept temporary cookies meant to expire at the end of the "
-"current session. Such cookies will not be stored in your computer's hard "
-"drive or storage device. Instead, they are deleted when you close all "
-"applications (e.g. your browser) that use them.</p><p><u>NOTE</u> Checking "
-"this option overrides your default as well as site specific cookie policies "
-"for session cookies.</p>"
-msgstr ""
-"<p>\n"
-"Automatikoki onartu uneko saioaren amaieran iraungiko diren aldi baterako "
-"cookie-ak. Halako cookie-ak ez dira zure ordenagailuaren disko zurrunean edo "
-"biltegiratzeko gailuan gordeko. Aitzitik, beraiek erabiltzen dituzten "
-"aplikazio guztiak ixten dituzunean (adib. zure arakatzailea) ezabatzen dira."
-"</p><p> <u>OHARRA</u> Aukera hau markatzean cookiei buruzko zure gidalerro "
-"lehenetsia eta guneen berariazko cookien gidalerroak saioko cookientzatez "
-"dira aintzat hartuko.</p>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, cbAutoAcceptSessionCookies)
-#: cookies/kcookiespolicies.ui:49
-#, kde-format
-msgid "Automaticall&y accept session cookies"
-msgstr "Automatikok&i onartu saioko cookie-ak"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:68
-#, kde-format
-msgid ""
-"<qt>\n"
-"Determines how cookies received from a remote machine will be handled: \n"
-"<ul>\n"
-"<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a server "
-"wants to set a cookie.</li>\n"
-"<li><b>Accept</b> will cause cookies to be accepted without prompting you.</"
-"li>\n"
-"<li><b>Accept until end of session</b> will cause cookies to be accepted but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> will cause the cookiejar to refuse all cookies it receives."
-"</li>\n"
-"</ul><p>\n"
-"<u>NOTE:</u> Domain specific policies, which can be set below, always take "
-"precedence over the default policy.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Urruneko makina batetik jasotako cookie-ak nola maneiatuko diren zehazten "
-"du: \n"
-"<ul>\n"
-"<li><b>Eskatu</b> aukerak zerbitzari batek cookie bat ipini nahi duen "
-"bakoitzean KDE-k zure berrespena eskatu dezan eragingo du.</li>\n"
-"<li><b>Onartu saioa amaitu arte</b> cookieak onartzea eragingo du baino "
-"saioa amaitzean iraungiko dira.</li>\n"
-"<li><b>Onartu</b> aukerak zuri galdetu gabe cookie-ak onartzea eragingo du.</"
-"li>\n"
-"<li><b>Errefuxatu</b> aukerak jasotako cookie guztiak errefuxatzea eragingo "
-"du.</li>\n"
-"</ul><p>\n"
-"<u>OHARRA:</u> behean ezar daitezkeen domeinuetako berariazko politikek "
-"lehentasuna dute beti politika lehenetsiekiko.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, bgDefault)
-#: cookies/kcookiespolicies.ui:71
-#, kde-format
-msgid "Default Policy"
-msgstr "Gidalerro lehenetsia"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAccept)
-#: cookies/kcookiespolicies.ui:77
-#, kde-format
-msgid "Accep&t all cookies"
-msgstr "&Onartu cookie guztiak"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAcceptForSession)
-#: cookies/kcookiespolicies.ui:84
-#, kde-format
-msgid "Accept &until end of session"
-msgstr "Onartu saioa amait&u arte"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyAsk)
-#: cookies/kcookiespolicies.ui:91
-#, kde-format
-msgid "Ask &for confirmation"
-msgstr "&Eskatu berrespena"
-
-#. i18n: ectx: property (text), widget (QRadioButton, rbPolicyReject)
-#: cookies/kcookiespolicies.ui:98
-#, kde-format
-msgid "Re&ject all cookies"
-msgstr "&Ukatu cookie guztiak"
-
-#. i18n: ectx: property (whatsThis), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:123
-#, kde-format
-msgid ""
-"<qt>\n"
-"To add a new policy, simply click on the <b>Add...</b> button and supply the "
-"necessary information. To change an existing policy, use the <b>Change...</"
-"b> button and choose the new policy from the policy dialog box. Clicking on "
-"the <b>Delete</b> button will remove the currently selected policy causing "
-"the default policy setting to be used for that domain, whereas <b>Delete "
-"All</b> will remove all the site specific policies.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Gidalerro berria gehitzeko, <b>Gehitu...</b> botoia sakatu eta eman "
-"beharrezko informazioa. Dagoen gidalerroa aldatzeko, erabili <b>Aldatu...</"
-"b> botoia eta aukeratu gidalerro berria gidalerroen elkarrizketa-koadrotik. "
-"<b>Ezabatu</b> botoia sakatzeak aukeratutako gidalerroa ezabatuko du eta "
-"domeinu horretarako gidalerroaren konfigurazio lehenetsia erabiliko da. "
-"<b>Ezabatu denak</b> botoiak, ordea, guneko gidalerro berezi guztiak "
-"ezabatuko ditu.\n"
-"</qt>"
-
-#. i18n: ectx: property (title), widget (QGroupBox, gbDomainSpecific)
-#: cookies/kcookiespolicies.ui:126
-#, kde-format
-msgid "Site Policy"
-msgstr "Guneko gidalerroa"
-
-#. i18n: ectx: property (toolTip), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:135
-#, kde-format
-msgid "Search interactively for domains"
-msgstr "Bilatu domeinuak interaktiboki"
-
-#. i18n: ectx: property (placeholderText), widget (KTreeWidgetSearchLine, kListViewSearchLine)
-#: cookies/kcookiespolicies.ui:138
-#, kde-format
-msgid "Search..."
-msgstr "Bilatu..."
-
-#. i18n: ectx: property (whatsThis), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:147
-#, kde-format
-msgid ""
-"<qt>\n"
-"List of sites for which you have set a specific cookie policy. Specific "
-"policies override the default policy setting for these sites.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Cookie-n gidalerro berezia ezarri diezun gune zerrenda. Gidalerro bereziek "
-"ez dute gidalerro konfigurazio lehenetsia aintzat hartzen gune hauentzat.\n"
-"</qt>o"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:163
-#, kde-format
-msgid "Domain"
-msgstr "Domeinua"
-
-#. i18n: ectx: property (text), widget (QTreeWidget, policyTreeWidget)
-#: cookies/kcookiespolicies.ui:168
-#, kde-format
-msgid "Policy"
-msgstr "Gidalerroa"
-
-#. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: cookies/kcookiespolicies.ui:176 webshortcuts/ikwsopts_ui.ui:74
-#, kde-format
-msgid "&New..."
-msgstr "&Berria..."
-
-#. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: cookies/kcookiespolicies.ui:183 webshortcuts/ikwsopts_ui.ui:87
-#, kde-format
-msgid "Chan&ge..."
-msgstr "&Aldatu..."
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:26
-#: cookies/kcookiespolicyselectiondlg.ui:81
-#, kde-format
-msgid "Accept"
-msgstr "Onartu"
-
-#: cookies/kcookiespolicyselectiondlg.h:28
-msgid "Accept For Session"
-msgstr "Onartu saio honetarako"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:30
-#: cookies/kcookiespolicyselectiondlg.ui:91
-#, kde-format
-msgid "Reject"
-msgstr "Ukatu"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.h:32
-#: cookies/kcookiespolicyselectiondlg.ui:96
-#, kde-format
-msgid "Ask"
-msgstr "Galdetu"
-
-#: cookies/kcookiespolicyselectiondlg.h:34
-msgid "Do Not Know"
-msgstr "Ez dakit"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:22
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the host or domain to which this policy applies, e.g. <b>www.kde.org</"
-"b> or <b>.kde.org</b>.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Sartu gidalerro hau aplikatuko zaion ostalari edo domeinua, adibidez, <b>www."
-"kde.org</b> edo <b>.kde.org</b>.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:25
-#, kde-format
-msgid "Site name:"
-msgstr "Gunearen izena:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leDomain)
-#: cookies/kcookiespolicyselectiondlg.ui:38
-#, kde-format
-msgid "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-msgstr ""
-"Sartu ostalari edo domeinuaren izena (adib. kde.org) gidalerro hau "
-"aplikatzeko."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbPolicy)
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:53
-#: cookies/kcookiespolicyselectiondlg.ui:77
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the desired policy:\n"
-"<ul>\n"
-"<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-"<li><b>Accept until end of session</b> - Allows this site to set cookies but "
-"they will expire at the end of the session.</li>\n"
-"<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-"<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-"</ul>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Hautatu nahiago duzun gidalerroa:\n"
-"<ul>\n"
-"<li><b>Onartu</b> - Gune honek cookie-ak ezartzea baimentzen du</li>\n"
-"<li><b>Onartu saioa amaitu arte</b> - Gune honi cookiak ezartzeko baimena "
-"ematen dio baino saioa amaitutakoan iraungiko dira.</li>\n"
-"<li><b>Errefuxatu</b> - Errefuxatu gune honek bidalitako cookie guztiak</"
-"li>\n"
-"<li><b>Galdetu</b> - Galdetu zerbitzari honetako cookie-ak jasotakoan</li>\n"
-"</ul>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, lbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:56
-#, kde-format
-msgid "Policy:"
-msgstr "Gidalerroa:"
-
-#. i18n: ectx: property (text), item, widget (QComboBox, cbPolicy)
-#: cookies/kcookiespolicyselectiondlg.ui:86
-#, kde-format
-msgid "Accept until end of session"
-msgstr "Onartu saioa amaitu arte"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -1397,11 +893,23 @@ msgstr "Bilatu web bilaketa gako-hitzak"
 msgid "Add a new Web search keyword"
 msgstr "Gehitu web bilaketa gako-hitz berri bat"
 
+#. i18n: ectx: property (text), widget (QPushButton, pbNew)
+#: webshortcuts/ikwsopts_ui.ui:74
+#, kde-format
+msgid "&New..."
+msgstr "&Berria..."
+
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Aldatu nabarmendutako web bilaketa gako-hitza"
+
+#. i18n: ectx: property (text), widget (QPushButton, pbChange)
+#: webshortcuts/ikwsopts_ui.ui:87
+#, kde-format
+msgid "Chan&ge..."
+msgstr "&Aldatu..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1662,6 +1170,337 @@ msgstr "&Karaktere-multzoa:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Txertatu itauneko leku-marka"
+
+#~ msgid "&Policy"
+#~ msgstr "&Gidalerroa"
+
+#~ msgid "&Management"
+#~ msgstr "&Kudeaketa"
+
+#~ msgid "D-Bus Communication Error"
+#~ msgstr "D-Bus komunikazioko errorea"
+
+#~ msgid "Unable to delete all the cookies as requested."
+#~ msgstr "Ezin dira cookie guztiak ezabatu eskatu bezala."
+
+#~ msgid "Unable to delete cookies as requested."
+#~ msgstr "Ezin dira cookie-ak ezabatu eskatu bezala."
+
+#~ msgid "Information Lookup Failure"
+#~ msgstr "Informazio bilaketak huts egin du"
+
+#~ msgid ""
+#~ "Unable to retrieve information about the cookies stored on your computer."
+#~ msgstr ""
+#~ "Ezin da zure ordenagailuan gordetako cookie-ei buruzko informazioa "
+#~ "berreskuratu."
+
+#~ msgid "End of session"
+#~ msgstr "Saioaren amaiera"
+
+#~ msgid "Yes"
+#~ msgstr "Bai"
+
+#~ msgid "Search"
+#~ msgstr "Bilatu"
+
+#~ msgid "Search interactively for domains and hosts"
+#~ msgstr "Bilatu interaktiboki domeinu eta ostalariak"
+
+#~ msgid "Site"
+#~ msgstr "Lekua"
+
+#~ msgid "Cookie Name"
+#~ msgstr "Cookie-aren izena"
+
+#~ msgid "D&elete"
+#~ msgstr "&Ezabatu"
+
+#~ msgid "Delete A&ll"
+#~ msgstr "Ezabatu &denak"
+
+#~ msgid "Configure &Policy..."
+#~ msgstr "Konfiguratu &gidalerroak..."
+
+#~ msgid "&Reload List"
+#~ msgstr "&Birkargatu zerrenda"
+
+#~ msgid "Details"
+#~ msgstr "Xehetasunak"
+
+#~ msgid "Name:"
+#~ msgstr "Izena:"
+
+#~ msgid "Value:"
+#~ msgstr "Balioa:"
+
+#~ msgid "Domain:"
+#~ msgstr "Domeinua:"
+
+#~ msgid "Path:"
+#~ msgstr "Bide-izena:"
+
+#~ msgid "Expires:"
+#~ msgstr "Iraungitzea:"
+
+#~ msgid "Secure:"
+#~ msgstr "Segurua:"
+
+#~ msgctxt "@title:window"
+#~ msgid "Change Cookie Policy"
+#~ msgstr "Aldatu cookie-n gidalerroa"
+
+#~ msgctxt "@title:window"
+#~ msgid "New Cookie Policy"
+#~ msgstr "Cookie-n gidalerro berria"
+
+#~ msgid ""
+#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
+#~ "replace it?</qt>"
+#~ msgstr ""
+#~ "<qt>Jadanik badago <center><b>%1</b></center>(r)en gidalerro bat. Ordeztu "
+#~ "nahi duzu?</qt>"
+
+#~ msgctxt "@title:window"
+#~ msgid "Duplicate Policy"
+#~ msgstr "Bikoiztu gidalerroa"
+
+#~ msgid "Replace"
+#~ msgstr "Ordeztu"
+
+#~ msgid ""
+#~ "Unable to communicate with the cookie handler service.\n"
+#~ "Any changes you made will not take effect until the service is restarted."
+#~ msgstr ""
+#~ "Ezin da cookie-n kudeaketaren zerbitzuarekin komunikatu.\n"
+#~ "Egindako aldaketak ez dira erabilgarriak izango zerbitzua berrabiarazi "
+#~ "arte."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enable cookie support. Normally you will want to have cookie support "
+#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
+#~ "Please note that disabling cookie support might make many web sites "
+#~ "unbrowsable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Gaitu cookie-n euskarria. Normalean cookie-n euskarria gaituta izan "
+#~ "nahiko duzu eta zure pribatutasun beharretara egokitzeko finkatzea.</"
+#~ "p><p>\n"
+#~ "Kontuan izan cookie-n euskarria ezgaitzeak webgune asko arakaezin bilaka "
+#~ "ditzakeela.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Enable coo&kies"
+#~ msgstr "Gaitu coo&kie-ak"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Reject the so called third-party cookies. These are cookies that "
+#~ "originate from a site other than the one you are currently browsing. For "
+#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
+#~ "cookies that originate from www.foobar.com will be processed per your "
+#~ "settings. Cookies from any other site will be rejected. This reduces the "
+#~ "chances of site operators compiling a profile about your daily browsing "
+#~ "habits.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Ukatu hirugarrengoen cookie deritzenak. Hauek zu arakatzen ari zaren ez "
+#~ "beste gune batean sortutako cookie-ak dira. Adibidez, <b>www.foobar.com</"
+#~ "b> bisitatzen baduzu aukera hau hautatuta dagoelarik, zure ezarpenek www."
+#~ "foobar.com-en sortutako cookie-ak baino ez ditu prozesatuko. Beste "
+#~ "edonongo cookie-ak ezetsiko dira. Honek murrizten ditu gune operatzaileek "
+#~ "zure eguneroko arakatze ohiturei buruzko profila eraikitzeko aukerak.\n"
+#~ "</qt>"
+
+#~ msgid "Only acce&pt cookies from originating server"
+#~ msgstr "Cookie-ak &jatorrizko zerbitzaritik baino ez onartu"
+
+#~ msgid ""
+#~ "<p>\n"
+#~ "Automatically accept temporary cookies meant to expire at the end of the "
+#~ "current session. Such cookies will not be stored in your computer's hard "
+#~ "drive or storage device. Instead, they are deleted when you close all "
+#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
+#~ "Checking this option overrides your default as well as site specific "
+#~ "cookie policies for session cookies.</p>"
+#~ msgstr ""
+#~ "<p>\n"
+#~ "Automatikoki onartu uneko saioaren amaieran iraungiko diren aldi baterako "
+#~ "cookie-ak. Halako cookie-ak ez dira zure ordenagailuaren disko zurrunean "
+#~ "edo biltegiratzeko gailuan gordeko. Aitzitik, beraiek erabiltzen dituzten "
+#~ "aplikazio guztiak ixten dituzunean (adib. zure arakatzailea) ezabatzen "
+#~ "dira.</p><p> <u>OHARRA</u> Aukera hau markatzean cookiei buruzko zure "
+#~ "gidalerro lehenetsia eta guneen berariazko cookien gidalerroak saioko "
+#~ "cookientzatez dira aintzat hartuko.</p>"
+
+#~ msgid "Automaticall&y accept session cookies"
+#~ msgstr "Automatikok&i onartu saioko cookie-ak"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Determines how cookies received from a remote machine will be handled: \n"
+#~ "<ul>\n"
+#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
+#~ "server wants to set a cookie.</li>\n"
+#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
+#~ "</li>\n"
+#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
+#~ "receives.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
+#~ "take precedence over the default policy.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Urruneko makina batetik jasotako cookie-ak nola maneiatuko diren zehazten "
+#~ "du: \n"
+#~ "<ul>\n"
+#~ "<li><b>Eskatu</b> aukerak zerbitzari batek cookie bat ipini nahi duen "
+#~ "bakoitzean KDE-k zure berrespena eskatu dezan eragingo du.</li>\n"
+#~ "<li><b>Onartu saioa amaitu arte</b> cookieak onartzea eragingo du baino "
+#~ "saioa amaitzean iraungiko dira.</li>\n"
+#~ "<li><b>Onartu</b> aukerak zuri galdetu gabe cookie-ak onartzea eragingo "
+#~ "du.</li>\n"
+#~ "<li><b>Errefuxatu</b> aukerak jasotako cookie guztiak errefuxatzea "
+#~ "eragingo du.</li>\n"
+#~ "</ul><p>\n"
+#~ "<u>OHARRA:</u> behean ezar daitezkeen domeinuetako berariazko politikek "
+#~ "lehentasuna dute beti politika lehenetsiekiko.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Default Policy"
+#~ msgstr "Gidalerro lehenetsia"
+
+#~ msgid "Accep&t all cookies"
+#~ msgstr "&Onartu cookie guztiak"
+
+#~ msgid "Accept &until end of session"
+#~ msgstr "Onartu saioa amait&u arte"
+
+#~ msgid "Ask &for confirmation"
+#~ msgstr "&Eskatu berrespena"
+
+#~ msgid "Re&ject all cookies"
+#~ msgstr "&Ukatu cookie guztiak"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
+#~ "the necessary information. To change an existing policy, use the "
+#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
+#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
+#~ "selected policy causing the default policy setting to be used for that "
+#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
+#~ "policies.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Gidalerro berria gehitzeko, <b>Gehitu...</b> botoia sakatu eta eman "
+#~ "beharrezko informazioa. Dagoen gidalerroa aldatzeko, erabili <b>Aldatu..."
+#~ "</b> botoia eta aukeratu gidalerro berria gidalerroen elkarrizketa-"
+#~ "koadrotik. <b>Ezabatu</b> botoia sakatzeak aukeratutako gidalerroa "
+#~ "ezabatuko du eta domeinu horretarako gidalerroaren konfigurazio "
+#~ "lehenetsia erabiliko da. <b>Ezabatu denak</b> botoiak, ordea, guneko "
+#~ "gidalerro berezi guztiak ezabatuko ditu.\n"
+#~ "</qt>"
+
+#~ msgid "Site Policy"
+#~ msgstr "Guneko gidalerroa"
+
+#~ msgid "Search interactively for domains"
+#~ msgstr "Bilatu domeinuak interaktiboki"
+
+#~ msgid "Search..."
+#~ msgstr "Bilatu..."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "List of sites for which you have set a specific cookie policy. Specific "
+#~ "policies override the default policy setting for these sites.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Cookie-n gidalerro berezia ezarri diezun gune zerrenda. Gidalerro "
+#~ "bereziek ez dute gidalerro konfigurazio lehenetsia aintzat hartzen gune "
+#~ "hauentzat.\n"
+#~ "</qt>o"
+
+#~ msgid "Domain"
+#~ msgstr "Domeinua"
+
+#~ msgid "Policy"
+#~ msgstr "Gidalerroa"
+
+#~ msgid "Accept"
+#~ msgstr "Onartu"
+
+#~ msgid "Accept For Session"
+#~ msgstr "Onartu saio honetarako"
+
+#~ msgid "Reject"
+#~ msgstr "Ukatu"
+
+#~ msgid "Ask"
+#~ msgstr "Galdetu"
+
+#~ msgid "Do Not Know"
+#~ msgstr "Ez dakit"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
+#~ "org</b> or <b>.kde.org</b>.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Sartu gidalerro hau aplikatuko zaion ostalari edo domeinua, adibidez, "
+#~ "<b>www.kde.org</b> edo <b>.kde.org</b>.\n"
+#~ "</qt>"
+
+#~ msgid "Site name:"
+#~ msgstr "Gunearen izena:"
+
+#~ msgid ""
+#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
+#~ msgstr ""
+#~ "Sartu ostalari edo domeinuaren izena (adib. kde.org) gidalerro hau "
+#~ "aplikatzeko."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the desired policy:\n"
+#~ "<ul>\n"
+#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
+#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
+#~ "but they will expire at the end of the session.</li>\n"
+#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
+#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Hautatu nahiago duzun gidalerroa:\n"
+#~ "<ul>\n"
+#~ "<li><b>Onartu</b> - Gune honek cookie-ak ezartzea baimentzen du</li>\n"
+#~ "<li><b>Onartu saioa amaitu arte</b> - Gune honi cookiak ezartzeko baimena "
+#~ "ematen dio baino saioa amaitutakoan iraungiko dira.</li>\n"
+#~ "<li><b>Errefuxatu</b> - Errefuxatu gune honek bidalitako cookie guztiak</"
+#~ "li>\n"
+#~ "<li><b>Galdetu</b> - Galdetu zerbitzari honetako cookie-ak jasotakoan</"
+#~ "li>\n"
+#~ "</ul>\n"
+#~ "</qt>"
+
+#~ msgid "Policy:"
+#~ msgstr "Gidalerroa:"
+
+#~ msgid "Accept until end of session"
+#~ msgstr "Onartu saioa amaitu arte"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"
