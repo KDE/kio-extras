@@ -39,7 +39,7 @@
 >Xz är ett kompressionsprogram</para>
 
 <para
->I/O-slaven Xz är inte direkt användbar, utan är avsedd att användas som ett filter. I/O-slaven Tar kan till exempel filtrera en fil genom I/O-slaven xz, för att visa innehållet i en <literal role="extension"
+>I/O-arbetaren Xz är inte direkt användbar, utan är avsedd att användas som ett filter. I/O-slaven Tar kan till exempel filtrera en fil genom I/O-slaven xz, för att visa innehållet i en <literal role="extension"
 >tar.lzma</literal
 >-fil eller <literal role="extension"
 >tar.xz</literal
@@ -50,10 +50,10 @@
 >lzma</literal
 > eller <literal role="extension"
 >tar.xz</literal
-> i &konqueror;, används den här I/O-slaven för att packa upp den och visa den som en vanlig (okomprimerad) fil.</para>
+> i &konqueror;, används den här I/O-arbetaren för att packa upp den och visa den som en vanlig (okomprimerad) fil.</para>
 
 <para
->Om du är en utvecklare och vill använda xz-filtret, hittar du dokumentation om hur I/O-slavar används på <ulink url="http://techbase.kde.org"
+>Om du är en utvecklare och vill använda xz-filtret, hittar du dokumentation om hur I/O-arbetare används på <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 >.</para>
 
