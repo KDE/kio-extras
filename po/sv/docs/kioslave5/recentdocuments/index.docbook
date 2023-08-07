@@ -38,10 +38,10 @@
 </articleinfo>
 
 <para
->En I/O-slav för att visa senaste dokument eller webbadresser i fildialogrutan, i filhanteraren, i Kör program och i programmenyn.</para>
+>En I/O-arbetare för att visa senaste dokument eller webbadresser i fildialogrutan, i filhanteraren, i Kör program och i programmenyn.</para>
 
 <para
->Du kan använda I/O-slaven som följer:</para>
+>Du kan använda I/O-arbetaren som följer:</para>
 
 <para
 >Skriv <userinput
@@ -62,7 +62,7 @@
 >Senaste dokument</guilabel
 > i systeminställningarnas modul <guilabel
 >Plasma sökning</guilabel
-> för att använda I/O-slaven i Kör program.</para>
+> för att använda I/O-arbetaren i Kör program.</para>
 
 <para
 >Lägg till ett menyalternativ i <guilabel

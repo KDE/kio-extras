@@ -40,7 +40,7 @@
 </articleinfo>
 
 <para
->Genom att använda I/O-slaven man kan du läsa manualsidorna som är installerade på systemet. Den är lätt att använda: </para>
+>Genom att använda I/O-arbetaren man kan du läsa manualsidorna som är installerade på systemet. Den är lätt att använda: </para>
 
 <variablelist>
 <varlistentry>
@@ -139,7 +139,7 @@
 >. </para>
 
 <para
->Precis som med vilken annan I/O-slav som helst i &kde;, är det möjligt att skriva in en webbadress som <userinput
+>Precis som med vilken annan I/O-arbetare som helst i &kde;, är det möjligt att skriva in en webbadress som <userinput
 ><command
 >man:/socket </command
 ></userinput

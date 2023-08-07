@@ -35,10 +35,10 @@
 >Program 16.12</releaseinfo>
 </articleinfo>
 <para
->I/O-slaven thumbnail används av &kde; för att skapa nätverkstransparenta och bestående miniatyrbilder.</para>
+>I/O-arbetaren thumbnail används av &kde; för att skapa nätverkstransparenta och bestående miniatyrbilder.</para>
 
 <para
->I/O-slaven använder insticksprogram för att skapa själva miniatyrbilden. Du kan aktivera visning av de här miniatyrbilderna från <menuchoice
+>I/O-arbetaren använder insticksprogram för att skapa själva miniatyrbilden. Du kan aktivera visning av de här miniatyrbilderna från <menuchoice
 ><guimenu
 >Visa</guimenu
 > <guisubmenu
@@ -47,7 +47,7 @@
 >-undermenyn, tillgänglig i &dolphin; eller i &konqueror;s filhanteringsläge.</para>
 
 <para
->I/O-slaven är inte direkt användbar för en användare, men om du är en utvecklare, kan du använda den med ditt eget program för att skapa förhandsgranskningsvyer av filer.</para>
+>I/O-arbetaren är inte direkt användbar för en användare, men om du är en utvecklare, kan du använda den med ditt eget program för att skapa förhandsgranskningsvyer av filer.</para>
 
 <para
 >Se dokumentationen i källkoden för mer information. Du hittar dessa på i källkodskatalogen <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"

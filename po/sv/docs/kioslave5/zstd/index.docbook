@@ -43,17 +43,17 @@
 > är ett kompressionsprogram.</para>
 
 <para
->I/O-slaven zstd är inte användbar direkt, utan är avsedd att användas som ett filter. I/O-slaven tar kan till exempel filtrera en fil genom I/O-slaven zstd, för att visa innehållet i en <literal role="extension"
+>I/O-arbetaren zstd är inte användbar direkt, utan är avsedd att användas som ett filter. I/O-slaven tar kan till exempel filtrera en fil genom I/O-slaven zstd, för att visa innehållet i en <literal role="extension"
 > tar.zst</literal
 >-fil direkt i ett &konqueror;-fönster.</para>
 
 <para
 >Om du klickar på en fil som är komprimerad med en <literal role="extension"
 >zstd</literal
->-filändelse i &konqueror;, används den här I/O-slaven för att packa upp filen och visa den som en normal (okomprimerad) fil.</para>
+>-filändelse i &konqueror;, används den här I/O-arbetaren för att packa upp filen och visa den som en normal (okomprimerad) fil.</para>
 
 <para
->Om du är en utvecklare och vill använda zstd-filtret, hittar du dokumentation om hur I/O-slavar används på <ulink url="http://techbase.kde.org"
+>Om du är en utvecklare och vill använda zstd-filtret, hittar du dokumentation om hur I/O-arbetare används på <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 >.</para>
 
