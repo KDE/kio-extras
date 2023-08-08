@@ -29,6 +29,7 @@
         "Description[uk]": "Реєстраційні дані для доступу до спільних ресурсів SMB",
         "Description[x-test]": "xxCredentials used to access SMB sharesxx",
         "Description[zh_CN]": "用于访问 SMB 共享的身份验证信息",
+        "Description[zh_TW]": "用來存取 SMB 共享裝置的認證資訊",
         "Icon": "preferences-system-network-share-windows",
         "Name": "Windows Shares",
         "Name[ar]": "مشاركات وندوز",
@@ -57,7 +58,8 @@
         "Name[tr]": "Windows Paylaşımları",
         "Name[uk]": "Спільні ресурси Windows",
         "Name[x-test]": "xxWindows Sharesxx",
-        "Name[zh_CN]": "Windows 共享"
+        "Name[zh_CN]": "Windows 共享",
+        "Name[zh_TW]": "Windows 共享裝置"
     },
     "X-DocPath": "kcontrol6/smb/index.html",
     "X-KDE-Keywords": "SMB,SAMBA,SMB client,Windows network,LAN,Network,neighborhood,Server,Broadcast,WINS,Share,Login,Passwords",

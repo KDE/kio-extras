@@ -29,6 +29,7 @@
         "Description[uk]": "Налаштування загальних параметрів мережі, зокрема значень тайм-аутів",
         "Description[x-test]": "xxConfigure generic network preferences, like timeout valuesxx",
         "Description[zh_CN]": "配置常规网络首选项，例如超时值等",
+        "Description[zh_TW]": "設定一般網路偏好設定，如逾時數值等",
         "Icon": "preferences-system-network-connection",
         "Name": "Connection Preferences",
         "Name[ar]": "تفضيلات الاتّصال",
@@ -57,7 +58,8 @@
         "Name[tr]": "Bağlantı Tercihleri",
         "Name[uk]": "Параметри з'єднання",
         "Name[x-test]": "xxConnection Preferencesxx",
-        "Name[zh_CN]": "连接首选项"
+        "Name[zh_CN]": "连接首选项",
+        "Name[zh_TW]": "連線偏好設定"
     },
     "X-DocPath": "kcontrol6/netpref/index.html",
     "X-KDE-Keywords": "timeout,iopref,netpref,network preferences,ftp",
