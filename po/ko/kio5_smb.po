@@ -90,7 +90,7 @@ msgstr "%1 호스트에 접속할 수 없음"
 #: kio_smb_browse.cpp:295
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
-msgstr "%1 자원이 있는 서버에 연결하는 중 오류 발생"
+msgstr "%1 리소스가 있는 서버에 연결하는 중 오류 발생"
 
 #: kio_smb_browse.cpp:301
 #, kde-format
@@ -168,7 +168,7 @@ msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
 "%4"
 msgstr ""
-"\"%2\" 호스트의 \"%3\" 사용자의 \"%1\" 공유 자원을 마운트하는 데 실패했습니"
+"\"%2\" 호스트의 \"%3\" 사용자의 \"%1\" 공유 리소스를 마운트하는 데 실패했습니"
 "다.\n"
 "%4"
 
