@@ -56,7 +56,6 @@ find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     I18n
     KIO
     Solid
-    Bookmarks
     GuiAddons
     SyntaxHighlighting
     KCMUtils
@@ -182,7 +181,6 @@ endif()
 if(KF${QT_MAJOR_VERSION}ActivitiesStats_FOUND)
     add_subdirectory( recentlyused )
 endif()
-add_subdirectory( bookmarks )
 add_subdirectory( filter )
 if(Phonon4Qt${QT_MAJOR_VERSION}_FOUND)
     add_subdirectory( kfileaudiopreview )
