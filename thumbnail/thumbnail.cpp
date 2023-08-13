@@ -23,7 +23,6 @@
 #include <QBuffer>
 #include <QFile>
 #include <QSaveFile>
-#include <QBitmap>
 #include <QCryptographicHash>
 #include <QImage>
 #include <QIcon>
