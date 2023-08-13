@@ -675,7 +675,7 @@ ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plug
         } else {
             const QVector<KPluginMetaData> plugins = KIO::PreviewJob::availableThumbnailerPlugins();
             auto findPluginIt = std::find_if(plugins.begin(), plugins.end(), [&plugin](const KPluginMetaData &data) {
-                return data.pluginId() == plugin;
+                return data.fileName() == plugin;
             });
             if (findPluginIt != plugins.end()) {
                 data = *findPluginIt;
