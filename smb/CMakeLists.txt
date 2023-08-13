@@ -6,23 +6,7 @@ remove_definitions(
     -DQT_NO_KEYWORDS
 )
 
-option(BUILD_KDSoapWSDiscoveryClient "Automatically build WSD client if a system one isn't found." ON)
-find_package(KDSoapWSDiscoveryClient QUIET)
-set(INTERNAL_WSDCLIENT ${BUILD_KDSoapWSDiscoveryClient})
-if(KDSoapWSDiscoveryClient_FOUND)
-    set(INTERNAL_WSDCLIENT OFF)
-endif()
-if(INTERNAL_WSDCLIENT)
-    # Special internal version, mangled to be a STATIC lib.
-    # This is only useful and necessary until the library has
-    # its API finalized and gotten a stable release.
-    # Until then when using it as external library you should try
-    # to use a snapshot that matches the internal copy's git ref.
-    # Currently at: dcefb65c88e76f1f9eda8b0318006e93d15a0e1e
-    add_subdirectory(kdsoap-ws-discovery-client)
-endif()
-add_feature_info("Internal KDSoapWSDiscoveryClient" INTERNAL_WSDCLIENT
-    "Building using internal client because a system-provided version could not be found.")
+find_package(KDSoapWSDiscoveryClient REQUIRED)
 
 find_package(Threads REQUIRED)
 
