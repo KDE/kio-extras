@@ -20,7 +20,6 @@ Dependencies:
     'frameworks/ki18n': '@latest-kf6'
     'frameworks/kio': '@latest-kf6'
     'frameworks/solid': '@latest-kf6'
-    'frameworks/kbookmarks': '@latest-kf6'
     'frameworks/kguiaddons': '@latest-kf6'
     'frameworks/syntax-highlighting': '@latest-kf6'
     'frameworks/kactivities': '@latest-kf6'
