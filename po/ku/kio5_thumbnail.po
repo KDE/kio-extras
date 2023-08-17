@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-21 00:47+0000\n"
+"POT-Creation-Date: 2023-08-17 00:46+0000\n"
 "PO-Revision-Date: 2008-12-23 20:39+0200\n"
 "Last-Translator: Erdal Ronahi <erdal.ronahi@nospam.gmail.com>\n"
 "Language-Team: Kurdish <kde-i18n-doc@lists.kde.org>\n"
@@ -19,53 +19,53 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Kurdish\n"
 
-#: thumbnail.cpp:198
+#: thumbnail.cpp:197
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Tu cure yê MIME nehatiye dîyar kirin."
 
-#: thumbnail.cpp:205
+#: thumbnail.cpp:204
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Mezinahî tune ye an jî ne derbasdar e."
 
-#: thumbnail.cpp:228
+#: thumbnail.cpp:227
 #, fuzzy, kde-format
 #| msgid "Cannot create thumbnail for %1"
 msgid "Cannot create thumbnail for directory"
 msgstr "Nikare ji bo %1 wêne-minyatur çêbike."
 
-#: thumbnail.cpp:239
+#: thumbnail.cpp:238
 #, kde-format
 msgid "No plugin specified."
 msgstr "Tu pêvek nehatiye dîyar kirin."
 
-#: thumbnail.cpp:244
+#: thumbnail.cpp:243
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Nikare ThumbCreator %1 bar bike"
 
-#: thumbnail.cpp:265
+#: thumbnail.cpp:264
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Nikare ji bo %1 wêne-minyatur çêbike."
 
-#: thumbnail.cpp:277
+#: thumbnail.cpp:276
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Çêkirina wêne-minyaturê bi ser neket."
 
-#: thumbnail.cpp:288
+#: thumbnail.cpp:287
 #, kde-format
 msgid "Could not write image."
 msgstr "Nivîsandina wêneyî biserneket."
 
-#: thumbnail.cpp:312
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Gihîştina beşa bîra dabeşkirî %1 bi ser neket."
 
-#: thumbnail.cpp:319
+#: thumbnail.cpp:318
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Wêne gelek mezin e ji bo beşa bîra dabeşkirî."
