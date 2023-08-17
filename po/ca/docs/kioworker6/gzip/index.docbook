@@ -23,7 +23,7 @@
 > és un programa de compressió</para>
 
 <para
->El procés de treball KIO «gzip» no es pot emprar directament, i s'intenta utilitzar com a un filtre. Per exemple, el procés de treball KIO «tar» pot filtrar un fitxer a través del procés de treball KIO «gzip», per a poder mostrar els continguts d'un fitxer <literal role="extension"
+>El procés de treball KIO «gzip» no es pot emprar directament, i s'intenta utilitzar com a un filtre. Per exemple, el procés de treball KIO «tar» pot filtrar un fitxer a través del procés de treball KIO «gzip», per a poder mostrar el contingut d'un fitxer <literal role="extension"
 >tar.gz</literal
 > directament en una finestra del &konqueror;.</para>
 

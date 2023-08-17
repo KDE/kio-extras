@@ -25,7 +25,7 @@
 >El Xz és un programa de compressió</para>
 
 <para
->El procés de treball KIO «xz» no es pot emprar directament, i s'intenta utilitzar com a un filtre. Per exemple, el procés de treball KIO «tar» pot filtrar un fitxer a través del procés de treball KIO «xz» per a mostrar els continguts d'un fitxer <literal role="extension"
+>El procés de treball KIO «xz» no es pot emprar directament, i s'intenta utilitzar com a un filtre. Per exemple, el procés de treball KIO «tar» pot filtrar un fitxer a través del procés de treball KIO «xz» per a mostrar el contingut d'un fitxer <literal role="extension"
 >tar.lzma</literal
 > o <literal role="extension"
 >tar.xz</literal
