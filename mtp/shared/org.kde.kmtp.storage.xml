@@ -119,7 +119,7 @@
         <!-- dataReady: TODO.
         -->
         <signal name="dataReady">
-            <arg direction="out" name="data"/>
+            <arg direction="out" type="ay" name="data"/>
             <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QByteArray"/>
         </signal>
 
