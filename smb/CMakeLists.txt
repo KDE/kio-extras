@@ -1,9 +1,6 @@
 remove_definitions(
     -DQT_NO_CAST_FROM_ASCII
     -DQT_NO_CAST_FROM_BYTEARRAY
-    # KDSoapWSDiscoveryClient uses "signals" and "slots" in public headers
-    # so remove definition both for internal copy as well as smb code
-    -DQT_NO_KEYWORDS
 )
 
 find_package(KDSoapWSDiscoveryClient REQUIRED)
