@@ -44,8 +44,6 @@ KMTPd::KMTPd(QObject *parent, const QList<QVariant> &parameters)
     connect(notifier, &Solid::DeviceNotifier::deviceRemoved, this, &KMTPd::deviceRemoved);
 
     new DaemonAdaptor(this);
-    QDBusConnection::sessionBus().registerService(QStringLiteral("org.kde.kiod5"));
-    QDBusConnection::sessionBus().registerObject(QStringLiteral("/modules/kmtpd"), this);
 }
 
 KMTPd::~KMTPd()
