@@ -17,7 +17,7 @@ using namespace std::chrono_literals;
 KMTPStorageInterface::KMTPStorageInterface(const QString &dbusObjectPath, KMTPDeviceInterface *parent)
     : QObject(parent)
 {
-    m_dbusInterface = new org::kde::kmtp::Storage(QStringLiteral("org.kde.kiod5"), dbusObjectPath, QDBusConnection::sessionBus(), this);
+    m_dbusInterface = new org::kde::kmtp::Storage(QStringLiteral("org.kde.kmtpd5"), dbusObjectPath, QDBusConnection::sessionBus(), this);
     // Arbitrarily large number to prevent timeouts on file listing.
     // https://bugs.kde.org/show_bug.cgi?id=462059
     // https://github.com/libmtp/libmtp/issues/144

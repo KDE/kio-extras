@@ -12,7 +12,7 @@
 KMTPDeviceInterface::KMTPDeviceInterface(const QString &dbusObjectPath, QObject *parent)
     : QObject(parent)
 {
-    m_dbusInterface = new org::kde::kmtp::Device(QStringLiteral("org.kde.kiod5"), dbusObjectPath, QDBusConnection::sessionBus(), this);
+    m_dbusInterface = new org::kde::kmtp::Device(QStringLiteral("org.kde.kmtpd5"), dbusObjectPath, QDBusConnection::sessionBus(), this);
     updateStorages();
 }
 
