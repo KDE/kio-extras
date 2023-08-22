@@ -122,7 +122,7 @@ MTPWorker::MTPWorker(const QByteArray &pool, const QByteArray &app)
     : WorkerBase("mtp", pool, app)
 {
     qCDebug(LOG_KIO_MTP) << "Worker started";
-    qCDebug(LOG_KIO_MTP) << "Connected to kiod5 module:" << m_kmtpDaemon.isValid();
+    qCDebug(LOG_KIO_MTP) << "Connected to kiod module:" << m_kmtpDaemon.isValid();
 }
 
 MTPWorker::~MTPWorker()

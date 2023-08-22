@@ -31,4 +31,4 @@ ecm_qt_declare_logging_category(kmtpd
     EXPORT KIO_EXTRAS
 )
 
-kdbusaddons_generate_dbus_service_file(kiod5 org.kde.kmtpd5 ${KDE_INSTALL_FULL_LIBEXECDIR_KF})
+kdbusaddons_generate_dbus_service_file(kiod6 org.kde.kmtpd5 ${KDE_INSTALL_FULL_LIBEXECDIR_KF})
