@@ -36,6 +36,7 @@
 #include <QDebug>
 #include <QMimeType>
 #include <QMimeDatabase>
+#include <QUrl>
 
 #include <KLocalizedString>
 #include <KIO/Global>

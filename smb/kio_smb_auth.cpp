@@ -9,6 +9,8 @@
 #include "smburl.h"
 
 #include <cstdlib>
+
+#include <KIO/AuthInfo>
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>

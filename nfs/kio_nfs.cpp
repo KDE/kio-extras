@@ -22,6 +22,7 @@
 #include <QDebug>
 #include <QHostInfo>
 #include <QCoreApplication>
+#include <QUrl>
 
 #include <KLocalizedString>
 #include <KSharedConfig>

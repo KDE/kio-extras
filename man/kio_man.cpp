@@ -17,6 +17,7 @@
 #include <QStandardPaths>
 #include <QTextCodec>
 #include <QProcess>
+#include <QUrl>
 
 #include <KLocalizedString>
 

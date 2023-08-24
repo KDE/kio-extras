@@ -16,6 +16,7 @@
 #include <libssh/sftp.h>
 #include <libssh/callbacks.h>
 
+#include <QUrl>
 #include <QQueue>
 
 namespace KIO {
