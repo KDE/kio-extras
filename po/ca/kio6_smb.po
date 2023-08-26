@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-08-26 02:00+0000\n"
 "PO-Revision-Date: 2022-06-14 18:13+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:44
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -50,13 +50,13 @@ msgstr ""
 "anònimes usant un nom d'usuari i contrasenya buida. En funció de la "
 "configuració del servidor es poden requerir noms d'usuari no buits</para>"
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr ""
 "<qt>Si us plau, introduïu la informació d'autenticació per a <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"

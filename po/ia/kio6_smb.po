@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-08-26 02:00+0000\n"
 "PO-Revision-Date: 2021-08-04 23:14+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Lokalize 21.04.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:44
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -45,13 +45,13 @@ msgstr ""
 "del servitor il pote esser que nomine de usator non vacue pote esser "
 "requirite</para>"
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr ""
 "<qt>Pro favor tu inserta information de authentication  pro <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"

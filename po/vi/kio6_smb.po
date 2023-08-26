@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-08-26 02:00+0000\n"
 "PO-Revision-Date: 2021-08-01 15:38+0200\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 20.12.2\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:44
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -45,12 +45,12 @@ msgstr ""
 "khẩu rỗng. Tuỳ thuộc vào cấu hình máy chủ,tên người dùng có thể không được "
 "rỗng</para>"
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>Vui lòng nhập thông tin xác thực cho <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"

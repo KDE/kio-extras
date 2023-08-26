@@ -1,6 +1,6 @@
 # translation of kio_smb.po to polish
 # translation of kio_smb.po to
-# Version: $Revision: 1653337 $
+# Version: $Revision: 1658991 $
 # translation of kio_smb.po to
 #
 # Copyright (C) 2002, 2004, 2005, 2006 Free Software Foundation, Inc.
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-08-26 02:00+0000\n"
 "PO-Revision-Date: 2021-01-01 11:44+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:44
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -51,12 +51,12 @@ msgstr ""
 "dozwolone na podstawie pustej nazwy użytkownika i hasła. W zależności od "
 "ustawień serwera, może być wymagana niepusta nazwa użytkownika</para>"
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>Proszę o podanie danych uwierzytelniających dla <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"

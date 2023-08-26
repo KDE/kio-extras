@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-08-26 02:00+0000\n"
 "PO-Revision-Date: 2019-09-29 12:28+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik <kde-i18n-doc@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Lokalize 19.04.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:44
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -35,7 +35,7 @@ msgid ""
 "configuration non-empty usernames may be required</para>"
 msgstr ""
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, fuzzy, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr ""
@@ -43,7 +43,7 @@ msgstr ""
 "Хидматрасон = %1\n"
 "Таҳсил кардан = %2 ворид намоед"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"

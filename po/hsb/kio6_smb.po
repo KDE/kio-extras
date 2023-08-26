@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-08-26 02:00+0000\n"
 "PO-Revision-Date: 2005-01-27 16:06+0000\n"
 "Last-Translator: Eduard Werner <edi.werner@gmx.de>\n"
 "Language-Team: Hornjoserbsce <en@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3;\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:44
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -31,7 +31,7 @@ msgid ""
 "configuration non-empty usernames may be required</para>"
 msgstr ""
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, fuzzy, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr ""
@@ -39,7 +39,7 @@ msgstr ""
 "Serwer=%1\n"
 "Share=%2"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"

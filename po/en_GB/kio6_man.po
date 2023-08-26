@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-10 00:45+0000\n"
+"POT-Creation-Date: 2023-08-26 02:00+0000\n"
 "PO-Revision-Date: 2021-09-10 13:38+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 21.08.1\n"
 
-#: kio_man.cpp:451
+#: kio_man.cpp:452
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -37,7 +37,7 @@ msgstr ""
 "envar> environment variable or a configuration file in the <filename>/etc</"
 "filename> directory."
 
-#: kio_man.cpp:569
+#: kio_man.cpp:570
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -47,34 +47,34 @@ msgstr ""
 "The specified man page references another page <filename>%1</filename>,<nl/"
 ">but the referenced page <filename>%2</filename> could not be found."
 
-#: kio_man.cpp:586
+#: kio_man.cpp:587
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr "The man page <filename>%1</filename> could not be read."
 
-#: kio_man.cpp:595
+#: kio_man.cpp:596
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr "The man page <filename>%1</filename> could not be converted."
 
-#: kio_man.cpp:660
+#: kio_man.cpp:661
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "Manual Page Viewer Error"
 
-#: kio_man.cpp:674
+#: kio_man.cpp:675
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "There is more than one matching man page:"
 
-#: kio_man.cpp:674
+#: kio_man.cpp:675
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "Multiple Manual Pages"
 
-#: kio_man.cpp:686
+#: kio_man.cpp:687
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -85,112 +85,112 @@ msgstr ""
 "mistakes or be obsolete. In case of doubt, you should have a look at the "
 "English version."
 
-#: kio_man.cpp:758
+#: kio_man.cpp:759
 #, kde-format
 msgid "Header Files"
 msgstr "Header Files"
 
-#: kio_man.cpp:759
+#: kio_man.cpp:760
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "Header Files (POSIX)"
 
-#: kio_man.cpp:760
+#: kio_man.cpp:761
 #, kde-format
 msgid "User Commands"
 msgstr "User Commands"
 
-#: kio_man.cpp:761
+#: kio_man.cpp:762
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "User Commands (POSIX)"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:763
 #, kde-format
 msgid "System Calls"
 msgstr "System Calls"
 
-#: kio_man.cpp:763
+#: kio_man.cpp:764
 #, kde-format
 msgid "Subroutines"
 msgstr "Subroutines"
 
-#: kio_man.cpp:765
+#: kio_man.cpp:766
 #, kde-format
 msgid "Perl Modules"
 msgstr "Perl Modules"
 
-#: kio_man.cpp:766
+#: kio_man.cpp:767
 #, kde-format
 msgid "Network Functions"
 msgstr "Network Functions"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:768
 #, kde-format
 msgid "Devices"
 msgstr "Devices"
 
-#: kio_man.cpp:768
+#: kio_man.cpp:769
 #, kde-format
 msgid "File Formats"
 msgstr "File Formats"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:770
 #, kde-format
 msgid "Games"
 msgstr "Games"
 
-#: kio_man.cpp:770
+#: kio_man.cpp:771
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Miscellaneous"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:772
 #, kde-format
 msgid "System Administration"
 msgstr "System Administration"
 
-#: kio_man.cpp:772
+#: kio_man.cpp:773
 #, kde-format
 msgid "Kernel"
 msgstr "Kernel"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:774
 #, kde-format
 msgid "Local Documentation"
 msgstr "Local Documentation"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:776
 #, kde-format
 msgid "New"
 msgstr "New"
 
-#: kio_man.cpp:805
+#: kio_man.cpp:806
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "Main Manual Page Index"
 
-#: kio_man.cpp:830
+#: kio_man.cpp:831
 #, kde-format
 msgid "Section %1"
 msgstr "Section %1"
 
-#: kio_man.cpp:1115
+#: kio_man.cpp:1116
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Index for section %1: %2"
 
-#: kio_man.cpp:1115
+#: kio_man.cpp:1116
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Manual Page Index"
 
-#: kio_man.cpp:1127
+#: kio_man.cpp:1128
 #, kde-format
 msgid "Generating Index"
 msgstr "Generating Index"
 
-#: kio_man.cpp:1405
+#: kio_man.cpp:1406
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-08-26 02:00+0000\n"
 "PO-Revision-Date: 2021-01-11 20:11+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-POT-Import-Date: 2012-12-01 22:22:14+0000\n"
 "X-Generator: Lokalize 20.04.2\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:44
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -49,12 +49,12 @@ msgstr ""
 "kirjautumista voi yrittää tyhjällä käyttäjätunnuksella ja salasanalla. "
 "Palvelinasetukset saattavat kuitenkin vaatia ei-tyhjän tunnuksen</para>"
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>Kirjoita palvelimen <b>%1</b> tunnistustiedot</qt>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
