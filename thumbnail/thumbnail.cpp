@@ -21,6 +21,7 @@
 
 #include <QApplication>
 #include <QBuffer>
+#include <QColorSpace>
 #include <QFile>
 #include <QSaveFile>
 #include <QCryptographicHash>
@@ -153,6 +154,21 @@ void scaleDownImage(QImage& img, int maxWidth, int maxHeight)
     }
 }
 
+/**
+ * @brief convertToStandardRgb
+ * Convert preview to sRGB for proper viewing on most monitors.
+ */
+void convertToStandardRgb(QImage& img)
+{
+    auto cs = img.colorSpace();
+    if (!cs.isValid()) {
+        return;
+    }
+    if (cs.transferFunction() != QColorSpace::TransferFunction::SRgb || cs.primaries() != QColorSpace::Primaries::SRgb) {
+        img.convertToColorSpace(QColorSpace(QColorSpace::SRgb));
+    }
+}
+
 KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 {
     m_mimeType = metaData("mimeType");
@@ -275,6 +291,8 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     if (img.isNull()) {
         return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Failed to create a thumbnail."));
     }
+
+    convertToStandardRgb(img);
 
     const QString shmid = metaData("shmid");
     if (shmid.isEmpty()) {
