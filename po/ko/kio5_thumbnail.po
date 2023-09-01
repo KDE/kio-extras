@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-17 00:46+0000\n"
+"POT-Creation-Date: 2023-09-01 00:45+0000\n"
 "PO-Revision-Date: 2020-10-04 18:18+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -18,52 +18,52 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 19.12.3\n"
 
-#: thumbnail.cpp:197
+#: thumbnail.cpp:213
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "MIME 형식이 지정되지 않았습니다."
 
-#: thumbnail.cpp:204
+#: thumbnail.cpp:220
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "크기가 지정되지 않았거나 잘못되었습니다."
 
-#: thumbnail.cpp:227
+#: thumbnail.cpp:243
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "디렉터리 섬네일을 만들 수 없습니다"
 
-#: thumbnail.cpp:238
+#: thumbnail.cpp:254
 #, kde-format
 msgid "No plugin specified."
 msgstr "플러그인이 지정되지 않았습니다."
 
-#: thumbnail.cpp:243
+#: thumbnail.cpp:259
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "섬네일 생성기 %1을(를) 불러올 수 없습니다"
 
-#: thumbnail.cpp:264
+#: thumbnail.cpp:280
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "%1의 섬네일을 만들 수 없습니다"
 
-#: thumbnail.cpp:276
+#: thumbnail.cpp:292
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "섬네일을 만들 수 없습니다."
 
-#: thumbnail.cpp:287
+#: thumbnail.cpp:305
 #, kde-format
 msgid "Could not write image."
 msgstr "그림을 쓸 수 없습니다."
 
-#: thumbnail.cpp:311
+#: thumbnail.cpp:329
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "공유 메모리 조각 %1에 붙일 수 없습니다."
 
-#: thumbnail.cpp:318
+#: thumbnail.cpp:336
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "공유 메모리 조각보다 그림이 큽니다"
