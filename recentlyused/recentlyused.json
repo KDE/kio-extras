@@ -8,6 +8,7 @@
             "copyToFile": false,
             "deleting": false,
             "input": "none",
+            "linking": false,
             "listing": [
                 "Name",
                 "Type",
@@ -18,7 +19,6 @@
                 "Group",
                 "Link"
             ],
-            "linking": false,
             "makedir": false,
             "maxInstances": 1,
             "maxInstancesPerHost": 1,

@@ -18,10 +18,10 @@
             "moving": true,
             "opening": true,
             "output": "filesystem",
+            "permissions": false,
             "protocol": "mtp",
             "reading": true,
-            "writing": true,
-            "permissions": false
+            "writing": true
         }
     }
 }

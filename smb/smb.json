@@ -1,34 +1,5 @@
 {
     "KDE-KIO-Protocols": {
-        "smb": {
-            "Class": ":internet",
-            "Icon": "network-workgroup",
-            "X-DocPath": "kioworker6/smb/index.html",
-            "copyFromFile": true,
-            "copyToFile": true,
-            "deleting": true,
-            "input": "none",
-            "listing": [
-                "Name",
-                "Type",
-                "Size",
-                "Date",
-                "Access",
-                "Owner",
-                "Group"
-            ],
-            "linking": false,
-            "makedir": true,
-            "maxInstances": 20,
-            "maxInstancesPerHost": 5,
-            "moving": true,
-            "output": "filesystem",
-            "protocol": "smb",
-            "opening": true,
-            "truncating": true,
-            "reading": true,
-            "writing": true
-        },
         "cifs": {
             "Class": ":internet",
             "Icon": "network-workgroup",
@@ -37,6 +8,7 @@
             "copyToFile": true,
             "deleting": true,
             "input": "none",
+            "linking": false,
             "listing": [
                 "Name",
                 "Type",
@@ -46,16 +18,44 @@
                 "Owner",
                 "Group"
             ],
-            "linking": false,
             "makedir": true,
             "maxInstances": 20,
             "maxInstancesPerHost": 5,
             "moving": true,
+            "opening": true,
             "output": "filesystem",
             "protocol": "cifs",
-            "opening": true,
-            "truncating": true,
             "reading": true,
+            "truncating": true,
+            "writing": true
+        },
+        "smb": {
+            "Class": ":internet",
+            "Icon": "network-workgroup",
+            "X-DocPath": "kioworker6/smb/index.html",
+            "copyFromFile": true,
+            "copyToFile": true,
+            "deleting": true,
+            "input": "none",
+            "linking": false,
+            "listing": [
+                "Name",
+                "Type",
+                "Size",
+                "Date",
+                "Access",
+                "Owner",
+                "Group"
+            ],
+            "makedir": true,
+            "maxInstances": 20,
+            "maxInstancesPerHost": 5,
+            "moving": true,
+            "opening": true,
+            "output": "filesystem",
+            "protocol": "smb",
+            "reading": true,
+            "truncating": true,
             "writing": true
         }
     }
