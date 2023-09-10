@@ -44,8 +44,7 @@ KIO::UDSEntry DNSSDDiscovery::toEntry() const
     u.setPath("/"); // https://bugs.kde.org/show_bug.cgi?id=388922
 
     entry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE,
-                     QStringLiteral("application/x-smb-server"));
+    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-server"));
     return entry;
 }
 

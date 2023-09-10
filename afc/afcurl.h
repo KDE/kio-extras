@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2022 Kai Uwe Broulik <kde@broulik.de>
  * SPDX-License-Identifier: GPL-2.0-or-later
-*/
+ */
 
 #pragma once
 
@@ -13,11 +13,7 @@ class AfcUrl
 public:
     explicit AfcUrl(const QUrl &url);
 
-    enum class BrowseMode {
-        None,
-        FileSystem,
-        Apps
-    };
+    enum class BrowseMode { None, FileSystem, Apps };
 
     QUrl url() const;
 

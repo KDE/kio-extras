@@ -26,7 +26,6 @@
  */
 class KMTPFile
 {
-
 public:
     KMTPFile();
     KMTPFile(const KMTPFile &other) = default;
@@ -46,20 +45,20 @@ public:
     quint32 storageId() const;
     QString filename() const;
     quint64 filesize() const;
-    qint64  modificationdate() const;
+    qint64 modificationdate() const;
     QString filetype() const;
 
 private:
-    quint32 m_itemId;           /**< Unique item ID */
-    quint32 m_parentId;         /**< ID of parent folder */
-    quint32 m_storageId;        /**< ID of storage holding this file */
-    QString m_filename;         /**< Filename of this file */
-    quint64 m_filesize;         /**< Size of file in bytes */
-    qint64  m_modificationdate; /**< Date of last alteration of the file */
-    QString m_filetype;         /**< Filetype used for the current file */
+    quint32 m_itemId; /**< Unique item ID */
+    quint32 m_parentId; /**< ID of parent folder */
+    quint32 m_storageId; /**< ID of storage holding this file */
+    QString m_filename; /**< Filename of this file */
+    quint64 m_filesize; /**< Size of file in bytes */
+    qint64 m_modificationdate; /**< Date of last alteration of the file */
+    QString m_filetype; /**< Filetype used for the current file */
 
-    friend QDBusArgument& operator<<(QDBusArgument &argument, const KMTPFile &mtpFile);
-    friend const QDBusArgument& operator>>(const QDBusArgument &argument, KMTPFile &mtpFile);
+    friend QDBusArgument &operator<<(QDBusArgument &argument, const KMTPFile &mtpFile);
+    friend const QDBusArgument &operator>>(const QDBusArgument &argument, KMTPFile &mtpFile);
 };
 
 typedef QList<KMTPFile> KMTPFileList;
@@ -67,10 +66,10 @@ typedef QList<KMTPFile> KMTPFileList;
 Q_DECLARE_METATYPE(KMTPFile)
 Q_DECLARE_METATYPE(KMTPFileList)
 
-QDBusArgument& operator<<(QDBusArgument &argument, const KMTPFile &mtpFile);
-const QDBusArgument& operator>>(const QDBusArgument &argument, KMTPFile &mtpFile);
+QDBusArgument &operator<<(QDBusArgument &argument, const KMTPFile &mtpFile);
+const QDBusArgument &operator>>(const QDBusArgument &argument, KMTPFile &mtpFile);
 
-QDBusArgument& operator<<(QDBusArgument &argument, const KMTPFileList &list);
-const QDBusArgument& operator>>(const QDBusArgument &argument, KMTPFileList &list);
+QDBusArgument &operator<<(QDBusArgument &argument, const KMTPFileList &list);
+const QDBusArgument &operator>>(const QDBusArgument &argument, KMTPFileList &list);
 
 #endif // KMTPFILE_H

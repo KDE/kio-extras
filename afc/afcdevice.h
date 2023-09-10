@@ -1,8 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2022 Kai Uwe Broulik <kde@broulik.de>
  * SPDX-License-Identifier: GPL-2.0-or-later
-*/
-
+ */
 
 #pragma once
 
@@ -15,17 +14,17 @@
 #include <libimobiledevice/libimobiledevice.h>
 #include <libimobiledevice/lockdown.h>
 
+#include "afcclient.h"
 #include "afcdiskusage.h"
 #include "afcfilereader.h"
-#include "afcclient.h"
 
 #include <KIO/UDSEntry>
 
 class AfcApp;
 
-struct LockdowndClientCleanup
-{
-    static inline void cleanup(lockdownd_client_t lockdowndClient) {
+struct LockdowndClientCleanup {
+    static inline void cleanup(lockdownd_client_t lockdowndClient)
+    {
         if (lockdowndClient) {
             lockdownd_client_free(lockdowndClient);
         }

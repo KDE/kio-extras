@@ -6,8 +6,8 @@
 #ifndef TRANSFER_H
 #define TRANSFER_H
 
-#include <QtGlobal>
 #include <QVarLengthArray>
+#include <QtGlobal>
 
 #include <array>
 #include <condition_variable>
@@ -16,8 +16,7 @@
 constexpr off_t c_minSegmentSize = 64 * 1024; // minimal size on stack
 constexpr off_t c_maxSegmentSize = 4L * 1024 * 1024; // 4MiB is the largest request we make
 
-struct TransferSegment
-{
+struct TransferSegment {
     explicit TransferSegment(const off_t fileSize);
 
     ssize_t size = 0; // current size (i.e. the size that was put into buf)

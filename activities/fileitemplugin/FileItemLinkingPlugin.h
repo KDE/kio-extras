@@ -9,8 +9,8 @@
 
 #include <KAbstractFileItemActionPlugin>
 
-#include <QList>
 #include <QAction>
+#include <QList>
 #include <QVariant>
 
 #include <utils/d_ptr.h>
@@ -18,13 +18,13 @@
 /**
  * FileItemLinkingPlugin
  */
-class FileItemLinkingPlugin : public KAbstractFileItemActionPlugin {
+class FileItemLinkingPlugin : public KAbstractFileItemActionPlugin
+{
 public:
     FileItemLinkingPlugin(QObject *parent, const QVariantList &);
     ~FileItemLinkingPlugin() override;
 
-    QList<QAction *> actions(const KFileItemListProperties &fileItemInfos,
-                             QWidget *parentWidget) override;
+    QList<QAction *> actions(const KFileItemListProperties &fileItemInfos, QWidget *parentWidget) override;
 
 private:
     D_PTR;

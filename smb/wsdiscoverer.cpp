@@ -97,8 +97,7 @@ public:
         // as messageNamespace and set an additional header <LargeMetadataSupport/> on the message.
         // https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-dpwssn/f700463d-cbbf-4545-ab47-b9a6fbf1ac7b
 
-        KDSoapClientInterface client(m_endpointUrl.toString(),
-                                     QStringLiteral("http://schemas.xmlsoap.org/ws/2004/09/transfer"));
+        KDSoapClientInterface client(m_endpointUrl.toString(), QStringLiteral("http://schemas.xmlsoap.org/ws/2004/09/transfer"));
         client.setSoapVersion(KDSoapClientInterface::SoapVersion::SOAP1_2);
         client.setTimeout(std::chrono::milliseconds(HTTP_TIMEOUT).count());
 
@@ -108,21 +107,16 @@ public:
         addressing.setAction(QStringLiteral("http://schemas.xmlsoap.org/ws/2004/09/transfer/Get"));
         addressing.setMessageID(QStringLiteral("urn:uuid:") + QUuid::createUuid().toString(QUuid::WithoutBraces));
         addressing.setDestination(m_destination);
-        addressing.setReplyEndpointAddress(KDSoapMessageAddressingProperties::predefinedAddressToString(
-                                               KDSoapMessageAddressingProperties::Anonymous,
-                                               KDSoapMessageAddressingProperties::Addressing200408));
-        addressing.setSourceEndpointAddress(QStringLiteral("urn:uuid:")
-                                            + QUuid::createUuid().toString(QUuid::WithoutBraces));
+        addressing.setReplyEndpointAddress(KDSoapMessageAddressingProperties::predefinedAddressToString(KDSoapMessageAddressingProperties::Anonymous,
+                                                                                                        KDSoapMessageAddressingProperties::Addressing200408));
+        addressing.setSourceEndpointAddress(QStringLiteral("urn:uuid:") + QUuid::createUuid().toString(QUuid::WithoutBraces));
         message.setMessageAddressingProperties(addressing);
 
         QString computer;
 
         KDSoapMessage response = client.call(QString(), message);
         if (response.isFault()) {
-            qCDebug(KIO_SMB_LOG) << "Failed to obtain PBSD response"
-                                 << m_endpointUrl.host()
-                                 << m_destination
-                                 << response.arguments()
+            qCDebug(KIO_SMB_LOG) << "Failed to obtain PBSD response" << m_endpointUrl.host() << m_destination << response.arguments()
                                  << response.faultAsString();
             // No return! We'd disqualify systems that do not implement pbsd.
         } else {
@@ -136,10 +130,7 @@ public:
 
             const auto childValues = response.childValues();
             for (const auto &section : qAsConst(childValues)) {
-                computer = section
-                           .childValues().child("Relationship")
-                           .childValues().child("Host")
-                           .childValues().child("Computer").value().toString();
+                computer = section.childValues().child("Relationship").childValues().child("Host").childValues().child("Computer").value().toString();
                 if (!computer.isEmpty()) {
                     break;
                 }
@@ -169,9 +160,7 @@ public:
         // LLMNR variant (without .local) should it turn out not resolvable.
         QString host = m_endpointUrl.host();
         if (computer.isEmpty()) {
-            computer = xi18nc("host entry when no pretty name is available. %1 likely is an IP address",
-                              "Unknown Device @ <resource>%1</resource>",
-                              host);
+            computer = xi18nc("host entry when no pretty name is available. %1 likely is an IP address", "Unknown Device @ <resource>%1</resource>", host);
         } else {
             // If we got a DNSSD name, use that, otherwise redirect to on-demand resolution.
             host = computer.endsWith(".local") ? computer : computer + ".kio-discovery-wsd";
@@ -236,8 +225,7 @@ private:
 WSDiscoverer::WSDiscoverer()
     : m_client(new WSDiscoveryClient(this))
 {
-    connect(m_client, &WSDiscoveryClient::probeMatchReceived,
-            this, &WSDiscoverer::matchReceived);
+    connect(m_client, &WSDiscoveryClient::probeMatchReceived, this, &WSDiscoverer::matchReceived);
 
     // Matches may only arrive within a given time period afterwards we no
     // longer care as per the spec. stopping is further contigent on all
@@ -339,8 +327,7 @@ void WSDiscoverer::resolveReceived(const WSDiscoveryTargetService &service)
 
     if (addr.isEmpty()) {
         qCWarning(KIO_SMB_LOG) << "Failed to resolve any WS transport address."
-                               << "This suggests that DNS resolution may be broken."
-                               << service.xAddrList();
+                               << "This suggests that DNS resolution may be broken." << service.xAddrList();
         return;
     }
 
@@ -389,8 +376,7 @@ KIO::UDSEntry WSDiscovery::toEntry() const
     u.setPath("/"); // https://bugs.kde.org/show_bug.cgi?id=388922
 
     entry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE,
-                     QStringLiteral("application/x-smb-server"));
+    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-server"));
     return entry;
 }
 

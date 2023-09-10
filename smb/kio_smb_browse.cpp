@@ -54,10 +54,11 @@ int SMBWorker::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
 int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry)
 {
     if (!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode)) {
-        qCDebug(KIO_SMB_LOG) << "mode: "<< st.st_mode;
-        warning(i18n("%1:\n"
-                     "Unknown file type, neither directory or file.",
-                     url.toDisplayString()));
+        qCDebug(KIO_SMB_LOG) << "mode: " << st.st_mode;
+        warning(
+            i18n("%1:\n"
+                 "Unknown file type, neither directory or file.",
+                 url.toDisplayString()));
         return EINVAL;
     }
 
@@ -269,72 +270,73 @@ SMBWorker::SMBError SMBWorker::errnumToKioError(const SMBUrl &url, const int err
     switch (errNum) {
     case ENOENT:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK) {
-            return SMBError {ERR_WORKER_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall.")};
+            return SMBError{ERR_WORKER_DEFINED, i18n("Unable to find any workgroups in your local network. This might be caused by an enabled firewall.")};
         }
-        return SMBError {ERR_DOES_NOT_EXIST, url.toDisplayString()};
+        return SMBError{ERR_DOES_NOT_EXIST, url.toDisplayString()};
 #ifdef ENOMEDIUM
     case ENOMEDIUM:
-        return SMBError {ERR_WORKER_DEFINED, i18n("No media in device for %1", url.toDisplayString())};
+        return SMBError{ERR_WORKER_DEFINED, i18n("No media in device for %1", url.toDisplayString())};
 #endif
 #ifdef EHOSTDOWN
     case EHOSTDOWN:
 #endif
     case ECONNREFUSED:
-        return SMBError {ERR_WORKER_DEFINED, i18n("Could not connect to host for %1", url.toDisplayString())};
+        return SMBError{ERR_WORKER_DEFINED, i18n("Could not connect to host for %1", url.toDisplayString())};
     case ENOTDIR:
-        return SMBError {ERR_CANNOT_ENTER_DIRECTORY, url.toDisplayString()};
+        return SMBError{ERR_CANNOT_ENTER_DIRECTORY, url.toDisplayString()};
     case EFAULT:
     case EINVAL:
-        return SMBError {ERR_DOES_NOT_EXIST, url.toDisplayString()};
+        return SMBError{ERR_DOES_NOT_EXIST, url.toDisplayString()};
     case EPERM:
     case EACCES:
-        return SMBError {ERR_ACCESS_DENIED, url.toDisplayString()};
+        return SMBError{ERR_ACCESS_DENIED, url.toDisplayString()};
     case EIO:
     case ENETUNREACH:
         if (url.getType() == SMBURLTYPE_ENTIRE_NETWORK || url.getType() == SMBURLTYPE_WORKGROUP_OR_SERVER) {
-            return SMBError {ERR_WORKER_DEFINED, i18n("Error while connecting to server responsible for %1", url.toDisplayString())};
+            return SMBError{ERR_WORKER_DEFINED, i18n("Error while connecting to server responsible for %1", url.toDisplayString())};
         }
-        return SMBError {ERR_CONNECTION_BROKEN, url.toDisplayString()};
+        return SMBError{ERR_CONNECTION_BROKEN, url.toDisplayString()};
     case ENOMEM:
-        return SMBError {ERR_OUT_OF_MEMORY, url.toDisplayString()};
+        return SMBError{ERR_OUT_OF_MEMORY, url.toDisplayString()};
     case ENODEV:
-        return SMBError {ERR_WORKER_DEFINED, i18n("Share could not be found on given server")};
+        return SMBError{ERR_WORKER_DEFINED, i18n("Share could not be found on given server")};
     case EBADF:
-        return SMBError {ERR_INTERNAL, i18n("Bad file descriptor")};
+        return SMBError{ERR_INTERNAL, i18n("Bad file descriptor")};
     case ETIMEDOUT:
-        return SMBError {ERR_SERVER_TIMEOUT, url.host()};
+        return SMBError{ERR_SERVER_TIMEOUT, url.host()};
     case ENOTEMPTY:
-        return SMBError {ERR_CANNOT_RMDIR, url.toDisplayString()};
+        return SMBError{ERR_CANNOT_RMDIR, url.toDisplayString()};
 #ifdef ENOTUNIQ
     case ENOTUNIQ:
-        return SMBError {ERR_WORKER_DEFINED,
-                         i18n("The given name could not be resolved to a unique server. "
-                              "Make sure your network is setup without any name conflicts "
-                              "between names used by Windows and by UNIX name resolution.")};
+        return SMBError{ERR_WORKER_DEFINED,
+                        i18n("The given name could not be resolved to a unique server. "
+                             "Make sure your network is setup without any name conflicts "
+                             "between names used by Windows and by UNIX name resolution.")};
 #endif
     case ECONNABORTED:
-        return SMBError {ERR_CONNECTION_BROKEN, url.host()};
+        return SMBError{ERR_CONNECTION_BROKEN, url.host()};
     case EHOSTUNREACH:
-        return SMBError {ERR_CANNOT_CONNECT, i18nc("@info:status smb failed to reach the server (e.g. server offline or network failure). %1 is an ip address or hostname", "%1: Host unreachable", url.host())};
+        return SMBError{ERR_CANNOT_CONNECT,
+                        i18nc("@info:status smb failed to reach the server (e.g. server offline or network failure). %1 is an ip address or hostname",
+                              "%1: Host unreachable",
+                              url.host())};
     case 0: // success
-        return SMBError {ERR_INTERNAL,
-                         i18n("libsmbclient reported an error, but did not specify "
-                              "what the problem is. This might indicate a severe problem "
-                              "with your network - but also might indicate a problem with "
-                              "libsmbclient.\n"
-                              "If you want to help us, please provide a tcpdump of the "
-                              "network interface while you try to browse (be aware that "
-                              "it might contain private data, so do not post it if you are "
-                              "unsure about that - you can send it privately to the developers "
-                              "if they ask for it)")};
+        return SMBError{ERR_INTERNAL,
+                        i18n("libsmbclient reported an error, but did not specify "
+                             "what the problem is. This might indicate a severe problem "
+                             "with your network - but also might indicate a problem with "
+                             "libsmbclient.\n"
+                             "If you want to help us, please provide a tcpdump of the "
+                             "network interface while you try to browse (be aware that "
+                             "it might contain private data, so do not post it if you are "
+                             "unsure about that - you can send it privately to the developers "
+                             "if they ask for it)")};
     default:
-        return SMBError {
-            ERR_INTERNAL,
-            i18nc("%1 is an error number, %2 either a pretty string or the number",
-                  "Unknown error condition: [%1] %2",
-                  QString::number(errNum),
-                  QString::fromLocal8Bit(strerror(errNum)))
-        };
+        return SMBError{ERR_INTERNAL,
+                        i18nc("%1 is an error number, %2 either a pretty string or the number",
+                              "Unknown error condition: [%1] %2",
+                              QString::number(errNum),
+                              QString::fromLocal8Bit(strerror(errNum)))};
     }
 }
 

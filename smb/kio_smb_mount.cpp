@@ -159,7 +159,8 @@ KIO::WorkerResult SMBWorker::special(const QByteArray &data)
 
         proc.start();
         if (!proc.waitForFinished()) {
-            return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbmount" + i18n("\nMake sure that the samba package is installed properly on your system."));
+            return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS,
+                                      "smbmount" + i18n("\nMake sure that the samba package is installed properly on your system."));
         }
 
         QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());
@@ -168,10 +169,10 @@ KIO::WorkerResult SMBWorker::special(const QByteArray &data)
         qCDebug(KIO_SMB_LOG) << "mount exit " << proc.exitCode() << "stdout:" << mybuf << "\nstderr:" << mystderr;
 
         if (proc.exitCode() != 0) {
-            return WorkerResult::fail(KIO::ERR_CANNOT_MOUNT, i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4", share, host, user, mybuf + '\n' + mystderr));
+            return WorkerResult::fail(KIO::ERR_CANNOT_MOUNT,
+                                      i18n("Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n%4", share, host, user, mybuf + '\n' + mystderr));
         }
-    }
-    break;
+    } break;
     case 2:
     case 4: {
         QString mountPoint;
@@ -184,7 +185,8 @@ KIO::WorkerResult SMBWorker::special(const QByteArray &data)
 
         proc.start();
         if (!proc.waitForFinished()) {
-            return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, "smbumount" + i18n("\nMake sure that the samba package is installed properly on your system."));
+            return WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS,
+                                      "smbumount" + i18n("\nMake sure that the samba package is installed properly on your system."));
         }
 
         QString mybuf = QString::fromLocal8Bit(proc.readAllStandardOutput());

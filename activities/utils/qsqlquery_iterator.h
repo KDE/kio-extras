@@ -10,13 +10,11 @@
 #include <QSqlQuery>
 #include <QVariant>
 
-template <typename ResultSet>
-class NextValueIterator {
+template<typename ResultSet>
+class NextValueIterator
+{
 public:
-    enum Type {
-        NormalIterator,
-        EndIterator
-    };
+    enum Type { NormalIterator, EndIterator };
 
     NextValueIterator(ResultSet &query, Type type = NormalIterator)
         : m_query(query)
@@ -27,7 +25,7 @@ public:
         }
     }
 
-    inline bool operator!= (const NextValueIterator<ResultSet> &other) const
+    inline bool operator!=(const NextValueIterator<ResultSet> &other) const
     {
         Q_UNUSED(other);
         return m_query.isValid();
@@ -38,17 +36,17 @@ public:
         return *this;
     }
 
-    inline QVariant operator[] (int index) const
+    inline QVariant operator[](int index) const
     {
         return m_query.value(index);
     }
 
-    inline QVariant operator[] (const QString &name) const
+    inline QVariant operator[](const QString &name) const
     {
         return m_query.value(name);
     }
 
-    inline NextValueIterator<ResultSet> &operator ++()
+    inline NextValueIterator<ResultSet> &operator++()
     {
         m_query.next();
         return *this;
@@ -57,12 +55,9 @@ public:
 private:
     ResultSet &m_query;
     Type m_type;
-
 };
 
 NextValueIterator<QSqlQuery> begin(QSqlQuery &query);
 NextValueIterator<QSqlQuery> end(QSqlQuery &query);
 
-
 #endif /* UTILS_QSQLQUERYITERATOR_H */
-

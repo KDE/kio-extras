@@ -37,7 +37,7 @@ private Q_SLOTS:
 
         // ignoring embedded thumbnail as it is too small
         QTest::addRow("jpg_embedded_thumbnail2") << "castle.jpg"
-                                                << "castle_thumb_256.png" << 2.0;
+                                                 << "castle_thumb_256.png" << 2.0;
     }
 
     void testThumbnail()

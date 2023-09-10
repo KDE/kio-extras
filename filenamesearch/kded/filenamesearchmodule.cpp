@@ -13,20 +13,15 @@
 
 #include <KPluginFactory>
 
-FileNameSearchModule::FileNameSearchModule(QObject* parent, const QVariantList&)
+FileNameSearchModule::FileNameSearchModule(QObject *parent, const QVariantList &)
     : KDEDModule(parent)
     , m_dirNotify(QString(), QString(), QDBusConnection::sessionBus())
 {
-    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::enteredDirectory,
-            this, &FileNameSearchModule::registerSearchUrl);
-    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::leftDirectory,
-            this, &FileNameSearchModule::unregisterSearchUrl);
-    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::FilesAdded,
-            this, &FileNameSearchModule::slotFilesAdded);
-    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::FilesChanged,
-            this, &FileNameSearchModule::slotFilesChanged);
-    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::FilesRemoved,
-            this, &FileNameSearchModule::slotFilesRemoved);
+    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::enteredDirectory, this, &FileNameSearchModule::registerSearchUrl);
+    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::leftDirectory, this, &FileNameSearchModule::unregisterSearchUrl);
+    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::FilesAdded, this, &FileNameSearchModule::slotFilesAdded);
+    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::FilesChanged, this, &FileNameSearchModule::slotFilesChanged);
+    connect(&m_dirNotify, &OrgKdeKDirNotifyInterface::FilesRemoved, this, &FileNameSearchModule::slotFilesRemoved);
 }
 
 void FileNameSearchModule::registerSearchUrl(const QString &urlString)

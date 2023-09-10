@@ -9,7 +9,8 @@
 
 #include <QString>
 
-namespace KIO {
+namespace KIO
+{
 class AuthInfo;
 }
 
@@ -35,11 +36,8 @@ public:
     void loadConfiguration();
 
     // Callback for authentication requests.
-    void auth(SMBCCTX *context,
-              const char *server, const char *share,
-              char *workgroup, int wgmaxlen,
-              char *username, int unmaxlen,
-              char *password, int pwmaxlen);
+    void
+    auth(SMBCCTX *context, const char *server, const char *share, char *workgroup, int wgmaxlen, char *username, int unmaxlen, char *password, int pwmaxlen);
 
 private:
     // Frontend for authentication requests.

@@ -10,26 +10,26 @@
 #include <KIO/DeleteJob>
 #include <KTar>
 
-#include <QTest>
 #include <QDebug>
-#include <QStandardPaths>
-#include <QFileInfo>
 #include <QDir>
+#include <QFileInfo>
+#include <QStandardPaths>
+#include <QTest>
 
 QTEST_MAIN(TestKioArchive)
 static const char s_tarFileName[] = "karchivetest.tar";
 
-static void writeTestFilesToArchive( KArchive* archive )
+static void writeTestFilesToArchive(KArchive *archive)
 {
     bool ok;
     ok = archive->writeFile("empty", QByteArray(), 0100644, "weis", "users");
-    QVERIFY( ok );
+    QVERIFY(ok);
     ok = archive->writeFile("test1", QByteArrayLiteral("Hallo"), 0100644, "weis", "users");
-    QVERIFY( ok );
+    QVERIFY(ok);
     ok = archive->writeFile("mydir/subfile", QByteArrayLiteral("Bonjour"), 0100644, "dfaure", "users");
-    QVERIFY( ok );
-    ok = archive->writeSymLink( "mydir/symlink", "subfile", "dfaure", "users" );
-    QVERIFY( ok );
+    QVERIFY(ok);
+    ok = archive->writeSymLink("mydir/symlink", "subfile", "dfaure", "users");
+    QVERIFY(ok);
 }
 
 void TestKioArchive::initTestCase()
@@ -44,26 +44,26 @@ void TestKioArchive::initTestCase()
     QVERIFY(QDir().mkpath(tmpDir()));
 
     // Taken from KArchiveTest::testCreateTar
-    KTar tar( s_tarFileName );
-    bool ok = tar.open( QIODevice::WriteOnly );
-    QVERIFY( ok );
-    writeTestFilesToArchive( &tar );
+    KTar tar(s_tarFileName);
+    bool ok = tar.open(QIODevice::WriteOnly);
+    QVERIFY(ok);
+    writeTestFilesToArchive(&tar);
     ok = tar.close();
-    QVERIFY( ok );
-    QFileInfo fileInfo( QFile::encodeName( s_tarFileName ) );
-    QVERIFY( fileInfo.exists() );
+    QVERIFY(ok);
+    QFileInfo fileInfo(QFile::encodeName(s_tarFileName));
+    QVERIFY(fileInfo.exists());
 }
 
 void TestKioArchive::testListTar()
 {
     m_listResult.clear();
-    KIO::ListJob* job = KIO::listDir(tarUrl(), KIO::HideProgressInfo);
+    KIO::ListJob *job = KIO::listDir(tarUrl(), KIO::HideProgressInfo);
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = job->exec();
-    QVERIFY( ok );
-    QVERIFY( m_listResult.count() > 1 );
+    QVERIFY(ok);
+    QVERIFY(m_listResult.count() > 1);
 
-    QCOMPARE(m_listResult.count( "." ), 1); // found it, and only once
+    QCOMPARE(m_listResult.count("."), 1); // found it, and only once
     QCOMPARE(m_listResult.count("empty"), 1);
     QCOMPARE(m_listResult.count("test1"), 1);
     QCOMPARE(m_listResult.count("mydir"), 1);
@@ -74,13 +74,13 @@ void TestKioArchive::testListTar()
 void TestKioArchive::testListRecursive()
 {
     m_listResult.clear();
-    KIO::ListJob* job = KIO::listRecursive(tarUrl(), KIO::HideProgressInfo);
+    KIO::ListJob *job = KIO::listRecursive(tarUrl(), KIO::HideProgressInfo);
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = job->exec();
-    QVERIFY( ok );
-    QVERIFY( m_listResult.count() > 1 );
+    QVERIFY(ok);
+    QVERIFY(m_listResult.count() > 1);
 
-    QCOMPARE(m_listResult.count( "." ), 1); // found it, and only once
+    QCOMPARE(m_listResult.count("."), 1); // found it, and only once
     QCOMPARE(m_listResult.count("empty"), 1);
     QCOMPARE(m_listResult.count("test1"), 1);
     QCOMPARE(m_listResult.count("mydir"), 1);
@@ -98,11 +98,11 @@ QUrl TestKioArchive::tarUrl() const
     return url;
 }
 
-void TestKioArchive::slotEntries( KIO::Job*, const KIO::UDSEntryList& lst )
+void TestKioArchive::slotEntries(KIO::Job *, const KIO::UDSEntryList &lst)
 {
-    for( KIO::UDSEntryList::ConstIterator it = lst.begin(); it != lst.end(); ++it ) {
-        const KIO::UDSEntry& entry (*it);
-        QString displayName = entry.stringValue( KIO::UDSEntry::UDS_NAME );
+    for (KIO::UDSEntryList::ConstIterator it = lst.begin(); it != lst.end(); ++it) {
+        const KIO::UDSEntry &entry(*it);
+        QString displayName = entry.stringValue(KIO::UDSEntry::UDS_NAME);
         m_listResult << displayName;
     }
 }
@@ -117,20 +117,21 @@ void TestKioArchive::cleanupTestCase()
     QDir(tmpDir()).removeRecursively();
 }
 
-void TestKioArchive::copyFromTar(const QUrl &src, const QString& destPath)
+void TestKioArchive::copyFromTar(const QUrl &src, const QString &destPath)
 {
     QUrl dest = QUrl::fromLocalFile(destPath);
     qDebug() << src << "->" << dest;
     // Check that src exists
     KIO::StatJob* statJob = KIO::stat(src, KIO::StatJob::SourceSide, KIO::StatNoDetails, KIO::HideProgressInfo);
-    bool ok = statJob->exec();
-    QVERIFY( ok );
 
-    KIO::Job* job = KIO::copyAs( src, dest, KIO::HideProgressInfo );
+    bool ok = statJob->exec();
+    QVERIFY(ok);
+
+    KIO::Job *job = KIO::copyAs(src, dest, KIO::HideProgressInfo);
     qDebug() << "copyAs" << src << dest;
     ok = job->exec();
-    QVERIFY( ok );
-    QVERIFY( QFile::exists( destPath ) );
+    QVERIFY(ok);
+    QVERIFY(QFile::exists(destPath));
 }
 
 void TestKioArchive::testExtractFileFromTar()

@@ -8,11 +8,11 @@
 
 #include <QAction>
 
+#include <KDirNotify>
 #include <KFileItem>
+#include <KIO/SimpleJob>
 #include <KLocalizedString>
 #include <KPluginFactory>
-#include <KIO/SimpleJob>
-#include <KDirNotify>
 
 K_PLUGIN_CLASS_WITH_JSON(ForgetFileItemAction, "forgetfileitemaction.json")
 
@@ -36,11 +36,7 @@ QList<QAction *> ForgetFileItemAction::actions(const KFileItemListProperties &fi
     if (fileItems.count() == 1) {
         const auto path = url.path();
         // exclude "root" folders of recentlyused:/
-        if (path.endsWith(QStringLiteral("/")) ||
-            path == QStringLiteral("/") ||
-            path == QStringLiteral("/files") ||
-            path == QStringLiteral("/locations")) {
-
+        if (path.endsWith(QStringLiteral("/")) || path == QStringLiteral("/") || path == QStringLiteral("/files") || path == QStringLiteral("/locations")) {
             return {};
         }
     }
@@ -51,13 +47,14 @@ QList<QAction *> ForgetFileItemAction::actions(const KFileItemListProperties &fi
     } else {
         text = i18ncp("@action:inmenu", "Forget Location", "Forget Locations", fileItems.size());
     }
-    QAction* forgetFileAction = new QAction(QIcon::fromTheme(QStringLiteral("edit-clear-history")), text, this);
-    forgetFileAction->setWhatsThis(i18nc("@info:whatsthis", "Remove the selected file(s) or location(s) from the recently used "
+    QAction *forgetFileAction = new QAction(QIcon::fromTheme(QStringLiteral("edit-clear-history")), text, this);
+    forgetFileAction->setWhatsThis(i18nc("@info:whatsthis",
+                                         "Remove the selected file(s) or location(s) from the recently used "
                                          "list in Dolphin and in Plasma's menus. This does not remove or move the resource(s)."));
 
-    connect(forgetFileAction, &QAction::triggered, this, [this, fileItems, fileItemInfos](){
+    connect(forgetFileAction, &QAction::triggered, this, [this, fileItems, fileItemInfos]() {
         QList<QUrl> urls;
-        for (const auto &item: fileItems) {
+        for (const auto &item : fileItems) {
             urls << item.targetUrl();
         }
 

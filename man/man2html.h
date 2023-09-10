@@ -27,7 +27,7 @@ void scan_man_page(const char *man_page);
  * \param HTML-encoded path to the file to reference for stylesheets.
  * \since 4.1
  */
-extern void setCssFile(const QByteArray& _cssFile);
+extern void setCssFile(const QByteArray &_cssFile);
 
 /** implement this somewhere. It will be called
    with HTML contents

@@ -8,22 +8,22 @@
 #include "kfileaudiopreview.h"
 
 #include <QCheckBox>
-#include <QLayout>
 #include <QGroupBox>
+#include <QLayout>
 
 #define TRANSLATION_DOMAIN "kfileaudiopreview6"
-#include <KLocalizedString>
 #include <KConfig>
 #include <KConfigGroup>
-#include <KSharedConfig>
+#include <KLocalizedString>
 #include <KPluginFactory>
+#include <KSharedConfig>
 
-#include <phonon/mediaobject.h>
-#include <phonon/audiooutput.h>
-#include <phonon/path.h>
-#include <phonon/backendcapabilities.h>
-#include <phonon/videowidget.h>
 #include "mediacontrols.h"
+#include <phonon/audiooutput.h>
+#include <phonon/backendcapabilities.h>
+#include <phonon/mediaobject.h>
+#include <phonon/path.h>
+#include <phonon/videowidget.h>
 
 K_PLUGIN_FACTORY(KFileAudioPreviewFactory, registerPlugin<KFileAudioPreview>();)
 

@@ -4,8 +4,8 @@
 */
 
 #include <QCoreApplication>
-#include <QUrlQuery>
 #include <QScopeGuard>
+#include <QUrlQuery>
 
 #include "smbcdiscoverer.h"
 
@@ -89,7 +89,7 @@ public:
 
 SMBCDiscovery::SMBCDiscovery(const UDSEntry &entry)
     : m_entry(entry)
-      // cache the name, it may get accessed more than once
+    // cache the name, it may get accessed more than once
     , m_name(entry.stringValue(KIO::UDSEntry::UDS_NAME))
 {
 }
@@ -123,7 +123,6 @@ void SMBCDiscoverer::start()
     queue();
 }
 
-
 bool SMBCDiscoverer::discoverNextFileInfo()
 {
 #ifdef HAVE_READDIRPLUS2
@@ -134,7 +133,8 @@ bool SMBCDiscoverer::discoverNextFileInfo()
     const struct libsmb_file_info *fileInfo = smbc_readdirplus2(m_dirFd, &st);
     if (fileInfo) {
         const QString name = QString::fromUtf8(fileInfo->name);
-        qCDebug(KIO_SMB_LOG) << "fileInfo" << "name:" << name;
+        qCDebug(KIO_SMB_LOG) << "fileInfo"
+                             << "name:" << name;
         if (name == ".") {
             return true;
         } else if (name == "..") {
@@ -201,9 +201,7 @@ void SMBCDiscoverer::discoverNext()
     const QString comment = QString::fromUtf8(dirp->comment);
 
     qCDebug(KIO_SMB_LOG) << "dirent "
-                         << "name:" << name
-                         << "comment:" << comment
-                         << "type:" << dirp->smbc_type;
+                         << "name:" << name << "comment:" << comment << "type:" << dirp->smbc_type;
 
     UDSEntry entry;
     // Minimal potential size. The actual size depends on this function,
@@ -303,10 +301,7 @@ void SMBCDiscoverer::init()
         stop();
     }
 
-    qCDebug(KIO_SMB_LOG) << "open" << m_url.toSmbcUrl()
-                         << "url-type:" << m_url.getType()
-                         << "dirfd:" << m_dirFd
-                         << "errNum:" << m_error;
+    qCDebug(KIO_SMB_LOG) << "open" << m_url.toSmbcUrl() << "url-type:" << m_url.getType() << "dirfd:" << m_dirFd << "errNum:" << m_error;
 
     return;
 }

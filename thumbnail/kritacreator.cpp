@@ -9,9 +9,9 @@
 #include <KPluginFactory>
 #include <KZip>
 
-#include <memory>
-#include <QImage>
 #include <QIODevice>
+#include <QImage>
+#include <memory>
 
 K_PLUGIN_CLASS_WITH_JSON(KritaCreator, "kraorathumbnail.json")
 

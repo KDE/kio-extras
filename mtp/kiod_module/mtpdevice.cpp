@@ -12,11 +12,11 @@
 #include <QDBusConnection>
 
 #include <Solid/Device>
-#include <Solid/GenericInterface>
 #include <Solid/DeviceNotifier>
+#include <Solid/GenericInterface>
 
-#include "mtpstorage.h"
 #include "kiod_kmtpd_debug.h"
+#include "mtpstorage.h"
 
 // D-Bus adaptors
 #include "deviceadaptor.h"
@@ -30,12 +30,12 @@
  * @param udi The UDI of the new device to cache
  */
 MTPDevice::MTPDevice(const QString &dbusObjectPath, LIBMTP_mtpdevice_t *device, LIBMTP_raw_device_t *rawdevice, const QString &udi, QObject *parent)
-    : QObject(parent),
-      m_dbusObjectName(dbusObjectPath),
-      m_mtpdevice(device),
-      m_rawdevice(*rawdevice),
-      m_udi(udi),
-      m_devicesUpdated(true)
+    : QObject(parent)
+    , m_dbusObjectName(dbusObjectPath)
+    , m_mtpdevice(device)
+    , m_rawdevice(*rawdevice)
+    , m_udi(udi)
+    , m_devicesUpdated(true)
 {
     const char *deviceName = LIBMTP_Get_Friendlyname(device);
     const char *deviceModel = LIBMTP_Get_Modelname(device);
@@ -104,7 +104,6 @@ int MTPDevice::setFriendlyName(const QString &friendlyName)
     if (!result) {
         m_friendlyName = friendlyName;
         Q_EMIT friendlyNameChanged(m_friendlyName);
-
     }
     return result;
 }

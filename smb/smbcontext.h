@@ -39,11 +39,8 @@ public:
     }
 
 private:
-    static void auth_cb(SMBCCTX *context,
-                        const char *server,const char *share,
-                        char *workgroup, int wgmaxlen,
-                        char *username, int unmaxlen,
-                        char *password, int pwmaxlen);
+    static void
+    auth_cb(SMBCCTX *context, const char *server, const char *share, char *workgroup, int wgmaxlen, char *username, int unmaxlen, char *password, int pwmaxlen);
 
     static void freeContext(SMBCCTX *ptr);
 

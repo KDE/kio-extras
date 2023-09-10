@@ -7,9 +7,9 @@
 #ifndef FISH_H
 #define FISH_H
 
+#include <KIO/AuthInfo>
 #include <KIO/Global>
 #include <KIO/WorkerBase>
-#include <KIO/AuthInfo>
 
 #define FISH_EXEC_CMD 'X'
 
@@ -40,7 +40,7 @@ public:
     KIO::WorkerResult openConnection() override;
 
     /** sets connection information for subsequent commands */
-    void setHost(const QString & host, quint16 port, const QString & user, const QString & pass) override;
+    void setHost(const QString &host, quint16 port, const QString &user, const QString &pass) override;
     /** Forced close of the connection */
     void closeConnection() override;
     /** get a file */
@@ -68,7 +68,7 @@ public:
     /** removes a file or directory */
     KIO::WorkerResult del(const QUrl &u, bool isfile) override;
     /** special like background execute */
-    KIO::WorkerResult special( const QByteArray &data ) override;
+    KIO::WorkerResult special(const QByteArray &data) override;
 
 private: // Private methods
     /** Clean up connection */
@@ -176,13 +176,32 @@ protected: // Protected attributes
         int lines;
     } fishInfo[];
     /** last FISH command sent to server */
-    enum fish_command_type { FISH_FISH, FISH_VER, FISH_PWD, FISH_LIST, FISH_STAT,
-                             FISH_RETR, FISH_STOR,
-                             FISH_CWD, FISH_CHMOD, FISH_DELE, FISH_MKD, FISH_RMD,
-                             FISH_RENAME, FISH_LINK, FISH_SYMLINK, FISH_CHOWN,
-                             FISH_CHGRP, FISH_READ, FISH_WRITE, FISH_COPY, FISH_APPEND, FISH_EXEC
-                           } fishCommand;
+    enum fish_command_type {
+        FISH_FISH,
+        FISH_VER,
+        FISH_PWD,
+        FISH_LIST,
+        FISH_STAT,
+        FISH_RETR,
+        FISH_STOR,
+        FISH_CWD,
+        FISH_CHMOD,
+        FISH_DELE,
+        FISH_MKD,
+        FISH_RMD,
+        FISH_RENAME,
+        FISH_LINK,
+        FISH_SYMLINK,
+        FISH_CHOWN,
+        FISH_CHGRP,
+        FISH_READ,
+        FISH_WRITE,
+        FISH_COPY,
+        FISH_APPEND,
+        FISH_EXEC
+    } fishCommand;
     int fishCodeLen;
+
 protected: // Protected methods
     /** manages initial communication setup including password queries */
 #ifndef Q_OS_WIN
@@ -213,9 +232,7 @@ protected: // Protected methods
     /** writes to process */
     void writeStdin(const QString &line);
     /** Verify port **/
-    void setHostInternal(const QUrl & u);
-
+    void setHostInternal(const QUrl &u);
 };
-
 
 #endif

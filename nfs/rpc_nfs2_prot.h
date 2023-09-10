@@ -8,7 +8,6 @@
 
 #include <rpc/rpc.h>
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -358,117 +357,117 @@ typedef struct ppathcnf ppathcnf;
 
 #if defined(__STDC__) || defined(__cplusplus)
 #define NFSPROC_NULL 0
-extern  void * nfsproc_null_2(CLIENT *);
-extern  void * nfsproc_null_2_svc(struct svc_req *);
+extern void *nfsproc_null_2(CLIENT *);
+extern void *nfsproc_null_2_svc(struct svc_req *);
 #define NFSPROC_GETATTR 1
-extern  attrstat * nfsproc_getattr_2(nfs_fh, CLIENT *);
-extern  attrstat * nfsproc_getattr_2_svc(nfs_fh, struct svc_req *);
+extern attrstat *nfsproc_getattr_2(nfs_fh, CLIENT *);
+extern attrstat *nfsproc_getattr_2_svc(nfs_fh, struct svc_req *);
 #define NFSPROC_SETATTR 2
-extern  attrstat * nfsproc_setattr_2(sattrargs, CLIENT *);
-extern  attrstat * nfsproc_setattr_2_svc(sattrargs, struct svc_req *);
+extern attrstat *nfsproc_setattr_2(sattrargs, CLIENT *);
+extern attrstat *nfsproc_setattr_2_svc(sattrargs, struct svc_req *);
 #define NFSPROC_ROOT 3
-extern  void * nfsproc_root_2(CLIENT *);
-extern  void * nfsproc_root_2_svc(struct svc_req *);
+extern void *nfsproc_root_2(CLIENT *);
+extern void *nfsproc_root_2_svc(struct svc_req *);
 #define NFSPROC_LOOKUP 4
-extern  diropres * nfsproc_lookup_2(diropargs, CLIENT *);
-extern  diropres * nfsproc_lookup_2_svc(diropargs, struct svc_req *);
+extern diropres *nfsproc_lookup_2(diropargs, CLIENT *);
+extern diropres *nfsproc_lookup_2_svc(diropargs, struct svc_req *);
 #define NFSPROC_READLINK 5
-extern  readlinkres * nfsproc_readlink_2(nfs_fh, CLIENT *);
-extern  readlinkres * nfsproc_readlink_2_svc(nfs_fh, struct svc_req *);
+extern readlinkres *nfsproc_readlink_2(nfs_fh, CLIENT *);
+extern readlinkres *nfsproc_readlink_2_svc(nfs_fh, struct svc_req *);
 #define NFSPROC_READ 6
-extern  readres * nfsproc_read_2(readargs, CLIENT *);
-extern  readres * nfsproc_read_2_svc(readargs, struct svc_req *);
+extern readres *nfsproc_read_2(readargs, CLIENT *);
+extern readres *nfsproc_read_2_svc(readargs, struct svc_req *);
 #define NFSPROC_WRITECACHE 7
-extern  void * nfsproc_writecache_2(CLIENT *);
-extern  void * nfsproc_writecache_2_svc(struct svc_req *);
+extern void *nfsproc_writecache_2(CLIENT *);
+extern void *nfsproc_writecache_2_svc(struct svc_req *);
 #define NFSPROC_WRITE 8
-extern  attrstat * nfsproc_write_2(writeargs, CLIENT *);
-extern  attrstat * nfsproc_write_2_svc(writeargs, struct svc_req *);
+extern attrstat *nfsproc_write_2(writeargs, CLIENT *);
+extern attrstat *nfsproc_write_2_svc(writeargs, struct svc_req *);
 #define NFSPROC_CREATE 9
-extern  diropres * nfsproc_create_2(createargs, CLIENT *);
-extern  diropres * nfsproc_create_2_svc(createargs, struct svc_req *);
+extern diropres *nfsproc_create_2(createargs, CLIENT *);
+extern diropres *nfsproc_create_2_svc(createargs, struct svc_req *);
 #define NFSPROC_REMOVE 10
-extern  nfsstat * nfsproc_remove_2(diropargs, CLIENT *);
-extern  nfsstat * nfsproc_remove_2_svc(diropargs, struct svc_req *);
+extern nfsstat *nfsproc_remove_2(diropargs, CLIENT *);
+extern nfsstat *nfsproc_remove_2_svc(diropargs, struct svc_req *);
 #define NFSPROC_RENAME 11
-extern  nfsstat * nfsproc_rename_2(renameargs, CLIENT *);
-extern  nfsstat * nfsproc_rename_2_svc(renameargs, struct svc_req *);
+extern nfsstat *nfsproc_rename_2(renameargs, CLIENT *);
+extern nfsstat *nfsproc_rename_2_svc(renameargs, struct svc_req *);
 #define NFSPROC_LINK 12
-extern  nfsstat * nfsproc_link_2(linkargs, CLIENT *);
-extern  nfsstat * nfsproc_link_2_svc(linkargs, struct svc_req *);
+extern nfsstat *nfsproc_link_2(linkargs, CLIENT *);
+extern nfsstat *nfsproc_link_2_svc(linkargs, struct svc_req *);
 #define NFSPROC_SYMLINK 13
-extern  nfsstat * nfsproc_symlink_2(symlinkargs, CLIENT *);
-extern  nfsstat * nfsproc_symlink_2_svc(symlinkargs, struct svc_req *);
+extern nfsstat *nfsproc_symlink_2(symlinkargs, CLIENT *);
+extern nfsstat *nfsproc_symlink_2_svc(symlinkargs, struct svc_req *);
 #define NFSPROC_MKDIR 14
-extern  diropres * nfsproc_mkdir_2(createargs, CLIENT *);
-extern  diropres * nfsproc_mkdir_2_svc(createargs, struct svc_req *);
+extern diropres *nfsproc_mkdir_2(createargs, CLIENT *);
+extern diropres *nfsproc_mkdir_2_svc(createargs, struct svc_req *);
 #define NFSPROC_RMDIR 15
-extern  nfsstat * nfsproc_rmdir_2(diropargs, CLIENT *);
-extern  nfsstat * nfsproc_rmdir_2_svc(diropargs, struct svc_req *);
+extern nfsstat *nfsproc_rmdir_2(diropargs, CLIENT *);
+extern nfsstat *nfsproc_rmdir_2_svc(diropargs, struct svc_req *);
 #define NFSPROC_READDIR 16
-extern  readdirres * nfsproc_readdir_2(readdirargs, CLIENT *);
-extern  readdirres * nfsproc_readdir_2_svc(readdirargs, struct svc_req *);
+extern readdirres *nfsproc_readdir_2(readdirargs, CLIENT *);
+extern readdirres *nfsproc_readdir_2_svc(readdirargs, struct svc_req *);
 #define NFSPROC_STATFS 17
-extern  statfsres * nfsproc_statfs_2(nfs_fh, CLIENT *);
-extern  statfsres * nfsproc_statfs_2_svc(nfs_fh, struct svc_req *);
-extern int nfs_program_2_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
+extern statfsres *nfsproc_statfs_2(nfs_fh, CLIENT *);
+extern statfsres *nfsproc_statfs_2_svc(nfs_fh, struct svc_req *);
+extern int nfs_program_2_freeresult(SVCXPRT *, xdrproc_t, caddr_t);
 
 #else /* K&R C */
 #define NFSPROC_NULL 0
-extern  void * nfsproc_null_2();
-extern  void * nfsproc_null_2_svc();
+extern void *nfsproc_null_2();
+extern void *nfsproc_null_2_svc();
 #define NFSPROC_GETATTR 1
-extern  attrstat * nfsproc_getattr_2();
-extern  attrstat * nfsproc_getattr_2_svc();
+extern attrstat *nfsproc_getattr_2();
+extern attrstat *nfsproc_getattr_2_svc();
 #define NFSPROC_SETATTR 2
-extern  attrstat * nfsproc_setattr_2();
-extern  attrstat * nfsproc_setattr_2_svc();
+extern attrstat *nfsproc_setattr_2();
+extern attrstat *nfsproc_setattr_2_svc();
 #define NFSPROC_ROOT 3
-extern  void * nfsproc_root_2();
-extern  void * nfsproc_root_2_svc();
+extern void *nfsproc_root_2();
+extern void *nfsproc_root_2_svc();
 #define NFSPROC_LOOKUP 4
-extern  diropres * nfsproc_lookup_2();
-extern  diropres * nfsproc_lookup_2_svc();
+extern diropres *nfsproc_lookup_2();
+extern diropres *nfsproc_lookup_2_svc();
 #define NFSPROC_READLINK 5
-extern  readlinkres * nfsproc_readlink_2();
-extern  readlinkres * nfsproc_readlink_2_svc();
+extern readlinkres *nfsproc_readlink_2();
+extern readlinkres *nfsproc_readlink_2_svc();
 #define NFSPROC_READ 6
-extern  readres * nfsproc_read_2();
-extern  readres * nfsproc_read_2_svc();
+extern readres *nfsproc_read_2();
+extern readres *nfsproc_read_2_svc();
 #define NFSPROC_WRITECACHE 7
-extern  void * nfsproc_writecache_2();
-extern  void * nfsproc_writecache_2_svc();
+extern void *nfsproc_writecache_2();
+extern void *nfsproc_writecache_2_svc();
 #define NFSPROC_WRITE 8
-extern  attrstat * nfsproc_write_2();
-extern  attrstat * nfsproc_write_2_svc();
+extern attrstat *nfsproc_write_2();
+extern attrstat *nfsproc_write_2_svc();
 #define NFSPROC_CREATE 9
-extern  diropres * nfsproc_create_2();
-extern  diropres * nfsproc_create_2_svc();
+extern diropres *nfsproc_create_2();
+extern diropres *nfsproc_create_2_svc();
 #define NFSPROC_REMOVE 10
-extern  nfsstat * nfsproc_remove_2();
-extern  nfsstat * nfsproc_remove_2_svc();
+extern nfsstat *nfsproc_remove_2();
+extern nfsstat *nfsproc_remove_2_svc();
 #define NFSPROC_RENAME 11
-extern  nfsstat * nfsproc_rename_2();
-extern  nfsstat * nfsproc_rename_2_svc();
+extern nfsstat *nfsproc_rename_2();
+extern nfsstat *nfsproc_rename_2_svc();
 #define NFSPROC_LINK 12
-extern  nfsstat * nfsproc_link_2();
-extern  nfsstat * nfsproc_link_2_svc();
+extern nfsstat *nfsproc_link_2();
+extern nfsstat *nfsproc_link_2_svc();
 #define NFSPROC_SYMLINK 13
-extern  nfsstat * nfsproc_symlink_2();
-extern  nfsstat * nfsproc_symlink_2_svc();
+extern nfsstat *nfsproc_symlink_2();
+extern nfsstat *nfsproc_symlink_2_svc();
 #define NFSPROC_MKDIR 14
-extern  diropres * nfsproc_mkdir_2();
-extern  diropres * nfsproc_mkdir_2_svc();
+extern diropres *nfsproc_mkdir_2();
+extern diropres *nfsproc_mkdir_2_svc();
 #define NFSPROC_RMDIR 15
-extern  nfsstat * nfsproc_rmdir_2();
-extern  nfsstat * nfsproc_rmdir_2_svc();
+extern nfsstat *nfsproc_rmdir_2();
+extern nfsstat *nfsproc_rmdir_2_svc();
 #define NFSPROC_READDIR 16
-extern  readdirres * nfsproc_readdir_2();
-extern  readdirres * nfsproc_readdir_2_svc();
+extern readdirres *nfsproc_readdir_2();
+extern readdirres *nfsproc_readdir_2_svc();
 #define NFSPROC_STATFS 17
-extern  statfsres * nfsproc_statfs_2();
-extern  statfsres * nfsproc_statfs_2_svc();
-extern int nfs_program_2_freeresult ();
+extern statfsres *nfsproc_statfs_2();
+extern statfsres *nfsproc_statfs_2_svc();
+extern int nfs_program_2_freeresult();
 #endif /* K&R C */
 
 #define MOUNTPROG 100005
@@ -476,180 +475,180 @@ extern int nfs_program_2_freeresult ();
 
 #if defined(__STDC__) || defined(__cplusplus)
 #define MOUNTPROC_NULL 0
-extern  void * mountproc_null_1(CLIENT *);
-extern  void * mountproc_null_1_svc(struct svc_req *);
+extern void *mountproc_null_1(CLIENT *);
+extern void *mountproc_null_1_svc(struct svc_req *);
 #define MOUNTPROC_MNT 1
-extern  fhstatus * mountproc_mnt_1(dirpath, CLIENT *);
-extern  fhstatus * mountproc_mnt_1_svc(dirpath, struct svc_req *);
+extern fhstatus *mountproc_mnt_1(dirpath, CLIENT *);
+extern fhstatus *mountproc_mnt_1_svc(dirpath, struct svc_req *);
 #define MOUNTPROC_DUMP 2
-extern  mountlist * mountproc_dump_1(CLIENT *);
-extern  mountlist * mountproc_dump_1_svc(struct svc_req *);
+extern mountlist *mountproc_dump_1(CLIENT *);
+extern mountlist *mountproc_dump_1_svc(struct svc_req *);
 #define MOUNTPROC_UMNT 3
-extern  void * mountproc_umnt_1(dirpath, CLIENT *);
-extern  void * mountproc_umnt_1_svc(dirpath, struct svc_req *);
+extern void *mountproc_umnt_1(dirpath, CLIENT *);
+extern void *mountproc_umnt_1_svc(dirpath, struct svc_req *);
 #define MOUNTPROC_UMNTALL 4
-extern  void * mountproc_umntall_1(CLIENT *);
-extern  void * mountproc_umntall_1_svc(struct svc_req *);
+extern void *mountproc_umntall_1(CLIENT *);
+extern void *mountproc_umntall_1_svc(struct svc_req *);
 #define MOUNTPROC_EXPORT 5
-extern  exports * mountproc_export_1(CLIENT *);
-extern  exports * mountproc_export_1_svc(struct svc_req *);
+extern exports *mountproc_export_1(CLIENT *);
+extern exports *mountproc_export_1_svc(struct svc_req *);
 #define MOUNTPROC_EXPORTALL 6
-extern  exports * mountproc_exportall_1(CLIENT *);
-extern  exports * mountproc_exportall_1_svc(struct svc_req *);
-extern int mountprog_1_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
+extern exports *mountproc_exportall_1(CLIENT *);
+extern exports *mountproc_exportall_1_svc(struct svc_req *);
+extern int mountprog_1_freeresult(SVCXPRT *, xdrproc_t, caddr_t);
 
 #else /* K&R C */
 #define MOUNTPROC_NULL 0
-extern  void * mountproc_null_1();
-extern  void * mountproc_null_1_svc();
+extern void *mountproc_null_1();
+extern void *mountproc_null_1_svc();
 #define MOUNTPROC_MNT 1
-extern  fhstatus * mountproc_mnt_1();
-extern  fhstatus * mountproc_mnt_1_svc();
+extern fhstatus *mountproc_mnt_1();
+extern fhstatus *mountproc_mnt_1_svc();
 #define MOUNTPROC_DUMP 2
-extern  mountlist * mountproc_dump_1();
-extern  mountlist * mountproc_dump_1_svc();
+extern mountlist *mountproc_dump_1();
+extern mountlist *mountproc_dump_1_svc();
 #define MOUNTPROC_UMNT 3
-extern  void * mountproc_umnt_1();
-extern  void * mountproc_umnt_1_svc();
+extern void *mountproc_umnt_1();
+extern void *mountproc_umnt_1_svc();
 #define MOUNTPROC_UMNTALL 4
-extern  void * mountproc_umntall_1();
-extern  void * mountproc_umntall_1_svc();
+extern void *mountproc_umntall_1();
+extern void *mountproc_umntall_1_svc();
 #define MOUNTPROC_EXPORT 5
-extern  exports * mountproc_export_1();
-extern  exports * mountproc_export_1_svc();
+extern exports *mountproc_export_1();
+extern exports *mountproc_export_1_svc();
 #define MOUNTPROC_EXPORTALL 6
-extern  exports * mountproc_exportall_1();
-extern  exports * mountproc_exportall_1_svc();
-extern int mountprog_1_freeresult ();
+extern exports *mountproc_exportall_1();
+extern exports *mountproc_exportall_1_svc();
+extern int mountprog_1_freeresult();
 #endif /* K&R C */
 #define MOUNTVERS_POSIX 2
 
 #if defined(__STDC__) || defined(__cplusplus)
-extern  void * mountproc_null_2(CLIENT *);
-extern  void * mountproc_null_2_svc(struct svc_req *);
-extern  fhstatus * mountproc_mnt_2(dirpath, CLIENT *);
-extern  fhstatus * mountproc_mnt_2_svc(dirpath, struct svc_req *);
-extern  mountlist * mountproc_dump_2(CLIENT *);
-extern  mountlist * mountproc_dump_2_svc(struct svc_req *);
-extern  void * mountproc_umnt_2(dirpath, CLIENT *);
-extern  void * mountproc_umnt_2_svc(dirpath, struct svc_req *);
-extern  void * mountproc_umntall_2(CLIENT *);
-extern  void * mountproc_umntall_2_svc(struct svc_req *);
-extern  exports * mountproc_export_2(CLIENT *);
-extern  exports * mountproc_export_2_svc(struct svc_req *);
-extern  exports * mountproc_exportall_2(CLIENT *);
-extern  exports * mountproc_exportall_2_svc(struct svc_req *);
+extern void *mountproc_null_2(CLIENT *);
+extern void *mountproc_null_2_svc(struct svc_req *);
+extern fhstatus *mountproc_mnt_2(dirpath, CLIENT *);
+extern fhstatus *mountproc_mnt_2_svc(dirpath, struct svc_req *);
+extern mountlist *mountproc_dump_2(CLIENT *);
+extern mountlist *mountproc_dump_2_svc(struct svc_req *);
+extern void *mountproc_umnt_2(dirpath, CLIENT *);
+extern void *mountproc_umnt_2_svc(dirpath, struct svc_req *);
+extern void *mountproc_umntall_2(CLIENT *);
+extern void *mountproc_umntall_2_svc(struct svc_req *);
+extern exports *mountproc_export_2(CLIENT *);
+extern exports *mountproc_export_2_svc(struct svc_req *);
+extern exports *mountproc_exportall_2(CLIENT *);
+extern exports *mountproc_exportall_2_svc(struct svc_req *);
 #define MOUNTPROC_PATHCONF 7
-extern  ppathcnf * mountproc_pathconf_2(dirpath, CLIENT *);
-extern  ppathcnf * mountproc_pathconf_2_svc(dirpath, struct svc_req *);
-extern int mountprog_2_freeresult (SVCXPRT *, xdrproc_t, caddr_t);
+extern ppathcnf *mountproc_pathconf_2(dirpath, CLIENT *);
+extern ppathcnf *mountproc_pathconf_2_svc(dirpath, struct svc_req *);
+extern int mountprog_2_freeresult(SVCXPRT *, xdrproc_t, caddr_t);
 
 #else /* K&R C */
-extern  void * mountproc_null_2();
-extern  void * mountproc_null_2_svc();
-extern  fhstatus * mountproc_mnt_2();
-extern  fhstatus * mountproc_mnt_2_svc();
-extern  mountlist * mountproc_dump_2();
-extern  mountlist * mountproc_dump_2_svc();
-extern  void * mountproc_umnt_2();
-extern  void * mountproc_umnt_2_svc();
-extern  void * mountproc_umntall_2();
-extern  void * mountproc_umntall_2_svc();
-extern  exports * mountproc_export_2();
-extern  exports * mountproc_export_2_svc();
-extern  exports * mountproc_exportall_2();
-extern  exports * mountproc_exportall_2_svc();
+extern void *mountproc_null_2();
+extern void *mountproc_null_2_svc();
+extern fhstatus *mountproc_mnt_2();
+extern fhstatus *mountproc_mnt_2_svc();
+extern mountlist *mountproc_dump_2();
+extern mountlist *mountproc_dump_2_svc();
+extern void *mountproc_umnt_2();
+extern void *mountproc_umnt_2_svc();
+extern void *mountproc_umntall_2();
+extern void *mountproc_umntall_2_svc();
+extern exports *mountproc_export_2();
+extern exports *mountproc_export_2_svc();
+extern exports *mountproc_exportall_2();
+extern exports *mountproc_exportall_2_svc();
 #define MOUNTPROC_PATHCONF 7
-extern  ppathcnf * mountproc_pathconf_2();
-extern  ppathcnf * mountproc_pathconf_2_svc();
-extern int mountprog_2_freeresult ();
+extern ppathcnf *mountproc_pathconf_2();
+extern ppathcnf *mountproc_pathconf_2_svc();
+extern int mountprog_2_freeresult();
 #endif /* K&R C */
 
 /* the xdr functions */
 
 #if defined(__STDC__) || defined(__cplusplus)
-extern  bool_t xdr_nfsstat (XDR *, nfsstat*);
-extern  bool_t xdr_ftype (XDR *, ftype*);
-extern  bool_t xdr_nfs_fh (XDR *, nfs_fh*);
-extern  bool_t xdr_nfstime (XDR *, nfstime*);
-extern  bool_t xdr_fattr (XDR *, fattr*);
-extern  bool_t xdr_sattr (XDR *, sattr*);
-extern  bool_t xdr_filename (XDR *, filename*);
-extern  bool_t xdr_nfspath (XDR *, nfspath*);
-extern  bool_t xdr_attrstat (XDR *, attrstat*);
-extern  bool_t xdr_sattrargs (XDR *, sattrargs*);
-extern  bool_t xdr_diropargs (XDR *, diropargs*);
-extern  bool_t xdr_diropokres (XDR *, diropokres*);
-extern  bool_t xdr_diropres (XDR *, diropres*);
-extern  bool_t xdr_readlinkres (XDR *, readlinkres*);
-extern  bool_t xdr_readargs (XDR *, readargs*);
-extern  bool_t xdr_readokres (XDR *, readokres*);
-extern  bool_t xdr_readres (XDR *, readres*);
-extern  bool_t xdr_writeargs (XDR *, writeargs*);
-extern  bool_t xdr_createargs (XDR *, createargs*);
-extern  bool_t xdr_renameargs (XDR *, renameargs*);
-extern  bool_t xdr_linkargs (XDR *, linkargs*);
-extern  bool_t xdr_symlinkargs (XDR *, symlinkargs*);
-extern  bool_t xdr_nfscookie (XDR *, nfscookie);
-extern  bool_t xdr_readdirargs (XDR *, readdirargs*);
-extern  bool_t xdr_entry (XDR *, entry*);
-extern  bool_t xdr_dirlist (XDR *, dirlist*);
-extern  bool_t xdr_readdirres (XDR *, readdirres*);
-extern  bool_t xdr_statfsokres (XDR *, statfsokres*);
-extern  bool_t xdr_statfsres (XDR *, statfsres*);
-extern  bool_t xdr_fhandle (XDR *, fhandle);
-extern  bool_t xdr_fhstatus (XDR *, fhstatus*);
-extern  bool_t xdr_dirpath (XDR *, dirpath*);
-extern  bool_t xdr_name (XDR *, name*);
-extern  bool_t xdr_mountlist (XDR *, mountlist*);
-extern  bool_t xdr_mountbody (XDR *, mountbody*);
-extern  bool_t xdr_groups (XDR *, groups*);
-extern  bool_t xdr_groupnode (XDR *, groupnode*);
-extern  bool_t xdr_exports (XDR *, exports*);
-extern  bool_t xdr_exportnode (XDR *, exportnode*);
-extern  bool_t xdr_ppathcnf (XDR *, ppathcnf*);
+extern bool_t xdr_nfsstat(XDR *, nfsstat *);
+extern bool_t xdr_ftype(XDR *, ftype *);
+extern bool_t xdr_nfs_fh(XDR *, nfs_fh *);
+extern bool_t xdr_nfstime(XDR *, nfstime *);
+extern bool_t xdr_fattr(XDR *, fattr *);
+extern bool_t xdr_sattr(XDR *, sattr *);
+extern bool_t xdr_filename(XDR *, filename *);
+extern bool_t xdr_nfspath(XDR *, nfspath *);
+extern bool_t xdr_attrstat(XDR *, attrstat *);
+extern bool_t xdr_sattrargs(XDR *, sattrargs *);
+extern bool_t xdr_diropargs(XDR *, diropargs *);
+extern bool_t xdr_diropokres(XDR *, diropokres *);
+extern bool_t xdr_diropres(XDR *, diropres *);
+extern bool_t xdr_readlinkres(XDR *, readlinkres *);
+extern bool_t xdr_readargs(XDR *, readargs *);
+extern bool_t xdr_readokres(XDR *, readokres *);
+extern bool_t xdr_readres(XDR *, readres *);
+extern bool_t xdr_writeargs(XDR *, writeargs *);
+extern bool_t xdr_createargs(XDR *, createargs *);
+extern bool_t xdr_renameargs(XDR *, renameargs *);
+extern bool_t xdr_linkargs(XDR *, linkargs *);
+extern bool_t xdr_symlinkargs(XDR *, symlinkargs *);
+extern bool_t xdr_nfscookie(XDR *, nfscookie);
+extern bool_t xdr_readdirargs(XDR *, readdirargs *);
+extern bool_t xdr_entry(XDR *, entry *);
+extern bool_t xdr_dirlist(XDR *, dirlist *);
+extern bool_t xdr_readdirres(XDR *, readdirres *);
+extern bool_t xdr_statfsokres(XDR *, statfsokres *);
+extern bool_t xdr_statfsres(XDR *, statfsres *);
+extern bool_t xdr_fhandle(XDR *, fhandle);
+extern bool_t xdr_fhstatus(XDR *, fhstatus *);
+extern bool_t xdr_dirpath(XDR *, dirpath *);
+extern bool_t xdr_name(XDR *, name *);
+extern bool_t xdr_mountlist(XDR *, mountlist *);
+extern bool_t xdr_mountbody(XDR *, mountbody *);
+extern bool_t xdr_groups(XDR *, groups *);
+extern bool_t xdr_groupnode(XDR *, groupnode *);
+extern bool_t xdr_exports(XDR *, exports *);
+extern bool_t xdr_exportnode(XDR *, exportnode *);
+extern bool_t xdr_ppathcnf(XDR *, ppathcnf *);
 
 #else /* K&R C */
-extern bool_t xdr_nfsstat ();
-extern bool_t xdr_ftype ();
-extern bool_t xdr_nfs_fh ();
-extern bool_t xdr_nfstime ();
-extern bool_t xdr_fattr ();
-extern bool_t xdr_sattr ();
-extern bool_t xdr_filename ();
-extern bool_t xdr_nfspath ();
-extern bool_t xdr_attrstat ();
-extern bool_t xdr_sattrargs ();
-extern bool_t xdr_diropargs ();
-extern bool_t xdr_diropokres ();
-extern bool_t xdr_diropres ();
-extern bool_t xdr_readlinkres ();
-extern bool_t xdr_readargs ();
-extern bool_t xdr_readokres ();
-extern bool_t xdr_readres ();
-extern bool_t xdr_writeargs ();
-extern bool_t xdr_createargs ();
-extern bool_t xdr_renameargs ();
-extern bool_t xdr_linkargs ();
-extern bool_t xdr_symlinkargs ();
-extern bool_t xdr_nfscookie ();
-extern bool_t xdr_readdirargs ();
-extern bool_t xdr_entry ();
-extern bool_t xdr_dirlist ();
-extern bool_t xdr_readdirres ();
-extern bool_t xdr_statfsokres ();
-extern bool_t xdr_statfsres ();
-extern bool_t xdr_fhandle ();
-extern bool_t xdr_fhstatus ();
-extern bool_t xdr_dirpath ();
-extern bool_t xdr_name ();
-extern bool_t xdr_mountlist ();
-extern bool_t xdr_mountbody ();
-extern bool_t xdr_groups ();
-extern bool_t xdr_groupnode ();
-extern bool_t xdr_exports ();
-extern bool_t xdr_exportnode ();
-extern bool_t xdr_ppathcnf ();
+extern bool_t xdr_nfsstat();
+extern bool_t xdr_ftype();
+extern bool_t xdr_nfs_fh();
+extern bool_t xdr_nfstime();
+extern bool_t xdr_fattr();
+extern bool_t xdr_sattr();
+extern bool_t xdr_filename();
+extern bool_t xdr_nfspath();
+extern bool_t xdr_attrstat();
+extern bool_t xdr_sattrargs();
+extern bool_t xdr_diropargs();
+extern bool_t xdr_diropokres();
+extern bool_t xdr_diropres();
+extern bool_t xdr_readlinkres();
+extern bool_t xdr_readargs();
+extern bool_t xdr_readokres();
+extern bool_t xdr_readres();
+extern bool_t xdr_writeargs();
+extern bool_t xdr_createargs();
+extern bool_t xdr_renameargs();
+extern bool_t xdr_linkargs();
+extern bool_t xdr_symlinkargs();
+extern bool_t xdr_nfscookie();
+extern bool_t xdr_readdirargs();
+extern bool_t xdr_entry();
+extern bool_t xdr_dirlist();
+extern bool_t xdr_readdirres();
+extern bool_t xdr_statfsokres();
+extern bool_t xdr_statfsres();
+extern bool_t xdr_fhandle();
+extern bool_t xdr_fhstatus();
+extern bool_t xdr_dirpath();
+extern bool_t xdr_name();
+extern bool_t xdr_mountlist();
+extern bool_t xdr_mountbody();
+extern bool_t xdr_groups();
+extern bool_t xdr_groupnode();
+extern bool_t xdr_exports();
+extern bool_t xdr_exportnode();
+extern bool_t xdr_ppathcnf();
 
 #endif /* K&R C */
 

@@ -13,11 +13,10 @@
 #include <KIO/WorkerBase>
 #include <KLocalizedString>
 
+#include <errno.h>
 #include <stdlib.h>
 #include <sys/stat.h>
-#include <errno.h>
 #include <time.h>
-
 
 // #include <QCache>
 

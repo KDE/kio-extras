@@ -8,22 +8,18 @@
 #ifndef KIO_ACTIVITIES_API_H
 #define KIO_ACTIVITIES_API_H
 
-#include <QString>
 #include <KActivities/Consumer>
 #include <KIO/UDSEntry>
+#include <QString>
 
-class ActivitiesProtocolApi {
+class ActivitiesProtocolApi
+{
 public:
     ActivitiesProtocolApi();
 
-    enum PathType {
-        RootItem,
-        ActivityRootItem,
-        ActivityPathItem
-    };
+    enum PathType { RootItem, ActivityRootItem, ActivityPathItem };
 
-    PathType pathType(const QUrl &url, QString *activity = nullptr,
-                      QString *filePath = nullptr) const;
+    PathType pathType(const QUrl &url, QString *activity = nullptr, QString *filePath = nullptr) const;
 
     void syncActivities(KActivities::Consumer &activities);
 

@@ -24,7 +24,8 @@ struct Action {
 };
 typedef QList<Action> ActionList;
 
-class FileItemLinkingPlugin::Private : public QObject {
+class FileItemLinkingPlugin::Private : public QObject
+{
     Q_OBJECT
 
 public:
@@ -47,15 +48,12 @@ public Q_SLOTS:
     void loadAllActions();
 
 private:
-    enum class Status {
-        LoadingBlocked,
-        ShouldLoad,
-        Loaded
-    };
+    enum class Status { LoadingBlocked, ShouldLoad, Loaded };
     Status status = Status::LoadingBlocked;
 };
 
-class FileItemLinkingPluginActionStaticInit {
+class FileItemLinkingPluginActionStaticInit
+{
 public:
     FileItemLinkingPluginActionStaticInit();
 };

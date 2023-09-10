@@ -16,8 +16,8 @@
 
 #include <KDirNotify>
 #include <KPluginFactory>
-#include <Solid/GenericInterface>
 #include <Solid/DeviceNotifier>
+#include <Solid/GenericInterface>
 
 #include "daemonadaptor.h"
 #include "kiod_kmtpd_debug.h"
@@ -117,8 +117,7 @@ void KMTPd::checkDevice(const Solid::Device &solidDevice)
                     }
                 }
             }
-        }
-        break;
+        } break;
         case LIBMTP_ERROR_GENERAL:
         default:
             qCWarning(LOG_KIOD_KMTPD) << "Unknown connection error";
@@ -130,7 +129,7 @@ void KMTPd::checkDevice(const Solid::Device &solidDevice)
 
 MTPDevice *KMTPd::deviceFromUdi(const QString &udi) const
 {
-    auto deviceIt = std::find_if(m_devices.constBegin(), m_devices.constEnd(), [udi] (const MTPDevice *device) {
+    auto deviceIt = std::find_if(m_devices.constBegin(), m_devices.constEnd(), [udi](const MTPDevice *device) {
         return device->udi() == udi;
     });
 

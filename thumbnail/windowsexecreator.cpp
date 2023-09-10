@@ -9,8 +9,8 @@
 #include "windowsexecreator.h"
 #include "icoutils.h"
 
-#include <QString>
 #include <QImage>
+#include <QString>
 
 #include <KPluginFactory>
 

@@ -3,8 +3,8 @@
     SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
 */
 
-#include <QTest>
 #include <QAbstractItemModelTester>
+#include <QTest>
 
 #include "smburl.h"
 
@@ -72,22 +72,17 @@ private Q_SLOTS:
         // The actual represented URL should not change!
         // i.e. towards the KIO client we do not leak the IPv6
         // literal when returning an URL.
-        QCOMPARE(SMBUrl(QUrl("smb://[::1]/share")).toString(),
-                 "smb://[::1]/share");
+        QCOMPARE(SMBUrl(QUrl("smb://[::1]/share")).toString(), "smb://[::1]/share");
 
         // The internal smbc representation should be literal though:
         // :: prefix
-        QCOMPARE(SMBUrl(QUrl("smb://[::1]/share")).toSmbcUrl(),
-                 "smb://0--1.ipv6-literal.net/share");
+        QCOMPARE(SMBUrl(QUrl("smb://[::1]/share")).toSmbcUrl(), "smb://0--1.ipv6-literal.net/share");
         // :: suffix
-        QCOMPARE(SMBUrl(QUrl("smb://[fe80::]/share")).toSmbcUrl(),
-                 "smb://fe80--0.ipv6-literal.net/share");
+        QCOMPARE(SMBUrl(QUrl("smb://[fe80::]/share")).toSmbcUrl(), "smb://fe80--0.ipv6-literal.net/share");
         // %lo scope
-        QCOMPARE(SMBUrl(QUrl("smb://[::1%lo]/share")).toSmbcUrl(),
-                 "smb://0--1slo.ipv6-literal.net/share");
+        QCOMPARE(SMBUrl(QUrl("smb://[::1%lo]/share")).toSmbcUrl(), "smb://0--1slo.ipv6-literal.net/share");
         // random valid addr
-        QCOMPARE(SMBUrl(QUrl("smb://[fe80::9cd7:32c7:faeb:f23d]/share")).toSmbcUrl(),
-                 "smb://fe80--9cd7-32c7-faeb-f23d.ipv6-literal.net/share");
+        QCOMPARE(SMBUrl(QUrl("smb://[fe80::9cd7:32c7:faeb:f23d]/share")).toSmbcUrl(), "smb://fe80--9cd7-32c7-faeb-f23d.ipv6-literal.net/share");
     }
 
     void testWorkgroupWithSpaces()
@@ -99,30 +94,23 @@ private Q_SLOTS:
         // https://bugs.kde.org/show_bug.cgi?id=204423
 
         // wg
-        QCOMPARE(SMBUrl(QUrl("smb://?kio-workgroup=hax max")).toSmbcUrl(),
-                 "smb://hax max/");
+        QCOMPARE(SMBUrl(QUrl("smb://?kio-workgroup=hax max")).toSmbcUrl(), "smb://hax max/");
         // wg and query
-        QCOMPARE(SMBUrl(QUrl("smb://?kio-workgroup=hax max&q=a")).toSmbcUrl(),
-                 "smb://hax max/?q=a");
+        QCOMPARE(SMBUrl(QUrl("smb://?kio-workgroup=hax max&q=a")).toSmbcUrl(), "smb://hax max/?q=a");
         // host and wg and query
-        QCOMPARE(SMBUrl(QUrl("smb://host/?kio-workgroup=hax max&q=a")).toSmbcUrl(),
-                 "smb://hax max/host?q=a");
+        QCOMPARE(SMBUrl(QUrl("smb://host/?kio-workgroup=hax max&q=a")).toSmbcUrl(), "smb://hax max/host?q=a");
         // host and wg and query
-        QCOMPARE(SMBUrl(QUrl("smb://host/share?kio-workgroup=hax max")).toSmbcUrl(),
-                 "smb://hax max/host/share");
+        QCOMPARE(SMBUrl(QUrl("smb://host/share?kio-workgroup=hax max")).toSmbcUrl(), "smb://hax max/host/share");
         // Non-empty path. libsmbc hates unclean paths
-        QCOMPARE(SMBUrl(QUrl("smb:///////?kio-workgroup=hax max")).toSmbcUrl(),
-                 "smb://hax max/");
+        QCOMPARE(SMBUrl(QUrl("smb:///////?kio-workgroup=hax max")).toSmbcUrl(), "smb://hax max/");
         // % character - run through .url() to simulate behavior of our listDir()
-        QCOMPARE(SMBUrl(QUrl(QUrl("smb://?kio-workgroup=HAX%25MAX").url())).toSmbcUrl(),
-                 "smb://HAX%25MAX/");
+        QCOMPARE(SMBUrl(QUrl(QUrl("smb://?kio-workgroup=HAX%25MAX").url())).toSmbcUrl(), "smb://HAX%25MAX/");
         // !ascii - run through .url() to simulate behavior of our listDir()
         QCOMPARE(SMBUrl(QUrl(QUrl("smb:///?kio-workgroup=DOMÄNE A").url())).toSmbcUrl(),
                  "smb://DOMÄNE A/"); // works as-is with smbc.
 
         // Also make sure type detection knows about this
-        QCOMPARE(SMBUrl(QUrl("smb:/?kio-workgroup=hax max")).getType(),
-                 SMBURLTYPE_WORKGROUP_OR_SERVER);
+        QCOMPARE(SMBUrl(QUrl("smb:/?kio-workgroup=hax max")).getType(), SMBURLTYPE_WORKGROUP_OR_SERVER);
     }
 
     void testNonSmb()

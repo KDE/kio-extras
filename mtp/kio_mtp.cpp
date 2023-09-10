@@ -11,10 +11,10 @@
 #include "kio_mtp_debug.h"
 
 // #include <KComponentData>
-#include <QTemporaryFile>
-#include <QFileInfo>
-#include <QDateTime>
 #include <QCoreApplication>
+#include <QDateTime>
+#include <QFileInfo>
+#include <QTemporaryFile>
 #include <QTimer>
 
 #include <sys/types.h>
@@ -99,8 +99,7 @@ static QString convertPath(const QString &workerPath)
 ///////////////////////////// Worker Implementation ///////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-extern "C"
-int Q_DECL_EXPORT kdemain(int argc, char **argv)
+extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
     app.setApplicationName(QLatin1String("kio_mtp"));
@@ -217,7 +216,10 @@ WorkerResult MTPWorker::listDir(const QUrl &url)
         totalSize(filesize_t(storages.size()));
 
         if (storages.count() <= 0) {
-            return WorkerResult::fail(ERR_WORKER_DEFINED, i18nc("Message shown when attempting to access an MTP device that is not fully accessible yet", "Could not access device. Make sure it is unlocked, and tap \"Allow\" on the popup on its screen. If that does not work, make sure MTP is enabled in its USB connection settings."));
+            return WorkerResult::fail(ERR_WORKER_DEFINED,
+                                      i18nc("Message shown when attempting to access an MTP device that is not fully accessible yet",
+                                            "Could not access device. Make sure it is unlocked, and tap \"Allow\" on the popup on its screen. If that does not "
+                                            "work, make sure MTP is enabled in its USB connection settings."));
         }
 
         for (KMTPStorageInterface *storage : storages) {
@@ -306,14 +308,12 @@ WorkerResult MTPWorker::stat(const QUrl &url)
     } else {
         const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
         if (mtpDevice) {
-
             // device
             if (pathItems.size() < 2) {
                 entry = getEntry(mtpDevice);
             } else {
                 const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
                 if (storage) {
-
                     // storage
                     if (pathItems.size() < 3) {
                         entry = getEntry(storage);
@@ -390,7 +390,6 @@ WorkerResult MTPWorker::get(const QUrl &url)
 
     // file
     if (pathItems.size() > 2) {
-
         const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
         if (mtpDevice) {
             const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
@@ -410,7 +409,7 @@ WorkerResult MTPWorker::get(const QUrl &url)
                 }
 
                 QEventLoop loop;
-                connect(storage, &KMTPStorageInterface::dataReady, &loop, [this] (const QByteArray &data) {
+                connect(storage, &KMTPStorageInterface::dataReady, &loop, [this](const QByteArray &data) {
                     MTPWorker::data(data);
                 });
                 connect(storage, &KMTPStorageInterface::copyFinished, &loop, &QEventLoop::exit);
@@ -623,7 +622,6 @@ WorkerResult MTPWorker::copy(const QUrl &src, const QUrl &dest, int, JobFlags fl
         if (mtpDevice) {
             const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(srcItems.at(1));
             if (storage) {
-
                 QFile destFile(dest.path());
                 if (!destFile.open(QIODevice::Truncate | QIODevice::WriteOnly)) {
                     return WorkerResult::fail(KIO::ERR_WRITE_ACCESS_DENIED, dest.path());
@@ -829,7 +827,7 @@ WorkerResult MTPWorker::fileSystemFreeSpace(const QUrl &url)
 int MTPWorker::waitForCopyOperation(const KMTPStorageInterface *storage)
 {
     QEventLoop loop;
-    connect(storage, &KMTPStorageInterface::copyProgress, &loop, [this] (qulonglong sent, qulonglong total) {
+    connect(storage, &KMTPStorageInterface::copyProgress, &loop, [this](qulonglong sent, qulonglong total) {
         Q_UNUSED(total)
         processedSize(sent);
     });

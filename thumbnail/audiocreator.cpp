@@ -11,26 +11,26 @@
 
 #include <QFile>
 #include <QImage>
-#include <QMimeType>
 #include <QMimeDatabase>
+#include <QMimeType>
 
 #include <KPluginFactory>
 
-#include <apetag.h>
-#include <mp4tag.h>
-#include <id3v2tag.h>
-#include <fileref.h>
-#include <mp4file.h>
-#include <wavfile.h>
+#include <aifffile.h>
 #include <apefile.h>
+#include <apetag.h>
+#include <attachedpictureframe.h>
+#include <fileref.h>
+#include <flacfile.h>
+#include <flacpicture.h>
+#include <id3v2tag.h>
+#include <mp4file.h>
+#include <mp4tag.h>
 #include <mpcfile.h>
 #include <mpegfile.h>
-#include <aifffile.h>
-#include <flacfile.h>
+#include <wavfile.h>
 #include <wavpackfile.h>
 #include <xiphcomment.h>
-#include <flacpicture.h>
-#include <attachedpictureframe.h>
 
 K_PLUGIN_CLASS_WITH_JSON(AudioCreator, "audiothumbnail.json")
 
@@ -49,10 +49,9 @@ namespace RIFF
 {
 namespace AIFF
 {
-struct FileExt : public File
-{
+struct FileExt : public File {
     using File::File;
-    ID3v2::Tag* ID3v2Tag() const
+    ID3v2::Tag *ID3v2Tag() const
     {
         return tag();
     }
@@ -71,7 +70,7 @@ static KIO::ThumbnailResult parseID3v2Tag(T &file)
     if (map["APIC"].isEmpty()) {
         return KIO::ThumbnailResult::fail();
     }
-    auto apicFrame = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame*>(map["APIC"].front());
+    auto apicFrame = dynamic_cast<TagLib::ID3v2::AttachedPictureFrame *>(map["APIC"].front());
     if (!apicFrame) {
         return KIO::ThumbnailResult::fail();
     }
@@ -131,9 +130,9 @@ static KIO::ThumbnailResult parseAPETag(T &file)
         const auto coverData = item.second.binaryData();
         const auto data = coverData.data();
         const auto size = coverData.size();
-        for (size_t i=0; i<size; ++i) {
-            if (data[i] == '\0' && (i+1) < size) {
-                const auto start = data+i+1;
+        for (size_t i = 0; i < size; ++i) {
+            if (data[i] == '\0' && (i + 1) < size) {
+                const auto start = data + i + 1;
                 QImage img;
                 bool okay = img.loadFromData((uchar *)start, size - (start - data));
                 return okay ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
@@ -173,8 +172,7 @@ KIO::ThumbnailResult AudioCreator::create(const KIO::ThumbnailRequest &request)
 
         return parseID3v2Tag(file);
     }
-    if (type.inherits("audio/mp4") || type.inherits("audio/x-m4a") ||
-            type.inherits("audio/vnd.audible.aax")) {
+    if (type.inherits("audio/mp4") || type.inherits("audio/x-m4a") || type.inherits("audio/vnd.audible.aax")) {
         TagLib::MP4::File file(fileName);
         return parseMP4Tag(file);
     }
@@ -195,7 +193,7 @@ KIO::ThumbnailResult AudioCreator::create(const KIO::ThumbnailRequest &request)
         if (fileRef.isNull()) {
             return KIO::ThumbnailResult::fail();
         }
-        auto xiphComment = dynamic_cast<TagLib::Ogg::XiphComment*>(fileRef.tag());
+        auto xiphComment = dynamic_cast<TagLib::Ogg::XiphComment *>(fileRef.tag());
         if (!xiphComment || xiphComment->isEmpty()) {
             return KIO::ThumbnailResult::fail();
         }

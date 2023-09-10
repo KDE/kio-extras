@@ -7,11 +7,13 @@
 #ifndef RESOURCESDATABASESCHEMA_H
 #define RESOURCESDATABASESCHEMA_H
 
-#include <QStringList>
 #include "../Database.h"
+#include <QStringList>
 
-namespace Common {
-namespace ResourcesDatabaseSchema {
+namespace Common
+{
+namespace ResourcesDatabaseSchema
+{
 
 QString version();
 
@@ -26,4 +28,3 @@ void initSchema(Database &database);
 } // namespace Common
 
 #endif // RESOURCESDATABASESCHEMA_H
-

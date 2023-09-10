@@ -9,8 +9,8 @@
 #define KFILEAUDIOPREVIEW_H
 
 #include <KPreviewWidgetBase>
-#include <phonon/phononnamespace.h>
 #include <QVariantList>
+#include <phonon/phononnamespace.h>
 
 class QCheckBox;
 class QUrl;
@@ -23,8 +23,7 @@ class KFileAudioPreview : public KPreviewWidgetBase
     Q_OBJECT
 
 public:
-    explicit KFileAudioPreview(QWidget *parent = nullptr,
-                               const QVariantList &args = QVariantList());
+    explicit KFileAudioPreview(QWidget *parent = nullptr, const QVariantList &args = QVariantList());
     ~KFileAudioPreview() override;
 
 public Q_SLOTS:

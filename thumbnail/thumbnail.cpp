@@ -22,18 +22,18 @@
 #include <QApplication>
 #include <QBuffer>
 #include <QColorSpace>
-#include <QFile>
-#include <QSaveFile>
 #include <QCryptographicHash>
-#include <QImage>
-#include <QIcon>
-#include <QPixmap>
-#include <QUrl>
-#include <QMimeType>
-#include <QMimeDatabase>
-#include <QLibrary>
 #include <QDebug>
+#include <QFile>
+#include <QIcon>
+#include <QImage>
+#include <QLibrary>
+#include <QMimeDatabase>
+#include <QMimeType>
+#include <QPixmap>
 #include <QPluginLoader>
+#include <QSaveFile>
+#include <QUrl>
 
 #include <KConfigGroup>
 #include <KFileItem>
@@ -59,7 +59,7 @@
 #define THUMBNAIL_HACK (1)
 
 #ifdef THUMBNAIL_HACK
-# include <QFileInfo>
+#include <QFileInfo>
 #endif
 
 #include "imagefilter.h"
@@ -97,10 +97,10 @@ class KIOPluginForMetaData : public QObject
     Q_PLUGIN_METADATA(IID "org.kde.kio.worker.thumbnail" FILE "thumbnail.json")
 };
 
-extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
+extern "C" Q_DECL_EXPORT int kdemain(int argc, char **argv)
 {
 #ifdef HAVE_NICE
-    nice( 5 );
+    nice(5);
 #endif
 
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
@@ -127,15 +127,15 @@ extern "C" Q_DECL_EXPORT int kdemain( int argc, char **argv )
     return 0;
 }
 
-
 ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &app)
-    : WorkerBase("thumbnail", pool, app),
-      m_width(0),
-      m_height(0),
-      m_devicePixelRatio(1),
-      m_maxFileSize(0),
-      m_randomGenerator()
-{}
+    : WorkerBase("thumbnail", pool, app)
+    , m_width(0)
+    , m_height(0)
+    , m_devicePixelRatio(1)
+    , m_maxFileSize(0)
+    , m_randomGenerator()
+{
+}
 
 ThumbnailProtocol::~ThumbnailProtocol()
 {
@@ -145,12 +145,10 @@ ThumbnailProtocol::~ThumbnailProtocol()
 /**
  * Scales down the image \p img in a way that it fits into the given maximum width and height
  */
-void scaleDownImage(QImage& img, int maxWidth, int maxHeight)
+void scaleDownImage(QImage &img, int maxWidth, int maxHeight)
 {
     if (img.width() > maxWidth || img.height() > maxHeight) {
-        img = img.scaled(maxWidth,
-                         maxHeight,
-                         Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        img = img.scaled(maxWidth, maxHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     }
 }
 
@@ -158,7 +156,7 @@ void scaleDownImage(QImage& img, int maxWidth, int maxHeight)
  * @brief convertToStandardRgb
  * Convert preview to sRGB for proper viewing on most monitors.
  */
-void convertToStandardRgb(QImage& img)
+void convertToStandardRgb(QImage &img)
 {
     auto cs = img.colorSpace();
     if (!cs.isValid()) {
@@ -190,12 +188,12 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         return KIO::WorkerResult::fail(KIO::ERR_CANNOT_READ, url.path());
     }
 
-    //qDebug() << "Wanting MIME Type:" << m_mimeType;
+    // qDebug() << "Wanting MIME Type:" << m_mimeType;
 #ifdef THUMBNAIL_HACK
     // ### HACK
-    bool direct=false;
+    bool direct = false;
     if (m_mimeType.isEmpty()) {
-        //qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
+        // qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
         if (info.isDir()) {
             m_mimeType = "inode/directory";
         } else {
@@ -204,8 +202,8 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
             m_mimeType = db.mimeTypeForFile(info).name();
         }
 
-        //qDebug() << "Guessing MIME Type:" << m_mimeType;
-        direct=true; // thumbnail: URL was probably typed in Konqueror
+        // qDebug() << "Guessing MIME Type:" << m_mimeType;
+        direct = true; // thumbnail: URL was probably typed in Konqueror
     }
 #endif
 
@@ -221,7 +219,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     }
 #ifdef THUMBNAIL_HACK
     else if (!m_width || !m_height) {
-        //qDebug() << "Guessing height, width, icon size!";
+        // qDebug() << "Guessing height, width, icon size!";
         m_width = 128;
         m_height = 128;
     }
@@ -249,13 +247,13 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
             plugin = pluginForMimeType(m_mimeType).fileName();
         }
 
-        //qDebug() << "Guess plugin: " << plugin;
+        // qDebug() << "Guess plugin: " << plugin;
 #endif
         if (plugin.isEmpty()) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("No plugin specified."));
         }
 
-        ThumbCreatorWithMetadata* creator = getThumbCreator(plugin);
+        ThumbCreatorWithMetadata *creator = getThumbCreator(plugin);
         if (!creator) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Cannot load ThumbCreator %1", plugin));
         }
@@ -300,22 +298,21 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 #ifdef THUMBNAIL_HACK
         if (direct) {
             // If thumbnail was called directly from Konqueror, then the image needs to be raw
-            //qDebug() << "RAW IMAGE TO STREAM";
+            // qDebug() << "RAW IMAGE TO STREAM";
             QBuffer buf;
             if (!buf.open(QIODevice::WriteOnly)) {
                 return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Could not write image."));
             }
-            img.save(&buf,"PNG");
+            img.save(&buf, "PNG");
             buf.close();
             mimeType("image/png");
             data(buf.buffer());
-        }
-        else
+        } else
 #endif
         {
             QByteArray imgData;
-            QDataStream stream( &imgData, QIODevice::WriteOnly );
-            //qDebug() << "IMAGE TO STREAM";
+            QDataStream stream(&imgData, QIODevice::WriteOnly);
+            // qDebug() << "IMAGE TO STREAM";
             stream << img;
             mimeType("application/octet-stream");
             data(imgData);
@@ -323,25 +320,25 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     } else {
 #ifndef Q_OS_WIN
         QByteArray imgData;
-        QDataStream stream( &imgData, QIODevice::WriteOnly );
-        //qDebug() << "IMAGE TO SHMID";
+        QDataStream stream(&imgData, QIODevice::WriteOnly);
+        // qDebug() << "IMAGE TO SHMID";
         void *shmaddr = shmat(shmid.toInt(), nullptr, 0);
         if (shmaddr == (void *)-1) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
         }
-        if( img.format() != QImage::Format_ARGB32 ) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
+        if (img.format() != QImage::Format_ARGB32) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
             img = img.convertToFormat(QImage::Format_ARGB32); //  so make sure there is none
         }
         struct shmid_ds shmStat;
         if (shmctl(shmid.toInt(), IPC_STAT, &shmStat) == -1 || shmStat.shm_segsz < (uint)img.sizeInBytes()) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Image is too big for the shared memory segment"));
-            shmdt((char*)shmaddr);
+            shmdt((char *)shmaddr);
         }
         // Keep in sync with kio/src/previewjob.cpp
         const quint8 format = img.format() | 0x80;
         stream << img.width() << img.height() << format << ((int)img.devicePixelRatio());
         memcpy(shmaddr, img.bits(), img.sizeInBytes());
-        shmdt((char*)shmaddr);
+        shmdt((char *)shmaddr);
         mimeType("application/octet-stream");
         data(imgData);
 #endif
@@ -349,7 +346,8 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     return KIO::WorkerResult::pass();
 }
 
-KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
+KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString &mimeType)
+{
     const QVector<KPluginMetaData> plugins = KIO::PreviewJob::availableThumbnailerPlugins();
     for (const KPluginMetaData &plugin : plugins) {
         if (plugin.supportsMimeType(mimeType)) {
@@ -358,10 +356,10 @@ KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
     }
     for (const auto &plugin : plugins) {
         const QStringList mimeTypes = plugin.mimeTypes() + plugin.value(QStringLiteral("ServiceTypes"), QStringList());
-        for (const QString& mime : mimeTypes) {
-            if(mime.endsWith('*')) {
-                const auto mimeGroup = QStringView(mime).left(mime.length()-1);
-                if(mimeType.startsWith(mimeGroup)) {
+        for (const QString &mime : mimeTypes) {
+            if (mime.endsWith('*')) {
+                const auto mimeGroup = QStringView(mime).left(mime.length() - 1);
+                if (mimeType.startsWith(mimeGroup)) {
                     return plugin;
                 }
             }
@@ -371,21 +369,24 @@ KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString& mimeType) {
     return {};
 }
 
-float ThumbnailProtocol::sequenceIndex() const {
+float ThumbnailProtocol::sequenceIndex() const
+{
     return metaData("sequence-index").toFloat();
 }
 
 bool ThumbnailProtocol::isOpaque(const QImage &image) const
 {
     // Test the corner pixels
-    return qAlpha(image.pixel(QPoint(0, 0))) == 255 &&
-           qAlpha(image.pixel(QPoint(image.width()-1, 0))) == 255 &&
-           qAlpha(image.pixel(QPoint(0, image.height()-1))) == 255 &&
-           qAlpha(image.pixel(QPoint(image.width()-1, image.height()-1))) == 255;
+    return qAlpha(image.pixel(QPoint(0, 0))) == 255 && qAlpha(image.pixel(QPoint(image.width() - 1, 0))) == 255
+        && qAlpha(image.pixel(QPoint(0, image.height() - 1))) == 255 && qAlpha(image.pixel(QPoint(image.width() - 1, image.height() - 1))) == 255;
 }
 
-void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &centerPos,
-        const QImage &image, int borderStrokeWidth, QSize imageTargetSize, int rotationAngle) const
+void ThumbnailProtocol::drawPictureFrame(QPainter *painter,
+                                         const QPoint &centerPos,
+                                         const QImage &image,
+                                         int borderStrokeWidth,
+                                         QSize imageTargetSize,
+                                         int rotationAngle) const
 {
     // Scale the image down so it matches the aspect ratio
     float scaling = 1.0;
@@ -407,8 +408,9 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     m.rotate(rotationAngle);
     m.scale(scaling, scaling);
 
-    const QRectF frameRect(QPointF(0, 0), QPointF(image.width() / image.devicePixelRatio() + scaledFrameWidth*2,
-                                                  image.height() / image.devicePixelRatio() + scaledFrameWidth*2));
+    const QRectF frameRect(
+        QPointF(0, 0),
+        QPointF(image.width() / image.devicePixelRatio() + scaledFrameWidth * 2, image.height() / image.devicePixelRatio() + scaledFrameWidth * 2));
 
     QRect r = m.mapRect(QRectF(frameRect)).toAlignedRect();
 
@@ -448,7 +450,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter, const QPoint &center
     painter->drawImage(r.topLeft(), transformed);
 }
 
-QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
+QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
 {
     QImage img;
     if (m_propagationDirectories.isEmpty()) {
@@ -459,7 +461,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
         m_maxFileSize = globalConfig.readEntry("MaximumSize", std::numeric_limits<qint64>::max());
     }
 
-    const int tiles = 2; //Count of items shown on each dimension
+    const int tiles = 2; // Count of items shown on each dimension
     const int spacing = 1 * m_devicePixelRatio;
     const int visibleCount = tiles * tiles;
 
@@ -478,7 +480,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
         folder = folder.scaled(extent, extent, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     }
 
-    const int folderWidth  = folder.width();
+    const int folderWidth = folder.width();
     const int folderHeight = folder.height();
 
     const int topMargin = folderHeight * 30 / 100;
@@ -489,8 +491,8 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
     // (i.e for each 170px the folder width increases those border increase by 1 px)
     const int borderStrokeWidth = qRound(folderWidth / 170.);
 
-    const int segmentWidth  = (folderWidth  - leftMargin - rightMargin  + spacing) / tiles - spacing;
-    const int segmentHeight = (folderHeight - topMargin  - bottomMargin + spacing) / tiles - spacing;
+    const int segmentWidth = (folderWidth - leftMargin - rightMargin + spacing) / tiles - spacing;
+    const int segmentHeight = (folderHeight - topMargin - bottomMargin + spacing) / tiles - spacing;
     if ((segmentWidth < 5 * m_devicePixelRatio) || (segmentHeight < 5 * m_devicePixelRatio)) {
         // the segment size is too small for a useful preview
         return img;
@@ -583,7 +585,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
         if (!dir.hasNext() && totalValidThumbs < 0) {
             // We iterated over the entire directory for the first time, so now we know how many thumbs
             // were actually created.
-            totalValidThumbs = skipped+validThumbnails;
+            totalValidThumbs = skipped + validThumbnails;
         }
 
         if (validThumbnails > 0) {
@@ -606,7 +608,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
     if (totalValidThumbs >= 0) {
         // We only know this once we've iterated over the entire directory, so this will only be
         // set for large enough sequence indices.
-        const int wraparoundPoint = (totalValidThumbs-1)/visibleCount + 1;
+        const int wraparoundPoint = (totalValidThumbs - 1) / visibleCount + 1;
         setMetaData("sequenceIndexWraparoundPoint", QString().setNum(wraparoundPoint));
     }
     setMetaData("handlesSequences", QStringLiteral("1"));
@@ -652,7 +654,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString& directory)
     return img;
 }
 
-ThumbCreatorWithMetadata* ThumbnailProtocol::getThumbCreator(const QString& plugin)
+ThumbCreatorWithMetadata *ThumbnailProtocol::getThumbCreator(const QString &plugin)
 {
     auto it = m_creators.constFind(plugin);
     if (it != m_creators.constEnd()) {
@@ -740,12 +742,11 @@ void ThumbnailProtocol::ensureDirsCreated()
     }
 }
 
-bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &filePath,
-                                           int segmentWidth, int segmentHeight)
+bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &filePath, int segmentWidth, int segmentHeight)
 {
-    auto getSubCreator = [&filePath, this]() -> ThumbCreatorWithMetadata* {
+    auto getSubCreator = [&filePath, this]() -> ThumbCreatorWithMetadata * {
         const QMimeDatabase db;
-        const KPluginMetaData  subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
+        const KPluginMetaData subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
         if (!subPlugin.isValid() || !m_enabledPlugins.contains(subPlugin.pluginId())) {
             return nullptr;
         }
@@ -793,7 +794,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
 
         // no cached version is available, a new thumbnail must be created
         if (thumbnail.isNull()) {
-            ThumbCreatorWithMetadata* subCreator = getSubCreator();
+            ThumbCreatorWithMetadata *subCreator = getSubCreator();
             if (subCreator && createThumbnail(subCreator, filePath, cacheSize, cacheSize, thumbnail)) {
                 scaleDownImage(thumbnail, cacheSize, cacheSize);
 
@@ -835,7 +836,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
     } else {
         // image requested is too big to be stored in the cache
         // create an image on demand
-        ThumbCreatorWithMetadata* subCreator = getSubCreator();
+        ThumbCreatorWithMetadata *subCreator = getSubCreator();
         if (!subCreator || !createThumbnail(subCreator, filePath, segmentWidth, segmentHeight, thumbnail)) {
             return false;
         }
@@ -847,7 +848,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
     return true;
 }
 
-bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, const QString& filePath, int width, int height, QImage& thumbnail)
+bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, const QString &filePath, int width, int height, QImage &thumbnail)
 {
     bool success = false;
 
@@ -876,8 +877,7 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, 
             m_sequenceIndexWrapAroundPoint = sequenceCreator->sequenceIndexWraparoundPoint();
         }
 
-    }
-    else {
+    } else {
 #endif
         auto result = std::get<ThumbnailCreatorPtr>(thumbCreator->creator)
                           ->create(KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(width, height), m_mimeType, m_devicePixelRatio, sequenceIndex()));
@@ -902,12 +902,12 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata* thumbCreator, 
     return true;
 }
 
-void ThumbnailProtocol::drawSubThumbnail(QPainter& p, QImage subThumbnail, int width, int height, int xPos, int yPos, int borderStrokeWidth)
+void ThumbnailProtocol::drawSubThumbnail(QPainter &p, QImage subThumbnail, int width, int height, int xPos, int yPos, int borderStrokeWidth)
 {
     scaleDownImage(subThumbnail, width, height);
 
     // center the image inside the segment boundaries
-    const QPoint centerPos((xPos + width/ 2) / m_devicePixelRatio, (yPos + height / 2) / m_devicePixelRatio);
+    const QPoint centerPos((xPos + width / 2) / m_devicePixelRatio, (yPos + height / 2) / m_devicePixelRatio);
     const int rotationAngle = m_randomGenerator.bounded(-8, 9); // Random rotation ±8°
     drawPictureFrame(&p, centerPos, subThumbnail, borderStrokeWidth, QSize(width, height), rotationAngle);
 }

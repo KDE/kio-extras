@@ -9,10 +9,10 @@
 #include "windowsimagecreator.h"
 #include "icoutils.h"
 
-#include <QString>
 #include <QImage>
 #include <QImageReader>
 #include <QMimeDatabase>
+#include <QString>
 
 #include <KPluginFactory>
 

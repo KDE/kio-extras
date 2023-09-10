@@ -51,9 +51,9 @@ extern "C" {
 //---------------------------
 // kio_smb internal includes
 //---------------------------
-#include "smburl.h"
 #include "smbauthenticator.h"
 #include "smbcontext.h"
+#include "smburl.h"
 
 using namespace KIO;
 class SMBWorker;
@@ -63,6 +63,7 @@ class WorkerFrontend : public SMBAbstractFrontend
 public:
     explicit WorkerFrontend(SMBWorker &worker);
     bool checkCachedAuthentication(AuthInfo &info) override;
+
 private:
     SMBWorker &m_worker;
 };
@@ -72,12 +73,11 @@ class SMBWorker : public QObject, public KIO::WorkerBase
     Q_OBJECT
     friend class SMBCDiscoverer;
     friend class SMBResumeIO;
-    WorkerFrontend m_frontend { *this };
+    WorkerFrontend m_frontend{*this};
     SMBContext m_context{new SMBAuthenticator(m_frontend)};
     Q_DISABLE_COPY(SMBWorker)
 
 private:
-
     class SMBError
     {
     public:
@@ -278,7 +278,7 @@ private:
 //===========================================================================
 // Main worker entrypoint (see kio_smb.cpp)
 extern "C" {
-    int kdemain(int argc, char **argv);
+int kdemain(int argc, char **argv);
 }
 
-#endif //#endif KIO_SMB_H_INCLUDED
+#endif // #endif KIO_SMB_H_INCLUDED

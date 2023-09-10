@@ -47,5 +47,4 @@ Q_SIGNALS:
     void friendlyNameChanged(const QString &friendlyName);
 };
 
-
 #endif // KMTPDEVICEINTERFACE_H

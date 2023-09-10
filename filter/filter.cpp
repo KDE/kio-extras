@@ -10,15 +10,15 @@ SPDX-License-Identifier: MIT
 #include "filter.h"
 
 #include <QCoreApplication>
-#include <QFileInfo>
-#include <QFile>
-#include <QUrl>
 #include <QDebug>
-#include <QMimeType>
+#include <QFile>
+#include <QFileInfo>
 #include <QMimeDatabase>
+#include <QMimeType>
+#include <QUrl>
 
-#include <KFilterBase>
 #include <KCompressionDevice>
+#include <KFilterBase>
 
 #include "loggingcategory.h"
 
@@ -30,18 +30,17 @@ class KIOPluginForMetaData : public QObject
 };
 
 extern "C" {
-    Q_DECL_EXPORT int kdemain(int argc, char **argv);
+Q_DECL_EXPORT int kdemain(int argc, char **argv);
 }
 
-int kdemain( int argc, char ** argv)
+int kdemain(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
     app.setApplicationName("kio_filter");
 
     qDebug(KIO_FILTER_DEBUG) << "Starting";
 
-    if (argc != 4)
-    {
+    if (argc != 4) {
         fprintf(stderr, "Usage: kio_filter protocol domain-socket1 domain-socket2\n");
         exit(-1);
     }
@@ -53,19 +52,17 @@ int kdemain( int argc, char ** argv)
     return 0;
 }
 
-FilterProtocol::FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app )
-    : KIO::WorkerBase( protocol, pool, app )
+FilterProtocol::FilterProtocol(const QByteArray &protocol, const QByteArray &pool, const QByteArray &app)
+    : KIO::WorkerBase(protocol, pool, app)
     , m_protocol(QString::fromLatin1(protocol))
 {
-    const QString mimetype =
-        (protocol == "zstd") ? QStringLiteral("application/zstd") :
-        QLatin1String("application/x-") + QLatin1String(protocol.constData());
+    const QString mimetype = (protocol == "zstd") ? QStringLiteral("application/zstd") : QLatin1String("application/x-") + QLatin1String(protocol.constData());
 
-    filter = KCompressionDevice::filterForCompressionType(KCompressionDevice::compressionTypeForMimeType( mimetype ));
+    filter = KCompressionDevice::filterForCompressionType(KCompressionDevice::compressionTypeForMimeType(mimetype));
     Q_ASSERT(filter);
 }
 
-KIO::WorkerResult FilterProtocol::get(const QUrl& url)
+KIO::WorkerResult FilterProtocol::get(const QUrl &url)
 {
     // In the old solution, subURL would be set by setSubURL.
     // KDE4: now I simply assume bzip2:/localpath/file.bz2 and set subURL to the local path.
@@ -94,36 +91,30 @@ KIO::WorkerResult FilterProtocol::get(const QUrl& url)
     int result;
 
     QByteArray inputBuffer;
-    inputBuffer.resize(8*1024);
+    inputBuffer.resize(8 * 1024);
     QByteArray outputBuffer;
-    outputBuffer.resize(8*1024); // Start with a modest buffer
-    filter->setOutBuffer( outputBuffer.data(), outputBuffer.size() );
-    while(true)
-    {
-        if (filter->inBufferEmpty())
-        {
+    outputBuffer.resize(8 * 1024); // Start with a modest buffer
+    filter->setOutBuffer(outputBuffer.data(), outputBuffer.size());
+    while (true) {
+        if (filter->inBufferEmpty()) {
             result = localFile.read(inputBuffer.data(), inputBuffer.size());
             qDebug(KIO_FILTER_DEBUG) << "requestData: got " << result;
-            if (result <= 0)
-            {
+            if (result <= 0) {
                 bError = true;
                 break; // Unexpected EOF.
             }
-            filter->setInBuffer( inputBuffer.data(), inputBuffer.size() );
+            filter->setInBuffer(inputBuffer.data(), inputBuffer.size());
         }
-        if (bNeedHeader)
-        {
+        if (bNeedHeader) {
             bError = !filter->readHeader();
             if (bError)
                 break;
             bNeedHeader = false;
         }
         result = filter->uncompress();
-        if ((filter->outBufferAvailable() == 0) || (result == KFilterBase::End))
-        {
+        if ((filter->outBufferAvailable() == 0) || (result == KFilterBase::End)) {
             qDebug(KIO_FILTER_DEBUG) << "avail_out = " << filter->outBufferAvailable();
-            if (filter->outBufferAvailable() != 0)
-            {
+            if (filter->outBufferAvailable() != 0) {
                 // Discard unused space :-)
                 outputBuffer.resize(outputBuffer.size() - filter->outBufferAvailable());
             }
@@ -132,7 +123,7 @@ KIO::WorkerResult FilterProtocol::get(const QUrl& url)
                 const QString extension = QFileInfo(subURL.path()).suffix();
                 QMimeDatabase db;
                 QMimeType mime;
-                if (extension == "gz" || extension == "bz" || extension == "bz2"|| extension == "zst") {
+                if (extension == "gz" || extension == "bz" || extension == "bz2" || extension == "zst") {
                     QString baseName = subURL.path();
                     baseName.truncate(baseName.length() - extension.length() - 1 /*the dot*/);
                     qDebug(KIO_FILTER_DEBUG) << "baseName=" << baseName;
@@ -141,16 +132,15 @@ KIO::WorkerResult FilterProtocol::get(const QUrl& url)
                     mime = db.mimeTypeForData(outputBuffer);
                 }
                 qDebug(KIO_FILTER_DEBUG) << "Emitting mimetype " << mime.name();
-                mimeType( mime.name() );
+                mimeType(mime.name());
                 bNeedMimetype = false;
             }
-            data( outputBuffer ); // Send data
-            filter->setOutBuffer( outputBuffer.data(), outputBuffer.size() );
+            data(outputBuffer); // Send data
+            filter->setOutBuffer(outputBuffer.data(), outputBuffer.size());
             if (result == KFilterBase::End)
                 break; // Finished.
         }
-        if (result != KFilterBase::Ok)
-        {
+        if (result != KFilterBase::Ok) {
             bError = true;
             break; // Error
         }

@@ -20,8 +20,8 @@ public:
     explicit MANProtocol(const QByteArray &pool_socket, const QByteArray &app_socket);
     ~MANProtocol() override;
 
-    KIO::WorkerResult get(const QUrl& url) override;
-    KIO::WorkerResult stat(const QUrl& url) override;
+    KIO::WorkerResult get(const QUrl &url) override;
+    KIO::WorkerResult stat(const QUrl &url) override;
 
     KIO::WorkerResult mimetype(const QUrl &url) override;
     KIO::WorkerResult listDir(const QUrl &url) override;
@@ -32,25 +32,23 @@ public:
 
     static MANProtocol *self();
 
-    void showIndex(const QString& section);
+    void showIndex(const QString &section);
 
 private:
-    void outputError(const QString& errmsg);
+    void outputError(const QString &errmsg);
     void outputMatchingPages(const QStringList &matchingPages);
 
     void showMainIndex();
 
     void checkManPaths();
     QStringList manDirectories();
-    QMap<QString, QString> buildIndexMap(const QString& section);
-    bool addWhatIs(QMap<QString, QString>& i, const QString& f, const QString& mark);
-    void parseWhatIs( QMap<QString, QString> &i, QTextStream &t, const QString &mark );
-    QStringList findPages(const QString& section,
-                          const QString &title,
-                          bool full_path = true);
+    QMap<QString, QString> buildIndexMap(const QString &section);
+    bool addWhatIs(QMap<QString, QString> &i, const QString &f, const QString &mark);
+    void parseWhatIs(QMap<QString, QString> &i, QTextStream &t, const QString &mark);
+    QStringList findPages(const QString &section, const QString &title, bool full_path = true);
 
-    QStringList buildSectionList(const QStringList& dirs) const;
-    void constructPath(QStringList& constr_path, QStringList constr_catmanpath);
+    QStringList buildSectionList(const QStringList &dirs) const;
+    void constructPath(QStringList &constr_path, QStringList constr_catmanpath);
     QStringList findManPagesInSection(const QString &dir, const QString &title, bool full_path);
 
     void outputHeader(QTextStream &os, const QString &header, const QString &title = QString());
@@ -71,6 +69,5 @@ private:
     QBuffer m_outputBuffer; ///< Buffer for the output
     QByteArray m_manCSSFile; ///< Path to kio_man.css
 };
-
 
 #endif

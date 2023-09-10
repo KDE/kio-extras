@@ -24,22 +24,22 @@
 #include <memory.h>
 #include <netdb.h>
 #include <pwd.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
-#include <stdio.h>
 #include <time.h>
 #include <unistd.h>
 #include <utime.h>
 
-#include <QFile>
-#include <QDir>
 #include <QDebug>
+#include <QDir>
+#include <QFile>
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QUrl>
 
-#include <KLocalizedString>
 #include <KIO/Global>
+#include <KLocalizedString>
 #include <kio/ioworker_defaults.h>
 
 // For the complete NFSv2 reference see http://tools.ietf.org/html/rfc1094
@@ -48,13 +48,12 @@
 #define NFSPROG 100003UL
 #define NFSVERS 2UL
 
-
-NFSProtocolV2::NFSProtocolV2(NFSSlave* slave)
-    :  NFSProtocol(slave),
-       m_mountClient(nullptr),
-       m_mountSock(-1),
-       m_nfsClient(nullptr),
-       m_nfsSock(-1)
+NFSProtocolV2::NFSProtocolV2(NFSSlave *slave)
+    : NFSProtocol(slave)
+    , m_mountClient(nullptr)
+    , m_mountSock(-1)
+    , m_nfsClient(nullptr)
+    , m_nfsSock(-1)
 {
     qCDebug(LOG_KIO_NFS);
 
@@ -67,17 +66,15 @@ NFSProtocolV2::~NFSProtocolV2()
     closeConnection();
 }
 
-bool NFSProtocolV2::isCompatible(bool& connectionError)
+bool NFSProtocolV2::isCompatible(bool &connectionError)
 {
     int ret = -1;
 
-    CLIENT* client = nullptr;
+    CLIENT *client = nullptr;
     int sock = 0;
     if (NFSProtocol::openConnection(currentHost(), NFSPROG, NFSVERS, client, sock) == 0) {
         // Check if the NFS version is compatible
-        ret = clnt_call(client, NFSPROC_NULL,
-                        (xdrproc_t) xdr_void, nullptr,
-                        (xdrproc_t) xdr_void, nullptr, clnt_timeout);
+        ret = clnt_call(client, NFSPROC_NULL, (xdrproc_t)xdr_void, nullptr, (xdrproc_t)xdr_void, nullptr, clnt_timeout);
 
         connectionError = false;
     } else {
@@ -108,10 +105,7 @@ void NFSProtocolV2::closeConnection()
 
     // Unmount all exported dirs(if any)
     if (m_mountClient != nullptr) {
-        clnt_call(m_mountClient, MOUNTPROC_UMNTALL,
-                  (xdrproc_t) xdr_void, nullptr,
-                  (xdrproc_t) xdr_void, nullptr,
-                  clnt_timeout);
+        clnt_call(m_mountClient, MOUNTPROC_UMNTALL, (xdrproc_t)xdr_void, nullptr, (xdrproc_t)xdr_void, nullptr, clnt_timeout);
     }
 
     if (m_mountSock >= 0) {
@@ -133,7 +127,7 @@ void NFSProtocolV2::closeConnection()
     }
 }
 
-NFSFileHandle NFSProtocolV2::lookupFileHandle(const QString& path)
+NFSFileHandle NFSProtocolV2::lookupFileHandle(const QString &path)
 {
     NFSFileHandle fh;
     int rpcStatus;
@@ -153,13 +147,15 @@ NFSFileHandle NFSProtocolV2::lookupFileHandle(const QString& path)
             memset(&readLinkRes, 0, sizeof(readLinkRes));
             readLinkRes.readlinkres_u.data = dataBuffer;
 
-            int rpcStatus = clnt_call(m_nfsClient, NFSPROC_READLINK,
-                                      (xdrproc_t) xdr_nfs_fh, reinterpret_cast<caddr_t>(&readLinkArgs),
-                                      (xdrproc_t) xdr_readlinkres, reinterpret_cast<caddr_t>(&readLinkRes),
+            int rpcStatus = clnt_call(m_nfsClient,
+                                      NFSPROC_READLINK,
+                                      (xdrproc_t)xdr_nfs_fh,
+                                      reinterpret_cast<caddr_t>(&readLinkArgs),
+                                      (xdrproc_t)xdr_readlinkres,
+                                      reinterpret_cast<caddr_t>(&readLinkRes),
                                       clnt_timeout);
 
-            if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS_OK)
-            {   // get the absolute link target
+            if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS_OK) { // get the absolute link target
                 QString linkPath = QString::fromLocal8Bit(readLinkRes.readlinkres_u.data);
                 linkPath = QFileInfo(QFileInfo(path).path(), linkPath).absoluteFilePath();
 
@@ -168,11 +164,9 @@ NFSFileHandle NFSProtocolV2::lookupFileHandle(const QString& path)
                 // outside of the exported directories).  Check for this before
                 // calling lookupHandle() on the target of the link, as otherwise
                 // an error will be set which is not relevant.
-                if (isValidPath(linkPath))
-                {
+                if (isValidPath(linkPath)) {
                     diropres linkRes;
-                    if (lookupHandle(linkPath, rpcStatus, linkRes))
-                    {
+                    if (lookupHandle(linkPath, rpcStatus, linkRes)) {
                         NFSFileHandle linkFh = linkRes.diropres_u.diropres.file;
                         linkFh.setLinkSource(res.diropres_u.diropres.file);
                         qCDebug(LOG_KIO_NFS) << "Found link target" << linkPath;
@@ -213,10 +207,8 @@ void NFSProtocolV2::openConnection()
     exports exportlist;
     memset(&exportlist, 0, sizeof(exportlist));
 
-    int clnt_stat = clnt_call(m_mountClient, MOUNTPROC_EXPORT,
-                              (xdrproc_t) xdr_void, nullptr,
-                              (xdrproc_t) xdr_exports, reinterpret_cast<caddr_t>(&exportlist),
-                              clnt_timeout);
+    int clnt_stat =
+        clnt_call(m_mountClient, MOUNTPROC_EXPORT, (xdrproc_t)xdr_void, nullptr, (xdrproc_t)xdr_exports, reinterpret_cast<caddr_t>(&exportlist), clnt_timeout);
 
     if (!checkForError(clnt_stat, 0, host.toLatin1())) {
         return;
@@ -229,11 +221,13 @@ void NFSProtocolV2::openConnection()
     for (; exportlist != nullptr; exportlist = exportlist->ex_next, exportsCount++) {
         memset(&fhStatus, 0, sizeof(fhStatus));
 
-        clnt_stat = clnt_call(m_mountClient, MOUNTPROC_MNT,
-                              (xdrproc_t) xdr_dirpath, reinterpret_cast<caddr_t>(&exportlist->ex_dir),
-                              (xdrproc_t) xdr_fhstatus, reinterpret_cast<caddr_t>(&fhStatus),
+        clnt_stat = clnt_call(m_mountClient,
+                              MOUNTPROC_MNT,
+                              (xdrproc_t)xdr_dirpath,
+                              reinterpret_cast<caddr_t>(&exportlist->ex_dir),
+                              (xdrproc_t)xdr_fhstatus,
+                              reinterpret_cast<caddr_t>(&fhStatus),
                               clnt_timeout);
-
 
         QString fname = QFileInfo(QDir::root(), exportlist->ex_dir).filePath();
         if (fhStatus.fhs_status == 0) {
@@ -246,7 +240,7 @@ void NFSProtocolV2::openConnection()
             // Save the exported directory and its NFS file handle.
             addFileHandle(fname, static_cast<NFSFileHandle>(fhStatus.fhstatus_u.fhs_fhandle));
             addExportedDir(fname);
-        } else {                    // mount failed with error
+        } else { // mount failed with error
             qCDebug(LOG_KIO_NFS) << "Cannot mount" << fname << "- status" << fhStatus.fhs_status;
 
             // Even if the mount failed, record the directory path as exported
@@ -256,7 +250,8 @@ void NFSProtocolV2::openConnection()
             // accessing anything below it, will be detected in
             // NFSProtocol::getFileHandle() and fail with an appropriate
             // error.
-            if (!isExportedDir(fname)) addExportedDir(fname);
+            if (!isExportedDir(fname))
+                addExportedDir(fname);
 
             // Many modern NFS servers by default reject any access attempted to
             // them from a non-reserved source port (i.e. above 1024).  Since
@@ -281,8 +276,7 @@ void NFSProtocolV2::openConnection()
     // NFS server connection here.  However, call openConnection() anyway
     // and pretend that we are connected so that listing virtual directories
     // will work.
-    if ((connErr = NFSProtocol::openConnection(host, NFSPROG, NFSVERS, m_nfsClient, m_nfsSock)) != 0)
-    {
+    if ((connErr = NFSProtocol::openConnection(host, NFSPROG, NFSVERS, m_nfsClient, m_nfsSock)) != 0) {
         closeConnection();
         setError(connErr, host);
     }
@@ -292,12 +286,13 @@ void NFSProtocolV2::openConnection()
     qCDebug(LOG_KIO_NFS) << "openConnection succeeded";
 }
 
-void NFSProtocolV2::listDir(const QUrl& url)
+void NFSProtocolV2::listDir(const QUrl &url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
-    const QString path = listDirInternal(url);      // check path, list virtual dir
-    if (path.isEmpty()) return;             // no more to do
+    const QString path = listDirInternal(url); // check path, list virtual dir
+    if (path.isEmpty())
+        return; // no more to do
 
     const NFSFileHandle fh = getFileHandle(path);
     if (fh.isInvalid() || fh.isBadLink()) {
@@ -313,7 +308,7 @@ void NFSProtocolV2::listDir(const QUrl& url)
     readdirres listres;
 
     QStringList filesToList;
-    entry* lastEntry = nullptr;
+    entry *lastEntry = nullptr;
     do {
         memset(&listres, 0, sizeof(listres));
         // In case that we didn't get all entries we need to set the cookie to the last one we actually received.
@@ -321,16 +316,19 @@ void NFSProtocolV2::listDir(const QUrl& url)
             memcpy(listargs.cookie, lastEntry->cookie, NFS_COOKIESIZE);
         }
 
-        int clnt_stat = clnt_call(m_nfsClient, NFSPROC_READDIR,
-                                  (xdrproc_t) xdr_readdirargs, reinterpret_cast<caddr_t>(&listargs),
-                                  (xdrproc_t) xdr_readdirres, reinterpret_cast<caddr_t>(&listres),
+        int clnt_stat = clnt_call(m_nfsClient,
+                                  NFSPROC_READDIR,
+                                  (xdrproc_t)xdr_readdirargs,
+                                  reinterpret_cast<caddr_t>(&listargs),
+                                  (xdrproc_t)xdr_readdirres,
+                                  reinterpret_cast<caddr_t>(&listres),
                                   clnt_timeout);
 
         if (!checkForError(clnt_stat, listres.status, path)) {
             return;
         }
 
-        for (entry* dirEntry = listres.readdirres_u.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
+        for (entry *dirEntry = listres.readdirres_u.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
             if (dirEntry->name != QString("..")) {
                 filesToList.append(QFile::decodeName(dirEntry->name));
             }
@@ -353,7 +351,7 @@ void NFSProtocolV2::listDir(const QUrl& url)
         KIO::UDSEntry entry;
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, (*it));
 
-        //is it a symlink ?
+        // is it a symlink ?
         if (dirres.diropres_u.diropres.attributes.type == NFLNK) {
             int rpcStatus;
             readlinkres readLinkRes;
@@ -380,7 +378,6 @@ void NFSProtocolV2::listDir(const QUrl& url)
                             completeUDSEntry(entry, attrAndStat.attrstat_u.attributes);
                         }
                     }
-
                 }
 
                 if (badLink) {
@@ -404,17 +401,16 @@ void NFSProtocolV2::listDir(const QUrl& url)
     }
 }
 
-
 void NFSProtocolV2::stat(const QUrl &url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
-    const QString path = statInternal(url);     // check path, process virtual dir
-    if (path.isEmpty()) return;             // no more to do
+    const QString path = statInternal(url); // check path, process virtual dir
+    if (path.isEmpty())
+        return; // no more to do
 
     const NFSFileHandle fh = getFileHandle(path);
-    if (fh.isInvalid())
-    {
+    if (fh.isInvalid()) {
         qCDebug(LOG_KIO_NFS) << "File handle is invalid";
         setError(KIO::ERR_DOES_NOT_EXIST, path);
         return;
@@ -475,8 +471,7 @@ void NFSProtocolV2::stat(const QUrl &url)
     slave()->statEntry(entry);
 }
 
-
-void NFSProtocolV2::mkdir(const QUrl& url, int permissions)
+void NFSProtocolV2::mkdir(const QUrl &url, int permissions)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
@@ -508,16 +503,18 @@ void NFSProtocolV2::mkdir(const QUrl& url, int permissions)
     diropres dirres;
     memset(&dirres, 0, sizeof(diropres));
 
-    int clnt_stat = clnt_call(m_nfsClient, NFSPROC_MKDIR,
-                              (xdrproc_t) xdr_createargs, reinterpret_cast<caddr_t>(&createArgs),
-                              (xdrproc_t) xdr_diropres, reinterpret_cast<caddr_t>(&dirres),
+    int clnt_stat = clnt_call(m_nfsClient,
+                              NFSPROC_MKDIR,
+                              (xdrproc_t)xdr_createargs,
+                              reinterpret_cast<caddr_t>(&createArgs),
+                              (xdrproc_t)xdr_diropres,
+                              reinterpret_cast<caddr_t>(&dirres),
                               clnt_timeout);
 
     checkForError(clnt_stat, dirres.status, path);
 }
 
-
-void NFSProtocolV2::del(const QUrl& url, bool)
+void NFSProtocolV2::del(const QUrl &url, bool)
 {
     int rpcStatus;
     nfsstat nfsStatus;
@@ -525,8 +522,7 @@ void NFSProtocolV2::del(const QUrl& url, bool)
     checkForError(rpcStatus, nfsStatus, url.path());
 }
 
-
-void NFSProtocolV2::chmod(const QUrl& url, int permissions)
+void NFSProtocolV2::chmod(const QUrl &url, int permissions)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
@@ -546,8 +542,7 @@ void NFSProtocolV2::chmod(const QUrl& url, int permissions)
     checkForError(rpcStatus, result, path);
 }
 
-
-void NFSProtocolV2::get(const QUrl& url)
+void NFSProtocolV2::get(const QUrl &url)
 {
     qCDebug(LOG_KIO_NFS) << url;
 
@@ -575,9 +570,12 @@ void NFSProtocolV2::get(const QUrl& url)
     int offset = 0;
     QByteArray readBuffer;
     do {
-        int clnt_stat = clnt_call(m_nfsClient, NFSPROC_READ,
-                                  (xdrproc_t) xdr_readargs, reinterpret_cast<caddr_t>(&readArgs),
-                                  (xdrproc_t) xdr_readres, reinterpret_cast<caddr_t>(&readRes),
+        int clnt_stat = clnt_call(m_nfsClient,
+                                  NFSPROC_READ,
+                                  (xdrproc_t)xdr_readargs,
+                                  reinterpret_cast<caddr_t>(&readArgs),
+                                  (xdrproc_t)xdr_readres,
+                                  reinterpret_cast<caddr_t>(&readRes),
                                   clnt_timeout);
 
         if (!checkForError(clnt_stat, readRes.status, path)) {
@@ -612,8 +610,7 @@ void NFSProtocolV2::get(const QUrl& url)
     }
 }
 
-
-void NFSProtocolV2::put(const QUrl& url, int _mode, KIO::JobFlags flags)
+void NFSProtocolV2::put(const QUrl &url, int _mode, KIO::JobFlags flags)
 {
     qCDebug(LOG_KIO_NFS) << url << _mode;
 
@@ -631,7 +628,7 @@ void NFSProtocolV2::put(const QUrl& url, int _mode, KIO::JobFlags flags)
         return;
     }
 
-    //the file exists and we don't want to overwrite
+    // the file exists and we don't want to overwrite
     if (!destFH.isInvalid() && (!(flags & KIO::Overwrite))) {
         setError(KIO::ERR_FILE_ALREADY_EXIST, destPath);
         return;
@@ -663,7 +660,7 @@ void NFSProtocolV2::put(const QUrl& url, int _mode, KIO::JobFlags flags)
         QByteArray buffer;
         result = slave()->readData(buffer);
 
-        char* data = buffer.data();
+        char *data = buffer.data();
         int bytesToWrite = buffer.size(), writeNow = 0;
         if (result > 0) {
             do {
@@ -676,9 +673,12 @@ void NFSProtocolV2::put(const QUrl& url, int _mode, KIO::JobFlags flags)
                 writeArgs.data.data_val = data;
                 writeArgs.data.data_len = writeNow;
 
-                int clnt_stat = clnt_call(m_nfsClient, NFSPROC_WRITE,
-                                          (xdrproc_t) xdr_writeargs, reinterpret_cast<caddr_t>(&writeArgs),
-                                          (xdrproc_t) xdr_attrstat, reinterpret_cast<caddr_t>(&attrStat),
+                int clnt_stat = clnt_call(m_nfsClient,
+                                          NFSPROC_WRITE,
+                                          (xdrproc_t)xdr_writeargs,
+                                          reinterpret_cast<caddr_t>(&writeArgs),
+                                          (xdrproc_t)xdr_attrstat,
+                                          reinterpret_cast<caddr_t>(&attrStat),
                                           clnt_timeout);
 
                 if (!checkForError(clnt_stat, attrStat.status, fileInfo.fileName())) {
@@ -695,8 +695,7 @@ void NFSProtocolV2::put(const QUrl& url, int _mode, KIO::JobFlags flags)
     } while (result > 0);
 }
 
-
-void NFSProtocolV2::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags _flags)
+void NFSProtocolV2::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags _flags)
 {
     qCDebug(LOG_KIO_NFS) << src << "to" << dest;
 
@@ -723,8 +722,7 @@ void NFSProtocolV2::rename(const QUrl& src, const QUrl& dest, KIO::JobFlags _fla
     checkForError(rpcStatus, nfsStatus, destPath);
 }
 
-
-void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::JobFlags _flags)
+void NFSProtocolV2::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::JobFlags _flags)
 {
     qCDebug(LOG_KIO_NFS) << src << "to" << dest;
 
@@ -750,7 +748,7 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
 
     // Is it a link? No need to copy the data then, just copy the link destination.
     if (srcFH.isLink()) {
-        //get the link dest
+        // get the link dest
         int rpcStatus;
         readlinkres readLinkRes;
         char nameBuf[NFS_MAXPATHLEN];
@@ -856,9 +854,12 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     bool error = false;
     int bytesRead = 0;
     do {
-        int clnt_stat = clnt_call(m_nfsClient, NFSPROC_READ,
-                                  (xdrproc_t) xdr_readargs, reinterpret_cast<caddr_t>(&readArgs),
-                                  (xdrproc_t) xdr_readres, reinterpret_cast<caddr_t>(&readRes),
+        int clnt_stat = clnt_call(m_nfsClient,
+                                  NFSPROC_READ,
+                                  (xdrproc_t)xdr_readargs,
+                                  reinterpret_cast<caddr_t>(&readArgs),
+                                  (xdrproc_t)xdr_readres,
+                                  reinterpret_cast<caddr_t>(&readRes),
                                   clnt_timeout);
 
         if (!checkForError(clnt_stat, readRes.status, destPath)) {
@@ -877,15 +878,17 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
             slave()->mimeType(type.name());
         }
 
-
         if (bytesRead > 0) {
             readArgs.offset += bytesRead;
 
             writeArgs.data.data_len = bytesRead;
 
-            clnt_stat = clnt_call(m_nfsClient, NFSPROC_WRITE,
-                                  (xdrproc_t) xdr_writeargs, reinterpret_cast<caddr_t>(&writeArgs),
-                                  (xdrproc_t) xdr_attrstat, reinterpret_cast<caddr_t>(&attrStat),
+            clnt_stat = clnt_call(m_nfsClient,
+                                  NFSPROC_WRITE,
+                                  (xdrproc_t)xdr_writeargs,
+                                  reinterpret_cast<caddr_t>(&writeArgs),
+                                  (xdrproc_t)xdr_attrstat,
+                                  reinterpret_cast<caddr_t>(&attrStat),
                                   clnt_timeout);
 
             if (!checkForError(clnt_stat, attrStat.status, destPath)) {
@@ -903,7 +906,7 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
             const unsigned int size = slave()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-            if (writeArgs.offset <  size) {
+            if (writeArgs.offset < size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
                 }
@@ -945,8 +948,7 @@ void NFSProtocolV2::copySame(const QUrl& src, const QUrl& dest, int _mode, KIO::
     }
 }
 
-
-void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::JobFlags _flags)
+void NFSProtocolV2::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::JobFlags _flags)
 {
     qCDebug(LOG_KIO_NFS) << src << "to" << dest;
 
@@ -1062,9 +1064,12 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     bool error = false;
     int bytesRead = 0;
     do {
-        int clnt_stat = clnt_call(m_nfsClient, NFSPROC_READ,
-                                  (xdrproc_t) xdr_readargs, reinterpret_cast<caddr_t>(&readArgs),
-                                  (xdrproc_t) xdr_readres, reinterpret_cast<caddr_t>(&readRes),
+        int clnt_stat = clnt_call(m_nfsClient,
+                                  NFSPROC_READ,
+                                  (xdrproc_t)xdr_readargs,
+                                  reinterpret_cast<caddr_t>(&readArgs),
+                                  (xdrproc_t)xdr_readres,
+                                  reinterpret_cast<caddr_t>(&readRes),
                                   clnt_timeout);
 
         if (!checkForError(clnt_stat, readRes.status, destPath)) {
@@ -1081,7 +1086,6 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
             QMimeType type = db.mimeTypeForFileNameAndData(src.fileName(), QByteArray::fromRawData(readRes.readres_u.reply.data.data_val, bytesRead));
             slave()->mimeType(type.name());
         }
-
 
         if (bytesRead > 0) {
             readArgs.offset += bytesRead;
@@ -1104,7 +1108,7 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep
             const int size = slave()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-            if (partInfo.size() <  size) {
+            if (partInfo.size() < size) {
                 QFile::remove(partInfo.absoluteFilePath());
             }
         }
@@ -1142,8 +1146,7 @@ void NFSProtocolV2::copyFrom(const QUrl& src, const QUrl& dest, int _mode, KIO::
     }
 }
 
-
-void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::JobFlags _flags)
+void NFSProtocolV2::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::JobFlags _flags)
 {
     qCDebug(LOG_KIO_NFS) << src << "to" << dest;
 
@@ -1277,9 +1280,12 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
         if (bytesRead > 0) {
             writeArgs.data.data_len = bytesRead;
 
-            int clnt_stat = clnt_call(m_nfsClient, NFSPROC_WRITE,
-                                      (xdrproc_t) xdr_writeargs, reinterpret_cast<caddr_t>(&writeArgs),
-                                      (xdrproc_t) xdr_attrstat, reinterpret_cast<caddr_t>(&attrStat),
+            int clnt_stat = clnt_call(m_nfsClient,
+                                      NFSPROC_WRITE,
+                                      (xdrproc_t)xdr_writeargs,
+                                      reinterpret_cast<caddr_t>(&writeArgs),
+                                      (xdrproc_t)xdr_attrstat,
+                                      reinterpret_cast<caddr_t>(&attrStat),
                                       clnt_timeout);
 
             if (!checkForError(clnt_stat, attrStat.status, destPath)) {
@@ -1297,7 +1303,7 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
             const unsigned int size = slave()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-            if (writeArgs.offset <  size) {
+            if (writeArgs.offset < size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
                 }
@@ -1342,7 +1348,7 @@ void NFSProtocolV2::copyTo(const QUrl& src, const QUrl& dest, int _mode, KIO::Jo
     }
 }
 
-void NFSProtocolV2::symlink(const QString& target, const QUrl& dest, KIO::JobFlags flags)
+void NFSProtocolV2::symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags)
 {
     const QString destPath(dest.path());
     if (isExportedDir(QFileInfo(destPath).path())) {
@@ -1361,8 +1367,7 @@ void NFSProtocolV2::symlink(const QString& target, const QUrl& dest, KIO::JobFla
     checkForError(rpcStatus, res, destPath);
 }
 
-
-bool NFSProtocolV2::create(const QString& path, int mode, int& rpcStatus, diropres& result)
+bool NFSProtocolV2::create(const QString &path, int mode, int &rpcStatus, diropres &result)
 {
     memset(&rpcStatus, 0, sizeof(int));
     memset(&result, 0, sizeof(result));
@@ -1400,15 +1405,18 @@ bool NFSProtocolV2::create(const QString& path, int mode, int& rpcStatus, diropr
     args.attributes.gid = getegid();
     args.attributes.size = 0;
 
-    rpcStatus = clnt_call(m_nfsClient, NFSPROC_CREATE,
-                          (xdrproc_t) xdr_createargs, reinterpret_cast<caddr_t>(&args),
-                          (xdrproc_t) xdr_diropres, reinterpret_cast<caddr_t>(&result),
+    rpcStatus = clnt_call(m_nfsClient,
+                          NFSPROC_CREATE,
+                          (xdrproc_t)xdr_createargs,
+                          reinterpret_cast<caddr_t>(&args),
+                          (xdrproc_t)xdr_diropres,
+                          reinterpret_cast<caddr_t>(&result),
                           clnt_timeout);
 
     return (rpcStatus == RPC_SUCCESS && result.status == NFS_OK);
 }
 
-bool NFSProtocolV2::getAttr(const QString& path, int& rpcStatus, attrstat& result)
+bool NFSProtocolV2::getAttr(const QString &path, int &rpcStatus, attrstat &result)
 {
     memset(&rpcStatus, 0, sizeof(int));
     memset(&result, 0, sizeof(result));
@@ -1427,15 +1435,18 @@ bool NFSProtocolV2::getAttr(const QString& path, int& rpcStatus, attrstat& resul
     nfs_fh fh;
     fileFH.toFH(fh);
 
-    rpcStatus = clnt_call(m_nfsClient, NFSPROC_GETATTR,
-                          (xdrproc_t) xdr_nfs_fh, reinterpret_cast<caddr_t>(&fh),
-                          (xdrproc_t) xdr_attrstat, reinterpret_cast<caddr_t>(&result),
+    rpcStatus = clnt_call(m_nfsClient,
+                          NFSPROC_GETATTR,
+                          (xdrproc_t)xdr_nfs_fh,
+                          reinterpret_cast<caddr_t>(&fh),
+                          (xdrproc_t)xdr_attrstat,
+                          reinterpret_cast<caddr_t>(&result),
                           clnt_timeout);
 
     return (rpcStatus == RPC_SUCCESS && result.status == NFS_OK);
 }
 
-bool NFSProtocolV2::lookupHandle(const QString& path, int& rpcStatus, diropres& result)
+bool NFSProtocolV2::lookupHandle(const QString &path, int &rpcStatus, diropres &result)
 {
     memset(&rpcStatus, 0, sizeof(int));
     memset(&result, 0, sizeof(result));
@@ -1462,15 +1473,18 @@ bool NFSProtocolV2::lookupHandle(const QString& path, int& rpcStatus, diropres& 
 
     memset(&result, 0, sizeof(diropres));
 
-    rpcStatus = clnt_call(m_nfsClient, NFSPROC_LOOKUP,
-                          (xdrproc_t) xdr_diropargs, reinterpret_cast<caddr_t>(&dirargs),
-                          (xdrproc_t) xdr_diropres, reinterpret_cast<caddr_t>(&result),
+    rpcStatus = clnt_call(m_nfsClient,
+                          NFSPROC_LOOKUP,
+                          (xdrproc_t)xdr_diropargs,
+                          reinterpret_cast<caddr_t>(&dirargs),
+                          (xdrproc_t)xdr_diropres,
+                          reinterpret_cast<caddr_t>(&result),
                           clnt_timeout);
 
     return (rpcStatus == RPC_SUCCESS && result.status == NFS_OK);
 }
 
-bool NFSProtocolV2::symLinkTarget(const QString& path, int& rpcStatus, readlinkres& result, char* dataBuffer)
+bool NFSProtocolV2::symLinkTarget(const QString &path, int &rpcStatus, readlinkres &result, char *dataBuffer)
 {
     const NFSFileHandle fh = getFileHandle(path);
 
@@ -1483,15 +1497,18 @@ bool NFSProtocolV2::symLinkTarget(const QString& path, int& rpcStatus, readlinkr
 
     result.readlinkres_u.data = dataBuffer;
 
-    rpcStatus = clnt_call(m_nfsClient, NFSPROC_READLINK,
-                          (xdrproc_t) xdr_nfs_fh, reinterpret_cast<caddr_t>(&nfsFH),
-                          (xdrproc_t) xdr_readlinkres, reinterpret_cast<caddr_t>(&result),
+    rpcStatus = clnt_call(m_nfsClient,
+                          NFSPROC_READLINK,
+                          (xdrproc_t)xdr_nfs_fh,
+                          reinterpret_cast<caddr_t>(&nfsFH),
+                          (xdrproc_t)xdr_readlinkres,
+                          reinterpret_cast<caddr_t>(&result),
                           clnt_timeout);
 
     return (rpcStatus == RPC_SUCCESS && result.status == NFS_OK);
 }
 
-bool NFSProtocolV2::remove(const QString& path)
+bool NFSProtocolV2::remove(const QString &path)
 {
     int rpcStatus;
     nfsstat nfsStatus;
@@ -1499,7 +1516,7 @@ bool NFSProtocolV2::remove(const QString& path)
     return remove(path, rpcStatus, nfsStatus);
 }
 
-bool NFSProtocolV2::remove(const QString& path, int& rpcStatus, nfsstat& result)
+bool NFSProtocolV2::remove(const QString &path, int &rpcStatus, nfsstat &result)
 {
     qCDebug(LOG_KIO_NFS) << path;
 
@@ -1538,14 +1555,20 @@ bool NFSProtocolV2::remove(const QString& path, int& rpcStatus, nfsstat& result)
     dirargs.name = tmpName.data();
 
     if (lookupRes.diropres_u.diropres.attributes.type != NFDIR) {
-        rpcStatus = clnt_call(m_nfsClient, NFSPROC_REMOVE,
-                              (xdrproc_t) xdr_diropargs, reinterpret_cast<caddr_t>(&dirargs),
-                              (xdrproc_t) xdr_nfsstat, reinterpret_cast<caddr_t>(&result),
+        rpcStatus = clnt_call(m_nfsClient,
+                              NFSPROC_REMOVE,
+                              (xdrproc_t)xdr_diropargs,
+                              reinterpret_cast<caddr_t>(&dirargs),
+                              (xdrproc_t)xdr_nfsstat,
+                              reinterpret_cast<caddr_t>(&result),
                               clnt_timeout);
     } else {
-        rpcStatus = clnt_call(m_nfsClient, NFSPROC_RMDIR,
-                              (xdrproc_t) xdr_diropargs, reinterpret_cast<caddr_t>(&dirargs),
-                              (xdrproc_t) xdr_nfsstat, reinterpret_cast<caddr_t>(&result),
+        rpcStatus = clnt_call(m_nfsClient,
+                              NFSPROC_RMDIR,
+                              (xdrproc_t)xdr_diropargs,
+                              reinterpret_cast<caddr_t>(&dirargs),
+                              (xdrproc_t)xdr_nfsstat,
+                              reinterpret_cast<caddr_t>(&result),
                               clnt_timeout);
     }
 
@@ -1557,7 +1580,7 @@ bool NFSProtocolV2::remove(const QString& path, int& rpcStatus, nfsstat& result)
     return ret;
 }
 
-bool NFSProtocolV2::rename(const QString& src, const QString& dest)
+bool NFSProtocolV2::rename(const QString &src, const QString &dest)
 {
     int rpcStatus;
     nfsstat result;
@@ -1565,7 +1588,7 @@ bool NFSProtocolV2::rename(const QString& src, const QString& dest)
     return rename(src, dest, rpcStatus, result);
 }
 
-bool NFSProtocolV2::rename(const QString& src, const QString& dest, int& rpcStatus, nfsstat& result)
+bool NFSProtocolV2::rename(const QString &src, const QString &dest, int &rpcStatus, nfsstat &result)
 {
     qCDebug(LOG_KIO_NFS) << src << dest;
 
@@ -1607,9 +1630,12 @@ bool NFSProtocolV2::rename(const QString& src, const QString& dest, int& rpcStat
     destDirectoryFH.toFH(renameArgs.to.dir);
     renameArgs.to.name = destByteName.data();
 
-    rpcStatus = clnt_call(m_nfsClient, NFSPROC_RENAME,
-                          (xdrproc_t) xdr_renameargs, reinterpret_cast<caddr_t>(&renameArgs),
-                          (xdrproc_t) xdr_nfsstat, reinterpret_cast<caddr_t>(&result),
+    rpcStatus = clnt_call(m_nfsClient,
+                          NFSPROC_RENAME,
+                          (xdrproc_t)xdr_renameargs,
+                          reinterpret_cast<caddr_t>(&renameArgs),
+                          (xdrproc_t)xdr_nfsstat,
+                          reinterpret_cast<caddr_t>(&result),
                           clnt_timeout);
 
     bool ret = (rpcStatus == RPC_SUCCESS && result == NFS_OK);
@@ -1627,7 +1653,7 @@ bool NFSProtocolV2::rename(const QString& src, const QString& dest, int& rpcStat
     return ret;
 }
 
-bool NFSProtocolV2::setAttr(const QString& path, const sattr& attributes, int& rpcStatus, nfsstat& result)
+bool NFSProtocolV2::setAttr(const QString &path, const sattr &attributes, int &rpcStatus, nfsstat &result)
 {
     qCDebug(LOG_KIO_NFS) << path;
 
@@ -1644,15 +1670,18 @@ bool NFSProtocolV2::setAttr(const QString& path, const sattr& attributes, int& r
     fh.toFH(sAttrArgs.file);
     memcpy(&sAttrArgs.attributes, &attributes, sizeof(attributes));
 
-    rpcStatus = clnt_call(m_nfsClient, NFSPROC_SETATTR,
-                          (xdrproc_t) xdr_sattrargs, reinterpret_cast<caddr_t>(&sAttrArgs),
-                          (xdrproc_t) xdr_nfsstat, reinterpret_cast<caddr_t>(&result),
+    rpcStatus = clnt_call(m_nfsClient,
+                          NFSPROC_SETATTR,
+                          (xdrproc_t)xdr_sattrargs,
+                          reinterpret_cast<caddr_t>(&sAttrArgs),
+                          (xdrproc_t)xdr_nfsstat,
+                          reinterpret_cast<caddr_t>(&result),
                           clnt_timeout);
 
     return (rpcStatus == RPC_SUCCESS && result == NFS_OK);
 }
 
-bool NFSProtocolV2::symLink(const QString& target, const QString& dest, int& rpcStatus, nfsstat& result)
+bool NFSProtocolV2::symLink(const QString &target, const QString &dest, int &rpcStatus, nfsstat &result)
 {
     qCDebug(LOG_KIO_NFS) << target << dest;
 
@@ -1662,7 +1691,6 @@ bool NFSProtocolV2::symLink(const QString& target, const QString& dest, int& rpc
     // Remove dest first, we don't really care about the return value at this point,
     // the symlink call will fail if dest was not removed correctly.
     remove(dest);
-
 
     const QFileInfo fileInfo(dest);
     if (isExportedDir(fileInfo.path())) {
@@ -1686,9 +1714,12 @@ bool NFSProtocolV2::symLink(const QString& target, const QString& dest, int& rpc
     symLinkArgs.from.name = fromBytes.data();
     symLinkArgs.to = toBytes.data();
 
-    rpcStatus = clnt_call(m_nfsClient, NFSPROC_SYMLINK,
-                          (xdrproc_t) xdr_symlinkargs, reinterpret_cast<caddr_t>(&symLinkArgs),
-                          (xdrproc_t) xdr_nfsstat, reinterpret_cast<caddr_t>(&result),
+    rpcStatus = clnt_call(m_nfsClient,
+                          NFSPROC_SYMLINK,
+                          (xdrproc_t)xdr_symlinkargs,
+                          reinterpret_cast<caddr_t>(&symLinkArgs),
+                          (xdrproc_t)xdr_nfsstat,
+                          reinterpret_cast<caddr_t>(&result),
                           clnt_timeout);
 
     // Add the new handle to the cache
@@ -1700,8 +1731,7 @@ bool NFSProtocolV2::symLink(const QString& target, const QString& dest, int& rpc
     return (rpcStatus == RPC_SUCCESS && result == NFS_OK);
 }
 
-
-void NFSProtocolV2::completeUDSEntry(KIO::UDSEntry& entry, const fattr& attributes)
+void NFSProtocolV2::completeUDSEntry(KIO::UDSEntry &entry, const fattr &attributes)
 {
     entry.replace(KIO::UDSEntry::UDS_SIZE, attributes.size);
     entry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
@@ -1712,8 +1742,7 @@ void NFSProtocolV2::completeUDSEntry(KIO::UDSEntry& entry, const fattr& attribut
     NFSProtocol::completeUDSEntry(entry, attributes.uid, attributes.gid);
 }
 
-
-void NFSProtocolV2::completeBadLinkUDSEntry(KIO::UDSEntry& entry, const fattr& attributes)
+void NFSProtocolV2::completeBadLinkUDSEntry(KIO::UDSEntry &entry, const fattr &attributes)
 {
     entry.replace(KIO::UDSEntry::UDS_MODIFICATION_TIME, attributes.mtime.seconds);
     entry.replace(KIO::UDSEntry::UDS_ACCESS_TIME, attributes.atime.seconds);

@@ -52,7 +52,7 @@ static uint16_t onDataPut(void *, void *priv, uint32_t sendlen, unsigned char *d
     return LIBMTP_HANDLER_RETURN_OK;
 }
 
-static int onDataProgress(const uint64_t sent, const uint64_t total, const void * const priv)
+static int onDataProgress(const uint64_t sent, const uint64_t total, const void *const priv)
 {
     MTPStorage *storage = const_cast<MTPStorage *>(static_cast<const MTPStorage *>(priv));
     Q_EMIT storage->copyProgress(sent, total);
@@ -100,30 +100,25 @@ static LIBMTP_filetype_t getFiletype(const QString &filename)
         filetype = LIBMTP_FILETYPE_WMV;
     } else if (ptype == QLatin1String("avi")) {
         filetype = LIBMTP_FILETYPE_AVI;
-    } else if (ptype == QLatin1String("mpeg") ||
-               ptype == QLatin1String("mpg")) {
+    } else if (ptype == QLatin1String("mpeg") || ptype == QLatin1String("mpg")) {
         filetype = LIBMTP_FILETYPE_MPEG;
     } else if (ptype == QLatin1String("asf")) {
         filetype = LIBMTP_FILETYPE_ASF;
-    } else if (ptype == QLatin1String("qt") ||
-               ptype == QLatin1String("mov")) {
+    } else if (ptype == QLatin1String("qt") || ptype == QLatin1String("mov")) {
         filetype = LIBMTP_FILETYPE_QT;
     } else if (ptype == QLatin1String("wma")) {
         filetype = LIBMTP_FILETYPE_WMA;
-    } else if (ptype == QLatin1String("jpg") ||
-               ptype == QLatin1String("jpeg")) {
+    } else if (ptype == QLatin1String("jpg") || ptype == QLatin1String("jpeg")) {
         filetype = LIBMTP_FILETYPE_JPEG;
     } else if (ptype == QLatin1String("jfif")) {
         filetype = LIBMTP_FILETYPE_JFIF;
-    } else if (ptype == QLatin1String("tif") ||
-               ptype == QLatin1String("tiff")) {
+    } else if (ptype == QLatin1String("tif") || ptype == QLatin1String("tiff")) {
         filetype = LIBMTP_FILETYPE_TIFF;
     } else if (ptype == QLatin1String("bmp")) {
         filetype = LIBMTP_FILETYPE_BMP;
     } else if (ptype == QLatin1String("gif")) {
         filetype = LIBMTP_FILETYPE_GIF;
-    } else if (ptype == QLatin1String("pic") ||
-               ptype == QLatin1String("pict")) {
+    } else if (ptype == QLatin1String("pic") || ptype == QLatin1String("pict")) {
         filetype = LIBMTP_FILETYPE_PICT;
     } else if (ptype == QLatin1String("png")) {
         filetype = LIBMTP_FILETYPE_PNG;
@@ -131,11 +126,8 @@ static LIBMTP_filetype_t getFiletype(const QString &filename)
         filetype = LIBMTP_FILETYPE_WINDOWSIMAGEFORMAT;
     } else if (ptype == QLatin1String("ics")) {
         filetype = LIBMTP_FILETYPE_VCALENDAR2;
-    } else if (ptype == QLatin1String("exe") ||
-               ptype == QLatin1String("com") ||
-               ptype == QLatin1String("bat") ||
-               ptype == QLatin1String("dll") ||
-               ptype == QLatin1String("sys")) {
+    } else if (ptype == QLatin1String("exe") || ptype == QLatin1String("com") || ptype == QLatin1String("bat") || ptype == QLatin1String("dll")
+               || ptype == QLatin1String("sys")) {
         filetype = LIBMTP_FILETYPE_WINEXEC;
     } else if (ptype == QLatin1String("aac")) {
         filetype = LIBMTP_FILETYPE_AAC;
@@ -172,8 +164,8 @@ static LIBMTP_filetype_t getFiletype(const QString &filename)
 }
 
 MTPStorage::MTPStorage(const QString &dbusObjectPath, const LIBMTP_devicestorage_t *mtpStorage, MTPDevice *parent)
-    : QObject(parent),
-      m_dbusObjectPath(dbusObjectPath)
+    : QObject(parent)
+    , m_dbusObjectPath(dbusObjectPath)
 {
     setStorageProperties(mtpStorage);
 
@@ -237,7 +229,6 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
 
     // don't handle the root directory
     if (!pathItems.isEmpty()) {
-
         // 1. check if the file is in the cache
         const auto itemId = queryPath(path);
         if (itemId.has_value()) {
@@ -256,7 +247,7 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
             const auto parentId = queryPath(parentPath);
 
             if (parentId.has_value()) {
-                qCDebug(LOG_KIOD_KMTPD)  << "Match for parent found in cache, checking device. Parent id = " << parentId.value();
+                qCDebug(LOG_KIOD_KMTPD) << "Match for parent found in cache, checking device. Parent id = " << parentId.value();
 
                 std::unique_ptr<LIBMTP_file_t> parent(LIBMTP_Get_Filemetadata(getDevice(), parentId.value()));
                 if (parent) {
@@ -355,7 +346,7 @@ std::optional<KMTPFile> MTPStorage::findEntry(const QString &fileNeedle, const Q
 
 std::optional<quint32> MTPStorage::queryPath(const QString &path, int timeToLive)
 {
-    QPair< QDateTime, uint32_t > item = m_cache.value(path);
+    QPair<QDateTime, uint32_t> item = m_cache.value(path);
 
     if (item.second != 0) {
         QDateTime dateTime = QDateTime::currentDateTimeUtc();
@@ -377,7 +368,7 @@ void MTPStorage::addPath(const QString &path, quint32 id, int timeToLive)
     QDateTime dateTime = QDateTime::currentDateTimeUtc();
     dateTime = dateTime.addSecs(timeToLive);
 
-    QPair< QDateTime, uint32_t > item(dateTime, id);
+    QPair<QDateTime, uint32_t> item(dateTime, id);
 
     m_cache.insert(path, item);
 }
@@ -396,11 +387,11 @@ KMTPFileList MTPStorage::getFilesAndFolders(const QString &path, int &result)
     }
     const KMTPFile file = getFileFromPath(path);
     if (!file.isValid()) {
-        result = 1;     // not existing
+        result = 1; // not existing
         return {};
     }
     if (!file.isFolder()) {
-        result = 2;     // is file
+        result = 2; // is file
         return {};
     }
     return getFilesAndFoldersCached(path, file.itemId());

@@ -4,9 +4,9 @@ It was written to verify KDE bug 147948: https://bugs.kde.org/show_bug.cgi?id=14
 #ifndef KDE4START_H__
 #define KDE4START_H__
 
+#include <kio/jobclasses.h>
 #include <kmainwindow.h>
 #include <kurl.h>
-#include <kio/jobclasses.h>
 
 class Browser : public QWidget
 {
@@ -15,6 +15,6 @@ public:
     Browser();
 public Q_SLOTS:
     void slotButtonClicked();
-    void dataishere(KIO::Job *,const QByteArray &);
+    void dataishere(KIO::Job *, const QByteArray &);
 };
 #endif

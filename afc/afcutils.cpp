@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2022 Kai Uwe Broulik <kde@broulik.de>
  * SPDX-License-Identifier: GPL-2.0-or-later
-*/
+ */
 
 #include "afcutils.h"
 
@@ -35,7 +35,7 @@ WorkerResult AfcUtils::Result::from(const afc_error_t afcError, const QString &e
         return WorkerResult::fail(ERR_IS_DIRECTORY, errorText);
     case AFC_E_PERM_DENIED:
         return WorkerResult::fail(ERR_ACCESS_DENIED, errorText);
-    case AFC_E_SERVICE_NOT_CONNECTED :
+    case AFC_E_SERVICE_NOT_CONNECTED:
         return WorkerResult::fail(ERR_CONNECTION_BROKEN, errorText);
     case AFC_E_OP_TIMEOUT:
         return WorkerResult::fail(ERR_SERVER_TIMEOUT, errorText);
@@ -53,8 +53,8 @@ WorkerResult AfcUtils::Result::from(const afc_error_t afcError, const QString &e
         return WorkerResult::fail(ERR_CANNOT_RMDIR, errorText);
     case AFC_E_MUX_ERROR:
         return WorkerResult::fail(ERR_CANNOT_CONNECT, errorText);
-//    case AFC_E_NOT_ENOUGH_DATA:
-//        return WorkerResult::fail(ERR_UNKNOWN_INTERRUPT, errorText);
+        //    case AFC_E_NOT_ENOUGH_DATA:
+        //        return WorkerResult::fail(ERR_UNKNOWN_INTERRUPT, errorText);
     default:
         qCWarning(KIO_AFC_LOG) << "Unhandled afc_error_t" << afcError;
         return WorkerResult::fail(ERR_INTERNAL, i18n("Unhandled AFC error code '%1'", afcError));

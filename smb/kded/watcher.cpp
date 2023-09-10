@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 // SPDX-FileCopyrightText: 2020 Harald Sitter <sitter@kde.org>
 
-#include <KPluginFactory>
 #include <KDEDModule>
 #include <KDirNotify>
+#include <KPluginFactory>
 
 #include <QCoreApplication>
+#include <QDBusConnection>
 #include <QDateTime>
 #include <QDebug>
-#include <QDBusConnection>
 #include <QProcess>
 #include <QTimer>
 
-#include <smburl.h>
-#include <smb-logsettings.h>
 #include "config.h"
+#include <smb-logsettings.h>
+#include <smburl.h>
 
 class Notifier : public QObject
 {
@@ -65,8 +65,7 @@ public Q_SLOTS:
         m_proc->setProcessChannelMode(QProcess::ForwardedChannels);
         m_proc->setProgram(QStringLiteral(KDE_INSTALL_FULL_LIBEXECDIR_KF "/smbnotifier"));
         m_proc->setArguments({m_url});
-        connect(m_proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished),
-                this, &Notifier::maybeRestart);
+        connect(m_proc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &Notifier::maybeRestart);
         m_proc->start();
     }
 
@@ -89,7 +88,7 @@ private:
     static const int m_startCounterLimit = 4;
     int m_startCounter = 0;
     const QString m_url;
-    QDateTime m_lastEntry { QDateTime::currentDateTimeUtc() };
+    QDateTime m_lastEntry{QDateTime::currentDateTimeUtc()};
     QProcess *m_proc = nullptr;
 };
 
@@ -100,10 +99,8 @@ public:
     explicit Watcher(QObject *parent = nullptr)
         : QObject(parent)
     {
-        connect(&m_interface, &OrgKdeKDirNotifyInterface::enteredDirectory,
-                this, &Watcher::watchDirectory);
-        connect(&m_interface, &OrgKdeKDirNotifyInterface::leftDirectory,
-                this, &Watcher::unwatchDirectory);
+        connect(&m_interface, &OrgKdeKDirNotifyInterface::enteredDirectory, this, &Watcher::watchDirectory);
+        connect(&m_interface, &OrgKdeKDirNotifyInterface::leftDirectory, this, &Watcher::unwatchDirectory);
     }
 
 private Q_SLOTS:
@@ -146,7 +143,7 @@ private Q_SLOTS:
 private:
     inline bool isInterestingUrl(const QString &str)
     {
-        SMBUrl url { QUrl(str) };
+        SMBUrl url{QUrl(str)};
         switch (url.getType()) {
         case SMBURLTYPE_UNKNOWN:
         case SMBURLTYPE_ENTIRE_NETWORK:
@@ -183,10 +180,9 @@ private:
     // The better improvement would be to make smbc actually thread safe so we can get rid of the
     // subprocess overhead entirely (and by extension the private heaps of static library objects).
     static const int m_capacity = 10;
-    OrgKdeKDirNotifyInterface m_interface { QString(), QString(), QDBusConnection::sessionBus() };
+    OrgKdeKDirNotifyInterface m_interface{QString(), QString(), QDBusConnection::sessionBus()};
     QHash<QString, Notifier *> m_watches; // watcher is parent of procs
 };
-
 
 /*
     In the json metadata we set:
@@ -199,7 +195,7 @@ private:
     It'd be better if we had a general monitor module that workers can register
     with. The monitor would then listen to kdirnotify and check the schemes
     to decide which watcher to load, and then simply forward the call to the watcher
-    in-process. Would also save us from having to connect to dbus in every watcher. 
+    in-process. Would also save us from having to connect to dbus in every watcher.
 */
 class SMBWatcherModule : public KDEDModule
 {
@@ -215,8 +211,6 @@ private:
     Watcher m_watcher;
 };
 
-K_PLUGIN_FACTORY_WITH_JSON(SMBWatcherModuleFactory,
-                           "kded_smbwatcher.json",
-                           registerPlugin<SMBWatcherModule>();)
+K_PLUGIN_FACTORY_WITH_JSON(SMBWatcherModuleFactory, "kded_smbwatcher.json", registerPlugin<SMBWatcherModule>();)
 
 #include "watcher.moc"

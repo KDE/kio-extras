@@ -4,13 +4,13 @@
  *   SPDX-License-Identifier: LGPL-2.1-only OR LGPL-3.0-only OR LicenseRef-KDE-Accepted-LGPL
  */
 
-#include "recentlyused-logsettings.h"
 #include "recentlyused.h"
+#include "recentlyused-logsettings.h"
 
 #include <QCoreApplication>
+#include <QDataStream>
 #include <QUrl>
 #include <QUrlQuery>
-#include <QDataStream>
 
 #include <KIO/Job>
 #include <KLocalizedString>
@@ -69,8 +69,7 @@ ResultModel *runQuery(const QUrl &url)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "runQuery for url" << url.toString();
 
-    auto query = UsedResources
-                 | Limit(30);
+    auto query = UsedResources | Limit(30);
 
     // Parse url query parameter
     const auto urlQuery = QUrlQuery(url);
@@ -194,10 +193,7 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 {
     // / /files and /locations
     const auto path = url.path();
-    if (path == QStringLiteral("/") ||
-        path == QStringLiteral("/files") ||
-        path == QStringLiteral("/locations") ) {
-
+    if (path == QStringLiteral("/") || path == QStringLiteral("/files") || path == QStringLiteral("/locations")) {
         KIO::UDSEntryList udslist;
 
         // add "." to transmit permissions for current directory
@@ -206,11 +202,11 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
         uds.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
         uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
-        #ifdef Q_OS_WIN
-            uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD );
-        #else
-            uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR );
-        #endif
+#ifdef Q_OS_WIN
+        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD);
+#else
+        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR);
+#endif
         udslist << uds;
 
         const auto model = runQuery(url);
@@ -219,7 +215,7 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
         int row = 0;
 
         while (canFetchMore) {
-            for (;row < model->rowCount(); ++row) {
+            for (; row < model->rowCount(); ++row) {
                 const QModelIndex index = model->index(row, 0);
                 const QString resource = model->data(index, ResultModel::ResourceRole).toString();
                 const QString mimeType = model->data(index, ResultModel::MimeType).toString();
@@ -273,16 +269,17 @@ KIO::UDSEntry RecentlyUsed::udsEntryForRoot(const QString &dirName, const QStrin
     uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
 #ifdef Q_OS_WIN
-    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD );
+    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD);
 #else
-    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR );
+    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR);
 #endif
     return uds;
 }
 
 KIO::WorkerResult RecentlyUsed::stat(const QUrl &url)
 {
-    qCDebug(KIO_RECENTLYUSED_LOG) << "stating" << " " << url;
+    qCDebug(KIO_RECENTLYUSED_LOG) << "stating"
+                                  << " " << url;
 
     if (isRootUrl(url)) {
         //
@@ -321,8 +318,8 @@ KIO::WorkerResult RecentlyUsed::mimetype(const QUrl &url)
     return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
 }
 
-KIO::WorkerResult RecentlyUsed::special(const QByteArray &data) {
-
+KIO::WorkerResult RecentlyUsed::special(const QByteArray &data)
+{
     int id;
     QDataStream stream(data);
     stream >> id;
@@ -333,7 +330,7 @@ KIO::WorkerResult RecentlyUsed::special(const QByteArray &data) {
         stream >> urls;
 
         QList<QString> paths;
-        for (const auto &url: qAsConst(urls)) {
+        for (const auto &url : qAsConst(urls)) {
             if (url.isLocalFile() || url.scheme().isEmpty()) {
                 paths.append(url.path());
             } else {
@@ -341,8 +338,7 @@ KIO::WorkerResult RecentlyUsed::special(const QByteArray &data) {
             }
         }
 
-        Query query = UsedResources
-                | Limit(paths.size());
+        Query query = UsedResources | Limit(paths.size());
         query.setUrlFilters(Url(paths));
         query.setAgents(Agent::any());
         query.setActivities(Activity::any());

@@ -9,8 +9,8 @@
 #ifndef KMTPSTORAGEINTERFACE_H
 #define KMTPSTORAGEINTERFACE_H
 
-#include "storageinterface.h"
 #include "kmtpfile.h"
+#include "storageinterface.h"
 
 class KMTPDeviceInterface;
 

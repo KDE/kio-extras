@@ -9,8 +9,8 @@
 
 #include <KIO/Job>
 
-#include <QUrl>
 #include <QObject>
+#include <QUrl>
 
 /**
  * This is a unit test for kio_archive
@@ -21,7 +21,9 @@ class TestKioArchive : public QObject
     Q_OBJECT
 
 public:
-    TestKioArchive() {}
+    TestKioArchive()
+    {
+    }
 
 private Q_SLOTS:
     void initTestCase();
@@ -32,12 +34,12 @@ private Q_SLOTS:
     void cleanupTestCase();
 
 protected Q_SLOTS: // real slots, not tests
-    void slotEntries( KIO::Job*, const KIO::UDSEntryList& lst );
+    void slotEntries(KIO::Job *, const KIO::UDSEntryList &lst);
 
 private:
     QString tmpDir() const;
     QUrl tarUrl() const;
-    void copyFromTar(const QUrl &url, const QString& destPath);
+    void copyFromTar(const QUrl &url, const QString &destPath);
 
     QStringList m_listResult;
 };

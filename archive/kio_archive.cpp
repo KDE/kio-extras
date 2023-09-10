@@ -6,10 +6,10 @@
 
 #include "kio_archive.h"
 
+#include <K7Zip>
 #include <KAr>
 #include <KTar>
 #include <KZip>
-#include <K7Zip>
 
 #include <QCoreApplication>
 #include <QUrl>
@@ -26,56 +26,50 @@ class KIOPluginForMetaData : public QObject
 using namespace KIO;
 
 extern "C" {
-    int Q_DECL_EXPORT kdemain(int argc, char **argv);
+int Q_DECL_EXPORT kdemain(int argc, char **argv);
 }
 
-int kdemain( int argc, char **argv )
+int kdemain(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
     app.setApplicationName(QLatin1String("kio_archive"));
 
     qCDebug(KIO_ARCHIVE_LOG) << "Starting" << QCoreApplication::applicationPid();
 
-    if (argc != 4)
-    {
+    if (argc != 4) {
         fprintf(stderr, "Usage: kio_archive protocol domain-socket1 domain-socket2\n");
         exit(-1);
     }
 
-    ArchiveProtocol worker( argv[1], argv[2], argv[3]);
+    ArchiveProtocol worker(argv[1], argv[2], argv[3]);
     worker.dispatchLoop();
 
     qCDebug(KIO_ARCHIVE_LOG) << "Done";
     return 0;
 }
 
-
-ArchiveProtocol::ArchiveProtocol( const QByteArray &proto, const QByteArray &pool, const QByteArray &app )
-    : ArchiveProtocolBase( proto, pool, app )
+ArchiveProtocol::ArchiveProtocol(const QByteArray &proto, const QByteArray &pool, const QByteArray &app)
+    : ArchiveProtocolBase(proto, pool, app)
 {
     qCDebug(KIO_ARCHIVE_LOG);
 }
 
-
-KArchive *ArchiveProtocol::createArchive( const QString & proto, const QString & archiveFile )
+KArchive *ArchiveProtocol::createArchive(const QString &proto, const QString &archiveFile)
 {
-    if ( proto == QLatin1String("ar") ) {
+    if (proto == QLatin1String("ar")) {
         qCDebug(KIO_ARCHIVE_LOG) << "Opening KAr on " << archiveFile;
-        return new KAr( archiveFile );
-    }
-    else if ( proto == QLatin1String("tar") ) {
+        return new KAr(archiveFile);
+    } else if (proto == QLatin1String("tar")) {
         qCDebug(KIO_ARCHIVE_LOG) << "Opening KTar on " << archiveFile;
-        return new KTar( archiveFile );
-    }
-    else if ( proto == QLatin1String("zip") ) {
+        return new KTar(archiveFile);
+    } else if (proto == QLatin1String("zip")) {
         qCDebug(KIO_ARCHIVE_LOG) << "Opening KZip on " << archiveFile;
-        return new KZip( archiveFile );
-    }
-    else if ( proto == QLatin1String("sevenz") ) {
+        return new KZip(archiveFile);
+    } else if (proto == QLatin1String("sevenz")) {
         qCDebug(KIO_ARCHIVE_LOG) << "Opening K7Zip on " << archiveFile;
-        return new K7Zip( archiveFile );
+        return new K7Zip(archiveFile);
     } else {
-        qCWarning(KIO_ARCHIVE_LOG) << "Protocol" << proto << "not supported by this IOWorker" ;
+        qCWarning(KIO_ARCHIVE_LOG) << "Protocol" << proto << "not supported by this IOWorker";
         return nullptr;
     }
 }

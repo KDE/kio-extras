@@ -8,12 +8,11 @@
 #include "kio_smb.h"
 #include "smburl.h"
 
-#include <cstdlib>
-
-#include <KIO/AuthInfo>
 #include <KConfig>
 #include <KConfigGroup>
+#include <KIO/AuthInfo>
 #include <KLocalizedString>
+#include <cstdlib>
 
 int SMBWorker::checkPassword(SMBUrl &url)
 {
@@ -39,14 +38,16 @@ int SMBWorker::checkPassword(SMBUrl &url)
     // username inputs. This is also more in line with how logon works in windows.
     // https://bugzilla.samba.org/show_bug.cgi?id=14326
     // https://docs.microsoft.com/en-us/windows/win32/secauthn/user-name-formats
-    info.setExtraField(QStringLiteral("username-context-help"),
-                       xi18nc("@info:whatsthis",
-                              "<para>There are various options for authenticating on SMB shares.</para>"
-                              "<para><placeholder>username</placeholder>: When authenticating within a home network the username on the server is sufficient</para>"
-                              "<para><placeholder>username@domain.com</placeholder>: Modern corporate logon names are formed like e-mail addresses</para>"
-                              "<para><placeholder>DOMAIN\\username</placeholder>: For ancient corporate networks or workgroups you may need to prefix the NetBIOS domain name (pre-Windows 2000)</para>"
-                              "<para><placeholder>anonymous</placeholder>: Anonymous logins can be attempted using empty username and password. Depending on server configuration non-empty usernames may be required</para>"
-                             ));
+    info.setExtraField(
+        QStringLiteral("username-context-help"),
+        xi18nc("@info:whatsthis",
+               "<para>There are various options for authenticating on SMB shares.</para>"
+               "<para><placeholder>username</placeholder>: When authenticating within a home network the username on the server is sufficient</para>"
+               "<para><placeholder>username@domain.com</placeholder>: Modern corporate logon names are formed like e-mail addresses</para>"
+               "<para><placeholder>DOMAIN\\username</placeholder>: For ancient corporate networks or workgroups you may need to prefix the NetBIOS domain name "
+               "(pre-Windows 2000)</para>"
+               "<para><placeholder>anonymous</placeholder>: Anonymous logins can be attempted using empty username and password. Depending on server "
+               "configuration non-empty usernames may be required</para>"));
 
     if (share.isEmpty()) {
         info.prompt = i18n("<qt>Please enter authentication information for <b>%1</b></qt>", url.host());
@@ -68,8 +69,7 @@ int SMBWorker::checkPassword(SMBUrl &url)
         url.setUser(info.username);
 
         if (info.keepPassword) {
-            qCDebug(KIO_SMB_LOG) << "Caching info.username = " << info.username
-                                 << ", info.url = " << info.url.toDisplayString();
+            qCDebug(KIO_SMB_LOG) << "Caching info.username = " << info.username << ", info.url = " << info.url.toDisplayString();
             cacheAuthentication(info);
         }
 

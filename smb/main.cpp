@@ -22,4 +22,3 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 
     return 0;
 }
-

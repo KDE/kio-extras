@@ -9,11 +9,11 @@
 #include "kmtpfile.h"
 
 KMTPFile::KMTPFile()
-    : m_itemId(0),
-      m_parentId(0),
-      m_storageId(0),
-      m_filesize(0),
-      m_modificationdate(0)
+    : m_itemId(0)
+    , m_parentId(0)
+    , m_storageId(0)
+    , m_filesize(0)
+    , m_modificationdate(0)
 {
 }
 
@@ -24,15 +24,14 @@ KMTPFile::KMTPFile(quint32 itemId,
                    quint64 filesize,
                    qint64 modificationdate,
                    const QString &filetype)
-    : m_itemId(itemId),
-      m_parentId(parentId),
-      m_storageId(storageId),
-      m_filename(QString::fromUtf8(filename)),
-      m_filesize(filesize),
-      m_modificationdate(modificationdate),
-      m_filetype(filetype)
+    : m_itemId(itemId)
+    , m_parentId(parentId)
+    , m_storageId(storageId)
+    , m_filename(QString::fromUtf8(filename))
+    , m_filesize(filesize)
+    , m_modificationdate(modificationdate)
+    , m_filetype(filetype)
 {
-
 }
 
 bool KMTPFile::isValid() const
@@ -83,12 +82,7 @@ QString KMTPFile::filetype() const
 QDBusArgument &operator<<(QDBusArgument &argument, const KMTPFile &mtpFile)
 {
     argument.beginStructure();
-    argument << mtpFile.m_itemId
-             << mtpFile.m_parentId
-             << mtpFile.m_storageId
-             << mtpFile.m_filename
-             << mtpFile.m_filesize
-             << mtpFile.m_modificationdate
+    argument << mtpFile.m_itemId << mtpFile.m_parentId << mtpFile.m_storageId << mtpFile.m_filename << mtpFile.m_filesize << mtpFile.m_modificationdate
              << mtpFile.m_filetype;
     argument.endStructure();
     return argument;
@@ -97,13 +91,8 @@ QDBusArgument &operator<<(QDBusArgument &argument, const KMTPFile &mtpFile)
 const QDBusArgument &operator>>(const QDBusArgument &argument, KMTPFile &mtpFile)
 {
     argument.beginStructure();
-    argument >> mtpFile.m_itemId
-             >> mtpFile.m_parentId
-             >> mtpFile.m_storageId
-             >> mtpFile.m_filename
-             >> mtpFile.m_filesize
-             >> mtpFile.m_modificationdate
-             >> mtpFile.m_filetype;
+    argument >> mtpFile.m_itemId >> mtpFile.m_parentId >> mtpFile.m_storageId >> mtpFile.m_filename >> mtpFile.m_filesize >> mtpFile.m_modificationdate
+        >> mtpFile.m_filetype;
     argument.endStructure();
     return argument;
 }

@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2022 Kai Uwe Broulik <kde@broulik.de>
  * SPDX-License-Identifier: GPL-2.0-or-later
-*/
+ */
 
 #include "afcfile.h"
 
@@ -18,7 +18,6 @@ AfcFileReader::AfcFileReader(const AfcClient::Ptr &client, uint64_t handle)
     : m_client(client)
     , m_handle(handle)
 {
-
 }
 
 filesize_t AfcFileReader::size() const

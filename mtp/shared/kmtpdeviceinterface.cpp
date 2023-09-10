@@ -12,10 +12,7 @@
 KMTPDeviceInterface::KMTPDeviceInterface(const QString &dbusObjectPath, QObject *parent)
     : QObject(parent)
 {
-    m_dbusInterface = new org::kde::kmtp::Device(QStringLiteral("org.kde.kiod5"),
-                                                 dbusObjectPath,
-                                                 QDBusConnection::sessionBus(),
-                                                 this);
+    m_dbusInterface = new org::kde::kmtp::Device(QStringLiteral("org.kde.kiod5"), dbusObjectPath, QDBusConnection::sessionBus(), this);
     updateStorages();
 }
 
@@ -53,7 +50,7 @@ QVector<KMTPStorageInterface *> KMTPDeviceInterface::storages()
 
 KMTPStorageInterface *KMTPDeviceInterface::storageFromDescription(const QString &description) const
 {
-    auto storageIt = std::find_if(m_storages.constBegin(), m_storages.constEnd(), [description] (KMTPStorageInterface *storage) {
+    auto storageIt = std::find_if(m_storages.constBegin(), m_storages.constEnd(), [description](KMTPStorageInterface *storage) {
         return storage->description() == description;
     });
 

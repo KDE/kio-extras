@@ -8,8 +8,8 @@
 #ifndef PHONON_UI_MEDIACONTROLS_H
 #define PHONON_UI_MEDIACONTROLS_H
 
-#include <phonon/phononnamespace.h>
 #include <QWidget>
+#include <phonon/phononnamespace.h>
 
 namespace Phonon
 {

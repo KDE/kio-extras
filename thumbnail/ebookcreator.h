@@ -28,5 +28,4 @@ public:
     KIO::ThumbnailResult createFb2(QIODevice *device);
 
     static QStringList getEntryList(const KArchiveDirectory *dir, const QString &path);
-
 };

@@ -102,7 +102,6 @@ private Q_SLOTS:
         FakeWorker worker;
         worker.m_config["MarkPartial"] = false;
 
-
         auto url = tmpUrl("noResumeAndNoPartial/thing");
         auto resumeVariant = Transfer::shouldResume<QFileResumeIO>(url, KIO::JobFlags(), &worker);
         worker.debugErrors();
