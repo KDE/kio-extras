@@ -112,7 +112,7 @@ private:
     quint64 m_freeSpaceInBytes = 0; /**< Free space in bytes */
     QString m_description; /**< A brief description of this storage */
 
-    QHash<QString, QPair<QDateTime, uint32_t> > m_cache;
+    QHash<QString, QPair<QDateTime, uint32_t>> m_cache;
 
 public Q_SLOTS:
     // D-Bus methods

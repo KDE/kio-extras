@@ -11,7 +11,7 @@ class RecentDocumentsNotifier : public KDEDModule
     Q_CLASSINFO("D-Bus Interface", "org.kde.RecentDocumentsNotifier")
 
 public:
-    RecentDocumentsNotifier(QObject* parent, const QList<QVariant>&);
+    RecentDocumentsNotifier(QObject *parent, const QList<QVariant> &);
 
 private Q_SLOTS:
     void dirty(const QString &path);

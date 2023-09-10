@@ -41,7 +41,7 @@ private:
     void stop() override;
     void maybeFinish();
 
-    KDNSSD::ServiceBrowser m_browser {QStringLiteral("_smb._tcp")};
+    KDNSSD::ServiceBrowser m_browser{QStringLiteral("_smb._tcp")};
     QList<KDNSSD::RemoteService::Ptr> m_services;
     int m_resolvedCount = 0;
     bool m_disconnected = false;

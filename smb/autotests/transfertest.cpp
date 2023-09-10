@@ -68,9 +68,12 @@ private Q_SLOTS:
         auto pullFuture = std::async(std::launch::async, [&ring, &abort]() -> bool {
             for (auto i = 0; i <= runs && !abort; ++i) {
                 auto s = ring.pop();
-                if (!QTest::qCompare(s->buf.data()[0], static_cast<char>(i),
-                                     qPrintable(QStringLiteral("On pull iteration %1").arg(i)), "",
-                                     __FILE__, __LINE__)) {
+                if (!QTest::qCompare(s->buf.data()[0],
+                                     static_cast<char>(i),
+                                     qPrintable(QStringLiteral("On pull iteration %1").arg(i)),
+                                     "",
+                                     __FILE__,
+                                     __LINE__)) {
                     abort = true;
                     return false;
                 }
@@ -113,9 +116,12 @@ private Q_SLOTS:
         auto pullFuture = std::async(std::launch::async, [&ring, &abort]() -> bool {
             for (auto i = 0; i <= runs && !abort; ++i) {
                 auto s = ring.pop();
-                if (!QTest::qCompare(s->buf.data()[0], static_cast<char>(i),
-                                     qPrintable(QStringLiteral("On pull iteration %1").arg(i)), "",
-                                     __FILE__, __LINE__)) {
+                if (!QTest::qCompare(s->buf.data()[0],
+                                     static_cast<char>(i),
+                                     qPrintable(QStringLiteral("On pull iteration %1").arg(i)),
+                                     "",
+                                     __FILE__,
+                                     __LINE__)) {
                     abort = true;
                 }
                 // Slow down this thread to simulate slow local writes.

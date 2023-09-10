@@ -11,11 +11,11 @@
 #include "mediacontrols.h"
 #define TRANSLATION_DOMAIN "kfileaudiopreview5"
 #include <KLocalizedString>
-#include <phonon/volumeslider.h>
-#include <phonon/seekslider.h>
-#include <QToolButton>
 #include <QBoxLayout>
 #include <QStyle>
+#include <QToolButton>
+#include <phonon/seekslider.h>
+#include <phonon/volumeslider.h>
 
 namespace Phonon
 {
@@ -24,13 +24,13 @@ class MediaControlsPrivate
     Q_DECLARE_PUBLIC(MediaControls)
 protected:
     MediaControlsPrivate(MediaControls *parent)
-        : q_ptr(parent),
-          layout(parent),
-          playButton(parent),
-          pauseButton(parent),
-          seekSlider(parent),
-          volumeSlider(parent),
-          media(nullptr)
+        : q_ptr(parent)
+        , layout(parent)
+        , playButton(parent)
+        , pauseButton(parent)
+        , seekSlider(parent)
+        , volumeSlider(parent)
+        , media(nullptr)
     {
         int size = parent->style()->pixelMetric(QStyle::PM_ToolBarIconSize);
         QSize iconSize(size, size);

@@ -8,11 +8,11 @@
 #include "smburl.h"
 #include "smb-logsettings.h"
 
+#include <KConfig>
+#include <KIO/Global>
 #include <QDir>
 #include <QHostAddress>
 #include <QUrlQuery>
-#include <KConfig>
-#include <KIO/Global>
 
 SMBUrl::SMBUrl(const QUrl &kurl)
     : QUrl(kurl)

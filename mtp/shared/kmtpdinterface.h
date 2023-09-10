@@ -9,8 +9,8 @@
 #ifndef KMTPDINTERFACE_H
 #define KMTPDINTERFACE_H
 
-#include <QObject>
 #include "daemoninterface.h"
+#include <QObject>
 
 class KMTPDeviceInterface;
 
@@ -51,6 +51,5 @@ Q_SIGNALS:
     // D-Bus signals
     void devicesChanged();
 };
-
 
 #endif // KMTPDINTERFACE_H

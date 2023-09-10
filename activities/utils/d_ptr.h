@@ -9,18 +9,21 @@
 
 #include <memory>
 
-namespace kamd {
-namespace utils {
+namespace kamd
+{
+namespace utils
+{
 
-template <typename T>
-class d_ptr {
+template<typename T>
+class d_ptr
+{
 private:
     std::unique_ptr<T> d;
 
 public:
     d_ptr();
 
-    template <typename... Args>
+    template<typename... Args>
     d_ptr(Args &&...);
 
     ~d_ptr();
@@ -28,13 +31,13 @@ public:
     T *operator->() const;
 };
 
-#define D_PTR             \
-    class Private;        \
-    friend class Private; \
+#define D_PTR                                                                                                                                                  \
+    class Private;                                                                                                                                             \
+    friend class Private;                                                                                                                                      \
     const ::kamd::utils::d_ptr<Private> d
 
-#define D_PTRC(cls)       \
-    friend class cls;     \
+#define D_PTRC(cls)                                                                                                                                            \
+    friend class cls;                                                                                                                                          \
     const ::kamd::utils::d_ptr<cls> d
 
 } // namespace utils

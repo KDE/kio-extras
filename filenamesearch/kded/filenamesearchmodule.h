@@ -19,7 +19,7 @@ class FileNameSearchModule : public KDEDModule
     Q_OBJECT
 
 public:
-    FileNameSearchModule(QObject *parent, const QVariantList&);
+    FileNameSearchModule(QObject *parent, const QVariantList &);
 
 private Q_SLOTS:
     void registerSearchUrl(const QString &urlString);

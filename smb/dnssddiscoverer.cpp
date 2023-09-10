@@ -44,21 +44,14 @@ KIO::UDSEntry DNSSDDiscovery::toEntry() const
     u.setPath("/"); // https://bugs.kde.org/show_bug.cgi?id=388922
 
     entry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE,
-                     QStringLiteral("application/x-smb-server"));
+    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-server"));
     return entry;
 }
 
 DNSSDDiscoverer::DNSSDDiscoverer()
 {
-    connect(&m_browser, &KDNSSD::ServiceBrowser::serviceAdded,
-    this, [=](KDNSSD::RemoteService::Ptr service) {
-        qCDebug(KIO_SMB_LOG) << "DNSSD added:"
-                             << service->serviceName()
-                             << service->type()
-                             << service->domain()
-                             << service->hostName()
-                             << service->port();
+    connect(&m_browser, &KDNSSD::ServiceBrowser::serviceAdded, this, [=](KDNSSD::RemoteService::Ptr service) {
+        qCDebug(KIO_SMB_LOG) << "DNSSD added:" << service->serviceName() << service->type() << service->domain() << service->hostName() << service->port();
         // Manual contains check. We need to use the == of the underlying
         // objects, not the pointers. The same service may have >1
         // RemoteService* instances representing it, so the == impl of

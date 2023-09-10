@@ -19,7 +19,7 @@ ImageCreator::ImageCreator(QObject *parent, const QVariantList &args)
 {
 }
 
-#define MiB(bytes) ((bytes) * 1024ll * 1024ll)
+#define MiB(bytes) ((bytes)*1024ll * 1024ll)
 #define GiB(bytes) (MiB(bytes) * 1024ll)
 
 // When the ram check is disabled or not available, this is the expected default value of free RAM
@@ -69,7 +69,7 @@ KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
      *         the QImageIOHandler::Size option (TIFF, PSB and XCF already have).
      */
     auto ram = maximumThumbnailRam();
-#if QT_VERSION < QT_VERSION_CHECK(6,0,0)
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     if (ir.supportsOption(QImageIOHandler::Size)) {
         auto size = ir.size();
         // euristic way: we always calculate the size supposing a 16-bits RGBA image

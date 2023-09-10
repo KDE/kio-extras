@@ -8,13 +8,14 @@
 #ifndef KIO_ACTIVITIES_H
 #define KIO_ACTIVITIES_H
 
-#include <KIO/ForwardingWorkerBase>
 #include <KActivities/Consumer>
+#include <KIO/ForwardingWorkerBase>
 #include <utils/d_ptr.h>
 
 class ActivitiesProtocolApi;
 
-class ActivitiesProtocol : public KIO::ForwardingWorkerBase {
+class ActivitiesProtocol : public KIO::ForwardingWorkerBase
+{
     Q_OBJECT
 
 public:
@@ -24,8 +25,8 @@ public:
 protected:
     bool rewriteUrl(const QUrl &url, QUrl &newUrl) override;
     KIO::WorkerResult listDir(const QUrl &url) override;
-    KIO::WorkerResult stat(const QUrl& url) override;
-    KIO::WorkerResult mimetype(const QUrl& url) override;
+    KIO::WorkerResult stat(const QUrl &url) override;
+    KIO::WorkerResult mimetype(const QUrl &url) override;
 
 private:
     D_PTRC(ActivitiesProtocolApi);

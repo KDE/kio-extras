@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2022 Kai Uwe Broulik <kde@broulik.de>
  * SPDX-License-Identifier: GPL-2.0-or-later
-*/
+ */
 
 #include "afcclient.h"
 
@@ -19,7 +19,6 @@ using namespace KIO;
 AfcClient::AfcClient(AfcDevice *device)
     : m_device(device)
 {
-
 }
 
 AfcClient::~AfcClient()
@@ -75,9 +74,7 @@ WorkerResult AfcClient::init(lockdownd_client_t lockdowndClient, const QString &
         });
 
         const char houseArrestCommand[] = "VendDocuments";
-        houseArrestRet = house_arrest_send_command(m_houseArrestClient,
-                                                   houseArrestCommand,
-                                                   appId.toUtf8().constData());
+        houseArrestRet = house_arrest_send_command(m_houseArrestClient, houseArrestCommand, appId.toUtf8().constData());
         if (houseArrestRet != HOUSE_ARREST_E_SUCCESS) {
             qCWarning(KIO_AFC_LOG) << "Failed to send House Arrest" << houseArrestCommand << "command" << houseArrestRet;
             return AfcUtils::Result::from(houseArrestRet);
@@ -103,7 +100,7 @@ WorkerResult AfcClient::init(lockdownd_client_t lockdowndClient, const QString &
             // The app does not exist.
             if (strcmp(errorStringPtr.data(), "ApplicationLookupFailed") == 0) {
                 return WorkerResult::fail(ERR_DOES_NOT_EXIST, appId);
-            // The app does not have UIFileSharingEnabled enabled.
+                // The app does not have UIFileSharingEnabled enabled.
             } else if (strcmp(errorStringPtr.data(), "InstallationLookupFailed") == 0) {
                 return WorkerResult::fail(ERR_ACCESS_DENIED, appId);
             }
@@ -159,12 +156,10 @@ WorkerResult AfcClient::entry(const QString &path, UDSEntry &entry)
 
     // Apply special icons for known locations
     if (m_appId.isEmpty()) {
-        static const QHash<QString, QString> s_folderIcons = {
-            {QStringLiteral("/DCIM"), QStringLiteral("camera-photo")},
-            {QStringLiteral("/Documents"), QStringLiteral("folder-documents")},
-            {QStringLiteral("/Downloads"), QStringLiteral("folder-downloads")},
-            {QStringLiteral("/Photos"), QStringLiteral("folder-pictures")}
-        };
+        static const QHash<QString, QString> s_folderIcons = {{QStringLiteral("/DCIM"), QStringLiteral("camera-photo")},
+                                                              {QStringLiteral("/Documents"), QStringLiteral("folder-documents")},
+                                                              {QStringLiteral("/Downloads"), QStringLiteral("folder-downloads")},
+                                                              {QStringLiteral("/Photos"), QStringLiteral("folder-pictures")}};
         const QString iconName = s_folderIcons.value(path);
         if (!iconName.isEmpty()) {
             entry.fastInsert(UDSEntry::UDS_ICON_NAME, iconName);
@@ -205,14 +200,14 @@ WorkerResult AfcClient::entry(const QString &path, UDSEntry &entry)
             } else {
                 qCWarning(KIO_AFC_LOG) << "Encountered unknown" << key << "of" << value << "for" << path;
             }
-        // is returned in nanoseconds
+            // is returned in nanoseconds
         } else if (strcmp(key, "st_mtime") == 0) {
             entry.fastInsert(UDSEntry::UDS_MODIFICATION_TIME, atoll(value) / 1000000000);
         } else if (strcmp(key, "st_birthtime") == 0) {
             entry.fastInsert(UDSEntry::UDS_CREATION_TIME, atoll(value) / 1000000000);
         } else if (strcmp(key, "LinkTarget") == 0) {
             // TODO figure out why afc_make_link fails with AFC_E_OP_NOT_SUPPORTED and then implement this
-            //entry.fastInsert(UDSEntry::UDS_LINK_DEST, QString::fromUtf8(value));
+            // entry.fastInsert(UDSEntry::UDS_LINK_DEST, QString::fromUtf8(value));
         } else {
             qCDebug(KIO_AFC_LOG) << "Encountered unrecognized file info key" << key << "for" << path;
         }
@@ -281,9 +276,7 @@ WorkerResult AfcClient::rename(const QString &src, const QString &dest, JobFlags
         return WorkerResult::fail(ERR_FILE_ALREADY_EXIST, dest);
     }
 
-    const auto ret = afc_rename_path(m_client,
-                                     src.toUtf8().constData(),
-                                     dest.toUtf8().constData());
+    const auto ret = afc_rename_path(m_client, src.toUtf8().constData(), dest.toUtf8().constData());
     return AfcUtils::Result::from(ret, dest);
 }
 
@@ -307,10 +300,7 @@ WorkerResult AfcClient::symlink(const QString &target, const QString &dest, JobF
     }
 
     // TODO figure out why this always fails with AFC_E_OP_NOT_SUPPORTED
-    const auto ret = afc_make_link(m_client,
-                                   AFC_SYMLINK,
-                                   target.toUtf8().constData(),
-                                   dest.toUtf8().constData());
+    const auto ret = afc_make_link(m_client, AFC_SYMLINK, target.toUtf8().constData(), dest.toUtf8().constData());
     return AfcUtils::Result::from(ret, dest);
 }
 
@@ -333,8 +323,6 @@ WorkerResult AfcClient::mkdir(const QString &path)
 
 WorkerResult AfcClient::setModificationTime(const QString &path, const QDateTime &mtime)
 {
-    const auto ret = afc_set_file_time(m_client,
-                                       path.toUtf8().constData(),
-                                       mtime.toMSecsSinceEpoch() /*ms*/ * 1000000 /*us*/);
+    const auto ret = afc_set_file_time(m_client, path.toUtf8().constData(), mtime.toMSecsSinceEpoch() /*ms*/ * 1000000 /*us*/);
     return AfcUtils::Result::from(ret, path);
 }

@@ -26,8 +26,8 @@ bool needsEEXISTWorkaround()
      *
      * Upstream bug report: https://bugzilla.samba.org/show_bug.cgi?id=13050
      */
-    static const QVersionNumber firstBrokenVer {4, 7, 0};
-    static const QVersionNumber lastBrokenVer {4, 7, 6};
+    static const QVersionNumber firstBrokenVer{4, 7, 0};
+    static const QVersionNumber lastBrokenVer{4, 7, 6};
 
     const QVersionNumber currentVer = QVersionNumber::fromString(smbc_version());
     qCDebug(KIO_SMB_LOG) << "Using libsmbclient library version" << currentVer;

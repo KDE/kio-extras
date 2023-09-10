@@ -7,8 +7,8 @@
 #include <QDate>
 #include <QTest>
 
-#include "../KioActivitiesApi.h"
 #include "../KioActivities.h"
+#include "../KioActivitiesApi.h"
 #include <utils/d_ptr_implementation.h>
 class FixActivitiesProtocol
 {
@@ -39,7 +39,8 @@ public:
         return d->activityEntry(activity);
     }
 
-    KIO::UDSEntry filesystemEntry(const QString &path) {
+    KIO::UDSEntry filesystemEntry(const QString &path)
+    {
         return d->filesystemEntry(path);
     }
 };
@@ -150,7 +151,8 @@ private Q_SLOTS:
         QCOMPARE(result.numberValue(KIO::UDSEntry::UDS_ACCESS), 0500);
     }
 
-    void fileSystemEntryTest() {
+    void fileSystemEntryTest()
+    {
         FixActivitiesProtocol fix;
         auto result = fix.filesystemEntry(filer);
 

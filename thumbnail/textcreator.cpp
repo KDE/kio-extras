@@ -35,7 +35,7 @@ TextCreator::TextCreator(QObject *parent, const QVariantList &args)
 
 TextCreator::~TextCreator()
 {
-    delete [] m_data;
+    delete[] m_data;
 }
 
 static QTextCodec *codecFromContent(const char *data, int dataSize)
@@ -56,10 +56,7 @@ KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
     const QString path = request.url().toLocalFile();
     // Desktop files, .directory files, and flatpakrefs aren't traditional
     // text files, so their icons should be shown instead
-    if (KDesktopFile::isDesktopFile(path)
-            || path.endsWith(QStringLiteral(".directory"))
-            || path.endsWith(QStringLiteral(".flatpakref"))
-       ) {
+    if (KDesktopFile::isDesktopFile(path) || path.endsWith(QStringLiteral(".directory")) || path.endsWith(QStringLiteral(".flatpakref"))) {
         return KIO::ThumbnailResult::fail();
     }
 
@@ -80,8 +77,8 @@ KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
     else
         pixmapSize.setWidth(height * 3 / 4);
 
-    if ( pixmapSize != m_pixmap.size() ) {
-        m_pixmap = QPixmap( pixmapSize );
+    if (pixmapSize != m_pixmap.size()) {
+        m_pixmap = QPixmap(pixmapSize);
         m_pixmap.setDevicePixelRatio(dpr);
     }
 
@@ -93,49 +90,46 @@ KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
     QFont font = QFontDatabase::systemFont(QFontDatabase::SmallestReadableFont);
 
     font.setPixelSize(qMax(7.0, qMin(10.0, (pixmapSize.height() / dpr - 2 * yborder) / 16)));
-    QFontMetrics fm( font );
+    QFontMetrics fm(font);
 
     // calculate a better border so that the text is centered
     const QSizeF canvasSize(pixmapSize.width() / dpr - 2 * xborder, pixmapSize.height() / dpr - 2 * yborder);
-    const int numLines = (int) (canvasSize.height() / fm.height());
+    const int numLines = (int)(canvasSize.height() / fm.height());
 
     // assumes an average line length of <= 120 chars
     const int bytesToRead = 120 * numLines;
 
     // create text-preview
-    QFile file( path );
-    if ( file.open( QIODevice::ReadOnly ))
-    {
-        if ( !m_data || m_dataSize < bytesToRead + 1 )
-        {
-            delete [] m_data;
-            m_data = new char[bytesToRead+1];
+    QFile file(path);
+    if (file.open(QIODevice::ReadOnly)) {
+        if (!m_data || m_dataSize < bytesToRead + 1) {
+            delete[] m_data;
+            m_data = new char[bytesToRead + 1];
             m_dataSize = bytesToRead + 1;
         }
 
-        int read = file.read( m_data, bytesToRead );
-        if ( read > 0 )
-        {
+        int read = file.read(m_data, bytesToRead);
+        if (read > 0) {
             ok = true;
             m_data[read] = '\0';
-            QString text = codecFromContent( m_data, read )->toUnicode( m_data, read ).trimmed();
+            QString text = codecFromContent(m_data, read)->toUnicode(m_data, read).trimmed();
             // FIXME: maybe strip whitespace and read more?
 
             // If the text contains tabs or consecutive spaces, it is probably
             // formatted using white space. Use a fixed pitch font in this case.
             const auto textLines = QStringView(text).split(QLatin1Char('\n'));
-            for (const auto& line : textLines) {
+            for (const auto &line : textLines) {
                 const auto trimmedLine = line.trimmed();
-                if ( trimmedLine.contains( '\t' ) || trimmedLine.contains( QLatin1String("  ") ) ) {
-                    font.setFamily( QFontDatabase::systemFont(QFontDatabase::FixedFont).family());
+                if (trimmedLine.contains('\t') || trimmedLine.contains(QLatin1String("  "))) {
+                    font.setFamily(QFontDatabase::systemFont(QFontDatabase::FixedFont).family());
                     break;
                 }
             }
 
-            QColor bgColor = QColor ( 245, 245, 245 ); // light-grey background
-            m_pixmap.fill( bgColor );
+            QColor bgColor = QColor(245, 245, 245); // light-grey background
+            m_pixmap.fill(bgColor);
 
-            QPainter painter( &m_pixmap );
+            QPainter painter(&m_pixmap);
 
             QTextDocument textDocument(text);
 
@@ -145,9 +139,9 @@ KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
             textDocument.setPageSize(canvasSize);
             textDocument.setDefaultFont(font);
 
-            QTextOption textOption( Qt::AlignTop | Qt::AlignLeft );
+            QTextOption textOption(Qt::AlignTop | Qt::AlignLeft);
             textOption.setTabStopDistance(8 * painter.fontMetrics().horizontalAdvance(QLatin1Char(' ')));
-            textOption.setWrapMode( QTextOption::WrapAtWordBoundaryOrAnywhere );
+            textOption.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
             textDocument.setDefaultTextOption(textOption);
 
             KSyntaxHighlighting::SyntaxHighlighter syntaxHighlighter;

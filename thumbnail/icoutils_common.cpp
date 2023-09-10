@@ -9,11 +9,11 @@
 #include "icoutils.h"
 
 #include <QBuffer>
+#include <QImage>
+#include <QImageReader>
 #include <QList>
 #include <QString>
 #include <QTemporaryFile>
-#include <QImage>
-#include <QImageReader>
 
 #include <algorithm>
 
@@ -38,21 +38,19 @@ qreal distance(int width, int height, int desiredWidth, int desiredHeight, int d
     return targetSamples - effectiveSamples;
 }
 
-bool IcoUtils::loadIcoImageFromExe(QIODevice * inputDevice, QImage &image, int needWidth, int needHeight)
+bool IcoUtils::loadIcoImageFromExe(QIODevice *inputDevice, QImage &image, int needWidth, int needHeight)
 {
-
     QTemporaryFile inputFile;
 
-    if ( ! inputFile.open() )
+    if (!inputFile.open())
         return false;
 
     QByteArray data = inputDevice->readAll();
 
-    if ( inputFile.write(data) == -1 )
+    if (inputFile.write(data) == -1)
         return false;
 
     return IcoUtils::loadIcoImageFromExe(inputFile.fileName(), image, needWidth, needHeight);
-
 }
 
 bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, int needWidth, int needHeight)
@@ -62,7 +60,7 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, 
         return false;
     }
 
-    if ( ! IcoUtils::loadIcoImageFromExe(inputFileName, &iconData) )
+    if (!IcoUtils::loadIcoImageFromExe(inputFileName, &iconData))
         return false;
 
     if (!iconData.seek(0)) {
@@ -80,11 +78,12 @@ bool IcoUtils::loadIcoImage(QImageReader &reader, QImage &image, int needWidth, 
         return false;
     }
 
-    QList <QImage> icons;
-    do icons << reader.read();
-    while ( reader.jumpToNextImage() );
+    QList<QImage> icons;
+    do
+        icons << reader.read();
+    while (reader.jumpToNextImage());
 
-    if ( icons.empty() )
+    if (icons.empty())
         return false;
 
     int index = icons.size() - 1;
@@ -111,21 +110,16 @@ bool IcoUtils::loadIcoImage(QImageReader &reader, QImage &image, int needWidth, 
 
     image = icons.at(index);
     return true;
-
 }
 
-bool IcoUtils::loadIcoImage(QIODevice * inputDevice, QImage &image, int needWidth, int needHeight)
+bool IcoUtils::loadIcoImage(QIODevice *inputDevice, QImage &image, int needWidth, int needHeight)
 {
-
     QImageReader reader(inputDevice, "ico");
     return IcoUtils::loadIcoImage(reader, image, needWidth, needHeight);
-
 }
 
 bool IcoUtils::loadIcoImage(const QString &inputFileName, QImage &image, int needWidth, int needHeight)
 {
-
     QImageReader reader(inputFileName, "ico");
     return IcoUtils::loadIcoImage(reader, image, needWidth, needHeight);
-
 }

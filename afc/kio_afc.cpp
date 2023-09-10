@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2022 Kai Uwe Broulik <kde@broulik.de>
  * SPDX-License-Identifier: GPL-2.0-or-later
-*/
+ */
 
 #include "kio_afc.h"
 
@@ -36,24 +36,23 @@ class KIOPluginForMetaData : public QObject
 };
 
 using namespace KIO;
-extern "C"
+extern "C" {
+int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
-    int Q_DECL_EXPORT kdemain(int argc, char **argv)
-    {
-        QCoreApplication app(argc, argv);
-        app.setApplicationName(QStringLiteral("kio_afc"));
+    QCoreApplication app(argc, argv);
+    app.setApplicationName(QStringLiteral("kio_afc"));
 
-        qCDebug(KIO_AFC_LOG) << "*** Starting kio_afc";
+    qCDebug(KIO_AFC_LOG) << "*** Starting kio_afc";
 
-        if (argc != 4) {
-            qCDebug(KIO_AFC_LOG) << "Usage: kio_afc protocol domain-socket1 domain-socket2";
-            exit(-1);
-        }
-
-        AfcWorker worker(argv[2], argv[3]);
-        worker.dispatchLoop();
-        return 0;
+    if (argc != 4) {
+        qCDebug(KIO_AFC_LOG) << "Usage: kio_afc protocol domain-socket1 domain-socket2";
+        exit(-1);
     }
+
+    AfcWorker worker(argv[2], argv[3]);
+    worker.dispatchLoop();
+    return 0;
+}
 }
 
 AfcWorker::AfcWorker(const QByteArray &poolSocket, const QByteArray &appSocket)
@@ -79,10 +78,12 @@ Result AfcWorker::init()
         idevice_set_debug_level(logLevel);
     }
 
-    idevice_event_subscribe([](const idevice_event_t *event, void *user_data) {
-        // NOTE this is executed in a different thread!
-        static_cast<AfcWorker *>(user_data)->onDeviceEvent(event);
-    }, this);
+    idevice_event_subscribe(
+        [](const idevice_event_t *event, void *user_data) {
+            // NOTE this is executed in a different thread!
+            static_cast<AfcWorker *>(user_data)->onDeviceEvent(event);
+        },
+        this);
 
     updateDeviceList();
 
@@ -196,13 +197,12 @@ UDSEntry AfcWorker::deviceEntry(const AfcDevice *device, const QString &fileName
     entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
 
-
     QString iconName;
     // We can assume iPod running iOS/supporting imobiledevice is an iPod touch?
     if (deviceClass.contains(QLatin1String("iPad"))) {
         iconName = QStringLiteral("computer-apple-ipad");
     } else if (deviceClass.contains(QLatin1String("iPod"))) {
-       iconName = QStringLiteral("multimedia-player-apple-ipod-touch");
+        iconName = QStringLiteral("multimedia-player-apple-ipod-touch");
     } else {
         iconName = QStringLiteral("phone-apple-iphone");
     }
@@ -426,8 +426,7 @@ Result AfcWorker::listDir(const QUrl &url)
 
     for (const QString &file : files) {
         QString absolutePath = afcUrl.path();
-        if (!absolutePath.endsWith(QLatin1Char('/'))
-                && !file.startsWith(QLatin1Char('/'))) {
+        if (!absolutePath.endsWith(QLatin1Char('/')) && !file.startsWith(QLatin1Char('/'))) {
             absolutePath.append(QLatin1Char('/'));
         }
         absolutePath.append(file);

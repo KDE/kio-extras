@@ -8,9 +8,9 @@
 
 #include "icoutils.h"
 
+#include <QProcess>
 #include <QRegularExpression>
 #include <QString>
-#include <QProcess>
 
 bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice)
 {
@@ -39,7 +39,7 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QIODevice *outp
 
     QString name = match.captured(1);
     if (name.at(0) == '\'') {
-        name = name.mid(1, name.size()-2);
+        name = name.mid(1, name.size() - 2);
     }
 
     wrestool.start(QStringLiteral("wrestool"), {QStringLiteral("-x"), QStringLiteral("-t14"), QStringLiteral("-n"), name, inputFileName});

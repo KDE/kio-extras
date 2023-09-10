@@ -54,7 +54,8 @@ KIO::ThumbnailResult OpenDocumentCreator::create(const KIO::ThumbnailRequest &re
             xml.readNext();
             if (xml.isStartElement() && xml.name() == QLatin1String("Relationship")) {
                 const auto attributes = xml.attributes();
-                if (attributes.value(QStringLiteral("Type")) == QLatin1String("http://schemas.openxmlformats.org/package/2006/relationships/metadata/thumbnail")) {
+                if (attributes.value(QStringLiteral("Type"))
+                    == QLatin1String("http://schemas.openxmlformats.org/package/2006/relationships/metadata/thumbnail")) {
                     thumbnailPath = attributes.value(QStringLiteral("Target")).toString();
                     break;
                 }

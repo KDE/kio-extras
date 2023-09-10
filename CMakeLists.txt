@@ -19,6 +19,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
+include(KDEGitCommitHooks)
 
 include(ECMMarkNonGuiExecutable)
 include(ECMMarkAsTest)
@@ -227,5 +228,7 @@ ecm_qt_install_logging_categories(
 
 ki18n_install(po)
 kdoctools_install(po)
+
+kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)

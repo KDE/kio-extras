@@ -13,7 +13,6 @@
 
 #include "kio_smb.h"
 
-
 // Carries the context of a file transfer.
 struct TransferContext {
     // When resuming a file. This is false when starting a new .part!

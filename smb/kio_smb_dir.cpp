@@ -69,7 +69,9 @@ WorkerResult SMBWorker::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissi
 
     // Open the source file
     const int srcfd = smbc_open(src.toSmbcUrl(), O_RDONLY, 0);
-    auto closeSrcFd = qScopeGuard([srcfd]{ smbc_close(srcfd); });
+    auto closeSrcFd = qScopeGuard([srcfd] {
+        smbc_close(srcfd);
+    });
     if (srcfd < 0) {
         if (errno == EACCES) {
             return WorkerResult::fail(KIO::ERR_ACCESS_DENIED, src.toDisplayString());
@@ -91,7 +93,9 @@ WorkerResult SMBWorker::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissi
         dstflags |= O_EXCL;
     }
     const int dstfd = smbc_open(dst.toSmbcUrl(), dstflags, initialmode);
-    auto closeDstFd = qScopeGuard([dstfd]{ smbc_close(dstfd); });
+    auto closeDstFd = qScopeGuard([dstfd] {
+        smbc_close(dstfd);
+    });
     if (dstfd < 0) {
         if (errno == EACCES) {
             return WorkerResult::fail(KIO::ERR_WRITE_ACCESS_DENIED, dst.toDisplayString());
@@ -125,7 +129,7 @@ WorkerResult SMBWorker::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissi
 
     //    FINISHED:
 
-    smbc_close(srcfd);\
+    smbc_close(srcfd);
 
     if (smbc_close(dstfd) == 0) {
         // TODO: set final permissions
@@ -212,7 +216,9 @@ WorkerResult SMBWorker::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permi
     // Open the source file
     KIO::filesize_t processed_size = 0;
     const int srcfd = smbc_open(src.toSmbcUrl(), O_RDONLY, 0);
-    auto closeSrcFd = qScopeGuard([srcfd]{ smbc_close(srcfd); });
+    auto closeSrcFd = qScopeGuard([srcfd] {
+        smbc_close(srcfd);
+    });
     if (srcfd < 0) {
         if (errno == EACCES) {
             return WorkerResult::fail(KIO::ERR_ACCESS_DENIED, src.toDisplayString());
@@ -404,7 +410,7 @@ WorkerResult SMBWorker::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permi
 
     if (auto conclusionResult = Transfer::concludeResumeHasError<SMBResumeIO>(result, resume, this); !conclusionResult.success()) {
         return conclusionResult;
-     }
+    }
 
     applyMTimeSMBC(dstOrigUrl);
 
@@ -512,9 +518,11 @@ WorkerResult SMBWorker::rename(const QUrl &ksrc, const QUrl &kdest, KIO::JobFlag
     // on. When not we can still pretend like they aren't the same file. Worst case the user gets an overwrite prompt.
     // https://bugs.kde.org/show_bug.cgi?id=430585
     bool hasSrcStat = false;
-    struct stat srcStat {};
+    struct stat srcStat {
+    };
     if (src.path().compare(dst.path(), Qt::CaseInsensitive) == 0) {
-        qCDebug(KIO_SMB_LOG) << "smbc_rename " << "src and dst insensitive equal, performing inode comparision";
+        qCDebug(KIO_SMB_LOG) << "smbc_rename "
+                             << "src and dst insensitive equal, performing inode comparision";
         errNum = cache_stat(dst, &st);
         if (errNum == 0) {
             hasSrcStat = true;

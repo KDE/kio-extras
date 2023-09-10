@@ -1,11 +1,11 @@
 #include "recentdocumentsnotifier.h"
 
+#include <KDirNotify>
 #include <KDirWatch>
 #include <KPluginFactory>
-#include <QUrl>
-#include <KDirNotify>
 #include <KRecentDocument>
 #include <QFileInfo>
+#include <QUrl>
 
 K_PLUGIN_CLASS_WITH_JSON(RecentDocumentsNotifier, "recentdocumentsnotifier.json")
 

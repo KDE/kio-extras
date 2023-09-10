@@ -13,16 +13,16 @@ public:
 
 public:
     KIO::WorkerResult listDir(const QUrl &url) override;
-    KIO::WorkerResult stat(const QUrl& url) override;
-    KIO::WorkerResult mimetype(const QUrl& url) override;
+    KIO::WorkerResult stat(const QUrl &url) override;
+    KIO::WorkerResult mimetype(const QUrl &url) override;
 
 protected:
-    QString desktopFile(KIO::UDSEntry&) const;
+    QString desktopFile(KIO::UDSEntry &) const;
 
     bool rewriteUrl(const QUrl &url, QUrl &newUrl) override;
 
 private:
-    KDirWatch* m_recentDocWatch;
+    KDirWatch *m_recentDocWatch;
 };
 
 #endif

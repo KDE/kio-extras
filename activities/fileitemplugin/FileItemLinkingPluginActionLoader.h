@@ -16,17 +16,16 @@
 
 #include <KActivities/Consumer>
 
-class FileItemLinkingPluginActionLoader: public QThread {
+class FileItemLinkingPluginActionLoader : public QThread
+{
     Q_OBJECT
 
 public:
-    static FileItemLinkingPluginActionLoader* create(const KFileItemListProperties &items);
+    static FileItemLinkingPluginActionLoader *create(const KFileItemListProperties &items);
 
     void run() override;
 
-    Action createAction(const QString &activity, bool link,
-                        const QString &title = QString(),
-                        const QString &icon = QString()) const;
+    Action createAction(const QString &activity, bool link, const QString &title = QString(), const QString &icon = QString()) const;
     Action createSeparator(const QString &title) const;
 
 Q_SIGNALS:

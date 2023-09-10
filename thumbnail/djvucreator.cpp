@@ -6,9 +6,9 @@
 #include "djvucreator.h"
 #include "thumbnail-djvu-logsettings.h"
 
+#include <QImage>
 #include <QProcess>
 #include <QString>
-#include <QImage>
 
 #include <KPluginFactory>
 
@@ -35,8 +35,7 @@ KIO::ThumbnailResult DjVuCreator::create(const KIO::ThumbnailRequest &request)
     static bool warnOnce = true;
     if (ddjvu.exitCode() != 0) {
         if (warnOnce) {
-            qCWarning(KIO_THUMBNAIL_DJVU_LOG) << ddjvu.error()
-                                              << ddjvu.readAllStandardError();
+            qCWarning(KIO_THUMBNAIL_DJVU_LOG) << ddjvu.error() << ddjvu.readAllStandardError();
             warnOnce = false;
         }
         return KIO::ThumbnailResult::fail();

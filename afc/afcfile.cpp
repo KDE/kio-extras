@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2022 Kai Uwe Broulik <kde@broulik.de>
  * SPDX-License-Identifier: GPL-2.0-or-later
-*/
+ */
 
 #include "afcfile.h"
 
@@ -15,13 +15,9 @@ AfcFile::AfcFile(const AfcClient::Ptr &client, const QString &path)
     : m_client(client)
     , m_path(path)
 {
-
 }
 
-AfcFile::AfcFile(AfcFile &&other) Q_DECL_NOEXCEPT
-    : m_client(std::move(other.m_client))
-    , m_path(other.m_path)
-    , m_handle(other.m_handle)
+AfcFile::AfcFile(AfcFile &&other) Q_DECL_NOEXCEPT : m_client(std::move(other.m_client)), m_path(other.m_path), m_handle(other.m_handle)
 {
     other.m_handle.reset();
 }

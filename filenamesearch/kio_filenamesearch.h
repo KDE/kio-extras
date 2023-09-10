@@ -11,8 +11,8 @@
 
 #include <QUrl>
 
-#include <set>
 #include <queue>
+#include <set>
 
 /**
  * @brief Lists files that match a specific search pattern.
@@ -43,11 +43,7 @@ public:
 
 private:
     void listRootEntry();
-    void searchDir(const QUrl &dirUrl,
-                   const QRegularExpression &regex,
-                   bool searchContents,
-                   std::set<QString> &iteratedDirs,
-                   std::queue<QUrl> &pendingDirs);
+    void searchDir(const QUrl &dirUrl, const QRegularExpression &regex, bool searchContents, std::set<QString> &iteratedDirs, std::queue<QUrl> &pendingDirs);
 };
 
 #endif

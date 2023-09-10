@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2022 Kai Uwe Broulik <kde@broulik.de>
  * SPDX-License-Identifier: GPL-2.0-or-later
-*/
+ */
 
 #include "afcapp.h"
 
@@ -40,8 +40,7 @@ AfcApp::AfcApp(plist_t app)
             char *sharingString = nullptr;
             plist_get_string_val(sharingItem, &sharingString);
             if (sharingString) {
-                m_sharingEnabled = (strcmp(sharingString, "YES") == 0
-                                    || strcmp(sharingString, "true") == 0);
+                m_sharingEnabled = (strcmp(sharingString, "YES") == 0 || strcmp(sharingString, "true") == 0);
                 free(sharingString);
             }
             break;

@@ -5,8 +5,8 @@
  *   SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
 
-#include "KioActivitiesApi.h"
 #include "KioActivities.h"
+#include "KioActivitiesApi.h"
 
 #include <QCoreApplication>
 
@@ -32,8 +32,8 @@
 #include <KActivities/Consumer>
 #include <KActivities/Info>
 
-#include <QProcess>
 #include "KioActivitiesApi.h"
+#include <QProcess>
 
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
@@ -56,9 +56,7 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
     return 0;
 }
 
-
-ActivitiesProtocol::ActivitiesProtocol(const QByteArray &poolSocket,
-                                       const QByteArray &appSocket)
+ActivitiesProtocol::ActivitiesProtocol(const QByteArray &poolSocket, const QByteArray &appSocket)
     : KIO::ForwardingWorkerBase("activities", poolSocket, appSocket)
 {
 }
@@ -169,8 +167,7 @@ KIO::WorkerResult ActivitiesProtocol::listDir(const QUrl &url)
     return KIO::WorkerResult::fail();
 }
 
-
-KIO::WorkerResult ActivitiesProtocol::stat(const QUrl& url)
+KIO::WorkerResult ActivitiesProtocol::stat(const QUrl &url)
 {
     QString activity;
 
@@ -212,7 +209,7 @@ KIO::WorkerResult ActivitiesProtocol::stat(const QUrl& url)
     return KIO::WorkerResult::fail();
 }
 
-KIO::WorkerResult ActivitiesProtocol::mimetype(const QUrl& url)
+KIO::WorkerResult ActivitiesProtocol::mimetype(const QUrl &url)
 {
     switch (d->pathType(url)) {
     case ActivitiesProtocolApi::RootItem:

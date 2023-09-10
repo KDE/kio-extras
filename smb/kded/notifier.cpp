@@ -7,15 +7,15 @@
 #include <QCommandLineParser>
 #include <QCoreApplication>
 #include <QDebug>
-#include <QScopeGuard>
-#include <QUrl>
 #include <QElapsedTimer>
-#include <QTimer>
+#include <QScopeGuard>
 #include <QThread>
+#include <QTimer>
+#include <QUrl>
 
-#include <smbcontext.h>
-#include <smbauthenticator.h>
 #include <smb-logsettings.h>
+#include <smbauthenticator.h>
+#include <smbcontext.h>
 
 #include <mutex>
 
@@ -25,6 +25,7 @@
 class Frontend : public SMBAbstractFrontend
 {
     KPasswdServerClient m_passwd;
+
 public:
     bool checkCachedAuthentication(KIO::AuthInfo &info) override
     {
@@ -202,8 +203,7 @@ int main(int argc, char **argv)
     QCommandLineParser parser;
     parser.addHelpOption();
     // Intentionally not localized. This process isn't meant to be used by humans.
-    parser.addPositionalArgument(QStringLiteral("URI"),
-                                 QStringLiteral("smb: URI of directory to notify on (smb://host.local/share/dir)"));
+    parser.addPositionalArgument(QStringLiteral("URI"), QStringLiteral("smb: URI of directory to notify on (smb://host.local/share/dir)"));
     parser.process(app);
 
     Frontend frontend;
@@ -215,7 +215,7 @@ int main(int argc, char **argv)
         ModificationLimiter modificationLimiter;
         PendingRemove pendingRemove;
     };
-    NotifyContext context {QUrl(parser.positionalArguments().at(0)), {}, {}};
+    NotifyContext context{QUrl(parser.positionalArguments().at(0)), {}, {}};
 
     auto notify = [](const struct smbc_notify_callback_action *actions, size_t num_actions, void *private_data) -> int {
         auto *context = static_cast<NotifyContext *>(private_data);
@@ -283,7 +283,9 @@ int main(int argc, char **argv)
 
     qCDebug(KIO_SMB_LOG) << "notifying on" << context.url.toString();
     const int dh = smbc_opendir(qUtf8Printable(context.url.toString()));
-    auto dhClose = qScopeGuard([dh] { smbc_closedir(dh); });
+    auto dhClose = qScopeGuard([dh] {
+        smbc_closedir(dh);
+    });
     if (dh < 0) {
         qCWarning(KIO_SMB_LOG) << "-- Failed to smbc_opendir:" << strerror(errno);
         return 1;
@@ -296,16 +298,12 @@ int main(int argc, char **argv)
 
     const int nh = smbc_notify(dh,
                                0 /* not recursive */,
-                               SMBC_NOTIFY_CHANGE_FILE_NAME |
-                               SMBC_NOTIFY_CHANGE_DIR_NAME |
-                               SMBC_NOTIFY_CHANGE_ATTRIBUTES |
-                               SMBC_NOTIFY_CHANGE_SIZE |
-                               SMBC_NOTIFY_CHANGE_LAST_WRITE |
-                               SMBC_NOTIFY_CHANGE_LAST_ACCESS |
-                               SMBC_NOTIFY_CHANGE_CREATION |
-                               SMBC_NOTIFY_CHANGE_EA |
-                               SMBC_NOTIFY_CHANGE_SECURITY,
-                               0 /* no eventlooping necessary */, notify, &context);
+                               SMBC_NOTIFY_CHANGE_FILE_NAME | SMBC_NOTIFY_CHANGE_DIR_NAME | SMBC_NOTIFY_CHANGE_ATTRIBUTES | SMBC_NOTIFY_CHANGE_SIZE
+                                   | SMBC_NOTIFY_CHANGE_LAST_WRITE | SMBC_NOTIFY_CHANGE_LAST_ACCESS | SMBC_NOTIFY_CHANGE_CREATION | SMBC_NOTIFY_CHANGE_EA
+                                   | SMBC_NOTIFY_CHANGE_SECURITY,
+                               0 /* no eventlooping necessary */,
+                               notify,
+                               &context);
     if (nh == -1) {
         qCWarning(KIO_SMB_LOG) << "-- Failed to smbc_notify:" << strerror(errno);
         return 2;

@@ -18,16 +18,16 @@ class KFilterBase;
 
 class FilterProtocol : /*public QObject, */ public KIO::WorkerBase
 {
-//    Q_OBJECT
+    //    Q_OBJECT
 
 public:
-    FilterProtocol( const QByteArray & protocol, const QByteArray &pool, const QByteArray &app );
+    FilterProtocol(const QByteArray &protocol, const QByteArray &pool, const QByteArray &app);
 
-    KIO::WorkerResult get( const QUrl &url ) override;
+    KIO::WorkerResult get(const QUrl &url) override;
 
 private:
     const QString m_protocol;
-    KFilterBase * filter;
+    KFilterBase *filter;
 };
 
 #endif

@@ -14,8 +14,7 @@
 // On Linux see the man pages mdoc(7), mdoc.samples(7) and groff_mdoc(7)
 // See also the online man pages of FreeBSD: mdoc(7)
 
-enum RequestNum
-{
+enum RequestNum {
     REQ_UNKNOWN = -1,
     REQ_ab,
     REQ_di,
@@ -30,7 +29,7 @@ enum RequestNum
     REQ_ex,
     REQ_fc,
     REQ_fi,
-    REQ_ft,  // groff(7) "FonT"
+    REQ_ft, // groff(7) "FonT"
     REQ_el,
     REQ_ie,
     REQ_if,
@@ -170,9 +169,9 @@ enum RequestNum
     REQ_break, // groff(7) "Break out of a while loop"
     REQ_nop, // groff(7) .nop macro
     REQ_URL, // man(7) .URL macro
-    REQ_Sm,  // mdoc(7) space mode
-    REQ_Xo,  // mdoc(7) extended argument list open
-    REQ_Xc  // mdoc(7) extended argument list close
+    REQ_Sm, // mdoc(7) space mode
+    REQ_Xo, // mdoc(7) extended argument list open
+    REQ_Xc // mdoc(7) extended argument list close
 };
 
 class RequestHash

@@ -22,12 +22,11 @@ SvgCreator::SvgCreator(QObject *parent, const QVariantList &args)
 KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
 {
     QSvgRenderer r(request.url().toLocalFile());
-    if ( !r.isValid() )
+    if (!r.isValid())
         return KIO::ThumbnailResult::fail();
 
     // render using the correct ratio
-    const double ratio = static_cast<double>(r.defaultSize().height()) /
-                         static_cast<double>(r.defaultSize().width());
+    const double ratio = static_cast<double>(r.defaultSize().height()) / static_cast<double>(r.defaultSize().width());
 
     int w = request.targetSize().width();
     int h = request.targetSize().height();

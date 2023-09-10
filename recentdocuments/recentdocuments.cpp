@@ -6,12 +6,12 @@
 #include <QFileInfo>
 #include <QUrl>
 
-#include <KRecentDocument>
-#include <KDirWatch>
 #include <KDesktopFile>
+#include <KDirWatch>
 #include <KIO/Job>
 #include <KLocalizedString>
 #include <KProtocolManager>
+#include <KRecentDocument>
 
 #include <stdio.h>
 
@@ -44,12 +44,11 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 bool isRootUrl(const QUrl &url)
 {
     const QString path = url.adjusted(QUrl::StripTrailingSlash).path();
-    return(!url.hasQuery() &&
-           (path.isEmpty() || path == QLatin1String("/")));
+    return (!url.hasQuery() && (path.isEmpty() || path == QLatin1String("/")));
 }
 
-RecentDocuments::RecentDocuments(const QByteArray& pool, const QByteArray& app):
-    ForwardingWorkerBase("recentdocuments", pool, app)
+RecentDocuments::RecentDocuments(const QByteArray &pool, const QByteArray &app)
+    : ForwardingWorkerBase("recentdocuments", pool, app)
 {
     QDBusInterface kded("org.kde.kded5", "/kded", "org.kde.kded5");
     kded.call("loadModule", "recentdocumentsnotifier");
@@ -57,10 +56,9 @@ RecentDocuments::RecentDocuments(const QByteArray& pool, const QByteArray& app):
 
 RecentDocuments::~RecentDocuments()
 {
-
 }
 
-bool RecentDocuments::rewriteUrl(const QUrl& url, QUrl& newUrl)
+bool RecentDocuments::rewriteUrl(const QUrl &url, QUrl &newUrl)
 {
     if (isRootUrl(url)) {
         return false;
@@ -76,13 +74,13 @@ bool RecentDocuments::rewriteUrl(const QUrl& url, QUrl& newUrl)
     }
 }
 
-KIO::WorkerResult RecentDocuments::listDir(const QUrl& url)
+KIO::WorkerResult RecentDocuments::listDir(const QUrl &url)
 {
     if (isRootUrl(url)) {
         const QStringList list = KRecentDocument::recentDocuments();
         KIO::UDSEntryList udslist;
         QSet<QString> urlSet;
-        for (const QString& entry : list) {
+        for (const QString &entry : list) {
             if (KDesktopFile::isDesktopFile(entry)) {
                 QFileInfo info(entry);
                 KDesktopFile file(entry);
@@ -92,14 +90,12 @@ KIO::WorkerResult RecentDocuments::listDir(const QUrl& url)
 
                 // Filter out things that can't be viewed in a file manager because they don't
                 // meet the user definition of a file for the purpose of "recently accessed files"
-                if (urlInside.scheme() == "recentdocuments"
-                        || !KProtocolManager::supportsListing(urlInside)
-                        || urlSet.contains(toDisplayString))
+                if (urlInside.scheme() == "recentdocuments" || !KProtocolManager::supportsListing(urlInside) || urlSet.contains(toDisplayString))
                     continue;
 
                 KIO::UDSEntry uds;
                 if (urlInside.isLocalFile()) {
-                    KIO::StatJob* job = KIO::stat(urlInside, KIO::HideProgressInfo);
+                    KIO::StatJob *job = KIO::stat(urlInside, KIO::HideProgressInfo);
                     // we do not want to wait for the event loop to delete the job
                     QScopedPointer<KIO::StatJob> sp(job);
                     job->setAutoDelete(false);
@@ -129,7 +125,7 @@ KIO::WorkerResult RecentDocuments::listDir(const QUrl& url)
     return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
 }
 
-QString RecentDocuments::desktopFile(KIO::UDSEntry& entry) const
+QString RecentDocuments::desktopFile(KIO::UDSEntry &entry) const
 {
     const QString name = entry.stringValue(KIO::UDSEntry::UDS_NAME);
     if (name == "." || name == "..")
@@ -145,7 +141,7 @@ QString RecentDocuments::desktopFile(KIO::UDSEntry& entry) const
     return QString();
 }
 
-KIO::WorkerResult RecentDocuments::stat(const QUrl& url)
+KIO::WorkerResult RecentDocuments::stat(const QUrl &url)
 {
     if (isRootUrl(url)) {
         qCDebug(LOG_RECENTDOCUMENTS) << "Stat root" << url;
@@ -162,9 +158,9 @@ KIO::WorkerResult RecentDocuments::stat(const QUrl& url)
         uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QString::fromLatin1("inode/directory"));
 #ifdef Q_OS_WIN
-        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD );
+        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD);
 #else
-        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR );
+        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR);
 #endif
         statEntry(uds);
         return KIO::WorkerResult::pass();
@@ -175,7 +171,7 @@ KIO::WorkerResult RecentDocuments::stat(const QUrl& url)
     return ForwardingWorkerBase::stat(url);
 }
 
-KIO::WorkerResult RecentDocuments::mimetype(const QUrl& url)
+KIO::WorkerResult RecentDocuments::mimetype(const QUrl &url)
 {
     qCDebug(LOG_RECENTDOCUMENTS) << url;
 

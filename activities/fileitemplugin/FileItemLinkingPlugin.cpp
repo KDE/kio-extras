@@ -5,27 +5,27 @@
  */
 
 #include "FileItemLinkingPlugin.h"
-#include "FileItemLinkingPlugin_p.h"
 #include "FileItemLinkingPluginActionLoader.h"
+#include "FileItemLinkingPlugin_p.h"
 
 #include <KFileItemListProperties>
 #include <utils/d_ptr_implementation.h>
 #include <utils/qsqlquery_iterator.h>
 
-#include <QMenu>
 #include <QCursor>
+#include <QDBusPendingCall>
 #include <QDebug>
 #include <QFileInfo>
+#include <QMenu>
 #include <QSqlDatabase>
-#include <QSqlQuery>
-#include <QSqlField>
-#include <QSqlError>
 #include <QSqlDriver>
+#include <QSqlError>
+#include <QSqlField>
+#include <QSqlQuery>
 #include <QStandardPaths>
-#include <QDBusPendingCall>
 
-#include <KPluginFactory>
 #include <KLocalizedString>
+#include <KPluginFactory>
 
 #include <algorithm>
 
@@ -33,17 +33,14 @@
 
 K_PLUGIN_CLASS_WITH_JSON(FileItemLinkingPlugin, "kactivitymanagerd_fileitem_linking_plugin.json")
 
-
 // Private
 
 FileItemLinkingPlugin::Private::Private()
 {
-    connect(&activities, &KActivities::Consumer::serviceStatusChanged,
-            this, &Private::activitiesServiceStatusChanged);
+    connect(&activities, &KActivities::Consumer::serviceStatusChanged, this, &Private::activitiesServiceStatusChanged);
 }
 
-void FileItemLinkingPlugin::Private::activitiesServiceStatusChanged(
-    KActivities::Consumer::ServiceStatus status)
+void FileItemLinkingPlugin::Private::activitiesServiceStatusChanged(KActivities::Consumer::ServiceStatus status)
 {
     if (status != KActivities::Consumer::Unknown) {
         loadAllActions();
@@ -74,11 +71,7 @@ void FileItemLinkingPlugin::Private::actionTriggered()
 
     const auto urlList = items.urlList();
     for (const auto &item : urlList) {
-        service.asyncCall(
-            link ? "LinkResourceToActivity" : "UnlinkResourceFromActivity",
-            QString(),
-            item.toLocalFile(),
-            activity);
+        service.asyncCall(link ? "LinkResourceToActivity" : "UnlinkResourceFromActivity", QString(), item.toLocalFile(), activity);
     }
 }
 
@@ -92,14 +85,12 @@ QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
     // is not opened yet, so activities should not be loaded
     status = Status::LoadingBlocked;
 
-    root = new QAction(QIcon::fromTheme("activities"),
-                       i18n("Activities"), parentWidget);
+    root = new QAction(QIcon::fromTheme("activities"), i18n("Activities"), parentWidget);
 
     rootMenu = new QMenu(parentWidget);
     rootMenu->addAction(new QAction(i18n("Loading..."), this));
 
-    connect(root, &QAction::hovered,
-            this, &Private::rootActionHovered);
+    connect(root, &QAction::hovered, this, &Private::rootActionHovered);
 
     root->setMenu(rootMenu);
 
@@ -108,16 +99,15 @@ QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
 
 void FileItemLinkingPlugin::Private::loadAllActions()
 {
-    if (status != Status::ShouldLoad
-            || activities.serviceStatus() == KActivities::Consumer::Unknown) {
+    if (status != Status::ShouldLoad || activities.serviceStatus() == KActivities::Consumer::Unknown) {
         return;
     }
 
     if (activities.serviceStatus() == KActivities::Consumer::NotRunning) {
-        Action action = { };
+        Action action = {};
         action.title = i18n("The Activity Manager is not running");
 
-        setActions({ action });
+        setActions({action});
 
     } else if (status != Status::Loaded) {
         status = Status::Loaded; // loading is async, we don't want to slin two threads
@@ -126,9 +116,7 @@ void FileItemLinkingPlugin::Private::loadAllActions()
 
         static FileItemLinkingPluginActionStaticInit init;
 
-        connect(loader, &FileItemLinkingPluginActionLoader::result,
-                this, &Private::setActions,
-                Qt::QueuedConnection);
+        connect(loader, &FileItemLinkingPluginActionLoader::result, this, &Private::setActions, Qt::QueuedConnection);
 
         loader->start();
     }
@@ -140,12 +128,12 @@ void FileItemLinkingPlugin::Private::setActions(const ActionList &actions)
         return;
     }
 
-    for (auto action: rootMenu->actions()) {
+    for (auto action : rootMenu->actions()) {
         rootMenu->removeAction(action);
         action->deleteLater();
     }
 
-    for (const auto& actionInfo: actions) {
+    for (const auto &actionInfo : actions) {
         if (actionInfo.icon != "-") {
             auto action = new QAction(nullptr);
 
@@ -156,8 +144,7 @@ void FileItemLinkingPlugin::Private::setActions(const ActionList &actions)
 
             rootMenu->addAction(action);
 
-            connect(action, &QAction::triggered,
-                    this, &Private::actionTriggered);
+            connect(action, &QAction::triggered, this, &Private::actionTriggered);
 
         } else {
             auto action = new QAction(actionInfo.title, nullptr);
@@ -201,7 +188,7 @@ QList<QAction *> FileItemLinkingPlugin::actions(const KFileItemListProperties &f
 
     d->items = fileItemInfos;
 
-    return { d->basicAction(parentWidget) };
+    return {d->basicAction(parentWidget)};
 }
 
 #include "FileItemLinkingPlugin.moc"

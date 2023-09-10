@@ -7,7 +7,6 @@
 
 */
 
-
 #ifndef WINDOWS_EXE_CREATOR_H
 #define WINDOWS_EXE_CREATOR_H
 

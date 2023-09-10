@@ -10,8 +10,8 @@
 #include <KConfig>
 #include <KConfigGroup>
 
-#include "smbauthenticator.h"
 #include "smb-logsettings.h"
+#include "smbauthenticator.h"
 
 SMBContext::SMBContext(SMBAuthenticator *authenticator)
     : m_context(smbc_new_context(), &freeContext)
@@ -74,7 +74,15 @@ bool SMBContext::isValid() const
     return smbcctx() && authenticator();
 }
 
-void SMBContext::auth_cb(SMBCCTX *context, const char *server, const char *share, char *workgroup, int wgmaxlen, char *username, int unmaxlen, char *password, int pwmaxlen)
+void SMBContext::auth_cb(SMBCCTX *context,
+                         const char *server,
+                         const char *share,
+                         char *workgroup,
+                         int wgmaxlen,
+                         char *username,
+                         int unmaxlen,
+                         char *password,
+                         int pwmaxlen)
 {
     // Unfortunately because the callback API doesn't support callback specific user_data we need
     // to route all auths through our context object otherwise the authenticator would have
@@ -85,10 +93,7 @@ void SMBContext::auth_cb(SMBCCTX *context, const char *server, const char *share
 #else
         auto *that = static_cast<SMBCContext *>(smbc_option_get(context, "user_data"));
 #endif
-        that->m_authenticator->auth(context, server, share,
-                                    workgroup,wgmaxlen,
-                                    username, unmaxlen,
-                                    password, pwmaxlen);
+        that->m_authenticator->auth(context, server, share, workgroup, wgmaxlen, username, unmaxlen, password, pwmaxlen);
     }
 }
 

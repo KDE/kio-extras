@@ -10,31 +10,28 @@
 class InfoProtocol : public KIO::WorkerBase
 {
 public:
-
-    InfoProtocol( const QByteArray &pool, const QByteArray &app );
+    InfoProtocol(const QByteArray &pool, const QByteArray &app);
     ~InfoProtocol() override = default;
 
-    KIO::WorkerResult get( const QUrl& url ) override;
-    KIO::WorkerResult stat( const QUrl& url ) override;
-    KIO::WorkerResult mimetype( const QUrl& url ) override;
+    KIO::WorkerResult get(const QUrl &url) override;
+    KIO::WorkerResult stat(const QUrl &url) override;
+    KIO::WorkerResult mimetype(const QUrl &url) override;
 
 protected:
-
-    void decodeURL( const QUrl &url );
-    void decodePath( QString path );
+    void decodeURL(const QUrl &url);
+    void decodePath(QString path);
 
 private:
     KIO::WorkerResult missingFilesReult() const;
 
 private:
+    QString m_page;
+    QString m_node;
 
-    QString   m_page;
-    QString   m_node;
-
-    QString   m_perl;
-    QString   m_infoScript;
-    QString   m_infoConf;
-    QString   m_cssLocation;
+    QString m_perl;
+    QString m_infoScript;
+    QString m_infoConf;
+    QString m_cssLocation;
 
     QStringList m_missingFiles;
 };

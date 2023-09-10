@@ -12,21 +12,21 @@
 #include <KIO/Global>
 #include <KIO/WorkerBase>
 
+#include <libssh/callbacks.h>
 #include <libssh/libssh.h>
 #include <libssh/sftp.h>
-#include <libssh/callbacks.h>
 
 #include <QQueue>
 
-namespace KIO {
+namespace KIO
+{
 class AuthInfo;
 };
 
 using Result = KIO::WorkerResult;
 
 // sftp_attributes must be freed. Use this ScopedPtr to ensure they always are!
-struct ScopedPointerCustomDeleter
-{
+struct ScopedPointerCustomDeleter {
     static inline void cleanup(sftp_attributes attr)
     {
         sftp_attributes_free(attr);
@@ -66,14 +66,11 @@ public:
 
     // libssh authentication callback (note that this is called by the
     // global ::auth_callback() call.
-    int auth_callback(const char *prompt, char *buf, size_t len,
-                      int echo, int verify, void *userdata);
+    int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata);
 
     // libssh logging callback (note that this is called by the
     // global ::log_callback() call.
-    void log_callback(int priority, const char *function, const char *buffer,
-                      void *userdata);
-
+    void log_callback(int priority, const char *function, const char *buffer, void *userdata);
 
     // Must call after construction!
     // Bit rubbish, but we need to return something on init.
@@ -124,7 +121,8 @@ private: // Private variables
      * As SFTP messages are limited to MAX_XFER_BUF_SIZE several requests
      * should be sent simultaneously in order to increase transfer speeds.
      */
-    class GetRequest {
+    class GetRequest
+    {
     public:
         /**
          * Creates a new GetRequest object.
@@ -192,9 +190,7 @@ private: // private methods
      * sftp_write wrapper breaking buffer into suitable pieces
      * \param onWritten acts as callback, for each written block.
      */
-    Q_REQUIRED_RESULT bool sftpWrite(sftp_file fd,
-                                     const QByteArray &buffer,
-                                     const std::function<void(int bytes)> &onWritten);
+    Q_REQUIRED_RESULT bool sftpWrite(sftp_file fd, const QByteArray &buffer, const std::function<void(int bytes)> &onWritten);
 
     Q_REQUIRED_RESULT Result sftpCopyGet(const QUrl &url, const QString &src, int permissions, KIO::JobFlags flags);
     Q_REQUIRED_RESULT Result sftpCopyPut(const QUrl &url, const QString &dest, int permissions, KIO::JobFlags flags);
