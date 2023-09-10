@@ -28,8 +28,8 @@
 #include <KUser>
 
 #include <KConfigGroup>
-#include <KLocalizedString>
 #include <KIO/AuthInfo>
+#include <KLocalizedString>
 #include <kio/ioworker_defaults.h>
 
 #ifdef Q_OS_WIN

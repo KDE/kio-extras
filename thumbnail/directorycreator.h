@@ -4,8 +4,8 @@
     SPDX-License-Identifier: LGPL-2.0-or-later
 */
 
-#include <KPluginFactory>
 #include <KIO/ThumbnailCreator>
+#include <KPluginFactory>
 
 class DirectoryCreator : public KIO::ThumbnailCreator
 {
@@ -14,5 +14,4 @@ public:
     DirectoryCreator(QObject *parent, const QVariantList &args);
 
     KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
-
 };

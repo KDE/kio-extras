@@ -50,14 +50,8 @@ KIO::UDSEntry DNSSDDiscovery::toEntry() const
 
 DNSSDDiscoverer::DNSSDDiscoverer()
 {
-    connect(&m_browser, &KDNSSD::ServiceBrowser::serviceAdded,
-    this, [this](KDNSSD::RemoteService::Ptr service) {
-        qCDebug(KIO_SMB_LOG) << "DNSSD added:"
-                             << service->serviceName()
-                             << service->type()
-                             << service->domain()
-                             << service->hostName()
-                             << service->port();
+    connect(&m_browser, &KDNSSD::ServiceBrowser::serviceAdded, this, [this](KDNSSD::RemoteService::Ptr service) {
+        qCDebug(KIO_SMB_LOG) << "DNSSD added:" << service->serviceName() << service->type() << service->domain() << service->hostName() << service->port();
         // Manual contains check. We need to use the == of the underlying
         // objects, not the pointers. The same service may have >1
         // RemoteService* instances representing it, so the == impl of
