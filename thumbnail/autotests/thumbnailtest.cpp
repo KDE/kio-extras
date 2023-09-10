@@ -34,6 +34,10 @@ private Q_SLOTS:
 
         QTest::addRow("jpg_embedded_thumbnail") << "castle.jpg"
                                                 << "castle_thumb.png" << 1.0;
+
+        // ignoring embedded thumbnail as it is too small
+        QTest::addRow("jpg_embedded_thumbnail2") << "castle.jpg"
+                                                << "castle_thumb_256.png" << 2.0;
     }
 
     void testThumbnail()
@@ -65,6 +69,7 @@ private Q_SLOTS:
             expectedImage.load(QFINDTESTDATA("data/" + expectedThumbnail));
             expectedImage.setDevicePixelRatio(dpr);
 
+            QCOMPARE(preview.devicePixelRatio(), dpr);
             QCOMPARE(preview.toImage(), expectedImage);
         });
 

@@ -26,7 +26,8 @@
             "vnd.openxmlformats-officedocument.presentationml.slide",
             "application/oxps",
             "application/vnd.ms-xpsdocument",
-            "application/vnd.ms-printing.printticket+xml"
+            "application/vnd.ms-printing.printticket+xml",
+            "model/3mf"
         ],
         "Name": "Office Documents",
         "Name[ar]": "مستندات المكتب",

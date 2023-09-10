@@ -56,7 +56,9 @@ target_link_libraries(
    Qt::Network
 )
 
-add_subdirectory(autotests)
+if (BUILD_TESTING)
+   add_subdirectory(autotests)
+endif()
 
 # install target (typical /usr/lib64/qtX/plugins/kf5/kio)
 install(

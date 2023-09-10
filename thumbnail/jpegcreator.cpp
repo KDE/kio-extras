@@ -38,6 +38,12 @@ KIO::ThumbnailResult JpegCreator::exifThumbnail(const KIO::ThumbnailRequest &req
         return KIO::ThumbnailResult::fail();
     }
 
+    // skip embedded thumbnail if strictly smaller
+    if (image.size().width() < request.targetSize().width()
+        && image.size().height() < request.targetSize().height()) {
+        return KIO::ThumbnailResult::fail();
+    }
+
     return KIO::ThumbnailResult::pass(image);
 #else
     Q_UNUSED(request)
