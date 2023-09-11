@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-15 00:47+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2014-11-06 17:43-0600\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
@@ -17,51 +17,51 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:96 KioActivities.cpp:179
+#: fileitemplugin/FileItemLinkingPlugin.cpp:88 KioActivities.cpp:176
 #, kde-format
 msgid "Activities"
 msgstr "ਸਰਗਰਮੀ"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#: fileitemplugin/FileItemLinkingPlugin.cpp:91
 #, kde-format
 msgid "Loading..."
 msgstr "...ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:118
+#: fileitemplugin/FileItemLinkingPlugin.cpp:108
 #, kde-format
 msgid "The Activity Manager is not running"
 msgstr "ਸਰਗਰਮੀ ਮੈਨੇਜਰ ਨਹੀਂ ਚੱਲ ਰਿਹਾ ਹੈ"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:125
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:51
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:110
 #, kde-format
 msgid "Link to the current activity"
 msgstr "ਮੌਜੂਦਾ ਸਰਗਰਮੀ ਲਈ ਲਿੰਕ"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:56
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:130
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:52
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:113
 #, kde-format
 msgid "Unlink from the current activity"
 msgstr "ਮੌਜੂਦਾ ਸਰਗਰਮੀ ਤੋਂ ਅਣ-ਲਿੰਕ"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:134
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:54
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:116
 #, kde-format
 msgid "Link to:"
 msgstr "ਨਾਲ ਲਿੰਕ:"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:64
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:142
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:123
 #, kde-format
 msgid "Unlink from:"
 msgstr "ਅਣਲਿੰਕ ਕਰੋ:"
 
-#: KioActivities.cpp:110
+#: KioActivities.cpp:108
 #, kde-format
 msgid "Current activity"
 msgstr "ਮੌਜੂਦਾ ਸਰਗਰਮੀ"
 
-#: KioActivities.cpp:111 KioActivitiesApi.cpp:85
+#: KioActivities.cpp:109 KioActivitiesApi.cpp:85
 #, kde-format
 msgid "Activity"
 msgstr "ਸਰਗਰਮੀ"

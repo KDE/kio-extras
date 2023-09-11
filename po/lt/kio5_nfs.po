@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-05-06 00:45+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2021-08-26 13:38+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -18,42 +18,42 @@ msgstr ""
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Generator: Poedit 2.3\n"
 
-#: kio_nfs.cpp:156
+#: kio_nfs.cpp:152
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
 msgstr "Nepavyksta rasti NFS versijos, kurią palaikytų mazgas „%1“"
 
-#: kio_nfs.cpp:336
+#: kio_nfs.cpp:322
 #, kde-format
 msgid "The NFS protocol requires a server host name."
 msgstr "NFS protokolas reikalauja serverio mazgo pavadinimo."
 
-#: kio_nfs.cpp:369
+#: kio_nfs.cpp:352
 #, kde-format
 msgid "Failed to initialise protocol"
 msgstr "Nepavyko inicijuoti protokolo"
 
-#: kio_nfs.cpp:852
+#: kio_nfs.cpp:820
 #, kde-format
 msgid "RPC error %1, %2"
 msgstr "RPC klaida %1, %2"
 
-#: kio_nfs.cpp:902
+#: kio_nfs.cpp:869
 #, kde-format
 msgid "Filename too long"
 msgstr "Failo pavadinimas yra per ilgas"
 
-#: kio_nfs.cpp:909
+#: kio_nfs.cpp:876
 #, kde-format
 msgid "Disk quota exceeded"
 msgstr "Viršyta leidžiamo duomenų kiekio riba"
 
-#: kio_nfs.cpp:915
+#: kio_nfs.cpp:882
 #, kde-format
 msgid "NFS error %1, %2"
 msgstr "NFS klaida %1, %2"
 
-#: nfsv2.cpp:394 nfsv2.cpp:446 nfsv3.cpp:426 nfsv3.cpp:570
+#: nfsv2.cpp:391 nfsv2.cpp:442 nfsv3.cpp:429 nfsv3.cpp:573
 #, kde-format
 msgid "Unknown target"
 msgstr "Nežinoma paskirtis"

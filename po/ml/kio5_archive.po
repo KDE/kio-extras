@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_archive trunk\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-02-15 00:58+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2008-07-06 07:57+0530\n"
 "Last-Translator: Manu|മനു S|എസ് Madhav|മാധവ് <manusmad@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
@@ -18,14 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: kio_archivebase.cpp:273 kio_archivebase.cpp:360 kio_archivebase.cpp:441
+#: kio_archivebase.cpp:258 kio_archivebase.cpp:335 kio_archivebase.cpp:408
 #, kde-format
 msgid ""
 "Could not open the file, probably due to an unsupported file format.\n"
 "%1"
 msgstr "ഈ ഫയല്‍ തുറക്കാന്‍ പറ്റിയില്ല, ചിലപ്പോള്‍ പിന്തുണയില്ലാത്ത ഫയല്‍തരമായതുമൂലമാകാം.%1"
 
-#: kio_archivebase.cpp:487
+#: kio_archivebase.cpp:447
 #, kde-format
 msgid ""
 "The archive file could not be opened, perhaps because the format is "

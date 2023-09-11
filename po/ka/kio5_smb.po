@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2022-12-13 02:12+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:43
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -45,12 +45,12 @@ msgstr ""
 "სცადოთ. სერვერის კონფიგურაციაზე დამოკიდებულებით, შეიძლება მომხმარებლის "
 "სახელის არა-სიცარიელეც იყოს მოთხოვნილი.</para>"
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>შეიყვანეთ ავთენტიკაციის ინფორმაცია ჰოსტისთვის<b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
@@ -61,7 +61,7 @@ msgstr ""
 "სერვერი = %1\n"
 "გაზიარება = %2"
 
-#: kio_smb_browse.cpp:58
+#: kio_smb_browse.cpp:59
 #, kde-format
 msgid ""
 "%1:\n"
@@ -70,7 +70,7 @@ msgstr ""
 "%1:\n"
 "ფაილის უცნობი ტიპი, საქაღალდე, ან ფაილი."
 
-#: kio_smb_browse.cpp:272
+#: kio_smb_browse.cpp:273
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -79,32 +79,32 @@ msgstr ""
 "ლოკალურ ქსელში სამუშაო ჯგუფები ვერ ვიპოვე. ეს შეიძლება ჩართული ბრანდმაუერის "
 "ბრალი იყოს."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
 msgstr "მოწყობილობაში მედია არ დევს %1-თვის"
 
-#: kio_smb_browse.cpp:283
+#: kio_smb_browse.cpp:284
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "%1-სთვის ჰოსტთან მიერთების შეცდომა"
 
-#: kio_smb_browse.cpp:295
+#: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "სერვერთან მიერთების შეცდომა, რომელიც პასუხისმგებელია ობიექტისთვის: %1"
 
-#: kio_smb_browse.cpp:301
+#: kio_smb_browse.cpp:302
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "სერვერზე მითითებული გაზიარებული ვერ ვიპოვე"
 
-#: kio_smb_browse.cpp:303
+#: kio_smb_browse.cpp:304
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "ფაილის ცუდი დესკრიპტორი"
 
-#: kio_smb_browse.cpp:311
+#: kio_smb_browse.cpp:312
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -114,7 +114,7 @@ msgstr ""
 "მითითებული სახელის უნიკალურ სერვერად ამოხსნა შეიძლებელია. დარწმუნდით, რომ "
 "ქსელში Windows-ის და UNIX-ის სახელებს ამოხსნის კონფლიქტი არ ხდება."
 
-#: kio_smb_browse.cpp:318
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -122,7 +122,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1: ჰოსტი მიუწვდომელია"
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -141,13 +141,13 @@ msgstr ""
 "ინფორმაციასაც შეიცავდეს, ასე რომ, ღია წვდომით ნუ გამოდებთ. შეგიძლიათ "
 "გაუგზავნოთ პროგრამისტებს, თუ ისინი გთხოვენ ამას)"
 
-#: kio_smb_browse.cpp:334
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "შეცდომის უცნობი მდგომარეობა: [%1] %2"
 
-#: kio_smb_browse.cpp:352
+#: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "წვდომის შეცდომა %1<nl/>%2"
@@ -157,7 +157,7 @@ msgstr "წვდომის შეცდომა %1<nl/>%2"
 msgid "libsmbclient failed to create context"
 msgstr "libsmbclient -ის კონტექსტის შექმნის შეცდომა"
 
-#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
 #, kde-format
 msgid ""
 "\n"
@@ -166,7 +166,7 @@ msgstr ""
 "\n"
 "დარწმუნდით, რომ თქვენს სისტემაში პაკეტი samba უკვე დაყენებულია."
 
-#: kio_smb_mount.cpp:171
+#: kio_smb_mount.cpp:173
 #, kde-format
 msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
@@ -176,7 +176,7 @@ msgstr ""
 "მიმაგრებისას.\n"
 "%4"
 
-#: kio_smb_mount.cpp:196
+#: kio_smb_mount.cpp:198
 #, kde-format
 msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
@@ -185,7 +185,7 @@ msgstr ""
 "მიმაგრების წერტილის \"%1\" მოხსნის შეცდომა.\n"
 "%2"
 
-#: wsdiscoverer.cpp:173
+#: wsdiscoverer.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

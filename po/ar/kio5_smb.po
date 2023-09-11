@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2022-02-19 22:22+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: Arabic <kde-l10n-ar@kde.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: Lokalize 21.07.70\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:43
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -51,12 +51,12 @@ msgstr ""
 "المجهول باستخدام اسم مستخدم وكلمة مرور فارغين. بناءً على تكوين الخادم ، قد "
 "تكون أسماء المستخدمين غير الفارغة مطلوبة </para>"
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>من فضلك أدخل معلومات الاستيثاق لـ<b> %1</b></qt>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
@@ -67,7 +67,7 @@ msgstr ""
 "الخادم = %1\n"
 "المشاركة =%2"
 
-#: kio_smb_browse.cpp:58
+#: kio_smb_browse.cpp:59
 #, kde-format
 msgid ""
 "%1:\n"
@@ -76,39 +76,39 @@ msgstr ""
 "‏%1:\n"
 "نوع ملف مجهول, ليس دليلاً أو ملف."
 
-#: kio_smb_browse.cpp:272
+#: kio_smb_browse.cpp:273
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
 "an enabled firewall."
 msgstr "تعذر إيجاد أي مجموعات عمل في شبكتك المحلية. ربما بسبب وجود جدار ناري."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
 msgstr "لا يوجد وسيط في الجهاز لـ %1"
 
-#: kio_smb_browse.cpp:283
+#: kio_smb_browse.cpp:284
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "لا أستطيع الاتصال بالمضيف لـ %1"
 
-#: kio_smb_browse.cpp:295
+#: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "خطأ عند الاتصال بالخادم المسؤول عن %1"
 
-#: kio_smb_browse.cpp:301
+#: kio_smb_browse.cpp:302
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "تعذر إيجاد المشاركة على الخادم المعطى"
 
-#: kio_smb_browse.cpp:303
+#: kio_smb_browse.cpp:304
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "واصف الملف سيَء"
 
-#: kio_smb_browse.cpp:311
+#: kio_smb_browse.cpp:312
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -118,7 +118,7 @@ msgstr ""
 "الاسم المعطى لا يمكن تحليله لخادم وحيد. تأكد من أن شبكتك معدّة من غير تضارب "
 "بين الأسماء المستخدمة من قبل ويندوز ويونيكس."
 
-#: kio_smb_browse.cpp:318
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -126,7 +126,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "المضيف %1: لا يمكن الوصول إليه"
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -143,13 +143,13 @@ msgstr ""
 "التصفح. من فضلك لاحظ أن بعض هذه المعلومات قد تكون سرية عندها ابعثها لمطوري "
 "النظام بسرية.إذا طلبوها)"
 
-#: kio_smb_browse.cpp:334
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "حالة خطأ مجهولة في الحالة: [%1] %2"
 
-#: kio_smb_browse.cpp:352
+#: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "حدث خطأ أثناء محاول الوصول إلى %1<nl/>%2"
@@ -159,7 +159,7 @@ msgstr "حدث خطأ أثناء محاول الوصول إلى %1<nl/>%2"
 msgid "libsmbclient failed to create context"
 msgstr "فشل libsmbclient في إنشاء السياق"
 
-#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
 #, kde-format
 msgid ""
 "\n"
@@ -168,7 +168,7 @@ msgstr ""
 "\n"
 "تأكد من أن حزمة السامبا مثبّتة بشكل صحيح على نظامك."
 
-#: kio_smb_mount.cpp:171
+#: kio_smb_mount.cpp:173
 #, kde-format
 msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
@@ -177,7 +177,7 @@ msgstr ""
 "فشلت عملية تركيب المشاركة \"%1\" من المضيف  \"%2\" للمستخدم \"%3\".\n"
 "%4"
 
-#: kio_smb_mount.cpp:196
+#: kio_smb_mount.cpp:198
 #, kde-format
 msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
@@ -186,7 +186,7 @@ msgstr ""
 "فشلت عملية فصل نقطة الضم \"%1\".\n"
 "%2"
 
-#: wsdiscoverer.cpp:173
+#: wsdiscoverer.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

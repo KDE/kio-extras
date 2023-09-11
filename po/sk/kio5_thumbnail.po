@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-01 00:45+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2012-01-16 18:13+0100\n"
 "Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -16,52 +16,52 @@ msgstr ""
 "X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: thumbnail.cpp:213
+#: thumbnail.cpp:211
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Žiadny typ MIME nie je špecifikovaný."
 
-#: thumbnail.cpp:220
+#: thumbnail.cpp:218
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Veľkosť nebola zadaná alebo je neplatná."
 
-#: thumbnail.cpp:243
+#: thumbnail.cpp:241
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Nedá sa vytvoriť náhľad pre adresár"
 
-#: thumbnail.cpp:254
+#: thumbnail.cpp:252
 #, kde-format
 msgid "No plugin specified."
 msgstr "Žiadny modul nie je špecifikovaný."
 
-#: thumbnail.cpp:259
+#: thumbnail.cpp:257
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Nedá sa načítať ThumbCreator %1"
 
-#: thumbnail.cpp:280
+#: thumbnail.cpp:278
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Nedá sa vytvoriť náhľad pre %1"
 
-#: thumbnail.cpp:292
+#: thumbnail.cpp:290
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Vytvorenie náhľadu zlyhalo."
 
-#: thumbnail.cpp:305
+#: thumbnail.cpp:303
 #, kde-format
 msgid "Could not write image."
 msgstr "Obrázok sa nedá zapísať."
 
-#: thumbnail.cpp:329
+#: thumbnail.cpp:326
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Pripojenie zdielaného segmentu pamäte %1 zlyhalo"
 
-#: thumbnail.cpp:336
+#: thumbnail.cpp:333
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Obrázok je príliš veľký pre zdielaný segment pamäte"

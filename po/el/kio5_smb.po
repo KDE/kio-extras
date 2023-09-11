@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-07-22 00:44+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2020-11-05 08:23+0200\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Generator: Lokalize 20.04.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_smb_auth.cpp:42
+#: kio_smb_auth.cpp:43
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -51,12 +51,12 @@ msgstr ""
 "με τη διαμόρφωση του εξυπηρετητή ίσως απαιτηθούν μη κενά ονόματα χρήστη</"
 "para>"
 
-#: kio_smb_auth.cpp:50
+#: kio_smb_auth.cpp:52
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>Παρακαλώ δώστε πληροφορίες ταυτοποίησης για <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:55
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
@@ -67,7 +67,7 @@ msgstr ""
 "Εξυπηρετητή = %1\n"
 "Κοινόχρηστος πόρος = %2"
 
-#: kio_smb_browse.cpp:58
+#: kio_smb_browse.cpp:59
 #, kde-format
 msgid ""
 "%1:\n"
@@ -76,7 +76,7 @@ msgstr ""
 "%1:\n"
 "Άγνωστος τύπος αρχείου, ούτε κατάλογος ούτε αρχείο."
 
-#: kio_smb_browse.cpp:272
+#: kio_smb_browse.cpp:273
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -85,33 +85,33 @@ msgstr ""
 "Αδύνατο να βρεθεί κάποια ομάδα εργασίας στο τοπικό σας δίκτυο. Αυτό μπορεί "
 "να οφείλεται σε ένα ενεργοποιημένο firewall."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
 msgstr "Δεν υπάρχει μέσο στη συσκευή για το %1"
 
-#: kio_smb_browse.cpp:283
+#: kio_smb_browse.cpp:284
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "Αδύνατη η σύνδεση με το διακομιστή για το %1"
 
-#: kio_smb_browse.cpp:295
+#: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr ""
 "Σφάλμα κατά τη σύνδεση με τον εξυπηρετητή που είναι υπεύθυνος για το %1"
 
-#: kio_smb_browse.cpp:301
+#: kio_smb_browse.cpp:302
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "Ο κοινόχρηστος πόρος δεν ήταν δυνατό να βρεθεί στο δοθέν εξυπηρετητή"
 
-#: kio_smb_browse.cpp:303
+#: kio_smb_browse.cpp:304
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "Εσφαλμενος περιγραφέας αρχείου"
 
-#: kio_smb_browse.cpp:311
+#: kio_smb_browse.cpp:312
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -123,7 +123,7 @@ msgstr ""
 "ονομάτων μεταξύ των ονομάτων που χρησιμοποιούνται από τα Windows και από την "
 "επίλυση ονομάτων του UNIX."
 
-#: kio_smb_browse.cpp:318
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -131,7 +131,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1: Ο υπολογιστής δεν είναι προσβάσιμος"
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -150,13 +150,13 @@ msgstr ""
 "περιέχει προσωπικά δεδομένα, έτσι μην το αποστέλλετε αν δεν είστε σίγουροι "
 "γι αυτό - μπορείτε  να το στείλετε ιδιωτικά στους δημιουργούς αν το ζητήσουν)"
 
-#: kio_smb_browse.cpp:334
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Άγνωστη κατάσταση σφάλματος [%1] %2"
 
-#: kio_smb_browse.cpp:352
+#: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "Παρουσιάστηκε σφάλμα κατά την πρόσβαση στο %1<nl/>%2"
@@ -166,7 +166,7 @@ msgstr "Παρουσιάστηκε σφάλμα κατά την πρόσβαση
 msgid "libsmbclient failed to create context"
 msgstr "Το libsmbclient απέτυχε να δημιουργήσει περιεχόμενο"
 
-#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
 #, kde-format
 msgid ""
 "\n"
@@ -175,7 +175,7 @@ msgstr ""
 "\n"
 "Σιγουρευτείτε ότι το πακέτο samba είναι εγκατεστημένο σωστά στο σύστημά σας."
 
-#: kio_smb_mount.cpp:171
+#: kio_smb_mount.cpp:173
 #, kde-format
 msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
@@ -185,7 +185,7 @@ msgstr ""
 "\"%3\" απέτυχε.\n"
 "%4"
 
-#: kio_smb_mount.cpp:196
+#: kio_smb_mount.cpp:198
 #, kde-format
 msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
@@ -194,7 +194,7 @@ msgstr ""
 "Η αποπροσάρτηση του σημείου προσάρτησης \"%1\" απέτυχε.\n"
 "%2"
 
-#: wsdiscoverer.cpp:173
+#: wsdiscoverer.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

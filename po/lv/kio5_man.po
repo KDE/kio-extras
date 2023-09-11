@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-10 00:45+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2008-11-18 11:27+0200\n"
 "Last-Translator: Viesturs Zarins <viesturs.zarins@mii.lu.lv>\n"
 "Language-Team: Latvian <locale@laka.lv>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: kio_man.cpp:451
+#: kio_man.cpp:456
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "No man page matching to %1 found.<br /><br />Check that you have not "
@@ -42,7 +42,7 @@ msgstr ""
 "meklēšanas ceļš - to var izdarīt gan ar vides mainīgo MANPATH, gan ar "
 "atbilstošo failu /etc mapē."
 
-#: kio_man.cpp:569
+#: kio_man.cpp:570
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -50,36 +50,36 @@ msgid ""
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
 
-#: kio_man.cpp:586
+#: kio_man.cpp:587
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr ""
 
-#: kio_man.cpp:595
+#: kio_man.cpp:596
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
-#: kio_man.cpp:660
+#: kio_man.cpp:658
 #, fuzzy, kde-format
 #| msgid "<h1>KDE Man Viewer Error</h1>"
 msgid "Manual Page Viewer Error"
 msgstr "<h1>KDE Man skatītāja kļūda</h1>"
 
-#: kio_man.cpp:674
+#: kio_man.cpp:671
 #, fuzzy, kde-format
 #| msgid "There is more than one matching man page."
 msgid "There is more than one matching man page:"
 msgstr "Ir vairāk nekā viena atbilstoša \"man\" lapa."
 
-#: kio_man.cpp:674
+#: kio_man.cpp:671
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:686
+#: kio_man.cpp:684
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -90,33 +90,33 @@ msgstr ""
 "vērā, ka tajā var būt kļūdas un novecojušas ziņas. Ja ir šaubas, jāskatās "
 "angliski!"
 
-#: kio_man.cpp:758
+#: kio_man.cpp:752
 #, kde-format
 msgid "Header Files"
 msgstr ""
 
-#: kio_man.cpp:759
+#: kio_man.cpp:754
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr ""
 
-#: kio_man.cpp:760
+#: kio_man.cpp:756
 #, kde-format
 msgid "User Commands"
 msgstr "Lietotāja komandas"
 
-#: kio_man.cpp:761
+#: kio_man.cpp:758
 #, fuzzy, kde-format
 #| msgid "User Commands"
 msgid "User Commands (POSIX)"
 msgstr "Lietotāja komandas"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:760
 #, kde-format
 msgid "System Calls"
 msgstr "Sistēmas izsaukumi"
 
-#: kio_man.cpp:763
+#: kio_man.cpp:762
 #, kde-format
 msgid "Subroutines"
 msgstr "Subrutīnas"
@@ -126,80 +126,80 @@ msgstr "Subrutīnas"
 msgid "Perl Modules"
 msgstr "\"Perl\" moduļi"
 
-#: kio_man.cpp:766
+#: kio_man.cpp:767
 #, kde-format
 msgid "Network Functions"
 msgstr "Tīkla funkcijas"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:769
 #, kde-format
 msgid "Devices"
 msgstr "Ierīces"
 
-#: kio_man.cpp:768
+#: kio_man.cpp:771
 #, kde-format
 msgid "File Formats"
 msgstr "Failu formāti"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:773
 #, kde-format
 msgid "Games"
 msgstr "Spēles"
 
-#: kio_man.cpp:770
+#: kio_man.cpp:775
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Dažādi"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:777
 #, kde-format
 msgid "System Administration"
 msgstr "Sistēmas administrēšana"
 
-#: kio_man.cpp:772
+#: kio_man.cpp:779
 #, kde-format
 msgid "Kernel"
 msgstr "Kodols"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:781
 #, kde-format
 msgid "Local Documentation"
 msgstr "Vietēja dokumentācija"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:784
 #, kde-format
 msgid "New"
 msgstr "Jauns"
 
-#: kio_man.cpp:805
+#: kio_man.cpp:811
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Main Manual Page Index"
 msgstr "UNIX rokasgrāmatas satura rādītājs"
 
-#: kio_man.cpp:830
+#: kio_man.cpp:836
 #, kde-format
 msgid "Section %1"
 msgstr "Sekcija %1"
 
-#: kio_man.cpp:1115
+#: kio_man.cpp:1085
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "Sekcijas %1: %2 indekss"
 
-#: kio_man.cpp:1115
+#: kio_man.cpp:1085
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "UNIX rokasgrāmatas satura rādītājs"
 
-#: kio_man.cpp:1127
+#: kio_man.cpp:1097
 #, kde-format
 msgid "Generating Index"
 msgstr "Ģenerēju indeksu"
 
-#: kio_man.cpp:1405
+#: kio_man.cpp:1351
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

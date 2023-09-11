@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-12-27 00:48+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2023-04-22 01:00+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -71,7 +71,7 @@ msgstr "처리되지 않은 lockdownd 코드 '%1'"
 msgid "Unhandled sbservices code '%1'"
 msgstr "처리되지 않은 sbservices 코드 '%1'"
 
-#: kio_afc.cpp:174
+#: kio_afc.cpp:175
 #, kde-format
 msgid "Apple Devices"
 msgstr "Apple 장치"
@@ -82,28 +82,28 @@ msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "앱"
 
-#: kio_afc.cpp:480
+#: kio_afc.cpp:479
 #, kde-format
 msgctxt "Placeholder is device name"
 msgid "%1 (Apps)"
 msgstr "%1(앱)"
 
-#: kio_afc.cpp:688
+#: kio_afc.cpp:687
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "파일을 열기 전에 읽을 수 없음"
 
-#: kio_afc.cpp:708
+#: kio_afc.cpp:707
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "파일을 열기 전에 검색할 수 없음"
 
-#: kio_afc.cpp:736
+#: kio_afc.cpp:735
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "파일을 열기 전에 기록할 수 없음"
 
-#: kio_afc.cpp:888
+#: kio_afc.cpp:887
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "장치를 뛰어넘어서 이름을 바꿀 수 없습니다."

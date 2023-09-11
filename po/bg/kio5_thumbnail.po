@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-01 00:45+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2022-05-21 08:34+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -19,52 +19,52 @@ msgstr ""
 "X-Generator: Lokalize 22.04.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: thumbnail.cpp:213
+#: thumbnail.cpp:211
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Няма зададен вид по MIME."
 
-#: thumbnail.cpp:220
+#: thumbnail.cpp:218
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Няма зададена или е зададена невалидна дължина."
 
-#: thumbnail.cpp:243
+#: thumbnail.cpp:241
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Грешка при създаване умалено копие за директорията"
 
-#: thumbnail.cpp:254
+#: thumbnail.cpp:252
 #, kde-format
 msgid "No plugin specified."
 msgstr "Няма зададена приставка."
 
-#: thumbnail.cpp:259
+#: thumbnail.cpp:257
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Грешка при зареждането генератора на умалени копия за %1"
 
-#: thumbnail.cpp:280
+#: thumbnail.cpp:278
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Грешка при генерирането умалено копие на %1"
 
-#: thumbnail.cpp:292
+#: thumbnail.cpp:290
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Грешка при генерирането на умалено копие."
 
-#: thumbnail.cpp:305
+#: thumbnail.cpp:303
 #, kde-format
 msgid "Could not write image."
 msgstr "Грешка при записа на изображението."
 
-#: thumbnail.cpp:329
+#: thumbnail.cpp:326
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Грешка при свързването към споделената памет %1"
 
-#: thumbnail.cpp:336
+#: thumbnail.cpp:333
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Изображението е твърде голямо за споделената памет"

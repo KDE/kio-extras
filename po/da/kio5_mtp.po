@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 00:47+0000\n"
+"POT-Creation-Date: 2023-09-11 00:46+0000\n"
 "PO-Revision-Date: 2017-03-04 15:01+0100\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_mtp.cpp:220
+#: kio_mtp.cpp:221
 #, fuzzy, kde-format
 #| msgid ""
 #| "No storage media found. Make sure your device is unlocked and has MTP "
@@ -32,7 +32,7 @@ msgstr ""
 "Ingen lagermedier fundet. Sørg for at din enhed er låst op og har MTP "
 "aktiveret i dens indstillinger for USB-forbindelse."
 
-#: kio_mtp.cpp:521
+#: kio_mtp.cpp:520
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Kan ikke kopiere/flytte filer på selve enheden"
