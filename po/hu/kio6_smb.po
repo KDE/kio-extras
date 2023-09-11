@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 02:00+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2022-02-10 14:29+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -43,12 +43,12 @@ msgstr ""
 "meg lehet próbálni üres felhasználónév és jelszó mezőkkel. A kiszolgáló "
 "beállításaitól függően szükség lehet a felhasználónév kitöltésére</para>"
 
-#: kio_smb_auth.cpp:52
+#: kio_smb_auth.cpp:53
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>Adja meg a bejelentkezési adatokat a következőhöz: <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:55
+#: kio_smb_auth.cpp:56
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
@@ -59,7 +59,7 @@ msgstr ""
 "Kiszolgáló = %1\n"
 "Megosztás = %2"
 
-#: kio_smb_browse.cpp:58
+#: kio_smb_browse.cpp:59
 #, kde-format
 msgid ""
 "%1:\n"
@@ -68,7 +68,7 @@ msgstr ""
 "%1:\n"
 "a fájltípus ismeretlen, se nem könyvtár, se nem fájl."
 
-#: kio_smb_browse.cpp:272
+#: kio_smb_browse.cpp:273
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -77,34 +77,34 @@ msgstr ""
 "Nem található egy munkacsoport sem a helyi hálózaton. Lehet, hogy egy tűzfal "
 "miatt nem sikerült az elérés."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
 msgstr "Nincs adathordozó az eszközben ehhez: %1"
 
-#: kio_smb_browse.cpp:283
+#: kio_smb_browse.cpp:284
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "Nem sikerült csatlakozni a géphez ehhez: %1"
 
-#: kio_smb_browse.cpp:295
+#: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr ""
 "Hiba történt a kiszolgálóhoz való csatlakozás közben (a kiszolgáló szerepe: "
 "%1)"
 
-#: kio_smb_browse.cpp:301
+#: kio_smb_browse.cpp:302
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "A kért megosztás nem létezik a megadott kiszolgálón"
 
-#: kio_smb_browse.cpp:303
+#: kio_smb_browse.cpp:304
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "Hibás fájlleíró"
 
-#: kio_smb_browse.cpp:311
+#: kio_smb_browse.cpp:312
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -115,7 +115,7 @@ msgstr ""
 "valamilyen ütközés a hálózaton használt Windows-os és UNIX-os névfeloldás "
 "között."
 
-#: kio_smb_browse.cpp:318
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -123,7 +123,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1: A gép elérhetetlen"
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -143,13 +143,13 @@ msgstr ""
 "azt publikussá. Esetleg küldje el a fejlesztők privát e-mail címére, ha ők "
 "ezt kérik."
 
-#: kio_smb_browse.cpp:334
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Ismeretlen hibafeltétel: [%1] %2"
 
-#: kio_smb_browse.cpp:352
+#: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "Hiba történt a(z) %1 elérésének kísérlete közben<nl/>%2"
@@ -159,7 +159,7 @@ msgstr "Hiba történt a(z) %1 elérésének kísérlete közben<nl/>%2"
 msgid "libsmbclient failed to create context"
 msgstr "A libsmbclient nem tudta létrehozni a kontextust"
 
-#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
 #, kde-format
 msgid ""
 "\n"
@@ -168,7 +168,7 @@ msgstr ""
 "\n"
 "Ellenőrizze, hogy a Samba megfelelő módon van-e telepítve."
 
-#: kio_smb_mount.cpp:171
+#: kio_smb_mount.cpp:173
 #, kde-format
 msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
@@ -178,7 +178,7 @@ msgstr ""
 "sikerült.\n"
 "%4"
 
-#: kio_smb_mount.cpp:196
+#: kio_smb_mount.cpp:198
 #, kde-format
 msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
@@ -187,7 +187,7 @@ msgstr ""
 "A(z) „%1” csatlakoztatási pont leválasztása nem sikerült.\n"
 "%2"
 
-#: wsdiscoverer.cpp:173
+#: wsdiscoverer.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

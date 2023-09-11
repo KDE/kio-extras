@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 02:00+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2022-04-14 19:47+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -16,42 +16,42 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 22.03.90\n"
 
-#: kio_nfs.cpp:157
+#: kio_nfs.cpp:153
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
 msgstr "'%1' என்ற புரவன் ஆதரிக்கும் NFS பதிப்பை கண்டுபிடிக்க முடியவில்லை"
 
-#: kio_nfs.cpp:337
+#: kio_nfs.cpp:323
 #, kde-format
 msgid "The NFS protocol requires a server host name."
 msgstr "NFS நெறிமுறைக்கு சேவையகத்தின் புரவன் பெயர் தேவை."
 
-#: kio_nfs.cpp:370
+#: kio_nfs.cpp:353
 #, kde-format
 msgid "Failed to initialise protocol"
 msgstr "நெறிமுறையை துவக்க முடியவில்லை"
 
-#: kio_nfs.cpp:853
+#: kio_nfs.cpp:821
 #, kde-format
 msgid "RPC error %1, %2"
 msgstr "RPC சிக்கல் %1, %2"
 
-#: kio_nfs.cpp:903
+#: kio_nfs.cpp:870
 #, kde-format
 msgid "Filename too long"
 msgstr "கோப்புப்பெயர் மிக நீளமாக உள்ளது"
 
-#: kio_nfs.cpp:910
+#: kio_nfs.cpp:877
 #, kde-format
 msgid "Disk quota exceeded"
 msgstr "வட்டில் உங்கள் பங்கு மீறப்பட்டுள்ளது"
 
-#: kio_nfs.cpp:916
+#: kio_nfs.cpp:883
 #, kde-format
 msgid "NFS error %1, %2"
 msgstr "NFS சிக்கல் %1, %2"
 
-#: nfsv2.cpp:395 nfsv2.cpp:447 nfsv3.cpp:427 nfsv3.cpp:571
+#: nfsv2.cpp:392 nfsv2.cpp:443 nfsv3.cpp:430 nfsv3.cpp:574
 #, kde-format
 msgid "Unknown target"
 msgstr "தெரியாத இலக்கு"

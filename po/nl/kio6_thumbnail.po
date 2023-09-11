@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-28 02:09+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2015-07-20 13:18+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
@@ -17,52 +17,52 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: thumbnail.cpp:198
+#: thumbnail.cpp:211
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Geen MIME-bestandstype opgegeven."
 
-#: thumbnail.cpp:205
+#: thumbnail.cpp:218
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Geen of een ongeldige grootte opgegeven."
 
-#: thumbnail.cpp:229
+#: thumbnail.cpp:242
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Kan geen miniatuur aanmaken voor map"
 
-#: thumbnail.cpp:240
+#: thumbnail.cpp:253
 #, kde-format
 msgid "No plugin specified."
 msgstr "Geen plugin opgegeven."
 
-#: thumbnail.cpp:245
+#: thumbnail.cpp:258
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Kan ThumbCreator %1 niet laden"
 
-#: thumbnail.cpp:266
+#: thumbnail.cpp:279
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Kan geen miniatuur aanmaken voor %1"
 
-#: thumbnail.cpp:278
+#: thumbnail.cpp:291
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Aanmaken van een miniatuur is mislukt"
 
-#: thumbnail.cpp:289
+#: thumbnail.cpp:304
 #, kde-format
 msgid "Could not write image."
 msgstr "Afbeelding kon niet worden geschreven."
 
-#: thumbnail.cpp:313
+#: thumbnail.cpp:327
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Verbinding met gedeeldgeheugensegment %1 is mislukt"
 
-#: thumbnail.cpp:320
+#: thumbnail.cpp:334
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Afbeelding is te groot voor het gedeeldgeheugensegment"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 00:47+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2022-02-24 22:06+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 21.12.2\n"
 
-#: kio_mtp.cpp:220
+#: kio_mtp.cpp:221
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -35,7 +35,7 @@ msgstr ""
 "«Baimendu» aukeran, bere pantailako leiho gainerakorrean. Hori ez badabil, "
 "ziurtatu bere USB konexio ezarpenetan MTP gaituta dagoela."
 
-#: kio_mtp.cpp:521
+#: kio_mtp.cpp:520
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Ezin da gailuan bertan fitxategirik kopiatu/mugitu"

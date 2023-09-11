@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 02:00+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2008-07-08 18:03+0530\n"
 "Last-Translator: Hari Vishnu <harivishnu@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
@@ -33,12 +33,12 @@ msgid ""
 "configuration non-empty usernames may be required</para>"
 msgstr ""
 
-#: kio_smb_auth.cpp:52
+#: kio_smb_auth.cpp:53
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt><b>%1</b>ഇനുള്ള തിരിച്ചറിയലിനുള്ള വിവരങ്ങള്‍ ദയവായി അടിച്ചു തരിക</qt>"
 
-#: kio_smb_auth.cpp:55
+#: kio_smb_auth.cpp:56
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
@@ -49,7 +49,7 @@ msgstr ""
 "സര്‍വര്‍ = %1\n"
 "പങ്കുവെക്കല്‍ = %2"
 
-#: kio_smb_browse.cpp:58
+#: kio_smb_browse.cpp:59
 #, kde-format
 msgid ""
 "%1:\n"
@@ -58,7 +58,7 @@ msgstr ""
 "%1:\n"
 "തിരിച്ചറിയാത്ത തരം ഫയല്‍ , ഇതു തട്ടവുമല്ല ഫയലുമല്ല"
 
-#: kio_smb_browse.cpp:272
+#: kio_smb_browse.cpp:273
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -67,33 +67,33 @@ msgstr ""
 "നിങ്ങളുടെ പ്രാദേശിക ശൃംഖലയില്‍ പണി-കൂട്ടങ്ങള്‍ കണ്ടു പിടിക്കാനായില്ല. ഇതൊരു പ്രാവര്‍ത്തികമായ ഫയര്‍-"
 "വോള്‍ കാരണം ആയേക്കാം"
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
 msgstr "%1-ഇനുള്ള ഉപകരണത്തിനു മീഡിയ ഇല്ല"
 
-#: kio_smb_browse.cpp:283
+#: kio_smb_browse.cpp:284
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "%1-ഇനു വേണ്ടി ആഥിതേയനിലേക്കു ബന്ധപ്പെടാന്‍ കഴിജില്ല"
 
-#: kio_smb_browse.cpp:295
+#: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "%1 ഇനുത്തരവാദിയായ സറ്വറിലോട്ടു ബന്ധപ്പെടുന്നതില്‍ പിശക്"
 
-#: kio_smb_browse.cpp:301
+#: kio_smb_browse.cpp:302
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "'പങ്കുവയ്ക്കല് ' തന്നിരിക്കുന്ന സര്‍വറേല്‍ കണ്ടു പിടിക്കാന്‍ കഴിഞ്ഞില്ല"
 
-#: kio_smb_browse.cpp:303
+#: kio_smb_browse.cpp:304
 #, fuzzy, kde-format
 #| msgid "BAD File descriptor"
 msgid "Bad file descriptor"
 msgstr "മോശമായ ഫയല്‍ ഡിസ്ക്രിപ്റ്റര്‍"
 
-#: kio_smb_browse.cpp:311
+#: kio_smb_browse.cpp:312
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -105,7 +105,7 @@ msgstr ""
 "വിന്റോസും യൂണിക്സും ഉപയോഗിക്കുന്ന പേരുകള്‍ തമ്മിലുള്ള പേരു-തര്‍ക്കങ്ങള്‍ ഇല്ലാതെയാണു ചെയ്തിരിക്കുന്നത് "
 "എന്ന് ഉറപ്പു വരുത്തു."
 
-#: kio_smb_browse.cpp:318
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -113,7 +113,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr ""
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -132,14 +132,14 @@ msgstr ""
 "വിവരങ്ങള്‍ ഉണ്ടായേക്കാം, അതു കൊണ്ട് നിങ്ങള്‍ക്കുറപ്പില്ലെങ്കില്‍ പോസ്റ്റ് ചെയ്യരുത്. ഇത് നിങ്ങള്‍ക്ക് "
 "ഡെവെലപ്പേഴ്സിന് സ്വകാര്യമായി അയയ്ക്കാം അവരതാവശ്യപ്പെടുന്നെങ്കില്‍."
 
-#: kio_smb_browse.cpp:334
+#: kio_smb_browse.cpp:337
 #, fuzzy, kde-format
 #| msgid "Unknown error condition in stat: %1"
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "അറിഞ്ഞുകൂടാത്ത പിശകു നില സ്റ്റാറ്റ് : %1"
 
-#: kio_smb_browse.cpp:352
+#: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr ""
@@ -149,7 +149,7 @@ msgstr ""
 msgid "libsmbclient failed to create context"
 msgstr "ലൈബ്-എസ്-എം-ബി ക്ലയന്റ്(libsmbclient) ഇനു കോണ്ടെക്സ്റ്റ് ഉണ്ടാക്കുവാന്‍ കഴിഞില്ല"
 
-#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
 #, kde-format
 msgid ""
 "\n"
@@ -158,7 +158,7 @@ msgstr ""
 "\n"
 "സാമ്പ പാക്കേജ് നിങ്ങളുടെ സിസ്റ്റത്തേല്‍ ശരിയായി ഇന്‍സ്റ്റോള്‍ ചെയ്തിരിക്കുന്നു എന്ന് ഉറപ്പു വരുത്തുക"
 
-#: kio_smb_mount.cpp:171
+#: kio_smb_mount.cpp:173
 #, kde-format
 msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
@@ -168,7 +168,7 @@ msgstr ""
 "നടന്നില്ല.\n"
 "%4"
 
-#: kio_smb_mount.cpp:196
+#: kio_smb_mount.cpp:198
 #, kde-format
 msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
@@ -177,7 +177,7 @@ msgstr ""
 "മൗണ്ട്-പോയിന്റ്  \"%1\"-ഇന്റെ അണ്‍മൗണ്ടിങ്ങ് പരാജയപ്പെട്ടു.\n"
 "%2"
 
-#: wsdiscoverer.cpp:173
+#: wsdiscoverer.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

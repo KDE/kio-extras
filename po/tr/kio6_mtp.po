@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 00:47+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2022-04-10 13:05+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Lokalize 21.12.3\n"
 
-#: kio_mtp.cpp:220
+#: kio_mtp.cpp:221
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -32,7 +32,7 @@ msgstr ""
 "penceresinde \"İzin Ver\"e basın. Bu çalışmazsa USB bağlantı ayarlarında "
 "MTP'nin etkin olup olmadığına bakın."
 
-#: kio_mtp.cpp:521
+#: kio_mtp.cpp:520
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Aygıtın kendi üzerinde kopyalama/taşıma yapılamıyor"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 00:47+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2019-08-21 12:16+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 18.12.3\n"
 
-#: kio_mtp.cpp:220
+#: kio_mtp.cpp:221
 #, fuzzy, kde-format
 #| msgid ""
 #| "No storage media found. Make sure your device is unlocked and has MTP "
@@ -34,7 +34,7 @@ msgstr ""
 "Δεν βρέθηκαν αποθηκευτικά μέσα. Βεβαιωθείτε ότι η συσκευή σας είναι "
 "ξεκλείδωτη και ότι έχει ενεργό MTP στις ρυθμίσεις της USB σύνδεσης."
 
-#: kio_mtp.cpp:521
+#: kio_mtp.cpp:520
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Αδυναμία αντιγραφής/μετακίνησης αρχείων στην ίδια τη συσκευή"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_mtp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-03-22 00:47+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2016-11-28 01:33+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: kio_mtp.cpp:220
+#: kio_mtp.cpp:221
 #, fuzzy, kde-format
 #| msgid ""
 #| "No Storages found. Make sure your device is unlocked and has MTP enabled "
@@ -34,7 +34,7 @@ msgstr ""
 "Није нађено ниједно складиште. Проверите да ли је уређај откључан и да ли је "
 "активиран МТП у његовим поставкама УСБ повезивања."
 
-#: kio_mtp.cpp:521
+#: kio_mtp.cpp:520
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Фајлови не могу да се копирају/премештају на самом уређају"

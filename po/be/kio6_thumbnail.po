@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-28 02:09+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2023-02-08 13:42\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -22,52 +22,52 @@ msgstr ""
 "X-Crowdin-File: /main/be/kio-extras/kio5_thumbnail.po\n"
 "X-Crowdin-File-ID: 8015\n"
 
-#: thumbnail.cpp:198
+#: thumbnail.cpp:211
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Тып MIME не вызначаны."
 
-#: thumbnail.cpp:205
+#: thumbnail.cpp:218
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Памер не вызначаны або вызначаны няправільна."
 
-#: thumbnail.cpp:229
+#: thumbnail.cpp:242
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Не ўдалося стварыць мініяцюру для каталога"
 
-#: thumbnail.cpp:240
+#: thumbnail.cpp:253
 #, kde-format
 msgid "No plugin specified."
 msgstr "Убудова не вызначаная."
 
-#: thumbnail.cpp:245
+#: thumbnail.cpp:258
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Не ўдалося загрузіць ThumbCreator %1"
 
-#: thumbnail.cpp:266
+#: thumbnail.cpp:279
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Не ўдалося стварыць мініяцюру для %1"
 
-#: thumbnail.cpp:278
+#: thumbnail.cpp:291
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Не ўдалося стварыць мініяцюру."
 
-#: thumbnail.cpp:289
+#: thumbnail.cpp:304
 #, kde-format
 msgid "Could not write image."
 msgstr "Не ўдалося запісаць выяву."
 
-#: thumbnail.cpp:313
+#: thumbnail.cpp:327
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Не ўдалося далучыцца да сегмента агульнай памяці %1"
 
-#: thumbnail.cpp:320
+#: thumbnail.cpp:334
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Выява занадта вялікая для сегмента агульнай памяці"

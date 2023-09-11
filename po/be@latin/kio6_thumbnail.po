@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-06-28 02:09+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2008-09-19 15:12+0300\n"
 "Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
 "Language-Team: Belarusian Latin <i18n@mova.org>\n"
@@ -20,53 +20,53 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || n%10>=5 && n%10<=9 || n"
 "%100>=11 && n%100<=14 ? 2 : 3);\n"
 
-#: thumbnail.cpp:198
+#: thumbnail.cpp:211
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Typ „MIME” nie aznačany."
 
-#: thumbnail.cpp:205
+#: thumbnail.cpp:218
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Pamier albo nie aznačany, albo aznačany niapravilna."
 
-#: thumbnail.cpp:229
+#: thumbnail.cpp:242
 #, fuzzy, kde-format
 #| msgid "Cannot create thumbnail for %1"
 msgid "Cannot create thumbnail for directory"
 msgstr "Nie ŭdałosia stvaryć padhlad dla „%1”."
 
-#: thumbnail.cpp:240
+#: thumbnail.cpp:253
 #, kde-format
 msgid "No plugin specified."
 msgstr "Plugin nie aznačany."
 
-#: thumbnail.cpp:245
+#: thumbnail.cpp:258
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Nie ŭdałosia źmiaścić u pamiać modul padhladu „%1”."
 
-#: thumbnail.cpp:266
+#: thumbnail.cpp:279
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Nie ŭdałosia stvaryć padhlad dla „%1”."
 
-#: thumbnail.cpp:278
+#: thumbnail.cpp:291
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Nie ŭdałosia stvaryć padhlad."
 
-#: thumbnail.cpp:289
+#: thumbnail.cpp:304
 #, kde-format
 msgid "Could not write image."
 msgstr "Nie ŭdałosia zapisać vyjavu."
 
-#: thumbnail.cpp:313
+#: thumbnail.cpp:327
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Nie ŭdałosia pryčapicca da kavałka supolnaj pamiaci „%1”."
 
-#: thumbnail.cpp:320
+#: thumbnail.cpp:334
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Vyjava nadta vialikaja dla kavałka supolnaj pamiaci."

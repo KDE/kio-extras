@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 02:00+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2004-07-30 12:32-0500\n"
 "Last-Translator: Khandakar Mujahidul Islam <suzan@bengalinux.org>\n"
 "Language-Team: Bengali <kde-translation@bengalinux.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: KBabel 1.3.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_man.cpp:452
+#: kio_man.cpp:457
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -27,7 +27,7 @@ msgid ""
 "filename> directory."
 msgstr ""
 
-#: kio_man.cpp:570
+#: kio_man.cpp:571
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -35,35 +35,35 @@ msgid ""
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
 
-#: kio_man.cpp:587
+#: kio_man.cpp:588
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr ""
 
-#: kio_man.cpp:596
+#: kio_man.cpp:597
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
-#: kio_man.cpp:661
+#: kio_man.cpp:659
 #, fuzzy, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "<body bgcolor=#ffffff><h1> কে-ডি-ই Man প্রদর্শক সমস্যা</h1>"
 
-#: kio_man.cpp:675
+#: kio_man.cpp:672
 #, fuzzy, kde-format
 #| msgid "There is more than one matching man page."
 msgid "There is more than one matching man page:"
 msgstr "একাধিক ম্যান পেজ-এ মিল পাওয়া গেছে।"
 
-#: kio_man.cpp:675
+#: kio_man.cpp:672
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:687
+#: kio_man.cpp:685
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -71,33 +71,33 @@ msgid ""
 "English version."
 msgstr ""
 
-#: kio_man.cpp:759
+#: kio_man.cpp:753
 #, kde-format
 msgid "Header Files"
 msgstr ""
 
-#: kio_man.cpp:760
+#: kio_man.cpp:755
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr ""
 
-#: kio_man.cpp:761
+#: kio_man.cpp:757
 #, kde-format
 msgid "User Commands"
 msgstr "ব্যবহারকারীর কমান্ড"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:759
 #, fuzzy, kde-format
 #| msgid "User Commands"
 msgid "User Commands (POSIX)"
 msgstr "ব্যবহারকারীর কমান্ড"
 
-#: kio_man.cpp:763
+#: kio_man.cpp:761
 #, kde-format
 msgid "System Calls"
 msgstr "সিস্টেম কল"
 
-#: kio_man.cpp:764
+#: kio_man.cpp:763
 #, kde-format
 msgid "Subroutines"
 msgstr "সাব-রুটিন"
@@ -107,77 +107,77 @@ msgstr "সাব-রুটিন"
 msgid "Perl Modules"
 msgstr "পার্ল মডিউল"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:768
 #, kde-format
 msgid "Network Functions"
 msgstr "নেটওয়ার্ক ফাংশন"
 
-#: kio_man.cpp:768
+#: kio_man.cpp:770
 #, kde-format
 msgid "Devices"
 msgstr "ডিভাইস"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:772
 #, kde-format
 msgid "File Formats"
 msgstr "ফাইলের ফর্ম্যাট"
 
-#: kio_man.cpp:770
+#: kio_man.cpp:774
 #, kde-format
 msgid "Games"
 msgstr "খেলাধুলা"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:776
 #, kde-format
 msgid "Miscellaneous"
 msgstr ""
 
-#: kio_man.cpp:772
+#: kio_man.cpp:778
 #, kde-format
 msgid "System Administration"
 msgstr "সিস্টেম অ্যাডমিনিস্ট্রেশন"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:780
 #, kde-format
 msgid "Kernel"
 msgstr "কার্ণেল"
 
-#: kio_man.cpp:774
+#: kio_man.cpp:782
 #, kde-format
 msgid "Local Documentation"
 msgstr "স্থানীয় ডকুমেন্টেশন"
 
-#: kio_man.cpp:776
+#: kio_man.cpp:785
 #, kde-format
 msgid "New"
 msgstr "নতুন"
 
-#: kio_man.cpp:806
+#: kio_man.cpp:812
 #, fuzzy, kde-format
 msgid "Main Manual Page Index"
 msgstr "UNIX এর ম্যানুয়াল সূচী"
 
-#: kio_man.cpp:831
+#: kio_man.cpp:837
 #, fuzzy, kde-format
 msgid "Section %1"
 msgstr "অংশন"
 
-#: kio_man.cpp:1116
+#: kio_man.cpp:1086
 #, fuzzy, kde-format
 msgid "Index for section %1: %2"
 msgstr "<body bgcolor=#ffffff><h1>%1 অংশের সূচী: %2</h1>"
 
-#: kio_man.cpp:1116
+#: kio_man.cpp:1086
 #, fuzzy, kde-format
 msgid "Manual Page Index"
 msgstr "UNIX এর ম্যানুয়াল সূচী"
 
-#: kio_man.cpp:1128
+#: kio_man.cpp:1098
 #, kde-format
 msgid "Generating Index"
 msgstr "সূচী উত্‍পাদন করা হচ্ছে"
 
-#: kio_man.cpp:1406
+#: kio_man.cpp:1352
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

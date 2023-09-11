@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-07-26 02:01+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2022-10-30 09:37+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -21,39 +21,39 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: fish.cpp:289
+#: fish.cpp:322
 #, kde-format
 msgid "Connecting..."
 msgstr "Koplar til …"
 
-#: fish.cpp:600
+#: fish.cpp:656
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Startar opp protokoll …"
 
-#: fish.cpp:637
+#: fish.cpp:693
 #, kde-format
 msgid "Local Login"
 msgstr "Lokal innlogging"
 
-#: fish.cpp:639
+#: fish.cpp:695
 #, kde-format
 msgid "SSH Authentication"
 msgstr "SSH-autentisering"
 
-#: fish.cpp:676 fish.cpp:691
+#: fish.cpp:732 fish.cpp:747
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr "Ja"
 
-#: fish.cpp:676 fish.cpp:691
+#: fish.cpp:732 fish.cpp:747
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr "Nei"
 
-#: fish.cpp:768
+#: fish.cpp:830
 #, kde-format
 msgid "Disconnected."
 msgstr "Kopla frå."

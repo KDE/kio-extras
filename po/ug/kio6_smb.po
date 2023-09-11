@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 02:00+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2013-09-08 07:05+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -33,12 +33,12 @@ msgid ""
 "configuration non-empty usernames may be required</para>"
 msgstr ""
 
-#: kio_smb_auth.cpp:52
+#: kio_smb_auth.cpp:53
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt> <b>%1</b> نىڭ كىملىك دەلىللەش ئۇچۇرلىرىنى كىرگۈزۈڭ</qt>"
 
-#: kio_smb_auth.cpp:55
+#: kio_smb_auth.cpp:56
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
@@ -49,7 +49,7 @@ msgstr ""
 "مۇلازىمېتىر = %1\n"
 "ھەمبەھىر = %2"
 
-#: kio_smb_browse.cpp:58
+#: kio_smb_browse.cpp:59
 #, kde-format
 msgid ""
 "%1:\n"
@@ -58,7 +58,7 @@ msgstr ""
 "%1:\n"
 " ھۆججەتنىڭ تىپى نامەلۇم، نامەلۇم مۇندەرىجە ياكى ھۆججەت"
 
-#: kio_smb_browse.cpp:272
+#: kio_smb_browse.cpp:273
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -67,33 +67,33 @@ msgstr ""
 "يەرلىك توردا ھېچقانداق بىر گۇرۇپپا يوق. بۇ تور توسۇقنىڭ سەۋەبىدىن كېلىپ "
 "چىقىدۇ."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
 msgstr "%1 نىڭ ئۈسكۈنىسىدە ۋاسىتە يوق"
 
-#: kio_smb_browse.cpp:283
+#: kio_smb_browse.cpp:284
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "ماشىنا %1 غا باغلانغىلى بولمىدى"
 
-#: kio_smb_browse.cpp:295
+#: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr ""
 
-#: kio_smb_browse.cpp:301
+#: kio_smb_browse.cpp:302
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "بېرىلگەن مۇلازىمېتىردىن ھەمبەھىر تېپىلمىدى"
 
-#: kio_smb_browse.cpp:303
+#: kio_smb_browse.cpp:304
 #, fuzzy, kde-format
 #| msgid "BAD File descriptor"
 msgid "Bad file descriptor"
 msgstr "بولمىغۇر ھۆججەت چۈشەندۈرۈلۈشى"
 
-#: kio_smb_browse.cpp:311
+#: kio_smb_browse.cpp:312
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -101,7 +101,7 @@ msgid ""
 "and by UNIX name resolution."
 msgstr ""
 
-#: kio_smb_browse.cpp:318
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -109,7 +109,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr ""
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -121,13 +121,13 @@ msgid ""
 "developers if they ask for it)"
 msgstr ""
 
-#: kio_smb_browse.cpp:334
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr ""
 
-#: kio_smb_browse.cpp:352
+#: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr ""
@@ -137,7 +137,7 @@ msgstr ""
 msgid "libsmbclient failed to create context"
 msgstr "مەزمۇن قۇرۇشتا libsmbclient مەغلۇپ بولدى"
 
-#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
 #, kde-format
 msgid ""
 "\n"
@@ -146,14 +146,14 @@ msgstr ""
 "\n"
 "سىستېمىڭىزغا samba بوغچىسى توغرا ئورنىتىلغانمۇ تەكشۈرۈڭ."
 
-#: kio_smb_mount.cpp:171
+#: kio_smb_mount.cpp:173
 #, kde-format
 msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
 "%4"
 msgstr ""
 
-#: kio_smb_mount.cpp:196
+#: kio_smb_mount.cpp:198
 #, kde-format
 msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
@@ -162,7 +162,7 @@ msgstr ""
 "ئېگەرلەش نۇقتىسى «%1» نى ئېگەرسىزلەش مەغلۇپ بولدى.\n"
 "%2"
 
-#: wsdiscoverer.cpp:173
+#: wsdiscoverer.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

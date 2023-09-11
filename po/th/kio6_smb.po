@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 02:00+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2008-11-24 19:19+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -35,12 +35,12 @@ msgid ""
 "configuration non-empty usernames may be required</para>"
 msgstr ""
 
-#: kio_smb_auth.cpp:52
+#: kio_smb_auth.cpp:53
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>โปรดป้อนข้อมูลการแสดงตัวเข้าใช้งานสำหรับ <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:55
+#: kio_smb_auth.cpp:56
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
@@ -51,7 +51,7 @@ msgstr ""
 "เครื่องแม่ข่าย = %1\n"
 "ตำแหน่งใช้งานร่วมกัน = %2"
 
-#: kio_smb_browse.cpp:58
+#: kio_smb_browse.cpp:59
 #, kde-format
 msgid ""
 "%1:\n"
@@ -60,40 +60,40 @@ msgstr ""
 "%1:\n"
 "ไม่ทราบประเภทของแฟ้ม, ไดเรกทอรี หรือแฟ้ม"
 
-#: kio_smb_browse.cpp:272
+#: kio_smb_browse.cpp:273
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
 "an enabled firewall."
 msgstr "ไม่สามารถค้นหากลุ่มงานในเครือข่ายท้องถิ่นของคุณได้ ซึ่งอาจเกิดจากการใช้งานผ่านไฟร์วอลล์"
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
 msgstr "ไม่พบสื่อบันทึกในอุปกรณ์สำหรับ %1"
 
-#: kio_smb_browse.cpp:283
+#: kio_smb_browse.cpp:284
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "ไม่สามารถเชื่อมต่อไปยังเครื่อง %1 ได้"
 
-#: kio_smb_browse.cpp:295
+#: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "เกิดความผิดพลาดในระหว่างเชื่อมต่อไปยังเครื่อง %1"
 
-#: kio_smb_browse.cpp:301
+#: kio_smb_browse.cpp:302
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "ไม่พบตำแหน่งใช้งานร่วมกันในเครื่องแม่ข่ายที่ให้มา"
 
-#: kio_smb_browse.cpp:303
+#: kio_smb_browse.cpp:304
 #, fuzzy, kde-format
 #| msgid "BAD File descriptor"
 msgid "Bad file descriptor"
 msgstr "หมายเลขการเปิดแฟ้มใช้ไม่ได้"
 
-#: kio_smb_browse.cpp:311
+#: kio_smb_browse.cpp:312
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -104,7 +104,7 @@ msgstr ""
 "ได้ทำการตั้งค่าปรับแต่งโดยไม่มีชื่อที่จะเกิดการขัดแย้งระหว่างชื่อที่ใช้โดยการแปลงชื่อ "
 "ของวินโดว์สและยูนิกซ์"
 
-#: kio_smb_browse.cpp:318
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -112,7 +112,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr ""
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -130,14 +130,14 @@ msgstr ""
 "กับอุปกรณ์เครือข่ายของคุณในระหว่างการเรียกดูเครือข่าย (โปรดระมัดระวังในเรื่องการส่งข้อมูลส่วนตัว "
 "และหากไม่มั่นใจก็อย่าทำการส่งมัน - คุณสามารถส่งมันมายังผู้พัฒนาได้ หากพวกเขาร้องขอข้อมูลดังกล่าว)"
 
-#: kio_smb_browse.cpp:334
+#: kio_smb_browse.cpp:337
 #, fuzzy, kde-format
 #| msgid "Unknown error condition in stat: %1"
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "ไม่ทราบเงื่อนไขความผิดพลาดในสถานะ: %1"
 
-#: kio_smb_browse.cpp:352
+#: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr ""
@@ -147,7 +147,7 @@ msgstr ""
 msgid "libsmbclient failed to create context"
 msgstr "libsmbclient ทำงานล้มเหลวในการสร้างคอนเท็กซ์"
 
-#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
 #, kde-format
 msgid ""
 "\n"
@@ -156,7 +156,7 @@ msgstr ""
 "\n"
 "โปรดตรวจสอบให้มั่นใจว่า คุณได้ติดตั้งแพกเกจ samba ไว้ในระบบของคุณเรียบร้อยแล้ว"
 
-#: kio_smb_mount.cpp:171
+#: kio_smb_mount.cpp:173
 #, kde-format
 msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
@@ -165,7 +165,7 @@ msgstr ""
 "การเมานท์ตำแหน่งใช้งานร่วมกัน \"%1\" จากเครื่อง \"%2\" ด้วยนสิทธิ์ผู้ใช้ \"%3\" ล้มเหลว\n"
 "%4"
 
-#: kio_smb_mount.cpp:196
+#: kio_smb_mount.cpp:198
 #, kde-format
 msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
@@ -174,7 +174,7 @@ msgstr ""
 "การยกเลิกการเมานท์ของจุดเมานท์ \"%1\" ล้มเหลว\n"
 "%2"
 
-#: wsdiscoverer.cpp:173
+#: wsdiscoverer.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

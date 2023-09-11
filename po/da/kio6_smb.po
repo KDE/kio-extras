@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-26 02:00+0000\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
 "PO-Revision-Date: 2022-02-08 19:58+0100\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -45,12 +45,12 @@ msgstr ""
 "og adgangskode. Afhængigt af serverens opsætning kan ikke-tomme brugernavne "
 "være påkrævet</para>"
 
-#: kio_smb_auth.cpp:52
+#: kio_smb_auth.cpp:53
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>Indtast venligst godkendelsesinformation for <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:55
+#: kio_smb_auth.cpp:56
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"
@@ -61,7 +61,7 @@ msgstr ""
 "Server = %1\n"
 "Share = %2"
 
-#: kio_smb_browse.cpp:58
+#: kio_smb_browse.cpp:59
 #, kde-format
 msgid ""
 "%1:\n"
@@ -70,7 +70,7 @@ msgstr ""
 "%1:\n"
 "Ukendt filtype, hverken mappe eller fil."
 
-#: kio_smb_browse.cpp:272
+#: kio_smb_browse.cpp:273
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -79,32 +79,32 @@ msgstr ""
 "Kunne ingen arbejdsgrupper finde på dit lokale netværk. Dette kan skyldes en "
 "aktiveret firewall."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
 msgstr "Intet medie i enheden for %1"
 
-#: kio_smb_browse.cpp:283
+#: kio_smb_browse.cpp:284
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "Kunne ikke forbinde til værten for %1"
 
-#: kio_smb_browse.cpp:295
+#: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "Fejl ved forbindelse til serveren ansvarlig for %1"
 
-#: kio_smb_browse.cpp:301
+#: kio_smb_browse.cpp:302
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "Share kunne ikke findes på givne server"
 
-#: kio_smb_browse.cpp:303
+#: kio_smb_browse.cpp:304
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "Dårlig filbeskriver"
 
-#: kio_smb_browse.cpp:311
+#: kio_smb_browse.cpp:312
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -115,7 +115,7 @@ msgstr ""
 "netværk er sat op uden navnekonflikter mellem navne brugt af Windows og af "
 "Unix navneresolution."
 
-#: kio_smb_browse.cpp:318
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -123,7 +123,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1: Værten kan ikke nås"
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -142,13 +142,13 @@ msgstr ""
 "private data, så send den ikke ind hvis du er usikker på det - du kan sende "
 "det privat udviklerne hvis de beder om det)"
 
-#: kio_smb_browse.cpp:334
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Ukendt fejltilstand: [%1] %2"
 
-#: kio_smb_browse.cpp:352
+#: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "Fejl ved forsøg på at tilgå %1<nl/>%2"
@@ -158,7 +158,7 @@ msgstr "Fejl ved forsøg på at tilgå %1<nl/>%2"
 msgid "libsmbclient failed to create context"
 msgstr "mislykkedes at initialisere libsmbclient"
 
-#: kio_smb_mount.cpp:162 kio_smb_mount.cpp:187
+#: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
 #, kde-format
 msgid ""
 "\n"
@@ -167,7 +167,7 @@ msgstr ""
 "\n"
 "Sørg for at samba-pakken er installeret rigtigt på dit system."
 
-#: kio_smb_mount.cpp:171
+#: kio_smb_mount.cpp:173
 #, kde-format
 msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
@@ -176,7 +176,7 @@ msgstr ""
 "Montering af share \"%1\" fra vært \"%2\" af brugeren \"%3\" mislykkedes.\n"
 "%4"
 
-#: kio_smb_mount.cpp:196
+#: kio_smb_mount.cpp:198
 #, kde-format
 msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
@@ -185,7 +185,7 @@ msgstr ""
 "Afmontering af monteringspunktet \"%1\" mislykkedes.\n"
 "%2"
 
-#: wsdiscoverer.cpp:173
+#: wsdiscoverer.cpp:163
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
