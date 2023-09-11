@@ -897,6 +897,7 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, 
     scaleDownImage(thumbnail, width, height);
 
     thumbnail.setDevicePixelRatio(m_devicePixelRatio);
+    convertToStandardRgb(thumbnail);
 
     return true;
 }
