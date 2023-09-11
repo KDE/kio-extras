@@ -149,7 +149,8 @@ KIO::ThumbnailResult AudioCreator::create(const KIO::ThumbnailRequest &request)
     QMimeDatabase db;
     QMimeType type = db.mimeTypeForName(request.mimeType());
 
-    const char *fileName = QFile::encodeName(request.url().toLocalFile()).data();
+    const QByteArray fileNameBytes = QFile::encodeName(request.url().toLocalFile());
+    const char *fileName = fileNameBytes.constData();
 
     if (!type.isValid()) {
         return KIO::ThumbnailResult::fail();
