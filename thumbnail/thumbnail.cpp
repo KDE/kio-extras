@@ -293,34 +293,39 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 
     convertToStandardRgb(img);
 
-    const QString shmid = metaData("shmid");
-    if (shmid.isEmpty()) {
 #ifdef THUMBNAIL_HACK
-        if (direct) {
-            // If thumbnail was called directly from Konqueror, then the image needs to be raw
-            // qDebug() << "RAW IMAGE TO STREAM";
-            QBuffer buf;
-            if (!buf.open(QIODevice::WriteOnly)) {
-                return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Could not write image."));
-            }
-            img.save(&buf, "PNG");
-            buf.close();
-            mimeType("image/png");
-            data(buf.buffer());
-        } else
-#endif
-        {
-            QByteArray imgData;
-            QDataStream stream(&imgData, QIODevice::WriteOnly);
-            // qDebug() << "IMAGE TO STREAM";
-            stream << img;
-            mimeType("application/octet-stream");
-            data(imgData);
+    if (direct) {
+        // If thumbnail was called directly from Konqueror, then the image needs to be raw
+        // qDebug() << "RAW IMAGE TO STREAM";
+        QBuffer buf;
+        if (!buf.open(QIODevice::WriteOnly)) {
+            return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Could not write image."));
         }
-    } else {
+        img.save(&buf, "PNG");
+        buf.close();
+        mimeType("image/png");
+        data(buf.buffer());
+        return KIO::WorkerResult::pass();
+    }
+#endif
+
+    QByteArray imgData;
+    QDataStream stream(&imgData, QIODevice::WriteOnly);
+
+    // Keep in sync with kio/src/previewjob.cpp
+    const quint8 format = img.format() | 0x80;
+    stream << img.width() << img.height() << format << ((int)img.devicePixelRatio()) << img;
+
 #ifndef Q_OS_WIN
-        QByteArray imgData;
-        QDataStream stream(&imgData, QIODevice::WriteOnly);
+    const QString shmid = metaData("shmid");
+    if (shmid.isEmpty())
+#endif
+    {
+        // qDebug() << "IMAGE TO STREAM";
+        stream << img;
+    }
+#ifndef Q_OS_WIN
+    else {
         // qDebug() << "IMAGE TO SHMID";
         void *shmaddr = shmat(shmid.toInt(), nullptr, 0);
         if (shmaddr == (void *)-1) {
@@ -334,15 +339,13 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Image is too big for the shared memory segment"));
             shmdt((char *)shmaddr);
         }
-        // Keep in sync with kio/src/previewjob.cpp
-        const quint8 format = img.format() | 0x80;
-        stream << img.width() << img.height() << format << ((int)img.devicePixelRatio());
         memcpy(shmaddr, img.bits(), img.sizeInBytes());
         shmdt((char *)shmaddr);
-        mimeType("application/octet-stream");
-        data(imgData);
-#endif
     }
+#endif
+    mimeType("application/octet-stream");
+    data(imgData);
+
     return KIO::WorkerResult::pass();
 }
 
