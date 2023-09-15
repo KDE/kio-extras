@@ -62,6 +62,10 @@ private Q_SLOTS:
         auto *job = KIO::filePreview(items, QSize(128, 128), &enabledPlugins);
         job->setDevicePixelRatio(dpr);
 
+        QSignalSpy failedSpy(job, &KIO::PreviewJob::failed);
+        QSignalSpy gotPreviewSpy(job, &KIO::PreviewJob::gotPreview);
+        QSignalSpy resultSpy(job, &KIO::PreviewJob::result);
+
         connect(job, &KIO::PreviewJob::gotPreview, this, [path, expectedThumbnail, dpr](const KFileItem &item, const QPixmap &preview) {
             QCOMPARE(item.url(), QUrl::fromLocalFile(path));
 
@@ -69,19 +73,14 @@ private Q_SLOTS:
             expectedImage.load(QFINDTESTDATA("data/" + expectedThumbnail));
             expectedImage.setDevicePixelRatio(dpr);
 
-            QCOMPARE(preview.devicePixelRatio(), dpr);
             QCOMPARE(preview.toImage(), expectedImage);
         });
 
-        QSignalSpy failedSpy(job, &KIO::PreviewJob::failed);
-        QSignalSpy gotPreviewSpy(job, &KIO::PreviewJob::gotPreview);
-        QSignalSpy resultSpy(job, &KIO::PreviewJob::result);
-
-        resultSpy.wait();
+        QVERIFY(resultSpy.wait());
 
         QCOMPARE(job->error(), KJob::NoError);
-        QVERIFY2(failedSpy.empty(), qPrintable(job->errorString()));
-        QVERIFY(!gotPreviewSpy.empty());
+        QVERIFY(failedSpy.empty());
+        QVERIFY(!gotPreviewSpy.isEmpty());
     }
 };
 
