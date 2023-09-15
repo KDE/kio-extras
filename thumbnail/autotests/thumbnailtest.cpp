@@ -76,7 +76,7 @@ private Q_SLOTS:
             QCOMPARE(preview.toImage(), expectedImage);
         });
 
-        QVERIFY(resultSpy.wait());
+        QVERIFY2(resultSpy.wait(15000), qPrintable(job->errorText()));
 
         QCOMPARE(job->error(), KJob::NoError);
         QVERIFY(failedSpy.empty());
