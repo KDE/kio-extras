@@ -79,6 +79,7 @@ private Q_SLOTS:
 
         resultSpy.wait();
 
+        QCOMPARE(job->error(), KJob::NoError);
         QVERIFY2(failedSpy.empty(), qPrintable(job->errorString()));
         QVERIFY(!gotPreviewSpy.empty());
     }
