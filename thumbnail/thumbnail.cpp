@@ -313,8 +313,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     QDataStream stream(&imgData, QIODevice::WriteOnly);
 
     // Keep in sync with kio/src/previewjob.cpp
-    const quint8 format = img.format() | 0x80;
-    stream << img.width() << img.height() << format << ((int)img.devicePixelRatio()) << img;
+    stream << img.width() << img.height() << img.format() << ((int)img.devicePixelRatio());
 
 #ifndef Q_OS_WIN
     const QString shmid = metaData("shmid");
