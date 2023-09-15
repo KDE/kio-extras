@@ -338,7 +338,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Image is too big for the shared memory segment"));
             shmdt((char *)shmaddr);
         }
-        memcpy(shmaddr, img.bits(), img.sizeInBytes());
+        memcpy(shmaddr, img.constBits(), img.sizeInBytes());
         shmdt((char *)shmaddr);
     }
 #endif
