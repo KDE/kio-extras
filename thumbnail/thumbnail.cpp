@@ -320,12 +320,12 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     if (shmid.isEmpty())
 #endif
     {
-        // qDebug() << "IMAGE TO STREAM";
+        qDebug() << "IMAGE TO STREAM";
         stream << img;
     }
 #ifndef Q_OS_WIN
     else {
-        // qDebug() << "IMAGE TO SHMID";
+        qDebug() << "IMAGE TO SHMID";
         void *shmaddr = shmat(shmid.toInt(), nullptr, 0);
         if (shmaddr == (void *)-1) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
