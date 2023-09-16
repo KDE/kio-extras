@@ -46,11 +46,6 @@
 #include <KPluginFactory>
 
 #include <kio_version.h>
-#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
-#include <KIO/ThumbCreator>
-#include <KIO/ThumbDevicePixelRatioDependentCreator>
-#include <KIO/ThumbSequenceCreator>
-#endif
 
 #include <limits>
 #include <variant>
@@ -244,20 +239,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         }
 
         if (creator->handleSequences) {
-#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
-            if (std::holds_alternative<LegacyThumbCreatorPtr>(creator->creator)) {
-                auto *sequenceCreator = dynamic_cast<ThumbSequenceCreator *>(std::get<LegacyThumbCreatorPtr>(creator->creator).get());
-
-                if (sequenceCreator) {
-                    sequenceCreator->setSequenceIndex(sequenceIndex());
-                    setMetaData("handlesSequences", QStringLiteral("1"));
-                }
-            } else {
-                setMetaData("handlesSequences", QStringLiteral("1"));
-            }
-#else
             setMetaData("handlesSequences", QStringLiteral("1"));
-#endif
         }
 
         if (!createThumbnail(creator, info.canonicalFilePath(), m_width, m_height, img)) {
@@ -665,51 +647,6 @@ ThumbCreatorWithMetadata *ThumbnailProtocol::getThumbCreator(const QString &plug
         return creator;
     }
 
-#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    // Don't use KPluginFactory here, this is not a QObject and
-    // neither is ThumbCreator
-    ThumbCreator *creator = nullptr;
-    QLibrary library(QPluginLoader(plugin).fileName());
-    if (library.load()) {
-        auto createFn = (newCreator)library.resolve("new_creator");
-        if (createFn) {
-            creator = createFn();
-        }
-    }
-
-    ThumbCreatorWithMetadata *thumbCreator = nullptr;
-    if (creator) {
-        KPluginMetaData data;
-        if (plugin.contains(QLatin1String("kf5/thumbcreator"))) {
-            data = KPluginMetaData(plugin);
-        } else {
-            const QVector<KPluginMetaData> plugins = KIO::PreviewJob::availableThumbnailerPlugins();
-            auto findPluginIt = std::find_if(plugins.begin(), plugins.end(), [&plugin](const KPluginMetaData &data) {
-                return data.fileName() == plugin;
-            });
-            if (findPluginIt != plugins.end()) {
-                data = *findPluginIt;
-            }
-        }
-        if (!data.isValid()) {
-            qCWarning(KIO_THUMBNAIL_LOG) << "Plugin not found:" << plugin;
-        } else {
-            thumbCreator = new ThumbCreatorWithMetadata{
-                std::unique_ptr<ThumbCreator>(creator),
-                data.value("CacheThumbnail", true),
-                data.value("DevicePixelRatioDependent", false),
-                data.value("HandleSequences", false),
-            };
-        }
-    } else {
-        qCWarning(KIO_THUMBNAIL_LOG) << "Failed to load" << plugin << library.errorString();
-    }
-
-    m_creators.insert(plugin, thumbCreator);
-
-    return thumbCreator;
-#endif
-
     return nullptr;
 }
 
@@ -841,43 +778,12 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, 
 {
     bool success = false;
 
-#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    if (std::holds_alternative<LegacyThumbCreatorPtr>(thumbCreator->creator)) {
-        auto creator = std::get<LegacyThumbCreatorPtr>(thumbCreator->creator).get();
+    auto result = std::get<ThumbnailCreatorPtr>(thumbCreator->creator)
+                      ->create(KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(width, height), m_mimeType, m_devicePixelRatio, sequenceIndex()));
 
-        int scaledWidth = width;
-        int scaledHeight = height;
-
-        if (thumbCreator->devicePixelRatioDependent) {
-            auto *dprDependentCreator = static_cast<KIO::ThumbDevicePixelRatioDependentCreator *>(creator);
-
-            if (dprDependentCreator) {
-                dprDependentCreator->setDevicePixelRatio(m_devicePixelRatio);
-            }
-
-            scaledWidth /= m_devicePixelRatio;
-            scaledHeight /= m_devicePixelRatio;
-        }
-
-        success = creator->create(filePath, scaledWidth, scaledHeight, thumbnail);
-
-        if (thumbCreator->handleSequences) {
-            auto *sequenceCreator = dynamic_cast<ThumbSequenceCreator *>(creator);
-            m_sequenceIndexWrapAroundPoint = sequenceCreator->sequenceIndexWraparoundPoint();
-        }
-
-    } else {
-#endif
-        auto result = std::get<ThumbnailCreatorPtr>(thumbCreator->creator)
-                          ->create(KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(width, height), m_mimeType, m_devicePixelRatio, sequenceIndex()));
-
-        success = result.isValid();
-        thumbnail = result.image();
-        m_sequenceIndexWrapAroundPoint = result.sequenceIndexWraparoundPoint();
-
-#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    }
-#endif
+    success = result.isValid();
+    thumbnail = result.image();
+    m_sequenceIndexWrapAroundPoint = result.sequenceIndexWraparoundPoint();
 
     if (!success) {
         return false;
