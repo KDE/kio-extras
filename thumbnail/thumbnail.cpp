@@ -24,7 +24,9 @@
 #include <QColorSpace>
 #include <QCryptographicHash>
 #include <QDebug>
+#include <QDirIterator>
 #include <QFile>
+#include <QFileInfo>
 #include <QIcon>
 #include <QImage>
 #include <QLibrary>
@@ -50,17 +52,8 @@
 #include <KIO/ThumbSequenceCreator>
 #endif
 
-#include <QDirIterator>
-
 #include <limits>
 #include <variant>
-
-// Fix thumbnail: protocol
-#define THUMBNAIL_HACK (1)
-
-#ifdef THUMBNAIL_HACK
-#include <QFileInfo>
-#endif
 
 #include "imagefilter.h"
 
@@ -189,8 +182,6 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     }
 
     // qDebug() << "Wanting MIME Type:" << m_mimeType;
-#ifdef THUMBNAIL_HACK
-    // ### HACK
     bool direct = false;
     if (m_mimeType.isEmpty()) {
         // qDebug() << "PATH: " << url.path() << "isDir:" << info.isDir();
@@ -205,7 +196,6 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         // qDebug() << "Guessing MIME Type:" << m_mimeType;
         direct = true; // thumbnail: URL was probably typed in Konqueror
     }
-#endif
 
     if (m_mimeType.isEmpty()) {
         return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("No MIME Type specified."));
@@ -216,14 +206,11 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 
     if (m_width < 0 || m_height < 0) {
         return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
-    }
-#ifdef THUMBNAIL_HACK
-    else if (!m_width || !m_height) {
+    } else if (!m_width || !m_height) {
         // qDebug() << "Guessing height, width, icon size!";
         m_width = 128;
         m_height = 128;
     }
-#endif
     bool ok;
     m_devicePixelRatio = metaData("devicePixelRatio").toInt(&ok);
     if (!ok || m_devicePixelRatio == 0) {
@@ -242,13 +229,11 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for directory"));
         }
     } else {
-#ifdef THUMBNAIL_HACK
         if (plugin.isEmpty()) {
             plugin = pluginForMimeType(m_mimeType).fileName();
         }
 
         // qDebug() << "Guess plugin: " << plugin;
-#endif
         if (plugin.isEmpty()) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("No plugin specified."));
         }
@@ -293,7 +278,6 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 
     convertToStandardRgb(img);
 
-#ifdef THUMBNAIL_HACK
     if (direct) {
         // If thumbnail was called directly from Konqueror, then the image needs to be raw
         // qDebug() << "RAW IMAGE TO STREAM";
@@ -307,7 +291,6 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         data(buf.buffer());
         return KIO::WorkerResult::pass();
     }
-#endif
 
     QByteArray imgData;
     QDataStream stream(&imgData, QIODevice::WriteOnly);
