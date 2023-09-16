@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-09-16 01:55+0000\n"
 "PO-Revision-Date: 2021-08-04 23:10+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -52,17 +52,17 @@ msgstr "Il non pote crear miniatura pro %1"
 msgid "Failed to create a thumbnail."
 msgstr "Il falleva a crear un miniatura"
 
-#: thumbnail.cpp:304
+#: thumbnail.cpp:302
 #, kde-format
 msgid "Could not write image."
 msgstr "Il non pote scriber image."
 
-#: thumbnail.cpp:327
+#: thumbnail.cpp:332
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Il falleva a attaccar al segmento de memoria compartite %1"
 
-#: thumbnail.cpp:334
+#: thumbnail.cpp:339
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Image es troppo grande pro le segmento de memoria compartite"

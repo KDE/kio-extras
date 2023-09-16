@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-09-16 01:55+0000\n"
 "PO-Revision-Date: 2011-03-08 09:03+0100\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -55,17 +55,17 @@ msgstr "Kan ikke lage miniatyrbilder for %1"
 msgid "Failed to create a thumbnail."
 msgstr "Klarte ikke å lage et miniatyrbilde."
 
-#: thumbnail.cpp:304
+#: thumbnail.cpp:302
 #, kde-format
 msgid "Could not write image."
 msgstr "Klarte ikke å lagre bildet."
 
-#: thumbnail.cpp:327
+#: thumbnail.cpp:332
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Klarte ikke å koble til minnedelen %1"
 
-#: thumbnail.cpp:334
+#: thumbnail.cpp:339
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Bildet er for stort for den delte minnedelen"

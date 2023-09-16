@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase/kio_thumbnail.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-09-16 01:55+0000\n"
 "PO-Revision-Date: 2005-05-20 15:03-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -52,17 +52,17 @@ msgstr "Ní féidir mionsamhail a chruthú le haghaidh %1"
 msgid "Failed to create a thumbnail."
 msgstr "Theip ar chruthú na mionsamhla."
 
-#: thumbnail.cpp:304
+#: thumbnail.cpp:302
 #, kde-format
 msgid "Could not write image."
 msgstr "Níorbh fhéidir an íomhá a scríobh."
 
-#: thumbnail.cpp:327
+#: thumbnail.cpp:332
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Theip ar cheangal le deighleán comhchuimhne %1"
 
-#: thumbnail.cpp:334
+#: thumbnail.cpp:339
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Tá an íomhá rómhór don deighleán comhchuimhne"

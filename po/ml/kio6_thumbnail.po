@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-09-16 01:55+0000\n"
 "PO-Revision-Date: 2008-10-22 00:36+0530\n"
 "Last-Translator: Hari Vishnu <harivishnu@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
@@ -54,17 +54,17 @@ msgstr "നഖച്ചിത്രം %1-ഇനു ഉണ്ടാക്കു�
 msgid "Failed to create a thumbnail."
 msgstr "നഖച്ചിത്രം ഉണ്ടാക്കുവാന്‍ കഴിയുന്നില്ല"
 
-#: thumbnail.cpp:304
+#: thumbnail.cpp:302
 #, kde-format
 msgid "Could not write image."
 msgstr "ചിത്രം എഴുതുവാന്‍ കഴിയുന്നില്ല"
 
-#: thumbnail.cpp:327
+#: thumbnail.cpp:332
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "%1 എന്ന പങ്കുവെച്ച മെമ്മറിയിലേക്ക് കൂട്ടിവെക്കുവാന്‍ കഴിഞ്ഞില്ല"
 
-#: thumbnail.cpp:334
+#: thumbnail.cpp:339
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "ചിത്രം പങ്കുവെച്ച മെമ്മറി വിഭാഗത്തിനേക്കാള്‍ വലുതാണു്"
