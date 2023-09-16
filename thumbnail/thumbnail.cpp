@@ -48,7 +48,6 @@
 #include <kio_version.h>
 
 #include <limits>
-#include <variant>
 
 #include "imagefilter.h"
 
@@ -778,8 +777,8 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, 
 {
     bool success = false;
 
-    auto result = std::get<ThumbnailCreatorPtr>(thumbCreator->creator)
-                      ->create(KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(width, height), m_mimeType, m_devicePixelRatio, sequenceIndex()));
+    auto result = thumbCreator->creator->create(
+        KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(width, height), m_mimeType, m_devicePixelRatio, sequenceIndex()));
 
     success = result.isValid();
     thumbnail = result.image();

@@ -21,11 +21,8 @@
 class ThumbCreator;
 class QImage;
 
-using ThumbnailCreatorPtr = std::unique_ptr<KIO::ThumbnailCreator>;
-using Creator = std::variant<ThumbnailCreatorPtr>;
-
 struct ThumbCreatorWithMetadata {
-    Creator creator;
+    std::unique_ptr<KIO::ThumbnailCreator> creator;
     bool cacheThumbnail = true;
     bool devicePixelRatioDependent = false;
     bool handleSequences = false;
