@@ -43,7 +43,11 @@ using namespace std::filesystem;
 #include "kio_sftp_debug.h"
 #include "kio_sftp_trace_debug.h"
 
-#define KIO_SFTP_SPECIAL_TIMEOUT 30
+using namespace KIO;
+
+namespace
+{
+constexpr auto KIO_SFTP_SPECIAL_TIMEOUT_MS = 30;
 
 // How big should each data packet be? Definitely not bigger than 64kb or
 // you will overflow the 2 byte size variable in a sftp packet.
@@ -63,42 +67,16 @@ using namespace std::filesystem;
 // [https://bugs.kde.org/show_bug.cgi?id=404890]) we ought to be more conservative!
 // At the same time there's no bug reports about the 60k requests being too large so
 // perhaps all popular servers effectively support at least 64k.
-#define MAX_XFER_BUF_SIZE (60 * 1024)
+constexpr auto MAX_XFER_BUF_SIZE = (60ULL * 1024);
 
-#define KSFTP_ISDIR(sb) (sb->type == SSH_FILEXFER_TYPE_DIRECTORY)
-
-// Pseudo plugin class to embed meta data
-class KIOPluginForMetaData : public QObject
+constexpr bool KSFTP_ISDIR(SFTPAttributesPtr &sb)
 {
-    Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.sftp" FILE "sftp.json")
-};
-
-using namespace KIO;
-extern "C" {
-int Q_DECL_EXPORT kdemain(int argc, char **argv)
-{
-    QCoreApplication app(argc, argv);
-    app.setApplicationName("kio_sftp");
-
-    qCDebug(KIO_SFTP_LOG) << "*** Starting kio_sftp ";
-
-    if (argc != 4) {
-        qCDebug(KIO_SFTP_LOG) << "Usage: kio_sftp protocol domain-socket1 domain-socket2";
-        exit(-1);
-    }
-
-    SFTPWorker worker(argv[2], argv[3]);
-    worker.dispatchLoop();
-
-    qCDebug(KIO_SFTP_LOG) << "*** kio_sftp Done";
-    return 0;
-}
+    return sb->type == SSH_FILEXFER_TYPE_DIRECTORY;
 }
 
 // Converts SSH error into KIO error. Only must be called for error handling
 // as this will always return an error state and never NoError.
-static int toKIOError(const int err)
+int toKIOError(const int err)
 {
     switch (err) {
     case SSH_FX_NO_SUCH_FILE:
@@ -126,7 +104,7 @@ static int toKIOError(const int err)
 }
 
 // Writes 'len' bytes from 'buf' to the file handle 'fd'.
-static int writeToFile(int fd, const char *buf, int len)
+int writeToFile(int fd, const char *buf, int len)
 {
     while (len > 0) {
         const auto lenSize = static_cast<size_t>(len); // len is always >> 0 and, being an int, always << size_t
@@ -153,7 +131,7 @@ static int writeToFile(int fd, const char *buf, int len)
     return 0;
 }
 
-static bool wasUsernameChanged(const QString &username, const KIO::AuthInfo &info)
+bool wasUsernameChanged(const QString &username, const KIO::AuthInfo &info)
 {
     QString loginName(username);
     // If username is empty, assume the current logged in username. Why ?
@@ -168,7 +146,7 @@ static bool wasUsernameChanged(const QString &username, const KIO::AuthInfo &inf
 }
 
 // The callback function for libssh
-static int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata)
+int auth_callback(const char *prompt, char *buf, size_t len, int echo, int verify, void *userdata)
 {
     if (userdata == nullptr) {
         return -1;
@@ -182,7 +160,7 @@ static int auth_callback(const char *prompt, char *buf, size_t len, int echo, in
     return 0;
 }
 
-static void log_callback(int priority, const char *function, const char *buffer, void *userdata)
+void log_callback(int priority, const char *function, const char *buffer, void *userdata)
 {
     if (userdata == nullptr) {
         return;
@@ -190,6 +168,35 @@ static void log_callback(int priority, const char *function, const char *buffer,
 
     auto *worker = static_cast<SFTPWorker *>(userdata);
     worker->log_callback(priority, function, buffer, userdata);
+}
+} // namespace
+
+// Pseudo plugin class to embed meta data
+class KIOPluginForMetaData : public QObject
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.kde.kio.worker.sftp" FILE "sftp.json")
+};
+
+extern "C" {
+int Q_DECL_EXPORT kdemain(int argc, char **argv)
+{
+    QCoreApplication app(argc, argv);
+    app.setApplicationName("kio_sftp");
+
+    qCDebug(KIO_SFTP_LOG) << "*** Starting kio_sftp ";
+
+    if (argc != 4) {
+        qCDebug(KIO_SFTP_LOG) << "Usage: kio_sftp protocol domain-socket1 domain-socket2";
+        exit(-1);
+    }
+
+    SFTPWorker worker(argv[2], argv[3]);
+    worker.dispatchLoop();
+
+    qCDebug(KIO_SFTP_LOG) << "*** kio_sftp Done";
+    return 0;
+}
 }
 
 SFTPWorker::SFTPWorker(const QByteArray &poolSocket, const QByteArray &appSocket)
@@ -928,7 +935,7 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
         mUsername = info.username;
     }
 
-    setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
+    setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT_MS);
 
     mConnected = true;
 
@@ -997,7 +1004,7 @@ Result SFTPWorker::special(const QByteArray &)
                               << "- SSH errorString:" << ssh_get_error(mSession);
     }
 
-    setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT);
+    setTimeoutSpecialCommand(KIO_SFTP_SPECIAL_TIMEOUT_MS);
 
     return Result::pass();
 }
