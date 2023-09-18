@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-16 01:55+0000\n"
+"POT-Creation-Date: 2023-09-18 01:59+0000\n"
 "PO-Revision-Date: 2011-12-02 07:31+0200\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian\n"
@@ -60,12 +60,12 @@ msgstr "Sīktēla izveide nav izdevusies."
 msgid "Could not write image."
 msgstr "Nevar ierakstīt attēlu."
 
-#: thumbnail.cpp:332
+#: thumbnail.cpp:331
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Neizdevās pievienoties koplietošanas atmiņas apgabalam %1"
 
-#: thumbnail.cpp:339
+#: thumbnail.cpp:338
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Attēls ir pālāk liels izdalītajam atmiņas segmentam"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-16 01:55+0000\n"
+"POT-Creation-Date: 2023-09-18 01:59+0000\n"
 "PO-Revision-Date: 2006-12-16 23:32+0000\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -59,12 +59,12 @@ msgstr "Миниатюрани яратиш муваффақиятсиз туг�
 msgid "Could not write image."
 msgstr "Расмни ёзиб бўлмади."
 
-#: thumbnail.cpp:332
+#: thumbnail.cpp:331
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "%1 бўлишилган хотира қисмига боғланиб бўлмади"
 
-#: thumbnail.cpp:339
+#: thumbnail.cpp:338
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Расм хотира учун жуда катта."

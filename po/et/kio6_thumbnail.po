@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-16 01:55+0000\n"
+"POT-Creation-Date: 2023-09-18 01:59+0000\n"
 "PO-Revision-Date: 2011-02-28 15:14+0200\n"
 "Last-Translator: Marek Laane <bald@smail.ee>\n"
 "Language-Team: Estonian <kde-et@linux.ee>\n"
@@ -57,12 +57,12 @@ msgstr "Pisipildi loomine nurjus."
 msgid "Could not write image."
 msgstr "Pildi kirjutamine nurjus."
 
-#: thumbnail.cpp:332
+#: thumbnail.cpp:331
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Lisamine jagatud mälu segmendile %1 nurjus"
 
-#: thumbnail.cpp:339
+#: thumbnail.cpp:338
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Pilt on jagatud mälu segmendile liiga suur"

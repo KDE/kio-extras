@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-16 01:55+0000\n"
+"POT-Creation-Date: 2023-09-18 01:59+0000\n"
 "PO-Revision-Date: 2021-08-22 11:29+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: kde-hindi\n"
@@ -59,12 +59,12 @@ msgstr "लघुछवि बनाने में असफल"
 msgid "Could not write image."
 msgstr "चित्र को लिखा नहीं जा सका."
 
-#: thumbnail.cpp:332
+#: thumbnail.cpp:331
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "साझा मेमोरी खंड %1 में जुड़ने में असफल"
 
-#: thumbnail.cpp:339
+#: thumbnail.cpp:338
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "साझा मेमोरी खंड के लिए यह चित्र बहुत बड़ा है"

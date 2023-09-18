@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-16 01:55+0000\n"
+"POT-Creation-Date: 2023-09-18 01:59+0000\n"
 "PO-Revision-Date: 2011-10-03 00:19+0330\n"
 "Last-Translator: Mohamad Reza Mirdamadi <mohi@linuxshop.ir>\n"
 "Language-Team: Farsi (Persian) <>\n"
@@ -59,12 +59,12 @@ msgstr "خرابی در ایجاد یک ریزنقش."
 msgid "Could not write image."
 msgstr "نتوانست تصویر را بنویسد."
 
-#: thumbnail.cpp:332
+#: thumbnail.cpp:331
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "خرابی در پیوست قطعه حافظه مشترک %1"
 
-#: thumbnail.cpp:339
+#: thumbnail.cpp:338
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "تصویر برای قطعه حافظه مشترک بسیار بزرگ است"
