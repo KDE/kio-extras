@@ -13,6 +13,7 @@
 #include <cerrno>
 #include <cstring>
 #include <memory>
+#include <ranges>
 
 #include <QCoreApplication>
 #include <QDateTime>
@@ -103,16 +104,15 @@ int toKIOError(const int err)
     return KIO::ERR_UNKNOWN;
 }
 
-// Writes 'len' bytes from 'buf' to the file handle 'fd'.
-int writeToFile(int fd, const char *buf, int len)
+// Writes buf into fd.
+int writeToFile(int fd, std::span<char> buf)
 {
-    while (len > 0) {
-        const auto lenSize = static_cast<size_t>(len); // len is always >> 0 and, being an int, always << size_t
-        const ssize_t written = write(fd, buf, lenSize);
+    size_t offset = 0;
+    while (offset != buf.size()) {
+        const auto written = write(fd, &buf[offset], buf.size() - offset);
 
         if (written >= 0) {
-            buf += written;
-            len -= written;
+            offset += written;
             continue;
         }
 
@@ -191,7 +191,8 @@ int Q_DECL_EXPORT kdemain(int argc, char **argv)
         exit(-1);
     }
 
-    SFTPWorker worker(argv[2], argv[3]);
+    std::span args{argv, std::make_unsigned_t<decltype(argc)>(argc)};
+    SFTPWorker worker(args[2], args[3]);
     worker.dispatchLoop();
 
     qCDebug(KIO_SFTP_LOG) << "*** kio_sftp Done";
@@ -1303,7 +1304,7 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
         int error = KJob::NoError;
         if (fd == -1) {
             data(filedata);
-        } else if ((error = writeToFile(fd, filedata.constData(), filedata.size())) != KJob::NoError) {
+        } else if ((error = writeToFile(fd, filedata) != KJob::NoError) {
             return Result::fail(error, url.toString());
         }
         // increment total bytes read
