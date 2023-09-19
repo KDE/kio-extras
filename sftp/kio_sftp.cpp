@@ -12,6 +12,7 @@
 #include <array>
 #include <cerrno>
 #include <cstring>
+#include <filesystem>
 #include <memory>
 #include <ranges>
 
@@ -34,17 +35,14 @@
 #include <kio/ioworker_defaults.h>
 
 #ifdef Q_OS_WIN
-#include <filesystem> // for permissions
-using namespace std::filesystem;
 #include <qplatformdefs.h>
-#else
-#include <utime.h>
 #endif
 
 #include "kio_sftp_debug.h"
 #include "kio_sftp_trace_debug.h"
 
 using namespace KIO;
+using namespace std::filesystem;
 
 namespace
 {
@@ -168,6 +166,19 @@ void log_callback(int priority, const char *function, const char *buffer, void *
 
     auto *worker = static_cast<SFTPWorker *>(userdata);
     worker->log_callback(priority, function, buffer, userdata);
+}
+
+inline std::optional<perms> posixToOptionalPerms(uint32_t mode) noexcept
+{
+    if (mode < 0) {
+        return {};
+    }
+    return static_cast<perms>(mode) & perms::mask;
+}
+
+inline mode_t permsToPosix(perms mode) noexcept
+{
+    return static_cast<mode_t>(mode);
 }
 } // namespace
 
@@ -433,17 +444,13 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
         }
     }
 
-    mode_t access = 0;
+    perms access = perms::none;
     long long fileType = QT_STAT_REG;
     uint64_t size = 0U;
     if (isBrokenLink) {
         // It is a link pointing to nowhere
         fileType = QT_STAT_MASK - 1;
-#ifdef Q_OS_WIN
-        access = static_cast<mode_t>(perms::owner_all | perms::group_all | perms::others_all);
-#else
-        access = S_IRWXU | S_IRWXG | S_IRWXO;
-#endif
+        access = perms::all;
         size = 0LL;
     } else {
         switch (sb->type) {
@@ -461,11 +468,11 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
             fileType = QT_STAT_MASK - 1;
             break;
         }
-        access = sb->permissions & 07777;
+        access = posixToOptionalPerms(sb->permissions).value_or(perms::none);
         size = sb->size;
     }
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, access);
+    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, permsToPosix(access));
     entry.fastInsert(KIO::UDSEntry::UDS_SIZE, size);
 
     if (details > 0) {
@@ -1057,7 +1064,7 @@ Result SFTPWorker::open(const QUrl &url, QIODevice::OpenMode mode)
     }
 
     if (flags & O_CREAT) {
-        mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0644);
+        mOpenFile = sftp_open(mSftp, path_c.constData(), flags, permsToPosix(perms::owner_read | perms::owner_write | perms::group_read | perms::others_read));
     } else {
         mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0);
     }
@@ -1302,7 +1309,7 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
         int error = KJob::NoError;
         if (fd == -1) {
             data(filedata);
-        } else if ((error = writeToFile(fd, filedata) != KJob::NoError) {
+        } else if ((error = writeToFile(fd, filedata) != KJob::NoError)) {
             return Result::fail(error, url.toString());
         }
         // increment total bytes read
@@ -1328,9 +1335,12 @@ Result SFTPWorker::put(const QUrl &url, int permissions, KIO::JobFlags flags)
     return sftpPut(url, permissions, flags);
 }
 
-Result SFTPWorker::sftpPut(const QUrl &url, int permissions, JobFlags flags, int fd)
+Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags, int fd)
 {
-    qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << permissions << ", overwrite =" << (flags & KIO::Overwrite) << ", resume =" << (flags & KIO::Resume);
+    qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << permissionsMode << ", overwrite =" << (flags & KIO::Overwrite)
+                          << ", resume =" << (flags & KIO::Resume);
+
+    auto permissions(posixToOptionalPerms(permissionsMode));
 
     const auto loginResult = sftpLogin();
     if (!loginResult.success()) {
@@ -1351,7 +1361,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissions, JobFlags flags, int
 
     // Don't change permissions of the original file
     if (bOrigExists) {
-        permissions = sb->permissions;
+        permissions = posixToOptionalPerms(sb->permissions);
         owner = sb->uid;
         group = sb->gid;
     }
@@ -1438,22 +1448,18 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissions, JobFlags flags, int
                         }
                     }
                 } else {
-                    mode_t initialMode = 0644;
-
-                    if (permissions != -1) {
-#ifdef Q_OS_WIN
-                        initialMode = permissions | static_cast<mode_t>(perms::owner_write | perms::owner_read);
-#else
-                        initialMode = permissions | S_IWUSR | S_IRUSR;
-#endif
+                    perms initialMode = perms::owner_read | perms::owner_write | perms::group_read | perms::others_read;
+                    if (permissions.has_value()) {
+                        initialMode = permissions.value() | perms::owner_write | perms::owner_read;
                     }
 
-                    qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(initialMode);
-                    file = sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
+                    qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(permsToPosix(initialMode));
+                    file = sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode));
                 } // flags & KIO::Resume
 
                 if (file == nullptr) {
-                    qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString(dest) << ", permissions=" << permissions << ", error=" << ssh_get_error(mSession);
+                    qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString(dest) << ", permissions=" << permsToPosix(permissions.value_or(perms::none))
+                                          << ", error=" << ssh_get_error(mSession);
                     if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
                         errorCode = KIO::ERR_WRITE_ACCESS_DENIED;
                     } else {
@@ -1532,9 +1538,9 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissions, JobFlags flags, int
     }
 
     // set final permissions
-    if (permissions != -1 && !(flags & KIO::Resume)) {
-        qCDebug(KIO_SFTP_LOG) << "Trying to set final permissions of " << dest_orig << " to " << QString::number(permissions);
-        if (sftp_chmod(mSftp, dest_orig_c.constData(), permissions) < 0) {
+    if (permissions.has_value() && !(flags & KIO::Resume)) {
+        qCDebug(KIO_SFTP_LOG) << "Trying to set final permissions of " << dest_orig << " to " << QString::number(permsToPosix(permissions.value()));
+        if (sftp_chmod(mSftp, dest_orig_c.constData(), permsToPosix(permissions.value())) < 0) {
             warning(i18n("Could not change permissions for\n%1", url.toString()));
             return Result::pass();
         }
@@ -1619,9 +1625,11 @@ Result SFTPWorker::copy(const QUrl &src, const QUrl &dest, int permissions, KIO:
     return Result::fail(ERR_UNSUPPORTED_ACTION);
 }
 
-Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int permissions, KIO::JobFlags flags)
+Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int permissionsMode, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SFTP_LOG) << url << "->" << sCopyFile << ", permissions=" << permissions;
+    qCDebug(KIO_SFTP_LOG) << url << "->" << sCopyFile << ", permissions=" << permissionsMode;
+
+    auto permissions = posixToOptionalPerms(permissionsMode);
 
     // check if destination is ok ...
     QFileInfo copyFile(sCopyFile);
@@ -1657,13 +1665,9 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
 
     // WABA: Make sure that we keep writing permissions ourselves,
     // otherwise we can be in for a surprise on NFS.
-    mode_t initialMode = 0666;
-    if (permissions != -1) {
-#ifdef Q_OS_WIN
-        initialMode = permissions | static_cast<mode_t>(perms::owner_write);
-#else
-        initialMode = permissions | S_IWUSR;
-#endif
+    perms initialMode = perms::owner_read | perms::owner_write | perms::group_read | perms::group_write | perms::others_read | perms::others_write;
+    if (permissions.has_value()) {
+        initialMode = permissions.value() | perms::owner_write;
     }
 
     // open the output file ...
@@ -1679,7 +1683,7 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
         }
         qCDebug(KIO_SFTP_LOG) << "resuming at" << offset;
     } else {
-        fd = QT_OPEN(QFile::encodeName(dest).constData(), O_CREAT | O_TRUNC | O_WRONLY, initialMode);
+        fd = QT_OPEN(QFile::encodeName(dest).constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode));
     }
 
     if (fd == -1) {
