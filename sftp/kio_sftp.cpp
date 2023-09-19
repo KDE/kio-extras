@@ -1426,7 +1426,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         file.reset(sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode)));
     } // flags & KIO::Resume
 
-    auto closeOnError = [&file, bMarkPartial, this, dest, url](int errorCode) {
+    auto closeOnError = [&file, bMarkPartial, this, dest, url](int errorCode) -> Result {
         qCDebug(KIO_SFTP_LOG) << "Error during 'put'. Aborting.";
 
         if (file != nullptr) {
@@ -1453,41 +1453,52 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         return closeOnError(KIO::ERR_CANNOT_OPEN_FOR_WRITING);
     } // file
 
-    // Loop until we got 0 (end of data)
-    for (int result = 1; result > 0;) {
-        QByteArray buffer;
+    QCoro::Generator<ReadResponse> reader = [fd, this]() -> QCoro::Generator<ReadResponse> {
+        for (int result = 1; result > 0;) {
+            ReadResponse response;
+            if (fd == -1) {
+                dataReq(); // Request for data
+                result = readData(response.filedata);
+                if (result < 0) {
+                    qCDebug(KIO_SFTP_LOG) << "unexpected error during readData";
+                }
+            } else {
+                std::array<char, MAX_XFER_BUF_SIZE> buf{};
+                result = ::read(fd, buf.data(), buf.size());
+                if (result < 0) {
+                    qCDebug(KIO_SFTP_LOG) << "failed to read" << errno;
+                    response.error = ERR_CANNOT_READ;
+                } else {
+                    response.filedata = QByteArray(buf.data(), result);
+                }
+            }
 
-        if (fd == -1) {
-            dataReq(); // Request for data
-            result = readData(buffer);
-            if (result < 0) {
-                qCDebug(KIO_SFTP_LOG) << "unexpected error during readData";
+            if (result == 0) {
+                // proftpd stumbles over zero size writes.
+                // https://bugs.kde.org/show_bug.cgi?id=419999
+                // http://bugs.proftpd.org/show_bug.cgi?id=4398
+                // At this point we'll have opened the file and thus created it.
+                // It's safe to break here as even in the ideal scenario that the server
+                // doesn't fall over, the write code is pointless because zero size writes
+                // do absolutely nothing.
+                break;
             }
-        } else {
-            std::array<char, MAX_XFER_BUF_SIZE> buf{};
-            result = ::read(fd, buf.data(), buf.size());
-            if (result < 0) {
-                qCDebug(KIO_SFTP_LOG) << "failed to read" << errno;
-                return closeOnError(KIO::ERR_CANNOT_READ);
-            }
-            buffer = QByteArray(buf.data(), result);
+
+            co_yield response;
+        }
+    }();
+
+    for (const auto &response : reader) {
+        if (response.error != KJob::NoError) {
+            qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
+            return closeOnError(KIO::ERR_CANNOT_WRITE);
         }
 
-        if (result <= 0) {
-            // proftpd stumbles over zero size writes.
-            // https://bugs.kde.org/show_bug.cgi?id=419999
-            // http://bugs.proftpd.org/show_bug.cgi?id=4398
-            // At this point we'll have opened the file and thus created it.
-            // It's safe to break here as even in the ideal scenario that the server
-            // doesn't fall over, the write code is pointless because zero size writes
-            // do absolutely nothing.
-            break;
-        }
-
-        bool success = sftpWrite(file.get(), buffer, [this, &totalBytesSent](int bytes) {
+        bool success = sftpWrite(file.get(), response.filedata, [this, &totalBytesSent](int bytes) {
             totalBytesSent += bytes;
             processedSize(totalBytesSent);
         });
+
         if (!success) {
             qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
             return closeOnError(KIO::ERR_CANNOT_WRITE);
