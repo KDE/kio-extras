@@ -22,7 +22,7 @@
 namespace KIO
 {
 class AuthInfo;
-};
+} // namespace KIO
 
 using Result = KIO::WorkerResult;
 
