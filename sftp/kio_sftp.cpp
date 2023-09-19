@@ -375,25 +375,25 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
                     return SSH_AUTH_ERROR;
                 }
                 break;
+            }
+
+            if (prompt.startsWith(QLatin1String("password:"), Qt::CaseInsensitive)) {
+                info.prompt = i18n("Please enter your password.");
             } else {
-                if (prompt.startsWith(QLatin1String("password:"), Qt::CaseInsensitive)) {
-                    info.prompt = i18n("Please enter your password.");
-                } else {
-                    info.prompt = prompt;
-                }
-                info.comment = info.url.url();
-                info.commentLabel = i18n("Site:");
-                info.setExtraField(QLatin1String("hide-username-line"), true);
+                info.prompt = prompt;
+            }
+            info.comment = info.url.url();
+            info.commentLabel = i18n("Site:");
+            info.setExtraField(QLatin1String("hide-username-line"), true);
 
-                if (openPasswordDialog(info) == KJob::NoError) {
-                    qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
-                    answer = info.password.toUtf8().constData();
-                }
+            if (openPasswordDialog(info) == KJob::NoError) {
+                qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
+                answer = info.password.toUtf8().constData();
+            }
 
-                if (ssh_userauth_kbdint_setanswer(mSession, i, answer) < 0) {
-                    qCDebug(KIO_SFTP_LOG) << "An error occurred setting the answer: " << ssh_get_error(mSession);
-                    return SSH_AUTH_ERROR;
-                }
+            if (ssh_userauth_kbdint_setanswer(mSession, i, answer) < 0) {
+                qCDebug(KIO_SFTP_LOG) << "An error occurred setting the answer: " << ssh_get_error(mSession);
+                return SSH_AUTH_ERROR;
             }
         }
         err = ssh_userauth_kbdint(mSession, nullptr, nullptr);
@@ -1299,11 +1299,12 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
         // Read pending get requests
         if (bytesread == -1) {
             return Result::fail(KIO::ERR_CANNOT_READ, url.toString());
-        } else if (bytesread == 0) {
-            if (file->eof)
+        }
+        if (bytesread == 0) {
+            if (file->eof) {
                 break;
-            else
-                continue;
+            }
+            continue;
         }
 
         int error = KJob::NoError;
@@ -1600,7 +1601,8 @@ bool SFTPWorker::sftpWrite(sftp_file file, const QByteArray &buffer, const std::
                                   << "- SFTP error:" << sftp_get_error(mSftp) << "- SSH error:" << ssh_get_error_code(mSession)
                                   << "- SSH errorString:" << ssh_get_error(mSession);
             return false;
-        } else if (onWritten) {
+        }
+        if (onWritten) {
             onWritten(bytesWritten);
         }
         offset += bytesWritten;
@@ -1618,7 +1620,8 @@ Result SFTPWorker::copy(const QUrl &src, const QUrl &dest, int permissions, KIO:
 
     if (!isSourceLocal && isDestinationLocal) { // sftp -> file
         return sftpCopyGet(src, dest.toLocalFile(), permissions, flags);
-    } else if (isSourceLocal && !isDestinationLocal) { // file -> sftp
+    }
+    if (isSourceLocal && !isDestinationLocal) { // file -> sftp
         return sftpCopyPut(dest, src.toLocalFile(), permissions, flags);
     }
 
@@ -2086,9 +2089,8 @@ bool SFTPWorker::GetRequest::enqueueChunks()
         if (request.id < 0) {
             if (m_pendingRequests.isEmpty()) {
                 return false;
-            } else {
-                break;
             }
+            break;
         }
 
         m_pendingRequests.enqueue(request);
@@ -2136,7 +2138,8 @@ int SFTPWorker::GetRequest::readChunks(QByteArray &data)
             }
 
             break;
-        } else if (bytesread == SSH_ERROR) {
+        }
+        if (bytesread == SSH_ERROR) {
             return -1;
         }
 
