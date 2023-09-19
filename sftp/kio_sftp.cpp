@@ -1409,105 +1409,41 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     }
 
     QByteArray dest;
-    int result = -1;
+    if (bMarkPartial) {
+        qCDebug(KIO_SFTP_LOG) << "Appending .part extension to" << dest_orig;
+        dest = dest_part_c;
+        if (bPartExists && !(flags & KIO::Resume)) {
+            qCDebug(KIO_SFTP_LOG) << "Deleting partial file" << dest_part;
+            sftp_unlink(mSftp, dest_part_c.constData());
+            // Catch errors when we try to open the file.
+        }
+    } else {
+        dest = dest_orig_c; // Will be automatically truncated below...
+    } // bMarkPartial
+
     UniqueSFTPFilePtr file{};
     KIO::fileoffset_t totalBytesSent = 0;
-
-    int errorCode = KJob::NoError;
-    // Loop until we got 0 (end of data)
-    do {
-        QByteArray buffer;
-
-        if (fd == -1) {
-            dataReq(); // Request for data
-            result = readData(buffer);
-            if (result < 0) {
-                qCDebug(KIO_SFTP_LOG) << "unexpected error during readData";
+    if ((flags & KIO::Resume)) {
+        qCDebug(KIO_SFTP_LOG) << "Trying to append: " << dest;
+        file.reset(sftp_open(mSftp, dest.constData(), O_RDWR, 0)); // append if resuming
+        if (file) {
+            SFTPAttributesPtr fstat(sftp_fstat(file.get()));
+            if (fstat) {
+                sftp_seek64(file.get(), fstat->size); // Seek to end TODO
+                totalBytesSent += fstat->size;
             }
-        } else {
-            std::array<char, MAX_XFER_BUF_SIZE> buf{};
-            result = ::read(fd, buf.data(), buf.size());
-            if (result < 0) {
-                qCDebug(KIO_SFTP_LOG) << "failed to read" << errno;
-                errorCode = ERR_CANNOT_READ;
-                break;
-            }
-            buffer = QByteArray(buf.data(), result);
+        }
+    } else {
+        perms initialMode = perms::owner_read | perms::owner_write | perms::group_read | perms::others_read;
+        if (permissions.has_value()) {
+            initialMode = permissions.value() | perms::owner_write | perms::owner_read;
         }
 
-        if (result >= 0) {
-            if (dest.isEmpty()) {
-                if (bMarkPartial) {
-                    qCDebug(KIO_SFTP_LOG) << "Appending .part extension to" << dest_orig;
-                    dest = dest_part_c;
-                    if (bPartExists && !(flags & KIO::Resume)) {
-                        qCDebug(KIO_SFTP_LOG) << "Deleting partial file" << dest_part;
-                        sftp_unlink(mSftp, dest_part_c.constData());
-                        // Catch errors when we try to open the file.
-                    }
-                } else {
-                    dest = dest_orig_c; // Will be automatically truncated below...
-                } // bMarkPartial
+        qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(permsToPosix(initialMode));
+        file.reset(sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode)));
+    } // flags & KIO::Resume
 
-                if ((flags & KIO::Resume)) {
-                    qCDebug(KIO_SFTP_LOG) << "Trying to append: " << dest;
-                    file.reset(sftp_open(mSftp, dest.constData(), O_RDWR, 0)); // append if resuming
-                    if (file) {
-                        SFTPAttributesPtr fstat(sftp_fstat(file.get()));
-                        if (fstat) {
-                            sftp_seek64(file.get(), fstat->size); // Seek to end TODO
-                            totalBytesSent += fstat->size;
-                        }
-                    }
-                } else {
-                    perms initialMode = perms::owner_read | perms::owner_write | perms::group_read | perms::others_read;
-                    if (permissions.has_value()) {
-                        initialMode = permissions.value() | perms::owner_write | perms::owner_read;
-                    }
-
-                    qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(permsToPosix(initialMode));
-                    file.reset(sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode)));
-                } // flags & KIO::Resume
-
-                if (file == nullptr) {
-                    qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString(dest) << ", permissions=" << permsToPosix(permissions.value_or(perms::none))
-                                          << ", error=" << ssh_get_error(mSession);
-                    if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
-                        errorCode = KIO::ERR_WRITE_ACCESS_DENIED;
-                    } else {
-                        errorCode = KIO::ERR_CANNOT_OPEN_FOR_WRITING;
-                    }
-                    result = -1;
-                    continue;
-                } // file
-            } // dest.isEmpty
-
-            if (result == 0) {
-                // proftpd stumbles over zero size writes.
-                // https://bugs.kde.org/show_bug.cgi?id=419999
-                // http://bugs.proftpd.org/show_bug.cgi?id=4398
-                // At this point we'll have opened the file and thus created it.
-                // It's safe to break here as even in the ideal scenario that the server
-                // doesn't fall over, the write code is pointless because zero size writes
-                // do absolutely nothing.
-                break;
-            }
-
-            bool success = sftpWrite(file.get(), buffer, [this, &totalBytesSent](int bytes) {
-                totalBytesSent += bytes;
-                processedSize(totalBytesSent);
-            });
-            if (!success) {
-                qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
-                errorCode = KIO::ERR_CANNOT_WRITE;
-                result = -1;
-                break;
-            }
-        } // result
-    } while (result > 0);
-
-    // An error occurred deal with it.
-    if (result < 0) {
+    auto closeOnError = [&file, bMarkPartial, this, dest, url](int errorCode) {
         qCDebug(KIO_SFTP_LOG) << "Error during 'put'. Aborting.";
 
         if (file != nullptr) {
@@ -1523,6 +1459,56 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         }
 
         return errorCode == KJob::NoError ? Result::pass() : Result::fail(errorCode, url.toString());
+    };
+
+    if (file == nullptr) {
+        qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString(dest) << ", permissions=" << permsToPosix(permissions.value_or(perms::none))
+                              << ", error=" << ssh_get_error(mSession);
+        if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
+            return closeOnError(KIO::ERR_WRITE_ACCESS_DENIED);
+        }
+        return closeOnError(KIO::ERR_CANNOT_OPEN_FOR_WRITING);
+    } // file
+
+    // Loop until we got 0 (end of data)
+    for (int result = 1; result > 0;) {
+        QByteArray buffer;
+
+        if (fd == -1) {
+            dataReq(); // Request for data
+            result = readData(buffer);
+            if (result < 0) {
+                qCDebug(KIO_SFTP_LOG) << "unexpected error during readData";
+            }
+        } else {
+            std::array<char, MAX_XFER_BUF_SIZE> buf{};
+            result = ::read(fd, buf.data(), buf.size());
+            if (result < 0) {
+                qCDebug(KIO_SFTP_LOG) << "failed to read" << errno;
+                return closeOnError(KIO::ERR_CANNOT_READ);
+            }
+            buffer = QByteArray(buf.data(), result);
+        }
+
+        if (result <= 0) {
+            // proftpd stumbles over zero size writes.
+            // https://bugs.kde.org/show_bug.cgi?id=419999
+            // http://bugs.proftpd.org/show_bug.cgi?id=4398
+            // At this point we'll have opened the file and thus created it.
+            // It's safe to break here as even in the ideal scenario that the server
+            // doesn't fall over, the write code is pointless because zero size writes
+            // do absolutely nothing.
+            break;
+        }
+
+        bool success = sftpWrite(file.get(), buffer, [this, &totalBytesSent](int bytes) {
+            totalBytesSent += bytes;
+            processedSize(totalBytesSent);
+        });
+        if (!success) {
+            qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
+            return closeOnError(KIO::ERR_CANNOT_WRITE);
+        }
     }
 
     if (file == nullptr) { // we got nothing to write out, so we never opened the file
@@ -1581,7 +1567,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
                 times[0].tv_usec = times[1].tv_usec = 0;
 
                 qCDebug(KIO_SFTP_LOG) << "Trying to restore mtime for " << dest_orig << " to: " << mtimeStr;
-                result = sftp_utimes(mSftp, dest_orig_c.constData(), times.data());
+                int result = sftp_utimes(mSftp, dest_orig_c.constData(), times.data());
                 if (result < 0) {
                     qCWarning(KIO_SFTP_LOG) << "Failed to set mtime for" << dest_orig;
                 }
