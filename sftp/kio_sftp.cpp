@@ -1413,14 +1413,14 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
                 qCDebug(KIO_SFTP_LOG) << "unexpected error during readData";
             }
         } else {
-            char buf[MAX_XFER_BUF_SIZE]; //
-            result = ::read(fd, buf, sizeof(buf));
+            std::array<char, MAX_XFER_BUF_SIZE> buf{};
+            result = ::read(fd, buf.data(), buf.size());
             if (result < 0) {
                 qCDebug(KIO_SFTP_LOG) << "failed to read" << errno;
                 errorCode = ERR_CANNOT_READ;
                 break;
             }
-            buffer = QByteArray(buf, result);
+            buffer = QByteArray(buf.data(), result);
         }
 
         if (result >= 0) {
@@ -1560,7 +1560,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     if (!mtimeStr.isEmpty()) {
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
-            struct timeval times[2];
+            std::array<struct timeval, 2> times{};
 
             SFTPAttributesPtr attr(sftp_lstat(mSftp, dest_orig_c.constData()));
             if (attr != nullptr) {
@@ -1569,7 +1569,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
                 times[0].tv_usec = times[1].tv_usec = 0;
 
                 qCDebug(KIO_SFTP_LOG) << "Trying to restore mtime for " << dest_orig << " to: " << mtimeStr;
-                result = sftp_utimes(mSftp, dest_orig_c.constData(), times);
+                result = sftp_utimes(mSftp, dest_orig_c.constData(), times.data());
                 if (result < 0) {
                     qCWarning(KIO_SFTP_LOG) << "Failed to set mtime for" << dest_orig;
                 }
@@ -2188,12 +2188,12 @@ int SFTPWorker::GetRequest::readChunks(QByteArray &data)
 SFTPWorker::GetRequest::~GetRequest()
 {
     SFTPWorker::GetRequest::Request request{};
-    char buf[MAX_XFER_BUF_SIZE];
+    std::array<char, MAX_XFER_BUF_SIZE> buf{};
 
     // Remove pending reads to avoid memory leaks
     while (!m_pendingRequests.isEmpty()) {
         request = m_pendingRequests.dequeue();
-        sftp_async_read(m_file, buf, request.expectedLength, request.id);
+        sftp_async_read(m_file, buf.data(), request.expectedLength, request.id);
     }
 }
 
