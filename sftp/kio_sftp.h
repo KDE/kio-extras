@@ -26,14 +26,18 @@ class AuthInfo;
 
 using Result = KIO::WorkerResult;
 
-// sftp_attributes must be freed. Use this ScopedPtr to ensure they always are!
-struct ScopedPointerCustomDeleter {
-    static inline void cleanup(sftp_attributes attr)
+namespace std
+{
+template<>
+struct default_delete<struct sftp_attributes_struct> {
+    void operator()(struct sftp_attributes_struct *ptr) const
     {
-        sftp_attributes_free(attr);
+        sftp_attributes_free(ptr);
     }
 };
-using SFTPAttributesPtr = QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter>;
+} // namespace std
+
+using SFTPAttributesPtr = std::unique_ptr<sftp_attributes_struct>;
 
 class SFTPWorker : public KIO::WorkerBase
 {

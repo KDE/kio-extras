@@ -1174,7 +1174,7 @@ Result SFTPWorker::truncate(KIO::filesize_t length)
     SFTPAttributesPtr attr(sftp_fstat(mOpenFile));
     if (attr) {
         attr->size = length;
-        if (sftp_setstat(mSftp, mOpenUrl.path().toUtf8().constData(), attr.data()) == 0) {
+        if (sftp_setstat(mSftp, mOpenUrl.path().toUtf8().constData(), attr.get()) == 0) {
             truncated(length);
         } else {
             errorCode = toKIOError(sftp_get_error(mSftp));
