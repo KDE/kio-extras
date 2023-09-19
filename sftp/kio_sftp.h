@@ -40,6 +40,8 @@ class SFTPWorker : public KIO::WorkerBase
 public:
     explicit SFTPWorker(const QByteArray &poolSocket, const QByteArray &appSocket);
     ~SFTPWorker() override;
+    Q_DISABLE_COPY_MOVE(SFTPWorker)
+
     void setHost(const QString &h, quint16 port, const QString &user, const QString &pass) override;
     Q_REQUIRED_RESULT Result get(const QUrl &url) override;
     Q_REQUIRED_RESULT Result listDir(const QUrl &url) override;
@@ -142,6 +144,7 @@ private: // Private variables
          * in order to avoid memory leaks.
          */
         ~GetRequest();
+        Q_DISABLE_COPY_MOVE(GetRequest)
 
         /**
          * Starts up to maxPendingRequests file requests. Reading is performed in the
