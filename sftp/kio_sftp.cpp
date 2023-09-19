@@ -1318,10 +1318,9 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
             continue;
         }
 
-        int error = KJob::NoError;
         if (fd == -1) {
             data(filedata);
-        } else if ((error = writeToFile(fd, filedata) != KJob::NoError)) {
+        } else if (int error = writeToFile(fd, filedata); error != KJob::NoError) {
             return Result::fail(error, url.toString());
         }
         // increment total bytes read
