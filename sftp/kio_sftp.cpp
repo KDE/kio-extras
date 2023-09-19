@@ -44,6 +44,21 @@
 using namespace KIO;
 using namespace std::filesystem;
 
+namespace std
+{
+template<>
+struct default_delete<struct sftp_file_struct> {
+    void operator()(struct sftp_file_struct *ptr) const
+    {
+        if (ptr) {
+            sftp_close(ptr);
+        }
+    }
+};
+} // namespace std
+
+using UniqueSFTPFilePtr = std::unique_ptr<struct sftp_file_struct>;
+
 namespace
 {
 constexpr auto KIO_SFTP_SPECIAL_TIMEOUT_MS = 30;
@@ -1229,7 +1244,6 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 
     QByteArray path = url.path().toUtf8();
 
-    sftp_file file = nullptr;
     KIO::filesize_t totalbytesread = 0;
     QByteArray filedata;
 
@@ -1250,15 +1264,12 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
     }
 
     // Open file
-    file = sftp_open(mSftp, path.constData(), O_RDONLY, 0);
-    if (file == nullptr) {
+    const UniqueSFTPFilePtr file(sftp_open(mSftp, path.constData(), O_RDONLY, 0));
+    if (!file) {
         return Result::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toString());
     }
-    const auto fileFree = qScopeGuard([file] {
-        sftp_close(file);
-    });
 
-    if (const Result result = sftpSendMimetype(file, url); !result.success()) {
+    if (const Result result = sftpSendMimetype(file.get(), url); !result.success()) {
         return result;
     }
 
@@ -1279,14 +1290,14 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 
     // If we can resume, offset the buffer properly.
     if (offset > 0 && ((unsigned long long)offset < sb->size)) {
-        if (sftp_seek64(file, offset) == 0) {
+        if (sftp_seek64(file.get(), offset) == 0) {
             canResume();
             totalbytesread = offset;
             qCDebug(KIO_SFTP_LOG) << "Resume offset: " << QString::number(offset);
         }
     }
 
-    SFTPWorker::GetRequest request(file, sb->size);
+    SFTPWorker::GetRequest request(file.get(), sb->size);
 
     for (;;) {
         // Enqueue get requests
@@ -1399,7 +1410,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
 
     QByteArray dest;
     int result = -1;
-    sftp_file file = nullptr;
+    UniqueSFTPFilePtr file{};
     KIO::fileoffset_t totalBytesSent = 0;
 
     int errorCode = KJob::NoError;
@@ -1440,11 +1451,11 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
 
                 if ((flags & KIO::Resume)) {
                     qCDebug(KIO_SFTP_LOG) << "Trying to append: " << dest;
-                    file = sftp_open(mSftp, dest.constData(), O_RDWR, 0); // append if resuming
+                    file.reset(sftp_open(mSftp, dest.constData(), O_RDWR, 0)); // append if resuming
                     if (file) {
-                        SFTPAttributesPtr fstat(sftp_fstat(file));
+                        SFTPAttributesPtr fstat(sftp_fstat(file.get()));
                         if (fstat) {
-                            sftp_seek64(file, fstat->size); // Seek to end TODO
+                            sftp_seek64(file.get(), fstat->size); // Seek to end TODO
                             totalBytesSent += fstat->size;
                         }
                     }
@@ -1455,7 +1466,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
                     }
 
                     qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(permsToPosix(initialMode));
-                    file = sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode));
+                    file.reset(sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode)));
                 } // flags & KIO::Resume
 
                 if (file == nullptr) {
@@ -1482,7 +1493,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
                 break;
             }
 
-            bool success = sftpWrite(file, buffer, [this, &totalBytesSent](int bytes) {
+            bool success = sftpWrite(file.get(), buffer, [this, &totalBytesSent](int bytes) {
                 totalBytesSent += bytes;
                 processedSize(totalBytesSent);
             });
@@ -1500,7 +1511,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         qCDebug(KIO_SFTP_LOG) << "Error during 'put'. Aborting.";
 
         if (file != nullptr) {
-            sftp_close(file);
+            file = nullptr; // close to force a data flush before we stat
 
             SFTPAttributesPtr attr(sftp_stat(mSftp, dest.constData()));
             if (bMarkPartial && attr != nullptr) {
@@ -1518,7 +1529,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         return Result::pass();
     }
 
-    if (sftp_close(file) < 0) {
+    if (sftp_close(file.release()) < 0) {
         qCWarning(KIO_SFTP_LOG) << "Error when closing file descriptor";
         return Result::fail(KIO::ERR_CANNOT_WRITE, url.toString());
     }
