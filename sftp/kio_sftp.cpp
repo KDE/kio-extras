@@ -1137,10 +1137,15 @@ Result SFTPWorker::write(const QByteArray &data)
 
     Q_ASSERT(mOpenFile != nullptr);
 
-    if (!sftpWrite(mOpenFile, data, nullptr)) {
-        qCDebug(KIO_SFTP_LOG) << "Could not write to " << mOpenUrl;
-        (void)close();
-        return Result::fail(KIO::ERR_CANNOT_WRITE, mOpenUrl.toDisplayString());
+    for (const auto &response : asyncWrite(mOpenFile, [data]() -> QCoro::Generator<ReadResponse> {
+             co_yield {.filedata = data};
+         }())) {
+        if (response.error != KJob::NoError) {
+            qCDebug(KIO_SFTP_LOG) << "Could not write to " << mOpenUrl;
+            (void)close();
+            return Result::fail(KIO::ERR_CANNOT_WRITE, mOpenUrl.toDisplayString());
+        }
+        // We don't care about progress in this function. We'll emit a single written() once done.
     }
 
     written(data.size());
@@ -1453,7 +1458,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         return closeOnError(KIO::ERR_CANNOT_OPEN_FOR_WRITING);
     } // file
 
-    QCoro::Generator<ReadResponse> reader = [fd, this]() -> QCoro::Generator<ReadResponse> {
+    auto reader = [fd, this]() -> QCoro::Generator<ReadResponse> {
         for (int result = 1; result > 0;) {
             ReadResponse response;
             if (fd == -1) {
@@ -1486,23 +1491,16 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
 
             co_yield response;
         }
-    }();
+    };
 
-    for (const auto &response : reader) {
+    for (const auto &response : asyncWrite(file.get(), reader())) {
         if (response.error != KJob::NoError) {
             qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
             return closeOnError(KIO::ERR_CANNOT_WRITE);
         }
 
-        bool success = sftpWrite(file.get(), response.filedata, [this, &totalBytesSent](int bytes) {
-            totalBytesSent += bytes;
-            processedSize(totalBytesSent);
-        });
-
-        if (!success) {
-            qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
-            return closeOnError(KIO::ERR_CANNOT_WRITE);
-        }
+        totalBytesSent += response.bytes;
+        processedSize(totalBytesSent);
     }
 
     if (file == nullptr) { // we got nothing to write out, so we never opened the file
@@ -1570,35 +1568,6 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     }
 
     return Result::pass();
-}
-
-bool SFTPWorker::sftpWrite(sftp_file file, const QByteArray &buffer, const std::function<void(int bytes)> &onWritten)
-{
-    // TODO: enqueue requests.
-    // Similarly to reading we may enqueue a number of requests to mitigate the
-    // network overhead and speed up things. Serial iteration gives super poor
-    // performance.
-
-    // Break up into multiple requests in case a single request would be too large.
-    // Servers can impose an arbitrary size limit that we don't want to hit.
-    // https://bugs.kde.org/show_bug.cgi?id=404890
-    off_t offset = 0;
-    while (offset < buffer.size()) {
-        const auto length = qMin<int>(MAX_XFER_BUF_SIZE, buffer.size() - offset);
-        ssize_t bytesWritten = sftp_write(file, buffer.data() + offset, length);
-        if (bytesWritten < 0) {
-            qCDebug(KIO_SFTP_LOG) << "Failed to sftp_write" << length << "bytes."
-                                  << "- Already written (for this call):" << offset << "- Return of sftp_write:" << bytesWritten
-                                  << "- SFTP error:" << sftp_get_error(mSftp) << "- SSH error:" << ssh_get_error_code(mSession)
-                                  << "- SSH errorString:" << ssh_get_error(mSession);
-            return false;
-        }
-        if (onWritten) {
-            onWritten(bytesWritten);
-        }
-        offset += bytesWritten;
-    }
-    return true;
 }
 
 Result SFTPWorker::copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags)
@@ -2283,6 +2252,40 @@ QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file,
         }
 
         co_yield {.filedata = filedata};
+    }
+}
+
+QCoro::Generator<SFTPWorker::WriteResponse> SFTPWorker::asyncWrite(sftp_file file, QCoro::Generator<ReadResponse> reader)
+{
+    // TODO: enqueue requests.
+    // Similarly to reading we may enqueue a number of requests to mitigate the
+    // network overhead and speed up things. Serial iteration gives super poor
+    // performance.
+
+    for (const auto &response : reader) {
+        if (response.error) {
+            co_yield {.error = response.error};
+            break;
+        }
+
+        // Break up into multiple requests in case a single request would be too large.
+        // Servers can impose an arbitrary size limit that we don't want to hit.
+        // https://bugs.kde.org/show_bug.cgi?id=404890
+        off_t offset = 0;
+        while (offset < response.filedata.size()) {
+            const auto length = qMin<int>(MAX_XFER_BUF_SIZE, response.filedata.size() - offset);
+            auto bytesWritten = sftp_write(file, response.filedata.data() + offset, length);
+            if (bytesWritten < 0) {
+                qCDebug(KIO_SFTP_LOG) << "Failed to sftp_write" << length << "bytes."
+                                      << "- Already written (for this call):" << offset << "- Return of sftp_write:" << bytesWritten
+                                      << "- SFTP error:" << sftp_get_error(mSftp) << "- SSH error:" << ssh_get_error_code(mSession)
+                                      << "- SSH errorString:" << ssh_get_error(mSession);
+                co_yield {.error = KIO::ERR_CANNOT_WRITE};
+                break;
+            }
+            co_yield {.bytes = std::make_unsigned_t<size_t>(bytesWritten)};
+            offset += bytesWritten;
+        }
     }
 }
 
