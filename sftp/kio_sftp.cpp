@@ -284,9 +284,9 @@ Result SFTPWorker::init()
     mCallbacks->userdata = this;
     mCallbacks->auth_function = ::auth_callback;
 
-    ssh_callbacks_init(mCallbacks)
+    ssh_callbacks_init(mCallbacks);
 
-        bool ok;
+    bool ok = false;
     int level = qEnvironmentVariableIntValue("KIO_SFTP_LOG_VERBOSITY", &ok);
     if (ok) {
         int rc = ssh_set_log_level(level);
@@ -321,7 +321,7 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
 
         for (int iInt = 0; iInt < n; ++iInt) {
             const auto i = static_cast<unsigned int>(iInt); // can only be >0
-            char echo;
+            char echo = 0;
             const char *answer = "";
 
             const QString prompt = QString::fromUtf8(ssh_userauth_kbdint_getprompt(mSession, i, &echo));
@@ -606,10 +606,8 @@ Result SFTPWorker::sftpOpenConnection(const AuthInfo &info)
 
     qCDebug(KIO_SFTP_LOG) << "Trying to connect to the SSH server";
 
-    unsigned int effectivePort;
-    if (mPort > 0) {
-        effectivePort = mPort;
-    } else {
+    unsigned int effectivePort = mPort;
+    if (effectivePort <= 0) {
         effectivePort = DEFAULT_SFTP_PORT;
         ssh_options_get_port(mSession, &effectivePort);
     }
@@ -1440,7 +1438,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissions, JobFlags flags, int
                         }
                     }
                 } else {
-                    mode_t initialMode;
+                    mode_t initialMode = 0644;
 
                     if (permissions != -1) {
 #ifdef Q_OS_WIN
@@ -1448,8 +1446,6 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissions, JobFlags flags, int
 #else
                         initialMode = permissions | S_IWUSR | S_IRUSR;
 #endif
-                    } else {
-                        initialMode = 0644;
                     }
 
                     qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(initialMode);
@@ -1661,15 +1657,14 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
 
     // WABA: Make sure that we keep writing permissions ourselves,
     // otherwise we can be in for a surprise on NFS.
-    mode_t initialMode;
-    if (permissions != -1)
+    mode_t initialMode = 0666;
+    if (permissions != -1) {
 #ifdef Q_OS_WIN
         initialMode = permissions | static_cast<mode_t>(perms::owner_write);
 #else
         initialMode = permissions | S_IWUSR;
 #endif
-    else
-        initialMode = 0666;
+    }
 
     // open the output file ...
     int fd = -1;
@@ -2144,7 +2139,7 @@ int SFTPWorker::GetRequest::readChunks(QByteArray &data)
         totalRead += bytesread;
 
         if (bytesread < request.expectedLength) {
-            int rc;
+            int rc = -1;
 
             // If less data is read than expected - requeue the request
             data.resize(data.size() - (request.expectedLength - bytesread));
