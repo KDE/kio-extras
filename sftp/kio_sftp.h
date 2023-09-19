@@ -33,7 +33,7 @@ struct ScopedPointerCustomDeleter {
         sftp_attributes_free(attr);
     }
 };
-typedef QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter> SFTPAttributesPtr;
+using SFTPAttributesPtr = QScopedPointer<sftp_attributes_struct, ScopedPointerCustomDeleter>;
 
 class SFTPWorker : public KIO::WorkerBase
 {
