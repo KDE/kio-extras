@@ -19,6 +19,8 @@
 #include <QQueue>
 #include <QUrl>
 
+#include <QCoroGenerator>
+
 namespace KIO
 {
 class AuthInfo;
@@ -177,6 +179,12 @@ private: // Private variables
         ushort m_maxPendingRequests;
         QQueue<Request> m_pendingRequests;
     };
+
+    struct ReadResponse {
+        QByteArray filedata;
+        int error = KJob::NoError;
+    };
+    QCoro::Generator<ReadResponse> asyncRead(sftp_file file, size_t size);
 
 private: // private methods
     int authenticateKeyboardInteractive(KIO::AuthInfo &info);

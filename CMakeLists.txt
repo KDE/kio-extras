@@ -46,6 +46,9 @@ if (NOT Qt${QT_MAJOR_VERSION}Test_FOUND)
     set(BUILD_TESTING OFF CACHE BOOL "Build the testing tree.")
 endif()
 
+find_package(QCoro6 REQUIRED COMPONENTS Core)
+qcoro_enable_coroutines()
+
 find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Archive
     Config

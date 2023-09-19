@@ -38,6 +38,7 @@ target_link_libraries(kio_sftp
    KF${QT_MAJOR_VERSION}::ConfigCore
    KF${QT_MAJOR_VERSION}::I18n
    Qt::Network
+   QCoro::Core
    ssh)
 
 install(TARGETS kio_sftp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)

@@ -118,7 +118,7 @@ int toKIOError(const int err)
 }
 
 // Writes buf into fd.
-int writeToFile(int fd, std::span<char> buf)
+int writeToFile(int fd, const std::span<const char> &buf)
 {
     size_t offset = 0;
     while (offset != buf.size()) {
@@ -1245,7 +1245,6 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
     QByteArray path = url.path().toUtf8();
 
     KIO::filesize_t totalbytesread = 0;
-    QByteArray filedata;
 
     SFTPAttributesPtr sb(sftp_lstat(mSftp, path.constData()));
     if (sb == nullptr) {
@@ -1297,35 +1296,20 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
         }
     }
 
-    SFTPWorker::GetRequest request(file.get(), sb->size);
-
-    for (;;) {
-        // Enqueue get requests
-        if (!request.enqueueChunks()) {
-            return Result::fail(KIO::ERR_CANNOT_READ, url.toString());
-        }
-
-        filedata.clear();
-        const auto bytesread = request.readChunks(filedata);
-        // Read pending get requests
-        if (bytesread == -1) {
-            return Result::fail(KIO::ERR_CANNOT_READ, url.toString());
-        }
-        if (bytesread == 0) {
-            if (file->eof) {
-                break;
-            }
-            continue;
+    auto reader = asyncRead(file.get(), sb->size);
+    for (const auto &response : reader) {
+        if (response.error != KJob::NoError) {
+            return Result::fail(response.error, url.toString());
         }
 
         if (fd == -1) {
-            data(filedata);
-        } else if (int error = writeToFile(fd, filedata); error != KJob::NoError) {
+            data(response.filedata);
+        } else if (int error = writeToFile(fd, response.filedata); error != KJob::NoError) {
             return Result::fail(error, url.toString());
         }
-        // increment total bytes read
-        totalbytesread += filedata.length();
 
+        // increment total bytes read
+        totalbytesread += response.filedata.length();
         processedSize(totalbytesread);
     }
 
@@ -2260,6 +2244,35 @@ Result SFTPWorker::fileSystemFreeSpace(const QUrl &url)
     sftp_statvfs_free(statvfs);
 
     return Result::pass();
+}
+
+QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file, size_t size)
+{
+    SFTPWorker::GetRequest request(file, size);
+
+    while (true) {
+        // Enqueue get requests
+        if (!request.enqueueChunks()) {
+            co_yield {.error = KIO::ERR_CANNOT_READ};
+            break;
+        }
+
+        QByteArray filedata;
+        const auto bytesread = request.readChunks(filedata);
+        // Read pending get requests
+        if (bytesread == -1) {
+            co_yield {.error = KIO::ERR_CANNOT_READ};
+            break;
+        }
+        if (bytesread == 0) {
+            if (file->eof) {
+                break;
+            }
+            continue;
+        }
+
+        co_yield {.filedata = filedata};
+    }
 }
 
 #include "kio_sftp.moc"
