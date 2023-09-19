@@ -1663,8 +1663,9 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
         }
     }
 
-    if (bPartExists && !bResume) // get rid of an unwanted ".part" file
+    if (bPartExists && !bResume) { // get rid of an unwanted ".part" file
         QFile::remove(sPart);
+    }
 
     // WABA: Make sure that we keep writing permissions ourselves,
     // otherwise we can be in for a surprise on NFS.
