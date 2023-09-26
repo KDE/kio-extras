@@ -213,7 +213,7 @@ int Q_DECL_EXPORT kdemain(int argc, char **argv)
     qCDebug(KIO_SFTP_LOG) << "*** Starting kio_sftp ";
 
     if (argc != 4) {
-        qCDebug(KIO_SFTP_LOG) << "Usage: kio_sftp protocol domain-socket1 domain-socket2";
+        qCWarning(KIO_SFTP_LOG) << "Usage: kio_sftp protocol domain-socket1 domain-socket2";
         exit(-1);
     }
 
