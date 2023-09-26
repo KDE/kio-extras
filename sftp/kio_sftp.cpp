@@ -1409,15 +1409,15 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         dest = dest_orig_c; // Will be automatically truncated below...
     } // bMarkPartial
 
-    UniqueSFTPFilePtr file{};
+    UniqueSFTPFilePtr destFile{};
     KIO::fileoffset_t totalBytesSent = 0;
     if ((flags & KIO::Resume)) {
         qCDebug(KIO_SFTP_LOG) << "Trying to append: " << dest;
-        file.reset(sftp_open(mSftp, dest.constData(), O_RDWR, 0)); // append if resuming
-        if (file) {
-            SFTPAttributesPtr fstat(sftp_fstat(file.get()));
+        destFile.reset(sftp_open(mSftp, dest.constData(), O_RDWR, 0)); // append if resuming
+        if (destFile) {
+            SFTPAttributesPtr fstat(sftp_fstat(destFile.get()));
             if (fstat) {
-                sftp_seek64(file.get(), fstat->size); // Seek to end TODO
+                sftp_seek64(destFile.get(), fstat->size); // Seek to end TODO
                 totalBytesSent += fstat->size;
             }
         }
@@ -1428,14 +1428,14 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         }
 
         qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(permsToPosix(initialMode));
-        file.reset(sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode)));
+        destFile.reset(sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode)));
     } // flags & KIO::Resume
 
-    auto closeOnError = [&file, bMarkPartial, this, dest, url](int errorCode) -> Result {
+    auto closeOnError = [&destFile, bMarkPartial, this, dest, url](int errorCode) -> Result {
         qCDebug(KIO_SFTP_LOG) << "Error during 'put'. Aborting.";
 
-        if (file != nullptr) {
-            file = nullptr; // close to force a data flush before we stat
+        if (destFile != nullptr) {
+            destFile = nullptr; // close to force a data flush before we stat
 
             SFTPAttributesPtr attr(sftp_stat(mSftp, dest.constData()));
             if (bMarkPartial && attr != nullptr) {
@@ -1449,7 +1449,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         return errorCode == KJob::NoError ? Result::pass() : Result::fail(errorCode, url.toString());
     };
 
-    if (file == nullptr) {
+    if (destFile == nullptr) {
         qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString(dest) << ", permissions=" << permsToPosix(permissions.value_or(perms::none))
                               << ", error=" << ssh_get_error(mSession);
         if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
@@ -1493,7 +1493,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         }
     };
 
-    for (const auto &response : asyncWrite(file.get(), reader())) {
+    for (const auto &response : asyncWrite(destFile.get(), reader())) {
         if (response.error != KJob::NoError) {
             qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
             return closeOnError(KIO::ERR_CANNOT_WRITE);
@@ -1503,11 +1503,11 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         processedSize(totalBytesSent);
     }
 
-    if (file == nullptr) { // we got nothing to write out, so we never opened the file
+    if (destFile == nullptr) { // we got nothing to write out, so we never opened the file
         return Result::pass();
     }
 
-    if (sftp_close(file.release()) < 0) {
+    if (sftp_close(destFile.release()) < 0) {
         qCWarning(KIO_SFTP_LOG) << "Error when closing file descriptor";
         return Result::fail(KIO::ERR_CANNOT_WRITE, url.toString());
     }
