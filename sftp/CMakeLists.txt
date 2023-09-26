@@ -4,6 +4,14 @@ remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 find_package(Microsoft.GSL REQUIRED)
 
+cmake_push_check_state()
+list(APPEND CMAKE_REQUIRED_LIBRARIES ssh)
+check_symbol_exists(sftp_aio_begin_read "libssh/sftp.h" HAVE_SFTP_AIO)
+cmake_pop_check_state()
+if(HAVE_SFTP_AIO)
+    add_definitions(-DHAVE_SFTP_AIO)
+endif()
+
 add_library(kio_sftp MODULE)
 set_target_properties(kio_sftp PROPERTIES
     OUTPUT_NAME "sftp"

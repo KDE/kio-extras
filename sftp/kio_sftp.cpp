@@ -14,6 +14,7 @@
 #include <cstring>
 #include <filesystem>
 #include <memory>
+#include <queue>
 #include <span>
 
 #include <gsl/narrow>
@@ -62,6 +63,16 @@ struct default_delete<struct sftp_file_struct> {
         }
     }
 };
+
+#if defined(HAVE_SFTP_AIO)
+template<>
+struct default_delete<struct sftp_aio_struct> {
+    void operator()(struct sftp_aio_struct *ptr) const
+    {
+        sftp_aio_free(ptr);
+    }
+};
+#endif
 } // namespace std
 
 using UniqueSFTPFilePtr = std::unique_ptr<struct sftp_file_struct>;
@@ -69,6 +80,7 @@ using UniqueSFTPFilePtr = std::unique_ptr<struct sftp_file_struct>;
 namespace
 {
 constexpr auto KIO_SFTP_SPECIAL_TIMEOUT_MS = 30;
+constexpr auto MAX_PENDING_REQUESTS = 128;
 
 // How big should each data packet be? Definitely not bigger than 64kb or
 // you will overflow the 2 byte size variable in a sftp packet.
@@ -1416,7 +1428,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     UniqueSFTPFilePtr destFile{};
     KIO::fileoffset_t totalBytesSent = 0;
     if ((flags & KIO::Resume)) {
-        qCDebug(KIO_SFTP_LOG) << "Trying to append: " << dest;
+        qCDebug(KIO_SFTP_LOG) << "Trying to open for append: " << dest;
         destFile.reset(sftp_open(mSftp, dest.constData(), O_RDWR, 0)); // append if resuming
         if (destFile) {
             SFTPAttributesPtr fstat(sftp_fstat(destFile.get()));
@@ -2026,6 +2038,214 @@ void SFTPWorker::worker_status()
     workerStatus((mConnected ? mHost : QString()), mConnected);
 }
 
+void SFTPWorker::requiresUserNameRedirection()
+{
+    QUrl redirectUrl;
+    redirectUrl.setScheme(QLatin1String("sftp"));
+    redirectUrl.setUserName(mUsername);
+    redirectUrl.setPassword(mPassword);
+    redirectUrl.setHost(mHost);
+    if (mPort > 0 && mPort != DEFAULT_SFTP_PORT) {
+        redirectUrl.setPort(mPort);
+    }
+    qCDebug(KIO_SFTP_LOG) << "redirecting to" << redirectUrl;
+    redirection(redirectUrl);
+}
+
+Result SFTPWorker::sftpLogin()
+{
+    const QString origUsername = mUsername;
+    if (auto openResult = openConnection(); !openResult.success()) {
+        return openResult;
+    }
+    qCDebug(KIO_SFTP_LOG) << "connected ?" << mConnected << "username: old=" << origUsername << "new=" << mUsername;
+    if (!origUsername.isEmpty() && origUsername != mUsername) {
+        requiresUserNameRedirection();
+        return Result::fail();
+    }
+    return mConnected ? Result::pass() : Result::fail();
+}
+
+void SFTPWorker::clearPubKeyAuthInfo()
+{
+    if (mPublicKeyAuthInfo) {
+        delete mPublicKeyAuthInfo;
+        mPublicKeyAuthInfo = nullptr;
+    }
+}
+
+Result SFTPWorker::fileSystemFreeSpace(const QUrl &url)
+{
+    qCDebug(KIO_SFTP_LOG) << "file system free space of" << url;
+
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
+        return loginResult;
+    }
+
+    if (sftp_extension_supported(mSftp, "statvfs@openssh.com", "2") == 0) {
+        return Result::fail(ERR_UNSUPPORTED_ACTION, QString());
+    }
+
+    const QByteArray path = url.path().isEmpty() ? QByteArrayLiteral("/") : url.path().toUtf8();
+
+    sftp_statvfs_t statvfs = sftp_statvfs(mSftp, path.constData());
+    if (statvfs == nullptr) {
+        return reportError(url, sftp_get_error(mSftp));
+    }
+
+    setMetaData(QString::fromLatin1("total"), QString::number(statvfs->f_frsize * statvfs->f_blocks));
+    setMetaData(QString::fromLatin1("available"), QString::number(statvfs->f_frsize * statvfs->f_bavail));
+
+    sftp_statvfs_free(statvfs);
+
+    return Result::pass();
+}
+
+#if defined(HAVE_SFTP_AIO)
+using UniqueAIO = std::unique_ptr<struct sftp_aio_struct>;
+
+QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file, size_t size)
+{
+    size_t queuedBytes = 0;
+    std::queue<UniqueAIO> pendingRequests;
+
+    auto queueChunkMaybe = [&pendingRequests, &queuedBytes, size, file]() -> int {
+        if (queuedBytes >= size) {
+            return KJob::NoError;
+        }
+
+        const auto requestLength = std::min<int>(MAX_XFER_BUF_SIZE, size - queuedBytes);
+        sftp_aio aio = nullptr;
+        if (sftp_aio_begin_read(file, requestLength, &aio) == SSH_ERROR) {
+            qCWarning(KIO_SFTP_LOG) << "Failed to sftp_aio_begin_read" //
+                                    << "- SFTP error:" << sftp_get_error(file->sftp) //
+                                    << "- SSH error:" << ssh_get_error_code(file->sftp->session) //
+                                    << "- SSH errorString:" << ssh_get_error(file->sftp->session);
+            return KIO::ERR_CANNOT_READ;
+        }
+
+        pendingRequests.emplace(aio);
+        queuedBytes += requestLength;
+        return KJob::NoError;
+    };
+
+    // Queue a bunch of requests
+    while (pendingRequests.size() < MAX_PENDING_REQUESTS && queuedBytes < size) {
+        if (auto error = queueChunkMaybe(); error != KJob::NoError) {
+            // Cleanup of pending requests happens through queue destruction
+            co_yield ReadResponse(error);
+            co_return;
+        }
+    }
+
+    // pop-read-queue_new-yield loop until all requests are processed
+    size_t receivedBytes = 0;
+    std::array<char, MAX_XFER_BUF_SIZE> buffer{};
+    std::span bufferSpan{buffer};
+    while (!pendingRequests.empty()) {
+        auto aio = pendingRequests.front().release();
+        pendingRequests.pop();
+        if (auto error = queueChunkMaybe(); error != KJob::NoError) {
+            // Cleanup of pending requests happens through queue destruction
+            co_yield ReadResponse(error);
+            co_return;
+        }
+
+        ssize_t readBytes = 0;
+        while (true) {
+            auto readSpan = bufferSpan.subspan(readBytes);
+            readBytes = sftp_aio_wait_read(&aio, readSpan.data(), readSpan.size());
+            if (readBytes == SSH_AGAIN) {
+                continue;
+            }
+            if (readBytes == SSH_ERROR) {
+                qCWarning(KIO_SFTP_TRACE_LOG) << "read SSH_ERROR";
+                co_yield ReadResponse(KIO::ERR_CANNOT_READ);
+                co_return;
+            }
+
+            receivedBytes += readBytes;
+            if (readBytes != MAX_XFER_BUF_SIZE && receivedBytes != size) { // short read
+                qCWarning(KIO_SFTP_TRACE_LOG) << "unexpected short read. the file probably was truncated";
+                co_yield ReadResponse(KIO::ERR_CANNOT_READ);
+                co_return;
+            }
+
+            co_yield ReadResponse(QByteArray(buffer.data(), readBytes));
+            break;
+        }
+    }
+}
+
+QCoro::Generator<SFTPWorker::WriteResponse> SFTPWorker::asyncWrite(sftp_file file, QCoro::Generator<ReadResponse> reader)
+{
+    std::queue<UniqueAIO> pendingRequests;
+
+    auto readIt = reader.begin();
+    auto readEnd = reader.end();
+    auto queueChunkMaybe = [file, &pendingRequests, &readIt, &readEnd]() -> int {
+        if (readIt == readEnd) {
+            return KJob::NoError;
+        }
+
+        const auto &readResponse = *readIt;
+        if (readResponse.error != KJob::NoError) {
+            return readResponse.error;
+        }
+
+        const auto requestLength = readResponse.filedata.size();
+        sftp_aio aio = nullptr;
+        if (sftp_aio_begin_write(file, readResponse.filedata.constData(), requestLength, &aio) == SSH_ERROR) {
+            qCWarning(KIO_SFTP_LOG) << "Failed to sftp_aio_begin_write" //
+                                    << "- SFTP error:" << sftp_get_error(file->sftp) //
+                                    << "- SSH error:" << ssh_get_error_code(file->sftp->session) //
+                                    << "- SSH errorString:" << ssh_get_error(file->sftp->session);
+            return KIO::ERR_CANNOT_READ;
+        }
+
+        pendingRequests.emplace(aio);
+        ++readIt;
+        return KJob::NoError;
+    };
+
+    // Queue a bunch of requests
+    while (pendingRequests.size() < MAX_PENDING_REQUESTS && readIt != reader.end()) {
+        if (auto error = queueChunkMaybe(); error != KJob::NoError) {
+            // Cleanup of pending requests happens through queue destruction
+            co_yield {.error = error};
+            co_return;
+        }
+    }
+
+    while (!pendingRequests.empty()) {
+        auto aio = pendingRequests.front().release();
+        pendingRequests.pop();
+        if (auto error = queueChunkMaybe(); error != KJob::NoError) {
+            // Cleanup of pending requests happens through queue destruction
+            co_yield {.error = error};
+            co_return;
+        }
+
+        ssize_t writtenBytes = 0;
+        while (true) {
+            writtenBytes = sftp_aio_wait_write(&aio);
+            if (writtenBytes == SSH_AGAIN) {
+                continue;
+            }
+            if (writtenBytes == SSH_ERROR) {
+                qCWarning(KIO_SFTP_TRACE_LOG) << "write SSH_ERROR";
+                co_yield {.error = KIO::ERR_CANNOT_WRITE};
+                co_return;
+            }
+
+            co_yield {.bytes = std::make_unsigned_t<size_t>(writtenBytes)};
+            break;
+        }
+    }
+}
+
+#else
+
 SFTPWorker::GetRequest::GetRequest(sftp_file file, uint64_t size, ushort maxPendingRequests)
     : m_file(file)
     , m_size(size)
@@ -2157,69 +2377,6 @@ SFTPWorker::GetRequest::~GetRequest()
     }
 }
 
-void SFTPWorker::requiresUserNameRedirection()
-{
-    QUrl redirectUrl;
-    redirectUrl.setScheme(QLatin1String("sftp"));
-    redirectUrl.setUserName(mUsername);
-    redirectUrl.setPassword(mPassword);
-    redirectUrl.setHost(mHost);
-    if (mPort > 0 && mPort != DEFAULT_SFTP_PORT) {
-        redirectUrl.setPort(mPort);
-    }
-    qCDebug(KIO_SFTP_LOG) << "redirecting to" << redirectUrl;
-    redirection(redirectUrl);
-}
-
-Result SFTPWorker::sftpLogin()
-{
-    const QString origUsername = mUsername;
-    if (auto openResult = openConnection(); !openResult.success()) {
-        return openResult;
-    }
-    qCDebug(KIO_SFTP_LOG) << "connected ?" << mConnected << "username: old=" << origUsername << "new=" << mUsername;
-    if (!origUsername.isEmpty() && origUsername != mUsername) {
-        requiresUserNameRedirection();
-        return Result::fail();
-    }
-    return mConnected ? Result::pass() : Result::fail();
-}
-
-void SFTPWorker::clearPubKeyAuthInfo()
-{
-    if (mPublicKeyAuthInfo) {
-        delete mPublicKeyAuthInfo;
-        mPublicKeyAuthInfo = nullptr;
-    }
-}
-
-Result SFTPWorker::fileSystemFreeSpace(const QUrl &url)
-{
-    qCDebug(KIO_SFTP_LOG) << "file system free space of" << url;
-
-    if (auto loginResult = sftpLogin(); !loginResult.success()) {
-        return loginResult;
-    }
-
-    if (sftp_extension_supported(mSftp, "statvfs@openssh.com", "2") == 0) {
-        return Result::fail(ERR_UNSUPPORTED_ACTION, QString());
-    }
-
-    const QByteArray path = url.path().isEmpty() ? QByteArrayLiteral("/") : url.path().toUtf8();
-
-    sftp_statvfs_t statvfs = sftp_statvfs(mSftp, path.constData());
-    if (statvfs == nullptr) {
-        return reportError(url, sftp_get_error(mSftp));
-    }
-
-    setMetaData(QString::fromLatin1("total"), QString::number(statvfs->f_frsize * statvfs->f_blocks));
-    setMetaData(QString::fromLatin1("available"), QString::number(statvfs->f_frsize * statvfs->f_bavail));
-
-    sftp_statvfs_free(statvfs);
-
-    return Result::pass();
-}
-
 QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file, size_t size)
 {
     SFTPWorker::GetRequest request(file, size);
@@ -2282,5 +2439,6 @@ QCoro::Generator<SFTPWorker::WriteResponse> SFTPWorker::asyncWrite(sftp_file fil
         }
     }
 }
+#endif // HAVE_SFTP_AIO
 
 #include "kio_sftp.moc"

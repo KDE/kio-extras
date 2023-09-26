@@ -125,6 +125,7 @@ private: // Private variables
      */
     KIO::AuthInfo *mPublicKeyAuthInfo = nullptr;
 
+#if !defined(HAVE_SFTP_AIO)
     /**
      * GetRequest encapsulates several SFTP get requests into a single object.
      * As SFTP messages are limited to MAX_XFER_BUF_SIZE several requests
@@ -179,6 +180,7 @@ private: // Private variables
         ushort m_maxPendingRequests;
         QQueue<Request> m_pendingRequests;
     };
+#endif // HAVE_SFTP_AIO
 
     struct ReadResponse {
         // NOTE: older GCC versions have trouble when using structs that were aggregate initialized and crash on
