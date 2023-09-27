@@ -2,6 +2,12 @@
     "KDE-KIO-Protocols": {
         "recentlyused": {
             "Class": ":local",
+            "ExtraNames": [
+                "Application"
+            ],
+            "ExtraTypes": [
+                "QString"
+            ],
             "Icon": "document-open-recent",
             "X-DocPath": "kioslave5/recentlyused/index.html",
             "copyFromFile": false,
@@ -17,7 +23,8 @@
                 "Access",
                 "Owner",
                 "Group",
-                "Link"
+                "Link",
+                "Extra1"
             ],
             "makedir": false,
             "maxInstances": 1,
