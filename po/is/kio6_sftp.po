@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-09-27 01:41+0000\n"
 "PO-Revision-Date: 2022-10-31 22:15+0000\n"
 "Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -25,119 +25,119 @@ msgstr ""
 "\n"
 "\n"
 
-#: kio_sftp.cpp:224
+#: kio_sftp.cpp:258
 #, kde-format
 msgid "Incorrect or invalid passphrase"
 msgstr "Ógilt eða rangt lykilorð"
 
-#: kio_sftp.cpp:273
+#: kio_sftp.cpp:307
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "Tókst ekki að úthluta viðbrögðum (callbacks)"
 
-#: kio_sftp.cpp:286
+#: kio_sftp.cpp:320
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "Tókst ekki að stilla upplýsingamagn fyrir annál."
 
-#: kio_sftp.cpp:291
+#: kio_sftp.cpp:325
 #, kde-format
 msgid "Could not set log userdata."
 msgstr "Tókst ekki að stilla notandagögn fyrir annál."
 
-#: kio_sftp.cpp:296
+#: kio_sftp.cpp:330
 #, kde-format
 msgid "Could not set log callback."
 msgstr "Tókst ekki að stilla viðbragð fyrir annál."
 
-#: kio_sftp.cpp:332 kio_sftp.cpp:334 kio_sftp.cpp:850
+#: kio_sftp.cpp:366 kio_sftp.cpp:368 kio_sftp.cpp:878
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP-innskráning"
 
-#: kio_sftp.cpp:349
+#: kio_sftp.cpp:383
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr ""
 "Notaðu innsláttarreitinn fyrir notandanafn til að svara þessari spurningu."
 
-#: kio_sftp.cpp:361
+#: kio_sftp.cpp:396
 #, kde-format
 msgid "Please enter your password."
 msgstr "Sláðu inn lykilorðið þitt."
 
-#: kio_sftp.cpp:366 kio_sftp.cpp:853
+#: kio_sftp.cpp:401 kio_sftp.cpp:881
 #, kde-format
 msgid "Site:"
 msgstr "Vefsvæði:"
 
-#: kio_sftp.cpp:412
+#: kio_sftp.cpp:446
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "Ekki tókst að lesa tengilinn: %1 [%2]"
 
-#: kio_sftp.cpp:534
+#: kio_sftp.cpp:564
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "Ekki var hægt að búa til nýja SSH-setu."
 
-#: kio_sftp.cpp:545 kio_sftp.cpp:549
+#: kio_sftp.cpp:575 kio_sftp.cpp:579
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "Ekki tókst að stilla tímamörk."
 
-#: kio_sftp.cpp:556
+#: kio_sftp.cpp:586
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "Ekki tókst að gera Nagle's algóritmann óvirkan."
 
-#: kio_sftp.cpp:562 kio_sftp.cpp:567
+#: kio_sftp.cpp:592 kio_sftp.cpp:597
 #, kde-format
 msgid "Could not set compression."
 msgstr "Ekki tókst að stilla þjöppun."
 
-#: kio_sftp.cpp:573
+#: kio_sftp.cpp:603
 #, kde-format
 msgid "Could not set host."
 msgstr "Ekki tókst að stilla vélarheiti."
 
-#: kio_sftp.cpp:579
+#: kio_sftp.cpp:609
 #, kde-format
 msgid "Could not set port."
 msgstr "Ekki tókst að stilla gátt."
 
-#: kio_sftp.cpp:587
+#: kio_sftp.cpp:617
 #, kde-format
 msgid "Could not set username."
 msgstr "Ekki tókst að stilla notandanafn."
 
-#: kio_sftp.cpp:594
+#: kio_sftp.cpp:624
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "Ekki tókst að lesa grunnstillingaskrá."
 
-#: kio_sftp.cpp:611
+#: kio_sftp.cpp:639
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "Opna SFTP-tengingu við vélina %1:%2"
 
-#: kio_sftp.cpp:651
+#: kio_sftp.cpp:679
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "Ekki tókst að fá tegundaheiti dreifilykils þjóns"
 
-#: kio_sftp.cpp:663
+#: kio_sftp.cpp:691
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr "Ekki tókst að búa til tætigildi fyrir dreifilykil þjóns"
 
-#: kio_sftp.cpp:672
+#: kio_sftp.cpp:700
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "Ekki tókst að búa til fingrafar fyrir dreifilykil þjóns"
 
-#: kio_sftp.cpp:732
+#: kio_sftp.cpp:760
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -154,13 +154,13 @@ msgstr ""
 "Hafðu samband við kerfisstjórann.\n"
 "%2"
 
-#: kio_sftp.cpp:749
+#: kio_sftp.cpp:777
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "Breyting á auðkenni vélar"
 
-#: kio_sftp.cpp:751
+#: kio_sftp.cpp:779
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -176,13 +176,13 @@ msgstr ""
 "para><para>Lykilfingrafarið %2 sem fjartengda vélin sendi er:<bcode>%3</"
 "bcode>Ertu viss um að þú viljir halda áfram að tengjast?</para>"
 
-#: kio_sftp.cpp:761
+#: kio_sftp.cpp:789
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr "Villa við sannprófun á hýsiltölvu"
 
-#: kio_sftp.cpp:763
+#: kio_sftp.cpp:791
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -194,35 +194,35 @@ msgstr ""
 "emphasis>.</para><para>Lykilfingrafarið %2 er: <bcode>%3</bcode>Ertu viss um "
 "að þú viljir halda áfram að tengjast?</para>"
 
-#: kio_sftp.cpp:772
+#: kio_sftp.cpp:800
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "Tengjast samt"
 
-#: kio_sftp.cpp:795 kio_sftp.cpp:814 kio_sftp.cpp:829 kio_sftp.cpp:842
-#: kio_sftp.cpp:894 kio_sftp.cpp:904
+#: kio_sftp.cpp:823 kio_sftp.cpp:842 kio_sftp.cpp:857 kio_sftp.cpp:870
+#: kio_sftp.cpp:922 kio_sftp.cpp:932
 #, kde-format
 msgid "Authentication failed."
 msgstr "Auðkenning brást."
 
-#: kio_sftp.cpp:802
+#: kio_sftp.cpp:830
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr "Auðkenning tókst ekki. Þjónninn sendi engar auðkenningaraðferðir."
 
-#: kio_sftp.cpp:851
+#: kio_sftp.cpp:879
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Sláðu inn notandanafn þitt og lykilorð."
 
-#: kio_sftp.cpp:862
+#: kio_sftp.cpp:890
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Ógilt notandanafn eða lykilorð"
 
-#: kio_sftp.cpp:911
+#: kio_sftp.cpp:939
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -231,17 +231,17 @@ msgstr ""
 "Ekki tókst að biðja um SFTP-undirkerfi. Gakkt úr skugga um að SFTP sé "
 "virkjað á þjóninum."
 
-#: kio_sftp.cpp:916
+#: kio_sftp.cpp:944
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "Ekki tókst að frumstilla SFTP-setuna."
 
-#: kio_sftp.cpp:920
+#: kio_sftp.cpp:948
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Tenging við %1 tókst"
 
-#: kio_sftp.cpp:973
+#: kio_sftp.cpp:1001
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Ógilt sftp-samhengi"

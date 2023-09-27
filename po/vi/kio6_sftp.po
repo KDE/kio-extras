@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-09-27 01:41+0000\n"
 "PO-Revision-Date: 2022-08-09 21:56+0200\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -19,118 +19,118 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 22.04.1\n"
 
-#: kio_sftp.cpp:224
+#: kio_sftp.cpp:258
 #, kde-format
 msgid "Incorrect or invalid passphrase"
 msgstr "Mật tổ sai hoặc không hợp lệ"
 
-#: kio_sftp.cpp:273
+#: kio_sftp.cpp:307
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "Không phân bố được lời gọi lại"
 
-#: kio_sftp.cpp:286
+#: kio_sftp.cpp:320
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "Không đặt được độ chi tiết của nhật kí."
 
-#: kio_sftp.cpp:291
+#: kio_sftp.cpp:325
 #, kde-format
 msgid "Could not set log userdata."
 msgstr "Không đặt được dữ liệu người dùng của nhật kí."
 
-#: kio_sftp.cpp:296
+#: kio_sftp.cpp:330
 #, kde-format
 msgid "Could not set log callback."
 msgstr "Không đặt được lời gọi lại của nhật kí."
 
-#: kio_sftp.cpp:332 kio_sftp.cpp:334 kio_sftp.cpp:850
+#: kio_sftp.cpp:366 kio_sftp.cpp:368 kio_sftp.cpp:878
 #, kde-format
 msgid "SFTP Login"
 msgstr "Đăng nhập SFTP"
 
-#: kio_sftp.cpp:349
+#: kio_sftp.cpp:383
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr "Sử dụng trường nhập tên người dùng để trả lời câu hỏi này."
 
-#: kio_sftp.cpp:361
+#: kio_sftp.cpp:396
 #, kde-format
 msgid "Please enter your password."
 msgstr "Vui lòng nhập mật khẩu của bạn."
 
-#: kio_sftp.cpp:366 kio_sftp.cpp:853
+#: kio_sftp.cpp:401 kio_sftp.cpp:881
 #, kde-format
 msgid "Site:"
 msgstr "Địa điểm:"
 
-#: kio_sftp.cpp:412
+#: kio_sftp.cpp:446
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "Không đọc được liên kết: %1 [%2]"
 
-#: kio_sftp.cpp:534
+#: kio_sftp.cpp:564
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "Không tạo được phiên SSH mới."
 
-#: kio_sftp.cpp:545 kio_sftp.cpp:549
+#: kio_sftp.cpp:575 kio_sftp.cpp:579
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "Không đặt được thời hạn."
 
-#: kio_sftp.cpp:556
+#: kio_sftp.cpp:586
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "Không tắt được thuật toán Nagle."
 
-#: kio_sftp.cpp:562 kio_sftp.cpp:567
+#: kio_sftp.cpp:592 kio_sftp.cpp:597
 #, kde-format
 msgid "Could not set compression."
 msgstr "Không đặt được chế độ nén."
 
-#: kio_sftp.cpp:573
+#: kio_sftp.cpp:603
 #, kde-format
 msgid "Could not set host."
 msgstr "Không đặt được máy."
 
-#: kio_sftp.cpp:579
+#: kio_sftp.cpp:609
 #, kde-format
 msgid "Could not set port."
 msgstr "Không đặt được cổng."
 
-#: kio_sftp.cpp:587
+#: kio_sftp.cpp:617
 #, kde-format
 msgid "Could not set username."
 msgstr "Không đặt được tên người dùng."
 
-#: kio_sftp.cpp:594
+#: kio_sftp.cpp:624
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "Không phân tách được tệp cấu hình."
 
-#: kio_sftp.cpp:611
+#: kio_sftp.cpp:639
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "Đang mở kết nối SFTP đến máy %1:%2"
 
-#: kio_sftp.cpp:651
+#: kio_sftp.cpp:679
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "Không lấy được tên kiểu khoá công khai của máy chủ."
 
-#: kio_sftp.cpp:663
+#: kio_sftp.cpp:691
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr "Không tạo được giá trị băm từ khoá công khai của máy chủ"
 
-#: kio_sftp.cpp:672
+#: kio_sftp.cpp:700
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "Không tạo được điểm chỉ cho khoá công khai của máy chủ"
 
-#: kio_sftp.cpp:732
+#: kio_sftp.cpp:760
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -146,13 +146,13 @@ msgstr ""
 "Vui lòng liên hệ với quản trị viên hệ thống của bạn.\n"
 "%2"
 
-#: kio_sftp.cpp:749
+#: kio_sftp.cpp:777
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "Thay đổi danh tính máy"
 
-#: kio_sftp.cpp:751
+#: kio_sftp.cpp:779
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -168,13 +168,13 @@ msgstr ""
 "của khoá %2 do máy ở xa gửi là:<bcode>%3</bcode>Bạn có chắc chắn muốn tiếp "
 "tục kết nối không?</para>"
 
-#: kio_sftp.cpp:761
+#: kio_sftp.cpp:789
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr "Thất bại xác minh máy"
 
-#: kio_sftp.cpp:763
+#: kio_sftp.cpp:791
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -186,35 +186,35 @@ msgstr ""
 "minh.</para><para>Điểm chỉ của khoá %2 là:<bcode>%3</bcode>Bạn có chắc chắn "
 "muốn tiếp tục kết nối không?</para>"
 
-#: kio_sftp.cpp:772
+#: kio_sftp.cpp:800
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "Cứ kết nối"
 
-#: kio_sftp.cpp:795 kio_sftp.cpp:814 kio_sftp.cpp:829 kio_sftp.cpp:842
-#: kio_sftp.cpp:894 kio_sftp.cpp:904
+#: kio_sftp.cpp:823 kio_sftp.cpp:842 kio_sftp.cpp:857 kio_sftp.cpp:870
+#: kio_sftp.cpp:922 kio_sftp.cpp:932
 #, kde-format
 msgid "Authentication failed."
 msgstr "Xác thực thất bại."
 
-#: kio_sftp.cpp:802
+#: kio_sftp.cpp:830
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr "Xác thực thất bại. Máy chủ không gửi bất kì phương thức xác thực nào"
 
-#: kio_sftp.cpp:851
+#: kio_sftp.cpp:879
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Vui lòng nhập tên người dùng và mật khẩu."
 
-#: kio_sftp.cpp:862
+#: kio_sftp.cpp:890
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Tên người dùng hoặc mật khẩu sai"
 
-#: kio_sftp.cpp:911
+#: kio_sftp.cpp:939
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -223,17 +223,17 @@ msgstr ""
 "Không thể yêu cầu hệ thống con SFTP. Hãy chắc chắn rằng SFTP được bật trên "
 "máy chủ."
 
-#: kio_sftp.cpp:916
+#: kio_sftp.cpp:944
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "Không khởi tạo được phiên SFTP."
 
-#: kio_sftp.cpp:920
+#: kio_sftp.cpp:948
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Đã kết nối thành công đến %1"
 
-#: kio_sftp.cpp:973
+#: kio_sftp.cpp:1001
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Ngữ cảnh SFTP không hợp lệ"

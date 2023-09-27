@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: all2.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-18 01:59+0000\n"
+"POT-Creation-Date: 2023-09-27 01:41+0000\n"
 "PO-Revision-Date: 2004-09-20 15:44+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud@mandriva.com>\n"
 "Language-Team: br <LL@li.org>\n"
@@ -12,54 +12,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: thumbnail.cpp:211
+#: thumbnail.cpp:201
 #, kde-format
 msgid "No MIME Type specified."
 msgstr ""
 
-#: thumbnail.cpp:218
+#: thumbnail.cpp:208
 #, kde-format
 msgid "No or invalid size specified."
 msgstr ""
 
-#: thumbnail.cpp:242
+#: thumbnail.cpp:229
 #, fuzzy, kde-format
 #| msgid "Cannot create thumbnail for %1"
 msgid "Cannot create thumbnail for directory"
 msgstr "Ne m'eus ket krouiñ ur skeudennig evit %1"
 
-#: thumbnail.cpp:253
+#: thumbnail.cpp:238
 #, kde-format
 msgid "No plugin specified."
 msgstr "N'eus lugent spisaet ebet."
 
-#: thumbnail.cpp:258
+#: thumbnail.cpp:243
 #, fuzzy, kde-format
 #| msgid "Cannot create thumbnail for %1"
 msgid "Cannot load ThumbCreator %1"
 msgstr "Ne m'eus ket krouiñ ur skeudennig evit %1"
 
-#: thumbnail.cpp:279
+#: thumbnail.cpp:264
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Ne m'eus ket krouiñ ur skeudennig evit %1"
 
-#: thumbnail.cpp:291
+#: thumbnail.cpp:276
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "N'hellan ket krouiñ ur skeudennig."
 
-#: thumbnail.cpp:302
+#: thumbnail.cpp:286
 #, kde-format
 msgid "Could not write image."
 msgstr ""
 
-#: thumbnail.cpp:331
+#: thumbnail.cpp:314
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr ""
 
-#: thumbnail.cpp:338
+#: thumbnail.cpp:321
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr ""

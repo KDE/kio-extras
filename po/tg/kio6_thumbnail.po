@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-18 01:59+0000\n"
+"POT-Creation-Date: 2023-09-27 01:41+0000\n"
 "PO-Revision-Date: 2009-01-13 12:32+0000\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik <>\n"
@@ -17,53 +17,53 @@ msgstr ""
 "X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: thumbnail.cpp:211
+#: thumbnail.cpp:201
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Ягон намуди MIME муайян нашудааст."
 
-#: thumbnail.cpp:218
+#: thumbnail.cpp:208
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Нодуруст ё ягон андоза муайян нашудааст."
 
-#: thumbnail.cpp:242
+#: thumbnail.cpp:229
 #, fuzzy, kde-format
 #| msgid "Cannot create thumbnail for %1"
 msgid "Cannot create thumbnail for directory"
 msgstr "Тасвирчаи %1 эҷод карда намешавад"
 
-#: thumbnail.cpp:253
+#: thumbnail.cpp:238
 #, kde-format
 msgid "No plugin specified."
 msgstr "Ягон васлкунак муайян нашудааст."
 
-#: thumbnail.cpp:258
+#: thumbnail.cpp:243
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "ThumbCreator %1 кушода намешавад"
 
-#: thumbnail.cpp:279
+#: thumbnail.cpp:264
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Тасвирчаи %1 эҷод карда намешавад"
 
-#: thumbnail.cpp:291
+#: thumbnail.cpp:276
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Эҷоди тасвирча қатъ карда шуд."
 
-#: thumbnail.cpp:302
+#: thumbnail.cpp:286
 #, kde-format
 msgid "Could not write image."
 msgstr "Тасвирро эҷод карда намешавад."
 
-#: thumbnail.cpp:331
+#: thumbnail.cpp:314
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Қимси %1 хотираи тақсимшуда часпонда карда нашуд"
 
-#: thumbnail.cpp:338
+#: thumbnail.cpp:321
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Тасвир барои қисми хотираи тақсимшуда хеле калон аст"
