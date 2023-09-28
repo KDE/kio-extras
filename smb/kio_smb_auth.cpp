@@ -8,8 +8,6 @@
 #include "kio_smb.h"
 #include "smburl.h"
 
-#include <KConfig>
-#include <KConfigGroup>
 #include <KIO/AuthInfo>
 #include <KLocalizedString>
 #include <cstdlib>

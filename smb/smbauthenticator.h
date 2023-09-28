@@ -32,9 +32,6 @@ public:
     QString defaultWorkgroup() const;
     void setDefaultWorkgroup(const QString &workGroup);
 
-    // (Re)loads default values from configuration
-    void loadConfiguration();
-
     // Callback for authentication requests.
     void
     auth(SMBCCTX *context, const char *server, const char *share, char *workgroup, int wgmaxlen, char *username, int unmaxlen, char *password, int pwmaxlen);

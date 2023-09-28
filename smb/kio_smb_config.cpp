@@ -11,5 +11,4 @@
 
 void SMBWorker::reparseConfiguration()
 {
-    m_context.authenticator()->loadConfiguration();
 }

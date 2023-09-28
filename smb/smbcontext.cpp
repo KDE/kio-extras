@@ -22,8 +22,6 @@ SMBContext::SMBContext(SMBAuthenticator *authenticator)
         return;
     }
 
-    authenticator->loadConfiguration();
-
     qCDebug(KIO_SMB_LOG) << "auth_initialize_smbc";
 
     KConfig cfg("kioslaverc", KConfig::SimpleConfig);
