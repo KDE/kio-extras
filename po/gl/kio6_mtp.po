@@ -28,15 +28,15 @@ msgid ""
 "popup on its screen. If that does not work, make sure MTP is enabled in its "
 "USB connection settings."
 msgstr ""
-"Non se puido acceder ao dispositivo. Asegúrese de que estea desbloqueado e "
-"de premer «Permitir» no diálogo emerxente que aparecerá no dispositivo. Se "
+"Non foi posíbel acceder ao dispositivo. Asegúrese de que estea desbloqueado "
+"e de premer «Permitir» no diálogo emerxente que aparecerá no dispositivo. Se "
 "non funciona, asegúrese de que MTP está activado na configuración de "
 "conexión por USB."
 
 #: kio_mtp.cpp:520
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
-msgstr "Non se pode copiar nin mover os ficheiros no dispositivo en si."
+msgstr "Non é posíbel copiar nin mover os ficheiros no dispositivo en si."
 
 #~ msgid "No Storages found. Maybe you need to unlock your device?"
 #~ msgstr ""
