@@ -25,7 +25,7 @@ msgstr ""
 #: kio_nfs.cpp:152
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
-msgstr "Non se pode atopar unha versión de NFS compatíbel coa máquina «%1»."
+msgstr "Non é posíbel atopar unha versión de NFS compatíbel coa máquina «%1»."
 
 #: kio_nfs.cpp:322
 #, kde-format
@@ -35,7 +35,7 @@ msgstr "O protocolo NFS require un nome de servidor."
 #: kio_nfs.cpp:352
 #, kde-format
 msgid "Failed to initialise protocol"
-msgstr "Non se puido preparar o protocolo."
+msgstr "Non foi posíbel preparar o protocolo."
 
 #: kio_nfs.cpp:820
 #, kde-format

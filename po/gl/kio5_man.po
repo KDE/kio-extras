@@ -201,7 +201,7 @@ msgstr "Índice de páxinas de manual"
 #: kio_man.cpp:1097
 #, kde-format
 msgid "Generating Index"
-msgstr "Estase a xerar o índice"
+msgstr "Xerando o índice"
 
 #: kio_man.cpp:1351
 #, kde-kuit-format
