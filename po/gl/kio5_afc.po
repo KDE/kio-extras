@@ -60,8 +60,8 @@ msgid ""
 "Cannot access the device. Make sure it is unlocked and allows this computer "
 "to access it."
 msgstr ""
-"Non se pode acceder ao dispositivo. Asegúrese de que está desbloqueado e de "
-"que permite acceso a este computador."
+"Non é posíbel acceder ao dispositivo. Asegúrese de que está desbloqueado e "
+"de que permite acceso a este computador."
 
 #: afcutils.cpp:134
 #, kde-format
@@ -93,19 +93,19 @@ msgstr "%1 (aplicacións)"
 #: kio_afc.cpp:688
 #, kde-format
 msgid "Cannot read without opening file first"
-msgstr "Non se pode ler sen abrir primeiro o ficheiro."
+msgstr "Non é posíbel ler sen abrir primeiro o ficheiro."
 
 #: kio_afc.cpp:708
 #, kde-format
 msgid "Cannot seek without opening file first"
-msgstr "Non se pode mover o punto de lectura sen abrir primeiro o ficheiro."
+msgstr "Non é posíbel mover o punto de lectura sen abrir primeiro o ficheiro."
 
 #: kio_afc.cpp:736
 #, kde-format
 msgid "Cannot write without opening file first"
-msgstr "Non se pode escribir sen abrir primeiro o ficheiro."
+msgstr "Non é posíbel escribir sen abrir primeiro o ficheiro."
 
 #: kio_afc.cpp:888
 #, kde-format
 msgid "Cannot rename between devices."
-msgstr "Non se pode renomear entre dispositivos."
+msgstr "Non é posíbel renomear entre dispositivos."

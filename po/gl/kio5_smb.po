@@ -82,8 +82,8 @@ msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
 "an enabled firewall."
 msgstr ""
-"Non se pode atopar ningún grupo de traballo na rede local. Isto pode deberse "
-"a unha devasa activada."
+"Non é posíbel atopar ningún grupo de traballo na rede local. Isto pode "
+"deberse a unha devasa activada."
 
 #: kio_smb_browse.cpp:277
 #, kde-format
@@ -93,7 +93,7 @@ msgstr "Non hai ningún medio no dispositivo para %1"
 #: kio_smb_browse.cpp:283
 #, kde-format
 msgid "Could not connect to host for %1"
-msgstr "Non se puido conectar co servidor para %1"
+msgstr "Non foi posíbel conectar co servidor para %1"
 
 #: kio_smb_browse.cpp:295
 #, kde-format
@@ -103,7 +103,7 @@ msgstr "Erro ao conectarse ao servidor responsábel para %1"
 #: kio_smb_browse.cpp:301
 #, kde-format
 msgid "Share could not be found on given server"
-msgstr "Non se puido atopar o recurso compartido no servidor dado"
+msgstr "Non foi posíbel atopar o recurso compartido no servidor dado"
 
 #: kio_smb_browse.cpp:303
 #, kde-format
@@ -117,8 +117,8 @@ msgid ""
 "network is setup without any name conflicts between names used by Windows "
 "and by UNIX name resolution."
 msgstr ""
-"Non se puido resolver o nome fornecido a un único servidor. Verifique que a "
-"rede está configurada sen conflitos de nomes entre os empregados pola "
+"Non foi posíbel resolver o nome fornecido a un único servidor. Verifique que "
+"a rede está configurada sen conflitos de nomes entre os empregados pola "
 "resolución de nomes de Windows e de UNIX."
 
 #: kio_smb_browse.cpp:318
