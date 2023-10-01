@@ -8,11 +8,16 @@
 
 #include <QCheckBox>
 #include <QComboBox>
+#include <QDialog>
 #include <QDoubleSpinBox>
 #include <QFormLayout>
+#include <QIcon>
+#include <QJsonDocument>
 #include <QLabel>
 #include <QListWidget>
 #include <QListWidgetItem>
+#include <QSpinBox>
+#include <QStorageInfo>
 
 #include <KConfig>
 #include <KConfigGroup>
@@ -20,9 +25,6 @@
 #include <KIO/SpecialJob>
 #include <KLocalizedString>
 #include <KPluginFactory>
-#include <QDialog>
-#include <QIcon>
-#include <QSpinBox>
 #include <kio/simplejob.h>
 
 K_PLUGIN_CLASS_WITH_JSON(TrashConfigModule, "kcm_trash.json")
