@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2023-06-24 12:31+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -669,12 +669,12 @@ msgstr "Nome predeterminado de persoa usuaria:"
 msgid "Default password:"
 msgstr "Contrasinal predeterminado:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " días"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -683,7 +683,7 @@ msgstr ""
 "<para>O lixo de KDE está configurado para usar o lixo de <b>Finder</b>.<br></"
 "para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -697,12 +697,12 @@ msgstr ""
 "<para>Os elementos do lixo de KDE aparecerán nun cartafol chamado «KDE."
 "trash» dentro do lixo.</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "Eliminar os ficheiros de máis de"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -716,14 +716,14 @@ msgstr ""
 "desactivada para <emphasis strong='true'>non</emphasis> eliminar "
 "automaticamente os elementos despois dun certo tempo.</para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " día"
 msgstr[1] " días"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -733,17 +733,17 @@ msgstr ""
 "<para>Define cantos días poden quedar no lixo os ficheiros. Os que sexan "
 "máis vellos diso han eliminarse automaticamente.</para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "Limpeza:"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "Limitar a"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -753,12 +753,12 @@ msgstr ""
 "<para>Marque esta opción para limitar o espazo máximo que pode ocupar o lixo "
 "á cantidade que indique embaixo. En caso contrario non terá límite.</para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "Tamaño:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -768,7 +768,7 @@ msgstr ""
 "<para>Esta é a porcentaxe máxima de espazo do disco que poderá ocupar o lixo."
 "</para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -778,22 +778,22 @@ msgstr ""
 "<para>Esta é a cantidade de espazo do disco que se calculou como permitida "
 "para ocuparse polo lixo, o máximo.</para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "Amosar un aviso"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Eliminar do lixo os ficheiros máis vellos"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Eliminar do lixo os ficheiros máis grandes"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -805,7 +805,7 @@ msgstr ""
 "ficheiros do tipo que indique. Se indica que o avise, fará iso no canto de "
 "eliminar automaticamente os ficheiros.</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "Lixo completo:"

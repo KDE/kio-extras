@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2023-05-27 14:18+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -644,12 +644,12 @@ msgstr "Standardbrukarnamn:"
 msgid "Default password:"
 msgstr "Standardpassord:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " dagar"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -657,7 +657,7 @@ msgid ""
 msgstr ""
 "<para>Papirkorga er sett opp ti å bruka <b>Finder</b>-papirkorga.<br></para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -671,12 +671,12 @@ msgstr ""
 "filer.</para><para>Filer sletta frå KDE vert viste i ei eiga mappe i "
 "papirkorga, «KDE.trash».</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "Slett alle filer som er eldre enn"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -690,14 +690,14 @@ msgstr ""
 "for <emphasis strong='true'>ikkje</emphasis> å sletta noko automatisk etter "
 "ei viss tid.</para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " dag"
 msgstr[1] " dagar"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -707,17 +707,17 @@ msgstr ""
 "<para>Vel talet på dagar filer kan vera i papirkorga. Filer som er eldre enn "
 "dette, vert automatisk sletta.</para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "Rydd opp:"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "Avgrens til"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -728,12 +728,12 @@ msgstr ""
 "den mengda diskplass du oppgjev nedanfor. Elles er det inga grense for kor "
 "mykje ho kan innehalda.</para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "Storleik:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -743,7 +743,7 @@ msgstr ""
 "<para>Dette er høgste talet i prosent av diskplass som papirkorga kan "
 "innehalda.</para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -753,22 +753,22 @@ msgstr ""
 "<para>Dette er den mengda diskplass som papirkorga på det meste kan "
 "innehalda.</para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "Vis åtvaring"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Slett dei eldste filene i papirkorga"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Slett dei største filene i papirkorga"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -780,7 +780,7 @@ msgstr ""
 "Du får ei åtvaring viss du har valt det, i staden for at filer vert sletta "
 "automatisk.</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "Full papirkorg:"

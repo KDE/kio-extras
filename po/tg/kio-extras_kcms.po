@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2021-09-05 11:39-0700\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik Language Support\n"
@@ -669,19 +669,19 @@ msgstr "Номи корванд бо нобаёнӣ:"
 msgid "Default password:"
 msgstr "Гузарвожа бо нобаёнӣ:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " рӯз"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -691,12 +691,12 @@ msgid ""
 "the Trash can.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "Нест кардани файлҳои куҳнатар аз"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -706,14 +706,14 @@ msgid ""
 "items after a certain timespan</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " рӯз"
 msgstr[1] " рӯз"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -721,17 +721,17 @@ msgid ""
 "older than this will be automatically deleted.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr ""
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr ""
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -739,12 +739,12 @@ msgid ""
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "Андоза:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -752,7 +752,7 @@ msgid ""
 "trash.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -760,22 +760,22 @@ msgid ""
 "the trash, the maximum.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "Намоиш додани огоҳӣ"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Нест кардани файлҳои куҳнатарин аз сабад"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Нест кардани файлҳои калонтарин аз сабад"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -784,7 +784,7 @@ msgid ""
 "instead of automatically deleting files.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "Сабад пур шуд:"

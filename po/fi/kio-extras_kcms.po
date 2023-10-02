@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2023-03-14 21:58+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -662,12 +662,12 @@ msgstr "Käyttäjätunnus:"
 msgid "Default password:"
 msgstr "Salasana:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " päivää"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -676,7 +676,7 @@ msgstr ""
 "<para>KDE:n roskakori on asetettu käyttämään <b>Finderin</b> roskakoria."
 "<br></para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -690,12 +690,12 @@ msgstr ""
 "para><para>KDE:n roskakorissa olevat kohteet näkyvät Finderin roskakorissa "
 "kansiossa nimeltään KDE.trash.</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "Poista tätä vanhemmat tiedostot:"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -709,14 +709,14 @@ msgstr ""
 "<emphasis strong='true'>et halua</emphasis> poistaa määräikää vanhempia "
 "tiedostoja automaattisesti.</para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " päivä"
 msgstr[1] " päivää"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -726,17 +726,17 @@ msgstr ""
 "<para>Aseta niiden tiedostojen ikä (päivissä), jotka saavat jäädä "
 "roskakoriin. Tätä vanhemmat tiedostot poistetaan automaattisesti.</para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "Siivous:"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "Rajoita kokoon"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -746,12 +746,12 @@ msgstr ""
 "<para>Valitse tämä rajoittaaksesi roskakorin enimmäiskokoa alla annettavaan "
 "arvoon. Muulloin roskakorin koko on rajoitukseton.</para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "Koko:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -761,7 +761,7 @@ msgstr ""
 "<para>Tämä määrittää enimmäisosuuden levytilasta, jonka roskakori saa "
 "käyttää.</para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -771,22 +771,22 @@ msgstr ""
 "<para>Tämä on laskennallinen enimmäismäärä levytilaa, jonka roskakori saa "
 "viedä.</para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "Näytä varoitus"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Poista vanhimmat tiedostot roskakorista"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Poista suurimmat tiedostot roskakorista"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -798,7 +798,7 @@ msgstr ""
 "tyyppiset tiedostot. Jos valitset tämän varoituksen, tehdään näin sen "
 "sijaan, että tiedostot poistettaisiin automaattisesti.</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "Koko roskakori:"

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2023-04-27 06:28+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -678,12 +678,12 @@ msgstr "Privzeto uporabniško ime:"
 msgid "Default password:"
 msgstr "Privzeto geslo:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " dni"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -692,7 +692,7 @@ msgstr ""
 "<para>KDE-jeve Smeti so nastavljene, da uporabljajo Smeti programa "
 "<b>Finder</b>.<br></para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -706,12 +706,12 @@ msgstr ""
 "izbrisala<br>vse predmete</para><para>Predmeti KDE-jevih Smeti se bodo "
 "nahajali v mapi imenovani KDE.trash v Smeteh programa Finder.</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "Izbriši datoteke, starejše od"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -725,7 +725,7 @@ msgstr ""
 "to onemogočeno, da <emphasis strong='true'>ne bo</emphasis> samodejnega "
 "brisanja po določenem času.</para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -734,7 +734,7 @@ msgstr[1] " dneva"
 msgstr[2] " dnevi"
 msgstr[3] " dni"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -744,17 +744,17 @@ msgstr ""
 "<para>Nastavite, koliko dni so lahko datoteke v smeteh. Vsaka datoteka, ki "
 "je starejša od navedenega števila dni, bo samodejno izbrisana.</para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "Čiščenje:"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "Omeji na"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -764,12 +764,12 @@ msgstr ""
 "<para>Označite to polje, da omejite velikost smeti na spodaj navedeno "
 "količino prostora na disku. V nasprotnem velikost ni omejena.</para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "Velikost:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -779,7 +779,7 @@ msgstr ""
 "<para>To je največji odstotek prostora na disku, ki bo uporabljen za smeti.</"
 "para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -789,22 +789,22 @@ msgstr ""
 "<para>To je izračunana največja velikost prostora na disku, ki bo dovoljen "
 "za smeti.</para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "Prikaži opozorilo"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Izbriši najstarejše datoteke"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Izbriši največje datoteke"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -816,7 +816,7 @@ msgstr ""
 "datotek, ki jih določite. Če je nastavljeno, da vas opozori, boste namesto "
 "brisanja datotek prejeli opozorilo o doseženi omejitvi.</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "Polne smeti:"

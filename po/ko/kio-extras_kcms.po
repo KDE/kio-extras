@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2023-04-22 00:54+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -635,12 +635,12 @@ msgstr "기본 사용자 이름:"
 msgid "Default password:"
 msgstr "기본 암호:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " 일"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -649,7 +649,7 @@ msgstr ""
 "<para>KDE 휴지통이 <b>Finder</b>의 휴지통을 사용하도록 설정되어 있습니다."
 "<br></para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -662,12 +662,12 @@ msgstr ""
 "지통을 비우면 모든 것이 삭제됩니다.</para><para>KDE의 휴지통 항목은 휴지통의 "
 "KDE.trash 폴더에 표시됩니다.</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "다음보다 오래된 파일 지우기"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -681,13 +681,13 @@ msgstr ""
 "strong='true'>사용하지 않도록 설정한 경우</emphasis> 특정 시간 경과 후 항목"
 "이 자동으로 삭제됩니다.</para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " 일"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -697,17 +697,17 @@ msgstr ""
 "<para>파일이 휴지통에 남아 있는 일 수를 설정합니다. 이보다 오래된 모든 파일"
 "은 자동으로 삭제됩니다.</para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "청소:"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "제한"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -717,12 +717,12 @@ msgstr ""
 "<para>이 상자를 선택하면 휴지통의 최대 크기를 지정할 수 있습니다. 선택하지 않"
 "으면 크기 제한이 없습니다.</para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "크기:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -730,7 +730,7 @@ msgid ""
 "trash.</para>"
 msgstr "<para>휴지통에 사용할 최대 디스크 공간 백분율입니다.</para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -738,22 +738,22 @@ msgid ""
 "the trash, the maximum.</para>"
 msgstr "<para>휴지통에 사용할 최대 디스크 공간 크기입니다.</para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "경고 표시"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "휴지통에 있는 오래된 파일부터 지우기"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "휴지통에 있는 큰 파일부터 지우기"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -764,7 +764,7 @@ msgstr ""
 "<para>크기 제한에 도달했을 때 지정한 형식의 파일부터 삭제합니다. '알려주"
 "기'로 설정되어 있다면 파일을 자동으로 삭제하지 않고 먼저 알려 줍니다.</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "휴지통이 가득 찼을 때:"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2023-08-27 01:09+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -657,12 +657,12 @@ msgstr "ნაგულისხმევი მომხმარებლი�
 msgid "Default password:"
 msgstr "ნაგულისხმები პაროლი:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " დღე"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -670,7 +670,7 @@ msgid ""
 msgstr ""
 "<para>KDE-ის wastebin <b>Finder</b>ის სანაგვე ყუთს გამოიყენებს.<br></para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -684,12 +684,12 @@ msgstr ""
 "მთლიანად გაასუფთავებს.</para></para>KDE-ის სანაგვე ყუთის საქაღალდეს KDE."
 "trash ჰქვია და ის ნაგვის ყუთის საქაღალდეშია მოთავსებული.</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "თარიღზე ძველი ფაილების წაშლა"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -703,14 +703,14 @@ msgstr ""
 "ძველია. თუ <emphasis strong='true'>არ</emphasis> გნებავთ რაღაც დონეზე ძველი "
 "ფაილების წაშლა, ეს პარამეტრი გამორთული დატოვეთ</para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " დღე"
 msgstr[1] " დღე"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -720,17 +720,17 @@ msgstr ""
 "<para>დააყენეთ დღეების რაოდენობა, რომლის განმავლობაშიც ფაილები სანაგვე ყუთში "
 "დარჩება. უფრო ძველი ფაილები ავტომატურად წაიშლება. </para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "გაწმენდა:"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "ზღვარი"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -740,12 +740,12 @@ msgstr ""
 "<para>ჩართეთ ეს ნაგვის ყუთის მაქსიმალური ზომის მისათითებლად. წინააღმდეგ "
 "შემთხვევაში ის შეუზღუდავი იქნება.</para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "ზომა:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -755,7 +755,7 @@ msgstr ""
 "<para>დისკზე ნაგვის ყუთისთვის გამოყენებული ადგილის მაქსიმალური პროცენტული "
 "რაოდენობა.</para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -765,22 +765,22 @@ msgstr ""
 "<para>ეს გამოთვლილი ადგილის მაქსიმუმია დისკზე, რომელიც ნაგვის ყუთისთვის "
 "იქნება გამოყენებული.</para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "გაფრთხილების ჩვენება"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "ნაგვიდან უძველესი ფაილების წაშლა"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "ნაგვიდან უდიდესი ფაილების წაშლა"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -791,7 +791,7 @@ msgstr ""
 "<para>როცა ზომის ზღვარი მიიღწევა, მითითებული ფაილის ტიპი წაიშლება. თუ "
 "დაყენებულია, რომ შეგატყობინოთ, ფაილის წაშლის მაგიერ ის ამას ჩაიდენს.</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "სანაგვე სავსეა:"

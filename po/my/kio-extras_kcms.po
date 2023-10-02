@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2022-10-05 21:57+0630\n"
 "Last-Translator: ဇေယျာလွင် <lw1nzayar@yandex.com>\n"
 "Language-Team: Burmese <kde-i18n-doc@kde.org>\n"
@@ -642,19 +642,19 @@ msgstr "မူလသတ်မှတ်သော အသုံးပြုသူ�
 msgid "Default password:"
 msgstr "မူလသတ်မှတ်သော စကားဝှက် -"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " နေ့ရက်များ"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr "<para>ကေဒီအီး၏စွန့်ပစ်ပုံးသည် <b>ဖိုင်ဒါ</b>၏အမှိုက်ပုံးသုံးရန် ပြင်ဆင်ထားရှိသည်။<br></para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -667,12 +667,12 @@ msgstr ""
 "အမှိုက်ပုံးရှင်းလင်းခြင်းသည် အားလုံးကိုဖျက်ပစ်မည်။</para><para>ကေဒီအီး၏အမှိုက်အိုင်တမ်များသည် အမှိုက်ပုံးအတွင်း "
 "ကေဒီအီး.အမှိုက် ခေါ် ဖိုလ်ဒါတွင် ရှိနေမည်။</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "ထက်အိုသောဖိုင်လ်များ ဖျက်မည်"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -685,13 +685,13 @@ msgstr ""
 "strong='true'>အလိုအလျောက်ဖျက်ဆီးခြင်း</emphasis> ပြုလုပ်ရန် အမှန်ခြစ်ပါ။ "
 "အလိုအလျောက်ဖျက်ဆီးခြင်း<emphasis strong='true'>မလုပ်</emphasis>ရန် အမှန်မခြစ်ပါနှင့်</para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " နေ့"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -701,17 +701,17 @@ msgstr ""
 "<para>အမှိုက်ပုံးအတွင်း ဖိုင်လ်ထားမည့်ရက်ကို သတ်မှတ်ပါ။ ထိုရက်ထက် သက်တမ်းကျော်လွန်သောဖိုင်လ်များကို အလိုအလျောက် "
 "ဖျက်ပစ်မည်။</para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "ရှင်းလင်းရေး -"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "သို့ကန့်သတ်"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -721,12 +721,12 @@ msgstr ""
 "<para>အမှိုက်ပုံး မှတ်ဉာဏ်နေရာသုံးစွဲမှုပမာဏကို ကန့်သတ်ရန် အမှန်ခြစ်ပါ။ မခြစ်ထားလျှင် အကန့်အသတ်မရှိ သုံးမည်။</"
 "para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "အရွယ်အစား -"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -734,7 +734,7 @@ msgid ""
 "trash.</para>"
 msgstr "<para>၎င်းသည် အမှိုက်ပုံးအတွက် အများဆုံးသုံးခွင့်ပြုမည့် မှတ်ဉာဏ်နေရာရာခိုင်နှုန်း ဖြစ်သည်။</para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -743,22 +743,22 @@ msgid ""
 msgstr ""
 "<para>၎င်းသည် အမှိုက်ပုံးအတွက် အများဆုံးသုံးခွင့်ပြုမည့် တွက်ချက်ထားသော မှတ်ဉာဏ်နေရာပမာဏ ဖြစ်သည်။</para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "သတ်ိပေးချက် ပြမည်"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "အမှိုက်ပုံးမှ သက်တမ်းပိုရင့်သောဖိုင်လ်များ ဖျက်မည်"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "အမှိုက်ပုံးမှ အရွယ်အစားအကြီးဆုံးဖိုင်လ်များ ဖျက်မည်"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -769,7 +769,7 @@ msgstr ""
 "<para>ကန့်သတ်ချက်ပမာဏထိရောက်ရှိလာပါက သင်သေချာသတ်မှတ်ထားသော ဖိုင်လ်များကို အရင်စတင်ဖျက်မည်။ "
 "ဤလုပ်ဆောင်ချက်ကို သတိပေးရန်သတ်မှတ်ထားပါက မဖျက်ပဲ သတိပေးသွားမည်။</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "အမှိုက်ပုံး -"

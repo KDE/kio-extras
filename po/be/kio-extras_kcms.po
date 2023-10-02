@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2023-02-09 08:31\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -676,12 +676,12 @@ msgstr "Прадвызначаны карыстальнік:"
 msgid "Default password:"
 msgstr "Прадвызначаны пароль:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " дзён"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -690,7 +690,7 @@ msgstr ""
 "<para>Сметніца KDE наладжаная на выкарыстанне сметніцы <b>Finder</b><br></"
 "para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -703,12 +703,12 @@ msgstr ""
 "час пры <br>ачышчэнні праз Finder выдаліцца ўсё.</para><para>Элементы смецця "
 "KDE з'явяцца ў сметніцы ў каталозе пад назвай KDE.trash.</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "Выдаляць файлы, старэйшыя за"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -723,7 +723,7 @@ msgstr ""
 "emphasis> для аўтаматычнага выдалення ўсіх файлаў праз пэўны прамежак часу</"
 "para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -732,7 +732,7 @@ msgstr[1] " дні"
 msgstr[2] " дзён"
 msgstr[3] " дні"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -743,17 +743,17 @@ msgstr ""
 "сметніцы. Любыя файлы, старэйшыя за гэтае значэнне, будуць аўтаматычна "
 "выдаляцца.</para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "Ачысціць:"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "Абмежавана"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -764,12 +764,12 @@ msgstr ""
 "выкарыстоўвацца значэнне, пазначанае ніжэй. У адваротным выпадку памёр будзе "
 "неабмежаваным.</para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "Памер:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -779,7 +779,7 @@ msgstr ""
 "<para>Гэта максімальны адсотак дыскавай прасторы, што будзе выкарыстоўвацца "
 "для сметніцы.</para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -789,22 +789,22 @@ msgstr ""
 "<para>Гэта максімальны аб'ём дыскавай прасторы, дазволены для сметніцы.</"
 "para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "Паказваць папярэджанне"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Выдаляць са сметніцы старыя файлы"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Выдаляць са сметніцы вялікія файлы"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -816,7 +816,7 @@ msgstr ""
 "выдаляцца тыя файлы, якія вы абралі. Калі адзначана папярэджанне, то замест "
 "аўтаматычнага выдалення файлаў будзе паказвацца папярэджанне.</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "Сметніца поўная:"

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2023-03-22 08:09+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
@@ -663,12 +663,12 @@ msgstr "Sjálfgefið notandanafn:"
 msgid "Default password:"
 msgstr "Sjálfgefið lykilorð:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " daga"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -676,7 +676,7 @@ msgid ""
 msgstr ""
 "<para>Ruslafata KDE er stillt til að nota ruslafötu <b>Finder</b>.<br></para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -690,12 +690,12 @@ msgstr ""
 "para><para>Atriði í KDE-ruslinu munu birtast í möppu sem kallast KDE.trash "
 "inni í Finder-ruslinu.</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "Eyða skrám eldri en"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -709,14 +709,14 @@ msgstr ""
 "til að<emphasis strong='true'>koma í veg fyrir</emphasis> að nokkru verði "
 "eytt út eftir ákveðinn tíma</para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " dags"
 msgstr[1] " daga"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -726,17 +726,17 @@ msgstr ""
 "<para>Stillir fjölda daga sem skrár eru geymdar í ruslafötunni. Öllum skrám "
 "sem eru eldri verður eytt sjálfkrafa.</para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "Hreinsun:"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "Takmarka við"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -747,12 +747,12 @@ msgstr ""
 "hámarksdiskplássið sem þú tilgreinir hér fyrir neðan. Annars verða engin "
 "takmörk.</para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "Stærð:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -762,7 +762,7 @@ msgstr ""
 "<para>Þetta er hámarksdiskpláss í prósentum sem verður notað undir "
 "ruslafötuna.</para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -772,22 +772,22 @@ msgstr ""
 "<para>Þetta er útreiknað hámarksdiskpláss sem verður notað undir ruslafötuna."
 "</para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "Birta aðvörun"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Eyða elstu skránum úr ruslinu"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Eyða stærstu skránum úr ruslinu"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -799,7 +799,7 @@ msgstr ""
 "tilgreinir eytt fyrst. Ef þetta er stillt á að aðvara þig, verður það gert í "
 "staðinn fyrir að eyða skrám sjálfkrafa.</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "Rusl er fullt:"

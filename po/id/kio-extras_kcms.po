@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_trash\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-08-04 01:59+0000\n"
+"POT-Creation-Date: 2023-10-02 01:42+0000\n"
 "PO-Revision-Date: 2023-02-07 20:29+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -664,12 +664,12 @@ msgstr "Nama pengguna baku:"
 msgid "Default password:"
 msgstr "Kata sandi baku:"
 
-#: trash/kcmtrash.cpp:138
+#: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
 msgstr " hari"
 
-#: trash/kcmtrash.cpp:203
+#: trash/kcmtrash.cpp:205
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -678,7 +678,7 @@ msgstr ""
 "<para>Tempat sampah KDE telah dikonfigurasi untuk menggunakan <b>Pencari</b> "
 "Sampah.<br></para>"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -692,12 +692,12 @@ msgstr ""
 "</para><para>Butir sampah KDE akan tampil di sebuah folder yang disebut KDE."
 "trash, di dalam tong Sampah.</para>"
 
-#: trash/kcmtrash.cpp:246
+#: trash/kcmtrash.cpp:248
 #, kde-format
 msgid "Delete files older than"
 msgstr "Hapus berkas yang lebih lama dari"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:251
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -712,14 +712,14 @@ msgstr ""
 "strong='true'>tidak</emphasis> secara otomatis menghapus butir apa pun "
 "sesudah jangka waktu tertentu</para>"
 
-#: trash/kcmtrash.cpp:256
+#: trash/kcmtrash.cpp:258
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " hari"
 msgstr[1] " hari"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:260
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -729,17 +729,17 @@ msgstr ""
 "<para>Atur jumlah hari berkas dapat tetap ada di tong sampah. berkas apapun "
 "yang lebih tua dari ini akan secara otomatis dihapus.</para>"
 
-#: trash/kcmtrash.cpp:262
+#: trash/kcmtrash.cpp:264
 #, kde-format
 msgid "Cleanup:"
 msgstr "Pembersihan:"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:267
 #, kde-format
 msgid "Limit to"
 msgstr "Batasi ke"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:269
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -750,12 +750,12 @@ msgstr ""
 "diska yang Anda tentukan di bawah. Sebaliknya, ukuran tong sampah akan tak "
 "terbatas.</para>"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:272
 #, kde-format
 msgid "Size:"
 msgstr "Ukuran:"
 
-#: trash/kcmtrash.cpp:277
+#: trash/kcmtrash.cpp:279
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -765,7 +765,7 @@ msgstr ""
 "<para>Ini adalah persentase maksimum ruang cakram yang akan digunakan untuk "
 "tong sampah.</para>"
 
-#: trash/kcmtrash.cpp:282
+#: trash/kcmtrash.cpp:284
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -775,22 +775,22 @@ msgstr ""
 "<para>Ini adalah jumlah maksimum ruang cakram yang dikalkulasikan akan "
 "diizinkan untuk tong sampah.</para>"
 
-#: trash/kcmtrash.cpp:286
+#: trash/kcmtrash.cpp:288
 #, kde-format
 msgid "Show a Warning"
 msgstr "Tampilkan sebuah Peringatan"
 
-#: trash/kcmtrash.cpp:287
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Hapus berkas Tertua Dari Tong Sampah"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Hapus berkas Terbesar Dari Tong Sampah"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:292
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -803,7 +803,7 @@ msgstr ""
 "memperingatkan Anda, maka tempat sampah akan melakukan hal itu ketimbang "
 "menghapus berkas secara otomatis.</para>"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:294
 #, kde-format
 msgid "Full Trash:"
 msgstr "Tong Sampah Penuh:"
