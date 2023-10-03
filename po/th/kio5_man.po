@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 00:46+0000\n"
+"POT-Creation-Date: 2023-10-03 00:42+0000\n"
 "PO-Revision-Date: 2008-11-24 19:15+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: kio_man.cpp:456
+#: kio_man.cpp:460
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "No man page matching to %1 found.<br /><br />Check that you have not "
@@ -43,7 +43,7 @@ msgstr ""
 "คุณอาจจะต้องตั้งค่าสำหรับค้นหาหน้าคู่มือที่ดีกว่านี้ โดย ใช้กำหนดค่าตัวแปร MANPATH ให้ถูกต้อง "
 "หรือแฟ้มที่เข้าได้ในไดเรกทอรี /etc"
 
-#: kio_man.cpp:570
+#: kio_man.cpp:574
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -51,36 +51,36 @@ msgid ""
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
 
-#: kio_man.cpp:587
+#: kio_man.cpp:591
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr ""
 
-#: kio_man.cpp:596
+#: kio_man.cpp:600
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
-#: kio_man.cpp:658
+#: kio_man.cpp:662
 #, fuzzy, kde-format
 #| msgid "<h1>KDE Man Viewer Error</h1>"
 msgid "Manual Page Viewer Error"
 msgstr "<h1>เครื่องมือแสดงคู่มือของ KDE ผิดพลาด</h1>"
 
-#: kio_man.cpp:671
+#: kio_man.cpp:675
 #, fuzzy, kde-format
 #| msgid "There is more than one matching man page."
 msgid "There is more than one matching man page:"
 msgstr "พบหน้าคู่มือที่เข้าคู่กับการค้นหามากกว่าหนึ่งตัว"
 
-#: kio_man.cpp:671
+#: kio_man.cpp:675
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:684
+#: kio_man.cpp:688
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -90,116 +90,116 @@ msgstr ""
 "ข้อแนะนำ: หากคุณดูคู่มือที่เป็นภาษาของคุณเอง โปรดจำไว้ว่ามันอาจจะมีข้อผิดพลาด "
 "หรืออาจจะล้าสมัยไปแล้ว ในกรณีที่คุณสงสัย คุณควรจะไปเปิดดูรุ่นที่เป็นภาษาอังกฤษ"
 
-#: kio_man.cpp:752
+#: kio_man.cpp:756
 #, kde-format
 msgid "Header Files"
 msgstr ""
 
-#: kio_man.cpp:754
+#: kio_man.cpp:758
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr ""
 
-#: kio_man.cpp:756
+#: kio_man.cpp:760
 #, kde-format
 msgid "User Commands"
 msgstr "คำสั่งของผู้ใช้"
 
-#: kio_man.cpp:758
+#: kio_man.cpp:762
 #, fuzzy, kde-format
 #| msgid "User Commands"
 msgid "User Commands (POSIX)"
 msgstr "คำสั่งของผู้ใช้"
 
-#: kio_man.cpp:760
+#: kio_man.cpp:764
 #, kde-format
 msgid "System Calls"
 msgstr "คำสั่งของระบบ"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:766
 #, kde-format
 msgid "Subroutines"
 msgstr "รูทีนย่อย"
 
-#: kio_man.cpp:765
+#: kio_man.cpp:769
 #, kde-format
 msgid "Perl Modules"
 msgstr "มอดูลภาษาเพิร์ล"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:771
 #, kde-format
 msgid "Network Functions"
 msgstr "ฟังก์ชันเครือข่าย"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:773
 #, kde-format
 msgid "Devices"
 msgstr "อุปกรณ์"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:775
 #, kde-format
 msgid "File Formats"
 msgstr "รูปแบบแฟ้ม"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:777
 #, kde-format
 msgid "Games"
 msgstr "เกมส์"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:779
 #, kde-format
 msgid "Miscellaneous"
 msgstr "เบ็ดเตล็ด"
 
-#: kio_man.cpp:777
+#: kio_man.cpp:781
 #, kde-format
 msgid "System Administration"
 msgstr "ผู้ดูแลระบบ"
 
-#: kio_man.cpp:779
+#: kio_man.cpp:783
 #, kde-format
 msgid "Kernel"
 msgstr "เคอร์เนล"
 
-#: kio_man.cpp:781
+#: kio_man.cpp:785
 #, kde-format
 msgid "Local Documentation"
 msgstr "เอกสารภายในระบบ"
 
-#: kio_man.cpp:784
+#: kio_man.cpp:788
 #, kde-format
 msgid "New"
 msgstr "ใหม่"
 
-#: kio_man.cpp:811
+#: kio_man.cpp:815
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Main Manual Page Index"
 msgstr "ดัชนีคู่มือของ UNIX"
 
-#: kio_man.cpp:836
+#: kio_man.cpp:840
 #, kde-format
 msgid "Section %1"
 msgstr "หัวข้อ %1"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1089
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "ดัชนีของหัวข้อ %1: %2"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1089
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "ดัชนีคู่มือของ UNIX"
 
-#: kio_man.cpp:1097
+#: kio_man.cpp:1101
 #, kde-format
 msgid "Generating Index"
 msgstr "กำลังทำการสร้างดัชนี"
 
-#: kio_man.cpp:1351
+#: kio_man.cpp:1355
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "
