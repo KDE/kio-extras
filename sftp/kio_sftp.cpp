@@ -83,7 +83,7 @@ constexpr auto KIO_SFTP_SPECIAL_TIMEOUT_MS = 30;
 // perhaps all popular servers effectively support at least 64k.
 constexpr auto MAX_XFER_BUF_SIZE = (60ULL * 1024);
 
-constexpr bool KSFTP_ISDIR(SFTPAttributesPtr &sb)
+inline bool KSFTP_ISDIR(SFTPAttributesPtr &sb)
 {
     return sb->type == SSH_FILEXFER_TYPE_DIRECTORY;
 }
