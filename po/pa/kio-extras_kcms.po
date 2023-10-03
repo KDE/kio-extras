@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-01-25 07:39-0800\n"
 "Last-Translator: A S Alam <aalam@satluj.org>\n"
 "Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
@@ -528,21 +528,6 @@ msgstr "ਇਸ ਲਿਸਟ ਵਿਚਲੇ ਇੰਦਰਾਜ਼ਾਂ ਲਈ ਹ�
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "ਇਸ ਲਿਸਟ ਵਿਚਲੇ ਇੰਦਰਾਜ਼ਾਂ ਲਈ ਹੀ ਪਰਾਕਸੀ ਵਰਤੋਂ"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "ਇਹ ਸੈਟਿੰਗ ਕੇਵਲ ਨੈੱਟਵਰਕ ਬਰਾਊਜ਼ਿੰਗ ਲਈ ਹੀ ਲਾਗੂ ਹੈ।"
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "ਡਿਫਾਲਟ ਯੂਜ਼ਰ ਨਾਂ:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "ਡਿਫਾਲਟ ਪਾਸਵਰਡ:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -982,6 +967,15 @@ msgstr "ਅੱਖਰ-ਸੈੱਟ(&C):"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "ਇਹ ਸੈਟਿੰਗ ਕੇਵਲ ਨੈੱਟਵਰਕ ਬਰਾਊਜ਼ਿੰਗ ਲਈ ਹੀ ਲਾਗੂ ਹੈ।"
+
+#~ msgid "Default user name:"
+#~ msgstr "ਡਿਫਾਲਟ ਯੂਜ਼ਰ ਨਾਂ:"
+
+#~ msgid "Default password:"
+#~ msgstr "ਡਿਫਾਲਟ ਪਾਸਵਰਡ:"
 
 #~ msgid "&Policy"
 #~ msgstr "ਪਾਲਸੀ(&P)"

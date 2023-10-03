@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-04-29 10:34+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -641,21 +641,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Użyj ustawień pośrednika tylko dla adresów z listy wyjątków"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Te ustawienia dotyczą tylko przeglądania sieci."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Domyślna nazwa użytkownika:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Domyślne hasło:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1157,6 +1142,15 @@ msgstr "&Zestaw znaków:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Wstaw pole zastępcze zapytania"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Te ustawienia dotyczą tylko przeglądania sieci."
+
+#~ msgid "Default user name:"
+#~ msgstr "Domyślna nazwa użytkownika:"
+
+#~ msgid "Default password:"
+#~ msgstr "Domyślne hasło:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Zasady"

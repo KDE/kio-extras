@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-04-27 22:54+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -650,21 +650,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Erabili proxy ezarpena soilik salbuespen-zerrendako helbideekin"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Ezarpen hauek sarean nabigatzeko soilik erabiliko dira."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Erabiltzaile-izen lehenetsia:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Pasahitz lehenetsia:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1170,6 +1155,15 @@ msgstr "&Karaktere-multzoa:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Txertatu itauneko leku-marka"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Ezarpen hauek sarean nabigatzeko soilik erabiliko dira."
+
+#~ msgid "Default user name:"
+#~ msgstr "Erabiltzaile-izen lehenetsia:"
+
+#~ msgid "Default password:"
+#~ msgstr "Pasahitz lehenetsia:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Gidalerroa"

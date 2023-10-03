@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-04-27 12:15+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -655,21 +655,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "استخدم إعدادات الوكيل فقط مع العناوين التي في قائمة الاستثناءات"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "تُطبّق هذه الإعدادات فقط لتصفّح الشّبكة."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "اسم المستخدم المبدئيّ:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "كلمة السّرّ المبدئيّة:"
-
 # plural!
 # يمكن إصلاحها بسهولة
 #: trash/kcmtrash.cpp:140
@@ -1170,6 +1155,15 @@ msgstr "&طقم المحارف:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "أدرج عنصر نائب للاستعلام"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "تُطبّق هذه الإعدادات فقط لتصفّح الشّبكة."
+
+#~ msgid "Default user name:"
+#~ msgstr "اسم المستخدم المبدئيّ:"
+
+#~ msgid "Default password:"
+#~ msgstr "كلمة السّرّ المبدئيّة:"
 
 #~ msgid "&Policy"
 #~ msgstr "ال&سّياسة"

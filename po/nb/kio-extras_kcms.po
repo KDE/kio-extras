@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2015-04-28 08:48+0200\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -632,21 +632,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Bruk mellomtjenere bare for oppføringene i unntakslista."
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Disse innstillingene gjelder bare for nettlesing."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Standard brukernavn:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Standard passord:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1127,3 +1112,12 @@ msgstr "&Tegnsett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sett inn spørringsplassholder"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Disse innstillingene gjelder bare for nettlesing."
+
+#~ msgid "Default user name:"
+#~ msgstr "Standard brukernavn:"
+
+#~ msgid "Default password:"
+#~ msgstr "Standard passord:"

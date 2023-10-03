@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2009-08-18 12:07+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -532,22 +532,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr ""
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr ""
-
-#: smb/smbrodlg.cpp:39
-#, fuzzy, kde-format
-#| msgid "&Repeat password:"
-msgid "Default password:"
-msgstr "&Përsërit fjalëkalimin:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1000,6 +984,11 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#, fuzzy
+#~| msgid "&Repeat password:"
+#~ msgid "Default password:"
+#~ msgstr "&Përsërit fjalëkalimin:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Politika"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-05-10 20:16+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -641,21 +641,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Uzu prokurajn agordojn nur por adresoj en la listo de Esceptoj"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Ĉi tiuj agordoj validas nur por retumado."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Defaŭlta uzantnomo:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Defaŭlta pasvorto:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1155,6 +1140,15 @@ msgstr "&Charset:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Enmetu demandan anstataŭilon"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Ĉi tiuj agordoj validas nur por retumado."
+
+#~ msgid "Default user name:"
+#~ msgstr "Defaŭlta uzantnomo:"
+
+#~ msgid "Default password:"
+#~ msgstr "Defaŭlta pasvorto:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Politiko"

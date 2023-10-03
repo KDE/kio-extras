@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_trash\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-02-07 20:29+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -649,21 +649,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Gunakan pengaturan proksi hanya untuk alamat dalam daftar Pengecualian"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Pengesetan ini berlaku untuk penelusuran jaringan saja."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Nama pengguna baku:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Kata sandi baku:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1173,6 +1158,15 @@ msgstr "&Perangkat Karakter:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sisipkan query placeholder"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Pengesetan ini berlaku untuk penelusuran jaringan saja."
+
+#~ msgid "Default user name:"
+#~ msgstr "Nama pengguna baku:"
+
+#~ msgid "Default password:"
+#~ msgstr "Kata sandi baku:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Kebijakan"

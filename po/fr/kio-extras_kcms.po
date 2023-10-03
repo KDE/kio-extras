@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-09-16 18:26+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: fr\n"
@@ -679,21 +679,6 @@ msgstr ""
 "N'utiliser les paramètres du serveur mandataire que pour les adresses de la "
 "liste d'« Exceptions »"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Ces paramètres ne s'appliquent qu'à la navigation réseau."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Nom d'utilisateur par défaut :"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Mot de passe par défaut :"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1217,6 +1202,15 @@ msgstr "Jeu de &caractères :"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Insérer un paramètre substituable"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Ces paramètres ne s'appliquent qu'à la navigation réseau."
+
+#~ msgid "Default user name:"
+#~ msgstr "Nom d'utilisateur par défaut :"
+
+#~ msgid "Default password:"
+#~ msgstr "Mot de passe par défaut :"
 
 #~ msgid "&Policy"
 #~ msgstr "&Règles"

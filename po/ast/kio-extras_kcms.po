@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-05-22 22:36+0200\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -521,21 +521,6 @@ msgstr ""
 #: proxy/kproxydlg.ui:642
 #, kde-format
 msgid "Use proxy settings only for addresses in the Exceptions list"
-msgstr ""
-
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr ""
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr ""
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
 msgstr ""
 
 #: trash/kcmtrash.cpp:140

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-04-27 10:31+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -646,21 +646,6 @@ msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 "Usa preferentias de proxy solmente pro adresses in le lista de exceptiones"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Iste preferentias applica se solmente a navigation de rete."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Nomine de usator predefinite:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Contrasigno predefinite:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1173,6 +1158,15 @@ msgstr "Insimul de &characteres:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserta substituto de demanda (query)"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Iste preferentias applica se solmente a navigation de rete."
+
+#~ msgid "Default user name:"
+#~ msgstr "Nomine de usator predefinite:"
+
+#~ msgid "Default password:"
+#~ msgstr "Contrasigno predefinite:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Politica"

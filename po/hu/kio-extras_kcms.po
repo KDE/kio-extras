@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2022-02-08 09:30+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -649,21 +649,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Proxybeállítások alkalmazása csak a kivételek listán lévő címekre"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Ezek a beállítások csak a hálózatos böngészésre vonatkoznak."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Az alapértelmezett felhasználónév:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Az alapértelmezett jelszó:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1165,6 +1150,15 @@ msgstr "Karakterkó&dolás:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Lekérdezés helykitöltő beszúrása"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Ezek a beállítások csak a hálózatos böngészésre vonatkoznak."
+
+#~ msgid "Default user name:"
+#~ msgstr "Az alapértelmezett felhasználónév:"
+
+#~ msgid "Default password:"
+#~ msgstr "Az alapértelmezett jelszó:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Házirend"

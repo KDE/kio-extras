@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-02-07 10:50-0300\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
 "Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -656,21 +656,6 @@ msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 "Usar configurações de proxy apenas para os endereços da lista de exceções"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Estas configurações se aplicam apenas para a navegação em rede."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Usuário padrão:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Senha padrão:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1185,6 +1170,15 @@ msgstr "&Codificação:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Insere o item de substituição da pesquisa"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Estas configurações se aplicam apenas para a navegação em rede."
+
+#~ msgid "Default user name:"
+#~ msgstr "Usuário padrão:"
+
+#~ msgid "Default password:"
+#~ msgstr "Senha padrão:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Política"

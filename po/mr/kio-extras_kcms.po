@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2013-02-23 17:39+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -527,21 +527,6 @@ msgstr "फक्त अपवाद यादीतील पत्त्या
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "फक्त अपवाद यादीतील पत्त्यांकरिताच प्रॉक्सी संयोजनेचा वापर करा"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "या संयोजना फक्त संजाळ संचारणासाठी लागू होतात."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "मूलभूत वापरकर्ता नाव :"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "मूलभूत गुप्तशब्द :"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -997,6 +982,15 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "इंटरलेस पद्धत"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "या संयोजना फक्त संजाळ संचारणासाठी लागू होतात."
+
+#~ msgid "Default user name:"
+#~ msgstr "मूलभूत वापरकर्ता नाव :"
+
+#~ msgid "Default password:"
+#~ msgstr "मूलभूत गुप्तशब्द :"
 
 #~ msgid "&Policy"
 #~ msgstr "धोरण (&P)"

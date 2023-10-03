@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2022-10-19 21:51+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -658,21 +658,6 @@ msgstr ""
 "Puhverserveri seadistusi kasutatakse ainult erandite nimekirjas olevate "
 "aadresside puhul"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Need seadistused rakenduvad ainult võrgu lehitsemisele."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Kasutajanimi vaikimisi:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Parool vaikimisi:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1166,6 +1151,15 @@ msgstr "Koo&ditabel:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Päringu kohatäitja lisamine"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Need seadistused rakenduvad ainult võrgu lehitsemisele."
+
+#~ msgid "Default user name:"
+#~ msgstr "Kasutajanimi vaikimisi:"
+
+#~ msgid "Default password:"
+#~ msgstr "Parool vaikimisi:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Reegel"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2014-02-25 01:34+0100\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -651,21 +651,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Proxy-Instellen bloots för de Adressen in de Utnahmen-List bruken"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Disse Instellen warrt bloots bi't Dörkieken vun't Nettwark bruukt"
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Standard-Brukernaam:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Standard-Passwoort:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1187,6 +1172,15 @@ msgstr "&Tekensett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Anfraag-Platzholler infögen"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Disse Instellen warrt bloots bi't Dörkieken vun't Nettwark bruukt"
+
+#~ msgid "Default user name:"
+#~ msgstr "Standard-Brukernaam:"
+
+#~ msgid "Default password:"
+#~ msgstr "Standard-Passwoort:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Regeln"

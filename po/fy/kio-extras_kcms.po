@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2009-06-21 13:33+0100\n"
 "Last-Translator: Berend Ytsma <berendy@gmail.com>\n"
 "Language-Team: Frysk <kde-i18n-fry@kde.org>\n"
@@ -697,21 +697,6 @@ msgstr "Proxy allinnich brûke foar items yn dizze list"
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Proxy allinnich brûke foar items yn dizze list"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Dizze ynstellings jilde allinne foar it sneupen oer it netwurk"
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Standert brûkersnamme:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Standert wachtwurd:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1165,6 +1150,15 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Dizze ynstellings jilde allinne foar it sneupen oer it netwurk"
+
+#~ msgid "Default user name:"
+#~ msgstr "Standert brûkersnamme:"
+
+#~ msgid "Default password:"
+#~ msgstr "Standert wachtwurd:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Belied"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2022-03-20 11:23+0100\n"
 "Last-Translator: irfan <irfankurtagic@outlook.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -663,21 +663,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Koristi proksi postavke samo za adrese u listi izuzetaka."
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Ove se postavke odnose samo na pregledanje mreÅ¾e."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Podrazumjevano korisniÄko ime:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Podrazumjevana Å¡ifra:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1183,6 +1168,15 @@ msgstr "&Set karaktera:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Umetni čuvar mesta za upit"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Ove se postavke odnose samo na pregledanje mreÅ¾e."
+
+#~ msgid "Default user name:"
+#~ msgstr "Podrazumjevano korisniÄko ime:"
+
+#~ msgid "Default password:"
+#~ msgstr "Podrazumjevana Å¡ifra:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Pravila"

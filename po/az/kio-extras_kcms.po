@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-02-18 20:42+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -645,21 +645,6 @@ msgstr ""
 "Proxy serveri yalnız <i>İstisnalar</i> siyahısında göstərilən ünvanlara üçün "
 "istifadə et"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Bu ayar ancaq şəbəkəyə baxış üçün tətbiq edilir."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Standart istifadəçi adı:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Standart istifadəçi parolu:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1160,6 +1145,15 @@ msgstr "&Kodlaşma:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sorğunun nümunəsini yerləşdirin"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Bu ayar ancaq şəbəkəyə baxış üçün tətbiq edilir."
+
+#~ msgid "Default user name:"
+#~ msgstr "Standart istifadəçi adı:"
+
+#~ msgid "Default password:"
+#~ msgstr "Standart istifadəçi parolu:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Qayda"

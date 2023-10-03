@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2021-09-05 20:45+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -644,21 +644,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Brug kun proxy-indstillinger for adresser i listen Undtagelser"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Disse indstillinger gælder kun for gennemsøgning af netværket."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Standard-brugernavn:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Standardadgangskode:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1161,6 +1146,15 @@ msgstr "&Tegnsæt"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Indsæt pladsholder til forespørgsel"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Disse indstillinger gælder kun for gennemsøgning af netværket."
+
+#~ msgid "Default user name:"
+#~ msgstr "Standard-brugernavn:"
+
+#~ msgid "Default password:"
+#~ msgstr "Standardadgangskode:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Politik"

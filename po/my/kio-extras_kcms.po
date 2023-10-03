@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2022-10-05 21:57+0630\n"
 "Last-Translator: ဇေယျာလွင် <lw1nzayar@yandex.com>\n"
 "Language-Team: Burmese <kde-i18n-doc@kde.org>\n"
@@ -627,21 +627,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "ခြွင်းချက်များ စာရင်းတွင်ပါသော လိပ်စာများအတွက်သာ ကြားခံ-သတ်မှတ်ချက်များကို သုံးမည်"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "ကွန်ရက် ရှောက်ကြည့်ခြင်းကိုသာ ယင်းသတ်မှတ်ချက်များသက်ရောက်မည်။"
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "မူလသတ်မှတ်သော အသုံးပြုသူအမည် -"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "မူလသတ်မှတ်သော စကားဝှက် -"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1122,6 +1107,15 @@ msgstr "&Cအက္ခရာအစု -"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "မေးမြန်းချက်ဆိုင်ရာနေရာယူထားမှု ထည့်သွင်း"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "ကွန်ရက် ရှောက်ကြည့်ခြင်းကိုသာ ယင်းသတ်မှတ်ချက်များသက်ရောက်မည်။"
+
+#~ msgid "Default user name:"
+#~ msgstr "မူလသတ်မှတ်သော အသုံးပြုသူအမည် -"
+
+#~ msgid "Default password:"
+#~ msgstr "မူလသတ်မှတ်သော စကားဝှက် -"
 
 #~ msgid "&Policy"
 #~ msgstr "&Pပေါ်လစီ"

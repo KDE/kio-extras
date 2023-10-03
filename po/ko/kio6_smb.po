@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2021-05-16 22:31+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 20.12.3\n"
 
-#: kio_smb_auth.cpp:44
+#: kio_smb_auth.cpp:42
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -43,12 +43,12 @@ msgstr ""
 "용자 이름과 암호를 사용하지 않습니다. 서버 설정에 따라서 사용자 이름을 입력해"
 "야 할 수도 있습니다</para>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:51
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt><b>%1</b>의 인증 정보를 입력하십시오</qt>"
 
-#: kio_smb_auth.cpp:56
+#: kio_smb_auth.cpp:54
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"

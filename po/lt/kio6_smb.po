@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2021-08-21 19:31+0300\n"
 "Last-Translator: Donatas Glodenis <dgvirtual@akl.lt>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Generator: Poedit 3.0\n"
 
-#: kio_smb_auth.cpp:44
+#: kio_smb_auth.cpp:42
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -45,12 +45,12 @@ msgstr ""
 "slaptažodį. Priklausomai nuo serverio konfigūracijos, gali būti reikalaujama "
 "netuščių naudotojo vardų</para>"
 
-#: kio_smb_auth.cpp:53
+#: kio_smb_auth.cpp:51
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
 msgstr "<qt>Įveskite tapatybės nustatymo informaciją, skirtą <b>%1</b></qt>"
 
-#: kio_smb_auth.cpp:56
+#: kio_smb_auth.cpp:54
 #, kde-format
 msgid ""
 "Please enter authentication information for:\n"

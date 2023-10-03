@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-03-22 08:09+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
@@ -648,21 +648,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Nota milliþjónsstillingar eingöngu fyrir færslur í undantekningarlista"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Þessar stillingar eiga eingöngu við um flakk á netkerfum."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Sjálfgefið notandanafn:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Sjálfgefið lykilorð:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1166,6 +1151,15 @@ msgstr "Sta&fatafla:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Setja inn staðgengilstexta fyrirspurnar"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Þessar stillingar eiga eingöngu við um flakk á netkerfum."
+
+#~ msgid "Default user name:"
+#~ msgstr "Sjálfgefið notandanafn:"
+
+#~ msgid "Default password:"
+#~ msgstr "Sjálfgefið lykilorð:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Regla"

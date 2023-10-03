@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2008-08-06 00:02+0200\n"
 "Last-Translator: \n"
 "Language-Team: Occitan <oc@li.org>\n"
@@ -534,22 +534,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr ""
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr ""
-
-#: smb/smbrodlg.cpp:39
-#, fuzzy, kde-format
-#| msgid "Verify password:"
-msgid "Default password:"
-msgstr "Verificacion del mot de pas :"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -996,6 +980,11 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Verify password:"
+#~ msgid "Default password:"
+#~ msgstr "Verificacion del mot de pas :"
 
 #, fuzzy
 #~| msgid "Comment"

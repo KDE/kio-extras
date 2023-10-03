@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-04-22 00:54+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -620,21 +620,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "예외 목록에 있는 항목만 프록시 사용"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "이 설정은 네트워크 탐색에만 사용됩니다."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "기본 사용자 이름:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "기본 암호:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1120,6 +1105,15 @@ msgstr "문자 집합(&C):"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "쿼리 자리 비움자 삽입"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "이 설정은 네트워크 탐색에만 사용됩니다."
+
+#~ msgid "Default user name:"
+#~ msgstr "기본 사용자 이름:"
+
+#~ msgid "Default password:"
+#~ msgstr "기본 암호:"
 
 #~ msgid "&Policy"
 #~ msgstr "정책(&P)"

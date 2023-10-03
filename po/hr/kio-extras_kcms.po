@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2011-07-18 11:46+0200\n"
 "Last-Translator: Marko Dimjašević <marko@dimjasevic.net>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -700,21 +700,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Koristi proxy samo za stavke u popisu"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Ove postavke se primijenjuju samo na pregledavanje mreže."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Uobičajeno korisničko ime:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Uobičajena šifra:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1173,6 +1158,15 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "Način ispreplitanja"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Ove postavke se primijenjuju samo na pregledavanje mreže."
+
+#~ msgid "Default user name:"
+#~ msgstr "Uobičajeno korisničko ime:"
+
+#~ msgid "Default password:"
+#~ msgstr "Uobičajena šifra:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Pravila"

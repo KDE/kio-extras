@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-06-03 12:57+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -655,21 +655,6 @@ msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 "Yalnızca istisnalar listesindeki girdiler için vekil sunucu ayarları kullan"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Bu ayarlar yalnızca ağ taramasına uygulanır."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Öntanımlı kullanıcı adı:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Öntanımlı parola:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1171,6 +1156,15 @@ msgstr "&Karakter Kümesi:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sorgu yer tutucu ekle"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Bu ayarlar yalnızca ağ taramasına uygulanır."
+
+#~ msgid "Default user name:"
+#~ msgstr "Öntanımlı kullanıcı adı:"
+
+#~ msgid "Default password:"
+#~ msgstr "Öntanımlı parola:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Politika"

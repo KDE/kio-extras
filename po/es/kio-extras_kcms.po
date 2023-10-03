@@ -9,15 +9,15 @@
 # Pablo de Vicente <p.devicente@wanadoo.es>, 2004.
 # Juan Manuel Garcia Molina <juanma@superiodico.net>, 2005.
 # Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>, 2007.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2008, 2009, 2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2008, 2009, 2010, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023 Eloy Cuadra <ecuadra@eloihr.net>
 # Cristina Yenyxe González García <the.blue.valkyrie@gmail.com>, 2010, 2011, 2013.
 # arklad, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
-"PO-Revision-Date: 2023-04-28 00:13+0200\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"PO-Revision-Date: 2023-10-02 20:50+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -27,7 +27,7 @@ msgstr ""
 "com>\n"
 "com>\n"
 "First-Translator: Boris Wesslowski <Boris@Wesslowski.com>\n"
-"X-Generator: Lokalize 23.04.0\n"
+"X-Generator: Lokalize 23.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ksaveioconfig.cpp:212
@@ -659,21 +659,6 @@ msgstr ""
 "Usar la configuración del proxy solo con las direcciones de la lista de "
 "Excepciones"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Esta configuración solo afecta a la navegación de red."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Nombre de usuario predeterminado:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Contraseña predeterminada:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -884,7 +869,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:20
 #, kde-format
 msgid "&Enable Web search keywords"
-msgstr "&Activar palabras clave de búsqueda en la Web"
+msgstr "&Activar palabras clave de búsqueda en la web"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:30
@@ -1019,21 +1004,19 @@ msgstr "Por omisión"
 #: webshortcuts/searchproviderdlg.cpp:52
 #, kde-format
 msgid "Modify Web Shortcut"
-msgstr "Modificar acceso rápido Web"
+msgstr "Modificar atajo web"
 
 #: webshortcuts/searchproviderdlg.cpp:60
 #, kde-format
 msgid "New Web Shortcut"
-msgstr "Nuevo acceso rápido Web"
+msgstr "Nuevo atajo web"
 
 #: webshortcuts/searchproviderdlg.cpp:121
 #, kde-format
 msgid ""
 "The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr ""
-"El acceso rápido «%1» ya está asignado a «%2». Por favor, elija uno "
-"diferente."
+msgstr "El atajo «%1» ya está asignado a «%2». Elija uno diferente."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -1047,7 +1030,7 @@ msgid ""
 "The following shortcuts are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Los siguientes accesos rápidos ya están asignados. Por favor, elija otros.\n"
+"Los siguientes atajos ya están asignados. Elija otros.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
@@ -1057,10 +1040,10 @@ msgid ""
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the shortcut."
 msgstr ""
-"La URL del acceso rápido no contiene un parámetro \\{...} para la consulta "
-"del usuario.\n"
+"La URL del atajo no contiene un parámetro \\{...} para la consulta del "
+"usuario.\n"
 "Esto significa que siempre se visitará la misma página, independientemente "
-"del texto escrito junto al acceso rápido."
+"del texto escrito junto al atajo."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1077,7 +1060,7 @@ msgstr "Introduzca aquí el nombre inteligible del proveedor de búsqueda."
 #: webshortcuts/searchproviderdlg_ui.ui:23
 #, kde-format
 msgid "Shortcut &name:"
-msgstr "&Nombre del acceso rápido:"
+msgstr "&Nombre del atajo:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1122,7 +1105,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:48
 #, kde-format
 msgid "Shortcut &URL:"
-msgstr "&URL del acceso rápido:"
+msgstr "&URL del atajo:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1146,9 +1129,9 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Los accesos rápidos introducidos aquí se pueden usar como un esquema de "
-"pseudo-URI en KDE. Por ejemplo, el acceso rápido <b>av</b> se puede usar "
-"como <b>av</b>:<b>mi búsqueda</b>\n"
+"Los atajos introducidos aquí se pueden usar como un esquema de pseudo-URI en "
+"KDE. Por ejemplo, el atajo <b>av</b> se puede usar como <b>av</b>:<b>mi "
+"búsqueda</b>\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
@@ -1160,14 +1143,14 @@ msgid ""
 "<html><head/><body><p>Enter the human-readable name of the web shortcut here."
 "</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Introduzca aquí el nombre comprensible del acceso "
-"rápido Web.</p></body></html>"
+"<html><head/><body><p>Introduzca aquí el nombre comprensible del atajo web.</"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
 #, kde-format
 msgid "&Shortcuts:"
-msgstr "&Accesos rápidos:"
+msgstr "&Atajos:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1187,6 +1170,15 @@ msgstr "&Juego de caracteres:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserte el parámetro de sustitución de la consulta"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Esta configuración solo afecta a la navegación de red."
+
+#~ msgid "Default user name:"
+#~ msgstr "Nombre de usuario predeterminado:"
+
+#~ msgid "Default password:"
+#~ msgstr "Contraseña predeterminada:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Política"

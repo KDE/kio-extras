@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-09-20 13:30+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -663,21 +663,6 @@ msgstr ""
 "Usa l'arranjament del servidor intermediari només per a les adreces de la "
 "llista d'excepcions"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Aquests paràmetres s'apliquen només a la navegació per la xarxa."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Nom d'usuari per defecte:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Contrasenya per defecte:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1194,6 +1179,15 @@ msgstr "Joc de &caràcters:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inseriu el text variable de la consulta"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Aquests paràmetres s'apliquen només a la navegació per la xarxa."
+
+#~ msgid "Default user name:"
+#~ msgstr "Nom d'usuari per defecte:"
+
+#~ msgid "Default password:"
+#~ msgstr "Contrasenya per defecte:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Política"

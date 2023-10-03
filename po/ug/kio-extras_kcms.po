@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2013-09-08 07:04+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -557,21 +557,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "بۇ تەڭشەكلەر تورنى كۆرۈشتىلا ئىشلىتىلىدۇ."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "كۆڭۈلدىكى ئىشلەتكۈچى ئاتى:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "كۆڭۈلدىكى ئىم:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1026,6 +1011,15 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "ئارىلاشما ھالەت"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "بۇ تەڭشەكلەر تورنى كۆرۈشتىلا ئىشلىتىلىدۇ."
+
+#~ msgid "Default user name:"
+#~ msgstr "كۆڭۈلدىكى ئىشلەتكۈچى ئاتى:"
+
+#~ msgid "Default password:"
+#~ msgstr "كۆڭۈلدىكى ئىم:"
 
 #~ msgid "&Policy"
 #~ msgstr "تۈزۈم(&P)"

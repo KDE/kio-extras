@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2007-09-02 13:06+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -691,21 +691,6 @@ msgstr "استفاده از پیشکار، فقط برای مدخلهای موج
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "استفاده از پیشکار، فقط برای مدخلهای موجود در این فهرست"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr ""
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "نام کاربر پیش‌فرض:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "اسم رمز پیش‌فرض:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1158,6 +1143,12 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "Default user name:"
+#~ msgstr "نام کاربر پیش‌فرض:"
+
+#~ msgid "Default password:"
+#~ msgstr "اسم رمز پیش‌فرض:"
 
 #~ msgid "&Policy"
 #~ msgstr "&سیاست‌"

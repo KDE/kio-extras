@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2002-11-04 09:22SAST\n"
 "Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -606,21 +606,6 @@ msgstr "Sebenzisa kuphela umntu onegunya kolu luhlu"
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Sebenzisa kuphela umntu onegunya kolu luhlu"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr ""
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Igama lomsebenzisi lokungagqibekanga:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Igama lokugqitha lokwendalo:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1063,6 +1048,12 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "Default user name:"
+#~ msgstr "Igama lomsebenzisi lokungagqibekanga:"
+
+#~ msgid "Default password:"
+#~ msgstr "Igama lokugqitha lokwendalo:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Inkqubo"

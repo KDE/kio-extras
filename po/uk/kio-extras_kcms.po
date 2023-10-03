@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-04-27 16:20+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -650,21 +650,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Використовувати проксі тільки для адрес зі списку винятків"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Ці параметри стосуються тільки навігації мережею."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Типове ім'я користувача:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Типовий пароль:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1177,6 +1162,15 @@ msgstr "&Набір символів:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Вставити замінник запиту"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Ці параметри стосуються тільки навігації мережею."
+
+#~ msgid "Default user name:"
+#~ msgstr "Типове ім'я користувача:"
+
+#~ msgid "Default password:"
+#~ msgstr "Типовий пароль:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Правила"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2010-12-17 20:57+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -651,21 +651,6 @@ msgstr "ใช้พร็อกซีกับรายการเหล่า
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "ใช้พร็อกซีกับรายการเหล่านี้เท่านั้น"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "การตั้งค่าเหล่านี้จะถูกปรับใช้กับการเรียกดูเครือข่ายเท่านั้น"
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "ผู้ใช้ปริยาย:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "รหัสผ่านปริยาย:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1120,6 +1105,15 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "โหมดอินเทอร์เลส"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "การตั้งค่าเหล่านี้จะถูกปรับใช้กับการเรียกดูเครือข่ายเท่านั้น"
+
+#~ msgid "Default user name:"
+#~ msgstr "ผู้ใช้ปริยาย:"
+
+#~ msgid "Default password:"
+#~ msgstr "รหัสผ่านปริยาย:"
 
 #~ msgid "&Policy"
 #~ msgstr "ข้&อกำหนด"

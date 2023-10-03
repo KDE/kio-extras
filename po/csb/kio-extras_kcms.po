@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2009-08-03 17:47+0200\n"
 "Last-Translator: Michôł Òstrowsczi <michol@linuxcsb.org>\n"
 "Language-Team: Kashubian <i18n-csb@linuxcsb.org>\n"
@@ -692,21 +692,6 @@ msgstr "Brëkùjë pòstrzédniczącegò serwera le dlô wpisënków z lëstë"
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Brëkùjë pòstrzédniczącegò serwera le dlô wpisënków z lëstë"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Ne ùstawë tikają sã le przezéraniô sécë."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Domëszlné miono brëkòwnika:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Domëszlnô parola:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1155,6 +1140,15 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Ne ùstawë tikają sã le przezéraniô sécë."
+
+#~ msgid "Default user name:"
+#~ msgstr "Domëszlné miono brëkòwnika:"
+
+#~ msgid "Default password:"
+#~ msgstr "Domëszlnô parola:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Pòlitika"

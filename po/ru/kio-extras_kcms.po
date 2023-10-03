@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-02-08 10:39+0300\n"
 "Last-Translator: Olesya Gerasimenko <translation-team@basealt.ru>\n"
 "Language-Team: Basealt Translation Team\n"
@@ -659,21 +659,6 @@ msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 "Использовать настройки прокси только для адресов из списка «Исключения»"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Эти параметры применяются только для обзора сети."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Имя пользователя по умолчанию:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Пароль по умолчанию:"
-
 # BUGME: plural forms --aspotashev
 #: trash/kcmtrash.cpp:140
 #, kde-format
@@ -1175,6 +1160,15 @@ msgstr "&Кодировка:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Вставить шаблон запроса"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Эти параметры применяются только для обзора сети."
+
+#~ msgid "Default user name:"
+#~ msgstr "Имя пользователя по умолчанию:"
+
+#~ msgid "Default password:"
+#~ msgstr "Пароль по умолчанию:"
 
 #~ msgid "&Policy"
 #~ msgstr "Пр&авило обработки"

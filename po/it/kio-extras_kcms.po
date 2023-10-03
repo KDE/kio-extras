@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-04-28 01:12+0200\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -649,21 +649,6 @@ msgstr ""
 "Usa le impostazioni dei proxy solo per gli indirizzi nell'elenco delle "
 "eccezioni"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Queste configurazioni si applicano solamente alla navigazione in rete."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Nome utente predefinito:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Password predefinita:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1173,6 +1158,16 @@ msgstr "&Codifica:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserisci segnaposto della ricerca"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr ""
+#~ "Queste configurazioni si applicano solamente alla navigazione in rete."
+
+#~ msgid "Default user name:"
+#~ msgstr "Nome utente predefinito:"
+
+#~ msgid "Default password:"
+#~ msgstr "Password predefinita:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Politica"

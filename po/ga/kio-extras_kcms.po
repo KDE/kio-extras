@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2004-12-14 15:11-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -663,22 +663,6 @@ msgstr ""
 "Úsáid socruithe an tseachfhreastalaí le haghaidh seoltaí sa liosta "
 "Eisceachtaí amháin"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr ""
-"Cuirfear na socruithe seo i bhfeidhm le linn bhrabhsáil an líonra amháin."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Ainm úsáideora réamhshocraithe:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Focal faire réamhshocraithe:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1137,6 +1121,16 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "Mód Crosfhite"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr ""
+#~ "Cuirfear na socruithe seo i bhfeidhm le linn bhrabhsáil an líonra amháin."
+
+#~ msgid "Default user name:"
+#~ msgstr "Ainm úsáideora réamhshocraithe:"
+
+#~ msgid "Default password:"
+#~ msgstr "Focal faire réamhshocraithe:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Polasaí"

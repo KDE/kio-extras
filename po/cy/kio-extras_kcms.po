@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2022-07-10 22:32+0100\n"
 "Last-Translator: KD at KGyfieithu <kyfieithu@dotmon.com>\n"
 "Language-Team: Cymraeg <cy@li.org>\n"
@@ -663,21 +663,6 @@ msgstr ""
 "Defnyddio gosodiadau dirprwy dim ond ar gyfer cyfeiriadau yn y rhestr "
 "Eithriadau"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Mae'r gosodiadau hyn yn cymhwyso dim ond i bori rhwydwaith."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Enw defnyddiwr rhagosodedig:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Cyfrinair rhagosodedig:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1193,6 +1178,15 @@ msgstr "&Charset:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Mewnbynnwch safleddaliwr holiad"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Mae'r gosodiadau hyn yn cymhwyso dim ond i bori rhwydwaith."
+
+#~ msgid "Default user name:"
+#~ msgstr "Enw defnyddiwr rhagosodedig:"
+
+#~ msgid "Default password:"
+#~ msgstr "Cyfrinair rhagosodedig:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Polisi"

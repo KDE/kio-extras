@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-06-24 12:31+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -654,21 +654,6 @@ msgstr ""
 "Usar a configuración do mandatario só para os enderezos na lista de "
 "excepcións."
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Estes parámetros só se aplican á navegación pola rede."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Nome predeterminado de persoa usuaria:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Contrasinal predeterminado:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1166,6 +1151,15 @@ msgstr "&Conxunto de caracteres:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Insire unha marca de posición de consulta."
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Estes parámetros só se aplican á navegación pola rede."
+
+#~ msgid "Default user name:"
+#~ msgstr "Nome predeterminado de persoa usuaria:"
+
+#~ msgid "Default password:"
+#~ msgstr "Contrasinal predeterminado:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Política"

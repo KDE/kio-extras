@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2017-05-16 06:50-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
@@ -616,21 +616,6 @@ msgstr "השתמש במתווך רק עבור הערכים שברשימה זו"
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "השתמש במתווך רק עבור הערכים שברשימה זו"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "הגדרות אלו חלות רק על גלישה ברשת."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "שם משתמש ברירת מחדל:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "ססמת ברירת מחדל:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1076,6 +1061,15 @@ msgstr ""
 #, fuzzy, kde-format
 msgid "Insert query placeholder"
 msgstr "מצב שזירה"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "הגדרות אלו חלות רק על גלישה ברשת."
+
+#~ msgid "Default user name:"
+#~ msgstr "שם משתמש ברירת מחדל:"
+
+#~ msgid "Default password:"
+#~ msgstr "ססמת ברירת מחדל:"
 
 #~ msgid "&Policy"
 #~ msgstr "מד&יניות"

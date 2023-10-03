@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2021-08-27 01:43+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -667,21 +667,6 @@ msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 "Naudoti įgaliotojo serverio nuostatas tik įrašams, esantiems išimčių sąraše"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Šios nuostatos taikomi tik tinklo naršymui."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Numatytas naudotojo vardas:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Numatytas slaptažodis:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1171,6 +1156,15 @@ msgstr "&Koduotė:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Šios nuostatos taikomi tik tinklo naršymui."
+
+#~ msgid "Default user name:"
+#~ msgstr "Numatytas naudotojo vardas:"
+
+#~ msgid "Default password:"
+#~ msgstr "Numatytas slaptažodis:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Taisyklė"

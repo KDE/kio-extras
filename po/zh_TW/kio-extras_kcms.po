@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-05-17 04:35+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
@@ -616,21 +616,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "只有在例外清單中的主機與 IP 才使用代理伺服器"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "這些設定只會套用到網路瀏覽。"
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "預設使用者名稱:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "預設密碼:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1099,6 +1084,15 @@ msgstr "字元集(&C)："
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入查詢佔位符"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "這些設定只會套用到網路瀏覽。"
+
+#~ msgid "Default user name:"
+#~ msgstr "預設使用者名稱:"
+
+#~ msgid "Default password:"
+#~ msgstr "預設密碼:"
 
 #~ msgid "&Policy"
 #~ msgstr "政策(&P)"

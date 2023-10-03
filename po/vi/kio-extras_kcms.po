@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-02-20 10:53+0100\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -632,21 +632,6 @@ msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 "Chỉ dùng các thiết lập uỷ nhiệm cho các địa chỉ trong danh sách \"Ngoại lệ\""
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Các thiết lập này chỉ áp dụng cho việc duyệt mạng."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Tên người dùng mặc định:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Mật khẩu mặc định:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1145,6 +1130,15 @@ msgstr "&Bộ mã tự:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Chèn phần giữ chỗ truy vấn"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Các thiết lập này chỉ áp dụng cho việc duyệt mạng."
+
+#~ msgid "Default user name:"
+#~ msgstr "Tên người dùng mặc định:"
+
+#~ msgid "Default password:"
+#~ msgstr "Mật khẩu mặc định:"
 
 #~ msgid "&Policy"
 #~ msgstr "Chính &sách"

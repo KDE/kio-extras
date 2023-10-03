@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2009-01-09 21:08-0800\n"
 "Last-Translator: Deepayan Sarkar <deepayan.sarkar@gmail.com>\n"
 "Language-Team: en_US <kde-translation@bengalinux.org>\n"
@@ -570,21 +570,6 @@ msgstr "শুধু এই তালিকাভুক্ত এন্ট্র
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "শুধু এই তালিকাভুক্ত এন্ট্রিগুলির জন্য প্রক্সি ব্যবহার করো"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr ""
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "ডিফল্ট ব্যবহারকারীর নাম:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "ডিফল্ট পাসওয়ার্ড:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 msgid " days"
@@ -1029,6 +1014,12 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "Default user name:"
+#~ msgstr "ডিফল্ট ব্যবহারকারীর নাম:"
+
+#~ msgid "Default password:"
+#~ msgstr "ডিফল্ট পাসওয়ার্ড:"
 
 #~ msgid "&Policy"
 #~ msgstr "&পলিসি"

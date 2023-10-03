@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-02-09 08:31\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -661,21 +661,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Выкарыстоўваць налады проксі толькі для адрасоў са спіса выключэнняў"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Гэтыя налады дзейнічаюць толькі пры аглядзе сеткі."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Прадвызначаны карыстальнік:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Прадвызначаны пароль:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1184,6 +1169,15 @@ msgstr "&Кадаванне:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Уставіць запаўняльнік запыту"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Гэтыя налады дзейнічаюць толькі пры аглядзе сеткі."
+
+#~ msgid "Default user name:"
+#~ msgstr "Прадвызначаны карыстальнік:"
+
+#~ msgid "Default password:"
+#~ msgstr "Прадвызначаны пароль:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Палітыка"

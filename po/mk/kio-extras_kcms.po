@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2009-06-22 11:48+0200\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -701,21 +701,6 @@ msgstr "Користи го проксито само за елементите 
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Користи го проксито само за елементите од оваа листа"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Овие поставувања се однесуваат само за мрежно прелистување."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Стандардно корисничко име:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Стандардна лозинка:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1170,6 +1155,15 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Овие поставувања се однесуваат само за мрежно прелистување."
+
+#~ msgid "Default user name:"
+#~ msgstr "Стандардно корисничко име:"
+
+#~ msgid "Default password:"
+#~ msgstr "Стандардна лозинка:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Политика"

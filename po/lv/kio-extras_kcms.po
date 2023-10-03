@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2019-12-03 17:51+0200\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -658,21 +658,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Izmantot starpniekservera iestatījumus tikai sarakstā esošajām adresēm"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Šie iestatījumi tiek lietoti tikai tīkla pārlūkošanai."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Noklusētā lietotāja vārds:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Noklusētā parole:"
-
 #: trash/kcmtrash.cpp:140
 #, fuzzy, kde-format
 #| msgid "1 day %2"
@@ -1125,6 +1110,15 @@ msgstr "&Rakstzīmju kopa:"
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "Rindpārlēces izvērse"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Šie iestatījumi tiek lietoti tikai tīkla pārlūkošanai."
+
+#~ msgid "Default user name:"
+#~ msgstr "Noklusētā lietotāja vārds:"
+
+#~ msgid "Default password:"
+#~ msgstr "Noklusētā parole:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Noteikumi"

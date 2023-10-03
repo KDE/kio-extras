@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2022-08-28 20:43-0700\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -675,21 +675,6 @@ msgstr "このリストにある場合だけプロキシを使う"
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "このリストにある場合だけプロキシを使う"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "これらの設定はネットワーク参照にのみ適用されます。"
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "デフォルトのユーザ名:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "デフォルトのパスワード:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1173,6 +1158,15 @@ msgstr "文字セット(&T):"
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "インターレースモード"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "これらの設定はネットワーク参照にのみ適用されます。"
+
+#~ msgid "Default user name:"
+#~ msgstr "デフォルトのユーザ名:"
+
+#~ msgid "Default password:"
+#~ msgstr "デフォルトのパスワード:"
 
 #~ msgid "&Policy"
 #~ msgstr "ポリシー(&P)"

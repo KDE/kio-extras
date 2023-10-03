@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2022-12-28 20:58+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -654,21 +654,6 @@ msgstr ""
 "Folosește configurări de proximitate numai pentru adrese din lista de "
 "excepții"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Aceste configurări se referă numai la răsfoirea rețelei."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Nume de utilizator implicit:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Parola implicită:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1139,6 +1124,15 @@ msgstr "Set de &caractere:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserează substituent pentru interogare"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Aceste configurări se referă numai la răsfoirea rețelei."
+
+#~ msgid "Default user name:"
+#~ msgstr "Nume de utilizator implicit:"
+
+#~ msgid "Default password:"
+#~ msgstr "Parola implicită:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Politică"

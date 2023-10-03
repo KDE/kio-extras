@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-05-09 19:53+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -642,21 +642,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Използване на прокси настройки само за адреси в списъка с изключения"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Тези настройки се отнасят само до браузването в мрежата."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Потребител по подразбиране:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Парола по подразбиране:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1170,6 +1155,15 @@ msgstr "&Кодировка:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Вмъкване на заместител на заявка"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Тези настройки се отнасят само до браузването в мрежата."
+
+#~ msgid "Default user name:"
+#~ msgstr "Потребител по подразбиране:"
+
+#~ msgid "Default password:"
+#~ msgstr "Парола по подразбиране:"
 
 #~ msgid "&Policy"
 #~ msgstr "Пр&авила"

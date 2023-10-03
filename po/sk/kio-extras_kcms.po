@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-06-03 21:00+0200\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
@@ -640,21 +640,6 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Použiť nastavenie proxy iba pre adresy v zozname Výnimiek"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Tieto nastavenia sa vzťahujú len na prehliadanie siete."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Predvolené meno užívateľa:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Štandardné heslo:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1153,6 +1138,15 @@ msgstr "Z&naková sada:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Vložiť zástupný znak dotazu"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Tieto nastavenia sa vzťahujú len na prehliadanie siete."
+
+#~ msgid "Default user name:"
+#~ msgstr "Predvolené meno užívateľa:"
+
+#~ msgid "Default password:"
+#~ msgstr "Štandardné heslo:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Politika"

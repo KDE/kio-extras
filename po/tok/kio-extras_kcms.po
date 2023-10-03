@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ante-toki-pi-ilo-kde\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2022-06-20 03:30+0000\n"
 "Last-Translator: Weblate Admin <admin@example.com>\n"
 "Language-Team: Toki Pona <http://weblate.blackquill.cc/projects/ante-toki-pi-"
@@ -565,21 +565,6 @@ msgstr "o kepeken e lawa ni tawa nimi lon kulupu ante taso."
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "o kepeken e lawa ni tawa nimi lon kulupu ante taso."
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "lawa ni li tawa alasa linluwi taso."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "nimi jan nanpa wan:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "nimi len nanpa wan:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1032,6 +1017,15 @@ msgstr "kulupu &sitelen:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "o sitelen e nimi poki"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "lawa ni li tawa alasa linluwi taso."
+
+#~ msgid "Default user name:"
+#~ msgstr "nimi jan nanpa wan:"
+
+#~ msgid "Default password:"
+#~ msgstr "nimi len nanpa wan:"
 
 #~ msgid "&Policy"
 #~ msgstr "&lawa"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-02 01:42+0000\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
 "PO-Revision-Date: 2023-04-27 14:42+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -653,21 +653,6 @@ msgstr ""
 "Proxy-instellingen alleen gebruiken voor adressen uit deze "
 "uitzonderingenlijst"
 
-#: smb/smbrodlg.cpp:27
-#, kde-format
-msgid "These settings apply to network browsing only."
-msgstr "Deze instellingen zijn allleen van toepassing op netwerkbladeren."
-
-#: smb/smbrodlg.cpp:31
-#, kde-format
-msgid "Default user name:"
-msgstr "Standaard gebruikersnaam:"
-
-#: smb/smbrodlg.cpp:39
-#, kde-format
-msgid "Default password:"
-msgstr "Standaard wachtwoord:"
-
 #: trash/kcmtrash.cpp:140
 #, kde-format
 msgid " days"
@@ -1184,6 +1169,15 @@ msgstr "Te&kenset:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Plaatshouder voor zoekopdracht invoegen"
+
+#~ msgid "These settings apply to network browsing only."
+#~ msgstr "Deze instellingen zijn allleen van toepassing op netwerkbladeren."
+
+#~ msgid "Default user name:"
+#~ msgstr "Standaard gebruikersnaam:"
+
+#~ msgid "Default password:"
+#~ msgstr "Standaard wachtwoord:"
 
 #~ msgid "&Policy"
 #~ msgstr "&Beleid"
