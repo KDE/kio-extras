@@ -5,6 +5,36 @@
             "ExtraNames": [
                 "Application"
             ],
+            "ExtraNames[bg]": [
+                "Приложение"
+            ],
+            "ExtraNames[ca@valencia]": [
+                "Aplicació"
+            ],
+            "ExtraNames[ca]": [
+                "Aplicació"
+            ],
+            "ExtraNames[eo]": [
+                "Aplikaĵo"
+            ],
+            "ExtraNames[es]": [
+                "Aplicación"
+            ],
+            "ExtraNames[nl]": [
+                "Toepassing"
+            ],
+            "ExtraNames[sl]": [
+                "Apilkacija"
+            ],
+            "ExtraNames[tr]": [
+                "Uygulama"
+            ],
+            "ExtraNames[uk]": [
+                "Програма"
+            ],
+            "ExtraNames[x-test]": [
+                "xxApplicationxx"
+            ],
             "ExtraTypes": [
                 "QString"
             ],
