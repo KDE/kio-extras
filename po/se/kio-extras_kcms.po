@@ -954,10 +954,3 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
-
-#~ msgid "Default user name:"
-#~ msgstr "Standárda geavaheaddjinamma:"
-
-#, fuzzy
-#~ msgid "Default password:"
-#~ msgstr "Standárda beassansátni:"

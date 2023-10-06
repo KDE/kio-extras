@@ -1112,12 +1112,3 @@ msgstr "&Tegnsett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sett inn spørringsplassholder"
-
-#~ msgid "These settings apply to network browsing only."
-#~ msgstr "Disse innstillingene gjelder bare for nettlesing."
-
-#~ msgid "Default user name:"
-#~ msgstr "Standard brukernavn:"
-
-#~ msgid "Default password:"
-#~ msgstr "Standard passord:"
