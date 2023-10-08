@@ -20,8 +20,17 @@
             "ExtraNames[es]": [
                 "Aplicación"
             ],
+            "ExtraNames[eu]": [
+                "Aplikazioa"
+            ],
             "ExtraNames[fr]": [
                 "Application"
+            ],
+            "ExtraNames[gl]": [
+                "Aplicación"
+            ],
+            "ExtraNames[it]": [
+                "Applicazione"
             ],
             "ExtraNames[nl]": [
                 "Toepassing"
