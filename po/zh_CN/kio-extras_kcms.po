@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2023-09-16 10:06\n"
+"PO-Revision-Date: 2023-10-10 14:25\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -1080,12 +1080,3 @@ msgstr "字符集(&C)："
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入搜索占位符"
-
-#~ msgid "These settings apply to network browsing only."
-#~ msgstr "这些设置仅在浏览网上邻居时有效。"
-
-#~ msgid "Default user name:"
-#~ msgstr "默认用户名："
-
-#~ msgid "Default password:"
-#~ msgstr "默认密码："

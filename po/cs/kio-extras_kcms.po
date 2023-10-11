@@ -1105,12 +1105,3 @@ msgstr "&Znaková sada:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Zadejte zástupný znak dotazu"
-
-#~ msgid "These settings apply to network browsing only."
-#~ msgstr "Tato nastavení jsou použita pouze pro prohlížení sítě."
-
-#~ msgid "Default user name:"
-#~ msgstr "Výchozí uživatelské jméno:"
-
-#~ msgid "Default password:"
-#~ msgstr "Výchozí heslo:"
