@@ -58,7 +58,7 @@ msgstr "Acceso por SFTP"
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr ""
-"Use o campo de entrada do nome de usuario para responder esta pregunta."
+"Use o campo de entrada do nome de usuaria para responder esta pregunta."
 
 #: kio_sftp.cpp:365
 #, kde-format
@@ -109,7 +109,7 @@ msgstr "Non foi posíbel definir o porto."
 #: kio_sftp.cpp:592
 #, kde-format
 msgid "Could not set username."
-msgstr "Non foi posíbel definir o nome de usuario."
+msgstr "Non foi posíbel definir o nome de usuaria."
 
 #: kio_sftp.cpp:599
 #, kde-format
@@ -216,12 +216,12 @@ msgstr ""
 #: kio_sftp.cpp:855
 #, kde-format
 msgid "Please enter your username and password."
-msgstr "Insira o seu nome de usuario e o contrasinal."
+msgstr "Insira o seu nome de usuaria e o contrasinal."
 
 #: kio_sftp.cpp:866
 #, kde-format
 msgid "Incorrect username or password"
-msgstr "O nome de usuario ou o contrasinal é incorrecto"
+msgstr "O nome de usuaria ou o contrasinal é incorrecto"
 
 #: kio_sftp.cpp:915
 #, kde-format
