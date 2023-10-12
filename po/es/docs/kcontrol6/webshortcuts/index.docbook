@@ -9,7 +9,7 @@
 <article id="ebrowsing" lang="&language;">
 <articleinfo>
 <title
->Accesos rápidos de web</title>
+>Atajos web</title>
 <authorgroup>
 <author
 >&Krishna.Tateneni; &Krishna.Tateneni.mail;</author>
@@ -73,7 +73,7 @@
 <keyword
 >navegación mejorada</keyword>
 <keyword
->Accesos rápidos de teclado para la web</keyword>
+>Atajos web</keyword>
 <keyword
 >navegando</keyword>
 </keywordset>
@@ -82,7 +82,7 @@
 <sect1 id="ebrowse">
 
 <title
->Accesos rápidos de web</title>
+>Atajos web</title>
 
 <sect2 id="ebrowse-intro">
 
@@ -91,13 +91,13 @@
 
 <para
 >&konqueror; ofrece algunas propiedades para aumentar su experiencia de navegación. Una de esas propiedades son los  <emphasis
->Accesos rápidos de Web</emphasis
+>Atajos web</emphasis
 >.</para>
 
 <para
 >Puede que haya advertido que &kde; es muy amigable para internet. Por ejemplo, puede pulsar sobre el elemento de menú <guimenuitem
 >Ejecutar</guimenuitem
-> o introducir el acceso rápido de teclado asignado a esa orden (<keycombo action="simul"
+> o introducir el atajo de teclado asignado a esa orden (<keycombo action="simul"
 ><keycap
 >&Alt;</keycap
 ><keycap
@@ -112,11 +112,11 @@
 ></para>
 
 <para
->Los accesos rápidos web, por otra parte, le permiten utilizar nuevs pseudo esquemas de &URL;, o accesos rápidos, que básicamente le permiten <emphasis
+>Los atajos web, por otra parte, le permiten utilizar nuevos seudoesquemas de &URL;, o atajos, que básicamente le permiten <emphasis
 >parametrizar</emphasis
-> &URI;s de uso frecuente. Por ejemplo, si a usted le gusta el motor de búsqueda de Google, puede configurar KDE de modo que un pseudo esquema &URL; como <emphasis
+> las &URI; de uso frecuente. Por ejemplo, si le gusta el motor de búsqueda de Google, puede configurar KDE de modo que un seudoesquema de &URL;, como <emphasis
 >gg</emphasis
-> genere una búsqueda en Google. De este modo, introduciendo <userinput
+>, genere una búsqueda en Google. De este modo, si introduce <userinput
 >gg:<replaceable
 >mi consulta</replaceable
 ></userinput
@@ -134,7 +134,7 @@
 ></note>
 
 <para
->Puede utilizar accesos rápidos de web, donde normalmente usaría &URI;s. Los accesos rápidos para diversos motores de búsqueda deberían estar configurados ya en su sistema, pero usted puede añadir nuevas palabras clave, y cambiar o suprimir algunas existentes en este modulo.</para>
+>Puede utilizar atajos web, donde normalmente usaría una &URI;. Los atajos para diversos motores de búsqueda deberían estar configurados ya en su sistema, aunque puede añadir nuevas palabras clave y cambiar o borrar algunas existentes en este modulo.</para>
 
 </sect2>
 
@@ -144,17 +144,17 @@
 >Palabras clave de búsqueda web</title>
 
 <para
->Los nombres descriptivos de los accesos rápidos de web definidos se muestran en la lista. Como con otras listas en &kde; puede pulsar sobre la cabecera de una columna para cambiar el orden entre ascendente y descendente y también puede modificar el tamaño de las columnas.</para>
+>Los nombres descriptivos de los atajos web definidos se muestran en la lista. Como en otras listas de &kde;, puede pulsar sobre la cabecera de una columna para cambiar el orden entre ascendente y descendente; también puede modificar el tamaño de las columnas.</para>
 
 <para
 >Tiene que marcar la opción <guilabel
 >Activar palabras clave de búsqueda web</guilabel
-> situada en la parte inferior de la lista para activar dicha característica. Utilice los botones de la derecha para crear, modificar o borrar accesos rápidos.</para>
+> situada en la parte inferior de la lista para activar dicha característica. Utilice los botones de la derecha para crear, modificar o borrar atajos.</para>
 
 <para
 >Si está seleccionada la opción <guilabel
 >Usar solo palabras clave preferidas</guilabel
->, solo las palabras clave marcadas como preferidas en la segunda columna de la lista se usarán en los lugares en los que solo se pueden mostrar unos cuantos accesos rápidos a la vez. </para>
+>, solo las palabras clave marcadas como preferidas en la segunda columna de la lista se usarán en los lugares en los que solo se pueden mostrar unos cuantos atajos a la vez. </para>
  
 <para
 >Bajo la lista verá dos opciones adicionales:</para>
@@ -186,35 +186,35 @@
 <para
 >Si pulsa dos veces sobre una entrada en particular en la lista de los proveedores de búsquedas definidos o pulsa el botón <guibutton
 >Cambiar...</guibutton
->, los detalles de esa entrada se muestran en un diálogo emergente. Además de la descripción para el elemento, puede ver la &URI; utilizada, así como el acceso rápido que puede introducir en cualquier sitio de &kde; donde se espera una &URI;. Un proveedor de búsquedas en particular puede tener varios accesos rápidos, separados por una coma.</para>
+>, los detalles de esa entrada se muestran en un diálogo emergente. Además de la descripción para el elemento, puede ver la &URI; utilizada, así como el atajo que puede introducir en cualquier sitio de &kde; donde se espera una &URI;. Un proveedor de búsquedas en particular puede tener varios atajos, separados por una coma.</para>
 
 <para
->Los cuadros de texto se utilizan no solo para mostrar información acerca de un elemento en la lista de accesos rápidos de web, sino también para modificar o añadir elementos nuevos.</para>
+>Los cuadros de texto se utilizan no solo para mostrar información acerca de un elemento en la lista de atajos web, sino también para modificar o añadir elementos nuevos.</para>
 
 <para
->Puede cambiar los contenidos del cuadro de texto<guilabel
->URL acceso rápido:</guilabel
-> o del cuadro de texto <guilabel
->Accesos rápidos:</guilabel
+>Puede cambiar el contenido del cuadro <guilabel
+>URL del atajo:</guilabel
+> o del cuadro <guilabel
+>Atajos:</guilabel
 >. Pulse <guibutton
 >Aceptar</guibutton
-> para guardar sus cambios o <guibutton
+> para guardar los cambios o <guibutton
 >Cancelar</guibutton
-> para salir del diálogo sin cambios.</para>
+> para salir del diálogo sin hacer modificaciones.</para>
 
 <para
->Si examina los contenidos del cuadro de texto <guilabel
->URL de acceso rápido:</guilabel
->, encontrará que la mayor parte de las entradas, si no todas, tiene una <option
+>Si examina los contenidos del cuadro <guilabel
+>URL del atajo:</guilabel
+>, encontrará que la mayor parte de las entradas, si no todas, tienen una <option
 >\{@}</option
->. Esta secuencia de cuatro caracteres actúa como un parámetro, que indica que se pueden reemplazar por cualquier cosa que usted introduzca después de los dos puntos que están entre el acceso rápido y su parámetro. Para añadir esta variable a una &URL; de acceso rápido, pulse el botón situado a la derecha del cuadro de texto. Vamos a ver unos ejemplos para aclarar esta idea.</para>
+>. Esta secuencia de cuatro caracteres actúa como un parámetro, que indica que se pueden reemplazar por cualquier cosa que introduzca después de los dos puntos que están entre el atajo y su parámetro. Para añadir esta variable a una &URL; de atajo, pulse el botón situado a la derecha del cuadro de texto. Vamos a ver unos ejemplos para aclarar esta idea.</para>
 
 <para
 >Supongamos que la &URI; es <userinput
 >https://www.google.com/search?q=\{@}</userinput
->, y que <userinput
+> y que <userinput
 >gg</userinput
-> es el acceso rápido a dicha &URI;. Entonces, introducir <userinput
+> es el atajo para dicha &URI;. En tal caso, introducir <userinput
 >gg:<replaceable
 >alpha</replaceable
 ></userinput
@@ -231,16 +231,16 @@
 > de la &URI; de búsqueda es modificada, el resto se supone que ya está codificada adecuadamente como &URL; y se deja tal cual.</para>
 
 <para
->También puede tener accesos rápidos sin parámetros. Suponga que la &URI; fuera <emphasis
+>También puede tener atajos sin parámetros. Suponga que la &URI; fuera <emphasis
 >file:/home/me/mydocs/calligra/words</emphasis
-> y el acceso rápido <emphasis
+> y el atajo <emphasis
 >mykword</emphasis
 >. Entonces, escribir <userinput
 >mykword:</userinput
-> es lo mismo que introducir la &URI; completa. Tenga en cuenta que no hay nada después de los dos puntos al escribir el acceso rápido, pero los dos puntos son necesarios para que el acceso rápido sea reconocido como tal.</para>
+> es lo mismo que introducir la &URI; completa. Tenga en cuenta que no hay nada después de los dos puntos al escribir el atajo, pero los dos puntos son necesarios para que el atajo sea reconocido como tal.</para>
 
 <para
->Por ahora, habrá comprendido que aunque estos accesos rápidos se denominan accesos rápidos de web, en realidad son accesos a &URI;s parametrizadas, que pueden apuntar no solo a sitios web como motores de búsqueda sino también a cualquier cosa a la que se pueda apuntar con una &URI;. Los accesos rápidos de web son una funcionalidad muy potente de la navegación en &kde;.</para>
+>Por ahora, habrá comprendido que aunque estos atajos se denominan atajos web, en realidad son atajos para &URI; con parámetros, que pueden apuntar no solo a sitios web (como motores de búsqueda) sino también a cualquier cosa a la que se pueda apuntar con una &URI;. Los atajos web son una funcionalidad muy potente de la navegación en &kde;.</para>
 
 </sect2>
 
