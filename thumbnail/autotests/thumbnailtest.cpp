@@ -38,6 +38,10 @@ private Q_SLOTS:
         // ignoring embedded thumbnail as it is too small
         QTest::addRow("jpg_embedded_thumbnail2") << "castle.jpg"
                                                  << "castle_thumb_256.png" << 2.0;
+
+        // image using 4 colors table
+        QTest::addRow("Screen_color_test_Amiga_4colors") << "Screen_color_test_Amiga_4colors.png"
+                                                         << "Screen_color_test_Amiga_4colors_converted.png" << 2.0;
     }
 
     void testThumbnail()

@@ -270,13 +270,20 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         }
     }
 
-    scaleDownImage(img, m_width, m_height);
-
     if (img.isNull()) {
         return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Failed to create a thumbnail."));
     }
 
+    // image quality and size corrections
+    scaleDownImage(img, m_width, m_height);
+
     convertToStandardRgb(img);
+
+    if (img.colorCount() > 0) {
+        // images using indexed color format, are not loaded properly by QImage ctor using in shm code path
+        // convert the format to regular RGB
+        img = img.convertToFormat(img.hasAlphaChannel() ? QImage::Format_ARGB32 : QImage::Format_RGB32);
+    }
 
     if (direct) {
         // If thumbnail was called directly from Konqueror, then the image needs to be raw
@@ -312,9 +319,6 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         void *shmaddr = shmat(shmid.toInt(), nullptr, 0);
         if (shmaddr == (void *)-1) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Failed to attach to shared memory segment %1", shmid));
-        }
-        if (img.format() != QImage::Format_ARGB32) { // KIO::PreviewJob and this code below completely ignores colortable :-/,
-            img = img.convertToFormat(QImage::Format_ARGB32); //  so make sure there is none
         }
         struct shmid_ds shmStat;
         if (shmctl(shmid.toInt(), IPC_STAT, &shmStat) == -1 || shmStat.shm_segsz < (uint)img.sizeInBytes()) {

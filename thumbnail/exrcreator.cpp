@@ -65,9 +65,6 @@ KIO::ThumbnailResult EXRCreator::create(const KIO::ThumbnailRequest &request)
         if (!img.load(request.url().toLocalFile())) {
             return KIO::ThumbnailResult::fail();
         }
-        if (img.depth() != 32) {
-            img = img.convertToFormat(QImage::Format_RGB32);
-        }
         return KIO::ThumbnailResult::pass(img);
     } else {
         return KIO::ThumbnailResult::fail();

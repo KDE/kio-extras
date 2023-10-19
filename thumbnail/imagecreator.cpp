@@ -90,9 +90,6 @@ KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
 
     QImage img;
     ir.read(&img);
-    if (!img.isNull() && img.depth() != 32) {
-        img = img.convertToFormat(img.hasAlphaChannel() ? QImage::Format_ARGB32 : QImage::Format_RGB32);
-    }
 
     if (!img.isNull()) {
         return KIO::ThumbnailResult::pass(img);
