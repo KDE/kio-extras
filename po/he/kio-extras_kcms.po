@@ -27,7 +27,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 3.9.6\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
+"n % 10 == 0) ? 2 : 3));\n"
 
 #: ksaveioconfig.cpp:212
 #, kde-format
@@ -88,7 +89,7 @@ msgid "Timeout Values"
 msgstr "ערכי זמנים מוקצבים"
 
 #: netpref/netpref.cpp:32
-#, kde-format
+#, fuzzy, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
 "connection is very slow. The maximum allowed value is 1 second."
@@ -101,14 +102,18 @@ msgstr[0] ""
 msgstr[1] ""
 "כאן באפשרותך להגדיר ערכי זמנים מוקצבים. ייתכן שתרצה להתאימם אם החיבור שלך "
 "מאוד אטי. הערך המרבי המותר הוא %1 שניות."
+msgstr[2] ""
+msgstr[3] ""
 
 #: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
 #: netpref/netpref.cpp:63
-#, kde-format
+#, fuzzy, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " שניה"
 msgstr[1] " שניות"
+msgstr[2] ""
+msgstr[3] ""
 
 #: netpref/netpref.cpp:47
 #, kde-format
@@ -157,6 +162,8 @@ msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
 #: netpref/netpref.cpp:92
 #, kde-format
@@ -655,11 +662,13 @@ msgid ""
 msgstr ""
 
 #: trash/kcmtrash.cpp:258
-#, kde-format
+#, fuzzy, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] "יום "
 msgstr[1] " ימים"
+msgstr[2] ""
+msgstr[3] ""
 
 #: trash/kcmtrash.cpp:260
 #, kde-kuit-format
