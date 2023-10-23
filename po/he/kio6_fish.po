@@ -17,26 +17,26 @@ msgstr ""
 "Project-Id-Version: kio5_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-11 02:01+0000\n"
-"PO-Revision-Date: 2017-05-16 07:03-0400\n"
+"PO-Revision-Date: 2023-10-22 23:38+0300\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: fish.cpp:322
 #, kde-format
 msgid "Connecting..."
-msgstr "מתחבר..."
+msgstr "מתבצעת התחברות…"
 
 #: fish.cpp:656
 #, kde-format
 msgid "Initiating protocol..."
-msgstr "מאתחל את הפרוטוקול..."
+msgstr "הפרוטקול מופעל…"
 
 #: fish.cpp:693
 #, kde-format
@@ -52,13 +52,13 @@ msgstr "אימות SSH"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "כן"
 
 #: fish.cpp:732 fish.cpp:747
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "לא"
 
 #: fish.cpp:830
 #, kde-format

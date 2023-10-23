@@ -17,26 +17,19 @@ msgstr ""
 "Project-Id-Version: kio5_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-11 02:01+0000\n"
-"PO-Revision-Date: 2017-05-16 07:03-0400\n"
+"PO-Revision-Date: 2023-10-22 23:49+0300\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: kio_man.cpp:457
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "No man page matching to %1 found.<br /><br />Check that you have not "
-#| "mistyped the name of the page that you want.<br />Check that you have "
-#| "typed the name using the correct upper and lower case characters.<br />If "
-#| "everything looks correct, then you may need to improve the search path "
-#| "for man pages; either using the environment variable MANPATH or using a "
-#| "matching file in the /etc directory."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
@@ -46,10 +39,11 @@ msgid ""
 "envar> environment variable or a configuration file in the <filename>/etc</"
 "filename> directory."
 msgstr ""
-"לא נמצא דף הוראות המתאים ל־ %1. <br /> <br /> בדוק ששם הדף שביקשת אינו שגוי."
-"<br />שים לב להבדל בין אותיות רגילות לרישיות.<br />אם הכל נראה תקין, כנראה "
-"שיש  להגדיר נתיב חיפוש טוב יותר לדפי ההוראות, בין אם על ידי שינוי משתנה הסביבה "
-"MANPATH או הקובץ המתאים בתיקייה ‎‎/etc‏.<br />"
+"לא נמצא עמוד ספרוני הדרכה שעונה על <resource>%1</resource>.<nl/><nl/>נא "
+"לבדוק שלא טעית בהקלדת שם העמוד ולשים לב ששמות עמודי ספרוני הדרכה הם תלויי "
+"רישיות.<nl/><nl/>אם השם נכון, יכול להיות שצריך להרחיב את נתיב החיפוש אחר "
+"עמודי ספרוני הדרכה, או באמצעות משתנה הסביבה <envar>MANPATH</envar> או "
+"באמצעות קובץ הגדרות בתיקיית <filename>‎/etc</filename>."
 
 #: kio_man.cpp:571
 #, kde-kuit-format
@@ -58,35 +52,35 @@ msgid ""
 "The specified man page references another page <filename>%1</filename>,<nl/"
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
+"ספרון ההדרכה שצוין משתמש בסימוכין מעמוד אחר<filename>%1</filename>,<nl/>אך "
+"עמוד הסימוכין <filename>%2</filename> לא נמצא."
 
 #: kio_man.cpp:588
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
-msgstr ""
+msgstr "לא ניתן לקרוא את עמוד ספרון ההדרכה <filename>%1</filename>."
 
 #: kio_man.cpp:597
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
-msgstr ""
+msgstr "לא ניתן להמיר את עמוד ספרון ההדרכה <filename>%1</filename>."
 
 #: kio_man.cpp:659
-#, fuzzy, kde-format
-#| msgid "<h1>KDE Man Viewer Error</h1>"
+#, kde-format
 msgid "Manual Page Viewer Error"
-msgstr "<h1>שגיאה של מציג דפי ההוראות של KDE</h1>"
+msgstr "שגיאת מציג עמודי ספרוני הדרכה"
 
 #: kio_man.cpp:672
-#, fuzzy, kde-format
-#| msgid "There is more than one matching man page."
+#, kde-format
 msgid "There is more than one matching man page:"
-msgstr "יותר מדף הוראות אחד מתאים."
+msgstr "יש יותר מעמוד ספרון הדרכה אחד שמתאים:"
 
 #: kio_man.cpp:672
 #, kde-format
 msgid "Multiple Manual Pages"
-msgstr ""
+msgstr "מגוון עמודי ספרון הדרכה"
 
 #: kio_man.cpp:685
 #, kde-format
@@ -99,16 +93,14 @@ msgstr ""
 "להיות מיושן. במקרה של ספק, עדיף לבדוק את הגירסה האנגלית."
 
 #: kio_man.cpp:753
-#, fuzzy, kde-format
-#| msgid "Header files"
+#, kde-format
 msgid "Header Files"
-msgstr "קבצי כותרת"
+msgstr "קובצי כותרת"
 
 #: kio_man.cpp:755
-#, fuzzy, kde-format
-#| msgid "Header files (POSIX)"
+#, kde-format
 msgid "Header Files (POSIX)"
-msgstr "קבצי כותרת (POSIX)"
+msgstr "קובצי כותרת (POSIX)"
 
 #: kio_man.cpp:757
 #, kde-format
@@ -168,7 +160,7 @@ msgstr "ניהול המערכת"
 #: kio_man.cpp:780
 #, kde-format
 msgid "Kernel"
-msgstr "גרעין"
+msgstr "ליבה"
 
 #: kio_man.cpp:782
 #, kde-format
@@ -181,47 +173,40 @@ msgid "New"
 msgstr "חדש"
 
 #: kio_man.cpp:812
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Main Manual Page Index"
-msgstr "אינדקס דפי ההוראות של Unix"
+msgstr "מפתח עמודי ספרון הדרכה ראשי"
 
 #: kio_man.cpp:837
 #, kde-format
 msgid "Section %1"
-msgstr "פרק %1"
+msgstr "סעיף %1"
 
 #: kio_man.cpp:1086
-#, fuzzy, kde-format
-#| msgid "Index for Section %1: %2"
+#, kde-format
 msgid "Index for section %1: %2"
-msgstr "תוכן העניינים לפרק %1: %2"
+msgstr "מפתח לסעיף %1: %2"
 
 #: kio_man.cpp:1086
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Manual Page Index"
-msgstr "אינדקס דפי ההוראות של Unix"
+msgstr "מפתח עמוד ספרון הדרכה"
 
 #: kio_man.cpp:1098
 #, kde-format
 msgid "Generating Index"
-msgstr "יוצר אינדקס"
+msgstr "מפתח נוצר"
 
 #: kio_man.cpp:1352
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "Could not find the sgml2roff program on your system. Please install it, "
-#| "if necessary, and extend the search path by adjusting the environment "
-#| "variable PATH before starting KDE."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Could not find the <command>%1</command> program on your system. Please "
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
-"אין אפשרות למצוא את התוכנית sgml2roff במערכת שלך. אם יש צורך, התקן אותה "
-"והרחב את נתיב החיפוש על ידי התאמת מישתנה הסביבה PATH לפני הפעלת KDE."
+"לא ניתן למצוא את התוכנית <command>%1</command> במערכת שלך. נא להתקין אותה "
+"במידת הצורך ולוודא שאפשר למצוא אותה באמצעות משתנה הסביבה <envar>PATH</envar>."
 
 #~ msgid "Open of %1 failed."
 #~ msgstr "פתיחת %1 נכשלה."

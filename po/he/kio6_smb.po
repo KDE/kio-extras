@@ -19,16 +19,16 @@ msgstr ""
 "Project-Id-Version: kio5_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2017-05-16 07:03-0400\n"
+"PO-Revision-Date: 2023-10-23 00:10+0300\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <kde-l10n-he@kde.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
@@ -45,11 +45,20 @@ msgid ""
 "attempted using empty username and password. Depending on server "
 "configuration non-empty usernames may be required</para>"
 msgstr ""
+"<para>יש מגוון אפשרויות לאימות מול שרתי SMB.</"
+"para><para><placeholder>username</placeholder>: בעת אימות מול גורם בתוך הרשת "
+"הביתית שם המשתמש בשרת אמור להספיק</para><para><placeholder>username@domain."
+"com</placeholder>: שמות כניסה של חברות מודרניות נראים כמו כתובות דוא״ל</"
+"para><para><placeholder>DOMAIN\\username</placeholder>: לרשתות עתיקות בחברות "
+"או קבוצות עבודה יכול להיות שצריך להוסיף את שם התחום ב־NetBIOS (טרום Windows "
+"2000)</para><para><placeholder>anonymous</placeholder>: אפשר לנסות להיכנס "
+"באופן אלמוני באמצעות שם משתמש וסיסמה ריקים. כתלות בהגדרות השרת שלך יכול "
+"להיות ששם המשתמש צריך לא יכול להישאר ריק</para>"
 
 #: kio_smb_auth.cpp:51
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
-msgstr "<qt>הזן מידע אימות עבור <b>%1</b></qt>"
+msgstr "<qt>נא למלא פרטי אימות מול <b>%1</b></qt>"
 
 #: kio_smb_auth.cpp:54
 #, kde-format
@@ -58,7 +67,7 @@ msgid ""
 "Server = %1\n"
 "Share = %2"
 msgstr ""
-"הזן מידע אימות עבור:\n"
+"נא למלא פרטי אימות עבור:\n"
 "שרת = %1\n"
 "שיתוף = %2"
 
@@ -78,22 +87,22 @@ msgid ""
 "an enabled firewall."
 msgstr ""
 "לא ניתן למצוא קבוצות עבודה ברשת המקומית שלך. דבר זה יכול להיגרם בגלל חומת־אש "
-"פתוחה."
+"פעילה."
 
 #: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
-msgstr "אין מדיה בכונן בשביל %1"
+msgstr "אין מדיה בהתקן בשביל %1"
 
 #: kio_smb_browse.cpp:284
 #, kde-format
 msgid "Could not connect to host for %1"
-msgstr "אין אפשרות להתחבר לשרת עבור %1"
+msgstr "לא ניתן להתחבר למארח עבור %1"
 
 #: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
-msgstr "שגיאה במהלך התחברות לשרת האחראי ל־%1"
+msgstr "שגיאה בהתחברות לשרת שאחראי על %1"
 
 #: kio_smb_browse.cpp:302
 #, kde-format
@@ -101,10 +110,9 @@ msgid "Share could not be found on given server"
 msgstr "אין אפשרות למצוא את השיתוף בשרת הנתון"
 
 #: kio_smb_browse.cpp:304
-#, fuzzy, kde-format
-#| msgid "BAD File descriptor"
+#, kde-format
 msgid "Bad file descriptor"
-msgstr "מתאר קובץ פגום"
+msgstr "מגשר קובץ פגום"
 
 #: kio_smb_browse.cpp:312
 #, kde-format
@@ -113,8 +121,8 @@ msgid ""
 "network is setup without any name conflicts between names used by Windows "
 "and by UNIX name resolution."
 msgstr ""
-"אין אפשרות לפענח את השם הנתון לשרת מסויים. אנא בדוק שהרשת שלך מוגדרת ללא "
-"התנגשויות שמות בשימוש על ידי מערכות Windows ו־UNIX."
+"אין אפשרות לפענח את השם הנתון לשרת מסוים. נא לבדוק שהרשת שלך מוגדרת ללא "
+"סתירות בשמות שבשימוש על ידי מערכות פתרון השמות של Windows ויוניקס."
 
 #: kio_smb_browse.cpp:321
 #, kde-format
@@ -122,7 +130,7 @@ msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
 "failure). %1 is an ip address or hostname"
 msgid "%1: Host unreachable"
-msgstr ""
+msgstr "%1: מארח לא נגיש"
 
 #: kio_smb_browse.cpp:325
 #, kde-format
@@ -135,23 +143,22 @@ msgid ""
 "not post it if you are unsure about that - you can send it privately to the "
 "developers if they ask for it)"
 msgstr ""
-"הספרייה libsmbclient דיווחה על שגיאה, אך לא ציין מה היא. דבר זה עלול להעיד "
+"הספרייה libsmbclient דיווחה על שגיאה, אך לא ציינה מה היא. דבר זה עלול להעיד "
 "על בעיה חמורה עם הרשת שלך - אך עלול גם להעיד על בעיה עם libsmbclient.\n"
-" אם ברצונך לעזור לנו, בבקשה צרף tcpdump של ממשק הרשת שלך בזמן שאתה מנסה "
-"לעיין (שים לה כי זה עלול להכיל מידע אישי, לכן אל תשלח את זה אם אינך בטוח "
-"לגבי זה - אתה יכול לשלוח את זה בפרטיות למפתח אם הוא \tמבקש ממך)"
+" כדי לעזור לנו, נא לצרף tcpdump של ממשק הרשת שלך בזמן ניסיון עיון (רצוי לשים "
+"לב כי הוא עלול להכיל מידע אישי, לכן אין לשלוח במקרה של ספק - אפשר לשלוח את "
+"זה בפרטיות למפתח אם נתבקשתך לכך)"
 
 #: kio_smb_browse.cpp:337
-#, fuzzy, kde-format
-#| msgid "Unknown error condition in stat: %1"
+#, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
-msgstr "מצב שגיאה לא ידוע ב־stat: %1"
+msgstr "מצב שגיאה לא ידוע: [%1] %2"
 
 #: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
-msgstr ""
+msgstr "שגיאה בניסיון לגשת אל %1<nl/>%2"
 
 #: kio_smb_file.cpp:35
 #, kde-format
@@ -165,7 +172,7 @@ msgid ""
 "Make sure that the samba package is installed properly on your system."
 msgstr ""
 "\n"
-"וודא כי החבילה samba מותקנת כראוי במערכת שלך."
+"נא לוודא כי החבילה samba מותקנת כראוי במערכת שלך."
 
 #: kio_smb_mount.cpp:173
 #, kde-format
@@ -173,7 +180,7 @@ msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
 "%4"
 msgstr ""
-"עגינה של השיתוף \"%1\" מהשרת \"%2\" על ידי המשתמש \"%3\" נכשלה. \n"
+"עגינה של השיתוף „%1” מהשרת „%2” על ידי המשתמש „%3” נכשלה. \n"
 "%4"
 
 #: kio_smb_mount.cpp:198
@@ -182,7 +189,7 @@ msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
 "%2"
 msgstr ""
-"הפסקת עגינה של נקודת העגינה \"%1\" נכשלה. \n"
+"ניתוק נקודת העגינה „%1” נכשל. \n"
 "%2"
 
 #: wsdiscoverer.cpp:163
@@ -190,7 +197,7 @@ msgstr ""
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
-msgstr ""
+msgstr "התקן לא ידוע @ <resource>%1</resource>"
 
 #~ msgid "libsmbclient failed to initialize context"
 #~ msgstr "הספרייה libsmbclient נחכשלה באיתחול הקשר"
