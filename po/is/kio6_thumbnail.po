@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-27 01:41+0000\n"
+"POT-Creation-Date: 2023-10-25 01:50+0000\n"
 "PO-Revision-Date: 2022-10-10 16:02+0000\n"
 "Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -49,22 +49,22 @@ msgstr "Get ekki hlaðið inn ThumbCreator %1"
 msgid "Cannot create thumbnail for %1"
 msgstr "Get ekki búið til smámynd fyrir %1"
 
-#: thumbnail.cpp:276
+#: thumbnail.cpp:274
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Mistókst að búa til smámynd."
 
-#: thumbnail.cpp:286
+#: thumbnail.cpp:293
 #, kde-format
 msgid "Could not write image."
 msgstr "Gat ekki skrifað mynd."
 
-#: thumbnail.cpp:314
+#: thumbnail.cpp:321
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Mistókst að tengjast minnishluta %1"
 
-#: thumbnail.cpp:321
+#: thumbnail.cpp:325
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Myndin er of stór fyrir samnýtta minnishlutann"

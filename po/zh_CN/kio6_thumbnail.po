@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-27 01:41+0000\n"
+"POT-Creation-Date: 2023-10-25 01:50+0000\n"
 "PO-Revision-Date: 2023-10-21 13:51\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -47,22 +47,22 @@ msgstr "无法加载缩略图创建程序 %1"
 msgid "Cannot create thumbnail for %1"
 msgstr "无法生成 %1 的缩略图"
 
-#: thumbnail.cpp:276
+#: thumbnail.cpp:274
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "缩略图生成失败。"
 
-#: thumbnail.cpp:286
+#: thumbnail.cpp:293
 #, kde-format
 msgid "Could not write image."
 msgstr "无法写入图像。"
 
-#: thumbnail.cpp:314
+#: thumbnail.cpp:321
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "附加到共享内存段 %1 失败"
 
-#: thumbnail.cpp:321
+#: thumbnail.cpp:325
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "图像太大，无法加载到共享内存段"

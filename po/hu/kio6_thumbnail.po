@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-27 01:41+0000\n"
+"POT-Creation-Date: 2023-10-25 01:50+0000\n"
 "PO-Revision-Date: 2011-07-28 22:30+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
@@ -46,22 +46,22 @@ msgstr "Nem sikerült betölteni: ThumbCreator %1"
 msgid "Cannot create thumbnail for %1"
 msgstr "Nem sikerült gyorsnézetet létrehozni: %1"
 
-#: thumbnail.cpp:276
+#: thumbnail.cpp:274
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Nem sikerült gyorsnézetet létrehozni."
 
-#: thumbnail.cpp:286
+#: thumbnail.cpp:293
 #, kde-format
 msgid "Could not write image."
 msgstr "Nem sikerült kiírni a képet."
 
-#: thumbnail.cpp:314
+#: thumbnail.cpp:321
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Nem sikerült kapcsolódni egy osztott memóriablokkhoz: %1"
 
-#: thumbnail.cpp:321
+#: thumbnail.cpp:325
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "A kép túl nagy a megosztott memóriablokkhoz"

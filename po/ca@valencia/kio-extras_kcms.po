@@ -150,8 +150,8 @@ msgid ""
 msgstr ""
 "<p>Marca els fitxers carregats parcialment per a SMB, SFTP i altres "
 "protocols.</p><p>Quan esta opció està activada, els fitxers carregats "
-"parcialment tindran una extensió «.part». Esta extensió s'eliminarà quan "
-"s'haja completat la transferència.</p>"
+"parcialment tindran una extensió «.part». Esta extensió s'eliminarà una "
+"vegada s'haja completat la transferència.</p>"
 
 #: netpref/netpref.cpp:90
 #, kde-format
@@ -197,8 +197,8 @@ msgid ""
 msgstr ""
 "<p>Marca els fitxers carregats parcialment per FTP.</p><p>Quan esta opció "
 "està activada, els fitxers carregats parcialment tindran una extensió «."
-"part». Esta extensió serà eliminada una vegada que la transferència haja "
-"estat completada.</p>"
+"part». Esta extensió serà eliminada una vegada s'haja completat la "
+"transferència.</p>"
 
 #: proxy/kproxydlg.cpp:193
 #, kde-kuit-format
@@ -217,11 +217,11 @@ msgstr ""
 "intermediari. En particular, <application>Firefox</application> i "
 "<application>Chromium</application> o qualsevol que en derivi, o qualsevol "
 "cosa que utilitze <application>QtWebEngine</application> -el qual inclou "
-"<application>Konqueror</application> utilitzant <application>WebEnginePart</"
-"application>-, <application>Akregator</application> i <application>Falkon</"
-"application> no utilitzaran estes opcions de configuració. Algunes "
-"aplicacions poden permetre que el servidor intermediari es configure des de "
-"la seua pròpia configuració."
+"<application>Konqueror</application> utilitzant la "
+"<application>WebEnginePart</application>-, <application>Akregator</"
+"application> i <application>Falkon</application> no utilitzaran estes "
+"opcions de configuració. Algunes aplicacions poden permetre que el servidor "
+"intermediari es configure des de la seua pròpia configuració."
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1180,12 +1180,3 @@ msgstr "Joc de &caràcters:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inseriu el text variable de la consulta"
-
-#~ msgid "These settings apply to network browsing only."
-#~ msgstr "Estos paràmetres s'apliquen només a la navegació per la xarxa."
-
-#~ msgid "Default user name:"
-#~ msgstr "Nom d'usuari predeterminat:"
-
-#~ msgid "Default password:"
-#~ msgstr "Contrasenya predeterminada:"
