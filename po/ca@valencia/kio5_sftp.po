@@ -191,7 +191,7 @@ msgid ""
 msgstr ""
 "<para>No s'ha pogut establir l'autenticitat de l'ordinador <emphasis>%1</"
 "emphasis>.</para><para>L'empremta digital de la clau %2 és:<bcode>%3</"
-"bcode>Segur que voleu continuar amb la connexió?</para>"
+"bcode>Voleu continuar amb la connexió?</para>"
 
 #: kio_sftp.cpp:777
 #, kde-format
