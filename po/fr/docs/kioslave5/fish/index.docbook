@@ -19,7 +19,7 @@
 </authorgroup>
 
 <date
->27/10/2010</date>
+>27-10-2010</date>
 <releaseinfo
 >&kde; 4.5</releaseinfo>
 
@@ -33,15 +33,15 @@
 > doit fonctionner sur l'ordinateur distant, mais le reste du protocole utilise des outils en ligne de commande standards, comme vous pouvez le voir ci-dessous.</para>
 
 <para
->You can use the fish KIO worker like this: <userinput
+>Vous pouvez utiliser le protocole d'entrées /sorties « fish » comme ceci : <userinput
 >fish://<replaceable
->hostname</replaceable
+>nom-machine</replaceable
 ></userinput
-> or <userinput
+> ou <userinput
 >fish://<replaceable
->username</replaceable
+>nom-utilisateur</replaceable
 >@<replaceable
->hostname</replaceable
+>nom-machine</replaceable
 ></userinput
 >.</para>
 
