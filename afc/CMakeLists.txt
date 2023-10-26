@@ -3,7 +3,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio6_afc\")
 add_library(kio_afc MODULE)
 set_target_properties(kio_afc PROPERTIES
     OUTPUT_NAME "afc"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf${QT_MAJOR_VERSION}/kio"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf6/kio"
 )
 
 target_sources(kio_afc PRIVATE
@@ -28,13 +28,13 @@ ecm_qt_declare_logging_category(kio_afc
 )
 
 target_link_libraries(kio_afc
-    KF${QT_MAJOR_VERSION}::KIOCore
+    KF6::KIOCore
     IMobileDevice::IMobileDevice
     PList::PList
-    KF${QT_MAJOR_VERSION}::I18n
+    KF6::I18n
 )
 
-install(TARGETS kio_afc DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
+install(TARGETS kio_afc DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
 
 install(FILES solid_afc.desktop DESTINATION ${KDE_INSTALL_DATADIR}/solid/actions)
 install(FILES afc-network.desktop  DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)

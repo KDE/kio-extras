@@ -12,12 +12,12 @@ target_link_libraries (
    kactivitymanagerd_fileitem_linking_plugin
    Qt::Core
    Qt::Sql
-   KF${QT_MAJOR_VERSION}::KIOFileWidgets
-   KF${QT_MAJOR_VERSION}::I18n
-   KF${QT_MAJOR_VERSION}::Activities
+   KF6::KIOFileWidgets
+   KF6::I18n
+   KF6::Activities
    )
 
 install (
    TARGETS kactivitymanagerd_fileitem_linking_plugin
-   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kfileitemaction
+   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kfileitemaction
    )

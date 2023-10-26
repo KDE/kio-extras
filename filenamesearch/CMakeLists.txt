@@ -1,6 +1,6 @@
-kcoreaddons_add_plugin(kio_filenamesearch INSTALL_NAMESPACE "kf${QT_MAJOR_VERSION}/kio")
+kcoreaddons_add_plugin(kio_filenamesearch INSTALL_NAMESPACE "kf6/kio")
 
-target_link_libraries(kio_filenamesearch KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::DBusAddons Qt::Network KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::I18n)
+target_link_libraries(kio_filenamesearch KF6::KIOCore KF6::DBusAddons Qt::Network KF6::KIOCore KF6::I18n)
 target_sources(kio_filenamesearch PRIVATE kio_filenamesearch.cpp)
 
 ecm_qt_declare_logging_category(kio_filenamesearch

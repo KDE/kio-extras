@@ -65,12 +65,12 @@ if (MD5SUM_EXECUTABLE)
       EXPORT KIO_EXTRAS
    )
 
-   target_link_libraries(kio_fish KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::WidgetsAddons KF${QT_MAJOR_VERSION}::I18n Qt::Network)
+   target_link_libraries(kio_fish KF6::KIOCore KF6::WidgetsAddons KF6::I18n Qt::Network)
 
    if (UTIL_LIBRARIES)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})
    endif ()
 
-   install(TARGETS kio_fish  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio )
+   install(TARGETS kio_fish  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio )
 
 endif ()

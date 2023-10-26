@@ -3,7 +3,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio6_recentlyused\")
 add_library(recentlyused MODULE)
 set_target_properties(recentlyused PROPERTIES
     OUTPUT_NAME "recentlyused"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf${QT_MAJOR_VERSION}/kio"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf6/kio"
 )
 target_sources(recentlyused PRIVATE
     recentlyused.cpp
@@ -30,18 +30,18 @@ ecm_qt_declare_logging_category(recentlyused
 )
 
 target_link_libraries(recentlyused
-    KF${QT_MAJOR_VERSION}::KIOCore
-    KF${QT_MAJOR_VERSION}::I18n
-    KF${QT_MAJOR_VERSION}::Activities
-    KF${QT_MAJOR_VERSION}::ActivitiesStats)
+    KF6::KIOCore
+    KF6::I18n
+    KF6::Activities
+    KF6::ActivitiesStats)
 
-install(TARGETS recentlyused DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
+install(TARGETS recentlyused DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
 
 # forgetfileitemaction plugin
 kcoreaddons_add_plugin(forgetfileitemaction
     SOURCES forgetfileitemaction.cpp
-    INSTALL_NAMESPACE "kf${QT_MAJOR_VERSION}/kfileitemaction")
+    INSTALL_NAMESPACE "kf6/kfileitemaction")
 
 target_link_libraries(forgetfileitemaction
-    KF${QT_MAJOR_VERSION}::I18n
-    KF${QT_MAJOR_VERSION}::KIOWidgets)
+    KF6::I18n
+    KF6::KIOWidgets)

@@ -5,8 +5,8 @@ target_sources(filenamesearchmodule PRIVATE
 )
 
 target_link_libraries(filenamesearchmodule
-    KF${QT_MAJOR_VERSION}::DBusAddons
-    KF${QT_MAJOR_VERSION}::KIOCore
+    KF6::DBusAddons
+    KF6::KIOCore
 )
 
-install(TARGETS filenamesearchmodule DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kded)
+install(TARGETS filenamesearchmodule DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kded)

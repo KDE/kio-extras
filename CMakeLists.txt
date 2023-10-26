@@ -7,8 +7,8 @@ set (RELEASE_SERVICE_VERSION_MICRO "70")
 set (RELEASE_SERVICE_VERSION "${RELEASE_SERVICE_VERSION_MAJOR}.${RELEASE_SERVICE_VERSION_MINOR}.${RELEASE_SERVICE_VERSION_MICRO}")
 project(kio-extras VERSION ${RELEASE_SERVICE_VERSION})
 
-set(QT_MIN_VERSION "5.15.2")
-set(KF_MIN_VERSION "5.101.0")
+set(QT_MIN_VERSION "6.5.0")
+set(KF_MIN_VERSION "5.240.0")
 
 find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${ECM_MODULE_PATH})
@@ -31,25 +31,22 @@ include(CMakePushCheckState)
 include(CMakePackageConfigHelpers)
 include(FeatureSummary)
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
-if (QT_MAJOR_VERSION EQUAL "6")
-    find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core5Compat)
-endif()
+find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg Core5Compat)
 
-find_package(Qt${QT_MAJOR_VERSION}Test ${QT_MIN_VERSION} CONFIG QUIET)
-set_package_properties(Qt${QT_MAJOR_VERSION}Test PROPERTIES
+find_package(Qt6Test ${QT_MIN_VERSION} CONFIG QUIET)
+set_package_properties(Qt6Test PROPERTIES
          PURPOSE "Required for tests"
          TYPE OPTIONAL
          )
-add_feature_info("Qt${QT_MAJOR_VERSION}Test" Qt${QT_MAJOR_VERSION}Test_FOUND "Required for building tests")
-if (NOT Qt${QT_MAJOR_VERSION}Test_FOUND)
+add_feature_info("Qt6Test" Qt6Test_FOUND "Required for building tests")
+if (NOT Qt6Test_FOUND)
     set(BUILD_TESTING OFF CACHE BOOL "Build the testing tree.")
 endif()
 
 find_package(QCoro6 REQUIRED COMPONENTS Core)
 qcoro_enable_coroutines()
 
-find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Archive
     Config
     ConfigWidgets
@@ -70,26 +67,26 @@ include(KDEClangFormat)
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
-find_package(KF${QT_MAJOR_VERSION}Activities QUIET)
-set_package_properties(KF${QT_MAJOR_VERSION}Activities PROPERTIES
+find_package(KF6Activities QUIET)
+set_package_properties(KF6Activities PROPERTIES
     PURPOSE "Provides the activities:/ KIO worker and fileitem plugin."
     TYPE OPTIONAL
 )
 
-find_package(Qt${QT_MAJOR_VERSION}Sql QUIET)
-set_package_properties(Qt${QT_MAJOR_VERSION}Sql PROPERTIES
+find_package(Qt6Sql QUIET)
+set_package_properties(Qt6Sql PROPERTIES
     PURPOSE "Provides the activities:/ KIO worker and fileitem plugin."
     TYPE OPTIONAL
 )
 
-find_package(KF${QT_MAJOR_VERSION}ActivitiesStats ${KF_MIN_VERSION} QUIET)
-set_package_properties(KF${QT_MAJOR_VERSION}ActivitiesStats PROPERTIES
+find_package(KF6ActivitiesStats ${KF_MIN_VERSION} QUIET)
+set_package_properties(KF6ActivitiesStats PROPERTIES
     PURPOSE "Provides the recentlyused:/ KIO worker"
     TYPE OPTIONAL
 )
 
-find_package(Phonon4Qt${QT_MAJOR_VERSION} 4.6.60 NO_MODULE)
-set_package_properties(Phonon4Qt${QT_MAJOR_VERSION} PROPERTIES
+find_package(Phonon4Qt6 4.6.60 NO_MODULE)
+set_package_properties(Phonon4Qt6 PROPERTIES
    DESCRIPTION "Qt-based audio library"
    PURPOSE "Required for the audio preview plugin"
    TYPE OPTIONAL)
@@ -179,14 +176,14 @@ ecm_set_disabled_deprecation_versions(
 add_subdirectory(doc)
 add_subdirectory(kcms)
 
-if(TARGET KF${QT_MAJOR_VERSION}::Activities AND TARGET Qt::Sql AND NOT WIN32)
+if(TARGET KF6::Activities AND TARGET Qt::Sql AND NOT WIN32)
   add_subdirectory( activities )
 endif()
-if(KF${QT_MAJOR_VERSION}ActivitiesStats_FOUND)
+if(KF6ActivitiesStats_FOUND)
     add_subdirectory( recentlyused )
 endif()
 add_subdirectory( filter )
-if(Phonon4Qt${QT_MAJOR_VERSION}_FOUND)
+if(Phonon4Qt6_FOUND)
     add_subdirectory( kfileaudiopreview )
 endif()
 add_subdirectory( info )
