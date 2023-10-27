@@ -98,9 +98,7 @@
 <para
 >Aquesta opció tan sols difereix de la següent en el fet que <emphasis
 >no</emphasis
-> precisa que li subministreu la localització del fitxer script de procediments de configuració. En el seu lloc, serà baixat automàticament utilitzant el protocol <quote
->Descobriment del protocol d'accés a la web</quote
-> (Web Access Protocol Discovery - <acronym
+> precisa que li subministreu la localització del fitxer script de procediments de configuració. En el seu lloc, serà baixat automàticament utilitzant el protocol «Descobriment del protocol d'accés a la web» (Web Access Protocol Discovery - <acronym
 >WAPD</acronym
 >).</para>
 </listitem>

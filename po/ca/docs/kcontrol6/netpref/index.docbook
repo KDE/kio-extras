@@ -116,9 +116,7 @@
 ></term>
 <listitem
 ><para
->L'&FTP; passiu sovint es requereix quan esteu al darrere d'un tallafoc. Molts tallafocs només permeten connexions que foren iniciades des de <quote
->dins</quote
->. L'&FTP; passiu està controlat pel client, el qual permet el seu ús al darrere d'un tallafoc.</para
+>L'&FTP; passiu sovint es requereix quan esteu al darrere d'un tallafoc. Molts tallafocs només permeten connexions que foren iniciades des de «dins». L'&FTP; passiu està controlat pel client, el qual permet el seu ús al darrere d'un tallafoc.</para
 ></listitem>
 </varlistentry>
 
