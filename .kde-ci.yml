@@ -21,6 +21,7 @@ Dependencies:
     'libraries/phonon': '@latest-kf6'
     'graphics/libkexiv2': '@latest-kf6'
     'third-party/kdsoap': '@latest'
+    'third-party/qcoro': '@latest'
 
 - 'on': ['Linux/Qt6', 'FreeBSD/Qt6']
   'require':
