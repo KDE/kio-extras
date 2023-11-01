@@ -167,7 +167,7 @@ ResultModel *runQuery(const QUrl &url, int limit)
     return new ResultModel(query);
 }
 
-KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resource, const QString &mimeType, int lastUpdateTime)
+KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resource, const QString &mimeType, const QString &agent, int lastUpdateTime)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "udsEntryFromResource" << resource;
 
@@ -189,7 +189,7 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resourc
     // replace name with a technical unique name
     const auto name = uds.stringValue(KIO::UDSEntry::UDS_NAME);
     uds.replace(KIO::UDSEntry::UDS_NAME, QStringLiteral("%1-%2").arg(name).arg(row));
-    uds.reserve(uds.count() + 4);
+    uds.reserve(uds.count() + 5);
     if (name.isEmpty()) {
         uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, resource);
     } else {
@@ -204,6 +204,7 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resourc
         // default access time
         uds.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, lastUpdateTime);
     }
+    uds.fastInsert(KIO::UDSEntry::UDS_EXTRA, agent);
     return uds;
 }
 
@@ -240,8 +241,9 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
                 const QString resource = model->data(index, ResultModel::ResourceRole).toString();
                 const QString mimeType = model->data(index, ResultModel::MimeType).toString();
                 const int lastUpdate = model->data(index, ResultModel::LastUpdateRole).toInt();
+                const QString agent = model->data(index, ResultModel::Agent).toString();
 
-                const auto entry = udsEntryFromResource(row, resource, mimeType, lastUpdate);
+                const auto entry = udsEntryFromResource(row, resource, mimeType, agent, lastUpdate);
                 if (entry.count() > 0) {
                     udslist << entry;
                 }

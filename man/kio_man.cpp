@@ -57,6 +57,10 @@ static QString stripCompression(const QString &name)
         pos -= 5;
     else if (name.endsWith(".xz"))
         pos -= 3;
+    else if (name.endsWith(".zst"))
+        pos -= 4;
+    else if (name.endsWith(".br"))
+        pos -= 3;
 
     return (pos > 0 ? name.left(pos) : name);
 }
