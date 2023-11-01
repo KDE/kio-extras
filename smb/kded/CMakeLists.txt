@@ -6,7 +6,7 @@ configure_file(config.h.cmake config.h)
 add_executable(smbnotifier notifier.cpp)
 target_link_libraries(smbnotifier KF${QT_MAJOR_VERSION}::KIOCore kio_smb_static)
 target_link_options(smbnotifier PUBLIC "LINKER:--as-needed") # shrink to bare minimum we fork this a lot
-install(TARGETS smbnotifier DESTINATION ${KDE_INSTALL_LIBEXECDIR_KF${QT_MAJOR_VERSION}})
+install(TARGETS smbnotifier DESTINATION ${KDE_INSTALL_LIBEXECDIR_KF})
 
 add_library(kded-smbwatcher MODULE watcher.cpp)
 target_link_libraries(kded-smbwatcher KF${QT_MAJOR_VERSION}::DBusAddons KF${QT_MAJOR_VERSION}::KIOCore kio_smb_static)
