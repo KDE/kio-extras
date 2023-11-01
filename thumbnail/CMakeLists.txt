@@ -42,11 +42,11 @@ set_package_properties(Taglib PROPERTIES
     PURPOSE "Provides support for audio thumbnails"
 )
 
-find_package(KF${QT_MAJOR_VERSION}KExiv2)
-set_package_properties(KF${QT_MAJOR_VERSION}KExiv2 PROPERTIES
+find_package(KExiv2Qt6)
+set_package_properties(KExiv2Qt6 PROPERTIES
     TYPE OPTIONAL
     PURPOSE "Provides support for extracting JPEG thumbnails")
-if (KF${QT_MAJOR_VERSION}KExiv2_FOUND)
+if (KExiv2Qt6_FOUND)
     set(HAVE_KEXIV2 TRUE)
 endif()
 
@@ -118,8 +118,8 @@ target_link_libraries(jpegthumbnail
     KF${QT_MAJOR_VERSION}::ConfigCore
     KF${QT_MAJOR_VERSION}::ConfigGui
 )
-if (TARGET KF${QT_MAJOR_VERSION}::KExiv2)
-    target_link_libraries(jpegthumbnail KF${QT_MAJOR_VERSION}::KExiv2)
+if (TARGET KExiv2Qt6)
+    target_link_libraries(jpegthumbnail KExiv2Qt6)
 endif()
 
 install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
