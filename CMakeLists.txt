@@ -65,23 +65,11 @@ include(KDEClangFormat)
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
-find_package(KF${QT_MAJOR_VERSION}Activities QUIET)
-set_package_properties(KF${QT_MAJOR_VERSION}Activities PROPERTIES
-    PURPOSE "Provides the activities:/ KIO worker and fileitem plugin."
-    TYPE OPTIONAL
-)
-
-find_package(Qt${QT_MAJOR_VERSION}Sql QUIET)
-set_package_properties(Qt${QT_MAJOR_VERSION}Sql PROPERTIES
-    PURPOSE "Provides the activities:/ KIO worker and fileitem plugin."
-    TYPE OPTIONAL
-)
-
-find_package(KF${QT_MAJOR_VERSION}ActivitiesStats ${KF_MIN_VERSION} QUIET)
-set_package_properties(KF${QT_MAJOR_VERSION}ActivitiesStats PROPERTIES
-    PURPOSE "Provides the recentlyused:/ KIO worker"
-    TYPE OPTIONAL
-)
+if (NOT WIN32)
+    find_package(KF${QT_MAJOR_VERSION}Activities REQUIRED)
+    find_package(Qt${QT_MAJOR_VERSION}Sql REQUIRED)
+    find_package(KF${QT_MAJOR_VERSION}ActivitiesStats ${KF_MIN_VERSION} REQUIRED)
+endif()
 
 find_package(Phonon4Qt${QT_MAJOR_VERSION} 4.6.60 NO_MODULE)
 set_package_properties(Phonon4Qt${QT_MAJOR_VERSION} PROPERTIES
@@ -173,11 +161,9 @@ ecm_set_disabled_deprecation_versions(
 
 add_subdirectory( doc )
 
-if(TARGET KF${QT_MAJOR_VERSION}::Activities AND TARGET Qt::Sql AND NOT WIN32)
+if(NOT WIN32)
   add_subdirectory( activities )
-endif()
-if(KF${QT_MAJOR_VERSION}ActivitiesStats_FOUND)
-    add_subdirectory( recentlyused )
+  add_subdirectory( recentlyused )
 endif()
 add_subdirectory( filter )
 if(Phonon4Qt${QT_MAJOR_VERSION}_FOUND)

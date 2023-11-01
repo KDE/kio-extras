@@ -18,8 +18,6 @@ Dependencies:
     'frameworks/kbookmarks': '@stable'
     'frameworks/kguiaddons': '@stable'
     'frameworks/syntax-highlighting': '@stable'
-    'plasma/kactivities': '@stable'
-    'plasma/kactivities-stats': '@stable'
     'libraries/phonon': '@stable'
     'graphics/libkexiv2': '@same'
     'third-party/kdsoap': '@latest'
@@ -27,6 +25,8 @@ Dependencies:
 - 'on': ['Linux', 'FreeBSD']
   'require':
     'libraries/kdsoap-ws-discovery-client': '@stable'
+    'plasma/kactivities': '@stable'
+    'plasma/kactivities-stats': '@stable'
 
 - 'on': ['Linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6']
   'require':
@@ -49,6 +49,5 @@ Dependencies:
     'libraries/phonon': '@latest-kf6'
     'graphics/libkexiv2': '@same'
     'third-party/kdsoap': '@latest'
-
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
