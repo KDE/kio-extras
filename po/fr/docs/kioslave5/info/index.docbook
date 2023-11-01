@@ -33,7 +33,7 @@
 >.</para>
 
 <para
->The Info KIO worker allows you to read the info pages installed on your system, from within &konqueror;. You can use it very easily:</para>
+>Le module d'entrée-sortie « info » vous permet de lire les pages d'informations installées sur votre système à partir de &konqueror;. Vous pouvez l'utiliser de façon très simple : </para>
 
 <screen
 ><userinput
@@ -53,6 +53,6 @@
 >, mais n'est pas trop utilisé en dehors des logiciels &GNU;.</para>
 
 <para
->You can quite easily browse the info documentation you have installed from within the &khelpcenter; application, or you can use the info KIO worker directly from within both &konqueror; and the mini-cli.</para>
+>Vous pouvez facilement naviguer dans les pages de documentation de « info » installées grâce à l'application du &centreAide;, ou bien vous pouvez utiliser le module d'entrées / sortie « info » directement à partir, soit de &konqueror;. soit de mini-cli.</para>
 
 </article>
