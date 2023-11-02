@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-11-02 01:39+0000\n"
 "PO-Revision-Date: 2021-09-03 08:02+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
-#: kio_man.cpp:457
+#: kio_man.cpp:461
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -41,7 +41,7 @@ msgstr ""
 "змінної середовища <envar>MANPATH</envar>, або за допомогою відповідного "
 "файла налаштувань у каталозі <filename>/etc</filename>."
 
-#: kio_man.cpp:571
+#: kio_man.cpp:575
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -52,36 +52,36 @@ msgstr ""
 "filename>,<nl/>але програмі не вдалося знайти сторінку <filename>%2</"
 "filename>, на яку посилаються."
 
-#: kio_man.cpp:588
+#: kio_man.cpp:592
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr ""
 "Не вдалося прочитати сторінку підручника (man) <filename>%1</filename>."
 
-#: kio_man.cpp:597
+#: kio_man.cpp:601
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 "Не вдалося перетворити сторінку підручника (man) <filename>%1</filename>."
 
-#: kio_man.cpp:659
+#: kio_man.cpp:663
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "Помилка засобу перегляду сторінок підручника"
 
-#: kio_man.cpp:672
+#: kio_man.cpp:676
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "Підходить одразу декілька сторінок:"
 
-#: kio_man.cpp:672
+#: kio_man.cpp:676
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "Декілька сторінок підручника"
 
-#: kio_man.cpp:685
+#: kio_man.cpp:689
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -92,112 +92,112 @@ msgstr ""
 "може містити помилки або бути застарілою. Якщо є сумніви, перегляньте "
 "англійську версію."
 
-#: kio_man.cpp:753
+#: kio_man.cpp:757
 #, kde-format
 msgid "Header Files"
 msgstr "Файли заголовків"
 
-#: kio_man.cpp:755
+#: kio_man.cpp:759
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "Файл заголовків (POSIX)"
 
-#: kio_man.cpp:757
+#: kio_man.cpp:761
 #, kde-format
 msgid "User Commands"
 msgstr "Команди користувача"
 
-#: kio_man.cpp:759
+#: kio_man.cpp:763
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "Команди користувача (POSIX)"
 
-#: kio_man.cpp:761
+#: kio_man.cpp:765
 #, kde-format
 msgid "System Calls"
 msgstr "Системні виклики"
 
-#: kio_man.cpp:763
+#: kio_man.cpp:767
 #, kde-format
 msgid "Subroutines"
 msgstr "Підпрограми"
 
-#: kio_man.cpp:766
+#: kio_man.cpp:770
 #, kde-format
 msgid "Perl Modules"
 msgstr "Модулі Perl"
 
-#: kio_man.cpp:768
+#: kio_man.cpp:772
 #, kde-format
 msgid "Network Functions"
 msgstr "Функції мережі"
 
-#: kio_man.cpp:770
+#: kio_man.cpp:774
 #, kde-format
 msgid "Devices"
 msgstr "Пристрої"
 
-#: kio_man.cpp:772
+#: kio_man.cpp:776
 #, kde-format
 msgid "File Formats"
 msgstr "Формати файлів"
 
-#: kio_man.cpp:774
+#: kio_man.cpp:778
 #, kde-format
 msgid "Games"
 msgstr "Ігри"
 
-#: kio_man.cpp:776
+#: kio_man.cpp:780
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Різне"
 
-#: kio_man.cpp:778
+#: kio_man.cpp:782
 #, kde-format
 msgid "System Administration"
 msgstr "Керування системою"
 
-#: kio_man.cpp:780
+#: kio_man.cpp:784
 #, kde-format
 msgid "Kernel"
 msgstr "Ядро"
 
-#: kio_man.cpp:782
+#: kio_man.cpp:786
 #, kde-format
 msgid "Local Documentation"
 msgstr "Локальна документація"
 
-#: kio_man.cpp:785
+#: kio_man.cpp:789
 #, kde-format
 msgid "New"
 msgstr "Створити"
 
-#: kio_man.cpp:812
+#: kio_man.cpp:816
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "Основний покажчик сторінок підручника"
 
-#: kio_man.cpp:837
+#: kio_man.cpp:841
 #, kde-format
 msgid "Section %1"
 msgstr "Розділ %1"
 
-#: kio_man.cpp:1086
+#: kio_man.cpp:1090
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Індекс розділу %1: %2"
 
-#: kio_man.cpp:1086
+#: kio_man.cpp:1090
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Покажчик сторінок підручника"
 
-#: kio_man.cpp:1098
+#: kio_man.cpp:1102
 #, kde-format
 msgid "Generating Index"
 msgstr "Створюю індекс"
 
-#: kio_man.cpp:1352
+#: kio_man.cpp:1356
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

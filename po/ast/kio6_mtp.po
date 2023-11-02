@@ -1,0 +1,37 @@
+# Copyright (C) 2023 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# SPDX-FileCopyrightText: 2023 Enol P. <enolp@softastur.org>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"PO-Revision-Date: 2023-10-25 10:31+0200\n"
+"Last-Translator: Enol P. <enolp@softastur.org>\n"
+"Language-Team: \n"
+"Language: ast_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.08.2\n"
+
+#: kio_mtp.cpp:221
+#, kde-format
+msgctxt ""
+"Message shown when attempting to access an MTP device that is not fully "
+"accessible yet"
+msgid ""
+"Could not access device. Make sure it is unlocked, and tap \"Allow\" on the "
+"popup on its screen. If that does not work, make sure MTP is enabled in its "
+"USB connection settings."
+msgstr ""
+"Nun se pudo acceder al preséu. Asegúrate de que ta bloquiáu ya calca "
+"«Permitir» nel diálogu emerxente de la so pantalla. Si esto nun funciona, "
+"asegúrate de que'l MTP ta activáu na configuración de la conexón USB."
+
+#: kio_mtp.cpp:520
+#, kde-format
+msgid "Cannot copy/move files on the device itself"
+msgstr "Nun se puen copiar/mover ficheros sobre'l mesmu preséu"

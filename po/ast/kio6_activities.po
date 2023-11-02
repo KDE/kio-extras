@@ -1,0 +1,67 @@
+# Copyright (C) 2023 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# SPDX-FileCopyrightText: 2023 Enol P. <enolp@softastur.org>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"PO-Revision-Date: 2023-10-25 10:19+0200\n"
+"Last-Translator: Enol P. <enolp@softastur.org>\n"
+"Language-Team: \n"
+"Language: ast_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.08.2\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:88 KioActivities.cpp:176
+#, kde-format
+msgid "Activities"
+msgstr "Actividaes"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:91
+#, kde-format
+msgid "Loading..."
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:108
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:51
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:110
+#, kde-format
+msgid "Link to the current activity"
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:52
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:113
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:54
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:116
+#, kde-format
+msgid "Link to:"
+msgstr ""
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:123
+#, kde-format
+msgid "Unlink from:"
+msgstr ""
+
+#: KioActivities.cpp:108
+#, kde-format
+msgid "Current activity"
+msgstr ""
+
+#: KioActivities.cpp:109 KioActivitiesApi.cpp:85
+#, kde-format
+msgid "Activity"
+msgstr ""

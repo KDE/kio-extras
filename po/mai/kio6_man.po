@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-11-02 01:39+0000\n"
 "PO-Revision-Date: 2010-01-29 15:49+0530\n"
 "Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
 "Language-Team: Maithili <maithili.sf.net>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "\n"
 "\n"
 
-#: kio_man.cpp:457
+#: kio_man.cpp:461
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -35,7 +35,7 @@ msgid ""
 "filename> directory."
 msgstr ""
 
-#: kio_man.cpp:571
+#: kio_man.cpp:575
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -43,36 +43,36 @@ msgid ""
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
 
-#: kio_man.cpp:588
+#: kio_man.cpp:592
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr ""
 
-#: kio_man.cpp:597
+#: kio_man.cpp:601
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
-#: kio_man.cpp:659
+#: kio_man.cpp:663
 #, fuzzy, kde-format
 #| msgid "<h1>KDE Man Viewer Error</h1>"
 msgid "Manual Page Viewer Error"
 msgstr "<h1>KDE Man Viewer Error</h1>"
 
-#: kio_man.cpp:672
+#: kio_man.cpp:676
 #, fuzzy, kde-format
 #| msgid "There is more than one matching man page."
 msgid "There is more than one matching man page:"
 msgstr "ओतए मैन पृष्ठ क' एकटा सँ बेसी संभव जोड़ अछि."
 
-#: kio_man.cpp:672
+#: kio_man.cpp:676
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:685
+#: kio_man.cpp:689
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -82,116 +82,116 @@ msgstr ""
 "नोट:  जँ अहाँ मैन पृष्ठ केँ अपन भाषा मे पढ़ि रहल अछि तँ ई ध्यान राखू जे एहिमे किछु त्रुटि भए "
 "सकैत अछि अथवा फेर ई पुरान भए सकैत अछि. संशय कए स्थिति मे एकर अंग्रेजी संस्करण केँ देखू."
 
-#: kio_man.cpp:753
+#: kio_man.cpp:757
 #, kde-format
 msgid "Header Files"
 msgstr ""
 
-#: kio_man.cpp:755
+#: kio_man.cpp:759
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr ""
 
-#: kio_man.cpp:757
+#: kio_man.cpp:761
 #, kde-format
 msgid "User Commands"
 msgstr "प्रयोक्ता कमांड"
 
-#: kio_man.cpp:759
+#: kio_man.cpp:763
 #, fuzzy, kde-format
 #| msgid "User Commands"
 msgid "User Commands (POSIX)"
 msgstr "प्रयोक्ता कमांड"
 
-#: kio_man.cpp:761
+#: kio_man.cpp:765
 #, kde-format
 msgid "System Calls"
 msgstr "सिस्टम कालसभ"
 
-#: kio_man.cpp:763
+#: kio_man.cpp:767
 #, kde-format
 msgid "Subroutines"
 msgstr "उपदिनचर्या"
 
-#: kio_man.cpp:766
+#: kio_man.cpp:770
 #, kde-format
 msgid "Perl Modules"
 msgstr "पर्ल माड्यूल्स"
 
-#: kio_man.cpp:768
+#: kio_man.cpp:772
 #, kde-format
 msgid "Network Functions"
 msgstr "नियंत्रक प्रकार्य"
 
-#: kio_man.cpp:770
+#: kio_man.cpp:774
 #, kde-format
 msgid "Devices"
 msgstr "डिवाइस"
 
-#: kio_man.cpp:772
+#: kio_man.cpp:776
 #, kde-format
 msgid "File Formats"
 msgstr "फाइल फार्मेट"
 
-#: kio_man.cpp:774
+#: kio_man.cpp:778
 #, kde-format
 msgid "Games"
 msgstr "खेल"
 
-#: kio_man.cpp:776
+#: kio_man.cpp:780
 #, kde-format
 msgid "Miscellaneous"
 msgstr "विविध"
 
-#: kio_man.cpp:778
+#: kio_man.cpp:782
 #, kde-format
 msgid "System Administration"
 msgstr "सिस्टम प्रशासन"
 
-#: kio_man.cpp:780
+#: kio_man.cpp:784
 #, kde-format
 msgid "Kernel"
 msgstr "कर्नेल"
 
-#: kio_man.cpp:782
+#: kio_man.cpp:786
 #, kde-format
 msgid "Local Documentation"
 msgstr "स्थानीय दस्तावेजीकरण"
 
-#: kio_man.cpp:785
+#: kio_man.cpp:789
 #, kde-format
 msgid "New"
 msgstr "नवीन"
 
-#: kio_man.cpp:812
+#: kio_man.cpp:816
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Main Manual Page Index"
 msgstr "यूनिक्स मेनुअल निर्देशिका"
 
-#: kio_man.cpp:837
+#: kio_man.cpp:841
 #, kde-format
 msgid "Section %1"
 msgstr "खंड %1"
 
-#: kio_man.cpp:1086
+#: kio_man.cpp:1090
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "%1 खंड कए ले सूची: %2"
 
-#: kio_man.cpp:1086
+#: kio_man.cpp:1090
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "यूनिक्स मेनुअल निर्देशिका"
 
-#: kio_man.cpp:1098
+#: kio_man.cpp:1102
 #, kde-format
 msgid "Generating Index"
 msgstr "निर्देशिका बनाएल जाए रहल अछि"
 
-#: kio_man.cpp:1352
+#: kio_man.cpp:1356
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

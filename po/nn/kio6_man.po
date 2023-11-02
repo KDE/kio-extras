@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-11-02 01:39+0000\n"
 "PO-Revision-Date: 2022-06-19 13:44+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: kio_man.cpp:457
+#: kio_man.cpp:461
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -38,7 +38,7 @@ msgstr ""
 "vera at du må utvida søkjestien for manualsider, anten med miljøvariabelen "
 "<envar>MANPATH</envar> eller ei oppsettfil i mappa <filename>/etc</filename>."
 
-#: kio_man.cpp:571
+#: kio_man.cpp:575
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -48,34 +48,34 @@ msgstr ""
 "Den valde manualsida refererer til ei anna side, <filename>%1</filename>,<nl/"
 ">men sida  <filename>%2</filename> som det vart referert til, finst ikkje."
 
-#: kio_man.cpp:588
+#: kio_man.cpp:592
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr "Klarte ikkje lesa manualsida <filename>%1</filename>."
 
-#: kio_man.cpp:597
+#: kio_man.cpp:601
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr "Klarte ikkje konvertera manualsida <filename>%1</filename>."
 
-#: kio_man.cpp:659
+#: kio_man.cpp:663
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "Feil i KDE-manualsidevisar"
 
-#: kio_man.cpp:672
+#: kio_man.cpp:676
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "Det finst fleire enn éi manualside som passar:"
 
-#: kio_man.cpp:672
+#: kio_man.cpp:676
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "Fleire manualsider"
 
-#: kio_man.cpp:685
+#: kio_man.cpp:689
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -86,112 +86,112 @@ msgstr ""
 "eller er for gammal. Dersom du er i tvil, kan det vera lurt å sjå i den "
 "engelske utgåva."
 
-#: kio_man.cpp:753
+#: kio_man.cpp:757
 #, kde-format
 msgid "Header Files"
 msgstr "Hovudfiler"
 
-#: kio_man.cpp:755
+#: kio_man.cpp:759
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "Hovudfiler (POSIX)"
 
-#: kio_man.cpp:757
+#: kio_man.cpp:761
 #, kde-format
 msgid "User Commands"
 msgstr "Brukarkommandoar"
 
-#: kio_man.cpp:759
+#: kio_man.cpp:763
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "Brukarkommandoar (POSIX)"
 
-#: kio_man.cpp:761
+#: kio_man.cpp:765
 #, kde-format
 msgid "System Calls"
 msgstr "Systemkall"
 
-#: kio_man.cpp:763
+#: kio_man.cpp:767
 #, kde-format
 msgid "Subroutines"
 msgstr "Underrutinar"
 
-#: kio_man.cpp:766
+#: kio_man.cpp:770
 #, kde-format
 msgid "Perl Modules"
 msgstr "Perl-modular"
 
-#: kio_man.cpp:768
+#: kio_man.cpp:772
 #, kde-format
 msgid "Network Functions"
 msgstr "Nettverksfunksjonar"
 
-#: kio_man.cpp:770
+#: kio_man.cpp:774
 #, kde-format
 msgid "Devices"
 msgstr "Einingar"
 
-#: kio_man.cpp:772
+#: kio_man.cpp:776
 #, kde-format
 msgid "File Formats"
 msgstr "Filformat"
 
-#: kio_man.cpp:774
+#: kio_man.cpp:778
 #, kde-format
 msgid "Games"
 msgstr "Spel"
 
-#: kio_man.cpp:776
+#: kio_man.cpp:780
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Ymse"
 
-#: kio_man.cpp:778
+#: kio_man.cpp:782
 #, kde-format
 msgid "System Administration"
 msgstr "Systemadministrasjon"
 
-#: kio_man.cpp:780
+#: kio_man.cpp:784
 #, kde-format
 msgid "Kernel"
 msgstr "Kjerne"
 
-#: kio_man.cpp:782
+#: kio_man.cpp:786
 #, kde-format
 msgid "Local Documentation"
 msgstr "Lokale hjelpetekstar"
 
-#: kio_man.cpp:785
+#: kio_man.cpp:789
 #, kde-format
 msgid "New"
 msgstr "Ny"
 
-#: kio_man.cpp:812
+#: kio_man.cpp:816
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "Sideindeks for hovudmanual"
 
-#: kio_man.cpp:837
+#: kio_man.cpp:841
 #, kde-format
 msgid "Section %1"
 msgstr "Kapittel %1"
 
-#: kio_man.cpp:1086
+#: kio_man.cpp:1090
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Oversikt for bolk %1: %2"
 
-#: kio_man.cpp:1086
+#: kio_man.cpp:1090
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Sideindeks for manual"
 
-#: kio_man.cpp:1098
+#: kio_man.cpp:1102
 #, kde-format
 msgid "Generating Index"
 msgstr "Byggjer opp indeks"
 
-#: kio_man.cpp:1352
+#: kio_man.cpp:1356
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
