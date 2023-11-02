@@ -66,7 +66,10 @@ private Q_SLOTS:
         auto *job = KIO::filePreview(items, QSize(128, 128), &enabledPlugins);
         job->setDevicePixelRatio(dpr);
 
+        qDebug("Job started");
+
         connect(job, &KIO::PreviewJob::gotPreview, this, [path, expectedThumbnail, dpr](const KFileItem &item, const QPixmap &preview) {
+            qDebug("Job gotPreview");
             QCOMPARE(item.url(), QUrl::fromLocalFile(path));
 
             QImage expectedImage;
@@ -81,7 +84,10 @@ private Q_SLOTS:
         QSignalSpy gotPreviewSpy(job, &KIO::PreviewJob::gotPreview);
         QSignalSpy resultSpy(job, &KIO::PreviewJob::result);
 
+        qDebug("Job wait");
         resultSpy.wait();
+
+        qDebug("Job end");
 
         QVERIFY2(failedSpy.empty(), qPrintable(job->errorString()));
         QVERIFY(!gotPreviewSpy.empty());
