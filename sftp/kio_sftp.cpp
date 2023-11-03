@@ -42,6 +42,11 @@
 #include "kio_sftp_debug.h"
 #include "kio_sftp_trace_debug.h"
 
+// For MinGW compatibility
+#ifndef QT_STAT_LNK
+#define QT_STAT_LNK 0120000
+#endif // QT_STAT_LNK
+
 using namespace KIO;
 using namespace std::filesystem;
 
