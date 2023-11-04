@@ -46,9 +46,6 @@ void setAutoResume(bool);
 
 /** Update all running KIO workers */
 void updateRunningWorkers(QWidget *parent = nullptr);
-
-/** Update proxy scout */
-void updateProxyScout(QWidget *parent = nullptr);
 }
 
 #endif

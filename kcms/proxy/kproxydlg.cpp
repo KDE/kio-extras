@@ -331,12 +331,6 @@ void KProxyDialog::load()
         break;
     }
 }
-
-static bool isPACProxyType(KProtocolManager::ProxyType type)
-{
-    return (type == KProtocolManager::PACProxy || type == KProtocolManager::WPADProxy);
-}
-
 void KProxyDialog::save()
 {
     const KProtocolManager::ProxyType lastProxyType = KProtocolManager::proxyType();
@@ -392,9 +386,6 @@ void KProxyDialog::save()
     KSaveIOConfig::setNoProxyFor(mProxyMap.value(QStringLiteral("NoProxy")));
 
     KSaveIOConfig::updateRunningWorkers(widget());
-    if (isPACProxyType(lastProxyType) || isPACProxyType(proxyType)) {
-        KSaveIOConfig::updateProxyScout(widget());
-    }
 
     setNeedsSave(false);
 }
