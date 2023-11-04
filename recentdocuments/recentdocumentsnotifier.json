@@ -31,7 +31,6 @@
         "Description[tr]": "\"Son Kullanılan Belgeler\" klasörünü değişiklikler için izler",
         "Description[uk]": "Стежить за змінами у теці недавніх документів",
         "Description[vi]": "Giám sát thay đổi ở thư mục \"Tài liệu gần đây\"",
-        "Description[x-test]": "xxMonitors \"Recent Documents\" folder for changesxx",
         "Description[zh_CN]": "监视“最近文档”文件夹的更改",
         "Description[zh_TW]": "監控「最近文件」資料夾的變更",
         "Name": "Recent Document Watcher",
@@ -66,7 +65,6 @@
         "Name[tr]": "Son Kullanılan Belge İzleyici",
         "Name[uk]": "Наглядач за недавніми документами",
         "Name[vi]": "Trình theo dõi tài liệu gần đây",
-        "Name[x-test]": "xxRecent Document Watcherxx",
         "Name[zh_CN]": "最近文档监视程序",
         "Name[zh_TW]": "最近文件監控器"
     },
