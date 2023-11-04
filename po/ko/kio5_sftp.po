@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 00:46+0000\n"
+"POT-Creation-Date: 2023-11-04 00:42+0000\n"
 "PO-Revision-Date: 2022-08-09 13:22+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -18,118 +18,118 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 21.12.3\n"
 
-#: kio_sftp.cpp:223
+#: kio_sftp.cpp:228
 #, kde-format
 msgid "Incorrect or invalid passphrase"
 msgstr "잘못되었거나 올바르지 않은 암호"
 
-#: kio_sftp.cpp:272
+#: kio_sftp.cpp:277
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "콜백을 할당할 수 없음"
 
-#: kio_sftp.cpp:285
+#: kio_sftp.cpp:290
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "기록 정도를 설정할 수 없습니다."
 
-#: kio_sftp.cpp:290
+#: kio_sftp.cpp:295
 #, kde-format
 msgid "Could not set log userdata."
 msgstr "사용자 데이터 기록을 설정할 수 없습니다."
 
-#: kio_sftp.cpp:295
+#: kio_sftp.cpp:300
 #, kde-format
 msgid "Could not set log callback."
 msgstr "기록 콜백을 설정할 수 없습니다."
 
-#: kio_sftp.cpp:331 kio_sftp.cpp:333 kio_sftp.cpp:849
+#: kio_sftp.cpp:336 kio_sftp.cpp:338 kio_sftp.cpp:854
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP 로그인"
 
-#: kio_sftp.cpp:348
+#: kio_sftp.cpp:353
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr "이 질문에 대답하려면 사용자 이름 입력 필드를 사용하십시오."
 
-#: kio_sftp.cpp:360
+#: kio_sftp.cpp:365
 #, kde-format
 msgid "Please enter your password."
 msgstr "암호를 입력하십시오."
 
-#: kio_sftp.cpp:365 kio_sftp.cpp:852
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
 #, kde-format
 msgid "Site:"
 msgstr "사이트:"
 
-#: kio_sftp.cpp:411
+#: kio_sftp.cpp:416
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "링크를 읽을 수 없음: %1 [%2]"
 
-#: kio_sftp.cpp:533
+#: kio_sftp.cpp:538
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "새 SSH 세션을 만들 수 없습니다."
 
-#: kio_sftp.cpp:544 kio_sftp.cpp:548
+#: kio_sftp.cpp:549 kio_sftp.cpp:553
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "시간 제한을 설정할 수 없습니다."
 
-#: kio_sftp.cpp:555
+#: kio_sftp.cpp:560
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "Nagle 알고리즘을 비활성화할 수 없습니다."
 
-#: kio_sftp.cpp:561 kio_sftp.cpp:566
+#: kio_sftp.cpp:566 kio_sftp.cpp:571
 #, kde-format
 msgid "Could not set compression."
 msgstr "압축을 설정할 수 없습니다."
 
-#: kio_sftp.cpp:572
+#: kio_sftp.cpp:577
 #, kde-format
 msgid "Could not set host."
 msgstr "호스트를 설정할 수 없습니다."
 
-#: kio_sftp.cpp:578
+#: kio_sftp.cpp:583
 #, kde-format
 msgid "Could not set port."
 msgstr "포트를 설정할 수 없습니다."
 
-#: kio_sftp.cpp:586
+#: kio_sftp.cpp:591
 #, kde-format
 msgid "Could not set username."
 msgstr "사용자 이름을 설정할 수 없습니다."
 
-#: kio_sftp.cpp:593
+#: kio_sftp.cpp:598
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "설정 파일을 처리할 수 없습니다."
 
-#: kio_sftp.cpp:610
+#: kio_sftp.cpp:615
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "%1:%2(으)로 향한 SFTP 연결 여는 중"
 
-#: kio_sftp.cpp:650
+#: kio_sftp.cpp:655
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "서버 공개 키 형식 이름을 가져올 수 없음"
 
-#: kio_sftp.cpp:662
+#: kio_sftp.cpp:667
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr "서버 공개 키에서 해시를 만들 수 없음"
 
-#: kio_sftp.cpp:671
+#: kio_sftp.cpp:676
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "서버 공개 키의 지문을 만들 수 없음"
 
-#: kio_sftp.cpp:731
+#: kio_sftp.cpp:736
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -145,13 +145,13 @@ msgstr ""
 "시스템 관리자에게 연락하십시오.\n"
 "%2"
 
-#: kio_sftp.cpp:748
+#: kio_sftp.cpp:753
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "호스트 식별자 변경"
 
-#: kio_sftp.cpp:750
+#: kio_sftp.cpp:755
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -166,13 +166,13 @@ msgstr ""
 "바뀌었을 수도 있습니다.</para><para>원격 호스트에서 마지막으로 보낸 %2 키 지"
 "문은 다음과 같습니다:<bcode>%3</bcode>계속 연결하시겠습니까?</para>"
 
-#: kio_sftp.cpp:760
+#: kio_sftp.cpp:765
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr "호스트 검증 실패"
 
-#: kio_sftp.cpp:762
+#: kio_sftp.cpp:767
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -184,35 +184,35 @@ msgstr ""
 "키 지문은 다음과 같습니다:<bcode>%3</bcode>계속 연결을 진행하시겠습니까?</"
 "para>"
 
-#: kio_sftp.cpp:771
+#: kio_sftp.cpp:776
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "그래도 연결하기"
 
-#: kio_sftp.cpp:794 kio_sftp.cpp:813 kio_sftp.cpp:828 kio_sftp.cpp:841
-#: kio_sftp.cpp:893 kio_sftp.cpp:903
+#: kio_sftp.cpp:799 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
 #, kde-format
 msgid "Authentication failed."
 msgstr "인증이 실패했습니다."
 
-#: kio_sftp.cpp:801
+#: kio_sftp.cpp:806
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr "인증이 실패했습니다. 서버에서 인증 방식을 제공하지 않았습니다"
 
-#: kio_sftp.cpp:850
+#: kio_sftp.cpp:855
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "사용자 이름과 암호를 입력하십시오."
 
-#: kio_sftp.cpp:861
+#: kio_sftp.cpp:866
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "잘못된 사용자 이름과 암호"
 
-#: kio_sftp.cpp:910
+#: kio_sftp.cpp:915
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -221,22 +221,22 @@ msgstr ""
 "SFTP 서브시스템에 요청할 수 없습니다. 서버에 SFTP가 활성화되어 있는지 확인하"
 "십시오."
 
-#: kio_sftp.cpp:915
+#: kio_sftp.cpp:920
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "SFTP 세션을 초기화할 수 없습니다."
 
-#: kio_sftp.cpp:919
+#: kio_sftp.cpp:924
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "%1에 성공적으로 연결됨"
 
-#: kio_sftp.cpp:972
+#: kio_sftp.cpp:977
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "잘못된 SFTP 콘텍스트"
 
-#: kio_sftp.cpp:1533
+#: kio_sftp.cpp:1538
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

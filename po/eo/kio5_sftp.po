@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 00:46+0000\n"
+"POT-Creation-Date: 2023-11-04 00:42+0000\n"
 "PO-Revision-Date: 2023-09-11 06:47+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: esperanto <kde-i18n-eo@kde.org>\n"
@@ -19,118 +19,118 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_sftp.cpp:223
+#: kio_sftp.cpp:228
 #, kde-format
 msgid "Incorrect or invalid passphrase"
 msgstr "Malĝusta aŭ nevalida pasfrazo"
 
-#: kio_sftp.cpp:272
+#: kio_sftp.cpp:277
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "Ne eblis asigni revokojn"
 
-#: kio_sftp.cpp:285
+#: kio_sftp.cpp:290
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "Ne eblis agordi protokolan vortecon."
 
-#: kio_sftp.cpp:290
+#: kio_sftp.cpp:295
 #, kde-format
 msgid "Could not set log userdata."
 msgstr "Ne eblis agordi registri uzantdatumojn."
 
-#: kio_sftp.cpp:295
+#: kio_sftp.cpp:300
 #, kde-format
 msgid "Could not set log callback."
 msgstr "Ne eblis agordi protokolrevokon."
 
-#: kio_sftp.cpp:331 kio_sftp.cpp:333 kio_sftp.cpp:849
+#: kio_sftp.cpp:336 kio_sftp.cpp:338 kio_sftp.cpp:854
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP ensaluto"
 
-#: kio_sftp.cpp:348
+#: kio_sftp.cpp:353
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr "Uzu la uzantnoman enigkampon por respondi ĉi tiun demandon."
 
-#: kio_sftp.cpp:360
+#: kio_sftp.cpp:365
 #, kde-format
 msgid "Please enter your password."
 msgstr "Bonvolu enigi vian pasvorton."
 
-#: kio_sftp.cpp:365 kio_sftp.cpp:852
+#: kio_sftp.cpp:370 kio_sftp.cpp:857
 #, kde-format
 msgid "Site:"
 msgstr "Retejo:"
 
-#: kio_sftp.cpp:411
+#: kio_sftp.cpp:416
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "Ne eblis legi ligilon: %1 [%2]"
 
-#: kio_sftp.cpp:533
+#: kio_sftp.cpp:538
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "Ne eblis krei novan SSH-seancon."
 
-#: kio_sftp.cpp:544 kio_sftp.cpp:548
+#: kio_sftp.cpp:549 kio_sftp.cpp:553
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "Ne eblis agordi tempon."
 
-#: kio_sftp.cpp:555
+#: kio_sftp.cpp:560
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "Ne eblis malŝalti la Algoritmon de Nagle."
 
-#: kio_sftp.cpp:561 kio_sftp.cpp:566
+#: kio_sftp.cpp:566 kio_sftp.cpp:571
 #, kde-format
 msgid "Could not set compression."
 msgstr "Ne eblis agordi kunpremadon."
 
-#: kio_sftp.cpp:572
+#: kio_sftp.cpp:577
 #, kde-format
 msgid "Could not set host."
 msgstr "Ne eblis agordi gastiganton."
 
-#: kio_sftp.cpp:578
+#: kio_sftp.cpp:583
 #, kde-format
 msgid "Could not set port."
 msgstr "Ne eblis agordi pordon."
 
-#: kio_sftp.cpp:586
+#: kio_sftp.cpp:591
 #, kde-format
 msgid "Could not set username."
 msgstr "Ne eblis agordi uzantnomon."
 
-#: kio_sftp.cpp:593
+#: kio_sftp.cpp:598
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "Ne eblis analizi la agordosieron."
 
-#: kio_sftp.cpp:610
+#: kio_sftp.cpp:615
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "Malfermante SFTP-konekton al gastiganto %1:%2"
 
-#: kio_sftp.cpp:650
+#: kio_sftp.cpp:655
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "Ne eblis ricevi la nomon de la tipo de publika ŝlosilo de la servilo"
 
-#: kio_sftp.cpp:662
+#: kio_sftp.cpp:667
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr "Ne eblis krei hash de servila publika ŝlosilo"
 
-#: kio_sftp.cpp:671
+#: kio_sftp.cpp:676
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "Ne eblis krei fingrospuron por servila publika ŝlosilo"
 
-#: kio_sftp.cpp:731
+#: kio_sftp.cpp:736
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -147,13 +147,13 @@ msgstr ""
 "Bonvolu kontakti vian sistemadministranton.\n"
 "%2"
 
-#: kio_sftp.cpp:748
+#: kio_sftp.cpp:753
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "Gastiganta Identeca Ŝanĝo"
 
-#: kio_sftp.cpp:750
+#: kio_sftp.cpp:755
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -169,13 +169,13 @@ msgstr ""
 "ŝlosila fingrospuro %2 sendita de la fora gastiganto estas:<bcode>%3</"
 "bcode>Ĉu vi certas, ke vi volas daŭrigi la konekton?</para>"
 
-#: kio_sftp.cpp:760
+#: kio_sftp.cpp:765
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr "Fiasko de Konfirmo de Gastiganta"
 
-#: kio_sftp.cpp:762
+#: kio_sftp.cpp:767
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -187,36 +187,36 @@ msgstr ""
 "establita.</para><para>La ŝlosila fingrospuro %2 estas:<bcode>%3</bcode>Ĉu "
 "vi certas, ke vi volas daŭrigi konekti?</para>"
 
-#: kio_sftp.cpp:771
+#: kio_sftp.cpp:776
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "Konekti Ĉiuokaze"
 
-#: kio_sftp.cpp:794 kio_sftp.cpp:813 kio_sftp.cpp:828 kio_sftp.cpp:841
-#: kio_sftp.cpp:893 kio_sftp.cpp:903
+#: kio_sftp.cpp:799 kio_sftp.cpp:818 kio_sftp.cpp:833 kio_sftp.cpp:846
+#: kio_sftp.cpp:898 kio_sftp.cpp:908
 #, kde-format
 msgid "Authentication failed."
 msgstr "La aŭtentigo fiaskis."
 
-#: kio_sftp.cpp:801
+#: kio_sftp.cpp:806
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr ""
 "Aŭtentikigo malsukcesis. La servilo sendis neniujn aŭtentigajn metodojn"
 
-#: kio_sftp.cpp:850
+#: kio_sftp.cpp:855
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Bonvolu tajpi vian salutnomon kaj pasvorton."
 
-#: kio_sftp.cpp:861
+#: kio_sftp.cpp:866
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Nevalida salutnomo aŭ pasvorto"
 
-#: kio_sftp.cpp:910
+#: kio_sftp.cpp:915
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -225,22 +225,22 @@ msgstr ""
 "Ne eblas peti la SFTP-subsistemon. Certigu, ke SFTP estas ebligita sur la "
 "servilo."
 
-#: kio_sftp.cpp:915
+#: kio_sftp.cpp:920
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "Ne eblis pravalorigi la SFTP-seancon."
 
-#: kio_sftp.cpp:919
+#: kio_sftp.cpp:924
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Sukcesis konekti al %1"
 
-#: kio_sftp.cpp:972
+#: kio_sftp.cpp:977
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Nevalida sftp-kunteksto"
 
-#: kio_sftp.cpp:1533
+#: kio_sftp.cpp:1538
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
