@@ -51,15 +51,6 @@ static KConfig *config()
     return d->config;
 }
 
-static KConfig *http_config()
-{
-    if (!d->http_config) {
-        d->http_config = new KConfig(QStringLiteral("kio_httprc"), KConfig::NoGlobals);
-    }
-
-    return d->http_config;
-}
-
 int KSaveIOConfig::proxyDisplayUrlFlags()
 {
     KConfigGroup cfg(config(), QString());
@@ -71,14 +62,6 @@ void KSaveIOConfig::setProxyDisplayUrlFlags(int flags)
     KConfigGroup cfg(config(), QString());
     cfg.writeEntry("ProxyUrlDisplayFlags", flags);
     cfg.sync();
-}
-
-void KSaveIOConfig::reparseConfiguration()
-{
-    delete d->config;
-    d->config = nullptr;
-    delete d->http_config;
-    d->http_config = nullptr;
 }
 
 void KSaveIOConfig::setReadTimeout(int _timeout)
@@ -127,35 +110,6 @@ void KSaveIOConfig::setAutoResume(bool _mode)
 {
     KConfigGroup cfg(config(), QString());
     cfg.writeEntry("AutoResume", _mode);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setUseCache(bool _mode)
-{
-    KConfigGroup cfg(http_config(), QString());
-    cfg.writeEntry("UseCache", _mode);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setMaxCacheSize(int cache_size)
-{
-    KConfigGroup cfg(http_config(), QString());
-    cfg.writeEntry("MaxCacheSize", cache_size);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setCacheControl(KIO::CacheControl policy)
-{
-    KConfigGroup cfg(http_config(), QString());
-    QString tmp = KIO::getCacheControlString(policy);
-    cfg.writeEntry("cache", tmp);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setMaxCacheAge(int cache_age)
-{
-    KConfigGroup cfg(http_config(), QString());
-    cfg.writeEntry("MaxCacheAge", cache_age);
     cfg.sync();
 }
 

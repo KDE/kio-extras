@@ -16,9 +16,6 @@ namespace KSaveIOConfig
 int proxyDisplayUrlFlags();
 void setProxyDisplayUrlFlags(int);
 
-/* Reload config file (kioslaverc) */
-void reparseConfiguration();
-
 /** Timeout Settings */
 void setReadTimeout(int);
 
@@ -27,15 +24,6 @@ void setConnectTimeout(int);
 void setProxyConnectTimeout(int);
 
 void setResponseTimeout(int);
-
-/** Cache Settings */
-void setMaxCacheAge(int);
-
-void setUseCache(bool);
-
-void setMaxCacheSize(int);
-
-void setCacheControl(KIO::CacheControl);
 
 /** Proxy Settings */
 void setUseReverseProxy(bool);
