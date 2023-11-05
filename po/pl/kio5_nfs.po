@@ -1,5 +1,5 @@
 # translation of kio_nfs.po to Polish
-# Version: $Revision: 1659978 $
+# Version: $Revision: 1664120 $
 # translation of kio_nfs.po to
 # Norbert Popiołek <norbert@kde.com.pl>
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2004.
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 00:46+0000\n"
+"POT-Creation-Date: 2023-11-05 12:32+0000\n"
 "PO-Revision-Date: 2021-03-20 07:28+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"

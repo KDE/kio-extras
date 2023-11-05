@@ -2,7 +2,7 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2001, 2003, 2004 Free Software Foundation, Inc.
-# $Id: kio5_sftp.po 1663994 2023-11-04 01:13:46Z scripty $
+# $Id: kio5_sftp.po 1664120 2023-11-05 13:15:21Z scripty $
 # $Source$
 #
 # Andrej Vernekar <andrej.vernekar@moj.net>, 2001.
@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-04 00:42+0000\n"
+"POT-Creation-Date: 2023-11-05 12:32+0000\n"
 "PO-Revision-Date: 2022-07-23 06:09+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
