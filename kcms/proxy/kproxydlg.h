@@ -10,6 +10,9 @@
 
 #include "ui_kproxydlg.h"
 #include <KCModule>
+#include <KSharedConfig>
+
+#include "../ksaveioconfig.h"
 
 class KProxyDialog : public KCModule
 {
@@ -43,10 +46,15 @@ private Q_SLOTS:
 
 private:
     bool autoDetectSystemProxy(QLineEdit *edit, const QString &envVarStr, bool showValue);
+    QString proxyFor(const QString &protocol) const;
+    QString proxyConfigScript() const;
+    bool useReverseProxy() const;
+    KSaveIOConfig::ProxyType proxyType() const;
 
     Ui::ProxyDialogUI mUi;
     QStringList mNoProxyForList;
     QMap<QString, QString> mProxyMap;
+    KSharedConfig::Ptr mConfig;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(KProxyDialog::DisplayUrlFlags)

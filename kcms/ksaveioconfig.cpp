@@ -120,7 +120,7 @@ void KSaveIOConfig::setUseReverseProxy(bool mode)
     cfg.sync();
 }
 
-void KSaveIOConfig::setProxyType(KProtocolManager::ProxyType type)
+void KSaveIOConfig::setProxyType(KSaveIOConfig::ProxyType type)
 {
     KConfigGroup cfg(config(), "Proxy Settings");
     cfg.writeEntry("ProxyType", static_cast<int>(type));

@@ -13,6 +13,7 @@
 #include <KLocalizedString>
 #include <KPluginFactory>
 #include <KPluralHandlingSpinBox>
+#include <KProtocolManager>
 #include <kio/ioworker_defaults.h>
 
 // Local
