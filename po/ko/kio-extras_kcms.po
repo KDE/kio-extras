@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-06 01:38+0000\n"
 "PO-Revision-Date: 2023-04-22 00:54+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -19,20 +19,20 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 22.12.3\n"
 
-#: ksaveioconfig.cpp:212
+#: ksaveioconfig.cpp:166
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "변경 사항을 적용하려면 실행 중인 앱을 다시 시작해야 합니다."
 
-#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "업데이트 실패"
 
-#: ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:179
 #, kde-format
 msgid "You have to restart KDE for these changes to take effect."
 msgstr "변경 사항을 적용하려면 KDE를 다시 시작해야 합니다."

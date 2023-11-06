@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-06 01:38+0000\n"
 "PO-Revision-Date: 2023-04-27 06:28+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -28,20 +28,20 @@ msgstr ""
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: ksaveioconfig.cpp:212
+#: ksaveioconfig.cpp:166
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "Da se te spremembe uveljavijo, morate znova zagnati zagnane programe."
 
-#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Posodobitev ni uspela"
 
-#: ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:179
 #, kde-format
 msgid "You have to restart KDE for these changes to take effect."
 msgstr "Za uveljavitev teh sprememb morate znova zagnati KDE."

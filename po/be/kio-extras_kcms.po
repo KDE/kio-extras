@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-06 01:38+0000\n"
 "PO-Revision-Date: 2023-02-09 08:31\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -22,20 +22,20 @@ msgstr ""
 "X-Crowdin-File: /main/be/kio/kio5.po\n"
 "X-Crowdin-File-ID: 8027\n"
 
-#: ksaveioconfig.cpp:212
+#: ksaveioconfig.cpp:166
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "Каб змены набылі моц, трэба перазапусціць запушчаныя праграмы."
 
-#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Не ўдалося абнавіць"
 
-#: ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:179
 #, kde-format
 msgid "You have to restart KDE for these changes to take effect."
 msgstr "Каб змены набылі моц, трэба перазапусціць KDE."

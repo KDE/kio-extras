@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-06 01:38+0000\n"
 "PO-Revision-Date: 2022-10-05 21:57+0630\n"
 "Last-Translator: ဇေယျာလွင် <lw1nzayar@yandex.com>\n"
 "Language-Team: Burmese <kde-i18n-doc@kde.org>\n"
@@ -18,20 +18,20 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: ksaveioconfig.cpp:212
+#: ksaveioconfig.cpp:166
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "ထိုပြောင်းလဲချက်များ သက်ဝင်စေရန် အပ္ပလီကေးရှင်းများကို ပြန်စတင်ရမည်။"
 
-#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "အပ်ဒိတ်စ်တင်ရန်ကျရှုံးခဲ့သည်"
 
-#: ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:179
 #, kde-format
 msgid "You have to restart KDE for these changes to take effect."
 msgstr "ထိုပြောင်းလဲချက်များ သက်ဝင်စေရန် ကေဒီအီးကို ပြန်စတင်ရမည်။"

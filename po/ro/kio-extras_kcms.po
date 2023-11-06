@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2023-11-06 01:38+0000\n"
 "PO-Revision-Date: 2022-12-28 20:58+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Lokalize 21.12.3\n"
 
-#: ksaveioconfig.cpp:212
+#: ksaveioconfig.cpp:166
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -32,13 +32,13 @@ msgstr ""
 "Aceste modificări vor avea efect după ce restartați aplicațiile care rulează "
 "deja."
 
-#: ksaveioconfig.cpp:214 ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Actualizare eșuată"
 
-#: ksaveioconfig.cpp:225
+#: ksaveioconfig.cpp:179
 #, kde-format
 msgid "You have to restart KDE for these changes to take effect."
 msgstr "Aceste modificări vor avea efect după ce restartați mediul KDE."
