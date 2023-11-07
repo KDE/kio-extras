@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2022-10-19 21:51+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -31,16 +31,11 @@ msgstr ""
 "Käimasolevad rakendused tuleb uuesti käivitada, et need muudatused arvesse "
 "võetaks."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Värskendamine nurjus"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "KDE tuleb uuesti käivitada, et need muudatused arvesse võetaks."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -78,12 +73,12 @@ msgstr ""
 "Faili üleslaadimisel on selle laiendiks \"*.part\". Pärast täielikku "
 "üleslaadimist saab fail endale oma algse nime tagasi."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Aegumise väärtused"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -100,45 +95,45 @@ msgstr[1] ""
 "ainult siis, kui su võrguühendus on väga aeglane. Maksimaalne lubatud aeg on "
 "%1 sekundit."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " sekund"
 msgstr[1] " sekundit"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "&Pesast lugemine:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Pu&hverserveri ühendus:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Serveri ühe&ndus:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "Serveri &vastus:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Globaalsed valikud"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&Osaliselt üleslaaditud failide märkimine"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -151,14 +146,14 @@ msgstr ""
 "osaliselt üleslaaditud failidel laiend \".part\". Laiend võetakse maha siis, "
 "kui üleslaadimine on edukalt lõpetatud.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " bait"
 msgstr[1] " baiti"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -167,17 +162,17 @@ msgstr ""
 "Tühistamise korral kustutatakse osaliselt üleslaaditud failid, mis on "
 "väiksemad kui"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP valikud"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passiivse režiimi (PASV) luba&mine"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -186,7 +181,7 @@ msgstr ""
 "Lubab FTP passiivse režiimi. See on vajalik, et FTP töötaks tulemüüride "
 "tagant."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -197,7 +192,7 @@ msgstr ""
 "lülitatud, siis on osaliselt üleslaaditud failidel laiend \".part\". Laiend "
 "võetakse maha siis, kui üleslaadimine on edukalt lõpetatud.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1151,6 +1146,9 @@ msgstr "Koo&ditabel:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Päringu kohatäitja lisamine"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "KDE tuleb uuesti käivitada, et need muudatused arvesse võetaks."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Need seadistused rakenduvad ainult võrgu lehitsemisele."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2007-09-02 13:06+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -27,17 +27,12 @@ msgstr ""
 "باید کاربردهای اجرا را برای این که این تغییرها تأثیر داشته باشند، بازآغازی "
 "کنید."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "خرابی در به‌روزرسانی"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "برای اثر بخشی این تغییرها باید KDE را بازآغاز کنید."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -75,12 +70,12 @@ msgstr ""
 "زمانی که پرونده‌ای در حال بارگذاری است، پسوندش ».part« می‌باشد. وقتی که کاملاً "
 "بارگذاری می‌شود، به نام حقیقی‌اش تغییر نام می‌دهد."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "مقادیر اتمام وقت"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, fuzzy, kde-format
 #| msgid ""
 #| "Here you can set timeout values. You might want to tweak them if your "
@@ -97,8 +92,8 @@ msgstr[0] ""
 "می‌باشد."
 msgstr[1] ""
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, fuzzy, kde-format
 #| msgid " sec"
 msgid " second"
@@ -106,38 +101,38 @@ msgid_plural " seconds"
 msgstr[0] " ثانیه"
 msgstr[1] ""
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "خواندن &سوکت:‌"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "اتصال &پیشکار:‌"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "&اتصال کارساز:‌"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "پاسخ &کارساز:‌"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "انتخاب‌ها"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "نشان‌دار کردن پرونده‌هایی که &نسبتاً بارگذاری‌شده‌"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -153,31 +148,31 @@ msgstr ""
 "انتخاب فعال می‌شود، پرونده‌هایی که نسبتاً بارگذاری‌ شده، یک پسوند ».part« خواهند "
 "داشت. به محض این که انتقال کامل می‌شود، این پسوند حذف خواهد شد.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "گزینه‌های FTP"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "فعال‌سازی &حالت منفعل  )PASV(‌"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -186,7 +181,7 @@ msgstr ""
 "حالت »منفعل« FTP را فعال می‌کند. برای اجازه دادن به FTP، به منظور کار کردن از "
 "پشت باروها مورد نیاز است."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -197,7 +192,7 @@ msgstr ""
 "انتخاب فعال می‌شود، پرونده‌هایی که نسبتاً بارگذاری‌ شده، یک پسوند ».part« خواهند "
 "داشت. به محض این که انتقال کامل می‌شود، این پسوند حذف خواهد شد.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1143,6 +1138,9 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "برای اثر بخشی این تغییرها باید KDE را بازآغاز کنید."
 
 #~ msgid "Default user name:"
 #~ msgstr "نام کاربر پیش‌فرض:"

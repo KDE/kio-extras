@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-06-03 12:57+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -39,16 +39,11 @@ msgstr ""
 "Bu değişikliklerin etki göstermesi için çalışan bütün uygulamaları yeniden "
 "başlatmanız gerekir."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Güncelleme Başarısız Oldu"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Bu değişikliğin etkin olması için KDE'yi yeniden başlatmalısınız."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -86,12 +81,12 @@ msgstr ""
 "Bir dosya karşıya yüklenirken uzantısı \".part\" olur. Dosya tamamen "
 "gönderildikten sonra gerçek adını alır."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Zaman Aşımı Değerleri"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -108,45 +103,45 @@ msgstr[1] ""
 "yavaş ise bunları değiştirmek isteyebilirsiniz. İzin verilen en yüksek değer "
 "%1 saniyedir."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " saniye"
 msgstr[1] " saniye"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Yuva o&kuma:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Vekil &bağlantısı:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Su&nucu bağlantısı:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "&Sunucu yanıtı:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Genel Seçenekler"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Bir kısmı &karşıya yüklenmiş dosyaları imle"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -159,14 +154,14 @@ msgstr ""
 "\"part\" uzantısı olur. Bu uzantı, aktarım tamamlandıktan sonra kaldırılır.</"
 "p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " bayt"
 msgstr[1] " bayt"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -175,17 +170,17 @@ msgstr ""
 "İptal edilirse bir kısmı karşıya yüklenen ve şunlardan daha küçük olan "
 "dosyaları kendiliğinden sil:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP Seçenekleri"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Pasif &kipi etkinleştir (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -194,7 +189,7 @@ msgstr ""
 "FTP'nin \"pasif\" kipini etkinleştirir. FTP'nin güvenlik duvarı arkasından "
 "çalışmasına izin vermek için gereklidir."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -206,7 +201,7 @@ msgstr ""
 "uzantısına sahip olurlar. Aktarma tamamlandığında bu uzantılar kaldırılır.</"
 "p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1156,6 +1151,9 @@ msgstr "&Karakter Kümesi:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sorgu yer tutucu ekle"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Bu değişikliğin etkin olması için KDE'yi yeniden başlatmalısınız."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Bu ayarlar yalnızca ağ taramasına uygulanır."

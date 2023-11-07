@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2004-12-14 15:11-0600\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -27,16 +27,11 @@ msgstr ""
 "Ní mór duit gach feidhmchlár beo a atosú chun na hathruithe seo a chur i "
 "bhfeidhm."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Theip ar Nuashonrú"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Ní mór duit KDE a atosú chun na hathruithe seo a chur i bhfeidhm."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -75,12 +70,12 @@ msgstr ""
 "Le linn uasluchtaithe, úsáidfear iarmhír \".part\" ar chomhad. Cuirfear an "
 "fíorainm ar ais nuair a bheidh an t-uasluchtú críochnaithe."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Teorainneacha Ama"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -109,8 +104,8 @@ msgstr[4] ""
 "mhionathrú má tá ceangal líonra an-mhall agat. Is é %1 soicind an luach "
 "uasta a cheadaítear."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -120,38 +115,38 @@ msgstr[2] " shoicind"
 msgstr[3] " soicind"
 msgstr[4] " soicind"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Léamh soi&céid:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Ceangal seachfh&reastalaí:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Ceangal &freastalaí:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "Freagra frea&stalaí:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "Roghanna"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&Marcáil comhaid nach bhfuil ach páirt uasluchtaithe"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -168,7 +163,7 @@ msgstr ""
 "críochnaithe fós. Bainfear an iarmhír seo de nuair a bheidh an t-aistriú "
 "críochnaithe.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
@@ -178,24 +173,24 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "Roghanna FTP"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Cumasaigh an &mód éighníomhach (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -204,7 +199,7 @@ msgstr ""
 "Cumasaigh an mód \"éighníomhach\" FTP. Tá an mód seo de dhíth chun FTP a "
 "chur ar siúl taobh thiar de bhalla dóiteáin."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -216,7 +211,7 @@ msgstr ""
 "críochnaithe fós. Bainfear an iarmhír seo de nuair a bheidh an t-aistriú "
 "críochnaithe.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1121,6 +1116,9 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "Mód Crosfhite"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Ní mór duit KDE a atosú chun na hathruithe seo a chur i bhfeidhm."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr ""

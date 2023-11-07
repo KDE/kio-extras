@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-10-22 23:31+0300\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
@@ -37,16 +37,11 @@ msgid ""
 "effect."
 msgstr "יש להפעיל את היישומים הפעילים מחדש כדי שהשינויים האלו ייכנסו לתוקף."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "העדכון נכשל"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "יש להפעיל את KDE מחדש כדי ששינויים אלה ייכנסו לתוקף."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -83,12 +78,12 @@ msgstr ""
 "כאשר קובץ נמצא בתהליך העלאה, הוא מקבל את הסיומת \".part\". כאשר ההעלאה "
 "מסתיימת שמו משתנה לשם הקובץ האמתי."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "ערכי זמן המתנה"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -109,8 +104,8 @@ msgstr[3] ""
 "כאן אפשר להגדיר ערכי זמן המתנה. אם החיבור שלך מאוד איטי שווה לנסות לכוון "
 "אותם. הערך המרבי המותר הוא %1 שניות."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -119,37 +114,37 @@ msgstr[1] " שניות"
 msgstr[2] " שניות"
 msgstr[3] " שניות"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "קר&יאת שקע:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "התחברות למ&תווך:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "התחברות ל&שרת:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "ת&גובת שרת:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "אפשרויות כלליות"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "סימון קב&צים שהועלו באופן חלקי"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -161,7 +156,7 @@ msgstr ""
 "פעילה, לקבצים שהועלו חלקית תתווסף הסיומת „‎.part”. הסיומת הזאת תוסר עם השלמת "
 "ההעברה.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
@@ -170,7 +165,7 @@ msgstr[1] " בתים"
 msgstr[2] " בתים"
 msgstr[3] " בתים"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -178,24 +173,24 @@ msgid ""
 msgstr ""
 "אם ההעברה בוטלה, למחוק אוטומטית את קובצי ההעלאה החלקיים שגודלם קטן מאשר:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "אפשרויות FTP"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "הפעלת מצב &סביל (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr "הפעלת מצב „סביל” של FTP. נחוץ כדי לאפשר ל־FTP לעבור מבעד לחומות־אש."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -205,7 +200,7 @@ msgstr ""
 "<p>מסמן קובצי FTP שהועלו חלקית.</p><p>כאשר האפשרות הזאת פעילה, לקבצים שהועלו "
 "חלקית תתווסף הסיומת „‎.part”. הסיומת הזאת תוסר לאחר השלמת ההעברה.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1137,6 +1132,9 @@ msgstr "&ערכת תווים:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "הוספת ממלא מקום לשאילתה"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "יש להפעיל את KDE מחדש כדי ששינויים אלה ייכנסו לתוקף."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "הגדרות אלו חלות רק על גלישה ברשת."

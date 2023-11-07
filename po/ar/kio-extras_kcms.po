@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-04-27 12:15+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -34,16 +34,11 @@ msgid ""
 "effect."
 msgstr "عليك إعادة تشغيل التّطبيقات العاملة لتُطبّق هذه التّغييرات."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "فشل التّحديث"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "عليك إعادة تشغيل «كِيدِي» لتُطبّق التّغييرات."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -81,12 +76,12 @@ msgstr ""
 "أثناء رفع ملف سيكون امتداده \"‎\".part. عند انتهاء الرفع ستُعاد تسميته إلى "
 "اسمه الحقيقي."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "قيم المهلة"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -113,8 +108,8 @@ msgstr[5] ""
 "يمكنك من هنا تعيين قِيَم المهلة. قد ترغب بتغييرها إذا كان اتصالك بالإنترنت "
 "بطيء جدًا. أكبر قيمة ممكنة هي %1 ثانية."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -125,37 +120,37 @@ msgstr[3] " ثانية"
 msgstr[4] " ثانية"
 msgstr[5] " ثانية"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "&قراءة المقبس:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "الاتّصال بال&وكيل:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "الاتصال بال&خادوم:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "ر&دّ الخادوم:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "خيارات عالمية"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "علّم المل&فّات المرفوعة جزئيًّا"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -167,7 +162,7 @@ msgstr ""
 "الأخرى .</p><p>عند تمكين هذا الخيار، ستملك الملفات المرفوعة جزئيًا الامتداد ‎"
 "\".part\". هذا الامتداد سيُزال ما إن تكتمل عملية النقل.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
@@ -178,7 +173,7 @@ msgstr[3] " بايتات"
 msgstr[4] " بايتا"
 msgstr[5] " بايت"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -187,17 +182,17 @@ msgstr ""
 "في حالة الإلغاء ، احذف تلقائيًا الملفات التي تم تحميلها جزئيًا والتي يقل حجمها "
 "عن: "
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "خيارات FTP"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "فعّل الو&ضع السلبي (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -205,7 +200,7 @@ msgid ""
 msgstr ""
 "مكّن وضع \"passive\" لِـ FTP. هذا ضروري للسماح لِ FTP بالعمل وراء جدار النار."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -216,7 +211,7 @@ msgstr ""
 "المرفوعة جزئيًا الامتداد ‎\".part\". هذا الامتداد سيُزال ما إن تكتمل عملية "
 "النقل.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1155,6 +1150,9 @@ msgstr "&طقم المحارف:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "أدرج عنصر نائب للاستعلام"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "عليك إعادة تشغيل «كِيدِي» لتُطبّق التّغييرات."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "تُطبّق هذه الإعدادات فقط لتصفّح الشّبكة."

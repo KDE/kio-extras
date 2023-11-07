@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio stable\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2005-11-26 17:02+0200\n"
 "Last-Translator: Kobus <kabousv@therugby.co.za>\n"
 "Language-Team: AFRIKAANS <translate-discuss-af@lists.sourceforge.net>\n"
@@ -26,17 +26,12 @@ msgid ""
 msgstr ""
 "Jy het na herbegin die wat loop programme vir hierdie verander na neem effek."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Dateer op Gevaal"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Jy moet KDE herbegin om die veranderinge toe te pas."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -74,12 +69,12 @@ msgstr ""
 "Wanneer 'n lêer afgelaai word, sal sy agtervoegsel \".part\" wees. Nadat dit "
 "ten volle afgelaai het sal dit die ware agtervoegsel vertoon."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Tydverstreke Waardes"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, fuzzy, kde-format
 #| msgid ""
 #| "Here you can set timeout values. You might want to tweak them if your "
@@ -97,8 +92,8 @@ msgstr[1] ""
 "Hier jy kan stel tydverstreke waardes. jy dalk wil hê na verstel hulle as "
 "jou verbinding is baie stadige. Die maksimum toegelaat waarde is %1 sekondes."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, fuzzy, kde-format
 #| msgid " sec"
 msgid " second"
@@ -106,38 +101,38 @@ msgid_plural " seconds"
 msgstr[0] " sek"
 msgstr[1] " sek"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Soket lees:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Volmag konnekteer:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Bediener konnekteer:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "Bediener antwoord:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, fuzzy, kde-format
 #| msgid "Operation"
 msgid "Global Options"
 msgstr "Operasie"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Merk gedeeltelik opgelaaide lêers"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -153,31 +148,31 @@ msgstr ""
 "is, sal gedeeltelik opgelaaide lêers 'n \".deel\" uitbreiding hê. Hierdie "
 "uitbreiding sal verander as die oordra volledig is.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "Ftp Opsies"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Aktiveer passief modus (Pasv)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -186,7 +181,7 @@ msgstr ""
 "Skakel Ftp se \"passiewe\" modus aan. Dit is nodig om Ftp te laat werk agter "
 "vuur-mure."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -197,7 +192,7 @@ msgstr ""
 "is, sal gedeeltelik opgelaaide lêers 'n \".deel\" uitbreiding hê. Hierdie "
 "uitbreiding sal verander as die oordra volledig is.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1138,6 +1133,9 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Jy moet KDE herbegin om die veranderinge toe te pas."
 
 #~ msgid "Default user name:"
 #~ msgstr "Verstek gebruiker naam:"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-04-27 10:31+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -26,16 +26,11 @@ msgstr ""
 "Tu debe re-initiar le applicationes executante pro applicar iste "
 "modificationes."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Il falleva actualisation"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Tu debe re-initiar KDE pro applicar iste modificationes."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -73,12 +68,12 @@ msgstr ""
 "Durante que le file es cargante su extension es \".part\". Quando il es "
 "completemente cargate il es renominate a su nomine real."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Valores de tempore expirate"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -93,45 +88,45 @@ msgstr[1] ""
 "Ci tu pote fixar valores de tempore expirate. Tu pote voler tirar los si tu "
 "connexion es multe lente. Le maxime valor permittite es %1 secundas."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] "secunda"
 msgstr[1] "secundas"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Soc&ket lege:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Pro&xy connecte:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Servitor co&nnecte:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "&Servitor responde:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Optiones global"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Marca files &partialmente cargate"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -144,14 +139,14 @@ msgstr ""
 "cargate habera un  extension \".part\" . Iste extension essera removite un "
 "vice que le transferentia es completate.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " Byte"
 msgstr[1] " bytes"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -160,17 +155,17 @@ msgstr ""
 "Si cancellate, dele automaticamente files incargate partialmente plus parve "
 "que:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "Optiones de FTP"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Habilita &modo Passive (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -179,7 +174,7 @@ msgstr ""
 "Habilita modo de FTP's \"passive\". isto es requirite pro permitter FTP de "
 "travaliar ex retro de firewalls (muros talia foco)."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -190,7 +185,7 @@ msgstr ""
 "habilitate, files partialmente cargate habera un extension \".part\" . Iste "
 "extension essera removite un vice que le transferentia es completate.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1158,6 +1153,9 @@ msgstr "Insimul de &characteres:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserta substituto de demanda (query)"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Tu debe re-initiar KDE pro applicar iste modificationes."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Iste preferentias applica se solmente a navigation de rete."

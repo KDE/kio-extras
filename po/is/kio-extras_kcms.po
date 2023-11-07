@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-03-22 08:09+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
@@ -36,16 +36,11 @@ msgid ""
 msgstr ""
 "Þú verður að endurræsa virk forrit til að þessar breytingar taki gildi."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Uppfærsla mistókst"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Þú verður að endurræsa KDE til að þessar breytingar taki gildi."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -83,12 +78,12 @@ msgstr ""
 "Á meðan verið er að senda skrá er skrárending hennar \"*.part\". Þegar "
 "sendingunni er lokið að fullu er hún endurskírð í rétt nafn."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Fallið á tíma eftir"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -105,45 +100,45 @@ msgstr[1] ""
 "borgað sig að stilla þetta ef þú ert á hægri nettengingu.  Hæsta leyfilega "
 "gildi er %1 sekúndur."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " sekúnda"
 msgstr[1] " sekúndur"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "&Lesið af sökkli:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Ten&gst milliþjóni:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Te&ngst þjóni:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "Netþjónn &svarar:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Altækir valkostir"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Merkja skrár sóttar að &hluta"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -156,14 +151,14 @@ msgstr ""
 "viðbótarendinguna \".part\".  Þessi ending hverfur aftan af skránni þegar "
 "búið er að sækja hana að fullu.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " bæti"
 msgstr[1] " bæti"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -171,17 +166,17 @@ msgid ""
 msgstr ""
 "Ef hætt er við verður skrám eytt sem var hlaðið upp að hluta og eru minni en:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP-valkostir"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Virkja hlutlausan ha&m (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -190,7 +185,7 @@ msgstr ""
 "Virkja \"hlutlausan\" ham FTP-tenginga: Þetta er nauðsynlegt til að geta "
 "tengst ef þú ert á bakvið eldvegg."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -201,7 +196,7 @@ msgstr ""
 "munu skrár sem er verið að sækja hafa viðbótarendinguna \".part\".  Þessi "
 "ending hverfur aftan af skránni þegar búið er að sækja hana að fullu.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1151,6 +1146,9 @@ msgstr "Sta&fatafla:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Setja inn staðgengilstexta fyrirspurnar"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Þú verður að endurræsa KDE til að þessar breytingar taki gildi."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Þessar stillingar eiga eingöngu við um flakk á netkerfum."

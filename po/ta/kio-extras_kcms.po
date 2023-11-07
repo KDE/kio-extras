@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-04-30 21:43+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -33,16 +33,11 @@ msgid ""
 msgstr ""
 "இந்த மாற்றங்கள் செயல்பட, தற்போது ஓடிக்கொண்டிருக்கும் செயலிகளை நீங்கள் மீள்துவக்க வேண்டும்."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "புதுப்பித்தல் தோல்வியடைந்தது"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "இந்த மாற்றங்கள் செயல்பட, கே.டீ.யீ.-ஐ நீங்கள் மீள்துவக்க வேண்டும்."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -80,12 +75,12 @@ msgstr ""
 "ஒரு கோப்பு பதிவேற்றப்படும்போது அதன் வகைப்பெயர் \"*.part\"-ஆக இருக்கும். முழுதாக "
 "பதிவேற்றிய பின் அதற்கு சரியான பெயர் இடப்படும்."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "காலாவதி இடைவெளிகள்"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -100,45 +95,45 @@ msgstr[1] ""
 "இங்கு நீங்கள் காலாவதி நேரங்களை அமைக்கலாம். உங்கள் இணைப்பு மிக மெதுவாக இருந்தால் நீங்கள் "
 "இவற்றை மாற்ற வேண்டியிருக்கலாம். அதிகபட்ச காலாவதி %1 நொடிகள் ஆகும்."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " நொடி"
 msgstr[1] " நொடிகள்"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "சாக்கெட்டை &படித்தல்:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "ப&திலியோடு இணைத்தல்:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "&சேவையகத்தோடு இணைத்தல்:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "சே&வையகத்தின் பதில்:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "பொதுவான விருப்பத்தேர்வுகள்"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&முழுதாக பதிவேற்றப்படாத கோப்புகளை குறி"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -150,14 +145,14 @@ msgstr ""
 "p><p> இந்த விருப்பத்தை இயக்கினால், முழுதாக பதிவேற்றப்படாத கோப்புகளுக்கு \".part\" என்ற "
 "வகைப்பெயர் இடப்படும். இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " பைட்டு"
 msgstr[1] " பைட்டுகள்"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -166,17 +161,17 @@ msgstr ""
 "கைவிடப்பட்டால், இதைவிட சிறிய கோப்புகள் முழுதாக பதிவேற்றப் படவில்லையெனில் தானாக "
 "அகற்றவும்:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP விருப்பங்கள்"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passive &பயன்முறையை (PASV) இயக்கு"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -185,7 +180,7 @@ msgstr ""
 "FTP-இன் 'passive' பயன்முறையை இயக்கும். தீயரண்களுக்கு பின்னாலிருந்து FTP வேலை செய்ய இது "
 "தேவை."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -196,7 +191,7 @@ msgstr ""
 "இயக்கினால், முழுதாக பதிவேற்றப்படாத கோப்புகளுக்கு \".part\" என்ற வகைப்பெயர் இடப்படும். "
 "இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1136,6 +1131,9 @@ msgstr "&உருத்தொகுதி:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "கேள்விக்கான கொள்ளிடத்தை உள்ளிடு"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "இந்த மாற்றங்கள் செயல்பட, கே.டீ.யீ.-ஐ நீங்கள் மீள்துவக்க வேண்டும்."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "இந்த அமைப்புகள் பிணைய உலாவலுக்கு மட்டும் பொருந்தும்."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-02-20 10:53+0100\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -28,16 +28,11 @@ msgstr ""
 "Bạn cần phải khởi động lại các ứng dụng đang chạy để các thay đổi có tác "
 "dụng."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Cập nhật thất bại"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Bạn cần phải khởi động lại KDE để các thay đổi có tác dụng."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -75,12 +70,12 @@ msgstr ""
 "Khi một tệp đang được tải lên, phần mở rộng của nó là \".part\". Khi đã tải "
 "lên toàn bộ, nó được đổi tên thành tên thật."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Các giá trị thời hạn"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -92,44 +87,44 @@ msgstr[0] ""
 "Tại đây bạn có thể đặt các giá trị thời hạn. Bạn có thể muốn điều chỉnh "
 "chúng nếu kết nối của bạn quá chậm. Giá trị cho phép tối đa là %1 giây."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " giây"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Đọ&c từ ổ cắm:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Kết nối đến &uỷ nhiệm:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Kết nối đến má&y chủ:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "Trả lời từ &máy chủ:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Lựa chọn chung"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Đánh dấu các tệp được tải lên một &phần"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -142,30 +137,30 @@ msgstr ""
 "một phần mở rộng \".part\". Phần mở rộng này sẽ bị xoá khi việc truyền hoàn "
 "tất.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " byte"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr "Nếu bị huỷ, tự động xoá các tệp được tải lên một phần mà nhỏ hơn:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "Các lựa chọn FTP"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Bật chế độ thụ độn&g (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -174,7 +169,7 @@ msgstr ""
 "Bật chế độ \"thụ động\" của FTP. Việc này là cần thiết để cho phép FTP hoạt "
 "động đằng sau tường lửa."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -185,7 +180,7 @@ msgstr ""
 "được bật, các tệp được tải lên một phần sẽ có một phần mở rộng \".part\". "
 "Phần mở rộng này sẽ bị xoá khi việc truyền hoàn tất.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1130,6 +1125,9 @@ msgstr "&Bộ mã tự:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Chèn phần giữ chỗ truy vấn"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Bạn cần phải khởi động lại KDE để các thay đổi có tác dụng."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Các thiết lập này chỉ áp dụng cho việc duyệt mạng."

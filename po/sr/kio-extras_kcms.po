@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2017-12-17 18:00+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -32,16 +32,11 @@ msgid ""
 msgstr ""
 "Морате поново покренути програме у погону да би ове измене ступиле на снагу."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Ажурирање није успело"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Морате поново покренути КДЕ да би измене ступиле на снагу."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -80,12 +75,12 @@ msgstr ""
 "<qt>Док се отпрема фајл ће имати наставак <tt>.part</tt>. Када се пренос "
 "заврши биће му враћено стварно име.</qt>"
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Вредности прековремена"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -110,8 +105,8 @@ msgstr[3] ""
 "измените ако радите на врло спорој вези. Највећа дозвољена вредност је 1 "
 "секунда."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -120,37 +115,37 @@ msgstr[1] " секунде"
 msgstr[2] " секунди"
 msgstr[3] " секунда"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Читање со&кета:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Повезивање &проксија:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Повезивање &сервера:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "&Одговор сервера:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Глобалне опције"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Означи &делимично отпремљене фајлове"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -163,7 +158,7 @@ msgstr ""
 "ће имати наставак <tt>.part</tt>. Овај наставак ће бити уклоњен када се "
 "пренос оконча.</p></qt>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
@@ -172,24 +167,24 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "Опције ФТП‑а"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Укључи &пасивни режим"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -198,7 +193,7 @@ msgstr ""
 "Укључује „пасивни“ режим ФТП‑а. Ово је неопходно да би ФТП радио иза "
 "заштитних зидова."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -209,7 +204,7 @@ msgstr ""
 "укључена, делимично отпремљени фајлови ће имати наставак <tt>.part</tt>. "
 "Овај наставак ће бити уклоњен када се пренос оконча.</p></qt>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1181,6 +1176,9 @@ msgstr "&Кодирање:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Уметни местодржач упита"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Морате поново покренути КДЕ да би измене ступиле на снагу."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Ове се поставке односе само на прегледање мреже."

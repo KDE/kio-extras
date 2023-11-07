@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-05-10 20:16+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -32,16 +32,11 @@ msgid ""
 msgstr ""
 "Vi devas rekomenci la kurantajn aplikaĵojn por ke ĉi tiuj ŝanĝoj efektiviĝu."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Ĝisdatigo Malsukcesis"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Vi devas rekomenci KDE por ke ĉi tiuj ŝanĝoj efektiviĝu."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -79,12 +74,12 @@ msgstr ""
 "Dum dosiero estas alŝutita ĝia etendaĵo estas \".part\". Kiam plene alŝutite "
 "ĝi estas renomita al sia reala nomo."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Timeout Valoroj"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -99,45 +94,45 @@ msgstr[1] ""
 "Ĉi tie vi povas meti eltempiĝajn valorojn. Vi eble volos ĝustigi ilin se via "
 "konekto estas tre malrapida. La maksimume allasebla valoro estas %1 sekundoj."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " sekundo"
 msgstr[1] " sekundoj"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Soc&ket lego:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Pro&xy-konekto:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Servilo-ko&nekto:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "&Servila respondo:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Ĉieaj opcioj"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Marki &parte alŝutitajn dosierojn"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -150,14 +145,14 @@ msgstr ""
 "etendon \".part\". Ĉi tiu etendo estos forigita post kiam la translokigo "
 "estos finita.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " bajto"
 msgstr[1] " bajtoj"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -165,17 +160,17 @@ msgid ""
 msgstr ""
 "Se nuligite, aŭtomate forigu parte alŝutitajn dosierojn pli malgrandajn ol:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP-Ebloj"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Ebligi pasivan reĝi&mon (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -184,7 +179,7 @@ msgstr ""
 "Ebligas la \"pasivan\" reĝimon de FTP. Ĉi tio estas postulata por permesi al "
 "FTP funkcii de malantaŭ fajroŝirmiloj."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -195,7 +190,7 @@ msgstr ""
 "ebligita, parte alŝutitaj dosieroj havos etendon \".part\". Ĉi tiu etendo "
 "estos forigita post kiam la translokigo estos finita.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1140,6 +1135,9 @@ msgstr "&Charset:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Enmetu demandan anstataŭilon"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Vi devas rekomenci KDE por ke ĉi tiuj ŝanĝoj efektiviĝu."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Ĉi tiuj agordoj validas nur por retumado."

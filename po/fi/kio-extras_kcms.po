@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-03-14 21:58+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -39,16 +39,11 @@ msgstr ""
 "Käynnissä olevat sovellukset täytyy käynnistää uudelleen, jotta tämä asetus "
 "tulee voimaan."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Päivitys epäonnistui"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "KDE on käynnistettävä uudestaan, jotta muutokset tulisivat voimaan."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -86,12 +81,12 @@ msgstr ""
 "Lähetettävän tiedoston pääte on ”*.part”. Kun tiedosto on kokonaan "
 "lähetetty, sen nimi palautetaan oikeaksi."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Aikakatkaisuarvot"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -106,45 +101,45 @@ msgstr[1] ""
 "Tässä voit määrittää aikakatkaisun asetukset. Niitä voi olla tarpeen "
 "muuttaa, jos yhteytesi on hidas. Suurin sallittu arvo on %1 sekuntia."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " sekunti"
 msgstr[1] " sekuntia"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "&Pistokkeiden luku:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "&Välityspalvelinyhteys:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Palveli&nyhteys:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "Palvelimen &vastaus:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Järjestelmänlaajuiset asetukset"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Merkitse &osittain ladatut tiedostot"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -157,14 +152,14 @@ msgstr ""
 "tiedostoissa on ”.part”-pääte, joka poistetaan, kun tiedosto on ladattu "
 "kokonaan.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " tavu"
 msgstr[1] " tavua"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -173,17 +168,17 @@ msgstr ""
 "Peruttaessa poista automaattisesti osittain ladatut tiedostot, joiden koko "
 "on alle:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP:n asetukset"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Ota käyttöön passiivinen &tila (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -192,7 +187,7 @@ msgstr ""
 "Ottaa käyttöön FTP:n ”passiivitilan”, jota tarvitaan, jos käytät FTP:tä "
 "palomuurin takaa."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -203,7 +198,7 @@ msgstr ""
 "valittu, osittain ladatuissa tiedostoissa on ”.part”-pääte, joka poistetaan, "
 "kun tiedosto on ladattu kokonaan.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1149,6 +1144,9 @@ msgstr "&Merkistö:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Aseta kyselyn paikanvaraus"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "KDE on käynnistettävä uudestaan, jotta muutokset tulisivat voimaan."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Nämä asetukset vaikuttavat vain verkkoselailuun."

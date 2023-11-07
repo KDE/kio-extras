@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2013-02-23 17:39+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -26,16 +26,11 @@ msgid ""
 "effect."
 msgstr "केलेले बदलांचा प्रभाव पडण्याकरिता तुम्हाला कार्यरत अनुप्रयोग पुन्हा सुरु करावे लागेल."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "अद्ययावत अपयशी"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "या बदलांचा प्रभाव लागू करण्याकरिता तुम्हाला केडीई पुन्हाप्रारंभ करावे लागेल."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -68,12 +63,12 @@ msgid ""
 "uploaded it is renamed to its real name."
 msgstr ""
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "वेळेचे बंधनमूल्य"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -84,46 +79,46 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " सेकंद"
 msgstr[1] " सेकंद"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "सॉकेट वाचन (&K):"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "प्रॉक्सी जुळवणी (&X) :"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "सर्व्हर जुळवणी (&N):"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "सर्व्हर प्रतिसाद (&S):"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "पर्याय"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "अपुरेरित्या अपलोड केलेल्या फाईल्सची निवड करा (&P)"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -132,31 +127,31 @@ msgid ""
 "complete.</p>"
 msgstr ""
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP पर्याय"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "passive पद्धती कार्यान्वित करा (PASV) (&M)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -165,7 +160,7 @@ msgstr ""
 "FTP चे \"passive\" पद्धती कार्यान्वित करतो. याची आवश्यकता FTP ला फायरवॉलच्या नजरे "
 "आड चालविणे आहे."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -173,7 +168,7 @@ msgid ""
 "will be removed once the transfer is complete.</p>"
 msgstr ""
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -982,6 +977,9 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "इंटरलेस पद्धत"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "या बदलांचा प्रभाव लागू करण्याकरिता तुम्हाला केडीई पुन्हाप्रारंभ करावे लागेल."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "या संयोजना फक्त संजाळ संचारणासाठी लागू होतात."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2014-02-25 01:34+0100\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -28,16 +28,11 @@ msgstr ""
 "Du muttst de Programmen nieg starten, de al löppt, anners warrt de Ännern "
 "nich övernahmen."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Opfrischen fehlslaan"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Du muttst KDE nieg starten, anners warrt de Ännern nich övernahmen."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -75,12 +70,12 @@ msgstr ""
 "Wenn en Datei hoochlaadt warrt, is ehr Ennen toeerst maal \".part\". Wenn de "
 "Överdregen fardig is, warrt se na ehren richtigen Naam ümnöömt."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Tietgrenzen"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -95,46 +90,46 @@ msgstr[1] ""
 "Hier kannst Du Tietgrenzen fastleggen. Bi langsame Verbinnen mag dat Sinn "
 "hebben, wenn Du ehr ännerst. De gröttste verlöövte Weert is %1 Sekunnen."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " Sekunn"
 msgstr[1] " Sekunnen"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Soc&ket lesen:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "An Pro&xy tokoppeln:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "An Server tokoppel&n:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "&Server-Antwoort:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "Optschonen"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&Deelwies hoochlaadt Dateien markeren"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -150,31 +145,31 @@ msgstr ""
 "deelwies hoochlaadte Dateien de Dateiennen \".part\". De Ennen warrt "
 "wegdaan, wenn de Överdregen komplett is.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP-Optschonen"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passivbedrief (PASV) an&maken"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -183,7 +178,7 @@ msgstr ""
 "Maakt de \"passive\" Bedriefoort för FTP an. Dat deit noot, wenn FTP vun "
 "achter en Nettdiek funkscheneren schall."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -194,7 +189,7 @@ msgstr ""
 "deelwies hoochlaadte Dateien de Dateiennen \".part\". De Ennen warrt "
 "wegdaan, wenn de Överdregen komplett is.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1172,6 +1167,9 @@ msgstr "&Tekensett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Anfraag-Platzholler infögen"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Du muttst KDE nieg starten, anners warrt de Ännern nich övernahmen."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Disse Instellen warrt bloots bi't Dörkieken vun't Nettwark bruukt"

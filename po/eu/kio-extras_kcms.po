@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-04-27 22:54+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -34,16 +34,11 @@ msgstr ""
 "Aldaketak ezar daitezen exekutatzen ari diren aplikazioak berrabiarazi behar "
 "dituzu."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Huts egin du eguneratzean"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Aldaketak ezar daitezen KDE berrabiarazi behar duzu."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -81,12 +76,12 @@ msgstr ""
 "Fitxategi bat kargatzen ari den bitartean, bere luzapena \".part\" da. "
 "Guztiz kargatuta dagoenean bere izen benetakora berrizendatzen da."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Denbora-mugaren balioak"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -103,45 +98,45 @@ msgstr[1] ""
 "ditzakezu zure konexioa oso motela bada. Onartutako gehienezko balioa %1 "
 "segundokoa da."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " segundo"
 msgstr[1] " segundo"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "&Socket-aren irakurketa:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "&Proxy-aren konexioa:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "&Zerbitzariaren konexioa:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "Zerbitzariaren  &erantzuna:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Aukera orokorrak"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Markatu &partzialki igotako fitxategiak"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -154,14 +149,14 @@ msgstr ""
 "fitxategiek \".part\" luzapena izango dute. Luzapen hau ezabatuko da "
 "transferentzia osatutakoan.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " byte"
 msgstr[1] " bytes"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -170,17 +165,17 @@ msgstr ""
 "Bertan behera uzten bada, automatikoki ezabatu hau baino txikiagoak diren "
 "erdizka zama-igotako fitxategiak:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP aukerak"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Gaitu &modu pasiboa (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -189,7 +184,7 @@ msgstr ""
 "FTP-ren modu \"pasiboa\" gaitzen du. Hau beharrezkoa da FTP-ri suebakien "
 "azpitik lan egiten uzteko."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -200,7 +195,7 @@ msgstr ""
 "gaituta dagoenean, partzialki igotako fitxategiek \".part\" luzapena izango "
 "dute. Luzapen hau ezabatuko da transferentzia osatutakoan.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1155,6 +1150,9 @@ msgstr "&Karaktere-multzoa:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Txertatu itauneko leku-marka"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Aldaketak ezar daitezen KDE berrabiarazi behar duzu."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Ezarpen hauek sarean nabigatzeko soilik erabiliko dira."

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2022-12-28 20:58+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -32,16 +32,11 @@ msgstr ""
 "Aceste modificări vor avea efect după ce restartați aplicațiile care rulează "
 "deja."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Actualizare eșuată"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Aceste modificări vor avea efect după ce restartați mediul KDE."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -79,12 +74,12 @@ msgstr ""
 "La încărcarea unui fișier pe un server, extensia lui va fi \"*.part\". După "
 "ce încărcarea lui s-a terminat, este redenumit la numele lui real."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Valori temporizări"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -105,8 +100,8 @@ msgstr[2] ""
 "le ajustați atunci când conexiunea dumneavoastră este prea lentă. Valoarea "
 "maximă permisă este de %1 de secunde."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -114,37 +109,37 @@ msgstr[0] " secundă"
 msgstr[1] " secunde"
 msgstr[2] " de secunde"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Citire &soclu:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Conectare pro&xy:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Conectare &server:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "&Răspuns server:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Opțiuni globale"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Marchează fișierele transferate doar &parțial pe serverul FTP"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -157,7 +152,7 @@ msgstr ""
 "transferate doar parțial vor avea extensia „.part”. Aceasta va fi eliminată "
 "în momentul în care transferul se încheie.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
@@ -165,7 +160,7 @@ msgstr[0] " octet"
 msgstr[1] " octeți"
 msgstr[2] " de octeți"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -173,17 +168,17 @@ msgid ""
 msgstr ""
 "Dacă se renunță, șterge automat fișierele încărcate parțial mai mici de:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "Opțiuni FTP"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Activează &modul pasiv (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -193,7 +188,7 @@ msgstr ""
 "când doriți să utilizați serviciul de FTP din spatele unui zid de foc "
 "(\"firewall\")."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -205,7 +200,7 @@ msgstr ""
 "doar parțial vor avea extensia \".part\". Ea va fi eliminată în momentul în "
 "care transferul este complet.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1124,6 +1119,9 @@ msgstr "Set de &caractere:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserează substituent pentru interogare"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Aceste modificări vor avea efect după ce restartați mediul KDE."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Aceste configurări se referă numai la răsfoirea rețelei."

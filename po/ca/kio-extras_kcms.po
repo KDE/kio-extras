@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-09-20 13:30+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -33,16 +33,11 @@ msgstr ""
 "Cal reinicialitzar les aplicacions en execució perquè aquests canvis tinguin "
 "efecte."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "L'actualització ha fallat"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Cal tornar a engegar el KDE perquè aquests canvis tinguin efecte."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -80,12 +75,12 @@ msgstr ""
 "Mentre es carrega un fitxer la seva extensió és «.part». Quan s'ha carregat "
 "del tot es reanomena al seu nom real."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Temps d'espera"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -102,45 +97,45 @@ msgstr[1] ""
 "ajustar-los si la vostra connexió és molt lenta. El valor màxim permès és %1 "
 "segons."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " segon"
 msgstr[1] " segons"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Lectura del sòc&ol:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Connexió amb l'in&termediari:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Co&nnexió amb el servidor:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "R&esposta del servidor:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Opcions globals"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Marca els fitxers carregats &parcialment"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -153,14 +148,14 @@ msgstr ""
 "parcialment tindran una extensió «.part». Aquesta extensió s'eliminarà quan "
 "s'hagi completat la transferència.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " byte"
 msgstr[1] " bytes"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -169,17 +164,17 @@ msgstr ""
 "Si es cancel·la, suprimeix automàticament els fitxers parcialment pujats més "
 "petits a:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "Opcions FTP"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Activa el &mode passiu (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -188,7 +183,7 @@ msgstr ""
 "Activa el mode d'FTP «passiu». Això és necessari per a permetre que l'FTP "
 "funcioni darrere de tallafocs."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -200,7 +195,7 @@ msgstr ""
 "part». Aquesta extensió serà eliminada una vegada que la transferència hagi "
 "estat completada.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1179,6 +1174,9 @@ msgstr "Joc de &caràcters:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inseriu el text variable de la consulta"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Cal tornar a engegar el KDE perquè aquests canvis tinguin efecte."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Aquests paràmetres s'apliquen només a la navegació per la xarxa."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2009-08-03 17:47+0200\n"
 "Last-Translator: Michôł Òstrowsczi <michol@linuxcsb.org>\n"
 "Language-Team: Kashubian <i18n-csb@linuxcsb.org>\n"
@@ -30,17 +30,12 @@ msgstr ""
 "Je nót zrëszëc znowa programë brëkùjącé tich nastôwów, bë ne zjinaczi òstałë "
 "przëjãté."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Aktualizacëjô nie darzëła sã"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Je nót zrëszëc KDE znowa, bë ne zjinaczi òstałë przëjãté."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -78,12 +73,12 @@ msgstr ""
 "Jak lopk je wësłóny, jegò rozcygniãcém jest \".part\". Pò ùdałim wësłaniu "
 "jegò miono je zjinaczoné na originalné."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Czasowé limitë"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -101,8 +96,8 @@ msgstr[2] ""
 "Tuwò mòże wpisac czsowé limitë. Jich zjinakô mòże bëc pòmòcnô przë baro "
 "wòlnëch sparłãczeniach. Maksymalno dopùszczalnô wôrtnota to: %1 sek."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, fuzzy, kde-format
 #| msgid " sec"
 msgid " second"
@@ -111,38 +106,38 @@ msgstr[0] " sek."
 msgstr[1] " sek."
 msgstr[2] " sek."
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Òdczëtanié &gniazda:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Sparłãczenié przez pòstrzédnika (pro&xy):"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Sparłãcze&nié z serwerã:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "Òd&pòwiesc serwera:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "Òptacëje"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Zaznaczë &dzélowò sélóné lopczi"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -158,7 +153,7 @@ msgstr ""
 "dzélowò sélóné lopczi dostóną rozszerzenié \".part\". rëmniãté pò "
 "zakùńczeniu sélania lopka.</p> "
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
@@ -166,24 +161,24 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "Òptacëje FTP"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Włączë pasiwny &trib (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -192,7 +187,7 @@ msgstr ""
 "Włączô \"pasiwny\" trib FTP. Je to mùszebné, bë ùmòżlëwic robòtã FTP bùten "
 "ògniowi scanë."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -203,7 +198,7 @@ msgstr ""
 "dzélowò sélóné lopczi dostóną rozszerzenié \".part\". rëmniãté pò "
 "zakùńczeniu sélania lopka.</p> "
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1140,6 +1135,9 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Je nót zrëszëc KDE znowa, bë ne zjinaczi òstałë przëjãté."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Ne ùstawë tikają sã le przezéraniô sécë."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2007-11-04 18:29+0545\n"
 "Last-Translator: Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -26,17 +26,12 @@ msgid ""
 "effect."
 msgstr "यी परिवर्तनका लागि प्रभाव पत्ता लगाउन तपाईँले चलेका अनुप्रयोग पुन: सुरु गर्नु पर्छ ।"
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "अद्यावधिक असफल भयो"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "तपाईँले यी परिवर्तनका लागि प्रभाव पत्ता लगाउन केडीई पुन: सुरु गर्नुपर्छ ।"
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -73,12 +68,12 @@ msgstr ""
 "फाइल अपलोड भइराखेको बेलामा यसको विस्तार \".part\" हो । पुरै अपलोड भएपछि यसको "
 "वास्तविक नाममा पुन: नामकरण हुन्छ ।"
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "समय समाप्ति मान"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, fuzzy, kde-format
 #| msgid ""
 #| "Here you can set timeout values. You might want to tweak them if your "
@@ -96,8 +91,8 @@ msgstr[1] ""
 "तपाईँले यहाँ समय समाप्ति मान सेट गर्न सक्नुहुन्छ । यदि तपाईँको जडान निकै ढिलो भएमा "
 "तिनीहरूलाई तान्न खोज्नु होला ! अधिकतम अनुमति दिएको मान %1 सेकेन्ड छ ।"
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, fuzzy, kde-format
 #| msgid " sec"
 msgid " second"
@@ -105,38 +100,38 @@ msgid_plural " seconds"
 msgstr[0] " सेकेन्ड"
 msgstr[1] " सेकेन्ड"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "सकेट पढाइ:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "प्रोक्सी जडान गर्नुहोस्:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "सर्भर जडान गर्नुहोस्:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "सर्भर प्रतिक्रिया:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, fuzzy, kde-format
 #| msgid "Actions"
 msgid "Global Options"
 msgstr "कार्य"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "आंशिक रुपमा अपलोड गरिएका फाइल चिन्ह लगाउनुहोस् ।"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -152,31 +147,31 @@ msgstr ""
 "बेलामा, आंशिक रुपमा अपलोड गरिएका फाइल \".part\" विस्तार हुनेछन् । यो विस्तारले एउटा "
 "स्थानान्तरण समाप्त हटाउने छ ।</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "एफटीपी विकल्प"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "निस्क्रिय मोड सक्षम पार्नुहोस् (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -185,7 +180,7 @@ msgstr ""
 "FTP को \"निस्क्रिय\" मोड सक्षम पार्छ । पछिका फायरवालबाट कार्य गर्न FTP लाई अनुमति "
 "दिन आवश्यक छ ।"
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -196,7 +191,7 @@ msgstr ""
 "बेलामा, आंशिक रुपमा अपलोड गरिएका फाइल \".part\" विस्तार हुनेछन् । यो विस्तारले एउटा "
 "स्थानान्तरण समाप्त हटाउने छ ।</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1135,6 +1130,9 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "तपाईँले यी परिवर्तनका लागि प्रभाव पत्ता लगाउन केडीई पुन: सुरु गर्नुपर्छ ।"
 
 #~ msgid "Default user name:"
 #~ msgstr "पूर्वनिर्धारित प्रयोगकर्ता नाम:"

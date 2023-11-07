@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2023-04-22 00:54+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -26,16 +26,11 @@ msgid ""
 "effect."
 msgstr "변경 사항을 적용하려면 실행 중인 앱을 다시 시작해야 합니다."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "업데이트 실패"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "변경 사항을 적용하려면 KDE를 다시 시작해야 합니다."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -73,12 +68,12 @@ msgstr ""
 "업로드 중인 파일의 확장자를 \".part\"로 바꿉니다. 업로드가 완료되면 다시 원"
 "래 이름으로 바꿉니다."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "제한 시간"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -90,44 +85,44 @@ msgstr[0] ""
 "여기에서 제한 시간을 설정할 수 있습니다. 연결이 매우 느리다면 이 값을 조정하"
 "십시오. 최대로 허용하는 값은 %1초입니다."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " 초"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "소켓 읽기(&K):"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "프록시 연결(&X):"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "서버 연결(&N):"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "서버 응답(&S):"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "전역 설정"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "부분적으로 업로드된 파일 표시(&P)"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -139,30 +134,30 @@ msgstr ""
 "을 사용하면 업로드가 완료되지 않은 파일에 \".part\"라는 확장자가 붙습니다. "
 "이 확장자는 전송이 완료되었을 때 사라집니다.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] "바이트"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr "취소되었을 때 다음보다 작은 부분적으로 업로드된 파일 삭제:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP 옵션"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passive 모드 사용(PASV)(&M)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -171,7 +166,7 @@ msgstr ""
 "FTP의 \"passive\" 모드를 사용합니다. FTP가 방화벽 뒤에서 작동하도록 하려면 이"
 "것을 사용해야 합니다."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -182,7 +177,7 @@ msgstr ""
 "로드가 완료되지 않은 파일에 \".part\"라는 확장자가 붙습니다. 이 확장자는 전송"
 "이 완료되었을 때 사라집니다.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1105,6 +1100,9 @@ msgstr "문자 집합(&C):"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "쿼리 자리 비움자 삽입"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "변경 사항을 적용하려면 KDE를 다시 시작해야 합니다."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "이 설정은 네트워크 탐색에만 사용됩니다."

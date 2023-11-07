@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-06 01:38+0000\n"
+"POT-Creation-Date: 2023-11-07 02:43+0000\n"
 "PO-Revision-Date: 2022-03-20 11:23+0100\n"
 "Last-Translator: irfan <irfankurtagic@outlook.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -33,16 +33,11 @@ msgstr ""
 "Morate restartovati trenutno aktivne aplikacije kako bi ove izmjene stupile "
 "na snagu."
 
-#: ksaveioconfig.cpp:168 ksaveioconfig.cpp:179
+#: ksaveioconfig.cpp:168
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "AÅ¾uriranje nije uspjelo"
-
-#: ksaveioconfig.cpp:179
-#, kde-format
-msgid "You have to restart KDE for these changes to take effect."
-msgstr "Morate restartovati KDE kako bi ove izmjene stupile na snagu."
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -80,12 +75,12 @@ msgstr ""
 "Tokom slanja datoteke njena ekstenzija je \".part\". Po zavrÅ¡etku slanja "
 "ona se preimenuje u svoje pravo ime."
 
-#: netpref/netpref.cpp:30
+#: netpref/netpref.cpp:31
 #, kde-format
 msgid "Timeout Values"
 msgstr "Vrijeme valjanosti"
 
-#: netpref/netpref.cpp:32
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -106,8 +101,8 @@ msgstr[2] ""
 "Å¾eljeti da ih izmijenite ako radite na vrlo sporoj vezi. NajveÄ‡a "
 "dozvoljena vrijednost je %1 sekundi."
 
-#: netpref/netpref.cpp:45 netpref/netpref.cpp:51 netpref/netpref.cpp:57
-#: netpref/netpref.cpp:63
+#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -115,37 +110,37 @@ msgstr[0] " sekunda"
 msgstr[1] " sekunde"
 msgstr[2] " sekundi"
 
-#: netpref/netpref.cpp:47
+#: netpref/netpref.cpp:48
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "ÄŒitanje soc&ket-a:"
 
-#: netpref/netpref.cpp:53
+#: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Konekcija na pro&xy:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Konekcija &na server:"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "&Server response:"
 msgstr "Odgovo&r servera:"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid "Global Options"
 msgstr "Globalne Opcije"
 
-#: netpref/netpref.cpp:71 netpref/netpref.cpp:106
+#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "OznaÄi &djelomiÄno poslane datoteke"
 
-#: netpref/netpref.cpp:73
+#: netpref/netpref.cpp:74
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -158,7 +153,7 @@ msgstr ""
 "datoteke će imati ekstenziju „.part“. Ovaj dodatak će biti uklonjen kada se "
 "transfer završi.</p>"
 
-#: netpref/netpref.cpp:90
+#: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
@@ -166,7 +161,7 @@ msgstr[0] "bajt"
 msgstr[1] "bajtova"
 msgstr[2] "bajtovi"
 
-#: netpref/netpref.cpp:92
+#: netpref/netpref.cpp:93
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -174,17 +169,17 @@ msgid ""
 msgstr ""
 "Ako se otkaže, automatski izbrišite djelomično otpremljene datoteke manje od:"
 
-#: netpref/netpref.cpp:94
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid "FTP Options"
 msgstr "PodeÅ¡avanje FTP-a"
 
-#: netpref/netpref.cpp:98
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "OmoguÄ‡i pasivni &mod (PASV)"
 
-#: netpref/netpref.cpp:100
+#: netpref/netpref.cpp:101
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -193,7 +188,7 @@ msgstr ""
 "UkljuÄuje FTP \"pasivni\" mod. Ovo je potrebno ako Å¾elite da FTP radi iza "
 "firewalla."
 
-#: netpref/netpref.cpp:108
+#: netpref/netpref.cpp:109
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -204,7 +199,7 @@ msgstr ""
 "ukljuÄena, djelomiÄno poslane datoteke Ä‡e imati \".part\" ekstenziju. Ova "
 "ekstenzija Ä‡e biti uklonjena kada transfer bude zavrÅ¡en.</p>"
 
-#: proxy/kproxydlg.cpp:193
+#: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -1168,6 +1163,9 @@ msgstr "&Set karaktera:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Umetni čuvar mesta za upit"
+
+#~ msgid "You have to restart KDE for these changes to take effect."
+#~ msgstr "Morate restartovati KDE kako bi ove izmjene stupile na snagu."
 
 #~ msgid "These settings apply to network browsing only."
 #~ msgstr "Ove se postavke odnose samo na pregledanje mreÅ¾e."
