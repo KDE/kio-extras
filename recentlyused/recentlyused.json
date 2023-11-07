@@ -62,6 +62,9 @@
             "ExtraNames[uk]": [
                 "Програма"
             ],
+            "ExtraNames[x-test]": [
+                "xxApplicationxx"
+            ],
             "ExtraNames[zh_CN]": [
                 "应用程序"
             ],

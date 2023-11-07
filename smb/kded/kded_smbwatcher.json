@@ -31,6 +31,7 @@
         "Description[tr]": "smb:/ protokolündeki dizinleri değişiklikler için izler",
         "Description[uk]": "Стежить за змінами у теках, доступ до яких здійснюється за протоколом smb:/",
         "Description[vi]": "Giám sát thay đổi ở các thư mục ở trong giao thức smb:/",
+        "Description[x-test]": "xxMonitors directories on the smb:/ protocol for changesxx",
         "Description[zh_CN]": "监视 smb:/ 协议目录的更改",
         "Description[zh_TW]": "監控 smb:/ 協定上目錄的變更",
         "Icon": "preferences-system-network-share-windows",
@@ -66,6 +67,7 @@
         "Name[tr]": "SMB İzleyici",
         "Name[uk]": "Наглядач SMB",
         "Name[vi]": "Trình theo dõi SMB",
+        "Name[x-test]": "xxSMB Watcherxx",
         "Name[zh_CN]": "SMB 监视程序",
         "Name[zh_TW]": "SMB 監控器"
     },
