@@ -67,23 +67,11 @@ include(KDEClangFormat)
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
-find_package(KF6Activities QUIET)
-set_package_properties(KF6Activities PROPERTIES
-    PURPOSE "Provides the activities:/ KIO worker and fileitem plugin."
-    TYPE OPTIONAL
-)
-
-find_package(Qt6Sql QUIET)
-set_package_properties(Qt6Sql PROPERTIES
-    PURPOSE "Provides the activities:/ KIO worker and fileitem plugin."
-    TYPE OPTIONAL
-)
-
-find_package(KF6ActivitiesStats ${KF_MIN_VERSION} QUIET)
-set_package_properties(KF6ActivitiesStats PROPERTIES
-    PURPOSE "Provides the recentlyused:/ KIO worker"
-    TYPE OPTIONAL
-)
+if (NOT WIN32)
+    find_package(KF6Activities REQUIRED)
+    find_package(Qt6Sql REQUIRED)
+    find_package(KF6ActivitiesStats REQUIRED)
+endif()
 
 find_package(Phonon4Qt6 4.6.60 NO_MODULE)
 set_package_properties(Phonon4Qt6 PROPERTIES
@@ -176,11 +164,9 @@ ecm_set_disabled_deprecation_versions(
 add_subdirectory(doc)
 add_subdirectory(kcms)
 
-if(TARGET KF6::Activities AND TARGET Qt::Sql AND NOT WIN32)
+if(NOT WIN32)
   add_subdirectory( activities )
-endif()
-if(KF6ActivitiesStats_FOUND)
-    add_subdirectory( recentlyused )
+  add_subdirectory( recentlyused )
 endif()
 add_subdirectory( filter )
 if(Phonon4Qt6_FOUND)

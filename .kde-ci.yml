@@ -2,11 +2,6 @@
 # SPDX-License-Identifier: CC0-1.0
 
 Dependencies:
-- 'on': ['Linux/Qt6', 'FreeBSD/Qt6']
-  'require':
-    'libraries/kdsoap-ws-discovery-client': '@latest-kf6'
-    'plasma/kactivities': '@latest-kf6'
-
 - 'on': ['Linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6']
   'require':
     'frameworks/extra-cmake-modules': '@latest-kf6'
@@ -23,9 +18,11 @@ Dependencies:
     'frameworks/solid': '@latest-kf6'
     'frameworks/kguiaddons': '@latest-kf6'
     'frameworks/syntax-highlighting': '@latest-kf6'
+    'libraries/kdsoap-ws-discovery-client': '@latest-kf6'
+    'plasma/kactivities': '@latest-kf6'
+    'plasma/kactivities-stats': '@latest-kf6'
     'libraries/phonon': '@latest-kf6'
-    'graphics/libkexiv2': '@latest'
+    'graphics/libkexiv2': '@latest-kf6'
     'third-party/kdsoap': '@latest'
-
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
