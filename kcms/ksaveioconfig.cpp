@@ -115,41 +115,41 @@ void KSaveIOConfig::setAutoResume(bool _mode)
 
 void KSaveIOConfig::setUseReverseProxy(bool mode)
 {
-    KConfigGroup cfg(config(), "Proxy Settings");
+    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
     cfg.writeEntry("ReversedException", mode);
     cfg.sync();
 }
 
 void KSaveIOConfig::setProxyType(KSaveIOConfig::ProxyType type)
 {
-    KConfigGroup cfg(config(), "Proxy Settings");
+    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
     cfg.writeEntry("ProxyType", static_cast<int>(type));
     cfg.sync();
 }
 
 QString KSaveIOConfig::noProxyFor()
 {
-    KConfigGroup cfg(config(), "Proxy Settings");
+    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
     return cfg.readEntry("NoProxyFor");
 }
 
 void KSaveIOConfig::setNoProxyFor(const QString &_noproxy)
 {
-    KConfigGroup cfg(config(), "Proxy Settings");
+    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
     cfg.writeEntry("NoProxyFor", _noproxy);
     cfg.sync();
 }
 
 void KSaveIOConfig::setProxyFor(const QString &protocol, const QString &_proxy)
 {
-    KConfigGroup cfg(config(), "Proxy Settings");
+    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
     cfg.writeEntry(protocol.toLower() + QLatin1String("Proxy"), _proxy);
     cfg.sync();
 }
 
 void KSaveIOConfig::setProxyConfigScript(const QString &_url)
 {
-    KConfigGroup cfg(config(), "Proxy Settings");
+    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
     cfg.writeEntry("Proxy Config Script", _url);
     cfg.sync();
 }

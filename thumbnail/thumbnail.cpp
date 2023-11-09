@@ -159,7 +159,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     m_mimeType = metaData("mimeType");
     m_enabledPlugins = metaData("enabledPlugins").split(QLatin1Char(','), Qt::SkipEmptyParts);
     if (m_enabledPlugins.isEmpty()) {
-        const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
+        const KConfigGroup globalConfig(KSharedConfig::openConfig(), QStringLiteral("PreviewSettings"));
         m_enabledPlugins = globalConfig.readEntry("Plugins", KIO::PreviewJob::defaultPlugins());
     }
 
@@ -425,7 +425,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
     QImage img;
     if (m_propagationDirectories.isEmpty()) {
         // Directories that the directory preview will be propagated into if there is no direct sub-directories
-        const KConfigGroup globalConfig(KSharedConfig::openConfig(), "PreviewSettings");
+        const KConfigGroup globalConfig(KSharedConfig::openConfig(), QStringLiteral("PreviewSettings"));
         const QStringList propagationDirectoriesList = globalConfig.readEntry("PropagationDirectories", QStringList() << "VIDEO_TS");
         m_propagationDirectories = QSet<QString>(propagationDirectoriesList.begin(), propagationDirectoriesList.end());
         m_maxFileSize = globalConfig.readEntry("MaximumSize", std::numeric_limits<qint64>::max());

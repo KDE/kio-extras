@@ -282,7 +282,7 @@ void FilterOptions::setDefaultEngine(int index)
 void FilterOptions::load()
 {
     KConfig config(QStringLiteral("kuriikwsfilterrc"), KConfig::NoGlobals);
-    KConfigGroup group = config.group("General");
+    KConfigGroup group = config.group(QStringLiteral("General"));
 
     const QString defaultSearchEngine = group.readEntry("DefaultWebShortcut", "duckduckgo");
     const QStringList favoriteEngines = group.readEntry("PreferredWebShortcuts", m_defaultProviders);
@@ -333,7 +333,7 @@ void FilterOptions::save()
 {
     KConfig config(QStringLiteral("kuriikwsfilterrc"), KConfig::NoGlobals);
 
-    KConfigGroup group = config.group("General");
+    KConfigGroup group = config.group(QStringLiteral("General"));
     group.writeEntry("EnableWebShortcuts", m_dlg.cbEnableShortcuts->isChecked());
     group.writeEntry("KeywordDelimiter", QString(QLatin1Char(delimiter())));
     group.writeEntry("DefaultWebShortcut", m_dlg.cmbDefaultEngine->view()->currentIndex().data(ProvidersListModel::ShortNameRole));
@@ -349,7 +349,7 @@ void FilterOptions::save()
         }
 
         KConfig _service(path + provider->desktopEntryName() + QLatin1String(".desktop"), KConfig::SimpleConfig);
-        KConfigGroup service(&_service, "Desktop Entry");
+        KConfigGroup service(&_service, QStringLiteral("Desktop Entry"));
         service.writeEntry("Type", "Service");
         service.writeEntry("Name", provider->name());
         service.writeEntry("Query", provider->query());
@@ -382,7 +382,7 @@ void FilterOptions::save()
         }
 
         KConfig _service(path + providerName + QLatin1String(".desktop"), KConfig::SimpleConfig);
-        KConfigGroup service(&_service, "Desktop Entry");
+        KConfigGroup service(&_service, QStringLiteral("Desktop Entry"));
         service.writeEntry("Type", "Service");
         service.writeEntry("Hidden", true);
     }

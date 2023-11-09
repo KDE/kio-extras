@@ -27,7 +27,7 @@
 
 K_PLUGIN_FACTORY(KFileAudioPreviewFactory, registerPlugin<KFileAudioPreview>();)
 
-#define ConfigGroup "Audio Preview Settings"
+#define ConfigGroup QStringLiteral("Audio Preview Settings")
 
 ///////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////

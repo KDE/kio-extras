@@ -141,8 +141,8 @@ void KIOPreferences::load()
     sb_globalMinimumKeepSize->setValue(proto.minimumKeepSize());
 
     KConfig config(QStringLiteral("kio_ftprc"), KConfig::NoGlobals);
-    cb_ftpEnablePasv->setChecked(!config.group("").readEntry("DisablePassiveMode", false));
-    cb_ftpMarkPartial->setChecked(config.group("").readEntry("MarkPartial", true));
+    cb_ftpEnablePasv->setChecked(!config.group(QString()).readEntry("DisablePassiveMode", false));
+    cb_ftpMarkPartial->setChecked(config.group(QString()).readEntry("MarkPartial", true));
     setNeedsSave(false);
 }
 
@@ -157,8 +157,8 @@ void KIOPreferences::save()
     KSaveIOConfig::setMinimumKeepSize(sb_globalMinimumKeepSize->value());
 
     KConfig config(QStringLiteral("kio_ftprc"), KConfig::NoGlobals);
-    config.group("").writeEntry("DisablePassiveMode", !cb_ftpEnablePasv->isChecked());
-    config.group("").writeEntry("MarkPartial", cb_ftpMarkPartial->isChecked());
+    config.group(QString()).writeEntry("DisablePassiveMode", !cb_ftpEnablePasv->isChecked());
+    config.group(QString()).writeEntry("MarkPartial", cb_ftpMarkPartial->isChecked());
     config.sync();
 
     KSaveIOConfig::updateRunningWorkers(widget());

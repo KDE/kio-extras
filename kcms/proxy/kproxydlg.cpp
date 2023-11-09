@@ -251,7 +251,7 @@ KProxyDialog::~KProxyDialog()
 QString KProxyDialog::proxyFor(const QString &protocol) const
 {
     const QString key = protocol + QLatin1String("Proxy");
-    QString proxyStr(mConfig->group("Proxy Settings").readEntry(key));
+    QString proxyStr(mConfig->group(QStringLiteral("Proxy Settings")).readEntry(key));
     const int index = proxyStr.lastIndexOf(QLatin1Char(' '));
 
     if (index > -1) {
