@@ -18,11 +18,15 @@ Dependencies:
     'frameworks/solid': '@latest-kf6'
     'frameworks/kguiaddons': '@latest-kf6'
     'frameworks/syntax-highlighting': '@latest-kf6'
-    'libraries/kdsoap-ws-discovery-client': '@latest-kf6'
-    'plasma/kactivities': '@latest-kf6'
-    'plasma/kactivities-stats': '@latest-kf6'
     'libraries/phonon': '@latest-kf6'
     'graphics/libkexiv2': '@latest-kf6'
     'third-party/kdsoap': '@latest'
+
+- 'on': ['Linux/Qt6', 'FreeBSD/Qt6']
+  'require':
+    'libraries/kdsoap-ws-discovery-client': '@latest-kf6'
+    'plasma/kactivities': '@latest-kf6'
+    'plasma/kactivities-stats': '@latest-kf6'
+
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
