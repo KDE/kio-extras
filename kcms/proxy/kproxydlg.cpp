@@ -261,7 +261,7 @@ QString KProxyDialog::proxyFor(const QString &protocol) const
         });
 
         if (isDigits) {
-            proxyStr = QStringView(proxyStr).left(index) + QLatin1Char(':') + portStr;
+            proxyStr = QStringView(proxyStr).left(index).toString() + QLatin1Char(':') + portStr;
         } else {
             proxyStr.clear();
         }
