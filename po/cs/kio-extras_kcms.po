@@ -1100,6 +1100,3 @@ msgstr "&Znaková sada:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Zadejte zástupný znak dotazu"
-
-#~ msgid "You have to restart KDE for these changes to take effect."
-#~ msgstr "Aby se změny projevily, musíte nejprve restartovat KDE."
