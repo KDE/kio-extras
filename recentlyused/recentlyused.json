@@ -11,6 +11,9 @@
             "ExtraNames[ca]": [
                 "Aplicació"
             ],
+            "ExtraNames[cs]": [
+                "Aplikace"
+            ],
             "ExtraNames[eo]": [
                 "Aplikaĵo"
             ],
@@ -28,6 +31,9 @@
             ],
             "ExtraNames[ia]": [
                 "Application"
+            ],
+            "ExtraNames[it]": [
+                "Applicazione"
             ],
             "ExtraNames[ka]": [
                 "აპლიკაცია"
@@ -52,6 +58,9 @@
             ],
             "ExtraNames[x-test]": [
                 "xxApplicationxx"
+            ],
+            "ExtraNames[zh_TW]": [
+                "應用程式"
             ],
             "ExtraTypes": [
                 "QString"
