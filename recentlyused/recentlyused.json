@@ -5,6 +5,9 @@
             "ExtraNames": [
                 "Application"
             ],
+            "ExtraNames[bg]": [
+                "Приложение"
+            ],
             "ExtraNames[ca@valencia]": [
                 "Aplicació"
             ],
@@ -25,6 +28,9 @@
             ],
             "ExtraNames[fr]": [
                 "Application"
+            ],
+            "ExtraNames[gl]": [
+                "Aplicación"
             ],
             "ExtraNames[he]": [
                 "יישום"
@@ -58,6 +64,9 @@
             ],
             "ExtraNames[x-test]": [
                 "xxApplicationxx"
+            ],
+            "ExtraNames[zh_CN]": [
+                "应用程序"
             ],
             "ExtraNames[zh_TW]": [
                 "應用程式"
