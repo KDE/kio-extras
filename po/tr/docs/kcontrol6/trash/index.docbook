@@ -54,9 +54,9 @@
 ></term>
 <listitem
 ><para
->Belirtilen değerden daha eski olan dosyaların otomatik olarak silinmesine izin vermek için bu kutuyu işaretleyin. Belirli bir zaman aralığından sonra herhangi bir ögeyi otomatik olarak <emphasis
+>Belirtilen değerden daha eski olan dosyaların kendiliğinden silinmesine izin vermek için bu kutuyu işaretleyin. Belirli bir zaman aralığından sonra herhangi bir ögeyi kendiliğinden <emphasis
 >silmemek</emphasis
-> için bunu devre dışı bırakın. Dosyaların çöp kutusunda kalabileceği gün sayısını ayarlayın. Bundan daha eski tüm dosyalar otomatik olarak silinecektir. </para
+> için bunu devre dışı bırakın. Dosyaların çöp kutusunda kalabileceği gün sayısını ayarlayın. Bundan daha eski tüm dosyalar kendiliğinden silinecektir. </para
 ></listitem>
 </varlistentry>
 
@@ -89,7 +89,7 @@
 ></term>
 <listitem
 ><para
->Boyut sınırına ulaşıldığında seçilen işlem yapılır ve en eski veya en büyük dosyalar otomatik olarak silinir veya uyarılırsınız. </para
+>Boyut sınırına ulaşıldığında seçilen işlem yapılır ve en eski veya en büyük dosyalar kendiliğinden silinir veya uyarılırsınız. </para
 ></listitem>
 </varlistentry>
 

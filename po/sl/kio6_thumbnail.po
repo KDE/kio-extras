@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-25 01:50+0000\n"
+"POT-Creation-Date: 2023-11-13 01:38+0000\n"
 "PO-Revision-Date: 2013-06-03 18:30+0200\n"
 "Last-Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -18,52 +18,52 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 
-#: thumbnail.cpp:201
+#: thumbnail.cpp:195
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Navedene ni nobene vrste MIME."
 
-#: thumbnail.cpp:208
+#: thumbnail.cpp:202
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Navedene ni nobene velikosti ali pa je le ta napačna."
 
-#: thumbnail.cpp:229
+#: thumbnail.cpp:223
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Ni bilo mogoče ustvariti sličice za mapo"
 
-#: thumbnail.cpp:238
+#: thumbnail.cpp:232
 #, kde-format
 msgid "No plugin specified."
 msgstr "Navedenega ni nobenega vstavka."
 
-#: thumbnail.cpp:243
+#: thumbnail.cpp:237
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Ni mogoče naložiti ThumbCreator %1"
 
-#: thumbnail.cpp:264
+#: thumbnail.cpp:245
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Ni mogoče ustvariti sličice za %1"
 
-#: thumbnail.cpp:274
+#: thumbnail.cpp:255
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Ustvarjanje sličice je spodletelo."
 
-#: thumbnail.cpp:293
+#: thumbnail.cpp:274
 #, kde-format
 msgid "Could not write image."
 msgstr "Ni bilo mogoče zapisati slike."
 
-#: thumbnail.cpp:321
+#: thumbnail.cpp:302
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Pripenjanje na deljen odsek pomnilnika %1 je spodletelo"
 
-#: thumbnail.cpp:325
+#: thumbnail.cpp:306
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Slika je prevelika za deljen odsek pomnilnika"

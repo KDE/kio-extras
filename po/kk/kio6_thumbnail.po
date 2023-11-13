@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-25 01:50+0000\n"
+"POT-Creation-Date: 2023-11-13 01:38+0000\n"
 "PO-Revision-Date: 2011-06-25 05:59+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -17,52 +17,52 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "\n"
 
-#: thumbnail.cpp:201
+#: thumbnail.cpp:195
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "MIME түрі келтірілмеген."
 
-#: thumbnail.cpp:208
+#: thumbnail.cpp:202
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Өлшемі дұрыс емес не келтірілмеген."
 
-#: thumbnail.cpp:229
+#: thumbnail.cpp:223
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Қапшықтың нобай суреті жасалмады"
 
-#: thumbnail.cpp:238
+#: thumbnail.cpp:232
 #, kde-format
 msgid "No plugin specified."
 msgstr "Модулі келтірілмеген."
 
-#: thumbnail.cpp:243
+#: thumbnail.cpp:237
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "%1 нобай сурет жасаушысы жүктелмеді"
 
-#: thumbnail.cpp:264
+#: thumbnail.cpp:245
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "%1 үшін нобай сурет жасалмады"
 
-#: thumbnail.cpp:274
+#: thumbnail.cpp:255
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Нобай сурет жасау қатесі."
 
-#: thumbnail.cpp:293
+#: thumbnail.cpp:274
 #, kde-format
 msgid "Could not write image."
 msgstr "Кескін жазылмады."
 
-#: thumbnail.cpp:321
+#: thumbnail.cpp:302
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "%1 ортақ жад сегментіне салу қатесі"
 
-#: thumbnail.cpp:325
+#: thumbnail.cpp:306
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Кескін тым үлкен - ортақ жад сегментіне сыймайды"
