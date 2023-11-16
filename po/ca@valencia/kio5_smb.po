@@ -92,7 +92,7 @@ msgstr "No hi ha cap suport al dispositiu per a %1"
 #: kio_smb_browse.cpp:283
 #, kde-format
 msgid "Could not connect to host for %1"
-msgstr "No s'ha pogut connectar amb la màquina per a %1"
+msgstr "No s'ha pogut connectar amb l'amfitrió per a %1"
 
 #: kio_smb_browse.cpp:295
 #, kde-format
@@ -127,7 +127,7 @@ msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
 "failure). %1 is an ip address or hostname"
 msgid "%1: Host unreachable"
-msgstr "%1: No s'ha pogut accedir al servidor"
+msgstr "%1: No s'ha pogut accedir a l'amfitrió"
 
 #: kio_smb_browse.cpp:321
 #, kde-format
@@ -180,7 +180,7 @@ msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
 "%4"
 msgstr ""
-"No s'ha pogut muntar el recurs «%1» des de la màquina «%2» per a l'usuari "
+"No s'ha pogut muntar el recurs «%1» des de l'amfitrió «%2» per a l'usuari "
 "«%3».\n"
 "%4"
 

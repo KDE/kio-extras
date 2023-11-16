@@ -98,7 +98,7 @@ msgstr "No s'ha pogut establir cap compressió."
 #: kio_sftp.cpp:583
 #, kde-format
 msgid "Could not set host."
-msgstr "No s'ha pogut establir el servidor."
+msgstr "No s'ha pogut establir l'amfitrió."
 
 #: kio_sftp.cpp:589
 #, kde-format
@@ -118,7 +118,7 @@ msgstr "No s'ha pogut analitzar el fitxer de configuració."
 #: kio_sftp.cpp:621
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
-msgstr "S'està obrint la connexió SFTP amb el servidor %1:%2"
+msgstr "S'està obrint la connexió SFTP amb l'amfitrió %1:%2"
 
 #: kio_sftp.cpp:661
 #, kde-format
@@ -145,8 +145,8 @@ msgid ""
 "Please contact your system administrator.\n"
 "%2"
 msgstr ""
-"No s'ha trobat la clau %1 de l'ordinador per a este servidor, però existix "
-"un altre tipus de clau.\n"
+"No s'ha trobat la clau %1 de l'amfitrió per a este servidor, però existix un "
+"altre tipus de clau.\n"
 "Un atacant podria canviar la clau del servidor predeterminat per a confondre "
 "al client fent-lo creure que la clau no existix.\n"
 "Contacteu amb l'administrador del sistema.\n"
@@ -156,7 +156,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr "Canvi d'identitat de l'ordinador"
+msgstr "Canvi d'identitat de l'amfitrió"
 
 #: kio_sftp.cpp:762
 #, kde-kuit-format
@@ -168,18 +168,18 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"<para>La clau de l'ordinador per al servidor <emphasis>%1</emphasis> ha "
+"<para>La clau de l'amfitrió per al servidor <emphasis>%1</emphasis> ha "
 "canviat.</para><para>Açò podria significar que hi ha un falsejament de DNS "
-"(«DNS SPOOFING») o que l'adreça IP del servidor i la seua clau de servidor "
-"han canviat al mateix temps.</para><para>L'empremta digital de la clau %2 "
-"enviada pel servidor remot és:<bcode>%3</bcode>Segur que voleu continuar amb "
-"la connexió?</para>"
+"(«DNS SPOOFING») o que la seua adreça IP així com la clau han canviat al "
+"mateix temps.</para><para>L'empremta digital de la clau %2 enviada per "
+"l'amfitrió remot és:<bcode>%3</bcode>Segur que voleu continuar amb la "
+"connexió?</para>"
 
 #: kio_sftp.cpp:772
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr "Fallada en la verificació de l'ordinador"
+msgstr "Fallada en la verificació de l'amfitrió"
 
 #: kio_sftp.cpp:773
 #, kde-kuit-format
@@ -189,7 +189,7 @@ msgid ""
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"<para>No s'ha pogut establir l'autenticitat de l'ordinador <emphasis>%1</"
+"<para>No s'ha pogut establir l'autenticitat de l'amfitrió <emphasis>%1</"
 "emphasis>.</para><para>L'empremta digital de la clau %2 és:<bcode>%3</"
 "bcode>Voleu continuar amb la connexió?</para>"
 

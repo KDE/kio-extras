@@ -24,12 +24,12 @@ msgstr ""
 #: kio_nfs.cpp:156
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
-msgstr "No s'ha pogut trobar una versió de NFS que admeta la màquina «%1»"
+msgstr "No s'ha pogut trobar una versió de NFS que admeta l'amfitrió «%1»"
 
 #: kio_nfs.cpp:336
 #, kde-format
 msgid "The NFS protocol requires a server host name."
-msgstr "El protocol NFS requerix un nom de màquina del servidor."
+msgstr "El protocol NFS requerix un nom d'amfitrió del servidor."
 
 #: kio_nfs.cpp:369
 #, kde-format
