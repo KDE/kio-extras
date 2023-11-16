@@ -19,7 +19,7 @@ Dependencies:
     'frameworks/kguiaddons': '@stable'
     'frameworks/syntax-highlighting': '@stable'
     'libraries/phonon': '@stable'
-    'graphics/libkexiv2': '@same'
+    'graphics/libkexiv2': '@stable'
     'third-party/kdsoap': '@latest'
 
 - 'on': ['Linux', 'FreeBSD']
