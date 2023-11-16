@@ -28,10 +28,10 @@ target_sources(kio_activities PRIVATE
 target_link_libraries(
    kio_activities
    Qt::Sql
-   KF${QT_MAJOR_VERSION}::KIOCore
-   KF${QT_MAJOR_VERSION}::DBusAddons
-   KF${QT_MAJOR_VERSION}::Activities
-   KF${QT_MAJOR_VERSION}::I18n
+   KF5::KIOCore
+   KF5::DBusAddons
+   KF5::Activities
+   KF5::I18n
    Qt::Network
 )
 
@@ -49,10 +49,10 @@ target_sources(kio_activities_a PRIVATE
 target_link_libraries(
    kio_activities_a
    Qt::Sql
-   KF${QT_MAJOR_VERSION}::KIOCore
-   KF${QT_MAJOR_VERSION}::DBusAddons
-   KF${QT_MAJOR_VERSION}::Activities
-   KF${QT_MAJOR_VERSION}::I18n
+   KF5::KIOCore
+   KF5::DBusAddons
+   KF5::Activities
+   KF5::I18n
    Qt::Network
 )
 
@@ -63,5 +63,5 @@ endif()
 # install target (typical /usr/lib64/qtX/plugins/kf5/kio)
 install(
    TARGETS kio_activities
-   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio
+   DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio
 )

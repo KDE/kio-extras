@@ -55,7 +55,7 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio5_nfs\")
 include_directories(${TIRPC_INCLUDE_DIRS})
 
 add_library(kio_nfs MODULE kio_nfs.cpp nfsv2.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c rpc_nfs2_prot_xdr.c)
-target_link_libraries(kio_nfs KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::ConfigCore KF${QT_MAJOR_VERSION}::I18n Qt::Network ${TIRPC_LIBRARIES})
+target_link_libraries(kio_nfs KF5::KIOCore KF5::ConfigCore KF5::I18n Qt::Network ${TIRPC_LIBRARIES})
 set_target_properties(kio_nfs PROPERTIES OUTPUT_NAME "nfs")
 
 if(AVOID_UNUSED_VARIABLE_WARNING_FLAG)
@@ -79,6 +79,6 @@ ecm_qt_declare_logging_category(kio_nfs
     EXPORT KIO_EXTRAS
 )
 
-install(TARGETS kio_nfs DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
+install(TARGETS kio_nfs DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### install files ###############

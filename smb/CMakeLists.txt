@@ -80,12 +80,12 @@ target_include_directories(kio_smb_static
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..;${CMAKE_CURRENT_BINARY_DIR}/..>"
 )
 target_link_libraries(kio_smb_static
-    KF${QT_MAJOR_VERSION}::KIOCore
-    KF${QT_MAJOR_VERSION}::I18n
-    KF${QT_MAJOR_VERSION}::ConfigCore
+    KF5::KIOCore
+    KF5::I18n
+    KF5::ConfigCore
     ${SAMBA_LIBRARIES}
     Qt::Network
-    KF${QT_MAJOR_VERSION}::DNSSD
+    KF5::DNSSD
     KDSoap::WSDiscoveryClient
     Threads::Threads # std::async
 )
@@ -100,9 +100,9 @@ target_link_libraries(kio_smb
 )
 
 set_target_properties(kio_smb PROPERTIES OUTPUT_NAME "smb")
-set_target_properties(kio_smb PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf${QT_MAJOR_VERSION}/kio")
+set_target_properties(kio_smb PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio")
 
-install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
+install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote)
 install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
 

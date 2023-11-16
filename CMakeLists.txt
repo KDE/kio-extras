@@ -31,22 +31,19 @@ include(CMakePushCheckState)
 include(CMakePackageConfigHelpers)
 include(FeatureSummary)
 
-find_package(Qt${QT_MAJOR_VERSION} ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
-if (QT_MAJOR_VERSION EQUAL "6")
-    find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED Core5Compat)
-endif()
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg)
 
-find_package(Qt${QT_MAJOR_VERSION}Test ${QT_MIN_VERSION} CONFIG QUIET)
-set_package_properties(Qt${QT_MAJOR_VERSION}Test PROPERTIES
+find_package(Qt5Test ${QT_MIN_VERSION} CONFIG QUIET)
+set_package_properties(Qt5Test PROPERTIES
          PURPOSE "Required for tests"
          TYPE OPTIONAL
          )
-add_feature_info("Qt${QT_MAJOR_VERSION}Test" Qt${QT_MAJOR_VERSION}Test_FOUND "Required for building tests")
-if (NOT Qt${QT_MAJOR_VERSION}Test_FOUND)
+add_feature_info("Qt5Test" Qt5Test_FOUND "Required for building tests")
+if (NOT Qt5Test_FOUND)
     set(BUILD_TESTING OFF CACHE BOOL "Build the testing tree.")
 endif()
 
-find_package(KF${QT_MAJOR_VERSION} ${KF_MIN_VERSION} REQUIRED COMPONENTS
+find_package(KF5 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Archive
     Config
     ConfigWidgets
@@ -66,13 +63,13 @@ file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
 if (NOT WIN32)
-    find_package(KF${QT_MAJOR_VERSION}Activities REQUIRED)
-    find_package(Qt${QT_MAJOR_VERSION}Sql REQUIRED)
-    find_package(KF${QT_MAJOR_VERSION}ActivitiesStats ${KF_MIN_VERSION} REQUIRED)
+    find_package(KF5Activities REQUIRED)
+    find_package(Qt5Sql REQUIRED)
+    find_package(KF5ActivitiesStats ${KF_MIN_VERSION} REQUIRED)
 endif()
 
-find_package(Phonon4Qt${QT_MAJOR_VERSION} 4.6.60 NO_MODULE)
-set_package_properties(Phonon4Qt${QT_MAJOR_VERSION} PROPERTIES
+find_package(Phonon4Qt5 4.6.60 NO_MODULE)
+set_package_properties(Phonon4Qt5 PROPERTIES
    DESCRIPTION "Qt-based audio library"
    PURPOSE "Required for the audio preview plugin"
    TYPE OPTIONAL)
@@ -166,7 +163,7 @@ if(NOT WIN32)
   add_subdirectory( recentlyused )
 endif()
 add_subdirectory( filter )
-if(Phonon4Qt${QT_MAJOR_VERSION}_FOUND)
+if(Phonon4Qt5_FOUND)
     add_subdirectory( kfileaudiopreview )
 endif()
 add_subdirectory( info )

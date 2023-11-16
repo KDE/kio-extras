@@ -19,7 +19,7 @@ target_sources(kio_mtp PRIVATE
 )
 
 target_include_directories(kio_mtp PRIVATE shared)
-target_link_libraries(kio_mtp kmtp Qt::Core KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::I18n KF${QT_MAJOR_VERSION}::DBusAddons)
+target_link_libraries(kio_mtp kmtp Qt::Core KF5::KIOCore KF5::I18n KF5::DBusAddons)
 
 ecm_qt_declare_logging_category(kio_mtp
     HEADER kio_mtp_debug.h
@@ -30,7 +30,7 @@ ecm_qt_declare_logging_category(kio_mtp
     EXPORT KIO_EXTRAS
 )
 
-install(TARGETS kio_mtp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
+install(TARGETS kio_mtp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### install files ###############
 

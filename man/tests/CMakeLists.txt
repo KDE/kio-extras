@@ -20,7 +20,7 @@ target_sources(kio_man_test PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../kio_man.cpp 
 )
 
-target_link_libraries(kio_man_test Qt::Widgets KF${QT_MAJOR_VERSION}::I18n KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::Archive KF${QT_MAJOR_VERSION}::Codecs Qt::Network kio_man_debug)
+target_link_libraries(kio_man_test Qt::Widgets KF5::I18n KF5::KIOCore KF5::Archive KF5::Codecs Qt::Network kio_man_debug)
 
 if (QT_MAJOR_VERSION STREQUAL "6")
     target_link_libraries(kio_man_test Qt::Core5Compat)
@@ -49,7 +49,7 @@ target_sources(man2html PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/../man2html.cpp 
 )
 
-target_link_libraries(man2html Qt::Core KF${QT_MAJOR_VERSION}::Codecs KF${QT_MAJOR_VERSION}::Archive kio_man_debug)
+target_link_libraries(man2html Qt::Core KF5::Codecs KF5::Archive kio_man_debug)
 
 if (QT_MAJOR_VERSION STREQUAL "6")
     target_link_libraries(man2html Qt::Core5Compat)

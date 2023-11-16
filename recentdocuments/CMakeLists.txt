@@ -11,17 +11,17 @@ ecm_qt_declare_logging_category(kio_recentdocuments
     DESCRIPTION "KIO recentdocuments"
     EXPORT KIO_EXTRAS
 )
-target_link_libraries(kio_recentdocuments KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::I18n KF${QT_MAJOR_VERSION}::ConfigCore Qt::DBus Qt::Network)
+target_link_libraries(kio_recentdocuments KF5::KIOCore KF5::I18n KF5::ConfigCore Qt::DBus Qt::Network)
 set_target_properties(kio_recentdocuments PROPERTIES OUTPUT_NAME "recentdocuments")
-install(TARGETS kio_recentdocuments DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kio)
+install(TARGETS kio_recentdocuments DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
 ########### next target ###############
 
 add_library(kded_recentdocumentsnotifier MODULE recentdocumentsnotifier.cpp)
 set_target_properties(kded_recentdocumentsnotifier PROPERTIES OUTPUT_NAME recentdocumentsnotifier)
 
-target_link_libraries(kded_recentdocumentsnotifier KF${QT_MAJOR_VERSION}::KIOCore KF${QT_MAJOR_VERSION}::DBusAddons)
+target_link_libraries(kded_recentdocumentsnotifier KF5::KIOCore KF5::DBusAddons)
 
-install(TARGETS kded_recentdocumentsnotifier  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf${QT_MAJOR_VERSION}/kded )
+install(TARGETS kded_recentdocumentsnotifier  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kded )
 
 ########### install files ###############
