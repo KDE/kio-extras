@@ -4,27 +4,27 @@ if(BUILD_TESTING)
     add_subdirectory(autotests)
 endif()
 
-set(LIBKIOARCHIVE_VERSION "5.98.0")
-set(LIBKIOARCHIVE_SOVERSION "5")
-set(LIBKIOARCHIVE_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR}/KioArchive")
+set(LIBKIOARCHIVE_VERSION "6.0.0")
+set(LIBKIOARCHIVE_SOVERSION "6")
+set(LIBKIOARCHIVE_INSTALL_INCLUDEDIR "${KDE_INSTALL_INCLUDEDIR}/KioArchive6")
 
 include(ECMSetupVersion)
 ecm_setup_version(${LIBKIOARCHIVE_VERSION} VARIABLE_PREFIX "KIOARCHIVE"
                   VERSION_HEADER "${CMAKE_CURRENT_BINARY_DIR}/kioarchive_version.h"
-                  PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KioArchiveConfigVersion.cmake"
+                  PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KioArchive6ConfigVersion.cmake"
                   SOVERSION ${LIBKIOARCHIVE_SOVERSION})
 
-set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KioArchive")
+set(CMAKECONFIG_INSTALL_DIR "${KDE_INSTALL_CMAKEPACKAGEDIR}/KioArchive6")
 
 configure_package_config_file(
-  "${CMAKE_CURRENT_SOURCE_DIR}/KioArchiveConfig.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/KioArchiveConfig.cmake"
+  "${CMAKE_CURRENT_SOURCE_DIR}/KioArchive6Config.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/KioArchive6Config.cmake"
   INSTALL_DESTINATION  ${CMAKECONFIG_INSTALL_DIR}
 )
 
 install(FILES
-  "${CMAKE_CURRENT_BINARY_DIR}/KioArchiveConfig.cmake"
-  "${CMAKE_CURRENT_BINARY_DIR}/KioArchiveConfigVersion.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/KioArchive6Config.cmake"
+  "${CMAKE_CURRENT_BINARY_DIR}/KioArchive6ConfigVersion.cmake"
   DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
   COMPONENT Devel
 )
@@ -53,17 +53,17 @@ ecm_qt_declare_logging_category(kio_archive_debug_SRCS
 
 ############### ArchiveProtocolBase library ###########
 
-add_library(kioarchive kio_archivebase.cpp ${kio_archive_debug_SRCS})
+add_library(kioarchive6 kio_archivebase.cpp ${kio_archive_debug_SRCS})
 
 include(GenerateExportHeader)
-generate_export_header(kioarchive BASE_NAME libkioarchive EXPORT_FILE_NAME libkioarchive_export.h)
+generate_export_header(kioarchive6 BASE_NAME libkioarchive EXPORT_FILE_NAME libkioarchive_export.h)
 
-target_compile_definitions(kioarchive
+target_compile_definitions(kioarchive6
     PRIVATE
         -DKIOCORE_DISABLE_DEPRECATED_BEFORE_AND_AT=0x054400 # need to support KIO::detailsToStatDetails
 )
 
-target_link_libraries(kioarchive
+target_link_libraries(kioarchive6
     PUBLIC
     KF6::Archive
     KF6::KIOCore
@@ -73,21 +73,21 @@ target_link_libraries(kioarchive
     Qt::DBus
 )
 
-set_target_properties(kioarchive PROPERTIES
+set_target_properties(kioarchive6 PROPERTIES
     VERSION ${KIOARCHIVE_VERSION}
     SOVERSION ${KIOARCHIVE_SOVERSION}
     EXPORT_NAME KioArchive
 )
 
-target_include_directories(kioarchive
+target_include_directories(kioarchive6
     INTERFACE "$<INSTALL_INTERFACE:${LIBKIOARCHIVE_INSTALL_INCLUDEDIR}>"
 )
 
-install(TARGETS kioarchive EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS kioarchive6 EXPORT KioArchiveTargets LIBRARY NAMELINK_SKIP ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
 ############### Archive Worker ######################
 
 add_library(kio_archive MODULE kio_archive.cpp ${kio_archive_debug_SRCS})
-target_link_libraries(kio_archive KF6::KIOCore KF6::Archive kioarchive Qt::Network)
+target_link_libraries(kio_archive KF6::KIOCore KF6::Archive kioarchive6 Qt::Network)
 set_target_properties(kio_archive PROPERTIES OUTPUT_NAME "archive")
 install(TARGETS kio_archive DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
