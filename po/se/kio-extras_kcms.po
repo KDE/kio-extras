@@ -949,6 +949,3 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
-
-#~ msgid "You have to restart KDE for these changes to take effect."
-#~ msgstr "Fertet ođđasit álggahit KDE vai rievdadusat doaibmagohtet."

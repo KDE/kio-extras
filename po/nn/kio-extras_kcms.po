@@ -1123,6 +1123,3 @@ msgstr "&Teiknsett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Set inn søkjeplasshaldar"
-
-#~ msgid "You have to restart KDE for these changes to take effect."
-#~ msgstr "Du må starta KDE på nytt for at endringane skal tre i kraft."
