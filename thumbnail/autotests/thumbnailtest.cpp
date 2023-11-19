@@ -42,6 +42,9 @@ private Q_SLOTS:
         // image using 4 colors table
         QTest::addRow("Screen_color_test_Amiga_4colors") << "Screen_color_test_Amiga_4colors.png"
                                                          << "Screen_color_test_Amiga_4colors_converted.png" << 2.0;
+
+        QTest::addRow("folder-database.svg") << "folder-database.svg"
+                                             << "folder-database-128@2.png" << 2.0;
     }
 
     void testThumbnail()
@@ -62,7 +65,7 @@ private Q_SLOTS:
         KFileItemList items;
         items.append(KFileItem(QUrl::fromLocalFile(path)));
 
-        QStringList enabledPlugins{"imagethumbnail", "jpegthumbnail"};
+        QStringList enabledPlugins{"svgthumbnail", "imagethumbnail", "jpegthumbnail"};
         auto *job = KIO::filePreview(items, QSize(128, 128), &enabledPlugins);
         job->setDevicePixelRatio(dpr);
 
@@ -72,6 +75,11 @@ private Q_SLOTS:
             QImage expectedImage;
             expectedImage.load(QFINDTESTDATA("data/" + expectedThumbnail));
             expectedImage.setDevicePixelRatio(dpr);
+
+            if (expectedImage.format() == QImage::Format_ARGB32) {
+                // QImage load loads differently from KPreviewJob
+                expectedImage = expectedImage.convertToFormat(QImage::Format_ARGB32_Premultiplied);
+            }
 
             QCOMPARE(preview.devicePixelRatio(), dpr);
             QCOMPARE(preview.toImage(), expectedImage);

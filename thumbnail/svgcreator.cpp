@@ -28,8 +28,8 @@ KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
     // render using the correct ratio
     const double ratio = static_cast<double>(r.defaultSize().height()) / static_cast<double>(r.defaultSize().width());
 
-    int w = request.targetSize().width();
-    int h = request.targetSize().height();
+    int w = request.targetSize().width() * request.devicePixelRatio();
+    int h = request.targetSize().height() * request.devicePixelRatio();
 
     if (w < h)
         h = qRound(ratio * w);
@@ -39,7 +39,7 @@ KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
     QImage i(w, h, QImage::Format_ARGB32_Premultiplied);
     i.fill(0);
     QPainter p(&i);
-    r.render(&p);
+    r.render(&p, QRectF(QPointF(0, 0), QSizeF(h, w)));
 
     return KIO::ThumbnailResult::pass(i);
 }
