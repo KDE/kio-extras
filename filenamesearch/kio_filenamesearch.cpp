@@ -169,7 +169,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                                        std::set<QString> &iteratedDirs,
                                        std::queue<QUrl> &pendingDirs)
 {
-    KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, false /* hidden */);
+    KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, KIO::ListJob::ListFlags{});
 
     connect(this, &QObject::destroyed, listJob, [listJob]() {
         listJob->kill();
