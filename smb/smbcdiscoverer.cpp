@@ -195,9 +195,14 @@ void SMBCDiscoverer::discoverNext()
         return;
     }
 
-    const QString name = QString::fromUtf8(dirp->name);
-    // We cannot trust dirp->commentlen has it might be with or without the NUL character
-    // See KDE bug #111430 and Samba bug #3030
+    // We cannot trust dirp->commentlen as it might be with or without the NUL character
+    // See KDE bug #111430 and Samba bug #3030.
+    // This further complicates things because name is really declared as name[1]
+    // which is insofar a problem as in Qt6 QByteArrayView knows to handle this properly
+    // for the fromUtf8 conversion resulting in only a single character getting extracted.
+    // To mitigate both problems we a) always rely on the terminal NUL detection and
+    // b) explicitly decay name to a pointer such that QString has to obey a).
+    const QString name = QString::fromUtf8(std::addressof(dirp->name[0]));
     const QString comment = QString::fromUtf8(dirp->comment);
 
     qCDebug(KIO_SMB_LOG) << "dirent "
