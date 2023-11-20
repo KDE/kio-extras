@@ -66,7 +66,7 @@ private:
     QString m_mimeType;
     int m_width;
     int m_height;
-    int m_devicePixelRatio;
+    qreal m_devicePixelRatio;
     // Thumbnail creators
     QHash<QString, ThumbCreatorWithMetadata *> m_creators;
     QStringList m_enabledPlugins;

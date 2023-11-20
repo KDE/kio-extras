@@ -118,7 +118,7 @@ ThumbnailProtocol::ThumbnailProtocol(const QByteArray &pool, const QByteArray &a
     : WorkerBase("thumbnail", pool, app)
     , m_width(0)
     , m_height(0)
-    , m_devicePixelRatio(1)
+    , m_devicePixelRatio(1.0)
     , m_maxFileSize(0)
     , m_randomGenerator()
 {
@@ -206,9 +206,9 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         m_height = 128;
     }
     bool ok;
-    m_devicePixelRatio = metaData("devicePixelRatio").toInt(&ok);
-    if (!ok || m_devicePixelRatio == 0) {
-        m_devicePixelRatio = 1;
+    m_devicePixelRatio = metaData("devicePixelRatio").toFloat(&ok);
+    if (!ok || qFuzzyIsNull(m_devicePixelRatio)) {
+        m_devicePixelRatio = 1.0;
     } else {
         m_width *= m_devicePixelRatio;
         m_height *= m_devicePixelRatio;
@@ -284,7 +284,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     QDataStream stream(&imgData, QIODevice::WriteOnly);
 
     // Keep in sync with kio/src/previewjob.cpp
-    stream << img.width() << img.height() << img.format() << ((int)img.devicePixelRatio());
+    stream << img.width() << img.height() << img.format() << img.devicePixelRatio();
 
 #ifndef Q_OS_WIN
     const QString shmid = metaData("shmid");
@@ -678,7 +678,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
         return getThumbCreator(subPlugin.fileName());
     };
 
-    const auto maxDimension = qMin(1024, 512 * m_devicePixelRatio);
+    const auto maxDimension = qMin(1024.0, 512.0 * m_devicePixelRatio);
     if ((segmentWidth <= maxDimension) && (segmentHeight <= maxDimension)) {
         // check whether a cached version of the file is available for
         // 128 x 128, 256 x 256 pixels or 512 x 512 pixels taking into account devicePixelRatio
