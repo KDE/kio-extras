@@ -31,8 +31,19 @@ target_link_libraries(
    KF${QT_MAJOR_VERSION}::KIOCore
    KF${QT_MAJOR_VERSION}::DBusAddons
    KF${QT_MAJOR_VERSION}::Activities
+   Plasma::Activities
    KF${QT_MAJOR_VERSION}::I18n
    Qt::Network
+)
+
+
+target_link_libraries(
+    kio_activities
+    if (QT_MAJOR_VERSION EQUAL "5")
+        KF5::Activities
+    else()
+        Plasma::Activities
+    endif()
 )
 
 # static library to use in an autotest and create a plugin module
