@@ -30,7 +30,7 @@ target_link_libraries(
    Qt::Sql
    KF6::KIOCore
    KF6::DBusAddons
-   KF6::Activities
+   Plasma::Activities
    KF6::I18n
    Qt::Network
 )
@@ -51,7 +51,7 @@ target_link_libraries(
    Qt::Sql
    KF6::KIOCore
    KF6::DBusAddons
-   KF6::Activities
+   Plasma::Activities
    KF6::I18n
    Qt::Network
 )

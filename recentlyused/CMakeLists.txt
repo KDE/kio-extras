@@ -32,8 +32,8 @@ ecm_qt_declare_logging_category(recentlyused
 target_link_libraries(recentlyused
     KF6::KIOCore
     KF6::I18n
-    KF6::Activities
-    KF6::ActivitiesStats)
+    Plasma::Activities
+    Plasma::ActivitiesStats)
 
 install(TARGETS recentlyused DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
 

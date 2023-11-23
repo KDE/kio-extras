@@ -13,8 +13,8 @@
 
 #include <KFileItemListProperties>
 
-#include <KActivities/Consumer>
-#include <KActivities/Info>
+#include <PlasmaActivities/Consumer>
+#include <PlasmaActivities/Info>
 
 struct Action {
     QString title;

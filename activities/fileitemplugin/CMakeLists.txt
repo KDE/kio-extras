@@ -14,7 +14,7 @@ target_link_libraries (
    Qt::Sql
    KF6::KIOFileWidgets
    KF6::I18n
-   KF6::Activities
+   Plasma::Activities
    )
 
 install (

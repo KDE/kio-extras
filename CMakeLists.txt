@@ -68,9 +68,9 @@ file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
 if (NOT WIN32)
-    find_package(KF6Activities REQUIRED)
+    find_package(PlasmaActivities REQUIRED)
     find_package(Qt6Sql REQUIRED)
-    find_package(KF6ActivitiesStats REQUIRED)
+    find_package(PlasmaActivitiesStats REQUIRED)
 endif()
 
 find_package(Phonon4Qt6 4.6.60 NO_MODULE)

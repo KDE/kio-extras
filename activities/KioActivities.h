@@ -8,8 +8,8 @@
 #ifndef KIO_ACTIVITIES_H
 #define KIO_ACTIVITIES_H
 
-#include <KActivities/Consumer>
 #include <KIO/ForwardingWorkerBase>
+#include <PlasmaActivities/Consumer>
 #include <utils/d_ptr.h>
 
 class ActivitiesProtocolApi;

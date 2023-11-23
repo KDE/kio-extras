@@ -15,9 +15,9 @@
 #include <KIO/Job>
 #include <KLocalizedString>
 
-#include <KActivities/Stats/Cleaning>
-#include <KActivities/Stats/ResultModel>
-#include <KActivities/Stats/Terms>
+#include <PlasmaActivities/Stats/Cleaning>
+#include <PlasmaActivities/Stats/ResultModel>
+#include <PlasmaActivities/Stats/Terms>
 
 #ifdef Q_OS_WIN
 #include <sys/stat.h>

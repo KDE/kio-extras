@@ -29,8 +29,8 @@
 #include <utils/d_ptr_implementation.h>
 #include <utils/qsqlquery_iterator.h>
 
-#include <KActivities/Consumer>
-#include <KActivities/Info>
+#include <PlasmaActivities/Consumer>
+#include <PlasmaActivities/Info>
 
 #include "KioActivitiesApi.h"
 #include <QProcess>

@@ -14,7 +14,7 @@
 
 #include <KFileItemListProperties>
 
-#include <KActivities/Consumer>
+#include <PlasmaActivities/Consumer>
 
 class FileItemLinkingPluginActionLoader : public QThread
 {

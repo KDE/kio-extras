@@ -8,8 +8,8 @@
 #ifndef KIO_ACTIVITIES_API_H
 #define KIO_ACTIVITIES_API_H
 
-#include <KActivities/Consumer>
 #include <KIO/UDSEntry>
+#include <PlasmaActivities/Consumer>
 #include <QString>
 
 class ActivitiesProtocolApi
