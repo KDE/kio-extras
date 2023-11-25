@@ -25,8 +25,8 @@ Dependencies:
 - 'on': ['Linux', 'FreeBSD']
   'require':
     'libraries/kdsoap-ws-discovery-client': '@stable'
-    'plasma/kactivities': '@stable'
-    'plasma/kactivities-stats': '@stable'
+    'plasma/plasma-activities': '@stable'
+    'plasma/plasma-activities-stats': '@stable'
 
 - 'on': ['Linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6']
   'require':
@@ -44,8 +44,8 @@ Dependencies:
     'frameworks/kbookmarks': '@latest-kf6'
     'frameworks/kguiaddons': '@latest-kf6'
     'frameworks/syntax-highlighting': '@latest-kf6'
-    'plasma/kactivities': '@latest-kf6'
-    'plasma/kactivities-stats': '@latest-kf6'
+    'plasma/plasma-activities': '@latest-kf6'
+    'plasma/plasma-activities-stats': '@latest-kf6'
     'libraries/phonon': '@latest-kf6'
     'graphics/libkexiv2': '@same'
     'third-party/kdsoap': '@latest'
