@@ -103,17 +103,20 @@ set_target_properties(kio_smb PROPERTIES OUTPUT_NAME "smb")
 set_target_properties(kio_smb PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/kf5/kio")
 
 install(TARGETS kio_smb DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
-install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote)
-install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
 
-option(WITH_SHAREDMIMEINFO "Build with shared shared-mime-info and update mimetype database on install" ON)
-if(WITH_SHAREDMIMEINFO)
-    install(FILES org.kde.kio.smb.xml DESTINATION ${KDE_INSTALL_MIMEDIR})
-    find_package(SharedMimeInfo 1.3)
-    set_package_properties(SharedMimeInfo PROPERTIES
-        TYPE REQUIRED
-        PURPOSE "Used to update the mimetype database")
-    update_xdg_mimetypes(${KDE_INSTALL_MIMEDIR})
+if (NOT KF6_COMPAT_BUILD)
+    install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/konqueror/dirtree/remote)
+    install(FILES smb-network.desktop DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
+
+    option(WITH_SHAREDMIMEINFO "Build with shared shared-mime-info and update mimetype database on install" ON)
+    if(WITH_SHAREDMIMEINFO)
+        install(FILES org.kde.kio.smb.xml DESTINATION ${KDE_INSTALL_MIMEDIR})
+        find_package(SharedMimeInfo 1.3)
+        set_package_properties(SharedMimeInfo PROPERTIES
+            TYPE REQUIRED
+            PURPOSE "Used to update the mimetype database")
+        update_xdg_mimetypes(${KDE_INSTALL_MIMEDIR})
+    endif()
 endif()
 
 if (BUILD_TESTING)

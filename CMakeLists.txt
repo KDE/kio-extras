@@ -156,6 +156,8 @@ ecm_set_disabled_deprecation_versions(
     KF 5.96
 )
 
+option(KF6_COMPAT_BUILD "Don't install files that conflict with KF6-based kio-extras" ON)
+
 add_subdirectory( doc )
 
 if(NOT WIN32)

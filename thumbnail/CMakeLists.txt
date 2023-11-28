@@ -126,7 +126,10 @@ if (TARGET KF5::KExiv2)
     target_link_libraries(jpegthumbnail KF5::KExiv2)
 endif()
 
-install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
+if (NOT KF6_COMPAT_BUILD)
+    install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
+endif()
+
 install(TARGETS jpegthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/thumbcreator)
 
 ########### next target ###############

@@ -20,5 +20,8 @@ ecm_qt_declare_logging_category(kio_info
 )
 
 install(TARGETS kio_info DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
-install( FILES kde-info2html.conf DESTINATION  ${KDE_INSTALL_DATADIR}/kio_info )
-install( PROGRAMS kde-info2html DESTINATION  ${KDE_INSTALL_DATADIR}/kio_info )
+
+if (NOT KF6_COMPAT_BUILD)
+    install( FILES kde-info2html.conf DESTINATION  ${KDE_INSTALL_DATADIR}/kio_info )
+    install( PROGRAMS kde-info2html DESTINATION  ${KDE_INSTALL_DATADIR}/kio_info )
+endif()
