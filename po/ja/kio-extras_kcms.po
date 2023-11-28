@@ -1153,6 +1153,3 @@ msgstr "文字セット(&T):"
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "インターレースモード"
-
-#~ msgid "You have to restart KDE for these changes to take effect."
-#~ msgstr "変更を反映するには、KDE を再起動する必要があります。"
