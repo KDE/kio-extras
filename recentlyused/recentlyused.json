@@ -74,6 +74,9 @@
             "ExtraNames[zh_CN]": [
                 "应用程序"
             ],
+            "ExtraNames[zh_TW]": [
+                "應用程式"
+            ],
             "ExtraTypes": [
                 "QString"
             ],
