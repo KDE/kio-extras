@@ -36,5 +36,7 @@ target_link_libraries(kio_afc
 
 install(TARGETS kio_afc DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf5/kio)
 
-install(FILES solid_afc.desktop DESTINATION ${KDE_INSTALL_DATADIR}/solid/actions)
-install(FILES afc-network.desktop  DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
+if (NOT KF6_COMPAT_BUILD)
+    install(FILES solid_afc.desktop DESTINATION ${KDE_INSTALL_DATADIR}/solid/actions)
+    install(FILES afc-network.desktop  DESTINATION ${KDE_INSTALL_DATADIR}/remoteview)
+endif()
