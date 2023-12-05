@@ -18,35 +18,14 @@ Dependencies:
     'frameworks/kbookmarks': '@stable'
     'frameworks/kguiaddons': '@stable'
     'frameworks/syntax-highlighting': '@stable'
-    'plasma/plasma-activities': '@stable'
     'libraries/phonon': '@stable'
     'graphics/libkexiv2': '@same'
     'third-party/kdsoap': '@latest'
 
-- 'on': ['Linux', 'FreeBSD']
+- 'on': ['Linux/Qt5', 'FreeBSD/Qt5']
   'require':
+    'plasma/plasma-activities': '@stable'
     'libraries/kdsoap-ws-discovery-client': '@stable'
-
-- 'on': ['Linux/Qt6', 'FreeBSD/Qt6', 'Windows/Qt6']
-  'require':
-    'frameworks/extra-cmake-modules': '@latest-kf6'
-    'frameworks/karchive': '@latest-kf6'
-    'frameworks/kconfig': '@latest-kf6'
-    'frameworks/kconfigwidgets': '@latest-kf6'
-    'frameworks/kcoreaddons': '@latest-kf6'
-    'frameworks/kdbusaddons': '@latest-kf6'
-    'frameworks/kdoctools': '@latest-kf6'
-    'frameworks/kdnssd': '@latest-kf6'
-    'frameworks/ki18n': '@latest-kf6'
-    'frameworks/kio': '@latest-kf6'
-    'frameworks/solid': '@latest-kf6'
-    'frameworks/kbookmarks': '@latest-kf6'
-    'frameworks/kguiaddons': '@latest-kf6'
-    'frameworks/syntax-highlighting': '@latest-kf6'
-    'plasma/plasma-activities': '@latest-kf6'
-    'libraries/phonon': '@latest-kf6'
-    'graphics/libkexiv2': '@same'
-    'third-party/kdsoap': '@latest'
 
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
