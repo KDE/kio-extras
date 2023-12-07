@@ -34,7 +34,7 @@
 ><command
 >smb://</command
 ><replaceable
->groupe_de_travail</replaceable
+>groupe-de-travail</replaceable
 ></userinput
 > listera les hôtes du groupe de travail. </para>
 <para
@@ -48,9 +48,9 @@
 ><command
 >smb:/</command
 ><replaceable
->groupe_de_travail</replaceable
+>groupe-de-travail</replaceable
 >/<replaceable
->the_host</replaceable
+>hôte-cible</replaceable
 ></userinput
 >. </para>
 <para
@@ -64,7 +64,7 @@
 ><command
 >smb:/</command
 ><replaceable
->groupe_de_travail</replaceable
+>groupe-de-travail</replaceable
 >/<replaceable
 >hôte</replaceable
 >/<replaceable
