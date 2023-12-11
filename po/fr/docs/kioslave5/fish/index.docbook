@@ -140,9 +140,9 @@
 <para
 >Fish devrait même fonctionner avec les machines &Windows;, si des outils comme <application
 >Cygwin</application
-> sont installés. Tous les utilitaires ci-dessus doivent se trouver dans le chemin (<envar
+> sont installés. Tous les utilitaires ci-dessus doivent se trouver dans la liste d'emplacements de la variable <envar
 >PATH</envar
->) du système, et la console initiale doit être capable de traiter correctement la commande <command
+>) du système. De plus, la console initiale doit être capable de traiter correctement la commande <command
 >echo FISH:;/bin/sh</command
 >.</para>
 
