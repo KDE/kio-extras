@@ -1,0 +1,109 @@
+# Copyright (C) 2023 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# SPDX-FileCopyrightText: 2023 Guðmundur Erlingsson <gudmundure@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"PO-Revision-Date: 2023-12-10 22:12+0000\n"
+"Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
+"Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.08.3\n"
+
+#: afcutils.cpp:60
+#, kde-format
+msgid "Unhandled AFC error code '%1'"
+msgstr "Ómeðhöndluð AFC-villuboð '%1'"
+
+#: afcutils.cpp:73
+#, kde-format
+msgid "Unhandled housearrest error code '%1'"
+msgstr "Ómeðhöndluð housearrest-villuboð '%1'"
+
+#: afcutils.cpp:89
+#, kde-format
+msgid "Unhandled instproxy error code '%1'"
+msgstr "Ómeðhöndluð instproxy-villuboð '%1'"
+
+#: afcutils.cpp:105
+#, kde-format
+msgid ""
+"The device is locked. Please enter the passcode on the device and try again."
+msgstr "Tækið er læst. Sláðu inn aðgangskóðann á tækinu og reyndu aftur."
+
+#: afcutils.cpp:112
+#, kde-format
+msgid "You have denied this computer access to the device."
+msgstr "Þú hefur neitað þessari tölvu um aðgang að tækinu."
+
+#: afcutils.cpp:119
+#, kde-format
+msgid ""
+"You need to allow this computer to access the device. Please accept the "
+"prompt on the device and try again."
+msgstr ""
+"Þú þarft að leyfa þessari tölvu að fá aðgang að tækinu. Vinsamlega samþykktu "
+"það á tækinu og reyndu aftur."
+
+#: afcutils.cpp:127
+#, kde-format
+msgid ""
+"Cannot access the device. Make sure it is unlocked and allows this computer "
+"to access it."
+msgstr ""
+"Get ekki opnað tæki. Gakktu úr skugga um að það sé ólæst og að það leyfi "
+"þessari tölvu að opna það."
+
+#: afcutils.cpp:134
+#, kde-format
+msgid "Unhandled lockdownd code '%1'"
+msgstr "Ómeðhöndluð lockdownd-villuboð '%1'"
+
+#: afcutils.cpp:147
+#, kde-format
+msgid "Unhandled sbservices code '%1'"
+msgstr "Ómeðhöndluð sbservices-villuboð '%1'"
+
+#: kio_afc.cpp:175
+#, kde-format
+msgid "Apple Devices"
+msgstr "Apple-tæki"
+
+#: kio_afc.cpp:230
+#, kde-format
+msgctxt "Link to folder with files stored inside apps"
+msgid "Apps"
+msgstr "Forrit"
+
+#: kio_afc.cpp:479
+#, kde-format
+msgctxt "Placeholder is device name"
+msgid "%1 (Apps)"
+msgstr "%1 (forrit)"
+
+#: kio_afc.cpp:687
+#, kde-format
+msgid "Cannot read without opening file first"
+msgstr "Get ekki lesið án þess að opna fyrst skrá"
+
+#: kio_afc.cpp:707
+#, kde-format
+msgid "Cannot seek without opening file first"
+msgstr "Get ekki leitað án þess að opna fyrst skrá"
+
+#: kio_afc.cpp:735
+#, kde-format
+msgid "Cannot write without opening file first"
+msgstr "Get ekki skrifað án þess að opna fyrst skrá"
+
+#: kio_afc.cpp:887
+#, kde-format
+msgid "Cannot rename between devices."
+msgstr "Get ekki endurnefnt á milli tækja."
