@@ -63,9 +63,12 @@ file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
 kde_clang_format(${ALL_CLANG_FORMAT_SOURCE_FILES})
 
 if (NOT WIN32)
-    find_package(KF5Activities REQUIRED)
-    find_package(Qt5Sql REQUIRED)
-    find_package(KF5ActivitiesStats ${KF_MIN_VERSION} REQUIRED)
+    option(BUILD_ACTIVITIES "Build recentlyused:/, activities:/ KIO workers and fileitem plugin." ON)
+    if(BUILD_ACTIVITIES)
+        find_package(Qt5Sql REQUIRED)
+        find_package(KF5Activities REQUIRED)
+        find_package(KF5ActivitiesStats ${KF_MIN_VERSION} REQUIRED)
+    endif()
 endif()
 
 find_package(Phonon4Qt5 4.6.60 NO_MODULE)
@@ -160,7 +163,7 @@ option(KF6_COMPAT_BUILD "Don't install files that conflict with KF6-based kio-ex
 
 add_subdirectory( doc )
 
-if(NOT WIN32)
+if(BUILD_ACTIVITIES)
   add_subdirectory( activities )
   add_subdirectory( recentlyused )
 endif()
