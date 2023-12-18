@@ -13,7 +13,9 @@
 #include <machine/param.h>
 #endif
 #include <sys/types.h>
-#ifndef Q_OS_WIN
+#if defined(Q_OS_WINDOWS)
+#include <windows.h>
+#else
 #include <sys/ipc.h>
 #include <sys/shm.h>
 #include <unistd.h> // nice()
@@ -86,7 +88,9 @@ class KIOPluginForMetaData : public QObject
 
 extern "C" Q_DECL_EXPORT int kdemain(int argc, char **argv)
 {
-#ifdef HAVE_NICE
+#if defined(Q_OS_WINDOWS)
+    SetPriorityClass(GetCurrentProcess(), BELOW_NORMAL_PRIORITY_CLASS);
+#else
     nice(5);
 #endif
 
