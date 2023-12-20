@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-13 01:38+0000\n"
+"POT-Creation-Date: 2023-12-20 01:34+0000\n"
 "PO-Revision-Date: 2019-07-29 16:23+0700\n"
 "Last-Translator: Wantoyo <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -18,52 +18,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: thumbnail.cpp:195
+#: thumbnail.cpp:199
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Tak ada Tipe MIME yang diberikan."
 
-#: thumbnail.cpp:202
+#: thumbnail.cpp:206
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Tak ada atau ukuran yang diberikan tidak absah."
 
-#: thumbnail.cpp:223
+#: thumbnail.cpp:227
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Tak dapat menciptakan gambar-mini untuk direktori"
 
-#: thumbnail.cpp:232
+#: thumbnail.cpp:236
 #, kde-format
 msgid "No plugin specified."
 msgstr "Tak ada plugin yang ditentukan."
 
-#: thumbnail.cpp:237
+#: thumbnail.cpp:241
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Tak dapat memuat ThumbCreator %1"
 
-#: thumbnail.cpp:245
+#: thumbnail.cpp:249
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Tak dapat menciptakan gambar-mini untuk %1"
 
-#: thumbnail.cpp:255
+#: thumbnail.cpp:259
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Gagal menciptakan gambar-mini."
 
-#: thumbnail.cpp:274
+#: thumbnail.cpp:278
 #, kde-format
 msgid "Could not write image."
 msgstr "Tak dapat menulis gambar."
 
-#: thumbnail.cpp:302
+#: thumbnail.cpp:306
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Gagal melampirkan ke segmen memori bersama %1"
 
-#: thumbnail.cpp:306
+#: thumbnail.cpp:310
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Citra terlalu besar untuk segmen memori bersama"
