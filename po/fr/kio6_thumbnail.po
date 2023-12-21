@@ -2,8 +2,8 @@
 # translation of kio_thumbnail.po to
 #
 # Nicolas Ternisien <nicolas.ternisien@gmail.com>, 2005, 2007.
-# xavier <ktranslator31@yahoo.fr>, 2013.
-# Xavier Besnard <xavier.besnard@neuf.fr>, 2021.
+# Xavier Besnard <xavier.besnard@kde.org>, 2013.
+# Xavier Besnard <xavier.besnard@kde.org>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
