@@ -3,8 +3,8 @@
 # Copyright (C) 2003, 2004, 2007 Free Software Foundation, Inc.
 # Matthieu Robin <kde@macolu.org>, 2003, 2004.
 # aminesay <aminesay@yahoo.fr>, 2007.
-# xavier <ktranslator31@yahoo.fr>, 2013.
-# Xavier Besnard <xavier.besnard@neuf.fr>, 2022.
+# Xavier Besnard <xavier.besnard@kde.org>, 2013.
+# Xavier Besnard <xavier.besnard@kde.org>, 2022.
 #
 msgid ""
 msgstr ""
