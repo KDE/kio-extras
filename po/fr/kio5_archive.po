@@ -3,7 +3,7 @@
 #
 # Nicolas Ternisien <nicolas.ternisien@gmail.com>, 2005.
 # aminesay <aminesay@yahoo.fr>, 2007.
-# xavier <xavier.besnard@neuf.fr>, 2011, 2013.
+# Xavier Besnard <xavier.besnard@kde.org>, 2011, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_archive\n"
