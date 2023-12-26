@@ -20,8 +20,9 @@
 #include <QSqlField>
 #include <QSqlQuery>
 #include <QStandardPaths>
+#include <QUrl>
 
-#include <KIO/Job>
+#include <KIO/StatJob>
 #include <KLocalizedString>
 #include <KUser>
 

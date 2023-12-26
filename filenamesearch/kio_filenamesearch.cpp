@@ -10,7 +10,8 @@
 
 #include "kio_filenamesearch_debug.h"
 
-#include <KIO/Job>
+#include <KIO/FileCopyJob>
+#include <KIO/ListJob>
 #include <KLocalizedString>
 
 #include <QCoreApplication>

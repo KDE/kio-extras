@@ -6,10 +6,10 @@ To use this program, do
  for i in $(seq 1 1 100); do touch /tmp/fishtest${i}.txt; done
 */
 
+#include <KIO/CopyJob>
 #include <copytester.h>
 #include <kapplication.h>
 #include <kdebug.h>
-#include <kio/copyjob.h>
 
 class TransferJob;
 

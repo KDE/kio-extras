@@ -12,7 +12,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 
-#include <KIO/Job>
+#include <KIO/StatJob>
 #include <KLocalizedString>
 
 #include <PlasmaActivities/Stats/Cleaning>
@@ -236,7 +236,7 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
         int row = 0;
 
         while (canFetchMore) {
-            for (;udslist.count() != limit + 1 && row < model->rowCount(); ++row) {
+            for (; udslist.count() != limit + 1 && row < model->rowCount(); ++row) {
                 const QModelIndex index = model->index(row, 0);
                 const QString resource = model->data(index, ResultModel::ResourceRole).toString();
                 const QString mimeType = model->data(index, ResultModel::MimeType).toString();

@@ -4,7 +4,7 @@ It was written to verify KDE bug 147948: https://bugs.kde.org/show_bug.cgi?id=14
 #ifndef KDE4START_H__
 #define KDE4START_H__
 
-#include <kio/jobclasses.h>
+#include <KIO/Job>
 #include <kmainwindow.h>
 #include <kurl.h>
 
