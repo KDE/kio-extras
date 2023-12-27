@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-12-27 01:34+0000\n"
 "PO-Revision-Date: 2015-09-02 15:34+0800\n"
 "Last-Translator: Franklin\n"
 "Language-Team: Chinese Traditional <kde-i18n-doc@kde.org>\n"
@@ -61,7 +61,7 @@ msgstr "取消連結："
 msgid "Current activity"
 msgstr "目前活動"
 
-#: KioActivities.cpp:109 KioActivitiesApi.cpp:85
+#: KioActivities.cpp:109 KioActivitiesApi.cpp:86
 #, kde-format
 msgid "Activity"
 msgstr "活動"

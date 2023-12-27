@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-12-27 01:34+0000\n"
 "PO-Revision-Date: 2017-01-30 23:51+0300\n"
 "Last-Translator: Safa Alfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -63,7 +63,7 @@ msgstr "افصل عن:"
 msgid "Current activity"
 msgstr "النّشاط الحاليّ"
 
-#: KioActivities.cpp:109 KioActivitiesApi.cpp:85
+#: KioActivities.cpp:109 KioActivitiesApi.cpp:86
 #, kde-format
 msgid "Activity"
 msgstr "النّشاط"

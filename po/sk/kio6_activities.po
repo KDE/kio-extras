@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kactivities5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-12-27 01:34+0000\n"
 "PO-Revision-Date: 2015-12-27 12:14+0100\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -59,7 +59,7 @@ msgstr "Odlinkovať z:"
 msgid "Current activity"
 msgstr "Aktuálna aktivita"
 
-#: KioActivities.cpp:109 KioActivitiesApi.cpp:85
+#: KioActivities.cpp:109 KioActivitiesApi.cpp:86
 #, kde-format
 msgid "Activity"
 msgstr "Aktivita"

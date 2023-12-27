@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kactivitymanagerd\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-12-27 01:34+0000\n"
 "PO-Revision-Date: 2012-06-07 16:10+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -67,7 +67,7 @@ msgstr ""
 msgid "Current activity"
 msgstr "សកម្មភាព​ដែល​មិន​បានការពារ"
 
-#: KioActivities.cpp:109 KioActivitiesApi.cpp:85
+#: KioActivities.cpp:109 KioActivitiesApi.cpp:86
 #, fuzzy, kde-format
 #| msgid "Unlock Activity"
 msgid "Activity"

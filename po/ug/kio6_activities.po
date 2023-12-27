@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kactivitymanagerd_fileitem_linking_plugin\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2023-12-27 01:34+0000\n"
 "PO-Revision-Date: 2013-09-08 07:05+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: \n"
@@ -65,7 +65,7 @@ msgstr "ئۇلانمىنى ئۈزىدىغىنى:"
 msgid "Current activity"
 msgstr "نۆۋەتتىكى پائالىيەتكە ئۇلا"
 
-#: KioActivities.cpp:109 KioActivitiesApi.cpp:85
+#: KioActivities.cpp:109 KioActivitiesApi.cpp:86
 #, fuzzy, kde-format
 #| msgid "Activities..."
 msgid "Activity"
