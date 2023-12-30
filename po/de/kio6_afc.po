@@ -2,15 +2,15 @@
 # Copyright (C) 2022 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
 # Frederik Schwarzer <schwarzer@kde.org>, 2022, 2023.
+# SPDX-FileCopyrightText: 2023 Johannes Obermayr <johannesobermayr@gmx.de>
 #
 # Automatically generated, 2022.
-# Johannes Obermayr <johannesobermayr@gmx.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-11 02:01+0000\n"
-"PO-Revision-Date: 2023-12-19 16:06+0100\n"
+"PO-Revision-Date: 2023-12-21 17:07+0100\n"
 "Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: English <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -55,7 +55,7 @@ msgid ""
 "prompt on the device and try again."
 msgstr ""
 "Sie müssen diesem Computer den Zugriff auf das Gerät gewähren. Bitte "
-"versuchen Sie es nach dem Bestätigen der Aufforderung auf dem Gerät nochmals."
+"versuchen Sie es nach dem Bestätigen der Aufforderung auf dem Gerät erneut."
 
 #: afcutils.cpp:127
 #, kde-format
@@ -64,7 +64,7 @@ msgid ""
 "to access it."
 msgstr ""
 "Auf das Gerät kann nicht zugegriffen werden. Bitte vergewissern Sie sich, "
-"dass es entsperrt und diesem Computer der Zugriff gestattet ist."
+"dass es entsperrt ist und diesem Computer der Zugriff gewährt wird."
 
 #: afcutils.cpp:134
 #, kde-format
