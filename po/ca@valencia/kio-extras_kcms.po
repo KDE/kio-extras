@@ -43,7 +43,7 @@ msgstr "No s'ha pogut fer l'actualització"
 #: netpref/kio_ftprc.kcfg:10
 #, kde-format
 msgid "Disable Passive FTP"
-msgstr "Desactiva l'FTP passiu"
+msgstr "Desactiva FTP passiu"
 
 #. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:11
@@ -55,7 +55,7 @@ msgid ""
 msgstr ""
 "Quan les connexions FTP són passives el client es connecta amb el servidor, "
 "en comptes de l'inrevés, per tant, els tallafocs no bloquegen la connexió; "
-"encara que els servidors FTP antics poden no acceptar l'FTP passiu."
+"encara que els servidors FTP antics poden no acceptar FTP passiu."
 
 #. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
 #. i18n: ectx: label, entry (MarkPartial), group (Global Options)
@@ -180,7 +180,7 @@ msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr ""
-"Activa el mode d'FTP «passiu». Açò és necessari per a permetre que l'FTP "
+"Activa el mode d'FTP «passiu». Açò és necessari per a permetre que FTP "
 "funcione darrere de tallafocs."
 
 #: netpref/netpref.cpp:109

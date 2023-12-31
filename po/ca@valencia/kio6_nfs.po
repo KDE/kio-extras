@@ -54,7 +54,7 @@ msgstr "Quota de disc excedida"
 #: kio_nfs.cpp:883
 #, kde-format
 msgid "NFS error %1, %2"
-msgstr "Error NFS %1, %2"
+msgstr "S'ha produït un error NFS %1, %2"
 
 #: nfsv2.cpp:392 nfsv2.cpp:443 nfsv3.cpp:430 nfsv3.cpp:574
 #, kde-format
