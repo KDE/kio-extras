@@ -40,7 +40,7 @@ msgid ""
 msgstr ""
 "<para>Hi ha diverses opcions per a autenticar-se en recursos SMB.</"
 "para><para><placeholder>nom d'usuari</placeholder>: En autenticar-se a una "
-"xarxa domèstica és suficient el nom d'usuari al servidor</"
+"xarxa domèstica és suficient el nom d'usuari en el servidor</"
 "para><para><placeholder>nom_usuari@domini.com</placeholder>: Els noms de "
 "connexió empresarials moderns estan formats com adreces de correu "
 "electrònic</para><para><placeholder>DOMINI\\nom_usuari</placeholder>: Per "
@@ -87,7 +87,7 @@ msgstr ""
 #: kio_smb_browse.cpp:277
 #, kde-format
 msgid "No media in device for %1"
-msgstr "No hi ha cap suport al dispositiu per a %1"
+msgstr "No hi ha cap suport en el dispositiu per a %1"
 
 #: kio_smb_browse.cpp:283
 #, kde-format

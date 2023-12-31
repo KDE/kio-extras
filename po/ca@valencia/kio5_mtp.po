@@ -33,7 +33,7 @@ msgid ""
 msgstr ""
 "No s'ha pogut accedir al dispositiu. Comproveu que estiga desbloquejat, i "
 "toqueu «Permet» en la finestra emergent de la seua pantalla. Si açò no "
-"funciona, comproveu que estiga activat el MTP en els seus paràmetres de "
+"funciona, comproveu que estiga activat MTP en els seus paràmetres de "
 "connexió USB."
 
 #: kio_mtp.cpp:521
