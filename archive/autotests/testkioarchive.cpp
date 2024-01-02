@@ -8,6 +8,8 @@
 
 #include <KIO/CopyJob>
 #include <KIO/DeleteJob>
+#include <KIO/ListJob>
+#include <KIO/StatJob>
 #include <KTar>
 
 #include <QDebug>

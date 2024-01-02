@@ -8,6 +8,7 @@
 #define TESTKIOARCHIVE_H
 
 #include <KIO/Job>
+#include <KIO/UDSEntry>
 
 #include <QObject>
 #include <QUrl>
