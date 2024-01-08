@@ -3,13 +3,13 @@
 # Marcell Lengyel <miketkf@yahoo.com>, 1999.
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2010, 2011, 2015.
 # Balázs Úr <urbalazs@gmail.com>, 2012.
-# Kristof Kiszel <kiszel.kristof@gmail.com>, 2018, 2020, 2021, 2022.
+# SPDX-FileCopyrightText: 2018, 2020, 2021, 2022, 2024 Kristof Kiszel <kiszel.kristof@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-07 02:43+0000\n"
-"PO-Revision-Date: 2022-02-08 09:30+0100\n"
+"PO-Revision-Date: 2024-01-07 22:34+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 21.07.70\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -257,16 +257,7 @@ msgstr "Nincs proxy"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:46
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Automatically detect and configure the proxy settings.<p>\n"
-#| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-#| "Protocol (WPAD)</b>.<p>\n"
-#| "<b>NOTE:</b> This option might not work properly or not work at all in "
-#| "some UNIX/Linux distributions. If you encounter a problem when using this "
-#| "option, please check the FAQ section at https://konqueror.org.\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "Automatically detect and configure the proxy settings.<p>\n"
@@ -280,9 +271,7 @@ msgstr ""
 "A proxy automatikus beállítása.<p>\n"
 "A meghatározás WPAD-vel (<b>Web Proxy Auto-Discovery Protocol</b>) történik."
 "<p>\n"
-"<b>Megjegyzés:</b> ez az opció nem minden UNIX/Linux-környezetben működik. "
-"Ha hiba lép fel működés közben, olvassa el először a httpa://konqueror.org "
-"címen található leírást (FAQ-ot).\n"
+"<b>Megjegyzés:</b> ez az opció nem minden UNIX/Linux-környezetben működik.\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
