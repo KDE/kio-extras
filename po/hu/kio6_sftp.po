@@ -2,13 +2,13 @@
 # Tamas Szanto <tszanto@interware.hu>, 2001.
 # Kristóf Kiszel <ulysses@kubuntu.org>, 2010, 2011, 2015.
 # Balázs Úr <urbalazs@gmail.com>, 2012, 2013, 2014.
-# Kristof Kiszel <ulysses@fsf.hu>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Kristof Kiszel <ulysses@fsf.hu>
 msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-09 01:38+0000\n"
-"PO-Revision-Date: 2022-02-10 14:32+0100\n"
+"PO-Revision-Date: 2024-01-08 09:46+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 21.07.70\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: kio_sftp.cpp:264
 #, kde-format
@@ -146,22 +146,13 @@ msgstr ""
 "%2"
 
 #: kio_sftp.cpp:783
-#, fuzzy, kde-format
-#| msgid "Warning: Host's identity changed."
+#, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr "Figyelem: a kiszolgáló kulcsa megváltozott."
+msgstr "A kiszolgáló kulcsa megváltozott"
 
 #: kio_sftp.cpp:785
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The host key for the server %1 has changed.\n"
-#| "This could either mean that DNS SPOOFING is happening or the IP address "
-#| "for the host and its host key have changed at the same time.\n"
-#| "The fingerprint for the key sent by the remote host is:\n"
-#| " %2\n"
-#| "Please contact your system administrator.\n"
-#| "%3"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
@@ -170,41 +161,35 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"A(z) %1 kiszolgáló kulcsa megváltozott.\n"
-"Ez jelentheti azt is, hogy DNS SPOOFING történt, vagy hogy a kiszolgáló IP-"
-"címe és kulcsa egyszerre változott meg.\n"
-"A távoli gép által küldött kulcs ujjlenyomata:\n"
-" %2\n"
-"Lépjen kapcsolatba a rendszergazdával.\n"
-"%3"
+"<para>A(z) <emphasis>%1</emphasis> kiszolgáló kulcsa megváltozott.</"
+"para><para>Ez jelentheti azt is, hogy DNS SPOOFING történt, vagy hogy a "
+"kiszolgáló IP-címe és kulcsa egyszerre változott meg.</para><para>A távoli "
+"gép által küldött %2 kulcs ujjlenyomata:<bcode>%3</bcode>Biztosan folytatni "
+"szeretné a kapcsolódást?</para>"
 
 #: kio_sftp.cpp:795
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "A kiszolgáló ellenőrzése sikertelen"
 
 #: kio_sftp.cpp:797
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The authenticity of host %1 cannot be established.\n"
-#| "The %2 key fingerprint is: %3\n"
-#| "Are you sure you want to continue connecting?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"Nem sikerült hitelesíteni a(z) %1 gépet.\n"
-"A(z) %2 kulcs ujjlenyomata: %3\n"
-"Biztosan folytatni szeretné a kapcsolódást?"
+"<para>Nem sikerült hitelesíteni a(z) <emphasis>%1</emphasis> gépet.</"
+"para><para>A(z) %2 kulcs ujjlenyomata: <bcode>%3</bcode>Biztosan folytatni "
+"szeretné a kapcsolódást?</para>"
 
 #: kio_sftp.cpp:806
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
-msgstr ""
+msgstr "Kapcsolódás mindenképp"
 
 #: kio_sftp.cpp:829 kio_sftp.cpp:848 kio_sftp.cpp:863 kio_sftp.cpp:876
 #: kio_sftp.cpp:928 kio_sftp.cpp:938
