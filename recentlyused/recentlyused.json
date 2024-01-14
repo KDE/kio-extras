@@ -5,6 +5,87 @@
             "ExtraNames": [
                 "Application"
             ],
+            "ExtraNames[bg]": [
+                "Приложение"
+            ],
+            "ExtraNames[ca@valencia]": [
+                "Aplicació"
+            ],
+            "ExtraNames[ca]": [
+                "Aplicació"
+            ],
+            "ExtraNames[cs]": [
+                "Aplikace"
+            ],
+            "ExtraNames[de]": [
+                "Anwendung"
+            ],
+            "ExtraNames[eo]": [
+                "Aplikaĵo"
+            ],
+            "ExtraNames[es]": [
+                "Aplicación"
+            ],
+            "ExtraNames[eu]": [
+                "Aplikazioa"
+            ],
+            "ExtraNames[fr]": [
+                "Application"
+            ],
+            "ExtraNames[gl]": [
+                "Aplicación"
+            ],
+            "ExtraNames[he]": [
+                "יישום"
+            ],
+            "ExtraNames[hu]": [
+                "Alkalmazás"
+            ],
+            "ExtraNames[ia]": [
+                "Application"
+            ],
+            "ExtraNames[is]": [
+                "Forrit"
+            ],
+            "ExtraNames[it]": [
+                "Applicazione"
+            ],
+            "ExtraNames[ka]": [
+                "აპლიკაცია"
+            ],
+            "ExtraNames[nl]": [
+                "Toepassing"
+            ],
+            "ExtraNames[pl]": [
+                "Aplikacja"
+            ],
+            "ExtraNames[pt_BR]": [
+                "Aplicativo"
+            ],
+            "ExtraNames[sk]": [
+                "Aplikácia"
+            ],
+            "ExtraNames[sl]": [
+                "Aplikacija"
+            ],
+            "ExtraNames[ta]": [
+                "செயலி"
+            ],
+            "ExtraNames[tr]": [
+                "Uygulama"
+            ],
+            "ExtraNames[uk]": [
+                "Програма"
+            ],
+            "ExtraNames[x-test]": [
+                "xxApplicationxx"
+            ],
+            "ExtraNames[zh_CN]": [
+                "应用程序"
+            ],
+            "ExtraNames[zh_TW]": [
+                "應用程式"
+            ],
             "ExtraTypes": [
                 "QString"
             ],
