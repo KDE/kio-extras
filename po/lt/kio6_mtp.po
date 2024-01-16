@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: trunk-kf 5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-11 02:01+0000\n"
-"PO-Revision-Date: 2019-10-11 23:08+0300\n"
+"PO-Revision-Date: 2024-01-16 00:33+0200\n"
 "Last-Translator: Moo\n"
 "Language-Team: lt\n"
 "Language: lt\n"
@@ -17,13 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: kio_mtp.cpp:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "No storage media found. Make sure your device is unlocked and has MTP "
-#| "enabled in its USB connection settings."
+#, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
 "accessible yet"
@@ -32,8 +29,10 @@ msgid ""
 "popup on its screen. If that does not work, make sure MTP is enabled in its "
 "USB connection settings."
 msgstr ""
-"Nerasta jokios saugyklos laikmenos. Įsitikinkite, kad jūsų įrenginys yra "
-"atrakintas ir jo USB ryšio nuostatose yra įjungtas MTP."
+"Nepavyko gauti prieigos prie įrenginio. Įsitikinkite, kad jis yra atrakintas "
+"ir iškylusiame įrenginio langelyje bakstelėkite „Leisti“. Jeigu tai "
+"nesuveikia, įsitikinkite, kad įrenginio USB ryšio nustatymuose yra įjungtas "
+"MTP."
 
 #: kio_mtp.cpp:520
 #, kde-format
