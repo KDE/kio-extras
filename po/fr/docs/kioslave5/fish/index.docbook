@@ -51,7 +51,7 @@
 ></note>
 
 <para
->Vous pouvez ommettre le nom d'<replaceable
+>Vous pouvez omettre le nom d'<replaceable
 >utilisateur</replaceable
 > (et le symbole suivant @) si le nom de l'utilisateur est le même sur les deux ordinateurs.</para>
 
@@ -60,9 +60,9 @@
 >fish://<replaceable
 >utilisateur</replaceable
 >:<replaceable
->motdepasse</replaceable
+>mot-de-passe</replaceable
 >@<replaceable
->nommachine</replaceable
+>nom-machine</replaceable
 ></userinput
 >, mais cela n'est pas obligatoire, puisqu'il vous sera tout de même demandé si vous ne l'insérez pas.</para>
 
@@ -71,9 +71,9 @@
 >SSH</acronym
 > sur un port non standard, vous pouvez spécifier ce port en utilisant une syntaxe d'&URL; normale comme ceci : <userinput
 >fish://<replaceable
->nommachine</replaceable
+>nom-machine</replaceable
 >:<replaceable
->numéro_de_port</replaceable
+>numéro-port</replaceable
 ></userinput
 >.</para>
 
