@@ -82,15 +82,9 @@ private: // Private attributes
     /** fd for reading and writing to the process */
     int childFd;
     /** buffer for data to be written */
-#ifndef Q_OS_WIN
-    const char *outBuf;
-#else
     QByteArray outBuf;
-#endif
     /** current write position in buffer */
     KIO::fileoffset_t outBufPos;
-    /** length of buffer */
-    KIO::fileoffset_t outBufLen;
     /** use su if true else use ssh */
     bool local;
     /**  // FIXME: just a workaround for konq deficiencies */

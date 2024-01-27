@@ -285,8 +285,7 @@ fishProtocol::fishProtocol(const QByteArray &pool_socket, const QByteArray &app_
     connectionAuth.keepPassword = true;
     connectionAuth.url.setScheme("fish");
     outBufPos = -1;
-    outBuf = nullptr;
-    outBufLen = 0;
+    outBuf = QByteArray();
 
     udsType = 0;
 
@@ -565,8 +564,8 @@ KIO::WorkerResult fishProtocol::connectionStart()
             ;
         }
         if (FD_ISSET(childFd, &wfds) && outBufPos >= 0) {
-            if (outBuf)
-                rc = ::write(childFd, outBuf + outBufPos, outBufLen - outBufPos);
+            if (!outBuf.isEmpty())
+                rc = ::write(childFd, outBuf.constData() + outBufPos, outBuf.length() - outBufPos);
             else
                 rc = 0;
 
@@ -579,10 +578,9 @@ KIO::WorkerResult fishProtocol::connectionStart()
                 outBufPos = -1;
                 // return true;
             }
-            if (outBufPos >= outBufLen) {
+            if (outBufPos >= outBuf.length()) {
                 outBufPos = -1;
-                outBuf = nullptr;
-                outBufLen = 0;
+                outBuf = QByteArray();
             }
         } else if (FD_ISSET(childFd, &rfds)) {
             rc = ::read(childFd, buf + offset, sizeof(buf) - offset);
@@ -611,20 +609,13 @@ KIO::WorkerResult fishProtocol::connectionStart()
 /**
 writes one chunk of data to stdin of child process
 */
-#ifndef Q_OS_WIN
 void fishProtocol::writeChild(const char *buf, KIO::fileoffset_t len)
 {
-    if (outBufPos >= 0 && outBuf) {
-#else
-void fishProtocol::writeChild(const QByteArray &buf, KIO::fileoffset_t len)
-{
-    if (outBufPos >= 0 && outBuf.size()) {
-#endif
+    if (outBufPos >= 0 && !outBuf.isEmpty()) {
         return;
     }
-    outBuf = buf;
+    outBuf = QByteArray(buf, len);
     outBufPos = 0;
-    outBufLen = len;
 }
 
 /**
@@ -831,8 +822,7 @@ void fishProtocol::shutdownConnection(bool forced)
         }
     }
     outBufPos = -1;
-    outBuf = nullptr;
-    outBufLen = 0;
+    outBuf = QByteArray();
     qlist.clear();
     commandList.clear();
     commandCodes.clear();
@@ -1527,11 +1517,12 @@ with .fishsrv.pl typically running on another computer. */
         // Do not: send commands, expect response, send newlines, expect response on newlines
         // Newlines do not trigger a response.
         if (FD_ISSET(childFd, &wfds) && outBufPos >= 0) {
-            if (outBufLen - outBufPos > 0)
-                rc = ::write(childFd, outBuf + outBufPos, outBufLen - outBufPos);
+            if (outBuf.length() - outBufPos > 0) {
+                rc = ::write(childFd, outBuf.constData() + outBufPos, outBuf.length() - outBufPos);
+            }
 #else
         if (outBufPos >= 0) {
-            if (outBufLen - outBufPos > 0) {
+            if (outBuf.length() - outBufPos > 0) {
                 rc = childPid->write(outBuf);
             }
 #endif
@@ -1551,9 +1542,9 @@ with .fishsrv.pl typically running on another computer. */
                 shutdownConnection();
                 return error(ERR_CONNECTION_BROKEN, connectionHost);
             }
-            if (outBufPos >= outBufLen) {
+            if (outBufPos >= outBuf.length()) {
                 outBufPos = -1;
-                outBuf = nullptr;
+                outBuf = QByteArray();
                 sent();
             }
         }
