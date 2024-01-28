@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-20 01:34+0000\n"
-"PO-Revision-Date: 2021-08-21 18:59+0300\n"
+"PO-Revision-Date: 2024-01-27 12:19+0200\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: lt <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: thumbnail.cpp:199
 #, kde-format
@@ -37,7 +37,7 @@ msgstr "Nepavyksta sukurti miniatiūros aplankui"
 #: thumbnail.cpp:236
 #, kde-format
 msgid "No plugin specified."
-msgstr "Nenurodytas papildinys."
+msgstr "Nenurodytas įskiepis."
 
 #: thumbnail.cpp:241
 #, kde-format
