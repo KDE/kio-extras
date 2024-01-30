@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-01-30 00:37+0000\n"
 "PO-Revision-Date: 2023-02-08 13:42\n"
 "Last-Translator: Darafei Praliaskouski <symbol@akeeri.tk>\n"
 "Language-Team: Belarusian\n"
@@ -21,39 +21,39 @@ msgstr ""
 "X-Crowdin-File: /main/be/kio-extras/kio5_fish.po\n"
 "X-Crowdin-File-ID: 8005\n"
 
-#: fish.cpp:322
+#: fish.cpp:321
 #, kde-format
 msgid "Connecting..."
 msgstr "Злучэнне..."
 
-#: fish.cpp:656
+#: fish.cpp:647
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Ініцыялізацыя пратакола..."
 
-#: fish.cpp:693
+#: fish.cpp:684
 #, kde-format
 msgid "Local Login"
 msgstr "Лакальны карыстальнік"
 
-#: fish.cpp:695
+#: fish.cpp:686
 #, kde-format
 msgid "SSH Authentication"
 msgstr "Аўтэнтыфікацыя па SSH"
 
-#: fish.cpp:732 fish.cpp:747
+#: fish.cpp:723 fish.cpp:738
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr "Так"
 
-#: fish.cpp:732 fish.cpp:747
+#: fish.cpp:723 fish.cpp:738
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr "Не"
 
-#: fish.cpp:830
+#: fish.cpp:821
 #, kde-format
 msgid "Disconnected."
 msgstr "Адлучана."

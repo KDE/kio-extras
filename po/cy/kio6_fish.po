@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-01-30 00:37+0000\n"
 "PO-Revision-Date: 2003-07-21 16:56+0100\n"
 "Last-Translator: KGyfieithu <kyfieithu@dotmon.com>\n"
 "Language-Team: Cymraeg <cy@li.org>\n"
@@ -17,40 +17,40 @@ msgstr ""
 "X-Generator: KBabel 1.0.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: fish.cpp:322
+#: fish.cpp:321
 #, kde-format
 msgid "Connecting..."
 msgstr "Yn cysylltu..."
 
-#: fish.cpp:656
+#: fish.cpp:647
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Yn ymgychwyn y protocol..."
 
-#: fish.cpp:693
+#: fish.cpp:684
 #, kde-format
 msgid "Local Login"
 msgstr "Mewngofnod Lleol"
 
-#: fish.cpp:695
+#: fish.cpp:686
 #, fuzzy, kde-format
 #| msgid "SSH Authorization"
 msgid "SSH Authentication"
 msgstr "Awdurdodiad SSH"
 
-#: fish.cpp:732 fish.cpp:747
+#: fish.cpp:723 fish.cpp:738
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:732 fish.cpp:747
+#: fish.cpp:723 fish.cpp:738
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:830
+#: fish.cpp:821
 #, kde-format
 msgid "Disconnected."
 msgstr "Datgysylltwyd."

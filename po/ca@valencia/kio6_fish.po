@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-01-30 00:37+0000\n"
 "PO-Revision-Date: 2022-10-21 13:19+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -22,39 +22,39 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
-#: fish.cpp:322
+#: fish.cpp:321
 #, kde-format
 msgid "Connecting..."
 msgstr "S'està connectant..."
 
-#: fish.cpp:656
+#: fish.cpp:647
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "S'està inicialitzant el protocol..."
 
-#: fish.cpp:693
+#: fish.cpp:684
 #, kde-format
 msgid "Local Login"
 msgstr "Connexió local"
 
-#: fish.cpp:695
+#: fish.cpp:686
 #, kde-format
 msgid "SSH Authentication"
 msgstr "Autenticació SSH"
 
-#: fish.cpp:732 fish.cpp:747
+#: fish.cpp:723 fish.cpp:738
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr "Sí"
 
-#: fish.cpp:732 fish.cpp:747
+#: fish.cpp:723 fish.cpp:738
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr "No"
 
-#: fish.cpp:830
+#: fish.cpp:821
 #, kde-format
 msgid "Disconnected."
 msgstr "Desconnectat."

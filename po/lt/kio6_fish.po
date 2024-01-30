@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-01-30 00:37+0000\n"
 "PO-Revision-Date: 2024-01-16 00:34+0200\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -17,39 +17,39 @@ msgstr ""
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: fish.cpp:322
+#: fish.cpp:321
 #, kde-format
 msgid "Connecting..."
 msgstr "Jungiamasi..."
 
-#: fish.cpp:656
+#: fish.cpp:647
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Inicijuojamas protokolas..."
 
-#: fish.cpp:693
+#: fish.cpp:684
 #, kde-format
 msgid "Local Login"
 msgstr "Vietinis prisijungimas"
 
-#: fish.cpp:695
+#: fish.cpp:686
 #, kde-format
 msgid "SSH Authentication"
 msgstr "SSH tapatybės nustatymas"
 
-#: fish.cpp:732 fish.cpp:747
+#: fish.cpp:723 fish.cpp:738
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr "Taip"
 
-#: fish.cpp:732 fish.cpp:747
+#: fish.cpp:723 fish.cpp:738
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr "Ne"
 
-#: fish.cpp:830
+#: fish.cpp:821
 #, kde-format
 msgid "Disconnected."
 msgstr "Atsijungta."
