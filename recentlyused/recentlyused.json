@@ -32,6 +32,9 @@
             "ExtraNames[eu]": [
                 "Aplikazioa"
             ],
+            "ExtraNames[fi]": [
+                "Sovellus"
+            ],
             "ExtraNames[fr]": [
                 "Application"
             ],
@@ -61,6 +64,9 @@
             ],
             "ExtraNames[nl]": [
                 "Toepassing"
+            ],
+            "ExtraNames[pa]": [
+                "ਐਪਲੀਕੇਸ਼ਨ"
             ],
             "ExtraNames[pl]": [
                 "Aplikacja"
