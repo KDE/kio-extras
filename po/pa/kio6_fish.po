@@ -1,27 +1,27 @@
 # translation of kio_fish.po to Punjabi
 # Amanpreet Singh Alam <aalam@redhat.com>, 2004, 2005.
 # AP S Alam <aalam@users.sf.net>, 2007.
-# A S Alam <aalam@users.sf.net>, 2007, 2009, 2013.
+# SPDX-FileCopyrightText: 2007, 2009, 2013, 2024 A S Alam <aalam@users.sf.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-30 00:37+0000\n"
-"PO-Revision-Date: 2013-01-05 08:37+0530\n"
-"Last-Translator: A S Alam <aalam@users.sf.net>\n"
-"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
+"PO-Revision-Date: 2024-01-30 09:40-0600\n"
+"Last-Translator: A S Alam <aalam@punlinux.org>\n"
+"Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "\n"
 
 #: fish.cpp:321
 #, kde-format
 msgid "Connecting..."
-msgstr "...ਕੁਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
+msgstr "...ਕਨੈਕਟ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ"
 
 #: fish.cpp:647
 #, kde-format
@@ -42,18 +42,18 @@ msgstr "SSH ਪਰਮਾਣਕਿਤਾ"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "ਹਾਂ"
 
 #: fish.cpp:723 fish.cpp:738
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "ਨਹੀਂ"
 
 #: fish.cpp:821
 #, kde-format
 msgid "Disconnected."
-msgstr "ਕੁਨੈਕਸ਼ਨ ਬੰਦ ਹੈ।"
+msgstr "ਕਨੈਕਸ਼ਨ ਬੰਦ ਹੈ।"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

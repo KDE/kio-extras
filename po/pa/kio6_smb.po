@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2024-01-03 14:00-0600\n"
+"PO-Revision-Date: 2024-01-30 09:54-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
@@ -38,7 +38,7 @@ msgstr ""
 #: kio_smb_auth.cpp:51
 #, kde-format
 msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
-msgstr "<qt><b>%1</b>ਲਈ ਪਰਮਾਣਕਤਾ ਜਾਣਕਾਰੀ ਭਰੋ ਜੀ</qt>"
+msgstr "<qt><b>%1</b>ਲਈ ਪਰਮਾਣੀਕਰਨ ਜਾਣਕਾਰੀ ਭਰੋ ਜੀ</qt>"
 
 #: kio_smb_auth.cpp:54
 #, kde-format
@@ -47,9 +47,9 @@ msgid ""
 "Server = %1\n"
 "Share = %2"
 msgstr ""
-"ਪਰਮਾਣਕਿਤਾ ਜਾਣਕਾਰੀ ਭਰੋ ਜੀ:\n"
+"ਪਰਮਾਣੀਕਰਨ ਜਾਣਕਾਰੀ ਭਰੋ ਜੀ:\n"
 "ਸਰਵਰ= %1\n"
-"ਸਾਂਝ = %2"
+"ਸ਼ੇਅਰ = %2"
 
 #: kio_smb_browse.cpp:59
 #, kde-format
@@ -58,7 +58,7 @@ msgid ""
 "Unknown file type, neither directory or file."
 msgstr ""
 "%1:\n"
-"ਅਣਜਾਣੀ ਫਾਇਲ ਕਿਸਮ, ਨਾ ਡਾਇਰੈਕਟਰੀ ਹੈ ਜਾਂ ਫਾਇਲ ਹੈ।"
+"ਅਣਜਾਣੀ ਫਾਇਲ ਕਿਸਮ, ਨਾ ਡਾਇਰੈਕਟਰੀ ਹੈ ਨਾ ਹੀ ਫਾਇਲ ਹੈ।"
 
 #: kio_smb_browse.cpp:273
 #, kde-format
@@ -72,7 +72,7 @@ msgstr ""
 #: kio_smb_browse.cpp:278
 #, kde-format
 msgid "No media in device for %1"
-msgstr "%1 ਲਈ ਜੰਤਰ ਵਿੱਚ ਕੋਈ ਮੀਡਿਅਮ ਨਹੀਂ ਹੈ"
+msgstr "%1 ਲਈ ਡਿਵਾਈਸ ਵਿੱਚ ਕੋਈ ਮੀਡਿਅਮ ਨਹੀਂ ਹੈ"
 
 #: kio_smb_browse.cpp:284
 #, kde-format
@@ -82,7 +82,7 @@ msgstr "%1 ਲਈ ਹੋਸਟ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਜਾ ਸ
 #: kio_smb_browse.cpp:296
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
-msgstr "ਸਰਵਰ, ਜੋ ਕਿ %1 ਲਈ ਜਿੰਮੇਵਾਰ ਹੈ, ਨਾਲ ਜੁੜਨ ਦੌਰਾਨ ਗਲਤੀ"
+msgstr "ਸਰਵਰ, ਜੋ ਕਿ %1 ਲਈ ਜਿੰਮੇਵਾਰ ਹੈ, ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
 
 #: kio_smb_browse.cpp:302
 #, kde-format
@@ -90,8 +90,7 @@ msgid "Share could not be found on given server"
 msgstr "ਦਿੱਤੇ ਸਰਵਰ ਤੇ ਸਾਂਝ ਖੋਜੀ ਨਹੀਂ ਜਾ ਸਕੀ ਹੈ"
 
 #: kio_smb_browse.cpp:304
-#, fuzzy, kde-format
-#| msgid "BAD File descriptor"
+#, kde-format
 msgid "Bad file descriptor"
 msgstr "ਗਲਤ ਫਾਇਲ ਵਰਣਨਕਰਤਾ"
 
@@ -111,7 +110,7 @@ msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
 "failure). %1 is an ip address or hostname"
 msgid "%1: Host unreachable"
-msgstr ""
+msgstr "%1: ਹੋਸਟ ਪਹੁੰਚ 'ਚ ਨਹੀਂ"
 
 #: kio_smb_browse.cpp:325
 #, kde-format
@@ -127,7 +126,7 @@ msgstr ""
 "libsmbclient ਨੇ ਗਲਤੀ ਦੀ ਜਾਣਕਾਰੀ ਦਿੱਤੀ ਹੈ, ਪਰ ਸਮੱਸਿਆ ਬਾਰੇ ਸਪਸ਼ੱਟ ਨਹੀਂ ਨਹੀਂ ਕੀਤੀ ਹੈ। ਇਹ "
 "ਤੁਹਾਡੇ ਨੈਟਵਰਕ ਵਿੱਚ ਇੱਕ ਸਰਵਰ ਸਮੱਸਿਆ ਨੂੰ ਵਿਖਾ ਰਿਹਾ ਹੈ - ਪਰ ਇਹ libsmbclient ਵਿੱਚ ਵੀ ਸਮੱਸਿਆ "
 "ਹੋ ਸਕਦੀ ਹੈ।\n"
-"ਜੇਕਰ ਤੁਸੀਂ ਸਾਡੀ ਮੱਦਦ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ, ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਦਾ tcpdump ਦਿਓ ਜੀ, ਜਦੋਂ ਕਿ ਤੁਸੀਂ ਝਲਕ "
+"ਜੇਕਰ ਤੁਸੀਂ ਸਾਡੀ ਮਦਦ ਕਰਨੀ ਚਾਹੁੰਦੇ ਹੋ, ਨੈੱਟਵਰਕ ਇੰਟਰਫੇਸ ਦਾ tcpdump ਦਿਓ ਜੀ, ਜਦੋਂ ਕਿ ਤੁਸੀਂ ਝਲਕ "
 "ਵੇਖਦੇ ਹੋ (ਯਾਦ ਰੱਖੋ ਕਿ ਇਸ ਵਿੱਚ ਨਿੱਜੀ ਡਾਟਾ ਹੋ ਸਕਦਾ ਹੈ, ਇਸ ਕਰਕੇ ਜੇਕਰ ਤੁਹਾਨੂੰ ਜਾਣਕਾਰੀ ਨਾ ਹੋਵੇ ਤਾਂ "
 "ਭੇਜ ਨਾ - ਜੇਕਰ ਖੋਜੀ ਤੁਹਾਨੂੰ ਮੰਗਣ ਤਾਂ ਨਿੱਜੀ ਤੌਰ 'ਤੇ ਭੇਜ ਸਕਦੇ ਹੋ।)"
 
@@ -163,7 +162,7 @@ msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
 "%4"
 msgstr ""
-"ਯੂਜ਼ਰ \"%3\" ਰਾਹੀਂ ਹੋਸਟ \"%2\" ਤੋਂ ਸਾਂਝ \"%1\" ਮਾਊਟ ਕਰਨਾ ਅਸਫਲ ਹੈ।\n"
+"ਵਰਤੋਂਕਾਰ \"%3\" ਰਾਹੀਂ ਹੋਸਟ \"%2\" ਤੋਂ ਸਾਂਝ \"%1\" ਮਾਊਂਟ ਕਰਨਾ ਅਸਫ਼ਲ ਹੈ।\n"
 "%4"
 
 #: kio_smb_mount.cpp:198
@@ -172,7 +171,7 @@ msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
 "%2"
 msgstr ""
-"ਮਾਊਟ-ਪੁਆਇੰਟ \"%1\" ਨੂੰ ਅਣ-ਮਾਊਟ ਕਰਨਾ ਅਸਫ਼ਲ ਹੈ।\n"
+"ਮਾਊਟ-ਪੁਆਇੰਟ \"%1\" ਨੂੰ ਅਣ-ਮਾਊਂਟ ਕਰਨਾ ਅਸਫ਼ਲ ਹੈ।\n"
 "%2"
 
 #: wsdiscoverer.cpp:163
@@ -180,7 +179,7 @@ msgstr ""
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
-msgstr ""
+msgstr "ਅਣਪਛਾਤਾ ਡਿਵਾਈਸ @ <resource>%1</resource>"
 
 #~ msgid "libsmbclient failed to initialize context"
 #~ msgstr "libsmbclient ਭਾਗ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਅਸਫਲ"

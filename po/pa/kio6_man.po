@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-02 01:39+0000\n"
-"PO-Revision-Date: 2024-01-03 14:00-0600\n"
+"PO-Revision-Date: 2024-01-30 09:45-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
@@ -52,10 +52,9 @@ msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
 #: kio_man.cpp:663
-#, fuzzy, kde-format
-#| msgid "<h1>KDE Man Viewer Error</h1>"
+#, kde-format
 msgid "Manual Page Viewer Error"
-msgstr "<h1>KDE man ਦਰਸ਼ਕ ਗਲਤੀ</h1>"
+msgstr "ਮੈਨੂਅਲ ਸਫ਼ਾ ਦਰਸ਼ਕ ਗਲਤੀ"
 
 #: kio_man.cpp:676
 #, fuzzy, kde-format
@@ -66,7 +65,7 @@ msgstr "ਇੱਕ ਤੋਂ ਜਿਆਦਾ man ਸਫ਼ੇ ਹਨ।"
 #: kio_man.cpp:676
 #, kde-format
 msgid "Multiple Manual Pages"
-msgstr ""
+msgstr "ਕਈ ਮੈਨੂਅਲ ਸਫ਼ੇ"
 
 #: kio_man.cpp:689
 #, kde-format
@@ -77,14 +76,12 @@ msgid ""
 msgstr ""
 
 #: kio_man.cpp:757
-#, fuzzy, kde-format
-#| msgid "Header files (POSIX)"
+#, kde-format
 msgid "Header Files"
-msgstr "ਹੈੱਡਰ ਫਾਇਲਾਂ (POSIX)"
+msgstr "ਹੈੱਡਰ ਫਾਇਲਾਂ"
 
 #: kio_man.cpp:759
-#, fuzzy, kde-format
-#| msgid "Header files (POSIX)"
+#, kde-format
 msgid "Header Files (POSIX)"
 msgstr "ਹੈੱਡਰ ਫਾਇਲਾਂ (POSIX)"
 
@@ -96,12 +93,12 @@ msgstr "ਯੂਜ਼ਰ ਕਮਾਂਡਾਂ"
 #: kio_man.cpp:763
 #, kde-format
 msgid "User Commands (POSIX)"
-msgstr "ਯੂਜ਼ਰ ਕਮਾਂਡ (POSIX)"
+msgstr "ਯੂਜ਼ਰ ਕਮਾਂਡਾਂ (POSIX)"
 
 #: kio_man.cpp:765
 #, kde-format
 msgid "System Calls"
-msgstr "ਸਿਸਟਮ ਕਾਲ"
+msgstr "ਸਿਸਟਮ ਕਾਲਾਂ"
 
 #: kio_man.cpp:767
 #, kde-format
@@ -121,7 +118,7 @@ msgstr "ਨੈੱਟਵਰਕ ਫੰਕਸ਼ਨ"
 #: kio_man.cpp:774
 #, kde-format
 msgid "Devices"
-msgstr "ਜੰਤਰ"
+msgstr "ਡਿਵਾਈਸ"
 
 #: kio_man.cpp:776
 #, kde-format
@@ -159,10 +156,9 @@ msgid "New"
 msgstr "ਨਵਾਂ"
 
 #: kio_man.cpp:816
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Main Manual Page Index"
-msgstr "UNIX ਮੇਨੂਅਲ ਇੰਡੈਕਸ"
+msgstr "ਮੁੱਖ ਮੇਨੂਅਲ ਸਫ਼ਾ ਇੰਡੈਕਸ"
 
 #: kio_man.cpp:841
 #, kde-format
@@ -170,16 +166,14 @@ msgid "Section %1"
 msgstr "ਸ਼ੈਕਸ਼ਨ %1"
 
 #: kio_man.cpp:1090
-#, fuzzy, kde-format
-#| msgid "Index for Section %1: %2"
+#, kde-format
 msgid "Index for section %1: %2"
 msgstr "ਸ਼ੈਕਸ਼ਨ %1 ਲਈ ਇੰਡੈਕਸ: %2"
 
 #: kio_man.cpp:1090
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Manual Page Index"
-msgstr "UNIX ਮੇਨੂਅਲ ਇੰਡੈਕਸ"
+msgstr "ਮੇਨੂਅਲ ਸਫ਼ਾ ਇੰਡੈਕਸ"
 
 #: kio_man.cpp:1102
 #, kde-format

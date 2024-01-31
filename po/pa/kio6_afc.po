@@ -1,0 +1,109 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# SPDX-FileCopyrightText: 2024 A S Alam <aalam@punlinux.org>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"PO-Revision-Date: 2024-01-30 09:39-0600\n"
+"Last-Translator: A S Alam <aalam@punlinux.org>\n"
+"Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
+"Language: pa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.08.4\n"
+
+#: afcutils.cpp:60
+#, kde-format
+msgid "Unhandled AFC error code '%1'"
+msgstr ""
+
+#: afcutils.cpp:73
+#, kde-format
+msgid "Unhandled housearrest error code '%1'"
+msgstr ""
+
+#: afcutils.cpp:89
+#, kde-format
+msgid "Unhandled instproxy error code '%1'"
+msgstr ""
+
+#: afcutils.cpp:105
+#, kde-format
+msgid ""
+"The device is locked. Please enter the passcode on the device and try again."
+msgstr "ਡਿਵਾਈਸ ਲਾਕ ਹੈ। ਡਿਵਾਈਸ ਉੱਤੇ ਪਾਸਕੋਡ ਭਰੋ ਅਤੇ ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+#: afcutils.cpp:112
+#, kde-format
+msgid "You have denied this computer access to the device."
+msgstr "ਤੁਸੀਂ ਡਿਵਾਈਸ ਲਈ ਇਸ ਕੰਪਿਊਟਰ ਦੀ ਪਹੁੰਚ ਤੋਂ ਇਨਕਾਰ ਕੀਤਾ ਹੈ।"
+
+#: afcutils.cpp:119
+#, kde-format
+msgid ""
+"You need to allow this computer to access the device. Please accept the "
+"prompt on the device and try again."
+msgstr ""
+"ਡਿਵਾਈਸ ਵਰਤਣ ਲਈ ਤੁਹਾਨੂੰ ਇਸ ਕੰਪਿਊਟਰ ਨੂੰ ਮਨਜ਼ੂਰੀ ਦੇਣ ਦੀ ਲੋੜ ਹੈ। ਡਿਵਾਈਸ ਉੱਤੇ ਪੁੱਛਣ ਨੂੰ ਮਨਜ਼ੂਰ ਕਰੋ ਅਤੇ "
+"ਫੇਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+#: afcutils.cpp:127
+#, kde-format
+msgid ""
+"Cannot access the device. Make sure it is unlocked and allows this computer "
+"to access it."
+msgstr ""
+"ਡਿਵਾਈਸ ਨੂੰ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ। ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਇਹ ਅਣ-ਲਾਕ ਹੈ ਅਤੇ ਇਸ ਨੇ ਇਸ ਕੰਪਿਊਟਰ ਨੂੰ "
+"ਵਰਤਣ ਦੀ ਮਨਜ਼ਰੀ ਦਿੱਤੀ ਹੈ।"
+
+#: afcutils.cpp:134
+#, kde-format
+msgid "Unhandled lockdownd code '%1'"
+msgstr ""
+
+#: afcutils.cpp:147
+#, kde-format
+msgid "Unhandled sbservices code '%1'"
+msgstr ""
+
+#: kio_afc.cpp:175
+#, kde-format
+msgid "Apple Devices"
+msgstr "Apple ਡਿਵਾਈਸ"
+
+#: kio_afc.cpp:230
+#, kde-format
+msgctxt "Link to folder with files stored inside apps"
+msgid "Apps"
+msgstr "ਐਪਾਂ"
+
+#: kio_afc.cpp:479
+#, kde-format
+msgctxt "Placeholder is device name"
+msgid "%1 (Apps)"
+msgstr "%1 (ਐਪਾਂ)"
+
+#: kio_afc.cpp:687
+#, kde-format
+msgid "Cannot read without opening file first"
+msgstr "ਫਾਇਲ ਨੂੰ ਪਹਿਲਾਂ ਖੋਲ੍ਹੇ ਬਿਨਾਂ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
+
+#: kio_afc.cpp:707
+#, kde-format
+msgid "Cannot seek without opening file first"
+msgstr "ਫਾਇਲ ਨੂੰ ਪਹਿਲਾਂ ਖੋਲ੍ਹੇ ਬਿਨਾਂ ਵੇਖਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
+
+#: kio_afc.cpp:735
+#, kde-format
+msgid "Cannot write without opening file first"
+msgstr "ਫਾਇਲ ਨੂੰ ਪਹਿਲਾਂ ਖੋਲ੍ਹੇ ਬਿਨਾਂ ਲਿਖਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ ਹੈ"
+
+#: kio_afc.cpp:887
+#, kde-format
+msgid "Cannot rename between devices."
+msgstr "ਡਿਵਾਈਸਾਂ ਵਿਚਾਲੇ ਨਾਂ ਨਹੀਂ ਬਦਲਿਆ ਜਾ ਸਕਦਾ ਹੈ।"

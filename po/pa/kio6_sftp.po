@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-09 01:38+0000\n"
-"PO-Revision-Date: 2024-01-03 14:00-0600\n"
+"PO-Revision-Date: 2024-01-30 09:52-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
@@ -67,11 +67,10 @@ msgid "Site:"
 msgstr "ਸਾਇਟ:"
 
 #: kio_sftp.cpp:452
-#, fuzzy, kde-format
-#| msgid "Could not read link: %1"
+#, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
-msgstr "ਲਿੰਕ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ: %1"
+msgstr "ਲਿੰਕ ਪੜ੍ਹਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ: %1 [%2]"
 
 #: kio_sftp.cpp:570
 #, kde-format
@@ -115,10 +114,9 @@ msgid "Could not parse the config file."
 msgstr "ਸੰਰਚਨਾ ਫਾਇਲ ਪਾਰਸ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ।"
 
 #: kio_sftp.cpp:645
-#, fuzzy, kde-kuit-format
-#| msgid "Opening SFTP connection to host %1:%2"
+#, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
-msgstr "ਕੁਨੈਕਸ਼ਨ SFTP ਹੋਸਟ %1:%2 ਨਾਲ ਖੋਲ੍ਹਿਆ ਜਾ ਰਿਹਾ ਹੈ"
+msgstr "SFTP ਕਨੈਕਸ਼ਨ ਹੋਸਟ %1:%2 ਨਾਲ ਖੋਲ੍ਹਿਆ ਜਾ ਰਿਹਾ ਹੈ"
 
 #: kio_sftp.cpp:685
 #, fuzzy, kde-format
@@ -148,11 +146,10 @@ msgid ""
 msgstr ""
 
 #: kio_sftp.cpp:783
-#, fuzzy, kde-format
-#| msgid "Warning: Host's identity changed."
+#, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr "ਚੇਤਾਵਨੀ: ਹੋਸਟ ਦੀ ਪਛਾਣ ਬਦਲ ਗਈ ਹੈ।"
+msgstr "ਹੋਸਟ ਦੀ ਪਛਾਣ ਬਦਲੀ"
 
 #: kio_sftp.cpp:785
 #, kde-kuit-format
@@ -169,7 +166,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "ਹੋਸਟ ਵੇਰੀਫਿਕੇਸ਼ਨ ਅਸਫ਼ਲ"
 
 #: kio_sftp.cpp:797
 #, kde-kuit-format
@@ -184,29 +181,29 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
-msgstr ""
+msgstr "ਕਿਵੇਂ ਵੀ ਕਨੈਕਟ ਕਰੋ"
 
 #: kio_sftp.cpp:829 kio_sftp.cpp:848 kio_sftp.cpp:863 kio_sftp.cpp:876
 #: kio_sftp.cpp:928 kio_sftp.cpp:938
 #, kde-format
 msgid "Authentication failed."
-msgstr "ਪਰਮਾਣਕਤਾ ਅਸਫਲ ਹੈ।"
+msgstr "ਪਰਮਾਣੀਕਰਣ ਅਸਫ਼ਲ ਹੈ।"
 
 #: kio_sftp.cpp:836
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
-msgstr ""
+msgstr "ਪਰਮਾਣੀਕਰਣ ਅਸਫ਼ਲ ਹੈ। ਸਰਵਰ ਨੇ ਕੋਈ ਵੀ ਪਰਮਾਣੀਕਰਨ ਢੰਗ ਨਹੀਂ ਭੇਜਿਆ ਹੈ"
 
 #: kio_sftp.cpp:885
 #, kde-format
 msgid "Please enter your username and password."
-msgstr "ਆਪਣਾ ਯੂਜ਼ਰ ਨਾਂ ਅਤੇ ਪਾਸਵਰਡ ਦਿਓ ਜੀ।"
+msgstr "ਆਪਣਾ ਵਰਤੋਂਕਾਰ ਨਾਂ ਅਤੇ ਪਾਸਵਰਡ ਦਿਓ ਜੀ।"
 
 #: kio_sftp.cpp:896
 #, kde-format
 msgid "Incorrect username or password"
-msgstr "ਗਲਤ ਯੂਜ਼ਰ ਨਾਂ ਜਾਂ ਪਾਸਵਰਡ"
+msgstr "ਗਲਤ ਵਰਤੋਂਕਾਰ ਨਾਂ ਜਾਂ ਪਾਸਵਰਡ"
 
 #: kio_sftp.cpp:945
 #, kde-format
@@ -223,7 +220,7 @@ msgstr "SFTP ਸ਼ੈਸ਼ਨ ਸ਼ੁਰੂ ਨਹੀਂ ਕੀਤਾ ਜਾ
 #: kio_sftp.cpp:954
 #, kde-format
 msgid "Successfully connected to %1"
-msgstr "ਸਫਲਤਾਪੂਰਕ %1 ਨਾਲ ਜੋੜਿਆ ਗਿਆ"
+msgstr "ਕਾਮਯਾਬੀ %1 ਨਾਲ ਜੋੜਿਆ ਗਿਆ"
 
 #: kio_sftp.cpp:1007
 #, kde-format
@@ -237,7 +234,7 @@ msgid ""
 "%1"
 msgstr ""
 "%1\n"
-"ਲਈ ਅਧਿਕਾਰ ਬਦਲੇ ਨਹੀਂ ਜਾ ਸਕੇ"
+"ਲਈ ਇਜਾਜ਼ਤਾਂ ਬਦਲੀਆਂ ਨਹੀਂ ਜਾ ਸਕੀਆਂ"
 
 #~ msgid "Warning: Cannot verify host's identity."
 #~ msgstr "ਚੇਤਾਵਨੀ: ਹੋਸਟ ਦੀ ਪਛਾਣ ਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਹੋ ਸਕੀ ਹੈ।"

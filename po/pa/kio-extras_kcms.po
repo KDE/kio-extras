@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-07 02:43+0000\n"
-"PO-Revision-Date: 2024-01-03 14:01-0600\n"
+"PO-Revision-Date: 2024-01-30 09:57-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
@@ -39,7 +39,7 @@ msgstr "ਅੱਪਡੇਟ ਅਸਫਲ"
 #: netpref/kio_ftprc.kcfg:10
 #, kde-format
 msgid "Disable Passive FTP"
-msgstr "ਅਕਰਮਕ FTP ਅਯੋਗ"
+msgstr "ਅਕਰਮਕ FTP ਅਸਮਰੱਥ"
 
 #. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:11
@@ -98,12 +98,12 @@ msgstr "ਸਾਕਟ ਪੜ੍ਹੇ(&k):"
 #: netpref/netpref.cpp:54
 #, kde-format
 msgid "Pro&xy connect:"
-msgstr "ਪਰਾਕਸੀ ਕੁਨੈਕਟ(&x):"
+msgstr "ਪਰਾਕਸੀ ਕਨੈਕਟ(&x):"
 
 #: netpref/netpref.cpp:60
 #, kde-format
 msgid "Server co&nnect:"
-msgstr "ਸਰਵਰ ਕੁਨੈਕਟ(&n):"
+msgstr "ਸਰਵਰ ਕਨੈਕਟ(&n):"
 
 #: netpref/netpref.cpp:66
 #, kde-format
@@ -151,7 +151,7 @@ msgstr "FTP ਚੋਣ"
 #: netpref/netpref.cpp:99
 #, kde-format
 msgid "Enable passive &mode (PASV)"
-msgstr "ਅਕਰਮਕ ਢੰਗ ਯੋਗ(&m) (PASV)"
+msgstr "ਅਕਰਮਕ ਢੰਗ ਸਮਰੱਥ(&m) (PASV)"
 
 #: netpref/netpref.cpp:101
 #, kde-format
@@ -206,7 +206,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:26
 #, kde-format
 msgid "Connect to the Internet directly."
-msgstr "ਇੰਟਰਨੈੱਟ ਨਾਲ ਸਿੱਧਾ ਕੁਨੈਕਟ ਕਰੋ।"
+msgstr "ਇੰਟਰਨੈੱਟ ਨਾਲ ਸਿੱਧਾ ਕਨੈਕਟ ਕਰੋ।"
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
@@ -237,7 +237,7 @@ msgstr "ਪਰਾਕਸੀ ਸੰਰਚਨਾ ਆਟੋਮੈਟਿਕ ਹੀ �
 #: proxy/kproxydlg.ui:59
 #, kde-format
 msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "ਪਰਾਕਸੀ ਸੈਟਿੰਗ ਲਈ ਦਿੱਤੀ ਪਰਾਕਸੀ ਸਕਰਿਪਟ ਵਰਤੋਂ।"
+msgstr "ਪਰਾਕਸੀ ਸੈਟਿੰਗਾਂ ਲਈ ਦਿੱਤੀ ਪਰਾਕਸੀ ਸਕਰਿਪਟ ਵਰਤੋਂ।"
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:62
@@ -287,7 +287,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:130
 #, kde-format
 msgid "Auto D&etect"
-msgstr "ਆਟੋ ਖੋਜ(&e)"
+msgstr "ਆਪੇ ਖੋਜ(&e)"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
@@ -396,7 +396,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
 #, kde-format
 msgid "Exceptions:"
-msgstr "ਛੋਟ:"
+msgstr "ਛੋਟਾਂਂ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:317
@@ -412,7 +412,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:324
 #, kde-format
 msgid "Show the &value of the environment variables"
-msgstr "ਵਾਤਾਵਰਣ ਵੇਰੀਬਲਾਂ ਦਾ ਮੁੱਲ ਵੇਖਾਓ(&v)"
+msgstr "ਇਨਵਰਾਇਨਮੈਂਟ ਵੇਰੀਬਲਾਂ ਦਾ ਮੁੱਲ ਵੇਖਾਓ(&v)"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:343

@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-11 02:01+0000\n"
-"PO-Revision-Date: 2024-01-03 14:00-0600\n"
+"PO-Revision-Date: 2024-01-30 09:46-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
 "Language: pa\n"
@@ -35,7 +35,7 @@ msgstr ""
 #: kio_nfs.cpp:821
 #, kde-format
 msgid "RPC error %1, %2"
-msgstr ""
+msgstr "RPC ਗਲਤੀ %1, %2"
 
 #: kio_nfs.cpp:870
 #, kde-format
@@ -50,12 +50,12 @@ msgstr "ਡਿਸਟ ਕੋਟੇ ਤੋਂ ਵੱਧ ਗਿਆ ਹੈ"
 #: kio_nfs.cpp:883
 #, kde-format
 msgid "NFS error %1, %2"
-msgstr ""
+msgstr "NFS ਗਲਤੀ %1, %2"
 
 #: nfsv2.cpp:392 nfsv2.cpp:443 nfsv3.cpp:430 nfsv3.cpp:574
 #, kde-format
 msgid "Unknown target"
-msgstr ""
+msgstr "ਅਣਪਛਾਤਾ ਟੀਚਾ"
 
 #~ msgid "No space left on device"
 #~ msgstr "ਜੰਤਰ ਉੱਤੇ ਕੋਈ ਖਾਲੀ ਥਾਂ ਨਹੀਂ ਰਹੀ"
