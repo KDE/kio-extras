@@ -487,6 +487,8 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
         case SSH_FILEXFER_TYPE_UNKNOWN:
             fileType = QT_STAT_MASK - 1;
             break;
+        default: // type is an unsigned int and may contain anything, explicitly default to break
+            break;
         }
         access = posixToOptionalPerms(sb->permissions).value_or(perms::none);
         size = sb->size;
@@ -1058,6 +1060,7 @@ Result SFTPWorker::open(const QUrl &url, QIODevice::OpenMode mode)
         return Result::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toDisplayString());
     case SSH_FILEXFER_TYPE_SYMLINK:
     case SSH_FILEXFER_TYPE_REGULAR:
+    default: // type is an unsigned int and may contain anything, explicitly default to break
         break;
     }
 
@@ -1266,6 +1269,7 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
         return Result::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, url.toString());
     case SSH_FILEXFER_TYPE_SYMLINK:
     case SSH_FILEXFER_TYPE_REGULAR:
+    default: // type is an unsigned int and may contain anything, explicitly default to break
         break;
     }
 
