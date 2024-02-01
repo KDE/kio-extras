@@ -1891,7 +1891,7 @@ Result SFTPWorker::mkdir(const QUrl &url, int permissions)
     qCDebug(KIO_SFTP_LOG) << "Trying to create directory: " << path;
     SFTPAttributesPtr sb(sftp_lstat(mSftp, path_c.constData()));
     if (sb == nullptr) {
-        if (sftp_mkdir(mSftp, path_c.constData(), 0777) < 0) {
+        if (sftp_mkdir(mSftp, path_c.constData(), S_IRWXU | S_IRWXG | S_IRWXO) < 0) {
             return reportError(url, sftp_get_error(mSftp));
         }
 
