@@ -14,7 +14,6 @@
 #include <cstring>
 #include <filesystem>
 #include <memory>
-#include <ranges>
 #include <span>
 
 #include <QCoreApplication>
