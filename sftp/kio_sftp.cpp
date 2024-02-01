@@ -424,7 +424,7 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
     return err;
 }
 
-Result SFTPWorker::reportError(const QUrl &url, const int err)
+Result SFTPWorker::reportError(const QUrl &url, int err)
 {
     qCDebug(KIO_SFTP_LOG) << "url = " << url << " - err=" << err;
 

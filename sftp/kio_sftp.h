@@ -208,7 +208,7 @@ private: // Private variables
 private: // private methods
     int authenticateKeyboardInteractive(KIO::AuthInfo &info);
 
-    Q_REQUIRED_RESULT Result reportError(const QUrl &url, const int err);
+    Q_REQUIRED_RESULT Result reportError(const QUrl &url, int err);
 
     Q_REQUIRED_RESULT Result createUDSEntry(SFTPAttributesPtr sb, KIO::UDSEntry &entry, const QByteArray &path, const QString &name, int details);
 
