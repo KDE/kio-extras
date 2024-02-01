@@ -742,8 +742,7 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
     // Start the ssh connection.
 
     // Attempt to start a ssh session and establish a connection with the server.
-    const Result openResult = sftpOpenConnection(info);
-    if (!openResult.success()) {
+    if (auto openResult = sftpOpenConnection(info); !openResult.success()) {
         return openResult;
     }
 
@@ -1040,8 +1039,7 @@ Result SFTPWorker::open(const QUrl &url, QIODevice::OpenMode mode)
 {
     qCDebug(KIO_SFTP_LOG) << "open: " << url;
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -1248,8 +1246,7 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 {
     qCDebug(KIO_SFTP_LOG) << url;
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -1348,8 +1345,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
 
     auto permissions(posixToOptionalPerms(permissionsMode));
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -1744,8 +1740,7 @@ Result SFTPWorker::stat(const QUrl &url)
 {
     qCDebug(KIO_SFTP_LOG) << url;
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -1781,7 +1776,7 @@ Result SFTPWorker::stat(const QUrl &url)
     }
 
     UDSEntry entry;
-    const Result result = createUDSEntry(SFTPAttributesPtr(attributes), entry, path, QFileInfo(path).fileName(), details);
+    auto result = createUDSEntry(SFTPAttributesPtr(attributes), entry, path, QFileInfo(path).fileName(), details);
     if (!result.success()) {
         return result;
     }
@@ -1794,8 +1789,7 @@ Result SFTPWorker::mimetype(const QUrl &url)
 {
     qCDebug(KIO_SFTP_LOG) << url;
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -1810,8 +1804,7 @@ Result SFTPWorker::listDir(const QUrl &url)
 {
     qCDebug(KIO_SFTP_LOG) << "list directory: " << url;
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -1874,8 +1867,7 @@ Result SFTPWorker::mkdir(const QUrl &url, int permissions)
 {
     qCDebug(KIO_SFTP_LOG) << "create directory: " << url;
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -1917,8 +1909,7 @@ Result SFTPWorker::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags
 {
     qCDebug(KIO_SFTP_LOG) << "rename " << src << " to " << dest << flags;
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -1955,8 +1946,7 @@ Result SFTPWorker::symlink(const QString &target, const QUrl &dest, KIO::JobFlag
 {
     qCDebug(KIO_SFTP_LOG) << "link " << target << "->" << dest << ", overwrite = " << (flags & KIO::Overwrite) << ", resume = " << (flags & KIO::Resume);
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -1992,8 +1982,7 @@ Result SFTPWorker::chmod(const QUrl &url, int permissions)
 {
     qCDebug(KIO_SFTP_LOG) << "change permission of " << url << " to " << QString::number(permissions);
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -2010,8 +1999,7 @@ Result SFTPWorker::del(const QUrl &url, bool isfile)
 {
     qCDebug(KIO_SFTP_LOG) << "deleting " << (isfile ? "file: " : "directory: ") << url;
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
@@ -2184,8 +2172,7 @@ void SFTPWorker::requiresUserNameRedirection()
 Result SFTPWorker::sftpLogin()
 {
     const QString origUsername = mUsername;
-    const auto openResult = openConnection();
-    if (!openResult.success()) {
+    if (auto openResult = openConnection(); !openResult.success()) {
         return openResult;
     }
     qCDebug(KIO_SFTP_LOG) << "connected ?" << mConnected << "username: old=" << origUsername << "new=" << mUsername;
@@ -2208,8 +2195,7 @@ Result SFTPWorker::fileSystemFreeSpace(const QUrl &url)
 {
     qCDebug(KIO_SFTP_LOG) << "file system free space of" << url;
 
-    const auto loginResult = sftpLogin();
-    if (!loginResult.success()) {
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
     }
 
