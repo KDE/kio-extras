@@ -91,7 +91,7 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char **argv)
 #if defined(Q_OS_WINDOWS)
     SetPriorityClass(GetCurrentProcess(), BELOW_NORMAL_PRIORITY_CLASS);
 #else
-    nice(5);
+    std::ignore = nice(5);
 #endif
 
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
