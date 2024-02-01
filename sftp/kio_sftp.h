@@ -181,6 +181,19 @@ private: // Private variables
     };
 
     struct ReadResponse {
+        // NOTE: older GCC versions have trouble when using structs that were aggregate initialized and crash on
+        // double-destruction problems. If you want to get rid of the ctors make double sure that reasonable GCC
+        // versions are fine.
+        ReadResponse() = default;
+        explicit ReadResponse(const QByteArray &filedata_)
+            : filedata(filedata_)
+        {
+        }
+        explicit ReadResponse(int error_)
+            : error(error_)
+        {
+        }
+
         QByteArray filedata;
         int error = KJob::NoError;
     };
