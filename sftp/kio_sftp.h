@@ -162,7 +162,7 @@ private: // Private variables
          * @param data the array into which the data should be saved (it should be empty).
          * @return 0 on EOF or timeout, -1 on error and the number of bytes read otherwise.
          */
-        int readChunks(QByteArray &data);
+        size_t readChunks(QByteArray &data);
 
     private:
         struct Request {

@@ -2,6 +2,8 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio6_sftp\")
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
+find_package(Microsoft.GSL REQUIRED)
+
 add_library(kio_sftp MODULE)
 set_target_properties(kio_sftp PROPERTIES
     OUTPUT_NAME "sftp"
@@ -33,12 +35,17 @@ if(WIN32)
 endif()
 
 target_link_libraries(kio_sftp
-   KF6::KIOCore
-   KF6::WidgetsAddons # KMessageBox
-   KF6::ConfigCore
-   KF6::I18n
-   Qt::Network
-   QCoro::Core
-   ssh)
+    PRIVATE
+        KF6::KIOCore
+        KF6::WidgetsAddons # KMessageBox
+        KF6::ConfigCore
+        KF6::I18n
+        Qt::Network
+        QCoro::Core
+        ssh
+    INTERFACE
+        Microsoft.GSL
+)
+kde_target_enable_exceptions(kio_sftp PRIVATE)
 
 install(TARGETS kio_sftp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)

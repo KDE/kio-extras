@@ -16,6 +16,8 @@
 #include <memory>
 #include <span>
 
+#include <gsl/narrow>
+
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDir>
@@ -495,7 +497,7 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
     }
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, permsToPosix(access));
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, size);
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, gsl::narrow<decltype(KIO::UDSEntry::UDS_SIZE)>(size));
 
     if (details > 0) {
         if (sb->owner) {
@@ -516,7 +518,7 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
         if (sb->flags & SSH_FILEXFER_ATTR_CREATETIME) {
             // Availability depends on outside factors.
             // https://bugs.kde.org/show_bug.cgi?id=375305
-            entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, sb->createtime);
+            entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, gsl::narrow<decltype(KIO::UDSEntry::UDS_CREATION_TIME)>(sb->createtime));
         }
     }
 
@@ -1120,7 +1122,7 @@ Result SFTPWorker::read(KIO::filesize_t bytes)
 
     Q_ASSERT(mOpenFile != nullptr);
 
-    QVarLengthArray<char> buffer(bytes);
+    QVarLengthArray<char> buffer(gsl::narrow<qsizetype>(bytes));
 
     ssize_t bytesRead = sftp_read(mOpenFile, buffer.data(), bytes);
     Q_ASSERT(bytesRead <= static_cast<ssize_t>(bytes));
@@ -1385,7 +1387,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
                 qCDebug(KIO_SFTP_LOG) << "put got answer " << (flags & KIO::Resume);
 
             } else {
-                KIO::filesize_t pos = QT_LSEEK(fd, sbPart->size, SEEK_SET);
+                KIO::filesize_t pos = QT_LSEEK(fd, gsl::narrow<off_t>(sbPart->size), SEEK_SET);
                 if (pos != sbPart->size) {
                     qCDebug(KIO_SFTP_LOG) << "Failed to seek to" << sbPart->size << "bytes in source file. Reason given:" << strerror(errno);
                     return Result::fail(ERR_CANNOT_SEEK, url.toString());
@@ -1423,7 +1425,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
             SFTPAttributesPtr fstat(sftp_fstat(destFile.get()));
             if (fstat) {
                 sftp_seek64(destFile.get(), fstat->size); // Seek to end TODO
-                totalBytesSent += fstat->size;
+                totalBytesSent += gsl::narrow<KIO::fileoffset_t>(fstat->size);
             }
         }
     } else {
@@ -1464,7 +1466,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     } // file
 
     auto reader = [fd, this]() -> QCoro::Generator<ReadResponse> {
-        for (int result = 1; result > 0;) {
+        for (ssize_t result = 1; result > 0;) {
             ReadResponse response;
             if (fd == -1) {
                 dataReq(); // Request for data
@@ -1479,7 +1481,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
                     qCDebug(KIO_SFTP_LOG) << "failed to read" << errno;
                     response.error = ERR_CANNOT_READ;
                 } else {
-                    response.filedata = QByteArray(buf.data(), result);
+                    response.filedata = QByteArray(buf.data(), gsl::narrow<qsizetype>(result));
                 }
             }
 
@@ -1504,7 +1506,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
             return closeOnError(KIO::ERR_CANNOT_WRITE);
         }
 
-        totalBytesSent += response.bytes;
+        totalBytesSent += gsl::narrow<decltype(totalBytesSent)>(response.bytes);
         processedSize(totalBytesSent);
     }
 
@@ -2066,15 +2068,15 @@ bool SFTPWorker::GetRequest::enqueueChunks()
     return true;
 }
 
-int SFTPWorker::GetRequest::readChunks(QByteArray &data)
+size_t SFTPWorker::GetRequest::readChunks(QByteArray &data)
 {
-    int totalRead = 0;
+    size_t totalRead = 0;
     ssize_t bytesread = 0;
     const uint64_t initialOffset = m_file->offset;
 
     while (!m_pendingRequests.isEmpty()) {
         SFTPWorker::GetRequest::Request &request = m_pendingRequests.head();
-        int dataSize = data.size() + request.expectedLength;
+        auto dataSize = data.size() + request.expectedLength;
 
         data.resize(dataSize);
         if (data.size() < dataSize) {
