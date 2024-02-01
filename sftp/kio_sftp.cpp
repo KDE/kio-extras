@@ -1144,7 +1144,7 @@ Result SFTPWorker::write(const QByteArray &data)
     Q_ASSERT(mOpenFile != nullptr);
 
     for (const auto &response : asyncWrite(mOpenFile, [data]() -> QCoro::Generator<ReadResponse> {
-             co_yield {.filedata = data};
+             co_yield ReadResponse(data);
          }())) {
         if (response.error != KJob::NoError) {
             qCDebug(KIO_SFTP_LOG) << "Could not write to " << mOpenUrl;
@@ -2239,7 +2239,7 @@ QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file,
     while (true) {
         // Enqueue get requests
         if (!request.enqueueChunks()) {
-            co_yield {.error = KIO::ERR_CANNOT_READ};
+            co_yield SFTPWorker::ReadResponse(KIO::ERR_CANNOT_READ);
             break;
         }
 
@@ -2247,7 +2247,7 @@ QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file,
         const auto bytesread = request.readChunks(filedata);
         // Read pending get requests
         if (bytesread == -1) {
-            co_yield {.error = KIO::ERR_CANNOT_READ};
+            co_yield SFTPWorker::ReadResponse(KIO::ERR_CANNOT_READ);
             break;
         }
         if (bytesread == 0) {
@@ -2257,7 +2257,7 @@ QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file,
             continue;
         }
 
-        co_yield {.filedata = filedata};
+        co_yield SFTPWorker::ReadResponse(filedata);
     }
 }
 
