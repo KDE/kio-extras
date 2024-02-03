@@ -192,9 +192,6 @@ void log_callback(int priority, const char *function, const char *buffer, void *
 
 inline std::optional<perms> posixToOptionalPerms(uint32_t mode) noexcept
 {
-    if (mode < 0) {
-        return {};
-    }
     return static_cast<perms>(mode) & perms::mask;
 }
 
