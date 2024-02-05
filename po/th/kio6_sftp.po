@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-09 01:38+0000\n"
+"POT-Creation-Date: 2024-02-05 00:37+0000\n"
 "PO-Revision-Date: 2010-05-01 11:32+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -18,57 +18,57 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: kio_sftp.cpp:264
+#: kio_sftp.cpp:262
 #, fuzzy, kde-format
 #| msgid "Incorrect username or password"
 msgid "Incorrect or invalid passphrase"
 msgstr "ชื่อผู้ใช้และรหัสผ่านของคุณไม่ถูกต้อง"
 
-#: kio_sftp.cpp:313
+#: kio_sftp.cpp:311
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "ไม่สามารถจองส่วนเรียกกลับได้"
 
-#: kio_sftp.cpp:326
+#: kio_sftp.cpp:324
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "ไม่สามารถตั้งค่าปูมแบบแสดงรายละเอียดเต็มได้"
 
-#: kio_sftp.cpp:331
+#: kio_sftp.cpp:329
 #, fuzzy, kde-format
 #| msgid "Could not set log verbosity."
 msgid "Could not set log userdata."
 msgstr "ไม่สามารถตั้งค่าปูมแบบแสดงรายละเอียดเต็มได้"
 
-#: kio_sftp.cpp:336
+#: kio_sftp.cpp:334
 #, fuzzy, kde-format
 #| msgid "Could not allocate callbacks"
 msgid "Could not set log callback."
 msgstr "ไม่สามารถจองส่วนเรียกกลับได้"
 
-#: kio_sftp.cpp:372 kio_sftp.cpp:374 kio_sftp.cpp:884
+#: kio_sftp.cpp:370 kio_sftp.cpp:372 kio_sftp.cpp:883
 #, kde-format
 msgid "SFTP Login"
 msgstr "ล็อกอิน SFTP"
 
-#: kio_sftp.cpp:389
+#: kio_sftp.cpp:387
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr "ใช้ช่องข้อมูลชื่อผู้ใช้เพื่อใช้ตอบคำถามนี้"
 
-#: kio_sftp.cpp:402
+#: kio_sftp.cpp:400
 #, fuzzy, kde-format
 #| msgid "Please enter your username and password."
 msgid "Please enter your password."
 msgstr "โปรดป้อนชื่อผู้ใช้และรหัสผ่านของคุณ"
 
-#: kio_sftp.cpp:407 kio_sftp.cpp:887
+#: kio_sftp.cpp:405 kio_sftp.cpp:886
 #, fuzzy, kde-format
 #| msgid "site:"
 msgid "Site:"
 msgstr "ไซต์:"
 
-#: kio_sftp.cpp:452
+#: kio_sftp.cpp:450
 #, fuzzy, kde-format
 #| msgid "Could not read link: %1"
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Could not create fingerprint for server public key"
 msgstr ""
 
-#: kio_sftp.cpp:766
+#: kio_sftp.cpp:765
 #, fuzzy, kde-format
 #| msgid ""
 #| "The host key for this server was not found, but another type of key "
@@ -161,14 +161,14 @@ msgstr ""
 "โปรดทำการติดต่อผู้บริหารระบบของคุณ\n"
 "%1"
 
-#: kio_sftp.cpp:783
+#: kio_sftp.cpp:782
 #, fuzzy, kde-format
 #| msgid "Warning: Host's identity changed."
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "คำเตือน: การแสดงตัวของโฮสต์มีการเปลี่ยนแปลง"
 
-#: kio_sftp.cpp:785
+#: kio_sftp.cpp:784
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The host key for the server %1 has changed.\n"
@@ -194,13 +194,13 @@ msgstr ""
 "โปรดติดต่อผู้บริหารระบบของคุณ\n"
 "%3"
 
-#: kio_sftp.cpp:795
+#: kio_sftp.cpp:794
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr ""
 
-#: kio_sftp.cpp:797
+#: kio_sftp.cpp:796
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The authenticity of host %1 cannot be established.\n"
@@ -216,35 +216,35 @@ msgstr ""
 "กุญแจอัตลักษณ์คือ: %2\n"
 "คุณแน่ใจหรือว่าต้องการจะทำการเชื่อมต่อต่อไป ?"
 
-#: kio_sftp.cpp:806
+#: kio_sftp.cpp:805
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr ""
 
-#: kio_sftp.cpp:829 kio_sftp.cpp:848 kio_sftp.cpp:863 kio_sftp.cpp:876
-#: kio_sftp.cpp:928 kio_sftp.cpp:938
+#: kio_sftp.cpp:828 kio_sftp.cpp:847 kio_sftp.cpp:862 kio_sftp.cpp:875
+#: kio_sftp.cpp:927 kio_sftp.cpp:937
 #, kde-format
 msgid "Authentication failed."
 msgstr "การตรวจสอบสิทธิ์ล้มเหลว"
 
-#: kio_sftp.cpp:836
+#: kio_sftp.cpp:835
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr ""
 
-#: kio_sftp.cpp:885
+#: kio_sftp.cpp:884
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "โปรดป้อนชื่อผู้ใช้และรหัสผ่านของคุณ"
 
-#: kio_sftp.cpp:896
+#: kio_sftp.cpp:895
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "ชื่อผู้ใช้และรหัสผ่านของคุณไม่ถูกต้อง"
 
-#: kio_sftp.cpp:945
+#: kio_sftp.cpp:944
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -253,22 +253,22 @@ msgstr ""
 "ไม่สามารถร้องขอระบบย่อยของ SFTP ได้ โปรดตรวจสอบว่าบริการ SFTP "
 "ถูกเปิดใช้อยู่บนเครื่องแม่ข่ายหรือไม่"
 
-#: kio_sftp.cpp:950
+#: kio_sftp.cpp:949
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "ไม่สามารถเตรียมการเริ่มวาระ SFTP ได้"
 
-#: kio_sftp.cpp:954
+#: kio_sftp.cpp:953
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "เชื่อมต่อไปยัง %1 เรียบร้อยแล้ว"
 
-#: kio_sftp.cpp:1007
+#: kio_sftp.cpp:1006
 #, kde-format
 msgid "Invalid sftp context"
 msgstr ""
 
-#: kio_sftp.cpp:1540
+#: kio_sftp.cpp:1538
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
