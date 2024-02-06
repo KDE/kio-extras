@@ -28,27 +28,13 @@ SMBContext::SMBContext(SMBAuthenticator *authenticator)
     int debugLevel = cfg.group("SMB").readEntry("DebugLevel", 0);
     qCDebug(KIO_SMB_LOG) << "Setting debug level to:" << debugLevel;
 
-#ifdef DEPRECATED_SMBC_INTERFACE // defined by libsmbclient.h of Samba 3.2
     smbc_setOptionUserData(m_context.get(), this);
     smbc_setFunctionAuthDataWithContext(m_context.get(), auth_cb);
-
-    /* New libsmbclient interface of Samba 3.2 */
     smbc_setDebug(m_context.get(), debugLevel);
 
     /* Enable Kerberos support */
     smbc_setOptionUseKerberos(m_context.get(), 1);
     smbc_setOptionFallbackAfterKerberos(m_context.get(), 1);
-#else
-    smbc_option_set(m_context.get(), "user_data", this);
-    m_context->callbacks.auth_fn = NULL;
-    smbc_option_set(m_context.get(), "auth_function", (void *)auth_cb);
-
-    m_context->debug = debug_level;
-
-#if defined(SMB_CTX_FLAG_USE_KERBEROS) && defined(SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS)
-    m_context->flags |= SMB_CTX_FLAG_USE_KERBEROS | SMB_CTX_FLAG_FALLBACK_AFTER_KERBEROS;
-#endif
-#endif /* DEPRECATED_SMBC_INTERFACE */
 
     if (!smbc_init_context(m_context.get())) {
         m_context.reset();
@@ -84,12 +70,8 @@ void SMBContext::auth_cb(SMBCCTX *context,
     // to route all auths through our context object otherwise the authenticator would have
     // to twiddle the global context user_data and that seems much worse :|
     if (context != nullptr) {
-#ifdef DEPRECATED_SMBC_INTERFACE
-        auto *that = static_cast<SMBContext *>(smbc_getOptionUserData(context));
-#else
-        auto *that = static_cast<SMBCContext *>(smbc_option_get(context, "user_data"));
-#endif
-        that->m_authenticator->auth(context, server, share, workgroup, wgmaxlen, username, unmaxlen, password, pwmaxlen);
+        static_cast<SMBContext *>(smbc_getOptionUserData(context))
+            ->m_authenticator->auth(context, server, share, workgroup, wgmaxlen, username, unmaxlen, password, pwmaxlen);
     }
 }
 
