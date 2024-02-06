@@ -494,7 +494,7 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
     }
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, permsToPosix(access));
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, gsl::narrow<decltype(KIO::UDSEntry::UDS_SIZE)>(size));
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, gsl::narrow<long long>(size));
 
     if (details > 0) {
         if (sb->owner) {
@@ -515,7 +515,7 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
         if (sb->flags & SSH_FILEXFER_ATTR_CREATETIME) {
             // Availability depends on outside factors.
             // https://bugs.kde.org/show_bug.cgi?id=375305
-            entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, gsl::narrow<decltype(KIO::UDSEntry::UDS_CREATION_TIME)>(sb->createtime));
+            entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, gsl::narrow<long long>(sb->createtime));
         }
     }
 
