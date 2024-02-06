@@ -11,7 +11,6 @@
 #include <KConfigGroup>
 #include <KIO/AuthInfo>
 #include <KLocalizedString>
-#include <QTextCodec>
 
 #include "smb-logsettings.h"
 #include "smburl.h"
