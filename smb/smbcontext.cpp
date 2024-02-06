@@ -63,8 +63,6 @@ SMBContext::SMBContext(SMBAuthenticator *authenticator)
     // being held in the worker though, which opens us up to nullptr
     // problems should checkPassword be called without init first.
     authenticator->setDefaultWorkgroup(smbc_getWorkgroup(*this));
-
-    return;
 }
 
 bool SMBContext::isValid() const
