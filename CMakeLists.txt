@@ -85,15 +85,10 @@ set_package_properties(Phonon4Qt6 PROPERTIES
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if(NOT WIN32)
-    # we need a version of samba which has already smbc_set_context(), Alex
-    set(SAMBA_REQUIRE_SMBC_SET_CONTEXT TRUE)
-    set(SAMBA_REQUIRE_SMBC_OPTION_SET TRUE)
-    find_package(Samba)
-    set_package_properties(Samba PROPERTIES DESCRIPTION "the SMB client library, a version with smbc_set_context() and smbc_option_set()"
-                        URL "https://www.samba.org/"
-                        TYPE OPTIONAL
-                        PURPOSE "Needed to build the SMB KIO worker"
-                        )
+    option(BUILD_SMB "Build smb support" ON)
+    if(BUILD_SMB)
+        add_subdirectory(smb)
+    endif()
 endif()
 
 find_package(libssh 0.8.3 MODULE)
@@ -199,10 +194,6 @@ if(NOT WIN32)
    if(TIRPC_FOUND)
      add_subdirectory( nfs )
    endif()
-endif()
-
-if(SAMBA_FOUND)
-    add_subdirectory(smb)
 endif()
 
 if(IMobileDevice_FOUND AND PList_FOUND)

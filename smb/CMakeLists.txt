@@ -3,6 +3,13 @@ remove_definitions(
     -DQT_NO_CAST_FROM_BYTEARRAY
 )
 
+find_package(smbclient 0.7.0 REQUIRED)
+set_package_properties(smbclient PROPERTIES
+    DESCRIPTION "the SMB client library"
+    URL "https://www.samba.org/"
+    PURPOSE "Needed to build the SMB KIO worker"
+)
+
 find_package(KDSoapWSDiscoveryClient REQUIRED)
 
 find_package(Threads REQUIRED)
@@ -14,8 +21,7 @@ include(CheckSymbolExists)
 set(CMAKE_AUTOMAKE ON)
 
 cmake_push_check_state()
-list(APPEND CMAKE_REQUIRED_INCLUDES ${SAMBA_INCLUDE_DIR})
-list(APPEND CMAKE_REQUIRED_LIBRARIES ${SAMBA_LIBRARIES})
+list(APPEND CMAKE_REQUIRED_LIBRARIES smbclient::smbclient)
 check_symbol_exists(smbc_readdirplus2 "libsmbclient.h" HAVE_READDIRPLUS2)
 cmake_pop_check_state()
 check_include_file(utime.h HAVE_UTIME_H)
@@ -54,8 +60,6 @@ ecm_qt_declare_logging_category(kio_smb_static
 
 set_property(TARGET kio_smb_static PROPERTY POSITION_INDEPENDENT_CODE ON)
 
-include_directories(${SAMBA_INCLUDE_DIR})
-
 target_include_directories(kio_smb_static
     PUBLIC
         "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR};${CMAKE_CURRENT_BINARY_DIR};${CMAKE_CURRENT_SOURCE_DIR}/..;${CMAKE_CURRENT_BINARY_DIR}/..>"
@@ -64,7 +68,7 @@ target_link_libraries(kio_smb_static
     KF6::KIOCore
     KF6::I18n
     KF6::ConfigCore
-    ${SAMBA_LIBRARIES}
+    smbclient::smbclient
     Qt::Network
     KF6::DNSSD
     KDSoap::WSDiscoveryClient
@@ -94,7 +98,7 @@ if(WITH_SHAREDMIMEINFO)
     update_xdg_mimetypes(${KDE_INSTALL_MIMEDIR})
 endif()
 
-if (BUILD_TESTING)
+if(BUILD_TESTING)
     add_subdirectory(autotests)
 endif()
 add_subdirectory(kded)
