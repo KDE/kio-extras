@@ -59,10 +59,10 @@
 >Web sitesi, bilgisayarınıza bir çerez kaydederek tercihlerinizi anımsayabilir. Ardından, gelecekteki ziyaretlerde, web sitesi, sitenin içeriğini önceden belirttiğiniz tercihlerinize göre biçimlendirmek için çerezde depolanan bilgileri alır.</para>
 
 <para
->Böylece çerezler, web'de gezinmede çok yararlı bir rol oynar. Ne yazık ki, web siteleri genellikle sizin açık bilginiz veya izniniz olmadan bilgileri çerezlerde depolar ve alır. Bu bilgilerden bazıları, örneğin, web sitelerinin farklı alanlarının aldığı ziyaretlerin sayısı hakkında özet istatistikler toplamalarına veya tabela reklamlarını özelleştirmelerine izin vererek, web sitesi sahipleri için oldukça yararlı olabilir.</para>
+>Böylece çerezler, web’de gezinmede çok yararlı bir rol oynar. Ne yazık ki, web siteleri genellikle sizin açık bilginiz veya izniniz olmadan bilgileri çerezlerde depolar ve alır. Bu bilgilerden bazıları, örneğin, web sitelerinin farklı alanlarının aldığı ziyaretlerin sayısı hakkında özet istatistikler toplamalarına veya tabela reklamlarını özelleştirmelerine izin vererek, web sitesi sahipleri için oldukça yararlı olabilir.</para>
 
 <para
->Çerezler sayfası, web'i &konqueror; web tarayıcısı ile gezinirken çerez kullanımı üzerine politikalar ayarlamanıza izin verir.</para>
+>Çerezler sayfası, web’i &konqueror; web tarayıcısı ile gezinirken çerez kullanımı üzerine politikalar ayarlamanıza izin verir.</para>
 
 <warning
 ><para
@@ -84,7 +84,7 @@
 <para
 >Politika sekmesinin en üstünde <guilabel
 >Çerezleri etkinleştir</guilabel
-> diye bir onay kutusu vardır. Bunu işaretlemezseniz çerezler tümüyle devre dışı kalırlar. Ancak bu, web'de dolaşmayı biraz sıkıntılı kılabilir, özellikle işlevleri için çerezlerden sıklıkla yararlanan web siteleri için.</para>
+> diye bir onay kutusu vardır. Bunu işaretlemezseniz çerezler tümüyle devre dışı kalırlar. Ancak bu, web’de dolaşmayı biraz sıkıntılı kılabilir, özellikle işlevleri için çerezlerden sıklıkla yararlanan web siteleri için.</para>
 
 <para
 >Çerezleri etkinleştirip onların işlenmesi konusunda özel politikalar belirlemek genelde en iyisidir.</para>

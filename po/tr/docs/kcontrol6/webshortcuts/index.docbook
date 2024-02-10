@@ -82,17 +82,17 @@
 ></para>
 
 <para
->Web Kısayolları, bunun yanında yeni bir yalancıktan &URL; şeması veya kısayolu kullanmanıza izin verirler. Bunlarla, sık kullanılan &URL;'leri <emphasis
+>Web Kısayolları, bunun yanında yeni bir yalancıktan &URL; şeması veya kısayolu kullanmanıza izin verirler. Bunlarla, sık kullanılan &URL;’leri <emphasis
 >parametreleştirebilirsiniz</emphasis
->. Örneğin, DuckDuckGo arama motorunu pek seviyorsanız &kde;'yi <emphasis
+>. Örneğin, DuckDuckGo arama motorunu pek seviyorsanız &kde;’yi <emphasis
 >ddg</emphasis
-> gibi çalıştırıldığında DuckDuckGo'yu çağıracak bir &URL; şemasıyla yapılandırabilirsiniz. Böylece, <userinput
+> gibi çalıştırıldığında DuckDuckGo’yu çağıracak bir &URL; şemasıyla yapılandırabilirsiniz. Böylece, <userinput
 >ddg:<replaceable
 >sorgu</replaceable
 ></userinput
 >, DuckDuckGo üzerinde <replaceable
 >sorgu</replaceable
->'yu arar.</para>
+>’yu arar.</para>
 
 <note
 ><para
@@ -118,7 +118,7 @@
 
 <para
 >Bu özelliği etkinleştirmek için listenin en altında <guilabel
->Web'de arama anahtar sözcüklerini etkinleştir</guilabel
+>Web’de arama anahtar sözcüklerini etkinleştir</guilabel
 > seçili olmalıdır. Kısayollar oluşturmak, değiştirmek ve silmek için sağdaki düğmeleri kullanın.</para>
 
 <para
@@ -132,7 +132,7 @@
 <varlistentry
 ><term
 ><guilabel
->Öntanımlı Web'de arama anahtar sözcüğü:</guilabel
+>Öntanımlı Web’de arama anahtar sözcüğü:</guilabel
 ></term>
 <listitem>
 <para
@@ -163,21 +163,21 @@
 
 <para
 ><guilabel
->Kısayol URL'si:</guilabel
+>Kısayol URL’si:</guilabel
 > veya <guilabel
 >Kısayollar:</guilabel
 > metin kutusundaki içeriğin herhangi birini değiştirebilirsiniz. Değişikliklerinizi kaydetmek için <guibutton
 >Tamam</guibutton
 > düğmesine veya iletişim kutusundan değişikliklerinizi kaydetmeden çıkmak için <guibutton
 >İptal</guibutton
->'i kullanın.</para>
+>’i kullanın.</para>
 
 <para
 ><guilabel
->Kısayol URL'si:</guilabel
+>Kısayol URL’si:</guilabel
 > metin kutusunun içeriğini incelerseniz tüm girişlerde olmasa da çoğunda bir <option
 >\{@}</option
-> bulunduğunu göreceksiniz. Bu dört dizi bir parametre görevi görür, yani kısayol ile parametresi arasındaki iki nokta üst üste karakterinden sonra ne yazarsanız yazın onların yerini alır. Bu sorgu yer tutucusunu bir kısayol &URL;'sine eklemek için metin kutusunun sağındaki düğmeyi tıklayın. Web kısayollarının nasıl kullanılacağını netleştirmek için bazı örneklere bakalım.</para>
+> bulunduğunu göreceksiniz. Bu dört dizi bir parametre görevi görür, yani kısayol ile parametresi arasındaki iki nokta üst üste karakterinden sonra ne yazarsanız yazın onların yerini alır. Bu sorgu yer tutucusunu bir kısayol &URL;’sine eklemek için metin kutusunun sağındaki düğmeyi tıklayın. Web kısayollarının nasıl kullanılacağını netleştirmek için bazı örneklere bakalım.</para>
 
 <para
 >&URI;'nin <userinput
