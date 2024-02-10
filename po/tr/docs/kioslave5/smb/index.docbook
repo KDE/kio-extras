@@ -99,7 +99,7 @@
 > yazın. </para>
 
 <para
->smb işçisi, bu işçiyi kullanmak için libsmbclient'e sahip olmanızı gerektirir. </para>
+>smb işçisi, bu işçiyi kullanmak için libsmbclient’e sahip olmanızı gerektirir. </para>
 
 <para
 >&systemsettings;'nın <guilabel
