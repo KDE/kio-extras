@@ -194,9 +194,9 @@ KProxyDialog::KProxyDialog(QObject *parent, const KPluginMetaData &data)
     mUi.infoMessageWidget->setIcon(QIcon::fromTheme(QStringLiteral("dialog-warning")));
     mUi.infoMessageWidget->setText(xi18nc("@info",
                                           "Not all applications will use this proxy setting. \
-In particular, <application>Firefox</application> and <application>Chromium</application> or \
-anything derived from them, or anything using <application>QtWebEngine</application>&nbsp;- which \
-includes <application>Konqueror</application> using the <application>WebEnginePart</application>, \
+In particular, <application>Firefox</application> and anything derived from <application>Firefox</application>, \
+or anything using <application>QtWebEngine</application>&nbsp;- which includes \
+<application>Konqueror</application> using the <application>WebEnginePart</application>, \
 <application>Akregator</application> and <application>Falkon</application>&nbsp;- will not use \
 these settings. Some applications may allow the proxy to be configured in their own settings."));
 
