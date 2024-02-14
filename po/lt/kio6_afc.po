@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-11 02:01+0000\n"
-"PO-Revision-Date: 2022-12-27 00:48+0000\n"
+"PO-Revision-Date: 2024-02-14 01:27+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: lt\n"
@@ -17,32 +17,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: afcutils.cpp:60
 #, kde-format
 msgid "Unhandled AFC error code '%1'"
-msgstr ""
+msgstr "Neapdorotas AFC klaidos kodas „%1“"
 
 #: afcutils.cpp:73
 #, kde-format
 msgid "Unhandled housearrest error code '%1'"
-msgstr ""
+msgstr "Neapdorotas housearrest klaidos kodas „%1“"
 
 #: afcutils.cpp:89
 #, kde-format
 msgid "Unhandled instproxy error code '%1'"
-msgstr ""
+msgstr "Neapdorotas instproxy klaidos kodas „%1“"
 
 #: afcutils.cpp:105
 #, kde-format
 msgid ""
 "The device is locked. Please enter the passcode on the device and try again."
 msgstr ""
+"Šis įrenginys užrakintas. Įveskite įrenginyje prieigos kodą ir bandykite dar "
+"kartą."
 
 #: afcutils.cpp:112
 #, kde-format
 msgid "You have denied this computer access to the device."
-msgstr ""
+msgstr "Jūs uždraudėte šiam kompiuteriui prieigą prie įrenginio."
 
 #: afcutils.cpp:119
 #, kde-format
@@ -50,6 +53,8 @@ msgid ""
 "You need to allow this computer to access the device. Please accept the "
 "prompt on the device and try again."
 msgstr ""
+"Turite leisti šiam kompiuteriui prieigą prie įrenginio. Priimkite užklausą "
+"įrenginyje ir bandykite dar kartą."
 
 #: afcutils.cpp:127
 #, kde-format
@@ -57,50 +62,52 @@ msgid ""
 "Cannot access the device. Make sure it is unlocked and allows this computer "
 "to access it."
 msgstr ""
+"Nepavyksta gauti prieigos prie įrenginio. Įsitikinkite, kad jis yra "
+"atrakintas ir leiskite kompiuteriui jį pasiekti."
 
 #: afcutils.cpp:134
 #, kde-format
 msgid "Unhandled lockdownd code '%1'"
-msgstr ""
+msgstr "Neapdorotas lockdownd kodas „%1“"
 
 #: afcutils.cpp:147
 #, kde-format
 msgid "Unhandled sbservices code '%1'"
-msgstr ""
+msgstr "Neapdorotas sbservices kodas „%1“"
 
 #: kio_afc.cpp:175
 #, kde-format
 msgid "Apple Devices"
-msgstr ""
+msgstr "„Apple“ įrenginiai"
 
 #: kio_afc.cpp:230
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
-msgstr ""
+msgstr "Programėlės"
 
 #: kio_afc.cpp:479
 #, kde-format
 msgctxt "Placeholder is device name"
 msgid "%1 (Apps)"
-msgstr ""
+msgstr "%1 (Programėlės)"
 
 #: kio_afc.cpp:687
 #, kde-format
 msgid "Cannot read without opening file first"
-msgstr ""
+msgstr "Nepavyksta perskaityti prieš tai neatvėrus failo"
 
 #: kio_afc.cpp:707
 #, kde-format
 msgid "Cannot seek without opening file first"
-msgstr ""
+msgstr "Nepavyksta ieškoti prieš tai neatvėrus failo"
 
 #: kio_afc.cpp:735
 #, kde-format
 msgid "Cannot write without opening file first"
-msgstr ""
+msgstr "Nepavyksta rašyti prieš tai neatvėrus failo"
 
 #: kio_afc.cpp:887
 #, kde-format
 msgid "Cannot rename between devices."
-msgstr ""
+msgstr "Nepavyksta pervadinti tarp įrenginių."
