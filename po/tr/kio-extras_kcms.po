@@ -14,13 +14,13 @@
 # obsoleteman <tulliana@gmail.com>, 2008-2009.
 # obsoleteman <tulliana@gmail.com>, 2010,2012.
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014, 2015, 2017, 2021.
-# SPDX-FileCopyrightText: 2022, 2023 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2023-12-27 14:22+0300\n"
+"PO-Revision-Date: 2024-02-14 12:13+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.85\n"
+"X-Generator: Lokalize 24.01.95\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -202,18 +202,7 @@ msgstr ""
 "p>"
 
 #: proxy/kproxydlg.cpp:196
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Not all applications will use this proxy setting. In particular, "
-#| "<application>Firefox</application> and <application>Chromium</"
-#| "application> or anything derived from them, or anything using "
-#| "<application>QtWebEngine</application>&nbsp;- which includes "
-#| "<application>Konqueror</application> using the "
-#| "<application>WebEnginePart</application>, <application>Akregator</"
-#| "application> and <application>Falkon</application>&nbsp;- will not use "
-#| "these settings. Some applications may allow the proxy to be configured in "
-#| "their own settings."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Not all applications will use this proxy setting. In particular, "
@@ -225,14 +214,14 @@ msgid ""
 "application>&nbsp;- will not use these settings. Some applications may allow "
 "the proxy to be configured in their own settings."
 msgstr ""
-"Tüm uygulamalar bu proxy ayarını kullanmaz. Özellikle, <application>Firefox</"
-"application> ve <application>Chromium</application> veya bunlardan türetilen "
-"herhangi bir şey veya <application>QtWebEngine</application>nbsp;- kullanan "
-"herhangi bir şey, örn. <application>WebEnginePart</application> kullanan "
+"Tüm uygulamalar bu proxy ayarını kullanmaz. Özellikle <application>Firefox</"
+"application> ve <application>Firefox</application> tabanlı herhangi bir şey "
+"veya <application>QtWebEngine</application>&nbsp; kullanan uygulamalar; "
+"örneğin, <application>WebEnginePart</application> kullanan "
 "<application>Konqueror</application>, <application>Akregatör</application> "
-"ve <application>Falkon</application>nbsp;- kullanılması bu ayarları "
-"kullanmaz. Bazı uygulamalar vekil ayarlarının kendi ayarlarında "
-"yapılandırılmasına izin verebilir."
+"ve <application>Falkon</application>&nbsp; — bu ayarları kullanmaz. Bazı "
+"uygulamalar vekil ayarlarının kendi ayarlarında yapılandırılmasına izin "
+"verebilir."
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20

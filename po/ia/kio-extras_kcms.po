@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# g.sora <g.sora@tiscali.it>, 2010, 2011, 2012, 2016, 2017, 2019, 2020, 2021, 2022, 2023.
+# g.sora <g.sora@tiscali.it>, 2010, 2011, 2012, 2016, 2017, 2019, 2020, 2021, 2022, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2023-04-27 10:31+0200\n"
+"PO-Revision-Date: 2024-02-14 12:15+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -186,18 +186,7 @@ msgstr ""
 "extension essera removite un vice que le transferentia es completate.</p>"
 
 #: proxy/kproxydlg.cpp:196
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Not all applications will use this proxy setting. In particular, "
-#| "<application>Firefox</application> and <application>Chromium</"
-#| "application> or anything derived from them, or anything using "
-#| "<application>QtWebEngine</application>&nbsp;- which includes "
-#| "<application>Konqueror</application> using the "
-#| "<application>WebEnginePart</application>, <application>Akregator</"
-#| "application> and <application>Falkon</application>&nbsp;- will not use "
-#| "these settings. Some applications may allow the proxy to be configured in "
-#| "their own settings."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Not all applications will use this proxy setting. In particular, "
@@ -210,13 +199,13 @@ msgid ""
 "the proxy to be configured in their own settings."
 msgstr ""
 "Non tote applicationes usara iste preferentia de proxy. In particular, "
-"<application>Firefox</application> e<application>Chromium</application> o "
-"alique derivate ab  illos, o alique usante <application>QtWebEngine</"
-"application>&nbsp;- le qual include <application>Konqueror</application> "
-"usante le <application>WebEnginePart</application>, <application>Akregator</"
-"application> e <application>Falkon</application>&nbsp;- non usara iste "
-"preferentiass. Alcun applicationes pote permitter que le  proxy es "
-"configurate in lor preferentias proprie."
+"<application>Firefox</application> e alique derivate ab "
+"<application>Firefox</application>  o alique usante "
+"<application>QtWebEngine</application>&nbsp;- le qual include "
+"<application>Konqueror</application> usante le <application>WebEnginePart</"
+"application>, <application>Akregator</application> e <application>Falkon</"
+"application>&nbsp;- non usara iste preferentiass. Alcun applicationes pote "
+"permitter que le  proxy es configurate in lor preferentias proprie."
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20

@@ -9,22 +9,22 @@
 # marce villarino <mvillarino@users.sourceforge.net>, 2009.
 # Marce Villarino <mvillarino@kde-espana.es>, 2009, 2011, 2012, 2013, 2014.
 # Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2015, 2016, 2017.
-# Adrián Chaves (Gallaecio) <adrian@chaves.io>, 2017, 2018, 2019, 2020, 2023.
+# SPDX-FileCopyrightText: 2024 Adrián Chaves (Gallaecio)
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2023-06-24 12:31+0200\n"
+"PO-Revision-Date: 2024-02-14 15:31+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
-"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.2\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -195,18 +195,7 @@ msgstr ""
 "extensión retirarase cando se remate a transferencia.</p>"
 
 #: proxy/kproxydlg.cpp:196
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Not all applications will use this proxy setting. In particular, "
-#| "<application>Firefox</application> and <application>Chromium</"
-#| "application> or anything derived from them, or anything using "
-#| "<application>QtWebEngine</application>&nbsp;- which includes "
-#| "<application>Konqueror</application> using the "
-#| "<application>WebEnginePart</application>, <application>Akregator</"
-#| "application> and <application>Falkon</application>&nbsp;- will not use "
-#| "these settings. Some applications may allow the proxy to be configured in "
-#| "their own settings."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Not all applications will use this proxy setting. In particular, "
@@ -219,13 +208,12 @@ msgid ""
 "the proxy to be configured in their own settings."
 msgstr ""
 "Non todas as aplicacións usarán esta configuración de mandatario. "
-"Concretamente, <application>Firefox</application> e <application>Chromium</"
-"application>, así como aplicacións derivadas, ou aplicacións que usen "
-"<application>QtWebEngine</application> (entre elas <application>Konqueror</"
-"application> ao usar <application>WebEnginePart</application>, "
-"<application>Akregator</application> e<application>Falkon</application>) non "
-"usarán esta configuración. Algunhas aplicacións pode que permitan definir un "
-"mandatario na súa propia configuración."
+"Concretamente, <application>Firefox</application> e aplicacións derivadas, "
+"ou aplicacións que usen <application>QtWebEngine</application> (entre elas "
+"<application>Konqueror</application> ao usar <application>WebEnginePart</"
+"application>, <application>Akregator</application> e<application>Falkon</"
+"application>) non usarán esta configuración. Algunhas aplicacións pode que "
+"permitan definir un mandatario na súa propia configuración."
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
