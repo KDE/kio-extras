@@ -8,7 +8,7 @@
 # AbdulAziz AlSharif <a.a-a.s@hotmail.com>, 2007.
 # عبدالعزيز الشريف <a.a-a.s@hotmail.com>, 2007.
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
-# zayed <zayed.alsaidi@gmail.com>, 2008, 2009.
+# SPDX-FileCopyrightText: 2008, 2009, 2024 zayed <zayed.alsaidi@gmail.com>
 # Zayed Al-Saidi <zayed.alsaidi@gmail.com>, 2010, 2021, 2022, 2023.
 # Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014, 2016, 2017, 2018.
 msgid ""
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2023-04-27 12:15+0400\n"
+"PO-Revision-Date: 2024-02-15 17:17+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -212,18 +212,7 @@ msgstr ""
 "النقل.</p>"
 
 #: proxy/kproxydlg.cpp:196
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Not all applications will use this proxy setting. In particular, "
-#| "<application>Firefox</application> and <application>Chromium</"
-#| "application> or anything derived from them, or anything using "
-#| "<application>QtWebEngine</application>&nbsp;- which includes "
-#| "<application>Konqueror</application> using the "
-#| "<application>WebEnginePart</application>, <application>Akregator</"
-#| "application> and <application>Falkon</application>&nbsp;- will not use "
-#| "these settings. Some applications may allow the proxy to be configured in "
-#| "their own settings."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Not all applications will use this proxy setting. In particular, "
@@ -235,11 +224,11 @@ msgid ""
 "application>&nbsp;- will not use these settings. Some applications may allow "
 "the proxy to be configured in their own settings."
 msgstr ""
-"لن تستخدم جميع التطبيقات إعداد الوكيل هذا. خاصة، <application>فيرفكس</"
-"application> و <application>كروميم</application> أو أي تطبيق مشتق منهما، أو "
-"تطبيق يستخدم <application>QtWebEngine</application>&nbsp;- مثل "
-"<application>كونكيور</application> يستخدم <application>WebEnginePart</"
-"application>, <application>اكيغيتور</application> و <application>فالكون</"
+"لن تستخدم جميع التطبيقات إعداد الوكيل هذا. خاصة،  <application>فيرفكس</"
+"application> و  و أي تطبيق مشتق منه، أو تطبيق يستخدم  "
+"<application>QtWebEngine</application>&nbsp;- مثل  <application>كونكيور</"
+"application> يستخدم <application>WebEnginePart</application>, "
+"<application>اكيغيتور</application> و <application>فالكون</"
 "application>&nbsp;- حيث أنها لا تستخدم هذه الإعدادات. بعض التطبيقات يسمح "
 "بضبط الوكيل من داخل إعداداتها."
 

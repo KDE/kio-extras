@@ -10,20 +10,20 @@
 # pan93412 <pan93412@gmail.com>, 2018, 2019, 2020.
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007.
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2008, 2009, 2010.
-# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2023.
+# SPDX-FileCopyrightText: 2023, 2024 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2023-05-17 04:35+0900\n"
+"PO-Revision-Date: 2024-02-15 17:00+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
-"Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
+"Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 24.01.95\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ksaveioconfig.cpp:166
@@ -181,18 +181,7 @@ msgstr ""
 "「.part」的延伸檔名。這個延伸檔名會在傳輸全部完成後移除。</p>"
 
 #: proxy/kproxydlg.cpp:196
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Not all applications will use this proxy setting. In particular, "
-#| "<application>Firefox</application> and <application>Chromium</"
-#| "application> or anything derived from them, or anything using "
-#| "<application>QtWebEngine</application>&nbsp;- which includes "
-#| "<application>Konqueror</application> using the "
-#| "<application>WebEnginePart</application>, <application>Akregator</"
-#| "application> and <application>Falkon</application>&nbsp;- will not use "
-#| "these settings. Some applications may allow the proxy to be configured in "
-#| "their own settings."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Not all applications will use this proxy setting. In particular, "
@@ -205,9 +194,9 @@ msgid ""
 "the proxy to be configured in their own settings."
 msgstr ""
 "不是所有應用程式都會使用這裡的代理伺服器設定。具體來說，"
-"<application>Firefox</application>、<application>Chromium</application> 和任"
-"何基於它們的應用程式，以及任何基於 <application>QtWebEngine</application> 的"
-"應用程式&nbsp;—— 這包含了使用 <application>WebEnginePart</application> 的 "
+"<application>Firefox</application>、任何基於 <application>Firefox</"
+"application> 的應用程式，以及任何基於 <application>QtWebEngine</application> "
+"的應用程式&nbsp;—— 這包含了使用 <application>WebEnginePart</application> 的 "
 "<application>Konqueror</application>、<application>Akregator</application> "
 "及 <application>Falkon</application>&nbsp;——都不會使用這裡的設定。某些應用程"
 "式可能有在它們自己的設定裡提供代理伺服器的選項。"

@@ -1,10 +1,10 @@
 # Translation of kio-extras_kcms.po to Catalan (Valencian)
-# Copyright (C) 1998-2023 This_file_is_part_of_KDE
+# Copyright (C) 1998-2024 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Sebastià Pla i Sanz <sps@sastia.com>, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006.
-# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
 # Albert Astals Cid <aacid@kde.org>, 2007.
 # Robert Millan <rmh@aybabtu.com>, 2009.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2011, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2023-09-20 13:30+0200\n"
+"PO-Revision-Date: 2024-02-14 10:16+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -196,18 +196,7 @@ msgstr ""
 "p>"
 
 #: proxy/kproxydlg.cpp:196
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Not all applications will use this proxy setting. In particular, "
-#| "<application>Firefox</application> and <application>Chromium</"
-#| "application> or anything derived from them, or anything using "
-#| "<application>QtWebEngine</application>&nbsp;- which includes "
-#| "<application>Konqueror</application> using the "
-#| "<application>WebEnginePart</application>, <application>Akregator</"
-#| "application> and <application>Falkon</application>&nbsp;- will not use "
-#| "these settings. Some applications may allow the proxy to be configured in "
-#| "their own settings."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Not all applications will use this proxy setting. In particular, "
@@ -220,9 +209,9 @@ msgid ""
 "the proxy to be configured in their own settings."
 msgstr ""
 "No totes les aplicacions utilitzaran esta configuració del servidor "
-"intermediari. En particular, <application>Firefox</application> i "
-"<application>Chromium</application> o qualsevol que en derivi, o qualsevol "
-"cosa que utilitze <application>QtWebEngine</application> -el qual inclou "
+"intermediari. En particular, <application>Firefox</application> o qualsevol "
+"que derive de <application>Firefox</application>, o qualsevol que utilitze "
+"<application>QtWebEngine</application>, el qual inclou "
 "<application>Konqueror</application> utilitzant la "
 "<application>WebEnginePart</application>-, <application>Akregator</"
 "application> i <application>Falkon</application> no utilitzaran estes "
