@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-05 00:37+0000\n"
+"POT-Creation-Date: 2024-02-17 00:37+0000\n"
 "PO-Revision-Date: 2019-11-09 14:14+0200\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -18,119 +18,119 @@ msgstr ""
 "X-Generator: Lokalize 19.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_sftp.cpp:262
+#: kio_sftp.cpp:274
 #, kde-format
 msgid "Incorrect or invalid passphrase"
 msgstr "Vale või vigane paroolifraas"
 
-#: kio_sftp.cpp:311
+#: kio_sftp.cpp:323
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "Tagasiside eraldamine nurjus"
 
-#: kio_sftp.cpp:324
+#: kio_sftp.cpp:336
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "Logi teaberohkuse määramine nurjus."
 
-#: kio_sftp.cpp:329
+#: kio_sftp.cpp:341
 #, kde-format
 msgid "Could not set log userdata."
 msgstr "Kasutajaandmete logimine nurjus."
 
-#: kio_sftp.cpp:334
+#: kio_sftp.cpp:346
 #, kde-format
 msgid "Could not set log callback."
 msgstr "Tagasiside logimine nurjus"
 
-#: kio_sftp.cpp:370 kio_sftp.cpp:372 kio_sftp.cpp:883
+#: kio_sftp.cpp:382 kio_sftp.cpp:384 kio_sftp.cpp:895
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP kasutajanimi"
 
-#: kio_sftp.cpp:387
+#: kio_sftp.cpp:399
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr "Kasuta sellele küsimusele vastamiseks kasutajanime sisestamise välja."
 
-#: kio_sftp.cpp:400
+#: kio_sftp.cpp:412
 #, kde-format
 msgid "Please enter your password."
 msgstr "Palun sisesta parool."
 
-#: kio_sftp.cpp:405 kio_sftp.cpp:886
+#: kio_sftp.cpp:417 kio_sftp.cpp:898
 #, kde-format
 msgid "Site:"
 msgstr "Sait:"
 
-#: kio_sftp.cpp:450
+#: kio_sftp.cpp:462
 #, fuzzy, kde-format
 #| msgid "Could not read link: %1"
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "Lingi lugemine nurjus: %1"
 
-#: kio_sftp.cpp:570
+#: kio_sftp.cpp:582
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "Uus SSH seansi loomine nurjus."
 
-#: kio_sftp.cpp:581 kio_sftp.cpp:585
+#: kio_sftp.cpp:593 kio_sftp.cpp:597
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "Aegumise määramine nurjus"
 
-#: kio_sftp.cpp:592
+#: kio_sftp.cpp:604
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "Nagle'i algoritmi keelamine nurjus."
 
-#: kio_sftp.cpp:598 kio_sftp.cpp:603
+#: kio_sftp.cpp:610 kio_sftp.cpp:615
 #, kde-format
 msgid "Could not set compression."
 msgstr "Tihenduse määramine nurjus."
 
-#: kio_sftp.cpp:609
+#: kio_sftp.cpp:621
 #, kde-format
 msgid "Could not set host."
 msgstr "Masina määramine nurjus."
 
-#: kio_sftp.cpp:615
+#: kio_sftp.cpp:627
 #, kde-format
 msgid "Could not set port."
 msgstr "Pordi määramine nurjus."
 
-#: kio_sftp.cpp:623
+#: kio_sftp.cpp:635
 #, kde-format
 msgid "Could not set username."
 msgstr "Kasutajanime määramine nurjus."
 
-#: kio_sftp.cpp:630
+#: kio_sftp.cpp:642
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "Seadistustefaili parsimine nurjus."
 
-#: kio_sftp.cpp:645
+#: kio_sftp.cpp:657
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "SFTP ühenduse avamine masinasse %1:%2"
 
-#: kio_sftp.cpp:685
+#: kio_sftp.cpp:697
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "Serveri avaliku võtme tüübi nime hankimine nurjus"
 
-#: kio_sftp.cpp:697
+#: kio_sftp.cpp:709
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr "Räsi loomine serveri avaliku võtme põhjal nurjus"
 
-#: kio_sftp.cpp:706
+#: kio_sftp.cpp:718
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "Sõrmejälje loomine serveri avaliku võtmele nurjus"
 
-#: kio_sftp.cpp:765
+#: kio_sftp.cpp:777
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -146,14 +146,14 @@ msgstr ""
 "Palun võta ühendust oma süsteemiadministraatoriga.\n"
 "%2"
 
-#: kio_sftp.cpp:782
+#: kio_sftp.cpp:794
 #, fuzzy, kde-format
 #| msgid "Warning: Host's identity changed."
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "Hoiatus: masina identiteet on muutunud."
 
-#: kio_sftp.cpp:784
+#: kio_sftp.cpp:796
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The host key for the server %1 has changed.\n"
@@ -179,13 +179,13 @@ msgstr ""
 "Palun võta ühendust oma süsteemiadministraatoriga.\n"
 "%3"
 
-#: kio_sftp.cpp:794
+#: kio_sftp.cpp:806
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr ""
 
-#: kio_sftp.cpp:796
+#: kio_sftp.cpp:808
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The authenticity of host %1 cannot be established.\n"
@@ -201,35 +201,35 @@ msgstr ""
 "%2 võtme sõrmejälg on järgmine: %3\n"
 "Kas kindlasti jätkata ühenduse loomisega?"
 
-#: kio_sftp.cpp:805
+#: kio_sftp.cpp:817
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr ""
 
-#: kio_sftp.cpp:828 kio_sftp.cpp:847 kio_sftp.cpp:862 kio_sftp.cpp:875
-#: kio_sftp.cpp:927 kio_sftp.cpp:937
+#: kio_sftp.cpp:840 kio_sftp.cpp:859 kio_sftp.cpp:874 kio_sftp.cpp:887
+#: kio_sftp.cpp:939 kio_sftp.cpp:949
 #, kde-format
 msgid "Authentication failed."
 msgstr "Autentimine nurjus."
 
-#: kio_sftp.cpp:835
+#: kio_sftp.cpp:847
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr "Autentimine nurjus. Server ei saatnud ühtegi autentimisviisi"
 
-#: kio_sftp.cpp:884
+#: kio_sftp.cpp:896
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Palun sisesta kasutajanimi ja parool."
 
-#: kio_sftp.cpp:895
+#: kio_sftp.cpp:907
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Vale kasutajanimi või parool"
 
-#: kio_sftp.cpp:944
+#: kio_sftp.cpp:956
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -238,22 +238,22 @@ msgstr ""
 "SFTP alamsüsteemi päring nurjus. Kontrolli, kas SFTP on serveris ikka "
 "lubatud."
 
-#: kio_sftp.cpp:949
+#: kio_sftp.cpp:961
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "SFTP seansi initsialiseerimine nurjus."
 
-#: kio_sftp.cpp:953
+#: kio_sftp.cpp:965
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Ühendus edukalt loodud masinasse %1"
 
-#: kio_sftp.cpp:1006
+#: kio_sftp.cpp:1018
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Vigane sftp kontekst"
 
-#: kio_sftp.cpp:1538
+#: kio_sftp.cpp:1550
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
