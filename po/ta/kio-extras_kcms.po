@@ -9,13 +9,13 @@
 # Vasee Vaseeharan <vasee@ieee.org>, 2004.
 # Ambalam <tamilpc@ambalam.com>, 2004.
 # root <root@localhost.localdomain>, 2004.
-# Kishore G <kishore96@gmail.com>, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Kishore G <kishore96@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2023-04-30 21:43+0530\n"
+"PO-Revision-Date: 2024-02-18 17:11+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.04.0\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -192,18 +192,7 @@ msgstr ""
 "இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
 
 #: proxy/kproxydlg.cpp:196
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Not all applications will use this proxy setting. In particular, "
-#| "<application>Firefox</application> and <application>Chromium</"
-#| "application> or anything derived from them, or anything using "
-#| "<application>QtWebEngine</application>&nbsp;- which includes "
-#| "<application>Konqueror</application> using the "
-#| "<application>WebEnginePart</application>, <application>Akregator</"
-#| "application> and <application>Falkon</application>&nbsp;- will not use "
-#| "these settings. Some applications may allow the proxy to be configured in "
-#| "their own settings."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Not all applications will use this proxy setting. In particular, "
@@ -216,13 +205,13 @@ msgid ""
 "the proxy to be configured in their own settings."
 msgstr ""
 "இந்த பதிலி அமைப்பை பயன்படுத்தாத பல செயலிகள் இருக்கலாம். குறிப்பாக, "
-"<application>Firefox</application> மற்றும் <application>Chromium</"
-"application>, அவற்றின் வழித்தோன்றல்கள், அல்லது <application>QtWebEngine</"
-"application>-ஐ பயன்படுத்துபவை &nbsp;- <application>WebEnginePart</application>-"
-"ஐ பயன்படுத்தும் <application>கான்கொரர்</application>, <application>Akregator</"
-"application> மற்றும் <application>Falkon</application> ஆகியவை இதில் "
-"அடங்கும்&nbsp;- இந்த அமைப்புகளை பயன்படுத்தாது. சில செயலிகள், அவற்றின் "
-"விருப்பத்தேர்வுகளிலேயே பதிலியை அமைக்க அனுமதிக்கும்."
+"<application>Firefox</application>, அதன் வழித்தோன்றல்கள், அல்லது "
+"<application>QtWebEngine</application>-ஐ பயன்படுத்துபவை &nbsp;- "
+"<application>WebEnginePart</application>-ஐ பயன்படுத்தும் <application>கான்கொரர்</"
+"application>, <application>Akregator</application> மற்றும் "
+"<application>Falkon</application> ஆகியவை இதில் அடங்கும்&nbsp;- இந்த அமைப்புகளை "
+"பயன்படுத்தாது. சில செயலிகள், அவற்றின் விருப்பத்தேர்வுகளிலேயே பதிலியை அமைக்க "
+"அனுமதிக்கும்."
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
