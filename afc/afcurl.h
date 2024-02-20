@@ -26,6 +26,8 @@ public:
 
     bool isValid() const;
 
+    static QString appsTag();
+
 private:
     QUrl m_url;
     BrowseMode m_browseMode = BrowseMode::None;

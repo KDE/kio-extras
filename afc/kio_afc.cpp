@@ -113,60 +113,19 @@ void AfcWorker::onDeviceEvent(const idevice_event_t *event)
     qCWarning(KIO_AFC_LOG) << "Unhandled idevice event" << event->event << "for" << event->udid;
 }
 
+AfcDevice *AfcWorker::deviceForUrl(const AfcUrl &afcUrl) const
+{
+    return m_devices.value(afcUrl.device());
+}
+
 Result AfcWorker::clientForUrl(const AfcUrl &afcUrl, AfcClient::Ptr &client) const
 {
-    AfcDevice *device = m_devices.value(deviceIdForFriendlyUrl(afcUrl));
+    AfcDevice *device = deviceForUrl(afcUrl);
     if (!device) {
         return Result::fail(ERR_DOES_NOT_EXIST, afcUrl.url().toDisplayString());
     }
 
     return device->client(afcUrl.appId(), client);
-}
-
-QString AfcWorker::deviceIdForFriendlyUrl(const AfcUrl &afcUrl) const
-{
-    QString deviceId = m_friendlyNames.value(afcUrl.device());
-    if (deviceId.isEmpty()) {
-        deviceId = afcUrl.device();
-    }
-    return deviceId;
-}
-
-QUrl AfcWorker::resolveSolidUrl(const QUrl &url) const
-{
-    const QString path = url.path();
-
-    const QString prefix = QStringLiteral("udi=/org/kde/solid/imobile/");
-    if (!path.startsWith(prefix)) {
-        return {};
-    }
-
-    QString deviceId = path.mid(prefix.length());
-    const int slashIdx = deviceId.indexOf(QLatin1Char('/'));
-    if (slashIdx > -1) {
-        deviceId = deviceId.left(slashIdx);
-    }
-
-    const QString friendlyName = m_friendlyNames.key(deviceId);
-
-    QUrl newUrl;
-    newUrl.setScheme(QStringLiteral("afc"));
-    newUrl.setHost(!friendlyName.isEmpty() ? friendlyName : deviceId);
-    // TODO would be nice to preserve subdirectories
-    newUrl.setPath(QStringLiteral("/"));
-
-    return newUrl;
-}
-
-bool AfcWorker::redirectIfSolidUrl(const QUrl &url)
-{
-    const QUrl redirectUrl = resolveSolidUrl(url);
-    if (!redirectUrl.isValid()) {
-        return false;
-    }
-
-    redirection(redirectUrl);
-    return true;
 }
 
 UDSEntry AfcWorker::overviewEntry(const QString &fileName) const
@@ -181,10 +140,7 @@ UDSEntry AfcWorker::overviewEntry(const QString &fileName) const
 
 UDSEntry AfcWorker::deviceEntry(const AfcDevice *device, const QString &fileName, bool asLink) const
 {
-    QString deviceId = m_friendlyNames.key(device->id());
-    if (deviceId.isEmpty()) {
-        deviceId = device->id();
-    }
+    const QString deviceId = device->id();
     const QString deviceClass = device->deviceClass();
 
     UDSEntry entry;
@@ -220,18 +176,13 @@ UDSEntry AfcWorker::deviceEntry(const AfcDevice *device, const QString &fileName
 
 UDSEntry AfcWorker::appsOverviewEntry(const AfcDevice *device, const QString &fileName) const
 {
-    QString deviceId = m_friendlyNames.key(device->id());
-    if (deviceId.isEmpty()) {
-        deviceId = device->id();
-    }
-
     UDSEntry entry;
-    entry.fastInsert(UDSEntry::UDS_NAME, !fileName.isEmpty() ? fileName : QStringLiteral("@apps"));
+    entry.fastInsert(UDSEntry::UDS_NAME, !fileName.isEmpty() ? fileName : AfcUrl::appsTag());
     entry.fastInsert(UDSEntry::UDS_DISPLAY_NAME, i18nc("Link to folder with files stored inside apps", "Apps"));
     entry.fastInsert(UDSEntry::UDS_ICON_NAME, QStringLiteral("folder-documents"));
     entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
 
-    const QString appsUrl = QStringLiteral("afc://%1:%2/").arg(deviceId).arg(static_cast<int>(AfcUrl::BrowseMode::Apps));
+    const QString appsUrl = QStringLiteral("afc://%1/%2/").arg(device->id(), AfcUrl::appsTag());
     entry.fastInsert(UDSEntry::UDS_LINK_DEST, appsUrl);
     entry.fastInsert(UDSEntry::UDS_TARGET_URL, appsUrl);
 
@@ -273,26 +224,6 @@ bool AfcWorker::addDevice(const QString &id)
 
     Q_ASSERT(!device->name().isEmpty());
 
-    // HACK URL host cannot contain spaces or non-ascii, and has to be lowercase.
-    auto normalizeHost = [](const QString &name) {
-        return QString::fromLatin1(name.toLatin1()).toLower().replace(QLatin1Char(' '), QLatin1Char('_'));
-    };
-
-    QString friendlyName = normalizeHost(device->name());
-    // FIXME FIXME FIXME (my KCoreAddons is too old for KFileUtils::makeSuggestedName :)
-    while (m_friendlyNames.contains(friendlyName)) {
-        friendlyName = normalizeHost(KFileUtils::makeSuggestedName(friendlyName));
-    }
-
-    QUrl checkUrl;
-    checkUrl.setHost(friendlyName);
-
-    if (checkUrl.host().isEmpty()) {
-        qCCritical(KIO_AFC_LOG) << "Failed to normalize" << device->name() << "into a valid URL host, this is a bug!";
-    } else {
-        m_friendlyNames.insert(friendlyName, id);
-    }
-
     return true;
 }
 
@@ -307,23 +238,12 @@ void AfcWorker::removeDevice(const QString &id)
             m_openFile.reset();
         }
         delete device;
-
-        auto it = std::find_if(m_friendlyNames.begin(), m_friendlyNames.end(), [&id](const QString &deviceId) {
-            return deviceId == id;
-        });
-        if (it != m_friendlyNames.end()) {
-            m_friendlyNames.erase(it);
-        }
     }
 }
 
 Result AfcWorker::listDir(const QUrl &url)
 {
     qCDebug(KIO_AFC_LOG) << "list directory:" << url;
-
-    if (redirectIfSolidUrl(url)) {
-        return Result::pass();
-    }
 
     const AfcUrl afcUrl(url);
     if (!afcUrl.isValid()) {
@@ -360,7 +280,7 @@ Result AfcWorker::listDir(const QUrl &url)
         return Result::pass();
     }
 
-    AfcDevice *device = m_devices.value(deviceIdForFriendlyUrl(afcUrl));
+    AfcDevice *device = deviceForUrl(afcUrl);
     if (!device) {
         return Result::fail(ERR_DOES_NOT_EXIST, afcUrl.device());
     }
@@ -451,10 +371,6 @@ Result AfcWorker::listDir(const QUrl &url)
 
 Result AfcWorker::stat(const QUrl &url)
 {
-    if (redirectIfSolidUrl(url)) {
-        return Result::pass();
-    }
-
     const AfcUrl afcUrl(url);
     if (!afcUrl.isValid()) {
         return Result::fail(ERR_MALFORMED_URL, url.toDisplayString());
@@ -466,7 +382,7 @@ Result AfcWorker::stat(const QUrl &url)
         return Result::pass();
     }
 
-    AfcDevice *device = m_devices.value(deviceIdForFriendlyUrl(afcUrl));
+    AfcDevice *device = deviceForUrl(afcUrl);
     if (!device) {
         return Result::fail(ERR_DOES_NOT_EXIST, url.toDisplayString());
     }
@@ -476,7 +392,7 @@ Result AfcWorker::stat(const QUrl &url)
         if (afcUrl.appId().isEmpty()) {
             UDSEntry rootEntry = deviceEntry(device);
             if (afcUrl.browseMode() == AfcUrl::BrowseMode::Apps) {
-                rootEntry.replace(UDSEntry::UDS_DISPLAY_NAME, i18nc("Placeholder is device name", "%1 (Apps)", device->name()));
+                rootEntry.replace(UDSEntry::UDS_DISPLAY_NAME, i18nc("Link to folder with files stored inside apps", "Apps"));
             }
             statEntry(rootEntry);
             return Result::pass();
@@ -531,10 +447,6 @@ void AfcWorker::guessMimeType(AfcFile &file, const QString &path)
 
 Result AfcWorker::get(const QUrl &url)
 {
-    if (redirectIfSolidUrl(url)) {
-        return Result::pass();
-    }
-
     const AfcUrl afcUrl(url);
 
     AfcClient::Ptr client;
@@ -765,7 +677,7 @@ Result AfcWorker::copy(const QUrl &src, const QUrl &dest, int permissions, JobFl
     const AfcUrl srcAfcUrl(src);
     const AfcUrl destAfcUrl(dest);
 
-    if (deviceIdForFriendlyUrl(srcAfcUrl) != deviceIdForFriendlyUrl(destAfcUrl)) {
+    if (srcAfcUrl.device() != destAfcUrl.device()) {
         // Let KIO handle copying onto, off the, and between devices
         return Result::fail(ERR_UNSUPPORTED_ACTION);
     }
@@ -883,7 +795,7 @@ Result AfcWorker::rename(const QUrl &url, const QUrl &dest, JobFlags flags)
     const AfcUrl srcAfcUrl(url);
     const AfcUrl destAfcUrl(dest);
 
-    if (deviceIdForFriendlyUrl(srcAfcUrl) != deviceIdForFriendlyUrl(destAfcUrl)) {
+    if (srcAfcUrl.device() != destAfcUrl.device()) {
         return Result::fail(ERR_CANNOT_RENAME, i18n("Cannot rename between devices."));
     }
 
@@ -939,12 +851,6 @@ Result AfcWorker::setModificationTime(const QUrl &url, const QDateTime &mtime)
 
 Result AfcWorker::fileSystemFreeSpace(const QUrl &url)
 {
-    // TODO FileSystemFreeSpaceJob does not follow redirects!
-    const QUrl redirectUrl = resolveSolidUrl(url);
-    if (redirectUrl.isValid()) {
-        return fileSystemFreeSpace(redirectUrl);
-    }
-
     // TODO FileSystemFreeSpaceJob does not follow redirects!
     const AfcUrl afcUrl(url);
     if (afcUrl.device().isEmpty() && m_devices.count() == 1) {
