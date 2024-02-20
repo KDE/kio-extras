@@ -65,11 +65,8 @@ private:
     bool addDevice(const QString &id);
     void removeDevice(const QString &id);
 
+    Q_REQUIRED_RESULT AfcDevice *deviceForUrl(const AfcUrl &afcUrl) const;
     Q_REQUIRED_RESULT Result clientForUrl(const AfcUrl &afcUrl, AfcClient::Ptr &client) const;
-    QString deviceIdForFriendlyUrl(const AfcUrl &afcUrl) const;
-
-    QUrl resolveSolidUrl(const QUrl &url) const;
-    bool redirectIfSolidUrl(const QUrl &url);
 
     UDSEntry overviewEntry(const QString &fileName = QString()) const;
     UDSEntry deviceEntry(const AfcDevice *device, const QString &fileName = QString(), bool asLink = false) const;
@@ -80,7 +77,6 @@ private:
     QMutex m_mutex;
 
     QMap<QString /*udid*/, AfcDevice *> m_devices;
-    QMap<QString /*pretty name*/, QString /*udid*/> m_friendlyNames;
 
     std::unique_ptr<AfcFile> m_openFile;
 };
