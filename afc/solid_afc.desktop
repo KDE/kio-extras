@@ -4,7 +4,7 @@ Type=Service
 Actions=open;
 
 [Desktop Action open]
-Exec=kioclient5 exec afc:udi=%i/
+Exec=kioclient5 exec afc://%j/
 Icon=system-file-manager
 Name=Browse Files with File Manager
 Name[ar]=تصفح الملفات بمدير الملفّات
