@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-02-21 02:23+0000\n"
 "PO-Revision-Date: 2024-01-06 03:31\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -67,39 +67,37 @@ msgstr "未处理的 lockdownd 错误代码“%1”"
 msgid "Unhandled sbservices code '%1'"
 msgstr "未处理的 sbservices 错误代码“%1”"
 
-#: kio_afc.cpp:175
+#: kio_afc.cpp:134
 #, kde-format
 msgid "Apple Devices"
 msgstr "苹果设备"
 
-#: kio_afc.cpp:230
+#: kio_afc.cpp:181 kio_afc.cpp:395
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "应用"
 
-#: kio_afc.cpp:479
-#, kde-format
-msgctxt "Placeholder is device name"
-msgid "%1 (Apps)"
-msgstr "%1 (应用)"
-
-#: kio_afc.cpp:687
+#: kio_afc.cpp:599
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "无法在未打开文件的情况下读取"
 
-#: kio_afc.cpp:707
+#: kio_afc.cpp:619
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "无法在未打开文件的情况下寻道"
 
-#: kio_afc.cpp:735
+#: kio_afc.cpp:647
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "无法在未打开文件的情况下写入"
 
-#: kio_afc.cpp:887
+#: kio_afc.cpp:799
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "无法跨设备重命名。"
+
+#~ msgctxt "Placeholder is device name"
+#~ msgid "%1 (Apps)"
+#~ msgstr "%1 (应用)"

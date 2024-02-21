@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-02-21 02:23+0000\n"
 "PO-Revision-Date: 2023-01-16 22:46+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -73,39 +73,37 @@ msgstr "Codice de error lockdownd on maneate: '%1'"
 msgid "Unhandled sbservices code '%1'"
 msgstr "Codice de error sbservices non maneate: '%1'"
 
-#: kio_afc.cpp:175
+#: kio_afc.cpp:134
 #, kde-format
 msgid "Apple Devices"
 msgstr "Dispositivos de Apple"
 
-#: kio_afc.cpp:230
+#: kio_afc.cpp:181 kio_afc.cpp:395
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Apps"
 
-#: kio_afc.cpp:479
-#, kde-format
-msgctxt "Placeholder is device name"
-msgid "%1 (Apps)"
-msgstr "%1 (Apps)"
-
-#: kio_afc.cpp:687
+#: kio_afc.cpp:599
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Non poteva leger sin aperir file in le initio."
 
-#: kio_afc.cpp:707
+#: kio_afc.cpp:619
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Non poteva cercar sin aperir file in le initio."
 
-#: kio_afc.cpp:735
+#: kio_afc.cpp:647
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Non poteva scriber sin aperir file in le initio."
 
-#: kio_afc.cpp:887
+#: kio_afc.cpp:799
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Non pote renominar inter dispositivos."
+
+#~ msgctxt "Placeholder is device name"
+#~ msgid "%1 (Apps)"
+#~ msgstr "%1 (Apps)"
