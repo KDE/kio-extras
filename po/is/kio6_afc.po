@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-02-21 00:37+0000\n"
 "PO-Revision-Date: 2023-12-10 22:12+0000\n"
 "Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -71,39 +71,37 @@ msgstr "Ómeðhöndluð lockdownd-villuboð '%1'"
 msgid "Unhandled sbservices code '%1'"
 msgstr "Ómeðhöndluð sbservices-villuboð '%1'"
 
-#: kio_afc.cpp:175
+#: kio_afc.cpp:134
 #, kde-format
 msgid "Apple Devices"
 msgstr "Apple-tæki"
 
-#: kio_afc.cpp:230
+#: kio_afc.cpp:181 kio_afc.cpp:395
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Forrit"
 
-#: kio_afc.cpp:479
-#, kde-format
-msgctxt "Placeholder is device name"
-msgid "%1 (Apps)"
-msgstr "%1 (forrit)"
-
-#: kio_afc.cpp:687
+#: kio_afc.cpp:599
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Get ekki lesið án þess að opna fyrst skrá"
 
-#: kio_afc.cpp:707
+#: kio_afc.cpp:619
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Get ekki leitað án þess að opna fyrst skrá"
 
-#: kio_afc.cpp:735
+#: kio_afc.cpp:647
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Get ekki skrifað án þess að opna fyrst skrá"
 
-#: kio_afc.cpp:887
+#: kio_afc.cpp:799
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Get ekki endurnefnt á milli tækja."
+
+#~ msgctxt "Placeholder is device name"
+#~ msgid "%1 (Apps)"
+#~ msgstr "%1 (forrit)"

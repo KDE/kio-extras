@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-02-21 00:37+0000\n"
 "PO-Revision-Date: 2022-12-27 17:35+0100\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard]neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -71,39 +71,37 @@ msgstr "Code d'erreur « lockdownd » non géré « %1 »"
 msgid "Unhandled sbservices code '%1'"
 msgstr "Code d'erreur « sbservices » non géré « %1 »"
 
-#: kio_afc.cpp:175
+#: kio_afc.cpp:134
 #, kde-format
 msgid "Apple Devices"
 msgstr "Périphériques Apple"
 
-#: kio_afc.cpp:230
+#: kio_afc.cpp:181 kio_afc.cpp:395
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Applications"
 
-#: kio_afc.cpp:479
-#, kde-format
-msgctxt "Placeholder is device name"
-msgid "%1 (Apps)"
-msgstr "%1 (Applications)"
-
-#: kio_afc.cpp:687
+#: kio_afc.cpp:599
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Lecture impossible sans l'ouverture préalable du fichier"
 
-#: kio_afc.cpp:707
+#: kio_afc.cpp:619
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Recherche impossible sans l'ouverture préalable du fichier"
 
-#: kio_afc.cpp:735
+#: kio_afc.cpp:647
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Écriture impossible sans l'ouverture préalable du fichier"
 
-#: kio_afc.cpp:887
+#: kio_afc.cpp:799
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Renommage impossible entre périphériques."
+
+#~ msgctxt "Placeholder is device name"
+#~ msgid "%1 (Apps)"
+#~ msgstr "%1 (Applications)"
