@@ -10,13 +10,19 @@
 
 #include "kio_filenamesearch_debug.h"
 
+#include "config.h"
+
 #include <KIO/FileCopyJob>
 #include <KIO/ListJob>
+#include <KIO/StatJob>
 #include <KLocalizedString>
 
 #include <QCoreApplication>
 #include <QDBusInterface>
+#include <QDir>
+#include <QFileInfo>
 #include <QMimeDatabase>
+#include <QProcess>
 #include <QRegularExpression>
 #include <QTemporaryFile>
 #include <QUrl>
@@ -135,6 +141,11 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
         return KIO::WorkerResult::pass();
     }
 
+    qDebug() << "Searching for" << search;
+    if (search.startsWith(QLatin1Char('@'))) {
+        return runPlugin(url);
+    }
+
     const QRegularExpression regex(search, QRegularExpression::CaseInsensitiveOption);
     if (!regex.isValid()) {
         qCWarning(KIO_FILENAMESEARCH) << "Invalid QRegularExpression/PCRE search pattern:" << search;
@@ -224,6 +235,71 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
     });
 
     listJob->exec();
+}
+
+KIO::WorkerResult FileNameSearchProtocol::runPlugin(const QUrl &url)
+{
+    const QUrlQuery urlQuery(url);
+
+    const QString search = urlQuery.queryItemValue(QStringLiteral("search"));
+    Q_ASSERT(search.startsWith(QLatin1Char('@')));
+    const int idx = search.indexOf(QLatin1Char(' '));
+    QString pluginName;
+    QString searchPattern;
+    if (idx >= 0) {
+        pluginName = search.mid(1, idx - 1);
+        searchPattern = search.mid(idx + 1);
+    } else {
+        pluginName = search.mid(1);
+    }
+    qDebug() << "Running plugin" << pluginName << "with search pattern" << searchPattern;
+
+    QFileInfo pluginExec(QStringLiteral(KDE_INSTALL_FULL_LIBEXECDIR "/filenamesearch/") + pluginName + QStringLiteral("/run"));
+    if (!(pluginExec.exists() && pluginExec.isExecutable())) {
+        qCWarning(KIO_FILENAMESEARCH) << "Plugin" << pluginName << "not found in" << pluginExec.absoluteFilePath();
+        return KIO::WorkerResult::pass();
+    }
+
+    const QUrl dirUrl = QUrl(urlQuery.queryItemValue(QStringLiteral("url")));
+    if (!dirUrl.isLocalFile()) {
+        qCWarning(KIO_FILENAMESEARCH) << "Plugin" << pluginName << "can only be run on local files";
+        return KIO::WorkerResult::pass();
+    }
+
+    const bool checkContent = urlQuery.queryItemValue(QStringLiteral("checkContent")) == QLatin1String("yes");
+
+    QProcess process;
+    process.setProgram(pluginExec.absoluteFilePath());
+    process.setWorkingDirectory(dirUrl.toLocalFile());
+
+    QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
+    env.insert(QStringLiteral("SEARCH_PATTERN"), searchPattern);
+    if (checkContent) {
+        env.insert(QStringLiteral("CHECK_CONTENT"), QStringLiteral("1"));
+    }
+    process.setProcessEnvironment(env);
+
+    process.start();
+
+    QDir rootDir(dirUrl.toLocalFile());
+    while (process.waitForReadyRead()) {
+        QByteArray output = process.readAll();
+        for (QByteArray line : output.split('\n')) {
+            if (line.isEmpty()) {
+                continue;
+            }
+            QString filePath = rootDir.filePath(QString::fromUtf8(line));
+            QUrl url = QUrl::fromLocalFile(filePath);
+            KIO::UDSEntry uds;
+            uds.reserve(3);
+            uds.fastInsert(KIO::UDSEntry::UDS_NAME, url.fileName());
+            uds.fastInsert(KIO::UDSEntry::UDS_URL, url.url());
+            uds.fastInsert(KIO::UDSEntry::UDS_LOCAL_PATH, filePath);
+            listEntry(uds);
+        }
+    }
+
+    return KIO::WorkerResult::pass();
 }
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)

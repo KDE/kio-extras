@@ -44,6 +44,7 @@ public:
 private:
     void listRootEntry();
     void searchDir(const QUrl &dirUrl, const QRegularExpression &regex, bool searchContents, std::set<QString> &iteratedDirs, std::queue<QUrl> &pendingDirs);
+    KIO::WorkerResult runPlugin(const QUrl &url);
 };
 
 #endif

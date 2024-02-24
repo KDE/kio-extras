@@ -1,5 +1,7 @@
 kcoreaddons_add_plugin(kio_filenamesearch INSTALL_NAMESPACE "kf6/kio")
 
+configure_file(config.h.cmake config.h)
+
 target_link_libraries(kio_filenamesearch KF6::KIOCore KF6::DBusAddons Qt::Network KF6::KIOCore KF6::I18n)
 target_sources(kio_filenamesearch PRIVATE kio_filenamesearch.cpp)
 
@@ -13,3 +15,4 @@ ecm_qt_declare_logging_category(kio_filenamesearch
 )
 
 add_subdirectory(kded)
+add_subdirectory(plugins)
