@@ -4,13 +4,13 @@
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2003, 2004, 2005, 2008, 2009.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2005, 2006.
 # Marta Rybczyńska <kde-i18n@rybczynska.net>, 2008, 2009, 2010.
-# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2023-04-29 10:34+0200\n"
+"PO-Revision-Date: 2024-02-24 17:02+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -20,7 +20,7 @@ msgstr ""
 ">\n"
 ">\n"
 ">\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
@@ -196,18 +196,7 @@ msgstr ""
 "usunięte po zakończeniu przesyłania pliku.</p> "
 
 #: proxy/kproxydlg.cpp:196
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Not all applications will use this proxy setting. In particular, "
-#| "<application>Firefox</application> and <application>Chromium</"
-#| "application> or anything derived from them, or anything using "
-#| "<application>QtWebEngine</application>&nbsp;- which includes "
-#| "<application>Konqueror</application> using the "
-#| "<application>WebEnginePart</application>, <application>Akregator</"
-#| "application> and <application>Falkon</application>&nbsp;- will not use "
-#| "these settings. Some applications may allow the proxy to be configured in "
-#| "their own settings."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Not all applications will use this proxy setting. In particular, "
@@ -220,14 +209,13 @@ msgid ""
 "the proxy to be configured in their own settings."
 msgstr ""
 "Nie wszystkie programy będą używać tych ustawień pośrednika. W "
-"szczególności, <application>Firefox</application> oraz "
-"<application>Chromium</application> lub cokolwiek wywodzącego się z nich lub "
-"cokolwiek co używa <application>QtWebEngine</application>&nbsp;- do których "
-"zalicza się <application>Konqueror</application> używający "
-"<application>WebEnginePart</application>, <application>Akregator</"
-"application> oraz <application>Falkon</application>&nbsp;- nie będą używać "
-"tych ustawień. Niektóre z programów umożliwiają nadanie ustawień pośrednika "
-"w swoich własnych ustawieniach."
+"szczególności, <application>Firefox</application>  lub cokolwiek, co wywodzi "
+"się z <application>Firefoksa</application>, lub cokolwiek co używa "
+"<application>QtWebEngine</application>&nbsp;- do których zalicza się "
+"<application>Konqueror</application> używający <application>WebEnginePart</"
+"application>, <application>Akregator</application> oraz <application>Falkon</"
+"application>&nbsp;- nie będą używać tych ustawień. Niektóre z programów "
+"umożliwiają nadanie ustawień pośrednika w swoich własnych ustawieniach."
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
