@@ -428,12 +428,16 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter,
 QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
 {
     QImage img;
+    KFileItem item(QUrl::fromLocalFile(directory));
+
+    const KConfigGroup globalConfig(KSharedConfig::openConfig(), QStringLiteral("PreviewSettings"));
+    m_maxFileSize = !item.isSlow() ? globalConfig.readEntry("MaximumSize", std::numeric_limits<KIO::filesize_t>::max())
+                                       : globalConfig.readEntry<KIO::filesize_t>("MaximumRemoteSize", 0);
+
     if (m_propagationDirectories.isEmpty()) {
         // Directories that the directory preview will be propagated into if there is no direct sub-directories
-        const KConfigGroup globalConfig(KSharedConfig::openConfig(), QStringLiteral("PreviewSettings"));
         const QStringList propagationDirectoriesList = globalConfig.readEntry("PropagationDirectories", QStringList() << "VIDEO_TS");
         m_propagationDirectories = QSet<QString>(propagationDirectoriesList.begin(), propagationDirectoriesList.end());
-        m_maxFileSize = globalConfig.readEntry("MaximumSize", std::numeric_limits<qint64>::max());
     }
 
     const int tiles = 2; // Count of items shown on each dimension
@@ -444,7 +448,6 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
 
-    KFileItem item(QUrl::fromLocalFile(directory));
     const int extent = qMin(m_width, m_height);
     QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(extent);
     folder.setDevicePixelRatio(m_devicePixelRatio);
