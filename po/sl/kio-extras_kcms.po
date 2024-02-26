@@ -1,4 +1,4 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kio package.
 #
 #
@@ -6,7 +6,7 @@
 # Gregor Rakar <gregor.rakar@kiss.uni-lj.si>, 2002,2003.
 # Gregor Rakar <gregor.rakar@kiss.si>, 2003, 2004, 2005.
 # Andrej Vernekar <andrej.vernekar@gmail.com>, 2005, 2007, 2008, 2009.
-# Jure Repinc <jlp@holodeck1.com>, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
+# SPDX-FileCopyrightText: 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2024 Jure Repinc <jlp@holodeck1.com>
 # Andrej Vernekar <andrej.vernekar@gmail.com>, 2008, 2012.
 # Andrej Mernik <andrejm@ubuntu.si>, 2013, 2014, 2015, 2016, 2017, 2018.
 # Matjaž Jeran <matjaz.jeran@amis.net>, 2019, 2020, 2021, 2022, 2023.
@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2024-02-16 18:26+0100\n"
-"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
+"PO-Revision-Date: 2024-02-25 17:03+0100\n"
+"Last-Translator: Jure Repinc <jlp@holodeck1.com>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Lokalize 24.04.70\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -74,7 +74,7 @@ msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
 "uploaded it is renamed to its real name."
 msgstr ""
-"Ko se datoteka pošilja, bo njena pripona \".part\". Ko je datoteka poslana v "
+"Ko se datoteka pošilja, bo njena končnica ».part«. Ko je datoteka poslana v "
 "celoti, se preimenuje v njeno pravo ime."
 
 #: netpref/netpref.cpp:31
@@ -92,30 +92,30 @@ msgid_plural ""
 "connection is very slow. The maximum allowed value is %1 seconds."
 msgstr[0] ""
 "Tu lahko nastavite vrednosti časovne omejitve. Če je vaša povezava zelo "
+"počasna, jih boste morda želeli prilagoditi. Največja dovoljena vrednost je "
+"%1 sekund."
+msgstr[1] ""
+"Tu lahko nastavite vrednosti časovne omejitve. Če je vaša povezava zelo "
 "počasna, jo boste morda želeli prilagoditi. Največja dovoljena vrednost je "
 "%1 sekunda."
-msgstr[1] ""
+msgstr[2] ""
 "Tu lahko nastavite vrednosti časovni omejitev. Če je vaša povezava zelo "
 "počasna, jih boste morda želeli prilagoditi. Največja dovoljena vrednost sta "
 "%1 sekundi."
-msgstr[2] ""
+msgstr[3] ""
 "Tu lahko nastavite vrednosti časovne omejitve. Če je vaša povezava zelo "
 "počasna, jih boste morda želeli prilagoditi. Največja dovoljena vrednost so "
 "%1 sekunde."
-msgstr[3] ""
-"Tu lahko nastavite vrednosti časovne omejitve. Če je vaša povezava zelo "
-"počasna, jih boste morda želeli prilagoditi. Največja dovoljena vrednost je "
-"%1 sekund."
 
 #: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
 #: netpref/netpref.cpp:64
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
-msgstr[0] " sekunda"
-msgstr[1] " sekundi"
-msgstr[2] " sekunde"
-msgstr[3] " sekund"
+msgstr[0] " sekund"
+msgstr[1] " sekunda"
+msgstr[2] " sekundi"
+msgstr[3] " sekunde"
 
 #: netpref/netpref.cpp:48
 #, kde-format
@@ -156,17 +156,17 @@ msgid ""
 "complete.</p>"
 msgstr ""
 "<p>Označi delno poslane datoteke preko SMB, SFTP in drugih protokolov.</"
-"p><p>Ko je ta možnost omogočena, bodo imele delno poslane datoteke pripono "
-"\".part\". Ta pripona bo odstranjena, ko bo pošiljanje zaključeno.</p>"
+"p><p>Ko je ta možnost omogočena, bodo imele delno poslane datoteke končnico "
+"».part«. Ta končnica bo odstranjena, ko bo pošiljanje zaključeno.</p>"
 
 #: netpref/netpref.cpp:91
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
-msgstr[0] " byte"
-msgstr[1] " byta"
-msgstr[2] " byti"
-msgstr[3] " bytov"
+msgstr[0] " bajtov"
+msgstr[1] " bajt"
+msgstr[2] " bajta"
+msgstr[3] " bajti"
 
 #: netpref/netpref.cpp:93
 #, kde-format
@@ -192,8 +192,8 @@ msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr ""
-"Omogoči \"pasiven\" način FTP. To je zahtevano za delovanje FTP deluje izza "
-"požarnega zidu."
+"Omogoči »pasiven« način FTP. To je zahtevano za delovanje FTP izza požarnih "
+"zidov."
 
 #: netpref/netpref.cpp:109
 #, kde-format
@@ -203,7 +203,7 @@ msgid ""
 "will be removed once the transfer is complete.</p>"
 msgstr ""
 "<p>Označi delno poslane datoteke FTP.</p><p>Ko je ta možnost omogočena, bodo "
-"imele delno poslane datoteke pripono \".part\". Ta pripona bo odstranjena, "
+"imele delno poslane datoteke končnico ».part«. Ta končnica bo odstranjena, "
 "ko bo pošiljanje zaključeno.</p>"
 
 #: proxy/kproxydlg.cpp:196
@@ -219,15 +219,15 @@ msgid ""
 "application>&nbsp;- will not use these settings. Some applications may allow "
 "the proxy to be configured in their own settings."
 msgstr ""
-"Vse aplikacije ne bodo uporabljale te nastavitve proxyja. Zlasti "
+"Vse aplikacije ne bodo uporabljale te nastavitve posrednika. Zlasti "
 "<application>Firefox</application> in vse, kar izhaja iz "
-"<application>Firefox</application>, ali karkoli, ki uporablja "
-"<application>QtWebEngine</application>&nbsp;- kar vključuje "
+"<application>Firefox</application>; ali karkoli, ki uporablja "
+"<application>QtWebEngine</application>&nbsp;– kar vključuje "
 "<application>Konqueror</application>, ki uporablja "
 "<application>WebEnginePart</application>, <application>Akregator</"
-"application> in <application>Falkon</application>&nbsp;- ne bodo uporabljali "
-"teh nastavitev. Nekatere aplikacije lahko dovolijo konfiguracijo posrednika "
-"v svojih nastavitvah."
+"application> in <application>Falkon</application>&nbsp;– ne bodo uporabljali "
+"teh nastavitev. Nekatere aplikacije lahko dovolijo nastavitev posrednika v "
+"svojih nastavitvah."
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -386,7 +386,7 @@ msgstr ""
 "<qt>\n"
 "Vnesite ime okoljske spremenljivke, npr. <b>HTTP_PROXY</b>, ki se uporablja "
 "za shranjevanje naslova posredniškega strežnika HTTP.<p>\n"
-"Lahko pa kliknete tudi gumb <b>\"Samodejno zaznaj\"</b>, da poskusite s "
+"Lahko pa kliknete tudi gumb <b>»Samodejno zaznaj«</b>, da poskusite s "
 "samodejnim zaznavanjem te spremenljivke.</p>\n"
 "</qt>"
 
@@ -412,7 +412,7 @@ msgstr ""
 "<qt>\n"
 "Vnesite ime okoljske spremenljivke, npr. <b>HTTPS_PROXY</b>, ki se uporablja "
 "za shranjevanje naslova posredniškega strežnika HTTPS.<p>\n"
-"Lahko pa kliknete tudi gumb <b>\"Samodejno zaznaj\"</b>, da poskusite s "
+"Lahko pa kliknete tudi gumb <b>»Samodejno zaznaj«</b>, da poskusite s "
 "samodejnim zaznavanjem te spremenljivke.</p>\n"
 "</qt>"
 
@@ -438,7 +438,7 @@ msgstr ""
 "<qt>\n"
 "Vnesite ime okoljske spremenljivke, npr. <b>FTP_PROXY</b>, ki se uporablja "
 "za shranjevanje naslova posredniškega strežnika FTP.<p>\n"
-"Lahko pa kliknete tudi gumb <b>\"Samodejno zaznaj\"</b>, da poskusite s "
+"Lahko pa kliknete tudi gumb <b>»Samodejno zaznaj«</b>, da poskusite s "
 "samodejnim zaznavanjem te spremenljivke.</p>\n"
 "</qt>"
 
@@ -463,7 +463,7 @@ msgstr ""
 "<qt>\n"
 "Vnesite ime okoljske spremenljivke, npr. <b>SOCKS_PROXY</b>, ki se uporablja "
 "za shranjevanje naslova posredniškega strežnika SOCKS.<p>\n"
-"Lahko pa kliknete tudi gumb <b>\"Samodejno zaznaj\"</b>, da poskusite s "
+"Lahko pa kliknete tudi gumb <b>»Samodejno zaznaj«</b>, da poskusite s "
 "samodejnim zaznavanjem te spremenljivke.</p>\n"
 "</qt>"
 
@@ -504,7 +504,7 @@ msgstr ""
 "Vnesite ime okoljske spremenljivke, npr. <b>NO_PROXY</b>, ki se uporablja za "
 "shranjevanje naslovov spletnih strani, za katere naj se ne uporabi "
 "posredniški strežnik.<p>\n"
-"Lahko pa kliknete tudi gumb <b>\"Samodejno zaznaj\"</b>, da poskusite s "
+"Lahko pa kliknete tudi gumb <b>»Samodejno zaznaj«</b>, da poskusite s "
 "samodejnim zaznavanjem te spremenljivke.\n"
 "</qt>"
 
@@ -632,7 +632,7 @@ msgstr ""
 "katere naj se gornje nastavitve posredniškega strežnika ne uporabijo.</p>\n"
 "<p>Če želite izločiti vse gostitelje neke domene, preprosto vnesite piko, ki "
 "ji sledi ime domene. Na primer, da izločite vse gostitelje domene <i>kde."
-"org</i> vnesite <i>.kde.org</i>. Nadomestni znaki kot sta '*' in '?' niso "
+"org</i> vnesite <i>.kde.org</i>. Nadomestni znaki kot sta »*« in »?« niso "
 "podprti in nimajo vpliva.</p>\n"
 "<p>Vnesete lahko tudi naslove IP, npr. 127.0.0.1, in naslove IP s "
 "podomrežjem, npr. 192.168.0.1/24.</p>\n"
@@ -709,9 +709,9 @@ msgstr ""
 #, kde-format
 msgid " day"
 msgid_plural " days"
-msgstr[0] " dan"
-msgstr[1] " dneva"
-msgstr[2] " dnevi"
+msgstr[0] " dni"
+msgstr[1] " dan"
+msgstr[2] " dneva"
 msgstr[3] " dni"
 
 #: trash/kcmtrash.cpp:260
@@ -858,9 +858,9 @@ msgstr ""
 "p><p>Spletne bližnjice vam omogočajo, da hitro dostopate do podatkov ali "
 "poiščete podatke, ki se nahajajo na spletu ali na vašem trdem disku.</"
 "p><p>Precej spletnih bližnjic je določenih že vnaprej. Ena izmed njih je "
-"bližnjica za Google (TM). Da jo uporabite preprosto vnesite ključno besedo "
-"'gg', razmejilnik ključnih besed in iskani izraz. Primer: <span style=\" "
-"font-weight:600;\">gg:KDE</span>.</p></body></html>"
+"bližnjica za Wikipedijo. Da jo uporabite preprosto vnesite ključno besedo "
+"»wp«, razmejilnik ključnih besed in iskani izraz. Primer: <span style=\" "
+"font-weight:600;\">wp:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -890,7 +890,7 @@ msgstr "Dodaj novo ključno besedo spletnega iskanja"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New..."
-msgstr "&Nov ..."
+msgstr "&Nova …"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -902,7 +902,7 @@ msgstr "Spremeni označeno ključno besedo spletnega iskanja"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Chan&ge..."
-msgstr "Sp&remeni ..."
+msgstr "Sp&remeni …"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1013,13 +1013,13 @@ msgstr "Nova spletna bližnjica"
 msgid ""
 "The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr "Bližnjica \"%1\" je že dodeljena \"%2\". Izberite drugo."
+msgstr "Bližnjica »%1« je že dodeljena »%2«. Izberite drugo."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
-msgstr "- %1: \"%2\""
+msgstr "– %1: »%2«"
 
 #: webshortcuts/searchproviderdlg.cpp:130
 #, kde-format
@@ -1037,7 +1037,7 @@ msgid ""
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the shortcut."
 msgstr ""
-"Naslov URL spletne bližnjice ne vsebuje vsebnika \\{...} za vnos uporabniške "
+"Naslov URL spletne bližnjice ne vsebuje vsebnika \\{…} za vnos uporabniške "
 "poizvedbe.\n"
 "To pomeni, da bo ne glede na besedilo vneseno z bližnjico, vedno obiskana "
 "ista stran."
@@ -1086,20 +1086,20 @@ msgstr ""
 "iskano besedilo je podano z \\{@} ali \\{0}.<br/>\n"
 "Priporočamo \\{@}, ker se tako iz poizvedbe odstranijo vse spremenljivke "
 "(ime=vrednost). Če uporabite \\{0}, bo iskalni niz ostal nespremenjen.<br/"
-">Da bi določili posamezne besede iz poizvedbe, lahko uporabite \\{1} ... "
-"\\{n}. Za določitev vrednosti za neko ime iz 'ime=vrednost' pa uporabite "
-"\\{name}.<br/>Mogoče je določiti več referenc (imen, števil in nizov) "
-"naenkrat (\\{name1,name2,...,\"string\"}).<br/>Prva ujemajoča vrednost "
-"(gledano z leve) se bo uporabila kot nadomestna vrednost v končnem URI-ju."
-"<br/>Niz v narekovajih lahko uporabite kot privzeto vrednost, če se ne ujema "
-"nič z leve strani seznama referenc.\n"
+">Da bi določili posamezne besede iz poizvedbe, lahko uporabite \\{1} … "
+"\\{n}. Za določitev vrednosti za neko ime iz »ime=vrednost« pa uporabite "
+"\\{ime}.<br/>Mogoče je določiti več referenc (imen, števil in nizov) "
+"naenkrat (\\{ime1,ime2,…,\"niz\"}).<br/>Prva ujemajoča vrednost (gledano z "
+"leve) se bo uporabila kot nadomestna vrednost v končnem URI-ju.<br/>Niz v "
+"narekovajih lahko uporabite kot privzeto vrednost, če se ne ujema nič z leve "
+"strani seznama referenc.\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
 #, kde-format
 msgid "Shortcut &URL:"
-msgstr "Naslov &URL bližnjice:"
+msgstr "Naslov &URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
