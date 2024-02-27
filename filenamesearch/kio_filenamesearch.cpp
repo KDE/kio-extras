@@ -279,7 +279,7 @@ KIO::WorkerResult FileNameSearchProtocol::runPlugin(const QUrl &url)
     }
     process.setProcessEnvironment(env);
 
-    process.start();
+    process.start(QIODeviceBase::ReadOnly | QIODeviceBase::Unbuffered);
 
     QDir rootDir(dirUrl.toLocalFile());
     while (process.waitForReadyRead()) {
