@@ -1,0 +1,2 @@
+#!/bin/sh
+fd "$SEARCH_PATTERN"

@@ -1,0 +1,2 @@
+#!/bin/sh
+rg --files-with-matches --line-buffered --color=never --hyperlink-format=none "$SEARCH_PATTERN" .
