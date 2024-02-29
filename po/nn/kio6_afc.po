@@ -103,7 +103,3 @@ msgstr "Kan ikkje skriva data utan å opna fil først"
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Kan ikkje endra namn mellom einingar."
-
-#~ msgctxt "Placeholder is device name"
-#~ msgid "%1 (Apps)"
-#~ msgstr "%1 (appar)"
