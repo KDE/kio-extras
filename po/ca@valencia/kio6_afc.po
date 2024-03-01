@@ -105,7 +105,3 @@ msgstr "No s'ha pogut escriure sense obrir abans el fitxer"
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "No s'ha pogut canviar de nom entre dispositius."
-
-#~ msgctxt "Placeholder is device name"
-#~ msgid "%1 (Apps)"
-#~ msgstr "%1 (Aplicacions)"
