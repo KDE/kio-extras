@@ -14,13 +14,13 @@
 # obsoleteman <tulliana@gmail.com>, 2008-2009.
 # obsoleteman <tulliana@gmail.com>, 2010,2012.
 # Volkan Gezer <volkangezer@gmail.com>, 2013-2014, 2015, 2017, 2021.
-# SPDX-FileCopyrightText: 2022, 2023 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-07 02:43+0000\n"
-"PO-Revision-Date: 2023-12-27 14:22+0300\n"
+"PO-Revision-Date: 2024-03-01 15:52+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.01.85\n"
+"X-Generator: Lokalize 24.02.0\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -619,14 +619,13 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"<p>Yukarıdaki vekil sunucu ayarları kullanılarak hariç tutulması gereken "
-"uzak makine adları veya IP adreslerinin virgülle ayrılmış listesini girin.</"
-"p>\n"
-"<p>Eğer belirtilen bir alan adınındaki tüm sunucuları hariç tutmak "
-"istiyorsanız basitçe alan adının başına nokta koyun. Örneğin <i>kde.org</i> "
-"alan adı için tüm sunucu adlarını hariç tutmak için <i>.kde.org</i> yazın. "
-"'*' veya '?' gibi joker karakterler desteklenmemektedir ve dolayısıyla "
-"hiçbir etkileri olmayacaktır.</p>\n"
+"<p>Yukarıdaki vekil sunucu ayarları kullanılarak dışlanması gereken uzak "
+"makine adlarını veya IP adreslerinin virgülle ayrılmış listesini girin.</p>\n"
+"<p>Eğer belirtilen bir alan adınındaki tüm sunucuları dışlamak istiyorsanız "
+"basitçe alan adının başına nokta koyun. Örneğin <i>kde.org</i> alan adı için "
+"tüm sunucu adlarını dışlamak üzere <i>.kde.org</i> yazın. '*' veya '?' gibi "
+"joker karakterler desteklenmemektedir ve dolayısıyla hiçbir etkileri "
+"olmayacaktır.</p>\n"
 "<p>Ek olarak IP adresleri (örn. 127.0.0.1) ve alt ağı olan IP adresleri de "
 "girebilirsiniz; örn. 192.168.0.1/24.</p>\n"
 "</qt>"
