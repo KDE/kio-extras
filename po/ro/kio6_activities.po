@@ -1,10 +1,10 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the kio-extras package.
 # Sergiu Bivol <sergiu@cip.md>, 2012, 2013, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-12-27 01:34+0000\n"
 "PO-Revision-Date: 2021-04-16 17:28+0100\n"
@@ -66,124 +66,3 @@ msgstr "Activitatea actuală"
 #, kde-format
 msgid "Activity"
 msgstr "Activitate"
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Sergiu Bivol"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "sergiu@ase.md"
-
-#~ msgctxt "@action"
-#~ msgid "Switch to activity \"%1\""
-#~ msgstr "Comută la activitatea „%1”"
-
-#, fuzzy
-#~| msgid "Activities..."
-#~ msgctxt "Header title for activity data model"
-#~ msgid "Activity"
-#~ msgstr "Activități..."
-
-#, fuzzy
-#~| msgid "Link to the current activity"
-#~ msgid "Delete activity"
-#~ msgstr "Leagă de activitatea curentă"
-
-#, fuzzy
-#~| msgid "Link to the current activity"
-#~ msgid "Create a new activity"
-#~ msgstr "Leagă de activitatea curentă"
-
-#, fuzzy
-#~| msgid "Activities..."
-#~ msgid "Activity settings"
-#~ msgstr "Activități..."
-
-#, fuzzy
-#~| msgid "Activities..."
-#~ msgid "Activity information"
-#~ msgstr "Activități..."
-
-#~ msgid "Privacy"
-#~ msgstr "Intimitate"
-
-#~ msgctxt "unlimited number of months"
-#~ msgid "forever"
-#~ msgstr "permanent"
-
-#~ msgid "Forget the last hour"
-#~ msgstr "Uită ultima oră"
-
-#~ msgid "Forget the last two hours"
-#~ msgstr "Uită ultimele două ore"
-
-#~ msgid "Forget a day"
-#~ msgstr "Uită o zi"
-
-#~ msgid "Forget everything"
-#~ msgstr "Uită tot"
-
-#~ msgctxt "for in 'keep history for 5 months'"
-#~ msgid "for "
-#~ msgstr "pentru "
-
-#, fuzzy
-#~| msgid "Link to the current activity"
-#~ msgid "Create activity..."
-#~ msgstr "Leagă de activitatea curentă"
-
-#, fuzzy
-#~| msgid "Activities..."
-#~ msgid "Activity switching"
-#~ msgstr "Activități..."
-
-#~ msgid "Remember opened documents:"
-#~ msgstr "Memorizează documentele deschise:"
-
-#, fuzzy
-#~| msgid "For all applications"
-#~ msgid "For a&ll applications"
-#~ msgstr "Pentru toate aplicațiile"
-
-#, fuzzy
-#~| msgid "Do not remember"
-#~ msgid "&Do not remember"
-#~ msgstr "Nu memoriza"
-
-#, fuzzy
-#~| msgid "Only for specific applications"
-#~ msgid "O&nly for specific applications"
-#~ msgstr "Numai pentru anumite aplicații"
-
-#~ msgid "Keep history"
-#~ msgstr "Păstrează istoricul"
-
-#~ msgid "Clear recent history"
-#~ msgstr "Curăță istoricul recent"
-
-#~ msgid "Blacklist all applications not on this list"
-#~ msgstr "Pune în lista neagră toate aplicațiile ce nu sunt în lista asta"
-
-#, fuzzy
-#~| msgid "Activities..."
-#~ msgid "Activity name"
-#~ msgstr "Activități..."
-
-#~ msgid "Available Features"
-#~ msgstr "Caracteristici disponibile"
-
-#~ msgid "Plugins"
-#~ msgstr "Extensii"
-
-#~ msgid "Enable activities management"
-#~ msgstr "Activează gestiunea activităților"
-
-#~ msgid "Activity manager is not running properly."
-#~ msgstr "Administratorul de activități nu rulează corespunzător."
-
-#~ msgid "Activities..."
-#~ msgstr "Activități..."
-
-#~ msgid "(c) 2012 Ivan Cukic"
-#~ msgstr "(c) 2012 Ivan Cukic"
