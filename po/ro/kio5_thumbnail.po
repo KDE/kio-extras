@@ -80,7 +80,7 @@ msgstr "Imaginea este prea mare pentru segmentul de memorie partajată"
 
 #~ msgctxt "EMAIL OF TRANSLATORS"
 #~ msgid "Your emails"
-#~ msgstr "sergiu@ase.md"
+#~ msgstr "sergiu@cip.md"
 
 #~ msgid "kio_thumbmail"
 #~ msgstr "kio_thumbmail"
