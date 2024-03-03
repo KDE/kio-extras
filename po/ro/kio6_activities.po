@@ -73,7 +73,7 @@ msgstr "Activitate"
 
 #~ msgctxt "EMAIL OF TRANSLATORS"
 #~ msgid "Your emails"
-#~ msgstr "sergiu@ase.md"
+#~ msgstr "sergiu@cip.md"
 
 #~ msgctxt "@action"
 #~ msgid "Switch to activity \"%1\""
