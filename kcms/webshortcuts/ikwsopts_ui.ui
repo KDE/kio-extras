@@ -14,17 +14,42 @@
    <item row="0" column="0">
     <widget class="QCheckBox" name="cbEnableShortcuts">
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable Web search keywords. &lt;/p&gt;&lt;p&gt;Web search keywords allow you to quickly access or search for information located online or on your hard drive. &lt;/p&gt;&lt;p&gt;KDE comes with many predefined keywords. One such keyword can be used to perform a the Google (TM) search; to use it, you simply type the keyword 'gg' followed by the keyword delimiter and the search term, e.g. &lt;span style=&quot; font-weight:600;&quot;&gt;gg:KDE&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>Check to recognise and use the web search keywords in applications that can use them</string>
      </property>
      <property name="text">
       <string>&amp;Enable Web search keywords</string>
      </property>
     </widget>
    </item>
+   <item row="0" column="1">
+     <widget class="QLabel" name="lbQuickHelp">
+       <property name="enabled">
+         <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+         </sizepolicy>
+       </property>
+       <property name="text">
+         <string>&lt;a href="whatsthis"&gt;How do these work?&lt;/a&gt;</string>
+       </property>
+       <property name="wordWrap">
+         <bool>false</bool>
+       </property>
+       <property name="textInteractionFlags">
+	 <enum>Qt::LinksAccessibleByMouse|Qt::LinksAccessibleByKeyboard</enum>
+       </property>
+     </widget>
+   </item>
    <item row="1" column="0">
     <widget class="QCheckBox" name="cbUseSelectedShortcutsOnly">
      <property name="enabled">
       <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>&lt;p&gt;Check to only use the preferred web search keywords, as selected in the list below, where necessary.&lt;/p&gt;&lt;p&gt;If this is checked, then applications that can only show a limited number of search keywords (for example, Konqueror when text on a page is selected) will only show the preferred keywords.&lt;/p&gt;</string>
      </property>
      <property name="text">
       <string>&amp;Use preferred keywords only</string>
@@ -34,7 +59,7 @@
    <item row="2" column="0">
     <widget class="QLineEdit" name="searchLineEdit">
      <property name="placeholderText">
-      <string>Search for Web search keywords</string>
+      <string>Search...</string>
      </property>
      <property name="showClearButton" stdset="0">
       <bool>true</bool>
@@ -132,11 +157,6 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="whatsThis">
-        <string>&lt;qt&gt;
-Select the search engine to use for input boxes that provide automatic lookup services when you type in normal words and phrases instead of a URL. To disable this feature select &lt;b&gt;None&lt;/b&gt; from the list.
-&lt;/qt&gt;</string>
-       </property>
        <property name="text">
         <string>Default Web &amp;search keyword:</string>
        </property>
@@ -162,8 +182,8 @@ Select the search engine to use for input boxes that provide automatic lookup se
          <height>0</height>
         </size>
        </property>
-       <property name="whatsThis">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select a default Web search keyword. &lt;/p&gt;&lt;p&gt;This allows applications to automatically convert the typed word or phrase to Web search keyword queries when they cannot be filtered into a proper URL. &lt;/p&gt;&lt;p&gt;To disable this functionality select &lt;span style=&quot; font-weight:600;&quot;&gt;None&lt;/span&gt; from the list. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <property name="toolTip">
+        <string>&lt;p&gt;Select a default web search keyword.&lt;/p&gt;&lt;p&gt;This may be used by applications which automatically search if input cannot be recognised, for example in Konqueror's address bar.  This keyword will be used for the search. To disable this feature select &lt;tt&gt;(None)&lt;/tt&gt; from the list.&lt;/p&gt;</string>
        </property>
        <property name="sizeAdjustPolicy">
         <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>
@@ -177,9 +197,6 @@ Select the search engine to use for input boxes that provide automatic lookup se
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
-       </property>
-       <property name="whatsThis">
-        <string>Choose the delimiter that separates the keyword from the phrase or word to be searched.</string>
        </property>
        <property name="text">
         <string>&amp;Keyword delimiter:</string>
@@ -201,7 +218,7 @@ Select the search engine to use for input boxes that provide automatic lookup se
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Choose a delimiter to mark the Web search keyword.</string>
+        <string>Choose the delimiter to separate the keyword from the phrase or word to be searched.</string>
        </property>
        <item>
         <property name="text">

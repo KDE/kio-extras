@@ -25,6 +25,7 @@
 #include <QFile>
 #include <QPointer>
 #include <QSortFilterProxyModel>
+#include <QToolTip>
 
 // BEGIN ProvidersModel
 
@@ -100,11 +101,7 @@ QVariant ProvidersModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::ToolTipRole || role == Qt::WhatsThisRole) {
         if (index.column() == Preferred) {
-            return xi18nc("@info:tooltip",
-                          "Check this box to select the highlighted Web search keyword "
-                          "as preferred.<nl/>Preferred Web search keywords are used in "
-                          "places where only a few select keywords can be shown "
-                          "at one time.");
+            return xi18nc("@info:tooltip", "Check to select this web search keyword as preferred.");
         }
         else if (index.column() == Name) {
             // Show the top level domain used for the query.  Use string
@@ -224,7 +221,7 @@ QVariant ProvidersListModel::data(const QModelIndex &index, int role) const
     switch (role) {
     case Qt::DisplayRole:
         if (noProvider) {
-            return i18nc("@item:inlistbox No default web search keyword", "None");
+            return i18nc("@item:inlistbox No default web search keyword", "(None)");
         }
         return m_providers.at(index.row())->name();
     case ShortNameRole:
@@ -295,6 +292,17 @@ FilterOptions::FilterOptions(QObject *parent, const KPluginMetaData &data)
     connect(m_dlg.lvSearchProviders->selectionModel(), &QItemSelectionModel::currentChanged, this, &FilterOptions::updateSearchProviderEditingButons);
     connect(m_dlg.lvSearchProviders, &QAbstractItemView::doubleClicked, this, &FilterOptions::changeSearchProvider);
     connect(m_dlg.searchLineEdit, &QLineEdit::textEdited, searchProviderModel, &QSortFilterProxyModel::setFilterFixedString);
+
+    connect(m_dlg.lbQuickHelp, &QLabel::linkActivated, this, [this](const QString &link) {
+        QToolTip::showText(QCursor::pos(), xi18nc("@info:whatsthis",
+                                                  "<para>Here you can configure the web search keywords feature.</para>"
+                                                  "<para>Web search keywords allow you to quickly search or look up words on "
+                                                  "the Internet. They work in <application>Konqueror</application>'s address "
+                                                  "bar, the <application>KRunner</application> search, and in any other "
+                                                  "applications that support them. For example, to search for information "
+                                                  "about the KDE project using the Google search engine, you can simply type "
+                                                  "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"));
+    });
 }
 
 void FilterOptions::setDefaultEngine(int index)
