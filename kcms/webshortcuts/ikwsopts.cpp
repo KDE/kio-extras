@@ -106,6 +106,20 @@ QVariant ProvidersModel::data(const QModelIndex &index, int role) const
                           "places where only a few select keywords can be shown "
                           "at one time.");
         }
+        else if (index.column() == Name) {
+            // Show the top level domain used for the query.  Use string
+            // functions instead of trying to construct a URL, because the
+            // query substitutions may not be valid in a URL path.
+            QString q(m_providers.at(index.row())->query());
+            int idx1 = q.indexOf(QLatin1String("://"));
+            if (idx1 != -1) {
+                idx1 += 3;
+                int idx2 = q.indexOf(QLatin1Char('/'), idx1);
+                if (idx2 != -1) {
+                    return (q.mid(idx1, idx2 - idx1));
+                }
+            }
+        }
     }
 
     if (role == Qt::UserRole + 1) { // for sorting
