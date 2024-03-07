@@ -108,6 +108,14 @@ QVariant ProvidersModel::data(const QModelIndex &index, int role) const
         }
     }
 
+    if (role == Qt::UserRole + 1) { // for sorting
+        if (index.column() == Preferred) {
+            return (data(index, Qt::CheckStateRole));
+        } else {
+            return (data(index, Qt::DisplayRole));
+        }
+    }
+
     if (role == Qt::UserRole) {
         return index.row(); // a nice way to bypass proxymodel
     }
@@ -236,6 +244,7 @@ static QSortFilterProxyModel *wrapInProxyModel(QAbstractItemModel *model)
     proxyModel->setSourceModel(model);
     proxyModel->setDynamicSortFilter(true);
     proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    proxyModel->setSortRole(Qt::UserRole + 1);
     proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
     proxyModel->setFilterKeyColumn(-1);
     return proxyModel;
