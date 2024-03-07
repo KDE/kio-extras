@@ -249,6 +249,9 @@ FilterOptions::FilterOptions(QObject *parent, const KPluginMetaData &data)
     widget()->setWindowTitle(i18n("Search F&ilters"));
 
     m_dlg.setupUi(widget());
+    m_dlg.pbNew->setIcon(QIcon::fromTheme(QStringLiteral("list-add")));
+    m_dlg.pbChange->setIcon(QIcon::fromTheme(QStringLiteral("document-edit")));
+    m_dlg.pbDelete->setIcon(QIcon::fromTheme(QStringLiteral("list-remove")));
 
     QSortFilterProxyModel *searchProviderModel = wrapInProxyModel(m_providersModel);
     m_dlg.lvSearchProviders->setModel(searchProviderModel);
