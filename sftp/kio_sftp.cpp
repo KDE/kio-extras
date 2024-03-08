@@ -17,8 +17,6 @@
 #include <queue>
 #include <span>
 
-#include <gsl/narrow>
-
 #include <QCoreApplication>
 #include <QDateTime>
 #include <QDir>
@@ -51,6 +49,16 @@
 
 using namespace KIO;
 using namespace std::filesystem;
+
+template<typename Output, typename Input>
+constexpr Output narrow(Input i)
+{
+    Output o = static_cast<Input>(i);
+    if (i != Input(o)) {
+        std::abort();
+    }
+    return o;
+}
 
 namespace std
 {
@@ -506,7 +514,7 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
     }
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, permsToPosix(access));
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, gsl::narrow<long long>(size));
+    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, narrow<long long>(size));
 
     if (details > 0) {
         if (sb->owner) {
@@ -527,7 +535,7 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
         if (sb->flags & SSH_FILEXFER_ATTR_CREATETIME) {
             // Availability depends on outside factors.
             // https://bugs.kde.org/show_bug.cgi?id=375305
-            entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, gsl::narrow<long long>(sb->createtime));
+            entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, narrow<long long>(sb->createtime));
         }
     }
 
@@ -1131,7 +1139,7 @@ Result SFTPWorker::read(KIO::filesize_t bytes)
 
     Q_ASSERT(mOpenFile != nullptr);
 
-    QVarLengthArray<char> buffer(gsl::narrow<qsizetype>(bytes));
+    QVarLengthArray<char> buffer(narrow<qsizetype>(bytes));
 
     ssize_t bytesRead = sftp_read(mOpenFile, buffer.data(), bytes);
     Q_ASSERT(bytesRead <= static_cast<ssize_t>(bytes));
@@ -1396,7 +1404,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
                 qCDebug(KIO_SFTP_LOG) << "put got answer " << (flags & KIO::Resume);
 
             } else {
-                KIO::filesize_t pos = QT_LSEEK(fd, gsl::narrow<off_t>(sbPart->size), SEEK_SET);
+                KIO::filesize_t pos = QT_LSEEK(fd, narrow<off_t>(sbPart->size), SEEK_SET);
                 if (pos != sbPart->size) {
                     qCDebug(KIO_SFTP_LOG) << "Failed to seek to" << sbPart->size << "bytes in source file. Reason given:" << strerror(errno);
                     return Result::fail(ERR_CANNOT_SEEK, url.toString());
@@ -1434,7 +1442,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
             SFTPAttributesPtr fstat(sftp_fstat(destFile.get()));
             if (fstat) {
                 sftp_seek64(destFile.get(), fstat->size); // Seek to end TODO
-                totalBytesSent += gsl::narrow<KIO::fileoffset_t>(fstat->size);
+                totalBytesSent += narrow<KIO::fileoffset_t>(fstat->size);
             }
         }
     } else {
@@ -1490,7 +1498,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
                     qCDebug(KIO_SFTP_LOG) << "failed to read" << errno;
                     response.error = ERR_CANNOT_READ;
                 } else {
-                    response.filedata = QByteArray(buf.data(), gsl::narrow<qsizetype>(result));
+                    response.filedata = QByteArray(buf.data(), narrow<qsizetype>(result));
                 }
             }
 
@@ -1515,7 +1523,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
             return closeOnError(KIO::ERR_CANNOT_WRITE);
         }
 
-        totalBytesSent += gsl::narrow<decltype(totalBytesSent)>(response.bytes);
+        totalBytesSent += narrow<decltype(totalBytesSent)>(response.bytes);
         processedSize(totalBytesSent);
     }
 

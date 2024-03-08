@@ -2,8 +2,6 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio6_sftp\")
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
-find_package(Microsoft.GSL REQUIRED)
-
 cmake_push_check_state()
 list(APPEND CMAKE_REQUIRED_LIBRARIES ssh)
 check_symbol_exists(sftp_aio_begin_read "libssh/sftp.h" HAVE_SFTP_AIO)
@@ -51,8 +49,6 @@ target_link_libraries(kio_sftp
         Qt::Network
         QCoro::Core
         ssh
-    INTERFACE
-        Microsoft.GSL
 )
 kde_target_enable_exceptions(kio_sftp PRIVATE)
 
