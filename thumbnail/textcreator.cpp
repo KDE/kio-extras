@@ -12,7 +12,7 @@
 #include <QImage>
 #include <QPainter>
 #include <QPalette>
-#include <QTextCodec>
+#include <QStringDecoder>
 #include <QTextDocument>
 
 #include <KDesktopFile>
@@ -38,16 +38,15 @@ TextCreator::~TextCreator()
     delete[] m_data;
 }
 
-static QTextCodec *codecFromContent(const char *data, int dataSize)
+static QStringDecoder codecFromContent(const char *data, int dataSize)
 {
 #if 0 // ### Use this when KEncodingProber does not return junk encoding for UTF-8 data)
     KEncodingProber prober;
     prober.feed(data, dataSize);
-    return QTextCodec::codecForName(prober.encoding());
+    return QStringDecoder(prober.encoding());
 #else
-    QByteArray ba = QByteArray::fromRawData(data, dataSize);
     // try to detect UTF text, fall back to locale default (which is usually UTF-8)
-    return QTextCodec::codecForUtfText(ba, QTextCodec::codecForLocale());
+    return QStringDecoder(QStringDecoder::encodingForData(QByteArrayView(data, dataSize)).value_or(QStringDecoder::System));
 #endif
 }
 
@@ -112,7 +111,7 @@ KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
         if (read > 0) {
             ok = true;
             m_data[read] = '\0';
-            QString text = codecFromContent(m_data, read)->toUnicode(m_data, read).trimmed();
+            QString text = QString(codecFromContent(m_data, read).decode(QByteArrayView(m_data, read))).trimmed();
             // FIXME: maybe strip whitespace and read more?
 
             // If the text contains tabs or consecutive spaces, it is probably

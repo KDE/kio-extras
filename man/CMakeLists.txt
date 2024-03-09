@@ -62,8 +62,4 @@ target_link_libraries(kio_man
     PRIVATE KF6::KIOCore Qt::Widgets KF6::Archive KF6::I18n KF6::Codecs Qt::Network kio_man_debug
 )
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(kio_man PRIVATE Qt::Core5Compat)
-endif()
-
 install(TARGETS kio_man DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)

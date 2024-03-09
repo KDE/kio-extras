@@ -147,9 +147,6 @@ target_link_libraries(textthumbnail
     KF6::KIOGui
     KF6::SyntaxHighlighting
 )
-if (QT_MAJOR_VERSION EQUAL "6")
-    target_link_libraries(textthumbnail Qt6::Core5Compat)
-endif()
 
 install(TARGETS textthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
 

@@ -22,10 +22,6 @@ target_sources(kio_man_test PRIVATE
 
 target_link_libraries(kio_man_test Qt::Widgets KF6::I18n KF6::KIOCore KF6::Archive KF6::Codecs Qt::Network kio_man_debug)
 
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(kio_man_test Qt::Core5Compat)
-endif()
-
 if (AVOID_NULLPTR_WARNING_FLAG)
     target_compile_options(kio_man_test PRIVATE ${AVOID_NULLPTR_WARNING_FLAG})
 endif()
@@ -50,10 +46,6 @@ target_sources(man2html PRIVATE
 )
 
 target_link_libraries(man2html Qt::Core KF6::Codecs KF6::Archive kio_man_debug)
-
-if (QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(man2html Qt::Core5Compat)
-endif()
 
 if (AVOID_NULLPTR_WARNING_FLAG)
     target_compile_options(man2html PRIVATE ${AVOID_NULLPTR_WARNING_FLAG})

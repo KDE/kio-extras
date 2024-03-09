@@ -15,7 +15,6 @@
 #include <QProcess>
 #include <QRegularExpression>
 #include <QStandardPaths>
-#include <QTextCodec>
 #include <QTextStream>
 #include <QUrl>
 

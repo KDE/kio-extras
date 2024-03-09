@@ -130,7 +130,7 @@
 #include <QRegularExpression>
 #include <QStack>
 #include <QString>
-#include <QTextCodec>
+#include <QStringDecoder>
 
 #ifdef SIMPLE_MAN2HTML
 #include <KCompressionDevice>
@@ -5970,17 +5970,17 @@ char *manPageToUtf8(const QByteArray &input, const QByteArray &dirName)
         }
     }
 
-    QTextCodec *codec = 0;
+    QStringDecoder codec;
 
     if (!encoding.isEmpty())
-        codec = QTextCodec::codecForName(encoding);
+        codec = QStringDecoder(encoding.constData());
 
-    if (!codec) // fallback encoding
-        codec = QTextCodec::codecForName("ISO-8859-1");
+    if (!codec.isValid()) // fallback encoding
+        codec = QStringDecoder(QStringDecoder::Latin1);
 
-    qCDebug(KIO_MAN_LOG) << "using the encoding" << codec->name() << "for file in dir" << dirName;
+    qCDebug(KIO_MAN_LOG) << "using the encoding" << codec.name() << "for file in dir" << dirName;
 
-    QString out = codec->toUnicode(input);
+    QString out = codec.decode(input);
     QByteArray array = out.toUtf8();
 
     // TODO get rid of this double allocation and scan a QByteArray
