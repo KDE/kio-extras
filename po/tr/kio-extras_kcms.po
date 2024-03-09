@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2024-03-01 15:52+0300\n"
+"PO-Revision-Date: 2024-03-08 16:24+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -362,7 +362,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:130
 #, kde-format
 msgid "Auto D&etect"
-msgstr "&Otomatik Algıla"
+msgstr "&Kendiliğinden Algıla"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
@@ -380,7 +380,7 @@ msgstr ""
 "HTTP vekil sunucusunun adresini depolamak için kullanılan çevre değişkeninin "
 "adını girin; örneğin <b>HTTP_PROXY</b>.<p>\n"
 "Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Otomatik Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
@@ -406,7 +406,7 @@ msgstr ""
 "HTTPS vekil sunucusunun adresini depolamak için kullanılan çevre "
 "değişkeninin adını girin; örneğin <b>HTTPS_PROXY</b>.<p>\n"
 "Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Otomatik Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
@@ -432,7 +432,7 @@ msgstr ""
 "FTP vekil sunucusunun adresini depolamak için kullanılan çevre değişkeninin "
 "adını girin; örneğin <b>FTP_PROXY</b>.<p>\n"
 "Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Otomatik Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
@@ -457,7 +457,7 @@ msgstr ""
 "SOCKS vekil sunucusunun adresini depolamak için kullanılan çevre "
 "değişkeninin adını girin; örneğin.<b>SOCKS_PROXY</b>.<p>\n"
 "Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Otomatik Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
@@ -478,8 +478,8 @@ msgid ""
 msgstr ""
 "<qt>SOCKS vekil sunucusunun adresini depolamak için kullanılan çevre "
 "değişkeninin adını girin, örneğin.<b>SOCKS_PROXY</b>.<p>Alternatif olarak, "
-"bu değişkeni kendiliğinden bulmayı denemek için <b>\"Otomatik Algıla\"</b> "
-"düğmesine tıklayabilirsiniz.</p></qt>"
+"bu değişkeni kendiliğinden bulmayı denemek için <b>\"Kendiliğinden Algıla\"</"
+"b> düğmesine tıklayabilirsiniz.</p></qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
 #. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
@@ -497,7 +497,7 @@ msgstr ""
 "Vekil sunucunun kullanılmaması gereken siteleri depolamak için kullanılan "
 "çevre değişkeninin adını girmek için; örneğin: <b>NO_PROXY</b> girin. <p>\n"
 "Alternatif olarak, bu değişkenin kendiliğinden keşfini denemek için <b>"
-"\"Otomatik Algılama\"</b> düğmesine tıklayabilirsiniz.\n"
+"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
@@ -519,7 +519,7 @@ msgstr ""
 "<qt>Vekil sunucusunun kullanılmaması gereken siteleri depolamak için "
 "kullanılan çevre değişkeninin adını girmek için örneğin: <b>NO_PROXY</b> "
 "girin. <p>Alternatif olarak, bu değişkenin kendiliğinden keşfini denemek "
-"için <b>\"Otomatik Algılama\"</b> düğmesine tıklayabilirsiniz.</p></qt>"
+"için <b>\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
 #: proxy/kproxydlg.ui:324
