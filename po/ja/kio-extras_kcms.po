@@ -1,4 +1,5 @@
 # Translation of kio4 into Japanese.
+# SPDX-FileCopyrightText: 2022, 2024 Ryuichi Yamada <ryuichi_ya220@outlook.jp>
 # This file is distributed under the same license as the kdelibs package.
 # Taiki Komoda <kom@kde.gr.jp>, 2002, 2010.
 # Noriko Mizumoto <noriko@redhat.com>, 2004.
@@ -7,7 +8,6 @@
 # Shinichi Tsunoda <tsuno@ngy.1st.ne.jp>, 2005.
 # Yukiko Bando <ybando@k6.dion.ne.jp>, 2006, 2007, 2008, 2009, 2010.
 # Tomohiro Hyakutake <tomhioo@outlook.jp>, 2019, 2020.
-# Ryuichi Yamada <ryuichi_ya220@outlook.jp>, 2022.
 # Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2006, 2010, 2011, 2019, 2022.
 #
 msgid ""
@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2022-08-28 20:43-0700\n"
-"Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
+"PO-Revision-Date: 2024-03-06 18:29+0900\n"
+"Last-Translator: Ryuichi Yamada <ryuichi_ya220@outlook.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-"X-Generator: Lokalize 22.04.1\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -148,7 +148,7 @@ msgstr ""
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
-msgstr[0] ""
+msgstr[0] " バイト"
 
 #: netpref/netpref.cpp:93
 #, kde-format
@@ -156,6 +156,8 @@ msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
+"キャンセルされた場合、これより小さい部分的にアップロードされたファイルを自動"
+"的に削除:"
 
 #: netpref/netpref.cpp:95
 #, kde-format
@@ -200,6 +202,13 @@ msgid ""
 "application>&nbsp;- will not use these settings. Some applications may allow "
 "the proxy to be configured in their own settings."
 msgstr ""
+"すべてのアプリケーションがこのプロキシ設定を使用するわけではありません。"
+"<application>Firefox</application> とその派生や <application>QtWebEngine</"
+"application> を使用するアプリケーション (<application>WebEnginePart</"
+"application> を使用する <application>Konqueror</application>、"
+"<application>Akregator</application> や <application>Falkon</application> を"
+"含む) はこれらの設定を使用しません。いくつかのアプリケーションでは、そのアプ"
+"リケーション内でプロキシの設定ができます。"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -291,10 +300,9 @@ msgstr "プロキシサーバの設定に、指定した設定スクリプトの
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:62
-#, fuzzy, kde-format
-#| msgid "U&se proxy configuration URL:"
+#, kde-format
 msgid "Use proxy auto configuration URL:"
-msgstr "プロキシ設定 URL を使う(&S):"
+msgstr "プロキシ自動設定 URL を使う:"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:93
@@ -320,10 +328,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:120
-#, fuzzy, kde-format
-#| msgid "U&se proxy configuration URL:"
+#, kde-format
 msgid "Use system proxy configuration:"
-msgstr "プロキシ設定 URL を使う(&S):"
+msgstr "システムのプロキシ設定を使う:"
 
 #. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
 #: proxy/kproxydlg.ui:127
@@ -562,10 +569,9 @@ msgstr "手動でプロキシサーバの設定情報を入力します。"
 
 #. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:346
-#, fuzzy, kde-format
-#| msgid "A&utomatically detect proxy configuration"
+#, kde-format
 msgid "Use manually specified proxy configuration:"
-msgstr "プロキシ設定を自動検出する(&U)"
+msgstr "手動で指定したプロキシ設定を使う:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
 #: proxy/kproxydlg.ui:398
@@ -581,7 +587,7 @@ msgstr "HTTP プロキシサーバのアドレスを入力します。"
 #: proxy/kproxydlg.ui:574
 #, kde-format
 msgid "Port:"
-msgstr ""
+msgstr "ポート:"
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
 #: proxy/kproxydlg.ui:421
@@ -592,10 +598,9 @@ msgstr "HTTP プロキシサーバのアドレスを入力します。"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
 #: proxy/kproxydlg.ui:436
-#, fuzzy, kde-format
-#| msgid "&Use the same proxy server for all protocols"
+#, kde-format
 msgid "Use this proxy server for a&ll protocols"
-msgstr "すべてのプロトコルで同じプロキシサーバを使う(&U)"
+msgstr "すべてのプロトコルでこのプロキシサーバを使う(&L)"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
 #: proxy/kproxydlg.ui:464
@@ -665,10 +670,9 @@ msgstr "このリストにある場合だけプロキシを使う"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy only for entries in this list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the Exceptions list"
-msgstr "このリストにある場合だけプロキシを使う"
+msgstr "例外リストにあるアドレスに接続する場合のみプロキシ設定を使う"
 
 #: trash/kcmtrash.cpp:140
 #, kde-format
@@ -858,10 +862,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
-#, fuzzy, kde-format
-#| msgid "&Enable Web shortcuts"
+#, kde-format
 msgid "&Enable Web search keywords"
-msgstr "ウェブショートカットを有効にする(&E)"
+msgstr "ウェブ検索キーワードを有効にする(&E)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:30
