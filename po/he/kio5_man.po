@@ -12,19 +12,20 @@
 # Meni Livne <livne@kde.org>, 2007.
 # Diego Iastrubni <elcuco@kde.org>, 2008, 2012.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+# SPDX-FileCopyrightText: 2024 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio5_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:32+0000\n"
-"PO-Revision-Date: 2017-05-16 07:03-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2024-03-11 06:43+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: kio_man.cpp:460
@@ -98,16 +99,14 @@ msgstr ""
 "להיות מיושן. במקרה של ספק, עדיף לבדוק את הגירסה האנגלית."
 
 #: kio_man.cpp:756
-#, fuzzy, kde-format
-#| msgid "Header files"
+#, kde-format
 msgid "Header Files"
-msgstr "קבצי כותרת"
+msgstr "קובצי כותרת"
 
 #: kio_man.cpp:758
-#, fuzzy, kde-format
-#| msgid "Header files (POSIX)"
+#, kde-format
 msgid "Header Files (POSIX)"
-msgstr "קבצי כותרת (POSIX)"
+msgstr "קובצי כותרת (POSIX)"
 
 #: kio_man.cpp:760
 #, kde-format
@@ -205,7 +204,7 @@ msgstr "אינדקס דפי ההוראות של Unix"
 #: kio_man.cpp:1101
 #, kde-format
 msgid "Generating Index"
-msgstr "יוצר אינדקס"
+msgstr "נוצר מפתח"
 
 #: kio_man.cpp:1355
 #, fuzzy, kde-kuit-format

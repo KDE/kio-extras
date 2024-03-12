@@ -3,66 +3,67 @@
 #
 # Diego Iastrubni <elcuco@kde.org>, 2012.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+# SPDX-FileCopyrightText: 2024 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio5_activities\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:32+0000\n"
-"PO-Revision-Date: 2017-05-16 07:03-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2024-03-11 06:43+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Lokalize 23.08.4\n"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:88 KioActivities.cpp:176
-#, fuzzy, kde-format
+#, kde-format
 msgid "Activities"
-msgstr "בטל נעילת הפעילות"
+msgstr "פעילויות"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:91
 #, kde-format
 msgid "Loading..."
-msgstr ""
+msgstr "טעינה…"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:108
-#, fuzzy, kde-format
+#, kde-format
 msgid "The Activity Manager is not running"
-msgstr "מנהל פעילויות לא פועל כהלכה."
+msgstr "מנהל הפעילויות לא רץ"
 
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:51
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:110
-#, fuzzy, kde-format
+#, kde-format
 msgid "Link to the current activity"
-msgstr "בטל את הגנת הפעילות"
+msgstr "קישור לפעילות הנוכחית"
 
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:52
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:113
-#, fuzzy, kde-format
+#, kde-format
 msgid "Unlink from the current activity"
-msgstr "בטל את הגנת הפעילות"
+msgstr "ניתוק מהפעילות הנוכחית"
 
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:54
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:116
 #, kde-format
 msgid "Link to:"
-msgstr ""
+msgstr "קישור אל:"
 
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:123
 #, kde-format
 msgid "Unlink from:"
-msgstr ""
+msgstr "ניתוק מ־"
 
 #: KioActivities.cpp:108
-#, fuzzy, kde-format
+#, kde-format
 msgid "Current activity"
-msgstr "בטל את הגנת הפעילות"
+msgstr "פעילות נוכחית"
 
 #: KioActivities.cpp:109 KioActivitiesApi.cpp:85
-#, fuzzy, kde-format
+#, kde-format
 msgid "Activity"
-msgstr "בטל נעילת הפעילות"
+msgstr "פעילות"

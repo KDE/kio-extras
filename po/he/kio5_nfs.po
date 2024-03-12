@@ -11,60 +11,61 @@
 #
 # Diego Iastrubni <elcuco@kdemail.net>, 2004, 2012.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+# SPDX-FileCopyrightText: 2024 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio5_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:32+0000\n"
-"PO-Revision-Date: 2017-05-16 07:03-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hebrew <kde-l10n-he@kde.org>\n"
+"PO-Revision-Date: 2024-03-11 06:46+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Lokalize 23.08.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: kio_nfs.cpp:152
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
-msgstr ""
+msgstr "לא ניתן למצוא גרסת NFS שהמארח ‚%1’ תומך בה"
 
 #: kio_nfs.cpp:322
 #, kde-format
 msgid "The NFS protocol requires a server host name."
-msgstr ""
+msgstr "פרוטוקול NFS דורש שם מארח לשרת."
 
 #: kio_nfs.cpp:352
 #, kde-format
 msgid "Failed to initialise protocol"
-msgstr ""
+msgstr "אתחול הפרוטוקול נכשל"
 
 #: kio_nfs.cpp:820
 #, kde-format
 msgid "RPC error %1, %2"
-msgstr ""
+msgstr "שגיאת RPC‏ %1, %2"
 
 #: kio_nfs.cpp:869
 #, kde-format
 msgid "Filename too long"
-msgstr "שם הקובץ ארוך מדיי"
+msgstr "שם הקובץ ארוך מדי"
 
 #: kio_nfs.cpp:876
 #, kde-format
 msgid "Disk quota exceeded"
-msgstr "חריגה ממכסת הדיסק"
+msgstr "חריגה ממכסת הכונן"
 
 #: kio_nfs.cpp:882
 #, kde-format
 msgid "NFS error %1, %2"
-msgstr ""
+msgstr "שגיאת NFS‏ %1, %2"
 
 #: nfsv2.cpp:391 nfsv2.cpp:442 nfsv3.cpp:429 nfsv3.cpp:573
 #, kde-format
 msgid "Unknown target"
-msgstr ""
+msgstr "יעד לא ידוע"
 
 #~ msgid "No space left on device"
 #~ msgstr "לא נשאר מקום על ההתקן."
