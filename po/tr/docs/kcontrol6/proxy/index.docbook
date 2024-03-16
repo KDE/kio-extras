@@ -184,7 +184,7 @@ How to enable Auto Detect button?
 ></term>
 <listitem>
 <para
->Yukarıdaki vekil ayarlarından dışarıda tutulması gereken makine adlarının veya IP adreslerinin virgülle ayrılmış bir listesini girin. Belirli bir alan adı için olan tüm makine adlarını dışarıda tutmak istiyorsanız yalnızca alan adını önünde bir nokta ile girin. Örneğin, kde.org için olan tüm makine adlarını dışarıda tutmak için <userinput
+>Yukarıdaki vekil ayarlarından dışlanması gereken makine adlarının veya IP adreslerinin virgülle ayrılmış bir listesini girin. Belirli bir alan adı için olan tüm makine adlarını dışlamak istiyorsanız yalnızca alan adını önünde bir nokta ile girin. Örneğin, kde.org için olan tüm makine adlarını dışlamak için <userinput
 >.kde.org</userinput
 > girin. <userinput
 >*</userinput
