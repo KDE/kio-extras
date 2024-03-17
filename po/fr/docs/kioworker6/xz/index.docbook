@@ -22,24 +22,24 @@
 </articleinfo>
 
 <para
->Xz est un programme de compression</para>
+>« xz » est un programme de compression</para>
 
 <para
->The xz KIO worker is not directly usable, and is intended for use as a filter. For example, the tar KIO worker can filter a file through the xz KIO worker, in order to display the contents of a <literal role="extension"
+>Le module d'entrées-sorties « xz »  n'est pas utilisable directement. Il est conçu pour être utilisé comme un filtre. Par exemple, le module d'entrées /  sorties « tar » peut filtrer un fichier à travers le module d'entrées-sorties « xz », afin d'afficher le contenu d'un fichier <literal role="extension"
 >tar.lzma</literal
-> or <literal role="extension"
+> ou <literal role="extension"
 >tar.xz</literal
-> file directly in a &konqueror; window.</para>
+> directement dans la fenêtre de &konqueror;.</para>
 
 <para
->If you click on a file compressed with a <literal role="extension"
+>Si vous cliquez sur un fichier compressé avec <literal role="extension"
 >.lzma</literal
-> or <literal role="extension"
+> ou <literal role="extension"
 >tar.xz</literal
-> in &konqueror;, this KIO worker is used to uncompress it and display it as a normal (uncompressed) file.</para>
+> dans &konqueror;, ce module d'entrées-sorties « xz »  est utilisé pour le décompresser et l'afficher comme s'il s'agissait d'un fichier normal (non compressé).</para>
 
 <para
->If you are a developer, and would like to use the xz filter, you can find documentation on using KIO workers at <ulink url="http://techbase.kde.org"
+>Si vous faites partie d'une équipe de développement et souhaitez utiliser le filtre « xz », vous pouvez trouver de la documentation sur l'utilisation des modules d'entrées / sorties sur le site <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 ></para>
 

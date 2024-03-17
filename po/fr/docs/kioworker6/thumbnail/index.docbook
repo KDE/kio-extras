@@ -21,19 +21,19 @@
 >Applications 16.12</releaseinfo>
 </articleinfo>
 <para
->The thumbnail KIO worker is used by &kde; for network transparent and persistent generation of thumbnails.</para>
+>Le module d'entrées-sorties « thumbnail » est utilisé par &kde; au niveau de la transparence réseau et de la génération persistante des vignettes.</para>
 
 <para
->The thumbnail KIO worker uses plugins to generate the actual thumbnails. You can enable viewing of these thumbnails from the <menuchoice
+>Le module d'entrées-sorties « thumbnail » utilise des modules externes pour la génération des vignettes courantes. Vous pouvez activer l'affichage de ces vignettes depuis le sous-menu <menuchoice
 ><guimenu
->View</guimenu
+>Affichage</guimenu
 > <guisubmenu
->Preview</guisubmenu
+>Aperçu</guisubmenu
 ></menuchoice
-> submenu, available in &dolphin; or in &konqueror; in file manager mode.</para>
+>, accessible dans &dolphin; ou &konqueror; en mode gestionnaire de fichiers.</para>
 
 <para
->The thumbnail KIO worker is not directly useful to a user, but if you are a developer, you can use it within your own applications to create file previews.</para>
+>Le module d'entrées-sorties « thumbnail » n'est pas directement utile à l'utilisateur, mais si vous faites partie d'une équipe de développement, vous pouvez l'utiliser dans votre application pour créer des aperçus de fichiers.</para>
 
 <para
 >Veuillez consulter la documentation dans les sources pour plus d'informations. Vous les trouverez dans la vignette du dossier source <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"
