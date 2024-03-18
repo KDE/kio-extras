@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-02 01:39+0000\n"
+"POT-Creation-Date: 2024-03-18 00:38+0000\n"
 "PO-Revision-Date: 2021-09-03 08:18+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 
-#: kio_man.cpp:461
+#: kio_man.cpp:460
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -41,7 +41,7 @@ msgstr ""
 "storite z okoljsko spremenljivko <envar>MANPATH</envar> ali pa z ustrezno "
 "nastavitveno datoteko v mapi <filename>/etc</filename>."
 
-#: kio_man.cpp:575
+#: kio_man.cpp:574
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -51,34 +51,34 @@ msgstr ""
 "Določena stran man se je sklicevala na drugo stran <filename>%1</filename>,"
 "<nl/>, a te strani <filename>%2</filename> ni bilo mogoče najti."
 
-#: kio_man.cpp:592
+#: kio_man.cpp:591
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr "Strani man <filename>%1</filename> ni bilo mogoče prebrati."
 
-#: kio_man.cpp:601
+#: kio_man.cpp:600
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr "Strani man <filename>%1</filename> ni bilo mogoče pretvoriti."
 
-#: kio_man.cpp:663
+#: kio_man.cpp:662
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "Napaka pri pregledovalniku strani man"
 
-#: kio_man.cpp:676
+#: kio_man.cpp:675
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "Na voljo je več kot ena ujemajoča se stran man:"
 
-#: kio_man.cpp:676
+#: kio_man.cpp:675
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "Več strani priročnika"
 
-#: kio_man.cpp:689
+#: kio_man.cpp:688
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -89,112 +89,112 @@ msgstr ""
 "vsebujejo napake ali pa so zastarele. Če ste v dvomih, si oglejte različico "
 "v angleščini."
 
-#: kio_man.cpp:757
+#: kio_man.cpp:756
 #, kde-format
 msgid "Header Files"
 msgstr "Datoteke glav"
 
-#: kio_man.cpp:759
+#: kio_man.cpp:758
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "Datoteke glav (POSIX)"
 
-#: kio_man.cpp:761
+#: kio_man.cpp:760
 #, kde-format
 msgid "User Commands"
 msgstr "Uporabniški ukazi"
 
-#: kio_man.cpp:763
+#: kio_man.cpp:762
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "Uporabniški ukazi (POSIX)"
 
-#: kio_man.cpp:765
+#: kio_man.cpp:764
 #, kde-format
 msgid "System Calls"
 msgstr "Sistemski klici"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:766
 #, kde-format
 msgid "Subroutines"
 msgstr "Podprogrami"
 
-#: kio_man.cpp:770
+#: kio_man.cpp:769
 #, kde-format
 msgid "Perl Modules"
 msgstr "Moduli Perl"
 
-#: kio_man.cpp:772
+#: kio_man.cpp:771
 #, kde-format
 msgid "Network Functions"
 msgstr "Omrežne funkcije"
 
-#: kio_man.cpp:774
+#: kio_man.cpp:773
 #, kde-format
 msgid "Devices"
 msgstr "Naprave"
 
-#: kio_man.cpp:776
+#: kio_man.cpp:775
 #, kde-format
 msgid "File Formats"
 msgstr "Vrste datotek"
 
-#: kio_man.cpp:778
+#: kio_man.cpp:777
 #, kde-format
 msgid "Games"
 msgstr "Igre"
 
-#: kio_man.cpp:780
+#: kio_man.cpp:779
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Razno"
 
-#: kio_man.cpp:782
+#: kio_man.cpp:781
 #, kde-format
 msgid "System Administration"
 msgstr "Skrbništvo sistema"
 
-#: kio_man.cpp:784
+#: kio_man.cpp:783
 #, kde-format
 msgid "Kernel"
 msgstr "Jedro"
 
-#: kio_man.cpp:786
+#: kio_man.cpp:785
 #, kde-format
 msgid "Local Documentation"
 msgstr "Krajevna dokumentacija"
 
-#: kio_man.cpp:789
+#: kio_man.cpp:788
 #, kde-format
 msgid "New"
 msgstr "Novo"
 
-#: kio_man.cpp:816
+#: kio_man.cpp:815
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "Glavno kazalo strani priročnika"
 
-#: kio_man.cpp:841
+#: kio_man.cpp:840
 #, kde-format
 msgid "Section %1"
 msgstr "Odsek %1"
 
-#: kio_man.cpp:1090
+#: kio_man.cpp:1089
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Kazalo za odsek %1: %2"
 
-#: kio_man.cpp:1090
+#: kio_man.cpp:1089
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Kazalo strani priročnika"
 
-#: kio_man.cpp:1102
+#: kio_man.cpp:1101
 #, kde-format
 msgid "Generating Index"
 msgstr "Ustvarjanje kazala"
 
-#: kio_man.cpp:1356
+#: kio_man.cpp:1355
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-02 01:39+0000\n"
+"POT-Creation-Date: 2024-03-18 00:38+0000\n"
 "PO-Revision-Date: 2014-02-13 23:57+0100\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Lokalize 1.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_man.cpp:461
+#: kio_man.cpp:460
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "No man page matching to %1 found.<br /><br />Check that you have not "
@@ -43,7 +43,7 @@ msgstr ""
 "Söökpadd för Man-Sieden ännern. Dat kannst Du över de Ümgeven-Variabel "
 "\"MANPATH\" maken, oder över en Instellendatei binnen \"/etc\"."
 
-#: kio_man.cpp:575
+#: kio_man.cpp:574
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -51,36 +51,36 @@ msgid ""
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
 
-#: kio_man.cpp:592
+#: kio_man.cpp:591
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr ""
 
-#: kio_man.cpp:601
+#: kio_man.cpp:600
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
-#: kio_man.cpp:663
+#: kio_man.cpp:662
 #, fuzzy, kde-format
 #| msgid "<h1>KDE Man Viewer Error</h1>"
 msgid "Manual Page Viewer Error"
 msgstr "<h1>Fehler vun den Man-Sieden-Kieker vun KDE</h1>"
 
-#: kio_man.cpp:676
+#: kio_man.cpp:675
 #, fuzzy, kde-format
 #| msgid "There is more than one matching man page."
 msgid "There is more than one matching man page:"
 msgstr "Dat gifft mehr as een passen Man-Siet."
 
-#: kio_man.cpp:676
+#: kio_man.cpp:675
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:689
+#: kio_man.cpp:688
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -91,117 +91,117 @@ msgstr ""
 "wesen, oder se kunn al to oolt wesen. Wenn Du nich seker büst, kiek Di ok de "
 "engelsche Verschoon an."
 
-#: kio_man.cpp:757
+#: kio_man.cpp:756
 #, fuzzy, kde-format
 #| msgid "Header files"
 msgid "Header Files"
 msgstr "Koppdateien"
 
-#: kio_man.cpp:759
+#: kio_man.cpp:758
 #, fuzzy, kde-format
 #| msgid "Header files (POSIX)"
 msgid "Header Files (POSIX)"
 msgstr "Koppdateien (POSIX)"
 
-#: kio_man.cpp:761
+#: kio_man.cpp:760
 #, kde-format
 msgid "User Commands"
 msgstr "Brukerbefehlen"
 
-#: kio_man.cpp:763
+#: kio_man.cpp:762
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "Brukerbefehlen (POSIX)"
 
-#: kio_man.cpp:765
+#: kio_man.cpp:764
 #, kde-format
 msgid "System Calls"
 msgstr "Systeem-Oprööp"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:766
 #, kde-format
 msgid "Subroutines"
 msgstr "Ünnerroutinen"
 
-#: kio_man.cpp:770
+#: kio_man.cpp:769
 #, kde-format
 msgid "Perl Modules"
 msgstr "Perl-Modulen"
 
-#: kio_man.cpp:772
+#: kio_man.cpp:771
 #, kde-format
 msgid "Network Functions"
 msgstr "Nettwark-Funkschonen"
 
-#: kio_man.cpp:774
+#: kio_man.cpp:773
 #, kde-format
 msgid "Devices"
 msgstr "Reedschappen"
 
-#: kio_man.cpp:776
+#: kio_man.cpp:775
 #, kde-format
 msgid "File Formats"
 msgstr "Dateiformaten"
 
-#: kio_man.cpp:778
+#: kio_man.cpp:777
 #, kde-format
 msgid "Games"
 msgstr "Spelen"
 
-#: kio_man.cpp:780
+#: kio_man.cpp:779
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Anner Saken"
 
-#: kio_man.cpp:782
+#: kio_man.cpp:781
 #, kde-format
 msgid "System Administration"
 msgstr "Systeempleeg"
 
-#: kio_man.cpp:784
+#: kio_man.cpp:783
 #, kde-format
 msgid "Kernel"
 msgstr "Kernel"
 
-#: kio_man.cpp:786
+#: kio_man.cpp:785
 #, kde-format
 msgid "Local Documentation"
 msgstr "Lokaal Dokmentatschoon"
 
-#: kio_man.cpp:789
+#: kio_man.cpp:788
 #, kde-format
 msgid "New"
 msgstr "Nieg"
 
-#: kio_man.cpp:816
+#: kio_man.cpp:815
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Main Manual Page Index"
 msgstr "Man-Sieden-Index vun UNIX"
 
-#: kio_man.cpp:841
+#: kio_man.cpp:840
 #, kde-format
 msgid "Section %1"
 msgstr "Afsnitt %1"
 
-#: kio_man.cpp:1090
+#: kio_man.cpp:1089
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "Index för Afsnitt %1: %2"
 
-#: kio_man.cpp:1090
+#: kio_man.cpp:1089
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "Man-Sieden-Index vun UNIX"
 
-#: kio_man.cpp:1102
+#: kio_man.cpp:1101
 #, kde-format
 msgid "Generating Index"
 msgstr "Index warrt opstellt"
 
-#: kio_man.cpp:1356
+#: kio_man.cpp:1355
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "
