@@ -1,3 +1,5 @@
+add_definitions(-DTRANSLATION_DOMAIN=\"kio6_filenamesearch\")
+
 kcoreaddons_add_plugin(kio_filenamesearch INSTALL_NAMESPACE "kf6/kio")
 
 target_link_libraries(kio_filenamesearch KF6::KIOCore KF6::DBusAddons Qt::Network KF6::KIOCore KF6::I18n)

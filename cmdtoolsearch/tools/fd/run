@@ -1,0 +1,14 @@
+#!/bin/sh
+if which fd-find >/dev/null 2>&1; then
+    FD_CMD=fd-find
+elif which fd >/dev/null 2>&1; then
+    FD_CMD=fd
+else
+    exit 1
+fi
+
+if [ "$ON_HDD"z = "1z" ]; then
+    PARALLEL="-j1"
+fi
+
+$FD_CMD $PARALLEL -- "$SEARCH_PATTERN"

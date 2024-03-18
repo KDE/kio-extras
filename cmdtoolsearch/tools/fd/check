@@ -1,0 +1,9 @@
+#!/bin/sh
+if which fd-find >/dev/null 2>&1; then
+    FD_CMD=fd-find
+elif which fd >/dev/null 2>&1; then
+    FD_CMD=fd
+else
+    exit 1
+fi
+$FD_CMD --help | grep --quiet "A program to find entries in your filesystem"

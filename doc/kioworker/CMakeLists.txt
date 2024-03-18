@@ -1,6 +1,7 @@
 if(KArchive_HAVE_BZIP2)
   add_subdirectory(bzip2)
 endif()
+add_subdirectory(cmdtoolsearch)
 add_subdirectory(fish)
 add_subdirectory(gzip)
 add_subdirectory(info)

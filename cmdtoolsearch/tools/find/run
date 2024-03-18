@@ -1,0 +1,3 @@
+#!/bin/sh
+set -f
+find . -iname "*$SEARCH_PATTERN*" -print0

@@ -1,0 +1,5 @@
+#!/bin/sh
+if [ "$ON_HDD"z = "1z" ]; then
+    PARALLEL="-j1"
+fi
+rg $PARALLEL --files-with-matches --line-buffered --null --color=never --hyperlink-format=none -- "$SEARCH_PATTERN" .

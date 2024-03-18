@@ -1,0 +1,2 @@
+#!/bin/sh
+rg --version | grep --quiet ripgrep

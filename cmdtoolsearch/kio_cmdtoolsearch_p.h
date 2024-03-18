@@ -4,8 +4,7 @@
     SPDX-License-Identifier: LGPL-2.0-only
 */
 
-#ifndef FILENAMESEARCH_P_H
-#define FILENAMESEARCH_P_H
+#pragma once
 
 // Copied from kio/src/core/kioglobal_p.h
 
@@ -75,5 +74,3 @@ Q_STATIC_ASSERT(S_IRUSR == _S_IREAD && S_IWUSR == _S_IWRITE && S_IXUSR == _S_IEX
 #endif
 
 #endif // Q_OS_WIN
-
-#endif // FILENAMESEARCH_P_H

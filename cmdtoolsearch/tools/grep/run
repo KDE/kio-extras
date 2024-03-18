@@ -1,0 +1,2 @@
+#!/bin/sh
+grep -r --line-buffered --files-with-matches -i -- "$SEARCH_PATTERN" .

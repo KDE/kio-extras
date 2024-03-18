@@ -1,0 +1,2 @@
+#!/bin/sh
+rga --version | grep --quiet ripgrep-all

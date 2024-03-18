@@ -1,0 +1,209 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % English "INCLUDE" > <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="cmdtoolsearch">
+<title>cmdtoolsearch</title>
+<articleinfo>
+<authorgroup>
+    <author>
+        <firstname>Jin</firstname>
+        <surname>Liu</surname>
+        <email>m.liu.jin@gmail.com</email>
+      </author>
+<!-- TRANS:ROLES_OF_TRANSLATORS -->
+</authorgroup>
+
+<date>2024-03-30</date>
+<releaseinfo>&kde; 6.1</releaseinfo>
+
+</articleinfo>
+
+<para>This KIO worker implements file name and content search. Normally, you don't directly
+  use this worker, but use it though searching in Dolphin.</para>
+
+<sect1><title>Using Tools</title>
+
+<para>To use this KIO worker, in the search box in Dolphin, prefix the search string with
+  <userinput>@<replaceable>tool_name</replaceable></userinput></para>
+  
+<para>For example, to search for files containing the string "foo" using the "rg" plugin, you would enter
+  <userinput>@rg foo</userinput></para>
+
+<note><para>The <userinput>@<replaceable>tool_name</replaceable></userinput> must be at the very begining of
+  the line. If there are spaces before the "@", it won't be seen as a tool name. So if you do want to search
+  for something beginning with a "@", you can add a space at the beginning of the search.</para></note>
+
+<para>Currently, the following tools are supported:</para>
+
+<itemizedlist>
+  <listitem>
+    <para>@fd: a fast filename searcher (https://github.com/sharkdp/fd).</para>
+  </listitem>
+  <listitem>
+    <para>@rg: ripgrep, a fast file content searcher (https://github.com/BurntSushi/ripgrep).</para>
+  </listitem>
+  <listitem>
+    <para>@rga: ripgrep-all, extending ripgrep to also search in archives, PDF, and other documents.
+      (https://github.com/phiresky/ripgrep-all).</para>
+  </listitem>
+  <listitem>
+    <para>@find: the standard *NIX file name searcher.</para>
+  </listitem>
+  <listitem>
+    <para>@grep: the standard *NIX file content searcher.</para>
+  </listitem>
+  <listitem>
+    <para>@locate: Find files in the global "locate" datebase. Note: the result is not limited in the current
+      folder.</para>
+  </listitem>
+  <listitem>
+    <para>@git-status: Show changed and untracked files, if the current folder is part of a GIT repository.</para>
+  </listitem>
+  <listitem>
+    <para>@plain: A special tool that calls the "filenamesearch" KIO worker. This is the only tool that works in
+      remote folders.</para>
+  </listitem>  
+</itemizedlist>
+
+<note>
+  <itemizedlist>
+    <listitem><para>You might need to install the corresponding external program (e.g. ripgrep, fd) to use a
+      tool.</para></listitem>
+    <listitem><para>All tools except "@plain" only work in local folders. You can't use them in remote folders
+      like ssh, MTP, etc.</para></listitem>
+    <listitem><para>You can add more tools. See the "Adding New Tools" section below.</para></listitem>
+  </itemizedlist>
+</note>
+  
+</sect1>
+
+<sect1><title>The Default Tool</title>
+
+<para>If the search text doesn't begin with "@", Dolphin will try to use the Baloo search. If it's unavailable
+or disabled, Dolphin will use the default tool in this KIO worker.</para>
+
+<para>The default tool is determined as follows:</para>
+
+<itemizedlist>
+  <listitem>
+    <para>If the current folder is not local, then "@plain" is used.</para>
+  </listitem>
+  <listitem>
+    <para>Otherwise, if the user is searching for file names, the first tool available in the 
+      "default_file_name_search" list is used. The default list is "fd", "find".</para>
+  </listitem>
+  <listitem>
+    <para>Similarly, if the user is searching for file contents, the first tool available in the 
+      "default_file_content_search" list is used. The default list is "rga", "rg", "grep".</para>
+  </listitem>
+  <listitem>
+    <para>If none of the tools is available, "@plain" is used.</para>
+  </listitem>
+</itemizedlist>
+  
+<note><para>You can change the default list. See the "Customization" section below.</para></note>
+
+</sect1>
+
+<sect1><title>Customization</title>
+
+<para>This KIO worker reads tool definitions and default lists from "$XDG_DATA_DIRS/cmdtoolsearch".
+  Normally it's:</para>
+  <itemizedlist>
+    <listitem><para>$HOME/.local/share/cmdtoolsearch</para></listitem>
+    <listitem><para>/usr/local/share/cmdtoolsearch</para></listitem>
+    <listitem><para>/usr/share/cmdtoolsearch</para></listitem>
+  </itemizedlist>
+<para>The builtin tools and default lists are in the last directory. You can add new tools by putting
+  them in the former two directories. Or you can modify an existing tool by putting a tool with the same
+  name in the former two directories.</para>
+
+<para>To change the default lists, put a "default_file_name_search" or "default_file_content_search"
+  file in the former two directories. The file should contain a list of tool names, one line for each tool.
+  The first tool available will be used as the default tool.</para>
+
+</sect1>
+
+<sect1><title>Adding New Tools</title>
+
+<para>A tool is defined by a sub-directory in "$XDG_DATA_DIRS/cmdtoolsearch". The name of the sub-directory
+  is the tool name. The sub-directory should contain the following files:</para>
+
+  <itemizedlist>
+    <listitem>
+      <para>run</para>
+      <para>An executable (e.g. a executable bash script) that perform the search. Normally this script
+        doesn't do the search by itself, but calls some external program to do it.
+      </para>
+      <itemizedlist>
+        <listitem>
+          <para>Input:</para>
+          <para>Search parameters are passed in environment variables:</para>
+          <itemizedlist>
+            <listitem><para>SEARCH_PATTERN : the search pattern.</para></listitem>
+            <listitem><para>SEARCH_FILE_CONTENTS : 1 if search in file contents, empty otherwise. If your
+              tool can only search in file names or contents (as built-in tools are), you can ignore this
+              variable.</para></listitem>
+            <listitem><para>ON_HDD : 1 if the working directory is in the HDD, empty otherwise. You might want to
+              limit the number of working threads (e.g. pass "-j1" to fd or ripgrep) if the working directory is on HDD.
+            </para></listitem>
+          </itemizedlist>
+        </listitem>
+        <listitem>
+          <para>Output:</para>
+          <para>Paths should be printed to stdout, separated by NUL or newline, as indicated in metadata.json
+            below. NUL is preferred, as newline can be problematic when paths contains newlines.</para>
+        </listitem>
+        <listitem>
+          <para>Return value:</para>
+          <para>0 if successful, non-zero otherwise.</para>
+        </listitem>
+      </itemizedlist>
+    </listitem>
+    <listitem>
+      <para>check</para>
+      <para>An executable (e.g. a executable bash script) that checks if the tool is available.</para>
+      <para>Return 0 if the tool is available (e.g. the required external program is installed), non-zero
+        otherwise.</para>
+    </listitem>
+    <listitem>
+      <para>metadata.json</para>
+      <para>Contains metadata of the tool in a json object.</para>
+      <para>Keys:</para>
+      <itemizedlist>
+        <listitem><para>separator: "nul" | "newline"</para></listitem>
+      </itemizedlist>
+    </listitem>
+  </itemizedlist>
+
+<para>Example:</para>
+<para>We add an "@rg-binary" tool that works like the built-in "@rg" tool, but searches binary files.</para>
+<para>Create a directory "$HOME/share/cmdtoolsearch/rgbin" and put the following files:</para>
+<para>check</para>
+<programlisting><![CDATA[
+#!/bin/sh
+rg --version | grep --quiet ripgrep
+]]></programlisting>
+<para>run</para>
+<programlisting><![CDATA[
+#!/bin/sh
+rg --null-data --files-with-matches --line-buffered --null --color=never --hyperlink-format=none -- "$SEARCH_PATTERN" .
+]]></programlisting>
+<para>metadata.json</para>
+<programlisting><![CDATA[
+{
+  "separator": "nul"
+}
+]]></programlisting>
+
+<note><para>"check" and "run" must be executable. E.g. in shell, run "chmod +x check run".</para></note>
+
+<para>Now you should be able to use "@rgbin" in search.</para>
+
+</sect1>
+
+</article>
