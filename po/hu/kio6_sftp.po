@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.2\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-17 00:37+0000\n"
+"POT-Creation-Date: 2024-03-19 00:38+0000\n"
 "PO-Revision-Date: 2024-01-08 09:46+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -18,118 +18,118 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 23.08.4\n"
 
-#: kio_sftp.cpp:274
+#: kio_sftp.cpp:282
 #, kde-format
 msgid "Incorrect or invalid passphrase"
 msgstr "Hibás vagy érvénytelen jelszó"
 
-#: kio_sftp.cpp:323
+#: kio_sftp.cpp:331
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "Nem sikerült lefoglalni a visszahívásokat"
 
-#: kio_sftp.cpp:336
+#: kio_sftp.cpp:344
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "Nem sikerült beállítani a napló részletességét."
 
-#: kio_sftp.cpp:341
+#: kio_sftp.cpp:349
 #, kde-format
 msgid "Could not set log userdata."
 msgstr "Nem sikerült beállítani a napló felhasználói adatait."
 
-#: kio_sftp.cpp:346
+#: kio_sftp.cpp:354
 #, kde-format
 msgid "Could not set log callback."
 msgstr "Nem sikerült beállítani a napló visszahívást."
 
-#: kio_sftp.cpp:382 kio_sftp.cpp:384 kio_sftp.cpp:895
+#: kio_sftp.cpp:390 kio_sftp.cpp:392 kio_sftp.cpp:903
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP-s bejelentkezés"
 
-#: kio_sftp.cpp:399
+#: kio_sftp.cpp:407
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr "Használja a felhasználónév beviteli mezőt a kérdés megválaszolására."
 
-#: kio_sftp.cpp:412
+#: kio_sftp.cpp:420
 #, kde-format
 msgid "Please enter your password."
 msgstr "Adja meg jelszavát."
 
-#: kio_sftp.cpp:417 kio_sftp.cpp:898
+#: kio_sftp.cpp:425 kio_sftp.cpp:906
 #, kde-format
 msgid "Site:"
 msgstr "Oldal:"
 
-#: kio_sftp.cpp:462
+#: kio_sftp.cpp:470
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "Nem sikerült olvasni a hivatkozást: %1 [%2]"
 
-#: kio_sftp.cpp:582
+#: kio_sftp.cpp:590
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "Nem sikerült új SSH-munkamenetet létrehozni."
 
-#: kio_sftp.cpp:593 kio_sftp.cpp:597
+#: kio_sftp.cpp:601 kio_sftp.cpp:605
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "Nem sikerült beállítani az időkorlátot."
 
-#: kio_sftp.cpp:604
+#: kio_sftp.cpp:612
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "Nem sikerült kikapcsolni Nagle algoritmusát."
 
-#: kio_sftp.cpp:610 kio_sftp.cpp:615
+#: kio_sftp.cpp:618 kio_sftp.cpp:623
 #, kde-format
 msgid "Could not set compression."
 msgstr "Nem sikerült beállítani a tömörítést."
 
-#: kio_sftp.cpp:621
+#: kio_sftp.cpp:629
 #, kde-format
 msgid "Could not set host."
 msgstr "Nem sikerült beállítani a gépnevet."
 
-#: kio_sftp.cpp:627
+#: kio_sftp.cpp:635
 #, kde-format
 msgid "Could not set port."
 msgstr "Nem sikerült beállítani a portot."
 
-#: kio_sftp.cpp:635
+#: kio_sftp.cpp:643
 #, kde-format
 msgid "Could not set username."
 msgstr "Nem sikerült beállítani a felhasználónevet."
 
-#: kio_sftp.cpp:642
+#: kio_sftp.cpp:650
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "Nem sikerült feldolgozni a beállítófájlt."
 
-#: kio_sftp.cpp:657
+#: kio_sftp.cpp:665
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "SFTP-kapcsolat létrehozása ezzel a géppel: %1:%2"
 
-#: kio_sftp.cpp:697
+#: kio_sftp.cpp:705
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "Nem sikerült lekérni a kiszolgáló nyilvános kulcsa típusának nevét"
 
-#: kio_sftp.cpp:709
+#: kio_sftp.cpp:717
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr "Nem sikerült hasítókódot létrehozni a kiszolgáló nyilvános kulcsából"
 
-#: kio_sftp.cpp:718
+#: kio_sftp.cpp:726
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "Nem sikerült ujjlenyomatot létrehozni a kiszolgáló nyilvános kulcsából"
 
-#: kio_sftp.cpp:777
+#: kio_sftp.cpp:785
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -145,13 +145,13 @@ msgstr ""
 "rendszergazdával.\n"
 "%2"
 
-#: kio_sftp.cpp:794
+#: kio_sftp.cpp:802
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "A kiszolgáló kulcsa megváltozott"
 
-#: kio_sftp.cpp:796
+#: kio_sftp.cpp:804
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -167,13 +167,13 @@ msgstr ""
 "gép által küldött %2 kulcs ujjlenyomata:<bcode>%3</bcode>Biztosan folytatni "
 "szeretné a kapcsolódást?</para>"
 
-#: kio_sftp.cpp:806
+#: kio_sftp.cpp:814
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr "A kiszolgáló ellenőrzése sikertelen"
 
-#: kio_sftp.cpp:808
+#: kio_sftp.cpp:816
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -185,36 +185,36 @@ msgstr ""
 "para><para>A(z) %2 kulcs ujjlenyomata: <bcode>%3</bcode>Biztosan folytatni "
 "szeretné a kapcsolódást?</para>"
 
-#: kio_sftp.cpp:817
+#: kio_sftp.cpp:825
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "Kapcsolódás mindenképp"
 
-#: kio_sftp.cpp:840 kio_sftp.cpp:859 kio_sftp.cpp:874 kio_sftp.cpp:887
-#: kio_sftp.cpp:939 kio_sftp.cpp:949
+#: kio_sftp.cpp:848 kio_sftp.cpp:867 kio_sftp.cpp:882 kio_sftp.cpp:895
+#: kio_sftp.cpp:947 kio_sftp.cpp:957
 #, kde-format
 msgid "Authentication failed."
 msgstr "Sikertelen azonosítás."
 
-#: kio_sftp.cpp:847
+#: kio_sftp.cpp:855
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr ""
 "Sikertelen azonosítás. A kiszolgáló nem küldött semmilyen azonosítási módot"
 
-#: kio_sftp.cpp:896
+#: kio_sftp.cpp:904
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Adja meg a felhasználónevét és a jelszavát."
 
-#: kio_sftp.cpp:907
+#: kio_sftp.cpp:915
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Helytelen felhasználónév vagy jelszó"
 
-#: kio_sftp.cpp:956
+#: kio_sftp.cpp:964
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -223,22 +223,22 @@ msgstr ""
 "Nem sikerült kérni az SFTP alrendszert. Ellenőrizze hogy az SFTP "
 "engedélyezve van-e a kiszolgálón."
 
-#: kio_sftp.cpp:961
+#: kio_sftp.cpp:969
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "Nem sikerült előkészíteni az SFTP-munkamenetet."
 
-#: kio_sftp.cpp:965
+#: kio_sftp.cpp:973
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Sikeres csatlakozás - %1"
 
-#: kio_sftp.cpp:1018
+#: kio_sftp.cpp:1026
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Érvénytelen sftp kontextus"
 
-#: kio_sftp.cpp:1550
+#: kio_sftp.cpp:1558
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
