@@ -264,9 +264,10 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 
     convertToStandardRgb(img);
 
-    if (img.colorCount() > 0) {
+    if (img.colorCount() > 0 || img.depth() > 32) {
         // images using indexed color format, are not loaded properly by QImage ctor using in shm code path
         // convert the format to regular RGB
+        // Also limit the bits per pixel to 32 since PreviewJob only allocates as much shared memory
         img = img.convertToFormat(img.hasAlphaChannel() ? QImage::Format_ARGB32 : QImage::Format_RGB32);
     }
 
