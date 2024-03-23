@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail stable\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-20 01:34+0000\n"
+"POT-Creation-Date: 2024-03-23 00:37+0000\n"
 "PO-Revision-Date: 2005-11-24 08:58+0200\n"
 "Last-Translator: Kobus Venter <kabousv@therugby.co.za>\n"
 "Language-Team: AFRIKAANS <translate-discuss-af@lists.sourceforge.net>\n"
@@ -52,17 +52,17 @@ msgstr "Kon nie naeldruk skep vir %1"
 msgid "Failed to create a thumbnail."
 msgstr "Gefaal om naeldruk te skep"
 
-#: thumbnail.cpp:278
+#: thumbnail.cpp:279
 #, kde-format
 msgid "Could not write image."
 msgstr "Kon beeld nie skryf"
 
-#: thumbnail.cpp:306
+#: thumbnail.cpp:307
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Gefaal om na gedeelde geheue segment %1 te koppel"
 
-#: thumbnail.cpp:310
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Beeld is te groot vir die gedeelde geheue segment"

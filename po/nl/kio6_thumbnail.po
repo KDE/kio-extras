@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-20 01:34+0000\n"
+"POT-Creation-Date: 2024-03-23 00:37+0000\n"
 "PO-Revision-Date: 2015-07-20 13:18+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
@@ -52,17 +52,17 @@ msgstr "Kan geen miniatuur aanmaken voor %1"
 msgid "Failed to create a thumbnail."
 msgstr "Aanmaken van een miniatuur is mislukt"
 
-#: thumbnail.cpp:278
+#: thumbnail.cpp:279
 #, kde-format
 msgid "Could not write image."
 msgstr "Afbeelding kon niet worden geschreven."
 
-#: thumbnail.cpp:306
+#: thumbnail.cpp:307
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Verbinding met gedeeldgeheugensegment %1 is mislukt"
 
-#: thumbnail.cpp:310
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Afbeelding is te groot voor het gedeeldgeheugensegment"

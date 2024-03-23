@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-20 01:34+0000\n"
+"POT-Creation-Date: 2024-03-23 00:37+0000\n"
 "PO-Revision-Date: 2024-01-30 09:55-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -52,17 +52,17 @@ msgstr "%1 ਲਈ ਥੰਮਨੇਲ ਬਣਾਇਆ ਨਹੀਂ ਜਾ ਸਕ�
 msgid "Failed to create a thumbnail."
 msgstr "ਥੰਮਨੇਲ ਬਣਾਉਣ ਲਈ ਅਸਫ਼ਲ ਹੈ।"
 
-#: thumbnail.cpp:278
+#: thumbnail.cpp:279
 #, kde-format
 msgid "Could not write image."
 msgstr "ਚਿੱਤਰ ਲਿਖਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ ਹੈ।"
 
-#: thumbnail.cpp:306
+#: thumbnail.cpp:307
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "ਸਾਂਝਾ ਮੈਮੋਰੀ ਸਿਗਮੈਂਟ %1 ਨਾਲ ਜੁੜਨ ਲਈ ਫੇਲ੍ਹ ਹੈ"
 
-#: thumbnail.cpp:310
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "ਚਿੱਤਰ ਸਾਂਝੀ ਮੈਮੋਰੀ ਸਿਗਮੈਂਟ ਵਿੱਚ ਸਮਾ ਨਹੀਂ ਸਕਦਾ ਹੈ"

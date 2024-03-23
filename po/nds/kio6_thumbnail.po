@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-20 01:34+0000\n"
+"POT-Creation-Date: 2024-03-23 00:37+0000\n"
 "PO-Revision-Date: 2011-04-05 07:47+0200\n"
 "Last-Translator: Manfred Wiese <m.j.wiese@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -52,17 +52,17 @@ msgstr "Vöransicht för \"%1\" lett sik nich opstellen"
 msgid "Failed to create a thumbnail."
 msgstr "Opstellen vun Vöransicht fehlslaan"
 
-#: thumbnail.cpp:278
+#: thumbnail.cpp:279
 #, kde-format
 msgid "Could not write image."
 msgstr "Bild lett sik nich schrieven."
 
-#: thumbnail.cpp:306
+#: thumbnail.cpp:307
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Anfögen an Afsnitt %1 vun den deelten Spieker fehlslaan"
 
-#: thumbnail.cpp:310
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Bild is to groot för den Afsnitt vun den deelten Spieker"
