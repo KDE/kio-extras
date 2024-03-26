@@ -1,6 +1,3 @@
-message(AUTHOR_WARNING "kio_nfs: BUILD DISABLED. Port to KIO::WorkerBase.")
-return()
-
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 ## Check for XDR functions
