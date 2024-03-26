@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Slovenian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="bzip2">
+<title
+>bzip2 / bzip</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Andrej</firstname
+><surname
+>Vernekar</surname
+><affiliation
+><address
+><email
+>andrej.vernekar@moj.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>bzip2</command
+> je kompresijski program.</para>
+
+<para
+>Bzip2 KIO worker ni neposredno uporaben, in je namenjen, da se ga uporablja kot filter, npr. tar KIO worker lahko filtrira datoteko s pomočjo bzip2 KIO worker-ja, da bi lahko neposredno prikazal vsebino datoteke <literal role="extension"
+>tar.bz2</literal
+> v oknu &konqueror;.</para>
+
+<para
+>Če v &konqueror;-ju kliknete na datoteko stisnjeno z <literal role="extension"
+>.bz2</literal
+>, se ta KIO worker uporabi za razširjenje datoteke in jo prikaže kot običajno, nestisnjeno datoteko.</para>
+
+<para
+>Če ste razvijalec in bi želeli uporabiti bzip2 filter, lahko najdete dokumentacijo o uporabi KIO worker-jev na <ulink url="http://developer.kde.org"
+>http://developer.kde.org</ulink
+></para>
+
+<para
+>Oglejte si priročnik: <ulink url="man:/bzip2"
+>bzip2</ulink
+>. </para>
+
+<para
+><command
+>bzip</command
+> je predhodnik bzip2-a. Danes je redkeje uporabljen, saj ga je nadomestil bzip2, ki ponuja veliko boljšo kompresijo.</para>
+
+</article>

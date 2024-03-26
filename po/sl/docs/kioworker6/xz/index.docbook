@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Slovenian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="xz">
+<title
+>xz / lzma</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Per Øyvind</firstname
+><surname
+> Karlsen</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Matjaž</firstname
+><surname
+>Jeran</surname
+><affiliation
+><address
+><email
+>matjaz.jeran@amis.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Xz je program za stiskanje</para>
+
+<para
+>KIO worker za xz ni neposredno uporaben in je namenjen, da se ga uporablja kot filter, npr. KIO worker za tar lahko filtrira datoteko s pomočjo KIO worker-ja za xz, da neposredno prikaže vsebine datoteke <literal role="extension"
+>tar.lzma</literal
+> ali <literal role="extension"
+>tar.xz</literal
+> v oknu &konqueror;.</para>
+
+<para
+>Če kliknete na datoteko, ki je stisnjena z <literal role="extension"
+>.lzma</literal
+> ali <literal role="extension"
+>tar.xz</literal
+> v &konqueror;-ju, se ta KIO worker uporabi za razširjanje in jo prikaže kot navadno (nestisnjeno) datoteko.</para>
+
+<para
+>Če ste razvijalec in bi želeli uporabljati xz filter, lahko najdete dokumentacijo o tem, kako uporabljati KIO worker-je, na <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Glej priročnik: <ulink url="man:/xz"
+>xz</ulink
+>. </para>
+
+</article>

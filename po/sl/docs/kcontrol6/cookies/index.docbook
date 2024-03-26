@@ -1,0 +1,240 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Slovenian "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<article id="cookies" lang="&language;">
+<articleinfo>
+<title
+>Piškotki</title>
+<authorgroup>
+<author
+>&Krishna.Tateneni; &Krishna.Tateneni.mail;</author>
+<author
+>&Jost.Schenck; &Jost.Schenck.mail;</author>
+<othercredit role="translator"
+><firstname
+>Krištof</firstname
+><surname
+>Trček</surname
+><affiliation
+><address
+><email
+>kt91536@student.uni-lj.si</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>10.11.2016</date>
+<releaseinfo
+>Frameworks 5.29</releaseinfo>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>Sistemske nastavitve</keyword>
+<keyword
+>piškotki</keyword>
+</keywordset>
+
+</articleinfo>
+
+<sect1 id="cookie">
+<title
+>Piškotki</title>
+
+<para
+>Piškotki so mehanizem, ki ga uporabljajo spletne strani, da shranijo informacijo in jo nato pridobijo nazaj z uporabo vašega brskalnika. Na primer spletna stran vam lahko omogoča, da priredite vsebino in izgled strani tako, da bodo vaše izbire ostale enake, ko se boste spet vrnili na to spletno stran.</para>
+
+<para
+>Spletna stran si lahko zapomni vaše nastavitve tako, da shrani piškotek na vašem računalniku. Ob nadaljnjih obiskih bo spletna stran nazaj pridobila informacije shranjene v piškotku, da bo lahko oblikovala vsebino strani, glede na vaše predhodno določene nastavitve.</para>
+
+<para
+>Tako igrajo piškotki zelo pomembno vlogo pri brskanju po spletu. Na žalost spletne strani pogosto shranjujejo in pridobivajo informacije iz piškotkov brez vašega izrecnega strinjanja ali vedenja. Take informacije so lahko kar precej uporabne lastnikom spletnih strani, na primer, lahko jim omogočijo zbiranje kratkih statistik, koliko obiskov imajo različni predeli njihovih spletnih strani, ali da nastavijo oglas za oglaševanje.</para>
+
+<para
+>Zavihek za piškotke vam omogoča, da določite pravila za uporabo piškotkov, ko brskate po spletu s &konqueror; spletnim brskalnikom.</para>
+
+<warning
+><para
+>Vedite, da se politike, ki jih nastavite z uporabo tega nadzornega modula, ne bodo uveljavile na drugih spletnih brskalnikih, kot je na primer &firefox;.</para
+></warning>
+
+<sect2 id="cookie-policy">
+
+<title
+>Politike</title>
+
+<para
+>Z uporabo zavihka <guilabel
+>Politike</guilabel
+> lahko nastavite, kako bodo &kde; aplikacije ravnale s piškotki. To lahko naredite tako, da določite splošne politike piškotkov ali pa določite posebne politike piškotkov za določene domene ali gostitelje.</para>
+
+<para
+>Na vrhu zavihka Politike je potrditveno polje z oznako <guilabel
+>Omogoči piškotke</guilabel
+>. Če to pustite neoznačeno, bodo piškotki popolnoma onemogočeni, vendar to lahko naredi brskanje precej neugodno, posebno ker nekatere spletne strani zahtevajo brskalnike z omogočenimi piškotki.</para>
+
+<para
+>Zaradi tega boste najbrž želeli omogočiti uporabo piškotkov in nato postaviti določene politike, kako naj se ravna z njimi.</para>
+
+<para
+>Opcije iz prve skupine ustvarijo nastavitve, ki se nanašajo na vse piškotke.</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Sprejmi le piškotke iz izvornega strežnika</guilabel
+></term>
+<listitem>
+<para
+>Nekatere strani poskušajo nastaviti piškotke tudi iz drugih strežnikov, ne le iz tistega, ki vam prikazuje &HTML; spletno stran. Na primer tako, da prikažejo oglase, ki so iz drugega računalnika, ta pa ponavadi pripada večji oglaševalni skupini. Ti oglasi lahko nato poskusijo nastaviti piškotke, ki bi jim omogočali beleženje strani, ki jih gledate, preko več spletnih strani.</para>
+<para
+>Če omogočite to možnost, bodo sprejeti le piškotki, ki prihajajo iz istega spletnega strežnika, na katerega se izrecno povezujete.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Samodejno sprejmi sejne piškotke</guilabel
+></term>
+<listitem>
+
+<para
+>Vse pogosteje se uporablja piškotke ne, da bi beležili vašo dejavnost iz večkratnih obiskov strani, temveč da sledijo vašemu početju med enim obiskom. Sejni piškotki so shranjeni na vašem računalniku, dokler si ogledujete spletno stran, in izbrisani, ko jo zapustite.</para>
+
+<para
+>Spletna stran lahko uporabi te informacije za različne stvari, najpogostejša je ugodnost, da se vam ni potrebno ponovno vpisovati za ogled strani. Na primer na strani za spletno pošto bi bilo brez <acronym
+>ID</acronym
+> seje potrebno vedno znova vpisovati geslo za vsako sporočilo, ki bi si ga želeli ogledati. Obstaja več načinov, da to dosežemo, vendar so piškotki enostavni in zato zelo pogosti.</para>
+
+<para
+>Če omogočite to možnost, bodo sejni piškotki vedno sprejeti, tudi če ne sprejmete drugih vrst piškotkov, in tudi če zavrnete piškotke določene spletne strani, bodo sejni piškotki iz te strani še vedno sprejeti.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Razdelek za <guilabel
+>Privzete politike</guilabel
+> nastavi nekatere nadaljnje možnosti, ki so medsebojno izključujoče &mdash; izberete lahko le eno od teh možnosti kot privzeto, vendar lahko prosto nastavljate različne možnosti za katerikoli določeni spletni strežnik.</para>
+<note
+><para
+>Politike, ki so nastavljene za določeno spletno stran imajo vedno prednost pred privzetimi politikami.</para
+></note>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Sprejmi vse piškotke</guilabel
+></term>
+<listitem>
+<para
+>Če je izbrana ta možnost, bodo vsi piškotki sprejeti, brez spraševanja za potrditev.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Sprejmi do konca seje</guilabel
+></term>
+<listitem>
+<para
+>Piškotki bodo sprejeti, vendar bodo potekli ob koncu seje.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Vprašaj za potrditev</guilabel
+></term>
+<listitem>
+<para
+>Če je ta možnost izbrana, boste vprašani za potrditev vsakič, ko bo piškotek shranjen ali pridobljen nazaj. Selektivno lahko sprejmete ali zavrnete vsak piškotek. Pogovorno okno za potrjevanje vam bo omogočalo, da si boste nastavili politiko specifično za določeno domeno, če ne želite vsakič potrjevati vsakega piškotka za to domeno.</para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><guilabel
+>Zavrni vse piškotke</guilabel
+></term>
+<listitem>
+<para
+>Če je izbrana ta možnost, bodo vsi piškotki zavrnjeni, brez vprašanja za potrditev.</para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<para
+>Kot dodatek privzeti politiki za ravnanje s piškotki, ki jo lahko nastavite z izbiro ene od treh zgoraj opisanih možnosti, lahko tudi nastavite politike za določene domene gostiteljev z uporabo kontrol v skupini <guilabel
+>Politika strani</guilabel
+>.</para>
+
+<para
+>Politike Vprašaj, Sprejmi, Sprejmi do konca seje ali Zavrni se lahko uveljavi za določeno domeno s klikom na gumb <guibutton
+>Dodaj...</guibutton
+>, ki odpre pogovorno okno. V tem pogovornem oknu, lahko vtipkate ime domene (s piko spredaj) in nato izberete politiko, ki jo želite uveljaviti za to domeno. Vedite, da se vnose lahko dodaja tudi med brskanjem, če je spraševanje po potrditvi privzeta politika, ter tako izberete splošno politiko za specifičnega gostitelja (na primer z izbiro <guilabel
+>Zavrni</guilabel
+>, ko ste vprašani za potrditev piškotka.)</para>
+
+<para
+>Iz seznama lahko izberete tudi določene domene gostiteljev ter kliknete na gumb <guibutton
+>Spremeni...</guibutton
+>, da izberete drugačno politiko za to domeno, kot je prikazana na seznamu.</para>
+
+<para
+>Da izbrišete politiko za specifično domeno, izberite domeno iz seznama in kliknite na gumb <guibutton
+>Izbriši</guibutton
+>. Privzeta politika bo uveljavljena na domenah, ki so bile izbrisane iz seznama.</para>
+
+</sect2>
+
+<sect2 id="cookie-management">
+<title
+>Upravljanje</title>
+
+<para
+>V zavihku <guilabel
+>Upravljanje</guilabel
+> lahko brskate in selektivno izbrisujete piškotke, ki so bili določeni v preteklosti.</para>
+
+<para
+>V zgornjem delu tega pogovornega okna lahko vidite seznam domen, prikazanih v drevesni strukturi. Kliknite na majhen <guiicon
+>&gt;</guiicon
+> poleg domene, da si ogledate vse piškotke, ki so bili nastavljeni za to določeno domeno. Če izberete enega od teh piškotkov, boste opazili, da se bo prikazala njegova vsebina v spodnjem polju <guilabel
+>Podrobnosti o piškotih</guilabel
+>.</para>
+
+<para
+>S klikom na gumb <guibutton
+>Izbriši</guibutton
+> lahko sedaj izbrišete izbrani piškotek. Kliknite <guibutton
+>Izbriši Vse</guibutton
+>, da izbrišete vse shranjene piškotke.</para>
+
+<para
+>Če je domena izbrana, lahko uporabite <guibutton
+>Konfiguriraj Politiko...</guibutton
+>, da nastavite politiko strani.</para>
+
+<para
+>Izberite <guibutton
+>Ponovno Naloži Seznam</guibutton
+>, da ponovno naložite seznam z vašega trdega diska. To morda želite, če imate modul odprt in preizkušate spletne strani ali pa ste opravili veliko sprememb v modulu samem.</para>
+
+</sect2>
+
+</sect1>
+
+</article>
