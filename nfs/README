@@ -1,0 +1,78 @@
+README for the NFS ioslave
+==========================
+
+This ioslave provides read and write access to exported filesystems
+on NFS servers.  Any KDE file manager or application that uses KIO
+can access them using an URL of the form
+
+  nfs://servername/path
+
+The server name is required.
+
+Non-KDE applications can also open files via NFS, edit them and write
+them back, as long as their desktop files are set up correctly.  KIO
+handles all of this transparently.
+
+It does not use the normal method of mounting remote filesystems on a
+mount point on the client, but communicates directly with the NFS
+server using RPC calls. Because of this it does not need root access
+or any administrator configuration on the client, but see "Security"
+below.
+
+The ioslave supports NFS protocol versions 2 and 3.  Normally NFSv3 is
+tried first but, if the server does not support NFSv3, then NFSv2 is
+then tried.  See "Configuration" below for settings that control the
+protocol version.
+
+
+Security
+--------
+
+Because the ioslave runs as an ordinary (non-root) user, requests to
+the NFS server originate from a non-privileged source network port.
+Some NFS servers reject requests which do not originate from a
+privileged port - the Linux NFS server with the default configuration
+does this.  To access such servers the filesystem must be exported
+with the 'insecure' option, see exports(5).
+
+Warning: Because it is trivial to impersonate any user, and the need
+to export filesystems 'insecure', NFS servers should be configured for
+access using this ioslave only within private and secure network
+environments.
+
+
+Configuration
+-------------
+
+Normally the ioslave does not require any special configuration.  If
+advanced control over its operation is required then settings can be
+configured in the 'kionfsrc' configuration file, normally located at
+'$XDG_CONFIG_HOME/kionfsrc'.  There is no GUI, but this file can be
+edited with any text editor.
+
+Settings in the [Default] section apply to all NFS server hosts,
+unless overridden by host-specific settings in a [Host SERVERNAME]
+section.
+
+The configuration keys and their values available are:
+
+maxproto	(int)	The highest NFS protocol version that will be
+			attempted.  The default is 4 (although NFSv4 is
+			not actually supported yet).
+
+minproto	(int)	The lowest NFS protocol version that will be
+			attempted.  The default is 2.
+
+usedirplus3	(bool)	If set and using NFSv3, then the READDIRPLUS3
+			call will be used for directory listings.  This
+			is more efficient, but some NFS servers do not
+			support it properly so if the option is set to
+			false then READDIR3 followed by lookup calls
+			will be used instead.  The default is true.
+
+
+Bugs
+----
+
+Please report any problems using bugs.kde.org, in the "nfs" category of the
+"kio-extras" product.

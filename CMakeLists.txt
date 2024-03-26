@@ -162,6 +162,11 @@ if(UNIX)
     set_package_properties(Gperf PROPERTIES TYPE OPTIONAL
                            PURPOSE "Needed to build the man KIO worker"
                            )
+
+    find_package(TIRPC)
+    set_package_properties(TIRPC PROPERTIES TYPE OPTIONAL
+                           PURPOSE "Needed to build the NFS KIO worker"
+                           )
 else()
     # FIXME: on windows we ignore support until trash gets integrated
 endif()
@@ -205,6 +210,9 @@ endif()
 if(NOT WIN32)
    if(Gperf_FOUND)
      add_subdirectory( man )
+   endif()
+   if(TIRPC_FOUND)
+     add_subdirectory( nfs )
    endif()
 endif()
 
