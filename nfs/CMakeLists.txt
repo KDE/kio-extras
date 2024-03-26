@@ -54,7 +54,7 @@ endif()
 add_definitions(-DTRANSLATION_DOMAIN=\"kio6_nfs\")
 include_directories(${TIRPC_INCLUDE_DIRS})
 
-add_library(kio_nfs MODULE kio_nfs.cpp nfsv2.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c rpc_nfs2_prot_xdr.c)
+add_library(kio_nfs MODULE kio_nfs.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c)
 target_link_libraries(kio_nfs KF6::KIOCore KF6::ConfigCore KF6::I18n Qt::Network ${TIRPC_LIBRARIES})
 set_target_properties(kio_nfs PROPERTIES OUTPUT_NAME "nfs")
 
@@ -65,7 +65,7 @@ if(AVOID_UNUSED_VARIABLE_WARNING_FLAG)
 endif()
 
 if(AVOID_CAST_FUNCTION_TYPE_WARNING_FLAG)
-    set_source_files_properties(nfsv2.cpp nfsv3.cpp PROPERTIES
+    set_source_files_properties(nfsv3.cpp PROPERTIES
         COMPILE_OPTIONS "${AVOID_CAST_FUNCTION_TYPE_WARNING_FLAG}"
     )
 endif()
@@ -74,7 +74,7 @@ ecm_qt_declare_logging_category(kio_nfs
     HEADER kio_nfs_debug.h
     IDENTIFIER LOG_KIO_NFS
     CATEGORY_NAME kf.kio.workers.nfs
-    OLD_CATEGORY_NAMES kde.kio_nfs kf.kio.slaves.nfs
+    OLD_CATEGORY_NAMES kde.kio_nfs kf.kio.workers.nfs
     DESCRIPTION "KIO nfs"
     EXPORT KIO_EXTRAS
 )

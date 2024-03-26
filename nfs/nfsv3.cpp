@@ -23,6 +23,7 @@
 #include <grp.h>
 #include <memory.h>
 #include <netdb.h>
+#include <optional>
 #include <pwd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,15 +45,17 @@
 
 // For the complete NFSv3 reference see http://tools.ietf.org/html/rfc1813
 
-// This ioslave is for NFS version 3.
+// This ioworker is for NFS version 3.
 #define NFSPROG 100003UL
 #define NFSVERS 3UL
 
 #define NFS3_MAXDATA 32768
 #define NFS3_MAXPATHLEN PATH_MAX
 
-NFSProtocolV3::NFSProtocolV3(NFSSlave *slave)
-    : NFSProtocol(slave)
+#define KIO_NFS_DEBUG_PRINT_REQUEST qCDebug(LOG_KIO_NFS) << __func__ << " " << url;
+
+NFSProtocolV3::NFSProtocolV3(NFSWorker *worker)
+    : NFSProtocol(worker)
     , m_mountClient(nullptr)
     , m_mountSock(-1)
     , m_nfsClient(nullptr)
@@ -137,61 +140,61 @@ void NFSProtocolV3::closeConnection()
     }
 }
 
-NFSFileHandle NFSProtocolV3::lookupFileHandle(const QString &path)
+std::optional<NFSFileHandle> NFSProtocolV3::lookupFileHandle(const QString &path)
 {
-    NFSFileHandle fh;
     int rpcStatus;
     LOOKUP3res res;
-    if (lookupHandle(path, rpcStatus, res)) {
-        fh = res.LOOKUP3res_u.resok.object;
+    if (!lookupHandle(path, rpcStatus, res))
+        return {};
 
-        // Is it a link? Get the link target.
-        if (res.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.type == NF3LNK) {
-            READLINK3args readLinkArgs;
-            memset(&readLinkArgs, 0, sizeof(readLinkArgs));
-            fh.toFH(readLinkArgs.symlink);
+    NFSFileHandle fh{res.LOOKUP3res_u.resok.object};
 
-            char dataBuffer[NFS3_MAXPATHLEN];
+    // Is it a link? Get the link target.
+    if (res.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.type == NF3LNK) {
+        READLINK3args readLinkArgs;
+        memset(&readLinkArgs, 0, sizeof(readLinkArgs));
+        fh.toFH(readLinkArgs.symlink);
 
-            READLINK3res readLinkRes;
-            memset(&readLinkRes, 0, sizeof(readLinkRes));
-            readLinkRes.READLINK3res_u.resok.data = dataBuffer;
+        char dataBuffer[NFS3_MAXPATHLEN];
 
-            int rpcStatus = clnt_call(m_nfsClient,
-                                      NFSPROC3_READLINK,
-                                      (xdrproc_t)xdr_READLINK3args,
-                                      reinterpret_cast<caddr_t>(&readLinkArgs),
-                                      (xdrproc_t)xdr_READLINK3res,
-                                      reinterpret_cast<caddr_t>(&readLinkRes),
-                                      clnt_timeout);
+        READLINK3res readLinkRes;
+        memset(&readLinkRes, 0, sizeof(readLinkRes));
+        readLinkRes.READLINK3res_u.resok.data = dataBuffer;
 
-            if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS3_OK) { // get the absolute link target
-                QString linkPath = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
-                linkPath = QFileInfo(QFileInfo(path).path(), linkPath).absoluteFilePath();
+        int rpcStatus = clnt_call(m_nfsClient,
+                                  NFSPROC3_READLINK,
+                                  (xdrproc_t)xdr_READLINK3args,
+                                  reinterpret_cast<caddr_t>(&readLinkArgs),
+                                  (xdrproc_t)xdr_READLINK3res,
+                                  reinterpret_cast<caddr_t>(&readLinkRes),
+                                  clnt_timeout);
 
-                // As with the tests done in NFSProtocol::isValidLink(), the link
-                // target may not be valid on the NFS server (i.e. it may point
-                // outside of the exported directories).  Check for this before
-                // calling lookupHandle() on the target of the link, as otherwise
-                // an error will be set which is not relevant.
-                if (isValidPath(linkPath)) {
-                    LOOKUP3res linkRes;
-                    if (lookupHandle(linkPath, rpcStatus, linkRes)) {
-                        // It's a link, so return the target file handle
-                        // with the link source recorded in it.
-                        NFSFileHandle linkFh = linkRes.LOOKUP3res_u.resok.object;
-                        linkFh.setLinkSource(res.LOOKUP3res_u.resok.object);
-                        qCDebug(LOG_KIO_NFS) << "Found link target" << linkPath;
-                        return linkFh;
-                    }
+        if (rpcStatus == RPC_SUCCESS && readLinkRes.status == NFS3_OK) { // get the absolute link target
+            QString linkPath = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
+            linkPath = QFileInfo(QFileInfo(path).path(), linkPath).absoluteFilePath();
+
+            // As with the tests done in NFSProtocol::validLinkResult(), the link
+            // target may not be valid on the NFS server (i.e. it may point
+            // outside of the exported directories).  Check for this before
+            // calling lookupHandle() on the target of the link, as otherwise
+            // an error will be set which is not relevant.
+            if (isValidPath(linkPath)) {
+                LOOKUP3res linkRes;
+                if (lookupHandle(linkPath, rpcStatus, linkRes)) {
+                    // It's a link, so return the target file handle
+                    // with the link source recorded in it.
+                    NFSFileHandle linkFh = linkRes.LOOKUP3res_u.resok.object;
+                    linkFh.setLinkSource(res.LOOKUP3res_u.resok.object);
+                    qCDebug(LOG_KIO_NFS) << "Found link target" << linkPath;
+                    return linkFh;
                 }
             }
-
-            // If we have reached this point the file is a link,
-            // but we failed to read the target.
-            fh.setBadLink();
-            qCDebug(LOG_KIO_NFS) << "Invalid link" << path;
         }
+
+        // If we have reached this point the file is a link,
+        // but we failed to read the target.
+        fh.setBadLink();
+        qCDebug(LOG_KIO_NFS) << "Invalid link" << path;
     }
 
     return fh;
@@ -203,7 +206,7 @@ NFSFileHandle NFSProtocolV3::lookupFileHandle(const QString &path)
  to mount all these shares. If this succeeded for at least one of them,
  a client for the nfs daemon is created.
  */
-void NFSProtocolV3::openConnection()
+KIO::WorkerResult NFSProtocolV3::openConnection()
 {
     const QString host = currentHost();
     qCDebug(LOG_KIO_NFS) << "to" << host;
@@ -214,8 +217,7 @@ void NFSProtocolV3::openConnection()
     KIO::Error connErr = NFSProtocol::openConnection(host, MOUNT_PROGRAM, MOUNT_V3, m_mountClient, m_mountSock);
     if (connErr != 0) {
         closeConnection();
-        setError(connErr, host);
-        return;
+        return KIO::WorkerResult::fail(connErr, host);
     }
 
     exports3 exportlist;
@@ -229,9 +231,9 @@ void NFSProtocolV3::openConnection()
                               reinterpret_cast<caddr_t>(&exportlist),
                               clnt_timeout);
 
-    if (!checkForError(clnt_stat, 0, host.toLatin1())) {
+    if (auto res = checkResult(clnt_stat, 0, host.toLatin1()); !res.success()) {
         closeConnection();
-        return;
+        return res;
     }
 
     int exportsCount = 0;
@@ -274,17 +276,17 @@ void NFSProtocolV3::openConnection()
 
             // Many modern NFS servers by default reject any access attempted to
             // them from a non-reserved source port (i.e. above 1024).  Since
-            // this KIO slave runs as a normal user, it is not able to use the
+            // this KIO worker runs as a normal user, it is not able to use the
             // reserved port numbers and hence the access will be rejected.  Show
             // a hint if this could possibly be the problem - only once, as the
             // server may have many exported directories.
             if (fhStatus.fhs_status == MNT3ERR_ACCES) {
                 if (!mountHint) {
-                    qCDebug(LOG_KIO_NFS) << "Check that the NFS server is exporting the filesystem";
-                    qCDebug(LOG_KIO_NFS) << "with appropriate access permissions.  Note that it must";
-                    qCDebug(LOG_KIO_NFS) << "allow mount requests originating from an unprivileged";
-                    qCDebug(LOG_KIO_NFS) << "source port (see exports(5), the 'insecure' option may";
-                    qCDebug(LOG_KIO_NFS) << "be required).";
+                    qCWarning(LOG_KIO_NFS) << "Check that the NFS server is exporting the filesystem";
+                    qCWarning(LOG_KIO_NFS) << "with appropriate access permissions.  Note that it must";
+                    qCWarning(LOG_KIO_NFS) << "allow mount requests originating from an unprivileged";
+                    qCWarning(LOG_KIO_NFS) << "source port (see exports(5), the 'insecure' option may";
+                    qCWarning(LOG_KIO_NFS) << "be required).";
                     mountHint = true;
                 }
             }
@@ -297,28 +299,33 @@ void NFSProtocolV3::openConnection()
     // will work.
     if ((connErr = NFSProtocol::openConnection(host, NFSPROG, NFSVERS, m_nfsClient, m_nfsSock)) != 0) {
         closeConnection();
-        setError(connErr, host);
+        return KIO::WorkerResult::fail(connErr, host);
     }
 
-    slave()->connected();
-
     qCDebug(LOG_KIO_NFS) << "openConnection succeeded";
+
+    return KIO::WorkerResult::pass();
 }
 
-void NFSProtocolV3::listDir(const QUrl &url)
+KIO::WorkerResult NFSProtocolV3::listDir(const QUrl &url)
 {
-    qCDebug(LOG_KIO_NFS) << url;
+    KIO_NFS_DEBUG_PRINT_REQUEST
 
     const QString path = listDirInternal(url); // check path, list virtual dir
     if (path.isEmpty())
-        return; // no more to do
+        return KIO::WorkerResult::pass(); // no more to do
 
-    const NFSFileHandle fh = getFileHandle(path);
+    auto maybeFh = getFileHandle(path);
+    if (!handleIsValid(maybeFh)) {
+        return getHandleError(maybeFh);
+    }
+
+    auto &fh = getHandle(maybeFh);
+
     // There doesn't seem to be an invalid link error code in KIO,
     // so this will have to do.
     if (fh.isInvalid() || fh.isBadLink()) {
-        setError(KIO::ERR_DOES_NOT_EXIST, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, path);
     }
 
     // Get the preferred read dir size from the server
@@ -326,10 +333,9 @@ void NFSProtocolV3::listDir(const QUrl &url)
         initPreferredSizes(fh);
     }
 
-    if (!slave()->usedirplus3()) // want compatibility mode listing
+    if (!worker()->usedirplus3()) // want compatibility mode listing
     {
-        listDirCompat(url);
-        return;
+        return listDirCompat(url);
     }
 
     READDIRPLUS3args listargs;
@@ -343,6 +349,7 @@ void NFSProtocolV3::listDir(const QUrl &url)
     memset(&listres, 0, sizeof(listres));
 
     entryplus3 *lastEntry = nullptr;
+    auto linkResult = KIO::WorkerResult::pass();
     do {
         memset(&listres, 0, sizeof(listres));
 
@@ -362,13 +369,12 @@ void NFSProtocolV3::listDir(const QUrl &url)
         // Not a supported call? Try the old READDIR method.
         if (listres.status == NFS3ERR_NOTSUPP) {
             qCDebug(LOG_KIO_NFS) << "NFS server does not support READDIRPLUS3, listing in compatibility mode";
-            listDirCompat(url);
-            return;
+            return listDirCompat(url);
         }
 
         // Do we have an error? There's not much more we can do but to abort at this point.
-        if (!checkForError(clnt_stat, listres.status, path)) {
-            return;
+        if (auto res = checkResult(clnt_stat, listres.status, path); !res.success()) {
+            return res;
         }
 
         for (entryplus3 *dirEntry = listres.READDIRPLUS3res_u.resok.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
@@ -382,7 +388,7 @@ void NFSProtocolV3::listDir(const QUrl &url)
             if (dirEntry->name == QString(".")) {
                 createVirtualDirEntry(entry);
                 completeUDSEntry(entry, dirEntry->name_attributes.post_op_attr_u.attributes);
-                slave()->listEntry(entry);
+                worker()->listEntry(entry);
                 continue;
             }
 
@@ -398,9 +404,9 @@ void NFSProtocolV3::listDir(const QUrl &url)
                     QString linkDest = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
                     entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
 
-                    bool badLink = true;
                     NFSFileHandle linkFH;
-                    if (isValidLink(path, linkDest)) {
+                    bool badLink = true;
+                    if (linkResult = validLinkResult(path, linkDest); linkResult.success()) {
                         const QString linkPath = QFileInfo(path, linkDest).absoluteFilePath();
                         // get the absolute link target
                         int rpcStatus;
@@ -425,7 +431,7 @@ void NFSProtocolV3::listDir(const QUrl &url)
                         completeBadLinkUDSEntry(entry, dirEntry->name_attributes.post_op_attr_u.attributes);
                     }
 
-                    addFileHandle(filePath, linkFH);
+                    addFileHandle(filePath, linkFH); // we know linkFH isn't nullopt
                 } else {
                     entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, i18n("Unknown target"));
                     completeBadLinkUDSEntry(entry, dirEntry->name_attributes.post_op_attr_u.attributes);
@@ -454,14 +460,16 @@ void NFSProtocolV3::listDir(const QUrl &url)
                 }
             }
 
-            slave()->listEntry(entry);
+            worker()->listEntry(entry);
 
             lastEntry = dirEntry;
         }
     } while (listres.READDIRPLUS3res_u.resok.reply.entries != nullptr && !listres.READDIRPLUS3res_u.resok.reply.eof);
+
+    return linkResult;
 }
 
-void NFSProtocolV3::listDirCompat(const QUrl &url)
+KIO::WorkerResult NFSProtocolV3::listDirCompat(const QUrl &url)
 {
     const QString path(url.path());
 
@@ -470,14 +478,18 @@ void NFSProtocolV3::listDirCompat(const QUrl &url)
         // it will have been checked in listDir() and there will have been
         // no attempt to access the NFS server.
         qCWarning(LOG_KIO_NFS) << "Called for an exported dir";
-        setError(KIO::ERR_INTERNAL, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, path);
     }
 
-    const NFSFileHandle fh = getFileHandle(path);
+    auto maybeFH = getFileHandle(path);
+    if (!handleIsValid(maybeFH)) {
+        return getHandleError(maybeFH);
+    }
+
+    auto &fh = getHandle(maybeFH);
+
     if (fh.isInvalid() || fh.isBadLink()) {
-        setError(KIO::ERR_DOES_NOT_EXIST, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, path);
     }
 
     QStringList filesToList;
@@ -505,8 +517,8 @@ void NFSProtocolV3::listDirCompat(const QUrl &url)
                                   reinterpret_cast<caddr_t>(&listres),
                                   clnt_timeout);
 
-        if (!checkForError(clnt_stat, listres.status, path)) {
-            return;
+        if (auto res = checkResult(clnt_stat, listres.status, path); !res.success()) {
+            return res;
         }
 
         for (entry3 *dirEntry = listres.READDIR3res_u.resok.reply.entries; dirEntry != nullptr; dirEntry = dirEntry->nextentry) {
@@ -519,6 +531,7 @@ void NFSProtocolV3::listDirCompat(const QUrl &url)
     } while (!listres.READDIR3res_u.resok.reply.eof);
 
     // Loop through all files, getting attributes and link path.
+    auto linkResult = KIO::WorkerResult::pass();
     for (QStringList::const_iterator it = filesToList.constBegin(); it != filesToList.constEnd(); ++it) {
         QString filePath = QFileInfo(QDir(path), (*it)).filePath();
 
@@ -544,7 +557,7 @@ void NFSProtocolV3::listDirCompat(const QUrl &url)
 
                 bool badLink = true;
                 NFSFileHandle linkFH;
-                if (isValidLink(path, linkDest)) {
+                if (linkResult = validLinkResult(path, linkDest); linkResult.success()) {
                     const QString linkPath = QFileInfo(path, linkDest).absoluteFilePath();
                     // get the absolute link target
                     int rpcStatus;
@@ -569,7 +582,7 @@ void NFSProtocolV3::listDirCompat(const QUrl &url)
                     completeBadLinkUDSEntry(entry, dirres.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes);
                 }
 
-                addFileHandle(filePath, linkFH);
+                addFileHandle(filePath, linkFH); // we know linkFH isn't nullopt
             } else {
                 entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, i18n("Unknown target"));
                 completeBadLinkUDSEntry(entry, dirres.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes);
@@ -579,30 +592,36 @@ void NFSProtocolV3::listDirCompat(const QUrl &url)
             completeUDSEntry(entry, dirres.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes);
         }
 
-        slave()->listEntry(entry);
+        worker()->listEntry(entry);
     }
+
+    return linkResult;
 }
 
-void NFSProtocolV3::stat(const QUrl &url)
+KIO::WorkerResult NFSProtocolV3::stat(const QUrl &url)
 {
-    qCDebug(LOG_KIO_NFS) << url;
+    KIO_NFS_DEBUG_PRINT_REQUEST
 
     const QString path = statInternal(url); // check path, process virtual dir
     if (path.isEmpty())
-        return; // no more to do
+        return KIO::WorkerResult::pass(); // no more to do
 
-    const NFSFileHandle fh = getFileHandle(path);
+    auto maybeFH = getFileHandle(path);
+    if (!handleIsValid(maybeFH)) {
+        return getHandleError(maybeFH);
+    }
+
+    auto &fh = getHandle(maybeFH);
+
     if (fh.isInvalid()) {
         qCDebug(LOG_KIO_NFS) << "File handle is invalid";
-        setError(KIO::ERR_DOES_NOT_EXIST, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, path);
     }
 
     int rpcStatus;
     GETATTR3res attrAndStat;
     if (!getAttr(path, rpcStatus, attrAndStat)) {
-        checkForError(rpcStatus, attrAndStat.status, path);
-        return;
+        return checkResult(rpcStatus, attrAndStat.status, path);
     }
 
     const QFileInfo fileInfo(path);
@@ -611,6 +630,7 @@ void NFSProtocolV3::stat(const QUrl &url)
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, fileInfo.fileName());
 
     // Is it a symlink?
+    auto linkResult = KIO::WorkerResult::pass();
     if (attrAndStat.GETATTR3res_u.resok.obj_attributes.type == NF3LNK) {
         qCDebug(LOG_KIO_NFS) << "It's a symlink";
 
@@ -626,15 +646,16 @@ void NFSProtocolV3::stat(const QUrl &url)
             entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
             completeBadLinkUDSEntry(entry, attrAndStat.GETATTR3res_u.resok.obj_attributes);
 
-            slave()->statEntry(entry);
-            return; // have result, no more to do
+            worker()->statEntry(entry);
+            return KIO::WorkerResult::pass(); // have result, no more to do
         }
 
         qCDebug(LOG_KIO_NFS) << "link dest is" << linkDest;
 
         entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
 
-        if (!isValidLink(fileInfo.path(), linkDest)) {
+        linkResult = validLinkResult(fileInfo.path(), linkDest);
+        if (!linkResult.success()) {
             completeBadLinkUDSEntry(entry, attrAndStat.GETATTR3res_u.resok.obj_attributes);
         } else {
             const QString linkPath = QFileInfo(fileInfo.path(), linkDest).absoluteFilePath();
@@ -642,8 +663,7 @@ void NFSProtocolV3::stat(const QUrl &url)
             int rpcStatus;
             GETATTR3res attrAndStat;
             if (!getAttr(linkPath, rpcStatus, attrAndStat)) {
-                checkForError(rpcStatus, attrAndStat.status, linkPath);
-                return;
+                return checkResult(rpcStatus, attrAndStat.status, linkPath);
             }
 
             completeUDSEntry(entry, attrAndStat.GETATTR3res_u.resok.obj_attributes);
@@ -652,24 +672,30 @@ void NFSProtocolV3::stat(const QUrl &url)
         completeUDSEntry(entry, attrAndStat.GETATTR3res_u.resok.obj_attributes);
     }
 
-    slave()->statEntry(entry);
+    worker()->statEntry(entry);
+
+    return linkResult;
 }
 
-void NFSProtocolV3::mkdir(const QUrl &url, int permissions)
+KIO::WorkerResult NFSProtocolV3::mkdir(const QUrl &url, int permissions)
 {
-    qCDebug(LOG_KIO_NFS) << url;
+    KIO_NFS_DEBUG_PRINT_REQUEST
 
     const QString path(url.path());
     const QFileInfo fileInfo(path);
     if (isExportedDir(fileInfo.path())) {
-        setError(KIO::ERR_ACCESS_DENIED, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_ACCESS_DENIED, path);
     }
 
-    const NFSFileHandle fh = getFileHandle(fileInfo.path());
+    auto maybeFH = getFileHandle(fileInfo.path());
+    if (!handleIsValid(maybeFH)) {
+        return getHandleError(maybeFH);
+    }
+
+    auto &fh = getHandle(maybeFH);
+
     if (fh.isInvalid() || fh.isBadLink()) {
-        setError(KIO::ERR_DOES_NOT_EXIST, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, path);
     }
 
     MKDIR3args createArgs;
@@ -696,33 +722,31 @@ void NFSProtocolV3::mkdir(const QUrl &url, int permissions)
                               (xdrproc_t)xdr_MKDIR3res,
                               reinterpret_cast<caddr_t>(&dirres),
                               clnt_timeout);
-    checkForError(clnt_stat, dirres.status, path);
+    return checkResult(clnt_stat, dirres.status, path);
 }
 
-void NFSProtocolV3::del(const QUrl &url, bool /* isfile*/)
+KIO::WorkerResult NFSProtocolV3::del(const QUrl &url, bool /* isfile*/)
 {
-    qCDebug(LOG_KIO_NFS) << url;
+    KIO_NFS_DEBUG_PRINT_REQUEST
 
     const QString path(url.path());
     if (isExportedDir(QFileInfo(path).path())) {
-        setError(KIO::ERR_ACCESS_DENIED, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_ACCESS_DENIED, path);
     }
 
     int rpcStatus;
     REMOVE3res res;
     remove(path, rpcStatus, res);
-    checkForError(rpcStatus, res.status, path);
+    return checkResult(rpcStatus, res.status, path);
 }
 
-void NFSProtocolV3::chmod(const QUrl &url, int permissions)
+KIO::WorkerResult NFSProtocolV3::chmod(const QUrl &url, int permissions)
 {
-    qCDebug(LOG_KIO_NFS) << url;
+    KIO_NFS_DEBUG_PRINT_REQUEST
 
     const QString path(url.path());
     if (isExportedDir(path)) {
-        setError(KIO::ERR_ACCESS_DENIED, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_ACCESS_DENIED, path);
     }
 
     sattr3 attributes;
@@ -733,18 +757,22 @@ void NFSProtocolV3::chmod(const QUrl &url, int permissions)
     int rpcStatus;
     SETATTR3res setAttrRes;
     setAttr(path, attributes, rpcStatus, setAttrRes);
-    checkForError(rpcStatus, setAttrRes.status, path);
+    return checkResult(rpcStatus, setAttrRes.status, path);
 }
 
-void NFSProtocolV3::get(const QUrl &url)
+KIO::WorkerResult NFSProtocolV3::get(const QUrl &url)
 {
-    qCDebug(LOG_KIO_NFS) << url;
+    KIO_NFS_DEBUG_PRINT_REQUEST
 
     const QString path(url.path());
-    const NFSFileHandle fh = getFileHandle(path);
+    auto maybeFH = getFileHandle(path);
+    if (!handleIsValid(maybeFH)) {
+        return getHandleError(maybeFH);
+    }
+
+    auto &fh = getHandle(maybeFH);
     if (fh.isInvalid() || fh.isBadLink()) {
-        setError(KIO::ERR_DOES_NOT_EXIST, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, path);
     }
 
     // Get the optimal read buffer size.
@@ -761,12 +789,13 @@ void NFSProtocolV3::get(const QUrl &url)
     READ3res readRes;
     memset(&readRes, 0, sizeof(readRes));
     readRes.READ3res_u.resok.data.data_len = m_readBufferSize;
-    readRes.READ3res_u.resok.data.data_val = new char[m_readBufferSize];
+
+    auto data_val = std::make_unique<char[]>(m_readBufferSize);
+    readRes.READ3res_u.resok.data.data_val = data_val.get();
 
     // Most likely indicates out of memory
     if (!readRes.READ3res_u.resok.data.data_val) {
-        setError(KIO::ERR_OUT_OF_MEMORY, path);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_OUT_OF_MEMORY, path);
     }
 
     bool validRead = false;
@@ -783,11 +812,11 @@ void NFSProtocolV3::get(const QUrl &url)
 
         // We are trying to read a directory, fail quietly
         if (readRes.status == NFS3ERR_ISDIR) {
-            break;
+            return KIO::WorkerResult::pass();
         }
 
-        if (!checkForError(clnt_stat, readRes.status, path)) {
-            break;
+        if (auto res = checkResult(clnt_stat, readRes.status, path); !res.success()) {
+            return res;
         }
 
         read = readRes.READ3res_u.resok.count;
@@ -796,65 +825,63 @@ void NFSProtocolV3::get(const QUrl &url)
         if (readArgs.offset == 0) {
             const QMimeDatabase db;
             const QMimeType type = db.mimeTypeForFileNameAndData(url.fileName(), readBuffer);
-            slave()->mimeType(type.name());
+            worker()->mimeType(type.name());
 
-            slave()->totalSize(readRes.READ3res_u.resok.file_attributes.post_op_attr_u.attributes.size);
+            worker()->totalSize(readRes.READ3res_u.resok.file_attributes.post_op_attr_u.attributes.size);
         }
 
         readArgs.offset += read;
         if (read > 0) {
             validRead = true;
 
-            slave()->data(readBuffer);
-            slave()->processedSize(readArgs.offset);
+            worker()->data(readBuffer);
+            worker()->processedSize(readArgs.offset);
         }
 
     } while (read > 0);
 
-    if (readRes.READ3res_u.resok.data.data_val != nullptr) {
-        delete[] readRes.READ3res_u.resok.data.data_val;
+    // Only send the read data to the worker if we have actually sent some.
+    if (validRead) {
+        worker()->data(QByteArray());
+        worker()->processedSize(readArgs.offset);
     }
 
-    // Only send the read data to the slave if we have actually sent some.
-    if (validRead) {
-        slave()->data(QByteArray());
-        slave()->processedSize(readArgs.offset);
-    }
+    return KIO::WorkerResult::pass();
 }
 
-void NFSProtocolV3::put(const QUrl &url, int _mode, KIO::JobFlags flags)
+KIO::WorkerResult NFSProtocolV3::put(const QUrl &url, int _mode, KIO::JobFlags flags)
 {
-    qCDebug(LOG_KIO_NFS) << url;
+    KIO_NFS_DEBUG_PRINT_REQUEST
 
     const QString destPath(url.path());
     if (isExportedDir(QFileInfo(destPath).path())) {
-        setError(KIO::ERR_WRITE_ACCESS_DENIED, destPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_WRITE_ACCESS_DENIED, destPath);
     }
 
-    NFSFileHandle destFH = getFileHandle(destPath);
-    if (destFH.isBadLink()) {
-        setError(KIO::ERR_DOES_NOT_EXIST, destPath);
-        return;
+    auto maybeDestFH = getFileHandle(destPath);
+    bool validHandle = handleIsValid(maybeDestFH);
+
+    if (validHandle && getHandle(maybeDestFH).isBadLink()) {
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, destPath);
     }
 
     // the file exists and we don't want to overwrite
-    if (!destFH.isInvalid() && ((flags & KIO::Overwrite) == 0)) {
-        setError(KIO::ERR_FILE_ALREADY_EXIST, destPath);
-        return;
+    if (validHandle && ((flags & KIO::Overwrite) == 0)) {
+        return KIO::WorkerResult::fail(KIO::ERR_FILE_ALREADY_EXIST, destPath);
     }
 
     // Get the optimal write buffer size
-    if (m_writeBufferSize == 0) {
-        initPreferredSizes(destFH);
+    if (validHandle && m_writeBufferSize == 0) {
+        initPreferredSizes(getHandle(maybeDestFH));
     }
 
-    destFH = create(destPath, _mode);
-    if (destFH.isInvalid()) {
-        return;
+    maybeDestFH = create(destPath, _mode);
+    if (!handleIsValid(maybeDestFH)) {
+        return getHandleError(maybeDestFH);
     }
     // We created the file successfully.
 
+    auto destFH = getHandle(maybeDestFH);
     int result;
 
     WRITE3args writeArgs;
@@ -869,11 +896,10 @@ void NFSProtocolV3::put(const QUrl &url, int _mode, KIO::JobFlags flags)
 
     // Loop until we get 0 (end of data).
     int bytesWritten = 0;
-    bool error = false;
     do {
         QByteArray buffer;
-        slave()->dataReq();
-        result = slave()->readData(buffer);
+        worker()->dataReq();
+        result = worker()->readData(buffer);
 
         if (result > 0) {
             char *data = buffer.data();
@@ -899,9 +925,8 @@ void NFSProtocolV3::put(const QUrl &url, int _mode, KIO::JobFlags flags)
                                           reinterpret_cast<caddr_t>(&writeRes),
                                           clnt_timeout);
 
-                if (!checkForError(clnt_stat, writeRes.status, destPath)) {
-                    error = true;
-                    break;
+                if (auto res = checkResult(clnt_stat, writeRes.status, destPath); !res.success()) {
+                    return res;
                 }
 
                 writeNow = writeRes.WRITE3res_u.resok.count;
@@ -913,66 +938,63 @@ void NFSProtocolV3::put(const QUrl &url, int _mode, KIO::JobFlags flags)
                 bytesToWrite -= writeNow;
             } while (bytesToWrite > 0);
         }
-
-        if (error) {
-            break;
-        }
     } while (result > 0);
+
+    return KIO::WorkerResult::pass();
 }
 
-void NFSProtocolV3::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags _flags)
+KIO::WorkerResult NFSProtocolV3::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags _flags)
 {
     qCDebug(LOG_KIO_NFS) << src << dest;
 
     const QString srcPath(src.path());
     if (isExportedDir(srcPath)) {
-        setError(KIO::ERR_CANNOT_RENAME, srcPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_CANNOT_RENAME, srcPath);
     }
 
     const QString destPath(dest.path());
     if (isExportedDir(destPath)) {
-        setError(KIO::ERR_ACCESS_DENIED, destPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_ACCESS_DENIED, destPath);
     }
 
-    if (!getFileHandle(destPath).isInvalid() && (_flags & KIO::Overwrite) == 0) {
-        setError(KIO::ERR_FILE_ALREADY_EXIST, destPath);
-        return;
+    if (handleIsValid(getFileHandle(destPath)) && (_flags & KIO::Overwrite) == 0) {
+        return KIO::WorkerResult::fail(KIO::ERR_FILE_ALREADY_EXIST, destPath);
     }
 
     int rpcStatus;
     RENAME3res res;
     rename(srcPath, destPath, rpcStatus, res);
-    checkForError(rpcStatus, res.status, destPath);
+    return checkResult(rpcStatus, res.status, destPath);
 }
 
-void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::JobFlags _flags)
+KIO::WorkerResult NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::JobFlags _flags)
 {
     qCDebug(LOG_KIO_NFS) << src << "to" << dest;
 
     const QString srcPath(src.path());
     if (isExportedDir(QFileInfo(srcPath).path())) {
-        setError(KIO::ERR_ACCESS_DENIED, srcPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_ACCESS_DENIED, srcPath);
     }
 
-    const NFSFileHandle srcFH = getFileHandle(srcPath);
+    auto maybeSrcFH = getFileHandle(srcPath);
+    if (!handleIsValid(maybeSrcFH)) {
+        return getHandleError(maybeSrcFH);
+    }
+
+    auto &srcFH = getHandle(maybeSrcFH);
+
     if (srcFH.isInvalid()) {
-        setError(KIO::ERR_DOES_NOT_EXIST, srcPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, srcPath);
     }
 
     const QString destPath(dest.path());
     if (isExportedDir(QFileInfo(destPath).path())) {
-        setError(KIO::ERR_ACCESS_DENIED, destPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_ACCESS_DENIED, destPath);
     }
 
     // The file exists and we don't want to overwrite
-    if (!getFileHandle(destPath).isInvalid() && (_flags & KIO::Overwrite) == 0) {
-        setError(KIO::ERR_FILE_ALREADY_EXIST, destPath);
-        return;
+    if (handleIsValid(getFileHandle(destPath)) && (_flags & KIO::Overwrite) == 0) {
+        return KIO::WorkerResult::fail(KIO::ERR_FILE_ALREADY_EXIST, destPath);
     }
 
     // Is it a link? No need to copy the data then, just copy the link destination.
@@ -982,24 +1004,22 @@ void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::
         READLINK3res readLinkRes;
         char nameBuf[NFS3_MAXPATHLEN];
         if (!symLinkTarget(srcPath, rpcStatus, readLinkRes, nameBuf)) {
-            setError(KIO::ERR_DOES_NOT_EXIST, srcPath);
-            return;
+            return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, srcPath);
         }
 
         const QString linkPath = QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data);
 
         SYMLINK3res linkRes;
         symLink(linkPath, destPath, rpcStatus, linkRes);
-        checkForError(rpcStatus, linkRes.status, linkPath);
-        return; // done, no more to do
+        return checkResult(rpcStatus, linkRes.status, linkPath); // done, no more to do
     }
 
     unsigned long resumeOffset = 0;
     bool bResume = false;
     const QString partFilePath = destPath + QLatin1String(".part");
-    const NFSFileHandle partFH = getFileHandle(partFilePath);
-    const bool bPartExists = !partFH.isInvalid();
-    const bool bMarkPartial = slave()->configValue(QStringLiteral("MarkPartial"), true);
+    auto partFH = getFileHandle(partFilePath);
+    const bool bPartExists = handleIsValid(partFH);
+    const bool bMarkPartial = worker()->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bPartExists) {
         int rpcStatus;
@@ -1007,11 +1027,10 @@ void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::
         if (lookupHandle(partFilePath, rpcStatus, partRes)) {
             if (bMarkPartial && partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.size > 0) {
                 if (partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.type == NF3DIR) {
-                    setError(KIO::ERR_IS_DIRECTORY, partFilePath);
-                    return;
+                    return KIO::WorkerResult::fail(KIO::ERR_IS_DIRECTORY, partFilePath);
                 }
 
-                bResume = slave()->canResume(partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.size);
+                bResume = worker()->canResume(partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.size);
                 if (bResume) {
                     resumeOffset = partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.size;
                 }
@@ -1028,7 +1047,7 @@ void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::
 
     // Create the file if we are not resuming a parted transfer,
     // or if we are not using part files(bResume is false in that case)
-    NFSFileHandle destFH;
+    NFSFileHandle destFH; // optional because the default ctor is deleted
     if (!bResume) {
         QString createPath;
         if (bMarkPartial) {
@@ -1037,15 +1056,22 @@ void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::
             createPath = destPath;
         }
 
-        destFH = create(createPath, _mode);
-        if (destFH.isInvalid()) {
-            return;
+        auto maybeDestFH = create(createPath, _mode);
+        if (!handleIsValid(maybeDestFH)) {
+            return getHandleError(maybeDestFH);
         }
+
+        destFH = getHandle(maybeDestFH);
     } else {
         // Since we are resuming it's implied that we are using a part file,
         // which should exist at this point.
-        destFH = getFileHandle(partFilePath);
+        auto maybeDestFH = getFileHandle(partFilePath);
+        if (!handleIsValid(maybeDestFH)) { // check just in case
+            qCDebug(LOG_KIO_NFS) << "Failed to resume old transfer (probably a bug in the nfs kio)";
+            return getHandleError(maybeDestFH);
+        }
 
+        destFH = getHandle(maybeDestFH);
         qCDebug(LOG_KIO_NFS) << "Resuming old transfer";
     }
 
@@ -1057,7 +1083,9 @@ void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::
 
     destFH.toFH(writeArgs.file);
     writeArgs.offset = 0;
-    writeArgs.data.data_val = new char[bufferSize];
+
+    auto data_val = std::make_unique<char[]>(bufferSize);
+    writeArgs.data.data_val = data_val.get();
     writeArgs.stable = FILE_SYNC;
 
     READ3args readArgs;
@@ -1078,7 +1106,7 @@ void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::
     WRITE3res writeRes;
     memset(&writeRes, 0, sizeof(WRITE3res));
 
-    bool error = false;
+    std::optional<KIO::WorkerResult> error;
     int bytesRead = 0;
     do {
         int clnt_stat = clnt_call(m_nfsClient,
@@ -1089,8 +1117,8 @@ void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::
                                   reinterpret_cast<caddr_t>(&readRes),
                                   clnt_timeout);
 
-        if (!checkForError(clnt_stat, readRes.status, srcPath)) {
-            error = true;
+        if (auto res = checkResult(clnt_stat, readRes.status, srcPath); !res.success()) {
+            error = res;
             break;
         }
 
@@ -1100,9 +1128,9 @@ void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::
         if (readArgs.offset == 0 || (bResume && writeArgs.offset == resumeOffset)) {
             QMimeDatabase db;
             QMimeType type = db.mimeTypeForFileNameAndData(src.fileName(), QByteArray::fromRawData(writeArgs.data.data_val, bytesRead));
-            slave()->mimeType(type.name());
+            worker()->mimeType(type.name());
 
-            slave()->totalSize(readRes.READ3res_u.resok.file_attributes.post_op_attr_u.attributes.size);
+            worker()->totalSize(readRes.READ3res_u.resok.file_attributes.post_op_attr_u.attributes.size);
         }
 
         if (bytesRead > 0) {
@@ -1119,82 +1147,86 @@ void NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int _mode, KIO::
                                   reinterpret_cast<caddr_t>(&writeRes),
                                   clnt_timeout);
 
-            if (!checkForError(clnt_stat, writeRes.status, destPath)) {
-                error = true;
+            if (auto res = checkResult(clnt_stat, writeRes.status, destPath); !res.success()) {
+                error = res;
                 break;
             }
 
             writeArgs.offset += bytesRead;
 
-            slave()->processedSize(readArgs.offset);
+            worker()->processedSize(readArgs.offset);
         }
     } while (bytesRead > 0);
-
-    delete[] writeArgs.data.data_val;
 
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = slave()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
+            const unsigned int size = worker()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (writeArgs.offset < size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
                 }
             }
         }
-    } else {
-        // Rename partial file to its original name.
-        if (bMarkPartial) {
-            // Remove the destination file(if it exists)
-            if (!getFileHandle(destPath).isInvalid() && !remove(destPath)) {
-                qCDebug(LOG_KIO_NFS) << "Could not remove destination file" << destPath << ", ignoring...";
-            }
 
-            if (!rename(partFilePath, destPath)) {
-                qCDebug(LOG_KIO_NFS) << "failed to rename" << partFilePath << "to" << destPath;
-                setError(KIO::ERR_CANNOT_RENAME_PARTIAL, partFilePath);
-                return;
-            }
-        }
-
-        // Restore modification time
-        int rpcStatus;
-        GETATTR3res attrRes;
-        if (getAttr(srcPath, rpcStatus, attrRes)) {
-            sattr3 attributes;
-            memset(&attributes, 0, sizeof(attributes));
-            attributes.mtime.set_it = SET_TO_CLIENT_TIME;
-            attributes.mtime.set_mtime_u.mtime.seconds = attrRes.GETATTR3res_u.resok.obj_attributes.mtime.seconds;
-            attributes.mtime.set_mtime_u.mtime.nseconds = attrRes.GETATTR3res_u.resok.obj_attributes.mtime.nseconds;
-
-            SETATTR3res attrSetRes;
-            if (!setAttr(destPath, attributes, rpcStatus, attrSetRes)) {
-                qCDebug(LOG_KIO_NFS) << "Failed to restore mtime, ignoring..." << rpcStatus << attrSetRes.status;
-            }
-        }
-
-        qCDebug(LOG_KIO_NFS) << "Copied" << writeArgs.offset << "bytes of data";
-
-        slave()->processedSize(readArgs.offset);
+        return *error;
     }
+
+    // Rename partial file to its original name.
+    if (bMarkPartial) {
+        // Remove the destination file(if it exists)
+        if (handleIsValid(getFileHandle(destPath)) && !remove(destPath)) {
+            qCDebug(LOG_KIO_NFS) << "Could not remove destination file" << destPath << ", ignoring...";
+        }
+
+        if (!rename(partFilePath, destPath)) {
+            qCDebug(LOG_KIO_NFS) << "failed to rename" << partFilePath << "to" << destPath;
+            return KIO::WorkerResult::fail(KIO::ERR_CANNOT_RENAME_PARTIAL, partFilePath);
+        }
+    }
+
+    // Restore modification time
+    int rpcStatus;
+    GETATTR3res attrRes;
+    if (getAttr(srcPath, rpcStatus, attrRes)) {
+        sattr3 attributes;
+        memset(&attributes, 0, sizeof(attributes));
+        attributes.mtime.set_it = SET_TO_CLIENT_TIME;
+        attributes.mtime.set_mtime_u.mtime.seconds = attrRes.GETATTR3res_u.resok.obj_attributes.mtime.seconds;
+        attributes.mtime.set_mtime_u.mtime.nseconds = attrRes.GETATTR3res_u.resok.obj_attributes.mtime.nseconds;
+
+        SETATTR3res attrSetRes;
+        if (!setAttr(destPath, attributes, rpcStatus, attrSetRes)) {
+            qCDebug(LOG_KIO_NFS) << "Failed to restore mtime, ignoring..." << rpcStatus << attrSetRes.status;
+        }
+    }
+
+    qCDebug(LOG_KIO_NFS) << "Copied" << writeArgs.offset << "bytes of data";
+
+    worker()->processedSize(readArgs.offset);
+    return KIO::WorkerResult::pass();
 }
 
-void NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::JobFlags _flags)
+KIO::WorkerResult NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::JobFlags _flags)
 {
     qCDebug(LOG_KIO_NFS) << src << "to" << dest;
 
     const QString srcPath(src.path());
-    const NFSFileHandle srcFH = getFileHandle(srcPath);
+    auto maybeSrcFH = getFileHandle(srcPath);
+    if (!handleIsValid(maybeSrcFH)) {
+        return getHandleError(maybeSrcFH);
+    }
+
+    auto &srcFH = getHandle(maybeSrcFH);
+
     if (srcFH.isInvalid()) {
-        setError(KIO::ERR_DOES_NOT_EXIST, srcPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, srcPath);
     }
 
     const QString destPath(dest.path());
     // The file exists and we don't want to overwrite.
     if (QFile::exists(destPath) && (_flags & KIO::Overwrite) == 0) {
-        setError(KIO::ERR_FILE_ALREADY_EXIST, destPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_FILE_ALREADY_EXIST, destPath);
     }
 
     // Is it a link? No need to copy the data then, just copy the link destination.
@@ -1206,12 +1238,11 @@ void NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::
         READLINK3res readLinkRes;
         char nameBuf[NFS3_MAXPATHLEN];
         if (!symLinkTarget(srcPath, rpcStatus, readLinkRes, nameBuf)) {
-            setError(KIO::ERR_DOES_NOT_EXIST, srcPath);
-            return;
+            return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, srcPath);
         }
 
         QFile::link(QString::fromLocal8Bit(readLinkRes.READLINK3res_u.resok.data), destPath);
-        return; // done, no more to do
+        return KIO::WorkerResult::pass(); // done, no more to do
     }
 
     if (m_readBufferSize == 0) {
@@ -1222,15 +1253,14 @@ void NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::
     bool bResume = false;
     const QFileInfo partInfo(destPath + QLatin1String(".part"));
     const bool bPartExists = partInfo.exists();
-    const bool bMarkPartial = slave()->configValue(QStringLiteral("MarkPartial"), true);
+    const bool bMarkPartial = worker()->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bMarkPartial && bPartExists && partInfo.size() > 0) {
         if (partInfo.isDir()) {
-            setError(KIO::ERR_IS_DIRECTORY, partInfo.absoluteFilePath());
-            return;
+            return KIO::WorkerResult::fail(KIO::ERR_IS_DIRECTORY, partInfo.absoluteFilePath());
         }
 
-        bResume = slave()->canResume(partInfo.size());
+        bResume = worker()->canResume(partInfo.size());
         resumeOffset = partInfo.size();
     }
 
@@ -1264,19 +1294,14 @@ void NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::
         switch (destFile.error()) {
         case QFile::OpenError:
             if (bResume) {
-                setError(KIO::ERR_CANNOT_RESUME, destPath);
-            } else {
-                setError(KIO::ERR_CANNOT_OPEN_FOR_WRITING, destPath);
+                return KIO::WorkerResult::fail(KIO::ERR_CANNOT_RESUME, destPath);
             }
-            break;
+            return KIO::WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_WRITING, destPath);
         case QFile::PermissionsError:
-            setError(KIO::ERR_WRITE_ACCESS_DENIED, destPath);
-            break;
+            return KIO::WorkerResult::fail(KIO::ERR_WRITE_ACCESS_DENIED, destPath);
         default:
-            setError(KIO::ERR_CANNOT_OPEN_FOR_WRITING, destPath);
-            break;
+            return KIO::WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_WRITING, destPath);
         }
-        return;
     }
 
     READ3args readArgs;
@@ -1289,11 +1314,13 @@ void NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::
     readArgs.count = m_readBufferSize;
 
     READ3res readRes;
-    memset(&readRes, 0, sizeof(readres));
-    readRes.READ3res_u.resok.data.data_val = new char[m_readBufferSize];
+    memset(&readRes, 0, sizeof(READ3res));
+
+    auto data_val = std::make_unique<char[]>(m_readBufferSize);
+    readRes.READ3res_u.resok.data.data_val = data_val.get();
     readRes.READ3res_u.resok.data.data_len = m_readBufferSize;
 
-    bool error = false;
+    std::optional<KIO::WorkerResult> error;
     unsigned long bytesToRead = 0, bytesRead = 0;
     do {
         int clnt_stat = clnt_call(m_nfsClient,
@@ -1304,8 +1331,8 @@ void NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::
                                   reinterpret_cast<caddr_t>(&readRes),
                                   clnt_timeout);
 
-        if (!checkForError(clnt_stat, readRes.status, destPath)) {
-            error = true;
+        if (auto res = checkResult(clnt_stat, readRes.status, destPath); !res.success()) {
+            error = res;
             break;
         }
 
@@ -1314,28 +1341,26 @@ void NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::
         if (readArgs.offset == 0 || (bResume && readArgs.offset == resumeOffset)) {
             bytesToRead = readRes.READ3res_u.resok.file_attributes.post_op_attr_u.attributes.size;
 
-            slave()->totalSize(bytesToRead);
+            worker()->totalSize(bytesToRead);
 
             QMimeDatabase db;
             QMimeType type = db.mimeTypeForFileNameAndData(src.fileName(), QByteArray::fromRawData(readRes.READ3res_u.resok.data.data_val, bytesRead));
-            slave()->mimeType(type.name());
+            worker()->mimeType(type.name());
         }
 
         if (bytesRead > 0) {
             readArgs.offset += bytesRead;
 
             if (destFile.write(readRes.READ3res_u.resok.data.data_val, bytesRead) < 0) {
-                setError(KIO::ERR_CANNOT_WRITE, destPath);
-
-                error = true;
+                error = KIO::WorkerResult::fail(KIO::ERR_CANNOT_WRITE, destPath);
                 break;
             }
 
-            slave()->processedSize(readArgs.offset);
+            worker()->processedSize(readArgs.offset);
         }
     } while (readArgs.offset < bytesToRead);
 
-    delete[] readRes.READ3res_u.resok.data.data_val;
+    data_val.reset();
 
     // Close the file so we can modify the modification time later.
     destFile.close();
@@ -1343,64 +1368,64 @@ void NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int _mode, KIO::
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep
-            const int size = slave()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
+            const int size = worker()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (partInfo.size() < size) {
                 QFile::remove(partInfo.absoluteFilePath());
             }
         }
-    } else {
-        // Rename partial file to its original name.
-        if (bMarkPartial) {
-            const QString sPart = partInfo.absoluteFilePath();
-            if (QFile::exists(destPath)) {
-                QFile::remove(destPath);
-            }
-            if (!QFile::rename(sPart, destPath)) {
-                qCDebug(LOG_KIO_NFS) << "failed to rename" << sPart << "to" << destPath;
-                setError(KIO::ERR_CANNOT_RENAME_PARTIAL, sPart);
-                return;
-            }
-        }
 
-        // Restore the mtime on the file.
-        const QString mtimeStr = slave()->metaData("modified");
-        if (!mtimeStr.isEmpty()) {
-            QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
-            if (dt.isValid()) {
-                struct utimbuf utbuf;
-                utbuf.actime = QFileInfo(destPath).lastRead().toSecsSinceEpoch(); // access time, unchanged
-                utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
-                utime(QFile::encodeName(destPath).constData(), &utbuf);
-            }
-        }
-
-        qCDebug(LOG_KIO_NFS) << "Copied" << readArgs.offset << "bytes of data";
-
-        slave()->processedSize(readArgs.offset);
+        return *error;
     }
+
+    // Rename partial file to its original name.
+    if (bMarkPartial) {
+        const QString sPart = partInfo.absoluteFilePath();
+        if (QFile::exists(destPath)) {
+            QFile::remove(destPath);
+        }
+        if (!QFile::rename(sPart, destPath)) {
+            qCDebug(LOG_KIO_NFS) << "failed to rename" << sPart << "to" << destPath;
+            return KIO::WorkerResult::fail(KIO::ERR_CANNOT_RENAME_PARTIAL, sPart);
+        }
+    }
+
+    // Restore the mtime on the file.
+    const QString mtimeStr = worker()->metaData("modified");
+    if (!mtimeStr.isEmpty()) {
+        QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
+        if (dt.isValid()) {
+            struct utimbuf utbuf;
+            utbuf.actime = QFileInfo(destPath).lastRead().toSecsSinceEpoch(); // access time, unchanged
+            utbuf.modtime = dt.toSecsSinceEpoch(); // modification time
+            utime(QFile::encodeName(destPath).constData(), &utbuf);
+        }
+    }
+
+    qCDebug(LOG_KIO_NFS) << "Copied" << readArgs.offset << "bytes of data";
+
+    worker()->processedSize(readArgs.offset);
+
+    return KIO::WorkerResult::pass();
 }
 
-void NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::JobFlags _flags)
+KIO::WorkerResult NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::JobFlags _flags)
 {
     qCDebug(LOG_KIO_NFS) << src << "to" << dest;
 
     // The source does not exist, how strange
     const QString srcPath(src.path());
     if (!QFile::exists(srcPath)) {
-        setError(KIO::ERR_DOES_NOT_EXIST, srcPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, srcPath);
     }
 
     const QString destPath(dest.path());
     if (isExportedDir(QFileInfo(destPath).path())) {
-        setError(KIO::ERR_ACCESS_DENIED, destPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_ACCESS_DENIED, destPath);
     }
 
     // The file exists and we don't want to overwrite.
-    if (!getFileHandle(destPath).isInvalid() && (_flags & KIO::Overwrite) == 0) {
-        setError(KIO::ERR_FILE_ALREADY_EXIST, destPath);
-        return;
+    if (handleIsValid(getFileHandle(destPath)) && (_flags & KIO::Overwrite) == 0) {
+        return KIO::WorkerResult::fail(KIO::ERR_FILE_ALREADY_EXIST, destPath);
     }
 
     // Is it a link? No need to copy the data then, just copy the link destination.
@@ -1410,16 +1435,15 @@ void NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::Jo
         SYMLINK3res linkRes;
 
         symLink(symlinkTarget, destPath, rpcStatus, linkRes);
-        checkForError(rpcStatus, linkRes.status, symlinkTarget);
-        return; // done, no more to do
+        return checkResult(rpcStatus, linkRes.status, symlinkTarget); // done, no more to do
     }
 
     unsigned long resumeOffset = 0;
     bool bResume = false;
     const QString partFilePath = destPath + QLatin1String(".part");
-    const NFSFileHandle partFH = getFileHandle(partFilePath);
-    const bool bPartExists = !partFH.isInvalid();
-    const bool bMarkPartial = slave()->configValue(QStringLiteral("MarkPartial"), true);
+    auto partFH = getFileHandle(partFilePath);
+    const bool bPartExists = handleIsValid(partFH);
+    const bool bMarkPartial = worker()->configValue(QStringLiteral("MarkPartial"), true);
 
     if (bPartExists) {
         int rpcStatus;
@@ -1427,11 +1451,10 @@ void NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::Jo
         if (lookupHandle(partFilePath, rpcStatus, partRes)) {
             if (bMarkPartial && partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.size > 0) {
                 if (partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.type == NF3DIR) {
-                    setError(KIO::ERR_IS_DIRECTORY, partFilePath);
-                    return;
+                    return KIO::WorkerResult::fail(KIO::ERR_IS_DIRECTORY, partFilePath);
                 }
 
-                bResume = slave()->canResume(partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.size);
+                bResume = worker()->canResume(partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.size);
                 if (bResume) {
                     resumeOffset = partRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.size;
                 }
@@ -1449,13 +1472,12 @@ void NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::Jo
     // Open the source file
     QFile srcFile(srcPath);
     if (!srcFile.open(QIODevice::ReadOnly)) {
-        setError(KIO::ERR_CANNOT_OPEN_FOR_READING, srcPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_READING, srcPath);
     }
 
     // Create the file if we are not resuming a parted transfer,
     // or if we are not using part files (bResume is false in that case)
-    NFSFileHandle destFH;
+    NFSFileHandle destFH; // optional because the default ctor is deleted
     if (!bResume) {
         QString createPath;
         if (bMarkPartial) {
@@ -1464,20 +1486,27 @@ void NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::Jo
             createPath = destPath;
         }
 
-        destFH = create(createPath, _mode);
-        if (destFH.isInvalid()) {
-            return;
+        auto maybeDestFH = create(createPath, _mode);
+        if (!handleIsValid(maybeDestFH)) {
+            return getHandleError(maybeDestFH);
         }
+
+        destFH = getHandle(maybeDestFH);
     } else {
         // Since we are resuming it's implied that we are using a part file,
         // which should exist at this point.
-        destFH = getFileHandle(partFilePath);
+        auto maybeDestFH = getFileHandle(partFilePath);
+        if (!handleIsValid(maybeDestFH)) { // check just in case
+            qCDebug(LOG_KIO_NFS) << "Failed to resume old transfer (probably a bug in the nfs kio)";
+            return getHandleError(maybeDestFH);
+        }
 
+        destFH = getHandle(maybeDestFH);
         qCDebug(LOG_KIO_NFS) << "Resuming old transfer";
     }
 
-    // Send the total size to the slave.
-    slave()->totalSize(srcFile.size());
+    // Send the total size to the worker.
+    worker()->totalSize(srcFile.size());
 
     // Get the optimal write buffer size
     if (m_writeBufferSize == 0) {
@@ -1488,7 +1517,9 @@ void NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::Jo
     WRITE3args writeArgs;
     memset(&writeArgs, 0, sizeof(writeArgs));
     destFH.toFH(writeArgs.file);
-    writeArgs.data.data_val = new char[m_writeBufferSize];
+
+    auto data_val = std::make_unique<char[]>(m_writeBufferSize);
+    writeArgs.data.data_val = data_val.get();
     writeArgs.stable = FILE_SYNC;
     if (bResume) {
         writeArgs.offset = resumeOffset;
@@ -1499,16 +1530,14 @@ void NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::Jo
     WRITE3res writeRes;
     memset(&writeRes, 0, sizeof(writeRes));
 
-    bool error = false;
+    std::optional<KIO::WorkerResult> error;
     int bytesRead = 0;
     do {
         memset(writeArgs.data.data_val, 0, m_writeBufferSize);
 
         bytesRead = srcFile.read(writeArgs.data.data_val, m_writeBufferSize);
         if (bytesRead < 0) {
-            setError(KIO::ERR_CANNOT_READ, srcPath);
-
-            error = true;
+            error = KIO::WorkerResult::fail(KIO::ERR_CANNOT_READ, srcPath);
             break;
         }
 
@@ -1524,86 +1553,85 @@ void NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _mode, KIO::Jo
                                       reinterpret_cast<caddr_t>(&writeRes),
                                       clnt_timeout);
 
-            if (!checkForError(clnt_stat, writeRes.status, destPath)) {
-                error = true;
+            if (auto res = checkResult(clnt_stat, writeRes.status, destPath); !res.success()) {
+                error = res;
                 break;
             }
 
             writeArgs.offset += bytesRead;
 
-            slave()->processedSize(writeArgs.offset);
+            worker()->processedSize(writeArgs.offset);
         }
     } while (bytesRead > 0);
-
-    delete[] writeArgs.data.data_val;
 
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = slave()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
+            const unsigned int size = worker()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
             if (writeArgs.offset < size) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
                 }
             }
         }
-    } else {
-        // Rename partial file to its original name.
-        if (bMarkPartial) {
-            // Remove the destination file(if it exists)
-            if (!getFileHandle(destPath).isInvalid() && !remove(destPath)) {
-                qCDebug(LOG_KIO_NFS) << "Could not remove destination file" << destPath << ", ignoring...";
-            }
 
-            if (!rename(partFilePath, destPath)) {
-                qCDebug(LOG_KIO_NFS) << "failed to rename" << partFilePath << "to" << destPath;
-                setError(KIO::ERR_CANNOT_RENAME_PARTIAL, partFilePath);
-                return;
-            }
-        }
-
-        // Restore the mtime on the file.
-        const QString mtimeStr = slave()->metaData("modified");
-        if (!mtimeStr.isEmpty()) {
-            QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
-            if (dt.isValid()) {
-                sattr3 attributes;
-                memset(&attributes, 0, sizeof(attributes));
-                attributes.mtime.set_it = SET_TO_CLIENT_TIME;
-                attributes.mtime.set_mtime_u.mtime.seconds = dt.toSecsSinceEpoch();
-                attributes.mtime.set_mtime_u.mtime.nseconds = attributes.mtime.set_mtime_u.mtime.seconds * 1000000000ULL;
-
-                int rpcStatus;
-                SETATTR3res attrSetRes;
-                if (!setAttr(destPath, attributes, rpcStatus, attrSetRes)) {
-                    qCDebug(LOG_KIO_NFS) << "Failed to restore mtime, ignoring..." << rpcStatus << attrSetRes.status;
-                }
-            }
-        }
-
-        qCDebug(LOG_KIO_NFS) << "Copied" << writeArgs.offset << "bytes of data";
-
-        slave()->processedSize(writeArgs.offset);
+        return *error;
     }
+
+    // Rename partial file to its original name.
+    if (bMarkPartial) {
+        // Remove the destination file(if it exists)
+        if (handleIsValid(getFileHandle(destPath)) && !remove(destPath)) {
+            qCDebug(LOG_KIO_NFS) << "Could not remove destination file" << destPath << ", ignoring...";
+        }
+
+        if (!rename(partFilePath, destPath)) {
+            qCDebug(LOG_KIO_NFS) << "failed to rename" << partFilePath << "to" << destPath;
+            return KIO::WorkerResult::fail(KIO::ERR_CANNOT_RENAME_PARTIAL, partFilePath);
+        }
+    }
+
+    // Restore the mtime on the file.
+    const QString mtimeStr = worker()->metaData("modified");
+    if (!mtimeStr.isEmpty()) {
+        QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
+        if (dt.isValid()) {
+            sattr3 attributes;
+            memset(&attributes, 0, sizeof(attributes));
+            attributes.mtime.set_it = SET_TO_CLIENT_TIME;
+            attributes.mtime.set_mtime_u.mtime.seconds = dt.toSecsSinceEpoch();
+            attributes.mtime.set_mtime_u.mtime.nseconds = attributes.mtime.set_mtime_u.mtime.seconds * 1000000000ULL;
+
+            int rpcStatus;
+            SETATTR3res attrSetRes;
+            if (!setAttr(destPath, attributes, rpcStatus, attrSetRes)) {
+                qCDebug(LOG_KIO_NFS) << "Failed to restore mtime, ignoring..." << rpcStatus << attrSetRes.status;
+            }
+        }
+    }
+
+    qCDebug(LOG_KIO_NFS) << "Copied" << writeArgs.offset << "bytes of data";
+
+    worker()->processedSize(writeArgs.offset);
+
+    return KIO::WorkerResult::pass();
 }
 
-void NFSProtocolV3::symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags)
+KIO::WorkerResult NFSProtocolV3::symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags)
 {
     const QString destPath(dest.path());
     if (isExportedDir(QFileInfo(destPath).path())) {
-        setError(KIO::ERR_ACCESS_DENIED, destPath);
-        return;
+        return KIO::WorkerResult::fail(KIO::ERR_ACCESS_DENIED, destPath);
     }
 
-    if (!getFileHandle(destPath).isInvalid() && (flags & KIO::Overwrite) == 0) {
-        setError(KIO::ERR_FILE_ALREADY_EXIST, destPath);
-        return;
+    if (handleIsValid(getFileHandle(destPath)) && (flags & KIO::Overwrite) == 0) {
+        return KIO::WorkerResult::fail(KIO::ERR_FILE_ALREADY_EXIST, destPath);
     }
 
     int rpcStatus;
     SYMLINK3res res;
     symLink(target, destPath, rpcStatus, res);
-    checkForError(rpcStatus, res.status, destPath);
+    return checkResult(rpcStatus, res.status, destPath);
 }
 
 void NFSProtocolV3::initPreferredSizes(const NFSFileHandle &fh)
@@ -1636,23 +1664,22 @@ void NFSProtocolV3::initPreferredSizes(const NFSFileHandle &fh)
     qCDebug(LOG_KIO_NFS) << "Preferred sizes - write" << m_writeBufferSize << ", read" << m_readBufferSize << ", read dir" << m_readDirSize;
 }
 
-NFSFileHandle NFSProtocolV3::create(const QString &path, int mode)
+MaybeNFSFileHandle NFSProtocolV3::create(const QString &path, int mode)
 {
     qCDebug(LOG_KIO_NFS) << path;
 
     if (!isConnected()) {
-        setError(KIO::ERR_CANNOT_CONNECT, path);
-        return NFSFileHandle();
+        return KIO::WorkerResult::fail(KIO::ERR_CANNOT_CONNECT, path);
     }
 
     const QFileInfo fileInfo(path);
 
-    const NFSFileHandle directoryFH = getFileHandle(fileInfo.path());
-    if (directoryFH.isInvalid()) {
-        setError(KIO::ERR_DOES_NOT_EXIST, fileInfo.path());
-        return NFSFileHandle();
+    auto maybeDirectoryFH = getFileHandle(fileInfo.path());
+    if (!handleIsValid(maybeDirectoryFH)) {
+        return maybeDirectoryFH;
     }
 
+    auto &directoryFH = getHandle(maybeDirectoryFH);
     QByteArray tmpName = QFile::encodeName(fileInfo.fileName());
 
     int rpcStatus = 0;
@@ -1688,8 +1715,7 @@ NFSFileHandle NFSProtocolV3::create(const QString &path, int mode)
                           clnt_timeout);
 
     if (rpcStatus != RPC_SUCCESS || result.status != NFS3_OK) {
-        checkForError(rpcStatus, result.status, path);
-        return NFSFileHandle();
+        return checkResult(rpcStatus, result.status, path);
     }
 
     return result.CREATE3res_u.resok.obj.post_op_fh3_u.handle;
@@ -1707,15 +1733,15 @@ bool NFSProtocolV3::getAttr(const QString &path, int &rpcStatus, GETATTR3res &re
         return false;
     }
 
-    const NFSFileHandle fileFH = getFileHandle(path);
-    if (fileFH.isInvalid()) {
+    auto fileFH = getFileHandle(path);
+    if (!handleIsValid(fileFH)) {
         result.status = NFS3ERR_NOENT;
         return false;
     }
 
     GETATTR3args args;
     memset(&args, 0, sizeof(GETATTR3args));
-    fileFH.toFH(args.object);
+    getHandle(fileFH).toFH(args.object);
 
     rpcStatus = clnt_call(m_nfsClient,
                           NFSPROC3_GETATTR,
@@ -1740,8 +1766,8 @@ bool NFSProtocolV3::lookupHandle(const QString &path, int &rpcStatus, LOOKUP3res
 
     const QFileInfo fileInfo(path);
 
-    const NFSFileHandle parentFH = getFileHandle(fileInfo.path());
-    if (parentFH.isInvalid()) {
+    auto parentFH = getFileHandle(fileInfo.path());
+    if (!handleIsValid(parentFH)) {
         result.status = NFS3ERR_NOENT;
         return false;
     }
@@ -1751,7 +1777,7 @@ bool NFSProtocolV3::lookupHandle(const QString &path, int &rpcStatus, LOOKUP3res
     // do the rpc call
     LOOKUP3args args;
     memset(&args, 0, sizeof(args));
-    parentFH.toFH(args.what.dir);
+    getHandle(parentFH).toFH(args.what.dir);
     args.what.name = tmpName.data();
 
     rpcStatus = clnt_call(m_nfsClient,
@@ -1772,12 +1798,13 @@ bool NFSProtocolV3::symLinkTarget(const QString &path, int &rpcStatus, READLINK3
     memset(&rpcStatus, 0, sizeof(int));
     memset(&result, 0, sizeof(result));
 
-    const NFSFileHandle fh = getFileHandle(path);
-    if (fh.isInvalid()) {
+    auto maybeFH = getFileHandle(path);
+    if (handleIsValid(maybeFH)) {
         result.status = NFS3ERR_NOENT;
         return false;
     }
 
+    auto &fh = getHandle(maybeFH);
     READLINK3args readLinkArgs;
     memset(&readLinkArgs, 0, sizeof(readLinkArgs));
     if (fh.isLink() && !fh.isBadLink()) {
@@ -1825,8 +1852,8 @@ bool NFSProtocolV3::remove(const QString &path, int &rpcStatus, REMOVE3res &resu
         return false;
     }
 
-    const NFSFileHandle directoryFH = getFileHandle(fileInfo.path());
-    if (directoryFH.isInvalid()) {
+    auto directoryFH = getFileHandle(fileInfo.path());
+    if (!handleIsValid(directoryFH)) {
         result.status = NFS3ERR_NOENT;
         return false;
     }
@@ -1842,7 +1869,7 @@ bool NFSProtocolV3::remove(const QString &path, int &rpcStatus, REMOVE3res &resu
 
     REMOVE3args args;
     memset(&args, 0, sizeof(args));
-    directoryFH.toFH(args.object.dir);
+    getHandle(directoryFH).toFH(args.object.dir);
     args.object.name = tmpName.data();
 
     if (lookupRes.LOOKUP3res_u.resok.obj_attributes.post_op_attr_u.attributes.type != NF3DIR) {
@@ -1893,8 +1920,8 @@ bool NFSProtocolV3::rename(const QString &src, const QString &dest, int &rpcStat
         return false;
     }
 
-    const NFSFileHandle srcDirectoryFH = getFileHandle(srcFileInfo.path());
-    if (srcDirectoryFH.isInvalid()) {
+    auto srcDirectoryFH = getFileHandle(srcFileInfo.path());
+    if (!handleIsValid(srcDirectoryFH)) {
         result.status = NFS3ERR_NOENT;
         return false;
     }
@@ -1905,8 +1932,8 @@ bool NFSProtocolV3::rename(const QString &src, const QString &dest, int &rpcStat
         return false;
     }
 
-    const NFSFileHandle destDirectoryFH = getFileHandle(destFileInfo.path());
-    if (destDirectoryFH.isInvalid()) {
+    auto destDirectoryFH = getFileHandle(destFileInfo.path());
+    if (!handleIsValid(destDirectoryFH)) {
         result.status = NFS3ERR_NOENT;
         return false;
     }
@@ -1915,11 +1942,11 @@ bool NFSProtocolV3::rename(const QString &src, const QString &dest, int &rpcStat
     memset(&args, 0, sizeof(args));
 
     QByteArray srcByteName = QFile::encodeName(srcFileInfo.fileName());
-    srcDirectoryFH.toFH(args.from.dir);
+    getHandle(srcDirectoryFH).toFH(args.from.dir);
     args.from.name = srcByteName.data();
 
     QByteArray destByteName = QFile::encodeName(destFileInfo.fileName());
-    destDirectoryFH.toFH(args.to.dir);
+    getHandle(destDirectoryFH).toFH(args.to.dir);
     args.to.name = destByteName.data();
 
     rpcStatus = clnt_call(m_nfsClient,
@@ -1952,15 +1979,15 @@ bool NFSProtocolV3::setAttr(const QString &path, const sattr3 &attributes, int &
     memset(&rpcStatus, 0, sizeof(int));
     memset(&result, 0, sizeof(result));
 
-    const NFSFileHandle fh = getFileHandle(path);
-    if (fh.isInvalid()) {
+    auto fh = getFileHandle(path);
+    if (!handleIsValid(fh)) {
         result.status = NFS3ERR_NOENT;
         return false;
     }
 
     SETATTR3args setAttrArgs;
     memset(&setAttrArgs, 0, sizeof(setAttrArgs));
-    fh.toFH(setAttrArgs.object);
+    getHandle(fh).toFH(setAttrArgs.object);
     memcpy(&setAttrArgs.new_attributes, &attributes, sizeof(attributes));
 
     rpcStatus = clnt_call(m_nfsClient,
@@ -1987,8 +2014,8 @@ bool NFSProtocolV3::symLink(const QString &target, const QString &dest, int &rpc
 
     const QFileInfo fileInfo(dest);
 
-    const NFSFileHandle fh = getFileHandle(fileInfo.path());
-    if (fh.isInvalid()) {
+    auto fh = getFileHandle(fileInfo.path());
+    if (!handleIsValid(fh)) {
         result.status = NFS3ERR_NOENT;
         return false;
     }
@@ -1999,7 +2026,7 @@ bool NFSProtocolV3::symLink(const QString &target, const QString &dest, int &rpc
     SYMLINK3args symLinkArgs;
     memset(&symLinkArgs, 0, sizeof(symLinkArgs));
 
-    fh.toFH(symLinkArgs.where.dir);
+    getHandle(fh).toFH(symLinkArgs.where.dir);
     symLinkArgs.where.name = tmpStr.data();
     symLinkArgs.symlink.symlink_data = tmpStr2.data();
 
@@ -2012,9 +2039,9 @@ bool NFSProtocolV3::symLink(const QString &target, const QString &dest, int &rpc
                           clnt_timeout);
 
     // Add the new handle to the cache
-    NFSFileHandle destFH = getFileHandle(dest);
-    if (!destFH.isInvalid()) {
-        addFileHandle(dest, destFH);
+    auto destFH = getFileHandle(dest);
+    if (handleIsValid(destFH)) {
+        addFileHandle(dest, getHandle(destFH));
     }
 
     return (rpcStatus == RPC_SUCCESS && result.status == NFS3_OK);

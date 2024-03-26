@@ -1,11 +1,11 @@
-README for the NFS ioslave
-==========================
+README for the NFS ioworker
+===========================
 
-This ioslave provides read and write access to exported filesystems
+This ioworker provides read and write access to exported filesystems
 on NFS servers.  Any KDE file manager or application that uses KIO
 can access them using an URL of the form
 
-  nfs://servername/path
+  nfs://[username@]servername[:port]/path
 
 The server name is required.
 
@@ -19,16 +19,14 @@ server using RPC calls. Because of this it does not need root access
 or any administrator configuration on the client, but see "Security"
 below.
 
-The ioslave supports NFS protocol versions 2 and 3.  Normally NFSv3 is
-tried first but, if the server does not support NFSv3, then NFSv2 is
-then tried.  See "Configuration" below for settings that control the
-protocol version.
+The ioworker supports only NFS protocol version 3. Version 4 is still
+unsupported.
 
 
 Security
 --------
 
-Because the ioslave runs as an ordinary (non-root) user, requests to
+Because the ioworker runs as an ordinary (non-root) user, requests to
 the NFS server originate from a non-privileged source network port.
 Some NFS servers reject requests which do not originate from a
 privileged port - the Linux NFS server with the default configuration
@@ -37,14 +35,14 @@ with the 'insecure' option, see exports(5).
 
 Warning: Because it is trivial to impersonate any user, and the need
 to export filesystems 'insecure', NFS servers should be configured for
-access using this ioslave only within private and secure network
+access using this ioworker only within private and secure network
 environments.
 
 
 Configuration
 -------------
 
-Normally the ioslave does not require any special configuration.  If
+Normally the ioworker does not require any special configuration.  If
 advanced control over its operation is required then settings can be
 configured in the 'kionfsrc' configuration file, normally located at
 '$XDG_CONFIG_HOME/kionfsrc'.  There is no GUI, but this file can be

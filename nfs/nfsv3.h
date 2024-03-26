@@ -19,38 +19,38 @@
 class NFSProtocolV3 : public NFSProtocol
 {
 public:
-    explicit NFSProtocolV3(NFSSlave *slave);
+    explicit NFSProtocolV3(NFSWorker *worker);
     ~NFSProtocolV3() override;
 
     bool isCompatible(bool &connectionError) override;
     bool isConnected() const override;
 
-    void openConnection() override;
+    KIO::WorkerResult openConnection() override;
     void closeConnection() override;
 
-    void put(const QUrl &url, int _mode, KIO::JobFlags _flags) override;
-    void get(const QUrl &url) override;
-    void listDir(const QUrl &url) override;
-    void symlink(const QString &target, const QUrl &dest, KIO::JobFlags) override;
-    void stat(const QUrl &url) override;
-    void mkdir(const QUrl &url, int permissions) override;
-    void del(const QUrl &url, bool isfile) override;
-    void chmod(const QUrl &url, int permissions) override;
-    void rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
+    KIO::WorkerResult put(const QUrl &url, int _mode, KIO::JobFlags _flags) override;
+    KIO::WorkerResult get(const QUrl &url) override;
+    KIO::WorkerResult listDir(const QUrl &url) override;
+    KIO::WorkerResult symlink(const QString &target, const QUrl &dest, KIO::JobFlags) override;
+    KIO::WorkerResult stat(const QUrl &url) override;
+    KIO::WorkerResult mkdir(const QUrl &url, int permissions) override;
+    KIO::WorkerResult del(const QUrl &url, bool isfile) override;
+    KIO::WorkerResult chmod(const QUrl &url, int permissions) override;
+    KIO::WorkerResult rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
 
 protected:
-    void copySame(const QUrl &src, const QUrl &dest, int mode, KIO::JobFlags flags) override;
-    void copyFrom(const QUrl &src, const QUrl &dest, int mode, KIO::JobFlags flags) override;
-    void copyTo(const QUrl &src, const QUrl &dest, int mode, KIO::JobFlags flags) override;
+    KIO::WorkerResult copySame(const QUrl &src, const QUrl &dest, int mode, KIO::JobFlags flags) override;
+    KIO::WorkerResult copyFrom(const QUrl &src, const QUrl &dest, int mode, KIO::JobFlags flags) override;
+    KIO::WorkerResult copyTo(const QUrl &src, const QUrl &dest, int mode, KIO::JobFlags flags) override;
 
     // For servers that don't support the READDIRPLUS command.
-    void listDirCompat(const QUrl &url);
+    KIO::WorkerResult listDirCompat(const QUrl &url);
 
     // Look up a file handle.
-    NFSFileHandle lookupFileHandle(const QString &path) override;
+    std::optional<NFSFileHandle> lookupFileHandle(const QString &path) override;
 
 private:
-    NFSFileHandle create(const QString &path, int mode);
+    MaybeNFSFileHandle create(const QString &path, int mode);
 
     bool getAttr(const QString &path, int &rpcStatus, GETATTR3res &result);
 
