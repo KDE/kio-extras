@@ -18,6 +18,8 @@
 #include <KPluginFactory>
 #include <KSharedConfig>
 
+#include <KIO/Global>
+
 #include <limits>
 
 K_PLUGIN_CLASS_WITH_JSON(EXRCreator, "exrthumbnail.json")
@@ -58,8 +60,8 @@ KIO::ThumbnailResult EXRCreator::create(const KIO::ThumbnailRequest &request)
     qCDebug(KIO_THUMBNAIL_EXR_LOG) << "EXRcreator - using original image";
     KSharedConfig::Ptr config = KSharedConfig::openConfig();
     KConfigGroup configGroup(config, "PreviewSettings");
-    const qint64 maxSize = configGroup.readEntry("MaximumSize", std::numeric_limits<qint64>::max());
-    const qint64 fileSize = QFile(request.url().toLocalFile()).size();
+    const KIO::filesize_t maxSize = configGroup.readEntry("MaximumSize", std::numeric_limits<KIO::filesize_t>::max());
+    const KIO::filesize_t fileSize = QFile(request.url().toLocalFile()).size();
     if ((fileSize > 0) && (fileSize < maxSize)) {
         QImage img;
         if (!img.load(request.url().toLocalFile())) {

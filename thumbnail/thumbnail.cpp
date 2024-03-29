@@ -524,7 +524,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
                 continue;
             }
 
-            auto fileSize = dir.fileInfo().size();
+            const auto fileSize = KIO::filesize_t(dir.fileInfo().size());
             if ((fileSize == 0) || (fileSize > m_maxFileSize)) {
                 // don't create thumbnails for files that exceed
                 // the maximum set file size or are empty

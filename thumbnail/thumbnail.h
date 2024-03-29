@@ -72,7 +72,7 @@ private:
     QStringList m_enabledPlugins;
     QSet<QString> m_propagationDirectories;
     QString m_thumbBasePath;
-    qint64 m_maxFileSize;
+    KIO::filesize_t m_maxFileSize;
     QRandomGenerator m_randomGenerator;
     float m_sequenceIndexWrapAroundPoint = -1;
 };
