@@ -60,7 +60,7 @@ require $config_file;  #-- configuration settings
 my $DOCTYPE = qq(<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" >);
 
 my $STYLESHEET_KDE =
-   qq(<link rel="stylesheet" href="help:/kdoctools5-common/kde-default.css" type="text/css">
+   qq(<link rel="stylesheet" href="help:/kdoctools6-common/kde-default.css" type="text/css">
       $css_link
       <style type="text/css"><!-- .chapter { padding-right: 1em } --></style>);
 
@@ -662,9 +662,9 @@ $DOCTYPE
       <!-- These can't be in the .css file due to the help KIO worker not being
            followed. -->
       <style type="text/css">
-      #header_top { background-image: url("help:/kdoctools5-common/top.jpg"); }
-      #header_top div { background-image: url("help:/kdoctools5-common/top-left.jpg"); }
-      #header_top div div { background-image: url("help:/kdoctools5-common/top-right.jpg"); }
+      #header_top { background-image: url("help:/kdoctools6-common/top.jpg"); }
+      #header_top div { background-image: url("help:/kdoctools6-common/top-left.jpg"); }
+      #header_top div div { background-image: url("help:/kdoctools6-common/top-right.jpg"); }
 
       /* Newer updates to kde.org, looks good */
       #header_bottom {
@@ -680,7 +680,7 @@ $DOCTYPE
 <!--header start-->
    <div id="header"><div id="header_top">
        <div><div>
-       <img src="help:/kdoctools5-common/top-kde.jpg" alt="[KDE Help]"> $UpcaseInfoFile: $LinkList[1]</div></div>
+       <img src="help:/kdoctools6-common/top-kde.jpg" alt="[KDE Help]"> $UpcaseInfoFile: $LinkList[1]</div></div>
    </div>
 <div class="header_bottom" style="border: none">
 EOF
