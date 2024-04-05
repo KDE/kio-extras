@@ -67,7 +67,6 @@ private:
     QString mySgml2RoffPath;
 
     QBuffer m_outputBuffer; ///< Buffer for the output
-    QByteArray m_manCSSFile; ///< Path to kio_man.css
 };
 
 #endif

@@ -122,6 +122,7 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
     Q_ASSERT(s_self == nullptr);
     s_self = this;
 
+    /* clang-format off */
     m_sectionNames << "0"
                    << "0p"
                    << "1"
@@ -138,9 +139,7 @@ MANProtocol::MANProtocol(const QByteArray &pool_socket, const QByteArray &app_so
                    << "9"
                    << "l"
                    << "n";
-
-    const QString cssPath(QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css"));
-    m_manCSSFile = QFile::encodeName(QUrl::fromLocalFile(cssPath).url());
+    /* clang-format on */
 }
 
 MANProtocol *MANProtocol::self()
@@ -492,7 +491,6 @@ KIO::WorkerResult MANProtocol::get(const QUrl &url)
         }
     }
 
-    setCssFile(m_manCSSFile);
     m_outputBuffer.open(QIODevice::WriteOnly);
     const QByteArray filename = QFile::encodeName(pageFound);
     const char *buf = readManPage(filename);
@@ -605,7 +603,6 @@ char *MANProtocol::readManPage(const char *_filename)
 }
 
 //---------------------------------------------------------------------
-
 // This opens one <div> to format the HTML body, so when the document
 // is finished it needs to be closed by outputFooter().
 void MANProtocol::outputHeader(QTextStream &os, const QString &header, const QString &title)
@@ -617,31 +614,29 @@ void MANProtocol::outputHeader(QTextStream &os, const QString &header, const QSt
     os << "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n";
     os << "<title>" << pageTitle << "</title>\n";
     os << "<link rel=\"stylesheet\" href=\"help:/kdoctools6-common/kde-default.css\" type=\"text/css\">\n";
-    if (!m_manCSSFile.isEmpty()) {
-        os << "<link rel=\"stylesheet\" href=\"" << m_manCSSFile << "\" type=\"text/css\">\n";
-    }
-    os << "<style type=\"text/css\">\n";
-    os << "#header_top { background-image: url(\"help:/kdoctools6-common/top.jpg\"); }\n";
-    os << "#header_top div { background-image: url(\"help:/kdoctools6-common/top-left.jpg\"); }\n";
-    os << "#header_top div div { background-image: url(\"help:/kdoctools6-common/top-right.jpg\"); }\n";
-    os << "</style>\n";
+    os << "<link rel=\"stylesheet\" href=\"help:/kdoctools6-common/kde-docs.css\" type=\"text/css\">\n";
+    os << "<link rel=\"stylesheet\" href=\"help:/kdoctools6-common/kde-localised.css\" type=\"text/css\">\n";
     os << "</head>\n";
 
     os << "<body>\n";
-    os << "<div id=\"header\"><div id=\"header_top\"><div><div>\n";
+    os << "<div id=\"content\">\n";
+    os << "<div id=\"header\"><div id=\"header_content\"><div id=\"header_left\"><div id=\"header_right\">\n";
     os << "<img src=\"help:/kdoctools6-common/top-kde.jpg\" alt=\"top-kde\">\n";
     os << pageTitle << "\n";
     os << "</div></div></div></div>\n";
 
-    os << "<div style=\"margin-left: 5em; margin-right: 5em;\">\n";
-    os << "<h1>" << header << "</h1>\n";
+    os << "<div id=\"contentBody\">\n";
+    os << "<div class=\"book\">\n";
+    os << "<h1 class=\"title\">" << header << "</h1>\n";
 
     os.flush();
 }
 
 void MANProtocol::outputFooter(QTextStream &os)
 {
-    os << "</div>\n"; // closes "<div style="margin-left: 5em; margin-right: 5em;"
+    os << "</div>\n"; // closes "<div class="book">
+    os << "</div>\n"; // closes "<div id="contentBody">
+    os << "</div>\n"; // closes "<div id="content">
     os << "</body>\n";
     os << "</html>\n";
     os.flush();

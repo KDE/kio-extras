@@ -20,15 +20,6 @@ char *manPageToUtf8(const QByteArray &input, const QByteArray &dirName);
 /** call this with the buffer you have */
 void scan_man_page(const char *man_page);
 
-/*
- * Sets the path to a CSS file that should be included with the generated
- * HTML output.
- *
- * \param HTML-encoded path to the file to reference for stylesheets.
- * \since 4.1
- */
-extern void setCssFile(const QByteArray &_cssFile);
-
 /** implement this somewhere. It will be called
    with HTML contents
 */
