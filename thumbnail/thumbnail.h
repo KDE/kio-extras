@@ -16,8 +16,6 @@
 #include <KIO/WorkerBase>
 #include <KPluginMetaData>
 
-#include <kio_version.h>
-
 class ThumbCreator;
 class QImage;
 

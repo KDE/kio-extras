@@ -47,8 +47,6 @@
 #include <KIO/PreviewJob>
 #include <KPluginFactory>
 
-#include <kio_version.h>
-
 #include <limits>
 
 #include "imagefilter.h"
