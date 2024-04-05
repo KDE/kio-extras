@@ -18,7 +18,6 @@
 #include <KTar>
 #include <KUser>
 #include <KZip>
-#include <kio_version.h>
 
 #include <QDir>
 #include <QFile>
@@ -185,22 +184,8 @@ KIO::StatDetails ArchiveProtocolBase::getStatDetails()
     // takes care of converting old metadata details to new StatDetails
     // TODO KF6 : remove legacy "details" code path
     KIO::StatDetails details;
-#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    if (hasMetaData(QStringLiteral("statDetails"))) {
-#endif
-        const QString statDetails = metaData(QStringLiteral("statDetails"));
-        details = statDetails.isEmpty() ? KIO::StatDefaultDetails : static_cast<KIO::StatDetails>(statDetails.toInt());
-#if KIO_VERSION < QT_VERSION_CHECK(5, 240, 0)
-    } else {
-        const QString sDetails = metaData(QStringLiteral("details"));
-        // silence deprecation warning for KIO::detailsToStatDetails
-        QT_WARNING_PUSH
-        QT_WARNING_DISABLE_CLANG("-Wdeprecated-declarations")
-        QT_WARNING_DISABLE_GCC("-Wdeprecated-declarations")
-        details = sDetails.isEmpty() ? KIO::StatDefaultDetails : KIO::detailsToStatDetails(sDetails.toInt());
-        QT_WARNING_POP
-    }
-#endif
+    const QString statDetails = metaData(QStringLiteral("statDetails"));
+    details = statDetails.isEmpty() ? KIO::StatDefaultDetails : static_cast<KIO::StatDetails>(statDetails.toInt());
     return details;
 }
 
