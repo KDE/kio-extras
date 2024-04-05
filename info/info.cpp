@@ -36,9 +36,6 @@ InfoProtocol::InfoProtocol(const QByteArray &pool, const QByteArray &app)
 {
     qCDebug(LOG_KIO_INFO);
 
-    m_cssLocation = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kio_docfilter/kio_docfilter.css");
-    if (m_cssLocation.isEmpty())
-        m_missingFiles.append("kio_docfilter/kio_docfilter.css");
     m_perl = QStandardPaths::findExecutable("perl");
     if (m_perl.isEmpty())
         m_missingFiles.append("perl");
@@ -115,8 +112,6 @@ KIO::WorkerResult InfoProtocol::get(const QUrl &url)
     cmd += KShell::quoteArg(m_infoScript);
     cmd += ' ';
     cmd += KShell::quoteArg(m_infoConf);
-    cmd += ' ';
-    cmd += KShell::quoteArg(m_cssLocation);
     cmd += ' ';
     cmd += KShell::quoteArg(m_page);
     cmd += ' ';

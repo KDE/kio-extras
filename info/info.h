@@ -31,7 +31,6 @@ private:
     QString m_perl;
     QString m_infoScript;
     QString m_infoConf;
-    QString m_cssLocation;
 
     QStringList m_missingFiles;
 };
