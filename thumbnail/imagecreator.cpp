@@ -69,17 +69,7 @@ KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
      *         the QImageIOHandler::Size option (TIFF, PSB and XCF already have).
      */
     auto ram = maximumThumbnailRam();
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    if (ir.supportsOption(QImageIOHandler::Size)) {
-        auto size = ir.size();
-        // euristic way: we always calculate the size supposing a 16-bits RGBA image
-        if (size == QSize() || (8ll * size.width() * size.height() > ram)) {
-            return KIO::ThumbnailResult::fail();
-        }
-    }
-#else
     QImageReader::setAllocationLimit(ram / 1024 / 1024);
-#endif
 
     ir.setAutoTransform(true);
     ir.setDecideFormatFromContent(true);
