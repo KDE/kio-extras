@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-23 00:37+0000\n"
+"POT-Creation-Date: 2024-04-06 00:37+0000\n"
 "PO-Revision-Date: 2023-10-23 00:12+0300\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Hebrew <kde-l10n-he@kde.org>\n"
@@ -19,52 +19,52 @@ msgstr ""
 "n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Poedit 3.3.2\n"
 
-#: thumbnail.cpp:199
+#: thumbnail.cpp:197
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "לא צוין סוג MIME."
 
-#: thumbnail.cpp:206
+#: thumbnail.cpp:204
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "לא צוין גודל או שהוא שגוי."
 
-#: thumbnail.cpp:227
+#: thumbnail.cpp:225
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "אי אפשר ליצור תמונות ממוזערות לתיקייה"
 
-#: thumbnail.cpp:236
+#: thumbnail.cpp:234
 #, kde-format
 msgid "No plugin specified."
 msgstr "לא צוין תוסף."
 
-#: thumbnail.cpp:241
+#: thumbnail.cpp:239
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "אי אפשר לטעון את יוצר־התמונות הממוזערות %1"
 
-#: thumbnail.cpp:249
+#: thumbnail.cpp:247
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "אי אפשר ליצור תמונה ממוזערת עבור %1"
 
-#: thumbnail.cpp:259
+#: thumbnail.cpp:257
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "יצירת תמונה ממוזערת נכשלה."
 
-#: thumbnail.cpp:279
+#: thumbnail.cpp:277
 #, kde-format
 msgid "Could not write image."
 msgstr "לא ניתן לכתוב תמונה."
 
-#: thumbnail.cpp:307
+#: thumbnail.cpp:305
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "צירוף למקטע זיכרון משותף %1 נכשל"
 
-#: thumbnail.cpp:311
+#: thumbnail.cpp:309
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "תמונה גדולה מדי למקטע הזיכרון המשותף"

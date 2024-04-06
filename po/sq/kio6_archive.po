@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase-runtime\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-04-06 00:37+0000\n"
 "PO-Revision-Date: 2009-03-13 05:37+0000\n"
 "Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
 "Language-Team: Albanian <sq@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Launchpad (build 12883)\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_archivebase.cpp:258 kio_archivebase.cpp:335 kio_archivebase.cpp:408
+#: kio_archivebase.cpp:243 kio_archivebase.cpp:320 kio_archivebase.cpp:393
 #, kde-format
 msgid ""
 "Could not open the file, probably due to an unsupported file format.\n"
@@ -29,7 +29,7 @@ msgstr ""
 "të skedarit.\n"
 "%1"
 
-#: kio_archivebase.cpp:447
+#: kio_archivebase.cpp:432
 #, kde-format
 msgid ""
 "The archive file could not be opened, perhaps because the format is "

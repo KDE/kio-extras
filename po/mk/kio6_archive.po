@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_tar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-04-06 00:37+0000\n"
 "PO-Revision-Date: 2005-12-14 20:30+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: Plural-Forms: nplurals=3; plural=n%10==1 ? 0 : n%10==2 ? 1 : "
 "2;\n"
 
-#: kio_archivebase.cpp:258 kio_archivebase.cpp:335 kio_archivebase.cpp:408
+#: kio_archivebase.cpp:243 kio_archivebase.cpp:320 kio_archivebase.cpp:393
 #, kde-format
 msgid ""
 "Could not open the file, probably due to an unsupported file format.\n"
@@ -28,7 +28,7 @@ msgstr ""
 "датотека.\n"
 "%1"
 
-#: kio_archivebase.cpp:447
+#: kio_archivebase.cpp:432
 #, kde-format
 msgid ""
 "The archive file could not be opened, perhaps because the format is "

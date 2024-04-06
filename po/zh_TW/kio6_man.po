@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-18 00:38+0000\n"
+"POT-Creation-Date: 2024-04-06 00:37+0000\n"
 "PO-Revision-Date: 2023-01-06 23:00+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -61,22 +61,22 @@ msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr "無法轉換 man page <filename>%1</filename>。"
 
-#: kio_man.cpp:662
+#: kio_man.cpp:658
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "手冊檢視器錯誤"
 
-#: kio_man.cpp:675
+#: kio_man.cpp:671
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "符合的 man page 不只一項："
 
-#: kio_man.cpp:675
+#: kio_man.cpp:671
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "多個手冊頁面"
 
-#: kio_man.cpp:688
+#: kio_man.cpp:684
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -86,112 +86,112 @@ msgstr ""
 "注意：如果您以您的語言來閱讀 man page，請小心它可能包含一些錯誤和缺漏。如果對"
 "此有疑慮，您應該使用英語版本。"
 
-#: kio_man.cpp:756
+#: kio_man.cpp:752
 #, kde-format
 msgid "Header Files"
 msgstr "標頭檔"
 
-#: kio_man.cpp:758
+#: kio_man.cpp:754
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "標頭檔 (POSIX)"
 
-#: kio_man.cpp:760
+#: kio_man.cpp:756
 #, kde-format
 msgid "User Commands"
 msgstr "使用者命令"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:758
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "使用者命令 (POSIX)"
 
-#: kio_man.cpp:764
+#: kio_man.cpp:760
 #, kde-format
 msgid "System Calls"
 msgstr "系統呼叫"
 
-#: kio_man.cpp:766
+#: kio_man.cpp:762
 #, kde-format
 msgid "Subroutines"
 msgstr "函式呼叫"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:765
 #, kde-format
 msgid "Perl Modules"
 msgstr "Perl 模組"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:767
 #, kde-format
 msgid "Network Functions"
 msgstr "網路功能"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:769
 #, kde-format
 msgid "Devices"
 msgstr "裝置"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:771
 #, kde-format
 msgid "File Formats"
 msgstr "檔案格式"
 
-#: kio_man.cpp:777
+#: kio_man.cpp:773
 #, kde-format
 msgid "Games"
 msgstr "遊戲"
 
-#: kio_man.cpp:779
+#: kio_man.cpp:775
 #, kde-format
 msgid "Miscellaneous"
 msgstr "雜項"
 
-#: kio_man.cpp:781
+#: kio_man.cpp:777
 #, kde-format
 msgid "System Administration"
 msgstr "系統管理"
 
-#: kio_man.cpp:783
+#: kio_man.cpp:779
 #, kde-format
 msgid "Kernel"
 msgstr "核心"
 
-#: kio_man.cpp:785
+#: kio_man.cpp:781
 #, kde-format
 msgid "Local Documentation"
 msgstr "本地端文件"
 
-#: kio_man.cpp:788
+#: kio_man.cpp:784
 #, kde-format
 msgid "New"
 msgstr "新項目"
 
-#: kio_man.cpp:815
+#: kio_man.cpp:811
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "主手冊索引"
 
-#: kio_man.cpp:840
+#: kio_man.cpp:836
 #, kde-format
 msgid "Section %1"
 msgstr "第 %1 區"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1085
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "章節 %1 索引：%2"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1085
 #, kde-format
 msgid "Manual Page Index"
 msgstr "手冊索引"
 
-#: kio_man.cpp:1101
+#: kio_man.cpp:1094
 #, kde-format
 msgid "Generating Index"
 msgstr "產生索引中"
 
-#: kio_man.cpp:1355
+#: kio_man.cpp:1348
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

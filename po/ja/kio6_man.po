@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-18 00:38+0000\n"
+"POT-Creation-Date: 2024-04-06 00:37+0000\n"
 "PO-Revision-Date: 2014-12-06 16:43-0800\n"
 "Last-Translator: Fumiaki Okushi <fumiaki.okushi@gmail.com>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -68,24 +68,24 @@ msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
-#: kio_man.cpp:662
+#: kio_man.cpp:658
 #, fuzzy, kde-format
 #| msgid "<h1>KDE Man Viewer Error</h1>"
 msgid "Manual Page Viewer Error"
 msgstr "<h1>KDE マニュアルビューアのエラー</h1>"
 
-#: kio_man.cpp:675
+#: kio_man.cpp:671
 #, fuzzy, kde-format
 #| msgid "There is more than one matching man page."
 msgid "There is more than one matching man page:"
 msgstr "マッチするマニュアルページが複数あります。"
 
-#: kio_man.cpp:675
+#: kio_man.cpp:671
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:688
+#: kio_man.cpp:684
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -96,115 +96,115 @@ msgstr ""
 "れている可能性があります。疑わしい場合は、英語版を一読してみる必要がありま"
 "す。"
 
-#: kio_man.cpp:756
+#: kio_man.cpp:752
 #, kde-format
 msgid "Header Files"
 msgstr ""
 
-#: kio_man.cpp:758
+#: kio_man.cpp:754
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr ""
 
-#: kio_man.cpp:760
+#: kio_man.cpp:756
 #, kde-format
 msgid "User Commands"
 msgstr "ユーザコマンド"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:758
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "ユーザコマンド (POSIX)"
 
-#: kio_man.cpp:764
+#: kio_man.cpp:760
 #, kde-format
 msgid "System Calls"
 msgstr "システムコール"
 
-#: kio_man.cpp:766
+#: kio_man.cpp:762
 #, kde-format
 msgid "Subroutines"
 msgstr "サブルーチン"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:765
 #, kde-format
 msgid "Perl Modules"
 msgstr "Perl モジュール"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:767
 #, kde-format
 msgid "Network Functions"
 msgstr "ネットワーク機能"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:769
 #, kde-format
 msgid "Devices"
 msgstr "デバイス"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:771
 #, kde-format
 msgid "File Formats"
 msgstr "ファイルフォーマット"
 
-#: kio_man.cpp:777
+#: kio_man.cpp:773
 #, kde-format
 msgid "Games"
 msgstr "ゲーム"
 
-#: kio_man.cpp:779
+#: kio_man.cpp:775
 #, kde-format
 msgid "Miscellaneous"
 msgstr "その他"
 
-#: kio_man.cpp:781
+#: kio_man.cpp:777
 #, kde-format
 msgid "System Administration"
 msgstr "システム管理"
 
-#: kio_man.cpp:783
+#: kio_man.cpp:779
 #, kde-format
 msgid "Kernel"
 msgstr "カーネル"
 
-#: kio_man.cpp:785
+#: kio_man.cpp:781
 #, kde-format
 msgid "Local Documentation"
 msgstr "ローカルドキュメント"
 
-#: kio_man.cpp:788
+#: kio_man.cpp:784
 #, kde-format
 msgid "New"
 msgstr "新規"
 
-#: kio_man.cpp:815
+#: kio_man.cpp:811
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Main Manual Page Index"
 msgstr "UNIX マニュアルインデックス"
 
-#: kio_man.cpp:840
+#: kio_man.cpp:836
 #, kde-format
 msgid "Section %1"
 msgstr "セクション %1"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1085
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "セクション %1 のインデックス: %2"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1085
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "UNIX マニュアルインデックス"
 
-#: kio_man.cpp:1101
+#: kio_man.cpp:1094
 #, kde-format
 msgid "Generating Index"
 msgstr "インデックス生成中"
 
-#: kio_man.cpp:1355
+#: kio_man.cpp:1348
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

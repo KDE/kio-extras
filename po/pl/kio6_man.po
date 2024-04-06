@@ -1,4 +1,4 @@
-# Version: $Revision: 1675915 $
+# Version: $Revision: 1677239 $
 # translation of kio_man.po to Polish
 # translation of kio_man.po to
 # Michał Rudolf <mrudolf@kdewebdev.org>, 2002.
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-18 00:38+0000\n"
+"POT-Creation-Date: 2024-04-06 00:37+0000\n"
 "PO-Revision-Date: 2021-09-12 09:49+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -61,22 +61,22 @@ msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr "Nie można przekształcić strony podręcznika <filename>%1</filename>."
 
-#: kio_man.cpp:662
+#: kio_man.cpp:658
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "Błąd przeglądarki stron podręcznika"
 
-#: kio_man.cpp:675
+#: kio_man.cpp:671
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "Pasuje kilka stron podręcznika:"
 
-#: kio_man.cpp:675
+#: kio_man.cpp:671
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "Wiele stron podręcznika"
 
-#: kio_man.cpp:688
+#: kio_man.cpp:684
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -86,112 +86,112 @@ msgstr ""
 "Uwaga: strona podręcznika napisana w Twoim języku może być nieaktualna lub "
 "zawierać błędy. W razie wątpliwości dobrze jest sprawdzić wersję angielską."
 
-#: kio_man.cpp:756
+#: kio_man.cpp:752
 #, kde-format
 msgid "Header Files"
 msgstr "Pliki nagłówkowe"
 
-#: kio_man.cpp:758
+#: kio_man.cpp:754
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "Pliki nagłówkowe (POSIX)"
 
-#: kio_man.cpp:760
+#: kio_man.cpp:756
 #, kde-format
 msgid "User Commands"
 msgstr "Polecenia użytkownika"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:758
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "Polecenia użytkownika (POSIX)"
 
-#: kio_man.cpp:764
+#: kio_man.cpp:760
 #, kde-format
 msgid "System Calls"
 msgstr "Wywołania systemowe"
 
-#: kio_man.cpp:766
+#: kio_man.cpp:762
 #, kde-format
 msgid "Subroutines"
 msgstr "Podprogramy"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:765
 #, kde-format
 msgid "Perl Modules"
 msgstr "Moduły Perla"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:767
 #, kde-format
 msgid "Network Functions"
 msgstr "Funkcje sieciowe"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:769
 #, kde-format
 msgid "Devices"
 msgstr "Urządzenia"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:771
 #, kde-format
 msgid "File Formats"
 msgstr "Formaty plików"
 
-#: kio_man.cpp:777
+#: kio_man.cpp:773
 #, kde-format
 msgid "Games"
 msgstr "Gry"
 
-#: kio_man.cpp:779
+#: kio_man.cpp:775
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Inne"
 
-#: kio_man.cpp:781
+#: kio_man.cpp:777
 #, kde-format
 msgid "System Administration"
 msgstr "Administracja systemu"
 
-#: kio_man.cpp:783
+#: kio_man.cpp:779
 #, kde-format
 msgid "Kernel"
 msgstr "Jądro"
 
-#: kio_man.cpp:785
+#: kio_man.cpp:781
 #, kde-format
 msgid "Local Documentation"
 msgstr "Dokumentacja lokalna"
 
-#: kio_man.cpp:788
+#: kio_man.cpp:784
 #, kde-format
 msgid "New"
 msgstr "Nowy"
 
-#: kio_man.cpp:815
+#: kio_man.cpp:811
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "Strona spisu treści głównego podręcznika"
 
-#: kio_man.cpp:840
+#: kio_man.cpp:836
 #, kde-format
 msgid "Section %1"
 msgstr "Rozdział %1"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1085
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Spis treści rozdziału %1: %2"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1085
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Strona spis treści podręcznika"
 
-#: kio_man.cpp:1101
+#: kio_man.cpp:1094
 #, kde-format
 msgid "Generating Index"
 msgstr "Tworzenie spisu treści"
 
-#: kio_man.cpp:1355
+#: kio_man.cpp:1348
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
