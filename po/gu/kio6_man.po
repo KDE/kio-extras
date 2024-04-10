@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:37+0000\n"
+"POT-Creation-Date: 2024-04-10 00:38+0000\n"
 "PO-Revision-Date: 2008-11-04 08:24+0530\n"
 "Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
 "Language-Team: Gujarati\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: kio_man.cpp:460
+#: kio_man.cpp:459
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "No man page matching to %1 found.<br /><br />Check that you have not "
@@ -42,7 +42,7 @@ msgstr ""
 "માટે માર્ગને શોધવા સુધારવા માટે જરૂરી હોઇ શકે છે; ક્યાંતો પર્યાવરણ ચલ MANPATH ની મદદથી "
 "અથવા /etc ડિરેક્ટરીમાં બંધબેસતી ફાઇલની મદદથી."
 
-#: kio_man.cpp:574
+#: kio_man.cpp:572
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -50,36 +50,36 @@ msgid ""
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
 
-#: kio_man.cpp:591
+#: kio_man.cpp:589
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr ""
 
-#: kio_man.cpp:600
+#: kio_man.cpp:598
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
-#: kio_man.cpp:658
+#: kio_man.cpp:653
 #, fuzzy, kde-format
 #| msgid "<h1>KDE Man Viewer Error</h1>"
 msgid "Manual Page Viewer Error"
 msgstr "<h1>KDE દસ્તાવેજ દેખનાર ભૂલ</h1>"
 
-#: kio_man.cpp:671
+#: kio_man.cpp:666
 #, fuzzy, kde-format
 #| msgid "There is more than one matching man page."
 msgid "There is more than one matching man page:"
 msgstr "એક કરતા વધારે બંધબેસતા મેન પેજ છે."
 
-#: kio_man.cpp:671
+#: kio_man.cpp:666
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:684
+#: kio_man.cpp:679
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -89,116 +89,116 @@ msgstr ""
 "નોંધો: જો તમે તમારી ભાષામાં દસ્તાવેજ પાનાંને વાંચો તો, સાવધાન રહેજો તે કેટલીક ભૂલો અથવા "
 "અપ્રચલિત હોઇ શકે છે, શંકાની આ પરિસ્થિતીમાં, તમારે એજ વખતે અંગ્રેજી આવૃતિને જોવી જોઇએ."
 
-#: kio_man.cpp:752
+#: kio_man.cpp:747
 #, kde-format
 msgid "Header Files"
 msgstr ""
 
-#: kio_man.cpp:754
+#: kio_man.cpp:749
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr ""
 
-#: kio_man.cpp:756
+#: kio_man.cpp:751
 #, kde-format
 msgid "User Commands"
 msgstr "વપરાશકર્તા આદેશો"
 
-#: kio_man.cpp:758
+#: kio_man.cpp:753
 #, fuzzy, kde-format
 #| msgid "User Commands"
 msgid "User Commands (POSIX)"
 msgstr "વપરાશકર્તા આદેશો"
 
-#: kio_man.cpp:760
+#: kio_man.cpp:755
 #, kde-format
 msgid "System Calls"
 msgstr "સિસ્ટમ કોલ્સ"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:757
 #, kde-format
 msgid "Subroutines"
 msgstr "સબરુટીનો"
 
-#: kio_man.cpp:765
+#: kio_man.cpp:760
 #, kde-format
 msgid "Perl Modules"
 msgstr "પર્લ મોડ્યુલ્સ"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:762
 #, kde-format
 msgid "Network Functions"
 msgstr "નેટવર્ક વિધેયો"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:764
 #, kde-format
 msgid "Devices"
 msgstr "ઉપકરણો"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:766
 #, kde-format
 msgid "File Formats"
 msgstr "ફાઇલ બંધારણો"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:768
 #, kde-format
 msgid "Games"
 msgstr "રમતો"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:770
 #, kde-format
 msgid "Miscellaneous"
 msgstr "વિવિધ"
 
-#: kio_man.cpp:777
+#: kio_man.cpp:772
 #, kde-format
 msgid "System Administration"
 msgstr "સિસ્ટમ વહીવટ"
 
-#: kio_man.cpp:779
+#: kio_man.cpp:774
 #, kde-format
 msgid "Kernel"
 msgstr "કર્નલ"
 
-#: kio_man.cpp:781
+#: kio_man.cpp:776
 #, kde-format
 msgid "Local Documentation"
 msgstr "સ્થાનીય દસ્તાવેજ"
 
-#: kio_man.cpp:784
+#: kio_man.cpp:779
 #, kde-format
 msgid "New"
 msgstr "નવું"
 
-#: kio_man.cpp:811
+#: kio_man.cpp:806
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Main Manual Page Index"
 msgstr "UNIX પુસ્તિકા અનુક્રમણિકા"
 
-#: kio_man.cpp:836
+#: kio_man.cpp:831
 #, kde-format
 msgid "Section %1"
 msgstr "વિભાગ %1"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1080
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "ભાગ %1 માટે અનુક્રમણિકા: %2"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1080
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "UNIX પુસ્તિકા અનુક્રમણિકા"
 
-#: kio_man.cpp:1094
+#: kio_man.cpp:1089
 #, kde-format
 msgid "Generating Index"
 msgstr "અનુક્રમણિકા ઉત્પન્ન કરી રહ્યા છે"
 
-#: kio_man.cpp:1348
+#: kio_man.cpp:1343
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

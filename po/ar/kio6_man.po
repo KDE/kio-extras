@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:37+0000\n"
+"POT-Creation-Date: 2024-04-10 00:38+0000\n"
 "PO-Revision-Date: 2022-02-19 22:17+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: Arabic <kde-l10n-ar@kde.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: Lokalize 21.07.70\n"
 
-#: kio_man.cpp:460
+#: kio_man.cpp:459
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -42,7 +42,7 @@ msgstr ""
 "لصفحات الدليل ، إما باستخدام متغير البيئة <envar> MANPATH </envar> أو ملف "
 "الضبط في دليل <filename> /etc </filename>."
 
-#: kio_man.cpp:574
+#: kio_man.cpp:572
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -52,34 +52,34 @@ msgstr ""
 "تشير صفحة الدليل المحددة إلى صفحة أخرى <filename>%1 </filename> ، <nl /> "
 "ولكن الصفحة المشار إليها <filename>%2 </filename> تعذر العثور عليها."
 
-#: kio_man.cpp:591
+#: kio_man.cpp:589
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr "تعذر قراءة صفحة الدليل <filename>%1 </filename>."
 
-#: kio_man.cpp:600
+#: kio_man.cpp:598
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr "تعذر تحويل صفحة الدليل <filename>%1 </filename>."
 
-#: kio_man.cpp:658
+#: kio_man.cpp:653
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "خطأ عارض صفحات الدليل"
 
-#: kio_man.cpp:671
+#: kio_man.cpp:666
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "هناك أكثر من صفحة مساعدة مطابقة الوصف:"
 
-#: kio_man.cpp:671
+#: kio_man.cpp:666
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "صفحات دليل متعددة"
 
-#: kio_man.cpp:684
+#: kio_man.cpp:679
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -90,112 +90,112 @@ msgstr ""
 "أخطاء أو مصطلحات قديمة. في حال وجود شك ، عليك مراجعة الاصدارة الانكليزية من "
 "صفحات المساعدة."
 
-#: kio_man.cpp:752
+#: kio_man.cpp:747
 #, kde-format
 msgid "Header Files"
 msgstr "ملفات الترويسة"
 
-#: kio_man.cpp:754
+#: kio_man.cpp:749
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "ملفات الترويسة (POSIX)"
 
-#: kio_man.cpp:756
+#: kio_man.cpp:751
 #, kde-format
 msgid "User Commands"
 msgstr "أوامر المستخدم"
 
-#: kio_man.cpp:758
+#: kio_man.cpp:753
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "أوامر المستخدم (POSIX)"
 
-#: kio_man.cpp:760
+#: kio_man.cpp:755
 #, kde-format
 msgid "System Calls"
 msgstr "نداءات النظام"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:757
 #, kde-format
 msgid "Subroutines"
 msgstr "الوظائف الفرعية"
 
-#: kio_man.cpp:765
+#: kio_man.cpp:760
 #, kde-format
 msgid "Perl Modules"
 msgstr "Perl وحدات"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:762
 #, kde-format
 msgid "Network Functions"
 msgstr "وظائف الشبكة"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:764
 #, kde-format
 msgid "Devices"
 msgstr "الأجهزة"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:766
 #, kde-format
 msgid "File Formats"
 msgstr "هيئات الملفات"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:768
 #, kde-format
 msgid "Games"
 msgstr "الألعاب"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:770
 #, kde-format
 msgid "Miscellaneous"
 msgstr "متنوع"
 
-#: kio_man.cpp:777
+#: kio_man.cpp:772
 #, kde-format
 msgid "System Administration"
 msgstr "إدارة النظام"
 
-#: kio_man.cpp:779
+#: kio_man.cpp:774
 #, kde-format
 msgid "Kernel"
 msgstr "النواة"
 
-#: kio_man.cpp:781
+#: kio_man.cpp:776
 #, kde-format
 msgid "Local Documentation"
 msgstr "الوثائق المحلية"
 
-#: kio_man.cpp:784
+#: kio_man.cpp:779
 #, kde-format
 msgid "New"
 msgstr "جديد"
 
-#: kio_man.cpp:811
+#: kio_man.cpp:806
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "الفهرس الرئيسي للدليل"
 
-#: kio_man.cpp:836
+#: kio_man.cpp:831
 #, kde-format
 msgid "Section %1"
 msgstr "القسم  %1"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1080
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "الفهرس للشعبة %1:%2"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1080
 #, kde-format
 msgid "Manual Page Index"
 msgstr "فهرس صفحات الدليل"
 
-#: kio_man.cpp:1094
+#: kio_man.cpp:1089
 #, kde-format
 msgid "Generating Index"
 msgstr "جاري توليد الفهرس"
 
-#: kio_man.cpp:1348
+#: kio_man.cpp:1343
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

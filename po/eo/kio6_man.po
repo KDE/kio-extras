@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:37+0000\n"
+"POT-Creation-Date: 2024-04-10 00:38+0000\n"
 "PO-Revision-Date: 2023-06-06 06:48+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Lokalize 1.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_man.cpp:460
+#: kio_man.cpp:459
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -37,7 +37,7 @@ msgstr ""
 "devu etendi la serĉvojon por man-paĝoj, uzante aŭ la <envar>MANPATH</envar> "
 "mediovariablon aŭ agordodosieron en la <filename>/etc</filename> dosierujo."
 
-#: kio_man.cpp:574
+#: kio_man.cpp:572
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -47,34 +47,34 @@ msgstr ""
 "La specifita man-paĝo referencas alian paĝon <filename>%1</filename>,<nl/"
 ">sed la referencita paĝo <filename>%2</filename> ne povis esti trovita."
 
-#: kio_man.cpp:591
+#: kio_man.cpp:589
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr "La man-paĝo <filename>%1</filename> ne povis esti legita."
 
-#: kio_man.cpp:600
+#: kio_man.cpp:598
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr "La man-paĝo <filename>%1</filename> ne povis esti konvertita."
 
-#: kio_man.cpp:658
+#: kio_man.cpp:653
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "Eraro de manlibropaĝa rigardilo"
 
-#: kio_man.cpp:671
+#: kio_man.cpp:666
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "Estas pli ol unu kongrua paĝo de manlibro:"
 
-#: kio_man.cpp:671
+#: kio_man.cpp:666
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "Pluraj manlibropaĝoj"
 
-#: kio_man.cpp:684
+#: kio_man.cpp:679
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -85,112 +85,112 @@ msgstr ""
 "enhavi kelkajn erarojn aŭ esti malaktuala. Se vi dubas, bonvole rigardu la "
 "anglan version."
 
-#: kio_man.cpp:752
+#: kio_man.cpp:747
 #, kde-format
 msgid "Header Files"
 msgstr "Kapdosieroj"
 
-#: kio_man.cpp:754
+#: kio_man.cpp:749
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "Kapdosieroj (POSIX)"
 
-#: kio_man.cpp:756
+#: kio_man.cpp:751
 #, kde-format
 msgid "User Commands"
 msgstr "Uzantkomandoj"
 
-#: kio_man.cpp:758
+#: kio_man.cpp:753
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "Uzantkomandoj (POSIX)"
 
-#: kio_man.cpp:760
+#: kio_man.cpp:755
 #, kde-format
 msgid "System Calls"
 msgstr "Sistemaj vokoj"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:757
 #, kde-format
 msgid "Subroutines"
 msgstr "Proceduroj"
 
-#: kio_man.cpp:765
+#: kio_man.cpp:760
 #, kde-format
 msgid "Perl Modules"
 msgstr "Moduloj de Perl"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:762
 #, kde-format
 msgid "Network Functions"
 msgstr "Retfunkcioj"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:764
 #, kde-format
 msgid "Devices"
 msgstr "Aparatoj"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:766
 #, kde-format
 msgid "File Formats"
 msgstr "Dosieraranĝoj"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:768
 #, kde-format
 msgid "Games"
 msgstr "Ludoj"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:770
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Diversaĵoj"
 
-#: kio_man.cpp:777
+#: kio_man.cpp:772
 #, kde-format
 msgid "System Administration"
 msgstr "Sistema administrado"
 
-#: kio_man.cpp:779
+#: kio_man.cpp:774
 #, kde-format
 msgid "Kernel"
 msgstr "Kerno"
 
-#: kio_man.cpp:781
+#: kio_man.cpp:776
 #, kde-format
 msgid "Local Documentation"
 msgstr "Loka dokumentaro"
 
-#: kio_man.cpp:784
+#: kio_man.cpp:779
 #, kde-format
 msgid "New"
 msgstr "Nova"
 
-#: kio_man.cpp:811
+#: kio_man.cpp:806
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "Ĉefa manlibra paĝindekso"
 
-#: kio_man.cpp:836
+#: kio_man.cpp:831
 #, kde-format
 msgid "Section %1"
 msgstr "Sekcio %1"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1080
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Indekso por sekcio %1: %2"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1080
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Manlibra paĝindekso"
 
-#: kio_man.cpp:1094
+#: kio_man.cpp:1089
 #, kde-format
 msgid "Generating Index"
 msgstr "Kreanta indekson"
 
-#: kio_man.cpp:1348
+#: kio_man.cpp:1343
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

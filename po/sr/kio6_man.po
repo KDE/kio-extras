@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:37+0000\n"
+"POT-Creation-Date: 2024-04-10 00:38+0000\n"
 "PO-Revision-Date: 2017-09-28 18:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: kio_man.cpp:460
+#: kio_man.cpp:459
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "No man page matching to %1 found.<br /><br />Check that you have not "
@@ -45,7 +45,7 @@ msgstr ""
 "у променљивој окружења <tt>$MANPATH</tt> или у одговарајућем фајлу у "
 "фасцикли <tt>/etc</tt>.</html>"
 
-#: kio_man.cpp:574
+#: kio_man.cpp:572
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -53,36 +53,36 @@ msgid ""
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
 
-#: kio_man.cpp:591
+#: kio_man.cpp:589
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr ""
 
-#: kio_man.cpp:600
+#: kio_man.cpp:598
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
-#: kio_man.cpp:658
+#: kio_man.cpp:653
 #, fuzzy, kde-format
 #| msgid "<h1>KDE Man Viewer Error</h1>"
 msgid "Manual Page Viewer Error"
 msgstr "<h1>Грешка КДЕ‑овог приказивача упутних страница</h1>"
 
-#: kio_man.cpp:671
+#: kio_man.cpp:666
 #, fuzzy, kde-format
 #| msgid "There is more than one matching man page."
 msgid "There is more than one matching man page:"
 msgstr "Више од једне упутне странице одговара упиту."
 
-#: kio_man.cpp:671
+#: kio_man.cpp:666
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:684
+#: kio_man.cpp:679
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -93,118 +93,118 @@ msgstr ""
 "имати неке грешке или бити застарела. Ако посумњате, погледајте и енглеску "
 "верзију."
 
-#: kio_man.cpp:752
+#: kio_man.cpp:747
 #, fuzzy, kde-format
 #| msgid "Header files"
 msgid "Header Files"
 msgstr "Фајлови заглавља"
 
-#: kio_man.cpp:754
+#: kio_man.cpp:749
 #, fuzzy, kde-format
 #| msgid "Header files (POSIX)"
 msgid "Header Files (POSIX)"
 msgstr "Фајлови заглавља (ПОСИКС)"
 
-#: kio_man.cpp:756
+#: kio_man.cpp:751
 #, kde-format
 msgid "User Commands"
 msgstr "Корисничке наредбе"
 
-#: kio_man.cpp:758
+#: kio_man.cpp:753
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "Корисничке наредбе (ПОСИКС)"
 
-#: kio_man.cpp:760
+#: kio_man.cpp:755
 #, kde-format
 msgid "System Calls"
 msgstr "Системски позиви"
 
-#: kio_man.cpp:762
+#: kio_man.cpp:757
 #, kde-format
 msgid "Subroutines"
 msgstr "Подрутине"
 
-#: kio_man.cpp:765
+#: kio_man.cpp:760
 #, kde-format
 msgid "Perl Modules"
 msgstr "Перловски модули"
 
-#: kio_man.cpp:767
+#: kio_man.cpp:762
 #, kde-format
 msgid "Network Functions"
 msgstr "Мрежне функције"
 
-#: kio_man.cpp:769
+#: kio_man.cpp:764
 #, kde-format
 msgid "Devices"
 msgstr "Уређаји"
 
-#: kio_man.cpp:771
+#: kio_man.cpp:766
 #, kde-format
 msgid "File Formats"
 msgstr "Формати фајлова"
 
-#: kio_man.cpp:773
+#: kio_man.cpp:768
 #, kde-format
 msgid "Games"
 msgstr "Игре"
 
-#: kio_man.cpp:775
+#: kio_man.cpp:770
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Разно"
 
-#: kio_man.cpp:777
+#: kio_man.cpp:772
 #, kde-format
 msgid "System Administration"
 msgstr "Администрација система"
 
-#: kio_man.cpp:779
+#: kio_man.cpp:774
 #, kde-format
 msgid "Kernel"
 msgstr "Језгро"
 
-#: kio_man.cpp:781
+#: kio_man.cpp:776
 #, kde-format
 msgid "Local Documentation"
 msgstr "Локална документација"
 
 # >> @title Section of man pages, as the several above
-#: kio_man.cpp:784
+#: kio_man.cpp:779
 #, kde-format
 msgid "New"
 msgstr "Ново"
 
-#: kio_man.cpp:811
+#: kio_man.cpp:806
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Main Manual Page Index"
 msgstr "Индекс уникс упута"
 
-#: kio_man.cpp:836
+#: kio_man.cpp:831
 #, kde-format
 msgid "Section %1"
 msgstr "Одељак %1"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1080
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "Индекс за одељак %1: %2"
 
-#: kio_man.cpp:1085
+#: kio_man.cpp:1080
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "Индекс уникс упута"
 
-#: kio_man.cpp:1094
+#: kio_man.cpp:1089
 #, kde-format
 msgid "Generating Index"
 msgstr "Стварам индекс"
 
-#: kio_man.cpp:1348
+#: kio_man.cpp:1343
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

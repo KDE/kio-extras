@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tajik KDE Software Localization\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-04-10 00:38+0000\n"
 "PO-Revision-Date: 2010-08-30 20:46+0500\n"
 "Last-Translator: Victor Ibragimov <victor.ibragimov@gmail.com>\n"
 "Language-Team: Tajik <victor.ibragimov@gmail.com>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-Country: TAJIKISTAN\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: info.cpp:62
+#: info.cpp:59
 #, fuzzy, kde-format
 #| msgid ""
 #| "\n"

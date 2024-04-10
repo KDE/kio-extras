@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"POT-Creation-Date: 2024-04-10 00:38+0000\n"
 "PO-Revision-Date: 2024-02-11 18:52\n"
 "Last-Translator: Zmicier <zmicerturok@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -22,7 +22,7 @@ msgstr ""
 "po\n"
 "X-Crowdin-File-ID: 10124\n"
 
-#: info.cpp:62
+#: info.cpp:59
 #, kde-format
 msgid ""
 "Unable to locate files which are necessary to run this service:<br>"
