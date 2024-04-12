@@ -38,7 +38,7 @@ QString KMTPDeviceInterface::friendlyName() const
     return m_dbusInterface->friendlyName();
 }
 
-QVector<KMTPStorageInterface *> KMTPDeviceInterface::storages()
+QList<KMTPStorageInterface *> KMTPDeviceInterface::storages()
 {
     // Devices may have changed?
     if (m_dbusInterface->devicesUpdated()) {

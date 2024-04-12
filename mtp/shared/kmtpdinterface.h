@@ -32,7 +32,7 @@ public:
     KMTPDeviceInterface *deviceFromName(const QString &friendlyName);
     KMTPDeviceInterface *deviceFromUdi(const QString &udi);
 
-    QVector<KMTPDeviceInterface *> devices();
+    QList<KMTPDeviceInterface *> devices();
 
     // D-Bus properties
     QString version() const;
@@ -41,7 +41,7 @@ private:
     void updateDevices();
 
     org::kde::kmtp::Daemon *m_dbusInterface;
-    QVector<KMTPDeviceInterface *> m_devices;
+    QList<KMTPDeviceInterface *> m_devices;
 
 public Q_SLOTS:
     // D-Bus methods

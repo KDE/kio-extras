@@ -393,7 +393,7 @@ WorkerResult SMBWorker::listDir(const QUrl &kurl)
 
     QSharedPointer<SMBCDiscoverer> smbc(new SMBCDiscoverer(m_current_url, &e, this));
 
-    QVector<QSharedPointer<Discoverer>> discoverers;
+    QList<QSharedPointer<Discoverer>> discoverers;
     discoverers << smbc;
 
     auto appendDiscovery = [&](const Discovery::Ptr &discovery) {

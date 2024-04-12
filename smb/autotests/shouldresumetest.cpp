@@ -41,7 +41,7 @@ struct FakeWorker {
         }
     }
 
-    QVector<FakeError> m_errors;
+    QList<FakeError> m_errors;
     QHash<QString, bool> m_config = {{"MarkPartial", true}};
 };
 

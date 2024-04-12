@@ -287,7 +287,7 @@ Result AfcWorker::listDir(const QUrl &url)
 
     const QString appId = afcUrl.appId();
     if (afcUrl.browseMode() == AfcUrl::BrowseMode::Apps && appId.isEmpty()) {
-        QVector<AfcApp> apps;
+        QList<AfcApp> apps;
         const auto result = device->apps(apps);
         if (!result.success()) {
             return result;

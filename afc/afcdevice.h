@@ -5,8 +5,8 @@
 
 #pragma once
 
+#include <QList>
 #include <QObject>
-#include <QVector>
 
 #include <KIO/WorkerBase>
 
@@ -52,11 +52,11 @@ public:
     KIO::WorkerResult client(const QString &appId, AfcClient::Ptr &client);
 
     AfcApp app(const QString &bundleId);
-    KIO::WorkerResult apps(QVector<AfcApp> &apps);
+    KIO::WorkerResult apps(QList<AfcApp> &apps);
 
     KIO::WorkerResult fetchAppIcon(AfcApp &app);
     // Fetches app icons for the list of apps provided.
-    KIO::WorkerResult fetchAppIcons(QVector<AfcApp> &apps);
+    KIO::WorkerResult fetchAppIcons(QList<AfcApp> &apps);
 
 private:
     KIO::WorkerResult handshake();

@@ -45,7 +45,7 @@ KMTPDeviceInterface *KMTPDInterface::deviceFromUdi(const QString &udi)
     return deviceIt == m_devices.constEnd() ? nullptr : *deviceIt;
 }
 
-QVector<KMTPDeviceInterface *> KMTPDInterface::devices()
+QList<KMTPDeviceInterface *> KMTPDInterface::devices()
 {
     // have to always update because we don't receive signal for device removal
     updateDevices();

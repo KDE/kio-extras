@@ -32,13 +32,13 @@ public:
     QString udi() const;
     QString friendlyName() const;
 
-    QVector<KMTPStorageInterface *> storages();
+    QList<KMTPStorageInterface *> storages();
     KMTPStorageInterface *storageFromDescription(const QString &description) const;
     void updateStorages();
 
 private:
     org::kde::kmtp::Device *m_dbusInterface;
-    QVector<KMTPStorageInterface *> m_storages;
+    QList<KMTPStorageInterface *> m_storages;
 
 public Q_SLOTS:
     int setFriendlyName(const QString &friendlyName);

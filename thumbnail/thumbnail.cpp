@@ -321,7 +321,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 
 KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString &mimeType)
 {
-    const QVector<KPluginMetaData> plugins = KIO::PreviewJob::availableThumbnailerPlugins();
+    const QList<KPluginMetaData> plugins = KIO::PreviewJob::availableThumbnailerPlugins();
     for (const KPluginMetaData &plugin : plugins) {
         if (plugin.supportsMimeType(mimeType)) {
             return plugin;

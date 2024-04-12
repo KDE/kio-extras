@@ -162,7 +162,7 @@ AfcApp AfcDevice::app(const QString &bundleId)
     }
 
     // Refresh cache
-    QVector<AfcApp> appsList;
+    QList<AfcApp> appsList;
     if (!apps(appsList).success()) {
         return AfcApp();
     }
@@ -176,7 +176,7 @@ AfcApp AfcDevice::app(const QString &bundleId)
     return AfcApp();
 }
 
-WorkerResult AfcDevice::apps(QVector<AfcApp> &apps)
+WorkerResult AfcDevice::apps(QList<AfcApp> &apps)
 {
     auto result = handshake();
     if (!result.success()) {
@@ -250,7 +250,7 @@ WorkerResult AfcDevice::apps(QVector<AfcApp> &apps)
 
 WorkerResult AfcDevice::fetchAppIcon(AfcApp &app)
 {
-    QVector<AfcApp> apps{app};
+    QList<AfcApp> apps{app};
 
     const auto result = fetchAppIcons(apps);
     if (!result.success()) {
@@ -261,7 +261,7 @@ WorkerResult AfcDevice::fetchAppIcon(AfcApp &app)
     return result;
 }
 
-WorkerResult AfcDevice::fetchAppIcons(QVector<AfcApp> &apps)
+WorkerResult AfcDevice::fetchAppIcons(QList<AfcApp> &apps)
 {
     QStringList appIconsToFetch;
 
