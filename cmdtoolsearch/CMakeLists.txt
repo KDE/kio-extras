@@ -25,6 +25,12 @@ ecm_qt_declare_logging_category(cmdtool_static
 
 if(NOT WIN32)
     install(DIRECTORY tools/ DESTINATION ${KDE_INSTALL_DATADIR}/cmdtoolsearch USE_SOURCE_PERMISSIONS)
+    if (CMAKE_SYSTEM_NAME MATCHES "Linux")
+        install(DIRECTORY defaults/linux/ DESTINATION ${KDE_INSTALL_DATADIR}/cmdtoolsearch)
+    elseif (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+        #FIXME: We don't have a working CmdTool::isOnHdd() on FreeBSD, so rg and fd are excluded from the defaults
+        install(DIRECTORY defaults/freebsd/ DESTINATION ${KDE_INSTALL_DATADIR}/cmdtoolsearch)
+    endif()
 endif()
 
 if (BUILD_TESTING)
