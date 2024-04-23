@@ -5,6 +5,12 @@
             "ExtraNames": [
                 "Application"
             ],
+            "ExtraNames[ar]": [
+                "التطبيق"
+            ],
+            "ExtraNames[be]": [
+                "Праграма"
+            ],
             "ExtraNames[bg]": [
                 "Приложение"
             ],
@@ -70,6 +76,9 @@
             ],
             "ExtraNames[nn]": [
                 "Program"
+            ],
+            "ExtraNames[pa]": [
+                "ਐਪਲੀਕੇਸ਼ਨ"
             ],
             "ExtraNames[pl]": [
                 "Aplikacja"
