@@ -26,7 +26,7 @@
 </articleinfo>
 
 <para
->Info est un type de documentation. Les documents sont dans un format de fichiers appelé texinfo, et peuvent être lus en ligne de commande avec le programme <ulink url="info:/info"
+>Info est un type de documentation. Les documents sont dans un format de fichiers appelé « texinfo ». Ils peuvent être lus en ligne de commandes avec le programme <ulink url="info:/info"
 ><command
 >info</command
 ></ulink
