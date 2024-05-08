@@ -144,9 +144,9 @@ msgid ""
 "complete.</p>"
 msgstr ""
 "<p>Marca els fitxers carregats parcialment per a SMB, SFTP i altres "
-"protocols.</p><p>Quan se selecciona esta opció, els fitxers carregats "
-"parcialment tindran una extensió «.part». Esta extensió s'eliminarà una "
-"vegada s'haja completat la transferència.</p>"
+"protocols.</p><p>Quan es marca esta opció, els fitxers carregats parcialment "
+"tindran una extensió «.part». Esta extensió s'eliminarà una vegada s'haja "
+"completat la transferència.</p>"
 
 #: netpref/netpref.cpp:91
 #, kde-format
@@ -190,10 +190,9 @@ msgid ""
 "partially uploaded files will have a \".part\" extension. This extension "
 "will be removed once the transfer is complete.</p>"
 msgstr ""
-"<p>Marca els fitxers carregats parcialment per FTP.</p><p>Quan se selecciona "
-"esta opció, els fitxers carregats parcialment tindran una extensió «.part». "
-"Esta extensió serà eliminada una vegada s'haja completat la transferència.</"
-"p>"
+"<p>Marca els fitxers carregats parcialment per FTP.</p><p>Quan es marca esta "
+"opció, els fitxers carregats parcialment tindran una extensió «.part». Esta "
+"extensió serà eliminada una vegada s'haja completat la transferència.</p>"
 
 #: proxy/kproxydlg.cpp:196
 #, kde-kuit-format
@@ -548,7 +547,7 @@ msgstr "Utilitza la configuració de l'intermediari especificada manualment:"
 #: proxy/kproxydlg.ui:398
 #, kde-format
 msgid "Enter the address of the HTTP proxy server."
-msgstr "Introduïu l'adreça del servidor intermediari HTTP."
+msgstr "Introduïu l'adreça de l'amfitrió intermediari HTTP."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
@@ -576,7 +575,7 @@ msgstr "Utilitza &este mateix servidor intermediari per a tots els protocols"
 #: proxy/kproxydlg.ui:464
 #, kde-format
 msgid "Enter the address of the HTTPS proxy server."
-msgstr "Introduïu l'adreça del servidor intermediari HTTPS."
+msgstr "Introduïu l'adreça de l'amfitrió intermediari HTTPS."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
 #: proxy/kproxydlg.ui:481
@@ -588,7 +587,7 @@ msgstr "Introduïu el número de port del servidor intermediari HTTPS."
 #: proxy/kproxydlg.ui:517
 #, kde-format
 msgid "Enter the address of the FTP proxy server."
-msgstr "Introduïu l'adreça del servidor intermediari FTP."
+msgstr "Introduïu l'adreça de l'amfitrió intermediari FTP."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
 #: proxy/kproxydlg.ui:534
@@ -600,7 +599,7 @@ msgstr "Introduïu el número de port del servidor intermediari FTP."
 #: proxy/kproxydlg.ui:567
 #, kde-format
 msgid "Enter the address of the SOCKS proxy server."
-msgstr "Introduïu l'adreça del servidor intermediari SOCKS."
+msgstr "Introduïu l'adreça de l'amfitrió intermediari SOCKS."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
 #: proxy/kproxydlg.ui:584
@@ -645,9 +644,9 @@ msgid ""
 "addresses listed in the <i>Exceptions</i> list.</qt>"
 msgstr ""
 "<qt>\n"
-"Seleccioneu esta casella si voleu que la configuració del servidor "
-"intermediari anterior s'aplique només per a les adreces de la llista "
-"d'<i>excepcions</i>.</qt>"
+"Marqueu esta casella si voleu que la configuració del servidor intermediari "
+"anterior s'aplique només per a les adreces de la llista d'<i>excepcions</i>."
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
@@ -700,7 +699,7 @@ msgid ""
 "disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
 "items after a certain timespan</para>"
 msgstr ""
-"<para>Seleccioneu esta casella per a permetre la <emphasis "
+"<para>Marqueu esta casella per a permetre la <emphasis "
 "strong='true'>supressió automàtica</emphasis> dels fitxers més antics que el "
 "valor indicat. Deixeu-ho desmarcat per a <emphasis strong='true'>no</"
 "emphasis> suprimir automàticament cap element després d'un lapse de temps "
@@ -741,9 +740,9 @@ msgid ""
 "<para>Check this box to limit the trash to the maximum amount of disk space "
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
-"<para>Seleccioneu esta casella per a limitar la paperera a la quantitat "
-"màxima d'espai en disc que indiqueu seguidament. En cas contrari, serà sense "
-"límit.</para>"
+"<para>Marqueu esta casella per a limitar la paperera a la quantitat màxima "
+"d'espai en disc que indiqueu seguidament. En cas contrari, serà sense límit."
+"</para>"
 
 #: trash/kcmtrash.cpp:272
 #, kde-format
@@ -828,8 +827,8 @@ msgid ""
 ">Preferred web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
-"Seleccioneu esta casella per a seleccionar la paraula clau de busca en la "
-"web ressaltada com a preferida.<nl/>Les paraules clau de busca en la web "
+"Marqueu esta casella per a seleccionar la paraula clau de busca en la web "
+"ressaltada com a preferida.<nl/>Les paraules clau de busca en la web "
 "preferides s'utilitzen en llocs a on només es poden mostrar simultàniament "
 "poques paraules clau de selecció."
 
@@ -893,7 +892,7 @@ msgstr "Afig una paraula clau nova de busca en la web"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New..."
-msgstr "&Nova..."
+msgstr "&Nova…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -905,7 +904,7 @@ msgstr "Modifica la paraula clau de busca en la web ressaltada"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Chan&ge..."
-msgstr "&Canvia..."
+msgstr "&Canvia…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1044,7 +1043,7 @@ msgid ""
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the shortcut."
 msgstr ""
-"L'URL de la drecera no conté cap text variable \\{...} per a la consulta de "
+"L'URL de la drecera no conté cap text variable \\{…} per a la consulta de "
 "l'usuari.\n"
 "Açò significa que sempre es visitarà la mateixa pàgina, independentment del "
 "que teclege l'usuari."
@@ -1094,14 +1093,14 @@ msgstr ""
 ">\n"
 "Es recomana \\{@}, ja que elimina totes les variables de consulta "
 "(nom=valor) de la cadena resultant, mentre que \\{0} se substituirà amb la "
-"cadena de consulta sense modificar.<br/>Podeu utilitzar \\{1}... \\{n} per a "
+"cadena de consulta sense modificar.<br/>Podeu utilitzar \\{1}… \\{n} per a "
 "indicar certes paraules de la consulta i \\{nom} per a indicar un valor "
 "donat per «nom=valor» en la consulta de l'usuari.<br/>De manera addicional, "
 "és possible indicar referències múltiples (noms, nombres i cadenes) a la "
-"vegada (\\{nom1,nom2,...,«cadena»}).<br/>El primer valor que aparelle (des "
-"de l'esquerra) s'utilitzarà com a valor de substitució en l'URI resultant."
-"<br/>Es pot utilitzar una cadena entre cometes com a valor predeterminat si "
-"no hi ha cap aparellament des de l'esquerra de la llista de referències.\n"
+"vegada (\\{nom1,nom2…,«cadena»}).<br/>El primer valor que aparelle (des de "
+"l'esquerra) s'utilitzarà com a valor de substitució en l'URI resultant.<br/"
+">Es pot utilitzar una cadena entre cometes com a valor predeterminat si no "
+"hi ha cap aparellament des de l'esquerra de la llista de referències.\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
