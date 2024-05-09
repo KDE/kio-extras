@@ -25,7 +25,7 @@
 >« xz » est un programme de compression</para>
 
 <para
->Le module d'entrées-sorties « xz »  n'est pas utilisable directement. Il est conçu pour être utilisé comme un filtre. Par exemple, le module d'entrées /  sorties « tar » peut filtrer un fichier à travers le module d'entrées-sorties « xz », afin d'afficher le contenu d'un fichier <literal role="extension"
+>Le module d'entrées-sorties « xz » n'est pas utilisable directement. Il est conçu pour être utilisé comme un filtre. Par exemple, le module d'entrées /  sorties « tar » peut filtrer un fichier à travers le module d'entrées-sorties « xz », afin d'afficher le contenu d'un fichier <literal role="extension"
 >tar.lzma</literal
 > ou <literal role="extension"
 >tar.xz</literal
@@ -36,7 +36,7 @@
 >.lzma</literal
 > ou <literal role="extension"
 >tar.xz</literal
-> dans &konqueror;, ce module d'entrées-sorties « xz »  est utilisé pour le décompresser et l'afficher comme s'il s'agissait d'un fichier normal (non compressé).</para>
+> dans &konqueror;, ce module d'entrées-sorties « xz » est utilisé pour le décompresser et l'afficher comme s'il s'agissait d'un fichier normal (non compressé).</para>
 
 <para
 >Si vous faites partie d'une équipe de développement et souhaitez utiliser le filtre « xz », vous pouvez trouver de la documentation sur l'utilisation des modules d'entrées / sorties sur le site <ulink url="http://techbase.kde.org"
