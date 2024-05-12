@@ -25,12 +25,12 @@ msgstr ""
 #: fish.cpp:322
 #, kde-format
 msgid "Connecting..."
-msgstr "S'està connectant..."
+msgstr "S'està connectant…"
 
 #: fish.cpp:656
 #, kde-format
 msgid "Initiating protocol..."
-msgstr "S'està inicialitzant el protocol..."
+msgstr "S'està inicialitzant el protocol…"
 
 #: fish.cpp:693
 #, kde-format

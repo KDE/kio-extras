@@ -29,7 +29,7 @@ msgstr "Activitats"
 #: fileitemplugin/FileItemLinkingPlugin.cpp:91
 #, kde-format
 msgid "Loading..."
-msgstr "S'està carregant..."
+msgstr "S'està carregant…"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:108
 #, kde-format
