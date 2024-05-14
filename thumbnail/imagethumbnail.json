@@ -3,7 +3,8 @@
     "KPlugin": {
         "MimeTypes": [
             "image/*",
-            "video/x-mng"
+            "video/x-mng",
+            "image/x-adobe-dng"
         ],
         "Name": "Images (GIF, PNG, BMP, ...)",
         "Name[ar]": "الصّور (GIF،‏ PNG،‏ BMP، ...)",
