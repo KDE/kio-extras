@@ -26,20 +26,27 @@ KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
         return KIO::ThumbnailResult::fail();
 
     // render using the correct ratio
-    const double ratio = static_cast<double>(r.defaultSize().height()) / static_cast<double>(r.defaultSize().width());
+    auto defaultSize = r.defaultSize();
+    double ratio = 1.0;
+    if (defaultSize.height() < request.targetSize().height() && defaultSize.width() < request.targetSize().width()) {
+        // scale to output size if size is smaller than output
+        ratio = 1.0 * defaultSize.height() / defaultSize.width();
+    } else {
+        ratio = static_cast<double>(defaultSize.height()) / static_cast<double>(defaultSize.width());
+    }
 
-    int w = request.targetSize().width() * request.devicePixelRatio();
-    int h = request.targetSize().height() * request.devicePixelRatio();
+    int width = request.targetSize().width() * request.devicePixelRatio();
+    int height = request.targetSize().height() * request.devicePixelRatio();
 
-    if (w < h)
-        h = qRound(ratio * w);
+    if (defaultSize.height() > defaultSize.width())
+        height = qRound(width / ratio);
     else
-        w = qRound(h / ratio);
+        width = qRound(height / ratio);
 
-    QImage i(w, h, QImage::Format_ARGB32_Premultiplied);
+    QImage i(width, height, QImage::Format_ARGB32_Premultiplied);
     i.fill(0);
     QPainter p(&i);
-    r.render(&p, QRectF(QPointF(0, 0), QSizeF(h, w)));
+    r.render(&p, QRectF(QPointF(0, 0), QSizeF(width, height)));
 
     return KIO::ThumbnailResult::pass(i);
 }

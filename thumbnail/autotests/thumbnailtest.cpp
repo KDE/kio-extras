@@ -45,6 +45,12 @@ private Q_SLOTS:
 
         QTest::addRow("folder-database.svg") << "folder-database.svg"
                                              << "folder-database-128@2.png" << 2.0;
+
+        QTest::addRow("Kingdom of Yugoslavia.svg") << "Kingdom of Yugoslavia.svg"
+                                                   << "Kingdom of Yugoslavia-128@2.png" << 2.0;
+
+        QTest::addRow("DZSCG.svg") << "DZSCG.svg"
+                                   << "DZSCG-128@2.png" << 2.0;
     }
 
     void testThumbnail()
