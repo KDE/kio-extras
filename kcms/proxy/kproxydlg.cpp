@@ -191,15 +191,6 @@ KProxyDialog::KProxyDialog(QObject *parent, const KPluginMetaData &data)
     mUi.autoDetectButton->setVisible(false);
     mUi.proxyConfigScriptGroupBox->setVisible(false);
 
-    mUi.infoMessageWidget->setIcon(QIcon::fromTheme(QStringLiteral("dialog-warning")));
-    mUi.infoMessageWidget->setText(xi18nc("@info",
-                                          "Not all applications will use this proxy setting. \
-In particular, <application>Firefox</application> and anything derived from <application>Firefox</application>, \
-or anything using <application>QtWebEngine</application>&nbsp;- which includes \
-<application>Konqueror</application> using the <application>WebEnginePart</application>, \
-<application>Akregator</application> and <application>Falkon</application>&nbsp;- will not use \
-these settings. Some applications may allow the proxy to be configured in their own settings."));
-
     InputValidator *v = new InputValidator;
     mUi.proxyScriptUrlRequester->lineEdit()->setValidator(v);
     mUi.manualProxyHttpEdit->setValidator(v);
@@ -564,9 +555,6 @@ void KProxyDialog::setUseSameProxy(bool on)
 
 void KProxyDialog::slotChanged()
 {
-    const bool proxyWarning = mUi.autoScriptProxyRadioButton->isChecked() || mUi.manualProxyRadioButton->isChecked();
-    mUi.infoMessageWidget->setVisible(proxyWarning);
-
     setNeedsSave(true);
 }
 
