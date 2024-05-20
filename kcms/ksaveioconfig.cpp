@@ -106,13 +106,6 @@ void KSaveIOConfig::setMinimumKeepSize(int _size)
     cfg.sync();
 }
 
-void KSaveIOConfig::setAutoResume(bool _mode)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("AutoResume", _mode);
-    cfg.sync();
-}
-
 void KSaveIOConfig::setUseReverseProxy(bool mode)
 {
     KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));

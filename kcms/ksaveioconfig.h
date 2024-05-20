@@ -59,8 +59,6 @@ void setMarkPartial(bool);
 
 void setMinimumKeepSize(int);
 
-void setAutoResume(bool);
-
 /** Update all running KIO workers */
 void updateRunningWorkers(QWidget *parent = nullptr);
 }
