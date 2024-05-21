@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-14 00:37+0000\n"
+"POT-Creation-Date: 2024-05-21 00:38+0000\n"
 "PO-Revision-Date: 2014-02-25 01:34+0100\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ksaveioconfig.cpp:166
+#: ksaveioconfig.cpp:159
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -28,7 +28,7 @@ msgstr ""
 "Du muttst de Programmen nieg starten, de al löppt, anners warrt de Ännern "
 "nich övernahmen."
 
-#: ksaveioconfig.cpp:168
+#: ksaveioconfig.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"

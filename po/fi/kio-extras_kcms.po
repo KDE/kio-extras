@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-14 00:37+0000\n"
+"POT-Creation-Date: 2024-05-21 00:38+0000\n"
 "PO-Revision-Date: 2023-03-14 21:58+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 "X-Generator: Lokalize 23.04.1\n"
 "X-POT-Import-Date: 2013-01-13 20:43:21+0000\n"
 
-#: ksaveioconfig.cpp:166
+#: ksaveioconfig.cpp:159
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -39,7 +39,7 @@ msgstr ""
 "Käynnissä olevat sovellukset täytyy käynnistää uudelleen, jotta tämä asetus "
 "tulee voimaan."
 
-#: ksaveioconfig.cpp:168
+#: ksaveioconfig.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"

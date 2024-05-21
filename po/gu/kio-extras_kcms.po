@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio-gu\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-14 00:37+0000\n"
+"POT-Creation-Date: 2024-05-21 00:38+0000\n"
 "PO-Revision-Date: 2009-05-17 18:10+0530\n"
 "Last-Translator: Kartik Mistry <kartik.mistry@gmail.com>\n"
 "Language-Team: Gujarati <kde-i18n-doc@kde.org>\n"
@@ -17,14 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: ksaveioconfig.cpp:166
+#: ksaveioconfig.cpp:159
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr ""
 
-#: ksaveioconfig.cpp:168
+#: ksaveioconfig.cpp:161
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"

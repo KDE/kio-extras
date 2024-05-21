@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-14 00:37+0000\n"
+"POT-Creation-Date: 2024-05-21 00:38+0000\n"
 "PO-Revision-Date: 2024-02-25 17:36+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Lokalize 21.12.3\n"
 
-#: ksaveioconfig.cpp:166
+#: ksaveioconfig.cpp:159
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -27,7 +27,7 @@ msgstr ""
 "Aceste modificări vor intra în vigoare după ce reporniți aplicațiile care "
 "rulează deja."
 
-#: ksaveioconfig.cpp:168
+#: ksaveioconfig.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"

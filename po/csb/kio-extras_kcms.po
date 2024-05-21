@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-14 00:37+0000\n"
+"POT-Creation-Date: 2024-05-21 00:38+0000\n"
 "PO-Revision-Date: 2009-08-03 17:47+0200\n"
 "Last-Translator: Michôł Òstrowsczi <michol@linuxcsb.org>\n"
 "Language-Team: Kashubian <i18n-csb@linuxcsb.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2)\n"
 
-#: ksaveioconfig.cpp:166
+#: ksaveioconfig.cpp:159
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -30,7 +30,7 @@ msgstr ""
 "Je nót zrëszëc znowa programë brëkùjącé tich nastôwów, bë ne zjinaczi òstałë "
 "przëjãté."
 
-#: ksaveioconfig.cpp:168
+#: ksaveioconfig.cpp:161
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio trunk\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-14 00:37+0000\n"
+"POT-Creation-Date: 2024-05-21 00:38+0000\n"
 "PO-Revision-Date: 2021-08-26 06:59+0000\n"
 "Last-Translator: Vivek K J <vivekkj2004@gmail.com>\n"
 "Language-Team: Malayalam <https://kde.smc.org.in/projects/kde/kiokio5/ml/>\n"
@@ -18,14 +18,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Weblate 4.7.2\n"
 
-#: ksaveioconfig.cpp:166
+#: ksaveioconfig.cpp:159
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "ഈ മാറ്റങ്ങള്‍ ഫലവത്താകാന്‍ ഓടിക്കൊണ്ടിരിക്കുന്ന പ്രയോഗങ്ങള്‍ പുനരാരംഭിക്കേണ്ടിയിരിക്കുന്നു."
 
-#: ksaveioconfig.cpp:168
+#: ksaveioconfig.cpp:161
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"

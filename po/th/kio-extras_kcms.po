@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-14 00:37+0000\n"
+"POT-Creation-Date: 2024-05-21 00:38+0000\n"
 "PO-Revision-Date: 2010-12-17 20:57+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -19,14 +19,14 @@ msgstr ""
 "X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ksaveioconfig.cpp:166
+#: ksaveioconfig.cpp:159
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "คุณต้องเริ่มการทำงานของโปรแกรมที่กำลังทำงานอยู่ใหม่อีกครั้ง เพื่อให้การเปลี่ยนแปลงมีผล"
 
-#: ksaveioconfig.cpp:168
+#: ksaveioconfig.cpp:161
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"

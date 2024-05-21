@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-14 00:37+0000\n"
+"POT-Creation-Date: 2024-05-21 00:38+0000\n"
 "PO-Revision-Date: 2012-07-09 10:34+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -16,14 +16,14 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "X-Language: km-KH\n"
 
-#: ksaveioconfig.cpp:166
+#: ksaveioconfig.cpp:159
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "អ្នក​ត្រូវ​តែ​ចាប់ផ្តើម​កម្មវិធី​ដែល​កំពុង​រត់​ឡើង​វិញ ដើម្បី​ឲ្យ​ការ​ផ្លាស់ប្តូរ​ទាំងនេះ​មាន​ប្រសិទ្ធិភាព ។"
 
-#: ksaveioconfig.cpp:168
+#: ksaveioconfig.cpp:161
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
