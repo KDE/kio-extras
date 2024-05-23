@@ -16,4 +16,5 @@ target_link_libraries(kcm_webshortcuts
     KF6::I18n
     KF6::CoreAddons
     Qt::Core5Compat
+    Qt::DBus
 )
