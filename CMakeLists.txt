@@ -181,7 +181,11 @@ add_subdirectory( thumbnail )
 if (libssh_FOUND)
     add_subdirectory(sftp)
 endif ()
-add_subdirectory( filenamesearch )
+
+if (NOT WIN32 AND NOT APPLE)
+    add_subdirectory( filenamesearch )
+endif()
+
 if (Libmtp_FOUND)
   add_subdirectory(mtp)
 endif()
