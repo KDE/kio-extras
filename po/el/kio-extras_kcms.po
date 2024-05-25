@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-21 00:38+0000\n"
+"POT-Creation-Date: 2024-05-25 00:38+0000\n"
 "PO-Revision-Date: 2016-12-09 15:05+0200\n"
 "Last-Translator: Dimitris Kardarakos <dimkard@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -195,20 +195,6 @@ msgstr ""
 "<p>Σημειώνει τα μερικώς απεσταλμένα FTP αρχεία.</p><p>Όταν ενεργοποιηθεί "
 "αυτή η επιλογή, μερικώς απεσταλμένα αρχεία θα έχουν επέκταση \".part\". Η "
 "επέκταση αυτή θα αφαιρεθεί όταν η μεταφορά του αρχείου ολοκληρωθεί.</p>"
-
-#: proxy/kproxydlg.cpp:196
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Not all applications will use this proxy setting. In particular, "
-"<application>Firefox</application> and anything derived from "
-"<application>Firefox</application>, or anything using "
-"<application>QtWebEngine</application>&nbsp;- which includes "
-"<application>Konqueror</application> using the <application>WebEnginePart</"
-"application>, <application>Akregator</application> and <application>Falkon</"
-"application>&nbsp;- will not use these settings. Some applications may allow "
-"the proxy to be configured in their own settings."
-msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20

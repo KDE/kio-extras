@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio trunk\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-21 00:38+0000\n"
+"POT-Creation-Date: 2024-05-25 00:38+0000\n"
 "PO-Revision-Date: 2021-08-26 06:59+0000\n"
 "Last-Translator: Vivek K J <vivekkj2004@gmail.com>\n"
 "Language-Team: Malayalam <https://kde.smc.org.in/projects/kde/kiokio5/ml/>\n"
@@ -171,20 +171,6 @@ msgstr ""
 "ഭാഗികമായി അപ്ലോഡ് ചെയ്ത എഫ്‌ടിപി ഫയലുകള്‍ അടയാളപ്പെടുത്തുക. ഈ ഐച്ഛികം പ്രാവര്‍ത്തികമാക്കുമ്പോള്‍ "
 "ഭാഗികമായി അപ്ലോഡ് ചെയ്ത ഫയലുകള്‍ക്ക് ഒരു \".part\" എക്സ്റ്റന്‍ഷനുണ്ടാകും. ഈ എക്സ്റ്റന്‍ഷന്‍ മാറ്റം പൂര്‍"
 "ത്തിയാകുന്നതോടെ നീക്കം ചെയ്യപ്പെടും."
-
-#: proxy/kproxydlg.cpp:196
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Not all applications will use this proxy setting. In particular, "
-"<application>Firefox</application> and anything derived from "
-"<application>Firefox</application>, or anything using "
-"<application>QtWebEngine</application>&nbsp;- which includes "
-"<application>Konqueror</application> using the <application>WebEnginePart</"
-"application>, <application>Akregator</application> and <application>Falkon</"
-"application>&nbsp;- will not use these settings. Some applications may allow "
-"the proxy to be configured in their own settings."
-msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20

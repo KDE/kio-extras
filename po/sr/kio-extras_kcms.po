@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-21 00:38+0000\n"
+"POT-Creation-Date: 2024-05-25 00:38+0000\n"
 "PO-Revision-Date: 2017-12-17 18:00+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -203,20 +203,6 @@ msgstr ""
 "<qt><p>Означи делимично отпремљене фајлове.</p><p>Када је ова опција "
 "укључена, делимично отпремљени фајлови ће имати наставак <tt>.part</tt>. "
 "Овај наставак ће бити уклоњен када се пренос оконча.</p></qt>"
-
-#: proxy/kproxydlg.cpp:196
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Not all applications will use this proxy setting. In particular, "
-"<application>Firefox</application> and anything derived from "
-"<application>Firefox</application>, or anything using "
-"<application>QtWebEngine</application>&nbsp;- which includes "
-"<application>Konqueror</application> using the <application>WebEnginePart</"
-"application>, <application>Akregator</application> and <application>Falkon</"
-"application>&nbsp;- will not use these settings. Some applications may allow "
-"the proxy to be configured in their own settings."
-msgstr ""
 
 # skip-rule: t-service
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)

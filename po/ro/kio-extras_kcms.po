@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-21 00:38+0000\n"
+"POT-Creation-Date: 2024-05-25 00:38+0000\n"
 "PO-Revision-Date: 2024-02-25 17:36+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -193,20 +193,6 @@ msgstr ""
 "opțiune este aleasă, atunci fișierele transferate parțial vor avea extensia "
 "„.part”. Această extensie va fi eliminată odată ce transferul este complet.</"
 "p>"
-
-#: proxy/kproxydlg.cpp:196
-#, kde-kuit-format
-msgctxt "@info"
-msgid ""
-"Not all applications will use this proxy setting. In particular, "
-"<application>Firefox</application> and anything derived from "
-"<application>Firefox</application>, or anything using "
-"<application>QtWebEngine</application>&nbsp;- which includes "
-"<application>Konqueror</application> using the <application>WebEnginePart</"
-"application>, <application>Akregator</application> and <application>Falkon</"
-"application>&nbsp;- will not use these settings. Some applications may allow "
-"the proxy to be configured in their own settings."
-msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
