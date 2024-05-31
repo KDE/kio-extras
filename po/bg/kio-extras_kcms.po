@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2024-02-17 12:56+0100\n"
+"PO-Revision-Date: 2024-05-30 16:57+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #: ksaveioconfig.cpp:166
 #, kde-format
@@ -319,7 +319,7 @@ msgid ""
 "<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
 "</qt>"
 msgstr ""
-"<qt> <p>Използвайте прокси настройките, дефинирани в системата.</p> \n"
+"<qt><p>Използвайте прокси настройките, дефинирани в системата.</p> \n"
 "<p>Някои платформи предлагат информация за конфигурацията на прокси за "
 "цялата система и избирането на тази опция ви позволява да използвате тези "
 "настройки.</p> \n"
@@ -649,7 +649,7 @@ msgid ""
 "para>"
 msgstr ""
 "<para> Кофата за отпадъци на KDE е конфигурирана да използва кошчето на "
-"<b>Finder</b>. <br> </параграф>"
+"<b>Finder</b>. <br></параграф>"
 
 #: trash/kcmtrash.cpp:207
 #, kde-format
@@ -662,8 +662,7 @@ msgid ""
 msgstr ""
 "<para> Изпразването на кошчето на KDE ще премахне само елементите от кошчето "
 "на KDE, докато <br> изпразването на кошчето през Finder ще изтрие всичко. </"
-"para> <para> Кошчето на KDE ще се покажат в папка, наречена KDE.кошче. </"
-"para>"
+"para><para> Кошчето на KDE ще се покажат в папка, наречена KDE.кошче. </para>"
 
 #: trash/kcmtrash.cpp:248
 #, kde-format
@@ -835,14 +834,14 @@ msgid ""
 "delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
 "KDE</span>.</p></body></html>"
 msgstr ""
-"<html><head/><body> <p>Активиране или деактивиране на  ключовите думи за уеб "
+"<html><head/><body><p>Активиране или деактивиране на  ключовите думи за уеб "
 "търсене.</p><p>Ключовите думи за уеб търсене ви позволяват бърз достъп или "
 "търсене на информация намираща се онлайн или на вашия твърд диск.</p><p>KDE "
 "се предлага с много предварително дефинирани ключови думи. Една такава "
 "ключова дума може да се използва за търсене с Google (TM); за да го "
 "използвате, просто напишете ключовата дума 'gg', последвана от разделител и "
 "думата за търсене, напр. <span style = \"font-weight: 600; \"> gg:KDE </"
-"span>.</p> </body> </html>"
+"span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -931,12 +930,12 @@ msgid ""
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
 msgstr ""
-"<html><head/><body> <p>Избиране на ключова дума за уеб търсене по "
+"<html><head/><body><p>Избиране на ключова дума за уеб търсене по "
 "подразбиране.</p><p>Това позволява на приложенията автоматично да "
 "конвертират въведената дума или фраза като заявки за търсачките, когато "
 "въведеното не може да бъде филтрирано в подходящ URL адрес.</p><p>За да "
 "деактивирате тази функционалност, изберете <span style = \"font-weight: 600;"
-"\"> Без </span> от списъка.</p></body> </html>"
+"\"> Без </span> от списъка.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182

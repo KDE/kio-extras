@@ -105,7 +105,3 @@ msgstr "Не може да се записва, без първо да се от
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Не може да се преименува между устройствата."
-
-#~ msgctxt "Placeholder is device name"
-#~ msgid "%1 (Apps)"
-#~ msgstr "%1 (Приложения)"
