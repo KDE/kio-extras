@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-10 00:38+0000\n"
-"PO-Revision-Date: 2024-02-11 18:52\n"
+"PO-Revision-Date: 2024-06-01 17:50\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
 "Language: be\n"
@@ -104,12 +104,12 @@ msgstr "Загаловачныя файлы (POSIX)"
 #: kio_man.cpp:751
 #, kde-format
 msgid "User Commands"
-msgstr "Загады карыстальніка"
+msgstr "Каманды карыстальнікаў"
 
 #: kio_man.cpp:753
 #, kde-format
 msgid "User Commands (POSIX)"
-msgstr "Загады карыстальнікаў (POSIX)"
+msgstr "Каманды карыстальнікаў (POSIX)"
 
 #: kio_man.cpp:755
 #, kde-format
