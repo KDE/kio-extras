@@ -12,14 +12,14 @@
 # Mikko Piippo <piippo@cc.helsinki.fi>, 2007.
 # Teemu Rytilahti <tpr@d5k.net>, 2008.
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2008.
-# Tommi Nieminen <translator@legisign.org>, 2009, 2010, 2011, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023.
+# Tommi Nieminen <translator@legisign.org>, 2009, 2010, 2011, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-14 00:37+0000\n"
-"PO-Revision-Date: 2023-03-14 21:58+0200\n"
+"PO-Revision-Date: 2024-04-08 20:02+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -27,7 +27,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.04.1\n"
+"X-Generator: Lokalize 22.12.3\n"
 "X-POT-Import-Date: 2013-01-13 20:43:21+0000\n"
 
 #: ksaveioconfig.cpp:166
@@ -199,18 +199,7 @@ msgstr ""
 "kun tiedosto on ladattu kokonaan.</p>"
 
 #: proxy/kproxydlg.cpp:196
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info"
-#| msgid ""
-#| "Not all applications will use this proxy setting. In particular, "
-#| "<application>Firefox</application> and <application>Chromium</"
-#| "application> or anything derived from them, or anything using "
-#| "<application>QtWebEngine</application>&nbsp;- which includes "
-#| "<application>Konqueror</application> using the "
-#| "<application>WebEnginePart</application>, <application>Akregator</"
-#| "application> and <application>Falkon</application>&nbsp;- will not use "
-#| "these settings. Some applications may allow the proxy to be configured in "
-#| "their own settings."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Not all applications will use this proxy setting. In particular, "
@@ -223,12 +212,12 @@ msgid ""
 "the proxy to be configured in their own settings."
 msgstr ""
 "Kaikki sovellukset eivät käytä näitä välityspalvelinasetuksia. Erityisesti "
-"<application>Firefox</application> ja <application>Chrome</application> "
-"johdannaisineen sekä <application>QtWebEngine</application>n käyttäjät – "
-"kuten <application>WebEnginePart</application>ia käyttävä "
-"<application>Konqueror</application>, <application>Akregator</application> "
-"ja <application>Falkon</application> – eivät näitä käytä. Joissakin "
-"sovelluksissa on oma asetus välityspalvelimelle."
+"<application>Firefox</application> johdannaisineen sekä "
+"<application>QtWebEngine</application>ä käyttävät sovellukset – kuten "
+"<application>WebEnginePart</application>ia käyttävä <application>Konqueror</"
+"application>, <application>Akregator</application> ja <application>Falkon</"
+"application> – eivät näitä käytä. Joissakin sovelluksissa on "
+"välityspalvelimelle oma asetus."
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
