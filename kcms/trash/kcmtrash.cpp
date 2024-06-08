@@ -49,7 +49,6 @@ TrashConfigModule::TrashConfigModule(QObject *parent, const KPluginMetaData &dat
             m_trashMap.insert(it.key().toInt(), it.value().toString());
         }
         setupGui();
-        useTypeChanged();
         trashChanged(0);
 
         connect(mUseTimeLimit, &QAbstractButton::toggled, this, &TrashConfigModule::markAsChanged);
@@ -60,6 +59,8 @@ TrashConfigModule::TrashConfigModule(QObject *parent, const KPluginMetaData &dat
         connect(mPercent, qOverload<double>(&QDoubleSpinBox::valueChanged), this, &TrashConfigModule::percentChanged);
         connect(mPercent, qOverload<double>(&QDoubleSpinBox::valueChanged), this, &TrashConfigModule::markAsChanged);
         connect(mLimitReachedAction, qOverload<int>(&QComboBox::currentIndexChanged), this, &TrashConfigModule::markAsChanged);
+
+        useTypeChanged();
 
         trashInitialize = true;
     });
