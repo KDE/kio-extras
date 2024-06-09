@@ -198,7 +198,7 @@ if (NOT WIN32 AND NOT APPLE)
     add_subdirectory( filenamesearch )
 endif()
 
-if (Libmtp_FOUND)
+if (Libmtp_FOUND AND USE_DBUS)
   add_subdirectory(mtp)
 endif()
 
