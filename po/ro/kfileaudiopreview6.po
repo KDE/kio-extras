@@ -1,4 +1,3 @@
-# translation of kfileaudiopreview4.po to
 # translation of kfileaudiopreview4.po to Romanian
 # Copyright (C) 2003, 2004 Free Software Foundation, Inc.
 # Claudiu Costin <claudiuc@kde.org>, 2003, 2004.
@@ -33,12 +32,3 @@ msgstr "pornește redarea"
 #, kde-format
 msgid "pause playback"
 msgstr "întrerupe redarea"
-
-#~ msgid "stop playback"
-#~ msgstr "oprește redarea"
-
-#~ msgid "loop: restarts playback at end"
-#~ msgstr "buclă: repornește redarea la sfârșit"
-
-#~ msgid "Media Player"
-#~ msgstr "Redare multimedia"
