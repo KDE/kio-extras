@@ -70,7 +70,6 @@ target_link_libraries(kioarchive6
     PRIVATE
     KF6::I18n
     Qt::Network
-    Qt::DBus
 )
 
 set_target_properties(kioarchive6 PROPERTIES
