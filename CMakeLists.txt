@@ -208,7 +208,7 @@ if(NOT WIN32)
    endif()
 endif()
 
-if(SAMBA_FOUND)
+if(SAMBA_FOUND AND USE_DBUS)
     add_subdirectory(smb)
 endif()
 
