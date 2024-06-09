@@ -17,8 +17,11 @@
 #include <KPluginFactory>
 #include <KSharedConfig>
 
+#ifdef WITH_DBUS
 #include <QDBusConnection>
 #include <QDBusMessage>
+#endif
+
 #include <QFile>
 #include <QPointer>
 #include <QSortFilterProxyModel>
@@ -391,9 +394,11 @@ void FilterOptions::save()
 
     setNeedsSave(false);
 
+#ifdef WITH_DBUS
     // Update filters in running applications...
     QDBusMessage msg = QDBusMessage::createSignal(QStringLiteral("/"), QStringLiteral("org.kde.KUriFilterPlugin"), QStringLiteral("configure"));
     QDBusConnection::sessionBus().send(msg);
+#endif
 }
 
 void FilterOptions::defaults()

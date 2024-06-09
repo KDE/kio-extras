@@ -8,7 +8,6 @@ target_sources(kcm_netpref PRIVATE
 
 target_link_libraries(kcm_netpref
   PUBLIC
-    Qt6::DBus
     KF6::ConfigCore
     KF6::KCMUtils
     KF6::KIOCore
@@ -17,3 +16,8 @@ target_link_libraries(kcm_netpref
     KF6::I18n
     KF6::CoreAddons
 )
+
+if(USE_DBUS)
+  target_link_libraries(kcm_netpref PUBLIC Qt6::DBus)
+  target_compile_definitions(kcm_netpref PUBLIC -DWITH_DBUS)
+endif()

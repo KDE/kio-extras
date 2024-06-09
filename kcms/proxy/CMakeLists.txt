@@ -10,10 +10,14 @@ target_sources(kcm_proxy PRIVATE
 ki18n_wrap_ui(kcm_proxy kproxydlg.ui)
 target_link_libraries(kcm_proxy PRIVATE
     Qt6::Widgets
-    Qt6::DBus
     KF6::CoreAddons
     KF6::ConfigCore
     KF6::I18n
     KF6::KCMUtils
     KF6::KIOWidgets
 )
+
+if(USE_DBUS)
+  target_link_libraries(kcm_proxy PRIVATE Qt6::DBus)
+  target_compile_definitions(kcm_proxy PUBLIC -DWITH_DBUS)
+endif()

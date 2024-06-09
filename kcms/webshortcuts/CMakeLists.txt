@@ -16,5 +16,9 @@ target_link_libraries(kcm_webshortcuts
     KF6::I18n
     KF6::CoreAddons
     Qt::Core5Compat
-    Qt::DBus
 )
+
+if(USE_DBUS)
+  target_link_libraries(kcm_webshortcuts Qt6::DBus)
+  target_compile_definitions(kcm_webshortcuts PUBLIC -DWITH_DBUS)
+endif()
