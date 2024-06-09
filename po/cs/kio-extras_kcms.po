@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2023-03-02 18:25+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -592,19 +592,19 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Používat nastavení proxy pouze pro adresy ze seznamu výjimek"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " dny"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -614,12 +614,12 @@ msgid ""
 "the Trash can.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Smazat soubory starší než"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -633,7 +633,7 @@ msgstr ""
 "volbu nepovolenou, pokud si <emphasis strong='true'>nepřejete</emphasis> aby "
 "byly soubory po určité době automaticky mazány</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -641,7 +641,7 @@ msgstr[0] " den"
 msgstr[1] " dny"
 msgstr[2] " dny"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -651,17 +651,17 @@ msgstr ""
 "<para>Nastavte počet dní po které soubory zůstanou v koši. Jakékoliv starší "
 "soubory budou automaticky smazány.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Vyčistit:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Omezit na"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -671,12 +671,12 @@ msgstr ""
 "<para>Zaškrtnutím této položky omezíte koš na velikost, kterou níže "
 "vyberete. Jinak bude mít neomezenou velikost.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Velikost:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -686,7 +686,7 @@ msgstr ""
 "<para>Toto je maximální místo na disku v procentech, které bude zpřístupněno "
 "koši.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -696,22 +696,22 @@ msgstr ""
 "<para>Toto je vypočtené množství místa které bude zpřístupněno koši. Je to "
 "maximum.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Zobrazit varování"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Smazat nejstarší soubory z koše"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Smazat největší soubory z koše"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -723,7 +723,7 @@ msgstr ""
 "souborů, které byly vámi vybrány. Pokud nastavíte varování, budete varováni "
 "namísto automatického smazání souborů.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Koš je plný:"

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2024-02-18 17:11+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -612,12 +612,12 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "விதிவிலக்குகளின் பட்டியலில் உள்ள முகவரிகளுக்கு மட்டும் பதிலி அமைப்பை பயன்படுத்து"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " நாட்கள்"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -626,7 +626,7 @@ msgstr ""
 "<para>கே.டீ.யீ.யின் அகற்றிடம், <b>Finder</b>-இன் அகற்றிடத்தை பயன்படுத்துமாறு "
 "அமைக்கப்பட்டுள்ளது.<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -639,12 +639,12 @@ msgstr ""
 "ஆனால்<br> Finder-இல் அகற்றிடத்தை காலியாக்குதல் அனைத்தையும் நீக்கும்.</para><para>கே.டீ.யீ."
 "யின் அகற்றிட உருப்படிகள், அகற்றிடத்தில் KDE.trash என்ற ஒரு அடைவில் இருக்கும்.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "இதைவிட பழைய கோப்புகளை அழி"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -658,14 +658,14 @@ msgstr ""
 "கோப்புகளை தானாக <emphasis strong='true'>அழிக்காமல் இருக்க</emphasis> இதை "
 "குறிக்காமல் விடங்கள்.</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " நாள்"
 msgstr[1] " நாட்கள்"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -675,17 +675,17 @@ msgstr ""
 "<para>கோப்புகள் அகற்றிடத்தில் எத்தனை நாட்கள் இருக்க வேண்டும் என்று தேர்ந்தெடுங்கள். இதைவிட "
 "பழைய கோப்புகள் தானாக அழிக்கப்படும்.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "சுத்தம் செய்தல்:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "இந்த வரம்புக்கு உட்படுத்து"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -695,12 +695,12 @@ msgstr ""
 "<para>நீங்கள் குறிப்பிடும் தேக்கக இடத்துக்கு அகற்றிடத்தை வரம்புப்படுத்த இந்த தேர்வுப்பெட்டியை "
 "குறிக்கவும். இல்லையென்றால், வரம்பற்று இருக்கும்.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "அளவு:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -708,7 +708,7 @@ msgid ""
 "trash.</para>"
 msgstr "<para>இது, அகற்றிடத்துக்கு பயன்படும் தேக்கக இடத்தின் அதிகபட்ச சதவீதமாகும்.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -716,22 +716,22 @@ msgid ""
 "the trash, the maximum.</para>"
 msgstr "<para>இது, அகற்றிடத்துக்கு பயன்படும் தேக்கக இடத்தின் அதிகபட்ச சதவீதமாகும்.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "எச்சரிக்கை காட்டு"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "இருப்பதில் பழைய கோப்புகளை அகற்றிடத்திலிருந்து நீக்கு"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "இருப்பதில் பெரிய கோப்புகளை அகற்றிடத்திலிருந்து நீக்கு"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -742,7 +742,7 @@ msgstr ""
 "<para>அளவு வரம்பு அடையப்படும்போது, முதலில் நீங்கள் குறிப்பிடும் வகையான கோப்புகளை அழிக்க "
 "பார்க்கும். உங்களை எச்சரிக்கும்படி அமைந்திருந்தால், தானாக அழிக்காமல் எச்சரிக்கும்.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "அகற்றிடம் முழுமையடையும்போது:"

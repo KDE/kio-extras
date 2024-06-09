@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2024-02-15 00:27+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -622,12 +622,12 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Erabili proxy ezarpena soilik salbuespen-zerrendako helbideekin"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " egun"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -636,7 +636,7 @@ msgstr ""
 "<para>KDEren zakarrontzia konfiguratuta dago <b>Finder</b>ren zakarrontzia "
 "erabiltzeko.<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -650,12 +650,12 @@ msgstr ""
 "para><para>KDEren zabor  elementuak \"KDE.trash\" izeneko karpeta batean "
 "agertuko dira, zakarrontzian.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Ezabatu hau baino zaharrago diren fitxategiak:"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -670,14 +670,14 @@ msgstr ""
 "elementurik automatikoki <emphasis strong='true'>ez</emphasis> ezabatzeko</"
 "para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " egun"
 msgstr[1] " egun"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -687,17 +687,17 @@ msgstr ""
 "<para>Ezarri fitxategiak zakarrontzian egon daitezkeen egun kopurua. Hau "
 "baino zaharragoak diren fitxategiak automatikoki ezabatuko dira.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Garbitu:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Honetara mugatu:"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -707,12 +707,12 @@ msgstr ""
 "<para>Markatu lauki hau zakarrontzia azpian adierazten duzun gehienezko "
 "disko-lekura mugatzeko. Bestela, mugagabea izango da.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Tamaina:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -722,7 +722,7 @@ msgstr ""
 "<para>Hau da zakarrontzirako erabiliko den gehienezko ehuneko disko-lekua.</"
 "para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -732,22 +732,22 @@ msgstr ""
 "<para>Hau da zakarrontzirako utziko den disko-lekuren zenbateko kalkulatua, "
 "gehienez.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Erakutsi abisu bat"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Ezabatu zakarrontziko fitxategi zaharrenak"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Ezabatu zakarrontziko fitxategi handienak"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -759,7 +759,7 @@ msgstr ""
 "ditu lehenengo. Hau zuri abisua emateko ezarri bada, hala egingo du "
 "fitxategiak automatikoki ezabatu ordez.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Zakarrontzi betea:"

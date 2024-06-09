@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2024-02-14 10:48+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -625,12 +625,12 @@ msgstr ""
 "Proxy-instellingen alleen gebruiken voor adressen uit deze "
 "uitzonderingenlijst"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " dagen"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -639,7 +639,7 @@ msgstr ""
 "<para>De prullenbak van KDE is ingesteld om de <b>Zoeker</b> van Prullenbak "
 "te gebruiken.<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -653,12 +653,12 @@ msgstr ""
 "verwijderen.</para><para>De prullenbak-items van KDE zullen getoond worden "
 "in een map genaamd KDE.prullenbak, in de Prullenbak.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Bestanden verwijderen ouder dan"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -672,14 +672,14 @@ msgstr ""
 "waarde. Laat dit uitgeschakeld om <emphasis strong='true'>niet</emphasis> "
 "automatisch items te verwijderen na een bepaalde tijdspanne</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " dag"
 msgstr[1] " dagen"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -690,17 +690,17 @@ msgstr ""
 "verblijven. Enig bestand dat ouder is dan dit zal automatisch worden "
 "verwijderd.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Opruimen:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Beperken tot"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -711,12 +711,12 @@ msgstr ""
 "schijfruimte voor de prullenbak die u hieronder kunt specificeren. Anders is "
 "deze onbeperkt.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Grootte:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -726,7 +726,7 @@ msgstr ""
 "<para>Dit is het maximum percentage schijfruimte dat zal worden gebruikt "
 "voor de prullenbak.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -736,22 +736,22 @@ msgstr ""
 "<para>Dit is de berekende hoeveelheid schijfruimte die maximaal voor de "
 "prullenbak is toegestaan</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Een waarschuwing tonen"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Oudste bestanden uit de prullenbak verwijderen"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Grootste bestanden uit prullenbak verwijderen"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -764,7 +764,7 @@ msgstr ""
 "waarschuwen, dan zal dat gedaan worden in plaats van bestanden automatisch "
 "te verwijderen.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Volle prullenbak:"

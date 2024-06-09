@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2021-09-05 20:45+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -625,12 +625,12 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Brug kun proxy-indstillinger for adresser i listen Undtagelser"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " dage"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -639,7 +639,7 @@ msgstr ""
 "<para>KDE's papirkurv er konfigureret til at bruge <b>Finder</b>s papirkurv."
 "<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -653,12 +653,12 @@ msgstr ""
 "para><para>KDE's papirkurvselementer vil dukke op i en mappe med navnet KDE."
 "trash, i papirkurven.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Slet filer som er ældre end"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -672,14 +672,14 @@ msgstr ""
 "være deaktiveret for <emphasis strong='true'>ikke</emphasis> at slette nogen "
 "elementer automatisk efter et bestemt tidsrum</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " dag"
 msgstr[1] " dage"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -689,17 +689,17 @@ msgstr ""
 "<para>Angiv det antal dage som filer må blive i papirkurven. Alle filer som "
 "er ældre end dette vil automatisk blive slettet.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Oprydning:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Begræns til"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -709,12 +709,12 @@ msgstr ""
 "<para>Markér dette felt for at begrænse papirkurven til den maksimale mængde "
 "diskplads som du angiver nedenfor. Ellers vil den være ubegrænset.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Størrelse:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -724,7 +724,7 @@ msgstr ""
 "<para>Dette er den maksimale procentdel af diskplads, der vil blive brugt "
 "til papirkurven.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -734,22 +734,22 @@ msgstr ""
 "<para>Dette er den beregnede mængde diskplads, som vil blive tilladt til "
 "papirkurven. Dvs. maksimum.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Vis advarsel"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Slet de ældste filer fra papirkurv"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Slet de største filer fra papirkurv"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -761,7 +761,7 @@ msgstr ""
 "filer, som du angiver, først. Hvis det er sat til at advare dig, så vil den "
 "gøre det, i stedet for at slette filerne automatisk.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Fuld papirkurv:"

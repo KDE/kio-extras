@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2021-08-27 01:43+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -648,19 +648,19 @@ msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 "Naudoti įgaliotojo serverio nuostatas tik įrašams, esantiems išimčių sąraše"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " dienų"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -670,12 +670,12 @@ msgid ""
 "the Trash can.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Trinti failus, senesnius nei"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -690,7 +690,7 @@ msgstr ""
 "strong='true'>nenorite</emphasis> automatiškai trinti elementus po nurodyto "
 "laiko.</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -699,7 +699,7 @@ msgstr[1] " dienos"
 msgstr[2] " dienų"
 msgstr[3] " diena"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -709,17 +709,17 @@ msgstr ""
 "<para>Nurodykite, kiek dienų failai turėtų likti šiukšlinėje. Bet kokie "
 "failai, senesni nei nurodytas dienų skaičius bus ištrinti.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Išvalyti:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Apriboti iki"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -729,12 +729,12 @@ msgstr ""
 "<para>Įjunkite šią parinktį, jei norite apriboti šiukšlinės dydį. Priešingu "
 "atveju šiukšlinės dydis neribojamas.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Dydis:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -744,7 +744,7 @@ msgstr ""
 "<para>Čia yra didžiausias vietos diske kiekis (procentais), kuris bus "
 "naudojamas šiukšlinėje.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -754,22 +754,22 @@ msgstr ""
 "<para>Tai yra paskaičiuotas didžiausias vietos diske kiekis, kuris bus "
 "naudojamas šiukšlinei.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Rodyti įspėjimą"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Trinti seniausius failus iš šiukšlinės"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Trinti didžiausius failus iš šiukšlinės"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -781,7 +781,7 @@ msgstr ""
 "failai. Jei čia nurodyta įspėti, taip ir bus padaryta, vietoje automatinio "
 "failų trynimo.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Pilna šiukšlinė:"

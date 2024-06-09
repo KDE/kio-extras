@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2024-02-14 21:24+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -621,12 +621,12 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "להשתמש בהגדרות מתווך רק לכתובות ברשימת החריגות"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " ימים"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -635,7 +635,7 @@ msgstr ""
 "<para>פח הפסולת של KDE מוגדר כך שישתמש באשפה של <b>דפדפן הקבצים</b>.<br></"
 "para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -648,12 +648,12 @@ msgstr ""
 "האשפה דרך דפדפן הקבצים ימחק הכול.</para><para>פריטי האשפה של KDE יופיעו "
 "בתיקייה בשם KDE.trash, בסל האשפה.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "מחיקת קבצים מלפני"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -667,7 +667,7 @@ msgstr ""
 "<emphasis strong='true'>לא</emphasis> למחוק אוטומטית פריטים כלשהם לאחר פרק "
 "זמן מסוים</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -676,7 +676,7 @@ msgstr[1] " יומיים"
 msgstr[2] " ימים"
 msgstr[3] " ימים"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -686,17 +686,17 @@ msgstr ""
 "<para>הגדרת מספר הימים שקבצים יכולים להישאר באשפה. קבצים כלשהם שקודמים למספר "
 "הימים האלה יימחקו אוטומטית.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "ניקיון:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "הגבלה עד"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -706,12 +706,12 @@ msgstr ""
 "<para>יש לסמן את התיבה הזאת כדי להגביל את האשפה לכמות המרבית של נפח הכונן "
 "שמצוין להלן. אחרת, לא תהיה הגבלה.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "גודל:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -719,7 +719,7 @@ msgid ""
 "trash.</para>"
 msgstr "<para>זה האחוז המרבי מהמקום בכונן שישמש לאשפה .</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -729,22 +729,22 @@ msgstr ""
 "<para>זאת כמות השטח המחושבת בכונן שאפשר יהיה להשתמש בה לטובת אשפה, הכמות "
 "המרבית.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "הצגת אזהרה"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "למחוק את הקבצים הישנים ביותר מהאשפה"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "למחוק את הקבצים הגדולים ביותר מהאשפה"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -755,7 +755,7 @@ msgstr ""
 "<para>אם גודל הפריטים הגיע למגבלת הגודל, תהיה העדפה למחוק את סוג הקבצים "
 "שציינת תחילה. אם ההגדרה פה היא להזהיר, תישלח אזהרה במקום למחוק.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "אשפה מלאה:"

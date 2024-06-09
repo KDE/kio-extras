@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2024-03-08 16:24+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -627,12 +627,12 @@ msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 "Yalnızca istisnalar listesindeki girdiler için vekil sunucu ayarları kullan"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " gün"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -641,7 +641,7 @@ msgstr ""
 "<para>KDE'nin çöp kutusu <b>Finder</b>'ın Çöp Sepeti ile kullanılmak üzere "
 "yapılandırılmıştır.<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -655,12 +655,12 @@ msgstr ""
 "para><para>KDE'nin çöp ögeleri Çöp kutusundaki KDE.trash adındaki klasörde "
 "görüntüleneceklerdir.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Bundan daha eski dosyaları sil:"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -675,14 +675,14 @@ msgstr ""
 "olarak <emphasis strong='true'>silinmemesi</emphasis> için bunu devre dışı "
 "durumda bırakın.</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " gün"
 msgstr[1] " gün"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -692,17 +692,17 @@ msgstr ""
 "<para>Dosyaların çöp kutusunda kaç gün kalacağını ayarlayın. Bu sayıdan daha "
 "eski dosyalar kendiliğinden silinecek.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Temizle:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Sınırla"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -713,12 +713,12 @@ msgstr ""
 "belirlemek için bu kutucuğu işaretleyin. Belirlemezseniz sınırsız olarak "
 "kalacaktır.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Boyut:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -728,7 +728,7 @@ msgstr ""
 "<para>Çöp Kutusu için kullanılacak disk alanının yüzde olarak en büyük "
 "boyutu.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -738,22 +738,22 @@ msgstr ""
 "<para>Bu değer, çöp kutusunun kullanması için izin verilmek üzere hesaplanan "
 "en yüksek değerdir.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Bir uyarı göster"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Çöp kutusundan en eski dosyaları sil"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Çöp kutusundan en büyük dosyaları sil"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -765,7 +765,7 @@ msgstr ""
 "dosyaları silecektir. Eğer bu seçenek sizi uyarmak üzere ayarlanmışsa "
 "dosyaları kendiliğinden silmek yerine sizi uyaracaktır.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Tam temizlik:"

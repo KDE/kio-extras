@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2024-02-15 06:58+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -614,12 +614,12 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Uzu prokurajn agordojn nur por adresoj en la listo de Esceptoj"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " tagoj"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -628,7 +628,7 @@ msgstr ""
 "<para>La rubujo de KDE estas agordita por uzi la Rubujon de la <b>Terchilo</"
 "b>.<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -641,12 +641,12 @@ msgstr ""
 "dum<br>malplenigi la Rubujon per la Serĉilo forigos ĉion.</para><para>La "
 "rubujojn de KDE aperos en dosierujo nomata KDE.trash, en la Rubujo.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Forigu dosierojn pli malnovajn ol"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -660,14 +660,14 @@ msgstr ""
 "valoro. Lasu ĉi tion malŝaltita por <emphasis strong='true'>ne</emphasis> "
 "aŭtomate forigi iujn ajn erojn post certa tempoperiodo</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " tago"
 msgstr[1] " tagoj"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -677,17 +677,17 @@ msgstr ""
 "<para>Agordu la nombron da tagoj kiam dosieroj povas resti en la rubujo. "
 "Ĉiuj dosieroj pli malnovaj ol ĉi estos aŭtomate forigitaj.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Purigado:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Limigu al"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -697,12 +697,12 @@ msgstr ""
 "<para>Marku ĉi tiun skatolon por limigi la rubujon al la maksimuma kvanto de "
 "diskspaco kiun vi specifas sube. Alie, ĝi estos senlima.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Grandeco:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -712,7 +712,7 @@ msgstr ""
 "<para>Ĉi tio estas la maksimuma procento de diskospaco kiu estos uzata por "
 "la rubujo.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -722,22 +722,22 @@ msgstr ""
 "<para>Ĉi tio estas la kalkulita kvanto de diskospaco kiu estos permesita por "
 "la rubujo, la maksimumo.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Montru Averton"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Forigu Plej malnovajn dosierojn el rubujo"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Forigi Plej Grandajn Dosieroj El Rubujo"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -749,7 +749,7 @@ msgstr ""
 "dosieroj kiujn vi specifita, unue. Se ĉi tio estas agordita por averti vin, "
 "ĝi faros tion anstataŭ aŭtomate forigi dosierojn.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Plena Rubujo:"

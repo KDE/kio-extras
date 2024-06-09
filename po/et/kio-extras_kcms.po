@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2022-10-19 21:51+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -631,12 +631,12 @@ msgstr ""
 "Puhverserveri seadistusi kasutatakse ainult erandite nimekirjas olevate "
 "aadresside puhul"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " päeva"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -644,7 +644,7 @@ msgid ""
 msgstr ""
 "<para>KDE prügikast on seatud kasutama <b>Finder</b>i Trashi.<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -658,12 +658,12 @@ msgstr ""
 "para><para>KDE prügikasti visatud asjad on näha prügikastis kataloogis KDE."
 "trash.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Kustutatakse failid, mis on vanemad kui"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -677,14 +677,14 @@ msgstr ""
 "vanemad. Jäta märkimata, kui sa <emphasis strong='true'>ei soovi</emphasis>, "
 "et faile kustutataks automaatselt pärast teatud ajavahemiku möödumist.</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " päev"
 msgstr[1] " päeva"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -694,17 +694,17 @@ msgstr ""
 "<para>Siin saab määrata, mitmeks päevaks jäävad failid prügikasti. Kõik "
 "vanemad failid kustutatakse automaatselt.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Puhastamine:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Piirang"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -714,12 +714,12 @@ msgstr ""
 "<para>Märkimisel piiratakse prügikasti mahtu allpool määratud kettaruumiga. "
 "Vastasel juhul on prügikasti suurus piiramatu.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Suurus:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -729,7 +729,7 @@ msgstr ""
 "<para>Maksimaalne kettaruum protsentides, mis eraldatakse prügikastile.</"
 "para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -737,22 +737,22 @@ msgid ""
 "the trash, the maximum.</para>"
 msgstr "<para>Maksimaalne kettaruum, mis eraldatakse prügikastile.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Hoiatuse näitamine"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Kustutatakse vanimad failid"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Kustutatakse suurimad failid"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -764,7 +764,7 @@ msgstr ""
 "Kui valida hoiatamine, siis kõigepealt hoiatataksegi, mitte ei kustutata "
 "kohe automaatselt faile.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Täis prügikast:"

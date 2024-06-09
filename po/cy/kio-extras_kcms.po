@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2022-07-10 22:32+0100\n"
 "Last-Translator: KD at KGyfieithu <kyfieithu@dotmon.com>\n"
 "Language-Team: Cymraeg <cy@li.org>\n"
@@ -635,12 +635,12 @@ msgstr ""
 "Defnyddio gosodiadau dirprwy dim ond ar gyfer cyfeiriadau yn y rhestr "
 "Eithriadau"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " dyddiau"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -649,7 +649,7 @@ msgstr ""
 "<para>Mae'r gwastraff-fin KDE wedi'i ffurfweddwyd i ddefnyddio y Sbwriel y "
 "<b>Canfyddwr.</b></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -663,12 +663,12 @@ msgstr ""
 "para><para>Fe fydd eitemau sbwriel KDE yn arddangos yn mhlygell gyda'r enw "
 "KDE.trash, yn y bin Sbwriel.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Dileu ffeiliau hŷn na"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -683,14 +683,14 @@ msgstr ""
 "dileu yn hunanweithredol unrhyw eitemau ar ol rhyw rhychwant amser "
 "penodiedig</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] "  dydd"
 msgstr[1] " dyddiau"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -700,17 +700,17 @@ msgstr ""
 "<para>Penodi y nifer o ddyddiau y gallai ffeiliau aros yn y sbwriel. Fe fydd "
 "unrhyw ffeiliau hŷn nag hynny yn cael ei ddileu yn ymysgogol.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Glanháu:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Cyfyngu i"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -720,12 +720,12 @@ msgstr ""
 "<para>Gwiriwch y blwch yma i gyfyngu y sbwriel i'r cyfanswm mwyaf o ofod "
 "disg ydych yn ei benodi. Os yn amgen, fe fydd e'n angyfyngwd.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Maint:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -735,7 +735,7 @@ msgstr ""
 "<para>Mae'r hyn y mwyaf canran o ofotddisg er mwyn defnyddiad y sbwriel.</"
 "para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -745,22 +745,22 @@ msgstr ""
 "<para>Mae'r hyn y maint o ofotddisg cyfrifwyd er mwyn y lwfiant ar gyfer y "
 "sbwriel, y mwyaf.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Arddangos Rhybudd"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Dileu Ffeiliau Hynaf Oddiwrth Sbwriel"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Dileu Ffeiliau Mwyaf Oddiwrth Sbwriel"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -773,7 +773,7 @@ msgstr ""
 "wedi'i benodi i'ch rhybuddio, fe fydd e'n ei wneud yn lle o ddileu y "
 "ffeiliau yn hunanweithredol.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Sbwriel Llawn:"

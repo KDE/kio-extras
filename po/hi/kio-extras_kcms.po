@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2021-09-17 20:07+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: kde-hindi\n"
@@ -639,21 +639,21 @@ msgstr "इस सूची में प्रविष्टि के लि�
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "इस सूची में प्रविष्टि के लिए सिर्फ प्रॉक्सी इस्तेमाल करें"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, fuzzy, kde-format
 #| msgid "1 day %2"
 #| msgid_plural "%1 days %2"
 msgid " days"
 msgstr "१ दिन %2"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -663,13 +663,13 @@ msgid ""
 "the Trash can.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, fuzzy, kde-format
 #| msgid "Delete Folder"
 msgid "Delete files older than"
 msgstr "फ़ोल्डर मिटाएँ"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -679,7 +679,7 @@ msgid ""
 "items after a certain timespan</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, fuzzy, kde-format
 #| msgid "1 day %2"
 #| msgid_plural "%1 days %2"
@@ -688,7 +688,7 @@ msgid_plural " days"
 msgstr[0] "१ दिन %2"
 msgstr[1] "%1 दिन %2"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -696,17 +696,17 @@ msgid ""
 "older than this will be automatically deleted.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr ""
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr ""
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -714,12 +714,12 @@ msgid ""
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "आकारः"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -727,7 +727,7 @@ msgid ""
 "trash.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -735,22 +735,22 @@ msgid ""
 "the trash, the maximum.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr ""
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr ""
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr ""
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -759,7 +759,7 @@ msgid ""
 "instead of automatically deleting files.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, fuzzy, kde-format
 #| msgid "Trash"
 msgid "Full Trash:"

@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2016-12-09 15:05+0200\n"
 "Last-Translator: Dimitris Kardarakos <dimkard@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -657,12 +657,12 @@ msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr ""
 "Χρήση ρυθμίσεις διαμεσολαβητή μόνο για διευθύνσεις στη λίστα εξαιρέσεων"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " ημέρες"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -671,7 +671,7 @@ msgstr ""
 "<para>Ο κάδος απορριμάτων του KDE είναι διαμορφωμένος να χρησιμοποιεί τον "
 "κάδο απορριμάτων του <b>Finder</b>.<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -685,13 +685,13 @@ msgstr ""
 "διαγραφούν τα πάντα.</para><para>Τα απορρίματα του KDE θα εμφανιστούν σε "
 "έναν φάκελο που λέγεται KDE.trash, στα Απορρίματα.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, fuzzy, kde-format
 #| msgid "Delete files older than:"
 msgid "Delete files older than"
 msgstr "Διαγραφή αρχείων παλαιότερων από:"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -710,14 +710,14 @@ msgstr ""
 "το ανενεργό για τη <b>μη</b> αυτόματη διαγραφή οποιουδήποτε αντικειμένου "
 "μετά από συγκεκριμένο χρονικό διάστημα</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " ημέρα"
 msgstr[1] " ημέρες"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -727,17 +727,17 @@ msgstr ""
 "<para>Ορισμός του αριθμού ημερών παραμονής των αρχείων στα απορρίμματα. "
 "Οποιοδήποτε αρχείο, παλαιότερο από αυτό θα διαγράφεται αυτόματα.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr ""
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr ""
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -748,12 +748,12 @@ msgstr ""
 "έναν μέγιστο χώρο στον δίσκο, που καθορίζεται παρακάτω. Διαφορετικά, ο χώρος "
 "των απορριμμάτων θα είναι απεριόριστος.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Μέγεθος:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -763,7 +763,7 @@ msgstr ""
 "<para>Αυτός είναι ο μέγιστος χώρος στον δίσκο που θα χρησιμοποιηθεί από τα "
 "απορρίμματα.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -773,24 +773,24 @@ msgstr ""
 "<para>Αυτός είναι ο υπολογισμένος χώρος στον δίσκο που επιτρέπεται για χρήση "
 "από τα απορρίμματα, δηλαδή η μέγιστη τιμή.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, fuzzy, kde-format
 #| msgctxt "Warning about executing unknown .desktop file"
 #| msgid "Warning"
 msgid "Show a Warning"
 msgstr "Προειδοποίηση"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Διαγραφή παλαιότερων αρχείων από τα απορρίμματα"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Διαγραφή μεγαλύτερων αρχείων από τα απορρίμματα"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -802,7 +802,7 @@ msgstr ""
 "τύπος αρχείων που καθορίζετε. Αν έχει επλεχθεί η προειδοποίηση, θα γίνει "
 "αυτό αντί της αυτόματης διαγραφής αρχείων.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, fuzzy, kde-format
 #| msgctxt "KFile System Bookmarks"
 #| msgid "Trash"

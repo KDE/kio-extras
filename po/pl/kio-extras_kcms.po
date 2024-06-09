@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2024-02-24 17:02+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -609,12 +609,12 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Użyj ustawień pośrednika tylko dla adresów z listy wyjątków"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " dni"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -623,7 +623,7 @@ msgstr ""
 "<para>Kosz KDE ustawiono tak, aby wykorzystywał program  <b>Finder</b>.<br></"
 "para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -637,12 +637,12 @@ msgstr ""
 "para><para>Elementy kosza KDE pokażą się w koszu, w katalogu o nazwie KDE."
 "trash.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Usuwaj pliki starsze niż"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -656,7 +656,7 @@ msgstr ""
 "czas. Ta opcja powinna pozostać wyłączona jeśli żadne obiekty mają <emphasis "
 "strong='true'>nie</emphasis> być usuwane po upłynięciu pewnego czasu</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -664,7 +664,7 @@ msgstr[0] " dzień"
 msgstr[1] " dni"
 msgstr[2] " dni"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -674,17 +674,17 @@ msgstr ""
 "<para>Ustawienie liczby dni, przez który to czas pliki pozostają w koszu. "
 "Wszystkie starsze pliki zostaną automatycznie usunięte.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Porządkowanie:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Ogranicz do"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -695,12 +695,12 @@ msgstr ""
 "dysku zajętego przez pliki z kosza. Jeśli pole to nie jest zaznaczone, nie "
 "ma limitu.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Rozmiar:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -709,7 +709,7 @@ msgid ""
 msgstr ""
 "<para>To jest maksymalna zajętość dysku (w procentach) przez kosz.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -719,22 +719,22 @@ msgstr ""
 "<para>To jest ilość miejsca na dysku do wykorzystania przez kosz "
 "(maksymalnie).</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Pokaż ostrzeżenie"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Usuń najstarsze pliki z kosza"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Usuń największe pliki z kosza"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -746,7 +746,7 @@ msgstr ""
 "pierwsze. Jeśli wybrano też opcję ostrzeżenia, nastąpi ostrzeżenie zamiast "
 "automatycznego usuwania plików.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Przy pełnym koszu:"

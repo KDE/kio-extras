@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2024-03-20 21:25+0100\n"
 "Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -620,12 +620,12 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Proxy-Einstellungen nur für Adressen in der Ausnahmen-Liste verwenden"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " Tage"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -634,7 +634,7 @@ msgstr ""
 "<para>Der Papierkorb von KDE ist so eingestellt, dass der <b>Finder</b>-"
 "Papierkorb verwendet wird<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -648,12 +648,12 @@ msgstr ""
 "para><para>Der KDE-Papierkorb wird in einem Ordner mit diesem Namen im "
 "Papierkorb angezeigt.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Dateien löschen, die älter sind als"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -668,14 +668,14 @@ msgstr ""
 "werden <emphasis strong='true'>keine</emphasis> Dateien automatisch nach "
 "einer bestimmten Zeit aus dem Papierkorb gelöscht.</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
 msgstr[0] " Tag"
 msgstr[1] " Tage"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -685,17 +685,17 @@ msgstr ""
 "<para>Legen Sie die Anzahl Tage fest, die Dateien im Papierkorb verbleiben "
 "können, bevor sie automatisch gelöscht werden.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Aufräumen:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Begrenzen auf"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -706,12 +706,12 @@ msgstr ""
 "eingestellten Maximalwert einzustellen. Wenn Sie diese Einstellung nicht "
 "vornehmen, wird der Platz im Papierkorb nicht begrenzt.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Größe:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -721,7 +721,7 @@ msgstr ""
 "<para>Dies ist die maximale Größe in Prozent von der Festplattenkapazität, "
 "die der Papierkorb annehmen kann.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -731,22 +731,22 @@ msgstr ""
 "<para>Dies ist der errechnete maximale Speicherplatz, der für den Papierkorb "
 "zur Verfügung steht.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Eine Warnung anzeigen"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Älteste Dateien unwiderruflich löschen"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Größte Dateien unwiderruflich löschen"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -758,7 +758,7 @@ msgstr ""
 "Dateityp bevorzugt gelöscht. Wenn dies auf Warnen eingestellt ist, wird eine "
 "Warnung ausgegeben, anstatt automatisch zu löschen.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Papierkorb voll:"

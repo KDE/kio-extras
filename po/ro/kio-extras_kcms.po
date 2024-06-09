@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2024-02-25 17:36+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -675,13 +675,13 @@ msgstr ""
 "Folosește configurări de proximitate numai pentru adrese din lista de "
 "excepții"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, fuzzy, kde-format
 #| msgid " days"
 msgid " days"
 msgstr " zile"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, fuzzy, kde-format
 #| msgid ""
 #| "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -693,7 +693,7 @@ msgstr ""
 "<para>Coșul de gunoi al KDE e configurat să folosească Gunoiul din "
 "<b>Finder</b>.<br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, fuzzy, kde-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -713,13 +713,13 @@ msgstr ""
 "para><para>Elementele KDE din gunoi vor apărea într-un dosar denumit KDE."
 "trash din coșul de gunoi.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, fuzzy, kde-format
 #| msgid "Delete files older than"
 msgid "Delete files older than"
 msgstr "Șterge fișiere mai vechi de"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -739,7 +739,7 @@ msgstr ""
 "Lăsați dezactivat pentru a <emphasis strong='true'>nu</emphasis> șterge "
 "automat niciun element după o anumită durată</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, fuzzy, kde-format
 #| msgid " day"
 #| msgid_plural " days"
@@ -749,7 +749,7 @@ msgstr[0] " zi"
 msgstr[1] " zile"
 msgstr[2] " de zile"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -763,19 +763,19 @@ msgstr ""
 "<para>Stabilește numărul de zile în care fișierele pot rămâne la gunoi. "
 "Orice fișiere mai vechi decât atât vor fi șterse automat.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, fuzzy, kde-format
 #| msgid "Cleanup:"
 msgid "Cleanup:"
 msgstr "Curățare:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, fuzzy, kde-format
 #| msgid "Limit to"
 msgid "Limit to"
 msgstr "Limitează la"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -790,13 +790,13 @@ msgstr ""
 "spațiu pe disc pe care o specificați mai jos. Altfel, acesta va fi nelimitat."
 "</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, fuzzy, kde-format
 #| msgid "Size:"
 msgid "Size:"
 msgstr "Dimensiune:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -810,7 +810,7 @@ msgstr ""
 "<para>Acesta e procentajul maxim din spațiul de disc ce va fi folosit pentru "
 "gunoi.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -824,25 +824,25 @@ msgstr ""
 "<para>Aceasta e cantitatea maximă calculată de spațiu pe disc ce va fi "
 "permisă pentru gunoi.</para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, fuzzy, kde-format
 #| msgid "Show a Warning"
 msgid "Show a Warning"
 msgstr "Arată un avertisment"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, fuzzy, kde-format
 #| msgid "Delete Oldest Files From Trash"
 msgid "Delete Oldest Files From Trash"
 msgstr "Șterge cele mai vechi fișiere din gunoi"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, fuzzy, kde-format
 #| msgid "Delete Biggest Files From Trash"
 msgid "Delete Biggest Files From Trash"
 msgstr "Șterge cele mai mari fișiere din gunoi"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -860,7 +860,7 @@ msgstr ""
 "Dacă e configurată să vă avertizeze, va face asta în loc de a șterge "
 "fișierele automat.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, fuzzy, kde-format
 #| msgid "Full Trash:"
 msgid "Full Trash:"

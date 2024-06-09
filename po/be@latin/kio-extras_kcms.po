@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-25 00:38+0000\n"
+"POT-Creation-Date: 2024-06-09 00:38+0000\n"
 "PO-Revision-Date: 2022-08-29 08:53\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -678,12 +678,12 @@ msgstr ""
 msgid "Use proxy settings only for addresses in the Exceptions list"
 msgstr "Vykarystoŭvać nalady proksi toĺki dlia adrasoŭ sa spisa vykliučenniaŭ"
 
-#: trash/kcmtrash.cpp:140
+#: trash/kcmtrash.cpp:141
 #, kde-format
 msgid " days"
 msgstr " dzion"
 
-#: trash/kcmtrash.cpp:205
+#: trash/kcmtrash.cpp:206
 #, fuzzy, kde-format
 #| msgid ""
 #| "<para>KDEs wastebin is configured to use the <b>Finder</b>s Trash.<br></"
@@ -695,7 +695,7 @@ msgstr ""
 "<para>Smietnica KDE naladžanaja na vykarystannie smietnicy <b>Finder</"
 "b><br></para>"
 
-#: trash/kcmtrash.cpp:207
+#: trash/kcmtrash.cpp:208
 #, fuzzy, kde-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -715,12 +715,12 @@ msgstr ""
 "para><para>Eliemienty smieccia KDE zjaviacca ŭ smietnicy ŭ katalozie pad "
 "nazvaj KDE.trash.</para>"
 
-#: trash/kcmtrash.cpp:248
+#: trash/kcmtrash.cpp:249
 #, kde-format
 msgid "Delete files older than"
 msgstr "Vydaliać fajly, starejšyja za"
 
-#: trash/kcmtrash.cpp:251
+#: trash/kcmtrash.cpp:252
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -741,7 +741,7 @@ msgstr ""
 "emphasis> dlia aŭtamatyčnaha vydaliennia ŭsich fajlaŭ praz peŭny pramiežak "
 "času</para>"
 
-#: trash/kcmtrash.cpp:258
+#: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
@@ -750,7 +750,7 @@ msgstr[1] " dni"
 msgstr[2] " dzion"
 msgstr[3] " dni"
 
-#: trash/kcmtrash.cpp:260
+#: trash/kcmtrash.cpp:261
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -761,17 +761,17 @@ msgstr ""
 "smietnicy. Liubyja fajly, starejšyja za hetaje značennie, buduć aŭtamatyčna "
 "vydaliacca.</para>"
 
-#: trash/kcmtrash.cpp:264
+#: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
 msgstr "Ačyscić:"
 
-#: trash/kcmtrash.cpp:267
+#: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
 msgstr "Abmiežavana"
 
-#: trash/kcmtrash.cpp:269
+#: trash/kcmtrash.cpp:270
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -782,12 +782,12 @@ msgstr ""
 "vykarystoŭvacca značennie, paznačanaje nižej. U advarotnym vypadku pamior "
 "budzie nieabmiežavanym.</para>"
 
-#: trash/kcmtrash.cpp:272
+#: trash/kcmtrash.cpp:273
 #, kde-format
 msgid "Size:"
 msgstr "Pamier:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -797,7 +797,7 @@ msgstr ""
 "<para>Heta maksimaĺny adsotak dyskavaj prastory, što budzie vykarystoŭvacca "
 "dlia smietnicy.</para>"
 
-#: trash/kcmtrash.cpp:284
+#: trash/kcmtrash.cpp:285
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -807,22 +807,22 @@ msgstr ""
 "<para>Heta maksimaĺny abjom dyskavaj prastory, dazvolieny dlia smietnicy.</"
 "para>"
 
-#: trash/kcmtrash.cpp:288
+#: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a Warning"
 msgstr "Pakazvać papiaredžannie"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete Oldest Files From Trash"
 msgstr "Vydaliać sa smietnicy staryja fajly"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete Biggest Files From Trash"
 msgstr "Vydaliać sa smietnicy vialikija fajly"
 
-#: trash/kcmtrash.cpp:292
+#: trash/kcmtrash.cpp:293
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -835,7 +835,7 @@ msgstr ""
 "papiaredžannie, to zamiest aŭtamatyčnaha vydaliennia fajlaŭ budzie "
 "pakazvacca papiaredžannie.</para>"
 
-#: trash/kcmtrash.cpp:294
+#: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full Trash:"
 msgstr "Smietnica poŭnaja:"
