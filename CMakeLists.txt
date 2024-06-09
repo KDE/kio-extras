@@ -31,7 +31,36 @@ include(CMakePushCheckState)
 include(CMakePackageConfigHelpers)
 include(FeatureSummary)
 
-find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus Network Widgets Svg Core5Compat)
+find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Network Widgets Svg Core5Compat)
+
+find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
+    Archive
+    Config
+    ConfigWidgets
+    CoreAddons
+
+    DocTools
+    DNSSD
+    I18n
+    KIO
+    Solid
+    GuiAddons
+    SyntaxHighlighting
+    KCMUtils
+    TextWidgets
+)
+
+# shall we use DBus?
+# enabled per default on Linux & BSD systems
+set(USE_DBUS_DEFAULT OFF)
+if(UNIX AND NOT APPLE AND NOT ANDROID AND NOT HAIKU)
+    set(USE_DBUS_DEFAULT ON)
+endif()
+option(USE_DBUS "Build components using DBus" ${USE_DBUS_DEFAULT})
+if(USE_DBUS)
+    find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus)
+    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS DBusAddons)
+endif()
 
 find_package(Qt6Test ${QT_MIN_VERSION} CONFIG QUIET)
 set_package_properties(Qt6Test PROPERTIES
@@ -45,23 +74,6 @@ endif()
 
 find_package(QCoro6 REQUIRED COMPONENTS Core)
 qcoro_enable_coroutines()
-
-find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
-    Archive
-    Config
-    ConfigWidgets
-    CoreAddons
-    DBusAddons
-    DocTools
-    DNSSD
-    I18n
-    KIO
-    Solid
-    GuiAddons
-    SyntaxHighlighting
-    KCMUtils
-    TextWidgets
-)
 
 include(KDEClangFormat)
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
