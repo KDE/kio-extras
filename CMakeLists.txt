@@ -194,7 +194,7 @@ if (libssh_FOUND)
     add_subdirectory(sftp)
 endif ()
 
-if (NOT WIN32 AND NOT APPLE)
+if (NOT WIN32 AND NOT APPLE AND USE_DBUS)
     add_subdirectory( filenamesearch )
 endif()
 
