@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-09 00:38+0000\n"
+"POT-Creation-Date: 2024-06-10 00:38+0000\n"
 "PO-Revision-Date: 2023-03-02 18:25+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -20,14 +20,14 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Lokalize 23.04.0\n"
 
-#: ksaveioconfig.cpp:159
+#: ksaveioconfig.cpp:163
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "Aby se změny projevily, musíte nejprve restartovat běžící aplikace."
 
-#: ksaveioconfig.cpp:161
+#: ksaveioconfig.cpp:165
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -728,25 +728,25 @@ msgstr ""
 msgid "Full Trash:"
 msgstr "Koš je plný:"
 
-#: webshortcuts/ikwsopts.cpp:38
+#: webshortcuts/ikwsopts.cpp:41
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Název"
 
-#: webshortcuts/ikwsopts.cpp:40
+#: webshortcuts/ikwsopts.cpp:43
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Klíčová slova"
 
-#: webshortcuts/ikwsopts.cpp:42
+#: webshortcuts/ikwsopts.cpp:45
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "Preferované"
 
-#: webshortcuts/ikwsopts.cpp:101
+#: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -759,13 +759,13 @@ msgstr ""
 "použita v místech, kde je povoleno souběžné zobrazení pouze několika "
 "klíčových slov."
 
-#: webshortcuts/ikwsopts.cpp:202
+#: webshortcuts/ikwsopts.cpp:205
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Nic"
 
-#: webshortcuts/ikwsopts.cpp:246
+#: webshortcuts/ikwsopts.cpp:249
 #, kde-format
 msgid "Search F&ilters"
 msgstr "F&iltry pro vyhledávání"

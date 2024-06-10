@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-09 00:38+0000\n"
+"POT-Creation-Date: 2024-06-10 00:38+0000\n"
 "PO-Revision-Date: 2024-02-17 12:52+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -19,14 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 23.08.1\n"
 
-#: ksaveioconfig.cpp:159
+#: ksaveioconfig.cpp:163
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "변경 사항을 적용하려면 실행 중인 앱을 다시 시작해야 합니다."
 
-#: ksaveioconfig.cpp:161
+#: ksaveioconfig.cpp:165
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -728,25 +728,25 @@ msgstr ""
 msgid "Full Trash:"
 msgstr "휴지통이 가득 찼을 때:"
 
-#: webshortcuts/ikwsopts.cpp:38
+#: webshortcuts/ikwsopts.cpp:41
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "이름"
 
-#: webshortcuts/ikwsopts.cpp:40
+#: webshortcuts/ikwsopts.cpp:43
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "키워드"
 
-#: webshortcuts/ikwsopts.cpp:42
+#: webshortcuts/ikwsopts.cpp:45
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "선호함"
 
-#: webshortcuts/ikwsopts.cpp:101
+#: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -757,13 +757,13 @@ msgstr ""
 "선택한 웹 검색 키워드를 선호함으로 표시하려면 클릭하십시오.<nl/>웹 검색 키워"
 "드 목록의 일부만 보여줄 때 선호하는 키워드를 우선적으로 표시합니다."
 
-#: webshortcuts/ikwsopts.cpp:202
+#: webshortcuts/ikwsopts.cpp:205
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "없음"
 
-#: webshortcuts/ikwsopts.cpp:246
+#: webshortcuts/ikwsopts.cpp:249
 #, kde-format
 msgid "Search F&ilters"
 msgstr "검색 필터(&I)"

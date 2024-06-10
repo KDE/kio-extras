@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-09 00:38+0000\n"
+"POT-Creation-Date: 2024-06-10 00:38+0000\n"
 "PO-Revision-Date: 2024-03-20 21:25+0100\n"
 "Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 24.02.0\n"
 
-#: ksaveioconfig.cpp:159
+#: ksaveioconfig.cpp:163
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -32,7 +32,7 @@ msgstr ""
 "Sie müssen das laufende Programm neu starten, damit die Änderungen wirksam "
 "werden."
 
-#: ksaveioconfig.cpp:161
+#: ksaveioconfig.cpp:165
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -763,25 +763,25 @@ msgstr ""
 msgid "Full Trash:"
 msgstr "Papierkorb voll:"
 
-#: webshortcuts/ikwsopts.cpp:38
+#: webshortcuts/ikwsopts.cpp:41
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Name"
 
-#: webshortcuts/ikwsopts.cpp:40
+#: webshortcuts/ikwsopts.cpp:43
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Schlüsselwörter"
 
-#: webshortcuts/ikwsopts.cpp:42
+#: webshortcuts/ikwsopts.cpp:45
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "Bevorzugt"
 
-#: webshortcuts/ikwsopts.cpp:101
+#: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -793,13 +793,13 @@ msgstr ""
 "zu markieren.<nl/>Bevorzugte Web-Kürzel werden immer dann benutzt, wenn nur "
 "einige wenige Kürzel gleichzeitig angezeigt werden können."
 
-#: webshortcuts/ikwsopts.cpp:202
+#: webshortcuts/ikwsopts.cpp:205
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Keine"
 
-#: webshortcuts/ikwsopts.cpp:246
+#: webshortcuts/ikwsopts.cpp:249
 #, kde-format
 msgid "Search F&ilters"
 msgstr "&Filter suchen"

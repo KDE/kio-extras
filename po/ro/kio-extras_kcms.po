@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-09 00:38+0000\n"
+"POT-Creation-Date: 2024-06-10 00:38+0000\n"
 "PO-Revision-Date: 2024-02-25 17:36+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Lokalize 21.12.3\n"
 
-#: ksaveioconfig.cpp:159
+#: ksaveioconfig.cpp:163
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -27,7 +27,7 @@ msgstr ""
 "Aceste modificări vor intra în vigoare după ce reporniți aplicațiile care "
 "rulează deja."
 
-#: ksaveioconfig.cpp:161
+#: ksaveioconfig.cpp:165
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -866,7 +866,7 @@ msgstr ""
 msgid "Full Trash:"
 msgstr "Gunoi plin:"
 
-#: webshortcuts/ikwsopts.cpp:38
+#: webshortcuts/ikwsopts.cpp:41
 #, fuzzy, kde-format
 #| msgctxt "@title:column Name label from web search keyword column"
 #| msgid "Name"
@@ -874,7 +874,7 @@ msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Denumire"
 
-#: webshortcuts/ikwsopts.cpp:40
+#: webshortcuts/ikwsopts.cpp:43
 #, fuzzy, kde-format
 #| msgctxt "@title:column"
 #| msgid "Keywords"
@@ -882,7 +882,7 @@ msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Cuvinte-cheie"
 
-#: webshortcuts/ikwsopts.cpp:42
+#: webshortcuts/ikwsopts.cpp:45
 #, fuzzy, kde-format
 #| msgctxt "@title:column"
 #| msgid "Preferred"
@@ -890,7 +890,7 @@ msgctxt "@title:column"
 msgid "Preferred"
 msgstr "Preferat"
 
-#: webshortcuts/ikwsopts.cpp:101
+#: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -899,7 +899,7 @@ msgid ""
 "keywords can be shown at one time."
 msgstr ""
 
-#: webshortcuts/ikwsopts.cpp:202
+#: webshortcuts/ikwsopts.cpp:205
 #, fuzzy, kde-format
 #| msgctxt "@item:inlistbox No default web search keyword"
 #| msgid "None"
@@ -907,7 +907,7 @@ msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Niciunul"
 
-#: webshortcuts/ikwsopts.cpp:246
+#: webshortcuts/ikwsopts.cpp:249
 #, fuzzy, kde-format
 #| msgid "Search F&ilters"
 msgid "Search F&ilters"

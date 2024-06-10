@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-09 00:38+0000\n"
+"POT-Creation-Date: 2024-06-10 00:38+0000\n"
 "PO-Revision-Date: 2021-08-27 01:43+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
 "X-Generator: Poedit 2.3\n"
 
-#: ksaveioconfig.cpp:159
+#: ksaveioconfig.cpp:163
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -29,7 +29,7 @@ msgid ""
 msgstr ""
 "Kad pakeitimai turėtų poveikį, Jūs turite perstartuoti veikiančias programas."
 
-#: ksaveioconfig.cpp:161
+#: ksaveioconfig.cpp:165
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -786,26 +786,26 @@ msgstr ""
 msgid "Full Trash:"
 msgstr "Pilna šiukšlinė:"
 
-#: webshortcuts/ikwsopts.cpp:38
+#: webshortcuts/ikwsopts.cpp:41
 #, fuzzy, kde-format
 #| msgid "Name"
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Vardas"
 
-#: webshortcuts/ikwsopts.cpp:40
+#: webshortcuts/ikwsopts.cpp:43
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Raktažodžiai"
 
-#: webshortcuts/ikwsopts.cpp:42
+#: webshortcuts/ikwsopts.cpp:45
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "Pageidautinas"
 
-#: webshortcuts/ikwsopts.cpp:101
+#: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -814,14 +814,14 @@ msgid ""
 "keywords can be shown at one time."
 msgstr ""
 
-#: webshortcuts/ikwsopts.cpp:202
+#: webshortcuts/ikwsopts.cpp:205
 #, fuzzy, kde-format
 #| msgid "None"
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Nieko"
 
-#: webshortcuts/ikwsopts.cpp:246
+#: webshortcuts/ikwsopts.cpp:249
 #, kde-format
 msgid "Search F&ilters"
 msgstr "&Paieškos filtrai"

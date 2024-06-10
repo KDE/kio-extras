@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio trunk\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-09 00:38+0000\n"
+"POT-Creation-Date: 2024-06-10 00:38+0000\n"
 "PO-Revision-Date: 2021-08-26 06:59+0000\n"
 "Last-Translator: Vivek K J <vivekkj2004@gmail.com>\n"
 "Language-Team: Malayalam <https://kde.smc.org.in/projects/kde/kiokio5/ml/>\n"
@@ -18,14 +18,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Weblate 4.7.2\n"
 
-#: ksaveioconfig.cpp:159
+#: ksaveioconfig.cpp:163
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "ഈ മാറ്റങ്ങള്‍ ഫലവത്താകാന്‍ ഓടിക്കൊണ്ടിരിക്കുന്ന പ്രയോഗങ്ങള്‍ പുനരാരംഭിക്കേണ്ടിയിരിക്കുന്നു."
 
-#: ksaveioconfig.cpp:161
+#: ksaveioconfig.cpp:165
 #, fuzzy, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -639,25 +639,25 @@ msgstr ""
 msgid "Full Trash:"
 msgstr "ചവറ്റുകുട്ട"
 
-#: webshortcuts/ikwsopts.cpp:38
+#: webshortcuts/ikwsopts.cpp:41
 #, fuzzy, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "പേരനുസരിച്ചു്"
 
-#: webshortcuts/ikwsopts.cpp:40
+#: webshortcuts/ikwsopts.cpp:43
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "കീവേഡുകൾ"
 
-#: webshortcuts/ikwsopts.cpp:42
+#: webshortcuts/ikwsopts.cpp:45
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr ""
 
-#: webshortcuts/ikwsopts.cpp:101
+#: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -666,13 +666,13 @@ msgid ""
 "keywords can be shown at one time."
 msgstr ""
 
-#: webshortcuts/ikwsopts.cpp:202
+#: webshortcuts/ikwsopts.cpp:205
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "ഒന്നുമില്ല"
 
-#: webshortcuts/ikwsopts.cpp:246
+#: webshortcuts/ikwsopts.cpp:249
 #, kde-format
 msgid "Search F&ilters"
 msgstr ""

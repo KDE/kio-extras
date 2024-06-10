@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-09 00:38+0000\n"
+"POT-Creation-Date: 2024-06-10 00:38+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -17,14 +17,14 @@ msgstr ""
 "X-Crowdin-File: /kf6-trunk/messages/kio-extras/kio-extras_kcms.pot\n"
 "X-Crowdin-File-ID: 43833\n"
 
-#: ksaveioconfig.cpp:159
+#: ksaveioconfig.cpp:163
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "要让这些更改生效，您必须重新启动正在运行的应用程序。"
 
-#: ksaveioconfig.cpp:161
+#: ksaveioconfig.cpp:165
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -708,25 +708,25 @@ msgstr ""
 msgid "Full Trash:"
 msgstr "回收站已满时："
 
-#: webshortcuts/ikwsopts.cpp:38
+#: webshortcuts/ikwsopts.cpp:41
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "名称"
 
-#: webshortcuts/ikwsopts.cpp:40
+#: webshortcuts/ikwsopts.cpp:43
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "关键词"
 
-#: webshortcuts/ikwsopts.cpp:42
+#: webshortcuts/ikwsopts.cpp:45
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "首选"
 
-#: webshortcuts/ikwsopts.cpp:101
+#: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -737,13 +737,13 @@ msgstr ""
 "勾选此项时，当前选中的网页搜索关键词将被设为首选。<nl/>\n"
 "设为首选的网页搜索关键词将在只能显示少量候选关键词的场合中优先显示。"
 
-#: webshortcuts/ikwsopts.cpp:202
+#: webshortcuts/ikwsopts.cpp:205
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "无"
 
-#: webshortcuts/ikwsopts.cpp:246
+#: webshortcuts/ikwsopts.cpp:249
 #, kde-format
 msgid "Search F&ilters"
 msgstr "搜索过滤(&I)"

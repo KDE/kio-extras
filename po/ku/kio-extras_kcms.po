@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-09 00:38+0000\n"
+"POT-Creation-Date: 2024-06-10 00:38+0000\n"
 "PO-Revision-Date: 2009-01-06 14:34+0200\n"
 "Last-Translator: Erdal Ronahi <erdal.ronahi@nospam.gmail.com>\n"
 "Language-Team: Kurdish <kde-i18n-doc@lists.kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ksaveioconfig.cpp:159
+#: ksaveioconfig.cpp:163
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Da ku ev guherand bibandor bibin, sepanên çalak ji nû ve bide destpêkirin."
 
-#: ksaveioconfig.cpp:161
+#: ksaveioconfig.cpp:165
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"
@@ -647,26 +647,26 @@ msgid "Full Trash:"
 msgstr "Çop"
 
 # msgctxt "@title:column"
-#: webshortcuts/ikwsopts.cpp:38
+#: webshortcuts/ikwsopts.cpp:41
 #, fuzzy, kde-format
 #| msgid "Name"
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Nav"
 
-#: webshortcuts/ikwsopts.cpp:40
+#: webshortcuts/ikwsopts.cpp:43
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr ""
 
-#: webshortcuts/ikwsopts.cpp:42
+#: webshortcuts/ikwsopts.cpp:45
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr ""
 
-#: webshortcuts/ikwsopts.cpp:101
+#: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
@@ -675,14 +675,14 @@ msgid ""
 "keywords can be shown at one time."
 msgstr ""
 
-#: webshortcuts/ikwsopts.cpp:202
+#: webshortcuts/ikwsopts.cpp:205
 #, fuzzy, kde-format
 #| msgid "None"
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Ti yek"
 
-#: webshortcuts/ikwsopts.cpp:246
+#: webshortcuts/ikwsopts.cpp:249
 #, kde-format
 msgid "Search F&ilters"
 msgstr ""
