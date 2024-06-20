@@ -1,0 +1,103 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# SPDX-FileCopyrightText: 2024 Stefan Asserhäll <stefan.asserhall@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-02-21 00:37+0000\n"
+"PO-Revision-Date: 2024-06-19 02:40+0200\n"
+"Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
+"Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 23.08.5\n"
+
+#: afcutils.cpp:60
+#, kde-format
+msgid "Unhandled AFC error code '%1'"
+msgstr "Obehandlad AFC-felkod '%1'"
+
+#: afcutils.cpp:73
+#, kde-format
+msgid "Unhandled housearrest error code '%1'"
+msgstr "Obehandlad husarrest-felkod '%1'"
+
+#: afcutils.cpp:89
+#, kde-format
+msgid "Unhandled instproxy error code '%1'"
+msgstr "Obehandlad instproxy-felkod '%1'"
+
+#: afcutils.cpp:105
+#, kde-format
+msgid ""
+"The device is locked. Please enter the passcode on the device and try again."
+msgstr "Enheten är låst. Ange enhetens lösenord och försök igen."
+
+#: afcutils.cpp:112
+#, kde-format
+msgid "You have denied this computer access to the device."
+msgstr "Du har nekat datorn åtkomst till enheten."
+
+#: afcutils.cpp:119
+#, kde-format
+msgid ""
+"You need to allow this computer to access the device. Please accept the "
+"prompt on the device and try again."
+msgstr ""
+"Du måste ge datorn tillåtelse att komma åt enheten. Acceptera frågan på "
+"enheten och försök igen."
+
+#: afcutils.cpp:127
+#, kde-format
+msgid ""
+"Cannot access the device. Make sure it is unlocked and allows this computer "
+"to access it."
+msgstr ""
+"Kan inte komma åt enheten. Säkerställ att den är upplåst och tillåt datorn "
+"att komma åt den."
+
+#: afcutils.cpp:134
+#, kde-format
+msgid "Unhandled lockdownd code '%1'"
+msgstr "Obehandlad lockdownd-felkod '%1'"
+
+#: afcutils.cpp:147
+#, kde-format
+msgid "Unhandled sbservices code '%1'"
+msgstr "Obehandlad sbservices-felkod '%1'"
+
+#: kio_afc.cpp:134
+#, kde-format
+msgid "Apple Devices"
+msgstr "Apple-enheter"
+
+#: kio_afc.cpp:181 kio_afc.cpp:395
+#, kde-format
+msgctxt "Link to folder with files stored inside apps"
+msgid "Apps"
+msgstr "Program"
+
+#: kio_afc.cpp:599
+#, kde-format
+msgid "Cannot read without opening file first"
+msgstr "Kan inte läsa utan att först öppna filen"
+
+#: kio_afc.cpp:619
+#, kde-format
+msgid "Cannot seek without opening file first"
+msgstr "Kan inte söka utan att först öppna filen"
+
+#: kio_afc.cpp:647
+#, kde-format
+msgid "Cannot write without opening file first"
+msgstr "Kan inte skriva utan att först öppna filen"
+
+#: kio_afc.cpp:799
+#, kde-format
+msgid "Cannot rename between devices."
+msgstr "Kan inte byta namn mellan enheter."
