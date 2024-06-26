@@ -1912,8 +1912,19 @@ Result SFTPWorker::mkdir(const QUrl &url, int permissions)
 
     qCDebug(KIO_SFTP_LOG) << "Trying to create directory: " << path;
     SFTPAttributesPtr sb(sftp_lstat(mSftp, path_c.constData()));
+
+    auto defaultDirectoryPermissions = []() {
+    // Note: Remote end, at least in case of openssh-server
+    // applies umask. Probably most implementations does.
+#ifdef S_IRWXU
+        return S_IRWXU | S_IRWXG | S_IRWXO;
+#else
+        return 0777;
+#endif
+    };
+
     if (permissions == -1) {
-        permissions = S_IRWXU | S_IRWXG | S_IRWXO;
+        permissions = defaultDirectoryPermissions();
     }
     if (sb == nullptr) {
         if (sftp_mkdir(mSftp, path_c.constData(), permissions) < 0) {
