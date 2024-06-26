@@ -47,6 +47,11 @@
 #define QT_STAT_LNK 0120000
 #endif // QT_STAT_LNK
 
+// especially windows misses CLOEXEC, so pretend it doesn't do anything
+#ifndef O_CLOEXEC
+#define O_CLOEXEC 0
+#endif
+
 using namespace KIO;
 using namespace std::filesystem;
 
