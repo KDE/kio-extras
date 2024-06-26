@@ -1912,19 +1912,15 @@ Result SFTPWorker::mkdir(const QUrl &url, int permissions)
 
     qCDebug(KIO_SFTP_LOG) << "Trying to create directory: " << path;
     SFTPAttributesPtr sb(sftp_lstat(mSftp, path_c.constData()));
+    if (permissions == -1) {
+        permissions = S_IRWXU | S_IRWXG | S_IRWXO;
+    }
     if (sb == nullptr) {
-        if (sftp_mkdir(mSftp, path_c.constData(), S_IRWXU | S_IRWXG | S_IRWXO) < 0) {
+        if (sftp_mkdir(mSftp, path_c.constData(), permissions) < 0) {
             return reportError(url, sftp_get_error(mSftp));
         }
 
         qCDebug(KIO_SFTP_LOG) << "Successfully created directory: " << url;
-        if (permissions != -1) {
-            const auto result = chmod(url, permissions);
-            if (!result.success()) {
-                return result;
-            }
-        }
-
         return Result::pass();
     }
 
