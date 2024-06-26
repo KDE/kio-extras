@@ -39,6 +39,7 @@
 #include <qplatformdefs.h>
 #endif
 
+#include "../filenamesearch/kio_filenamesearch_p.h"
 #include "kio_sftp_debug.h"
 #include "kio_sftp_trace_debug.h"
 
@@ -1912,8 +1913,13 @@ Result SFTPWorker::mkdir(const QUrl &url, int permissions)
 
     qCDebug(KIO_SFTP_LOG) << "Trying to create directory: " << path;
     SFTPAttributesPtr sb(sftp_lstat(mSftp, path_c.constData()));
+
+    // Note: Remote end, at least in case of openssh-server
+    // applies umask. Probably most implementations do.
+    const int defaultDirectoryPermissions = S_IRWXU | S_IRWXG | S_IRWXO;
+
     if (permissions == -1) {
-        permissions = S_IRWXU | S_IRWXG | S_IRWXO;
+        permissions = defaultDirectoryPermissions;
     }
     if (sb == nullptr) {
         if (sftp_mkdir(mSftp, path_c.constData(), permissions) < 0) {
