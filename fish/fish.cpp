@@ -113,11 +113,6 @@
         myDebug(<< "_______ emitting redirection(" << x << ")");                                                                                               \
         redirection(x);                                                                                                                                        \
     } while (0)
-#define errorPage()                                                                                                                                            \
-    do {                                                                                                                                                       \
-        myDebug(<< "_______ emitting errorPage()");                                                                                                            \
-        errorPage();                                                                                                                                           \
-    } while (0)
 #define sendmimeType(x)                                                                                                                                        \
     do {                                                                                                                                                       \
         myDebug(<< "_______ emitting mimeType(" << x << ")");                                                                                                  \
