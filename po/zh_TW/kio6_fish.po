@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-30 00:37+0000\n"
+"POT-Creation-Date: 2024-07-08 00:38+0000\n"
 "PO-Revision-Date: 2023-01-06 23:01+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -20,39 +20,39 @@ msgstr ""
 "X-Generator: Lokalize 22.12.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: fish.cpp:321
+#: fish.cpp:316
 #, kde-format
 msgid "Connecting..."
 msgstr "連線中..."
 
-#: fish.cpp:647
+#: fish.cpp:642
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "初始化通訊協定中..."
 
-#: fish.cpp:684
+#: fish.cpp:679
 #, kde-format
 msgid "Local Login"
 msgstr "本機登入"
 
-#: fish.cpp:686
+#: fish.cpp:681
 #, kde-format
 msgid "SSH Authentication"
 msgstr "SSH 認證"
 
-#: fish.cpp:723 fish.cpp:738
+#: fish.cpp:718 fish.cpp:733
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr "是"
 
-#: fish.cpp:723 fish.cpp:738
+#: fish.cpp:718 fish.cpp:733
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr "否"
 
-#: fish.cpp:821
+#: fish.cpp:816
 #, kde-format
 msgid "Disconnected."
 msgstr "已離線。"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase/kio_fish.po\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-30 00:37+0000\n"
+"POT-Creation-Date: 2024-07-08 00:38+0000\n"
 "PO-Revision-Date: 2004-12-03 14:52-0500\n"
 "Last-Translator: Kevin Scannell <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -17,39 +17,39 @@ msgstr ""
 "Plural-Forms: nplurals=5; plural=n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n < 11 ? "
 "3 : 4\n"
 
-#: fish.cpp:321
+#: fish.cpp:316
 #, kde-format
 msgid "Connecting..."
 msgstr "Ag ceangal..."
 
-#: fish.cpp:647
+#: fish.cpp:642
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Prótacal á thúsú..."
 
-#: fish.cpp:684
+#: fish.cpp:679
 #, kde-format
 msgid "Local Login"
 msgstr "Logáil Isteach Logánta"
 
-#: fish.cpp:686
+#: fish.cpp:681
 #, kde-format
 msgid "SSH Authentication"
 msgstr "Fíordheimhniú SSH"
 
-#: fish.cpp:723 fish.cpp:738
+#: fish.cpp:718 fish.cpp:733
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:723 fish.cpp:738
+#: fish.cpp:718 fish.cpp:733
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:821
+#: fish.cpp:816
 #, kde-format
 msgid "Disconnected."
 msgstr "Dícheangailte."

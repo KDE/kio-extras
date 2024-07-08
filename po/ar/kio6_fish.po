@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-01-30 00:37+0000\n"
+"POT-Creation-Date: 2024-07-08 00:38+0000\n"
 "PO-Revision-Date: 2022-10-22 19:08+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -19,39 +19,39 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: fish.cpp:321
+#: fish.cpp:316
 #, kde-format
 msgid "Connecting..."
 msgstr "يتصل..."
 
-#: fish.cpp:647
+#: fish.cpp:642
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "يبدأ البروتوكول..."
 
-#: fish.cpp:684
+#: fish.cpp:679
 #, kde-format
 msgid "Local Login"
 msgstr "ولوج محلي"
 
-#: fish.cpp:686
+#: fish.cpp:681
 #, kde-format
 msgid "SSH Authentication"
 msgstr "استيثاق SSH"
 
-#: fish.cpp:723 fish.cpp:738
+#: fish.cpp:718 fish.cpp:733
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr "نعم"
 
-#: fish.cpp:723 fish.cpp:738
+#: fish.cpp:718 fish.cpp:733
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr "لا"
 
-#: fish.cpp:821
+#: fish.cpp:816
 #, kde-format
 msgid "Disconnected."
 msgstr "غير متصل."
