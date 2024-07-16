@@ -15,6 +15,7 @@ class CursorCreator : public KIO::ThumbnailCreator
 public:
     CursorCreator(QObject *parent, const QVariantList &args);
     KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
+    int run(const KIO::ThumbnailRequest &request, const QString &outputLocation);
 };
 
 #endif
