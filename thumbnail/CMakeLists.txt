@@ -209,13 +209,15 @@ endif()
 
 if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
 
-    add_library(cursorthumbnail MODULE cursorcreator.cpp)
+    add_executable(cursorthumbnail)
+    target_sources(cursorthumbnail PRIVATE cursorcreator.cpp)
 
     target_link_libraries(cursorthumbnail
         KF6::KIOCore
         KF6::KIOGui
         KF6::CoreAddons
         ${X11_Xcursor_LIB}
+        Qt6::Widgets
     )
 
     install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
