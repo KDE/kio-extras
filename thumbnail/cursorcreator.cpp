@@ -46,17 +46,6 @@ KIO::ThumbnailResult CursorCreator::create(const KIO::ThumbnailRequest &request)
     return KIO::ThumbnailResult::fail();
 }
 
-int CursorCreator::run(const KIO::ThumbnailRequest &request, const QString &outputLocation)
-{
-    auto c = create(request);
-    if (c.isValid()) {
-        c.image().save(outputLocation);
-        return 0;
-    } else {
-        return 1;
-    }
-}
-
 int main(int argc, char **argv)
 {
     QApplication application{argc, argv};
@@ -78,7 +67,13 @@ int main(int argc, char **argv)
     auto req = KIO::ThumbnailRequest(filepath, QSize(size, size), type.name(), 1.0, 1.0);
     parser.process(application);
     CursorCreator creator(nullptr, QVariantList());
-    return creator.run(req, parser.value(u"output"_qs));
+    auto c = creator.create(req);
+    if (c.isValid()) {
+        c.image().save(parser.value(u"output"_qs));
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 #include "cursorcreator.moc"
