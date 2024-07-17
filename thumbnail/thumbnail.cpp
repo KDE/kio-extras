@@ -321,7 +321,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 
 KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString &mimeType)
 {
-    const QList<KPluginMetaData> plugins = KIO::PreviewJob::availableThumbnailerPlugins();
+    const QList<KPluginMetaData> plugins = KPluginMetaData::findPlugins(QStringLiteral("kf6/thumbcreator"));
     for (const KPluginMetaData &plugin : plugins) {
         if (plugin.supportsMimeType(mimeType)) {
             return plugin;
