@@ -130,7 +130,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     listRootEntry();
 
     const QUrlQuery urlQuery(url);
-    const QString search = urlQuery.queryItemValue(QStringLiteral("search"));
+    const QString search = urlQuery.queryItemValue(QStringLiteral("search"), QUrl::FullyDecoded);
     if (search.isEmpty()) {
         return KIO::WorkerResult::pass();
     }
@@ -141,7 +141,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
         return KIO::WorkerResult::pass();
     }
 
-    const QUrl dirUrl = QUrl(urlQuery.queryItemValue(QStringLiteral("url")));
+    const QUrl dirUrl = QUrl(urlQuery.queryItemValue(QStringLiteral("url"), QUrl::FullyDecoded));
 
     // Don't try to iterate the /proc directory of Linux
     if (dirUrl.isLocalFile() && dirUrl.toLocalFile() == QLatin1String("/proc")) {
