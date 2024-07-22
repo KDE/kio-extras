@@ -27,7 +27,6 @@ KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data)
     : KCModule(parent, data)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout(widget());
-    mainLayout->setContentsMargins(0, 0, 0, 0);
     gb_Timeout = new QGroupBox(i18n("Timeout Values"), widget());
     gb_Timeout->setWhatsThis(
         i18np("Here you can set timeout values. "
@@ -39,9 +38,11 @@ KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data)
               "connection is very slow. The maximum "
               "allowed value is %1 seconds.",
               s_maxTimeoutValue));
+    gb_Timeout->setFlat(true);
     mainLayout->addWidget(gb_Timeout);
 
     QFormLayout *timeoutLayout = new QFormLayout(gb_Timeout);
+    timeoutLayout->setFormAlignment(Qt::AlignHCenter);
     sb_socketRead = new KPluralHandlingSpinBox(widget());
     sb_socketRead->setSuffix(ki18np(" second", " seconds"));
     connect(sb_socketRead, qOverload<int>(&QSpinBox::valueChanged), this, &KIOPreferences::configChanged);
@@ -66,6 +67,7 @@ KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data)
     timeoutLayout->addRow(i18n("&Server response:"), sb_serverResponse);
 
     QGroupBox *gb_Global = new QGroupBox(i18n("Global Options"), widget());
+    gb_Global->setFlat(true);
     mainLayout->addWidget(gb_Global);
     QVBoxLayout *globalLayout = new QVBoxLayout(gb_Global);
 
@@ -80,12 +82,14 @@ KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data)
              "once the transfer is complete.</p>"));
     connect(cb_globalMarkPartial, &QAbstractButton::toggled, this, &KIOPreferences::configChanged);
     globalLayout->addWidget(cb_globalMarkPartial);
+    globalLayout->setAlignment(cb_globalMarkPartial, Qt::AlignHCenter);
 
     auto partialWidget = new QWidget(widget());
     connect(cb_globalMarkPartial, &QAbstractButton::toggled, partialWidget, &QWidget::setEnabled);
     globalLayout->addWidget(partialWidget);
     auto partialLayout = new QFormLayout(partialWidget);
-    partialLayout->setContentsMargins(20, 0, 0, 0); // indent below mark partial
+    partialLayout->setFormAlignment(Qt::AlignHCenter);
+    partialLayout->setContentsMargins(0, 0, 0, 0);
 
     sb_globalMinimumKeepSize = new KPluralHandlingSpinBox(widget());
     sb_globalMinimumKeepSize->setSuffix(ki18np(" byte", " bytes"));
@@ -93,8 +97,10 @@ KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data)
     partialLayout->addRow(i18nc("@label:spinbox", "If cancelled, automatically delete partially uploaded files smaller than:"), sb_globalMinimumKeepSize);
 
     gb_Ftp = new QGroupBox(i18n("FTP Options"), widget());
+    gb_Ftp->setFlat(true);
     mainLayout->addWidget(gb_Ftp);
     QVBoxLayout *ftpLayout = new QVBoxLayout(gb_Ftp);
+    ftpLayout->setAlignment(Qt::AlignHCenter);
 
     cb_ftpEnablePasv = new QCheckBox(i18n("Enable passive &mode (PASV)"), widget());
     cb_ftpEnablePasv->setWhatsThis(
