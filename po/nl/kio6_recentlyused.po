@@ -1,21 +1,20 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
 #
-# SPDX-FileCopyrightText: 2024 Matjaž Jeran <matjaz.jeran@amis.net>
+# SPDX-FileCopyrightText: 2024 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-20 00:39+0000\n"
-"PO-Revision-Date: 2024-07-20 06:08+0200\n"
-"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
-"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
-"Language: sl\n"
+"PO-Revision-Date: 2024-07-20 10:37+0200\n"
+"Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
+"Language-Team: \n"
+"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 24.05.2\n"
 
 #: forgetfileitemaction.cpp:46
@@ -23,20 +22,16 @@ msgstr ""
 msgctxt "@action:inmenu"
 msgid "Forget File"
 msgid_plural "Forget Files"
-msgstr[0] "Pozabi datoteko"
-msgstr[1] "Pozabi datoteki"
-msgstr[2] "Pozabi datoteke"
-msgstr[3] "Pozabi datoteke"
+msgstr[0] "Bestand vergeten"
+msgstr[1] "Bestanden vergeten"
 
 #: forgetfileitemaction.cpp:48
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget Location"
 msgid_plural "Forget Locations"
-msgstr[0] "Pozabi lokacijo"
-msgstr[1] "Pozabi lokaciji"
-msgstr[2] "Pozabi lokacije"
-msgstr[3] "Pozabi lokacije"
+msgstr[0] "Locatie vergeten"
+msgstr[1] "Locaties vergeten"
 
 #: forgetfileitemaction.cpp:52
 #, kde-format
@@ -45,20 +40,21 @@ msgid ""
 "Remove the selected file(s) or location(s) from the recently used list in "
 "Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
 msgstr ""
-"Odstrani izbrane datoteke ali lokacije s seznama nedavno uporabljenih "
-"vDolphinu in v menijih Plasme. S tem ne odstrani ali premakne virov."
+"De geselecteerde bestand(en) of locatie(s) uit de lijst met recent gebruikt "
+"in Dolphin en in menu's van Plasma verwijderen. Dit verwijdert of verplaatst "
+"de hulpbron(nen) niet."
 
 #: recentlyused.cpp:317
 #, kde-format
 msgid "Recent Documents"
-msgstr "Nedavni dokumenti"
+msgstr "Recente documenten"
 
 #: recentlyused.cpp:325
 #, kde-format
 msgid "Recent Files"
-msgstr "Nedavne datoteke"
+msgstr "Recente bestanden"
 
 #: recentlyused.cpp:328
 #, kde-format
 msgid "Recent Locations"
-msgstr "Nedavne lokacije"
+msgstr "Recente locaties"

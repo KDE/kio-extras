@@ -1,0 +1,60 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-07-20 00:39+0000\n"
+"PO-Revision-Date: 2024-07-21 05:24+0200\n"
+"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.2\n"
+
+#: forgetfileitemaction.cpp:46
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget File"
+msgid_plural "Forget Files"
+msgstr[0] "ფაილის დავიწყება"
+msgstr[1] "ფაილების დავიწყება"
+
+#: forgetfileitemaction.cpp:48
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget Location"
+msgid_plural "Forget Locations"
+msgstr[0] "მდებარეობის დავიწყება"
+msgstr[1] "მდებარეობების დავიწყება"
+
+#: forgetfileitemaction.cpp:52
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Remove the selected file(s) or location(s) from the recently used list in "
+"Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
+msgstr ""
+"წაშლის მონიშნულ ფაილ(ებ)-ს ან მდებარეობ(ებ)-ს ახლახან გამოყენებულების სიიდან "
+"Dolphin-ისა და Plasma-ის მენიუებში. ეს თვითონ რესურსებს არ წაშლის."
+
+#: recentlyused.cpp:317
+#, kde-format
+msgid "Recent Documents"
+msgstr "ბოლო დოკუმენტები"
+
+#: recentlyused.cpp:325
+#, kde-format
+msgid "Recent Files"
+msgstr "ბოლო ფაილები"
+
+#: recentlyused.cpp:328
+#, kde-format
+msgid "Recent Locations"
+msgstr "ბოლო მდებარეობები"
