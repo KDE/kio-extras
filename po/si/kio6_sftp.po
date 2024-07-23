@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-03-19 00:38+0000\n"
+"POT-Creation-Date: 2024-07-23 02:33+0000\n"
 "PO-Revision-Date: 2011-09-25 09:20+0530\n"
 "Last-Translator: Danishka Navin <danishka@gmail.com>\n"
 "Language-Team: Sinhala <info@hanthana.org>\n"
@@ -17,127 +17,127 @@ msgstr ""
 "X-Generator: Lokalize 1.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: kio_sftp.cpp:282
+#: kio_sftp.cpp:288
 #, fuzzy, kde-format
 #| msgid "Incorrect username or password"
 msgid "Incorrect or invalid passphrase"
 msgstr "වැරදි මුරපදයක් හෝ පරිශීලක නාමයක්"
 
-#: kio_sftp.cpp:331
+#: kio_sftp.cpp:337
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "පසු ඇමතුම් හඳුනාගත නොහැක"
 
-#: kio_sftp.cpp:344
+#: kio_sftp.cpp:350
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "වාර්ථා වාග්බාහුල්‍යය සැකසිය නොහැක."
 
-#: kio_sftp.cpp:349
+#: kio_sftp.cpp:355
 #, fuzzy, kde-format
 #| msgid "Could not set log verbosity."
 msgid "Could not set log userdata."
 msgstr "වාර්ථා වාග්බාහුල්‍යය සැකසිය නොහැක."
 
-#: kio_sftp.cpp:354
+#: kio_sftp.cpp:360
 #, fuzzy, kde-format
 #| msgid "Could not allocate callbacks"
 msgid "Could not set log callback."
 msgstr "පසු ඇමතුම් හඳුනාගත නොහැක"
 
-#: kio_sftp.cpp:390 kio_sftp.cpp:392 kio_sftp.cpp:903
+#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:909
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP පිවිසුම"
 
-#: kio_sftp.cpp:407
+#: kio_sftp.cpp:413
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr "මෙම ගැටළුවට පිළිතුරු දීමට පරිශීලක නාම ආදාන ක්‍ෂේත්‍රය භාවිත කරන්න."
 
-#: kio_sftp.cpp:420
+#: kio_sftp.cpp:426
 #, fuzzy, kde-format
 #| msgid "Please enter your username and password."
 msgid "Please enter your password."
 msgstr "කරුණාකර ඔබේ පරිශීලක නාමය හා මුරපදය ඇතුළත් කරන්න."
 
-#: kio_sftp.cpp:425 kio_sftp.cpp:906
+#: kio_sftp.cpp:431 kio_sftp.cpp:912
 #, fuzzy, kde-format
 #| msgid "site:"
 msgid "Site:"
 msgstr "අඩවිය:"
 
-#: kio_sftp.cpp:470
+#: kio_sftp.cpp:476
 #, fuzzy, kde-format
 #| msgid "Could not read link: %1"
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "සබැඳිය කියවිය නොහැක: %1"
 
-#: kio_sftp.cpp:590
+#: kio_sftp.cpp:596
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "නව SSH වාරයක් නිර්මාණය කල නොහැක."
 
-#: kio_sftp.cpp:601 kio_sftp.cpp:605
+#: kio_sftp.cpp:607 kio_sftp.cpp:611
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "කල් ඉකුත්වීමක් සැකසිය නොහැක."
 
-#: kio_sftp.cpp:612
+#: kio_sftp.cpp:618
 #, fuzzy, kde-format
 #| msgid "Could not set port."
 msgid "Could not disable Nagle's Algorithm."
 msgstr "පේනුව සැකසිය නොහැක."
 
-#: kio_sftp.cpp:618 kio_sftp.cpp:623
+#: kio_sftp.cpp:624 kio_sftp.cpp:629
 #, kde-format
 msgid "Could not set compression."
 msgstr "හැකිලවීම සැකසිය නොහැක."
 
-#: kio_sftp.cpp:629
+#: kio_sftp.cpp:635
 #, kde-format
 msgid "Could not set host."
 msgstr "ධාරකය සැකසිය නොහැක."
 
-#: kio_sftp.cpp:635
+#: kio_sftp.cpp:641
 #, kde-format
 msgid "Could not set port."
 msgstr "පේනුව සැකසිය නොහැක."
 
-#: kio_sftp.cpp:643
+#: kio_sftp.cpp:649
 #, kde-format
 msgid "Could not set username."
 msgstr "පරිශීලක නාමය සැකසිය නොහැක."
 
-#: kio_sftp.cpp:650
+#: kio_sftp.cpp:656
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "සැකසුම් ගොනුව ලැබිය නොහැක."
 
-#: kio_sftp.cpp:665
+#: kio_sftp.cpp:671
 #, fuzzy, kde-kuit-format
 #| msgid "Opening SFTP connection to host %1:%2"
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "%1 ධාරකය සඳහා SFTP සබඳතාව විවෘත කරමින්:%2"
 
-#: kio_sftp.cpp:705
+#: kio_sftp.cpp:711
 #, fuzzy, kde-format
 #| msgid "Could not set username."
 msgid "Could not get server public key type name"
 msgstr "පරිශීලක නාමය සැකසිය නොහැක."
 
-#: kio_sftp.cpp:717
+#: kio_sftp.cpp:723
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr ""
 
-#: kio_sftp.cpp:726
+#: kio_sftp.cpp:732
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr ""
 
-#: kio_sftp.cpp:785
+#: kio_sftp.cpp:791
 #, fuzzy, kde-format
 #| msgid ""
 #| "The host key for this server was not found, but another type of key "
@@ -160,13 +160,13 @@ msgstr ""
 "කරුණාකර ඔබේ පද්ධති පරිපාලක සබඳ කරගන්න.\n"
 "%1"
 
-#: kio_sftp.cpp:802
+#: kio_sftp.cpp:808
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr ""
 
-#: kio_sftp.cpp:804
+#: kio_sftp.cpp:810
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The host key for the server %1 has changed.\n"
@@ -192,13 +192,13 @@ msgstr ""
 "කරුණාකර ඔබේ පද්ධති පරිපාලක සබඳ කරගන්න.\n"
 "%3"
 
-#: kio_sftp.cpp:814
+#: kio_sftp.cpp:820
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr ""
 
-#: kio_sftp.cpp:816
+#: kio_sftp.cpp:822
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "The authenticity of host %1 cannot be established.\n"
@@ -214,57 +214,57 @@ msgstr ""
 "යතුරු ඇඟිළිසලකුණ: %2\n"
 "ඔබට සබඳවීමට ඇවැසි බව විශ්වාසද?"
 
-#: kio_sftp.cpp:825
+#: kio_sftp.cpp:831
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr ""
 
-#: kio_sftp.cpp:848 kio_sftp.cpp:867 kio_sftp.cpp:882 kio_sftp.cpp:895
-#: kio_sftp.cpp:947 kio_sftp.cpp:957
+#: kio_sftp.cpp:854 kio_sftp.cpp:873 kio_sftp.cpp:888 kio_sftp.cpp:901
+#: kio_sftp.cpp:953 kio_sftp.cpp:963
 #, kde-format
 msgid "Authentication failed."
 msgstr "අවසරදීම අසාර්ථකයි."
 
-#: kio_sftp.cpp:855
+#: kio_sftp.cpp:861
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr ""
 
-#: kio_sftp.cpp:904
+#: kio_sftp.cpp:910
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "කරුණාකර ඔබේ පරිශීලක නාමය හා මුරපදය ඇතුළත් කරන්න."
 
-#: kio_sftp.cpp:915
+#: kio_sftp.cpp:921
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "වැරදි මුරපදයක් හෝ පරිශීලක නාමයක්"
 
-#: kio_sftp.cpp:964
+#: kio_sftp.cpp:970
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
 "server."
 msgstr "SFTP අනුපද්ධතිය ඉල්ලාසිටිය නොහැක. සේවාදායකය මත SFTP සක්‍රීයදැයි තහවුරු කරගන්න."
 
-#: kio_sftp.cpp:969
+#: kio_sftp.cpp:975
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "SFTP වාරය ඇරඹිය නොහැක."
 
-#: kio_sftp.cpp:973
+#: kio_sftp.cpp:979
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "%1 වෙත සාර්ථකව සබඳවිය"
 
-#: kio_sftp.cpp:1026
+#: kio_sftp.cpp:1032
 #, kde-format
 msgid "Invalid sftp context"
 msgstr ""
 
-#: kio_sftp.cpp:1558
+#: kio_sftp.cpp:1564
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

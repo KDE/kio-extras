@@ -1,0 +1,62 @@
+# Translation of kio6_recentlyused to Spanish
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# Automatically generated, 2024.
+#
+# SPDX-FileCopyrightText: 2024 Eloy Cuadra <ecuadra@eloihr.net>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio6_recentlyused\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-07-20 00:39+0000\n"
+"PO-Revision-Date: 2024-07-23 00:31+0200\n"
+"Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
+"Language-Team: Spanish <kde-l10n-es@kde.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.05.2\n"
+
+#: forgetfileitemaction.cpp:46
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget File"
+msgid_plural "Forget Files"
+msgstr[0] "Olvidar archivo"
+msgstr[1] "Olvidar archivos"
+
+#: forgetfileitemaction.cpp:48
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget Location"
+msgid_plural "Forget Locations"
+msgstr[0] "Olvidar lugar"
+msgstr[1] "Olvidar lugares"
+
+#: forgetfileitemaction.cpp:52
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Remove the selected file(s) or location(s) from the recently used list in "
+"Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
+msgstr ""
+"Eliminar los archivos y lugares seleccionados de la lista de usados "
+"recientemente en los menús de Dolphin y Plasma. Esto no elimina ni mueve los "
+"recursos."
+
+#: recentlyused.cpp:317
+#, kde-format
+msgid "Recent Documents"
+msgstr "Documentos recientes"
+
+#: recentlyused.cpp:325
+#, kde-format
+msgid "Recent Files"
+msgstr "Archivos recientes"
+
+#: recentlyused.cpp:328
+#, kde-format
+msgid "Recent Locations"
+msgstr "Lugares recientes"
