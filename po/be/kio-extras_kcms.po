@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-10 00:38+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2024-05-25 23:52\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -72,12 +72,12 @@ msgstr ""
 "Пакуль файл спампоўваецца, яго пашырэнне - \".part\". Калі спампоўванне "
 "завяршаецца, яго назва змяняецца на арыгінальную."
 
-#: netpref/netpref.cpp:31
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Timeout Values"
 msgstr "Значэнні тэрмінаў чакання"
 
-#: netpref/netpref.cpp:33
+#: netpref/netpref.cpp:32
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -102,8 +102,8 @@ msgstr[3] ""
 "калі ваша злучэнне вельмі павольнае. Максімальна дазволенае значэнне - %1 "
 "секунды."
 
-#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
+#: netpref/netpref.cpp:65
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -112,37 +112,37 @@ msgstr[1] " секунды"
 msgstr[2] " секунд"
 msgstr[3] " секунды"
 
-#: netpref/netpref.cpp:48
+#: netpref/netpref.cpp:49
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Чы&танне гнязда:"
 
-#: netpref/netpref.cpp:54
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Злучэнне з &проксі:"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:61
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Злучэнне з &серверам:"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid "&Server response:"
 msgstr "Адказ се&рвера:"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:69
 #, kde-format
 msgid "Global Options"
 msgstr "Глабальныя параметры"
 
-#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
+#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Пазначаць &часткова спампаваныя файлы"
 
-#: netpref/netpref.cpp:74
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -155,7 +155,7 @@ msgstr ""
 "пашырэнне \".part\". Гэтае пашырэнне будзе выдалена пасля завяршэння "
 "перадачы.</p>"
 
-#: netpref/netpref.cpp:91
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
@@ -164,7 +164,7 @@ msgstr[1] " байты"
 msgstr[2] " байтаў"
 msgstr[3] " байты"
 
-#: netpref/netpref.cpp:93
+#: netpref/netpref.cpp:97
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -173,17 +173,17 @@ msgstr ""
 "Калі скасавана, аўтаматычна выдаляць часткова запампаваныя файлы памерам "
 "менш за:"
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "FTP Options"
 msgstr "Параметры FTP"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:105
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Уключыць пасіўны &рэжым (PASV)"
 
-#: netpref/netpref.cpp:101
+#: netpref/netpref.cpp:107
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -192,7 +192,7 @@ msgstr ""
 "Уключае \"пасіўны\" рэжым FTP. Гэта неабходна, каб дазволіць FTP працаваць у "
 "абыход файрвола."
 
-#: netpref/netpref.cpp:109
+#: netpref/netpref.cpp:115
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

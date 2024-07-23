@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-10 00:38+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2021-09-17 20:07+0530\n"
 "Last-Translator: Raghavendra Kamath <raghu@raghukamath.com>\n"
 "Language-Team: kde-hindi\n"
@@ -67,12 +67,12 @@ msgstr ""
 "जब कोई फ़ाइल अपलोड हो रहा होगा तो इसका एक्सटेंशन होगा \".part\". जब यह पूरी तरह "
 "लोड हो जाएगा तो फिर इसके वास्तविक नाम से बदल दिया जाएगा."
 
-#: netpref/netpref.cpp:31
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Timeout Values"
 msgstr "टाइम-आउट मूल्य"
 
-#: netpref/netpref.cpp:33
+#: netpref/netpref.cpp:32
 #, fuzzy, kde-format
 #| msgid ""
 #| "Here you can set timeout values. You might want to tweak them if your "
@@ -90,8 +90,8 @@ msgstr[1] ""
 "यहाँ आप टाइमआउट मान नियत कर सकते हैं. यदि आपका कनेक्शन बहुत धीमा होगा तो आप उन्हें बदल "
 "सकते हैं. अधिकतम स्वीकृत सीमा है %1 सेकंड."
 
-#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
+#: netpref/netpref.cpp:65
 #, fuzzy, kde-format
 #| msgid " sec"
 msgid " second"
@@ -99,38 +99,38 @@ msgid_plural " seconds"
 msgstr[0] "सेक."
 msgstr[1] "सेक."
 
-#: netpref/netpref.cpp:48
+#: netpref/netpref.cpp:49
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "सॉकेट पढ़ाः (&k)"
 
-#: netpref/netpref.cpp:54
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "प्रॉक्सी कनेक्टः (&x)"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:61
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "सर्वर कनेक्टः (&n)"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid "&Server response:"
 msgstr "सर्वर जवाबः (&S)"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:69
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "विकल्प"
 
-#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
+#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "आधे-अधूरे अपलोडेड फ़ाइलों को चिह्नित करें (&p)"
 
-#: netpref/netpref.cpp:74
+#: netpref/netpref.cpp:76
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -146,31 +146,31 @@ msgstr ""
 "होता है तो आधे-अधूरे अपलोडेड फ़ाइलों में \".part\" एक्सटेंशन होता है. यह एक्सटेंशन जब ट्रांसफर "
 "पूरा हो जाता है तब हटा दिया जाता है.</p>"
 
-#: netpref/netpref.cpp:91
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:93
+#: netpref/netpref.cpp:97
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "FTP Options"
 msgstr "एफटीपी विकल्प"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:105
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "पैसिव मोड सक्षम करें (PASV) (&m)"
 
-#: netpref/netpref.cpp:101
+#: netpref/netpref.cpp:107
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -178,7 +178,7 @@ msgid ""
 msgstr ""
 "एफ़टीपी का  \"पैसिव\" मोड सक्षम करे. यह एफटीपी को फायरवाल के पीछे से कार्य करने देता है."
 
-#: netpref/netpref.cpp:109
+#: netpref/netpref.cpp:115
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-10 00:38+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2005-10-13 21:27+0200\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -64,12 +64,12 @@ msgid ""
 "uploaded it is renamed to its real name."
 msgstr ""
 
-#: netpref/netpref.cpp:31
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Timeout Values"
 msgstr "Таймаут қийматлари"
 
-#: netpref/netpref.cpp:33
+#: netpref/netpref.cpp:32
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -79,46 +79,46 @@ msgid_plural ""
 "connection is very slow. The maximum allowed value is %1 seconds."
 msgstr[0] ""
 
-#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
+#: netpref/netpref.cpp:65
 #, fuzzy, kde-format
 #| msgid " sec"
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " сония"
 
-#: netpref/netpref.cpp:48
+#: netpref/netpref.cpp:49
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Ўқ&иш сокети:"
 
-#: netpref/netpref.cpp:54
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Уланиш &проксиси:"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:61
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Уланиш &сервери:"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid "&Server response:"
 msgstr ""
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:69
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "Мосламалар"
 
-#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
+#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Қисман ёзиб олинган файлларни &белгилаш"
 
-#: netpref/netpref.cpp:74
+#: netpref/netpref.cpp:76
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -134,37 +134,37 @@ msgstr ""
 "ёқилган бўлса, қисман ёзиб олинган файлларга \".part\" кенгайтмаси қўшилади. "
 "Файл тўлиқ ёзиб олингач бу кенгайтма олиб ташланади.</p>"
 
-#: netpref/netpref.cpp:91
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 
-#: netpref/netpref.cpp:93
+#: netpref/netpref.cpp:97
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP параметрлари"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:105
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Пассив &усулини (PASV) ёқиш"
 
-#: netpref/netpref.cpp:101
+#: netpref/netpref.cpp:107
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr ""
 
-#: netpref/netpref.cpp:109
+#: netpref/netpref.cpp:115
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

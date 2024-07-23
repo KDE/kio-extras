@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-10 00:38+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2019-12-03 17:51+0200\n"
 "Last-Translator: Maris Nartiss <maris.kde@gmail.com>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -72,12 +72,12 @@ msgstr ""
 "Datnes ielādes procesā tam tiek pievienots \".part\" paplašinājums. Kad "
 "datne ir pilnībā ielādēta, tā tiek pārdēvēta uz īsto nosaukumu."
 
-#: netpref/netpref.cpp:31
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Timeout Values"
 msgstr "Noildzes vērtības"
 
-#: netpref/netpref.cpp:33
+#: netpref/netpref.cpp:32
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -95,8 +95,8 @@ msgstr[2] ""
 "Šeit jūs varat iestatīt noildzes vērtības. Jūs varat tās palielināt, ja jūsu "
 "tīkla savienojums ir lēns. Maksimālā atļautā vērtība ir %1 sekundes."
 
-#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
+#: netpref/netpref.cpp:65
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
@@ -104,38 +104,38 @@ msgstr[0] " sekunde"
 msgstr[1] " sekundes"
 msgstr[2] " sekundes"
 
-#: netpref/netpref.cpp:48
+#: netpref/netpref.cpp:49
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Ligz&das lasīšana:"
 
-#: netpref/netpref.cpp:54
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Starpniekservera &savienojums:"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:61
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Servera s&avienojums:"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid "&Server response:"
 msgstr "Servera a&tbilde:"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:69
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "Opcijas"
 
-#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
+#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Atzīmēt &daļēji augšuplādētos failus"
 
-#: netpref/netpref.cpp:74
+#: netpref/netpref.cpp:76
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -151,7 +151,7 @@ msgstr ""
 "daļēji augšuplādētajiem failiem būs \".part\" paplašinājums, kas tiks "
 "noņemts tiklīdz kā faila augšuplāde būs pabeigta.</p>"
 
-#: netpref/netpref.cpp:91
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
@@ -159,24 +159,24 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: netpref/netpref.cpp:93
+#: netpref/netpref.cpp:97
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP opcijas"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:105
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Ieslēgt pasīvo režī&mu (PASV)"
 
-#: netpref/netpref.cpp:101
+#: netpref/netpref.cpp:107
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -185,7 +185,7 @@ msgstr ""
 "Ieslēdz FTP \"pasīvo\" režīmu. Šī opcija atļauj FTP darboties arī tad, ja "
 "jūs atrodaties aiz ugunsmūra."
 
-#: netpref/netpref.cpp:109
+#: netpref/netpref.cpp:115
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

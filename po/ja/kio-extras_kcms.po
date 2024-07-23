@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-10 00:38+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2024-03-06 18:29+0900\n"
 "Last-Translator: Ryuichi Yamada <ryuichi_ya220@outlook.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -77,12 +77,12 @@ msgstr ""
 "ファイルをアップロードしている間の拡張子は “*.part” です。完全にアップロード"
 "されると、本来の名前になります。"
 
-#: netpref/netpref.cpp:31
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Timeout Values"
 msgstr "タイムアウト時間"
 
-#: netpref/netpref.cpp:33
+#: netpref/netpref.cpp:32
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -94,44 +94,44 @@ msgstr[0] ""
 "ここでタイムアウトの時間を指定できます。接続が非常に遅いのであれば、これらの"
 "値を調整するのがいいでしょう。最大値は %1 秒です。"
 
-#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
+#: netpref/netpref.cpp:65
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " 秒"
 
-#: netpref/netpref.cpp:48
+#: netpref/netpref.cpp:49
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "ソケット読み込み(&K):"
 
-#: netpref/netpref.cpp:54
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "プロキシ接続(&X):"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:61
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "サーバ接続(&N):"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid "&Server response:"
 msgstr "サーバ応答(&S):"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:69
 #, kde-format
 msgid "Global Options"
 msgstr "グローバルオプション"
 
-#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
+#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "部分的にアップロードされたファイルをマーク(&P)"
 
-#: netpref/netpref.cpp:74
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -144,13 +144,13 @@ msgstr ""
 "イルには “.part” という拡張子が付きます。この拡張子は転送が完了するとなくなり"
 "ます。</p>"
 
-#: netpref/netpref.cpp:91
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " バイト"
 
-#: netpref/netpref.cpp:93
+#: netpref/netpref.cpp:97
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -159,17 +159,17 @@ msgstr ""
 "キャンセルされた場合、これより小さい部分的にアップロードされたファイルを自動"
 "的に削除:"
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP オプション"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:105
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "パッシブモード (PASV) を有効にする(&M)"
 
-#: netpref/netpref.cpp:101
+#: netpref/netpref.cpp:107
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -178,7 +178,7 @@ msgstr ""
 "FTP の「パッシブ」モードを有効にします。これはファイアウォール越しに FTP を使"
 "用する場合に必要です。"
 
-#: netpref/netpref.cpp:109
+#: netpref/netpref.cpp:115
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

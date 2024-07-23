@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-10 00:38+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2012-07-09 10:34+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -66,12 +66,12 @@ msgstr ""
 "ខណៈ​ពេល​ឯកសារ​មួយ​កំពុង​ត្រូវ​បាន​ផ្ទុកឡើង កន្ទុយ​របស់​វា​គឺ \".part\" ។ នៅ​ពេល​ផ្ទុក​ឡើង​រួច វា​ត្រូវ​បាន​ប្ដូរ​"
 "ឈ្មោះ​ទៅ​ជា​ឈ្មោះ​ពិត​របស់​វា​វិញ ។"
 
-#: netpref/netpref.cpp:31
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Timeout Values"
 msgstr "តម្លៃ​សម្រាក"
 
-#: netpref/netpref.cpp:33
+#: netpref/netpref.cpp:32
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -83,45 +83,45 @@ msgstr[0] ""
 "នៅ​ទីនេះ អ្នក​អាច​កំណត់​តម្លៃ​សម្រាក ។ អ្នក​ប្រហែល​ជា​ចង់​បង្កើន​ល្បឿន​ពួក​វា បើ​ការ​តភ្ជាប់​របស់​អ្នក​យឺត​"
 "ពេក ។ តម្លៃ​អតិបរមា​ដែល​អនុញ្ញាត​គឺ %1 វិនាទី ។"
 
-#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
+#: netpref/netpref.cpp:65
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " វិ."
 
-#: netpref/netpref.cpp:48
+#: netpref/netpref.cpp:49
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "​អាន​រន្ធ ៖"
 
-#: netpref/netpref.cpp:54
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "ការ​តភ្ជាប់​របស់​ប្រូកស៊ី ៖"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:61
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "ការ​តភ្ជាប់​របស់​ម៉ាស៊ីន​បម្រើ ៖"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid "&Server response:"
 msgstr "ការ​ឆ្លើយ​តប​របស់​ម៉ាស៊ីន​បម្រើ ៖"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:69
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "ជម្រើស"
 
-#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
+#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "សម្គាល់​ឯកសារ​ផ្ទុកឡើង​មិន​ពេញ​លេញ"
 
-#: netpref/netpref.cpp:74
+#: netpref/netpref.cpp:76
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -137,30 +137,30 @@ msgstr ""
 "ផ្ទុក​ឡើង​តាម​ផ្នែក ហើយ​​មាន​កន្ទុយ \".part\" ។ កន្ទុយ​នេះ​នឹង​ត្រូវ​បាន​យក​ចេញ នៅ​ពេល​ការ​ផ្ទេរ​នេះ​បាន​"
 "បញ្ចប់​ទាំងស្រុង ។</p>"
 
-#: netpref/netpref.cpp:91
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 
-#: netpref/netpref.cpp:93
+#: netpref/netpref.cpp:97
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "FTP Options"
 msgstr "ជម្រើស FTP"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:105
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "អនុញ្ញាត​របៀប​អកម្ម (PASV)"
 
-#: netpref/netpref.cpp:101
+#: netpref/netpref.cpp:107
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -169,7 +169,7 @@ msgstr ""
 "អនុញ្ញាត​របៀប \"អកម្ម\" របស់ FTP ។ អំពើ​នេះ​ត្រូវ​បាន​ទាមទារ ដើម្បី​អនុញ្ញាត​ឲ្យ FTP ដំណើរការ​ពី​"
 "ក្រោយ​ជញ្ជាំង​ភ្លើង ។"
 
-#: netpref/netpref.cpp:109
+#: netpref/netpref.cpp:115
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

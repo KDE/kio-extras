@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-10 00:38+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2024-05-18 14:19+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -70,12 +70,12 @@ msgstr ""
 "Amíg a feltöltés tart, a fájl \"*.part\" kiterjesztést kap. A feltöltés "
 "befejeződése után kapja meg a fájl a végleges nevét."
 
-#: netpref/netpref.cpp:31
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Timeout Values"
 msgstr "Várakozási idők"
 
-#: netpref/netpref.cpp:33
+#: netpref/netpref.cpp:32
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -92,45 +92,45 @@ msgstr[1] ""
 "esetén szükség lehet az alapértelmezések megváltoztatására. A maximális "
 "érték: %1 másodperc."
 
-#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
+#: netpref/netpref.cpp:65
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " másodperc"
 msgstr[1] " másodperc"
 
-#: netpref/netpref.cpp:48
+#: netpref/netpref.cpp:49
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "Aljazat (socket) &olvasásánál:"
 
-#: netpref/netpref.cpp:54
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "Pro&xyhoz való csatlakozásnál:"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:61
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "Kiszolgálóhoz való &csatlakozásnál:"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid "&Server response:"
 msgstr "Kiszol&gáló válaszára várakozva:"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:69
 #, kde-format
 msgid "Global Options"
 msgstr "Globális beállítások"
 
-#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
+#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "A részben &feltöltött fájlok megjelölése"
 
-#: netpref/netpref.cpp:74
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -143,14 +143,14 @@ msgstr ""
 "part” kiterjesztést kapnak. A kiterjesztés csak a feltöltés befejeződése "
 "után fog eltűnni.</p>"
 
-#: netpref/netpref.cpp:91
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " bájt"
 msgstr[1] " bájt"
 
-#: netpref/netpref.cpp:93
+#: netpref/netpref.cpp:97
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -159,17 +159,17 @@ msgstr ""
 "Ha megszakítják a feltöltést, az ennél kisebb részben feltöltött fájlok "
 "automatikus törlése:"
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP-beállítások"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:105
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "A passzív üzemmód (PASV) enge&délyezése"
 
-#: netpref/netpref.cpp:101
+#: netpref/netpref.cpp:107
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -178,7 +178,7 @@ msgstr ""
 "Engedélyezi az FTP passzív üzemmódját. Néhány tűzfal mögül csak ezzel az "
 "opcióval lehet FTP-vel kijutni az internetre."
 
-#: netpref/netpref.cpp:109
+#: netpref/netpref.cpp:115
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

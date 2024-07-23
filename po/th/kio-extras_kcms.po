@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-10 00:38+0000\n"
+"POT-Creation-Date: 2024-07-23 00:39+0000\n"
 "PO-Revision-Date: 2010-12-17 20:57+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -69,12 +69,12 @@ msgstr ""
 "ขณะที่มีการส่งแฟ้มขึ้นไปยังเซิร์ฟเวอร์ ส่วนขยายของแฟ้มจะเป็น \".part\" "
 "เมื่อการส่งแฟ้มขึ้นเซิร์ฟเวอร์สำเร็จ ก็จะมีการแก้ชื่อเป็นชื่อจริงของแฟ้ม"
 
-#: netpref/netpref.cpp:31
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Timeout Values"
 msgstr "ช่วงเวลารอ"
 
-#: netpref/netpref.cpp:33
+#: netpref/netpref.cpp:32
 #, kde-format
 msgid ""
 "Here you can set timeout values. You might want to tweak them if your "
@@ -86,45 +86,45 @@ msgstr[0] ""
 "คุณสามารถกำหนดช่วงเวลารอได้ที่นี่ ซึ่งคุณอาจต้องปรับแต่งมันหากความเร็วของการเชื่อมต่อค่อนข้างช้า "
 "โดยค่าสูงสุดที่อนุญาตคือ %1 วินาที"
 
-#: netpref/netpref.cpp:46 netpref/netpref.cpp:52 netpref/netpref.cpp:58
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
+#: netpref/netpref.cpp:65
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
 msgstr[0] " วินาที"
 
-#: netpref/netpref.cpp:48
+#: netpref/netpref.cpp:49
 #, kde-format
 msgid "Soc&ket read:"
 msgstr "อ่านจากซ็อกเ&กต:"
 
-#: netpref/netpref.cpp:54
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid "Pro&xy connect:"
 msgstr "เชื่อมต่อ&พร็อกซี:"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:61
 #, kde-format
 msgid "Server co&nnect:"
 msgstr "เชื่&อมต่อเซิร์ฟเวอร์:"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid "&Server response:"
 msgstr "เซิร์ฟเวอร์&ตอบกลับ:"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:69
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "ตัวเลือก"
 
-#: netpref/netpref.cpp:72 netpref/netpref.cpp:107
+#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "เติมส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน"
 
-#: netpref/netpref.cpp:74
+#: netpref/netpref.cpp:76
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -139,30 +139,30 @@ msgstr ""
 "<p>เติมส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน</p><p>หากเปิดใช้ตัวเลือกนี้ แฟ้มที่อัปโหลดไปได้บางส่วน "
 "จะมีส่วนขยาย \".part\" ซึ่งจะหายไปเมื่อการอัปโหลดเสร็จสมบูรณ์แล้ว</p>"
 
-#: netpref/netpref.cpp:91
+#: netpref/netpref.cpp:95
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 
-#: netpref/netpref.cpp:93
+#: netpref/netpref.cpp:97
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:99
 #, kde-format
 msgid "FTP Options"
 msgstr "ตัวเลือกของ FTP"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:105
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "เปิดใช้งานโหมดพาสซีพ (PASV)"
 
-#: netpref/netpref.cpp:101
+#: netpref/netpref.cpp:107
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -170,7 +170,7 @@ msgid ""
 msgstr ""
 "เปิดใช้งานโหมด \"passive\" สำหรับ FTP ซึ่งจะอนุญาตให้ FTP ทำงานได้จากหลังไฟร์วอลล์"
 
-#: netpref/netpref.cpp:109
+#: netpref/netpref.cpp:115
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
