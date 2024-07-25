@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf6-trunk/messages/kio-extras/kfileaudiopreview6.pot\n"
-"X-Crowdin-File-ID: 43869\n"
+"X-Crowdin-File: /kf6-stable/messages/kio-extras/kfileaudiopreview6.pot\n"
+"X-Crowdin-File-ID: 52962\n"
 
 #: kfileaudiopreview.cpp:68
 #, kde-format
