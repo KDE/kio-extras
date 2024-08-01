@@ -99,7 +99,7 @@
 <listitem>
 
 <para
->Un ús molt comú de les galetes no és per a seguir els vostres moviments al llarg de diverses visites a un lloc web, sinó simplement per a seguir-vos durant una sola visita. Les galetes de sessió es desen mentre esteu mirant les pàgines d'un lloc i després seran eliminades quan l'abandoneu.</para>
+>Un ús molt comú de les galetes no és per a seguir els vostres moviments al llarg de diverses visites a un lloc web, sinó simplement per a seguir-vos durant una sola visita. Les galetes de sessió es desen mentre esteu mirant les pàgines d'un lloc i després se suprimiran quan l'abandoneu.</para>
 
 <para
 >Els llocs web poden utilitzar aquesta informació per a diverses coses. El més habitual és per a evitar que hàgiu d'accedir a certes pàgines repetidament. Per exemple, en un servidor de correu web, sense cap mena d'<acronym
@@ -182,9 +182,9 @@
 > per a escollir una política diferent per a aquest domini.</para>
 
 <para
->Per a eliminar una política específica d'un domini, escolliu el domini de la llista i premeu el botó <guibutton
+>Per a suprimir una política específica d'un domini, escolliu el domini de la llista i premeu el botó <guibutton
 >Suprimeix</guibutton
-> i s'aplicarà la política predeterminada a tots els dominis eliminats de la llista.</para>
+> i s'aplicarà la política predeterminada a tots els dominis suprimits de la llista.</para>
 
 </sect2>
 
@@ -195,7 +195,7 @@
 <para
 >A la pestanya <guilabel
 >Gestió</guilabel
-> podreu navegar i anar eliminant selectivament les galetes que varen ser establertes en el passat.</para>
+> podreu navegar i anar suprimint selectivament les galetes que varen ser establertes en el passat.</para>
 
 <para
 >A la part superior d'aquest diàleg podeu veure una llista de dominis, mostrats en forma d'arbre. Feu clic a la petita icona <guiicon
@@ -207,9 +207,9 @@
 <para
 >Fent clic en el botó <guibutton
 >Suprimeix</guibutton
-> podreu eliminar la galeta seleccionada. Feu clic a <guibutton
+> podreu suprimir la galeta seleccionada. Feu clic a <guibutton
 >Suprimeix-ho tot</guibutton
-> per a eliminar totes les galetes emmagatzemades.</para>
+> per a suprimir totes les galetes emmagatzemades.</para>
 
 <para
 >Si hi ha seleccionat un domini, podeu utilitzar <guibutton
