@@ -1,0 +1,61 @@
+# Translation of kio6_recentlyused.po to Catalan (Valencian)
+# Copyright (C) 2024 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# SPDX-FileCopyrightText: 2024 Josep M. Ferrer <txemaq@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-07-20 00:39+0000\n"
+"PO-Revision-Date: 2024-07-20 10:04+0200\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca@valencia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.05.2\n"
+
+#: forgetfileitemaction.cpp:46
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget File"
+msgid_plural "Forget Files"
+msgstr[0] "Oblida el fitxer"
+msgstr[1] "Oblida els fitxers"
+
+#: forgetfileitemaction.cpp:48
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget Location"
+msgid_plural "Forget Locations"
+msgstr[0] "Oblida la ubicació"
+msgstr[1] "Oblida les ubicacions"
+
+#: forgetfileitemaction.cpp:52
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Remove the selected file(s) or location(s) from the recently used list in "
+"Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
+msgstr ""
+"Elimina els fitxers o ubicació/s seleccionats de la llista d'usos recents a "
+"Dolphin i als menús de Plasma. Açò no elimina ni mou els recursos."
+
+#: recentlyused.cpp:317
+#, kde-format
+msgid "Recent Documents"
+msgstr "Documents recents"
+
+#: recentlyused.cpp:325
+#, kde-format
+msgid "Recent Files"
+msgstr "Fitxers recents"
+
+#: recentlyused.cpp:328
+#, kde-format
+msgid "Recent Locations"
+msgstr "Ubicacions recents"
