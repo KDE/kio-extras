@@ -328,7 +328,7 @@ KPluginMetaData ThumbnailProtocol::pluginForMimeType(const QString &mimeType)
         }
     }
     for (const auto &plugin : plugins) {
-        const QStringList mimeTypes = plugin.mimeTypes() + plugin.value(QStringLiteral("ServiceTypes"), QStringList());
+        const QStringList mimeTypes = plugin.mimeTypes();
         for (const QString &mime : mimeTypes) {
             if (mime.endsWith('*')) {
                 const auto mimeGroup = QStringView(mime).left(mime.length() - 1);
