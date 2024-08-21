@@ -162,7 +162,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     m_enabledPlugins = metaData("enabledPlugins").split(QLatin1Char(','), Qt::SkipEmptyParts);
     if (m_enabledPlugins.isEmpty()) {
         const KConfigGroup globalConfig(KSharedConfig::openConfig(), QStringLiteral("PreviewSettings"));
-        m_enabledPlugins = globalConfig.readEntry("Mimetypes", KIO::PreviewJob::defaultPlugins());
+        m_enabledPlugins = globalConfig.readEntry("Plugins", KIO::PreviewJob::defaultPlugins());
     }
 
     Q_ASSERT(url.scheme() == "thumbnail");
