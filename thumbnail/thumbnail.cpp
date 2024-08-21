@@ -162,7 +162,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     m_enabledPlugins = metaData("enabledPlugins").split(QLatin1Char(','), Qt::SkipEmptyParts);
     if (m_enabledPlugins.isEmpty()) {
         const KConfigGroup globalConfig(KSharedConfig::openConfig(), QStringLiteral("PreviewSettings"));
-        m_enabledPlugins = globalConfig.readEntry("Plugins", KIO::PreviewJob::defaultPlugins());
+        m_enabledPlugins = globalConfig.readEntry("Mimetypes", KIO::PreviewJob::defaultPlugins());
     }
 
     Q_ASSERT(url.scheme() == "thumbnail");
@@ -678,10 +678,15 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
     auto getSubCreator = [&filePath, this]() -> ThumbCreatorWithMetadata * {
         const QMimeDatabase db;
         const KPluginMetaData subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
-        if (!subPlugin.isValid() || !m_enabledPlugins.contains(subPlugin.pluginId())) {
+        if (!subPlugin.isValid()) {
             return nullptr;
         }
-        return getThumbCreator(subPlugin.fileName());
+        for (auto const &mime : m_enabledPlugins) {
+            if (subPlugin.supportsMimeType(mime + "/*")) {
+                return getThumbCreator(subPlugin.fileName());
+            }
+        }
+        return nullptr;
     };
 
     const auto maxDimension = qMin(1024.0, 512.0 * m_devicePixelRatio);
