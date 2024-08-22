@@ -19,7 +19,7 @@
 <para
 ><acronym
 >SFTP</acronym
-> signifie Secure file transfer et est un protocole de transfert de fichiers sécurisé. <command
+> signifie « Secure File Transfer Protocol », c'est-à-dire, un protocole de transfert sécurisé de fichiers. <command
 >sftp</command
 > est un programme interactif de transfert de fichiers similaire à ftp, mais il réalise toutes les opérations par un transport chiffré par <command
 >ssh</command
