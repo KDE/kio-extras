@@ -51,7 +51,7 @@ int main(int argc, char **argv)
     application.setApplicationName(u"cursorcreator"_qs);
 
     QCommandLineParser parser;
-    parser.setApplicationDescription(u"Thumbnailer binary file"_qs);
+    parser.setApplicationDescription(u"Generates thumbnails for cursor files (image/x-xcursor)"_qs);
     parser.addHelpOption();
     parser.addOptions({
         {{u"i"_qs, u"input"_qs}, u"The input file"_qs, u"input"_qs},
@@ -65,7 +65,7 @@ int main(int argc, char **argv)
     int size = parser.value(u"size"_qs).toInt();
     parser.process(application);
     if (!input.isValid() || !output.isValid() || size <= 0) {
-        qWarning() << "Failed to parse parameters!";
+        qWarning() << "Expects an input and an output file";
         return 1;
     }
 

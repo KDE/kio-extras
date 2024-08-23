@@ -1,0 +1,4 @@
+[Thumbnailer Entry]
+TryExec=@CMAKE_INSTALL_PREFIX@/bin/kde-cursor-thumbnailer
+Exec=@CMAKE_INSTALL_PREFIX@/bin/kde-cursor-thumbnailer -s %s %i %o
+MimeType=image/x-xcursor;

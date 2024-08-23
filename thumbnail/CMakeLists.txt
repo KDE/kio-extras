@@ -220,7 +220,11 @@ if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
         Qt6::Widgets
     )
 
-    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
+    configure_file(kde-cursor-thumbnailer.thumbnailer.in ${CMAKE_CURRENT_BINARY_DIR}/kde-cursor-thumbnailer.thumbnailer @ONLY)
+
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kde-cursor-thumbnailer.thumbnailer DESTINATION ${KDE_INSTALL_DATADIR}/thumbnailers/)
+
+    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_BINDIR})
 
 endif()
 
