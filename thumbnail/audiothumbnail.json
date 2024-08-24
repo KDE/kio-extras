@@ -2,6 +2,20 @@
     "CacheThumbnail": true,
     "KPlugin": {
         "MimeTypes": [
+            "audio/mpeg",
+            "audio/x-flac",
+            "audio/mp4",
+            "audio/x-m4a",
+            "audio/vnd.audible.aax",
+            "audio/x-ape",
+            "audio/x-wavpack",
+            "audio/x-vw",
+            "audio/x-musepack",
+            "audio/ogg",
+            "audio/vorbis",
+            "audio/x-aiff",
+            "audio/x-aifc",
+            "audio/x-wav",
             "audio/*"
         ],
         "Name": "Audio files",
