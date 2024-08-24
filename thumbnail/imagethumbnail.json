@@ -2,9 +2,17 @@
     "CacheThumbnail": true,
     "KPlugin": {
         "MimeTypes": [
-            "image/*",
+            "image/bmp",
+            "image/gif",
+            "image/png",
+            "image/x-portable-bitmap",
+            "image/x-portable-graymap",
+            "image/x-portable-pixmap",
+            "image/x-xbitmap",
+            "image/x-xpixmap",
             "video/x-mng",
-            "image/x-adobe-dng"
+            "image/x-adobe-dng",
+            "image/*"
         ],
         "Name": "Images (GIF, PNG, BMP, ...)",
         "Name[ar]": "الصّور (GIF،‏ PNG،‏ BMP، ...)",
