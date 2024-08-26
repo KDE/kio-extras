@@ -19,8 +19,6 @@
 #include <X11/Xcursor/Xcursor.h>
 #include <X11/Xlib.h>
 
-K_PLUGIN_CLASS_WITH_JSON(CursorCreator, "cursorthumbnail.json")
-
 CursorCreator::CursorCreator(QObject *parent, const QVariantList &args)
     : KIO::ThumbnailCreator(parent, args)
 {
