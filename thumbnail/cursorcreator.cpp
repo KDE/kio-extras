@@ -14,8 +14,8 @@
 
 #include <KPluginFactory>
 
-#include <QApplication>
 #include <QCommandLineParser>
+#include <QGuiApplication>
 #include <X11/Xcursor/Xcursor.h>
 #include <X11/Xlib.h>
 
@@ -45,7 +45,8 @@ KIO::ThumbnailResult CursorCreator::create(const KIO::ThumbnailRequest &request)
 
 int main(int argc, char **argv)
 {
-    QApplication application{argc, argv};
+    QGuiApplication::setDesktopSettingsAware(false);
+    QGuiApplication application{argc, argv};
     application.setApplicationName(u"cursorcreator"_qs);
 
     QCommandLineParser parser;
@@ -73,7 +74,7 @@ int main(int argc, char **argv)
     CursorCreator creator(nullptr, QVariantList());
     auto c = creator.create(req);
     if (c.isValid()) {
-        c.image().save(output.toLocalFile());
+        c.image().save(output.toLocalFile(), "png");
         return 0;
     } else {
         qWarning() << "Failed to generate a thumbnail!";
