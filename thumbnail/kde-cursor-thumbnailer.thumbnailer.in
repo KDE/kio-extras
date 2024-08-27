@@ -1,4 +1,4 @@
 [Thumbnailer Entry]
-TryExec=@CMAKE_INSTALL_PREFIX@/bin/kde-cursor-thumbnailer
-Exec=@CMAKE_INSTALL_PREFIX@/bin/kde-cursor-thumbnailer -s %s -i %i -o %o
+TryExec=@CMAKE_INSTALL_PREFIX@/@KDE_INSTALL_LIBEXECDIR@/kde-cursor-thumbnailer
+Exec=@CMAKE_INSTALL_PREFIX@/@KDE_INSTALL_LIBEXECDIR@/kde-cursor-thumbnailer -s %s -i %i -o %o
 MimeType=image/x-xcursor;

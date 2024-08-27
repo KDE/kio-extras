@@ -223,7 +223,7 @@ if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
 
     ecm_install_configured_files(INPUT kde-cursor-thumbnailer.thumbnailer.in DESTINATION ${KDE_INSTALL_DATADIR}/thumbnailers/ @ONLY)
 
-    install(TARGETS kde-cursor-thumbnailer DESTINATION ${KDE_INSTALL_BINDIR})
+    install(TARGETS kde-cursor-thumbnailer DESTINATION ${KDE_INSTALL_LIBEXECDIR})
 
 endif()
 
