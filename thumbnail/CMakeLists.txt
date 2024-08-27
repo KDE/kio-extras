@@ -60,6 +60,8 @@ ecm_setup_qtplugin_macro_names(
         PACKAGE_SETUP_AUTOMOC_VARIABLES
 )
 
+include(ECMConfiguredInstall)
+
 configure_file(config-thumbnail.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-thumbnail.h)
 
 ########### next target ###############
@@ -219,9 +221,7 @@ if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
         ${X11_Xcursor_LIB}
     )
 
-    configure_file(kde-cursor-thumbnailer.thumbnailer.in ${CMAKE_CURRENT_BINARY_DIR}/kde-cursor-thumbnailer.thumbnailer @ONLY)
-
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kde-cursor-thumbnailer.thumbnailer DESTINATION ${KDE_INSTALL_DATADIR}/thumbnailers/)
+    ecm_install_configured_files(INPUT kde-cursor-thumbnailer.thumbnailer.in DESTINATION ${KDE_INSTALL_DATADIR}/thumbnailers/ @ONLY)
 
     install(TARGETS kde-cursor-thumbnailer DESTINATION ${KDE_INSTALL_BINDIR})
 
