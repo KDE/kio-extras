@@ -209,22 +209,21 @@ endif()
 
 if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
 
-    add_executable(cursorthumbnail)
-    target_sources(cursorthumbnail PRIVATE cursorcreator.cpp)
+    add_executable(kde-cursor-thumbnailer)
+    target_sources(kde-cursor-thumbnailer PRIVATE cursorcreator.cpp)
 
-    target_link_libraries(cursorthumbnail
+    target_link_libraries(kde-cursor-thumbnailer
         KF6::KIOCore
         KF6::KIOGui
         KF6::CoreAddons
         ${X11_Xcursor_LIB}
-        Qt6::Widgets
     )
 
     configure_file(kde-cursor-thumbnailer.thumbnailer.in ${CMAKE_CURRENT_BINARY_DIR}/kde-cursor-thumbnailer.thumbnailer @ONLY)
 
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kde-cursor-thumbnailer.thumbnailer DESTINATION ${KDE_INSTALL_DATADIR}/thumbnailers/)
 
-    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_BINDIR})
+    install(TARGETS kde-cursor-thumbnailer DESTINATION ${KDE_INSTALL_BINDIR})
 
 endif()
 
