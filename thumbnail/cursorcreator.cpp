@@ -8,8 +8,6 @@
 
 #include <QFile>
 #include <QImage>
-#include <QMimeData>
-#include <QMimeDatabase>
 #include <thumbnail.h>
 
 #include <KPluginFactory>
@@ -68,9 +66,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    QMimeDatabase db;
-    QMimeType type = db.mimeTypeForFile(input.toLocalFile());
-    auto req = KIO::ThumbnailRequest(input, QSize(size, size), type.name(), 1.0, 1.0);
+    auto req = KIO::ThumbnailRequest(input, QSize(size, size), "", 1.0, 1.0);
     CursorCreator creator(nullptr, QVariantList());
     auto c = creator.create(req);
     if (c.isValid()) {
