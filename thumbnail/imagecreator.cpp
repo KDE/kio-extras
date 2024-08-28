@@ -7,12 +7,12 @@
 
 #include "imagecreator.h"
 
+#include <QCommandLineParser>
+#include <QGuiApplication>
 #include <QImageReader>
 
 #include <KMemoryInfo>
 #include <KPluginFactory>
-
-K_PLUGIN_CLASS_WITH_JSON(ImageCreator, "imagethumbnail.json")
 
 ImageCreator::ImageCreator(QObject *parent, const QVariantList &args)
     : KIO::ThumbnailCreator(parent, args)
@@ -86,6 +86,43 @@ KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
     }
 
     return KIO::ThumbnailResult::fail();
+}
+
+int main(int argc, char **argv)
+{
+    QGuiApplication::setDesktopSettingsAware(false);
+    QGuiApplication application{argc, argv};
+    application.setApplicationName(u"imagecreator"_qs);
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription(u"Generates thumbnails for image files"_qs);
+    parser.addHelpOption();
+    parser.addOptions({
+        {{u"i"_qs, u"input"_qs}, u"The input file"_qs, u"input"_qs},
+        {{u"o"_qs, u"output"_qs}, u"The output file"_qs, u"output"_qs},
+        {{u"s"_qs, u"size"_qs}, u"The width in pixels"_qs, u"size"_qs},
+    });
+    parser.process(application);
+
+    auto input = QUrl::fromLocalFile(parser.value(u"input"_qs));
+    auto output = QUrl::fromLocalFile(parser.value(u"output"_qs));
+    int size = parser.value(u"size"_qs).toInt();
+    parser.process(application);
+    if (!input.isValid() || !output.isValid() || size <= 0) {
+        qWarning() << "Expects an input and an output file";
+        return 1;
+    }
+
+    auto req = KIO::ThumbnailRequest(input, QSize(size, size), "", 1.0, 1.0);
+    ImageCreator creator(nullptr, QVariantList());
+    auto c = creator.create(req);
+    if (c.isValid()) {
+        c.image().save(output.toLocalFile(), "png");
+        return 0;
+    } else {
+        qWarning() << "Failed to generate a thumbnail!";
+        return 1;
+    }
 }
 
 #include "imagecreator.moc"

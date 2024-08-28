@@ -96,14 +96,17 @@ install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
 
 ########### next target ###############
 
-add_library(imagethumbnail MODULE imagecreator.cpp)
+add_executable(kde-image-thumbnailer)
+target_sources(kde-image-thumbnailer PRIVATE imagecreator.cpp)
 
-target_link_libraries(imagethumbnail
+target_link_libraries(kde-image-thumbnailer
     KF6::CoreAddons
     KF6::KIOGui
 )
 
-install(TARGETS imagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
+ecm_install_configured_files(INPUT kde-image-thumbnailer.thumbnailer.in DESTINATION ${KDE_INSTALL_DATADIR}/thumbnailers/ @ONLY)
+
+install(TARGETS kde-image-thumbnailer DESTINATION ${KDE_INSTALL_LIBEXECDIR})
 
 ########### next target ###############
 
