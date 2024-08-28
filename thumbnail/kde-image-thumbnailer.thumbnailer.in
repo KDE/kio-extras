@@ -1,4 +1,4 @@
 [Thumbnailer Entry]
 TryExec=@CMAKE_INSTALL_PREFIX@/@KDE_INSTALL_LIBEXECDIR@/kde-image-thumbnailer
 Exec=@CMAKE_INSTALL_PREFIX@/@KDE_INSTALL_LIBEXECDIR@/kde-image-thumbnailer -s %s -i %i -o %o
-MimeType=image/bmp;image/gif;image/png;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xbitmap;image/x-xpixmap;video/x-mng;image/x-adobe-dng;
+MimeType=image/jpeg;image/jpg;image/bmp;image/gif;image/png;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xbitmap;image/x-xpixmap;video/x-mng;image/x-adobe-dng;
