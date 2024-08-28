@@ -61,7 +61,8 @@ KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
 {
     // create image preview
     QImageReader ir(request.url().toLocalFile());
-    ir.setScaledSize(request.targetSize());
+    auto thumbSize = ir.size().scaled(request.targetSize().width(), request.targetSize().height(), Qt::AspectRatioMode::KeepAspectRatio);
+    ir.setScaledSize(thumbSize);
     ir.setQuality(0);
 
     /* The idea is to read the free ram and try to avoid OS trashing when the
@@ -115,11 +116,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    QImage img(input.toLocalFile());
-    QSize thumbSize(img.width(), img.height());
-    thumbSize.scale(size, size, Qt::KeepAspectRatio);
-
-    auto req = KIO::ThumbnailRequest(input, thumbSize, "", 1.0, 1.0);
+    auto req = KIO::ThumbnailRequest(input, QSize(size, size), "", 1.0, 1.0);
     ImageCreator creator(nullptr, QVariantList());
     auto c = creator.create(req);
     if (c.isValid()) {
