@@ -62,6 +62,7 @@ KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
     // create image preview
     QImageReader ir(request.url().toLocalFile());
     ir.setScaledSize(request.targetSize());
+    ir.setQuality(0);
 
     /* The idea is to read the free ram and try to avoid OS trashing when the
      * image is too big:
