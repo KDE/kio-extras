@@ -286,13 +286,13 @@ void TrashConfigModule::setupGui()
     maximumSizeLayout->addWidget(mSizeLabel);
 
     mLimitReachedAction = new QComboBox();
-    mLimitReachedAction->addItem(i18n("Show a Warning"));
-    mLimitReachedAction->addItem(i18n("Delete Oldest Files From Trash"));
-    mLimitReachedAction->addItem(i18n("Delete Biggest Files From Trash"));
+    mLimitReachedAction->addItem(i18n("Show a warning"));
+    mLimitReachedAction->addItem(i18n("Delete oldest files from trash"));
+    mLimitReachedAction->addItem(i18n("Delete biggest files from trash"));
     mLimitReachedAction->setWhatsThis(xi18nc("@info:whatsthis",
                                              "<para>When the size limit is reached, it will prefer to delete the type of files that you specify, first. "
                                              "If this is set to warn you, it will do so instead of automatically deleting files.</para>"));
-    formLayout->addRow(i18n("Full Trash:"), mLimitReachedAction);
+    formLayout->addRow(i18n("Full trash:"), mLimitReachedAction);
 
     layout->addStretch();
 }

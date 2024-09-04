@@ -26,7 +26,7 @@ If you are uncertain whether or not you need to use a proxy server to connect to
       <string>Connect to the Internet directly.</string>
      </property>
      <property name="text">
-      <string>No Proxy</string>
+      <string>No proxy</string>
      </property>
      <property name="checked">
       <bool>true</bool>
@@ -158,7 +158,7 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
 &lt;/qt&gt;</string>
         </property>
         <property name="text">
-         <string>HTTP Proxy:</string>
+         <string>HTTP proxy:</string>
         </property>
         <property name="wordWrap">
          <bool>false</bool>
@@ -193,7 +193,7 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
 &lt;/qt&gt;</string>
         </property>
         <property name="text">
-         <string>SSL Proxy:</string>
+         <string>SSL proxy:</string>
         </property>
         <property name="wordWrap">
          <bool>false</bool>
@@ -228,7 +228,7 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
 &lt;/qt&gt;</string>
         </property>
         <property name="text">
-         <string>FTP Proxy:</string>
+         <string>FTP proxy:</string>
         </property>
         <property name="wordWrap">
          <bool>false</bool>
@@ -263,7 +263,7 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
 &lt;/qt&gt;</string>
         </property>
         <property name="text">
-         <string>SOCKS Proxy:</string>
+         <string>SOCKS proxy:</string>
         </property>
         <property name="wordWrap">
          <bool>false</bool>
@@ -380,7 +380,7 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
          </sizepolicy>
         </property>
         <property name="text">
-         <string>HTTP Proxy:</string>
+         <string>HTTP proxy:</string>
         </property>
         <property name="wordWrap">
          <bool>false</bool>
@@ -446,7 +446,7 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
          </sizepolicy>
         </property>
         <property name="text">
-         <string>SSL Proxy:</string>
+         <string>SSL proxy:</string>
         </property>
         <property name="wordWrap">
          <bool>false</bool>
@@ -496,7 +496,7 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
          </sizepolicy>
         </property>
         <property name="text">
-         <string>FTP Proxy:</string>
+         <string>FTP proxy:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -549,7 +549,7 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
          </sizepolicy>
         </property>
         <property name="text">
-         <string>SOCKS Proxy:</string>
+         <string>SOCKS proxy:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -639,7 +639,7 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
 Check this box if you want the above proxy settings to apply only to the addresses listed in the &lt;i&gt;Exceptions&lt;/i&gt; list.&lt;/qt&gt;</string>
         </property>
         <property name="text">
-         <string>Use proxy settings only for addresses in the Exceptions list</string>
+         <string>Use proxy settings only for addresses in the exceptions list</string>
         </property>
        </widget>
       </item>
