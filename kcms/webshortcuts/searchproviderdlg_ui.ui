@@ -20,7 +20,7 @@
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>Shortcut &amp;name:</string>
+      <string>&amp;Name:</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -45,7 +45,7 @@ Recommended is \{@}, since it removes all query variables (name=value) from the 
       <enum>Qt::LeftToRight</enum>
      </property>
      <property name="text">
-      <string>Shortcut &amp;URL:</string>
+      <string>&amp;URL:</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -88,12 +88,12 @@ Recommended is \{@}, since it removes all query variables (name=value) from the 
     <widget class="QLineEdit" name="leShortcut">
      <property name="toolTip">
       <string>&lt;qt&gt;
-The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For example, the shortcut &lt;b&gt;av&lt;/b&gt; can be used as in &lt;b&gt;av&lt;/b&gt;:&lt;b&gt;my search&lt;/b&gt;
+The keywords entered here can be used as a pseudo-URI scheme in KDE. For example, the keyword &lt;b&gt;av&lt;/b&gt; can be used as in &lt;b&gt;av&lt;/b&gt;:&lt;b&gt;my search&lt;/b&gt;
 &lt;/qt&gt;</string>
      </property>
      <property name="whatsThis">
       <string>&lt;qt&gt;
-The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For example, the shortcut &lt;b&gt;av&lt;/b&gt; can be used as in &lt;b&gt;av&lt;/b&gt;:&lt;b&gt;my search&lt;/b&gt;
+The keywords entered here can be used as a pseudo-URI scheme in KDE. For example, the keyword &lt;b&gt;av&lt;/b&gt; can be used as in &lt;b&gt;av&lt;/b&gt;:&lt;b&gt;my search&lt;/b&gt;
 &lt;/qt&gt;</string>
      </property>
     </widget>
@@ -101,10 +101,10 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
    <item row="0" column="2" colspan="2">
     <widget class="QLineEdit" name="leName">
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the human-readable name of the web shortcut here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the human-readable name of the Web search keyword here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="whatsThis">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the human-readable name of the web shortcut here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enter the human-readable name of the Web search keyword shortcut here.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
@@ -112,11 +112,11 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
     <widget class="QLabel" name="lbShortcut">
      <property name="whatsThis">
       <string>&lt;qt&gt;
-The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For example, the shortcut &lt;b&gt;av&lt;/b&gt; can be used as in &lt;b&gt;av&lt;/b&gt;:&lt;b&gt;my search&lt;/b&gt;
+The keywords entered here can be used as a pseudo-URI scheme in KDE. For example, the keyword &lt;b&gt;av&lt;/b&gt; can be used as in &lt;b&gt;av&lt;/b&gt;:&lt;b&gt;my search&lt;/b&gt;
 &lt;/qt&gt;</string>
      </property>
      <property name="text">
-      <string>&amp;Shortcuts:</string>
+      <string>&amp;Keywords:</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -132,7 +132,7 @@ The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For exampl
       <string>Select the character set that will be used to encode your search query</string>
      </property>
      <property name="text">
-      <string>&amp;Charset:</string>
+      <string>&amp;Character set:</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

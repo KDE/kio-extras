@@ -49,7 +49,7 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
     charsets.prepend(i18nc("@item:inlistbox The default character set", "Default"));
     m_dlg.cbCharset->addItems(charsets);
     if (m_provider) {
-        setWindowTitle(i18n("Modify Web Shortcut"));
+        setWindowTitle(i18n("Edit Web Search Keyword"));
         m_dlg.leName->setText(m_provider->name());
         m_dlg.leQuery->setText(m_provider->query());
         m_dlg.leShortcut->setText(m_provider->keys().join(QLatin1Char(',')));
@@ -57,7 +57,7 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
         m_dlg.leName->setEnabled(false);
         m_dlg.leQuery->setFocus();
     } else {
-        setWindowTitle(i18n("New Web Shortcut"));
+        setWindowTitle(i18n("New Web Search Keyword"));
         m_dlg.leName->setFocus();
 
         // If the clipboard contains a url copy it to the query lineedit
@@ -118,7 +118,7 @@ void SearchProviderDialog::shortcutsChanged(const QString &newShorthands)
     if (contendersSize != 0) {
         if (contendersSize == 1) {
             auto it = contenders.cbegin();
-            m_dlg.noteLabel->setText(i18n("The shortcut \"%1\" is already assigned to \"%2\". Please choose a different one.", it.key(), it.value()->name()));
+            m_dlg.noteLabel->setText(i18n("The keyword \"%1\" is already assigned to \"%2\". Please choose a different one.", it.key(), it.value()->name()));
         } else {
             QStringList contenderList;
             contenderList.reserve(contendersSize);
@@ -127,7 +127,7 @@ void SearchProviderDialog::shortcutsChanged(const QString &newShorthands)
             }
 
             m_dlg.noteLabel->setText(
-                i18n("The following shortcuts are already assigned. Please choose different ones.\n%1", contenderList.join(QLatin1Char('\n'))));
+                i18n("The following keywords are already assigned. Please choose different ones.\n%1", contenderList.join(QLatin1Char('\n'))));
         }
         m_buttons->button(QDialogButtonBox::Ok)->setEnabled(false);
     } else {
@@ -140,9 +140,9 @@ void SearchProviderDialog::accept()
 {
     if ((m_dlg.leQuery->text().indexOf(QLatin1String("\\{")) == -1)
         && KMessageBox::warningContinueCancel(nullptr,
-                                              i18n("The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+                                              i18n("The URL does not contain a \\{...} placeholder for the user query.\n"
                                                    "This means that the same page is always going to be visited, "
-                                                   "regardless of the text typed in with the shortcut."),
+                                                   "regardless of the text typed in with the keyword."),
                                               QString(),
                                               KGuiItem(i18n("Keep It")))
             == KMessageBox::Cancel) {

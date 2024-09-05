@@ -2,7 +2,7 @@
     "Categories": "Qt;KDE;X-KDE-settings-webbrowsing;",
     "KPlugin": {
         "BugReportUrl": "https://bugs.kde.org/enter_bug.cgi?product=systemsettings&component=kcm_webshortcuts",
-        "Description": "Configure web search keywords",
+        "Description": "Configure Web search keywords",
         "Description[ar]": "اضبط بحث الوبّ",
         "Description[be]": "Наладжванне ключавых слоў для сеціўнага пошуку",
         "Description[bg]": "Конфигуриране на ключови думи за уеб търсене",

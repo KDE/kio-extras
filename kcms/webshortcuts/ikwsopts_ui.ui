@@ -14,7 +14,7 @@
    <item row="0" column="0">
     <widget class="QCheckBox" name="cbEnableShortcuts">
      <property name="toolTip">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable web search keywords. &lt;/p&gt;&lt;p&gt;Web search keywords allow you to quickly access or search for information located online or on your hard drive. &lt;/p&gt;&lt;p&gt;KDE comes with many predefined keywords. One such keyword can be used to perform a the Google (TM) search; to use it, you simply type the keyword 'gg' followed by the keyword delimiter and the search term, e.g. &lt;span style=&quot; font-weight:600;&quot;&gt;gg:KDE&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable Web search keywords. &lt;/p&gt;&lt;p&gt;Web search keywords allow you to quickly access or search for information located online or on your hard drive. &lt;/p&gt;&lt;p&gt;KDE comes with many predefined keywords. One such keyword can be used to perform a the Google (TM) search; to use it, you simply type the keyword 'gg' followed by the keyword delimiter and the search term, e.g. &lt;span style=&quot; font-weight:600;&quot;&gt;gg:KDE&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="text">
       <string>&amp;Enable Web search keywords</string>
@@ -34,7 +34,7 @@
    <item row="2" column="0">
     <widget class="QLineEdit" name="searchLineEdit">
      <property name="placeholderText">
-      <string>Search for web search keywords</string>
+      <string>Search for Web search keywords</string>
      </property>
      <property name="showClearButton" stdset="0">
       <bool>true</bool>
@@ -71,7 +71,7 @@
         <string>Add a new Web search keyword</string>
        </property>
        <property name="text">
-        <string>&amp;New...</string>
+        <string>&amp;New…</string>
        </property>
       </widget>
      </item>
@@ -84,7 +84,7 @@
         <string>Modify the highlighted Web search keyword</string>
        </property>
        <property name="text">
-        <string>Chan&amp;ge...</string>
+        <string>Ed&amp;it…</string>
        </property>
       </widget>
      </item>
@@ -163,7 +163,7 @@ Select the search engine to use for input boxes that provide automatic lookup se
         </size>
        </property>
        <property name="whatsThis">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select a default web search keyword. &lt;/p&gt;&lt;p&gt;This allows applications to automatically convert the typed word or phrase to web search keyword queries when they cannot be filtered into a proper URL. &lt;/p&gt;&lt;p&gt;To disable this functionality select &lt;span style=&quot; font-weight:600;&quot;&gt;None&lt;/span&gt; from the list. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select a default Web search keyword. &lt;/p&gt;&lt;p&gt;This allows applications to automatically convert the typed word or phrase to Web search keyword queries when they cannot be filtered into a proper URL. &lt;/p&gt;&lt;p&gt;To disable this functionality select &lt;span style=&quot; font-weight:600;&quot;&gt;None&lt;/span&gt; from the list. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="sizeAdjustPolicy">
         <enum>QComboBox::AdjustToMinimumContentsLengthWithIcon</enum>

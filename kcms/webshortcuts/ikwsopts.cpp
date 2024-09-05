@@ -101,8 +101,8 @@ QVariant ProvidersModel::data(const QModelIndex &index, int role) const
     if (role == Qt::ToolTipRole || role == Qt::WhatsThisRole) {
         if (index.column() == Preferred) {
             return xi18nc("@info:tooltip",
-                          "Check this box to select the highlighted web search keyword "
-                          "as preferred.<nl/>Preferred web search keywords are used in "
+                          "Check this box to select the highlighted Web search keyword "
+                          "as preferred.<nl/>Preferred Web search keywords are used in "
                           "places where only a few select keywords can be shown "
                           "at one time.");
         }
