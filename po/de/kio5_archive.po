@@ -1,7 +1,7 @@
 # Thomas Reitelbach <tr@erdfunkstelle.de>, 2005.
 msgid ""
 msgstr ""
-"Project-Id-Version: kio_archive\n"
+"Project-Id-Version: kio6_archive\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:32+0000\n"
 "PO-Revision-Date: 2005-08-04 13:41+0000\n"
