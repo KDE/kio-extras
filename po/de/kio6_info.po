@@ -1,7 +1,7 @@
 # Burkhard Lück <lueck@hube-lueck.de>, 2009, 2021.
 msgid ""
 msgstr ""
-"Project-Id-Version: kio_info\n"
+"Project-Id-Version: kio6_info\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-10 00:38+0000\n"
 "PO-Revision-Date: 2021-03-07 13:52+0100\n"
