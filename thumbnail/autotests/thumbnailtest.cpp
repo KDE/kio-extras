@@ -51,6 +51,21 @@ private Q_SLOTS:
 
         QTest::addRow("DZSCG.svg") << "DZSCG.svg"
                                    << "DZSCG-128@2.png" << 2.0;
+
+        QTest::addRow("exe_ne16") << "ne16_1bpp.exe"
+                                  << "ne16_1bpp_thumb.png" << 1.0;
+
+        QTest::addRow("exe_4bpp") << "ne16_4bpp.exe"
+                                  << "ne16_4bpp_thumb.png" << 1.0;
+
+        QTest::addRow("exe_8bpp") << "ne16_8bpp.exe"
+                                  << "ne16_8bpp_thumb.png" << 1.0;
+
+        QTest::addRow("exe_pe32") << "pe32_32bpp.exe"
+                                  << "pe32_32bpp_thumb.png" << 1.0;
+
+        QTest::addRow("exe_pe32+") << "pe32plus_32bpp.exe"
+                                   << "pe32plus_32bpp_thumb.png" << 1.0;
     }
 
     void testThumbnail()
@@ -71,7 +86,7 @@ private Q_SLOTS:
         KFileItemList items;
         items.append(KFileItem(QUrl::fromLocalFile(path)));
 
-        QStringList enabledPlugins{"svgthumbnail", "imagethumbnail", "jpegthumbnail"};
+        QStringList enabledPlugins{"svgthumbnail", "imagethumbnail", "jpegthumbnail", "windowsexethumbnail"};
         auto *job = KIO::filePreview(items, QSize(128, 128), &enabledPlugins);
         job->setDevicePixelRatio(dpr);
 

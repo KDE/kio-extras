@@ -224,16 +224,8 @@ endif()
 
 ########### next target ###############
 
-add_library(windowsexethumbnail MODULE windowsexecreator.cpp icoutils_common.cpp)
-add_library(windowsimagethumbnail MODULE windowsimagecreator.cpp icoutils_common.cpp)
-
-if(WIN32)
-    target_sources(windowsexethumbnail PRIVATE icoutils_win.cpp)
-    target_sources(windowsimagethumbnail PRIVATE icoutils_win.cpp)
-else()
-    target_sources(windowsexethumbnail PRIVATE icoutils_wrestool.cpp)
-    target_sources(windowsimagethumbnail PRIVATE icoutils_wrestool.cpp)
-endif()
+add_library(windowsexethumbnail MODULE windowsexecreator.cpp icoutils.cpp exeutils.cpp)
+add_library(windowsimagethumbnail MODULE windowsimagecreator.cpp icoutils.cpp exeutils.cpp)
 
 target_link_libraries(windowsexethumbnail KF6::KIOGui)
 install(TARGETS windowsexethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)

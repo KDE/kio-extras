@@ -1,5 +1,5 @@
 /*
-    icoutils_common.cpp - Extract Microsoft Window icons and images using icoutils package
+    icoutils.cpp - Extract Microsoft Window icons and images
 
     SPDX-FileCopyrightText: 2009-2010 Pali Rohár <pali.rohar@gmail.com>
 
@@ -7,6 +7,7 @@
 */
 
 #include "icoutils.h"
+#include "exeutils.h"
 
 #include <QBuffer>
 #include <QImage>
@@ -16,6 +17,9 @@
 #include <QTemporaryFile>
 
 #include <algorithm>
+
+namespace
+{
 
 qreal distance(int width, int height, int desiredWidth, int desiredHeight, int depth)
 {
@@ -38,29 +42,16 @@ qreal distance(int width, int height, int desiredWidth, int desiredHeight, int d
     return targetSamples - effectiveSamples;
 }
 
-bool IcoUtils::loadIcoImageFromExe(QIODevice *inputDevice, QImage &image, int needWidth, int needHeight)
-{
-    QTemporaryFile inputFile;
-
-    if (!inputFile.open())
-        return false;
-
-    QByteArray data = inputDevice->readAll();
-
-    if (inputFile.write(data) == -1)
-        return false;
-
-    return IcoUtils::loadIcoImageFromExe(inputFile.fileName(), image, needWidth, needHeight);
 }
 
-bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, int needWidth, int needHeight)
+bool IcoUtils::loadIcoImageFromExe(QIODevice *inputDevice, QImage &image, int needWidth, int needHeight)
 {
     QBuffer iconData;
     if (!iconData.open(QIODevice::ReadWrite)) {
         return false;
     }
 
-    if (!IcoUtils::loadIcoImageFromExe(inputFileName, &iconData))
+    if (!ExeUtils::loadIcoDataFromExe(inputDevice, &iconData))
         return false;
 
     if (!iconData.seek(0)) {
@@ -68,6 +59,17 @@ bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, 
     }
 
     return IcoUtils::loadIcoImage(&iconData, image, needWidth, needHeight);
+}
+
+bool IcoUtils::loadIcoImageFromExe(const QString &inputFileName, QImage &image, int needWidth, int needHeight)
+{
+    QFile inputFile{inputFileName};
+
+    if (!inputFile.open(QIODevice::ReadOnly)) {
+        return false;
+    }
+
+    return IcoUtils::loadIcoImageFromExe(&inputFile, image, needWidth, needHeight);
 }
 
 bool IcoUtils::loadIcoImage(QImageReader &reader, QImage &image, int needWidth, int needHeight)

@@ -1,5 +1,5 @@
 /*
-    icoutils.h - Extract Microsoft Window icons and images using icoutils package
+    icoutils.h - Extract Microsoft Window icons and images
 
     SPDX-FileCopyrightText: 2009-2010 Pali Rohár <pali.rohar@gmail.com>
     SPDX-FileCopyrightText: 2013 Andrius da Costa Ribas <andriusmao@gmail.com>
@@ -21,8 +21,7 @@ namespace IcoUtils
 {
 
 bool loadIcoImageFromExe(QIODevice *inputDevice, QImage &image, int needWidth = 512, int needHeight = 512);
-bool loadIcoImageFromExe(const QString &inputPath, QImage &image, int needWidth = 512, int needHeight = 512);
-bool loadIcoImageFromExe(const QString &inputFileName, QIODevice *outputDevice);
+bool loadIcoImageFromExe(const QString &inputFileName, QImage &image, int needWidth = 512, int needHeight = 512);
 
 bool loadIcoImage(QIODevice *inputDevice, QImage &image, int needWidth = 512, int needHeight = 512);
 bool loadIcoImage(const QString &inputFileName, QImage &image, int needWidth = 512, int needHeight = 512);
