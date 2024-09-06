@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-09-06 00:39+0000\n"
 "PO-Revision-Date: 2012-07-09 10:34+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -221,8 +221,9 @@ msgstr "តភ្ជាប់​ទៅ​អ៊ីនធឺណិត​ដោយ
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, kde-format
-msgid "No Proxy"
+#, fuzzy, kde-format
+#| msgid "No Proxy"
+msgid "No proxy"
 msgstr "គ្មាន​ប្រូកស៊ី"
 
 #  i18n: file kproxydlg_ui.ui line 83
@@ -356,8 +357,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, kde-format
-msgid "HTTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgid "HTTP proxy:"
 msgstr "ប្រូកស៊ី HTTP ៖"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
@@ -382,8 +384,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, kde-format
-msgid "SSL Proxy:"
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgid "SSL proxy:"
 msgstr "ប្រូកស៊ី SSL ៖"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
@@ -408,8 +411,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, kde-format
-msgid "FTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgid "FTP proxy:"
 msgstr "ប្រូកស៊ី FTP ៖"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
@@ -433,8 +437,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, kde-format
-msgid "SOCKS Proxy:"
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgid "SOCKS proxy:"
 msgstr "ប្រូកស៊ី SOCKS ៖"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
@@ -633,8 +638,9 @@ msgstr ""
 #  i18n: file manualproxy_ui.ui line 204
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, kde-format
-msgid "Use proxy settings only for addresses in the Exceptions list"
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "ប្រើ​ការ​កំណត់​ប្រូកស៊ី​សម្រាប់​អាសយដ្ឋាន​នៅ​ក្នុង​បញ្ជី​លើកលែង​តែប៉ុណ្ណោះ"
 
 #: trash/kcmtrash.cpp:141
@@ -736,18 +742,20 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgctxt "Warning about executing unknown .desktop file"
 #| msgid "Warning"
-msgid "Show a Warning"
+msgid "Show a warning"
 msgstr "ការ​ព្រមាន"
 
 #: trash/kcmtrash.cpp:290
-#, kde-format
-msgid "Delete Oldest Files From Trash"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgid "Delete oldest files from trash"
+msgstr "លុប​ថត"
 
 #: trash/kcmtrash.cpp:291
-#, kde-format
-msgid "Delete Biggest Files From Trash"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Delete Folder"
+msgid "Delete biggest files from trash"
+msgstr "លុប​ថត"
 
 #: trash/kcmtrash.cpp:293
 #, kde-kuit-format
@@ -762,7 +770,7 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgctxt "KFile System Bookmarks"
 #| msgid "Trash"
-msgid "Full Trash:"
+msgid "Full trash:"
 msgstr "ធុងសំរាម"
 
 #: webshortcuts/ikwsopts.cpp:41
@@ -788,8 +796,8 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
-"Check this box to select the highlighted web search keyword as preferred.<nl/"
-">Preferred web search keywords are used in places where only a few select "
+"Check this box to select the highlighted Web search keyword as preferred.<nl/"
+">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
 
@@ -809,7 +817,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:17
 #, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
 "located online or on your hard drive. </p><p>KDE comes with many predefined "
 "keywords. One such keyword can be used to perform a the Google (TM) search; "
@@ -835,7 +843,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:37
 #, fuzzy, kde-format
 #| msgid "Default password:"
-msgid "Search for web search keywords"
+msgid "Search for Web search keywords"
 msgstr "ពាក្យ​សម្ងាត់​លំនាំ​ដើម ៖"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
@@ -845,12 +853,11 @@ msgstr "ពាក្យ​សម្ងាត់​លំនាំ​ដើម �
 msgid "Add a new Web search keyword"
 msgstr "ពាក្យ​សម្ងាត់​លំនាំ​ដើម ៖"
 
-#  i18n: file kcookiespoliciesdlg_ui.ui line 184
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
-msgid "&New..."
-msgstr "ថ្មី..."
+msgid "&New…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -859,12 +866,11 @@ msgstr "ថ្មី..."
 msgid "Modify the highlighted Web search keyword"
 msgstr "ពាក្យ​សម្ងាត់​លំនាំ​ដើម ៖"
 
-#  i18n: file kcookiespoliciesdlg_ui.ui line 192
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
-msgid "Chan&ge..."
-msgstr "ផ្លាស់ប្តូរ..."
+msgid "Ed&it…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -902,8 +908,8 @@ msgstr "ពាក្យ​សម្ងាត់​លំនាំ​ដើម �
 #: webshortcuts/ikwsopts_ui.ui:166
 #, kde-format
 msgid ""
-"<html><head/><body><p>Select a default web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to web "
+"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to Web "
 "search keyword queries when they cannot be filtered into a proper URL. </"
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
@@ -950,20 +956,24 @@ msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "លំនាំដើម"
 
+#  i18n: file kcookiesmanagementdlg_ui.ui line 155
 #: webshortcuts/searchproviderdlg.cpp:52
-#, kde-format
-msgid "Modify Web Shortcut"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Search"
+msgid "Edit Web Search Keyword"
+msgstr "ស្វែងរក"
 
+#  i18n: file kcookiesmanagementdlg_ui.ui line 155
 #: webshortcuts/searchproviderdlg.cpp:60
-#, kde-format
-msgid "New Web Shortcut"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Search"
+msgid "New Web Search Keyword"
+msgstr "ស្វែងរក"
 
 #: webshortcuts/searchproviderdlg.cpp:121
 #, kde-format
 msgid ""
-"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr ""
 
@@ -978,16 +988,16 @@ msgstr "%1: %2"
 #: webshortcuts/searchproviderdlg.cpp:130
 #, kde-format
 msgid ""
-"The following shortcuts are already assigned. Please choose different ones.\n"
+"The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:143
 #, kde-format
 msgid ""
-"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
-"the text typed in with the shortcut."
+"the text typed in with the keyword."
 msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:147
@@ -1005,10 +1015,9 @@ msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ា
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, fuzzy, kde-format
-#| msgid "Site name:"
-msgid "Shortcut &name:"
-msgstr "ឈ្មោះ​តំបន់​បណ្តាញ ៖"
+#, kde-format
+msgid "&Name:"
+msgstr "ឈ្មោះ ៖ "
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1035,9 +1044,10 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, kde-format
-msgid "Shortcut &URL:"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "URL:"
+msgid "&URL:"
+msgstr "URL ៖"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1054,26 +1064,35 @@ msgstr ""
 #, kde-format
 msgid ""
 "<qt>\n"
-"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-"b>\n"
+"The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
 
+#  i18n: file manualproxy_ui.ui line 111
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#: webshortcuts/searchproviderdlg_ui.ui:107
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Enter the port number of the FTP proxy server."
 msgid ""
-"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
-"</p></body></html>"
-msgstr ""
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword here.</p></body></html>"
+msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី FTP ។"
+
+#  i18n: file manualproxy_ui.ui line 111
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, fuzzy, kde-format
+#| msgid "Enter the port number of the FTP proxy server."
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword shortcut here.</p></body></html>"
+msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី FTP ។"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
 #, kde-format
-msgid "&Shortcuts:"
+msgid "&Keywords:"
 msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
@@ -1085,7 +1104,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
 #, kde-format
-msgid "&Charset:"
+msgid "&Character set:"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
@@ -1095,6 +1114,19 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "របៀបត្របាញ់"
+
+#  i18n: file kcookiespoliciesdlg_ui.ui line 184
+#~ msgid "&New..."
+#~ msgstr "ថ្មី..."
+
+#  i18n: file kcookiespoliciesdlg_ui.ui line 192
+#~ msgid "Chan&ge..."
+#~ msgstr "ផ្លាស់ប្តូរ..."
+
+#, fuzzy
+#~| msgid "Site name:"
+#~ msgid "Shortcut &name:"
+#~ msgstr "ឈ្មោះ​តំបន់​បណ្តាញ ៖"
 
 #~ msgid "You have to restart KDE for these changes to take effect."
 #~ msgstr "អ្នក​ត្រូវ​តែ​ចាប់ផ្តើម KDE ឡើងវិញ ដើម្បី​ឲ្យ​ការ​ផ្លាស់ប្តូរ​មាន​ប្រសិទ្ធិភាព ។"
@@ -3787,9 +3819,6 @@ msgstr "របៀបត្របាញ់"
 #~ "បន្ថែម កែសម្រួល ឬ​ជ្រើស​ចំណាំ​បាន ។<br /><br />ចំណាំ​ទាំងនេះ គឺ​ជាក់លាក់​ចំពោះ​ប្រអប់​ឯកសារ ប៉ុន្តែ​"
 #~ "បើ​មិនដូចនោះ​ទេ វា​​ប្រតិបត្តិ​ដូច​ចំណាំ​នៅ​កន្លែង​ផ្សេងទៀត​នៅ​ក្នុង KDE អញ្ចឹង ។</qt>"
 
-#~ msgid "&Name:"
-#~ msgstr "ឈ្មោះ ៖ "
-
 #~ msgid ""
 #~ "<qt>While typing in the text area, you may be presented with possible "
 #~ "matches. This feature can be controlled by clicking with the right mouse "
@@ -5864,9 +5893,6 @@ msgstr "របៀបត្របាញ់"
 #~ msgid "U&RL"
 #~ msgstr "U&RL"
 
-#~ msgid "URL:"
-#~ msgstr "URL ៖"
-
 #, fuzzy
 #~| msgid "Only executables on local file systems are supported."
 #~ msgid ""
@@ -6455,12 +6481,6 @@ msgstr "របៀបត្របាញ់"
 #~ "ដោយ​រក្សាទុក​មាតិកា​របស់​ទំព័រ​ទាំងនោះ​ក្នុង​មូលដ្ឋាន ឬ​ឃ្លាំង សម្ងាត់ ។ រី​ឯ​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​ត្រង​វិញ ផ្ដល់​នូ​"
 #~ "វ​សមត្ថភាព​ក្នុង​ការ​ទប់ស្កាត់​ការ​ស្នើសុំ​ផ្សាយ​ពាណិជ្ជកម្ម សារ​ឥត​បាន​ការ ឬ​អ្វី​ផ្សេង​ទៀត​ដែល​អ្នក​ចង​"
 #~ "ទប់ស្កាត់ ។</p><p><u>ចំណាំ ៖</u> ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​ខ្លះ ផ្ដល់​នូវ​សេវា​ទាំងពីរ ។</p>"
-
-#  i18n: file kcookiesmanagementdlg_ui.ui line 155
-#, fuzzy
-#~| msgid "Search"
-#~ msgid "Web Search Keywords"
-#~ msgstr "ស្វែងរក"
 
 #, fuzzy
 #~| msgctxt "@title:window"

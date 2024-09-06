@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-09-06 00:39+0000\n"
 "PO-Revision-Date: 2024-01-30 09:57-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -196,8 +196,9 @@ msgstr "ਇੰਟਰਨੈੱਟ ਨਾਲ ਸਿੱਧਾ ਕਨੈਕਟ ਕ�
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, kde-format
-msgid "No Proxy"
+#, fuzzy, kde-format
+#| msgid "No Proxy"
+msgid "No proxy"
 msgstr "ਕੋਈ ਪਰਾਕਸੀ ਨਹੀਂ"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
@@ -291,8 +292,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, kde-format
-msgid "HTTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgid "HTTP proxy:"
 msgstr "HTTP ਪਰਾਕਸੀ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
@@ -311,8 +313,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, kde-format
-msgid "SSL Proxy:"
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgid "SSL proxy:"
 msgstr "SSL ਪਰਾਕਸੀ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
@@ -331,8 +334,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, kde-format
-msgid "FTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgid "FTP proxy:"
 msgstr "FTP ਪਰਾਕਸੀ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
@@ -350,8 +354,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, kde-format
-msgid "SOCKS Proxy:"
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgid "SOCKS proxy:"
 msgstr "SOCKS ਪਰਾਕਸੀ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
@@ -506,7 +511,7 @@ msgstr "ਇਸ ਲਿਸਟ ਵਿਚਲੇ ਇੰਦਰਾਜ਼ਾਂ ਲਈ ਹ�
 #: proxy/kproxydlg.ui:642
 #, fuzzy, kde-format
 #| msgid "Use proxy only for entries in this list"
-msgid "Use proxy settings only for addresses in the Exceptions list"
+msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "ਇਸ ਲਿਸਟ ਵਿਚਲੇ ਇੰਦਰਾਜ਼ਾਂ ਲਈ ਹੀ ਪਰਾਕਸੀ ਵਰਤੋਂ"
 
 #: trash/kcmtrash.cpp:141
@@ -602,18 +607,21 @@ msgstr ""
 "<para>ਇਹ ਗਿਣੀ ਗਈ ਡਿਸਕ ਥਾਂ ਦੀ ਮਾਤਰਾ ਹੈ, ਜੋ ਕਿ ਰੱਦੀ ਲਈ ਮਨਜ਼ੂਰ ਹੋਵੇਗੀ, ਵੱਧੋ-ਵੱਧ।</para>"
 
 #: trash/kcmtrash.cpp:289
-#, kde-format
-msgid "Show a Warning"
+#, fuzzy, kde-format
+#| msgid "Show a Warning"
+msgid "Show a warning"
 msgstr "ਚੇਤਾਵਨੀ ਵੇਖਾਓ"
 
 #: trash/kcmtrash.cpp:290
-#, kde-format
-msgid "Delete Oldest Files From Trash"
+#, fuzzy, kde-format
+#| msgid "Delete Oldest Files From Trash"
+msgid "Delete oldest files from trash"
 msgstr "ਰੱਦੀ ਵਿੱਚ ਸਭ ਤੋਂ ਪੁਰਾਣੀਆਂ ਫਾਇਲ ਹਟਾ ਦਿਓ"
 
 #: trash/kcmtrash.cpp:291
-#, kde-format
-msgid "Delete Biggest Files From Trash"
+#, fuzzy, kde-format
+#| msgid "Delete Biggest Files From Trash"
+msgid "Delete biggest files from trash"
 msgstr "ਰੱਦੀ ਵਿੱਚ ਸਭ ਤੋਂ ਵੱਡੀਆਂ ਫਾਇਲ ਹਟਾ ਦਿਓ"
 
 #: trash/kcmtrash.cpp:293
@@ -626,8 +634,9 @@ msgid ""
 msgstr ""
 
 #: trash/kcmtrash.cpp:295
-#, kde-format
-msgid "Full Trash:"
+#, fuzzy, kde-format
+#| msgid "Full Trash:"
+msgid "Full trash:"
 msgstr "ਪੂਰੀ ਰੱਦੀ:"
 
 #: webshortcuts/ikwsopts.cpp:41
@@ -652,8 +661,8 @@ msgstr "ਪਸੰਦ"
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
-"Check this box to select the highlighted web search keyword as preferred.<nl/"
-">Preferred web search keywords are used in places where only a few select "
+"Check this box to select the highlighted Web search keyword as preferred.<nl/"
+">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
 
@@ -672,7 +681,7 @@ msgstr "ਖੋਜ ਫਿਲਟਰ(&i)"
 #: webshortcuts/ikwsopts_ui.ui:17
 #, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
 "located online or on your hard drive. </p><p>KDE comes with many predefined "
 "keywords. One such keyword can be used to perform a the Google (TM) search; "
@@ -695,8 +704,9 @@ msgstr "ਸਿਰਫ਼ ਤਰਜੀਹੀ ਸ਼ਾਰਟਕੱਟ ਹੀ ਵ�
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, kde-format
-msgid "Search for web search keywords"
+#, fuzzy, kde-format
+#| msgid "Search for web search keywords"
+msgid "Search for Web search keywords"
 msgstr "ਵੈੱਬ ਖੋਜ ਸ਼ਬਦਾਂ ਲਈ ਖੋਜ"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
@@ -708,8 +718,8 @@ msgstr "ਨਵਾਂ ਵੈੱਬ ਖੋਜ ਸ਼ਬਦ ਜੋੜੋ"
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
-msgid "&New..."
-msgstr "ਨਵਾਂ(&N)..."
+msgid "&New…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -721,8 +731,8 @@ msgstr "ਹਾਈਲਾਈਟ ਕੀਤੇ ਵੈੱਬ ਸ਼ਾਰਟਕੱਟ �
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
-msgid "Chan&ge..."
-msgstr "ਤਬਦੀਲ(&g)..."
+msgid "Ed&it…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -759,8 +769,8 @@ msgstr "ਡਿਫਾਲਟ ਵੈੱਬ ਸ਼ਾਰਟਕੱਟ(&s):"
 #: webshortcuts/ikwsopts_ui.ui:166
 #, kde-format
 msgid ""
-"<html><head/><body><p>Select a default web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to web "
+"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to Web "
 "search keyword queries when they cannot be filtered into a proper URL. </"
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
@@ -808,19 +818,24 @@ msgid "Default"
 msgstr "ਡਿਫਾਲਟ"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, kde-format
-msgid "Modify Web Shortcut"
-msgstr "ਵੈਬ ਸ਼ਾਰਟਕੱਟ ਸੋਧ"
+#, fuzzy, kde-format
+#| msgid "Web Search Keywords"
+msgid "Edit Web Search Keyword"
+msgstr "ਵੈੱਬ ਖੋਜ ਸ਼ਬਦ"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, kde-format
-msgid "New Web Shortcut"
-msgstr "ਨਵਾਂ ਵੈੱਬ ਸ਼ਾਰਟਕੱਟ"
+#, fuzzy, kde-format
+#| msgid "Web Search Keywords"
+msgid "New Web Search Keyword"
+msgstr "ਵੈੱਬ ਖੋਜ ਸ਼ਬਦ"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
+#| "different one."
 msgid ""
-"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr "\"%1\" ਸ਼ਾਰਟਕੱਟ ਪਹਿਲਾਂ ਹੀ \"%2\" ਨੂੰ ਦਿੱਤਾ ਗਿਆ ਹੈ। ਵੱਖਰਾ ਚੁਣੋ ਜੀ।"
 
@@ -831,9 +846,13 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The following shortcuts are already assigned. Please choose different "
+#| "ones.\n"
+#| "%1"
 msgid ""
-"The following shortcuts are already assigned. Please choose different ones.\n"
+"The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
 "ਅੱਗੇ ਦਿੱਤੇ ਸ਼ਾਰਟਕੱਟ ਪਹਿਲਾਂ ਹੀ ਦਿੱਤੇ ਜਾ ਚੁੱਕੇ ਹਨ। ਵੱਖਰੇ ਚੁਣੇ।\n"
@@ -842,9 +861,9 @@ msgstr ""
 #: webshortcuts/searchproviderdlg.cpp:143
 #, kde-format
 msgid ""
-"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
-"the text typed in with the shortcut."
+"the text typed in with the keyword."
 msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:147
@@ -861,8 +880,8 @@ msgstr "ਖੋਜ ਕਰਨ ਵਾਲੇ ਲਈ ਇੱਥੇ ਮਨੁੱਖ ਦ
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
 #, kde-format
-msgid "Shortcut &name:"
-msgstr "ਸ਼ਾਰਟਕੱਟ ਨਾਂ(&n):"
+msgid "&Name:"
+msgstr "ਨਾਂ(&N):"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -889,9 +908,10 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, kde-format
-msgid "Shortcut &URL:"
-msgstr "ਸ਼ਾਰਟਕੱਟ &URL:"
+#, fuzzy, kde-format
+#| msgid "URL:"
+msgid "&URL:"
+msgstr "URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -908,28 +928,42 @@ msgstr "ਅੱਖਰ ਸੈੱਟ ਦੀ ਚੋਣ ਕਰੋ, ਜਿਸ ਇੰ�
 #, kde-format
 msgid ""
 "<qt>\n"
-"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-"b>\n"
+"The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#: webshortcuts/searchproviderdlg_ui.ui:107
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
+#| "here.</p></body></html>"
 msgid ""
-"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
-"</p></body></html>"
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword here.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>ਖੋਜ ਕਰਨ ਵਾਲੇ ਲਈ ਇੱਥੇ ਮਨੁੱਖ ਦੇ ਪੜਨ ਯੋਗ ਨਾਂ ਦਿਉ।</p></body></html>"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
+#| "here.</p></body></html>"
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword shortcut here.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>ਖੋਜ ਕਰਨ ਵਾਲੇ ਲਈ ਇੱਥੇ ਮਨੁੱਖ ਦੇ ਪੜਨ ਯੋਗ ਨਾਂ ਦਿਉ।</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, kde-format
-msgid "&Shortcuts:"
-msgstr "ਸ਼ਾਰਟਕੱਟ(&S):"
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Keywords"
+msgid "&Keywords:"
+msgstr "ਸ਼ਬਦ"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -939,8 +973,9 @@ msgstr "ਅੱਖਰ ਸੈੱਟ ਦੀ ਚੋਣ ਕਰੋ, ਜਿਸ ਇੰ�
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, kde-format
-msgid "&Charset:"
+#, fuzzy, kde-format
+#| msgid "&Charset:"
+msgid "&Character set:"
 msgstr "ਅੱਖਰ-ਸੈੱਟ(&C):"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
@@ -948,6 +983,27 @@ msgstr "ਅੱਖਰ-ਸੈੱਟ(&C):"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "&New..."
+#~ msgstr "ਨਵਾਂ(&N)..."
+
+#~ msgid "Chan&ge..."
+#~ msgstr "ਤਬਦੀਲ(&g)..."
+
+#~ msgid "Modify Web Shortcut"
+#~ msgstr "ਵੈਬ ਸ਼ਾਰਟਕੱਟ ਸੋਧ"
+
+#~ msgid "New Web Shortcut"
+#~ msgstr "ਨਵਾਂ ਵੈੱਬ ਸ਼ਾਰਟਕੱਟ"
+
+#~ msgid "Shortcut &name:"
+#~ msgstr "ਸ਼ਾਰਟਕੱਟ ਨਾਂ(&n):"
+
+#~ msgid "Shortcut &URL:"
+#~ msgstr "ਸ਼ਾਰਟਕੱਟ &URL:"
+
+#~ msgid "&Shortcuts:"
+#~ msgstr "ਸ਼ਾਰਟਕੱਟ(&S):"
 
 #~ msgid "You have to restart KDE for these changes to take effect."
 #~ msgstr "ਇਹਨਾਂ ਤਬਦੀਲੀਆਂ ਨੂੰ ਲਾਗੂ ਕਰਨ ਲਈ ਤੁਹਾਨੂੰ KDE ਮੁੜ ਚਾਲੂ ਕਰਨਾ ਪਵੇਗਾ।"
@@ -3228,9 +3284,6 @@ msgstr ""
 #~ ">ਇਹ ਬੁੱਕਮਾਰਕ ਫਾਈਲ ਡਾਈਲਾਗ ਲਈ ਹੀ ਖਾਸ ਹਨ, ਨਹੀਂ ਤਾਂ KDE ਵਿੱਚ ਹੋਰ ਬੁੱਕਮਾਰਕਾਂ ਵਾਂਗ ਕੰਮ ਕਰਦੇ।"
 #~ "</qt>"
 
-#~ msgid "&Name:"
-#~ msgstr "ਨਾਂ(&N):"
-
 #~ msgid ""
 #~ "<qt>While typing in the text area, you may be presented with possible "
 #~ "matches. This feature can be controlled by clicking with the right mouse "
@@ -5022,9 +5075,6 @@ msgstr ""
 #~ msgid "U&RL"
 #~ msgstr "U&RL"
 
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
 #, fuzzy
 #~| msgid "Only executables on local file systems are supported."
 #~ msgid ""
@@ -5434,9 +5484,6 @@ msgstr ""
 #~ "<h1>ਨੈੱਟਵਰਕ ਪਸੰਦ</h1>ਇੱਥੇ ਤੁਸੀਂ ਇੰਟਰਨੈੱਟ ਤੇ ਨੈੱਟਵਰਕ ਕੁਨੈਕਸ਼ਨ ਵਰਤਣ ਲਈ KDE ਪਰੋਗਰਾਮਾਂ ਦਾ ਰਵੱਈਆ "
 #~ "ਪਰਿਭਾਸ਼ਤ ਕਰ ਸਕਦੇ ਹੋ। ਜੇਕਰ ਤੁਹਾਨੂੰ ਮਾਡਮ ਨੂੰ ਇੰਟਰਨੈੱਟ ਨਾਲ ਜੁੜਨ ਸਮੇਂ ਸਮਾਂ-ਸਮਾਪਤੀ ਦੀ ਸਮੱਸਿਆ ਆ "
 #~ "ਰਹੀ ਹੋਵੇ ਤਾਂ ਤੁਸੀਂ ਇਸ ਸੈਟਿੰਗ ਨੂੰ ਠੀਕ ਕਰਨਾ ਚਾਹੋਗੇ।"
-
-#~ msgid "Web Search Keywords"
-#~ msgstr "ਵੈੱਬ ਖੋਜ ਸ਼ਬਦ"
 
 #~ msgid "Configure enhanced browsing features"
 #~ msgstr "ਸੁਧਾਰ ਕੀਤੇ ਬਰਾਊਜ਼ ਕਰਨ ਵਾਲੇ ਫ਼ੀਚਰਾਂ ਦੀ ਸੰਰਚਨਾ"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_trash\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-09-06 00:39+0000\n"
 "PO-Revision-Date: 2023-02-07 20:29+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -231,8 +231,9 @@ msgstr "Koneksi ke Internet secara langsung."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, kde-format
-msgid "No Proxy"
+#, fuzzy, kde-format
+#| msgid "No Proxy"
+msgid "No proxy"
 msgstr "Tanpa proksi"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
@@ -355,8 +356,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, kde-format
-msgid "HTTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgid "HTTP proxy:"
 msgstr "proksi HTTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
@@ -381,8 +383,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, kde-format
-msgid "SSL Proxy:"
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgid "SSL proxy:"
 msgstr "proksi SSL:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
@@ -407,8 +410,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, kde-format
-msgid "FTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgid "FTP proxy:"
 msgstr "proksi FTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
@@ -432,8 +436,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, kde-format
-msgid "SOCKS Proxy:"
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgid "SOCKS proxy:"
 msgstr "proksi SOCKS:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
@@ -616,8 +621,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, kde-format
-msgid "Use proxy settings only for addresses in the Exceptions list"
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "Gunakan pengaturan proksi hanya untuk alamat dalam daftar Pengecualian"
 
 #: trash/kcmtrash.cpp:141
@@ -732,18 +738,21 @@ msgstr ""
 "diizinkan untuk tong sampah.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, kde-format
-msgid "Show a Warning"
+#, fuzzy, kde-format
+#| msgid "Show a Warning"
+msgid "Show a warning"
 msgstr "Tampilkan sebuah Peringatan"
 
 #: trash/kcmtrash.cpp:290
-#, kde-format
-msgid "Delete Oldest Files From Trash"
+#, fuzzy, kde-format
+#| msgid "Delete Oldest Files From Trash"
+msgid "Delete oldest files from trash"
 msgstr "Hapus berkas Tertua Dari Tong Sampah"
 
 #: trash/kcmtrash.cpp:291
-#, kde-format
-msgid "Delete Biggest Files From Trash"
+#, fuzzy, kde-format
+#| msgid "Delete Biggest Files From Trash"
+msgid "Delete biggest files from trash"
 msgstr "Hapus berkas Terbesar Dari Tong Sampah"
 
 #: trash/kcmtrash.cpp:293
@@ -760,8 +769,9 @@ msgstr ""
 "menghapus berkas secara otomatis.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, kde-format
-msgid "Full Trash:"
+#, fuzzy, kde-format
+#| msgid "Full Trash:"
+msgid "Full trash:"
 msgstr "Tong Sampah Penuh:"
 
 #: webshortcuts/ikwsopts.cpp:41
@@ -783,11 +793,16 @@ msgid "Preferred"
 msgstr "Kesukaan"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Check this box to select the highlighted web search keyword as preferred."
+#| "<nl/>Preferred web search keywords are used in places where only a few "
+#| "select keywords can be shown at one time."
 msgctxt "@info:tooltip"
 msgid ""
-"Check this box to select the highlighted web search keyword as preferred.<nl/"
-">Preferred web search keywords are used in places where only a few select "
+"Check this box to select the highlighted Web search keyword as preferred.<nl/"
+">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
 "Centang kotak ini untuk memilih kata kunci pencarian web yang disorot "
@@ -808,9 +823,17 @@ msgstr "F&ilter Pencari"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+#| "search keywords allow you to quickly access or search for information "
+#| "located online or on your hard drive. </p><p>KDE comes with many "
+#| "predefined keywords. One such keyword can be used to perform a the Google "
+#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
+#| "keyword delimiter and the search term, e.g. <span style=\" font-"
+#| "weight:600;\">gg:KDE</span>.</p></body></html>"
 msgid ""
-"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
 "located online or on your hard drive. </p><p>KDE comes with many predefined "
 "keywords. One such keyword can be used to perform a the Google (TM) search; "
@@ -841,8 +864,9 @@ msgstr "&Gunakan kata kunci yang disukai saja"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, kde-format
-msgid "Search for web search keywords"
+#, fuzzy, kde-format
+#| msgid "Search for web search keywords"
+msgid "Search for Web search keywords"
 msgstr "Cari untuk kata kunci pencarian web"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
@@ -854,8 +878,8 @@ msgstr "Tambahkan sebuah kata kunci pencarian Web baru"
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
-msgid "&New..."
-msgstr "&Baru..."
+msgid "&New…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -866,8 +890,8 @@ msgstr "Ubah kata kunci pencarian Web yang disorot"
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
-msgid "Chan&ge..."
-msgstr "Uba&h..."
+msgid "Ed&it…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -905,10 +929,16 @@ msgstr "Kata kunci pen&carian Web default:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
+#| "allows applications to automatically convert the typed word or phrase to "
+#| "web search keyword queries when they cannot be filtered into a proper "
+#| "URL. </p><p>To disable this functionality select <span style=\" font-"
+#| "weight:600;\">None</span> from the list. </p></body></html>"
 msgid ""
-"<html><head/><body><p>Select a default web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to web "
+"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to Web "
 "search keyword queries when they cannot be filtered into a proper URL. </"
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
@@ -962,19 +992,24 @@ msgid "Default"
 msgstr "Baku"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, kde-format
-msgid "Modify Web Shortcut"
-msgstr "Modifikasi Pintasan Web"
+#, fuzzy, kde-format
+#| msgid "Web Search Keywords"
+msgid "Edit Web Search Keyword"
+msgstr "Kata Kunci Pencarian Web"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, kde-format
-msgid "New Web Shortcut"
-msgstr "Pintasan Web Baru"
+#, fuzzy, kde-format
+#| msgid "Web Search Keywords"
+msgid "New Web Search Keyword"
+msgstr "Kata Kunci Pencarian Web"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
+#| "different one."
 msgid ""
-"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr "Pintasan \"%1\" telah ditugaskan ke \"%2\". Silakan pilih yang lain."
 
@@ -985,20 +1020,29 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The following shortcuts are already assigned. Please choose different "
+#| "ones.\n"
+#| "%1"
 msgid ""
-"The following shortcuts are already assigned. Please choose different ones.\n"
+"The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
 "Pintasan berikut telah ditugaskan. Silakan pilih yang lain.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
+#| "query.\n"
+#| "This means that the same page is always going to be visited, regardless "
+#| "of the text typed in with the shortcut."
 msgid ""
-"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
-"the text typed in with the shortcut."
+"the text typed in with the keyword."
 msgstr ""
 "Pintasan URL tidak berisi sebuah placeholder \\{...} untuk query pengguna.\n"
 "Ini berarti bahwa halaman yang sama selalu akan dikunjungi, apa pun yang "
@@ -1018,8 +1062,8 @@ msgstr "Masukkan nama dapat dibaca manusia dari penyedia pencarian di sini."
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
 #, kde-format
-msgid "Shortcut &name:"
-msgstr "&Nama pintasan"
+msgid "&Name:"
+msgstr "&Nama:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1060,9 +1104,10 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, kde-format
-msgid "Shortcut &URL:"
-msgstr "&URL Pintasan:"
+#, fuzzy, kde-format
+#| msgid "URL:"
+msgid "&URL:"
+msgstr "URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1078,12 +1123,17 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>\n"
+#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+#| "b>\n"
+#| "</qt>"
 msgid ""
 "<qt>\n"
-"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-"b>\n"
+"The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
 "<qt>\n"
@@ -1093,22 +1143,38 @@ msgstr ""
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#: webshortcuts/searchproviderdlg_ui.ui:107
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
+#| "here.</p></body></html>"
 msgid ""
-"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
-"</p></body></html>"
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword here.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>Masukkan nama dapat dibaca manusia dari penyedia "
+"pencarian di sini.</p></body></html>"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
+#| "here.</p></body></html>"
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword shortcut here.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>Masukkan nama dapat dibaca manusia dari penyedia "
 "pencarian di sini.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, kde-format
-msgid "&Shortcuts:"
-msgstr "&Pintasan:"
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Keywords"
+msgid "&Keywords:"
+msgstr "Katakunci"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1120,8 +1186,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, kde-format
-msgid "&Charset:"
+#, fuzzy, kde-format
+#| msgid "&Charset:"
+msgid "&Character set:"
 msgstr "&Perangkat Karakter:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
@@ -1129,6 +1196,27 @@ msgstr "&Perangkat Karakter:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sisipkan query placeholder"
+
+#~ msgid "&New..."
+#~ msgstr "&Baru..."
+
+#~ msgid "Chan&ge..."
+#~ msgstr "Uba&h..."
+
+#~ msgid "Modify Web Shortcut"
+#~ msgstr "Modifikasi Pintasan Web"
+
+#~ msgid "New Web Shortcut"
+#~ msgstr "Pintasan Web Baru"
+
+#~ msgid "Shortcut &name:"
+#~ msgstr "&Nama pintasan"
+
+#~ msgid "Shortcut &URL:"
+#~ msgstr "&URL Pintasan:"
+
+#~ msgid "&Shortcuts:"
+#~ msgstr "&Pintasan:"
 
 #, fuzzy
 #~| msgctxt "@info"
@@ -3967,9 +4055,6 @@ msgstr "Sisipkan query placeholder"
 #~ "tersebut telah ditentukan untuk dialog berkas, tetapi sebaliknya "
 #~ "beroperasi seperti markah di tempat lain dalam KDE.</qt>"
 
-#~ msgid "&Name:"
-#~ msgstr "&Nama:"
-
 #~ msgid ""
 #~ "<qt>While typing in the text area, you may be presented with possible "
 #~ "matches. This feature can be controlled by clicking with the right mouse "
@@ -6248,9 +6333,6 @@ msgstr "Sisipkan query placeholder"
 #~ msgid "U&RL"
 #~ msgstr "U&RL"
 
-#~ msgid "URL:"
-#~ msgstr "URL:"
-
 #~ msgid ""
 #~ "Could not save properties. Only entries on local file systems are "
 #~ "supported."
@@ -6824,9 +6906,6 @@ msgstr "Sisipkan query placeholder"
 #~ "tidak dapat dibaca oleh mata manusia. Untuk alasan keamanan, Anda mungkin "
 #~ "tidak ingin melakukannya, karena entri dengan kata sandi ditunjukkan "
 #~ "dengan jelas seperti itu.</p>"
-
-#~ msgid "Web Search Keywords"
-#~ msgstr "Kata Kunci Pencarian Web"
 
 #~ msgid "Configure enhanced browsing features"
 #~ msgstr "Konfigurasikan fitur penelusuran canggih"

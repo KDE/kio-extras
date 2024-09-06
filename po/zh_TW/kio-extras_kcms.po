@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-09-06 00:39+0000\n"
 "PO-Revision-Date: 2024-02-15 17:00+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -219,8 +219,9 @@ msgstr "直接連線到網際網路。"
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, kde-format
-msgid "No Proxy"
+#, fuzzy, kde-format
+#| msgid "No Proxy"
+msgid "No proxy"
 msgstr "沒有代理伺服器"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
@@ -336,8 +337,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, kde-format
-msgid "HTTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgid "HTTP proxy:"
 msgstr "HTTP 代理伺服器："
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
@@ -361,8 +363,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, kde-format
-msgid "SSL Proxy:"
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgid "SSL proxy:"
 msgstr "SSL 代理伺服器："
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
@@ -386,8 +389,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, kde-format
-msgid "FTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgid "FTP proxy:"
 msgstr "FTP 代理伺服器："
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
@@ -410,8 +414,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, kde-format
-msgid "SOCKS Proxy:"
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgid "SOCKS proxy:"
 msgstr "SOCKS 代理伺服器："
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
@@ -586,8 +591,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, kde-format
-msgid "Use proxy settings only for addresses in the Exceptions list"
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "只有在例外清單中的主機與 IP 才使用代理伺服器"
 
 #: trash/kcmtrash.cpp:141
@@ -688,18 +694,21 @@ msgid ""
 msgstr "<para>這是計算後垃圾桶最大會佔掉多少磁碟空間大小。</para>"
 
 #: trash/kcmtrash.cpp:289
-#, kde-format
-msgid "Show a Warning"
+#, fuzzy, kde-format
+#| msgid "Show a Warning"
+msgid "Show a warning"
 msgstr "顯示警告"
 
 #: trash/kcmtrash.cpp:290
-#, kde-format
-msgid "Delete Oldest Files From Trash"
+#, fuzzy, kde-format
+#| msgid "Delete Oldest Files From Trash"
+msgid "Delete oldest files from trash"
 msgstr "刪除垃圾桶裡最舊的檔案"
 
 #: trash/kcmtrash.cpp:291
-#, kde-format
-msgid "Delete Biggest Files From Trash"
+#, fuzzy, kde-format
+#| msgid "Delete Biggest Files From Trash"
+msgid "Delete biggest files from trash"
 msgstr "刪除垃圾桶裡最大的檔案"
 
 #: trash/kcmtrash.cpp:293
@@ -714,8 +723,9 @@ msgstr ""
 "動刪掉那些檔案。</para>"
 
 #: trash/kcmtrash.cpp:295
-#, kde-format
-msgid "Full Trash:"
+#, fuzzy, kde-format
+#| msgid "Full Trash:"
+msgid "Full trash:"
 msgstr "滿的垃圾桶："
 
 #: webshortcuts/ikwsopts.cpp:41
@@ -737,11 +747,16 @@ msgid "Preferred"
 msgstr "偏好"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgctxt "@info:tooltip"
+#| msgid ""
+#| "Check this box to select the highlighted web search keyword as preferred."
+#| "<nl/>Preferred web search keywords are used in places where only a few "
+#| "select keywords can be shown at one time."
 msgctxt "@info:tooltip"
 msgid ""
-"Check this box to select the highlighted web search keyword as preferred.<nl/"
-">Preferred web search keywords are used in places where only a few select "
+"Check this box to select the highlighted Web search keyword as preferred.<nl/"
+">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
 "勾選此選項來將突顯的網路搜尋關鍵字設為預設。<nl/>預設的網路搜尋關鍵字會在只能"
@@ -760,9 +775,17 @@ msgstr "搜尋過濾器(&I)"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+#| "search keywords allow you to quickly access or search for information "
+#| "located online or on your hard drive. </p><p>KDE comes with many "
+#| "predefined keywords. One such keyword can be used to perform a the Google "
+#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
+#| "keyword delimiter and the search term, e.g. <span style=\" font-"
+#| "weight:600;\">gg:KDE</span>.</p></body></html>"
 msgid ""
-"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
 "located online or on your hard drive. </p><p>KDE comes with many predefined "
 "keywords. One such keyword can be used to perform a the Google (TM) search; "
@@ -790,8 +813,9 @@ msgstr "只使用預設的關鍵字(&U)"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, kde-format
-msgid "Search for web search keywords"
+#, fuzzy, kde-format
+#| msgid "Search for web search keywords"
+msgid "Search for Web search keywords"
 msgstr "在網路搜尋關鍵字中進行搜尋"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
@@ -803,8 +827,8 @@ msgstr "新增網路搜尋關鍵字"
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
-msgid "&New..."
-msgstr "新增(&N)..."
+msgid "&New…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -815,8 +839,8 @@ msgstr "修改選取的網路搜尋關鍵字"
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
-msgid "Chan&ge..."
-msgstr "變更(&H)..."
+msgid "Ed&it…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -852,10 +876,16 @@ msgstr "預設網路搜尋關鍵字(&S)"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
+#| "allows applications to automatically convert the typed word or phrase to "
+#| "web search keyword queries when they cannot be filtered into a proper "
+#| "URL. </p><p>To disable this functionality select <span style=\" font-"
+#| "weight:600;\">None</span> from the list. </p></body></html>"
 msgid ""
-"<html><head/><body><p>Select a default web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to web "
+"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to Web "
 "search keyword queries when they cannot be filtered into a proper URL. </"
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
@@ -906,19 +936,24 @@ msgid "Default"
 msgstr "預設"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, kde-format
-msgid "Modify Web Shortcut"
-msgstr "變更網頁捷徑"
+#, fuzzy, kde-format
+#| msgid "Web Search Keywords"
+msgid "Edit Web Search Keyword"
+msgstr "網路搜尋關鍵字"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, kde-format
-msgid "New Web Shortcut"
-msgstr "新增網頁捷徑"
+#, fuzzy, kde-format
+#| msgid "Web Search Keywords"
+msgid "New Web Search Keyword"
+msgstr "網路搜尋關鍵字"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
+#| "different one."
 msgid ""
-"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr "捷徑 %1 已指定給 %2。請選擇不同的捷徑。"
 
@@ -929,20 +964,29 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The following shortcuts are already assigned. Please choose different "
+#| "ones.\n"
+#| "%1"
 msgid ""
-"The following shortcuts are already assigned. Please choose different ones.\n"
+"The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
 "以下的捷徑已經被指定。請選擇其它的捷徑。\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
+#| "query.\n"
+#| "This means that the same page is always going to be visited, regardless "
+#| "of the text typed in with the shortcut."
 msgid ""
-"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
-"the text typed in with the shortcut."
+"the text typed in with the keyword."
 msgstr ""
 "此捷徑網址不包含 \\{...} 符號。這表示不管輸入什麼文字，都會跑到同一個網址。"
 
@@ -960,8 +1004,8 @@ msgstr "在此輸入搜尋引擎的名稱。"
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
 #, kde-format
-msgid "Shortcut &name:"
-msgstr "捷徑名稱(&N)："
+msgid "&Name:"
+msgstr "名稱(&N):"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -997,9 +1041,10 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, kde-format
-msgid "Shortcut &URL:"
-msgstr "捷徑網址(&U)："
+#, fuzzy, kde-format
+#| msgid "URL:"
+msgid "&URL:"
+msgstr "URL："
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1013,12 +1058,17 @@ msgstr "選擇您的查詢字串所使用的字元集。"
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>\n"
+#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+#| "b>\n"
+#| "</qt>"
 msgid ""
 "<qt>\n"
-"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-"b>\n"
+"The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
 "<qt>在此輸入的捷徑可以做為 KDE 中的虛擬網址。例如，<b>av</b> 這個捷徑可以表"
@@ -1026,20 +1076,34 @@ msgstr ""
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#: webshortcuts/searchproviderdlg_ui.ui:107
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
+#| "here.</p></body></html>"
 msgid ""
-"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
-"</p></body></html>"
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword here.</p></body></html>"
+msgstr "<html><head/><body><p>輸入易於辨識的網頁捷徑名稱。</p></body></html>"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
+#| "here.</p></body></html>"
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword shortcut here.</p></body></html>"
 msgstr "<html><head/><body><p>輸入易於辨識的網頁捷徑名稱。</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, kde-format
-msgid "&Shortcuts:"
-msgstr "捷徑(&S)："
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Keywords"
+msgid "&Keywords:"
+msgstr "關鍵字"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1049,8 +1113,9 @@ msgstr "選擇您的查詢字串所使用的字元集"
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, kde-format
-msgid "&Charset:"
+#, fuzzy, kde-format
+#| msgid "&Charset:"
+msgid "&Character set:"
 msgstr "字元集(&C)："
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
@@ -1058,6 +1123,27 @@ msgstr "字元集(&C)："
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入查詢佔位符"
+
+#~ msgid "&New..."
+#~ msgstr "新增(&N)..."
+
+#~ msgid "Chan&ge..."
+#~ msgstr "變更(&H)..."
+
+#~ msgid "Modify Web Shortcut"
+#~ msgstr "變更網頁捷徑"
+
+#~ msgid "New Web Shortcut"
+#~ msgstr "新增網頁捷徑"
+
+#~ msgid "Shortcut &name:"
+#~ msgstr "捷徑名稱(&N)："
+
+#~ msgid "Shortcut &URL:"
+#~ msgstr "捷徑網址(&U)："
+
+#~ msgid "&Shortcuts:"
+#~ msgstr "捷徑(&S)："
 
 #~ msgctxt "@info"
 #~ msgid ""
@@ -3666,9 +3752,6 @@ msgstr "插入查詢佔位符"
 #~ "以添加、編輯或選擇書籤。<br /><br />這些書籤專用於檔案對話方塊，但是可以"
 #~ "像 KDE 其他地方的書籤一樣操作。</qt>"
 
-#~ msgid "&Name:"
-#~ msgstr "名稱(&N):"
-
 #~ msgid ""
 #~ "<qt>While typing in the text area, you may be presented with possible "
 #~ "matches. This feature can be controlled by clicking with the right mouse "
@@ -5794,9 +5877,6 @@ msgstr "插入查詢佔位符"
 #~ msgid "U&RL"
 #~ msgstr "URL(&R)"
 
-#~ msgid "URL:"
-#~ msgstr "URL："
-
 #~ msgid ""
 #~ "Could not save properties. Only entries on local file systems are "
 #~ "supported."
@@ -6328,9 +6408,6 @@ msgstr "插入查詢佔位符"
 #~ "您可以在此指定要用於存取共享資源的憑證。密碼將會儲存在本機，並加一點干擾用"
 #~ "的東西，讓肉眼無法直接讀出它們。出於安全性的理由，您可能不會想這樣做，因為"
 #~ "密碼被明確的指出來了。</p>"
-
-#~ msgid "Web Search Keywords"
-#~ msgstr "網路搜尋關鍵字"
 
 #~ msgid "Configure enhanced browsing features"
 #~ msgstr "設定增強式瀏覽功能"

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-09-06 00:39+0000\n"
 "PO-Revision-Date: 2024-03-06 18:29+0900\n"
 "Last-Translator: Ryuichi Yamada <ryuichi_ya220@outlook.jp>\n"
 "Language-Team: Japanese <kde-jp@kde.org>\n"
@@ -228,8 +228,9 @@ msgstr "インターネットに直接接続します。"
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, kde-format
-msgid "No Proxy"
+#, fuzzy, kde-format
+#| msgid "No Proxy"
+msgid "No proxy"
 msgstr "プロキシなし"
 
 # skip-rule: web-j
@@ -359,8 +360,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, kde-format
-msgid "HTTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgid "HTTP proxy:"
 msgstr "HTTP プロキシ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
@@ -392,8 +394,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, kde-format
-msgid "SSL Proxy:"
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgid "SSL proxy:"
 msgstr "SSL プロキシ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
@@ -425,8 +428,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, kde-format
-msgid "FTP Proxy:"
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgid "FTP proxy:"
 msgstr "FTP プロキシ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
@@ -457,8 +461,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, kde-format
-msgid "SOCKS Proxy:"
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgid "SOCKS proxy:"
 msgstr "SOCKS プロキシ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
@@ -649,8 +654,9 @@ msgstr "このリストにある場合だけプロキシを使う"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, kde-format
-msgid "Use proxy settings only for addresses in the Exceptions list"
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "例外リストにあるアドレスに接続する場合のみプロキシ設定を使う"
 
 #: trash/kcmtrash.cpp:141
@@ -757,18 +763,21 @@ msgid ""
 msgstr "<para>ごみ箱が最大で使用できるディスク領域の量です。</para>"
 
 #: trash/kcmtrash.cpp:289
-#, kde-format
-msgid "Show a Warning"
+#, fuzzy, kde-format
+#| msgid "Show a Warning"
+msgid "Show a warning"
 msgstr "警告を表示"
 
 #: trash/kcmtrash.cpp:290
-#, kde-format
-msgid "Delete Oldest Files From Trash"
+#, fuzzy, kde-format
+#| msgid "Delete Oldest Files From Trash"
+msgid "Delete oldest files from trash"
 msgstr "最も古いファイルを削除する"
 
 #: trash/kcmtrash.cpp:291
-#, kde-format
-msgid "Delete Biggest Files From Trash"
+#, fuzzy, kde-format
+#| msgid "Delete Biggest Files From Trash"
+msgid "Delete biggest files from trash"
 msgstr "最も大きいファイルを削除する"
 
 #: trash/kcmtrash.cpp:293
@@ -784,8 +793,9 @@ msgstr ""
 "削除せずに警告メッセージを表示します。</para>"
 
 #: trash/kcmtrash.cpp:295
-#, kde-format
-msgid "Full Trash:"
+#, fuzzy, kde-format
+#| msgid "Full Trash:"
+msgid "Full trash:"
 msgstr "ごみ箱が満杯:"
 
 #: webshortcuts/ikwsopts.cpp:41
@@ -810,8 +820,8 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
-"Check this box to select the highlighted web search keyword as preferred.<nl/"
-">Preferred web search keywords are used in places where only a few select "
+"Check this box to select the highlighted Web search keyword as preferred.<nl/"
+">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
 
@@ -830,7 +840,7 @@ msgstr "検索フィルタ(&I)"
 #: webshortcuts/ikwsopts_ui.ui:17
 #, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
 "located online or on your hard drive. </p><p>KDE comes with many predefined "
 "keywords. One such keyword can be used to perform a the Google (TM) search; "
@@ -855,7 +865,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:37
 #, fuzzy, kde-format
 #| msgid "Search for shortcut"
-msgid "Search for web search keywords"
+msgid "Search for Web search keywords"
 msgstr "ショートカットを検索"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
@@ -868,8 +878,8 @@ msgstr "新しいウェブショートカットを追加する"
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
-msgid "&New..."
-msgstr "新規(&N)..."
+msgid "&New…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -881,8 +891,8 @@ msgstr "新しいウェブショートカットを追加する"
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
-msgid "Chan&ge..."
-msgstr "変更(&G)..."
+msgid "Ed&it…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -921,8 +931,8 @@ msgstr "デフォルトのウェブ検索キーワード(&S):"
 #: webshortcuts/ikwsopts_ui.ui:166
 #, kde-format
 msgid ""
-"<html><head/><body><p>Select a default web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to web "
+"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to Web "
 "search keyword queries when they cannot be filtered into a proper URL. </"
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
@@ -970,19 +980,24 @@ msgid "Default"
 msgstr "デフォルト"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, kde-format
-msgid "Modify Web Shortcut"
-msgstr "ウェブショートカットを変更する"
+#, fuzzy, kde-format
+#| msgid "&Enable Web search keywords"
+msgid "Edit Web Search Keyword"
+msgstr "ウェブ検索キーワードを有効にする(&E)"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, kde-format
-msgid "New Web Shortcut"
-msgstr "新しいウェブショートカット"
+#, fuzzy, kde-format
+#| msgid "Add a new Web shortcut"
+msgid "New Web Search Keyword"
+msgstr "新しいウェブショートカットを追加する"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
+#| "different one."
 msgid ""
-"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr ""
 "ショートカット「%1」は既に「%2」に割り当てられています。別のものを選んでくだ"
@@ -995,9 +1010,13 @@ msgid "- %1: \"%2\""
 msgstr "- %1: 「%2」"
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The following shortcuts are already assigned. Please choose different "
+#| "ones.\n"
+#| "%1"
 msgid ""
-"The following shortcuts are already assigned. Please choose different ones.\n"
+"The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
 "以下のショートカットは既に割り当てられています。別のものを選んでください。\n"
@@ -1005,11 +1024,16 @@ msgstr ""
 
 # warningContinueCancel
 #: webshortcuts/searchproviderdlg.cpp:143
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
+#| "query.\n"
+#| "This means that the same page is always going to be visited, regardless "
+#| "of the text typed in with the shortcut."
 msgid ""
-"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
-"the text typed in with the shortcut."
+"the text typed in with the keyword."
 msgstr ""
 "ショートカット URL は検索のための \\{...} プレースホルダを含んでいません。\n"
 "したがって、常に同じページに行きます。"
@@ -1027,9 +1051,11 @@ msgstr "検索プロバイダの名前を入力します。"
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, kde-format
-msgid "Shortcut &name:"
-msgstr "ショートカット名(&N):"
+#, fuzzy, kde-format
+#| msgctxt "@title:column Name label from web search keyword column"
+#| msgid "Name"
+msgid "&Name:"
+msgstr "名前"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1069,8 +1095,8 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
 #, kde-format
-msgid "Shortcut &URL:"
-msgstr "ショートカット URL(&U):"
+msgid "&URL:"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1084,12 +1110,17 @@ msgstr "検索語のエンコードに使用する文字セットを選択して
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>\n"
+#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
+#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
+#| "b>\n"
+#| "</qt>"
 msgid ""
 "<qt>\n"
-"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-"b>\n"
+"The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
 "<qt>\n"
@@ -1098,22 +1129,38 @@ msgstr ""
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#: webshortcuts/searchproviderdlg_ui.ui:107
-#, kde-format
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
+#| "here.</p></body></html>"
 msgid ""
-"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
-"</p></body></html>"
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword here.</p></body></html>"
+msgstr ""
+"<html><head/><body><p>ウェブショートカットの名前を入力します。</p></body></"
+"html>"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, fuzzy, kde-format
+#| msgid ""
+#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
+#| "here.</p></body></html>"
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword shortcut here.</p></body></html>"
 msgstr ""
 "<html><head/><body><p>ウェブショートカットの名前を入力します。</p></body></"
 "html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, kde-format
-msgid "&Shortcuts:"
-msgstr "ショートカット:"
+#, fuzzy, kde-format
+#| msgctxt "@title:column"
+#| msgid "Keywords"
+msgid "&Keywords:"
+msgstr "キーワード"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1124,8 +1171,9 @@ msgstr "検索語のエンコードに使用する文字セットを選択しま
 # ACCELERATOR changed by translator
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, kde-format
-msgid "&Charset:"
+#, fuzzy, kde-format
+#| msgid "&Charset:"
+msgid "&Character set:"
 msgstr "文字セット(&T):"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
@@ -1135,6 +1183,27 @@ msgstr "文字セット(&T):"
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "インターレースモード"
+
+#~ msgid "&New..."
+#~ msgstr "新規(&N)..."
+
+#~ msgid "Chan&ge..."
+#~ msgstr "変更(&G)..."
+
+#~ msgid "Modify Web Shortcut"
+#~ msgstr "ウェブショートカットを変更する"
+
+#~ msgid "New Web Shortcut"
+#~ msgstr "新しいウェブショートカット"
+
+#~ msgid "Shortcut &name:"
+#~ msgstr "ショートカット名(&N):"
+
+#~ msgid "Shortcut &URL:"
+#~ msgstr "ショートカット URL(&U):"
+
+#~ msgid "&Shortcuts:"
+#~ msgstr "ショートカット:"
 
 #~ msgctxt "@info"
 #~ msgid ""

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-09-06 00:39+0000\n"
 "PO-Revision-Date: 2009-01-09 21:08-0800\n"
 "Last-Translator: Deepayan Sarkar <deepayan.sarkar@gmail.com>\n"
 "Language-Team: en_US <kde-translation@bengalinux.org>\n"
@@ -222,7 +222,7 @@ msgstr "ইন্টারনেট-এ সরাসরি যোগাযোগ
 #: proxy/kproxydlg.ui:29
 #, fuzzy, kde-format
 #| msgid "&Proxy"
-msgid "No Proxy"
+msgid "No proxy"
 msgstr "প্রক্সি (&প)"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
@@ -323,7 +323,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
 #, fuzzy, kde-format
 #| msgid "&Proxy"
-msgid "HTTP Proxy:"
+msgid "HTTP proxy:"
 msgstr "প্রক্সি (&প)"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
@@ -344,7 +344,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
 #, fuzzy, kde-format
 #| msgid "&Proxy"
-msgid "SSL Proxy:"
+msgid "SSL proxy:"
 msgstr "প্রক্সি (&প)"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
@@ -365,7 +365,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
 #, fuzzy, kde-format
 #| msgid "&Proxy"
-msgid "FTP Proxy:"
+msgid "FTP proxy:"
 msgstr "প্রক্সি (&প)"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
@@ -385,7 +385,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
 #, fuzzy, kde-format
 #| msgid "&Proxy"
-msgid "SOCKS Proxy:"
+msgid "SOCKS proxy:"
 msgstr "প্রক্সি (&প)"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
@@ -548,7 +548,7 @@ msgstr "শুধু এই তালিকাভুক্ত এন্ট্র
 #: proxy/kproxydlg.ui:642
 #, fuzzy, kde-format
 #| msgid "Use proxy only for entries in this list"
-msgid "Use proxy settings only for addresses in the Exceptions list"
+msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "শুধু এই তালিকাভুক্ত এন্ট্রিগুলির জন্য প্রক্সি ব্যবহার করো"
 
 #: trash/kcmtrash.cpp:141
@@ -645,19 +645,19 @@ msgstr ""
 
 #: trash/kcmtrash.cpp:289
 #, fuzzy, kde-format
-msgid "Show a Warning"
+msgid "Show a warning"
 msgstr "পরীক্ষা করা হচ্ছে"
 
 #: trash/kcmtrash.cpp:290
 #, fuzzy, kde-format
 #| msgid "Delete File(s) Progress"
-msgid "Delete Oldest Files From Trash"
+msgid "Delete oldest files from trash"
 msgstr "ফাইল মোছা চলছে"
 
 #: trash/kcmtrash.cpp:291
 #, fuzzy, kde-format
 #| msgid "Delete File(s) Progress"
-msgid "Delete Biggest Files From Trash"
+msgid "Delete biggest files from trash"
 msgstr "ফাইল মোছা চলছে"
 
 #: trash/kcmtrash.cpp:293
@@ -671,7 +671,7 @@ msgstr ""
 
 #: trash/kcmtrash.cpp:295
 #, fuzzy, kde-format
-msgid "Full Trash:"
+msgid "Full trash:"
 msgstr "ক্যাশ (Cache) ফাঁকা করো"
 
 #: webshortcuts/ikwsopts.cpp:41
@@ -697,8 +697,8 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
-"Check this box to select the highlighted web search keyword as preferred.<nl/"
-">Preferred web search keywords are used in places where only a few select "
+"Check this box to select the highlighted Web search keyword as preferred.<nl/"
+">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
 
@@ -718,7 +718,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:17
 #, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
 "located online or on your hard drive. </p><p>KDE comes with many predefined "
 "keywords. One such keyword can be used to perform a the Google (TM) search; "
@@ -744,7 +744,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:37
 #, fuzzy, kde-format
 #| msgid "Default password:"
-msgid "Search for web search keywords"
+msgid "Search for Web search keywords"
 msgstr "ডিফল্ট পাসওয়ার্ড:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
@@ -757,8 +757,8 @@ msgstr "ডিফল্ট পাসওয়ার্ড:"
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
-msgid "&New..."
-msgstr "&নতুন..."
+msgid "&New…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -770,8 +770,8 @@ msgstr "ডিফল্ট পাসওয়ার্ড:"
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
-msgid "Chan&ge..."
-msgstr "পরি&বর্তন..."
+msgid "Ed&it…"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -808,8 +808,8 @@ msgstr "ডিফল্ট পাসওয়ার্ড:"
 #: webshortcuts/ikwsopts_ui.ui:166
 #, kde-format
 msgid ""
-"<html><head/><body><p>Select a default web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to web "
+"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+"allows applications to automatically convert the typed word or phrase to Web "
 "search keyword queries when they cannot be filtered into a proper URL. </"
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
@@ -856,19 +856,21 @@ msgid "Default"
 msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, kde-format
-msgid "Modify Web Shortcut"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Search"
+msgid "Edit Web Search Keyword"
+msgstr "সন্ধান"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, kde-format
-msgid "New Web Shortcut"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "Search"
+msgid "New Web Search Keyword"
+msgstr "সন্ধান"
 
 #: webshortcuts/searchproviderdlg.cpp:121
 #, kde-format
 msgid ""
-"The shortcut \"%1\" is already assigned to \"%2\". Please choose a different "
+"The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr ""
 
@@ -881,16 +883,16 @@ msgstr "%1 %"
 #: webshortcuts/searchproviderdlg.cpp:130
 #, kde-format
 msgid ""
-"The following shortcuts are already assigned. Please choose different ones.\n"
+"The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:143
 #, kde-format
 msgid ""
-"The Shortcut URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
-"the text typed in with the shortcut."
+"the text typed in with the keyword."
 msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:147
@@ -907,10 +909,9 @@ msgstr "FTP প্রক্সি সার্ভারের ঠিকানা
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, fuzzy, kde-format
-#| msgid "Site Name"
-msgid "Shortcut &name:"
-msgstr "সাইটের নাম"
+#, kde-format
+msgid "&Name:"
+msgstr "নাম (&ন):"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -937,9 +938,10 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, kde-format
-msgid "Shortcut &URL:"
-msgstr ""
+#, fuzzy, kde-format
+#| msgid "URL:"
+msgid "&URL:"
+msgstr "ইউ-আর-এল:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -956,26 +958,33 @@ msgstr ""
 #, kde-format
 msgid ""
 "<qt>\n"
-"The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-"example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-"b>\n"
+"The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
+"example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#: webshortcuts/searchproviderdlg_ui.ui:107
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Enter the address of the FTP proxy server."
 msgid ""
-"<html><head/><body><p>Enter the human-readable name of the web shortcut here."
-"</p></body></html>"
-msgstr ""
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword here.</p></body></html>"
+msgstr "FTP প্রক্সি সার্ভারের ঠিকানা লিখুন।"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
+#: webshortcuts/searchproviderdlg_ui.ui:107
+#, fuzzy, kde-format
+#| msgid "Enter the address of the FTP proxy server."
+msgid ""
+"<html><head/><body><p>Enter the human-readable name of the Web search "
+"keyword shortcut here.</p></body></html>"
+msgstr "FTP প্রক্সি সার্ভারের ঠিকানা লিখুন।"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
 #, kde-format
-msgid "&Shortcuts:"
+msgid "&Keywords:"
 msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
@@ -987,7 +996,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
 #, kde-format
-msgid "&Charset:"
+msgid "&Character set:"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
@@ -995,6 +1004,17 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "&New..."
+#~ msgstr "&নতুন..."
+
+#~ msgid "Chan&ge..."
+#~ msgstr "পরি&বর্তন..."
+
+#, fuzzy
+#~| msgid "Site Name"
+#~ msgid "Shortcut &name:"
+#~ msgstr "সাইটের নাম"
 
 #~ msgid "You have to restart KDE for these changes to take effect."
 #~ msgstr ""
@@ -2414,9 +2434,6 @@ msgstr ""
 #~ msgid "Bookmarks"
 #~ msgstr "বুকমার্ক"
 
-#~ msgid "&Name:"
-#~ msgstr "নাম (&ন):"
-
 #~ msgid "This is the name of the file to open."
 #~ msgstr "যে ফাইলটি খোলা হবে তার নাম।"
 
@@ -3637,9 +3654,6 @@ msgstr ""
 #~ msgid "U&RL"
 #~ msgstr "ইউ-আ&র-এল"
 
-#~ msgid "URL:"
-#~ msgstr "ইউ-আর-এল:"
-
 #, fuzzy
 #~| msgid "Only executables on local file systems are supported."
 #~ msgid ""
@@ -4018,11 +4032,6 @@ msgstr ""
 #~ "করবে। যদি আপনি একাধিকবার  টাইম-আউটের সম্মুখীন হন বা যদি আপনি  ইন্টারনেট "
 #~ "যোগাযোগের জন্য মোডেম ব্যবহার  করেন, তা হলে এই মানগুলি পরিবর্তন  করলে আপনার "
 #~ "সুবিধা হতে পারে। "
-
-#, fuzzy
-#~| msgid "Search"
-#~ msgid "Web Search Keywords"
-#~ msgstr "সন্ধান"
 
 #, fuzzy
 #~ msgid "Configure enhanced browsing features"
