@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-02-25 17:03+0100\n"
-"Last-Translator: Jure Repinc <jlp@holodeck1.com>\n"
+"PO-Revision-Date: 2024-09-06 08:14+0200\n"
+"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Lokalize 24.04.70\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -249,10 +249,9 @@ msgstr "Neposredno se poveži na internet."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "No proxy"
-msgstr "Brez posredniškega strežnika"
+msgstr "Ni posrednika"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:46
@@ -371,10 +370,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
-msgstr "Posredniški strežnik HTTP:"
+msgstr "Posrednik HTTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -398,10 +396,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
-msgstr "Posredniški strežnik SSL:"
+msgstr "Posrednik SSL:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -425,10 +422,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
-msgstr "Posredniški strežnik FTP:"
+msgstr "Posrednik FTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:263
@@ -451,10 +447,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
-msgstr "Posredniški strežnik SOCKS:"
+msgstr "Posrednik SOCKS:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:285
@@ -635,11 +630,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr ""
-"Nastavitve posredniškega strežnika uporabi le za naslove na seznamu Izjeme"
+msgstr "Uporabi nastavitve posrednika samo za naslove na seznamu izjem"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -753,22 +746,19 @@ msgstr ""
 "za smeti.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
 msgstr "Prikaži opozorilo"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
-msgstr "Izbriši najstarejše datoteke"
+msgstr "Izbriši najstarejše datoteke iz smeti"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
-msgstr "Izbriši največje datoteke"
+msgstr "Izbriši največje datoteke iz smeti"
 
 #: trash/kcmtrash.cpp:293
 #, kde-kuit-format
@@ -783,8 +773,7 @@ msgstr ""
 "brisanja datotek prejeli opozorilo o doseženi omejitvi.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
 msgstr "Polne smeti:"
 
@@ -807,20 +796,15 @@ msgid "Preferred"
 msgstr "Prednostna"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
 ">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
-"Označite to polje, da izberete osvetljeno ključno besedo iskanja po spletu "
-"kot prednostno.<nl/>Prednostne ključne besede iskanja po spletu se uporabijo "
+"Označite to polje, da izberete osvetljeno ključno besedo spletnega iskanja "
+"kot prednostno.<nl/>Prednostne ključne besede spletnega iskanja se uporabijo "
 "na mestih kjer je mogoče prikazati le nekaj izbranih ključnih besed naenkrat."
 
 #: webshortcuts/ikwsopts.cpp:205
@@ -836,15 +820,7 @@ msgstr "Iskalni f&iltri"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -854,13 +830,14 @@ msgid ""
 "delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
 "KDE</span>.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Omogočite ali onemogočite spletne bližnjice.</"
-"p><p>Spletne bližnjice vam omogočajo, da hitro dostopate do podatkov ali "
-"poiščete podatke, ki se nahajajo na spletu ali na vašem trdem disku.</"
-"p><p>Precej spletnih bližnjic je določenih že vnaprej. Ena izmed njih je "
-"bližnjica za Wikipedijo. Da jo uporabite preprosto vnesite ključno besedo "
-"»wp«, razmejilnik ključnih besed in iskani izraz. Primer: <span style=\" "
-"font-weight:600;\">wp:KDE</span>.</p></body></html>"
+"<html><head/><body><p>Omogoči ali onemogoči ključne besede spletnega "
+"iskanja. </p><p>Ključne besede spletnega iskanja vam omogočajo hiter dostop "
+"do informacij ali njihovo iskanje na spletu ali na vašem trdem disku. </"
+"p><p>KDE ima veliko vnaprej določenih ključnih besed. Eno takšno ključno "
+"besedo lahko uporabite za iskanje Google (TM); če ga želite uporabiti, "
+"preprosto vtipkate ključno besedo 'gg', ki ji sledita ločilo ključnih besed "
+"in iskalni izraz, npr. <span style=\" font-weight:600;\">gg:KDE</span>.</p></"
+"body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -876,8 +853,7 @@ msgstr "&Uporabi samo prednostne ključne besede"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
 msgstr "Išči ključne besede spletnega iskanja"
 
@@ -891,7 +867,7 @@ msgstr "Dodaj novo ključno besedo spletnega iskanja"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&Nova…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -903,7 +879,7 @@ msgstr "Spremeni označeno ključno besedo spletnega iskanja"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "Ured&i…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -942,13 +918,7 @@ msgstr "Privzeta ključna beseda &spletnega iskanja:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -956,12 +926,12 @@ msgid ""
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
 msgstr ""
-"<html><head/><body><p>Izberite privzeto ključno besedo spletnega iskanja.</"
-"p><p>Ta programom omogoča, da samodejno pretvorijo vneseno besedo ali frazo "
-"v poizvedbo ključne besede spletnega iskanja, če vnesenega ni mogoče "
-"pretvoriti v spletni naslov pravilne oblike.</p><p>Da to funkcijo "
-"onemogočite, s seznama izberite <span style=\" font-weight:600;\">Brez</"
-"span>.</p></body></html>"
+"<html><head/><body><p>Izberite privzeto ključno besedo spletnega iskanja. </"
+"p><p>To omogoča aplikacijam, da samodejno pretvorijo vneseno besedo ali "
+"besedno zvezo v ključne poizvedbe spletnega iskanja, če jih ni mogoče "
+"filtrirati v ustrezen URL. </p><p>Če želite onemogočiti to funkcijo, na "
+"seznamu izberite <span style=\" font-weight:600;\">Brez</span>. </p></body></"
+"html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
@@ -1006,26 +976,21 @@ msgid "Default"
 msgstr "Privzeto"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "Ključne besede iskanja po spletu"
+msgstr "Uredi ključno besedo spletnega iskanja"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "Ključne besede iskanja po spletu"
+msgstr "Nova ključna beseda spletnega iskanja"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr "Bližnjica »%1« je že dodeljena »%2«. Izberite drugo."
+msgstr "Ključna beseda \"%1\" je že dodeljena \"%2\" Izberite drugo."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -1034,34 +999,24 @@ msgid "- %1: \"%2\""
 msgstr "– %1: »%2«"
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Naslednje bližnjice so že dodeljene. Izberite druge.\n"
+"Naslednje ključne besede so že dodeljene. Izberite druge.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"Naslov URL spletne bližnjice ne vsebuje vsebnika \\{…} za vnos uporabniške "
-"poizvedbe.\n"
-"To pomeni, da bo ne glede na besedilo vneseno z bližnjico, vedno obiskana "
-"ista stran."
+"URL ne vsebuje vsebnika \\{…} uporabniške poizvedbe.\n"
+"To pomeni, da bo vedno obiskana ista stran, ne glede na besedilo vpisano s "
+"ključno besedo."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1118,10 +1073,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, fuzzy, kde-format
-#| msgid "URL:"
+#, kde-format
 msgid "&URL:"
-msgstr "URL:"
+msgstr "&URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1135,13 +1089,7 @@ msgstr "Izberite nabor znakov v katerem bo kodirana iskalna poizvedba."
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1149,44 +1097,36 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Bližnjice, ki jih vnesete sem, lahko uporabite kot predpono v naslovni "
-"vrstici. Na primer, bližnjico <b>av</b> lahko uporabite kot <b>av</b>:"
-"<b>moje iskanje</b>\n"
+"Tu vnesene ključne besede lahko uporabite kot shemo psevdo-URI v KDE. Na "
+"primer, ključno besedo <b>av</b> lahko uporabite kot <b>av</b>:<b>moje "
+"iskanje</b>\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Sem vnesite človeško berljivo ime spletne bližnjice.</"
-"p></body></html>"
+"<html><head/><body><p>Tukaj vnesite človeku berljivo ime ključne besede "
+"spletnega iskanja.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Sem vnesite človeško berljivo ime spletne bližnjice.</"
-"p></body></html>"
+"<html><head/><body><p>Tukaj vnesite človeku berljivo ime bližnjice ključne "
+"besede spletnega iskanja.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "Ključne besede"
+msgstr "Ključne besede:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1196,10 +1136,9 @@ msgstr "Izberite nabor znakov v katerem bo kodirana iskalna poizvedba"
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
-msgstr "&Nabor znakov:"
+msgstr "Nabor znakov:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158

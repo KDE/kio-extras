@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-02-14 05:15+0100\n"
+"PO-Revision-Date: 2024-09-06 04:22+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -227,8 +227,7 @@ msgstr "ინტერენტთან პირდაპირ მიერ�
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "No proxy"
 msgstr "პროქსის გარეშე"
 
@@ -349,8 +348,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
 msgstr "HTTP პროქსი:"
 
@@ -376,8 +374,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
 msgstr "SSL პროქსი:"
 
@@ -403,8 +400,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
 msgstr "FTP პროქსი:"
 
@@ -429,8 +425,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
 msgstr "SOCKS პროქსი:"
 
@@ -614,12 +609,11 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr ""
-"პროქსის პარამეტრების მხოლოდ გამონაკლისების სიაში ჩამოთვლილი მისამართებისთვის "
-"გამოყენება"
+"პროქსის პარამეტრების, მხოლოდ, გამონაკლისების სიაში ჩამოთვლილი "
+"მისამართებისთვის გამოყენება"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -730,22 +724,19 @@ msgstr ""
 "იქნება გამოყენებული.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
 msgstr "გაფრთხილების ჩვენება"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
-msgstr "ნაგვიდან უძველესი ფაილების წაშლა"
+msgstr "უძველესი ფაილების წაშლა სანაგვე ყუთიდან"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
-msgstr "ნაგვიდან უდიდესი ფაილების წაშლა"
+msgstr "უდიდესი ფაილების წაშლა სანაგვე ყუთიდან"
 
 #: trash/kcmtrash.cpp:293
 #, kde-kuit-format
@@ -759,10 +750,9 @@ msgstr ""
 "დაყენებულია, რომ შეგატყობინოთ, ფაილის წაშლის მაგიერ ის ამას ჩაიდენს.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
-msgstr "სანაგვე სავსეა:"
+msgstr "სავსე ნაგვის ყუთი:"
 
 #: webshortcuts/ikwsopts.cpp:41
 #, kde-format
@@ -783,21 +773,16 @@ msgid "Preferred"
 msgstr "მირჩევნია"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
 ">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
-"ჩართეთ ეს გამოკვეთილი ვების ძებნის საკვანძო სიტყვის სასურველად მოსანიშნად. "
-"<nl/>არჩეული ვების ძებნის საკვანძო სიტყვები გამოიყენება ადგილებში, სადაც "
-"მხოლოდ რამდენიმე საკვანძო სიტყვის მითითება შეგიძლიათ."
+"ჩართეთ ეს გამოკვეთილი ვების ძებნის საკვანძო სიტყვის რჩეულად მოსანიშნად. <nl/"
+">რჩეული ვების ძებნის საკვანძო სიტყვები გამოიყენება ადგილებში, სადაც მხოლოდ "
+"რამდენიმე საკვანძო სიტყვის მითითება შეგიძლიათ."
 
 #: webshortcuts/ikwsopts.cpp:205
 #, kde-format
@@ -812,15 +797,7 @@ msgstr "&ფილტრების ძებნა"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -852,8 +829,7 @@ msgstr "&მხოლოდ სასურველი საკვანძო
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
 msgstr "ვებ-ძებნის საკვანძო სიტყვის ძებნა"
 
@@ -867,19 +843,19 @@ msgstr "ვებ-ძებნის საკვანძო სიტყვი
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&ახალი…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
-msgstr "ვებ-ძებნის საკვანძო სიტყვის ჩასწორება"
+msgstr "ვებ-ძებნის გამოკვეთილი საკვანძო სიტყვის ჩასწორება"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "&ჩასწორება…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -917,13 +893,7 @@ msgstr "ნაგულისხმები ვებ-&ძებნის ს�
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -980,26 +950,21 @@ msgid "Default"
 msgstr "ნაგულისხმები"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "ვებში ძებნის საკვანძო სიტყვები"
+msgstr "ვებში ძებნის საკვანძო სიტყვის ჩასწორება"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "ვებში ძებნის საკვანძო სიტყვები"
+msgstr "ახალი ვებში ძებნის საკვანძო სიტყვა"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr "მალსახმობი \"%1\" უკვე მინიჭებულია \"%2\"-ზე. აირჩიეთ სხვა მალსახმობი."
+msgstr "საკვანძო სიტყვა \"%1\" უკვე მინიჭებულია \"%2\"-ზე. აირჩიეთ სხვა."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -1008,33 +973,24 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"შემდეგი მალსახმობები უკვე მინიჭებულია. აირჩიეთ სხვა მალსახმობები.\n"
+"შემდეგი საკვანძო სიტყვები უკვე მინიჭებულია. აირჩიეთ სხვა.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"მალსახმობის URL არ შეიცავს \\{...} ადგილმჭერს მომხმარებლის მოთხოვნისთვის.\n"
-"ეს ნიშნავს, რომ შეხვალთ იგივე გვერდზე იმის იუხედავად, რა ტექსტი აკრიფეთ ამ "
-"მალსახმობით."
+"URL არ შეიცავს \\{...} ადგილმჭერს მომხმარებლის მოთხოვნისთვის.\n"
+"ეს ნიშნავს, რომ შეხვალთ იგივე გვერდზე იმის მიუხედავად, რა ტექსტი აკრიფეთ ამ "
+"საკვანძო სიტყვასთან ერთად."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1093,10 +1049,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, fuzzy, kde-format
-#| msgid "URL:"
+#, kde-format
 msgid "&URL:"
-msgstr "მისამართი:"
+msgstr "&URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1112,13 +1067,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1133,10 +1082,7 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
@@ -1146,10 +1092,7 @@ msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
@@ -1159,11 +1102,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "საკვანძო სიტყვები"
+msgstr "სა&კვანძო სიტყვები:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1175,10 +1116,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
-msgstr "&კოდირება:"
+msgstr "სიმბოლოთა ნა&კრები:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158

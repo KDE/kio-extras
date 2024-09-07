@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-02-15 00:27+0100\n"
+"PO-Revision-Date: 2024-09-06 22:36+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.08.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ksaveioconfig.cpp:163
@@ -237,10 +237,9 @@ msgstr "Konektatu internetera zuzenean."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "No proxy"
-msgstr "Proxyrik ez"
+msgstr "Ordezkaririk ez"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:46
@@ -361,10 +360,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
-msgstr "HTTP proxya:"
+msgstr "HTTP ordezkaria:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -388,10 +386,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
-msgstr "SSL proxya:"
+msgstr "SSL ordezkaria:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -415,10 +412,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
-msgstr "FTP proxya:"
+msgstr "FTP ordezkaria:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:263
@@ -441,10 +437,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
-msgstr "SOCKS proxya:"
+msgstr "SOCKS ordezkaria:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:285
@@ -623,10 +618,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "Erabili proxy ezarpena soilik salbuespen-zerrendako helbideekin"
+msgstr "Erabili ordezkari ezarpenak salbuespen-zerrendako helbideekin bakarrik"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -739,20 +733,17 @@ msgstr ""
 "gehienez.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
 msgstr "Erakutsi abisu bat"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Ezabatu zakarrontziko fitxategi zaharrenak"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Ezabatu zakarrontziko fitxategi handienak"
 
@@ -769,8 +760,7 @@ msgstr ""
 "fitxategiak automatikoki ezabatu ordez.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
 msgstr "Zakarrontzi betea:"
 
@@ -793,12 +783,7 @@ msgid "Preferred"
 msgstr "Hobetsia"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
@@ -822,15 +807,7 @@ msgstr "Bilaketa &iragazkiak"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -840,20 +817,20 @@ msgid ""
 "delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
 "KDE</span>.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Gaitu edo ezgaitu web bilaketa gako-hitzak.</p> <p>Web "
-"bilaketa gako-hitzek lerroan edo zure disko zurrunean kokatutako informazioa "
-"azkar atzitzen edo bilatzen uzten dizute. </p><p>KDE aurrez definitutako web "
-"bilaketagako-hitz ugarirekin dator. Horrelako web lasterbide bat Google (TM) "
-"bilaketa lasterbidea da. Hau erabiltzeko, nahikoa da 'gg' gako-hitza "
-"tekleatzea, jarraian gako-hitzaren mugatzailea eta bilatu beharreko "
-"terminoa, adib. <span style=\" font-weight:600;\">gg:KDE</span>.</p></body></"
-"html>"
+"<html><head/><body><p>Gaitu edo ezgaitu web bilaketako gako-hitzak.</"
+"p><p>Web bilaketako gako-hitzek lerroan edo zure disko zurrunean kokatutako "
+"informazioa azkar atzitzen edo bilatzen uzten dizute. </p><p>KDE aurrez "
+"definitutako web bilaketako gako-hitz ugarirekin dator. Horrelako web "
+"lasterbide bat Google (TM) bilaketa lasterbidea da. Hau erabiltzeko, nahikoa "
+"da 'gg' gako-hitza tekleatzea, jarraian gako-hitzaren mugatzailea eta bilatu "
+"beharreko terminoa, adib. <span style=\" font-weight:600;\">gg:KDE</span>. </"
+"p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
 #, kde-format
 msgid "&Enable Web search keywords"
-msgstr "&Gaitu web bilaketa gako-hitzak"
+msgstr "&Gaitu web bilaketako gako-hitzak"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:30
@@ -863,40 +840,39 @@ msgstr "E&rabili soilik hobetsitako gako-hitzak"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
-msgstr "Bilatu web bilaketa gako-hitzak"
+msgstr "Bilatu web bilaketako gako-hitzak"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:71
 #, kde-format
 msgid "Add a new Web search keyword"
-msgstr "Gehitu web bilaketa gako-hitz berri bat"
+msgstr "Gehitu web bilaketako gako-hitz berri bat"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&Berria…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
-msgstr "Aldatu nabarmendutako web bilaketa gako-hitza"
+msgstr "Aldatu nabarmendutako web bilaketako gako-hitza"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "Ed&itatu…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
-msgstr "Ezabatu nabarmendutako web bilaketa gako-hitza"
+msgstr "Ezabatu nabarmendutako web bilaketako gako-hitza"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:100
@@ -925,17 +901,11 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:141
 #, kde-format
 msgid "Default Web &search keyword:"
-msgstr "Lehenetsitako web bila&keta gako-hitza:"
+msgstr "Lehenetsitako web bila&ketako gako-hitza:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -943,11 +913,12 @@ msgid ""
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
 msgstr ""
-"<html><head/><body><p>Hautatu web bilaketa gako-hitz lehenetsi bat. </"
+"<html><head/><body><p>Hautatu web bilaketako gako-hitz lehenetsi bat. </"
 "p><p>Honek, aplikazioei, tekleatutako hitza edo esaldia URL egokitara "
-"iragazi ezin denean, web bilaketa gako-hitzeko itaunetara bihurtzeko aukera "
-"ematen die. </p><p>Funtzionaltasun hau desgaitzeko hautatu zerrendatik <span "
-"style=\" font-weight:600;\">Bat ere ez</span>. </p></body></html>"
+"iragazi ezin denean, web bilaketako gako-hitzeko itaunetara bihurtzeko "
+"aukera ematen die. </p><p>Funtzionaltasun hau desgaitzeko hautatu "
+"zerrendatik <span style=\" font-weight:600;\">Bat ere ez</span>. </p></"
+"body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
@@ -969,7 +940,7 @@ msgstr "Ga&ko-hitz mugatzailea:"
 #: webshortcuts/ikwsopts_ui.ui:204
 #, kde-format
 msgid "Choose a delimiter to mark the Web search keyword."
-msgstr "Hautatu web bilaketa gako-hitza markatzeko mugatzaile bat."
+msgstr "Hautatu web bilaketako gako-hitza markatzeko mugatzaile bat."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:208
@@ -992,26 +963,21 @@ msgid "Default"
 msgstr "Lehenetsia"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "Web bilaketa gako-hitzak"
+msgstr "Editatu web bilaketarako gako-hitzak"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "Web bilaketa gako-hitzak"
+msgstr "Web bilaketako gako-hitz berria"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr "\"%1\" lasterbidea dagoeneko \"%2\"ri esleitu zaio. Hautatu beste bat."
+msgstr "\"%1\" gako-hitza jada \"%2\"(e)ri esleitu zaio. Hautatu beste bat."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -1020,32 +986,23 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Ondoko lasterbideak esleitu dira dagoeneko. Hautatu beste batzuk.\n"
+"Ondoko gako-hitzak esleitu dira dagoeneko. Hautatu beste batzuk.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"URL lasterbideak ez du erabiltzailearen itaunerako \\{...} laster-markarik.\n"
-"Honek esan nahi du beti orri bera bisitatuko dela, lasterbidearekin batera "
+"URLak ez du erabiltzailearen itaunerako \\{...} laster-marka bat.\n"
+"Horrek esan nahi du beti orri bera bisitatuko dela, gako-hitzarekin batera "
 "idatzitako testua edozein dela."
 
 #: webshortcuts/searchproviderdlg.cpp:147
@@ -1104,10 +1061,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, fuzzy, kde-format
-#| msgid "URL:"
+#, kde-format
 msgid "&URL:"
-msgstr "URLa:"
+msgstr "&URLa:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1122,13 +1078,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1136,44 +1086,36 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Hemen sartutako lasterbideak sasi-URI eskema gisa erabili daitezke KDEn. "
-"adibidez, <b>av</b> lasterbidea <b>av</b>:<b>nere bilaketa</b> gisa erabil "
+"Hemen sartutako gako-hitzak sasi-URI eskema gisa erabili daitezke KDEn. "
+"Adibidez, <b>av</b> gako-hitza, <b>av</b>:<b>nire bilaketa</b> gisa erabil "
 "daiteke.\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Sartu pertsonentzako ulergarria den web "
-"lasterbidearen  izena hemen.</p></body></html>"
+"<html><head/><body><p>Sartu pertsonentzako ulergarria den web bilaketako "
+"gako-hitza hemen.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Sartu pertsonentzako ulergarria den web "
-"lasterbidearen  izena hemen.</p></body></html>"
+"<html><head/><body><p>Sartu pertsonentzako ulergarria den web bilaketako "
+"gako-hitza hemen.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "Gako-hitzak"
+msgstr "&Gako-hitzak:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1184,8 +1126,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
 msgstr "&Karaktere-multzoa:"
 

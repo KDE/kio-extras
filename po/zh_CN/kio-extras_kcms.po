@@ -209,10 +209,9 @@ msgstr "直接连接到互联网。"
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "No proxy"
-msgstr "不使用代理服务器"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:46
@@ -326,10 +325,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
-msgstr "HTTP 代理："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -352,10 +350,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
-msgstr "SSL 代理："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -378,10 +375,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
-msgstr "FTP 代理："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:263
@@ -403,10 +399,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
-msgstr "SOCKS 代理："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:285
@@ -580,10 +575,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "仅对排除列表中的地址应用代理服务器设置"
+msgstr ""
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -684,22 +678,19 @@ msgid ""
 msgstr "<para>回收站能够使用的最大硬盘空间。</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
-msgstr "显示警告"
+msgstr ""
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
-msgstr "删除回收站中的最旧文件"
+msgstr ""
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
-msgstr "删除回收站中的最大文件"
+msgstr ""
 
 #: trash/kcmtrash.cpp:293
 #, kde-kuit-format
@@ -713,10 +704,9 @@ msgstr ""
 "为显示警告，那么回收站将显示警告而不会自动删除文件。</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
-msgstr "回收站已满时："
+msgstr ""
 
 #: webshortcuts/ikwsopts.cpp:41
 #, kde-format
@@ -737,20 +727,13 @@ msgid "Preferred"
 msgstr "首选"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
 ">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
-"勾选此项时，当前选中的网页搜索关键词将被设为首选。<nl/>\n"
-"设为首选的网页搜索关键词将在只能显示少量候选关键词的场合中优先显示。"
 
 #: webshortcuts/ikwsopts.cpp:205
 #, kde-format
@@ -765,15 +748,7 @@ msgstr "搜索过滤(&I)"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -783,11 +758,6 @@ msgid ""
 "delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
 "KDE</span>.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>启用或者禁用网页搜索关键词功能。</p>\n"
-"<p>网页搜索关键词可以帮助您快速访问、搜索本机和互联网上的信息。</p>\n"
-"<p>KDE 已经预设了一些关键词，用于调用不同的搜索引擎。例如要使用 Google 搜"
-"索“KDE”时，只需输入关键词“gg”、分隔符 (此例子中是半角冒号) 和搜索条件即可："
-"<span style=\" font-weight:600;\">gg:KDE</span>。</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -803,10 +773,9 @@ msgstr "仅使用首选关键词(&U)"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
-msgstr "搜索网络搜索关键词"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:71
@@ -867,13 +836,7 @@ msgstr "默认网页搜索关键词(&S)："
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -881,10 +844,6 @@ msgid ""
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
 msgstr ""
-"<html><head/><body><p>选择默认的网页搜索关键词。</p>\n"
-"<p>程序会把无法识别成 URL 的输入内容通过默认搜索关键词进行搜索。</p>\n"
-"<p>如需禁用此功能，请从列表中选择 <span style=\" font-weight:600;\">无</"
-"span>。</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
@@ -927,26 +886,21 @@ msgid "Default"
 msgstr "默认"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, fuzzy, kde-format
-#| msgid "&Enable Web search keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "启用网页搜索关键词(&E)"
+msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, fuzzy, kde-format
-#| msgid "Add a new Web search keyword"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "添加网页搜索关键词"
+msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr "缩略词“%1”已分配给了“%2”。请选择一个不同的缩略词。"
+msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -955,32 +909,19 @@ msgid "- %1: \"%2\""
 msgstr "- %1：“%2”"
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"下列网页搜索缩略词已被使用，请选择不同的缩略词。\n"
-"%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"此网页搜索缩略词的 URL 中不包含用于提交搜索条件的 \\{...} 占位符。\n"
-"这意味着无论您使用此缩略词输入了什么内容，得到的都是同一个网页。"
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -995,11 +936,9 @@ msgstr "请为此搜索服务提供商输入一个易于理解的名称。"
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, fuzzy, kde-format
-#| msgctxt "@title:column Name label from web search keyword column"
-#| msgid "Name"
+#, kde-format
 msgid "&Name:"
-msgstr "名称"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1053,55 +992,35 @@ msgstr "请选择用于为搜索查询字串进行编码的字符集。"
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
 "example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
-"<qt>\n"
-"在此输入的缩略词可在 KDE 中作为伪 URI 方案使用。例如缩略词 <b>av</b> 可以通"
-"过 <b>av</b>:<b>搜索条件</b> 进行调用\n"
-"</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>请为此缩略词输入一个易于理解的名称。</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>请为此缩略词输入一个易于理解的名称。</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "关键词"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1111,34 +1030,12 @@ msgstr "请选择用于为搜索查询字串进行编码的字符集。"
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
-msgstr "字符集(&C)："
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入搜索占位符"
-
-#~ msgid "&New..."
-#~ msgstr "新建(&N)..."
-
-#~ msgid "Chan&ge..."
-#~ msgstr "更改(&G)..."
-
-#~ msgid "Modify Web Shortcut"
-#~ msgstr "修改网页搜索缩略词"
-
-#~ msgid "New Web Shortcut"
-#~ msgstr "新建网页搜索缩略词"
-
-#~ msgid "Shortcut &name:"
-#~ msgstr "缩略词名称(&N)："
-
-#~ msgid "Shortcut &URL:"
-#~ msgstr "缩略词 URL(&U)："
-
-#~ msgid "&Shortcuts:"
-#~ msgstr "缩略词(&S)："

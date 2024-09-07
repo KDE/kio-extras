@@ -1101,7 +1101,8 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "&Name:"
 msgid "&Name:"
 msgstr "&Nom :"
 

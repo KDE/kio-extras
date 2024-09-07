@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-03-08 16:24+0300\n"
+"PO-Revision-Date: 2024-09-06 15:00+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.02.0\n"
+"X-Generator: Lokalize 24.11.70\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -49,7 +49,7 @@ msgstr "Güncelleme Başarısız Oldu"
 #: netpref/kio_ftprc.kcfg:10
 #, kde-format
 msgid "Disable Passive FTP"
-msgstr "Pasif FTP'yi Kapat"
+msgstr "Pasif FTP’yi kapat"
 
 #. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:11
@@ -78,7 +78,7 @@ msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
 "uploaded it is renamed to its real name."
 msgstr ""
-"Bir dosya karşıya yüklenirken uzantısı \".part\" olur. Dosya tamamen "
+"Bir dosya karşıya yüklenirken uzantısı “.part” olur. Dosya tümüyle "
 "gönderildikten sonra gerçek adını alır."
 
 #: netpref/netpref.cpp:30
@@ -150,9 +150,8 @@ msgid ""
 "complete.</p>"
 msgstr ""
 "<p>Kısmen karşıya yüklenen dosyaları SMB, SFTP ve diğer protokollerle imler."
-"</p><p>Bu seçenek etkinleştirildiğinde, kısmen karşıya yüklenen dosyaların "
-"\"part\" uzantısı olur. Bu uzantı, aktarım tamamlandıktan sonra kaldırılır.</"
-"p>"
+"</p><p>Bu seçenek etkinleştirildiğinde, kısmen karşıya yüklenen dosyaların “."
+"part” uzantısı olur. Bu uzantı, aktarım tamamlandıktan sonra kaldırılır.</p>"
 
 #: netpref/netpref.cpp:95
 #, kde-format
@@ -186,7 +185,7 @@ msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr ""
-"FTP'nin \"pasif\" kipini etkinleştirir. FTP'nin güvenlik duvarı arkasından "
+"FTP’nin “pasif” kipini etkinleştirir. FTP’nin güvenlik duvarı arkasından "
 "çalışmasına izin vermek için gereklidir."
 
 #: netpref/netpref.cpp:115
@@ -197,7 +196,7 @@ msgid ""
 "will be removed once the transfer is complete.</p>"
 msgstr ""
 "<p>Bir kısmı karşıya yüklenen dosyaları imler.</p> <p>Bu seçenek "
-"etkinleştirildiğinde, kısmen karşıya yüklenmiş dosyalar bir \".part\" "
+"etkinleştirildiğinde, kısmen karşıya yüklenmiş dosyalar bir “.part” "
 "uzantısına sahip olurlar. Aktarma tamamlandığında bu uzantılar kaldırılır.</"
 "p>"
 
@@ -241,8 +240,7 @@ msgstr "İnternete doğrudan bağlan."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "No proxy"
 msgstr "Vekil yok"
 
@@ -282,7 +280,7 @@ msgstr "Vekil ayarlarını yapılandırmak için belirtilen betiği kullanın."
 #: proxy/kproxydlg.ui:62
 #, kde-format
 msgid "Use proxy auto configuration URL:"
-msgstr "Vekil otomatik yapılandırma URL'si kullan:"
+msgstr "Vekil kendiliğinden yapılandırma URL’si kullan:"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:93
@@ -358,17 +356,16 @@ msgstr ""
 "<qt>\n"
 "HTTP vekil sunucusunun adresini depolamak için kullanılan çevre değişkeninin "
 "adını girin; örneğin <b>HTTP_PROXY</b>.<p>\n"
-"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
-msgstr "HTTP Vekili:"
+msgstr "HTTP vekili:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -385,17 +382,16 @@ msgstr ""
 "<qt>\n"
 "HTTPS vekil sunucusunun adresini depolamak için kullanılan çevre "
 "değişkeninin adını girin; örneğin <b>HTTPS_PROXY</b>.<p>\n"
-"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
-msgstr "SSL Vekili:"
+msgstr "SSL vekili:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -412,17 +408,16 @@ msgstr ""
 "<qt>\n"
 "FTP vekil sunucusunun adresini depolamak için kullanılan çevre değişkeninin "
 "adını girin; örneğin <b>FTP_PROXY</b>.<p>\n"
-"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
-msgstr "FTP Vekili:"
+msgstr "FTP vekili:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:263
@@ -438,17 +433,16 @@ msgstr ""
 "<qt>\n"
 "SOCKS vekil sunucusunun adresini depolamak için kullanılan çevre "
 "değişkeninin adını girin; örneğin.<b>SOCKS_PROXY</b>.<p>\n"
-"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
-msgstr "SOCKS Vekili:"
+msgstr "SOCKS vekili:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:285
@@ -461,7 +455,7 @@ msgid ""
 msgstr ""
 "<qt>SOCKS vekil sunucusunun adresini depolamak için kullanılan çevre "
 "değişkeninin adını girin, örneğin.<b>SOCKS_PROXY</b>.<p>Alternatif olarak, "
-"bu değişkeni kendiliğinden bulmayı denemek için <b>\"Kendiliğinden Algıla\"</"
+"bu değişkeni kendiliğinden bulmayı denemek için <b>“Kendiliğinden Algıla”</"
 "b> düğmesine tıklayabilirsiniz.</p></qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
@@ -479,8 +473,8 @@ msgstr ""
 "<qt>\n"
 "Vekil sunucunun kullanılmaması gereken siteleri depolamak için kullanılan "
 "çevre değişkeninin adını girmek için; örneğin: <b>NO_PROXY</b> girin. <p>\n"
-"Alternatif olarak, bu değişkenin kendiliğinden keşfini denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.\n"
+"Alternatif olarak, bu değişkenin kendiliğinden keşfini denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
@@ -502,7 +496,7 @@ msgstr ""
 "<qt>Vekil sunucusunun kullanılmaması gereken siteleri depolamak için "
 "kullanılan çevre değişkeninin adını girmek için örneğin: <b>NO_PROXY</b> "
 "girin. <p>Alternatif olarak, bu değişkenin kendiliğinden keşfini denemek "
-"için <b>\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p></qt>"
+"için <b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
 #: proxy/kproxydlg.ui:324
@@ -606,7 +600,7 @@ msgstr ""
 "makine adlarını veya IP adreslerinin virgülle ayrılmış listesini girin.</p>\n"
 "<p>Eğer belirtilen bir alan adınındaki tüm sunucuları dışlamak istiyorsanız "
 "basitçe alan adının başına nokta koyun. Örneğin <i>kde.org</i> alan adı için "
-"tüm sunucu adlarını dışlamak üzere <i>.kde.org</i> yazın. '*' veya '?' gibi "
+"tüm sunucu adlarını dışlamak üzere <i>.kde.org</i> yazın. “*” veya “?” gibi "
 "joker karakterler desteklenmemektedir ve dolayısıyla hiçbir etkileri "
 "olmayacaktır.</p>\n"
 "<p>Ek olarak IP adresleri (örn. 127.0.0.1) ve alt ağı olan IP adresleri de "
@@ -627,8 +621,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr ""
 "Yalnızca istisnalar listesindeki girdiler için vekil sunucu ayarları kullan"
@@ -644,7 +637,7 @@ msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
-"<para>KDE'nin çöp kutusu <b>Finder</b>'ın Çöp Sepeti ile kullanılmak üzere "
+"<para>KDE’nin çöp kutusu, <b>Finder</b>’ın Çöp Sepeti ile kullanılmak üzere "
 "yapılandırılmıştır.<br></para>"
 
 #: trash/kcmtrash.cpp:208
@@ -656,9 +649,9 @@ msgid ""
 "para><para>KDE's trash items will show up in a folder called KDE.trash, in "
 "the Trash can.</para>"
 msgstr ""
-"<para>KDE'nin çöp kutusunu boşaltmak yalnızca KDE'nin çöp ögelerini "
-"boşaltırken,<br>Finder ile Çöp Sepeti'ni boşaltmak her şeyi silecektir.</"
-"para><para>KDE'nin çöp ögeleri Çöp kutusundaki KDE.trash adındaki klasörde "
+"<para>KDE’nin çöp kutusunu boşaltmak yalnızca KDE’nin çöp ögelerini "
+"boşaltırken,<br>Finder ile Çöp Sepeti’ni boşaltmak her şeyi silecektir.</"
+"para><para>KDE’nin çöp ögeleri Çöp kutusundaki KDE.trash adındaki klasörde "
 "görüntüleneceklerdir.</para>"
 
 #: trash/kcmtrash.cpp:249
@@ -677,9 +670,9 @@ msgid ""
 msgstr ""
 "<para>Belirtilen değerden daha eski dosyaların <emphasis "
 "strong='true'>kendiliğinden silinmesine</emphasis> izin vermek için bu "
-"kutucuğu işaretleyin. Belirli bir zaman aralığında dosyaların otomatik "
-"olarak <emphasis strong='true'>silinmemesi</emphasis> için bunu devre dışı "
-"durumda bırakın.</para>"
+"kutuyu işaretleyin. Belirli bir zaman aralığında dosyaların kendiliğinden "
+"<emphasis strong='true'>silinmemesi</emphasis> için bunu devre dışı durumda "
+"bırakın.</para>"
 
 #: trash/kcmtrash.cpp:259
 #, kde-format
@@ -745,20 +738,17 @@ msgstr ""
 "en yüksek değerdir.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
 msgstr "Bir uyarı göster"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Çöp kutusundan en eski dosyaları sil"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Çöp kutusundan en büyük dosyaları sil"
 
@@ -775,8 +765,7 @@ msgstr ""
 "dosyaları kendiliğinden silmek yerine sizi uyaracaktır.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
 msgstr "Tam temizlik:"
 
@@ -799,12 +788,7 @@ msgid "Preferred"
 msgstr "Tercih Edilen"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
@@ -828,15 +812,7 @@ msgstr "Arama &Süzgeçleri"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -851,14 +827,14 @@ msgstr ""
 "diskinizde yer alan bilgileri tez aramanızı veya onlara erişmenizi sağlar.</"
 "p><p>KDE, öntanımlı birçok Web arama anahtar sözcüğü ile gelir. Bu anahtar "
 "sözcüklerinden biri Google (TM) arama kısayoludur. Kullanabilmek için "
-"yalnızca 'gg' yazıp ardından aranacak ifadeyi ekleyin, örn. <span style=\" "
+"yalnızca “gg” yazıp ardından aranacak ifadeyi ekleyin; örn. <span style=\" "
 "font-weight:600;\">gg:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
 #, kde-format
 msgid "&Enable Web search keywords"
-msgstr "&Web'de arama anahtar sözcüklerini etkinleştir"
+msgstr "&Web’de arama anahtar sözcüklerini etkinleştir"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:30
@@ -868,10 +844,9 @@ msgstr "&Yalnızca yeğlenen kısayolları kullan"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
-msgstr "Web arama anahtar sözcükleri ara"
+msgstr "Web araması anahtar sözcüklerini ara"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:71
@@ -883,7 +858,7 @@ msgstr "Yeni bir Web arama anahtar sözcüğü ekle"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&Yeni…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -895,7 +870,7 @@ msgstr "Vurgulanan Web arama anahtar sözcüğünü değiştir"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "Dü&zenle…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -929,17 +904,11 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:141
 #, kde-format
 msgid "Default Web &search keyword:"
-msgstr "Öntanımlı Web'de arama anahtar &sözcüğü:"
+msgstr "Öntanımlı Web’de arama anahtar &sözcüğü:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -951,7 +920,7 @@ msgstr ""
 "p><p>Bu, uygulamaların yazılan sözcük veya ifadeleri geçerli bir URL olarak "
 "süzemediklerinde, kendiliğinden web arama anahtar sözcük sorgularına "
 "dönüştürmelerini sağlar. </p><p>Bu işlevi kapatmak için listeden <span style="
-"\" font-weight:600;\">Yok</span>'u seçin.</p></body></html>"
+"\" font-weight:600;\">Yok</span>’u seçin.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
@@ -995,59 +964,46 @@ msgid "Default"
 msgstr "Öntanımlı"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "Web Arama Anahtar Sözcükleri"
+msgstr "Web Arama Anahtar Sözcüklerini Düzenle"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "Web Arama Anahtar Sözcükleri"
+msgstr "Yeni Web Arama Anahtar Sözcüğü"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr "\"%1\" kısayolu \"%2\" için atanmış. Lütfen başka bir tane seçin."
+msgstr "“%1” kısayolu “%2” için atanmış. Lütfen başka bir tane seçin."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
-msgstr "- %1: \"%2\""
+msgstr "- %1: “%2”"
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Aşağıdaki kısayollar zaten atanmış durumda. Lütfen başka kısayollar seçin.\n"
+"Aşağıdaki kısayollar halihazırda atanmış durumda. Lütfen başka kısayollar "
+"seçin:\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"Kısayol URL'si kullanıcı sorgusu için bir \\{...} yer tutucu içermiyor.\n"
+"Kısayol URL’si kullanıcı sorgusu için bir \\{…} yer tutucusi içermiyor.\n"
 "Bu, kullanıcı ne yazarsa yazsın aynı sayfaların her zaman ziyaret edileceği "
 "anlamına gelir."
 
@@ -1095,22 +1051,21 @@ msgstr ""
 ">Tümü aranacak metin \\{@} veya \\{0} ile belirtilebilir.<br/>\n"
 "Sonuç dizisinden tüm sorgu değişkenlerini (ad=değişken) kaldırdığından \\{@} "
 "kullanımı tavsiye edilmektedir, \\{0} ise değiştirilmemiş sorgu dizisi "
-"yerine kullanılmaktadır.<br/>Sorguda belirli sözcükleri belirtmek için "
-"\\{1} ... \\{n} ve kullanıcı sorgusunda ad=değişken' ile verilen bir değeri "
+"yerine kullanılmaktadır.<br/>Sorguda belirli sözcükleri belirtmek için \\{1} "
+"… \\{n} ve kullanıcı sorgusunda “ad=değişken” ile verilen bir değeri "
 "belirtmek için \\{name} kullanabilirsiniz.<br/>Ek olarak birden fazla kaynak "
 "göstermek de (adlar, sayılar ve karakter dizileri) tek kerede (\\{name1,"
-"name2,...,\"karakter dizisi\"}) yapılabilir.<br/>İlk eşleşen değer (soldan) "
-"sonuç URI'de yerine konulacak değer olarak kullanılacaktır.<br/>Eğer kaynak "
+"name2,…,\"karakter dizisi\"}) yapılabilir.<br/>İlk eşleşen değer (soldan) "
+"sonuç URI’de yerine konulacak değer olarak kullanılacaktır.<br/>Eğer kaynak "
 "listesinin solundaki hiçbir şey eşleşmezse tırnak içine alınmış karakter "
 "dizisi öntanımlı değer olarak kullanılabilir.\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, fuzzy, kde-format
-#| msgid "URL:"
+#, kde-format
 msgid "&URL:"
-msgstr "URL:"
+msgstr "&URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1124,13 +1079,7 @@ msgstr "Arama işleminde kullanılacak karakter kümesini girin."
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1138,44 +1087,36 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Buraya girilen kısayollar KDE içinde de kullanılabilir. Örnek olarak <b>av</"
-"b> kısayolu aynı zamanda <b>av</b>:<b>benim aramam</b> olarak da "
-"kullanılabilir.\n"
+"Buraya girilen anahtar sözcükler KDE içinde de kullanılabilir. Örnek olarak, "
+"<b>av</b> anahtar sözcüğü, aynı zamanda <b>av</b>:<b>benim aramam</b> olarak "
+"da kullanılabilir.\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Web kısayolunun adını, insan tarafından okunabilecek "
-"şekilde buraya girin.</p></body></html>"
+"<html><head/><body><p>Web araması anahtar sözcüğünü, insanlar tarafından "
+"okunabilecek şekilde buraya girin.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Web kısayolunun adını, insan tarafından okunabilecek "
-"şekilde buraya girin.</p></body></html>"
+"<html><head/><body><p>Web araması anahtar sözcüğü kısayolunu, insanlar "
+"tarafından okunabilecek şekilde buraya girin.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "Anahtar Sözcükler"
+msgstr "&Anahtar sözcükler:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1185,10 +1126,9 @@ msgstr "Sorgunuzu kodlamak için kullanılacak karakter setini buraya girin"
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
-msgstr "&Karakter Kümesi:"
+msgstr "&Karakter kümesi:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158

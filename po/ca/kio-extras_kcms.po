@@ -4,7 +4,7 @@
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Sebastià Pla i Sanz <sps@sastia.com>, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006.
-# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024.
+# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
 # Albert Astals Cid <aacid@kde.org>, 2007.
 # Robert Millan <rmh@aybabtu.com>, 2009.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2011, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
@@ -13,14 +13,14 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-02-14 10:16+0100\n"
+"PO-Revision-Date: 2024-09-06 11:46+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 24.08.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -238,10 +238,9 @@ msgstr "Connecta a Internet directament."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "No proxy"
-msgstr "Sense intermediari"
+msgstr "Sense servidor intermediari"
 
 # skip-rule: acronyms-faq
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
@@ -366,8 +365,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
 msgstr "Servidor intermediari HTTP:"
 
@@ -393,8 +391,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
 msgstr "Servidor intermediari SSL:"
 
@@ -420,8 +417,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
 msgstr "Servidor intermediari FTP:"
 
@@ -446,8 +442,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
 msgstr "Servidor intermediari SOCKS:"
 
@@ -634,8 +629,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr ""
 "Usa l'arranjament del servidor intermediari només per a les adreces de la "
@@ -755,20 +749,17 @@ msgstr ""
 "a la paperera, el màxim.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
 msgstr "Mostra un avís"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Suprimeix els fitxers més antics de la paperera"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Suprimeix els fitxers més grans de la paperera"
 
@@ -785,8 +776,7 @@ msgstr ""
 "en lloc de suprimir automàticament els fitxers.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
 msgstr "Paperera plena:"
 
@@ -809,12 +799,7 @@ msgid "Preferred"
 msgstr "Preferida"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
@@ -839,15 +824,7 @@ msgstr "F&iltres de cerca"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -880,8 +857,7 @@ msgstr "&Usa només les paraules clau preferides"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
 msgstr "Cerca paraules clau de cerca a la web"
 
@@ -895,7 +871,7 @@ msgstr "Afegeix una paraula clau nova de cerca a la web"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&Nova…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -907,7 +883,7 @@ msgstr "Modifica la paraula clau de cerca a la web ressaltada"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "Ed&ita…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -946,13 +922,7 @@ msgstr "Paraula clau de &cerca a la web predeterminada:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -1011,27 +981,23 @@ msgid "Default"
 msgstr "Per defecte"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, fuzzy, kde-format
-#| msgid "&Enable Web search keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "&Activa les paraules clau de cerca a la web"
+msgstr "Edita les paraules clau de cerca a la web"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, fuzzy, kde-format
-#| msgid "Add a new Web search keyword"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "Afegeix una paraula clau nova de cerca a la web"
+msgstr "Paraula clau nova de cerca a la web"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr ""
-"La drecera «%1» ja està assignada a «%2». Seleccioneu-ne una de diferent."
+"La paraula clau «%1» ja està assignada a «%2». Seleccioneu-ne una de "
+"diferent."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -1040,35 +1006,25 @@ msgid "- %1: \"%2\""
 msgstr "- %1: «%2»"
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Les dreceres següents ja estan assignades. Seleccioneu-ne altres de "
+"Les paraules clau següents ja estan assignades. Seleccioneu-ne altres de "
 "diferents.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"L'URL de la drecera no conté cap text variable \\{...} per a la consulta de "
-"l'usuari.\n"
+"L'URL no conté cap text variable \\{...} per a la consulta de l'usuari.\n"
 "Això significa que sempre es visitarà la mateixa pàgina, independentment del "
-"que teclegi l'usuari."
+"que teclegi l'usuari amb la paraula clau."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1083,10 +1039,9 @@ msgstr "Introduïu aquí un nom intel·ligible del proveïdor de cerca."
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, fuzzy, kde-format
-#| msgid "Name:"
+#, kde-format
 msgid "&Name:"
-msgstr "Nom:"
+msgstr "&Nom:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1129,7 +1084,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:48
 #, kde-format
 msgid "&URL:"
-msgstr ""
+msgstr "&URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1145,13 +1100,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1159,44 +1108,36 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Les dreceres introduïdes aquí es poden usar com a esquemes pseudo-URI en el "
-"KDE. Per exemple, la drecera <b>av</b> es pot usar com a <b>av</b>:<b>la "
-"meva cerca</b>\n"
+"Les paraules clau introduïdes aquí es poden usar com a esquemes pseudo-URI "
+"en el KDE. Per exemple, la paraules clau <b>av</b> es pot usar com a <b>av</"
+"b>:<b>la meva cerca</b>\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Introduïu aquí un nom intel·ligible de la drecera web."
-"</p></body></html>"
+"<html><head/><body><p>Introduïu aquí un nom intel·ligible de la paraules "
+"clau de cerca a la web.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Introduïu aquí un nom intel·ligible de la drecera web."
-"</p></body></html>"
+"<html><head/><body><p>Introduïu aquí un nom intel·ligible de la drecera de "
+"paraula clau de cerca a la web.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "Paraules clau"
+msgstr "Paraules &clau:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1208,8 +1149,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
 msgstr "Joc de &caràcters:"
 
@@ -1218,386 +1158,3 @@ msgstr "Joc de &caràcters:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inseriu el text variable de la consulta"
-
-#~ msgid "&New..."
-#~ msgstr "&Nova..."
-
-#~ msgid "Chan&ge..."
-#~ msgstr "&Canvia..."
-
-#~ msgid "Modify Web Shortcut"
-#~ msgstr "Modifica les dreceres web"
-
-#~ msgid "New Web Shortcut"
-#~ msgstr "Drecera web nova"
-
-#~ msgid "Shortcut &name:"
-#~ msgstr "&Nom de la drecera:"
-
-#~ msgid "Shortcut &URL:"
-#~ msgstr "&URL de la drecera:"
-
-#~ msgid "&Shortcuts:"
-#~ msgstr "&Dreceres:"
-
-#~ msgctxt "@info"
-#~ msgid ""
-#~ "Not all applications will use this proxy setting. In particular, "
-#~ "<application>Firefox</application> and anything derived from "
-#~ "<application>Firefox</application>, or anything using "
-#~ "<application>QtWebEngine</application>&nbsp;- which includes "
-#~ "<application>Konqueror</application> using the "
-#~ "<application>WebEnginePart</application>, <application>Akregator</"
-#~ "application> and <application>Falkon</application>&nbsp;- will not use "
-#~ "these settings. Some applications may allow the proxy to be configured in "
-#~ "their own settings."
-#~ msgstr ""
-#~ "No totes les aplicacions usaran aquesta configuració del servidor "
-#~ "intermediari. En particular, el <application>Firefox</application> o "
-#~ "qualsevol que derivi del <application>Firefox</application>, o qualsevol "
-#~ "que usi <application>QtWebEngine</application>, el qual inclou el "
-#~ "<application>Konqueror</application> usant la <application>WebEnginePart</"
-#~ "application>-, l'<application>Akregator</application> i el "
-#~ "<application>Falkon</application> no usaran aquestes opcions de "
-#~ "configuració. Algunes aplicacions poden permetre que el servidor "
-#~ "intermediari es configuri des de la seva pròpia configuració."
-
-#~ msgid "You have to restart KDE for these changes to take effect."
-#~ msgstr "Cal tornar a engegar el KDE perquè aquests canvis tinguin efecte."
-
-#~ msgid "These settings apply to network browsing only."
-#~ msgstr "Aquests paràmetres s'apliquen només a la navegació per la xarxa."
-
-#~ msgid "Default user name:"
-#~ msgstr "Nom d'usuari per defecte:"
-
-#~ msgid "Default password:"
-#~ msgstr "Contrasenya per defecte:"
-
-#~ msgid "&Policy"
-#~ msgstr "&Política"
-
-#~ msgid "&Management"
-#~ msgstr "&Gestió"
-
-#~ msgid "D-Bus Communication Error"
-#~ msgstr "Error de comunicació del D-Bus"
-
-#~ msgid "Unable to delete all the cookies as requested."
-#~ msgstr "No s'han pogut suprimir totes les galetes tal com s'ha demanat."
-
-#~ msgid "Unable to delete cookies as requested."
-#~ msgstr "No s'han pogut suprimir les galetes tal com s'ha demanat."
-
-#~ msgid "Information Lookup Failure"
-#~ msgstr "Ha fallat la cerca d'informació"
-
-#~ msgid ""
-#~ "Unable to retrieve information about the cookies stored on your computer."
-#~ msgstr ""
-#~ "No s'ha pogut recuperar la informació quant a les galetes desades a "
-#~ "l'ordinador."
-
-#~ msgid "End of session"
-#~ msgstr "Final de la sessió"
-
-#~ msgid "Yes"
-#~ msgstr "Sí"
-
-#~ msgid "Search"
-#~ msgstr "Cerca"
-
-#~ msgid "Search interactively for domains and hosts"
-#~ msgstr "Cerca dominis i ordinadors remots interactivament"
-
-#~ msgid "Site"
-#~ msgstr "Lloc"
-
-#~ msgid "Cookie Name"
-#~ msgstr "Nom de la galeta"
-
-#~ msgid "D&elete"
-#~ msgstr "Su&primeix"
-
-#~ msgid "Delete A&ll"
-#~ msgstr "Suprimeix-ho &tot"
-
-#~ msgid "Configure &Policy..."
-#~ msgstr "Configura la &política..."
-
-#~ msgid "&Reload List"
-#~ msgstr "Re&carrega la llista"
-
-#~ msgid "Details"
-#~ msgstr "Detalls"
-
-#~ msgid "Value:"
-#~ msgstr "Valor:"
-
-#~ msgid "Domain:"
-#~ msgstr "Domini:"
-
-#~ msgid "Path:"
-#~ msgstr "Camí:"
-
-#~ msgid "Expires:"
-#~ msgstr "Caduca:"
-
-#~ msgid "Secure:"
-#~ msgstr "És segura:"
-
-#~ msgctxt "@title:window"
-#~ msgid "Change Cookie Policy"
-#~ msgstr "Canvi de la política de galetes"
-
-#~ msgctxt "@title:window"
-#~ msgid "New Cookie Policy"
-#~ msgstr "Política de galetes nova"
-
-#~ msgid ""
-#~ "<qt>A policy already exists for<center><b>%1</b></center>Do you want to "
-#~ "replace it?</qt>"
-#~ msgstr ""
-#~ "<qt>Ja existeix una política de galetes per a <center><b>%1</b></center> "
-#~ "Voleu substituir-la?</qt>"
-
-#~ msgctxt "@title:window"
-#~ msgid "Duplicate Policy"
-#~ msgstr "Duplica la política"
-
-#~ msgid "Replace"
-#~ msgstr "Substitueix"
-
-#~ msgid ""
-#~ "Unable to communicate with the cookie handler service.\n"
-#~ "Any changes you made will not take effect until the service is restarted."
-#~ msgstr ""
-#~ "No s'ha pogut comunicar amb el servei de gestió de galetes.\n"
-#~ "Qualsevol canvi que hàgiu fet no tindrà efecte fins que es reiniciï el "
-#~ "servei."
-
-#~ msgid ""
-#~ "<qt>\n"
-#~ "<p>Enable cookie support. Normally you will want to have cookie support "
-#~ "enabled and customize it to suit your privacy needs.</p><p>\n"
-#~ "Please note that disabling cookie support might make many web sites "
-#~ "unbrowsable.</p>\n"
-#~ "</qt>"
-#~ msgstr ""
-#~ "<qt>\n"
-#~ "<p>Activa el funcionament amb les galetes. Normalment, voldreu tenir el "
-#~ "funcionament amb les galetes activat i personalitzar-lo per a adequar-lo "
-#~ "a les vostres necessitats de privadesa.</p><p>\n"
-#~ "Cal tenir present que si es desactiva el funcionament amb les galetes, "
-#~ "molts llocs web podrien ser no navegables.</p>\n"
-#~ "</qt>"
-
-#~ msgid "Enable coo&kies"
-#~ msgstr "&Activa les galetes"
-
-#~ msgid ""
-#~ "<qt>\n"
-#~ "Reject the so called third-party cookies. These are cookies that "
-#~ "originate from a site other than the one you are currently browsing. For "
-#~ "example, if you visit <b>www.foobar.com</b> while this option is on, only "
-#~ "cookies that originate from www.foobar.com will be processed per your "
-#~ "settings. Cookies from any other site will be rejected. This reduces the "
-#~ "chances of site operators compiling a profile about your daily browsing "
-#~ "habits.\n"
-#~ "</qt>"
-#~ msgstr ""
-#~ "<qt>\n"
-#~ "Rebutja les galetes anomenades de tercers. Són galetes originades des "
-#~ "d'un lloc diferent del que esteu navegant. Per exemple, si visiteu <b>www."
-#~ "example.com</b> amb aquesta opció seleccionada, la configuració només "
-#~ "processarà les galetes originades a www.example.com. Es rebutjaran les "
-#~ "galetes de qualsevol altre lloc. Això reduirà les possibilitats que els "
-#~ "operadors dels llocs apleguin informació quant als vostres hàbits de "
-#~ "navegació diaris.\n"
-#~ "</qt>"
-
-#~ msgid "Only acce&pt cookies from originating server"
-#~ msgstr "Acce&pta només les galetes del servidor original"
-
-#~ msgid ""
-#~ "<p>\n"
-#~ "Automatically accept temporary cookies meant to expire at the end of the "
-#~ "current session. Such cookies will not be stored in your computer's hard "
-#~ "drive or storage device. Instead, they are deleted when you close all "
-#~ "applications (e.g. your browser) that use them.</p><p><u>NOTE</u> "
-#~ "Checking this option overrides your default as well as site specific "
-#~ "cookie policies for session cookies.</p>"
-#~ msgstr ""
-#~ "<p>\n"
-#~ "Accepta automàticament les galetes temporals que expiraran al final de la "
-#~ "sessió actual. Aquestes galetes no es desaran al disc dur o dispositiu "
-#~ "d'emmagatzematge. En comptes d'això, se suprimiran quan tanqueu totes les "
-#~ "aplicacions que les usen (p. ex. el navegador).</p><p><u>NOTA:</u> Si "
-#~ "activeu aquesta opció, s'anul·laran les polítiques de galetes de sessió "
-#~ "per omissió i específiques de lloc.</p>"
-
-#~ msgid "Automaticall&y accept session cookies"
-#~ msgstr "Accepta automàt&icament les galetes de sessió"
-
-#~ msgid ""
-#~ "<qt>\n"
-#~ "Determines how cookies received from a remote machine will be handled: \n"
-#~ "<ul>\n"
-#~ "<li><b>Ask</b> will cause KDE to ask for your confirmation whenever a "
-#~ "server wants to set a cookie.</li>\n"
-#~ "<li><b>Accept</b> will cause cookies to be accepted without prompting you."
-#~ "</li>\n"
-#~ "<li><b>Accept until end of session</b> will cause cookies to be accepted "
-#~ "but they will expire at the end of the session.</li>\n"
-#~ "<li><b>Reject</b> will cause the cookiejar to refuse all cookies it "
-#~ "receives.</li>\n"
-#~ "</ul><p>\n"
-#~ "<u>NOTE:</u> Domain specific policies, which can be set below, always "
-#~ "take precedence over the default policy.</p>\n"
-#~ "</qt>"
-#~ msgstr ""
-#~ "<qt>\n"
-#~ "Determina com es gestionaran les galetes rebudes des d'un servidor "
-#~ "remot:\n"
-#~ "<ul>\n"
-#~ "<li><b>Pregunta</b> farà que el KDE us demani confirmació sempre que un "
-#~ "servidor vulgui establir una galeta.</li>\n"
-#~ "<li><b>Accepta</b> farà que s'acceptin les galetes sense preguntar.</li>\n"
-#~ "<li><b>Accepta fins al final de sessió</b> farà que s'acceptin les "
-#~ "galetes, però expiraran al final de la sessió.</li>\n"
-#~ "<li><b>Rebutja</b> farà que el programa «cookiejar» rebutgi totes les "
-#~ "galetes que rep.</li>\n"
-#~ "</ul><p>\n"
-#~ "<u>NOTA:</u> Les polítiques específiques de domini, les quals es poden "
-#~ "establir a sota, sempre tenen precedència sobre la política per omissió.</"
-#~ "p>\n"
-#~ "</qt>"
-
-#~ msgid "Default Policy"
-#~ msgstr "Política per omissió"
-
-#~ msgid "Accep&t all cookies"
-#~ msgstr "Accep&ta totes les galetes"
-
-#~ msgid "Accept &until end of session"
-#~ msgstr "Accepta &fins al final de la sessió"
-
-#~ msgid "Ask &for confirmation"
-#~ msgstr "De&mana confirmació"
-
-#~ msgid "Re&ject all cookies"
-#~ msgstr "Rebut&ja totes les galetes"
-
-#~ msgid ""
-#~ "<qt>\n"
-#~ "To add a new policy, simply click on the <b>Add...</b> button and supply "
-#~ "the necessary information. To change an existing policy, use the "
-#~ "<b>Change...</b> button and choose the new policy from the policy dialog "
-#~ "box. Clicking on the <b>Delete</b> button will remove the currently "
-#~ "selected policy causing the default policy setting to be used for that "
-#~ "domain, whereas <b>Delete All</b> will remove all the site specific "
-#~ "policies.\n"
-#~ "</qt>"
-#~ msgstr ""
-#~ "<qt>\n"
-#~ "Per a afegir una política nova, simplement cliqueu el botó <b>Afegeix...</"
-#~ "b> i proporcioneu la informació necessària. Per a canviar una política "
-#~ "existent, cliqueu el botó <b>Canvia...</b> i trieu la nova política del "
-#~ "quadre de diàleg de polítiques. En clicar al botó <b>Suprimeix</b> "
-#~ "s'eliminarà la política seleccionada, fent que per a aquest domini s'usi "
-#~ "la política per omissió, mentre que <b>Suprimeix-ho tot</b> eliminarà "
-#~ "totes les polítiques específiques de lloc.\n"
-#~ "</qt>"
-
-#~ msgid "Site Policy"
-#~ msgstr "Política de lloc"
-
-#~ msgid "Search interactively for domains"
-#~ msgstr "Cerca dominis interactivament"
-
-#~ msgid "Search..."
-#~ msgstr "Cerca..."
-
-#~ msgid ""
-#~ "<qt>\n"
-#~ "List of sites for which you have set a specific cookie policy. Specific "
-#~ "policies override the default policy setting for these sites.\n"
-#~ "</qt>"
-#~ msgstr ""
-#~ "<qt>\n"
-#~ "Llista de llocs per als quals heu establert polítiques de galeta "
-#~ "específiques. Les polítiques específiques anul·len els valors de política "
-#~ "per omissió per a aquests llocs.\n"
-#~ "</qt>"
-
-#~ msgid "Domain"
-#~ msgstr "Domini"
-
-#~ msgid "Policy"
-#~ msgstr "Política"
-
-#~ msgid "Accept"
-#~ msgstr "Accepta"
-
-#~ msgid "Accept For Session"
-#~ msgstr "Accepta per sessió"
-
-#~ msgid "Reject"
-#~ msgstr "Rebutja"
-
-#~ msgid "Ask"
-#~ msgstr "Pregunta"
-
-#~ msgid "Do Not Know"
-#~ msgstr "No es coneix"
-
-#~ msgid ""
-#~ "<qt>\n"
-#~ "Enter the host or domain to which this policy applies, e.g. <b>www.kde."
-#~ "org</b> or <b>.kde.org</b>.\n"
-#~ "</qt>"
-#~ msgstr ""
-#~ "<qt>\n"
-#~ "Introduïu el servidor o domini al qual s'aplica aquesta política, p. ex. "
-#~ "<b>www.kde.org</b> o <b>.kde.org</b>.\n"
-#~ "</qt>"
-
-#~ msgid "Site name:"
-#~ msgstr "Nom del lloc:"
-
-#~ msgid ""
-#~ "Enter the host or domain name, e.g. .kde.org, this policy applies to."
-#~ msgstr ""
-#~ "Introduïu el nom de l'ordinador o del domini al qual s'aplica aquesta "
-#~ "política, p. ex. kde.org."
-
-#~ msgid ""
-#~ "<qt>\n"
-#~ "Select the desired policy:\n"
-#~ "<ul>\n"
-#~ "<li><b>Accept</b> - Allows this site to set cookies</li>\n"
-#~ "<li><b>Accept until end of session</b> - Allows this site to set cookies "
-#~ "but they will expire at the end of the session.</li>\n"
-#~ "<li><b>Reject</b> - Refuse all cookies sent from this site</li>\n"
-#~ "<li><b>Ask</b> - Prompt when cookies are received from this site</li>\n"
-#~ "</ul>\n"
-#~ "</qt>"
-#~ msgstr ""
-#~ "<qt>\n"
-#~ "Seleccioneu la política desitjada:\n"
-#~ "<ul>\n"
-#~ "<li><b>Accepta</b> - Permet a aquest lloc establir galetes</li>\n"
-#~ "<li><b>Accepta fins al final de sessió</b> Permet que aquest lloc "
-#~ "estableixi galetes, però expiraran al final de la sessió.</li>\n"
-#~ "<li><b>Rebutja</b> - Rebutja totes les galetes enviades des d'aquest "
-#~ "lloc</li>\n"
-#~ "<li><b>Pregunta</b> - Demana quan es rebin galetes des d'aquest lloc</"
-#~ "li>\n"
-#~ "</ul>\n"
-#~ "</qt>"
-
-#~ msgid "Policy:"
-#~ msgstr "Política:"
-
-#~ msgid "Accept until end of session"
-#~ msgstr "Accepta fins al final de la sessió"
