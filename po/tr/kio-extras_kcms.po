@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-10 00:38+0000\n"
-"PO-Revision-Date: 2024-03-08 16:24+0300\n"
+"PO-Revision-Date: 2024-09-06 15:00+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.02.0\n"
+"X-Generator: Lokalize 24.11.70\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -49,7 +49,7 @@ msgstr "Güncelleme Başarısız Oldu"
 #: netpref/kio_ftprc.kcfg:10
 #, kde-format
 msgid "Disable Passive FTP"
-msgstr "Pasif FTP'yi Kapat"
+msgstr "Pasif FTP’yi kapat"
 
 #. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:11
@@ -78,7 +78,7 @@ msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
 "uploaded it is renamed to its real name."
 msgstr ""
-"Bir dosya karşıya yüklenirken uzantısı \".part\" olur. Dosya tamamen "
+"Bir dosya karşıya yüklenirken uzantısı “.part” olur. Dosya tümüyle "
 "gönderildikten sonra gerçek adını alır."
 
 #: netpref/netpref.cpp:31
@@ -150,9 +150,8 @@ msgid ""
 "complete.</p>"
 msgstr ""
 "<p>Kısmen karşıya yüklenen dosyaları SMB, SFTP ve diğer protokollerle imler."
-"</p><p>Bu seçenek etkinleştirildiğinde, kısmen karşıya yüklenen dosyaların "
-"\"part\" uzantısı olur. Bu uzantı, aktarım tamamlandıktan sonra kaldırılır.</"
-"p>"
+"</p><p>Bu seçenek etkinleştirildiğinde, kısmen karşıya yüklenen dosyaların “."
+"part” uzantısı olur. Bu uzantı, aktarım tamamlandıktan sonra kaldırılır.</p>"
 
 #: netpref/netpref.cpp:91
 #, kde-format
@@ -186,7 +185,7 @@ msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr ""
-"FTP'nin \"pasif\" kipini etkinleştirir. FTP'nin güvenlik duvarı arkasından "
+"FTP’nin “pasif” kipini etkinleştirir. FTP’nin güvenlik duvarı arkasından "
 "çalışmasına izin vermek için gereklidir."
 
 #: netpref/netpref.cpp:109
@@ -197,7 +196,7 @@ msgid ""
 "will be removed once the transfer is complete.</p>"
 msgstr ""
 "<p>Bir kısmı karşıya yüklenen dosyaları imler.</p> <p>Bu seçenek "
-"etkinleştirildiğinde, kısmen karşıya yüklenmiş dosyalar bir \".part\" "
+"etkinleştirildiğinde, kısmen karşıya yüklenmiş dosyalar bir “.part” "
 "uzantısına sahip olurlar. Aktarma tamamlandığında bu uzantılar kaldırılır.</"
 "p>"
 
@@ -281,7 +280,7 @@ msgstr "Vekil ayarlarını yapılandırmak için belirtilen betiği kullanın."
 #: proxy/kproxydlg.ui:62
 #, kde-format
 msgid "Use proxy auto configuration URL:"
-msgstr "Vekil otomatik yapılandırma URL'si kullan:"
+msgstr "Vekil kendiliğinden yapılandırma URL’si kullan:"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:93
@@ -357,8 +356,8 @@ msgstr ""
 "<qt>\n"
 "HTTP vekil sunucusunun adresini depolamak için kullanılan çevre değişkeninin "
 "adını girin; örneğin <b>HTTP_PROXY</b>.<p>\n"
-"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
@@ -383,8 +382,8 @@ msgstr ""
 "<qt>\n"
 "HTTPS vekil sunucusunun adresini depolamak için kullanılan çevre "
 "değişkeninin adını girin; örneğin <b>HTTPS_PROXY</b>.<p>\n"
-"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
@@ -409,8 +408,8 @@ msgstr ""
 "<qt>\n"
 "FTP vekil sunucusunun adresini depolamak için kullanılan çevre değişkeninin "
 "adını girin; örneğin <b>FTP_PROXY</b>.<p>\n"
-"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
@@ -434,8 +433,8 @@ msgstr ""
 "<qt>\n"
 "SOCKS vekil sunucusunun adresini depolamak için kullanılan çevre "
 "değişkeninin adını girin; örneğin.<b>SOCKS_PROXY</b>.<p>\n"
-"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p>\n"
+"Alternatif olarak, bu değişkeni kendiliğinden bulmayı denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
@@ -456,7 +455,7 @@ msgid ""
 msgstr ""
 "<qt>SOCKS vekil sunucusunun adresini depolamak için kullanılan çevre "
 "değişkeninin adını girin, örneğin.<b>SOCKS_PROXY</b>.<p>Alternatif olarak, "
-"bu değişkeni kendiliğinden bulmayı denemek için <b>\"Kendiliğinden Algıla\"</"
+"bu değişkeni kendiliğinden bulmayı denemek için <b>“Kendiliğinden Algıla”</"
 "b> düğmesine tıklayabilirsiniz.</p></qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
@@ -474,8 +473,8 @@ msgstr ""
 "<qt>\n"
 "Vekil sunucunun kullanılmaması gereken siteleri depolamak için kullanılan "
 "çevre değişkeninin adını girmek için; örneğin: <b>NO_PROXY</b> girin. <p>\n"
-"Alternatif olarak, bu değişkenin kendiliğinden keşfini denemek için <b>"
-"\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.\n"
+"Alternatif olarak, bu değişkenin kendiliğinden keşfini denemek için "
+"<b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
@@ -497,7 +496,7 @@ msgstr ""
 "<qt>Vekil sunucusunun kullanılmaması gereken siteleri depolamak için "
 "kullanılan çevre değişkeninin adını girmek için örneğin: <b>NO_PROXY</b> "
 "girin. <p>Alternatif olarak, bu değişkenin kendiliğinden keşfini denemek "
-"için <b>\"Kendiliğinden Algıla\"</b> düğmesine tıklayabilirsiniz.</p></qt>"
+"için <b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
 #: proxy/kproxydlg.ui:324
@@ -601,7 +600,7 @@ msgstr ""
 "makine adlarını veya IP adreslerinin virgülle ayrılmış listesini girin.</p>\n"
 "<p>Eğer belirtilen bir alan adınındaki tüm sunucuları dışlamak istiyorsanız "
 "basitçe alan adının başına nokta koyun. Örneğin <i>kde.org</i> alan adı için "
-"tüm sunucu adlarını dışlamak üzere <i>.kde.org</i> yazın. '*' veya '?' gibi "
+"tüm sunucu adlarını dışlamak üzere <i>.kde.org</i> yazın. “*” veya “?” gibi "
 "joker karakterler desteklenmemektedir ve dolayısıyla hiçbir etkileri "
 "olmayacaktır.</p>\n"
 "<p>Ek olarak IP adresleri (örn. 127.0.0.1) ve alt ağı olan IP adresleri de "
@@ -638,7 +637,7 @@ msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
-"<para>KDE'nin çöp kutusu <b>Finder</b>'ın Çöp Sepeti ile kullanılmak üzere "
+"<para>KDE’nin çöp kutusu, <b>Finder</b>’ın Çöp Sepeti ile kullanılmak üzere "
 "yapılandırılmıştır.<br></para>"
 
 #: trash/kcmtrash.cpp:208
@@ -650,9 +649,9 @@ msgid ""
 "para><para>KDE's trash items will show up in a folder called KDE.trash, in "
 "the Trash can.</para>"
 msgstr ""
-"<para>KDE'nin çöp kutusunu boşaltmak yalnızca KDE'nin çöp ögelerini "
-"boşaltırken,<br>Finder ile Çöp Sepeti'ni boşaltmak her şeyi silecektir.</"
-"para><para>KDE'nin çöp ögeleri Çöp kutusundaki KDE.trash adındaki klasörde "
+"<para>KDE’nin çöp kutusunu boşaltmak yalnızca KDE’nin çöp ögelerini "
+"boşaltırken,<br>Finder ile Çöp Sepeti’ni boşaltmak her şeyi silecektir.</"
+"para><para>KDE’nin çöp ögeleri Çöp kutusundaki KDE.trash adındaki klasörde "
 "görüntüleneceklerdir.</para>"
 
 #: trash/kcmtrash.cpp:249
@@ -671,9 +670,9 @@ msgid ""
 msgstr ""
 "<para>Belirtilen değerden daha eski dosyaların <emphasis "
 "strong='true'>kendiliğinden silinmesine</emphasis> izin vermek için bu "
-"kutucuğu işaretleyin. Belirli bir zaman aralığında dosyaların otomatik "
-"olarak <emphasis strong='true'>silinmemesi</emphasis> için bunu devre dışı "
-"durumda bırakın.</para>"
+"kutuyu işaretleyin. Belirli bir zaman aralığında dosyaların kendiliğinden "
+"<emphasis strong='true'>silinmemesi</emphasis> için bunu devre dışı durumda "
+"bırakın.</para>"
 
 #: trash/kcmtrash.cpp:259
 #, kde-format
@@ -835,7 +834,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:20
 #, kde-format
 msgid "&Enable Web search keywords"
-msgstr "&Web'de arama anahtar sözcüklerini etkinleştir"
+msgstr "&Web’de arama anahtar sözcüklerini etkinleştir"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:30
@@ -905,7 +904,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:141
 #, kde-format
 msgid "Default Web &search keyword:"
-msgstr "Öntanımlı Web'de arama anahtar &sözcüğü:"
+msgstr "Öntanımlı Web’de arama anahtar &sözcüğü:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
@@ -985,7 +984,7 @@ msgstr "\"%1\" kısayolu \"%2\" için atanmış. Lütfen başka bir tane seçin.
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
-msgstr "- %1: \"%2\""
+msgstr "- %1: “%2”"
 
 #: webshortcuts/searchproviderdlg.cpp:130
 #, kde-format
@@ -1051,12 +1050,12 @@ msgstr ""
 ">Tümü aranacak metin \\{@} veya \\{0} ile belirtilebilir.<br/>\n"
 "Sonuç dizisinden tüm sorgu değişkenlerini (ad=değişken) kaldırdığından \\{@} "
 "kullanımı tavsiye edilmektedir, \\{0} ise değiştirilmemiş sorgu dizisi "
-"yerine kullanılmaktadır.<br/>Sorguda belirli sözcükleri belirtmek için "
-"\\{1} ... \\{n} ve kullanıcı sorgusunda ad=değişken' ile verilen bir değeri "
+"yerine kullanılmaktadır.<br/>Sorguda belirli sözcükleri belirtmek için \\{1} "
+"… \\{n} ve kullanıcı sorgusunda “ad=değişken” ile verilen bir değeri "
 "belirtmek için \\{name} kullanabilirsiniz.<br/>Ek olarak birden fazla kaynak "
 "göstermek de (adlar, sayılar ve karakter dizileri) tek kerede (\\{name1,"
-"name2,...,\"karakter dizisi\"}) yapılabilir.<br/>İlk eşleşen değer (soldan) "
-"sonuç URI'de yerine konulacak değer olarak kullanılacaktır.<br/>Eğer kaynak "
+"name2,…,\"karakter dizisi\"}) yapılabilir.<br/>İlk eşleşen değer (soldan) "
+"sonuç URI’de yerine konulacak değer olarak kullanılacaktır.<br/>Eğer kaynak "
 "listesinin solundaki hiçbir şey eşleşmezse tırnak içine alınmış karakter "
 "dizisi öntanımlı değer olarak kullanılabilir.\n"
 "</qt>"

@@ -4,19 +4,20 @@
 # Tahereh Dadkhahfar <dadkhahfar@itland.ir>, 2006.
 # Nasim Daniarzadeh <daniarzadeh@itland.ir>, 2006.
 # Mohamad Reza Mirdamadi <mohi@linuxshop.ir>, 2011, 2013.
+# SPDX-FileCopyrightText: 2024 Mohi Mirdamadi <mohi.pub@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-10 00:38+0000\n"
-"PO-Revision-Date: 2013-01-10 23:09+0330\n"
-"Last-Translator: Mohammad Reza Mirdamadi <mohi@linuxshop.ir>\n"
-"Language-Team: Farsi (Persian) <kde-i18n-fa@kde.org>\n"
+"PO-Revision-Date: 2024-09-06 22:32+0330\n"
+"Last-Translator: Mohi Mirdamadi <mohi.pub@gmail.com>\n"
+"Language-Team: fa\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: kio_man.cpp:459
@@ -116,7 +117,7 @@ msgstr "فرمانهای کاربر (POSIX)"
 #: kio_man.cpp:755
 #, kde-format
 msgid "System Calls"
-msgstr "فراخوانیهای سیستم"
+msgstr "فراخوانیهای سامانه"
 
 #: kio_man.cpp:757
 #, kde-format
@@ -156,7 +157,7 @@ msgstr "متفرقه"
 #: kio_man.cpp:772
 #, kde-format
 msgid "System Administration"
-msgstr "سرپرست سیستم"
+msgstr "سرپرست سامانه"
 
 #: kio_man.cpp:774
 #, kde-format
@@ -213,7 +214,7 @@ msgid ""
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
-"نمی‌توان برنامه sgml2roff را در سیستم شما یافت. لطفاً، در صورت لزوم آن را نصب "
+"نمی‌توان برنامه sgml2roff را در سامانه شما یافت. لطفاً، در صورت لزوم آن را نصب "
 "کرده، و مسیر جستجو را با تنظیم متغیر محیطی PATH قبل از آغاز KDE توسعه دهید."
 
 #~ msgid "Open of %1 failed."
