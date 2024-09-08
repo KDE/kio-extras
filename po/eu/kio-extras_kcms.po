@@ -15,14 +15,14 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-10 00:38+0000\n"
-"PO-Revision-Date: 2024-02-15 00:27+0100\n"
+"PO-Revision-Date: 2024-09-06 22:29+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.08.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ksaveioconfig.cpp:163
@@ -830,7 +830,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:20
 #, kde-format
 msgid "&Enable Web search keywords"
-msgstr "&Gaitu web bilaketa gako-hitzak"
+msgstr "&Gaitu web bilaketako gako-hitzak"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:30
@@ -848,7 +848,7 @@ msgstr "Bilatu web bilaketa gako-hitzak"
 #: webshortcuts/ikwsopts_ui.ui:71
 #, kde-format
 msgid "Add a new Web search keyword"
-msgstr "Gehitu web bilaketa gako-hitz berri bat"
+msgstr "Gehitu web bilaketako gako-hitz berri bat"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
@@ -860,7 +860,7 @@ msgstr "&Berria..."
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
-msgstr "Aldatu nabarmendutako web bilaketa gako-hitza"
+msgstr "Aldatu nabarmendutako web bilaketako gako-hitza"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
@@ -872,7 +872,7 @@ msgstr "&Aldatu..."
 #: webshortcuts/ikwsopts_ui.ui:97
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
-msgstr "Ezabatu nabarmendutako web bilaketa gako-hitza"
+msgstr "Ezabatu nabarmendutako web bilaketako gako-hitza"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:100
@@ -901,7 +901,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:141
 #, kde-format
 msgid "Default Web &search keyword:"
-msgstr "Lehenetsitako web bila&keta gako-hitza:"
+msgstr "Lehenetsitako web bila&ketako gako-hitza:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
@@ -939,7 +939,7 @@ msgstr "Ga&ko-hitz mugatzailea:"
 #: webshortcuts/ikwsopts_ui.ui:204
 #, kde-format
 msgid "Choose a delimiter to mark the Web search keyword."
-msgstr "Hautatu web bilaketa gako-hitza markatzeko mugatzaile bat."
+msgstr "Hautatu web bilaketako gako-hitza markatzeko mugatzaile bat."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:208
