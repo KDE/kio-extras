@@ -850,7 +850,7 @@ msgstr "Čális FTP gaskabálvvá čujuhusa."
 #: webshortcuts/searchproviderdlg_ui.ui:23
 #, kde-format
 msgid "&Name:"
-msgstr ""
+msgstr "&Namma:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -940,13 +940,3 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
-
-#, fuzzy
-#~ msgid "&New..."
-#~ msgstr "&Ođđá …"
-
-#~ msgid "Chan&ge..."
-#~ msgstr "Rie&vdat …"
-
-#~ msgid "New Web Shortcut"
-#~ msgstr "Ođđa fierpmádatlávkestat"

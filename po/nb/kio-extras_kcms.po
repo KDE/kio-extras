@@ -1008,7 +1008,7 @@ msgstr "Oppgi det vanlige navnet på søkemotoren her."
 #: webshortcuts/searchproviderdlg_ui.ui:23
 #, kde-format
 msgid "&Name:"
-msgstr ""
+msgstr "&Navn:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1134,24 +1134,3 @@ msgstr "&Tegnsett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sett inn spørringsplassholder"
-
-#~ msgid "&New..."
-#~ msgstr "&Ny …"
-
-#~ msgid "Chan&ge..."
-#~ msgstr "En&dre …"
-
-#~ msgid "Modify Web Shortcut"
-#~ msgstr "Endre nettsnarvei"
-
-#~ msgid "New Web Shortcut"
-#~ msgstr "Ny nettsnarvei"
-
-#~ msgid "Shortcut &name:"
-#~ msgstr "Snarvei&navn:"
-
-#~ msgid "Shortcut &URL:"
-#~ msgstr "&URI for snarvei:"
-
-#~ msgid "&Shortcuts:"
-#~ msgstr "&Snarveier:"

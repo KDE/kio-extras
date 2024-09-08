@@ -1038,11 +1038,9 @@ msgstr "Oppgje det vanlege namnet på søkjemotoren her."
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, fuzzy, kde-format
-#| msgctxt "@title:column Name label from web search keyword column"
-#| msgid "Name"
+#, kde-format
 msgid "&Name:"
-msgstr "Namn"
+msgstr "&Namn:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1168,24 +1166,3 @@ msgstr "&Teiknsett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Set inn søkjeplasshaldar"
-
-#~ msgid "&New..."
-#~ msgstr "&Ny …"
-
-#~ msgid "Chan&ge..."
-#~ msgstr "En&dra …"
-
-#~ msgid "Modify Web Shortcut"
-#~ msgstr "Endra vevsnarveg"
-
-#~ msgid "New Web Shortcut"
-#~ msgstr "Ny vevsnarveg"
-
-#~ msgid "Shortcut &name:"
-#~ msgstr "&Namn på snarveg:"
-
-#~ msgid "Shortcut &URL:"
-#~ msgstr "&Adresse for snarveg:"
-
-#~ msgid "&Shortcuts:"
-#~ msgstr "&Snarvegar:"

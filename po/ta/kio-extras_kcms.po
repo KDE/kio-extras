@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-02-18 17:11+0530\n"
+"PO-Revision-Date: 2024-09-07 19:50+0200\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 24.08.0\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -231,8 +231,7 @@ msgstr "நேரடியாக இணையத்துடன் இணை"
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "No proxy"
 msgstr "பதிலி இல்லை"
 
@@ -353,8 +352,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
 msgstr "HTTP பதிலி:"
 
@@ -380,8 +378,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
 msgstr "SSL பதிலி:"
 
@@ -407,8 +404,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
 msgstr "FTP பதிலி:"
 
@@ -433,8 +429,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
 msgstr "SOCKS பதிலி:"
 
@@ -613,8 +608,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "விதிவிலக்குகளின் பட்டியலில் உள்ள முகவரிகளுக்கு மட்டும் பதிலி அமைப்பை பயன்படுத்து"
 
@@ -723,20 +717,17 @@ msgid ""
 msgstr "<para>இது, அகற்றிடத்துக்கு பயன்படும் தேக்கக இடத்தின் அதிகபட்ச சதவீதமாகும்.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
 msgstr "எச்சரிக்கை காட்டு"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "இருப்பதில் பழைய கோப்புகளை அகற்றிடத்திலிருந்து நீக்கு"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "இருப்பதில் பெரிய கோப்புகளை அகற்றிடத்திலிருந்து நீக்கு"
 
@@ -752,8 +743,7 @@ msgstr ""
 "பார்க்கும். உங்களை எச்சரிக்கும்படி அமைந்திருந்தால், தானாக அழிக்காமல் எச்சரிக்கும்.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
 msgstr "அகற்றிடம் முழுமையடையும்போது:"
 
@@ -776,12 +766,7 @@ msgid "Preferred"
 msgstr "முதன்மையானது"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
@@ -805,15 +790,7 @@ msgstr "தேடுதல் &வடிகட்டிகள்"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -845,8 +822,7 @@ msgstr "முதன்மையான முதன்மைச்சொற்�
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
 msgstr "இணையத் தேடல் முதன்மைச்சொற்களைத் தேடுங்கள்"
 
@@ -860,7 +836,7 @@ msgstr "புதிய இணையத் தேடல் முதன்மை
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&புதியது…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -872,7 +848,7 @@ msgstr "குறிக்கப்பட்ட இணையத் தேடல�
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "&திருத்து…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -910,13 +886,7 @@ msgstr "இயல்பிருப்பு இணையத் &தேடல்
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -972,28 +942,23 @@ msgid "Default"
 msgstr "இயல்பிருப்பு"
 
 #: webshortcuts/searchproviderdlg.cpp:52
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "இணையத் தேடல் முதன்மைச்சொற்கள்"
+msgstr "இணையத் தேடல் முதன்மைச்சொல்லை திருத்து"
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "இணையத் தேடல் முதன்மைச்சொற்கள்"
+msgstr "புதிய இணையத் தேடல் முதன்மைச்சொல்"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr ""
-"\"%1\" என்கிற சுருக்குவழி ஏற்கனவே \"%2\"-க்கு பயன்பாட்டில் உள்ளது. வேறு சுருக்குவழியை "
-"தேர்வு செய்யுங்கள்."
+"\"%1\" என்கிற முதன்மைச்சொல் ஏற்கனவே \"%2\"-க்கு பயனில் உள்ளது. வேறு சுருக்குவழியை "
+"தேர்வு செய்யவும்."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -1002,32 +967,22 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"கீழ்கண்ட சுருக்குவழிகள் ஏற்கனவே பயன்பாட்டில் உள்ளன. வேறு சுருக்குவழிகளை தேர்வு "
-"செய்யுங்கள்.\n"
+"கீழ்கண்ட முதன்மைச்சொற்கள் ஏற்கனவே பயனில் உள்ளன. வேறு சுருக்குவழிகளை தேர்வு செய்யுங்கள்.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"சுருக்குவழி முகவரியில் பயனரின் கேள்வியைக் குறிக்கும் \\{...} எனும் கொள்ளிடம் இல்லை.\n"
+"முகவரியில் பயனரின் கேள்வியைக் குறிக்கும் \\{...} எனும் கொள்ளிடம் இல்லை.\n"
 "இப்படி இருந்தால், பயனர் எந்த சொற்றொடரை உள்ளிட்டாளும் ஒரே வலைபக்கம்தான் காட்டப்படும்."
 
 #: webshortcuts/searchproviderdlg.cpp:147
@@ -1084,10 +1039,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, fuzzy, kde-format
-#| msgid "URL:"
+#, kde-format
 msgid "&URL:"
-msgstr "முகவரி:"
+msgstr "&முகவரி:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1103,13 +1057,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1117,44 +1065,36 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"இங்கு உள்ளிடப்படும் சுருக்குவழிகளை கே.டீ.யீ.யில் ஒரு முகவரி திட்டத்தை போல பயன்படுத்தலாம். "
-"உதாரணத்துக்கு, <b>av</b> என்ற சுருக்குவழியை  <b>av</b>:<b>என் தேடல்</b> என்று "
+"இங்கு உள்ளிடப்படும் முதன்மைச்சொற்களை கே.டீ.யீ.யில் ஒரு முகவரி திட்டத்தை போல பயன்படுத்தலாம். "
+"உதாரணத்துக்கு, <b>av</b> என்ற முதன்மைச்சொல்லை <b>av</b>:<b>என் தேடல்</b> என்று "
 "பயன்படுத்தலாம்\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>இணைய தேடல் சுருக்குவழியின் மனிதர்களால் படிக்கக்கூடிய பெயரை "
-"இங்கு உள்ளிடுங்கள்.</p></body></html>"
+"<html><head/><body><p>இணைய தேடல் முதன்மைச்சொல்லின் மனிதர்களால் படிக்கக்கூடிய பெயரை "
+"இங்கு உள்ளிடவும்.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>இணைய தேடல் சுருக்குவழியின் மனிதர்களால் படிக்கக்கூடிய பெயரை "
+"<html><head/><body><p>இணைய தேடல் முதன்மைச்சொல்லின் மனிதர்களால் படிக்கக்கூடிய பெயரை "
 "இங்கு உள்ளிடுங்கள்.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "முதன்மைச்சொற்கள்"
+msgstr "மு&தன்மைச்சொற்கள்:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1166,8 +1106,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
 msgstr "&உருத்தொகுதி:"
 
