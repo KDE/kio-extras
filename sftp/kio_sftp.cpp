@@ -2121,15 +2121,30 @@ using UniqueAIO = std::unique_ptr<struct sftp_aio_struct>;
 
 QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file, size_t size)
 {
+    const auto limit = sftp_limits(file->sftp);
+    const auto freeLimit = qScopeGuard([limit] {
+        sftp_limits_free(limit);
+    });
+    if (!limit) {
+        qCWarning(KIO_SFTP_LOG) << "Failed to sftp_limits" //
+                                << "- SFTP error:" << sftp_get_error(file->sftp) //
+                                << "- SSH error:" << ssh_get_error_code(file->sftp->session) //
+                                << "- SSH errorString:" << ssh_get_error(file->sftp->session);
+        co_yield ReadResponse(KIO::ERR_CANNOT_READ);
+        co_return;
+    }
+
+    const auto chunkSize = std::min<ssize_t>(narrow<ssize_t>(limit->max_read_length), MAX_XFER_BUF_SIZE);
+
     size_t queuedBytes = 0;
     std::queue<UniqueAIO> pendingRequests;
 
-    auto queueChunkMaybe = [&pendingRequests, &queuedBytes, size, file]() -> int {
+    auto queueChunkMaybe = [&pendingRequests, &queuedBytes, chunkSize, size, file]() -> int {
         if (queuedBytes >= size) {
             return KJob::NoError;
         }
 
-        const auto requestLength = std::min<int>(MAX_XFER_BUF_SIZE, size - queuedBytes);
+        const auto requestLength = std::min<size_t>(chunkSize, size - queuedBytes);
         sftp_aio aio = nullptr;
         if (sftp_aio_begin_read(file, requestLength, &aio) == SSH_ERROR) {
             qCWarning(KIO_SFTP_LOG) << "Failed to sftp_aio_begin_read" //
@@ -2180,7 +2195,7 @@ QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file,
             }
 
             receivedBytes += readBytes;
-            if (readBytes != MAX_XFER_BUF_SIZE && receivedBytes != size) { // short read
+            if (readBytes != chunkSize && receivedBytes != size) { // short read
                 qCWarning(KIO_SFTP_TRACE_LOG) << "unexpected short read. the file probably was truncated";
                 co_yield ReadResponse(KIO::ERR_CANNOT_READ);
                 co_return;
@@ -2194,11 +2209,24 @@ QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file,
 
 QCoro::Generator<SFTPWorker::WriteResponse> SFTPWorker::asyncWrite(sftp_file file, QCoro::Generator<ReadResponse> reader)
 {
+    const auto limit = sftp_limits(file->sftp);
+    const auto freeLimit = qScopeGuard([limit] {
+        sftp_limits_free(limit);
+    });
+    if (!limit) {
+        qCWarning(KIO_SFTP_LOG) << "Failed to sftp_limits" //
+                                << "- SFTP error:" << sftp_get_error(file->sftp) //
+                                << "- SSH error:" << ssh_get_error_code(file->sftp->session) //
+                                << "- SSH errorString:" << ssh_get_error(file->sftp->session);
+        co_yield {.error = KIO::ERR_CANNOT_READ};
+        co_return;
+    }
+
     std::queue<UniqueAIO> pendingRequests;
 
     auto readIt = reader.begin();
     auto readEnd = reader.end();
-    auto queueChunkMaybe = [file, &pendingRequests, &readIt, &readEnd]() -> int {
+    auto queueChunkMaybe = [file, &pendingRequests, &readIt, &readEnd, limit]() -> int {
         if (readIt == readEnd) {
             return KJob::NoError;
         }
@@ -2208,17 +2236,24 @@ QCoro::Generator<SFTPWorker::WriteResponse> SFTPWorker::asyncWrite(sftp_file fil
             return readResponse.error;
         }
 
-        const auto requestLength = readResponse.filedata.size();
+        const auto requestLength = std::min<size_t>(narrow<size_t>(limit->max_write_length), readResponse.filedata.size());
         sftp_aio aio = nullptr;
-        if (sftp_aio_begin_write(file, readResponse.filedata.constData(), requestLength, &aio) == SSH_ERROR) {
-            qCWarning(KIO_SFTP_LOG) << "Failed to sftp_aio_begin_write" //
-                                    << "- SFTP error:" << sftp_get_error(file->sftp) //
-                                    << "- SSH error:" << ssh_get_error_code(file->sftp->session) //
-                                    << "- SSH errorString:" << ssh_get_error(file->sftp->session);
-            return KIO::ERR_CANNOT_READ;
+
+        std::span bufferSpan{readResponse.filedata};
+        while (!bufferSpan.empty()) {
+            const auto writeSpan = bufferSpan.first(std::min(requestLength, bufferSpan.size()));
+            if (sftp_aio_begin_write(file, writeSpan.data(), writeSpan.size(), &aio) == SSH_ERROR) {
+                qCWarning(KIO_SFTP_LOG) << "Failed to sftp_aio_begin_write" //
+                                        << "- SFTP error:" << sftp_get_error(file->sftp) //
+                                        << "- SSH error:" << ssh_get_error_code(file->sftp->session) //
+                                        << "- SSH errorString:" << ssh_get_error(file->sftp->session);
+                return KIO::ERR_CANNOT_READ;
+            }
+
+            pendingRequests.emplace(aio);
+            bufferSpan = bufferSpan.subspan(writeSpan.size());
         }
 
-        pendingRequests.emplace(aio);
         ++readIt;
         return KJob::NoError;
     };
