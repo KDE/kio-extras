@@ -22,6 +22,8 @@
         "Description[tr]": "Web araması anahtar sözcüklerini yapılandır",
         "Description[uk]": "Налаштування ключових слів пошуку в інтернеті",
         "Description[x-test]": "xxConfigure Web search keywordsxx",
+        "Description[zh_CN]": "配置网页搜索关键词",
+        "Description[zh_TW]": "設定網路搜尋關鍵字",
         "Icon": "preferences-web-browser-shortcuts",
         "Name": "Web Search Keywords",
         "Name[ar]": "كلمات بحث الويب",
