@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-09-07 11:19+0200\n"
+"PO-Revision-Date: 2024-09-10 20:48+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -840,15 +840,7 @@ msgstr "F&iltres de recherche"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -860,12 +852,12 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Active ou désactive les mots clé de recherche sur "
 "Internet.</p><p> Les mots clé de recherche sur Internet vous permettent "
-"d'accéder ou de chercher rapidement des informations en ligne ou sur votre "
-"disque dur. </p><p> KDE est fourni avec plusieurs mots clés de recherche sur "
-"Internet prédéfinis. Comme par exemple le raccourci de recherche "
-"« Google » (TM). Pour l'utiliser, vous saisissez simplement le mot clé "
-"« gg » suivi du séparateur de mots clé et du terme à chercher, exemple : "
-"<span style=\" font-weight:600;\">gg:KDE</span>.</p></body></html>"
+"d'accéder ou de rechercher rapidement des informations en ligne ou sur votre "
+"disque dur. </p><p> KDE est fourni avec plusieurs mots clés prédéfinis. Un "
+"mot clé peut être utiliser pour réaliser une recherche avec Google (TM). "
+"Pour l'utiliser, vous saisissez simplement le mot clé « gg » suivi du "
+"séparateur de mots clé et du terme à rechercher, par exemple : <span style="
+"\" font-weight:600;\">gg:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -946,13 +938,7 @@ msgstr "Mot clé de &recherche par défaut sur Internet :"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -962,10 +948,11 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Sélection d'un mot clé de recherche sur Internet par "
 "défaut. </p><p>Cette option permet aux applications de transformer "
-"automatiquement des phrases ou des mots saisis en requêtes de recherche par "
-"mots clé sur Internet quand une « URL » valable ne peut être filtrée. </"
-"p><p>Pour désactiver cette fonctionnalité, veuillez sélectionner <span style="
-"\" font-weight:600;\">Aucun</span> dans la liste. </p></body></html>"
+"automatiquement le mot saisi ou la phrase saisie en requêtes de recherche "
+"par mots clé sur Internet quand il est impossible de les filtrer en une "
+"« URL » valable. </p><p>Pour désactiver cette fonctionnalité, veuillez "
+"sélectionner <span style=\" font-weight:600;\">Aucun</span> dans la liste. </"
+"p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
