@@ -69,5 +69,13 @@
     },
     "X-DocPath": "kcontrol6/webshortcuts/index.html",
     "X-KDE-Keywords": "Web Search Keywords,Web Search,Search,Keyword,Web Shortcuts,Browsing,WWW,Internet,Internet Filters,Network,Search Engines,Shortcuts",
+    "X-KDE-Keywords[he]": "מילות חיפוש באינטרנט, חיפוש באינטרנט,חיפוש,מילות מפתח,חיפוש,מילת מפתח,קיצור דרך,מילות קיצור,דפדפן,מרשתת,רשת,WWW,אינטרנט,מסנני רשת,רשת,מנועי חיפוש,מסנני מרשתת,קיצורי דרך,כינויים",
+    "X-KDE-Keywords[ia]": "Web Search Keywords,Web Search,Search,Keyword,Web Shortcuts,Browsing,WWW,Internet,Internet Filters,Network,Search Engines,Shortcuts",
+    "X-KDE-Keywords[ka]": "Web Search Keywords,Web Search,Search,Keyword,Web Shortcuts,Browsing,WWW,Internet,Internet Filters,Network,Search Engines,Shortcuts",
+    "X-KDE-Keywords[sl]": "Ključne besede spletnega iskanja spletno iskanje,iskanje,ključna beseda,spletne bližnjice,brskanje,WWW,internet,internetni filtri,omrežje,iskalniki,bližnjice",
+    "X-KDE-Keywords[sv]": "Webbsökningsnyckelord,Webbsökning,Sök,Nyckelord,Webbgenvägar,Bläddring,WWW,Internet,Internetfilter,Nätverk,Söktjänster,Genvägar",
+    "X-KDE-Keywords[tr]": "web araması anahtar sözcükleri,web araması anahtar kelimeleri,web araması,arama,ara,anahtar sözcük,anahtar kelime,web kısayolları,tarama,sörf,www,internet,internet süzgeçleri,ağ,arama motorları,kısayollar",
+    "X-KDE-Keywords[uk]": "Web Search Keywords,Web Search,Search,Keyword,Web Shortcuts,Browsing,WWW,Internet,Internet Filters,Network,Search Engines,Shortcuts,додатково,додатковий,інтернет,фільтри,фільтрування,фільтр,мережа,рушій,пошук,рушії пошуку,скорочення,вебскорочення,ключове,слово,інтернет",
+    "X-KDE-Keywords[x-test]": "xxWeb Search Keywordsxx,xxWeb Searchxx,xxSearchxx,xxKeywordxx,xxWeb Shortcutsxx,xxBrowsingxx,xxWWWxx,xxInternetxx,xxInternet Filtersxx,xxNetworkxx,xxSearch Enginesxx,xxShortcutsxx",
     "X-KDE-ParentApp": "kcontrol"
 }

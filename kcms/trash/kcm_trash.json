@@ -84,5 +84,12 @@
     },
     "X-DocPath": "kcontrol6/trash/index.html",
     "X-KDE-Keywords": "trash",
+    "X-KDE-Keywords[he]": "אשפה",
+    "X-KDE-Keywords[ia]": "corbe",
+    "X-KDE-Keywords[sl]": "smeti",
+    "X-KDE-Keywords[sv]": "papperskorg",
+    "X-KDE-Keywords[tr]": "çöp kutusu,çöp sepeti,geri dönüşüm kutusu",
+    "X-KDE-Keywords[uk]": "trash,смітник",
+    "X-KDE-Keywords[x-test]": "xxtrashxx",
     "X-KDE-ParentApp": "kcontrol"
 }
