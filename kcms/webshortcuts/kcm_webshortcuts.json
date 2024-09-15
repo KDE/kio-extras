@@ -86,5 +86,7 @@
     },
     "X-DocPath": "kcontrol6/webshortcuts/index.html",
     "X-KDE-Keywords": "Web Search Keywords,Web Search,Search,Keyword,Web Shortcuts,Browsing,WWW,Internet,Internet Filters,Network,Search Engines,Shortcuts",
+    "X-KDE-Keywords[sv]": "Webbsökningsnyckelord,Webbsökning,Sök,Nyckelord,Webbgenvägar,Bläddring,WWW,Internet,Internetfilter,Nätverk,Söktjänster,Genvägar",
+    "X-KDE-Keywords[tr]": "web araması anahtar sözcükleri,web araması anahtar kelimeleri,web araması,arama,ara,anahtar sözcük,anahtar kelime,web kısayolları,tarama,sörf,www,internet,internet süzgeçleri,ağ,arama motorları,kısayollar",
     "X-KDE-ParentApp": "kcontrol"
 }

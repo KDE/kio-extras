@@ -85,6 +85,8 @@
     },
     "X-DocPath": "kcontrol6/proxy/index.html",
     "X-KDE-Keywords": "Proxy,Proxy server,Firewall,Squid",
+    "X-KDE-Keywords[sv]": "Proxy,Proxy-server,Brandvägg,Squid",
+    "X-KDE-Keywords[tr]": "vekil,proksi,proxy,vekil sunucu,proksi sunucusu,proxy sunucusu,güvenlik duvarı,firewall,squid",
     "X-KDE-ParentApp": "kcontrol",
     "X-KDE-System-Settings-Parent-Category": "networksettings",
     "X-KDE-Weight": 40
