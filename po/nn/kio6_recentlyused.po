@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:39+0000\n"
+"POT-Creation-Date: 2024-09-16 00:39+0000\n"
 "PO-Revision-Date: 2024-07-21 11:48+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -44,17 +44,17 @@ msgstr ""
 "Fjern merkt fil(er) eller mappe(r) frå lista over nyleg brukte filer/mapper "
 "i Dolphin og Plasma. Sjølve filene/mappene vert ikkje fjerna."
 
-#: recentlyused.cpp:317
+#: recentlyused.cpp:321
 #, kde-format
 msgid "Recent Documents"
 msgstr "Nyleg brukte dokument"
 
-#: recentlyused.cpp:325
+#: recentlyused.cpp:329
 #, kde-format
 msgid "Recent Files"
 msgstr "Nyleg brukte filer"
 
-#: recentlyused.cpp:328
+#: recentlyused.cpp:332
 #, kde-format
 msgid "Recent Locations"
 msgstr "Nyleg brukte mapper"

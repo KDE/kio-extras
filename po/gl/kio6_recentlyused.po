@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:39+0000\n"
+"POT-Creation-Date: 2024-09-16 00:39+0000\n"
 "PO-Revision-Date: 2024-07-22 19:26+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -44,17 +44,17 @@ msgstr ""
 "recentes en Dolphin e nos menús de Plasma. Isto non elimina nin move os "
 "recursos."
 
-#: recentlyused.cpp:317
+#: recentlyused.cpp:321
 #, kde-format
 msgid "Recent Documents"
 msgstr "Documentos recentes"
 
-#: recentlyused.cpp:325
+#: recentlyused.cpp:329
 #, kde-format
 msgid "Recent Files"
 msgstr "Ficheiros recentes"
 
-#: recentlyused.cpp:328
+#: recentlyused.cpp:332
 #, kde-format
 msgid "Recent Locations"
 msgstr "Localizacións recentes"

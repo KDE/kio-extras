@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:39+0000\n"
+"POT-Creation-Date: 2024-09-16 00:39+0000\n"
 "PO-Revision-Date: 2024-07-24 13:28+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -44,17 +44,17 @@ msgstr ""
 "използвани в Dolphin и в менютата на Plasma. Това не премахва и не премества "
 "ресурса(ите)."
 
-#: recentlyused.cpp:317
+#: recentlyused.cpp:321
 #, kde-format
 msgid "Recent Documents"
 msgstr "Скорошни документи"
 
-#: recentlyused.cpp:325
+#: recentlyused.cpp:329
 #, kde-format
 msgid "Recent Files"
 msgstr "Скорошни файлове"
 
-#: recentlyused.cpp:328
+#: recentlyused.cpp:332
 #, kde-format
 msgid "Recent Locations"
 msgstr "Скорошни местоположения"

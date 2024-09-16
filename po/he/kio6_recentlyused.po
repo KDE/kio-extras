@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:39+0000\n"
+"POT-Creation-Date: 2024-09-16 00:39+0000\n"
 "PO-Revision-Date: 2024-07-26 09:31+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -48,17 +48,17 @@ msgstr ""
 "הסרת הקבצים או המקומות הנבחרים מרשימת האחרונים שהיו בשימוש בתפריטים של "
 "Dolphin ושל פלזמה. הפעולה אינה מסירה או מעבירה את המשאבים עצמם."
 
-#: recentlyused.cpp:317
+#: recentlyused.cpp:321
 #, kde-format
 msgid "Recent Documents"
 msgstr "מסמכים אחרונים"
 
-#: recentlyused.cpp:325
+#: recentlyused.cpp:329
 #, kde-format
 msgid "Recent Files"
 msgstr "קבצים אחרונים"
 
-#: recentlyused.cpp:328
+#: recentlyused.cpp:332
 #, kde-format
 msgid "Recent Locations"
 msgstr "מקומות אחרונים"

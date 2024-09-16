@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-20 00:39+0000\n"
+"POT-Creation-Date: 2024-09-16 00:39+0000\n"
 "PO-Revision-Date: 2024-07-20 06:08+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -48,17 +48,17 @@ msgstr ""
 "Odstrani izbrane datoteke ali lokacije s seznama nedavno uporabljenih "
 "vDolphinu in v menijih Plasme. S tem ne odstrani ali premakne virov."
 
-#: recentlyused.cpp:317
+#: recentlyused.cpp:321
 #, kde-format
 msgid "Recent Documents"
 msgstr "Nedavni dokumenti"
 
-#: recentlyused.cpp:325
+#: recentlyused.cpp:329
 #, kde-format
 msgid "Recent Files"
 msgstr "Nedavne datoteke"
 
-#: recentlyused.cpp:328
+#: recentlyused.cpp:332
 #, kde-format
 msgid "Recent Locations"
 msgstr "Nedavne lokacije"

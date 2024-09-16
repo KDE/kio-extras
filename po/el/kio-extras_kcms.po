@@ -24,8 +24,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 2.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -239,8 +239,7 @@ msgstr "Σύνδεση με το διαδίκτυο απευθείας."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "No proxy"
 msgstr "Χωρίς διαμεσολαβητή"
 
@@ -657,8 +656,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr ""
 "Χρήση ρυθμίσεις διαμεσολαβητή μόνο για διευθύνσεις στη λίστα εξαιρέσεων"
@@ -692,10 +690,9 @@ msgstr ""
 "έναν φάκελο που λέγεται KDE.trash, στα Απορρίματα.</para>"
 
 #: trash/kcmtrash.cpp:249
-#, fuzzy, kde-format
-#| msgid "Delete files older than:"
+#, kde-format
 msgid "Delete files older than"
-msgstr "Διαγραφή αρχείων παλαιότερων από:"
+msgstr "Διαγραφή αρχείων παλαιότερων από"
 
 #: trash/kcmtrash.cpp:252
 #, fuzzy, kde-kuit-format
@@ -787,14 +784,12 @@ msgid "Show a warning"
 msgstr "Προειδοποίηση"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Διαγραφή παλαιότερων αρχείων από τα απορρίμματα"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Διαγραφή μεγαλύτερων αρχείων από τα απορρίμματα"
 
@@ -818,8 +813,7 @@ msgid "Full trash:"
 msgstr "Απορρίμματα"
 
 #: webshortcuts/ikwsopts.cpp:41
-#, fuzzy, kde-format
-#| msgid "Name"
+#, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Όνομα"
@@ -855,8 +849,7 @@ msgstr ""
 "ταυτόχρονα."
 
 #: webshortcuts/ikwsopts.cpp:205
-#, fuzzy, kde-format
-#| msgid "None"
+#, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Κανένα"
@@ -1163,10 +1156,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, fuzzy, kde-format
-#| msgid "URL:"
+#, kde-format
 msgid "&URL:"
-msgstr "URL:"
+msgstr "UR&L:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
