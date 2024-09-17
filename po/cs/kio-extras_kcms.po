@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2023-03-02 18:25+0100\n"
+"PO-Revision-Date: 2023-05-02 15:09+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -230,10 +230,9 @@ msgstr "Přímé připojení na Internet."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "No proxy"
-msgstr "Žádná proxy"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:46
@@ -343,8 +342,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
 msgstr "HTTP proxy:"
 
@@ -370,10 +368,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
-msgstr "SSL Proxy:"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -397,10 +394,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
-msgstr "FTP Proxy:"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:263
@@ -423,10 +419,9 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
-msgstr "SOCKS Proxy:"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:285
@@ -593,10 +588,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "Používat nastavení proxy pouze pro adresy ze seznamu výjimek"
+msgstr ""
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -703,22 +697,19 @@ msgstr ""
 "maximum.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
-msgstr "Zobrazit varování"
+msgstr ""
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
-msgstr "Smazat nejstarší soubory z koše"
+msgstr ""
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
-msgstr "Smazat největší soubory z koše"
+msgstr ""
 
 #: trash/kcmtrash.cpp:293
 #, kde-kuit-format
@@ -733,10 +724,9 @@ msgstr ""
 "namísto automatického smazání souborů.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
-msgstr "Koš je plný:"
+msgstr ""
 
 #: webshortcuts/ikwsopts.cpp:41
 #, kde-format
@@ -757,22 +747,13 @@ msgid "Preferred"
 msgstr "Preferované"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
 ">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
-"Zaškrtněte toto políčko pro výběr zvýrazněných klíčových slov pro hledání na "
-"webu jako výchozí.<nl/> Preferovaná klíčová slova pro hledání na webu jsou "
-"použita v místech, kde je povoleno souběžné zobrazení pouze několika "
-"klíčových slov."
 
 #: webshortcuts/ikwsopts.cpp:205
 #, kde-format
@@ -787,15 +768,7 @@ msgstr "F&iltry pro vyhledávání"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -805,13 +778,6 @@ msgid ""
 "delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
 "KDE</span>.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Povolit nebo zakázat klíčová slova pro hledání na "
-"webu. </p><p>Klíčová slova pro hledání na webu vám umožňují rychlý přístup "
-"nebo vyhledávání informací umístěných online nebo na vašem pevném disku. </"
-"p><p>KDE přináší spoustu přednastavených klíčových slov. Jedno takové je "
-"Google (TM) search. Pro jeho použití jednoduše napište klíčové slovo 'gg' "
-"následované oddělovačem klíčových slov a hledaným termínem např. <span style="
-"\" font-weight:600;\">gg:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -827,10 +793,9 @@ msgstr ""
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-format
 msgid "Search for Web search keywords"
-msgstr "Vyberte oddělovač pro označení klíčového slova pro hledání na webu."
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:71
@@ -842,7 +807,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&Nový…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -892,13 +857,7 @@ msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -906,11 +865,6 @@ msgid ""
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
 msgstr ""
-"<html><head/><body><p>Vyberte výchozí klíčové slovo pro hledání na webu. </"
-"p><p>To aplikacím umožní automaticky převést automaticky převést napsané "
-"slovo nebo frázi na dotaz klíčového slova pro hledání na webu pokud v nich "
-"nenaleznou platnou URL. </p><p>Pro vypnutí této vlastnosti ze seznamu "
-"vyberte <span style=\" font-weight:600;\">Nic</span>. </p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
@@ -958,20 +912,16 @@ msgid "Edit Web Search Keyword"
 msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:60
-#, fuzzy, kde-format
-#| msgid "New Web Shortcut"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "Nová webová zkratka"
+msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr "Zkratka \"%1\" je již přiřazena k \"%2\". Prosím zvolte jinou."
+msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -980,34 +930,19 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Následující zkratky jsou již přiřazeny. Prosím zvolte jiné.\n"
-"%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"Zkratka URL neobsahuje substituční značku \\{...}, která je nahrazena "
-"uživatelskými dotazy.\n"
-"To znamená, že bude navštěvována stále stejná stránka bez ohledu na text "
-"zadaný se zkratkou."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1022,11 +957,9 @@ msgstr "Zde vložte lidsky čitelné jméno vyhledávací služby."
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, fuzzy, kde-format
-#| msgctxt "@title:column Name label from web search keyword column"
-#| msgid "Name"
+#, kde-format
 msgid "&Name:"
-msgstr "Název"
+msgstr "&Název:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1069,7 +1002,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:48
 #, kde-format
 msgid "&URL:"
-msgstr ""
+msgstr "&URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1083,57 +1016,35 @@ msgstr "Zvolte znakovou sadu, která bude použita k odeslání dotazu."
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
 "example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
-"<qt>\n"
-"Zde vložené zkratky je možné použít jako pseudo tvary URI v prostředí KDE. "
-"Např. zkratka <em>av</em> může být použita jako <em>av:můj dotaz</em>.\n"
-"</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Zde vložte lidsky čitelný název webové zkratky.</p></"
-"body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Zde vložte lidsky čitelný název webové zkratky.</p></"
-"body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "Klíčová slova"
+msgstr "&Klíčová slova:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1143,31 +1054,12 @@ msgstr "Zvolte znakovou sadu, která bude použita k odeslání dotazu."
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
-msgstr "&Znaková sada:"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Zadejte zástupný znak dotazu"
-
-#~ msgid "&New..."
-#~ msgstr "&Nový..."
-
-#~ msgid "Chan&ge..."
-#~ msgstr "Z&měnit..."
-
-#~ msgid "Modify Web Shortcut"
-#~ msgstr "Upravit webovou zkratku"
-
-#~ msgid "Shortcut &name:"
-#~ msgstr "&Název zkratky:"
-
-#~ msgid "Shortcut &URL:"
-#~ msgstr "Zkratka &URL:"
-
-#~ msgid "&Shortcuts:"
-#~ msgstr "&Zkratky:"
