@@ -92,11 +92,13 @@
     "X-KDE-Keywords[fr]": "délai d'attente, iopref, netpref, préférences réseau, ftp",
     "X-KDE-Keywords[gl]": "tempo límite,iopref,netpref,rede,preferencias,ftp",
     "X-KDE-Keywords[he]": "timeout,iopref,netpref,העדפות רשת,ftp,תום זמן המתנה,תום זמן",
+    "X-KDE-Keywords[ia]": "expiration,iopref,prefderete,rete,preferentias,ftp",
     "X-KDE-Keywords[it]": "scadenza,iopref,netpref,preferenze di rete,ftp",
     "X-KDE-Keywords[ka]": "timeout,iopref,netpref,network preferences,ftp,მოლოდინისვადა,ქსელის პარამეტრები",
     "X-KDE-Keywords[sl]": "časovni potek,iopref,netpref,preference omrežja,ftp",
     "X-KDE-Keywords[sv]": "tidsgräns,iopref,netpref,nätverk inställningar,ftp",
     "X-KDE-Keywords[tr]": "zaman aşımı,timeout,iopref,netpref,ağ tercihleri,ağ ayarları,ftp",
+    "X-KDE-Keywords[zh_TW]": "逾時,網路設定,網路偏好設定",
     "X-KDE-ParentApp": "kcontrol",
     "X-KDE-System-Settings-Parent-Category": "networksettings",
     "X-KDE-Weight": 50

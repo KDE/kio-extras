@@ -87,15 +87,18 @@
     "X-KDE-Keywords[bg]": "кошче",
     "X-KDE-Keywords[ca@valencia]": "paperera",
     "X-KDE-Keywords[ca]": "paperera",
+    "X-KDE-Keywords[cs]": "koš",
     "X-KDE-Keywords[en_GB]": "trash",
     "X-KDE-Keywords[es]": "papelera",
     "X-KDE-Keywords[fr]": "corbeille",
     "X-KDE-Keywords[gl]": "lixo",
     "X-KDE-Keywords[he]": "אשפה",
+    "X-KDE-Keywords[ia]": "corbe",
     "X-KDE-Keywords[it]": "cestino",
     "X-KDE-Keywords[ka]": "ნაგავი",
     "X-KDE-Keywords[sl]": "smeti",
     "X-KDE-Keywords[sv]": "papperskorg",
     "X-KDE-Keywords[tr]": "çöp kutusu,çöp sepeti,geri dönüşüm kutusu",
+    "X-KDE-Keywords[zh_TW]": "垃圾桶,垃圾筒,回收桶,回收筒",
     "X-KDE-ParentApp": "kcontrol"
 }
