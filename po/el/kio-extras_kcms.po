@@ -377,8 +377,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
 msgstr "HTTP διαμεσολαβητής:"
 
@@ -405,8 +404,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
 msgstr "SSL διαμεσολαβητής:"
 
@@ -432,8 +430,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
 msgstr "FTP διαμεσολαβητής:"
 
@@ -458,8 +455,7 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
 msgstr "SOCKS διαμεσολαβητής:"
 
