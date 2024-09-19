@@ -1,6 +1,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Vít Pelčák <vit@pelcak.org>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
+# SPDX-FileCopyrightText: 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2024 Vít Pelčák <vit@pelcak.org>
 # Lukáš Tinkl <ltinkl@redhat.com>, 2010, 2011, 2012, 2013.
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
 # Vit Pelcak <vit@pelcak.org>, 2021, 2022, 2023.
@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2023-05-02 15:09+0200\n"
+"PO-Revision-Date: 2024-09-17 15:15+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 23.04.0\n"
+"X-Generator: Lokalize 24.08.1\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -232,7 +232,7 @@ msgstr "Přímé připojení na Internet."
 #: proxy/kproxydlg.ui:29
 #, kde-format
 msgid "No proxy"
-msgstr ""
+msgstr "Žádná proxy"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:46
@@ -370,7 +370,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
 #, kde-format
 msgid "SSL proxy:"
-msgstr ""
+msgstr "SSL Proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -396,7 +396,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
 #, kde-format
 msgid "FTP proxy:"
-msgstr ""
+msgstr "FTP Proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:263
@@ -421,7 +421,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
 #, kde-format
 msgid "SOCKS proxy:"
-msgstr ""
+msgstr "SOCKS Proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:285
@@ -590,7 +590,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:642
 #, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr ""
+msgstr "Používat nastavení proxy pouze pro adresy ze seznamu výjimek"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -699,17 +699,17 @@ msgstr ""
 #: trash/kcmtrash.cpp:289
 #, kde-format
 msgid "Show a warning"
-msgstr ""
+msgstr "Zobrazit varování"
 
 #: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Delete oldest files from trash"
-msgstr ""
+msgstr "Smazat nejstarší soubory z koše"
 
 #: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete biggest files from trash"
-msgstr ""
+msgstr "Smazat největší soubory z koše"
 
 #: trash/kcmtrash.cpp:293
 #, kde-kuit-format
@@ -726,7 +726,7 @@ msgstr ""
 #: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full trash:"
-msgstr ""
+msgstr "Koš je plný:"
 
 #: webshortcuts/ikwsopts.cpp:41
 #, kde-format
@@ -754,6 +754,10 @@ msgid ""
 ">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
+"Zaškrtněte toto políčko pro výběr zvýrazněných klíčových slov pro hledání na "
+"webu jako výchozí.<nl/> Preferovaná klíčová slova pro hledání na webu jsou "
+"použita v místech, kde je povoleno souběžné zobrazení pouze několika "
+"klíčových slov."
 
 #: webshortcuts/ikwsopts.cpp:205
 #, kde-format
@@ -778,6 +782,13 @@ msgid ""
 "delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
 "KDE</span>.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Povolit nebo zakázat klíčová slova pro hledání na "
+"webu. </p><p>Klíčová slova pro hledání na webu vám umožňují rychlý přístup "
+"nebo vyhledávání informací umístěných online nebo na vašem pevném disku. </"
+"p><p>KDE přináší spoustu přednastavených klíčových slov. Jedno takové je "
+"Google (TM) search. Pro jeho použití jednoduše napište klíčové slovo 'gg' "
+"následované oddělovačem klíčových slov a hledaným termínem např. <span style="
+"\" font-weight:600;\">gg:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -865,6 +876,11 @@ msgid ""
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
 msgstr ""
+"<html><head/><body><p>Vyberte výchozí klíčové slovo pro hledání na webu. </"
+"p><p>To aplikacím umožní automaticky převést automaticky převést napsané "
+"slovo nebo frázi na dotaz klíčového slova pro hledání na webu pokud v nich "
+"nenaleznou platnou URL. </p><p>Pro vypnutí této vlastnosti ze seznamu "
+"vyberte <span style=\" font-weight:600;\">Nic</span>. </p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
@@ -1056,7 +1072,7 @@ msgstr "Zvolte znakovou sadu, která bude použita k odeslání dotazu."
 #: webshortcuts/searchproviderdlg_ui.ui:135
 #, kde-format
 msgid "&Character set:"
-msgstr ""
+msgstr "&Znaková sada:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158
