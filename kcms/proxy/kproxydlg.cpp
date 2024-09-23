@@ -559,3 +559,5 @@ void KProxyDialog::slotChanged()
 }
 
 #include "kproxydlg.moc"
+
+#include "moc_kproxydlg.cpp"

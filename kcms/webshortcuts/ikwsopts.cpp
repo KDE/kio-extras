@@ -461,3 +461,7 @@ void FilterOptions::updateSearchProviderEditingButons()
 K_PLUGIN_CLASS_WITH_JSON(FilterOptions, "kcm_webshortcuts.json")
 
 #include "ikwsopts.moc"
+
+#include "moc_ikwsopts.cpp"
+
+#include "moc_ikwsopts_p.cpp"

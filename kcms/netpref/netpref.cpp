@@ -188,3 +188,5 @@ void KIOPreferences::defaults()
 }
 
 #include "netpref.moc"
+
+#include "moc_netpref.cpp"

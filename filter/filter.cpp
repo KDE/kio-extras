@@ -162,3 +162,5 @@ KIO::WorkerResult FilterProtocol::get(const QUrl &url)
 }
 
 #include "filter.moc"
+
+#include "moc_filter.cpp"

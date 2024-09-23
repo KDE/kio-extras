@@ -22,3 +22,5 @@ KIO::ThumbnailResult DirectoryCreator::create(const KIO::ThumbnailRequest & /*re
 }
 
 #include "directorycreator.moc"
+
+#include "moc_directorycreator.cpp"
