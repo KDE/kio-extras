@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Slovenian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="info">
+<title
+>Info</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>Andrej</firstname
+><surname
+>Vernekar</surname
+><affiliation
+><address
+><email
+>andrej.vernekar@moj.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Info je vrsta dokumentacije. Dokumenti so v datotečnem formatu texinfo in se jih da brati iz ukazne vrstice s programom <command
+>info</command
+>.</para>
+
+<para
+>KIO worker za Info vam omogoča, da lahko berete strani z informacijami, ki so nameščene na vašem računalniku, od znotraj programa &konqueror;. Njegova uporaba je precej enostavna:</para>
+
+<screen
+><userinput
+><command
+>info:</command
+><replaceable
+>gcc</replaceable
+></userinput
+></screen>
+
+<para
+>To vam bo prikazalo vrhnje vozlišče Info dokumentacije za prevajalnik &gcc;.</para>
+
+<para
+>Info je &GNU;-jeva zamenjava za <command
+>man</command
+>, vendar pa se izven programske opreme &GNU; ne uporablja prav pogosto.</para>
+
+<para
+>Po info dokumentaciji, ki ste jo naložili, lahko razmeroma z lahkoto brskate v aplikaciji &khelpcenter;, lahko pa uporabite KIO worker za info neposredno iz programa &konqueror; in majhnega ukaznega okna (mini-cli).</para>
+
+</article>

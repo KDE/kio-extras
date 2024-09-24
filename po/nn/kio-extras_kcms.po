@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-09-22 16:25+0200\n"
+"PO-Revision-Date: 2024-09-23 20:17+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
 "Language: nn\n"
@@ -948,14 +948,11 @@ msgid "New Web Search Keyword"
 msgstr "Nytt nøkkelord for vevsøk"
 
 #: webshortcuts/searchproviderdlg.cpp:121
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr "Snarvegen «%1» er alt tildelt «%2». Vel ein annan snarveg."
+msgstr "Nøkkelordet «%1» er alt tildelt «%2». Vel eit anna nøkkelord."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -964,31 +961,22 @@ msgid "- %1: \"%2\""
 msgstr "– %1: «%2»"
 
 #: webshortcuts/searchproviderdlg.cpp:130
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Desse snarvegane er alt tildelte. Vel andre snarvegar.\n"
+"Desse nøkkelorda er alt tildelte. Vel andre nøkkelord.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"Snarvegadressa (URL-en) inneheld ikkje plasshaldaren \\{…} for "
+"Nøkkelordadressa (URL-en) inneheld ikkje plasshaldaren \\{…} for "
 "søkjeteksten.\n"
 "Derfor vert alltid den same sida vist, uansett kva tekst du skriv inn i "
 "tillegg til nøkkelordet."
@@ -1064,13 +1052,7 @@ msgstr "Vel teiknsettet for koding av søkjespørjinga."
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1078,35 +1060,29 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Desse snarvegane kan brukast som eit pseudo-URI-prefiks i KDE. Du kan for "
-"eksempel bruka snarvegen <b>av</b> som i <b>av</b>:<b>søk</b>.\n"
+"Desse nøkkelorda kan brukast som eit pseudo-URI-prefiks i KDE. Du kan for "
+"eksempel bruka nøkkelordet <b>av</b> som i <b>av</b>:<b>søk</b>.\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Skriv inn eit menneskevennleg namn på vevsnarvegen her."
-"</p></body></html>"
+"<html><head/><body><p>Skriv inn eit menneskevennleg namn på vevsøk-"
+"nøkkelordet her.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Skriv inn eit menneskevennleg namn på vevsnarvegen her."
-"</p></body></html>"
+"<html><head/><body><p>Skriv inn eit menneskevennleg namn på vevsøk-"
+"nøkkelordet her.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
