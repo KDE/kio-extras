@@ -1,0 +1,157 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Slovenian "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<article id="netpref" lang="&language;">
+<articleinfo>
+<title
+>Nastavitve povezave</title>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+
+<othercredit role="translator"
+><firstname
+>Andrej</firstname
+><surname
+>Vernekar</surname
+><affiliation
+><address
+><email
+>andrej.vernekar@moj.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>10.11.2016</date>
+<releaseinfo
+>Frameworks 5.29</releaseinfo>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>kdebase</keyword>
+<keyword
+>kcontrol</keyword>
+<keyword
+>omrežje</keyword>
+<keyword
+>časovne omejitve</keyword>
+</keywordset>
+
+</articleinfo>
+
+<sect1 id="timeouts">
+
+<title
+>Nastavitve povezave</title>
+
+<para
+>Tukaj lahko nastavite dolžine intervalov časovnih omejitev. Če je vaša povezava počasna, jih lahko prilagodite, sicer pa so privzete nastavitve primerne za večino uporabnikov.</para>
+
+<para
+>Tukaj <guilabel
+>Vrednosti Časovnih Omejitev</guilabel
+> pomenijo, koliko časa naj aplikacija čaka na odgovor iz strani omrežja.</para>
+
+<para
+>Lahko konfigurirate nasledje časovne omejitve:</para>
+
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Branje vtiča:</guilabel
+></term>
+<listitem>
+<para
+>Nekatere aplikacije uporabljajo <firstterm
+>vtiče</firstterm
+> za komunikacijo. Vtiče si lahko predstavljate kot vodne pipe; dokler so odprte, voda (ali v našem primeru podatki) priteče brez interakcij. Če nekaj prekine ta tok podatkov, bo aplikacija počakala, da pridejo naslednji. To lahko traja zelo veliko časa, zato lahko nastavite maksimalen čas, preden aplikacija preneha čakati na podatke.</para>
+<para
+>Ta nastavitev se bo seveda uveljavila le pri &kde; aplikacijah.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Povezava do posrednika:</guilabel
+></term>
+<listitem>
+<para
+>Nastavi čas čakanja na povezavo s proxy strežnikom, če je ta skonfiguriran. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Povezava s strežnikom:</guilabel
+></term>
+<listitem>
+<para
+>Nastavi čas čakanja na povezavo z oddaljenim strežnikom. </para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Odgovor strežnika:</guilabel
+></term>
+<listitem>
+<para
+>Nastavi čas čakanja na odgovor oddaljenega strežnika. </para>
+</listitem>
+</varlistentry>
+
+</variablelist>
+
+<para
+>Tukaj lahko skonfigurirate <guilabel
+>FTP Možnosti</guilabel
+>. Trenutno sta tukaj le dve možnosti:</para>
+<variablelist>
+<varlistentry>
+<term
+><guilabel
+>Omogoči pasivni način (PASV)</guilabel
+></term>
+<listitem
+><para
+>Pasivni &FTP; je pogosto potreben, ko se vaš računalnik nahaja za požarnim zidom. Veliko požarnih zidov dovoljuje le povezave, ki so bile vzpostavljene <quote
+>od znotraj</quote
+>. Pasivni &FTP; nadzoruje odjemalec, zato se ga lahko uporablja skozi požarne zidove.</para
+></listitem>
+</varlistentry>
+
+<varlistentry>
+<term
+><guilabel
+>Označi delno naložene datoteke</guilabel
+></term>
+<listitem
+><para
+>Ko je to polje označeno, bodo imele delno naložene datoteke <literal role="extension"
+>.part</literal
+> pripono na koncu datoteke. Ta pripona je odstranjena, ko je datoteka do konca naložena.</para
+></listitem>
+</varlistentry>
+
+</variablelist>
+
+
+
+</sect1>
+</article>

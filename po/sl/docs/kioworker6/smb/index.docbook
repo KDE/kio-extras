@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Slovenian "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<article lang="&language;" id="smb">
+<title
+>SMB</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Alexander.Neundorf; &Alexander.Neundorf.mail;</author>
+<othercredit role="translator"
+><firstname
+>Andrej</firstname
+><surname
+>Vernekar</surname
+><affiliation
+><address
+><email
+>andrej.vernekar@moj.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+<date
+>11.12.2016</date>
+<releaseinfo
+>Applications 16.12</releaseinfo>
+</articleinfo>
+<para
+>Smb worker vam omogoča brskanje po deljenih virih omrežja &Windows; (ali Samba). </para>
+
+<para
+>Za ogled delovnih skupin vnesite <userinput
+><command
+>smb:/</command
+></userinput
+>. </para>
+<para
+><userinput
+><command
+>smb://</command
+><replaceable
+>delovna_skupina</replaceable
+></userinput
+> izpiše seznam gostiteljev v tej delovni skupini. </para>
+<para
+>Za ogled deljenih virov gostitelja vnesite <userinput
+><command
+>smb://</command
+><replaceable
+>gostitelj</replaceable
+></userinput
+> ali <userinput
+><command
+>smb:/</command
+><replaceable
+>delovna_skupina</replaceable
+>/<replaceable
+>gostitelj</replaceable
+></userinput
+>. </para>
+<para
+>Za neposreden dostop do deljenih virov vnesite <userinput
+><command
+>smb://</command
+><replaceable
+>gostitelj/deljeni_vir</replaceable
+></userinput
+> ali pa <userinput
+><command
+>smb:/</command
+><replaceable
+>delovna_skupina</replaceable
+>/<replaceable
+>gostitelj</replaceable
+>/<replaceable
+>deljeni_vir</replaceable
+></userinput
+> </para>
+
+<para
+>Smb worker zahteva, da imate libsmbclient, da ga lahko uporabljate. </para>
+
+<para
+>Svoje privzeto uporabniško ime in geslo lahko nastavite v kategoriji &systemsettings; <guilabel
+>Omrežje</guilabel
+> v <menuchoice
+><guisubmenu
+>Povezljivost</guisubmenu
+><guimenuitem
+> Windows Shares</guimenuitem
+></menuchoice
+>. To je posebno uporabno, če ste član domene &Windows; <acronym
+>NT</acronym
+>. Tam si lahko nastavite tudi ime svoje delovne skupine, vendar v večini primerov to ni potrebno. Worker vas bo vprašal po vašem uporabniškem imenu in geslu, če nista privzeto nastavljena. </para>
+
+</article>
+
