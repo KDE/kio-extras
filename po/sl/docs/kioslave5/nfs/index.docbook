@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Slovenian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="nfs">
+<title
+>nfs</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Matjaž</firstname
+><surname
+>Jeran</surname
+><affiliation
+><address
+><email
+>matjaz.jeran@amis.net</email
+></address
+></affiliation
+><contrib
+>Prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+<para
+>Protokol <acronym
+>NFS</acronym
+> podjetja Sun zagotavlja transparenten dostop na daljavo do deljenih datotečnih sistemov čez omrežje. Protokol <acronym
+>NFS</acronym
+> je zasnovan tako, da je neodvisen od strojne opreme, operacijskega sistema, omrežne arhitekture in transportnega protokola. Ta neodvisnost je dosežena z uporabo osnovnih oddaljenih klicev procedur (Remote Procedure Calls, <acronym
+>RPC</acronym
+>) zgrajenih na vrhu zunanje predstavitve podatkov (eXternal Data Representation, <acronym
+>XDR</acronym
+>). </para>
+
+<para
+>Protokol MOUNT, ki ga podpira, izvaja funkcije, specifične operacijskemu sistemu, ki omogočajo odjemalcu da pripne oddaljeno drevo datotek na točko znotraj lokalnega datotečnega sistema. Proces pritrjevanja dovoli tudi strežniku da si zagotovi privilegije oddaljenega dostopa do omejenega nabora odjemalcev preko nadzora izvoza.</para>
+
+<para
+>Lock Manager zagotavlja podporo za zaklepanje datotek, ko je uporabljen v okolju <acronym
+>NFS</acronym
+>. Protokol <acronym
+>NLM</acronym
+> (Network Lock Manager) izolira vidike zaklepanja datotek s stanji v ločen protokol.</para>
+
+<para
+>Vir: <ulink url="http://www.networksorcery.com/enp/protocol/nfs.htm"
+> http://www.networksorcery.com/enp/protocol/nfs.htm</ulink
+> </para>
+
+<para
+>Oglej si priročnik: <ulink url="man:/nfs"
+>nfs</ulink
+>. </para>
+</article>
