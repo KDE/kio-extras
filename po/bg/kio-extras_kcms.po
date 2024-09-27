@@ -1133,24 +1133,3 @@ msgstr "&Символно кодиране:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Вмъкване на заместител на заявка"
-
-#~ msgid "&New..."
-#~ msgstr "До&бавяне..."
-
-#~ msgid "Chan&ge..."
-#~ msgstr "&Редактиране..."
-
-#~ msgid "Modify Web Shortcut"
-#~ msgstr "Променяне на уеб пряк път"
-
-#~ msgid "New Web Shortcut"
-#~ msgstr "Нов уеб пряк път"
-
-#~ msgid "Shortcut &name:"
-#~ msgstr "Име на пряк път:"
-
-#~ msgid "Shortcut &URL:"
-#~ msgstr "Пряк път URL:"
-
-#~ msgid "&Shortcuts:"
-#~ msgstr "&Клавишни комбинации:"
