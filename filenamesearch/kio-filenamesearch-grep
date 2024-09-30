@@ -1,0 +1,60 @@
+#!/bin/sh
+set -ef
+
+# Requirements for this script:
+#
+# 1. When the external search program (e.g. `rga`, `rg`) is not installed, 
+#    exit with status 127. `kio-filenamesearch` (called by the Dolphin search)
+#    will then use the its (slower) fallback search code.
+#
+# 2. STDOUT should only contain paths separated by '\0'. Paths can be either
+#    absolute or relative to the current directory.
+#
+# 3. If search is successful, either the exit code should be 0, or STDERR should
+#    not contain any output. Because `rg` returns 1 when no matches are found,
+#    and returns 2 when there are broken symlinks or permission errors, we can't
+#    rely solely on the exit code being 0 to determine success. So we also considers
+#    a non-zero exit code AND an empty STDERR to be a success.
+#
+# 4. So, when the search fails (other than the "not installed" case in point 1),
+#    in addition for exiting with a non-zero status, you should also print an error
+#    message to STDERR. The message will be displayed to the user in Dolphin.
+
+case $1 in
+    --check)
+        if rga --version 2>/dev/null | grep -q 'ripgrep-all'; then
+            exit 0
+        elif rg --version 2>/dev/null | grep -q 'ripgrep'; then
+            exit 0
+        else
+            exit 127
+        fi
+        ;;
+
+    --run)
+        # These options are required for the search to work.
+        REQUIRED_OPTIONS="--files-with-matches --null --no-messages"
+        
+        # You can modify these options.
+        # -j2:             Limit search to 2 threads. Remove this to get maximum performance on SSD, but it will hurt performance badly on HDD.
+        # --line-buffered: Show each result in Dolphin as soon as it is found. Removing this might speed up the search a tiny bit, but
+        #                  the first result might appear later.
+        # -L:              Follow symlinks.
+        # --hidden:        Don't skip hidden files and directories.
+        # --no-ignore:     Don't respect .gitignore/.ignore settings.
+        OPTIONS="-j2 --line-buffered -L --hidden --no-ignore"
+        
+        if rga --version 2>/dev/null | grep -q 'ripgrep-all'; then
+            exec rga $OPTIONS $REQUIRED_OPTIONS -e "$2" .
+        elif rg --version 2>/dev/null | grep -q 'ripgrep'; then
+            exec rg $OPTIONS $REQUIRED_OPTIONS -e "$2" .
+        else
+            exit 127
+        fi
+        ;;
+
+    *)
+        echo "Invalid argument: $1" >&2
+        exit 1
+        ;;
+esac

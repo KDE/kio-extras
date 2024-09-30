@@ -16,8 +16,11 @@
 
 #include <QCoreApplication>
 #include <QDBusInterface>
+#include <QDir>
 #include <QMimeDatabase>
+#include <QProcess>
 #include <QRegularExpression>
+#include <QStandardPaths>
 #include <QTemporaryFile>
 #include <QUrl>
 #include <QUrlQuery>
@@ -153,6 +156,17 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     std::set<QString> iteratedDirs;
     std::queue<QUrl> pendingDirs;
 
+#if !defined(Q_OS_WIN32)
+    // Prefer using external tools if available
+    if (isContent && dirUrl.isLocalFile()) {
+        KIO::WorkerResult result = searchDirWithExternalTool(dirUrl, regex);
+        if (result.error() != KIO::ERR_UNSUPPORTED_ACTION) {
+            return result;
+        }
+        qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Fall back to KIO.";
+    }
+#endif
+
     searchDir(dirUrl, regex, isContent, iteratedDirs, pendingDirs);
 
     while (!pendingDirs.empty()) {
@@ -225,6 +239,121 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
 
     listJob->exec();
 }
+
+#if !defined(Q_OS_WIN32)
+
+KIO::WorkerResult FileNameSearchProtocol::searchDirWithExternalTool(const QUrl &dirUrl, const QRegularExpression &regex)
+{
+    qCDebug(KIO_FILENAMESEARCH) << "searchDirWithExternalTool dir:" << dirUrl << "pattern:" << regex.pattern();
+
+    const QString programName = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kio_filenamesearch/kio-filenamesearch-grep"));
+    if (programName.isEmpty()) {
+        const QString message = QStringLiteral("kio_filenamesearch/kio-filenamesearch-grep not found in ")
+            + QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation).join(QLatin1Char(':'));
+        qCWarning(KIO_FILENAMESEARCH) << message;
+        return KIO::WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, message);
+    }
+
+    QProcess process;
+    process.setProgram(programName);
+    process.setWorkingDirectory(dirUrl.toLocalFile());
+    process.setArguments({QStringLiteral("--run"), regex.pattern()});
+
+    qCDebug(KIO_FILENAMESEARCH) << "Start" << process.program() << "args:" << process.arguments() << "in:" << process.workingDirectory();
+    process.start(QIODeviceBase::ReadWrite | QIODeviceBase::Unbuffered);
+    if (!process.waitForStarted()) {
+        qCWarning(KIO_FILENAMESEARCH) << programName << "failed to start:" << process.errorString();
+        return KIO::WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, QStringLiteral("%1: %2").arg(programName, process.errorString()));
+    }
+    // Explicitly close the write channel, to avoid some tools waiting for input (e.g. ripgrep, when no path is given on cmdline)
+    process.closeWriteChannel();
+    qCDebug(KIO_FILENAMESEARCH) << "Close STDIN.";
+
+    QDir rootDir(dirUrl.path());
+    QUrl url(dirUrl);
+    QByteArray output;
+    const char sep = '\0';
+
+    auto sendMatch = [this, &rootDir, &url](const QString &result) {
+        qCDebug(KIO_FILENAMESEARCH) << "RESULT:" << result;
+        QString relativePath = rootDir.cleanPath(result);
+        QString fullPath = rootDir.filePath(relativePath);
+        url.setPath(fullPath);
+        KIO::UDSEntry uds;
+        uds.reserve(4);
+        uds.fastInsert(KIO::UDSEntry::UDS_NAME, url.fileName());
+        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, url.fileName());
+        uds.fastInsert(KIO::UDSEntry::UDS_URL, url.url());
+        uds.fastInsert(KIO::UDSEntry::UDS_LOCAL_PATH, fullPath);
+        listEntry(uds);
+    };
+
+    do {
+        if (!process.waitForReadyRead()) {
+            continue;
+        }
+        output.append(process.readAllStandardOutput());
+        qCDebug(KIO_FILENAMESEARCH) << "STDOUT:" << output;
+        int begin = 0;
+        while (begin < output.size()) {
+            const int end = output.indexOf(sep, begin);
+            if (end < 0) {
+                // incomplete output, wait for more
+                break;
+            }
+
+            if (end > begin) {
+                QString s = QString::fromUtf8(output.mid(begin, end - begin));
+                sendMatch(s);
+            }
+
+            begin = end + 1;
+        }
+        if (begin < output.size()) {
+            output = output.mid(begin);
+        } else {
+            output.clear();
+        }
+    } while (process.state() == QProcess::Running);
+
+    if (!output.isEmpty()) {
+        qCDebug(KIO_FILENAMESEARCH) << "STDOUT:" << output;
+        QString s = QString::fromUtf8(output);
+        sendMatch(s);
+    }
+
+    const QString errors = QString::fromLocal8Bit(process.readAllStandardError()).trimmed();
+    if (!errors.isEmpty()) {
+        qCWarning(KIO_FILENAMESEARCH) << "STDERR:" << errors;
+    }
+
+    const int code = process.exitCode();
+    qCDebug(KIO_FILENAMESEARCH) << programName << "stopped. Exit code:" << code;
+
+    if (process.exitStatus() == QProcess::CrashExit) {
+        qCWarning(KIO_FILENAMESEARCH) << "Crash exit:" << process.errorString();
+        return KIO::WorkerResult::fail(KIO::ERR_UNKNOWN, QStringLiteral("%1: %2").arg(programName, process.errorString()));
+    } else {
+        if (code == 127) {
+            qCDebug(KIO_FILENAMESEARCH) << "Search tool not found.";
+            return KIO::WorkerResult::fail(KIO::ERR_UNSUPPORTED_ACTION);
+        }
+        if (code == 0 || errors.isEmpty()) {
+            // `rg` returns 1 when no match, and 2 when it encounters broken links or no permission to read
+            // a file, even if we suppressed the error message with `--no-messages`. We don't want to fail
+            // in these cases.
+            qCDebug(KIO_FILENAMESEARCH) << "Search success.";
+            return KIO::WorkerResult::pass();
+        } else {
+            qCWarning(KIO_FILENAMESEARCH) << "Search failed. " << process.errorString();
+            return KIO::WorkerResult::fail(
+                KIO::ERR_UNKNOWN,
+                i18nc("@info:%1 is the program used to do the search", "%1 failed, exit code: %2, error messages: %3", programName, code, errors));
+        }
+    }
+}
+
+#endif // !defined(Q_OS_WIN32)
 
 extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {

@@ -44,6 +44,16 @@ public:
 private:
     void listRootEntry();
     void searchDir(const QUrl &dirUrl, const QRegularExpression &regex, bool searchContents, std::set<QString> &iteratedDirs, std::queue<QUrl> &pendingDirs);
+
+#if !defined(Q_OS_WIN32)
+
+    /**
+     * @brief Searches the directory using external tools if available.
+     * @return ERR_UNSUPPORTED_ACTION if the external tool is not available. Otherwise, the result of the search.
+     */
+    KIO::WorkerResult searchDirWithExternalTool(const QUrl &dirUrl, const QRegularExpression &regex);
+
+#endif // !defined(Q_OS_WIN32)
 };
 
 #endif

@@ -15,3 +15,7 @@ ecm_qt_declare_logging_category(kio_filenamesearch
 )
 
 add_subdirectory(kded)
+
+if(NOT WIN32)
+    install(PROGRAMS kio-filenamesearch-grep DESTINATION ${KDE_INSTALL_FULL_DATADIR}/kio_filenamesearch/)
+endif()
