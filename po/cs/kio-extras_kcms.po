@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-09-17 15:15+0200\n"
+"PO-Revision-Date: 2024-09-19 07:57+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -806,7 +806,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:37
 #, kde-format
 msgid "Search for Web search keywords"
-msgstr ""
+msgstr "Hledat klíčová slova pro hledání na webu"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:71
@@ -830,7 +830,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "Uprav&it..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -925,19 +925,19 @@ msgstr "Výchozí"
 #: webshortcuts/searchproviderdlg.cpp:52
 #, kde-format
 msgid "Edit Web Search Keyword"
-msgstr ""
+msgstr "Klíčové slovo pro hledání na webu"
 
 #: webshortcuts/searchproviderdlg.cpp:60
 #, kde-format
 msgid "New Web Search Keyword"
-msgstr ""
+msgstr "Nové klíčové slovo pro hledání na webu"
 
 #: webshortcuts/searchproviderdlg.cpp:121
 #, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr ""
+msgstr "Klíčové slovo \"%1\" je již přiřazeno k \"%2\". Prosím, zvolte jiné."
 
 #: webshortcuts/searchproviderdlg.cpp:126
 #, kde-format
@@ -951,6 +951,8 @@ msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
+"Následující klíčová slova jsou již přiřazena. Prosím zvolte jiné.\n"
+"%1"
 
 #: webshortcuts/searchproviderdlg.cpp:143
 #, kde-format
@@ -959,6 +961,10 @@ msgid ""
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
+"URL neobsahuje substituční značku \\{...}, která je nahrazena uživatelskými "
+"dotazy.\n"
+"To znamená, že bude navštěvována stále stejná stránka bez ohledu na text "
+"zadaný se klíčovým slovem."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1039,6 +1045,11 @@ msgid ""
 "example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"Zde vloženého klíčového slova je možné použít jako pseudo tvary URI v "
+"prostředí KDE. Např. klíčové slovo <b>av</b> může být použito jako <b>av</b>:"
+"<b>můj dotaz</b>.\n"
+"</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
@@ -1047,6 +1058,8 @@ msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Zde vložte lidsky čitelný název klíčového slova "
+"webového hledání.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
@@ -1055,6 +1068,8 @@ msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Zde vložte lidsky čitelný název klíčového slova "
+"webového hledání .</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
