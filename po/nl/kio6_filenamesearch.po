@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-01 00:39+0000\n"
-"PO-Revision-Date: 2024-07-20 10:34+0200\n"
+"PO-Revision-Date: 2024-10-01 17:59+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.08.1\n"
 
 #: kio_filenamesearch.cpp:105
 #, kde-format
@@ -26,4 +26,4 @@ msgstr "Zoekmap"
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
-msgstr ""
+msgstr "%1 is mislukt, exitcode: %2, foutmelding: %3"
