@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-01 00:39+0000\n"
-"PO-Revision-Date: 2024-07-24 13:26+0200\n"
+"PO-Revision-Date: 2024-10-02 12:59+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #: kio_filenamesearch.cpp:105
 #, kde-format
@@ -26,4 +26,4 @@ msgstr "Търсене в папка"
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
-msgstr ""
+msgstr "%1 неуспешно, код за изход: %2, съобщения за грешка: %3"
