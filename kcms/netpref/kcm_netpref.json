@@ -106,6 +106,7 @@
     "X-KDE-Keywords[tr]": "zaman aşımı,timeout,iopref,netpref,ağ tercihleri,ağ ayarları,ftp",
     "X-KDE-Keywords[uk]": "timeout,iopref,netpref,network preferences,ftp,очікування,тайм-аут,мережа,параметри,налаштування",
     "X-KDE-Keywords[x-test]": "xxtimeoutxx,xxioprefxx,xxnetprefxx,xxnetwork preferencesxx,xxftpxx",
+    "X-KDE-Keywords[zh_CN]": "timeout,iopref,netpref,network preferences,ftp,超时,网络首选项,chaoshi,wangluo,wangluoshouxuanxiang",
     "X-KDE-Keywords[zh_TW]": "逾時,網路設定,網路偏好設定",
     "X-KDE-ParentApp": "kcontrol",
     "X-KDE-System-Settings-Parent-Category": "networksettings",
