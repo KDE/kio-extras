@@ -26,4 +26,4 @@ msgstr "搜索文件夹"
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
-msgstr ""
+msgstr "%1 失败，退出代码：%2，错误消息：%3"
