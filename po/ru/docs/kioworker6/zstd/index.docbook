@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="zstd">
+<title
+>zstd</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Friedrich</firstname
+><othername
+>W. H.</othername
+><surname
+>Kossebau</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Александр</firstname
+><surname
+>Яворский</surname
+><affiliation
+><address
+><email
+>kekcuha@gmail.com</email
+></address
+></affiliation
+><contrib
+>Перевод на русский язык</contrib
+></othercredit
+><othercredit role="translator"
+><firstname
+>Мария</firstname
+><surname
+>Шикунова</surname
+><affiliation
+><address
+><email
+>translation-team@basealt.ru</email
+></address
+></affiliation
+><contrib
+>Обновление перевода на русский язык</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>zstd</command
+> — это программа сжатия данных.</para>
+
+<para
+>Этот модуль не используется непосредственно, он предназначен для работы в качестве фильтра. Например, модуль tar может пропустить файл через модуль zstd, чтобы можно было просмотреть содержимое файла <literal role="extension"
+>tar.zst</literal
+> прямо в окне &konqueror;.</para>
+
+<para
+>Если нажать на файл с расширением <literal role="extension"
+>zst</literal
+> в &konqueror;, этот модуль распакует файл и покажет его как обычный (несжатый).</para>
+
+<para
+>Документация для разработчиков, описывающая использование модуля zstd и других модулей kioslaves, размещена на сайте <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Смотрите также руководство пользователя программы: <ulink url="man:/zstd"
+>zstd</ulink
+>. </para>
+
+</article>
