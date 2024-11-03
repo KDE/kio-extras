@@ -184,6 +184,13 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                                        std::set<QString> &iteratedDirs,
                                        std::queue<QUrl> &pendingDirs)
 {
+    //  If the directory already flagged in the iteratedDirs set then there is no need
+    //  to repeat the search.
+    // avoid circular recursion into symlinks
+    if (iteratedDirs.count(QUrl(dirUrl).path()) != 0) {
+        return;
+    }
+
     KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, KIO::ListJob::ListFlags{});
 
     connect(this, &QObject::destroyed, listJob, [listJob]() {
