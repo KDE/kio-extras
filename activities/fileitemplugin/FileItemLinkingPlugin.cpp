@@ -6,10 +6,8 @@
 
 #include "FileItemLinkingPlugin.h"
 #include "FileItemLinkingPluginActionLoader.h"
-#include "FileItemLinkingPlugin_p.h"
 
 #include <KFileItemListProperties>
-#include <utils/d_ptr_implementation.h>
 #include <utils/qsqlquery_iterator.h>
 
 #include <QCursor>
@@ -33,21 +31,14 @@
 
 K_PLUGIN_CLASS_WITH_JSON(FileItemLinkingPlugin, "kactivitymanagerd_fileitem_linking_plugin.json")
 
-// Private
-
-FileItemLinkingPlugin::Private::Private()
-{
-    connect(&activities, &KActivities::Consumer::serviceStatusChanged, this, &Private::activitiesServiceStatusChanged);
-}
-
-void FileItemLinkingPlugin::Private::activitiesServiceStatusChanged(KActivities::Consumer::ServiceStatus status)
+void FileItemLinkingPlugin::activitiesServiceStatusChanged(KActivities::Consumer::ServiceStatus status)
 {
     if (status != KActivities::Consumer::Unknown) {
         loadAllActions();
     }
 }
 
-void FileItemLinkingPlugin::Private::rootActionHovered()
+void FileItemLinkingPlugin::rootActionHovered()
 {
     if (status != Status::LoadingBlocked) {
         return;
@@ -56,7 +47,7 @@ void FileItemLinkingPlugin::Private::rootActionHovered()
     loadAllActions();
 }
 
-void FileItemLinkingPlugin::Private::actionTriggered()
+void FileItemLinkingPlugin::actionTriggered()
 {
     QAction *action = dynamic_cast<QAction *>(sender());
 
@@ -75,7 +66,7 @@ void FileItemLinkingPlugin::Private::actionTriggered()
     }
 }
 
-QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
+QAction *FileItemLinkingPlugin::basicAction(QWidget *parentWidget)
 {
     if (root) {
         return root;
@@ -90,14 +81,14 @@ QAction *FileItemLinkingPlugin::Private::basicAction(QWidget *parentWidget)
     rootMenu = new QMenu(parentWidget);
     rootMenu->addAction(new QAction(i18n("Loading..."), this));
 
-    connect(root, &QAction::hovered, this, &Private::rootActionHovered);
+    connect(root, &QAction::hovered, this, &FileItemLinkingPlugin::rootActionHovered);
 
     root->setMenu(rootMenu);
 
     return root;
 }
 
-void FileItemLinkingPlugin::Private::loadAllActions()
+void FileItemLinkingPlugin::loadAllActions()
 {
     if (status != Status::ShouldLoad || activities.serviceStatus() == KActivities::Consumer::Unknown) {
         return;
@@ -116,13 +107,13 @@ void FileItemLinkingPlugin::Private::loadAllActions()
 
         static FileItemLinkingPluginActionStaticInit init;
 
-        connect(loader, &FileItemLinkingPluginActionLoader::result, this, &Private::setActions, Qt::QueuedConnection);
+        connect(loader, &FileItemLinkingPluginActionLoader::result, this, &FileItemLinkingPlugin::setActions, Qt::QueuedConnection);
 
         loader->start();
     }
 }
 
-void FileItemLinkingPlugin::Private::setActions(const ActionList &actions)
+void FileItemLinkingPlugin::setActions(const ActionList &actions)
 {
     if (!rootMenu) {
         return;
@@ -144,7 +135,7 @@ void FileItemLinkingPlugin::Private::setActions(const ActionList &actions)
 
             rootMenu->addAction(action);
 
-            connect(action, &QAction::triggered, this, &Private::actionTriggered);
+            connect(action, &QAction::triggered, this, &FileItemLinkingPlugin::actionTriggered);
 
         } else {
             auto action = new QAction(actionInfo.title, nullptr);
@@ -166,11 +157,12 @@ FileItemLinkingPluginActionStaticInit::FileItemLinkingPluginActionStaticInit()
 FileItemLinkingPlugin::FileItemLinkingPlugin(QObject *parent, const QVariantList &)
     : KAbstractFileItemActionPlugin(parent)
 {
+    connect(&activities, &KActivities::Consumer::serviceStatusChanged, this, &FileItemLinkingPlugin::activitiesServiceStatusChanged);
 }
 
 FileItemLinkingPlugin::~FileItemLinkingPlugin()
 {
-    d->setActions({});
+    setActions({});
 }
 
 QList<QAction *> FileItemLinkingPlugin::actions(const KFileItemListProperties &fileItemInfos, QWidget *parentWidget)
@@ -186,10 +178,10 @@ QList<QAction *> FileItemLinkingPlugin::actions(const KFileItemListProperties &f
         return {};
     }
 
-    d->items = fileItemInfos;
+    items = fileItemInfos;
 
-    return {d->basicAction(parentWidget)};
+    return {basicAction(parentWidget)};
 }
 
 #include "FileItemLinkingPlugin.moc"
-#include "moc_FileItemLinkingPlugin_p.cpp"
+#include "moc_FileItemLinkingPlugin.cpp"

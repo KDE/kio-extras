@@ -8,7 +8,6 @@
 #define FILE_ITEM_LINKING_PLUGIN_ACTION_LOADER_H
 
 #include "FileItemLinkingPlugin.h"
-#include "FileItemLinkingPlugin_p.h"
 
 #include <QThread>
 

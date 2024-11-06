@@ -8,18 +8,36 @@
 #define FILE_ITEM_LINKING_PLUGIN_H
 
 #include <KAbstractFileItemActionPlugin>
+#include <KFileItemListProperties>
+
+#include <PlasmaActivities/Consumer>
+#include <PlasmaActivities/Info>
 
 #include <QAction>
 #include <QList>
+#include <QPointer>
 #include <QVariant>
 
-#include <utils/d_ptr.h>
+struct Action {
+    QString title;
+    QString icon;
+    QString activity;
+    bool link;
+};
+typedef QList<Action> ActionList;
+
+class FileItemLinkingPluginActionStaticInit
+{
+public:
+    FileItemLinkingPluginActionStaticInit();
+};
 
 /**
  * FileItemLinkingPlugin
  */
 class FileItemLinkingPlugin : public KAbstractFileItemActionPlugin
 {
+    Q_OBJECT
 public:
     FileItemLinkingPlugin(QObject *parent, const QVariantList &);
     ~FileItemLinkingPlugin() override;
@@ -27,7 +45,29 @@ public:
     QList<QAction *> actions(const KFileItemListProperties &fileItemInfos, QWidget *parentWidget) override;
 
 private:
-    D_PTR;
+    QPointer<QAction> root;
+    QMenu *rootMenu = nullptr;
+    KFileItemListProperties items;
+
+    QAction *basicAction(QWidget *parentWidget);
+
+    KActivities::Consumer activities;
+
+public Q_SLOTS:
+    void activitiesServiceStatusChanged(KActivities::Consumer::ServiceStatus status);
+    void rootActionHovered();
+    void setActions(const ActionList &actions);
+
+    void actionTriggered();
+    void loadAllActions();
+
+private:
+    enum class Status {
+        LoadingBlocked,
+        ShouldLoad,
+        Loaded
+    };
+    Status status = Status::LoadingBlocked;
 };
 
 #endif // FILE_ITEM_LINKING_PLUGIN_H
