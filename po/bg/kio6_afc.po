@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the kio-extras package.
 #
 # Automatically generated, 2022.
-# Mincho Kondarev <mkondarev@yahoo.de>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023, 2024 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-21 00:37+0000\n"
-"PO-Revision-Date: 2023-01-07 17:43+0100\n"
+"PO-Revision-Date: 2024-11-06 23:15+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -17,22 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.0\n"
+"X-Generator: Lokalize 24.11.70\n"
 
 #: afcutils.cpp:60
 #, kde-format
 msgid "Unhandled AFC error code '%1'"
-msgstr "Необработен код за грешка AFC '%1'"
+msgstr "Необработен код за грешка AFC „%1“"
 
 #: afcutils.cpp:73
 #, kde-format
 msgid "Unhandled housearrest error code '%1'"
-msgstr "Необработен код за грешка при housearrest '%1'"
+msgstr "Необработен код за грешка при housearrest „%1“"
 
 #: afcutils.cpp:89
 #, kde-format
 msgid "Unhandled instproxy error code '%1'"
-msgstr "Необработен код за грешка на instproxy '%1'"
+msgstr "Необработен код за грешка на instproxy „%1“"
 
 #: afcutils.cpp:105
 #, kde-format
@@ -68,12 +68,12 @@ msgstr ""
 #: afcutils.cpp:134
 #, kde-format
 msgid "Unhandled lockdownd code '%1'"
-msgstr "Необработен lockdownd код '%1'"
+msgstr "Необработен lockdownd код „%1“"
 
 #: afcutils.cpp:147
 #, kde-format
 msgid "Unhandled sbservices code '%1'"
-msgstr "Необработен sbservices код '%1'"
+msgstr "Необработен sbservices код „%1“"
 
 #: kio_afc.cpp:134
 #, kde-format
