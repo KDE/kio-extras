@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf6-trunk/messages/kio-extras/kio6_afc.pot\n"
-"X-Crowdin-File-ID: 43919\n"
+"X-Crowdin-File: /kf6-stable/messages/kio-extras/kio6_afc.pot\n"
+"X-Crowdin-File-ID: 51022\n"
 
 #: afcutils.cpp:60
 #, kde-format
