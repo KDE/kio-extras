@@ -1,3 +1,5 @@
+add_subdirectory(wpad-detector)
+
 kcoreaddons_add_plugin(kcm_proxy INSTALL_NAMESPACE "plasma/kcms/systemsettings_qwidgets")
 
 kcmutils_generate_desktop_file(kcm_proxy)

@@ -1,0 +1,7 @@
+{
+    "KPlugin": {
+        "Description": "Verifies proxy setup is performing as expected",
+        "Name": "Proxy Verifier"
+    },
+    "X-KDE-Kded-autoload": true
+}
