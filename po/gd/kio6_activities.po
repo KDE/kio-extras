@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kactivities5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-27 01:34+0000\n"
+"POT-Creation-Date: 2024-11-16 00:40+0000\n"
 "PO-Revision-Date: 2015-11-04 15:11+0000\n"
 "Last-Translator: Michael Bauer <fios@akerbeltz.org>\n"
 "Language-Team: Fòram na Gàidhlig\n"
@@ -19,41 +19,41 @@ msgstr ""
 "X-Generator: Poedit 1.8.4\n"
 "X-Project-Style: kde\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:88 KioActivities.cpp:176
+#: fileitemplugin/FileItemLinkingPlugin.cpp:79 KioActivities.cpp:176
 #, kde-format
 msgid "Activities"
 msgstr "Gnìomhachdan"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:91
+#: fileitemplugin/FileItemLinkingPlugin.cpp:82
 #, kde-format
 msgid "Loading..."
 msgstr "'Ga luchdadh..."
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:108
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
 #, kde-format
 msgid "The Activity Manager is not running"
 msgstr "Chan eil manaidsear nan gnìomhachdan 'ga ruith"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:51
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:110
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:50
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:109
 #, kde-format
 msgid "Link to the current activity"
 msgstr "Dèan ceangal dhan ghnìomhachd làithreach"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:52
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:113
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:51
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:112
 #, kde-format
 msgid "Unlink from the current activity"
 msgstr "Dì-cheangail on ghnìomhachd làithreach"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:54
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:116
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:115
 #, kde-format
 msgid "Link to:"
 msgstr "Ceangail gu:"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:123
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:58
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:122
 #, kde-format
 msgid "Unlink from:"
 msgstr "Dì-cheangail o:"

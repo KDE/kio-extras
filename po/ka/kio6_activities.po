@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-12-27 01:34+0000\n"
+"POT-Creation-Date: 2024-11-16 00:40+0000\n"
 "PO-Revision-Date: 2022-08-25 16:33+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -18,41 +18,41 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:88 KioActivities.cpp:176
+#: fileitemplugin/FileItemLinkingPlugin.cpp:79 KioActivities.cpp:176
 #, kde-format
 msgid "Activities"
 msgstr "ქმედებები"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:91
+#: fileitemplugin/FileItemLinkingPlugin.cpp:82
 #, kde-format
 msgid "Loading..."
 msgstr "იტვირთება..."
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:108
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
 #, kde-format
 msgid "The Activity Manager is not running"
 msgstr "აქტივობების მმართველი გაშვებული არაა"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:51
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:110
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:50
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:109
 #, kde-format
 msgid "Link to the current activity"
 msgstr "მიმდინარე აქტივობაზე მიბმა"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:52
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:113
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:51
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:112
 #, kde-format
 msgid "Unlink from the current activity"
 msgstr "მიმდინარე აქტივობიდან ბმის მოხსნა"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:54
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:116
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:115
 #, kde-format
 msgid "Link to:"
 msgstr "მიბმა:"
 
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:59
-#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:123
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:58
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:122
 #, kde-format
 msgid "Unlink from:"
 msgstr "მოხსნა:"
