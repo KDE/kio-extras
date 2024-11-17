@@ -17,7 +17,9 @@
 #include <windows.h>
 #else
 #include <sys/ipc.h>
+#ifndef Q_OS_HAIKU
 #include <sys/shm.h>
+#endif
 #include <unistd.h> // nice()
 #endif
 
@@ -297,7 +299,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         // qDebug() << "IMAGE TO STREAM";
         stream << img;
     }
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) && !defined(Q_OS_HAIKU)
     else {
         // qDebug() << "IMAGE TO SHMID";
         void *shmaddr = shmat(shmid.toInt(), nullptr, 0);
