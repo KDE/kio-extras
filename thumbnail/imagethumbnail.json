@@ -12,8 +12,7 @@
             "image/x-xpixmap",
             "video/x-mng",
             "image/x-adobe-dng",
-            "image/webp",
-            "image/*"
+            "image/webp"
         ],
         "Name": "Images (GIF, PNG, BMP, ...)",
         "Name[ar]": "الصّور (GIF،‏ PNG،‏ BMP، ...)",
