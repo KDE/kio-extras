@@ -200,13 +200,15 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resourc
     if (resourceUrl.isLocalFile()) {
         uds.fastInsert(KIO::UDSEntry::UDS_LOCAL_PATH, resource);
     }
-    if (!uds.contains(KIO::UDSEntry::UDS_ACCESS_TIME)
-        // noatime case
-        || uds.numberValue(KIO::UDSEntry::UDS_ACCESS_TIME) <= uds.numberValue(KIO::UDSEntry::UDS_CREATION_TIME, -1)
-        || uds.numberValue(KIO::UDSEntry::UDS_ACCESS_TIME) <= uds.numberValue(KIO::UDSEntry::UDS_MODIFICATION_TIME, -1)
-        || uds.numberValue(KIO::UDSEntry::UDS_ACCESS_TIME) < lastUpdateTime) {
-        // override access time
+    if (!uds.contains(KIO::UDSEntry::UDS_ACCESS_TIME)) {
         uds.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, lastUpdateTime);
+    } else if (
+        // noatime case
+        uds.numberValue(KIO::UDSEntry::UDS_ACCESS_TIME) < lastUpdateTime
+        || uds.numberValue(KIO::UDSEntry::UDS_ACCESS_TIME) <= uds.numberValue(KIO::UDSEntry::UDS_CREATION_TIME, -1)
+        || uds.numberValue(KIO::UDSEntry::UDS_ACCESS_TIME) <= uds.numberValue(KIO::UDSEntry::UDS_MODIFICATION_TIME, -1)) {
+        // override access time
+        uds.replace(KIO::UDSEntry::UDS_ACCESS_TIME, lastUpdateTime);
     }
     uds.fastInsert(KIO::UDSEntry::UDS_EXTRA, agent);
     return uds;
