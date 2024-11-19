@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-06 00:37+0000\n"
+"POT-Creation-Date: 2024-11-19 00:40+0000\n"
 "PO-Revision-Date: 2011-07-28 22:30+0200\n"
 "Last-Translator: Kristóf Kiszel <ulysses@kubuntu.org>\n"
 "Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
@@ -16,52 +16,52 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.2\n"
 
-#: thumbnail.cpp:197
+#: thumbnail.cpp:199
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Nincs megadva MIME-típus."
 
-#: thumbnail.cpp:204
+#: thumbnail.cpp:206
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Nincs megadva vagy érvénytelen a méret."
 
-#: thumbnail.cpp:225
+#: thumbnail.cpp:227
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Nem sikerült gyorsnézetet létrehozni a könyvtárhoz"
 
-#: thumbnail.cpp:234
+#: thumbnail.cpp:236
 #, kde-format
 msgid "No plugin specified."
 msgstr "Nincs megadva bővítmény."
 
-#: thumbnail.cpp:239
+#: thumbnail.cpp:241
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Nem sikerült betölteni: ThumbCreator %1"
 
-#: thumbnail.cpp:247
+#: thumbnail.cpp:249
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Nem sikerült gyorsnézetet létrehozni: %1"
 
-#: thumbnail.cpp:257
+#: thumbnail.cpp:259
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Nem sikerült gyorsnézetet létrehozni."
 
-#: thumbnail.cpp:277
+#: thumbnail.cpp:279
 #, kde-format
 msgid "Could not write image."
 msgstr "Nem sikerült kiírni a képet."
 
-#: thumbnail.cpp:305
+#: thumbnail.cpp:307
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Nem sikerült kapcsolódni egy osztott memóriablokkhoz: %1"
 
-#: thumbnail.cpp:309
+#: thumbnail.cpp:311
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "A kép túl nagy a megosztott memóriablokkhoz"
