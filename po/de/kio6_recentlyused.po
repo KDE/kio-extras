@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio6_recentlyused\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-16 00:39+0000\n"
+"POT-Creation-Date: 2024-11-20 00:39+0000\n"
 "PO-Revision-Date: 2024-08-26 18:51+0200\n"
 "Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -47,17 +47,17 @@ msgstr ""
 "Dolphin- und Plasma-Menüs entfernen. Dadurch werden die Ressourcen nicht "
 "verschoben oder gelöscht."
 
-#: recentlyused.cpp:321
+#: recentlyused.cpp:323
 #, kde-format
 msgid "Recent Documents"
 msgstr "Zuletzt geöffnete Dokumente"
 
-#: recentlyused.cpp:329
+#: recentlyused.cpp:331
 #, kde-format
 msgid "Recent Files"
 msgstr "Zuletzt geöffnete Dateien"
 
-#: recentlyused.cpp:332
+#: recentlyused.cpp:334
 #, kde-format
 msgid "Recent Locations"
 msgstr "Zuletzt verwendete Orte"

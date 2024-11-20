@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio6_recentlyused\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-16 00:39+0000\n"
+"POT-Creation-Date: 2024-11-20 00:39+0000\n"
 "PO-Revision-Date: 2024-07-23 00:25+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -46,17 +46,17 @@ msgstr ""
 "recientemente en los menús de Dolphin y Plasma. Esto no elimina ni mueve los "
 "recursos."
 
-#: recentlyused.cpp:321
+#: recentlyused.cpp:323
 #, kde-format
 msgid "Recent Documents"
 msgstr "Documentos recientes"
 
-#: recentlyused.cpp:329
+#: recentlyused.cpp:331
 #, kde-format
 msgid "Recent Files"
 msgstr "Archivos recientes"
 
-#: recentlyused.cpp:332
+#: recentlyused.cpp:334
 #, kde-format
 msgid "Recent Locations"
 msgstr "Lugares recientes"

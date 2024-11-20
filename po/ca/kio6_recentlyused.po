@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-16 00:39+0000\n"
+"POT-Creation-Date: 2024-11-20 00:39+0000\n"
 "PO-Revision-Date: 2024-07-20 10:04+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -45,17 +45,17 @@ msgstr ""
 "Elimina el/s fitxer/s o ubicació/s seleccionats de la llista d'usos recents "
 "al Dolphin i als menús del Plasma. Això no elimina ni mou els recursos."
 
-#: recentlyused.cpp:321
+#: recentlyused.cpp:323
 #, kde-format
 msgid "Recent Documents"
 msgstr "Documents recents"
 
-#: recentlyused.cpp:329
+#: recentlyused.cpp:331
 #, kde-format
 msgid "Recent Files"
 msgstr "Fitxers recents"
 
-#: recentlyused.cpp:332
+#: recentlyused.cpp:334
 #, kde-format
 msgid "Recent Locations"
 msgstr "Ubicacions recents"

@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-08 00:38+0000\n"
-"PO-Revision-Date: 2024-02-11 18:52\n"
+"PO-Revision-Date: 2024-10-25 08:20\n"
 "Last-Translator: Darafei Praliaskouski <symbol@akeeri.tk>\n"
 "Language-Team: Belarusian\n"
 "Language: be\n"
@@ -30,7 +30,7 @@ msgstr "Злучэнне..."
 #: fish.cpp:642
 #, kde-format
 msgid "Initiating protocol..."
-msgstr "Ініцыялізацыя пратакола..."
+msgstr "Ініцыялізацыя пратаколу..."
 
 #: fish.cpp:679
 #, kde-format

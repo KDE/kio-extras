@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio6_recentlyused\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-16 00:39+0000\n"
+"POT-Creation-Date: 2024-11-20 00:39+0000\n"
 "PO-Revision-Date: 2024-11-11 17:47+0100\n"
 "Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -41,17 +41,17 @@ msgid ""
 "Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
 msgstr ""
 
-#: recentlyused.cpp:321
+#: recentlyused.cpp:323
 #, kde-format
 msgid "Recent Documents"
 msgstr "Nedávne dokumenty"
 
-#: recentlyused.cpp:329
+#: recentlyused.cpp:331
 #, kde-format
 msgid "Recent Files"
 msgstr "Nedávne súbory"
 
-#: recentlyused.cpp:332
+#: recentlyused.cpp:334
 #, kde-format
 msgid "Recent Locations"
 msgstr "Nedávne umiestnenia"
