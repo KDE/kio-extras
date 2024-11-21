@@ -449,7 +449,23 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
 
 Result SFTPWorker::reportError(const QUrl &url, int err)
 {
-    qCDebug(KIO_SFTP_LOG) << "url = " << url << " - err=" << err;
+    const auto sftpError = sftp_get_error(mSftp);
+    const auto sshError = ssh_get_error_code(mSession);
+    qCDebug(KIO_SFTP_LOG) << "reportError: " << url << err << "\n"
+                          << "- SFTP error:" << sftpError << "\n"
+                          << "- SSH error:" << sshError << "\n"
+                          << "- SSH errorString:" << ssh_get_error(mSession);
+
+    // The assumption here is that if the error is fatal we won't be able to recover
+    // naturally from it, so forecefully close the connection so it gets opened
+    // again on the next request.
+    // This may be a bit hit and miss because this function doesn't get used for all
+    // errors.
+    // https://bugs.kde.org/show_bug.cgi?id=495801
+    if (sshError == SSH_FATAL) {
+        qCDebug(KIO_SFTP_LOG) << "Fatal ssh session error, closing connection";
+        closeConnection();
+    }
 
     const int kioError = toKIOError(err);
     Q_ASSERT(kioError != KJob::NoError);
