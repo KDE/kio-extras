@@ -4,19 +4,20 @@
 #
 # Oskars <osk@one.lv>, 2007.
 # Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
+# SPDX-FileCopyrightText: 2024 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-07-08 00:38+0000\n"
-"PO-Revision-Date: 2009-05-20 20:42+0300\n"
-"Last-Translator: Viesturs Zariņš <viesturs.zarins@mii.lu.lv>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"PO-Revision-Date: 2024-11-20 16:40+0200\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.3\n"
+"X-Generator: Lokalize 24.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
@@ -33,25 +34,24 @@ msgstr "Inicializē protokolu..."
 #: fish.cpp:679
 #, kde-format
 msgid "Local Login"
-msgstr "Lokālā pieteikšanās"
+msgstr "Lokālā ierakstīšanās"
 
 #: fish.cpp:681
-#, fuzzy, kde-format
-#| msgid "SSH Authorization"
+#, kde-format
 msgid "SSH Authentication"
-msgstr "SSH autorizēšanās"
+msgstr "SSH autentifikācija"
 
 #: fish.cpp:718 fish.cpp:733
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "Jā"
 
 #: fish.cpp:718 fish.cpp:733
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "Nē"
 
 #: fish.cpp:816
 #, kde-format

@@ -1,0 +1,63 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# SPDX-FileCopyrightText: 2024 Toms Trasuns <toms.trasuns@posteo.net>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-20 00:39+0000\n"
+"PO-Revision-Date: 2024-11-20 16:56+0200\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+"X-Generator: Lokalize 24.08.3\n"
+
+#: forgetfileitemaction.cpp:46
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget File"
+msgid_plural "Forget Files"
+msgstr[0] "Aizmirst datni"
+msgstr[1] "Aizmirst datnes"
+msgstr[2] "Aizmirst datnes"
+
+#: forgetfileitemaction.cpp:48
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget Location"
+msgid_plural "Forget Locations"
+msgstr[0] "Aizmirst vietu"
+msgstr[1] "Aizmirst vietas"
+msgstr[2] "Aizmirst vietas"
+
+#: forgetfileitemaction.cpp:52
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Remove the selected file(s) or location(s) from the recently used list in "
+"Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
+msgstr ""
+"Noņemt atlasīto datni(-es) vai vietu(-as) no „Dolphin“ programmas un "
+"“Plasma“ izvēļņu nesen izmantoto vienumu saraksta. Šī darbība nenoņem un "
+"nepārvieto pašu vienumu(-us)."
+
+#: recentlyused.cpp:323
+#, kde-format
+msgid "Recent Documents"
+msgstr "Nesenie dokumenti"
+
+#: recentlyused.cpp:331
+#, kde-format
+msgid "Recent Files"
+msgstr "Nesenās datnes"
+
+#: recentlyused.cpp:334
+#, kde-format
+msgid "Recent Locations"
+msgstr "Nesenās vietas"

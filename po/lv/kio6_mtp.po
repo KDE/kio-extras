@@ -1,0 +1,38 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# SPDX-FileCopyrightText: 2024 Toms Trasuns <toms.trasuns@posteo.net>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-09-11 02:01+0000\n"
+"PO-Revision-Date: 2024-11-20 16:54+0200\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
+"Language: lv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+"X-Generator: Lokalize 24.08.3\n"
+
+#: kio_mtp.cpp:221
+#, kde-format
+msgctxt ""
+"Message shown when attempting to access an MTP device that is not fully "
+"accessible yet"
+msgid ""
+"Could not access device. Make sure it is unlocked, and tap \"Allow\" on the "
+"popup on its screen. If that does not work, make sure MTP is enabled in its "
+"USB connection settings."
+msgstr ""
+"Neizdevās piekļūt ierīcei. Pārliecinieties, ka tā ir atbloķēta un "
+"pieskarieties uz „Atļaut“ ierīces ekrānā. Ja tas nestrādā, pārbaudiet, vai "
+"ierīces USB savienojumu iestatījumos ir ieslēgts MTP."
+
+#: kio_mtp.cpp:520
+#, kde-format
+msgid "Cannot copy/move files on the device itself"
+msgstr "Nevar nokopēt/pārvietot datnes uz pašas ierīces"

@@ -2,71 +2,71 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Einars Sprugis <einars8@gmail.com>, 2011.
+# SPDX-FileCopyrightText: 2024 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-16 00:40+0000\n"
-"PO-Revision-Date: 2011-08-17 23:34+0300\n"
-"Last-Translator: Einars Sprugis <einars8@gmail.com>\n"
-"Language-Team: Latvian <locale@laka.lv>\n"
+"PO-Revision-Date: 2024-11-20 16:14+0200\n"
+"Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
+"Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 24.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:79 KioActivities.cpp:176
 #, kde-format
 msgid "Activities"
-msgstr ""
+msgstr "Aktivitātes"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:82
 #, kde-format
 msgid "Loading..."
-msgstr ""
+msgstr "Ielāde..."
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:99
-#, fuzzy, kde-format
-#| msgid "KDE Activity Manager"
+#, kde-format
 msgid "The Activity Manager is not running"
-msgstr "KDE aktivitāšu pārvaldnieks"
+msgstr "Aktivitāšu pārvaldnieks nav ieslēgts"
 
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:50
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:109
 #, kde-format
 msgid "Link to the current activity"
-msgstr ""
+msgstr "Saite uz pašreizējo aktivitāti"
 
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:51
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:112
 #, kde-format
 msgid "Unlink from the current activity"
-msgstr ""
+msgstr "Noņemt saiti no pašreizējās aktivitātes"
 
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:115
 #, kde-format
 msgid "Link to:"
-msgstr ""
+msgstr "Saite uz:"
 
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:58
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:122
 #, kde-format
 msgid "Unlink from:"
-msgstr ""
+msgstr "Noņemt saiti no:"
 
 #: KioActivities.cpp:108
 #, kde-format
 msgid "Current activity"
-msgstr ""
+msgstr "Pašreizējā aktivitāte"
 
 #: KioActivities.cpp:109 KioActivitiesApi.cpp:86
 #, kde-format
 msgid "Activity"
-msgstr ""
+msgstr "Aktivitāte"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"

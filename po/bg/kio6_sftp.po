@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-23 00:39+0000\n"
+"POT-Creation-Date: 2024-11-22 00:40+0000\n"
 "PO-Revision-Date: 2022-08-01 07:59+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -44,7 +44,7 @@ msgstr "Неуспешно задаване на потребителски да
 msgid "Could not set log callback."
 msgstr "Неуспешно задаване на обратно извикване на регистрация."
 
-#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:909
+#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:925
 #, kde-format
 msgid "SFTP Login"
 msgstr "Вход в SFTP"
@@ -59,78 +59,78 @@ msgstr "Въведете отговоря в полето за потребит�
 msgid "Please enter your password."
 msgstr "Въведете парола."
 
-#: kio_sftp.cpp:431 kio_sftp.cpp:912
+#: kio_sftp.cpp:431 kio_sftp.cpp:928
 #, kde-format
 msgid "Site:"
 msgstr "Сайт:"
 
-#: kio_sftp.cpp:476
+#: kio_sftp.cpp:492
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "Грешка при четене на връзка: %1 [%2]"
 
-#: kio_sftp.cpp:596
+#: kio_sftp.cpp:612
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "Грешка при създаване на нова сесия на SSH"
 
-#: kio_sftp.cpp:607 kio_sftp.cpp:611
+#: kio_sftp.cpp:623 kio_sftp.cpp:627
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "Грешка при задаване на изчакване"
 
-#: kio_sftp.cpp:618
+#: kio_sftp.cpp:634
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "Не можа да се деактивира алгоритъма на Nagle."
 
-#: kio_sftp.cpp:624 kio_sftp.cpp:629
+#: kio_sftp.cpp:640 kio_sftp.cpp:645
 #, kde-format
 msgid "Could not set compression."
 msgstr "Грешка при задаване ниво на компресия."
 
-#: kio_sftp.cpp:635
+#: kio_sftp.cpp:651
 #, kde-format
 msgid "Could not set host."
 msgstr "Грешка при задаване на хост."
 
-#: kio_sftp.cpp:641
+#: kio_sftp.cpp:657
 #, kde-format
 msgid "Could not set port."
 msgstr "Грешка при задаване на порт."
 
-#: kio_sftp.cpp:649
+#: kio_sftp.cpp:665
 #, kde-format
 msgid "Could not set username."
 msgstr "Грешка при задаване на потребител."
 
-#: kio_sftp.cpp:656
+#: kio_sftp.cpp:672
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "Грешка при обработка на файла с настройки"
 
-#: kio_sftp.cpp:671
+#: kio_sftp.cpp:687
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "Отваряне на връзка SFTP до хост %1:%2"
 
-#: kio_sftp.cpp:711
+#: kio_sftp.cpp:727
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "Името на типа публичен ключ на сървъра не можа да бъде получено"
 
-#: kio_sftp.cpp:723
+#: kio_sftp.cpp:739
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr "Не можа да се създаде хеш от публичния ключ на сървъра"
 
-#: kio_sftp.cpp:732
+#: kio_sftp.cpp:748
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "Не можа да се създаде отпечатък за публичен ключ на сървъра"
 
-#: kio_sftp.cpp:791
+#: kio_sftp.cpp:807
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -146,13 +146,13 @@ msgstr ""
 "Моля, свържете се със системния си администратор.\n"
 " %2"
 
-#: kio_sftp.cpp:808
+#: kio_sftp.cpp:824
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "Промяна в самоличността на хоста"
 
-#: kio_sftp.cpp:810
+#: kio_sftp.cpp:826
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -168,13 +168,13 @@ msgstr ""
 "para><para>Отпечатъкът за ключ %2, изпратен от отдалечения хост, е <bcode>"
 "%3</bcode>Сигурни ли сте, че искате да продължите свързването?</para>"
 
-#: kio_sftp.cpp:820
+#: kio_sftp.cpp:836
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr "Неуспех при верификацията на хоста"
 
-#: kio_sftp.cpp:822
+#: kio_sftp.cpp:838
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -186,36 +186,36 @@ msgstr ""
 "проверена.</para><para>Отпечатъкът на ключ %2 е: <bcode>%3</bcode>Настина ли "
 "искате да се продължи свързването?</para>"
 
-#: kio_sftp.cpp:831
+#: kio_sftp.cpp:847
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "Свързване въпреки всичко"
 
-#: kio_sftp.cpp:854 kio_sftp.cpp:873 kio_sftp.cpp:888 kio_sftp.cpp:901
-#: kio_sftp.cpp:953 kio_sftp.cpp:963
+#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:904 kio_sftp.cpp:917
+#: kio_sftp.cpp:969 kio_sftp.cpp:979
 #, kde-format
 msgid "Authentication failed."
 msgstr "Идентификацията е неуспешна."
 
-#: kio_sftp.cpp:861
+#: kio_sftp.cpp:877
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr ""
 "Идентификацията е неуспешна. Сървърът не изпрати начини за идентификация"
 
-#: kio_sftp.cpp:910
+#: kio_sftp.cpp:926
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Въведете потребителско име и парола."
 
-#: kio_sftp.cpp:921
+#: kio_sftp.cpp:937
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Неправилно потребителско име или парола"
 
-#: kio_sftp.cpp:970
+#: kio_sftp.cpp:986
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -223,22 +223,22 @@ msgid ""
 msgstr ""
 "Грешка при заявката към SFTP. Проверете дали SFTP е наличен на сървъра."
 
-#: kio_sftp.cpp:975
+#: kio_sftp.cpp:991
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "Грешка при инициализиране на сесия на SFTP."
 
-#: kio_sftp.cpp:979
+#: kio_sftp.cpp:995
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Установена е връзка с %1"
 
-#: kio_sftp.cpp:1032
+#: kio_sftp.cpp:1048
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Невалиден sftp контекст"
 
-#: kio_sftp.cpp:1564
+#: kio_sftp.cpp:1580
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
