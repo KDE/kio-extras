@@ -15,6 +15,8 @@
 #include <QTextCodec>
 #include <QVBoxLayout>
 
+static const QString PLACEHOLDER_TOKEN = QStringLiteral("\\{@}");
+
 SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<SearchProvider *> &providers, QWidget *parent)
     : QDialog(parent)
     , m_provider(provider)
@@ -140,9 +142,10 @@ void SearchProviderDialog::accept()
 {
     if ((m_dlg.leQuery->text().indexOf(QLatin1String("\\{")) == -1)
         && KMessageBox::warningContinueCancel(nullptr,
-                                              i18n("The URL does not contain a \"\\{@}\" placeholder for the user query.\n"
+                                              i18n("The URL does not contain a %1 placeholder for the user query.\n"
                                                    "This means that the same page is always going to be visited, "
-                                                   "regardless of the text typed in with the keyword."),
+                                                   "regardless of the text typed in with the keyword.",
+                                                   PLACEHOLDER_TOKEN),
                                               QString(),
                                               KGuiItem(i18n("Keep It")))
             == KMessageBox::Cancel) {
@@ -169,7 +172,7 @@ void SearchProviderDialog::accept()
 
 void SearchProviderDialog::pastePlaceholder()
 {
-    m_dlg.leQuery->insert(QStringLiteral("\\{@}"));
+    m_dlg.leQuery->insert(PLACEHOLDER_TOKEN);
     m_dlg.leQuery->setFocus();
 }
 
