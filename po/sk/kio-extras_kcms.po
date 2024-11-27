@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-06 00:39+0000\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
 "PO-Revision-Date: 2023-06-03 21:00+0200\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
@@ -972,25 +972,25 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "Medzera"
 
-#: webshortcuts/searchproviderdlg.cpp:49
+#: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "Predvolené"
 
-#: webshortcuts/searchproviderdlg.cpp:52
+#: webshortcuts/searchproviderdlg.cpp:54
 #, fuzzy, kde-format
 #| msgid "Web Search Keywords"
 msgid "Edit Web Search Keyword"
 msgstr "Kľúčové slová pre vyhľadávanie na webe"
 
-#: webshortcuts/searchproviderdlg.cpp:60
+#: webshortcuts/searchproviderdlg.cpp:62
 #, fuzzy, kde-format
 #| msgid "Web Search Keywords"
 msgid "New Web Search Keyword"
 msgstr "Kľúčové slová pre vyhľadávanie na webe"
 
-#: webshortcuts/searchproviderdlg.cpp:121
+#: webshortcuts/searchproviderdlg.cpp:123
 #, fuzzy, kde-format
 #| msgid ""
 #| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
@@ -1000,13 +1000,13 @@ msgid ""
 "one."
 msgstr "Skratka \"%1\" je už priradená k \"%2\". Vyberte inú skratku."
 
-#: webshortcuts/searchproviderdlg.cpp:126
+#: webshortcuts/searchproviderdlg.cpp:128
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
-#: webshortcuts/searchproviderdlg.cpp:130
+#: webshortcuts/searchproviderdlg.cpp:132
 #, fuzzy, kde-format
 #| msgid ""
 #| "The following shortcuts are already assigned. Please choose different "
@@ -1019,7 +1019,7 @@ msgstr ""
 "Nasledujúca skratka je už priradená. Vyberte inú skratku.\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:143
+#: webshortcuts/searchproviderdlg.cpp:145
 #, fuzzy, kde-format
 #| msgid ""
 #| "The Shortcut URL does not contain a \\{...} placeholder for the user "
@@ -1027,7 +1027,7 @@ msgstr ""
 #| "This means that the same page is always going to be visited, regardless "
 #| "of the text typed in with the shortcut."
 msgid ""
-"The URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
@@ -1035,7 +1035,7 @@ msgstr ""
 "To znamená, že vždy bude navštevovaná tá istá stránka bez ohľadu na to, čo "
 "užívateľ napíše."
 
-#: webshortcuts/searchproviderdlg.cpp:147
+#: webshortcuts/searchproviderdlg.cpp:150
 #, kde-format
 msgid "Keep It"
 msgstr "Ponechať"

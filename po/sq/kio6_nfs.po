@@ -1,0 +1,69 @@
+# Albanian translation for kdebase-runtime
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the kdebase-runtime package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kdebase-runtime\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
+"PO-Revision-Date: 2009-08-31 13:47+0000\n"
+"Last-Translator: Vilson Gjeci <vilsongjeci@gmail.com>\n"
+"Language-Team: Albanian <sq@li.org>\n"
+"Language: sq\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2011-04-22 15:37+0000\n"
+"X-Generator: Launchpad (build 12883)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_nfs.cpp:151
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr ""
+
+#: kio_nfs.cpp:344
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr ""
+
+#: kio_nfs.cpp:647
+#, kde-format
+msgid "Empty destination"
+msgstr ""
+
+#: kio_nfs.cpp:739
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr ""
+
+#: kio_nfs.cpp:775
+#, kde-format
+msgid "Filename too long"
+msgstr "Emri i skedarit është shumë i gjatë"
+
+#: kio_nfs.cpp:780
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Kuotat e diskut janë tejkaluar"
+
+#: kio_nfs.cpp:784
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr ""
+
+#: nfsv3.cpp:436 nfsv3.cpp:587
+#, kde-format
+msgid "Unknown target"
+msgstr ""
+
+#~ msgid "No space left on device"
+#~ msgstr "Nuk ka më hapësirë të ngelur në pajisje"
+
+#~ msgid "Read only file system"
+#~ msgstr "Sistemi i skedarëve është vetëm i lexueshëm"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "Ka ndodhur një gabim RPC."

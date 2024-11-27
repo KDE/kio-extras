@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-06 00:39+0000\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
 "PO-Revision-Date: 2024-02-17 12:52+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -942,25 +942,25 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "공백"
 
-#: webshortcuts/searchproviderdlg.cpp:49
+#: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "기본값"
 
-#: webshortcuts/searchproviderdlg.cpp:52
+#: webshortcuts/searchproviderdlg.cpp:54
 #, fuzzy, kde-format
 #| msgid "Web Search Keywords"
 msgid "Edit Web Search Keyword"
 msgstr "웹 검색 키워드"
 
-#: webshortcuts/searchproviderdlg.cpp:60
+#: webshortcuts/searchproviderdlg.cpp:62
 #, fuzzy, kde-format
 #| msgid "Web Search Keywords"
 msgid "New Web Search Keyword"
 msgstr "웹 검색 키워드"
 
-#: webshortcuts/searchproviderdlg.cpp:121
+#: webshortcuts/searchproviderdlg.cpp:123
 #, fuzzy, kde-format
 #| msgid ""
 #| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
@@ -971,13 +971,13 @@ msgid ""
 msgstr ""
 "\"%1\" 바로 가기가 이미 \"%2\"에 할당되어 있습니다. 다른 이름을 지정하십시오."
 
-#: webshortcuts/searchproviderdlg.cpp:126
+#: webshortcuts/searchproviderdlg.cpp:128
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
-#: webshortcuts/searchproviderdlg.cpp:130
+#: webshortcuts/searchproviderdlg.cpp:132
 #, fuzzy, kde-format
 #| msgid ""
 #| "The following shortcuts are already assigned. Please choose different "
@@ -990,7 +990,7 @@ msgstr ""
 "다음 바로 가기는 이미 할당되어 있습니다. 다른 이름을 지정하십시오.\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:143
+#: webshortcuts/searchproviderdlg.cpp:145
 #, fuzzy, kde-format
 #| msgid ""
 #| "The Shortcut URL does not contain a \\{...} placeholder for the user "
@@ -998,14 +998,14 @@ msgstr ""
 #| "This means that the same page is always going to be visited, regardless "
 #| "of the text typed in with the shortcut."
 msgid ""
-"The URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
 "이 단축 URL에는 사용자 쿼리의 자리 비움자 \\{...}이 들어 있지 않습니다.\n"
 "이것은 사용자가 무엇을 입력하든 똑같은 페이지가 열린다는 뜻입니다."
 
-#: webshortcuts/searchproviderdlg.cpp:147
+#: webshortcuts/searchproviderdlg.cpp:150
 #, kde-format
 msgid "Keep It"
 msgstr "그대로 두기"

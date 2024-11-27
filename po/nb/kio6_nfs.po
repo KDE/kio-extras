@@ -1,0 +1,60 @@
+# Translation of kio6_nfs to Norwegian Bokmål
+#
+# Bjørn Steensrud <bjornst@skogkatt.homelinux.org>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
+"PO-Revision-Date: 2014-11-07 18:04+0100\n"
+"Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
+"Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: kio_nfs.cpp:151
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr ""
+
+#: kio_nfs.cpp:344
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr ""
+
+#: kio_nfs.cpp:647
+#, kde-format
+msgid "Empty destination"
+msgstr ""
+
+#: kio_nfs.cpp:739
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr ""
+
+#: kio_nfs.cpp:775
+#, kde-format
+msgid "Filename too long"
+msgstr "For langt filnavn"
+
+#: kio_nfs.cpp:780
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Diskkvote overskredet"
+
+#: kio_nfs.cpp:784
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr ""
+
+#: nfsv3.cpp:436 nfsv3.cpp:587
+#, kde-format
+msgid "Unknown target"
+msgstr "Ukjent mål"

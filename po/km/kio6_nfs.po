@@ -1,0 +1,66 @@
+# translation of kio_nfs.po to Khmer
+# Khoem Sokhem <khoemsokhem@khmeros.info>, 2005, 2007, 2008.
+# Eng Vannak <evannak@khmeros.info>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
+"PO-Revision-Date: 2008-01-24 10:11+0700\n"
+"Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
+"Language-Team: Khmer <support@khmeros.info>\n"
+"Language: km\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: kio_nfs.cpp:151
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr ""
+
+#: kio_nfs.cpp:344
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr ""
+
+#: kio_nfs.cpp:647
+#, kde-format
+msgid "Empty destination"
+msgstr ""
+
+#: kio_nfs.cpp:739
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr ""
+
+#: kio_nfs.cpp:775
+#, kde-format
+msgid "Filename too long"
+msgstr "ឈ្មោះ​ឯកសារ​វែង​ពេក"
+
+#: kio_nfs.cpp:780
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "លើស​កូតា​ថាស​"
+
+#: kio_nfs.cpp:784
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr ""
+
+#: nfsv3.cpp:436 nfsv3.cpp:587
+#, kde-format
+msgid "Unknown target"
+msgstr ""
+
+#~ msgid "No space left on device"
+#~ msgstr "គ្មាន​ចន្លោះ​សល់​លើ​ឧបករណ៍"
+
+#~ msgid "Read only file system"
+#~ msgstr "ប្រព័ន្ធ​ឯកសារ​បាន​តែ​អាន"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "កំហុស RPC មួយ​បាន​កើត​ឡើង ។"

@@ -1,0 +1,77 @@
+# Copyright (C) 2015 Free Software Foundation, Inc.
+#
+# Tamas Szanto <tszanto@interware.hu>, 2001.
+# Kristóf Kiszel <ulysses@kubuntu.org>, 2015.
+# Kristof Kiszel <ulysses@fsf.hu>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: KDE 4.0\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
+"PO-Revision-Date: 2022-02-10 14:18+0100\n"
+"Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
+"Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 21.07.70\n"
+
+#: kio_nfs.cpp:151
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr "Nem található a(z) „%1” gép által támogatott NFS verzió"
+
+#: kio_nfs.cpp:344
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "Az NFS protokoll a kiszolgáló gépnevét igényli."
+
+#: kio_nfs.cpp:647
+#, kde-format
+msgid "Empty destination"
+msgstr ""
+
+#: kio_nfs.cpp:739
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "RPC hiba: %1, %2"
+
+#: kio_nfs.cpp:775
+#, kde-format
+msgid "Filename too long"
+msgstr "A fájlnév túl hosszú"
+
+#: kio_nfs.cpp:780
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Lemezkvóta túllépve"
+
+#: kio_nfs.cpp:784
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "NFS hiba: %1, %2"
+
+#: nfsv3.cpp:436 nfsv3.cpp:587
+#, kde-format
+msgid "Unknown target"
+msgstr "Ismeretlen cél"
+
+#~ msgid "Failed to initialise protocol"
+#~ msgstr "Nem sikerült inicializálni a protokollt."
+
+#~ msgid "%1: Unsupported NFS version"
+#~ msgstr "%1: Nem támogatott NFS verzió"
+
+#~ msgid "No space left on device"
+#~ msgstr "Nem maradt szabad hely az eszközön"
+
+#~ msgid "Read only file system"
+#~ msgstr "Csak olvasható fájlrendszer"
+
+#~ msgid "Failed to mount %1"
+#~ msgstr "Nem sikerült csatolni ezt: %1"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "RPC-hiba történt."

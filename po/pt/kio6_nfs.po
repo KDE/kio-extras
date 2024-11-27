@@ -1,0 +1,57 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
+"PO-Revision-Date: 2021-02-15 23:08+0000\n"
+"Last-Translator: José Nuno Pires <zepires@gmail.com>\n"
+"Language-Team: pt <kde-i18n-pt@kde.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POFile-SpellExtra: RPC \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: kio_nfs.cpp:151
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr "Não é possível encontrar uma versão de NFS que o servidor '%1' suporte"
+
+#: kio_nfs.cpp:344
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "O protocolo NFS necessita do nome do servidor."
+
+#: kio_nfs.cpp:647
+#, kde-format
+msgid "Empty destination"
+msgstr ""
+
+#: kio_nfs.cpp:739
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "Erro de RPC %1, %2"
+
+#: kio_nfs.cpp:775
+#, kde-format
+msgid "Filename too long"
+msgstr "O nome do ficheiro é demasiado longo"
+
+#: kio_nfs.cpp:780
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Foi ultrapassada a quota de disco"
+
+#: kio_nfs.cpp:784
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "Erro do NFS %1, %2"
+
+#: nfsv3.cpp:436 nfsv3.cpp:587
+#, kde-format
+msgid "Unknown target"
+msgstr "Destino desconhecido"
+
+#~ msgid "Failed to initialise protocol"
+#~ msgstr "Não foi possível inicializar o protocolo"

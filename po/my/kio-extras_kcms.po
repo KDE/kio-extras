@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-06 00:39+0000\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
 "PO-Revision-Date: 2022-10-05 21:57+0630\n"
 "Last-Translator: ဇေယျာလွင် <lw1nzayar@yandex.com>\n"
 "Language-Team: Burmese <kde-i18n-doc@kde.org>\n"
@@ -946,25 +946,25 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "'နေရာလွတ်'အက္ခရာ"
 
-#: webshortcuts/searchproviderdlg.cpp:49
+#: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "မူလသတ်မှတ်ချက်"
 
-#: webshortcuts/searchproviderdlg.cpp:52
+#: webshortcuts/searchproviderdlg.cpp:54
 #, fuzzy, kde-format
 #| msgid "Web Search Keywords"
 msgid "Edit Web Search Keyword"
 msgstr "ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးများ"
 
-#: webshortcuts/searchproviderdlg.cpp:60
+#: webshortcuts/searchproviderdlg.cpp:62
 #, fuzzy, kde-format
 #| msgid "Web Search Keywords"
 msgid "New Web Search Keyword"
 msgstr "ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးများ"
 
-#: webshortcuts/searchproviderdlg.cpp:121
+#: webshortcuts/searchproviderdlg.cpp:123
 #, fuzzy, kde-format
 #| msgid ""
 #| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
@@ -974,13 +974,13 @@ msgid ""
 "one."
 msgstr "ဖြတ်လမ်း \"%1\" အား \"%2\" သို့ သတ်မှတ်ထားပြီးဖြစ်သည်။ အခြားတစ်ခုရွေးပါ။"
 
-#: webshortcuts/searchproviderdlg.cpp:126
+#: webshortcuts/searchproviderdlg.cpp:128
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
-#: webshortcuts/searchproviderdlg.cpp:130
+#: webshortcuts/searchproviderdlg.cpp:132
 #, fuzzy, kde-format
 #| msgid ""
 #| "The following shortcuts are already assigned. Please choose different "
@@ -993,7 +993,7 @@ msgstr ""
 "အောက်ပါ ဖြတ်လမ်းများကို အသုံးပြုပြီးဖြစ်သည်။ အခြားမတူညီသည်များရွေးပါ။\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:143
+#: webshortcuts/searchproviderdlg.cpp:145
 #, fuzzy, kde-format
 #| msgid ""
 #| "The Shortcut URL does not contain a \\{...} placeholder for the user "
@@ -1001,14 +1001,14 @@ msgstr ""
 #| "This means that the same page is always going to be visited, regardless "
 #| "of the text typed in with the shortcut."
 msgid ""
-"The URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
 "ဖြတ်လမ်း ယူအာအယ်သည် အသုံးပြုသူစုံစမ်းချက်အတွက် နေရာဦးထားမှု \\{…} မပါဝင်ပါ။\n"
 "ဆိုလိုသည်မှာ ဖြတ်လမ်းတွင် မည်သည်စာရေးသွင်း၍ဖြစ်စေ တူညီသော စာမျက်နှာကိုသာ သွားရောက်မည်ဖြစ်သည်။"
 
-#: webshortcuts/searchproviderdlg.cpp:147
+#: webshortcuts/searchproviderdlg.cpp:150
 #, kde-format
 msgid "Keep It"
 msgstr "၎င်းကိုသိမ်းထားပါ"

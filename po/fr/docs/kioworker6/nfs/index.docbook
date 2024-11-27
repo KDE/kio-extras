@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % French "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="nfs">
+<title
+>nfs</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+&traducteurEquipeKDE; 
+</authorgroup>
+</articleinfo>
+<para
+>Le protocole <acronym
+>NFS</acronym
+> de Sun fournit un accès distant transparent à des systèmes de fichiers partagés sur le réseau. Le protocole <acronym
+>NFS</acronym
+> est conçu pour être indépendant de la machine, du système d'exploitation, de l'architecture du réseau et du protocole. Cette indépendance est atteinte grâce à l'utilisation de primitives <acronym
+>RPC</acronym
+> (Remote Procedure Call) construites sur une représentation externe des données (eXternal Data Representation ou <acronym
+>XDR</acronym
+>). </para>
+
+<para
+>Le protocole gérant le montage exécute les fonctions spécifiques au système d'exploitation qui permettent aux clients d'attacher des arborescences de dossiers dans leur système de fichiers local. Le processus de montage permet également au serveur d'accorder des droits d'accès distants à un nombre restreint de clients via le contrôle d'exportation.</para>
+
+<para
+>Le gestionnaire de verrouillage fournit la gestion du verrouillage de fichiers lorsqu'ils sont utilisés dans un environnement <acronym
+>NFS</acronym
+>. Le protocole du gestionnaire de verrouillage réseau (<acronym
+>NLM</acronym
+>) isole ce qui fait intervenir des états lors du verrouillage de fichier dans un protocole à part.</para>
+
+<para
+>Source : <ulink url="http://www.networksorcery.com/enp/protocol/nfs.htm"
+> http://www.networksorcery.com/enp/protocol/nfs.htm</ulink
+> </para>
+
+<para
+>Consultez le manuel de <ulink url="man:/nfs"
+>nfs</ulink
+>. </para>
+</article>

@@ -1,0 +1,76 @@
+# translation of kio_nfs.po to Slovak
+# Stanislav Visnovsky <visnovsky@nenya.ms.mff.cuni.cz>, 2001.
+# Roman Paholik <wizzardsk@gmail.com>, 2014.
+# Matej Mrenica <matejm98mthw@gmail.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio_nfs\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
+"PO-Revision-Date: 2021-07-20 17:50+0200\n"
+"Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
+"Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 21.07.80\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: kio_nfs.cpp:151
+#, kde-format
+msgid "Cannot find an NFS version that host '%1' supports"
+msgstr "Nemožno nájsť verziu NFS, ktorá podporuje hostiteľa „%1“"
+
+#: kio_nfs.cpp:344
+#, kde-format
+msgid "The NFS protocol requires a server host name."
+msgstr "Protokol NFS vyžaduje názov hostiteľa servera."
+
+#: kio_nfs.cpp:647
+#, kde-format
+msgid "Empty destination"
+msgstr ""
+
+#: kio_nfs.cpp:739
+#, kde-format
+msgid "RPC error %1, %2"
+msgstr "RPC chyba %1, %2"
+
+#: kio_nfs.cpp:775
+#, kde-format
+msgid "Filename too long"
+msgstr "Meno súboru príliš dlhé"
+
+#: kio_nfs.cpp:780
+#, kde-format
+msgid "Disk quota exceeded"
+msgstr "Prekročené obmedzenie miesta na disku"
+
+#: kio_nfs.cpp:784
+#, kde-format
+msgid "NFS error %1, %2"
+msgstr "NFS chyba %1, %2"
+
+#: nfsv3.cpp:436 nfsv3.cpp:587
+#, kde-format
+msgid "Unknown target"
+msgstr "Neznámy cieľ"
+
+#~ msgid "Failed to initialise protocol"
+#~ msgstr "Nepodarilo sa inicializovať protokol"
+
+#~ msgid "%1: Unsupported NFS version"
+#~ msgstr "%1: Nepodporovaná NFS verzia"
+
+#~ msgid "No space left on device"
+#~ msgstr "Nedostatok miesta na zariadení"
+
+#~ msgid "Read only file system"
+#~ msgstr "Súborový systém len pre čítanie"
+
+#~ msgid "Failed to mount %1"
+#~ msgstr "Zlyhalo pripojenie %1"
+
+#~ msgid "An RPC error occurred."
+#~ msgstr "Nastala chyba RPC."

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-06 00:39+0000\n"
+"POT-Creation-Date: 2024-11-27 00:40+0000\n"
 "PO-Revision-Date: 2024-09-06 08:14+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -969,36 +969,36 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "Presledek"
 
-#: webshortcuts/searchproviderdlg.cpp:49
+#: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "Privzeto"
 
-#: webshortcuts/searchproviderdlg.cpp:52
+#: webshortcuts/searchproviderdlg.cpp:54
 #, kde-format
 msgid "Edit Web Search Keyword"
 msgstr "Uredi ključno besedo spletnega iskanja"
 
-#: webshortcuts/searchproviderdlg.cpp:60
+#: webshortcuts/searchproviderdlg.cpp:62
 #, kde-format
 msgid "New Web Search Keyword"
 msgstr "Nova ključna beseda spletnega iskanja"
 
-#: webshortcuts/searchproviderdlg.cpp:121
+#: webshortcuts/searchproviderdlg.cpp:123
 #, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr "Ključna beseda \"%1\" je že dodeljena \"%2\" Izberite drugo."
 
-#: webshortcuts/searchproviderdlg.cpp:126
+#: webshortcuts/searchproviderdlg.cpp:128
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "– %1: »%2«"
 
-#: webshortcuts/searchproviderdlg.cpp:130
+#: webshortcuts/searchproviderdlg.cpp:132
 #, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
@@ -1007,10 +1007,14 @@ msgstr ""
 "Naslednje ključne besede so že dodeljene. Izberite druge.\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:143
-#, kde-format
+#: webshortcuts/searchproviderdlg.cpp:145
+#, fuzzy, kde-format
+#| msgid ""
+#| "The URL does not contain a \\{...} placeholder for the user query.\n"
+#| "This means that the same page is always going to be visited, regardless "
+#| "of the text typed in with the keyword."
 msgid ""
-"The URL does not contain a \\{...} placeholder for the user query.\n"
+"The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
@@ -1018,7 +1022,7 @@ msgstr ""
 "To pomeni, da bo vedno obiskana ista stran, ne glede na besedilo vpisano s "
 "ključno besedo."
 
-#: webshortcuts/searchproviderdlg.cpp:147
+#: webshortcuts/searchproviderdlg.cpp:150
 #, kde-format
 msgid "Keep It"
 msgstr "Ohrani ga"

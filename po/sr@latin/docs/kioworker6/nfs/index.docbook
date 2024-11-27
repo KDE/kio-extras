@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Serbian-Latin "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="nfs">
+<title
+>NFS</title>
+<articleinfo>
+<authorgroup>
+<author
+><personname
+><firstname
+>Lori</firstname
+> <surname
+>Vots</surname
+></personname
+> &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>Dragan</firstname
+><surname
+>Pantelić</surname
+><affiliation
+><address
+><email
+>falcon-10@gmx.de</email
+></address
+></affiliation
+><contrib
+>prevod</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+<para
+>Sunov protokol NFS obezbeđuje proziran udaljeni pristup fajl sistemima deljenim preko mreža. NFS je projektovan da bude nezavisan od hardvera, operativnog sistema, mrežne arhitekture i transportnih protokola. Ova nezavisnost postiže se korišćenjem primitiva „poziva udaljenih procedura“ (RPC) nad „spoljašnjom reprezentacijom podataka“ (XDR). </para>
+
+<para
+>Pomoćni protokol montiranja izvršava funkcije posebne po operativnom sistemu, koje klijentima omogućavaju da priključe stabla fascikli na tačku unutar lokalnog fajl sistema. Preko kontrole izvoza, proces montiranja takođe dopušta serveru da dodeli dozvole udaljenog pristupa ograničenom skupu klijenata.</para>
+
+<para
+>„Menadžer zaključavanja“ pruža podršku za zaključavanje fajlova u NFS okruženju. Protokol NLM (mrežni menadžer zaključavanja) izoluje nerazdvojive aspekte stanja zaključavanja fajlova u jedan poseban protokol.</para>
+
+<para
+>Izvor: <ulink url="http://www.networksorcery.com/enp/protocol/nfs.htm"
+> http://www.networksorcery.com/enp/protocol/nfs.htm</ulink
+> </para>
+
+<para
+>Pogledajte <ulink url="man:/nfs"
+>uputnu stranicu NFS‑a</ulink
+>. </para>
+</article>
