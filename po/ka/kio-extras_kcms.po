@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-27 00:40+0000\n"
-"PO-Revision-Date: 2024-09-06 04:22+0200\n"
+"PO-Revision-Date: 2024-11-27 03:57+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -982,17 +982,13 @@ msgstr ""
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "The URL does not contain a \\{...} placeholder for the user query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the keyword."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"URL არ შეიცავს \\{...} ადგილმჭერს მომხმარებლის მოთხოვნისთვის.\n"
+"URL არ შეიცავს %1 ადგილმჭერს მომხმარებლის მოთხოვნისთვის.\n"
 "ეს ნიშნავს, რომ შეხვალთ იგივე გვერდზე იმის მიუხედავად, რა ტექსტი აკრიფეთ ამ "
 "საკვანძო სიტყვასთან ერთად."
 

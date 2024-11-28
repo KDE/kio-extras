@@ -929,18 +929,12 @@ msgstr ""
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "The URL does not contain a \\{...} placeholder for the user query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the keyword."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"此网页搜索关键词的 URL 中不包含用于提交搜索条件的 \\{...} 占位符。\n"
-"这意味着无论您使用此关键词输入了什么内容，得到的都是同一个网页。"
 
 #: webshortcuts/searchproviderdlg.cpp:150
 #, kde-format

@@ -56,6 +56,3 @@ msgstr "NFS 错误 %1，%2"
 #, kde-format
 msgid "Unknown target"
 msgstr "未知目标"
-
-#~ msgid "Failed to initialise protocol"
-#~ msgstr "初始化协议失败"
