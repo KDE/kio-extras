@@ -935,6 +935,8 @@ msgid ""
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
+"此网页搜索关键词的 URL 中不包含用于提交搜索条件的 %1 占位符。\n"
+"这意味着无论您使用此关键词输入了什么内容，得到的都是同一个网页。"
 
 #: webshortcuts/searchproviderdlg.cpp:150
 #, kde-format

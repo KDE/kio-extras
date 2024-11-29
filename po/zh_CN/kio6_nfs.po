@@ -30,7 +30,7 @@ msgstr "NFS 协议必须填写服务器的主机名。"
 #: kio_nfs.cpp:647
 #, kde-format
 msgid "Empty destination"
-msgstr ""
+msgstr "目标为空"
 
 #: kio_nfs.cpp:739
 #, kde-format
