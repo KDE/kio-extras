@@ -185,8 +185,8 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                                        std::queue<QUrl> &pendingDirs)
 {
     //  If the directory already flagged in the iteratedDirs set then there is no need
-    //  to repeat the search.
-    // avoid circular recursion into symlinks
+    //  to repeat the search - avoiding circular recursion into symlinks.
+
     if (iteratedDirs.count(QUrl(dirUrl).path()) != 0) {
         return;
     }
@@ -209,6 +209,11 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
         }
 
         for (auto entry : list) {
+            if (wasKilled()) { // File-by-file searches may take some time, call wasKilled before each file
+                listJob->kill();
+                return;
+            }
+
             QUrl entryUrl(dirUrl);
             QString path = entryUrl.path();
             if (!path.endsWith(QLatin1Char('/'))) {
