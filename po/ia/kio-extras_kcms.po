@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-27 00:40+0000\n"
-"PO-Revision-Date: 2024-09-06 10:21+0200\n"
+"PO-Revision-Date: 2024-11-29 12:02+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -995,17 +995,13 @@ msgstr ""
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "The URL does not contain a \\{...} placeholder for the user query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the keyword."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"Le URI non contine un substituto \\{...} pro le requesta del usator.\n"
+"Le URI non contine un substituto %1pro le requesta del usator.\n"
 "Isto significa que le mesme pagina essera sempre visitate, sin reguardo de "
 "lo que le usator typa con le parola clave."
 

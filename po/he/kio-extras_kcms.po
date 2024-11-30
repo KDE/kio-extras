@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-27 00:40+0000\n"
-"PO-Revision-Date: 2024-09-06 08:34+0300\n"
+"PO-Revision-Date: 2024-11-27 08:27+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.08.3\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -985,17 +985,13 @@ msgstr ""
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "The URL does not contain a \\{...} placeholder for the user query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the keyword."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"הכתובת לא מכילה ממלא מקום ‎\\{...}‎ לשאילתת המשתמש.\n"
+"הכתובת לא מכילה ממלא מקום ‎%1‎ לשאילתת המשתמש.\n"
 "משמעות הדבר היא שזה תמיד יעלה את אותו האתר, ללא תלות בטקסט שהקלדת יחד עם "
 "מילת המפתח."
 
