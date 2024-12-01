@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-27 00:40+0000\n"
-"PO-Revision-Date: 2021-08-26 13:38+0300\n"
+"PO-Revision-Date: 2024-11-30 15:20+0200\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: kio_nfs.cpp:151
 #, kde-format
@@ -31,7 +31,7 @@ msgstr "NFS protokolas reikalauja serverio mazgo pavadinimo."
 #: kio_nfs.cpp:647
 #, kde-format
 msgid "Empty destination"
-msgstr ""
+msgstr "Tuščia paskirtis"
 
 #: kio_nfs.cpp:739
 #, kde-format
