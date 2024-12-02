@@ -48,7 +48,6 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     SyntaxHighlighting
     KCMUtils
     TextWidgets
-    Notifications
 )
 
 # shall we use DBus?
@@ -61,6 +60,16 @@ option(USE_DBUS "Build components using DBus" ${USE_DBUS_DEFAULT})
 if(USE_DBUS)
     find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS DBus)
     find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS DBusAddons)
+endif()
+
+if(LINUX)
+    option(WITH_LIBPROXY "Build with libproxy, required for WPAD problem detection" ON)
+endif()
+if(WITH_LIBPROXY)
+    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS Notifications)
+    find_package(PkgConfig)
+    pkg_check_modules(libproxy REQUIRED IMPORTED_TARGET libproxy-1.0)
+    add_feature_info("libproxy" libproxy_FOUND "libproxy for WPAD problem detection (kcm_proxy)")
 endif()
 
 find_package(Qt6Test ${QT_MIN_VERSION} CONFIG QUIET)

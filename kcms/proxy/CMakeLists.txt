@@ -1,4 +1,6 @@
-add_subdirectory(wpad-detector)
+if(WITH_LIBPROXY)
+    add_subdirectory(wpad-detector)
+endif()
 
 kcoreaddons_add_plugin(kcm_proxy INSTALL_NAMESPACE "plasma/kcms/systemsettings_qwidgets")
 
