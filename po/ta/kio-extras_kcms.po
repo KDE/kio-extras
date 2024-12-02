@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-27 00:40+0000\n"
-"PO-Revision-Date: 2024-09-07 19:50+0200\n"
+"PO-Revision-Date: 2024-12-01 18:56+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.0\n"
+"X-Generator: Lokalize 24.08.3\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -976,17 +976,13 @@ msgstr ""
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "The URL does not contain a \\{...} placeholder for the user query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the keyword."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"முகவரியில் பயனரின் கேள்வியைக் குறிக்கும் \\{...} எனும் கொள்ளிடம் இல்லை.\n"
+"முகவரியில் பயனரின் கேள்வியைக் குறிக்கும் %1 எனும் கொள்ளிடம் இல்லை.\n"
 "இப்படி இருந்தால், பயனர் எந்த சொற்றொடரை உள்ளிட்டாளும் ஒரே வலைபக்கம்தான் காட்டப்படும்."
 
 #: webshortcuts/searchproviderdlg.cpp:150

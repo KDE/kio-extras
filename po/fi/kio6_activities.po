@@ -16,8 +16,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 2.0\n"
-"X-POT-Import-Date: 2012-12-01 22:24:16+0000\n"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:79 KioActivities.cpp:176
 #, kde-format

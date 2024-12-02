@@ -1,0 +1,29 @@
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# SPDX-FileCopyrightText: 2024 Tommi Nieminen <translator@legisign.org>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-04 00:39+0000\n"
+"PO-Revision-Date: 2024-10-16 18:33+0300\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 24.08.2\n"
+
+#: kio_filenamesearch.cpp:105
+#, kde-format
+msgid "Search Folder"
+msgstr "Etsi kansiota"
+
+#: kio_filenamesearch.cpp:358
+#, kde-format
+msgctxt "@info:%1 is the program used to do the search"
+msgid "%1 failed, exit code: %2, error messages: %3"
+msgstr "%1 epäonnistui, paluukoodi: %2, virheviestit: %3"
