@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-27 00:40+0000\n"
+"POT-Creation-Date: 2024-12-03 00:40+0000\n"
 "PO-Revision-Date: 2017-12-17 18:00+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -232,21 +232,364 @@ msgstr ""
 "proksi za povezivanje na Internet, pogledajte u uputstvu provajdera, ili "
 "upitajte sistem-administratora.</p></qt>"
 
+#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:42
+#, kde-format
+msgid ""
+"<qt>Attempt automatic discovery of the environment variables used for "
+"setting system wide proxy information.<p> This feature works by searching "
+"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
+"</qt>"
+msgstr ""
+"<qt><p>Pokušaj automatskog otkrivanja promjenljivih okruženja koje zadaju "
+"postavke proksija važeće širom sistema.</p><p>Ova mogućnost radi tako što se "
+"potraže promjenljive obično korišćene u tu svrhu, kao što su <tt>"
+"$HTTP_PROXY</tt>, <tt>$FTP_PROXY</tt> i <tt>$NO_PROXY</tt>.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:45
+#, fuzzy, kde-format
+#| msgid "Auto D&etect"
+msgid "Auto D&etect"
+msgstr "Otkrij &automatski"
+
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:26
+#: proxy/kproxydlg.ui:52
 #, kde-format
 msgid "Connect to the Internet directly."
 msgstr "Poveži se na Internet direktno."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:29
+#: proxy/kproxydlg.ui:55
 #, fuzzy, kde-format
 #| msgid "No Proxy"
-msgid "No proxy"
+msgid "&No proxy"
 msgstr "Bez proksija"
 
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
+#: proxy/kproxydlg.ui:95
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgid "HTTP proxy:"
+msgstr "HTTP proksi:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:110
+#, kde-format
+msgid "Enter the address of the HTTP proxy server."
+msgstr "Unesite adresu HTTP proksi servera."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
+#: proxy/kproxydlg.ui:286
+#, kde-format
+msgid "Port:"
+msgstr "Port:"
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:133
+#, kde-format
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "Unesite broj porta HTTP proksi servera."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:148
+#, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr "&Ovaj proksi server važi za sve protokole"
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
+#: proxy/kproxydlg.ui:161
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgid "SSL proxy:"
+msgstr "SSL proksi:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:176
+#, kde-format
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "Unesite adresu HTTPS proksija."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:193
+#, kde-format
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "Unesite broj porta HTTPS proksi servera."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgid "FTP proxy:"
+msgstr "FTP proksi:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:229
+#, kde-format
+msgid "Enter the address of the FTP proxy server."
+msgstr "Unesite adresu FTP proksija."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:246
+#, kde-format
+msgid "Enter the port number of the FTP proxy server."
+msgstr "Unesite broj porta FTP proksi servera."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
+#: proxy/kproxydlg.ui:264
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgid "SOCKS proxy:"
+msgstr "SOCKS proksi:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:279
+#, kde-format
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "Unesite adresu SOCKS proksi servera."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:296
+#, kde-format
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "Unesite broj porta SOCKS proksi servera."
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the proxy server should not be used.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.\n"
+"</qt>"
+msgstr ""
+"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>NO_PROXY</tt>, koja "
+"sadrži adrese sajtova za koje ne treba koristiti proksi.</p><p>Drugačije, "
+"možete kliknuti na dugme <i>Otkrij automatski</i> kako bi se pokušalo "
+"automatsko otkrivanje odgovarajuće promjenljive.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:314
+#, kde-format
+msgid "Exceptions:"
+msgstr "Izuzeci:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
+#: proxy/kproxydlg.ui:340
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enter a comma separated list of hostnames or ip addresses that should be "
+"excluded from using the above proxy settings.</p>\n"
+"<p>If you want to exclude all hosts for a given domain, then simply enter "
+"the domain name preceded by a dot. For example, to exclude all hostnames for "
+"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
+"'?' are not supported and will have no effect.</p>\n"
+"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+"</qt>"
+msgstr ""
+"<qt><p>Unesite zapetama razdvojen spisak imena domaćina ili IP adresa za "
+"koje ne treba koristiti gornje postavke proksija.</p><p>Ako želite da "
+"isključite sve domaćine za određeni domen, jednostavno unesite ime domena sa "
+"tačkom ispred. Na primer, da isključite sva imena domaćina pod <tt>kde.org</"
+"tt>, unesite <tt>.kde.org</tt>. Džokerski znakovi poput ‘*’ i ‘?’ nisu "
+"podržani i neće imati nikakvog dejstva.</p><p>Pored ovoga, možete uneti i IP "
+"adrese, npr. 127.0.0.1, ili IP adrese sa podmrežom, npr. 192.168.0.1/24.</"
+"p></qt>"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:351
+#, kde-format
+msgid ""
+"<qt>\n"
+"Check this box if you want the above proxy settings to apply only to the "
+"addresses listed in the <i>Exceptions</i> list.</qt>"
+msgstr ""
+"<qt>Popunite ovu kućicu ako želite da se gornje postavke proksija odnose "
+"samo na adrese navedene na spisku izuzetaka.</qt>"
+
+#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:354
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "Postavke proksija važe samo za adrese na spisku izuzetaka"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:367
+#, kde-format
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr "Koristi zadatu skriptu za podešavanje postavki proksija."
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:370
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgid "&Use proxy auto configuration URL:"
+msgstr "URL za automatsko podešavanje proksija:"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:386
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr "Unesite ručno podatke za podešavanje proksi servera."
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:389
+#, kde-format
+msgid "Use manually specified proxy configuration:"
+msgstr "Koristi ručno zadatu postavu proksija:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>HTTP_PROXY</tt>, koja "
+"sadrži adresu HTTP proksija.</p><p>Drugačije, možete kliknuti na dugme "
+"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
+"odgovarajuće promjenljive.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#: proxy/kproxydlg.ui:420
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgid "H&TTP proxy:"
+msgstr "HTTP proksi:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>HTTPS_PROXY</tt>, koja "
+"sadrži adresu HTTPS proksija.</p><p>Drugačije, možete kliknuti na dugme "
+"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
+"odgovarajuće promjenljive.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#: proxy/kproxydlg.ui:455
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgid "SS&L proxy:"
+msgstr "SSL proksi:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>FTP_PROXY</tt>, koja "
+"sadrži adresu FTP proksija.</p><p>Drugačije, možete kliknuti na dugme "
+"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
+"odgovarajuće promjenljive.</p></qt>"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:522
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>SOCKS_PROXY</tt>, koja "
+"sadrži adresu SOCKS proksija.</p><p>Drugačije, možete kliknuti na dugme "
+"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
+"odgovarajuće promjenljive.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:525
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgid "SOC&KS proxy:"
+msgstr "SOCKS proksi:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:544
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#| "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#| "can click on the <b>\"Auto Detect\"</b> button to attempt an automatic "
+#| "discovery of this variable.</p></qt>"
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>SOCKS_PROXY</tt>, koja "
+"sadrži adresu SOCKS proksija.</p><p>Drugačije, možete kliknuti na dugme "
+"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
+"odgovarajuće promjenljive.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#: proxy/kproxydlg.ui:557
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgid "E&xceptions:"
+msgstr "Izuzeci:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:576
+#, fuzzy, kde-format
+#| msgid ""
+#| "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#| "the addresses of sites for which the above proxy settings should not be "
+#| "used.<p>Alternatively, you can click on the <b>\"Auto Detect\"</b> button "
+#| "to attempt an automatic discovery of this variable.</p></qt>"
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>NO_PROXY</tt>, koja "
+"sadrži adrese sajtova za koje ne treba koristiti gornje postavke proksija.</"
+"p><p>Drugačije, možete kliknuti na dugme <i>Otkrij automatski</i> kako bi se "
+"pokušalo automatsko otkrivanje odgovarajuće promjenljive.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:583
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr "Prikaži &vrijednosti promjenljivih okruženja"
+
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:46
+#: proxy/kproxydlg.ui:600
 #, fuzzy, kde-format
 #| msgid ""
 #| "<qt>\n"
@@ -275,31 +618,20 @@ msgstr ""
 "konqueror.kde.org.</a></p></qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:49
-#, kde-format
-msgid "Detect proxy configuration automatically"
+#: proxy/kproxydlg.ui:603
+#, fuzzy, kde-format
+#| msgid "Detect proxy configuration automatically"
+msgid "&Detect proxy configuration automatically"
 msgstr "Automatski otkrij postavu proksija"
 
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:59
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "Koristi zadatu skriptu za podešavanje postavki proksija."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:62
-#, kde-format
-msgid "Use proxy auto configuration URL:"
-msgstr "URL za automatsko podešavanje proksija:"
-
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:93
+#: proxy/kproxydlg.ui:634
 #, kde-format
 msgid "Enter the address for the proxy configuration script."
 msgstr "Unesite adresu postavne skripte proksija."
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:117
+#: proxy/kproxydlg.ui:658
 #, kde-format
 msgid ""
 "<qt><p>Use proxy settings defined on the system.</p>\n"
@@ -321,316 +653,49 @@ msgstr ""
 "$HTTPS_PROXY</tt>, <tt>$FTP_PROXY</tt>, <tt>$NO_PROXY</tt>.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:120
-#, kde-format
-msgid "Use system proxy configuration:"
+#: proxy/kproxydlg.ui:661
+#, fuzzy, kde-format
+#| msgid "Use system proxy configuration:"
+msgid "Use s&ystem proxy configuration:"
 msgstr "Sistemska postava proksija:"
 
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:127
+#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
+#: proxy/kproxydlg.ui:673
 #, kde-format
 msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
 msgstr ""
-"<qt><p>Pokušaj automatskog otkrivanja promjenljivih okruženja koje zadaju "
-"postavke proksija važeće širom sistema.</p><p>Ova mogućnost radi tako što se "
-"potraže promjenljive obično korišćene u tu svrhu, kao što su <tt>"
-"$HTTP_PROXY</tt>, <tt>$FTP_PROXY</tt> i <tt>$NO_PROXY</tt>.</p></qt>"
 
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:130
+#: proxy/wpad-detector/module.cpp:75
+#, kde-format
+msgctxt "@title"
+msgid "Slow network performance detected"
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:77
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic proxy discovery has been enabled, but is reducing the system's "
+"network performance. Check your proxy settings to make sure that using this "
+"setting is really necessary."
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:84
+#, kde-format
+msgctxt "@action:button"
+msgid "Open Settings"
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:89
 #, fuzzy, kde-format
-#| msgid "Auto D&etect"
-msgid "Auto D&etect"
-msgstr "Otkrij &automatski"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>HTTP_PROXY</tt>, koja "
-"sadrži adresu HTTP proksija.</p><p>Drugačije, možete kliknuti na dugme "
-"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
-"odgovarajuće promjenljive.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
-msgid "HTTP proxy:"
-msgstr "HTTP proksi:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>HTTPS_PROXY</tt>, koja "
-"sadrži adresu HTTPS proksija.</p><p>Drugačije, možete kliknuti na dugme "
-"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
-"odgovarajuće promjenljive.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
-msgid "SSL proxy:"
-msgstr "SSL proksi:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>FTP_PROXY</tt>, koja "
-"sadrži adresu FTP proksija.</p><p>Drugačije, možete kliknuti na dugme "
-"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
-"odgovarajuće promjenljive.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
-msgid "FTP proxy:"
-msgstr "FTP proksi:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:263
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>SOCKS_PROXY</tt>, koja "
-"sadrži adresu SOCKS proksija.</p><p>Drugačije, možete kliknuti na dugme "
-"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
-"odgovarajuće promjenljive.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
-msgid "SOCKS proxy:"
-msgstr "SOCKS proksi:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:285
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-#| "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-#| "can click on the <b>\"Auto Detect\"</b> button to attempt an automatic "
-#| "discovery of this variable.</p></qt>"
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>SOCKS_PROXY</tt>, koja "
-"sadrži adresu SOCKS proksija.</p><p>Drugačije, možete kliknuti na dugme "
-"<i>Otkrij automatski</i> kako bi se pokušalo automatsko otkrivanje "
-"odgovarajuće promjenljive.</p></qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>NO_PROXY</tt>, koja "
-"sadrži adrese sajtova za koje ne treba koristiti proksi.</p><p>Drugačije, "
-"možete kliknuti na dugme <i>Otkrij automatski</i> kako bi se pokušalo "
-"automatsko otkrivanje odgovarajuće promjenljive.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
-#, kde-format
-msgid "Exceptions:"
-msgstr "Izuzeci:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:317
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
-#| "the addresses of sites for which the above proxy settings should not be "
-#| "used.<p>Alternatively, you can click on the <b>\"Auto Detect\"</b> button "
-#| "to attempt an automatic discovery of this variable.</p></qt>"
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt><p>Unesite ime promjenljive okruženja, npr. <tt>NO_PROXY</tt>, koja "
-"sadrži adrese sajtova za koje ne treba koristiti gornje postavke proksija.</"
-"p><p>Drugačije, možete kliknuti na dugme <i>Otkrij automatski</i> kako bi se "
-"pokušalo automatsko otkrivanje odgovarajuće promjenljive.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:324
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "Prikaži &vrijednosti promjenljivih okruženja"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:343
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "Unesite ručno podatke za podešavanje proksi servera."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:346
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "Koristi ručno zadatu postavu proksija:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:398
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "Unesite adresu HTTP proksi servera."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
-#: proxy/kproxydlg.ui:574
-#, kde-format
-msgid "Port:"
-msgstr "Port:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:421
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "Unesite broj porta HTTP proksi servera."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:436
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "&Ovaj proksi server važi za sve protokole"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:464
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "Unesite adresu HTTPS proksija."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:481
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "Unesite broj porta HTTPS proksi servera."
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:517
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "Unesite adresu FTP proksija."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:534
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "Unesite broj porta FTP proksi servera."
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:567
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "Unesite adresu SOCKS proksi servera."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:584
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "Unesite broj porta SOCKS proksi servera."
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:628
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>Unesite zapetama razdvojen spisak imena domaćina ili IP adresa za "
-"koje ne treba koristiti gornje postavke proksija.</p><p>Ako želite da "
-"isključite sve domaćine za određeni domen, jednostavno unesite ime domena sa "
-"tačkom ispred. Na primer, da isključite sva imena domaćina pod <tt>kde.org</"
-"tt>, unesite <tt>.kde.org</tt>. Džokerski znakovi poput ‘*’ i ‘?’ nisu "
-"podržani i neće imati nikakvog dejstva.</p><p>Pored ovoga, možete uneti i IP "
-"adrese, npr. 127.0.0.1, ili IP adrese sa podmrežom, npr. 192.168.0.1/24.</"
-"p></qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:639
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>Popunite ovu kućicu ako želite da se gornje postavke proksija odnose "
-"samo na adrese navedene na spisku izuzetaka.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:642
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "Postavke proksija važe samo za adrese na spisku izuzetaka"
+#| msgid "&Forever"
+msgctxt "@action:button ignore notification"
+msgid "Ignore Forever"
+msgstr "&Zauvijek"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -3317,9 +3382,6 @@ msgstr "Umetni mjestodržač upita"
 #~ "Would you like to accept this certificate forever without being prompted?"
 #~ msgstr ""
 #~ "Želite li da prihvatite ovaj sertifikat zauvijek, bez pitanja ubuduće?"
-
-#~ msgid "&Forever"
-#~ msgstr "&Zauvijek"
 
 #~ msgid "&Current Session only"
 #~ msgstr "Samo za &tekuću sesiju"

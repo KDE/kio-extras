@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-27 00:40+0000\n"
+"POT-Creation-Date: 2024-12-03 00:40+0000\n"
 "PO-Revision-Date: 2024-11-27 17:35+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -219,97 +219,8 @@ msgstr ""
 "för att ansluta till Internet.\n"
 "</qt>"
 
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:26
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "Anslut till Internet direkt."
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:29
-#, kde-format
-msgid "No proxy"
-msgstr "Ingen proxy"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:46
-#, kde-format
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Detektera och anpassa proxyinställningarna automatiskt.<p>\n"
-"Automatisk identifiering använder <b>Web Proxy Auto-Discovery Protocol "
-"(WPAD)</b>.<p>\n"
-"<b>Observera:</b> Alternativet kanske inte fungerar riktigt, eller inte "
-"fungerar alls i vissa distributioner av Unix eller Linux.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:49
-#, kde-format
-msgid "Detect proxy configuration automatically"
-msgstr "Detektera proxyinställning automatiskt"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:59
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "Använd angivet proxyskript för att anpassa proxyinställningarna."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:62
-#, kde-format
-msgid "Use proxy auto configuration URL:"
-msgstr "Använd &webbadress för automatisk proxyinställning:"
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:93
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "Ange adressen till proxyinställningsskriptet."
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:117
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>Använd proxyinställningar definierade i systemet.</p>\n"
-"<p>Vissa plattformer erbjuder systemövergripande "
-"proxyinställningsinformation och att välja det här alternativet låter dig "
-"använda dessa inställningar.</p>\n"
-"<p>På Mac-plattformar</p>\n"
-"<p>På Windows-plattformar</p>\n"
-"<p>På Unix- och Linux-plattformar definieras oftast sådana "
-"systemproxyinställningar via miljövariabler. Följande miljövariabler "
-"detekteras och används om de finns: <b>HTTP_PROXY</b>,  <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b></p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:120
-#, kde-format
-msgid "Use system proxy configuration:"
-msgstr "Använd systemets proxyinställning:"
-
 #. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:127
+#: proxy/kproxydlg.ui:42
 #, kde-format
 msgid ""
 "<qt>Attempt automatic discovery of the environment variables used for "
@@ -323,132 +234,116 @@ msgstr ""
 "qt>"
 
 #. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:130
+#: proxy/kproxydlg.ui:45
 #, kde-format
 msgid "Auto D&etect"
 msgstr "Id&entifiera automatiskt"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:52
 #, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Ange namnet på miljövariabeln, t ex <b>HTTP_PROXY</b>, som används för att "
-"lagra adressen till HTTP-proxyservern.<p>\n"
-"Som ett alternativ kan du klicka på <b>\"Identifiera automatiskt\"</b> för "
-"att försöka upptäcka den här variabeln automatiskt.</p>\n"
-"</qt>"
+msgid "Connect to the Internet directly."
+msgstr "Anslut till Internet direkt."
 
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:55
+#, fuzzy, kde-format
+#| msgid "No proxy"
+msgid "&No proxy"
+msgstr "Ingen proxy"
+
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
+#: proxy/kproxydlg.ui:95
 #, kde-format
 msgid "HTTP proxy:"
 msgstr "HTTP-proxy:"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:110
 #, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Ange namnet på miljövariabeln, t ex <b>HTTPS_PROXY</b>, som används för att "
-"lagra adressen till HTTPS-proxyservern.<p>\n"
-"Som ett alternativ kan du klicka på <b>\"Identifiera automatiskt\"</b> för "
-"att försöka upptäcka den här variabeln automatiskt.</p>\n"
-"</qt>"
+msgid "Enter the address of the HTTP proxy server."
+msgstr "Ange adressen till HTTP-proxyservern."
 
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
+#: proxy/kproxydlg.ui:286
+#, kde-format
+msgid "Port:"
+msgstr "Port:"
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:133
+#, kde-format
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "Ange HTTP-proxyserverns portnummer."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:148
+#, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr "Använd den här proxyservern för a&lla protokoll"
+
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
+#: proxy/kproxydlg.ui:161
 #, kde-format
 msgid "SSL proxy:"
 msgstr "SSL-proxy:"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:176
 #, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Ange namnet på miljövariabeln, t ex <b>FTP_PROXY</b>, som används för att "
-"lagra adressen till FTP-proxyservern.<p>\n"
-"Som ett alternativ kan du klicka på <b>\"Identifiera automatiskt\"</b> för "
-"att försöka upptäcka den här variabeln automatiskt.</p>\n"
-"</qt>"
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "Ange adressen till HTTPS-proxyservern."
 
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:193
+#, kde-format
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "Ange HTTPS-proxyserverns portnummer."
+
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
 #, kde-format
 msgid "FTP proxy:"
 msgstr "FTP-proxy:"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:263
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:229
 #, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Ange namnet på miljövariabeln, t ex <b>SOCKS_PROXY</b>, som används för att "
-"lagra adressen till SOCKS-proxyservern.<p>\n"
-"Som ett alternativ kan du klicka på <b>\"Identifiera automatiskt\"</b> för "
-"att försöka upptäcka den här variabeln automatiskt.</p>\n"
-"</qt>"
+msgid "Enter the address of the FTP proxy server."
+msgstr "Ange adressen till FTP-proxyservern."
 
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:246
+#, kde-format
+msgid "Enter the port number of the FTP proxy server."
+msgstr "Ange FTP-proxyserverns portnummer."
+
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
+#: proxy/kproxydlg.ui:264
 #, kde-format
 msgid "SOCKS proxy:"
 msgstr "SOCKS-proxy:"
 
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:285
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:279
 #, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>\n"
-"Ange namnet på miljövariabeln, t ex <b>SOCKS_PROXY</b>, som används för att "
-"lagra adressen till SOCKS-proxyservern.<p>Som ett alternativ kan du klicka "
-"på <b>&quot;Identifiera automatiskt&quot;</b> för att försöka upptäcka den "
-"här variabeln automatiskt.</p></qt>"
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "Ange adressen till SOCKS-proxyservern."
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:296
+#, kde-format
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "Ange SOCKS-proxyserverns portnummer."
+
 #. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
 #, kde-format
 msgid ""
 "<qt>\n"
@@ -465,111 +360,14 @@ msgstr ""
 "att försöka upptäcka den här variabeln automatiskt.\n"
 "</qt>"
 
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
+#: proxy/kproxydlg.ui:314
 #, kde-format
 msgid "Exceptions:"
 msgstr "Undantag:"
 
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:317
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>Ange miljövariabeln, t ex <b>NO_PROXY</b>, som används för att lagra "
-"adressen till platser där proxyservern inte ska användas.<p>Som ett "
-"alternativ kan du klicka på <b>&quot;Identifiera automatiskt&quot;</b> för "
-"att försöka upptäcka den här variabeln automatiskt.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:324
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "&Visa värdena för miljövariabler"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:343
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "Ange inställningsinformation för proxyserver manuellt."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:346
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "Använd manuellt angiven proxyinställning:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:398
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "Ange adressen till HTTP-proxyservern."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
-#: proxy/kproxydlg.ui:574
-#, kde-format
-msgid "Port:"
-msgstr "Port:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:421
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "Ange HTTP-proxyserverns portnummer."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:436
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "Använd den här proxyservern för a&lla protokoll"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:464
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "Ange adressen till HTTPS-proxyservern."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:481
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "Ange HTTPS-proxyserverns portnummer."
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:517
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "Ange adressen till FTP-proxyservern."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:534
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "Ange FTP-proxyserverns portnummer."
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:567
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "Ange adressen till SOCKS-proxyservern."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:584
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "Ange SOCKS-proxyserverns portnummer."
-
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:628
+#: proxy/kproxydlg.ui:340
 #, kde-format
 msgid ""
 "<qt>\n"
@@ -596,7 +394,7 @@ msgstr ""
 "</qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:639
+#: proxy/kproxydlg.ui:351
 #, kde-format
 msgid ""
 "<qt>\n"
@@ -608,10 +406,279 @@ msgstr ""
 "för adresserna som anges i  listan <i>Undantag</i>.</qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:642
+#: proxy/kproxydlg.ui:354
 #, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "Använd enbart proxyinställningar för adresser i undantagslistan"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:367
+#, kde-format
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr "Använd angivet proxyskript för att anpassa proxyinställningarna."
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:370
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgid "&Use proxy auto configuration URL:"
+msgstr "Använd &webbadress för automatisk proxyinställning:"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:386
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr "Ange inställningsinformation för proxyserver manuellt."
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:389
+#, kde-format
+msgid "Use manually specified proxy configuration:"
+msgstr "Använd manuellt angiven proxyinställning:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Ange namnet på miljövariabeln, t ex <b>HTTP_PROXY</b>, som används för att "
+"lagra adressen till HTTP-proxyservern.<p>\n"
+"Som ett alternativ kan du klicka på <b>\"Identifiera automatiskt\"</b> för "
+"att försöka upptäcka den här variabeln automatiskt.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#: proxy/kproxydlg.ui:420
+#, fuzzy, kde-format
+#| msgid "HTTP proxy:"
+msgid "H&TTP proxy:"
+msgstr "HTTP-proxy:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Ange namnet på miljövariabeln, t ex <b>HTTPS_PROXY</b>, som används för att "
+"lagra adressen till HTTPS-proxyservern.<p>\n"
+"Som ett alternativ kan du klicka på <b>\"Identifiera automatiskt\"</b> för "
+"att försöka upptäcka den här variabeln automatiskt.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#: proxy/kproxydlg.ui:455
+#, fuzzy, kde-format
+#| msgid "SSL proxy:"
+msgid "SS&L proxy:"
+msgstr "SSL-proxy:"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Ange namnet på miljövariabeln, t ex <b>FTP_PROXY</b>, som används för att "
+"lagra adressen till FTP-proxyservern.<p>\n"
+"Som ett alternativ kan du klicka på <b>\"Identifiera automatiskt\"</b> för "
+"att försöka upptäcka den här variabeln automatiskt.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:522
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Ange namnet på miljövariabeln, t ex <b>SOCKS_PROXY</b>, som används för att "
+"lagra adressen till SOCKS-proxyservern.<p>\n"
+"Som ett alternativ kan du klicka på <b>\"Identifiera automatiskt\"</b> för "
+"att försöka upptäcka den här variabeln automatiskt.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:525
+#, fuzzy, kde-format
+#| msgid "SOCKS proxy:"
+msgid "SOC&KS proxy:"
+msgstr "SOCKS-proxy:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:544
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt>\n"
+"Ange namnet på miljövariabeln, t ex <b>SOCKS_PROXY</b>, som används för att "
+"lagra adressen till SOCKS-proxyservern.<p>Som ett alternativ kan du klicka "
+"på <b>&quot;Identifiera automatiskt&quot;</b> för att försöka upptäcka den "
+"här variabeln automatiskt.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#: proxy/kproxydlg.ui:557
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgid "E&xceptions:"
+msgstr "Undantag:"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:576
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt>Ange miljövariabeln, t ex <b>NO_PROXY</b>, som används för att lagra "
+"adressen till platser där proxyservern inte ska användas.<p>Som ett "
+"alternativ kan du klicka på <b>&quot;Identifiera automatiskt&quot;</b> för "
+"att försöka upptäcka den här variabeln automatiskt.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:583
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr "&Visa värdena för miljövariabler"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:600
+#, kde-format
+msgid ""
+"<qt>\n"
+"Automatically detect and configure the proxy settings.<p>\n"
+"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
+"<b>NOTE:</b> This option might not work properly or not work at all in some "
+"UNIX/Linux distributions.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Detektera och anpassa proxyinställningarna automatiskt.<p>\n"
+"Automatisk identifiering använder <b>Web Proxy Auto-Discovery Protocol "
+"(WPAD)</b>.<p>\n"
+"<b>Observera:</b> Alternativet kanske inte fungerar riktigt, eller inte "
+"fungerar alls i vissa distributioner av Unix eller Linux.\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:603
+#, fuzzy, kde-format
+#| msgid "Detect proxy configuration automatically"
+msgid "&Detect proxy configuration automatically"
+msgstr "Detektera proxyinställning automatiskt"
+
+#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
+#: proxy/kproxydlg.ui:634
+#, kde-format
+msgid "Enter the address for the proxy configuration script."
+msgstr "Ange adressen till proxyinställningsskriptet."
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:658
+#, kde-format
+msgid ""
+"<qt><p>Use proxy settings defined on the system.</p>\n"
+"<p>Some platforms offer system wide proxy configuration information and "
+"selecting this option allows you to use those settings.</p>\n"
+"<p>On Mac platforms</p>\n"
+"<p>On Windows platforms</p>\n"
+"<p>On Unix and Linux platforms, such system proxy settings are usually "
+"defined through environment variables. The following environment variables "
+"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+msgstr ""
+"<qt><p>Använd proxyinställningar definierade i systemet.</p>\n"
+"<p>Vissa plattformer erbjuder systemövergripande "
+"proxyinställningsinformation och att välja det här alternativet låter dig "
+"använda dessa inställningar.</p>\n"
+"<p>På Mac-plattformar</p>\n"
+"<p>På Windows-plattformar</p>\n"
+"<p>På Unix- och Linux-plattformar definieras oftast sådana "
+"systemproxyinställningar via miljövariabler. Följande miljövariabler "
+"detekteras och används om de finns: <b>HTTP_PROXY</b>,  <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b></p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:661
+#, fuzzy, kde-format
+#| msgid "Use system proxy configuration:"
+msgid "Use s&ystem proxy configuration:"
+msgstr "Använd systemets proxyinställning:"
+
+#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
+#: proxy/kproxydlg.ui:673
+#, kde-format
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:75
+#, kde-format
+msgctxt "@title"
+msgid "Slow network performance detected"
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:77
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic proxy discovery has been enabled, but is reducing the system's "
+"network performance. Check your proxy settings to make sure that using this "
+"setting is really necessary."
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:84
+#, fuzzy, kde-format
+#| msgid "General Settings"
+msgctxt "@action:button"
+msgid "Open Settings"
+msgstr "Allmänna inställningar"
+
+#: proxy/wpad-detector/module.cpp:89
+#, fuzzy, kde-format
+#| msgid "&Forever"
+msgctxt "@action:button ignore notification"
+msgid "Ignore Forever"
+msgstr "&För alltid"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -3367,9 +3434,6 @@ msgstr "Infoga frågemarkör"
 #~ "Would you like to accept this certificate forever without being prompted?"
 #~ msgstr ""
 #~ "Vill du acceptera det här certifikatet för alltid utan att bli tillfrågad?"
-
-#~ msgid "&Forever"
-#~ msgstr "&För alltid"
 
 #~ msgid "&Current Session only"
 #~ msgstr "&Endast aktuell session"
@@ -8001,9 +8065,6 @@ msgstr "Infoga frågemarkör"
 
 #~ msgid "Show system &places"
 #~ msgstr "Visa system&platser"
-
-#~ msgid "General Settings"
-#~ msgstr "Allmänna inställningar"
 
 #~ msgid ""
 #~ "Folders are automatically distributed in several columns. The optimal "

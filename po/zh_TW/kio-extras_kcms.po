@@ -15,15 +15,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-27 00:40+0000\n"
-"PO-Revision-Date: 2024-09-10 01:32+0900\n"
+"POT-Creation-Date: 2024-12-03 00:40+0000\n"
+"PO-Revision-Date: 2024-12-02 17:01+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.08.0\n"
+"X-Generator: Lokalize 24.08.3\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ksaveioconfig.cpp:163
@@ -211,94 +211,8 @@ msgstr ""
 "問系統管理員。\n"
 "</qt>"
 
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:26
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "直接連線到網際網路。"
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:29
-#, kde-format
-msgid "No proxy"
-msgstr "沒有代理伺服器"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:46
-#, kde-format
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"自動偵測並設定代理伺服器設定值。<p>\n"
-"自動偵測是使用 <b>網頁代理伺服器自動發現協定 (WPAD)</b> 進行的。<p>\n"
-"<b>注意：</b>這個選項在某些 UNIX/Linux 發行版可能無法正常運作或者完全無法運"
-"作。\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:49
-#, kde-format
-msgid "Detect proxy configuration automatically"
-msgstr "自動偵測代理伺服器設定"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:59
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "使用指定的代理伺服器命令稿來設定代理伺服器設定值。"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:62
-#, kde-format
-msgid "Use proxy auto configuration URL:"
-msgstr "使用代理伺服器自動設定網址："
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:93
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "請輸入代理伺服器組態命令稿位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:117
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>使用系統上定義的代理伺服器設定。</p>\n"
-"<p>有些平台會提供系統的代理伺服器資訊。選擇此選項讓您可以直接使用這些設定。</"
-"p>\n"
-"<p>在 Mac 平台上</p>\n"
-"<p>在 Windows 平台上</p>\n"
-"<p>在 Unix and Linux 平台上，這些系統端的代理伺服器設定通常是透過環境變數指"
-"定。以下的環境變數若有偵測到就會使用： <b>HTTP_PROXY</b>，<b>HTTPS_PROXY</"
-"b>，<b>FTP_PROXY</b> 以及 <b>NO_PROXY</b>。</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:120
-#, kde-format
-msgid "Use system proxy configuration:"
-msgstr "使用系統代理伺服器設定："
-
 #. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:127
+#: proxy/kproxydlg.ui:42
 #, kde-format
 msgid ""
 "<qt>Attempt automatic discovery of the environment variables used for "
@@ -310,128 +224,116 @@ msgstr ""
 "的變數名稱，像是 HTTP_PROXY, FTP_PROXY 和 NO_PROXY.</qt>"
 
 #. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:130
+#: proxy/kproxydlg.ui:45
 #, kde-format
 msgid "Auto D&etect"
 msgstr "自動偵測(&E)"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:52
 #, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>HTTP_PROXY</tt>，這是用來儲存 HTTP 代理伺服器的"
-"位址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
+msgid "Connect to the Internet directly."
+msgstr "直接連線到網際網路。"
 
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
+#: proxy/kproxydlg.ui:55
+#, fuzzy, kde-format
+#| msgid "No proxy"
+msgid "&No proxy"
+msgstr "沒有代理伺服器"
+
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
+#: proxy/kproxydlg.ui:95
 #, kde-format
 msgid "HTTP proxy:"
 msgstr "HTTP 代理伺服器："
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:110
 #, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>HTTPS_PROXY</tt>，這是用來儲存 HTTPS 代理伺服器"
-"的位址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
+msgid "Enter the address of the HTTP proxy server."
+msgstr "請輸入 HTTP 代理伺服器位址。"
 
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
+#: proxy/kproxydlg.ui:286
+#, kde-format
+msgid "Port:"
+msgstr "連接埠："
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:133
+#, kde-format
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "請輸入 HTTP 代理伺服器位址。"
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:148
+#, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr "所有通訊協定都使用此代理伺服器(&L)"
+
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
+#: proxy/kproxydlg.ui:161
 #, kde-format
 msgid "SSL proxy:"
 msgstr "SSL 代理伺服器："
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:176
 #, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>FTP_PROXY</tt>，這是用來儲存 FTP 代理伺服器的位"
-"址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "請輸入 HTTPS 代理伺服器位址。"
 
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:193
+#, kde-format
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "請輸入 HTTPS 代理伺服器位址。"
+
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
 #, kde-format
 msgid "FTP proxy:"
 msgstr "FTP 代理伺服器："
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:263
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:229
 #, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>SOCKS_PROXY</tt>，這是用來儲存 SOCKS 代理伺服器"
-"的位址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
+msgid "Enter the address of the FTP proxy server."
+msgstr "請輸入 FTP 代理伺服器位址。"
 
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:246
+#, kde-format
+msgid "Enter the port number of the FTP proxy server."
+msgstr "請輸入 FTP 代理伺服器位址。"
+
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
+#: proxy/kproxydlg.ui:264
 #, kde-format
 msgid "SOCKS proxy:"
 msgstr "SOCKS 代理伺服器："
 
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:285
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:279
 #, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>SOCKS_PROXY</tt>，這是用來儲存 SOCKS 代理伺服器"
-"的位址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "請輸入 SOCKS 代理伺服器位址。"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:296
+#, kde-format
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "請輸入 SOCKS 代理伺服器位址。"
+
 #. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
 #, kde-format
 msgid ""
 "<qt>\n"
@@ -447,109 +349,14 @@ msgstr ""
 "或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。\n"
 "</qt>"
 
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
+#: proxy/kproxydlg.ui:314
 #, kde-format
 msgid "Exceptions:"
 msgstr "例外："
 
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:317
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>請輸入用於排除使用代理伺服器的位址的環境變數，如 <b>NO_PROXY</b>。\n"
-"<p>或者，您也可以點擊<b>「自動偵測」</b>來自動找出變數。</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:324
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "顯示環境變數(&V)"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:343
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "手動輸入代理伺服器的設定資訊。"
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:346
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "手動輸入代理伺服器設定："
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:398
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "請輸入 HTTP 代理伺服器位址。"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
-#: proxy/kproxydlg.ui:574
-#, kde-format
-msgid "Port:"
-msgstr "連接埠："
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:421
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "請輸入 HTTP 代理伺服器位址。"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:436
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "所有通訊協定都使用此代理伺服器(&L)"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:464
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "請輸入 HTTPS 代理伺服器位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:481
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "請輸入 HTTPS 代理伺服器位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:517
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "請輸入 FTP 代理伺服器位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:534
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "請輸入 FTP 代理伺服器位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:567
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "請輸入 SOCKS 代理伺服器位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:584
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "請輸入 SOCKS 代理伺服器位址。"
-
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:628
+#: proxy/kproxydlg.ui:340
 #, kde-format
 msgid ""
 "<qt>\n"
@@ -574,7 +381,7 @@ msgstr ""
 "</qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:639
+#: proxy/kproxydlg.ui:351
 #, kde-format
 msgid ""
 "<qt>\n"
@@ -585,10 +392,269 @@ msgstr ""
 "勾選此選項，將只有在「例外」清單中的主機與 IP 才使用代理伺服器。</qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:642
+#: proxy/kproxydlg.ui:354
 #, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "只為例外清單中的地址使用代理伺服器設定"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:367
+#, kde-format
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr "使用指定的代理伺服器命令稿來設定代理伺服器設定值。"
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:370
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgid "&Use proxy auto configuration URL:"
+msgstr "使用代理伺服器自動設定網址："
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:386
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr "手動輸入代理伺服器的設定資訊。"
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:389
+#, kde-format
+msgid "Use manually specified proxy configuration:"
+msgstr "手動輸入代理伺服器設定："
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"請輸入環境變數名稱，例如 <tt>HTTP_PROXY</tt>，這是用來儲存 HTTP 代理伺服器的"
+"位址。<p>\n"
+"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#: proxy/kproxydlg.ui:420
+#, fuzzy, kde-format
+#| msgid "HTTP proxy:"
+msgid "H&TTP proxy:"
+msgstr "HTTP 代理伺服器："
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"請輸入環境變數名稱，例如 <tt>HTTPS_PROXY</tt>，這是用來儲存 HTTPS 代理伺服器"
+"的位址。<p>\n"
+"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#: proxy/kproxydlg.ui:455
+#, fuzzy, kde-format
+#| msgid "SSL proxy:"
+msgid "SS&L proxy:"
+msgstr "SSL 代理伺服器："
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"請輸入環境變數名稱，例如 <tt>FTP_PROXY</tt>，這是用來儲存 FTP 代理伺服器的位"
+"址。<p>\n"
+"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:522
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"請輸入環境變數名稱，例如 <tt>SOCKS_PROXY</tt>，這是用來儲存 SOCKS 代理伺服器"
+"的位址。<p>\n"
+"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:525
+#, fuzzy, kde-format
+#| msgid "SOCKS proxy:"
+msgid "SOC&KS proxy:"
+msgstr "SOCKS 代理伺服器："
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:544
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt>\n"
+"請輸入環境變數名稱，例如 <tt>SOCKS_PROXY</tt>，這是用來儲存 SOCKS 代理伺服器"
+"的位址。<p>\n"
+"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#: proxy/kproxydlg.ui:557
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgid "E&xceptions:"
+msgstr "例外："
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:576
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt>請輸入用於排除使用代理伺服器的位址的環境變數，如 <b>NO_PROXY</b>。\n"
+"<p>或者，您也可以點擊<b>「自動偵測」</b>來自動找出變數。</p></qt>"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:583
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr "顯示環境變數(&V)"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:600
+#, kde-format
+msgid ""
+"<qt>\n"
+"Automatically detect and configure the proxy settings.<p>\n"
+"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
+"<b>NOTE:</b> This option might not work properly or not work at all in some "
+"UNIX/Linux distributions.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"自動偵測並設定代理伺服器設定值。<p>\n"
+"自動偵測是使用 <b>網頁代理伺服器自動發現協定 (WPAD)</b> 進行的。<p>\n"
+"<b>注意：</b>這個選項在某些 UNIX/Linux 發行版可能無法正常運作或者完全無法運"
+"作。\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
+#: proxy/kproxydlg.ui:603
+#, fuzzy, kde-format
+#| msgid "Detect proxy configuration automatically"
+msgid "&Detect proxy configuration automatically"
+msgstr "自動偵測代理伺服器設定"
+
+#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
+#: proxy/kproxydlg.ui:634
+#, kde-format
+msgid "Enter the address for the proxy configuration script."
+msgstr "請輸入代理伺服器組態命令稿位址。"
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:658
+#, kde-format
+msgid ""
+"<qt><p>Use proxy settings defined on the system.</p>\n"
+"<p>Some platforms offer system wide proxy configuration information and "
+"selecting this option allows you to use those settings.</p>\n"
+"<p>On Mac platforms</p>\n"
+"<p>On Windows platforms</p>\n"
+"<p>On Unix and Linux platforms, such system proxy settings are usually "
+"defined through environment variables. The following environment variables "
+"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
+msgstr ""
+"<qt><p>使用系統上定義的代理伺服器設定。</p>\n"
+"<p>有些平台會提供系統的代理伺服器資訊。選擇此選項讓您可以直接使用這些設定。</"
+"p>\n"
+"<p>在 Mac 平台上</p>\n"
+"<p>在 Windows 平台上</p>\n"
+"<p>在 Unix and Linux 平台上，這些系統端的代理伺服器設定通常是透過環境變數指"
+"定。以下的環境變數若有偵測到就會使用： <b>HTTP_PROXY</b>，<b>HTTPS_PROXY</"
+"b>，<b>FTP_PROXY</b> 以及 <b>NO_PROXY</b>。</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
+#: proxy/kproxydlg.ui:661
+#, fuzzy, kde-format
+#| msgid "Use system proxy configuration:"
+msgid "Use s&ystem proxy configuration:"
+msgstr "使用系統代理伺服器設定："
+
+#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
+#: proxy/kproxydlg.ui:673
+#, kde-format
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:75
+#, kde-format
+msgctxt "@title"
+msgid "Slow network performance detected"
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:77
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic proxy discovery has been enabled, but is reducing the system's "
+"network performance. Check your proxy settings to make sure that using this "
+"setting is really necessary."
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:84
+#, kde-format
+msgctxt "@action:button"
+msgid "Open Settings"
+msgstr ""
+
+#: proxy/wpad-detector/module.cpp:89
+#, fuzzy, kde-format
+#| msgid "&Forever"
+msgctxt "@action:button ignore notification"
+msgid "Ignore Forever"
+msgstr "永遠(&F)"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -938,18 +1004,14 @@ msgstr ""
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "The URL does not contain a \\{...} placeholder for the user query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the keyword."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"網址不包含 \\{...} 佔位符。這表示不管關鍵字後輸入什麼文字，都會跑到同一個網"
-"址。"
+"網址不包含 %1 佔位符供查詢字串填入。\n"
+"這表示不管關鍵字後輸入什麼文字，都會跑到同一個網址。"
 
 #: webshortcuts/searchproviderdlg.cpp:150
 #, kde-format
@@ -3105,9 +3167,6 @@ msgstr "插入查詢佔位符"
 #~ msgid ""
 #~ "Would you like to accept this certificate forever without being prompted?"
 #~ msgstr "您希望以後不提示就接受該憑證嗎？"
-
-#~ msgid "&Forever"
-#~ msgstr "永遠(&F)"
 
 #~ msgid "&Current Session only"
 #~ msgstr "只用於目前的工作階段(&C)"

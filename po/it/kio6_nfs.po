@@ -2,14 +2,14 @@
 # Copyright (C) 2004 Free Software Foundation, Inc.
 # Andrea RIZZI <arizzi@pi.infn.it>, 2004.
 # Vincenzo Reale <smart2128vr@gmail.com>, 2015.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2021.
+# SPDX-FileCopyrightText: 2021, 2024 Luigi Toscano <luigi.toscano@tiscali.it>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-27 00:40+0000\n"
-"PO-Revision-Date: 2021-02-20 11:47+0100\n"
+"PO-Revision-Date: 2024-11-27 13:37+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 25.03.70\n"
 
 #: kio_nfs.cpp:151
 #, kde-format
@@ -32,7 +32,7 @@ msgstr "Il protocollo NFS richiede un nome di host per il server."
 #: kio_nfs.cpp:647
 #, kde-format
 msgid "Empty destination"
-msgstr ""
+msgstr "Destinazione vuota"
 
 #: kio_nfs.cpp:739
 #, kde-format

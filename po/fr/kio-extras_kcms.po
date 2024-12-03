@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-27 00:40+0000\n"
+"POT-Creation-Date: 2024-12-03 00:40+0000\n"
 "PO-Revision-Date: 2024-11-28 10:47+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -242,21 +242,373 @@ msgstr ""
 "fournisseur d'accès Internet ou demandez à votre administrateur système.\n"
 "</qt>"
 
+#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:42
+#, kde-format
+msgid ""
+"<qt>Attempt automatic discovery of the environment variables used for "
+"setting system wide proxy information.<p> This feature works by searching "
+"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
+"</qt>"
+msgstr ""
+"<qt>Essayer de détecter automatiquement les variables d'environnement à "
+"utiliser pour la configuration globale des serveurs mandataires. <p> Cette "
+"fonction recherche les noms de variables généralement utilisées telles que "
+"HTTP_PROXY, FTP_PROXY et NO_PROXY.</qt>"
+
+#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
+#: proxy/kproxydlg.ui:45
+#, kde-format
+msgid "Auto D&etect"
+msgstr "D&étection automatique"
+
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:26
+#: proxy/kproxydlg.ui:52
 #, kde-format
 msgid "Connect to the Internet directly."
 msgstr "Connexion directe à Internet."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:29
-#, kde-format
-msgid "No proxy"
+#: proxy/kproxydlg.ui:55
+#, fuzzy, kde-format
+#| msgid "No proxy"
+msgid "&No proxy"
 msgstr "Aucun serveur mandataire"
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
+#: proxy/kproxydlg.ui:95
+#, kde-format
+msgid "HTTP proxy:"
+msgstr "Serveur mandataire « HTTP » :"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
+#: proxy/kproxydlg.ui:110
+#, kde-format
+msgid "Enter the address of the HTTP proxy server."
+msgstr "Saisissez l'adresse du serveur mandataire HTTP."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
+#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
+#: proxy/kproxydlg.ui:286
+#, kde-format
+msgid "Port:"
+msgstr "Port : "
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
+#: proxy/kproxydlg.ui:133
+#, kde-format
+msgid "Enter the port number of the HTTP proxy server."
+msgstr "Saisissez le numéro de port du serveur mandataire HTTP."
+
+#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
+#: proxy/kproxydlg.ui:148
+#, kde-format
+msgid "Use this proxy server for a&ll protocols"
+msgstr "Uti&liser ce serveur mandataire pour tous les protocoles"
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
+#: proxy/kproxydlg.ui:161
+#, kde-format
+msgid "SSL proxy:"
+msgstr "Serveur mandataire « SSL » :"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
+#: proxy/kproxydlg.ui:176
+#, kde-format
+msgid "Enter the address of the HTTPS proxy server."
+msgstr "Saisissez l'adresse du serveur mandataire HTTPS."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
+#: proxy/kproxydlg.ui:193
+#, kde-format
+msgid "Enter the port number of the HTTPS proxy server."
+msgstr "Saisissez le numéro du port du serveur mandataire HTTPS."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
+#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
+#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
+#, kde-format
+msgid "FTP proxy:"
+msgstr "Serveur mandataire « FTP » :"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
+#: proxy/kproxydlg.ui:229
+#, kde-format
+msgid "Enter the address of the FTP proxy server."
+msgstr "Saisissez l'adresse du serveur mandataire FTP."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
+#: proxy/kproxydlg.ui:246
+#, kde-format
+msgid "Enter the port number of the FTP proxy server."
+msgstr "Saisissez le numéro du port du serveur mandataire FTP."
+
+#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
+#: proxy/kproxydlg.ui:264
+#, kde-format
+msgid "SOCKS proxy:"
+msgstr "Serveur mandataire « SOCKS » :"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
+#: proxy/kproxydlg.ui:279
+#, kde-format
+msgid "Enter the address of the SOCKS proxy server."
+msgstr "Saisissez l'adresse du serveur mandataire SOCKS."
+
+#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
+#: proxy/kproxydlg.ui:296
+#, kde-format
+msgid "Enter the port number of the SOCKS proxy server."
+msgstr "Saisissez le numéro du port du serveur mandataire SOCKS."
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
+#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
+#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the proxy server should not be used.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Saisissez le nom de la variable d'environnement, par exemple <b>NO_PROXY</"
+"b>, utilisé pour stocker les adresses des sites pour lesquels le serveur "
+"mandataire ne doit pas être utilisé.<p>\n"
+"Vous pouvez aussi cliquer sur le bouton « <b>Détection automatique</b> » "
+"pour que le système essaie de trouver le nom de cette variable.\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
+#: proxy/kproxydlg.ui:314
+#, kde-format
+msgid "Exceptions:"
+msgstr "Exceptions : "
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
+#: proxy/kproxydlg.ui:340
+#, kde-format
+msgid ""
+"<qt>\n"
+"<p>Enter a comma separated list of hostnames or ip addresses that should be "
+"excluded from using the above proxy settings.</p>\n"
+"<p>If you want to exclude all hosts for a given domain, then simply enter "
+"the domain name preceded by a dot. For example, to exclude all hostnames for "
+"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
+"'?' are not supported and will have no effect.</p>\n"
+"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"<p>Saisissez une liste d'hôtes ou d'adresses IP séparés par une virgule pour "
+"lesquels les paramètres du serveur mandataire définis ci-dessus ne "
+"s'appliquent pas.</p>\n"
+"<p>Si vous désirez exclure tous les hôtes d'un nom de domaine, saisissez "
+"simplement le nom de domaine précédé d'un point. Par exemple, pour exclure "
+"tous les hôtes de <i>kde.org</i>, saisissez <i>.kde.org</i>. Les méta-"
+"caractères comme « * » ou « ? » ne sont pas pris en charge et seront ignorés."
+"</p>\n"
+"<p>De plus, vous pouvez aussi saisir des adresses IP, comme 127.0.0.1 et des "
+"adresses IP avec un sous-réseau, comme 192.168.0.1/24.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:351
+#, kde-format
+msgid ""
+"<qt>\n"
+"Check this box if you want the above proxy settings to apply only to the "
+"addresses listed in the <i>Exceptions</i> list.</qt>"
+msgstr ""
+"<qt>\n"
+"Cochez cette option si vous voulez que les paramètres spécifiés ci-dessus ne "
+"soient appliqués que pour les adresses de la liste d'<i>Exceptions</i>.</qt>"
+
+#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
+#: proxy/kproxydlg.ui:354
+#, kde-format
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr ""
+"N'utiliser les paramètres de serveur mandataire que pour les adresses de la "
+"liste d'exceptions."
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:367
+#, kde-format
+msgid "Use the specified proxy script to configure the proxy settings."
+msgstr ""
+"Utiliser le script spécifié de configuration pour la configuration de votre "
+"serveur mandataire."
+
+#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
+#: proxy/kproxydlg.ui:370
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgid "&Use proxy auto configuration URL:"
+msgstr "Utiliser l'URL de configuration automatique du serveur mandataire : "
+
+#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:386
+#, kde-format
+msgid "Manually enter proxy server configuration information."
+msgstr "Saisissez les informations de configuration du serveur mandataire."
+
+#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
+#: proxy/kproxydlg.ui:389
+#, kde-format
+msgid "Use manually specified proxy configuration:"
+msgstr ""
+"Utiliser la configuration manuellement spécifiée du serveur mandataire : "
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
+#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
+"store the address of the HTTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Saisissez le nom de la variable d'environnement, par exemple <b>HTTP_PROXY</"
+"b>, contenant l'adresse du serveur mandataire HTTP.<p>\n"
+"Vous pouvez aussi cliquer sur le bouton <b>Détection automatique</b> pour "
+"que le système essaye de trouver automatiquement le nom de cette variable.</"
+"p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
+#: proxy/kproxydlg.ui:420
+#, fuzzy, kde-format
+#| msgid "HTTP proxy:"
+msgid "H&TTP proxy:"
+msgstr "Serveur mandataire « HTTP » :"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
+#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
+"store the address of the HTTPS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Saisissez le nom de la variable d'environnement, par exemple <b>HTTPS_PROXY</"
+"b>, contenant l'adresse du serveur mandataire HTTPS.<p>\n"
+"Vous pouvez aussi cliquer sur le bouton <b> « Détection automatique » </b> "
+"pour que le système essaie de trouver le nom de cette variable.</p>n</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
+#: proxy/kproxydlg.ui:455
+#, fuzzy, kde-format
+#| msgid "SSL proxy:"
+msgid "SS&L proxy:"
+msgstr "Serveur mandataire « SSL » :"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
+#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
+"store the address of the FTP proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Saisissez le nom de la variable d'environnement, par exemple <b>FTP_PROXY</"
+"b>, contenant l'adresse du serveur mandataire FTP.<p>\n"
+" Vous pouvez aussi cliquer sur le bouton <b> « Détection automatique » </b> "
+"pour que le système essaie de trouver le nom de cette variable.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:522
+#, kde-format
+msgid ""
+"<qt>\n"
+"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
+"store the address of the SOCKS proxy server.<p>\n"
+"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
+"an automatic discovery of this variable.</p>\n"
+"</qt>"
+msgstr ""
+"<qt>\n"
+"Saisissez le nom de la variable d'environnement, par exemple <b>SOCKS_PROXY</"
+"b>, contenant l'adresse du serveur mandataire SOCKS.<p>\n"
+"Vous pouvez aussi cliquer sur le bouton <b> « Détection automatique » </b> "
+"pour que le système essaie de trouver le nom de cette variable.</p>\n"
+"</qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
+#: proxy/kproxydlg.ui:525
+#, fuzzy, kde-format
+#| msgid "SOCKS proxy:"
+msgid "SOC&KS proxy:"
+msgstr "Serveur mandataire « SOCKS » :"
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
+#: proxy/kproxydlg.ui:544
+#, kde-format
+msgid ""
+"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+"automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt>Saisissez le nom de la variable d'environnement, par exemple "
+"<b>SOCKS_PROXY</b>, utilisée pour enregistrer l'adresse du serveur "
+"mandataire « SOCKS ».<p>Alternativement, vous pouvez cliquer sur le bouton "
+"<b>&quot;Auto Détecter&quot;</b> pour tenter une découverte automatique de "
+"cette variable.</p></qt>"
+
+#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
+#: proxy/kproxydlg.ui:557
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgid "E&xceptions:"
+msgstr "Exceptions : "
+
+#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
+#: proxy/kproxydlg.ui:576
+#, kde-format
+msgid ""
+"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+"addresses of sites for which the above proxy settings should not be used."
+"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
+"to attempt an automatic discovery of this variable.</p></qt>"
+msgstr ""
+"<qt>Saisissez la variable d'environnement, par exemple <b>NO_PROXY</b>, "
+"utilisée pour enregistrer les adresses des sites pour lesquels les "
+"paramètres de serveur mandataire ci-dessus ne doivent pas être utilisés."
+"<p>Alternativement, vous pouvez cliquer sur le bouton <b>&quot;Auto "
+"Détecter&quot;</b> pour tenter une découverte automatique de cette variable."
+"</p></qt>"
+
+#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
+#: proxy/kproxydlg.ui:583
+#, kde-format
+msgid "Show the &value of the environment variables"
+msgstr "&Afficher la valeur des variables d'environnement"
 
 # unreviewed-context
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:46
+#: proxy/kproxydlg.ui:600
 #, kde-format
 msgid ""
 "<qt>\n"
@@ -277,34 +629,21 @@ msgstr ""
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:49
-#, kde-format
-msgid "Detect proxy configuration automatically"
+#: proxy/kproxydlg.ui:603
+#, fuzzy, kde-format
+#| msgid "Detect proxy configuration automatically"
+msgid "&Detect proxy configuration automatically"
 msgstr "Détecter automatiquement la configuration du serveur mandataire"
 
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:59
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr ""
-"Utiliser le script spécifié de configuration pour la configuration de votre "
-"serveur mandataire."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:62
-#, kde-format
-msgid "Use proxy auto configuration URL:"
-msgstr "Utiliser l'URL de configuration automatique du serveur mandataire : "
-
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:93
+#: proxy/kproxydlg.ui:634
 #, kde-format
 msgid "Enter the address for the proxy configuration script."
 msgstr ""
 "Saisissez ici l'adresse du script de configuration du serveur mandataire."
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:117
+#: proxy/kproxydlg.ui:658
 #, kde-format
 msgid ""
 "<qt><p>Use proxy settings defined on the system.</p>\n"
@@ -333,322 +672,50 @@ msgstr ""
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:120
-#, kde-format
-msgid "Use system proxy configuration:"
+#: proxy/kproxydlg.ui:661
+#, fuzzy, kde-format
+#| msgid "Use system proxy configuration:"
+msgid "Use s&ystem proxy configuration:"
 msgstr "Utiliser la configuration du serveur mandataire du système : "
 
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:127
+#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
+#: proxy/kproxydlg.ui:673
 #, kde-format
 msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
 msgstr ""
-"<qt>Essayer de détecter automatiquement les variables d'environnement à "
-"utiliser pour la configuration globale des serveurs mandataires. <p> Cette "
-"fonction recherche les noms de variables généralement utilisées telles que "
-"HTTP_PROXY, FTP_PROXY et NO_PROXY.</qt>"
 
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:130
+#: proxy/wpad-detector/module.cpp:75
 #, kde-format
-msgid "Auto D&etect"
-msgstr "D&étection automatique"
+msgctxt "@title"
+msgid "Slow network performance detected"
+msgstr ""
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:158 proxy/kproxydlg.ui:183
+#: proxy/wpad-detector/module.cpp:77
 #, kde-format
+msgctxt "@info"
 msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
+"Automatic proxy discovery has been enabled, but is reducing the system's "
+"network performance. Check your proxy settings to make sure that using this "
+"setting is really necessary."
 msgstr ""
-"<qt>\n"
-"Saisissez le nom de la variable d'environnement, par exemple <b>HTTP_PROXY</"
-"b>, contenant l'adresse du serveur mandataire HTTP.<p>\n"
-"Vous pouvez aussi cliquer sur le bouton <b>Détection automatique</b> pour "
-"que le système essaye de trouver automatiquement le nom de cette variable.</"
-"p>\n"
-"</qt>"
 
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
-#, kde-format
-msgid "HTTP proxy:"
-msgstr "Serveur mandataire « HTTP » :"
+#: proxy/wpad-detector/module.cpp:84
+#, fuzzy, kde-format
+#| msgid "General Settings"
+msgctxt "@action:button"
+msgid "Open Settings"
+msgstr "Paramètres généraux"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:193 proxy/kproxydlg.ui:218
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Saisissez le nom de la variable d'environnement, par exemple <b>HTTPS_PROXY</"
-"b>, contenant l'adresse du serveur mandataire HTTPS.<p>\n"
-"Vous pouvez aussi cliquer sur le bouton <b> « Détection automatique » </b> "
-"pour que le système essaie de trouver le nom de cette variable.</p>n</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
-#, kde-format
-msgid "SSL proxy:"
-msgstr "Serveur mandataire « SSL » :"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:228 proxy/kproxydlg.ui:253
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Saisissez le nom de la variable d'environnement, par exemple <b>FTP_PROXY</"
-"b>, contenant l'adresse du serveur mandataire FTP.<p>\n"
-" Vous pouvez aussi cliquer sur le bouton <b> « Détection automatique » </b> "
-"pour que le système essaie de trouver le nom de cette variable.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
-#, kde-format
-msgid "FTP proxy:"
-msgstr "Serveur mandataire « FTP » :"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:263
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Saisissez le nom de la variable d'environnement, par exemple <b>SOCKS_PROXY</"
-"b>, contenant l'adresse du serveur mandataire SOCKS.<p>\n"
-"Vous pouvez aussi cliquer sur le bouton <b> « Détection automatique » </b> "
-"pour que le système essaie de trouver le nom de cette variable.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
-#, kde-format
-msgid "SOCKS proxy:"
-msgstr "Serveur mandataire « SOCKS » :"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:285
-#, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>Saisissez le nom de la variable d'environnement, par exemple "
-"<b>SOCKS_PROXY</b>, utilisée pour enregistrer l'adresse du serveur "
-"mandataire « SOCKS ».<p>Alternativement, vous pouvez cliquer sur le bouton "
-"<b>&quot;Auto Détecter&quot;</b> pour tenter une découverte automatique de "
-"cette variable.</p></qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:295 proxy/kproxydlg.ui:599
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Saisissez le nom de la variable d'environnement, par exemple <b>NO_PROXY</"
-"b>, utilisé pour stocker les adresses des sites pour lesquels le serveur "
-"mandataire ne doit pas être utilisé.<p>\n"
-"Vous pouvez aussi cliquer sur le bouton « <b>Détection automatique</b> » "
-"pour que le système essaie de trouver le nom de cette variable.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:298 proxy/kproxydlg.ui:602
-#, kde-format
-msgid "Exceptions:"
-msgstr "Exceptions : "
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:317
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>Saisissez la variable d'environnement, par exemple <b>NO_PROXY</b>, "
-"utilisée pour enregistrer les adresses des sites pour lesquels les "
-"paramètres de serveur mandataire ci-dessus ne doivent pas être utilisés."
-"<p>Alternativement, vous pouvez cliquer sur le bouton <b>&quot;Auto "
-"Détecter&quot;</b> pour tenter une découverte automatique de cette variable."
-"</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:324
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "&Afficher la valeur des variables d'environnement"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:343
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "Saisissez les informations de configuration du serveur mandataire."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:346
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr ""
-"Utiliser la configuration manuellement spécifiée du serveur mandataire : "
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:398
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "Saisissez l'adresse du serveur mandataire HTTP."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:405 proxy/kproxydlg.ui:471 proxy/kproxydlg.ui:524
-#: proxy/kproxydlg.ui:574
-#, kde-format
-msgid "Port:"
-msgstr "Port : "
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:421
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "Saisissez le numéro de port du serveur mandataire HTTP."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:436
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "Uti&liser ce serveur mandataire pour tous les protocoles"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:464
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "Saisissez l'adresse du serveur mandataire HTTPS."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:481
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "Saisissez le numéro du port du serveur mandataire HTTPS."
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:517
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "Saisissez l'adresse du serveur mandataire FTP."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:534
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "Saisissez le numéro du port du serveur mandataire FTP."
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:567
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "Saisissez l'adresse du serveur mandataire SOCKS."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:584
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "Saisissez le numéro du port du serveur mandataire SOCKS."
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:628
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Saisissez une liste d'hôtes ou d'adresses IP séparés par une virgule pour "
-"lesquels les paramètres du serveur mandataire définis ci-dessus ne "
-"s'appliquent pas.</p>\n"
-"<p>Si vous désirez exclure tous les hôtes d'un nom de domaine, saisissez "
-"simplement le nom de domaine précédé d'un point. Par exemple, pour exclure "
-"tous les hôtes de <i>kde.org</i>, saisissez <i>.kde.org</i>. Les méta-"
-"caractères comme « * » ou « ? » ne sont pas pris en charge et seront ignorés."
-"</p>\n"
-"<p>De plus, vous pouvez aussi saisir des adresses IP, comme 127.0.0.1 et des "
-"adresses IP avec un sous-réseau, comme 192.168.0.1/24.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:639
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"Cochez cette option si vous voulez que les paramètres spécifiés ci-dessus ne "
-"soient appliqués que pour les adresses de la liste d'<i>Exceptions</i>.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:642
-#, kde-format
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr ""
-"N'utiliser les paramètres de serveur mandataire que pour les adresses de la "
-"liste d'exceptions."
+#: proxy/wpad-detector/module.cpp:89
+#, fuzzy, kde-format
+#| msgid "&Forever"
+msgctxt "@action:button ignore notification"
+msgid "Ignore Forever"
+msgstr "Oui, &toujours"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -3463,9 +3530,6 @@ msgstr "Insérer un paramètre substituable"
 #~ msgstr ""
 #~ "Voulez-vous désormais accepter ce certificat sans que la question vous "
 #~ "soit posée à chaque fois ?"
-
-#~ msgid "&Forever"
-#~ msgstr "Oui, &toujours"
 
 #~ msgid "&Current Session only"
 #~ msgstr "Pour &cette session seulement"
@@ -8158,9 +8222,6 @@ msgstr "Insérer un paramètre substituable"
 
 #~ msgid "Show system &places"
 #~ msgstr "Afficher les em&placements système"
-
-#~ msgid "General Settings"
-#~ msgstr "Paramètres généraux"
 
 #~ msgid ""
 #~ "Folders are automatically distributed in several columns. The optimal "
