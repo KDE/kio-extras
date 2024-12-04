@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 00:40+0000\n"
-"PO-Revision-Date: 2024-11-28 20:49+0100\n"
+"PO-Revision-Date: 2024-12-03 17:12+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
@@ -257,10 +257,9 @@ msgstr "Konektatu internetera zuzenean."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No proxy"
+#, kde-format
 msgid "&No proxy"
-msgstr "Ordezkaririk ez"
+msgstr "Ordezkaririk e&z"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
@@ -429,10 +428,9 @@ msgstr "Erabili zehaztutako proxy scripta proxyaren ezarpena konfiguratzeko."
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "Erabili proxya automatikoki konfiguratzeko URL:"
+msgstr "Era&bili proxya automatikoki konfiguratzeko URLa:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -467,10 +465,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
-msgstr "HTTP ordezkaria:"
+msgstr "H&TTP ordezkaria:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -493,10 +490,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgid "SS&L proxy:"
-msgstr "SSL ordezkaria:"
+msgstr "SS&L ordezkaria:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -537,10 +533,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
-msgstr "SOCKS ordezkaria:"
+msgstr "SOC&KS ordezkaria:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -558,10 +553,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
-msgstr "Salbuespenak:"
+msgstr "&Salbuespenak:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -605,16 +599,15 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr "Hauteman proxy-konfigurazioa automatikoki"
+msgstr "Ordezkari-konfigurazioa automatikoki &hauteman"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
 #, kde-format
 msgid "Enter the address for the proxy configuration script."
-msgstr "Sartu proxy-a konfigurazio script-aren helbidea."
+msgstr "Sartu ordezkaria konfiguratzeko gidoiaren helbidea."
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:658
@@ -631,13 +624,13 @@ msgid ""
 "<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
 "</qt>"
 msgstr ""
-"<qt><p>Erabili sisteman definitutako proxy ezarpenak.</p>\n"
+"<qt><p>Erabili sisteman definitutako ordezkari-ezarpenak.</p>\n"
 "<p>Plataforma batzuk sistema osorako proxy konfigurazioaren informazioa "
 "eskaintzen dute eta aukera hau ezartzeak ezarpen haiek erabiltzeko aukera "
 "ematen dizute.</p>\n"
 "<p>Mac plataformetan</p>\n"
 "<p>Windows plataformetan</p>\n"
-"<p>Unix eta Linux plataformetan, halako sistemaren proxy ezarpenak "
+"<p>Unix eta Linux plataformetan, halako sistemaren ordezkari-ezarpenak "
 "inguruneko aldagaien bidez definitu ohi dira. Ondoko inguruneko aldagaiak "
 "antzeman eta erabiltzen dira eskuragarri daudenean: <b>HTTP_PROXY</b>, "
 "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
@@ -645,10 +638,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "Erabili sistemako proxyaren konfigurazioa:"
+msgstr "Erabili siste&maren ordezkari-konfigurazioa:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -659,12 +651,17 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"Konfigurazio automatikoa, Web-ordezkari aurkikuntza automatikoa (WPAD - Web "
+"Proxy Auto-Discovery), ez da ia inoiz konfigurazio zuzena. Beharrezkoa ez "
+"denean gaitzeak sarerako sarbidea mantsotu dezake eta zure sarearen "
+"segurtasuna murriztuko du. Sareko zure administratzaileak jakingo du gaitzea "
+"beharrezkoa den."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "Sarearen errendimendu motela hauteman da"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -674,20 +671,21 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"Ordezkariaren aurkikuntza automatikoa gaitu da, baina sistemaren sareko "
+"errendimendua murrizten ari da. Ikuskatu ordezkariaren zure ezarpenak, "
+"ezarpen hori erabiltzea benetan beharrezkoa den ziurtatzeko."
 
 #: proxy/wpad-detector/module.cpp:84
-#, fuzzy, kde-format
-#| msgid "General Settings"
+#, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr "Ezarpen orokorrak"
+msgstr "Ireki ezarpenak"
 
 #: proxy/wpad-detector/module.cpp:89
-#, fuzzy, kde-format
-#| msgid "&Forever"
+#, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr "&Betirako"
+msgstr "Ezikusi betirako"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format

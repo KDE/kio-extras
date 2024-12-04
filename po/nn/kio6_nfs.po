@@ -59,6 +59,3 @@ msgstr "NFS-feil %1, %2"
 #, kde-format
 msgid "Unknown target"
 msgstr "Ukjent mål"
-
-#~ msgid "Failed to initialise protocol"
-#~ msgstr "Klarte ikkje klargjera protokoll"
