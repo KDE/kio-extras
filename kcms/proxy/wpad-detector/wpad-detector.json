@@ -1,7 +1,31 @@
 {
     "KPlugin": {
         "Description": "Verifies proxy setup is performing as expected",
-        "Name": "Proxy Verifier"
+        "Description[ca]": "Verifica que la configuració del servidor intermediari funcioni com s'esperava",
+        "Description[es]": "Verifica que la configuración del proxy funciona como se espera",
+        "Description[eu]": "Ordezkariaren ezarpenak espero bezala aritzen dela egiaztatzen du",
+        "Description[ia]": "Verifica si le configuration de proxy es executante como on expecta",
+        "Description[it]": "Verifica che la configurazione del proxy funziona come previsto",
+        "Description[ka]": "შეამოწმებს, მუშაობს თუ არა პროქსის პარამეტრები სწორად",
+        "Description[nl]": "Verifieert of de opzet van proxy presteert zoals verwacht",
+        "Description[sl]": "Preveri nastavitev posrednika, da deluje kot je pričakovano",
+        "Description[sv]": "Verifierar att proxy-inställningen beter sig som förväntat",
+        "Description[tr]": "Vekil sunucu kurulumunun beklendiği gibi çalışıp çalışmadığını doğrular",
+        "Description[uk]": "Перевіряє, чи працюють налаштування проксі-сервера належним чином",
+        "Description[x-test]": "xxVerifies proxy setup is performing as expectedxx",
+        "Name": "Proxy Verifier",
+        "Name[ca]": "Verificador de servidor intermediari",
+        "Name[es]": "Verificador de proxy",
+        "Name[eu]": "Ordezkari-egiaztatzailea",
+        "Name[ia]": "Verificator de Proxy",
+        "Name[it]": "Verificatore di proxy",
+        "Name[ka]": "პროქსის გადამმოწმებელი",
+        "Name[nl]": "Verificatiesysteem voor proxy",
+        "Name[sl]": "Preverjalnik posrednika",
+        "Name[sv]": "Proxy-verifiering",
+        "Name[tr]": "Vekil Doğrulayıcısı",
+        "Name[uk]": "Засіб перевірки проксі-серверів",
+        "Name[x-test]": "xxProxy Verifierxx"
     },
     "X-KDE-Kded-autoload": true
 }
