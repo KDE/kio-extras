@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-09-06 21:25+0200\n"
+"PO-Revision-Date: 2024-12-03 17:38+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -262,7 +262,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:49
 #, kde-format
 msgid "Detect proxy configuration automatically"
-msgstr "Rileva automaticamente la configurazione dei proxy"
+msgstr "Rileva automaticamente la configurazione del proxy"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:59
@@ -274,7 +274,7 @@ msgstr "Usa lo script specificato per configurare le impostazioni dei proxy."
 #: proxy/kproxydlg.ui:62
 #, kde-format
 msgid "Use proxy auto configuration URL:"
-msgstr "URL di configurazione automatica dei proxy:"
+msgstr "Usa l'URL di configurazione automatica del proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:93
