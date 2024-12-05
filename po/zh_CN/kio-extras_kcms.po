@@ -229,7 +229,7 @@ msgstr "直接连接到互联网。"
 #: proxy/kproxydlg.ui:55
 #, kde-format
 msgid "&No proxy"
-msgstr ""
+msgstr "不使用代理服务器(&N)"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
@@ -397,7 +397,7 @@ msgstr "使用指定的代理服务器脚本配置代理服务器。"
 #: proxy/kproxydlg.ui:370
 #, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr ""
+msgstr "使用代理服务器自动配置 &URL："
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -433,7 +433,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:420
 #, kde-format
 msgid "H&TTP proxy:"
-msgstr ""
+msgstr "H&TTP 代理："
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -457,7 +457,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:455
 #, kde-format
 msgid "SS&L proxy:"
-msgstr ""
+msgstr "SS&L 代理："
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -498,7 +498,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:525
 #, kde-format
 msgid "SOC&KS proxy:"
-msgstr ""
+msgstr "SOC&KS 代理："
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -517,7 +517,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:557
 #, kde-format
 msgid "E&xceptions:"
-msgstr ""
+msgstr "例外(&X)："
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -561,7 +561,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:603
 #, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr ""
+msgstr "自动检测代理服务器配置(&D)"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
@@ -597,7 +597,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:661
 #, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr ""
+msgstr "使用系统代理服务器配置(&Y)："
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -608,12 +608,15 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"自动配置，也叫网络代理服务器自动发现机制 (WPAD)，一般来说不应使用。在不需要此"
+"功能时启用它可能会对网络访问速度和网络安全性造成负面影响。请询问您的网络管理"
+"员是否需要启用它。"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "检测到网络性能缓慢"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -623,18 +626,20 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"自动代理服务器发现已被启用，但它正在导致系统网络性能下降。请检查您的代理服务"
+"器设置是否真的需要启用此功能。"
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr ""
+msgstr "打开设置"
 
 #: proxy/wpad-detector/module.cpp:89
 #, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr ""
+msgstr "永远忽略"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
