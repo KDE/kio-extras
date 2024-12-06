@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 00:40+0000\n"
-"PO-Revision-Date: 2024-11-27 08:27+0200\n"
+"PO-Revision-Date: 2024-12-05 08:21+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -260,10 +260,9 @@ msgstr "התחברות ישירות לאינטרנט."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No proxy"
+#, kde-format
 msgid "&No proxy"
-msgstr "אין מתווך"
+msgstr "&ללא מתווך"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
@@ -431,10 +430,9 @@ msgstr "להשתמש בסקריפט המתווך שצוין כדי להגדיר 
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "להשתמש בכתובת ההגדרות האוטומטיות של המתווך:"
+msgstr "להשתמש בכתובת הגדרות מתווך אוטומטיות:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -469,10 +467,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
-msgstr "מתווך HTTP:"
+msgstr "מ&תווך HTTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -495,10 +492,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgid "SS&L proxy:"
-msgstr "מתווך SSL:"
+msgstr "מתוו&ך SSL:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -539,10 +535,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
-msgstr "מתווך SOCKS:"
+msgstr "&מתווך SOCKS:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -559,10 +554,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
-msgstr "חריגות:"
+msgstr "&חריגות:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -605,10 +599,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr "זיהוי הגדרות מתווך אוטומטית"
+msgstr "&זיהוי הגדרות מתווך אוטומטית"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
@@ -644,10 +637,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "להשתמש בהגדרות המתווך של המערכת:"
+msgstr "להשתמש בהגדרות המתווך של המ&ערכת:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -658,12 +650,16 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"הגדרות אוטומטיות, ידועות גם בשם גילוי אוטומטי של מתווך רשת (WPAD), הן בדרך "
+"כלל לא ההגדרות הנכונות. הפעלת האפשרות הזאת כשאין צורך בכך עלולה להאט את "
+"הגישה לרשת ולפגוע באבטחת החיבור שלך לרשת. הנהלת הרשת שלך תדע אם צריך להפעיל "
+"את האפשרות הזאת."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "התגלתה"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -673,19 +669,20 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"זיהוי מתווך אוטומטי הופעל אבל הוא פוגע בביצועי הרשאת. נא לבדוק שהגדרות "
+"המתווך נכונות כדי לוודא שהשימוש בהגדרה הזאת אכן נחוץ."
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr ""
+msgstr "פתיחת ההגדרות"
 
 #: proxy/wpad-detector/module.cpp:89
-#, fuzzy, kde-format
-#| msgid "&Forever"
+#, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr "&לתמיד"
+msgstr "להתעלם ל&תמיד"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format

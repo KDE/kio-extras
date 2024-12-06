@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 00:40+0000\n"
-"PO-Revision-Date: 2024-11-28 19:55+0100\n"
+"PO-Revision-Date: 2024-12-05 22:11+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -248,10 +248,9 @@ msgstr "Директна връзка с Интернет."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No proxy"
+#, kde-format
 msgid "&No proxy"
-msgstr "Без прокси"
+msgstr "&Без прокси"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
@@ -421,10 +420,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "Използване на URL адрес за автоматично конфигуриране на прокси:"
+msgstr "&Използване на URL адрес за автоматично конфигуриране на прокси:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -459,10 +457,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
-msgstr "HTTP прокси:"
+msgstr "&HTTP прокси:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -485,10 +482,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgid "SS&L proxy:"
-msgstr "SSL прокси:"
+msgstr "&SSL прокси:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -529,10 +525,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
-msgstr "SOCKS прокси:"
+msgstr "&SOCKS прокси:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -550,10 +545,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
-msgstr "Изключения:"
+msgstr "&Изключения:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -598,10 +592,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr "Автоматично откриване на прокси конфигурацията"
+msgstr "А&втоматично откриване на прокси конфигурацията"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
@@ -638,10 +631,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "Използване на системната конфигурация на прокси:"
+msgstr "Из&ползване на системната конфигурация на прокси:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -652,12 +644,17 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"Автоматичната конфигурация, известна още като автоматично откриване на уеб "
+"прокси (WPAD), почти никога не е правилната конфигурация. Активирането му, "
+"когато не е необходимо, може да забави достъпа до мрежата и да направи "
+"мрежата ви по-малко защитена. Вашият мрежов администратор ще разбере, дали "
+"активирането му е необходимо."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "Регистрирана е слаба производителност на мрежата"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -667,18 +664,22 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"Автоматичното откриване на прокси е активирано, но намалява "
+"производителността на мрежата на системата. Проверете настройките на прокси "
+"сървъра, за да се уверите, че използването на тази настройка наистина е "
+"необходимо."
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr ""
+msgstr "Отваряне на настройките"
 
 #: proxy/wpad-detector/module.cpp:89
 #, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr ""
+msgstr "Игнориране за постоянно"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
