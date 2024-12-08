@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-09-07 11:19+0200\n"
+"PO-Revision-Date: 2024-12-07 12:54+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -258,7 +258,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:49
 #, kde-format
 msgid "Detect proxy configuration automatically"
-msgstr "Samoczynnie wykryj ustawienia pośrednika"
+msgstr "Sam wykryj ustawienia pośrednika"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:59
@@ -270,7 +270,7 @@ msgstr "Użyj podanego skryptu pośrednika do ustawień pośrednika."
 #: proxy/kproxydlg.ui:62
 #, kde-format
 msgid "Use proxy auto configuration URL:"
-msgstr "Użyj adresu URL do samoustawiania pośrednika"
+msgstr "Użyj adresu URL, samoustawiającego pośrednika:"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:93
@@ -309,7 +309,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:120
 #, kde-format
 msgid "Use system proxy configuration:"
-msgstr "Użyj systemowych ustawień pośrednika"
+msgstr "Użyj systemowych ustawień pośrednika:"
 
 #. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
 #: proxy/kproxydlg.ui:127
