@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 00:40+0000\n"
-"PO-Revision-Date: 2024-12-01 18:56+0530\n"
+"PO-Revision-Date: 2024-12-08 13:22+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -250,8 +250,7 @@ msgstr "நேரடியாக இணையத்துடன் இணை"
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No proxy"
+#, kde-format
 msgid "&No proxy"
 msgstr "பதிலி இல்லை"
 
@@ -421,10 +420,9 @@ msgstr "பதிலியை அமைக்க குறிப்பிட்�
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "பதிலி தானியக்க முகவரியை பயன்படுத்து:"
+msgstr "இந்த பதிலி தானியக்க முகவரியை பயன்படுத்து:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -459,8 +457,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
 msgstr "HTTP பதிலி:"
 
@@ -485,8 +482,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgid "SS&L proxy:"
 msgstr "SSL பதிலி:"
 
@@ -529,8 +525,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
 msgstr "SOCKS பதிலி:"
 
@@ -549,8 +544,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
 msgstr "விதிவிலக்குகள்:"
 
@@ -596,8 +590,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
 msgstr "&பதிலியை தானாக அமை"
 
@@ -635,10 +628,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "&கணினி பதிலி அமைப்பை பயன்படுத்து:"
+msgstr "இயக்குதள பதிலி அமைப்பை பயன்படுத்து:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -649,12 +641,16 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"தானியக்க பதிலி அமைப்பு (WPAD, அதாவது Web Proxy Auto-Discovery எனப்படுவது) "
+"பெரும்பாலும் சிக்கல்களையே விளைவிக்கும். தேவையில்லாமல் இதை இயக்குவது, பிணையத்தை மெதுவாக "
+"செயல்பட வைக்கலாம், மேலும் அதன் பாதுகாப்பை பாதிக்கலாம். இது தேவையா என்பது உங்கள் பிணைய "
+"நிர்வாகிக்கு தெரிந்திருக்கும்."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "பிணைய செயல்பாடு மெதுவாகு உள்ளது"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -664,19 +660,20 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"தானியக்க பதிலி கண்டுபிடிப்பு இயக்கப்பட்டுள்ளதால், பிணைய செயல்திறன் பாதிக்கப்படுகிறது. "
+"இந்த அமைப்பு கண்டிப்பாக தேவையா என்பதை சரிபார்க்கவும்."
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr ""
+msgstr "அமைப்புகளை திற"
 
 #: proxy/wpad-detector/module.cpp:89
-#, fuzzy, kde-format
-#| msgid "&Forever"
+#, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr "&என்றென்றும்"
+msgstr "மறுபடியும் எச்சரிக்காதே"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
