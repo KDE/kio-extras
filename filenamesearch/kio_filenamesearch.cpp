@@ -198,11 +198,6 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
     });
 
     connect(listJob, &KIO::ListJob::entries, this, [&](KJob *, const KIO::UDSEntryList &list) {
-        if (wasKilled()) { // don't finish the search if we are meant to shut down
-            listJob->kill();
-            return;
-        }
-
         if (listJob->error()) {
             qCWarning(KIO_FILENAMESEARCH) << "Searching failed:" << listJob->errorText();
             return;
