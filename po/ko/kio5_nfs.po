@@ -1,7 +1,7 @@
 # Korean messages for kio_nfs.
 # Copyright (C) 2002 Free Software Foundation, Inc.
 # KIM KyungHeon <tody@teoal.net>, 2002.
-# Shinjo Park <kde@peremen.name>, 2007, 2015, 2021.
+# SPDX-FileCopyrightText: 2007, 2015, 2021, 2024 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8Bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 20.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: kio_nfs.cpp:152
 #, kde-format
