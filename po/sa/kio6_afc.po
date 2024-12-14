@@ -1,0 +1,102 @@
+# Sanskrit translations for kio-extras package.
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# Kali <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-02-21 00:37+0000\n"
+"PO-Revision-Date: 2024-12-13 19:09+0530\n"
+"Last-Translator: Kali <EMAIL@ADDRESS>\n"
+"Language-Team: Sanskrit\n"
+"Language: sa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: afcutils.cpp:60
+#, kde-format
+msgid "Unhandled AFC error code '%1'"
+msgstr "अनियंत्रितः AFC त्रुटिसङ्केतः '%1'."
+
+#: afcutils.cpp:73
+#, kde-format
+msgid "Unhandled housearrest error code '%1'"
+msgstr "अनियंत्रितः गृहनिरोधदोषसङ्केतः '%1'."
+
+#: afcutils.cpp:89
+#, kde-format
+msgid "Unhandled instproxy error code '%1'"
+msgstr "अनियंत्रितः instproxy त्रुटिसङ्केतः '%1'."
+
+#: afcutils.cpp:105
+#, kde-format
+msgid ""
+"The device is locked. Please enter the passcode on the device and try again."
+msgstr "यन्त्रं ताडितम् अस्ति। कृपया यन्त्रे पासकोड् प्रविश्य पुनः प्रयासं कुर्वन्तु ।"
+
+#: afcutils.cpp:112
+#, kde-format
+msgid "You have denied this computer access to the device."
+msgstr "भवता एतत् सङ्गणकं यन्त्रे प्रवेशं नकारितम् ।"
+
+#: afcutils.cpp:119
+#, kde-format
+msgid ""
+"You need to allow this computer to access the device. Please accept the "
+"prompt on the device and try again."
+msgstr ""
+"भवद्भिः अस्य सङ्गणकस्य यन्त्रं प्राप्तुं अनुमतिः दातव्या । कृपया यन्त्रे प्रॉम्प्ट् स्वीकृत्य पुनः "
+"प्रयासं कुर्वन्तु ।"
+
+#: afcutils.cpp:127
+#, kde-format
+msgid ""
+"Cannot access the device. Make sure it is unlocked and allows this computer "
+"to access it."
+msgstr ""
+"यन्त्रं प्राप्तुं न शक्नोति। सुनिश्चितं कुर्वन्तु यत् एतत् अनलॉक्ड् अस्ति तथा च अस्य सङ्गणकस्य प्रवेशं "
+"कर्तुं शक्नोति ।"
+
+#: afcutils.cpp:134
+#, kde-format
+msgid "Unhandled lockdownd code '%1'"
+msgstr "अनहैण्डल्ड लॉकडाउन् कोड '%1'."
+
+#: afcutils.cpp:147
+#, kde-format
+msgid "Unhandled sbservices code '%1'"
+msgstr "अनियंत्रितः sbservices कोडः '%1'."
+
+#: kio_afc.cpp:134
+#, kde-format
+msgid "Apple Devices"
+msgstr "एप्पल् डिवाइसेस्"
+
+#: kio_afc.cpp:181 kio_afc.cpp:395
+#, kde-format
+msgctxt "Link to folder with files stored inside apps"
+msgid "Apps"
+msgstr ""
+
+#: kio_afc.cpp:599
+#, kde-format
+msgid "Cannot read without opening file first"
+msgstr "प्रथमं सञ्चिकां न उद्घाट्य पठितुं न शक्यते"
+
+#: kio_afc.cpp:619
+#, kde-format
+msgid "Cannot seek without opening file first"
+msgstr "प्रथमं सञ्चिकां न उद्घाट्य अन्वेष्टुं न शक्यते"
+
+#: kio_afc.cpp:647
+#, kde-format
+msgid "Cannot write without opening file first"
+msgstr "प्रथमं सञ्चिकां न उद्घाट्य लिखितुं न शक्यते"
+
+#: kio_afc.cpp:799
+#, kde-format
+msgid "Cannot rename between devices."
+msgstr "उपकरणानां मध्ये नामकरणं कर्तुं न शक्यते ।"

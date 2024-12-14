@@ -1,0 +1,66 @@
+# Sanskrit translations for kio-extras package.
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# Kali <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-11-16 00:40+0000\n"
+"PO-Revision-Date: 2024-12-13 19:09+0530\n"
+"Last-Translator: Kali <EMAIL@ADDRESS>\n"
+"Language-Team: Sanskrit\n"
+"Language: sa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:79 KioActivities.cpp:176
+#, kde-format
+msgid "Activities"
+msgstr "गतिविधयः"
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:82
+#, kde-format
+msgid "Loading..."
+msgstr "लोडिंग..."
+
+#: fileitemplugin/FileItemLinkingPlugin.cpp:99
+#, kde-format
+msgid "The Activity Manager is not running"
+msgstr "क्रियाकलापप्रबन्धकः न चाल्यते"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:50
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:109
+#, kde-format
+msgid "Link to the current activity"
+msgstr "वर्तमानक्रियाकलापस्य लिङ्क्"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:51
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:112
+#, kde-format
+msgid "Unlink from the current activity"
+msgstr "वर्तमानक्रियाकलापात् विच्छेदं कुर्वन्तु"
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:53
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:115
+#, kde-format
+msgid "Link to:"
+msgstr "लिङ्क् अस्ति : १."
+
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:58
+#: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:122
+#, kde-format
+msgid "Unlink from:"
+msgstr "अनलिङ्क् from:"
+
+#: KioActivities.cpp:108
+#, kde-format
+msgid "Current activity"
+msgstr "वर्तमान क्रियाकलाप"
+
+#: KioActivities.cpp:109 KioActivitiesApi.cpp:86
+#, kde-format
+msgid "Activity"
+msgstr "गतिविधि"

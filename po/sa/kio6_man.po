@@ -1,0 +1,189 @@
+# Sanskrit translations for kio-extras package.
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# Kali <EMAIL@ADDRESS>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2024-04-10 00:38+0000\n"
+"PO-Revision-Date: 2024-12-13 19:09+0530\n"
+"Last-Translator: Kali <EMAIL@ADDRESS>\n"
+"Language-Team: Sanskrit\n"
+"Language: sa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: kio_man.cpp:459
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
+"that you have not mistyped the name of the page, and note that man page "
+"names are case sensitive.<nl/><nl/>If the name is correct, then you may need "
+"to extend the search path for man pages, either using the <envar>MANPATH</"
+"envar> environment variable or a configuration file in the <filename>/etc</"
+"filename> directory."
+msgstr ""
+
+#: kio_man.cpp:572
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"The specified man page references another page <filename>%1</filename>,<nl/"
+">but the referenced page <filename>%2</filename> could not be found."
+msgstr ""
+
+#: kio_man.cpp:589
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be read."
+msgstr ""
+
+#: kio_man.cpp:598
+#, kde-kuit-format
+msgctxt "@info"
+msgid "The man page <filename>%1</filename> could not be converted."
+msgstr ""
+
+#: kio_man.cpp:653
+#, kde-format
+msgid "Manual Page Viewer Error"
+msgstr "मैनुअल पृष्ठ दर्शक त्रुटि"
+
+#: kio_man.cpp:666
+#, kde-format
+msgid "There is more than one matching man page:"
+msgstr "एकादशाधिकं मेलयुक्तं मनुष्यपृष्ठं अस्ति:"
+
+#: kio_man.cpp:666
+#, kde-format
+msgid "Multiple Manual Pages"
+msgstr "अनेक मैनुअल पृष्ठ"
+
+#: kio_man.cpp:679
+#, kde-format
+msgid ""
+"Note: if you read a man page in your language, be aware it can contain some "
+"mistakes or be obsolete. In case of doubt, you should have a look at the "
+"English version."
+msgstr ""
+"नोटः- यदि भवान् स्वभाषायां man पृष्ठं पठति तर्हि सावधानः भवतु यत् तस्मिन् काश्चन त्रुटयः "
+"सन्ति अथवा अप्रचलिताः भवितुम् अर्हन्ति। संशयस्य सति भवद्भिः आङ्ग्लभाषायाः संस्करणं "
+"अवलोकितव्यम् ।"
+
+#: kio_man.cpp:747
+#, kde-format
+msgid "Header Files"
+msgstr "शीर्षकसञ्चिकाः"
+
+#: kio_man.cpp:749
+#, kde-format
+msgid "Header Files (POSIX)"
+msgstr "शीर्षकसञ्चिकाः (POSIX) २."
+
+#: kio_man.cpp:751
+#, kde-format
+msgid "User Commands"
+msgstr "उपयोक्तृ आदेशाः"
+
+#: kio_man.cpp:753
+#, kde-format
+msgid "User Commands (POSIX)"
+msgstr "उपयोक्तृ आदेशाः (POSIX) ."
+
+#: kio_man.cpp:755
+#, kde-format
+msgid "System Calls"
+msgstr "सिस्टम् कॉल्स्"
+
+#: kio_man.cpp:757
+#, kde-format
+msgid "Subroutines"
+msgstr "उपनियमा"
+
+#: kio_man.cpp:760
+#, kde-format
+msgid "Perl Modules"
+msgstr "पर्ल मॉड्यूल"
+
+#: kio_man.cpp:762
+#, kde-format
+msgid "Network Functions"
+msgstr "संजालकार्यम्"
+
+#: kio_man.cpp:764
+#, kde-format
+msgid "Devices"
+msgstr "यन्त्राणि"
+
+#: kio_man.cpp:766
+#, kde-format
+msgid "File Formats"
+msgstr "सञ्चिकास्वरूपाः"
+
+#: kio_man.cpp:768
+#, kde-format
+msgid "Games"
+msgstr "क्रीडाः"
+
+#: kio_man.cpp:770
+#, kde-format
+msgid "Miscellaneous"
+msgstr "विविध"
+
+#: kio_man.cpp:772
+#, kde-format
+msgid "System Administration"
+msgstr "प्रणाली प्रशासन"
+
+#: kio_man.cpp:774
+#, kde-format
+msgid "Kernel"
+msgstr "कर्नेल"
+
+#: kio_man.cpp:776
+#, kde-format
+msgid "Local Documentation"
+msgstr "स्थानीय दस्तावेजीकरण"
+
+#: kio_man.cpp:779
+#, kde-format
+msgid "New"
+msgstr "नूतनम्‌"
+
+#: kio_man.cpp:806
+#, kde-format
+msgid "Main Manual Page Index"
+msgstr "मुख्य पुस्तिका पृष्ठ अनुक्रमणिका"
+
+#: kio_man.cpp:831
+#, kde-format
+msgid "Section %1"
+msgstr "खण्डः %1"
+
+#: kio_man.cpp:1080
+#, kde-format
+msgid "Index for section %1: %2"
+msgstr "%1 खण्डस्य अनुक्रमणिका: %2"
+
+#: kio_man.cpp:1080
+#, kde-format
+msgid "Manual Page Index"
+msgstr "मैनुअल पृष्ठ अनुक्रमणिका"
+
+#: kio_man.cpp:1089
+#, kde-format
+msgid "Generating Index"
+msgstr "अनुक्रमणिका जनयति"
+
+#: kio_man.cpp:1343
+#, kde-kuit-format
+msgctxt "@info"
+msgid ""
+"Could not find the <command>%1</command> program on your system. Please "
+"install it if necessary, and ensure that it can be found using the "
+"environment variable <envar>PATH</envar>."
+msgstr ""

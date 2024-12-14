@@ -1,0 +1,183 @@
+# Sanskrit translations for kio-extras package.
+# Copyright (C) 2024 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+# Kali <EMAIL@ADDRESS>, 2024.
+#
+# SPDX-FileCopyrightText: 2024 kali <skkalwar999@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"PO-Revision-Date: 2024-12-13 20:20+0530\n"
+"Last-Translator: kali <skkalwar999@gmail.com>\n"
+"Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
+"Language: sa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.08.2\n"
+
+#: kio_smb_auth.cpp:42
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>There are various options for authenticating on SMB shares.</"
+"para><para><placeholder>username</placeholder>: When authenticating within a "
+"home network the username on the server is sufficient</"
+"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
+"logon names are formed like e-mail addresses</para><para><placeholder>DOMAIN"
+"\\username</placeholder>: For ancient corporate networks or workgroups you "
+"may need to prefix the NetBIOS domain name (pre-Windows 2000)</"
+"para><para><placeholder>anonymous</placeholder>: Anonymous logins can be "
+"attempted using empty username and password. Depending on server "
+"configuration non-empty usernames may be required</para>"
+msgstr ""
+
+#: kio_smb_auth.cpp:51
+#, kde-format
+msgid "<qt>Please enter authentication information for <b>%1</b></qt>"
+msgstr "<qt>कृपया <b>%1</b> कृते प्रमाणीकरणसूचना प्रविशन्तु</qt>"
+
+#: kio_smb_auth.cpp:54
+#, kde-format
+msgid ""
+"Please enter authentication information for:\n"
+"Server = %1\n"
+"Share = %2"
+msgstr ""
+"कृपया प्रमाणीकरणसूचनाः अस्य कृते प्रविशन्तु:\n"
+"सर्वर = %1\n"
+"भाग = %2"
+
+#: kio_smb_browse.cpp:59
+#, kde-format
+msgid ""
+"%1:\n"
+"Unknown file type, neither directory or file."
+msgstr ""
+"%1: १.\n"
+"अज्ञातः सञ्चिकाप्रकारः, न निर्देशिका वा सञ्चिका वा ।"
+
+#: kio_smb_browse.cpp:273
+#, kde-format
+msgid ""
+"Unable to find any workgroups in your local network. This might be caused by "
+"an enabled firewall."
+msgstr ""
+"भवतः स्थानीयजाले किमपि कार्यसमूहं अन्वेष्टुं असमर्थः । एतत् सक्षम-अग्निप्रावरणेन कारणं भवितुम् "
+"अर्हति ।"
+
+#: kio_smb_browse.cpp:278
+#, kde-format
+msgid "No media in device for %1"
+msgstr "%1 कृते उपकरणे कोऽपि माध्यमः नास्ति"
+
+#: kio_smb_browse.cpp:284
+#, kde-format
+msgid "Could not connect to host for %1"
+msgstr "%1 कृते होस्ट् इत्यनेन सह सम्बद्धं कर्तुं न शक्तम्"
+
+#: kio_smb_browse.cpp:296
+#, kde-format
+msgid "Error while connecting to server responsible for %1"
+msgstr "%1 कृते उत्तरदायी सर्वरेण सह संयोजयन् त्रुटिः"
+
+#: kio_smb_browse.cpp:302
+#, kde-format
+msgid "Share could not be found on given server"
+msgstr "दत्तसर्वरस्य मध्ये भागः न लब्धः"
+
+#: kio_smb_browse.cpp:304
+#, kde-format
+msgid "Bad file descriptor"
+msgstr "दुष्टः सञ्चिकावर्णकः"
+
+#: kio_smb_browse.cpp:312
+#, kde-format
+msgid ""
+"The given name could not be resolved to a unique server. Make sure your "
+"network is setup without any name conflicts between names used by Windows "
+"and by UNIX name resolution."
+msgstr ""
+"दत्तं नाम अद्वितीयसर्वरस्य समाधानं कर्तुं न शक्यते स्म । विण्डोज द्वारा प्रयुक्तानां नामानां "
+"UNIX नामनिराकरणेन च किमपि नामविग्रहं विना भवतः संजालं सेटअप अस्ति इति सुनिश्चितं कुर्वन्तु "
+"।"
+
+#: kio_smb_browse.cpp:321
+#, kde-format
+msgctxt ""
+"@info:status smb failed to reach the server (e.g. server offline or network "
+"failure). %1 is an ip address or hostname"
+msgid "%1: Host unreachable"
+msgstr ""
+
+#: kio_smb_browse.cpp:325
+#, kde-format
+msgid ""
+"libsmbclient reported an error, but did not specify what the problem is. "
+"This might indicate a severe problem with your network - but also might "
+"indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface "
+"while you try to browse (be aware that it might contain private data, so do "
+"not post it if you are unsure about that - you can send it privately to the "
+"developers if they ask for it)"
+msgstr ""
+"libsmbclient इत्यनेन त्रुटिः निवेदिता, परन्तु समस्या का इति न निर्दिष्टम् । एतेन भवतः "
+"जालपुटे गम्भीरसमस्या सूचयितुं शक्यते - परन्तु libsmbclient इत्यस्य समस्या अपि सूचयितुं शक्यते "
+"।\n"
+"यदि भवान् अस्माकं साहाय्यं कर्तुम् इच्छति तर्हि कृपया ब्राउज् कर्तुं प्रयतमानोऽपि संजाल-"
+"अन्तरफलकस्य tcpdump प्रदातव्यः (अस्मिन् निजीदत्तांशः भवितुम् अर्हति इति अवगन्तुं भवन्तु, अतः "
+"यदि भवान् तस्य विषये अनिश्चितः अस्ति तर्हि तत् न पोस्ट् कुर्वन्तु - भवान् तत् विकासकानां कृते "
+"निजीरूपेण प्रेषयितुं शक्नोति यदि याचन्ते)"
+
+#: kio_smb_browse.cpp:337
+#, kde-format
+msgctxt "%1 is an error number, %2 either a pretty string or the number"
+msgid "Unknown error condition: [%1] %2"
+msgstr ""
+
+#: kio_smb_browse.cpp:354
+#, kde-kuit-format
+msgid "Error occurred while trying to access %1<nl/>%2"
+msgstr "%1<nl/>%2 अभिगन्तुं प्रयतमाने त्रुटिः अभवत्"
+
+#: kio_smb_file.cpp:35
+#, kde-format
+msgid "libsmbclient failed to create context"
+msgstr "libsmbclient सन्दर्भं निर्मातुं असफलः अभवत्"
+
+#: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
+#, kde-format
+msgid ""
+"\n"
+"Make sure that the samba package is installed properly on your system."
+msgstr ""
+"\n"
+"भवतः प्रणाल्यां samba संकुलं सम्यक् संस्थापितम् इति सुनिश्चितं कुर्वन्तु ।"
+
+#: kio_smb_mount.cpp:173
+#, kde-format
+msgid ""
+"Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
+"%4"
+msgstr ""
+"\"%3\" उपयोक्त्रा \"%2\" होस्ट् तः \"%1\" इत्यस्य भागस्य माउण्टिङ्ग् विफलम् ।\n"
+"%4"
+
+#: kio_smb_mount.cpp:198
+#, kde-format
+msgid ""
+"Unmounting of mountpoint \"%1\" failed.\n"
+"%2"
+msgstr ""
+"mountpoint \"%1\" इत्यस्य अनमाउण्टिङ्ग् विफलम् ।\n"
+"%2"
+
+#: wsdiscoverer.cpp:163
+#, kde-kuit-format
+msgctxt ""
+"host entry when no pretty name is available. %1 likely is an IP address"
+msgid "Unknown Device @ <resource>%1</resource>"
+msgstr ""
