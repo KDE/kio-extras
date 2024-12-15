@@ -79,7 +79,7 @@ msgstr "एप्पल् डिवाइसेस्"
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
-msgstr ""
+msgstr "एप्स"
 
 #: kio_afc.cpp:599
 #, kde-format

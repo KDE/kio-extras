@@ -8,13 +8,14 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-10 00:38+0000\n"
-"PO-Revision-Date: 2024-12-13 19:09+0530\n"
+"PO-Revision-Date: 2024-12-14 09:30+0530\n"
 "Last-Translator: Kali <EMAIL@ADDRESS>\n"
 "Language-Team: Sanskrit\n"
 "Language: sa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
 
 #: kio_man.cpp:459
 #, kde-kuit-format
@@ -27,6 +28,11 @@ msgid ""
 "envar> environment variable or a configuration file in the <filename>/etc</"
 "filename> directory."
 msgstr ""
+"<resource>%1</resource> मेलनं कोऽपि man पृष्ठं न लब्धम्।<nl/><nl/>पृष्ठस्य नाम गलत् न "
+"टङ्कितवान् इति पश्यन्तु, तथा च man पृष्ठनामानि लघुसंवेदनशीलाः इति अवलोकयन्तु।<nl/><nl/"
+">यदि नाम सम्यक् अस्ति, तर्हि भवद्भिः man पृष्ठानां अन्वेषणमार्गस्य विस्तारः करणीयः भवेत्, "
+"<envar>MANPATH</envar> वातावरणचरस्य उपयोगेन वा अथवा <filename>/etc</filename> "
+"निर्देशिका। "
 
 #: kio_man.cpp:572
 #, kde-kuit-format
@@ -35,18 +41,20 @@ msgid ""
 "The specified man page references another page <filename>%1</filename>,<nl/"
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
+"निर्दिष्टं man पृष्ठं अन्यं पृष्ठं <filename>%1</filename> सन्दर्भयति,<nl/>किन्तु सन्दर्भितं "
+"पृष्ठं <filename>%2</filename> न लब्धम् ।"
 
 #: kio_man.cpp:589
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
-msgstr ""
+msgstr "<filename>%1</filename> इति man पृष्ठं पठितुं न शक्यते ।"
 
 #: kio_man.cpp:598
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
-msgstr ""
+msgstr "<filename>%1</filename> इति man पृष्ठं परिवर्तयितुं न शक्यते ।"
 
 #: kio_man.cpp:653
 #, kde-format
@@ -187,3 +195,6 @@ msgid ""
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
+"भवतः प्रणाल्यां <command>%1</command> कार्यक्रमं न लब्धम् । कृपया आवश्यके सति संस्थापयन्तु, "
+"तथा च <envar>PATH</envar> इति वातावरणचरस्य उपयोगेन एतत् प्राप्तुं शक्यते इति सुनिश्चितं "
+"कुर्वन्तु ।"

@@ -22,16 +22,16 @@ msgstr ""
 msgctxt "@action:inmenu"
 msgid "Forget File"
 msgid_plural "Forget Files"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "सञ्चिकां विस्मरतु"
+msgstr[1] "सञ्चिकाः विस्मरन्तु"
 
 #: forgetfileitemaction.cpp:48
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget Location"
 msgid_plural "Forget Locations"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "स्थानं विस्मरतु"
+msgstr[1] "स्थानानि विस्मरन्तु"
 
 #: forgetfileitemaction.cpp:52
 #, kde-format
@@ -40,6 +40,8 @@ msgid ""
 "Remove the selected file(s) or location(s) from the recently used list in "
 "Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
 msgstr ""
+"Dolphin इत्यस्मिन् Plasma इत्यस्य मेनूषु च सद्यः प्रयुक्तसूचिकातः चयनितसञ्चिका(सञ्चिकाः) "
+"अथवा स्थान(स्थानानि) निष्कासयन्तु । एतेन संसाधनं (सम्पदां) न निष्कासितम्, न चाल्यते वा ।"
 
 #: recentlyused.cpp:323
 #, kde-format

@@ -26,6 +26,9 @@ msgid ""
 "popup on its screen. If that does not work, make sure MTP is enabled in its "
 "USB connection settings."
 msgstr ""
+"यन्त्रं प्राप्तुं न शक्तवान्। सुनिश्चितं कुर्वन्तु यत् एतत् अनलॉक्ड् अस्ति, तस्य स्क्रीन् मध्ये पॉपअप "
+"मध्ये \"Allow\" इति ट्याप् कुर्वन्तु । यदि तत् कार्यं न करोति तर्हि तस्य USB संयोजनसेटिंग्स् "
+"मध्ये MTP सक्षमम् इति सुनिश्चितं कुर्वन्तु ।"
 
 #: kio_mtp.cpp:520
 #, kde-format

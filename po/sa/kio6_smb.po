@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2024-12-13 20:20+0530\n"
+"PO-Revision-Date: 2024-12-14 09:31+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.2\n"
+"X-Generator: Poedit 3.5\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
@@ -34,6 +34,15 @@ msgid ""
 "attempted using empty username and password. Depending on server "
 "configuration non-empty usernames may be required</para>"
 msgstr ""
+"<para>SMB भागेषु प्रमाणीकरणार्थं विविधाः विकल्पाः सन्ति ।</"
+"para><para><placeholder>username</placeholder>: गृहजालस्य अन्तः प्रमाणीकरणं कुर्वन् "
+"सर्वरे उपयोक्तृनाम पर्याप्तं भवति</para><para><placeholder>username@domain.com</"
+"placeholder>: आधुनिकनिगमप्रवेशनामानि ई-मेलवत् निर्मिताः भवन्ति addresses</"
+"para><para><placeholder>DOMAIN\\username</placeholder>: प्राचीननिगमजालस्य वा "
+"कार्यसमूहस्य वा कृते भवद्भिः NetBIOS डोमेननाम (Windows 2000 पूर्वम्)</"
+"para><para><placeholder> इति उपसर्गं स्थापयितुं आवश्यकं भवेत् anonymous</"
+"placeholder>: रिक्तं उपयोक्तृनाम गुप्तशब्दं च उपयुज्य अनामप्रवेशस्य प्रयासः कर्तुं शक्यते । "
+"सर्वरविन्यासानुसारं अशून्यप्रयोक्तृनाम आवश्यकाः भवितुम् अर्हन्ति</para>"
 
 #: kio_smb_auth.cpp:51
 #, kde-format
@@ -111,7 +120,7 @@ msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
 "failure). %1 is an ip address or hostname"
 msgid "%1: Host unreachable"
-msgstr ""
+msgstr "%1: होस्ट् अप्राप्यम्"
 
 #: kio_smb_browse.cpp:325
 #, kde-format
@@ -136,7 +145,7 @@ msgstr ""
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
-msgstr ""
+msgstr "अज्ञातदोषस्थितिः: [%1] %2"
 
 #: kio_smb_browse.cpp:354
 #, kde-kuit-format
@@ -180,4 +189,4 @@ msgstr ""
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
-msgstr ""
+msgstr "अज्ञातं यन्त्रं @ <resource>%1</resource>"

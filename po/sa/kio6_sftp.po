@@ -65,7 +65,7 @@ msgstr "क्षेत्र:"
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
-msgstr ""
+msgstr "लिङ्क् पठितुं न शक्तवान्: %1 [%2]"
 
 #: kio_sftp.cpp:612
 #, kde-format
@@ -147,7 +147,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr ""
+msgstr "मेजबानपरिचयपरिवर्तनम्"
 
 #: kio_sftp.cpp:826
 #, kde-kuit-format
@@ -159,12 +159,16 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
+"<para>सर्वरस्य होस्ट्-कुंजी <emphasis>%1</emphasis> परिवर्तिता ।</para><para>एतस्य "
+"अर्थः भवितुम् अर्हति यत् DNS-स्पूफिंग् भवति अथवा होस्ट्-कृते तस्य होस्ट्-कीलस्य च IP-सङ्केतः "
+"परिवर्तितः अस्ति तस्मिन् एव काले ।</para><para>दूरस्थेन होस्ट् द्वारा प्रेषितः %2 कील-"
+"अङ्गुलिचिह्नः अस्ति :<bcode>%3</bcode>किं भवान् निश्चयेन सम्बद्धं कर्तुम् इच्छति ?</para>"
 
 #: kio_sftp.cpp:836
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "मेजबान सत्यापन विफलता"
 
 #: kio_sftp.cpp:838
 #, kde-kuit-format
@@ -174,12 +178,15 @@ msgid ""
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
+"<para>होस्ट् <emphasis>%1</emphasis> इत्यस्य प्रामाणिकता स्थापयितुं न शक्यते।</"
+"para><para>%2 कील-अङ्गुलिचिह्नम् अस्ति:<bcode>%3</bcode>किं भवान् निश्चयेन निरन्तरं "
+"कर्तुम् इच्छति संयोजयन्?</para>"
 
 #: kio_sftp.cpp:847
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
-msgstr ""
+msgstr "तथापि कनेक्ट् कुर्वन्तु"
 
 #: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:904 kio_sftp.cpp:917
 #: kio_sftp.cpp:969 kio_sftp.cpp:979

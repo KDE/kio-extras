@@ -40,13 +40,13 @@ msgstr "SSH प्रमाणीकरणम्"
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
-msgstr ""
+msgstr "आम्‌"
 
 #: fish.cpp:718 fish.cpp:733
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
-msgstr ""
+msgstr "नहि"
 
 #: fish.cpp:816
 #, kde-format

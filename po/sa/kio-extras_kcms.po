@@ -28,7 +28,7 @@ msgstr "एतेषां परिवर्तनानां प्रभा�
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
-msgstr ""
+msgstr "अद्यतनं विफलम्"
 
 #. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
 #: netpref/kio_ftprc.kcfg:10
@@ -80,15 +80,19 @@ msgid_plural ""
 "Here you can set timeout values. You might want to tweak them if your "
 "connection is very slow. The maximum allowed value is %1 seconds."
 msgstr[0] ""
+"अत्र भवान् timeout values सेट् कर्तुं शक्नोति । यदि भवतः संयोजनम् अतीव मन्दं भवति तर्हि "
+"भवान् तान् tweak कर्तुम् इच्छति । अधिकतमं अनुमतं मूल्यं १ सेकण्ड् अस्ति ।"
 msgstr[1] ""
+"अत्र भवान् timeout values सेट् कर्तुं शक्नोति । यदि भवतः संयोजनं अतीव मन्दं भवति तर्हि "
+"भवान् तान् tweak कर्तुम् इच्छति । अधिकतमं अनुमतं मूल्यं %1 सेकण्ड् अस्ति ।"
 
 #: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
 #: netpref/netpref.cpp:65
 #, kde-format
 msgid " second"
 msgid_plural " seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " क्षण"
+msgstr[1] " सेकण्ड्"
 
 #: netpref/netpref.cpp:49
 #, kde-format
@@ -137,15 +141,15 @@ msgstr ""
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " बाइट्"
+msgstr[1] " बाइट्"
 
 #: netpref/netpref.cpp:97
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
+msgstr "यदि रद्दं भवति तर्हि स्वयमेव आंशिकरूपेण अपलोड् कृताः सञ्चिकाः अपास्यन्ति यत्:"
 
 #: netpref/netpref.cpp:99
 #, kde-format
@@ -606,7 +610,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "मन्दं जालप्रदर्शनं ज्ञातम्"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -616,18 +620,20 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"स्वचालितं प्रॉक्सी आविष्कारः सक्षमः अस्ति, परन्तु प्रणाल्याः जालप्रदर्शनं न्यूनीकरोति । एतस्य "
+"सेटिङ्ग् इत्यस्य उपयोगः वास्तवतः आवश्यकः इति सुनिश्चित्य स्वस्य प्रॉक्सी सेटिङ्ग्स् पश्यन्तु ।"
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr ""
+msgstr "सेटिंग्स् उद्घाटयन्तु"
 
 #: proxy/wpad-detector/module.cpp:89
 #, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr ""
+msgstr "सदा उपेक्षां कुरुत"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -652,6 +658,9 @@ msgid ""
 "para><para>KDE's trash items will show up in a folder called KDE.trash, in "
 "the Trash can.</para>"
 msgstr ""
+"<para>KDE इत्यस्य अपशिष्टकुण्डं रिक्तं कृत्वा केवलं KDE इत्यस्य कचरावस्तूनाम् अपसारणं भविष्यति, "
+"यदा...<br> Finder मार्गेण Trash रिक्तं कृत्वा सर्वं विलोपयिष्यति ।</para><para> KDE "
+"इत्यस्य कचरावस्तूनि KDE.trash इति पुटे, Trash can इत्यस्मिन् दर्शयिष्यन्ति ।</para>"
 
 #: trash/kcmtrash.cpp:249
 #, kde-format
@@ -667,13 +676,17 @@ msgid ""
 "disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
 "items after a certain timespan</para>"
 msgstr ""
+"<para>निर्दिष्टमूल्यात् प्राचीनानां सञ्चिकानां <emphasis strong='true'>स्वचालितविलोपन</"
+"emphasis> अनुमन्यते इति एतत् पेटीं चिनोतु । एतत् अक्षमं त्यजन्तु यत् <emphasis "
+"strong='true'>not</emphasis> स्वयमेव कस्यापि द्रव्यस्य विलोपनं निश्चितसमयान्तरस्य</"
+"para>"
 
 #: trash/kcmtrash.cpp:259
 #, kde-format
 msgid " day"
 msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " दिनं"
+msgstr[1] " दिवसाः"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -682,6 +695,8 @@ msgid ""
 "<para>Set the number of days that files can remain in the trash. Any files "
 "older than this will be automatically deleted.</para>"
 msgstr ""
+"<para>सञ्चिकाः कचरे स्थातुं शक्नुवन्ति इति दिवसानां संख्यां सेट् कुर्वन्तु । अस्मात् प्राचीनाः "
+"सञ्चिकाः स्वयमेव लोपिताः भविष्यन्ति ।</para>"
 
 #: trash/kcmtrash.cpp:265
 #, kde-format
@@ -700,6 +715,8 @@ msgid ""
 "<para>Check this box to limit the trash to the maximum amount of disk space "
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
+"<para>अधः निर्दिष्टस्य अधिकतमं डिस्कस्थानं यावत् कचरा सीमितं कर्तुं एतत् पेटीं चिनोतु । "
+"अन्यथा असीमितं भविष्यति।</para>"
 
 #: trash/kcmtrash.cpp:273
 #, kde-format
@@ -712,7 +729,7 @@ msgctxt "@info:whatsthis"
 msgid ""
 "<para>This is the maximum percent of disk space that will be used for the "
 "trash.</para>"
-msgstr ""
+msgstr "<para>एतत् अधिकतमं डिस्कस्थानस्य प्रतिशतं यत् कचराणां कृते उपयुज्यते ।</para>"
 
 #: trash/kcmtrash.cpp:285
 #, kde-kuit-format
@@ -721,6 +738,7 @@ msgid ""
 "<para>This is the calculated amount of disk space that will be allowed for "
 "the trash, the maximum.</para>"
 msgstr ""
+"<para>एतत् गणितं डिस्कस्थानस्य परिमाणं यत् कचराणां कृते अनुमतं भविष्यति, अधिकतमम् ।</para>"
 
 #: trash/kcmtrash.cpp:289
 #, kde-format
@@ -745,6 +763,9 @@ msgid ""
 "files that you specify, first. If this is set to warn you, it will do so "
 "instead of automatically deleting files.</para>"
 msgstr ""
+"<para>यदा आकारसीमा प्राप्ता भवति तदा भवता निर्दिष्टानां सञ्चिकानां प्रकारं प्रथमं "
+"विलोपयितुं रोचते । यदि एतत् भवन्तं चेतयितुं सेट् भवति तर्हि स्वयमेव सञ्चिकानां लोपस्य स्थाने "
+"एवम् करिष्यति ।</para>"
 
 #: trash/kcmtrash.cpp:295
 #, kde-format
@@ -755,19 +776,19 @@ msgstr "पूर्ण कचरा : १."
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
-msgstr ""
+msgstr "नामः"
 
 #: webshortcuts/ikwsopts.cpp:43
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
-msgstr ""
+msgstr "कीवर्ड"
 
 #: webshortcuts/ikwsopts.cpp:45
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
-msgstr ""
+msgstr "प्राधान्यम्"
 
 #: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
@@ -777,12 +798,15 @@ msgid ""
 ">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
+"प्रकाशितं जालसन्धानकीवर्डं यथा प्राधान्यं चयनं कर्तुं एतत् पेटीं चिनोतु।<nl/"
+">प्राथमिकजालसन्धानकीवर्डाः तेषु स्थानेषु उपयुज्यन्ते यत्र एकस्मिन् समये केवलं कतिपयानि "
+"चयनितकीवर्डाः दर्शयितुं शक्यन्ते।"
 
 #: webshortcuts/ikwsopts.cpp:205
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
-msgstr ""
+msgstr "न कश्चित्"
 
 #: webshortcuts/ikwsopts.cpp:249
 #, kde-format
@@ -922,20 +946,20 @@ msgstr "जालसन्धानकीवर्डं चिह्नित�
 #, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
-msgstr ""
+msgstr "बृहदान्त्र"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:213
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
-msgstr ""
+msgstr "स्थानं"
 
 #: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
-msgstr ""
+msgstr "मूलभूतम्‌"
 
 #: webshortcuts/searchproviderdlg.cpp:54
 #, kde-format
@@ -958,7 +982,7 @@ msgstr "\"%1\" इति कीवर्डः पूर्वमेव \"%2\" �
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
-msgstr ""
+msgstr "- %1: \"%2\"।"
 
 #: webshortcuts/searchproviderdlg.cpp:132
 #, kde-format
