@@ -31,6 +31,8 @@ include(CMakePushCheckState)
 include(CMakePackageConfigHelpers)
 include(FeatureSummary)
 
+option(BUILD_DOC "Whether to build the documentation" ON)
+
 find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Network Widgets Svg Core5Compat)
 
 find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
@@ -38,8 +40,6 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Config
     ConfigWidgets
     CoreAddons
-
-    DocTools
     DNSSD
     I18n
     KIO
@@ -96,6 +96,14 @@ if (NOT WIN32 AND USE_DBUS)
         find_package(PlasmaActivities REQUIRED)
         find_package(PlasmaActivitiesStats REQUIRED)
     endif()
+endif()
+
+if (BUILD_DOC)
+    find_package(KF6DocTools ${KF_MIN_VERSION})
+    set_package_properties(KF6DocTools PROPERTIES
+        DESCRIPTION "Tools to generate documentation"
+        TYPE REQUIRED
+    )
 endif()
 
 find_package(Phonon4Qt6 4.6.60 NO_MODULE)
@@ -186,7 +194,6 @@ ecm_set_disabled_deprecation_versions(
     KF 6.0
 )
 
-add_subdirectory(doc)
 add_subdirectory(kcms)
 
 if(BUILD_ACTIVITIES)
@@ -242,8 +249,12 @@ ecm_qt_install_logging_categories(
     DESTINATION "${KDE_INSTALL_LOGGINGCATEGORIESDIR}"
 )
 
+if(BUILD_DOC)
+    add_subdirectory(doc)
+    kdoctools_install(po)
+endif()
+
 ki18n_install(po)
-kdoctools_install(po)
 
 kde_configure_git_pre_commit_hook(CHECKS CLANG_FORMAT)
 
