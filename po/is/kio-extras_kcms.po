@@ -7,15 +7,15 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 00:40+0000\n"
-"PO-Revision-Date: 2024-03-17 16:49+0000\n"
-"Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
+"PO-Revision-Date: 2024-12-11 09:23+0000\n"
+"Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -245,15 +245,13 @@ msgstr "Tengjast netinu beint."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "&No proxy"
-msgstr "Enginn milliþjónn"
+msgstr "&Enginn milliþjónn"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
 msgstr "HTTP-milliþjónn:"
 
@@ -287,8 +285,7 @@ msgstr "Nota þennan milliþjón fyrir a&llar samskiptareglur"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:161
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
 msgstr "SSL-milliþjónn:"
 
@@ -307,8 +304,7 @@ msgstr "Sláðu inn tengisnúmer HTTPS-milliþjónsins."
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
 msgstr "FTP-milliþjónn:"
 
@@ -326,8 +322,7 @@ msgstr "Gefðu upp tengisnúmer FTP-milliþjónsins."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:264
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
 msgstr "SOCKS-milliþjónn:"
 
@@ -409,8 +404,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:354
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr ""
 "Nota milliþjónsstillingar eingöngu fyrir vistföng í undantekningarlista"
@@ -423,10 +417,9 @@ msgstr "Nota tilgreinda milliþjónsskriftu til að grunnstilla milliþjón."
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "Nota slóð að sjálfvirkri uppsetningu milliþjóns:"
+msgstr "&Nota slóð fyrir sjálfvirka uppsetningu milliþjóns:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -461,10 +454,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
-msgstr "HTTP-milliþjónn:"
+msgstr "H&TTP-milliþjónn:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -487,10 +479,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SS&L proxy:"
-msgstr "SSL-milliþjónn:"
+msgstr "SS&L-milliþjónn:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -531,10 +522,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
-msgstr "SOCKS-milliþjónn:"
+msgstr "SOC&KS-milliþjónn:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -552,10 +542,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
-msgstr "Undantekningar:"
+msgstr "U&ndantekningar:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -599,10 +588,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr "Greina uppsetningu milliþjóns sjálfvirkt"
+msgstr "&Greina uppsetningu milliþjóns sjálfvirkt"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
@@ -638,10 +626,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "Nota grunnstillingar kerfis fyrir milliþjón:"
+msgstr "Nota gr&unnstillingar kerfis fyrir milliþjón:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -652,12 +639,17 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"Sjálfvirk grunnstilling (Automatic Configuration), einnig kallað Web Proxy "
+"Auto-Discovery (WPAD), er nánast aldrei rétta grunnstillinging. Ef hún er "
+"virkjuð þegar hennar er ekki þörf getur það hægt á netaðgengi og dregið úr "
+"öryggi netsins. Kerfisstjórinn þinn veit hvort nauðsynlegt er að virkja "
+"þetta eða ekki."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "Hægvirkt net greint"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -667,18 +659,21 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"Sjálfvirk greining milliþjóns er virk en dregur úr hraða netsins. Skoðaðu "
+"stillingar þínar fyrir milliþjón til að tryggja að það sé nauðsynlegt að "
+"nota þessa stillingu."
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr ""
+msgstr "Opna Stillingar"
 
 #: proxy/wpad-detector/module.cpp:89
 #, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr ""
+msgstr "Hunsa að eilífu"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -790,20 +785,17 @@ msgstr ""
 "</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
-msgstr "Birta aðvörun"
+msgstr "Birta viðvörun"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Eyða elstu skránum úr ruslinu"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Eyða stærstu skránum úr ruslinu"
 
@@ -820,10 +812,9 @@ msgstr ""
 "í staðinn fyrir að eyða skrám sjálfkrafa.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
-msgstr "Rusl er fullt:"
+msgstr "Ruslið er fullt:"
 
 #: webshortcuts/ikwsopts.cpp:41
 #, kde-format
@@ -844,21 +835,16 @@ msgid "Preferred"
 msgstr "Ákjósanlegt"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
 ">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
-"Hakaðu í þennan reit til að velja auðkennda vefleitarstikkorðið sem "
-"ákjósanlegt.<nl/>Ákjósanleg stikkorð fyrir vefleit eru notuð þar sem aðeins "
-"er hægt að birta örfá valin stikkorð í einu."
+"Hakaðu hér til að velja auðkennda vefleitarstikkorðið sem ákjósanlegt.<nl/"
+">Ákjósanleg stikkorð fyrir vefleit eru notuð þar sem aðeins er hægt að birta "
+"örfá valin stikkorð í einu."
 
 #: webshortcuts/ikwsopts.cpp:205
 #, kde-format
@@ -873,15 +859,7 @@ msgstr "&Leitarsíur"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -893,11 +871,11 @@ msgid ""
 msgstr ""
 "<html><head/><body><p>Virkja eða slökkva á stikkorðum fyrir vefleit. </p><p> "
 "Stikkorð fyrir vefleit gera þér kleift að nálgast og leita að upplýsingum á "
-"netinu eða á harða disknum þínum á fljótlegan hátt. </p><p>KDE er með ýmir "
-"fyrirframskilgreind stikkorð. Eitt slíkt stikkorð er hægt að nota til að "
-"leita á Google (TM). Til að gera það slærðu einfaldlega inni stikkorðið "
-"'gg', síðan skiltáknið og svo leitarorðið, t.d. <span style=\" font-"
-"weight:600;\">gg:KDE</span>.</p></body></html>"
+"netinu eða á harða disknum þínum á fljótlegan hátt. </p><p>KDE inniheldur "
+"ýmis  fyrirfram skilgreind stikkorð. Eitt slíkt stikkorð er hægt að nota til "
+"að leita á Google (TM). Til að gera það slærðu einfaldlega inn stikkorðið "
+"'gg', skiltáknið og leitarorðið, t.d. <span style=\" font-weight:600;\">gg:"
+"KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -913,8 +891,7 @@ msgstr "Nota aðeins ákjós&anleg stikkorð"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
 msgstr "Leita að stikkorðum fyrir vefleit"
 
@@ -928,7 +905,7 @@ msgstr "Bæta við nýju stikkorði fyrir vefleit"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&Nýtt…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -940,7 +917,7 @@ msgstr "Breyta auðkennda stikkorðinu fyrir vefleit"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "Bre&yta…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -978,13 +955,7 @@ msgstr "&Sjálfgefið stikkorð fyrir vefleit:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -1042,28 +1013,23 @@ msgid "Default"
 msgstr "Sjálfgefið"
 
 #: webshortcuts/searchproviderdlg.cpp:54
-#, fuzzy, kde-format
-#| msgid "&Enable Web search keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "&Virkja stikkorð fyrir vefleit"
+msgstr "Breyta stikkorði fyrir vefleit"
 
 #: webshortcuts/searchproviderdlg.cpp:62
-#, fuzzy, kde-format
-#| msgid "Add a new Web search keyword"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "Bæta við nýju stikkorði fyrir vefleit"
+msgstr "Nýtt stikkorð fyrir vefleit"
 
 #: webshortcuts/searchproviderdlg.cpp:123
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr ""
-"Flýtileiðinni \"%1\" hefur þegar verið úthlutað til \"%2\". Veldu einhverja "
-"aðra."
+"Stikkorðið \"%1\" hefur þegar verið úthlutað til \"%2\". Veldu annað "
+"stikkorð."
 
 #: webshortcuts/searchproviderdlg.cpp:128
 #, kde-format
@@ -1072,33 +1038,24 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:132
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Eftirfarandi flýtileiðum hefur þegar verið úthlutað. Veldu einhverja aðra.\n"
+"Eftirfarandi stikkorðum hefur þegar verið úthlutað. Veldu önnur stikkorð.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"Þessi flýtileiðarslóð inniheldur ekki \\{...} staðgengilstákn fyrir "
-"fyrirspurn notandans.\n"
-"Það þýðir að það verður alltaf farið á sömu síðu hvað sem notandinn slær inn."
+"Þessi slóð inniheldur ekki %1 staðgengilstákn fyrir fyrirspurn notandans.\n"
+"Það þýðir að það verður alltaf farið á sömu síðu sama hvað sem notandinn "
+"slær inn ásamt stikkorðinu."
 
 #: webshortcuts/searchproviderdlg.cpp:150
 #, kde-format
@@ -1113,11 +1070,9 @@ msgstr "Settu hér inn nafn leitarþjónustunnar á mannamáli."
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, fuzzy, kde-format
-#| msgctxt "@title:column Name label from web search keyword column"
-#| msgid "Name"
+#, kde-format
 msgid "&Name:"
-msgstr "Heiti"
+msgstr "&Heiti:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1161,7 +1116,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:48
 #, kde-format
 msgid "&URL:"
-msgstr ""
+msgstr "&Slóð:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1175,13 +1130,7 @@ msgstr "Veldu stafatöfluna sem er notuð til að kóða leitarstrenginn."
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1189,43 +1138,35 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Styttingarnar hér má nota sem gervislóð í KDE. Til dæmis má nota styttinguna "
-"<b>av</b> með <b>av</b>:<b>mín leit</b>\n"
+"Stikkorðin sem eru slegin inn hér má nota sem gervislóð í KDE. Til dæmis má "
+"nota styttinguna <b>av</b> sem <b>av</b>:<b>mín leit</b>\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Sláðu hér inn nafn leitarþjónustunnar (á mannamáli).</"
-"p></body></html>"
+"<html><head/><body><p>Sláðu hér inn heiti stikkorðsins á mannamáli.</p></"
+"body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Sláðu hér inn nafn leitarþjónustunnar (á mannamáli).</"
-"p></body></html>"
+"<html><head/><body><p>Sláðu hér inn heiti fyrir flýtilykil stikkorðs á "
+"mannamáli.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "Stikkorð"
+msgstr "&Stikkorð:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1235,10 +1176,9 @@ msgstr "Veldu stafatöfluna sem er notuð til að kóða leitarfyrirspurnina"
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
-msgstr "Sta&fatafla:"
+msgstr "&Stafatafla:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158
