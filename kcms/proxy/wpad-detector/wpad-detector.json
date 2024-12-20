@@ -47,7 +47,8 @@
         "Name[tr]": "Vekil Doğrulayıcısı",
         "Name[uk]": "Засіб перевірки проксі-серверів",
         "Name[x-test]": "xxProxy Verifierxx",
-        "Name[zh_CN]": "代理服务器验证程序"
+        "Name[zh_CN]": "代理服务器验证程序",
+        "Name[zh_TW]": "代理伺服器確認工具"
     },
     "X-KDE-Kded-autoload": true
 }
