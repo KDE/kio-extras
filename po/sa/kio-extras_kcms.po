@@ -3,19 +3,21 @@
 # This file is distributed under the same license as the kio-extras package.
 # Kali <EMAIL@ADDRESS>, 2024.
 #
+# SPDX-FileCopyrightText: 2024 kali <skkalwar999@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 00:40+0000\n"
-"PO-Revision-Date: 2024-12-13 19:09+0530\n"
-"Last-Translator: Kali <EMAIL@ADDRESS>\n"
-"Language-Team: Sanskrit\n"
+"PO-Revision-Date: 2024-12-20 21:52+0530\n"
+"Last-Translator: kali <skkalwar999@gmail.com>\n"
+"Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
 "Language: sa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n>2);\n"
+"X-Generator: Lokalize 24.08.2\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -97,7 +99,7 @@ msgstr[1] " सेकण्ड्"
 #: netpref/netpref.cpp:49
 #, kde-format
 msgid "Soc&ket read:"
-msgstr "Soc&ket read: १."
+msgstr "Soc&ket read:"
 
 #: netpref/netpref.cpp:55
 #, kde-format
@@ -112,7 +114,7 @@ msgstr "सर्वर co&nect: ."
 #: netpref/netpref.cpp:67
 #, kde-format
 msgid "&Server response:"
-msgstr "&सर्वरप्रतिक्रिया: १."
+msgstr "&सर्वरप्रतिक्रिया:"
 
 #: netpref/netpref.cpp:69
 #, kde-format
@@ -297,7 +299,7 @@ msgstr "HTTPS प्रॉक्सी सर्वरस्य पोर्ट�
 #: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
 #, kde-format
 msgid "FTP proxy:"
-msgstr "FTP प्रॉक्सी : १."
+msgstr "FTP प्रॉक्सी :"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
 #: proxy/kproxydlg.ui:229
@@ -315,7 +317,7 @@ msgstr "FTP प्रॉक्सी सर्वरस्य पोर्ट्
 #: proxy/kproxydlg.ui:264
 #, kde-format
 msgid "SOCKS proxy:"
-msgstr "SOCKS प्रॉक्सी : १."
+msgstr "SOCKS प्रॉक्सी :"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
 #: proxy/kproxydlg.ui:279
@@ -349,7 +351,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:314
 #, kde-format
 msgid "Exceptions:"
-msgstr "अपवादाः : १."
+msgstr "अपवादाः :"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
 #: proxy/kproxydlg.ui:340
@@ -435,7 +437,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:420
 #, kde-format
 msgid "H&TTP proxy:"
-msgstr "एच एण्ड टीटीपी प्रॉक्सी : १."
+msgstr "एच एण्ड टीटीपी प्रॉक्सी :"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -457,7 +459,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:455
 #, kde-format
 msgid "SS&L proxy:"
-msgstr "एस एस एण्ड एल प्रॉक्सी : १."
+msgstr "एस एस एण्ड एल प्रॉक्सी :"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -494,7 +496,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:525
 #, kde-format
 msgid "SOC&KS proxy:"
-msgstr "SOC&KS प्रॉक्सी : १."
+msgstr "SOC&KS प्रॉक्सी :"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -513,7 +515,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:557
 #, kde-format
 msgid "E&xceptions:"
-msgstr "ई&अपवादाः : १."
+msgstr "ई&अपवादाः :"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -701,7 +703,7 @@ msgstr ""
 #: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
-msgstr "स्वच्छता : १."
+msgstr "स्वच्छता :"
 
 #: trash/kcmtrash.cpp:268
 #, kde-format
@@ -770,7 +772,7 @@ msgstr ""
 #: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full trash:"
-msgstr "पूर्ण कचरा : १."
+msgstr "पूर्ण कचरा :"
 
 #: webshortcuts/ikwsopts.cpp:41
 #, kde-format
@@ -933,7 +935,7 @@ msgstr "अन्वेषणीयवाक्यात् वा शब्द�
 #: webshortcuts/ikwsopts_ui.ui:185
 #, kde-format
 msgid "&Keyword delimiter:"
-msgstr "&कीवर्ड सीमांककः : १."
+msgstr "&कीवर्ड सीमांककः :"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:204
@@ -1106,7 +1108,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:119
 #, kde-format
 msgid "&Keywords:"
-msgstr "&कीवर्ड : १."
+msgstr "&कीवर्ड :"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1118,7 +1120,7 @@ msgstr "भवतः अन्वेषणप्रश्नस्य एन्�
 #: webshortcuts/searchproviderdlg_ui.ui:135
 #, kde-format
 msgid "&Character set:"
-msgstr "&वर्णसमूहः : १."
+msgstr "&वर्णसमूहः :"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158
