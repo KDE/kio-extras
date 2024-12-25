@@ -169,7 +169,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 
     Q_ASSERT(url.scheme() == "thumbnail");
     QFileInfo info(url.path());
-    Q_ASSERT_X(info.isAbsolute(), "ThumbnailProtocol::get", qPrintable("path is not absolute: " + info.path()));
+    Q_ASSERT_X(info.isAbsolute(), "ThumbnailProtocol::get", qPrintable("path is not absolute: " + info.filePath()));
 
     if (!info.exists()) {
         // The file does not exist
