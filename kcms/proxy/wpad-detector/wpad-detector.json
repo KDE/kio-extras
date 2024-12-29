@@ -25,6 +25,7 @@
         "Description[uk]": "Перевіряє, чи працюють налаштування проксі-сервера належним чином",
         "Description[x-test]": "xxVerifies proxy setup is performing as expectedxx",
         "Description[zh_CN]": "验证代理服务器设置的运行情况",
+        "Description[zh_TW]": "檢查代理伺服器設定正確依預期運作",
         "Name": "Proxy Verifier",
         "Name[ar]": "مراجع الوكيل",
         "Name[bg]": "Верифициране на прокси",
