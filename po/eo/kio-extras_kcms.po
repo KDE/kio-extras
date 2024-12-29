@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 00:40+0000\n"
-"PO-Revision-Date: 2024-12-27 17:40+0100\n"
+"PO-Revision-Date: 2024-12-28 17:41+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -643,6 +643,10 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"Aŭtomata Agordo, ankaŭ konata kiel Web Proxy Auto-Discovery (WPAD), preskaŭ "
+"neniam estas la ĝusta agordo. Ebligi ĝin kiam ĝi ne estas postulata povas "
+"malrapidigi retan aliron kaj fari vian reton malpli sekura. Via ret-"
+"administranto scios ĉu la aktivigo de ĝi estas bezonata."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -658,6 +662,9 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"Aŭtomata prokuril-malkovro estis ŝaltita, sed ĝi reduktas la retan "
+"rendimenton de la sistemo. Kontrolu vian prokuril-agordon por certigi, ke "
+"uzado de ĉi meto vere necesas."
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
