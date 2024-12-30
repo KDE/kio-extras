@@ -1,3 +1,4 @@
+# SPDX-FileCopyrightText: 2024 Johannes Obermayr <johannesobermayr@gmx.de>
 # Thomas Diehl <thd@kde.org>, 2002, 2004.
 # Thomas Reitelbach <tr@erdfunkstelle.de>, 2006.
 # Burkhard Lück <lueck@hube-lueck.de>, 2012, 2014, 2017, 2021.
@@ -15,6 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 25.03.70\n"
 
 #: kio_nfs.cpp:152
 #, kde-format
