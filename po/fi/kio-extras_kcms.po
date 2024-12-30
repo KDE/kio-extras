@@ -14,12 +14,13 @@
 # Teemu Rytilahti <tpr@d5k.net>, 2008.
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2008.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019.
+# Tommi Nieminen <translator@legisign.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 00:40+0000\n"
-"PO-Revision-Date: 2024-12-07 15:08+0200\n"
+"PO-Revision-Date: 2024-12-09 21:21+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -27,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #: ksaveioconfig.cpp:163
 #, kde-format
@@ -256,10 +257,9 @@ msgstr "Yhdistä internetiin suoraan."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No proxy"
+#, kde-format
 msgid "&No proxy"
-msgstr "Ei välityspalvelinta"
+msgstr "&Ei välityspalvelinta"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
@@ -428,10 +428,9 @@ msgstr "Määritä välitysasetukset annetulla komentojonolla."
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "Käytä välityksen automaattiasetusosoitetta:"
+msgstr "Käytä välityksen &automaattiasetusosoitetta:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -466,10 +465,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
-msgstr "HTTP-välityspalvelin:"
+msgstr "&HTTP-välityspalvelin:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -492,10 +490,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgid "SS&L proxy:"
-msgstr "SSL-välityspalvelin:"
+msgstr "&SSL-välityspalvelin:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -536,10 +533,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
-msgstr "SOCKS-välityspalvelin:"
+msgstr "SO&CKS-välityspalvelin:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -557,10 +553,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
-msgstr "Poikkeukset:"
+msgstr "&Poikkeukset:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -604,10 +599,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr "Tunnista välitysasetukset automaattisesti"
+msgstr "&Tunnista välitysasetukset automaattisesti"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
@@ -643,10 +637,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "Käytä järjestelmän välitysmääritystä:"
+msgstr "Käytä &järjestelmän välitysmääritystä:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -657,12 +650,16 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"Automaattinen määritys, joka tunnetaan myös nimellä WPAD (Web Proxy Auto-"
+"Discovery), ei juuri koskaan ole oikea. Sen käyttöönotto, milloin sitä ei "
+"vaadita, hidastaa verkkoa ja tekee siitä turvattomamman. Verkkoylläpidolta "
+"voi kysyä, vaaditaanko sen käyttöönottoa."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "Havaittiin verkon hidas suorituskyky"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -672,20 +669,21 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"Automaattinen välityspalvelintunnistus on otettu käyttöön, mutta heikentää "
+"järjestelmän verkkosuorituskykyä. Tarkista välityspalvelinasetukset ja "
+"varmista, että tämä asetus on todella tarpeen."
 
 #: proxy/wpad-detector/module.cpp:84
-#, fuzzy, kde-format
-#| msgid "General Settings"
+#, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr "Yleisasetukset"
+msgstr "Avaa asetukset"
 
 #: proxy/wpad-detector/module.cpp:89
-#, fuzzy, kde-format
-#| msgid "&Forever"
+#, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr "&Pysyvästi"
+msgstr "Sivuuta lopullisesti"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
