@@ -1,5 +1,5 @@
-# translation of kio6.pot to Esperanto
-# e-aj mesaĝoj de kio
+# translation of kio-extras_kcms.pot to Esperanto
+# e-aj mesaĝoj de kio-extras
 # Copyright (C) 1999, 2007 Free Software Foundation, Inc.
 # Wolfram Diestel <wolfram@steloj.de>, 1999.
 # Stéphane Fillod <f8cfe@free.fr>, 2007.
@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-06 00:39+0000\n"
-"PO-Revision-Date: 2024-09-21 10:41+0200\n"
+"PO-Revision-Date: 2024-12-28 17:41+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
 "Language: eo\n"
@@ -125,7 +125,7 @@ msgstr "&Servila respondo:"
 #: netpref/netpref.cpp:69
 #, kde-format
 msgid "Global Options"
-msgstr "Ĉieaj opcioj"
+msgstr "Ĉieaj Elektebloj"
 
 #: netpref/netpref.cpp:74 netpref/netpref.cpp:113
 #, kde-format
