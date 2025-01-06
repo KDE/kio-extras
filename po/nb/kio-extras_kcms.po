@@ -234,7 +234,6 @@ msgstr "Koble direkte til Internett."
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:29
 #, fuzzy, kde-format
-#| msgid "No Proxy"
 msgid "No proxy"
 msgstr "Ingen mellomtjener"
 
@@ -352,7 +351,6 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:161 proxy/kproxydlg.ui:383
 #, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
 msgid "HTTP proxy:"
 msgstr "Mellomtjener for HTTPS:"
 
@@ -379,7 +377,6 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:196 proxy/kproxydlg.ui:449
 #, fuzzy, kde-format
-#| msgid "SSL Proxy:"
 msgid "SSL proxy:"
 msgstr "Mellomtjener for SSL:"
 
@@ -406,7 +403,6 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #: proxy/kproxydlg.ui:231 proxy/kproxydlg.ui:499
 #, fuzzy, kde-format
-#| msgid "FTP Proxy:"
 msgid "FTP proxy:"
 msgstr "Mellomtjener for FTP:"
 
@@ -432,7 +428,6 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:266 proxy/kproxydlg.ui:552
 #, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
 msgid "SOCKS proxy:"
 msgstr "Mellomtjener for SOCKS:"
 
@@ -615,7 +610,6 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:642
 #, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "Bruk mellomtjenere bare for oppføringene i unntakslista."
 
@@ -731,13 +725,11 @@ msgstr ""
 
 #: trash/kcmtrash.cpp:290
 #, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
 msgid "Delete oldest files from trash"
 msgstr "Slett eldste filer fra papirkurven"
 
 #: trash/kcmtrash.cpp:291
 #, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
 msgid "Delete biggest files from trash"
 msgstr "Slett største filer fra papirkurven"
 
@@ -950,9 +942,6 @@ msgstr "Standard passord:"
 
 #: webshortcuts/searchproviderdlg.cpp:121
 #, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
@@ -966,10 +955,6 @@ msgstr "- %1: «%2»"
 
 #: webshortcuts/searchproviderdlg.cpp:130
 #, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
@@ -979,11 +964,6 @@ msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:143
 #, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
 msgid ""
 "The URL does not contain a \\{...} placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
@@ -1066,12 +1046,6 @@ msgstr "Velg tegnsettet som blir brukt for koding av søkespørringen."
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
 #, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1086,9 +1060,6 @@ msgstr ""
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
 #, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
@@ -1099,9 +1070,6 @@ msgstr ""
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
 #, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
@@ -1112,7 +1080,6 @@ msgstr ""
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
 #, fuzzy, kde-format
-#| msgid "&Keyword delimiter:"
 msgid "&Keywords:"
 msgstr "S&killetegn for nøkkelord:"
 
@@ -1125,7 +1092,6 @@ msgstr "Velg tegnsettet som blir brukt for koding av søkespørringen"
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
 #, fuzzy, kde-format
-#| msgid "&Charset:"
 msgid "&Character set:"
 msgstr "&Tegnsett:"
 
