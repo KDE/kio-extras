@@ -7,20 +7,20 @@
 # Viesturs Zariņš <viesturs.zarins@mii.lu.lv>, 2009.
 # Rūdofls Mazurs <rudolfs.mazurs@gmail.com>, 2011.
 # Einars Sprugis <einars8@gmail.com>, 2012.
-# SPDX-FileCopyrightText: 2024 Toms Trasuns <toms.trasuns@posteo.net>
+# SPDX-FileCopyrightText: 2024, 2025 Toms Trasuns <toms.trasuns@posteo.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 00:40+0000\n"
-"PO-Revision-Date: 2024-11-20 14:17+0200\n"
+"PO-Revision-Date: 2025-01-04 15:12+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.0\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
@@ -254,10 +254,9 @@ msgstr "Savienoties ar internetu tieši"
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No proxy"
+#, kde-format
 msgid "&No proxy"
-msgstr "Bez starpniekservera"
+msgstr "&Bez starpniekservera"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
@@ -429,10 +428,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "Izmantot starpniekservera autom. konfigurācijas URL:"
+msgstr "I&zmantot starpniekservera autom. konfigurācijas URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -467,10 +465,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
-msgstr "HTTP starpniekserveris:"
+msgstr "H&TTP starpniekserveris:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -493,10 +490,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgid "SS&L proxy:"
-msgstr "SSL starpniekserveris:"
+msgstr "SS&L starpniekserveris:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -537,10 +533,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
-msgstr "SOCKS starpniekserveris:"
+msgstr "SOC&KS starpniekserveris:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -557,10 +552,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
-msgstr "Izņēmumi:"
+msgstr "Izņē&mumi:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -604,10 +598,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr "Automātiski noteikt starpniekservera konfigurāciju"
+msgstr "&Automātiski noteikt starpniekservera konfigurāciju"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
@@ -643,10 +636,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "Izmantot sistēmas starpniekservera konfigurāciju:"
+msgstr "Izmantot &sistēmas starpniekservera konfigurāciju:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -657,12 +649,16 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"Automātiskā konfigurācija jeb tīmekļa starpniekservera automātiska atrašana "
+"(WPAD) gandrīz nekad nav pareiza konfigurācija. Tās ieslēgšana bez "
+"vajadzības tikai palēninās tīkla pieeju un to padarīs mazāk drošu. Jūsu "
+"tīkla administrators zinās, vai ir nepieciešams lietot šo opciju."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "Konstatēta lēna tīkla darbība"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -672,20 +668,21 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"Ir ieslēgta automātiskā starpniekservera atklāšana, bet tā samazina tīkla "
+"veiktspēju. Pārbaudiet savus starpniekservera iestatījumus, lai "
+"pārliecinātos, ka šī iestatījuma lietošana ir tiešām nepieciešama."
 
 #: proxy/wpad-detector/module.cpp:84
-#, fuzzy, kde-format
-#| msgid "General Settings"
+#, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr "Pamata iestatījumi"
+msgstr "Atvērt iestatījumus"
 
 #: proxy/wpad-detector/module.cpp:89
-#, fuzzy, kde-format
-#| msgid "&Forever"
+#, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr "&Uz mūžu"
+msgstr "Ignorēt vienmēr"
 
 #: trash/kcmtrash.cpp:141
 #, kde-format
@@ -1057,17 +1054,13 @@ msgstr ""
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:145
-#, fuzzy, kde-format
-#| msgid ""
-#| "The URL does not contain a \\{...} placeholder for the user query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the keyword."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"URL nesatur „\\{...}“ vietturi lietotāja vaicājumam.\n"
+"URL nesatur „%1“ vietturi lietotāja vaicājumam.\n"
 "Tas nozīmē, ka atslēgvārda izmantošana vienmēr novedīs pie vienas un tās "
 "pašas saites atvēršanas, neskatoties uz tekstu, ko ievadāt kopā ar "
 "atslēgvārdu."
