@@ -33,7 +33,7 @@
 >, accessible dans &dolphin; ou &konqueror; en mode gestionnaire de fichiers.</para>
 
 <para
->Le module d'entrées-sorties « thumbnail » n'est pas directement utile à l'utilisateur, mais si vous faites partie d'une équipe de développement, vous pouvez l'utiliser dans votre application pour créer des aperçus de fichiers.</para>
+>Le module d'entrées-sorties de vignettes» n'est pas directement utile à l'utilisateur. Mais, si vous faites partie d'une équipe de développement, vous pouvez l'utiliser dans votre application pour créer des aperçus de fichiers.</para>
 
 <para
 >Veuillez consulter la documentation dans les sources pour plus d'informations. Vous les trouverez dans la vignette du dossier source <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"
