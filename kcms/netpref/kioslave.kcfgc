@@ -1,5 +1,4 @@
 File=kioslave.kcfg
-ClassName=KioSlave
-Singleton=true
+ClassName=ProxySettings
 Mutators=true
 

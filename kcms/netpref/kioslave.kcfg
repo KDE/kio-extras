@@ -4,22 +4,15 @@
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
  <kcfgfile name="kioslaverc" />
- <group name="General">
-   <entry name="PersistentProxyConnection" type="Bool">
-     <default>false</default>
-   </entry>
- </group>
- <group name="Global Options">
-   <entry name="MarkPartial" type="Bool">
-     <label>Mark partially uploaded files</label>
-     <whatsthis>While a file is being uploaded its extension is ".part". When fully uploaded it is renamed to its real name.</whatsthis>
-     <default>true</default>
+ <group name="&lt;default&gt;">
+   <entry name="ProxyUrlDisplayFlags" type="int">
    </entry>
  </group>
  <group name="Proxy Settings" >
    <entry name="AuthMode" type="String" >
    </entry>
-   <entry name="ReversedException" type="Bool">
+   <entry name="UseReverseProxy" key="ReversedException" type="Bool">
+     <default>false</default>
    </entry>
    <entry name="ftpProxy" type="String">
    </entry>
@@ -27,5 +20,13 @@
    </entry>
    <entry name="httpsProxy" type="String">
    </entry>
+   <entry name="socksProxy" type="String">
+   </entry>
+   <entry name="proxyConfigScript" key="Proxy Config Script" type="String">
+   </entry>
+   <entry name="NoProxyFor" type="String">
+   </entry>
+   <entry name="ProxyType" type="Int">
+  </entry>
  </group>
 </kcfg>

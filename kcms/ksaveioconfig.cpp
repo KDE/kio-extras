@@ -53,19 +53,6 @@ static KConfig *config()
     return d->config;
 }
 
-int KSaveIOConfig::proxyDisplayUrlFlags()
-{
-    KConfigGroup cfg(config(), QString());
-    return cfg.readEntry("ProxyUrlDisplayFlags", 0);
-}
-
-void KSaveIOConfig::setProxyDisplayUrlFlags(int flags)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("ProxyUrlDisplayFlags", flags);
-    cfg.sync();
-}
-
 void KSaveIOConfig::setMarkPartial(bool _mode)
 {
     KConfigGroup cfg(config(), QString());
@@ -77,47 +64,6 @@ void KSaveIOConfig::setMinimumKeepSize(int _size)
 {
     KConfigGroup cfg(config(), QString());
     cfg.writeEntry("MinimumKeepSize", _size);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setUseReverseProxy(bool mode)
-{
-    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
-    cfg.writeEntry("ReversedException", mode);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setProxyType(KSaveIOConfig::ProxyType type)
-{
-    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
-    cfg.writeEntry("ProxyType", static_cast<int>(type));
-    cfg.sync();
-}
-
-QString KSaveIOConfig::noProxyFor()
-{
-    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
-    return cfg.readEntry("NoProxyFor");
-}
-
-void KSaveIOConfig::setNoProxyFor(const QString &_noproxy)
-{
-    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
-    cfg.writeEntry("NoProxyFor", _noproxy);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setProxyFor(const QString &protocol, const QString &_proxy)
-{
-    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
-    cfg.writeEntry(protocol.toLower() + QLatin1String("Proxy"), _proxy);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setProxyConfigScript(const QString &_url)
-{
-    KConfigGroup cfg(config(), QStringLiteral("Proxy Settings"));
-    cfg.writeEntry("Proxy Config Script", _url);
     cfg.sync();
 }
 
