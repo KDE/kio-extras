@@ -39,7 +39,7 @@
  <group name="Proxy Settings" >
    <entry name="AuthMode" type="String" >
    </entry>
-   <entry name="ReversedException" type="Bool">
+   <entry name="UseReverseProxy" key="ReversedException" type="Bool">
    </entry>
    <entry name="ftpProxy" type="String">
    </entry>
@@ -47,5 +47,13 @@
    </entry>
    <entry name="httpsProxy" type="String">
    </entry>
+   <entry name="socksProxy" type="String">
+   </entry>
+   <entry name="proxyConfigScript" key="Proxy Config Script" type="String">
+   </entry>
+   <entry name="NoProxyFor" type="String">
+   </entry>
+   <entry name="ProxyType" type="Int">
+  </entry>
  </group>
 </kcfg>
