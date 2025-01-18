@@ -28,7 +28,6 @@ public:
     ~KSaveIOConfigPrivate();
 
     KConfig *config = nullptr;
-    KConfig *http_config = nullptr;
 };
 
 Q_GLOBAL_STATIC(KSaveIOConfigPrivate, d)
@@ -40,7 +39,6 @@ KSaveIOConfigPrivate::KSaveIOConfigPrivate()
 KSaveIOConfigPrivate::~KSaveIOConfigPrivate()
 {
     delete config;
-    delete http_config;
 }
 
 static KConfig *config()
@@ -63,20 +61,6 @@ void KSaveIOConfig::setProxyDisplayUrlFlags(int flags)
 {
     KConfigGroup cfg(config(), QString());
     cfg.writeEntry("ProxyUrlDisplayFlags", flags);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setMarkPartial(bool _mode)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("MarkPartial", _mode);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setMinimumKeepSize(int _size)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("MinimumKeepSize", _size);
     cfg.sync();
 }
 
