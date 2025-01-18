@@ -45,11 +45,6 @@ void setProxyFor(const QString &, const QString &);
 QString noProxyFor();
 void setNoProxyFor(const QString &);
 
-/** Miscellaneous Settings */
-void setMarkPartial(bool);
-
-void setMinimumKeepSize(int);
-
 /** Update all running KIO workers */
 void updateRunningWorkers(QWidget *parent = nullptr);
 }

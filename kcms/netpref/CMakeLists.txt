@@ -6,6 +6,9 @@ target_sources(kcm_netpref PRIVATE
     ../ksaveioconfig.cpp
 )
 
+kconfig_add_kcfg_files(kcm_netpref kio_ftprc.kcfgc)
+kconfig_add_kcfg_files(kcm_netpref kioslave.kcfgc)
+
 target_link_libraries(kcm_netpref
   PUBLIC
     KF6::ConfigCore
