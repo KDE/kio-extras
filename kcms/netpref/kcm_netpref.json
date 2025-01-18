@@ -1,7 +1,7 @@
 {
     "KPlugin": {
         "BugReportUrl": "https://bugs.kde.org/enter_bug.cgi?product=systemsettings&component=kcm_netpref",
-        "Description": "Configure generic network preferences, like timeout values",
+        "Description": "Configure generic network preferences",
         "Description[ar]": "يضبط تفضيلات الشبكة العامة مثل قيم المهلات الإتصالات",
         "Description[be]": "Наладжванне агульных параметраў сеткі, накшталт тэрмінаў чакання",
         "Description[bg]": "Настройване на общите мрежови параметри",
@@ -88,7 +88,7 @@
         "Name[zh_TW]": "連線偏好設定"
     },
     "X-DocPath": "kcontrol6/netpref/index.html",
-    "X-KDE-Keywords": "timeout,iopref,netpref,network preferences,ftp",
+    "X-KDE-Keywords": "iopref,netpref,network preferences,ftp",
     "X-KDE-Keywords[ar]": "وقت المهلة,iopref,netpref,تفضيلات الشبكة,ftp",
     "X-KDE-Keywords[be]": "тэрмін чакання,iopref,netpref,налады сеткі,ftp",
     "X-KDE-Keywords[bg]": "таймаут, iopref, netpref, мрежови предпочитания, ftp",

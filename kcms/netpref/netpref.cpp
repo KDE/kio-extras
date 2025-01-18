@@ -19,52 +19,12 @@
 // Local
 #include "../ksaveioconfig.h"
 
-static constexpr int s_maxTimeoutValue = 3600;
-
 K_PLUGIN_CLASS_WITH_JSON(KIOPreferences, "kcm_netpref.json")
 
 KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data)
     : KCModule(parent, data)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout(widget());
-    gb_Timeout = new QGroupBox(i18n("Timeout Values"), widget());
-    gb_Timeout->setWhatsThis(
-        i18np("Here you can set timeout values. "
-              "You might want to tweak them if your "
-              "connection is very slow. The maximum "
-              "allowed value is 1 second.",
-              "Here you can set timeout values. "
-              "You might want to tweak them if your "
-              "connection is very slow. The maximum "
-              "allowed value is %1 seconds.",
-              s_maxTimeoutValue));
-    gb_Timeout->setFlat(true);
-    mainLayout->addWidget(gb_Timeout);
-
-    QFormLayout *timeoutLayout = new QFormLayout(gb_Timeout);
-    timeoutLayout->setFormAlignment(Qt::AlignHCenter);
-    sb_socketRead = new KPluralHandlingSpinBox(widget());
-    sb_socketRead->setSuffix(ki18np(" second", " seconds"));
-    connect(sb_socketRead, qOverload<int>(&QSpinBox::valueChanged), this, &KIOPreferences::configChanged);
-    timeoutLayout->addRow(i18n("Soc&ket read:"), sb_socketRead);
-
-    sb_proxyConnect = new KPluralHandlingSpinBox(widget());
-    sb_proxyConnect->setValue(0);
-    sb_proxyConnect->setSuffix(ki18np(" second", " seconds"));
-    connect(sb_proxyConnect, qOverload<int>(&QSpinBox::valueChanged), this, &KIOPreferences::configChanged);
-    timeoutLayout->addRow(i18n("Pro&xy connect:"), sb_proxyConnect);
-
-    sb_serverConnect = new KPluralHandlingSpinBox(widget());
-    sb_serverConnect->setValue(0);
-    sb_serverConnect->setSuffix(ki18np(" second", " seconds"));
-    connect(sb_serverConnect, qOverload<int>(&QSpinBox::valueChanged), this, &KIOPreferences::configChanged);
-    timeoutLayout->addRow(i18n("Server co&nnect:"), sb_serverConnect);
-
-    sb_serverResponse = new KPluralHandlingSpinBox(widget());
-    sb_serverResponse->setValue(0);
-    sb_serverResponse->setSuffix(ki18np(" second", " seconds"));
-    connect(sb_serverResponse, qOverload<int>(&QSpinBox::valueChanged), this, &KIOPreferences::configChanged);
-    timeoutLayout->addRow(i18n("&Server response:"), sb_serverResponse);
 
     QGroupBox *gb_Global = new QGroupBox(i18n("Global Options"), widget());
     gb_Global->setFlat(true);
@@ -132,16 +92,6 @@ void KIOPreferences::load()
 {
     KProtocolManager proto;
 
-    sb_socketRead->setRange(MIN_TIMEOUT_VALUE, s_maxTimeoutValue);
-    sb_serverResponse->setRange(MIN_TIMEOUT_VALUE, s_maxTimeoutValue);
-    sb_serverConnect->setRange(MIN_TIMEOUT_VALUE, s_maxTimeoutValue);
-    sb_proxyConnect->setRange(MIN_TIMEOUT_VALUE, s_maxTimeoutValue);
-
-    sb_socketRead->setValue(proto.readTimeout());
-    sb_serverResponse->setValue(proto.responseTimeout());
-    sb_serverConnect->setValue(proto.connectTimeout());
-    sb_proxyConnect->setValue(proto.proxyConnectTimeout());
-
     cb_globalMarkPartial->setChecked(proto.markPartial());
     sb_globalMinimumKeepSize->setRange(0, 1024 * 1024 * 1024 /* 1 GiB */);
     sb_globalMinimumKeepSize->setValue(proto.minimumKeepSize());
@@ -154,11 +104,6 @@ void KIOPreferences::load()
 
 void KIOPreferences::save()
 {
-    KSaveIOConfig::setReadTimeout(sb_socketRead->value());
-    KSaveIOConfig::setResponseTimeout(sb_serverResponse->value());
-    KSaveIOConfig::setConnectTimeout(sb_serverConnect->value());
-    KSaveIOConfig::setProxyConnectTimeout(sb_proxyConnect->value());
-
     KSaveIOConfig::setMarkPartial(cb_globalMarkPartial->isChecked());
     KSaveIOConfig::setMinimumKeepSize(sb_globalMinimumKeepSize->value());
 
@@ -174,11 +119,6 @@ void KIOPreferences::save()
 
 void KIOPreferences::defaults()
 {
-    sb_socketRead->setValue(DEFAULT_READ_TIMEOUT);
-    sb_serverResponse->setValue(DEFAULT_RESPONSE_TIMEOUT);
-    sb_serverConnect->setValue(DEFAULT_CONNECT_TIMEOUT);
-    sb_proxyConnect->setValue(DEFAULT_PROXY_CONNECT_TIMEOUT);
-
     cb_globalMarkPartial->setChecked(true);
 
     cb_ftpEnablePasv->setChecked(true);

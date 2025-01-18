@@ -33,15 +33,6 @@ enum ProxyType {
 int proxyDisplayUrlFlags();
 void setProxyDisplayUrlFlags(int);
 
-/** Timeout Settings */
-void setReadTimeout(int);
-
-void setConnectTimeout(int);
-
-void setProxyConnectTimeout(int);
-
-void setResponseTimeout(int);
-
 /** Proxy Settings */
 void setUseReverseProxy(bool);
 

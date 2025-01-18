@@ -66,34 +66,6 @@ void KSaveIOConfig::setProxyDisplayUrlFlags(int flags)
     cfg.sync();
 }
 
-void KSaveIOConfig::setReadTimeout(int _timeout)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("ReadTimeout", qMax(MIN_TIMEOUT_VALUE, _timeout));
-    cfg.sync();
-}
-
-void KSaveIOConfig::setConnectTimeout(int _timeout)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("ConnectTimeout", qMax(MIN_TIMEOUT_VALUE, _timeout));
-    cfg.sync();
-}
-
-void KSaveIOConfig::setProxyConnectTimeout(int _timeout)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("ProxyConnectTimeout", qMax(MIN_TIMEOUT_VALUE, _timeout));
-    cfg.sync();
-}
-
-void KSaveIOConfig::setResponseTimeout(int _timeout)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("ResponseTimeout", qMax(MIN_TIMEOUT_VALUE, _timeout));
-    cfg.sync();
-}
-
 void KSaveIOConfig::setMarkPartial(bool _mode)
 {
     KConfigGroup cfg(config(), QString());
