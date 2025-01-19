@@ -1088,7 +1088,8 @@ Result SFTPWorker::open(const QUrl &url, QIODevice::OpenMode mode)
     const QString path = url.path();
     const QByteArray path_c = path.toUtf8();
 
-    SFTPAttributesPtr sb(sftp_lstat(mSftp, path_c.constData()));
+    // use stat rather than lstat since for symlinks, we need the size of the target
+    SFTPAttributesPtr sb(sftp_stat(mSftp, path_c.constData()));
     if (sb == nullptr) {
         return reportError(url, sftp_get_error(mSftp));
     }
@@ -1297,7 +1298,8 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 
     KIO::filesize_t totalbytesread = 0;
 
-    SFTPAttributesPtr sb(sftp_lstat(mSftp, path.constData()));
+    // use stat rather than lstat since for symlinks, we need the size of the target
+    SFTPAttributesPtr sb(sftp_stat(mSftp, path.constData()));
     if (sb == nullptr) {
         return Result::fail(toKIOError(sftp_get_error(mSftp)), url.toString());
     }
