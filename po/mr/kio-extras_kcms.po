@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-03 00:40+0000\n"
+"POT-Creation-Date: 2025-01-19 00:41+0000\n"
 "PO-Revision-Date: 2013-02-23 17:39+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -19,14 +19,14 @@ msgstr ""
 "X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
-#: ksaveioconfig.cpp:163
+#: ksaveioconfig.cpp:135
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "केलेले बदलांचा प्रभाव पडण्याकरिता तुम्हाला कार्यरत अनुप्रयोग पुन्हा सुरु करावे लागेल."
 
-#: ksaveioconfig.cpp:165
+#: ksaveioconfig.cpp:137
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -49,76 +49,32 @@ msgstr ""
 
 #. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
 #. i18n: ectx: label, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:14
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "अपुरेरित्या अपलोड केलेले फाईल्स निवडा"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:15
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
 "uploaded it is renamed to its real name."
 msgstr ""
 
-#: netpref/netpref.cpp:30
-#, kde-format
-msgid "Timeout Values"
-msgstr "वेळेचे बंधनमूल्य"
-
-#: netpref/netpref.cpp:32
-#, kde-format
-msgid ""
-"Here you can set timeout values. You might want to tweak them if your "
-"connection is very slow. The maximum allowed value is 1 second."
-msgid_plural ""
-"Here you can set timeout values. You might want to tweak them if your "
-"connection is very slow. The maximum allowed value is %1 seconds."
-msgstr[0] ""
-msgstr[1] ""
-
-#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
-#: netpref/netpref.cpp:65
-#, kde-format
-msgid " second"
-msgid_plural " seconds"
-msgstr[0] " सेकंद"
-msgstr[1] " सेकंद"
-
-#: netpref/netpref.cpp:49
-#, kde-format
-msgid "Soc&ket read:"
-msgstr "सॉकेट वाचन (&K):"
-
-#: netpref/netpref.cpp:55
-#, kde-format
-msgid "Pro&xy connect:"
-msgstr "प्रॉक्सी जुळवणी (&X) :"
-
-#: netpref/netpref.cpp:61
-#, kde-format
-msgid "Server co&nnect:"
-msgstr "सर्व्हर जुळवणी (&N):"
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid "&Server response:"
-msgstr "सर्व्हर प्रतिसाद (&S):"
-
-#: netpref/netpref.cpp:69
+#: netpref/netpref.cpp:29
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "पर्याय"
 
-#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
+#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "अपुरेरित्या अपलोड केलेल्या फाईल्सची निवड करा (&P)"
 
-#: netpref/netpref.cpp:76
+#: netpref/netpref.cpp:36
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -127,31 +83,31 @@ msgid ""
 "complete.</p>"
 msgstr ""
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:97
+#: netpref/netpref.cpp:57
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP पर्याय"
 
-#: netpref/netpref.cpp:105
+#: netpref/netpref.cpp:65
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "passive पद्धती कार्यान्वित करा (PASV) (&M)"
 
-#: netpref/netpref.cpp:107
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -160,7 +116,7 @@ msgstr ""
 "FTP चे \"passive\" पद्धती कार्यान्वित करतो. याची आवश्यकता FTP ला फायरवॉलच्या नजरे "
 "आड चालविणे आहे."
 
-#: netpref/netpref.cpp:115
+#: netpref/netpref.cpp:75
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1046,6 +1002,26 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "इंटरलेस पद्धत"
+
+#~ msgid "Timeout Values"
+#~ msgstr "वेळेचे बंधनमूल्य"
+
+#~ msgid " second"
+#~ msgid_plural " seconds"
+#~ msgstr[0] " सेकंद"
+#~ msgstr[1] " सेकंद"
+
+#~ msgid "Soc&ket read:"
+#~ msgstr "सॉकेट वाचन (&K):"
+
+#~ msgid "Pro&xy connect:"
+#~ msgstr "प्रॉक्सी जुळवणी (&X) :"
+
+#~ msgid "Server co&nnect:"
+#~ msgstr "सर्व्हर जुळवणी (&N):"
+
+#~ msgid "&Server response:"
+#~ msgstr "सर्व्हर प्रतिसाद (&S):"
 
 #~ msgid "&New..."
 #~ msgstr "नवीन (&N)..."

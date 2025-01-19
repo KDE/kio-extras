@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-03 00:40+0000\n"
+"POT-Creation-Date: 2025-01-19 00:41+0000\n"
 "PO-Revision-Date: 2024-12-20 21:52+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -19,14 +19,14 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n>2);\n"
 "X-Generator: Lokalize 24.08.2\n"
 
-#: ksaveioconfig.cpp:163
+#: ksaveioconfig.cpp:135
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "एतेषां परिवर्तनानां प्रभावाय भवद्भिः चालित-अनुप्रयोगाः पुनः आरभणीयाः ।"
 
-#: ksaveioconfig.cpp:165
+#: ksaveioconfig.cpp:137
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -52,14 +52,14 @@ msgstr ""
 
 #. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
 #. i18n: ectx: label, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:14
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नितव्यानि"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:15
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -68,65 +68,17 @@ msgstr ""
 "यदा सञ्चिका अपलोड् भवति तदा तस्याः विस्तारः \".part\" भवति । यदा पूर्णतया अपलोड् "
 "भवति तदा तस्य नामकरणं तस्य वास्तविकं नाम भवति ।"
 
-#: netpref/netpref.cpp:30
-#, kde-format
-msgid "Timeout Values"
-msgstr "समयसमाप्तिमूल्यानि"
-
-#: netpref/netpref.cpp:32
-#, kde-format
-msgid ""
-"Here you can set timeout values. You might want to tweak them if your "
-"connection is very slow. The maximum allowed value is 1 second."
-msgid_plural ""
-"Here you can set timeout values. You might want to tweak them if your "
-"connection is very slow. The maximum allowed value is %1 seconds."
-msgstr[0] ""
-"अत्र भवान् timeout values सेट् कर्तुं शक्नोति । यदि भवतः संयोजनम् अतीव मन्दं भवति तर्हि "
-"भवान् तान् tweak कर्तुम् इच्छति । अधिकतमं अनुमतं मूल्यं १ सेकण्ड् अस्ति ।"
-msgstr[1] ""
-"अत्र भवान् timeout values सेट् कर्तुं शक्नोति । यदि भवतः संयोजनं अतीव मन्दं भवति तर्हि "
-"भवान् तान् tweak कर्तुम् इच्छति । अधिकतमं अनुमतं मूल्यं %1 सेकण्ड् अस्ति ।"
-
-#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
-#: netpref/netpref.cpp:65
-#, kde-format
-msgid " second"
-msgid_plural " seconds"
-msgstr[0] " क्षण"
-msgstr[1] " सेकण्ड्"
-
-#: netpref/netpref.cpp:49
-#, kde-format
-msgid "Soc&ket read:"
-msgstr "Soc&ket read:"
-
-#: netpref/netpref.cpp:55
-#, kde-format
-msgid "Pro&xy connect:"
-msgstr "Pro&xy connect: 1.1."
-
-#: netpref/netpref.cpp:61
-#, kde-format
-msgid "Server co&nnect:"
-msgstr "सर्वर co&nect: ."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid "&Server response:"
-msgstr "&सर्वरप्रतिक्रिया:"
-
-#: netpref/netpref.cpp:69
+#: netpref/netpref.cpp:29
 #, kde-format
 msgid "Global Options"
 msgstr "वैश्विकविकल्पाः"
 
-#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
+#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नितव्यानि"
 
-#: netpref/netpref.cpp:76
+#: netpref/netpref.cpp:36
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -139,31 +91,31 @@ msgstr ""
 "part&quot; विस्तारः भविष्यति । स्थानान्तरणं सम्पन्नं जातं चेत् एतत् विस्तारं निष्कासितम् "
 "भविष्यति ।</p>"
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " बाइट्"
 msgstr[1] " बाइट्"
 
-#: netpref/netpref.cpp:97
+#: netpref/netpref.cpp:57
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr "यदि रद्दं भवति तर्हि स्वयमेव आंशिकरूपेण अपलोड् कृताः सञ्चिकाः अपास्यन्ति यत्:"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP विकल्पाः"
 
-#: netpref/netpref.cpp:105
+#: netpref/netpref.cpp:65
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "निष्क्रिय &mode (PASV) सक्षमं कुर्वन्तु ।"
 
-#: netpref/netpref.cpp:107
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -172,7 +124,7 @@ msgstr ""
 "FTP इत्यस्य \"निष्क्रिय\" मोड् सक्षमं करोति । एतत् आवश्यकं यत् FTP अग्निप्रावरणानां पृष्ठतः "
 "कार्यं कर्तुं शक्नोति ।"
 
-#: netpref/netpref.cpp:115
+#: netpref/netpref.cpp:75
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1127,3 +1079,36 @@ msgstr "&वर्णसमूहः :"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "प्रश्नस्थानधारकं सम्मिलितं कुर्वन्तु"
+
+#~ msgid "Timeout Values"
+#~ msgstr "समयसमाप्तिमूल्यानि"
+
+#~ msgid ""
+#~ "Here you can set timeout values. You might want to tweak them if your "
+#~ "connection is very slow. The maximum allowed value is 1 second."
+#~ msgid_plural ""
+#~ "Here you can set timeout values. You might want to tweak them if your "
+#~ "connection is very slow. The maximum allowed value is %1 seconds."
+#~ msgstr[0] ""
+#~ "अत्र भवान् timeout values सेट् कर्तुं शक्नोति । यदि भवतः संयोजनम् अतीव मन्दं भवति "
+#~ "तर्हि भवान् तान् tweak कर्तुम् इच्छति । अधिकतमं अनुमतं मूल्यं १ सेकण्ड् अस्ति ।"
+#~ msgstr[1] ""
+#~ "अत्र भवान् timeout values सेट् कर्तुं शक्नोति । यदि भवतः संयोजनं अतीव मन्दं भवति तर्हि "
+#~ "भवान् तान् tweak कर्तुम् इच्छति । अधिकतमं अनुमतं मूल्यं %1 सेकण्ड् अस्ति ।"
+
+#~ msgid " second"
+#~ msgid_plural " seconds"
+#~ msgstr[0] " क्षण"
+#~ msgstr[1] " सेकण्ड्"
+
+#~ msgid "Soc&ket read:"
+#~ msgstr "Soc&ket read:"
+
+#~ msgid "Pro&xy connect:"
+#~ msgstr "Pro&xy connect: 1.1."
+
+#~ msgid "Server co&nnect:"
+#~ msgstr "सर्वर co&nect: ."
+
+#~ msgid "&Server response:"
+#~ msgstr "&सर्वरप्रतिक्रिया:"

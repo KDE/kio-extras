@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-03 00:40+0000\n"
+"POT-Creation-Date: 2025-01-19 00:41+0000\n"
 "PO-Revision-Date: 2022-10-05 21:57+0630\n"
 "Last-Translator: ဇေယျာလွင် <lw1nzayar@yandex.com>\n"
 "Language-Team: Burmese <kde-i18n-doc@kde.org>\n"
@@ -18,14 +18,14 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: ksaveioconfig.cpp:163
+#: ksaveioconfig.cpp:135
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "ထိုပြောင်းလဲချက်များ သက်ဝင်စေရန် အပ္ပလီကေးရှင်းများကို ပြန်စတင်ရမည်။"
 
-#: ksaveioconfig.cpp:165
+#: ksaveioconfig.cpp:137
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -51,14 +51,14 @@ msgstr ""
 
 #. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
 #. i18n: ectx: label, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:34
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:14
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "တစ်စိတ်တစ်ပိုင်း အပ်လုတ်တင်ထားသော ဖိုင်လ်များကို အမှတ်အသားပြုမည်"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:35
+#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:15
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -67,61 +67,17 @@ msgstr ""
 "ဖိုင်တစ်ခုအပ်လုတ်တင်နေစဥ် ယင်းအမည်ကို \".part\"ဖြင့်ထပ်တိုးဖော်ပြထားသည်။ အပ်လုတ်ပြီးဆုံးလျှင် အမည်ရင်းသို့ "
 "ပြန်ပြောင်းသည်။"
 
-#: netpref/netpref.cpp:30
-#, kde-format
-msgid "Timeout Values"
-msgstr "အချိန်ကုန်ပမာဏ"
-
-#: netpref/netpref.cpp:32
-#, kde-format
-msgid ""
-"Here you can set timeout values. You might want to tweak them if your "
-"connection is very slow. The maximum allowed value is 1 second."
-msgid_plural ""
-"Here you can set timeout values. You might want to tweak them if your "
-"connection is very slow. The maximum allowed value is %1 seconds."
-msgstr[0] ""
-"အချိန်ကုန်-တန်ဖိုးများ သင်သတ်မှတ်နိုင်သည်။ သင်၏ချိတ်ဆက်မှု အလွန်နှေးလျှင် ၎င်းတန်ဖိုးများကို သင်ကလိချင်လိမ့်မည်။ "
-"ခွင့်ပြုထားသော အများဆုံးတန်ဖိုးသည် %1 စက္ကန့်ဖြစ်သည်။"
-
-#: netpref/netpref.cpp:47 netpref/netpref.cpp:53 netpref/netpref.cpp:59
-#: netpref/netpref.cpp:65
-#, kde-format
-msgid " second"
-msgid_plural " seconds"
-msgstr[0] " စက္ကန့်"
-
-#: netpref/netpref.cpp:49
-#, kde-format
-msgid "Soc&ket read:"
-msgstr "&kဖတ်ခဲ့သော ဆော့ခ်ကတ် -"
-
-#: netpref/netpref.cpp:55
-#, kde-format
-msgid "Pro&xy connect:"
-msgstr "&xကြားခံ ချိတ်ဆက် -"
-
-#: netpref/netpref.cpp:61
-#, kde-format
-msgid "Server co&nnect:"
-msgstr "&nဆာဗာ ချိတ်ဆက် -"
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid "&Server response:"
-msgstr "&Sဆာဗာတုံ့ပြန်မှု -"
-
-#: netpref/netpref.cpp:69
+#: netpref/netpref.cpp:29
 #, kde-format
 msgid "Global Options"
 msgstr "အများနှင့်သက်ဆိုင်သောရွေးချယ်စရာများ"
 
-#: netpref/netpref.cpp:74 netpref/netpref.cpp:113
+#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&pတစ်စိတ်တစ်ပိုင်း အပ်လုတ်တင်ထားသော ဖိုင်လ်များကို အမှတ်အသားပြုမည်"
 
-#: netpref/netpref.cpp:76
+#: netpref/netpref.cpp:36
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -134,13 +90,13 @@ msgstr ""
 "ဖိုင်လ်များအနေဖြင့် \".part\"ကို နောက်တွင်ထည့်ထားမည်။ ကူးပြောင်းမှုပြီးပါက \".part\"ကို ဖြုတ်ပစ်မည်။</"
 "p>"
 
-#: netpref/netpref.cpp:95
+#: netpref/netpref.cpp:55
 #, kde-format
 msgid " byte"
 msgid_plural " bytes"
 msgstr[0] " ဘိုက်"
 
-#: netpref/netpref.cpp:97
+#: netpref/netpref.cpp:57
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -148,17 +104,17 @@ msgid ""
 msgstr ""
 "ပယ်ဖျက်ပါက တစ်စိတ်တစ်ပိုင်း အပ်လုတ်တင်ထားသော ဖိုင်လ်များ နောက်ပါတန်ဖိုးထက်ငယ်လျှင် အလိုအလျောက်ဖျက်ပစ်မည် -"
 
-#: netpref/netpref.cpp:99
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid "FTP Options"
 msgstr "အက်ဖ်တီပီ ရွေးချယ်စရာများ"
 
-#: netpref/netpref.cpp:105
+#: netpref/netpref.cpp:65
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "&mအငြိမ်ထုံးနည်း(ပီအေအက်စ်ဗီ) အသုံးပြုမည်"
 
-#: netpref/netpref.cpp:107
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -166,7 +122,7 @@ msgid ""
 msgstr ""
 "အက်ဖ်တီပီ၏ \"အငြိမ်\"ထုံးနည်းအသုံးပြုမည်။ ၎င်းကို မီးတံတိုင်းများနောက်တွင် အက်ဖ်တီပီ အလုပ်လုပ်နိုင်ရန် လိုအပ်သည်။"
 
-#: netpref/netpref.cpp:115
+#: netpref/netpref.cpp:75
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1211,6 +1167,35 @@ msgstr "&Cအက္ခရာအစု -"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "မေးမြန်းချက်ဆိုင်ရာနေရာယူထားမှု ထည့်သွင်း"
+
+#~ msgid "Timeout Values"
+#~ msgstr "အချိန်ကုန်ပမာဏ"
+
+#~ msgid ""
+#~ "Here you can set timeout values. You might want to tweak them if your "
+#~ "connection is very slow. The maximum allowed value is 1 second."
+#~ msgid_plural ""
+#~ "Here you can set timeout values. You might want to tweak them if your "
+#~ "connection is very slow. The maximum allowed value is %1 seconds."
+#~ msgstr[0] ""
+#~ "အချိန်ကုန်-တန်ဖိုးများ သင်သတ်မှတ်နိုင်သည်။ သင်၏ချိတ်ဆက်မှု အလွန်နှေးလျှင် ၎င်းတန်ဖိုးများကို သင်ကလိချင်လိမ့်မည်။ "
+#~ "ခွင့်ပြုထားသော အများဆုံးတန်ဖိုးသည် %1 စက္ကန့်ဖြစ်သည်။"
+
+#~ msgid " second"
+#~ msgid_plural " seconds"
+#~ msgstr[0] " စက္ကန့်"
+
+#~ msgid "Soc&ket read:"
+#~ msgstr "&kဖတ်ခဲ့သော ဆော့ခ်ကတ် -"
+
+#~ msgid "Pro&xy connect:"
+#~ msgstr "&xကြားခံ ချိတ်ဆက် -"
+
+#~ msgid "Server co&nnect:"
+#~ msgstr "&nဆာဗာ ချိတ်ဆက် -"
+
+#~ msgid "&Server response:"
+#~ msgstr "&Sဆာဗာတုံ့ပြန်မှု -"
 
 #~ msgid "&New..."
 #~ msgstr "&Nအသစ်…"
