@@ -31,78 +31,14 @@
 >KControl</keyword>
 <keyword
 >réseau</keyword>
-<keyword
->temporisations</keyword>
 </keywordset>
 
 </articleinfo>
 
-<sect1 id="timeouts">
+<sect1>
 
 <title
 >Préférences de connexion</title>
-
-<para
->Vous pouvez régler ici des valeurs de temporisation. Vous serez peut-être amené à les modifier si votre connexion est très lente, mais les paramètres par défaut sont corrects pour la plupart des utilisateurs.</para>
-
-<para
->Les <guilabel
->Valeurs des délais</guilabel
-> correspondent à la durée pendant laquelle une application doit attendre une réponse provenant d'une opération réseau.</para>
-
-<para
->Vous pouvez configurer les temporisations suivantes : </para>
-
-<variablelist>
-<varlistentry>
-<term
-><guilabel
->Lecture d'un socket : </guilabel
-></term>
-<listitem>
-<para
->Certaines applications utilisent des <firstterm
->sockets</firstterm
-> pour communiquer. Un socket peut se comparer à un robinet ; lorsqu'il est ouvert, l'eau (dans notre cas, les données) coule sans aucune intervention. Si quoi que ce soit arrête ce flux de données, l'application attend qu'il en arrive d'autres. Ceci peut prendre beaucoup de temps, mais cette option permet de configurer une durée maximale d'attente pour une application.</para>
-<para
->Ce paramètre ne concerne naturellement que les applications &kde;.</para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Connexion à un serveur mandataire : </guilabel
-></term>
-<listitem>
-<para
->Fixe la durée d'attente d'une connexion à un serveur mandataire, s'il en existe un qui soit configuré. </para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Connexion à un serveur : </guilabel
-></term>
-<listitem>
-<para
->Fixe la durée d'attente d'une connexion à un serveur distant. </para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Réponse d'un serveur : </guilabel
-></term>
-<listitem>
-<para
->Fixe la durée d'attente d'une réponse provenant d'un serveur distant. </para>
-</listitem>
-</varlistentry>
-
-</variablelist>
 
 <para
 >Vous pouvez configurer ici les <guilabel
