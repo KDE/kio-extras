@@ -125,8 +125,10 @@ KIO::WorkerResult InfoProtocol::get(const QUrl &url)
         return KIO::WorkerResult::fail(ERR_CANNOT_LAUNCH_PROCESS, cmd);
     }
 
-    char buffer[4096];
+    auto fileCloser = [](FILE* f) { if(f) pclose(f); };
+    std::unique_ptr<FILE, decltype(fileCloser)> fileGuard(file);
 
+    char buffer[4096];
     bool empty = true;
     while (!feof(file)) {
         int n = fread(buffer, 1, sizeof(buffer), file);
@@ -136,7 +138,6 @@ KIO::WorkerResult InfoProtocol::get(const QUrl &url)
         if (n < 0) {
             // ERROR
             qCWarning(LOG_KIO_INFO) << "read error!";
-            pclose(file);
             return KIO::WorkerResult::fail();
         }
 
@@ -144,10 +145,7 @@ KIO::WorkerResult InfoProtocol::get(const QUrl &url)
         data(QByteArray::fromRawData(buffer, n));
     }
 
-    pclose(file);
-
     qCDebug(LOG_KIO_INFO) << "done";
-
     return KIO::WorkerResult::pass();
 }
 
