@@ -1,45 +1,44 @@
-# translation of kio_thumbnail.po to Spanish
-# Translation of kio_thumbnail to Spanish
+# Translation of kio_thumbnail.po to Spanish
 #
-# Jaime Robles <jaime@robles.nu>, 2005.
-# Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>, 2007.
-# Jaime Robles <jaime@kde.org>, 2008, 2009.
-# Cristina Yenyxe González García <the.blue.valkyrie@gmail.com>, 2011.
+# SPDX-FileCopyrightText: 2005 Jaime Robles <jaime@robles.nu>
+# SPDX-FileCopyrightText: 2007 Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>
+# SPDX-FileCopyrightText: 2008, 2009 Jaime Robles <jaime@kde.org>
+# SPDX-FileCopyrightText: 2011 Cristina Yenyxe González García <the.blue.valkyrie@gmail.com>
+# SPDX-FileCopyrightText: 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:32+0000\n"
-"PO-Revision-Date: 2011-03-20 14:00+0100\n"
-"Last-Translator: Cristina Yenyxe González García <the.blue.valkyrie@gmail."
-"com>\n"
+"PO-Revision-Date: 2025-02-02 00:36+0100\n"
+"Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 24.12.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: thumbnail.cpp:211
 #, kde-format
 msgid "No MIME Type specified."
-msgstr "No se especificó tipo MIME."
+msgstr "No se ha especificado el tipo MIME."
 
 #: thumbnail.cpp:218
 #, kde-format
 msgid "No or invalid size specified."
-msgstr "No se especificó tamaño o no es válido."
+msgstr "No se ha especificado el tamaño o no es válido."
 
 #: thumbnail.cpp:241
 #, kde-format
 msgid "Cannot create thumbnail for directory"
-msgstr "No se pudo crear miniatura del directorio"
+msgstr "No se ha podido crear la miniatura del directorio"
 
 #: thumbnail.cpp:252
 #, kde-format
 msgid "No plugin specified."
-msgstr "No se especificó ningún complemento."
+msgstr "No se ha especificado ningún complemento."
 
 #: thumbnail.cpp:257
 #, kde-format
@@ -49,22 +48,22 @@ msgstr "No se puede cargar ThumbCreator %1"
 #: thumbnail.cpp:278
 #, kde-format
 msgid "Cannot create thumbnail for %1"
-msgstr "No se pudo crear miniatura de %1"
+msgstr "No se ha podido crear la miniatura de %1"
 
 #: thumbnail.cpp:290
 #, kde-format
 msgid "Failed to create a thumbnail."
-msgstr "Fallo al crear la miniatura."
+msgstr "No se ha podido crear una miniatura."
 
 #: thumbnail.cpp:303
 #, kde-format
 msgid "Could not write image."
-msgstr "No se pudo escribir la imagen."
+msgstr "No se ha podido escribir la imagen."
 
 #: thumbnail.cpp:326
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
-msgstr "Fallo al adjuntar segmento de memoria compartida %1"
+msgstr "No se ha podido adjuntar el segmento de memoria compartida %1"
 
 #: thumbnail.cpp:333
 #, kde-format
