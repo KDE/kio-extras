@@ -953,16 +953,3 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
-
-#~ msgid "Timeout Values"
-#~ msgstr "Áigemearit:"
-
-#, fuzzy
-#~ msgid "Pro&xy connect:"
-#~ msgstr "Pro&xy oktavuohta:"
-
-#~ msgid "Server co&nnect:"
-#~ msgstr "Bálvvá ok&tavuohta:"
-
-#~ msgid "&Server response:"
-#~ msgstr "Bálvvá vá&stádus:"
