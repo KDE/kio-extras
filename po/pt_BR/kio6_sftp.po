@@ -7,20 +7,21 @@
 # Marcus Gama <marcus_gama@uol.com.br>, 2004.
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018.
 # Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2009, 2012, 2018, 2021, 2022.
+# SPDX-FileCopyrightText: 2025 Guilherme Marçal Silva <guimarcalsilva@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio5_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-22 00:40+0000\n"
-"PO-Revision-Date: 2022-12-20 11:04-0300\n"
-"Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
-"Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
+"PO-Revision-Date: 2025-02-05 01:03-0300\n"
+"Last-Translator: Guilherme Marçal Silva <guimarcalsilva@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 24.12.1\n"
 
 #: kio_sftp.cpp:288
 #, kde-format
@@ -158,18 +159,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr ""
+msgstr "Mudança de identidade da máquina"
 
 #: kio_sftp.cpp:826
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The host key for the server %1 has changed.\n"
-#| "This could either mean that DNS SPOOFING is happening or the IP address "
-#| "for the host and its host key have changed at the same time.\n"
-#| "The fingerprint for the key sent by the remote host is:\n"
-#| " %2\n"
-#| "Please contact your system administrator.\n"
-#| "%3"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
@@ -178,35 +171,30 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"A chave da máquina para o servidor %1 foi alterada.\n"
-"Isto poderá tanto significar que está uma BURLA DE DNS em curso, ou que o "
-"endereço IP da máquina e a sua chave possam ter alterado ao mesmo tempo.\n"
-"A impressão digital da chave enviada pela máquina remota é:\n"
-" %2\n"
-"Contacte o administrador do seu sistema.\n"
-"%3"
+"<para>A chave da máquina para o servidor <emphasis>%1</emphasis> foi "
+"alterada.</para><para>Isto poderá tanto significar que um ataque de DNS está "
+"em curso, ou que o endereço IP da máquina e a sua chave possam ter sido "
+"alterados ao mesmo tempo.</para><para>A impressão digital %2 da chave "
+"enviada pela máquina remota é:<bcode>%3</bcode>Deseja continuar a conexão?</"
+"para>"
 
 #: kio_sftp.cpp:836
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "Falha de verificação da máquina"
 
 #: kio_sftp.cpp:838
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The authenticity of host %1 cannot be established.\n"
-#| "The %2 key fingerprint is: %3\n"
-#| "Are you sure you want to continue connecting?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"A autenticidade da máquina %1 não pôde ser estabelecida.\n"
-"A impressão digital da chave %2 é: %3\n"
-"Deseja continuar com a conexão?"
+"<para>A autenticidade da máquina <emphasis>%1</emphasis> não pôde ser "
+"estabelecida.</para><para>A impressão digital da chave %2 é: <bcode>%3</"
+"bcode>Deseja continuar com a conexão?</para>"
 
 #: kio_sftp.cpp:847
 #, kde-format
