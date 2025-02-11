@@ -57,6 +57,3 @@ msgstr "Chyba NFS %1, %2"
 #, kde-format
 msgid "Unknown target"
 msgstr "Neznámý cíl"
-
-#~ msgid "Failed to initialise protocol"
-#~ msgstr "Selhala inicializace protokolu"
