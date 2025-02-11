@@ -1,3 +1,7 @@
+if (BUILD_TESTING)
+    add_subdirectory(autotests)
+endif()
+
 add_definitions(-DTRANSLATION_DOMAIN=\"kio6_filenamesearch\")
 
 kcoreaddons_add_plugin(kio_filenamesearch INSTALL_NAMESPACE "kf6/kio")

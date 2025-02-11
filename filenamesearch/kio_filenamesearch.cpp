@@ -130,6 +130,12 @@ void FileNameSearchProtocol::listRootEntry()
 
 KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 {
+    enum Engine {
+        Unspecified,
+        Internal,
+        External,
+    };
+
     listRootEntry();
 
     const QUrlQuery urlQuery(url);
@@ -153,26 +159,44 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 
     const bool isContent = urlQuery.queryItemValue(QStringLiteral("checkContent")) == QLatin1String("yes");
 
+    // These are placeholders, the longer term aim is something a bit more flexible.
+    // The default behaviour is to assume the external script is present and fall back to using the
+    // internal search if it is not.
+
+    Engine useEngine = Unspecified;
+    if (urlQuery.queryItemValue(QStringLiteral("src")) == QLatin1String("internal")) {
+        useEngine = Internal;
+    } else if (urlQuery.queryItemValue(QStringLiteral("src")) == QLatin1String("external")) {
+        useEngine = External;
+    }
+
     std::set<QString> iteratedDirs;
     std::queue<QUrl> pendingDirs;
 
 #if !defined(Q_OS_WIN32)
     // Prefer using external tools if available
-    if (isContent && dirUrl.isLocalFile()) {
+    if ((useEngine == Unspecified || useEngine == External) && isContent && dirUrl.isLocalFile()) {
         KIO::WorkerResult result = searchDirWithExternalTool(dirUrl, regex);
         if (result.error() != KIO::ERR_UNSUPPORTED_ACTION) {
             return result;
         }
-        qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Fall back to KIO.";
+        if (useEngine == Unspecified) {
+            qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Fall back to KIO.";
+        } else {
+            qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Test fails.";
+            return KIO::WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, QStringLiteral("External tool not available"));
+        }
     }
 #endif
 
-    searchDir(dirUrl, regex, isContent, iteratedDirs, pendingDirs);
+    if (useEngine == Unspecified || useEngine == Internal) {
+        searchDir(dirUrl, regex, isContent, iteratedDirs, pendingDirs);
 
-    while (!pendingDirs.empty()) {
-        const QUrl pendingUrl = pendingDirs.front();
-        pendingDirs.pop();
-        searchDir(pendingUrl, regex, isContent, iteratedDirs, pendingDirs);
+        while (!pendingDirs.empty()) {
+            const QUrl pendingUrl = pendingDirs.front();
+            pendingDirs.pop();
+            searchDir(pendingUrl, regex, isContent, iteratedDirs, pendingDirs);
+        }
     }
 
     return KIO::WorkerResult::pass();
@@ -187,7 +211,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
     //  If the directory already flagged in the iteratedDirs set then there is no need
     //  to repeat the search - avoiding circular recursion into symlinks.
 
-    if (iteratedDirs.count(QUrl(dirUrl).path()) != 0) {
+    if (iteratedDirs.contains(QUrl(dirUrl).path())) {
         return;
     }
 
