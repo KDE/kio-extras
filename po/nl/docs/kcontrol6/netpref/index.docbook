@@ -31,78 +31,14 @@
 >kcontrol</keyword>
 <keyword
 >netwerk</keyword>
-<keyword
->verlooptijd</keyword>
 </keywordset>
 
 </articleinfo>
 
-<sect1 id="timeouts">
+<sect1>
 
 <title
 >Verbindingsvoorkeuren</title>
-
-<para
->Hier kunt u vervaltijden instellen. U wilt deze waarden misschien aanpassen als uw verbinding erg langzaam is, echter de standaard waarden zijngeschikt voor de meeste gebruikers.</para>
-
-<para
->Hier zijn <guilabel
->Tijdslimietwaarden</guilabel
-> de tijdsduren die een toepassing moet wachten op een antwoord van een netwerkoperatie.</para>
-
-<para
->U kunt de volgende limieten instellen:</para>
-
-<variablelist>
-<varlistentry>
-<term
-><guilabel
->Lezen van een socket</guilabel
-></term>
-<listitem>
-<para
->Sommige toepassingen gebruiken <firstterm
->sockets</firstterm
-> om te communiceren. U kunt zich een socket voorstellen als een waterkraan: zolang deze open is komt er water (of hier gegevens) uit, zonder interactie. Als iets de gegevenstroom onderbreekt, wacht de toepaing op meer. Dit kan erg lang duren, maar u kunt een maximale tijd instellen die een toepassing mag wachten.</para>
-<para
->Deze instelling is uiteraard alleen op &kde;-toepassingen van toepassing.</para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Proxyverbinding</guilabel
-></term>
-<listitem>
-<para
->Deze optie bepaalt hoe lang er op een verbinding met een proxyserver moet worden gewacht als er een proxy is geconfigureerd. </para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Serververbinding</guilabel
-></term>
-<listitem>
-<para
->Deze optie bepaalt hoe lang er moet worden gewacht op een verbinding met een server. </para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Serverreactie</guilabel
-></term>
-<listitem>
-<para
->Deze optie bepaalt hoe lang er moet worden gewacht op een antwoord van een server. </para>
-</listitem>
-</varlistentry>
-
-</variablelist>
 
 <para
 >U kunt hier de <guilabel
