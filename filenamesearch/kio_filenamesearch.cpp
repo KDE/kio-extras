@@ -25,6 +25,33 @@
 #include <QUrl>
 #include <QUrlQuery>
 
+namespace
+{
+
+QString ensureTrailingSlash(const QString &str)
+{
+    QString path = str;
+    if (!path.endsWith(QLatin1Char('/'))) {
+        path += QLatin1Char('/');
+    }
+    return path;
+}
+
+bool hasBeenVisited(const QString &path, std::set<QString> &seenDirs)
+{
+    // If the file or folder is within any of the seenDirs, it has already
+    // been visited, skip the entry.
+
+    for (auto iterator : seenDirs) {
+        if (path.startsWith(iterator)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+}
+
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
 {
@@ -150,7 +177,15 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
         return KIO::WorkerResult::pass();
     }
 
-    const QUrl dirUrl = QUrl(urlQuery.queryItemValue(QStringLiteral("url"), QUrl::FullyDecoded));
+    QUrl dirUrl = QUrl(urlQuery.queryItemValue(QStringLiteral("url"), QUrl::FullyDecoded));
+
+    // Canonicalise the search base directory
+    if (dirUrl.isLocalFile()) {
+        const QString canonicalPath = QFileInfo(dirUrl.toLocalFile()).canonicalFilePath();
+        if (!canonicalPath.isEmpty()) {
+            dirUrl = QUrl::fromLocalFile(canonicalPath);
+        }
+    }
 
     // Don't try to iterate the /proc directory of Linux
     if (dirUrl.isLocalFile() && dirUrl.toLocalFile() == QLatin1String("/proc")) {
@@ -208,10 +243,12 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                                        std::set<QString> &iteratedDirs,
                                        std::queue<QUrl> &pendingDirs)
 {
-    //  If the directory already flagged in the iteratedDirs set then there is no need
-    //  to repeat the search - avoiding circular recursion into symlinks.
+    //  If the directory is flagged in the iteratedDirs set, it has already been searched.
+    //  Return to avoid circular recursion into symlinks.
 
-    if (iteratedDirs.contains(QUrl(dirUrl).path())) {
+    const QString dirPath = ensureTrailingSlash(QUrl(dirUrl).path());
+
+    if (iteratedDirs.contains(dirPath)) {
         return;
     }
 
@@ -227,48 +264,48 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
             return;
         }
 
+        QUrl entryUrl(dirUrl);
+        const QString path = ensureTrailingSlash(entryUrl.path());
+
         for (auto entry : list) {
             if (wasKilled()) { // File-by-file searches may take some time, call wasKilled before each file
                 listJob->kill();
                 return;
             }
 
-            QUrl entryUrl(dirUrl);
-            QString path = entryUrl.path();
-            if (!path.endsWith(QLatin1Char('/'))) {
-                path += QLatin1Char('/');
-            }
             // UDS_NAME is e.g. "foo/bar/somefile.txt"
-            entryUrl.setPath(path + entry.stringValue(KIO::UDSEntry::UDS_NAME));
+            const QString leaf = path + entry.stringValue(KIO::UDSEntry::UDS_NAME);
 
-            const QString urlStr = entryUrl.toDisplayString();
-            entry.replace(KIO::UDSEntry::UDS_URL, urlStr);
+            if (!hasBeenVisited(leaf, iteratedDirs)) {
+                entryUrl.setPath(leaf);
 
-            const QString fileName = entryUrl.fileName();
-            entry.replace(KIO::UDSEntry::UDS_NAME, fileName);
+                const QString urlStr = entryUrl.toDisplayString();
+                entry.replace(KIO::UDSEntry::UDS_URL, urlStr);
 
-            if (entry.isDir()) {
-                // Also search the target of a dir symlink
-                if (const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST); !linkDest.isEmpty()) {
-                    // Remember the dir to prevent endless loops
-                    const auto [it, isInserted] = iteratedDirs.insert(linkDest);
-                    if (isInserted) {
+                const QString fileName = entryUrl.fileName();
+                entry.replace(KIO::UDSEntry::UDS_NAME, fileName);
+
+                if (entry.isDir()) {
+                    // Push the symlink destination into the queue, leaving the decision
+                    // of whether to actually search the folder to later
+
+                    if (const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST); !linkDest.isEmpty()) {
                         pendingDirs.push(entryUrl.resolved(QUrl(linkDest)));
                     }
                 }
 
-                iteratedDirs.insert(urlStr);
-            }
-
-            if (match(entry, regex, searchContents)) {
-                // UDS_DISPLAY_NAME is e.g. "foo/bar/somefile.txt"
-                entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
-                listEntry(entry);
+                if (match(entry, regex, searchContents)) {
+                    // UDS_DISPLAY_NAME is e.g. "foo/bar/somefile.txt"
+                    entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
+                    listEntry(entry);
+                }
             }
         }
     });
 
     listJob->exec();
+    // Mark the folder when finished
+    iteratedDirs.insert(dirPath);
 }
 
 #if !defined(Q_OS_WIN32)
