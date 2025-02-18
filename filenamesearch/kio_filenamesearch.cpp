@@ -193,6 +193,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     }
 
     const bool isContent = urlQuery.queryItemValue(QStringLiteral("checkContent")) == QLatin1String("yes");
+    const bool includeHidden = urlQuery.queryItemValue(QStringLiteral("includeHidden")) == QLatin1String("yes");
 
     // These are placeholders, the longer term aim is something a bit more flexible.
     // The default behaviour is to assume the external script is present and fall back to using the
@@ -225,12 +226,12 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 #endif
 
     if (useEngine == Unspecified || useEngine == Internal) {
-        searchDir(dirUrl, regex, isContent, iteratedDirs, pendingDirs);
+        searchDir(dirUrl, regex, isContent, includeHidden, iteratedDirs, pendingDirs);
 
         while (!pendingDirs.empty()) {
             const QUrl pendingUrl = pendingDirs.front();
             pendingDirs.pop();
-            searchDir(pendingUrl, regex, isContent, iteratedDirs, pendingDirs);
+            searchDir(pendingUrl, regex, isContent, includeHidden, iteratedDirs, pendingDirs);
         }
     }
 
@@ -240,6 +241,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                                        const QRegularExpression &regex,
                                        bool searchContents,
+                                       bool includeHidden,
                                        std::set<QString> &iteratedDirs,
                                        std::queue<QUrl> &pendingDirs)
 {
@@ -252,7 +254,11 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
         return;
     }
 
-    KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, KIO::ListJob::ListFlags{});
+    KIO::ListJob::ListFlags listFlags = {};
+    if (includeHidden) {
+        listFlags = KIO::ListJob::ListFlag::IncludeHidden;
+    }
+    KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, listFlags);
 
     connect(this, &QObject::destroyed, listJob, [listJob]() {
         listJob->kill();
@@ -284,6 +290,9 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
 
                 const QString fileName = entryUrl.fileName();
                 entry.replace(KIO::UDSEntry::UDS_NAME, fileName);
+
+                //  There's no point in trying to search content if the entry is a folder, however the code should
+                //  check the foldername. This is a "TODO" for when a content search also checks filenames.
 
                 if (entry.isDir()) {
                     // Push the symlink destination into the queue, leaving the decision

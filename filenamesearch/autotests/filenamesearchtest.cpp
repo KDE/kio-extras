@@ -30,6 +30,12 @@ private Q_SLOTS:
     void folderTreeSymlinks_data();
     void folderTreeSymlinks();
 
+    void hiddenFolders_data();
+    void hiddenFolders();
+
+    void hiddenFilesAndFolders_data();
+    void hiddenFilesAndFolders();
+
     void cleanupTestCase();
 
 private:
@@ -91,6 +97,8 @@ QByteArrayList FilenameSearchTest::doSearchQuery(QUrl url, KIO::ListJob::ListFla
         listJob->kill();
     });
 
+    //  ListJob with IncludeHidden will read the match for "."
+
     connect(listJob, &KIO::ListJob::entries, this, [&](KJob *, const KIO::UDSEntryList &list) {
         if (listJob->error()) {
             qWarning() << "Searching failed:" << listJob->errorText();
@@ -98,8 +106,10 @@ QByteArrayList FilenameSearchTest::doSearchQuery(QUrl url, KIO::ListJob::ListFla
         }
 
         for (auto entry : list) {
-            results += entry.stringValue(KIO::UDSEntry::UDS_NAME).toUtf8();
-            //  qInfo() << entry.stringValue(KIO::UDSEntry::UDS_NAME);
+            const QByteArray fileName = entry.stringValue(KIO::UDSEntry::UDS_NAME).toUtf8();
+            if (fileName != QByteArrayLiteral(".")) {
+                results += fileName;
+            }
         }
     });
 
@@ -237,6 +247,57 @@ void FilenameSearchTest::folderTreeSymlinks()
 
     const QString path = QFINDTESTDATA("data/folderTreeSymlinks/child");
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
+
+    QCOMPARE(results, expectedFiles);
+}
+
+void FilenameSearchTest::hiddenFolders_data()
+{
+    addColumns();
+
+    addRow("Filename Match", QByteArray("includeHidden=yes"), QByteArrayLiteral("alice"), {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
+
+    addRow("Content Match",
+           QByteArray("includeHidden=yes&checkContent=yes"),
+           QByteArrayLiteral("wonderland"),
+           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
+}
+
+void FilenameSearchTest::hiddenFolders()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/hiddenFilesAndFolders");
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
+
+    QCOMPARE(results, expectedFiles);
+}
+
+void FilenameSearchTest::hiddenFilesAndFolders_data()
+{
+    addColumns();
+
+    addRow("Filename Match",
+           QByteArray("includeHidden=yes"),
+           QByteArrayLiteral("alice"),
+           {QByteArrayLiteral(".alice2.txt"), QByteArrayLiteral(".alice4.txt"), QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
+
+    addRow("Content Match",
+           QByteArray("includeHidden=yes&checkContent=yes"),
+           QByteArrayLiteral("wonderland"),
+           {QByteArrayLiteral(".alice2.txt"), QByteArrayLiteral(".alice4.txt"), QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
+}
+
+void FilenameSearchTest::hiddenFilesAndFolders()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/hiddenFilesAndFolders");
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), KIO::ListJob::ListFlag::IncludeHidden);
 
     QCOMPARE(results, expectedFiles);
 }
