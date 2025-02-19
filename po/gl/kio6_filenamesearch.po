@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-17 00:40+0000\n"
+"POT-Creation-Date: 2025-02-19 00:41+0000\n"
 "PO-Revision-Date: 2024-10-07 01:36+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Search Folder"
 msgstr "Cartafol de busca"
 
-#: kio_filenamesearch.cpp:419
+#: kio_filenamesearch.cpp:428
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

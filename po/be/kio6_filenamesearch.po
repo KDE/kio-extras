@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-17 00:40+0000\n"
+"POT-Creation-Date: 2025-02-19 00:41+0000\n"
 "PO-Revision-Date: 2025-01-06 19:10\n"
 "Last-Translator: Antikruk <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -27,7 +27,7 @@ msgstr ""
 msgid "Search Folder"
 msgstr "Каталог пошуку"
 
-#: kio_filenamesearch.cpp:419
+#: kio_filenamesearch.cpp:428
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
