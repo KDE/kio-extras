@@ -16,7 +16,12 @@ class ProvidersModel : public QAbstractTableModel
 {
     Q_OBJECT
 public:
-    enum { Name, Shortcuts, Preferred, ColumnCount };
+    enum {
+        Name,
+        Preferred,
+        Shortcuts,
+        ColumnCount
+    };
     explicit ProvidersModel(QObject *parent = nullptr)
         : QAbstractTableModel(parent)
     {
