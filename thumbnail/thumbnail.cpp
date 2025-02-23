@@ -101,6 +101,12 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char **argv)
     // need QGuiApplication
     qunsetenv("SESSION_MANAGER");
 
+    // Some plugins may cause unwanted windows to appear
+    // (e.g. Webarchiver, see https://bugs.kde.org/show_bug.cgi?id=500173).
+    // This will not let any plugin to create auxilliary windows on the screen
+    // while generating thumbnails.
+    qputenv("QT_QPA_PLATFORM", "offscreen");
+
     // Some thumbnail plugins use QWidget classes for the rendering,
     // so use QApplication here, not just QGuiApplication
     QApplication app(argc, argv);
