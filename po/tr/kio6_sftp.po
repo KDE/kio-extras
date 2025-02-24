@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-22 00:40+0000\n"
+"POT-Creation-Date: 2025-02-24 00:41+0000\n"
 "PO-Revision-Date: 2024-03-22 16:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -249,7 +249,7 @@ msgstr "%1 adresine başarıyla bağlantı kuruldu"
 msgid "Invalid sftp context"
 msgstr "Geçersiz sftp bağlamı"
 
-#: kio_sftp.cpp:1580
+#: kio_sftp.cpp:1582
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
