@@ -200,6 +200,7 @@ public:
 public Q_SLOTS:
     void start()
     {
+        m_client.start();
         m_client.sendResolve(m_endpoint);
         m_stopTimer.start();
     }
