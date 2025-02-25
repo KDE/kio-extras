@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-19 00:40+0000\n"
+"POT-Creation-Date: 2025-02-25 00:40+0000\n"
 "PO-Revision-Date: 2009-04-09 14:30+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -17,52 +17,52 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "X-Language: km-CM\n"
 
-#: thumbnail.cpp:199
+#: thumbnail.cpp:205
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "គ្មាន MIME Type ត្រូវ​បាន​បញ្ជាក់​លម្អិត ។"
 
-#: thumbnail.cpp:206
+#: thumbnail.cpp:212
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "ទំហំ​មិន​ត្រឹមត្រូវ ឬ គ្មាន​ទំហំ​ត្រូវ​បាន​បញ្ជាក់​លម្អិត ។"
 
-#: thumbnail.cpp:227
+#: thumbnail.cpp:233
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "មិន​អាច​បង្កើត​រូបភាព​តូចៗ​​សម្រាប់​ថត​បានទេ"
 
-#: thumbnail.cpp:236
+#: thumbnail.cpp:242
 #, kde-format
 msgid "No plugin specified."
 msgstr "មិន​បាន​បញ្ជាក់​កម្មវិធី​ជំនួយ ។"
 
-#: thumbnail.cpp:241
+#: thumbnail.cpp:247
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "មិន​អាច​ផ្ទុក ThumbCreator %1"
 
-#: thumbnail.cpp:249
+#: thumbnail.cpp:255
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "មិន​អាច​បង្កើត​រូបភាព​តូច​សម្រាប់ %1"
 
-#: thumbnail.cpp:259
+#: thumbnail.cpp:265
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "បរាជ័យ​ក្នុង​ការ​បង្កើត​រូបភាព​តូច ។"
 
-#: thumbnail.cpp:279
+#: thumbnail.cpp:285
 #, kde-format
 msgid "Could not write image."
 msgstr "មិន​អាច​សរសេរ​រូបភាព ។"
 
-#: thumbnail.cpp:307
+#: thumbnail.cpp:313
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "បរាជ័យ​ក្នុង​ការ​ភ្ជាប់​ទៅ​ចម្រៀក​សតិ %1 ដែល​បាន​ចែក​រំលែក"
 
-#: thumbnail.cpp:311
+#: thumbnail.cpp:317
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "រូបភាព​មាន​ទំហំ​ធំ​ពេក សម្រាប់​ចែក​រំលែក​ចម្រៀក​សតិ ។"

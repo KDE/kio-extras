@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-11-19 00:40+0000\n"
+"POT-Creation-Date: 2025-02-25 00:40+0000\n"
 "PO-Revision-Date: 2024-11-20 16:58+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -21,52 +21,52 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: thumbnail.cpp:199
+#: thumbnail.cpp:205
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Nav atrasts MIME tips"
 
-#: thumbnail.cpp:206
+#: thumbnail.cpp:212
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Izmērs nav noteikts vai tas ir nepareizs."
 
-#: thumbnail.cpp:227
+#: thumbnail.cpp:233
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Nevar izveidot sīktēlu mapei"
 
-#: thumbnail.cpp:236
+#: thumbnail.cpp:242
 #, kde-format
 msgid "No plugin specified."
 msgstr "Nav norādīts spraudnis."
 
-#: thumbnail.cpp:241
+#: thumbnail.cpp:247
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Nevar ielādēt „ThumbCreator“ %1"
 
-#: thumbnail.cpp:249
+#: thumbnail.cpp:255
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Nevar izveidot „%1“ sīktēlu"
 
-#: thumbnail.cpp:259
+#: thumbnail.cpp:265
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Neizdevās izveidot sīktēlu."
 
-#: thumbnail.cpp:279
+#: thumbnail.cpp:285
 #, kde-format
 msgid "Could not write image."
 msgstr "Nevar ierakstīt attēlu."
 
-#: thumbnail.cpp:307
+#: thumbnail.cpp:313
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Neizdevās pievienoties koplietošanas atmiņas apgabalam „%1“"
 
-#: thumbnail.cpp:311
+#: thumbnail.cpp:317
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Attēls ir pālāk liels izdalītajam atmiņas segmentam"
