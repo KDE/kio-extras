@@ -53,7 +53,7 @@ InfoProtocol::InfoProtocol(const QByteArray &pool, const QByteArray &app)
     qCDebug(LOG_KIO_INFO) << "done";
 }
 
-KIO::WorkerResult InfoProtocol::missingFilesReult() const
+KIO::WorkerResult InfoProtocol::missingFilesResult() const
 {
     const QString errorStr = i18n(
         "Unable to locate files which are necessary to run this service:<br>%1<br>"
@@ -67,7 +67,7 @@ KIO::WorkerResult InfoProtocol::get(const QUrl &url)
     qCDebug(LOG_KIO_INFO) << "URL" << url.toDisplayString() << "path" << url.path();
 
     if (!m_missingFiles.isEmpty()) {
-        return missingFilesReult();
+        return missingFilesResult();
     }
 
     if (url.path() == "/") {
@@ -154,7 +154,7 @@ KIO::WorkerResult InfoProtocol::mimetype(const QUrl & /* url */)
     qCDebug(LOG_KIO_INFO);
 
     if (!m_missingFiles.isEmpty()) {
-        return missingFilesReult();
+        return missingFilesResult();
     }
 
     // to get rid of those "Open with" dialogs...
@@ -226,7 +226,7 @@ void InfoProtocol::decodePath(QString path)
 KIO::WorkerResult InfoProtocol::stat(const QUrl &)
 {
     if (!m_missingFiles.isEmpty()) {
-        return missingFilesReult();
+        return missingFilesResult();
     }
 
     UDSEntry uds_entry;

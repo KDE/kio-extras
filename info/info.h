@@ -22,7 +22,7 @@ protected:
     void decodePath(QString path);
 
 private:
-    KIO::WorkerResult missingFilesReult() const;
+    KIO::WorkerResult missingFilesResult() const;
 
 private:
     QString m_page;
