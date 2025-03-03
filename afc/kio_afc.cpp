@@ -195,6 +195,7 @@ void AfcWorker::updateDeviceList()
     int count = 0;
 
     idevice_get_device_list(&devices, &count);
+    qCDebug(KIO_AFC_LOG) << "Update device list, found" << count << "devices";
     for (int i = 0; i < count; ++i) {
         const QString id = QString::fromLatin1(devices[i]);
         addDevice(id);
@@ -216,7 +217,9 @@ bool AfcWorker::addDevice(const QString &id)
     }
 
     auto *device = new AfcDevice(id);
+    qCDebug(KIO_AFC_LOG) << "Created device:" << id;
     if (!device->isValid()) {
+        qCInfo(KIO_AFC_LOG) << "Device" << id << "is not valid";
         delete device;
         return false;
     }
@@ -235,6 +238,7 @@ void AfcWorker::removeDevice(const QString &id)
 
     auto *device = m_devices.take(id.toUpper());
     if (device) {
+        qCDebug(KIO_AFC_LOG) << "Removed device" << id;
         if (m_openFile && m_openFile->client()->device() == device) {
             m_openFile.reset();
         }
@@ -268,7 +272,9 @@ Result AfcWorker::listDir(const QUrl &url)
 
             // When there is only one device, redirect to it right away
             if (m_devices.count() == 1) {
-                redirection(QUrl(entry.stringValue(UDSEntry::UDS_TARGET_URL)));
+                const QUrl redirectUrl(entry.stringValue(UDSEntry::UDS_TARGET_URL));
+                qCDebug(KIO_AFC_LOG) << "There is only one device, redirecting to" << redirectUrl;
+                redirection(redirectUrl);
                 return Result::pass();
             }
 
