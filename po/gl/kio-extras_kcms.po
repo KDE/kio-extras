@@ -74,8 +74,8 @@ msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
 "uploaded it is renamed to its real name."
 msgstr ""
-"Mentres se está a enviar un ficheiro a súa extensión é «*.part». Cando se "
-"remata de enviar renoméase co seu nome real."
+"Mentres se está a subir un ficheiro a súa extensión é «*.part». Cando se "
+"remata de subir renoméase co seu nome real."
 
 #: netpref/netpref.cpp:30
 #, kde-format
