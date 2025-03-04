@@ -210,7 +210,8 @@ bool AfcWorker::addDevice(const QString &id)
     // NOTE this may be executed in a different thread when called from device idevice_event callback
     QMutexLocker locker(&m_mutex);
 
-    if (m_devices.contains(id)) {
+    const QString upperCaseId = id.toUpper();
+    if (m_devices.contains(upperCaseId)) {
         return false;
     }
 
@@ -220,7 +221,7 @@ bool AfcWorker::addDevice(const QString &id)
         return false;
     }
 
-    m_devices.insert(id, device);
+    m_devices.insert(upperCaseId, device);
 
     Q_ASSERT(!device->name().isEmpty());
 
@@ -232,7 +233,7 @@ void AfcWorker::removeDevice(const QString &id)
     // NOTE this may be executed in a different thread when called from device idevice_event callback
     QMutexLocker locker(&m_mutex);
 
-    auto *device = m_devices.take(id);
+    auto *device = m_devices.take(id.toUpper());
     if (device) {
         if (m_openFile && m_openFile->client()->device() == device) {
             m_openFile.reset();
