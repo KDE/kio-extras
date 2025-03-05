@@ -470,7 +470,7 @@ bool readPortableExecutablePrimaryIcon(QDataStream &ds, const DosHeader &dosHead
         return false;
     }
 
-    auto level1 = readResourceDataDirectoryEntry(ds);
+    const auto level1 = readResourceDataDirectoryEntry(ds);
 
     for (auto entry1 : level1) {
         if ((entry1.offset & PeSubdirBitMask) == 0)
@@ -479,7 +479,7 @@ bool readPortableExecutablePrimaryIcon(QDataStream &ds, const DosHeader &dosHead
             return false;
         }
 
-        auto level2 = readResourceDataDirectoryEntry(ds);
+        const auto level2 = readResourceDataDirectoryEntry(ds);
 
         for (auto entry2 : level2) {
             if ((entry2.offset & PeSubdirBitMask) == 0)
@@ -489,7 +489,7 @@ bool readPortableExecutablePrimaryIcon(QDataStream &ds, const DosHeader &dosHead
             }
 
             // Read subdirectory.
-            auto level3 = readResourceDataDirectoryEntry(ds);
+            const auto level3 = readResourceDataDirectoryEntry(ds);
 
             for (auto entry3 : level3) {
                 if ((entry3.offset & PeSubdirBitMask) == PeSubdirBitMask)
