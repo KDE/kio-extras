@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-25 02:33+0000\n"
+"POT-Creation-Date: 2025-03-05 03:11+0000\n"
 "PO-Revision-Date: 2011-06-16 13:43+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -18,52 +18,52 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: thumbnail.cpp:203
+#: thumbnail.cpp:197
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "Nie podano typu MIME."
 
-#: thumbnail.cpp:210
+#: thumbnail.cpp:204
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Nie podano rozmiaru albo podano nieprawidłowy."
 
-#: thumbnail.cpp:231
+#: thumbnail.cpp:225
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Nie można utworzyć miniaturki dla katalogu"
 
-#: thumbnail.cpp:240
+#: thumbnail.cpp:234
 #, kde-format
 msgid "No plugin specified."
 msgstr "Nie podano wtyczki."
 
-#: thumbnail.cpp:245
+#: thumbnail.cpp:239
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Nie można wczytać programu tworzącego miniaturki %1"
 
-#: thumbnail.cpp:253
+#: thumbnail.cpp:247
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Nie można utworzyć miniaturki dla %1"
 
-#: thumbnail.cpp:263
+#: thumbnail.cpp:257
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Nie powiodło się utworzenie miniaturki."
 
-#: thumbnail.cpp:283
+#: thumbnail.cpp:277
 #, kde-format
 msgid "Could not write image."
 msgstr "Nie można zapisać obrazka."
 
-#: thumbnail.cpp:311
+#: thumbnail.cpp:305
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Nie powiodło się podłączenie do segmentu pamięci dzielonej %1"
 
-#: thumbnail.cpp:315
+#: thumbnail.cpp:309
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Obrazek jest zbyt duży dla segmentu pamięci dzielonej"

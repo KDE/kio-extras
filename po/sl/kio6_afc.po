@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:37+0000\n"
+"POT-Creation-Date: 2025-03-05 03:11+0000\n"
 "PO-Revision-Date: 2023-06-08 05:53+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -78,28 +78,28 @@ msgstr "Neobdelana koda sbservices '%1'"
 msgid "Apple Devices"
 msgstr "Applove naprave"
 
-#: kio_afc.cpp:181 kio_afc.cpp:395
+#: kio_afc.cpp:181 kio_afc.cpp:396
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Aplikacije"
 
-#: kio_afc.cpp:599
+#: kio_afc.cpp:600
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Ni mogoče brati, ne da bi datoteko najprej odprl"
 
-#: kio_afc.cpp:619
+#: kio_afc.cpp:620
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Ni mogoče iskati, ne da bi datoteko najprej odprl"
 
-#: kio_afc.cpp:647
+#: kio_afc.cpp:648
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Ni mogoče pisati, ne da bi datoteko najprej odprl"
 
-#: kio_afc.cpp:799
+#: kio_afc.cpp:800
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Ni mogoče preimenovanje med napravami."

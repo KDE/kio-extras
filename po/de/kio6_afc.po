@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio6_afc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:37+0000\n"
+"POT-Creation-Date: 2025-03-05 03:11+0000\n"
 "PO-Revision-Date: 2023-12-21 17:07+0100\n"
 "Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
 "Language-Team: English <kde-i18n-de@kde.org>\n"
@@ -81,28 +81,28 @@ msgstr "Unbehandelter sbservices-Code: „%1“"
 msgid "Apple Devices"
 msgstr "Apple-Geräte"
 
-#: kio_afc.cpp:181 kio_afc.cpp:395
+#: kio_afc.cpp:181 kio_afc.cpp:396
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Anwendungen"
 
-#: kio_afc.cpp:599
+#: kio_afc.cpp:600
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Datei kann nicht gelesen werden ohne sie zu öffnen"
 
-#: kio_afc.cpp:619
+#: kio_afc.cpp:620
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Datei kann nicht durchsucht werden ohne sie zu öffnen"
 
-#: kio_afc.cpp:647
+#: kio_afc.cpp:648
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Datei kann nicht geschrieben werden ohne sie zu öffnen"
 
-#: kio_afc.cpp:799
+#: kio_afc.cpp:800
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Eine geräteübergreifende Umbenennung ist nicht möglich."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:37+0000\n"
+"POT-Creation-Date: 2025-03-05 03:11+0000\n"
 "PO-Revision-Date: 2022-12-28 18:42+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -74,28 +74,28 @@ msgstr "Código de erro do 'sbservices' não-reconhecido '%1'"
 msgid "Apple Devices"
 msgstr "Dispositivos da Apple"
 
-#: kio_afc.cpp:181 kio_afc.cpp:395
+#: kio_afc.cpp:181 kio_afc.cpp:396
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Aplicações"
 
-#: kio_afc.cpp:599
+#: kio_afc.cpp:600
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Não é possível ler sem aceder ao ficheiro primeiro"
 
-#: kio_afc.cpp:619
+#: kio_afc.cpp:620
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Não é possível posicionar-se sem aceder ao ficheiro primeiro"
 
-#: kio_afc.cpp:647
+#: kio_afc.cpp:648
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Não é possível gravar sem aceder ao ficheiro primeiro"
 
-#: kio_afc.cpp:799
+#: kio_afc.cpp:800
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Não é possível mudar o nome entre dispositivos."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:37+0000\n"
+"POT-Creation-Date: 2025-03-05 03:11+0000\n"
 "PO-Revision-Date: 2022-12-31 16:00+0000\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
@@ -77,28 +77,28 @@ msgstr "Unhandled sbservices code '%1'"
 msgid "Apple Devices"
 msgstr "Apple Devices"
 
-#: kio_afc.cpp:181 kio_afc.cpp:395
+#: kio_afc.cpp:181 kio_afc.cpp:396
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Apps"
 
-#: kio_afc.cpp:599
+#: kio_afc.cpp:600
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Cannot read without opening file first"
 
-#: kio_afc.cpp:619
+#: kio_afc.cpp:620
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Cannot seek without opening file first"
 
-#: kio_afc.cpp:647
+#: kio_afc.cpp:648
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Cannot write without opening file first"
 
-#: kio_afc.cpp:799
+#: kio_afc.cpp:800
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Cannot rename between devices."

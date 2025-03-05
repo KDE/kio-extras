@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-25 02:33+0000\n"
+"POT-Creation-Date: 2025-03-05 03:11+0000\n"
 "PO-Revision-Date: 2017-09-28 18:00+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -20,52 +20,52 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: thumbnail.cpp:203
+#: thumbnail.cpp:197
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "МИМЕ тип није задат."
 
-#: thumbnail.cpp:210
+#: thumbnail.cpp:204
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Величина није задата или није исправна."
 
-#: thumbnail.cpp:231
+#: thumbnail.cpp:225
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Не могу да направим сличицу за фасциклу"
 
-#: thumbnail.cpp:240
+#: thumbnail.cpp:234
 #, kde-format
 msgid "No plugin specified."
 msgstr "Прикључак није задат."
 
-#: thumbnail.cpp:245
+#: thumbnail.cpp:239
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Не могу да учитам „ThumbCreator“ %1"
 
-#: thumbnail.cpp:253
+#: thumbnail.cpp:247
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Не могу да направим сличицу за %1"
 
-#: thumbnail.cpp:263
+#: thumbnail.cpp:257
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Неуспех стварања сличице."
 
-#: thumbnail.cpp:283
+#: thumbnail.cpp:277
 #, kde-format
 msgid "Could not write image."
 msgstr "Не могу да упишем слику."
 
-#: thumbnail.cpp:311
+#: thumbnail.cpp:305
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Не могу да се прикачим на сегмент дељене меморије %1"
 
-#: thumbnail.cpp:315
+#: thumbnail.cpp:309
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Слика је превелика за сегмент дељене меморије"
