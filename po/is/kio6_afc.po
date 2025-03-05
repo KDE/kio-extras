@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:37+0000\n"
+"POT-Creation-Date: 2025-03-05 00:42+0000\n"
 "PO-Revision-Date: 2023-12-10 22:12+0000\n"
 "Last-Translator: Guðmundur Erlingsson <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -76,28 +76,28 @@ msgstr "Ómeðhöndluð sbservices-villuboð '%1'"
 msgid "Apple Devices"
 msgstr "Apple-tæki"
 
-#: kio_afc.cpp:181 kio_afc.cpp:395
+#: kio_afc.cpp:181 kio_afc.cpp:402
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Forrit"
 
-#: kio_afc.cpp:599
+#: kio_afc.cpp:606
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Get ekki lesið án þess að opna fyrst skrá"
 
-#: kio_afc.cpp:619
+#: kio_afc.cpp:626
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Get ekki leitað án þess að opna fyrst skrá"
 
-#: kio_afc.cpp:647
+#: kio_afc.cpp:654
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Get ekki skrifað án þess að opna fyrst skrá"
 
-#: kio_afc.cpp:799
+#: kio_afc.cpp:806
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Get ekki endurnefnt á milli tækja."

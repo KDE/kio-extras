@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:37+0000\n"
+"POT-Creation-Date: 2025-03-05 00:42+0000\n"
 "PO-Revision-Date: 2023-06-11 16:21+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -78,28 +78,28 @@ msgstr "Código de sbservices «%1» non manexado"
 msgid "Apple Devices"
 msgstr "Dispositivos de Apple"
 
-#: kio_afc.cpp:181 kio_afc.cpp:395
+#: kio_afc.cpp:181 kio_afc.cpp:402
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Aplicacións"
 
-#: kio_afc.cpp:599
+#: kio_afc.cpp:606
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Non é posíbel ler sen abrir primeiro o ficheiro."
 
-#: kio_afc.cpp:619
+#: kio_afc.cpp:626
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Non é posíbel mover o punto de lectura sen abrir primeiro o ficheiro."
 
-#: kio_afc.cpp:647
+#: kio_afc.cpp:654
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Non é posíbel escribir sen abrir primeiro o ficheiro."
 
-#: kio_afc.cpp:799
+#: kio_afc.cpp:806
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Non é posíbel renomear entre dispositivos."

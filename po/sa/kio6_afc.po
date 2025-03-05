@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-02-21 00:37+0000\n"
+"POT-Creation-Date: 2025-03-05 00:42+0000\n"
 "PO-Revision-Date: 2024-12-13 19:09+0530\n"
 "Last-Translator: Kali <EMAIL@ADDRESS>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -76,28 +76,28 @@ msgstr "अनियंत्रितः sbservices कोडः '%1'."
 msgid "Apple Devices"
 msgstr "एप्पल् डिवाइसेस्"
 
-#: kio_afc.cpp:181 kio_afc.cpp:395
+#: kio_afc.cpp:181 kio_afc.cpp:402
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "एप्स"
 
-#: kio_afc.cpp:599
+#: kio_afc.cpp:606
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "प्रथमं सञ्चिकां न उद्घाट्य पठितुं न शक्यते"
 
-#: kio_afc.cpp:619
+#: kio_afc.cpp:626
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "प्रथमं सञ्चिकां न उद्घाट्य अन्वेष्टुं न शक्यते"
 
-#: kio_afc.cpp:647
+#: kio_afc.cpp:654
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "प्रथमं सञ्चिकां न उद्घाट्य लिखितुं न शक्यते"
 
-#: kio_afc.cpp:799
+#: kio_afc.cpp:806
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "उपकरणानां मध्ये नामकरणं कर्तुं न शक्यते ।"
