@@ -23,6 +23,7 @@
 #include <KConfigGroup>
 #include <KFormat>
 #include <KIO/SpecialJob>
+#include <KLocalization>
 #include <KLocalizedString>
 #include <KPluginFactory>
 #include <kio/simplejob.h>
@@ -138,7 +139,6 @@ void TrashConfigModule::trashChanged(int value)
         mPercent->setValue(10.0);
         mLimitReachedAction->setCurrentIndex(0);
     }
-    mDays->setSuffix(i18n(" days")); // missing in Qt: plural form handling
 
     percentChanged(mPercent->value());
 }
@@ -256,7 +256,7 @@ void TrashConfigModule::setupGui()
 
     mDays->setRange(1, 365);
     mDays->setSingleStep(1);
-    mDays->setSuffix(i18np(" day", " days", mDays->value()));
+    KLocalization::setupSpinBoxFormatString(mDays, ki18ncp("@label:spinbox", "%v day", "%v days"));
     mDays->setWhatsThis(xi18nc("@info:whatsthis",
                                "<para>Set the number of days that files can remain in the trash. "
                                "Any files older than this will be automatically deleted.</para>"));
@@ -276,7 +276,7 @@ void TrashConfigModule::setupGui()
     mPercent->setRange(0.01, 100);
     mPercent->setDecimals(2);
     mPercent->setSingleStep(1);
-    mPercent->setSuffix(QStringLiteral(" %"));
+    KLocalization::setupSpinBoxFormatString(mPercent, ki18nc("@label:spinbox Percent value", "%v%"));
     mPercent->setWhatsThis(xi18nc("@info:whatsthis", "<para>This is the maximum percent of disk space that will be used for the trash.</para>"));
     maximumSizeLayout->addWidget(mPercent);
 

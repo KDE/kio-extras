@@ -6,13 +6,14 @@
 #include <QCheckBox>
 #include <QFormLayout>
 #include <QGroupBox>
+#include <QSpinBox>
 
 // KDE
 #include <KConfig>
 #include <KConfigGroup>
+#include <KLocalization>
 #include <KLocalizedString>
 #include <KPluginFactory>
-#include <KPluralHandlingSpinBox>
 #include <KProtocolManager>
 #include <kio/ioworker_defaults.h>
 
@@ -51,8 +52,8 @@ KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data)
     partialLayout->setFormAlignment(Qt::AlignHCenter);
     partialLayout->setContentsMargins(0, 0, 0, 0);
 
-    sb_globalMinimumKeepSize = new KPluralHandlingSpinBox(widget());
-    sb_globalMinimumKeepSize->setSuffix(ki18np(" byte", " bytes"));
+    sb_globalMinimumKeepSize = new QSpinBox(widget());
+    KLocalization::setupSpinBoxFormatString(sb_globalMinimumKeepSize, ki18ncp("@label:spinbox", "%v byte", "%v bytes"));
     connect(sb_globalMinimumKeepSize, qOverload<int>(&QSpinBox::valueChanged), this, &KIOPreferences::configChanged);
     partialLayout->addRow(i18nc("@label:spinbox", "If cancelled, automatically delete partially uploaded files smaller than:"), sb_globalMinimumKeepSize);
 

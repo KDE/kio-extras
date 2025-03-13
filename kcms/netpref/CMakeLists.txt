@@ -11,7 +11,6 @@ target_link_libraries(kcm_netpref
     KF6::ConfigCore
     KF6::KCMUtils
     KF6::KIOCore
-    KF6::TextWidgets # KPluralHandlingSpinBox
   PRIVATE
     KF6::I18n
     KF6::CoreAddons

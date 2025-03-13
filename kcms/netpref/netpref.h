@@ -3,10 +3,9 @@
 
 #include <KCModule>
 
-class QGroupBox;
 class QCheckBox;
-
-class KPluralHandlingSpinBox;
+class QGroupBox;
+class QSpinBox;
 
 class KIOPreferences : public KCModule
 {
@@ -27,11 +26,11 @@ protected Q_SLOTS:
     }
 
 private:
-    QGroupBox *gb_Ftp;
     QCheckBox *cb_globalMarkPartial;
-    KPluralHandlingSpinBox *sb_globalMinimumKeepSize;
     QCheckBox *cb_ftpEnablePasv;
     QCheckBox *cb_ftpMarkPartial;
+    QGroupBox *gb_Ftp;
+    QSpinBox  *sb_globalMinimumKeepSize;
 };
 
 #endif // NETPREF_H
