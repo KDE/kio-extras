@@ -95,11 +95,13 @@ static bool contentContainsPattern(const QUrl &url, const QRegularExpression &re
     return false;
 }
 
+//  Search for a term in the filename and then, if searchContents set, in the body of the file
 static bool match(const KIO::UDSEntry &entry, const QRegularExpression &regex, bool searchContents)
 {
-    if (!searchContents) {
-        return regex.match(entry.stringValue(KIO::UDSEntry::UDS_NAME)).hasMatch();
-    } else {
+    if (regex.match(entry.stringValue(KIO::UDSEntry::UDS_NAME)).hasMatch()) {
+        return true;
+    }
+    if (searchContents) {
         const QUrl entryUrl(entry.stringValue(KIO::UDSEntry::UDS_URL));
         QMimeDatabase mdb;
         QMimeType mimetype = mdb.mimeTypeForUrl(entryUrl);

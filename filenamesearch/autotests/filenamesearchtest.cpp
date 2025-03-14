@@ -193,7 +193,6 @@ void FilenameSearchTest::filenameContent()
     const QString path = QFINDTESTDATA("data/filename-content");
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
 
-    QEXPECT_FAIL("Filename and Content Match", "Should match within filename and content, Bug 463830", Continue);
     QCOMPARE(results, expectedFiles);
 }
 
