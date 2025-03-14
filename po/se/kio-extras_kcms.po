@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-03-14 00:42+0000\n"
 "PO-Revision-Date: 2012-06-03 01:00+0200\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
@@ -63,17 +63,17 @@ msgid ""
 "uploaded it is renamed to its real name."
 msgstr ""
 
-#: netpref/netpref.cpp:29
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Global Options"
 msgstr "Oppalaš molssaeavttut"
 
-#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
+#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Merke beal&lemuddui sáddejuvvon fiillaid"
 
-#: netpref/netpref.cpp:36
+#: netpref/netpref.cpp:37
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -82,38 +82,39 @@ msgid ""
 "complete.</p>"
 msgstr ""
 
-#: netpref/netpref.cpp:55
+#: netpref/netpref.cpp:56
 #, kde-format
-msgid " byte"
-msgid_plural " bytes"
+msgctxt "@label:spinbox"
+msgid "%v byte"
+msgid_plural "%v bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:57
+#: netpref/netpref.cpp:58
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, fuzzy, kde-format
 msgid "FTP Options"
 msgstr "FTP molssaeavttut"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Bija passiiva &doibmanvuogi (PASV) doaibmat"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr ""
 
-#: netpref/netpref.cpp:75
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -517,11 +518,6 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr ""
 
-#: trash/kcmtrash.cpp:141
-#, kde-format
-msgid " days"
-msgstr " beaivvit"
-
 #: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
@@ -555,11 +551,13 @@ msgid ""
 msgstr ""
 
 #: trash/kcmtrash.cpp:259
-#, kde-format
-msgid " day"
-msgid_plural " days"
-msgstr[0] ""
-msgstr[1] ""
+#, fuzzy, kde-format
+#| msgid " days"
+msgctxt "@label:spinbox"
+msgid "%v day"
+msgid_plural "%v days"
+msgstr[0] " beaivvit"
+msgstr[1] " beaivvit"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -591,6 +589,12 @@ msgstr ""
 #, kde-format
 msgid "Size:"
 msgstr "Sturrodat:"
+
+#: trash/kcmtrash.cpp:279
+#, kde-format
+msgctxt "@label:spinbox Percent value"
+msgid "%v%"
+msgstr ""
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format

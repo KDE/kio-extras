@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-03-14 00:42+0000\n"
 "PO-Revision-Date: 2024-12-05 22:11+0100\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -72,17 +72,17 @@ msgstr ""
 "качи напълно, той се преименува до истинското име (т.е. премахва се "
 "разширението \".part\")."
 
-#: netpref/netpref.cpp:29
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Global Options"
 msgstr "Глобални опции"
 
-#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
+#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Частично &маркиране при качване на файлове"
 
-#: netpref/netpref.cpp:36
+#: netpref/netpref.cpp:37
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -95,14 +95,17 @@ msgstr ""
 "part \"разширение. Това разширение ще бъде премахнато, след като "
 "прехвърлянето е завършен.</p>"
 
-#: netpref/netpref.cpp:55
-#, kde-format
-msgid " byte"
-msgid_plural " bytes"
+#: netpref/netpref.cpp:56
+#, fuzzy, kde-format
+#| msgid " byte"
+#| msgid_plural " bytes"
+msgctxt "@label:spinbox"
+msgid "%v byte"
+msgid_plural "%v bytes"
 msgstr[0] " байт"
 msgstr[1] " байта"
 
-#: netpref/netpref.cpp:57
+#: netpref/netpref.cpp:58
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -111,17 +114,17 @@ msgstr ""
 "Ако бъде отменено, автоматично изтриване на частично качени файлове, по-"
 "малки от:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "FTP Options"
 msgstr "Настройки на FTP"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "&Включване на пасивен режим (PASV)"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -130,7 +133,7 @@ msgstr ""
 "Включване на пасивен режим на работа на FTP. Това е необходимо, ако ползвате "
 "протокола FTP зад защитна стена (firewall)."
 
-#: netpref/netpref.cpp:75
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -633,11 +636,6 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "Игнориране за постоянно"
 
-#: trash/kcmtrash.cpp:141
-#, kde-format
-msgid " days"
-msgstr " дни"
-
 #: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
@@ -681,9 +679,12 @@ msgstr ""
 "определен период от време</para>"
 
 #: trash/kcmtrash.cpp:259
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgctxt "@label:spinbox"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " ден"
 msgstr[1] " дни"
 
@@ -722,6 +723,12 @@ msgstr ""
 #, kde-format
 msgid "Size:"
 msgstr "Големина:"
+
+#: trash/kcmtrash.cpp:279
+#, kde-format
+msgctxt "@label:spinbox Percent value"
+msgid "%v%"
+msgstr ""
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -1151,6 +1158,9 @@ msgstr "&Символно кодиране:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Вмъкване на заместител на заявка"
+
+#~ msgid " days"
+#~ msgstr " дни"
 
 #~ msgid "Timeout Values"
 #~ msgstr "Просрочка на времето"

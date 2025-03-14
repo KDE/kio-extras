@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-03-14 00:42+0000\n"
 "PO-Revision-Date: 2013-09-08 07:04+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -64,18 +64,18 @@ msgid ""
 "uploaded it is renamed to its real name."
 msgstr ""
 
-#: netpref/netpref.cpp:29
+#: netpref/netpref.cpp:30
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "تاللانما"
 
-#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
+#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "قىسمەن يۈكلەنگەن ھۆججەتلەرگە بەلگە قوي(&P)"
 
-#: netpref/netpref.cpp:36
+#: netpref/netpref.cpp:37
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -92,30 +92,31 @@ msgstr ""
 "يوللاش تاماملانغاندىن كېيىن بۇنداق كېڭەيتىلمە نامدىكى ھۆججەتلەر ئۆچۈرۈلىدۇ.</"
 "p>"
 
-#: netpref/netpref.cpp:55
+#: netpref/netpref.cpp:56
 #, kde-format
-msgid " byte"
-msgid_plural " bytes"
+msgctxt "@label:spinbox"
+msgid "%v byte"
+msgid_plural "%v bytes"
 msgstr[0] ""
 
-#: netpref/netpref.cpp:57
+#: netpref/netpref.cpp:58
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "FTP Options"
 msgstr "ف ت پ(FTP) تاللانمىلىرى"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "پاسسىپ ھالەتنى(PASV) ئىناۋەتلىك قىل(&M)"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -124,7 +125,7 @@ msgstr ""
 "FTP نىڭ «پاسسىپ» ھالىتىنى ئىناۋەتلىك قىلىدۇ. FTP نى ئوتتام(firewalls) نىڭ "
 "كەينىدە ئىشلىتىشكە ئىجازەت بېرىشتە ئىشلىتىلىدۇ."
 
-#: netpref/netpref.cpp:75
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -556,13 +557,6 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "مەڭگۈ(&F)"
 
-#: trash/kcmtrash.cpp:141
-#, fuzzy, kde-format
-#| msgid "1 day %2"
-#| msgid_plural "%1 days %2"
-msgid " days"
-msgstr "%1 كۈن %2"
-
 #: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
@@ -600,8 +594,9 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "1 day %2"
 #| msgid_plural "%1 days %2"
-msgid " day"
-msgid_plural " days"
+msgctxt "@label:spinbox"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] "%1 كۈن %2"
 
 #: trash/kcmtrash.cpp:261
@@ -634,6 +629,12 @@ msgstr ""
 #, kde-format
 msgid "Size:"
 msgstr "چوڭلۇقى:"
+
+#: trash/kcmtrash.cpp:279
+#, kde-format
+msgctxt "@label:spinbox Percent value"
+msgid "%v%"
+msgstr ""
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -1021,6 +1022,12 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "ئارىلاشما ھالەت"
+
+#, fuzzy
+#~| msgid "1 day %2"
+#~| msgid_plural "%1 days %2"
+#~ msgid " days"
+#~ msgstr "%1 كۈن %2"
 
 #~ msgid "Timeout Values"
 #~ msgstr "مۆھلەت قىممىتى"

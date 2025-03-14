@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-03-14 00:42+0000\n"
 "PO-Revision-Date: 2016-12-09 15:05+0200\n"
 "Last-Translator: Dimitris Kardarakos <dimkard@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -79,17 +79,17 @@ msgstr ""
 "Όταν ένα αρχείο είναι απεσταλμένο μερικώς η επέκτασή του είναι \".part\". Η "
 "επέκταση αυτή θα αφαιρεθεί όταν η μεταφορά του αρχείου ολοκληρωθεί."
 
-#: netpref/netpref.cpp:29
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Global Options"
 msgstr "Καθολικές επιλογές"
 
-#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
+#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Σήμανση &μερικώς απεσταλμένων αρχείων"
 
-#: netpref/netpref.cpp:36
+#: netpref/netpref.cpp:37
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -102,31 +102,32 @@ msgstr ""
 "αρχεία θα έχουν επέκταση \".part\". Η επέκταση αυτή θα αφαιρεθεί όταν η "
 "μεταφορά του αρχείου ολοκληρωθεί.</p>"
 
-#: netpref/netpref.cpp:55
+#: netpref/netpref.cpp:56
 #, kde-format
-msgid " byte"
-msgid_plural " bytes"
+msgctxt "@label:spinbox"
+msgid "%v byte"
+msgid_plural "%v bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: netpref/netpref.cpp:57
+#: netpref/netpref.cpp:58
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "FTP Options"
 msgstr "Επιλογές FTP"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Ενεργοποίηση παθητικής &λειτουργίας (PASV)"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -135,7 +136,7 @@ msgstr ""
 "Ενεργοποίηση της παθητικής λειτουργίας FTP. Αυτό θα επιτρέψει στο FTP να "
 "λειτουργήσει πίσω από τείχη προστασίας."
 
-#: netpref/netpref.cpp:75
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -666,11 +667,6 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "&Για πάντα"
 
-#: trash/kcmtrash.cpp:141
-#, kde-format
-msgid " days"
-msgstr " ημέρες"
-
 #: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
@@ -719,9 +715,12 @@ msgstr ""
 "μετά από συγκεκριμένο χρονικό διάστημα</para>"
 
 #: trash/kcmtrash.cpp:259
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgctxt "@label:spinbox"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " ημέρα"
 msgstr[1] " ημέρες"
 
@@ -760,6 +759,12 @@ msgstr ""
 #, kde-format
 msgid "Size:"
 msgstr "Μέγεθος:"
+
+#: trash/kcmtrash.cpp:279
+#, kde-format
+msgctxt "@label:spinbox Percent value"
+msgid "%v%"
+msgstr ""
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -1251,6 +1256,9 @@ msgstr "&Σύνολο χαρακτήρων:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Εισαγωγή αντικαταστάτη αναζήτησης"
+
+#~ msgid " days"
+#~ msgstr " ημέρες"
 
 #~ msgid "Timeout Values"
 #~ msgstr "Τιμές χρονικών ορίων"

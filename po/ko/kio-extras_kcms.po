@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-03-14 00:42+0000\n"
 "PO-Revision-Date: 2024-12-24 16:58+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -68,17 +68,17 @@ msgstr ""
 "업로드 중인 파일의 확장자를 \".part\"로 바꿉니다. 업로드가 완료되면 다시 원"
 "래 이름으로 바꿉니다."
 
-#: netpref/netpref.cpp:29
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Global Options"
 msgstr "전역 설정"
 
-#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
+#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "부분적으로 업로드된 파일 표시(&P)"
 
-#: netpref/netpref.cpp:36
+#: netpref/netpref.cpp:37
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -90,30 +90,33 @@ msgstr ""
 "을 사용하면 업로드가 완료되지 않은 파일에 \".part\"라는 확장자가 붙습니다. "
 "이 확장자는 전송이 완료되었을 때 사라집니다.</p>"
 
-#: netpref/netpref.cpp:55
-#, kde-format
-msgid " byte"
-msgid_plural " bytes"
+#: netpref/netpref.cpp:56
+#, fuzzy, kde-format
+#| msgid " byte"
+#| msgid_plural " bytes"
+msgctxt "@label:spinbox"
+msgid "%v byte"
+msgid_plural "%v bytes"
 msgstr[0] "바이트"
 
-#: netpref/netpref.cpp:57
+#: netpref/netpref.cpp:58
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr "취소되었을 때 다음보다 작은 부분적으로 업로드된 파일 삭제:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP 옵션"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passive 모드 사용(PASV)(&M)"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -122,7 +125,7 @@ msgstr ""
 "FTP의 \"passive\" 모드를 사용합니다. FTP가 방화벽 뒤에서 작동하도록 하려면 이"
 "것을 사용해야 합니다."
 
-#: netpref/netpref.cpp:75
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -613,11 +616,6 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "영원히 무시"
 
-#: trash/kcmtrash.cpp:141
-#, kde-format
-msgid " days"
-msgstr " 일"
-
 #: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
@@ -660,9 +658,12 @@ msgstr ""
 "이 자동으로 삭제됩니다.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgctxt "@label:spinbox"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " 일"
 
 #: trash/kcmtrash.cpp:261
@@ -699,6 +700,12 @@ msgstr ""
 #, kde-format
 msgid "Size:"
 msgstr "크기:"
+
+#: trash/kcmtrash.cpp:279
+#, kde-format
+msgctxt "@label:spinbox Percent value"
+msgid "%v%"
+msgstr ""
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -1105,6 +1112,9 @@ msgstr "문자 인코딩(&C):"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "쿼리 자리 비움자 삽입"
+
+#~ msgid " days"
+#~ msgstr " 일"
 
 #~ msgid "Timeout Values"
 #~ msgstr "제한 시간"

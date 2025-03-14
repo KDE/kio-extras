@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-03-14 00:42+0000\n"
 "PO-Revision-Date: 2023-02-20 10:53+0100\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -70,17 +70,17 @@ msgstr ""
 "Khi một tệp đang được tải lên, phần mở rộng của nó là \".part\". Khi đã tải "
 "lên toàn bộ, nó được đổi tên thành tên thật."
 
-#: netpref/netpref.cpp:29
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Global Options"
 msgstr "Lựa chọn chung"
 
-#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
+#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Đánh dấu các tệp được tải lên một &phần"
 
-#: netpref/netpref.cpp:36
+#: netpref/netpref.cpp:37
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -93,30 +93,33 @@ msgstr ""
 "một phần mở rộng \".part\". Phần mở rộng này sẽ bị xoá khi việc truyền hoàn "
 "tất.</p>"
 
-#: netpref/netpref.cpp:55
-#, kde-format
-msgid " byte"
-msgid_plural " bytes"
+#: netpref/netpref.cpp:56
+#, fuzzy, kde-format
+#| msgid " byte"
+#| msgid_plural " bytes"
+msgctxt "@label:spinbox"
+msgid "%v byte"
+msgid_plural "%v bytes"
 msgstr[0] " byte"
 
-#: netpref/netpref.cpp:57
+#: netpref/netpref.cpp:58
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr "Nếu bị huỷ, tự động xoá các tệp được tải lên một phần mà nhỏ hơn:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "FTP Options"
 msgstr "Các lựa chọn FTP"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Bật chế độ thụ độn&g (PASV)"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -125,7 +128,7 @@ msgstr ""
 "Bật chế độ \"thụ động\" của FTP. Việc này là cần thiết để cho phép FTP hoạt "
 "động đằng sau tường lửa."
 
-#: netpref/netpref.cpp:75
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -632,11 +635,6 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "&Mãi mãi"
 
-#: trash/kcmtrash.cpp:141
-#, kde-format
-msgid " days"
-msgstr " ngày"
-
 #: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
@@ -680,9 +678,12 @@ msgstr ""
 "thời gian nhất định</para>"
 
 #: trash/kcmtrash.cpp:259
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgctxt "@label:spinbox"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " ngày"
 
 #: trash/kcmtrash.cpp:261
@@ -719,6 +720,12 @@ msgstr ""
 #, kde-format
 msgid "Size:"
 msgstr "Kích thước:"
+
+#: trash/kcmtrash.cpp:279
+#, kde-format
+msgctxt "@label:spinbox Percent value"
+msgid "%v%"
+msgstr ""
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -1191,6 +1198,9 @@ msgstr "&Bộ mã tự:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Chèn phần giữ chỗ truy vấn"
+
+#~ msgid " days"
+#~ msgstr " ngày"
 
 #~ msgid "Timeout Values"
 #~ msgstr "Các giá trị thời hạn"

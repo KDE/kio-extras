@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
-"PO-Revision-Date: 2025-03-06 22:43+0300\n"
+"POT-Creation-Date: 2025-03-14 00:42+0000\n"
+"PO-Revision-Date: 2025-03-13 15:56+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.03.70\n"
+"X-Generator: Lokalize 25.07.70\n"
 
 #: ksaveioconfig.cpp:135
 #, kde-format
@@ -81,17 +81,17 @@ msgstr ""
 "Bir dosya karşıya yüklenirken uzantısı “.part” olur. Dosya tümüyle "
 "gönderildikten sonra gerçek adını alır."
 
-#: netpref/netpref.cpp:29
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Global Options"
 msgstr "Genel Seçenekler"
 
-#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
+#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Bir kısmı &karşıya yüklenmiş dosyaları imle"
 
-#: netpref/netpref.cpp:36
+#: netpref/netpref.cpp:37
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -103,14 +103,17 @@ msgstr ""
 "</p><p>Bu seçenek etkinleştirildiğinde, kısmen karşıya yüklenen dosyaların “."
 "part” uzantısı olur. Bu uzantı, aktarım tamamlandıktan sonra kaldırılır.</p>"
 
-#: netpref/netpref.cpp:55
-#, kde-format
-msgid " byte"
-msgid_plural " bytes"
+#: netpref/netpref.cpp:56
+#, fuzzy, kde-format
+#| msgid " byte"
+#| msgid_plural " bytes"
+msgctxt "@label:spinbox"
+msgid "%v byte"
+msgid_plural "%v bytes"
 msgstr[0] " bayt"
 msgstr[1] " bayt"
 
-#: netpref/netpref.cpp:57
+#: netpref/netpref.cpp:58
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -118,17 +121,17 @@ msgid ""
 msgstr ""
 "İptalse yüklenmiş ve şundan daha küçük olan dosyaları kendiliğinden sil:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP Seçenekleri"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Pasif &kipi etkinleştir (PASV)"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -137,7 +140,7 @@ msgstr ""
 "FTP’nin “pasif” kipini etkinleştirir. FTP’nin güvenlik duvarı arkasından "
 "çalışmasına izin vermek için gereklidir."
 
-#: netpref/netpref.cpp:75
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -520,7 +523,7 @@ msgid ""
 "to attempt an automatic discovery of this variable.</p></qt>"
 msgstr ""
 "<qt>Vekil sunucusunun kullanılmaması gereken siteleri depolamak için "
-"kullanılan çevre değişkeninin adını girmek için örneğin: <b>NO_PROXY</b> "
+"kullanılan çevre değişkeninin adını girmek için; örneğin, <b>NO_PROXY</b> "
 "girin. <p>Alternatif olarak, bu değişkenin kendiliğinden keşfini denemek "
 "için <b>“Kendiliğinden Algıla”</b> düğmesine tıklayabilirsiniz.</p></qt>"
 
@@ -640,11 +643,6 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "Sonsuza Dek Yok Say"
 
-#: trash/kcmtrash.cpp:141
-#, kde-format
-msgid " days"
-msgstr " gün"
-
 #: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
@@ -689,9 +687,12 @@ msgstr ""
 "bırakın.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgctxt "@label:spinbox"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " gün"
 msgstr[1] " gün"
 
@@ -730,6 +731,12 @@ msgstr ""
 #, kde-format
 msgid "Size:"
 msgstr "Boyut:"
+
+#: trash/kcmtrash.cpp:279
+#, kde-format
+msgctxt "@label:spinbox Percent value"
+msgid "%v%"
+msgstr ""
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -1149,6 +1156,9 @@ msgstr "&Karakter kümesi:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sorgu yer tutucusu ekle"
+
+#~ msgid " days"
+#~ msgstr " gün"
 
 #~ msgid "Timeout Values"
 #~ msgstr "Zaman Aşımı Değerleri"

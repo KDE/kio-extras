@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-03-14 00:42+0000\n"
 "PO-Revision-Date: 2024-12-03 16:52+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -68,17 +68,17 @@ msgstr ""
 "Durante que le file es cargante su extension es \".part\". Quando il es "
 "completemente cargate il es renominate a su nomine real."
 
-#: netpref/netpref.cpp:29
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Global Options"
 msgstr "Optiones global"
 
-#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
+#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Marca files &partialmente cargate"
 
-#: netpref/netpref.cpp:36
+#: netpref/netpref.cpp:37
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -91,14 +91,17 @@ msgstr ""
 "cargate habera un  extension \".part\" . Iste extension essera removite un "
 "vice que le transferentia es completate.</p>"
 
-#: netpref/netpref.cpp:55
-#, kde-format
-msgid " byte"
-msgid_plural " bytes"
+#: netpref/netpref.cpp:56
+#, fuzzy, kde-format
+#| msgid " byte"
+#| msgid_plural " bytes"
+msgctxt "@label:spinbox"
+msgid "%v byte"
+msgid_plural "%v bytes"
 msgstr[0] " Byte"
 msgstr[1] " bytes"
 
-#: netpref/netpref.cpp:57
+#: netpref/netpref.cpp:58
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -107,17 +110,17 @@ msgstr ""
 "Si cancellate, dele automaticamente files incargate partialmente plus parve "
 "que:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "FTP Options"
 msgstr "Optiones de FTP"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Habilita &modo Passive (PASV)"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -126,7 +129,7 @@ msgstr ""
 "Habilita modo de FTP's \"passive\". isto es requirite pro permitter FTP de "
 "travaliar ex retro de firewalls (muros talia foco)."
 
-#: netpref/netpref.cpp:75
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -635,11 +638,6 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "Ignora per sempre"
 
-#: trash/kcmtrash.cpp:141
-#, kde-format
-msgid " days"
-msgstr "dies"
-
 #: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
@@ -684,9 +682,12 @@ msgstr ""
 "un certe periodo de tempore</para>"
 
 #: trash/kcmtrash.cpp:259
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgctxt "@label:spinbox"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " die"
 msgstr[1] "dies"
 
@@ -724,6 +725,12 @@ msgstr ""
 #, kde-format
 msgid "Size:"
 msgstr "Dimension:"
+
+#: trash/kcmtrash.cpp:279
+#, kde-format
+msgctxt "@label:spinbox Percent value"
+msgid "%v%"
+msgstr ""
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -1154,6 +1161,9 @@ msgstr "Insimul de %Character:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserta substituto de demanda (query)"
+
+#~ msgid " days"
+#~ msgstr "dies"
 
 #~ msgid "Timeout Values"
 #~ msgstr "Valores de tempore expirate"

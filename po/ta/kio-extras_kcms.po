@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-19 00:41+0000\n"
+"POT-Creation-Date: 2025-03-14 00:42+0000\n"
 "PO-Revision-Date: 2024-12-08 13:22+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -75,17 +75,17 @@ msgstr ""
 "ஒரு கோப்பு பதிவேற்றப்படும்போது அதன் வகைப்பெயர் \"*.part\"-ஆக இருக்கும். முழுதாக "
 "பதிவேற்றிய பின் அதற்கு சரியான பெயர் இடப்படும்."
 
-#: netpref/netpref.cpp:29
+#: netpref/netpref.cpp:30
 #, kde-format
 msgid "Global Options"
 msgstr "பொதுவான விருப்பத்தேர்வுகள்"
 
-#: netpref/netpref.cpp:34 netpref/netpref.cpp:73
+#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&முழுதாக பதிவேற்றப்படாத கோப்புகளை குறி"
 
-#: netpref/netpref.cpp:36
+#: netpref/netpref.cpp:37
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -97,14 +97,17 @@ msgstr ""
 "p><p> இந்த விருப்பத்தை இயக்கினால், முழுதாக பதிவேற்றப்படாத கோப்புகளுக்கு \".part\" என்ற "
 "வகைப்பெயர் இடப்படும். இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
 
-#: netpref/netpref.cpp:55
-#, kde-format
-msgid " byte"
-msgid_plural " bytes"
+#: netpref/netpref.cpp:56
+#, fuzzy, kde-format
+#| msgid " byte"
+#| msgid_plural " bytes"
+msgctxt "@label:spinbox"
+msgid "%v byte"
+msgid_plural "%v bytes"
 msgstr[0] " பைட்டு"
 msgstr[1] " பைட்டுகள்"
 
-#: netpref/netpref.cpp:57
+#: netpref/netpref.cpp:58
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -113,17 +116,17 @@ msgstr ""
 "கைவிடப்பட்டால், இதைவிட சிறிய கோப்புகள் முழுதாக பதிவேற்றப் படவில்லையெனில் தானாக "
 "அகற்றவும்:"
 
-#: netpref/netpref.cpp:59
+#: netpref/netpref.cpp:60
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP விருப்பங்கள்"
 
-#: netpref/netpref.cpp:65
+#: netpref/netpref.cpp:66
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passive &பயன்முறையை (PASV) இயக்கு"
 
-#: netpref/netpref.cpp:67
+#: netpref/netpref.cpp:68
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -132,7 +135,7 @@ msgstr ""
 "FTP-இன் 'passive' பயன்முறையை இயக்கும். தீயரண்களுக்கு பின்னாலிருந்து FTP வேலை செய்ய இது "
 "தேவை."
 
-#: netpref/netpref.cpp:75
+#: netpref/netpref.cpp:76
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -627,11 +630,6 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "மறுபடியும் எச்சரிக்காதே"
 
-#: trash/kcmtrash.cpp:141
-#, kde-format
-msgid " days"
-msgstr " நாட்கள்"
-
 #: trash/kcmtrash.cpp:206
 #, kde-format
 msgid ""
@@ -674,9 +672,12 @@ msgstr ""
 "குறிக்காமல் விடங்கள்.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, kde-format
-msgid " day"
-msgid_plural " days"
+#, fuzzy, kde-format
+#| msgid " day"
+#| msgid_plural " days"
+msgctxt "@label:spinbox"
+msgid "%v day"
+msgid_plural "%v days"
 msgstr[0] " நாள்"
 msgstr[1] " நாட்கள்"
 
@@ -714,6 +715,12 @@ msgstr ""
 #, kde-format
 msgid "Size:"
 msgstr "அளவு:"
+
+#: trash/kcmtrash.cpp:279
+#, kde-format
+msgctxt "@label:spinbox Percent value"
+msgid "%v%"
+msgstr ""
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -1130,6 +1137,9 @@ msgstr "&உருத்தொகுதி:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "கேள்விக்கான கொள்ளிடத்தை உள்ளிடு"
+
+#~ msgid " days"
+#~ msgstr " நாட்கள்"
 
 #~ msgid "Timeout Values"
 #~ msgstr "காலாவதி இடைவெளிகள்"
