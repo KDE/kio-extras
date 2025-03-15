@@ -9,6 +9,7 @@
 
 #include <KIO/WorkerBase>
 
+#include <QFlags>
 #include <QUrl>
 
 #include <queue>
@@ -42,13 +43,22 @@ public:
     KIO::WorkerResult listDir(const QUrl &url) override;
 
 private:
+    //  Define the various search flags for internal use.
+    enum SearchOption {
+        SearchFileName = 0x1,
+        SearchContent = 0x2,
+        IncludeHiddenFiles = 0x10,
+        IncludeHiddenFolders = 0x20,
+        IncludeHidden = 0x30, // IncludeHiddenFiles | IncludeHiddenFolders
+        CaseSensitive = 0x40, // For future use
+    };
+
+    Q_DECLARE_FLAGS(SearchOptions, SearchOption)
+
     void listRootEntry();
-    void searchDir(const QUrl &dirUrl,
-                   const QRegularExpression &regex,
-                   bool searchContents,
-                   bool includeHidden,
-                   std::set<QString> &iteratedDirs,
-                   std::queue<QUrl> &pendingDirs);
+    void
+    searchDir(const QUrl &dirUrl, const QRegularExpression &regex, const SearchOptions options, std::set<QString> &iteratedDirs, std::queue<QUrl> &pendingDirs);
+    bool match(const KIO::UDSEntry &entry, const QRegularExpression &regex, const SearchOptions options);
 
 #if !defined(Q_OS_WIN32)
 

@@ -95,13 +95,14 @@ static bool contentContainsPattern(const QUrl &url, const QRegularExpression &re
     return false;
 }
 
-//  Search for a term in the filename and then, if searchContents set, in the body of the file
-static bool match(const KIO::UDSEntry &entry, const QRegularExpression &regex, bool searchContents)
+//  Search for a term in the filename and then, if SearchContent set, in the body of the file
+
+bool FileNameSearchProtocol::match(const KIO::UDSEntry &entry, const QRegularExpression &regex, const SearchOptions options)
 {
-    if (regex.match(entry.stringValue(KIO::UDSEntry::UDS_NAME)).hasMatch()) {
+    if (options.testFlag(SearchFileName) && regex.match(entry.stringValue(KIO::UDSEntry::UDS_NAME)).hasMatch()) {
         return true;
     }
-    if (searchContents) {
+    if (options.testFlags(SearchContent)) {
         const QUrl entryUrl(entry.stringValue(KIO::UDSEntry::UDS_URL));
         QMimeDatabase mdb;
         QMimeType mimetype = mdb.mimeTypeForUrl(entryUrl);
@@ -194,8 +195,16 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
         return KIO::WorkerResult::pass();
     }
 
-    const bool isContent = urlQuery.queryItemValue(QStringLiteral("checkContent")) == QLatin1String("yes");
-    const bool includeHidden = urlQuery.queryItemValue(QStringLiteral("includeHidden")) == QLatin1String("yes");
+    // "checkContent=yes" should also search for terms in the filename.
+    SearchOptions options(SearchFileName);
+    if (urlQuery.queryItemValue(QStringLiteral("checkContent")) == QLatin1String("yes")) {
+        options.setFlag(SearchContent);
+    }
+
+    // "includeHidden=yes" should search for hidden files and within hidden folders
+    if (urlQuery.queryItemValue(QStringLiteral("includeHidden")) == QLatin1String("yes")) {
+        options.setFlag(IncludeHidden);
+    }
 
     // These are placeholders, the longer term aim is something a bit more flexible.
     // The default behaviour is to assume the external script is present and fall back to using the
@@ -213,7 +222,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 
 #if !defined(Q_OS_WIN32)
     // Prefer using external tools if available
-    if ((useEngine == Unspecified || useEngine == External) && isContent && dirUrl.isLocalFile()) {
+    if ((useEngine == Unspecified || useEngine == External) && options.testFlag(SearchContent) && dirUrl.isLocalFile()) {
         KIO::WorkerResult result = searchDirWithExternalTool(dirUrl, regex);
         if (result.error() != KIO::ERR_UNSUPPORTED_ACTION) {
             return result;
@@ -228,12 +237,12 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 #endif
 
     if (useEngine == Unspecified || useEngine == Internal) {
-        searchDir(dirUrl, regex, isContent, includeHidden, iteratedDirs, pendingDirs);
+        searchDir(dirUrl, regex, options, iteratedDirs, pendingDirs);
 
         while (!pendingDirs.empty()) {
             const QUrl pendingUrl = pendingDirs.front();
             pendingDirs.pop();
-            searchDir(pendingUrl, regex, isContent, includeHidden, iteratedDirs, pendingDirs);
+            searchDir(pendingUrl, regex, options, iteratedDirs, pendingDirs);
         }
     }
 
@@ -242,8 +251,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 
 void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                                        const QRegularExpression &regex,
-                                       bool searchContents,
-                                       bool includeHidden,
+                                       const SearchOptions options,
                                        std::set<QString> &iteratedDirs,
                                        std::queue<QUrl> &pendingDirs)
 {
@@ -257,7 +265,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
     }
 
     KIO::ListJob::ListFlags listFlags = {};
-    if (includeHidden) {
+    if (options.testAnyFlags(IncludeHidden)) {
         listFlags = KIO::ListJob::ListFlag::IncludeHidden;
     }
     KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, listFlags);
@@ -305,7 +313,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                     }
                 }
 
-                if (match(entry, regex, searchContents)) {
+                if (match(entry, regex, options)) {
                     // UDS_DISPLAY_NAME is e.g. "foo/bar/somefile.txt"
                     entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
                     listEntry(entry);
