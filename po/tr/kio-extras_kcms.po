@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-14 00:42+0000\n"
-"PO-Revision-Date: 2025-03-13 15:56+0300\n"
+"PO-Revision-Date: 2025-03-14 16:08+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -104,14 +104,12 @@ msgstr ""
 "part” uzantısı olur. Bu uzantı, aktarım tamamlandıktan sonra kaldırılır.</p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " bayt"
-msgstr[1] " bayt"
+msgstr[0] "%v bayt"
+msgstr[1] "%v bayt"
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -687,14 +685,12 @@ msgstr ""
 "bırakın.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " gün"
-msgstr[1] " gün"
+msgstr[0] "%v gün"
+msgstr[1] "%v gün"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -736,7 +732,7 @@ msgstr "Boyut:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%%v"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format

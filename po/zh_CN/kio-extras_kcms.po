@@ -87,13 +87,11 @@ msgstr ""
 "的文件将被附加“.part”扩展名。此扩展名将在传输完成后自动去除。</p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " 字节"
+msgstr[0] ""
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -639,13 +637,11 @@ msgstr ""
 "动删除任何文件</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " 天"
+msgstr[0] ""
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -1087,6 +1083,3 @@ msgstr "字符集(&C)："
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入搜索占位符"
-
-#~ msgid " days"
-#~ msgstr " 天"

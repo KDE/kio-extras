@@ -1123,6 +1123,3 @@ msgstr "&Teiknkoding:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Set inn søkjeplasshaldar"
-
-#~ msgid " days"
-#~ msgstr " dagar"

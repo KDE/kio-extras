@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-14 00:42+0000\n"
-"PO-Revision-Date: 2024-12-03 07:36+0100\n"
+"PO-Revision-Date: 2025-03-14 07:27+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -100,16 +100,14 @@ msgstr ""
 "».part«. Ta končnica bo odstranjena, ko bo pošiljanje zaključeno.</p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " bajtov"
-msgstr[1] " bajt"
-msgstr[2] " bajta"
-msgstr[3] " bajti"
+msgstr[0] "%v bajtov"
+msgstr[1] "%v bajt"
+msgstr[2] "%v bajta"
+msgstr[3] "%v bajti"
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -685,16 +683,14 @@ msgstr ""
 "brisanja po določenem času.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " dni"
-msgstr[1] " dan"
-msgstr[2] " dneva"
-msgstr[3] " dni"
+msgstr[0] "%v dni"
+msgstr[1] "%v dan"
+msgstr[2] "%v dneva"
+msgstr[3] "%v dni"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -735,7 +731,7 @@ msgstr "Velikost:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format

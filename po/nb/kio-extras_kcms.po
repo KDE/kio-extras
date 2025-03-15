@@ -1112,6 +1112,3 @@ msgstr "&Tegnsett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sett inn spørringsplassholder"
-
-#~ msgid " days"
-#~ msgstr " dager"
