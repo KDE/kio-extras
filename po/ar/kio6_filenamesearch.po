@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-15 00:42+0000\n"
+"POT-Creation-Date: 2025-03-16 00:41+0000\n"
 "PO-Revision-Date: 2024-10-03 07:06+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -18,12 +18,12 @@ msgstr ""
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: Lokalize 23.08.5\n"
 
-#: kio_filenamesearch.cpp:134
+#: kio_filenamesearch.cpp:135
 #, kde-format
 msgid "Search Folder"
 msgstr "مجلد البحث"
 
-#: kio_filenamesearch.cpp:430
+#: kio_filenamesearch.cpp:438
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

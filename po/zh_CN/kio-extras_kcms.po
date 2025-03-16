@@ -91,7 +91,7 @@ msgstr ""
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] ""
+msgstr[0] "%v 字节"
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -641,7 +641,7 @@ msgstr ""
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] ""
+msgstr[0] "%v 天"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -680,7 +680,7 @@ msgstr "大小："
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format

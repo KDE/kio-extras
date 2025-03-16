@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio6_filenamesearch\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-15 00:42+0000\n"
+"POT-Creation-Date: 2025-03-16 00:41+0000\n"
 "PO-Revision-Date: 2024-10-01 12:30+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 24.08.1\n"
 
-#: kio_filenamesearch.cpp:134
+#: kio_filenamesearch.cpp:135
 #, kde-format
 msgid "Search Folder"
 msgstr "Carpeta de búsquedas"
 
-#: kio_filenamesearch.cpp:430
+#: kio_filenamesearch.cpp:438
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
