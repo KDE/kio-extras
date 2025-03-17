@@ -238,7 +238,7 @@ extern "C" {
 int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
-    app.setApplicationName("kio_sftp");
+    app.setApplicationName(QStringLiteral("kio_sftp"));
 
     qCDebug(KIO_SFTP_LOG) << "*** Starting kio_sftp ";
 
@@ -314,7 +314,7 @@ int SFTPWorker::auth_callback(const char *prompt, char *buf, size_t len, int ech
 
     strncpy(buf, mPublicKeyAuthInfo->password.toUtf8().constData(), len - 1);
 
-    mPublicKeyAuthInfo->password.fill('x');
+    mPublicKeyAuthInfo->password.fill(QLatin1Char('x'));
     mPublicKeyAuthInfo->password.clear();
 
     return 0;
@@ -386,23 +386,23 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
                 // See RFC4256 Section 3.3 User Interface
                 KIO::AuthInfo infoKbdInt;
 
-                infoKbdInt.url.setScheme("sftp");
+                infoKbdInt.url.setScheme(QStringLiteral("sftp"));
                 infoKbdInt.url.setHost(mHost);
                 if (mPort > 0 && mPort != DEFAULT_SFTP_PORT) {
                     infoKbdInt.url.setPort(mPort);
                 }
 
                 if (!name.isEmpty()) {
-                    infoKbdInt.caption = QString(i18n("SFTP Login") + " - " + name);
+                    infoKbdInt.caption = QString(i18n("SFTP Login") + QLatin1String(" - ") + name);
                 } else {
                     infoKbdInt.caption = i18n("SFTP Login");
                 }
 
-                infoKbdInt.comment = "sftp://" + mUsername + "@" + mHost;
+                infoKbdInt.comment = QLatin1String("sftp://") + mUsername + QLatin1Char('@') + mHost;
 
                 QString newPrompt;
                 if (!instruction.isEmpty()) {
-                    newPrompt = instruction + "<br /><br />";
+                    newPrompt = instruction + QLatin1String("<br /><br />");
                 }
                 newPrompt.append(prompt);
                 infoKbdInt.prompt = newPrompt;
@@ -765,7 +765,7 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
     }
 
     AuthInfo info;
-    info.url.setScheme("sftp");
+    info.url.setScheme(QStringLiteral("sftp"));
     info.url.setHost(mHost);
     if (mPort > 0 && mPort != DEFAULT_SFTP_PORT) {
         info.url.setPort(mPort);
@@ -1013,7 +1013,7 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
 
     mConnected = true;
 
-    info.password.fill('x');
+    info.password.fill(QLatin1Char('x'));
     info.password.clear();
 
     return Result::pass();
@@ -1403,7 +1403,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
 
     const QString dest_orig = url.path();
     const QByteArray dest_orig_c = dest_orig.toUtf8();
-    const QString dest_part = dest_orig + ".part";
+    const QString dest_part = dest_orig + QLatin1String(".part");
     const QByteArray dest_part_c = dest_part.toUtf8();
     uid_t owner = 0;
     gid_t group = 0;
@@ -1481,7 +1481,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
             initialMode = permissions.value() | perms::owner_write | perms::owner_read;
         }
 
-        qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString(dest) << ", mode=" << QString::number(permsToPosix(initialMode));
+        qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString::fromLocal8Bit(dest) << ", mode=" << QString::number(permsToPosix(initialMode));
         destFile.reset(sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode)));
     } // flags & KIO::Resume
 
@@ -1504,7 +1504,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     };
 
     if (destFile == nullptr) {
-        qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString(dest) << ", permissions=" << permsToPosix(permissions.value_or(perms::none))
+        qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString::fromLocal8Bit(dest) << ", permissions=" << permsToPosix(permissions.value_or(perms::none))
                               << ", error=" << ssh_get_error(mSession);
         if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
             return closeOnError(KIO::ERR_WRITE_ACCESS_DENIED);
@@ -1600,7 +1600,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     }
 
     // set modification time
-    const QString mtimeStr = metaData("modified");
+    const QString mtimeStr = metaData(QStringLiteral("modified"));
     if (!mtimeStr.isEmpty()) {
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
@@ -1741,7 +1741,7 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
         }
     }
 
-    const QString mtimeStr = metaData("modified");
+    const QString mtimeStr = metaData(QStringLiteral("modified"));
     if (!mtimeStr.isEmpty()) {
         QDateTime dt = QDateTime::fromString(mtimeStr, Qt::ISODate);
         if (dt.isValid()) {
@@ -1796,7 +1796,7 @@ Result SFTPWorker::stat(const QUrl &url)
         return loginResult;
     }
 
-    if (url.path().isEmpty() || QDir::isRelativePath(url.path()) || url.path().contains("/./") || url.path().contains("/../")) {
+    if (url.path().isEmpty() || QDir::isRelativePath(url.path()) || url.path().contains(QLatin1String("/./")) || url.path().contains(QLatin1String("/../"))) {
         QString cPath;
 
         if (!url.path().isEmpty()) {
@@ -1828,7 +1828,7 @@ Result SFTPWorker::stat(const QUrl &url)
     }
 
     UDSEntry entry;
-    auto result = createUDSEntry(SFTPAttributesPtr(attributes), entry, path, QFileInfo(path).fileName(), details);
+    auto result = createUDSEntry(SFTPAttributesPtr(attributes), entry, path, QFileInfo(url.path()).fileName(), details);
     if (!result.success()) {
         return result;
     }
@@ -1860,7 +1860,7 @@ Result SFTPWorker::listDir(const QUrl &url)
         return loginResult;
     }
 
-    if (url.path().isEmpty() || QDir::isRelativePath(url.path()) || url.path().contains("/./") || url.path().contains("/../")) {
+    if (url.path().isEmpty() || QDir::isRelativePath(url.path()) || url.path().contains(QLatin1String("/./")) || url.path().contains(QLatin1String("/../"))) {
         QString cPath;
 
         if (!url.path().isEmpty()) {
