@@ -9,13 +9,13 @@
 # Vasee Vaseeharan <vasee@ieee.org>, 2004.
 # Ambalam <tamilpc@ambalam.com>, 2004.
 # root <root@localhost.localdomain>, 2004.
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Kishore G <kishore96@gmail.com>
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025 Kishore G <kishore96@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-14 00:42+0000\n"
-"PO-Revision-Date: 2024-12-08 13:22+0530\n"
+"PO-Revision-Date: 2025-03-16 14:56+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
 "Language: ta\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.3\n"
 
 #: ksaveioconfig.cpp:135
 #, kde-format
@@ -98,14 +98,12 @@ msgstr ""
 "வகைப்பெயர் இடப்படும். இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " பைட்டு"
-msgstr[1] " பைட்டுகள்"
+msgstr[0] "%v பைட்டு"
+msgstr[1] "%v பைட்டுகள்"
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -672,14 +670,12 @@ msgstr ""
 "குறிக்காமல் விடங்கள்.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " நாள்"
-msgstr[1] " நாட்கள்"
+msgstr[0] "%v நாள்"
+msgstr[1] "%v நாட்கள்"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -720,7 +716,7 @@ msgstr "அளவு:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
