@@ -36,7 +36,7 @@ Q_DECL_EXPORT int kdemain(int argc, char **argv);
 int kdemain(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
-    app.setApplicationName("kio_filter");
+    app.setApplicationName(QStringLiteral("kio_filter"));
 
     qDebug(KIO_FILTER_DEBUG) << "Starting";
 
