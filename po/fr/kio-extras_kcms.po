@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-14 00:42+0000\n"
-"PO-Revision-Date: 2025-01-06 17:47+0100\n"
+"PO-Revision-Date: 2025-03-15 09:17+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Accelerator-Marker: &\n"
 "X-Environment: kde\n"
-"X-Generator: Lokalize 24.12.0\n"
+"X-Generator: Lokalize 24.12.3\n"
 "X-Text-Markup: kde4\n"
 
 #: ksaveioconfig.cpp:135
@@ -111,14 +111,12 @@ msgstr ""
 "fois le transfert terminé.</p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " octet"
-msgstr[1] " octets"
+msgstr[0] "Octet %v"
+msgstr[1] "%v octets"
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -714,14 +712,12 @@ msgstr ""
 "certain temps.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " jour"
-msgstr[1] " jours"
+msgstr[0] "jour %v"
+msgstr[1] "%v jours"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -764,7 +760,7 @@ msgstr "Taille :"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v %"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
