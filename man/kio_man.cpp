@@ -868,6 +868,8 @@ void MANProtocol::constructPath(QStringList &constr_path, QStringList constr_cat
         mc.setFileName("/etc/manpath.config"); // SuSE, Debian
     if (!mc.exists())
         mc.setFileName("/etc/man.config"); // Mandrake
+    if (!mc.exists())
+        mc.setFileName("/etc/man_db.conf"); // NixOS
 
     if (mc.open(QIODevice::ReadOnly)) {
         QTextStream is(&mc);
