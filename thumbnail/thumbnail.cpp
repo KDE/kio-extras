@@ -53,6 +53,9 @@
 
 #include "imagefilter.h"
 
+#include <private/qguiapplication_p.h> // QGuiApplicationPrivate::platformTheme()
+#include <qpa/qplatformtheme.h>
+
 // Recognized metadata entries:
 // mimeType     - the mime type of the file, used for the overlay icon if any
 // width        - maximum width for the thumbnail
@@ -107,7 +110,17 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char **argv)
     // (e.g. Webarchiver, see https://bugs.kde.org/show_bug.cgi?id=500173).
     // This will not let any plugin to create auxilliary windows on the screen
     // while generating thumbnails.
+    // Retrieve theme name from the default platform...
+    QString themeName;
+    {
+        QGuiApplication aux(argc, argv);
+        if (auto platformTheme = QGuiApplicationPrivate::platformTheme()) {
+            themeName = platformTheme->name();
+        }
+    }
+    // ...and force using offscreen platform with the default platform's theme
     qputenv("QT_QPA_PLATFORM", "offscreen");
+    qputenv("QT_QPA_PLATFORMTHEME", themeName.toUtf8());
 
     // Some thumbnail plugins use QWidget classes for the rendering,
     // so use QApplication here, not just QGuiApplication

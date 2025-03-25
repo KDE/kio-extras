@@ -84,10 +84,13 @@ ecm_qt_declare_logging_category(kio_thumbnail
 )
 
 target_link_libraries(kio_thumbnail
-    KF6::CoreAddons
-    KF6::KIOCore
-    KF6::KIOWidgets
-    KF6::I18n
+    PUBLIC
+        KF6::CoreAddons
+        KF6::KIOCore
+        KF6::KIOWidgets
+        KF6::I18n
+    PRIVATE
+        Qt6::GuiPrivate
 )
 
 install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
