@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-10 00:38+0000\n"
+"POT-Creation-Date: 2025-03-26 00:41+0000\n"
 "PO-Revision-Date: 2022-12-10 06:26+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -173,22 +173,22 @@ msgstr "წიგნების ინდექსი"
 msgid "Section %1"
 msgstr "სექცია %1"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "სექციის (%1) ინდექსი: %2"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, kde-format
 msgid "Manual Page Index"
 msgstr "წიგნების ინდექსი"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1091
 #, kde-format
 msgid "Generating Index"
 msgstr "ინდექსის გენერაცია"
 
-#: kio_man.cpp:1343
+#: kio_man.cpp:1345
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

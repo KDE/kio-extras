@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-10 00:38+0000\n"
+"POT-Creation-Date: 2025-03-26 00:41+0000\n"
 "PO-Revision-Date: 2024-12-20 12:26+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -174,22 +174,22 @@ msgstr "मुख्य पुस्तिका पृष्ठ अनुक्
 msgid "Section %1"
 msgstr "खण्डः %1"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "%1 खण्डस्य अनुक्रमणिका: %2"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, kde-format
 msgid "Manual Page Index"
 msgstr "मैनुअल पृष्ठ अनुक्रमणिका"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1091
 #, kde-format
 msgid "Generating Index"
 msgstr "अनुक्रमणिका जनयति"
 
-#: kio_man.cpp:1343
+#: kio_man.cpp:1345
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

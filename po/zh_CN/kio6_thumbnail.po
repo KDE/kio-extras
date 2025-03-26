@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-25 00:40+0000\n"
+"POT-Creation-Date: 2025-03-26 00:41+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -17,52 +17,52 @@ msgstr ""
 "X-Crowdin-File: /kf6-trunk/messages/kio-extras/kio6_thumbnail.pot\n"
 "X-Crowdin-File-ID: 43901\n"
 
-#: thumbnail.cpp:205
+#: thumbnail.cpp:218
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "未指定任何 MIME 类型。"
 
-#: thumbnail.cpp:212
+#: thumbnail.cpp:225
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "未指定大小或者指定的大小无效"
 
-#: thumbnail.cpp:233
+#: thumbnail.cpp:246
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "无法创建目录的缩略图"
 
-#: thumbnail.cpp:242
+#: thumbnail.cpp:255
 #, kde-format
 msgid "No plugin specified."
 msgstr "未指定插件。"
 
-#: thumbnail.cpp:247
+#: thumbnail.cpp:260
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "无法加载缩略图创建程序 %1"
 
-#: thumbnail.cpp:255
+#: thumbnail.cpp:268
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "无法生成 %1 的缩略图"
 
-#: thumbnail.cpp:265
+#: thumbnail.cpp:278
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "缩略图生成失败。"
 
-#: thumbnail.cpp:285
+#: thumbnail.cpp:298
 #, kde-format
 msgid "Could not write image."
 msgstr "无法写入图像。"
 
-#: thumbnail.cpp:313
+#: thumbnail.cpp:326
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "附加到共享内存段 %1 失败"
 
-#: thumbnail.cpp:317
+#: thumbnail.cpp:330
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "图像太大，无法加载到共享内存段"

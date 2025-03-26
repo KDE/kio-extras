@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-10 00:38+0000\n"
+"POT-Creation-Date: 2025-03-26 00:41+0000\n"
 "PO-Revision-Date: 2010-01-22 14:20+0100\n"
 "Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
 "Language-Team: Walloon <linux-wa@walon.org>\n"
@@ -166,24 +166,24 @@ msgstr "Indecse d' esplikêyes UNIX"
 msgid "Section %1"
 msgstr "Seccion %1"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "Indecse pol seccion %1 : %2"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "Indecse d' esplikêyes UNIX"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1091
 #, kde-format
 msgid "Generating Index"
 msgstr "Dji fwai l' indecse"
 
-#: kio_man.cpp:1343
+#: kio_man.cpp:1345
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-10 00:38+0000\n"
+"POT-Creation-Date: 2025-03-26 00:41+0000\n"
 "PO-Revision-Date: 2024-06-01 17:50\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -181,22 +181,22 @@ msgstr "Індэкс старонак галоўнага дапаможніка"
 msgid "Section %1"
 msgstr "Раздзел %1"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Індэкс раздзела %1: %2"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Індэкс старонкі дапаможніка"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1091
 #, kde-format
 msgid "Generating Index"
 msgstr "Стварэнне індэкса"
 
-#: kio_man.cpp:1343
+#: kio_man.cpp:1345
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

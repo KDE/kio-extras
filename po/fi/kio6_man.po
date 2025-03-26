@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-10 00:38+0000\n"
+"POT-Creation-Date: 2025-03-26 00:41+0000\n"
 "PO-Revision-Date: 2021-10-11 14:53+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -177,22 +177,22 @@ msgstr "man-sivujen päähakemisto"
 msgid "Section %1"
 msgstr "Osio  %1"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Hakemisto osiolle %1: %2"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, kde-format
 msgid "Manual Page Index"
 msgstr "man-sivuhakemisto"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1091
 #, kde-format
 msgid "Generating Index"
 msgstr "Luodaan hakemistoa"
 
-#: kio_man.cpp:1343
+#: kio_man.cpp:1345
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

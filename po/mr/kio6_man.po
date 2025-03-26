@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-04-10 00:38+0000\n"
+"POT-Creation-Date: 2025-03-26 00:41+0000\n"
 "PO-Revision-Date: 2013-03-28 15:17+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: Marathi <kde-i18n-doc@kde.org>\n"
@@ -182,24 +182,24 @@ msgstr "UNIX पुस्तिका अनुक्रमणिका"
 msgid "Section %1"
 msgstr "विभाग %1"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "विभाग %1: %2 करिता अनुक्रमणिका"
 
-#: kio_man.cpp:1080
+#: kio_man.cpp:1082
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "UNIX पुस्तिका अनुक्रमणिका"
 
-#: kio_man.cpp:1089
+#: kio_man.cpp:1091
 #, kde-format
 msgid "Generating Index"
 msgstr "निर्देशिका बनवीत आहे"
 
-#: kio_man.cpp:1343
+#: kio_man.cpp:1345
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

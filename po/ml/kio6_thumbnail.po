@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdebase\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-25 00:40+0000\n"
+"POT-Creation-Date: 2025-03-26 00:41+0000\n"
 "PO-Revision-Date: 2008-10-22 00:36+0530\n"
 "Last-Translator: Hari Vishnu <harivishnu@gmail.com>\n"
 "Language-Team: Swathanthra|സ്വതന്ത്ര Malayalam|മലയാളം Computing|കമ്പ്യൂട്ടിങ്ങ് <smc-"
@@ -18,53 +18,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: thumbnail.cpp:205
+#: thumbnail.cpp:218
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "ഒരു MIME തരവും വ്യക്തമാക്കിയിട്ടില്ല"
 
-#: thumbnail.cpp:212
+#: thumbnail.cpp:225
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "വലിപ്പം വ്യക്തമാക്കിയിട്ടില്ല അല്ലെങ്കില്‍ അതു് തെറ്റാണു്"
 
-#: thumbnail.cpp:233
+#: thumbnail.cpp:246
 #, fuzzy, kde-format
 #| msgid "Cannot create thumbnail for %1"
 msgid "Cannot create thumbnail for directory"
 msgstr "നഖച്ചിത്രം %1-ഇനു ഉണ്ടാക്കുവാന് കഴിയുന്നില്ല"
 
-#: thumbnail.cpp:242
+#: thumbnail.cpp:255
 #, kde-format
 msgid "No plugin specified."
 msgstr "സംയോജകം വ്യക്തമാക്കിയിട്ടില്ല"
 
-#: thumbnail.cpp:247
+#: thumbnail.cpp:260
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "നഖച്ചിത്രനിര്‍മ്മാതാവു് %1 എടുക്കുവാന്‍ കഴിയുന്നില്ല"
 
-#: thumbnail.cpp:255
+#: thumbnail.cpp:268
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "നഖച്ചിത്രം %1-ഇനു ഉണ്ടാക്കുവാന് കഴിയുന്നില്ല"
 
-#: thumbnail.cpp:265
+#: thumbnail.cpp:278
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "നഖച്ചിത്രം ഉണ്ടാക്കുവാന്‍ കഴിയുന്നില്ല"
 
-#: thumbnail.cpp:285
+#: thumbnail.cpp:298
 #, kde-format
 msgid "Could not write image."
 msgstr "ചിത്രം എഴുതുവാന്‍ കഴിയുന്നില്ല"
 
-#: thumbnail.cpp:313
+#: thumbnail.cpp:326
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "%1 എന്ന പങ്കുവെച്ച മെമ്മറിയിലേക്ക് കൂട്ടിവെക്കുവാന്‍ കഴിഞ്ഞില്ല"
 
-#: thumbnail.cpp:317
+#: thumbnail.cpp:330
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "ചിത്രം പങ്കുവെച്ച മെമ്മറി വിഭാഗത്തിനേക്കാള്‍ വലുതാണു്"
