@@ -4,8 +4,18 @@
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0 
                           http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
  <kcfgfile name="kioslaverc" />
+ <include>kio/ioworker_defaults.h</include>
  <group name="&lt;default&gt;">
    <entry name="ProxyUrlDisplayFlags" type="int">
+   </entry>
+   <entry name="MarkPartial" type="Bool">
+     <label>Mark partially uploaded files</label>
+     <whatsthis>While a file is being uploaded its extension is ".part". When fully uploaded it is renamed to its real name.</whatsthis>
+     <default>true</default>
+   </entry>
+   <entry name="MinimumKeepSize" type="Int">
+     <label>The minimum file size for keeping aborted downloads</label>
+     <default>DEFAULT_MINIMUM_KEEP_SIZE</default>
    </entry>
  </group>
  <group name="Proxy Settings" >

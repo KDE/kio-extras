@@ -3,6 +3,9 @@
 
 #include <KCModule>
 
+#include "kio_ftprc.h"
+#include "kioslave.h"
+
 class QCheckBox;
 class QGroupBox;
 class QSpinBox;
@@ -31,6 +34,8 @@ private:
     QCheckBox *cb_ftpMarkPartial;
     QGroupBox *gb_Ftp;
     QSpinBox  *sb_globalMinimumKeepSize;
+    KioFtp ftpConfig;
+    KioSlave kioConfig;
 };
 
 #endif // NETPREF_H

@@ -9,13 +9,9 @@
 #include <QSpinBox>
 
 // KDE
-#include <KConfig>
-#include <KConfigGroup>
 #include <KLocalization>
 #include <KLocalizedString>
 #include <KPluginFactory>
-#include <KProtocolManager>
-#include <kio/ioworker_defaults.h>
 
 // Local
 #include "../ksaveioconfig.h"
@@ -91,27 +87,28 @@ KIOPreferences::~KIOPreferences()
 
 void KIOPreferences::load()
 {
-    KProtocolManager proto;
+    kioConfig.load();
 
-    cb_globalMarkPartial->setChecked(proto.markPartial());
+    cb_globalMarkPartial->setChecked(kioConfig.markPartial());
     sb_globalMinimumKeepSize->setRange(0, 1024 * 1024 * 1024 /* 1 GiB */);
-    sb_globalMinimumKeepSize->setValue(proto.minimumKeepSize());
+    sb_globalMinimumKeepSize->setValue(kioConfig.minimumKeepSize());
 
-    KConfig config(QStringLiteral("kio_ftprc"), KConfig::NoGlobals);
-    cb_ftpEnablePasv->setChecked(!config.group(QString()).readEntry("DisablePassiveMode", false));
-    cb_ftpMarkPartial->setChecked(config.group(QString()).readEntry("MarkPartial", true));
+    ftpConfig.load();
+
+    cb_ftpEnablePasv->setChecked(!ftpConfig.disablePassiveMode());
+    cb_ftpMarkPartial->setChecked(ftpConfig.markPartial());
     setNeedsSave(false);
 }
 
 void KIOPreferences::save()
 {
-    KSaveIOConfig::setMarkPartial(cb_globalMarkPartial->isChecked());
-    KSaveIOConfig::setMinimumKeepSize(sb_globalMinimumKeepSize->value());
+    kioConfig.setMarkPartial(cb_globalMarkPartial->isChecked());
+    kioConfig.setMinimumKeepSize(sb_globalMinimumKeepSize->value());
+    kioConfig.save();
 
-    KConfig config(QStringLiteral("kio_ftprc"), KConfig::NoGlobals);
-    config.group(QString()).writeEntry("DisablePassiveMode", !cb_ftpEnablePasv->isChecked());
-    config.group(QString()).writeEntry("MarkPartial", cb_ftpMarkPartial->isChecked());
-    config.sync();
+    ftpConfig.setDisablePassiveMode(!cb_ftpEnablePasv->isChecked());
+    ftpConfig.setMarkPartial(cb_ftpMarkPartial->isChecked());
+    ftpConfig.save();
 
     KSaveIOConfig::updateRunningWorkers(widget());
 
@@ -120,10 +117,14 @@ void KIOPreferences::save()
 
 void KIOPreferences::defaults()
 {
-    cb_globalMarkPartial->setChecked(true);
+    kioConfig.setDefaults();
+    ftpConfig.setDefaults();
 
-    cb_ftpEnablePasv->setChecked(true);
-    cb_ftpMarkPartial->setChecked(true);
+    cb_globalMarkPartial->setChecked(kioConfig.markPartial());
+    sb_globalMinimumKeepSize->setValue(kioConfig.minimumKeepSize());
+
+    cb_ftpEnablePasv->setChecked(!ftpConfig.disablePassiveMode());
+    cb_ftpMarkPartial->setChecked(ftpConfig.markPartial());
 
     setNeedsSave(true);
 }

@@ -13,12 +13,6 @@ class QWidget;
 
 namespace KSaveIOConfig
 {
-
-/** Miscellaneous Settings */
-void setMarkPartial(bool);
-
-void setMinimumKeepSize(int);
-
 /** Update all running KIO workers */
 void updateRunningWorkers(QWidget *parent = nullptr);
 }
