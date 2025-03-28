@@ -1,4 +1,4 @@
 File=kioslave.kcfg
-ClassName=ProxySettings
+ClassName=KioSlave
 Mutators=true
 

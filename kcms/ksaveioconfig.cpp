@@ -21,51 +21,6 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <kio/ioworker_defaults.h>
-class KSaveIOConfigPrivate
-{
-public:
-    KSaveIOConfigPrivate();
-    ~KSaveIOConfigPrivate();
-
-    KConfig *config = nullptr;
-    KConfig *http_config = nullptr;
-};
-
-Q_GLOBAL_STATIC(KSaveIOConfigPrivate, d)
-
-KSaveIOConfigPrivate::KSaveIOConfigPrivate()
-{
-}
-
-KSaveIOConfigPrivate::~KSaveIOConfigPrivate()
-{
-    delete config;
-    delete http_config;
-}
-
-static KConfig *config()
-{
-    if (!d->config) {
-        d->config = new KConfig(QStringLiteral("kioslaverc"), KConfig::NoGlobals);
-        // KF6 TODO: rename to kioworkerrc here and elsewhere. See also T15956.
-    }
-
-    return d->config;
-}
-
-void KSaveIOConfig::setMarkPartial(bool _mode)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("MarkPartial", _mode);
-    cfg.sync();
-}
-
-void KSaveIOConfig::setMinimumKeepSize(int _size)
-{
-    KConfigGroup cfg(config(), QString());
-    cfg.writeEntry("MinimumKeepSize", _size);
-    cfg.sync();
-}
 
 void KSaveIOConfig::updateRunningWorkers(QWidget *parent)
 {
