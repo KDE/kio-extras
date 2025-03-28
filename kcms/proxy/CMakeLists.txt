@@ -13,7 +13,7 @@ target_sources(kcm_proxy PRIVATE
 
 ki18n_wrap_ui(kcm_proxy kproxydlg.ui)
 
-kconfig_add_kcfg_files(kcm_proxy ../netpref/kioslave.kcfgc)
+kconfig_add_kcfg_files(kcm_proxy kioslave.kcfgc)
 
 target_link_libraries(kcm_proxy PRIVATE
     Qt6::Widgets
