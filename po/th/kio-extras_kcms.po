@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-14 00:42+0000\n"
+"POT-Creation-Date: 2025-03-29 00:41+0000\n"
 "PO-Revision-Date: 2010-12-17 20:57+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -19,14 +19,14 @@ msgstr ""
 "X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ksaveioconfig.cpp:135
+#: ksaveioconfig.cpp:81
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "คุณต้องเริ่มการทำงานของโปรแกรมที่กำลังทำงานอยู่ใหม่อีกครั้ง เพื่อให้การเปลี่ยนแปลงมีผล"
 
-#: ksaveioconfig.cpp:137
+#: ksaveioconfig.cpp:83
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"
@@ -52,15 +52,13 @@ msgstr ""
 "แบบเก่า อาจจะไม่รองรับการเชื่อมต่อแบบพาสซีฟ"
 
 #. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:14
+#: netpref/kio_ftprc.kcfg:16
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "ป้อนส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:15
+#: netpref/kio_ftprc.kcfg:17
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "

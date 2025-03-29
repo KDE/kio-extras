@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-14 00:42+0000\n"
+"POT-Creation-Date: 2025-03-29 00:41+0000\n"
 "PO-Revision-Date: 2012-06-03 01:00+0200\n"
 "Last-Translator: Børre Gaup <boerre@skolelinux.no>\n"
 "Language-Team: Northern Sami <l10n-no@lister.huftis.org>\n"
@@ -19,14 +19,14 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: ksaveioconfig.cpp:135
+#: ksaveioconfig.cpp:81
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "Fertet álggahit prográmma ođđasit vai rievdadusat doaibmagohtet."
 
-#: ksaveioconfig.cpp:137
+#: ksaveioconfig.cpp:83
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -48,15 +48,13 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:14
+#: netpref/kio_ftprc.kcfg:16
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Merke beal&lemuddui sáddejuvvon fiillaid"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:15
+#: netpref/kio_ftprc.kcfg:17
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "

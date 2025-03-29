@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-14 00:42+0000\n"
+"POT-Creation-Date: 2025-03-29 00:41+0000\n"
 "PO-Revision-Date: 2007-11-04 18:29+0545\n"
 "Last-Translator: Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -19,14 +19,14 @@ msgstr ""
 "\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ksaveioconfig.cpp:135
+#: ksaveioconfig.cpp:81
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "यी परिवर्तनका लागि प्रभाव पत्ता लगाउन तपाईँले चलेका अनुप्रयोग पुन: सुरु गर्नु पर्छ ।"
 
-#: ksaveioconfig.cpp:137
+#: ksaveioconfig.cpp:83
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"
@@ -51,15 +51,13 @@ msgstr ""
 "त्यसैले फाइरवालले जडान रोक्दैन; तापनि पुरानो FTP सर्भरले निस्क्रिय FTP समर्थन नगर्न सक्छ ।"
 
 #. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:14
+#: netpref/kio_ftprc.kcfg:16
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "अपलोड गरिएका फाइल आंशिक रुपमा चिन्ह लगाउनुहोस्"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:15
+#: netpref/kio_ftprc.kcfg:17
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-14 00:42+0000\n"
+"POT-Creation-Date: 2025-03-29 00:41+0000\n"
 "PO-Revision-Date: 2007-09-02 13:06+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ksaveioconfig.cpp:135
+#: ksaveioconfig.cpp:81
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -27,7 +27,7 @@ msgstr ""
 "باید کاربردهای اجرا را برای این که این تغییرها تأثیر داشته باشند، بازآغازی "
 "کنید."
 
-#: ksaveioconfig.cpp:137
+#: ksaveioconfig.cpp:83
 #, fuzzy, kde-format
 #| msgid "Update Failed"
 msgctxt "@title:window"
@@ -53,15 +53,13 @@ msgstr ""
 "قدیمی قاپ، قاپ منفعل را پشتیبانی نکنند."
 
 #. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:14
+#: netpref/kio_ftprc.kcfg:16
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "نشان‌دار کردن پرونده‌هایی که نسبتاً بارگذاری‌شده"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:15
+#: netpref/kio_ftprc.kcfg:17
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "

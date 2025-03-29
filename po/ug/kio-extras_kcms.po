@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-14 00:42+0000\n"
+"POT-Creation-Date: 2025-03-29 00:41+0000\n"
 "PO-Revision-Date: 2013-09-08 07:04+0900\n"
 "Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ksaveioconfig.cpp:135
+#: ksaveioconfig.cpp:81
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -26,7 +26,7 @@ msgstr ""
 "بۇ ئۆزگىرىشلەرنىڭ ئۈنۈمىنى كۆرمەكچى بولسىڭىز ئىجرا بولۇۋاتقان پروگراممىنى "
 "قايتا باشلىشىڭىز كېرەك."
 
-#: ksaveioconfig.cpp:137
+#: ksaveioconfig.cpp:83
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
@@ -48,16 +48,14 @@ msgid ""
 msgstr ""
 
 #. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: label, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:14
+#: netpref/kio_ftprc.kcfg:16
 #, fuzzy, kde-format
 #| msgid "Mark &partially uploaded files"
 msgid "Mark partially uploaded files"
 msgstr "قىسمەن يۈكلەنگەن ھۆججەتلەرگە بەلگە قوي(&P)"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (Global Options)
-#: netpref/kio_ftprc.kcfg:17 netpref/kioslave.kcfg:15
+#: netpref/kio_ftprc.kcfg:17
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
