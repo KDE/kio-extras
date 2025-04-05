@@ -94,8 +94,6 @@ msgstr ""
 
 #: netpref/netpref.cpp:56
 #, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
@@ -654,8 +652,6 @@ msgstr ""
 
 #: trash/kcmtrash.cpp:259
 #, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
