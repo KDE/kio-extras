@@ -550,7 +550,6 @@ msgstr ""
 
 #: trash/kcmtrash.cpp:259
 #, fuzzy, kde-format
-#| msgid " days"
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
