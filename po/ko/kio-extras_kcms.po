@@ -1,7 +1,7 @@
 # Translation of kio4 to Korean.
 # Copyright (c) 2003, 2004, 2007-2008 Free Software Foundation, Inc.
 # KIM KyungHeon <tody@teoal.net>, 2003, 2004.
-# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 Shinjo Park <kde@peremen.name>
+# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Shinjo Park <kde@peremen.name>
 # JungHee Lee <daemul72@gmail.com>, 2019, 2020.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-29 00:41+0000\n"
-"PO-Revision-Date: 2024-12-24 16:58+0100\n"
+"PO-Revision-Date: 2025-04-06 23:14+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -89,13 +89,11 @@ msgstr ""
 "이 확장자는 전송이 완료되었을 때 사라집니다.</p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] "바이트"
+msgstr[0] "%v바이트"
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -656,13 +654,11 @@ msgstr ""
 "이 자동으로 삭제됩니다.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " 일"
+msgstr[0] "%v일"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -703,7 +699,7 @@ msgstr "크기:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
