@@ -18,7 +18,7 @@
 namespace
 {
 
-// Eexecutable file (.exe)
+// Executable file (.exe)
 struct DosHeader {
     char signature[2];
     quint32 newHeaderOffset;
@@ -367,7 +367,7 @@ qint64 addressToOffset(const QVector<PeSection> &sections, quint32 rva)
 {
     for (int i = 0; i < sections.size(); i++) {
         auto sectionBegin = sections[i].virtualAddress;
-        auto sectionEnd = sections[i].virtualAddress + sections[i].sizeOfRawData;
+        auto sectionEnd = sections[i].virtualAddress + std::min(sections[i].sizeOfRawData, sections[i].virtualSize);
         if (rva >= sectionBegin && rva < sectionEnd) {
             return rva - sectionBegin + sections[i].pointerToRawData;
         }
