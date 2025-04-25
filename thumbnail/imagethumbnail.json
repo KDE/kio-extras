@@ -24,7 +24,10 @@
             "image/jpx",
             "image/jxl",
             "image/vnd.zbrush.pcx",
-            "image/x-rgb"
+            "image/x-rgb",
+            "image/vnd.adobe.photoshop",
+            "image/qoi",
+            "image/x-dds"
         ],
         "Name": "Images (GIF, PNG, BMP, ...)",
         "Name[ar]": "الصّور (GIF،‏ PNG،‏ BMP، ...)",
