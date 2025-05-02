@@ -696,14 +696,17 @@ void ThumbnailProtocol::ensureDirsCreated()
 
 bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &filePath, int segmentWidth, int segmentHeight)
 {
-    auto getSubCreator = [&filePath, this]() -> ThumbCreatorWithMetadata * {
-        const QMimeDatabase db;
-        const KPluginMetaData subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
-        if (!subPlugin.isValid() || !m_enabledPlugins.contains(subPlugin.pluginId())) {
-            return nullptr;
-        }
-        return getThumbCreator(subPlugin.fileName());
-    };
+    const QMimeDatabase db;
+    const KPluginMetaData subPlugin = pluginForMimeType(db.mimeTypeForFile(filePath).name());
+
+    if (!subPlugin.isValid() || !m_enabledPlugins.contains(subPlugin.pluginId())) {
+        return false;
+    }
+
+    ThumbCreatorWithMetadata *subCreator = getThumbCreator(subPlugin.fileName());
+    if (!subCreator) {
+        return false;
+    }
 
     const auto maxDimension = qMin(1024.0, 512.0 * m_devicePixelRatio);
     if ((segmentWidth <= maxDimension) && (segmentHeight <= maxDimension)) {
@@ -746,8 +749,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
 
         // no cached version is available, a new thumbnail must be created
         if (thumbnail.isNull()) {
-            ThumbCreatorWithMetadata *subCreator = getSubCreator();
-            if (subCreator && createThumbnail(subCreator, filePath, cacheSize, cacheSize, thumbnail)) {
+            if (createThumbnail(subCreator, filePath, cacheSize, cacheSize, thumbnail)) {
                 scaleDownImage(thumbnail, cacheSize, cacheSize);
 
                 // The thumbnail has been created successfully. Check if we can store
@@ -788,8 +790,7 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
     } else {
         // image requested is too big to be stored in the cache
         // create an image on demand
-        ThumbCreatorWithMetadata *subCreator = getSubCreator();
-        if (!subCreator || !createThumbnail(subCreator, filePath, segmentWidth, segmentHeight, thumbnail)) {
+        if (!createThumbnail(subCreator, filePath, segmentWidth, segmentHeight, thumbnail)) {
             return false;
         }
     }
