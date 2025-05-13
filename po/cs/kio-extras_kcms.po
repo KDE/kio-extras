@@ -91,15 +91,13 @@ msgstr ""
 "</p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " bajt"
-msgstr[1] " bajty"
-msgstr[2] " bajtů"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -635,15 +633,13 @@ msgstr ""
 "byly soubory po určité době automaticky mazány</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " den"
-msgstr[1] " dny"
-msgstr[2] " dny"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -1100,6 +1096,3 @@ msgstr "&Znaková sada:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Zadejte zástupný znak dotazu"
-
-#~ msgid " days"
-#~ msgstr " dny"
