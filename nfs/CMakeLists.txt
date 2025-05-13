@@ -56,6 +56,10 @@ include_directories(${TIRPC_INCLUDE_DIRS})
 
 add_library(kio_nfs MODULE kio_nfs.cpp nfsv3.cpp rpc_nfs3_prot_xdr.c)
 target_link_libraries(kio_nfs KF6::KIOCore KF6::ConfigCore KF6::I18n Qt::Network ${TIRPC_LIBRARIES})
+if(HAIKU)
+  # for gethostbyname and inet_addr
+  target_link_libraries(kio_nfs network)
+endif()
 set_target_properties(kio_nfs PROPERTIES OUTPUT_NAME "nfs")
 
 if(AVOID_UNUSED_VARIABLE_WARNING_FLAG)
