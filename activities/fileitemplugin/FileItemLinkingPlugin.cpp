@@ -162,7 +162,6 @@ FileItemLinkingPlugin::FileItemLinkingPlugin(QObject *parent, const QVariantList
 
 FileItemLinkingPlugin::~FileItemLinkingPlugin()
 {
-    setActions({});
 }
 
 QList<QAction *> FileItemLinkingPlugin::actions(const KFileItemListProperties &fileItemInfos, QWidget *parentWidget)
