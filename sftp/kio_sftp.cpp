@@ -888,6 +888,9 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
                 clearPubKeyAuthInfo();
                 return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
             }
+            if (rc == SSH_AUTH_PARTIAL) {
+                method = ssh_auth_list(mSession);
+            }
             if (rc != SSH_AUTH_DENIED || !mPublicKeyAuthInfo || !mPublicKeyAuthInfo->isModified()) {
                 clearPubKeyAuthInfo();
                 break;
