@@ -68,18 +68,14 @@ void FileItemLinkingPlugin::actionTriggered()
 
 QAction *FileItemLinkingPlugin::basicAction(QWidget *parentWidget)
 {
-    if (root) {
-        return root;
-    }
-
     // If we are showing Loading... text, this means the submenu
     // is not opened yet, so activities should not be loaded
     status = Status::LoadingBlocked;
 
-    root = new QAction(QIcon::fromTheme("activities"), i18n("Activities"), parentWidget);
+    auto root = new QAction(QIcon::fromTheme("activities"), i18n("Activities"), parentWidget);
 
     rootMenu = new QMenu(parentWidget);
-    rootMenu->addAction(new QAction(i18n("Loading..."), this));
+    rootMenu->addAction(new QAction(i18n("Loading..."), rootMenu));
 
     connect(root, &QAction::hovered, this, &FileItemLinkingPlugin::rootActionHovered);
 
@@ -126,7 +122,7 @@ void FileItemLinkingPlugin::setActions(const ActionList &actions)
 
     for (const auto &actionInfo : actions) {
         if (actionInfo.icon != "-") {
-            auto action = new QAction(nullptr);
+            auto action = new QAction(rootMenu);
 
             action->setText(actionInfo.title);
             action->setIcon(QIcon::fromTheme(actionInfo.icon));
@@ -138,7 +134,7 @@ void FileItemLinkingPlugin::setActions(const ActionList &actions)
             connect(action, &QAction::triggered, this, &FileItemLinkingPlugin::actionTriggered);
 
         } else {
-            auto action = new QAction(actionInfo.title, nullptr);
+            auto action = new QAction(actionInfo.title, rootMenu);
             action->setSeparator(true);
 
             rootMenu->addAction(action);
@@ -162,7 +158,6 @@ FileItemLinkingPlugin::FileItemLinkingPlugin(QObject *parent, const QVariantList
 
 FileItemLinkingPlugin::~FileItemLinkingPlugin()
 {
-    setActions({});
 }
 
 QList<QAction *> FileItemLinkingPlugin::actions(const KFileItemListProperties &fileItemInfos, QWidget *parentWidget)

@@ -45,7 +45,6 @@ public:
     QList<QAction *> actions(const KFileItemListProperties &fileItemInfos, QWidget *parentWidget) override;
 
 private:
-    QPointer<QAction> root;
     QMenu *rootMenu = nullptr;
     KFileItemListProperties items;
 
