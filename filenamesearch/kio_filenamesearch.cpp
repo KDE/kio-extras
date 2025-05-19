@@ -195,25 +195,30 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
         return KIO::WorkerResult::pass();
     }
 
-    // "checkContent=yes" should also search for terms in the filename.
+    const QString optionContent = urlQuery.queryItemValue(QStringLiteral("checkContent"));
+    const QString optionHidden = urlQuery.queryItemValue(QStringLiteral("includeHidden"));
+    const QString optionSrc = urlQuery.queryItemValue(QStringLiteral("src"));
+
     SearchOptions options(SearchFileName);
-    if (urlQuery.queryItemValue(QStringLiteral("checkContent")) == QLatin1String("yes")) {
+
+    // "checkContent=yes" should also search for terms in the filename.
+    if (QString::compare(optionContent, QLatin1String("yes"), Qt::CaseInsensitive) == 0) {
         options.setFlag(SearchContent);
     }
 
     // "includeHidden=yes" should search for hidden files and within hidden folders
-    if (urlQuery.queryItemValue(QStringLiteral("includeHidden")) == QLatin1String("yes")) {
+    if (QString::compare(optionHidden, QLatin1String("yes"), Qt::CaseInsensitive) == 0) {
         options.setFlag(IncludeHidden);
     }
 
-    // These are placeholders, the longer term aim is something a bit more flexible.
-    // The default behaviour is to assume the external script is present and fall back to using the
+    // Default behaviour is to assume the external script is present and fall back to using the
     // internal search if it is not.
+    // "src=internal" should use only the internal simple search code, "src=external" should call the external script
 
     Engine useEngine = Unspecified;
-    if (urlQuery.queryItemValue(QStringLiteral("src")) == QLatin1String("internal")) {
+    if (QString::compare(optionSrc, QLatin1String("internal"), Qt::CaseInsensitive) == 0) {
         useEngine = Internal;
-    } else if (urlQuery.queryItemValue(QStringLiteral("src")) == QLatin1String("external")) {
+    } else if (QString::compare(optionSrc, QLatin1String("external"), Qt::CaseInsensitive) == 0) {
         useEngine = External;
     }
 

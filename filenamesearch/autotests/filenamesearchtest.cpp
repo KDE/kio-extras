@@ -24,14 +24,14 @@ private Q_SLOTS:
     void filenameContent_data();
     void filenameContent();
 
+    void optionCase_data();
+    void optionCase();
+
     void folderTree_data();
     void folderTree();
 
     void folderTreeSymlinks_data();
     void folderTreeSymlinks();
-
-    void hiddenFolders_data();
-    void hiddenFolders();
 
     void hiddenFilesAndFolders_data();
     void hiddenFilesAndFolders();
@@ -81,8 +81,6 @@ QUrl FilenameSearchTest::buildSearchQuery(QByteArray searchString, QByteArray se
     QUrl url;
     url.setScheme("filenamesearch");
     url.setQuery(urlQuery);
-
-    //  qInfo() << url.toString();
 
     return (url);
 }
@@ -196,6 +194,30 @@ void FilenameSearchTest::filenameContent()
     QCOMPARE(results, expectedFiles);
 }
 
+//  TODO: the optionCase test relies on filenameContent, ought to have an option/query that does not depend on test files.
+
+void FilenameSearchTest::optionCase_data()
+{
+    addColumns();
+
+    addRow("No Match", QByteArrayLiteral("checkContent=no"), QByteArrayLiteral("curiouser"), {});
+    addRow("Lower Case", QByteArrayLiteral("checkContent=yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
+    addRow("Mixed Case", QByteArrayLiteral("checkContent=Yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
+    addRow("Upper Case", QByteArrayLiteral("checkContent=YES"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
+}
+
+void FilenameSearchTest::optionCase()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/filename-content");
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
+
+    QCOMPARE(results, expectedFiles);
+}
+
 void FilenameSearchTest::folderTree_data()
 {
     addColumns();
@@ -245,30 +267,6 @@ void FilenameSearchTest::folderTreeSymlinks()
     QFETCH(QByteArrayList, expectedFiles);
 
     const QString path = QFINDTESTDATA("data/folderTreeSymlinks/child");
-    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
-
-    QCOMPARE(results, expectedFiles);
-}
-
-void FilenameSearchTest::hiddenFolders_data()
-{
-    addColumns();
-
-    addRow("Filename Match", QByteArray("includeHidden=yes"), QByteArrayLiteral("alice"), {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
-
-    addRow("Content Match",
-           QByteArray("includeHidden=yes&checkContent=yes"),
-           QByteArrayLiteral("wonderland"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
-}
-
-void FilenameSearchTest::hiddenFolders()
-{
-    QFETCH(QByteArray, searchOptions);
-    QFETCH(QByteArray, searchString);
-    QFETCH(QByteArrayList, expectedFiles);
-
-    const QString path = QFINDTESTDATA("data/hiddenFilesAndFolders");
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
 
     QCOMPARE(results, expectedFiles);
