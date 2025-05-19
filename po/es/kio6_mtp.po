@@ -1,15 +1,15 @@
-# Spanish translations for kio_mtp.po package.
-# Copyright (C) 2014 This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
-#
+# Spanish translations for kio6_mtp.po package.
+# Copyright (C) 2014-2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
 # Automatically generated, 2014.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2014, 2016, 2018, 2019, 2022.
+#
+# SPDX-FileCopyrightText: 2014, 2016, 2018, 2019, 2022, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: kio_mtp\n"
+"Project-Id-Version: kio6_mtp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-09-11 02:01+0000\n"
-"PO-Revision-Date: 2022-01-06 12:34+0100\n"
+"PO-Revision-Date: 2025-05-18 12:45+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -38,8 +38,3 @@ msgstr ""
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "No es posible copiar ni mover archivos al mismo dispositivo"
-
-#~ msgid "No Storages found. Maybe you need to unlock your device?"
-#~ msgstr ""
-#~ "No se han encontrado dispositivos de almacenamiento. ¿Es posible que "
-#~ "necesite desbloquear el dispositivo?"

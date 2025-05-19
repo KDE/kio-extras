@@ -1,22 +1,21 @@
-# translation of kio_smb.po to Spanish
-# Translation of kio_smb to Spanish
-# Translation to spanish
-# Copyright (C) 2001-2002.
+# Spanish translations for kio6_smb.po package.
+# Copyright (C) 2001-2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
 #
-# Pablo de Vicente <vicente@oan.es>, 2001-2002.
-# Jaime Robles <jaime@kde.org>, 2003, 2008.
-# Miguel Revilla Rodríguez <yo@miguelrevilla.com>, 2003, 2004.
-# Pablo de Vicente <p.devicente@wanadoo.es>, 2004.
-# Santiago Fernandez Sancho <santi@kde-es.org>, 2005.
-# Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>, 2007.
-# Javier Vinal <fjvinal@gmail.com>, 2011.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2017, 2020.
+# SPDX-FileCopyrightText: 2001-2002 Pablo de Vicente <vicente@oan.es>
+# SPDX-FileCopyrightText: 2003, 2008 Jaime Robles <jaime@kde.org>
+# SPDX-FileCopyrightText: 2003, 2004 Miguel Revilla Rodríguez <yo@miguelrevilla.com>
+# SPDX-FileCopyrightText: 2004 Pablo de Vicente <p.devicente@wanadoo.es>
+# SPDX-FileCopyrightText: 2005 Santiago Fernandez Sancho <santi@kde-es.org>
+# SPDX-FileCopyrightText: 2007 Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>
+# SPDX-FileCopyrightText: 2011 Javier Vinal <fjvinal@gmail.com>
+# SPDX-FileCopyrightText: 2017, 2020, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: kio_smb\n"
+"Project-Id-Version: kio6_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-03 01:38+0000\n"
-"PO-Revision-Date: 2020-11-04 17:15+0100\n"
+"PO-Revision-Date: 2025-05-18 12:46+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -204,9 +203,3 @@ msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
 msgstr "Dispositivo desconocido @ <resource>%1</resource>"
-
-#~ msgid "libsmbclient failed to initialize context"
-#~ msgstr "libsmbclient falló al inicializar el contexto"
-
-#~ msgid "File does not exist: %1"
-#~ msgstr "El archivo no existe: %1"

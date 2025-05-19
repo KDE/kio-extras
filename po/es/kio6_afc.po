@@ -1,15 +1,15 @@
-# Spanish translations for kio5_afc.po package.
-# Copyright (C) 2022 This file is copyright:
+# Spanish translations for kio6_afc.po package.
+# Copyright (C) 2022-2025 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
-#
 # Automatically generated, 2022.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2022.
+#
+# SPDX-FileCopyrightText: 2022, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: kio5_afc\n"
+"Project-Id-Version: kio6_afc\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-05 00:42+0000\n"
-"PO-Revision-Date: 2022-12-27 11:39+0100\n"
+"PO-Revision-Date: 2025-05-18 12:45+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -105,7 +105,3 @@ msgstr "No se puede escribir el archivo sin haberlo abierto antes"
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "No se puede cambiar el nombre entre dispositivos."
-
-#~ msgctxt "Placeholder is device name"
-#~ msgid "%1 (Apps)"
-#~ msgstr "%1 (Aplicaciones)"

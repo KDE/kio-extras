@@ -1,13 +1,14 @@
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for kio6_man.po package.
+# Copyright (C) 2014-2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
 #
-# Eloy Cuadra <ecuadra@eloihr.net>, 2014, 2019, 2020, 2021.
+# SPDX-FileCopyrightText: 2014, 2019, 2020, 2021, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: kio6_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-26 00:41+0000\n"
-"PO-Revision-Date: 2021-09-03 19:38+0200\n"
+"PO-Revision-Date: 2025-05-18 12:45+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -201,20 +202,3 @@ msgstr ""
 "No se ha podido encontrar el programa <command>%1</command> en su sistema. "
 "Instálelo si es necesario y asegúrese de que se puede encontrar usando la "
 "variable de entorno <envar>PATH</envar>."
-
-#~ msgid "Open of %1 failed."
-#~ msgstr "La apertura de %1 ha fallado."
-
-#~ msgid "Man output"
-#~ msgstr "Salida de man"
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Eloy Cuadra"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "ecuadra@eloihr.net"
-
-#~ msgid "KMan"
-#~ msgstr "KMan"
