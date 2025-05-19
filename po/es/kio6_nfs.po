@@ -1,16 +1,17 @@
-# Translation of kio_nfs.po to Spanish
-# Copyright (C) 2001-2024.
+# Spanish translations for kio6_nfs.po package.
+# Copyright (C) 2001-2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
 #
 # SPDX-FileCopyrightText: 2001-2002 Pablo de Vicente <vicente@oan.es>
 # SPDX-FileCopyrightText: 2004 Pablo de Vicente <p.devicente@wanadoo.es>
 # SPDX-FileCopyrightText: 2008 Jaime Robles <jaime@kde.org>
-# SPDX-FileCopyrightText: 2014, 2021, 2024 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2014, 2021, 2024, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: kio_nfs\n"
+"Project-Id-Version: kio6_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-27 00:40+0000\n"
-"PO-Revision-Date: 2024-11-28 00:53+0100\n"
+"PO-Revision-Date: 2025-05-18 12:41+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -61,21 +62,3 @@ msgstr "Error de NFS %1, %2"
 #, kde-format
 msgid "Unknown target"
 msgstr "Destino desconocido"
-
-#~ msgid "Failed to initialise protocol"
-#~ msgstr "No se ha podido inicializar el protocolo"
-
-#~ msgid "%1: Unsupported NFS version"
-#~ msgstr "%1: versión de NFS no permitida"
-
-#~ msgid "No space left on device"
-#~ msgstr "No queda espacio en el dispositivo"
-
-#~ msgid "Read only file system"
-#~ msgstr "Sistema de solo lectura"
-
-#~ msgid "Failed to mount %1"
-#~ msgstr "El montaje de %1 ha fallado"
-
-#~ msgid "An RPC error occurred."
-#~ msgstr "Ocurrió un error RPC."

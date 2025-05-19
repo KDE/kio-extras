@@ -1,13 +1,14 @@
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for kio6_sftp.po package.
+# Copyright (C) 2014-2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
 #
-# Eloy Cuadra <ecuadra@eloihr.net>, 2014, 2018, 2021, 2022.
+# SPDX-FileCopyrightText: 2014, 2018, 2021, 2022, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: kio6_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-24 00:41+0000\n"
-"PO-Revision-Date: 2022-07-25 01:02+0200\n"
+"PO-Revision-Date: 2025-05-18 12:42+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -250,48 +251,3 @@ msgid ""
 msgstr ""
 "No se pueden cambiar los permisos de\n"
 "%1"
-
-#~ msgid ""
-#~ "The host key for the server %1 has changed.\n"
-#~ "This could either mean that DNS SPOOFING is happening or the IP address "
-#~ "for the host and its host key have changed at the same time.\n"
-#~ "The fingerprint for the %2 key sent by the remote host is:\n"
-#~ "  SHA256:%3\n"
-#~ "Please contact your system administrator.\n"
-#~ "%4"
-#~ msgstr ""
-#~ "La clave de máquina para el servidor %1 ha cambiado.\n"
-#~ "Esto se puede deber a que está ocurriendo una usurpación de DNS o a que "
-#~ "la dirección IP del servidor y su clave de máquina han cambiado el mismo "
-#~ "tiempo.\n"
-#~ "La huella digital de la clave %2 enviada por la máquina remota es:\n"
-#~ " SHA256:%3\n"
-#~ "Por favor, contacte con el administrador del sistema.\n"
-#~ "%4"
-
-#~ msgid "Warning: Cannot verify host's identity."
-#~ msgstr "Advertencia: no se puede verificar la identidad de la máquina."
-
-#~ msgid ""
-#~ "The host key for this server was not found, but another type of key "
-#~ "exists.\n"
-#~ "An attacker might change the default server key to confuse your client "
-#~ "into thinking the key does not exist.\n"
-#~ "Please contact your system administrator.\n"
-#~ "%1"
-#~ msgstr ""
-#~ "No se ha encontrado la clave de máquina para este servidor, aunque existe "
-#~ "otro tipo de clave.\n"
-#~ "Un atacante ha podido cambiar la clave por omisión del servidor para "
-#~ "engañar a su programa cliente haciéndole creer que la clave no existe.\n"
-#~ "Por favor, contacte con el administrador del sistema.\n"
-#~ "%1"
-
-#~ msgid ""
-#~ "The authenticity of host %1 cannot be established.\n"
-#~ "The key fingerprint is: %2\n"
-#~ "Are you sure you want to continue connecting?"
-#~ msgstr ""
-#~ "No se puede establecer la autenticidad de la máquina %1.\n"
-#~ "La huella digital de la clave es: %2\n"
-#~ "¿Está seguro de que desea continuar la conexión?"

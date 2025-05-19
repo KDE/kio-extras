@@ -1,15 +1,15 @@
-# Spanish translations for kfileaudiopreview5.po package.
-# Copyright (C) 2014 This_file_is_part_of_KDE
-# This file is distributed under the same license as the kde package.
-#
+# Spanish translations for kfileaudiopreview6.po package.
+# Copyright (C) 2014-2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
 # Automatically generated, 2014.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2014.
+#
+# SPDX-FileCopyrightText: 2014, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: kfileaudiopreview5\n"
+"Project-Id-Version: kfileaudiopreview6\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-07-14 00:45+0000\n"
-"PO-Revision-Date: 2014-05-22 22:23+0200\n"
+"PO-Revision-Date: 2025-05-18 12:37+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"

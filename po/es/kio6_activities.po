@@ -1,18 +1,18 @@
-# Spanish translations for kactivities5.po package.
-# Copyright (C) 2016 This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
-#
+# Spanish translations for kio6_activities.po package.
+# Copyright (C) 2016-2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
 # Automatically generated, 2016.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2016.
-# Rocio Gallego <traducciones@rociogallego.com>, 2016.
+#
+# SPDX-FileCopyrightText: 2016, 2025 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2016 Rocio Gallego <traducciones@rociogallego.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: kactivities5\n"
+"Project-Id-Version: kio6_activities\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-16 00:40+0000\n"
-"PO-Revision-Date: 2016-03-09 11:32+0100\n"
-"Last-Translator: Rocio Gallego <traducciones@rociogallego.com>\n"
-"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2025-05-18 12:38+0100\n"
+"Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
+"Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,7 +28,7 @@ msgstr "Actividades"
 #: fileitemplugin/FileItemLinkingPlugin.cpp:82
 #, kde-format
 msgid "Loading..."
-msgstr "Cargando..."
+msgstr "Cargando…"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:99
 #, kde-format
@@ -68,18 +68,3 @@ msgstr "Actividad actual"
 #, kde-format
 msgid "Activity"
 msgstr "Actividad"
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Eloy Cuadra"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "ecuadra@eloihr.net"
-
-#~ msgid "Default"
-#~ msgstr "Por omisión"
-
-#~ msgctxt "@action"
-#~ msgid "Switch to activity \"%1\""
-#~ msgstr "Cambiar a la actividad «%1»"

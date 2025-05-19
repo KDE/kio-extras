@@ -1,14 +1,14 @@
-# translation of kio_info.po to Spanish
-# Copyright (C) YEAR This_file_is_part_of_KDE
-# This file is distributed under the same license as the PACKAGE package.
+# Spanish translations for kio6_info.po package.
+# Copyright (C) 2009-2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
 #
-# Eloy Cuadra <ecuadra@eloihr.net>, 2009, 2021.
+# SPDX-FileCopyrightText: 2009, 2021, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: kio_info\n"
+"Project-Id-Version: kio6_info\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-04-10 00:38+0000\n"
-"PO-Revision-Date: 2021-02-20 16:32+0100\n"
+"PO-Revision-Date: 2025-05-18 12:40+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"

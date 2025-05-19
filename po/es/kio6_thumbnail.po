@@ -1,18 +1,19 @@
-# translation of kio_thumbnail.po to Spanish
-# Translation of kio_thumbnail to Spanish
+# Spanish translations for kio6_thumbnail.po package.
+# Copyright (C) 2005-2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
 #
-# Jaime Robles <jaime@robles.nu>, 2005.
-# Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>, 2007.
-# Jaime Robles <jaime@kde.org>, 2008, 2009.
-# Cristina Yenyxe González García <the.blue.valkyrie@gmail.com>, 2011.
+# SPDX-FileCopyrightText: 2005 Jaime Robles <jaime@robles.nu>
+# SPDX-FileCopyrightText: 2007 Enrique Matias Sanchez (aka Quique) <cronopios@gmail.com>
+# SPDX-FileCopyrightText: 2008, 2009 Jaime Robles <jaime@kde.org>
+# SPDX-FileCopyrightText: 2011 Cristina Yenyxe González García <the.blue.valkyrie@gmail.com>
+# SPDX-FileCopyrightText: 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
-"Project-Id-Version: kio_thumbnail\n"
+"Project-Id-Version: kio6_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-26 02:33+0000\n"
-"PO-Revision-Date: 2011-03-20 14:00+0100\n"
-"Last-Translator: Cristina Yenyxe González García <the.blue.valkyrie@gmail."
-"com>\n"
+"PO-Revision-Date: 2025-05-18 12:43+0100\n"
+"Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -70,18 +71,3 @@ msgstr "Fallo al adjuntar segmento de memoria compartida %1"
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "La imagen es demasiado grande para el segmento de memoria compartida"
-
-#~ msgctxt "@option:check"
-#~ msgid "Rotate the image automatically"
-#~ msgstr "Rotar la imagen automáticamente"
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Jaime Robles,Cristina Yenyxe González García"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "jaime@kde.org,the.blue.valkyrie@gmail.com"
-
-#~ msgid "kio_thumbmail"
-#~ msgstr "kio_thumbmail"
