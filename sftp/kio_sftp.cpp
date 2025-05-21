@@ -889,6 +889,7 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
                 return Result::fail(KIO::ERR_CANNOT_LOGIN, i18n("Authentication failed."));
             }
             if (rc == SSH_AUTH_PARTIAL) {
+                qCDebug(KIO_SFTP_LOG) << "Public key authentication succeeded, but another method is still required";
                 method = ssh_auth_list(mSession);
                 break;
             }
