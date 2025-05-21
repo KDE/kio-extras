@@ -890,6 +890,7 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
             }
             if (rc == SSH_AUTH_PARTIAL) {
                 method = ssh_auth_list(mSession);
+                break;
             }
             if (rc != SSH_AUTH_DENIED || !mPublicKeyAuthInfo || !mPublicKeyAuthInfo->isModified()) {
                 clearPubKeyAuthInfo();
