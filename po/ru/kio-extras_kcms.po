@@ -5,7 +5,7 @@
 # KDE2 - kcmkio.pot Russian translation.
 # Copyright (C) 2000, KDE Team.
 # Leon Kanter <leon@asplinux.ru>
-# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2022, 2023, 2024 Alexander Yavorsky <kekcuha@gmail.com>
+# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Alexander Yavorsky <kekcuha@gmail.com>
 # Mihail Kozlov <kmn@obladm.nso.ru>, 2000.
 # Gregory Mokhin <mokhin@bog.msu.ru>, 2000.
 # Leonid Kanter <leon@asplinux.ru>, 2004, 2005.
@@ -23,14 +23,14 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-29 00:41+0000\n"
-"PO-Revision-Date: 2025-02-13 11:49+0300\n"
+"PO-Revision-Date: 2025-05-20 21:27+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.08.3\n"
+"X-Generator: Lokalize 25.04.1\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -112,16 +112,14 @@ msgstr ""
 "p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " байт"
-msgstr[1] " байта"
-msgstr[2] " байт"
-msgstr[3] " байт"
+msgstr[0] "%v байт"
+msgstr[1] "%v байта"
+msgstr[2] "%v байт"
+msgstr[3] "%v байт"
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -683,16 +681,14 @@ msgstr ""
 "указанного периода.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " день"
-msgstr[1] " дня"
-msgstr[2] " дней"
-msgstr[3] " день"
+msgstr[0] "%v день"
+msgstr[1] "%v дня"
+msgstr[2] "%v дней"
+msgstr[3] "один день"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -734,7 +730,7 @@ msgstr "Размер:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
