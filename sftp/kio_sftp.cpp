@@ -890,6 +890,7 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
             }
             if (rc == SSH_AUTH_PARTIAL) {
                 qCDebug(KIO_SFTP_LOG) << "Public key authentication succeeded, but another method is still required";
+                clearPubKeyAuthInfo();
                 method = ssh_auth_list(mSession);
                 break;
             }
