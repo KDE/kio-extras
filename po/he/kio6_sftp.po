@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-24 00:41+0000\n"
+"POT-Creation-Date: 2025-05-23 00:42+0000\n"
 "PO-Revision-Date: 2023-10-23 00:00+0300\n"
 "Last-Translator: Elkana Bardugo <ttv200@gmail.com>\n"
 "Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
@@ -54,7 +54,7 @@ msgstr "לא ניתן להגדיר נתוני משתמש של היומן."
 msgid "Could not set log callback."
 msgstr "לא ניתן להגדיר קריאה חוזרת (callback) ליומן."
 
-#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:925
+#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:931
 #, kde-format
 msgid "SFTP Login"
 msgstr "כניסה ל־SFTP"
@@ -69,7 +69,7 @@ msgstr "נא להשתמש בשדה קלט שם משתמש כדי לענות על
 msgid "Please enter your password."
 msgstr "נא למלא את הסיסמה שלך."
 
-#: kio_sftp.cpp:431 kio_sftp.cpp:928
+#: kio_sftp.cpp:431 kio_sftp.cpp:934
 #, kde-format
 msgid "Site:"
 msgstr "אתר:"
@@ -200,8 +200,8 @@ msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "להתחבר בכל זאת"
 
-#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:904 kio_sftp.cpp:917
-#: kio_sftp.cpp:969 kio_sftp.cpp:979
+#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:910 kio_sftp.cpp:923
+#: kio_sftp.cpp:975 kio_sftp.cpp:985
 #, kde-format
 msgid "Authentication failed."
 msgstr "האימות נכשל."
@@ -212,39 +212,39 @@ msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr "האימות נכשל. השרת לא שלח שום שיטה לאימות"
 
-#: kio_sftp.cpp:926
+#: kio_sftp.cpp:932
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "נא למלא את שם המשתמש והסיסמה שלך."
 
-#: kio_sftp.cpp:937
+#: kio_sftp.cpp:943
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "שם משתמש או סיסמה שגויים"
 
-#: kio_sftp.cpp:986
+#: kio_sftp.cpp:992
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
 "server."
 msgstr "אין אפשרות לבקש את תת־מערכת ה־SFTP. נא לוודא שבשרת מופעל SFTP."
 
-#: kio_sftp.cpp:991
+#: kio_sftp.cpp:997
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "אין אפשרות להקים את הפעלת ה־SFTP."
 
-#: kio_sftp.cpp:995
+#: kio_sftp.cpp:1001
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "החיבור אל %1 הצליח"
 
-#: kio_sftp.cpp:1048
+#: kio_sftp.cpp:1054
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "הקשר sftp שגוי"
 
-#: kio_sftp.cpp:1582
+#: kio_sftp.cpp:1588
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

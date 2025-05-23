@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-24 00:41+0000\n"
+"POT-Creation-Date: 2025-05-23 00:42+0000\n"
 "PO-Revision-Date: 2014-02-14 00:25+0100\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -44,7 +44,7 @@ msgstr "Logbook-Brukerdaten laat sik nich fastsetten"
 msgid "Could not set log callback."
 msgstr "Logbook-Torüchroop lett sik nich towiesen."
 
-#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:925
+#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:931
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP-Anmellen"
@@ -59,7 +59,7 @@ msgstr "Bruuk dat Brukernaam-Feld, wenn Du op disse Fraag antern wullt."
 msgid "Please enter your password."
 msgstr "Giff bitte Dien Passwoort in."
 
-#: kio_sftp.cpp:431 kio_sftp.cpp:928
+#: kio_sftp.cpp:431 kio_sftp.cpp:934
 #, kde-format
 msgid "Site:"
 msgstr "Server:"
@@ -220,8 +220,8 @@ msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr ""
 
-#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:904 kio_sftp.cpp:917
-#: kio_sftp.cpp:969 kio_sftp.cpp:979
+#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:910 kio_sftp.cpp:923
+#: kio_sftp.cpp:975 kio_sftp.cpp:985
 #, kde-format
 msgid "Authentication failed."
 msgstr "Identiteetprööv fehlslaan."
@@ -233,17 +233,17 @@ msgid ""
 msgstr ""
 "Identiteetprööv fehlslaan. De Server hett keen Methoden dorför künnig maakt."
 
-#: kio_sftp.cpp:926
+#: kio_sftp.cpp:932
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Bitte giff Dien Brukernaam un Passwoort in."
 
-#: kio_sftp.cpp:937
+#: kio_sftp.cpp:943
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Brukernaam oder Passwoort gellt nich"
 
-#: kio_sftp.cpp:986
+#: kio_sftp.cpp:992
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -252,22 +252,22 @@ msgstr ""
 "Dat SFTP-Ünnersysteem lett sik nich ansnacken. Beseker bitte, SFTP is op den "
 "Server anmaakt."
 
-#: kio_sftp.cpp:991
+#: kio_sftp.cpp:997
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "De SFTP-Törn lett sik nich torechtmaken."
 
-#: kio_sftp.cpp:995
+#: kio_sftp.cpp:1001
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Verbinnen na %1 opstellt"
 
-#: kio_sftp.cpp:1048
+#: kio_sftp.cpp:1054
 #, kde-format
 msgid "Invalid sftp context"
 msgstr ""
 
-#: kio_sftp.cpp:1582
+#: kio_sftp.cpp:1588
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

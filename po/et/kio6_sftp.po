@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-24 00:41+0000\n"
+"POT-Creation-Date: 2025-05-23 00:42+0000\n"
 "PO-Revision-Date: 2019-11-09 14:14+0200\n"
 "Last-Translator: Marek Laane <qiilaq69@gmail.com>\n"
 "Language-Team: Estonian <kde-et@lists.linux.ee>\n"
@@ -43,7 +43,7 @@ msgstr "Kasutajaandmete logimine nurjus."
 msgid "Could not set log callback."
 msgstr "Tagasiside logimine nurjus"
 
-#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:925
+#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:931
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP kasutajanimi"
@@ -58,7 +58,7 @@ msgstr "Kasuta sellele küsimusele vastamiseks kasutajanime sisestamise välja."
 msgid "Please enter your password."
 msgstr "Palun sisesta parool."
 
-#: kio_sftp.cpp:431 kio_sftp.cpp:928
+#: kio_sftp.cpp:431 kio_sftp.cpp:934
 #, kde-format
 msgid "Site:"
 msgstr "Sait:"
@@ -207,8 +207,8 @@ msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr ""
 
-#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:904 kio_sftp.cpp:917
-#: kio_sftp.cpp:969 kio_sftp.cpp:979
+#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:910 kio_sftp.cpp:923
+#: kio_sftp.cpp:975 kio_sftp.cpp:985
 #, kde-format
 msgid "Authentication failed."
 msgstr "Autentimine nurjus."
@@ -219,17 +219,17 @@ msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr "Autentimine nurjus. Server ei saatnud ühtegi autentimisviisi"
 
-#: kio_sftp.cpp:926
+#: kio_sftp.cpp:932
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Palun sisesta kasutajanimi ja parool."
 
-#: kio_sftp.cpp:937
+#: kio_sftp.cpp:943
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Vale kasutajanimi või parool"
 
-#: kio_sftp.cpp:986
+#: kio_sftp.cpp:992
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -238,22 +238,22 @@ msgstr ""
 "SFTP alamsüsteemi päring nurjus. Kontrolli, kas SFTP on serveris ikka "
 "lubatud."
 
-#: kio_sftp.cpp:991
+#: kio_sftp.cpp:997
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "SFTP seansi initsialiseerimine nurjus."
 
-#: kio_sftp.cpp:995
+#: kio_sftp.cpp:1001
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Ühendus edukalt loodud masinasse %1"
 
-#: kio_sftp.cpp:1048
+#: kio_sftp.cpp:1054
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Vigane sftp kontekst"
 
-#: kio_sftp.cpp:1582
+#: kio_sftp.cpp:1588
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

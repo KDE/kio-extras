@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-24 00:41+0000\n"
+"POT-Creation-Date: 2025-05-23 00:42+0000\n"
 "PO-Revision-Date: 2024-11-24 09:42\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -48,7 +48,7 @@ msgstr "Не ўдалося вызначыць журнал даных кары�
 msgid "Could not set log callback."
 msgstr "Не ўдалося вызначыць журнал зваротных выклікаў."
 
-#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:925
+#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:931
 #, kde-format
 msgid "SFTP Login"
 msgstr "Лагін SFTP"
@@ -63,7 +63,7 @@ msgstr "Скарыстайцеся полем уводу імя карыстал
 msgid "Please enter your password."
 msgstr "Калі ласка, ўвядзіце пароль."
 
-#: kio_sftp.cpp:431 kio_sftp.cpp:928
+#: kio_sftp.cpp:431 kio_sftp.cpp:934
 #, kde-format
 msgid "Site:"
 msgstr "Сайт:"
@@ -195,8 +195,8 @@ msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "Усё адно падлучыцца"
 
-#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:904 kio_sftp.cpp:917
-#: kio_sftp.cpp:969 kio_sftp.cpp:979
+#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:910 kio_sftp.cpp:923
+#: kio_sftp.cpp:975 kio_sftp.cpp:985
 #, kde-format
 msgid "Authentication failed."
 msgstr "Памылка аўтэнтыфікацыі."
@@ -209,17 +209,17 @@ msgstr ""
 "Не ўдалося выканаць аўтэнтыфікацыю. Сервер не адправіў ніякіх метадаў "
 "аўтэнтыфікацыі"
 
-#: kio_sftp.cpp:926
+#: kio_sftp.cpp:932
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Калі ласка, увядзіце вашыя імя карыстальніка і пароль."
 
-#: kio_sftp.cpp:937
+#: kio_sftp.cpp:943
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Няправільнае імя карыстальніка або пароль"
 
-#: kio_sftp.cpp:986
+#: kio_sftp.cpp:992
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -228,22 +228,22 @@ msgstr ""
 "Не ўдалося запытаць падсістэму SFTP. Пераканайцеся, што SFTP уключаны на "
 "серверы."
 
-#: kio_sftp.cpp:991
+#: kio_sftp.cpp:997
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "Не ўдалося ініцыялізаваць сеанс SFTP."
 
-#: kio_sftp.cpp:995
+#: kio_sftp.cpp:1001
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Паспяхова падлучана да %1"
 
-#: kio_sftp.cpp:1048
+#: kio_sftp.cpp:1054
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Хібны кантэкст sftp"
 
-#: kio_sftp.cpp:1582
+#: kio_sftp.cpp:1588
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

@@ -2,7 +2,7 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 # Copyright (C) 2001, 2003, 2004 Free Software Foundation, Inc.
-# $Id: kio6_sftp.po 1703671 2025-02-24 01:19:30Z scripty $
+# $Id: kio6_sftp.po 1709493 2025-05-23 01:22:48Z scripty $
 # $Source$
 #
 # Andrej Vernekar <andrej.vernekar@moj.net>, 2001.
@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-02-24 00:41+0000\n"
+"POT-Creation-Date: 2025-05-23 00:42+0000\n"
 "PO-Revision-Date: 2022-07-23 06:09+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -52,7 +52,7 @@ msgstr "Ni bilo mogoče nastaviti dnevnika uporabniških podatkov."
 msgid "Could not set log callback."
 msgstr "Ni bilo mogoče nastaviti povratnih klicev dnevnika."
 
-#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:925
+#: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:931
 #, kde-format
 msgid "SFTP Login"
 msgstr "Prijava SFTP"
@@ -67,7 +67,7 @@ msgstr "Za odgovor na to vprašanje v vnosno polje vnesite uporabniško ime."
 msgid "Please enter your password."
 msgstr "Vnesite svoje geslo."
 
-#: kio_sftp.cpp:431 kio_sftp.cpp:928
+#: kio_sftp.cpp:431 kio_sftp.cpp:934
 #, kde-format
 msgid "Site:"
 msgstr "Mesto:"
@@ -203,8 +203,8 @@ msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "Kljub temu se poveži"
 
-#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:904 kio_sftp.cpp:917
-#: kio_sftp.cpp:969 kio_sftp.cpp:979
+#: kio_sftp.cpp:870 kio_sftp.cpp:889 kio_sftp.cpp:910 kio_sftp.cpp:923
+#: kio_sftp.cpp:975 kio_sftp.cpp:985
 #, kde-format
 msgid "Authentication failed."
 msgstr "Overitev ni uspela."
@@ -215,17 +215,17 @@ msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr "Overitev ni uspela. Strežnik ni poslal nobenih overitvenih metod"
 
-#: kio_sftp.cpp:926
+#: kio_sftp.cpp:932
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Vnesite vaše uporabniško ime in geslo."
 
-#: kio_sftp.cpp:937
+#: kio_sftp.cpp:943
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Napačno uporabniško ime ali geslo"
 
-#: kio_sftp.cpp:986
+#: kio_sftp.cpp:992
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -234,22 +234,22 @@ msgstr ""
 "Ni mogoče zahtevati podsistema SFTP. Prepričajte se, da je SFTP na strežniku "
 "sploh omogočen."
 
-#: kio_sftp.cpp:991
+#: kio_sftp.cpp:997
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "Ni bilo mogoče začeti seje SFTP."
 
-#: kio_sftp.cpp:995
+#: kio_sftp.cpp:1001
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Uspešno povezan z %1"
 
-#: kio_sftp.cpp:1048
+#: kio_sftp.cpp:1054
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Neveljaven kontekst sftp"
 
-#: kio_sftp.cpp:1582
+#: kio_sftp.cpp:1588
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
