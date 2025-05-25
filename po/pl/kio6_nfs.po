@@ -1,5 +1,5 @@
 # translation of kio_nfs.po to Polish
-# Version: $Revision: 1696289 $
+# Version: $Revision: 1709616 $
 # translation of kio_nfs.po to
 # SPDX-FileCopyrightText: 2014, 2016, 2021, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 # Norbert Popiołek <norbert@kde.com.pl>
@@ -18,7 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 24.08.3\n"
 
 #: kio_nfs.cpp:151
 #, kde-format
