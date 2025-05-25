@@ -316,8 +316,8 @@ msgstr ""
 "Introduïu la variable d'entorn utilitzada per a guardar les adreces dels "
 "llocs per als quals no s'ha d'utilitzar el servidor intermediari, p. ex., "
 "<b>NO_PROXY</b>.<p>\n"
-"De manera alternativa, podeu clicar en el botó <b>«Detecta automàticament»</"
-"b> per a provar el descobriment automàtic d'esta variable.\n"
+"De manera alternativa, podeu clicar damunt del botó <b>«Detecta "
+"automàticament»</b> per a provar el descobriment automàtic d'esta variable.\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
@@ -417,8 +417,9 @@ msgstr ""
 "<qt>\n"
 "Introduïu el nom de la variable d'entorn emprada per a guardar l'adreça del "
 "servidor intermediari HTTP, p. ex., <b>HTTP_PROXY</b>.<p>\n"
-"De manera alternativa, podeu clicar en el botó <b>«Detecta automàticament»</"
-"b> per a provar el descobriment automàtic d'esta variable.</p>\n"
+"De manera alternativa, podeu clicar damunt del botó <b>«Detecta "
+"automàticament»</b> per a provar el descobriment automàtic d'esta variable.</"
+"p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
@@ -442,8 +443,9 @@ msgstr ""
 "<qt>\n"
 "Introduïu el nom de la variable d'entorn emprada per a guardar l'adreça del "
 "servidor intermediari HTTPS, p. ex., <b>HTTPS_PROXY</b>.<p>\n"
-"De manera alternativa, podeu clicar en el botó <b>«Detecta automàticament»</"
-"b> per a provar el descobriment automàtic d'esta variable.</p>\n"
+"De manera alternativa, podeu clicar damunt del botó <b>«Detecta "
+"automàticament»</b> per a provar el descobriment automàtic d'esta variable.</"
+"p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
@@ -467,8 +469,9 @@ msgstr ""
 "<qt>\n"
 "Introduïu el nom de la variable d'entorn, p. ex., <b>FTP_PROXY</b>, emprada "
 "per a guardar l'adreça del servidor intermediari FTP.<p>\n"
-"De manera alternativa, podeu clicar en el botó <b>«Detecta automàticament»</"
-"b> per a provar el descobriment automàtic d'esta variable.</p>\n"
+"De manera alternativa, podeu clicar damunt del botó <b>«Detecta "
+"automàticament»</b> per a provar el descobriment automàtic d'esta variable.</"
+"p>\n"
 "</qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
@@ -485,8 +488,9 @@ msgstr ""
 "<qt>\n"
 "Introduïu el nom de la variable d'entorn emprada per a guardar l'adreça del "
 "servidor intermediari SOCKS, p. ex., <b>SOCKS_PROXY</b>.<p>\n"
-"De manera alternativa, podeu clicar en el botó <b>«Detecta automàticament»</"
-"b> per a provar el descobriment automàtic d'esta variable.</p>\n"
+"De manera alternativa, podeu clicar damunt del botó <b>«Detecta "
+"automàticament»</b> per a provar el descobriment automàtic d'esta variable.</"
+"p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
@@ -506,8 +510,8 @@ msgid ""
 msgstr ""
 "<qt>Introduïu el nom de la variable d'entorn emprada per a guardar l'adreça "
 "del servidor intermediari SOCKS, p. ex., <b>SOCKS_PROXY</b>.<p>De manera "
-"alternativa, podeu clicar en el botó <b>«Detecta automàticament»</b> per a "
-"provar el descobriment automàtic d'esta variable.</p></qt>"
+"alternativa, podeu clicar damunt del botó <b>«Detecta automàticament»</b> "
+"per a provar el descobriment automàtic d'esta variable.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
@@ -527,7 +531,7 @@ msgstr ""
 "<qt>Introduïu la variable d'entorn utilitzada per a guardar les adreces dels "
 "llocs per als quals no s'ha d'utilitzar la configuració de servidor "
 "intermediari, p. ex., <b>NO_PROXY</b>.<p>De manera alternativa, podeu clicar "
-"en el botó <b>«Detecta automàticament»</b> per a provar el descobriment "
+"damunt del botó <b>«Detecta automàticament»</b> per a provar el descobriment "
 "automàtic d'esta variable.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
