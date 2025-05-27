@@ -39,6 +39,7 @@
 #include <QPixmap>
 #include <QPluginLoader>
 #include <QSaveFile>
+#include <QSettings>
 #include <QUrl>
 
 #include <KConfigGroup>
@@ -52,9 +53,6 @@
 #include <limits>
 
 #include "imagefilter.h"
-
-#include <private/qguiapplication_p.h> // QGuiApplicationPrivate::platformTheme()
-#include <qpa/qplatformtheme.h>
 
 // Recognized metadata entries:
 // mimeType     - the mime type of the file, used for the overlay icon if any
@@ -81,6 +79,86 @@
 //                Otherwise, the data returned is the image in PNG format.
 
 using namespace KIO;
+
+// copied from QGenericUnixThemes
+
+static inline QByteArray detectDesktopEnvironment()
+{
+    const QByteArray xdgCurrentDesktop = qgetenv("XDG_CURRENT_DESKTOP");
+    if (!xdgCurrentDesktop.isEmpty())
+        return xdgCurrentDesktop.toUpper(); // KDE, GNOME, UNITY, LXDE, MATE, XFCE...
+
+    // Classic fallbacks
+    if (!qEnvironmentVariableIsEmpty("KDE_FULL_SESSION"))
+        return QByteArrayLiteral("KDE");
+    if (!qEnvironmentVariableIsEmpty("GNOME_DESKTOP_SESSION_ID"))
+        return QByteArrayLiteral("GNOME");
+
+    // Fallback to checking $DESKTOP_SESSION (unreliable)
+    QByteArray desktopSession = qgetenv("DESKTOP_SESSION");
+
+    // This can be a path in /usr/share/xsessions
+    int slash = desktopSession.lastIndexOf('/');
+    if (slash != -1) {
+#if QT_CONFIG(settings)
+        QSettings desktopFile(QFile::decodeName(desktopSession + ".desktop"), QSettings::IniFormat);
+        desktopFile.beginGroup(QStringLiteral("Desktop Entry"));
+        QByteArray desktopName = desktopFile.value(QStringLiteral("DesktopNames")).toByteArray();
+        if (!desktopName.isEmpty())
+            return desktopName;
+#endif
+
+        // try decoding just the basename
+        desktopSession = desktopSession.mid(slash + 1);
+    }
+
+    if (desktopSession == "gnome")
+        return QByteArrayLiteral("GNOME");
+    else if (desktopSession == "xfce")
+        return QByteArrayLiteral("XFCE");
+    else if (desktopSession == "kde")
+        return QByteArrayLiteral("KDE");
+
+    return QByteArrayLiteral("UNKNOWN");
+}
+
+static QStringList themeNames()
+{
+    QStringList result;
+    if (QGuiApplication::desktopSettingsAware()) {
+        const QByteArray desktopEnvironment = detectDesktopEnvironment();
+        QList<QByteArray> gtkBasedEnvironments;
+        gtkBasedEnvironments << "GNOME"
+                             << "X-CINNAMON"
+                             << "PANTHEON"
+                             << "UNITY"
+                             << "MATE"
+                             << "XFCE"
+                             << "LXDE";
+        const QList<QByteArray> desktopNames = desktopEnvironment.split(':');
+        for (const QByteArray &desktopName : desktopNames) {
+            if (desktopEnvironment == "KDE") {
+#if QT_CONFIG(settings)
+                result.push_back(QLatin1StringView("kde"));
+#endif
+            } else if (gtkBasedEnvironments.contains(desktopName)) {
+                // prefer the GTK3 theme implementation with native dialogs etc.
+                result.push_back(QStringLiteral("gtk3"));
+                // fallback to the generic Gnome theme if loading the GTK3 theme fails
+                result.push_back(QLatin1StringView("gnome"));
+            } else {
+                // unknown, but lowercase the name (our standard practice) and
+                // remove any "x-" prefix
+                QString s = QString::fromLatin1(desktopName.toLower());
+                result.push_back(s.startsWith(u"x-") ? s.mid(2) : s);
+            }
+        }
+    } // desktopSettingsAware
+    result.append(QLatin1StringView("generic"));
+    return result;
+}
+
+// End copied from QGenericUnixThemes
 
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
@@ -110,17 +188,12 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char **argv)
     // (e.g. Webarchiver, see https://bugs.kde.org/show_bug.cgi?id=500173).
     // This will not let any plugin to create auxilliary windows on the screen
     // while generating thumbnails.
-    // Retrieve theme name from the default platform...
-    QString themeName;
-    {
-        QGuiApplication aux(argc, argv);
-        if (auto platformTheme = QGuiApplicationPrivate::platformTheme()) {
-            themeName = platformTheme->name();
-        }
-    }
-    // ...and force using offscreen platform with the default platform's theme
+    // Retrieve theme name of the default platform and force using offscreen platform with the default platformtheme
     qputenv("QT_QPA_PLATFORM", "offscreen");
-    qputenv("QT_QPA_PLATFORMTHEME", themeName.toUtf8());
+    if (qEnvironmentVariableIsEmpty("QT_QPA_PLATFORMTHEME")) {
+        const QString themeName = themeNames().first();
+        qputenv("QT_QPA_PLATFORMTHEME", themeName.toUtf8());
+    }
 
     // Some thumbnail plugins use QWidget classes for the rendering,
     // so use QApplication here, not just QGuiApplication
