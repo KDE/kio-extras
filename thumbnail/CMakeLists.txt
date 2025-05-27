@@ -6,13 +6,6 @@ add_definitions(-DTRANSLATION_DOMAIN=\"kio6_thumbnail\")
 
 remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
-# Private targets need to be included explicitly since
-# https://code.qt.io/cgit/qt/qtbase.git/commit/?id=ad7b94e163ac5c3959a7e38d7f48536be288a187
-# but this is only available for Qt >= 6.9, see https://bugreports.qt.io/browse/QTBUG-87776
-if (Qt6Gui_VERSION VERSION_GREATER_EQUAL 6.9.0)
-    find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS GuiPrivate)
-endif()
-
 find_package(OpenEXR 3.0 CONFIG QUIET)
 if(NOT OpenEXR_FOUND)
     find_package(OpenEXR)
@@ -96,8 +89,6 @@ target_link_libraries(kio_thumbnail
         KF6::KIOCore
         KF6::KIOWidgets
         KF6::I18n
-    PRIVATE
-        Qt6::GuiPrivate
 )
 
 install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
