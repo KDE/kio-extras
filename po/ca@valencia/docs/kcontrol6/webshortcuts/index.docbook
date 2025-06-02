@@ -53,7 +53,7 @@
 >.</para>
 
 <para
->Ja haureu notat que &kde; és molt fàcil d'emprar amb Internet. Per exemple, podeu fer clic damunt de l'element de menú <guimenuitem
+>Ja haureu notat que &kde; és molt fàcil d'emprar amb Internet. Per exemple, podeu clicar damunt de l'element de menú <guimenuitem
 >Executa</guimenuitem
 > o introduir la drecera del teclat per a esta ordre (<keycombo action="simul"
 >&Alt;<keycap
@@ -68,17 +68,17 @@
 ></para>
 
 <para
->D'altra banda, les dreceres web permeten utilitzar esquemes nous de pseudo &URL; o dreceres, que bàsicament permeten indicar <emphasis
+>D'altra banda, les dreceres web vos permeten utilitzar nous esquemes de pseudo &URL; o dreceres, que bàsicament permeten indicar <emphasis
 >paràmetres</emphasis
 > en els &URI; d'ús freqüent. Per exemple, si vos agrada el motor de busca de Google, podeu configurar &kde; de manera que un pseudo &URL; com <emphasis
 >gg:</emphasis
-> active una busca a Google. D'esta manera, introduint <userinput
+> active una busca en Google. D'esta manera, introduint <userinput
 >gg:<replaceable
 >la meua busca</replaceable
 ></userinput
 > es buscarà <replaceable
 >la meua busca</replaceable
-> a Google.</para>
+> en Google.</para>
 
 <note
 ><para
@@ -100,7 +100,7 @@
 >Paraules clau de busca en la web</title>
 
 <para
->Els noms descriptius de les dreceres web es mostren en un quadro de llista. Com en altres llistes de &kde;, podeu fer clic damunt de la capçalera en una columna per a canviar l'ordre entre ascendent i descendent, com també podeu redimensionar les columnes.</para>
+>Els noms descriptius de les dreceres web es mostren en un quadro de llista. Com en altres llistes de &kde;, podeu clicar damunt de la capçalera en una columna per a canviar l'ordre entre ascendent i descendent, com també podeu redimensionar les columnes.</para>
 
 <para
 >En la part inferior de la llista, l'opció <guilabel
@@ -140,19 +140,19 @@
 </variablelist>
 
 <para
->Si feu doble clic damunt d'una entrada específica de la llista de proveïdors de busca o feu clic damunt del botó <guibutton
->Canvia...</guibutton
+>Si feu doble clic damunt d'una entrada específica de la llista de proveïdors de busca o cliqueu damunt del botó <guibutton
+>Canvia…</guibutton
 >, es mostraran els detalls d'esta entrada en un diàleg emergent. A més del nom descriptiu per a l'element, també podeu veure l'&URI; emprat, així com la drecera associada que podreu escriure a qualsevol lloc de &kde; a on s'espere un &URI;. Un proveïdor de busca pot tindre múltiples dreceres, separades per una coma.</para>
 
 <para
 >Els quadros de text no tan sols s'utilitzen per a mostrar informació sobre un element en la llista de dreceres web, sinó també per a modificar o afegir elements nous.</para>
 
 <para
->Podeu canviar els continguts dels quadros de text <guilabel
+>Podeu canviar el contingut dels quadros de text <guilabel
 >URL de la drecera:</guilabel
 > o <guilabel
 >Dreceres</guilabel
->. Feu clic en <guibutton
+>. Cliqueu damunt <guibutton
 >D'acord</guibutton
 > per a guardar els vostres canvis i a <guibutton
 >Cancel·la</guibutton
@@ -163,7 +163,7 @@
 >URL de la drecera:</guilabel
 >, trobareu que la majoria de les entrades, si no totes, tenen un <option
 >\{@}</option
->. Esta seqüència de quatre caràcters actua com a paràmetre, indicant que serà substituïda per qualsevol cosa que introduïu després dels dos punts que estan entre la drecera i el seu paràmetre. Per a afegir este text variable de consulta a un &URL; de drecera, feu clic damunt del botó a la dreta del quadro de text. Vegem alguns exemples per a aclarir com utilitzar les dreceres web.</para>
+>. Esta seqüència de quatre caràcters actua com a paràmetre, indicant que serà substituïda per qualsevol cosa que introduïu després dels dos punts que estan entre la drecera i el seu paràmetre. Per a afegir este text variable de consulta a un &URL; de drecera, cliqueu damunt del botó a la dreta del quadro de text. Vegem alguns exemples per a aclarir com utilitzar les dreceres web.</para>
 
 <para
 >Suposem que l'&URI; és <userinput
@@ -196,7 +196,7 @@
 > és el mateix que introduir l'&URI; complet. Cal tindre present que no hi ha res després dels dos punts en escriure la drecera, però els dos punts són necessaris perquè la drecera siga reconeguda com a tal.</para>
 
 <para
->Ara ja haureu comprés que encara que estes dreceres s'anomenen dreceres web, en realitat són dreceres a &URI; amb paràmetres, els quals poden apuntar no tan sols a llocs web sinó a qualsevol adreça a la qual es puga apuntar amb un &URI;. Les dreceres web són una característica molt potent de la navegació en &kde;.</para>
+>Ara ja haureu comprés que encara que estes dreceres s'anomenen dreceres web, en realitat són dreceres cap a &URI; amb paràmetres, que poden apuntar no tan sols a llocs web sinó a qualsevol adreça a la qual es puga apuntar amb un &URI;. Les dreceres web són una característica molt potent de la navegació en &kde;.</para>
 
 </sect2>
 
