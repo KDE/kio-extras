@@ -10,6 +10,7 @@
 
 #include "kio_filenamesearch_debug.h"
 
+#include <KFileItem>
 #include <KIO/FileCopyJob>
 #include <KIO/ListJob>
 #include <KLocalizedString>
@@ -50,6 +51,10 @@ bool hasBeenVisited(const QString &path, std::set<QString> &seenDirs)
     return false;
 }
 
+bool isDotOrDotDot(const QString &fileName)
+{
+    return fileName == QLatin1String(".") || fileName == QLatin1String("..");
+}
 }
 
 // Pseudo plugin class to embed meta data
@@ -209,6 +214,12 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     // "includeHidden=yes" should search for hidden files and within hidden folders
     if (QString::compare(optionHidden, QLatin1String("yes"), Qt::CaseInsensitive) == 0) {
         options.setFlag(IncludeHidden);
+    } else if (QString::compare(optionHidden, QLatin1String("filesandfolders"), Qt::CaseInsensitive) == 0) {
+        options.setFlag(IncludeHidden);
+    } else if (QString::compare(optionHidden, QLatin1String("folders"), Qt::CaseInsensitive) == 0) {
+        options.setFlag(IncludeHiddenFolders);
+    } else if (QString::compare(optionHidden, QLatin1String("files"), Qt::CaseInsensitive) == 0) {
+        options.setFlag(IncludeHiddenFiles);
     }
 
     // Default behaviour is to assume the external script is present and fall back to using the
@@ -294,10 +305,15 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                 return;
             }
 
-            // UDS_NAME is e.g. "foo/bar/somefile.txt"
-            const QString leaf = path + entry.stringValue(KIO::UDSEntry::UDS_NAME);
+            // Create a KFileItem that assumes dirUrl is a folder and delays mimetype resolution.
+            const KFileItem item(entry, dirUrl, true, true);
 
-            if (!hasBeenVisited(leaf, iteratedDirs)) {
+            // UDS_NAME is e.g. "foo/bar/somefile.txt"
+            const QString leaf = path + item.name();
+
+            //  .. Avoid dot and dotdot
+
+            if (!isDotOrDotDot(entry.stringValue(KIO::UDSEntry::UDS_NAME)) && !hasBeenVisited(leaf, iteratedDirs)) {
                 entryUrl.setPath(leaf);
 
                 const QString urlStr = entryUrl.toDisplayString();
@@ -306,20 +322,37 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                 const QString fileName = entryUrl.fileName();
                 entry.replace(KIO::UDSEntry::UDS_NAME, fileName);
 
-                //  There's no point in trying to search content if the entry is a folder, however the code should
-                //  check the foldername. This is a "TODO" for when a content search also checks filenames.
-
-                if (entry.isDir()) {
+                if (item.isDir()) {
                     // Push the symlink destination into the queue, leaving the decision
                     // of whether to actually search the folder to later
 
-                    if (const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST); !linkDest.isEmpty()) {
-                        pendingDirs.push(entryUrl.resolved(QUrl(linkDest)));
-                    }
-                }
+                    // However only do this if the symlink is not hidden or IncludeHiddenFolders is set
+                    // If the folder is hidden, add it to iteratedDirs to stop it being exlored
+                    // (Assume ListRecursive returns the folder name before exploring the folder).
 
-                if (match(entry, regex, options)) {
-                    // UDS_DISPLAY_NAME is e.g. "foo/bar/somefile.txt"
+                    if ((!item.isHidden()) || options.testFlag(IncludeHiddenFolders)) {
+                        const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST);
+                        if (!linkDest.isEmpty()) {
+                            pendingDirs.push(entryUrl.resolved(QUrl(linkDest)));
+                        }
+                    } else {
+                        iteratedDirs.insert(leaf);
+                    }
+
+                    //  There's no point in trying to search content if the entry is a folder so drop
+                    //  the SearchContent flag.
+
+                    SearchOptions folderOptions = options;
+                    folderOptions.setFlag(SearchContent, false);
+
+                    //  UDS_DISPLAY_NAME is e.g. "foo/bar/somefile.txt"
+
+                    if ((!item.isHidden() || options.testFlag(IncludeHiddenFiles)) && match(entry, regex, folderOptions)) {
+                        entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
+                        listEntry(entry);
+                    }
+
+                } else if ((!item.isHidden() || options.testFlag(IncludeHiddenFiles)) && match(entry, regex, options)) {
                     entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
                     listEntry(entry);
                 }

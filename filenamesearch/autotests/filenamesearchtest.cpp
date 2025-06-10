@@ -33,6 +33,12 @@ private Q_SLOTS:
     void folderTreeSymlinks_data();
     void folderTreeSymlinks();
 
+    void hiddenFiles_data();
+    void hiddenFiles();
+
+    void hiddenFolders_data();
+    void hiddenFolders();
+
     void hiddenFilesAndFolders_data();
     void hiddenFilesAndFolders();
 
@@ -134,7 +140,16 @@ void FilenameSearchTest::initTestCase()
         }
     }
 
-    //  Use std::filesystem::copy as there's not a Qt equivalent.
+    //  Programatically add a .bak file to the test data, a static file fails an audit
+    //  when being uploaded to invent. Use QFile::copy
+
+    QFile::remove(sourcePath + QStringLiteral("/alice1.txt.bak"));
+
+    if (!QFile::copy(sourcePath + QStringLiteral("/alice1.txt"), sourcePath + QStringLiteral("/alice1.txt.bak"))) {
+        qInfo() << "Failed copying testfile alice1.txt to alice1.txt.bak";
+    }
+
+    //  Use std::filesystem::copy to copy folderTree as there's not a Qt equivalent.
 
     std::error_code result;
     std::filesystem::path sourceStdPath(sourcePath.toStdString());
@@ -153,11 +168,19 @@ void FilenameSearchTest::initTestCase()
         QFile::link(QStringLiteral("../"), childParentLink);
         QFile::link(QStringLiteral("../"), grandchildParentLink);
         QFile::link(QStringLiteral("../../"), grandchildGrandparentLink);
+
+        const QString hiddenChildParentLink = destinationPath + QStringLiteral("/.child/parent");
+        QFile::link(QStringLiteral("../"), hiddenChildParentLink);
     }
 };
 
 void FilenameSearchTest::cleanupTestCase()
 {
+    const QString sourcePath = QFINDTESTDATA("data/folderTree");
+    if (sourcePath.indexOf(QStringLiteral("filenamesearch/autotests/data")) > 0) {
+        QFile::remove(sourcePath + QStringLiteral("/alice1.txt.bak"));
+    }
+
     if (m_workingFolder.indexOf(QStringLiteral("filenamesearch/autotests/data")) >= 0) {
         QDir dir(m_workingFolder);
         if (!dir.removeRecursively()) {
@@ -218,6 +241,8 @@ void FilenameSearchTest::optionCase()
     QCOMPARE(results, expectedFiles);
 }
 
+//  Search including hidden files, to catch the .bak (that may be considered hidden)
+
 void FilenameSearchTest::folderTree_data()
 {
     addColumns();
@@ -225,7 +250,7 @@ void FilenameSearchTest::folderTree_data()
     addRow("Filename Match",
            QByteArray(""),
            QByteArrayLiteral("alice"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
+           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice1.txt.bak"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
 
     addRow("Content Match",
            QByteArray("checkContent=yes"),
@@ -240,10 +265,13 @@ void FilenameSearchTest::folderTree()
     QFETCH(QByteArrayList, expectedFiles);
 
     const QString path = QFINDTESTDATA("data/folderTree");
-    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {KIO::ListJob::ListFlag::IncludeHidden});
 
     QCOMPARE(results, expectedFiles);
 }
+
+//  A filename search for "alice" finds the .bak, backup file,
+//  however a content search does not consider .bak text/plain.
 
 void FilenameSearchTest::folderTreeSymlinks_data()
 {
@@ -252,7 +280,7 @@ void FilenameSearchTest::folderTreeSymlinks_data()
     addRow("Filename Match",
            QByteArray(""),
            QByteArrayLiteral("alice"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
+           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice1.txt.bak"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
 
     addRow("Content Match",
            QByteArray("checkContent=yes"),
@@ -268,6 +296,60 @@ void FilenameSearchTest::folderTreeSymlinks()
 
     const QString path = QFINDTESTDATA("data/folderTreeSymlinks/child");
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
+
+    QCOMPARE(results, expectedFiles);
+}
+
+void FilenameSearchTest::hiddenFiles_data()
+{
+    addColumns();
+
+    addRow("Filename Match",
+           QByteArray("includeHidden=files"),
+           QByteArrayLiteral("alice"),
+           {QByteArrayLiteral(".alice2.txt"), QByteArrayLiteral("alice1.txt")});
+
+    addRow("Content Match",
+           QByteArray("includeHidden=files&checkContent=yes"),
+           QByteArrayLiteral("wonderland"),
+           {QByteArrayLiteral(".alice2.txt"), QByteArrayLiteral("alice1.txt")});
+}
+
+void FilenameSearchTest::hiddenFiles()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/hiddenFilesAndFolders");
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {KIO::ListJob::ListFlag::IncludeHidden});
+
+    QCOMPARE(results, expectedFiles);
+}
+
+void FilenameSearchTest::hiddenFolders_data()
+{
+    addColumns();
+
+    addRow("Filename Match",
+           QByteArray("includeHidden=folders"),
+           QByteArrayLiteral("alice"),
+           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
+
+    addRow("Content Match",
+           QByteArray("includeHidden=folders&checkContent=yes"),
+           QByteArrayLiteral("wonderland"),
+           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
+}
+
+void FilenameSearchTest::hiddenFolders()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/hiddenFilesAndFolders");
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {KIO::ListJob::ListFlag::IncludeHidden});
 
     QCOMPARE(results, expectedFiles);
 }
