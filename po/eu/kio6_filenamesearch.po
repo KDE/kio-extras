@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-20 00:42+0000\n"
+"POT-Creation-Date: 2025-06-11 00:42+0000\n"
 "PO-Revision-Date: 2024-10-01 17:11+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -20,12 +20,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 24.08.0\n"
 
-#: kio_filenamesearch.cpp:135
+#: kio_filenamesearch.cpp:140
 #, kde-format
 msgid "Search Folder"
 msgstr "Bilaketa karpeta"
 
-#: kio_filenamesearch.cpp:443
+#: kio_filenamesearch.cpp:476
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

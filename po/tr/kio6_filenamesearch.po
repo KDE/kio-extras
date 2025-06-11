@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-05-20 00:42+0000\n"
+"POT-Creation-Date: 2025-06-11 00:42+0000\n"
 "PO-Revision-Date: 2024-10-01 22:02+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Lokalize 24.11.70\n"
 
-#: kio_filenamesearch.cpp:135
+#: kio_filenamesearch.cpp:140
 #, kde-format
 msgid "Search Folder"
 msgstr "Klasör Ara"
 
-#: kio_filenamesearch.cpp:443
+#: kio_filenamesearch.cpp:476
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
