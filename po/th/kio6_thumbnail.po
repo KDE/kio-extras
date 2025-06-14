@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-26 00:41+0000\n"
+"POT-Creation-Date: 2025-06-14 00:42+0000\n"
 "PO-Revision-Date: 2010-02-14 01:20+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -18,52 +18,52 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: thumbnail.cpp:218
+#: thumbnail.cpp:291
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "ยังไม่ระบุประเภท MIME ของแฟ้ม"
 
-#: thumbnail.cpp:225
+#: thumbnail.cpp:298
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "ยังไม่มีการระบุขนาดหรือค่าอาจจะใช้ไม่ได้"
 
-#: thumbnail.cpp:246
+#: thumbnail.cpp:319
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "ไม่สามารถสร้างภาพตัวอย่างสำหรับไดเรกทอรีได้"
 
-#: thumbnail.cpp:255
+#: thumbnail.cpp:328
 #, kde-format
 msgid "No plugin specified."
 msgstr "ยังไม่ระบุโปรแกรมเสริม"
 
-#: thumbnail.cpp:260
+#: thumbnail.cpp:333
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "ไม่สามารถเรียกโปรแกรม ThumbCreator %1 ได้"
 
-#: thumbnail.cpp:268
+#: thumbnail.cpp:341
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "ไม่สามารถสร้างภาพตัวอย่างของ %1 ได้"
 
-#: thumbnail.cpp:278
+#: thumbnail.cpp:351
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "ล้มเหลวในการสร้างภาพตัวอย่าง"
 
-#: thumbnail.cpp:298
+#: thumbnail.cpp:371
 #, kde-format
 msgid "Could not write image."
 msgstr "ไม่สามารถเขียนแฟ้มภาพได้"
 
-#: thumbnail.cpp:326
+#: thumbnail.cpp:399
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "ล้มเหลวในการแนบเข้ากับเซกเมนต์ %1 ในหน่วยความจำที่ใช้ร่วมกัน"
 
-#: thumbnail.cpp:330
+#: thumbnail.cpp:403
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "ภาพมีขนาดใหญ่เกินไปสำหรับจัดเก็บในเซกเมนต์บนหน่วยความจำที่ใช้ร่วมกัน"

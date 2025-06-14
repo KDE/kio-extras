@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-26 00:41+0000\n"
+"POT-Creation-Date: 2025-06-14 00:42+0000\n"
 "PO-Revision-Date: 2013-01-20 20:02:32+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@gmail.com>\n"
 "Language-Team: Finnish <lokalisointi@lists.coss.fi>\n"
@@ -21,52 +21,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: thumbnail.cpp:218
+#: thumbnail.cpp:291
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "MIME-tyyppiä ei ole määritelty."
 
-#: thumbnail.cpp:225
+#: thumbnail.cpp:298
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "Kokoa ei ole määritelty tai se on määritelty virheellisesti."
 
-#: thumbnail.cpp:246
+#: thumbnail.cpp:319
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Kansiolle ei voitu luoda pienoiskuvaa"
 
-#: thumbnail.cpp:255
+#: thumbnail.cpp:328
 #, kde-format
 msgid "No plugin specified."
 msgstr "Liitännäistä ei ole määritelty."
 
-#: thumbnail.cpp:260
+#: thumbnail.cpp:333
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "Ei voitu ladata ThumbCreatoria-liitännäistä %1"
 
-#: thumbnail.cpp:268
+#: thumbnail.cpp:341
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Ei voida luoda pienoiskuvaa kohteelle %1"
 
-#: thumbnail.cpp:278
+#: thumbnail.cpp:351
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Pienoiskuvakkeen luonti epäonnistui."
 
-#: thumbnail.cpp:298
+#: thumbnail.cpp:371
 #, kde-format
 msgid "Could not write image."
 msgstr "Ei voida tallentaa kuvaa."
 
-#: thumbnail.cpp:326
+#: thumbnail.cpp:399
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Jaetun muistin segmenttiä %1 ei voitu liittää"
 
-#: thumbnail.cpp:330
+#: thumbnail.cpp:403
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Kuva on liian iso jaetun muistin segmentille"
