@@ -10,3 +10,7 @@ License: GPL-3.0-or-later
 Files: smb/autotests/fixtures/*
 Copyright: none
 License: CC0-1.0
+
+Files thumbnail/autotests/data/corpus/*
+Copyright: Azhar Momin <azhar.momin@kdemail.net>
+License: CC0-1.0
