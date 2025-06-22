@@ -14,7 +14,6 @@
 #include <QImage>
 #include <QImageReader>
 
-#include <KLocalizedString>
 #include <KPluginFactory>
 
 #if HAVE_KEXIV2
