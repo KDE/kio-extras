@@ -57,6 +57,3 @@ msgstr "NFS грешка %1 - %2"
 #, kde-format
 msgid "Unknown target"
 msgstr "Непозната дестинация"
-
-#~ msgid "Failed to initialise protocol"
-#~ msgstr "Протоколът не може да се инициализира"
