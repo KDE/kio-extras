@@ -40,9 +40,13 @@ case $1 in
         # --line-buffered: Show each result in Dolphin as soon as it is found. Removing this might speed up the search a tiny bit, but
         #                  the first result might appear later.
         # -L:              Follow symlinks.
+        # -i:              Make search case insensitive
+        # -s:              Make search case sensitive
+        # -S:              Do "smart" care matching (a lower case search string does a case
+        #                  insensitive search, including upper case makes the search case sensitive).
         # --hidden:        Don't skip hidden files and directories.
         # --no-ignore:     Don't respect .gitignore/.ignore settings.
-        OPTIONS="-j2 --line-buffered -L --hidden --no-ignore"
+        OPTIONS="-j2 --line-buffered -L -i --hidden --no-ignore"
         
         if rga --version 2>/dev/null | grep -q 'ripgrep-all'; then
             exec rga $OPTIONS $REQUIRED_OPTIONS -e "$2" .
