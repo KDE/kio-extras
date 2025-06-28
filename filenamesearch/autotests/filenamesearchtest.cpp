@@ -21,6 +21,12 @@ private Q_SLOTS:
 
     void initTestCase();
 
+    void stringMatch_data();
+    void stringMatch();
+
+    void phraseMatch_data();
+    void phraseMatch();
+
     void filenameContent_data();
     void filenameContent();
 
@@ -189,14 +195,82 @@ void FilenameSearchTest::cleanupTestCase()
     }
 };
 
+void FilenameSearchTest::stringMatch_data()
+{
+    addColumns();
+
+    addRow("No Filename Match", QByteArray(""), QByteArrayLiteral("Cheshire"), {});
+    addRow("Filename Match", QByteArray(""), QByteArrayLiteral("alice.txt"), {QByteArrayLiteral("alice.txt")});
+    addRow("Filename Word Match", QByteArray(""), QByteArrayLiteral("alice"), {QByteArrayLiteral("alice.txt")});
+    addRow("Filename Extension Match",
+           QByteArray(""),
+           QByteArrayLiteral(".txt"),
+           {QByteArrayLiteral("Rabbit.TXT"), QByteArrayLiteral("alice.txt"), QByteArrayLiteral("rabbit.txt")});
+    addRow("Filename Leading Substring Match", QByteArray(""), QByteArrayLiteral("alic"), {QByteArrayLiteral("alice.txt")});
+    addRow("Filename Trailing Substring Match", QByteArray(""), QByteArrayLiteral("lice.txt"), {QByteArrayLiteral("alice.txt")});
+    addRow("Filename Substring Match", QByteArray(""), QByteArrayLiteral("lic"), {QByteArrayLiteral("alice.txt")});
+    addRow("Filename Case Insensitive Match", QByteArray(""), QByteArrayLiteral("rabbit"), {QByteArrayLiteral("Rabbit.TXT"), QByteArrayLiteral("rabbit.txt")});
+
+    addRow("No Content Match", QByteArray(""), QByteArrayLiteral("Cheshire"), {});
+    addRow("Content Word Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Wonderland"), {QByteArrayLiteral("alice.txt")});
+    addRow("Content Leading Substring Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Wonder"), {QByteArrayLiteral("alice.txt")});
+    addRow("Content Trailing Substring Match", QByteArray("checkContent=yes"), QByteArrayLiteral("land"), {QByteArrayLiteral("alice.txt")});
+    addRow("Content Substring Match", QByteArray("checkContent=yes"), QByteArrayLiteral("derl"), {QByteArrayLiteral("alice.txt")});
+    addRow("Content Case Insensitive Match",
+           QByteArray("checkContent=yes"),
+           QByteArrayLiteral("white"),
+           {QByteArrayLiteral("Rabbit.TXT"), QByteArrayLiteral("rabbit.txt")});
+
+    addRow("Content Word Apostrophe Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Alice's"), {QByteArrayLiteral("alice.txt")});
+}
+
+void FilenameSearchTest::stringMatch()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/stringMatch");
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
+
+    QCOMPARE(results, expectedFiles);
+}
+
+void FilenameSearchTest::phraseMatch_data()
+{
+    addColumns();
+
+    addRow("No Content Phrase Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Cheshire Cat"), {});
+    addRow("Content Exact Phrase Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Adventures in Wonderland"), {QByteArrayLiteral("alice.txt")});
+
+    //  Check searches for collections of words work rather than exact phrases.
+
+    addRow("Content Soup Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Adventures Wonderland"), {QByteArrayLiteral("alice.txt")});
+    addRow("Content Random Soup Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Wonderland Adventures"), {QByteArrayLiteral("alice.txt")});
+}
+
+void FilenameSearchTest::phraseMatch()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/stringMatch");
+
+    QEXPECT_FAIL("Content Soup Match", "Should match a collection of terms", Continue);
+    QEXPECT_FAIL("Content Random Soup Match", "Should match a disordered collection of terms", Continue);
+
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
+
+    QCOMPARE(results, expectedFiles);
+}
+
 void FilenameSearchTest::filenameContent_data()
 {
     addColumns();
 
-    addRow("No Filename Match", QByteArrayLiteral(""), QByteArrayLiteral("curiouser"), {});
     addRow("Filename Match", QByteArrayLiteral(""), QByteArrayLiteral("alice1"), {QByteArrayLiteral("alice1.txt")});
 
-    addRow("No Content Match", QByteArrayLiteral("checkContent=yes"), QByteArrayLiteral("wonderland"), {});
     addRow("Content Match", QByteArrayLiteral("checkContent=yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
 
     addRow("Filename and Content Match",
