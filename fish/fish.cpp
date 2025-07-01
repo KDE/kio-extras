@@ -166,7 +166,7 @@ extern "C" {
 int Q_DECL_EXPORT kdemain(int argc, char **argv)
 {
     QCoreApplication app(argc, argv);
-    app.setApplicationName("kio_fish");
+    app.setApplicationName(QStringLiteral("kio_fish"));
 
     myDebug(<< "*** Starting fish ");
     if (argc != 4) {
