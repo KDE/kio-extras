@@ -37,6 +37,7 @@ CXXFLAGS_SAVE="$CXXFLAGS"
 
 export CFLAGS="-O1 -fno-omit-frame-pointer -gline-tables-only -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION"
 export CXXFLAGS="${CFLAGS} ${CXXFLAGS_EXTRA}"
+export AFL_NOOPT=1
 
 cd $SRC/glib
 meson setup build \
@@ -88,7 +89,7 @@ ninja install -C build -j$(nproc)
 
 # disable instrumentation for librsvg (because enabling causes the build to fail)
 export RUSTUP_TOOLCHAIN=nightly-2025-02-20
-unset RUSTFLAGS
+export RUSTFLAGS=""
 
 cd $SRC/librsvg
 meson setup build \
@@ -103,6 +104,7 @@ ninja install -C build -j$(nproc)
 
 export CFLAGS="${CFLAGS_SAVE}"
 export CXXFLAGS="${CXXFLAGS_SAVE}"
+unset AFL_NOOPT
 
 cd $SRC/zstd
 cmake -S build/cmake -G Ninja \
@@ -115,16 +117,18 @@ cmake . -G Ninja \
     -DBUILD_TESTING=OFF
 ninja install -j$(nproc)
 
-export ORIG_CFLAGS="${CFLAGS}"
-export ORIG_CXXFLAGS="${CXXFLAGS}"
+CFLAGS_SAVE="${CFLAGS}"
+CXXFLAGS_SAVE="${CXXFLAGS}"
+export AFL_NOOPT=1
 unset CFLAGS
 unset CXXFLAGS
 cd $SRC/xz
 ./autogen.sh --no-po4a --no-doxygen
 ./configure --enable-static --disable-debug --disable-shared --disable-xz --disable-xzdec --disable-lzmainfo
 make install -j$(nproc)
-export CFLAGS="${ORIG_CFLAGS}"
-export CXXFLAGS="${ORIG_CXXFLAGS}"
+export CFLAGS="${CFLAGS_SAVE}"
+export CXXFLAGS="${CXXFLAGS_SAVE}"
+unset AFL_NOOPT
 
 cd $SRC/libfuse
 meson setup build \
