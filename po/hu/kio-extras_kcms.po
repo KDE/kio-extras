@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: KDE 4.1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-29 00:41+0000\n"
-"PO-Revision-Date: 2025-06-22 15:51+0200\n"
+"PO-Revision-Date: 2025-07-08 22:19+0200\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.04.2\n"
+"X-Generator: Lokalize 25.04.3\n"
 
 #: ksaveioconfig.cpp:81
 #, kde-format
@@ -92,14 +92,12 @@ msgstr ""
 "után fog eltűnni.</p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " bájt"
-msgstr[1] " bájt"
+msgstr[0] "%v bájt"
+msgstr[1] "%v bájt"
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -669,14 +667,12 @@ msgstr ""
 "automatikusan törölni egy bizonyos odő után</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " nap"
-msgstr[1] " nap"
+msgstr[0] "%v nap"
+msgstr[1] "%v nap"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -717,7 +713,7 @@ msgstr "Méret:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
