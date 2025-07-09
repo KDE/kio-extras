@@ -7,6 +7,7 @@ include(ECMAddTests)
 
 ecm_add_tests(
     filenamesearchtest.cpp
+    filenamesearchexternaltest.cpp
     LINK_LIBRARIES
         Qt::Test
         KF6::KIOWidgets

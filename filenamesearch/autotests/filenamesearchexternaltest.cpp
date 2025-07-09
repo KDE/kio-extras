@@ -3,6 +3,7 @@
     SPDX-FileCopyrightText: 2025 Archaeopteryx Lithographica
 */
 
+#include <QProcess>
 #include <QStandardPaths>
 #include <QTest>
 #include <QUrlQuery>
@@ -11,13 +12,14 @@
 
 #include <filesystem>
 
-class FilenameSearchTest : public QObject
+class FilenameSearchExternalTest : public QObject
 {
     Q_OBJECT
 private Q_SLOTS:
 
     QUrl buildSearchQuery(QByteArray searchString, QByteArray searchOptions, QString path);
     QByteArrayList doSearchQuery(QUrl url, KIO::ListJob::ListFlags listFlags);
+    bool externalSearchInstalled(const QString searchScript);
 
     void initTestCase();
 
@@ -30,20 +32,11 @@ private Q_SLOTS:
     void filenameContent_data();
     void filenameContent();
 
-    void optionCase_data();
-    void optionCase();
-
     void folderTree_data();
     void folderTree();
 
     void folderTreeSymlinks_data();
     void folderTreeSymlinks();
-
-    void hiddenFiles_data();
-    void hiddenFiles();
-
-    void hiddenFolders_data();
-    void hiddenFolders();
 
     void hiddenFilesAndFolders_data();
     void hiddenFilesAndFolders();
@@ -52,6 +45,7 @@ private Q_SLOTS:
 
 private:
     QString m_workingFolder = "";
+    QString m_programName = "";
 };
 
 namespace
@@ -69,7 +63,7 @@ auto addRow = [](const char *name, const QByteArray &searchOptions, const QByteA
 };
 }
 
-QUrl FilenameSearchTest::buildSearchQuery(QByteArray searchString, QByteArray searchOptions, QString path)
+QUrl FilenameSearchExternalTest::buildSearchQuery(QByteArray searchString, QByteArray searchOptions, QString path)
 {
     //  Encode the testfile directory
 
@@ -77,11 +71,11 @@ QUrl FilenameSearchTest::buildSearchQuery(QByteArray searchString, QByteArray se
     searchFrom.setPath(QString(QUrl::toPercentEncoding(QStringLiteral("file://") + path)), QUrl::StrictMode);
 
     //  Parse the search options, create a map and build the query
-    //  Add a "src=internal" option to all queries
+    //  Add a "src=external" option to all queries
 
     QUrlQuery queryOptions(searchOptions);
     QList<QPair<QString, QString>> map = {{QStringLiteral("search"), QString(searchString)}};
-    map.append({{QStringLiteral("src"), QStringLiteral("internal")}});
+    map.append({{QStringLiteral("src"), QStringLiteral("external")}});
     map.append({{QStringLiteral("url"), searchFrom.toString()}});
     map.append(queryOptions.queryItems());
 
@@ -97,7 +91,7 @@ QUrl FilenameSearchTest::buildSearchQuery(QByteArray searchString, QByteArray se
     return (url);
 }
 
-QByteArrayList FilenameSearchTest::doSearchQuery(QUrl url, KIO::ListJob::ListFlags listFlags)
+QByteArrayList FilenameSearchExternalTest::doSearchQuery(QUrl url, KIO::ListJob::ListFlags listFlags)
 {
     QByteArrayList results;
 
@@ -129,8 +123,37 @@ QByteArrayList FilenameSearchTest::doSearchQuery(QUrl url, KIO::ListJob::ListFla
     return results;
 }
 
-void FilenameSearchTest::initTestCase()
+bool FilenameSearchExternalTest::externalSearchInstalled(const QString searchScript)
 {
+    bool externalScript = false;
+    qInfo() << searchScript;
+
+    if (!searchScript.isEmpty()) {
+        QProcess process;
+        process.setProgram(searchScript);
+        process.setArguments({QStringLiteral("--check")});
+
+        process.start(QIODeviceBase::ReadWrite | QIODeviceBase::Unbuffered);
+        if (process.waitForStarted(5000)) {
+            process.closeWriteChannel();
+            process.waitForFinished(5000);
+            externalScript = (process.exitCode() == 0);
+        } else {
+            qWarning() << searchScript << "failed to start:" << process.errorString();
+        }
+    }
+
+    return (externalScript);
+}
+
+void FilenameSearchExternalTest::initTestCase()
+{
+    m_programName = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QStringLiteral("kio_filenamesearch/kio-filenamesearch-grep"));
+    if (!externalSearchInstalled(m_programName)) {
+        QSKIP("External script not found");
+        return;
+    }
+
     //  Find the source folder for the test data, set up a destination folder
     //  that will contain the symlinked folders.
 
@@ -184,7 +207,7 @@ void FilenameSearchTest::initTestCase()
     }
 };
 
-void FilenameSearchTest::cleanupTestCase()
+void FilenameSearchExternalTest::cleanupTestCase()
 {
     const QString sourcePath = QFINDTESTDATA("data/folderTree");
     if (sourcePath.indexOf(QStringLiteral("filenamesearch/autotests/data")) > 0) {
@@ -199,23 +222,14 @@ void FilenameSearchTest::cleanupTestCase()
     }
 };
 
-void FilenameSearchTest::stringMatch_data()
+void FilenameSearchExternalTest::stringMatch_data()
 {
     addColumns();
 
     addRow("No Filename Match", QByteArray(""), QByteArrayLiteral("Cheshire"), {});
     addRow("Filename Match", QByteArray(""), QByteArrayLiteral("alice.txt"), {QByteArrayLiteral("alice.txt")});
-    addRow("Filename Word Match", QByteArray(""), QByteArrayLiteral("alice"), {QByteArrayLiteral("alice.txt")});
-    addRow("Filename Extension Match",
-           QByteArray(""),
-           QByteArrayLiteral(".txt"),
-           {QByteArrayLiteral("Rabbit.TXT"), QByteArrayLiteral("alice.txt"), QByteArrayLiteral("rabbit.txt")});
-    addRow("Filename Leading Substring Match", QByteArray(""), QByteArrayLiteral("alic"), {QByteArrayLiteral("alice.txt")});
-    addRow("Filename Trailing Substring Match", QByteArray(""), QByteArrayLiteral("lice.txt"), {QByteArrayLiteral("alice.txt")});
-    addRow("Filename Substring Match", QByteArray(""), QByteArrayLiteral("lic"), {QByteArrayLiteral("alice.txt")});
-    addRow("Filename Case Insensitive Match", QByteArray(""), QByteArrayLiteral("rabbit"), {QByteArrayLiteral("Rabbit.TXT"), QByteArrayLiteral("rabbit.txt")});
 
-    addRow("No Content Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Cheshire"), {});
+    addRow("No Content Match", QByteArray(""), QByteArrayLiteral("Cheshire"), {});
     addRow("Content Word Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Wonderland"), {QByteArrayLiteral("alice.txt")});
     addRow("Content Leading Substring Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Wonder"), {QByteArrayLiteral("alice.txt")});
     addRow("Content Trailing Substring Match", QByteArray("checkContent=yes"), QByteArrayLiteral("land"), {QByteArrayLiteral("alice.txt")});
@@ -228,7 +242,7 @@ void FilenameSearchTest::stringMatch_data()
     addRow("Content Word Apostrophe Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Alice's"), {QByteArrayLiteral("alice.txt")});
 }
 
-void FilenameSearchTest::stringMatch()
+void FilenameSearchExternalTest::stringMatch()
 {
     QFETCH(QByteArray, searchOptions);
     QFETCH(QByteArray, searchString);
@@ -237,10 +251,12 @@ void FilenameSearchTest::stringMatch()
     const QString path = QFINDTESTDATA("data/stringMatch");
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
 
+    QEXPECT_FAIL("Filename Match", "Should match filenames", Continue);
+
     QCOMPARE(results, expectedFiles);
 }
 
-void FilenameSearchTest::phraseMatch_data()
+void FilenameSearchExternalTest::phraseMatch_data()
 {
     addColumns();
 
@@ -253,7 +269,7 @@ void FilenameSearchTest::phraseMatch_data()
     addRow("Content Random Soup Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Wonderland Adventures"), {QByteArrayLiteral("alice.txt")});
 }
 
-void FilenameSearchTest::phraseMatch()
+void FilenameSearchExternalTest::phraseMatch()
 {
     QFETCH(QByteArray, searchOptions);
     QFETCH(QByteArray, searchString);
@@ -261,53 +277,23 @@ void FilenameSearchTest::phraseMatch()
 
     const QString path = QFINDTESTDATA("data/stringMatch");
 
-    QEXPECT_FAIL("Content Soup Match", "Should match a collection of terms", Continue);
-    QEXPECT_FAIL("Content Random Soup Match", "Should match a disordered collection of terms", Continue);
+    QEXPECT_FAIL("Content Soup Match", "Should match collections of terms", Continue);
+    QEXPECT_FAIL("Content Random Soup Match", "Should match disordered collections of terms", Continue);
 
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
 
     QCOMPARE(results, expectedFiles);
 }
 
-void FilenameSearchTest::filenameContent_data()
+void FilenameSearchExternalTest::filenameContent_data()
 {
     addColumns();
 
-    addRow("Filename Match", QByteArrayLiteral(""), QByteArrayLiteral("alice1"), {QByteArrayLiteral("alice1.txt")});
-
+    addRow("No Content Match", QByteArrayLiteral("checkContent=yes"), QByteArrayLiteral("wonderland"), {});
     addRow("Content Match", QByteArrayLiteral("checkContent=yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
-
-    addRow("Filename and Content Match",
-           QByteArrayLiteral("checkContent=yes"),
-           QByteArrayLiteral("alice"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice2.txt")});
 }
 
-void FilenameSearchTest::filenameContent()
-{
-    QFETCH(QByteArray, searchOptions);
-    QFETCH(QByteArray, searchString);
-    QFETCH(QByteArrayList, expectedFiles);
-
-    const QString path = QFINDTESTDATA("data/filename-content");
-    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
-
-    QCOMPARE(results, expectedFiles);
-}
-
-//  TODO: the optionCase test relies on filenameContent, ought to have an option/query that does not depend on test files.
-
-void FilenameSearchTest::optionCase_data()
-{
-    addColumns();
-
-    addRow("No Match", QByteArrayLiteral("checkContent=no"), QByteArrayLiteral("curiouser"), {});
-    addRow("Lower Case", QByteArrayLiteral("checkContent=yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
-    addRow("Mixed Case", QByteArrayLiteral("checkContent=Yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
-    addRow("Upper Case", QByteArrayLiteral("checkContent=YES"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
-}
-
-void FilenameSearchTest::optionCase()
+void FilenameSearchExternalTest::filenameContent()
 {
     QFETCH(QByteArray, searchOptions);
     QFETCH(QByteArray, searchString);
@@ -321,22 +307,20 @@ void FilenameSearchTest::optionCase()
 
 //  Search including hidden files, to catch the .bak (that may be considered hidden)
 
-void FilenameSearchTest::folderTree_data()
+//  A filename search for "alice" finds the .bak, backup file,
+//  The external search script (assuming ripgrep) searches .bak files, whereas the simple search does not.
+
+void FilenameSearchExternalTest::folderTree_data()
 {
     addColumns();
 
-    addRow("Filename Match",
-           QByteArray(""),
-           QByteArrayLiteral("alice"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice1.txt.bak"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
-
     addRow("Content Match",
            QByteArray("checkContent=yes"),
-           QByteArrayLiteral("Wonderland"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
+           QByteArrayLiteral("wonderland"),
+           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice1.txt.bak"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
 }
 
-void FilenameSearchTest::folderTree()
+void FilenameSearchExternalTest::folderTree()
 {
     QFETCH(QByteArray, searchOptions);
     QFETCH(QByteArray, searchString);
@@ -351,22 +335,17 @@ void FilenameSearchTest::folderTree()
 //  A filename search for "alice" finds the .bak, backup file,
 //  however a content search does not consider .bak text/plain.
 
-void FilenameSearchTest::folderTreeSymlinks_data()
+void FilenameSearchExternalTest::folderTreeSymlinks_data()
 {
     addColumns();
-
-    addRow("Filename Match",
-           QByteArray(""),
-           QByteArrayLiteral("alice"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice1.txt.bak"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
 
     addRow("Content Match",
            QByteArray("checkContent=yes"),
            QByteArrayLiteral("wonderland"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
+           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice1.txt.bak"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
 }
 
-void FilenameSearchTest::folderTreeSymlinks()
+void FilenameSearchExternalTest::folderTreeSymlinks()
 {
     QFETCH(QByteArray, searchOptions);
     QFETCH(QByteArray, searchString);
@@ -375,79 +354,26 @@ void FilenameSearchTest::folderTreeSymlinks()
     const QString path = QFINDTESTDATA("data/folderTreeSymlinks/child");
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
 
+    QEXPECT_FAIL("Content Match", "Should handle symlinked duplicates", Continue);
     QCOMPARE(results, expectedFiles);
 }
 
-void FilenameSearchTest::hiddenFiles_data()
+void FilenameSearchExternalTest::hiddenFilesAndFolders_data()
 {
     addColumns();
-
-    addRow("Filename Match",
-           QByteArray("includeHidden=files"),
-           QByteArrayLiteral("alice"),
-           {QByteArrayLiteral(".alice2.txt"), QByteArrayLiteral("alice1.txt")});
 
     addRow("Content Match",
-           QByteArray("includeHidden=files&checkContent=yes"),
-           QByteArrayLiteral("wonderland"),
-           {QByteArrayLiteral(".alice2.txt"), QByteArrayLiteral("alice1.txt")});
-}
-
-void FilenameSearchTest::hiddenFiles()
-{
-    QFETCH(QByteArray, searchOptions);
-    QFETCH(QByteArray, searchString);
-    QFETCH(QByteArrayList, expectedFiles);
-
-    const QString path = QFINDTESTDATA("data/hiddenFilesAndFolders");
-    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {KIO::ListJob::ListFlag::IncludeHidden});
-
-    QCOMPARE(results, expectedFiles);
-}
-
-void FilenameSearchTest::hiddenFolders_data()
-{
-    addColumns();
-
-    addRow("Filename Match",
-           QByteArray("includeHidden=folders"),
-           QByteArrayLiteral("alice"),
+           QByteArray("checkContent=yes"),
+           QByteArrayLiteral("Wonderland"),
            {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
 
-    addRow("Content Match",
-           QByteArray("includeHidden=folders&checkContent=yes"),
-           QByteArrayLiteral("wonderland"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
-}
-
-void FilenameSearchTest::hiddenFolders()
-{
-    QFETCH(QByteArray, searchOptions);
-    QFETCH(QByteArray, searchString);
-    QFETCH(QByteArrayList, expectedFiles);
-
-    const QString path = QFINDTESTDATA("data/hiddenFilesAndFolders");
-    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {KIO::ListJob::ListFlag::IncludeHidden});
-
-    QCOMPARE(results, expectedFiles);
-}
-
-void FilenameSearchTest::hiddenFilesAndFolders_data()
-{
-    addColumns();
-
-    addRow("Filename Match",
-           QByteArray("includeHidden=yes"),
-           QByteArrayLiteral("alice"),
-           {QByteArrayLiteral(".alice2.txt"), QByteArrayLiteral(".alice4.txt"), QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
-
-    addRow("Content Match",
+    addRow("Content Match - Hidden Files and Folders",
            QByteArray("includeHidden=yes&checkContent=yes"),
-           QByteArrayLiteral("wonderland"),
+           QByteArrayLiteral("Wonderland"),
            {QByteArrayLiteral(".alice2.txt"), QByteArrayLiteral(".alice4.txt"), QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice3.txt")});
 }
 
-void FilenameSearchTest::hiddenFilesAndFolders()
+void FilenameSearchExternalTest::hiddenFilesAndFolders()
 {
     QFETCH(QByteArray, searchOptions);
     QFETCH(QByteArray, searchString);
@@ -456,9 +382,10 @@ void FilenameSearchTest::hiddenFilesAndFolders()
     const QString path = QFINDTESTDATA("data/hiddenFilesAndFolders");
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), KIO::ListJob::ListFlag::IncludeHidden);
 
+    QEXPECT_FAIL("Content Match", "Should ignore hidden files/folders by default", Continue);
     QCOMPARE(results, expectedFiles);
 }
 
-QTEST_MAIN(FilenameSearchTest)
+QTEST_MAIN(FilenameSearchExternalTest)
 
-#include "filenamesearchtest.moc"
+#include "filenamesearchexternaltest.moc"
