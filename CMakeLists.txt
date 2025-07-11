@@ -51,7 +51,6 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     GuiAddons
     SyntaxHighlighting
     KCMUtils
-    TextWidgets
 )
 
 # shall we use DBus?
