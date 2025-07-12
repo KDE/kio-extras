@@ -11,7 +11,6 @@
 
 #include <QImage>
 #include <QImageReader>
-#include <QMimeDatabase>
 #include <QString>
 
 #include <KPluginFactory>
@@ -32,7 +31,7 @@ KIO::ThumbnailResult WindowsImageCreator::create(const KIO::ThumbnailRequest &re
     }
 
     // Maybe it's an animated cursor
-    if (QMimeDatabase().mimeTypeForFile(path).name() == QLatin1String("application/x-navi-animation")) {
+    if (request.mimeType() == QLatin1String("application/x-navi-animation")) {
         QImageReader reader(path, "ani");
         reader.read(&img);
         return KIO::ThumbnailResult::pass(img);

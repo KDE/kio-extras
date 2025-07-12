@@ -45,8 +45,7 @@ KIO::ThumbnailResult ComicCreator::create(const KIO::ThumbnailRequest &request)
 
     // Detect mime type.
     QMimeDatabase db;
-    db.mimeTypeForFile(path, QMimeDatabase::MatchContent);
-    const QMimeType mime = db.mimeTypeForFile(path, QMimeDatabase::MatchContent);
+    const QMimeType mime = db.mimeTypeForName(request.mimeType());
 
     if (mime.inherits("application/x-cbz") || mime.inherits("application/zip")) {
         // ZIP archive.
