@@ -12,6 +12,7 @@
 class ThumbnailTest : public QObject
 {
     Q_OBJECT
+
 private Q_SLOTS:
 
     void testThumbnail_data()
@@ -70,6 +71,8 @@ private Q_SLOTS:
 
     void testThumbnail()
     {
+        qputenv("QT_LOGGING_RULES", "kf.kio.gui.debug=true");
+
         QFETCH(QString, inputFile);
         QFETCH(QString, expectedThumbnail);
         QFETCH(qreal, dpr);
