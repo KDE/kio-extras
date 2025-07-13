@@ -28,7 +28,8 @@
             "image/vnd.adobe.photoshop",
             "image/qoi",
             "image/x-dds",
-            "image/tiff"
+            "image/tiff",
+            "image/x-panasonic-rw2"
         ],
         "Name": "Images (GIF, PNG, BMP, ...)",
         "Name[ar]": "الصّور (GIF،‏ PNG،‏ BMP، ...)",
