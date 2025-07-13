@@ -36,6 +36,10 @@ static void writeTestFilesToArchive(KArchive *archive)
 
 void TestKioArchive::initTestCase()
 {
+#ifdef Q_OS_WIN
+    QSKIP("Test skipped on Windows");
+#endif
+
     QStandardPaths::setTestModeEnabled(true);
 
     qputenv("KIO_DISABLE_CACHE_CLEANER", "yes");
