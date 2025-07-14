@@ -381,8 +381,6 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     QDataStream stream(&imgData, QIODevice::WriteOnly);
 
     // Keep in sync with kio/src/previewjob.cpp
-    stream << img.width() << img.height() << img.format() << img.devicePixelRatio();
-
 #ifndef Q_OS_WIN
     const QString shmid = metaData("shmid");
     if (shmid.isEmpty())
@@ -393,6 +391,9 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     }
 #if !defined(Q_OS_WIN) && !defined(Q_OS_HAIKU)
     else {
+
+        stream << img.width() << img.height() << img.format() << img.devicePixelRatio();
+
         // qDebug() << "IMAGE TO SHMID";
         void *shmaddr = shmat(shmid.toInt(), nullptr, 0);
         if (shmaddr == (void *)-1) {
@@ -400,11 +401,11 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         }
         struct shmid_ds shmStat;
         if (shmctl(shmid.toInt(), IPC_STAT, &shmStat) == -1 || shmStat.shm_segsz < (uint)img.sizeInBytes()) {
+            shmdt(shmaddr);
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Image is too big for the shared memory segment"));
-            shmdt((char *)shmaddr);
         }
         memcpy(shmaddr, img.constBits(), img.sizeInBytes());
-        shmdt((char *)shmaddr);
+        shmdt(shmaddr);
     }
 #endif
     mimeType("application/octet-stream");
