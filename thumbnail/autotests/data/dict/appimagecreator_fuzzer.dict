@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2025 Azhar Momin <azhar.momin@kdemail.net>
+# SPDX-License-Identifier: CC0-1.0
+
+magic_type1="\x41\x49\x01"
+magic_type2="\x41\x49\x02"
+elf_magic="\x7f\x45\x4c\x46"
+iso9660_magic="CD001"
+
+"AppRun"
+".DirIcon"

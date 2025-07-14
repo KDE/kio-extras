@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2025 Azhar Momin <azhar.momin@kdemail.net>
+# SPDX-License-Identifier: CC0-1.0
+
+x_cursor_magic="Xcur"
+comment_type="\x02\x00\xFD\xFF"
+image_type="\x01\x00\xFE\xFF"

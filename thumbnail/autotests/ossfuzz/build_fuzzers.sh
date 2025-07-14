@@ -433,7 +433,7 @@ echo "$THUMBNAIL_CREATORS" | while read creator formats; do
 (
     creator_name=$(echo "${creator/Creator/}" | tr '[:upper:]' '[:lower:]')
     creator_filename="${creator_name}creator"
-    fuzz_target_name=kde_thumbnailers_${creator_filename}_fuzzer
+    fuzz_target_name=${creator_filename}_fuzzer
 
     /usr/libexec/moc $SRC/kio-extras/thumbnail/${creator_filename}.cpp -o $SRC/kio-extras/thumbnail/${creator_filename}.moc
     /usr/libexec/moc $SRC/kio-extras/thumbnail/${creator_filename}.h -o $SRC/kio-extras/thumbnail/moc_${creator_filename}.cpp
@@ -479,5 +479,10 @@ EOF
           echo "no files found with extension .$format for $fuzz_target_name seed corpus"
         fi
     done
+
+    if [ -f "$SRC/kio-extras/thumbnail/autotests/data/dict/$fuzz_target_name.dict" ]; then
+      cp "$SRC/kio-extras/thumbnail/autotests/data/dict/$fuzz_target_name.dict" $OUT/
+    fi
+
 )
 done

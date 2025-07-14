@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2025 Azhar Momin <azhar.momin@kdemail.net>
+# SPDX-License-Identifier: CC0-1.0
+
+"MZ"
+"PE\x00\x00"
+"NE"
+"\x0b\x01"
+"\x0b\x02"
+"\x03\x00\x00\x00"
+"\x0e\x00\x00\x00"
+"\x03\x80"
+"\x0e\x80"
+"\x01\x00"
+"\x00\x00\x00\x80"

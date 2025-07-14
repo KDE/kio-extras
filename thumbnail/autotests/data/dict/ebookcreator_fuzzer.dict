@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2025 Azhar Momin <azhar.momin@kdemail.net>
+# SPDX-License-Identifier: CC0-1.0
+
+zip_cd="\x50\x4B\x01\x02"
+zip_lfh="\x50\x4B\x03\x04"
+zip_eocd="\x50\x4B\x05\x06"
+
+# EPUB
+"META-INF/container.xml"
+"application/epub+zip"
+"cover"
+"iTunesArtwork"
+"content.opf"
+"full-path"
+"rootfile"
+"manifest"
+"metadata"
+"meta"
+"item"
+"href"
+"id"
+"properties"
+"cover-image"
+
+# FictionBook
+"FictionBook"
+"description"
+"title-info"
+"coverpage"
+"image"
+"href"
+"id"
+"binary"
+"#"
+
+# XML
+"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+"<FictionBook>"
+"</FictionBook>"
+"<description>"
+"</description>"
+"<title-info>"
+"</title-info>"
+"<image href=\"#cover.jpg\"/>"

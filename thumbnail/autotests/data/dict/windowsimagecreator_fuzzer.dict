@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2025 Azhar Momin <azhar.momin@kdemail.net>
+# SPDX-License-Identifier: CC0-1.0
+
+"\x00\x00\x01\x00"
+"\x00\x00\x02\x00"
+"RIFF"
+"ACON"
+"\x01\x00"
+"\x02\x00"
+"\x10\x10"
+"\x20\x20"
+"\x08\x00"
+"\x20\x00"
+"\x28\x00\x00\x00"
+"\x89PNG"
+"IHDR"
+"IDAT"
+"_q_icoOrigDepth"

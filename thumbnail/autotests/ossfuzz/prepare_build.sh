@@ -78,3 +78,32 @@ wget -P $CORPUS_DIR https://download.kde.org/stable/kdenlive/24.12/linux/kdenliv
 wget -P $CORPUS_DIR https://www.sndjvu.org/DjVu3Spec.djvu || echo "Downloading djvu spec failed"
 git clone --depth 1 https://github.com/AcademySoftwareFoundation/openexr-images.git $CORPUS_DIR/openexr-images || echo "Downloading openexr-images failed"
 wget -P $CORPUS_DIR https://kde.org/favicon.ico || echo "Downloading favicon failed"
+
+# Dict Files
+DICT_FILES_DIR=$SRC/kio-extras/thumbnail/autotests/data/dict
+
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/exif.dict || echo "Downloading exif dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/jpeg.dict || echo "Downloading jpeg dictionary failed"
+for dict in exif jpeg; do
+    if [ -f "$DICT_FILES_DIR/${dict}.dict" ]; then
+        cat "$DICT_FILES_DIR/${dict}.dict" >> $DICT_FILES_DIR/jpegcreator_fuzzer.dict
+    fi
+done
+
+wget -O $DICT_FILES_DIR/exrcreator_fuzzer.dict https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/openexr.dict || echo "Downloading openexr dictionary failed"
+
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/bmp.dict || echo "Downloading bmp dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/gif.dict || echo "Downloading gif dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/png.dict || echo "Downloading png dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/tiff.dict || echo "Downloading tiff dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/webp.dict || echo "Downloading webp dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/heif.dict || echo "Downloading heif dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/dds.dict || echo "Downloading dds dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/pbm.dict || echo "Downloading pbm dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/jpeg2000.dict || echo "Downloading jpeg2000 dictionary failed"
+wget -P $DICT_FILES_DIR https://raw.githubusercontent.com/AFLplusplus/AFLplusplus/stable/dictionaries/psd.dict || echo "Downloading psd dictionary failed"
+for dict in bmp gif png tiff webp heif dds pbm jpeg2000 psd; do
+    if [ -f "$DICT_FILES_DIR/${dict}.dict" ]; then
+        cat "$DICT_FILES_DIR/${dict}.dict" >> $DICT_FILES_DIR/imagecreator_fuzzer.dict
+    fi
+done

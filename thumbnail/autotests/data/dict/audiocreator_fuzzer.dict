@@ -1,0 +1,27 @@
+# SPDX-FileCopyrightText: 2025 Azhar Momin <azhar.momin@kdemail.net>
+# SPDX-License-Identifier: CC0-1.0
+
+id3_header="ID3"
+id3v2_version="\x03\x00"
+id3v2_attached_picture_frame="APIC"
+
+flag_magic="fLaC"
+metadata_block_type_picture="\x06"
+picture_type_front_cover="\x03"
+
+mp4_file_type_atom="ftyp"
+mp4_cover_art="covr"
+
+ape_tag_preamble="APETAGEX"
+ape_tag_version="\x00\x00\x20\x00"
+ape_tag_version_old="\x00\x00\x08\x00"
+ape_cover_art_key="Cover Art (Front)"
+
+ape_magic="MAC "
+musepack_magic="MPCK"
+ogg_magic="OggS"
+"RIFF"
+wav_magic="WAVE"
+"FORM"
+aiff_magic="AIFF"
+aifc_magic="AIFC"

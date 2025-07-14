@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2025 Azhar Momin <azhar.momin@kdemail.net>
+# SPDX-License-Identifier: CC0-1.0
+
+zip_cd="\x50\x4B\x01\x02"
+zip_lfh="\x50\x4B\x03\x04"
+zip_eocd="\x50\x4B\x05\x06"
+rar_magic="Rar!"
+7z_magic="7z\xBC\xAF\x27\x1C"
+tar_magic="ustar"
+
+# comiccreator looks for these image formats specifically
+".jpg"
+".jpeg"
+".png"
+".bmp"
+".gif"
+".webp"
+".avif"
+".heif"
+".jxl"

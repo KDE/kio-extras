@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2025 Azhar Momin <azhar.momin@kdemail.net>
+# SPDX-License-Identifier: CC0-1.0
+
+zip_cd="\x50\x4B\x01\x02"
+zip_lfh="\x50\x4B\x03\x04"
+zip_eocd="\x50\x4B\x05\x06"
+
+"Thumbnails/"
+"thumbnail.png"
+"preview.png"
+"mergedimage.png"
