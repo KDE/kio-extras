@@ -75,6 +75,7 @@ git clone --depth 1 https://invent.kde.org/frameworks/kio.git
 CORPUS_DIR=$SRC/kio-extras/thumbnail/autotests/data/corpus
 
 wget -P $CORPUS_DIR https://download.kde.org/stable/kdenlive/24.12/linux/kdenlive-24.12.3-x86_64.AppImage || echo "Downloading appimage failed"
+wget -O $CORPUS_DIR/breeze.cursor https://invent.kde.org/plasma/breeze/-/raw/master/cursors/Breeze/Breeze/cursors/x-cursor || echo "Downloading cursor failed"
 wget -P $CORPUS_DIR https://www.sndjvu.org/DjVu3Spec.djvu || echo "Downloading djvu spec failed"
 git clone --depth 1 https://github.com/AcademySoftwareFoundation/openexr-images.git $CORPUS_DIR/openexr-images || echo "Downloading openexr-images failed"
 wget -P $CORPUS_DIR https://kde.org/favicon.ico || echo "Downloading favicon failed"
