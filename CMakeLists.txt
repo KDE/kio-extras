@@ -35,10 +35,6 @@ option(BUILD_DOC "Whether to build the documentation" ON)
 
 find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Network Widgets Svg Core5Compat)
 
-if (Qt6Gui_VERSION VERSION_GREATER_EQUAL "6.10.0")
-    find_package(Qt6GuiPrivate REQUIRED)
-endif()
-
 find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Archive
     Config
