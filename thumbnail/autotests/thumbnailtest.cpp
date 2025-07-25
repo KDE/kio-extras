@@ -19,53 +19,57 @@ private Q_SLOTS:
         QTest::addColumn<QString>("inputFile");
         QTest::addColumn<QString>("expectedThumbnail");
         QTest::addColumn<qreal>("dpr");
+        QTest::addColumn<QSize>("size");
 
         QTest::addRow("png") << "cherry_tree.png"
-                             << "cherry_tree_thumb.png" << 1.0;
+                             << "cherry_tree_thumb.png" << 1.0 << QSize(128, 128);
 
         QTest::addRow("png_dpr2") << "cherry_tree.png"
-                                  << "cherry_tree_thumb@2.png" << 2.0;
+                                  << "cherry_tree_thumb@2.png" << 2.0 << QSize(128, 128);
 
         QTest::addRow("jpg") << "boxes.jpg"
-                             << "boxes_thumb.png" << 1.0;
+                             << "boxes_thumb.png" << 1.0 << QSize(128, 128);
+
+        QTest::addRow("different_size") << "wallpaper.jpg"
+                                        << "wallpaper_thumb.png" << 1.0 << QSize(480, 300);
 
         QTest::addRow("jpg_dpr2") << "boxes.jpg"
-                                  << "boxes_thumb@2.png" << 2.0;
+                                  << "boxes_thumb@2.png" << 2.0 << QSize(128, 128);
 
         QTest::addRow("jpg_embedded_thumbnail") << "castle.jpg"
-                                                << "castle_thumb.png" << 1.0;
+                                                << "castle_thumb.png" << 1.0 << QSize(128, 128);
 
         // ignoring embedded thumbnail as it is too small
         QTest::addRow("jpg_embedded_thumbnail2") << "castle.jpg"
-                                                 << "castle_thumb_256.png" << 2.0;
+                                                 << "castle_thumb_256.png" << 2.0 << QSize(128, 128);
 
         // image using 4 colors table
         QTest::addRow("Screen_color_test_Amiga_4colors") << "Screen_color_test_Amiga_4colors.png"
-                                                         << "Screen_color_test_Amiga_4colors_converted.png" << 2.0;
+                                                         << "Screen_color_test_Amiga_4colors_converted.png" << 2.0 << QSize(128, 128);
 
         QTest::addRow("folder-database.svg") << "folder-database.svg"
-                                             << "folder-database-128@2.png" << 2.0;
+                                             << "folder-database-128@2.png" << 2.0 << QSize(128, 128);
 
         QTest::addRow("Kingdom of Yugoslavia.svg") << "Kingdom of Yugoslavia.svg"
-                                                   << "Kingdom of Yugoslavia-128@2.png" << 2.0;
+                                                   << "Kingdom of Yugoslavia-128@2.png" << 2.0 << QSize(128, 128);
 
         QTest::addRow("DZSCG.svg") << "DZSCG.svg"
-                                   << "DZSCG-128@2.png" << 2.0;
+                                   << "DZSCG-128@2.png" << 2.0 << QSize(128, 128);
 
         QTest::addRow("exe_ne16") << "ne16_1bpp.exe"
-                                  << "ne16_1bpp_thumb.png" << 1.0;
+                                  << "ne16_1bpp_thumb.png" << 1.0 << QSize(128, 128);
 
         QTest::addRow("exe_4bpp") << "ne16_4bpp.exe"
-                                  << "ne16_4bpp_thumb.png" << 1.0;
+                                  << "ne16_4bpp_thumb.png" << 1.0 << QSize(128, 128);
 
         QTest::addRow("exe_8bpp") << "ne16_8bpp.exe"
-                                  << "ne16_8bpp_thumb.png" << 1.0;
+                                  << "ne16_8bpp_thumb.png" << 1.0 << QSize(128, 128);
 
         QTest::addRow("exe_pe32") << "pe32_32bpp.exe"
-                                  << "pe32_32bpp_thumb.png" << 1.0;
+                                  << "pe32_32bpp_thumb.png" << 1.0 << QSize(128, 128);
 
         QTest::addRow("exe_pe32+") << "pe32plus_32bpp.exe"
-                                   << "pe32plus_32bpp_thumb.png" << 1.0;
+                                   << "pe32plus_32bpp_thumb.png" << 1.0 << QSize(128, 128);
     }
 
     void testThumbnail()
@@ -73,6 +77,7 @@ private Q_SLOTS:
         QFETCH(QString, inputFile);
         QFETCH(QString, expectedThumbnail);
         QFETCH(qreal, dpr);
+        QFETCH(QSize, size);
 
         QStandardPaths::setTestModeEnabled(true);
         qputenv("KIOWORKER_ENABLE_TESTMODE", "1"); // ensure the worker call QStandardPaths::setTestModeEnabled too
@@ -87,7 +92,7 @@ private Q_SLOTS:
         items.append(KFileItem(QUrl::fromLocalFile(path)));
 
         QStringList enabledPlugins{"svgthumbnail", "imagethumbnail", "jpegthumbnail", "windowsexethumbnail"};
-        auto *job = KIO::filePreview(items, QSize(128, 128), &enabledPlugins);
+        auto *job = KIO::filePreview(items, size, &enabledPlugins);
         job->setDevicePixelRatio(dpr);
 
         connect(job, &KIO::PreviewJob::gotPreview, this, [path, expectedThumbnail, dpr](const KFileItem &item, const QPixmap &preview) {
