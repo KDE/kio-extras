@@ -182,7 +182,10 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     const QRegularExpression regex(search, QRegularExpression::CaseInsensitiveOption);
     if (!regex.isValid()) {
         qCWarning(KIO_FILENAMESEARCH) << "Invalid QRegularExpression/PCRE search pattern:" << search;
-        return KIO::WorkerResult::pass();
+        QString errorString = regex.errorString();
+        errorString[0] = errorString[0].toUpper();
+        return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED,
+                                       i18nc("@info:status", "Invalid search query: '%1'\nExpected a regular expression: %2", search, errorString));
     }
 
     QUrl dirUrl = QUrl(urlQuery.queryItemValue(QStringLiteral("url"), QUrl::FullyDecoded));
@@ -197,7 +200,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 
     // Don't try to iterate the /proc directory of Linux
     if (dirUrl.isLocalFile() && dirUrl.toLocalFile() == QLatin1String("/proc")) {
-        return KIO::WorkerResult::pass();
+        return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED, i18nc("@info:status", "Invalid search location\nTrying to search the /proc directory"));
     }
 
     const QString optionContent = urlQuery.queryItemValue(QStringLiteral("checkContent"));
