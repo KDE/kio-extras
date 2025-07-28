@@ -96,18 +96,22 @@ install(TARGETS kio_thumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
 
 ########### next target ###############
 
-add_library(imagethumbnail MODULE imagecreator.cpp)
+kcoreaddons_add_plugin(imagethumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES imagecreator.cpp
+)
 
 target_link_libraries(imagethumbnail
     KF6::CoreAddons
     KF6::KIOGui
 )
 
-install(TARGETS imagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 ########### next target ###############
 
-add_library(jpegthumbnail MODULE jpegcreator.cpp)
+kcoreaddons_add_plugin(jpegthumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES jpegcreator.cpp
+)
 
 kconfig_add_kcfg_files(jpegthumbnail jpegcreatorsettings5.kcfgc)
 
@@ -125,11 +129,13 @@ if (TARGET KExiv2Qt6)
 endif()
 
 install(FILES jpegcreatorsettings5.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
-install(TARGETS jpegthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
 
 ########### next target ###############
 
-add_library(svgthumbnail MODULE svgcreator.cpp)
+kcoreaddons_add_plugin(svgthumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES svgcreator.cpp
+)
 
 target_link_libraries(svgthumbnail
     Qt::Gui
@@ -138,11 +144,12 @@ target_link_libraries(svgthumbnail
     KF6::KIOGui
 )
 
-install(TARGETS svgthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 ########### next target ###############
 
-add_library(textthumbnail MODULE textcreator.cpp)
+kcoreaddons_add_plugin(textthumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES textcreator.cpp
+)
 
 target_link_libraries(textthumbnail
     Qt::Gui
@@ -150,13 +157,14 @@ target_link_libraries(textthumbnail
     KF6::SyntaxHighlighting
 )
 
-install(TARGETS textthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 ########### next target ###############
 
 if(NOT WIN32)
 
-    add_library(djvuthumbnail MODULE djvucreator.cpp)
+    kcoreaddons_add_plugin(djvuthumbnail
+        INSTALL_NAMESPACE "kf6/thumbcreator"
+        SOURCES djvucreator.cpp
+    )
 
     ecm_qt_declare_logging_category(djvuthumbnail
         HEADER thumbnail-djvu-logsettings.h
@@ -169,15 +177,16 @@ if(NOT WIN32)
 
     target_link_libraries(djvuthumbnail KF6::KIOGui)
 
-    install(TARGETS djvuthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 endif()
 
 ########### next target ###############
 
 if(OpenEXR_FOUND)
 
-    add_library(exrthumbnail MODULE exrcreator.cpp)
+    kcoreaddons_add_plugin(exrthumbnail
+        INSTALL_NAMESPACE "kf6/thumbcreator"
+        SOURCES exrcreator.cpp
+    )
 
     ecm_qt_declare_logging_category(exrthumbnail
         HEADER thumbnail-exr-logsettings.h
@@ -203,15 +212,16 @@ if(OpenEXR_FOUND)
     # when exceptions are not enabled.
     kde_source_files_enable_exceptions(exrcreator.cpp)
 
-    install(TARGETS exrthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 endif()
 
 ########### next target ###############
 
 if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
 
-    add_library(cursorthumbnail MODULE cursorcreator.cpp)
+    kcoreaddons_add_plugin(cursorthumbnail
+        INSTALL_NAMESPACE "kf6/thumbcreator"
+        SOURCES cursorcreator.cpp
+    )
 
     target_link_libraries(cursorthumbnail
         KF6::KIOCore
@@ -220,24 +230,28 @@ if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
         ${X11_Xcursor_LIB}
     )
 
-    install(TARGETS cursorthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 endif()
 
 ########### next target ###############
 
-add_library(windowsexethumbnail MODULE windowsexecreator.cpp icoutils.cpp exeutils.cpp)
-add_library(windowsimagethumbnail MODULE windowsimagecreator.cpp icoutils.cpp exeutils.cpp)
+kcoreaddons_add_plugin(windowsexethumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES windowsexecreator.cpp icoutils.cpp exeutils.cpp
+)
+kcoreaddons_add_plugin(windowsimagethumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES windowsimagecreator.cpp icoutils.cpp exeutils.cpp
+)
 
 target_link_libraries(windowsexethumbnail KF6::KIOGui)
-install(TARGETS windowsexethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 target_link_libraries(windowsimagethumbnail KF6::KIOGui)
-install(TARGETS windowsimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
 
 ########### next target ###############
 
-add_library(comicbookthumbnail MODULE comiccreator.cpp)
+kcoreaddons_add_plugin(comicbookthumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES comiccreator.cpp
+)
 
 ecm_qt_declare_logging_category(comicbookthumbnail
     HEADER thumbnail-comic-logsettings.h
@@ -254,37 +268,40 @@ target_link_libraries(comicbookthumbnail
     KF6::KIOGui
 )
 
-install(TARGETS comicbookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 # ########### next target ###############
 
-add_library(kraorathumbnail MODULE kritacreator.cpp)
+kcoreaddons_add_plugin(kraorathumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES kritacreator.cpp
+)
 
 target_link_libraries(kraorathumbnail
     KF6::KIOGui
     KF6::Archive
 )
 
-install(TARGETS kraorathumbnail  DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 ########### next target #################
 
 if(Taglib_FOUND)
 
-    add_library(audiothumbnail MODULE audiocreator.cpp)
+    kcoreaddons_add_plugin(audiothumbnail
+        INSTALL_NAMESPACE "kf6/thumbcreator"
+        SOURCES audiocreator.cpp
+    )
 
     target_link_libraries(audiothumbnail
         Taglib::Taglib
         KF6::KIOGui
     )
 
-    install(TARGETS audiothumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 endif()
 
 # ########### next target ###############
 
-add_library(opendocumentthumbnail MODULE opendocumentcreator.cpp)
+kcoreaddons_add_plugin(opendocumentthumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES opendocumentcreator.cpp
+)
 
 target_link_libraries(opendocumentthumbnail
     Qt::Gui
@@ -292,13 +309,14 @@ target_link_libraries(opendocumentthumbnail
     KF6::Archive
 )
 
-install(TARGETS opendocumentthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 # ########### next target ###############
 
 if(libappimage_FOUND)
 
-    add_library(appimagethumbnail MODULE appimagecreator.cpp)
+    kcoreaddons_add_plugin(appimagethumbnail
+        INSTALL_NAMESPACE "kf6/thumbcreator"
+        SOURCES appimagecreator.cpp
+    )
 
     target_link_libraries(appimagethumbnail
         KF6::KIOGui
@@ -306,13 +324,14 @@ if(libappimage_FOUND)
         libappimage
     )
 
-    install(TARGETS appimagethumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 endif()
 
 # ########### next target ###############
 
-add_library(ebookthumbnail MODULE ebookcreator.cpp)
+kcoreaddons_add_plugin(ebookthumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES ebookcreator.cpp
+)
 
 target_link_libraries(ebookthumbnail
     Qt::Gui
@@ -320,11 +339,12 @@ target_link_libraries(ebookthumbnail
     KF6::Archive
 )
 
-install(TARGETS ebookthumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
-
 # ########### next target ###############
 
-add_library(directorythumbnail MODULE directorycreator.cpp)
+kcoreaddons_add_plugin(directorythumbnail
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES directorycreator.cpp
+)
 
 target_link_libraries(directorythumbnail
     Qt::Gui
@@ -332,4 +352,10 @@ target_link_libraries(directorythumbnail
     KF6::KIOGui
 )
 
-install(TARGETS directorythumbnail DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/thumbcreator)
+if(BUILD_FUZZERS)
+    if(BUILD_SHARED_LIBS)
+        message(FATAL_ERROR "Fuzzers can only be built with static libraries")
+    else()
+        add_subdirectory(autotests/ossfuzz)
+    endif()
+endif()

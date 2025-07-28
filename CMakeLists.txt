@@ -33,6 +33,8 @@ include(FeatureSummary)
 
 option(BUILD_DOC "Whether to build the documentation" ON)
 option(BUILD_KCMS "Whether to build the KCMs" ON)
+option(BUILD_FUZZERS "Whether to the thumbnail build fuzzers" OFF)
+option(FUZZERS_USE_QT_MINIMAL_INTEGRATION_PLUGIN "Whether to use the Qt minimal integration plugin for fuzzers" OFF)
 
 find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Network Widgets Svg)
 
