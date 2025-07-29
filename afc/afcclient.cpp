@@ -54,7 +54,7 @@ WorkerResult AfcClient::init(lockdownd_client_t lockdowndClient, const QString &
         auto afcRet = afc_client_new(m_device->device(), service, &m_client);
         if (afcRet != AFC_E_SUCCESS) {
             qCWarning(KIO_AFC_LOG) << "Failed to create AFC client" << afcRet;
-            return AfcUtils::Result::from(ret, m_device->id());
+            return AfcUtils::Result::from(afcRet, m_device->id());
         }
         m_appId = appId;
         return WorkerResult::pass();
