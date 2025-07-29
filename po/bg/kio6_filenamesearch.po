@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
 #
-# SPDX-FileCopyrightText: 2024 Mincho Kondarev <mkondarev@yahoo.de>
+# SPDX-FileCopyrightText: 2024, 2025 Mincho Kondarev <mkondarev@yahoo.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-07-26 00:42+0000\n"
-"PO-Revision-Date: 2024-10-02 12:59+0200\n"
+"PO-Revision-Date: 2025-07-28 17:39+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
 "Language: bg\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.07.70\n"
+"X-Generator: Lokalize 25.07.70\n"
 
 #: kio_filenamesearch.cpp:140
 #, kde-format
@@ -29,6 +29,8 @@ msgid ""
 "Invalid search query: '%1'\n"
 "Expected a regular expression: %2"
 msgstr ""
+"Невалидна заявка за търсене: '%1'\n"
+"Очаква се регулярен израз: %2"
 
 #: kio_filenamesearch.cpp:203
 #, kde-format
@@ -37,6 +39,8 @@ msgid ""
 "Invalid search location\n"
 "Trying to search the /proc directory"
 msgstr ""
+"Невалидно местоположение за търсене\n"
+"Опит за търсене в директорията /proc"
 
 #: kio_filenamesearch.cpp:479
 #, kde-format

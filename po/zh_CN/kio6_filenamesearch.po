@@ -29,6 +29,8 @@ msgid ""
 "Invalid search query: '%1'\n"
 "Expected a regular expression: %2"
 msgstr ""
+"无效的搜索查询：“%1“\n"
+"需要使用正则表达式：%2"
 
 #: kio_filenamesearch.cpp:203
 #, kde-format
@@ -37,6 +39,8 @@ msgid ""
 "Invalid search location\n"
 "Trying to search the /proc directory"
 msgstr ""
+"无效的搜索位置\n"
+"正在尝试搜索 /proc 目录"
 
 #: kio_filenamesearch.cpp:479
 #, kde-format
