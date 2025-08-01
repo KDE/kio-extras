@@ -33,7 +33,7 @@ include(FeatureSummary)
 
 option(BUILD_DOC "Whether to build the documentation" ON)
 
-find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Network Widgets Svg Core5Compat)
+find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Network Widgets Svg)
 
 find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Archive

@@ -12,7 +12,7 @@
 #include <KLocalizedString>
 #include <KMessageBox>
 #include <QApplication>
-#include <QTextCodec>
+#include <QStringConverter>
 #include <QVBoxLayout>
 
 static const QString PLACEHOLDER_TOKEN = QStringLiteral("\\{@}");
@@ -44,10 +44,7 @@ SearchProviderDialog::SearchProviderDialog(SearchProvider *provider, QList<Searc
 
     // Data init
     m_providers = providers;
-    QStringList charsets;
-    for (const auto &codec : QTextCodec::availableCodecs()) {
-        charsets << QString::fromUtf8(codec);
-    }
+    QStringList charsets = QStringConverter::availableCodecs();
     charsets.prepend(i18nc("@item:inlistbox The default character set", "Default"));
     m_dlg.cbCharset->addItems(charsets);
     if (m_provider) {
