@@ -70,10 +70,7 @@ KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
     QImageReader ir(request.url().toLocalFile());
 
     /* The idea is to read the free ram and try to avoid OS trashing when the
-     * image is too big:
-     * - Qt 6: we can simply limit the maximum size that image reader can handle.
-     * - Qt 5: the image plugin that allows big images should help us by implementing
-     *         the QImageIOHandler::Size option (TIFF, PSB and XCF already have).
+     * image is too big. We can then simply limit the maximum size that image reader can handle.
      */
     auto ram = maximumThumbnailRam();
     QImageReader::setAllocationLimit(ram / 1024 / 1024);
