@@ -19,18 +19,25 @@ ImageCreator::ImageCreator(QObject *parent, const QVariantList &args)
 {
 }
 
-#define MiB(bytes) ((bytes)*1024ll * 1024ll)
-#define GiB(bytes) (MiB(bytes) * 1024ll)
+constexpr auto operator""_MiB(unsigned long long const x) -> long
+{
+    return 1024L * 1024L * x;
+}
+
+constexpr auto operator""_GiB(unsigned long long const x) -> long
+{
+    return 1024L * 1024L * 1024L * x;
+}
 
 // When the ram check is disabled or not available, this is the expected default value of free RAM
-#define DEFAULT_FREE_RAM GiB(2)
+static constexpr auto DEFAULT_FREE_RAM = 2_GiB;
 
 // The maximum usable RAM is the free RAM is divided by this number:
 // if the calculated image size is greater than this value, the preview is skipped.
-#define RAM_DIVISOR 3
+static constexpr auto RAM_DIVISOR = 3;
 
 // An image smaller than 64 MiB will be loaded even if the usable RAM check fails.
-#define MINIMUM_GUARANTEED_SIZE MiB(64)
+static constexpr auto MINIMUM_GUARANTEED_SIZE = 64_MiB;
 
 /**
  * @brief maximumThumbnailRam
