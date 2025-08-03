@@ -59,11 +59,12 @@ private:
 
 private:
     void ensureDirsCreated();
-    bool createThumbnail(ThumbCreatorWithMetadata *subCreator, const QString &filePath, int width, int height, QImage &thumbnail);
+    bool createThumbnail(ThumbCreatorWithMetadata *subCreator, const QString &filePath, int width, int height, bool square, QImage &thumbnail);
 
     QString m_mimeType;
     int m_width;
     int m_height;
+    bool m_square = false;
     qreal m_devicePixelRatio;
     // Thumbnail creators
     QHash<QString, ThumbCreatorWithMetadata *> m_creators;

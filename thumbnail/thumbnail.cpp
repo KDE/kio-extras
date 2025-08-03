@@ -155,10 +155,20 @@ ThumbnailProtocol::~ThumbnailProtocol()
 /**
  * Scales down the image \p img in a way that it fits into the given maximum width and height
  */
-void scaleDownImage(QImage &img, int maxWidth, int maxHeight)
+void scaleDownImage(QImage &img, int maxWidth, int maxHeight, bool square)
 {
     if (img.width() > maxWidth || img.height() > maxHeight) {
-        img = img.scaled(maxWidth, maxHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        if (square) {
+            qWarning() << square << img << maxWidth << maxHeight;
+            const QSize scaled(maxWidth, maxHeight);
+            img = img.scaled(scaled, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
+            QRect destRect(QPoint(0, 0), scaled);
+            destRect.moveCenter(QRectF(QPointF(0, 0), scaled).center().toPoint());
+            img = img.copy(destRect);
+            qWarning() << "result" << square << img;
+        } else {
+            img = img.scaled(maxWidth, maxHeight, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        }
     }
 }
 
@@ -220,6 +230,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
 
     m_width = metaData("width").toInt();
     m_height = metaData("height").toInt();
+    m_square = metaData("square").toInt();
 
     if (m_width < 0 || m_height < 0) {
         return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("No or invalid size specified."));
@@ -264,7 +275,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
             setMetaData("handlesSequences", QStringLiteral("1"));
         }
 
-        if (!createThumbnail(creator, info.canonicalFilePath(), m_width, m_height, img)) {
+        if (!createThumbnail(creator, info.canonicalFilePath(), m_width, m_height, m_square, img)) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
         }
 
@@ -279,7 +290,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     }
 
     // image quality and size corrections
-    scaleDownImage(img, m_width, m_height);
+    scaleDownImage(img, m_width, m_height, m_square);
 
     convertToStandardRgb(img);
 
@@ -749,8 +760,8 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
 
         // no cached version is available, a new thumbnail must be created
         if (thumbnail.isNull()) {
-            if (createThumbnail(subCreator, filePath, cacheSize, cacheSize, thumbnail)) {
-                scaleDownImage(thumbnail, cacheSize, cacheSize);
+            if (createThumbnail(subCreator, filePath, cacheSize, cacheSize, false, thumbnail)) {
+                scaleDownImage(thumbnail, cacheSize, cacheSize, false);
 
                 // The thumbnail has been created successfully. Check if we can store
                 // the thumbnail to the cache for future access.
@@ -790,18 +801,18 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
     } else {
         // image requested is too big to be stored in the cache
         // create an image on demand
-        if (!createThumbnail(subCreator, filePath, segmentWidth, segmentHeight, thumbnail)) {
+        if (!createThumbnail(subCreator, filePath, segmentWidth, segmentHeight, false, thumbnail)) {
             return false;
         }
     }
 
     // Make sure the image fits in the segments
     // Some thumbnail creators do not respect the width / height parameters
-    scaleDownImage(thumbnail, segmentWidth, segmentHeight);
+    scaleDownImage(thumbnail, segmentWidth, segmentHeight, false);
     return true;
 }
 
-bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, const QString &filePath, int width, int height, QImage &thumbnail)
+bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, const QString &filePath, int width, int height, bool square, QImage &thumbnail)
 {
     bool success = false;
 
@@ -817,7 +828,7 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, 
     }
 
     // make sure the image is not bigger than the expected size
-    scaleDownImage(thumbnail, width, height);
+    scaleDownImage(thumbnail, width, height, square);
 
     thumbnail.setDevicePixelRatio(m_devicePixelRatio);
     convertToStandardRgb(thumbnail);
@@ -827,7 +838,7 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, 
 
 void ThumbnailProtocol::drawSubThumbnail(QPainter &p, QImage subThumbnail, int width, int height, int xPos, int yPos, int borderStrokeWidth)
 {
-    scaleDownImage(subThumbnail, width, height);
+    scaleDownImage(subThumbnail, width, height, false);
 
     // center the image inside the segment boundaries
     const QPoint centerPos((xPos + width / 2) / m_devicePixelRatio, (yPos + height / 2) / m_devicePixelRatio);
