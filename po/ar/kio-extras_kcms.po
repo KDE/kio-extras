@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-29 00:41+0000\n"
-"PO-Revision-Date: 2025-05-14 16:57+0400\n"
+"PO-Revision-Date: 2025-08-03 11:19+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -797,14 +797,14 @@ msgid ""
 "keywords can be shown at one time."
 msgstr ""
 "حدد هذا المربع لتحديد الكلمة الأساسية المميزة للبحث على الويب كما تفضل. <nl /"
-"> يتم استخدام الكلمات الرئيسية المفضلة لبحث الويب في الأماكن التي يمكن فيها "
-"عرض عدد قليل فقط من الكلمات الرئيسية المحددة في وقت واحد. "
+"> يتم استخدام الكلمات الرئيسة المفضلة لبحث الويب في الأماكن التي يمكن فيها "
+"عرض عدد قليل فقط من الكلمات الرئيسة المحددة في وقت واحد. "
 
 #: webshortcuts/ikwsopts.cpp:205
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
-msgstr "بدون"
+msgstr "لا شيء"
 
 #: webshortcuts/ikwsopts.cpp:249
 #, kde-format
@@ -825,10 +825,10 @@ msgid ""
 msgstr ""
 "<html><head/><body <p> مكن كلمات بحث الويب. </p> <p> تتيح لك كلمات بحث الويب "
 "الوصول بسرعة إلى المعلومات الموجودة على الإنترنت أو على محرك الأقراص الثابتة "
-"أو البحث عنها. </p> <p> تأتي كِيدِي مع العديد من الكلمات الرئيسية المحددة "
-"مسبقًا. يمكن استخدام إحدى هذه الكلمات الرئيسية لإجراء بحث Google (TM) ؛ "
-"لاستخدامها ، ما عليك سوى كتابة الكلمة الرئيسية \"gg\" متبوعةً بمحدد الكلمات "
-"الرئيسية ومصطلح البحث ، على سبيل المثال <span style = \"font-weight:600;\"> "
+"أو البحث عنها. </p> <p> تأتي كِيدِي مع العديد من الكلمات الرئيسة المحددة "
+"مسبقًا. يمكن استخدام إحدى هذه الكلمات الرئيسة لإجراء بحث Google (TM) ؛ "
+"لاستخدامها ، ما عليك سوى كتابة الكلمة الرئيسة \"gg\" متبوعةً بمحدد الكلمات "
+"الرئيسة ومصطلح البحث ، على سبيل المثال <span style = \"font-weight:600;\"> "
 "gg:كِيدِي </span>. </p> </body> </html> "
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
@@ -896,9 +896,9 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt> \n"
-"حدد محرك البحث المراد استخدامه لمربعات الإدخال التي توفر تلقائيًاخدمات البحث "
+"حدد محرك البحث المراد استخدامه لمربعات الإدخال التي توفر تلقائيًا خدمات البحث "
 "عندما تكتب كلمات وعبارات عادية بدلاً من عنوان القياسية.لتعطيل هذه الميزة حدد "
-"<b> بدون </b> من القائمة. \n"
+"<b> لا شيء </b> من القائمة. \n"
 "</qt> "
 
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
@@ -918,10 +918,10 @@ msgid ""
 "\">None</span> from the list. </p></body></html>"
 msgstr ""
 "<html><head/><body <p> حدد اختصار ويب مبدئي. </p> <p> يتيح ذلك للتطبيقات "
-"تحويل الكلمة أو العبارة المكتوبة تلقائيًا إلى استعلامات كلمات رئيسية لبحث "
+"تحويل الكلمة أو العبارة المكتوبة تلقائيًا إلى استعلامات كلمات رئيسة لبحث "
 "الويب عندما لا يمكن تصفيتها إلى عنوان مناسب. </p> <p> لتعطيل هذه الوظيفة ، "
-"حدد <span style = \"font-weight: 600;\"> بدون</span> من القائمة. </p></body> "
-"</html> "
+"حدد <span style = \"font-weight: 600;\"> لا شيء</span> من القائمة. </p></"
+"body> </html> "
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
@@ -937,7 +937,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:185
 #, kde-format
 msgid "&Keyword delimiter:"
-msgstr "فاصل الكلمات ال&رئيسية: "
+msgstr "فاصل الكلمات ال&رئيسة: "
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:204
