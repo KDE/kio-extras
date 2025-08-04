@@ -21,6 +21,9 @@ private Q_SLOTS:
 
     void initTestCase();
 
+    void optionCase_data();
+    void optionCase();
+
     void stringMatch_data();
     void stringMatch();
 
@@ -29,9 +32,6 @@ private Q_SLOTS:
 
     void filenameContent_data();
     void filenameContent();
-
-    void optionCase_data();
-    void optionCase();
 
     void folderTree_data();
     void folderTree();
@@ -199,6 +199,30 @@ void FilenameSearchTest::cleanupTestCase()
     }
 };
 
+//  TODO: the optionCase test relies on filenameContent, ought to have an option/query that does not depend on test files.
+
+void FilenameSearchTest::optionCase_data()
+{
+    addColumns();
+
+    addRow("No Match", QByteArrayLiteral("checkContent=no"), QByteArrayLiteral("curiouser"), {});
+    addRow("Lower Case", QByteArrayLiteral("checkContent=yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
+    addRow("Mixed Case", QByteArrayLiteral("checkContent=Yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
+    addRow("Upper Case", QByteArrayLiteral("checkContent=YES"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
+}
+
+void FilenameSearchTest::optionCase()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/filename-content");
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
+
+    QCOMPARE(results, expectedFiles);
+}
+
 void FilenameSearchTest::stringMatch_data()
 {
     addColumns();
@@ -295,30 +319,6 @@ void FilenameSearchTest::filenameContent()
     QCOMPARE(results, expectedFiles);
 }
 
-//  TODO: the optionCase test relies on filenameContent, ought to have an option/query that does not depend on test files.
-
-void FilenameSearchTest::optionCase_data()
-{
-    addColumns();
-
-    addRow("No Match", QByteArrayLiteral("checkContent=no"), QByteArrayLiteral("curiouser"), {});
-    addRow("Lower Case", QByteArrayLiteral("checkContent=yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
-    addRow("Mixed Case", QByteArrayLiteral("checkContent=Yes"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
-    addRow("Upper Case", QByteArrayLiteral("checkContent=YES"), QByteArrayLiteral("curiouser"), {QByteArrayLiteral("alice2.txt")});
-}
-
-void FilenameSearchTest::optionCase()
-{
-    QFETCH(QByteArray, searchOptions);
-    QFETCH(QByteArray, searchString);
-    QFETCH(QByteArrayList, expectedFiles);
-
-    const QString path = QFINDTESTDATA("data/filename-content");
-    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
-
-    QCOMPARE(results, expectedFiles);
-}
-
 //  Search including hidden files, to catch the .bak (that may be considered hidden)
 
 void FilenameSearchTest::folderTree_data()
@@ -332,7 +332,7 @@ void FilenameSearchTest::folderTree_data()
 
     addRow("Content Match",
            QByteArray("checkContent=yes"),
-           QByteArrayLiteral("Wonderland"),
+           QByteArrayLiteral("wonderland"),
            {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
 }
 

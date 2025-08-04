@@ -57,6 +57,10 @@ bool isDotOrDotDot(const QString &fileName)
 }
 }
 
+namespace FileNameSearch
+{
+using namespace FileNameSearch;
+
 // Pseudo plugin class to embed meta data
 class KIOPluginForMetaData : public QObject
 {
@@ -101,13 +105,13 @@ static bool contentContainsPattern(const QUrl &url, const QRegularExpression &re
 }
 
 //  Search for a term in the filename and then, if SearchContent set, in the body of the file
-
+//
 bool FileNameSearchProtocol::match(const KIO::UDSEntry &entry, const QRegularExpression &regex, const SearchOptions options)
 {
-    if (options.testFlag(SearchFileName) && regex.match(entry.stringValue(KIO::UDSEntry::UDS_NAME)).hasMatch()) {
+    if (options.testFlag(SearchOption::SearchFileName) && regex.match(entry.stringValue(KIO::UDSEntry::UDS_NAME)).hasMatch()) {
         return true;
     }
-    if (options.testFlags(SearchContent)) {
+    if (options.testFlags(SearchOption::SearchContent)) {
         const QUrl entryUrl(entry.stringValue(KIO::UDSEntry::UDS_URL));
         QMimeDatabase mdb;
         QMimeType mimetype = mdb.mimeTypeForUrl(entryUrl);
@@ -163,14 +167,61 @@ void FileNameSearchProtocol::listRootEntry()
     listEntry(entry);
 }
 
+FileNameSearchProtocol::SearchOptions
+FileNameSearchProtocol::parseSearchOptions(const QString optionContent, const QString optionHidden, const SearchOption defaultOptions)
+{
+    //  If SearchOption::SearchFileName
+    //     Match the search query in the filename
+    //  If SearchOption::SearchContent
+    //     Match the search query in the filename and the content (of text/plain files)
+    //  If SearchOption::IncludeHidden
+    //     Search hidden files and within hidden folders
+    //  If SearchOption::IncludeHiddenFiles
+    //     Search hidden files (but don't navigate down into hidden folders)
+    //  If SearchOption::IncludeHiddenFolders
+    //     Recurively search hidden folders (without reading hidden files)
+
+    SearchOptions options(defaultOptions);
+
+    if (QString::compare(optionContent, QLatin1String("no"), Qt::CaseInsensitive) == 0) {
+        options.setFlag(SearchOption::SearchFileName);
+    } else if (QString::compare(optionContent, QLatin1String("yes"), Qt::CaseInsensitive) == 0) {
+        options.setFlag(SearchOption::SearchContent);
+    }
+
+    if (QString::compare(optionHidden, QLatin1String("yes"), Qt::CaseInsensitive) == 0) {
+        options.setFlag(SearchOption::IncludeHidden);
+    } else if (QString::compare(optionHidden, QLatin1String("filesandfolders"), Qt::CaseInsensitive) == 0) {
+        options.setFlag(SearchOption::IncludeHidden);
+    } else if (QString::compare(optionHidden, QLatin1String("folders"), Qt::CaseInsensitive) == 0) {
+        options.setFlag(SearchOption::IncludeHiddenFolders);
+    } else if (QString::compare(optionHidden, QLatin1String("files"), Qt::CaseInsensitive) == 0) {
+        options.setFlag(SearchOption::IncludeHiddenFiles);
+    }
+    return options;
+}
+
+FileNameSearchProtocol::SearchSrcs FileNameSearchProtocol::parseSearchSrc(const QString optionSrc, const SearchSrc defaultSrcs)
+{
+    //  If SearchSrc::Internal
+    //     Use the internal code
+    //  If SearchSrc::External
+    //     Call the external script
+    //  If SearchSrc::ExternalThenInternal
+    //     Use the external script and fall back to using the internal search if it fails.
+
+    SearchSrcs srcs(defaultSrcs);
+
+    if (QString::compare(optionSrc, QLatin1String("internal"), Qt::CaseInsensitive) == 0) {
+        srcs = SearchSrc::Internal;
+    } else if (QString::compare(optionSrc, QLatin1String("external"), Qt::CaseInsensitive) == 0) {
+        srcs = SearchSrc::External;
+    }
+    return srcs;
+}
+
 KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 {
-    enum Engine {
-        Unspecified,
-        Internal,
-        External,
-    };
-
     listRootEntry();
 
     const QUrlQuery urlQuery(url);
@@ -207,46 +258,20 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     const QString optionHidden = urlQuery.queryItemValue(QStringLiteral("includeHidden"));
     const QString optionSrc = urlQuery.queryItemValue(QStringLiteral("src"));
 
-    SearchOptions options(SearchFileName);
-
-    // "checkContent=yes" should also search for terms in the filename.
-    if (QString::compare(optionContent, QLatin1String("yes"), Qt::CaseInsensitive) == 0) {
-        options.setFlag(SearchContent);
-    }
-
-    // "includeHidden=yes" should search for hidden files and within hidden folders
-    if (QString::compare(optionHidden, QLatin1String("yes"), Qt::CaseInsensitive) == 0) {
-        options.setFlag(IncludeHidden);
-    } else if (QString::compare(optionHidden, QLatin1String("filesandfolders"), Qt::CaseInsensitive) == 0) {
-        options.setFlag(IncludeHidden);
-    } else if (QString::compare(optionHidden, QLatin1String("folders"), Qt::CaseInsensitive) == 0) {
-        options.setFlag(IncludeHiddenFolders);
-    } else if (QString::compare(optionHidden, QLatin1String("files"), Qt::CaseInsensitive) == 0) {
-        options.setFlag(IncludeHiddenFiles);
-    }
-
-    // Default behaviour is to assume the external script is present and fall back to using the
-    // internal search if it is not.
-    // "src=internal" should use only the internal simple search code, "src=external" should call the external script
-
-    Engine useEngine = Unspecified;
-    if (QString::compare(optionSrc, QLatin1String("internal"), Qt::CaseInsensitive) == 0) {
-        useEngine = Internal;
-    } else if (QString::compare(optionSrc, QLatin1String("external"), Qt::CaseInsensitive) == 0) {
-        useEngine = External;
-    }
+    SearchOptions options = parseSearchOptions(optionContent, optionHidden, SearchOption::SearchFileName);
+    SearchSrcs srcs = parseSearchSrc(optionSrc, SearchSrc::ExternalThenInternal);
 
     std::set<QString> iteratedDirs;
     std::queue<QUrl> pendingDirs;
 
 #if !defined(Q_OS_WIN32)
     // Prefer using external tools if available
-    if ((useEngine == Unspecified || useEngine == External) && options.testFlag(SearchContent) && dirUrl.isLocalFile()) {
+    if (srcs.testFlag(SearchSrc::External) && options.testFlag(SearchOption::SearchContent) && dirUrl.isLocalFile()) {
         KIO::WorkerResult result = searchDirWithExternalTool(dirUrl, regex);
         if (result.error() != KIO::ERR_UNSUPPORTED_ACTION) {
             return result;
         }
-        if (useEngine == Unspecified) {
+        if (srcs.testFlag(SearchSrc::Internal)) {
             qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Fall back to KIO.";
         } else {
             qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Test fails.";
@@ -255,7 +280,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     }
 #endif
 
-    if (useEngine == Unspecified || useEngine == Internal) {
+    if (srcs.testFlag(SearchSrc::Internal)) {
         searchDir(dirUrl, regex, options, iteratedDirs, pendingDirs);
 
         while (!pendingDirs.empty()) {
@@ -284,7 +309,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
     }
 
     KIO::ListJob::ListFlags listFlags = {};
-    if (options.testAnyFlags(IncludeHidden)) {
+    if (options.testAnyFlags(SearchOption::IncludeHidden)) {
         listFlags = KIO::ListJob::ListFlag::IncludeHidden;
     }
     KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, listFlags);
@@ -333,7 +358,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                     // If the folder is hidden, add it to iteratedDirs to stop it being exlored
                     // (Assume ListRecursive returns the folder name before exploring the folder).
 
-                    if ((!item.isHidden()) || options.testFlag(IncludeHiddenFolders)) {
+                    if ((!item.isHidden()) || options.testFlag(SearchOption::IncludeHiddenFolders)) {
                         const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST);
                         if (!linkDest.isEmpty()) {
                             pendingDirs.push(entryUrl.resolved(QUrl(linkDest)));
@@ -346,16 +371,16 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                     //  the SearchContent flag.
 
                     SearchOptions folderOptions = options;
-                    folderOptions.setFlag(SearchContent, false);
+                    folderOptions.setFlag(SearchOption::SearchContent, false);
 
                     //  UDS_DISPLAY_NAME is e.g. "foo/bar/somefile.txt"
 
-                    if ((!item.isHidden() || options.testFlag(IncludeHiddenFiles)) && match(entry, regex, folderOptions)) {
+                    if ((!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFiles)) && match(entry, regex, folderOptions)) {
                         entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
                         listEntry(entry);
                     }
 
-                } else if ((!item.isHidden() || options.testFlag(IncludeHiddenFiles)) && match(entry, regex, options)) {
+                } else if ((!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFiles)) && match(entry, regex, options)) {
                     entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
                     listEntry(entry);
                 }
@@ -497,6 +522,8 @@ extern "C" int Q_DECL_EXPORT kdemain(int argc, char **argv)
 
     return 0;
 }
+
+} // namespace FileNameSearch
 
 #include "kio_filenamesearch.moc"
 #include "moc_kio_filenamesearch.cpp"

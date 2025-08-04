@@ -27,10 +27,51 @@
  * of the "url" query item.
  *
  * By default the files with names matching the search pattern are listed.
- * Alternatively if the query item "checkContent" is set to "yes", the contents
- * of files with a text MimeType will be searched for the given pattern and
- * the matching files will be listed.
+ *
+ * ?src=[Internal|External]
+ *
+ * The available options depend on whether an internal, native, search is being
+ * done or filenamesearch invokes the external search script kio_filenamesearch_grep.
+ *
+ * The "src" query options specifies whether to use the internal or external search.
+ * If "src=internal" is specified, the internal search code is used. A "src=external"
+ * the external script is used.
+ *
+ * If the "src" is not specified, the external search script is used if present and thes
+ * search falls back to using the internal search if it is not.
+ *
+ * For the internal search:
+ *
+ * ?checkContent=[Yes|No]
+ *
+ * If the query item "checkContent" is set to "yes", the content as well as
+ * the filename of files with a text MimeType will be searched for the given pattern.
+ *
+ * ?includeHidden=[Yes|Files|Folders|FilesAndFolders]
+ *
+ * The "includeHidden" query item specifies whether the internal search should
+ * read hidden files and/or navigate down into hidden folders.
+ *
+ * If "includeHidden=yes" or "includeHidden=FilesAndFolders", both hidden files and
+ * hidden folders are searched. If "includeHidden=Files", just hidden files are
+ * searched without exploring hidden folders. If "includeHidden=Folders", the
+ * search recursively explores hidden folders but does not read hidden files.
+ *
+ * ?syntax=[Phrase|Regex]
+ *
+ * The "syntax" query item specified how the search string/expression should be handled.
+ *
+ * If "syntax=phrase", the search query is treated as a string, matching whitespace
+ * flexibly. If "syntax=regex", the query is treated as a regualr expression.
+ *
+ * The default behaviour is "syntax=regex".
+ *
+ * "syntax=phrase" and "syntax=regex" also apply to the external search.
  */
+
+namespace FileNameSearch
+{
+
 class FileNameSearchProtocol : public QObject, public KIO::WorkerBase
 {
     Q_OBJECT
@@ -44,7 +85,7 @@ public:
 
 private:
     //  Define the various search flags for internal use.
-    enum SearchOption {
+    enum class SearchOption {
         SearchFileName = 0x1,
         SearchContent = 0x2,
         IncludeHiddenFiles = 0x10,
@@ -55,10 +96,21 @@ private:
 
     Q_DECLARE_FLAGS(SearchOptions, SearchOption)
 
+    enum class SearchSrc {
+        Internal = 0x1,
+        External = 0x2,
+        ExternalThenInternal = 0x3, // External with Fallback;
+    };
+
+    Q_DECLARE_FLAGS(SearchSrcs, SearchSrc)
+
     void listRootEntry();
     void
     searchDir(const QUrl &dirUrl, const QRegularExpression &regex, const SearchOptions options, std::set<QString> &iteratedDirs, std::queue<QUrl> &pendingDirs);
     bool match(const KIO::UDSEntry &entry, const QRegularExpression &regex, const SearchOptions options);
+
+    SearchOptions parseSearchOptions(const QString optionContent, const QString optionHidden, const SearchOption defaultOptions);
+    SearchSrcs parseSearchSrc(const QString optionSrc, const SearchSrc defaultSrcs);
 
 #if !defined(Q_OS_WIN32)
 
@@ -70,5 +122,7 @@ private:
 
 #endif // !defined(Q_OS_WIN32)
 };
+
+} // namespace FileNameSearch
 
 #endif
