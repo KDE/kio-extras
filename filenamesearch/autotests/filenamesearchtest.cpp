@@ -271,6 +271,21 @@ void FilenameSearchTest::phraseMatch_data()
     addRow("No Content Phrase Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Cheshire Cat"), {});
     addRow("Content Exact Phrase Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Adventures in Wonderland"), {QByteArrayLiteral("alice.txt")});
 
+    //  Check explicit phrase and regex syntax searches
+
+    addRow("Filename Phrase Query with Phrase Match", QByteArray("syntax=phrase"), QByteArrayLiteral("alice"), {QByteArrayLiteral("alice.txt")});
+    addRow("Filename Regex Query with Regex Match", QByteArray("syntax=regex"), QByteArrayLiteral("al.*ce"), {QByteArrayLiteral("alice.txt")});
+    addRow("Filename Phrase Query with Regex Match", QByteArray("syntax=phrase"), QByteArrayLiteral("al.*ce"), {});
+    addRow("Content Phrase Query with Phrase Match",
+           QByteArray("syntax=phrase&checkContent=yes"),
+           QByteArrayLiteral("Adventures in Wonderland"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("Content Regex Query with Regex Match",
+           QByteArray("syntax=regex&checkContent=yes"),
+           QByteArrayLiteral("Advent.* in Wond.*"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("No Content Phrase Query with Regex Match", QByteArray("syntax=phrase&checkContent=yes"), QByteArrayLiteral("Advent.* in Wond.*"), {});
+
     //  Check searches for collections of words work rather than exact phrases.
 
     addRow("Content Soup Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Adventures Wonderland"), {QByteArrayLiteral("alice.txt")});

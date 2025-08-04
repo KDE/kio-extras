@@ -104,6 +104,14 @@ private:
 
     Q_DECLARE_FLAGS(SearchSrcs, SearchSrc)
 
+    enum class SearchSyntax {
+        //  Literal,
+        Phrase,
+        //  Words,
+        //  Glob,
+        Regex,
+    };
+
     void listRootEntry();
     void
     searchDir(const QUrl &dirUrl, const QRegularExpression &regex, const SearchOptions options, std::set<QString> &iteratedDirs, std::queue<QUrl> &pendingDirs);
@@ -111,6 +119,7 @@ private:
 
     SearchOptions parseSearchOptions(const QString optionContent, const QString optionHidden, const SearchOption defaultOptions);
     SearchSrcs parseSearchSrc(const QString optionSrc, const SearchSrc defaultSrcs);
+    SearchSyntax parseSearchSyntax(const QString optionSyntax, const SearchSyntax defaultSyntax);
 
 #if !defined(Q_OS_WIN32)
 

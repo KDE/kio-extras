@@ -55,6 +55,20 @@ bool isDotOrDotDot(const QString &fileName)
 {
     return fileName == QLatin1String(".") || fileName == QLatin1String("..");
 }
+
+//  Returns a regex with special characters escaped while still allowing flexible
+//  matches of whitespace.
+
+QString escapePhrase(const QString &regex)
+{
+    QString escapedRegex = regex;
+
+    escapedRegex.replace(QRegularExpression(QStringLiteral("\\s+")), QStringLiteral(" "));
+    escapedRegex = QRegularExpression::escape(escapedRegex);
+    escapedRegex.replace(QRegularExpression(QStringLiteral("\\\\ ")), QStringLiteral("\\s+"));
+
+    return escapedRegex;
+}
 }
 
 namespace FileNameSearch
@@ -201,6 +215,23 @@ FileNameSearchProtocol::parseSearchOptions(const QString optionContent, const QS
     return options;
 }
 
+FileNameSearchProtocol::SearchSyntax FileNameSearchProtocol::parseSearchSyntax(const QString optionSyntax, const SearchSyntax defaultSyntax)
+{
+    //  If SearchSyntax::Regex
+    //     Pass the query expression "as is"
+    //  If SearchSyntax::Phrase
+    //     Escape Regex 'special characters' but allow flexible matching of whitespace
+
+    SearchSyntax searchSyntax = defaultSyntax;
+
+    if (QString::compare(optionSyntax, QLatin1String("phrase"), Qt::CaseInsensitive) == 0) {
+        searchSyntax = SearchSyntax::Phrase;
+    } else if (QString::compare(optionSyntax, QLatin1String("regex"), Qt::CaseInsensitive) == 0) {
+        searchSyntax = SearchSyntax::Regex;
+    }
+    return searchSyntax;
+}
+
 FileNameSearchProtocol::SearchSrcs FileNameSearchProtocol::parseSearchSrc(const QString optionSrc, const SearchSrc defaultSrcs)
 {
     //  If SearchSrc::Internal
@@ -225,18 +256,9 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     listRootEntry();
 
     const QUrlQuery urlQuery(url);
-    const QString search = urlQuery.queryItemValue(QStringLiteral("search"), QUrl::FullyDecoded);
+    QString search = urlQuery.queryItemValue(QStringLiteral("search"), QUrl::FullyDecoded);
     if (search.isEmpty()) {
         return KIO::WorkerResult::pass();
-    }
-
-    const QRegularExpression regex(search, QRegularExpression::CaseInsensitiveOption);
-    if (!regex.isValid()) {
-        qCWarning(KIO_FILENAMESEARCH) << "Invalid QRegularExpression/PCRE search pattern:" << search;
-        QString errorString = regex.errorString();
-        errorString[0] = errorString[0].toUpper();
-        return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED,
-                                       i18nc("@info:status", "Invalid search query: '%1'\nExpected a regular expression: %2", search, errorString));
     }
 
     QUrl dirUrl = QUrl(urlQuery.queryItemValue(QStringLiteral("url"), QUrl::FullyDecoded));
@@ -256,13 +278,28 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 
     const QString optionContent = urlQuery.queryItemValue(QStringLiteral("checkContent"));
     const QString optionHidden = urlQuery.queryItemValue(QStringLiteral("includeHidden"));
+    const QString optionSyntax = urlQuery.queryItemValue(QStringLiteral("syntax"));
     const QString optionSrc = urlQuery.queryItemValue(QStringLiteral("src"));
 
-    SearchOptions options = parseSearchOptions(optionContent, optionHidden, SearchOption::SearchFileName);
     SearchSrcs srcs = parseSearchSrc(optionSrc, SearchSrc::ExternalThenInternal);
+    SearchOptions options = parseSearchOptions(optionContent, optionHidden, SearchOption::SearchFileName);
+    SearchSyntax syntax = parseSearchSyntax(optionSyntax, SearchSyntax::Regex);
+
+    if (syntax == SearchSyntax::Phrase) {
+        search = escapePhrase(search);
+    }
 
     std::set<QString> iteratedDirs;
     std::queue<QUrl> pendingDirs;
+
+    const QRegularExpression regex(search, QRegularExpression::CaseInsensitiveOption);
+    if (!regex.isValid()) {
+        qCWarning(KIO_FILENAMESEARCH) << "Invalid QRegularExpression/PCRE search pattern:" << search;
+        QString errorString = regex.errorString();
+        errorString[0] = errorString[0].toUpper();
+        return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED,
+                                       i18nc("@info:status", "Invalid search query: '%1'\nExpected a regular expression: %2", search, errorString));
+    }
 
 #if !defined(Q_OS_WIN32)
     // Prefer using external tools if available
