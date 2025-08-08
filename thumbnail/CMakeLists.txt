@@ -85,9 +85,10 @@ ecm_qt_declare_logging_category(kio_thumbnail
 
 target_link_libraries(kio_thumbnail
     PUBLIC
+        Qt6::Widgets
         KF6::CoreAddons
         KF6::KIOCore
-        KF6::KIOWidgets
+        KF6::KIOGui
         KF6::I18n
 )
 

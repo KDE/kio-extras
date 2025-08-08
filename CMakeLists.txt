@@ -32,22 +32,24 @@ include(CMakePackageConfigHelpers)
 include(FeatureSummary)
 
 option(BUILD_DOC "Whether to build the documentation" ON)
+option(BUILD_KCMS "Whether to build the KCMs" ON)
 
-find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Network Widgets Svg Core5Compat)
+find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Gui Network Widgets Svg)
 
 find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Archive
     Config
-    ConfigWidgets
     CoreAddons
-    DNSSD
     I18n
     KIO
     Solid
-    GuiAddons
     SyntaxHighlighting
-    KCMUtils
 )
+
+if(BUILD_KCMS)
+    find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Core5Compat)
+    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS KCMUtils)
+endif()
 
 # shall we use DBus?
 # enabled per default on Linux & BSD systems
@@ -80,9 +82,6 @@ add_feature_info("Qt6Test" Qt6Test_FOUND "Required for building tests")
 if (NOT Qt6Test_FOUND)
     set(BUILD_TESTING OFF CACHE BOOL "Build the testing tree.")
 endif()
-
-find_package(QCoro6 REQUIRED COMPONENTS Core)
-qcoro_enable_coroutines()
 
 include(KDEClangFormat)
 file(GLOB_RECURSE ALL_CLANG_FORMAT_SOURCE_FILES *.cpp *.h)
@@ -193,7 +192,9 @@ ecm_set_disabled_deprecation_versions(
     KF 6.0
 )
 
-add_subdirectory(kcms)
+if(BUILD_KCMS)
+    add_subdirectory( kcms )
+endif()
 
 if(BUILD_ACTIVITIES)
   add_subdirectory( activities )
@@ -212,6 +213,8 @@ if (NOT WIN32)
 endif()
 add_subdirectory( thumbnail )
 if (libssh_FOUND)
+    find_package(QCoro6 REQUIRED COMPONENTS Core)
+    qcoro_enable_coroutines()
     add_subdirectory(sftp)
 endif ()
 
@@ -233,6 +236,7 @@ if(NOT WIN32)
 endif()
 
 if(SAMBA_FOUND AND USE_DBUS)
+    find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS DNSSD)
     add_subdirectory(smb)
 endif()
 

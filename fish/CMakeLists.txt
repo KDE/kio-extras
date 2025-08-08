@@ -24,7 +24,7 @@ configure_file(config-fish.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-fish.h)
 ########### next target ###############
 # on Linux there is md5sum, on FreeBSD there is md5
 find_program(MD5SUM_EXECUTABLE NAMES md5sum md5 )
-    
+
 if (MD5SUM_EXECUTABLE)
 
    add_library(kio_fish MODULE)
@@ -65,7 +65,7 @@ if (MD5SUM_EXECUTABLE)
       EXPORT KIO_EXTRAS
    )
 
-   target_link_libraries(kio_fish KF6::KIOCore KF6::WidgetsAddons KF6::I18n Qt::Network)
+   target_link_libraries(kio_fish KF6::KIOCore KF6::I18n Qt::Network)
 
    if (UTIL_LIBRARIES)
       target_link_libraries(kio_fish ${UTIL_LIBRARIES})
