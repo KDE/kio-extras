@@ -8,21 +8,22 @@
 # محمد سعد  Mohamed SAAD <metehyi@free.fr>, 2006.
 # AbdulAziz AlSharif <a.a-a.s@hotmail.com>, 2007.
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
-# zayed <zayed.alsaidi@gmail.com>, 2009, 2021, 2022.
+# SPDX-FileCopyrightText: 2009, 2021, 2022, 2025 zayed <zayed.alsaidi@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:32+0000\n"
-"PO-Revision-Date: 2022-02-19 22:22+0400\n"
+"PO-Revision-Date: 2025-08-09 22:05+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
-"Language-Team: Arabic <kde-l10n-ar@kde.org>\n"
+"Language-Team: ar\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #: kio_smb_auth.cpp:43
 #, kde-kuit-format
@@ -39,16 +40,16 @@ msgid ""
 "attempted using empty username and password. Depending on server "
 "configuration non-empty usernames may be required</para>"
 msgstr ""
-"<para> هناك العديد من الخيارات للمصادقة على مشاركات SMB. </para> <para> "
+"<para> هناك العديد من الخيارات للمصادقة على مشاركات سامبا. </para> <para> "
 "<placeholder> اسم المستخدم </placeholder>: عند المصادقة داخل شبكة منزلية ، "
 "يكون اسم المستخدم على الخادم كافياً </para> "
 "<para><placeholder>username@domain.com </placeholder>: أسماء تسجيل دخول "
-"الشركة الحديثة يتم تشكيلها مثل عناوين البريد الإلكتروني </para> <para> "
+"الشركة الحديثة تكون مثل عناوين البريد الإلكتروني </para> <para> "
 "<placeholder> DOMAIN\\username </placeholder>: لشبكات الشركات القديمة أو "
 "مجموعات العمل ، قد تحتاج إلى بادئة اسم مجال NetBIOS (ما قبل Windows 2000) </"
-"para> <para> <placeholder> مجهول </placeholder>: يمكن محاولة تسجيل الدخول "
-"المجهول باستخدام اسم مستخدم وكلمة مرور فارغين. بناءً على تكوين الخادم ، قد "
-"تكون أسماء المستخدمين غير الفارغة مطلوبة </para>"
+"para> <para> <placeholder> مجهول </placeholder>: يمكن محاولة  الولوج المجهول "
+"باستخدام اسم مستخدم وكلمة سر فارغين. بناءً على ضبط الخادم ، قد تكون أسماء "
+"المستخدمين غير الفارغة مطلوبة </para>"
 
 #: kio_smb_auth.cpp:52
 #, kde-format
