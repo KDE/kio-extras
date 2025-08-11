@@ -33,7 +33,7 @@
         "Description[zh_CN]": "验证代理服务器设置的运行情况",
         "Description[zh_TW]": "檢查代理伺服器設定正確依預期運作",
         "Name": "Proxy Verifier",
-        "Name[ar]": "مراجع الوكيل",
+        "Name[ar]": "مدقق الوكيل",
         "Name[bg]": "Верифициране на прокси",
         "Name[ca@valencia]": "Verificador de servidor intermediari",
         "Name[ca]": "Verificador de servidor intermediari",
