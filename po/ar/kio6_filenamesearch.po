@@ -47,4 +47,4 @@ msgstr ""
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
-msgstr "فشل %1، شفرة الخروج: %2 ، رسالة الخروج: %3"
+msgstr "فشل %1، شفرة الخروج: %2، رسالة الخروج: %3"
