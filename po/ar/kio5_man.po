@@ -36,9 +36,9 @@ msgid ""
 "filename> directory."
 msgstr ""
 "تعذر العثور على صفحة دليل تطابق <resource>%1</resource>. <nl/> <nl/> تأكد من "
-"أنك لم تكتب اسم الصفحة بشكل خاطئ ، ولاحظ أن أسماء صفحات الدليل حساسة لحالة "
-"الأحرف. <nl/> <nl/> إذا كان الاسم صحيحًا ، فقد تحتاج إلى توسيع مسار البحث "
-"لصفحات الدليل ، إما باستخدام متغير البيئة <envar> MANPATH </envar> أو ملف "
+"أنك لم تكتب اسم الصفحة بشكل خاطئ، ولاحظ أن أسماء صفحات الدليل حساسة لحالة "
+"الأحرف. <nl/> <nl/> إذا كان الاسم صحيحًا، فقد تحتاج إلى توسيع مسار البحث "
+"لصفحات الدليل، إما باستخدام متغير البيئة <envar> MANPATH </envar> أو ملف "
 "الضبط في دليل <filename> /etc </filename>."
 
 #: kio_man.cpp:574
@@ -48,8 +48,8 @@ msgid ""
 "The specified man page references another page <filename>%1</filename>,<nl/"
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
-"تشير صفحة الدليل المحددة إلى صفحة أخرى <filename>%1 </filename> ، <nl /> "
-"ولكن الصفحة المشار إليها <filename>%2 </filename> تعذر العثور عليها."
+"تشير صفحة الدليل المحددة إلى صفحة أخرى <filename>%1 </filename>، <nl /> ولكن "
+"الصفحة المشار إليها <filename>%2 </filename> تعذر العثور عليها."
 
 #: kio_man.cpp:591
 #, kde-kuit-format
@@ -85,9 +85,9 @@ msgid ""
 "mistakes or be obsolete. In case of doubt, you should have a look at the "
 "English version."
 msgstr ""
-"ملاحظة: إذا كنت تريد قراءة صفحة مساعدة بلغتك ، فعليك الانتباه إلى وجود  "
-"أخطاء أو مصطلحات قديمة. في حال وجود شك ، عليك مراجعة الاصدارة الانكليزية من "
-"صفحات المساعدة."
+"ملاحظة: إذا كنت تريد قراءة صفحة مساعدة بلغتك، فعليك الانتباه إلى وجود  أخطاء "
+"أو مصطلحات قديمة. في حال وجود شك، عليك مراجعة الاصدارة الانكليزية من صفحات "
+"المساعدة."
 
 #: kio_man.cpp:756
 #, kde-format
@@ -203,7 +203,7 @@ msgid ""
 "environment variable <envar>PATH</envar>."
 msgstr ""
 "تعذر العثور على برنامج <command>%1 </command> على نظامك. يرجى تثبيته إذا لزم "
-"الأمر ، والتأكد من أنه يمكن العثور عليه باستخدام متغير البيئة <envar> PATH </"
+"الأمر، والتأكد من أنه يمكن العثور عليه باستخدام متغير البيئة <envar> PATH </"
 "envar>."
 
 #~ msgid "Open of %1 failed."
