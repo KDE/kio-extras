@@ -73,78 +73,14 @@
 >kcontrol</keyword>
 <keyword
 >red</keyword>
-<keyword
->Tiempos de espera</keyword>
 </keywordset>
 
 </articleinfo>
 
-<sect1 id="timeouts">
+<sect1>
 
 <title
 >Preferencias de la conexión</title>
-
-<para
->Aquí puede configurar los valores de los tiempos de espera. Puede que desee modificarlos si su conexión es muy lenta pero los valores predefinidos son apropiados para la mayor parte de los usuarios.</para>
-
-<para
->Aquí <guilabel
->Tiempos de espera</guilabel
-> son los intervalos de tiempo que una aplicación debería esperar una respuesta de una operación en la red.</para>
-
-<para
->Puede configurar los siguientes tiempos:</para>
-
-<variablelist>
-<varlistentry>
-<term
-><guilabel
->Lectura de socket:</guilabel
-></term>
-<listitem>
-<para
->Algunas aplicaciones utilizan <firstterm
->sockets</firstterm
-> para comunicarse. Puede pensar en un socket como en un grifo de agua; cuando está abierto, el agua (o en nuestro caso, los datos) sale, sin interacción. Si algo detiene este flujo de datos, la aplicación esperará a que haya más para salir. Esta demora puede corresponder a un intervalo muy largo de tiempo, pero usted puede definir un tiempo máximo de espera para una aplicación con esta opción.</para>
-<para
->Esta opción de configuración solo es aplicable a aplicaciones &kde;.</para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Conexión de proxy:</guilabel
-></term>
-<listitem>
-<para
->Establece cuanto tiempo esperar una conexión a un servidor proxy, si hay uno configurado. </para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Conexión al servidor:</guilabel
-></term>
-<listitem>
-<para
->Establece cuanto tiempo esperar una conexión a un servidor remoto. </para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Respuesta del servidor:</guilabel
-></term>
-<listitem>
-<para
->Establece el tiempo de espera para una respuesta del servidor remoto. </para>
-</listitem>
-</varlistentry>
-
-</variablelist>
 
 <para
 >Aquí puede configurar las <guilabel
