@@ -40,14 +40,14 @@
 >). </para>
 
 <para
->El protocolo soportado MOUNT realiza funciones específicas del sistema operativo que permiten a los clientes asociar árboles de directorios remotos a un punto del sistema local. El proceso de montaje también permite al servidor gestionar los privilegios de acceso remoto a un conjunto restringido de clientes a través de un control de exportación.</para>
+>El protocolo de base MOUNT realiza las funciones específicas del sistema operativo que permiten a los clientes conectar árboles de carpetas remotas a un punto dentro del sistema de archivos local. El proceso de montaje también permite al servidor otorgar privilegios de acceso remoto a un conjunto restringido de clientes mediante el control de exportaciones.</para>
 
 <para
->El administrador de bloqueo proporciona soporte para bloqueo de archivos cuando se utiliza en el entorno <acronym
+>El gestor de bloqueo permite el bloqueo de archivos en el entorno <acronym
 >NFS</acronym
->. El protocolo de administración de red local, Network Lock Manager (<acronym
+>. El protocolo del gestor de bloqueo de red (<acronym
 >NLM</acronym
->), aisla los aspectos inherentes al bloqueo de archivos en un protocolo separado.</para>
+>) aísla los aspectos inherentemente dependientes del estado del bloqueo de archivos en un protocolo independiente.</para>
 
 <para
 >Fuente: <ulink url="http://www.networksorcery.com/enp/protocol/nfs.htm"
