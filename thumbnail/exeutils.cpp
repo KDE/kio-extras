@@ -367,7 +367,11 @@ qint64 addressToOffset(const QVector<PeSection> &sections, quint32 rva)
 {
     for (int i = 0; i < sections.size(); i++) {
         auto sectionBegin = sections[i].virtualAddress;
-        auto sectionEnd = sections[i].virtualAddress + std::min(sections[i].sizeOfRawData, sections[i].virtualSize);
+        auto effectiveSize = sections[i].sizeOfRawData;
+        if (sections[i].virtualSize) {
+            effectiveSize = std::min(effectiveSize, sections[i].virtualSize);
+        }
+        auto sectionEnd = sections[i].virtualAddress + effectiveSize;
         if (rva >= sectionBegin && rva < sectionEnd) {
             return rva - sectionBegin + sections[i].pointerToRawData;
         }
