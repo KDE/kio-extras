@@ -217,7 +217,7 @@ msgstr "وكيل HTTP:"
 #: proxy/kproxydlg.ui:110
 #, kde-format
 msgid "Enter the address of the HTTP proxy server."
-msgstr "أدخِل عنوان خادوم وكيل HTTP."
+msgstr "أدخِل عنوان خادم وكيل HTTP."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
@@ -233,13 +233,13 @@ msgstr "المنفذ:"
 #: proxy/kproxydlg.ui:133
 #, kde-format
 msgid "Enter the port number of the HTTP proxy server."
-msgstr "أدخِل رقم منفذ خادوم وكيل HTTP."
+msgstr "أدخِل رقم منفذ خادم وكيل HTTP."
 
 #. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
 #: proxy/kproxydlg.ui:148
 #, kde-format
 msgid "Use this proxy server for a&ll protocols"
-msgstr "استخدم خادوم الوكيل هذا ل&كلّ الموافيق"
+msgstr "استخدم خادم الوكيل هذا ل&كلّ الموافيق"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:161
@@ -251,13 +251,13 @@ msgstr "وكيل SSL:"
 #: proxy/kproxydlg.ui:176
 #, kde-format
 msgid "Enter the address of the HTTPS proxy server."
-msgstr "أدخِل عنوان خادوم وكيل HTTPS."
+msgstr "أدخِل عنوان خادم وكيل HTTPS."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
 #: proxy/kproxydlg.ui:193
 #, kde-format
 msgid "Enter the port number of the HTTPS proxy server."
-msgstr "أدخِل رقم منفذ خادوم وكيل HTTPS."
+msgstr "أدخِل رقم منفذ خادم وكيل HTTPS."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
@@ -270,13 +270,13 @@ msgstr "وكيل FTP:"
 #: proxy/kproxydlg.ui:229
 #, kde-format
 msgid "Enter the address of the FTP proxy server."
-msgstr "أدخِل عنوان خادوم وكيل FTP."
+msgstr "أدخِل عنوان خادم وكيل FTP."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
 #: proxy/kproxydlg.ui:246
 #, kde-format
 msgid "Enter the port number of the FTP proxy server."
-msgstr "أدخِل رقم منفذ خادوم وكيل FTP."
+msgstr "أدخِل رقم منفذ خادم وكيل FTP."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:264
@@ -288,13 +288,13 @@ msgstr "وكيل SOCKS:"
 #: proxy/kproxydlg.ui:279
 #, kde-format
 msgid "Enter the address of the SOCKS proxy server."
-msgstr "أدخِل عنوان خادوم وكيل SOCKS."
+msgstr "أدخِل عنوان خادم وكيل SOCKS."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
 #: proxy/kproxydlg.ui:296
 #, kde-format
 msgid "Enter the port number of the SOCKS proxy server."
-msgstr "أدخِل رقم منفذ خادوم وكيل SOCKS."
+msgstr "أدخِل رقم منفذ خادم وكيل SOCKS."
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
 #. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
@@ -310,7 +310,7 @@ msgid ""
 msgstr ""
 "<qt>\n"
 "أدخِل اسم متغيّر البيئة، مثلًا <b>NO_PROXY</b>، ليُستخدم في تخزين عنوانين "
-"المواقع التي لا يجب استخدام خادوم وكيل فيها.<p>\n"
+"المواقع التي لا يجب استخدام خادم وكيل فيها.<p>\n"
 "بشكل بديل، يمكنك نقر زرّ <b>\"اكتشف آليًّا\"</b> لمحاولة اكتشاف هذا المتغيّر "
 "آليًّا.</p>\n"
 "</qt>"
@@ -380,7 +380,7 @@ msgstr "ا&ستخدم مسار ضبط الوكيل الآليّ:"
 #: proxy/kproxydlg.ui:386
 #, kde-format
 msgid "Manually enter proxy server configuration information."
-msgstr "أدخِل معلومات ضبط خادوم الوكيل يدويًّا."
+msgstr "أدخِل معلومات ضبط خادم الوكيل يدويًّا."
 
 #. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:389
@@ -401,7 +401,7 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"أدخِل اسم متغيّر البيئة، مثلًا <b>HTTP_PROXY</b>، ليُستخدم في تخزين عنوان خادوم "
+"أدخِل اسم متغيّر البيئة، مثلًا <b>HTTP_PROXY</b>، ليُستخدم في تخزين عنوان خادم "
 "وكيل HTTP.<p>\n"
 "بشكل بديل، يمكنك نقر زرّ <b>\"اكتشف آليًّا\"</b> لمحاولة اكتشاف هذا المتغيّر "
 "آليًّا.</p>\n"
@@ -426,7 +426,7 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"أدخِل اسم متغيّر البيئة، مثلًا <b>HTTPS_PROXY</b>، ليُستخدم في تخزين عنوان خادوم "
+"أدخِل اسم متغيّر البيئة، مثلًا <b>HTTPS_PROXY</b>، ليُستخدم في تخزين عنوان خادم "
 "وكيل HTTPS.<p>\n"
 "بشكل بديل، يمكنك نقر زرّ <b>\"اكتشف آليًّا\"</b> لمحاولة اكتشاف هذا المتغيّر "
 "آليًّا.</p>\n"
@@ -451,7 +451,7 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"أدخِل اسم متغيّر البيئة، مثلًا <b>FTP_PROXY</b>، ليُستخدم في تخزين عنوان خادوم "
+"أدخِل اسم متغيّر البيئة، مثلًا <b>FTP_PROXY</b>، ليُستخدم في تخزين عنوان خادم "
 "وكيل FTP.<p>\n"
 "بشكل بديل، يمكنك نقر زرّ <b>\"اكتشف آليًّا\"</b> لمحاولة اكتشاف هذا المتغيّر "
 "آليًّا.</p>\n"
@@ -469,7 +469,7 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"أدخِل اسم متغيّر البيئة، مثلًا <b>SOCKS_PROXY</b>، ليُستخدم في تخزين عنوان خادوم "
+"أدخِل اسم متغيّر البيئة، مثلًا <b>SOCKS_PROXY</b>، ليُستخدم في تخزين عنوان خادم "
 "وكيل SOCKS.<p>\n"
 "بشكل بديل، يمكنك نقر زرّ <b>\"اكتشف آليًّا\"</b> لمحاولة اكتشاف هذا المتغيّر "
 "آليًّا.</p>\n"
@@ -491,7 +491,7 @@ msgid ""
 "automatic discovery of this variable.</p></qt>"
 msgstr ""
 "<qt>أدخِل اسم متغيّر البيئة، مثلًا <b>SOCKS_PROXY</b>، ليُستخدم في تخزين عنوان "
-"خادوم وكيل SOCKS.<p>بشكل بديل، يمكنك نقر زرّ <b>&quot;اكتشف آليًّا&quot;</b> "
+"خادم وكيل SOCKS.<p>بشكل بديل، يمكنك نقر زرّ <b>&quot;اكتشف آليًّا&quot;</b> "
 "لمحاولة اكتشاف هذا المتغيّر آليًّا.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
@@ -510,7 +510,7 @@ msgid ""
 "to attempt an automatic discovery of this variable.</p></qt>"
 msgstr ""
 "<qt>أدخِل اسم متغيّر البيئة، مثلًا <b>NO_PROXY</b>، ليُستخدم في تخزين عناوين "
-"المواقع التي لا يجب استخدام خادوم وكيل فيها. <p>بشكل بديل، يمكنك نقر زرّ "
+"المواقع التي لا يجب استخدام خادم وكيل فيها. <p>بشكل بديل، يمكنك نقر زرّ "
 "<b>&quot;اكتشف آليًّا&quot;</b> لمحاولة اكتشاف هذا المتغيّر آليًّا.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
