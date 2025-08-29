@@ -4,7 +4,7 @@
 # Lisiane Sztoltz <lisiane@conectiva.com.br>, 2002, 2003.
 # Henrique Pinto <stampede@coltec.ufmg.br>, 2003.
 # Lisiane Sztoltz Teixeira <lisiane@conectiva.com.br>, 2004.
-# Marcus Gama <marcus_gama@uol.com.br>, 2004.
+# SPDX-FileCopyrightText: 2004, 2025 Marcus Gama <marcus_gama@uol.com.br>
 # André Marcelo Alvarenga <alvarenga@kde.org>, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2018.
 # Luiz Fernando Ranghetti <elchevive@opensuse.org>, 2009, 2012, 2018, 2021, 2022.
 msgid ""
@@ -12,15 +12,15 @@ msgstr ""
 "Project-Id-Version: kio5_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:32+0000\n"
-"PO-Revision-Date: 2022-12-20 11:04-0300\n"
-"Last-Translator: Luiz Fernando Ranghetti <elchevive@opensuse.org>\n"
-"Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
+"PO-Revision-Date: 2025-08-28 07:58-0300\n"
+"Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 25.08.0\n"
 
 #: kio_sftp.cpp:228
 #, kde-format
@@ -97,7 +97,7 @@ msgstr "Não foi possível definir a compressão."
 #: kio_sftp.cpp:577
 #, kde-format
 msgid "Could not set host."
-msgstr "Não foi possível definir a máquina."
+msgstr "Não foi possível definir o host."
 
 #: kio_sftp.cpp:583
 #, kde-format
@@ -117,7 +117,7 @@ msgstr "Não foi possível analisar o arquivo de configuração."
 #: kio_sftp.cpp:615
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
-msgstr "Abrindo a conexão SFTP com a máquina %1:%2"
+msgstr "Abrindo a conexão SFTP com o host %1:%2"
 
 #: kio_sftp.cpp:655
 #, kde-format
@@ -147,8 +147,8 @@ msgid ""
 "Please contact your system administrator.\n"
 "%2"
 msgstr ""
-"Uma chave da máquina %1 para este servidor não foi encontrada, mas existe "
-"outro tipo de chave.\n"
+"Uma chave do host %1 para este servidor não foi encontrada, mas existe outro "
+"tipo de chave.\n"
 "Um atacante poderá alterar a chave padrão do servidor, para confundir o "
 "cliente, fazendo-o crer que a chave não existe.\n"
 "Contacte o administrador do seu sistema.\n"
@@ -158,18 +158,10 @@ msgstr ""
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr ""
+msgstr "Alteração da identidade do host"
 
 #: kio_sftp.cpp:755
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The host key for the server %1 has changed.\n"
-#| "This could either mean that DNS SPOOFING is happening or the IP address "
-#| "for the host and its host key have changed at the same time.\n"
-#| "The fingerprint for the key sent by the remote host is:\n"
-#| " %2\n"
-#| "Please contact your system administrator.\n"
-#| "%3"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
@@ -178,35 +170,29 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"A chave da máquina para o servidor %1 foi alterada.\n"
-"Isto poderá tanto significar que está uma BURLA DE DNS em curso, ou que o "
-"endereço IP da máquina e a sua chave possam ter alterado ao mesmo tempo.\n"
-"A impressão digital da chave enviada pela máquina remota é:\n"
-" %2\n"
-"Contacte o administrador do seu sistema.\n"
-"%3"
+"<para>A chave do host para o servidor <emphasis>%1</emphasis> foi alterada.</"
+"para><para>Isso pode significar que está ocorrendo falsificação de DNS ou "
+"que o endereço IP do host e sua chave de host foram alterados ao mesmo tempo."
+"</para><para>A impressão digital da chave %2 enviada pelo host remoto é:"
+"<bcode>%3</bcode>Tem certeza de que deseja continuar a conexão?</para>"
 
 #: kio_sftp.cpp:765
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "Falha na verificação do host"
 
 #: kio_sftp.cpp:767
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The authenticity of host %1 cannot be established.\n"
-#| "The %2 key fingerprint is: %3\n"
-#| "Are you sure you want to continue connecting?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"A autenticidade da máquina %1 não pôde ser estabelecida.\n"
-"A impressão digital da chave %2 é: %3\n"
-"Deseja continuar com a conexão?"
+"<para>A autenticidade do host <emphasis>%1</emphasis> não pode ser "
+"estabelecida.</para><para>A impressão digital da chave %2 é:<bcode>%3</"
+"bcode>Tem certeza de que deseja continuar conectando?</para>"
 
 #: kio_sftp.cpp:776
 #, kde-format
