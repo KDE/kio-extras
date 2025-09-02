@@ -927,7 +927,7 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Seleccioneu el motor de busca que s'utilitzarà en els quadros d'entrada que "
+"Trieu el motor de busca que s'utilitzarà en els quadros d'entrada que "
 "proporcionen el servei de busca automàtica quan teclegeu paraules normals o "
 "frases en lloc d'un URL. Per a desactivar esta característica seleccioneu "
 "<b>Cap</b> en la llista.\n"
@@ -963,8 +963,8 @@ msgid ""
 "Choose the delimiter that separates the keyword from the phrase or word to "
 "be searched."
 msgstr ""
-"Seleccioneu el delimitador que separa la paraula clau de la frase o paraula "
-"que es buscarà."
+"Trieu el delimitador que separa la paraula clau de la frase o paraula que es "
+"buscarà."
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:185
@@ -977,8 +977,7 @@ msgstr "Delimitador de la paraula &clau:"
 #, kde-format
 msgid "Choose a delimiter to mark the Web search keyword."
 msgstr ""
-"Seleccioneu un delimitador per a marcar la paraula clau de la busca en la "
-"web."
+"Trieu un delimitador per a marcar la paraula clau de la busca en la web."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:208
@@ -1016,8 +1015,7 @@ msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr ""
-"La paraula clau «%1» ja es troba assignada a «%2». Seleccioneu-ne una de "
-"diferent."
+"La paraula clau «%1» ja es troba assignada a «%2». Trieu-ne una de diferent."
 
 #: webshortcuts/searchproviderdlg.cpp:128
 #, kde-format
@@ -1031,7 +1029,7 @@ msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Les paraules clau següents ja estan assignades. Seleccioneu-ne altres de "
+"Les paraules clau següents ja estan assignades. Trieu-ne altres de "
 "diferents.\n"
 "%1"
 
@@ -1112,8 +1110,8 @@ msgstr "&URL:"
 #, kde-format
 msgid "Select the character set that will be used to encode your search query."
 msgstr ""
-"Seleccioneu el joc de caràcters que s'utilitzarà per a codificar la consulta "
-"de la busca."
+"Trieu el joc de caràcters que s'utilitzarà per a codificar la consulta de la "
+"busca."
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
@@ -1165,8 +1163,8 @@ msgstr "Paraules &clau:"
 #, kde-format
 msgid "Select the character set that will be used to encode your search query"
 msgstr ""
-"Seleccioneu el joc de caràcters que s'utilitzarà per a codificar la consulta "
-"de la busca"
+"Trieu el joc de caràcters que s'utilitzarà per a codificar la consulta de la "
+"busca"
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
