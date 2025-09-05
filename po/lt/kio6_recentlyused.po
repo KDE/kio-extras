@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-11-20 00:39+0000\n"
-"PO-Revision-Date: 2024-11-20 00:39+0000\n"
+"PO-Revision-Date: 2025-09-04 14:20+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: lt\n"
@@ -17,24 +17,27 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n%10>=2 && (n%100<10 || n"
 "%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3);\n"
+"X-Generator: Poedit 3.6\n"
 
 #: forgetfileitemaction.cpp:46
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget File"
 msgid_plural "Forget Files"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Pamiršti failą"
+msgstr[1] "Pamiršti failus"
+msgstr[2] "Pamiršti failus"
+msgstr[3] "Pamiršti failus"
 
 #: forgetfileitemaction.cpp:48
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget Location"
 msgid_plural "Forget Locations"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Pamiršti vietą"
+msgstr[1] "Pamiršti vietas"
+msgstr[2] "Pamiršti vietas"
+msgstr[3] "Pamiršti vietas"
 
 #: forgetfileitemaction.cpp:52
 #, kde-format
@@ -43,18 +46,20 @@ msgid ""
 "Remove the selected file(s) or location(s) from the recently used list in "
 "Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
 msgstr ""
+"Pašalinti pažymėtą failą(-us) ar vietą(-as) iš paskiausiai naudotų sąrašo, "
+"esančio Dolphin ir Plasma meniu. Tai nepašalina ir neperkelia ištekliaus(-ų)."
 
 #: recentlyused.cpp:323
 #, kde-format
 msgid "Recent Documents"
-msgstr ""
+msgstr "Paskiausiai naudoti dokumentai"
 
 #: recentlyused.cpp:331
 #, kde-format
 msgid "Recent Files"
-msgstr ""
+msgstr "Paskiausiai naudoti failai"
 
 #: recentlyused.cpp:334
 #, kde-format
 msgid "Recent Locations"
-msgstr ""
+msgstr "Paskiausios vietos"
