@@ -41,7 +41,6 @@
         "Description[tr]": "YAPILACAKLAR",
         "Description[uk]": "ЩЕ НЕ НАПИСАНО",
         "Description[vi]": "TODO",
-        "Description[x-test]": "xxTODOxx",
         "Description[zh_CN]": "待办事项",
         "Description[zh_TW]": "待做",
         "Name": "KDE MTP daemon",
@@ -86,7 +85,6 @@
         "Name[tr]": "KDE MTP ardalan süreci",
         "Name[uk]": "Фонова служба MTP KDE",
         "Name[vi]": "Trình nền MTP của KDE",
-        "Name[x-test]": "xxKDE MTP daemonxx",
         "Name[zh_CN]": "KDE MTP 守护程序",
         "Name[zh_TW]": "KDE MTP 守護程式"
     },
