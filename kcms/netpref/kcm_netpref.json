@@ -28,7 +28,6 @@
         "Description[ta]": "பொதுவான பிணைய விருப்பத்தேர்வுகளை அமைக்க உதவும்",
         "Description[tr]": "Genel ağ tercihlerini yapılandırın",
         "Description[uk]": "Налаштування загальних параметрів мережі",
-        "Description[x-test]": "xxConfigure generic network preferencesxx",
         "Description[zh_CN]": "配置常规网络首选项",
         "Description[zh_TW]": "設定一般網路偏好設定",
         "Icon": "preferences-system-network-connection",
@@ -71,7 +70,6 @@
         "Name[ta]": "இணைப்பு விருப்பத்தேர்வுகள்",
         "Name[tr]": "Bağlantı Tercihleri",
         "Name[uk]": "Параметри з'єднання",
-        "Name[x-test]": "xxConnection Preferencesxx",
         "Name[zh_CN]": "连接首选项",
         "Name[zh_TW]": "連線偏好設定"
     },
@@ -103,7 +101,6 @@
     "X-KDE-Keywords[ta]": "iopref,netpref,network preferences,ftp,பிணைய அமைப்புகள்,இணைய அமைப்புகள்",
     "X-KDE-Keywords[tr]": "iopref,netpref,ağ tercihleri,ağ ayarları,ftp,network",
     "X-KDE-Keywords[uk]": "iopref,netpref,network preferences,ftp,мережа,параметри,налаштування",
-    "X-KDE-Keywords[x-test]": "xxioprefxx,xxnetprefxx,xxnetwork preferencesxx,xxftpxx",
     "X-KDE-Keywords[zh_CN]": "iopref,netpref,network preferences,ftp,网络首选项",
     "X-KDE-Keywords[zh_TW]": "網路設定,網路偏好設定",
     "X-KDE-ParentApp": "kcontrol",
