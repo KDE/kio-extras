@@ -29,7 +29,6 @@
         "Description[ta]": "அமைக்கப்பட்டுள்ள பதிலி சரியாக இயங்குவதை சோதிக்கும்",
         "Description[tr]": "Vekil sunucu kurulumunun beklendiği gibi çalışıp çalışmadığını doğrular",
         "Description[uk]": "Перевіряє, чи працюють налаштування проксі-сервера належним чином",
-        "Description[x-test]": "xxVerifies proxy setup is performing as expectedxx",
         "Description[zh_CN]": "验证代理服务器设置的运行情况",
         "Description[zh_TW]": "檢查代理伺服器設定正確依預期運作",
         "Name": "Proxy Verifier",
@@ -61,7 +60,6 @@
         "Name[ta]": "பதிலி சரிபார்ப்பு நிரல்",
         "Name[tr]": "Vekil Doğrulayıcısı",
         "Name[uk]": "Засіб перевірки проксі-серверів",
-        "Name[x-test]": "xxProxy Verifierxx",
         "Name[zh_CN]": "代理服务器验证程序",
         "Name[zh_TW]": "代理伺服器確認工具"
     },

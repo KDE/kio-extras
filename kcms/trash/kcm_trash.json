@@ -39,7 +39,6 @@
         "Description[ta]": "அகற்றிட விருப்பங்களை அமையுங்கள்",
         "Description[tr]": "Çöp kutusu ayarlarını yapılandır",
         "Description[uk]": "Налаштування параметрів смітника",
-        "Description[x-test]": "xxConfigure trash settingsxx",
         "Description[zh_CN]": "配置回收站设置",
         "Description[zh_TW]": "設定垃圾桶",
         "Icon": "user-trash",
@@ -82,7 +81,6 @@
         "Name[ta]": "அகற்றிடம்",
         "Name[tr]": "Çöp Kutusu",
         "Name[uk]": "Смітник",
-        "Name[x-test]": "xxTrashxx",
         "Name[zh_CN]": "回收站",
         "Name[zh_TW]": "垃圾桶"
     },
@@ -120,7 +118,6 @@
     "X-KDE-Keywords[ta]": "trash,recycle bin,wastebin,குப்பை,அகற்றிடம்",
     "X-KDE-Keywords[tr]": "çöp kutusu,çöp sepeti,geri dönüşüm kutusu",
     "X-KDE-Keywords[uk]": "trash,смітник",
-    "X-KDE-Keywords[x-test]": "xxtrashxx",
     "X-KDE-Keywords[zh_CN]": "trash, recycle, bin, 回收站, 垃圾桶, 废件夹, huishouzhan, lajitong, feijianjia",
     "X-KDE-Keywords[zh_TW]": "垃圾桶,垃圾筒,回收桶,回收筒",
     "X-KDE-ParentApp": "kcontrol"
