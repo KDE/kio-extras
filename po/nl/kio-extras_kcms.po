@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-29 00:41+0000\n"
+"POT-Creation-Date: 2025-09-11 00:42+0000\n"
 "PO-Revision-Date: 2025-03-14 12:03+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -977,23 +977,23 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "Spatie"
 
-#: webshortcuts/searchproviderdlg.cpp:51
+#: webshortcuts/searchproviderdlg.cpp:48
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "Standaard"
 
-#: webshortcuts/searchproviderdlg.cpp:54
+#: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
 msgid "Edit Web Search Keyword"
 msgstr "Webzoektrefwoorden bewerken"
 
-#: webshortcuts/searchproviderdlg.cpp:62
+#: webshortcuts/searchproviderdlg.cpp:59
 #, kde-format
 msgid "New Web Search Keyword"
 msgstr "Nieuwe webzoektrefwoorden"
 
-#: webshortcuts/searchproviderdlg.cpp:123
+#: webshortcuts/searchproviderdlg.cpp:120
 #, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
@@ -1001,13 +1001,13 @@ msgid ""
 msgstr ""
 "Het trefwoord \"%1\" is al toegekend aan \"%2\". Gaarne een andere kiezen."
 
-#: webshortcuts/searchproviderdlg.cpp:128
+#: webshortcuts/searchproviderdlg.cpp:125
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
-#: webshortcuts/searchproviderdlg.cpp:132
+#: webshortcuts/searchproviderdlg.cpp:129
 #, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
@@ -1016,7 +1016,7 @@ msgstr ""
 "De volgende trefwoorden zijn al toegekend. Kies anderen.\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:145
+#: webshortcuts/searchproviderdlg.cpp:142
 #, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
@@ -1027,7 +1027,7 @@ msgstr ""
 "Dit betekent dat altijd dezelfde pagina zal worden bezocht, ongeacht wat de "
 "gebruiker intypt na het trefwoord."
 
-#: webshortcuts/searchproviderdlg.cpp:150
+#: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
 msgid "Keep It"
 msgstr "Behouden"

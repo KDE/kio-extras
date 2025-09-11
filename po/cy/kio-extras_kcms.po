@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-29 00:41+0000\n"
+"POT-Creation-Date: 2025-09-11 00:42+0000\n"
 "PO-Revision-Date: 2022-07-10 22:32+0100\n"
 "Last-Translator: KD at KGyfieithu <kyfieithu@dotmon.com>\n"
 "Language-Team: Cymraeg <cy@li.org>\n"
@@ -1023,25 +1023,25 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "Gwagle"
 
-#: webshortcuts/searchproviderdlg.cpp:51
+#: webshortcuts/searchproviderdlg.cpp:48
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "Rhagosodedig"
 
-#: webshortcuts/searchproviderdlg.cpp:54
+#: webshortcuts/searchproviderdlg.cpp:51
 #, fuzzy, kde-format
 #| msgid "Web Search Keywords"
 msgid "Edit Web Search Keyword"
 msgstr "Allweddeiriau Chwilio Gwe"
 
-#: webshortcuts/searchproviderdlg.cpp:62
+#: webshortcuts/searchproviderdlg.cpp:59
 #, fuzzy, kde-format
 #| msgid "Web Search Keywords"
 msgid "New Web Search Keyword"
 msgstr "Allweddeiriau Chwilio Gwe"
 
-#: webshortcuts/searchproviderdlg.cpp:123
+#: webshortcuts/searchproviderdlg.cpp:120
 #, fuzzy, kde-format
 #| msgid ""
 #| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
@@ -1052,13 +1052,13 @@ msgid ""
 msgstr ""
 "Mae'r byrlwybr \"%1\" wedi'i benodwyd i \"%2\". Atolwg dewiswch un gwahanol."
 
-#: webshortcuts/searchproviderdlg.cpp:128
+#: webshortcuts/searchproviderdlg.cpp:125
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
-#: webshortcuts/searchproviderdlg.cpp:132
+#: webshortcuts/searchproviderdlg.cpp:129
 #, fuzzy, kde-format
 #| msgid ""
 #| "The following shortcuts are already assigned. Please choose different "
@@ -1072,7 +1072,7 @@ msgstr ""
 "gwahanol.\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:145
+#: webshortcuts/searchproviderdlg.cpp:142
 #, fuzzy, kde-format
 #| msgid ""
 #| "The Shortcut URL does not contain a \\{...} placeholder for the user "
@@ -1089,7 +1089,7 @@ msgstr ""
 "Mae'r hyn yn ystyru fydd y dudalen yn wastad cael ei hymwelwyd, beth bynnag "
 "y testun teipiwyd i mewn gyda'r byrlwybr."
 
-#: webshortcuts/searchproviderdlg.cpp:150
+#: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
 msgid "Keep It"
 msgstr "Cadwch Fe"

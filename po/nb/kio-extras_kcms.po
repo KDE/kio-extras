@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-29 00:41+0000\n"
+"POT-Creation-Date: 2025-09-11 00:42+0000\n"
 "PO-Revision-Date: 2015-04-28 08:48+0200\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@lister.huftis.org>\n"
@@ -932,36 +932,36 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "Mellomrom"
 
-#: webshortcuts/searchproviderdlg.cpp:51
+#: webshortcuts/searchproviderdlg.cpp:48
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "Standard"
 
-#: webshortcuts/searchproviderdlg.cpp:54
+#: webshortcuts/searchproviderdlg.cpp:51
 #, fuzzy, kde-format
 msgid "Edit Web Search Keyword"
 msgstr "Standard passord:"
 
-#: webshortcuts/searchproviderdlg.cpp:62
+#: webshortcuts/searchproviderdlg.cpp:59
 #, fuzzy, kde-format
 msgid "New Web Search Keyword"
 msgstr "Standard passord:"
 
-#: webshortcuts/searchproviderdlg.cpp:123
+#: webshortcuts/searchproviderdlg.cpp:120
 #, fuzzy, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr "Snarveien «%1» er allerede tilordnet til «%2». Velg en annen snarvei."
 
-#: webshortcuts/searchproviderdlg.cpp:128
+#: webshortcuts/searchproviderdlg.cpp:125
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "- %1: «%2»"
 
-#: webshortcuts/searchproviderdlg.cpp:132
+#: webshortcuts/searchproviderdlg.cpp:129
 #, fuzzy, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
@@ -970,7 +970,7 @@ msgstr ""
 "Følgende snarveier er allerede tilordnet. Velg noen andre.\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:145
+#: webshortcuts/searchproviderdlg.cpp:142
 #, fuzzy, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
@@ -981,7 +981,7 @@ msgstr ""
 "Det betyr at den samme siden alltid vil bli brukt, uansett hva brukeren "
 "skriver inn sammen med snarveien."
 
-#: webshortcuts/searchproviderdlg.cpp:150
+#: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
 msgid "Keep It"
 msgstr "Ta vare på den"

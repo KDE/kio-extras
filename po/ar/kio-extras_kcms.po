@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-29 00:41+0000\n"
+"POT-Creation-Date: 2025-09-11 00:42+0000\n"
 "PO-Revision-Date: 2025-08-14 11:45+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -956,36 +956,36 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "فراغ"
 
-#: webshortcuts/searchproviderdlg.cpp:51
+#: webshortcuts/searchproviderdlg.cpp:48
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "المبدئيّ"
 
-#: webshortcuts/searchproviderdlg.cpp:54
+#: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
 msgid "Edit Web Search Keyword"
 msgstr "حرر كلمات بحث الويب"
 
-#: webshortcuts/searchproviderdlg.cpp:62
+#: webshortcuts/searchproviderdlg.cpp:59
 #, kde-format
 msgid "New Web Search Keyword"
 msgstr "كلمة بحث وبّ جديد"
 
-#: webshortcuts/searchproviderdlg.cpp:123
+#: webshortcuts/searchproviderdlg.cpp:120
 #, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr "عُينت كلمة البحث \"%1\" إلى \"%2\" فعلًا. الرجاء اختيار أخرى."
 
-#: webshortcuts/searchproviderdlg.cpp:128
+#: webshortcuts/searchproviderdlg.cpp:125
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
-#: webshortcuts/searchproviderdlg.cpp:132
+#: webshortcuts/searchproviderdlg.cpp:129
 #, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
@@ -994,7 +994,7 @@ msgstr ""
 "أُسندت كلمات البحث التالية فعلًا. الرجاء اختيار كلمات أخرى. .\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:145
+#: webshortcuts/searchproviderdlg.cpp:142
 #, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
@@ -1004,7 +1004,7 @@ msgstr ""
 "لا يحتوي العنوان على عنصر نائب %1  لاستعلام المستخدم. \n"
 "هذا يعني أن نفس الصفحة ستُزار دائمًا، بغض النظر عن النص المكتوب بالاختصار."
 
-#: webshortcuts/searchproviderdlg.cpp:150
+#: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
 msgid "Keep It"
 msgstr "أبقِه"

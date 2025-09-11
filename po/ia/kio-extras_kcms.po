@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-29 00:41+0000\n"
+"POT-Creation-Date: 2025-09-11 00:42+0000\n"
 "PO-Revision-Date: 2025-03-20 18:31+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -970,23 +970,23 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "Spatio"
 
-#: webshortcuts/searchproviderdlg.cpp:51
+#: webshortcuts/searchproviderdlg.cpp:48
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "Predefinite"
 
-#: webshortcuts/searchproviderdlg.cpp:54
+#: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
 msgid "Edit Web Search Keyword"
 msgstr "Modifica Parolas clave de cerca de Web"
 
-#: webshortcuts/searchproviderdlg.cpp:62
+#: webshortcuts/searchproviderdlg.cpp:59
 #, kde-format
 msgid "New Web Search Keyword"
 msgstr "Nove Parola clave de cerca de Web"
 
-#: webshortcuts/searchproviderdlg.cpp:123
+#: webshortcuts/searchproviderdlg.cpp:120
 #, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
@@ -995,13 +995,13 @@ msgstr ""
 "Le parola clave \"%1\" jam es assignate a \"%2\". Pro favor tu selige un "
 "differente."
 
-#: webshortcuts/searchproviderdlg.cpp:128
+#: webshortcuts/searchproviderdlg.cpp:125
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "-%1: \"%2\""
 
-#: webshortcuts/searchproviderdlg.cpp:132
+#: webshortcuts/searchproviderdlg.cpp:129
 #, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
@@ -1011,7 +1011,7 @@ msgstr ""
 "differente.\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:145
+#: webshortcuts/searchproviderdlg.cpp:142
 #, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
@@ -1022,7 +1022,7 @@ msgstr ""
 "Isto significa que le mesme pagina essera sempre visitate, sin reguardo de "
 "lo que le usator typa con le parola clave."
 
-#: webshortcuts/searchproviderdlg.cpp:150
+#: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
 msgid "Keep It"
 msgstr "Mantene lo"

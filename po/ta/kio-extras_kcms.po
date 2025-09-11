@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-29 00:41+0000\n"
+"POT-Creation-Date: 2025-09-11 00:42+0000\n"
 "PO-Revision-Date: 2025-03-16 14:56+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-i18n-doc@kde.org>\n"
@@ -951,23 +951,23 @@ msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "இடைவெளி"
 
-#: webshortcuts/searchproviderdlg.cpp:51
+#: webshortcuts/searchproviderdlg.cpp:48
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "இயல்பிருப்பு"
 
-#: webshortcuts/searchproviderdlg.cpp:54
+#: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
 msgid "Edit Web Search Keyword"
 msgstr "இணையத் தேடல் முதன்மைச்சொல்லை திருத்து"
 
-#: webshortcuts/searchproviderdlg.cpp:62
+#: webshortcuts/searchproviderdlg.cpp:59
 #, kde-format
 msgid "New Web Search Keyword"
 msgstr "புதிய இணையத் தேடல் முதன்மைச்சொல்"
 
-#: webshortcuts/searchproviderdlg.cpp:123
+#: webshortcuts/searchproviderdlg.cpp:120
 #, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
@@ -976,13 +976,13 @@ msgstr ""
 "\"%1\" என்கிற முதன்மைச்சொல் ஏற்கனவே \"%2\"-க்கு பயனில் உள்ளது. வேறு சுருக்குவழியை "
 "தேர்வு செய்யவும்."
 
-#: webshortcuts/searchproviderdlg.cpp:128
+#: webshortcuts/searchproviderdlg.cpp:125
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
-#: webshortcuts/searchproviderdlg.cpp:132
+#: webshortcuts/searchproviderdlg.cpp:129
 #, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
@@ -991,7 +991,7 @@ msgstr ""
 "கீழ்கண்ட முதன்மைச்சொற்கள் ஏற்கனவே பயனில் உள்ளன. வேறு சுருக்குவழிகளை தேர்வு செய்யுங்கள்.\n"
 "%1"
 
-#: webshortcuts/searchproviderdlg.cpp:145
+#: webshortcuts/searchproviderdlg.cpp:142
 #, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
@@ -1001,7 +1001,7 @@ msgstr ""
 "முகவரியில் பயனரின் கேள்வியைக் குறிக்கும் %1 எனும் கொள்ளிடம் இல்லை.\n"
 "இப்படி இருந்தால், பயனர் எந்த சொற்றொடரை உள்ளிட்டாளும் ஒரே வலைபக்கம்தான் காட்டப்படும்."
 
-#: webshortcuts/searchproviderdlg.cpp:150
+#: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
 msgid "Keep It"
 msgstr "அப்படியே இருக்கட்டும்"
