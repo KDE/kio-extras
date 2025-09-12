@@ -73,11 +73,6 @@
         myDebug(<< "_______ emitting needSubURLData()");                                                                                                       \
         needSubURLData();                                                                                                                                      \
     } while (0)
-#define workerStatus(x, y)                                                                                                                                     \
-    do {                                                                                                                                                       \
-        myDebug(<< "_______ emitting workerStatus(" << x << ", " << y << ")");                                                                                 \
-        workerStatus(x, y);                                                                                                                                    \
-    } while (0)
 #define statEntry(x)                                                                                                                                           \
     do {                                                                                                                                                       \
         myDebug(<< "_______ emitting statEntry(" << x.count() << ")");                                                                                         \
@@ -1801,15 +1796,6 @@ KIO::WorkerResult fishProtocol::special(const QByteArray &data)
         // Some command we don't understand.
         return error(ERR_UNSUPPORTED_ACTION, QString().setNum(tmp));
     }
-}
-/** report status */
-void fishProtocol::worker_status()
-{
-    myDebug(<< "@@@@@@@@@ worker_status");
-    if (childPid > 0)
-        workerStatus(connectionHost, isLoggedIn);
-    else
-        workerStatus(QString(), false);
 }
 
 #include "fish.moc"

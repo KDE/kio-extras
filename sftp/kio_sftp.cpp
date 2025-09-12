@@ -2071,12 +2071,6 @@ Result SFTPWorker::del(const QUrl &url, bool isfile)
     return Result::pass();
 }
 
-void SFTPWorker::worker_status()
-{
-    qCDebug(KIO_SFTP_LOG) << "connected to " << mHost << "?: " << mConnected;
-    workerStatus((mConnected ? mHost : QString()), mConnected);
-}
-
 void SFTPWorker::requiresUserNameRedirection()
 {
     QUrl redirectUrl;
