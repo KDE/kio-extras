@@ -56,7 +56,6 @@ public:
     Q_REQUIRED_RESULT Result copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
     Q_REQUIRED_RESULT Result put(const QUrl &url, int permissions, KIO::JobFlags flags) override;
     void closeConnection() override;
-    void worker_status() override;
     Q_REQUIRED_RESULT Result del(const QUrl &url, bool isfile) override;
     Q_REQUIRED_RESULT Result chmod(const QUrl &url, int permissions) override;
     Q_REQUIRED_RESULT Result symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags) override;

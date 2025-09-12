@@ -63,8 +63,6 @@ public:
     KIO::WorkerResult chmod(const QUrl &url, int permissions) override;
     /** copies a file */
     KIO::WorkerResult copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags) override;
-    /** report status */
-    void worker_status() override;
     /** removes a file or directory */
     KIO::WorkerResult del(const QUrl &u, bool isfile) override;
     /** special like background execute */
