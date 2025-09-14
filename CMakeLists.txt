@@ -106,12 +106,6 @@ if (BUILD_DOC)
     )
 endif()
 
-find_package(Phonon4Qt6 4.6.60 NO_MODULE)
-set_package_properties(Phonon4Qt6 PROPERTIES
-   DESCRIPTION "Qt-based audio library"
-   PURPOSE "Required for the audio preview plugin"
-   TYPE OPTIONAL)
-
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 if(NOT WIN32)
@@ -203,9 +197,6 @@ if(BUILD_ACTIVITIES)
   add_subdirectory( recentlyused )
 endif()
 add_subdirectory( filter )
-if(Phonon4Qt6_FOUND)
-    add_subdirectory( kfileaudiopreview )
-endif()
 add_subdirectory( info )
 add_subdirectory( archive )
 if (NOT WIN32)

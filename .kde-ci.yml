@@ -18,7 +18,6 @@ Dependencies:
     'frameworks/solid': '@latest-kf6'
     'frameworks/kguiaddons': '@latest-kf6'
     'frameworks/syntax-highlighting': '@latest-kf6'
-    'libraries/phonon': '@latest-kf6'
     'graphics/libkexiv2': '@latest-kf6'
     'third-party/kdsoap': '@latest'
     'third-party/qcoro': '@latest'
