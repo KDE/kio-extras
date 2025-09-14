@@ -1,5 +1,6 @@
 {
     "CacheThumbnail": true,
+    "X-KIO-DynamicMimeTypes": true,
     "KPlugin": {
         "MimeTypes": [
             "image/bmp",
