@@ -11,12 +11,13 @@
 
 #include <KIO/ThumbnailCreator>
 
-class ImageCreator : public KIO::ThumbnailCreator
+class ImageCreator : public KIO::DynamicThumbnailCreator
 {
     Q_OBJECT
 public:
     ImageCreator(QObject *parent, const QVariantList &args);
     KIO::ThumbnailResult create(const KIO::ThumbnailRequest &request) override;
+    QStringList supportedMimeTypes() override;
 };
 
 #endif

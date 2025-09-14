@@ -11,11 +11,12 @@
 
 #include <KMemoryInfo>
 #include <KPluginFactory>
+#include <ranges>
 
 K_PLUGIN_CLASS_WITH_JSON(ImageCreator, "imagethumbnail.json")
 
 ImageCreator::ImageCreator(QObject *parent, const QVariantList &args)
-    : KIO::ThumbnailCreator(parent, args)
+    : KIO::DynamicThumbnailCreator(parent, args)
 {
 }
 
@@ -86,6 +87,16 @@ KIO::ThumbnailResult ImageCreator::create(const KIO::ThumbnailRequest &request)
     }
 
     return KIO::ThumbnailResult::fail();
+}
+
+QStringList ImageCreator::supportedMimeTypes()
+{
+    QStringList result;
+    const auto mimeTypes = QImageReader::supportedMimeTypes();
+    std::ranges::transform(mimeTypes, std::back_inserter(result), [](const auto &mimetype) {
+        return QString::fromUtf8(mimetype);
+    });
+    return result;
 }
 
 #include "imagecreator.moc"
