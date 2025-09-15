@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-11 00:42+0000\n"
+"POT-Creation-Date: 2025-09-15 00:42+0000\n"
 "PO-Revision-Date: 2012-12-31 04:15+0600\n"
 "Last-Translator: Sairan Kikkarin <sairan@computer.org>\n"
 "Language-Team: Kazakh <kde-i18n-doc@kde.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 "\n"
 "\n"
 
-#: ksaveioconfig.cpp:81
+#: ksaveioconfig.cpp:36
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -34,20 +34,20 @@ msgstr ""
 "Өзгерістер күшіне ену үшін орындалып тұрған қолданбаларды қайта іске қосу "
 "керек."
 
-#: ksaveioconfig.cpp:83
+#: ksaveioconfig.cpp:38
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Жаңарту жаңылысы"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:10
+#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:9
 #, kde-format
 msgid "Disable Passive FTP"
 msgstr "Пассивті FTP рұқсат етпеу"
 
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:11
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:10
 #, kde-format
 msgid ""
 "When FTP connections are passive the client connects to the server, instead "
@@ -58,14 +58,14 @@ msgstr ""
 "қосылымда керсінше, бірншісінде желіаралық қалқандар қосылымды бұғаттамайды, "
 "бірақ кейбір ескі FTP серверлері пассивті FTP дегенді білмейді."
 
-#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:16
+#. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Жарым-жарты жүктеліп алынған файлдарды белгілеу"
 
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:17
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -74,18 +74,24 @@ msgstr ""
 "Жүктеліп алынып жатқан файлға \".part\" деген жұрнақ ілектіріледі. Жүктеуі "
 "біткен соң файлға өзінің атауы қайтарылады."
 
-#: netpref/netpref.cpp:30
+#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
+#: netpref/kioslave.kcfg:17
+#, kde-format
+msgid "The minimum file size for keeping aborted downloads"
+msgstr ""
+
+#: netpref/netpref.cpp:26
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "Параметрлер"
 
-#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&Жарым-жарты жүктеп берілген файлдарды белгілеу"
 
-#: netpref/netpref.cpp:37
+#: netpref/netpref.cpp:33
 #, fuzzy, kde-format
 #| msgid ""
 #| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -101,31 +107,31 @@ msgstr ""
 "рұқсат етілсе жарым-жарты жүктелген файлдарға \".part\" деген жұрнақ "
 "ілектіріледі. Жүктеуі болғасын бұл жұрнақ алынып тасталады.</p>"
 
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:52
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
 msgstr[0] ""
 
-#: netpref/netpref.cpp:58
+#: netpref/netpref.cpp:54
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:56
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP параметрлері"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:62
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Пассивті &күйін (PASV) рұқсат ету"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -134,7 +140,7 @@ msgstr ""
 "\"Пассивті\" күйдегі FTP қызметін рұқсат ету. Бұл FTP-ге желіаралық "
 "қалқанның артынан істеуді рұқсат ету үшін керек."
 
-#: netpref/netpref.cpp:76
+#: netpref/netpref.cpp:72
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

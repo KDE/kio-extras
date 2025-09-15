@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-11 00:42+0000\n"
+"POT-Creation-Date: 2025-09-15 00:42+0000\n"
 "PO-Revision-Date: 2017-12-17 18:00+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 "kcmkonqhtml kcompletion5_qt kwidgetsaddons5_qt\n"
 "X-Environment: kde\n"
 
-#: ksaveioconfig.cpp:81
+#: ksaveioconfig.cpp:36
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
@@ -31,20 +31,20 @@ msgid ""
 msgstr ""
 "Morate ponovo pokrenuti programe u pogonu da bi ove izmjene stupile na snagu."
 
-#: ksaveioconfig.cpp:83
+#: ksaveioconfig.cpp:38
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Ažuriranje nije uspjelo"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:10
+#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:9
 #, kde-format
 msgid "Disable Passive FTP"
 msgstr "Isključi pasivni FTP"
 
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:11
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:10
 #, kde-format
 msgid ""
 "When FTP connections are passive the client connects to the server, instead "
@@ -55,15 +55,15 @@ msgstr ""
 "tako da zaštitni zidovi ne blokiraju vezu. Stari FTP serveri ponekad ne "
 "podržavaju pasivni režim.</qt>"
 
-#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:16
+#. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Označi djelimično otpremljene fajlove"
 
 # rewrite-msgid: /it is renamed/it gets its real name/
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:17
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -72,17 +72,23 @@ msgstr ""
 "<qt>Dok se otprema fajl će imati nastavak <tt>.part</tt>. Kada se prenos "
 "završi biće mu vraćeno stvarno ime.</qt>"
 
-#: netpref/netpref.cpp:30
+#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
+#: netpref/kioslave.kcfg:17
+#, kde-format
+msgid "The minimum file size for keeping aborted downloads"
+msgstr ""
+
+#: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Globalne opcije"
 
-#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Označi &djelimično otpremljene fajlove"
 
-#: netpref/netpref.cpp:37
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -95,7 +101,7 @@ msgstr ""
 "fajlovi će imati nastavak <tt>.part</tt>. Ovaj nastavak će biti uklonjen "
 "kada se prenos okonča.</p></qt>"
 
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:52
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
@@ -105,24 +111,24 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 
-#: netpref/netpref.cpp:58
+#: netpref/netpref.cpp:54
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:56
 #, kde-format
 msgid "FTP Options"
 msgstr "Opcije FTP‑a"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:62
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Uključi &pasivni režim"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -131,7 +137,7 @@ msgstr ""
 "Uključuje „pasivni“ režim FTP‑a. Ovo je neophodno da bi FTP radio iza "
 "zaštitnih zidova."
 
-#: netpref/netpref.cpp:76
+#: netpref/netpref.cpp:72
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

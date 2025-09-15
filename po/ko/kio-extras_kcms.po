@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-11 00:42+0000\n"
+"POT-Creation-Date: 2025-09-15 00:42+0000\n"
 "PO-Revision-Date: 2025-04-06 23:14+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -19,27 +19,27 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 23.08.5\n"
 
-#: ksaveioconfig.cpp:81
+#: ksaveioconfig.cpp:36
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "변경 사항을 적용하려면 실행 중인 앱을 다시 시작해야 합니다."
 
-#: ksaveioconfig.cpp:83
+#: ksaveioconfig.cpp:38
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "업데이트 실패"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:10
+#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:9
 #, kde-format
 msgid "Disable Passive FTP"
 msgstr "Passive FTP 사용 안 함"
 
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:11
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:10
 #, kde-format
 msgid ""
 "When FTP connections are passive the client connects to the server, instead "
@@ -50,14 +50,14 @@ msgstr ""
 "서 연결을 차단하지 않습니다. 오래된 FTP 서버는 Passive FTP 연결을 지원하지 않"
 "을 수 있습니다."
 
-#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:16
+#. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "업로드가 완료되지 않은 파일 표시"
 
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:17
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -66,17 +66,23 @@ msgstr ""
 "업로드 중인 파일의 확장자를 \".part\"로 바꿉니다. 업로드가 완료되면 다시 원"
 "래 이름으로 바꿉니다."
 
-#: netpref/netpref.cpp:30
+#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
+#: netpref/kioslave.kcfg:17
+#, kde-format
+msgid "The minimum file size for keeping aborted downloads"
+msgstr ""
+
+#: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "전역 설정"
 
-#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "부분적으로 업로드된 파일 표시(&P)"
 
-#: netpref/netpref.cpp:37
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -88,31 +94,31 @@ msgstr ""
 "을 사용하면 업로드가 완료되지 않은 파일에 \".part\"라는 확장자가 붙습니다. "
 "이 확장자는 전송이 완료되었을 때 사라집니다.</p>"
 
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:52
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
 msgstr[0] "%v바이트"
 
-#: netpref/netpref.cpp:58
+#: netpref/netpref.cpp:54
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr "취소되었을 때 다음보다 작은 부분적으로 업로드된 파일 삭제:"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:56
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP 옵션"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:62
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passive 모드 사용(PASV)(&M)"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -121,7 +127,7 @@ msgstr ""
 "FTP의 \"passive\" 모드를 사용합니다. FTP가 방화벽 뒤에서 작동하도록 하려면 이"
 "것을 사용해야 합니다."
 
-#: netpref/netpref.cpp:76
+#: netpref/netpref.cpp:72
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

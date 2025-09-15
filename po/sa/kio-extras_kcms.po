@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-11 00:42+0000\n"
+"POT-Creation-Date: 2025-09-15 00:42+0000\n"
 "PO-Revision-Date: 2024-12-20 21:52+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -19,27 +19,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n>2);\n"
 "X-Generator: Lokalize 24.08.2\n"
 
-#: ksaveioconfig.cpp:81
+#: ksaveioconfig.cpp:36
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "एतेषां परिवर्तनानां प्रभावाय भवद्भिः चालित-अनुप्रयोगाः पुनः आरभणीयाः ।"
 
-#: ksaveioconfig.cpp:83
+#: ksaveioconfig.cpp:38
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "अद्यतनं विफलम्"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:10
+#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:9
 #, kde-format
 msgid "Disable Passive FTP"
 msgstr "निष्क्रिय FTP निष्क्रियं कुर्वन्तु"
 
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:11
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:10
 #, kde-format
 msgid ""
 "When FTP connections are passive the client connects to the server, instead "
@@ -50,14 +50,14 @@ msgstr ""
 "अग्निप्रावरणाः संयोजनं न अवरुद्धयन्ति; पुरातन FTP सर्वरः यद्यपि Passive FTP समर्थयितुं न "
 "शक्नोति।"
 
-#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:16
+#. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नितव्यानि"
 
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:17
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -66,17 +66,23 @@ msgstr ""
 "यदा सञ्चिका अपलोड् भवति तदा तस्याः विस्तारः \".part\" भवति । यदा पूर्णतया अपलोड् "
 "भवति तदा तस्य नामकरणं तस्य वास्तविकं नाम भवति ।"
 
-#: netpref/netpref.cpp:30
+#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
+#: netpref/kioslave.kcfg:17
+#, kde-format
+msgid "The minimum file size for keeping aborted downloads"
+msgstr ""
+
+#: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "वैश्विकविकल्पाः"
 
-#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नितव्यानि"
 
-#: netpref/netpref.cpp:37
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -89,7 +95,7 @@ msgstr ""
 "part&quot; विस्तारः भविष्यति । स्थानान्तरणं सम्पन्नं जातं चेत् एतत् विस्तारं निष्कासितम् "
 "भविष्यति ।</p>"
 
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:52
 #, fuzzy, kde-format
 #| msgid " byte"
 #| msgid_plural " bytes"
@@ -99,24 +105,24 @@ msgid_plural "%v bytes"
 msgstr[0] " बाइट्"
 msgstr[1] " बाइट्"
 
-#: netpref/netpref.cpp:58
+#: netpref/netpref.cpp:54
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr "यदि रद्दं भवति तर्हि स्वयमेव आंशिकरूपेण अपलोड् कृताः सञ्चिकाः अपास्यन्ति यत्:"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:56
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP विकल्पाः"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:62
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "निष्क्रिय &mode (PASV) सक्षमं कुर्वन्तु ।"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -125,7 +131,7 @@ msgstr ""
 "FTP इत्यस्य \"निष्क्रिय\" मोड् सक्षमं करोति । एतत् आवश्यकं यत् FTP अग्निप्रावरणानां पृष्ठतः "
 "कार्यं कर्तुं शक्नोति ।"
 
-#: netpref/netpref.cpp:76
+#: netpref/netpref.cpp:72
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

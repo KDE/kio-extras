@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-09-11 00:42+0000\n"
+"POT-Creation-Date: 2025-09-15 00:42+0000\n"
 "PO-Revision-Date: 2022-10-05 21:57+0630\n"
 "Last-Translator: ဇေယျာလွင် <lw1nzayar@yandex.com>\n"
 "Language-Team: Burmese <kde-i18n-doc@kde.org>\n"
@@ -18,27 +18,27 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.1.1\n"
 
-#: ksaveioconfig.cpp:81
+#: ksaveioconfig.cpp:36
 #, kde-format
 msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr "ထိုပြောင်းလဲချက်များ သက်ဝင်စေရန် အပ္ပလီကေးရှင်းများကို ပြန်စတင်ရမည်။"
 
-#: ksaveioconfig.cpp:83
+#: ksaveioconfig.cpp:38
 #, kde-format
 msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "အပ်ဒိတ်စ်တင်ရန်ကျရှုံးခဲ့သည်"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:10
+#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:9
 #, kde-format
 msgid "Disable Passive FTP"
 msgstr "အငြိမ်အက်ဖ်တီပီပိတ်ရန်"
 
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:11
+#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:10
 #, kde-format
 msgid ""
 "When FTP connections are passive the client connects to the server, instead "
@@ -49,14 +49,14 @@ msgstr ""
 "မီးတံတိုင်းများသည် ချိတ်ဆက်မှုကို မပိတ်ပင်ပါ။ အိုပြီဖြစ်သောအက်ဖ်တီပီဆာဗာများတွင်တော့ အက်ဖ်တီအငြိမ်ချိတ်ဆက်မှု "
 "မလုပ်နိုင်ပါ။"
 
-#. i18n: ectx: label, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:16
+#. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "တစ်စိတ်တစ်ပိုင်း အပ်လုတ်တင်ထားသော ဖိုင်လ်များကို အမှတ်အသားပြုမည်"
 
-#. i18n: ectx: whatsthis, entry (MarkPartial), group (DesktopIcons)
-#: netpref/kio_ftprc.kcfg:17
+#. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
+#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -65,17 +65,23 @@ msgstr ""
 "ဖိုင်တစ်ခုအပ်လုတ်တင်နေစဥ် ယင်းအမည်ကို \".part\"ဖြင့်ထပ်တိုးဖော်ပြထားသည်။ အပ်လုတ်ပြီးဆုံးလျှင် အမည်ရင်းသို့ "
 "ပြန်ပြောင်းသည်။"
 
-#: netpref/netpref.cpp:30
+#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
+#: netpref/kioslave.kcfg:17
+#, kde-format
+msgid "The minimum file size for keeping aborted downloads"
+msgstr ""
+
+#: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "အများနှင့်သက်ဆိုင်သောရွေးချယ်စရာများ"
 
-#: netpref/netpref.cpp:35 netpref/netpref.cpp:74
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&pတစ်စိတ်တစ်ပိုင်း အပ်လုတ်တင်ထားသော ဖိုင်လ်များကို အမှတ်အသားပြုမည်"
 
-#: netpref/netpref.cpp:37
+#: netpref/netpref.cpp:33
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
@@ -88,7 +94,7 @@ msgstr ""
 "ဖိုင်လ်များအနေဖြင့် \".part\"ကို နောက်တွင်ထည့်ထားမည်။ ကူးပြောင်းမှုပြီးပါက \".part\"ကို ဖြုတ်ပစ်မည်။</"
 "p>"
 
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:52
 #, fuzzy, kde-format
 #| msgid " byte"
 #| msgid_plural " bytes"
@@ -97,7 +103,7 @@ msgid "%v byte"
 msgid_plural "%v bytes"
 msgstr[0] " ဘိုက်"
 
-#: netpref/netpref.cpp:58
+#: netpref/netpref.cpp:54
 #, kde-format
 msgctxt "@label:spinbox"
 msgid ""
@@ -105,17 +111,17 @@ msgid ""
 msgstr ""
 "ပယ်ဖျက်ပါက တစ်စိတ်တစ်ပိုင်း အပ်လုတ်တင်ထားသော ဖိုင်လ်များ နောက်ပါတန်ဖိုးထက်ငယ်လျှင် အလိုအလျောက်ဖျက်ပစ်မည် -"
 
-#: netpref/netpref.cpp:60
+#: netpref/netpref.cpp:56
 #, kde-format
 msgid "FTP Options"
 msgstr "အက်ဖ်တီပီ ရွေးချယ်စရာများ"
 
-#: netpref/netpref.cpp:66
+#: netpref/netpref.cpp:62
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "&mအငြိမ်ထုံးနည်း(ပီအေအက်စ်ဗီ) အသုံးပြုမည်"
 
-#: netpref/netpref.cpp:68
+#: netpref/netpref.cpp:64
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -123,7 +129,7 @@ msgid ""
 msgstr ""
 "အက်ဖ်တီပီ၏ \"အငြိမ်\"ထုံးနည်းအသုံးပြုမည်။ ၎င်းကို မီးတံတိုင်းများနောက်တွင် အက်ဖ်တီပီ အလုပ်လုပ်နိုင်ရန် လိုအပ်သည်။"
 
-#: netpref/netpref.cpp:76
+#: netpref/netpref.cpp:72
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
