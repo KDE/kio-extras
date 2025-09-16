@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-15 00:42+0000\n"
-"PO-Revision-Date: 2025-03-14 13:39+0200\n"
+"PO-Revision-Date: 2025-09-15 08:21+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -78,6 +78,7 @@ msgstr ""
 #, kde-format
 msgid "The minimum file size for keeping aborted downloads"
 msgstr ""
+"Мінімальний розмір файла для збереження перерваних сеансів отримання даних"
 
 #: netpref/netpref.cpp:26
 #, kde-format

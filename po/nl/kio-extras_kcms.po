@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-15 00:42+0000\n"
-"PO-Revision-Date: 2025-03-14 12:03+0100\n"
+"PO-Revision-Date: 2025-09-15 09:55+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -73,7 +73,7 @@ msgstr ""
 #: netpref/kioslave.kcfg:17
 #, kde-format
 msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
+msgstr "De minimale bestandsgrootte voor het behouden van afgebroken downloads"
 
 #: netpref/netpref.cpp:26
 #, kde-format
