@@ -12,21 +12,22 @@
 # Meni Livne <livne@kde.org>, 2007.
 # Diego Iastrubni <elcuco@kde.org>, 2008, 2012.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+# SPDX-FileCopyrightText: 2025 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio5_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-26 00:41+0000\n"
-"PO-Revision-Date: 2023-10-22 23:49+0300\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2025-09-17 10:49+0300\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Lokalize 25.08.0\n"
 
 #: kio_man.cpp:459
 #, kde-kuit-format
@@ -89,8 +90,8 @@ msgid ""
 "mistakes or be obsolete. In case of doubt, you should have a look at the "
 "English version."
 msgstr ""
-"הערה: אם אתה קורא דף הוראות בשפה שלך, היה מודע לכך שהוא עלול להכיל טעויות או "
-"להיות מיושן. במקרה של ספק, עדיף לבדוק את הגירסה האנגלית."
+"הערה: דף ההנחיות (man) בשפה שלך עלול להכיל טעויות או להיות לא עדכני. במקרה "
+"של ספק, עדיף להיעזר בגרסה המקורית באנגלית."
 
 #: kio_man.cpp:747
 #, kde-format
