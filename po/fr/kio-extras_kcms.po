@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-15 00:42+0000\n"
-"PO-Revision-Date: 2025-03-15 09:17+0100\n"
+"PO-Revision-Date: 2025-09-16 08:50+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
 "Language: fr\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Accelerator-Marker: &\n"
 "X-Environment: kde\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.08.1\n"
 "X-Text-Markup: kde4\n"
 
 #: ksaveioconfig.cpp:36
@@ -90,6 +90,7 @@ msgstr ""
 #, kde-format
 msgid "The minimum file size for keeping aborted downloads"
 msgstr ""
+"La taille minimale de fichier pour conserver les téléchargements interrompus"
 
 #: netpref/netpref.cpp:26
 #, kde-format
