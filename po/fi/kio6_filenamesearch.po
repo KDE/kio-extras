@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
-# SPDX-FileCopyrightText: 2024 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2024, 2025 Tommi Nieminen <translator@legisign.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-07-26 00:42+0000\n"
-"PO-Revision-Date: 2024-10-16 18:33+0300\n"
+"PO-Revision-Date: 2025-09-19 18:21+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.08.2\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: kio_filenamesearch.cpp:140
 #, kde-format
@@ -29,6 +29,8 @@ msgid ""
 "Invalid search query: '%1'\n"
 "Expected a regular expression: %2"
 msgstr ""
+"Virheellinen hakukysely: ”%1”\n"
+"Odotettiin säännöllistä lauseketta: %2"
 
 #: kio_filenamesearch.cpp:203
 #, kde-format
@@ -37,6 +39,8 @@ msgid ""
 "Invalid search location\n"
 "Trying to search the /proc directory"
 msgstr ""
+"Virheellinen hakusijainti\n"
+"Yritetään etsiä /proc-kansiosta"
 
 #: kio_filenamesearch.cpp:479
 #, kde-format
