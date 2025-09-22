@@ -42,7 +42,7 @@
 > direttamente in una finestra di &konqueror;.</para>
 
 <para
->Facendo clic su un file compresso con estensione <literal role="extension "
+>Facendo clic su un file compresso con estensione <literal role="extension"
 >.bz2</literal
 > in &konqueror;, viene usato questo worker KIO per decomprimerlo e mostrarlo come se fosse un file normale (non compresso).</para>
 
