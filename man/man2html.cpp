@@ -2481,7 +2481,7 @@ static char *scan_table(char *c)
                     break;
                 case '^':
                     if (prev->has(ti1))
-                        prev->at(ti1).rowspan++;
+                        prev->at(ti1).rowspan = currow->at(ti1).rowspan + 1;
                 default:
                     if (ti2 < 0)
                         ti2 = ti;
