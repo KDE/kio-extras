@@ -58,6 +58,7 @@ public:
     void closeConnection() override;
     Q_REQUIRED_RESULT Result del(const QUrl &url, bool isfile) override;
     Q_REQUIRED_RESULT Result chmod(const QUrl &url, int permissions) override;
+    Q_REQUIRED_RESULT Result setModificationTime(const QUrl &url, const QDateTime &mtime) override;
     Q_REQUIRED_RESULT Result symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags) override;
     Q_REQUIRED_RESULT Result rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags) override;
     Q_REQUIRED_RESULT Result mkdir(const QUrl &url, int permissions) override;

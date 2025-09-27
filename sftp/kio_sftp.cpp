@@ -2048,6 +2048,38 @@ Result SFTPWorker::chmod(const QUrl &url, int permissions)
     return Result::pass();
 }
 
+Result SFTPWorker::setModificationTime(const QUrl &url, const QDateTime &mtime)
+{
+    qCDebug(KIO_SFTP_LOG) << "change mtime of" << url << "to" << mtime.toString(Qt::ISODateWithMs);
+
+    if (auto loginResult = sftpLogin(); !loginResult.success()) {
+        return loginResult;
+    }
+
+    QByteArray path = url.path().toUtf8();
+    // SFTPv3 only allows setting atime and mtime simultaneously so perform
+    // a read-modify-write operation.
+    SFTPAttributesPtr attr(sftp_stat(mSftp, path.constData()));
+    if (!attr) {
+        return reportError(url, sftp_get_error(mSftp));
+    }
+
+    attr->mtime = mtime.toSecsSinceEpoch();
+    attr->mtime64 = mtime.toSecsSinceEpoch();
+    attr->mtime_nseconds = (mtime.toMSecsSinceEpoch() % 1000) * 1000000;
+    // SSH_FILEXFER_ATTR_ACCESSTIME is required for SFTPv3 where it is
+    // also called SSH_FILEXFER_ATTR_ACMODTIME.
+    // The other two flags are used by SFTPv4.
+    attr->flags = SSH_FILEXFER_ATTR_ACCESSTIME | SSH_FILEXFER_ATTR_MODIFYTIME |
+        SSH_FILEXFER_ATTR_SUBSECOND_TIMES;
+
+    if (sftp_setstat(mSftp, path.constData(), attr.get()) < 0) {
+        return reportError(url, sftp_get_error(mSftp));
+    }
+
+    return Result::pass();
+}
+
 Result SFTPWorker::del(const QUrl &url, bool isfile)
 {
     qCDebug(KIO_SFTP_LOG) << "deleting " << (isfile ? "file: " : "directory: ") << url;
