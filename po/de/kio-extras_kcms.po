@@ -8,20 +8,21 @@
 # Panagiotis Papadopoulos <pano_90@gmx.net>, 2011.
 # Kai Uwe Broulik <kde@privat.broulik.de>, 2021.
 # Frank Steinmetzger <dev@felsenfleischer.de>, 2021.
+# SPDX-FileCopyrightText: 2025 Alois Spitzbart <spitz234@hotmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras_kcms\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-15 00:42+0000\n"
-"PO-Revision-Date: 2024-03-20 21:25+0100\n"
-"Last-Translator: Johannes Obermayr <johannesobermayr@gmx.de>\n"
+"PO-Revision-Date: 2025-09-20 19:46+0200\n"
+"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.02.0\n"
+"X-Generator: Lokalize 25.08.0\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -103,14 +104,12 @@ msgstr ""
 "Übertragung entfernt.</p>"
 
 #: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " Byte"
-msgstr[1] " Bytes"
+msgstr[0] "%v Byte"
+msgstr[1] "%v Bytes"
 
 #: netpref/netpref.cpp:54
 #, kde-format
@@ -213,15 +212,13 @@ msgstr "Direkt mit dem Internet verbinden."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "&No proxy"
-msgstr "Kein Proxy"
+msgstr "&Kein Proxy"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
 msgstr "HTTP-Proxy:"
 
@@ -255,8 +252,7 @@ msgstr "Diesen Proxy-Server für a&lle Protokolle verwenden"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:161
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
 msgstr "SSL-Proxy:"
 
@@ -275,8 +271,7 @@ msgstr "Geben Sie hier die Portnummer des HTTPS-Proxy-Servers an."
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
 msgstr "FTP-Proxy:"
 
@@ -294,8 +289,7 @@ msgstr "Geben Sie hier die Portnummer des FTP-Proxy-Servers an."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:264
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
 msgstr "SOCKS-Proxy:"
 
@@ -374,8 +368,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:354
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "Proxy-Einstellungen nur für Adressen in der Ausnahmen-Liste verwenden"
 
@@ -387,10 +380,9 @@ msgstr "Das angegebene Skript für die Proxy-Einstellungen verwenden."
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "Adresse zur automatischen Proxy-Einrichtung verwenden:"
+msgstr "Adresse zur automatischen Proxy-Einrichtung &verwenden:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -425,10 +417,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
-msgstr "HTTP-Proxy:"
+msgstr "H&TTP-Proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -451,10 +442,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SS&L proxy:"
-msgstr "SSL-Proxy:"
+msgstr "SS&L-Proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -496,10 +486,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
-msgstr "SOCKS-Proxy:"
+msgstr "SOC&KS-Proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -518,10 +507,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
-msgstr "Ausnahmen:"
+msgstr "&Ausnahmen:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -565,10 +553,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr "Proxy-Einrichtung automatisch erkennen"
+msgstr "Proxy-Einrichtung automatisch &erkennen"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
@@ -605,10 +592,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "Proxy-Einrichtung des Systems verwenden:"
+msgstr "Proxy-Einrichtung des S&ystems verwenden:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -636,18 +622,16 @@ msgid ""
 msgstr ""
 
 #: proxy/wpad-detector/module.cpp:84
-#, fuzzy, kde-format
-#| msgid "General Settings"
+#, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr "Allgemeine Einstellungen"
+msgstr "Einstellungen öffnen"
 
 #: proxy/wpad-detector/module.cpp:89
-#, fuzzy, kde-format
-#| msgid "&Forever"
+#, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr "&Dauerhaft"
+msgstr "&Dauerhaft ignorieren"
 
 #: trash/kcmtrash.cpp:206
 #, kde-format
@@ -693,14 +677,12 @@ msgstr ""
 "einer bestimmten Zeit aus dem Papierkorb gelöscht.</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " Tag"
-msgstr[1] " Tage"
+msgstr[0] "%v Tag"
+msgstr[1] "%v Tage"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -742,7 +724,7 @@ msgstr "Größe:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v %"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -765,20 +747,17 @@ msgstr ""
 "zur Verfügung steht.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
 msgstr "Eine Warnung anzeigen"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Älteste Dateien unwiderruflich löschen"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Größte Dateien unwiderruflich löschen"
 
@@ -795,8 +774,7 @@ msgstr ""
 "Warnung ausgegeben, anstatt automatisch zu löschen.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
 msgstr "Papierkorb voll:"
 
@@ -819,12 +797,7 @@ msgid "Preferred"
 msgstr "Bevorzugt"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
@@ -848,15 +821,7 @@ msgstr "&Filter suchen"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -866,13 +831,13 @@ msgid ""
 "delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
 "KDE</span>.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Web-Kürzel ein oder ausschalten. </p><p>Mit Web-"
-"Kürzeln können Sie auf Informationen im Internet oder auf Ihrer Festplatte "
-"zugreifen oder danach suchen. </p><p>KDE enthält viele vordefinierte Web-"
-"Kürzel, darunter auch die Suche mit Google (TM). Um dieses Web-Kürzel zu "
-"verwenden, geben Sie nur das Schlüsselwort „gg“ gefolgt vom Trennzeichen und "
-"dem Suchbegriff ein, z. B. <span style=\" font-weight:600;\">gg:KDE</span>.</"
-"p></body></html>"
+"<html><head/><body><p>Web-Kürzel aktivieren oder deaktivieren. </p><p>Mit "
+"Web-Kürzeln können Sie schnell auf Informationen im Internet oder auf Ihrer "
+"Festplatte zugreifen oder danach suchen. </p><p>KDE enthält viele "
+"vordefinierte Web-Kürzel, darunter auch die Suche mit Google (TM). Um dieses "
+"Web-Kürzel zu verwenden, geben Sie nur das Schlüsselwort „gg“ gefolgt vom "
+"Trennzeichen und dem Suchbegriff ein, z. B. <span style=\" font-weight:600;"
+"\">gg:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -888,8 +853,7 @@ msgstr "&Nur bevorzugte Web-Kürzel verwenden"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
 msgstr "Suchen nach Webkürzeln"
 
@@ -903,7 +867,7 @@ msgstr "Fügt ein neues Web-Kürzel hinzu"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&Neu …"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -915,7 +879,7 @@ msgstr "Das hervorgehobene Web-Kürzel ändern"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "&Bearbeiten …"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -955,13 +919,7 @@ msgstr "Standard-Web-&Kürzel:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -1020,22 +978,17 @@ msgid "Default"
 msgstr "Standard"
 
 #: webshortcuts/searchproviderdlg.cpp:51
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "Web-Kürzel"
+msgstr "Web-Kürzel bearbeiten"
 
 #: webshortcuts/searchproviderdlg.cpp:59
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "Web-Kürzel"
+msgstr "Neues Web-Kürzel"
 
 #: webshortcuts/searchproviderdlg.cpp:120
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
@@ -1049,11 +1002,7 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:129
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
@@ -1062,21 +1011,15 @@ msgstr ""
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:142
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"In der Adresse fehlt der Platzhalter „a \\{...}“ für den Suchtext des "
-"Benutzers.\n"
-"Das bedeutet, dass immer dieselbe Seite geladen wird, gleichgültig was der "
-"Benutzer mit dem Web-Kürzel eingibt."
+"In der Adresse fehlt der Platzhalter „%1“ für den Suchtext des Benutzers.\n"
+"Das bedeutet, dass immer dieselbe Seite geladen wird, unabhängig von der "
+"Benutzereingabe im Web-Kürzel."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1136,10 +1079,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, fuzzy, kde-format
-#| msgid "URL:"
+#, kde-format
 msgid "&URL:"
-msgstr "Adresse (URL):"
+msgstr "&Adresse (URL):"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1155,13 +1097,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1176,10 +1112,7 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
@@ -1189,10 +1122,7 @@ msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
@@ -1202,11 +1132,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "Schlüsselwörter"
+msgstr "&Schlüsselwörter"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
@@ -1218,8 +1146,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
 msgstr "&Zeichensatz:"
 
