@@ -84,7 +84,7 @@ ResultModel *runQuery(const QUrl &url, int limit)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "runQuery for url" << url.toString();
 
-    auto query = UsedResources | Limit(30);
+    auto query = UsedResources | Limit(limit);
 
     // Parse url query parameter
     const auto urlQuery = QUrlQuery(url);
