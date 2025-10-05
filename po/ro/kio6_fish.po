@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-08 00:38+0000\n"
+"POT-Creation-Date: 2025-10-05 00:39+0000\n"
 "PO-Revision-Date: 2024-02-25 17:19+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -17,39 +17,39 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Lokalize 21.12.3\n"
 
-#: fish.cpp:316
+#: fish.cpp:311
 #, kde-format
 msgid "Connecting..."
 msgstr "Se conectează…"
 
-#: fish.cpp:642
+#: fish.cpp:637
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Se inițiază protocolul…"
 
-#: fish.cpp:679
+#: fish.cpp:674
 #, kde-format
 msgid "Local Login"
 msgstr "Autentificare locală"
 
-#: fish.cpp:681
+#: fish.cpp:676
 #, kde-format
 msgid "SSH Authentication"
 msgstr "Autentificare SSH"
 
-#: fish.cpp:718 fish.cpp:733
+#: fish.cpp:713 fish.cpp:728
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr "Da"
 
-#: fish.cpp:718 fish.cpp:733
+#: fish.cpp:713 fish.cpp:728
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr "Nu"
 
-#: fish.cpp:816
+#: fish.cpp:811
 #, kde-format
 msgid "Disconnected."
 msgstr "Deconectat."

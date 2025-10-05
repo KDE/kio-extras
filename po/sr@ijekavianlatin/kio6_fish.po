@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-08 00:38+0000\n"
+"POT-Creation-Date: 2025-10-05 00:39+0000\n"
 "PO-Revision-Date: 2012-08-26 09:25+0200\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -19,39 +19,39 @@ msgstr ""
 "X-Text-Markup: kde4\n"
 "X-Environment: kde\n"
 
-#: fish.cpp:316
+#: fish.cpp:311
 #, kde-format
 msgid "Connecting..."
 msgstr "Povezujem se..."
 
-#: fish.cpp:642
+#: fish.cpp:637
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Pripremam protokol..."
 
-#: fish.cpp:679
+#: fish.cpp:674
 #, kde-format
 msgid "Local Login"
 msgstr "Lokalno prijavljivanje"
 
-#: fish.cpp:681
+#: fish.cpp:676
 #, kde-format
 msgid "SSH Authentication"
 msgstr "SSH autentifikacija"
 
-#: fish.cpp:718 fish.cpp:733
+#: fish.cpp:713 fish.cpp:728
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr ""
 
-#: fish.cpp:718 fish.cpp:733
+#: fish.cpp:713 fish.cpp:728
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr ""
 
-#: fish.cpp:816
+#: fish.cpp:811
 #, kde-format
 msgid "Disconnected."
 msgstr "Veza prekinuta."

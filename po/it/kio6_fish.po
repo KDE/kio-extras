@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-07-08 00:38+0000\n"
+"POT-Creation-Date: 2025-10-05 00:39+0000\n"
 "PO-Revision-Date: 2022-11-01 14:57+0100\n"
 "Last-Translator: Vincenzo Reale <smart2128vr@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -21,39 +21,39 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 22.08.2\n"
 
-#: fish.cpp:316
+#: fish.cpp:311
 #, kde-format
 msgid "Connecting..."
 msgstr "Connessione..."
 
-#: fish.cpp:642
+#: fish.cpp:637
 #, kde-format
 msgid "Initiating protocol..."
 msgstr "Inizializzazione protocollo..."
 
-#: fish.cpp:679
+#: fish.cpp:674
 #, kde-format
 msgid "Local Login"
 msgstr "Accesso locale"
 
-#: fish.cpp:681
+#: fish.cpp:676
 #, kde-format
 msgid "SSH Authentication"
 msgstr "Autenticazione SSH"
 
-#: fish.cpp:718 fish.cpp:733
+#: fish.cpp:713 fish.cpp:728
 #, kde-format
 msgctxt "@action:button"
 msgid "Yes"
 msgstr "Sì"
 
-#: fish.cpp:718 fish.cpp:733
+#: fish.cpp:713 fish.cpp:728
 #, kde-format
 msgctxt "@action:button"
 msgid "No"
 msgstr "No"
 
-#: fish.cpp:816
+#: fish.cpp:811
 #, kde-format
 msgid "Disconnected."
 msgstr "Disconnesso."
