@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2025 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
-# Sergiu Bivol <sergiu@cip.md>, 2024.
+# SPDX-FileCopyrightText: 2024, 2025 Sergiu Bivol <sergiu@cip.md>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-29 00:41+0000\n"
-"PO-Revision-Date: 2024-02-25 17:36+0000\n"
+"PO-Revision-Date: 2025-10-05 00:44+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #: ksaveioconfig.cpp:81
 #, kde-format
@@ -91,15 +91,13 @@ msgstr ""
 "eliminată în momentul în care transferul se încheie.</p>"
 
 #: netpref/netpref.cpp:56
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] " octet"
-msgstr[1] " octeți"
-msgstr[2] " de octeți"
+msgstr[0] "%v octet"
+msgstr[1] "%v octeți"
+msgstr[2] "%v de octeți"
 
 #: netpref/netpref.cpp:58
 #, kde-format
@@ -200,24 +198,21 @@ msgstr "Conectează direct la Internet."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "&No proxy"
-msgstr "Fără proxy"
+msgstr "&Fără proxy"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
 msgstr "Proxy HTTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
 #: proxy/kproxydlg.ui:110
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTP proxy server."
+#, kde-format
 msgid "Enter the address of the HTTP proxy server."
-msgstr "Introduceți adresa serverului proxy HTTP."
+msgstr "Introduceți adresa serverului de proximitate HTTP."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
@@ -225,100 +220,81 @@ msgstr "Introduceți adresa serverului proxy HTTP."
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
 #: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
 #: proxy/kproxydlg.ui:286
-#, fuzzy, kde-format
-#| msgid "Port:"
+#, kde-format
 msgid "Port:"
 msgstr "Port:"
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
 #: proxy/kproxydlg.ui:133
-#, fuzzy, kde-format
-#| msgid "Enter the port number of the HTTP proxy server."
+#, kde-format
 msgid "Enter the port number of the HTTP proxy server."
-msgstr "Introduceți numărul de port al serverului proxy HTTP."
+msgstr "Introduceți numărul de port al serverului de proximitate HTTP."
 
 #. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
 #: proxy/kproxydlg.ui:148
-#, fuzzy, kde-format
-#| msgid "Use this proxy server for a&ll protocols"
+#, kde-format
 msgid "Use this proxy server for a&ll protocols"
 msgstr "Fo&losește acest proxy pentru toate protocoalele"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:161
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
 msgstr "Proxy SSL:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
 #: proxy/kproxydlg.ui:176
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTPS proxy server."
+#, kde-format
 msgid "Enter the address of the HTTPS proxy server."
-msgstr "Introduceți adresa serverului proxy HTTPS."
+msgstr "Introduceți adresa serverului de proximitate HTTPS."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
 #: proxy/kproxydlg.ui:193
-#, fuzzy, kde-format
-#| msgid "Enter the port number of the HTTPS proxy server."
+#, kde-format
 msgid "Enter the port number of the HTTPS proxy server."
-msgstr "Introduceți numărul de port al serverului proxy HTTPS."
+msgstr "Introduceți numărul de port al serverului de proximitate HTTPS."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
 msgstr "Proxy FTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
 #: proxy/kproxydlg.ui:229
-#, fuzzy, kde-format
-#| msgid "Enter the address of the FTP proxy server."
+#, kde-format
 msgid "Enter the address of the FTP proxy server."
-msgstr "Introduceți adresa serverului proxy FTP."
+msgstr "Introduceți adresa serverului de proximitate FTP."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
 #: proxy/kproxydlg.ui:246
-#, fuzzy, kde-format
-#| msgid "Enter the port number of the FTP proxy server."
+#, kde-format
 msgid "Enter the port number of the FTP proxy server."
-msgstr "Introduceți numărul de port al serverului proxy FTP."
+msgstr "Introduceți numărul de port al serverului de proximitate FTP."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:264
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
 msgstr "Proxy SOCKS:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
 #: proxy/kproxydlg.ui:279
-#, fuzzy, kde-format
-#| msgid "Enter the address of the SOCKS proxy server."
+#, kde-format
 msgid "Enter the address of the SOCKS proxy server."
-msgstr "Introduceți adresa serverului proxy SOCKS."
+msgstr "Introduceți adresa serverului de proximitate SOCKS."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
 #: proxy/kproxydlg.ui:296
-#, fuzzy, kde-format
-#| msgid "Enter the port number of the SOCKS proxy server."
+#, kde-format
 msgid "Enter the port number of the SOCKS proxy server."
-msgstr "Introduceți numărul de port al serverului proxy SOCKS."
+msgstr "Introduceți numărul de port al serverului de proximitate SOCKS."
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
 #. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-#| "addresses of sites for which the proxy server should not be used.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
@@ -327,16 +303,17 @@ msgid ""
 "an automatic discovery of this variable.\n"
 "</qt>"
 msgstr ""
-"<qt>Introduceți numele variabilei de mediu, de exemplu <tt>NO_PROXY</tt>, "
-"utilizată la memorarea adreselor sait-urilor pentru care nu este utilizat "
-"serverul de proxy.<p>Alternativ, puteți da clic pe butonul <b>\"Detectează "
-"automat\"</b> pentru a încerca descoperirea automată a acestei variabile.</"
-"p></qt>"
+"<qt>\n"
+"Introduceți denumirea variabilei de mediu, de exemplu <b>NO_PROXY</b>, "
+"utilizată la memorarea adreselor saiturilor pentru care nu este utilizat "
+"serverul de proximitate.<p>\n"
+"Alternativ, puteți apăsa butonul <b>„Detectează automat”</b> pentru a "
+"încerca descoperirea automată a acestei variabile.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
 #: proxy/kproxydlg.ui:314
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "Exceptions:"
 msgstr "Excepții:"
 
@@ -385,27 +362,22 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "Folosește URL de configurare automată proxy:"
+msgstr "Folosește &URL de configurare automată proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
-#, fuzzy, kde-format
-#| msgid "Manually enter proxy server configuration information."
+#, kde-format
 msgid "Manually enter proxy server configuration information."
 msgstr ""
-"<qt>\n"
-"Introduceți manual informațiile de configurare a serverului proxy.\n"
-"</qt>"
+"Introduceți manual informațiile de configurare a serverului de proximitate."
 
 #. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:389
-#, fuzzy, kde-format
-#| msgid "Use manually specified proxy configuration:"
+#, kde-format
 msgid "Use manually specified proxy configuration:"
-msgstr "Folosește configurație proxy specficată manual:"
+msgstr "Folosește configurație de proximitate specificată manual:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
@@ -428,22 +400,14 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
-msgstr "Proxy HTTP:"
+msgstr "Proxy H&TTP:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
 #: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
-#| "to store the address of the HTTPS proxy server.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.</p>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
@@ -453,30 +417,22 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Introduceți numele variabilei de mediu, de exemplu <b>HTTPS_PROXY</b>, "
-"utilizată la memorarea adresei serverului proxy HTTPS.<p>\n"
-"Alternativ, puteți da clic pe butonul <b>\"Detectează automat\"</b> pentru a "
+"Introduceți denumirea variabilei de mediu, de exemplu <b>HTTPS_PROXY</b>, "
+"utilizată la memorarea adresei serverului de proximitate HTTPS.<p>\n"
+"Alternativ, puteți apăsa butonul <b>„Detectează automat”</b> pentru a "
 "încerca descoperirea automată a acestei variabile.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SS&L proxy:"
-msgstr "Proxy SSL:"
+msgstr "Proxy SS&L:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
 #: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
-#| "to store the address of the FTP proxy server.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.</p>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
@@ -486,22 +442,15 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Introduceți numele variabilei de mediu, de exemplu <b>FTP_PROXY</b>, "
-"utilizată la memorarea adresei serverului proxy FTP.<p>\n"
-"Alternativ, puteți da clic pe butonul <b>„Detectează automat”</b> pentru a "
+"Introduceți denumirea variabilei de mediu, de exemplu <b>FTP_PROXY</b>, "
+"utilizată la memorarea adresei serverului de proximitate FTP.<p>\n"
+"Alternativ, puteți apăsa butonul <b>„Detectează automat”</b> pentru a "
 "încerca descoperirea automată a acestei variabile.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:522
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
-#| "to store the address of the SOCKS proxy server.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.</p>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
@@ -511,48 +460,37 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Introduceți numele variabilei de mediu, de exemplu <b>SOCKS_PROXY</b>, "
-"folosită pentru păstrarea adresei serverului proxy SOCKS.<p>\n"
+"Introduceți denumirea variabilei de mediu, de exemplu <b>SOCKS_PROXY</b>, "
+"folosită pentru păstrarea adresei serverului de proximitate SOCKS.<p>\n"
 "Alternativ, puteți apăsa butonul <b>„Detectează automat”</b> pentru a "
 "încerca descoperirea automată a acestei variabile.</p>\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
-msgstr "Proxy SOCKS:"
+msgstr "Proxy SOC&KS:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
-#| "to store the address of the HTTPS proxy server.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.</p>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
 "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
 "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
 "automatic discovery of this variable.</p></qt>"
 msgstr ""
-"<qt>\n"
-"Introduceți numele variabilei de mediu, de exemplu <b>HTTPS_PROXY</b>, "
-"utilizată la memorarea adresei serverului proxy HTTPS.<p>\n"
-"Alternativ, puteți da clic pe butonul <b>\"Detectează automat\"</b> pentru a "
-"încerca descoperirea automată a acestei variabile.</p>\n"
-"</qt>"
+"<qt>Introduceți denumirea variabilei de mediu, de exemplu <b>SOCKS_PROXY</"
+"b>, utilizată la memorarea adresei serverului de proximitate SOCKS."
+"<p>Alternativ, puteți apăsa butonul <b>„Detectează automat”</b> pentru a "
+"încerca descoperirea automată a acestei variabile.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
-msgstr "Excepții:"
+msgstr "E&xcepții:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -578,23 +516,13 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
 #: proxy/kproxydlg.ui:583
-#, fuzzy, kde-format
-#| msgid "Show the &value of the environment variables"
+#, kde-format
 msgid "Show the &value of the environment variables"
-msgstr "Afișează &valorile variabilelor de mediu"
+msgstr "Arată &valorile variabilelor de mediu"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:600
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Automatically detect and configure the proxy settings.<p>\n"
-#| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-#| "Protocol (WPAD)</b>.<p>\n"
-#| "<b>NOTE:</b> This option might not work properly or not work at all in "
-#| "some UNIX/Linux distributions. If you encounter a problem when using this "
-#| "option, please check the FAQ section at https://konqueror.org.\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "Automatically detect and configure the proxy settings.<p>\n"
@@ -605,21 +533,18 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Detectează automat și configurează parametrii de proxy.<p>\n"
-"Această detecție este făcută utilizând protocolul <b>Web Proxy Auto-"
-"Discovery Protocol (WPAD)</b>.</p><p>\n"
+"Detectează automat și configurează parametrii de proximitate.<p>\n"
+"Detecția automată e făcută utilizând protocolul <b>Web Proxy Auto-Discovery "
+"Protocol (WPAD)</b>.<p>\n"
 "<b>Observație:</b> Această opțiune s-ar putea să nu meargă corespunzător sau "
-"chiar să nu meargă deloc pe unele distribuții de Linux/Unix. Dacă "
-"întâmpinați probleme la utilizarea acestei opțiuni, citiți secțiunea "
-"„Răspunsuri la întrebări frecvente” (F.A.Q.) de la https://konqueror.org.\n"
-"</p></qt>"
+"chiar să nu meargă deloc pe unele distribuții de Linux/Unix.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr "Detectează automat configurația proxy"
+msgstr "&Detectează automat configurația de proximitate"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
@@ -645,10 +570,9 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "Folosește configurația proxy din sistem:"
+msgstr "Folosește configurația prox&y din sistem:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -664,7 +588,7 @@ msgstr ""
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "A fost detectată performanța scăzută a rețelei"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -679,19 +603,16 @@ msgstr ""
 #, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr ""
+msgstr "Deschide configurările"
 
 #: proxy/wpad-detector/module.cpp:89
 #, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr ""
+msgstr "Ignoră permanent"
 
 #: trash/kcmtrash.cpp:206
-#, fuzzy, kde-format
-#| msgid ""
-#| "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
-#| "para>"
+#, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
@@ -700,13 +621,7 @@ msgstr ""
 "<b>Finder</b>.<br></para>"
 
 #: trash/kcmtrash.cpp:208
-#, fuzzy, kde-format
-#| msgctxt "@info:whatsthis"
-#| msgid ""
-#| "<para>Emptying KDE's wastebin will remove only KDE's trash items, "
-#| "while<br>emptying the Trash through the Finder will delete everything.</"
-#| "para><para>KDE's trash items will show up in a folder called KDE.trash, "
-#| "in the Trash can.</para>"
+#, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
 "<para>Emptying KDE's wastebin will remove only KDE's trash items, "
@@ -720,19 +635,12 @@ msgstr ""
 "trash din coșul de gunoi.</para>"
 
 #: trash/kcmtrash.cpp:249
-#, fuzzy, kde-format
-#| msgid "Delete files older than"
+#, kde-format
 msgid "Delete files older than"
 msgstr "Șterge fișiere mai vechi de"
 
 #: trash/kcmtrash.cpp:252
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:whatsthis"
-#| msgid ""
-#| "<para>Check this box to allow <emphasis strong='true'>automatic deletion</"
-#| "emphasis> of files that are older than the value specified. Leave this "
-#| "disabled to <emphasis strong='true'>not</emphasis> automatically delete "
-#| "any items after a certain timespan</para>"
+#, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
 "<para>Check this box to allow <emphasis strong='true'>automatic deletion</"
@@ -746,22 +654,16 @@ msgstr ""
 "automat niciun element după o anumită durată</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] " zi"
-msgstr[1] " zile"
-msgstr[2] " de zile"
+msgstr[0] "%v zi"
+msgstr[1] "%v zile"
+msgstr[2] "%v de zile"
 
 #: trash/kcmtrash.cpp:261
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:whatsthis"
-#| msgid ""
-#| "<para>Set the number of days that files can remain in the trash. Any "
-#| "files older than this will be automatically deleted.</para>"
+#, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
 "<para>Set the number of days that files can remain in the trash. Any files "
@@ -771,23 +673,17 @@ msgstr ""
 "Orice fișiere mai vechi decât atât vor fi șterse automat.</para>"
 
 #: trash/kcmtrash.cpp:265
-#, fuzzy, kde-format
-#| msgid "Cleanup:"
+#, kde-format
 msgid "Cleanup:"
 msgstr "Curățare:"
 
 #: trash/kcmtrash.cpp:268
-#, fuzzy, kde-format
-#| msgid "Limit to"
+#, kde-format
 msgid "Limit to"
 msgstr "Limitează la"
 
 #: trash/kcmtrash.cpp:270
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:whatsthis"
-#| msgid ""
-#| "<para>Check this box to limit the trash to the maximum amount of disk "
-#| "space that you specify below. Otherwise, it will be unlimited.</para>"
+#, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
 "<para>Check this box to limit the trash to the maximum amount of disk space "
@@ -798,8 +694,7 @@ msgstr ""
 "</para>"
 
 #: trash/kcmtrash.cpp:273
-#, fuzzy, kde-format
-#| msgid "Size:"
+#, kde-format
 msgid "Size:"
 msgstr "Dimensiune:"
 
@@ -807,14 +702,10 @@ msgstr "Dimensiune:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:whatsthis"
-#| msgid ""
-#| "<para>This is the maximum percent of disk space that will be used for the "
-#| "trash.</para>"
+#, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
 "<para>This is the maximum percent of disk space that will be used for the "
@@ -824,11 +715,7 @@ msgstr ""
 "gunoi.</para>"
 
 #: trash/kcmtrash.cpp:285
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:whatsthis"
-#| msgid ""
-#| "<para>This is the calculated amount of disk space that will be allowed "
-#| "for the trash, the maximum.</para>"
+#, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
 "<para>This is the calculated amount of disk space that will be allowed for "
@@ -838,30 +725,22 @@ msgstr ""
 "permisă pentru gunoi.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
 msgstr "Arată un avertisment"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Șterge cele mai vechi fișiere din gunoi"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Șterge cele mai mari fișiere din gunoi"
 
 #: trash/kcmtrash.cpp:293
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:whatsthis"
-#| msgid ""
-#| "<para>When the size limit is reached, it will prefer to delete the type "
-#| "of files that you specify, first. If this is set to warn you, it will do "
-#| "so instead of automatically deleting files.</para>"
+#, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
 "<para>When the size limit is reached, it will prefer to delete the type of "
@@ -874,31 +753,24 @@ msgstr ""
 "fișierele automat.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
 msgstr "Gunoi plin:"
 
 #: webshortcuts/ikwsopts.cpp:41
-#, fuzzy, kde-format
-#| msgctxt "@title:column Name label from web search keyword column"
-#| msgid "Name"
+#, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Denumire"
 
 #: webshortcuts/ikwsopts.cpp:43
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Cuvinte-cheie"
 
 #: webshortcuts/ikwsopts.cpp:45
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Preferred"
+#, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "Preferat"
@@ -913,16 +785,13 @@ msgid ""
 msgstr ""
 
 #: webshortcuts/ikwsopts.cpp:205
-#, fuzzy, kde-format
-#| msgctxt "@item:inlistbox No default web search keyword"
-#| msgid "None"
+#, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Niciunul"
 
 #: webshortcuts/ikwsopts.cpp:249
-#, fuzzy, kde-format
-#| msgid "Search F&ilters"
+#, kde-format
 msgid "Search F&ilters"
 msgstr "F&iltre de căutare"
 
@@ -941,29 +810,25 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
-#, fuzzy, kde-format
-#| msgid "&Enable Web search keywords"
+#, kde-format
 msgid "&Enable Web search keywords"
 msgstr "Activ&ează cuvinte-cheie de căutare web"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:30
-#, fuzzy, kde-format
-#| msgid "&Use preferred keywords only"
+#, kde-format
 msgid "&Use preferred keywords only"
 msgstr "Folosește n&umai cuvinte-cheie preferate"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
 msgstr "Caută cuvinte-cheie de căutare web"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:71
-#, fuzzy, kde-format
-#| msgid "Add a new Web search keyword"
+#, kde-format
 msgid "Add a new Web search keyword"
 msgstr "Adaugă cuvânt-cheie de căutare web nou"
 
@@ -971,12 +836,11 @@ msgstr "Adaugă cuvânt-cheie de căutare web nou"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&Nou…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
-#, fuzzy, kde-format
-#| msgid "Modify the highlighted Web search keyword"
+#, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Modifică cuvântul-cheie de căutare web evidențiat"
 
@@ -984,19 +848,17 @@ msgstr "Modifică cuvântul-cheie de căutare web evidențiat"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "Mod&ifică…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
-#, fuzzy, kde-format
-#| msgid "Delete the highlighted Web search keyword"
+#, kde-format
 msgid "Delete the highlighted Web search keyword"
 msgstr "Șterge cuvântul-cheie de căutare web evidențiat"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:100
-#, fuzzy, kde-format
-#| msgid "De&lete"
+#, kde-format
 msgid "De&lete"
 msgstr "Ș&terge"
 
@@ -1013,8 +875,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:141
-#, fuzzy, kde-format
-#| msgid "Default Web &search keyword:"
+#, kde-format
 msgid "Default Web &search keyword:"
 msgstr "&Cuvânt-cheie implicit pentru căutare web:"
 
@@ -1031,10 +892,7 @@ msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter that separates the keyword from the phrase or word to "
 "be searched."
@@ -1044,70 +902,55 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:185
-#, fuzzy, kde-format
-#| msgid "&Keyword delimiter:"
+#, kde-format
 msgid "&Keyword delimiter:"
 msgstr "&Delimitator cuvânt-cheie:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:204
-#, fuzzy, kde-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-format
 msgid "Choose a delimiter to mark the Web search keyword."
 msgstr "Alegeți un delimitator pentru a marca cuvântul-cheie de căutare web."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:208
-#, fuzzy, kde-format
-#| msgctxt "Colon as keyword delimiter"
-#| msgid "Colon"
+#, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
 msgstr "Două puncte"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:213
-#, fuzzy, kde-format
-#| msgctxt "Space as keyword delimiter"
-#| msgid "Space"
+#, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
 msgstr "Spațiu"
 
 #: webshortcuts/searchproviderdlg.cpp:51
-#, fuzzy, kde-format
-#| msgctxt "@item:inlistbox The default character set"
-#| msgid "Default"
+#, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "Implicit"
 
 #: webshortcuts/searchproviderdlg.cpp:54
-#, fuzzy, kde-format
-#| msgid "&Enable Web search keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "Activ&ează cuvinte-cheie de căutare web"
+msgstr "Modifică cuvântul-cheie de căutare web"
 
 #: webshortcuts/searchproviderdlg.cpp:62
-#, fuzzy, kde-format
-#| msgid "Add a new Web search keyword"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "Adaugă cuvânt-cheie de căutare web nou"
+msgstr "Cuvânt-cheie de căutare web nou"
 
 #: webshortcuts/searchproviderdlg.cpp:123
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr "Scurtătura „%1” e atribuită deja pentru „%2”. Alegeți alta."
+msgstr "Cuvântul-cheie „%1” e atribuit deja pentru „%2”. Alegeți altul."
 
 #: webshortcuts/searchproviderdlg.cpp:128
-#, fuzzy, kde-format
-#| msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
-#| msgid "- %1: \"%2\""
+#, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
 msgstr "- %1: „%2”"
@@ -1134,25 +977,21 @@ msgid ""
 msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:150
-#, fuzzy, kde-format
-#| msgid "Keep It"
+#, kde-format
 msgid "Keep It"
-msgstr "Păstrează"
+msgstr "Păstrează-l"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:17
-#, fuzzy, kde-format
-#| msgid "Enter the human-readable name of the search provider here."
+#, kde-format
 msgid "Enter the human-readable name of the search provider here."
 msgstr "Introduceți aici denumirea lizibilă a furnizorului de căutări."
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
-#, fuzzy, kde-format
-#| msgctxt "@title:column Name label from web search keyword column"
-#| msgid "Name"
+#, kde-format
 msgid "&Name:"
-msgstr "Denumire"
+msgstr "De&numire:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbQuery)
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leQuery)
@@ -1181,13 +1020,11 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:48
 #, kde-format
 msgid "&URL:"
-msgstr ""
+msgstr "&URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
-#, fuzzy, kde-format
-#| msgid ""
-#| "Select the character set that will be used to encode your search query."
+#, kde-format
 msgid "Select the character set that will be used to encode your search query."
 msgstr ""
 "Alegeți setul de caractere ce va fi folosit pentru a codifica interogarea "
@@ -1199,13 +1036,7 @@ msgstr ""
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1213,50 +1044,40 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"Scurtăturile introduse aici pot fi folosite în KDE ca schemă pseudo-URI. De "
-"exemplu, scurtătura <b>av</b> poate fi folosită ca <b>av</b>:<b>căutarea "
-"mea</b>\n"
+"Cuvintele-cheie introduse aici pot fi folosite în KDE ca schemă pseudo-URI. "
+"De exemplu, cuvântul-cheie <b>av</b> poate fi folosită ca <b>av</b>:"
+"<b>căutarea mea</b>\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Introduceți aici denumirea lizibilă a scurtăturii web."
-"</p></body></html>"
+"<html><head/><body><p>Introduceți aici denumirea lizibilă a cuvântului-cheie "
+"de căutare web.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>Introduceți aici denumirea lizibilă a scurtăturii web."
-"</p></body></html>"
+"<html><head/><body><p>Introduceți aici denumirea lizibilă a scurtăturii "
+"cuvântului-cheie de căutare web.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "Cuvinte-cheie"
+msgstr "&Cuvinte-cheie:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
-#, fuzzy, kde-format
-#| msgid ""
-#| "Select the character set that will be used to encode your search query"
+#, kde-format
 msgid "Select the character set that will be used to encode your search query"
 msgstr ""
 "Alegeți setul de caractere ce va fi folosit pentru a codifica interogarea "
@@ -1264,15 +1085,13 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
 msgstr "Set de &caractere:"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158
-#, fuzzy, kde-format
-#| msgid "Insert query placeholder"
+#, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserează substituent pentru interogare"
 
