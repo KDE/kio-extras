@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-07-26 00:42+0000\n"
+"POT-Creation-Date: 2025-10-09 00:42+0000\n"
 "PO-Revision-Date: 2024-07-20 09:38\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -17,22 +17,12 @@ msgstr ""
 "X-Crowdin-File: /kf6-trunk/messages/kio-extras/kio6_filenamesearch.pot\n"
 "X-Crowdin-File-ID: 54664\n"
 
-#: kio_filenamesearch.cpp:140
+#: kio_filenamesearch.cpp:158
 #, kde-format
 msgid "Search Folder"
 msgstr "搜索文件夹"
 
-#: kio_filenamesearch.cpp:188
-#, kde-format
-msgctxt "@info:status"
-msgid ""
-"Invalid search query: '%1'\n"
-"Expected a regular expression: %2"
-msgstr ""
-"无效的搜索查询：“%1“\n"
-"需要使用正则表达式：%2"
-
-#: kio_filenamesearch.cpp:203
+#: kio_filenamesearch.cpp:276
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -42,7 +32,17 @@ msgstr ""
 "无效的搜索位置\n"
 "正在尝试搜索 /proc 目录"
 
-#: kio_filenamesearch.cpp:479
+#: kio_filenamesearch.cpp:301
+#, kde-format
+msgctxt "@info:status"
+msgid ""
+"Invalid search query: '%1'\n"
+"Expected a regular expression: %2"
+msgstr ""
+"无效的搜索查询：“%1“\n"
+"需要使用正则表达式：%2"
+
+#: kio_filenamesearch.cpp:541
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

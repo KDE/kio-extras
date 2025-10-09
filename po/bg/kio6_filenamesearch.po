@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-07-26 00:42+0000\n"
+"POT-Creation-Date: 2025-10-09 00:42+0000\n"
 "PO-Revision-Date: 2025-07-28 17:39+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -17,22 +17,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 25.07.70\n"
 
-#: kio_filenamesearch.cpp:140
+#: kio_filenamesearch.cpp:158
 #, kde-format
 msgid "Search Folder"
 msgstr "Търсене в папка"
 
-#: kio_filenamesearch.cpp:188
-#, kde-format
-msgctxt "@info:status"
-msgid ""
-"Invalid search query: '%1'\n"
-"Expected a regular expression: %2"
-msgstr ""
-"Невалидна заявка за търсене: '%1'\n"
-"Очаква се регулярен израз: %2"
-
-#: kio_filenamesearch.cpp:203
+#: kio_filenamesearch.cpp:276
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -42,7 +32,17 @@ msgstr ""
 "Невалидно местоположение за търсене\n"
 "Опит за търсене в директорията /proc"
 
-#: kio_filenamesearch.cpp:479
+#: kio_filenamesearch.cpp:301
+#, kde-format
+msgctxt "@info:status"
+msgid ""
+"Invalid search query: '%1'\n"
+"Expected a regular expression: %2"
+msgstr ""
+"Невалидна заявка за търсене: '%1'\n"
+"Очаква се регулярен израз: %2"
+
+#: kio_filenamesearch.cpp:541
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

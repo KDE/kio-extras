@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-07-26 00:42+0000\n"
+"POT-Creation-Date: 2025-10-09 00:42+0000\n"
 "PO-Revision-Date: 2025-01-06 19:10\n"
 "Last-Translator: Antikruk <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -22,20 +22,12 @@ msgstr ""
 "kio6_filenamesearch.po\n"
 "X-Crowdin-File-ID: 18177\n"
 
-#: kio_filenamesearch.cpp:140
+#: kio_filenamesearch.cpp:158
 #, kde-format
 msgid "Search Folder"
 msgstr "Каталог пошуку"
 
-#: kio_filenamesearch.cpp:188
-#, kde-format
-msgctxt "@info:status"
-msgid ""
-"Invalid search query: '%1'\n"
-"Expected a regular expression: %2"
-msgstr ""
-
-#: kio_filenamesearch.cpp:203
+#: kio_filenamesearch.cpp:276
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -43,7 +35,15 @@ msgid ""
 "Trying to search the /proc directory"
 msgstr ""
 
-#: kio_filenamesearch.cpp:479
+#: kio_filenamesearch.cpp:301
+#, kde-format
+msgctxt "@info:status"
+msgid ""
+"Invalid search query: '%1'\n"
+"Expected a regular expression: %2"
+msgstr ""
+
+#: kio_filenamesearch.cpp:541
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

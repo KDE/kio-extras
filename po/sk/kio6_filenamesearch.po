@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio6_filenamesearch\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-07-26 00:42+0000\n"
+"POT-Creation-Date: 2025-10-09 00:42+0000\n"
 "PO-Revision-Date: 2024-11-11 17:47+0100\n"
 "Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -15,20 +15,12 @@ msgstr ""
 "X-Generator: Lokalize 24.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: kio_filenamesearch.cpp:140
+#: kio_filenamesearch.cpp:158
 #, kde-format
 msgid "Search Folder"
 msgstr "Priečinok hľadania"
 
-#: kio_filenamesearch.cpp:188
-#, kde-format
-msgctxt "@info:status"
-msgid ""
-"Invalid search query: '%1'\n"
-"Expected a regular expression: %2"
-msgstr ""
-
-#: kio_filenamesearch.cpp:203
+#: kio_filenamesearch.cpp:276
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -36,7 +28,15 @@ msgid ""
 "Trying to search the /proc directory"
 msgstr ""
 
-#: kio_filenamesearch.cpp:479
+#: kio_filenamesearch.cpp:301
+#, kde-format
+msgctxt "@info:status"
+msgid ""
+"Invalid search query: '%1'\n"
+"Expected a regular expression: %2"
+msgstr ""
+
+#: kio_filenamesearch.cpp:541
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
