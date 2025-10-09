@@ -49,7 +49,6 @@ find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
 )
 
 if(BUILD_KCMS)
-    find_package(Qt6 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Core5Compat)
     find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS KCMUtils)
 endif()
 
