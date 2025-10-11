@@ -1,10 +1,8 @@
 # German translations for kio-extras package.
 # Copyright (C) 2022 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
-# Frederik Schwarzer <schwarzer@kde.org>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022, 2023 Frederik Schwarzer <schwarzer@kde.org>
 # SPDX-FileCopyrightText: 2023 Johannes Obermayr <johannesobermayr@gmx.de>
-#
-# Automatically generated, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio6_afc\n"
