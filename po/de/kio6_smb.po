@@ -1,8 +1,8 @@
-# Thomas Diehl <thd@kde.org>, 2002, 2003, 2004.
-# Stephan Johach <hunsum@gmx.de>, 2005.
-# Thomas Reitelbach <tr@erdfunkstelle.de>, 2005, 2006.
-# Burkhard Lück <lueck@hube-lueck.de>, 2017, 2020, 2021.
-# Frederik Schwarzer <schwarzer@kde.org>, 2020.
+# SPDX-FileCopyrightText: 2002, 2003, 2004 Thomas Diehl <thd@kde.org>
+# SPDX-FileCopyrightText: 2005 Stephan Johach <hunsum@gmx.de>
+# SPDX-FileCopyrightText: 2005, 2006 Thomas Reitelbach <tr@erdfunkstelle.de>
+# SPDX-FileCopyrightText: 2017, 2020, 2021 Burkhard Lück <lueck@hube-lueck.de>
+# SPDX-FileCopyrightText: 2020 Frederik Schwarzer <schwarzer@kde.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio6_smb\n"

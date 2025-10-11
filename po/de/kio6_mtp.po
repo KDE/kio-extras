@@ -1,5 +1,5 @@
-# Burkhard Lück <lueck@hube-lueck.de>, 2014, 2017, 2018, 2019.
-# Alois Spitzbart <spitz234@hotmail.com>, 2022.
+# SPDX-FileCopyrightText: 2014, 2017, 2018, 2019 Burkhard Lück <lueck@hube-lueck.de>
+# SPDX-FileCopyrightText: 2022 Alois Spitzbart <spitz234@hotmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio6_mtp\n"
