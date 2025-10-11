@@ -1,4 +1,4 @@
-# Thomas Reitelbach <tr@erdfunkstelle.de>, 2005.
+# SPDX-FileCopyrightText: 2005 Thomas Reitelbach <tr@erdfunkstelle.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio6_archive\n"
