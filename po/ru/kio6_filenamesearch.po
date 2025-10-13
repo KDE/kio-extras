@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the kio-extras package.
 #
 # SPDX-FileCopyrightText: 2024 Olesya Gerasimenko <translation-team@basealt.ru>
-# Alexander Yavorsky <kekcuha@gmail.com>, 2024.
+# SPDX-FileCopyrightText: 2024, 2025 Alexander Yavorsky <kekcuha@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-10-09 00:42+0000\n"
-"PO-Revision-Date: 2024-11-17 17:06+0300\n"
-"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
+"PO-Revision-Date: 2025-10-12 20:18+0200\n"
+"Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Lokalize 21.08.3\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #: kio_filenamesearch.cpp:158
 #, kde-format
@@ -31,6 +31,8 @@ msgid ""
 "Invalid search location\n"
 "Trying to search the /proc directory"
 msgstr ""
+"Недопустимое место поиска\n"
+"Попытка выполнить поиск в каталоге «/proc»"
 
 #: kio_filenamesearch.cpp:301
 #, kde-format
@@ -39,6 +41,8 @@ msgid ""
 "Invalid search query: '%1'\n"
 "Expected a regular expression: %2"
 msgstr ""
+"Недопустимый поисковый запрос: «%1»\n"
+"Ожидалось регулярное выражение: «%2»"
 
 #: kio_filenamesearch.cpp:541
 #, kde-format
