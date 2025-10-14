@@ -152,8 +152,8 @@
             "moving": false,
             "output": "filesystem",
             "protocol": "recentlyused",
-            "reading": false,
-            "writing": true
+            "reading": true,
+            "writing": false
         }
     }
 }
