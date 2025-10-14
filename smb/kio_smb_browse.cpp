@@ -108,6 +108,9 @@ int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEn
     udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
     udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
     udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
+    // Without this CopyJob will refuse to work, at least with following change
+    // https://invent.kde.org/frameworks/kio/-/commit/15fff1b8592648f11f20a303c8f82d61d3f19584
+    udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
     // No, st_ctime is not UDS_CREATION_TIME...
 
     return 0;
