@@ -3,8 +3,8 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Aleix Pol Gonzàlez <aleixpol@gmail.com>, 2005.
-# Josep M. Ferrer <txemaq@gmail.com>, 2013, 2016.
+# SPDX-FileCopyrightText: 2005 Aleix Pol Gonzàlez <aleixpol@gmail.com>
+# SPDX-FileCopyrightText: 2013, 2016 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
