@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-09-15 00:42+0000\n"
-"PO-Revision-Date: 2025-04-20 16:34+0300\n"
+"PO-Revision-Date: 2025-10-15 19:39+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -83,7 +83,7 @@ msgstr ""
 #: netpref/kioslave.kcfg:17
 #, kde-format
 msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
+msgstr "Keskeytyneistä latauksista säilytettävän tiedoston vähimmäiskoko"
 
 #: netpref/netpref.cpp:26
 #, kde-format
