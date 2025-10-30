@@ -9,20 +9,21 @@
 # SPDX-FileCopyrightText: 2021 Kai Uwe Broulik <kde@privat.broulik.de>
 # SPDX-FileCopyrightText: 2021 Frank Steinmetzger <dev@felsenfleischer.de>
 # SPDX-FileCopyrightText: 2025 Alois Spitzbart <spitz234@hotmail.com>
+# SPDX-FileCopyrightText: 2025 Alexander Becker <alex-at-kde-l10n-de@freenet.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras_kcms\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-29 00:41+0000\n"
-"PO-Revision-Date: 2025-09-20 19:46+0200\n"
-"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
+"PO-Revision-Date: 2025-10-23 22:53+0200\n"
+"Last-Translator: Alexander Becker <alex-at-kde-l10n-de@freenet.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Lokalize 25.08.2\n"
 
 #: ksaveioconfig.cpp:81
 #, kde-format
@@ -599,12 +600,16 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"Automatische Einrichtung, bekannt als „Web Proxy Auto-Discovery“ (WPAD), ist "
+"meistens nicht die richtige. Aktivierung dieser, wenn sie nicht notwendig "
+"ist, kann Netzwerkzugriffe verlangsamen und Ihr Netzwerk unsicherer machen. "
+"Ihr Netzwerkadministrator weiß, ob diese Option aktiviert werden muss."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "Langsame Netzwerkleistung erkannt"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -614,6 +619,9 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"Automatische Proxy-Ermittlung wurde aktiviert, jedoch reduziert dies die "
+"Netzwerkleistung des Systems. Prüfen Sie Ihre Proxy-Einstellungen, um "
+"sicherzugehen, dass diese Option wirklich notwendig ist."
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
@@ -861,7 +869,7 @@ msgstr "Fügt ein neues Web-Kürzel hinzu"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr "&Neu …"
+msgstr "&Neu …"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -873,7 +881,7 @@ msgstr "Das hervorgehobene Web-Kürzel ändern"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr "&Bearbeiten …"
+msgstr "&Bearbeiten …"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -1058,13 +1066,13 @@ msgstr ""
 "Geben Sie hier die Adresse (URI) ein, die für das Web-Kürzel verwendet "
 "werden soll (z. B. die Adresse einer Suchmaschine).<br/>Der gesuchte Text "
 "lässt sich dabei als \\{@} oder \\{0} angeben.<br/>\n"
-"Dabei ist \\{@} vorzuziehen, weil hier alle Abfragevariablen (Name=Wert) aus "
+"Dabei ist \\{@} vorzuziehen, weil hier alle Abfragevariablen (name=wert) aus "
 "dem Ergebnis verschwinden, während \\{0} durch die unveränderten "
 "Abfragewerte ersetzt wird.<br/>Sie können bestimmte Begriffe der Abfrage "
-"durch \\{1} ... \\{n} vorgeben bzw. ein bestimmtes Element aus „Name=Wert“ "
+"durch \\{1} ... \\{n} vorgeben bzw. ein bestimmtes Element aus „name=wert“ "
 "innerhalb der Benutzerabfrage durch \\{name} bezeichnen.<br/>Außerdem ist es "
 "möglich, mehrere Verweise auf einmal anzugeben (Namen, Zahlen, "
-"Zahlenfolgen), nämlich als \\{name1,name2, ...,\"zeichenfolge\"}.<br/>Der "
+"Zahlenfolgen), nämlich als \\{name1,name2,...,\"zeichenfolge\"}.<br/>Der "
 "erste übereinstimmende Wert (von links) wird als Ersetzungswert für die sich "
 "ergebende URI benutzt.<br/>Eine Zeichenfolge in Anführungszeichen lässt sich "
 "als Wert voreinstellen für den Fall, dass es keine Übereinstimmungen mit der "
