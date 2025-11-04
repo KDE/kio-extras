@@ -37,7 +37,7 @@
  * If "src=internal" is specified, the internal search code is used. A "src=external"
  * the external script is used.
  *
- * If the "src" is not specified, the external search script is used if present and thes
+ * If the "src" is not specified, the external search script is used if present and the
  * search falls back to using the internal search if it is not.
  *
  * For the internal search:
@@ -57,16 +57,19 @@
  * searched without exploring hidden folders. If "includeHidden=Folders", the
  * search recursively explores hidden folders but does not read hidden files.
  *
- * ?syntax=[Phrase|Regex]
+ * ?syntax=[Phrase|Regex|Wordlist]
  *
  * The "syntax" query item specified how the search string/expression should be handled.
  *
  * If "syntax=phrase", the search query is treated as a string, matching whitespace
- * flexibly. If "syntax=regex", the query is treated as a regualr expression.
+ * flexibly. If "syntax=regex", the query is treated as a regular expression.
+ * If "syntax=wordlist", the query is treated as a set of words (and quoted text as
+ * phrases), split by spaces, and an "all words" match is done.
  *
  * The default behaviour is "syntax=regex".
  *
- * "syntax=phrase" and "syntax=regex" also apply to the external search.
+ * "syntax=phrase" and "syntax=regex" also work for the external search, "syntax=wordlist"
+ * does not.
  */
 
 namespace FileNameSearch
@@ -107,15 +110,21 @@ private:
     enum class SearchSyntax {
         //  Literal,
         Phrase,
-        //  Words,
+        WordList,
         //  Glob,
         Regex,
     };
 
     void listRootEntry();
-    void
-    searchDir(const QUrl &dirUrl, const QRegularExpression &regex, const SearchOptions options, std::set<QString> &iteratedDirs, std::queue<QUrl> &pendingDirs);
-    bool match(const KIO::UDSEntry &entry, const QRegularExpression &regex, const SearchOptions options);
+    void searchDir(const QUrl &dirUrl,
+                   const QHash<QRegularExpression, int> &regexHash,
+                   const SearchOptions options,
+                   std::set<QString> &iteratedDirs,
+                   std::queue<QUrl> &pendingDirs);
+    bool match(const KIO::UDSEntry &entry, QHash<QRegularExpression, int> regexHash, const SearchOptions options);
+
+    QStringList splitWordList(const QString pattern);
+    QString escapeApostrophes(const QString pattern);
 
     SearchOptions parseSearchOptions(const QString optionContent, const QString optionHidden, const SearchOption defaultOptions);
     SearchSrcs parseSearchSrc(const QString optionSrc, const SearchSrc defaultSrcs);

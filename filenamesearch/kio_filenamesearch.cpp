@@ -63,7 +63,7 @@ QString escapePhrase(const QString &regex)
 {
     QString escapedRegex = regex;
 
-    escapedRegex.replace(QRegularExpression(QStringLiteral("\\s+")), QStringLiteral(" "));
+    escapedRegex.replace(QRegularExpression(QStringLiteral("(\\s|_)+")), QStringLiteral(" "));
     escapedRegex = QRegularExpression::escape(escapedRegex);
     escapedRegex.replace(QRegularExpression(QStringLiteral("\\\\ ")), QStringLiteral("\\s+"));
 
@@ -81,61 +81,6 @@ class KIOPluginForMetaData : public QObject
     Q_OBJECT
     Q_PLUGIN_METADATA(IID "org.kde.kio.worker.filenamesearch" FILE "filenamesearch.json")
 };
-
-static bool contentContainsPattern(const QUrl &url, const QRegularExpression &regex)
-{
-    auto fileContainsPattern = [&](const QString &path) {
-        QFile file(path);
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            return false;
-        }
-
-        QTextStream in(&file);
-        while (!in.atEnd()) {
-            const QString line = in.readLine();
-            if (regex.match(line).hasMatch()) {
-                return true;
-            }
-        }
-
-        return false;
-    };
-
-    if (url.isLocalFile()) {
-        return fileContainsPattern(url.toLocalFile());
-    } else {
-        QTemporaryFile tempFile;
-        if (tempFile.open()) {
-            const QString tempName = tempFile.fileName();
-            KIO::Job *getJob = KIO::file_copy(url, QUrl::fromLocalFile(tempName), -1, KIO::Overwrite | KIO::HideProgressInfo);
-            if (getJob->exec()) {
-                // The non-local file was downloaded successfully.
-                return fileContainsPattern(tempName);
-            }
-        }
-    }
-
-    return false;
-}
-
-//  Search for a term in the filename and then, if SearchContent set, in the body of the file
-//
-bool FileNameSearchProtocol::match(const KIO::UDSEntry &entry, const QRegularExpression &regex, const SearchOptions options)
-{
-    if (options.testFlag(SearchOption::SearchFileName) && regex.match(entry.stringValue(KIO::UDSEntry::UDS_NAME)).hasMatch()) {
-        return true;
-    }
-    if (options.testFlags(SearchOption::SearchContent)) {
-        const QUrl entryUrl(entry.stringValue(KIO::UDSEntry::UDS_URL));
-        QMimeDatabase mdb;
-        QMimeType mimetype = mdb.mimeTypeForUrl(entryUrl);
-        if (mimetype.inherits(QStringLiteral("text/plain"))) {
-            return contentContainsPattern(entryUrl, regex);
-        }
-    }
-
-    return false;
-}
 
 FileNameSearchProtocol::FileNameSearchProtocol(const QByteArray &pool, const QByteArray &app)
     : QObject()
@@ -221,13 +166,20 @@ FileNameSearchProtocol::SearchSyntax FileNameSearchProtocol::parseSearchSyntax(c
     //     Pass the query expression "as is"
     //  If SearchSyntax::Phrase
     //     Escape Regex 'special characters' but allow flexible matching of whitespace
+    //  If SearchSyntax::WordList
+    //     Treat the pattern as a space separated list of words where the aim is to find
+    //     a match for all of them.
+    //  The external script can match phrases but not lists of words, in the case of an
+    //  explicit syntax=wordlist use the internal code.
 
     SearchSyntax searchSyntax = defaultSyntax;
 
-    if (QString::compare(optionSyntax, QLatin1String("phrase"), Qt::CaseInsensitive) == 0) {
-        searchSyntax = SearchSyntax::Phrase;
-    } else if (QString::compare(optionSyntax, QLatin1String("regex"), Qt::CaseInsensitive) == 0) {
+    if (QString::compare(optionSyntax, QLatin1String("regex"), Qt::CaseInsensitive) == 0) {
         searchSyntax = SearchSyntax::Regex;
+    } else if (QString::compare(optionSyntax, QLatin1String("phrase"), Qt::CaseInsensitive) == 0) {
+        searchSyntax = SearchSyntax::Phrase;
+    } else if (QString::compare(optionSyntax, QLatin1String("wordlist"), Qt::CaseInsensitive) == 0) {
+        searchSyntax = SearchSyntax::WordList;
     }
     return searchSyntax;
 }
@@ -251,12 +203,252 @@ FileNameSearchProtocol::SearchSrcs FileNameSearchProtocol::parseSearchSrc(const 
     return srcs;
 }
 
+//  Search for terms in the filename and then, if SearchContent set, in the body of the file
+//  Return true if all the terms match
+//  Potentially possible to use a single match with regex lookaheads here, as in (?=.*two)(?=.*one),
+//  but the need to look in the filename and the content causes too much trouble.
+
+static bool filenameContainsPattern(const KIO::UDSEntry &entry, QHash<QRegularExpression, int> &regexHash)
+{
+    QHash<QRegularExpression, int>::const_iterator i;
+    bool matchedEverything = true;
+
+    for (i = regexHash.constBegin(); i != regexHash.constEnd(); ++i) {
+        if (regexHash.value(i.key()) == 0) {
+            if (i.key().match(entry.stringValue(KIO::UDSEntry::UDS_NAME)).hasMatch()) {
+                regexHash[i.key()]++;
+            } else {
+                matchedEverything = false;
+            }
+        }
+    }
+
+    return matchedEverything;
+}
+
+static bool contentContainsPattern(const QUrl &url, QHash<QRegularExpression, int> &regexHash)
+{
+    auto fileContainsPattern = [&regexHash](const QString &path) {
+        QFile file(path);
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            return false;
+        }
+
+        QHashIterator<QRegularExpression, int> regex(regexHash);
+        QTextStream in(&file);
+        QString line;
+        bool matchedEverything = false;
+
+        //  Need to concatenate lines to support multiline phrase searches.
+        //  Just search across line boundaries, not paragraph boundaries.
+        //  Surely not the best way of doing it, longer term should probably
+        //  use the plaintextextractor as this copes with legacy (non unicode)
+        //  encodings.
+
+        while (!in.atEnd()) {
+            const QString line2 = in.readLine();
+            line.append(line2);
+            regex.toFront();
+            matchedEverything = true;
+
+            while (regex.hasNext()) {
+                regex.next();
+                if (regexHash.value(regex.key()) == 0) {
+                    if (regex.key().match(line).hasMatch()) {
+                        regexHash[regex.key()]++;
+                    } else {
+                        matchedEverything = false;
+                    }
+                }
+            }
+            if (matchedEverything) {
+                break;
+            }
+            line = line2;
+            line.append(QLatin1Char('\n'));
+        }
+
+        return matchedEverything;
+    };
+
+    if (url.isLocalFile()) {
+        return fileContainsPattern(url.toLocalFile());
+    } else {
+        QTemporaryFile tempFile;
+        if (tempFile.open()) {
+            const QString tempName = tempFile.fileName();
+            KIO::Job *getJob = KIO::file_copy(url, QUrl::fromLocalFile(tempName), -1, KIO::Overwrite | KIO::HideProgressInfo);
+            if (getJob->exec()) {
+                // The non-local file was downloaded successfully.
+                return fileContainsPattern(tempName);
+            }
+        }
+    }
+
+    return false;
+}
+
+bool FileNameSearchProtocol::match(const KIO::UDSEntry &entry, QHash<QRegularExpression, int> regexHash, const SearchOptions options)
+{
+    bool matchedEverything = filenameContainsPattern(entry, regexHash);
+
+    if (options.testFlag(SearchOption::SearchContent) && !matchedEverything) {
+        const QUrl entryUrl(entry.stringValue(KIO::UDSEntry::UDS_URL));
+        QMimeDatabase mdb;
+        QMimeType mimetype = mdb.mimeTypeForUrl(entryUrl);
+        if (mimetype.inherits(QStringLiteral("text/plain"))) {
+            matchedEverything = contentContainsPattern(entryUrl, regexHash);
+        }
+    }
+
+    return matchedEverything;
+}
+
+//  Scan a pattern looking for single quotes. A quote within a word,
+//  as in "xxx'x", is assumed to be an apostrope and backslash escaped
+
+QString FileNameSearchProtocol::escapeApostrophes(const QString pattern)
+{
+    bool escaped = false;
+    bool seenSpace = true;
+    bool seenApostrophe = false;
+    QString escapedPattern = QString();
+
+    //  A rough heuristic, if we have a quote at the end of a phrase and it would be the only
+    //  quote, escape it so it's treated as an apostrophe.
+
+    int countSingleQuotes = 0;
+
+    auto isEvenNumberOfQuotes = [&countSingleQuotes]() {
+        return (countSingleQuotes % 2 == 0);
+    };
+
+    auto treatQuoteAsQuote = [&seenApostrophe, &countSingleQuotes, &escapedPattern](const QChar c) {
+        if (seenApostrophe) {
+            escapedPattern.append(QLatin1Char('\''));
+            countSingleQuotes++;
+            seenApostrophe = false;
+        }
+        escapedPattern.append(c);
+    };
+
+    auto treatQuoteAsApostrophe = [&seenApostrophe, &escapedPattern](const QChar c) {
+        if (seenApostrophe) {
+            escapedPattern.append(QLatin1String("\\'"));
+            seenApostrophe = false;
+        }
+        escapedPattern.append(c);
+    };
+
+    for (const auto &c : pattern) {
+        if (escaped) {
+            escapedPattern.append(c);
+            escaped = false;
+            seenSpace = (c.isSpace() || c == QLatin1Char('_'));
+            seenApostrophe = false;
+        } else if (c == QLatin1Char('\\')) {
+            treatQuoteAsApostrophe(c);
+            escaped = true;
+        } else if (c == QLatin1Char('\'')) {
+            if (!seenSpace && !seenApostrophe) {
+                seenApostrophe = true;
+            } else {
+                escapedPattern.append(QLatin1Char('\''));
+                countSingleQuotes++;
+            }
+        } else if (c.isSpace() || c == QLatin1Char('_')) {
+            if (isEvenNumberOfQuotes()) {
+                treatQuoteAsApostrophe(c);
+            } else {
+                treatQuoteAsQuote(c);
+            }
+            seenSpace = true;
+        } else {
+            treatQuoteAsApostrophe(c);
+            seenSpace = false;
+        }
+    }
+
+    if (seenApostrophe) {
+        if (isEvenNumberOfQuotes()) {
+            escapedPattern.append(QLatin1String("\\'"));
+        } else {
+            escapedPattern.append(QLatin1Char('\''));
+        }
+        countSingleQuotes++;
+    }
+
+    return escapedPattern;
+}
+
+//  Split the search string on spaces into a list of terms, returning the terms
+//  as keys in a QHash. Used with the SearchSyntax=WordList option.
+
+QStringList FileNameSearchProtocol::splitWordList(const QString pattern)
+{
+    //  Handle quoted phrases, accepting single or double quotes.
+    //  Backslashed quotes are treated as normal characters.
+    //  Spaces are replaced by the regex "\s+" when within quoted phrases,
+    //  and as separators otherwise.
+
+    //  The handling of underscores mimics Baloo, where they are treated
+    //  as word separators. A search for Adventures_in_Wonderland works as
+    //  if it is a quoted phrase "Adventures in Wonderland".
+
+    QStringList wordList;
+    QString escapedPattern = escapeApostrophes(pattern);
+
+    bool inSingleQuotes = false;
+    bool inDoubleQuotes = false;
+    bool escaped = false;
+    QString splitTerm = QString();
+
+    auto addTerm = [&wordList, &splitTerm](const QString term) {
+        if (!term.isEmpty()) {
+            wordList.append(term);
+            splitTerm = QString();
+        }
+    };
+
+    for (const auto &c : escapedPattern) {
+        if (escaped) {
+            splitTerm.append(c);
+            escaped = false;
+        } else if (c == QLatin1Char('\\')) {
+            escaped = true;
+        } else if (c == QLatin1Char('\'') && !inDoubleQuotes) {
+            if (inSingleQuotes) {
+                addTerm(escapePhrase(splitTerm));
+            }
+            inSingleQuotes = !inSingleQuotes;
+        } else if (c == QLatin1Char('"') && !inSingleQuotes) {
+            if (inDoubleQuotes) {
+                addTerm(escapePhrase(splitTerm));
+            }
+            inDoubleQuotes = !inDoubleQuotes;
+        } else if (c.isSpace() && !inSingleQuotes && !inDoubleQuotes) {
+            if (!splitTerm.isEmpty()) {
+                splitTerm = escapePhrase(splitTerm);
+                addTerm(splitTerm);
+            }
+        } else {
+            splitTerm.append(c);
+        }
+    }
+
+    if (!splitTerm.isEmpty()) {
+        addTerm(escapePhrase(splitTerm));
+    }
+
+    return wordList;
+}
+
 KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 {
     listRootEntry();
 
     const QUrlQuery urlQuery(url);
-    QString search = urlQuery.queryItemValue(QStringLiteral("search"), QUrl::FullyDecoded);
+    QString search = urlQuery.queryItemValue(QStringLiteral("search"), QUrl::FullyDecoded).trimmed();
     if (search.isEmpty()) {
         return KIO::WorkerResult::pass();
     }
@@ -285,45 +477,76 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     SearchOptions options = parseSearchOptions(optionContent, optionHidden, SearchOption::SearchFileName);
     SearchSyntax syntax = parseSearchSyntax(optionSyntax, SearchSyntax::Regex);
 
-    if (syntax == SearchSyntax::Phrase) {
+    QStringList termList;
+    switch (syntax) {
+    case SearchSyntax::Regex:
+        termList = {search};
+        break;
+    case SearchSyntax::Phrase:
         search = escapePhrase(search);
+        termList = {search};
+        break;
+    case SearchSyntax::WordList:
+        termList = splitWordList(search);
+        break;
     }
+    int numberOfTerms = termList.count();
 
-    std::set<QString> iteratedDirs;
-    std::queue<QUrl> pendingDirs;
+    //  Check the split up list of search terms or expressions to see whether they are valid.
 
-    const QRegularExpression regex(search, QRegularExpression::CaseInsensitiveOption);
-    if (!regex.isValid()) {
+    auto invalidRegex = [](const QString &search, QString errorString) {
         qCWarning(KIO_FILENAMESEARCH) << "Invalid QRegularExpression/PCRE search pattern:" << search;
-        QString errorString = regex.errorString();
         errorString[0] = errorString[0].toUpper();
         return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED,
                                        i18nc("@info:status", "Invalid search query: '%1'\nExpected a regular expression: %2", search, errorString));
+    };
+
+    for (auto term : termList) {
+        const QRegularExpression regex(term, QRegularExpression::CaseInsensitiveOption);
+        if (!regex.isValid()) {
+            return invalidRegex(regex.pattern(), regex.errorString());
+        }
     }
 
 #if !defined(Q_OS_WIN32)
     // Prefer using external tools if available
-    if (srcs.testFlag(SearchSrc::External) && options.testFlag(SearchOption::SearchContent) && dirUrl.isLocalFile()) {
-        KIO::WorkerResult result = searchDirWithExternalTool(dirUrl, regex);
-        if (result.error() != KIO::ERR_UNSUPPORTED_ACTION) {
-            return result;
-        }
-        if (srcs.testFlag(SearchSrc::Internal)) {
-            qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Fall back to KIO.";
-        } else {
-            qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Test fails.";
-            return KIO::WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, QStringLiteral("External tool not available"));
+    if (srcs.testFlag(SearchSrc::External) && options.testFlag(SearchOption::SearchContent) && (syntax == SearchSyntax::Phrase || syntax == SearchSyntax::Regex)
+        && dirUrl.isLocalFile()) {
+        const QRegularExpression regex(search, QRegularExpression::CaseInsensitiveOption);
+        if (regex.isValid()) {
+            KIO::WorkerResult result = searchDirWithExternalTool(dirUrl, regex);
+            if (result.error() == KIO::ERR_UNSUPPORTED_ACTION) {
+                if (srcs.testFlag(SearchSrc::Internal)) {
+                    qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Fall back to KIO.";
+                } else {
+                    qCDebug(KIO_FILENAMESEARCH) << "External tool not available. Test fails.";
+                    return KIO::WorkerResult::fail(KIO::ERR_CANNOT_LAUNCH_PROCESS, QStringLiteral("External tool not available"));
+                }
+            } else {
+                return result;
+            }
         }
     }
 #endif
 
     if (srcs.testFlag(SearchSrc::Internal)) {
-        searchDir(dirUrl, regex, options, iteratedDirs, pendingDirs);
+        std::set<QString> iteratedDirs;
+        std::queue<QUrl> pendingDirs;
+        QHash<QRegularExpression, int> regexHash;
+
+        for (auto term : termList) {
+            const QRegularExpression regex(term, QRegularExpression::CaseInsensitiveOption);
+            if (regex.isValid()) {
+                regexHash[regex] = 0;
+            }
+        }
+
+        searchDir(dirUrl, regexHash, options, iteratedDirs, pendingDirs);
 
         while (!pendingDirs.empty()) {
             const QUrl pendingUrl = pendingDirs.front();
             pendingDirs.pop();
-            searchDir(pendingUrl, regex, options, iteratedDirs, pendingDirs);
+            searchDir(pendingUrl, regexHash, options, iteratedDirs, pendingDirs);
         }
     }
 
@@ -331,7 +554,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 }
 
 void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
-                                       const QRegularExpression &regex,
+                                       const QHash<QRegularExpression, int> &regexHash,
                                        const SearchOptions options,
                                        std::set<QString> &iteratedDirs,
                                        std::queue<QUrl> &pendingDirs)
@@ -412,12 +635,12 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
 
                     //  UDS_DISPLAY_NAME is e.g. "foo/bar/somefile.txt"
 
-                    if ((!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFiles)) && match(entry, regex, folderOptions)) {
+                    if ((!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFiles)) && match(entry, regexHash, folderOptions)) {
                         entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
                         listEntry(entry);
                     }
 
-                } else if ((!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFiles)) && match(entry, regex, options)) {
+                } else if ((!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFiles)) && match(entry, regexHash, options)) {
                     entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
                     listEntry(entry);
                 }

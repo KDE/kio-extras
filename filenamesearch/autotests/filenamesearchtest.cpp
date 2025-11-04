@@ -30,6 +30,12 @@ private Q_SLOTS:
     void phraseMatch_data();
     void phraseMatch();
 
+    void regexMatch_data();
+    void regexMatch();
+
+    void wordListMatch_data();
+    void wordListMatch();
+
     void filenameContent_data();
     void filenameContent();
 
@@ -131,9 +137,6 @@ QByteArrayList FilenameSearchTest::doSearchQuery(QUrl url, KIO::ListJob::ListFla
 
 void FilenameSearchTest::initTestCase()
 {
-    //  Find the source folder for the test data, set up a destination folder
-    //  that will contain the symlinked folders.
-
     const QString sourcePath = QFINDTESTDATA("data/folderTree");
     QString destinationPath = sourcePath;
     destinationPath.replace("/folderTree", "/folderTreeSymlinks");
@@ -150,8 +153,7 @@ void FilenameSearchTest::initTestCase()
     }
 
     //  Programatically add a .bak file to the test data, a static file fails an audit
-    //  when being uploaded to invent.
-    //  Similarly the symlinks have to be created programatically to avoid trouble uploading.
+    //  when being uploaded to invent. Use QFile::copy
 
     QFile::remove(sourcePath + QStringLiteral("/alice1.txt.bak"));
 
@@ -233,7 +235,7 @@ void FilenameSearchTest::stringMatch_data()
     addRow("Filename Extension Match",
            QByteArray(""),
            QByteArrayLiteral(".txt"),
-           {QByteArrayLiteral("Rabbit.TXT"), QByteArrayLiteral("alice.txt"), QByteArrayLiteral("rabbit.txt")});
+           {QByteArrayLiteral("Rabbit.TXT"), QByteArrayLiteral("alice.txt"), QByteArrayLiteral("rabbit.txt"), QByteArrayLiteral("walrus.txt")});
     addRow("Filename Leading Substring Match", QByteArray(""), QByteArrayLiteral("alic"), {QByteArrayLiteral("alice.txt")});
     addRow("Filename Trailing Substring Match", QByteArray(""), QByteArrayLiteral("lice.txt"), {QByteArrayLiteral("alice.txt")});
     addRow("Filename Substring Match", QByteArray(""), QByteArrayLiteral("lic"), {QByteArrayLiteral("alice.txt")});
@@ -250,6 +252,7 @@ void FilenameSearchTest::stringMatch_data()
            {QByteArrayLiteral("Rabbit.TXT"), QByteArrayLiteral("rabbit.txt")});
 
     addRow("Content Word Apostrophe Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Alice's"), {QByteArrayLiteral("alice.txt")});
+    addRow("Content Word Escaped Apostrophe Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Alice\'s"), {QByteArrayLiteral("alice.txt")});
 }
 
 void FilenameSearchTest::stringMatch()
@@ -268,28 +271,21 @@ void FilenameSearchTest::phraseMatch_data()
 {
     addColumns();
 
-    addRow("No Content Phrase Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Cheshire Cat"), {});
-    addRow("Content Exact Phrase Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Adventures in Wonderland"), {QByteArrayLiteral("alice.txt")});
+    addRow("No Content Phrase Match", QByteArray("syntax=phrase&checkContent=yes"), QByteArrayLiteral("Cheshire Cat"), {});
+    addRow("Content Exact Phrase Match",
+           QByteArray("syntax=phrase&checkContent=yes"),
+           QByteArrayLiteral("Adventures in Wonderland"),
+           {QByteArrayLiteral("alice.txt")});
 
-    //  Check explicit phrase and regex syntax searches
+    //  Check explicit phrase syntax searches
 
     addRow("Filename Phrase Query with Phrase Match", QByteArray("syntax=phrase"), QByteArrayLiteral("alice"), {QByteArrayLiteral("alice.txt")});
-    addRow("Filename Regex Query with Regex Match", QByteArray("syntax=regex"), QByteArrayLiteral("al.*ce"), {QByteArrayLiteral("alice.txt")});
     addRow("Filename Phrase Query with Regex Match", QByteArray("syntax=phrase"), QByteArrayLiteral("al.*ce"), {});
     addRow("Content Phrase Query with Phrase Match",
            QByteArray("syntax=phrase&checkContent=yes"),
            QByteArrayLiteral("Adventures in Wonderland"),
            {QByteArrayLiteral("alice.txt")});
-    addRow("Content Regex Query with Regex Match",
-           QByteArray("syntax=regex&checkContent=yes"),
-           QByteArrayLiteral("Advent.* in Wond.*"),
-           {QByteArrayLiteral("alice.txt")});
     addRow("No Content Phrase Query with Regex Match", QByteArray("syntax=phrase&checkContent=yes"), QByteArrayLiteral("Advent.* in Wond.*"), {});
-
-    //  Check searches for collections of words work rather than exact phrases.
-
-    addRow("Content Soup Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Adventures Wonderland"), {QByteArrayLiteral("alice.txt")});
-    addRow("Content Random Soup Match", QByteArray("checkContent=yes"), QByteArrayLiteral("Wonderland Adventures"), {QByteArrayLiteral("alice.txt")});
 }
 
 void FilenameSearchTest::phraseMatch()
@@ -299,10 +295,120 @@ void FilenameSearchTest::phraseMatch()
     QFETCH(QByteArrayList, expectedFiles);
 
     const QString path = QFINDTESTDATA("data/stringMatch");
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
 
-    QEXPECT_FAIL("Content Soup Match", "Should match a collection of terms", Continue);
-    QEXPECT_FAIL("Content Random Soup Match", "Should match a disordered collection of terms", Continue);
+    QCOMPARE(results, expectedFiles);
+}
 
+void FilenameSearchTest::regexMatch_data()
+{
+    addColumns();
+
+    addRow("Filename Regex Query with Regex Match", QByteArray("syntax=regex"), QByteArrayLiteral("al.*ce"), {QByteArrayLiteral("alice.txt")});
+    addRow("Content Regex Query with Regex Match",
+           QByteArray("syntax=regex&checkContent=yes"),
+           QByteArrayLiteral("Advent.* in Wond.*"),
+           {QByteArrayLiteral("alice.txt")});
+
+    addRow("Content Start of String Match",
+           QByteArrayLiteral("syntax=regex&checkContent=yes"),
+           QByteArrayLiteral("^Walrus"),
+           {QByteArrayLiteral("walrus.txt")});
+    addRow("No Content Start of String Match", QByteArrayLiteral("syntax=regex&checkContent=yes"), QByteArrayLiteral("^Carpenter"), {});
+    addRow("Content End of String Match",
+           QByteArrayLiteral("syntax=regex&checkContent=yes"),
+           QByteArrayLiteral("Carpenter$"),
+           {QByteArrayLiteral("walrus.txt")});
+    addRow("No Content End of String Match", QByteArrayLiteral("syntax=regex&checkContent=yes"), QByteArrayLiteral("Walrus$"), {});
+
+    addRow("Content Word Escaped Backslash Match",
+           QByteArray("syntax=regex&checkContent=yes"),
+           QByteArrayLiteral("Alice\\'s"),
+           {QByteArrayLiteral("alice.txt")});
+
+    addRow("Content Invalid Regular Expression", QByteArrayLiteral("syntax=regex&checkContent=yes"), QByteArrayLiteral("+"), {});
+    addRow("Content Escaped Regex Special Character",
+           QByteArrayLiteral("syntax=regex&checkContent=yes"),
+           QByteArrayLiteral("\\+"),
+           {QByteArrayLiteral("walrus.txt")});
+    addRow("No Content Escaped Regex Special Character", QByteArrayLiteral("syntax=regex&checkContent=yes"), QByteArrayLiteral("\\*"), {});
+}
+
+void FilenameSearchTest::regexMatch()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/stringMatch");
+    QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
+
+    QCOMPARE(results, expectedFiles);
+}
+
+void FilenameSearchTest::wordListMatch_data()
+{
+    addColumns();
+
+    //  Check searches for collections of words work rather than exact phrases.
+
+    addRow("Content Soup Match", QByteArray("syntax=wordList&checkContent=yes"), QByteArrayLiteral("Adventures Wonderland"), {QByteArrayLiteral("alice.txt")});
+    addRow("Content Random Soup Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("Wonderland Adventures"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("Content Quoted Phrase Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("'Adventures in Wonderland'"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("Content Underscore Separated Phrase Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("Adventures_in_Wonderland"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("Content Quoted Multiline Phrase Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("'Wonderland Lewis'"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("No Content Single Quoted Phrase Match", QByteArray("syntax=wordList&checkContent=yes"), QByteArrayLiteral("'Wonderland Adventures'"), {});
+    addRow("No Content Double Quoted Phrase Match", QByteArray("syntax=wordList&checkContent=yes"), QByteArrayLiteral("\"Wonderland Adventures\""), {});
+    addRow("No Content Underscore Separated Phrase Match", QByteArray("syntax=wordList&checkContent=yes"), QByteArrayLiteral("Wonderland_Adventures"), {});
+    addRow("Content Quoted Phrases Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("\"Adventures in Wonderland\" 'Lewis Carroll'"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("Content Single Quoted Apostrophe Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("'Alice's Adventures'"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("Content Double Quoted Apostrophe Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("\"Alice's Adventures\""),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("Content Underscore Separated Apostrophe Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("Alice's_Adventures"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("Content Single Quoted Escaped Apostrophe Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("'Alice\\'s Adventures'"),
+           {QByteArrayLiteral("alice.txt")});
+    addRow("Content Double Quoted Escaped Apostrophe Match",
+           QByteArray("syntax=wordList&checkContent=yes"),
+           QByteArrayLiteral("\"Alice\\'s Adventures\""),
+           {QByteArrayLiteral("alice.txt")});
+
+    addRow("Content Regex Special Character", QByteArrayLiteral("syntax=wordList&checkContent=yes"), QByteArrayLiteral("+"), {QByteArrayLiteral("walrus.txt")});
+    addRow("No Content Escaped Regex Special Character", QByteArrayLiteral("syntax=wordList&checkContent=yes"), QByteArrayLiteral("\\*"), {});
+    addRow("No Content Quoted Regex Special Character", QByteArrayLiteral("syntax=wordList&checkContent=yes"), QByteArrayLiteral("'*'"), {});
+}
+
+void FilenameSearchTest::wordListMatch()
+{
+    QFETCH(QByteArray, searchOptions);
+    QFETCH(QByteArray, searchString);
+    QFETCH(QByteArrayList, expectedFiles);
+
+    const QString path = QFINDTESTDATA("data/stringMatch");
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
 
     QCOMPARE(results, expectedFiles);
