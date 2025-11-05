@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-09 00:42+0000\n"
+"POT-Creation-Date: 2025-11-05 00:44+0000\n"
 "PO-Revision-Date: 2025-10-12 20:18+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -19,12 +19,12 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 25.08.2\n"
 
-#: kio_filenamesearch.cpp:158
+#: kio_filenamesearch.cpp:103
 #, kde-format
 msgid "Search Folder"
 msgstr "Папка поиска"
 
-#: kio_filenamesearch.cpp:276
+#: kio_filenamesearch.cpp:468
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -34,7 +34,7 @@ msgstr ""
 "Недопустимое место поиска\n"
 "Попытка выполнить поиск в каталоге «/proc»"
 
-#: kio_filenamesearch.cpp:301
+#: kio_filenamesearch.cpp:501
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -44,7 +44,7 @@ msgstr ""
 "Недопустимый поисковый запрос: «%1»\n"
 "Ожидалось регулярное выражение: «%2»"
 
-#: kio_filenamesearch.cpp:541
+#: kio_filenamesearch.cpp:764
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

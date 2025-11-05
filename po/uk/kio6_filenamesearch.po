@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-09 00:42+0000\n"
+"POT-Creation-Date: 2025-11-05 00:44+0000\n"
 "PO-Revision-Date: 2025-07-26 09:54+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 23.04.3\n"
 
-#: kio_filenamesearch.cpp:158
+#: kio_filenamesearch.cpp:103
 #, kde-format
 msgid "Search Folder"
 msgstr "Шукати у теці"
 
-#: kio_filenamesearch.cpp:276
+#: kio_filenamesearch.cpp:468
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -33,7 +33,7 @@ msgstr ""
 "Некоректне місце пошуку\n"
 "Намагаємося шукати у каталозі /proc"
 
-#: kio_filenamesearch.cpp:301
+#: kio_filenamesearch.cpp:501
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -43,7 +43,7 @@ msgstr ""
 "Некоректний запит щодо пошуку: «%1»\n"
 "Мало бути вказано формальний вираз: %2"
 
-#: kio_filenamesearch.cpp:541
+#: kio_filenamesearch.cpp:764
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

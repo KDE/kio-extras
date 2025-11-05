@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-09 00:42+0000\n"
+"POT-Creation-Date: 2025-11-05 00:44+0000\n"
 "PO-Revision-Date: 2025-10-05 00:30+0100\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "20)) ? 1 : 2;\n"
 "X-Generator: Lokalize 25.08.1\n"
 
-#: kio_filenamesearch.cpp:158
+#: kio_filenamesearch.cpp:103
 #, kde-format
 msgid "Search Folder"
 msgstr "Dosar de căutare"
 
-#: kio_filenamesearch.cpp:276
+#: kio_filenamesearch.cpp:468
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -33,7 +33,7 @@ msgstr ""
 "Cale de căutare eronată\n"
 "S-a încercat căutarea în directorul /proc"
 
-#: kio_filenamesearch.cpp:301
+#: kio_filenamesearch.cpp:501
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -43,7 +43,7 @@ msgstr ""
 "Interogare de căutare eronată: „%1”\n"
 "Se aștepta o expresie regulată: %2"
 
-#: kio_filenamesearch.cpp:541
+#: kio_filenamesearch.cpp:764
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

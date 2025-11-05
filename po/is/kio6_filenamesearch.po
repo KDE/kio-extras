@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-10-09 00:42+0000\n"
+"POT-Creation-Date: 2025-11-05 00:44+0000\n"
 "PO-Revision-Date: 2025-10-23 14:37+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
@@ -17,12 +17,12 @@ msgstr ""
 "Plural-Forms: Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 23.08.5\n"
 
-#: kio_filenamesearch.cpp:158
+#: kio_filenamesearch.cpp:103
 #, kde-format
 msgid "Search Folder"
 msgstr "Leita í möppu"
 
-#: kio_filenamesearch.cpp:276
+#: kio_filenamesearch.cpp:468
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -32,7 +32,7 @@ msgstr ""
 "Ógild staðsetning leitar\n"
 "Prófa að leita í /proc möppunni"
 
-#: kio_filenamesearch.cpp:301
+#: kio_filenamesearch.cpp:501
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -42,7 +42,7 @@ msgstr ""
 "Ógild leitarbeiðni: '%1'\n"
 "Átti von á reglulegri segð: %2"
 
-#: kio_filenamesearch.cpp:541
+#: kio_filenamesearch.cpp:764
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
