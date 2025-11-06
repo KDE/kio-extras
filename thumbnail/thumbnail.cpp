@@ -182,7 +182,7 @@ extern "C" Q_DECL_EXPORT int kdemain(int argc, char **argv)
     // so it for example wouldn't reply to ksmserver - on the other
     // hand, this worker uses QPixmaps for some reason, and they
     // need QGuiApplication
-    qunsetenv("SESSION_MANAGER");
+    QCoreApplication::setAttribute(Qt::AA_DisableSessionManager);
 
     // Some plugins may cause unwanted windows to appear
     // (e.g. Webarchiver, see https://bugs.kde.org/show_bug.cgi?id=500173).
