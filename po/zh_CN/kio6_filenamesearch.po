@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf6-trunk/messages/kio-extras/kio6_filenamesearch.pot\n"
-"X-Crowdin-File-ID: 54664\n"
+"X-Crowdin-File: /kf6-stable/messages/kio-extras/kio6_filenamesearch.pot\n"
+"X-Crowdin-File-ID: 54974\n"
 
 #: kio_filenamesearch.cpp:103
 #, kde-format
