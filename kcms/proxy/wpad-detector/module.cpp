@@ -32,8 +32,13 @@ public:
     WpadDetectorModule(QObject *parent, const QList<QVariant> & /*args*/)
         : KDEDModule(parent)
     {
-        connect(m_networkInformation, &QNetworkInformation::reachabilityChanged, this, &WpadDetectorModule::check);
-        QTimer::singleShot(4s, this, &WpadDetectorModule::check);
+        // Delay the proxy check by quite a bit so we can be relatively certain that the network is "properly" up.
+        // This in particular may also include VPNs coming up in addition to the interface itself, so we should be
+        // fairly generous here.
+        QTimer::singleShot(60s, this, [this] {
+            connect(m_networkInformation, &QNetworkInformation::reachabilityChanged, this, &WpadDetectorModule::check);
+            QTimer::singleShot(0s, this, &WpadDetectorModule::check);
+        });
     }
 
     void check()
