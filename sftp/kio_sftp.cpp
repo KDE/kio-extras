@@ -1139,7 +1139,11 @@ Result SFTPWorker::open(const QUrl &url, QIODevice::OpenMode mode)
     }
 
     if (flags & O_CREAT) {
-        mOpenFile = sftp_open(mSftp, path_c.constData(), flags, permsToPosix(perms::owner_read | perms::owner_write | perms::group_read | perms::others_read));
+        // Give all permissions, umask on target machine will remove the unwanted ones
+        perms initialMode = perms::owner_read | perms::owner_write |
+                            perms::group_read | perms::group_write |
+                            perms::others_read | perms::others_write;
+        mOpenFile = sftp_open(mSftp, path_c.constData(), flags, permsToPosix(initialMode));
     } else {
         mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0);
     }
@@ -1482,7 +1486,10 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
             }
         }
     } else {
-        perms initialMode = perms::owner_read | perms::owner_write | perms::group_read | perms::others_read;
+        // Give all permissions, umask on target machine will remove the unwanted ones
+        perms initialMode = perms::owner_read | perms::owner_write |
+                      perms::group_read | perms::group_write |
+                      perms::others_read | perms::others_write;
         if (permissions.has_value()) {
             initialMode = permissions.value() | perms::owner_write | perms::owner_read;
         }
@@ -1687,9 +1694,12 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
         QFile::remove(sPart);
     }
 
+    // Give all permissions, umask will remove the unwanted ones
+    perms initialMode = perms::owner_read | perms::owner_write |
+                        perms::group_read | perms::group_write |
+                        perms::others_read | perms::others_write;
     // WABA: Make sure that we keep writing permissions ourselves,
     // otherwise we can be in for a surprise on NFS.
-    perms initialMode = perms::owner_read | perms::owner_write | perms::group_read | perms::group_write | perms::others_read | perms::others_write;
     if (permissions.has_value()) {
         initialMode = permissions.value() | perms::owner_write;
     }
