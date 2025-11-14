@@ -1383,7 +1383,7 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 
 Result SFTPWorker::put(const QUrl &url, int permissions, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << permissions << ", overwrite =" << (flags & KIO::Overwrite) << ", resume =" << (flags & KIO::Resume);
+    qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << Qt::oct << permissions << ", overwrite =" << (flags & KIO::Overwrite) << ", resume =" << (flags & KIO::Resume);
 
     qCDebug(KIO_SFTP_LOG) << url;
 
@@ -1392,7 +1392,7 @@ Result SFTPWorker::put(const QUrl &url, int permissions, KIO::JobFlags flags)
 
 Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags, int fd)
 {
-    qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << permissionsMode << ", overwrite =" << (flags & KIO::Overwrite)
+    qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << Qt::oct << permissionsMode << ", overwrite =" << (flags & KIO::Overwrite)
                           << ", resume =" << (flags & KIO::Resume);
 
     auto permissions(posixToOptionalPerms(permissionsMode));
@@ -1481,7 +1481,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
             initialMode = permissions.value() | perms::owner_write | perms::owner_read;
         }
 
-        qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString::fromLocal8Bit(dest) << ", mode=" << QString::number(permsToPosix(initialMode));
+        qCDebug(KIO_SFTP_LOG) << "Trying to open:" << QString::fromLocal8Bit(dest) << ", permissions =" << Qt::oct << permsToPosix(initialMode);
         destFile.reset(sftp_open(mSftp, dest.constData(), O_CREAT | O_TRUNC | O_WRONLY, permsToPosix(initialMode)));
     } // flags & KIO::Resume
 
@@ -1504,7 +1504,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     };
 
     if (destFile == nullptr) {
-        qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString::fromLocal8Bit(dest) << ", permissions=" << permsToPosix(permissions.value_or(perms::none))
+        qCDebug(KIO_SFTP_LOG) << "COULD NOT WRITE " << QString::fromLocal8Bit(dest) << ", permissions =" << Qt::oct << permsToPosix(permissions.value_or(perms::none))
                               << ", error=" << ssh_get_error(mSession);
         if (sftp_get_error(mSftp) == SSH_FX_PERMISSION_DENIED) {
             return closeOnError(KIO::ERR_WRITE_ACCESS_DENIED);
@@ -1583,7 +1583,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
 
     // set final permissions
     if (permissions.has_value() && !(flags & KIO::Resume)) {
-        qCDebug(KIO_SFTP_LOG) << "Trying to set final permissions of " << dest_orig << " to " << QString::number(permsToPosix(permissions.value()));
+        qCDebug(KIO_SFTP_LOG) << "Trying to set final permissions of " << dest_orig << " to " << Qt::oct << permsToPosix(permissions.value());
         if (sftp_chmod(mSftp, dest_orig_c.constData(), permsToPosix(permissions.value())) < 0) {
             warning(i18n("Could not change permissions for\n%1", url.toString()));
             return Result::pass();
@@ -1626,8 +1626,8 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
 
 Result SFTPWorker::copy(const QUrl &src, const QUrl &dest, int permissions, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SFTP_LOG) << src << " -> " << dest << " , permissions = " << QString::number(permissions) << ", overwrite = " << (flags & KIO::Overwrite)
-                          << ", resume = " << (flags & KIO::Resume);
+    qCDebug(KIO_SFTP_LOG) << src << " -> " << dest << " , permissions =" << Qt::oct << permissions << ", overwrite =" << (flags & KIO::Overwrite)
+                          << ", resume =" << (flags & KIO::Resume);
 
     const bool isSourceLocal = src.isLocalFile();
     const bool isDestinationLocal = dest.isLocalFile();
@@ -1644,7 +1644,7 @@ Result SFTPWorker::copy(const QUrl &src, const QUrl &dest, int permissions, KIO:
 
 Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int permissionsMode, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SFTP_LOG) << url << "->" << sCopyFile << ", permissions=" << permissionsMode;
+    qCDebug(KIO_SFTP_LOG) << url << "->" << sCopyFile << ", permissions =" << Qt::oct << permissionsMode;
 
     auto permissions = posixToOptionalPerms(permissionsMode);
 
@@ -1762,7 +1762,7 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
 
 Result SFTPWorker::sftpCopyPut(const QUrl &url, const QString &sCopyFile, int permissions, JobFlags flags)
 {
-    qCDebug(KIO_SFTP_LOG) << sCopyFile << "->" << url << ", permissions=" << permissions << ", flags" << flags;
+    qCDebug(KIO_SFTP_LOG) << sCopyFile << "->" << url << ", permissions=" << Qt::oct << permissions << ", flags" << flags;
 
     // check if source is ok ...
     QFileInfo copyFile(sCopyFile);
@@ -1997,7 +1997,7 @@ Result SFTPWorker::rename(const QUrl &src, const QUrl &dest, KIO::JobFlags flags
 
 Result SFTPWorker::symlink(const QString &target, const QUrl &dest, KIO::JobFlags flags)
 {
-    qCDebug(KIO_SFTP_LOG) << "link " << target << "->" << dest << ", overwrite = " << (flags & KIO::Overwrite) << ", resume = " << (flags & KIO::Resume);
+    qCDebug(KIO_SFTP_LOG) << "link " << target << "->" << dest << ", overwrite=" << (flags & KIO::Overwrite) << ", resume=" << (flags & KIO::Resume);
 
     if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
@@ -2033,7 +2033,7 @@ Result SFTPWorker::symlink(const QString &target, const QUrl &dest, KIO::JobFlag
 
 Result SFTPWorker::chmod(const QUrl &url, int permissions)
 {
-    qCDebug(KIO_SFTP_LOG) << "change permission of " << url << " to " << QString::number(permissions);
+    qCDebug(KIO_SFTP_LOG) << "change permission of " << url << " to " << Qt::oct << permissions;
 
     if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
