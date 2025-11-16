@@ -99,8 +99,18 @@ int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEn
         return EINVAL;
     }
 
-    if (!S_ISDIR(st.st_mode)) {
-        // Awkwardly documented at
+    // Set DOS attributes
+    if (stat_is_posix) {
+        // With POSIX extensions, we have reliable DOS attributes
+        udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, attrs & SMBC_DOS_MODE_HIDDEN);
+
+        // Note: SMBC_DOS_MODE_ARCHIVE and SMBC_DOS_MODE_SYSTEM don't have
+        // direct KIO UDS equivalents, but we could add them if needed
+
+        // Note: With POSIX extensions we get reliable st.st_nlink, but KIO::UDSEntry
+        // doesn't have a field for link count.
+    } else if (!S_ISDIR(st.st_mode)) {
+        // Fallback: Awkwardly documented at
         //    https://www.samba.org/samba/docs/using_samba/ch08.html
         // libsmb_stat.c assigns special meaning to +x permissions
         // (obviously only on files, all dirs are +x so this hacky representation
