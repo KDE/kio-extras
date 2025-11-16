@@ -45,13 +45,13 @@ int SMBWorker::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
 {
     int cacheStatErr = cache_stat(url, &st);
     if (cacheStatErr == 0) {
-        return statToUDSEntry(url, st, udsentry);
+        return statToUDSEntry(url, st, udsentry, false, 0);
     }
 
     return cacheStatErr;
 }
 
-int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry)
+int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry, bool stat_is_posix, uint32_t attrs)
 {
     if (!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode)) {
         qCDebug(KIO_SMB_LOG) << "mode: " << st.st_mode;

@@ -224,7 +224,7 @@ private:
     Q_REQUIRED_RESULT WorkerResult smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags);
     Q_REQUIRED_RESULT WorkerResult smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permissions, KIO::JobFlags flags);
     bool workaroundEEXIST(const int errNum) const;
-    int statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry);
+    int statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry, bool stat_is_posix = false, uint32_t attrs = 0);
     Q_REQUIRED_RESULT WorkerResult getACE(QDataStream &stream);
     Q_REQUIRED_RESULT WorkerResult setACE(QDataStream &stream);
 
