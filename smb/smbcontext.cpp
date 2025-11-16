@@ -36,6 +36,11 @@ SMBContext::SMBContext(SMBAuthenticator *authenticator)
     smbc_setOptionUseKerberos(m_context.get(), 1);
     smbc_setOptionFallbackAfterKerberos(m_context.get(), 1);
 
+#ifdef HAVE_SMBC_SETOPTIONPOSIXEXTENSIONS
+    /* Enable POSIX extensions if available */
+    smbc_setOptionPosixExtensions(m_context.get(), 1);
+#endif
+
     if (!smbc_init_context(m_context.get())) {
         m_context.reset();
         return;
