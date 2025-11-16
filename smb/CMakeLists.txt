@@ -17,6 +17,8 @@ cmake_push_check_state()
 list(APPEND CMAKE_REQUIRED_INCLUDES ${SAMBA_INCLUDE_DIR})
 list(APPEND CMAKE_REQUIRED_LIBRARIES ${SAMBA_LIBRARIES})
 check_symbol_exists(smbc_readdirplus2 "libsmbclient.h" HAVE_READDIRPLUS2)
+check_symbol_exists(smbc_getFunctionFGetxattr "libsmbclient.h" HAVE_SMBC_FGETXATTR)
+check_symbol_exists(smbc_setOptionPosixExtensions "libsmbclient.h" HAVE_SMBC_SETOPTIONPOSIXEXTENSIONS)
 cmake_pop_check_state()
 check_include_file(utime.h HAVE_UTIME_H)
 
