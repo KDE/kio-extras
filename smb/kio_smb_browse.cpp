@@ -43,12 +43,49 @@ int SMBWorker::cache_stat(const SMBUrl &url, struct stat *st)
 
 int SMBWorker::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
 {
+    bool stat_is_posix = false;
+    uint32_t attrs = 0;
+
     int cacheStatErr = cache_stat(url, &st);
-    if (cacheStatErr == 0) {
-        return statToUDSEntry(url, st, udsentry, false, 0);
+    if (cacheStatErr != 0) {
+        return cacheStatErr;
     }
 
-    return cacheStatErr;
+#ifdef HAVE_SMBC_FGETXATTR
+    // Try to get POSIX stat information via extended attributes
+    {
+        smbc_open_fn smbc_open = smbc_getFunctionOpen(m_context);
+        smbc_fgetxattr_fn smbc_fgetxattr = smbc_getFunctionFGetxattr(m_context);
+        smbc_close_fn smbc_close = smbc_getFunctionClose(m_context);
+        SMBCFILE *f = nullptr;
+
+        auto smbcUrl = url.toSmbcUrl();
+        f = smbc_open(m_context, smbcUrl.data(), O_PATH, 0);
+        if (f == nullptr) {
+            qCDebug(KIO_SMB_LOG) << "open(" << url.toDisplayString() << ") failed:" << strerror(errno);
+        } else {
+            char buf[sizeof(struct stat) + 4];
+            int ret;
+
+            // Check if POSIX extensions are enabled
+            ret = smbc_fgetxattr(m_context, f, "posix.attr.enabled", buf, sizeof(buf));
+
+            if ((ret == 2) && (buf[0] == '1') && (buf[1] == '\0')) {
+                // POSIX extensions are enabled, get the statinfo
+                ret = smbc_fgetxattr(m_context, f, "smb311_posix.statinfo", buf, sizeof(buf));
+                if (ret == sizeof(buf)) {
+                    memcpy(&st, buf, sizeof(struct stat));
+                    memcpy(&attrs, buf + sizeof(struct stat), 4);
+                    stat_is_posix = true;
+                    qCDebug(KIO_SMB_LOG) << "Got POSIX stat for" << url.toDisplayString();
+                }
+            }
+            smbc_close(m_context, f);
+        }
+    }
+#endif /* HAVE_SMBC_FGETXATTR */
+
+    return statToUDSEntry(url, st, udsentry, stat_is_posix, attrs);
 }
 
 int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry, bool stat_is_posix, uint32_t attrs)
