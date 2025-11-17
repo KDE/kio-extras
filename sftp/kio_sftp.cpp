@@ -216,7 +216,10 @@ void log_callback(int priority, const char *function, const char *buffer, void *
     worker->log_callback(priority, function, buffer, userdata);
 }
 
-inline std::optional<perms> posixToOptionalPerms(int mode) noexcept
+// Convert the int mode to perms
+// The input is not mode_t like posix permissions, but int, because the KIO API
+// defines -1 as "unset" or "default" permissions.
+inline std::optional<perms> modeToOptionalPerms(int mode) noexcept
 {
     if (mode < 0) {
         return {};
@@ -534,7 +537,7 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
         default: // type is an unsigned int and may contain anything, explicitly default to break
             break;
         }
-        access = posixToOptionalPerms(sb->permissions).value_or(perms::none);
+        access = modeToOptionalPerms(sb->permissions).value_or(perms::none);
         size = sb->size;
     }
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
@@ -1398,7 +1401,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     qCDebug(KIO_SFTP_LOG) << url << ", permissions =" << Qt::oct << permissionsMode << ", overwrite =" << (flags & KIO::Overwrite)
                           << ", resume =" << (flags & KIO::Resume);
 
-    auto permissions(posixToOptionalPerms(permissionsMode));
+    auto permissions(modeToOptionalPerms(permissionsMode));
 
     if (auto loginResult = sftpLogin(); !loginResult.success()) {
         return loginResult;
@@ -1418,7 +1421,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
 
     // Don't change permissions of the original file
     if (bOrigExists) {
-        permissions = posixToOptionalPerms(sb->permissions);
+        permissions = modeToOptionalPerms(sb->permissions);
         owner = sb->uid;
         group = sb->gid;
     }
@@ -1649,7 +1652,7 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
 {
     qCDebug(KIO_SFTP_LOG) << url << "->" << sCopyFile << ", permissions =" << Qt::oct << permissionsMode;
 
-    auto permissions = posixToOptionalPerms(permissionsMode);
+    auto permissions = modeToOptionalPerms(permissionsMode);
 
     // check if destination is ok ...
     QFileInfo copyFile(sCopyFile);
