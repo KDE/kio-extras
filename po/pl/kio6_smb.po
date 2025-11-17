@@ -1,6 +1,6 @@
 # translation of kio_smb.po to polish
 # translation of kio_smb.po to
-# Version: $Revision: 1681059 $
+# Version: $Revision: 1723076 $
 # translation of kio_smb.po to
 #
 # Copyright (C) 2002, 2004, 2005, 2006 Free Software Foundation, Inc.
@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2025-11-17 11:51+0000\n"
 "PO-Revision-Date: 2021-01-01 11:44+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
