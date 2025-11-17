@@ -1,4 +1,4 @@
-# Version: $Revision: 1681059 $
+# Version: $Revision: 1722990 $
 # translation of kio_man.po to Polish
 # translation of kio_man.po to
 # Michał Rudolf <mrudolf@kdewebdev.org>, 2002.

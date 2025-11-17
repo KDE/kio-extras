@@ -1,5 +1,5 @@
 # translation of kio_nfs.po to Polish
-# Version: $Revision: 1709616 $
+# Version: $Revision: 1722990 $
 # translation of kio_nfs.po to
 # SPDX-FileCopyrightText: 2014, 2016, 2021, 2024 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 # Norbert Popiołek <norbert@kde.com.pl>
