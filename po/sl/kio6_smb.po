@@ -1,7 +1,7 @@
 # translation of kio_smb.po to Slovenian
 # Translation of kio_smb.po to Slovenian
 # SLOVENIAN TRANSLATION OF K DESKTOP ENVIRONMENT.
-# $Id: kio6_smb.po 1661543 2023-10-03 02:01:24Z scripty $
+# $Id: kio6_smb.po 1723120 2025-11-17 15:24:07Z scripty $
 # $Source$
 #
 # Copyright (C) 2001, 2003, 2004, 2005 Free Software Foundation, Inc.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-10-03 01:38+0000\n"
+"POT-Creation-Date: 2025-11-17 14:40+0000\n"
 "PO-Revision-Date: 2020-11-05 08:46+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
