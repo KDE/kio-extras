@@ -10,6 +10,7 @@
 #include <KConfig>
 #include <KConfigGroup>
 
+#include "config-smb.h"
 #include "smb-logsettings.h"
 #include "smbauthenticator.h"
 

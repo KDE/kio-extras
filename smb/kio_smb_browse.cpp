@@ -43,52 +43,67 @@ int SMBWorker::cache_stat(const SMBUrl &url, struct stat *st)
 
 int SMBWorker::browse_stat_path(const SMBUrl &url, UDSEntry &udsentry)
 {
-    bool stat_is_posix = false;
-    uint32_t attrs = 0;
-
-    int cacheStatErr = cache_stat(url, &st);
-    if (cacheStatErr != 0) {
-        return cacheStatErr;
-    }
+    std::optional<uint32_t> posixAttributes;
 
 #ifdef HAVE_SMBC_FGETXATTR
     // Try to get POSIX stat information via extended attributes
-    {
-        smbc_open_fn smbc_open = smbc_getFunctionOpen(m_context);
-        smbc_fgetxattr_fn smbc_fgetxattr = smbc_getFunctionFGetxattr(m_context);
-        smbc_close_fn smbc_close = smbc_getFunctionClose(m_context);
-        SMBCFILE *f = nullptr;
+    if (auto file = smbc_getFunctionOpen(m_context)(m_context, url.toSmbcUrl().data(), O_PATH, 0); file) {
+        auto close = qScopeGuard([file, this] {
+            smbc_getFunctionClose(m_context)(m_context, file);
+        });
 
-        auto smbcUrl = url.toSmbcUrl();
-        f = smbc_open(m_context, smbcUrl.data(), O_PATH, 0);
-        if (f == nullptr) {
-            qCDebug(KIO_SMB_LOG) << "open(" << url.toDisplayString() << ") failed:" << strerror(errno);
-        } else {
-            char buf[sizeof(struct stat) + 4];
-            int ret;
+        auto smbc_fgetxattr = smbc_getFunctionFGetxattr(m_context);
 
-            // Check if POSIX extensions are enabled
-            ret = smbc_fgetxattr(m_context, f, "posix.attr.enabled", buf, sizeof(buf));
+        // Check if POSIX extensions are enabled
+        const auto posixAttrEnabled = [this, file, smbc_fgetxattr] {
+            std::array<char, 2> boolString{};
+            auto ret = smbc_fgetxattr(m_context, file, "posix.attr.enabled", boolString.data(), boolString.size());
+            return ret == boolString.size() && boolString[0] == '1' && boolString[1] == '\0';
+        }();
 
-            if ((ret == 2) && (buf[0] == '1') && (buf[1] == '\0')) {
-                // POSIX extensions are enabled, get the statinfo
-                ret = smbc_fgetxattr(m_context, f, "smb311_posix.statinfo", buf, sizeof(buf));
-                if (ret == sizeof(buf)) {
-                    memcpy(&st, buf, sizeof(struct stat));
-                    memcpy(&attrs, buf + sizeof(struct stat), 4);
-                    stat_is_posix = true;
-                    qCDebug(KIO_SMB_LOG) << "Got POSIX stat for" << url.toDisplayString();
+        if (posixAttrEnabled) {
+            // POSIX extensions are enabled, get the statinfo
+
+            // Helper for relatively safe tuple conversion of the data blob.
+            using BlobArray = std::array<std::byte, sizeof(struct stat) + sizeof(uint32_t)>;
+            struct : public BlobArray {
+                using BlobArray::BlobArray;
+
+                [[nodiscard]] std::tuple<struct stat, uint32_t> bind() const
+                {
+                    return std::make_tuple(*st, *attributes);
                 }
+
+            private:
+                std::span<std::byte> span{*this};
+                struct stat *st = reinterpret_cast<struct stat *>(span.data());
+                uint32_t *attributes = reinterpret_cast<uint32_t *>(span.subspan(sizeof(struct stat)).data());
+            } posixStat{};
+
+            auto ret = smbc_fgetxattr(m_context, file, "smb311_posix.statinfo", posixStat.data(), posixStat.size());
+            if (ret == posixStat.size()) {
+                std::tie(st, posixAttributes) = posixStat.bind();
+                qCDebug(KIO_SMB_LOG) << "Got POSIX stat for" << url.toDisplayString();
+            } else {
+                qCDebug(KIO_SMB_LOG) << "Failed to get smb311_posix.statinfo xattr for" << url.toDisplayString() << ":" << strerror(errno);
             }
-            smbc_close(m_context, f);
         }
+    } else {
+        qCDebug(KIO_SMB_LOG) << "open(" << url.toDisplayString() << ") failed:" << strerror(errno);
     }
 #endif /* HAVE_SMBC_FGETXATTR */
 
-    return statToUDSEntry(url, st, udsentry, stat_is_posix, attrs);
+    if (!posixAttributes.has_value()) { // no posix attributes set -> do a regular stat call
+        int cacheStatErr = cache_stat(url, &st);
+        if (cacheStatErr != 0) {
+            return cacheStatErr;
+        }
+    }
+
+    return statToUDSEntry(url, st, udsentry, posixAttributes);
 }
 
-int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry, bool stat_is_posix, uint32_t attrs)
+int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEntry &udsentry, std::optional<uint32_t> posixAttributes)
 {
     if (!S_ISDIR(st.st_mode) && !S_ISREG(st.st_mode)) {
         qCDebug(KIO_SMB_LOG) << "mode: " << st.st_mode;
@@ -100,9 +115,9 @@ int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEn
     }
 
     // Set DOS attributes
-    if (stat_is_posix) {
+    if (posixAttributes.has_value()) {
         // With POSIX extensions, we have reliable DOS attributes
-        udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, attrs & SMBC_DOS_MODE_HIDDEN);
+        udsentry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, posixAttributes.value() & SMBC_DOS_MODE_HIDDEN);
 
         // Note: SMBC_DOS_MODE_ARCHIVE and SMBC_DOS_MODE_SYSTEM don't have
         // direct KIO UDS equivalents, but we could add them if needed

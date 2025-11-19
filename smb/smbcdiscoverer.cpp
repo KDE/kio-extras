@@ -146,7 +146,7 @@ bool SMBCDiscoverer::discoverNextFileInfo()
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
 
         m_url.addPath(name);
-        m_worker->statToUDSEntry(m_url, st, entry); // won't produce useful error
+        m_worker->statToUDSEntry(m_url, st, entry, {}); // won't produce useful error
         Q_EMIT newDiscovery(Discovery::Ptr(new SMBCDiscovery(entry)));
         m_url.cdUp();
         return true;
