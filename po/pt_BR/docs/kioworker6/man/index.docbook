@@ -40,7 +40,7 @@
 </articleinfo>
 
 <para
->Usando o escravo do 'man' você conseguirá ler as páginas de manual instaladas em seu sistema. É fácil de usar: </para>
+>Usando o KIO do 'man' você conseguirá ler as páginas de manual instaladas em seu sistema. É fácil de usar: </para>
 
 <variablelist>
 <varlistentry>
@@ -139,7 +139,7 @@
 >. </para>
 
 <para
->Como em qualquer outro escravo do &kde;, é possível indicar uma &URL; como <userinput
+>Como em qualquer outro KIO do &kde;, é possível indicar uma &URL; como <userinput
 ><command
 >man:/socket</command
 ></userinput

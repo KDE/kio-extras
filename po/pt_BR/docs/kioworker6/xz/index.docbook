@@ -39,7 +39,7 @@
 >O 'xz' é um programa de compressão</para>
 
 <para
->O 'kioslave' do 'xz' não pode ser usado diretamente, devendo ser usado como um filtro. Por exemplo, o 'kioslave' do 'tar' poderá filtrar um arquivo por meio do 'kioslave' do 'xz', de modo a mostrar o conteúdo de um arquivo <literal role="extension"
+>O KIO do 'xz' não pode ser usado diretamente, devendo ser usado como um filtro. Por exemplo, o KIO do 'tar' poderá filtrar um arquivo por meio do KIO do 'xz', de modo a mostrar o conteúdo de um arquivo <literal role="extension"
 >tar.lzma</literal
 > ou <literal role="extension"
 >tar.xz</literal
@@ -50,10 +50,10 @@
 >.lzma</literal
 > ou <literal role="extension"
 >tar.xz</literal
-> no &konqueror;, este 'kioslave' é usado para o descomprimir e o abrir como um arquivo normal (não-comprimido).</para>
+> no &konqueror;, este KIO é usado para o descomprimir e o abrir como um arquivo normal (não-comprimido).</para>
 
 <para
->Se você é um desenvolvedor, e gostaria de usar o filtro 'xz', pode encontrar documentação sobre o uso de 'kioslaves' em <ulink url="http://techbase.kde.org"
+>Se você é um desenvolvedor, e gostaria de usar o filtro 'xz', pode encontrar documentação sobre o uso de KIO em <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 ></para>
 

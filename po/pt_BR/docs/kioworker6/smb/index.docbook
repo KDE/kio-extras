@@ -5,7 +5,7 @@
 <!ENTITY % Brazilian-Portuguese "INCLUDE"
 > <!-- change language only here -->
 ]>
-	
+
 <article lang="&language;" id="smb">
 <title
 >SMB</title>
@@ -29,9 +29,13 @@
 ></othercredit
 > 
 </authorgroup>
+<date
+>11/12/2016</date>
+<releaseinfo
+>Applications 16.12</releaseinfo>
 </articleinfo>
 <para
->O escravo do 'smb' habilita você a navegar pelos volumes de uma rede &Windows; (ou Samba). </para>
+>O KIO do 'smb' habilita você a navegar pelos volumes de uma rede &Windows; (ou Samba). </para>
 
 <para
 >Para ver os grupos de trabalho, digite <userinput
@@ -83,27 +87,20 @@
 > </para>
 
 <para
->O escravo do 'smb' precisa da 'libsmbclient' para ser usado. </para>
+>O KIO do 'smb' precisa da 'libsmbclient' para ser usado. </para>
 
 <para
->Você pode configurar o seu nome de usuário e senha padrões nas &systemsettings; na categoria <guilabel
->Rede e conectividade</guilabel
+>Você pode configurar o seu nome de usuário e senha padrões nas &systemsettings;, categoria <guilabel
+>Rede</guilabel
 > em <menuchoice
 ><guisubmenu
->Compartilhamento</guisubmenu
+>Configurações</guisubmenu
 ><guimenuitem
 >Compartilhamentos Windows</guimenuitem
 ></menuchoice
 >. Isto é especialmente útil se você é um membro de um domínio do &Windows; <acronym
 >NT</acronym
->. Ali você também pode configurar o nome do seu grupo de trabalho, mas na maioria dos casos isto não é necessário. O 'kioslave' pedirá pelo seu nome de usuário e senha se um padrão não estiver configurado. </para>
+>. Ali você também pode configurar o nome do seu grupo de trabalho, mas na maioria dos casos isto não é necessário. O KIO pedirá pelo seu nome de usuário e senha se um padrão não estiver configurado. </para>
 
-<para
->Este escravo é testado e desenvolvido usando principalmente o Samba 2.0.7, mas outras versões do Samba devem funcionar também. </para>
-
-<para
->Autor: Alexander Neundorf <email
->neundorf@kde.org</email
-> </para>
 </article>
 

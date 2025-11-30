@@ -47,7 +47,7 @@
 >.</para>
 
 <para
->O escravo do 'Info' permite a você ler as páginas 'info' instaladas em seu sistema, de dentro do &konqueror;. Você pode usá-lo muito facilmente:</para>
+>O KIO do 'Info' permite a você ler as páginas 'info' instaladas em seu sistema, de dentro do &konqueror;. Você pode usá-lo muito facilmente:</para>
 
 <screen
 ><userinput
@@ -67,6 +67,6 @@
 >, mas não é usado, em larga escala, fora do software da &GNU;.</para>
 
 <para
->Você pode navegar facilmente por uma documentação 'info' que você tem instalada de dentro do aplicativo do &khelpcenter;, ou pode usar o escravo do 'info' diretamente de dentro do &konqueror;.</para>
+>Você pode navegar facilmente por uma documentação 'info' que você tem instalada de dentro do aplicativo do &khelpcenter;, ou pode usar o KIO do 'info' diretamente de dentro do &konqueror;.</para>
 
 </article>
