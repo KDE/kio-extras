@@ -116,6 +116,15 @@ constexpr auto MAX_PENDING_REQUESTS = 128;
 // perhaps all popular servers effectively support at least 64k.
 constexpr auto MAX_XFER_BUF_SIZE = (60ULL * 1024);
 
+// Set the default file permission to allow all access (0666). This is the standard
+// for new files. If present, the the parent directory's ACL is inherited overriding
+// this default. Otherwise, the user's umask will take care of removing the unwanted
+// permission bits. See umask(2) for more details.
+constexpr auto DEFAULT_FILE_PERMISSIONS =
+        perms::owner_read | perms::owner_write |
+        perms::group_read | perms::group_write |
+        perms::others_read | perms::others_write;
+
 inline bool KSFTP_ISDIR(SFTPAttributesPtr &sb)
 {
     return sb->type == SSH_FILEXFER_TYPE_DIRECTORY;
@@ -1140,9 +1149,7 @@ Result SFTPWorker::open(const QUrl &url, QIODevice::OpenMode mode)
 
     if (flags & O_CREAT) {
         // Give all permissions, umask on target machine will remove the unwanted ones
-        perms initialMode = perms::owner_read | perms::owner_write |
-                            perms::group_read | perms::group_write |
-                            perms::others_read | perms::others_write;
+        perms initialMode = DEFAULT_FILE_PERMISSIONS;
         mOpenFile = sftp_open(mSftp, path_c.constData(), flags, permsToPosix(initialMode));
     } else {
         mOpenFile = sftp_open(mSftp, path_c.constData(), flags, 0);
@@ -1487,9 +1494,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
         }
     } else {
         // Give all permissions, umask on target machine will remove the unwanted ones
-        perms initialMode = perms::owner_read | perms::owner_write |
-                      perms::group_read | perms::group_write |
-                      perms::others_read | perms::others_write;
+        perms initialMode = DEFAULT_FILE_PERMISSIONS;
         if (permissions.has_value()) {
             initialMode = permissions.value() | perms::owner_write | perms::owner_read;
         }
@@ -1695,9 +1700,7 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
     }
 
     // Give all permissions, umask will remove the unwanted ones
-    perms initialMode = perms::owner_read | perms::owner_write |
-                        perms::group_read | perms::group_write |
-                        perms::others_read | perms::others_write;
+    perms initialMode = DEFAULT_FILE_PERMISSIONS;
     // WABA: Make sure that we keep writing permissions ourselves,
     // otherwise we can be in for a surprise on NFS.
     if (permissions.has_value()) {
