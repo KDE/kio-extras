@@ -240,6 +240,18 @@ inline mode_t permsToPosix(perms mode) noexcept
 {
     return static_cast<mode_t>(mode);
 }
+
+// Convert standard permissions bitmask to Qt's non-standard bitmasks
+// Qt has the identically _looking_ bitmasks but in hex instead of octal
+// Example 0o444 (octal, standard) => 0x444 (hex, Qt)
+// Qt does not support suid/guid/sticky bits
+inline QFileDevice::Permissions permsToQtPermissions(perms mode) noexcept
+{
+    auto posix = permsToPosix(mode);
+    auto qt = (posix & 0b000000111) | ((posix & 0b000111000) << 1) | ((posix & 0b111000000) << 2);
+    return static_cast<QFileDevice::Permissions>(qt);
+}
+
 } // namespace
 
 // Pseudo plugin class to embed meta data
@@ -1772,6 +1784,18 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
                 } else {
                     receivedFile.setFileTime(dt, QFileDevice::FileModificationTime);
                 }
+            }
+        }
+    }
+
+    // set final permissions
+    if (permissions.has_value() && permissions.value() != initialMode) {
+        QFile receivedFile(sCopyFile);
+        if (receivedFile.exists()) {
+            qCDebug(KIO_SFTP_LOG) << "Trying to set final permissions of" << sCopyFile << "to" << Qt::oct << permsToPosix(permissions.value());
+            if (!receivedFile.setPermissions(permsToQtPermissions(permissions.value()))) {
+                qWarning(KIO_SFTP_LOG) << "Could not change permissions for " << sCopyFile << receivedFile.errorString();
+                return Result::pass();
             }
         }
     }
