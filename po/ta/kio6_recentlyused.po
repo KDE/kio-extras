@@ -1,0 +1,59 @@
+# Copyright (C) 2025 This file is copyright:
+# This file is distributed under the same license as the kio-extras package.
+#
+# SPDX-FileCopyrightText: 2025 Kishore G <kishore96@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"PO-Revision-Date: 2025-11-30 15:06+0530\n"
+"Last-Translator: Kishore G <kishore96@gmail.com>\n"
+"Language-Team: Tamil <kde-l10n-ta@kde.org>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 25.08.3\n"
+
+#: forgetfileitemaction.cpp:46
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget File"
+msgid_plural "Forget Files"
+msgstr[0] "கோப்பை மறந்துவிடு"
+msgstr[1] "கோப்புகளை மறந்துவிடு"
+
+#: forgetfileitemaction.cpp:48
+#, kde-format
+msgctxt "@action:inmenu"
+msgid "Forget Location"
+msgid_plural "Forget Locations"
+msgstr[0] "இடத்தை மறந்துவிடு"
+msgstr[1] "இடங்களை மறந்துவிடு"
+
+#: forgetfileitemaction.cpp:52
+#, kde-format
+msgctxt "@info:whatsthis"
+msgid ""
+"Remove the selected file(s) or location(s) from the recently used list in "
+"Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
+msgstr ""
+"டால்பின் மற்றம் பிளாஸ்மாவிலுள்ள சமீபமானவற்றின் பட்டியலிலிருந்து தேர்ந்தெடுத்துள்ள "
+"கோப்புகளையோ அடைவுகளையோ நீக்கும். இது அக்கோப்புகளையோ அடைவுகளையோ அழிக்காது."
+
+#: recentlyused.cpp:323
+#, kde-format
+msgid "Recent Documents"
+msgstr "சமீப ஆவணங்கள்"
+
+#: recentlyused.cpp:331
+#, kde-format
+msgid "Recent Files"
+msgstr "சமீப கோப்புகள்"
+
+#: recentlyused.cpp:334
+#, kde-format
+msgid "Recent Locations"
+msgstr "சமீப இடங்கள்"
