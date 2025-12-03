@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-02 00:41+0000\n"
+"POT-Creation-Date: 2025-12-03 00:43+0000\n"
 "PO-Revision-Date: 2023-10-13 16:24+0200\n"
 "Last-Translator: Xavier BESNARD <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -36,120 +36,120 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
 
-#: kio_sftp.cpp:294
+#: kio_sftp.cpp:315
 #, kde-format
 msgid "Incorrect or invalid passphrase"
 msgstr "Mot de passe non valable ou incorrect"
 
-#: kio_sftp.cpp:343
+#: kio_sftp.cpp:364
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "Impossible d'allouer les retours d'appels"
 
-#: kio_sftp.cpp:356
+#: kio_sftp.cpp:377
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "Impossible de définir le niveau de verbosité du journal."
 
-#: kio_sftp.cpp:361
+#: kio_sftp.cpp:382
 #, kde-format
 msgid "Could not set log userdata."
 msgstr "Impossible d'activer les messages sur les données d'utilisateur."
 
-#: kio_sftp.cpp:366
+#: kio_sftp.cpp:387
 #, kde-format
 msgid "Could not set log callback."
 msgstr "Impossible d'activer les messages sur les retours d'appels"
 
-#: kio_sftp.cpp:402 kio_sftp.cpp:404 kio_sftp.cpp:937
+#: kio_sftp.cpp:423 kio_sftp.cpp:425 kio_sftp.cpp:958
 #, kde-format
 msgid "SFTP Login"
 msgstr "Compte « SFTP »"
 
-#: kio_sftp.cpp:419
+#: kio_sftp.cpp:440
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr ""
 "Utilisez le champ « nom d'utilisateur » pour répondre à cette question."
 
-#: kio_sftp.cpp:432
+#: kio_sftp.cpp:453
 #, kde-format
 msgid "Please enter your password."
 msgstr "Veuillez saisir votre mot de passe."
 
-#: kio_sftp.cpp:437 kio_sftp.cpp:940
+#: kio_sftp.cpp:458 kio_sftp.cpp:961
 #, kde-format
 msgid "Site:"
 msgstr "Site :"
 
-#: kio_sftp.cpp:498
+#: kio_sftp.cpp:519
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "Impossible de lire le lien : %1 [%2]"
 
-#: kio_sftp.cpp:618
+#: kio_sftp.cpp:639
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "Impossible de créer une nouvelle session SSH."
 
-#: kio_sftp.cpp:629 kio_sftp.cpp:633
+#: kio_sftp.cpp:650 kio_sftp.cpp:654
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "Impossible de définir un délai maximum."
 
-#: kio_sftp.cpp:640
+#: kio_sftp.cpp:661
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "Impossible de désactiver l'algorithme de Nagle."
 
-#: kio_sftp.cpp:646 kio_sftp.cpp:651
+#: kio_sftp.cpp:667 kio_sftp.cpp:672
 #, kde-format
 msgid "Could not set compression."
 msgstr "Impossible de définir la compression."
 
-#: kio_sftp.cpp:657
+#: kio_sftp.cpp:678
 #, kde-format
 msgid "Could not set host."
 msgstr "Impossible de définir l'hôte."
 
-#: kio_sftp.cpp:663
+#: kio_sftp.cpp:684
 #, kde-format
 msgid "Could not set port."
 msgstr "Impossible de définir le port."
 
-#: kio_sftp.cpp:671
+#: kio_sftp.cpp:692
 #, kde-format
 msgid "Could not set username."
 msgstr "Impossible de définir le nom d'utilisateur."
 
-#: kio_sftp.cpp:678
+#: kio_sftp.cpp:699
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "Impossible de lire le fichier de configuration."
 
-#: kio_sftp.cpp:693
+#: kio_sftp.cpp:714
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "Ouverture de la connexion « SFTP » vers l'hôte %1 : %2"
 
-#: kio_sftp.cpp:733
+#: kio_sftp.cpp:754
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "Impossible d'obtenir le nom du type de clé publique du serveur"
 
-#: kio_sftp.cpp:745
+#: kio_sftp.cpp:766
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr ""
 "Impossible de créer la valeur de hachage depuis la clé publique du serveur"
 
-#: kio_sftp.cpp:754
+#: kio_sftp.cpp:775
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "Impossible de créer l'empreinte de la clé publique du serveur"
 
-#: kio_sftp.cpp:813
+#: kio_sftp.cpp:834
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -166,13 +166,13 @@ msgstr ""
 "Veuillez contacter votre administrateur système.\n"
 "%2"
 
-#: kio_sftp.cpp:830
+#: kio_sftp.cpp:851
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "Modification de l'identité de l'hôte"
 
-#: kio_sftp.cpp:832
+#: kio_sftp.cpp:853
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -188,13 +188,13 @@ msgstr ""
 "para><para>L'empreinte %2 de la clé envoyée par le serveur distant est : "
 "<bcode>%3</bcode>. Voulez-vous vraiment poursuivre la connexion ?</para>"
 
-#: kio_sftp.cpp:842
+#: kio_sftp.cpp:863
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr "Échec de la vérification de l'hôte"
 
-#: kio_sftp.cpp:844
+#: kio_sftp.cpp:865
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -206,19 +206,19 @@ msgstr ""
 "emphasis>. </para><para>L'empreinte %2 de la clé est : <bcode>%3</bcode>. "
 "Voulez-vous vraiment poursuivre la connexion ? </para>"
 
-#: kio_sftp.cpp:853
+#: kio_sftp.cpp:874
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "Se connecter malgré tout"
 
-#: kio_sftp.cpp:876 kio_sftp.cpp:895 kio_sftp.cpp:916 kio_sftp.cpp:929
-#: kio_sftp.cpp:981 kio_sftp.cpp:991
+#: kio_sftp.cpp:897 kio_sftp.cpp:916 kio_sftp.cpp:937 kio_sftp.cpp:950
+#: kio_sftp.cpp:1002 kio_sftp.cpp:1012
 #, kde-format
 msgid "Authentication failed."
 msgstr "Échec de l'authentification."
 
-#: kio_sftp.cpp:883
+#: kio_sftp.cpp:904
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
@@ -226,17 +226,17 @@ msgstr ""
 "Échec de l'authentification. Le serveur n'a pu fournir aucune méthode "
 "d'authentification."
 
-#: kio_sftp.cpp:938
+#: kio_sftp.cpp:959
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Veuillez saisir votre nom d'utilisateur et votre mot de passe."
 
-#: kio_sftp.cpp:949
+#: kio_sftp.cpp:970
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Nom d'utilisateur ou mot de passe incorrect"
 
-#: kio_sftp.cpp:998
+#: kio_sftp.cpp:1019
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -245,22 +245,22 @@ msgstr ""
 "Impossible de communiquer avec le sous-système SFTP. Veuillez vous assurer "
 "que SFTP est activé sur le serveur."
 
-#: kio_sftp.cpp:1003
+#: kio_sftp.cpp:1024
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "Impossible d'initialiser la session SFTP."
 
-#: kio_sftp.cpp:1007
+#: kio_sftp.cpp:1028
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Connexion à « %1 » réussie"
 
-#: kio_sftp.cpp:1060
+#: kio_sftp.cpp:1081
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Contexte sftp non valable"
 
-#: kio_sftp.cpp:1594
+#: kio_sftp.cpp:1618
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

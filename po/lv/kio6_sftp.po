@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-02 00:41+0000\n"
+"POT-Creation-Date: 2025-12-03 00:43+0000\n"
 "PO-Revision-Date: 2024-11-20 18:36+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -21,118 +21,118 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: kio_sftp.cpp:294
+#: kio_sftp.cpp:315
 #, kde-format
 msgid "Incorrect or invalid passphrase"
 msgstr "Nepareiza vai nederīga parole"
 
-#: kio_sftp.cpp:343
+#: kio_sftp.cpp:364
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "Nebija iespējams piešķirt atpakaļizsaukumus"
 
-#: kio_sftp.cpp:356
+#: kio_sftp.cpp:377
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "Neizdevās iestatīt žurnalēšanas paskaidrojumu līmeni."
 
-#: kio_sftp.cpp:361
+#: kio_sftp.cpp:382
 #, kde-format
 msgid "Could not set log userdata."
 msgstr "Neizdevās iestatīt žurnalēšanas lietotāja datus."
 
-#: kio_sftp.cpp:366
+#: kio_sftp.cpp:387
 #, kde-format
 msgid "Could not set log callback."
 msgstr "Neizdevās iestatīt žurnāla atpakaļizsaukumu."
 
-#: kio_sftp.cpp:402 kio_sftp.cpp:404 kio_sftp.cpp:937
+#: kio_sftp.cpp:423 kio_sftp.cpp:425 kio_sftp.cpp:958
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP ierakstīšanās"
 
-#: kio_sftp.cpp:419
+#: kio_sftp.cpp:440
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr "Lietojiet lietotājvārda ievades lauku, lai atbildētu uz šo jautājumu."
 
-#: kio_sftp.cpp:432
+#: kio_sftp.cpp:453
 #, kde-format
 msgid "Please enter your password."
 msgstr "Ierakstiet savu paroli"
 
-#: kio_sftp.cpp:437 kio_sftp.cpp:940
+#: kio_sftp.cpp:458 kio_sftp.cpp:961
 #, kde-format
 msgid "Site:"
 msgstr "Vietne:"
 
-#: kio_sftp.cpp:498
+#: kio_sftp.cpp:519
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "Neizdevās nolasīt saiti: %1 [%2]"
 
-#: kio_sftp.cpp:618
+#: kio_sftp.cpp:639
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "Neizdevās sākt jaunu SSH sesiju."
 
-#: kio_sftp.cpp:629 kio_sftp.cpp:633
+#: kio_sftp.cpp:650 kio_sftp.cpp:654
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "Neizdevās iestatīt noildzi."
 
-#: kio_sftp.cpp:640
+#: kio_sftp.cpp:661
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "Neizdevās izslēgt Neigla algoritmu"
 
-#: kio_sftp.cpp:646 kio_sftp.cpp:651
+#: kio_sftp.cpp:667 kio_sftp.cpp:672
 #, kde-format
 msgid "Could not set compression."
 msgstr "Neizdevās iestatīt kompresiju."
 
-#: kio_sftp.cpp:657
+#: kio_sftp.cpp:678
 #, kde-format
 msgid "Could not set host."
 msgstr "Neizdevās iestatīt resursdatora nosaukumu."
 
-#: kio_sftp.cpp:663
+#: kio_sftp.cpp:684
 #, kde-format
 msgid "Could not set port."
 msgstr "Neizdevās iestatīt portu."
 
-#: kio_sftp.cpp:671
+#: kio_sftp.cpp:692
 #, kde-format
 msgid "Could not set username."
 msgstr "Neizdevās iestatīt lietotājvārdu."
 
-#: kio_sftp.cpp:678
+#: kio_sftp.cpp:699
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "Neizdevās parsēt konfigurācijas datni."
 
-#: kio_sftp.cpp:693
+#: kio_sftp.cpp:714
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "Atver SFTP savienojumu ar resursdatoru %1:%2"
 
-#: kio_sftp.cpp:733
+#: kio_sftp.cpp:754
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "Neizdevās iegūt servera publiskās atslēgas tipa nosaukumu"
 
-#: kio_sftp.cpp:745
+#: kio_sftp.cpp:766
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr "Neizdevās izveidot jaucējkodu no servera publiskās atslēgas"
 
-#: kio_sftp.cpp:754
+#: kio_sftp.cpp:775
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "Neizdevās izveidot pirkstu nospiedumu servera publiskajai atslēgai"
 
-#: kio_sftp.cpp:813
+#: kio_sftp.cpp:834
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -149,13 +149,13 @@ msgstr ""
 "Sazinieties ar savu sistēmas administratoru.\n"
 "%2"
 
-#: kio_sftp.cpp:830
+#: kio_sftp.cpp:851
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "Resursdatora identitātes maiņa"
 
-#: kio_sftp.cpp:832
+#: kio_sftp.cpp:853
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -171,13 +171,13 @@ msgstr ""
 "pirkstu nospiedums ir:<bcode>%3</bcode>Vai tiešām vēlaties turpināt "
 "savienošanos?</para>"
 
-#: kio_sftp.cpp:842
+#: kio_sftp.cpp:863
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr "Resursdatora verificēšanas kļūda"
 
-#: kio_sftp.cpp:844
+#: kio_sftp.cpp:865
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -189,19 +189,19 @@ msgstr ""
 "para><para>„%2“ atslēgas pirkstu nospiedums ir: <bcode>%3</bcode>Vai "
 "vēlaties turpināt savienošanos?</para>"
 
-#: kio_sftp.cpp:853
+#: kio_sftp.cpp:874
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "Tik un tā savienoties"
 
-#: kio_sftp.cpp:876 kio_sftp.cpp:895 kio_sftp.cpp:916 kio_sftp.cpp:929
-#: kio_sftp.cpp:981 kio_sftp.cpp:991
+#: kio_sftp.cpp:897 kio_sftp.cpp:916 kio_sftp.cpp:937 kio_sftp.cpp:950
+#: kio_sftp.cpp:1002 kio_sftp.cpp:1012
 #, kde-format
 msgid "Authentication failed."
 msgstr "Autentificēšanās neizdevās."
 
-#: kio_sftp.cpp:883
+#: kio_sftp.cpp:904
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
@@ -209,17 +209,17 @@ msgstr ""
 "Autentificēšanās neizdevās. Serveris nenosūtīja nekādas autentifikācijas "
 "metodes."
 
-#: kio_sftp.cpp:938
+#: kio_sftp.cpp:959
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "Ierakstiet savu lietotājvārdu un paroli."
 
-#: kio_sftp.cpp:949
+#: kio_sftp.cpp:970
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "Nepareizs lietotājvārds vai parole"
 
-#: kio_sftp.cpp:998
+#: kio_sftp.cpp:1019
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
@@ -228,22 +228,22 @@ msgstr ""
 "Neizdevās sazināties ar SFTP apakšsistēmu. Pārliecinieties, ka servera pusē "
 "ir ieslēgts SFTP."
 
-#: kio_sftp.cpp:1003
+#: kio_sftp.cpp:1024
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "Neizdevās inicializēt SFTP sesiju."
 
-#: kio_sftp.cpp:1007
+#: kio_sftp.cpp:1028
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "Veiksmīgi pieslēdzās pie „%1“"
 
-#: kio_sftp.cpp:1060
+#: kio_sftp.cpp:1081
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Nederīgs SFTP konteksts"
 
-#: kio_sftp.cpp:1594
+#: kio_sftp.cpp:1618
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

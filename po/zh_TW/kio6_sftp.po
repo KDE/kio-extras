@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-12-02 00:41+0000\n"
+"POT-Creation-Date: 2025-12-03 00:43+0000\n"
 "PO-Revision-Date: 2023-01-06 23:07+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@linux.org.tw>\n"
@@ -22,118 +22,118 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 22.12.0\n"
 
-#: kio_sftp.cpp:294
+#: kio_sftp.cpp:315
 #, kde-format
 msgid "Incorrect or invalid passphrase"
 msgstr "不正確或無效的密碼"
 
-#: kio_sftp.cpp:343
+#: kio_sftp.cpp:364
 #, kde-format
 msgid "Could not allocate callbacks"
 msgstr "無法配置 callback"
 
-#: kio_sftp.cpp:356
+#: kio_sftp.cpp:377
 #, kde-format
 msgid "Could not set log verbosity."
 msgstr "無法設定紀錄等級。"
 
-#: kio_sftp.cpp:361
+#: kio_sftp.cpp:382
 #, kde-format
 msgid "Could not set log userdata."
 msgstr "無法設定紀錄使用者資料。"
 
-#: kio_sftp.cpp:366
+#: kio_sftp.cpp:387
 #, kde-format
 msgid "Could not set log callback."
 msgstr "無法設定紀錄 callback。"
 
-#: kio_sftp.cpp:402 kio_sftp.cpp:404 kio_sftp.cpp:937
+#: kio_sftp.cpp:423 kio_sftp.cpp:425 kio_sftp.cpp:958
 #, kde-format
 msgid "SFTP Login"
 msgstr "SFTP 登入"
 
-#: kio_sftp.cpp:419
+#: kio_sftp.cpp:440
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr "請使用輸入帳號的欄位來回答此問題。"
 
-#: kio_sftp.cpp:432
+#: kio_sftp.cpp:453
 #, kde-format
 msgid "Please enter your password."
 msgstr "請輸入您的密碼。"
 
-#: kio_sftp.cpp:437 kio_sftp.cpp:940
+#: kio_sftp.cpp:458 kio_sftp.cpp:961
 #, kde-format
 msgid "Site:"
 msgstr "主機："
 
-#: kio_sftp.cpp:498
+#: kio_sftp.cpp:519
 #, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
 msgstr "無法讀取連結：%1 [%2]"
 
-#: kio_sftp.cpp:618
+#: kio_sftp.cpp:639
 #, kde-format
 msgid "Could not create a new SSH session."
 msgstr "無法建立新的 SSH 工作階段。"
 
-#: kio_sftp.cpp:629 kio_sftp.cpp:633
+#: kio_sftp.cpp:650 kio_sftp.cpp:654
 #, kde-format
 msgid "Could not set a timeout."
 msgstr "無法設定逾時。"
 
-#: kio_sftp.cpp:640
+#: kio_sftp.cpp:661
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
 msgstr "無法停用 Nagle 的算法。"
 
-#: kio_sftp.cpp:646 kio_sftp.cpp:651
+#: kio_sftp.cpp:667 kio_sftp.cpp:672
 #, kde-format
 msgid "Could not set compression."
 msgstr "無法設定壓縮。"
 
-#: kio_sftp.cpp:657
+#: kio_sftp.cpp:678
 #, kde-format
 msgid "Could not set host."
 msgstr "無法設定主機。"
 
-#: kio_sftp.cpp:663
+#: kio_sftp.cpp:684
 #, kde-format
 msgid "Could not set port."
 msgstr "無法設定連接埠。"
 
-#: kio_sftp.cpp:671
+#: kio_sftp.cpp:692
 #, kde-format
 msgid "Could not set username."
 msgstr "無法設定使用者名稱。"
 
-#: kio_sftp.cpp:678
+#: kio_sftp.cpp:699
 #, kde-format
 msgid "Could not parse the config file."
 msgstr "無法剖析設定檔。"
 
-#: kio_sftp.cpp:693
+#: kio_sftp.cpp:714
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "開啟 SFTP 連線到主機 %1:%2"
 
-#: kio_sftp.cpp:733
+#: kio_sftp.cpp:754
 #, kde-format
 msgid "Could not get server public key type name"
 msgstr "無法取得伺服器公鑰的類型名稱"
 
-#: kio_sftp.cpp:745
+#: kio_sftp.cpp:766
 #, kde-format
 msgid "Could not create hash from server public key"
 msgstr "無法從伺服器公開金鑰建立雜湊"
 
-#: kio_sftp.cpp:754
+#: kio_sftp.cpp:775
 #, kde-format
 msgid "Could not create fingerprint for server public key"
 msgstr "無法建立伺服器公鑰的指紋"
 
-#: kio_sftp.cpp:813
+#: kio_sftp.cpp:834
 #, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
@@ -148,13 +148,13 @@ msgstr ""
 "請聯絡您的系統管理員。\n"
 "%2"
 
-#: kio_sftp.cpp:830
+#: kio_sftp.cpp:851
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
 msgstr "主機身份變更"
 
-#: kio_sftp.cpp:832
+#: kio_sftp.cpp:853
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -169,13 +169,13 @@ msgstr ""
 "para><para>遠端主機傳送過來的 %2 金鑰指紋為：<bcode>%3</bcode>您確定要繼續連"
 "線嗎？</para>"
 
-#: kio_sftp.cpp:842
+#: kio_sftp.cpp:863
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
 msgstr "主機認證失敗"
 
-#: kio_sftp.cpp:844
+#: kio_sftp.cpp:865
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -186,57 +186,57 @@ msgstr ""
 "<para>無法與主機 <emphasis>%1</emphasis> 建立認證。</para><para>%2 的金鑰指紋"
 "為：<bcode>%3</bcode>您確定要繼續連線嗎？</para>"
 
-#: kio_sftp.cpp:853
+#: kio_sftp.cpp:874
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
 msgstr "還是要連線"
 
-#: kio_sftp.cpp:876 kio_sftp.cpp:895 kio_sftp.cpp:916 kio_sftp.cpp:929
-#: kio_sftp.cpp:981 kio_sftp.cpp:991
+#: kio_sftp.cpp:897 kio_sftp.cpp:916 kio_sftp.cpp:937 kio_sftp.cpp:950
+#: kio_sftp.cpp:1002 kio_sftp.cpp:1012
 #, kde-format
 msgid "Authentication failed."
 msgstr "認證失敗。"
 
-#: kio_sftp.cpp:883
+#: kio_sftp.cpp:904
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
 msgstr "認證失敗。伺服器未傳送任何認證方法"
 
-#: kio_sftp.cpp:938
+#: kio_sftp.cpp:959
 #, kde-format
 msgid "Please enter your username and password."
 msgstr "請輸入您的使用者名稱與密碼。"
 
-#: kio_sftp.cpp:949
+#: kio_sftp.cpp:970
 #, kde-format
 msgid "Incorrect username or password"
 msgstr "錯誤的使用者名稱或密碼"
 
-#: kio_sftp.cpp:998
+#: kio_sftp.cpp:1019
 #, kde-format
 msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
 "server."
 msgstr "無法請求 SFTP 系統。請確定伺服器上的 SFTP 有開啟。"
 
-#: kio_sftp.cpp:1003
+#: kio_sftp.cpp:1024
 #, kde-format
 msgid "Could not initialize the SFTP session."
 msgstr "無法初始化 SFTP 階段。"
 
-#: kio_sftp.cpp:1007
+#: kio_sftp.cpp:1028
 #, kde-format
 msgid "Successfully connected to %1"
 msgstr "成功的連線到 %1"
 
-#: kio_sftp.cpp:1060
+#: kio_sftp.cpp:1081
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "無效的 SFTP 內容"
 
-#: kio_sftp.cpp:1594
+#: kio_sftp.cpp:1618
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
