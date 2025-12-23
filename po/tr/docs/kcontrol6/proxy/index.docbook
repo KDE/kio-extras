@@ -31,7 +31,7 @@
 </authorgroup>
 
 <date
->2016-11-10</date>
+>2016‒11‒10</date>
 <releaseinfo
 >Frameworks 5.29</releaseinfo>
 
@@ -157,7 +157,7 @@
 <para
 >Bir çevre değişkeninin adı yerine değerini göstermek için <guilabel
 >Çevre değişkenlerinin değerini göster</guilabel
->'i kullanın. Ancak bu modülde çevre değişkenlerinin değerlerini düzenlemek olanaklı değildir.</para>
+>’i kullanın. Ancak bu modülde çevre değişkenlerinin değerlerini düzenlemek olanaklı değildir.</para>
 <!--
 How to enable Auto Detect button?
 -->
@@ -172,7 +172,7 @@ How to enable Auto Detect button?
 <listitem>
 
 <para
->Tam vekil adresleme bilgileri, hem İnternet adresini hem de bir kapı numarasını içerir. Bunları ilgili metin kutularına girmelisiniz. &HTTP;'nin adreslerini ve kapısını diğer tüm vekil alanlarına kopyalamak ve biraz yazmadan tasarruf etmek için <guilabel
+>Tam vekil adresleme bilgileri, hem İnternet adresini hem de bir kapı numarasını içerir. Bunları ilgili metin kutularına girmelisiniz. &HTTP;’nin adreslerini ve kapısını diğer tüm vekil alanlarına kopyalamak ve biraz yazmadan tasarruf etmek için <guilabel
 >Tüm protokoller için bu vekil sunucuyu kullan</guilabel
 > seçeneğini işaretleyin.</para>
 
@@ -198,10 +198,10 @@ How to enable Auto Detect button?
 <para
 >Ayrıca, <guilabel
 >Yalnızca istisnalar listesindeki girdiler için vekil sunucu ayarları kullan</guilabel
->'ı da seçebilirsiniz.</para>
+>’ı da seçebilirsiniz.</para>
 
 <para
->İstisna listesinin kullanımını tersine çevirmek için bu kutuyu işaretleyin; örneğin, vekil sunucular yalnızca bu listedeki &URL;'lerden biri ile eşleştiğinde kullanılırlar.</para>
+>İstisna listesinin kullanımını tersine çevirmek için bu kutuyu işaretleyin; örneğin, vekil sunucular yalnızca bu listedeki &URL;’lerden biri ile eşleştiğinde kullanılırlar.</para>
 
 <para
 >Bu özellik, bir iç ağdaki gibi birkaç belirli siteye erişmek için gereksiniminiz olan tek şey bir vekil sunucu ise kullanışlıdır. Daha karmaşık gereksinimleriniz varsa bir yapılandırma betiği kullanmak isteyebilirsiniz.</para>

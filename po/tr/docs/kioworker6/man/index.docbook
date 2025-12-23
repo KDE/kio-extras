@@ -68,7 +68,7 @@
 <para
 ><command
 >fopen</command
->'ın man sayfasına bakın. </para>
+>’ın man sayfasına bakın. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -84,7 +84,7 @@
 <para
 ><command
 >fopen</command
->'ın 3. bölümdeki man sayfasına bakın. </para>
+>’ın 3. bölümdeki man sayfasına bakın. </para>
 </listitem>
 </varlistentry>
 <varlistentry>
@@ -145,7 +145,7 @@
 ><command
 >man:/socket</command
 ></userinput
-> girebilirsiniz. &kwrite;'da deneyin, man sayfasını &HTML; biçiminde göreceksiniz. </para>
+> girebilirsiniz. &kwrite;’da deneyin, man sayfasını &HTML; biçiminde göreceksiniz. </para>
 
 <para
 >İletişim posta listesi: <email

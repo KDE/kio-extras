@@ -42,7 +42,7 @@
 > 
 </authorgroup>
 <date
->2016-12-11</date>
+>2016‒12‒11</date>
 <releaseinfo
 >Uygulamalar 16.12</releaseinfo>
 </articleinfo>
@@ -102,7 +102,7 @@
 >smb işçisi, bu işçiyi kullanmak için libsmbclient’e sahip olmanızı gerektirir. </para>
 
 <para
->&systemsettings;'nın <guilabel
+>&systemsettings;’nın <guilabel
 >Ağ</guilabel
 > <menuchoice
 ><guisubmenu

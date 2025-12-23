@@ -33,7 +33,7 @@
 </authorgroup>
 
 <date
->2016-11-10</date>
+>2016‒11‒10</date>
 <releaseinfo
 >Frameworks 5.29</releaseinfo>
 
@@ -64,10 +64,10 @@
 <para
 >&konqueror;, tarama deneyiminizi geliştirmek için bazı özellikler sunar. Bunlardan biri de <emphasis
 >Web Kısayolları</emphasis
->'dır.</para>
+>’dır.</para>
 
 <para
->&kde;'nin bayağı internet canlısı olduğunu fark etmiş olabilirsiniz. Örneğin, <guimenuitem
+>&kde;’nin bayağı internet canlısı olduğunu fark etmiş olabilirsiniz. Örneğin, <guimenuitem
 >Çalıştır</guimenuitem
 > menü ögesine tıklayın veya bu eyleme atanmış klavye kısayolunu çağırın (<keycombo action="simul"
 >&Alt;<keycap
@@ -104,7 +104,7 @@
 ></note>
 
 <para
->Normalde &URI;'ler kullandığınız her yerde web kısayollarını kullanabilirsiniz. Birkaç arama motoru için kısayollar sisteminizde zaten yapılandırılmış olmalıdır; ancak bu modülde yeni anahtar sözcükler ekleyebilir ve var olanları değiştirebilir veya silebilirsiniz.</para>
+>Normalde &URI;’ler kullandığınız her yerde web kısayollarını kullanabilirsiniz. Birkaç arama motoru için kısayollar sisteminizde zaten yapılandırılmış olmalıdır; ancak bu modülde yeni anahtar sözcükler ekleyebilir ve var olanları değiştirebilir veya silebilirsiniz.</para>
 
 </sect2>
 
@@ -155,8 +155,8 @@
 
 <para
 >Tanımlı arama sağlayıcıları listesindeki belirli bir girişe çift tıklarsanız veya <guibutton
->Değiştir...</guibutton
-> düğmesine tıklarsanız o girişin ayrıntıları bir açılır iletişim kutusunda gösterilir. Ögenin tanımlayıcı adına ek olarak &kde; içinde &URI;'lerin beklendiği her yere yazabileceğiniz ilişkilendirilmiş kısayolların yanı sıra kullanılan &URI;'yi de görebilirsiniz. Herhangi bir arama sağlayıcısının virgülle ayrılmış birden çok kısayolu olabilir.</para>
+>Değiştir…</guibutton
+> düğmesine tıklarsanız o girişin ayrıntıları bir açılır iletişim kutusunda gösterilir. Ögenin tanımlayıcı adına ek olarak &kde; içinde &URI;’lerin beklendiği her yere yazabileceğiniz ilişkilendirilmiş kısayolların yanı sıra kullanılan &URI;’yi de görebilirsiniz. Herhangi bir arama sağlayıcısının virgülle ayrılmış birden çok kısayolu olabilir.</para>
 
 <para
 >Metin kutuları yalnızca web kısayolları listesindeki bir öge hakkında bilgi görüntülemek için değil, aynı zamanda yeni ögeler eklemek veya değiştirmek için de kullanılır.</para>
@@ -180,11 +180,11 @@
 > bulunduğunu göreceksiniz. Bu dört dizi bir parametre görevi görür, yani kısayol ile parametresi arasındaki iki nokta üst üste karakterinden sonra ne yazarsanız yazın onların yerini alır. Bu sorgu yer tutucusunu bir kısayol &URL;’sine eklemek için metin kutusunun sağındaki düğmeyi tıklayın. Web kısayollarının nasıl kullanılacağını netleştirmek için bazı örneklere bakalım.</para>
 
 <para
->&URI;'nin <userinput
+>&URI;’nin <userinput
 >https://www.google.com/search?q=\{@}</userinput
 > olduğunu ve <userinput
 >gg</userinput
->'nin de bu &URI; için bir kısayol olduğunu varsayalım. Sonrasında <userinput
+>’nin de bu &URI; için bir kısayol olduğunu varsayalım. Sonrasında <userinput
 >gg:<replaceable
 >alfa</replaceable
 ></userinput
@@ -192,25 +192,25 @@
 >https://www.google.com/search?q=<replaceable
 >alfa</replaceable
 ></userinput
->'ya eşdeğerdir. <userinput
+>’ya eşdeğerdir. <userinput
 >:</userinput
 > karakterinden sonra istediğiniz bir şey yazabilirsiniz; yazdığınız her şey <option
 >\{@}</option
-> karakterinin yerine geçer. Bu girdi uygun karakter kümesine çevrilir ve &URL; düzgünce kodlanır. Arama &URI;'sinin yalnızca <option
+> karakterinin yerine geçer. Bu girdi uygun karakter kümesine çevrilir ve &URL; düzgünce kodlanır. Arama &URI;’sinin yalnızca <option
 >\{@}</option
 > kısmına dokunulur; gerisi normal bir &URL; olarak kodlanmıştır ve öylece bırakılır.</para>
 
 <para
->Aynı zamanda parametresiz kısayollar da oluşturabilirsiniz. &URI;'nin <emphasis
+>Aynı zamanda parametresiz kısayollar da oluşturabilirsiniz. &URI;’nin <emphasis
 >file:/home/ben/belgelerim/calligra/words</emphasis
 > olduğunu ve kısayolun <emphasis
 >words</emphasis
 > olduğunu varsayalım. Sonrasında <userinput
 >words:</userinput
-> yazmak, &URI;'nin tümünü yazmaya eşdeğerdir. Kısayolu yazarken iki noktadan sonra hiçbir şey olmadığına; ancak iki noktanın kısayolun tanımlanabilmesi adına her zaman gerekli olduğuna dikkat edin.</para>
+> yazmak, &URI;’nin tümünü yazmaya eşdeğerdir. Kısayolu yazarken iki noktadan sonra hiçbir şey olmadığına; ancak iki noktanın kısayolun tanımlanabilmesi adına her zaman gerekli olduğuna dikkat edin.</para>
 
 <para
->Şimdiye kadar, bu kısayollara web kısayolları denmesine rağmen, bunların yalnızca arama motorları gibi web sitelerine değil, aynı zamanda bir kullanıcı tarafından işaret edilebilecek başka herhangi bir şeye de işaret edebilen parametreleştirilmiş &URI;'lerin kısayolları olduğunu anlayacaksınız. &URI; Web kısayolları, &kde;'de gezinmenin çok güçlü bir özelliğidir.</para>
+>Şimdiye kadar, bu kısayollara web kısayolları denmesine rağmen, bunların yalnızca arama motorları gibi web sitelerine değil, aynı zamanda bir kullanıcı tarafından işaret edilebilecek başka herhangi bir şeye de işaret edebilen parametreleştirilmiş &URI;’lerin kısayolları olduğunu anlayacaksınız. &URI; Web kısayolları, &kde;’de gezinmenin çok güçlü bir özelliğidir.</para>
 
 </sect2>
 
