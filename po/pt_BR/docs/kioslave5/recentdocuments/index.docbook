@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Brazilian-Portuguese "INCLUDE">
+]>
+
+<article lang="&language;" id="recentdocument">
+<title
+>Documentos recentes</title>
+
+<articleinfo>
+
+<authorgroup>
+  <author
+>&Burkhard.Lueck;&Burkhard.Lueck.mail; </author>
+<othercredit role="translator"
+><firstname
+>Luiz Fernando</firstname
+><surname
+>Ranghetti</surname
+><affiliation
+><address
+><email
+>elchevive@opensuse.org</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>01/12/2016</date>
+<releaseinfo
+>Applications 16.12</releaseinfo>
+
+</articleinfo>
+
+<para
+>Um KIO para exibir documentos recentes ou &URL;s na caixa de diálogo de arquivos, no gerenciador de arquivos, no &krunner; e no Menu de Aplicativos.</para>
+
+<para
+>Você pode usar o KIO desta forma:</para>
+
+<para
+>Digite <userinput
+>recentdocuments:/</userinput
+> na barra de localização do &dolphin;, &konqueror; e o diálogo de arquivo irá lista os documentos ou &URL;s abertos recentemente.</para>
+
+<para
+>Você pode adicionar uma entrada na barra lateral Lugares: clique com o botão direito na barra lateral e escolha <guimenuitem
+>Adicionar entrada</guimenuitem
+>, digite <userinput
+>recentdocuments:/</userinput
+> no campo <guilabel
+>Localização</guilabel
+> e salve. Deve ficar disponível em todos os diálogos de arquivo a menos que você marque para mostrar a entrada apenas neste aplicativo.</para>
+
+<para
+>No módulo <guilabel
+>Pesquisa</guilabel
+> do &systemsettings;, habilite o plugin de pesquisa <guilabel
+>Documentos recentes</guilabel
+> para usar este KIO no &krunner;.</para>
+
+<para
+>No <guilabel
+>Menu de aplicativos</guilabel
+> adicione um item de menu com os documentos recentes no topo do menu habilitando <guilabel
+>Mostrar documentos recentes</guilabel
+> na página de configurações.</para>
+
+</article>

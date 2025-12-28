@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Brazilian-Portuguese "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="zstd">
+<title
+>zstd</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Friedrich</firstname
+><othername
+>W. H.</othername
+><surname
+>Kossebau</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Marcus</firstname
+><surname
+>Gama</surname
+><affiliation
+><address
+><email
+>marcus.gama@kde.org</email
+></address
+></affiliation
+><contrib
+>Tradução</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>zstd</command
+> é um programa de compressão.</para>
+
+<para
+>O KIO do 'zstd' não é diretamente utilizável e destina-se ao uso como um filtro. Por exemplo, o KIO do 'tar' pode filtrar um arquivo através do KIO do 'zstd', para exibir o conteúdo de um arquivo <literal role="extension"
+>tar.zst</literal
+> diretamente em uma janela do &konqueror;.</para>
+
+<para
+>Se você clicar em um arquivo compactado com uma extensão <literal role="extension"
+>zst</literal
+> no &konqueror;, este KIO será usado para descompactá-lo e exibi-lo como um arquivo normal (descompactado).</para>
+
+<para
+>Se você é um desenvolvedor, e gostaria de usar o filtro 'zstd', pode encontrar documentação sobre o uso de KIO em <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Veja o manual: <ulink url="man:/zstd"
+>zstd</ulink
+>. </para>
+
+</article>

@@ -65,7 +65,7 @@
 >, mas o resto do protocolo usa ferramentas normais da linha de comando, como descrito abaixo.</para>
 
 <para
->Use o 'kioslave' do 'fish' da seguinte forma: <userinput
+>Use o KIO do 'fish' da seguinte forma: <userinput
 >fish://<replaceable
 >máquina</replaceable
 ></userinput

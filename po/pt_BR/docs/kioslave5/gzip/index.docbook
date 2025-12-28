@@ -37,17 +37,17 @@
 > é um programa de compressão</para>
 
 <para
->O 'kioslave' do 'gzip' não é utilizável diretamente, e a intenção é usá-lo como filtro. Por exemplo, o 'kioslave' do 'tar' pode filtrar um arquivo por meio do 'kioslave' do 'gzip', a fim de exibir o conteúdo de um arquivo <literal role="extension"
+>O KIO do 'gzip' não é utilizável diretamente, e a intenção é usá-lo como filtro. Por exemplo, o KIO do 'tar' pode filtrar um arquivo por meio do KIO do 'gzip', a fim de exibir o conteúdo de um arquivo <literal role="extension"
 >tar.gz</literal
 > diretamente na janela do &konqueror;.</para>
 
 <para
 >Se você clicar em um arquivo comprimido com <literal role="extension"
 >gz </literal
-> no &konqueror;, o 'kioslave' é usado para descomprimi-lo e exibi-lo como um arquivo normal (sem compressão).</para>
+> no &konqueror;, o KIO é usado para descomprimi-lo e exibi-lo como um arquivo normal (sem compressão).</para>
 
 <para
->Se você é um desenvolvedor, e gostaria de usar o filtro 'gzip', pode encontrar documentação sobre o uso de 'kioslaves' em <ulink url="http://techbase.kde.org"
+>Se você é um desenvolvedor, e gostaria de usar o filtro 'gzip', pode encontrar documentação sobre o uso de KIO em <ulink url="http://techbase.kde.org"
 >http://techbase.kde.org</ulink
 ></para>
 
