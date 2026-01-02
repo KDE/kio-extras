@@ -685,7 +685,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
 
     if (validThumbnails == 0) {
         // Eventually propagate the contained items from a sub-directory
-        QDirIterator dir(directory, QDir::Dirs);
+        QDirIterator dir(directory, QDir::Dirs | QDir::NoDotAndDotDot);
         int max = 50;
         while (dir.hasNext() && max > 0) {
             --max;
