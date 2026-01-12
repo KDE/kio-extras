@@ -98,7 +98,8 @@ msgstr "No s'ha pogut connectar amb l'amfitrió per a %1"
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr ""
-"S'ha produït un error en connectar amb el servidor responsable per a %1"
+"S'ha produït un error mentre es connectava amb el servidor responsable per a "
+"%1"
 
 #: kio_smb_browse.cpp:302
 #, kde-format
@@ -157,7 +158,7 @@ msgstr "Condició desconeguda d'error: [%1] %2"
 #: kio_smb_browse.cpp:354
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
-msgstr "S'ha produït un error en intentar accedir a %1<nl/>%2"
+msgstr "S'ha produït un error mentre s'intentava accedir a %1<nl/>%2"
 
 #: kio_smb_file.cpp:35
 #, kde-format
