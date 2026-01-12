@@ -34,7 +34,7 @@ msgstr "El protocol NFS requerix un nom d'amfitrió del servidor."
 #: kio_nfs.cpp:352
 #, kde-format
 msgid "Failed to initialise protocol"
-msgstr "No s'ha pogut restablir el protocol"
+msgstr "Ha fallat mentre es restablia el protocol"
 
 #: kio_nfs.cpp:820
 #, kde-format
