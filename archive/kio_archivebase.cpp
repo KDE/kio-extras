@@ -363,13 +363,31 @@ KIO::WorkerResult ArchiveProtocolBase::stat(const QUrl &url)
         createUDSEntry(archiveEntry, entry);
     }
 
+    const auto details = getStatDetails();
     if (archiveEntry->isDirectory()) {
-        auto details = getStatDetails();
+        if (details & KIO::StatMimeType) {
+            entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+        }
         if (details & KIO::StatRecursiveSize) {
             const auto directoryEntry = static_cast<const KArchiveDirectory *>(archiveEntry);
             entry.fastInsert(KIO::UDSEntry::UDS_RECURSIVE_SIZE, static_cast<long long>(computeArchiveDirSize(directoryEntry)));
         }
+    } else {
+        if (details & KIO::StatMimeType) {
+            // TODO what about symlink, get() redirects.
+            const KArchiveFile *archiveFileEntry = static_cast<const KArchiveFile *>(archiveEntry);
+
+            std::unique_ptr<QIODevice> io(archiveFileEntry->createDevice());
+            if (io) {
+                QMimeDatabase db;
+                QMimeType mime = db.mimeTypeForFileNameAndData(path, io.get());
+                if (mime.isValid() && !mime.isDefault()) {
+                    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, mime.name());
+                }
+            }
+        }
     }
+
     statEntry(entry);
 
     return KIO::WorkerResult::pass();
