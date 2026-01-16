@@ -26,13 +26,15 @@ KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
         return KIO::ThumbnailResult::fail();
 
     // render using the correct ratio
-    auto defaultSize = r.defaultSize();
+    const QSize defaultSize = r.defaultSize();
     double ratio = 1.0;
-    if (defaultSize.height() < request.targetSize().height() && defaultSize.width() < request.targetSize().width()) {
-        // scale to output size if size is smaller than output
-        ratio = 1.0 * defaultSize.height() / defaultSize.width();
-    } else {
-        ratio = static_cast<double>(defaultSize.height()) / static_cast<double>(defaultSize.width());
+    if (!defaultSize.isNull()) {
+        if (defaultSize.height() < request.targetSize().height() && defaultSize.width() < request.targetSize().width()) {
+            // scale to output size if size is smaller than output
+            ratio = 1.0 * defaultSize.height() / defaultSize.width();
+        } else {
+            ratio = static_cast<double>(defaultSize.height()) / static_cast<double>(defaultSize.width());
+        }
     }
 
     int width = request.targetSize().width() * request.devicePixelRatio();
