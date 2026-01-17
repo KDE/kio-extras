@@ -301,13 +301,17 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
         m_width = 128;
         m_height = 128;
     }
+
+    int physicalWidth = m_width;
+    int physicalHeight = m_height;
+
     bool ok;
     m_devicePixelRatio = metaData("devicePixelRatio").toFloat(&ok);
     if (!ok || qFuzzyIsNull(m_devicePixelRatio)) {
         m_devicePixelRatio = 1.0;
     } else {
-        m_width *= m_devicePixelRatio;
-        m_height *= m_devicePixelRatio;
+        physicalWidth *= m_devicePixelRatio;
+        physicalHeight *= m_devicePixelRatio;
     }
 
     QImage img;
@@ -337,7 +341,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
             setMetaData("handlesSequences", QStringLiteral("1"));
         }
 
-        if (!createThumbnail(creator, info.canonicalFilePath(), m_width, m_height, img)) {
+        if (!createThumbnail(creator, info.canonicalFilePath(), physicalWidth, physicalHeight, img)) {
             return KIO::WorkerResult::fail(KIO::ERR_INTERNAL, i18n("Cannot create thumbnail for %1", info.canonicalFilePath()));
         }
 
@@ -352,7 +356,7 @@ KIO::WorkerResult ThumbnailProtocol::get(const QUrl &url)
     }
 
     // image quality and size corrections
-    scaleDownImage(img, m_width, m_height);
+    scaleDownImage(img, physicalWidth, physicalHeight);
 
     convertToStandardRgb(img);
 
@@ -463,6 +467,7 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter,
     const bool hasTargetSizeHeight = imageTargetSize.height() != 0;
     const int widthWithFrames = image.width() + (2 * borderStrokeWidth);
     const int heightWithFrames = image.height() + (2 * borderStrokeWidth);
+
     if (landscapeDimension && (widthWithFrames > imageTargetSize.width()) && hasTargetSizeWidth) {
         scaling = float(imageTargetSize.width()) / float(widthWithFrames);
     } else if ((heightWithFrames > imageTargetSize.height()) && hasTargetSizeHeight) {
@@ -540,7 +545,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
 
-    const int extent = qMin(m_width, m_height);
+    const int extent = qMin(m_width, m_height) * m_devicePixelRatio;
     QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(extent);
     folder.setDevicePixelRatio(m_devicePixelRatio);
 
@@ -550,6 +555,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
         folder = folder.scaled(extent, extent, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     }
 
+    // physical pixels
     const int folderWidth = folder.width();
     const int folderHeight = folder.height();
 
@@ -874,12 +880,16 @@ bool ThumbnailProtocol::createSubThumbnail(QImage &thumbnail, const QString &fil
     return true;
 }
 
-bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, const QString &filePath, int width, int height, QImage &thumbnail)
+bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator,
+                                        const QString &filePath,
+                                        int physicalWidth,
+                                        int physicalHeight,
+                                        QImage &thumbnail)
 {
     bool success = false;
 
     auto result = thumbCreator->creator->create(
-        KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(width, height), m_mimeType, m_devicePixelRatio, sequenceIndex()));
+        KIO::ThumbnailRequest(QUrl::fromLocalFile(filePath), QSize(physicalWidth, physicalHeight), m_mimeType, m_devicePixelRatio, sequenceIndex()));
 
     success = result.isValid();
     thumbnail = result.image();
@@ -890,7 +900,7 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, 
     }
 
     // make sure the image is not bigger than the expected size
-    scaleDownImage(thumbnail, width, height);
+    scaleDownImage(thumbnail, physicalWidth, physicalHeight);
 
     thumbnail.setDevicePixelRatio(m_devicePixelRatio);
     convertToStandardRgb(thumbnail);
@@ -900,8 +910,6 @@ bool ThumbnailProtocol::createThumbnail(ThumbCreatorWithMetadata *thumbCreator, 
 
 void ThumbnailProtocol::drawSubThumbnail(QPainter &p, QImage subThumbnail, int width, int height, int xPos, int yPos, int borderStrokeWidth)
 {
-    scaleDownImage(subThumbnail, width, height);
-
     // center the image inside the segment boundaries
     const QPoint centerPos((xPos + width / 2) / m_devicePixelRatio, (yPos + height / 2) / m_devicePixelRatio);
     const int rotationAngle = m_randomGenerator.bounded(-8, 9); // Random rotation ±8°
