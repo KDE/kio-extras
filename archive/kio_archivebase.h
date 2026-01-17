@@ -34,7 +34,7 @@ private:
 
     virtual KArchive *createArchive(const QString &proto, const QString &archiveFile) = 0;
 
-    KIO::StatDetails getStatDetails();
+    KIO::StatDetails getStatDetails() const;
     uint computeArchiveDirSize(const KArchiveDirectory *dir);
 
     /**
