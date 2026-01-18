@@ -14,8 +14,6 @@
 
 using namespace KIO;
 
-static const char s_lockdownLabel[] = "kio_afc";
-
 AfcSpringBoard::AfcSpringBoard(idevice_t device, lockdownd_client_t lockdowndClient)
 {
     auto lockdownRet = lockdownd_start_service(lockdowndClient, SBSERVICES_SERVICE_NAME, &m_springBoardService);
