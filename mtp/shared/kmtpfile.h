@@ -29,6 +29,7 @@ class KMTPFile
 public:
     KMTPFile();
     KMTPFile(const KMTPFile &other) = default;
+    KMTPFile &operator=(const KMTPFile &other) = default;
     explicit KMTPFile(quint32 itemId,
                       quint32 parentId,
                       quint32 storageId,
