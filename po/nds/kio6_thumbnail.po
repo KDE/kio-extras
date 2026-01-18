@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-18 00:42+0000\n"
 "PO-Revision-Date: 2011-04-05 07:47+0200\n"
 "Last-Translator: Manfred Wiese <m.j.wiese@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -27,42 +27,42 @@ msgstr "Keen MIME-Typ angeven."
 msgid "No or invalid size specified."
 msgstr "Keen oder nich gellen Grött angeven."
 
-#: thumbnail.cpp:319
+#: thumbnail.cpp:323
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "Vöransicht för Orner lett sik nich opstellen"
 
-#: thumbnail.cpp:328
+#: thumbnail.cpp:332
 #, kde-format
 msgid "No plugin specified."
 msgstr "Keen Plugin angeven."
 
-#: thumbnail.cpp:333
+#: thumbnail.cpp:337
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "ThumbCreator %1 lett sik nich laden"
 
-#: thumbnail.cpp:341
+#: thumbnail.cpp:345
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "Vöransicht för \"%1\" lett sik nich opstellen"
 
-#: thumbnail.cpp:351
+#: thumbnail.cpp:355
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "Opstellen vun Vöransicht fehlslaan"
 
-#: thumbnail.cpp:371
+#: thumbnail.cpp:375
 #, kde-format
 msgid "Could not write image."
 msgstr "Bild lett sik nich schrieven."
 
-#: thumbnail.cpp:399
+#: thumbnail.cpp:403
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "Anfögen an Afsnitt %1 vun den deelten Spieker fehlslaan"
 
-#: thumbnail.cpp:403
+#: thumbnail.cpp:407
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Bild is to groot för den Afsnitt vun den deelten Spieker"

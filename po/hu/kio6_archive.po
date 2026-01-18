@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-18 00:42+0000\n"
 "PO-Revision-Date: 2007-12-19 11:11+0100\n"
 "Last-Translator: Tamas Szanto <tszanto@interware.hu>\n"
 "Language-Team: Hungarian <kde-i18n-doc@kde.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: kio_archivebase.cpp:243 kio_archivebase.cpp:320 kio_archivebase.cpp:393
+#: kio_archivebase.cpp:239 kio_archivebase.cpp:316 kio_archivebase.cpp:389
 #, kde-format
 msgid ""
 "Could not open the file, probably due to an unsupported file format.\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Nem sikerült megnyitni a fájlt, valószínűleg nem támogatott a fájlformátum.\n"
 "%1"
 
-#: kio_archivebase.cpp:432
+#: kio_archivebase.cpp:428
 #, kde-format
 msgid ""
 "The archive file could not be opened, perhaps because the format is "
