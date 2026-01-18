@@ -1114,7 +1114,6 @@ void MANProtocol::showIndex(const QString &section)
     man_index_ptr *indexlist = new man_index_ptr[listlen];
     listlen = 0;
 
-    QStringList::const_iterator page;
     for (const QString &page : qAsConst(pages)) {
         // I look for the beginning of the man page name
         // i.e. "bla/pagename.3.gz" by looking for the last "/"
