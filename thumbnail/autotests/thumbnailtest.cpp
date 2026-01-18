@@ -70,6 +70,9 @@ private Q_SLOTS:
 
         QTest::addRow("exe_pe32+") << "pe32plus_32bpp.exe"
                                    << "pe32plus_32bpp_thumb.png" << 1.0 << QSize(128, 128);
+
+        QTest::addRow("empty_svg") << "trivial.svg"
+                                   << "trivial.png" << 1.0 << QSize(128, 128);
     }
 
     void testThumbnail()
