@@ -62,7 +62,7 @@ private Q_SLOTS:
         QDir d = QDir::temp();
         filer = d.absoluteFilePath(filerName);
         QFile f(filer);
-        f.open(QIODevice::WriteOnly);
+        QVERIFY(f.open(QIODevice::WriteOnly));
         f.write("hello");
     }
 
