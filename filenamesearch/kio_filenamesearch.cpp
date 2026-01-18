@@ -490,7 +490,6 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
         termList = splitWordList(search);
         break;
     }
-    int numberOfTerms = termList.count();
 
     //  Check the split up list of search terms or expressions to see whether they are valid.
 
