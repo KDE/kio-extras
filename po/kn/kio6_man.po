@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2008-09-28 21:50+0200\n"
 "Last-Translator: Umesh Rudrapatna <umeshrs@gmail.com>\n"
 "Language-Team: American English <kde-l10n-kn@kde.org>\n"
@@ -189,7 +189,7 @@ msgstr "UNIX ಕೈಪಿಡಿ ಸೂಚಿಪಟ್ಟಿ"
 msgid "Generating Index"
 msgstr "ಸೂಚಿಪಟ್ಟಿಯನ್ನು ರಚಿಸಲಾಗುತ್ತಿದೆ"
 
-#: kio_man.cpp:1345
+#: kio_man.cpp:1344
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

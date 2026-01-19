@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2023-10-25 10:22+0200\n"
 "Last-Translator: Enol P. <enolp@softastur.org>\n"
 "Language-Team: \n"
@@ -177,7 +177,7 @@ msgstr ""
 msgid "Generating Index"
 msgstr ""
 
-#: kio_man.cpp:1345
+#: kio_man.cpp:1344
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

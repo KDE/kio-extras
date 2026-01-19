@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_tar\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-18 00:42+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2007-08-20 10:59+0545\n"
 "Last-Translator: Nabin Gautam <nabin@mpp.org.np>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: kio_archivebase.cpp:239 kio_archivebase.cpp:316 kio_archivebase.cpp:389
+#: kio_archivebase.cpp:239 kio_archivebase.cpp:316 kio_archivebase.cpp:407
 #, kde-format
 msgid ""
 "Could not open the file, probably due to an unsupported file format.\n"
@@ -27,7 +27,7 @@ msgstr ""
 "फाइल खोल्न सकिएन, सम्भवत असमर्थित फाइल ढाँचाले गर्दा हुन सक्छ ।\n"
 "%1"
 
-#: kio_archivebase.cpp:428
+#: kio_archivebase.cpp:446
 #, kde-format
 msgid ""
 "The archive file could not be opened, perhaps because the format is "

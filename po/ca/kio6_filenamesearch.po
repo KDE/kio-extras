@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2025-07-26 12:21+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -34,7 +34,7 @@ msgstr ""
 "Ubicació de cerca no vàlida\n"
 "S'intenta cercar al directori /proc"
 
-#: kio_filenamesearch.cpp:501
+#: kio_filenamesearch.cpp:500
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -44,7 +44,7 @@ msgstr ""
 "Consulta de cerca no vàlida: «%1»\n"
 "S'esperava una expressió regular: %2"
 
-#: kio_filenamesearch.cpp:764
+#: kio_filenamesearch.cpp:763
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2021-09-10 13:38+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English <kde-l10n-en_gb@kde.org>\n"
@@ -190,7 +190,7 @@ msgstr "Manual Page Index"
 msgid "Generating Index"
 msgstr "Generating Index"
 
-#: kio_man.cpp:1345
+#: kio_man.cpp:1344
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

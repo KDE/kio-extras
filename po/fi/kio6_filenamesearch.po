@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2025-09-19 18:21+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -32,7 +32,7 @@ msgstr ""
 "Virheellinen hakusijainti\n"
 "Yritetään etsiä /proc-kansiosta"
 
-#: kio_filenamesearch.cpp:501
+#: kio_filenamesearch.cpp:500
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -42,7 +42,7 @@ msgstr ""
 "Virheellinen hakukysely: ”%1”\n"
 "Odotettiin säännöllistä lauseketta: %2"
 
-#: kio_filenamesearch.cpp:764
+#: kio_filenamesearch.cpp:763
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

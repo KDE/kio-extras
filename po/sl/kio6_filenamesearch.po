@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2025-07-26 08:38+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -33,7 +33,7 @@ msgstr ""
 "Neveljavna lokacija iskanja\n"
 "Poskus iskanja v imeniku /proc"
 
-#: kio_filenamesearch.cpp:501
+#: kio_filenamesearch.cpp:500
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -43,7 +43,7 @@ msgstr ""
 "Neveljavna iskalna poizvedba: '%1'\n"
 "Pričakovan regularni izraz: %2"
 
-#: kio_filenamesearch.cpp:764
+#: kio_filenamesearch.cpp:763
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

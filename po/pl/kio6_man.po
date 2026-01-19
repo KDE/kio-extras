@@ -1,4 +1,4 @@
-# Version: $Revision: 1723076 $
+# Version: $Revision: 1728042 $
 # translation of kio_man.po to Polish
 # translation of kio_man.po to
 # Michał Rudolf <mrudolf@kdewebdev.org>, 2002.
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2021-09-12 09:49+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -189,7 +189,7 @@ msgstr "Strona spis treści podręcznika"
 msgid "Generating Index"
 msgstr "Tworzenie spisu treści"
 
-#: kio_man.cpp:1345
+#: kio_man.cpp:1344
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

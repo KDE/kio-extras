@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2022-10-31 22:07+0000\n"
 "Last-Translator: Gummi <gudmundure@gmail.com>\n"
 "Language-Team: Icelandic <kde-i18n-doc@kde.org>\n"
@@ -193,7 +193,7 @@ msgstr "Efnisskrá fyrir hjálparsíður"
 msgid "Generating Index"
 msgstr "Bý til efnisskrá"
 
-#: kio_man.cpp:1345
+#: kio_man.cpp:1344
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

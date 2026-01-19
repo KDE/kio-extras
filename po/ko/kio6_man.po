@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2021-11-12 00:11+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -190,7 +190,7 @@ msgstr "매뉴얼 페이지 색인"
 msgid "Generating Index"
 msgstr "색인 만드는 중"
 
-#: kio_man.cpp:1345
+#: kio_man.cpp:1344
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""

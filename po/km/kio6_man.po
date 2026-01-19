@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2008-12-19 09:20+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -197,7 +197,7 @@ msgstr "លិបិក្រម​សៀវភៅ​ដៃ​របស់​យ
 msgid "Generating Index"
 msgstr "កំពុង​បង្កើត​លិបិក្រម"
 
-#: kio_man.cpp:1345
+#: kio_man.cpp:1344
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

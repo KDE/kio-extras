@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-01-19 00:43+0000\n"
 "PO-Revision-Date: 2024-10-03 10:11+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
@@ -30,7 +30,7 @@ msgid ""
 "Trying to search the /proc directory"
 msgstr ""
 
-#: kio_filenamesearch.cpp:501
+#: kio_filenamesearch.cpp:500
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -38,7 +38,7 @@ msgid ""
 "Expected a regular expression: %2"
 msgstr ""
 
-#: kio_filenamesearch.cpp:764
+#: kio_filenamesearch.cpp:763
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
