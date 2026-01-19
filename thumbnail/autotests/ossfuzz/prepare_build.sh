@@ -11,12 +11,21 @@
 # we do not need to instrument them.
 # The same goes for libmount and libacl.
 apt-get update && \
-    apt-get install -y cmake make autoconf automake autopoint libtool \
+    apt-get install -y cmake make automake autopoint libtool \
     wget po4a pkg-config perl python3 gperf texinfo \
     flex bison libmount-dev libacl1-dev
     # libglib2.0-dev libcairo-dev librsvg2-dev
 
 pip3 install meson ninja
+
+# libX11 requires autoconf >= 2.70 and the base builder image has autoconf 2.69
+wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.70.tar.gz
+tar -xzf autoconf-2.70.tar.gz
+cd $SRC/autoconf-2.70
+./configure
+make install -j$(nproc)
+rm -rf $SRC/autoconf-2.70*
+cd $SRC
 
 # Base
 git clone --depth 1 https://github.com/madler/zlib.git
@@ -54,16 +63,16 @@ git clone --depth 1 https://github.com/taglib/taglib.git
 # For ComicCreator
 wget https://www.rarlab.com/rar/unrarsrc-7.1.7.tar.gz
 # For CursorCreator
-wget https://www.x.org/releases/individual/proto/xcb-proto-1.17.0.tar.gz
-wget https://www.x.org/releases/individual/proto/xorgproto-2024.1.tar.gz
-wget https://www.x.org/releases/individual/util/util-macros-1.20.2.tar.gz
-wget https://www.x.org/releases/individual/lib/xtrans-1.6.0.tar.gz
-wget https://www.x.org/releases/individual/lib/libXau-1.0.12.tar.gz
-wget https://www.x.org/releases/individual/lib/libxcb-1.17.0.tar.gz
-wget https://www.x.org/releases/individual/lib/libX11-1.8.12.tar.gz
-wget https://www.x.org/releases/individual/lib/libXrender-0.9.12.tar.gz
-wget https://www.x.org/releases/individual/lib/libXfixes-6.0.1.tar.gz
-wget https://www.x.org/releases/individual/lib/libXcursor-1.2.3.tar.gz
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/proto/xcbproto.git
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/util/macros.git util-macros
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/proto/xorgproto.git
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/lib/libxtrans.git
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/lib/libXau.git
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/lib/libxcb.git
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/lib/libX11.git
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/lib/libXrender.git
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/lib/libXfixes.git
+git clone --depth 1 https://gitlab.freedesktop.org/xorg/lib/libXcursor.git
 # For DjVuCreator
 wget http://downloads.sourceforge.net/djvu/djvulibre-3.5.28.tar.gz
 # For EXRCreator

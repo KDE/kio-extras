@@ -306,63 +306,56 @@ unset AFL_NOOPT
 # -- End Disable Instrumentation --
 
 # For CursorCreator
-cd $SRC
-tar xzf xcb-proto-*.tar.gz && rm -f xcb-proto-*.tar.gz
-cd xcb-proto-*
+
+export ACLOCAL_PATH="/work/share/aclocal"
+
+cd $SRC/xcbproto
+./autogen.sh
 ./configure --prefix $WORK
 make install -j$(nproc)
 
-cd $SRC
-tar xzf xorgproto-*.tar.gz && rm -f xorgproto-*.tar.gz
-cd xorgproto-*
+cd $SRC/util-macros
+./autogen.sh
+./configure --prefix $WORK
+make install -j$(nproc)
+
+cd $SRC/xorgproto
+./autogen.sh
 ./configure --disable-specs --without-xmlto --without-fop --without-xsltproc --prefix $WORK
 make install -j$(nproc)
 
-cd $SRC
-tar xzf util-macros-*.tar.gz && rm -f util-macros-*.tar.gz
-cd util-macros-*
-./configure
+cd $SRC/libxtrans
+./autogen.sh
+./configure --disable-docs --without-xmlto --without-fop --without-xsltproc --prefix $WORK
 make install -j$(nproc)
 
-cd $SRC
-tar xzf xtrans-*.tar.gz && rm -f xtrans-*.tar.gz
-cd xtrans-*
-./configure --disable-specs --disable-docs --without-xmlto --without-fop --without-xsltproc --prefix $WORK
-make install -j$(nproc)
-
-cd $SRC
-tar xzf libXau-*.tar.gz && rm -f libXau-*.tar.gz
-cd libXau-*
+cd $SRC/libXau
+./autogen.sh
 ./configure --disable-shared --enable-static --prefix $WORK
 make install -j$(nproc)
 
-cd $SRC
-tar xzf libxcb-*.tar.gz && rm -f libxcb-*.tar.gz
-cd libxcb-*
+cd $SRC/libxcb
+./autogen.sh
 ./configure --disable-shared --enable-static --disable-devel-docs --without-doxygen --prefix $WORK
 make install -j$(nproc)
 
-cd $SRC
-tar xzf libX11-*.tar.gz && rm -f libX11-*.tar.gz
-cd libX11-*
+cd $SRC/libX11
+./autogen.sh
 ./configure --disable-shared --enable-static --disable-specs --without-xmlto --without-fop --without-xsltproc --without-launchd --prefix $WORK
 make install -j$(nproc)
 
-cd $SRC
-tar xzf libXrender-*.tar.gz && rm -f libXrender-*.tar.gz
-cd libXrender-*
+cd $SRC/libXrender
+./autogen.sh
 ./configure --disable-shared --enable-static --prefix $WORK
 make install -j$(nproc)
 
-cd $SRC
-tar xzf libXfixes-*.tar.gz && rm -f libXfixes-*.tar.gz
-cd libXfixes-*
+cd $SRC/libXfixes
+./autogen.sh
 ./configure --disable-shared --enable-static --prefix $WORK
 make install -j$(nproc)
 
-cd $SRC
-tar xzf libXcursor-*.tar.gz && rm -f libXcursor-*.tar.gz
-cd libXcursor-*
+cd $SRC/libXcursor
+./autogen.sh
 ./configure --disable-shared --enable-static --prefix $WORK
 make install -j$(nproc)
 
