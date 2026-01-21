@@ -28,7 +28,7 @@ KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
     // render using the correct ratio
     const QSize defaultSize = r.defaultSize();
     double ratio = 1.0;
-    if (!defaultSize.isNull()) {
+    if (defaultSize.width() > 0 && defaultSize.height() > 0) {
         if (defaultSize.height() < request.targetSize().height() && defaultSize.width() < request.targetSize().width()) {
             // scale to output size if size is smaller than output
             ratio = 1.0 * defaultSize.height() / defaultSize.width();
