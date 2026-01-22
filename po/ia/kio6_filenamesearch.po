@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
 #
-# SPDX-FileCopyrightText: 2024 giovanni <g.sora@tiscali.it>
+# SPDX-FileCopyrightText: 2024, 2026 giovanni <g.sora@tiscali.it>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-01-19 00:43+0000\n"
-"PO-Revision-Date: 2024-10-03 10:11+0200\n"
+"PO-Revision-Date: 2026-01-21 16:44+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -29,6 +29,8 @@ msgid ""
 "Invalid search location\n"
 "Trying to search the /proc directory"
 msgstr ""
+"Location de cerca invalide\n"
+"Essayante cercar le directorio /proc"
 
 #: kio_filenamesearch.cpp:500
 #, kde-format
@@ -37,6 +39,8 @@ msgid ""
 "Invalid search query: '%1'\n"
 "Expected a regular expression: %2"
 msgstr ""
+"Demanda (query de cerca )invalide: '%1'\n"
+"Expectava un expression  regular: %2"
 
 #: kio_filenamesearch.cpp:763
 #, kde-format
