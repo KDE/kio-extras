@@ -40,10 +40,17 @@ KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
     int width = request.targetSize().width() * request.devicePixelRatio();
     int height = request.targetSize().height() * request.devicePixelRatio();
 
-    if (defaultSize.height() > defaultSize.width())
-        height = qRound(width / ratio);
-    else
-        width = qRound(height / ratio);
+    if (defaultSize.height() > defaultSize.width()) {
+        const double tmpHeight = width / ratio;
+        if (tmpHeight <= std::numeric_limits<int>::max()) {
+            height = qRound(tmpHeight);
+        }
+    } else {
+        const double tmpWidth = height / ratio;
+        if (tmpWidth <= std::numeric_limits<int>::max()) {
+            width = qRound(tmpWidth);
+        }
+    }
 
     QImage i(width, height, QImage::Format_ARGB32_Premultiplied);
     i.fill(0);
