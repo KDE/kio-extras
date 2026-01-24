@@ -76,6 +76,9 @@ private Q_SLOTS:
 
         QTest::addRow("one-invalid-size") << "one-invalid-size.svg"
                                           << "trivial.png" << 1.0 << QSize(128, 128);
+
+        QTest::addRow("ossfuzz-5794405981421568") << "ossfuzz-5794405981421568"
+                                                  << "trivial.png" << 1.0 << QSize(128, 128);
     }
 
     void testThumbnail()
