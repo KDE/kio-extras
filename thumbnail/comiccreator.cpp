@@ -17,7 +17,10 @@
 #include "thumbnail-comic-logsettings.h"
 
 #include <K7Zip>
+#include <KConfigGroup>
+#include <KIO/Global>
 #include <KPluginFactory>
+#include <KSharedConfig>
 #include <KTar>
 #include <KZip>
 
@@ -128,13 +131,25 @@ QImage ComicCreator::extractArchiveImage(const QString &path, const ComicCreator
         return QImage();
     }
 
+    const KConfigGroup globalConfig(KSharedConfig::openConfig(), QStringLiteral("PreviewSettings"));
+    const KIO::filesize_t maxFileSize = globalConfig.readEntry("MaximumSize", std::numeric_limits<KIO::filesize_t>::max());
+
     // Extract the cover file.
-    const KArchiveFile *coverFile = static_cast<const KArchiveFile *>(cArchiveDir->entry(entries[0]));
-    if (!coverFile) {
-        return QImage();
+    for (const QString &entry : entries) {
+        const KArchiveFile *coverFile = static_cast<const KArchiveFile *>(cArchiveDir->entry(entry));
+        if (!coverFile || coverFile->size() < 0) {
+            continue;
+        }
+
+        const KIO::filesize_t coverFileSize_t = static_cast<KIO::filesize_t>(coverFile->size());
+        if (coverFileSize_t > maxFileSize) {
+            continue;
+        }
+
+        return QImage::fromData(coverFile->data());
     }
 
-    return QImage::fromData(coverFile->data());
+    return {};
 }
 
 void ComicCreator::getArchiveFileList(QStringList &entries, const QString &prefix, const KArchiveDirectory *dir)
