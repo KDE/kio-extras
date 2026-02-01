@@ -47,11 +47,22 @@ case $1 in
         # --hidden:        Don't skip hidden files and directories.
         # --no-ignore:     Don't respect .gitignore/.ignore settings.
         OPTIONS="-j2 --line-buffered -L -i --hidden --no-ignore"
+
+	# If the working drectory is root, exclude the directories "/dev", "/proc" and "/sys".
+	PWD=`pwd`
+	case $PWD in
+	    ("/dev"|"/proc"|"/sys")
+	        echo "Invalid directory:" $PWD 1>&2
+	        exit 1;;
+            ("/")
+                EXCL="--glob !/dev/ --glob !/sys/ --glob !/proc/"
+		;;
+        esac
         
         if rga --version 2>/dev/null | grep -q 'ripgrep-all'; then
-            exec rga $OPTIONS $REQUIRED_OPTIONS -e "$2" .
+            exec rga $OPTIONS $EXCL $REQUIRED_OPTIONS -e "$2" .
         elif rg --version 2>/dev/null | grep -q 'ripgrep'; then
-            exec rg $OPTIONS $REQUIRED_OPTIONS -e "$2" .
+            exec rg $OPTIONS $EXCL $REQUIRED_OPTIONS -e "$2" .
         else
             exit 127
         fi

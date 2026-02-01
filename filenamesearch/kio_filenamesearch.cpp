@@ -463,11 +463,6 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
         }
     }
 
-    // Don't try to iterate the /proc directory of Linux
-    if (dirUrl.isLocalFile() && dirUrl.toLocalFile() == QLatin1String("/proc")) {
-        return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED, i18nc("@info:status", "Invalid search location\nTrying to search the /proc directory"));
-    }
-
     const QString optionContent = urlQuery.queryItemValue(QStringLiteral("checkContent"));
     const QString optionHidden = urlQuery.queryItemValue(QStringLiteral("includeHidden"));
     const QString optionSyntax = urlQuery.queryItemValue(QStringLiteral("syntax"));
@@ -476,6 +471,18 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
     SearchSrcs srcs = parseSearchSrc(optionSrc, SearchSrc::ExternalThenInternal);
     SearchOptions options = parseSearchOptions(optionContent, optionHidden, SearchOption::SearchFileName);
     SearchSyntax syntax = parseSearchSyntax(optionSyntax, SearchSyntax::Regex);
+
+    //  Don't try to content search the /proc directory of Linux, you'll get ptrace
+    //  failures in the log, similarly don't search /sys as this can hang.
+
+    if (dirUrl.isLocalFile() && options.testFlag(SearchOption::SearchContent)) {
+        for (auto dir : {"/dev", "/proc", "/sys"}) {
+            if (dirUrl.toLocalFile() == QLatin1String(dir)) {
+                return KIO::WorkerResult::fail(KIO::ERR_WORKER_DEFINED,
+                                               i18nc("@info:status", "Invalid search location\nTrying to search the %1 directory", QLatin1String(dir)));
+            }
+        }
+    }
 
     QStringList termList;
     switch (syntax) {
