@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-19 00:43+0000\n"
+"POT-Creation-Date: 2026-02-02 00:43+0000\n"
 "PO-Revision-Date: 2025-11-30 15:03+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-l10n-ta@kde.org>\n"
@@ -22,17 +22,21 @@ msgstr ""
 msgid "Search Folder"
 msgstr "அடைவில் தேடு"
 
-#: kio_filenamesearch.cpp:468
-#, kde-format
+#: kio_filenamesearch.cpp:482
+#, fuzzy, kde-format
+#| msgctxt "@info:status"
+#| msgid ""
+#| "Invalid search location\n"
+#| "Trying to search the /proc directory"
 msgctxt "@info:status"
 msgid ""
 "Invalid search location\n"
-"Trying to search the /proc directory"
+"Trying to search the %1 directory"
 msgstr ""
 "செல்லுபடியாகாத தேடல் இடம்\n"
 "/proc அடைவிற்கு தேட முயற்சிக்கிறது"
 
-#: kio_filenamesearch.cpp:500
+#: kio_filenamesearch.cpp:507
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -42,7 +46,7 @@ msgstr ""
 "செல்லுபடியாகாத வினா: '%1'\n"
 "சுருங்குறித் தொடர் எதிர்பார்க்கப்பட்டது: %2"
 
-#: kio_filenamesearch.cpp:763
+#: kio_filenamesearch.cpp:770
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

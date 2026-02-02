@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-19 00:43+0000\n"
+"POT-Creation-Date: 2026-02-02 00:43+0000\n"
 "PO-Revision-Date: 2025-08-08 01:46+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -22,17 +22,21 @@ msgstr ""
 msgid "Search Folder"
 msgstr "搜尋資料夾"
 
-#: kio_filenamesearch.cpp:468
-#, kde-format
+#: kio_filenamesearch.cpp:482
+#, fuzzy, kde-format
+#| msgctxt "@info:status"
+#| msgid ""
+#| "Invalid search location\n"
+#| "Trying to search the /proc directory"
 msgctxt "@info:status"
 msgid ""
 "Invalid search location\n"
-"Trying to search the /proc directory"
+"Trying to search the %1 directory"
 msgstr ""
 "無效搜尋位置\n"
 "嘗試搜尋了 /proc 目錄"
 
-#: kio_filenamesearch.cpp:500
+#: kio_filenamesearch.cpp:507
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -42,7 +46,7 @@ msgstr ""
 "無效搜尋文字：'%1'\n"
 "預期為正則表達式：%2"
 
-#: kio_filenamesearch.cpp:763
+#: kio_filenamesearch.cpp:770
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

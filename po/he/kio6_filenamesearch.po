@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-19 00:43+0000\n"
+"POT-Creation-Date: 2026-02-02 00:43+0000\n"
 "PO-Revision-Date: 2025-07-26 09:39+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -23,17 +23,21 @@ msgstr ""
 msgid "Search Folder"
 msgstr "תיקיית חיפוש"
 
-#: kio_filenamesearch.cpp:468
-#, kde-format
+#: kio_filenamesearch.cpp:482
+#, fuzzy, kde-format
+#| msgctxt "@info:status"
+#| msgid ""
+#| "Invalid search location\n"
+#| "Trying to search the /proc directory"
 msgctxt "@info:status"
 msgid ""
 "Invalid search location\n"
-"Trying to search the /proc directory"
+"Trying to search the %1 directory"
 msgstr ""
 "מקום חיפוש שגוי\n"
 "מתבצע ניסיון לחפש בתיקיית ‎/proc"
 
-#: kio_filenamesearch.cpp:500
+#: kio_filenamesearch.cpp:507
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -43,7 +47,7 @@ msgstr ""
 "שאילתת חיפוש שגויה: ‚%1’\n"
 "אמור היה להיות ביטוי רגולרי: %2"
 
-#: kio_filenamesearch.cpp:763
+#: kio_filenamesearch.cpp:770
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
