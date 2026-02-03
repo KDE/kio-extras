@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-02 00:43+0000\n"
-"PO-Revision-Date: 2025-07-26 03:39+0200\n"
+"PO-Revision-Date: 2026-02-02 07:44+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 
 #: kio_filenamesearch.cpp:103
 #, kde-format
@@ -24,18 +24,14 @@ msgid "Search Folder"
 msgstr "საქაღალდის ძებნა"
 
 #: kio_filenamesearch.cpp:482
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid ""
-#| "Invalid search location\n"
-#| "Trying to search the /proc directory"
+#, kde-format
 msgctxt "@info:status"
 msgid ""
 "Invalid search location\n"
 "Trying to search the %1 directory"
 msgstr ""
-"არასწორი ძებნის მდებარეობა\n"
-"ვცდი მოვძებნო საქაღალდეში /proc"
+"არასწორი ძებნის მდებარეობა.\n"
+"ვცდი, მოვძებნო საქაღალდეში %1"
 
 #: kio_filenamesearch.cpp:507
 #, kde-format
