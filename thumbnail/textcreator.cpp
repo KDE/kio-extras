@@ -112,6 +112,13 @@ KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
             ok = true;
             m_data[read] = '\0';
             QString text = QString(codecFromContent(m_data, read).decode(QByteArrayView(m_data, read))).trimmed();
+            if (!text.isValidUtf16()) {
+                // See if we are unlucky and the last byte we read was half of a utf16 character
+                text.chop(1);
+                if (!text.isValidUtf16()) {
+                    return KIO::ThumbnailResult::fail();
+                }
+            }
             // FIXME: maybe strip whitespace and read more?
 
             // If the text contains tabs or consecutive spaces, it is probably
