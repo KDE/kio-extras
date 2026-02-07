@@ -131,8 +131,12 @@ QImage ComicCreator::extractArchiveImage(const QString &path, const ComicCreator
         return QImage();
     }
 
+#if KIO_VERSION >= QT_VERSION_CHECK(6, 23, 0)
+    const KIO::filesize_t maxFileSize = KIO::ThumbnailRequest::maximumFileSize();
+#else
     const KConfigGroup globalConfig(KSharedConfig::openConfig(), QStringLiteral("PreviewSettings"));
     const KIO::filesize_t maxFileSize = globalConfig.readEntry("MaximumSize", std::numeric_limits<KIO::filesize_t>::max());
+#endif
 
     // Extract the cover file.
     for (const QString &entry : entries) {
