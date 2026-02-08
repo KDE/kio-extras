@@ -29,6 +29,8 @@ msgid ""
 "Invalid search location\n"
 "Trying to search the %1 directory"
 msgstr ""
+"无效的搜索位置\n"
+"正在尝试搜索 %1 目录"
 
 #: kio_filenamesearch.cpp:507
 #, kde-format
