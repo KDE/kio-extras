@@ -43,7 +43,7 @@ TrashConfigModule::TrashConfigModule(QObject *parent, const KPluginMetaData &dat
 
     readConfig();
 
-    connect(job, &KJob::finished, [job, this]() {
+    connect(job, &KJob::finished, this, [job, this]() {
         auto doc = QJsonDocument::fromJson(job->metaData().value(QStringLiteral("TRASH_DIRECTORIES")).toLocal8Bit());
         const auto map = doc.object().toVariantMap();
         for (auto it = map.begin(); it != map.end(); it++) {
