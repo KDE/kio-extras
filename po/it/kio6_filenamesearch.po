@@ -1,13 +1,13 @@
 # Copyright (C) 2025 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
-# SPDX-FileCopyrightText: 2024, 2025 Luigi Toscano <luigi.toscano@tiscali.it>
+# SPDX-FileCopyrightText: 2024, 2025, 2026 Luigi Toscano <luigi.toscano@tiscali.it>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-02 00:43+0000\n"
-"PO-Revision-Date: 2025-07-26 14:55+0200\n"
+"PO-Revision-Date: 2026-02-03 00:41+0100\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.04.0\n"
+"X-Generator: Lokalize 25.12.1\n"
 
 #: kio_filenamesearch.cpp:103
 #, kde-format
@@ -23,18 +23,14 @@ msgid "Search Folder"
 msgstr "Cartella della ricerca"
 
 #: kio_filenamesearch.cpp:482
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid ""
-#| "Invalid search location\n"
-#| "Trying to search the /proc directory"
+#, kde-format
 msgctxt "@info:status"
 msgid ""
 "Invalid search location\n"
 "Trying to search the %1 directory"
 msgstr ""
 "Posizione di ricerca non valida\n"
-"Si sta tentando di cercare nella cartella /proc"
+"Si sta tentando di cercare nella cartella %1"
 
 #: kio_filenamesearch.cpp:507
 #, kde-format
