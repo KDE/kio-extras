@@ -10,6 +10,8 @@
 #include <QTemporaryFile>
 #include <QUrl>
 #include <QVariant>
+#include <KConfigGroup>
+#include <KSharedConfig>
 
 #include "@CREATOR_HEADER@"
 
@@ -29,6 +31,9 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
 {
     int argc = 0;
     QGuiApplication app(argc, nullptr);
+
+    KConfigGroup globalConfig(KSharedConfig::openConfig(), QStringLiteral("PreviewSettings"));
+    globalConfig.writeEntry("MaximumSize", 2llu * 1024 * 1024 * 1024);
 
     QByteArray b(reinterpret_cast<const char *>(data), static_cast<int>(size));
 
