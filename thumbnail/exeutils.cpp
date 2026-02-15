@@ -254,6 +254,9 @@ bool readNewExecutablePrimaryIcon(QDataStream &ds, const DosHeader &dosHeader, Q
         out << icoEntry;
 
         NeResource iconRes = *it;
+        if (entry.size != iconRes.dataLength) {
+            return false;
+        }
         resourceOffsetSizePairs.append({iconRes.dataOffsetShifted << resources.alignmentShiftCount, entry.size});
         dataOffset += entry.size;
     }
