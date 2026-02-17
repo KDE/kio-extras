@@ -25,17 +25,6 @@ set_package_properties(libappimage PROPERTIES
     PURPOSE "Provides support for AppImage thumbnails"
 )
 
-option(WITHOUT_X11 "Build without support for XCursor thumbnails (disables finding X11)" OFF)
-if (NOT WITHOUT_X11)
-    find_package(X11)
-    set_package_properties(X11 PROPERTIES
-        DESCRIPTION "X11 libraries"
-        URL "https://www.x.org"
-        TYPE OPTIONAL
-        PURPOSE "Provides support for XCursor thumbnails"
-    )
-endif()
-
 find_package(Taglib 1.11)
 set_package_properties(Taglib PROPERTIES
     TYPE OPTIONAL
@@ -216,21 +205,16 @@ endif()
 
 ########### next target ###############
 
-if(X11_Xcursor_FOUND AND NOT WITHOUT_X11)
-
     kcoreaddons_add_plugin(cursorthumbnail
-        INSTALL_NAMESPACE "kf6/thumbcreator"
-        SOURCES cursorcreator.cpp
-    )
+    INSTALL_NAMESPACE "kf6/thumbcreator"
+    SOURCES cursorcreator.cpp
+)
 
-    target_link_libraries(cursorthumbnail
-        KF6::KIOCore
-        KF6::KIOGui
-        KF6::CoreAddons
-        ${X11_Xcursor_LIB}
-    )
-
-endif()
+target_link_libraries(cursorthumbnail
+    KF6::KIOCore
+    KF6::KIOGui
+    KF6::CoreAddons
+)
 
 ########### next target ###############
 
