@@ -1,4 +1,4 @@
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the kio-extras package.
 # Sergiu Bivol <sergiu@cip.md>, 2015, 2021, 2022.
 #
 msgid ""
