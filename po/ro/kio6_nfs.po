@@ -1,5 +1,4 @@
 # translation of kio_nfs.po to Romanian
-# translation of @PACKAGE.po to @LANGUAGE
 # Copyright (C) 2004 Free Software Foundation, Inc.
 # Claudiu Costin <claudiuc@kde.org>, 2003, 2004.
 # SPDX-FileCopyrightText: 2008, 2021, 2025 Sergiu Bivol <sergiu@cip.md>
