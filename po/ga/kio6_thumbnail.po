@@ -66,18 +66,3 @@ msgstr "Theip ar cheangal le deighleán comhchuimhne %1"
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "Tá an íomhá rómhór don deighleán comhchuimhne"
-
-#~ msgctxt "@option:check"
-#~ msgid "Rotate the image automatically"
-#~ msgstr "Rothlaigh an íomhá go huathoibríoch"
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Kevin Scannell"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "kscanne@gmail.com"
-
-#~ msgid "kio_thumbmail"
-#~ msgstr "kio_thumbmail"

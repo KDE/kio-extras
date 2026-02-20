@@ -88,10 +88,9 @@ msgid "Share could not be found on given server"
 msgstr "Níorbh fhéidir comhroinn a aimsiú ar an bhfreastalaí sonraithe"
 
 #: kio_smb_browse.cpp:304
-#, fuzzy, kde-format
-#| msgid "BAD File descriptor"
+#, kde-format
 msgid "Bad file descriptor"
-msgstr "Drochthuairisceoir comhaid"
+msgstr ""
 
 #: kio_smb_browse.cpp:312
 #, kde-format
@@ -132,11 +131,10 @@ msgstr ""
 "seol é chuig na forbróirí go príobháideach má iarrann siad é)"
 
 #: kio_smb_browse.cpp:337
-#, fuzzy, kde-format
-#| msgid "Unknown error condition in stat: %1"
+#, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
-msgstr "Stádas anaithnid earráide i stat: %1"
+msgstr ""
 
 #: kio_smb_browse.cpp:354
 #, kde-kuit-format
@@ -182,9 +180,3 @@ msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
 msgstr ""
-
-#~ msgid "libsmbclient failed to initialize context"
-#~ msgstr "Theip ar libsmbclient comhthéacs a thúsú"
-
-#~ msgid "File does not exist: %1"
-#~ msgstr "Níl an comhad ann: %1"

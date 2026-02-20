@@ -18,14 +18,7 @@ msgstr ""
 "3 : 4\n"
 
 #: kio_man.cpp:459
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "No man page matching to %1 found.<br /><br />Check that you have not "
-#| "mistyped the name of the page that you want.<br />Check that you have "
-#| "typed the name using the correct upper and lower case characters.<br />If "
-#| "everything looks correct, then you may need to improve the search path "
-#| "for man pages; either using the environment variable MANPATH or using a "
-#| "matching file in the /etc directory."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "No man page matching <resource>%1</resource> could be found.<nl/><nl/>Check "
@@ -35,12 +28,6 @@ msgid ""
 "envar> environment variable or a configuration file in the <filename>/etc</"
 "filename> directory."
 msgstr ""
-"Níor aimsíodh aon leathanach 'man' comhoiriúnach do %1.<br /><br />Bí cinnte "
-"nach ndearna tú botún clóscríofa nuair a d'iontráil tú ainm an leathanaigh "
-"atá uait.<br />Bí cúramach toisc gur cásíogair iad na leathanaigh 'man'.<br /"
-">Más dóigh leat go bhfuil gach rud ceart go leor, seans go bhfuil conair "
-"níos fearr do leathanaigh 'man' de dhíth ort, tríd an athróg thimpeallachta "
-"MANPATH nó comhad comhoiriúnach i gcomhadlann /etc."
 
 #: kio_man.cpp:572
 #, kde-kuit-format
@@ -63,16 +50,14 @@ msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
 #: kio_man.cpp:653
-#, fuzzy, kde-format
-#| msgid "<h1>KDE Man Viewer Error</h1>"
+#, kde-format
 msgid "Manual Page Viewer Error"
-msgstr "<h1>Earráid: Amharcán Leathanach 'man' KDE</h1>"
+msgstr ""
 
 #: kio_man.cpp:666
-#, fuzzy, kde-format
-#| msgid "There is more than one matching man page."
+#, kde-format
 msgid "There is more than one matching man page:"
-msgstr "Tá níos mó ná leathanach amháin comhoiriúnach."
+msgstr ""
 
 #: kio_man.cpp:666
 #, kde-format
@@ -91,16 +76,14 @@ msgstr ""
 "ar an leathanach Béarla."
 
 #: kio_man.cpp:747
-#, fuzzy, kde-format
-#| msgid "Header files"
+#, kde-format
 msgid "Header Files"
-msgstr "Comhaid cheanntáisc"
+msgstr ""
 
 #: kio_man.cpp:749
-#, fuzzy, kde-format
-#| msgid "Header files (POSIX)"
+#, kde-format
 msgid "Header Files (POSIX)"
-msgstr "Comhaid cheanntáisc (POSIX)"
+msgstr ""
 
 #: kio_man.cpp:751
 #, kde-format
@@ -173,10 +156,9 @@ msgid "New"
 msgstr "Nua"
 
 #: kio_man.cpp:806
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Main Manual Page Index"
-msgstr "Innéacs Lámhleabhair UNIX"
+msgstr ""
 
 #: kio_man.cpp:831
 #, kde-format
@@ -184,16 +166,14 @@ msgid "Section %1"
 msgstr "Rannán %1"
 
 #: kio_man.cpp:1082
-#, fuzzy, kde-format
-#| msgid "Index for Section %1: %2"
+#, kde-format
 msgid "Index for section %1: %2"
-msgstr "Innéacs ar Rannán %1: %2"
+msgstr ""
 
 #: kio_man.cpp:1082
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Manual Page Index"
-msgstr "Innéacs Lámhleabhair UNIX"
+msgstr ""
 
 #: kio_man.cpp:1091
 #, kde-format
@@ -201,34 +181,10 @@ msgid "Generating Index"
 msgstr "Innéacs á Ghiniúint"
 
 #: kio_man.cpp:1345
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "Could not find the sgml2roff program on your system. Please install it, "
-#| "if necessary, and extend the search path by adjusting the environment "
-#| "variable PATH before starting KDE."
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "Could not find the <command>%1</command> program on your system. Please "
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
-"Níorbh fhéidir an ríomhchlár sgml2roff a aimsiú ar do chóras. Suiteáil é, "
-"más gá, agus leathnaigh an chonair chuardaigh tríd an athróg PATH a "
-"mhionathrú sula dtosaíonn KDE arís."
-
-#~ msgid "Open of %1 failed."
-#~ msgstr "Theip ar oscailt %1."
-
-#~ msgid "Man output"
-#~ msgstr "Aschur 'man'"
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Séamus Ó Ciardhuáin,Kevin Scannell"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "seoc@iolfree.ie,kscanne@gmail.com"
-
-#~ msgid "KMan"
-#~ msgstr "KMan"

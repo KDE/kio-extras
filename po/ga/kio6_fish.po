@@ -54,11 +54,3 @@ msgstr "Níl"
 #, kde-format
 msgid "Disconnected."
 msgstr "Dícheangailte."
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Kevin Scannell"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "kscanne@gmail.com"

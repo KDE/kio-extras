@@ -33,16 +33,14 @@ msgid "Could not set log verbosity."
 msgstr "Níorbh fhéidir foclaíocht an logchomhaid a shocrú."
 
 #: kio_sftp.cpp:355
-#, fuzzy, kde-format
-#| msgid "Could not set log verbosity."
+#, kde-format
 msgid "Could not set log userdata."
-msgstr "Níorbh fhéidir foclaíocht an logchomhaid a shocrú."
+msgstr ""
 
 #: kio_sftp.cpp:360
-#, fuzzy, kde-format
-#| msgid "Could not allocate callbacks"
+#, kde-format
 msgid "Could not set log callback."
-msgstr "Níorbh fhéidir aisghlaonna a dháileadh."
+msgstr ""
 
 #: kio_sftp.cpp:396 kio_sftp.cpp:398 kio_sftp.cpp:931
 #, kde-format
@@ -65,11 +63,10 @@ msgid "Site:"
 msgstr "Suíomh:"
 
 #: kio_sftp.cpp:492
-#, fuzzy, kde-format
-#| msgid "Could not read link: %1"
+#, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
-msgstr "Níorbh fhéidir an nasc a léamh: %1"
+msgstr ""
 
 #: kio_sftp.cpp:612
 #, kde-format
@@ -82,10 +79,9 @@ msgid "Could not set a timeout."
 msgstr "Níorbh fhéidir teorainn ama a shocrú."
 
 #: kio_sftp.cpp:634
-#, fuzzy, kde-format
-#| msgid "Could not set port."
+#, kde-format
 msgid "Could not disable Nagle's Algorithm."
-msgstr "Níorbh fhéidir an port a shocrú."
+msgstr ""
 
 #: kio_sftp.cpp:640 kio_sftp.cpp:645
 #, kde-format
@@ -113,16 +109,14 @@ msgid "Could not parse the config file."
 msgstr "Níorbh fhéidir an comhad cumraíochta a pharsáil."
 
 #: kio_sftp.cpp:687
-#, fuzzy, kde-kuit-format
-#| msgid "Opening SFTP connection to host %1:%2"
+#, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
-msgstr "Ceangal SFTP á dhéanamh leis an óstríomhaire %1:%2"
+msgstr ""
 
 #: kio_sftp.cpp:727
-#, fuzzy, kde-format
-#| msgid "Could not set username."
+#, kde-format
 msgid "Could not get server public key type name"
-msgstr "Níorbh fhéidir ainm úsáideora a shocrú."
+msgstr ""
 
 #: kio_sftp.cpp:739
 #, kde-format
@@ -135,14 +129,7 @@ msgid "Could not create fingerprint for server public key"
 msgstr ""
 
 #: kio_sftp.cpp:807
-#, fuzzy, kde-format
-#| msgid ""
-#| "The host key for this server was not found, but another type of key "
-#| "exists.\n"
-#| "An attacker might change the default server key to confuse your client "
-#| "into thinking the key does not exist.\n"
-#| "Please contact your system administrator.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
 "exists.\n"
@@ -151,31 +138,15 @@ msgid ""
 "Please contact your system administrator.\n"
 "%2"
 msgstr ""
-"Níor aimsíodh eochair an fhreastalaí seo, ach tá eochair de chineál eile "
-"ann.\n"
-"B'fhéidir le hionsaitheoir eochair réamhshocraithe an fhreastalaí a athrú "
-"chun mearbhall a chur ar do chliant, sa chaoi go gceapann an cliant nach "
-"bhfuil an eochair ann.\n"
-"Téigh i dteagmháil le riarthóir do chórais.\n"
-"%1"
 
 #: kio_sftp.cpp:824
-#, fuzzy, kde-format
-#| msgid "Warning: Host's identity changed."
+#, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr "Rabhadh: Athraíodh aitheantas an óstríomhaire."
+msgstr ""
 
 #: kio_sftp.cpp:826
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The host key for the server %1 has changed.\n"
-#| "This could either mean that DNS SPOOFING is happening or the IP address "
-#| "for the host and its host key have changed at the same time.\n"
-#| "The fingerprint for the key sent by the remote host is:\n"
-#| " %2\n"
-#| "Please contact your system administrator.\n"
-#| "%3"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
@@ -184,13 +155,6 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"Athraíodh eochair an óstríomhaire le haghaidh fhreastalaí %1.\n"
-"Seans go bhfuil CLEAS DNS ar siúl, nó gur athraíodh seoladh IP an "
-"óstríomhaire agus a eochair ag an am céanna.\n"
-"Seo é méarlorg na heochrach a sheol an t-óstríomhare cianda:\n"
-" %2\n"
-"Téigh i dteagmháil le riarthóir do chórais.\n"
-"%3"
 
 #: kio_sftp.cpp:836
 #, kde-format
@@ -199,20 +163,13 @@ msgid "Host Verification Failure"
 msgstr ""
 
 #: kio_sftp.cpp:838
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The authenticity of host %1 cannot be established.\n"
-#| "The key fingerprint is: %2\n"
-#| "Are you sure you want to continue connecting?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"Ní féidir aitheantas óstríomhaire %1 a dheimhniú.\n"
-"Seo é méarlorg na heochrach: %2\n"
-"An bhfuil tú cinnte gur mhaith leat ceangal mar sin féin?"
 
 #: kio_sftp.cpp:847
 #, kde-format
@@ -274,221 +231,3 @@ msgid ""
 msgstr ""
 "Níorbh fhéidir ceadanna a athrú le haghaidh\n"
 "%1"
-
-#, fuzzy
-#~| msgid ""
-#~| "The host key for the server %1 has changed.\n"
-#~| "This could either mean that DNS SPOOFING is happening or the IP address "
-#~| "for the host and its host key have changed at the same time.\n"
-#~| "The fingerprint for the key sent by the remote host is:\n"
-#~| " %2\n"
-#~| "Please contact your system administrator.\n"
-#~| "%3"
-#~ msgid ""
-#~ "The host key for the server %1 has changed.\n"
-#~ "This could either mean that DNS SPOOFING is happening or the IP address "
-#~ "for the host and its host key have changed at the same time.\n"
-#~ "The fingerprint for the %2 key sent by the remote host is:\n"
-#~ "  SHA256:%3\n"
-#~ "Please contact your system administrator.\n"
-#~ "%4"
-#~ msgstr ""
-#~ "Athraíodh eochair an óstríomhaire le haghaidh fhreastalaí %1.\n"
-#~ "Seans go bhfuil CLEAS DNS ar siúl, nó gur athraíodh seoladh IP an "
-#~ "óstríomhaire agus a eochair ag an am céanna.\n"
-#~ "Seo é méarlorg na heochrach a sheol an t-óstríomhare cianda:\n"
-#~ " %2\n"
-#~ "Téigh i dteagmháil le riarthóir do chórais.\n"
-#~ "%3"
-
-#~ msgid "Warning: Cannot verify host's identity."
-#~ msgstr "Rabhadh: Ní féidir aitheantas an óstríomhaire a fhíorú."
-
-#~ msgid ""
-#~ "The host key for this server was not found, but another type of key "
-#~ "exists.\n"
-#~ "An attacker might change the default server key to confuse your client "
-#~ "into thinking the key does not exist.\n"
-#~ "Please contact your system administrator.\n"
-#~ "%1"
-#~ msgstr ""
-#~ "Níor aimsíodh eochair an fhreastalaí seo, ach tá eochair de chineál eile "
-#~ "ann.\n"
-#~ "B'fhéidir le hionsaitheoir eochair réamhshocraithe an fhreastalaí a athrú "
-#~ "chun mearbhall a chur ar do chliant, sa chaoi go gceapann an cliant nach "
-#~ "bhfuil an eochair ann.\n"
-#~ "Téigh i dteagmháil le riarthóir do chórais.\n"
-#~ "%1"
-
-#~ msgid ""
-#~ "The authenticity of host %1 cannot be established.\n"
-#~ "The key fingerprint is: %2\n"
-#~ "Are you sure you want to continue connecting?"
-#~ msgstr ""
-#~ "Ní féidir aitheantas óstríomhaire %1 a dheimhniú.\n"
-#~ "Seo é méarlorg na heochrach: %2\n"
-#~ "An bhfuil tú cinnte gur mhaith leat ceangal mar sin féin?"
-
-#~ msgid "No hostname specified."
-#~ msgstr "Níor sonraíodh ainm óstríomhaire."
-
-#~ msgid "An internal error occurred. Please retry the request again."
-#~ msgstr "Tharla earráid inmheánach. Bain triail eile as an iarratas."
-
-#~ msgid "Please enter your username and key passphrase."
-#~ msgstr ""
-#~ "Tabhair uait ainm úsáideora agus frása faire d'eochrach le do thoil."
-
-#~ msgid "Connection failed."
-#~ msgstr "Theip ar cheangal."
-
-#~ msgid "Connection closed by remote host."
-#~ msgstr "Ceangal dúnta ag an gcianóstach."
-
-#~ msgid "unexpected SFTP error: %1"
-#~ msgstr "earráid SFTP gan choinne: %1"
-
-#~ msgid "SFTP version %1"
-#~ msgstr "SFTP, leagan %1"
-
-#~ msgid "Protocol error."
-#~ msgstr "Earráid phrótacail."
-
-#~ msgid "An internal error occurred. Please try again."
-#~ msgstr "Tharla earráid inmheánach. Déan iarracht eile le do thoil."
-
-#~ msgid ""
-#~ "Unknown error was encountered while copying the file to '%1'. Please try "
-#~ "again."
-#~ msgstr ""
-#~ "Tharla earráid anaithnid agus an comhad á chóipeáil go '%1'. Bain triail "
-#~ "eile as, le do thoil."
-
-#~ msgid "The remote host does not support renaming files."
-#~ msgstr "Ní thacaíonn an cianóstach le hathainmniú comhad."
-
-#~ msgid "The remote host does not support creating symbolic links."
-#~ msgstr "Ní féidir leis an óstríomhaire cianda naisc shiombalacha a chruthú."
-
-#~ msgid "Connection closed"
-#~ msgstr "Ceangal dúnta"
-
-#~ msgid "End of file."
-#~ msgstr "Comhadchríoch."
-
-#~ msgid "SFTP command failed for an unknown reason."
-#~ msgstr "Theip ar an ordú SFTP; ní fios cén fáth."
-
-#~ msgid "The SFTP server received a bad message."
-#~ msgstr "Fuair an freastalaí SFTP droch-theachtaireacht."
-
-#~ msgid "You attempted an operation unsupported by the SFTP server."
-#~ msgstr ""
-#~ "Bhain tú triail as oibríocht nach dtacaíonn an freastalaí SFTP leis."
-
-#~ msgid "Error code: %1"
-#~ msgstr "Cód earráide: %1"
-
-#~ msgid "Cannot specify a subsystem and command at the same time."
-#~ msgstr "Ní féidir fochóras agus ordú ag an am céanna."
-
-#~ msgid "No options provided for ssh execution."
-#~ msgstr "Níor soláthraíodh roghanna do rith ssh."
-
-#~ msgid "Failed to execute ssh process."
-#~ msgstr "Theip ar rith próiseas ssh."
-
-#~ msgid "Error encountered while talking to ssh."
-#~ msgstr "Tharla earráid le linn comhrá le ssh."
-
-#~ msgid "Please supply a password."
-#~ msgstr "Tabhair uait focal faire, le do thoil."
-
-#~ msgid "Please supply the passphrase for your SSH private key."
-#~ msgstr "Tabhair uait frása faire d'eochrach SSH, le do thoil."
-
-#~ msgid "Authentication to %1 failed"
-#~ msgstr "Theip ar fhíordheimhniú %1"
-
-#~ msgid ""
-#~ "The identity of the remote host '%1' could not be verified because the "
-#~ "host's key is not in the \"known hosts\" file."
-#~ msgstr ""
-#~ "Níorbh fhéidir aitheantas an chianóstaigh '%1' a fhíorú toisc nach bhfuil "
-#~ "eochair an óstríomhaire sa chomhad \"known hosts\"."
-
-#~ msgid ""
-#~ " Manually, add the host's key to the \"known hosts\" file or contact your "
-#~ "administrator."
-#~ msgstr ""
-#~ "Cuir eochair an óstríomhaire sa chomhad \"known hosts\" de láimh, nó "
-#~ "téigh i dteagmháil le riarthóir do chórais."
-
-#~ msgid " Manually, add the host's key to %1 or contact your administrator."
-#~ msgstr ""
-#~ " Cuir eochair an óstríomhaire le %1 de láimh nó téigh i dteagmháil le "
-#~ "riarthóir do chórais."
-
-#~ msgid ""
-#~ "The identity of the remote host '%1' could not be verified. The host's "
-#~ "key fingerprint is:\n"
-#~ "%2\n"
-#~ "You should verify the fingerprint with the host's administrator before "
-#~ "connecting.\n"
-#~ "\n"
-#~ "Would you like to accept the host's key and connect anyway? "
-#~ msgstr ""
-#~ "Níorbh fhéidir aitheantas an chianóstaigh '%1' a fhíorú. Seo é méarlorg "
-#~ "eochair an óstríomhaire:\n"
-#~ "%2\n"
-#~ "Ba chóir duit an méarlorg a fhíorú le riarthóir an óstríomhaire roimh "
-#~ "cheangal.\n"
-#~ "\n"
-#~ "An bhfuil fonn ort eochair an óstríomhaire a ghlacadh agus ceangal a "
-#~ "bhunú mar sin féin? "
-
-#~ msgid ""
-#~ "WARNING: The identity of the remote host '%1' has changed!\n"
-#~ "\n"
-#~ "Someone could be eavesdropping on your connection, or the administrator "
-#~ "may have just changed the host's key. Either way, you should verify the "
-#~ "host's key fingerprint with the host's administrator. The key fingerprint "
-#~ "is:\n"
-#~ "%2\n"
-#~ "Add the correct host key to \"%3\" to get rid of this message."
-#~ msgstr ""
-#~ "RABHADH: Athraíodh aitheantas an chianóstaigh '%1'!\n"
-#~ "\n"
-#~ "Seans go bhfuil duine éigin ag déanamh cúléisteachta ar do cheangal, nó "
-#~ "gur athraigh an riarthóir eochair an óstríomhaire. I gceachtar cás, ba "
-#~ "chóir duit méarlorg eochair an óstríomhaire a fhíorú le riarthóir an "
-#~ "óstríomhaire. Seo é an méarlorg:\n"
-#~ "%2\n"
-#~ "Cuir an eochair cheart le \"%3\" chun an teachtaireacht seo a dhíbirt."
-
-#~ msgid ""
-#~ "WARNING: The identity of the remote host '%1' has changed!\n"
-#~ "\n"
-#~ "Someone could be eavesdropping on your connection, or the administrator "
-#~ "may have just changed the host's key. Either way, you should verify the "
-#~ "host's key fingerprint with the host's administrator before connecting. "
-#~ "The key fingerprint is:\n"
-#~ "%2\n"
-#~ "\n"
-#~ "Would you like to accept the host's new key and connect anyway?"
-#~ msgstr ""
-#~ "RABHADH: Athraíodh aitheantas an chianóstaigh '%1'!\n"
-#~ "\n"
-#~ "Seans go bhfuil duine éigin ag déanamh cúléisteachta ar do cheangal, nó "
-#~ "gur athraigh an riarthóir eochair an óstríomhaire. I gceachtar cás, ba "
-#~ "chóir duit méarlorg eochair an óstríomhaire a fhíorú le riarthóir an "
-#~ "óstríomhaire. Seo é an méarlorg:\n"
-#~ "%2\n"
-#~ "An bhfuil fonn ort an eochair nua a ghlacadh agus ceangal a bhunú mar sin "
-#~ "féin?"
-
-#~ msgid "Host key was rejected."
-#~ msgstr "Diúltaíodh eochair an óstríomhaire."
-
-#~ msgid "Please enter a username and password"
-#~ msgstr "Tabhair uait ainm úsáideora agus focal faire le do thoil"
