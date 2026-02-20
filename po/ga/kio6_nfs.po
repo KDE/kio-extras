@@ -56,12 +56,3 @@ msgstr ""
 #, kde-format
 msgid "Unknown target"
 msgstr ""
-
-#~ msgid "No space left on device"
-#~ msgstr "Níl aon spás fágtha ar an ghléas"
-
-#~ msgid "Read only file system"
-#~ msgstr "Córas comhaid inléite amháin"
-
-#~ msgid "An RPC error occurred."
-#~ msgstr "Tharla earráid RPC."
