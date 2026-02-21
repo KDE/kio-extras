@@ -4,20 +4,21 @@
 # This file is distributed under the same license as the kio-extras package.
 # SPDX-FileCopyrightText: 2024 Johannes Obermayr <johannesobermayr@gmx.de>
 # SPDX-FileCopyrightText: 2025 Alexander Becker <alex-at-kde-l10n-de@freenet.de>
+# SPDX-FileCopyrightText: 2026 Philipp Kiemle <l10n.daphipz@fastmail.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio6_filenamesearch\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-02-02 00:43+0000\n"
-"PO-Revision-Date: 2025-10-18 23:32+0200\n"
-"Last-Translator: Alexander Becker <alex-at-kde-l10n-de@freenet.de>\n"
+"PO-Revision-Date: 2026-02-17 19:04+0100\n"
+"Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.08.2\n"
+"X-Generator: Lokalize 25.12.2\n"
 
 #: kio_filenamesearch.cpp:103
 #, kde-format
@@ -25,18 +26,14 @@ msgid "Search Folder"
 msgstr "Suchordner"
 
 #: kio_filenamesearch.cpp:482
-#, fuzzy, kde-format
-#| msgctxt "@info:status"
-#| msgid ""
-#| "Invalid search location\n"
-#| "Trying to search the /proc directory"
+#, kde-format
 msgctxt "@info:status"
 msgid ""
 "Invalid search location\n"
 "Trying to search the %1 directory"
 msgstr ""
 "Ungültiger Suchort\n"
-"Es wird versucht, im „/proc“-Ordner zu suchen"
+"Es wird versucht, im Ordner „%1“ zu suchen"
 
 #: kio_filenamesearch.cpp:507
 #, kde-format
