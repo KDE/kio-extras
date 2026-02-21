@@ -2362,7 +2362,7 @@ msgstr "Inserta substituto de demanda (query)"
 #~ "protocollo ha reportate un error interne."
 
 #~ msgid "Improperly Formatted URL"
-#~ msgstr "URL Formattate de modo Improprie"
+#~ msgstr "URL Fnormatate de modo Improprie"
 
 #~ msgid ""
 #~ "The <strong>U</strong>niform <strong>R</strong>esource <strong>L</"
@@ -3301,7 +3301,7 @@ msgstr "Inserta substituto de demanda (query)"
 #~ "Reformat the destination drive to use a filesystem that supports files "
 #~ "that large."
 #~ msgstr ""
-#~ "Re-formatta le drive de destination pro usar un systema de file que "
+#~ "Re-fnormata le drive de destination pro usar un systema de file que "
 #~ "supporta files assi grande."
 
 #~ msgid "Undocumented Error"
