@@ -1,25 +1,26 @@
-# SPDX-FileCopyrightText: 2002, 2003, 2004 Thomas Diehl <thd@kde.org>
+# SPDX-FileCopyrightText: 2002-2004 Thomas Diehl <thd@kde.org>
 # SPDX-FileCopyrightText: 2005 Stephan Johach <hunsum@gmx.de>
-# SPDX-FileCopyrightText: 2006, 2007, 2008, 2009 Thomas Reitelbach <tr@erdfunkstelle.de>
-# SPDX-FileCopyrightText: 2009, 2012, 2013, 2014, 2018 Burkhard Lück <lueck@hube-lueck.de>
-# SPDX-FileCopyrightText: 2010 Panagiotis Papadopoulos <pano_90@gmx.net>
-# SPDX-FileCopyrightText: 2010, 2012, 2013, 2022 Frederik Schwarzer <schwarzer@kde.org>
+# SPDX-FileCopyrightText: 2006-2009 Thomas Reitelbach <tr@erdfunkstelle.de>
+# SPDX-FileCopyrightText: 2009, 2012-2014, 2018 Burkhard Lück <lueck@hube-lueck.de>
 # SPDX-FileCopyrightText: 2010 Johannes Obermayr <johannesobermayr@gmx.de>
+# SPDX-FileCopyrightText: 2010 Panagiotis Papadopoulos <pano_90@gmx.net>
+# SPDX-FileCopyrightText: 2010, 2012-2013, 2022 Frederik Schwarzer <schwarzer@kde.org>
 # SPDX-FileCopyrightText: 2012 Rolf Eike Beer <kde@opensource.sf-tec.de>
+# SPDX-FileCopyrightText: 2026 Philipp Kiemle <l10n.daphipz@fastmail.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio6_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 09:01+0000\n"
-"PO-Revision-Date: 2022-07-23 22:03+0200\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"PO-Revision-Date: 2026-02-17 19:09+0100\n"
+"Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.07.70\n"
+"X-Generator: Lokalize 25.12.2\n"
 
 #: kio_sftp.cpp:228
 #, kde-format
@@ -88,7 +89,7 @@ msgstr "Die Zeitüberschreitung kann nicht festgelegt werden."
 #: kio_sftp.cpp:560
 #, kde-format
 msgid "Could not disable Nagle's Algorithm."
-msgstr "Der Nagle-Algorithmus kann nicht abgeschaltet werden."
+msgstr "Der Nagle-Algorithmus kann nicht deaktiviert werden."
 
 #: kio_sftp.cpp:566 kio_sftp.cpp:571
 #, kde-format
