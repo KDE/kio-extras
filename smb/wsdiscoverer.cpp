@@ -27,6 +27,7 @@
 #include "kio_smb.h"
 
 using namespace std::chrono_literals;
+using namespace Qt::StringLiterals;
 
 // http://docs.oasis-open.org/ws-dd/dpws/wsdd-dpws-1.1-spec.html
 // WSD itself defines shorter timeouts. We follow DPWS instead because Windows 10 actually speaks DPWS, so it seems
@@ -187,7 +188,10 @@ public:
         , m_endpoint(endpoint)
     {
         connect(&m_client, &WSDiscoveryClient::resolveMatchReceived, this, [this](const WSDiscoveryTargetService &service) {
-            Q_ASSERT(service.endpointReference() == m_endpoint);
+            Q_ASSERT_X(
+                service.endpointReference() == m_endpoint,
+                Q_FUNC_INFO,
+                "Received resolve match for wrong endpoint. Got '%1'. Expected '%2'"_L1.arg(service.endpointReference(), m_endpoint).toUtf8().constData());
             Q_EMIT resolved(service);
             stop();
         });
