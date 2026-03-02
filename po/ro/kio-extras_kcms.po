@@ -1,13 +1,13 @@
 # Copyright (C) 2025 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
-# SPDX-FileCopyrightText: 2024, 2025 Sergiu Bivol <sergiu@cip.md>
+# SPDX-FileCopyrightText: 2024, 2025, 2026 Sergiu Bivol <sergiu@cip.md>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2025-10-05 00:44+0100\n"
+"PO-Revision-Date: 2026-02-28 23:16+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
 "Language: ro\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2;\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 25.12.2\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -71,7 +71,7 @@ msgstr ""
 #: netpref/kioslave.kcfg:17
 #, kde-format
 msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
+msgstr "Dimensiunea minimă de fișier pentru păstrarea descărcărilor abandonate"
 
 #: netpref/netpref.cpp:26
 #, kde-format
@@ -341,18 +341,19 @@ msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:351
-#, fuzzy, kde-format
-#| msgid "Use proxy only for entries in this list"
+#, kde-format
 msgid ""
 "<qt>\n"
 "Check this box if you want the above proxy settings to apply only to the "
 "addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr "Utilizează proxy numai pentru adresele din această listă"
+msgstr ""
+"<qt>\n"
+"Bifați aici dacă doriți ca opțiunile de proximitate de mai sus să se aplice "
+"doar adreselor din lista <i>Excepții</i>.</qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:354
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr ""
 "Folosește configurări de proximitate numai pentru adrese din lista de "
@@ -500,25 +501,18 @@ msgstr "E&xcepții:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-#| "addresses of sites for which the proxy server should not be used.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
 "addresses of sites for which the above proxy settings should not be used."
 "<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
 "to attempt an automatic discovery of this variable.</p></qt>"
 msgstr ""
-"<qt>Introduceți numele variabilei de mediu, de exemplu <tt>NO_PROXY</tt>, "
-"utilizată la memorarea adreselor sait-urilor pentru care nu este utilizat "
-"serverul de proxy.<p>Alternativ, puteți da clic pe butonul <b>\"Detectează "
-"automat\"</b> pentru a încerca descoperirea automată a acestei variabile.</"
-"p></qt>"
+"<qt>Introduceți denumirea variabilei de mediu, de exemplu <b>NO_PROXY</b>, "
+"utilizată pentru păstrarea adreselor saiturilor pentru care nu se folosesc "
+"opțiunile de proximitate de mai sus.<p>Alternativ, puteți apăsa butonul "
+"<b>„Detectează automat”</b> pentru a încerca descoperirea automată a acestei "
+"variabile.</p></qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
 #: proxy/kproxydlg.ui:583
@@ -573,6 +567,17 @@ msgid ""
 "<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
 "</qt>"
 msgstr ""
+"<qt><p>Folosește configurările de proximitate definite în sistem.</p>\n"
+"<p>Unele platforme oferă informații despre configurările de proximitate din "
+"sistem și alegerea acestei opțiuni vă permite să folosiți acele configurări."
+"</p>\n"
+"<p>Pe platforme Mac</p>\n"
+"<p>Pe platforme Windows</p>\n"
+"<p>Pe platforme Unix și Linux, aceste configurări de proximitate ale "
+"sistemului sunt definite, de obicei, în variabile de mediu. Următoarele "
+"variabile de mediu sunt depistate și folosite dacă există: <b>HTTP_PROXY</"
+"b>, <b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
@@ -789,6 +794,9 @@ msgid ""
 ">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
+"Bifați aici pentru a marca cuvântul-cheie de căutare Web evidențiat ca fiind "
+"preferat.<nl/>Cuvintele-cheie de căutare Web preferate sunt folosite în "
+"locurile în care doar câteva cuvinte-cheie pot fi arătate simultan."
 
 #: webshortcuts/ikwsopts.cpp:205
 #, kde-format
@@ -878,6 +886,12 @@ msgid ""
 "To disable this feature select <b>None</b> from the list.\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"Alegeți motorul de căutare de folosit pentru casete de introducere ce oferă "
+"servicii de consultare automată la tastarea cuvintelor și frazelor normale "
+"în locul unui URL. Pentru a dezactiva această caracteristică, alegeți "
+"<b>Niciunul</b> din listă.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:141
@@ -895,6 +909,12 @@ msgid ""
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
 msgstr ""
+"<html><head/><body><p>Alegeți un cuvânt-cheie implicit pentru căutarea web. "
+"</p><p>Aceasta le permite aplicațiilor să convertească automat cuvântul sau "
+"expresia tastată în interogări de cuvinte-cheie web când acestea nu pot fi "
+"filtrate într-un URL corespunzător. </p><p>Pentru a dezactiva această "
+"funcționalitate, alegeți <span style=\" font-weight:600;\">Niciunul</span> "
+"din listă. </p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
@@ -962,16 +982,12 @@ msgid "- %1: \"%2\""
 msgstr "- %1: „%2”"
 
 #: webshortcuts/searchproviderdlg.cpp:129
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"Următoarele scurtături sunt atribuite deja. Alegeți altele.\n"
+"Următoarele cuvinte-cheie sunt atribuite deja. Alegeți altele.\n"
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:142
@@ -981,6 +997,9 @@ msgid ""
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
+"URL-ul nu conține un substituent %1 pentru interogarea utilizatorului.\n"
+"Aceasta înseamnă că aceeași pagină va fi vizitată de fiecare dată, "
+"indiferent de textul tastat împreună cu cuvântul-cheie."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
