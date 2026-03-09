@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="man">
+<title
+>دليل الاستخدام</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>باستخدام عامل KIO لدليل الاستخدام (man)، ستتمكن من قراءة صفحات الدليل المثبتة على نظامك. إنه سهل الاستخدام: </para>
+
+<variablelist>
+<varlistentry>
+<term
+><userinput
+><command
+>man:</command
+></userinput
+></term>
+<listitem>
+<para
+>انظر أقسام الدليل، وانقر للعثور على البقية. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>انظر صفحة الدليل لـ <command
+>fopen</command
+>. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>fopen(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>انظر صفحة الدليل لـ <command
+>fopen</command
+> في القسم 3. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+><replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>انظر فهرس القسم 3. </para>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term
+><userinput
+><command
+>man:/</command
+>intro<replaceable
+>(3)</replaceable
+></userinput
+></term>
+<listitem>
+<para
+>انظر مقدمة القسم 3. </para>
+</listitem>
+</varlistentry>
+</variablelist>
+
+<note
+><para
+>إذا وُجد أكثر من صفحة دليل واحدة بالاسم الذي أدخلته، فستُعرض قائمة حيث يمكن اختيار صفحة الدليل التي ترغب في رؤيتها.</para
+></note>
+
+<para
+>يوجد أيضاً اختصار: <userinput
+><command
+>#fopen</command
+></userinput
+>، وله نفس المفعول المذكور أعلاه. </para>
+
+<para
+>إذا لم تجد كافة صفحات الدليل الخاصة بك، فاضبط ملف الإعداد <filename
+>/etc/manpath.config</filename
+> (أو ملفاً باسم مشابه حسب توزيعتك) أو اضبط متغيرات البيئة <envar
+>MANPATH</envar
+> و <envar
+>MANSECT</envar
+>. </para>
+
+<para
+>كما هو الحال مع أي عامل KIO آخر، يمكن إدخال عنوان (URL)، مثل <userinput
+><command
+>man:/socket</command
+></userinput
+> في أي تطبيق كيدي. جرب ذلك في كوايت (KWrite) وستُعرض صفحة الدليل بتنسيق HTML. </para>
+
+<para
+>قائمة المراسلة للتواصل: <email
+>kde-devel@kde.org</email
+> </para>
+
+</article>

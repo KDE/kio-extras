@@ -1,0 +1,72 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="info">
+<title
+>معلومات</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<author
+><firstname
+>Nicolas</firstname
+> <surname
+>Goutte</surname
+> <email
+>goutte@kde.org</email
+> </author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>معلومات (Info) هي نوع من التوثيق. تكون المستندات بتنسيق ملفات يُسمى تخ/LaTeX (texinfo)، ويمكن قراءتها من سطر الأوامر عبر برنامج <ulink url="info:/info"
+><command
+>info</command
+></ulink
+>.</para>
+
+<para
+>يسمح عامل KIO للمعلومات بقراءة صفحات المعلومات المثبتة على نظامك من داخل كونكرر. يمكن استخدامه بسهولة بالغة:</para>
+
+<screen
+><userinput
+><command
+>info:</command
+><replaceable
+>gcc</replaceable
+></userinput
+></screen>
+
+<para
+>سيُظهر هذا عقدة المستوى الأعلى لتوثيق المعلومات الخاص بمترجم gcc.</para>
+
+<para
+>تُعد 'المعلومات' بديلاً من مشروع جنو لـ <command
+>man</command
+>، ولكنها لا تُستخدم على نطاق واسع خارج برمجيات جنو.</para>
+
+<para
+>يمكن تصفح توثيق المعلومات المثبت بسهولة تامة من داخل تطبيق مركز مساعدة كيدي، أو يمكن استخدام عامل KIO للمعلومات مباشرة من داخل كونكرر وسطر الأوامر المصغر.</para>
+
+</article>

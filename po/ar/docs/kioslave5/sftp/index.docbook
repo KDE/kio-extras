@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="sftp">
+<title
+>sftp</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Ferdinand.Gassauer; &Ferdinand.Gassauer.mail;</author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+<para
+><acronym
+>SFTP</acronym
+> هو بروتوكول نقل ملفات آمن. <command
+>sftp</command
+> هو برنامج تفاعلي لنقل الملفات، يشبه ftp، ولكنه ينفذ كافة العمليات عبر وسيلة نقل ssh معماة. ويمكنه استخدام العديد من ميزات ssh، بما في ذلك الاستيثاق بالمفتاح العام والضغط.</para>
+
+<para
+>انظر الدليل: <ulink url="man:/sftp"
+>sftp</ulink
+>. </para>
+
+</article>

@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Arabic "INCLUDE">
+]>
+
+<article lang="&language;" id="recentdocument">
+<title
+>المستندات الحديثة</title>
+
+<articleinfo>
+
+<authorgroup>
+  <author
+>&Burkhard.Lueck;&Burkhard.Lueck.mail; </author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>2016-12-01</date>
+<releaseinfo
+>التطبيقات 16.12</releaseinfo>
+
+</articleinfo>
+
+<para
+>عامل KIO لعرض المستندات الحديثة أو العناوين في حوار الملفات، وفي مدير الملفات، وفي كيرنر وفي قائمة التطبيقات.</para>
+
+<para
+>يمكنك استخدام عامل KIO كالتالي:</para>
+
+<para
+>اكتب <userinput
+>recentdocuments:/</userinput
+> في شريط الموقع في دولفين وكونكرر وحوار الملف لسرد المستندات أو العناوين المفتوحة حديثًا.</para>
+
+<para
+>يمكنك إضافة مدخل إلى شريط الأماكن الجانبي: انقر بالزر الأيمن على الشريط الجانبي، واختر <guimenuitem
+>أضف مدخلاً</guimenuitem
+>، وأدخل <userinput
+>recentdocuments:/</userinput
+> في حقل <guilabel
+>الموقع</guilabel
+> ثم احفظه. سيصبح متاحًا في جميع حوارات الملفات ما لم تختر إظهار المدخل في هذا التطبيق فقط.</para>
+
+<para
+>في وحدة إعدادات النظام <guilabel
+>بحث بلازما</guilabel
+> فعّل ملحق البحث <guilabel
+>المستندات الحديثة</guilabel
+> لاستخدام عامل KIO هذا في مشغلك.</para>
+
+<para
+>في <guilabel
+>قائمة التطبيقات</guilabel
+> أضف عنصر قائمة مع المستندات الحديثة في أعلى القائمة بتفعيل <guilabel
+>أظهر المستندات الحديثة</guilabel
+> في صفحة الإعدادات.</para>
+
+</article>

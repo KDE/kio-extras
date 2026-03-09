@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="xz">
+<title
+>xz / lzma</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Per Øyvind</firstname
+><surname
+> Karlsen</surname
+></author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+>Xz هو برنامج ضغط</para>
+
+<para
+>عامل KIO لـ xz غير قابل للاستخدام المباشر، ويُقصد به الاستخدام كمرشح. على سبيل المثال، يمكن لعامل KIO لـ tar أن يرشح ملفاً عبر عامل KIO لـ xz، لعرض محتويات ملف <literal role="extension"
+>tar.lzma</literal
+> أو <literal role="extension"
+>tar.xz</literal
+> مباشرة في نافذة كونكرر.</para>
+
+<para
+>إذا نُقر على ملف مضغوط بامتداد <literal role="extension"
+>.lzma</literal
+> أو <literal role="extension"
+>tar.xz</literal
+> في كونكرر، يُستخدم عامل KIO هذا لفك ضغطه وعرضه كملف عادي (غير مضغوط).</para>
+
+<para
+>إذا كنت مطوراً، وترغب في استخدام مرشح xz، يمكن العثور على توثيق حول استخدام عمال KIO في <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>انظر الدليل: <ulink url="man:/xz"
+>xz</ulink
+>. </para>
+
+</article>

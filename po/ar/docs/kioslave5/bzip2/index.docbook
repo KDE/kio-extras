@@ -1,0 +1,64 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="bzip2">
+<title
+>bzip2 / bzip</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Lauri.Watts; &Lauri.Watts.mail;</author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>bzip2</command
+> is a compression program.</para>
+
+<para
+>عامل KIO لـ bzip2 غير قابل للاستخدام المباشر، ويُقصد به الاستخدام كمرشح. على سبيل المثال، يمكن لعامل KIO لـ tar أن يرشح ملفًا عبر عامل KIO لـ bzip2، لعرض محتويات ملف <literal role="extension"
+>tar.bz2</literal
+> مباشرة في نافذة كونكرر.</para>
+
+<para
+>إذا نقرت على ملف مضغوط بامتداد <literal role="extension"
+>.bz2</literal
+> في كونكرر، يُستخدم عامل KIO هذا لفك ضغطه وعرضه كملف عادي (غير مضغوط).</para>
+
+<para
+>إذا كنت مطورًا، وترغب في استخدام مرشح bzip2، يمكنك العثور على توثيق حول استخدام عمال KIO في <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>انظر الدليل: <ulink url="man:/bzip2"
+>bzip2</ulink
+>. </para>
+
+<para
+><command
+>bzip</command
+> هو سلف bzip2. نادراً ما يُستخدم اليوم، حيث استُبدل بـ bzip2 الذي يوفر ضغطاً أفضل بكثير.</para>
+
+</article>

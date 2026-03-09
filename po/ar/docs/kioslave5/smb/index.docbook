@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+]>
+
+<article lang="&language;" id="smb">
+<title
+>SMB</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Alexander.Neundorf; &Alexander.Neundorf.mail;</author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+<date
+>2016-12-11</date>
+<releaseinfo
+>تطبيقات 16.12</releaseinfo>
+</articleinfo>
+<para
+>يمكّنك عامل smb من تصفح مشاركات شبكة ويندوز (أو Samba). </para>
+
+<para
+>لرؤية مجموعات العمل، أدخل <userinput
+><command
+>smb:/</command
+></userinput
+>. </para>
+<para
+>سيسرد <userinput
+><command
+>smb://</command
+><replaceable
+>a_workgroup</replaceable
+></userinput
+> المضيفين في مجموعة العمل هذه. </para>
+<para
+>لرؤية مشاركات مضيف ما، أدخل <userinput
+><command
+>smb://</command
+><replaceable
+>اسم_المضيف</replaceable
+></userinput
+> أو <userinput
+><command
+>smb:/</command
+><replaceable
+>مجموعة_عمل</replaceable
+>/<replaceable
+>اسم_المضيف</replaceable
+></userinput
+>. </para>
+<para
+>للوصول إلى مشاركة مباشرة أدخل <userinput
+><command
+>smb://</command
+><replaceable
+>اسم_المضيف/المشاركة</replaceable
+></userinput
+> أو <userinput
+><command
+>smb:/</command
+><replaceable
+>مجموعة_عمل</replaceable
+>/<replaceable
+>اسم_المضيف</replaceable
+>/<replaceable
+>المشاركة</replaceable
+></userinput
+> </para>
+
+<para
+>يتطلب عامل smb وجود مكتبة libsmbclient لاستخدامه. </para>
+
+<para
+>يمكن ضبط اسم المستخدم المبدئي وكلمة السر في فئة <guilabel
+>الشبكة</guilabel
+> في إعدادات النظام ضمن <menuchoice
+><guisubmenu
+>الاتصال</guisubmenu
+><guimenuitem
+> مشاركات ويندوز</guimenuitem
+></menuchoice
+>. يُعد هذا مفيداً بشكل خاص إذا كنت عضواً في نطاق ويندوز NT. يمكن هناك أيضاً ضبط اسم مجموعة العمل، ولكن في معظم الحالات لا يكون ذلك مطلوباً. سيطلب العامل اسم المستخدم وكلمة السر إذا لم يُضبط أي منها بشكل مبدئي. </para>
+
+</article>
+

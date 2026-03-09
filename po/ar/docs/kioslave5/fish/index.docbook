@@ -1,0 +1,161 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Arabic "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="fish">
+<title
+>fish</title>
+<articleinfo>
+<authorgroup>
+<author
+>&Joerg.Walter; &Joerg.Walter.mail;</author>
+<author
+>&Brad.Hards; &Brad.Hards.mail;</author>
+<othercredit role="translator"
+><firstname
+>زايد</firstname
+><surname
+>السعيدي</surname
+><affiliation
+><address
+><email
+>zayed.alsaidi@gmail.com</email
+></address
+></affiliation
+><contrib
+>التّرجمة العربيّة</contrib
+></othercredit
+> 
+</authorgroup>
+
+<date
+>2010-10-27</date>
+<releaseinfo
+>كيدي 4.5</releaseinfo>
+
+</articleinfo>
+
+<para
+>يسمح لك بالوصول إلى ملفات حاسوب آخر باستخدام بروتوكول الصدفة الآمنة (<acronym
+>SSH</acronym
+>). يحتاج الحاسوب البعيد إلى تشغيل عفريت <acronym
+>SSH</acronym
+>، لكن بقية البروتوكول تستخدم أدوات سطر الأوامر القياسية كما هو موضح أدناه.</para>
+
+<para
+>يمكنك استخدام عامل KIO لـ fish هكذا: <userinput
+>fish://<replaceable
+>اسم_المضيف</replaceable
+></userinput
+> أو <userinput
+>fish://<replaceable
+>اسم_المستخدم</replaceable
+>@<replaceable
+>اسم_المضيف</replaceable
+></userinput
+>.</para>
+
+<note
+><para
+>تحتاج لاستخدام شرطات مائلة أمامية مزدوجة.</para
+></note>
+
+<para
+>يمكنك حذف <replaceable
+>اسم_المستخدم</replaceable
+> (ورمز @ اللاحق) إذا كان لديك نفس اسم المستخدم على كلا الحاسوبين.</para>
+
+<para
+>يمكنك إضافة كلمة سر بالتنسيق: <userinput
+>fish://<replaceable
+>اسم_المستخدم</replaceable
+>:<replaceable
+>كلمة_السر</replaceable
+>@<replaceable
+>اسم_المضيف</replaceable
+></userinput
+> ولكنها ليست ضرورية حيث ستُطالب بواحدة إذا لم تُوفر.</para>
+
+<para
+>إذا كنت تشغل عفريت <acronym
+>SSH</acronym
+> على منفذ غير قياسي، يمكنك تحديد ذلك المنفذ باستخدام صيغة العناوين العادية كما هو موضح أدناه: <userinput
+>fish://<replaceable
+>اسم_المضيف</replaceable
+>:<replaceable
+>رقم_المنفذ</replaceable
+></userinput
+>.</para>
+
+<para
+>يُفترض أن يعمل Fish مع أي حاسوب بعيد يعتمد يونكس ومتوافق تقريبًا مع <acronym
+>POSIX</acronym
+>. يستخدم أوامر الصدفة <command
+>cat</command
+>، و<command
+>chgrp</command
+>، و<command
+>chmod</command
+>، و<command
+>chown</command
+>، و<command
+>cp</command
+>، و<command
+>dd</command
+>، و<command
+>env</command
+>، و<command
+>expr</command
+>، و<command
+>grep</command
+>، و<command
+>ls</command
+>، و<command
+>mkdir</command
+>، و<command
+>mv</command
+>، و<command
+>rm</command
+>، و<command
+>rmdir</command
+>، و<command
+>sed</command
+>، و<command
+>wc</command
+>. يبدأ Fish صدفة <command
+>/bin/sh</command
+> ويتوقع أن تكون صدفة Bourne (أو متوافقة، مثل <command
+>bash</command
+>). إذا توفرت أوامر <command
+>sed</command
+> و<command
+>file</command
+>، بالإضافة إلى ملف <filename
+>/etc/apache/magic</filename
+> مع توقيعات أنواع MIME، فستُستخدم لتخمين أنواع MIME. </para>
+
+<para
+>إذا توفرت لغة <application
+>Perl</application
+> على الجهاز البعيد، فستُستخدم بدلاً من ذلك. حينها يلزم فقط <command
+>env</command
+> و<command
+>/bin/sh</command
+>. لاستخدام <application
+>Perl</application
+> فائدة إضافية وهي كونها أسرع.</para>
+
+<para
+>قد يعمل Fish حتى على أجهزة ويندوز، إذا وُجدت أدوات مثل <application
+>Cygwin</application
+> مثبتة. يجب أن تكون جميع الأدوات المساعدة المذكورة أعلاه في مسار النظام <envar
+>PATH</envar
+>، ويجب أن تكون الصدفة الأولية قادرة على معالجة الأمر <command
+>echo FISH:;/bin/sh</command
+> بشكل صحيح.</para>
+
+</article>
