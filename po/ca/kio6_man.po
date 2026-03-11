@@ -207,20 +207,3 @@ msgstr ""
 "No s'ha pogut trobar el programa <command>%1</command> en el sistema. "
 "Instal·leu-lo si fos necessari, assegureu-vos que es pot trobar usant la "
 "variable d'entorn <envar>PATH</envar>."
-
-#~ msgid "Open of %1 failed."
-#~ msgstr "L'obertura de %1 ha fallat."
-
-#~ msgid "Man output"
-#~ msgstr "Sortida de man"
-
-#~ msgctxt "NAME OF TRANSLATORS"
-#~ msgid "Your names"
-#~ msgstr "Sebastià Pla i Sanz,Antoni Bella"
-
-#~ msgctxt "EMAIL OF TRANSLATORS"
-#~ msgid "Your emails"
-#~ msgstr "sps@sastia.com,antonibella5@yahoo.com"
-
-#~ msgid "KMan"
-#~ msgstr "KMan"
