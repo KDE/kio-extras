@@ -94,6 +94,10 @@ FileNameSearchProtocol::~FileNameSearchProtocol() = default;
 
 KIO::WorkerResult FileNameSearchProtocol::stat(const QUrl &url)
 {
+    if (!(url.path().isEmpty() || url.path() == QStringLiteral("/"))) {
+        return KIO::WorkerResult::fail(KIO::ERR_CANNOT_STAT, url.toString());
+    }
+
     KIO::UDSEntry uds;
     uds.reserve(9);
     uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0700);
