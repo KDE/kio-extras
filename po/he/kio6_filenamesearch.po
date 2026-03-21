@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-02 00:43+0000\n"
+"POT-Creation-Date: 2026-03-21 00:44+0000\n"
 "PO-Revision-Date: 2026-02-02 20:27+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -18,12 +18,12 @@ msgstr ""
 "n % 10 == 0) ? 2 : 3));\n"
 "X-Generator: Lokalize 25.12.1\n"
 
-#: kio_filenamesearch.cpp:103
+#: kio_filenamesearch.cpp:107
 #, kde-format
 msgid "Search Folder"
 msgstr "תיקיית חיפוש"
 
-#: kio_filenamesearch.cpp:482
+#: kio_filenamesearch.cpp:486
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -33,7 +33,7 @@ msgstr ""
 "מקום חיפוש שגוי\n"
 "מתבצע ניסיון לחפש בתיקיית ‎‎%1"
 
-#: kio_filenamesearch.cpp:507
+#: kio_filenamesearch.cpp:511
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -43,7 +43,7 @@ msgstr ""
 "שאילתת חיפוש שגויה: ‚%1’\n"
 "אמור היה להיות ביטוי רגולרי: %2"
 
-#: kio_filenamesearch.cpp:770
+#: kio_filenamesearch.cpp:774
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
