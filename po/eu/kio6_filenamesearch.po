@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-02-02 00:43+0000\n"
+"POT-Creation-Date: 2026-03-21 00:44+0000\n"
 "PO-Revision-Date: 2026-02-21 23:17+0100\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -20,12 +20,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 25.12.2\n"
 
-#: kio_filenamesearch.cpp:103
+#: kio_filenamesearch.cpp:107
 #, kde-format
 msgid "Search Folder"
 msgstr "Bilaketa karpeta"
 
-#: kio_filenamesearch.cpp:482
+#: kio_filenamesearch.cpp:486
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -35,7 +35,7 @@ msgstr ""
 "Bilaketa-kokaleku baliogabea\n"
 "%1 direktorioan bilatzen saiatzen ari zara"
 
-#: kio_filenamesearch.cpp:507
+#: kio_filenamesearch.cpp:511
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -45,7 +45,7 @@ msgstr ""
 "Bilaketa itaun baliogabea: \"%1\"\n"
 "Adierazpen erregular bat espero zen: %2"
 
-#: kio_filenamesearch.cpp:770
+#: kio_filenamesearch.cpp:774
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
