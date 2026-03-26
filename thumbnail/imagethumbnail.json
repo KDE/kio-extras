@@ -28,7 +28,8 @@
             "image/vnd.adobe.photoshop",
             "image/qoi",
             "image/x-dds",
-            "image/tiff"
+            "image/tiff",
+            "image/x-ilbm"
         ],
         "Name": "Images (GIF, PNG, BMP, ...)",
         "Name[ar]": "الصّور (GIF،‏ PNG،‏ BMP، ...)",
