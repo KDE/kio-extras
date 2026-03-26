@@ -18,14 +18,29 @@
 #include <KPluginFactory>
 #include <Solid/DeviceNotifier>
 #include <Solid/GenericInterface>
+#include <Solid/PortableMediaPlayer>
 
 #include "daemonadaptor.h"
 #include "kiod_kmtpd_debug.h"
+#include "mtpprotocols_p.h"
 #include "mtpdevice.h"
 
 using namespace std::chrono_literals;
 
 K_PLUGIN_CLASS_WITH_JSON(KMTPd, "kmtpd.json")
+
+namespace
+{
+bool isSupportedMtpPlayer(const Solid::Device &device)
+{
+    if (!device.isDeviceInterface(Solid::DeviceInterface::PortableMediaPlayer)) {
+        return false;
+    }
+
+    const auto *player = device.as<Solid::PortableMediaPlayer>();
+    return player && KMTP::supportsMtpProtocol(player->supportedProtocols());
+}
+}
 
 KMTPd::KMTPd(QObject *parent, const QList<QVariant> &parameters)
     : KDEDModule(parent)
@@ -35,7 +50,7 @@ KMTPd::KMTPd(QObject *parent, const QList<QVariant> &parameters)
     LIBMTP_Init();
 
     // search for already connected devices
-    for (const Solid::Device &solidDevice : Solid::Device::listFromType(Solid::DeviceInterface::PortableMediaPlayer)) {
+    for (const Solid::Device &solidDevice : Solid::Device::listFromQuery(KMTP::mtpPlayerPredicate())) {
         checkDevice(solidDevice);
     }
 
@@ -59,7 +74,7 @@ QString KMTPd::version() const
     return QStringLiteral(LIBMTP_VERSION_STRING);
 }
 
-void KMTPd::checkDevice(const Solid::Device &solidDevice)
+bool KMTPd::checkDevice(const Solid::Device &solidDevice)
 {
     if (!deviceFromUdi(solidDevice.udi())) {
         qCDebug(LOG_KIOD_KMTPD) << "new device, getting raw devices";
@@ -67,7 +82,7 @@ void KMTPd::checkDevice(const Solid::Device &solidDevice)
         const Solid::GenericInterface *iface = solidDevice.as<Solid::GenericInterface>();
         if (!iface) {
             qCDebug(LOG_KIOD_KMTPD) << "Solid device " << solidDevice.udi() << " has NOT a Solid::GenericInterface";
-            return;
+            return false;
         }
 
         const QMap<QString, QVariant> &properties = iface->allProperties();
@@ -110,6 +125,7 @@ void KMTPd::checkDevice(const Solid::Device &solidDevice)
 
                         m_devices.append(device);
                         Q_EMIT devicesChanged();
+                        return true;
                     } else {
                         qCWarning(LOG_KIOD_KMTPD) << "LIBMTP_Open_Raw_Device_Uncached: Could not open MTP device";
                     }
@@ -123,6 +139,8 @@ void KMTPd::checkDevice(const Solid::Device &solidDevice)
         }
         free(rawdevices);
     }
+
+    return false;
 }
 
 MTPDevice *KMTPd::deviceFromUdi(const QString &udi) const
@@ -146,14 +164,13 @@ QList<QDBusObjectPath> KMTPd::listDevices() const
 
 void KMTPd::deviceAdded(const QString &udi)
 {
-    qCDebug(LOG_KIOD_KMTPD) << "New device attached with udi=" << udi << ". Checking if PortableMediaPlayer...";
+    qCDebug(LOG_KIOD_KMTPD) << "New device attached with udi=" << udi << ". Checking if it supports MTP...";
 
     const Solid::Device device(udi);
-    if (device.isDeviceInterface(Solid::DeviceInterface::PortableMediaPlayer)) {
+    if (isSupportedMtpPlayer(device) && checkDevice(device)) {
         qCDebug(LOG_KIOD_KMTPD) << "SOLID: New Device with udi=" << udi;
 
         org::kde::KDirNotify::emitFilesAdded(QUrl(QStringLiteral("mtp:/")));
-        checkDevice(device);
     }
 }
 

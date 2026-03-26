@@ -28,7 +28,7 @@ public:
     QString version() const;
 
 private:
-    void checkDevice(const Solid::Device &solidDevice);
+    bool checkDevice(const Solid::Device &solidDevice);
     MTPDevice *deviceFromUdi(const QString &udi) const;
 
     QList<MTPDevice *> m_devices;

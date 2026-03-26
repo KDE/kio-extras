@@ -30,6 +30,10 @@ ecm_qt_declare_logging_category(kio_mtp
     EXPORT KIO_EXTRAS
 )
 
+if (BUILD_TESTING)
+    add_subdirectory(autotests)
+endif()
+
 install(TARGETS kio_mtp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
 
 ########### install files ###############
