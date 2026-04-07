@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-2-Clause
 # SPDX-FileCopyrightText: 2024 Harald Sitter <sitter@kde.org>
 
-kcoreaddons_add_plugin(wpad-detector SOURCES module.cpp INSTALL_NAMESPACE "kf6/kded")
-target_link_libraries(wpad-detector
+kcoreaddons_add_plugin(wpad_detector SOURCES module.cpp INSTALL_NAMESPACE "kf6/kded")
+target_link_libraries(wpad_detector
     KF6::I18n
     KF6::ConfigCore
     KF6::DBusAddons
