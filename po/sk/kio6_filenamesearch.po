@@ -12,8 +12,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 24.08.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 24.08.3\n"
 
 #: kio_filenamesearch.cpp:103
 #, kde-format
@@ -27,6 +27,8 @@ msgid ""
 "Invalid search location\n"
 "Trying to search the %1 directory"
 msgstr ""
+"Neplatné umiestnenie hľadania\n"
+"Pokus o hľadanie v priečinku %1"
 
 #: kio_filenamesearch.cpp:507
 #, kde-format
@@ -35,9 +37,11 @@ msgid ""
 "Invalid search query: '%1'\n"
 "Expected a regular expression: %2"
 msgstr ""
+"Neplatný vyhľadávací dotaz: „%1“\n"
+"Očakávaný regulárny výraz: %2"
 
 #: kio_filenamesearch.cpp:770
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
-msgstr ""
+msgstr "%1 zlyhal, návratový kód: %2, chybové správy: %3"

@@ -16,8 +16,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -70,7 +70,7 @@ msgstr ""
 #: netpref/kioslave.kcfg:17
 #, kde-format
 msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
+msgstr "Minimálna veľkosť súboru na zachovanie prerušených sťahovaní"
 
 #: netpref/netpref.cpp:26
 #, kde-format
@@ -95,9 +95,7 @@ msgstr ""
 "Táto prípona bude odstránená, keď bude prenos ukončený.</p>"
 
 #: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
@@ -204,15 +202,13 @@ msgstr "Pripojiť k Internetu priamo."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No Proxy"
+#, kde-format
 msgid "&No proxy"
 msgstr "Bez &proxy"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
 msgstr "HTTP Proxy:"
 
@@ -246,8 +242,7 @@ msgstr "Použiť tento proxy server pre všetky protokoly"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:161
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SSL proxy:"
 msgstr "SSL Proxy:"
 
@@ -266,8 +261,7 @@ msgstr "Zadajte číslo portu HTTPS proxy servera."
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
 msgstr "FTP Proxy:"
 
@@ -285,8 +279,7 @@ msgstr "Zadajte číslo portu FTP proxy servera."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:264
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
 msgstr "SOCKS Proxy:"
 
@@ -367,8 +360,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:354
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
+#, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "Použiť nastavenie proxy iba pre adresy v zozname Výnimiek"
 
@@ -380,8 +372,7 @@ msgstr "Použiť zadaný proxy skript pre nastavenie proxy serveru."
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
 msgstr "Použiť URL automatickej konfigurácie proxy:"
 
@@ -418,8 +409,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
 msgstr "HTTP Proxy:"
 
@@ -444,8 +434,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
+#, kde-format
 msgid "SS&L proxy:"
 msgstr "SSL Proxy:"
 
@@ -488,8 +477,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
 msgstr "SOCKS Proxy:"
 
@@ -509,8 +497,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
 msgstr "Výnimky:"
 
@@ -557,8 +544,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
 msgstr "Automaticky zistiť nastavenia proxy"
 
@@ -596,8 +582,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
 msgstr "Použiť systémové nastavenie proxy:"
 
@@ -610,12 +595,16 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"Automatická konfigurácia, známa aj ako Web Proxy Auto-Discovery (WPAD), "
+"takmer nikdy nie je správnou konfiguráciou. Jej zapnutie, keď nie je "
+"potrebné, môže spomaliť prístup k sieti a znížiť jej bezpečnosť. Váš správca "
+"siete bude vedieť, či je jej zapnutie potrebné."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "Zistený pomalý výkon siete"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -625,16 +614,18 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"Automatické zisťovanie proxy bolo zapnuté, ale znižuje výkon siete systému. "
+"Skontrolujte nastavenia proxy a uistite sa, že použitie tohto nastavenia je "
+"skutočne potrebné."
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr ""
+msgstr "Otvoriť nastavenia"
 
 #: proxy/wpad-detector/module.cpp:89
-#, fuzzy, kde-format
-#| msgid "&Forever"
+#, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "Na&vždy"
@@ -679,9 +670,7 @@ msgstr ""
 "položiek po určitom čase</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
@@ -728,7 +717,7 @@ msgstr "Veľkosť:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -749,20 +738,17 @@ msgid ""
 msgstr "<para>Toto je maximálna veľkosť disku určená pre kôš.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
 msgstr "Zobraziť upozornenie"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Odstrániť najstaršie súbory z koša"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Odstrániť najväčšie súbory z koša"
 
@@ -779,8 +765,7 @@ msgstr ""
 "namiesto odstránenia súborov.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
 msgstr "Plný kôš:"
 
@@ -803,12 +788,7 @@ msgid "Preferred"
 msgstr "Preferované"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid ""
 "Check this box to select the highlighted Web search keyword as preferred.<nl/"
@@ -833,15 +813,7 @@ msgstr "Vyhľadávacie &filtre"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
 "search keywords allow you to quickly access or search for information "
@@ -874,8 +846,7 @@ msgstr "Použiť iba preferované skratky"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
+#, kde-format
 msgid "Search for Web search keywords"
 msgstr "Hľadať kľúčové slová na webe"
 
@@ -889,7 +860,7 @@ msgstr "Pridať nové kľúčové slovo pre vyhľadávanie na webe"
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "&Nový…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
@@ -901,7 +872,7 @@ msgstr "Upravte zvýraznené kľúčové slovo vyhľadávania na webe"
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "Upr&aviť…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
@@ -939,13 +910,7 @@ msgstr "Predvolené kľúčové slovo pre vyhľadávanie na webe:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
 "allows applications to automatically convert the typed word or phrase to Web "
@@ -1003,22 +968,17 @@ msgid "Default"
 msgstr "Predvolené"
 
 #: webshortcuts/searchproviderdlg.cpp:51
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
 msgstr "Kľúčové slová pre vyhľadávanie na webe"
 
 #: webshortcuts/searchproviderdlg.cpp:59
-#, fuzzy, kde-format
-#| msgid "Web Search Keywords"
+#, kde-format
 msgid "New Web Search Keyword"
 msgstr "Kľúčové slová pre vyhľadávanie na webe"
 
 #: webshortcuts/searchproviderdlg.cpp:120
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
@@ -1031,11 +991,7 @@ msgid "- %1: \"%2\""
 msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:129
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
@@ -1044,20 +1000,15 @@ msgstr ""
 "%1"
 
 #: webshortcuts/searchproviderdlg.cpp:142
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"URI neobsahuje zástupný znak \\{...} pre užívateľskú žiadosť.\n"
-"To znamená, že vždy bude navštevovaná tá istá stránka bez ohľadu na to, čo "
-"užívateľ napíše."
+"The URL does not contain a %1 placeholder for the user query.\n"
+"This means that rovnaký page is always going to be visited, bez ohľadu na "
+"the text typed in with the keyword."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1114,8 +1065,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, fuzzy, kde-format
-#| msgid "URL:"
+#, kde-format
 msgid "&URL:"
 msgstr "URL:"
 
@@ -1131,13 +1081,7 @@ msgstr "Vyberte znakovú sadu, ktorá bude použitá pre vyhľadávanie."
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1152,10 +1096,7 @@ msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
@@ -1165,10 +1106,7 @@ msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
@@ -1178,9 +1116,7 @@ msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
 msgstr "Kľúčové slová"
 
@@ -1192,8 +1128,7 @@ msgstr "Vyberte znakovú sadu, ktorá bude použitá pre vyhľadávanie"
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
 msgstr "Z&naková sada:"
 
@@ -1265,17 +1200,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ msgstr "&Skratky:"
 
 #, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "Not all applications will use this proxy setting. In particular, "
-#~| "<application>Firefox</application> and <application>Chromium</"
-#~| "application> or anything derived from them, or anything using "
-#~| "<application>QtWebEngine</application>&nbsp;- which includes "
-#~| "<application>Konqueror</application> using the "
-#~| "<application>WebEnginePart</application>, <application>Akregator</"
-#~| "application> and <application>Falkon</application>&nbsp;- will not use "
-#~| "these settings. Some applications may allow the proxy to be configured "
-#~| "in their own settings."
 #~ msgctxt "@info"
 #~ msgid ""
 #~ "Not all applications will use this proxy setting. In particular, "
@@ -6726,22 +6650,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ msgstr "Neznámy HTTP príkaz."
 
 #, fuzzy
-#~| msgid ""
-#~| "<h1>Cookies</h1><p>Cookies contain information that KDE applications "
-#~| "using the HTTP protocol (like Konqueror) store on your computer, "
-#~| "initiated by a remote Internet server. This means that a web server can "
-#~| "store information about you and your browsing activities on your machine "
-#~| "for later use. You might consider this an invasion of privacy.</p><p> "
-#~| "However, cookies are useful in certain situations. For example, they are "
-#~| "often used by Internet shops, so you can 'put things into a shopping "
-#~| "basket'. Some sites require you have a browser that supports cookies.</"
-#~| "p><p> Because most people want a compromise between privacy and the "
-#~| "benefits cookies offer, the HTTP kioslave offers you the ability to "
-#~| "customize the way it handles cookies. So you might want to set the "
-#~| "default policy to ask you whenever a server wants to set a cookie, "
-#~| "allowing you to decide. For your favorite shopping web sites that you "
-#~| "trust, you might want to set the policy to accept, then you can access "
-#~| "the web sites without being prompted every time a cookie is received.</p>"
 #~ msgid ""
 #~ "<h1>Cookies</h1><p>Cookies contain information that KDE applications "
 #~ "using the HTTP protocol (like Konqueror) store on your computer, "
@@ -6853,14 +6761,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ "servery proxy poskytujú obe služby.</p>"
 
 #, fuzzy
-#~| msgid ""
-#~| "<h1>Windows Shares</h1><p>Applications using the SMB kioslave (like "
-#~| "Konqueror) are able to access shared Microsoft Windows file systems, if "
-#~| "properly configured.</p><p>You can specify here the credentials used to "
-#~| "access the shared resources. Passwords will be stored locally, and "
-#~| "scrambled so as to render them unreadable to the human eye. For security "
-#~| "reasons, you may not want to do that, as entries with passwords are "
-#~| "clearly indicated as such.</p>"
 #~ msgid ""
 #~ "<h1>Windows Shares</h1><p>Applications using the SMB KIO worker (like "
 #~ "Konqueror) are able to access shared Microsoft Windows file systems, if "
@@ -6882,14 +6782,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ msgstr "Nastaviť rozšírené funkcie prehliadania"
 
 #, fuzzy
-#~| msgid ""
-#~| "<h1>Enhanced Browsing</h1> In this module you can configure some "
-#~| "enhanced browsing features of KDE. <h2>Web Shortcuts</h2>Web Shortcuts "
-#~| "are a quick way of using Web search engines. For example, type "
-#~| "\"duckduckgo:frobozz\" or \"dd:frobozz\" and your web browser will do a "
-#~| "search on DuckDuckGo for \"frobozz\". Even easier: just press Alt+F2 (if "
-#~| "you have not changed this keyboard shortcut) and enter the shortcut in "
-#~| "the Run Command dialog."
 #~ msgid ""
 #~ "<h1>Enhanced Browsing</h1> In this module you can configure some enhanced "
 #~ "browsing features of KDE. <h2>Web Search Keywords</h2>Web Search Keywords "
@@ -6907,16 +6799,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ "klávesovú skratku) a zadajte skratku do dialógu \"Spustiť príkaz\"."
 
 #, fuzzy
-#~| msgctxt "@info:whatsthis"
-#~| msgid ""
-#~| "<para>In this module you can configure the web shortcuts feature. Web "
-#~| "shortcuts allow you to quickly search or lookup words on the Internet. "
-#~| "For example, to search for information about the KDE project using the "
-#~| "Google engine, you simply type <emphasis>gg:KDE</emphasis> or "
-#~| "<emphasis>google:KDE</emphasis>.</para><para>If you select a default "
-#~| "search engine, then you can search for normal words or phrases by simply "
-#~| "typing them into the input widget of applications that have built-in "
-#~| "support for such a feature, e.g Konqueror.</para>"
 #~ msgctxt "@info:whatsthis"
 #~ msgid ""
 #~ "<para>In this module you can configure the web search keywords feature. "
@@ -7034,11 +6916,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ msgstr "Zvuk"
 
 #, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "Do you really want to permanently delete this item?<nl/><filename>%1</"
-#~| "filename><nl/><nl/><emphasis strong='true'>This action cannot be undone."
-#~| "</emphasis>"
 #~ msgctxt "@info"
 #~ msgid ""
 #~ "Do you really want to permanently delete this item?<nl/><filename>%1</"
@@ -7064,27 +6941,22 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ msgstr "Otvoriť %1 v karte"
 
 #, fuzzy
-#~| msgid "You are not authorized to execute this file."
 #~ msgid "Authentication is required to delete this file."
 #~ msgstr "Nemáte práva na spustenie tohto súboru."
 
 #, fuzzy
-#~| msgid "Click this button to create a new folder."
 #~ msgid "Authentication is required to create a folder."
 #~ msgstr "Kliknutím na toto tlačidlo vytvoríte nový priečinok."
 
 #, fuzzy
-#~| msgid "Failed to open the file."
 #~ msgid "Authentication is required to open this file."
 #~ msgstr "Nepodarilo sa otvoriť súbor."
 
 #, fuzzy
-#~| msgid "You are not authorized to execute this file."
 #~ msgid "Authentication is required to rename this file."
 #~ msgstr "Nemáte práva na spustenie tohto súboru."
 
 #, fuzzy
-#~| msgid "You are not authorized to execute this file."
 #~ msgid "Authentication is required to delete this folder."
 #~ msgstr "Nemáte práva na spustenie tohto súboru."
 
@@ -7488,13 +7360,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ msgstr "Pridať sieťový priečinok"
 
 #, fuzzy
-#~| msgctxt "@info"
-#~| msgid ""
-#~| "Do you really want to permanently delete this item?<nl/><nl/><emphasis "
-#~| "strong='true'>This action cannot be undone.</emphasis>"
-#~| msgid_plural ""
-#~| "Do you really want to permanently delete these %1 items?<nl/><nl/"
-#~| "><emphasis strong='true'>This action cannot be undone.</emphasis>"
 #~ msgctxt "@info"
 #~ msgid ""
 #~ "Do you really want to permanently delete these %1 items?<nl/><nl/"
@@ -7504,8 +7369,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ "strong='true'>Táto akcia sa nedá vrátiť späť.</emphasis>"
 
 #, fuzzy
-#~| msgid "Do you really want to move this item to the Trash?"
-#~| msgid_plural "Do you really want to move these %1 items to the Trash?"
 #~ msgctxt "@info"
 #~ msgid "Do you really want to move these %1 items to the Trash?"
 #~ msgstr "Naozaj chcete presunúť túto položku do koša?"
@@ -7538,7 +7401,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ "v Systémových nastaveniach KDE."
 
 #, fuzzy
-#~| msgid "A folder named %1 already exists."
 #~ msgid "A folder named \"%1\" already exists."
 #~ msgstr "Priečinok s názvom %1 už existuje."
 
@@ -7894,12 +7756,10 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ msgstr "&Iný..."
 
 #, fuzzy
-#~| msgid "C&ontinue"
 #~ msgid "Continue"
 #~ msgstr "&Pokračovať"
 
 #, fuzzy
-#~| msgid "C&ancel"
 #~ msgid "Cancel"
 #~ msgstr "&Zrušiť"
 
@@ -7907,7 +7767,6 @@ msgstr "Vložiť zástupný znak dotazu"
 #~ msgstr "<qt>Súbor alebo priečinok <b>%1</b> neexistuje.</qt>"
 
 #, fuzzy
-#~| msgid "Ad&vanced Options"
 #~ msgid "Advanced options"
 #~ msgstr "&Pokročilé možnosti"
 
