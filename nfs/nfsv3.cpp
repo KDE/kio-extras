@@ -1161,8 +1161,7 @@ KIO::WorkerResult NFSProtocolV3::copySame(const QUrl &src, const QUrl &dest, int
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = worker()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-            if (writeArgs.offset < size) {
+            if (writeArgs.offset < DEFAULT_MINIMUM_KEEP_SIZE) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
                 }
@@ -1368,8 +1367,7 @@ KIO::WorkerResult NFSProtocolV3::copyFrom(const QUrl &src, const QUrl &dest, int
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep
-            const int size = worker()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-            if (partInfo.size() < size) {
+            if (partInfo.size() < DEFAULT_MINIMUM_KEEP_SIZE) {
                 QFile::remove(partInfo.absoluteFilePath());
             }
         }
@@ -1567,8 +1565,7 @@ KIO::WorkerResult NFSProtocolV3::copyTo(const QUrl &src, const QUrl &dest, int _
     if (error) {
         if (bMarkPartial) {
             // Remove the part file if it's smaller than the minimum keep size.
-            const unsigned int size = worker()->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-            if (writeArgs.offset < size) {
+            if (writeArgs.offset < DEFAULT_MINIMUM_KEEP_SIZE) {
                 if (!remove(partFilePath)) {
                     qCDebug(LOG_KIO_NFS) << "Could not remove part file, ignoring...";
                 }

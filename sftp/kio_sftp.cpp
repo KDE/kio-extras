@@ -1523,8 +1523,7 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
 
             SFTPAttributesPtr attr(sftp_stat(mSftp, dest.constData()));
             if (bMarkPartial && attr != nullptr) {
-                size_t size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-                if (attr->size < size) {
+                if (attr->size < DEFAULT_MINIMUM_KEEP_SIZE) {
                     sftp_unlink(mSftp, dest.constData());
                 }
             }
@@ -1765,8 +1764,7 @@ Result SFTPWorker::sftpCopyGet(const QUrl &url, const QString &sCopyFile, int pe
             }
         } else {
             partFile.refresh();
-            const int size = configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
-            if (partFile.exists() && partFile.size() < size) { // should a very small ".part" be deleted?
+            if (partFile.exists() && partFile.size() < DEFAULT_MINIMUM_KEEP_SIZE) { // should a very small ".part" be deleted?
                 QFile::remove(sPart);
             }
         }

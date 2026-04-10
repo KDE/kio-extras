@@ -168,9 +168,8 @@ Q_REQUIRED_RESULT WorkerResult concludeResumeHasError(const WorkerResult &result
 
     // Handle error condition.
     if (!result.success()) {
-        const off_t minimumSize = worker->configValue(QStringLiteral("MinimumKeepSize"), DEFAULT_MINIMUM_KEEP_SIZE);
         // TODO should this be partdestination?
-        if (ResumeIO destIO(resume.destination); destIO.exists() && destIO.size() < minimumSize) {
+        if (ResumeIO destIO(resume.destination); destIO.exists() && destIO.size() < DEFAULT_MINIMUM_KEEP_SIZE) {
             destIO.remove();
         }
         return result;
